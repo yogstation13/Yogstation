@@ -277,9 +277,9 @@
 		playsound(src,'sound/items/syringeproj.ogg',40,1)
 		for(var/a=0, a<5, a++)
 			step_towards(A, target)
-			sleep(2)
+			sleep(0.2 SECONDS)
 		A.Smoke()
-		spawn(100)
+		spawn(10 SECONDS)
 			if(src)
 				resin_cooldown = FALSE
 		return

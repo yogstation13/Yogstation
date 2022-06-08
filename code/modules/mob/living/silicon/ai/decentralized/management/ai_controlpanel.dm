@@ -397,7 +397,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(user, span_warning("[A] is already in the process of being hijacked!"))
 				return
 			user.visible_message(span_warning("[user] begins furiously typing something into [src]..."))
-			if(do_after(user, 55, target = src))
+			if(do_after(user, 5.5 SECONDS, src))
 				user.dropItemToGround(device)
 				device.forceMove(A)
 				A.hijacking = device
@@ -424,7 +424,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				return
 			
 			user.visible_message(span_danger("[user] attempts to cancel a process on [src]."), span_notice("An unknown process seems to be interacting with [A]! You attempt to end the proccess.."))
-			if (do_after(user,100,target = src))
+			if (do_after(user, 10 SECONDS, src))
 				A.hijacking.forceMove(get_turf(src))
 				A.hijacking = null
 				A.hijack_start = 0

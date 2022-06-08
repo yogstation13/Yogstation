@@ -21,7 +21,7 @@
 			return
 		playsound(user, 'sound/effects/tape.ogg', 25)
 		M.visible_message(span_danger("[user] is trying to put [tape_muzzle.name] on [M]!"), span_userdanger("[user] is trying to put [tape_muzzle.name] on [M]!"))
-		if(!do_after(user, 2 SECONDS, target = M))
+		if(!do_after(user, 2 SECONDS, M))
 			qdel(tape_muzzle)
 			return
 		if(!M.equip_to_slot_or_del(tape_muzzle, SLOT_WEAR_MASK, user))

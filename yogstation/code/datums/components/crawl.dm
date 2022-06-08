@@ -140,7 +140,7 @@
 
 /datum/component/crawl/blood/stop_crawling(atom/target, mob/living/user)
 	target.visible_message(span_warning("[target] starts to bubble..."))
-	if(!do_after(user, 2 SECONDS, target = target))
+	if(!do_after(user, 2 SECONDS, target))
 		return
 	if(!target)
 		return
@@ -167,7 +167,7 @@
 		sound = 'sound/magic/demon_consume.ogg'
 	for(var/i=1 to 3)
 		playsound(get_turf(user), sound, 100, 1)
-		sleep(30)
+		sleep(3 SECONDS)
 	if(!victim)
 		to_chat(user, span_danger("You happily devour... nothing? Your meal vanished at some point!"))
 		return
@@ -250,7 +250,7 @@
 	to_chat(user, span_notice("You close your eyes, plug your ears and start counting to three..."))
 	target.visible_message("<span class='warning'>[target] starts shaking uncontrollably!</span")
 	target.Shake(3, 3, 3 SECONDS * 5)
-	if(!do_after(user, 3 SECONDS, target = target))
+	if(!do_after(user, 3 SECONDS, target))
 		return
 	..()
 	to_chat(user, span_notice("You open your eyes and find yourself in the locker dimension."))
@@ -260,7 +260,7 @@
 /datum/component/crawl/locker/stop_crawling(atom/target, mob/living/user)
 	target.visible_message("<span class='warning'>[target] starts shaking uncontrollably!</span")
 	target.Shake(3, 3, 3 SECONDS * 5)
-	if(!do_after(user, 3 SECONDS, target = target))
+	if(!do_after(user, 3 SECONDS, target))
 		return
 	user.forceMove(target)
 	qdel(holder)
@@ -380,7 +380,7 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 
 /datum/component/crawl/vomit/stop_crawling(atom/target, mob/living/user)
 	target.visible_message(span_warning("[target] starts to bubble...?"))
-	if(!do_after(user, 2 SECONDS, target = target))
+	if(!do_after(user, 2 SECONDS, target))
 		return
 	if(!target)
 		return

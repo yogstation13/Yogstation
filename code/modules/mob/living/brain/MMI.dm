@@ -102,7 +102,7 @@
 	else
 		user.visible_message(span_notice("[user] begins to remove the brain from [src]"), span_danger("You begin to pry the brain out of [src], ripping out the wires and probes"))
 		to_chat(brainmob, span_userdanger("You feel your mind failing as you are slowly ripped from the [src]"))
-		if(do_after(user, remove_time, target = src))
+		if(do_after(user, remove_time, src))
 			if(!brainmob) return
 			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg" : ""]"))
 			eject_brain(user)

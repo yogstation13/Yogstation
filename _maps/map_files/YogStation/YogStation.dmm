@@ -16392,6 +16392,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bsg" = (
@@ -16402,6 +16405,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -16451,6 +16457,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bsn" = (
@@ -16471,6 +16480,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bsq" = (
@@ -16479,6 +16491,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 5
@@ -18613,6 +18628,9 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bBH" = (
@@ -18944,6 +18962,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bDn" = (
@@ -19028,6 +19049,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bEg" = (
@@ -19085,6 +19109,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bEs" = (
@@ -19506,6 +19533,9 @@
 	network = list("ss13","rd")
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bHi" = (
@@ -39564,14 +39594,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"kcy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port)
 "kcH" = (
 /obj/machinery/disposal/bin,
 /obj/structure/window/reinforced,
@@ -59685,11 +59707,6 @@
 	pixel_x = -23;
 	pixel_y = -7
 	},
-/obj/machinery/camera{
-	c_tag = "Genetics Research";
-	dir = 4;
-	network = list("ss13","medbay")
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "tZp" = (
@@ -66101,6 +66118,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "xBl" = (
@@ -84561,7 +84579,7 @@ aSf
 aSf
 xBb
 aSf
-kcy
+pxE
 cOY
 fLr
 bjg

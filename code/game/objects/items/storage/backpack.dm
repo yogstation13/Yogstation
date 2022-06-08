@@ -64,8 +64,8 @@
 /obj/item/storage/backpack/holding/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is jumping into [src]! It looks like [user.p_theyre()] trying to commit suicide."))
 	user.dropItemToGround(src, TRUE)
-	user.Stun(100, ignore_canstun = TRUE)
-	sleep(20)
+	user.Stun(10 SECONDS, ignore_canstun = TRUE)
+	sleep(2 SECONDS)
 	playsound(src, "rustle", 50, 1, -5)
 	qdel(user)
 

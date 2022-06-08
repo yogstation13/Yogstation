@@ -31,7 +31,7 @@
 /mob/living/simple_animal/lesserdemon/gluttony/UnarmedAttack(mob/living/L)
 	if(isliving(L)) //Eat Corpses to regen health
 		if(L.stat == DEAD)
-			if(do_after(src, 3 SECONDS, target = L))
+			if(do_after(src, 3 SECONDS, L))
 				devour(L)
 			return
 	return ..()
