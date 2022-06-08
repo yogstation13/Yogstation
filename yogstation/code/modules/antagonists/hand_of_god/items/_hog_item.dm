@@ -8,9 +8,9 @@
 	var/original_icon = "ass"
 
 /obj/structure/hog_structure/proc/update_icons()
-	icon_state = "[original_icon]_[cult.color]"
+	icon_state = "[original_icon]_[cult.cult_color]"
 	
-/obj/structure/hog_structure/proc/handle_owner_change(var/datum/team/hog_team/new_cult)
+/obj/structure/hog_structure/proc/handle_owner_change(var/datum/team/hog_cult/new_cult)
 	cult = new_cult
 	update_icons()
 
