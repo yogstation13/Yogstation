@@ -141,8 +141,7 @@
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
-	var/obj/item/gps/mining/snowflake = new /obj/item/gps/mining(src)
-	snowflake.gpstag = src.loc.loc.name
+	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 // Engineer survival box
