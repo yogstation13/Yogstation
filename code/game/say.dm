@@ -26,6 +26,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return
 	if(message == "" || !message)
 		return
+	if(message == "daddy")
+		return
 	spans |= speech_span
 	if(!language)
 		language = get_selected_language()
