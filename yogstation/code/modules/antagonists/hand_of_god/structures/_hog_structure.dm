@@ -14,6 +14,20 @@
 	var/cost = 10
 	var/time_builded = 10
 
+/obj/structure/hog_structure/Initialize()	
+	GLOB.hog_structures += src
+	. = ..()
+	for(var/datum/hog_god_interaction/structure/spell in god_actions_add)
+		spell = new
+		spell.owner = src
+		god_actions += spell
+	
+/obj/structure/hog_structure/Destroy()
+	GLOB.hog_structures -= src
+	for(var/qdel_candidate in god_actions)
+		qdel(qdel_candidate)
+	. = ..()
+
 /obj/structure/hog_structure/proc/update_hog_icons()
 	cut_overlays()
 	icon_state = "[icon_originalname]_[cult.cult_color]"
@@ -40,16 +54,15 @@
 	if(cultie && (cultie.cult = src.cult))
 		special_interaction(user)
 
-/obj/structure/hog_structure/Initialize()	
-	GLOB.hog_structures += src
-	. = ..()
-	for(var/datum/hog_god_interaction/structure/spell in god_actions_add)
-		spell = new
-		spell.owner = src
-		god_actions += spell
-	
-/obj/structure/hog_structure/Destroy()
-	GLOB.hog_structures -= src
-	for(var/qdel_candidate in god_actions)
-		qdel(qdel_candidate)
-	. = ..()
+/obj/structure/hog_structure/attack_god(mob/camera/hog_god/god, modifier)
+	if(cult != god.cult)
+		return
+	if(!modifier)
+		var/datum/hog_god_interaction/spelli = input(god,"What do you want to cast?","Action") god_actions
+		if(!spelli)
+			return
+		if(!spelli.on_called)
+			return
+		spelli.on_use(god)
+		return  
+	return 
