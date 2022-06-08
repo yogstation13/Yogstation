@@ -47,7 +47,7 @@
 					Beam(M, icon_state = "warden_beam", time = 10)	
 					M.take_damage(damage_per_shot * 2, BURN, MELEE, 1, get_dir(src, M)) ///Mechas get fucked more hardly(because they are cringe(very cringe))
 					last_process = world.time 
-				else if(istype(/obj/structure/hog_structure))
+				else if(istype(target, /obj/structure/hog_structure))
 					var/obj/structure/S = target
 					Beam(S, icon_state = "warden_beam", time = 10)	
 					S.take_damage(damage_per_shot, BURN, MELEE, 1, get_dir(src, S)) ///Enjoy cannon rush
