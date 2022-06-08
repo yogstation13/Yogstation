@@ -11,8 +11,9 @@
 	if(when_recharged > world.time)
 		to_chat(user,span_danger("The action is on coldown!"))
 		return FALSE		
-	if(user.alert("[description] It will cost [cost] energy.",,"Yes","No") != "Yes")
-		return FALSE
+	var/confirm = alert(user, "[description] It will cost [cost] energy.", "Confirm action", "Yes", "No")
+	if(confirm == "No")
+		return
 	if(cost > user.cult.energy)
 		if(prob(2))
 			to_chat(user,span_danger("There is not enough minerals!")) ///Funny references
