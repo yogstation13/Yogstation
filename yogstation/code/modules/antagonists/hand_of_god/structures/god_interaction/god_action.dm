@@ -8,6 +8,9 @@
 	
 
 /datum/hog_god_interaction/proc/on_called(var/mob/camera/hog_god/user)
+	if(when_recharged > world.time)
+		to_chat(user,span_danger("The action is on coldown!"))
+		return FALSE		
 	if(user.alert("[description] It will cost [cost] energy.",,"Yes","No") != "Yes")
 		return FALSE
 	if(cost > user.cult.energy)
@@ -16,10 +19,10 @@
 	return TRUE
 
 /datum/hog_god_interaction/proc/on_use() ///Calling this proc is made in attack_god()
-	return
+	when_recharged = world.time + cooldown
 
 /datum/hog_god_interaction/proc/on_targeting(var/atom/target) ///Same as on_use but for targeted ones
-	return
+	when_recharged = world.time + cooldown
 
 /datum/hog_god_interaction/structure
 	var/obj/structure/hog_structure/owner
