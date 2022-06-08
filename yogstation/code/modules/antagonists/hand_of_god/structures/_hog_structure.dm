@@ -58,7 +58,7 @@
 	if(cult != god.cult)
 		return
 	if(!modifier)
-		var/datum/hog_god_interaction/spelli = input(god,"What do you want to cast?","Action") god_actions
+		var/datum/hog_god_interaction/spelli = input(god,"What do you want to cast?","Action") in god_actions
 		if(!spelli)
 			return
 		if(!spelli.on_called)
