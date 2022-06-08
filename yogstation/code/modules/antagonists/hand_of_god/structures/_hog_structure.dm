@@ -10,6 +10,8 @@
 	var/list/god_actions = list()
 	var/obj/item/hog_item/prismatic_lance/weapon = null
 	var/shield_integrity = 0
+	var/cost = 10
+	var/time_builded = 10
 
 /obj/structure/hog_structure/proc/update_hog_icons()
 	cut_overlays()
