@@ -266,13 +266,27 @@
 	new /obj/item/barrier_taperoll/police(src)
 	update_icon()
 
+/obj/item/storage/belt/security/chief
+	name = "\improper Head of Security's toolbelt"
+	desc = "Holds tools, looks snazzy."
+	icon_state = "securitybelt_hos"
+	item_state = "security_hos"
+
+/obj/item/storage/belt/security/chief/full/PopulateContents()
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/grenade/flashbang(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/melee/baton/loaded(src)
+	new /obj/item/barrier_taperoll/police(src)
+	update_icon()
+
 /obj/item/storage/belt/security/webbing
 	name = "security webbing"
 	desc = "Unique and versatile chest rig, can hold security gear."
 	icon_state = "securitywebbing"
 	item_state = "securitywebbing"
 	w_class = WEIGHT_CLASS_BULKY
-	content_overlays = FALSE
 	custom_premium_price = 800
 
 /obj/item/storage/belt/security/webbing/ComponentInitialize()
@@ -456,8 +470,9 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "belt"
 	item_state = "security"
+	content_overlays = TRUE
 
-/obj/item/storage/belt/military/abductor/full/PopulateContents()
+/obj/item/storage/belt/military/abductor/agent/PopulateContents()
 	new /obj/item/screwdriver/abductor(src)
 	new /obj/item/wrench/abductor(src)
 	new /obj/item/weldingtool/abductor(src)
@@ -465,6 +480,56 @@
 	new /obj/item/wirecutters/abductor(src)
 	new /obj/item/multitool/abductor(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"white")
+
+/obj/item/storage/belt/military/abductor/scientist/PopulateContents()
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/scalpel/alien(src)
+	new /obj/item/hemostat/alien(src)
+	new /obj/item/retractor/alien(src)
+	new /obj/item/circular_saw/alien(src)
+	new /obj/item/surgicaldrill/alien(src)
+	new /obj/item/cautery/alien(src)
+
+/obj/item/storage/belt/admin
+	name = "badmin belt"
+	desc = "A belt used by admins to debug."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "belt"
+	item_state = "security"
+	content_overlays = TRUE // This won't end well
+
+/obj/item/storage/belt/military/snack/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 1000
+	STR.max_combined_w_class = 1000
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
+
+/obj/item/storage/belt/admin/full/PopulateContents()
+	new /obj/item/construction/rcd/combat/admin(src)
+	new /obj/item/pipe_dispenser(src)
+	new /obj/item/shuttle_creator/admin(src)
+	new /obj/item/handdrill(src)
+	new /obj/item/jawsoflife(src)
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/multitool/tricorder(src)
+	new /obj/item/storage/bag/construction/admin/full(src)
+	new /obj/item/extinguisher/mini(src)
+	new /obj/item/holosign_creator/multi/CE(src)
+	new /obj/item/restraints/handcuffs/alien(src)
+	new /obj/item/grenade/flashbang(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/melee/baton/loaded(src)
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/scalpel/alien(src)
+	new /obj/item/hemostat/alien(src)
+	new /obj/item/retractor/alien(src)
+	new /obj/item/circular_saw/alien(src)
+	new /obj/item/surgicaldrill/alien(src)
+	new /obj/item/cautery/alien(src)
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/healthanalyzer/advanced(src)
 
 /obj/item/storage/belt/military/army
 	name = "army belt"

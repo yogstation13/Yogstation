@@ -40,6 +40,8 @@
 	. = ..()
 	try_heal(M, user)
 
+/obj/item/stack/medical/get_belt_overlay()
+	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "stack_medical")
 
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
