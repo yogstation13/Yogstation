@@ -114,6 +114,6 @@
 				possible_targets += S
 	target = pick(possible_targets)
 	
-/obj/item/hog_item/prismatic_lance/
+/obj/item/hog_item/prismatic_lance/guardian
 	name = "guardian lance"
 	desc = "Prismatic lance structure uses this. Ideally you shouldn't see it. Isn't qdeleted when some shit happens."
