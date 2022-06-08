@@ -1,6 +1,35 @@
 /datum/hog_god_interaction //Shit for god interacting with hith guys
-  var/name = "Do nothing"
-  var/description = "Literaly, do nothing. It doesn't do ANYTHING. ANYTHING."
-  var/cost = 0
-  var/when_recharged //Timers are for weak
-  var/cooldown = 0 
+	var/name = "Do nothing"
+	var/description = "Literaly, do nothing. It doesn't do ANYTHING. ANYTHING."
+	var/cost = 0
+	var/when_recharged //Timers are for weak
+	var/cooldown = 0 
+	var/is_targeted = FALSE
+	
+
+/datum/hog_god_interaction/proc/on_called(var/mob/camera/hog_god/user)
+	if(user.alert("[description] It will cost [cost] energy.",,"Yes","No") != "Yes")
+		return FALSE
+	if(cost > user.cult.energy)
+		to_chat(user,span_danger("You don't have enough energy to use this!"))
+		return FALSE
+	return TRUE
+
+/datum/hog_god_interaction/proc/on_use() ///Calling this proc is made in attack_god()
+	return
+
+/datum/hog_god_interaction/proc/on_targeting(var/atom/target) ///Same as on_use but for targeted ones
+	return
+
+/datum/hog_god_interaction/structure
+	var/obj/structure/hog_structure/owner
+
+/datum/hog_god_interaction/targeted
+	is_targeted = TRUE
+	
+
+
+
+	
+
+	
