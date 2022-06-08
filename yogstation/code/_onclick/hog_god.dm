@@ -1,6 +1,6 @@
 // HoG god controlls
 
-/atom/proc/attack_god(var/mob/camera/god/hog_god/god, var/modifier = FALSE)
+/atom/proc/attack_god(var/mob/camera/hog_god/god, var/modifier = FALSE)
 	return
 
 /mob/camera/hog_god/ClickOn(var/atom/A, var/params) 
