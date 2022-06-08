@@ -114,5 +114,6 @@
 				possible_targets += S
 	target = pick(possible_targets)
 	
-/obj/item/hog_item/prismatic_lance/proc/discharge()
-	damage_per_shot = 15
+/obj/item/hog_item/prismatic_lance/
+	name = "guardian lance"
+	desc = "Prismatic lance structure uses this. Ideally you shouldn't see it. Isn't qdeleted when some shit happens."
