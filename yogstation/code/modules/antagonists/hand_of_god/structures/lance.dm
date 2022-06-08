@@ -10,3 +10,13 @@
 	. = ..()
 	if(!weapon)
 		weapon = new /obj/item/hog_item/prismatic_lance/guardian(src)
+	weapon.cult = cult 
+
+/obj/structure/hog_structure/proc/update_hog_icons()
+	. = ..()
+	if(weapon.overcharged)
+		add_overlay("overchange_[cult.cult_color]"
+	
+/obj/structure/hog_structure/proc/handle_team_change(var/datum/team/hog_cult/new_cult)
+	. = ..()
+	weapon.cult = cult 
