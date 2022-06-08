@@ -11,6 +11,7 @@
 	var/sight_range = 5
 	var/coldown = 2 SECONDS
 	var/last_process
+	var/overcharged = FALSE
 
 /obj/item/hog_item/prismatic_lance/Initialize()
 	. = ..()
