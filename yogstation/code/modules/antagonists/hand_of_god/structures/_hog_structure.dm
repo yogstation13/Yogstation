@@ -8,6 +8,7 @@
 	density = TRUE
 	var/datum/team/hog_cult/cult
 	var/list/god_actions = list()
+	var/list/god_actions_add = list(/datum/hog_god_interaction)
 	var/obj/item/hog_item/prismatic_lance/weapon = null
 	var/shield_integrity = 0
 	var/cost = 10
@@ -42,7 +43,13 @@
 /obj/structure/hog_structure/Initialize()	
 	GLOB.hog_structures += src
 	. = ..()
+	for(var/datum/hog_god_interaction/structure/spell in god_actions_add)
+		spell = new
+		spell.owner = src
+		god_actions += spell
 	
 /obj/structure/hog_structure/Destroy()
 	GLOB.hog_structures -= src
+	for(var/qdel_candidate in god_actions)
+		qdel(qdel_candidate)
 	. = ..()
