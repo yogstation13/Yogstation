@@ -61,7 +61,7 @@
 		var/datum/hog_god_interaction/spelli = input(god,"What do you want to cast?","Action") in god_actions
 		if(!spelli)
 			return
-		if(!spelli.on_called)
+		if(!spelli.on_called(god))
 			return
 		spelli.on_use(god)
 		return  
