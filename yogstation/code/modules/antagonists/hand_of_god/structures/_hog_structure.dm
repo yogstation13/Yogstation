@@ -19,7 +19,7 @@
 	if(shield_integrity > 0)
 		add_overlay("shield_[cult.cult_color]")
 	
-/obj/structure/hog_structure/proc/handle_team_change(var/datum/team/hog_team/new_cult)
+/obj/structure/hog_structure/proc/handle_team_change(var/datum/team/hog_cult/new_cult)
 	shield_integrity = 0 
 	if(weapon && !istype(weapon, /obj/item/hog_item/prismatic_lance/guardian))
 		qdel(weapon)
