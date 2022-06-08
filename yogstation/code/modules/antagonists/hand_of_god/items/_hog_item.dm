@@ -2,7 +2,6 @@
 	name = "hoggers"
 	desc = "You shouldn't seen this.."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	icon = 'icons/obj/' //something will be here. Maybe.
 	icon_state = "ass"
 	var/datum/team/hog_cult/cult 
 	var/original_icon = "ass"
