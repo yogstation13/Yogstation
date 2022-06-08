@@ -24,6 +24,7 @@
 	name = "dissection"
 	implements = list(TOOL_SCALPEL = 60, /obj/item/kitchen/knife = 30, /obj/item/shard = 15)
 	time = 125
+	dependant_skill = SKILL_DESIGN
 
 /datum/surgery_step/dissection/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] starts dissecting [target].", span_notice("You start dissecting [target]."))

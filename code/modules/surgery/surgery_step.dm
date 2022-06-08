@@ -21,6 +21,12 @@
 											SKILLLEVEL_EXPERIENCED = 1,
 											SKILLLEVEL_MASTER = 1.2)
 
+	var/list/speed_per_skill_level = list(	SKILLLEVEL_UNSKILLED = 2,	//List of chance to fail each skill level.
+											SKILLLEVEL_BASIC = 1.75,
+											SKILLLEVEL_TRAINED = 1.5,
+											SKILLLEVEL_EXPERIENCED = 1.25,
+											SKILLLEVEL_MASTER = 1)
+
 /datum/surgery_step/proc/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	var/success = FALSE
 	if(accept_hand)
@@ -80,7 +86,7 @@
 	var/advance = FALSE
 
 	var/tool_speed_mod = 1
-	var/user_speed_mod = 1
+	var/user_speed_mod = speed_per_skill_level[find_skill_level(user, dependant_skill)]
 
 	if(!skill_check(user, dependant_skill, required_skill_level))
 		to_chat(user, span_warning("You don't know where to begin with this step of the operation!"))

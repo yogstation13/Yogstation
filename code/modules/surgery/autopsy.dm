@@ -19,6 +19,7 @@
 	name = "perform autopsy with a sharp tool"
 	implements = list(TOOL_SCALPEL = 75, /obj/item/kitchen/knife = 30, /obj/item/shard = 15)
 	time = 150
+	dependant_skill = SKILL_FORENSICS
 
 /datum/surgery_step/autopsy/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to inspect [target]'s damage..."),

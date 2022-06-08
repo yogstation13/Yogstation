@@ -3798,6 +3798,7 @@
 #include "yogstation\code\modules\scripting\Scanner\Tokens.dm"
 #include "yogstation\code\modules\shuttle\emergency.dm"
 #include "yogstation\code\modules\shuttle\syndicate.dm"
+#include "yogstation\code\modules\skills\appraiser.dm"
 #include "yogstation\code\modules\skills\skill_menu.dm"
 #include "yogstation\code\modules\skills\skill_trainer.dm"
 #include "yogstation\code\modules\skills\skills.dm"
