@@ -6,7 +6,7 @@
 	var/icon_originalname = "sex"
 	anchored = TRUE
 	density = TRUE
-	var/datum/team/hog_team/cult
+	var/datum/team/hog_cult/cult
 	var/list/god_actions = list()
 	var/obj/item/hog_item/prismatic_lance/weapon = null
 	var/shield_integrity = 0
