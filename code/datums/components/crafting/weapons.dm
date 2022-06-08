@@ -1,14 +1,3 @@
-				/obj/item/grenade = 1)
-	time = 1.5 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-	always_availible = FALSE
-
-/datum/crafting_recipe/knifeboxing
-	name = "Knife-boxing Gloves"
-	result = /obj/item/clothing/gloves/knifeboxing
-	reqs = list(/obj/item/clothing/gloves/boxing = 1,
-				/obj/item/kitchen/knife = 2)
 // Weapons
 
 /datum/crafting_recipe/pin_removal
