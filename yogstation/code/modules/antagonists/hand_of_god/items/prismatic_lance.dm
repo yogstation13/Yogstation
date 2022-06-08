@@ -111,7 +111,7 @@
 				for(var/obj/Z in view(sight_range, src))
 					viewcache += Z
 			if(S in viewcache)
-				possible_targets += M
+				possible_targets += S
 	target = pick(possible_targets)
 	
 /obj/item/hog_item/prismatic_lance/proc/discharge()
