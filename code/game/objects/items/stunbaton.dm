@@ -130,7 +130,7 @@
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_icon()
 	else if(istype(W, /obj/item/firing_pin))
-		if(makeshift == TRUE)
+		if(makeshift)
 			return
 		if(upgrade)
 			if(W.type != /obj/item/firing_pin)
@@ -142,7 +142,7 @@
 			W.forceMove(src)
 			pin = W
 	else if(istype(W, upgrade))
-		if(makeshift == TRUE)
+		if(makeshift)
 			return
 		if(pin)
 			if(pin.type != /obj/item/firing_pin)
@@ -154,7 +154,7 @@
 			W.forceMove(src)
 			upgrade = W	
 	else if(W.tool_behaviour == TOOL_CROWBAR)
-		if(makeshift == TRUE)
+		if(makeshift)
 			return
 		if(pin)
 			pin.forceMove(get_turf(src))
