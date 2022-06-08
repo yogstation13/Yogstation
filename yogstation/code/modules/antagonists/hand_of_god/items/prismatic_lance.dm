@@ -2,7 +2,6 @@
 	name = "prismatic lance"
 	desc = "Overcharge and prismatic lance structure use this. Ideally you shouldn't see it."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	icon = 'none'
 	icon_state = "none"
 	original_icon = "none"
 	var/atom/target
