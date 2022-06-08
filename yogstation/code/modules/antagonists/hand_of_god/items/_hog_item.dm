@@ -7,10 +7,10 @@
 	var/datum/team/hog_cult/cult 
 	var/original_icon = "ass"
 
-/obj/structure/hog_structure/proc/update_icons()
+/obj/item/hog_item/proc/update_icons()
 	icon_state = "[original_icon]_[cult.cult_color]"
 	
-/obj/structure/hog_structure/proc/handle_owner_change(var/datum/team/hog_cult/new_cult)
+/obj/item/hog_item/proc/handle_owner_change(var/datum/team/hog_cult/new_cult)
 	cult = new_cult
 	update_icons()
 
