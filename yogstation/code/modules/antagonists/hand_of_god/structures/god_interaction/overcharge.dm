@@ -31,3 +31,4 @@
 		return
 	return	
 	
+#undef OVERCHARGE_DURATION
