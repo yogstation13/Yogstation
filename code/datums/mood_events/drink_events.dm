@@ -2,6 +2,16 @@
 	mood_change = 3
 	description = "<span class='nicegreen'>Everything just feels better after a drink or two.</span>\n"
 
+/datum/mood_event/drunk/add_effects(param)
+	// Display blush visual
+	ADD_TRAIT(owner, TRAIT_BLUSHING, "[type]")
+	owner.update_body()
+
+/datum/mood_event/drunk/remove_effects()
+	// Stop displaying blush visual
+	REMOVE_TRAIT(owner, TRAIT_BLUSHING, "[type]")
+	owner.update_body()
+
 /datum/mood_event/quality_nice
 	description = "<span class='nicegreen'>That drink wasn't bad at all.</span>\n"
 	mood_change = 1
