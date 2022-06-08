@@ -15,7 +15,7 @@
 /obj/structure/hog_structure/update_hog_icons()
 	. = ..()
 	if(weapon.overcharged)
-		add_overlay("overchange_[cult.cult_color]"
+		add_overlay("overchange_[cult.cult_color]")
 	
 /obj/structure/hog_structure/handle_team_change(var/datum/team/hog_cult/new_cult)
 	. = ..()
