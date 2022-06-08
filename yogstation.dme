@@ -3302,6 +3302,7 @@
 #include "yogstation\code\_globalvars\lists\telecomms.dm"
 #include "yogstation\code\_onclick\adjacent.dm"
 #include "yogstation\code\_onclick\click.dm"
+#include "yogstation\code\_onclick\hog_god.dm"
 #include "yogstation\code\_onclick\hud\darkspawn.dm"
 #include "yogstation\code\_onclick\hud\vampire.dm"
 #include "yogstation\code\controllers\configuration\entries\general.dm"
