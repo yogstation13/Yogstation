@@ -14,7 +14,10 @@
 	if(user.alert("[description] It will cost [cost] energy.",,"Yes","No") != "Yes")
 		return FALSE
 	if(cost > user.cult.energy)
-		to_chat(user,span_danger("You don't have enough energy to use this!"))
+		if(prob(2))
+			to_chat(user,span_danger("There is not enough minerals!")) ///Funny references
+		else
+			to_chat(user,span_danger("You don't have enough energy to use this!"))
 		return FALSE
 	return TRUE
 
