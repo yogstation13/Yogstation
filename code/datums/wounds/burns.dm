@@ -157,7 +157,7 @@
 				if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
 					condition += ", [span_deadsay("with streaks of rotten, pulsating infection!")]"
 				if(WOUND_INFECTION_SEPTIC to INFINITY)
-					return span_deadsay("[span_bold([victim.p_their(TRUE)] [limb.name] is a mess of charred skin and infected rot!)]")
+					return span_deadsay("[span_bold("[victim.p_their(TRUE)] [limb.name] is a mess of charred skin and infected rot!")]")
 				else
 					condition += "!"
 
