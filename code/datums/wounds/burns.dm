@@ -151,13 +151,13 @@
 		if(skill_check(user, identifing_skill, descriptive_skilllevel))
 			switch(infestation)
 				if(WOUND_INFECTION_MODERATE to WOUND_INFECTION_SEVERE)
-					condition += ", <span class='deadsay'>with early signs of infection.</span>"
+					condition += ", [span_deadsay("with early signs of infection.")]"
 				if(WOUND_INFECTION_SEVERE to WOUND_INFECTION_CRITICAL)
-					condition += ", <span class='deadsay'>with growing clouds of infection.</span>"
+					condition += ", [span_deadsay("with growing clouds of infection.")]"
 				if(WOUND_INFECTION_CRITICAL to WOUND_INFECTION_SEPTIC)
-					condition += ", <span class='deadsay'>with streaks of rotten, pulsating infection!</span>"
+					condition += ", [span_deadsay("with streaks of rotten, pulsating infection!")]"
 				if(WOUND_INFECTION_SEPTIC to INFINITY)
-					return span_deadsay("<B>[victim.p_their(TRUE)] [limb.name] is a mess of charred skin and infected rot!</B>")
+					return span_deadsay("[span_bold([victim.p_their(TRUE)] [limb.name] is a mess of charred skin and infected rot!)]")
 				else
 					condition += "!"
 

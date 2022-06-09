@@ -496,4 +496,4 @@
 	icon_state = "urn_closed"
 	amount_per_transfer_from_this = 0 // No reagent transfer allowed, it's closed
 	possible_transfer_amounts = list(0)
-	to_chat(user, "<span class = 'notice'>You close the lid of [src] and lock it.</span>")
+	to_chat(user, span_notice("You close the lid of [src] and lock it."))

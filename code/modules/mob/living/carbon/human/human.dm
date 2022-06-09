@@ -960,7 +960,7 @@
 		to_chat(src, span_warning("You can't fireman carry [target] while they're standing!"))
 		return
 	visible_message(span_notice("[src] starts lifting [target] onto their back.."), span_notice("You start to lift [target] onto your back..."))
-	if(!do_after(src, 50, TRUE, target, required_skill = SKILL_STRENGTH, required_skill_level = SKILLLEVEL_BASIC, skill_delay_mult_scaling = list(SKILLLEVEL_UNSKILLED = 4, SKILLLEVEL_BASIC = 2, SKILLLEVEL_TRAINED = 1, SKILLLEVEL_EXPERIENCED = 0.5, SKILLLEVEL_MASTER = 0.25)))
+	if(!do_after(src, 5 SECONDS, target, TRUE, required_skill = SKILL_STRENGTH, required_skill_level = SKILLLEVEL_BASIC, skill_delay_mult_scaling = list(SKILLLEVEL_UNSKILLED = 4, SKILLLEVEL_BASIC = 2, SKILLLEVEL_TRAINED = 1, SKILLLEVEL_EXPERIENCED = 0.5, SKILLLEVEL_MASTER = 0.25)))
 		return
 
 	//Second check to make sure they're still valid to be carried
