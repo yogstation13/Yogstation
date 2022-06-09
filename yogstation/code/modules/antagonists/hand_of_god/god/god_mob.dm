@@ -16,6 +16,7 @@
 	var/datum/team/hog_cult/cult
 	var/is_recall_on_cooldown = FALSE
 	var/cool_name = "God"
+	var/lights_breaked_recently = 0
 
 /mob/camera/hog_god/proc/select_name()
 	var/new_name = input(src, "Choose your new name", "Name")
@@ -28,6 +29,7 @@
 	cult.name = "[new_name]'s Cult"
 	cult.member_name = "Servant of [new_name]" ///Zamn they serve new_name, cool guys
 	
-
+/mob/camera/hog_god/proc/lightttts()
+	lights_breaked_recently -= 1
 	
  
