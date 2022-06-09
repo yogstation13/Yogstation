@@ -2,6 +2,7 @@
 
 
 /obj/item/clothing/under/trek
+	sprite_sheets_file = "uniforms/trek.dmi"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 

@@ -72,7 +72,7 @@
 		if(client && hud_used && hud_used.hud_shown)
 			head.screen_loc = ui_drone_head
 			client.screen += head
-		var/mutable_appearance/head_overlay = head.build_worn_icon(default_layer = DRONE_HEAD_LAYER, default_icon_file = head.get_worn_file())
+		var/mutable_appearance/head_overlay = head.build_worn_icon(default_layer = DRONE_HEAD_LAYER, default_icon_file = DEFAULTFILE_HEAD)
 		head_overlay.pixel_y -= 15
 
 		drone_overlays[DRONE_HEAD_LAYER] = head_overlay
