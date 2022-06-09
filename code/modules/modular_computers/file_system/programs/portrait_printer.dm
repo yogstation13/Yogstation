@@ -76,3 +76,18 @@
 	printed_canvas.update_icon()
 	to_chat(usr, span_notice("You have printed [title] onto a new canvas."))
 	playsound(computer.physical, 'sound/items/poster_being_created.ogg', 100, TRUE)
+
+/datum/computer_file/program/portrait_printer/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/canvas/painting))
+		if(alert(user, "Are you sure you want to upload this painting? This will irreversibly delete the current painting and require you to print it out again in future rounds.", "Confirm", "No", "Yes") != "Yes")
+			return
+		var/obj/item/canvas/painting/P = I
+		var/obj/structure/sign/painting/frame = new(src)
+		frame.persistence_id = "public_paintings"
+		frame.C = P
+		C.finalize(user)
+		frame.save_persistent()
+		qdel(P)
+		qdel(frame)
+		return FALSE
+	return ..()
