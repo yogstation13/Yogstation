@@ -37,7 +37,7 @@
 
 /obj/screen/alert/status_effect/frenzy
 	name = "Frenzy"
-	desc = "You are in a Frenzy! You are entirely Feral and, depending on your Clan, fighting for your life!"
+	desc = "You are in a Frenzy! You are entirely feral, and depending on your Clan - fighting for your life! <i>Feeding</i> while in this state is instant!"
 	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	icon_state = "power_recover"
 
@@ -65,8 +65,8 @@
 	owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
 	bloodsuckerdatum.frenzygrab.teach(user, TRUE)
 	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
-	var/obj/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
-	var/obj/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
+	var/obj/item/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
+	var/obj/item/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
 	if(user.handcuffed || user.legcuffed)
 		user.clear_cuffs(cuffs, TRUE)
 		user.clear_cuffs(legcuffs, TRUE)
@@ -95,6 +95,11 @@
 
 /datum/status_effect/frenzy/tick()
 	var/mob/living/carbon/human/user = owner
+	var/obj/item/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
+	var/obj/item/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
+	if(user.handcuffed || user.legcuffed)
+		user.clear_cuffs(cuffs, TRUE)
+		user.clear_cuffs(legcuffs, TRUE)
 	if(!bloodsuckerdatum.frenzied)
 		return
 	user.adjustFireLoss(0.5 + (bloodsuckerdatum.humanity_lost / 15))

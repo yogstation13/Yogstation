@@ -1,7 +1,7 @@
 /datum/ai_project/induction_basic
 	name = "Bluespace Induction Basics"
 	description = "This research functions as a prerequisite for other induction research such as remote borg charging and APC emergency power."
-	research_cost = 3000
+	research_cost = 1500
 	ram_required = 0
 	research_requirements_text = "None"
 	can_be_run = FALSE
@@ -10,7 +10,7 @@
 /datum/ai_project/induction_cyborg
 	name = "Bluespace Induction - Cyborgs"
 	description = "This ability will allow you to charge any visible cyborgs by 33%"
-	research_cost = 3000
+	research_cost = 2500
 	ram_required = 0
 	research_requirements_text = "Bluespace Induction Basics"
 	research_requirements = list(/datum/ai_project/induction_basic)
@@ -22,8 +22,9 @@
 
 /datum/ai_project/induction_cyborg/finish()
 	var/datum/action/innate/ai/ranged/charge_borg_or_apc/ability = add_ability(/datum/action/innate/ai/ranged/charge_borg_or_apc)
-	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect = ability.linked_ability
+	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect
 	if(ability)
+		effect = ability.linked_ability
 		effect.works_on_borgs = TRUE
 		effect.attached_action.button.name = "Charge cyborg"
 		effect.attached_action.button.desc = "Click a cyborg to charge it by 33%"
@@ -38,7 +39,7 @@
 /datum/ai_project/induction_apc
 	name = "Bluespace Induction - APCs"
 	description = "This ability will allow you to charge any visible APCs by 33%"
-	research_cost = 3000
+	research_cost = 2500
 	ram_required = 0
 	research_requirements_text = "Bluespace Induction Basics"
 	research_requirements = list(/datum/ai_project/induction_basic)
@@ -50,8 +51,9 @@
 
 /datum/ai_project/induction_apc/finish()
 	var/datum/action/innate/ai/ranged/charge_borg_or_apc/ability = add_ability(/datum/action/innate/ai/ranged/charge_borg_or_apc)
-	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect = ability.linked_ability
+	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect
 	if(ability)
+		effect = ability.linked_ability
 		effect.works_on_apcs = TRUE
 		effect.attached_action.button.name = "Charge APC"
 		effect.attached_action.button.desc = "Click an APC to charge it by 33%"

@@ -99,9 +99,6 @@
 	ActivatePower()
 	if(power_flags & BP_AM_SINGLEUSE)
 		RemoveAfterUse()
-		return TRUE
-	if(!(power_flags & BP_AM_TOGGLE) || !active)
-		StartCooldown() // Must come AFTER UpdateButtonIcon(), otherwise icon will revert!
 	return TRUE
 
 /datum/action/bloodsucker/proc/CheckCanPayCost()
@@ -190,15 +187,15 @@
 	user.blood_volume -= bloodcost
 	bloodsuckerdatum_power?.update_hud()
 
-/datum/action/bloodsucker/proc/ActivatePower(process = TRUE)
+/datum/action/bloodsucker/proc/ActivatePower()
 	active = TRUE
-	if(power_flags & BP_AM_TOGGLE && process == TRUE)
+	if(power_flags & BP_AM_TOGGLE)
 		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/UsePower)
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	UpdateButtonIcon()
 
-/datum/action/bloodsucker/proc/DeactivatePower(process = TRUE)
-	if(power_flags & BP_AM_TOGGLE && process == TRUE)
+/datum/action/bloodsucker/proc/DeactivatePower()
+	if(power_flags & BP_AM_TOGGLE)
 		UnregisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE)
 	if(power_flags & BP_AM_SINGLEUSE)
 		RemoveAfterUse()

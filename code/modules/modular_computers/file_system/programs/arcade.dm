@@ -21,7 +21,7 @@
 	var/boss_id = 1
 
 /datum/computer_file/program/arcade/proc/game_check(mob/user)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	if(boss_hp <= 0)
 		heads_up = "You have crushed [boss_name]! Rejoice!"
 		playsound(computer.loc, 'sound/arcade/win.ogg', 50, TRUE, extrarange = -3, falloff = 10)
@@ -30,7 +30,7 @@
 		if(istype(computer))
 			computer.update_icon()
 		ticket_count += 1
-		sleep(10)
+		sleep(1 SECONDS)
 		return
 	else if(player_hp <= 0 || player_mp <= 0)
 		heads_up = "You have been defeated... how will the station survive?"
@@ -39,7 +39,7 @@
 		program_icon_state = "arcade_off"
 		if(istype(computer))
 			computer.update_icon()
-		sleep(10)
+		sleep(1 SECONDS)
 		return
 	return
 
@@ -106,7 +106,7 @@
 			computer.play_interact_sound()
 			playsound(computer.loc, 'sound/arcade/hit.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 			boss_hp -= attackamt
-			sleep(10)
+			sleep(1 SECONDS)
 			game_check()
 			enemy_check()
 			return TRUE
@@ -122,7 +122,7 @@
 			playsound(computer.loc, 'sound/arcade/heal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 			player_hp += healamt
 			player_mp -= healcost
-			sleep(10)
+			sleep(1 SECONDS)
 			game_check()
 			enemy_check()
 			return TRUE
@@ -135,7 +135,7 @@
 			computer.play_interact_sound()
 			playsound(computer.loc, 'sound/arcade/mana.ogg', 50, TRUE, extrarange = -3, falloff = 10)
 			player_mp += rechargeamt
-			sleep(10)
+			sleep(1 SECONDS)
 			game_check()
 			enemy_check()
 			return TRUE

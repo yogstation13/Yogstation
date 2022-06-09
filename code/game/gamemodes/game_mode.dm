@@ -202,7 +202,7 @@
 
 	. = 1
 
-	sleep(rand(600,1800))
+	sleep(rand(1 MINUTES, 3 MINUTES))
 	if(!SSticker.IsRoundInProgress())
 		message_admins("Roundtype conversion cancelled, the game appears to have finished!")
 		round_converted = 0

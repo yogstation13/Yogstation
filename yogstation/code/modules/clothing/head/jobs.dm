@@ -29,4 +29,4 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	modular_sprite_sheets = TRUE
 	icon_state = "beret_corporate_phys"
-	armor = list("bio" = 20) //So it isnt a direct upgrade over the normal berret
+	armor = list(BIO = 20) //So it isnt a direct upgrade over the normal berret

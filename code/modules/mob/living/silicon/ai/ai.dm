@@ -122,6 +122,8 @@
 
 	//Did we get the death prompt?
 	var/is_dying = FALSE 
+	///Multiplier for amount of points gained when passively using CPU for science
+	var/research_point_booster = 1
 
 
 
@@ -263,7 +265,7 @@
 		var/obj/machinery/ai/data_core/core = loc
 		forceMove(get_turf(loc))
 		view_core()
-		sleep(1)
+		sleep(0.1 SECONDS)
 		forceMove(core)
 
 /mob/living/silicon/ai/verb/pick_icon()

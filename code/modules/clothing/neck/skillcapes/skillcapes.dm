@@ -86,13 +86,13 @@
 
 /obj/item/clothing/neck/skillcape/hos
 	name = "cape of the head of security"
-	desc = "A slick, blue cape. The owner must have executed many syndicate personnel."
+	desc = "A slick, blue cape. The owner must have executed many Syndicate personnel."
 	icon_state = "hos-skillcape"
 	item_state = "hos-skillcape"
 
 /obj/item/clothing/neck/skillcape/trimmed/hos
 	name = "cape of the grand executor"
-	desc = "A shiny, blue cape. The owner is the bane of the syndicate."
+	desc = "A shiny, blue cape. The owner is the bane of the Syndicate."
 	icon_state = "hos-trimmed"
 	item_state = "hos-trimmed"
 
@@ -174,13 +174,13 @@
 	icon_state = "brigphys-trimmed"
 	item_state = "brigphys-trimmed"
 
-/obj/item/clothing/neck/skillcape/signaltech
-	name = "cape of the signal technician"
+/obj/item/clothing/neck/skillcape/network_admin
+	name = "cape of the network admin"
 	icon_state = "signal-skillcape"
 	item_state = "signal-skillcape"
 
-/obj/item/clothing/neck/skillcape/trimmed/signaltech
-	name = "cape of the grand signal technician"
+/obj/item/clothing/neck/skillcape/trimmed/network_admin
+	name = "cape of the grand network admin"
 	icon_state = "signal-trimmed"
 	item_state = "signal-trimmed"
 

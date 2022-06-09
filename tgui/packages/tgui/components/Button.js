@@ -20,7 +20,9 @@ export const Button = props => {
     fluid,
     icon,
     iconRotation,
+    iconSize,
     iconSpin,
+    iconColor,
     color,
     disabled,
     selected,
@@ -91,6 +93,8 @@ export const Button = props => {
         <Icon
           name={icon}
           rotation={iconRotation}
+          color={iconColor}
+          size={iconSize}
           spin={iconSpin} />
       )}
       {content}

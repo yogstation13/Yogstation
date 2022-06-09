@@ -10,11 +10,7 @@
 	resistance_flags = FLAMMABLE
 	grind_results = list(/datum/reagent/cellulose = 5)
 	var/maximum_weight_class = WEIGHT_CLASS_SMALL
-	var/list/tape_blacklist = list() //stuff you can't take that may or may not be max_weight_class
-
-/obj/item/stack/tape/Initialize(mapload, new_amount, merge)
-	. = ..()
-	tape_blacklist = typecacheof(list(/obj/item/grenade))
+	var/static/list/tape_blacklist = typecacheof(/obj/item/grenade) //stuff you can't take that may or may not be max_weight_class
 
 /obj/item/stack/tape/attack(mob/living/M, mob/user)
 	. = ..()
@@ -25,7 +21,7 @@
 			return
 		playsound(user, 'sound/effects/tape.ogg', 25)
 		M.visible_message(span_danger("[user] is trying to put [tape_muzzle.name] on [M]!"), span_userdanger("[user] is trying to put [tape_muzzle.name] on [M]!"))
-		if(!do_after(user, 2 SECONDS, target = M))
+		if(!do_after(user, 2 SECONDS, M))
 			qdel(tape_muzzle)
 			return
 		if(!M.equip_to_slot_or_del(tape_muzzle, SLOT_WEAR_MASK, user))
@@ -46,9 +42,11 @@
 	if(I.w_class > maximum_weight_class)
 		to_chat(user, span_warning("[I] is too big!"))
 		return
-	if(is_type_in_typecache(I,tape_blacklist))
-		to_chat(user, span_warning("The [src] doesn't seem to stick to [I]!"))
-		return
+	var/list/item_contents = I.GetAllContents()
+	for(var/obj/item/C in item_contents)
+		if(is_type_in_typecache(C,tape_blacklist))
+			to_chat(user, span_warning("The [src] doesn't seem to stick to [I]!"))
+			return
 	to_chat(user, span_info("You wrap [I] with [src]."))
 	use(1)
 	I.embedding = I.embedding.setRating(100, 10, 0, 0, 0, 0, 0, 0, TRUE)

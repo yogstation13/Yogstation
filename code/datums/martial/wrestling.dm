@@ -199,10 +199,10 @@
 /datum/martial_art/wrestling/proc/FlipAnimation(mob/living/carbon/human/D)
 	set waitfor = FALSE
 	if (D)
-		animate(D, transform = matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
-	sleep(15)
+		animate(D, transform = matrix(180, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+	sleep(1.5 SECONDS)
 	if (D)
-		animate(D, transform = null, time = 1, loop = 0)
+		animate(D, transform = null, time = 0.1 SECONDS, loop = 0)
 
 /datum/martial_art/wrestling/proc/slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D)
@@ -259,7 +259,7 @@
 				D.pixel_y = 0
 			return 0
 
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 	if (A && D)
 		A.pixel_x = 0
@@ -376,7 +376,7 @@
 		A.visible_message("<span class = 'danger'><B>[A] climbs onto [surface]!</b></span>")
 		A.pixel_y = 10
 		falling = 1
-		sleep(10)
+		sleep(1 SECONDS)
 
 	if (A && D)
 		// These are necessary because of the sleep call.
@@ -396,10 +396,10 @@
 			return 0
 
 		if(A)
-			animate(A, transform = matrix(90, MATRIX_ROTATE), time = 1, loop = 0)
-		sleep(10)
+			animate(A, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+		sleep(1 SECONDS)
 		if(A)
-			animate(A, transform = null, time = 1, loop = 0)
+			animate(A, transform = null, time = 0.1 SECONDS, loop = 0)
 
 		A.forceMove(D.loc)
 
