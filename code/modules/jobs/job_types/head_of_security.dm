@@ -52,7 +52,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots // Provides Command shoes to digitigrade species
 	suit = /obj/item/clothing/suit/armor/hos/trenchcoat
-	gloves = /obj/item/clothing/gloves/color/black/hos
+	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/HoS/beret
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	suit_store = /obj/item/gun/energy/e_gun

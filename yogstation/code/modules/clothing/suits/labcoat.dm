@@ -12,7 +12,6 @@
 	modular_sprite_sheets = TRUE
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "labcoat_emtsec"
-	item_color = "labcoat_emtsec"
 
 /obj/item/clothing/suit/toggle/labcoat/physician
 	name = "brig physician's labcoat"

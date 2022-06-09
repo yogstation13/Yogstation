@@ -218,7 +218,7 @@
 
 		else if(istype(O, /obj/item/restraints/handcuffs/cable))
 			var/obj/item/cuffs = O
-			cuffs.item_color = item_color
+			cuffs.color = color
 			cuffs.update_icon()
 
 		if (QDELETED(O))

@@ -17,7 +17,6 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	modular_sprite_sheets = TRUE
 	icon_state = "emtsecsoft"
-	item_color = "emtsec"
 
 /obj/item/clothing/head/beret/med/phys
 	name = "Brig Physician's beret"

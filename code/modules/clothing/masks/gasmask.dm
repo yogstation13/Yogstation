@@ -58,6 +58,7 @@
 	clothing_flags = MASKINTERNALS
 	icon_state = "clown"
 	item_state = "clown_hat"
+	dye_color = "clown"
 	sprite_sheets = null
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE

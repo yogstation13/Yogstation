@@ -338,6 +338,7 @@ GLOBAL_LIST_INIT(flag2speciesid, list(
 #define DEFAULTFILE_FACEMASK 'icons/mob/clothing/default/mask.dmi'
 #define DEFAULTFILE_BACK 'icons/mob/clothing/default/back.dmi'
 #define DEFAULTFILE_NECK 'icons/mob/clothing/default/neck.dmi'
+#define DEFAULTFILE_RESTRAINTS 'icons/mob/clothing/default/restraints.dmi'
 #define DEFAULTFILE_UNDERWEAR 'icons/mob/clothing/default/underwear.dmi'
 #define DEFAULTFILE_ACCESSORIES 'icons/mob/clothing/default/accessories.dmi'
 
@@ -345,6 +346,7 @@ GLOBAL_LIST_INIT(clothing_default_files, list(
 	"effects" = DEFAULTFILE_CLOTHING_EFFECTS,
 	"underwear" = DEFAULTFILE_UNDERWEAR,
 	"accessories" = DEFAULTFILE_ACCESSORIES,
+	"restraints" = DEFAULTFILE_RESTRAINTS,
 	CLOTHING_GENERIC = DEFAULTFILE_GENERIC,
 	CLOTHING_UNIFORM = DEFAULTFILE_UNIFORM,
 	CLOTHING_GLOVES = DEFAULTFILE_GLOVES,

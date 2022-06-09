@@ -11,7 +11,6 @@ LINEN BINS
 	icon = 'yogstation/icons/obj/bedsheets.dmi'
 	modular_sprite_sheets = TRUE
 	icon_state = "sheetvirology"
-	item_color = "virologywhite"
 	dream_messages = list("plague", "green", "sneezing", "a virologist")
 	newbedpath = null
 
@@ -21,5 +20,4 @@ LINEN BINS
 	icon = 'yogstation/icons/obj/bedsheets.dmi'
 	modular_sprite_sheets = TRUE
 	icon_state = "sheetprisoner"
-	item_color = "prisoner"
 	dream_messages = list("a prison cell", "orange", "a warden", "filth", "captivity", "shackles", "misconduct", "depravity")

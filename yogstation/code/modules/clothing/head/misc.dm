@@ -50,7 +50,7 @@
 /obj/item/clothing/head/yogs/goatpope
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
-	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "goatpope"
 	item_state = "goatpope"
 	worn_x_dimension = 64

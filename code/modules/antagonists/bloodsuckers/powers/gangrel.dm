@@ -540,7 +540,7 @@
 	icon_state = "collar"
 	item_state = "collar"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
 	body_parts_covered = NECK
 
@@ -550,7 +550,7 @@
 	icon_state = "ears"
 	item_state = "ears"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
 	flags_inv = HIDEHAIR|HIDEFACE
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
@@ -561,7 +561,7 @@
 	icon_state = "claws"
 	item_state = "claws"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	body_parts_covered = ARMS|HANDS
 	flags_inv = HIDEJUMPSUIT
 	var/datum/action/bloodsucker/targeted/tear/tearaction = new
@@ -572,7 +572,7 @@
 	icon_state = "legs"
 	item_state = "legs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	slowdown = SHOES_SLOWDOWN - 0.5
 	body_parts_covered = GROIN|LEGS|FEET
 
@@ -582,7 +582,7 @@
 	icon_state = "digilegs"
 	item_state = "digilegs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	alternate_worn_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	slowdown = SHOES_SLOWDOWN - 0.5
 	xenoshoe = YES_DIGIT
 	body_parts_covered = GROIN|LEGS|FEET
