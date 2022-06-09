@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(skills)
 		var/datum/skill/new_skill = new skill_path()
 		if(temp_skill_list[new_skill.id])
 			var/datum/skill/other_skill = temp_skill_list[new_skill.id]
-			CRASH("Two skills ([new_skill.type] and [other_skill.type]) have the same ID. Skipping [new_skill.type].")
+			log_runtime("Two skills ([new_skill.type] and [other_skill.type]) have the same ID. Skipping [new_skill.type].")
 			qdel(new_skill)
 			continue
 		temp_skill_list[new_skill.id] = new_skill
@@ -28,8 +28,7 @@ SUBSYSTEM_DEF(skills)
 	// Sorts them
 	for(var/skill_id in GLOB.all_skill_ids)
 		if(!temp_skill_list?[skill_id])
-			CRASH("Skill ID [skill_id] is unused, but is in GLOB.all_skill_ids.")
-			continue
+			log_runtime("Skill ID [skill_id] is unused, but is in GLOB.all_skill_ids.")
 		var/datum/skill/current_skill = temp_skill_list[skill_id]
 		skills[current_skill.id] = current_skill
 		LAZYREMOVE(temp_skill_list, skill_id)
@@ -53,7 +52,7 @@ SUBSYSTEM_DEF(skills)
 	//Skill Lists
 	for(var/skill_level in GLOB.all_skill_levels)
 		if(!GLOB.skill_level_to_text?[skill_level])
-			CRASH("A skill level ([skill_level]) is missing a text to go along with it. Skipping.")
+			log_runtime("A skill level ([skill_level]) is missing a text to go along with it. Skipping.")
 			continue
 		var/entry_title = "All [GLOB.skill_level_to_text[skill_level]]"
 
