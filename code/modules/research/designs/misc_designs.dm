@@ -136,6 +136,16 @@
 	build_path = /obj/item/bikehorn/airhorn
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//HONK!
+	
+/datum/design/clownshot
+	name = "Clownshot Shell"
+	desc = "A tactical round used by the clown planet's finest soldiers."
+	id = "clownshot"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/bananium = 1000)
+	build_path = /obj/item/ammo_casing/shotgun/clownshot
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/mesons
 	name = "Optical Meson Scanners"

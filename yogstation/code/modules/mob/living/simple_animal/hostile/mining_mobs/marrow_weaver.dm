@@ -82,7 +82,7 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(atom/A)
 	if(..())
 		return TRUE
-	if((health < maxHealth) && ishuman(A))
+	if((health < maxHealth) && ishuman(A) && !faction_check_mob(A))
 		var/mob/living/carbon/human/H = A
 		for(var/obj/item/organ/O in H.internal_organs)
 			if(O.zone == "chest")

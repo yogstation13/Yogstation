@@ -187,7 +187,7 @@ Difficulty: Hard
 	walk(src, 0)
 	setDir(dir)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc,src)
-	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 3)
+	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
 	SLEEP_CHECK_DEATH(delay)
 	revving_charge = FALSE
 	var/movespeed = 0.7
@@ -294,7 +294,7 @@ Difficulty: Hard
 	DA.color = "#FF0000"
 	var/oldtransform = DA.transform
 	DA.transform = matrix()*2
-	animate(DA, alpha = 255, color = initial(DA.color), transform = oldtransform, time = 3)
+	animate(DA, alpha = 255, color = initial(DA.color), transform = oldtransform, time = 0.3 SECONDS)
 	SLEEP_CHECK_DEATH(3)
 	qdel(DA)
 

@@ -1,5 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - rscadd: "Added alerts when the NTOS downloader finishes downloading a program"
-  - tweak: "Borg integrated tablet sounds can only be heard by the borg"

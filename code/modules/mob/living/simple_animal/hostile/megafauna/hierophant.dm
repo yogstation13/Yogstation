@@ -199,8 +199,8 @@ Difficulty: Hard
 	if(health < maxHealth * 0.5 && blink_counter > 1)
 		visible_message(span_hierophant("\"Mx ampp rsx iwgeti.\""))
 		var/oldcolor = color
-		animate(src, color = "#660099", time = 6)
-		SLEEP_CHECK_DEATH(6)
+		animate(src, color = "#660099", time = 0.6 SECONDS)
+		SLEEP_CHECK_DEATH(0.6 SECONDS)
 		while(!QDELETED(target) && blink_counter)
 			if(loc == target.loc || loc == target) //we're on the same tile as them after about a second we can stop now
 				break
@@ -208,10 +208,10 @@ Difficulty: Hard
 			blinking = FALSE
 			blink(target)
 			blinking = TRUE
-			SLEEP_CHECK_DEATH(4 + target_slowness)
-		animate(src, color = oldcolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
-		SLEEP_CHECK_DEATH(8)
+			SLEEP_CHECK_DEATH(0.4 SECONDS + target_slowness)
+		animate(src, color = oldcolor, time = 0.8 SECONDS)
+		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
+		SLEEP_CHECK_DEATH(0.8 SECONDS)
 		blinking = FALSE
 	else
 		blink(target)
@@ -221,8 +221,8 @@ Difficulty: Hard
 	visible_message(span_hierophant("\"Piezi mx rsalivi xs vyr.\""))
 	blinking = TRUE
 	var/oldcolor = color
-	animate(src, color = "#660099", time = 6)
-	SLEEP_CHECK_DEATH(6)
+	animate(src, color = "#660099", time = 0.6 SECONDS)
+	SLEEP_CHECK_DEATH(0.6 SECONDS)
 	while(!QDELETED(target) && cross_counter)
 		cross_counter--
 		if(prob(60))
@@ -230,9 +230,9 @@ Difficulty: Hard
 		else
 			INVOKE_ASYNC(src, .proc/blasts, target, GLOB.diagonals)
 		SLEEP_CHECK_DEATH(6 + target_slowness)
-	animate(src, color = oldcolor, time = 8)
-	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
-	SLEEP_CHECK_DEATH(8)
+	animate(src, color = oldcolor, time = 0.8 SECONDS)
+	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
+	SLEEP_CHECK_DEATH(0.8 SECONDS)
 	blinking = FALSE
 
 
@@ -241,8 +241,8 @@ Difficulty: Hard
 	visible_message(span_hierophant("\"Mx gerrsx lmhi.\""))
 	blinking = TRUE
 	var/oldcolor = color
-	animate(src, color = "#660099", time = 6)
-	SLEEP_CHECK_DEATH(6)
+	animate(src, color = "#660099", time = 0.6 SECONDS)
+	SLEEP_CHECK_DEATH(0.6 SECONDS)
 	var/list/targets = ListTargets()
 	var/list/cardinal_copy = GLOB.cardinals.Copy()
 	while(targets.len && cardinal_copy.len)
@@ -256,11 +256,11 @@ Difficulty: Hard
 		var/obj/effect/temp_visual/hierophant/chaser/C = new(loc, src, pickedtarget, chaser_speed, FALSE)
 		C.moving = 3
 		C.moving_dir = pick_n_take(cardinal_copy)
-		SLEEP_CHECK_DEATH(8 + target_slowness)
+		SLEEP_CHECK_DEATH(0.8 SECONDS + target_slowness)
 	chaser_cooldown = world.time + initial(chaser_cooldown)
-	animate(src, color = oldcolor, time = 8)
-	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
-	SLEEP_CHECK_DEATH(8)
+	animate(src, color = oldcolor, time = 0.8 SECONDS)
+	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
+	SLEEP_CHECK_DEATH(0.8 SECONDS)
 	blinking = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/blasts(mob/victim, var/list/directions = GLOB.cardinals) //fires cross blasts with a delay
@@ -324,7 +324,7 @@ Difficulty: Hard
 	playsound(T,'sound/magic/wand_teleport.ogg', 200, 1)
 	playsound(source,'sound/machines/airlockopen.ogg', 200, 1)
 	blinking = TRUE
-	SLEEP_CHECK_DEATH(2) //short delay before we start...
+	SLEEP_CHECK_DEATH(0.2 SECONDS) //short delay before we start...
 	new /obj/effect/temp_visual/hierophant/telegraph/teleport(T, src)
 	new /obj/effect/temp_visual/hierophant/telegraph/teleport(source, src)
 	for(var/t in RANGE_TURFS(1, T))
@@ -333,18 +333,18 @@ Difficulty: Hard
 	for(var/t in RANGE_TURFS(1, source))
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, src, FALSE)
 		B.damage = 30
-	animate(src, alpha = 0, time = 2, easing = EASE_OUT) //fade out
-	SLEEP_CHECK_DEATH(1)
+	animate(src, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
+	SLEEP_CHECK_DEATH(0.1 SECONDS)
 	visible_message("[span_hierophant_warning("[src] fades out!")]")
 	density = FALSE
-	SLEEP_CHECK_DEATH(2)
+	SLEEP_CHECK_DEATH(0.2 SECONDS)
 	forceMove(T)
-	SLEEP_CHECK_DEATH(1)
-	animate(src, alpha = 255, time = 2, easing = EASE_IN) //fade IN
-	SLEEP_CHECK_DEATH(1)
+	SLEEP_CHECK_DEATH(0.1 SECONDS)
+	animate(src, alpha = 255, time = 0.2 SECONDS, easing = EASE_IN) //fade IN
+	SLEEP_CHECK_DEATH(0.1 SECONDS)
 	density = TRUE
 	visible_message("[span_hierophant_warning("[src] fades in!")]")
-	SLEEP_CHECK_DEATH(1) //at this point the blasts we made detonate
+	SLEEP_CHECK_DEATH(0.1 SECONDS) //at this point the blasts we made detonate
 	blinking = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/melee_blast(mob/victim) //make a 3x3 blast around a target
@@ -370,7 +370,7 @@ Difficulty: Hard
 		var/dist = get_dist(original, T)
 		if(dist > last_dist)
 			last_dist = dist
-			sleep(1 + min(burst_range - last_dist, 12) * spread_speed) //gets faster as it gets further out
+			sleep(0.1 SECONDS + min(burst_range - last_dist, 1.2 SECONDS) * spread_speed) //gets faster as it gets further out
 		new /obj/effect/temp_visual/hierophant/blast(T, caster, FALSE)
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/burst(turf/original, spread_speed)
@@ -654,10 +654,10 @@ Difficulty: Hard
 	if(!T)
 		return
 	playsound(T,'sound/magic/blind.ogg', 125, 1, -5) //make a sound
-	sleep(6) //wait a little
+	sleep(0.6 SECONDS) //wait a little
 	bursting = TRUE
 	do_damage(T) //do damage and mark us as bursting
-	sleep(1.3) //slightly forgiving; the burst animation is 1.5 deciseconds
+	sleep(0.13 SECONDS) //slightly forgiving; the burst animation is 0.15 seconds
 	bursting = FALSE //we no longer damage crossers
 
 /obj/effect/temp_visual/hierophant/blast/Crossed(atom/movable/AM)
@@ -721,7 +721,7 @@ Difficulty: Hard
 			to_chat(user, span_notice("You start removing your hierophant beacon..."))
 			H.timer = world.time + 51
 			INVOKE_ASYNC(H, /obj/item/hierophant_club.proc/prepare_icon_update)
-			if(do_after(user, 5 SECONDS, target = src))
+			if(do_after(user, 5 SECONDS, src))
 				playsound(src,'sound/magic/blind.ogg', 200, 1, -4)
 				new /obj/effect/temp_visual/hierophant/telegraph/teleport(get_turf(src), user)
 				to_chat(user, "[span_hierophant_warning("You collect [src], reattaching it to the club!")]")

@@ -805,7 +805,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				return
 
 		else
-			if(!do_after(user, delay, target=target, extra_checks=tool_check, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = use_speed_by_skill))
+			if(!do_after(user, delay, target, extra_checks = tool_check, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = use_speed_by_skill))
 				return
 	else
 		// Invoke the extra checks once, just in case.

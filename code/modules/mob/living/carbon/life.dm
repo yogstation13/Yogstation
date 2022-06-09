@@ -475,7 +475,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					temp = amplitude * cos(saved_dizz * world.time)
 					pixel_y_diff += temp
 					C.pixel_y += temp
-					sleep(3)
+					sleep(0.3 SECONDS)
 					if(C)
 						temp = amplitude * sin(saved_dizz * world.time)
 						pixel_x_diff += temp
@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						temp = amplitude * cos(saved_dizz * world.time)
 						pixel_y_diff += temp
 						C.pixel_y += temp
-					sleep(3)
+					sleep(0.3 SECONDS)
 					if(C)
 						C.pixel_x -= pixel_x_diff
 						C.pixel_y -= pixel_y_diff

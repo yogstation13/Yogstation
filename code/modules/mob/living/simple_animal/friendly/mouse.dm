@@ -42,6 +42,8 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	can_be_held = TRUE //mouse gaming
+	worn_slot_flags = ITEM_SLOT_HEAD
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 	move_force = MOVE_FORCE_EXTREMELY_WEAK
@@ -176,7 +178,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		return ..()
 
 /mob/living/simple_animal/mouse/attack_ghost(mob/dead/observer/user)
-	if(key)
+	if(client)
+		return ..()
+	if(stat == DEAD)
 		return ..()
 	user.possess_mouse(src)
 
@@ -198,11 +202,11 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	eating = TRUE
 	layer = MOB_LAYER
 	visible_message(span_danger("[src] starts eating away [A]..."),span_notice("You start eating the [A]..."))
-	if(do_after(src, 3 SECONDS, FALSE, A))
+	if(do_after(src, 3 SECONDS, A, FALSE))
 		if(QDELETED(A))
 			return
 		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))
-		A.mouse_eat(src)
+		mouse_eat(A)
 		playsound(A.loc,'sound/effects/mousesqueek.ogg', 100) // i have no idea how loud this is, 100 seems to be used for the squeak component
 		GLOB.mouse_food_eaten++
 
@@ -253,35 +257,22 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	remove_movespeed_modifier(MOVESPEED_ID_MOUSE_CHEESE, TRUE)
 	to_chat(src, span_userdanger("A feeling of sadness comes over you as the effects of the cheese wears off. You. Must. Get. More."))
 
-/atom/proc/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.regen_health()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/cheesewedge/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/cheesewheel/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/store/cheesewheel/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/customizable/cheesewheel/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/cheesiehonkers/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/simple_animal/mouse/M)
-	var/teleport_radius = max(round(seed.potency / 10), 1)
-	var/turf/T = get_turf(M)
-	do_teleport(M, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
-	..()
+/mob/living/simple_animal/mouse/proc/mouse_eat(obj/item/reagent_containers/food/snacks/F)
+	var/list/cheeses = list(/obj/item/reagent_containers/food/snacks/cheesewedge, /obj/item/reagent_containers/food/snacks/cheesewheel,
+							/obj/item/reagent_containers/food/snacks/store/cheesewheel, /obj/item/reagent_containers/food/snacks/customizable/cheesewheel,
+							/obj/item/reagent_containers/food/snacks/cheesiehonkers) //all cheeses - royal
+	if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
+		evolve()
+		return
+	if(istype(F, /obj/item/grown/bananapeel/bluespace))
+		var/obj/item/grown/bananapeel/bluespace/B
+		var/teleport_radius = max(round(B.seed.potency / 10), 1)
+		var/turf/T = get_turf(src)
+		do_teleport(src, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
+	if(is_type_in_list(F, cheeses))
+		cheese_up()
+	regen_health()
+	qdel(F)
 
 /*
  * Mouse types

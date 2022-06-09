@@ -282,10 +282,10 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = TRUE, atom/target = null, progress = TRUE, datum/callback/extra_checks = null, stayStill = TRUE, required_skill = null, required_skill_level = SKILLLEVEL_UNSKILLED, list/skill_delay_mult_scaling = list())
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, datum/callback/extra_checks = null, stayStill = TRUE, required_skill = null, required_skill_level = SKILLLEVEL_UNSKILLED, list/skill_delay_mult_scaling = list())
 	if(!user)
 		return FALSE
-	var/atom/Tloc = null
+	var/atom/target_loc = null
 	if(!isnull(required_skill) && usesSkills(user))
 		var/datum/skill/user_skill = find_skill(user, required_skill)
 		if(skill_check(user, required_skill, required_skill_level))
@@ -300,18 +300,17 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			user_skill.incapable_text()
 			return FALSE
-
 	if(target && !isturf(target))
-		Tloc = target.loc
+		target_loc = target.loc
 
 	if(target)
 		LAZYADD(user.do_afters, target)
 		LAZYADD(target.targeted_by, user)
 
-	var/atom/Uloc = user.loc
+	var/atom/user_loc = user.loc
 
 	var/drifting = FALSE
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
+	if(!user.Process_Spacemove() && user.inertia_dir)
 		drifting = TRUE
 
 	var/holding = user.get_active_held_item()
@@ -336,9 +335,9 @@ GLOBAL_LIST_EMPTY(species_list)
 
 		if(drifting && !user.inertia_dir)
 			drifting = FALSE
-			Uloc = user.loc
+			user_loc = user.loc
 
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc && stayStill) || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.stat || (!drifting && user.loc != user_loc && stayStill) || (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
@@ -348,8 +347,8 @@ GLOBAL_LIST_EMPTY(species_list)
 				. = FALSE
 				break
 
-		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((Uloc != Tloc || Tloc != user) && !drifting && stayStill)
+		if(!QDELETED(target_loc) && (QDELETED(target) || target_loc != target.loc))
+			if((user_loc != target_loc || target_loc != user) && !drifting && stayStill)
 				. = FALSE
 				break
 
@@ -580,7 +579,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			return
 		AM.setDir(i)
 		callperrotate?.Invoke()
-		sleep(1)
+		sleep(0.1 SECONDS)
 	if(set_original_dir)
 		AM.setDir(originaldir)
 

@@ -100,7 +100,7 @@
 	if(tool)
 		tool_speed_mod = tool.toolspeed
 
-	if(do_after(user, time * tool_speed_mod * user_speed_mod, target = target))
+	if(do_after(user, time * tool_speed_mod * user_speed_mod, target))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.

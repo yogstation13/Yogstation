@@ -562,7 +562,7 @@
 		spawn(0)
 			for(var/message in messages)
 				toy_talk(user, message)
-				sleep(10)
+				sleep(1 SECONDS)
 
 		cooldown = TRUE
 		spawn(recharge_time)
@@ -1116,12 +1116,12 @@
 
 /obj/item/toy/nuke/attack_self(mob/user)
 	if (cooldown < world.time)
-		cooldown = world.time + 1800 //3 minutes
+		cooldown = world.time + 3 MINUTES //3 minutes
 		user.visible_message(span_warning("[user] presses a button on [src]."), span_notice("You activate [src], it plays a loud noise!"), span_italics("You hear the click of a button."))
-		sleep(5)
+		sleep(0.5 SECONDS)
 		icon_state = "nuketoy"
 		playsound(src, 'sound/machines/alarm.ogg', 100, 0)
-		sleep(135)
+		sleep(13.5 SECONDS)
 		icon_state = "nuketoycool"
 		sleep(cooldown - world.time)
 		icon_state = "nuketoyidle"
@@ -1167,7 +1167,7 @@
 		playsound(src, boom_sound, 50, 0)
 		for(var/mob/M in urange(10, src)) // Checks range
 			if(!M.stat && !isAI(M)) // Checks to make sure whoever's getting shaken is alive/not the AI
-				sleep(8) // Short delay to match up with the explosion sound
+				sleep(0.8 SECONDS) // Short delay to match up with the explosion sound
 				shake_camera(M, 2, 1) // Shakes player camera 2 squares for 1 second.
 
 	else
@@ -1326,7 +1326,7 @@ obj/item/toy/turn_tracker
 		cooldown = (world.time + 50) //5 second cooldown
 		user.visible_message(span_notice("[user] pulls back the string on [src]."))
 		icon_state = "[initial(icon_state)]_used"
-		sleep(5)
+		sleep(0.5 SECONDS)
 		audible_message(span_danger("[icon2html(src, viewers(src))] Hiss!"))
 		var/list/possible_sounds = list('sound/voice/hiss1.ogg', 'sound/voice/hiss2.ogg', 'sound/voice/hiss3.ogg', 'sound/voice/hiss4.ogg')
 		var/chosen_sound = pick(possible_sounds)
