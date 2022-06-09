@@ -63,7 +63,7 @@
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
-		if (!do_after(user, draw_time, TRUE, src, stayStill = !move_drawing))
+		if (!do_after(user, draw_time, src, TRUE, stayStill = !move_drawing))
 			drawing = FALSE
 			update_slowdown()
 			return
@@ -185,7 +185,7 @@
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
-		if (!do_after(user, draw_time, TRUE, src, stayStill = FALSE))
+		if (!do_after(user, draw_time, src, TRUE, stayStill = FALSE))
 			drawing = FALSE
 			update_slowdown()
 			return
