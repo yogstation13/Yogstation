@@ -39,3 +39,7 @@
 		god.cult.energy -= GOD_APC_DISABLE_COST
 	else 	
 		to_chat(god, span_notice("You fail to disable the APC."))	
+
+#undef GOD_APC_DISABLE_COST 
+#undef GOD_APC_DISABLE_DURATION 
+#undef GOD_APC_DISABLE_CAST 
