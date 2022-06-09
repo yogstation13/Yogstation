@@ -8,7 +8,8 @@
 	var/nexus 
 	var/state = HOG_TEAM_EXISTING
 	var/cult_color = "black" 
-
+	var/dudes_amount = 0
+	var/hud_entry_num
 
 	
 	
