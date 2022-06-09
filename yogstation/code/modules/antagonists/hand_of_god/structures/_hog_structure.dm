@@ -8,7 +8,7 @@
 	density = TRUE
 	var/datum/team/hog_cult/cult
 	var/list/god_actions = list()
-	var/list/god_actions_add = list(/datum/hog_god_interaction)
+	var/list/god_actions_add = list(/datum/hog_god_interaction/structure/overcharge)
 	var/obj/item/hog_item/prismatic_lance/weapon = null
 	var/shield_integrity = 0
 	var/cost = 10
