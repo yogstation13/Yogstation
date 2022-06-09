@@ -40,10 +40,10 @@
 	culthud.join_hud(M)
 	set_antag_hud(M,hud_type)
 
-/datum/antagonist/gang/proc/update_hog_icons_removed(mob/living/M)
+/datum/antagonist/hog/proc/update_hog_icons_removed(mob/living/M)
 	var/datum/atom_hud/antag/hog/culthud = GLOB.huds[cult.hud_entry_num]
 	if(cult)
-		ganghud.leave_hud(M)
+		culthud.leave_hud(M)
 		set_antag_hud(M, null)
 
 
