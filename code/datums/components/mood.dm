@@ -169,30 +169,25 @@
 			break
 
 /datum/component/mood/process() //Called on SSmood process
-	var/mob/living/owner = parent
-	if(!owner)
-		qdel(src)
-		return
-
 	switch(mood_level)
 		if(1)
-			setSanity(sanity-0.2)
+			setSanity(sanity-0.3, SANITY_INSANE, SANITY_NEUTRAL)
 		if(2)
-			setSanity(sanity-0.125, minimum=SANITY_CRAZY)
+			setSanity(sanity-0.15, SANITY_INSANE, SANITY_NEUTRAL)
 		if(3)
-			setSanity(sanity-0.075, minimum=SANITY_UNSTABLE)
+			setSanity(sanity-0.1, SANITY_CRAZY, SANITY_NEUTRAL)
 		if(4)
-			setSanity(sanity-0.025, minimum=SANITY_DISTURBED)
+			setSanity(sanity-0.05, SANITY_UNSTABLE, SANITY_NEUTRAL)
 		if(5)
-			setSanity(sanity+0.1)
+			setSanity(sanity+0.1, SANITY_UNSTABLE, SANITY_NEUTRAL)
 		if(6)
-			setSanity(sanity+0.15)
+			setSanity(sanity+0.2, SANITY_UNSTABLE, SANITY_GREAT)
 		if(7)
-			setSanity(sanity+0.2)
+			setSanity(sanity+0.3, SANITY_UNSTABLE, SANITY_MAXIMUM)
 		if(8)
-			setSanity(sanity+0.25, maximum=SANITY_GREAT)
+			setSanity(sanity+0.4, SANITY_NEUTRAL, SANITY_MAXIMUM)
 		if(9)
-			setSanity(sanity+0.4, maximum=INFINITY)
+			setSanity(sanity+0.6, SANITY_NEUTRAL, SANITY_MAXIMUM)
 
 	if(HAS_TRAIT(owner, TRAIT_DEPRESSION))
 		if(prob(0.05))
@@ -206,37 +201,30 @@
 	HandleNutrition(owner)
 
 /datum/component/mood/proc/setSanity(amount, minimum=SANITY_INSANE, maximum=SANITY_NEUTRAL)
-	var/mob/living/owner = parent
-
-	amount = clamp(amount, minimum, maximum)
-	if(amount == sanity)
-		return
-	// If we're out of the acceptable minimum-maximum range move back towards it in steps of 0.5
-	// If the new amount would move towards the acceptable range faster then use it instead
-	if(sanity < minimum && amount < sanity + 0.5)
-		amount = sanity + 0.5
-	else if(sanity > maximum && amount > sanity - 0.5)
-		amount = sanity - 0.5
-
-	// Disturbed stops you from getting any more sane
-	if(HAS_TRAIT(owner, TRAIT_UNSTABLE))
-		sanity = min(amount,sanity)
+	if(sanity < minimum)
+		amount = sanity + clamp(minimum - sanity, 0, 0.7)
 	else
-		sanity = amount
+		if(HAS_TRAIT(parent, TRAIT_UNSTABLE))
+			maximum = sanity
+		if(sanity > maximum)
+			amount = sanity + clamp(maximum - sanity, -0.5, 0)
+	if(amount == sanity) //Prevents stuff from flicking around.
+		return
+	sanity = amount
 
 	var/mob/living/master = parent
 	switch(sanity)
 		if(SANITY_INSANE to SANITY_CRAZY)
 			setInsanityEffect(MAJOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=1.5, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=1, movetypes=(~FLYING))
 			sanity_level = 6
 		if(SANITY_CRAZY to SANITY_UNSTABLE)
 			setInsanityEffect(MINOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=1, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
 			sanity_level = 5
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
 			setInsanityEffect(0)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.25, movetypes=(~FLYING))
 			sanity_level = 4
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
 			setInsanityEffect(0)
@@ -259,7 +247,7 @@
 	master.crit_threshold = (master.crit_threshold - insanity_effect) + newval
 	insanity_effect = newval
 
-/datum/component/mood/proc/add_event(datum/source, category, type, param) //Category will override any events in the same category, should be unique unless the event is based on the same thing like hunger.
+/datum/component/mood/proc/add_event(datum/source, category, type, ...) //Category will override any events in the same category, should be unique unless the event is based on the same thing like hunger.
 	var/datum/mood_event/the_event
 	if(mood_events[category])
 		the_event = mood_events[category]
@@ -269,7 +257,9 @@
 			if(the_event.timeout)
 				addtimer(CALLBACK(src, .proc/clear_event, null, category), the_event.timeout, TIMER_UNIQUE|TIMER_OVERRIDE)
 			return 0 //Don't have to update the event.
-	the_event = new type(src, param)
+	var/list/params = args.Copy(4)
+	params.Insert(1, parent)
+	the_event = new type(arglist(params))
 
 	mood_events[category] = the_event
 	the_event.category = category
@@ -321,13 +311,12 @@
 /datum/component/mood/proc/hud_click(datum/source, location, control, params, mob/user)
 	print_mood(user)
 
-/datum/component/mood/proc/HandleNutrition(mob/living/L)
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(isethereal(H))
-			HandleCharge(H)
-		if(HAS_TRAIT(H, TRAIT_NOHUNGER))
-			return FALSE //no mood events for nutrition
+/datum/component/mood/proc/HandleNutrition()
+	var/mob/living/L = parent
+	if(isethereal(H))
+		HandleCharge(H)
+	if(HAS_TRAIT(H, TRAIT_NOHUNGER))
+		return FALSE //no mood events for nutrition
 	switch(L.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
 			if (!HAS_TRAIT(L, TRAIT_VORACIOUS))

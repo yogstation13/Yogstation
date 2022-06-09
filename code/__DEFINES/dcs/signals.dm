@@ -1,26 +1,3 @@
-#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(target, ##arguments)) )
-
-#define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
-
-#define COMPONENT_INCOMPATIBLE 1
-#define COMPONENT_NOTRANSFER 2
-
-/// Return value to cancel attaching
-#define ELEMENT_INCOMPATIBLE 1
-
-/// /datum/element flags
-#define ELEMENT_DETACH		(1 << 0)
-
-// How multiple components of the exact same type are handled in the same datum
-/// old component is deleted (default)
-#define COMPONENT_DUPE_HIGHLANDER		0
-/// duplicates allowed
-#define COMPONENT_DUPE_ALLOWED			1
-/// new component is deleted
-#define COMPONENT_DUPE_UNIQUE			2
-/// old component is given the initialization args of the new
-#define COMPONENT_DUPE_UNIQUE_PASSARGS	4
-
 // All signals. Format:
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
@@ -54,16 +31,12 @@
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
-/// when a component is added to a datum: (/datum/component)
-#define COMSIG_COMPONENT_ADDED "component_added"
-/// before a component is removed from a datum because of RemoveComponent: (/datum/component)
-#define COMSIG_COMPONENT_REMOVING "component_removing"
-/// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
-#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
-/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_PARENT_QDELETING "parent_qdeleting"
-/// generic topic handler (usr, href_list)
-#define COMSIG_TOPIC "handle_topic"
+
+#define COMSIG_COMPONENT_ADDED "component_added"				/// when a component is added to a datum: (/datum/component)
+#define COMSIG_COMPONENT_REMOVING "component_removing"			/// before a component is removed from a datum because of RemoveComponent: (/datum/component)
+#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"			/// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
+#define COMSIG_PARENT_QDELETING "parent_qdeleting"				/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
+#define COMSIG_TOPIC "handle_topic"								/// generic topic handler (usr, href_list)
 
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living, params)
@@ -390,19 +363,6 @@
 // /datum/action signals
 #define COMSIG_ACTION_TRIGGER "action_trigger"						//from base of datum/action/proc/Trigger(): (datum/action)
 #define COMPONENT_ACTION_BLOCK_TRIGGER 1
-
-/*******Non-Signal Component Related Defines*******/
-
-//Redirection component init flags
-#define REDIRECT_TRANSFER_WITH_TURF 1
-
-//Arch
-#define ARCH_PROB "probability"					//Probability for each item
-#define ARCH_MAXDROP "max_drop_amount"				//each item's max drop amount
-
-//Ouch my toes!
-#define CALTROP_BYPASS_SHOES 1
-#define CALTROP_IGNORE_WALKERS 2
 
 //Xenobio hotkeys
 #define COMSIG_XENO_SLIME_CLICK_CTRL "xeno_slime_click_ctrl"				//from slime CtrlClickOn(): (/mob)
