@@ -18,7 +18,13 @@
 /datum/antagonist/hog/get_team()
 	return cult
 
-/datum/antagonist/gang/farewell()
+/datum/antagonist/hog/farewell()
 	if(ishuman(owner.current))
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just returned a part of themselfes!")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("farewell"))
+
+/datum/antagonist/hog/proc/update_hog_icons_added(mob/living/M)
+
+
+
+
