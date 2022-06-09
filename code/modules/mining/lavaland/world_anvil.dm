@@ -70,6 +70,7 @@
 	forge_charges--
 	if(forge_charges <= 0)
 		visible_message("The World Anvil cools down.")
+		update_icon()
 		
 			
 
