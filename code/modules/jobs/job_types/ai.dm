@@ -14,6 +14,7 @@
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
+	uses_skills = FALSE
 	var/do_special_check = TRUE
 
 	alt_titles = list("Station Central Processor", "Central Silicon Intelligence", "Cyborg Overlord")

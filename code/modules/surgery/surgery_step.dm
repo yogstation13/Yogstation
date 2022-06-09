@@ -13,6 +13,19 @@
 	var/list/ouchie_modifying_chems = list(/datum/reagent/consumable/ethanol/painkiller = 0.5, /datum/reagent/consumable/ethanol/inocybeshine = 0.5, /datum/reagent/medicine/morphine = 0.5) //chems that will modify the chance for fuckups while operating on conscious patients, stacks.
 	var/fuckup_damage = 10			//base damage dealt on a surgery being done without anesthetics on SURGERY_FUCKUP_CHANCE percent chance
 	var/fuckup_damage_type = BRUTE	//damage type fuckup_damage is dealt as
+	var/dependant_skill = SKILL_ANATOMY		// Skill that effects success chance
+	var/required_skill_level = SKILLLEVEL_UNSKILLED	// Required skill level to start the surgery
+	var/list/chance_per_skill_level = list(	SKILLLEVEL_UNSKILLED = 0.2,	//List of chance to fail each skill level.
+											SKILLLEVEL_BASIC = 0.5,
+											SKILLLEVEL_TRAINED = 0.9,
+											SKILLLEVEL_EXPERIENCED = 1,
+											SKILLLEVEL_MASTER = 1.2)
+
+	var/list/speed_per_skill_level = list(	SKILLLEVEL_UNSKILLED = 2,	//List of chance to fail each skill level.
+											SKILLLEVEL_BASIC = 1.75,
+											SKILLLEVEL_TRAINED = 1.5,
+											SKILLLEVEL_EXPERIENCED = 1.25,
+											SKILLLEVEL_MASTER = 1)
 
 /datum/surgery_step/proc/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	var/success = FALSE
@@ -73,17 +86,19 @@
 	var/advance = FALSE
 
 	var/tool_speed_mod = 1
-	var/user_speed_mod = 1
+	var/user_speed_mod = speed_per_skill_level[find_skill_level(user, dependant_skill)]
+
+	if(!skill_check(user, dependant_skill, required_skill_level))
+		to_chat(user, span_warning("You don't know where to begin with this step of the operation!"))
+		surgery.step_in_progress = FALSE
+		return
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
-		surgery.step_in_progress = 0
+		surgery.step_in_progress = FALSE
 		return
 
 	if(tool)
 		tool_speed_mod = tool.toolspeed
-
-	if(IS_MEDICAL(user))
-		user_speed_mod = 0.8
 
 	if(do_after(user, time * tool_speed_mod * user_speed_mod, target))
 		var/prob_chance = 100
@@ -92,8 +107,10 @@
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_probability_multiplier()
 
-		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
-	 tool) && !try_to_fail)
+		if(usesSkills(user))
+			prob_chance *= chance_per_skill_level[find_skill_level(user, dependant_skill)]
+
+		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
 				advance = TRUE
 		else

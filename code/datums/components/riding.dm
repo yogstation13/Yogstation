@@ -226,7 +226,7 @@
 /datum/component/riding/human/vehicle_mob_buckle(datum/source, mob/living/M, force = FALSE)
 	. = ..()
 	var/mob/living/carbon/human/AM = parent
-	var/slowdown = AM.dna.check_mutation(STRONG) ? 0 : HUMAN_CARRY_SLOWDOWN
+	var/slowdown = AM.dna.check_mutation(STRONG) ? 0 : HUMAN_CARRY_SLOWDOWN * list(SKILLLEVEL_UNSKILLED = 1.5, SKILLLEVEL_BASIC = 1.25, SKILLLEVEL_TRAINED = 1, SKILLLEVEL_EXPERIENCED = 0.75, SKILLLEVEL_MASTER = 0.5)
 	AM.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, multiplicative_slowdown = slowdown)
 
 /datum/component/riding/human/proc/on_host_unarmed_melee(atom/target)

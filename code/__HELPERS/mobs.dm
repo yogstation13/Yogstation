@@ -282,10 +282,24 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, datum/callback/extra_checks = null, stayStill = TRUE)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, datum/callback/extra_checks = null, stayStill = TRUE, required_skill = null, required_skill_level = SKILLLEVEL_UNSKILLED, list/skill_delay_mult_scaling = list())
 	if(!user)
 		return FALSE
 	var/atom/target_loc = null
+	if(!isnull(required_skill) && usesSkills(user))
+		var/datum/skill/user_skill = find_skill(user, required_skill)
+		if(skill_check(user, required_skill, required_skill_level))
+			if(skill_delay_mult_scaling.len > 0)
+				var/skill_delay_mult = SKILL_INDEX(user, required_skill, skill_delay_mult_scaling)
+				to_chat(user, span_admin("[skill_delay_mult]"))
+				if(skill_delay_mult > 1)
+					user_skill.struggle_text()
+				else if(skill_delay_mult < 1)
+					user_skill.proficient_text()
+				delay *= skill_delay_mult
+		else
+			user_skill.incapable_text()
+			return FALSE
 	if(target && !isturf(target))
 		target_loc = target.loc
 
@@ -315,7 +329,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/starttime = world.time
 	. = TRUE
 	while (world.time < endtime)
-		stoplag(1)
+		stoplag(TRUE)
 		if (progress)
 			progbar.update(world.time - starttime)
 

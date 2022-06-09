@@ -35,6 +35,8 @@
 
 	changed_maps = list("YogsPubby")
 
+	skillpoints = 40
+
 /datum/job/hos/proc/YogsPubbyChanges()
 	access += ACCESS_CREMATORIUM
 	minimal_access += ACCESS_CREMATORIUM

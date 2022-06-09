@@ -110,6 +110,13 @@
 	var/feedback_recoil_reverse = FALSE // TRUE for clockwise , FALSE for anti-clockwise
 	var/feedback_slide_close_move = TRUE // does the slide closing cause the gun to twist clockwise?
 
+	//Yogs: Skill stuff unique to ballistics, mainly reloading
+	var/list/skill_reload_delay = list(	SKILLLEVEL_UNSKILLED = 20,
+										SKILLLEVEL_BASIC = 10,
+										SKILLLEVEL_TRAINED = 5,
+										SKILLLEVEL_EXPERIENCED = 3,
+										SKILLLEVEL_MASTER = 0)
+
 /obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
 	if(feedback_types[type])
 		feedback_commence(type, feedback_types[type])
@@ -251,7 +258,7 @@
 				to_chat(user, span_notice("\The [src]'s [bolt_wording] is already cocked!"))
 			return
 		bolt_locked = FALSE
-	if (user)
+	if (user && do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = skill_reload_delay))
 		to_chat(user, span_notice("You rack the [bolt_wording] of \the [src]."))
 	process_chamber(!chambered, FALSE)
 	if (bolt_type == BOLT_TYPE_LOCKING && !chambered)
@@ -278,7 +285,7 @@
 	if(!istype(AM, mag_type))
 		to_chat(user, span_warning("\The [AM] doesn't seem to fit into \the [src]..."))
 		return FALSE
-	if(user.transferItemToLoc(AM, src))
+	if(user.transferItemToLoc(AM, src) && do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = skill_reload_delay))
 		if(reload_say && AM.ammo_count() && !get_ammo(FALSE, FALSE))
 			user.say(reload_say, forced = "reloading")
 		magazine = AM
@@ -344,21 +351,22 @@
 		return
 	if (istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box))
 		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
-			if (chambered && !chambered.BB)
-				chambered.forceMove(drop_location())
-				chambered = null
-			var/can_reload_say = !get_ammo(FALSE, FALSE)
-			var/num_loaded = magazine.attackby(A, user, params, TRUE)
-			if (num_loaded)
-				to_chat(user, span_notice("You load [num_loaded] [cartridge_wording]\s into \the [src]."))
-				playsound(src, load_sound, load_sound_volume, load_sound_vary)
-				if(can_reload_say)
-					user.say(reload_say, forced = "reloading")
-				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
-					chamber_round()
-				A.update_icon()
-				update_icon()
-			return
+			if(do_after(user, 0, target = src, stayStill = FALSE, required_skill = required_skill, required_skill_level = required_skill_level, skill_delay_mult_scaling = skill_reload_delay))
+				if (chambered && !chambered.BB)
+					chambered.forceMove(drop_location())
+					chambered = null
+				var/can_reload_say = !get_ammo(FALSE, FALSE)
+				var/num_loaded = magazine.attackby(A, user, params, TRUE)
+				if (num_loaded)
+					to_chat(user, span_notice("You load [num_loaded] [cartridge_wording]\s into \the [src]."))
+					playsound(src, load_sound, load_sound_volume, load_sound_vary)
+					if(can_reload_say)
+						user.say(reload_say, forced = "reloading")
+					if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
+						chamber_round()
+					A.update_icon()
+					update_icon()
+				return
 	if(istype(A, /obj/item/suppressor))
 		var/obj/item/suppressor/S = A
 		if(!can_suppress)

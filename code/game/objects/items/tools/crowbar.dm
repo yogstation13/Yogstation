@@ -6,6 +6,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/crowbar.ogg'
+	required_skill = SKILL_MECHANICS
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	force = 5

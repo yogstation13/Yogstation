@@ -94,6 +94,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		// Want randomjob if preferences already filled - Donkie
 	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
 
+	var/list/job_skills = list()
+	var/datum/skillset/temp_skillset
+
+	var/debugvar = null
+
 	// 0 = character settings, 1 = game preferences
 	var/current_tab = 0
 
@@ -214,7 +219,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</center>"
 
 			dat += "<center><h2>Occupation Choices</h2>"
-			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Set Occupation Preferences</a><br></center>"
+			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Set Occupation Preferences</a><br>"
+
+			//Yogs Start: Skills for each job
+			dat += "<a href='?_src_=prefs;preference=skills;task=menu'>Set Skills</a><br></center>"
+
 			if(CONFIG_GET(flag/roundstart_traits))
 				dat += "<center><h2>Quirk Setup</h2>"
 				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
@@ -1188,6 +1197,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/ResetJobs()
 	job_preferences = list()
 
+
 /datum/preferences/proc/SetQuirks(mob/user)
 	if(!SSquirks)
 		to_chat(user, span_danger("The quirk subsystem is still initializing! Try again in a minute."))
@@ -1340,6 +1350,29 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				SetChoices(user)
 		return 1
+	else if(href_list["preference"] == "skills")
+		switch(href_list["task"])
+			if("menu")
+				if(SSjob.occupations.len <= 0)
+					to_chat(user, span_danger("The job SSticker is not yet finished creating jobs, please try again later"))
+					return
+				
+				// So the selected job is the same the appears in the preview for QOL
+				var/highest_pref = 0
+				var/highest_job = "Assistant"
+				for(var/job in job_preferences)
+					if(!job_preferences[job] > highest_pref)
+						continue
+					highest_job = job
+					highest_pref = job_preferences[job]
+
+				if(!temp_skillset)
+					temp_skillset = new()
+					temp_skillset.set_skill_levels(job_skills[highest_job], TRUE)
+				if(!temp_skillset.skill_selection_menu)
+					temp_skillset.skill_selection_menu = new (temp_skillset, src)
+					temp_skillset.skill_selection_menu.current_job = highest_job
+				temp_skillset.open_skill_selection_menu(user)
 
 	else if(href_list["preference"] == "trait")
 		switch(href_list["task"])
@@ -1375,6 +1408,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				SetQuirks(user)
 			if("reset")
 				all_quirks = list()
+
+				parent.debug_variables(src)
+
 				SetQuirks(user)
 			else
 				SetQuirks(user)
