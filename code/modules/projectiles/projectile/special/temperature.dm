@@ -1,6 +1,7 @@
 /obj/item/projectile/temp
 	name = "freeze beam"
 	icon_state = "ice_2"
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 0
 	damage_type = BURN
 	nodamage = FALSE

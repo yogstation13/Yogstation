@@ -15607,7 +15607,7 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/pet/eggdog,
+/mob/living/simple_animal/pet/dog/eggdog,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aFZ" = (

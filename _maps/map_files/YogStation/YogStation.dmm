@@ -16392,6 +16392,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bsg" = (
@@ -16402,6 +16405,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -16451,6 +16457,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bsn" = (
@@ -16471,6 +16480,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bsq" = (
@@ -16479,6 +16491,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 5
@@ -18613,6 +18628,9 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bBH" = (
@@ -18944,6 +18962,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bDn" = (
@@ -19028,6 +19049,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bEg" = (
@@ -19085,6 +19109,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bEs" = (
@@ -19506,6 +19533,9 @@
 	network = list("ss13","rd")
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bHi" = (
@@ -20645,20 +20675,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"bNw" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Library Maintenance";
-	req_access_txt = "12"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "bNz" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -27007,6 +27023,24 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"dLp" = (
+/obj/machinery/light_switch{
+	pixel_x = -23;
+	pixel_y = 7
+	},
+/obj/machinery/button/door{
+	id = "psych";
+	name = "Psych Office Shutters Control";
+	pixel_x = -25;
+	pixel_y = -8;
+	req_access_txt = "5"
+	},
+/obj/effect/landmark/start/yogs/psychiatrist,
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "dLs" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
@@ -36551,6 +36585,18 @@
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"izE" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "psych";
+	name = "psychiatrist shutters"
+	},
+/turf/open/floor/plating,
+/area/medical/psych)
 "izS" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
@@ -39578,14 +39624,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"kcy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port)
 "kcH" = (
 /obj/machinery/disposal/bin,
 /obj/structure/window/reinforced,
@@ -40878,15 +40916,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"kGP" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen,
-/turf/open/floor/plating,
-/area/medical/psych)
 "kGQ" = (
 /obj/machinery/camera{
 	c_tag = "Locker Room Toilets";
@@ -43060,23 +43089,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"lOY" = (
-/obj/machinery/light_switch{
-	pixel_x = -23;
-	pixel_y = 7
-	},
-/obj/machinery/button/door{
-	id = "psych";
-	name = "Psych Office Shutters Control";
-	pixel_x = -25;
-	pixel_y = -8
-	},
-/obj/effect/landmark/start/yogs/psychiatrist,
-/obj/structure/chair/office/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "lPg" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -43266,6 +43278,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"lXH" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "psych";
+	name = "psychiatrist shutters"
+	},
+/turf/open/floor/plating,
+/area/medical/psych)
 "lXT" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -53034,15 +53058,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"qSB" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen,
-/turf/open/floor/plating,
-/area/medical/psych)
 "qSU" = (
 /obj/structure/chair{
 	dir = 8
@@ -59699,11 +59714,6 @@
 	pixel_x = -23;
 	pixel_y = -7
 	},
-/obj/machinery/camera{
-	c_tag = "Genetics Research";
-	dir = 4;
-	network = list("ss13","medbay")
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "tZp" = (
@@ -62595,6 +62605,20 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"vBC" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Library Maintenance";
+	req_one_access_txt = "12;37"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "vBJ" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -66101,6 +66125,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "xBl" = (
@@ -84561,7 +84586,7 @@ aSf
 aSf
 xBb
 aSf
-kcy
+pxE
 cOY
 fLr
 bjg
@@ -91482,9 +91507,9 @@ mtr
 nab
 dJr
 jcS
-lOY
+dLp
 fxA
-qSB
+izE
 klT
 ehE
 aOl
@@ -91741,7 +91766,7 @@ ayH
 igF
 mOQ
 gdF
-kGP
+lXH
 aLD
 aLE
 aOl
@@ -112555,7 +112580,7 @@ anf
 aCC
 wyd
 aUp
-bNw
+vBC
 aPP
 ihg
 aIt

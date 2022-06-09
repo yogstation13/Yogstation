@@ -82,19 +82,19 @@
 		if (M.id == src.id)
 			INVOKE_ASYNC(M, /obj/machinery/door/poddoor.proc/open)
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == src.id)
 			M.drive()
 
-	sleep(60)
+	sleep(6 SECONDS)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if (M.id == src.id)
 			INVOKE_ASYNC(M, /obj/machinery/door/poddoor.proc/close)
 
-	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
+	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 SECONDS)
 
 
 /obj/item/assembly/control/igniter

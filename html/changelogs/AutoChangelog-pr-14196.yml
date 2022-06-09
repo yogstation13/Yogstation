@@ -1,6 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a warning for MMIs with custom laws added to a shell that they will NOT have the custom laws"
-  - tweak: "new mmi description"
-  - bugfix: "mmi now cares if you can actually upload laws or not"

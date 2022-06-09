@@ -249,7 +249,7 @@
 		to_chat(user, span_danger("You have already harvested this shard!"))
 		return
 	to_chat(user, span_danger("You start to harvest the energy of [src]..."))
-	if(do_after(user,10 SECONDS,TRUE,src))
+	if(do_after(user, 10 SECONDS, src))
 		user.put_in_hands(new /obj/item/abyssal_essence)
 		to_chat(user, span_notice("You finish harvesting the energy of [src]!"))
 		src.siphoners |= user.mind
@@ -395,7 +395,7 @@
 			return
 		else
 			to_chat(user, span_notice("You start adding [I] to [src]..."))
-			if(do_after(user, 5 SECONDS, target=src))
+			if(do_after(user, 5 SECONDS, src))
 				S.use(5)
 				new /obj/structure/bloodsucker/possessedarmor/upgraded(src.loc)
 				qdel(src)

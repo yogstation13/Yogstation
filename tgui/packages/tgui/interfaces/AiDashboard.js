@@ -13,7 +13,7 @@ export const AiDashboard = (props, context) => {
   const [activeProjectsOnly, setActiveProjectsOnly] = useSharedState(context, 'activeProjectsOnly', true);
 
   let remaining_cpu = (1 - data.used_cpu) * 100;
-  let amount_of_cpu = data.current_cpu ? data.current_cpu * amount_of_cpu : 0;
+  let amount_of_cpu = data.current_cpu ? data.current_cpu * data.max_cpu : 0;
 
   return (
     <Window
@@ -257,7 +257,7 @@ export const AiDashboard = (props, context) => {
           <Section title="Computing Resources">
             <Section title="CPU Resources">
               <ProgressBar
-                value={data.amount_of_cpu}
+                value={amount_of_cpu}
                 maxValue={data.max_cpu}>{amount_of_cpu}/{data.max_cpu} THz
               </ProgressBar>
             </Section>

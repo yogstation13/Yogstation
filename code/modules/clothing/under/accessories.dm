@@ -138,7 +138,7 @@
 			var/input
 			if(!commended && user != M)
 				input = stripped_input(user,"Please input a reason for this commendation, it will be recorded by Nanotrasen.", ,"", 140)
-			if(do_after(user, delay, target = M))
+			if(do_after(user, delay, M))
 				if(U.attach_accessory(src, user, 0)) //Attach it, do not notify the user of the attachment
 					if(user == M)
 						to_chat(user, span_notice("You attach [src] to [U]."))

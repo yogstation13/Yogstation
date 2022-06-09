@@ -257,13 +257,13 @@
 	cost = 10
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/mimingdrill
+/*/datum/map_template/ruin/lavaland/mimingdrill
 	name = "Miming Drill"
 	id = "mimingdrill"
 	description = "A silent mining operation, its workers died as they lived."
 	suffix = "lavaland_surface_mimingdrill.dmm"
 	cost = 5
-	allow_duplicates = FALSE
+	allow_duplicates = FALSE*/
 
 /datum/map_template/ruin/lavaland/cugganscove
 	name = "Cuggans Cove"
