@@ -47,7 +47,7 @@
 	user.visible_message(span_notice("You see [user] kicking against the door of [src]!"), \
 		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_hear("You hear a metallic creaking from [src]."))
-	if(do_after(user,(breakout_time), target = src))
+	if(do_after(user, (breakout_time), src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open)
 			return
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
@@ -136,7 +136,7 @@
 		LAZYADD(history, H)
 		LAZYADD(abductee_minds, H.mind)
 		say("Processing specimen...")
-		sleep(5)
+		sleep(0.5 SECONDS)
 		switch(text2num(type))
 			if(1)
 				to_chat(H, span_warning("You feel violated."))
@@ -144,7 +144,7 @@
 				to_chat(H, span_warning("You feel yourself being sliced apart and put back together."))
 			if(3)
 				to_chat(H, span_warning("You feel intensely watched."))
-		sleep(5)
+		sleep(0.5 SECONDS)
 		user_abductor.team.abductees += H.mind
 		H.mind.add_antag_datum(/datum/antagonist/abductee)
 

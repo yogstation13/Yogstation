@@ -287,7 +287,7 @@
 	controllock = TRUE
 	on = FALSE //turns off the turret temporarily
 	update_icon()
-	sleep(60) //6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
+	sleep(6 SECONDS) //6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
 	on = TRUE //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 
 

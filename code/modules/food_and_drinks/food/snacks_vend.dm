@@ -158,8 +158,10 @@
 		opened = TRUE
 	else
 		if(!searched)
+			if(INTERACTING_WITH(user, src))
+				return
 			to_chat(user, span_warning("You start searching for the toy..."))
-			if(!do_mob(user, user, 1.5 SECONDS))
+			if(!do_after(user, 1.5 SECONDS, target = src))
 				return
 			if(prob(50))
 				switch(rand(1,2))
@@ -187,10 +189,14 @@
 	tastes = list("rats" = 1 , "mouse" = 2, "cheese" = 1)
 	foodtype = MEAT
 	/// What animal does the snack contain?
-	var/contained_animal = /mob/living/simple_animal/mouse
+	var/mob/living/simple_animal/mouse/contained_animal
 
 /obj/item/reagent_containers/food/snacks/vermin/attack_self(mob/user)
 	. = ..()
-	to_chat(user, span_warning("You pry open the [src]. A [contained_animal] falls out from inside!"))
-	new contained_animal(get_turf(src))
+	contained_animal = new /mob/living/simple_animal/mouse(get_turf(src))
+	to_chat(user, span_warning("You pry open the [src]. A [contained_animal.name] falls out from inside!"))
 	qdel(src)
+
+/obj/item/reagent_containers/food/snacks/vermin/attack(mob/living/M, mob/user, def_zone)
+	to_chat(user, span_warning("You need to open [src]' lid first."))
+	return FALSE

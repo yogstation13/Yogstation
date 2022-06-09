@@ -72,7 +72,7 @@
 			return
 		else
 			to_chat(user, span_notice("You start adding [I] to [src]..."))
-			if(do_after(user, 5 SECONDS, target=src))
+			if(do_after(user, 5 SECONDS, src))
 				W.use(5)
 				new /turf/closed/wall/mineral/wood/nonmetal(get_turf(src))
 				qdel(src)

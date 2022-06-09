@@ -375,7 +375,7 @@
 				to_chat(user, span_danger("You are too tired to work!"))
 				return
 			to_chat(user, "You start grinding...")
-			if((do_after(user, 25, target = src)) && grinded)
+			if((do_after(user, 2.5 SECONDS, src)) && grinded)
 				user.adjustStaminaLoss(40)
 				if(grinded.reagents) //food and pills
 					grinded.reagents.trans_to(src, grinded.reagents.total_volume, transfered_by = user)

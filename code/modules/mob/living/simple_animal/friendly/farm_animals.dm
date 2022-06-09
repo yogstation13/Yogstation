@@ -392,7 +392,7 @@
 			to_chat(user, span_warning("The sheep doesn't have enough wool, try again later..."))
 			return
 		user.visible_message("[user] starts to shave [src] using \the [O].", span_notice("You start to shave [src] using \the [O]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			if(shaved)
 				user.visible_message("[src] has already been shaved!")
 				return

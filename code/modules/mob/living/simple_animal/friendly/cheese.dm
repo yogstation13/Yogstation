@@ -48,7 +48,7 @@
 			return
 		visible_message(span_warning("[L] starts picking up [src]."), \
 						span_userdanger("[L] starts picking you up!"))
-		if(!do_after(L, 20, target = src))
+		if(!do_after(L, 2 SECONDS, src))
 			return
 		visible_message(span_warning("[L] picks up [src]!"), \
 						span_userdanger("[L] picks you up!"))
@@ -57,7 +57,7 @@
 			return
 		to_chat(L, span_notice("You pick [src] up."))
 		drop_all_held_items()
-		var/obj/item/clothing/head/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, null, FALSE)
+		var/obj/item/clothing/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, ITEM_SLOT_HEAD, mob_size, null)
 		L.put_in_hands(P)
 
 /mob/living/simple_animal/cheese/death(gibbed)

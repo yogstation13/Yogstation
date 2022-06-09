@@ -125,7 +125,7 @@
 					var/iter = 5-get_dist(A,target)
 					for(var/i=0 to iter)
 						step_away(A,target)
-						sleep(2)
+						sleep(0.2 SECONDS)
 			var/turf/T = get_turf(target)
 			log_game("[key_name(chassis.occupant)] used a Gravitational Catapult repulse wave on [AREACOORD(T)]")
 			return TRUE
