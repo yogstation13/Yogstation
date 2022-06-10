@@ -65,11 +65,11 @@
 		if(cultteam)
 			cult = new cultteam
 
-/datum/antagonist/hog/proc/add_to_gang()
+/datum/antagonist/hog/proc/add_to_cult()
 	cult.add_member(owner)
 	owner.current.log_message("<font color='red'>Has been converted to the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
 
-/datum/antagonist/hog/proc/remove_from_gang()
+/datum/antagonist/hog/proc/remove_from_cult()
 	cult.remove_member(owner)
 	owner.current.log_message("<font color='red'>Has been deconverted from the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
 
