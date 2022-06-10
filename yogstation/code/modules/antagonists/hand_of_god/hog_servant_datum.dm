@@ -34,7 +34,7 @@
 		to_chat(owner, span_userdanger("farewell"))
 
 /datum/antagonist/hog/on_gain()
-	if(!gang)
+	if(!cult)
 		create_team()
 	..()
 	add_to_cult()
