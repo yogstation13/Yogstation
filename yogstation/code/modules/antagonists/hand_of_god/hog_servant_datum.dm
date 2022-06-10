@@ -34,6 +34,7 @@
 		create_team()
 	..()
 	add_to_cult()
+	equip_cultist()
 
 /datum/antagonist/hog/on_removal()
 	remove_from_cult()
