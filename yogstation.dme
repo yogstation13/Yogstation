@@ -3527,6 +3527,7 @@
 #include "yogstation\code\modules\antagonists\gang\gang.dm"
 #include "yogstation\code\modules\antagonists\gang\gang_datums.dm"
 #include "yogstation\code\modules\antagonists\gang\gang_hud.dm"
+#include "yogstation\code\modules\antagonists\hand_of_god\god\god_datum.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\god\god_mob.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\god\misc_interactions.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\items\_hog_item.dm"
