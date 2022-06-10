@@ -1,5 +1,7 @@
+#define BREAK_FREE_TIME 7 ///7 minutes
+
 /obj/structure/hog_structure/lance/nexus
-	name = "Nexus"
+	name = "\improper Nexus"
 	desc = "There is a god's soul inside. Kill it, and the god will die."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "sacrificealtar"
@@ -10,4 +12,36 @@
 	max_integrity = 500
 	var/last_scream
 	var/mob/camera/hog_god/god
+	var/active = FALSE
+	var/progress = 0
+	var/estimated_time = BREAK_FREE_TIME
 
+/obj/structure/hog_structure/lance/nexus/Initialize()
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+
+/obj/structure/hog_structure/lance/nexus/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+	. = ..()
+	if(.)
+		if(last_scream < world.time)
+			cult.message_all_dudes("Your nexus is under attack! Defend it, or your cult will perish!")
+			last_scream = world.time + ARK_SCREAM_COOLDOWN
+
+/obj/structure/hog_structure/lance/nexus/proc/Activate()
+	active = TRUE
+	priority_announce("An unknown bluespace entity is being summoned in [get_area(src)]. All crew are directed to \
+	@!$, stop this rituall at all cost to prevent further damage to corporate property and save the station from destruction. This is \
+	not a drill. Estimated time of the rituall completion - [BREAK_FREE_TIME] minutes.", \
+	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg') ///I don't have any my own sounds, so... you know.
+	set_security_level(SEC_LEVEL_GAMMA)
+	addtimer(CALLBACK(src, .proc/Sex), 1 MINUTES)	
+
+/obj/structure/hog_structure/lance/nexus/proc/Sex()
+	if(progress == BREAK_FREE_TIME)	
+		return /// Not coded yet!
+	progress += 1
+	priority_announce("Time untill the rituall completion - [progress] minutes.", \
+	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
+	addtimer(CALLBACK(src, .proc/Sex), 1 MINUTES)
+	
+	
