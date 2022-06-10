@@ -245,8 +245,9 @@
 		if(!usr.canUseTopic(src, BE_CLOSE, ismonkey(usr)))
 			return
 		usr.visible_message(span_notice("[usr] grabs \the [src.name]."), span_notice("You grab \the [src.name]."))
-		var/C = new item_chair(loc)
+		var/obj/C = new item_chair(loc)
 		TransferComponents(C)
+		C.color = color
 		usr.put_in_hands(C)
 		qdel(src)
 
@@ -255,6 +256,29 @@
 	desc = "It has some unsavory stains on it..."
 	icon_state = "bar"
 	item_chair = /obj/item/chair/stool/bar
+
+/obj/structure/chair/stool/beanbag
+	name = "beanbag"
+	desc = "A lump of beads in cloth that forms around whatever sits in it, providing supreme comfort and relaxation. Popular among lizards."
+	icon_state = "beanbag"
+	item_chair = /obj/item/chair/stool/beanbag
+	buildstacktype = /obj/item/stack/sheet/cloth
+	buildstackamount = 5
+
+/obj/structure/chair/stool/beanbag/black
+	color = "#444444"
+
+/obj/structure/chair/stool/beanbag/blue
+	color = "#5555FF"
+
+/obj/structure/chair/stool/beanbag/red
+	color = "#FF5555"
+
+/obj/structure/chair/stool/beanbag/green
+	color = "#55FF55"
+
+/obj/structure/chair/stool/beanbag/yellow
+	color = "#FFFF55"
 
 /obj/item/chair
 	name = "chair"
@@ -300,6 +324,7 @@
 	var/obj/structure/chair/C = new origin_type(get_turf(loc))
 	TransferComponents(C)
 	C.setDir(dir)
+	C.color = color
 	qdel(src)
 
 /obj/item/chair/proc/smash(mob/living/user)
@@ -352,6 +377,13 @@
 
 /obj/item/chair/stool/narsie_act()
 	return //sturdy enough to ignore a god
+
+/obj/item/chair/stool/beanbag
+	name = "beanbag"
+	icon_state = "beanbag_toppled"
+	desc = "Pillow fight!"
+	damtype = STAMINA
+	origin_type = /obj/structure/chair/stool/beanbag
 
 /obj/item/chair/wood
 	name = "wooden chair"

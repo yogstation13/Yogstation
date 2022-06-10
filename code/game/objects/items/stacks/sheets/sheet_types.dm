@@ -350,6 +350,13 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("white softcap", /obj/item/clothing/head/soft/mime, 2), \
 	null, \
 	new/datum/stack_recipe("blindfold", /obj/item/clothing/glasses/blindfold, 2), \
+	null, \
+	new/datum/stack_recipe("grey beanbag", /obj/structure/chair/stool/beanbag, 5), \
+	new/datum/stack_recipe("black beanbag", /obj/structure/chair/stool/beanbag/black, 5), \
+	new/datum/stack_recipe("blue beanbag", /obj/structure/chair/stool/beanbag/blue, 5), \
+	new/datum/stack_recipe("red beanbag", /obj/structure/chair/stool/beanbag/red, 5), \
+	new/datum/stack_recipe("green beanbag", /obj/structure/chair/stool/beanbag/green, 5), \
+	new/datum/stack_recipe("yellow beanbag", /obj/structure/chair/stool/beanbag/yellow, 5), \
 	))
 
 /obj/item/stack/sheet/cloth
