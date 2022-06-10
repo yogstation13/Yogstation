@@ -61,7 +61,7 @@
 		if(team)
 			cult = team
 			return
-		var/datum/team/gang/cultteam = pick_n_take(GLOB.(possible_hog_cults)
+		var/datum/team/gang/cultteam = pick_n_take(GLOB.possible_hog_cults)
 		if(cultteam)
 			cult = new cultteam
 
