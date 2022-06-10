@@ -383,6 +383,7 @@
 	icon_state = "beanbag_toppled"
 	desc = "Pillow fight!"
 	damtype = STAMINA
+	hitsound = 'sound/weapons/slash.ogg'
 	origin_type = /obj/structure/chair/stool/beanbag
 
 /obj/item/chair/wood
