@@ -1,8 +1,6 @@
 GLOBAL_LIST_INIT(possible_hog_cults, subtypesof(/datum/team/hog_cult/))
 GLOBAL_LIST_EMPTY(hog_cults)
-
-/datum/team/hog_cult/black   //If you want to add a new color go and do a colored sprite for every structure
-  cult_color = "black"
+//If you want to add a new color go and do a colored sprite for every structure
 
 /datum/team/hog_cult/green
   cult_color = "green"
@@ -18,3 +16,9 @@ GLOBAL_LIST_EMPTY(hog_cults)
 
 /datum/team/hog_cult/blue
   cult_color = "blue"
+
+/datum/team/hog_cult/brown
+  cult_color = "brown"
+
+/datum/team/hog_cult/orange
+  cult_color = "orange"
