@@ -385,14 +385,13 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if (3)
 				dat += "<h4>[PDAIMG(atmos)] Atmospheric Readings</h4>"
 
-				var/turf/T = user.loc
-				if (isnull(T))
+				if (!isopenturf(get_turf(user)))
 					dat += "Unable to obtain a reading.<br>"
 				else
-					var/datum/gas_mixture/environment = T.return_air()
+					var/datum/gas_mixture/environment = user.return_air()
 
-					var/pressure = environment.return_pressure()
-					var/total_moles = environment.total_moles()
+					var/pressure = environment?.return_pressure()
+					var/total_moles = environment?.total_moles()
 
 					dat += "Air Pressure: [round(pressure,0.1)] kPa<br>"
 

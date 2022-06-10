@@ -599,11 +599,14 @@ GENE SCANNER
 	if (user.stat || user.eye_blind)
 		return
 
-	var/turf/location = user.loc
-	if(!istype(location))
+	if(!isopenturf(get_turf(user)))
 		return
 
-	var/datum/gas_mixture/environment = location.return_air()
+	var/datum/gas_mixture/environment = user.return_air()
+
+	if(!environment)
+		to_chat(user, span_info("No air detected."))
+		return
 
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles()

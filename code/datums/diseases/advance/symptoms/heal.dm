@@ -394,7 +394,7 @@
 	. = 0
 
 	if(M.loc)
-		environment = M.loc.return_air()
+		environment = M.return_air()
 	if(environment)
 		if(environment.get_moles(GAS_PLASMA) > GLOB.gas_data.visibility[GAS_PLASMA]) //if there's enough plasma in the air to see
 			. += power * 0.5

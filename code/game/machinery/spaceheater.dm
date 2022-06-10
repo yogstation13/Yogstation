@@ -73,14 +73,13 @@
 		return PROCESS_KILL
 
 	if(cell && cell.charge > 0)
-		var/turf/L = loc
-		if(!istype(L))
+		if(!isopenturf(get_turf(src)))
 			if(mode != HEATER_MODE_STANDBY)
 				mode = HEATER_MODE_STANDBY
 				update_icon()
 			return
 
-		var/datum/gas_mixture/env = L.return_air()
+		var/datum/gas_mixture/env = return_air()
 
 		var/newMode = HEATER_MODE_STANDBY
 		if(setMode != HEATER_MODE_COOL && env.return_temperature() < targetTemperature - temperatureTolerance)
@@ -185,13 +184,10 @@
 	data["minTemp"] = max(settableTemperatureMedian - settableTemperatureRange - T0C, TCMB)
 	data["maxTemp"] = settableTemperatureMedian + settableTemperatureRange - T0C
 
-	var/turf/L = get_turf(loc)
 	var/curTemp
-	if(istype(L))
-		var/datum/gas_mixture/env = L.return_air()
-		curTemp = env.return_temperature()
-	else if(isturf(L))
-		curTemp = L.return_temperature()
+	if(isopenturf(get_turf(src)))
+		var/datum/gas_mixture/env = return_air()
+		curTemp = env?.return_temperature()
 	if(isnull(curTemp))
 		data["currentTemp"] = "N/A"
 	else

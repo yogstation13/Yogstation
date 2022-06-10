@@ -35,4 +35,4 @@
 	if(tank)
 		return tank.air_contents
 	else
-		return loc.return_air()
+		return loc?.return_air()

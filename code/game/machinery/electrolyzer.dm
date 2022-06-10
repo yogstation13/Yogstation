@@ -70,8 +70,7 @@
 		update_icon()
 		return PROCESS_KILL
 
-	var/turf/L = loc
-	if(!istype(L))
+	if(!isopenturf(get_turf(src)))
 		if(mode != ELECTROLYZER_MODE_STANDBY)
 			mode = ELECTROLYZER_MODE_STANDBY
 			update_icon()
@@ -86,7 +85,7 @@
 	if(mode == ELECTROLYZER_MODE_STANDBY)
 		return
 
-	var/datum/gas_mixture/env = L.return_air() //get air from the turf
+	var/datum/gas_mixture/env = return_air() //get air from the turf
 	var/datum/gas_mixture/removed = env.remove(0.1 * env.total_moles())
 
 	if(!removed)

@@ -111,10 +111,11 @@
 
 //Thanks to spaceheater.dm for inspiration :)
 /obj/machinery/shuttle/engine/proc/fireEngine()
-	var/turf/heatTurf = loc
-	if(!heatTurf)
+	if(!isopenturf(get_turf(src)))
 		return
-	var/datum/gas_mixture/env = heatTurf.return_air()
+	var/datum/gas_mixture/env = return_air()
+	if(!env)
+		return
 	var/heat_cap = env.heat_capacity()
 	var/req_power = abs(env.return_temperature() - ENGINE_HEAT_TARGET) * heat_cap
 	req_power = min(req_power, ENGINE_HEATING_POWER)

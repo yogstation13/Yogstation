@@ -284,11 +284,11 @@
 	data["fire_alarm"] = A.fire
 
 	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/environment = T.return_air()
+	var/datum/gas_mixture/environment = T?.return_air()
 	var/datum/tlv/cur_tlv
 
 	data["environment_data"] = list()
-	var/pressure = environment.return_pressure()
+	var/pressure = environment?.return_pressure()
 	cur_tlv = TLV["pressure"]
 	data["environment_data"] += list(list(
 							"name" = "Pressure",
@@ -296,7 +296,7 @@
 							"unit" = "kPa",
 							"danger_level" = cur_tlv.get_danger_level(pressure)
 	))
-	var/temperature = environment.return_temperature()
+	var/temperature = environment?.return_temperature()
 	cur_tlv = TLV["temperature"]
 	data["environment_data"] += list(list(
 							"name" = "Temperature",
@@ -304,9 +304,9 @@
 							"unit" = "K ([round(temperature - T0C, 0.1)]C)",
 							"danger_level" = cur_tlv.get_danger_level(temperature)
 	))
-	var/total_moles = environment.total_moles()
-	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.return_temperature() / environment.return_volume()
-	for(var/gas_id in environment.get_gases())
+	var/total_moles = environment?.total_moles()
+	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment?.return_temperature() / environment?.return_volume()
+	for(var/gas_id in environment?.get_gases())
 		if(!(gas_id in TLV)) // We're not interested in this gas, it seems.
 			continue
 		cur_tlv = TLV[gas_id]
@@ -658,13 +658,16 @@
 	if((stat & (NOPOWER|BROKEN)) || shorted)
 		return
 
-	var/turf/location = get_turf(src)
-	if(!location)
+	if(!isopenturf(get_turf(src)))
 		return
 
 	var/datum/tlv/cur_tlv
 
-	var/datum/gas_mixture/environment = location.return_air()
+	var/datum/gas_mixture/environment = return_air()
+
+	if(!environment)
+		return
+
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.return_temperature() / environment.return_volume()
 
 	cur_tlv = TLV["pressure"]

@@ -150,6 +150,9 @@
 	var/datum/gas_mixture/environment = tile.return_air()
 	var/datum/gas_mixture/air_contents = airs[1]
 
+	if(!environment)
+		return FALSE
+
 	if(air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE || !islist(filter_types))
 		return FALSE
 

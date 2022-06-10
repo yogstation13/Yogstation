@@ -128,6 +128,10 @@
 
 	var/datum/gas_mixture/air_contents = airs[1]
 	var/datum/gas_mixture/environment = loc.return_air()
+
+	if(!environment)
+		return
+
 	var/environment_pressure = environment.return_pressure()
 	var/environment_moles = environment.total_moles()
 	var/last_moles_real_added = environment_moles - last_moles

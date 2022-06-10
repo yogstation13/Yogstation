@@ -422,13 +422,12 @@
 	var/datum/gas_mixture/env = L.return_air()
 	var/pressure_delta = (SEND_PRESSURE*1.01) - air_contents.return_pressure()
 
-	if(env.return_temperature() > 0)
+	if(env?.return_temperature() > 0)
 		var/transfer_moles = 0.1 * pressure_delta*air_contents.return_volume()/(env.return_temperature() * R_IDEAL_GAS_EQUATION)
 
 		//Actually transfer the gas
 		var/datum/gas_mixture/removed = env.remove(transfer_moles)
 		air_contents.merge(removed)
-
 
 	//if full enough, switch to ready mode
 	if(air_contents.return_pressure() >= SEND_PRESSURE)

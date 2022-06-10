@@ -177,8 +177,9 @@
 		sleep(OPEN_DURATION + 0.2 SECONDS)
 		pod_moving = FALSE
 		if(!QDELETED(pod))
-			var/datum/gas_mixture/floor_mixture = loc.return_air()
-			equalize_all_gases_in_list(list(pod.air_contents,floor_mixture))
+			var/datum/gas_mixture/floor_mixture = loc?.return_air()
+			if(floor_mixture)
+				equalize_all_gases_in_list(list(pod.air_contents,floor_mixture))
 
 /obj/structure/transit_tube/station/init_tube_dirs()
 	switch(dir)
