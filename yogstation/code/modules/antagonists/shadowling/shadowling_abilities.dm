@@ -756,7 +756,8 @@
 		if(C.on_fire)
 			user.visible_message(span_boldwarning("[user]'s body shudders and flickers into darkness for a moment!"),
 													span_shadowling("The void rejects the flames engulfing your body, throwing you back into the burning light!"))
-			return	//Detected inspected rejected deflected and ejected by the void, no flames allowed!
+			revert_cast()										
+			return
 	if(!shadowling_check(user) && !istype(user, /mob/living/simple_animal/ascendant_shadowling))
 		revert_cast()
 		return
