@@ -5,7 +5,8 @@
 	var/hud_type = "dude"
 	var/datum/team/hog_cult/cult
 	var/list/god_actions = list() 
-	var/farewell = "Blahblahblah"
+	var/farewell = "You are no longer a cultist!"
+	var/greet = "You are now a HoG cultist!"
 
 /datum/antagonist/hog/can_be_owned(datum/mind/new_owner)
 	. = ..()
@@ -23,6 +24,9 @@
 
 /datum/antagonist/hog/get_team()
 	return cult
+
+/datum/antagonist/hog/greet()
+	to_chat(owner, span_userdanger("greet"))
 
 /datum/antagonist/hog/farewell()
 	if(ishuman(owner.current))
