@@ -206,7 +206,7 @@
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
 /obj/item/clothing/suit/hooded/eldritchcowl
-	modular_sprite_sheets = TRUE
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "eldritch cowl"
 	desc = "A tattered heretical cloak from a time long passed."
@@ -216,7 +216,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/eldritchhood
 
 /obj/item/clothing/head/hooded/eldritchhood
-	modular_sprite_sheets = TRUE
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	icon_state = "eldritchhood"
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR|HIDEMASK
