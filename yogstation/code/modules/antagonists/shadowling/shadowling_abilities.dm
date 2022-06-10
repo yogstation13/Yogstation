@@ -774,6 +774,9 @@
 		user.forceMove(S2)
 		S2.jaunter = user
 		charge_counter = charge_max //Don't have to wait for cooldown to exit
+		QDEL_NULL(cooldown_overlay) //since we're giving them a free cooldown, no more cooldown_overlay
+		S2.jaunt_spell = src
+
 
 //Both have to be high to cancel out natural regeneration
 #define VOIDJAUNT_STAM_PENALTY_DARK 10
@@ -793,6 +796,8 @@
 	var/apply_damage = TRUE
 	var/move_delay = 0			//Time until next move allowed
 	var/move_speed = 2			//Deciseconds per move
+
+	var/obj/effect/proc_holder/spell/targeted/void_jaunt/jaunt_spell //what spell we actually came from (for forced cooldown)
 
 /obj/effect/dummy/phased_mob/shadowling/relaymove(mob/user, direction)
 	if(move_delay > world.time && apply_damage)	//Ascendants get no slowdown
@@ -821,6 +826,8 @@
 															span_shadowling("You exit the void."))
 
 		playsound(get_turf(jaunter), 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
+		jaunt_spell?.charge_counter = 0
+		jaunt_spell?.start_recharge()
 		jaunter = null
 	qdel(src)
 
