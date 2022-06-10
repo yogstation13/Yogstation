@@ -20,11 +20,13 @@
 
 	var/initial_basalt_chance = 40
 	var/basalt_smoothing_interations = 100
+	var/basalt_birth_limit = 4
+	var/basalt_death_limit = 3
 	var/basalt_turf = /turf/closed/mineral/random/volcanic/hard
 
 /datum/map_generator/cave_generator/lavaland/generate_terrain(list/turfs)
 	. = ..()
-	var/basalt_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[birth_limit]", "[death_limit]", "[world.maxx]", "[world.maxy]")
+	var/basalt_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[world.maxx]", "[world.maxy]")
 
 	for(var/i in turfs) //Go through all the turfs and generate them
 		var/turf/gen_turf = i

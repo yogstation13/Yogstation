@@ -77,7 +77,7 @@
 
 			//FLORA SPAWNING HERE
 			var/atom/spawned_flora
-			if(flora_spawn_list && prob(flora_spawn_chance))
+			if(flora_spawn_list && !isemptylist(flora_spawn_list) && prob(flora_spawn_chance))
 				var/can_spawn = TRUE
 
 				if(!A.flora_allowed)
@@ -88,7 +88,7 @@
 
 			//FEATURE SPAWNING HERE
 			var/atom/spawned_feature
-			if(feature_spawn_list && prob(feature_spawn_chance))
+			if(feature_spawn_list && !isemptylist(feature_spawn_list) && prob(feature_spawn_chance))
 				var/can_spawn = TRUE
 
 				if(!A.flora_allowed) //checks the same flag because lol dunno
@@ -105,7 +105,7 @@
 
 			//MOB SPAWNING HERE
 
-			if(mob_spawn_list && !spawned_flora && !spawned_feature && prob(mob_spawn_chance))
+			if(mob_spawn_list && !isemptylist(mob_spawn_list) && !spawned_flora && !spawned_feature && prob(mob_spawn_chance))
 				var/can_spawn = TRUE
 
 				if(!A.mob_spawn_allowed)
