@@ -29,6 +29,15 @@
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just returned a part of themselfes!")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("farewell"))
 
+/datum/antagonist/hog/on_gain()
+	if(!gang)
+		create_team()
+	..()
+	add_to_cult()
+
+/datum/antagonist/hog/on_removal()
+	remove_from_cult()
+	..()
 
 /datum/antagonist/hog/proc/update_hog_icons_added(mob/living/M)  ///Hope this shit will work, despite i brainlessly copied it from gang code
 	var/datum/atom_hud/antag/hog/culthud = GLOB.huds[cult.hud_entry_num]
@@ -46,4 +55,22 @@
 		culthud.leave_hud(M)
 		set_antag_hud(M, null)
 
+/datum/antagonist/hog/create_team(team)
+	if(!cult) 
+		if(team)
+			cult = team
+			return
+		var/datum/team/gang/cultteam = pick_n_take(GLOB.(possible_hog_cults)
+		if(cultteam)
+			cult = new cultteam
 
+/datum/antagonist/hog/proc/add_to_gang()
+	cult.add_member(owner)
+	owner.current.log_message("<font color='red'>Has been converted to the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
+
+/datum/antagonist/hog/proc/remove_from_gang()
+	cult.remove_member(owner)
+	owner.current.log_message("<font color='red'>Has been deconverted from the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
+
+/datum/antagonist/hog/proc/equip_cultist()
+	return ///No items coded yet, so for now it does nothing. 
