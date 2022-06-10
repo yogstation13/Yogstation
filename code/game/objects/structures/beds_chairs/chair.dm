@@ -259,7 +259,7 @@
 
 /obj/structure/chair/stool/beanbag
 	name = "beanbag"
-	desc = "A lump of beads in cloth that forms around whatever sits in it, providing supreme comfort and relaxation. Popular among lizards."
+	desc = "A lump of beads in cloth that forms around whatever sits in it, providing supreme comfort and relaxation."
 	icon_state = "beanbag"
 	item_chair = /obj/item/chair/stool/beanbag
 	buildstacktype = /obj/item/stack/sheet/cloth
