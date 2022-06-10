@@ -13,5 +13,4 @@
 	action_icon_state = "magic_mirror"
 	action_background_icon_state = "bg_demon"
 
-
-
+//Enthrall
