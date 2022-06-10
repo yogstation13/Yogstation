@@ -1010,7 +1010,7 @@
 // Underwear Definitions //
 ///////////////////////////
 /datum/sprite_accessory/underwear
-	icon = DEFAULTFILE_UNDERWEAR
+	icon = 'icons/mob/underwear.dmi'
 
 /datum/sprite_accessory/underwear/nude
 	name = "Nude"
@@ -1212,7 +1212,7 @@
 ////////////////////////////
 
 /datum/sprite_accessory/undershirt
-	icon = DEFAULTFILE_UNDERWEAR
+	icon = 'icons/mob/underwear.dmi'
 
 /datum/sprite_accessory/undershirt/nude
 	name = "Nude"
@@ -1496,7 +1496,7 @@
 ///////////////////////
 
 /datum/sprite_accessory/socks
-	icon = DEFAULTFILE_UNDERWEAR
+	icon = 'icons/mob/underwear.dmi'
 
 /datum/sprite_accessory/socks/nude
 	name = "Nude"

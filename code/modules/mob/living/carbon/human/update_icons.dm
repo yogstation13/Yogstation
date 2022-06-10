@@ -321,7 +321,7 @@ There are several things that need to be remembered:
 		var/t_state = s_store.item_state
 		if(!t_state)
 			t_state = s_store.icon_state
-		overlays_standing[SUIT_STORE_LAYER]	= mutable_appearance(DEFAULTFILE_BELT_MIRROR, t_state, -SUIT_STORE_LAYER)
+		overlays_standing[SUIT_STORE_LAYER]	= mutable_appearance('icons/mob/belt_mirror.dmi', t_state, -SUIT_STORE_LAYER)
 		var/mutable_appearance/s_store_overlay = overlays_standing[SUIT_STORE_LAYER]
 		if(OFFSET_S_STORE in dna.species.offset_features)
 			s_store_overlay.pixel_x += dna.species.offset_features[OFFSET_S_STORE][1]
@@ -331,15 +331,7 @@ There are several things that need to be remembered:
 
 
 /mob/living/carbon/human/update_inv_head()
-	remove_overlay(HEAD_LAYER)
-
-	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
-		return
-
-	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1]
-		inv.update_icon()
-	
+	..()
 	update_mutant_bodyparts()
 	if(head)
 		update_hud_head(head)
@@ -370,7 +362,7 @@ There are several things that need to be remembered:
 		if(OFFSET_BELT in dna.species.offset_features)
 			belt_overlay.pixel_x += dna.species.offset_features[OFFSET_BELT][1]
 			belt_overlay.pixel_y += dna.species.offset_features[OFFSET_BELT][2]
-			overlays_standing[BELT_LAYER] = belt_overlay
+		overlays_standing[BELT_LAYER] = belt_overlay
 
 	apply_overlay(BELT_LAYER)
 
@@ -667,11 +659,6 @@ generate/load female uniform sprites matching all previously decided variables
 /obj/item/proc/get_held_offsets()
 	var/list/L
 	if(ismob(loc))
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			L = H.dna?.species.get_item_offsets_for_index(src)
-			if(L)
-				return L
 		var/mob/M = loc
 		L = M.get_item_offsets_for_index(M.get_held_index_of_item(src))
 	return L

@@ -1,8 +1,6 @@
 /obj/item/clothing/neck
 	name = "necklace"
 	icon = 'icons/obj/clothing/neck.dmi'
-	sprite_sheets_file = "neck.dmi"
-	worn_type = CLOTHING_NECK
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_NECK
 	strip_delay = 40
@@ -214,7 +212,7 @@
 /obj/item/clothing/neck/neckerchief/worn_overlays(isinhands)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/realOverlay = mutable_appearance(get_worn_file(), icon_state)
+		var/mutable_appearance/realOverlay = mutable_appearance('icons/mob/mask.dmi', icon_state)
 		realOverlay.pixel_y = -3
 		. += realOverlay
 

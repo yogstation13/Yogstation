@@ -9,14 +9,14 @@
 /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	name = "brig physicians jacket"
 	desc = "A protective jacket for medical emergencies on off-world planets. Has BP embossed into it."
-	modular_sprite_sheets = TRUE
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "labcoat_emtsec"
 
 /obj/item/clothing/suit/toggle/labcoat/physician
 	name = "brig physician's labcoat"
 	desc = "A white labcoat with red medical crosses. Has BP embossed into it."
-	modular_sprite_sheets = TRUE
+	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "labcoat_sec"
 	item_state = "labcoat_sec"

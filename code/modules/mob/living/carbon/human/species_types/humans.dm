@@ -1,6 +1,6 @@
 /datum/species/human
 	name = "Human"
-	id = SPECIES_HUMAN
+	id = "human"
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE)
 	default_features = list("mcolor" = "FFF", "wings" = "None")

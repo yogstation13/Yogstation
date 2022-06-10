@@ -1,7 +1,5 @@
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
-	sprite_sheets_file = "uniform.dmi"
-	worn_type = CLOTHING_UNIFORM
 	name = "under"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.9
