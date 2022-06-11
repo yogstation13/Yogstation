@@ -566,6 +566,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
+/datum/uplink_item/dangerous/hardlightbow
+	name = "Hardlight Bow"
+	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
+	item = /obj/item/gun/ballistic/bow/energy/syndicate
+	cost = 12
+	surplus = 25
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
 	category = "Stealthy Weapons"
@@ -1758,7 +1766,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An implant injected into the body, and later activated at the user's will. Has no telecrystals and must be charged by the use of physical telecrystals. \
 			Undetectable (except via surgery), and excellent for escaping confinement."
 	item = /obj/item/storage/box/syndie_kit/imp_uplink
-	cost = 4
+	cost = UPLINK_IMPLANT_TELECRYSTAL_COST
 	// An empty uplink is kinda useless.
 	surplus = 0
 	restricted = TRUE
