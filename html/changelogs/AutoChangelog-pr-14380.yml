@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "safer cooldown overlay checking"
+  - bugfix: "makes shadowling void jaunt start cooldown if you're forced out of it"
