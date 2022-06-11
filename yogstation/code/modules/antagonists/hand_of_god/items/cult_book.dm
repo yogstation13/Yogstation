@@ -25,7 +25,7 @@
 		if(stamina_damage >= 85)
 			var/stunforce = 7 SECONDS //A bit less if alredy stunned
 			if(!H.IsParalyzed())
-				to_chat(L, span_warning("You feel pure horror inflitrating your mind!"))
+				to_chat(H, span_warning("You feel pure horror inflitrating your mind!"))
 				stunforce = 11 SECONDS
 			H.Paralyze(stunforce)
 		else
