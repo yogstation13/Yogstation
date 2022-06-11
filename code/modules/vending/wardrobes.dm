@@ -15,6 +15,8 @@
 			var/obj/item/radio/headset/HS = I
 			if(HS.keyslot != initial(HS.keyslot)) // Hey, you stole something!
 				return FALSE
+		if(istype(I, /obj/item/storage/box)) //no putting boxes back, sorry
+			return FALSE
 		return TRUE
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
