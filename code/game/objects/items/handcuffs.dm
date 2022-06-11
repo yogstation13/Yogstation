@@ -393,13 +393,6 @@
 	icon_state = "bola_watcher"
 	item_state = "bola_watcher"
 	breakouttime = 45
-	var/effect_duration = 20 SECONDS
-	var/effect_strength = 2
-	var/datum/status_effect/slowdown/watcherbola/effectReference
-
-/obj/item/restraints/legcuffs/bola/watcher/impactAnimal(mob/living/simple_animal/hit_animal, datum/thrownthing/throwingdatum) // Useful for hunting animals and humans
-	effectReference = hit_animal.apply_status_effect(/datum/status_effect/slowdown/watcherbola, effect_duration, effect_strength, src)
-	forceMove(hit_animal)
 
 /obj/item/restraints/legcuffs/bola/energy //For Security
 	name = "energy bola"
