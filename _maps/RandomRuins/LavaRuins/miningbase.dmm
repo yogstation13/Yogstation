@@ -609,6 +609,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"eN" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/rack,
+/obj/item/pickaxe,
+/obj/item/shovel,
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "eO" = (
 /obj/machinery/washing_machine,
 /obj/machinery/camera{
@@ -1039,16 +1046,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"jQ" = (
-/obj/item/gps/mining{
-	gpstag = "MINER_1"
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/personal/miner{
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "jW" = (
 /obj/structure/sign/poster/random{
 	pixel_y = -32
@@ -1311,16 +1308,6 @@
 "oh" = (
 /turf/closed/wall,
 /area/mine/maintenance)
-"oi" = (
-/obj/item/gps/mining{
-	gpstag = "MINER_2"
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/personal/miner{
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "oF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1979,10 +1966,6 @@
 /obj/machinery/meter/atmos,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"zw" = (
-/obj/machinery/telecomms/relay/preset/mining,
-/turf/open/floor/circuit/green/telecomms,
-/area/mine/maintenance)
 "zK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2577,16 +2560,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/mine/eva)
-"Gk" = (
-/obj/item/gps/mining{
-	gpstag = "MINER_4"
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/personal/miner{
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "Gv" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -2742,6 +2715,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"IZ" = (
+/obj/machinery/telecomms/relay/preset/mining,
+/obj/item/gps/internal/base,
+/turf/open/floor/circuit/green/telecomms,
+/area/mine/maintenance)
 "Je" = (
 /obj/machinery/door/airlock/mining{
 	name = "Mining Station Storage";
@@ -3469,16 +3447,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
-"Um" = (
-/obj/item/gps/mining{
-	gpstag = "MINER_3"
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/personal/miner{
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "Ux" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -4110,7 +4078,7 @@ Ap
 Ap
 pB
 LZ
-zw
+IZ
 Si
 pB
 Cv
@@ -4581,11 +4549,11 @@ Xo
 Su
 UX
 zW
-Gk
+eN
 dX
 ef
 qc
-Um
+eN
 ND
 Cv
 ak
@@ -4997,11 +4965,11 @@ Xo
 kO
 Xc
 zW
-jQ
+eN
 iT
 Hy
 iT
-oi
+eN
 ND
 Ap
 Ap
