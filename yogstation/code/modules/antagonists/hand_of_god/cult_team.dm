@@ -21,12 +21,12 @@
 	energy += permanent_regen
 	addtimer(CALLBACK(src, .proc/here_comes_the_money), income_interval)	
 
-/datum/team/hog_cult/proc/message_all_dudes(message)
+/datum/team/hog_cult/proc/message_all_dudes(var/message, var/ghosts = FALSE)
 	for(var/mob/M in GLOB.mob_list)
-		if(isobserver(M))
+		if(isobserver(M) && ghosts)
 			to_chat(M, "[message]")
 		if(M in members)
-			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
+			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M)
 			if(cultie && (cultie.cult = src))
 				to_chat(M, "[message]")
 	
