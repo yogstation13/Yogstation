@@ -209,11 +209,11 @@
 		revert_cast()
 		return
 	to_chat(user, span_shadowling("You freeze the nearby air."))
-	user.ExtinguishMob()
 	for(var/turf/T in targets)
 		for(var/mob/living/carbon/M in T.contents)
 			if(is_shadow_or_thrall(M))
-				if(M == user) //No message for the user, of course
+				if(M == user) //No message for the user, of course. 
+					M.ExtinguishMob() //Fire doesn't like cold
 					continue
 				else
 					to_chat(M, span_danger("You feel a blast of paralyzingly cold air wrap around you and flow past, but you are unaffected!"))
