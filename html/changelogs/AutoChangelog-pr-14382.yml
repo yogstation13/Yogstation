@@ -1,0 +1,5 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds GPS signal to mining base, and racks for tools."
+  - rscdel: "Removes personal lockers and spare GPSes from lava land"
