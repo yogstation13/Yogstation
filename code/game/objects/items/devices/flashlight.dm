@@ -339,7 +339,7 @@
 		force = on_damage
 		name = "lit [initial(src.name)]"
 		desc = "[initial(src.desc)] This one is lit."
-		damtype = FIRE
+		damtype = BURN
 		attack_verb = list("burnt","scorched","scalded")
 		hitsound = 'sound/items/welder.ogg'
 		START_PROCESSING(SSobj, src)

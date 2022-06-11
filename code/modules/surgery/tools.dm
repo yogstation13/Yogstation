@@ -23,6 +23,13 @@
 	toolspeed = 0.5
 
 
+/obj/item/retractor/bone
+	name = "bone retractor"
+	desc = "Kinda looks like a chicken bone."
+	icon_state = "retractor_bone"
+	toolspeed = 1.25
+
+
 /obj/item/hemostat
 	name = "hemostat"
 	desc = "You think you have seen this before."
@@ -50,6 +57,13 @@
 	attack_verb = list("attacked", "pinched")
 
 
+/obj/item/hemostat/bone
+	name = "hemostat"
+	desc = "Bones that are strapped together with sinews. Used to stop bleeding."
+	icon_state = "hemostat_bone"
+	toolspeed = 1.25
+
+
 /obj/item/cautery
 	name = "cautery"
 	desc = "This stops bleeding."
@@ -75,6 +89,13 @@
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
 	attack_verb = list("burnt")
+
+
+/obj/item/cautery/bone
+	name = "bone cautery"
+	desc = "A heated chuck of plasma strapped to a bone. It can close wounds."
+	icon_state = "cautery_bone"
+	toolspeed = 1.25
 
 
 /obj/item/surgicaldrill
@@ -167,6 +188,13 @@
 	return (BRUTELOSS)
 
 
+/obj/item/scalpel/bone
+	name = "bone scalpel"
+	desc = "Bones and a Diamond tied together to make a scalpel."
+	icon_state = "scalpel_bone"
+	force = 5
+	toolspeed = 1.25
+
 /obj/item/circular_saw
 	name = "circular saw"
 	desc = "For heavy duty cutting."
@@ -209,6 +237,13 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = SHARP_EDGED
 
+/obj/item/circular_saw/bone
+	name = "bone bonesaw"
+	desc = "A bone with diamond teeth strapped to cut through bones."
+	icon_state = "saw_bone"
+	force = 5
+	toolspeed = 1.25
+
 /obj/item/bonesetter
 	name = "bonesetter"
 	desc = "For setting things right."
@@ -222,6 +257,12 @@
 	tool_behaviour = TOOL_BONESET
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("corrected", "properly set")
+
+/obj/item/bonesetter/bone
+	name = "bone bonesetter"
+	desc = "A bonesetter made of bones... for setting bones with... bones?"
+	icon_state = "bone setter_bone"
+	toolspeed = 1.25
 
 /obj/item/surgical_drapes
 	name = "surgical drapes"
@@ -237,6 +278,11 @@
 /obj/item/surgical_drapes/attack(mob/living/M, mob/user)
 	if(!attempt_initiate_surgery(src, M, user))
 		..()
+
+/obj/item/surgical_drapes/goliath
+	name = "goliath drapes"
+	desc = "Probably not the most hygienic but what else are you gonna use?"
+	icon_state = "surgical_drapes_goli"
 
 /obj/item/organ_storage //allows medical cyborgs to manipulate organs without hands
 	name = "organ storage bag"
@@ -304,13 +350,13 @@
 	if(istype(O, /obj/item/disk/surgery))
 		to_chat(user, span_notice("You load the surgery protocol from [O] into [src]."))
 		var/obj/item/disk/surgery/D = O
-		if(do_after(user, 1 SECONDS, target = O))
+		if(do_after(user, 1 SECONDS, O))
 			advanced_surgeries |= D.surgeries
 		return TRUE
 	if(istype(O, /obj/machinery/computer/operating))
 		to_chat(user, span_notice("You copy surgery protocols from [O] into [src]."))
 		var/obj/machinery/computer/operating/OC = O
-		if(do_after(user, 1 SECONDS, target = O))
+		if(do_after(user, 1 SECONDS, O))
 			advanced_surgeries |= OC.advanced_surgeries
 		return TRUE
 	return

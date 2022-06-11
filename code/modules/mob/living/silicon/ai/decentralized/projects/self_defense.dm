@@ -1,7 +1,7 @@
 /datum/ai_project/shock_defense
 	name = "Shock Defense"
 	description = "This research enables the option to shock people within 2 tiles of all of your data cores."
-	research_cost = 5000
+	research_cost = 3000
 	ram_required = 0
 	research_requirements_text = "Bluespace Induction Basics"
 	research_requirements = list(/datum/ai_project/induction_basic)
@@ -10,7 +10,7 @@
 	category = AI_PROJECT_INDUCTION
 
 	ability_path = /datum/action/innate/ai/shock_defense
-	ability_recharge_cost = 3000
+	ability_recharge_cost = 2000
 
 /datum/ai_project/shock_defense/finish()
 	add_ability(/datum/action/innate/ai/shock_defense)

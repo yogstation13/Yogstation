@@ -116,7 +116,7 @@
 
 	to_chat(user, span_notice("You start planting [src]. The timer is set to [det_time]..."))
 
-	if(do_after(user, 3 SECONDS, target = AM))
+	if(do_after(user, 3 SECONDS, AM))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		target = AM
@@ -203,7 +203,7 @@
 	target = user
 	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [name] at [ADMIN_VERBOSEJMP(src)]")
 	log_game("[key_name(user)] suicided with [name] at [AREACOORD(user)]")
-	sleep(10)
+	sleep(1 SECONDS)
 	prime()
 	user.gib(1, 1)
 

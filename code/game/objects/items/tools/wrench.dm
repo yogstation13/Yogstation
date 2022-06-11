@@ -60,11 +60,11 @@
 	// during their ascension
 
 	// Stun stops them from wandering off
-	user.Stun(100, ignore_canstun = TRUE)
+	user.Stun(10 SECONDS, ignore_canstun = TRUE)
 	playsound(loc, 'sound/effects/pray.ogg', 50, 1, -1)
 
 	// Let the sound effect finish playing
-	sleep(20)
+	sleep(2 SECONDS)
 
 	if(!user)
 		return

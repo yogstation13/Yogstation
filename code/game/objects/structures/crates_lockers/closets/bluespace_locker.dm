@@ -75,7 +75,7 @@
 		user.last_special = world.time + CLICK_CD_BREAKOUT
 		other.visible_message(span_warning("[other] begins to shake violently!"))
 		to_chat(user, span_notice("You start pushing the door open... (this will take about [DisplayTimeText(other.breakout_time)].)"))
-		if(do_after(user,(other.breakout_time), target = src))
+		if(do_after(user, (other.breakout_time), src))
 			if(!user || user.stat != CONSCIOUS || other.opened || (!other.locked && !other.welded))
 				return
 			//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting

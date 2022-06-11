@@ -138,7 +138,7 @@
 			var/obj/item/bodypart/BP = i
 			BP.generic_bleedstacks += 5
 		H.gib_animation()
-		sleep(3)
+		sleep(0.3 SECONDS)
 		H.adjustBruteLoss(1000) //to make the body super-bloody
 		H.spawn_gibs()
 		H.spill_organs()

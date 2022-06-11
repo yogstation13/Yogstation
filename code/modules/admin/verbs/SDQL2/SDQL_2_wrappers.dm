@@ -3,7 +3,7 @@
 /proc/_abs(A)
 	return abs(A)
 
-/proc/_animate(atom/A, set_vars, time = 10, loop = 1, easing = LINEAR_EASING, flags = null)
+/proc/_animate(atom/A, set_vars, time = 1 SECONDS, loop = 1, easing = LINEAR_EASING, flags = null)
 	var/mutable_appearance/MA = new()
 	for(var/v in set_vars)
 		MA.vars[v] = set_vars[v]

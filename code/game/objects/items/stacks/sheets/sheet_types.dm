@@ -262,7 +262,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 			span_hear("You hear wood carving."),
 		)
 		// 5 Second Timer
-		if(!do_after(user, 5 SECONDS, src, NONE, TRUE))
+		if(!do_after(user, 5 SECONDS, src))
 			return
 		// Make Stake
 		var/obj/item/stake/new_item = new(user.loc)
@@ -300,6 +300,15 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	new/datum/stack_recipe("blow gun", /obj/item/gun/syringe/blowgun, 10, time = 70), \
 	new/datum/stack_recipe("crude syringe", /obj/item/reagent_containers/syringe/crude, 5, time = 10), \
 	new/datum/stack_recipe("punji sticks trap", /obj/structure/punji_sticks, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \
+	null, \
+	new/datum/stack_recipe("bamboo stool", /obj/structure/chair/stool/bamboo, 2, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("bamboo mat piece", /obj/item/stack/tile/bamboo, 1, 4, 20), \
+	null, \
+	new/datum/stack_recipe_list("bamboo benches", list(
+		new /datum/stack_recipe("bamboo bench (middle)", /obj/structure/chair/sofa/bamboo, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE),
+		new /datum/stack_recipe("bamboo bench (left)", /obj/structure/chair/sofa/bamboo/left, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE),
+		new /datum/stack_recipe("bamboo bench (right)", /obj/structure/chair/sofa/bamboo/right, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE)
+		)),	\
 	))
 
 /obj/item/stack/sheet/mineral/bamboo
@@ -350,6 +359,13 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("white softcap", /obj/item/clothing/head/soft/mime, 2), \
 	null, \
 	new/datum/stack_recipe("blindfold", /obj/item/clothing/glasses/blindfold, 2), \
+	null, \
+	new/datum/stack_recipe("grey beanbag", /obj/structure/chair/stool/beanbag, 5), \
+	new/datum/stack_recipe("black beanbag", /obj/structure/chair/stool/beanbag/black, 5), \
+	new/datum/stack_recipe("blue beanbag", /obj/structure/chair/stool/beanbag/blue, 5), \
+	new/datum/stack_recipe("red beanbag", /obj/structure/chair/stool/beanbag/red, 5), \
+	new/datum/stack_recipe("green beanbag", /obj/structure/chair/stool/beanbag/green, 5), \
+	new/datum/stack_recipe("yellow beanbag", /obj/structure/chair/stool/beanbag/yellow, 5), \
 	))
 
 /obj/item/stack/sheet/cloth
@@ -362,8 +378,35 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
+	is_fabric = TRUE
+	pull_effort = 2 SECONDS
+	loom_result = /obj/item/stack/sheet/silk
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
+
+/*
+ * Silk
+ */
+
+GLOBAL_LIST_INIT(silk_recipes, list ( \
+	new/datum/stack_recipe("silk string", /obj/item/weaponcrafting/silkstring, 2, time = 40)
+	))
+
+/obj/item/stack/sheet/silk
+	name = "silk"
+	desc = "A long soft material. This one is made from cotton rather than spidersilk."
+	singular_name = "Silk Sheet"
+	icon_state = "sheet-silk"
+	item_state = "sheet-silk"
+	icon = 'icons/obj/stack_objects.dmi'
+	novariants = TRUE
+	merge_type = /obj/item/stack/sheet/silk
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
+
+/obj/item/stack/sheet/silk/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.silk_recipes
+	return ..()
 
 /obj/item/stack/sheet/cloth/durathread
 	name = "durathread"

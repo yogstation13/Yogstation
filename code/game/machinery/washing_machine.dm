@@ -37,20 +37,20 @@
 
 /obj/machinery/washing_machine/process()
 	if(!busy)
-		animate(src, transform=matrix(), time=2)
+		animate(src, transform=matrix(), time=0.2 SECONDS)
 		return PROCESS_KILL
 	if(anchored)
 		if(prob(5))
 			var/matrix/M = new
 			M.Translate(rand(-1, 1), rand(0, 1))
-			animate(src, transform=M, time=1)
-			animate(transform=matrix(), time=1)
+			animate(src, transform=M, time=0.1 SECONDS)
+			animate(transform=matrix(), time=0.1 SECONDS)
 	else
 		if(prob(1))
 			step(src, pick(GLOB.cardinals))
 		var/matrix/M = new
 		M.Translate(rand(-3, 3), rand(-1, 3))
-		animate(src, transform=M, time=2)
+		animate(src, transform=M, time=0.2 SECONDS)
 
 /obj/machinery/washing_machine/wash(clean_types)
 	. = ..()

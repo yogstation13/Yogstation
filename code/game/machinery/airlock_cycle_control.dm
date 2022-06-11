@@ -475,7 +475,7 @@
 					return
 				user.visible_message("[user.name] wires the airlock controller.", \
 									span_notice("You start wiring the airlock controller..."))
-				if (do_after(user, 2 SECONDS, target = src))
+				if (do_after(user, 2 SECONDS, src))
 					if (cable.get_amount() >= 5 && buildstage == 1)
 						cable.use(5)
 						to_chat(user, span_notice("You wire the airlock controller."))
@@ -729,7 +729,7 @@
 			if(depressurization_target > depressurization_margin - 0.15)
 				depressurization_target = depressurization_margin - 0.15
 		if("depressurization_target")
-			depressurization_target = clamp(text2num(params["pressure"]), 0, depressurization_target - 0.15)
+			depressurization_target = clamp(text2num(params["pressure"]), 0, depressurization_margin - 0.15)
 		if("skip_delay")
 			skip_delay = clamp(text2num(params["skip_delay"]), 0, 1200)
 	update_icon(TRUE)

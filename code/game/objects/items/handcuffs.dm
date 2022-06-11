@@ -195,7 +195,7 @@
 			to_chat(user, span_warning("You need at least six metal sheets to make good enough weights!"))
 			return
 		to_chat(user, span_notice("You begin to apply [I] to [src]..."))
-		if(do_after(user, 3.5 SECONDS, target = src))
+		if(do_after(user, 3.5 SECONDS, src))
 			if(M.get_amount() < 6 || !M)
 				return
 			var/obj/item/restraints/legcuffs/bola/S = new /obj/item/restraints/legcuffs/bola
@@ -342,6 +342,9 @@
 	name = "bola"
 	desc = "A restraining device designed to be thrown at the target. Upon connecting with said target, it will wrap around their legs, making it difficult for them to move quickly."
 	icon_state = "bola"
+	item_state = "bola"
+	lefthand_file = 'icons/mob/inhands/weapons/thrown_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/thrown_righthand.dmi'
 	breakouttime = 35//easy to apply, easy to break out of
 	gender = NEUTER
 	break_strength = 3
@@ -353,34 +356,52 @@
 	playsound(src.loc,'sound/weapons/bolathrow.ogg', 75, 1)
 
 /obj/item/restraints/legcuffs/bola/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(..() || !iscarbon(hit_atom))//if it gets caught or the target can't be cuffed,
+	if(..())//if it gets caught or the target can't be cuffed,
 		return//abort
-	var/mob/living/carbon/C = hit_atom
-	if(!C.legcuffed && C.get_num_legs(FALSE) >= 2)
-		visible_message(span_danger("\The [src] ensnares [C]!"))
-		C.legcuffed = src
-		forceMove(C)
-		C.update_inv_legcuffed()
-		SSblackbox.record_feedback("tally", "handcuffs", 1, type)
-		to_chat(C, span_userdanger("\The [src] ensnares you!"))
-		C.Immobilize(immobilize)
-		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
+	if(iscarbon(hit_atom))
+		return impactCarbon(hit_atom, throwingdatum)
+	if(isanimal(hit_atom))
+		return impactAnimal(hit_atom, throwingdatum)
+
+/obj/item/restraints/legcuffs/bola/proc/impactCarbon(mob/living/carbon/hit_carbon, datum/thrownthing/throwingdatum)
+	if(hit_carbon.legcuffed || !hit_carbon.get_num_legs(FALSE) >= 2)
+		return
+	visible_message(span_danger("\The [src] ensnares [hit_carbon]!"))
+	hit_carbon.legcuffed = src
+	forceMove(hit_carbon)
+	hit_carbon.update_inv_legcuffed()
+	SSblackbox.record_feedback("tally", "handcuffs", 1, type)
+	to_chat(hit_carbon, span_userdanger("\The [src] ensnares you!"))
+	hit_carbon.Immobilize(immobilize)
+	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
+
+/obj/item/restraints/legcuffs/bola/proc/impactAnimal(mob/living/simple_animal/hit_animal, datum/thrownthing/throwingdatum)
+	return // Does nothing by default
 
 /obj/item/restraints/legcuffs/bola/tactical//traitor variant
 	name = "reinforced bola"
 	desc = "A strong bola, made with a long steel chain. It looks heavy, enough so that it could trip somebody."
 	icon_state = "bola_r"
+	item_state = "bola_r"
 	breakouttime = 70
 	immobilize = 20
 	break_strength = 4
+
+/obj/item/restraints/legcuffs/bola/watcher //tribal bola for tribal lizards
+	name = "watcher Bola"
+	desc = "A Bola made from the stretchy sinew of fallen watchers."
+	icon_state = "bola_watcher"
+	item_state = "bola_watcher"
+	breakouttime = 45
 
 /obj/item/restraints/legcuffs/bola/energy //For Security
 	name = "energy bola"
 	desc = "A specialized hard-light bola designed to ensnare fleeing criminals and aid in arrests."
 	icon_state = "ebola"
+	item_state = "ebola"
 	hitsound = 'sound/weapons/taserhit.ogg'
 	w_class = WEIGHT_CLASS_SMALL
-	breakouttime = 60
+	breakouttime = 6 SECONDS
 	break_strength = 2
 
 /obj/item/restraints/legcuffs/bola/energy/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -394,15 +415,14 @@
 	name = "gonbola"
 	desc = "Hey, if you have to be hugged in the legs by anything, it might as well be this little guy."
 	icon_state = "gonbola"
+	item_state = "ebola"
 	breakouttime = 300
 	slowdown = 0
 	var/datum/status_effect/gonbolaPacify/effectReference
 
-/obj/item/restraints/legcuffs/bola/gonbola/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/restraints/legcuffs/bola/gonbola/impactCarbon(mob/living/carbon/hit_carbon, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(iscarbon(hit_atom))
-		var/mob/living/carbon/C = hit_atom
-		effectReference = C.apply_status_effect(STATUS_EFFECT_GONBOLAPACIFY)
+	effectReference = hit_carbon.apply_status_effect(STATUS_EFFECT_GONBOLAPACIFY)
 
 /obj/item/restraints/legcuffs/bola/gonbola/dropped(mob/user)
 	. = ..()

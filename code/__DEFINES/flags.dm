@@ -63,6 +63,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //area flags, yep we only have 1
 #define CAVES_ALLOWED (1<<0)
 
+/// If blobs can spawn there and if it counts towards their score.
+#define BLOBS_ALLOWED (1<<1)
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
 	the atom/checkpass() proc uses them (tables will call movable atom checkpass(PASSTABLE) for example)
