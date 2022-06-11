@@ -751,6 +751,13 @@
 	var/apply_damage = TRUE
 
 /obj/effect/proc_holder/spell/targeted/void_jaunt/cast(list/targets,mob/living/user = usr)
+	if(iscarbon(usr))	//If we're not an ascendant sling
+		var/mob/living/carbon/C = usr
+		if(C.on_fire)
+			user.visible_message(span_boldwarning("[user]'s body shudders and flickers into darkness for a moment!"),
+													span_shadowling("The void rejects the flames engulfing your body, throwing you back into the burning light!"))
+			revert_cast()										
+			return
 	if(!shadowling_check(user) && !istype(user, /mob/living/simple_animal/ascendant_shadowling))
 		revert_cast()
 		return
