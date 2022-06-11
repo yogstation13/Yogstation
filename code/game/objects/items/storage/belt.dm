@@ -332,7 +332,9 @@
 		/obj/item/storage/bag/plants,
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
-		/obj/item/jawsoflife
+		/obj/item/jawsoflife,
+		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/claymore/bone
 		))
 
 
@@ -619,7 +621,44 @@
 	var/static/items_inside = list(
 		/obj/item/gun/ballistic/revolver/detective = 1,
 		/obj/item/ammo_box/c38 = 2)
-	generate_items_inside(items_inside,src)
+	generate_items_inside(items_inside, src)
+
+/obj/item/storage/belt/quiver
+	name = "leather quiver"
+	desc = "A quiver made from the hide of some animal. Used to hold arrows."
+	icon_state = "quiver"
+	item_state = "quiver"
+
+/obj/item/storage/belt/quiver/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 15
+	STR.display_numerical_stacking = TRUE
+	STR.set_holdable(list(
+		/obj/item/ammo_casing/caseless/arrow,
+		/obj/item/stand_arrow,
+		/obj/item/throwing_star/magspear
+		))
+
+/obj/item/storage/belt/quiver/ashwalker/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/caseless/arrow/bone(src)
+
+/obj/item/storage/belt/quiver/admin
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/storage/belt/quiver/admin/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 100
+	STR.max_items = 100
+
+/obj/item/storage/belt/quiver/admin/full/PopulateContents()
+	for(var/arrow in typesof(/obj/item/ammo_casing/caseless/arrow))
+		if(istype(arrow, /obj/item/ammo_casing/caseless/arrow/energy))
+			continue
+		for(var/i in 1 to 10)
+			new arrow(src)
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"

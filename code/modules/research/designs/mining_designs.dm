@@ -62,6 +62,26 @@
 	category = list("Mining Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
+/datum/design/miningcharge
+	name = "Mining Charge"
+	desc = "A regular sized, green mining charge!"
+	id = "miningcharge"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 3000, /datum/material/plasma = 1000)
+	build_path = /obj/item/grenade/plastic/miningcharge
+	category = list("Mining Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
+/datum/design/miningcharge_mega
+	name = "Mega Mining Charge"
+	desc = "A MAGNUM sized, RED mining charge!"
+	id = "miningcharge_mega"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/plasma = 2000, /datum/material/uranium = 1500, /datum/material/diamond = 500)
+	build_path = /obj/item/grenade/plastic/miningcharge/mega
+	category = list("Mining Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
 /datum/design/jackhammer
 	name = "Sonic Jackhammer"
 	desc = "Essentially a handheld planet-cracker. Can drill through walls with ease as well."
