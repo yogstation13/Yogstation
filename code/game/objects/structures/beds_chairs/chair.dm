@@ -381,6 +381,7 @@
 /obj/item/chair/stool/beanbag
 	name = "beanbag"
 	icon_state = "beanbag_toppled"
+	item_state = "beanbag"
 	desc = "Pillow fight!"
 	damtype = STAMINA
 	hitsound = 'sound/weapons/slash.ogg'
