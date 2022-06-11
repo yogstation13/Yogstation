@@ -1,5 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - tweak: "Syringes can now embed, causing them to slowly transfer reagents."
-  - tweak: "Syringe guns now embed syringes, and drop the syringe when missed."
