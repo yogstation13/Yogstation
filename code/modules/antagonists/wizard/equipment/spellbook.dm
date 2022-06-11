@@ -123,6 +123,10 @@
 	name = "Disintegrate"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
 
+/datum/spellbook_entry/pacify
+	name = "Pacify"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/pacify
+
 /datum/spellbook_entry/disabletech
 	name = "Disable Tech"
 	spell_type = /obj/effect/proc_holder/spell/targeted/emplosion/disable_tech
