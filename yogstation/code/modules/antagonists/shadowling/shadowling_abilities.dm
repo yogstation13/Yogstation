@@ -209,6 +209,7 @@
 		revert_cast()
 		return
 	to_chat(user, span_shadowling("You freeze the nearby air."))
+	user.ExtinguishMob()
 	for(var/turf/T in targets)
 		for(var/mob/living/carbon/M in T.contents)
 			if(is_shadow_or_thrall(M))
