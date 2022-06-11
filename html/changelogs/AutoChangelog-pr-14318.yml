@@ -1,0 +1,5 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Ethereal *scream has sound"
+  - soundadd: "Ethereal screams"
