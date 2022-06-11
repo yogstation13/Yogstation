@@ -18,13 +18,12 @@
 
 /obj/structure/hog_structure/lance/nexus/Initialize()
 	. = ..()
-	START_PROCESSING(SSprocessing, src)
 
 /obj/structure/hog_structure/lance/nexus/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(.)
 		if(last_scream < world.time)
-			cult.message_all_dudes("Your nexus is under attack! Defend it, or your cult will perish!")
+			cult.message_all_dudes("Your nexus is under attack! Defend it, or your cult will perish!", FALSE)
 			last_scream = world.time + ARK_SCREAM_COOLDOWN
 
 /obj/structure/hog_structure/lance/nexus/proc/Activate()
@@ -35,6 +34,7 @@
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg') ///I don't have any my own sounds, so... you know.
 	set_security_level(SEC_LEVEL_GAMMA)
 	addtimer(CALLBACK(src, .proc/Sex), 1 MINUTES)	
+	cult.message_all_dudes("Servants of [god.name]! Our time has come! Defend the nexus at all costs!", TRUE)
 
 /obj/structure/hog_structure/lance/nexus/proc/Sex()
 	if(progress == BREAK_FREE_TIME)	
