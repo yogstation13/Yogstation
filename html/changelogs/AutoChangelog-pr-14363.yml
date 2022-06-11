@@ -1,4 +1,0 @@
-author: "JamieD1"
-delete-after: true 
-changes: 
-  - rscadd: "When chaplain cryos, if there are no other chaplains the religion set is nulled, new chaplain can then set a new religion"

@@ -1,7 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - rscadd: "Added Head of security belt and admin belt"
-  - tweak: "abductor belt and sec webbing now use belt overlays"
-  - tweak: "medical stacks, some analyzers, telescopic batons, abductor batons, and surgical drapes now show up in belts"
-  - imageadd: "resprited security belt and medical belts"
