@@ -16,8 +16,6 @@
 	if(hacked)
 		. += "Its wiring is haphazardly changed."
 
-	
-
 /obj/item/grenade/plastic/miningcharge/attack_self(mob/user)
 	if(nadeassembly)
 		nadeassembly.attack_self(user)
@@ -64,7 +62,6 @@
 	boom_sizes[3] = max(boom_sizes[3]/3, 1)
 	alert_admins = TRUE //i'm telling teacher you're gibbing clown!
 
-
 //MINING CHARGE HACKER
 /obj/item/t_scanner/adv_mining_scanner/syndicate
 	var/charges = 6
@@ -92,6 +89,4 @@
 		charges--
 		if(charges <= 0)
 			to_chat(span_warning("[src]'s internal battery for overriding mining charges has run dry!"))
-	
-
 	
