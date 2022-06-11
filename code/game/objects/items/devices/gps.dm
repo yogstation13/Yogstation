@@ -18,18 +18,12 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	. += span_notice("Alt-click to switch it [tracking ? "off":"on"].")
 
 /obj/item/gps/Initialize()
-    . = ..()
-    GLOB.GPS_list += src
-    name = "global positioning system ([gpstag])"
-    if(tracking) //Some roundstart GPS are off.
-        add_overlay("working")
-    addtimer(CALLBACK(src, .proc/InitMob), 2 SECONDS)
-
-/obj/item/gps/proc/InitMob()
-    var/mob/living/carbon/human/potential = src.loc.loc
-    if(istype(potential, /mob/living/carbon/human))
-        gpstag = potential.name
-
+	. = ..()
+	GLOB.GPS_list += src
+	name = "global positioning system ([gpstag])"
+	if(tracking) //Some roundstart GPS are off.
+		add_overlay("working")
+		
 /obj/item/gps/Destroy()
 	GLOB.GPS_list -= src
 	return ..()
