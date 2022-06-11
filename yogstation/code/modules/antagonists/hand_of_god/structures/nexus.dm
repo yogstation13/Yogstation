@@ -35,6 +35,7 @@
 	set_security_level(SEC_LEVEL_GAMMA)
 	addtimer(CALLBACK(src, .proc/Sex), 1 MINUTES)	
 	cult.message_all_dudes("Servants of [god.name]! Our time has come! Defend the nexus at all costs!", TRUE)
+	cult.state = HOG_TEAM_SUMMONING
 
 /obj/structure/hog_structure/lance/nexus/proc/Sex()
 	if(progress == BREAK_FREE_TIME)	
