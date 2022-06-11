@@ -7,6 +7,8 @@
 	var/list/god_actions = list() 
 	var/farewell = "You are no longer a cultist!"
 	var/greet = "You are now a HoG cultist!"
+	var/energy = 0
+	var/max_energy = 100
 
 /datum/antagonist/hog/can_be_owned(datum/mind/new_owner)
 	. = ..()
