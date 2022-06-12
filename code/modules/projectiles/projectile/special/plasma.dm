@@ -46,6 +46,11 @@
 // Same as the scatter but with automatic defusing
 /obj/item/projectile/plasma/scatter/adv
 
+//mega plasma shotgun auto defuses
+/obj/item/projectile/plasma/scatter/adv/mega
+	range = 7
+	mine_range = 3
+
 /obj/item/projectile/plasma/adv/mech
 	damage = 10
 	range = 9

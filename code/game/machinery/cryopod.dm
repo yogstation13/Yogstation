@@ -325,6 +325,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		if(LAZYLEN(mob_occupant.mind.objectives))
 			mob_occupant.mind.objectives.Cut()
 			mob_occupant.mind.special_role = null
+		/// Chaplain Stuff
+		var/datum/job/role = GetJob(job)
+		if(mob_occupant.mind.assigned_role == "Chaplain" && role?.current_positions < 1)
+			GLOB.religion = null	/// Clears the religion for the next chaplain
 
 	// Delete them from datacore.
 
