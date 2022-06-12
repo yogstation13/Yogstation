@@ -66,6 +66,21 @@
 			qdel(src)
 	..()
 
+/obj/item/clothing/gloves/color/black/goliath
+	name = "goliath gloves"
+	desc = "Rudimentary gloves that aid in carrying."
+	icon_state = "goligloves"
+	item_state = "goligloves"
+
+/obj/item/clothing/gloves/color/black/goliath/equipped(mob/user, slot)
+	..()
+	if(slot == SLOT_GLOVES)
+		ADD_TRAIT(user, TRAIT_QUICK_CARRY, CLOTHING_TRAIT)
+
+/obj/item/clothing/gloves/color/black/goliath/dropped(mob/user)
+	..()
+	REMOVE_TRAIT(user, TRAIT_QUICK_CARRY, CLOTHING_TRAIT)
+
 /obj/item/clothing/gloves/color/orange
 	name = "orange gloves"
 	desc = "A pair of gloves, they don't look special in any way."

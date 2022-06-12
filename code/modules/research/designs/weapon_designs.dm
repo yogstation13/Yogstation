@@ -401,3 +401,13 @@
 	build_path = /obj/item/ammo_casing/shotgun/dart/noreact
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/hardlightbow
+	name = "Hardlight Bow"
+	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
+	id = "hardlightbow"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
+	build_path = /obj/item/gun/ballistic/bow/energy
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

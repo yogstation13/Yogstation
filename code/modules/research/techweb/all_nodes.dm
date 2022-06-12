@@ -425,7 +425,7 @@
 	description = "Honk?!"
 	prereq_ids = list("base")
 	design_ids = list("air_horn", "honker_main", "honker_peri", "honker_targ", "honk_chassis", "honk_head", "honk_torso", "honk_left_arm", "honk_right_arm",
-	"honk_left_leg", "honk_right_leg", "mech_banana_mortar", "mech_mousetrap_mortar", "mech_honker", "mech_punching_face", "implant_trombone", "borg_transform_clown", "clown_mine")
+	"honk_left_leg", "honk_right_leg", "mech_banana_mortar", "mech_mousetrap_mortar", "mech_honker", "mech_punching_face", "implant_trombone", "borg_transform_clown", "clown_mine", "clownshot")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -585,9 +585,20 @@
 	display_name = "Advanced Mining Technology"
 	description = "Efficiency Level 127"	//dumb mc references
 	prereq_ids = list("basic_mining", "adv_engi", "adv_power", "adv_plasma")
-	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "borg_upgrade_plasmacutter")
+	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "borg_upgrade_plasmacutter","miningcharge")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+
+/datum/techweb_node/magmite_mining
+	id = "magmite_mining"
+	display_name = "Magmite Technology"
+	description = "Who needs a pickaxe when you have a nuke?"
+	prereq_ids = list("adv_mining")
+	design_ids = list("miningcharge_mega")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
+	export_price = 5000
+	hidden = TRUE
+	boost_item_paths = list(/obj/item/magmite)
 
 /datum/techweb_node/camera_theory
 	id = "cam_theory"
@@ -722,7 +733,7 @@
 	display_name = "Medical Weaponry"
 	description = "Weapons using medical technology."
 	prereq_ids = list("adv_biotech", "adv_weaponry")
-	design_ids = list("rapidsyringe", "shotgundartcryostatis")
+	design_ids = list("rapidsyringe", "shotgundartcryostatis", "dartsyringe")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -1121,7 +1132,7 @@
 	display_name = "Illegal Technology"
 	description = "Dangerous research used to create dangerous objects."
 	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
-	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "largecrossbow", "donksofttoyvendor", "donksoft_refill")
+	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "largecrossbow", "hardlightbow", "donksofttoyvendor", "donksoft_refill")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
 	hidden = TRUE
