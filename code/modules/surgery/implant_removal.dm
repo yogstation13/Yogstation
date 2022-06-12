@@ -16,7 +16,8 @@
 /datum/surgery_step/extract_implant
 	name = "extract implant"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 65)
-	time = 64
+	time = 6.4 SECONDS
+	success_sound = 'sound/surgery/hemostat1.ogg'
 	var/obj/item/implant/I = null
 
 /datum/surgery_step/extract_implant/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
