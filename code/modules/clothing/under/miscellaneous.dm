@@ -852,7 +852,6 @@
 	desc = "A porly made outfit made of scrapped materials."
 	icon_state = "raider_leather"
 	item_state = "raider_leather"
-	item_color = "raider_leather"
 	armor = list(MELEE = 5, FIRE = 5)
 	has_sensor = NO_SENSORS
 	can_adjust = FALSE
@@ -863,7 +862,6 @@
 	desc = "Thin metal bolted over poorly tanned leather."
 	icon_state = "tribal"
 	item_state = "tribal"
-	item_color = "tribal"
 	body_parts_covered = CHEST|GROIN|ARMS
 	armor = list(MELEE = 5)
 	has_sensor = NO_SENSORS
@@ -874,7 +872,7 @@
 	desc = "A robe from the ashlands. This one seems to be for common tribespeople."
 	icon_state = "robe_liz"
 	item_state = "robe_liz"
-	item_color = "robe_liz"
+	fitted = NO_FEMALE_UNIFORM
 	body_parts_covered = CHEST|GROIN
 	has_sensor = NO_SENSORS
 	can_adjust = FALSE
@@ -883,40 +881,33 @@
 	name = "tribal rags"
 	desc = "Rags from Lavaland, coated with light ash. This one seems to be for the juniors of a tribe."
 	icon_state = "tribalrags"
-	item_state = "tribalrags"
-	item_color = "tribalrags"
 
 /obj/item/clothing/under/ash_robe/hunter
 	name = "hunter tribal rags"
 	desc = "A robe from the ashlands. This one seems to be for hunters."
 	icon_state = "hhunterrags"
 	item_state = "hhunterrags"
-	item_color = "hhunterrags"
 
 /obj/item/clothing/under/ash_robe/chief
 	name = "chief tribal rags"
 	desc = "Rags from Lavaland, coated with heavy ash. This one seems to be for the elders of a tribe."
 	icon_state = "chiefrags"
 	item_state = "chiefrags"
-	item_color = "chiefrags"
 
 /obj/item/clothing/under/ash_robe/shaman
 	name = "shaman tribal rags"
 	desc = "Rags from Lavaland, drenched with ash, it has fine jewel coated bones sewn around the neck. This one seems to be for the shaman of a tribe."
 	icon_state = "shamanrags"
 	item_state = "shamanrags"
-	item_color = "shamanrags"
 
 /obj/item/clothing/under/ash_robe/tunic
 	name = "tribal tunic"
 	desc = "A tattered red tunic of reddened fabric."
 	icon_state = "caesar_clothes"
 	item_state = "caesar_clothes"
-	item_color = "caesar_clothes"
 
 /obj/item/clothing/under/ash_robe/dress
 	name = "tribal dress"
 	desc = "A tattered dress of white fabric."
 	icon_state = "cheongsam_s"
 	item_state = "cheongsam_s"
-	item_color = "cheongsam_s"

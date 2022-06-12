@@ -1,7 +1,6 @@
 /obj/item/clothing/suit/toggle/labcoat
 	name = "labcoat"
 	desc = "A suit that protects against minor chemical spills."
-	mob_overlay_icon = 'icons/mob/clothing/suit/labcoat.dmi' //yogs - labcoat sprite tweaks
 	icon_state = "labcoat"
 	item_state = "labcoat"
 	blood_overlay_type = "coat"

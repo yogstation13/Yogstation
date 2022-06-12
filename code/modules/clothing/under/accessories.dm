@@ -363,7 +363,6 @@
 	name = "Sinew Skirt"
 	desc = "For the last time. IT'S A KILT not a skirt."
 	icon_state = "skilt"
-	item_color = "skilt"
 	above_suit_adjustable = TRUE
 	minimize_when_attached = FALSE
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
