@@ -264,7 +264,7 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/detective
+/datum/design/board/doorbot
 	name = "Core Module Design (Door Opener)"
 	desc = "Allows for the construction of a Door Opener AI Core Module."
 	id = "doorbot_module"
