@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(438 modules,
-    699/7212 macros, 9.7%)</aside></h3>
+<aside>(439 modules,
+    699/7217 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -127,6 +127,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/datums/chatmessage.html" title="code&#x2F;datums&#x2F;chatmessage">chatmessage</a></li>
     <li class="has-children"><a href="code/datums/components.html" title="code&#x2F;datums&#x2F;components">Datum Component System (DCS)</a><ul class="index-tree">
     <li><a href="code/datums/components/bakeable.html" title="code&#x2F;datums&#x2F;components&#x2F;bakeable">bakeable</a></li>
+    <li><span class="no-substance">crafting&#x2F;</span><a href="code/datums/components/crafting/antag.html" title="code&#x2F;datums&#x2F;components&#x2F;crafting&#x2F;antag">antag</a></li>
     <li><a href="code/datums/components/explodable.html" title="code&#x2F;datums&#x2F;components&#x2F;explodable">explodable</a></li>
     <li><span class="no-substance">fantasy&#x2F;</span><a href="code/datums/components/fantasy/suffixes.html" title="code&#x2F;datums&#x2F;components&#x2F;fantasy&#x2F;suffixes">suffixes</a></li>
     <li><a href="code/datums/components/gunpoint.html" title="code&#x2F;datums&#x2F;components&#x2F;gunpoint">gunpoint</a></li>
@@ -679,7 +680,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(461 detailed/1064 documented/24669 total, 4.3%)</aside></h3>
+<aside>(464 detailed/1069 documented/24859 total, 4.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -924,7 +925,8 @@ The total amount of loading points among all subsystems. Should be defined by MC
     <li class="has-children"><a href="datum/corporation.html" title="&#x2F;datum&#x2F;corporation">Corporations</a> - Companies with employees<ul class="index-tree">
     <li><a href="datum/corporation/nanotrasen.html" title="&#x2F;datum&#x2F;corporation&#x2F;nanotrasen">Nanotrasen</a></li>
     </ul></li>
-    <li class="has-children"><span title="&#x2F;datum&#x2F;crafting_recipe">crafting_recipe</span><ul class="index-tree">
+    <li class="has-children"><a href="datum/crafting_recipe.html" title="&#x2F;datum&#x2F;crafting_recipe">crafting_recipe</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;baseball_bat">Baseball Bat</span> - Antag recipes</li>
     <li><a href="datum/crafting_recipe/blackcoffin.html" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;blackcoffin">Black Coffin</a> - From recipes.dm</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;bloodaltar">Blood Altar</span> - Structures</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food">food</span><ul class="index-tree">
@@ -1193,7 +1195,9 @@ this is the way to do it cleanly and properly.</li>
     <li><span class="no-substance">colorful_reagent&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;colorful_reagent&#x2F;crayonpowder">Crayon Powder</span> - Coloured Crayon Powder</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;consumable">consumable</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;consumable&#x2F;entpoly">Entropic Polypnium</span> - Lavaland Flora Reagents</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;consumable&#x2F;ethanol">Ethanol</span> - I don't know who made this header before I refactored alcohols but I'm going to fucking strangle them because it was so ugly, holy Christ</li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;consumable&#x2F;ethanol">Ethanol</span> - I don't know who made this header before I refactored alcohols but I'm going to fucking strangle them because it was so ugly, holy Christ<ul class="index-tree">
+    <li><span class="no-substance">beer&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;consumable&#x2F;ethanol&#x2F;beer&#x2F;stout">Stout Beer</span> - STOUT AND ITS COCKTAILS</li>
+    </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;reagent&#x2F;consumable&#x2F;orangejuice">Orange Juice</span> - NICHE
 DRINKS BELOW, Beer is up there though, along with cola. Cap'n Pete's Cuban Spiced Rum</li>
     </ul></li>
@@ -1672,7 +1676,9 @@ the program that displays laws should always be usable, and the exceptions were 
     <li><a href="obj/item/dyespray.html" title="&#x2F;obj&#x2F;item&#x2F;dyespray">hair dye spray</a></li>
     <li><a href="obj/item/energy_harvester.html" title="&#x2F;obj&#x2F;item&#x2F;energy_harvester">Energy Harvesting Module</a></li>
     <li><a href="obj/item/energy_katana.html" title="&#x2F;obj&#x2F;item&#x2F;energy_katana">Energy Katana</a> - The space ninja's katana.</li>
-    <li><a href="obj/item/firing_pin.html" title="&#x2F;obj&#x2F;item&#x2F;firing_pin">electronic firing pin</a></li>
+    <li class="has-children"><a href="obj/item/firing_pin.html" title="&#x2F;obj&#x2F;item&#x2F;firing_pin">electronic firing pin</a><ul class="index-tree">
+    <li><a href="obj/item/firing_pin/clockie.html" title="&#x2F;obj&#x2F;item&#x2F;firing_pin&#x2F;clockie">clockwork crystal shard</a></li>
+    </ul></li>
     <li><span class="no-substance">flashlight&#x2F;pen&#x2F;</span><a href="obj/item/flashlight/pen/paramedic.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;pen&#x2F;paramedic">paramedic penlight</a></li>
     <li><a href="obj/item/forbidden_book.html" title="&#x2F;obj&#x2F;item&#x2F;forbidden_book">Codex Cicatrix</a></li>
     <li><span class="no-substance">gps&#x2F;</span><a href="obj/item/gps/pirate.html" title="&#x2F;obj&#x2F;item&#x2F;gps&#x2F;pirate">Pirate GPS</a></li>
@@ -1702,6 +1708,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;medbeam&#x2F;uber&#x2F;precharged">fully-charged augmented medical beamgun</span> - Fully charged for debugging/bus purposes</li>
     </ul></li>
     </ul></li>
+    <li><a href="obj/item/gun/syringe.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;syringe">syringe gun</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;hivelordstabilizer">stabilizing serum</span> - Hivelord stabilizer</li>
     <li><span class="no-substance">implant&#x2F;</span><a href="obj/item/implant/uplink.html" title="&#x2F;obj&#x2F;item&#x2F;implant&#x2F;uplink">uplink implant</a></li>
@@ -2152,7 +2159,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/707c6a724d5e03ad7fd3d0b94506f1ded916b506">707c6a7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/14f6af7b229ee7e1d99e82b88321b759e764813c">14f6af7</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
