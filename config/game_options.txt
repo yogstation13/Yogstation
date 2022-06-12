@@ -425,6 +425,7 @@ RANDOM_LAWS reporter
 
 ## meme laws. Honk
 #RANDOM_LAWS buildawall
+#RANDOM_LAWS doorbot
 
 ## If weighted laws are selected (DEFAULT_LAWS = 3),
 ## then an AI's starting laws will be determined by the weights of these values

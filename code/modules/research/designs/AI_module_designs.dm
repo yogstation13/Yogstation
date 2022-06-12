@@ -264,3 +264,11 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/detective
+	name = "Core Module Design (Door Opener)"
+	desc = "Allows for the construction of a Door Opener AI Core Module."
+	id = "doorbot_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/doorbot
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

@@ -664,3 +664,9 @@ AI MODULES
 /obj/item/aiModule/core/full/overlord
 	name = "'Overlord' Core AI Module"
 	law_id = "overlord"
+
+/******************Door Opener***************/
+
+/obj/item/aiModule/core/full/doorbot
+	name = "'Door Opener' Core AI Module"
+	law_id = "doorbot"
