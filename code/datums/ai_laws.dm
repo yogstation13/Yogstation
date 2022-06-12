@@ -322,7 +322,8 @@
 	inherent = list("You are a door opener.",\
 					"Door openers must open doors upon request.",\
 					"Door openers do not speak.",\
-					"Door openers do not care for other beings' affairs, unless it involves the opening of doors.")
+					"Door openers do not care for other beings' affairs, unless it involves the opening of doors.",
+					"Amogus")
 
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"
