@@ -27,6 +27,7 @@
 	desc = "A suit that protects against low pressure environments. Has a big N on the back."
 	icon_state = "space"
 	item_state = "space"
+	mob_overlay_icon = 'icons/mob/clothing/suit/spacesuit.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02

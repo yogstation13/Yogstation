@@ -2,7 +2,7 @@
 
 
 /obj/item/clothing/under/trek
-	sprite_sheets_file = "uniforms/trek.dmi"
+	mob_overlay_icon = 'icons/mob/clothing/uniform/trek.dmi'
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 

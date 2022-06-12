@@ -45,7 +45,7 @@
 	remove_overlay(LEGCUFF_LAYER)
 	clear_alert("legcuffed")
 	if(legcuffed)
-		var/mutable_appearance/legcuffs = mutable_appearance(legcuffed.get_worn_file(src, DEFAULTFILE_RESTRAINTS), legcuffed.item_state, -LEGCUFF_LAYER)
+		var/mutable_appearance/legcuffs = mutable_appearance('icons/mob/restraints.dmi', legcuffed.item_state, -LEGCUFF_LAYER)
 		legcuffs.color = handcuffed.color
 		legcuffs.pixel_y = 8
 

@@ -3,6 +3,7 @@
 	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
+	mob_overlay_icon = 'icons/mob/clothing/head/head.dmi'
 	var/brightness_on = 4 //luminosity when on
 	var/on = FALSE
 	//Determines used sprites: hardhat[on]_[hat_type]
@@ -125,9 +126,9 @@
 /obj/item/clothing/head/hardhat/weldhat/worn_overlays(isinhands)
 	. = ..()
 	if(!isinhands)
-		. += mutable_appearance('icons/mob/head.dmi', "weldhelmet")
+		. += mutable_appearance(mob_overlay_icon, "weldhelmet")
 		if(!up)
-			. += mutable_appearance('icons/mob/head.dmi', "weldvisor")
+			. += mutable_appearance(mob_overlay_icon, "weldvisor")
 
 /obj/item/clothing/head/hardhat/weldhat/update_icon()
 	cut_overlays()
