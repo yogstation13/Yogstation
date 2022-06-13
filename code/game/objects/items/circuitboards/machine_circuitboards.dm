@@ -1074,6 +1074,11 @@
 	icon_state = "service"
 	build_path = /obj/machinery/chem_dispenser/drinks/beer
 
+/obj/item/circuitboard/machine/chem_dispenser/drinks/coffee
+	name = "Coffee Machine (Machine Board)"
+	icon_state = "service"
+	build_path = /obj/machinery/chem_dispenser/drinks/coffee
+
 /obj/item/circuitboard/machine/chem_master/condi
 	name = "CondiMaster 3000 (Machine Board)"
 	icon_state = "service"

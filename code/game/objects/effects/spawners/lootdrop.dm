@@ -298,6 +298,7 @@
 				/obj/item/circuitboard/machine/microwave,
 				/obj/item/circuitboard/machine/chem_dispenser/drinks,
 				/obj/item/circuitboard/machine/chem_dispenser/drinks/beer,
+				/obj/item/circuitboard/machine/chem_dispenser/drinks/coffee,
 				/obj/item/circuitboard/computer/slot_machine
 				)
 

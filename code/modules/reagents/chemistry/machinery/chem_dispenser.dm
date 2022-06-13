@@ -568,6 +568,16 @@
 	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
 	RefreshParts()
 
+
+/obj/machinery/chem_dispenser/drinks/coffee
+	name = "Coffee Machine"
+	desc = "A 'Jitters United' Deluxe 200 Coffee Machine, comes with everything you need for a hot cuppa."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "coffee_machine"
+	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/coffee
+	dispensable_reagents = list(/datum/reagent/consumable/coffee)
+
+
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
 	desc = "Creates and dispenses mutagen."
