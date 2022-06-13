@@ -1,3 +1,9 @@
+/client/proc/generate_basalt()
+	set category = "Misc.Server Debug"
+	set name = "Generate Basalt Node"
+	generate_basalt_node(get_turf(mob))
+
+
 /datum/map_generator/cave_generator/lavaland
 	open_turf_types = list(/turf/open/floor/plating/asteroid/basalt/lava_land_surface = 1)
 	closed_turf_types = list(/turf/closed/mineral/random/volcanic = 1)
@@ -24,30 +30,62 @@
 	var/basalt_death_limit = 3
 	var/basalt_turf = /turf/closed/mineral/random/volcanic/hard
 
+	var/big_node_min = 25
+	var/big_node_max = 55
+
+	var/min_offset = 0
+	var/max_offset = 5
+
 /datum/map_generator/cave_generator/lavaland/generate_terrain(list/turfs)
 	. = ..()
-	var/basalt_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[world.maxx]", "[world.maxy]")
+	//var/basalt_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[world.maxx]", "[world.maxy]")
+	var/start_time = REALTIMEOFDAY
+	var/node_amount = rand(6,10)
 
-	for(var/i in turfs) //Go through all the turfs and generate them
-		var/turf/gen_turf = i
+	log_world("Node amount: [node_amount]")
 
-		var/area/A = gen_turf.loc
-		if(!(A.area_flags & CAVES_ALLOWED))
+	var/list/possible_turfs = turfs.Copy()
+	for(var/node=1 to node_amount)
+		log_world("Picking a turf")
+		var/turf/picked_turf = pick_n_take(possible_turfs)
+		if(!picked_turf)
 			continue
+		log_world("Found a valid turf: x:[picked_turf.x] y:[picked_turf.y]")
+		generate_basalt_node(picked_turf)
 
-		var/hardened = text2num(basalt_gen[world.maxx * (gen_turf.y - 1) + gen_turf.x])
+	var/message = "Basalt generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
+	to_chat(world, span_boldannounce("[message]"))
+	log_world(message)
 
+/proc/generate_basalt_node(turf/picked_turf)
+	var/initial_basalt_chance = 60
+	var/basalt_smoothing_interations = 200
+	var/basalt_birth_limit = 4
+	var/basalt_death_limit = 3
+	var/basalt_turf = /turf/closed/mineral/random/volcanic/hard
+
+	var/big_node_min = 25
+	var/big_node_max = 55
+
+	var/min_offset = 0
+	var/max_offset = 5
+
+	//time for bounds
+	var/size_x = rand(big_node_min,big_node_max)
+	var/size_y = rand(big_node_min,big_node_max)
+
+	//time for noise
+	var/node_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[size_x + 1]", "[size_y + 1]")
+	log_world("Length of CA gen: [length(node_gen)]")
+	var/list/changing_turfs = block(locate(picked_turf.x - round(size_x/2),picked_turf.y - round(size_y/2),picked_turf.z),locate(picked_turf.x + round(size_x/2),picked_turf.y + round(size_y/2),picked_turf.z))
+	log_world("Length of turfs: [changing_turfs.len]")
+	for(var/turf/T in changing_turfs) //shitcode
+		//if(!istype(T,/turf/closed/mineral/random/volcanic))
+			//continue
+		var/index = changing_turfs.Find(T)
+		//var/hardened = text2num(node_gen[size_x * (T.y - 1) + T.x])
+		var/hardened = text2num(node_gen[index])
 		if(!hardened)
 			continue
-		if(!istype(gen_turf,/turf/closed/mineral/random/volcanic))
-			continue
-
-		var/stored_flags
-		if(gen_turf.flags_1 & NO_RUINS_1)
-			stored_flags |= NO_RUINS_1
-
 		var/turf/new_turf = basalt_turf
-
-		new_turf = gen_turf.ChangeTurf(new_turf, initial(new_turf.baseturfs), CHANGETURF_DEFER_CHANGE)
-
-		new_turf.flags_1 |= stored_flags
+		new_turf = T.ChangeTurf(new_turf, initial(new_turf.baseturfs), CHANGETURF_DEFER_CHANGE)
