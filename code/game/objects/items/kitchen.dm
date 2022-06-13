@@ -298,8 +298,8 @@
 	. = ..()
 	if(!istype(target, /obj/item/reagent_containers))
 		return
-	var/datum/frothamount = target.reagents.get_reagent_amount(/datum/reagent/consumable/milk)
-		to_chat(user, span_notice("The machine whirrs and the milk turns into foam!"))
+	var/frothamount = target.reagents.get_reagent_amount(/datum/reagent/consumable/milk)
+	to_chat(user, span_notice("The machine whirrs and the milk turns into foam!"))
 	if(!frothamount)
 		to_chat(user, span_danger("There is no milk left for frothing!"))
 		return
