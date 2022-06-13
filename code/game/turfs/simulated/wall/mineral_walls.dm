@@ -135,6 +135,15 @@
 	explosion_block = 0
 	canSmoothWith = list(/turf/closed/wall/mineral/wood, /obj/structure/falsewall/wood, /turf/closed/wall/mineral/wood/nonmetal)
 
+/turf/closed/wall/mineral/bamboo
+	name = "bamboo wall"
+	desc = "A wall with a bamboo finish."
+	icon = 'icons/turf/walls/bamboo_wall.dmi'
+	icon_state = "bamboo"
+	sheet_type = /obj/item/stack/sheet/mineral/bamboo
+	hardness = 60
+	canSmoothWith = list(/turf/closed/wall/mineral/bamboo, /obj/structure/falsewall/bamboo)
+
 /turf/closed/wall/mineral/wood/attackby(obj/item/W, mob/user)
 	if(W.is_sharp() && W.force)
 		var/duration = (48/W.force) * 2 //In seconds, for now.

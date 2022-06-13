@@ -18,7 +18,6 @@
 	circuit = /obj/item/circuitboard/machine/mining_equipment_vendor
 	var/icon_deny = "mining-deny"
 	var/list/prize_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
-		new /datum/data/mining_equipment("Mining Charge",				/obj/item/grenade/plastic/miningcharge,								500, VENDING_EQUIPMENT), //only at the top for players to see it
 		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/gun/energy/kinetic_accelerator,							750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/required/kinetic_crusher,						750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												800, VENDING_WEAPON),
@@ -54,6 +53,7 @@
 		new /datum/data/mining_equipment("Minebot Armor Upgrade",		/obj/item/mine_bot_upgrade/health,									400, VENDING_MINEBOT),
 		new /datum/data/mining_equipment("Minebot Cooldown Upgrade",	/obj/item/borg/upgrade/modkit/cooldown/minebot,						600, VENDING_MINEBOT),
 		new /datum/data/mining_equipment("Minebot AI Upgrade",			/obj/item/slimepotion/slime/sentience/mining,						1000, VENDING_MINEBOT),
+		new /datum/data/mining_equipment("Lesser Mining Charge",		/obj/item/grenade/plastic/miningcharge/lesser,						300, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Explorer's Webbing",			/obj/item/storage/belt/mining,										500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Mining Conscription Kit",		/obj/item/storage/backpack/duffelbag/mining_conscript,				1000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("GAR Meson Scanners",			/obj/item/clothing/glasses/meson/gar,								500, VENDING_EQUIPMENT),
@@ -193,7 +193,8 @@
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
 		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
-		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel")
+		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"),
+		"Bag of Lesser Mining Charges" = image(icon= 'icons/obj/mining.dmi',icon_state = "mining-charge-1")
 		)
 
 	items = sortList(items)
@@ -222,6 +223,8 @@
 			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
 		if("Mining Conscription Kit")
 			new /obj/item/storage/backpack/duffelbag/mining_conscript(drop_location)
+		if("Bag of Lesser Mining Charges")
+			new /obj/item/storage/backpack/duffelbag/miningcharges(drop_location)
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
 	qdel(voucher)
@@ -306,6 +309,7 @@
 		new /datum/data/mining_equipment("Mecha Plasma Generator",		/obj/item/mecha_parts/mecha_equipment/generator,				1500, VENDING_MECHA),
 		new /datum/data/mining_equipment("Diamond Mecha Drill",			/obj/item/mecha_parts/mecha_equipment/drill/diamonddrill,		2000, VENDING_MECHA),
 		new /datum/data/mining_equipment("Mecha Plasma Cutter",			/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma,		3000, VENDING_MECHA),
+		new /datum/data/mining_equipment("Lesser Mining Charge",		/obj/item/grenade/plastic/miningcharge/lesser,					300, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("GAR Meson Scanners",			/obj/item/clothing/glasses/meson/gar,							500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,					2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,									2000, VENDING_EQUIPMENT),
@@ -334,7 +338,8 @@
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
-		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0")
+		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0"),
+		"Bag of Lesser Mining Charges" = image(icon= 'icons/obj/mining.dmi', icon_state = "mining-charge-1")
 		)
 
 	items = sortList(items)
@@ -359,6 +364,9 @@
 			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
 		if("Advanced Scanner")
 			new /obj/item/t_scanner/adv_mining_scanner(drop_location)
+		if("Bag of Lesser Mining Charges")
+			new /obj/item/storage/backpack/duffelbag/miningcharges(drop_location)
+
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
 	qdel(voucher)
