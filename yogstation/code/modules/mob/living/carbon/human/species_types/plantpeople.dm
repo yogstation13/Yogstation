@@ -278,4 +278,16 @@
 		if(/obj/item/projectile/energy/florayield)
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 
+/*
+ Podpeople subspecies: IVYMEN
+*/
+/datum/species/pod/ivymen
+	// A unique podpeople mutation native to Jungleland. They are adapted to the region, don't mind meat, and move faster than normal podpeople, but lack the ability to use guns.
+	name = "Ivymen"
+	inherent_traits = list(TRAIT_NOGUNS)
+	speedmod = 0
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
+	disliked_food = DAIRY | MICE
+	species_language_holder = /datum/language_holder/pod
+
 #undef STATUS_MESSAGE_COOLDOWN
