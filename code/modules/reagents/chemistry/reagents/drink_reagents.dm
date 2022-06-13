@@ -199,6 +199,12 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 
+/datum/reagent/consumable/milk/froth
+	name = "Frothed Milk"
+	description = "Milk that has been turned into foam."
+	glass_name = "glass of milk froth"
+	glass_desc = "Foamy milk!"
+
 /datum/reagent/consumable/cilk
 	name = "Cilk"
 	description = "A mixture of milk and.... cola? Who the fuck would do this?"

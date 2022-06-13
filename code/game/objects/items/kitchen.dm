@@ -10,6 +10,7 @@
  *		Rolling Pins
  *		Shank
  *		Makeshift knives
+ *		Milk Frother
  */
 
 /obj/item/kitchen
@@ -285,5 +286,24 @@
 		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
 		qdel(src)
 		return
+
+/obj/item/kitchen/frother
+	name = "Milk Frother"
+	icon_state = "knife"
+	item_state = "knife"
+	desc = "an electrically powered whisk for frothing milk..."
+	force = 0.5
+
+/obj/item/kitchen/frother/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!istype(target, /obj/item/reagent_containers))
+		return
+	var/datum/frothamount = target.reagents.get_reagent_amount(/datum/reagent/consumable/milk)
+		to_chat(user, span_notice("The machine whirrs and the milk turns into foam!"))
+	if(!frothamount)
+		to_chat(user, span_danger("There is no milk left for frothing!"))
+		return
+	target.reagents.del_reagent(/datum/reagent/consumable/milk)
+	target.reagents.add_reagent(/datum/reagent/consumable/milk/froth,frothamount)
 
 /* Trays  moved to /obj/item/storage/bag */
