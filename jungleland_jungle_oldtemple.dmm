@@ -1,0 +1,388 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/closed/mineral/ash_rock,
+/area/space)
+"e" = (
+/obj/structure/table/wood,
+/obj/item/clothing/suit/cultrobes,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"i" = (
+/obj/item/flashlight/flare/torch,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"j" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"l" = (
+/obj/item/ectoplasm,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+"m" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife/ritual,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+"n" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/soulstone,
+/obj/item/clothing/suit/cultrobes,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+"o" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/bone,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+"p" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+"r" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"v" = (
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+"B" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/runed_metal,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+"D" = (
+/obj/item/ectoplasm,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"G" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"H" = (
+/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"I" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+"N" = (
+/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad{
+	startDead = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"O" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"R" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/runed_metal,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"T" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"U" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/space)
+"W" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/space)
+
+(1,1,1) = {"
+O
+U
+O
+T
+O
+O
+j
+j
+j
+O
+O
+O
+U
+O
+O
+O
+"}
+(2,1,1) = {"
+O
+U
+O
+O
+O
+U
+b
+b
+b
+b
+b
+b
+O
+O
+O
+U
+"}
+(3,1,1) = {"
+U
+O
+T
+O
+O
+T
+b
+o
+I
+B
+I
+b
+O
+O
+O
+j
+"}
+(4,1,1) = {"
+U
+j
+b
+b
+b
+b
+b
+O
+v
+v
+O
+b
+O
+U
+j
+O
+"}
+(5,1,1) = {"
+O
+b
+b
+G
+O
+O
+G
+O
+v
+v
+O
+b
+O
+T
+O
+O
+"}
+(6,1,1) = {"
+j
+b
+O
+O
+O
+O
+O
+O
+v
+v
+O
+b
+b
+O
+U
+j
+"}
+(7,1,1) = {"
+U
+b
+v
+v
+v
+O
+H
+i
+v
+l
+O
+O
+b
+O
+O
+O
+"}
+(8,1,1) = {"
+O
+b
+n
+B
+v
+v
+v
+v
+v
+v
+W
+v
+p
+O
+O
+U
+"}
+(9,1,1) = {"
+U
+b
+v
+m
+v
+v
+v
+v
+v
+v
+v
+v
+p
+O
+j
+O
+"}
+(10,1,1) = {"
+O
+b
+v
+v
+v
+O
+H
+i
+v
+v
+O
+O
+b
+j
+O
+T
+"}
+(11,1,1) = {"
+O
+b
+O
+O
+O
+O
+O
+r
+v
+v
+O
+b
+b
+O
+O
+O
+"}
+(12,1,1) = {"
+j
+b
+b
+R
+O
+O
+e
+D
+v
+v
+N
+b
+T
+O
+j
+O
+"}
+(13,1,1) = {"
+U
+O
+b
+b
+b
+b
+b
+O
+v
+v
+O
+b
+j
+O
+O
+U
+"}
+(14,1,1) = {"
+T
+O
+j
+O
+O
+O
+b
+I
+o
+I
+o
+b
+O
+O
+O
+O
+"}
+(15,1,1) = {"
+O
+j
+O
+O
+O
+U
+b
+b
+b
+b
+b
+b
+O
+O
+U
+O
+"}
+(16,1,1) = {"
+O
+U
+O
+O
+O
+O
+O
+O
+O
+U
+O
+O
+O
+O
+O
+O
+"}
