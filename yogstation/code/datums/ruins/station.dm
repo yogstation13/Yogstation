@@ -551,7 +551,7 @@
 	suffix = "3x3_naughtyroom.dmm"
 	name = "Maint naughtyroom"
 
-///Author: Galacticruler
+///Author: Vaelophis
 /datum/map_template/ruin/station/maint/threexthree/vendoraccident
 	id = "vendoraccident" 
 	suffix = "3x3_vendoraccident.dmm"
