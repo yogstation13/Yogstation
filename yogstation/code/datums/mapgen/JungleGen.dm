@@ -98,43 +98,51 @@
 										"[ore_preferences[ORE_BLUESPACE][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_BLUESPACE][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
-										"[world.maxy]"),
+										"1",
+										"2"),
 		ORE_DIAMOND  = rustg_worley_generate("[ore_preferences[ORE_DIAMOND][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_DIAMOND][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_DIAMOND][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
-										"[world.maxy]"),
+										"1",
+										"2"),
 
 		ORE_PLASMA  = rustg_worley_generate("[ore_preferences[ORE_PLASMA][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_PLASMA][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_PLASMA][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
-										"[world.maxy]"),
+										"1",
+										"2"),
 		ORE_GOLD  = rustg_worley_generate("[ore_preferences[ORE_GOLD][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_GOLD][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_GOLD][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
-										"[world.maxy]"),
+										"1",
+										"2"),
 		ORE_URANIUM  = rustg_worley_generate("[ore_preferences[ORE_URANIUM][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_URANIUM][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_URANIUM][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
-										"[world.maxy]"),
+										"1",
+										"2"),
 		ORE_TITANIUM  = rustg_worley_generate("[ore_preferences[ORE_TITANIUM][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_TITANIUM][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_TITANIUM][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
-										"[world.maxy]"),
+										"1",
+										"2"),
 		ORE_SILVER  = rustg_worley_generate("[ore_preferences[ORE_SILVER][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_SILVER][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_SILVER][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
-										"[world.maxy]"),
+										"1",
+										"2"),
 		ORE_IRON  = rustg_worley_generate("[ore_preferences[ORE_IRON][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_IRON][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_IRON][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
-										"[world.maxy]"))
+										"1",
+										"2"))
 	//order of generation, ordered from rarest to most common
 	var/list/generation_queue = list(
 		ORE_IRON,
@@ -179,7 +187,8 @@
 								 				"[cellular_preferences[LOW_DENSITY][WORLEY_THRESHOLD]]",
 												"[cellular_preferences[LOW_DENSITY][WORLEY_NODE_PER_REG]]", 
 												"[world.maxx]",
-												"[world.maxy]")
+												"1",
+												"2")
 
 	density_strings[MED_DENSITY] = rustg_cnoise_generate("[cellular_preferences[MED_DENSITY][CA_INITIAL_CLOSED_CHANCE]]",
 									 			"[cellular_preferences[MED_DENSITY][CA_SMOOTHING_INTERATIONS]]",
@@ -192,17 +201,18 @@
 								 				"[cellular_preferences[HIGH_DENSITY][WORLEY_THRESHOLD]]",
 												"[cellular_preferences[HIGH_DENSITY][WORLEY_NODE_PER_REG]]", 
 												"[world.maxx]",
-												"[world.maxy]")
+												"1",
+												"2")
+	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","65","[world.maxx]","-0.2","1.1")
+	var/list/humid_strings = list()
+	humid_strings[HIGH_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","65","[world.maxx]","0.0","1.1")
+	humid_strings[MED_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","65","[world.maxx]","-0.2","0.0")
 
 	for(var/t in turfs) //Go through all the turfs and generate them
 		var/turf/gen_turf = t
-		var/gen_x = gen_turf.x / perlin_zoom
-		var/gen_y = gen_turf.y / perlin_zoom
-		var/toxicity = text2num(rustg_noise_get_at_coordinates("[toxic_seed]", "[gen_x]", "[gen_y]"))
-		var/humidity = text2num(rustg_noise_get_at_coordinates("[humid_seed]", "[gen_x]", "[gen_y]"))
-		var/toxic_pick = toxicity > 0.4 ? BIOME_TOXIC : BIOME_BARREN
+		var/toxic_pick = text2num(toxic_string[world.maxx * (gen_turf.y - 1) + gen_turf.x]) ? BIOME_TOXIC : BIOME_BARREN
 
-		var/humid_pick = humidity > 0.4 ? HIGH_HUMIDITY : (humidity > 0.2 ? MED_HUMIDITY : LOW_HUMIDITY)
+		var/humid_pick = text2num(humid_strings[HIGH_HUMIDITY][world.maxx * (gen_turf.y - 1) + gen_turf.x]) ? HIGH_HUMIDITY : text2num(humid_strings[MED_HUMIDITY][world.maxx * (gen_turf.y - 1) + gen_turf.x]) ? MED_HUMIDITY : LOW_HUMIDITY
 
 		var/datum/biome/selected_biome = possible_biomes[toxic_pick][humid_pick]
 
