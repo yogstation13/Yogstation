@@ -286,8 +286,16 @@
 	name = "Ivymen"
 	inherent_traits = list(TRAIT_NOGUNS)
 	speedmod = 0
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
+	mutantlungs = /obj/item/organ/lungs/ashwalker/ivymen
+	breathid = "n2" // yogs end
 	disliked_food = DAIRY | MICE
-	species_language_holder = /datum/language_holder/pod
+
+/datum/species/lizard/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	. = ..()
+	C.weather_immunities |= "ash"
+
+/datum/species/lizard/ivymen/on_species_loss(mob/living/carbon/C)
+	. = ..()
+	C.weather_immunities -= "ash"
 
 #undef STATUS_MESSAGE_COOLDOWN

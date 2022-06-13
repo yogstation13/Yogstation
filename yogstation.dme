@@ -3759,6 +3759,7 @@
 #include "yogstation\code\modules\research\designs\telecomms_designs.dm"
 #include "yogstation\code\modules\research\designs\tool_designs.dm"
 #include "yogstation\code\modules\research\techweb\all_nodes.dm"
+#include "yogstation\code\modules\ruins\ivymen_den.dm"
 #include "yogstation\code\modules\ruins\lavaland_ruin_code.dm"
 #include "yogstation\code\modules\scripting\Errors.dm"
 #include "yogstation\code\modules\scripting\IDE.dm"
