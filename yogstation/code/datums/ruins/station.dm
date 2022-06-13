@@ -551,6 +551,11 @@
 	suffix = "3x3_naughtyroom.dmm"
 	name = "Maint naughtyroom"
 
+/datum/map_template/ruin/station/maint/threexthree/vendoraccident
+	id= "vendoraccident"
+	suffix = "3x3_vendoraccident.dmm"
+	name = "Maint vendoraccident"
+
 ///The base for the 3x5 rooms.
 /datum/map_template/ruin/station/maint/threexfive
 	prefix = "_maps/RandomRuins/StationRuins/maint/3x5/"
