@@ -249,6 +249,7 @@
 /obj/item/reagent_containers/food/snacks/frenchsilk
 	name = "French silk pie slice"
 	desc = "A slice of French silk pie, filled with a chocolate mousse, and topped with a layer of whipped cream and chocolate shavings. Decadent and delectable!"
+	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "frenchsilkpieslice"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("pie" = 1, "smooth chocolate" = 1, "whipped cream" = 1)

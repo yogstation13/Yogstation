@@ -93,6 +93,8 @@ SUBSYSTEM_DEF(research)
 			techweb_categories[I.category] = list(I.id = TRUE)
 
 /datum/controller/subsystem/research/proc/techweb_node_by_id(id)
+	if(!techweb_nodes[id])
+		stack_trace("[id] node caused error node to appear!")
 	return techweb_nodes[id] || error_node
 
 /datum/controller/subsystem/research/proc/techweb_design_by_id(id)
