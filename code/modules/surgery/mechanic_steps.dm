@@ -84,7 +84,6 @@
 /datum/surgery_step/mechanic_unwrench/tool_check(mob/user, obj/item/tool)
 	if(tool.usesound)
 		preop_sound = tool.usesound
-
 	return TRUE
 
 //wrench
@@ -105,7 +104,6 @@
 /datum/surgery_step/mechanic_wrench/tool_check(mob/user, obj/item/tool)
 	if(tool.usesound)
 		preop_sound = tool.usesound
-
 	return TRUE
 
 //open hatch
@@ -124,5 +122,4 @@
 /datum/surgery_step/open_hatch/tool_check(mob/user, obj/item/tool)
 	if(tool.usesound)
 		preop_sound = tool.usesound
-
 	return TRUE

@@ -1026,9 +1026,9 @@ GLOBAL_LIST_EMPTY(PDAs)
 		switch(scanmode)
 
 			if(PDA_SCANNER_MEDICAL)
-				if(beep_cooldown<world.time)
+				if(beep_cooldown < world.time)
 					playsound(src, 'sound/effects/fastbeep.ogg', 20)
-					beep_cooldown = world.time+40
+					beep_cooldown = world.time + 40
 				C.visible_message(span_alert("[user] has analyzed [C]'s vitals!"))
 				healthscan(user, C, 1)
 				add_fingerprint(user)

@@ -96,7 +96,6 @@
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
 		return FALSE
-
 	play_preop_sound(user, target, target_zone, tool, surgery)
 
 	if(tool)
