@@ -95,6 +95,10 @@
 	desc = "Standard issue security helmet. Due to degradation the helmet's visor obstructs the users ability to see long distances."
 	tint = 2
 
+/obj/item/clothing/head/helmet/old/improvised
+	name = "improvised helmet"
+	desc = "Sheets of metal bent into a cylinder. Protects your head, at the cost of visibility."
+
 /obj/item/clothing/head/helmet/blueshirt
 	name = "blue helmet"
 	desc = "A reliable, blue tinted helmet reminding you that you <i>still</i> owe that engineer a beer."
