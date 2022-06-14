@@ -1,0 +1,4 @@
+author: "GalacticRuler"
+delete-after: true 
+changes: 
+  - bugfix: "replaced unusable frames with usable machine frames in the old cryo room maint-ruin"
