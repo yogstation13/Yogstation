@@ -1,0 +1,4 @@
+author: " @GalacticRuler, Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "crayons and spraycans with 1 charge left are no longer infinite for tags that cost more than 1 charge"

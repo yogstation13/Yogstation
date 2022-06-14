@@ -17,7 +17,9 @@
 	name = "implant item"
 	accept_hand = 1
 	accept_any_item = 1
-	time = 32
+	time = 3.2 SECONDS
+	preop_sound = 'sound/surgery/organ1.ogg'
+	success_sound = 'sound/surgery/organ2.ogg'
 	var/obj/item/IC = null
 
 /datum/surgery_step/handle_cavity/preop(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)

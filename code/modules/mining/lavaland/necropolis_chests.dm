@@ -1062,9 +1062,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/organ/stomach/cursed(src)
-		if(2)
 			new /obj/item/melee/knuckles(src)
+		if(2)
+			new /obj/item/clothing/gloves/bracer/cuffs(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher
 	name = "bloody bubblegum chest"
