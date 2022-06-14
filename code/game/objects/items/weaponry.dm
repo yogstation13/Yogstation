@@ -234,11 +234,11 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "a katana made out of hardened basalt. Particularly damaging to lavaland fauna. (Activate this item in hand to dodge roll in the direction you're facing)"
 	icon_state = "basalt_katana"
 	item_state = "basalt_katana"
-	force = 25
+	force = 18
 	block_chance = 20
 
-	var/fauna_damage_bonus = 45
-	var/fauna_damage_type = BURN
+	var/fauna_damage_bonus = 52
+	var/fauna_damage_type = BRUTE
 	var/next_roll
 	var/roll_dist = 3
 
@@ -250,9 +250,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		var/mob/living/L = target
 		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
 			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
-			if(ismegafauna(L))
-				//megafauna have a .5 burn mod, so we deal double damage to compensate. making the damage type brute breaks the theme
-				L.apply_damage(fauna_damage_bonus,fauna_damage_type) 
 			playsound(L, 'sound/weapons/sear.ogg', 100, 1)
 
 /obj/item/katana/cursed/basalt/attack_self(mob/living/user)
