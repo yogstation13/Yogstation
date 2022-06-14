@@ -89,6 +89,8 @@
 		..()
 
 /mob/living/carbon/human/breathe()
+	if(prob(10))
+		say("BASED HAAHA!!")
 	if(!dna.species.breathe(src))
 		..()
 
