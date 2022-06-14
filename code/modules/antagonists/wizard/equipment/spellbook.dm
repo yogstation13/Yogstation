@@ -350,6 +350,12 @@
 	item_path = /obj/item/necromantic_stone
 	category = "Assistance"
 
+/datum/spellbook_entry/item/scryingorb
+	name = "Scrying Orb"
+	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
+	item_path = /obj/item/scrying
+	category = "Defensive"
+
 /datum/spellbook_entry/item/wands
 	name = "Wand Assortment"
 	desc = "A collection of wands that allow for a wide variety of utility. Wands have a limited number of charges, so be conservative with their use. Comes in a handy belt."
