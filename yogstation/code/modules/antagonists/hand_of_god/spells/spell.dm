@@ -71,7 +71,7 @@
 		to_chat(user, span_notice("You can have maximum summary of [HOG_CULTIST_MAX_SPELLS] charges."))	
 		qdel(src)
 		return FALSE
-	AddAbility(src)
+	user.AddAbility(src)
 	hog.prepared_spells += src
 	return TRUE
 										
