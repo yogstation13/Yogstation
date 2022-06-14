@@ -286,14 +286,13 @@
 		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
 		qdel(src)
 		return
-
+///MILK FROTHER CODE///
 /obj/item/kitchen/frother
 	name = "Milk Frother"
-	icon_state = "knife"
-	item_state = "knife"
+	icon_state = "frother"
 	desc = "an electrically powered whisk for frothing milk..."
 	force = 0.5
-
+	
 /obj/item/kitchen/frother/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!istype(target, /obj/item/reagent_containers))
@@ -305,5 +304,7 @@
 		return
 	target.reagents.del_reagent(/datum/reagent/consumable/milk)
 	target.reagents.add_reagent(/datum/reagent/consumable/milk/froth,frothamount)
+
+//////////////////////
 
 /* Trays  moved to /obj/item/storage/bag */
