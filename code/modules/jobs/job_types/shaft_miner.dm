@@ -35,6 +35,7 @@
 
 /datum/outfit/job/miner
 	name = "Shaft Miner"
+	var/static/gps_number = 1
 	jobtype = /datum/job/mining
 
 	pda_type = /obj/item/pda/shaftminer
@@ -58,6 +59,16 @@
 	box = /obj/item/storage/box/survival_mining
 
 	chameleon_extras = /obj/item/gun/energy/kinetic_accelerator
+
+/datum/outfit/job/miner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	if(visualsOnly)
+		return
+	if(!is_station_level(H.z) && !is_centcom_level(H.z))
+		return
+	for(var/obj/item/gps in H.contents)
+		gps.gpstag = "MINE[gps_number]"
+		gps_number ++
 
 /datum/outfit/job/miner/equipped
 	name = "Shaft Miner (Equipment)"
