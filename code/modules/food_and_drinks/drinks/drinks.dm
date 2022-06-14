@@ -479,7 +479,7 @@
 
 /obj/item/reagent_containers/food/drinks/soda_cans/rootbeer/Initialize()
 	icon_state = pick("Rootbeer_Mug","Rootbeer_AW","Rootbeer_Barq")
-	.=..()
+	. = ..()
 
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic
 	name = "T-Borg's tonic water"
