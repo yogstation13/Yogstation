@@ -24,7 +24,12 @@
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/proc/do_jaunt(mob/living/target)
 	target.notransform = 1
-	var/turf/mobloc = get_turf(target)
+	var/turf/mobloc 
+	var/atom/location = get_loc(target)
+	if(istype(location, /turf))
+		mobloc = location
+	else 
+		mobloc = get_turf(location)
 	var/obj/effect/dummy/phased_mob/spell_jaunt/holder = new /obj/effect/dummy/phased_mob/spell_jaunt(mobloc)
 	new jaunt_out_type(mobloc, target.dir)
 	target.ExtinguishMob()
