@@ -411,3 +411,13 @@
 	build_path = /obj/item/gun/ballistic/bow/energy
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/wtrifle
+	name = "WT-550 Automatic Rifle"
+	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle."
+	id = "wtrifle"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 7500, /datum/material/glass = 1500, /datum/material/silver = 2500)
+	build_path = /obj/item/gun/ballistic/automatic/wt550
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY

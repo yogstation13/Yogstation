@@ -534,3 +534,7 @@
 /datum/techweb_node/mech_xray
 	ui_x = -640
 	ui_y = -896
+
+/datum/techweb_node/ballistic_production
+	ui_x = -740
+	ui_y = -750

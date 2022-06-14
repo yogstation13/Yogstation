@@ -791,6 +791,15 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/datum/techweb_node/ballistic_production
+	id = "ballistic_production"
+	display_name = "Ballistic Weapons Production"
+	description = "The first step to making your own militia."
+	prereq_ids = list("adv_weaponry")
+	design_ids = list("wtrifle")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+	export_price = 5000	
+
 ////////////////////////mech technology////////////////////////
 /datum/techweb_node/adv_mecha
 	id = "adv_mecha"
