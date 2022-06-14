@@ -46,7 +46,7 @@
 		var/obj/item/T = AM
 		if(!stat)
 			Aggro()
-		if(T.throwforce <= 20)
+		if(T.throwforce <= 20 && !istype(T, /obj/item/restraints/legcuffs/bola))
 			visible_message(span_notice("The [T.name] [throw_message] [src.name]!"))
 			return
 	..()

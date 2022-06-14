@@ -1,0 +1,6 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "fixes motorized wheelchairs becoming normal ones | powercell now displays its name properly"
+  - tweak: "wheelchairs above 6 speed no longer crash on open turfs like airlocks"
+  - imageadd: "motorized wheelchair sprite, little change in the normal wheelchair sprite"
