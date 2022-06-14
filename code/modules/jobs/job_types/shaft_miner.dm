@@ -66,8 +66,8 @@
 		return
 	if(H.stat == DEAD)
 		return
-	for(var/obj/item/gps in H.contents)
-		gps.gpstag = "MINE[gps_number]"
+	for(var/obj/item/gps/G in H.contents)
+		G.gpstag = "MINE[gps_number]"
 		gps_number ++
 
 /datum/outfit/job/miner/equipped
