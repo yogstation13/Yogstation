@@ -114,7 +114,7 @@ God bless America.
 			new /obj/item/syndicate_basket(T)
 			return
 	if(istype(I, /obj/item/organ/brain))
-		var/safety = alert(user, "Warning! This brain might still contain a life in it.", "Proceed anyways?" ,"No", "FRY THIS BITCH")
+		var/safety = alert(user, "Warning! This brain might still contain a life in it.", "Proceed anyways?" ,"No.", "FRY THIS BITCH ! ! !")
 		if(safety != "FRY THIS BITCH")
 			to_chat(user, span_warning("You decided not to fry this brain..."))
 			return
