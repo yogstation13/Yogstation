@@ -58,7 +58,14 @@
 	if(cult != god.cult)
 		return
 	if(!modifier)
-		var/datum/hog_god_interaction/spelli = input(god,"What do you want to cast?","Action") in god_actions
+		var/list/susass = list()
+		var/list/names = list() ///A bit weird, but if you have any other idea... propose it
+
+		for(var/datum/hog_god_interaction/spell in god_actions)
+			susass[spell.name] = spell
+			names += spell.name
+
+		var/datum/hog_god_interaction/spelli = susass[input(god,"What do you want to cast?","Action") in names]
 		if(!spelli)
 			return
 		if(!spelli.on_called(god))
