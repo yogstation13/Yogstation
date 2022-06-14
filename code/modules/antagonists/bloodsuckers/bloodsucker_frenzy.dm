@@ -56,6 +56,9 @@
 	// Stamina resistances
 	user.physiology.stamina_mod *= 0.4
 
+	if(prob(2))
+		user.say("It's morbin' time!") //yogs
+
 	// Give the other Frenzy effects
 	ADD_TRAIT(owner, TRAIT_MUTE, FRENZY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_DEAF, FRENZY_TRAIT)
