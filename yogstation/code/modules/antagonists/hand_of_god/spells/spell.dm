@@ -19,18 +19,21 @@
 		return 1
 	if(cost_check(antag_d, user))
 		if(fire(user) && user) // Second check to prevent runtimes when evolving
-			hog.energy -= energy_cost
+			antag_d.energy -= energy_cost
 	return 1
 
-/obj/effect/proc_holder/hog/proc/cost_check(var/datum/antagonist/hog, mob/living/user)
+/obj/effect/proc_holder/hog/get_panel_text()
+	. = ..()
+	if(energy_cost > 0)
+		return "[energy_cost]"
+
+/obj/effect/proc_holder/hog/proc/cost_check(var/datum/antagonist/hog/hog, mob/living/user)
 	if(!hog)
 		return FALSE
 	if(user.stat)
-		if(!silent)
-			to_chat(user, span_notice("You must be conscious to do this."))
+		to_chat(user, span_notice("You must be conscious to do this."))
 		return FALSE
 	if(hog.energy < energy_cost)
-		if(!silent)
-			to_chat(user, span_noticealien("Not enough energy."))
+		to_chat(user, span_noticealien("Not enough energy."))
 		return FALSE
 	return TRUE
