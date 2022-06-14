@@ -175,7 +175,6 @@
 
 		to_chat(current_owner, span_notice("Your otherworldly vision fades..."))
 
-		REMOVE_TRAIT(current_owner, TRAIT_SIXTHSENSE, SCRYING_ORB)
 		REMOVE_TRAIT(current_owner, TRAIT_XRAY_VISION, SCRYING_ORB)
 		current_owner.update_sight()
 
@@ -186,13 +185,9 @@
 
 		to_chat(current_owner, span_notice("You can see...everything!"))
 
-		ADD_TRAIT(current_owner, TRAIT_SIXTHSENSE, SCRYING_ORB)
 		ADD_TRAIT(current_owner, TRAIT_XRAY_VISION, SCRYING_ORB)
 		current_owner.update_sight()
 
-/obj/item/scrying/attack_self(mob/user)
-	visible_message(span_danger("[user] stares into [src], their eyes glazing over."))
-	user.ghostize(1)
 
 /////////////////////////////////////////Necromantic Stone///////////////////
 
