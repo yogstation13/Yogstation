@@ -9,12 +9,32 @@
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
 
+/datum/crafting_recipe/improvarmor
+	name = "Improvised Armor Vest"
+	result = /obj/item/clothing/suit/armor/vest/improvised
+	reqs = list(/obj/item/stack/cable_coil = 10
+				/obj/item/stack/sheet/metal = 8)
+	tools = list(TOOL_WELDER, TOOL_WIRECUTTER)
+	time = 15 SECONDS
+	category = CAT_APPAREL
+	subcategory = CAT_ARMOR
+
 /datum/crafting_recipe/durathread_helmet
 	name = "Durathread Helmet"
 	result = /obj/item/clothing/head/helmet/durathread
 	reqs = list(/obj/item/stack/sheet/cloth/durathread = 4,
 				/obj/item/stack/sheet/leather = 5)
 	time = 4 SECONDS
+	category = CAT_APPAREL
+	subcategory = CAT_ARMOR
+
+/datum/crafting_recipe/improvhelmet
+	name = "Improvised Helmet"
+	result = /obj/item/clothing/head/helmet/old/improvised
+	reqs = list(/obj/item/stack/sheet/metal = 4,
+				/obj/item/stack/sheet/glass = 1)
+	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
+	time = 10 SECONDS
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
 
