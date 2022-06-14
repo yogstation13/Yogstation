@@ -35,6 +35,16 @@
 	icon_state = "armor"
 	item_state = "armor"
 	slowdown = 1
+	
+/obj/item/clothing/suit/armor/vest/improvised
+	name = "improvised armor"
+	desc = "Metal sheets welded together, connected with cable. It will protect your chest, but it looks difficult to move in."
+	icon_state = "armor"
+	item_state = "armor"
+	slowdown = 0.65
+	cold_protection = CHEST
+	heat_protection = CHEST
+	body_parts_covered = CHEST
 
 /obj/item/clothing/suit/armor/vest/blueshirt
 	name = "large armor vest"
