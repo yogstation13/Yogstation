@@ -68,9 +68,9 @@
 			continue
 		sus += spell.charges
 	if(sus > HOG_CULTIST_MAX_SPELLS)
-			to_chat(user, span_notice("You can have maximum summary of [HOG_CULTIST_MAX_SPELLS] charges."))	
-			qdel(src)
-			return FALSE
+		to_chat(user, span_notice("You can have maximum summary of [HOG_CULTIST_MAX_SPELLS] charges."))	
+		qdel(src)
+		return FALSE
 	AddAbility(src)
 	hog.prepared_spells += src
 	return TRUE
