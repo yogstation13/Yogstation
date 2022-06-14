@@ -800,7 +800,7 @@ SUBSYSTEM_DEF(job)
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()
 	if(living_mob.has_quirk(/datum/quirk/paraplegic))
 		for(var/datum/quirk/paraplegic/paraquirk in living_mob.roundstart_quirks)
-			paraquirk.on_spawn()
+			paraquirk?.on_spawn()
 			toLaunch = living_mob.buckled
 	else
 		living_mob.forceMove(toLaunch)
