@@ -48,7 +48,7 @@
 /obj/effect/proc_holder/hog/fire(mob/living/carbon/user)
 	return 1
 
-/obj/effect/proc_holder/hog/proc/prepare(obj/item/hog_item/book/book, mob/living/user, datum/antagonist/hog/hog)
+/obj/effect/proc_holder/hog/proc/prepare(var/obj/item/hog_item/book/book, var/mob/living/user, var/datum/antagonist/hog/hog)
 	if(!do_after(user, preparation_time, book) || !hog)
 		qdel(src)
 		return FALSE
@@ -73,5 +73,5 @@
 		return FALSE
 	user.AddAbility(src)
 	hog.prepared_spells += src
-	return TRUE
+
 										
