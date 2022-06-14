@@ -25,7 +25,7 @@
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/proc/do_jaunt(mob/living/target)
 	target.notransform = 1
 	var/turf/mobloc 
-	var/atom/location = get_loc(target)
+	var/atom/location = user.loc
 	if(istype(location, /turf))
 		mobloc = location
 	else 
