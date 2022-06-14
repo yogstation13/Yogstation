@@ -64,7 +64,7 @@
 	..()
 	if(visualsOnly)
 		return
-	if(!is_station_level(H.z) && !is_centcom_level(H.z))
+	if(H.stat == DEAD)
 		return
 	for(var/obj/item/gps in H.contents)
 		gps.gpstag = "MINE[gps_number]"
