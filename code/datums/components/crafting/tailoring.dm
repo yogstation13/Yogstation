@@ -12,7 +12,7 @@
 /datum/crafting_recipe/improvarmor
 	name = "Improvised Armor Vest"
 	result = /obj/item/clothing/suit/armor/vest/improvised
-	reqs = list(/obj/item/stack/cable_coil = 10
+	reqs = list(/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/sheet/metal = 8)
 	tools = list(TOOL_WELDER, TOOL_WIRECUTTER)
 	time = 15 SECONDS
