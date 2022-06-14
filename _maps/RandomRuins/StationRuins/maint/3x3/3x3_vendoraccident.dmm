@@ -9,10 +9,22 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"f" = (
+"i" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/vomit/old,
-/obj/effect/decal/remains/human,
+/obj/effect/spawner/lootdrop/trashbin,
+/turf/open/floor/plating,
+/area/template_noop)
+"p" = (
+/obj/machinery/vending/cola/random{
+	tilted = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/template_noop)
+"v" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/lootdrop/trashbin,
 /turf/open/floor/plating,
 /area/template_noop)
@@ -21,52 +33,39 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"x" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/glowstick,
-/obj/effect/spawner/lootdrop/gloves,
-/turf/open/floor/plating,
-/area/template_noop)
 "I" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"M" = (
-/obj/effect/decal/cleanable/ash,
+"P" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/trashbin,
+/obj/effect/spawner/lootdrop/glowstick,
+/obj/effect/spawner/lootdrop/gloves,
 /turf/open/floor/plating,
 /area/template_noop)
-"N" = (
-/obj/effect/decal/cleanable/dirt/dust,
+"W" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/lootdrop/organ_spawner,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/plating,
-/area/template_noop)
-"R" = (
-/obj/machinery/vending/cola/random,
-/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/remains/human,
 /turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
 I
-M
+v
 a
 "}
 (2,1,1) = {"
-x
+P
 w
-f
+i
 "}
 (3,1,1) = {"
-R
-N
+p
+W
 c
 "}
