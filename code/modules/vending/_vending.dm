@@ -479,7 +479,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(forcecrit)
 		crit_case = forcecrit
 
-	if(in_range(fatty, src) || no_tipper)
+	if(in_range(fatty, src))
 		for(var/mob/living/L in get_turf(fatty))
 			var/mob/living/carbon/C = L
 
