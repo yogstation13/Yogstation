@@ -9,6 +9,7 @@
 	var/greet = "You are now a HoG cultist!"
 	var/energy = 0
 	var/max_energy = 100
+	var/list/prepared_spells = list()
 
 /datum/antagonist/hog/can_be_owned(datum/mind/new_owner)
 	. = ..()
