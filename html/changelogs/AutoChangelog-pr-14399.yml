@@ -1,0 +1,6 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - tweak: "the security belt in the head of security's locker has been changed to a head of security's security belt"
+  - rscadd: "the head of security now has a backpack baton and pocket cuffs/flash again"
+  - rscdel: "the head of security no longer starts with a full secbelt again"

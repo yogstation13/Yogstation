@@ -1,18 +1,19 @@
 /obj/vehicle/ridden/wheelchair/motorized
 	name = "motorized wheelchair"
 	desc = "A chair with big wheels. It seems to have a motor in it."
+	icon_state = "mwheelchair"
 	max_integrity = 150
 	var/speed = 2
 	var/power_efficiency = 1
-	var/power_usage = 100
+	var/power_usage = 25
 	var/panel_open = FALSE
 	var/list/required_parts = list(/obj/item/stock_parts/manipulator, 
-							/obj/item/stock_parts/manipulator,
-							/obj/item/stock_parts/capacitor)
+									/obj/item/stock_parts/manipulator,
+									/obj/item/stock_parts/capacitor)
 	var/obj/item/stock_parts/cell/power_cell
 
 /obj/vehicle/ridden/wheelchair/motorized/CheckParts(list/parts_list)
-	..()
+	. = ..()
 	refresh_parts()
 
 /obj/vehicle/ridden/wheelchair/motorized/proc/refresh_parts()
@@ -24,14 +25,20 @@
 	var/datum/component/riding/D = GetComponent(/datum/component/riding)
 	D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / speed
 
-/obj/vehicle/ridden/wheelchair/motorized/obj_destruction(damage_flag)
+/obj/vehicle/ridden/wheelchair/motorized/proc/drop_contents()
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/A in contents)
 		A.forceMove(T)
 		if(isliving(A))
 			var/mob/living/L = A
 			L.update_mobility()
-	..()
+		if(power_cell)
+			power_cell.update_icon()
+	refresh_parts()
+
+/obj/vehicle/ridden/wheelchair/motorized/obj_destruction(damage_flag)
+	drop_contents()
+	. = ..()
 
 /obj/vehicle/ridden/wheelchair/motorized/driver_move(mob/living/user, direction)
 	if(istype(user))
@@ -70,8 +77,8 @@
 	if(power_cell && panel_open)
 		power_cell.update_icon()
 		user.put_in_hands(power_cell)
-		power_cell = null
 		to_chat(user, span_notice("You remove the [power_cell] from [src]."))
+		power_cell = null
 		return
 	return ..()
 	
@@ -92,18 +99,18 @@
 			refresh_parts()
 			return
 		if(istype(I, /obj/item/stock_parts))
-			var/obj/item/stock_parts/B = I
+			var/obj/item/stock_parts/newpart = I
 			var/P
-			for(var/obj/item/stock_parts/A in contents)
+			for(var/obj/item/stock_parts/oldpart in contents)
 				for(var/D in required_parts)
-					if(ispath(A.type, D))
+					if(ispath(oldpart.type, D))
 						P = D
 						break
-				if(istype(B, P) && istype(A, P))
-					if(B.get_part_rating() > A.get_part_rating())
-						B.forceMove(src)
-						user.put_in_hands(A)
-						user.visible_message(span_notice("[user] replaces [A] with [B] in [src]."), span_notice("You replace [A] with [B]."))
+				if(istype(newpart, P) && istype(oldpart, P))
+					if(newpart.get_part_rating() > oldpart.get_part_rating())
+						newpart.forceMove(src)
+						user.put_in_hands(oldpart)
+						user.visible_message(span_notice("[user] replaces [oldpart] with [newpart] in [src]."), span_notice("You replace [oldpart] with [newpart]."))
 						break
 			refresh_parts()
 			return
@@ -115,12 +122,7 @@
 		to_chat(user, span_notice("You detach the wheels and deconstruct the chair."))
 		new /obj/item/stack/rods(drop_location(), 8)
 		new /obj/item/stack/sheet/metal(drop_location(), 10)
-		var/turf/T = get_turf(src)
-		for(var/atom/movable/A in contents)
-			A.forceMove(T)
-			if(isliving(A))
-				var/mob/living/L = A
-				L.update_mobility()
+		drop_contents()
 		qdel(src)
 	return TRUE
 
@@ -138,12 +140,12 @@
 /obj/vehicle/ridden/wheelchair/motorized/Bump(atom/movable/M)
 	. = ..()
 	// Here is the shitty emag functionality.
-	if(obj_flags & EMAGGED && (istype(M, /turf/closed) || isliving(M)))
+	if(obj_flags & EMAGGED && (isclosedturf(M) || isliving(M)))
 		explosion(src, -1, 1, 3, 2, 0)
 		visible_message(span_boldwarning("[src] explodes!!"))
 		return
 	// If the speed is higher than what delay_multiplier used to be throw the person on the wheelchair away
-	if(M.density && speed > 6.7 && has_buckled_mobs())
+	if(isclosedturf(M) && speed > 6.7 && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 		unbuckle_mob(H)
