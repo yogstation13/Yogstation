@@ -352,9 +352,10 @@
 
 /datum/spellbook_entry/item/scryingorb
 	name = "Scrying Orb"
-	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
+	desc = "An incandescent orb of crackling energy. It grants you X-ray vision."
 	item_path = /obj/item/scrying
 	category = "Defensive"
+	cost = 1
 
 /datum/spellbook_entry/item/wands
 	name = "Wand Assortment"
