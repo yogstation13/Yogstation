@@ -1,0 +1,7 @@
+author: " maxspells, TheBoondock, MrMelbert, nmajask"
+delete-after: true 
+changes: 
+  - soundadd: "added sounds to surgery steps"
+  - bugfix: "fixed medical sounds for wounds, rad laser, and PDA health scan"
+  - tweak: "doctors now say \"Clear!\" during revive surgery"
+  - spellcheck: "fixed revive surgery saying \"shock body\" instead of \"shock brain\""
