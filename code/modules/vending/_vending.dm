@@ -547,7 +547,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	M.Turn(pick(90, 270))
 	transform = M
 
-	if(get_turf(fatty) != get_turf(src))
+	if(fatty && get_turf(fatty) != get_turf(src))
 		throw_at(get_turf(fatty), 1, 1, spin=FALSE)
 
 /obj/machinery/vending/proc/untilt(mob/user)
