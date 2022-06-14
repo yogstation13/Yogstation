@@ -106,7 +106,7 @@
 	school = "evocation"
 	charge_max = 1 MINUTES
 	clothes_req = FALSE
-	cooldown_min = 0.5 MINUTES
+	cooldown_min = 20 SECONDS
 	action_icon ='icons/mob/gondolas.dmi'
 
 	action_icon_state = "gondola"
