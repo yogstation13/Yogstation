@@ -228,7 +228,7 @@
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	content_overlays = TRUE
 
 /obj/item/storage/belt/security/ComponentInitialize()
@@ -246,6 +246,9 @@
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_box,
+		/obj/item/storage/box/rubbershot,
+		/obj/item/storage/box/lethalshot,
+		/obj/item/storage/box/breacherslug,
 		/obj/item/reagent_containers/food/snacks/donut,
 		/obj/item/kitchen/knife/combat,
 		/obj/item/flashlight/seclite,
@@ -292,7 +295,7 @@
 /obj/item/storage/belt/security/webbing/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
+	STR.max_items = 9
 
 /obj/item/storage/belt/mining
 	name = "explorer's webbing"
@@ -548,7 +551,7 @@
 /obj/item/storage/belt/military/assault/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
+	STR.max_items = 9
 
 /obj/item/storage/belt/grenade
 	name = "grenadier belt"
@@ -668,6 +671,7 @@
 	desc = "A holster to carry a handgun and ammo. WARNING: Badasses only."
 	icon_state = "holster"
 	item_state = "holster"
+	w_class = WEIGHT_CLASS_NORMAL
 	alternate_worn_layer = UNDER_SUIT_LAYER
 
 /obj/item/storage/belt/holster/ComponentInitialize()
