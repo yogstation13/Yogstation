@@ -155,7 +155,7 @@
 /obj/item/sinister_orb/attack_self(mob/living/user)
 	var/turf/turfo = get_turf(user)
 	if(!is_station_level(turfo.z))
-		to_chat(user,span_warning("You can summon the orb only at the station z-level!"))
+		to_chat(user,span_warning("You can only summon the orb on the station z-level!"))
 		return
 	var/datum/gas_mixture/env = turfo.return_air()
 	if(!env)
