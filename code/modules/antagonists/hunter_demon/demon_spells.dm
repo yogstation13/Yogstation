@@ -65,7 +65,7 @@
 			start_recharge()
 			return
 		if(demon.prey.stat == DEAD)
-			to_chat(user,span_warning("Your target is dead, so your mission is completed. Get a new one."))
+			to_chat(user,span_warning("Your target is dead, so your mission is completed. Get a new target."))
 			demon.complete_assasination(killed = TRUE)
 			start_recharge()
 			return	
