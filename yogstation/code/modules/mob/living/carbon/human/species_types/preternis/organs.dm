@@ -1,14 +1,24 @@
-/obj/item/organ/eyes/preternis
+/obj/item/organ/eyes/robotic/preternis
 	name = "preternis eyes"
 	desc = "An experimental upgraded version of eyes that can see in the dark.They are designed to fit preternis"
 	see_in_dark = PRETERNIS_NV_ON
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
+	organ_flags = ORGAN_SYNTHETIC
+
+	low_threshold_passed = span_info("Your Preternis Eyes switch to battery saver mode.")
+	high_threshold_passed = span_info("Your Preternis Eyes only show a sliver of battery life left!")
+	now_failing = span_warning("An empty battery icon is all you can see as your eyes shut off!")
+	now_fixed = span_info("Lines of text scroll in your vision as your eyes begin rebooting.")
+	high_threshold_cleared = span_info("Your Preternis Eyes have recharged enough to re-enable most functionality.")
+	low_threshold_cleared = span_info("Your Preternis Eyes have almost fully recharged.")
+	var/powered = TRUE 
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/night_vision = TRUE
 
-/obj/item/organ/eyes/preternis/ui_action_click()
-	var/datum/species/preternis/S = owner.dna.species
-	if(S.charge < PRETERNIS_LEVEL_FED)
+/obj/item/organ/eyes/robotic/preternis/ui_action_click()
+//	var/datum/species/preternis/S = owner.dna.species
+	if(damage > low_threshold)
 		return
 	sight_flags = initial(sight_flags)
 	switch(lighting_alpha)
@@ -23,13 +33,25 @@
 			sight_flags &= ~SEE_BLACKNESS
 	owner.update_sight()
 
-/obj/item/organ/eyes/preternis/on_life()
+/obj/item/organ/eyes/robotic/preternis/on_life()
 	. = ..()
-	if(!ispreternis(owner))
-		qdel(src) //these eyes depend on being inside a preternis
+	if(!owner)
 		return
-	var/datum/species/preternis/S = owner.dna.species
-	if(S.charge >= PRETERNIS_LEVEL_FED)
+	if(ispreternis(owner) && !powered)
+		powered = TRUE
+		to_chat(owner, span_notice("A battery icon disappears from your vision as your [src] switch to external power."))
+	if(!ispreternis(owner) && powered) //these eyes depend on being inside a preternis for power
+		powered = FALSE
+		to_chat(owner, span_boldwarning("Your [src] flash warnings that they've lost their power source, and are running on emergency power!"))
+	if(powered)
+		//when powered, they recharge by healing
+		owner.adjustOrganLoss(ORGAN_SLOT_EYES,-0.5)
+	else
+		//to simulate running out of power, they take damage
+		owner.adjustOrganLoss(ORGAN_SLOT_EYES,0.5)
+	
+	//var/datum/species/preternis/S = owner.dna.species
+	if(damage < low_threshold)
 		if(see_in_dark == PRETERNIS_NV_OFF)
 			see_in_dark = PRETERNIS_NV_ON
 			owner.update_sight()
