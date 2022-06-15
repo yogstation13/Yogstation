@@ -28,8 +28,10 @@
 /obj/effect/spawner/lootdrop/trashbin,
 /turf/open/floor/plating,
 /area/template_noop)
-"w" = (
-/obj/item/holochip,
+"B" = (
+/obj/item/holochip{
+	credits = 50
+	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
@@ -61,7 +63,7 @@ a
 "}
 (2,1,1) = {"
 P
-w
+B
 i
 "}
 (3,1,1) = {"
