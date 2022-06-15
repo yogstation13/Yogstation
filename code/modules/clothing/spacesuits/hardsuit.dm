@@ -1105,7 +1105,7 @@
 	desc = "It's an advanced power armor Mk I helmet. It looks somewhat threatening."
 	icon_state = "hardsuit0-advpa1"
 	item_state = "advpa1_helm"
-	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48, BIO = 0, RAD = 0, FIRE = 0, ACID = 25)
+	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48,  BIO = 100, RAD = 100, FIRE = 100, ACID = 25)
 	item_color = "advpa1"
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
@@ -1113,7 +1113,7 @@
 	desc = "An advanced suit of power armor. It looks pretty impressive and threatening."
 	icon_state = "hardsuit-advancedpa1"
 	item_state = "advpa1_hardsuit"
-	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48, BIO = 0, RAD = 0, FIRE = 0, ACID = 25)
+	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48,  BIO = 100, RAD = 100, FIRE = 100, ACID = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
 	item_color = "advancedpa1"
 

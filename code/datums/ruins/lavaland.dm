@@ -470,3 +470,11 @@
 	suffix = "lavaland_surface_shinobigraveyard.dmm"
 	allow_duplicates = FALSE
 	cost = 5
+
+/datum/map_template/ruin/lavaland/cultenclave
+	name = "Cult Enclave"
+	id = "cultenclave"
+	description = "Some cultists went to raid an abandoned armory. They couldnt get through the big door. Maybe you can?"
+	suffix = "lavaland_surface_enclavecult.dmm"
+	cost = 10
+	allow_duplicates = FALSE

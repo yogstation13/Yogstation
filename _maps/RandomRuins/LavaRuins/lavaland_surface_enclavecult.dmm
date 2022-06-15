@@ -7,9 +7,6 @@
 /mob/living/simple_animal/hostile/construct/harvester,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
-"ag" = (
-/turf/open/lava,
-/area/lavaland/surface/outdoors)
 "au" = (
 /turf/template_noop,
 /area/lavaland/surface/outdoors)
@@ -40,6 +37,10 @@
 /mob/living/simple_animal/hostile/construct/wraith/noncult,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"dl" = (
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
 "eI" = (
 /obj/structure/table,
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced,
@@ -57,35 +58,28 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"ga" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/turf/open/floor/engine/cult,
+/area/ruin/unpowered)
 "gg" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/rune,
-/turf/open/floor/plasteel/dark/lavaland,
-/area/ruin/unpowered)
-"gW" = (
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/item/ammo_casing/shotgun/pulseslug,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "hB" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"hF" = (
-/obj/effect/decal/cleanable/blood/innards,
-/turf/open/floor/plasteel/dark/lavaland,
-/area/ruin/unpowered)
-"iE" = (
-/mob/living/carbon/human/cult_ghost,
+"io" = (
+/obj/structure/table/reinforced,
+/obj/item/ammo_casing/shotgun/ion,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "iK" = (
 /obj/machinery/power/tesla_coil,
 /turf/open/floor/plasteel/cult,
-/area/ruin/unpowered)
-"kP" = (
-/obj/effect/mob_spawn/human/corpse,
-/turf/open/floor/engine/cult,
 /area/ruin/unpowered)
 "nt" = (
 /mob/living/simple_animal/hostile/construct/builder/noncult,
@@ -96,10 +90,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
-"pq" = (
-/obj/effect/mob_spawn/human/corpse,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+"pi" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "qs" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plasteel/dark/lavaland,
@@ -108,11 +102,6 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/machinery/door/airlock/cult/glass,
 /turf/open/floor/plasteel/dark/lavaland,
-/area/ruin/unpowered)
-"sp" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/item/ammo_casing/shotgun/pulseslug,
-/turf/open/floor/engine/cult,
 /area/ruin/unpowered)
 "ux" = (
 /mob/living/simple_animal/hostile/construct/wraith/hostile,
@@ -138,6 +127,11 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"yg" = (
+/obj/structure/table/reinforced,
+/obj/item/ammo_casing/shotgun/cryoshot,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "ys" = (
 /mob/living/simple_animal/hostile/construct/armored/hostile,
 /turf/open/floor/plasteel/dark/lavaland,
@@ -150,14 +144,15 @@
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"Bw" = (
+/obj/effect/decal/cleanable/blood/innards,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "CP" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube,
 /turf/open/floor/plasteel/dark/lavaland,
-/area/ruin/unpowered)
-"Dr" = (
-/obj/item/ammo_casing/shotgun/pulseslug,
-/turf/open/floor/engine/cult,
 /area/ruin/unpowered)
 "DS" = (
 /obj/structure/destructible/cult/pylon,
@@ -171,26 +166,33 @@
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
-"IN" = (
-/obj/effect/decal/cleanable/blood/gibs/core,
-/obj/effect/decal/cleanable/blood/gibs/torso,
-/obj/item/ammo_casing/shotgun/pulseslug,
-/turf/open/floor/engine/cult,
+"Kv" = (
+/obj/structure/table/reinforced,
+/obj/item/ammo_casing/shotgun/thundershot,
+/turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "Ly" = (
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"Ng" = (
+/obj/structure/table/reinforced,
+/obj/item/ammo_casing/shotgun/laserbuckshot,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"Oo" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Pq" = (
 /obj/machinery/door/airlock/vault{
 	name = "Armory"
 	},
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
-"QG" = (
-/obj/structure/table/reinforced,
-/mob/living/carbon/human/cult_ghost,
-/turf/open/floor/plasteel/dark/lavaland,
+"QO" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/engine/cult,
 /area/ruin/unpowered)
 "Rx" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -200,6 +202,9 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/closed/wall/r_wall/syndicate,
 /area/ruin/unpowered)
+"Uc" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Uu" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/engine/cult,
@@ -337,7 +342,7 @@ au
 au
 au
 au
-ag
+Uc
 au
 au
 au
@@ -364,12 +369,12 @@ au
 au
 au
 au
-ag
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
 au
 au
 au
@@ -397,20 +402,20 @@ au
 au
 au
 au
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
 au
 au
 au
 au
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
 ZB
 au
 au
@@ -430,18 +435,18 @@ au
 au
 au
 au
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
 au
 au
-au
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -469,11 +474,11 @@ aP
 aP
 aP
 aP
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -497,15 +502,15 @@ aP
 eI
 ab
 WH
-QG
 oq
-oq
+io
+Ng
 aP
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -534,10 +539,10 @@ az
 az
 aP
 ZB
-ag
+Uc
 ZB
-ag
-ag
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -556,14 +561,14 @@ au
 au
 au
 au
-ag
+Uc
 aP
 aw
 az
 az
-oq
+Kv
 CP
-oq
+yg
 aP
 aP
 aP
@@ -585,10 +590,10 @@ au
 au
 au
 au
-ag
-ag
-au
-ag
+Uc
+Uc
+Uc
+Uc
 aP
 aP
 aP
@@ -597,10 +602,10 @@ aP
 aP
 aP
 aP
-iE
+Ly
 az
 az
-kP
+fe
 fe
 aP
 ZB
@@ -617,12 +622,12 @@ au
 au
 au
 au
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
 aP
-wq
+dl
 fe
 wq
 aP
@@ -635,8 +640,8 @@ az
 wq
 fe
 aP
-ag
-ag
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -648,10 +653,10 @@ ZB
 au
 au
 au
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
 au
 aP
 HF
@@ -660,16 +665,16 @@ fe
 aX
 az
 ys
-Dr
+fe
 az
 gg
 az
 wq
 fe
 aP
-ZB
-ag
-ag
+Uc
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -682,8 +687,8 @@ au
 au
 au
 au
-ag
-ag
+Uc
+Uc
 au
 aP
 HL
@@ -693,16 +698,16 @@ aX
 wq
 az
 fe
-Dr
+fe
 wq
 az
 Rx
 az
 aP
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -714,16 +719,16 @@ au
 au
 au
 au
-ag
-ag
-au
+Uc
+Uc
+Uc
 aP
 qs
-Dr
-IN
+fe
+ga
 aX
 az
-gW
+pi
 DS
 az
 az
@@ -732,8 +737,8 @@ AE
 AE
 aP
 ZB
-ag
-ag
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -752,7 +757,7 @@ au
 aP
 Wd
 nt
-sp
+QO
 rw
 fZ
 fZ
@@ -765,7 +770,7 @@ az
 aP
 ZB
 ZB
-ag
+Uc
 ZB
 ZB
 ZB
@@ -784,9 +789,9 @@ au
 aP
 iK
 qs
-Ly
-aX
 az
+aX
+Ly
 ux
 WF
 wq
@@ -797,7 +802,7 @@ wS
 wH
 ZB
 ZB
-ag
+Oo
 ZB
 ZB
 ZB
@@ -824,7 +829,7 @@ aP
 oq
 fL
 aS
-hF
+Bw
 az
 aP
 hB
@@ -843,14 +848,14 @@ au
 au
 au
 au
-ag
-ag
+Uc
+Uc
 aP
 aP
 Tw
 aP
 aP
-iE
+az
 wq
 aP
 aP
@@ -860,7 +865,7 @@ aP
 aP
 aP
 ZB
-pq
+ZB
 ZB
 ZB
 ZB
@@ -874,19 +879,19 @@ au
 au
 au
 au
-ag
-ag
-ag
-ag
-ag
-ZB
-ZB
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
 aP
 VN
 oq
 aP
-ag
-ag
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -907,19 +912,19 @@ au
 au
 au
 au
-ag
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
 aP
 aP
 aP
 aP
-ag
-ag
-ag
+Uc
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -939,20 +944,20 @@ au
 au
 au
 au
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
 au
 au
 au
 au
-ag
-ag
-ag
+Uc
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -970,22 +975,22 @@ au
 au
 au
 au
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
+Uc
 au
 au
 au
 au
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
 ZB
 ZB
 ZB
@@ -1005,18 +1010,18 @@ au
 au
 au
 au
-ag
-ag
-ag
+Uc
+Uc
+Uc
 au
 au
 au
 au
 au
-ag
-ag
-ag
-ag
+Uc
+Uc
+Uc
+Uc
 au
 au
 ZB
@@ -1037,8 +1042,8 @@ au
 au
 au
 au
-ag
-ag
+Uc
+Uc
 au
 au
 au
@@ -1046,9 +1051,9 @@ au
 au
 au
 au
-ag
-ag
-ag
+Uc
+Uc
+Uc
 au
 au
 ZB
@@ -1069,7 +1074,7 @@ au
 au
 au
 au
-ag
+Uc
 au
 au
 au
