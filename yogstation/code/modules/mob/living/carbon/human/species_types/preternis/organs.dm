@@ -6,19 +6,19 @@
 	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
 	organ_flags = ORGAN_SYNTHETIC
 
-	low_threshold_passed = span_info("Your Preternis Eyes switch to battery saver mode.")
-	high_threshold_passed = span_info("Your Preternis Eyes only show a sliver of battery life left!")
+	low_threshold_passed = span_info("Your Preternis eyes switch to battery saver mode.")
+	high_threshold_passed = span_info("Your Preternis eyes only show a sliver of battery life left!")
 	now_failing = span_warning("An empty battery icon is all you can see as your eyes shut off!")
 	now_fixed = span_info("Lines of text scroll in your vision as your eyes begin rebooting.")
-	high_threshold_cleared = span_info("Your Preternis Eyes have recharged enough to re-enable most functionality.")
-	low_threshold_cleared = span_info("Your Preternis Eyes have almost fully recharged.")
+	high_threshold_cleared = span_info("Your Preternis eyes have recharged enough to re-enable most functionality.")
+	low_threshold_cleared = span_info("Your Preternis eyes have almost fully recharged.")
 	var/powered = TRUE 
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/night_vision = TRUE
 
 /obj/item/organ/eyes/robotic/preternis/ui_action_click()
-//	var/datum/species/preternis/S = owner.dna.species
 	if(damage > low_threshold)
+		//no nightvision if your eyes are hurt
 		return
 	sight_flags = initial(sight_flags)
 	switch(lighting_alpha)
@@ -50,12 +50,12 @@
 		//to simulate running out of power, they take damage
 		owner.adjustOrganLoss(ORGAN_SLOT_EYES,0.5)
 	
-	//var/datum/species/preternis/S = owner.dna.species
 	if(damage < low_threshold)
 		if(see_in_dark == PRETERNIS_NV_OFF)
 			see_in_dark = PRETERNIS_NV_ON
 			owner.update_sight()
 	else
+		//if your eyes start getting hurt no more nightvision
 		if(see_in_dark == PRETERNIS_NV_ON)
 			see_in_dark = PRETERNIS_NV_OFF
 			owner.update_sight()
