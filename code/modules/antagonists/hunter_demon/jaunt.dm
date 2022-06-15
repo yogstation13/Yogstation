@@ -23,7 +23,7 @@
 	if(src.notransform)
 		return 0
 	var/turf/turfo = get_turf(src)
-	visible_message(span_warning("The reality begins to shatter around you!"))
+	visible_message(span_warning("Reality begins to twist around you!"))
 	if(!do_after(src, 3 SECONDS, target = turfo))
 		return
 	forceMove(turfo)
