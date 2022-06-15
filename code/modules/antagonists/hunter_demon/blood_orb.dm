@@ -57,7 +57,7 @@
 					span_userdanger("You begin to spill your blood on the [src], performing a bound rite!"))
 			else 
 				visible_message(span_danger("[H] begins to stab himself with [I]!"), \
-					span_userdanger("You begin to torture yourself, performing a bound rite!"))
+					span_userdanger("You begin to mutilate yourself, performing a binding rite!"))
 			if(do_after(H, 30, target = src))
 				if(!(NOBLOOD in H.dna.species.species_traits))
 					to_chat(H, "<span class='warning'>You finish spilling your blood on the [src].</span>")
