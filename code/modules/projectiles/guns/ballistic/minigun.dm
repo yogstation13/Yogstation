@@ -113,7 +113,8 @@
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
-	burst_size = 3
+	burst_size = 5
+	var/select = 1
 	automatic = FALSE
 	fire_delay = 1
 	recoil = 0.5
@@ -122,6 +123,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gunshot.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/minigunosprey
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 	tac_reloads = FALSE
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
@@ -172,3 +174,25 @@
 /obj/item/gun/ballistic/minigunosprey/dropped(mob/living/user)
 	. = ..()
 	ammo_pack.attach_gun(user)
+
+/obj/item/gun/ballistic/minigunosprey/ui_action_click(mob/user, actiontype)
+	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
+		burst_select()
+	else
+		..()
+
+/obj/item/gun/ballistic/minigunosprey/proc/burst_select()
+	var/mob/living/carbon/human/user = usr
+	switch(select)
+		if(0)
+			select = 1
+			burst_size = initial(burst_size)
+			fire_delay = initial(fire_delay)
+			to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
+		if(1)
+			select = 0
+			burst_size = 10
+			fire_delay = initial(fire_delay)
+			to_chat(user, span_notice("You switch to [burst_size]-rnd burst. BRRRRRRRT."))
+	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+	return
