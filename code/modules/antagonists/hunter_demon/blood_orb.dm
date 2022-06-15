@@ -127,7 +127,7 @@
 	. = ..()
 	if(!demon)
 		return
-	to_chat(demon,span_warning("With your orb destroyed, your bound with this thing plain is breaked, and your body perishes in dust."))
+	to_chat(demon,span_warning("With your orb destroyed, your bond with this mortal plane is broken, and your body dissolves into dust!"))
 	if(demon.phased )
 		demon.instaphasein()
 	demon.dust()
