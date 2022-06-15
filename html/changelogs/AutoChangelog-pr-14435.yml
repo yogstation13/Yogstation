@@ -1,6 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "no more ruin spawned corpses with gpses because people with gpses dont get not recovered (this is canon shut up)"
-  - tweak: "gpses on miners now properly iterate numbers i.e. MINE1 2 3 4 rather than just all being MINE0. The mining medic isn't included because they suck"
-  - tweak: "mining medic no longer gets 2 gpses"
