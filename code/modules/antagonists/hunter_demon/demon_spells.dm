@@ -110,7 +110,7 @@
 	if(istype(user, /mob/living/simple_animal/hostile/hunter))
 		var/mob/living/simple_animal/hostile/hunter/demon = user
 		if(!demon.phased)
-			to_chat(user,span_warning("You can use this ability only while phased!"))
+			to_chat(user,span_warning("You can only use this ability while phased!"))
 			revert_cast()
 			return
 		if(demon.orb)
