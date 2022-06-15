@@ -63,7 +63,7 @@
 					to_chat(H, "<span class='warning'>You finish spilling your blood on the [src].</span>")
 					H.blood_volume -= ORB_BLOOD_SACAMOUNT / 2                                              ///dying from bloodloss is not cool
 				else
-					to_chat(H, "<span class='warning'>You finish torturing yourself.</span>")
+					to_chat(H, "<span class='warning'>You finish your ritual of pain.</span>")
 					H.adjustBruteLoss(20)
 				sacrificed_blood += ORB_BLOOD_SACAMOUNT
 				blood_pool_summary += ORB_BLOOD_SACAMOUNT
