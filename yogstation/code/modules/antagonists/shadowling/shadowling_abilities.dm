@@ -290,6 +290,7 @@
 						to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
 						user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
 						to_chat(target, span_boldannounce("You feel your mental protection faltering!"))
+						target.Knockdown(80)
 						if(!do_mob(user, target, 650)) //65 seconds to remove a loyalty implant. yikes!
 							to_chat(user, span_warning("The enthralling has been interrupted - your target's mind returns to its previous state."))
 							to_chat(target, span_userdanger("You wrest yourself away from [user]'s hands and compose yourself!"))
@@ -305,6 +306,7 @@
 					to_chat(user, span_notice("You begin planting the tumor that will control the new thrall..."))
 					user.visible_message(span_warning("A strange energy passes from [user]'s hands into [target]'s head!"))
 					to_chat(target, span_boldannounce("You feel your memories twisting, morphing. A sense of horror dominates your mind."))
+					target.Knockdown(80)
 			if(!do_mob(user, target, 70)) //around 21 seconds total for enthralling, 86 for someone with a loyalty implant
 				to_chat(user, span_warning("The enthralling has been interrupted - your target's mind returns to its previous state."))
 				to_chat(target, span_userdanger("You wrest yourself away from [user]'s hands and compose yourself!"))
