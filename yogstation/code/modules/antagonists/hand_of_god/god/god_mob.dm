@@ -17,6 +17,7 @@
 	var/is_recall_on_cooldown = FALSE
 	var/cool_name = "God"
 	var/lights_breaked_recently = 0
+	var/list/spells = list()
 
 /mob/camera/hog_god/proc/select_name()
 	var/new_name = input(src, "Choose your new name", "Name")
