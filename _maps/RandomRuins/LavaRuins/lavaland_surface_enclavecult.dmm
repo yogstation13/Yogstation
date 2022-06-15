@@ -81,6 +81,15 @@
 /obj/machinery/power/tesla_coil,
 /turf/open/floor/plasteel/cult,
 /area/ruin/unpowered)
+"jb" = (
+/obj/machinery/light/broken,
+/turf/open/floor/engine/cult,
+/area/ruin/unpowered)
+"mv" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "nt" = (
 /mob/living/simple_animal/hostile/construct/builder/noncult,
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -136,6 +145,10 @@
 /mob/living/simple_animal/hostile/construct/armored/hostile,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"yU" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
 "zk" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/cult,
@@ -164,6 +177,10 @@
 /area/ruin/unpowered)
 "HL" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"JG" = (
+/obj/machinery/light/broken,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "Kv" = (
@@ -536,7 +553,7 @@ az
 ae
 az
 az
-az
+JG
 aP
 ZB
 Uc
@@ -629,7 +646,7 @@ Uc
 aP
 dl
 fe
-wq
+yU
 aP
 HF
 wq
@@ -670,7 +687,7 @@ az
 gg
 az
 wq
-fe
+jb
 aP
 Uc
 Uc
@@ -731,7 +748,7 @@ az
 pi
 DS
 az
-az
+JG
 aP
 AE
 AE
@@ -821,7 +838,7 @@ au
 aP
 fL
 vt
-oq
+mv
 aP
 fe
 uI
@@ -856,7 +873,7 @@ Tw
 aP
 aP
 az
-wq
+yU
 aP
 aP
 aP
