@@ -22,10 +22,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"v" = (
+"s" = (
 /obj/effect/decal/cleanable/ash,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/lootdrop/trashbin,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/template_noop)
 "B" = (
@@ -58,7 +61,7 @@
 
 (1,1,1) = {"
 I
-v
+s
 a
 "}
 (2,1,1) = {"
