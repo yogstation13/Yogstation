@@ -74,7 +74,7 @@
 		var/dist = get_dist(userturf,targetturf)
 		var/dir = get_dir(userturf,targetturf)
 		if(!is_station_level(targetturf.z))
-			to_chat(user,span_warning("Your target isn't on the station z-level, you need to get a new one."))
+			to_chat(user,span_warning("Your target has left the station z-level, so the hunt is over. Get a new target."))
 			demon.complete_assasination(killed = FALSE)
 			start_recharge()
 			return
