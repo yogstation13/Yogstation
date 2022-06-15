@@ -10,7 +10,7 @@
 /datum/antagonist/space_dragon/greet()
 	to_chat(owner, "<b>Endless time and space we have moved through.  We do not remember from where we came, we do not know where we will go.  All space belongs to us.\n\
 					Space is an empty void, in which our kind is the apex predator, and there is little to rival our claim to this title.\n\
-					But now, we find intruders spread out amongst our claim, willing to fight our teeth with magics unimaginable, their dens like lights flicking in the depths of space.\n\
+					But now, we find intruders spread out amongst our claim! They are willing to fight our teeth with magics unimaginable, in their strange metal dens flickering in the depths of space.\n\
 					Today, we will snuff out one of those lights.</b>")
 	to_chat(owner, "<span class='boldwarning'>You have five minutes to find a safe location to place down the first rift.  If you take longer than five minutes to place a rift, you will be returned from whence you came.</span>")
 	owner.announce_objectives()
