@@ -2049,7 +2049,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A kit, containing a blood orb and a ritual dagger. You need to activate the blood orb in a place with air and on the station z-level.\
 	You need to spill your blood on the orb when it is activated to summon a demon. Then you need to periodically choose targets for the demon,\
 	and spill additional blood in the orb, or he can become uncontrollable. \
-	To spill your blood on the orb you need to click it with a knife while not on harm intent, and to choose a target you need to click it with your hand."
+	To spill your blood on the orb, you need to click it with a knife while not on harm intent. To choose a target you need to click it with your empty hand."
 	item = /obj/item/storage/box/syndie_kit/hunter_demon_kit
 	cost = 15
 	restricted_roles = list("Chaplain", "Curator")
