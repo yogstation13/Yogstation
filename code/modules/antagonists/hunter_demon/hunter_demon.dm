@@ -13,7 +13,11 @@
 	. = ..()
 	owner.announce_objectives()
 	SEND_SOUND(owner.current, sound('sound/magic/ethereal_exit.ogg'))
-	to_chat(owner, span_warning("It's morbin' time!"))
+	to_chat(owner.current, span_notice("<font color=\"#EE4000\">You are the Hunter Demon!</font>"))
+	if(prob(10))
+		to_chat(owner, span_warning("It's morbin' time!"))
+		if(prob(10))
+			name = "Morbius"
 
 /datum/antagonist/hunter/proc/forge_objectives()
 	var/datum/objective/new_objective = new
