@@ -40,7 +40,7 @@
 	2. Can warp out of reality to move faster and through walls, but you can only warp back into reality near your target or blood orb!\
 	3. Are most likely bound by a binding rite. While your orb is filled with blood from your master, you cannot attack them.\
 	4. Can choose targets for yourself only if you do not have an active master or binding rite, or there is no blood currently sacrificed by them.\
-	5. Passivly regenerate health while not in the mortal reality at the cost of sacrificed blood, and blood gained from attacking people\
+	5. Passively regenerate health while shifted out of the mortal reality, at the cost of sacrificed blood and blood gained from attacking people\
 	6. Attacking people gives you some blood, and regenerates you some health. Attacking the same person multiple times increases the chance of a special attack.\
 	7. Loose health while not near your orb or your target, and move slower.\
 	8. Die, if your orb is destroyed."))
