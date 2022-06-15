@@ -29,7 +29,7 @@
 					to_chat(H, "<span class='warning'>You finish spilling your blood on the [src].</span>")
 					H.blood_volume -= ORB_BLOOD_SACAMOUNT / 2   
 				else
-					to_chat(H, "<span class='warning'>You finish torturing yourself.</span>")
+					to_chat(H, "<span class='warning'>You finish your ritual of pain.</span>")
 					H.adjustBruteLoss(20)
 				var/list/candidates = pollCandidatesForMob("Do you want to play as a hunter demon?", ROLE_ALIEN, null, ROLE_ALIEN, 150, src)
 				if(!candidates.len)
