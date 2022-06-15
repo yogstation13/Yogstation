@@ -252,11 +252,11 @@
 	desc = "A big brown tentacle."
 	force = 15
 	sharpness = SHARP_EDGED
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
-	icon_state = "umbral_tendrils"
-	item_state = "umbral_tendrils"
-	lefthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_lefthand.dmi'
-	righthand_file = 'yogstation/icons/mob/inhands/antag/darkspawn_righthand.dmi'
+	icon = 'icons/obj/weapons/misc.dmi'
+	icon_state = "goliath_tentacle"
+	item_state = "goliath_tentacle"
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
 	hitsound = 'yogstation/sound/magic/pass_attack.ogg'
 	attack_verb = list("impaled", "tentacled", "torn")
 	item_flags = ABSTRACT
