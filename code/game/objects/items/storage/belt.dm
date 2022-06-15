@@ -258,6 +258,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/holosign_creator/security,
+		/obj/item/shield/riot/tele,
 		/obj/item/barrier_taperoll/police
 		))
 
@@ -276,6 +277,11 @@
 	icon_state = "securitybelt_hos"
 	item_state = "security_hos"
 
+/obj/item/storage/belt/security/chief/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+
 /obj/item/storage/belt/security/chief/full/PopulateContents()
 	new /obj/item/reagent_containers/spray/pepper(src)
 	new /obj/item/restraints/handcuffs(src)
@@ -283,6 +289,7 @@
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/melee/baton/loaded(src)
 	new /obj/item/barrier_taperoll/police(src)
+	new /obj/item/shield/riot/tele(src)
 	update_icon()
 
 /obj/item/storage/belt/security/webbing
@@ -296,7 +303,7 @@
 /obj/item/storage/belt/security/webbing/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 9
+	STR.max_items = 7
 
 /obj/item/storage/belt/mining
 	name = "explorer's webbing"
@@ -548,11 +555,6 @@
 	desc = "A tactical assault belt."
 	icon_state = "assaultbelt"
 	item_state = "security"
-
-/obj/item/storage/belt/military/assault/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 9
 
 /obj/item/storage/belt/grenade
 	name = "grenadier belt"
