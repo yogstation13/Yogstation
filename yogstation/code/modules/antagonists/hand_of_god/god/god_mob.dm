@@ -36,5 +36,21 @@
 
 /mob/camera/hog_god/proc/lightttts()
 	lights_breaked_recently -= 1
-	
+
+/mob/camera/hog_god/proc/recall(mob/living/target)
+	to_chat(target, span_notice("You feel yourself get pulled..."))
+	to_chat(src, span_notice("You start recalling [target]..."))
+	sleep(7 SECONDS) ///Sorry, sleeping is necessary here for some checks
+	if(!istype(target, mob/living))
+		return	FALSE
+	if(!IS_HOG_CULTIST(target))
+		return	FALSE
+	if(target.stat == DEAD)
+		return	FALSE
+	if(!cult.nexus)
+		return	FALSE
+	target.forceMove(get_turf(cult.nexus))	
+	target.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
+	target.clear_fullscreen("flash", 5)
+	return TRUE
  
