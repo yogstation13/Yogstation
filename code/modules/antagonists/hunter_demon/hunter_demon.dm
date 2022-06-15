@@ -42,7 +42,7 @@
 	4. Can choose targets for yourself only if you do not have an active master or binding rite, or there is no blood currently sacrificed by them.\
 	5. Passively regenerate health while shifted out of the mortal reality, at the cost of sacrificed blood and blood gained from attacking people\
 	6. Gain blood and some health back by attacking people. Attacking the same person multiple times increases the chance of a special attack.\
-	7. Loose health while not near your orb or your target, and move slower.\
+	7. Lose health and movespeed while not near your orb or your target. Always be on the hunt!\
 	8. Die, if your orb is destroyed."))
 
 
