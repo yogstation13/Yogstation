@@ -42,7 +42,7 @@
 
 /obj/effect/proc_holder/spell/hd_seek_prey
 	name = "Seek prey"
-	desc = "It says where is your target, or marks the assasination as completed if the target is dead, isn't no more a human, or is off the station z-level."
+	desc = "Identifies where your target is, or marks the assignment as complete if the target is: dead, no longer a person, or are off the station z-level."
 	invocation_type = "none"
 	clothes_req = FALSE
 	school = "evocation"
