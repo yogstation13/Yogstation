@@ -116,7 +116,7 @@
 
 obj/effect/proc_holder/swipe
 	name = "Swipe"
-	desc = "Swipe at a target area, dealing damage and healing yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 15 brute/burn/poison while dead ones heal for 20 and get butchered. People and cyborgs hit will heal for 5"
+	desc = "Swipe at a target area, dealing damage to heal yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 15 brute/burn/poison while dead ones heal for 20 and get butchered. People and cyborgs hit will heal for 5"
 	action_background_icon_state = "bg_demon"
 	action_icon = 'icons/mob/actions/actions_items.dmi'
 	action_icon_state = "cuff"
