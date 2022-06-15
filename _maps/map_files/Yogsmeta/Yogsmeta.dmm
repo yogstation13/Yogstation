@@ -12704,11 +12704,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"aDU" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/tinted/fulltile,
-/turf/open/floor/plating,
-/area/security/courtroom)
 "aDV" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/dark,
@@ -112066,7 +112061,7 @@ aHD
 aHD
 aHD
 aHD
-aDU
+aTk
 aRX
 aTk
 aUF
