@@ -39,7 +39,7 @@
               				and a summary blood counter, which is obtained by you attacking humans AND by the blood ritual. This pool is used to heal you.\
               				While not near the orb or your target you are slower, and will lose health. If you successfully kill 8 targets, you will ascend, unbinding you from the orb forever!</B>"
 	del_on_death = 1
-	deathmessage = "collapses, as it's bound with the mortal plain weakens!"
+	deathmessage = "collapses, as its bond with the mortal plain dissipates!"
 	var/obj/structure/bloody_orb/orb
 	var/mob/living/carbon/human/prey
 	var/mob/living/last_target
