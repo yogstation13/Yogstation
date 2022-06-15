@@ -60,7 +60,7 @@
 			start_recharge()
 			return
 		if(!istype(demon.prey, /mob/living/carbon/human))
-			to_chat(user,span_warning("Your target isn't no more a human, so you aren't no more interested in it. Get a new one."))
+			to_chat(user,span_warning("Your target is no longer a person, so you've lost interest in hunting them. Get a new target."))
 			demon.complete_assasination(killed = FALSE)
 			start_recharge()
 			return
