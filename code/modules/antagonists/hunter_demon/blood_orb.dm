@@ -54,7 +54,7 @@
 		else
 			if(!(NOBLOOD in H.dna.species.species_traits))
 				visible_message(span_danger("[H] begins to spill his blood on the [src]!"), \
-					span_userdanger("You begin to spill your blood on the [src], performing a bound rite!"))
+					span_userdanger("You begin to spill your blood on the [src], performing a binding rite!"))
 			else 
 				visible_message(span_danger("[H] begins to stab himself with [I]!"), \
 					span_userdanger("You begin to mutilate yourself, performing a binding rite!"))
