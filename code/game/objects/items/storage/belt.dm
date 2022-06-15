@@ -249,6 +249,7 @@
 		/obj/item/storage/box/rubbershot,
 		/obj/item/storage/box/lethalshot,
 		/obj/item/storage/box/breacherslug,
+		/obj/item/storage/box/beanbag,
 		/obj/item/reagent_containers/food/snacks/donut,
 		/obj/item/kitchen/knife/combat,
 		/obj/item/flashlight/seclite,
