@@ -306,8 +306,8 @@
 /obj/item/lesser_necromancy_staff
 	name = "lesser necromancy staff"
 	desc = "An artifact that allows to summon dead on your side."
-	icon = 'icons/obj/lavaland/elite_trophies.dmi'
-	icon_state = "hope"
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "necromancy_wand"  ///Hope i didn't forgot how i named the icon file
 	resistance_flags = FIRE_PROOF
 	var/mob/living/simple_animal/hostile/skeleton/templar/lesser/deadinside 
 	var/time_sussed
