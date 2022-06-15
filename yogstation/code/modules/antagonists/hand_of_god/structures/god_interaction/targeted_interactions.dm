@@ -7,11 +7,11 @@
 	cooldown = 7 MINUTES
 
 /datum/hog_god_interaction/targeted/recall/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
-	if(!iscarbon(target))
+	if(!istype(target, /mob/living))
 		to_chat(user, span_warning("Not a valid target!"))
 		qdel(src)
 		return
-	var/mob/living/carbon/dude = target
+	var/mob/living/dude = target
 	if(!IS_HOG_CULTIST(dude))
 		to_chat(user, span_warning("You can target only your servants!"))
 		qdel(src)
@@ -33,16 +33,16 @@
 
 /datum/hog_god_interaction/targeted/purge
 	name = "Purge"
-	description = "Removes heretical reagents from your servant's body. Usefull to prevent deconvertion."
+	description = "Removes heretical reagents from your servant's body. Usefull to prevent deconvertion." ///Removes holy, unholy water and eldritch essence
 	cost = 75
 	cooldown = 3 MINUTES
 
 /datum/hog_god_interaction/targeted/purge/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
-	if(!istype(target, /mob/living))
+	if(!iscarbon(target))
 		to_chat(user, span_warning("Not a valid target!"))
 		qdel(src)
 		return
-	var/mob/living/dude = target
+	var/mob/living/carbon/dude = target
 	if(!IS_HOG_CULTIST(dude))
 		to_chat(user, span_warning("You can target only your servants!"))
 		qdel(src)
