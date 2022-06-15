@@ -33,7 +33,7 @@
 	see_in_dark = 4
 	var/playstyle_string = "<span class='big bold'>You are a hunter demon,</span><B> a terrible creature from another realm.  \
 							You may use the \"Jaunt\" ability to disappear from reality and move to almost any place! \
-							You can return to the mortal plane only near the bloody orb that summonned you or near your target. \
+							You can return to the mortal plane only when near the orb that you were summoned from, or near your hunter target. \
 							Your target is chosen in the bloody orb by a human, and if it isn't protected with a blood ritual you can also pick a target for yourself! \
              	 			Your orb has two blood counters: one that stands for blood, obtained through the blood ritual(while your or has such you can't choose a target yourelf),\
               				and a summary blood counter, that is obtained by attacking humans AND by the blood ritual. It is used to heal you.\
