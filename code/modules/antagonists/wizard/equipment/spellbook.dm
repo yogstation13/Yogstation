@@ -123,6 +123,10 @@
 	name = "Disintegrate"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
 
+/datum/spellbook_entry/pacify
+	name = "Pacify"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/pacify
+
 /datum/spellbook_entry/disabletech
 	name = "Disable Tech"
 	spell_type = /obj/effect/proc_holder/spell/targeted/emplosion/disable_tech
@@ -326,12 +330,6 @@
 	name = "Staff of the Locker"
 	desc = "A staff that shoots lockers. It eats anyone it hits on its way, leaving a welded locker with your victims behind."
 	item_path = /obj/item/gun/magic/staff/locker
-	category = "Defensive"
-
-/datum/spellbook_entry/item/scryingorb
-	name = "Scrying Orb"
-	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
-	item_path = /obj/item/scrying
 	category = "Defensive"
 
 /datum/spellbook_entry/item/soulstones

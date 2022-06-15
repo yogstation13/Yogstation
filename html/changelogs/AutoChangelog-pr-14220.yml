@@ -1,6 +1,0 @@
-author: " Melbert, Chubbygummibear"
-delete-after: true 
-changes: 
-  - rscadd: "Limbgrower design disks. Science now has a new tech node after advanced biotechnology, \"XenoOrgan Biology\" which allows medbay to print new designs for the limbgrower, including various felinid, lizard, plasmaman, polysmorphs and ethereal organs."
-  - rscadd: "TGUI Limbgrower"
-  - tweak: "Refactored the limbgrower to modernize the code and allow for more types of designs."

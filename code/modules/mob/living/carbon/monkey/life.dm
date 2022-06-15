@@ -1,12 +1,8 @@
 
-
-/mob/living/carbon/monkey
-
-
 /mob/living/carbon/monkey/Life()
 	set invisibility = 0
 
-	if (notransform)
+	if(notransform)
 		return
 
 	if(..() && !IS_IN_STASIS(src))

@@ -2,17 +2,35 @@
 
 /datum/surgery_step
 	var/name
-	var/list/implements = list()	//format is path = probability of success. alternatively
-	var/implement_type = null		//the current type of implement used. This has to be stored, as the actual typepath of the tool may not match the list type.
-	var/accept_hand = FALSE				//does the surgery step require an open hand? If true, ignores implements. Compatible with accept_any_item.
-	var/accept_any_item = FALSE			//does the surgery step accept any item? If true, ignores implements. Compatible with require_hand.
-	var/time = 10					//how long does the step take?
-	var/repeatable = FALSE				//can this step be repeated? Make shure it isn't last step, or it used in surgery with `can_cancel = 1`. Or surgion will be stuck in the loop
-	var/list/chems_needed = list()  //list of chems needed to complete the step. Even on success, the step will have no effect if there aren't the chems required in the mob.
-	var/require_all_chems = TRUE    //any on the list or all on the list?
-	var/list/ouchie_modifying_chems = list(/datum/reagent/consumable/ethanol/painkiller = 0.5, /datum/reagent/consumable/ethanol/inocybeshine = 0.5, /datum/reagent/medicine/morphine = 0.5) //chems that will modify the chance for fuckups while operating on conscious patients, stacks.
-	var/fuckup_damage = 10			//base damage dealt on a surgery being done without anesthetics on SURGERY_FUCKUP_CHANCE percent chance
-	var/fuckup_damage_type = BRUTE	//damage type fuckup_damage is dealt as
+	/// What tools can be used in this surgery, format is path = probability of success.
+	var/list/implements = list()	
+	/// The current type of implement used. This has to be stored, as the actual typepath of the tool may not match the list type.
+	var/implement_type = null		
+	/// Does the surgery step require an open hand? If true, ignores implements. Compatible with accept_any_item.
+	var/accept_hand = FALSE				
+	/// Does the surgery step accept any item? If true, ignores implements. Compatible with require_hand.
+	var/accept_any_item = FALSE			
+	/// How long does the step take?
+	var/time = 1 SECONDS				
+	/// Can this step be repeated? Make shure it isn't last step, or it used in surgery with `can_cancel = 1`. Or surgion will be stuck in the loop
+	var/repeatable = FALSE				
+	/// List of chems needed to complete the step. Even on success, the step will have no effect if there aren't the chems required in the mob. Use *require_all_chems* to specify if its any on the list or all on the list
+	var/list/chems_needed = list()  
+	/// If *chems_needed* requires all chems in the list or one chem in the list.
+	var/require_all_chems = TRUE    
+	/// Chems that will modify the chance for fuckups while operating on conscious patients, stacks.
+	var/list/ouchie_modifying_chems = list(/datum/reagent/consumable/ethanol/painkiller = 0.5, /datum/reagent/consumable/ethanol/inocybeshine = 0.5, /datum/reagent/medicine/morphine = 0.5) 
+	/// Base damage dealt on a surgery being done without anesthetics on SURGERY_FUCKUP_CHANCE percent chance
+	var/fuckup_damage = 10			
+	/// Damage type fuckup_damage is dealt as
+	var/fuckup_damage_type = BRUTE
+
+	/// Sound played when the step is started
+	var/preop_sound 
+	/// Sound played if the step succeeded
+	var/success_sound 
+	/// Sound played if the step fails
+	var/failure_sound 
 
 /datum/surgery_step/proc/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	var/success = FALSE
@@ -76,8 +94,9 @@
 	var/user_speed_mod = 1
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
-		surgery.step_in_progress = 0
-		return
+		surgery.step_in_progress = FALSE
+		return FALSE
+	play_preop_sound(user, target, target_zone, tool, surgery)
 
 	if(tool)
 		tool_speed_mod = tool.toolspeed
@@ -95,9 +114,11 @@
 		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
 	 tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
+				play_success_sound(user, target, target_zone, tool, surgery)
 				advance = TRUE
 		else
 			if(failure(user, target, target_zone, tool, surgery))
+				play_failure_sound(user, target, target_zone, tool, surgery)
 				advance = TRUE
 		if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
 			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON)) //borgs and abductors are immune to this
@@ -118,17 +139,56 @@
 		"[user] begins to perform surgery on [target].",
 		"[user] begins to perform surgery on [target].")
 
+/datum/surgery_step/proc/play_preop_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	if(!preop_sound)
+		return
+	var/sound_file_use
+	if(islist(preop_sound))	
+		for(var/typepath in preop_sound)//iterate and assign subtype to a list, works best if list is arranged from subtype first and parent last
+			if(istype(tool, typepath))
+				sound_file_use = preop_sound[typepath]	
+				break	
+	else
+		sound_file_use = preop_sound
+	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
+
 /datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You succeed."),
 		"[user] succeeds!",
 		"[user] finishes.")
 	return TRUE
 
+/datum/surgery_step/proc/play_success_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	if(!success_sound)
+		return
+	var/sound_file_use
+	if(islist(success_sound ))	
+		for(var/typepath in success_sound )//iterate and assign subtype to a list, works best if list is arranged from subtype first and parent last
+			if(istype(tool, typepath))
+				sound_file_use = success_sound [typepath]	
+				break	
+	else
+		sound_file_use = success_sound
+	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
+
 /datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_warning("You screw up!"),
 		span_warning("[user] screws up!"),
 		"[user] finishes.", TRUE) //By default the patient will notice if the wrong thing has been cut
 	return FALSE
+
+/datum/surgery_step/proc/play_failure_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	if(!failure_sound)
+		return
+	var/sound_file_use
+	if(islist(failure_sound))	
+		for(var/typepath in failure_sound)//iterate and assign subtype to a list, works best if list is arranged from subtype first and parent last
+			if(istype(tool, typepath))
+				sound_file_use = failure_sound[typepath]	
+				break	
+	else
+		sound_file_use = failure_sound
+	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return TRUE

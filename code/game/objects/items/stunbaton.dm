@@ -15,7 +15,8 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 
 	var/cooldown_check = 0
-
+	/// if the baton is on cooldown from being  dropped
+	var/dropcheck = FALSE
 	///how long we can't use this baton for after slapping someone with it. Does not account for melee attack cooldown (default of 0.8 seconds).
 	var/cooldown = 1.2 SECONDS
 	///how long a clown stuns themself for, or someone is stunned for if they are hit to >90 stamina damage
@@ -34,6 +35,7 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	var/thrown = FALSE
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -44,11 +46,13 @@
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
+	status = FALSE
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type,/obj/item/stock_parts/cell))
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, .proc/throwbaton)
 	update_icon()
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -57,6 +61,22 @@
 	//Only mob/living types have stun handling
 	if(status && prob(throw_hit_chance) && iscarbon(hit_atom))
 		baton_stun(hit_atom)
+
+/obj/item/melee/baton/proc/throwbaton()
+	thrown = TRUE
+
+/obj/item/melee/baton/dropped(mob/user, silent)
+	if(loc != user.loc)
+		return
+	. = ..()
+	if(!thrown)
+		dropcheck = TRUE
+		status = FALSE
+		visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
+		addtimer(VARSET_CALLBACK(src, dropcheck, FALSE), 8 SECONDS)
+		update_icon()
+	else
+		thrown = FALSE
 
 /obj/item/melee/baton/loaded //this one starts with a cell pre-installed.
 	preload_cell_type = /obj/item/stock_parts/cell/high
@@ -124,6 +144,9 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
+	if(dropcheck)
+		to_chat(user, "[src]'s emergency shutoff is still active!")
+		return
 	if(cell && cell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
@@ -206,7 +229,7 @@
 
 	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
 
-	var/obj/item/bodypart/affecting = L.get_bodypart(user.zone_selected)
+	var/obj/item/bodypart/affecting = L.get_bodypart(user? user.zone_selected : BODY_ZONE_CHEST)
 	var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
 	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
@@ -241,6 +264,14 @@
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
+		var/datum/mind/M = H.mind
+		if(M && (M.assigned_role == "Assistant" || M.assigned_role == "Clown") && user.a_intent == INTENT_HARM)
+			var/amount_given = 1
+			if(M.assigned_role == "Clown")
+				amount_given = 5
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SEC)
+			if(D)
+				D.adjust_money(amount_given)
 		H.forcesay(GLOB.hit_appends)
 
 	cooldown_check = world.time + cooldown

@@ -1,7 +1,7 @@
 /obj/item/ammo_casing/syringegun
 	name = "syringe gun spring"
 	desc = "A high-power spring that throws syringes."
-	projectile_type = /obj/item/projectile/bullet/dart/syringe
+	projectile_type = /obj/item/projectile/bullet/reusable/dart/syringe
 	firing_effect_type = null
 
 /obj/item/ammo_casing/syringegun/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
@@ -9,23 +9,21 @@
 		return
 	if(istype(loc, /obj/item/gun/syringe))
 		var/obj/item/gun/syringe/SG = loc
+		var/obj/item/projectile/bullet/reusable/dart/D = BB
 		if(!SG.syringes.len)
 			return
 
 		var/obj/item/reagent_containers/syringe/S = SG.syringes[1]
 
 		S.reagents.trans_to(BB, S.reagents.total_volume, transfered_by = user)
-		BB.name = S.name
-		var/obj/item/projectile/bullet/dart/D = BB
-		D.piercing = S.proj_piercing
+		D.add_dart(S)
 		SG.syringes.Remove(S)
-		qdel(S)
 	..()
 
 /obj/item/ammo_casing/chemgun
 	name = "dart synthesiser"
 	desc = "A high-power spring, linked to an energy-based dart synthesiser."
-	projectile_type = /obj/item/projectile/bullet/dart
+	projectile_type = /obj/item/projectile/bullet/reusable/dart
 	firing_effect_type = null
 
 /obj/item/ammo_casing/chemgun/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
@@ -35,8 +33,11 @@
 		var/obj/item/gun/chem/CG = loc
 		if(CG.syringes_left <= 0)
 			return
-		CG.reagents.trans_to(BB, 15, transfered_by = user)
-		BB.name = "chemical dart"
+		var/obj/item/projectile/bullet/reusable/dart/D = BB
+		var/obj/item/reagent_containers/syringe/dart/temp/new_dart = new(D)
+
+		CG.reagents.trans_to(new_dart, 15, transfered_by = user)
+		D.add_dart(new_dart)
 		CG.syringes_left--
 	..()
 
