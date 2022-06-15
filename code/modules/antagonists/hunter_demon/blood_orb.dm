@@ -159,7 +159,7 @@
 		return
 	var/datum/gas_mixture/env = turfo.return_air()
 	if(!env)
-		to_chat(user,span_warning("You can summon the orb only at a room that has air!"))
+		to_chat(user,span_warning("You can only summon the orb in a room that has air!"))
 		return
 	to_chat(user,span_warning("You begin activating the orb!"))
 	if(do_after(user, 30, target = turfo))
