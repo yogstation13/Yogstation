@@ -182,7 +182,6 @@
 
 /obj/item/gun/ballistic/minigunosprey/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
-	switch(select)
 		if(!select)
 			select = TRUE
 			burst_size = initial(burst_size)
