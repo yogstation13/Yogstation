@@ -67,7 +67,7 @@
 	config_filename = filename
 
 	CHECK_EXISTS("map_name")
-	map_name = json["map_name"]
+	map_name = "YogStation"
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
 
