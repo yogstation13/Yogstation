@@ -114,7 +114,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
 	burst_size = 5
-	var/select = 1
+	var/select = TRUE
 	automatic = FALSE
 	fire_delay = 1
 	recoil = 0.5
