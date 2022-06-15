@@ -105,7 +105,7 @@
 	if(target)
 		demon.prey = target
 		to_chat(dude,span_warning("New target for the demon is selected!"))
-		to_chat(demon,span_warning("Your new target has been selected, go and kill [target.real_name]!"))
+		to_chat(demon,span_warning("Your new target has been selected, hunt and kill [target.real_name]!"))
 		return TRUE
 	else
 		to_chat(dude,span_warning("A target could not be found for the demon."))
