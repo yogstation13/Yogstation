@@ -284,7 +284,7 @@
 	name = "prophet's guard"
 	desc = "A trophy, that attracts unknown powers to guard you."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "prophets_guard"
+	icon_state = "prophets_talisman"
 	denied_type = /obj/item/crusher_trophy/prophets_guard
 	bonus_value = 25
 	var/obj/structure/guardian_mirror/mirror
