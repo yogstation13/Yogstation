@@ -119,7 +119,7 @@
 	else
 		. += "<span class='notice'>This orb looks like it contains pure madness inside.</span>"
 	if(user == master)
-		. += "<span class='notice'>There is [sacrificed_blood]/[BLOODORB_MAXBLOOD] blood supporting the bounding rite.</span>"
+		. += "<span class='notice'>There is [sacrificed_blood]/[BLOODORB_MAXBLOOD] blood supporting the binding rite.</span>"
 	if(user == master || user == demon)
 		. += "<span class='notice'>You see in it a blurry image of [target].</span>"
 
