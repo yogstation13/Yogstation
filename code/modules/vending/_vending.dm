@@ -171,6 +171,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
   * * TRUE - all other cases
   */
 /obj/machinery/vending/Initialize(mapload)
+	if(tilted)
+		src.tilt() // We don't need to set tilted to false before tilt because it will handle it.
 	var/build_inv = FALSE
 	if(!refill_canister)
 		circuit = null
