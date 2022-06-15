@@ -283,9 +283,9 @@
 /obj/item/crusher_trophy/prophets_guard
 	name = "prophet's guard"
 	desc = "A trophy, that attracts unknown powers to guard you."
-	icon = 'icons/obj/lavaland/elite_trophies.dmi'
-	icon_state = "broodmother_tongue"
-	denied_type = /obj/item/crusher_trophy/broodmother_tongue
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "prophets_guard"
+	denied_type = /obj/item/crusher_trophy/prophets_guard
 	bonus_value = 25
 	var/obj/structure/guardian_mirror/mirror
 	var/max_dist = 8
