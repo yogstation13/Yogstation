@@ -184,15 +184,13 @@
 /obj/item/gun/ballistic/minigunosprey/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
 	switch(select)
-		if(0)
-			select = 1
+		if(!select)
+			select = TRUE
 			burst_size = initial(burst_size)
-			fire_delay = initial(fire_delay)
 			to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
-		if(1)
-			select = 0
+		else
+			select = FALSE
 			burst_size = 10
-			fire_delay = initial(fire_delay)
 			to_chat(user, span_notice("You switch to [burst_size]-rnd burst. BRRRRRRRT."))
-	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	return
