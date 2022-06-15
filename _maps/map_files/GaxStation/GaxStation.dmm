@@ -1524,22 +1524,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/maintenance/central)
-"aNq" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = 1;
-	pixel_y = 9
-	},
-/obj/item/folder/white,
-/obj/item/stamp/rd{
-	pixel_x = 3;
-	pixel_y = -2
-	},
-/obj/machinery/keycard_auth{
-	pixel_x = 24
-	},
-/turf/open/floor/carpet/purple,
-/area/crew_quarters/heads/hor)
 "aNy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -12257,6 +12241,17 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"gxc" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology West";
+	dir = 4;
+	network = list("ss13","rd")
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "gxA" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -26241,15 +26236,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"ohu" = (
-/obj/structure/closet/l3closet/scientist,
-/obj/item/extinguisher,
-/obj/item/clothing/glasses/science,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "ohv" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -37363,6 +37349,20 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
+"uHx" = (
+/obj/structure/closet/l3closet/scientist,
+/obj/item/extinguisher,
+/obj/item/clothing/glasses/science,
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology Northwest";
+	dir = 4;
+	network = list("ss13","rd")
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "uHB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
@@ -39076,6 +39076,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"vxi" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology East";
+	dir = 8;
+	network = list("ss13","rd")
+	},
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "vxj" = (
 /obj/machinery/door/airlock/research{
 	id_tag = "RoboticsFoyer";
@@ -39663,6 +39674,29 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"vLE" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/item/folder/white{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/stamp/rd{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/machinery/keycard_auth{
+	pixel_x = 24
+	},
+/obj/item/paicard{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/crew_quarters/heads/hor)
 "vLG" = (
 /obj/machinery/porta_turret/ai{
 	scan_range = 5
@@ -81858,7 +81892,7 @@ vIw
 oiB
 imc
 vIw
-oiB
+gxc
 imc
 vIw
 oiB
@@ -82366,7 +82400,7 @@ rBC
 tiB
 uzX
 bUu
-ohu
+uHx
 uzX
 vIw
 vIw
@@ -83901,7 +83935,7 @@ uIj
 pjk
 cCy
 roA
-aNq
+vLE
 bxI
 tAW
 nDO
@@ -84942,7 +84976,7 @@ vIw
 uli
 imc
 vIw
-uli
+vxi
 imc
 vIw
 uli

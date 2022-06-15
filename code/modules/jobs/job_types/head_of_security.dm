@@ -69,6 +69,8 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun/hos, /obj/item/stamp/hos)
 
+	pda_slot = SLOT_L_STORE
+
 /datum/outfit/job/hos/hardsuit
 	name = "Head of Security (Hardsuit)"
 
