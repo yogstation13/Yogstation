@@ -75,7 +75,7 @@
 		speed = 1
 		adjustFireLoss(10)
 		if(prob(25))
-			to_chat(src, "<span class='warning'>You are not near your orb or your target! You start taking damage and move more slowly!</span>")
+			to_chat(src, "<span class='warning'>You are not near your orb, or your target! You will move more slowly and take continuous damage until you are back in range!</span>")
 		else
 			speed = -0.15
 		
