@@ -1,0 +1,5 @@
+author: "GalacticRuler"
+delete-after: true 
+changes: 
+  - rscadd: "Added one new 3x3 maint ruin themed around vending machines"
+  - bugfix: "Corrected missing spaces in station.dm"
