@@ -41,7 +41,7 @@
 	to_chat(target, span_notice("You feel yourself get pulled..."))
 	to_chat(src, span_notice("You start recalling [target]..."))
 	sleep(7 SECONDS) ///Sorry, sleeping is necessary here for some checks
-	if(!istype(target, mob/living))
+	if(!istype(target, /mob/living))
 		return	FALSE
 	if(!IS_HOG_CULTIST(target))
 		return	FALSE
