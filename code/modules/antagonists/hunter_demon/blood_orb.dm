@@ -70,7 +70,7 @@
 				handle_bloodchange()
 				if(target == H)
 					to_chat(H, "<span class='warning'>You feel your blood boiling!</span>")
-					to_chat(demon, "<span class='warning'>Your target has tried to perform a bounding ritual near your orb!</span>")
+					to_chat(demon, "<span class='warning'>Your target has tried to perform a binding rite near your orb!</span>")
 					H.Paralyze(60)
 					return
 				if(master != H)
