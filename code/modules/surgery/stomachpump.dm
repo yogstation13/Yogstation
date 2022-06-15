@@ -47,7 +47,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/target_human = target
 		display_results(user, target, span_warning("You screw up, brusing [target_human]'s chest!"),
-			span_warning("[user] screws up, brusing [target_human]'s chest!"),
+			span_warning("[user] screws up, brusing [target_human]'s abdomen!"),
 			span_warning("[user] screws up!"))
 		target_human.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5)
 		target_human.adjustBruteLoss(5)
