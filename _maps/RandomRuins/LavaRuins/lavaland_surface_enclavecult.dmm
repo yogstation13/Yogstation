@@ -33,6 +33,11 @@
 /obj/structure/window/plastitanium,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"bN" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "ct" = (
 /mob/living/simple_animal/hostile/construct/wraith/noncult,
 /turf/open/floor/plasteel/dark/lavaland,
@@ -49,6 +54,10 @@
 "fe" = (
 /turf/open/floor/engine/cult,
 /area/ruin/unpowered)
+"fA" = (
+/obj/effect/forcefield,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "fL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/power/tesla_coil,
@@ -68,6 +77,11 @@
 /obj/effect/rune,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"gq" = (
+/obj/effect/forcefield,
+/obj/effect/forcefield,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "hB" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -85,16 +99,24 @@
 /obj/machinery/light/broken,
 /turf/open/floor/engine/cult,
 /area/ruin/unpowered)
-"mv" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light/broken,
-/turf/open/floor/plasteel/dark/lavaland,
+"lh" = (
+/obj/structure/table,
+/obj/item/crowbar,
+/turf/open/floor/engine/cult,
 /area/ruin/unpowered)
+"lt" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "nt" = (
 /mob/living/simple_animal/hostile/construct/builder/noncult,
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"oc" = (
+/obj/machinery/field/generator,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "oq" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark/lavaland,
@@ -103,6 +125,11 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"pF" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/mob/living/simple_animal/hostile/construct/builder/hostile,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "qs" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plasteel/dark/lavaland,
@@ -120,13 +147,35 @@
 /obj/effect/rune,
 /turf/open/floor/engine/cult,
 /area/ruin/unpowered)
+"uL" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "vt" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"vJ" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/structure/chair/office,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"wa" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/black,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"wi" = (
+/obj/item/ammo_casing/shotgun/pulseslug,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
 "wq" = (
 /turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
+"wE" = (
+/obj/item/chair/stool,
+/turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "wH" = (
 /obj/machinery/door/airlock/highsecurity,
@@ -134,6 +183,11 @@
 /area/ruin/unpowered)
 "wS" = (
 /obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"wU" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/machinery/computer/camera_advanced,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "yg" = (
@@ -153,6 +207,22 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/cult,
 /area/ruin/unpowered)
+"zL" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/engine/cult,
+/area/ruin/unpowered)
+"Av" = (
+/mob/living/simple_animal/hostile/construct/armored,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"AC" = (
+/obj/structure/rack,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/turf/open/floor/engine/cult,
+/area/ruin/unpowered)
 "AE" = (
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/plasteel/dark/lavaland,
@@ -162,14 +232,32 @@
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"BA" = (
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/simple_animal/hostile/construct/armored,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "CP" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"Do" = (
+/obj/structure/table,
+/obj/item/electropack,
+/turf/open/floor/engine/cult,
+/area/ruin/unpowered)
+"DG" = (
+/obj/item/ammo_casing/spent,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "DS" = (
 /obj/structure/destructible/cult/pylon,
 /turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"Eb" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel/cult,
 /area/ruin/unpowered)
 "HF" = (
 /obj/effect/rune,
@@ -177,6 +265,11 @@
 /area/ruin/unpowered)
 "HL" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"Jh" = (
+/obj/machinery/light/broken,
+/obj/structure/closet/ammunitionlocker,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "JG" = (
@@ -197,6 +290,11 @@
 /obj/item/ammo_casing/shotgun/laserbuckshot,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"NB" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/black,
+/turf/open/floor/plasteel/cult,
+/area/ruin/unpowered)
 "Oo" = (
 /obj/effect/mob_spawn/human/corpse/charredskeleton,
 /turf/open/lava/smooth/lava_land_surface,
@@ -205,6 +303,10 @@
 /obj/machinery/door/airlock/vault{
 	name = "Armory"
 	},
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"PP" = (
+/obj/item/ammo_casing/shotgun/uraniumpenetrator,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "QO" = (
@@ -226,14 +328,19 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/engine/cult,
 /area/ruin/unpowered)
-"VN" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/cult,
+"UO" = (
+/obj/structure/table,
+/obj/item/ammo_casing/shotgun/pulseslug,
+/turf/open/floor/engine/cult,
 /area/ruin/unpowered)
 "Wd" = (
 /obj/item/soulstone,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"Wu" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "WF" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plasteel/cult,
@@ -242,13 +349,19 @@
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
-"WI" = (
-/obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/floor/plasteel/cult,
+"Yl" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "ZB" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"ZT" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light/broken,
+/obj/item/lazarus_injector,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 au
@@ -553,7 +666,7 @@ az
 ae
 az
 az
-JG
+Jh
 aP
 ZB
 Uc
@@ -621,9 +734,9 @@ aP
 aP
 Ly
 az
-az
-fe
-fe
+DG
+zL
+AC
 aP
 ZB
 ZB
@@ -650,19 +763,19 @@ yU
 aP
 HF
 wq
-az
-az
+uL
+wE
 ys
-az
+DG
 wq
-fe
+AC
 aP
 Uc
 Uc
 ZB
+hB
 ZB
-ZB
-ZB
+oc
 ZB
 ZB
 "}
@@ -682,11 +795,11 @@ fe
 aX
 az
 ys
-fe
-az
+Do
+Yl
 gg
 az
-wq
+wi
 jb
 aP
 Uc
@@ -694,7 +807,7 @@ Uc
 Uc
 ZB
 ZB
-ZB
+BA
 ZB
 ZB
 "}
@@ -709,15 +822,15 @@ Uc
 au
 aP
 HL
-WI
+vJ
 az
 aX
-wq
-az
-fe
-fe
-wq
-az
+wi
+wE
+lh
+UO
+Eb
+DG
 Rx
 az
 aP
@@ -728,7 +841,7 @@ Uc
 ZB
 ZB
 ZB
-ZB
+lt
 "}
 (16,1,1) = {"
 au
@@ -740,14 +853,14 @@ Uc
 Uc
 Uc
 aP
-qs
+wU
 fe
 ga
 aX
 az
 pi
 DS
-az
+uL
 JG
 aP
 AE
@@ -759,7 +872,7 @@ Uc
 ZB
 ZB
 ZB
-ZB
+hB
 ZB
 "}
 (17,1,1) = {"
@@ -781,7 +894,7 @@ fZ
 wS
 ct
 az
-aX
+az
 zk
 az
 aP
@@ -789,8 +902,8 @@ ZB
 ZB
 Uc
 ZB
-ZB
-ZB
+Wu
+pF
 ZB
 ZB
 "}
@@ -817,13 +930,13 @@ aX
 Uu
 wS
 wH
-ZB
+Wu
 ZB
 Oo
-ZB
-ZB
-ZB
-ZB
+Wu
+fA
+fA
+fA
 ZB
 "}
 (19,1,1) = {"
@@ -838,7 +951,7 @@ au
 aP
 fL
 vt
-mv
+ZT
 aP
 fe
 uI
@@ -847,15 +960,15 @@ oq
 fL
 aS
 Bw
-az
+PP
 aP
 hB
+Wu
+bN
 ZB
-ZB
-hB
-ZB
-ZB
-ZB
+fA
+oc
+fA
 ZB
 "}
 (20,1,1) = {"
@@ -885,9 +998,9 @@ ZB
 ZB
 ZB
 ZB
-ZB
-ZB
-ZB
+fA
+fA
+fA
 ZB
 "}
 (21,1,1) = {"
@@ -904,8 +1017,8 @@ Uc
 Uc
 Uc
 aP
-VN
-oq
+NB
+wa
 aP
 Uc
 Uc
@@ -914,12 +1027,12 @@ ZB
 ZB
 ZB
 ZB
-hB
+Av
 ZB
 ZB
-ZB
-ZB
-ZB
+fA
+fA
+fA
 ZB
 "}
 (22,1,1) = {"
@@ -949,9 +1062,9 @@ ZB
 ZB
 ZB
 ZB
-ZB
-ZB
-ZB
+fA
+gq
+fA
 ZB
 "}
 (23,1,1) = {"
@@ -981,9 +1094,9 @@ ZB
 ZB
 ZB
 ZB
-ZB
-ZB
-ZB
+fA
+fA
+fA
 ZB
 "}
 (24,1,1) = {"
@@ -1009,13 +1122,13 @@ Uc
 Uc
 Uc
 ZB
-ZB
-ZB
-ZB
-ZB
-ZB
-ZB
-ZB
+fA
+fA
+fA
+fA
+fA
+gq
+fA
 ZB
 "}
 (25,1,1) = {"
@@ -1039,15 +1152,15 @@ Uc
 Uc
 Uc
 Uc
-au
-au
-ZB
-ZB
-ZB
-ZB
-ZB
-ZB
-ZB
+Uc
+Uc
+fA
+oc
+fA
+fA
+gq
+oc
+fA
 ZB
 "}
 (26,1,1) = {"
@@ -1073,13 +1186,13 @@ Uc
 Uc
 au
 au
-ZB
-ZB
-ZB
-ZB
-ZB
-ZB
-ZB
+fA
+fA
+fA
+fA
+fA
+fA
+fA
 ZB
 "}
 (27,1,1) = {"
