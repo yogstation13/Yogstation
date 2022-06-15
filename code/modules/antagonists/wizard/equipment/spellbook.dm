@@ -428,7 +428,7 @@
 	desc = "A kit, containing a blood orb and a ritual dagger. You need to activate the blood orb on the station z-level, in a place with air.\
 	You need to spill your blood on the orb when it is activated to summon a demon. Then you will need to periodically choose targets for the demon to hunt,\
 	and spill additional blood on the orb, to maintain your control over the demon. \
-	To spill your blood on the orb you need to click it with a knife while not on harm intent, and to choose a target you need to click it with your hand."
+	To spill your blood on the orb, you need to click it with a knife while not on harm intent. To choose a target you need to click it with your empty hand."
 	item_path = /obj/item/storage/box/syndie_kit/hunter_demon_kit
 	cost = 2
 	limit = 1
