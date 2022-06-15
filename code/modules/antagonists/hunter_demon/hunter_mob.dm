@@ -203,7 +203,7 @@
 		if(killed)
 			to_chat(orb.master, "<span class='warning'>The demon has killed its target. Go and choose a new one!</span>")
 		else
-			to_chat(orb.master, "<span class='warning'>The demon can't reach your target, go and choose a new one.</span>")
+			to_chat(orb.master, "<span class='warning'>The demon is unable to reach the set target. Go and choose a new one!</span>")
 	target = null
 	orb.target = null
 	return
