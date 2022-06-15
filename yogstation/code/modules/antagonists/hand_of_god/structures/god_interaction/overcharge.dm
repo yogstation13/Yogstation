@@ -10,10 +10,14 @@
 	if(owner.weapon.overcharged) ///Only prismatic lance weapon can be overcharged
 		to_chat(user, span_warning("This building is alredy overcharged!"))
 		return
-	if(owner.weapon && istype(owner.weapon, /obj/item/hog_item/prismatic_lance/guardian))
-		owner.weapon.overcharged = TRUE
-		owner.weapon.coldown = 1 SECONDS //Enjoy 15 DPS
-		addtimer(CALLBACK(src, .proc/discharge), OVERCHARGE_DURATION)
+	if(owner.weapon)
+		if(istype(owner.weapon, /obj/item/hog_item/prismatic_lance/guardian))
+			owner.weapon.overcharged = TRUE
+			owner.weapon.coldown = 1 SECONDS //Enjoy 15 DPS
+			addtimer(CALLBACK(src, .proc/discharge), OVERCHARGE_DURATION)
+		else
+			to_chat(user, span_warning("This building is alredy overcharged!"))
+			return		
 	if(!owner.weapon)
 		owner.weapon = new /obj/item/hog_item/prismatic_lance(src)
 		owner.weapon.cult = owner.cult 
