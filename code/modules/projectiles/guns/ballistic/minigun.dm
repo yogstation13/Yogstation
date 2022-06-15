@@ -178,8 +178,7 @@
 /obj/item/gun/ballistic/minigunosprey/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
 		burst_select()
-	else
-		..()
+	. = ..()
 
 /obj/item/gun/ballistic/minigunosprey/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
