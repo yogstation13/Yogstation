@@ -571,3 +571,10 @@
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/sinew = 1)
 	category = CAT_TOOLS
+
+/datum/crafting_recipe/bone_whetstone
+	name = "Bone Whetstone"
+	result = /obj/item/sharpener/bone
+	time = 6 SECONDS
+	reqs = list(/obj/item/stack/sheet/bone = 10)
+	category = CAT_PRIMAL

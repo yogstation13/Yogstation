@@ -10,6 +10,14 @@
 	var/prefix = "sharpened"
 	var/requires_sharpness = 1
 
+/obj/item/sharpener/bone
+	name = "Bone whetstone"
+	icon = 'yogstation/icons/obj/kitchen.dmi'
+	icon_state = "bonesharpener"
+	desc = "A slab of bone used to sharpen tribal weaponry."
+	force = 2
+	var/fauna_bonus = 35
+	prefix = "bone-sharpened"
 
 /obj/item/sharpener/attackby(obj/item/I, mob/user, params)
 	if(used)
