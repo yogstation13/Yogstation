@@ -199,9 +199,9 @@
 
 /obj/item/crusher_trophy/pandoraswraith
 	name = "pandora's wraith"
-	desc = "A weapon, used by Pandora."
-	icon = 'icons/obj/lavaland/elite_trophies.dmi'
-	icon_state = "legionnaire_spine" ///E
+	desc = "A shining trophy, extracted from Pandora."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "pandoras_wraith" 
 	denied_type = /obj/item/crusher_trophy/pandoraswraith
 	bonus_value = 20
 
