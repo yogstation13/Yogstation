@@ -12,7 +12,7 @@
 	var/charging_amount = 3
 	var/item/hog_item/book/tome = null
 	
-/obj/effect/proc_holder/hog/prepare(obj/item/hog_item/book/book, mob/living/user, datum/antagonist/hog/hog)
+/obj/effect/proc_holder/hog/book_charge/prepare(obj/item/hog_item/book/book, mob/living/user, datum/antagonist/hog/hog)
 	. = ..()
 	book.charges += charging_amount /// A bit stupid way to do this, but just cry about it
 	if(book.charges > 4)
