@@ -266,6 +266,7 @@
 	name = "nar'sien bola"
 	desc = "A strong bola, bound with dark magic that allows it to pass harmlessly through Nar'sien cultists. Throw it to trip and slow your victim."
 	icon_state = "bola_cult"
+	item_state = "bola_cult"
 	breakouttime = 60
 	immobilize = 20
 

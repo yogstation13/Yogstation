@@ -147,7 +147,7 @@
 /obj/item/bodypart/attackby(obj/item/W, mob/user, params)
 	if(W.get_sharpness())
 		add_fingerprint(user)
-		if(!contents.len)
+		if(!contents.len && !embedded_objects.len)
 			to_chat(user, span_warning("There is nothing left inside [src]!"))
 			return
 		playsound(loc, 'sound/weapons/slice.ogg', 50, TRUE, -1)
@@ -174,7 +174,7 @@
 		QDEL_NULL(current_gauze)
 	for(var/obj/item/organ/drop_organ in get_organs())
 		drop_organ.transfer_to_limb(src, owner)
-	for(var/obj/item/I in src)
+	for(var/obj/item/I in embedded_objects)
 		I.forceMove(T)
 
 ///since organs aren't actually stored in the bodypart themselves while attached to a person, we have to query the owner for what we should have

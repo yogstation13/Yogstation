@@ -46,6 +46,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 
 	var/obj/item/firing_pin/pin = /obj/item/firing_pin //standard firing pin for most guns
+	var/no_pin_required = FALSE //whether the gun can be fired without a pin
 
 	var/can_flashlight = FALSE //if a flashlight can be added or removed if it already has one.
 	var/obj/item/flashlight/seclite/gun_light
@@ -74,7 +75,10 @@
 /obj/item/gun/Initialize()
 	. = ..()
 	if(pin)
-		pin = new pin(src)
+		if(no_pin_required)
+			pin = null
+		else
+			pin = new pin(src)
 	if(gun_light)
 		alight = new(src)
 	build_zooming()
@@ -124,10 +128,11 @@
 
 /obj/item/gun/examine(mob/user)
 	. = ..()
-	if(pin)
-		. += "It has \a [pin] installed."
-	else
-		. += "It doesn't have a <b>firing pin</b> installed, and won't fire."
+	if(!no_pin_required)
+		if(pin)
+			. += "It has \a [pin] installed."
+		else
+			. += "It doesn't have a <b>firing pin</b> installed, and won't fire."
 
 	if(gun_light)
 		. += "It has \a [gun_light] [can_flashlight ? "" : "permanently "]mounted on it."
@@ -268,6 +273,8 @@
 		return FALSE
 
 /obj/item/gun/proc/handle_pins(mob/living/user)
+	if(no_pin_required)
+		return TRUE
 	if(pin)
 		if(pin.pin_auth(user) || (pin.obj_flags & EMAGGED))
 			return TRUE
