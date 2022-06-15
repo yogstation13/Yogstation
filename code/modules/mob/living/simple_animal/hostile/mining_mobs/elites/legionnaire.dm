@@ -307,7 +307,10 @@
 	name = "lesser necromancy staff"
 	desc = "An artifact that allows to summon dead on your side."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "necromancy_wand"  ///Hope i didn't forgot how i named the icon file
+	icon_state = "necromancy_wand" 
+	item_state = "staffofchaos"
+	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	resistance_flags = FIRE_PROOF
 	var/mob/living/simple_animal/hostile/skeleton/templar/lesser/deadinside 
 	var/time_sussed
@@ -319,6 +322,7 @@
 	obj_damage = 35
 	melee_damage_lower = 15
 	melee_damage_upper = 20
+
 	var/obj/item/lesser_necromancy_staff/staff
 
 #define NECROMANCY_CD 60 SECONDS
