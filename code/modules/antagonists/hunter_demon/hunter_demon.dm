@@ -37,7 +37,7 @@
 		return
 	to_chat(usr, span_warning("As a hunter demon, you:\
 	1. Need to hunt and kill targets. These are chosen through your blood orb by your master, or by you if you are unbound.\
-	2. Can warp out of reality to move faster and through walls, but you can warp into reality only near your target or blood orb.\
+	2. Can warp out of reality to move faster and through walls, but you can only warp back into reality near your target or blood orb!\
 	3. Are bound by a bounding rite: while your orb has blood gained from your master spilling it on the orb, you can't attack him.\
 	4. Can choose targets for yourself, if you don't have a master, or there is no blood sacrificed by him.\
 	5. Passivly regenerate health while not in the mortal reality at the cost of sacrificed blood, and blood gained from attacking people\
