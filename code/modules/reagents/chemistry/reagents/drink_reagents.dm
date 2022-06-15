@@ -368,6 +368,23 @@
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	..()
 	. = 1
+	
+/datum/reagent/consumable/coffee/espresso
+	name = "Espresso"
+	description = "A concentrated variant of coffee, served in small shots. It's potency allows for more caffeine intake per cup."
+	color = "#3b1b00" // rgb: 72, 32, 0
+	nutriment_factor = 0
+	overdose_threshold = 30
+	taste_description = "concentrated bitterness"
+	glass_icon_state = "glass_espresso"
+	glass_name = "cup of espresso"
+	glass_desc = "The potent smell of it surrounds your nose."
+
+/datum/reagent/consumable/coffee/espresso/overdose_process(mob/living/M)
+	M.Jitter(10)
+	if(prob(20))
+		M.adjustOrganLoss(ORGAN_SLOT_HEART,1)
+	return 
 
 /datum/reagent/consumable/tea
 	name = "Tea"
