@@ -23,17 +23,17 @@
 	var/mutable_appearance/showoff_overlay
 
 /obj/item/reagent_containers/food/snacks/fish/Initialize(mapload)
-	. = ..()
 	length = rand(min_length,max_length)
 	weight = rand(min_weight,max_weight)
 	list_reagents = list(/datum/reagent/consumable/nutriment = (3 * slices_num), /datum/reagent/consumable/nutriment/vitamin = (2 * slices_num))
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/fish/proc/GetChumValue()
 	return //not used yet
 
 /obj/item/reagent_containers/food/snacks/fish/examine(mob/user)
 	. = ..()
-	. += "It's [length] inches and [weight] ounces!"
+	. += "It's [length] inch[length > 1 ? "es" : ""] and [weight] ounce[weight > 1 ? "s" : ""]!"
 
 /obj/item/reagent_containers/food/snacks/fish/attack_self(mob/M)
 	if(showoff_overlay)
@@ -44,8 +44,8 @@
 	showoff_overlay = mutable_appearance(icon,icon_state)
 	M.add_overlay(showoff_overlay)
 	showoffer = M
-	M.visible_message("[M] shows off [src]. It's [length] inches long and weighs [weight] ounces!", \
-						 span_notice("You show off [src]. It's [length] inches long and weighs [weight] ounces!"))
+	M.visible_message("[M] shows off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!", \
+						 span_notice("You show off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!"))
 	RegisterSignal(M,COMSIG_ATOM_DIR_CHANGE,.proc/stop_overlay,TRUE)
 
 /obj/item/reagent_containers/food/snacks/fish/proc/stop_overlay()
