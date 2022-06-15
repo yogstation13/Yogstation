@@ -7,7 +7,6 @@
 #define OVERCHARGE_DURATION 15 SECONDS
 
 /datum/hog_god_interaction/structure/overcharge/on_use(var/mob/camera/hog_god/user)
-	. = ..()
 	if(owner.weapon.overcharged) ///Only prismatic lance weapon can be overcharged
 		to_chat(user, span_warning("This building is alredy overcharged!"))
 		return
@@ -19,7 +18,9 @@
 		owner.weapon = new /obj/item/hog_item/prismatic_lance(src)
 		owner.weapon.cult = owner.cult 
 		addtimer(CALLBACK(src, .proc/discharge), OVERCHARGE_DURATION)
-	return
+
+	. = ..()
+
 	
 /datum/hog_god_interaction/structure/overcharge/proc/discharge()
 	if(owner.weapon && istype(owner.weapon, /obj/item/hog_item/prismatic_lance/guardian))
