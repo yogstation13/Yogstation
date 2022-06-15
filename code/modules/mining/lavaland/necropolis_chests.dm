@@ -1139,7 +1139,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 #define COOLDOWN_SPLASH 100
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
-	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters ahead of the user with blood."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "bloodyknuckle"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -1177,7 +1177,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	user.visible_message(span_warning("[user] splashes blood from their knuckles!"))
-	playsound(T, 'splat.ogg', 80, 5, -1)
+	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
 	for(var/i = 0 to splash_range)
 		if(T)
 			user.add_splatter_floor(T)
