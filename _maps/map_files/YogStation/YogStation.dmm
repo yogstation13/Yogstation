@@ -6847,6 +6847,23 @@
 	},
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
+"aCP" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_x = -10;
+	pixel_y = 23
+	},
+/obj/machinery/requests_console{
+	department = "Medbay";
+	departmentType = 1;
+	name = "Medbay RC";
+	pixel_x = 1;
+	pixel_y = 27
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "aCQ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -52281,12 +52298,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"qyL" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "qyN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -62331,6 +62342,12 @@
 	},
 /turf/open/space/basic,
 /area/solar/port/fore)
+"vIe" = (
+/obj/machinery/stasis{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "vIf" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -63568,23 +63585,6 @@
 /obj/structure/chair/comfy/beige,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
-"wrZ" = (
-/obj/machinery/stasis{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -10;
-	pixel_y = 23
-	},
-/obj/machinery/requests_console{
-	department = "Medbay";
-	departmentType = 1;
-	name = "Medbay RC";
-	pixel_x = 1;
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "wsF" = (
 /obj/machinery/camera/motion{
 	c_tag = "Telecomms Maintenance";
@@ -103353,7 +103353,7 @@ pfH
 ilt
 hLI
 bvj
-qyL
+aCP
 qaw
 fcF
 teb
@@ -104895,7 +104895,7 @@ gID
 kub
 xuD
 bvj
-wrZ
+vIe
 rnj
 dXC
 agN
