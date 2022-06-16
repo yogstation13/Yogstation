@@ -12,7 +12,7 @@
     var/production_amount = 5
     var/production_cooldown = 35 SECONDS
     var/last_time_produced
-    var/datum/reagent/reagent_type 
+    var/datum/reagent/reagent_type = /datum/reagent/fuel/godblood
 
 /obj/structure/hog_structure/fountain/Initialize()
 	. = ..()
@@ -43,7 +43,19 @@
         C.reagents.add_reagent(/datum/reagent/reagent_type, 5)
         user.visible_message(span_warning("[C] drinks from [src]!"),span_notice("You drink from [src]."))
 
+/obj/structure/hog_structure/fountain/attackby(obj/item/I, mob/user, params)  ///Yessir, non-servants can also do this! But this wouldn't be very usefull for them. More like... you know... useless.
+    var/mob/living/dude = user
+    if(istype(I, /obj/item/reagent_containers) && !istype(I, /obj/item/reagent_containers/food) && user.a_intent != INTENT_HARM && reagents_amount >= 5)
+        if(I.reagents)
+            I.reagents.add_reagent(/datum/reagent/plaguebacteria, 5, no_react = TRUE)
+            user.visible_message(span_warning("[dude] takes some liquid from [src] with [I]!"),span_notice("You take some liquid from [src] with [I]."))
+            return
+    . = ..()
 
+/obj/structure/hog_structure/fountain/handle_team_change(var/datum/team/hog_cult/new_cult)
+    . = ..()
+    var/G = text2path("/datum/reagent/fuel/godblood/[new_cult.cult_color]")   
+    reagent_type = G
 
 /*
 	Godblood - it, well... heals servants, deconverts cultists from other cults(including bloodcult and cockcult) and damages all other dudes.
@@ -82,7 +94,12 @@
             M.adjustStaminaLoss(10, 0)
             M.adjustOxyLoss(2, 0)
             M.add_reagent(deconverter, 2)
-	else  // Will deal about 90 damage when 50 units are thrown
+	else if(iscultist(M) || is_servant_of_ratvar(M))
+        M.adjustStaminaLoss(10, 0)
+        M.adjustOxyLoss(2, 0)
+        M.add_reagent(deconverter, 2)
+    else
+     // Will deal about 90 damage when 50 units are thrown
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 		M.adjustToxLoss(2, 0)
 		M.adjustFireLoss(2, 0)
@@ -90,6 +107,9 @@
 		M.adjustBruteLoss(2, 0)
 	holder.remove_reagent(type, 1)
 	return TRUE
+
+/datum/reagent/fuel/godblood/black
+    cultcolor = "black"
 
 /*
 	It is just a strange deconverter liquid.
