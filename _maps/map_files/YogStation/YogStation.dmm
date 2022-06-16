@@ -26427,16 +26427,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"dqW" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/obj/machinery/disposal/bin,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "dsr" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/med_data/laptop,
@@ -43049,6 +43039,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"lHq" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "lHz" = (
 /obj/structure/chair/sofa/right,
 /turf/open/floor/wood,
@@ -107056,7 +107055,7 @@ jhe
 wyj
 cDl
 rYY
-dqW
+lHq
 cTj
 jrP
 jFX
