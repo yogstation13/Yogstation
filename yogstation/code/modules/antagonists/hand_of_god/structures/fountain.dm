@@ -52,10 +52,10 @@
             return
     . = ..()
 
-///obj/structure/hog_structure/fountain/handle_team_change(var/datum/team/hog_cult/new_cult)
-   // . = ..()
-    //var/G = text2path("/datum/reagent/fuel/godblood/[new_cult.cult_color]")   
-   // reagent_type = G
+/obj/structure/hog_structure/fountain/handle_team_change(var/datum/team/hog_cult/new_cult)
+    . = ..()
+    var/G = text2path("/datum/reagent/fuel/godblood/[new_cult.cult_color]")   
+    reagent_type = G
 
 /*
 	Godblood - it, well... heals servants, deconverts cultists from other cults(including bloodcult and cockcult) and damages all other dudes.
@@ -66,7 +66,7 @@
 	description = "Something that shouldn't exist on this plane of existence."
 	taste_description = "sublimity"
     var/cultcolor = "black"
-    var/datum/reagent/deconverter = /datum/reagent/deconverter
+    var/datum/reagent/deconverter = /datum/reagent/water/deconverter
 
 
 /datum/reagent/fuel/godblood/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
@@ -86,7 +86,7 @@
             M.adjustOxyLoss(-2, 0)
             M.adjustBruteLoss(-2, 0)
             M.adjustFireLoss(-2, 0)
-            holder.remove_reagent(/datum/reagent/deconverter, rand(2,3)) ///Some rng, E
+            holder.remove_reagent(/datum/reagent/water/deconverter, rand(2,3)) ///Some rng, E
             holder.remove_reagent(/datum/reagent/water/holywater, rand(2,3))
             if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
                 M.blood_volume += 3
@@ -115,19 +115,19 @@
 	It is just a strange deconverter liquid.
 */
 
-/datum/reagent/deconverter
+/datum/reagent/water/deconverter
 	name = "Religion smasher"
 	description = "A liquid, that magicaly makes religious zealots feel not very cool."
 	color = "#E0E8EF"
 	glass_icon_state  = "glass_clear"
 	self_consuming = TRUE 
 
-/datum/reagent/deconverter/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/water/deconverter/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(is_servant_of_ratvar(M))
 		to_chat(M, span_userdanger("A darkness begins to spread its unholy tendrils through your mind, purging the Justiciar's influence!"))
 	..()
 
-/datum/reagent/deconverter/on_mob_life(mob/living/carbon/M)
+/datum/reagent/water/deconverter/on_mob_life(mob/living/carbon/M)
 	if(!data)
 		data = list("misc" = 1)
 	data["misc"]++
