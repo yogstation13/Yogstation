@@ -74,4 +74,31 @@
 
 	qdel(src)
 
+/datum/hog_god_interaction/targeted/mood
+	name = "Boost mood"
+	description = "Boosts your servant's mood." ///Actually useless, but... you know.
+	cost = 20
+	cooldown = 10 SECONDS
+
+/datum/hog_god_interaction/targeted/mood/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
+	if(!isliving(target))
+		to_chat(user, span_warning("Not a valid target!"))
+		qdel(src)
+		return
+	var/mob/living/dude = target
+	if(!IS_HOG_CULTIST(dude))
+		to_chat(user, span_warning("You can target only your servants!"))
+		qdel(src)
+		return
+	if(!dude)
+		qdel(src)
+		return
+	SEND_SIGNAL(dude, COMSIG_ADD_MOOD_EVENT, "moodboost", /datum/mood_event/hog_moodboost)
+	to_chat(user, span_warning("You boost [dude]'s morale!"))
+	to_chat(dude, span_warning("Your god, [user], trusts you! You feel more happy now."))
+
+	. = ..()
+
+	qdel(src)
+
 	
