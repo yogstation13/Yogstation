@@ -5,6 +5,41 @@
 /obj/structure/chair/stool/bamboo,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
+"ak" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/trashbin,
+/obj/effect/turf_decal/pool,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
+"bv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/template_noop)
+"eW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
 "hn" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/stool/bamboo,
@@ -15,6 +50,14 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/plasteel/white,
+/area/template_noop)
+"lf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool{
+	dir = 8
+	},
+/obj/structure/railing/corner,
+/turf/open/floor/wood,
 /area/template_noop)
 "li" = (
 /turf/open/water/safe,
@@ -37,18 +80,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/wood,
-/area/template_noop)
-"pe" = (
-/obj/item/reagent_containers/food/snacks/fish/goldfish{
-	bitecount = 0;
-	length = 1;
-	weight = 2
-	},
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/template_noop)
 "pj" = (
@@ -97,11 +128,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/blackwhite,
 /area/template_noop)
-"tN" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/wood,
-/area/template_noop)
 "tO" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/glass,
@@ -131,11 +157,42 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
+"xi" = (
+/obj/item/reagent_containers/food/snacks/fish/goldfish{
+	bitecount = 0;
+	length = 1;
+	weight = 2
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/template_noop)
 "xG" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/grill,
 /turf/open/floor/plasteel/blackwhite,
+/area/template_noop)
+"yw" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/template_noop)
 "zC" = (
 /obj/effect/decal/cleanable/blood/old,
@@ -147,12 +204,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/blackwhite,
-/area/template_noop)
-"BB" = (
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/wood,
 /area/template_noop)
 "BO" = (
 /obj/machinery/smartfridge/food,
@@ -174,6 +225,15 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/checker,
+/area/template_noop)
+"ED" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool/corner,
+/obj/structure/railing/corner,
+/turf/open/floor/wood,
 /area/template_noop)
 "EH" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -203,6 +263,16 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/checker,
 /area/template_noop)
+"GJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool/corner{
+	dir = 4
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
 "GL" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 4
@@ -217,8 +287,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
-"Ix" = (
+"Ig" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/obj/structure/railing/corner,
+/obj/structure/railing/corner{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/template_noop)
 "JM" = (
@@ -247,6 +324,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
+"Mq" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool/corner{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/template_noop)
 "Mw" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -254,6 +343,16 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/white,
+/area/template_noop)
+"MA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/turf_decal/pool,
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/structure/railing/corner,
+/turf/open/floor/wood,
 /area/template_noop)
 "MI" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -293,6 +392,19 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/checker,
 /area/template_noop)
+"OV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool{
+	dir = 8
+	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/template_noop)
 "Pj" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/railing,
@@ -310,6 +422,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
+"RS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing,
+/obj/effect/turf_decal/pool,
+/turf/open/floor/wood,
+/area/template_noop)
 "SA" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/stool/bamboo,
@@ -320,6 +438,16 @@
 /obj/effect/spawner/lootdrop/trashbin,
 /obj/structure/railing{
 	dir = 1
+	},
+/turf/open/floor/wood,
+/area/template_noop)
+"Tw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/pool{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/template_noop)
@@ -343,16 +471,30 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
-"Wm" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/trashbin,
-/turf/open/floor/wood,
-/area/template_noop)
-"YL" = (
+"Xp" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/template_noop)
+"YR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/template_noop)
 "Ze" = (
@@ -362,6 +504,20 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/white,
+/area/template_noop)
+"ZB" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/structure/railing/corner,
+/turf/open/floor/wood,
 /area/template_noop)
 "ZO" = (
 /obj/effect/decal/cleanable/vomit/old,
@@ -397,72 +553,72 @@ tw
 (3,1,1) = {"
 Cj
 rS
-YL
-YL
-YL
-YL
-pe
-BB
+ED
+yw
+Xp
+ZB
+xi
+Mq
 AR
 zC
 "}
 (4,1,1) = {"
 Rc
 GL
-Ix
+RS
 qR
 li
 li
 li
-Ix
+eW
 AR
 nH
 "}
 (5,1,1) = {"
 oW
 oW
-Wm
+ak
 li
 Qj
 li
 li
-Ix
+bv
 oW
 oW
 "}
 (6,1,1) = {"
 Og
 Og
-tN
+MA
 li
 li
 KU
 li
-Ix
+Ig
 Og
 Og
 "}
 (7,1,1) = {"
 Ei
 Ou
-Ix
+RS
 li
 li
 li
 qR
-Ix
+eW
 Mw
 Ze
 "}
 (8,1,1) = {"
 EH
 Ou
-Ix
-Ix
-Ix
-Ix
-Ix
-Ix
+GJ
+Tw
+OV
+lf
+Tw
+YR
 vX
 kF
 "}
