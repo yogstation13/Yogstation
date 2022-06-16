@@ -31,6 +31,7 @@
 		else
 			C.apply_damage(stam_damage, STAMINA, BODY_ZONE_CHEST, 0)
 			addtimer(CALLBACK(src, C,  .proc/calm_down), 2 SECONDS)	
+		return
 
 	if(user.a_intent == INTENT_GRAB)
 		if(!C.handcuffed)
@@ -44,16 +45,17 @@
 					C.silent += 5
 					to_chat(user, span_notice("You shackle [C]."))
 					log_combat(user, C, "restrained")
-					uses--
 				else
 					to_chat(user, span_warning("[C] is already restrained."))
 			else
 				to_chat(user, span_warning("You fail to restrain [C]."))
 		else
 			to_chat(user, span_warning("[C] is already restrained."))
+		return
 
 	if(user.a_intent == INTENT_HELP)
 		return  ///Here will be giving power to allies and allied structures.
+	. = ..()
 
 /obj/item/hog_item/book/proc/calm_down(mob/living/carbon/target)
 	if(!target)

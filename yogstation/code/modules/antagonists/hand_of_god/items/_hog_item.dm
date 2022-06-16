@@ -13,5 +13,7 @@
 	cult = new_cult
 	update_icons()
 
+/obj/item/hog_item/book/attack(mob/M, mob/living/carbon/human/user)
+	
 
 
