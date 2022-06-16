@@ -7,55 +7,53 @@
 	max_integrity = 50
 	cost = 175
 	time_builded = 10 SECONDS
-    var/max_reagents = 30
-    var/reagents_amount = 0
-    var/production_amount = 5
-    var/production_cooldown = 35 SECONDS
-    var/last_time_produced
-    var/datum/reagent/reagent_type = /datum/reagent/fuel/godblood
+	var/max_reagents = 30
+	var/reagents_amount = 0
+	var/production_amount = 5
+	var/production_cooldown = 35 SECONDS
+	var/last_time_produced
+	var/datum/reagent/reagent_type = /datum/reagent/fuel/godblood
 
 /obj/structure/hog_structure/fountain/Initialize()
 	. = ..()
-    reagents_amount = max_reagents/2
-    last_time_produced = world.time
+	reagents_amount = max_reagents/2
+	last_time_produced = world.time
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/structure/hog_structure/fountain/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
-    . = ..()
+	. = ..()
 
 /obj/structure/hog_structure/fountain/process()
-    if(last_time_produced + production_cooldown < world.time && reagents_amount < max_reagents)
-        reagents_amount += production_amount
-        last_time_produced = world.time
-        if(reagents_amount < 0)
-            reagents_amount = 0
-        if(reagents_amount > max_reagents)
-            reagents_amount = max_reagents
-        
-        
+	if(last_time_produced + production_cooldown < world.time && reagents_amount < max_reagents)
+		reagents_amount += production_amount
+		last_time_produced = world.time
+		if(reagents_amount < 0)
+			reagents_amount = 0
+		if(reagents_amount > max_reagents)
+			reagents_amount = max_reagents
 
 /obj/structure/hog_structure/fountain/special_interaction(mob/user)
-    var/mob/living/carbon/C = user
-    if(!user)
-        return
-    if(C.reagents)
-        C.reagents.add_reagent(/datum/reagent/reagent_type, 5)
-        user.visible_message(span_warning("[C] drinks from [src]!"),span_notice("You drink from [src]."))
+	var/mob/living/carbon/C = user
+	if(!user)
+		return
+	if(C.reagents)
+		C.reagents.add_reagent(/datum/reagent/reagent_type, 5)
+		user.visible_message(span_warning("[C] drinks from [src]!"),span_notice("You drink from [src]."))
 
 /obj/structure/hog_structure/fountain/attackby(obj/item/I, mob/user, params)  ///Yessir, non-servants can also do this! But this wouldn't be very usefull for them. More like... you know... useless.
-    var/mob/living/dude = user
-    if(istype(I, /obj/item/reagent_containers) && !istype(I, /obj/item/reagent_containers/food) && user.a_intent != INTENT_HARM && reagents_amount >= 5)
-        if(I.reagents)
-            I.reagents.add_reagent(/datum/reagent/plaguebacteria, 5, no_react = TRUE)
-            user.visible_message(span_warning("[dude] takes some liquid from [src] with [I]!"),span_notice("You take some liquid from [src] with [I]."))
-            return
-    . = ..()
+	var/mob/living/dude = user
+	if(istype(I, /obj/item/reagent_containers) && !istype(I, /obj/item/reagent_containers/food) && user.a_intent != INTENT_HARM && reagents_amount >= 5)
+		if(I.reagents)
+			I.reagents.add_reagent(/datum/reagent/plaguebacteria, 5, no_react = TRUE)
+			user.visible_message(span_warning("[dude] takes some liquid from [src] with [I]!"),span_notice("You take some liquid from [src] with [I]."))
+			return
+	. = ..()
 
 /obj/structure/hog_structure/fountain/handle_team_change(var/datum/team/hog_cult/new_cult)
-    . = ..()
-    var/G = text2path("/datum/reagent/fuel/godblood/[new_cult.cult_color]")   
-    reagent_type = G
+	. = ..()
+	var/G = text2path("/datum/reagent/fuel/godblood/[new_cult.cult_color]")   
+	reagent_type = G
 
 /*
 	Godblood - it, well... heals servants, deconverts cultists from other cults(including bloodcult and cockcult) and damages all other dudes.
@@ -65,8 +63,8 @@
 	name = "Godblood"
 	description = "Something that shouldn't exist on this plane of existence."
 	taste_description = "sublimity"
-    var/cultcolor = "black"
-    var/datum/reagent/deconverter = /datum/reagent/water/deconverter
+	var/cultcolor = "black"
+	var/datum/reagent/deconverter = /datum/reagent/water/deconverter
 
 
 /datum/reagent/fuel/godblood/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
@@ -76,30 +74,30 @@
 	return ..()
 
 /datum/reagent/fuel/godblood/on_mob_life(mob/living/carbon/M)
-    var/datum/antagonist/hog/hoggers = IS_HOG_CULTIST(M)
+	var/datum/antagonist/hog/hoggers = IS_HOG_CULTIST(M)
 	if(hoggers)
-        if(hoggers.cult.cult_color = src.cultcolor)
-            M.drowsyness = max(M.drowsyness-5, 0)
-            M.AdjustAllImmobility(-40, FALSE)
-            M.adjustStaminaLoss(-10, 0)
-            M.adjustToxLoss(-2, 0)
-            M.adjustOxyLoss(-2, 0)
-            M.adjustBruteLoss(-2, 0)
-            M.adjustFireLoss(-2, 0)
-            holder.remove_reagent(/datum/reagent/water/deconverter, rand(2,3)) ///Some rng, E
-            holder.remove_reagent(/datum/reagent/water/holywater, rand(2,3))
-            if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
-                M.blood_volume += 3
-        else
-            M.adjustStaminaLoss(10, 0)
-            M.adjustOxyLoss(2, 0)
-            M.add_reagent(deconverter, 2)
+		if(hoggers.cult.cult_color = src.cultcolor)
+			M.drowsyness = max(M.drowsyness-5, 0)
+			M.AdjustAllImmobility(-40, FALSE)
+			M.adjustStaminaLoss(-10, 0)
+			M.adjustToxLoss(-2, 0)
+			M.adjustOxyLoss(-2, 0)
+			M.adjustBruteLoss(-2, 0)
+			M.adjustFireLoss(-2, 0)
+			holder.remove_reagent(/datum/reagent/water/deconverter, rand(2,3)) ///Some rng, E
+			holder.remove_reagent(/datum/reagent/water/holywater, rand(2,3))
+			if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
+			M.blood_volume += 3
+		else
+			M.adjustStaminaLoss(10, 0)
+			M.adjustOxyLoss(2, 0)
+			M.add_reagent(deconverter, 2)
 	else if(iscultist(M) || is_servant_of_ratvar(M))
-        M.adjustStaminaLoss(10, 0)
-        M.adjustOxyLoss(2, 0)
-        M.add_reagent(deconverter, 2)
-    else
-     // Will deal about 90 damage when 50 units are thrown
+		M.adjustStaminaLoss(10, 0)
+		M.adjustOxyLoss(2, 0)
+		M.add_reagent(deconverter, 2)
+	else
+	// Will deal about 90 damage when 50 units are thrown
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 		M.adjustToxLoss(2, 0)
 		M.adjustFireLoss(2, 0)
@@ -109,7 +107,7 @@
 	return TRUE
 
 /datum/reagent/fuel/godblood/black
-    cultcolor = "black"
+	cultcolor = "black"
 
 /*
 	It is just a strange deconverter liquid.
@@ -133,12 +131,12 @@
 	data["misc"]++
 	M.jitteriness = min(M.jitteriness+4,10)
 	if(iscultist(M))
-        var/list/delete_candidates = list() 
+		var/list/delete_candidates = list() 
 		for(var/datum/action/innate/cult/blood_magic/BM in M.actions)
 			to_chat(M, span_cultlarge("Your blood rites falter as holy water scours your body!"))
 			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
 				delete_candidates += BS
-        qdel(pick(delete_candidates))
+		qdel(pick(delete_candidates))
 	if(data["misc"] >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
 		if(!M.stuttering)
 			M.stuttering = 1
@@ -160,7 +158,7 @@
 					"You can't save him. Nothing can save him now", "It seems that Nar-Sie will triumph after all")].</span>")
 				if("emote")
 					M.visible_message(span_warning("[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")]."))
-        else if(IS_HOG_CULTIST(M) && prob(8))
+		else if(IS_HOG_CULTIST(M) && prob(8))
 				M.visible_message(span_warning("[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")].")) ///Im not very creative with this
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
@@ -168,8 +166,8 @@
 				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
 			else if(is_servant_of_ratvar(M))
 				remove_servant_of_ratvar(M)
-            else if(IS_HOG_CULTIST(M))
-                M.mind.remove_antag_datum(/datum/antagonist/hog)
+			else if(IS_HOG_CULTIST(M))
+				M.mind.remove_antag_datum(/datum/antagonist/hog)
 			M.jitteriness = 0
 			M.stuttering = 0
 			holder.remove_reagent(type, volume)	
