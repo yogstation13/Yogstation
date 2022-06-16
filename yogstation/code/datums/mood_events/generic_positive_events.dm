@@ -19,3 +19,7 @@
 	description = "<span class='cult'><b>I have pleased my god. My deeds will not go unnoticed.</b></span>\n"
 	mood_change = 10
 	timeout = 10 MINUTES
+
+/datum/mood_event/hog_god
+	description = "<span class='cultlarge'><b>Man, being a god is fucking cool.</b></span>\n"
+	mood_change = 100

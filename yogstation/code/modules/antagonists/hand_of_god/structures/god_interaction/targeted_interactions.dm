@@ -93,7 +93,7 @@
 	if(!dude)
 		qdel(src)
 		return
-	SEND_SIGNAL(dude, COMSIG_ADD_MOOD_EVENT, "moodboost", /datum/mood_event/hog_moodboost)
+	SEND_SIGNAL(dude, COMSIG_ADD_MOOD_EVENT, "god_moraleboost", /datum/mood_event/hog_moodboost)
 	to_chat(user, span_warning("You boost [dude]'s morale!"))
 	to_chat(dude, span_warning("Your god, [user], trusts you! You feel more happy now."))
 

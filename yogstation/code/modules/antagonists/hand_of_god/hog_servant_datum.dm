@@ -10,6 +10,7 @@
 	var/energy = 0
 	var/max_energy = 100
 	var/list/prepared_spells = list()
+	antag_moodlet = /datum/mood_event/sling
 
 /datum/antagonist/hog/can_be_owned(datum/mind/new_owner)
 	. = ..()
@@ -45,6 +46,8 @@
 
 /datum/antagonist/hog/on_removal()
 	remove_from_cult()
+	SEND_SIGNAL(owner.current, COMSIG_CLEAR_MOOD_EVENT, "god_moraleboost") 
+	SEND_SIGNAL(owner.current, COMSIG_CLEAR_MOOD_EVENT, "pleased_gods") 
 	..()
 
 /datum/antagonist/hog/proc/update_hog_icons_added(mob/living/M)  ///Hope this shit will work, despite i brainlessly copied it from gang code
