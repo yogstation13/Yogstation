@@ -98,7 +98,7 @@
 /obj/item/projectile/bullet/shotgun_uraniumslug
 	name = "depleted uranium slug"
 	icon_state = "ubullet"
-	damage = 20
+	damage = 33
 	armour_penetration = 85 // he he funny round go through armor
 	wound_bonus = -35
 
