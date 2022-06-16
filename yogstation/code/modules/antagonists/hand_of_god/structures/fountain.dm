@@ -87,15 +87,15 @@
 			holder.remove_reagent(/datum/reagent/water/deconverter, rand(2,3)) ///Some rng, E
 			holder.remove_reagent(/datum/reagent/water/holywater, rand(2,3))
 			if(ishuman(M) && M.blood_volume < BLOOD_VOLUME_NORMAL(M))
-			M.blood_volume += 3
+				M.blood_volume += 3
 		else
 			M.adjustStaminaLoss(10, 0)
 			M.adjustOxyLoss(2, 0)
-			M.add_reagent(deconverter, 2)
+			M.reagents.add_reagent(deconverter, 2)
 	else if(iscultist(M) || is_servant_of_ratvar(M))
 		M.adjustStaminaLoss(10, 0)
 		M.adjustOxyLoss(2, 0)
-		M.add_reagent(deconverter, 2)
+		M.reagents.add_reagent(deconverter, 2)
 	else
 	// Will deal about 90 damage when 50 units are thrown
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
