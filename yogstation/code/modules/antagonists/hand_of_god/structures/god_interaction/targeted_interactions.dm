@@ -50,11 +50,24 @@
 	if(!dude)
 		qdel(src)
 		return
+	var/effective = FALSE 
+	if(dude.reagents.has_reagent(/datum/reagent/water/holywater))
+		dude.reagents.remove_reagent(/datum/reagent/water/holywater, 60)
+		effective = TRUE
+	if(dude.reagents.has_reagent(/datum/reagent/fuel/unholywater))
+		dude.reagents.remove_reagent(/datum/reagent/fuel/unholywater, 60)
+		effective = TRUE
+	if(dude.reagents.has_reagent(/datum/reagent/eldritch))
+		dude.reagents.remove_reagent(/datum/reagent/eldritch, 60)   
+		effective = TRUE
+
+	if(!effective)
+		to_chat(user, span_warning("There is nothing to purge from [dude]'s blood!"))
+		qdel(src)
+		return
 	to_chat(user, span_warning("You purge heretical reagents from [dude]'s blood!"))
 	to_chat(dude, span_warning("You feel your god's light cleaning your bloodstream!"))
-	dude.remove_reagent(/datum/reagent/water/holywater, 60)
-	dude.remove_reagent(/datum/reagent/fuel/unholywater, 60)
-	dude.remove_reagent(/datum/reagent/eldritch, 60)       
+
 
 
 	. = ..()
