@@ -17,7 +17,18 @@
 		return ..()
 	var/mob/living/carbon/C = M
 	if(user == C)
-		return
+		return ..()
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
+	if(!cultie)
+		return ..()
+	if(cultie.cult == src.cult)
+		var/datum/antagonist/hog/cultie2 = IS_HOG_CULTIST(C)
+		if(cultie.cult = cultie2.cult && user.a_intent != INTENT_HELP)
+			to_chat(user, span_cult("Attacking your brothers is very rude!"))
+			return
+	else
+		return ..()
+
 	if(user.a_intent == INTENT_DISARM)
 		if(iscultist(C) || C.anti_magic_check() || HAS_TRAIT(C, TRAIT_MINDSHIELD) || is_servant_of_ratvar(C))  ///Mindshielded nerds just get attacked, antimagic dudes and enemy cult members also
 			return ..()
@@ -43,7 +54,7 @@
 					C.handcuffed = new /obj/item/restraints/handcuffs/energy/hogcult/used(C)
 					C.update_handcuffed()
 					C.silent += 5
-					to_chat(user, span_notice("You shackle [C]."))
+					to_chat(user, span_notice("You restrain [C]."))
 					log_combat(user, C, "restrained")
 				else
 					to_chat(user, span_warning("[C] is already restrained."))
