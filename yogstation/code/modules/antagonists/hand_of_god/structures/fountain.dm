@@ -52,10 +52,10 @@
             return
     . = ..()
 
-/obj/structure/hog_structure/fountain/handle_team_change(var/datum/team/hog_cult/new_cult)
-    . = ..()
-    var/G = text2path("/datum/reagent/fuel/godblood/[new_cult.cult_color]")   
-    reagent_type = G
+///obj/structure/hog_structure/fountain/handle_team_change(var/datum/team/hog_cult/new_cult)
+   // . = ..()
+    //var/G = text2path("/datum/reagent/fuel/godblood/[new_cult.cult_color]")   
+   // reagent_type = G
 
 /*
 	Godblood - it, well... heals servants, deconverts cultists from other cults(including bloodcult and cockcult) and damages all other dudes.
