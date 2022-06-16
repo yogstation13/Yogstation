@@ -23,7 +23,7 @@
 		return ..()
 	if(cultie.cult == src.cult)
 		var/datum/antagonist/hog/cultie2 = IS_HOG_CULTIST(C)
-		if(cultie.cult = cultie2.cult && user.a_intent != INTENT_HELP)
+		if(cultie.cult == cultie2.cult && user.a_intent != INTENT_HELP)
 			to_chat(user, span_cult("Attacking your brothers is very rude!"))
 			return
 	else
