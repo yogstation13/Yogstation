@@ -13,32 +13,49 @@
 	return ///Here will be code for making spells
 
 /obj/item/hog_item/book/attack(mob/M, mob/living/carbon/human/user)
-	if(!ishuman(M))
+	if(!iscarbon(M))
 		return ..()
-	var/mob/living/carbon/human/H = M
-	if(user == H)
+	var/mob/living/carbon/C = M
+	if(user == C)
 		return
 	if(user.a_intent == INTENT_DISARM)
-		if(iscultist(H) || H.anti_magic_check() || HAS_TRAIT(H, TRAIT_MINDSHIELD) || is_servant_of_ratvar(H))  ///Mindshielded nerds just get attacked, antimagic dudes and enemy cult members also
+		if(iscultist(C) || C.anti_magic_check() || HAS_TRAIT(C, TRAIT_MINDSHIELD) || is_servant_of_ratvar(C))  ///Mindshielded nerds just get attacked, antimagic dudes and enemy cult members also
 			return ..()
-		var/stamina_damage = H.getStaminaLoss()
+		var/stamina_damage = C.getStaminaLoss()
 		if(stamina_damage >= 85)
 			var/stunforce = 7 SECONDS //A bit less if alredy stunned
-			if(!H.IsParalyzed())
-				to_chat(H, span_warning("You feel pure horror inflitrating your mind!"))
+			if(!C.IsParalyzed())
+				to_chat(C, span_cult("You feel pure horror inflitrating your mind!"))
 				stunforce = 11 SECONDS
-			H.Paralyze(stunforce)
+			C.Paralyze(stunforce)
 		else
-			H.apply_damage(stam_damage, STAMINA, BODY_ZONE_CHEST, 0)
-			addtimer(CALLBACK(src, H,  .proc/calm_down), 2 SECONDS)	
+			C.apply_damage(stam_damage, STAMINA, BODY_ZONE_CHEST, 0)
+			addtimer(CALLBACK(src, C,  .proc/calm_down), 2 SECONDS)	
 
 	if(user.a_intent == INTENT_GRAB)
-		return ///Here will be handcuffing code.
+		if(!C.handcuffed)
+			playsound(loc, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
+			C.visible_message(span_danger("[user] begins restraining [C] with divine magic!"), \
+									span_userdanger("[user] begins shaping a magical field around your wrists!"))
+			if(do_mob(user, C, 30))
+				if(!C.handcuffed)
+					C.handcuffed = new /obj/item/restraints/handcuffs/energy/hogcult/used(C)
+					C.update_handcuffed()
+					C.silent += 5
+					to_chat(user, span_notice("You shackle [C]."))
+					log_combat(user, C, "restrained")
+					uses--
+				else
+					to_chat(user, span_warning("[C] is already restrained."))
+			else
+				to_chat(user, span_warning("You fail to restrain [C]."))
+		else
+			to_chat(user, span_warning("[C] is already restrained."))
 
 	if(user.a_intent == INTENT_HELP)
 		return  ///Here will be giving power to allies and allied structures.
 
-/obj/item/hog_item/book/proc/calm_down(mob/living/carbon/human/target)
+/obj/item/hog_item/book/proc/calm_down(mob/living/carbon/target)
 	if(!target)
 		return
 	target.apply_damage(stam_damage, STAMINA, BODY_ZONE_CHEST, 0)
@@ -49,3 +66,13 @@
 
 
 
+/obj/item/restraints/handcuffs/energy/hogcult
+	name = "celestial bound"
+	desc = "Divine energy field that binds the wrists with celestial magic."
+	trashtype = /obj/item/restraints/handcuffs/energy/used
+	item_flags = DROPDEL
+
+/obj/item/restraints/handcuffs/energy/hogcult/used/dropped(mob/user)
+	user.visible_message(span_danger("[user]'s shackles shatter in a discharge of dark magic!"), \
+							span_userdanger("Your [src] shatters in a discharge of dark magic!"))
+	. = ..()

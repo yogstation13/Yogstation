@@ -47,12 +47,27 @@
 	return
 	
 /obj/structure/hog_structure/attack_hand(mob/user)
-	. = ..()
 	if(iscyborg(user))
 		return
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && (cultie.cult = src.cult) && cultie.banned_by_god != TRUE)
 		special_interaction(user)
+		return
+	. = ..()
+
+/obj/structure/hog_structure/attack_alien(mob/user) ///Cult aliens, hooray!!!
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
+	if(cultie && (cultie.cult = src.cult) && cultie.banned_by_god != TRUE)
+		special_interaction(user)
+		return
+	. = ..()
+
+/obj/structure/hog_structure/attack_paw(mob/user)
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
+	if(cultie && (cultie.cult = src.cult) && cultie.banned_by_god != TRUE)
+		special_interaction(user)
+		return
+	. = ..()
 
 /obj/structure/hog_structure/attack_god(mob/camera/hog_god/god, modifier)
 	if(cult != god.cult)
