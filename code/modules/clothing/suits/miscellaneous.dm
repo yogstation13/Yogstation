@@ -668,6 +668,7 @@
 
 /obj/item/clothing/head/hooded/winterhood/engineering
 	icon_state = "winterhood_engineer"
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 10, FIRE = 20, ACID = 10)
 
 /obj/item/clothing/suit/hooded/wintercoat/engineering/ce
 	name = "chief engineer's winter coat"
