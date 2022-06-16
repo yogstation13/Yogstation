@@ -51,7 +51,7 @@
 	if(iscyborg(user) || isalien(user))
 		return
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
-	if(cultie && (cultie.cult = src.cult))
+	if(cultie && (cultie.cult = src.cult) && cultie.banned_by_god != TRUE)
 		special_interaction(user)
 
 /obj/structure/hog_structure/attack_god(mob/camera/hog_god/god, modifier)

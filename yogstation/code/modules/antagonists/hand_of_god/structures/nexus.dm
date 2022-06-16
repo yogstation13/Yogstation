@@ -10,6 +10,8 @@
 	density = TRUE
 	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge)
 	max_integrity = 500
+	cost = 0
+	time_builded = 0
 	var/last_scream
 	var/mob/camera/hog_god/god
 	var/active = FALSE

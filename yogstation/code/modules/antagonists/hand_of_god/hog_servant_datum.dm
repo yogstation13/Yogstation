@@ -10,6 +10,7 @@
 	var/energy = 0
 	var/max_energy = 100
 	var/list/prepared_spells = list()
+	var/banned_by_god = FALSE
 	antag_moodlet = /datum/mood_event/sling
 
 /datum/antagonist/hog/can_be_owned(datum/mind/new_owner)

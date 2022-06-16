@@ -101,4 +101,32 @@
 
 	qdel(src)
 
-	
+/datum/hog_god_interaction/targeted/ban
+	name = "Toggle Ban"
+	description = "Disallow your servant to interact with your structures. A way to save resources from getting spended by your servants, or to deal with shitters." ///A way to deal with autistic people. Or to grief your team(and get banned because it is logged, lol).
+	cost = 0
+	cooldown = 0
+
+/datum/hog_god_interaction/targeted/mood/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
+	var/mob/dude = target
+	if(!dude)
+		to_chat(user, span_warning("Not a valid target!"))
+		qdel(src)
+		return
+	var/datum/antagonist/hog/antag_datum = IS_HOG_CULTIST(dude)
+	if(!antag_datum)
+		to_chat(user, span_warning("You can target only your servants!"))
+		qdel(src)
+		return
+	antag_datum.banned_by_god = !antag_datum.banned_by_god
+	if(antag_datum.banned_by_god)
+		to_chat(user, span_warning("You dissallow [dude] to use your structures."))
+		to_chat(dude, span_warning("You have angered your god. You no more can use your cult's structures."))
+		SEND_SIGNAL(owner.current, COMSIG_CLEAR_MOOD_EVENT, "god_moraleboost") 
+	else
+		to_chat(user, span_warning("You allow [dude] to use your structures."))
+		to_chat(dude, span_warning("Your god has forgave you. You can interact with your cult structures again.."))
+
+	. = ..()
+
+	qdel(src)
