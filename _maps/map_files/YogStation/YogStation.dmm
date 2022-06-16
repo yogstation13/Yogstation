@@ -13907,6 +13907,15 @@
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"bgJ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "bgM" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -29825,14 +29834,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"fiq" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "fiP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -37804,6 +37805,11 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"iZj" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/iv_drip,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "iZL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -103361,7 +103367,7 @@ lmn
 bvj
 lcF
 rWW
-agN
+iZj
 bvj
 bAw
 bAw
@@ -103618,7 +103624,7 @@ oAv
 oSm
 sCG
 vXI
-fiq
+bgJ
 bvj
 bvj
 bvj
