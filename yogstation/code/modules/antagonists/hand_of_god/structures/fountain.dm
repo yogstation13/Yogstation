@@ -38,7 +38,7 @@
 	if(!user)
 		return
 	if(C.reagents)
-		C.reagents.add_reagent(/datum/reagent/reagent_type, 5)
+		C.reagents.add_reagent(reagent_type, 5)
 		user.visible_message(span_warning("[C] drinks from [src]!"),span_notice("You drink from [src]."))
 
 /obj/structure/hog_structure/fountain/attackby(obj/item/I, mob/user, params)  ///Yessir, non-servants can also do this! But this wouldn't be very usefull for them. More like... you know... useless.
@@ -76,7 +76,7 @@
 /datum/reagent/fuel/godblood/on_mob_life(mob/living/carbon/M)
 	var/datum/antagonist/hog/hoggers = IS_HOG_CULTIST(M)
 	if(hoggers)
-		if(hoggers.cult.cult_color = src.cultcolor)
+		if(hoggers.cult.cult_color == src.cultcolor)
 			M.drowsyness = max(M.drowsyness-5, 0)
 			M.AdjustAllImmobility(-40, FALSE)
 			M.adjustStaminaLoss(-10, 0)
@@ -159,7 +159,7 @@
 				if("emote")
 					M.visible_message(span_warning("[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")]."))
 		else if(IS_HOG_CULTIST(M) && prob(8))
-				M.visible_message(span_warning("[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")].")) ///Im not very creative with this
+			M.visible_message(span_warning("[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")].")) ///Im not very creative with this
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
 			if(iscultist(M))
