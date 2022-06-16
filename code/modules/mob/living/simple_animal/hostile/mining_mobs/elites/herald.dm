@@ -319,7 +319,8 @@
 
 /obj/structure/guardian_mirror
 	name = "guardian mirror"
-	icon_state = "girder"
+	icon_state = "herald_mirror"
+	icon = 'icons/mob/lavaland/lavaland_elites.dmi'
 	desc = "A large mirror with a image of a strange entity in it."
 	anchored = TRUE
 	density = FALSE
