@@ -11641,15 +11641,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"aWq" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "aWu" = (
 /obj/structure/closet/boxinggloves,
 /obj/machinery/light{
@@ -26442,6 +26433,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"dsw" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/camera{
+	c_tag = "Medbay Storage";
+	dir = 1;
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "dsK" = (
 /obj/machinery/light{
 	dir = 1
@@ -28192,6 +28192,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"euf" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "eum" = (
 /obj/effect/landmark/start/assistant,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -30587,17 +30597,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
-"fES" = (
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/effect/turf_decal/tile/blue/opposingcorners,
-/obj/machinery/camera{
-	c_tag = "Medbay Break Room";
-	dir = 4;
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "fFg" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/table/glass,
@@ -31890,6 +31889,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"gqD" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "gqO" = (
 /obj/structure/chair{
 	dir = 8
@@ -34724,6 +34731,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"hHl" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "hHy" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -39520,16 +39536,6 @@
 	},
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/aisat_interior)
-"jXb" = (
-/obj/vehicle/ridden/wheelchair{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
 "jXv" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet,
@@ -42705,6 +42711,17 @@
 /obj/item/book/manual/wiki/security_space_law,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/service)
+"lzP" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/machinery/camera{
+	c_tag = "Medbay Break Room";
+	dir = 4;
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "lAr" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/leafybush,
@@ -43993,6 +44010,17 @@
 /obj/structure/lattice,
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"mkK" = (
+/obj/vehicle/ridden/wheelchair{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "mkO" = (
 /obj/machinery/nanite_program_hub,
 /obj/effect/turf_decal/bot,
@@ -50329,6 +50357,18 @@
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"pul" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "puD" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -51589,16 +51629,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"qgx" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "qgG" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -52228,17 +52258,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
-"qvm" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Medbay Central";
-	dir = 1;
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "qvH" = (
 /obj/structure/closet/secure_closet/freezer/cream_pie,
 /obj/effect/turf_decal/tile/red{
@@ -59024,18 +59043,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"tOq" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "tOu" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -59345,15 +59352,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"tUt" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/machinery/camera{
-	c_tag = "Medbay Storage";
-	dir = 1;
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "tUE" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -59879,6 +59877,23 @@
 /obj/item/pen,
 /turf/open/floor/plasteel,
 /area/security/main)
+"ufW" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/machinery/camera{
+	c_tag = "Medbay Cryocells";
+	dir = 1;
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "ugv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -62843,23 +62858,6 @@
 	},
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/ai)
-"vUw" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/machinery/camera{
-	c_tag = "Medbay Cryocells";
-	dir = 1;
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "vUJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -63614,6 +63612,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"wrx" = (
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Medbay Central";
+	dir = 1;
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "wrN" = (
 /obj/structure/chair/comfy/beige,
 /turf/open/floor/plasteel/grimy,
@@ -64403,14 +64412,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
-"wOQ" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "wOV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -104934,7 +104935,7 @@ pzx
 gtC
 gID
 kub
-wOQ
+gqD
 bvj
 vIe
 rnj
@@ -104946,7 +104947,7 @@ qGP
 rlk
 rrW
 rrW
-vUw
+ufW
 bvj
 liS
 bzs
@@ -105197,13 +105198,13 @@ vYT
 eKD
 gjv
 mKi
-qvm
+wrx
 bvj
 fFg
 eGE
-tOq
-qgx
-qgx
+pul
+euf
+euf
 bvj
 liS
 bHX
@@ -105708,12 +105709,12 @@ pjc
 hLI
 jhe
 dpA
-aWq
+hHl
 kbC
 tZt
 mNa
 aJW
-fES
+lzP
 rFk
 tTj
 jdO
@@ -106224,7 +106225,7 @@ jhe
 eza
 edY
 qed
-tUt
+dsw
 jdO
 qfA
 hRI
@@ -107005,7 +107006,7 @@ cTj
 jrP
 jFX
 ulL
-jXb
+mkK
 bNd
 bIJ
 bXt
