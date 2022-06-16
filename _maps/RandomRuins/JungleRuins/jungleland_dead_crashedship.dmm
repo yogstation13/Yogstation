@@ -1,0 +1,801 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/unpowered)
+"c" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"e" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"f" = (
+/turf/closed/wall/mineral/titanium,
+/area/space)
+"g" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"h" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/directional{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"i" = (
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"j" = (
+/obj/structure/flora/tree/dead/jungle,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"k" = (
+/obj/structure/table_frame,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"l" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"n" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"o" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"q" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 1
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"r" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/unpowered)
+"v" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"x" = (
+/turf/open/floor/plasteel/lavaland,
+/area/space)
+"y" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/unpowered)
+"z" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"A" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"C" = (
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/unpowered)
+"D" = (
+/turf/template_noop,
+/area/template_noop)
+"E" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"F" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"H" = (
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"I" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"J" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"K" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"L" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"M" = (
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"N" = (
+/obj/structure/table,
+/obj/item/flashlight,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"P" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"Q" = (
+/obj/structure/table,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"R" = (
+/obj/machinery/door/airlock/titanium,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/unpowered)
+"T" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+"U" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/unpowered)
+"Z" = (
+/obj/machinery/computer{
+	dir = 8
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/space)
+
+(1,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+"}
+(2,1,1) = {"
+D
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+D
+D
+"}
+(3,1,1) = {"
+D
+M
+M
+e
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+D
+D
+"}
+(4,1,1) = {"
+D
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+D
+D
+"}
+(5,1,1) = {"
+D
+e
+M
+M
+M
+e
+P
+M
+P
+M
+M
+M
+M
+M
+M
+M
+M
+M
+D
+D
+"}
+(6,1,1) = {"
+D
+M
+M
+M
+M
+M
+o
+l
+l
+M
+K
+M
+M
+M
+M
+L
+M
+M
+D
+D
+"}
+(7,1,1) = {"
+D
+M
+M
+f
+e
+f
+r
+r
+r
+C
+r
+r
+r
+M
+M
+M
+M
+M
+D
+D
+"}
+(8,1,1) = {"
+D
+M
+M
+f
+i
+i
+r
+U
+E
+C
+y
+r
+M
+M
+M
+c
+M
+M
+D
+D
+"}
+(9,1,1) = {"
+D
+M
+M
+f
+i
+i
+r
+H
+C
+a
+C
+r
+e
+e
+M
+M
+M
+M
+D
+D
+"}
+(10,1,1) = {"
+D
+M
+M
+f
+i
+e
+r
+C
+C
+C
+C
+C
+i
+e
+f
+M
+M
+M
+D
+D
+"}
+(11,1,1) = {"
+D
+M
+M
+M
+e
+i
+r
+r
+R
+r
+r
+r
+e
+i
+f
+M
+M
+M
+D
+D
+"}
+(12,1,1) = {"
+D
+M
+j
+M
+e
+e
+i
+i
+i
+x
+i
+i
+i
+A
+f
+M
+M
+M
+D
+D
+"}
+(13,1,1) = {"
+D
+M
+M
+M
+F
+i
+e
+e
+A
+i
+x
+i
+i
+e
+f
+M
+M
+M
+D
+D
+"}
+(14,1,1) = {"
+D
+M
+M
+M
+M
+i
+e
+e
+v
+M
+J
+f
+e
+e
+M
+M
+M
+M
+D
+D
+"}
+(15,1,1) = {"
+D
+M
+M
+M
+e
+e
+f
+e
+e
+M
+i
+f
+i
+I
+f
+M
+M
+M
+D
+D
+"}
+(16,1,1) = {"
+D
+M
+M
+e
+I
+e
+M
+i
+i
+M
+M
+i
+i
+i
+f
+M
+M
+F
+D
+D
+"}
+(17,1,1) = {"
+D
+M
+M
+f
+i
+e
+f
+k
+N
+Q
+i
+i
+i
+i
+f
+M
+M
+M
+D
+D
+"}
+(18,1,1) = {"
+D
+M
+M
+f
+v
+i
+f
+f
+f
+f
+f
+i
+e
+i
+e
+M
+M
+M
+D
+D
+"}
+(19,1,1) = {"
+D
+M
+M
+f
+i
+A
+i
+i
+v
+e
+v
+e
+i
+i
+f
+M
+M
+M
+D
+D
+"}
+(20,1,1) = {"
+D
+M
+M
+f
+e
+e
+i
+n
+i
+i
+x
+T
+i
+e
+f
+M
+M
+M
+D
+D
+"}
+(21,1,1) = {"
+D
+M
+M
+f
+i
+e
+e
+e
+e
+x
+i
+i
+e
+e
+f
+M
+M
+M
+D
+D
+"}
+(22,1,1) = {"
+D
+M
+M
+f
+i
+z
+e
+e
+v
+i
+i
+i
+e
+e
+f
+M
+M
+M
+D
+D
+"}
+(23,1,1) = {"
+D
+M
+M
+f
+i
+f
+i
+J
+g
+A
+x
+x
+f
+e
+f
+M
+M
+M
+D
+D
+"}
+(24,1,1) = {"
+D
+M
+M
+M
+M
+f
+f
+i
+i
+i
+v
+f
+f
+M
+M
+M
+M
+M
+D
+D
+"}
+(25,1,1) = {"
+D
+M
+M
+M
+M
+M
+f
+x
+v
+Z
+i
+f
+M
+M
+M
+j
+M
+M
+D
+D
+"}
+(26,1,1) = {"
+D
+M
+M
+M
+M
+M
+f
+f
+q
+h
+f
+f
+M
+M
+M
+M
+M
+M
+D
+D
+"}
+(27,1,1) = {"
+D
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+D
+D
+"}
+(28,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+"}
+(29,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+"}
