@@ -34,8 +34,7 @@
 	pda_type = /obj/item/pda/miningmed
 
 	backpack_contents = list(/obj/item/roller = 1,\
-		/obj/item/kitchen/knife/combat/survival = 1,\
-		/obj/item/gps/mining = 1)
+		/obj/item/kitchen/knife/combat/survival = 1)
 	belt = /obj/item/storage/belt/medical/mining
 	ears = /obj/item/radio/headset/headset_medcargo
 	glasses = /obj/item/clothing/glasses/hud/health/meson
