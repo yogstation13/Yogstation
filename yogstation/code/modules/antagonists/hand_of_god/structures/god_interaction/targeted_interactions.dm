@@ -122,7 +122,7 @@
 	if(antag_datum.banned_by_god)
 		to_chat(user, span_warning("You dissallow [dude] to use your structures."))
 		to_chat(dude, span_warning("You have angered your god. You no more can use your cult's structures."))
-		SEND_SIGNAL(owner.current, COMSIG_CLEAR_MOOD_EVENT, "god_moraleboost") 
+		SEND_SIGNAL(dude, COMSIG_CLEAR_MOOD_EVENT, "god_moraleboost") 
 	else
 		to_chat(user, span_warning("You allow [dude] to use your structures."))
 		to_chat(dude, span_warning("Your god has forgave you. You can interact with your cult structures again.."))
