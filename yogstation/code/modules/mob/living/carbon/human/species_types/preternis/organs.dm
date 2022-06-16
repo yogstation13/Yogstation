@@ -1,6 +1,6 @@
 /obj/item/organ/eyes/robotic/preternis
 	name = "preternis eyes"
-	desc = "An experimental upgraded version of eyes that can see in the dark.They are designed to fit preternis"
+	desc = "An experimental upgraded version of eyes that can see in the dark. They are designed to fit preternis"
 	see_in_dark = PRETERNIS_NV_ON
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
@@ -63,6 +63,17 @@
 			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 			sight_flags &= ~SEE_BLACKNESS
 			owner.update_sight()
+
+/obj/item/organ/eyes/robotic/preternis/examine(mob/user)
+	. = ..()
+	if(status == ORGAN_ROBOTIC && (organ_flags & ORGAN_FAILING))
+		. += span_warning("[src] appears to be completely out of charge. However, that's nothing popping them back in a Preternis wouldn't fix.")
+
+	else if(organ_flags & ORGAN_FAILING)
+		. += span_warning("[src] appears to be completely out of charge. If they were put back in a Preternis they would surely recharge in time.")
+
+	else if(damage > high_threshold)
+		. += span_warning("[src] seem to flicker on and off. They must be pretty low on charge without being in a Preternis")
 
 /obj/item/organ/lungs/preternis
 	name = "preternis lungs"
