@@ -64,6 +64,7 @@
 		if (INTENT_HELP)
 			M.visible_message("[M] pets [src].", \
 							span_notice("You pet [src]."))
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT_RND, "pet_borg", /datum/mood_event/pet_borg)
 		if(INTENT_GRAB)
 			grabbedby(M)
 		else

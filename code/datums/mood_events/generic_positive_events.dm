@@ -55,6 +55,11 @@
 /datum/mood_event/pet_animal/add_effects(mob/animal)
 	description = "<span class='nicegreen'>\The [animal.name] is adorable! I can't stop petting [animal.p_them()]!</span>\n"
 
+/datum/mood_event/pet_borg
+	description = "<span class='nicegreen'>I just love my robotical friends!</span>\n"
+	mood_change = 3
+	timeout = 5 MINUTES
+
 /datum/mood_event/honk
 	description = "<span class='nicegreen'>I've been honked!</span>\n"
 	mood_change = 2
@@ -116,6 +121,14 @@
 
 /datum/mood_event/family_heirloom
 	description = "<span class='nicegreen'>My family heirloom is safe with me.</span>\n"
+	mood_change = 1
+
+/datum/mood_event/fan_clown_pin
+	description = "<span class='nicegreen'>I love showing off my clown pin!</span>\n"
+	mood_change = 1
+
+/datum/mood_event/fan_mime_pin
+	description = "<span class='nicegreen'>I love showing off my mime pin!</span>\n"
 	mood_change = 1
 
 /datum/mood_event/goodmusic
