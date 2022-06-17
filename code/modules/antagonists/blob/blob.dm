@@ -7,7 +7,7 @@
 
 	var/datum/action/innate/blobpop/pop_action
 	var/starting_points_human_blob = 60
-	var/point_rate_human_blob = 2
+	var/point_rate_human_blob = 4
 
 /datum/antagonist/blob/roundend_report()
 	var/basic_report = ..()
