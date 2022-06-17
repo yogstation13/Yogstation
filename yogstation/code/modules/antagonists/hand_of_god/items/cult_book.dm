@@ -8,13 +8,15 @@
 	var/charges = 0
 	var/casting = FALSE
 	var/stam_damage = 49
+	var/can_rcd = TRUE ///Can it convert objects?
 	
 /obj/item/hog_item/book/attack_self(mob/user)
 	return ///Here will be code for making spells
 
 /obj/item/hog_item/book/attack(mob/M, mob/living/carbon/human/user)
 	if(!iscarbon(M))
-		return ..()
+			return ..()
+
 	var/mob/living/carbon/C = M
 	if(user == C)
 		return ..()
@@ -32,9 +34,11 @@
 	if(user.a_intent == INTENT_DISARM)
 		if(iscultist(C) || C.anti_magic_check() || HAS_TRAIT(C, TRAIT_MINDSHIELD) || is_servant_of_ratvar(C) || IS_HOG_CULTIST(C))  ///Mindshielded nerds just get attacked, antimagic dudes and enemy cult members also
 			return ..()
+		if(!charges)
+			return ..()
 		var/stamina_damage = C.getStaminaLoss()
 		if(stamina_damage >= 85)
-			var/stunforce = 7 SECONDS //A bit less if alredy stunned
+			var/stunforce = 4 SECONDS //A bit less if alredy stunned
 			if(!C.IsParalyzed())
 				to_chat(C, span_cult("You feel pure horror inflitrating your mind!"))
 				stunforce = 11 SECONDS
@@ -42,6 +46,7 @@
 		else
 			C.apply_damage(stam_damage, STAMINA, BODY_ZONE_CHEST, 0)
 			addtimer(CALLBACK(src, C,  .proc/calm_down), 2 SECONDS)	
+		charges--
 		return
 
 	if(user.a_intent == INTENT_GRAB)
@@ -106,6 +111,56 @@
 	item_flags = DROPDEL
 
 /obj/item/restraints/handcuffs/energy/hogcult/used/dropped(mob/user)
-	user.visible_message(span_danger("[user]'s shackles shatter in a discharge of dark magic!"), \
-							span_userdanger("Your [src] shatters in a discharge of dark magic!"))
+	user.visible_message(span_danger("[user]'s shackles shatter in a discharge of magic!"), \
+							span_userdanger("Your [src] shatters in a discharge of magic!"))
 	. = ..()
+
+/*
+	Rcd-ing shit with ur book
+*/
+
+/obj/item/hog_item/book/afterattack(atom/O, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return 
+	if(!istype(O, /obj))
+		return
+	var/obj/target = O
+	if(!target.hog_can_rcd())
+		return
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
+	if(!cultie)
+		return
+	var/cost = target.hog_rcding_cost()
+	if(cultie.energy < cost)
+		to_chat(user, span_notice("You don't have enough energy to convert [target], you need atleast [cost]"))
+		return
+	to_chat(user, span_notice("You attempt to convert [target]..."))
+	if(!do_after(user, target.hog_rcding_time(), target))
+		to_chat(user, span_warning("You fail to convert [target]."))
+		return
+	if(cultie.energy < cost)
+		to_chat(user, span_notice("You fail to convert [target]."))  ///We check again, because energy amount of the dude can change before the process is complete.
+		return
+	if(!target.hog_act())
+		to_chat(user, span_warning("You fail to convert [target]."))
+	else
+		to_chat(user, span_notice("You succesfully convert [target]!"))
+		cultie.get_energy(-cost)
+
+
+	
+
+
+/obj/proc/hog_rcding_time()
+	return 2 SECONDS
+
+/obj/proc/hog_can_rcd()
+	return FALSE
+
+/obj/proc/hog_rcding_cost()
+	return 15
+
+/atom/proc/hog_act()
+	return FALSE
+
