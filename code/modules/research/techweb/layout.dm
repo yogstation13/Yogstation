@@ -288,7 +288,7 @@
 	ui_y = -32
 
 /datum/techweb_node/ai_cpu_advanced
-	ui_x = 960
+	ui_x = 992
 	ui_y = 64
 
 /datum/techweb_node/ai_ram_high_cap
@@ -376,7 +376,7 @@
 	ui_y = -224
 
 /datum/techweb_node/ai_cpu_bluespace
-	ui_x = 960
+	ui_x = 992
 	ui_y = 192
 
 /datum/techweb_node/ai_ram_bluespace
@@ -412,7 +412,7 @@
 	ui_y = -96
 
 /datum/techweb_node/ai_cpu_1
-	ui_x = 864
+	ui_x = 896
 	ui_y = 64
 
 /datum/techweb_node/ai_ram_1
@@ -460,7 +460,7 @@
 	ui_y = -256
 
 /datum/techweb_node/ai_cpu_experimental
-	ui_x = 960
+	ui_x = 992
 	ui_y = 128
 
 /datum/techweb_node/ai_ram_hyper
@@ -516,7 +516,7 @@
 	ui_y = -320
 
 /datum/techweb_node/ai_cpu_3
-	ui_x = 864
+	ui_x = 896
 	ui_y = 192
 
 /datum/techweb_node/ai_ram_3
@@ -548,7 +548,7 @@
 	ui_y = 96
 
 /datum/techweb_node/ai_cpu_2
-	ui_x = 864
+	ui_x = 896
 	ui_y = 128
 
 /datum/techweb_node/ai_ram_2
