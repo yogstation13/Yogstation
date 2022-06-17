@@ -30,7 +30,7 @@
 		return ..()
 
 	if(user.a_intent == INTENT_DISARM)
-		if(iscultist(C) || C.anti_magic_check() || HAS_TRAIT(C, TRAIT_MINDSHIELD) || is_servant_of_ratvar(C))  ///Mindshielded nerds just get attacked, antimagic dudes and enemy cult members also
+		if(iscultist(C) || C.anti_magic_check() || HAS_TRAIT(C, TRAIT_MINDSHIELD) || is_servant_of_ratvar(C) || IS_HOG_CULTIST(C))  ///Mindshielded nerds just get attacked, antimagic dudes and enemy cult members also
 			return ..()
 		var/stamina_damage = C.getStaminaLoss()
 		if(stamina_damage >= 85)
@@ -65,19 +65,39 @@
 		return
 
 	if(user.a_intent == INTENT_HELP)
-		return  ///Here will be giving power to allies and allied structures.
+		to_chat(user, span_notice("You try to transfer your energy to [C]..."))
+		give_energy(C, user)
+		return 
 	. = ..()
 
-/obj/item/hog_item/book/proc/calm_down(mob/living/carbon/target)
+/obj/item/hog_item/book/proc/calm_down(var/mob/living/carbon/target)
 	if(!target)
 		return
 	target.apply_damage(stam_damage, STAMINA, BODY_ZONE_CHEST, 0)
 
-			
-
-
-
-
+/obj/item/hog_item/book/proc/give_energy(var/mob/living/carbon/C, var/mob/living/carbon/human/user)
+	var/datum/antagonist/hog/user_datum = IS_HOG_CULTIST(user)
+	var/datum/antagonist/hog/c_datum = IS_HOG_CULTIST(C)
+	if(!user_datum)
+		return
+	if(!c_datum || user_datum.cult != c_datum.cult)
+		to_chat(user, span_warning("[C] is not serving your cult, you can't give energy to him."))
+		return
+	if(c_datum.energy >= c_datum.max_energy)
+		to_chat(user, span_notice("[C] alredy has enough energy."))
+		return	
+	if(!do_mob(user, C, 1.5 SECONDS))
+		to_chat(user, span_warning("You stop transfering energy to [C]."))
+		return
+	var/energy_to_give = min(HOG_ENERGY_TRANSFER_AMOUNT, user_datum.energy)
+	if(energy_to_give <= 0)
+		to_chat(user, span_warning("You don't have any energy to give!"))
+		return	
+	user_datum.get_energy(-energy_to_give)	
+	c_datum.get_energy(energy_to_give)	
+	to_chat(user, span_warning("You sucessfully transfer [energy_to_give] energy to [C]. You now have [user_datum.energy] energy left."))
+	to_chat(C, span_notice("[user] transfers [energy_to_give] energy to you. You now have [c_datum.energy] energy."))
+	give_energy(C, user)
 
 /obj/item/restraints/handcuffs/energy/hogcult
 	name = "celestial bound"

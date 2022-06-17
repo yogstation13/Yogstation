@@ -86,3 +86,10 @@
 
 /datum/antagonist/hog/proc/equip_cultist()
 	return ///No items coded yet, so for now it does nothing. 
+
+/datum/antagonist/hog/proc/get_energy(var/amount)
+	energy += amount
+	if(energy < 0)
+		energy = 0
+	if(energy > max_energy)
+		energy= max_energy
