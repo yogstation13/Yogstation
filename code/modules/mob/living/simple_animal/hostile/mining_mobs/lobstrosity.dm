@@ -11,8 +11,6 @@
 	icon_dead = "arctic_lobstrosity_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
-	friendly_verb_continuous = "chitters at"
-	friendly_verb_simple = "chits at"
 	speak_emote = list("chitters")
 	speed = 3
 	move_to_delay = 20
