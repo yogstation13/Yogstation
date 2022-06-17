@@ -127,6 +127,21 @@
 	mag_display = TRUE
 	empty_indicator = TRUE
 
+/obj/item/gun/ballistic/automatic/wt650
+	name = "WT-650 Assault Rifle"
+	desc = "A long-barreled, assault variant of the WT-550. Uses 5.56 rounds and is specially designed for assault teams, PMC forces, and armies favouring balistic weapons over their laser counterparts."
+	icon_state = "wt650"
+	item_state = "wt650"
+	mag_type = /obj/item/ammo_box/magazine/wt650
+	fire_delay = 2
+	burst_size = 1
+	can_suppress = FALSE
+	can_bayonet = TRUE
+	knife_x_offset = 25
+	knife_y_offset = 12
+	mag_display = TRUE
+	mag_display_ammo = TRUE
+
 /obj/item/gun/ballistic/automatic/m90/Initialize()
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher(src)
