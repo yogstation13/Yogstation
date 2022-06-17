@@ -8,6 +8,7 @@
 
 /obj/item/hog_item/proc/update_icons()
 	icon_state = "[original_icon]_[cult.cult_color]"
+	update_icon()
 	
 /obj/item/hog_item/proc/handle_owner_change(var/datum/team/hog_cult/new_cult)
 	cult = new_cult
