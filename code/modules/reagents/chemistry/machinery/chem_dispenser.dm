@@ -674,7 +674,9 @@
 		/datum/reagent/drug/space_drugs,
 		/datum/reagent/toxin,
 		/datum/reagent/toxin/plasma,
-		/datum/reagent/uranium
+		/datum/reagent/uranium,
+		/datum/reagent/toxin/carpotoxin,
+		/datum/reagent/medicine/rezadone
 	)
 
 /obj/machinery/chem_dispenser/abductor/Initialize()
