@@ -22,7 +22,7 @@
 	attack_verb_continuous = "snips"
 	attack_verb_simple = "snip"
 	attack_sound = 'sound/weapons/bite.ogg'
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 	vision_range = 5
 	aggro_vision_range = 7
 	charger = TRUE
