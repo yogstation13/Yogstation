@@ -35,6 +35,8 @@
 		add_overlay("overchange_[cult.cult_color]")
 	if(shield_integrity > 0)
 		add_overlay("shield_[cult.cult_color]")
+	update_icon()
+
 	
 /obj/structure/hog_structure/proc/handle_team_change(var/datum/team/hog_cult/new_cult)
 	shield_integrity = 0 
