@@ -698,8 +698,35 @@
 /obj/machinery/door/airlock/hog/emp_act(severity)
 	if(prob(80/severity))
 		open()
-	take_damage(HOG_EMP_DAMAGE_MULTIPLER, BURN, MELEE, sound/items/welder.ogg, get_dir(src, src), severity)   ///HoG structures don't like EMP's.
+	take_damage(HOG_EMP_DAMAGE_MULTIPLER, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), severity)   ///HoG structures don't like EMP's.
 
+/obj/machinery/door/airlock/hog/canAIControl(mob/user)
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)    ///Idk maybe i will in far future make AI and silicon convertion
+	if(!cultie)
+		return FALSE
+	if(cultie.cult != src.cult)
+		return FALSE
+	if(!isAllPowerCut())
+		return FALSE
+	return TRUE
+
+/obj/machinery/door/airlock/hog/ratvar_act()
+	if(cult.state == HOG_TEAM_SUMMONED)   ///If we have our own god alive, we can't get fucked!
+		return 
+	..()
+
+/obj/machinery/door/airlock/hog/narsie_act()
+	if(cult.state == HOG_TEAM_SUMMONED) 
+		return 
+	..()
+
+/obj/machinery/door/airlock/hog/allowed(mob/M)
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M)    ///Idk maybe i will in far future make AI and silicon convertion
+	if(!cultie)
+		return 0
+	if(cultie.cult != src.cult)
+		return 0
+	return 1
 
 //////////////////////////////////
 /*
