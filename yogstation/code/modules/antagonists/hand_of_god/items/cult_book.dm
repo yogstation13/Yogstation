@@ -9,7 +9,7 @@
 	var/casting = FALSE
 	var/stam_damage = 49
 	var/can_rcd = TRUE ///Can it convert objects?
-	
+
 /obj/item/hog_item/book/attack_self(mob/user)
 	return ///Here will be code for making spells
 
