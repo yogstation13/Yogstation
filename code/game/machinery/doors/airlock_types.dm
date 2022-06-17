@@ -771,10 +771,6 @@
 	return 75  ///RCDing another cult door will cost more energy
 
 /obj/machinery/door/airlock/hog_act(datum/team/hog_cult/act_cult)
-	if(act_cult == cult)
-		take_damage(-25, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), 100)
-		take_damage(-25, BRUTE, MELEE, FALSE , get_dir(src, src), 100) 
-		return
 	var/turf/T = get_turf(src)
 	var/obj/machinery/door/airlock/hog/A
 	if(glass)
@@ -786,6 +782,14 @@
 	qdel(src)
 	return TRUE
 	
+/obj/machinery/door/airlock/hog/hog_act(datum/team/hog_cult/act_cult)
+	. = ..()
+	if(act_cult == cult)
+		take_damage(-25, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), 100)
+		take_damage(-25, BRUTE, MELEE, FALSE , get_dir(src, src), 100) 
+		return
+
+
 /obj/machinery/door/airlock/hog/proc/change_hog_team(var/datum/team/hog_cult/new_cult)
 	cult = new_cult
 

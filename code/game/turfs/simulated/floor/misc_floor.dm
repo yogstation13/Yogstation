@@ -133,8 +133,12 @@
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "floor"
 	floor_tile = /obj/item/stack/tile/plasteel
+//////////////////////////////////
+/*
+	Clockwork floor: Slowly heals toxin damage on nearby servants.
+*/
+//////////////////////////////////
 
-//Clockwork floor: Slowly heals toxin damage on nearby servants.
 /turf/open/floor/clockwork
 	name = "clockwork floor"
 	desc = "Tightly-pressed brass tiles. They emit minute vibration."
@@ -240,6 +244,8 @@
 	uses_overlay = FALSE
 	planetary_atmos = TRUE
 
+//////////////////////////////////
+
 /turf/open/floor/bluespace
 	slowdown = -1
 	icon_state = "bluespace"
@@ -290,3 +296,15 @@
 	icon_state = "eighties"
 	floor_tile = /obj/item/stack/tile/eighties
 	broken_states = list("eighties_damaged")
+
+//////////////////////////////////
+/*
+	HoG Cult Floors
+*/
+//////////////////////////////////
+
+
+
+
+
+//////////////////////////////////
