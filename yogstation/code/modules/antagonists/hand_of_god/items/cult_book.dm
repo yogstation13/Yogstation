@@ -142,15 +142,11 @@
 	if(cultie.energy < cost)
 		to_chat(user, span_notice("You fail to convert [target]."))  ///We check again, because energy amount of the dude can change before the process is complete.
 		return
-	if(!target.hog_act())
+	if(!target.hog_act(cultie.cult))
 		to_chat(user, span_warning("You fail to convert [target]."))
 	else
 		to_chat(user, span_notice("You succesfully convert [target]!"))
 		cultie.get_energy(-cost)
-
-
-	
-
 
 /obj/proc/hog_rcding_time()
 	return 2 SECONDS

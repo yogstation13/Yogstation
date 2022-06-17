@@ -668,6 +668,41 @@
 
 //////////////////////////////////
 /*
+	HoG Cult Airlcok
+*/
+
+/obj/machinery/door/airlock/hog   
+	name = "divine airlock" ///Wow 
+	desc = "An airlock, affected by strange magic."
+	icon = 'icons/obj/doors/airlocks/clockwork/pinion_airlock.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/clockwork/overlays.dmi'
+	anim_parts = "left=-13,0;right=13,0"
+	hackProof = TRUE
+	aiControlDisabled = AI_WIRE_DISABLED
+	req_access = list(ACCESS_HOG_CULTIST)
+	use_power = FALSE
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	damage_deflection = 30
+	normal_integrity = 200
+	var/datum/team/hog_cult/cult
+
+/obj/machinery/door/airlock/hog/examine(mob/user)
+	. = ..()
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
+	if(cultie)
+		if(cultie.cult == src.cult)
+			. += "It belongs to your cult."
+		else
+			. += "It belongs to a heretical cult!"
+
+/obj/machinery/door/airlock/hog/emp_act(severity)
+	if(prob(80/severity))
+		open()
+	take_damage(HOG_EMP_DAMAGE_MULTIPLER, BURN, MELEE, sound/items/welder.ogg, get_dir(src, src), severity)   ///HoG structures don't like EMP's.
+
+
+//////////////////////////////////
+/*
 	Misc Airlocks
 */
 
