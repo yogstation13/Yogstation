@@ -1385,7 +1385,7 @@
 #include "code\modules\antagonists\abductor\equipment\glands\slime.dm"
 #include "code\modules\antagonists\abductor\equipment\glands\spiderman.dm"
 #include "code\modules\antagonists\abductor\equipment\glands\trauma.dm"
-#include "code\modules\antagonists\abductor\equipment\glands\ventcrawl.dm"
+#include "code\modules\antagonists\abductor\equipment\glands\ventcrawling.dm"
 #include "code\modules\antagonists\abductor\equipment\glands\viral.dm"
 #include "code\modules\antagonists\abductor\equipment\orderable_gear.dm"
 #include "code\modules\antagonists\abductor\machinery\camera.dm"
