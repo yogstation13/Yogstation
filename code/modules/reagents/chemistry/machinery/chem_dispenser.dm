@@ -469,6 +469,7 @@
 		/datum/reagent/consumable/tea,
 		/datum/reagent/consumable/icetea,
 		/datum/reagent/consumable/space_cola,
+		/datum/reagent/consumable/rootbeer,
 		/datum/reagent/consumable/spacemountainwind,
 		/datum/reagent/consumable/dr_gibb,
 		/datum/reagent/consumable/space_up,

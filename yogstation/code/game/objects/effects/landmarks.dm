@@ -77,14 +77,20 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 // Examples where this would be useful, would be choosing certain templates depending on conditions such as holidays,
 // Or co-dependent templates, such as having a template for the core and one for the satelite, and swapping AI and comms.git
 /obj/effect/landmark/stationroom/proc/choose()
+	var/list/current_templates = template_names
 	if(unique)
-		var/list/current_templates = template_names
 		for(var/i in GLOB.chosen_station_templates)
 			template_names -= i
 		if(!template_names.len)
 			stack_trace("Station room spawner (type: [type]) has run out of ruins, unique will be ignored")
 			template_names = current_templates
-	return pickweight(template_names)
+	var/chosen_template = pickweight(template_names)
+	if(unique && chosen_template == EMPTY_SPAWN)
+		template_names -= EMPTY_SPAWN
+		if(!template_names.len)
+			stack_trace("Station room spawner (type: [type]) has run out of ruins from an EMPTY_SPAWN, unique will be ignored")
+			template_names = current_templates
+	return chosen_template
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")

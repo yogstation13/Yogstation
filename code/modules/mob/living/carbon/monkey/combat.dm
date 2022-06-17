@@ -1,9 +1,9 @@
 #define MAX_RANGE_FIND 32
 
 /mob/living/carbon/monkey
-	var/aggressive=0 // set to 1 using VV for an angry monkey
-	var/frustration=0
-	var/pickupTimer=0
+	var/aggressive = FALSE // set to TRUE using VV for an angry monkey
+	var/frustration = 0
+	var/pickupTimer = 0
 	var/list/enemies = list()
 	var/mob/living/target
 	var/obj/item/pickupTarget
@@ -18,7 +18,7 @@
 	var/disposing_body = FALSE
 	var/obj/machinery/disposal/bodyDisposal = null
 	var/next_battle_screech = 0
-	var/battle_screech_cooldown = 50
+	var/battle_screech_cooldown = 5 SECONDS
 
 /mob/living/carbon/monkey/proc/IsStandingStill()
 	return resisting || pickpocketing || disposing_body
@@ -304,9 +304,11 @@
 
 	return IsStandingStill()
 
-/mob/living/carbon/monkey/proc/pickpocket(var/mob/M)
+/mob/living/carbon/monkey/proc/pickpocket(mob/M)
 	if(do_mob(src, M, MONKEY_ITEM_SNATCH_DELAY) && pickupTarget)
 		for(var/obj/item/I in M.held_items)
+			if(istype(I, /obj/item/clothing/mob_holder)) //prevents monkeys from stealing themselves (temporalily deletes them if they do)
+				continue
 			if(I == pickupTarget)
 				M.visible_message(span_danger("[src] snatches [pickupTarget] from [M]."), span_userdanger("[src] snatched [pickupTarget]!"))
 				if(M.temporarilyRemoveItemFromInventory(pickupTarget))

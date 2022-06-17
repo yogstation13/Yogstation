@@ -267,7 +267,7 @@
 		limb.icon = 'icons/mob/human_parts.dmi'
 	// Set this limb up using the specias name and body zone
 	limb.icon_state = "[selected_category]_[limb.body_zone]"
-	limb.name = "\improper synthetic [selected_category] [parse_zone(limb.body_zone)]"
+	limb.name = "synthetic [selected_category] [parse_zone(limb.body_zone)]"
 	limb.desc = "A synthetic [selected_category] limb that will morph on its first use in surgery. This one is for the [parse_zone(limb.body_zone)]."
 	limb.species_id = selected_category
 	limb.update_icon_dropped()

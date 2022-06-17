@@ -1,38 +1,42 @@
-/obj/item/projectile/bullet/dart
+/obj/item/projectile/bullet/reusable/dart
 	name = "dart"
 	icon_state = "cbbolt"
 	damage = 6
+	var/obj/item/reagent_containers/container
 	var/piercing = FALSE
 
-/obj/item/projectile/bullet/dart/Initialize()
+/obj/item/projectile/bullet/reusable/dart/Initialize()
 	. = ..()
-	create_reagents(50, NO_REACT)
 
-/obj/item/projectile/bullet/dart/on_hit(atom/target, blocked = FALSE)
+/obj/item/projectile/bullet/reusable/dart/on_hit(atom/target, blocked = FALSE)
 	if(iscarbon(target))
-		var/mob/living/carbon/M = target
+		var/mob/living/carbon/C = target
 		if(blocked != 100) // not completely blocked
-			if(M.can_inject(null, FALSE, def_zone, piercing)) // Pass the hit zone to see if it can inject by whether it hit the head or the body.
+			if(C.embed_object(container, def_zone, FALSE))
+				dropped = TRUE
 				..()
-				reagents.reaction(M, INJECT)
-				reagents.trans_to(M, reagents.total_volume)
 				return BULLET_ACT_HIT
 			else
 				blocked = 100
-				target.visible_message(span_danger("\The [src] was deflected!"), \
-									   span_userdanger("You were protected against \the [src]!"))
+				target.visible_message(span_danger("\The [container] was deflected!"), \
+									   span_userdanger("You were protected against \the [container]!"))
 
 	..(target, blocked)
-	DISABLE_BITFIELD(reagents.flags, NO_REACT)
-	reagents.handle_reactions()
 	return BULLET_ACT_HIT
 
-/obj/item/projectile/bullet/dart/metalfoam/Initialize()
-	. = ..()
-	reagents.add_reagent(/datum/reagent/aluminium, 15)
-	reagents.add_reagent(/datum/reagent/foaming_agent, 5)
-	reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 5)
+/obj/item/projectile/bullet/reusable/dart/handle_drop()
+	if(!dropped)
+		container.forceMove(get_turf(src))
+		dropped = TRUE
 
-/obj/item/projectile/bullet/dart/syringe
+/obj/item/projectile/bullet/reusable/dart/proc/add_dart(obj/item/reagent_containers/new_dart)
+	container = new_dart
+	new_dart.forceMove(src)
+	name = new_dart.name
+	if(istype(new_dart, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/syringe
+		piercing = syringe.proj_piercing
+
+/obj/item/projectile/bullet/reusable/dart/syringe
 	name = "syringe"
 	icon_state = "syringeproj"
