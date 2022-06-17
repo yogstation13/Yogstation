@@ -5,7 +5,6 @@
 	icon_state = "gland"
 	status = ORGAN_ROBOTIC
 	beating = TRUE
-	var/true_name = "baseline placebo referencer"
 	var/cooldown_low = 30 SECONDS
 	var/cooldown_high = 30 SECONDS
 	var/next_activation = 0
@@ -17,6 +16,9 @@
 	var/mind_control_duration = 180 SECONDS
 	var/active_mind_control = FALSE
 
+	/// Shows name of the gland as well as a description of what it does upon examination by abductor scientists and observers.
+	var/abductor_hint = "baseline placebo referencer"
+
 /obj/item/organ/heart/gland/Initialize()
 	. = ..()
 	icon_state = pick(list("health", "spider", "slime", "emp", "species", "egg", "vent", "mindshock", "viral"))
@@ -24,7 +26,7 @@
 /obj/item/organ/heart/gland/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_ABDUCTOR_SCIENTIST_TRAINING) || isobserver(user))
-		. += span_notice("It is \a [true_name].")
+		. += span_notice("It is \a [abductor_hint]")
 
 /obj/item/organ/heart/gland/proc/ownerCheck()
 	if(ishuman(owner))
@@ -107,200 +109,6 @@
 
 /obj/item/organ/heart/gland/proc/activate()
 	return
-
-/obj/item/organ/heart/gland/heals
-	true_name = "coherency harmonizer"
-	cooldown_low = 20 SECONDS
-	cooldown_high = 40 SECONDS
-	icon_state = "health"
-	mind_control_uses = 3
-	mind_control_duration = 5 MINUTES
-
-/obj/item/organ/heart/gland/heals/activate()
-	to_chat(owner, span_notice("You feel curiously revitalized."))
-	owner.adjustToxLoss(-20, FALSE, TRUE)
-	owner.heal_bodypart_damage(20, 20, 0, TRUE)
-	owner.adjustOxyLoss(-20)
-
-/obj/item/organ/heart/gland/slime
-	true_name = "gastric animation galvanizer"
-	cooldown_low = 1 MINUTES
-	cooldown_high = 2 MINUTES
-	icon_state = "slime"
-	mind_control_uses = 1
-	mind_control_duration = 4 MINUTES
-
-/obj/item/organ/heart/gland/slime/Insert(mob/living/carbon/M, special = 0)
-	..()
-	owner.faction |= "slime"
-	owner.grant_language(/datum/language/slime)
-
-/obj/item/organ/heart/gland/slime/Remove(mob/living/carbon/M, special)
-	. = ..()
-	owner.faction -= "slime"
-	owner.remove_language(/datum/language/slime)
-
-/obj/item/organ/heart/gland/slime/activate()
-	to_chat(owner, span_warning("You feel nauseated!"))
-	owner.vomit(20)
-
-	var/mob/living/simple_animal/slime/Slime = new(get_turf(owner), "grey")
-	Slime.Friends = list(owner)
-	Slime.Leader = owner
-
-/obj/item/organ/heart/gland/mindshock
-	true_name = "neural crosstalk uninhibitor"
-	cooldown_low = 40 SECONDS
-	cooldown_high = 70 SECONDS
-	icon_state = "mindshock"
-	mind_control_uses = 1
-	mind_control_duration = 10 MINUTES
-	var/list/mob/living/carbon/human/broadcasted_mobs = list()
-
-/obj/item/organ/heart/gland/mindshock/activate()
-	to_chat(owner, span_notice("You get a headache."))
-
-	var/turf/T = get_turf(owner)
-	for(var/mob/living/carbon/H in orange(4,T))
-		if(H == owner)
-			continue
-		switch(pick(1,3))
-			if(1)
-				to_chat(H, span_userdanger("You hear a loud buzz in your head, silencing your thoughts!"))
-				H.Stun(50)
-			if(2)
-				to_chat(H, span_warning("You hear an annoying buzz in your head."))
-				H.confused += 15
-				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 160)
-			if(3)
-				H.hallucination += 60
-
-/obj/item/organ/heart/gland/mindshock/mind_control(command, mob/living/user)
-	if(!ownerCheck() || !mind_control_uses || active_mind_control)
-		return FALSE
-	mind_control_uses--
-	for(var/mob/M in oview(7, owner))
-		if(!ishuman(M))
-			continue
-		var/mob/living/carbon/human/H = M
-		if(H.stat)
-			continue
-
-		broadcasted_mobs += H
-		to_chat(H, span_userdanger("You suddenly feel an irresistible compulsion to follow an order..."))
-		to_chat(H, "[span_mind_control("[command]")]")
-
-		message_admins("[key_name(user)] broadcasted an abductor mind control message from [key_name(owner)] to [key_name(H)]: [command]")
-
-		var/obj/screen/alert/mind_control/mind_alert = H.throw_alert("mind_control", /obj/screen/alert/mind_control)
-		mind_alert.command = command
-
-	if(LAZYLEN(broadcasted_mobs))
-		active_mind_control = TRUE
-		addtimer(CALLBACK(src, .proc/clear_mind_control), mind_control_duration)
-
-	update_gland_hud()
-	return TRUE
-
-/obj/item/organ/heart/gland/mindshock/clear_mind_control()
-	if(!active_mind_control || !LAZYLEN(broadcasted_mobs))
-		return FALSE
-	for(var/M in broadcasted_mobs)
-		var/mob/living/carbon/human/H = M
-		to_chat(H, span_userdanger("You feel the compulsion fade, and you <i>completely forget</i> about your previous orders."))
-		H.clear_alert("mind_control")
-	active_mind_control = FALSE
-	return TRUE
-
-/obj/item/organ/heart/gland/access
-	true_name = "anagraphic electro-scrambler"
-	cooldown_low = 1 MINUTES
-	cooldown_high = 2 MINUTES
-	uses = 1
-	icon_state = "mindshock"
-	mind_control_uses = 3
-	mind_control_duration = 90 SECONDS
-
-/obj/item/organ/heart/gland/access/activate()
-	to_chat(owner, span_notice("You feel like a VIP for some reason."))
-	RegisterSignal(owner, COMSIG_MOB_ALLOWED, .proc/free_access)
-
-/obj/item/organ/heart/gland/access/proc/free_access(datum/source, obj/O)
-	return TRUE
-
-/obj/item/organ/heart/gland/access/Remove(mob/living/carbon/M, special = 0)
-	UnregisterSignal(owner, COMSIG_MOB_ALLOWED)
-	..()
-
-/obj/item/organ/heart/gland/pop
-	true_name = "anthropomorphic transmorphosizer"
-	cooldown_low = 90 SECONDS
-	cooldown_high = 3 MINUTES
-	human_only = TRUE
-	icon_state = "species"
-	mind_control_uses = 7
-	mind_control_duration = 30 SECONDS
-
-/obj/item/organ/heart/gland/pop/activate()
-	to_chat(owner, span_notice("You feel unlike yourself."))
-	randomize_human(owner)
-	var/species = pick(list(/datum/species/human, /datum/species/lizard, /datum/species/gorilla, /datum/species/moth, /datum/species/fly)) // yogs -- gorilla people
-	owner.set_species(species)
-
-/obj/item/organ/heart/gland/ventcrawling
-	true_name = "pliant cartilage enabler"
-	cooldown_low = 3 MINUTES
-	cooldown_high = 4 MINUTES
-	uses = 1
-	icon_state = "vent"
-	mind_control_uses = 4
-	mind_control_duration = 3 MINUTES
-	var/previous_ventcrawling
-
-/obj/item/organ/heart/gland/ventcrawling/activate()
-	to_chat(owner, span_notice("You feel very stretchy."))
-	previous_ventcrawling = owner.ventcrawler
-	owner.ventcrawler = VENTCRAWLER_ALWAYS
-
-/obj/item/organ/heart/gland/ventcrawling/Remove(mob/living/carbon/M, special)
-	. = ..()
-	owner.ventcrawler = previous_ventcrawling
-	previous_ventcrawling = VENTCRAWLER_NONE
-
-/obj/item/organ/heart/gland/viral
-	true_name = "contamination incubator"
-	cooldown_low = 3 MINUTES
-	cooldown_high = 4 MINUTES
-	uses = 1
-	icon_state = "viral"
-	mind_control_uses = 1
-	mind_control_duration = 3 MINUTES
-
-/obj/item/organ/heart/gland/viral/activate()
-	to_chat(owner, span_warning("You feel sick."))
-	var/datum/disease/advance/A = random_virus(pick(2,6),6)
-	A.carrier = TRUE
-	owner.ForceContractDisease(A, FALSE, TRUE)
-
-/obj/item/organ/heart/gland/viral/proc/random_virus(max_symptoms, max_level)
-	if(max_symptoms > VIRUS_SYMPTOM_LIMIT)
-		max_symptoms = VIRUS_SYMPTOM_LIMIT
-	var/datum/disease/advance/A = new /datum/disease/advance()
-	var/list/datum/symptom/possible_symptoms = list()
-	for(var/symptom in subtypesof(/datum/symptom))
-		var/datum/symptom/S = symptom
-		if(initial(S.level) > max_level)
-			continue
-		if(initial(S.level) <= 0) //unobtainable symptoms
-			continue
-		possible_symptoms += S
-	for(var/i in 1 to max_symptoms)
-		var/datum/symptom/chosen_symptom = pick_n_take(possible_symptoms)
-		if(chosen_symptom)
-			var/datum/symptom/S = new chosen_symptom
-			A.symptoms += S
-	A.Refresh() //just in case someone already made and named the same disease
-	return A
 
 /obj/item/organ/heart/gland/trauma
 	true_name = "white matter randomiser"
