@@ -1,0 +1,26 @@
+/obj/item/organ/heart/gland/electric
+	abductor_hint = "electron accumulator/discharger. It makes the abductee shockimmune, and makes him periodicly emmit telsa zaps."
+	cooldown_low = 80 SECONDS
+	cooldown_high = 2 MINUTES
+	icon_state = "species"
+	mind_control_uses = 2
+	mind_control_duration = 90 SECONDS
+
+/obj/item/organ/heart/gland/electric/Insert(mob/living/carbon/M, special = 0)
+	..()
+	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, "abductor_gland")
+
+/obj/item/organ/heart/gland/electric/Remove(mob/living/carbon/M, special = 0)
+	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, "abductor_gland")
+	..()
+
+/obj/item/organ/heart/gland/electric/activate()
+	owner.visible_message(span_danger("[owner]'s skin starts emitting electric arcs!"),\
+	span_warning("You feel electric energy building up inside you!"))
+	playsound(get_turf(owner), "sparks", 100, 1, -1)
+	addtimer(CALLBACK(src, .proc/zap), rand(30, 100))
+
+/obj/item/organ/heart/gland/electric/proc/zap()
+	tesla_zap(owner, 4, 8000, TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN)
+	playsound(get_turf(owner), 'sound/magic/lightningshock.ogg', 50, 1)
+
