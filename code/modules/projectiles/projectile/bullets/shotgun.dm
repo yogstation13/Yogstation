@@ -4,6 +4,10 @@
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
 
+/obj/item/projectile/bullet/shotgun_slug/syndie
+	name = "12g syndicate shotgun slug"
+	damage = 60
+
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
 	damage = 5
