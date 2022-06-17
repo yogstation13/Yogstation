@@ -116,7 +116,7 @@
 
 obj/effect/proc_holder/swipe
 	name = "Swipe"
-	desc = "Swipe at a target area, dealing damage to heal yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 15 brute/burn/poison while dead ones heal for 20 and get butchered. People and cyborgs hit will heal for 5"
+	desc = "Swipe at a target area, dealing damage to heal yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 13 brute/burn/poison while dead ones heal for 20 and get butchered, while killing a creature with a swipe will heal the user for 33. People and cyborgs hit will heal for 5."
 	action_background_icon_state = "bg_demon"
 	action_icon = 'icons/mob/actions/actions_items.dmi'
 	action_icon_state = "cuff"
@@ -161,21 +161,21 @@ obj/effect/proc_holder/swipe
 	new /obj/effect/temp_visual/bubblegum_hands/rightthumb(T)
 	to_chat(L, span_userdanger("Claws reach out from the floor and maul you!"))
 	to_chat(ranged_ability_user, "You summon claws at [L]'s location!")
-	L.visible_message(span_warning("[caller] swipes huge claws at [L]!"))
+	L.visible_message(span_warning("[caller] rends [L]!"))
 	for(L in range(0,T))
 		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
 		if(isanimal(L))
 			L.adjustBruteLoss(60)
+			if(L.stat != DEAD)
+				caller.adjustBruteLoss(-13)
+				caller.adjustFireLoss(-13)
+				caller.adjustToxLoss(-13)
 			if(L.stat == DEAD)
 				L.gib()
 				to_chat(caller, span_notice("You're able to the body entirely!"))
 				caller.adjustBruteLoss(-20)
 				caller.adjustFireLoss(-20)
 				caller.adjustToxLoss(-20)
-			if(L.stat != DEAD)
-				caller.adjustBruteLoss(-13)
-				caller.adjustFireLoss(-13)
-				caller.adjustToxLoss(-13)
 		if(iscarbon(L))
 			L.adjustBruteLoss(20)
 			caller.adjustBruteLoss(-5)
