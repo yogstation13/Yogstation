@@ -19,8 +19,7 @@
 	obj_damage = 15
 	melee_damage_lower = 15
 	melee_damage_upper = 19
-	attack_verb_continuous = "snips"
-	attack_verb_simple = "snip"
+	attacktext = "snips"
 	attack_sound = 'sound/weapons/bite.ogg'
 	weather_immunities = list(WEATHER_SNOW)
 	vision_range = 5
