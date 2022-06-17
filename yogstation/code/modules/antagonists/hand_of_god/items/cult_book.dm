@@ -15,7 +15,7 @@
 
 /obj/item/hog_item/book/attack(mob/M, mob/living/carbon/human/user)
 	if(!iscarbon(M))
-			return ..()
+		return ..()
 
 	var/mob/living/carbon/C = M
 	if(user == C)
