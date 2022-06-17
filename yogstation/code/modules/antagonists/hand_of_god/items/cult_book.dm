@@ -157,6 +157,6 @@
 /obj/proc/hog_rcding_cost()
 	return 15
 
-/atom/proc/hog_act()
+/atom/proc/hog_act(var/datum/team/hog_cult/act_cult)
 	return FALSE
 

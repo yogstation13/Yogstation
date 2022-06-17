@@ -12,6 +12,7 @@
 			. = damage_amount
 			var/old_integ = obj_integrity
 			obj_integrity = max(old_integ - damage_amount, 0)
+			obj_integrity = min(old_integ - damage_amount, max_integrity)   ///In case if the damage is negative
 			if(obj_integrity <= 0)
 				var/int_fail = integrity_failure
 				if(int_fail && old_integ > int_fail)

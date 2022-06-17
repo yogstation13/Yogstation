@@ -414,6 +414,7 @@
 /*
 	Shuttle Airlocks
 */
+//////////////////////////////////
 
 /obj/machinery/door/airlock/shuttle
 	name = "shuttle airlock"
@@ -445,6 +446,7 @@
 /*
 	Cult Airlocks
 */
+//////////////////////////////////
 
 /obj/machinery/door/airlock/cult
 	name = "cult airlock"
@@ -548,8 +550,11 @@
 	normal_integrity = 150
 	damage_deflection = 5
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
-
-//Pinion airlocks: Clockwork doors that only let servants of Ratvar through.
+//////////////////////////////////
+/*
+	Pinion airlocks: Clockwork doors that only let servants of Ratvar through.
+*/
+//////////////////////////////////
 /obj/machinery/door/airlock/clockwork
 	name = "pinion airlock"
 	desc = "A massive cogwheel set into two heavy slabs of brass."
@@ -670,6 +675,7 @@
 /*
 	HoG Cult Airlcok
 */
+//////////////////////////////////
 
 /obj/machinery/door/airlock/hog   
 	name = "divine airlock" ///Wow 
@@ -685,6 +691,7 @@
 	damage_deflection = 30
 	normal_integrity = 200
 	var/datum/team/hog_cult/cult
+	var/icon_originalname = "airlock"
 
 /obj/machinery/door/airlock/hog/examine(mob/user)
 	. = ..()
@@ -728,10 +735,69 @@
 		return 0
 	return 1
 
+/obj/machinery/door/airlock/hog/attackby(obj/item/I, mob/living/user, params)
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)    ///Idk maybe i will in far future make AI and silicon convertion
+	if(!cultie)
+		return ..()
+	if(cultie.cult != src.cult)
+		return ..()
+	var/obj/item/hog_item/book/tome = I	
+	if(!tome)
+		return ..()
+	to_chat(user, span_notice("You attempt to repair [src]."))
+	if(!do_after(user, hog_rcding_time(), src))
+		to_chat(user, span_warning("You fail to repair [src]."))
+		return
+	take_damage(-25, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), 100)
+	take_damage(-25, BRUTE, MELEE, FALSE , get_dir(src, src), 100)   ///Don't play sound again!
+	to_chat(user, span_notice("You succesfully repair [src]."))
+
+/obj/machinery/door/airlock/clockwork/hasPower()
+	return TRUE  /// We a powered by power of FAITH
+
+/obj/machinery/door/airlock/hog_rcding_time()   ///it goes here because it is also HoG related 
+	return 12 SECONDS
+
+/obj/machinery/door/airlock/hog/hog_rcding_time()
+	return 10 SECONDS
+
+/obj/machinery/door/airlock/hog_can_rcd()
+	return TRUE
+
+/obj/machinery/door/airlock/hog_rcding_cost()
+	return 55  ///Hog RCDing is almost all acess, so don't excpect it to be cheap
+
+/obj/machinery/door/airlock/hog/hog_rcding_cost()
+	return 75  ///RCDing another cult door will cost more energy
+
+/obj/machinery/door/airlock/hog_act(datum/team/hog_cult/act_cult)
+	if(act_cult == cult)
+		take_damage(-25, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), 100)
+		take_damage(-25, BRUTE, MELEE, FALSE , get_dir(src, src), 100) 
+		return
+	var/turf/T = get_turf(src)
+	var/obj/machinery/door/airlock/hog/A
+	if(glass)
+		A = new/obj/machinery/door/airlock/hog/glass(T)
+	else
+		A = new/obj/machinery/door/airlock/hog(T)
+	A.name = "divine [name]"
+	A.change_hog_team(act_cult)
+	qdel(src)
+	return TRUE
+	
+/obj/machinery/door/airlock/hog/proc/change_hog_team(var/datum/team/hog_cult/new_cult)
+	cult = new_cult
+
+/obj/machinery/door/airlock/hog/glass
+	glass = TRUE
+	opacity = 0
+
 //////////////////////////////////
 /*
 	Misc Airlocks
 */
+//////////////////////////////////
 
 /obj/machinery/door/airlock/glass_large
 	name = "large glass airlock"
