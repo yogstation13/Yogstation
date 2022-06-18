@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - spellcheck: "fixed fish descriptions"
+  - spellcheck: "fixed card descriptions"
