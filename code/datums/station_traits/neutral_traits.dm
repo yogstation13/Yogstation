@@ -75,8 +75,6 @@
 
 /// Replace some cargo equipment and 'personnel' with a gorilla.
 /datum/station_trait/cargorilla/proc/replace_cargo(datum/source)
-	SIGNAL_HANDLER
-
 	var/mob/living/simple_animal/sloth/cargo_sloth = GLOB.cargo_sloth
 	if(!cargo_sloth)
 		return
