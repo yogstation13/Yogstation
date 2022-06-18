@@ -172,7 +172,7 @@ obj/effect/proc_holder/swipe
 				caller.adjustToxLoss(-13)
 			if(L.stat == DEAD)
 				L.gib()
-				to_chat(caller, span_notice("You're able to the body entirely!"))
+				to_chat(caller, span_notice("You're able to consume the body entirely!"))
 				caller.adjustBruteLoss(-20)
 				caller.adjustFireLoss(-20)
 				caller.adjustToxLoss(-20)
