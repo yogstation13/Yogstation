@@ -77,3 +77,9 @@
 	else
 		icon_state = "wt650_fire_empty"
 		
+/obj/item/ammo_box/magazine/wt650/laser
+	name = "WT-650 laser magazine (5.45mm)"
+	icon_state = "wt650_laser"
+	ammo_type = /obj/item/ammo_casing/a545_laser
+	caliber = "a545"
+	max_ammo = 30
