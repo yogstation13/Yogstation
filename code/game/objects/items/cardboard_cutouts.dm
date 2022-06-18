@@ -23,6 +23,7 @@
 		"Revolutionary" = image(icon = src.icon, icon_state = "cutout_viva"),
 		"Wizard" = image(icon = src.icon, icon_state = "cutout_wizard"),
 		"Shadowling" = image(icon = src.icon, icon_state = "cutout_shadowling"),
+		"Nightmare" = image(icon = src.icon, icon_state = "cutout_nightmare"),
 		"Xenomorph" = image(icon = src.icon, icon_state = "cutout_fukken_xeno"),
 		"Xenomorph Maid" = image(icon = src.icon, icon_state = "cutout_lusty"),
 		"Swarmer" = image(icon = src.icon, icon_state = "cutout_swarmer"),
@@ -156,6 +157,10 @@
 			name = "Unknown"
 			desc = "A cardboard cutout of a shadowling."
 			icon_state = "cutout_shadowling"
+		if("Nightmare")
+			name = "[pick(GLOB.nightmare_names)]"
+			desc = "A cardboard cutout of a nightmare."
+			icon_state = "cutout_nightmare"
 		if("Xenomorph")
 			name = "alien hunter ([rand(1, 999)])"
 			desc = "A cardboard cutout of a xenomorph."
