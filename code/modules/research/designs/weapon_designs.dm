@@ -411,3 +411,43 @@
 	build_path = /obj/item/gun/ballistic/bow/energy
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/mag_wt650
+	name = "WT-650 Assault Rifle Magazine (5.45mm)"
+	desc = "A 30 round magazine for the WT-650 Assault Rifle."
+	id = "mag_wt650"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000)
+	build_path = /obj/item/ammo_box/magazine/wt650
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mag_wt650/rubber
+	name = "WT-650 Assault Rifle Rubber Magazine (5.45mm)"
+	desc = "A 30 round non-lethal rubber magazine for the WT-650 Assault Rifle."
+	id = "mag_wt650_rubber"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000)
+	build_path = /obj/item/ammo_box/magazine/wt650/rubber
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mag_wt650/ap
+	name = "WT-650 Assault Rifle Armor-Piercing Magazine (5.45mm)"
+	desc = "A 30 round armor-piercing magazine for the WT-650 Assault Rifle."
+	id = "mag_wt650_ap"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 7500, /datum/material/silver = 2000)
+	build_path = /obj/item/ammo_box/magazine/wt650/ap
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mag_wt650/incendiary
+	name = "WT-650 Assault Rifle Incendiary Magazine (5.45mm)"
+	desc = "A 30 round incendiary magazine for the WT-650 Assault Rifle."
+	id = "mag_wt650_fire"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 7500, /datum/material/silver = 1200, /datum/material/glass = 1500)
+	build_path = /obj/item/ammo_box/magazine/wt650/incendiary
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
