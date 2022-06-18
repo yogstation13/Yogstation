@@ -60,7 +60,7 @@
 	head = /obj/item/clothing/head/helmet/abductor
 	suit = /obj/item/clothing/suit/armor/abductor/vest
 	suit_store = /obj/item/abductor/baton
-	belt = /obj/item/storage/belt/military/abductor/full
+	belt = /obj/item/storage/belt/military/abductor/agent
 
 	backpack_contents = list(
 	/obj/item/abductor/gizmo = 1,
