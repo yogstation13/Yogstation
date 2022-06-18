@@ -226,7 +226,7 @@
 	var/mob/living/carbon/human/H = user
 	user.visible_message(span_suicide("[user] is donning [src]! It looks like [user.p_theyre()] trying to be nice to girls."))
 	user.say("M'lady.", forced = "fedora suicide")
-	sleep(10)
+	sleep(1 SECONDS)
 	H.facial_hair_style = "Neckbeard"
 	return(BRUTELOSS)
 
@@ -446,3 +446,8 @@
 			return
 		playsound(loc, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
 		recharge_time = world.time + recharge_rate
+
+/obj/item/clothing/head/shamanash
+	name = "shaman skull"
+	desc = "The skull of a long dead animal bolted to the front of a repurposed pan."
+	icon_state = "shamskull"

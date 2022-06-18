@@ -38,7 +38,7 @@
 				if(open)
 					GM.visible_message(span_danger("[user] starts to give [GM] a swirlie!"), span_userdanger("[user] starts to give you a swirlie..."))
 					swirlie = GM
-					if(do_after(user, 3 SECONDS, 0, target = src))
+					if(do_after(user, 3 SECONDS, src, FALSE))
 						GM.visible_message(span_danger("[user] gives [GM] a swirlie!"), span_userdanger("[user] gives you a swirlie!"), span_italics("You hear a toilet flushing."))
 						if(iscarbon(GM))
 							var/mob/living/carbon/C = GM
@@ -245,7 +245,7 @@
 						span_notice("You start washing your [washing_face ? "face" : "hands"]..."))
 	busy = TRUE
 
-	if(!do_after(user, 4 SECONDS, target = src))
+	if(!do_after(user, 4 SECONDS, src))
 		busy = FALSE
 		return
 
@@ -323,7 +323,7 @@
 	if(user.a_intent != INTENT_HARM)
 		to_chat(user, span_notice("You start washing [O]..."))
 		busy = TRUE
-		if(!do_after(user, 4 SECONDS, target = src))
+		if(!do_after(user, 4 SECONDS, src))
 			busy = FALSE
 			return 1
 		busy = FALSE

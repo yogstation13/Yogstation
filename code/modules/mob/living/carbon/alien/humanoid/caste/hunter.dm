@@ -70,16 +70,16 @@
 					blocked = TRUE
 			if(!blocked)
 				L.visible_message("<span class ='danger'>[src] pounces on [L]!</span>", "<span class ='userdanger'>[src] pounces on you!</span>")
-				L.Paralyze(100)
-				sleep(2)//Runtime prevention (infinite bump() calls on hulks)
+				L.Paralyze(10 SECONDS)
+				sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 				step_towards(src,L)
 			else
-				Paralyze(40, 1, 1)
+				Paralyze(4 SECONDS, 1, 1)
 
 			toggle_leap(0)
 		else if(hit_atom.density && !hit_atom.CanPass(src))
 			visible_message("<span class ='danger'>[src] smashes into [hit_atom]!</span>", "<span class ='alertalien'>[src] smashes into [hit_atom]!</span>")
-			Paralyze(40, 1, 1)
+			Paralyze(4 SECONDS, 1, 1)
 
 		if(leaping)
 			leaping = FALSE

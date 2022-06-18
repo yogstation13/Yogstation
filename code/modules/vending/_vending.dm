@@ -171,6 +171,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
   * * TRUE - all other cases
   */
 /obj/machinery/vending/Initialize(mapload)
+	if(tilted)
+		src.tilt() // We don't need to set tilted to false before tilt because it will handle it.
 	var/build_inv = FALSE
 	if(!refill_canister)
 		circuit = null
@@ -615,8 +617,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 			return
 
 	if(tilted && !user.buckled && !isAI(user))
-		to_chat(user, "<span class='notice'>You begin righting [src].")
-		if(do_after(user, 50, target=src))
+		to_chat(user, span_notice("You begin righting [src]."))
+		if(do_after(user, 5 SECONDS, src))
 			untilt(user)
 		return
 	return ..()

@@ -63,7 +63,7 @@
 
 /obj/item/projectile/bullet/pellet
 	var/tile_dropoff = 0.45
-	var/tile_dropoff_s = 0.5
+	var/tile_dropoff_s = 0.35
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
@@ -71,11 +71,16 @@
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank
+	
+/obj/item/projectile/bullet/pellet/shotgun_clownshot
+	name = "clownshot pellet"
+	damage = 0
+	hitsound = 'sound/items/bikehorn.ogg'
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
 	damage = 3
-	stamina = 11
+	stamina = 13
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/shotgun_cryoshot

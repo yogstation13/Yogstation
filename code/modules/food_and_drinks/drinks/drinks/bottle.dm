@@ -566,3 +566,9 @@
 	desc = "A gentle and syrup like drink, tastes of almonds and apricots"
 	icon_state = "disaronno"
 	list_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 100)
+
+/obj/item/reagent_containers/food/drinks/beer/stout
+	name = "Genius Dry Stout"
+	desc = "A fresh bottle of stout, popularized by inhabitants of Space Ireland."
+	icon_state = "stout_bottle" 
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/stout = 40)

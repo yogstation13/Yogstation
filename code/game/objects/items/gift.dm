@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/stack/sheet/mineral/coal)
 
 	gift_type_list += subtypesof(/obj/item/clothing/head/collectable)
-	gift_type_list += subtypesof(/obj/item/toy) - (((typesof(/obj/item/toy/cards) - /obj/item/toy/cards/deck) + /obj/item/toy/figure + /obj/item/toy/ammo)) //All toys, except for abstract types and syndicate cards.
+	gift_type_list += subtypesof(/obj/item/toy) - (((typesof(/obj/item/toy/cards) - /obj/item/toy/cards/deck) + /obj/item/toy/figure + /obj/item/toy/ammo + typesof(/obj/item/toy/plush/goatplushie/angry/kinggoat))) //All toys, except for abstract types and syndicate cards and the stupid fuckign goat.
 
 	var/gift_type = pick(gift_type_list)
 

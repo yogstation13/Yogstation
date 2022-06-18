@@ -407,7 +407,7 @@
 		to_chat(user, span_notice("[target] slithers into [src]"))
 
 /obj/item/clothing/shoes/cowboy/container_resist(mob/living/user)
-	if(!do_after(user, 1 SECONDS, target = user))
+	if(!do_after(user, 1 SECONDS, user))
 		return
 	user.forceMove(user.drop_location())
 	occupants -= user
@@ -473,13 +473,10 @@
 	desc = "These make your feet feel snug and secure, while still being breathable and light."
 	icon_state = "footwraps_s"
 	item_state = "footwraps_s"
-	strip_delay = 25 // Half time to take off
-	equip_delay_other = 25 // Half time
+	strip_delay = 2.5 SECONDS // Half time to take off
+	equip_delay_other = 2.5 SECONDS // Half time
 	resistance_flags = NONE
 	permeability_coefficient = 0.70 // Fabric is more permeable than boot, but still somewhat resistant
-	// pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes -- No storage pocket for wraps
-	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
-	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
 /obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
 	name = "command footwraps"
@@ -487,7 +484,41 @@
 	icon_state = "footwraps_c"
 	item_state = "footwraps_c"
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
-	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/xeno_wraps/goliath
+	name = "goliath hide footwraps"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_goliath"
+	item_state = "footwraps_goliath"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
+	body_parts_covered = LEGS|FEET
+	resistance_flags = FIRE_PROOF
+	strip_delay = 2.5 SECONDS
+	equip_delay_other = 2.5 SECONDS
+
+/obj/item/clothing/shoes/xeno_wraps/dragon
+	name = "ash drake hide footwraps"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_dragon"
+	item_state = "footwraps_dragon"
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 0)
+	body_parts_covered = LEGS|FEET
+	strip_delay = 5 SECONDS
+	equip_delay_other = 5 SECONDS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	permeability_coefficient = 0.70
+
+/obj/item/clothing/shoes/xeno_wraps/carpdragon
+	name = "carp dragon hide footwraps"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_carpdragon"
+	item_state = "footwraps_carpdragon"
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
+	body_parts_covered = LEGS|FEET
+	strip_delay = 5 SECONDS
+	equip_delay_other = 5 SECONDS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	permeability_coefficient = 0.70
 
 /obj/item/clothing/shoes/xeno_wraps/engineering
 	name = "engineering footwraps"

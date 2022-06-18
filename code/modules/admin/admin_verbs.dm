@@ -69,6 +69,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
 	/client/proc/cmd_admin_local_narrate,	/*sends text to all mobs within view of atom*/
 	/client/proc/cmd_admin_create_centcom_report,
+	/client/proc/send_global_fax,
 	/client/proc/cmd_change_command_name,
 	/client/proc/cmd_admin_check_player_exp, /* shows players by playtime */
 	/client/proc/toggle_combo_hud, // toggle display of the combination pizza antag and taco sci/med/eng hud
@@ -786,7 +787,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 	message_admins("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 
-	sleep(20)
+	sleep(2 SECONDS)
 
 	if(!dump_memory_profile("data/logs/memory/[fname]"))
 		to_chat(usr, span_warning("Dumping memory failed at dll call."))

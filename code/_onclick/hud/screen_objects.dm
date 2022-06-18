@@ -715,10 +715,10 @@
 	if(QDELETED(src))
 		return
 	if(out)
-		animate(src, alpha = 0, time = 30)
+		animate(src, alpha = 0, time = 3 SECONDS)
 	else
 		alpha = 0
-		animate(src, alpha = 255, time = 30)
+		animate(src, alpha = 255, time = 3 SECONDS)
 	if(qdel_after)
 		QDEL_IN(src, 30)
 

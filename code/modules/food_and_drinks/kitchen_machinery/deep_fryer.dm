@@ -113,6 +113,11 @@ God bless America.
 			var/turf/T = get_turf(src)
 			new /obj/item/syndicate_basket(T)
 			return
+	if(istype(I, /obj/item/organ/brain))
+		var/safety = alert(user, "Warning! This brain might still contain a life in it.", "Proceed anyways?" ,"No.", "FRY ANYWAY")
+		if(safety != "FRY ANYWAY")
+			to_chat(user, span_warning("You decided not to fry this brain..."))
+			return
 	if(default_unfasten_wrench(user, I))
 		return
 	else if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off" ,I))	//where's the open maint panel icon?!

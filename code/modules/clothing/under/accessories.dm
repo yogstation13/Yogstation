@@ -8,6 +8,7 @@
 	slot_flags = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/above_suit = FALSE
+	var/above_suit_adjustable = FALSE
 	var/minimize_when_attached = TRUE // TRUE if shown as a small icon in corner, FALSE if overlayed
 	var/datum/component/storage/detached_pockets
 	var/attachment_slot = CHEST
@@ -75,7 +76,7 @@
 
 /obj/item/clothing/accessory/AltClick(mob/user)
 	if(istype(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		if(initial(above_suit))
+		if(above_suit_adjustable)
 			above_suit = !above_suit
 			to_chat(user, "[src] will be worn [above_suit ? "above" : "below"] your suit.")
 
@@ -117,6 +118,7 @@
 	var/medaltype = "medal" //Sprite used for medalbox
 	var/commended = FALSE
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 //Pinning medals on people
 /obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
@@ -138,7 +140,7 @@
 			var/input
 			if(!commended && user != M)
 				input = stripped_input(user,"Please input a reason for this commendation, it will be recorded by Nanotrasen.", ,"", 140)
-			if(do_after(user, delay, target = M))
+			if(do_after(user, delay, M))
 				if(U.attach_accessory(src, user, 0)) //Attach it, do not notify the user of the attachment
 					if(user == M)
 						to_chat(user, span_notice("You attach [src] to [U]."))
@@ -252,6 +254,7 @@
 	item_color = "redband"
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
@@ -357,6 +360,7 @@
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 /obj/item/clothing/accessory/skullcodpiece
 	name = "skull codpiece"
@@ -364,6 +368,17 @@
 	icon_state = "skull"
 	item_color = "skull"
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
+	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
+	attachment_slot = GROIN
+
+/obj/item/clothing/accessory/skilt
+	name = "Sinew Skirt"
+	desc = "For the last time. IT'S A KILT not a skirt."
+	icon_state = "skilt"
+	item_color = "skilt"
+	above_suit_adjustable = TRUE
+	minimize_when_attached = FALSE
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
 	attachment_slot = GROIN
 
@@ -375,15 +390,20 @@
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
+
 
 /////////////
 //Poppy Pin//
 /////////////
+
 /obj/item/clothing/accessory/poppypin
 	name = "Poppy pins"
 	desc = "A poppy pin that is meant to commemorate the fallen soldiers in wars. It symbolizes the gunshot that killed the soldiers."
 	icon_state = "poppy"
 	item_color = "poppy"
+
+
 //////////////
 //Ooh shiny!//
 //////////////
@@ -394,6 +414,7 @@
 	icon_state = "sing_necklace"
 	item_color = "sing_necklace"
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = -5, FIRE = 0, ACID = 0) //It IS radioactive after all. Watch me get yelled at for powergaming because I'm making this my """donator""" item - Mqiib
 	attachment_slot = null
 	light_power = 2

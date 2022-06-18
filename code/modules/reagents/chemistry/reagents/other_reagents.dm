@@ -2052,5 +2052,6 @@
 	taste_description = "death"
 	can_synth = FALSE
 
-/datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
-	L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
+/datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
+	if(method == INGEST || method == TOUCH || method == INJECT)
+		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)

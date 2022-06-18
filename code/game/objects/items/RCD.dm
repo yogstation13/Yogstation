@@ -540,7 +540,7 @@ RLD
 	var/delay = rcd_results["delay"] * delay_mod
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
 	if(checkResource(rcd_results["cost"], user))
-		if(do_after(user, delay, target = A))
+		if(do_after(user, delay, A))
 			if(checkResource(rcd_results["cost"], user))
 				if(A.rcd_act(user, src, rcd_results["mode"]))
 					rcd_effect.end_animation()
@@ -842,7 +842,7 @@ RLD
 					to_chat(user, span_notice("You start deconstructing [A]..."))
 					user.Beam(A,icon_state="nzcrentrs_power",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-					if(do_after(user, decondelay, target = A))
+					if(do_after(user, decondelay, A))
 						if(!useResource(deconcost, user))
 							return FALSE
 						activate()
@@ -857,7 +857,7 @@ RLD
 					user.Beam(A,icon_state="nzcrentrs_power",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, FALSE)
-					if(do_after(user, floordelay, target = A))
+					if(do_after(user, floordelay, A))
 						if(!istype(W))
 							return FALSE
 						var/list/candidates = list()
@@ -903,7 +903,7 @@ RLD
 					user.Beam(A,icon_state="light_beam",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, TRUE)
-					if(do_after(user, floordelay, target = A))
+					if(do_after(user, floordelay, A))
 						if(!istype(F))
 							return 0
 						if(!useResource(floorcost, user))

@@ -33,7 +33,7 @@
 		user.say("[warcry]", forced="banner")
 	var/old_transform = user.transform
 	user.transform *= 1.2
-	animate(user, transform = old_transform, time = 10)
+	animate(user, transform = old_transform, time = 1 SECONDS)
 	morale_time = world.time + morale_cooldown
 
 	var/list/inspired = list()
@@ -309,7 +309,7 @@
 	if(staffcooldown + staffwait > world.time)
 		return
 	user.visible_message("[user] chants deeply and waves [user.p_their()] staff!")
-	if(do_after(user, 2 SECONDS,1,src))
+	if(do_after(user, 2 SECONDS, src))
 		target.add_atom_colour(conversion_color, WASHABLE_COLOUR_PRIORITY) //wololo
 	staffcooldown = world.time
 

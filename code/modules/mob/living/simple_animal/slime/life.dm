@@ -103,9 +103,9 @@
 
 		var/sleeptime = movement_delay()
 		if(sleeptime <= 0)
-			sleeptime = 1
+			sleeptime = 0.1 SECONDS
 
-		sleep(sleeptime + 2) // this is about as fast as a player slime can go
+		sleep(sleeptime + 0.2 SECONDS) // this is about as fast as a player slime can go
 
 	AIproc = 0
 

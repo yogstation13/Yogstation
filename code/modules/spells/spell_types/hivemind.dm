@@ -68,7 +68,7 @@
 	else
 		to_chat(user, span_notice("We begin linking our mind with [target.name]!"))
 	var/multiplier = (!foiled || bruteforce) ? 5 : 10
-	if(!do_after(user,multiplier*(1.5**get_dist(user, target)),0,user) || !(target in view(range)))
+	if(!do_after(user, multiplier*(1.5**get_dist(user, target)), user, FALSE) || !(target in view(range)))
 		to_chat(user, span_notice("We fail to connect to [target.name]."))
 		revert_cast()
 		return
@@ -242,7 +242,7 @@
 		var/mob/living/L = track.tracked_by
 		if(!L)
 			continue
-		if(!do_after(user, 0.5 SECONDS, 0, user))
+		if(!do_after(user, 0.5 SECONDS, user, FALSE))
 			to_chat(user, span_notice("Our concentration has been broken!"))
 			break
 		distance = get_dist(user, L)
@@ -262,7 +262,7 @@
 					message += " is quite far away."
 		to_chat(user, span_assimilator("[message]"))
 	for(var/datum/antagonist/hivemind/enemy in hive.individual_track_bonus)
-		if(!do_after(user, 0.5 SECONDS, 0, user))
+		if(!do_after(user, 0.5 SECONDS, user, FALSE))
 			to_chat(user, span_notice("Our concentration has been broken!"))
 			break
 		var/mob/living/carbon/C = enemy.owner?.current
@@ -317,7 +317,7 @@
 	to_chat(user, span_notice("We begin siphoning power from our many vessels!"))
 	while(iterations < 7)
 		var/mob/living/carbon/target = pick(carbon_members)
-		if(!do_after(user, 1 SECONDS, 0, user))
+		if(!do_after(user, 1 SECONDS, user, FALSE))
 			to_chat(user, span_warning("Our concentration has been broken!"))
 			break
 		if(!target)
@@ -421,7 +421,7 @@
 		if(vessel.anti_magic_check(FALSE, FALSE, TRUE))
 			timely = 100
 			restricted_range = TRUE
-		if(!do_after(user, timely, FALSE, user))
+		if(!do_after(user, timely, user, FALSE))
 			to_chat(user, span_notice("We fail to assume control of the target."))
 			revert_cast()
 			return
@@ -460,7 +460,7 @@
 			time_initialized = world.time
 			revert_cast()
 			to_chat(vessel, span_assimilator("We can sustain our control for a maximum of [round(power/10)] seconds."))
-			if(do_after(user,power,0,user,0))
+			if(do_after(user, power, user, FALSE, FALSE))
 				to_chat(vessel, span_warning("We cannot sustain the mind control any longer and release control!"))
 			else
 				to_chat(vessel, span_warning("Our body has been disturbed, interrupting the mind control!"))
@@ -621,14 +621,14 @@
 
 /obj/effect/proc_holder/spell/target_hive/nightmare/cast(list/targets, mob/living/user = usr)
 	var/mob/living/carbon/target = targets[1]
-	if(!do_after(user, 3 SECONDS, 0, user))
+	if(!do_after(user, 3 SECONDS, user, FALSE))
 		to_chat(user, span_notice("Our concentration has been broken!"))
 		revert_cast()
 		return
 	to_chat(target, span_userdanger("You see dark smoke swirling around you!"))
 	if(target.anti_magic_check(FALSE, FALSE, TRUE))
 		to_chat(user, span_notice("We begin bruteforcing the tinfoil barriers of [target.name] and pulling out their nightmares."))
-		if(!do_after(user, 3 SECONDS, FALSE, user) || !(target in view(range)))
+		if(!do_after(user, 3 SECONDS, user, FALSE) || !(target in view(range)))
 			to_chat(user, span_notice("Our concentration has been broken!"))
 			return
 	target.apply_status_effect(STATUS_EFFECT_HIVEMIND_CURSE, CURSE_SPAWNING | CURSE_BLINDING)
@@ -698,12 +698,12 @@
 	var/list/enemies = list()
 
 	to_chat(user, span_notice("We begin probing [target.name]'s mind!"))
-	if(do_after(user, 10 SECONDS, 0, target))
+	if(do_after(user, 10 SECONDS, target, FALSE))
 		var/foiled = target.anti_magic_check(FALSE, FALSE, TRUE)
 		if(!in_hive || foiled)
 			var/timely = !in_hive ? 200 : 100
 			to_chat(user, span_notice("Their mind slowly opens up to us."))
-			if(!do_after(user,timely,FALSE,target))
+			if(!do_after(user, timely, target, FALSE))
 				to_chat(user, span_notice("Our concentration has been broken!"))
 				revert_cast()
 				return

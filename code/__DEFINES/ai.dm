@@ -1,8 +1,8 @@
 
 ///All AI machinery heat production is multiplied by this value
-#define AI_TEMPERATURE_MULTIPLIER 8 //Thermodynamics? No... No I don't think that's a thing. Balance so we don't use an insane amount of power to produce noticeable heat
+#define AI_TEMPERATURE_MULTIPLIER 5 //Thermodynamics? No... No I don't think that's a thing. Balance so we don't use an insane amount of power to produce noticeable heat
 ///Temperature limit of all AI machinery
-#define AI_TEMP_LIMIT 283.15 //10C, much hotter than a normal server room for leniency :)
+#define AI_TEMP_LIMIT 288.15 //15C, much hotter than a normal server room for leniency :)
 
 
 ///How many ticks can an AI data core store? When this amount of ticks have passed while it's in an INVALID state it can no longer be used by an AI
@@ -18,6 +18,7 @@
 #define AI_PROJECT_CAMERAS "Visiblity Upgrades"
 #define AI_PROJECT_INDUCTION "Induction"
 #define AI_PROJECT_SURVEILLANCE "Surveillance"
+#define AI_PROJECT_EFFICIENCY "Efficiency"
 #define AI_PROJECT_MISC "Misc."
 //Update this list if you add any new ones, else the category won't show up in the UIs
 GLOBAL_LIST_INIT(ai_project_categories, list(
@@ -25,6 +26,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 	AI_PROJECT_CAMERAS,
 	AI_PROJECT_SURVEILLANCE,
 	AI_PROJECT_INDUCTION,
+	AI_PROJECT_EFFICIENCY,
 	AI_PROJECT_MISC
 ))
 
@@ -35,9 +37,9 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 
 
 //AI hardware
-#define AI_CPU_BASE_POWER_USAGE 1500
+#define AI_CPU_BASE_POWER_USAGE 1250
 
-#define AI_RAM_POWER_USAGE 750
+#define AI_RAM_POWER_USAGE 500
 
 //Needs UI change to properly work!
 #define AI_MAX_CPUS_PER_RACK 4
@@ -45,4 +47,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 #define AI_MAX_RAM_PER_RACK 4
 
 ///How many AI research points does 1 THz generate?
-#define AI_RESEARCH_PER_CPU 10
+#define AI_RESEARCH_PER_CPU 7.5
+
+//How long between each data core being able to send a warning. Wouldn't want any spam if we had jittery temps would we?
+#define AI_DATA_CORE_WARNING_COOLDOWN (5 MINUTES)

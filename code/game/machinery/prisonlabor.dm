@@ -31,7 +31,7 @@
 	if(pressing)
 		to_chat(user, "<span class='warning'>[src] already has a plate in it!</span>")
 		return FALSE
-	if(!istype(I, /obj/item/stack/license_plates/empty))
+	if(istype(I, /obj/item/stack/license_plates/empty))
 		var/obj/item/stack/license_plates/empty/plate = I
 		plate.use(1)
 		current_plate = new plate.type(src, 1) //Spawn a new single sheet in the machine
@@ -51,7 +51,7 @@
 	update_icon()
 	to_chat(user, "<span class='notice'>You start pressing a new license plate!</span>")
 
-	if(!do_after(user, 40, target = src))
+	if(!do_after(user, 4 SECONDS, src))
 		pressing = FALSE
 		update_icon()
 		return FALSE

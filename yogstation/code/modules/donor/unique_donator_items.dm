@@ -135,6 +135,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Cowbot93"
 	unlock_path = /obj/item/toy/katana/singulo_wakizashi
 
+/datum/donator_gear/marmio64
+	name = "Eldritch Cowl"
+	ckey = "Marmio64"
+	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
+
 /datum/donator_gear/manatee
 	name = "Peacekeeper Beret"
 	ckey = "Majesticmanateee"
@@ -144,6 +149,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Transdimensional halo"
 	ckey = "Hisakaki"
 	unlock_path = /obj/item/clothing/head/halo
+
+/datum/donator_gear/skrem
+	name = "Rainbow flower"
+	ckey = "Skrem7"
+	unlock_path = /obj/item/clothing/head/rainbow_flower
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie

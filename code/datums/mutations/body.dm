@@ -146,8 +146,8 @@
 		var/y_offset_old = owner.pixel_y
 		var/x_offset = owner.pixel_x + rand(-2,2)
 		var/y_offset = owner.pixel_y + rand(-1,1)
-		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 1)
-		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 1)
+		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 0.1 SECONDS)
+		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 0.1 SECONDS)
 
 
 //Deafness makes you deaf.
@@ -194,6 +194,7 @@
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
 	var/glow = 2.5
 	var/range = 2.5
+	var/color 
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
 
@@ -208,7 +209,15 @@
 	if(!glowth)
 		return
 	var/power = GET_MUTATION_POWER(src)
-	glowth.set_light(range * power, glow * power, dna.features["mcolor"])
+	if(owner.dna.features["mcolor"][1] != "#")
+		//if it doesn't start with a pound, it needs that for the color
+		color += "#"
+	if(length(owner.dna.features["mcolor"]) < 6)
+		//this atrocity converts shorthand hex rgb back into full hex that's required for light to be given a functional value
+		color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
+	else
+		color += owner.dna.features["mcolor"]
+	glowth.set_light(range * power, glow * power, color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()

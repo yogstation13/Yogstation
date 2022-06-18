@@ -262,12 +262,8 @@
 		var/mob/living/carbon/human/H = user
 		if (HAS_TRAIT(H, TRAIT_TAGGER))
 			cost *= 0.5
-	/* yogs start -- moved to the end of the proc, after the crayon is actually used.
-	var/charges_used = use_charges(user, cost)
-	if(!charges_used)
+	if(check_empty(user, cost))
 		return
-	. = charges_used
-	yogs end */
 
 	if(istype(target, /obj/effect/decal/cleanable))
 		target = target.loc
@@ -350,8 +346,13 @@
 	if(gang) //yogs
 		instant = FALSE // yogs -- gang spraying must not be instant, balance reasons
 	if(!instant)
-		if(!do_after(user, 5 SECONDS, target = target))
+		if(!do_after(user, 5 SECONDS, target))
 			return
+	
+	var/charges_used = use_charges(user, cost)
+	if(!charges_used)
+		return
+	. = charges_used
 
 	if(length(text_buffer))
 		drawing = text_buffer[1]
@@ -397,12 +398,6 @@
 	if(post_noise)
 		audible_message(span_notice("You hear spraying."))
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
-	// yogs start -- using changes moved to the end of the proc, so it won't use charges if the spraying fails for any reason.
-	var/charges_used = use_charges(user, cost)
-	if(!charges_used)
-		return
-	. = charges_used
-	// yogs end
 	var/fraction = min(1, . / reagents.maximum_volume)
 	if(affected_turfs.len)
 		fraction /= affected_turfs.len
