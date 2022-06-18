@@ -137,7 +137,7 @@
 	burst_size = 1
 	can_suppress = FALSE
 	can_bayonet = TRUE
-	knife_x_offset = 25
+	knife_x_offset = 27
 	knife_y_offset = 12
 	mag_display = TRUE
 	mag_display_ammo = TRUE
