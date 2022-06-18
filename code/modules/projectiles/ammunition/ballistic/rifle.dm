@@ -29,12 +29,24 @@
 	projectile_type = /obj/item/projectile/bullet/a545
 
 /obj/item/ammo_casing/a545_rubber
+	name = "5.45mm bullet casing"
+	desc = "A 5.45mm bullet casing."
+	icon_state = "545r-casing"
+	caliber = "a545"
 	projectile_type = /obj/item/projectile/bullet/a545_rubber
 
 /obj/item/ammo_casing/a545_ap
+	name = "5.45mm bullet casing"
+	desc = "A 5.45mm bullet casing."
+	icon_state = "545ap-casing"
+	caliber = "a545"
 	projectile_type = /obj/item/projectile/bullet/a545_ap
 
 /obj/item/ammo_casing/a545_incendiary
+	name = "5.45mm bullet casing"
+	desc = "A 5.45mm bullet casing."
+	icon_state = "545i-casing"
+	caliber = "a545"
 	projectile_type = /obj/item/projectile/bullet/incendiary/a545_incendiary
 
 // 40mm (Grenade Launcher)
