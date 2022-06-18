@@ -166,19 +166,19 @@
 /datum/techweb/proc/add_stored_point_type(type, amount)
 	if(!SSresearch.point_types[type] || (amount <= 0))
 		return FALSE
-	stored_research_points[type] = max(0, research_points[type] + amount)
+	stored_research_points[type] = max(0, stored_research_points[type] + amount)
 	return TRUE
 
 /datum/techweb/proc/modify_stored_point_type(type, amount)
 	if(!SSresearch.point_types[type])
 		return FALSE
-	stored_research_points[type] = max(0, research_points[type] + amount)
+	stored_research_points[type] = max(0, stored_research_points[type] + amount)
 	return TRUE
 
 /datum/techweb/proc/remove_stored_point_type(type, amount)
 	if(!SSresearch.point_types[type] || (amount <= 0))
 		return FALSE
-	stored_research_points[type] = max(0, research_points[type] - amount)
+	stored_research_points[type] = max(0, stored_research_points[type] - amount)
 	return TRUE
 
 /datum/techweb/proc/add_design_by_id(id, custom = FALSE)
