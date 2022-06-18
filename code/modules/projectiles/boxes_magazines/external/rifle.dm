@@ -28,21 +28,21 @@
 	caliber = "a545"
 	max_ammo = 30
 
-/obj/item/ammo_box/magazine/wt650_rubber
+/obj/item/ammo_box/magazine/wt650/rubber
 	name = "WT-650 rubber magazine (5.45mm)"
 	icon_state = "wt650_rubber"
 	ammo_type = /obj/item/ammo_casing/a545_rubber
 	caliber = "a545"
 	max_ammo = 30
 
-/obj/item/ammo_box/magazine/wt650_ap
+/obj/item/ammo_box/magazine/wt650/ap
 	name = "WT-650 armor-piercing magazine (5.45mm)"
 	icon_state = "wt650_ap"
 	ammo_type = /obj/item/ammo_casing/a545_ap
 	caliber = "a545"
 	max_ammo = 30
 
-/obj/item/ammo_box/magazine/wt650_incendiary
+/obj/item/ammo_box/magazine/wt650/incendiary
 	name = "WT-650 incendiary magazine (5.45mm)"
 	icon_state = "wt650_fire"
 	ammo_type = /obj/item/ammo_casing/a545_incendiary
