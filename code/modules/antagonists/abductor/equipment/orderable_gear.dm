@@ -68,3 +68,18 @@ GLOBAL_LIST_INIT(abductor_gear, subtypesof(/datum/abductor_gear))
 	cost = 2
 	build_path = /obj/item/abductor_machine_beacon/chem_dispenser
 	category = "Advanced Gear"
+
+/datum/abductor_gear/agent_id
+	name = "Alien ID"
+	description = "An ID card, that is capable of changing it's name and job."
+	id = "alien_id"
+	build_path = /obj/item/card/id/syndicate
+	category = "Advanced Gear"
+
+/datum/abductor_gear/shrinkray
+	name = "Shrink Ray Blaster"
+	description = "A gun, that shoots beams that enhant the magnetic pull of atoms in a localized space to temporarily make an object shrink."
+	id = "shrinkray"
+	build_path = /obj/item/gun/energy/shrink_ray
+	category = "Advanced Gear"
+	cost = 2

@@ -365,6 +365,10 @@
 	icon_state = "impact_laser_wall"
 	duration = 1 SECONDS
 
+/obj/effect/temp_visual/impact_effect/shrink
+	icon_state = "m_shield"
+	duration = 10
+
 /obj/effect/temp_visual/impact_effect/blue_laser
 	icon_state = "impact_laser_blue"
 	duration = 0.4 SECONDS
