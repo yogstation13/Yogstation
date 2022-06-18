@@ -627,7 +627,7 @@
 			return
 
 		src.visible_message("[src] performs CPR on [C.name]!", span_notice("You perform CPR on [C.name]."))
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 		C.cpr_time = world.time
 		log_combat(src, C, "CPRed")
 		SSachievements.unlock_achievement(/datum/achievement/cpr, client)
