@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/snacks/fish
-	name = "development fish"
-	desc = "if you see this, get help"
+	name = "debug fish"
+	desc = "If you see this, get help!"
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "bass"
 
@@ -57,7 +57,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/goldfish
 	name = "galactic goldfish"
-	desc = "it's so... small!"
+	desc = "It's so... small!"
 	icon_state = "fish_goldfish"
 	min_length = 1
 	max_length = 2
@@ -67,7 +67,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/goldfish/giant
 	name = "giant galactic goldfish"
-	desc = "it's so... big!"
+	desc = "It's so... big!"
 	icon_state = "fish_goldfish_big"
 	min_length = 6
 	max_length = 19
@@ -77,7 +77,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/salmon
 	name = "space salmon"
-	desc = "i thought they were supposed to be red"
+	desc = "I thought they were supposed to be red..."
 	icon_state = "fish_salmon"
 	min_length = 28
 	max_length = 32
@@ -87,7 +87,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/bass
 	name = "big bang bass"
-	desc = "how am I supposed to play this thing?"
+	desc = "How am I supposed to play this thing?"
 	icon_state = "fish_bass"
 	min_length = 12
 	max_length = 32
@@ -97,7 +97,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/tuna
 	name = "temporal tuna"
-	desc = "you can tune a piano but you can't tuna fish"
+	desc = "You can tune a piano but you can't tuna fish!"
 	icon_state = "fish_tuna"
 	min_length = 15
 	max_length = 79
@@ -107,7 +107,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/shrimp
 	name = "space shrimp"
-	desc = "he looks a little shrimpy"
+	desc = "He looks a little shrimpy."
 	icon_state = "fish_shrimp"
 	min_length = 1
 	max_length = 6
@@ -117,7 +117,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/squid
 	name = "space squid"
-	desc = "like the game?"
+	desc = "Like the game?"
 	icon_state = "fish_squid"
 	min_length = 18
 	max_length = 24
@@ -127,7 +127,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/puffer
 	name = "plasma pufferfish"
-	desc = "it doesn't look like it's made of plasma..."
+	desc = "It doesn't look like it's made of plasma..."
 	icon_state = "fish_puffer"
 	min_length = 1
 	max_length = 1.4

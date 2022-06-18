@@ -63,7 +63,7 @@
 
 /obj/item/projectile/bullet/pellet
 	var/tile_dropoff = 0.45
-	var/tile_dropoff_s = 0.5
+	var/tile_dropoff_s = 0.35
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
@@ -80,7 +80,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
 	damage = 3
-	stamina = 11
+	stamina = 13
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/shotgun_cryoshot

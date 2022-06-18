@@ -1,5 +1,0 @@
-author: " ghost, ported by TheGamerdk"
-delete-after: true 
-changes: 
-  - rscadd: "Glowshrooms less bad"
-  - rscadd: "Glowshrooms now spread and decay different from before, hopefully preventing the issues they were causing with performance"
