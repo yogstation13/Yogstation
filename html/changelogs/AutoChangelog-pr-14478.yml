@@ -1,0 +1,4 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "vanishing act now works, frenzy exit is now setup properly"
