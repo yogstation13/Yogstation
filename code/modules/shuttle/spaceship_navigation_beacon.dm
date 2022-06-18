@@ -7,12 +7,14 @@
 /obj/machinery/spaceship_navigation_beacon
 	name = "Bluespace Navigation Gigabeacon"
 	desc = "A device that creates a bluespace anchor that allow ships jump near to it."
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "core"
+	icon = 'icons/obj/machines/NavBeacon.dmi'
+	icon_state = "beacon-item"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 0
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/spaceship_navigation_beacon
+
+	light_power = 2
 
 	var/locked = FALSE //Locked beacons don't allow to jump to it.
 
@@ -31,9 +33,14 @@ obj/machinery/spaceship_navigation_beacon/emp_act()
 // update the icon_state
 /obj/machinery/spaceship_navigation_beacon/update_icon()
 	if(powered())
-		icon_state = "core"
+		icon_state = "beacon-active"
+		set_light(1)
+	if(panel_open)
+		icon_state = "beacon-open"
+		set_light(0)
 	else
-		icon_state = "core-open"
+		icon_state = "beacon-inactive"
+		set_light(0)
 
 /obj/machinery/spaceship_navigation_beacon/power_change()
 	. = ..()
