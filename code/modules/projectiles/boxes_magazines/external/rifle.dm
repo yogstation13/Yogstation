@@ -84,9 +84,12 @@
 	caliber = "a545"
 	max_ammo = 30
 
-/obj/item/ammo_box/magazine/wt650/incendiary/update_icon()
+/obj/item/ammo_box/magazine/wt650/laser/update_icon()
 	..()
 	if(ammo_count())
 		icon_state = "wt650_laser"
 	else
 		icon_state = "wt650_laser_empty"
+
+/obj/item/ammo_box/magazine/wt650/laser/attack_self() //No popping out the "bullets"
+	return
