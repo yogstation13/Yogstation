@@ -48,4 +48,12 @@
 
 /obj/item/organ/cyberimp/eyes/hud/science
 	name = "Scientific Analyzer implant"
-	desc = "These cybernetic eye implants will allow rapid identification of reagents, and also allow scanning items for research value."
+	desc = "These cybernetic eye implants will allow rapid identification of reagents."
+
+/obj/item/organ/cyberimp/eyes/hud/science/Insert(var/mob/living/carbon/M, var/special = 0, drop_if_replaced = FALSE)
+	..()
+	ADD_TRAIT(owner, TRAIT_SEE_REAGENTS, src)
+
+/obj/item/organ/cyberimp/eyes/hud/science/Remove(var/mob/living/carbon/M, var/special = 0)
+	REMOVE_TRAIT(owner, TRAIT_SEE_REAGENTS, src)
+	..()
