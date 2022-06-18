@@ -1,0 +1,4 @@
+author: "Mothblocks, ported to YogStation by SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Defibing people now gives positive mood"
