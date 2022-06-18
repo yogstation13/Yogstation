@@ -344,7 +344,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_science_analyzer
-	name = "Scientific Analyzer Implant"
+	name = "Chemical Analyzer Implant"
 	desc = "These cybernetic eye implants will allow rapid identification of reagents. Wiggle eyes to control."
 	id = "ci-scihud"
 	build_type = PROTOLATHE | MECHFAB

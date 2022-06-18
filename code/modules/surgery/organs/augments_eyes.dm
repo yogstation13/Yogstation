@@ -47,7 +47,7 @@
 	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/eyes/hud/science
-	name = "Scientific Analyzer implant"
+	name = "Chemical Analyzer implant"
 	desc = "These cybernetic eye implants will allow rapid identification of reagents."
 
 /obj/item/organ/cyberimp/eyes/hud/science/Insert(var/mob/living/carbon/M, var/special = 0, drop_if_replaced = FALSE)
