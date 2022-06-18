@@ -30,6 +30,10 @@
 	greet_text = "Use your stealth technology and equipment to incapacitate humans for your scientist to retrieve."
 	show_in_antagpanel = TRUE
 
+/datum/antagonist/abductor/scientist/onemanteam
+	name = "Abductor Solo"
+	outfit = /datum/outfit/abductor/scientist/onemanteam
+
 /datum/antagonist/abductor/create_team(datum/team/abductor_team/new_team)
 	if(!new_team)
 		return
