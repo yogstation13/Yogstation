@@ -78,7 +78,8 @@
 		icon_state = "wt650_fire_empty"
 		
 /obj/item/ammo_box/magazine/wt650/laser
-	name = "WT-650 laser magazine (5.45mm)"
+	name = "WT-650 laser magazine (5.45mm)."
+	desc = "A 5.45mm magazine for the WT-650. This one is specially designed to print more ammo when put into any standard weapon recharger. Convienent!"
 	icon_state = "wt650_laser"
 	ammo_type = /obj/item/ammo_casing/a545_laser
 	caliber = "a545"
