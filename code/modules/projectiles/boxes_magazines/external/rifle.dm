@@ -28,6 +28,13 @@
 	caliber = "a545"
 	max_ammo = 30
 
+/obj/item/ammo_box/magazine/wt650/update_icon()
+	..()
+	if(ammo_count())
+		icon_state = "wt650"
+	else
+		icon_state = "wt650_empty"
+		
 /obj/item/ammo_box/magazine/wt650/rubber
 	name = "WT-650 rubber magazine (5.45mm)"
 	icon_state = "wt650_rubber"
@@ -35,6 +42,13 @@
 	caliber = "a545"
 	max_ammo = 30
 
+/obj/item/ammo_box/magazine/wt650/rubber/update_icon()
+	..()
+	if(ammo_count())
+		icon_state = "wt650_rubber"
+	else
+		icon_state = "wt650_rubber_empty"
+		
 /obj/item/ammo_box/magazine/wt650/ap
 	name = "WT-650 armor-piercing magazine (5.45mm)"
 	icon_state = "wt650_ap"
@@ -42,9 +56,24 @@
 	caliber = "a545"
 	max_ammo = 30
 
+/obj/item/ammo_box/magazine/wt650/ap/update_icon()
+	..()
+	if(ammo_count())
+		icon_state = "wt650_ap"
+	else
+		icon_state = "wt650_ap_empty"
+		
 /obj/item/ammo_box/magazine/wt650/incendiary
 	name = "WT-650 incendiary magazine (5.45mm)"
 	icon_state = "wt650_fire"
 	ammo_type = /obj/item/ammo_casing/a545_incendiary
 	caliber = "a545"
 	max_ammo = 30
+
+/obj/item/ammo_box/magazine/wt650/incendiary/update_icon()
+	..()
+	if(ammo_count())
+		icon_state = "wt650_fire"
+	else
+		icon_state = "wt650_fire_empty"
+		

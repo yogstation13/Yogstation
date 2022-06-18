@@ -143,6 +143,9 @@
 	mag_display_ammo = TRUE
 	weapon_weight = WEAPON_HEAVY
 
+/obj/item/gun/ballistic/automatic/wt650/peacekeeper // So peacekeepers can start with a rubber mag instead of a lethal one.
+	mag_type = /obj/item/gun/ballistic/automatic/wt650/rubber
+
 /obj/item/gun/ballistic/automatic/m90/Initialize()
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher(src)

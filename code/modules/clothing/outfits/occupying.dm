@@ -28,8 +28,8 @@
 // To note: each vest has 7 normal slots - Hopek
 /obj/item/storage/belt/military/occupying_officer/ComponentInitialize() // Occupying Officer
 	. = ..()
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
+	new /obj/item/ammo_box/magazine/wt650/rubber(src)
+	new /obj/item/ammo_box/magazine/wt650/rubber(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
@@ -39,8 +39,8 @@
 
 /obj/item/storage/belt/military/occupying_commander/ComponentInitialize() // Occupying force Commander
 	. = ..()
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
+	new /obj/item/ammo_box/magazine/wt650/rubber(src)
+	new /obj/item/ammo_box/magazine/wt650/rubber(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/megaphone(src)
@@ -70,7 +70,7 @@
 	ears = /obj/item/radio/headset/headset_cent/alt
 	mask = /obj/item/clothing/mask/cigarette/lit
 	belt = /obj/item/storage/belt/military/occupying_officer
-	suit_store = /obj/item/gun/ballistic/automatic/wt550/occupying
+	suit_store = /obj/item/gun/ballistic/automatic/wt650/peacekeeper
 	back = /obj/item/melee/baton/cattleprod/tactical
 	head = /obj/item/clothing/head/helmet/sec/occupying
 	l_pocket = /obj/item/reagent_containers/food/drinks/beer
