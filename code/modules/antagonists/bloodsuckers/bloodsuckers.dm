@@ -24,8 +24,6 @@
 	var/humanity_lost = 0
 	///Have we been broken the Masquerade?
 	var/broke_masquerade = FALSE
-	///Blood required to enter Frenzy
-	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
