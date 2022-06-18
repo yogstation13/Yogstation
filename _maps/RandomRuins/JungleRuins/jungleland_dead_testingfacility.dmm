@@ -3,10 +3,6 @@
 /obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
-"bH" = (
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
 "bM" = (
 /obj/structure/table_frame,
 /obj/item/shard,
@@ -21,6 +17,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
+"cV" = (
+/obj/structure/fence,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
 "dc" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/dark,
@@ -152,10 +152,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered)
-"mM" = (
-/obj/structure/fence/door,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
 "nD" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -170,16 +166,16 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
+"nT" = (
+/obj/structure/fence/corner,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
 "oN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/glass,
 /obj/item/reagent_containers/hypospray/medipen/survival,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
-"oX" = (
-/obj/structure/fence/corner,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
 "pA" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 9
@@ -204,6 +200,10 @@
 /obj/item/crowbar,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
+"rr" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
 "ru" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/plasteel,
@@ -211,10 +211,6 @@
 "se" = (
 /turf/closed/wall/mineral/iron,
 /area/ruin/unpowered)
-"sy" = (
-/obj/structure/fence,
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
 "sY" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Chemistry"
@@ -272,6 +268,12 @@
 /obj/item/reagent_containers/hypospray/medipen/survival,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
+"zR" = (
+/obj/structure/fence/cut/large{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
 "Az" = (
 /obj/item/ammo_box/magazine/m45,
 /turf/open/floor/plasteel/dark,
@@ -282,6 +284,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
+"AP" = (
+/obj/structure/fence/door,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
 "Bj" = (
 /obj/machinery/shower{
 	dir = 4
@@ -293,6 +299,9 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
+"Bu" = (
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
 "BY" = (
 /mob/living/simple_animal/hostile/abomination/super,
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -348,9 +357,6 @@
 /obj/machinery/chem_heater,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
-"GA" = (
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
 "GF" = (
 /turf/template_noop,
 /area/template_noop)
@@ -411,6 +417,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
+"Lb" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
 "Lj" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 6
@@ -479,12 +491,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
-"Tf" = (
-/obj/structure/fence{
-	dir = 8
-	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
 "TQ" = (
 /obj/machinery/vending/snack,
 /obj/effect/turf_decal/tile/bar,
@@ -516,12 +522,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
-"WE" = (
-/obj/structure/fence/cut/large{
-	dir = 8
-	},
-/turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
 "XQ" = (
 /mob/living/simple_animal/hostile/abomination/altform4,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -577,16 +577,16 @@ GF
 GF
 GF
 GF
-GA
-GA
-sy
-sy
-sy
-sy
-sy
-GA
-GA
-GA
+Bu
+Bu
+cV
+cV
+cV
+cV
+cV
+Bu
+Bu
+Bu
 "}
 (2,1,1) = {"
 GF
@@ -604,16 +604,16 @@ GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
 "}
 (3,1,1) = {"
 GF
@@ -631,16 +631,16 @@ GF
 GF
 GF
 GF
-GA
+Bu
 dI
 dI
 dI
 dI
 dI
 dI
-GA
-GA
-Tf
+Bu
+Bu
+Lb
 "}
 (4,1,1) = {"
 GF
@@ -658,57 +658,57 @@ GF
 GF
 GF
 GF
-GA
+Bu
 dI
 hJ
 Bj
 YN
 lR
 dI
-GA
-GA
-Tf
+Bu
+Bu
+Lb
 "}
 (5,1,1) = {"
 GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 hJ
 lR
 hJ
 hJ
 Nh
-bH
-GA
-mM
+rr
+Bu
+AP
 "}
 (6,1,1) = {"
 GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 dI
 dI
@@ -719,21 +719,21 @@ dI
 Uk
 hh
 dI
-GA
-GA
-Tf
+Bu
+Bu
+Lb
 "}
 (7,1,1) = {"
 GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 dI
 dI
@@ -746,17 +746,17 @@ dI
 ur
 xi
 dI
-GA
-GA
-WE
+Bu
+Bu
+zR
 "}
 (8,1,1) = {"
 GF
 GF
 GF
 GF
-GA
-GA
+Bu
+Bu
 dI
 dI
 dI
@@ -773,17 +773,17 @@ DF
 AL
 ir
 dI
-GA
-GA
-GA
+Bu
+Bu
+Bu
 "}
 (9,1,1) = {"
-GA
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 ky
 hg
@@ -800,16 +800,16 @@ dI
 dI
 dI
 dI
-GA
-GA
-GA
+Bu
+Bu
+Bu
 "}
 (10,1,1) = {"
-GA
-GA
+Bu
+Bu
 dI
 dI
-GA
+Bu
 gy
 dI
 Jy
@@ -824,18 +824,18 @@ dI
 hJ
 ml
 dI
-GA
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
 "}
 (11,1,1) = {"
-GA
+Bu
 dI
 dI
-GA
+Bu
 gy
 se
 dI
@@ -851,17 +851,17 @@ dI
 hJ
 ME
 dI
-GA
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
 "}
 (12,1,1) = {"
-GA
+Bu
 dI
-GA
+Bu
 gy
 gy
 se
@@ -880,13 +880,13 @@ ml
 dI
 dI
 dI
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
 "}
 (13,1,1) = {"
-GA
+Bu
 gy
 gy
 se
@@ -907,14 +907,14 @@ QD
 hJ
 BY
 hh
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
 "}
 (14,1,1) = {"
-GA
-GA
+Bu
+Bu
 gy
 se
 se
@@ -934,14 +934,14 @@ hJ
 iM
 hJ
 hh
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
 "}
 (15,1,1) = {"
-GA
-GA
+Bu
+Bu
 gy
 gy
 se
@@ -961,15 +961,15 @@ iM
 dI
 dI
 dI
-GA
-GA
-GA
-Tf
+Bu
+Bu
+Bu
+Lb
 "}
 (16,1,1) = {"
-GA
-GA
-GA
+Bu
+Bu
+Bu
 gy
 se
 dI
@@ -986,18 +986,18 @@ dI
 iM
 hJ
 dI
-GA
-GA
-GA
-GA
-GA
-Tf
+Bu
+Bu
+Bu
+Bu
+Bu
+Lb
 "}
 (17,1,1) = {"
-GA
-GA
+Bu
+Bu
 dI
-GA
+Bu
 gy
 dI
 mC
@@ -1014,18 +1014,18 @@ Ey
 jK
 dI
 dI
-GA
-GA
-GA
-GA
-Tf
+Bu
+Bu
+Bu
+Bu
+Lb
 "}
 (18,1,1) = {"
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 nJ
 lR
@@ -1043,16 +1043,16 @@ KD
 dI
 dI
 dI
-GA
-GA
-GA
+Bu
+Bu
+Bu
 "}
 (19,1,1) = {"
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 dI
 dI
@@ -1071,25 +1071,25 @@ Fm
 Fm
 dI
 dI
-GA
-GA
+Bu
+Bu
 "}
 (20,1,1) = {"
 GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 lR
 nJ
 lR
 dI
-GA
+Bu
 dI
 pM
 Fm
@@ -1098,25 +1098,25 @@ MO
 Fm
 ZW
 dI
-GA
-GA
+Bu
+Bu
 "}
 (21,1,1) = {"
 GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 lR
 lR
 nJ
 dI
-GA
+Bu
 dI
 UG
 bO
@@ -1125,25 +1125,25 @@ yq
 Fm
 lt
 dI
-GA
-GA
+Bu
+Bu
 "}
 (22,1,1) = {"
 GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 fT
 nD
 lR
 dI
-GA
+Bu
 dI
 Fm
 Fm
@@ -1152,8 +1152,8 @@ Ib
 Fm
 TQ
 dI
-GA
-GA
+Bu
+Bu
 "}
 (23,1,1) = {"
 GF
@@ -1164,13 +1164,13 @@ GF
 GF
 GF
 GF
-GA
+Bu
 dI
 dI
 dI
 dI
 dI
-GA
+Bu
 dI
 dI
 Cw
@@ -1179,8 +1179,8 @@ Fm
 Fm
 dI
 dI
-GA
-Tf
+Bu
+Lb
 "}
 (24,1,1) = {"
 GF
@@ -1191,23 +1191,23 @@ GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-GA
-GA
-GA
-GA
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
+Bu
 dI
 dI
 dI
 dI
 dI
 dI
-GA
-GA
-Tf
+Bu
+Bu
+Lb
 "}
 (25,1,1) = {"
 GF
@@ -1218,21 +1218,21 @@ GF
 GF
 GF
 GF
-GA
-GA
-GA
-GA
-sy
-sy
-GA
-sy
-GA
-sy
-GA
-sy
-sy
-sy
-sy
-sy
-oX
+Bu
+Bu
+Bu
+Bu
+cV
+cV
+Bu
+cV
+Bu
+cV
+Bu
+cV
+cV
+cV
+cV
+cV
+nT
 "}
