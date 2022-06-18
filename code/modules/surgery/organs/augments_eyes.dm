@@ -49,5 +49,3 @@
 /obj/item/organ/cyberimp/eyes/hud/science
 	name = "Scientific Analyzer implant"
 	desc = "These cybernetic eye implants will allow rapid identification of reagents, and also allow scanning items for research value."
-	clothing_flags = SCAN_REAGENTS //You can see reagents while wearing science goggles
-	
