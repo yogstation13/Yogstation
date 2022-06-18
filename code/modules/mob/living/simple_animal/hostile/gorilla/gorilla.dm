@@ -80,7 +80,7 @@
 			visible_message(span_danger("[src] knocks [living_target] down!"))
 
 /mob/living/simple_animal/hostile/gorilla/CanAttack(atom/the_target)
-	var/list/parts = target_bodyparts(target)
+	var/list/parts = get_target_bodyparts(target)
 	return ..() && !istype(the_target, /mob/living/carbon/monkey) && (!parts  || parts.len > 3)
 
 
