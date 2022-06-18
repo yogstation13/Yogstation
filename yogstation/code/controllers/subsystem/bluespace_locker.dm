@@ -73,6 +73,8 @@ SUBSYSTEM_DEF(bluespace_locker)
 		return
 	var/area/A = get_area(internal_locker)
 	for(var/atom/movable/M in A)
+		if(M == internal_locker)
+			continue
+		if(istype(M, /obj/machinery/light))
+			continue
 		M.forceMove(find_safe_turf())
-	qdel(internal_locker)
-	internal_locker = null
