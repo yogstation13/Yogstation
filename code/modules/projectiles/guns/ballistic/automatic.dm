@@ -141,6 +141,7 @@
 	knife_y_offset = 12
 	mag_display = TRUE
 	mag_display_ammo = TRUE
+	weapon_weight = WEAPON_HEAVY
 
 /obj/item/gun/ballistic/automatic/m90/Initialize()
 	. = ..()
