@@ -145,9 +145,11 @@
 
 /obj/item/gun/ballistic/automatic/wt650/peacekeeper // So peacekeepers can start with a rubber mag instead of a lethal one.
 	mag_type = /obj/item/ammo_box/magazine/wt650/rubber
+	weapon_weight = WEAPON_HEAVY
 
 /obj/item/gun/ballistic/automatic/wt650/amber // So ATF members can have laser ammo because idk its cool.
 	mag_type = /obj/item/ammo_box/magazine/wt650/laser
+	weapon_weight = WEAPON_HEAVY
 
 /obj/item/gun/ballistic/automatic/m90/Initialize()
 	. = ..()
