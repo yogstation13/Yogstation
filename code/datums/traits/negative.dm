@@ -772,7 +772,7 @@
 /datum/quirk/brain_damage
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpty to the station."
-	value = -1
+	value = -2
 	gain_text = span_danger("Oww....")
 	lose_text = span_notice("Your head feels good again.")
 	medical_record_text = "Patient appears to have brain damage."
