@@ -20,3 +20,31 @@
 	caliber = "a556"
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/ammo_box/magazine/wt650
+	name = "WT-650 magazine (5.45mm)"
+	icon_state = "wt650"
+	ammo_type = /obj/item/ammo_casing/a545
+	caliber = "a545"
+	max_ammo = 30
+
+/obj/item/ammo_box/magazine/wt650_rubber
+	name = "WT-650 rubber magazine (5.45mm)"
+	icon_state = "wt650_rubber"
+	ammo_type = /obj/item/ammo_casing/a545_rubber
+	caliber = "a545"
+	max_ammo = 30
+
+/obj/item/ammo_box/magazine/wt650_ap
+	name = "WT-650 armor-piercing magazine (5.45mm)"
+	icon_state = "wt650_ap"
+	ammo_type = /obj/item/ammo_casing/a545_ap
+	caliber = "a545"
+	max_ammo = 30
+
+/obj/item/ammo_box/magazine/wt650_incendiary
+	name = "WT-650 incendiary magazine (5.45mm)"
+	icon_state = "wt650_fire"
+	ammo_type = /obj/item/ammo_casing/a545_incendiary
+	caliber = "a545"
+	max_ammo = 30

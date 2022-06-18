@@ -22,7 +22,7 @@
 	damage = 18
 	armour_penetration = 50
 
-/obj/item/projectile/bullet/a545_incendiary
+/obj/item/projectile/bullet/incendiary/a545_incendiary
 	name = "5.45mm incendiary bullet"
 	damage = 12
 	fire_stacks = 1
