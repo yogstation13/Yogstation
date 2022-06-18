@@ -5,6 +5,7 @@
 	max_occurrences = 1
 	min_players = 20
 	gamemode_blacklist = list("nuclear","wizard","revolution")
+	earliest_start = 8 MINUTES
 
 /datum/round_event/ghost_role/abductor
 	minimum_required = 2
