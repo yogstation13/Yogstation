@@ -1,6 +1,0 @@
-author: " Galacticruler, @Chubbygummibear, @Hopekz"
-delete-after: true 
-changes: 
-  - rscadd: "Added new eye implant for reagent scanning, the chemical analyzer implant"
-  - tweak: "added new implant to the tech node with the other HUD implants"
-  - tweak: "added third mob-level check to allow for the new implant to work"
