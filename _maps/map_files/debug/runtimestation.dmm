@@ -2192,22 +2192,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"fX" = (
-/obj/structure/sign/directions/supply{
-	dir = 4;
-	pixel_x = -32
-	},
-/obj/structure/sign/directions/engineering{
-	dir = 1;
-	pixel_x = -32;
-	pixel_y = 7
-	},
-/obj/structure/sign/directions/evac{
-	pixel_x = -32;
-	pixel_y = -7
-	},
-/turf/open/floor/plating,
-/area/storage/primary)
 "fY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2567,6 +2551,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kY" = (
+/obj/machinery/fishing,
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "lg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2606,6 +2594,17 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
+"pz" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/clothing/gloves/fishing,
+/obj/item/clothing/head/fishing,
+/obj/item/clothing/shoes/fishing,
+/obj/item/clothing/suit/fishing,
+/turf/open/floor/plating,
+/area/storage/primary)
 "pA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall/r_wall,
@@ -2738,6 +2737,9 @@
 "Ce" = (
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
+"Ch" = (
+/turf/open/water/safe,
+/area/storage/primary)
 "Ct" = (
 /obj/structure/closet/syndicate/resources/everything,
 /turf/open/floor/plasteel,
@@ -2787,6 +2789,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
+"HZ" = (
+/obj/structure/table,
+/obj/item/twohanded/fishingrod/collapsable,
+/turf/open/floor/plating,
+/area/storage/primary)
 "If" = (
 /obj/machinery/rnd/production/techfab/department,
 /turf/open/floor/plasteel,
@@ -2814,6 +2821,23 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"Ll" = (
+/obj/structure/sign/directions/supply{
+	dir = 4;
+	pixel_x = -32
+	},
+/obj/structure/sign/directions/engineering{
+	dir = 1;
+	pixel_x = -32;
+	pixel_y = 7
+	},
+/obj/structure/sign/directions/evac{
+	pixel_x = -32;
+	pixel_y = -7
+	},
+/obj/machinery/vending/fishing,
+/turf/open/floor/plating,
+/area/storage/primary)
 "Ly" = (
 /obj/machinery/chem_dispenser/chem_synthesizer,
 /turf/open/floor/plasteel/dark,
@@ -2998,6 +3022,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/science)
+"YF" = (
+/obj/structure/table,
+/obj/item/twohanded/fishingrod,
+/turf/open/floor/plating,
+/area/storage/primary)
 "ZD" = (
 /obj/machinery/suit_storage_unit/ce,
 /turf/open/floor/plasteel,
@@ -7542,10 +7571,10 @@ bE
 bE
 cS
 dd
-dp
-dl
-dl
-fX
+pz
+HZ
+YF
+Ll
 dE
 dB
 dl
@@ -7727,10 +7756,10 @@ cU
 da
 fK
 dJ
+kY
 dJ
 dJ
-dJ
-dJ
+dD
 dJ
 dJ
 dJ
@@ -7819,7 +7848,7 @@ bE
 cS
 fx
 dq
-dJ
+kY
 dJ
 dJ
 dI
@@ -8096,7 +8125,7 @@ cV
 fA
 dt
 dJ
-dD
+dJ
 dJ
 dI
 dJ
@@ -8187,8 +8216,8 @@ bE
 cV
 fC
 du
-dJ
-dJ
+Ch
+Ch
 dJ
 dI
 dJ
@@ -8279,8 +8308,8 @@ by
 by
 fD
 dv
-dJ
-dJ
+Ch
+Ch
 dJ
 dI
 dJ
@@ -8371,8 +8400,8 @@ cJ
 by
 fE
 dw
-dJ
-dJ
+Ch
+Ch
 dJ
 dI
 dJ

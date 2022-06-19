@@ -34,6 +34,8 @@
 		if(!wielded)
 			to_chat(user, span_warning("You need to wield the rod in both hands before you can cast it!"))
 			return
+		if(!fc.can_fish)
+			return
 		cast(fc,user)
 	else
 		if(fc != fishing_component)
@@ -121,7 +123,7 @@
 	if(!picked_reward || picked_reward == FISHING_LOOT_NOTHING) //nothing or something messed up
 		fisher.visible_message(span_notice("[fisher] reels in ... nothing!"), span_notice("You reel in... nothing! Better luck next time!"))
 		return
-	var/obj/reward_item = new picked_reward(fishing_component.parent)
+	var/obj/reward_item = new picked_reward(get_turf(fishing_component.parent))
 	reward_item.alpha = 0
 	reward_item.pixel_y = -12
 	animate(reward_item,time = 0.25 SECONDS,pixel_y = 0,alpha = 255,easing = SINE_EASING)

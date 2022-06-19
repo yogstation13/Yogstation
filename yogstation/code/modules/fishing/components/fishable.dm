@@ -7,11 +7,12 @@
 /datum/component/fishable
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/datum/fishing_loot/loot = new /datum/fishing_loot/water
+	var/can_fish = TRUE
 
-
-/datum/component/fishable/Initialize()
-	if(!istype(parent, /turf))
+/datum/component/fishable/Initialize(var/can_fish = TRUE)
+	if(!isturf(parent) && !ismachinery(parent))
 		return COMPONENT_INCOMPATIBLE
+	src.can_fish = can_fish
 
 /datum/component/fishable/proc/get_reward(var/fishing_power = 0)
 	var/chance = list(
@@ -22,7 +23,8 @@
 		FISHING_LOOT_RARE = min(fishing_power / 20,25)
 		)
 
-	var/chosen_rank = pickweight(chance)
+	var/chosen_rank	= pickweight(chance)
+	
 	switch(chosen_rank)
 		if(FISHING_LOOT_JUNK)
 			return pick(loot.junk_loot)
