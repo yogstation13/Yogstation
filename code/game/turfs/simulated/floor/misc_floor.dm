@@ -303,7 +303,7 @@
 */
 //////////////////////////////////
 
-/turf/open/floor/clockwork
+/turf/open/floor/hog
 	name = "divine floor"
 	desc = "A floor, made from strange magical material."
 	icon_state = "floor"

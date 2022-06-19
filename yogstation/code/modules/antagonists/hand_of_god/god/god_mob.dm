@@ -21,7 +21,7 @@
 
 /mob/camera/hog_god/Initialize()	
 	. = ..()
-	(var/datum/hog_god_interaction/targeted/spell in typesof(/datum/hog_god_interaction/targeted))
+	for(var/datum/hog_god_interaction/targeted/spell in typesof(/datum/hog_god_interaction/targeted))
 		spell = new
 		src.spells += spell
 

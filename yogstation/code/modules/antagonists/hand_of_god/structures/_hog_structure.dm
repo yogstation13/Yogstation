@@ -77,6 +77,7 @@
 
 /obj/structure/hog_structure/attack_god(mob/camera/hog_god/god, modifier)
 	if(cult != god.cult)
+		get_fucked_by_hog_pylons(src, god.cult, god)
 		return
 	if(!modifier)
 		var/list/spells_to_use = list()
