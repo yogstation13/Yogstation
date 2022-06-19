@@ -151,7 +151,7 @@
 	name = "holosign controller"
 	desc = "A remote controller for a holosign."
 
-/obj/item/assembly/control/crematorium/activate()
+/obj/item/assembly/control/holosign/activate()
 	if(cooldown)
 		return
 	cooldown = TRUE
