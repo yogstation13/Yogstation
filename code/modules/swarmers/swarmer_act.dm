@@ -159,10 +159,6 @@
 	to_chat(S, span_warning("This kitchen appliance should be preserved, it will make delicious unhealthy snacks for our masters in the future. Aborting."))
 	return FALSE
 
-/obj/machinery/power/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
-	to_chat(S, span_warning("Disrupting the power grid would bring no benefit to us. Aborting."))
-	return FALSE
-
 /obj/machinery/gateway/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	to_chat(S, span_warning("This bluespace source will be important to us later. Aborting."))
 	return FALSE
