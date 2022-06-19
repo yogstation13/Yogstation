@@ -9,27 +9,21 @@
 /datum/hog_god_interaction/targeted/recall/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
 	if(!istype(target, /mob/living))
 		to_chat(user, span_warning("Not a valid target!"))
-		qdel(src)
 		return
 	var/mob/living/dude = target
 	if(!IS_HOG_CULTIST(dude))
 		to_chat(user, span_warning("You can target only your servants!"))
-		qdel(src)
 		return
 	if(!dude)
-		qdel(src)
 		return
 	if(!user.recall(dude))
 		to_chat(user, span_notice("You fail to recall [target]..."))
-		qdel(src)
 		return
 	else
 		to_chat(dude, span_notice("You suddenly appear near your cult's nexus..."))
 		to_chat(user, span_notice("You sucessfully recall [target]..."))	
 
 	. = ..()
-
-	qdel(src)
 
 /datum/hog_god_interaction/targeted/purge
 	name = "Purge"
@@ -40,15 +34,12 @@
 /datum/hog_god_interaction/targeted/purge/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
 	if(!iscarbon(target))
 		to_chat(user, span_warning("Not a valid target!"))
-		qdel(src)
 		return
 	var/mob/living/carbon/dude = target
 	if(!IS_HOG_CULTIST(dude))
 		to_chat(user, span_warning("You can target only your servants!"))
-		qdel(src)
 		return
 	if(!dude)
-		qdel(src)
 		return
 	var/effective = FALSE 
 	if(dude.reagents.has_reagent(/datum/reagent/water/holywater))
@@ -63,7 +54,6 @@
 
 	if(!effective)
 		to_chat(user, span_warning("There is nothing to purge from [dude]'s blood!"))
-		qdel(src)
 		return
 	to_chat(user, span_warning("You purge heretical reagents from [dude]'s blood!"))
 	to_chat(dude, span_warning("You feel your god's light cleaning your bloodstream!"))
@@ -71,8 +61,6 @@
 
 
 	. = ..()
-
-	qdel(src)
 
 /datum/hog_god_interaction/targeted/mood
 	name = "Boost mood"
@@ -83,15 +71,12 @@
 /datum/hog_god_interaction/targeted/mood/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
 	if(!isliving(target))
 		to_chat(user, span_warning("Not a valid target!"))
-		qdel(src)
 		return
 	var/mob/living/dude = target
 	if(!IS_HOG_CULTIST(dude))
 		to_chat(user, span_warning("You can target only your servants!"))
-		qdel(src)
 		return
 	if(!dude)
-		qdel(src)
 		return
 	SEND_SIGNAL(dude, COMSIG_ADD_MOOD_EVENT, "god_moraleboost", /datum/mood_event/hog_moodboost)
 	to_chat(user, span_warning("You boost [dude]'s morale!"))
@@ -99,9 +84,7 @@
 
 	. = ..()
 
-	qdel(src)
-
-/datum/hog_god_interaction/targeted/ban
+/datum/hog_god_interaction/targeted/mood
 	name = "Toggle Ban"
 	description = "Disallow your servant to interact with your structures. A way to save resources from getting spended by your servants, or to deal with shitters." ///A way to deal with autistic people. Or to grief your team(and get banned because it is logged, lol).
 	cost = 0
@@ -111,12 +94,10 @@
 	var/mob/dude = target
 	if(!dude)
 		to_chat(user, span_warning("Not a valid target!"))
-		qdel(src)
 		return
 	var/datum/antagonist/hog/antag_datum = IS_HOG_CULTIST(dude)
 	if(!antag_datum)
 		to_chat(user, span_warning("You can target only your servants!"))
-		qdel(src)
 		return
 	antag_datum.banned_by_god = !antag_datum.banned_by_god
 	if(antag_datum.banned_by_god)
@@ -128,5 +109,3 @@
 		to_chat(dude, span_warning("Your god has forgave you. You can interact with your cult structures again.."))
 
 	. = ..()
-
-	qdel(src)

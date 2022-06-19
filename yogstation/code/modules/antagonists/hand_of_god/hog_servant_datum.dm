@@ -4,14 +4,14 @@
 	antagpanel_category = "HoG Cult"
 	var/hud_type = "dude"
 	var/datum/team/hog_cult/cult
-	var/list/god_actions = list() 
+	var/list/god_actions = list(/datum/hog_god_interaction/targeted/recall, /datum/hog_god_interaction/targeted/purge, /datum/hog_god_interaction/targeted/mood, /datum/hog_god_interaction/targeted/mood) 
 	var/farewell = "You are no longer a cultist!"
 	var/greet = "You are now a HoG cultist!"
 	var/energy = 0
 	var/max_energy = 100
 	var/list/prepared_spells = list()
 	var/banned_by_god = FALSE
-	antag_moodlet = /datum/mood_event/sling
+	antag_moodlet = /datum/mood_event/hog_cultist
 
 /datum/antagonist/hog/can_be_owned(datum/mind/new_owner)
 	. = ..()

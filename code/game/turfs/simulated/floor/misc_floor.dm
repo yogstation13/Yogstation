@@ -307,7 +307,7 @@
 	name = "divine floor"
 	desc = "A floor, made from strange magical material."
 	icon_state = "floor"
-	initial_icon_state = "floor"
+	var/initial_icon_state = "floor"
 	baseturfs = /turf/open/floor/clockwork
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT

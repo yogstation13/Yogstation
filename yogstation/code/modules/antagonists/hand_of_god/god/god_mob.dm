@@ -6,7 +6,7 @@
 	icon_state = "marker"
 	mouse_opacity = MOUSE_OPACITY_ICON
 	move_on_shuttle = TRUE
-	see_in_dark = 15
+	see_in_dark = 20
 	invisibility = INVISIBILITY_OBSERVER
 	layer = FLY_LAYER
 	color = "#00a7ff"
@@ -18,6 +18,13 @@
 	var/cool_name = "God"
 	var/lights_breaked_recently = 0
 	var/list/spells = list()
+
+/mob/camera/hog_god/Initialize()	
+	. = ..()
+	(var/datum/hog_god_interaction/targeted/spell in typesof(/datum/hog_god_interaction/targeted))
+		spell = new
+		src.spells += spell
+
 
 /mob/camera/hog_god/proc/select_name()
 	var/new_name = input(src, "Choose your new name", "Name")

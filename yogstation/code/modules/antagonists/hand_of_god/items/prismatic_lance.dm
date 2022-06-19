@@ -42,6 +42,8 @@
 						L.adjustFireLoss(damage_per_shot) 
 						Beam(L, icon_state = "warden_beam", time = 10)	
 						last_process = world.time
+					if(L.stat == DEAD)
+						target = null
 				else if(ismecha(target))
 					var/obj/mecha/M = target
 					Beam(M, icon_state = "warden_beam", time = 10)	

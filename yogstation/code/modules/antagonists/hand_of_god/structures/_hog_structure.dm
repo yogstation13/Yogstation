@@ -23,6 +23,7 @@
 		god_actions += spell
 	
 /obj/structure/hog_structure/Destroy()
+	cult.objects -= src
 	GLOB.hog_structures -= src
 	for(var/qdel_candidate in god_actions)
 		qdel(qdel_candidate)
@@ -39,10 +40,13 @@
 
 	
 /obj/structure/hog_structure/proc/handle_team_change(var/datum/team/hog_cult/new_cult)
+	if(cult)
+		cult.objects -= src
 	shield_integrity = 0 
 	if(weapon && !istype(weapon, /obj/item/hog_item/prismatic_lance/guardian))
 		qdel(weapon)
 	cult = new_cult
+	new_cult.objects += src
 	update_hog_icons()
 
 /obj/structure/hog_structure/proc/special_interaction(var/mob/user)
@@ -75,14 +79,14 @@
 	if(cult != god.cult)
 		return
 	if(!modifier)
-		var/list/susass = list()
+		var/list/spells_to_use = list()
 		var/list/names = list() ///A bit weird, but if you have any other idea... propose it
 
 		for(var/datum/hog_god_interaction/spell in god_actions)
-			susass[spell.name] = spell
+			spells_to_use[spell.name] = spell
 			names += spell.name
 
-		var/datum/hog_god_interaction/spelli = susass[input(god,"What do you want to cast?","Action") in names]
+		var/datum/hog_god_interaction/spelli = spells_to_use[input(god,"What do you want to cast?","Action") in names]
 		if(!spelli)
 			return
 		if(!spelli.on_called(god))
