@@ -464,6 +464,10 @@
 		return
 	H.dna.add_mutation(STONER)
 
+/obj/effect/mob_spawn/human/corpse/felinid
+	name = "Felinid"
+	mob_species = /datum/species/felinid
+
 /////////////////Officers+Nanotrasen Security//////////////////////
 
 /obj/effect/mob_spawn/human/bridgeofficer
