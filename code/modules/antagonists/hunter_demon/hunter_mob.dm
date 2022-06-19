@@ -8,8 +8,8 @@
 	response_disarm = "flails at"
 	response_harm   = "punches"
 	icon = 'icons/mob/mob.dmi'
-	icon_state = "hunter_daemon"
-	icon_living = "hunter_daemon"
+	icon_state = "horror"
+	icon_living = "horror"
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	speed = -0.15

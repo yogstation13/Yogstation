@@ -1,8 +1,8 @@
 /obj/structure/bloody_orb
 	name = "bloody orb"
 	desc = "A sinister looking red orb."
-	icon = 'icons/obj/wallmounts.dmi'
-	icon_state = "extinguisher_closed"
+	icon = 'icons/obj/blood_orb.dmi'
+	icon_state = "bloody_orb"
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 200
@@ -148,8 +148,8 @@
 
 /obj/item/sinister_orb
 	name = "sinister orb"
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "scroll2"
+	icon = 'icons/obj/blood_orb.dmi'
+	icon_state = "sinister"
 	desc = "A sinisterly looking red ball."
 
 /obj/item/sinister_orb/attack_self(mob/living/user)

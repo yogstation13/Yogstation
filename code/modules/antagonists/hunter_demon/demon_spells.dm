@@ -48,8 +48,8 @@
 	school = "evocation"
 	charge_max = 100
 	cooldown_min = 10
-	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	action_icon_state = "moneybag"
+	action_icon = 'icons/mob/actions/hunter_demon_actions.dmi'
+	action_icon_state = "seek_prey"
 	phase_allowed = TRUE
 
 /obj/effect/proc_holder/spell/hd_seek_prey/perform(recharge = 1, mob/living/user = usr)
@@ -102,8 +102,8 @@
 	school = "evocation"
 	charge_max = 100
 	cooldown_min = 30
-	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	action_icon_state = "moneybag"
+	action_icon = 'icons/mob/actions/hunter_demon_actions.dmi'
+	action_icon_state = "recall"
 	phase_allowed = TRUE
 
 /obj/effect/proc_holder/spell/recall/perform(recharge = 1, mob/living/user = usr)
