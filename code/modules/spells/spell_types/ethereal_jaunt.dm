@@ -26,7 +26,7 @@
 	target.notransform = 1
 	var/turf/mobloc 
 	var/atom/location = target.loc
-	if(istype(location, /turf))
+	if(is_turf(location))
 		mobloc = location
 	else 
 		mobloc = get_turf(location)
