@@ -1,0 +1,11 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Secbelt + variants can hold shotgun shell boxes and teleshields, bulky now."
+  - tweak: "Shotgun shell boxes can now only carry shotgun shells."
+  - tweak: "Beanbag boxes spawn with 7 beanbags, rather than 6."
+  - tweak: "Security webbing and HoS belt storage buffed."
+  - tweak: "HoS now spawns with their belt and teleshield from the locker, extra baton/flash/cuffs moved to locker."
+  - tweak: "Assault belt now identical to tactical webbing."
+  - tweak: "Shoulder holster normal-sized again."
+  - tweak: "Bandolier holds more shells."

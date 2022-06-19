@@ -1,0 +1,7 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - tweak: "Preternis eyes no longer delete themselves when in a non preternis host"
+  - tweak: "Preternis eyes use their organ health as a charge meter. They drain (take damage at .5 eye damage per tick) in a non-preternis and recharge quickly (.5 eye healing per tick) in an actual preternis."
+  - tweak: "Preternis eyes depend on being high organ health to use their night vision rather than preternis charge meter."
+  - tweak: "Preternis eyes are naturally cybernetic, so they don't decay outside of a body and you get flashed if emp'd. although your eyes are probably the least of your worries if emp'd as a preternis"

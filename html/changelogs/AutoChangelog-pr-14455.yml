@@ -1,0 +1,5 @@
+author: "@ToasterBiome @Chubbygummibear @LazennG"
+delete-after: true 
+changes: 
+  - rscadd: "Added inhand ability for bloody knuckles"
+  - tweak: "tweaked some recent loot to hopefully be less useless"

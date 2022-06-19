@@ -196,7 +196,8 @@
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
-			if(user.blood_volume < 560)
+			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+			if(user.blood_volume < FRENZY_THRESHOLD_EXIT + bloodsuckerdatum.humanity_lost * 10)
 				user.blood_volume += 10
 		adjustFireLoss(2.5)
 		updatehealth() //3 minutes to die

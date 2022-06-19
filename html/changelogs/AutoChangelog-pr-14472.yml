@@ -1,0 +1,5 @@
+author: "00ze-cyclone"
+delete-after: true 
+changes: 
+  - rscdel: "Removed a space in the species whitelisting"
+  - bugfix: "maybe fixed polys not being able to be CE (I hope it's not actually something as stupid as a singular space that broke everything though it would be nice because it would mean that it's easy to fix)"
