@@ -35392,19 +35392,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/storage)
-"bEc" = (
-/obj/structure/chair/office/light{
-	dir = 1
-	},
-/obj/effect/landmark/start/medical_doctor,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/patients_rooms/room_b)
 "bEf" = (
 /obj/machinery/telecomms/processor/preset_one,
 /obj/machinery/camera{
@@ -62934,6 +62921,25 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"gEA" = (
+/obj/machinery/door/airlock/medical{
+	name = "Patient Room B";
+	req_access_txt = "45"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/holosign/surgery{
+	id = "surgery_b"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/patients_rooms/room_b)
 "gFp" = (
 /obj/machinery/door/airlock/external{
 	req_one_access_txt = "13,8"
@@ -63456,22 +63462,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"gYD" = (
-/obj/machinery/door/airlock/medical{
-	name = "Patient Room B";
-	req_access_txt = "45"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/patients_rooms/room_b)
 "gYP" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -72058,6 +72048,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"osS" = (
+/obj/structure/chair/office/light{
+	dir = 1
+	},
+/obj/effect/landmark/start/medical_doctor,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -26
+	},
+/obj/machinery/button/holosign{
+	id = "surgery_b";
+	pixel_x = -36
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/patients_rooms/room_b)
 "otk" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -77218,6 +77225,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
+"sOU" = (
+/obj/structure/chair/office/light{
+	dir = 1
+	},
+/obj/effect/landmark/start/medical_doctor,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -26
+	},
+/obj/machinery/button/holosign{
+	id = "surgery_a";
+	pixel_x = -36
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/patients_rooms/room_a)
 "sPb" = (
 /obj/machinery/vending/coffee,
 /obj/structure/sign/map/left{
@@ -77488,22 +77512,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"tbb" = (
-/obj/machinery/door/airlock/medical{
-	name = "Patient Room A";
-	req_access_txt = "45"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/patients_rooms/room_a)
 "tbh" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -79230,6 +79238,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"uAV" = (
+/obj/machinery/door/airlock/medical{
+	name = "Patient Room A";
+	req_access_txt = "45"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/holosign/surgery{
+	id = "surgery_a"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/patients_rooms/room_a)
 "uBz" = (
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
@@ -80567,19 +80594,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"vAb" = (
-/obj/structure/chair/office/light{
-	dir = 1
-	},
-/obj/effect/landmark/start/medical_doctor,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/patients_rooms/room_a)
 "vAt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -102950,11 +102964,11 @@ dux
 dty
 cvp
 vtK
-vAb
+sOU
 gpj
 cvp
 wVZ
-bEc
+osS
 jEV
 clK
 pWp
@@ -103978,11 +103992,11 @@ maJ
 hhX
 cvp
 nrU
-tbb
+uAV
 nrU
 cvp
 tAy
-gYD
+gEA
 tAy
 jHJ
 tLV
