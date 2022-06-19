@@ -1,6 +1,6 @@
 /mob/living/attack_god(mob/camera/hog_god/god, modifier)
     var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(src)
-	if(cultie.cult != god.cult || !cultie)
+    if(cultie.cult != god.cult || !cultie)
 		get_fucked_by_hog_pylons(src, god.cult, god)
         return
     if(src.stat == DEAD)
@@ -17,7 +17,7 @@
 		return
 	if(!spelli.on_called(god))
 		return
-	spelli.on_use(god)
+	spelli.on_targeting(god, src)
 	return 
 
 /proc/get_fucked_by_hog_pylons(var/atom/target, var/datum/team/hog_cult/executor, var/mob/camera/god)	

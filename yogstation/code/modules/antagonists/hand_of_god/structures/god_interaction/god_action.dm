@@ -8,6 +8,7 @@
 	
 
 /datum/hog_god_interaction/proc/on_called(var/mob/camera/hog_god/user)
+	if(!owner)
 	if(when_recharged > world.time)
 		to_chat(user,span_danger("The action is on coldown!"))
 		return FALSE		
