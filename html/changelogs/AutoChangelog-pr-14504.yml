@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - tweak: "AI cores should no longer turn off due to grid failure events"
