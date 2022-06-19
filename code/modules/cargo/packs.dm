@@ -706,7 +706,7 @@
 /datum/supply_pack/security/armory/wt650
 	name = "WT-650 Assualt Rifle Crate"
 	desc = "Contains two high-powered, semiautomatic rifles chambered in 5.45mm rounds. Requires Armory access to open."
-	cost = 5500
+	cost = 12500
 	contains = list(/obj/item/gun/ballistic/automatic/wt650,
 					/obj/item/gun/ballistic/automatic/wt650)
 	crate_name = "assault rifle crate"
@@ -714,14 +714,14 @@
 /datum/supply_pack/security/armory/wt550_single
 	name = "WT-650 Assualt Rifle Single-Pack"
 	desc = "Contains one high-powered, semiautomatic rifle chambered in 5.45mm rounds. Requires Armory access to open."
-	cost = 3000
+	cost = 8000
 	contains = list(/obj/item/gun/ballistic/automatic/wt650)
 	small_item = TRUE
 
 /datum/supply_pack/security/armory/wt550ammo
 	name = "WT-650 Assualt Rifle Ammo Crate"
 	desc = "Contains four 30-round magazines for the WT-650 Assualt Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
-	cost = 3000
+	cost = 4500
 	contains = list(/obj/item/ammo_box/magazine/wt650,
 					/obj/item/ammo_box/magazine/wt650,
 					/obj/item/ammo_box/magazine/wt650,
