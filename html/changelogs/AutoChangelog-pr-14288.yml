@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Destroying the bluespace locker now teleports everything inside to the station"
