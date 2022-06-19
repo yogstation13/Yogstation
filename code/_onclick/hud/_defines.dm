@@ -106,7 +106,7 @@
 #define ui_mood "EAST-1:28,CENTER-3:10"
 
 //living
-#define ui_living_pull "EAST-1:28,CENTER-3"
+#define ui_living_pull "EAST-1:28,CENTER-3:15"
 #define ui_living_health "EAST-1:28,CENTER:15"
 #define ui_living_healthdoll "EAST-1:28,CENTER-1:15"
 
