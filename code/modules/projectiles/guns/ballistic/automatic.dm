@@ -89,6 +89,7 @@
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
 	burst_size = 2
+	weapon_weight = WEAPON_MEDIUM
 	can_suppress = FALSE
 	can_bayonet = TRUE
 	knife_x_offset = 25
