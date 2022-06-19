@@ -773,7 +773,7 @@
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpty to the station."
 	value = -2
-	gain_text = span_danger("Oww....")
+	gain_text = span_danger("Your head hurts.")
 	lose_text = span_notice("Your head feels good again.")
 	medical_record_text = "Patient appears to have brain damage."
 
