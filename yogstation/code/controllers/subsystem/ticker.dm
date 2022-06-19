@@ -48,6 +48,7 @@
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						// Dungeons of Dredmor - Diggle Hell
 		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
 		"https://www.youtube.com/watch?v=uiPJQgw6M_g",						// Ribbiks - Chasing Suns
+		"https://www.youtube.com/watch?v=QHDMqWMzBG8",						// FTL: Faster Than Light - Theme Song
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U")						// Ataraxia - Deja Vuzz
 
 	selected_lobby_music = pick(songs)
