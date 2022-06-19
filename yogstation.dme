@@ -3160,6 +3160,7 @@
 #include "code\modules\surgery\prosthetic_replacement.dm"
 #include "code\modules\surgery\remove_embedded_object.dm"
 #include "code\modules\surgery\repair_puncture.dm"
+#include "code\modules\surgery\stomachpump.dm"
 #include "code\modules\surgery\surgery.dm"
 #include "code\modules\surgery\surgery_step.dm"
 #include "code\modules\surgery\tools.dm"
