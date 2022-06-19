@@ -334,7 +334,7 @@
 		if(L.stat == DEAD)
 			continue
 		. = 1
-		var/datum/antagonist/cultie = IS_HOG_CULTIST(L)
+		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
 		if(!cultie || cultie.cult != src.cult)
 			continue
 		var/image/I = new('icons/effects/effects.dmi', src, "heal", ABOVE_MOB_LAYER) //fake a healing glow for servants
@@ -359,7 +359,7 @@
 		qdel(src)
 	return TRUE
 
-/turf/open/floor/hog/change_hog_team(datum/team/hog_cult/new_cult)
+/turf/open/floor/hog/proc/change_hog_team(datum/team/hog_cult/new_cult)
 	return
 
 /turf/open/floor/hog/make_plating()
