@@ -304,9 +304,10 @@
 //////////////////////////////////
 
 /turf/open/floor/clockwork
-	name = "clockwork floor"
-	desc = "Tightly-pressed brass tiles. They emit minute vibration."
-	icon_state = "plating"
+	name = "divine floor"
+	desc = "A floor, made from strange magical material."
+	icon_state = "floor"
+	initial_icon_state = "floor"
 	baseturfs = /turf/open/floor/clockwork
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -360,7 +361,12 @@
 	return TRUE
 
 /turf/open/floor/hog/proc/change_hog_team(datum/team/hog_cult/new_cult)
-	return
+	if(cult)
+		cult.objects -= src
+	cult = new_cult
+	new_cult.objects += src
+	icon_state = "[initial_icon_state]_[new_cult.cult_color]"
+	update_icon()
 
 /turf/open/floor/hog/make_plating()
 	return
@@ -384,10 +390,18 @@
 	var/atom/loca = src.loc 
 	var/turf/open/floor/hog/H
 	H = new(loca)
-	H.name = "divine [name]"
+	if(!istype(src, /turf/open/floor/hog))
+		H.name = "divine [name]"
 	H.change_hog_team(act_cult)
 	qdel(src)
 	return TRUE
+
+/turf/open/floor/hog/hog_act(datum/team/hog_cult/act_cult)
+	if(act_cult == cult)
+		take_damage(-25, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), 100)
+		take_damage(-25, BRUTE, MELEE, FALSE , get_dir(src, src), 100) 
+		return
+	. = ..()
 
 
 //////////////////////////////////

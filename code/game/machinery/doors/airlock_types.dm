@@ -783,11 +783,11 @@
 	return TRUE
 	
 /obj/machinery/door/airlock/hog/hog_act(datum/team/hog_cult/act_cult)
-	. = ..()
 	if(act_cult == cult)
 		take_damage(-25, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), 100)
 		take_damage(-25, BRUTE, MELEE, FALSE , get_dir(src, src), 100) 
 		return
+	. = ..()
 
 
 /obj/machinery/door/airlock/hog/proc/change_hog_team(var/datum/team/hog_cult/new_cult)

@@ -11,6 +11,7 @@
 	var/dudes_amount = 0
 	var/hud_entry_num
 	var/income_interval = 2 SECONDS
+	var/list/objects = list()
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
