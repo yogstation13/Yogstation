@@ -48,7 +48,8 @@
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						// Dungeons of Dredmor - Diggle Hell
 		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
 		"https://www.youtube.com/watch?v=uiPJQgw6M_g",						// Ribbiks - Chasing Suns
-		"https://www.youtube.com/watch?v=7F_xOzLWy5U")						// Ataraxia - Deja Vuzz
+		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
+		"https://www.youtube.com/watch?v=mG6Ys2opFD0")						// FTL Advanced Edition Soundtrack: Lanius (Battle)
 
 	selected_lobby_music = pick(songs)
 
