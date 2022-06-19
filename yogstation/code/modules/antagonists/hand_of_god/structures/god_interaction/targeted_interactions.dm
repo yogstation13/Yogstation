@@ -107,7 +107,7 @@
 	cost = 0
 	cooldown = 0
 
-/datum/hog_god_interaction/targeted/mood/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
+/datum/hog_god_interaction/targeted/ban/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
 	var/mob/dude = target
 	if(!dude)
 		to_chat(user, span_warning("Not a valid target!"))
