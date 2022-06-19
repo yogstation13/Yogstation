@@ -26,6 +26,14 @@ GLOBAL_LIST_EMPTY(antagonists)
 	/// The corporation employing us
 	var/datum/corporation/company
 
+	//ANTAG UI
+
+	///name of the UI that will try to open, right now having nothing means this won't exist but in the future all should.
+	var/ui_name
+	///button to access antag interface
+	var/datum/action/antag_info/info_button
+
+
 
 /datum/antagonist/New()
 	GLOB.antagonists += src
@@ -82,7 +90,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 		CRASH("[src] ran on_gain() without a mind")
 	if(!owner.current)
 		CRASH("[src] ran on_gain() on a mind without a mob")
-	greet()
+	if(ui_name)//in the future, this should entirely replace greet.
+		info_button = new(owner.current, src)
+		info_button.Grant(owner.current)
+	if(!silent)
+		greet()
+		if(ui_name)
+			to_chat(owner.current, span_big("You are \a [src]."))
+			to_chat(owner.current, span_boldnotice("For more info, read the panel. you can always come back to it using the button in the top left."))
+			info_button.Trigger()
 	apply_innate_effects()
 	give_antag_moodies()
 	if(is_banned(owner.current) && replace_banned)
@@ -115,14 +131,17 @@ GLOBAL_LIST_EMPTY(antagonists)
 //Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/proc/on_removal()
 	SHOULD_CALL_PARENT(TRUE)
+	if(!owner)
+		CRASH("Antag datum with no owner.")
 	remove_innate_effects()
 	clear_antag_moodies()
-	if(owner)
-		LAZYREMOVE(owner.antag_datums, src)
-		if(!LAZYLEN(owner.antag_datums))
-			owner.current.remove_from_current_living_antags()
-		if(!silent && owner.current)
-			farewell()
+	LAZYREMOVE(owner.antag_datums, src)
+	if(!LAZYLEN(owner.antag_datums))
+		owner.current.remove_from_current_living_antags()
+	if(info_button)
+		QDEL_NULL(info_button)
+	if(!silent && owner.current)
+		farewell()
 	var/datum/team/team = get_team()
 	if(team)
 		team.remove_member(owner)
@@ -270,3 +289,49 @@ datum/antagonist/custom/create_team(datum/team/team)
 	else
 		return
 	..()
+
+
+///ANTAGONIST UI STUFF
+
+/datum/antagonist/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, ui_name, name)
+		ui.open()
+
+/datum/antagonist/ui_state(mob/user)
+	return GLOB.always_state
+
+///generic helper to send objectives as data through tgui. supports smart objectives too!
+/datum/antagonist/proc/get_objectives()
+	var/objective_count = 1
+	var/list/objective_data = list()
+	//all obj
+	for(var/datum/objective/objective in objectives)
+		objective_data += list(list(
+			"count" = objective_count,
+			"name" = objective.objective_name,
+			"explanation" = objective.explanation_text,
+			"complete" = objective.completed,
+		))
+		objective_count++
+	return objective_data
+
+//button for antags to review their descriptions/info
+
+/datum/action/antag_info
+	name = "Open Antag Information:"
+	button_icon_state = "round_end"
+	var/datum/antagonist/antag_datum
+
+/datum/action/antag_info/New(Target, datum/antagonist/antag_datum)
+	. = ..()
+	src.antag_datum = antag_datum
+	name += " [antag_datum.name]"
+
+/datum/action/antag_info/Trigger()
+	if(antag_datum)
+		antag_datum.ui_interact(owner)
+
+/datum/action/antag_info/IsAvailable()
+	return TRUE

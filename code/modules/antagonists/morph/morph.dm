@@ -45,12 +45,6 @@
 	/mob/living/simple_animal/hostile/morph,
 	/obj/effect))
 
-	var/playstyle_string = "<span class='big bold'>You are a morph,</span></b> an abomination of science created primarily with changeling cells. \
-							You may take the form of anything nearby by shift-clicking it. This process will alert any nearby \
-							observers, and can only be performed once every five seconds. While morphed, you move faster, but do \
-							less damage. In addition, anyone within three tiles will note an uncanny wrongness if examining you. \
-							You can attack any item or dead creature to consume it - creatures will restore your health. \
-							Finally, you can restore yourself to your original form while morphed by shift-clicking yourself.</b>"
 
 /mob/living/simple_animal/hostile/morph/examine(mob/user)
 	if(morphed)
@@ -248,7 +242,6 @@
 	player_mind.assigned_role = "Morph"
 	player_mind.special_role = "Morph"
 	player_mind.add_antag_datum(/datum/antagonist/morph)
-	to_chat(S, S.playstyle_string)
 	SEND_SOUND(S, sound('sound/magic/mutate.ogg'))
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a morph by an event.")
 	log_game("[key_name(S)] was spawned as a morph by an event.")

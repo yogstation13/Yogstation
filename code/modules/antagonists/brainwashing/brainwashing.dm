@@ -30,18 +30,13 @@
 	show_in_antagpanel = TRUE
 	antagpanel_category = "Other"
 	show_name_in_check_antagonists = TRUE
+	ui_name = "AntagInfoBrainwashed"
 
-/datum/antagonist/brainwashed/greet()
-	to_chat(owner, span_warning("Your mind reels as it begins focusing on a single purpose..."))
-	to_chat(owner, "<big><span class='warning'><b>Follow the Directives, at any cost!</b></span></big>")
-	owner.current.throw_alert("brainwash_notif", /obj/screen/alert/brainwashed)
-	SEND_SOUND(owner.current, sound('sound/ambience/ambimystery.ogg'))
-	SEND_SOUND(owner.current, sound('sound/effects/glassbr1.ogg'))
-	var/i = 1
-	for(var/X in objectives)
-		var/datum/objective/O = X
-		to_chat(owner, "<b>[i].</b> [O.explanation_text]")
-		i++
+/datum/antagonist/brainwashed/ui_static_data(mob/user)
+	. = ..()
+	var/list/data = list()
+	data["objectives"] = get_objectives()
+	return data
 
 /datum/antagonist/brainwashed/farewell()
 	to_chat(owner, span_warning("Your mind suddenly clears..."))

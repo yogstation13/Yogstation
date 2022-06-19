@@ -9,7 +9,8 @@
 
 /obj/item/implant/uplink/Initialize(mapload, _owner)
 	. = ..()
-	AddComponent(/datum/component/uplink, _owner, TRUE, FALSE, null, starting_tc)
+	var/datum/component/uplink/new_uplink = AddComponent(/datum/component/uplink, _owner = owner, _lockable = TRUE, _enabled = FALSE, uplink_flag = uplink_flag, starting_tc = starting_tc)
+	new_uplink.unlock_text = "Your Syndicate Uplink has been cunningly implanted in you, for a small TC fee. Simply trigger the uplink to access it."
 	RegisterSignal(src, COMSIG_COMPONENT_REMOVING, .proc/_component_removal)
 
 /**
