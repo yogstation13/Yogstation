@@ -8,7 +8,7 @@
 		Clothes, gear, and Security/Medical HUD status is kept the same while this power is active."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_FRENZY
-	purchase_flags = VASSAL_CAN_BUY
+	purchase_flags = VASSAL_CAN_BUY|BLOODSUCKER_CAN_BUY
 	bloodcost = 15
 	constant_bloodcost = 0.1
 	cooldown = 10 SECONDS

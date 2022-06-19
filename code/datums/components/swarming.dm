@@ -35,10 +35,10 @@
 	var/atom/movable/owner = parent
 	if(!is_swarming)
 		is_swarming = TRUE
-		animate(owner, pixel_x = owner.pixel_x + offset_x, pixel_y = owner.pixel_y + offset_y, time = 2)
+		animate(owner, pixel_x = owner.pixel_x + offset_x, pixel_y = owner.pixel_y + offset_y, time = 0.2 SECONDS)
 
 /datum/component/swarming/proc/unswarm()
 	var/atom/movable/owner = parent
 	if(is_swarming)
-		animate(owner, pixel_x = owner.pixel_x - offset_x, pixel_y = owner.pixel_y - offset_y, time = 2)
+		animate(owner, pixel_x = owner.pixel_x - offset_x, pixel_y = owner.pixel_y - offset_y, time = 0.2 SECONDS)
 		is_swarming = FALSE

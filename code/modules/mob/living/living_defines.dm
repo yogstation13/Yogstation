@@ -5,6 +5,8 @@
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
 
+	hud_type = /datum/hud/living
+
 	var/resize = 1 //Badminnery resize
 	var/lastattacker = null
 	var/lastattackerckey = null
@@ -97,11 +99,19 @@
 	/// List of changes to body temperature, used by desease symtoms like fever
 	var/list/body_temp_changes = list()
 
+	//this stuff is here to make it simple for admins to mess with custom held sprites
+	var/icon/held_lh = 'icons/mob/pets_held_lh.dmi' //icons for holding mobs
+	var/icon/held_rh = 'icons/mob/pets_held_rh.dmi'
+	var/icon/held_icon = 'icons/mob/pets_held.dmi' //backup for what it looks like when held and equipped in a slot
+	var/held_state = null //normally use the default icon but if need be use another one
+	var/worn_layer //use to set if you want your inhand mob sprite to be hidden or not
+
 	//Speech
 	var/stuttering = 0
 	var/slurring = 0
 	var/cultslurring = 0
 	var/derpspeech = 0
+	var/lizardspeech = 0
 
 	var/list/implants = null
 
@@ -112,6 +122,7 @@
 	var/list/obj/effect/proc_holder/abilities = list()
 
 	var/can_be_held = FALSE	//whether this can be picked up and held.
+	var/worn_slot_flags = NONE //if it can be held, can it be equipped to any slots?
 
 	var/radiation = 0 //If the mob is irradiated.
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT

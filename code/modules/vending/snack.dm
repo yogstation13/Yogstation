@@ -14,7 +14,9 @@
 					/obj/item/storage/byummie = 6,
 					/obj/item/reagent_containers/food/snacks/toritose = 6,
 					/obj/item/reagent_containers/food/snacks/kakes = 6,
-					/obj/item/reagent_containers/food/snacks/energybar = 6)
+					/obj/item/reagent_containers/food/snacks/energybar = 6,
+					/obj/item/reagent_containers/food/snacks/tatorling = 3,
+					/obj/item/reagent_containers/food/snacks/vermin = 6)
 	contraband = list(/obj/item/reagent_containers/food/snacks/syndicake = 6)
 	refill_canister = /obj/item/vending_refill/snack
 	canload_access_list = list(ACCESS_KITCHEN)

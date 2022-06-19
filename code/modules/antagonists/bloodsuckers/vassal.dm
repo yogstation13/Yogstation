@@ -15,7 +15,7 @@
 	var/datum/game_mode/blooodsucker
 	/// List of all Purchased Powers, like Bloodsuckers.
 	var/list/datum/action/powers = list()
-	/// The favorite vassal gets unique features, and Ventrue can upgrade theirs
+	/// The favorite vassal gets unique features.
 	var/favorite_vassal = FALSE
 	/// Bloodsucker levels, but for Vassals.
 	var/vassal_level
@@ -24,7 +24,13 @@
 	return "Master : [master.owner.name]"
 
 /datum/antagonist/vassal/apply_innate_effects(mob/living/mob_override)
-	. = ..()
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.apply_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
+
+/datum/antagonist/vassal/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
+
 
 /datum/antagonist/vassal/on_gain()
 	/// Enslave them to their Master
@@ -34,8 +40,6 @@
 			bloodsuckerdatum.vassals |= src
 		owner.enslave_mind_to_creator(master.owner.current)
 	owner.current.log_message("has been vassalized by [master.owner.current]!", LOG_ATTACK, color="#960000")
-	/// Give Vassal Pinpointer
-	owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
 	/// Give Recuperate Power
 	BuyPower(new /datum/action/bloodsucker/recuperate)
 	/// Give Objectives
@@ -49,24 +53,28 @@
 	. = ..()
 
 /datum/antagonist/vassal/on_removal()
-	/// Free them from their Master
+	//Free them from their Master
 	if(master && master.owner)
 		master.vassals -= src
 		owner.enslaved_to = null
-	/// Remove Pinpointer
-	owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
-	/// Remove ALL Traits, as long as its from BLOODSUCKER_TRAIT's source.
 	for(var/all_status_traits in owner.current.status_traits)
 		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
-	/// Remove Recuperate Power
+	//Remove Recuperate Power
 	while(powers.len)
 		var/datum/action/bloodsucker/power = pick(powers)
 		powers -= power
 		power.Remove(owner.current)
-	/// Remove Language & Hud
+	//Remove Language & Hud
 	owner.current.remove_language(/datum/language/vampiric)
 	update_vassal_icons_removed(owner.current)
 	return ..()
+
+/datum/antagonist/vassal/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	. = ..()
+	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+		all_powers.Remove(old_body)
+		all_powers.Grant(new_body)
+
 
 /datum/antagonist/vassal/proc/add_objective(datum/objective/added_objective)
 	objectives += added_objective
@@ -104,9 +112,27 @@
 	to_chat(master, span_danger("You have turned [owner.current] into your Favorite Vassal! They will no longer be deconverted upon Mindshielding!"))
 	to_chat(owner, span_notice("As Blood drips over your body, you feel closer to your Master... You are now the Favorite Vassal!"))
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = master.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
-		var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/batform = new
-		owner.current.AddSpell(batform)
+	var/mob/living/carbon/human/vassal = owner.current
+	switch(bloodsuckerdatum.my_clan)
+		if(CLAN_GANGREL)
+			var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/batform = new
+			owner.AddSpell(batform)
+		if(CLAN_LASOMBRA)
+			if(ishuman(owner.current))
+				vassal.see_in_dark = 8
+				vassal.eye_color = "f00"
+			var/list/powers = list(new /obj/effect/proc_holder/spell/targeted/lesser_glare, new /obj/effect/proc_holder/spell/targeted/shadowwalk)
+			for(var/obj/effect/proc_holder/spell/targeted/power in powers)
+				owner.AddSpell(power)
+		if(CLAN_TZIMISCE)
+			if(!do_mob(master, owner.current, 1 SECONDS, TRUE))
+				return
+			playsound(vassal.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
+			if(!do_mob(master, owner.current, 1 SECONDS, TRUE))
+				return
+			playsound(vassal.loc, 'sound/effects/splat.ogg', 50, TRUE)
+			vassal.set_species(/datum/species/szlachta)
+	
 /// If we weren't created by a bloodsucker, then we cannot be a vassal (assigned from antag panel)
 /datum/antagonist/vassal/can_be_owned(datum/mind/new_owner)
 	if(!master)
@@ -147,13 +173,13 @@
  *	Unlike the Monster hunter one, this one is permanently active, and has no power needed to activate it.
  */
 
-/atom/movable/screen/alert/status_effect/agent_pinpointer/vassal_edition
+/obj/screen/alert/status_effect/agent_pinpointer/vassal_edition
 	name = "Blood Bond"
 	desc = "You always know where your master is."
 
 /datum/status_effect/agent_pinpointer/vassal_edition
 	id = "agent_pinpointer"
-	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/vassal_edition
+	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/vassal_edition
 	minimum_range = VASSAL_SCAN_MIN_DISTANCE
 	tick_interval = VASSAL_SCAN_PING_TIME
 	duration = -1

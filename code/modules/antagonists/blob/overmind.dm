@@ -42,10 +42,12 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/announcement_size = 75
 	var/announcement_time
 	var/has_announced = FALSE
+	var/basemodifier = 1
 
-/mob/camera/blob/Initialize(mapload, starting_points = 60)
+/mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1)
 	validate_location()
 	blob_points = starting_points
+	basemodifier = pointmodifier
 	manualplace_min_time += world.time
 	autoplace_max_time += world.time
 	GLOB.overminds += src
@@ -128,7 +130,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/proc/victory()
 	sound_to_playing_players('sound/machines/alarm.ogg')
-	sleep(100)
+	sleep(10 SECONDS)
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
 		var/turf/T = get_turf(L)

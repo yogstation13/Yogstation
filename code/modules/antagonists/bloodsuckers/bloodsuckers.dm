@@ -24,8 +24,6 @@
 	var/humanity_lost = 0
 	///Have we been broken the Masquerade?
 	var/broke_masquerade = FALSE
-	///Blood required to enter Frenzy
-	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
@@ -41,6 +39,10 @@
 	var/datum/martial_art/frenzygrab/frenzygrab = new
 	///You get assigned a Clan once you Rank up enough
 	var/my_clan = NONE
+	///How many clan points you have -> Used in clans in order to assert certain limits // Upgrades and stuff
+	var/clanpoints = 0
+	///How much progress have you done on your clan
+	var/clanprogress = 0
 
 	///Vassals under my control. Periodically remove the dead ones.
 	var/list/datum/antagonist/vassal/vassals = list()
@@ -106,7 +108,6 @@
 
 /// These handles the application of antag huds/special abilities
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
-	. = ..()
 	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/LifeTick)
 	if((owner.assigned_role == "Clown"))
 		var/mob/living/carbon/H = owner.current
@@ -116,7 +117,6 @@
 				to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
-	. = ..()
 	UnregisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE)
 	if(owner.assigned_role == "Clown")
 		var/mob/living/carbon/human/H = owner.current
@@ -161,6 +161,39 @@
 	ClearAllPowersAndStats()
 	return ..()
 
+/datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	. = ..()
+	if(istype(new_body, /mob/living/simple_animal/hostile/bloodsucker) || istype(old_body, /mob/living/simple_animal/hostile/bloodsucker))
+		return
+	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+		all_powers.Remove(old_body)
+		all_powers.Grant(new_body)
+	var/old_punchdamagelow
+	var/old_punchdamagehigh
+	if(ishuman(old_body))
+		var/mob/living/carbon/human/old_user = old_body
+		var/datum/species/old_species = old_user.dna.species
+		old_species.species_traits -= DRINKSBLOOD
+		//Keep track of what they were
+		old_punchdamagelow = old_species.punchdamagelow
+		old_punchdamagehigh = old_species.punchdamagehigh
+		//Then reset them
+		old_species.punchdamagelow = initial(old_species.punchdamagelow)
+		old_species.punchdamagehigh = initial(old_species.punchdamagehigh)
+	if(ishuman(new_body))
+		var/mob/living/carbon/human/new_user = new_body
+		var/datum/species/new_species = new_user.dna.species
+		new_species.species_traits += DRINKSBLOOD
+		//Give old punch damage values
+		new_species.punchdamagelow = old_punchdamagelow
+		new_species.punchdamagehigh = old_punchdamagehigh
+
+	//Give Bloodsucker Traits
+	for(var/all_traits in bloodsucker_traits)
+		REMOVE_TRAIT(old_body, all_traits, BLOODSUCKER_TRAIT)
+		ADD_TRAIT(new_body, all_traits, BLOODSUCKER_TRAIT)
+
+
 /datum/antagonist/bloodsucker/greet()
 	. = ..()
 	var/fullname = ReturnFullName(TRUE)
@@ -186,7 +219,7 @@
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
 	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", bloodsucker_level_unspent) as null | num
 	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
-	if(!isnull(levels))
+	if(levels > 1)
 		bloodsucker_level_unspent = levels
 		msg += " with [levels] extra unspent Ranks."
 	message_admins("[key_name_admin(usr)][msg]")
@@ -376,7 +409,7 @@
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(owner.current)
 	if(!owner || !owner.current || vassaldatum)
 		return
-	bloodsucker_level_unspent++ //same thing as below
+	bloodsucker_level_unspent++
 	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
@@ -428,6 +461,10 @@
 		if(!choice || !options[choice])
 			to_chat(owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
 			return
+		if((locate(options[choice]) in powers))
+			to_chat(owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
+			return
+		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
 		if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 			to_chat(owner.current, span_warning("You must be in your Coffin to purchase Powers."))
 			return
@@ -455,7 +492,7 @@
 	if(spend_rank)
 		bloodsucker_level_unspent--
 	// Ranked up enough? Let them join a Clan.
-	if(bloodsucker_level == 3)
+	if(bloodsucker_level == 3 && my_clan == NONE) //updated for tzimisce
 		AssignClanAndBane()
 
 	// Ranked up enough to get your true Reputation?
@@ -487,19 +524,13 @@
 	switch(rand(1, 3))
 		if(1) // Protege and Drink Objective
 			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/gourmand)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
 		if(2) // Heart Thief and Protege Objective
 			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
-		if(3) // All of them
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
+		if(3) // Heart Thief and Drink Objective
+			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
+	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
+		objective.owner = owner
+		objectives += objective
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()
@@ -715,7 +746,7 @@
  *	Also deals with Vassalization status.
  */
 
-/datum/mind/proc/can_make_bloodsucker(datum/mind/convertee, datum/mind/converter)
+/datum/mind/proc/prepare_bloodsucker(datum/mind/convertee, datum/mind/converter)
 	// Species Must have a HEART (Sorry Plasmamen)
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
@@ -728,8 +759,9 @@
 	return TRUE
 
 /datum/mind/proc/make_bloodsucker(datum/mind/bloodsucker)
-	if(!can_make_bloodsucker(bloodsucker))
-		return FALSE
+	var/mob/living/carbon/human/user = bloodsucker.current
+	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+		prepare_bloodsucker(bloodsucker)
 	add_antag_datum(/datum/antagonist/bloodsucker)
 	return TRUE
 

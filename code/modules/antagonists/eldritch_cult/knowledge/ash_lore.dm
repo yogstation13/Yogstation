@@ -12,22 +12,26 @@
 	. = ..()
 	if(!iscarbon(target))
 		return
+	var/mob/living/carbon/C = target
+	var/atom/throw_target = get_edge_target_turf(C, user.dir)
+	if(!C.anchored)
+		. = TRUE
+		C.throw_at(throw_target, rand(4,8), 14, user)
+	return
 
+/datum/eldritch_knowledge/base_ash/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!iscarbon(target))
+		return
 	var/mob/living/carbon/C = target
 	var/datum/status_effect/eldritch/E = C.has_status_effect(/datum/status_effect/eldritch/rust) || C.has_status_effect(/datum/status_effect/eldritch/ash) || C.has_status_effect(/datum/status_effect/eldritch/flesh)
 	if(E)
-		. = TRUE
 		E.on_effect()
 		for(var/X in user.mind.spell_list)
 			if(!istype(X,/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp))
 				continue
 			var/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp/MG = X
 			MG.charge_counter = min(round(MG.charge_counter + MG.charge_max * 0.75),MG.charge_max) // refunds 75% of charge.
-	var/atom/throw_target = get_edge_target_turf(C, user.dir)
-	if(!C.anchored)
-		. = TRUE
-		C.throw_at(throw_target, rand(4,8), 14, user)
-	return
 
 /datum/eldritch_knowledge/ashen_shift
 	name = "Ashen Shift"
@@ -50,15 +54,16 @@
 /datum/eldritch_knowledge/ash_mark
 	name = "Mark of Ash"
 	gain_text = "Spread the famine."
-	desc = "Your sickly blade now applies ash mark on hit. Use your mansus grasp to detonate the mark. The Mark of Ash causes stamina damage, and fire loss, and spreads to a nearby carbon. Damage decreases with how many times the mark has spread."
+	desc = "Your mansus grasp now applies ash mark on hit. Use your sickly blade to detonate the mark. The Mark of Ash causes stamina damage, and fire loss, and spreads to a nearby carbon. Damage decreases with how many times the mark has spread."
 	cost = 2
 	banned_knowledge = list(/datum/eldritch_knowledge/rust_mark,/datum/eldritch_knowledge/flesh_mark)
 	route = PATH_ASH
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/ash_mark/on_eldritch_blade(target,user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/ash_mark/on_mansus_grasp(atom/target,mob/user,proximity_flag,click_parameters)
 	. = ..()
 	if(isliving(target))
+		. = TRUE
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/ash,5)
 

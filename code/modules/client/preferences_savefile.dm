@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	35
+#define SAVEFILE_VERSION_MAX	37
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -49,6 +49,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			be_special += "Ragin Mages"
 	if (current_version < 35)
 		toggles |= SOUND_ALT
+	if (current_version < 37)
+		chat_toggles |= CHAT_TYPING_INDICATOR
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -230,6 +232,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["yogtoggles"], yogtoggles)
 
 	READ_FILE(S["accent"], accent) // Accents, too!
+
+	READ_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
 
 	//try to fix any outdated data if necessary
@@ -366,6 +370,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["purrbation"], purrbation)
 
 	WRITE_FILE(S["accent"], accent) // Accents, too!
+	
+	WRITE_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
 
 	save_keybindings(S) // yogs - Custom keybindings

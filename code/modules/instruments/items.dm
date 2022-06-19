@@ -239,7 +239,6 @@
 /obj/item/instrument/bikehorn
 	name = "gilded bike horn"
 	desc = "An exquisitely decorated bike horn, capable of honking in a variety of notes."
-	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	lefthand_file = 'icons/mob/inhands/equipment/horns_lefthand.dmi'

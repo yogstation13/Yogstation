@@ -160,7 +160,7 @@
 	icon_state = "namjumpsuit_s"
 	item_state = "namjumpsuit"
 	item_color = "namjumpsuit_s"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30)
 	strip_delay = 50
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
@@ -173,7 +173,7 @@
 	icon_state = "gru_officer_s"
 	item_state = "gru_officer"
 	item_color = "gru_officer_s"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30)
 	strip_delay = 50
 	alt_covers_chest = TRUE
 	sensor_mode = 3
@@ -186,7 +186,7 @@
 	icon_state = "Lieut_General_US_s"
 	item_state = "Lieut_General_US"
 	item_color = "Lieut_General_US_s"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	strip_delay = 60
 	alt_covers_chest = TRUE
 	sensor_mode = 3
@@ -217,7 +217,7 @@
 	icon_state = "red_coat_uniform_s"
 	item_state = "red_coat_uniform"
 	item_color = "red_coat_uniform_s"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30)
 	strip_delay = 50
 	alt_covers_chest = TRUE
 	sensor_mode = SENSOR_COORDS
@@ -293,7 +293,7 @@
 	icon_state = "ce_turtleneck"
 	item_state = "ce_turtleneck"
 	item_color = "ce_turtleneck"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 10, "fire" = 80, "acid" = 40)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 10, FIRE = 80, ACID = 40)
 	resistance_flags = NONE
 	can_adjust = FALSE
 
@@ -327,7 +327,7 @@
 	icon_state = "uniform_two"
 	item_state = "uniform_two"
 	item_color = "uniform_two"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	strip_delay = 60
 	alt_covers_chest = TRUE
 	sensor_mode = 3
@@ -404,7 +404,7 @@
 	icon_state = "hos1_suit"
 	item_state = "hos1_suit"
 	item_color = "hos1_suit"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	strip_delay = 60
 	alt_covers_chest = TRUE
 	sensor_mode = 3
@@ -417,7 +417,7 @@
 	icon_state = "ce_suit"
 	item_state = "ce_suit"
 	item_color = "ce_suit"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 10, "fire" = 80, "acid" = 40)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 10, FIRE = 80, ACID = 40)
 	resistance_flags = NONE
 	can_adjust = FALSE
 
@@ -427,7 +427,7 @@
 	icon_state = "hos_suit"
 	item_state = "hos_suit"
 	item_color = "hos_suit"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	strip_delay = 60
 	alt_covers_chest = TRUE
 	sensor_mode = 3
@@ -528,7 +528,7 @@
 	item_state = "rdema"
 	item_color = "rdema_s"
 	can_adjust = FALSE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 35)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 10, BIO = 10, RAD = 0, FIRE = 0, ACID = 35)
 
 /obj/item/clothing/under/yogs/billydonka
 	name = "billy donka uniform"
@@ -560,7 +560,7 @@
 	icon_state = "janitor_suit"
 	item_state = "janitor_suit"
 	item_color = "janitor_suit"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 10, RAD = 0, FIRE = 0, ACID = 0)
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/callumsuit

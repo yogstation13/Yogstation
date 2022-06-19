@@ -30,7 +30,7 @@
 	var/mob/living/carbon/human/user = usr
 	user.visible_message(span_warning("[user]'s sigils flare as energy swirls around them..."), span_velvet("You begin creating a psychic barrier around yourself..."))
 	playsound(user, 'yogstation/sound/magic/sacrament_begin.ogg', 50, FALSE)
-	if(!do_after(user, 3 SECONDS, target = user))
+	if(!do_after(user, 3 SECONDS, user))
 		in_use = FALSE
 		return
 	var/image/alert_overlay = image('yogstation/icons/mob/actions/actions_darkspawn.dmi', "sacrament")
@@ -56,10 +56,10 @@
 									span_velvet("Yes! <font size=3>Yes! You feel the weak mortal shell coming apart!</font>"))
 				for(var/mob/M in GLOB.player_list)
 					M.playsound_local(M, 'yogstation/sound/magic/sacrament_02.ogg', 20, FALSE, pressure_affected = FALSE)
-				animate(user, transform = matrix() * 2, time = 150)
-		if(!do_after(user, 15 SECONDS, target = user))
+				animate(user, transform = matrix() * 2, time = 15 SECONDS)
+		if(!do_after(user, 15 SECONDS, user))
 			user.visible_message(span_warning("[user] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
-			animate(user, transform = matrix(), pixel_y = initial(user.pixel_y), time = 30)
+			animate(user, transform = matrix(), pixel_y = initial(user.pixel_y), time = 3 SECONDS)
 			in_use = FALSE
 			QDEL_NULL(soundloop)
 			return
@@ -69,11 +69,11 @@
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>AND THE WEAK WILL KNOW <i>FEAR--</i></span>")
 	for(var/turf/T in range(7, owner))
 		if(prob(25))
-			addtimer(CALLBACK(src, .proc/unleashed_psi, T), rand(1, 40))
-	addtimer(CALLBACK(src, .proc/shatter_lights), 35)
+			addtimer(CALLBACK(src, .proc/unleashed_psi, T), rand(0.1, 4) SECONDS)
+	addtimer(CALLBACK(src, .proc/shatter_lights), 3.5 SECONDS)
 	QDEL_IN(soundloop, 39)
-	animate(user, pixel_y = user.pixel_y + 20, time = 40)
-	addtimer(CALLBACK(darkspawn, /datum/antagonist/darkspawn/.proc/sacrament), 40)
+	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
+	addtimer(CALLBACK(darkspawn, /datum/antagonist/darkspawn/.proc/sacrament), 4 SECONDS)
 
 /datum/action/innate/darkspawn/sacrament/proc/unleashed_psi(turf/T)
 	playsound(T, 'yogstation/sound/magic/divulge_end.ogg', 25, FALSE)

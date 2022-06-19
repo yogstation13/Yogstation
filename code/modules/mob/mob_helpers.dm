@@ -112,6 +112,8 @@
 				newletter += "[newletter]"
 			if(20)
 				newletter += "[newletter][newletter]"
+			else
+				newletter += ""
 		. += "[newletter]"
 	return sanitize(.)
 
@@ -155,6 +157,8 @@
 				newletter = "nglu"
 			if(5)
 				newletter = "glor"
+			else
+				newletter += ""
 		. += newletter
 	return sanitize(.)
 
@@ -197,6 +201,14 @@
 		message = stutter(message)
 	return message
 
+/proc/lizardspeech(message)
+	var/static/regex/lizard_hiss = new("s+", "g")
+	var/static/regex/lizard_hiSS = new("S+", "g")
+	if(message[1] != "*")
+		message = lizard_hiss.Replace(message, "sss")
+		message = lizard_hiSS.Replace(message, "SSS")
+	return message
+
 /**
   * Turn text into complete gibberish!
   *
@@ -233,10 +245,10 @@
 
 	for(var/i in 0 to duration-1)
 		if (i == 0)
-			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
+			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
 		else
-			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
-	animate(pixel_x=oldx, pixel_y=oldy, time=1)
+			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
+	animate(pixel_x=oldx, pixel_y=oldy, time=0.1 SECONDS)
 
 
 ///Find if the message has the real name of any user mob in the mob_list

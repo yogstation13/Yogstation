@@ -21,6 +21,7 @@
 			. += "<p>According to the [src.name], you are now in an unclaimed territory.</p>"
 		if(AREA_SPECIAL)
 			. += "<p>This place is not noted on the [src.name].</p>"
+			return .
 	. += "<p><a href='?src=[REF(src)];create_area=1'>Create or modify an existing area</a></p>"
 
 

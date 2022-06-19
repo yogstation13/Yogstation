@@ -195,7 +195,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list("melee" = 100, "bullet" = 100, "laser" = 100,"energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100,ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -721,7 +721,7 @@
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
 	item_color = "plasmaman"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 95, "acid" = 95)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 95, ACID = 95)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	can_adjust = FALSE
 	strip_delay = 80
@@ -852,7 +852,7 @@
 	item_state = "durathread"
 	item_color = "durathread"
 	can_adjust = FALSE
-	armor = list("melee" = 10, "laser" = 10, "fire" = 40, "acid" = 10, "bomb" = 5)
+	armor = list(MELEE = 10, LASER = 10, FIRE = 40, ACID = 10, BOMB = 5)
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/mech_suit
@@ -923,3 +923,85 @@
 	item_state = "weiner"
 	item_color = "weiner"
 	can_adjust = FALSE
+
+// Ashwalker Clothes
+/obj/item/clothing/under/chestwrap
+	name = "loincloth and chestwrap"
+	desc = "A poorly sewn dress made of leather."
+	icon_state = "chestwrap"
+	has_sensor = NO_SENSORS
+	body_parts_covered = CHEST|GROIN
+
+/obj/item/clothing/under/raider_leather
+	name = "scavenged rags"
+	desc = "A porly made outfit made of scrapped materials."
+	icon_state = "raider_leather"
+	item_state = "raider_leather"
+	item_color = "raider_leather"
+	armor = list(MELEE = 5, FIRE = 5)
+	has_sensor = NO_SENSORS
+	can_adjust = FALSE
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/tribal
+	name = "metal plated rags"
+	desc = "Thin metal bolted over poorly tanned leather."
+	icon_state = "tribal"
+	item_state = "tribal"
+	item_color = "tribal"
+	body_parts_covered = CHEST|GROIN|ARMS
+	armor = list(MELEE = 5)
+	has_sensor = NO_SENSORS
+	can_adjust = FALSE
+
+/obj/item/clothing/under/ash_robe
+	name = "tribal robes"
+	desc = "A robe from the ashlands. This one seems to be for common tribespeople."
+	icon_state = "robe_liz"
+	item_state = "robe_liz"
+	item_color = "robe_liz"
+	body_parts_covered = CHEST|GROIN
+	has_sensor = NO_SENSORS
+	can_adjust = FALSE
+
+/obj/item/clothing/under/ash_robe/young
+	name = "tribal rags"
+	desc = "Rags from Lavaland, coated with light ash. This one seems to be for the juniors of a tribe."
+	icon_state = "tribalrags"
+	item_state = "tribalrags"
+	item_color = "tribalrags"
+
+/obj/item/clothing/under/ash_robe/hunter
+	name = "hunter tribal rags"
+	desc = "A robe from the ashlands. This one seems to be for hunters."
+	icon_state = "hhunterrags"
+	item_state = "hhunterrags"
+	item_color = "hhunterrags"
+
+/obj/item/clothing/under/ash_robe/chief
+	name = "chief tribal rags"
+	desc = "Rags from Lavaland, coated with heavy ash. This one seems to be for the elders of a tribe."
+	icon_state = "chiefrags"
+	item_state = "chiefrags"
+	item_color = "chiefrags"
+
+/obj/item/clothing/under/ash_robe/shaman
+	name = "shaman tribal rags"
+	desc = "Rags from Lavaland, drenched with ash, it has fine jewel coated bones sewn around the neck. This one seems to be for the shaman of a tribe."
+	icon_state = "shamanrags"
+	item_state = "shamanrags"
+	item_color = "shamanrags"
+
+/obj/item/clothing/under/ash_robe/tunic
+	name = "tribal tunic"
+	desc = "A tattered red tunic of reddened fabric."
+	icon_state = "caesar_clothes"
+	item_state = "caesar_clothes"
+	item_color = "caesar_clothes"
+
+/obj/item/clothing/under/ash_robe/dress
+	name = "tribal dress"
+	desc = "A tattered dress of white fabric."
+	icon_state = "cheongsam_s"
+	item_state = "cheongsam_s"
+	item_color = "cheongsam_s"

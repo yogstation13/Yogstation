@@ -26,6 +26,9 @@
 		if ((exclusive_roles.len > 0) && !(P.mind.assigned_role in exclusive_roles)) // Is the rule exclusive to their job?
 			candidates.Remove(P)
 			continue
+		if(P.mind.quiet_round) //Does the candidate have quiet mode enabled?
+			candidates.Remove(P)
+			continue
 
 /datum/dynamic_ruleset/latejoin/ready(forced = 0)
 	if (!forced)

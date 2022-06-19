@@ -13,6 +13,7 @@
 /obj/item/holo/esword
 	name = "holographic energy sword"
 	desc = "May the force be with you. Sorta."
+	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "sword0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -70,6 +71,7 @@
 	name = "basketball"
 	icon_state = "basketball"
 	item_state = "basketball"
+	icon = 'icons/obj/toy.dmi'
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 

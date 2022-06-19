@@ -116,13 +116,13 @@
 		var/oldtransform = AM.transform
 		var/oldcolor = AM.color
 		var/oldalpha = AM.alpha
-		animate(AM, transform = matrix() - matrix(), alpha = 0, color = rgb(0, 0, 0), time = 10)
+		animate(AM, transform = matrix() - matrix(), alpha = 0, color = rgb(0, 0, 0), time = 1 SECONDS)
 		for(var/i in 1 to 5)
 			//Make sure the item is still there after our sleep
 			if(!AM || QDELETED(AM))
 				return
 			AM.pixel_y--
-			sleep(2)
+			sleep(0.2 SECONDS)
 
 		//Make sure the item is still there after our sleep
 		if(!AM || QDELETED(AM))

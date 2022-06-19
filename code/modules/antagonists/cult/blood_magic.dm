@@ -74,7 +74,7 @@
 	else
 		to_chat(owner, span_cultitalic("You are already invoking blood magic!"))
 		return
-	if(do_after(owner, 100 - rune*60, target = owner))
+	if(do_after(owner, (10 - rune*6) SECONDS, owner))
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			H.bleed(40 - rune*32)
@@ -408,7 +408,7 @@
 //Stun
 /obj/item/melee/blood_magic/stun
 	name = "Stunning Aura"
-	desc = "Will stun and mute a victim on contact. Effects become weaker as the cult grows."
+	desc = "Will stun and mute a victim on contact. Effects become weaker as the cult grows, and those with shielded minds are uneffected."
 	color = RUNE_COLOR_RED
 	invocation = "Fuu ma'jin!"
 
@@ -441,7 +441,7 @@
 			else
 				target.visible_message(span_warning("[L] starts to glow in a halo of light!"), \
 									   span_userdanger("A feeling of warmth washes over you, rays of holy light surround your body and protect you from the flash of light!"))
-		else
+		else if(!HAS_TRAIT(target, TRAIT_MINDSHIELD)) //&& !istype(L.get_item_by_slot(SLOT_HEAD), /obj/item/clothing/head/foilhat))
 			if(cult.cult_ascendent)
 				to_chat(user, span_cultitalic("[L] is dazed by a flash of red light!"))
 				L.Knockdown(100)
@@ -486,6 +486,9 @@
 					C.Jitter(15)
 				if(is_servant_of_ratvar(L))
 					L.adjustBruteLoss(15)
+		else
+			target.visible_message("<span class='warning'>[target] winces slightly as a red flash eminates from [user]'s hand</span>", \
+									   "<span class='userdanger'>You get a small headache as a red flash eminates from [user]'s hand!</span>")
 		uses--
 	..()
 
@@ -625,7 +628,7 @@
 		else if(istype(target,/obj/machinery/door/airlock))
 			playsound(T, 'sound/machines/airlockforced.ogg', 50, 1)
 			do_sparks(5, TRUE, target)
-			if(do_after(user, 5 SECONDS, target = user))
+			if(do_after(user, 5 SECONDS, user))
 				target.narsie_act()
 				uses--
 				user.visible_message(span_warning("Black ribbons suddenly eminate from [user]'s hand and cling to the airlock - twisting and corrupting it!"))

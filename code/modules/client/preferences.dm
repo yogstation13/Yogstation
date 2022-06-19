@@ -86,6 +86,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Quirk list
 	var/list/all_quirks = list()
 
+	var/mood_tail_wagging = TRUE
+
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
@@ -99,7 +101,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/ignoring = list()
 
-	var/clientfps = 0
+	var/clientfps = 40
 
 	var/parallax
 
@@ -753,6 +755,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			//yogs start -- Mood preference toggling
 			if(CONFIG_GET(flag/disable_human_mood))
 				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
+				dat += "<b>Mood Tail Wagging:</b> <a href='?_src_=prefs;preference=moodtailwagging'>[mood_tail_wagging  ? "Enabled" : "Disabled"] </a><br>"
 			//yogs end
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
@@ -1254,10 +1257,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return bal
 
 /datum/preferences/proc/GetPositiveQuirkCount()
-	. = 0
+	var/sum = 0
 	for(var/q in all_quirks)
 		if(SSquirks.quirk_points[q] > 0)
-			.++
+			sum++
+	return sum
 
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
 	. = ..()
@@ -1352,7 +1356,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if((quirk in L) && (Q in L) && !(Q == quirk)) //two quirks have lined up in the list of the list of quirks that conflict with each other, so return (see quirks.dm for more details)
 							to_chat(user, span_danger("[quirk] is incompatible with [Q]."))
 							return
-				var/value = SSquirks.quirk_points[quirk]
+				var/value = SSquirks.quirk_points[quirk] // The value of the chosen quirk.
 				var/balance = GetQuirkBalance()
 				if(quirk in all_quirks)
 					if(balance + value < 0)
@@ -1360,7 +1364,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						return
 					all_quirks -= quirk
 				else
-					if(GetPositiveQuirkCount() >= MAX_QUIRKS)
+					var/positive_count = GetPositiveQuirkCount() // Yogs -- fixes weird behaviour when at max positive quirks
+					if(positive_count > MAX_QUIRKS || (positive_count == MAX_QUIRKS && value > 0)) // Yogs
 						to_chat(user, span_warning("You can't have more than [MAX_QUIRKS] positive quirks!"))
 						return
 					if(balance - value < 0)
@@ -2082,6 +2087,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("mood")
 					yogtoggles ^= PREF_MOOD
+
+				if("moodtailwagging")
+					mood_tail_wagging = !mood_tail_wagging
 				// yogs end
 
 	ShowChoices(user)

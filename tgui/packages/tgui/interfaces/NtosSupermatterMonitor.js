@@ -29,6 +29,7 @@ export const NtosSupermatterMonitorContent = (props, context) => {
     SM_power,
     SM_ambienttemp,
     SM_ambientpressure,
+    SM_moles,
   } = data;
   if (!active) {
     return (
@@ -92,6 +93,22 @@ export const NtosSupermatterMonitorContent = (props, context) => {
                   bad: [logScale(1000), +Infinity],
                 }}>
                 {toFixed(SM_ambientpressure) + ' kPa'}
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Item label="Total Moles">
+              <ProgressBar
+                value={logScale(SM_moles)}
+                minValue={0}
+                maxValue={logScale(50000)}
+                ranges={{
+                  good: [-Infinity, logScale(1800 * 0.75)],
+                  average: [
+                    logScale(1800 * 0.75),
+                    logScale(1800),
+                  ],
+                  bad: [logScale(1800), Infinity],
+                }}>
+                {toFixed(SM_moles) + ' moles'}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
