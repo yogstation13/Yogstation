@@ -5,10 +5,15 @@
 	cooldown = 20 SECONDS
     var/processing = FALSE
 
+#define SHIELDING_DURATION 15 SECONDS
+#define SHIELDING_SHIELD_HP 100
+
 /datum/hog_god_interaction/structure/shield/on_use(var/mob/camera/hog_god/user)
-	if(owner.shield_integrity == 100)
+	if(owner.shield_integrity >= SHIELDING_SHIELD_HP)
         to_chat(user,span_danger("The building is alredy overcharged!")) 
         return
+	owner.shield_integrity = SHIELDING_SHIELD_HP
+	owner.update_hog_icons()
     
 
 	. = ..()
@@ -24,4 +29,5 @@
 		return
 	return	
 	
-#undef OVERCHARGE_DURATION
+#undef SHIELDING_DURATION
+#undef SHIELDING_SHIELD_HP
