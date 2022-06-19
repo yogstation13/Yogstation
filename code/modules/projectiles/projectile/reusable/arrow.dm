@@ -5,7 +5,7 @@
 	flag = MELEE
 	icon_state = "arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/arrow
-	var/embed_chance = 0.5
+	var/embed_chance = 0.4
 	var/break_chance = 10
 	var/fauna_damage_bonus = 20
 
@@ -40,7 +40,7 @@
 	name = "Ashen arrow"
 	desc = "Fire Hardened arrow."
 	damage = 25
-	embed_chance = 0.3
+	embed_chance = 0.25
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/ash
 
@@ -49,7 +49,7 @@
 	desc = "An arrow made from bone, wood, and sinew."
 	damage = 30
 	armour_penetration = 20
-	embed_chance = 0.4
+	embed_chance = 0.33
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bone_tipped
 
@@ -68,7 +68,7 @@
 	damage = 25
 	fauna_damage_bonus = 40
 	armour_penetration = 35
-	embed_chance = 0.5
+	embed_chance = 0.4
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/chitin
 
@@ -76,8 +76,8 @@
 	name = "Bamboo arrow"
 	desc = "An arrow made from bamboo."
 	damage = 10
-	embed_chance = 0.7
-	break_chance = 67
+	embed_chance = 0.5
+	break_chance = 50
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/bamboo
 
 /obj/item/projectile/bullet/reusable/arrow/bronze //Inferior metal. Slightly better than ashen
@@ -93,16 +93,16 @@
 	name = "Glass arrow"
 	desc = "Glass tipped arrow"
 	damage = 15
-	embed_chance = 0.5
-	break_chance = 33
+	embed_chance = 0.3
+	break_chance = 25
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass
 
 /obj/item/projectile/bullet/reusable/arrow/glass/plasma //Immensely capable of puncturing through materials; plasma is a robust material, more capable of slicing through protection
 	name = "Plasma Glass arrow"
 	desc = "Plasma Glass tipped arrow"
-	damage = 15
-	armour_penetration = 50
-	embed_chance = 0.5
+	damage = 18
+	armour_penetration = 60
+	embed_chance = 0.4
 	break_chance = 0
 	ammo_type = /obj/item/ammo_casing/caseless/arrow/glass/plasma
 
@@ -139,7 +139,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
-		M.apply_damage(10, BURN)
+		M.apply_damage(8, BURN)
 		M.adjust_fire_stacks(1)
 		M.IgniteMob()
 
@@ -148,7 +148,7 @@
 	icon_state = "arrow_energy"
 	damage = 25
 	damage_type = BURN
-	var/embed_chance = 0.5
+	var/embed_chance = 0.4
 	var/obj/item/embed_type = /obj/item/ammo_casing/caseless/arrow/energy
 	
 /obj/item/projectile/energy/arrow/on_hit(atom/target, blocked = FALSE)
@@ -163,7 +163,7 @@
 	name = "disabler bolt"
 	icon_state = "arrow_disable"
 	light_color = LIGHT_COLOR_BLUE
-	damage = 20
+	damage = 40
 	damage_type = STAMINA
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/disabler
 

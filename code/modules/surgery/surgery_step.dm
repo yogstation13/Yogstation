@@ -262,3 +262,17 @@
 /datum/surgery_step/proc/move_ouchie(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, success)
 	user.visible_message(span_boldwarning("[user] bumps [p_their(FALSE, user)] [tool ? tool.name : "hand"] into something important!"), span_boldwarning("You move, bumping your [tool ? tool.name : "hand"] into something important!"))
 	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone)
+
+/**
+ * Sends a pain message to the target, including a chance of screaming.
+ *
+ * Arguments:
+ * * target - Who the message will be sent to
+ * * pain_message - The message to be displayed
+ * * mechanical_surgery - Boolean flag that represents if a surgery step is done on a mechanical limb (therefore does not force scream)
+ */
+/datum/surgery_step/proc/display_pain(mob/living/target, pain_message, mechanical_surgery = FALSE)
+	if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED))
+		to_chat(target, span_userdanger(pain_message))
+		if(prob(30) && !mechanical_surgery)
+			target.emote("scream")

@@ -228,7 +228,7 @@
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	content_overlays = TRUE
 
 /obj/item/storage/belt/security/ComponentInitialize()
@@ -246,6 +246,10 @@
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_box,
+		/obj/item/storage/box/rubbershot,
+		/obj/item/storage/box/lethalshot,
+		/obj/item/storage/box/breacherslug,
+		/obj/item/storage/box/beanbag,
 		/obj/item/reagent_containers/food/snacks/donut,
 		/obj/item/kitchen/knife/combat,
 		/obj/item/flashlight/seclite,
@@ -254,6 +258,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/holosign_creator/security,
+		/obj/item/shield/riot/tele,
 		/obj/item/barrier_taperoll/police
 		))
 
@@ -272,6 +277,11 @@
 	icon_state = "securitybelt_hos"
 	item_state = "security_hos"
 
+/obj/item/storage/belt/security/chief/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+
 /obj/item/storage/belt/security/chief/full/PopulateContents()
 	new /obj/item/reagent_containers/spray/pepper(src)
 	new /obj/item/restraints/handcuffs(src)
@@ -279,6 +289,7 @@
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/melee/baton/loaded(src)
 	new /obj/item/barrier_taperoll/police(src)
+	new /obj/item/shield/riot/tele(src)
 	update_icon()
 
 /obj/item/storage/belt/security/webbing
@@ -292,7 +303,7 @@
 /obj/item/storage/belt/security/webbing/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
+	STR.max_items = 7
 
 /obj/item/storage/belt/mining
 	name = "explorer's webbing"
@@ -545,11 +556,6 @@
 	icon_state = "assaultbelt"
 	item_state = "security"
 
-/obj/item/storage/belt/military/assault/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
-
 /obj/item/storage/belt/grenade
 	name = "grenadier belt"
 	desc = "A belt for holding grenades."
@@ -657,7 +663,7 @@
 /obj/item/storage/belt/bandolier/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 18
+	STR.max_items = 24
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
 		/obj/item/ammo_casing/shotgun
@@ -668,6 +674,7 @@
 	desc = "A holster to carry a handgun and ammo. WARNING: Badasses only."
 	icon_state = "holster"
 	item_state = "holster"
+	w_class = WEIGHT_CLASS_NORMAL
 	alternate_worn_layer = UNDER_SUIT_LAYER
 
 /obj/item/storage/belt/holster/ComponentInitialize()

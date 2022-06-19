@@ -1,0 +1,9 @@
+author: " @LazennG, @ToasterBiome, Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Basalt Katana gets an activatable dodge roll mechanic"
+  - rscadd: "Dodge roll costs 5 stamina on lavaland and 15 on station but gives you .5 seconds of iframes and flying. Dodge rolling into a wall or another person will bonk and stun you, same with stam-critting yourself. i-frames only block straight up damage numbers, explosions still throw and deafen you, cc effects like a bola will still stick"
+  - tweak: "Basalt katana force down to 18 to avoid miner ninjas tearing up the crew"
+  - tweak: "Basalt katana damage on lavaland fauna up to 70, including megafauna"
+  - soundadd: "dodge roll sound effect"
+  - imageadd: "evasion icon to go with the popup letting you know you're in i-frames"

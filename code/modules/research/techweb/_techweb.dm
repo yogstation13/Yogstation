@@ -14,6 +14,7 @@
 	var/list/hidden_nodes = list()			//Hidden nodes. id = TRUE. Used for unhiding nodes when requirements are met by removing the entry of the node.
 	var/list/deconstructed_items = list()						//items already deconstructed for a generic point boost. path = list(point_type = points)
 	var/list/research_points = list()										//Available research points. type = number
+	var/list/stored_research_points = list()	//Stored research, up to doubles server mining when present. type = number
 	var/list/obj/machinery/computer/rdconsole/consoles_accessing = list()
 	var/id = "generic"
 	var/list/research_logs = list()								//IC logs.
@@ -142,6 +143,7 @@
 /datum/techweb/proc/get_researched_nodes()
 	return researched_nodes - hidden_nodes
 
+/// procs for modifying a specific point type amount
 /datum/techweb/proc/add_point_type(type, amount)
 	if(!SSresearch.point_types[type] || (amount <= 0))
 		return FALSE
@@ -158,6 +160,25 @@
 	if(!SSresearch.point_types[type] || (amount <= 0))
 		return FALSE
 	research_points[type] = max(0, research_points[type] - amount)
+	return TRUE
+
+/// procs for modifying a specific point type's stored research amount
+/datum/techweb/proc/add_stored_point_type(type, amount)
+	if(!SSresearch.point_types[type] || (amount <= 0))
+		return FALSE
+	stored_research_points[type] = max(0, stored_research_points[type] + amount)
+	return TRUE
+
+/datum/techweb/proc/modify_stored_point_type(type, amount)
+	if(!SSresearch.point_types[type])
+		return FALSE
+	stored_research_points[type] = max(0, stored_research_points[type] + amount)
+	return TRUE
+
+/datum/techweb/proc/remove_stored_point_type(type, amount)
+	if(!SSresearch.point_types[type] || (amount <= 0))
+		return FALSE
+	stored_research_points[type] = max(0, stored_research_points[type] - amount)
 	return TRUE
 
 /datum/techweb/proc/add_design_by_id(id, custom = FALSE)

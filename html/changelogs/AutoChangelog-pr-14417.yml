@@ -1,0 +1,4 @@
+author: "TymurShatillo"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes pacifism touch cooldown"

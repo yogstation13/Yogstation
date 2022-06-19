@@ -469,6 +469,18 @@
 	list_reagents = list(/datum/reagent/consumable/space_cola = 30)
 	foodtype = SUGAR
 
+/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer
+	name = "Root Beer"
+	desc = "A soft drink made from roots. Non-Alcoholic."
+	custom_price = 10
+	icon_state = "Rootbeer_Mug"
+	list_reagents = list(/datum/reagent/consumable/rootbeer = 30)
+	foodtype = SUGAR
+
+/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer/Initialize()
+	icon_state = pick("Rootbeer_Mug","Rootbeer_AW","Rootbeer_Barq")
+	. = ..()
+
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic
 	name = "T-Borg's tonic water"
 	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
