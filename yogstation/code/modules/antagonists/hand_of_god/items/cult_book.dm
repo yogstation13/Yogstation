@@ -129,32 +129,32 @@
 	if(!target.hog_can_rcd())
 		return
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
-	if(!cultie)
+	if(!cultie || cultie.cult != src.cult)
 		return
 	var/cost = target.hog_rcding_cost()
 	if(cultie.energy < cost)
-		to_chat(user, span_notice("You don't have enough energy to convert [target], you need atleast [cost]"))
+		to_chat(user, span_notice("You don't have enough energy to interact with the [target], you need atleast [cost]"))
 		return
-	to_chat(user, span_notice("You attempt to convert [target]..."))
+	to_chat(user, span_notice("You start unleashing trails of your magic into [target]..."))
 	if(!do_after(user, target.hog_rcding_time(), target))
-		to_chat(user, span_warning("You fail to convert [target]."))
+		to_chat(user, span_warning("You fail to influence the [target]."))
 		return
 	if(cultie.energy < cost)
-		to_chat(user, span_notice("You fail to convert [target]."))  ///We check again, because energy amount of the dude can change before the process is complete.
+		to_chat(user, span_notice("You fail to influence the [target]."))  ///We check again, because energy amount of the dude can change before the process is complete.
 		return
 	if(!target.hog_act(cultie.cult))
-		to_chat(user, span_warning("You fail to convert [target]."))
+		to_chat(user, span_warning("You fail to influence the [target]."))
 	else
-		to_chat(user, span_notice("You succesfully convert [target]!"))
+		to_chat(user, span_notice("You succesfully influence the [target]!"))
 		cultie.get_energy(-cost)
 
-/obj/proc/hog_rcding_time()
+/atom/proc/hog_rcding_time()
 	return 2 SECONDS
 
-/obj/proc/hog_can_rcd()
+/atom/proc/hog_can_rcd()
 	return FALSE
 
-/obj/proc/hog_rcding_cost()
+/atom/proc/hog_rcding_cost()
 	return 15
 
 /atom/proc/hog_act(var/datum/team/hog_cult/act_cult)

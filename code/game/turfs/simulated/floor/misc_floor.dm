@@ -303,8 +303,91 @@
 */
 //////////////////////////////////
 
+/turf/open/floor/clockwork
+	name = "clockwork floor"
+	desc = "Tightly-pressed brass tiles. They emit minute vibration."
+	icon_state = "plating"
+	baseturfs = /turf/open/floor/clockwork
+	footstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_HARD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	var/datum/team/hog_cult/cult
 
+/turf/open/floor/hog/Bless()
+	return
 
+/turf/open/floor/hog/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/turf/open/floor/hog/Entered(atom/movable/AM)
+	..()
+	START_PROCESSING(SSobj, src)
+
+/turf/open/floor/hog/process()
+	if(!healdudes())
+		STOP_PROCESSING(SSobj, src)
+
+/turf/open/floor/hog/proc/healdudes()
+	for(var/mob/living/L in src)
+		if(L.stat == DEAD)
+			continue
+		. = 1
+		var/datum/antagonist/cultie = IS_HOG_CULTIST(L)
+		if(!cultie || cultie.cult != src.cult)
+			continue
+		var/image/I = new('icons/effects/effects.dmi', src, "heal", ABOVE_MOB_LAYER) //fake a healing glow for servants
+		I.appearance_flags = RESET_COLOR
+		I.color = "#5A6068"
+		I.pixel_x = rand(-12, 12)
+		I.pixel_y = rand(-9, 0)
+		var/list/viewing = list()
+		for(var/mob/M in viewers(src))
+			if(M.client && (IS_HOG_CULTIST(M) || isobserver(M) || M.stat == DEAD))
+				viewing += M.client
+		flick_overlay(I, viewing, 8)
+		L.heal_bodypart_damage(1)
+
+/turf/open/floor/hog/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
+	return
+
+/turf/open/floor/hog/crowbar_act(mob/living/user, obj/item/I)
+	user.visible_message(span_notice("[user] begins slowly prying up [src]..."), span_notice("You begin painstakingly prying up [src]..."))
+	if(I.use_tool(src, user, 70, volume=80))
+		user.visible_message(span_notice("[user] pries up [src], but then it vanishes in a spark of magic!"), span_notice("You pry up [src], but then it vanishes in a spark of magic!"))
+		qdel(src)
+	return TRUE
+
+/turf/open/floor/hog/change_hog_team(datum/team/hog_cult/new_cult)
+	return
+
+/turf/open/floor/hog/make_plating()
+	return
+
+/turf/open/floor/hog_rcding_time()
+	return 2 SECONDS
+
+/turf/open/floor/hog/hog_rcding_time()
+	return 4 SECONDS
+
+/turf/open/floor/hog_can_rcd()
+	return TRUE
+
+/turf/open/floor/hog_rcding_cost()
+	return 20
+
+/turf/open/floor/hog/hog_rcding_cost()
+	return 25
+
+/turf/open/floor/hog_act(datum/team/hog_cult/act_cult)
+	var/atom/loca = src.loc 
+	var/turf/open/floor/hog/H
+	H = new(loca)
+	H.name = "divine [name]"
+	H.change_hog_team(act_cult)
+	qdel(src)
+	return TRUE
 
 
 //////////////////////////////////
