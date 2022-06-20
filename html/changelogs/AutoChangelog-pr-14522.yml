@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - bugfix: "Secbelts and bandoliers can now hold proper number of items"
