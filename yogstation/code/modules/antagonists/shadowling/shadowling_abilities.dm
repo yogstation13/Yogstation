@@ -496,7 +496,7 @@
 			target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
 
 			to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-			if(!do_after(user, 3 SECONDS, target_apc))
+			if(!do_after(user, 5 SECONDS, target_apc))
 				//Whoops!  The APC's light turns back on
 				to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
 				target_apc.set_light(2)
