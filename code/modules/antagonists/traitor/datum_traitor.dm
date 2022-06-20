@@ -8,6 +8,7 @@
 	job_rank = ROLE_TRAITOR
 	antag_moodlet = /datum/mood_event/focused
 	var/special_role = ROLE_TRAITOR
+	var/employer = "The Syndicate"
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
@@ -15,23 +16,6 @@
 	var/malf = FALSE //whether or not the AI is malf (in case it's a traitor)
 	var/datum/contractor_hub/contractor_hub
 	can_hijack = HIJACK_HIJACKER
-
-	///give this traitor an uplink?
-	var/give_uplink = TRUE
-	///if TRUE, this traitor will always get hijacking as their final objective
-	var/is_hijacker = FALSE
-
-	///the name of the antag flavor this traitor has.
-	var/employer
-
-	///assoc list of strings set up after employer is given
-	var/list/traitor_flavor
-
-	///reference to the uplink this traitor was given, if they were.
-	var/datum/component/uplink/uplink
-	
-	///the final objective the traitor has to accomplish, be it escaping, hijacking, or just martyrdom.
-	var/datum/objective/ending_objective
 
 /datum/antagonist/traitor/on_gain()
 	if(owner.current && iscyborg(owner.current))
@@ -52,60 +36,10 @@
 	owner.special_role = special_role
 	if(give_objectives)
 		forge_traitor_objectives()
-		forge_ending_objective()
-
-	var/faction = prob(75) ? FACTION_SYNDICATE : FACTION_NANOTRASEN
-
-	pick_employer(faction)
 	finalize_traitor()
-	traitor_flavor = strings(TRAITOR_FLAVOR_FILE, employer)
 	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	..()
 
-/**
- * ## forge_ending_objective
- *
- * Forges the endgame objective and adds it to this datum's objective list.
- */
-/datum/antagonist/traitor/proc/forge_ending_objective()
-	if(is_hijacker)
-		ending_objective = new /datum/objective/hijack
-		ending_objective.owner = owner
-		return
-
-	var/martyr_compatibility = TRUE
-
-	for(var/datum/objective/traitor_objective in objectives)
-		if(!traitor_objective.martyr_compatible)
-			martyr_compatibility = FALSE
-			break
-
-	if(martyr_compatibility && prob(MARTYR_PROB))
-		ending_objective = new /datum/objective/martyr
-		ending_objective.owner = owner
-		objectives += ending_objective
-		return
-
-	ending_objective = new /datum/objective/escape
-	ending_objective.owner = owner
-	objectives += ending_objective
-
-
-/datum/antagonist/traitor/proc/pick_employer(faction)
-	var/list/possible_employers = list()
-	possible_employers.Add(GLOB.syndicate_employers, GLOB.nanotrasen_employers)
-
-	if(istype(ending_objective, /datum/objective/hijack))
-		possible_employers -= GLOB.normal_employers
-	else //escape or martyrdom
-		possible_employers -= GLOB.hijack_employers
-
-	switch(faction)
-		if(FACTION_SYNDICATE)
-			possible_employers -= GLOB.nanotrasen_employers
-		if(FACTION_NANOTRASEN)
-			possible_employers -= GLOB.syndicate_employers
-	employer = pick(possible_employers)
 
 /datum/antagonist/traitor/apply_innate_effects()
 	if(owner.assigned_role == "Clown")
@@ -158,19 +92,62 @@
 			forge_human_objectives()
 
 /datum/antagonist/traitor/proc/forge_human_objectives()
-	objectives.Cut()
-	var/objective_count = 0
+	var/is_hijacker = FALSE
+	if (GLOB.joined_player_list.len >= 30) // Less murderboning on lowpop thanks
+		is_hijacker = prob(10)
+	var/martyr_chance = prob(20)
+	var/objective_count = is_hijacker 			//Hijacking counts towards number of objectives
+	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 8) 	//Set up an exchange if there are enough traitors
+		if(!SSticker.mode.exchange_red)
+			SSticker.mode.exchange_red = owner
+		else
+			SSticker.mode.exchange_blue = owner
+			assign_exchange_role(SSticker.mode.exchange_red)
+			assign_exchange_role(SSticker.mode.exchange_blue)
+		objective_count += 1					//Exchange counts towards number of objectives
+	var/toa = CONFIG_GET(number/traitor_objectives_amount)
+	for(var/i = objective_count, i < toa, i++)
+		forge_single_objective()
 
-	if ((GLOB.joined_player_list.len >= HIJACK_MIN_PLAYERS) && prob(HIJACK_PROB))
-		is_hijacker = TRUE
-		objective_count++
+	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
+		if (!(locate(/datum/objective/hijack) in objectives))
+			var/datum/objective/hijack/hijack_objective = new
+			hijack_objective.owner = owner
+			add_objective(hijack_objective)
+			return
 
-	var/objective_limit = CONFIG_GET(number/traitor_objectives_amount)
 
-	// for(in...to) loops iterate inclusively, so to reach objective_limit we need to loop to objective_limit - 1
-	// This does not give them 1 fewer objectives than intended.
-	for(var/i in objective_count to objective_limit - 1)
-		objectives += forge_single_generic_objective()
+	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
+	for(var/datum/objective/O in objectives)
+		if(!O.martyr_compatible)
+			martyr_compatibility = 0
+			break
+
+	if(martyr_compatibility && martyr_chance)
+		var/datum/objective/martyr/martyr_objective = new
+		martyr_objective.owner = owner
+		add_objective(martyr_objective)
+		return
+
+	else
+		if(prob(50))
+			//Give them a minor flavour objective
+			var/list/datum/objective/minor/minorObjectives = subtypesof(/datum/objective/minor)
+			var/datum/objective/minor/minorObjective
+			while(!minorObjective && minorObjectives.len)
+				var/typePath = pick_n_take(minorObjectives)
+				minorObjective = new typePath
+				minorObjective.owner = owner
+				if(!minorObjective.finalize())
+					qdel(minorObjective)
+					minorObjective = null
+			if(minorObjective)
+				add_objective(minorObjective)
+		if(!(locate(/datum/objective/escape) in objectives))
+			var/datum/objective/escape/escape_objective = new
+			escape_objective.owner = owner
+			add_objective(escape_objective)
+			return
 
 /datum/antagonist/traitor/proc/forge_ai_objectives()
 	var/objective_count = 0
@@ -194,30 +171,39 @@
 		if(TRAITOR_AI)
 			return forge_single_AI_objective()
 		else
-			return forge_single_generic_objective()
+			return forge_single_human_objective()
 
-/datum/antagonist/traitor/proc/forge_single_generic_objective()
-	if(prob(KILL_PROB))
+/datum/antagonist/traitor/proc/forge_single_human_objective() //Returns how many objectives are added
+	.=1
+	if(prob(50))
 		var/list/active_ais = active_ais()
-		if(active_ais.len && prob(DESTROY_AI_PROB(GLOB.joined_player_list.len)))
+		if(active_ais.len && prob(100/GLOB.joined_player_list.len))
 			var/datum/objective/destroy/destroy_objective = new
 			destroy_objective.owner = owner
 			destroy_objective.find_target()
-			objectives += destroy_objective
-			return
-
-		if(prob(MAROON_PROB))
+			add_objective(destroy_objective)
+		else if(prob(30))
 			var/datum/objective/maroon/maroon_objective = new
 			maroon_objective.owner = owner
 			maroon_objective.find_target()
-			objectives += maroon_objective
-			return
-
-		var/datum/objective/assassinate/kill_objective = new
-		kill_objective.owner = owner
-		kill_objective.find_target()
-		objectives += kill_objective
-		return
+			add_objective(maroon_objective)
+		else
+			var/N = pick(/datum/objective/assassinate, /datum/objective/assassinate/cloned, /datum/objective/assassinate/once)
+			var/datum/objective/assassinate/kill_objective = new N
+			kill_objective.owner = owner
+			kill_objective.find_target()
+			add_objective(kill_objective)
+	else
+		if(prob(15) && !(locate(/datum/objective/download) in objectives) && !(owner.assigned_role in list("Research Director", "Scientist", "Roboticist")))
+			var/datum/objective/download/download_objective = new
+			download_objective.owner = owner
+			download_objective.gen_amount_goal()
+			add_objective(download_objective)
+		else
+			var/datum/objective/steal/steal_objective = new
+			steal_objective.owner = owner
+			steal_objective.find_target()
+			add_objective(steal_objective)
 
 /datum/antagonist/traitor/proc/forge_single_AI_objective()
 	.=1
@@ -247,6 +233,13 @@
 			add_objective(yandere_two)
 			.=2
 
+/datum/antagonist/traitor/greet()
+	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role]."))
+	owner.announce_objectives()
+	if(should_give_codewords)
+		give_codewords()
+	to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
+
 /datum/antagonist/traitor/proc/update_traitor_icons_added(datum/mind/traitor_mind)
 	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]
 	traitorhud.join_hud(owner.current)
@@ -264,10 +257,8 @@
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
 			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
 		if(TRAITOR_HUMAN)
-			if(give_uplink)
-				owner.give_uplink(silent = TRUE, antag_datum = src)
-
-			uplink = owner.find_syndicate_uplink()
+			if(should_equip)
+				equip(silent)
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
@@ -457,19 +448,3 @@
 
 /datum/antagonist/traitor/is_gamemode_hero()
 	return SSticker.mode.name == "traitor"
-
-/datum/antagonist/traitor/ui_static_data(mob/user)
-	var/list/data = list()
-	data["phrases"] = jointext(GLOB.syndicate_code_phrase, ", ")
-	data["responses"] = jointext(GLOB.syndicate_code_response, ", ")
-	data["theme"] = traitor_flavor["ui_theme"]
-	data["code"] = uplink.unlock_code
-	data["intro"] = traitor_flavor["introduction"]
-	data["allies"] = traitor_flavor["allies"]
-	data["goal"] = traitor_flavor["goal"]
-	data["has_uplink"] = uplink ? TRUE : FALSE
-	if(uplink)
-		data["uplink_intro"] = traitor_flavor["uplink"]
-		data["uplink_unlock_info"] = uplink.unlock_text
-	data["objectives"] = get_objectives()
-	return data

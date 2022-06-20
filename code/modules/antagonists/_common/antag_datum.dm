@@ -310,7 +310,7 @@ datum/antagonist/custom/create_team(datum/team/team)
 	for(var/datum/objective/objective in objectives)
 		objective_data += list(list(
 			"count" = objective_count,
-			"name" = objective.objective_name,
+			"name" = objective.name,
 			"explanation" = objective.explanation_text,
 			"complete" = objective.completed,
 		))
