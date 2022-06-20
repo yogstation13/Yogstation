@@ -24,8 +24,8 @@
 	
 /obj/item/projectile/bullet/incendiary/a545_incendiary
 	name = "5.45mm incendiary bullet"
-	damage = 12
-	fire_stacks = 1
+	damage = 15
+	fire_stacks = 2
 
 // 7.62 (Nagant Rifle)
 
