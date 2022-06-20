@@ -12,6 +12,7 @@
 	var/hud_entry_num
 	var/income_interval = 2 SECONDS
 	var/list/objects = list()
+	var/recalls = 1
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
@@ -24,9 +25,11 @@
 
 /datum/team/hog_cult/proc/message_all_dudes(var/message, var/ghosts = FALSE)
 	for(var/mob/M in GLOB.mob_list)
+		if(!M.mind)
+			continue
 		if(isobserver(M) && ghosts)
 			to_chat(M, "[message]")
-		if(M in members)
+		if(M.mind in members)
 			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M)
 			if(cultie && (cultie.cult = src))
 				to_chat(M, "[message]")

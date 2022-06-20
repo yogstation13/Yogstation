@@ -35,3 +35,9 @@
 	. = ..()
 
 #undef MAX_REFILL_AMOUNT
+
+/datum/hog_god_interaction/structure/mass_recall
+	name = "Mass recall"
+	description = "Recalls all of your living servants to your nexus. Note, that using this ability requires mass recall charges, and normally you have only one!"
+	cost = 250
+	cooldown = 2 MINUTES

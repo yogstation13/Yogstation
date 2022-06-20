@@ -19,6 +19,7 @@
 	var/lights_breaked_recently = 0
 	var/list/spells = list()
 
+
 /mob/camera/hog_god/Initialize()	
 	. = ..()
 	for(var/datum/hog_god_interaction/targeted/spell in typesof(/datum/hog_god_interaction/targeted))
@@ -61,3 +62,26 @@
 	target.clear_fullscreen("flash", 5)
 	return TRUE
  
+/mob/camera/hog_god/proc/mass_recall()
+	if(!cult.recalls)
+		to_chat(src, "You don't have any mass recalls left")
+		return
+	var/yes = FALSE
+	for(var/datum/mind/guy in cult.members)
+		if(!IS_HOG_CULTIST(guy))
+			continue
+		if(!guy.current)
+			continue
+		var/mob/living/man = guy.current
+		if(!guy)
+			continue
+		if(guy.stat == DEAD)
+			continue
+		INVOKE_ASYNC(src, guy, .proc/recall)
+		yes = TRUE
+	if(yes)
+		cult.message_all_dudes("<span class='cultlarge'><b>Your god has innitiated mass recall! Soon, all of you will be teleported to your nexus.</b></span>", FALSE)
+		to_chat(src, "You initiate mass recall")
+		cult.recalls--
+	else
+		to_chat(src, "You fail to initiate mass recall")

@@ -26,7 +26,7 @@
 	. = ..()
 	if(.)
 		if(last_scream < world.time)
-			cult.message_all_dudes("Your nexus is under attack! Defend it, or your cult will perish!", FALSE)
+			cult.message_all_dudes("<span class='cultlarge'><b>Your nexus is under attack! Defend it, or your cult will perish!</b></span>", FALSE)
 			last_scream = world.time + ARK_SCREAM_COOLDOWN
 
 /obj/structure/destructible/hog_structure/lance/nexus/proc/Activate()
@@ -37,7 +37,7 @@
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg') ///I don't have any my own sounds, so... you know.
 	set_security_level(SEC_LEVEL_GAMMA)
 	addtimer(CALLBACK(src, .proc/Sex), 1 MINUTES)	
-	cult.message_all_dudes("Servants of [god.name]! Our time has come! Defend the nexus at all costs!", TRUE)
+	cult.message_all_dudes("<span class='cultlarge'><b>Servants of [god.name]! Our time has come! Defend the nexus at all costs!</b></span>", TRUE)
 	cult.state = HOG_TEAM_SUMMONING
 
 /obj/structure/destructible/hog_structure/lance/nexus/proc/Sex()
