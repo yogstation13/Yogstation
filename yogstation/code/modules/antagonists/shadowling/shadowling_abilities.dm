@@ -442,6 +442,16 @@
 				else
 					to_chat(M, span_shadowling("<b>[user.real_name] has coalesced the strength of the thralls. You can draw upon it at any time to ascend. (Shadowling Evolution Tab)</b>")) //Tells all the other shadowlings
 
+/obj/effect/proc_holder/spell/targeted/touch/void
+	name = "Void Touch"
+	desc = "This spell charges your hand with the power of the void, allowing you to EMP mechas, borgs, carbons, and empty APC charge."
+	hand_path = /obj/item/melee/touch_attack/shadow
+
+	school = "evocation"
+	charge_max = 1 MINUTES
+	clothes_req = FALSE
+	action_icon_state = "void"
+
 /obj/item/melee/touch_attack/shadow
 	name = "\improper void touch"
 	desc = "EMP's carbons and mechas on touch, and empties APC charge if chosen as a target. "
@@ -452,6 +462,10 @@
 	catchphrase = FALSE
 
 /obj/item/melee/touch_attack/shadow/afterattack(atom/target, mob/living/carbon/user, proximity)
+	if(!is_shadow(user))
+		empulse(user.loc, 3, 2)
+		qdel(src)
+		return
 	var/what_am_i = FALSE
 	if(ismecha(target))
 		what_am_i = "mech"
