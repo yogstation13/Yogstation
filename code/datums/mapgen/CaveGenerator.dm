@@ -57,6 +57,9 @@
 		if(!(A.area_flags & CAVES_ALLOWED))
 			continue
 
+		if(istype(gen_turf,/turf/closed/mineral))
+			continue
+
 		var/closed = text2num(string_gen[world.maxx * (gen_turf.y - 1) + gen_turf.x])
 
 		var/stored_flags

@@ -590,6 +590,7 @@
 
 /turf/closed/mineral/volcanic/lava_land_surface/hard
 	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 2
 
 /turf/closed/mineral/ash_rock //wall piece
 	name = "rock"
