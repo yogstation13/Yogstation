@@ -1,6 +1,7 @@
 /obj/structure/destructible/hog_structure/lance
-	name = "Prismatic lance"
+	name = "prismatic lance"
 	desc = "A defensive structure, used to... well... kill everyone.."
+	break_message = span_warning("The prismatic lance fells apart, as it's defensive crystal shatters!") 
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "lance"
 	icon_originalname = "lance"

@@ -1,6 +1,7 @@
 /obj/structure/destructible/hog_structure/fountain
 	name = "fountain"
 	desc = "A fountain, containing some magical reagents in it."
+	break_message = span_warning("The fountain shatters into pieces, and it's liquid evaporate!") 
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "lance"
 	icon_originalname = "lance"
@@ -65,6 +66,9 @@
 		reagents_amount = 0
 	if(reagents_amount > max_reagents)
 		reagents_amount = max_reagents
+
+#undef MAX_EXTRACTION_AMOUNT 
+#undef GODBLOOD_GENERATION_AMOUNT 
 
 /*
 	Godblood - it, well... heals servants, deconverts cultists from other cults(including bloodcult and cockcult) and damages all other dudes.

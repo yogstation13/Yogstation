@@ -14,7 +14,24 @@
     if(!istype(owner, /obj/structure/destructible/hog_structure/fountain))
         to_chat(user,span_danger("Not a valid target!"))
         return
-    var//obj/structure/destructible/hog_structure/fountain/fountain = owner 
+    var/obj/structure/destructible/hog_structure/fountain/fountain = owner 
     description = initial(description)
     description = "[description] Currently, this [fountain] has [fountain.reagents_amount]u of godblood."
 	. = ..()
+
+#define MAX_REFILL_AMOUNT 15
+
+/datum/hog_god_interaction/structure/fountain/on_use(var/mob/camera/hog_god/user) ///Calling this proc is made in attack_god()
+    if(!istype(owner, /obj/structure/destructible/hog_structure/fountain))
+        to_chat(user,span_danger("Not a valid target!"))
+        return
+    var/obj/structure/destructible/hog_structure/fountain/fountain = owner     
+    var/amount = min(MAX_REFILL_AMOUNT, (fountain.max_reagents - fountain.reagents_amount))
+    if(!amount)
+        to_chat(user,span_danger("You can't refill the [fountain]!"))
+        return
+    fountain.change_reagents(amount)
+    to_chat(user,span_danger("You refill the fountain with [amount] amount of godblood."))
+	. = ..()
+
+#undef MAX_REFILL_AMOUNT

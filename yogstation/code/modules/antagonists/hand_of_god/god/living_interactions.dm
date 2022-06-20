@@ -44,7 +44,7 @@
 			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M.occupant)
 			if(cultie && cultie.cult == executor)
 				return	
-	else if(istype(target, /obj/structure/hog_structure))
+	else if(istype(target, /obj/structure/destructible/hog_structure/))
 		var/obj/structure/destructible/hog_structure/structure = target
 		if(structure.cult == executor)
 			return
