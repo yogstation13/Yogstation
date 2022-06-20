@@ -485,9 +485,10 @@
 			empulse(M.loc, 3, 2)
 		if("carbon")
 			var/mob/living/carbon/C = target
-			if(is_shadow_or_thrall(C))
+			if(!is_shadow_or_thrall(C))
+				empulse(C.loc, 3, 2)
+		 	else 
 				return
-		 	empulse(C.loc, 3, 2)
 		if("silicon")
 			empulse(target.loc, 3, 2)
 		if("APC")
@@ -513,6 +514,7 @@
 
     return ..()
 
+/*  
 /obj/effect/proc_holder/spell/self/null_charge
 	name = "Null Charge"
 	desc = "Empties an APC, preventing it from recharging until fixed."
@@ -558,6 +560,7 @@
 		target_apc.charging = 0
 		target_apc.update_icon()
 
+*/
 
 /obj/effect/proc_holder/spell/self/blindness_smoke //Spawns a cloud of smoke that blinds non-thralls/shadows and grants slight healing to shadowlings and their allies
 	name = "Blindness Smoke"
