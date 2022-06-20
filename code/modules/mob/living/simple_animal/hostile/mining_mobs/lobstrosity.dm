@@ -26,7 +26,7 @@
 	aggro_vision_range = 7
 	charger = TRUE
 	charge_distance = 4
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/crab = 2, /obj/item/stack/sheet/bone = 2)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat = 2, /obj/item/stack/sheet/bone = 2)
 	robust_searching = TRUE
 	gold_core_spawnable = HOSTILE_SPAWN
 
