@@ -12,17 +12,17 @@
 
 /datum/hog_god_interaction/structure/shield/on_use(var/mob/camera/hog_god/user)
 	if(owner.shield_integrity >= SHIELDING_SHIELD_HP)
-        to_chat(user,span_danger("The building is alredy shielded!")) 
-        return
+		to_chat(user,span_danger("The building is alredy shielded!")) 
+		return
 	owner.shield_integrity = SHIELDING_SHIELD_HP
 	owner.update_hog_icons()
 	when_stopped = world.time + SHIELDING_DURATION
 	if(!processing)
 		addtimer(CALLBACK(src, .proc/repair), 1 SECONDS)
 		processing = TRUE
-        to_chat(user,span_danger("You cast a shield on the [owner]!")) 
+		to_chat(user,span_danger("You cast a shield on the [owner]!")) 
 	else
-        to_chat(user,span_danger("You restore the shield integrity to the [owner]!")) 
+		to_chat(user,span_danger("You restore the shield integrity to the [owner]!")) 
 	. = ..()
 
 	
