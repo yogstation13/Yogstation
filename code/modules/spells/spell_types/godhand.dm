@@ -31,7 +31,8 @@
 
 /obj/item/melee/touch_attack/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	user.say(catchphrase, forced = "spell")
+	if(catchphrase)
+		user.say(catchphrase, forced = "spell")
 	playsound(get_turf(user), on_use_sound,50,1)
 	charges--
 	if(charges <= 0)

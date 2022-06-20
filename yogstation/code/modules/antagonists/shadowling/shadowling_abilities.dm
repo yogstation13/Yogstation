@@ -449,8 +449,54 @@
     icon_state = "flagellation"
     item_state = "hivehand"
     color = "#FF0000"
+	catchphrase = FALSE
 
 /obj/item/melee/touch_attack/shadow/afterattack(atom/target, mob/living/carbon/user, proximity)
+	var/what_am_i = FALSE
+	if(ismecha(target))
+		what_am_i = "mech"
+	if(iscarbon(target))
+		what_am_i = "carbon"
+	if(issilicon(target))
+		what_am_i = "silicon"
+	if(istype(target,/obj/machinery/power/apc))
+		what_am_i = "APC"
+	if(!what_am_i)
+		return
+	switch(what_am_i)
+		if("mech")
+			var/obj/mecha/M = target
+			if(M.occupant && is_shadow_or_thrall(M.occupant))
+				return
+			empulse(M.loc, 3, 2)
+		else if("carbon")
+			var/mob/living/carbon/C = target
+			if(is_shadow_or_thrall(C))
+				return
+		 	empulse(C.loc, 3, 2)
+		else if("silicon")
+			empulse(target.loc, 3, 2)
+		else if("APC")
+			var/obj/machinery/power/apc/target_apc = target
+			//Free veil since you have to stand next to the thing for a while to depower it.
+			target_apc.set_light(0)
+			target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
+
+			to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
+			if(!do_after(user, 3 SECONDS, target_apc))
+				//Whoops!  The APC's light turns back on
+				to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
+				target_apc.set_light(2)
+				target_apc.visible_message(span_warning("The [target_apc] begins glowing brightly!"))
+			else
+				//We did it
+				to_chat(user, span_shadowling("You return the APC's power to the void, disabling it."))
+				target_apc.cell?.charge = 0	//Sent to the shadow realm
+				target_apc.chargemode = 0 //Won't recharge either until an engineer hits the button
+				target_apc.charging = 0
+				target_apc.update_icon()
+
+
     return ..()
 
 /obj/effect/proc_holder/spell/self/null_charge
