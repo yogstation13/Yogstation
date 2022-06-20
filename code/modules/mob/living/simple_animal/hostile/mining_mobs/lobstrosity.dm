@@ -9,7 +9,7 @@
 	icon_state = "arctic_lobstrosity"
 	icon_living = "arctic_lobstrosity"
 	icon_dead = "arctic_lobstrosity_dead"
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	mouse_opacity = MOUSE_OPACITY_ICON
 	speak_emote = list("chitters")
 	speed = 3
