@@ -385,7 +385,7 @@
 	var/blind_smoke_acquired = FALSE
 	var/screech_acquired = FALSE
 	var/reviveThrallAcquired = FALSE
-	var/null_charge_acquired = FALSE
+	var/void_touch_acquired = FALSE
 
 /obj/effect/proc_holder/spell/self/collective_mind/cast(mob/living/carbon/human/user)
 	if(!shadowling_check(user))
@@ -415,10 +415,10 @@
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/empower_thrall(null))
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/blindness_smoke(null))
 	if(thralls >= CEILING(7 * SSticker.mode.thrall_ratio, 1) && !null_charge_acquired)
-		null_charge_acquired = TRUE
-		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Null Charge</b> ability. This ability will drain an APC's contents to the void, preventing it from recharging \
+		void_touch_acquired = TRUE
+		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Void Touch</b> ability. This ability allows you to EMP carbons, silicons, mechas and drain APC's contents to the void, preventing them from recharging \
 		or sending power until repaired.</i></span>")
-		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/null_charge(null))
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/void(null))
 	if(thralls >= CEILING(9 * SSticker.mode.thrall_ratio, 1) && !reviveThrallAcquired)
 		reviveThrallAcquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Black Recuperation</b> ability. This will, after a short time, bring a dead thrall completely back to life \
@@ -483,14 +483,14 @@
 			if(M.occupant && is_shadow_or_thrall(M.occupant))
 				return
 			empulse(M.loc, 3, 2)
-		else if("carbon")
+		if("carbon")
 			var/mob/living/carbon/C = target
 			if(is_shadow_or_thrall(C))
 				return
 		 	empulse(C.loc, 3, 2)
-		else if("silicon")
+		if("silicon")
 			empulse(target.loc, 3, 2)
-		else if("APC")
+		if("APC")
 			var/obj/machinery/power/apc/target_apc = target
 			//Free veil since you have to stand next to the thing for a while to depower it.
 			target_apc.set_light(0)
