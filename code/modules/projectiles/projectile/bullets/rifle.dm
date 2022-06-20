@@ -15,7 +15,7 @@
 /obj/item/projectile/bullet/a545_rubber
 	name = "5.45mm rubber bullet"
 	damage = 5
-	stamina = 25
+	stamina = 45
 
 /obj/item/projectile/bullet/a545_ap
 	name = "5.45mm armor-piercing bullet"
