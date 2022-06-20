@@ -9,7 +9,6 @@
 	name = "TRAC implant"
 	desc = "A smaller tracking implant that supplies power for only a few minutes."
 	var/lifespan = 15 MINUTES //how long does the implant last?
-	allow_teleport = TRUE
 
 /obj/item/implant/tracking/c38/Initialize()
 	. = ..()
