@@ -13,6 +13,7 @@
 	var/shield_integrity = 0
 	var/cost = 10
 	var/time_builded = 10
+	var/constructor_range = 0 ///If the building is something like a shrine or a nexus it uses this to allow the god to construct buildings.
 
 /obj/structure/destructible/hog_structure/Initialize()	
 	GLOB.hog_structures += src

@@ -8,7 +8,7 @@
 	icon_originalname = "nexus"
 	anchored = TRUE
 	density = TRUE
-	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge)
+	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge, /datum/hog_god_interaction/structure/shield, /datum/hog_god_interaction/structure/mass_recall)
 	max_integrity = 500
 	cost = 0
 	time_builded = 0
@@ -18,6 +18,7 @@
 	var/active = FALSE
 	var/progress = 0
 	var/estimated_time = BREAK_FREE_TIME
+	constructor_range = 20
 
 /obj/structure/destructible/hog_structure/lance/nexus/Initialize()
 	. = ..()

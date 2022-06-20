@@ -2,6 +2,7 @@
 	name = "fountain"
 	desc = "A fountain, containing some magical reagents in it."
 	break_message = span_warning("The fountain shatters into pieces, and it's liquid evaporate!") 
+	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge, /datum/hog_god_interaction/structure/shield, /datum/hog_god_interaction/structure/fountain)
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "lance"
 	icon_originalname = "lance"
