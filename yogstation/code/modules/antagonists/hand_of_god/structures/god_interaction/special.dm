@@ -46,9 +46,9 @@
 	if(!user.cult.recalls)
 		to_chat(user,span_danger("You don't have any mass recalls left!"))
 		return
-	if(!cult.nexus)
+	if(!user.cult.nexus)
 		to_chat(user,span_danger("You don't have any nexus to recall to!"))
 		return
-	if(!user.mass_recall)
+	if(!user.mass_recall())
 		return
 	. = ..()

@@ -73,11 +73,11 @@
 		if(!guy.current)
 			continue
 		var/mob/living/man = guy.current
-		if(!guy)
+		if(!man)
 			continue
-		if(guy.stat == DEAD)
+		if(man.stat == DEAD)
 			continue
-		INVOKE_ASYNC(src, guy, .proc/recall)
+		INVOKE_ASYNC(src, man, .proc/recall)
 		yes = TRUE
 	if(yes)
 		cult.message_all_dudes("<span class='cultlarge'><b>Your god has innitiated mass recall! Soon, all of you will be teleported to your nexus.</b></span>", FALSE)
