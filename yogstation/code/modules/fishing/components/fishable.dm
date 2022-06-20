@@ -14,6 +14,9 @@
 		return COMPONENT_INCOMPATIBLE
 	src.can_fish = can_fish
 
+/datum/component/fishable/proc/interrupt()
+	SEND_SIGNAL(src,COMSIG_FISHING_INTERRUPT)
+
 /datum/component/fishable/proc/get_reward(var/fishing_power = 0)
 	var/chance = list(
 		FISHING_LOOT_NOTHING = min(max(0,100 - fishing_power),50),
@@ -64,6 +67,7 @@
 		/obj/item/reagent_containers/food/snacks/fish/tuna
 	)
 	rare_loot = list(
+		/obj/item/reagent_containers/food/snacks/fish/rat,
 		/obj/item/reagent_containers/food/snacks/fish/squid,
 		/obj/item/stack/sheet/bluespace_crystal
 	)

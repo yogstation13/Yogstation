@@ -140,5 +140,18 @@
 	desc = "A fillet of spess fish meat."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 
+//SPECIAL FISH
+
+/obj/item/reagent_containers/food/snacks/fish/rat
+	name = "ratfish"
+	desc = "Better find some underwater cheese!"
+	icon_state = "fish_rat"
+	min_length = 1
+	max_length = 5
+	min_weight = 1
+	max_weight = 8
+	tool_behaviour = TOOL_WIRECUTTER //yooo ratfish be cuttin wires n shit
+	toolspeed = 0.5
+
 
 	

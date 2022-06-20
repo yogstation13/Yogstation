@@ -73,6 +73,7 @@
 	RegisterSignal(user,COMSIG_MOVABLE_MOVED, .proc/reel_in_forced,TRUE)
 	RegisterSignal(src,COMSIG_MOVABLE_MOVED, .proc/reel_in_forced,TRUE)
 	RegisterSignal(src,COMSIG_ITEM_DROPPED, .proc/reel_in_forced,TRUE)
+	RegisterSignal(fc,COMSIG_FISHING_INTERRUPT, .proc/reel_in_forced)
 	START_PROCESSING(SSobj,src)
 	playsound(fishing_component, 'sound/effects/splash.ogg', 50, FALSE, -5)
 	to_chat(fisher, span_italics("You cast out your fishing rod..."))
@@ -101,6 +102,7 @@
 	UnregisterSignal(fisher,COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(src,COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(src,COMSIG_ITEM_DROPPED)
+	UnregisterSignal(fishing_component,COMSIG_FISHING_INTERRUPT)
 	fisher = null
 	STOP_PROCESSING(SSobj,src)
 	var/turf/fishing_turf = fishing_component.parent
