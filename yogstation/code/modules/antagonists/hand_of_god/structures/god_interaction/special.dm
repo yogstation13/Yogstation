@@ -1,0 +1,5 @@
+//////////////////////////////////
+/*
+	Special interactions - This are specific actions unique to certain buildings.
+*/
+//////////////////////////////////

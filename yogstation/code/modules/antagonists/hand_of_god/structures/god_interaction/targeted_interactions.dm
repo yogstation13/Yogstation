@@ -1,4 +1,8 @@
-///Not actually structure related, but actually interactions. This ones are used when clicking on random dudes and trying to do something with them.
+//////////////////////////////////
+/*
+	Targeted interactions - unlike interactions, that belong to structures, this ones are used when a god is trying to do something with a generic object, that doesn't have a HoG subtype
+*/
+//////////////////////////////////
 
 /datum/hog_god_interaction/targeted/recall
 	name = "Recall"
