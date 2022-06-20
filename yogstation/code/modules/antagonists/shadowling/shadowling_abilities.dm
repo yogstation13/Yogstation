@@ -442,6 +442,17 @@
 				else
 					to_chat(M, span_shadowling("<b>[user.real_name] has coalesced the strength of the thralls. You can draw upon it at any time to ascend. (Shadowling Evolution Tab)</b>")) //Tells all the other shadowlings
 
+/obj/item/melee/touch_attack/shadow
+    name = "\improper void touch"
+    desc = "EMP's carbons and mechas on touch, and empties APC charge if chosen as a target. "
+    on_use_sound = 'sound/magic/wandodeath.ogg'
+    icon_state = "flagellation"
+    item_state = "hivehand"
+    color = "#FF0000"
+
+/obj/item/melee/touch_attack/shadow/afterattack(atom/target, mob/living/carbon/user, proximity)
+    return ..()
+
 /obj/effect/proc_holder/spell/self/null_charge
 	name = "Null Charge"
 	desc = "Empties an APC, preventing it from recharging until fixed."
