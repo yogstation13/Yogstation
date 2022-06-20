@@ -68,7 +68,7 @@
 		return
 	var/yes = FALSE
 	for(var/datum/mind/guy in cult.members)
-		if(!IS_HOG_CULTIST(guy))
+		if(!guy.has_antag_datum(/datum/antagonist/hog))
 			continue
 		if(!guy.current)
 			continue
