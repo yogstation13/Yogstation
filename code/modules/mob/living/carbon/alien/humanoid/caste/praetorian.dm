@@ -3,6 +3,7 @@
 	caste = "p"
 	maxHealth = 300
 	health = 300
+	speed = 1
 	icon_state = "alienp"
 
 /mob/living/carbon/alien/humanoid/royal/praetorian/Initialize()
@@ -33,6 +34,10 @@
 	if(node.recent_queen_death)
 		to_chat(user, span_danger("You are still too burdened with guilt to evolve into a queen."))
 		return 0
+	var/datum/antagonist/xeno/xeno_datum = user.mind.has_antag_datum(/datum/antagonist/xeno)
+	if(xeno_datum?.xeno_team && xeno_datum.xeno_team.queen_deaths >= xeno_datum.xeno_team.max_queen_deaths)
+		to_chat(user, "<span class='warning'>Too many queens have died today already!  The hivemind can't take any more pain!</span>")
+		return FALSE
 	if(!get_alien_type(/mob/living/carbon/alien/humanoid/royal/queen))
 		var/mob/living/carbon/alien/humanoid/royal/queen/new_xeno = new (user.loc)
 		user.alien_evolve(new_xeno)

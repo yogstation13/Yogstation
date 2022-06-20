@@ -73,7 +73,7 @@
 					span_userdanger("[M] [response_disarm] [name]!"), null, COMBAT_MESSAGE_RANGE)
 			log_combat(M, src, "disarmed")
 		else
-			var/damage = rand(15, 30)
+			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 			visible_message(span_danger("[M] has slashed at [src]!"), \
 					span_userdanger("[M] has slashed at [src]!"), null, COMBAT_MESSAGE_RANGE)
 			playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)

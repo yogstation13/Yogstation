@@ -9,6 +9,8 @@
 		diag_hud.add_to_hud(src)
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
+	if(speed)
+		update_living_varspeed()
 	initialize_footstep()
 	if(startDead)
 		death(FALSE)
@@ -1462,3 +1464,27 @@
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
 	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects
+
+
+/**
+ * Sets the mob's speed variable and then calls update_living_varspeed().
+ *
+ * Sets the mob's speed variable, which does nothing by itself.
+ * It then calls update_living_varspeed(), which then actually applies the movespeed change.
+ * Arguments:
+ * * var_value - The new value of speed.
+ */
+/mob/living/proc/set_varspeed(var_value)
+	speed = var_value
+	update_living_varspeed()
+
+/**
+ * Applies the mob's speed variable to a movespeed modifier.
+ *
+ * Applies the speed variable to a movespeed variable.  If the speed is 0, removes the movespeed modifier.
+ */
+/mob/living/proc/update_living_varspeed()
+	if(speed == 0)
+		remove_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE)
+		return
+	add_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE, 100, multiplicative_slowdown = speed, override = TRUE)

@@ -140,3 +140,6 @@
 
 	//Last item/projectile that damaged this mob, not including surgery
 	var/last_damage = ""
+
+	///Adjusts the mob's speed.  0 is default human speed.
+	var/speed = 0

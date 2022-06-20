@@ -156,7 +156,7 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/acid/proc/corrode(atom/target,mob/living/carbon/user = usr)
 	if(target in oview(1,user))
-		if(target.acid_act(200, 100))
+		if(target.acid_act(400, 100))
 			user.visible_message(span_alertalien("[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"))
 			return 1
 		else
@@ -190,7 +190,7 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/neurotoxin
 	name = "Spit Neurotoxin"
-	desc = "Spits neurotoxin at someone, paralyzing them for a short time."
+	desc = "Spits neurotoxin at someone, paralyzing them for a short time. Doesn't work if the target is an alien, or is wearing a hardsuit."
 	action_icon_state = "alien_neurotoxin_0"
 	active = FALSE
 
@@ -295,14 +295,14 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/sneak/fire(mob/living/carbon/alien/humanoid/user)
 	if(!active)
-		user.alpha = 75 //Still easy to see in lit areas with bright tiles, almost invisible on resin.
-		user.sneaking = 1
-		active = 1
+		user.alpha = 25 //Still easy to see in lit areas with bright tiles, almost invisible on resin.
+		user.sneaking = TRUE
+		active = TRUE
 		to_chat(user, span_noticealien("You blend into the shadows..."))
 	else
 		user.alpha = initial(user.alpha)
-		user.sneaking = 0
-		active = 0
+		user.sneaking = FALSE
+		active = FALSE
 		to_chat(user, span_noticealien("You reveal yourself!"))
 
 

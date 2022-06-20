@@ -19,12 +19,15 @@
 	status_flags = CANUNCONSCIOUS|CANPUSH
 
 	var/heat_protection = 0.5
-	var/leaping = 0
 	gib_type = /obj/effect/decal/cleanable/xenoblood/xgibs
 	unique_name = 1
-
+	/// Determines whether or not the alien is leaping.  Currently only used by the hunter.
+	var/leaping = FALSE
+	/// Used to detmine how to name the alien.
 	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|queen)( \\(\\d+\\))?")
 	blood_volume = BLOOD_VOLUME_XENO //Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
+	var/melee_damage_lower = 20
+	var/melee_damage_upper = 20
 
 /mob/living/carbon/alien/Initialize()
 	add_verb(src, /mob/living/proc/mob_sleep)
