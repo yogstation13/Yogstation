@@ -45,11 +45,11 @@
 			if(cultie && cultie.cult == executor)
 				return	
 	else if(istype(target, /obj/structure/hog_structure))
-		var/obj/structure/hog_structure/structure = target
+		var/obj/structure/destructible/hog_structure/structure = target
 		if(structure.cult == executor)
 			return
 	var/yes = FALSE
-	for(var/obj/structure/hog_structure/lance/turret in executor.objects)
+	for(var/obj/structure/destructible/hog_structure/lance/turret in executor.objects)
 		if(get_dist(target, turret) > turret.weapon.sight_range)
 			continue
 		turret.weapon.target = target

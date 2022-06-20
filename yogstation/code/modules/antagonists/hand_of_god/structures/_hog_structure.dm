@@ -1,4 +1,4 @@
-/obj/structure/hog_structure
+/obj/structure/destructible/hog_structure
 	name = "generic HoG structure"
 	desc = "Cry at SuperSlayer if you see this."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
@@ -14,7 +14,7 @@
 	var/cost = 10
 	var/time_builded = 10
 
-/obj/structure/hog_structure/Initialize()	
+/obj/structure/destructible/hog_structure/Initialize()	
 	GLOB.hog_structures += src
 	. = ..()
 	for(var/datum/hog_god_interaction/structure/spell in god_actions_add)
@@ -22,14 +22,14 @@
 		spell.owner = src
 		god_actions += spell
 	
-/obj/structure/hog_structure/Destroy()
+/obj/structure/destructible/hog_structure/Destroy()
 	cult.objects -= src
 	GLOB.hog_structures -= src
 	for(var/qdel_candidate in god_actions)
 		qdel(qdel_candidate)
 	. = ..()
 
-/obj/structure/hog_structure/proc/update_hog_icons()
+/obj/structure/destructible/hog_structure/proc/update_hog_icons()
 	cut_overlays()
 	icon_state = "[icon_originalname]_[cult.cult_color]"
 	if(weapon && !istype(weapon, /obj/item/hog_item/prismatic_lance/guardian))
@@ -39,7 +39,7 @@
 	update_icon()
 
 	
-/obj/structure/hog_structure/proc/handle_team_change(var/datum/team/hog_cult/new_cult)
+/obj/structure/destructible/hog_structure/proc/handle_team_change(var/datum/team/hog_cult/new_cult)
 	if(cult)
 		cult.objects -= src
 	shield_integrity = 0 
@@ -49,10 +49,10 @@
 	new_cult.objects += src
 	update_hog_icons()
 
-/obj/structure/hog_structure/proc/special_interaction(var/mob/user)
+/obj/structure/destructible/hog_structure/proc/special_interaction(var/mob/user)
 	return
 	
-/obj/structure/hog_structure/attack_hand(mob/user)
+/obj/structure/destructible/hog_structure/attack_hand(mob/user)
 	if(iscyborg(user))
 		return
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
@@ -61,21 +61,21 @@
 		return
 	. = ..()
 
-/obj/structure/hog_structure/attack_alien(mob/user) ///Cult aliens, hooray!!!
+/obj/structure/destructible/hog_structure/attack_alien(mob/user) ///Cult aliens, hooray!!!
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && cultie.cult == src.cult && cultie.banned_by_god != TRUE)
 		special_interaction(user)
 		return
 	. = ..()
 
-/obj/structure/hog_structure/attack_paw(mob/user)
+/obj/structure/destructible/hog_structure/attack_paw(mob/user)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && cultie.cult == src.cult && cultie.banned_by_god != TRUE)
 		special_interaction(user)
 		return
 	. = ..()
 
-/obj/structure/hog_structure/attack_god(mob/camera/hog_god/god, modifier)
+/obj/structure/destructible/hog_structure/attack_god(mob/camera/hog_god/god, modifier)
 	if(cult != god.cult)
 		get_fucked_by_hog_pylons(src, god.cult, god)
 		return

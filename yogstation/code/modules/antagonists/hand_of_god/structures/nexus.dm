@@ -1,6 +1,6 @@
 #define BREAK_FREE_TIME 7 ///7 minutes
 
-/obj/structure/hog_structure/lance/nexus
+/obj/structure/destructible/hog_structure/lance/nexus
 	name = "\improper Nexus"
 	desc = "There is a god's soul inside. Kill it, and the god will die."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
@@ -18,17 +18,17 @@
 	var/progress = 0
 	var/estimated_time = BREAK_FREE_TIME
 
-/obj/structure/hog_structure/lance/nexus/Initialize()
+/obj/structure/destructible/hog_structure/lance/nexus/Initialize()
 	. = ..()
 
-/obj/structure/hog_structure/lance/nexus/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/destructible/hog_structure/lance/nexus/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(.)
 		if(last_scream < world.time)
 			cult.message_all_dudes("Your nexus is under attack! Defend it, or your cult will perish!", FALSE)
 			last_scream = world.time + ARK_SCREAM_COOLDOWN
 
-/obj/structure/hog_structure/lance/nexus/proc/Activate()
+/obj/structure/destructible/hog_structure/lance/nexus/proc/Activate()
 	active = TRUE
 	priority_announce("An unknown bluespace entity is being summoned in [get_area(src)]. All crew are directed to \
 	@!$, stop this rituall at all cost to prevent further damage to corporate property and save the station from destruction. This is \
@@ -39,7 +39,7 @@
 	cult.message_all_dudes("Servants of [god.name]! Our time has come! Defend the nexus at all costs!", TRUE)
 	cult.state = HOG_TEAM_SUMMONING
 
-/obj/structure/hog_structure/lance/nexus/proc/Sex()
+/obj/structure/destructible/hog_structure/lance/nexus/proc/Sex()
 	if(progress == BREAK_FREE_TIME)	
 		return /// Not coded yet!
 	progress += 1

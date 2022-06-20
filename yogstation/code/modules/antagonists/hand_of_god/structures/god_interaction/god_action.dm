@@ -31,7 +31,7 @@
 	user.cult.energy -= cost
 
 /datum/hog_god_interaction/structure
-	var/obj/structure/hog_structure/owner
+	var/obj/structure/destructible/hog_structure/owner
 
 /datum/hog_god_interaction/targeted
 	is_targeted = TRUE

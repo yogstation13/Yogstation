@@ -1,5 +1,5 @@
-/obj/structure/hog_structure/fountain
-	name = "Fountain"
+/obj/structure/destructible/hog_structure/fountain
+	name = "fountain"
 	desc = "A fountain, containing some magical reagents in it."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "lance"
@@ -14,47 +14,52 @@
 	var/last_time_produced
 	var/datum/reagent/reagent_type = /datum/reagent/fuel/godblood
 
-/obj/structure/hog_structure/fountain/Initialize()
+/obj/structure/destructible/hog_structure/fountain/Initialize()
 	. = ..()
 	reagents_amount = max_reagents/2
 	last_time_produced = world.time
 	START_PROCESSING(SSfastprocess, src)
 
-/obj/structure/hog_structure/fountain/Destroy()
+/obj/structure/destructible/hog_structure/fountain/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	. = ..()
 
-/obj/structure/hog_structure/fountain/process()
+#define MAX_EXTRACTION_AMOUNT 5
+#define GODBLOOD_GENERATION_AMOUNT 5
+
+/obj/structure/destructible/hog_structure/fountain/process()
 	if(last_time_produced + production_cooldown < world.time && reagents_amount < max_reagents)
-		change_reagents(5)
+		change_reagents(GODBLOOD_GENERATION_AMOUNT)
 		last_time_produced = world.time
 
 
-/obj/structure/hog_structure/fountain/special_interaction(mob/user)
+/obj/structure/destructible/hog_structure/fountain/special_interaction(mob/user)
 	var/mob/living/carbon/C = user
 	if(!user)
 		return
 	if(C.reagents)
-		C.reagents.add_reagent(reagent_type, 5)
+		var/amount = min(reagents_amount, MAX_EXTRACTION_AMOUNT)
+		C.reagents.add_reagent(reagent_type, amount)
 		user.visible_message(span_warning("[C] drinks from [src]!"),span_notice("You drink from [src]."))
-		change_reagents(-5)
+		change_reagents(-amount)
 
-/obj/structure/hog_structure/fountain/attackby(obj/item/I, mob/user, params)  ///Yessir, non-servants can also do this! But this wouldn't be very usefull for them. More like... you know... useless.
+/obj/structure/destructible/hog_structure/fountain/attackby(obj/item/I, mob/user, params)  ///Yessir, non-servants can also do this! But this wouldn't be very usefull for them. More like... you know... useless.
 	var/mob/living/dude = user
-	if(istype(I, /obj/item/reagent_containers) && !istype(I, /obj/item/reagent_containers/food) && user.a_intent != INTENT_HARM && reagents_amount >= 5)
+	if(istype(I, /obj/item/reagent_containers) && !istype(I, /obj/item/reagent_containers/food) && user.a_intent != INTENT_HARM && reagents_amount)
 		if(I.reagents)
-			I.reagents.add_reagent(reagent_type, 5, no_react = TRUE)
+			var/amount = min(reagents_amount, MAX_EXTRACTION_AMOUNT)
+			I.reagents.add_reagent(reagent_type, amount, no_react = TRUE)
 			user.visible_message(span_warning("[dude] takes some liquid from [src] with [I]!"),span_notice("You take some liquid from [src] with [I]."))
-			change_reagents(-5)
+			change_reagents(-amount)
 			return
 	. = ..()
 
-/obj/structure/hog_structure/fountain/handle_team_change(var/datum/team/hog_cult/new_cult)
+/obj/structure/destructible/hog_structure/fountain/handle_team_change(var/datum/team/hog_cult/new_cult)
 	. = ..()
 	var/G = text2path("/datum/reagent/fuel/godblood/[new_cult.cult_color]")   
 	reagent_type = G
 
-/obj/structure/hog_structure/fountain/proc/change_reagents(var/amount = 5)
+/obj/structure/destructible/hog_structure/fountain/proc/change_reagents(var/amount = 5)
 	reagents_amount += amount
 	if(reagents_amount < 0)
 		reagents_amount = 0

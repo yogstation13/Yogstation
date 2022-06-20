@@ -107,7 +107,7 @@
 			if(M in viewcache)
 				possible_targets += M
 	for(var/N in GLOB.hog_structures)
-		var/obj/structure/hog_structure/S = N
+		var/obj/structure/destructible/hog_structure/S = N
 		if(get_dist(S, src) <= sight_range && S.cult != src.cult && S.cult)
 			if(!length(viewcache))
 				for(var/obj/Z in view(sight_range, src))
