@@ -21,8 +21,6 @@
 	return 
 
 /proc/get_fucked_by_hog_pylons(var/atom/target, var/datum/team/hog_cult/executor, var/mob/camera/god)	
-	if(target.stat || target.IsStun() || target.IsParalyzed())
-		return
 	if(isslime(target))
 		return
 	if(ishostile(target))
@@ -37,7 +35,7 @@
 		var/mob/living/L = target
 		if((HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE) || L.stat == DEAD)
 			return
-		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(target)
+		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
 		if(cultie && cultie.cult == executor)
 			return	
 	else if(ismecha(target))

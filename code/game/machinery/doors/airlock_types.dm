@@ -785,7 +785,7 @@
 /obj/machinery/door/airlock/hog/hog_act(datum/team/hog_cult/act_cult)
 	if(act_cult == cult)
 		take_damage(-25, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), 100)
-		take_damage(-25, BRUTE, MELEE, FALSE , get_dir(src, src), 100) 
+		take_damage(-25, BRUTE, MELEE, FALSE , 0, 100) 
 		return
 	. = ..()
 
