@@ -83,5 +83,8 @@
 		cult.message_all_dudes("<span class='cultlarge'><b>Your god has innitiated mass recall! Soon, all of you will be teleported to your nexus.</b></span>", FALSE)
 		to_chat(src, "You initiate mass recall")
 		cult.recalls--
+		return TRUE
 	else
 		to_chat(src, "You fail to initiate mass recall")
+		return FALSE
+

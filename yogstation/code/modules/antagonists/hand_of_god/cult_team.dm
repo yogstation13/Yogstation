@@ -5,7 +5,7 @@
 	var/energy = 0 
 	var/max_energy = 0
 	var/permanent_regen = 20 // 20 per 2 seconds seems ok
-	var/nexus 
+	var/obj/structure/destructible/hog_structure/lance/nexus/nexus 
 	var/state = HOG_TEAM_EXISTING
 	var/cult_color = "black" 
 	var/dudes_amount = 0
