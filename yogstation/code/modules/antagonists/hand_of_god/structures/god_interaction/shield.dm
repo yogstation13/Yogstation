@@ -3,7 +3,7 @@
 	description = "Grants a builidng a temporary shield, that will protect it from EMP's and make it slowly regenerate integrity."
 	cost = 90
 	cooldown = 20 SECONDS
-    var/processing = FALSE
+	var/processing = FALSE
 	var/when_stopped
 
 #define SHIELDING_DURATION 15 SECONDS
