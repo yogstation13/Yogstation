@@ -235,6 +235,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
+	STR.max_combined_w_class = 18
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.set_holdable(list(
 		/obj/item/melee/baton,
@@ -281,6 +282,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
+	STR.max_combined_w_class = 21
 
 /obj/item/storage/belt/security/chief/full/PopulateContents()
 	new /obj/item/reagent_containers/spray/pepper(src)
@@ -304,6 +306,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
+	STR.max_combined_w_class = 21
 
 /obj/item/storage/belt/mining
 	name = "explorer's webbing"
@@ -664,6 +667,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 24
+	STR.max_combined_w_class = 72
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
 		/obj/item/ammo_casing/shotgun
