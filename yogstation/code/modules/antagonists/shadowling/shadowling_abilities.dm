@@ -414,7 +414,7 @@
 			</i></span>")
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/empower_thrall(null))
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/blindness_smoke(null))
-	if(thralls >= CEILING(7 * SSticker.mode.thrall_ratio, 1) && !null_charge_acquired)
+	if(thralls >= CEILING(7 * SSticker.mode.thrall_ratio, 1) && !void_touch_acquired)
 		void_touch_acquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Void Touch</b> ability. This ability allows you to EMP carbons, silicons, mechas and drain APC's contents to the void, preventing them from recharging \
 		or sending power until repaired.</i></span>")
