@@ -2,7 +2,7 @@
 	name = "fishing machine"
 	desc = "Your little home away from home."
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
-	icon_state = "machinee"
+	icon_state = "machine"
 	density = TRUE
 	var/active = FALSE
 	active_power_usage = 100
@@ -56,9 +56,12 @@
 		toggle_power()
 
 /obj/machinery/fishing/cargo //you can buy a better one from cargo
+	icon_state = "machine_gold"
 	flags_1 = NODECONSTRUCT_1
 	circuit = null
 
+/obj/machinery/fishing/cargo/interact(mob/user, special_state)
+	return
 
 /obj/item/circuitboard/machine/fishing
 	name = "Fishing Machine (Machine Board)"
