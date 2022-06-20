@@ -343,6 +343,17 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/cyberimp_science_analyzer
+	name = "Chemical Analyzer Implant"
+	desc = "These cybernetic eye implants will allow rapid identification of reagents. Wiggle eyes to control."
+	id = "ci-scihud"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 50
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plastic = 150)
+	build_path = /obj/item/organ/cyberimp/eyes/hud/science
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/cyberimp_xray
 	name = "X-ray Eyes"
 	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."

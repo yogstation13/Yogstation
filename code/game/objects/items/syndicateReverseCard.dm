@@ -4,7 +4,7 @@
 	name = "Red Reverse"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "sc_Red Reverse_uno"
-	desc = "a card."
+	desc = "A card."
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE //has this been used before? If not, give no hints about it's nature
 
