@@ -46,12 +46,20 @@
 		var/turf/T = get_step_multiz(src, direction)
 		if(!istype(T))
 			continue
-		var/opp_dir = REVERSE_DIR(direction)
+
+		var/src_contains_firelock = 1
+		if(locate(/obj/machinery/door/firedoor) in src)
+			src_contains_firelock |= 2
+
+		var/other_contains_firelock = 1
+		if(locate(/obj/machinery/door/firedoor) in T)
+			other_contains_firelock |= 2
+
 		if(isopenturf(T) && !(blocks_air || T.blocks_air) && ((direction & (UP|DOWN))? (canvpass && CANVERTICALATMOSPASS(T, src)) : (canpass && CANATMOSPASS(T, src))) )
 			LAZYINITLIST(atmos_adjacent_turfs)
 			LAZYINITLIST(T.atmos_adjacent_turfs)
-			atmos_adjacent_turfs[T] = direction
-			T.atmos_adjacent_turfs[src] = opp_dir
+			atmos_adjacent_turfs[T] = other_contains_firelock
+			T.atmos_adjacent_turfs[src] = src_contains_firelock
 		else
 			if (atmos_adjacent_turfs)
 				atmos_adjacent_turfs -= T

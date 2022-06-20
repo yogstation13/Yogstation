@@ -299,9 +299,8 @@
 	else
 		requirements = list("To create [selected_recipe.name] you will need:")
 		for(var/gas_type in selected_recipe.requirements)
-			var/datum/gas/gas_required = gas_type
 			var/amount_consumed = selected_recipe.requirements[gas_type]
-			requirements += "-[amount_consumed] moles of [initial(gas_required.name)]"
+			requirements += "-[amount_consumed] moles of [initial(gas_type)]"
 		requirements += "In a temperature range between [selected_recipe.min_temp] K and [selected_recipe.max_temp] K"
 		requirements += "The crystallization reaction will be [selected_recipe.reaction_type]"
 	data["requirements"] = requirements.Join("\n")
