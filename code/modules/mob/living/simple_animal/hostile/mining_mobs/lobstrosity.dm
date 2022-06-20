@@ -28,7 +28,6 @@
 	charge_distance = 4
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/crab = 2, /obj/item/stack/sheet/bone = 2)
 	robust_searching = TRUE
-	footstep_type = FOOTSTEP_MOB_CLAW
 	gold_core_spawnable = HOSTILE_SPAWN
 
 /mob/living/simple_animal/hostile/asteroid/lobstrosity/lava
