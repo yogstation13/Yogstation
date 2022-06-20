@@ -487,8 +487,6 @@
 			var/mob/living/carbon/C = target
 			if(!is_shadow_or_thrall(C))
 				empulse(C.loc, 3, 2)
-		 	else 
-				return
 		if("silicon")
 			empulse(target.loc, 3, 2)
 		if("APC")
