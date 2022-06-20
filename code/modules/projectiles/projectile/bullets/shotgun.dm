@@ -99,8 +99,8 @@
 	name = "depleted uranium slug"
 	icon_state = "ubullet"
 	damage = 30
-	armour_penetration = 85 // he he funny round go through armor
-	wound_bonus = -35	
+	armour_penetration = 60 // he he funny round go through armor
+	wound_bonus = -45
 
 /obj/item/projectile/bullet/shotgun_uraniumslug/on_hit(atom/target)
 	. = ..()
