@@ -19,8 +19,8 @@
 
 /obj/item/projectile/bullet/a545_ap
 	name = "5.45mm armor-piercing bullet"
-	damage = 18
-	armour_penetration = 50
+	damage = 27
+	armour_penetration = 40
 	
 /obj/item/projectile/bullet/incendiary/a545_incendiary
 	name = "5.45mm incendiary bullet"
