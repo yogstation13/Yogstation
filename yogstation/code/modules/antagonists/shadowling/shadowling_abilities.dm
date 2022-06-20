@@ -754,7 +754,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle
 	name = "Destroy Engines"
-	desc = "Sacrifice a thrall to extend the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
+	desc = "Heavilly wound a thrall to extend the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
 	panel = "Shadowling Abilities"
 	range = 1
 	human_req = TRUE
@@ -789,9 +789,11 @@
 			to_chat(user, span_warning("You have been interrupted. The draw has failed."))
 			return
 		to_chat(user, span_notice("You project [M]'s life force toward the approaching shuttle, extending its arrival duration!"))
-		M.visible_message(span_warning("[M]'s eyes suddenly flare red. They proceed to collapse on the floor, not breathing."), \
-						  span_warning("<b>...speeding by... ...pretty blue glow... ...touch it... ...no glow now... ...no light... ...nothing at all..."))
-		M.dust()
+		M.visible_message(span_warning("[M]'s skin falls of their body, as they turn into an ugly abomination."), \
+						  span_warning("AAAAAAAAAAAAAAAAAAAAAAAAA"))
+		M.setMaxHealth(30)
+		M.health = 30
+		M.become_husk()
 
 		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
 			var/more_minutes = 9000
