@@ -231,14 +231,16 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/katana/cursed/basalt
 	name = "basalt katana"
-	desc = "a katana made out of hardened basalt. Deals more damage to lavaland mobs."
+	desc = "a katana made out of hardened basalt. Particularly damaging to lavaland fauna. (Activate this item in hand to dodge roll in the direction you're facing)"
 	icon_state = "basalt_katana"
 	item_state = "basalt_katana"
-	force = 25
+	force = 18
 	block_chance = 20
 
-	var/fauna_damage_bonus = 35
-	var/fauna_damage_type = BURN
+	var/fauna_damage_bonus = 52
+	var/fauna_damage_type = BRUTE
+	var/next_roll
+	var/roll_dist = 3
 
 /obj/item/katana/cursed/basalt/afterattack(atom/target, mob/user, proximity)
 	. = ..()
@@ -250,6 +252,33 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
 			playsound(L, 'sound/weapons/sear.ogg', 100, 1)
 
+/obj/item/katana/cursed/basalt/attack_self(mob/living/user)
+	if(world.time > next_roll)
+		var/stam_cost = 15
+		var/turf/T = get_turf(user)
+		if(is_mining_level(T.z))
+			stam_cost = 5
+		var/turf/landing_turf = get_ranged_target_turf(user, user.dir, roll_dist)
+		var/spin_direction = FALSE
+		user.adjustStaminaLoss(stam_cost)
+		if (user.getStaminaLoss() >= 100)
+			user.throw_at(landing_turf, 2, 2)
+			user.Paralyze(4 SECONDS)
+			user.visible_message(span_warning("You're too tired tired to finish the roll!"))
+		else
+			playsound(user, 'yogstation/sound/items/dodgeroll.ogg', 50, TRUE)
+			user.apply_status_effect(STATUS_EFFECT_DODGING)
+			if(user.dir == EAST || user.dir == NORTH)
+				spin_direction = TRUE
+			passtable_on(user, src)
+			user.setMovetype(user.movement_type | FLYING)
+			user.safe_throw_at(landing_turf, 4, 1, spin = FALSE)	
+			user.SpinAnimation(speed = 3, loops = 1, clockwise = spin_direction, segments = 3, parallel = TRUE)			
+			passtable_off(user, src)
+			user.setMovetype(user.movement_type & ~FLYING)
+		next_roll = world.time + 1 SECONDS
+	else
+		to_chat(user, span_notice("You need to catch your breath before you can roll again!"))
 
 
 /obj/item/katana/suicide_act(mob/user)
