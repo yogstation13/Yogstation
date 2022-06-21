@@ -84,7 +84,7 @@
 /obj/structure/rack,
 /obj/item/claymore{
 	name = "Ancient Sword";
-	desc = "It's cracked and blunted";
+	desc = "A cracked and blunted sword, clearly weathered over the ages.";
 	force = 21;
 	block_chance = 30
 	},
