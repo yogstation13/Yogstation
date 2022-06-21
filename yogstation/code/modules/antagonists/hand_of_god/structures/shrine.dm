@@ -53,7 +53,7 @@
 /datum/hog_god_interaction/targeted/construction/shrine/can_be_placed(var/turf/open/construction_place, var/datum/team/hog_cult/cult)
 	if(!construction_place)
 		return FALSE
-	var/area/location = construction_place.area
+	var/area/location = get_area(construction_place)
 	if(!location)
 		return FALSE
 	for(var/obj/structure/destructible/hog_structure/structure in area)
