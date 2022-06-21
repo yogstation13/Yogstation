@@ -32,5 +32,5 @@
 	warp_description = "a pulsating mass of energy in a form of a crystal"
 	structure_type = /obj/structure/destructible/hog_structure/lance
 	max_constructible_health = 65
-	integrity_per_process = 2
+	integrity_per_process = 5
 	icon_name = "lance_constructing"

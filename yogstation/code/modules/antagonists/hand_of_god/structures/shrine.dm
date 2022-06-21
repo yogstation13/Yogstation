@@ -7,7 +7,7 @@
 	anchored = TRUE
 	density = TRUE
 	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge, /datum/hog_god_interaction/structure/shield)
-	max_integrity = 500
+	max_integrity = 140
 	break_message = span_cult("The nexus explodes in a bright flash of light!") 
 	constructor_range = 10
 	var/energy_generation = 10
@@ -47,7 +47,7 @@
 	warp_description = "a pulsating mass of energy in a form of a strange structure"
 	structure_type = /obj/structure/destructible/hog_structure/shrine
 	max_constructible_health = 65
-	integrity_per_process = 2
+	integrity_per_process = 5
 	icon_name = "shrine_constructing"
 
 /datum/hog_god_interaction/targeted/construction/shrine/can_be_placed(var/turf/open/construction_place, var/datum/team/hog_cult/cult)
