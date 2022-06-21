@@ -4,7 +4,7 @@
 
 
 /obj/item/hog_item/upgradeable/sword
-	name = "hoggers"
+	name = "divine blade"
 	desc = "A long, sinistery looking sword."
 	resistance_flags = FIRE_PROOF
 	icon_state = "sword"
@@ -52,3 +52,14 @@
 	if(attack_type == LEAP_ATTACK)
 		final_block_chance = 100
 	return ..()
+
+/obj/item/restraints/handcuffs/energy/hogcult
+	name = "celestial bound"
+	desc = "Divine energy field that binds the wrists with celestial magic."
+	trashtype = /obj/item/restraints/handcuffs/energy/used
+	item_flags = DROPDEL
+
+/obj/item/restraints/handcuffs/energy/hogcult/used/dropped(mob/user)
+	user.visible_message(span_danger("[user]'s shackles shatter in a discharge of magic!"), \
+							span_userdanger("Your [src] shatters in a discharge of magic!"))
+	. = ..()

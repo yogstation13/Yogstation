@@ -104,17 +104,6 @@
 	to_chat(C, span_notice("[user] transfers [energy_to_give] energy to you. You now have [c_datum.energy] energy."))
 	give_energy(C, user)
 
-/obj/item/restraints/handcuffs/energy/hogcult
-	name = "celestial bound"
-	desc = "Divine energy field that binds the wrists with celestial magic."
-	trashtype = /obj/item/restraints/handcuffs/energy/used
-	item_flags = DROPDEL
-
-/obj/item/restraints/handcuffs/energy/hogcult/used/dropped(mob/user)
-	user.visible_message(span_danger("[user]'s shackles shatter in a discharge of magic!"), \
-							span_userdanger("Your [src] shatters in a discharge of magic!"))
-	. = ..()
-
 /*
 	Rcd-ing shit with ur book
 */

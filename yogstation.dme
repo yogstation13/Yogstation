@@ -3544,6 +3544,7 @@
 #include "yogstation\code\modules\antagonists\hand_of_god\god\living_interactions.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\god\misc_interactions.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\items\_hog_item.dm"
+#include "yogstation\code\modules\antagonists\hand_of_god\items\combat.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\items\cult_book.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\items\prismatic_lance.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\spells\_spell.dm"
