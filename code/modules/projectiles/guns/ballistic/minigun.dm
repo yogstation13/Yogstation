@@ -188,7 +188,7 @@
 		to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 	else
 		select = FALSE
-		burst_size = 10
+		burst_size = 7
 		to_chat(user, span_notice("You switch to [burst_size]-rnd burst. BRRRRRRRT."))
 	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
 	return
