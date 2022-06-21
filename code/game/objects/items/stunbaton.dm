@@ -15,7 +15,8 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 
 	var/cooldown_check = 0
-
+	/// if the baton is on cooldown from being  dropped
+	var/dropcheck = FALSE
 	///how long we can't use this baton for after slapping someone with it. Does not account for melee attack cooldown (default of 0.8 seconds).
 	var/cooldown = 1.2 SECONDS
 	///how long a clown stuns themself for, or someone is stunned for if they are hit to >90 stamina damage
@@ -34,6 +35,7 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
+	var/thrown = FALSE
 
 /obj/item/melee/baton/get_cell()
 	return cell
@@ -44,11 +46,13 @@
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
+	status = FALSE
 	if(preload_cell_type)
 		if(!ispath(preload_cell_type,/obj/item/stock_parts/cell))
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, .proc/throwbaton)
 	update_icon()
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -57,6 +61,22 @@
 	//Only mob/living types have stun handling
 	if(status && prob(throw_hit_chance) && iscarbon(hit_atom))
 		baton_stun(hit_atom)
+
+/obj/item/melee/baton/proc/throwbaton()
+	thrown = TRUE
+
+/obj/item/melee/baton/dropped(mob/user, silent)
+	if(loc != user.loc)
+		return
+	. = ..()
+	if(!thrown)
+		dropcheck = TRUE
+		status = FALSE
+		visible_message(span_warning("The safety strap on [src] is pulled as it is dropped, triggering its emergency shutoff!"))
+		addtimer(VARSET_CALLBACK(src, dropcheck, FALSE), 8 SECONDS)
+		update_icon()
+	else
+		thrown = FALSE
 
 /obj/item/melee/baton/loaded //this one starts with a cell pre-installed.
 	preload_cell_type = /obj/item/stock_parts/cell/high
@@ -124,6 +144,9 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
+	if(dropcheck)
+		to_chat(user, "[src]'s emergency shutoff is still active!")
+		return
 	if(cell && cell.charge > hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
