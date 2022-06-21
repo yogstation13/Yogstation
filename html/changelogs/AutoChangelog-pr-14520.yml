@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "golem greet text no longer gives conflicting information with certain golem types by assuming your material"
