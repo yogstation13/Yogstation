@@ -40,8 +40,8 @@
 	var/datum/hog_product/picked_product = products_to_buy[input(C,"What do you want to order?","Item") in names]
 	if(!picked_product)
 		return
-    if(!picked_product.confirm(C))
-        return
+	if(!picked_product.confirm(C))
+		return
 	if(picked_product.cost > cult.energy)
 		to_chat(C,span_warning("Your cult doesn't have enough energy to afford [picked_product.name]!")) 
 		return
@@ -83,6 +83,6 @@
 	var/confirm = alert(user, "[description]. Creating it will cost [cost] energy, and take [time_to_make / 10] seconds.", "[name]", "Yes", "No")
 	if(confirm == "No")
 		return FALSE
-    return TRUE
+	return TRUE
 
 
