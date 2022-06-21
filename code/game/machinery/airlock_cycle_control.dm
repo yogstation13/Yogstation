@@ -729,7 +729,7 @@
 			if(depressurization_target > depressurization_margin - 0.15)
 				depressurization_target = depressurization_margin - 0.15
 		if("depressurization_target")
-			depressurization_target = clamp(text2num(params["pressure"]), 0, depressurization_target - 0.15)
+			depressurization_target = clamp(text2num(params["pressure"]), 0, depressurization_margin - 0.15)
 		if("skip_delay")
 			skip_delay = clamp(text2num(params["skip_delay"]), 0, 1200)
 	update_icon(TRUE)

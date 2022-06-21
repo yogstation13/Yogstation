@@ -187,6 +187,7 @@
 
 	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !HAS_TRAIT(I, TRAIT_NODROP))
 		thrown_thing = I
+		SEND_SIGNAL(thrown_thing, COMSIG_MOVABLE_PRE_DROPTHROW, src)
 		dropItemToGround(I, silent = TRUE)
 
 		if(HAS_TRAIT(src, TRAIT_PACIFISM) && I.throwforce)
@@ -289,7 +290,7 @@
 				return
 			var/damage_amount = I.embedding.embedded_unsafe_removal_pain_multiplier * I.w_class
 			L.receive_damage(damage_amount, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
-			if(remove_embedded_object(I, get_turf(src), damage_amount))
+			if(remove_embedded_object(I, get_turf(src), (damage_amount == 0)))
 				usr.put_in_hands(I)
 				usr.visible_message("[usr] successfully rips [I] out of [usr.p_their()] [L.name]!", span_notice("You successfully remove [I] from your [L.name]."))
 		return
@@ -497,8 +498,8 @@
 		return 0
 	return ..()
 
-/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE)
-	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
+/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
+	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
 		return TRUE
 
 	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
@@ -538,12 +539,9 @@
 				add_splatter_floor(T)
 			if(stun)
 				adjustBruteLoss(3)
-		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam, needs_metabolizing = TRUE))
-			if(T)
-				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
 			if(T)
-				T.add_vomit_floor(src, VOMIT_TOXIC)//toxic barf looks different
+				T.add_vomit_floor(src, vomit_type, purge_ratio) //toxic barf looks different || call purge when doing detoxicfication to pump more chems out of the stomach.
 		T = get_step(T, dir)
 		if (is_blocked_turf(T))
 			break

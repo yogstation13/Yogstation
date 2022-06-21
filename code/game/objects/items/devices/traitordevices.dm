@@ -82,6 +82,9 @@ effective or pretty fucking useless.
 	if(!irradiate || !is_syndicate(user)) // only syndicates are aware of this being a rad laser and know how to use it.
 		return
 	if(!used)
+		if(beep_cooldown < world.time)
+			playsound(src, 'sound/effects/fastbeep.ogg', 20)
+			beep_cooldown = world.time + 40
 		log_combat(user, M, "irradiated", src)
 		var/cooldown = get_cooldown()
 		used = TRUE

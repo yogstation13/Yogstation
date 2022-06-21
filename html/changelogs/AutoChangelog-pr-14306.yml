@@ -1,0 +1,4 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - rscadd: "Batons are now upgradable to be 1 hit stun and can also be equipped with mindshield firing pins"

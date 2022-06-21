@@ -228,13 +228,14 @@
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	content_overlays = TRUE
 
 /obj/item/storage/belt/security/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
+	STR.max_combined_w_class = 18
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.set_holdable(list(
 		/obj/item/melee/baton,
@@ -246,6 +247,10 @@
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_box,
+		/obj/item/storage/box/rubbershot,
+		/obj/item/storage/box/lethalshot,
+		/obj/item/storage/box/breacherslug,
+		/obj/item/storage/box/beanbag,
 		/obj/item/reagent_containers/food/snacks/donut,
 		/obj/item/kitchen/knife/combat,
 		/obj/item/flashlight/seclite,
@@ -254,6 +259,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/holosign_creator/security,
+		/obj/item/shield/riot/tele,
 		/obj/item/barrier_taperoll/police
 		))
 
@@ -266,19 +272,41 @@
 	new /obj/item/barrier_taperoll/police(src)
 	update_icon()
 
+/obj/item/storage/belt/security/chief
+	name = "\improper Head of Security's toolbelt"
+	desc = "Holds tools, looks snazzy."
+	icon_state = "securitybelt_hos"
+	item_state = "security_hos"
+
+/obj/item/storage/belt/security/chief/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.max_combined_w_class = 21
+
+/obj/item/storage/belt/security/chief/full/PopulateContents()
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/grenade/flashbang(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/melee/baton/loaded(src)
+	new /obj/item/barrier_taperoll/police(src)
+	new /obj/item/shield/riot/tele(src)
+	update_icon()
+
 /obj/item/storage/belt/security/webbing
 	name = "security webbing"
 	desc = "Unique and versatile chest rig, can hold security gear."
 	icon_state = "securitywebbing"
 	item_state = "securitywebbing"
 	w_class = WEIGHT_CLASS_BULKY
-	content_overlays = FALSE
 	custom_premium_price = 800
 
 /obj/item/storage/belt/security/webbing/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
+	STR.max_items = 7
+	STR.max_combined_w_class = 21
 
 /obj/item/storage/belt/mining
 	name = "explorer's webbing"
@@ -332,7 +360,9 @@
 		/obj/item/storage/bag/plants,
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
-		/obj/item/jawsoflife
+		/obj/item/jawsoflife,
+		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/claymore/bone
 		))
 
 
@@ -456,8 +486,9 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "belt"
 	item_state = "security"
+	content_overlays = TRUE
 
-/obj/item/storage/belt/military/abductor/full/PopulateContents()
+/obj/item/storage/belt/military/abductor/agent/PopulateContents()
 	new /obj/item/screwdriver/abductor(src)
 	new /obj/item/wrench/abductor(src)
 	new /obj/item/weldingtool/abductor(src)
@@ -465,6 +496,56 @@
 	new /obj/item/wirecutters/abductor(src)
 	new /obj/item/multitool/abductor(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"white")
+
+/obj/item/storage/belt/military/abductor/scientist/PopulateContents()
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/scalpel/alien(src)
+	new /obj/item/hemostat/alien(src)
+	new /obj/item/retractor/alien(src)
+	new /obj/item/circular_saw/alien(src)
+	new /obj/item/surgicaldrill/alien(src)
+	new /obj/item/cautery/alien(src)
+
+/obj/item/storage/belt/admin
+	name = "badmin belt"
+	desc = "A belt used by admins to debug."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "belt"
+	item_state = "security"
+	content_overlays = TRUE // This won't end well
+
+/obj/item/storage/belt/military/snack/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 1000
+	STR.max_combined_w_class = 1000
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
+
+/obj/item/storage/belt/admin/full/PopulateContents()
+	new /obj/item/construction/rcd/combat/admin(src)
+	new /obj/item/pipe_dispenser(src)
+	new /obj/item/shuttle_creator/admin(src)
+	new /obj/item/handdrill(src)
+	new /obj/item/jawsoflife(src)
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/multitool/tricorder(src)
+	new /obj/item/storage/bag/construction/admin/full(src)
+	new /obj/item/extinguisher/mini(src)
+	new /obj/item/holosign_creator/multi/CE(src)
+	new /obj/item/restraints/handcuffs/alien(src)
+	new /obj/item/grenade/flashbang(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/melee/baton/loaded(src)
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/scalpel/alien(src)
+	new /obj/item/hemostat/alien(src)
+	new /obj/item/retractor/alien(src)
+	new /obj/item/circular_saw/alien(src)
+	new /obj/item/surgicaldrill/alien(src)
+	new /obj/item/cautery/alien(src)
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/healthanalyzer/advanced(src)
 
 /obj/item/storage/belt/military/army
 	name = "army belt"
@@ -477,11 +558,6 @@
 	desc = "A tactical assault belt."
 	icon_state = "assaultbelt"
 	item_state = "security"
-
-/obj/item/storage/belt/military/assault/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
 
 /obj/item/storage/belt/grenade
 	name = "grenadier belt"
@@ -590,7 +666,8 @@
 /obj/item/storage/belt/bandolier/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 18
+	STR.max_items = 24
+	STR.max_combined_w_class = 24
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
 		/obj/item/ammo_casing/shotgun
@@ -601,6 +678,7 @@
 	desc = "A holster to carry a handgun and ammo. WARNING: Badasses only."
 	icon_state = "holster"
 	item_state = "holster"
+	w_class = WEIGHT_CLASS_NORMAL
 	alternate_worn_layer = UNDER_SUIT_LAYER
 
 /obj/item/storage/belt/holster/ComponentInitialize()
@@ -619,7 +697,44 @@
 	var/static/items_inside = list(
 		/obj/item/gun/ballistic/revolver/detective = 1,
 		/obj/item/ammo_box/c38 = 2)
-	generate_items_inside(items_inside,src)
+	generate_items_inside(items_inside, src)
+
+/obj/item/storage/belt/quiver
+	name = "leather quiver"
+	desc = "A quiver made from the hide of some animal. Used to hold arrows."
+	icon_state = "quiver"
+	item_state = "quiver"
+
+/obj/item/storage/belt/quiver/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 15
+	STR.display_numerical_stacking = TRUE
+	STR.set_holdable(list(
+		/obj/item/ammo_casing/caseless/arrow,
+		/obj/item/stand_arrow,
+		/obj/item/throwing_star/magspear
+		))
+
+/obj/item/storage/belt/quiver/ashwalker/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/caseless/arrow/bone(src)
+
+/obj/item/storage/belt/quiver/admin
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/storage/belt/quiver/admin/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 100
+	STR.max_items = 100
+
+/obj/item/storage/belt/quiver/admin/full/PopulateContents()
+	for(var/arrow in typesof(/obj/item/ammo_casing/caseless/arrow))
+		if(istype(arrow, /obj/item/ammo_casing/caseless/arrow/energy))
+			continue
+		for(var/i in 1 to 10)
+			new arrow(src)
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"

@@ -162,6 +162,9 @@
 	if(..())
 		if(reagents.total_volume)
 			if(M.reagents)
+				to_chat(user, span_warning("You begin to injecting [src]'s contents into [M]"))
+				if(!do_after(user, 0.5 SECONDS, M))
+					return
 				reagents.reaction(M, INJECT, reagents.total_volume)
 				reagents.trans_to(M, reagents.total_volume, transfered_by = user)
 
