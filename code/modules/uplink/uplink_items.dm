@@ -574,6 +574,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 25
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
+/datum/uplink_item/dangerous/sniper
+	name = "Zorg ZF-1 Pod Weapon System"
+	desc = "The ZF-1 is an ambidextrous multifunctional weapon incapable of being detected by X-Rays featuring a titanium recharger, 300 round clip with a 3 round burst. It also features a variety of other fire modes as well, including a self-destruct button."
+	item = /obj/item/gun/ballistic/automatic/zf1
+	cost = 40
+	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear)
+
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
 	category = "Stealthy Weapons"
