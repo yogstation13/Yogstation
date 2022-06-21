@@ -1,16 +1,16 @@
 #define REGAL_RAT_CHANCE 2
-#define PLAGUE_RAT_CHANCE 5
+#define PLAGUE_RAT_CHANCE 0
 SUBSYSTEM_DEF(minor_mapping)
 	name = "Minor Mapping"
 	init_order = INIT_ORDER_MINOR_MAPPING
 	flags = SS_NO_FIRE
 
 /datum/controller/subsystem/minor_mapping/Initialize(timeofday)
-	trigger_migration(CONFIG_GET(number/mice_roundstart),FALSE) //we dont want roundstart regal rats
+	trigger_migration(CONFIG_GET(number/mice_roundstart), FALSE) //we dont want roundstart special rats
 	place_satchels()
 	return ..()
 
-/datum/controller/subsystem/minor_mapping/proc/trigger_migration(num_mice=10, regal=TRUE)
+/datum/controller/subsystem/minor_mapping/proc/trigger_migration(num_mice = 10, special = TRUE)
 	var/list/exposed_wires = find_exposed_wires()
 
 	var/mob/living/simple_animal/M
@@ -20,9 +20,9 @@ SUBSYSTEM_DEF(minor_mapping)
 	while((num_mice > 0) && exposed_wires.len)
 		proposed_turf = pick_n_take(exposed_wires)
 		if(!M)
-			if(regal && prob(REGAL_RAT_CHANCE))
+			if(special && prob(REGAL_RAT_CHANCE))
 				M = new /mob/living/simple_animal/hostile/regalrat/controlled(proposed_turf)
-			else if(prob(PLAGUE_RAT_CHANCE))
+			else if(special && prob(PLAGUE_RAT_CHANCE))
 				M = new /mob/living/simple_animal/hostile/rat/plaguerat(proposed_turf)
 				notify_ghosts("A plague \a [M] has migrated into the station!", source = M, action=NOTIFY_ORBIT, header="Something Interesting!")
 			else

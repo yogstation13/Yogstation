@@ -52,8 +52,8 @@
 		if(INFILTRATION_ALLCOMPLETE)
 			SSticker.mode_result = "major win - objectives complete"
 		if(INFILTRATION_MOSTCOMPLETE)
-			SSticker.mode_result = "semi-major win - most objectives complete"
+			SSticker.mode_result = "minor win - most objectives complete"
 		if(INFILTRATION_SOMECOMPLETE)
-			SSticker.mode_result = "minor win - some objectives complete"
+			SSticker.mode_result = "neutral - some objectives complete"
 		else
 			SSticker.mode_result = "loss - no objectives complete"

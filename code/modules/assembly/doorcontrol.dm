@@ -145,3 +145,18 @@
 			C.cremate(usr)
 
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 50)
+
+
+/obj/item/assembly/control/holosign
+	name = "holosign controller"
+	desc = "A remote controller for a holosign."
+
+/obj/item/assembly/control/holosign/activate()
+	if(cooldown)
+		return
+	cooldown = TRUE
+	for(var/obj/machinery/holosign/H in GLOB.machines)
+		if(H.id == id)
+			H.toggle()
+
+	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 50)
