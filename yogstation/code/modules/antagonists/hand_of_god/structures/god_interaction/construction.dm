@@ -17,7 +17,7 @@
 		to_chat(user, span_warning("Not a valid entry."))
 		return
 	var/turf/open/construction_place = target
-	if(!construction_place || !can_be_placed)
+	if(!construction_place || !can_be_placed(construction_place))
 		to_chat(user, span_warning("Not a valid place."))
 		retun
 	if(!time_builded)
@@ -36,6 +36,7 @@
 		warp.name = warp_name 
 		warp.description = warp_description
 		warp.start()
+
 	. = ..()
 
 /datum/hog_god_interaction/targeted/construction/proc/can_be_placed(var/turf/open/construction_place)
