@@ -220,11 +220,13 @@
 	slot_flags = 0
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
-	mag_type = /obj/item/ammo_box/magazine/m556
+	mag_type = /obj/item/ammo_box/magazine/zf1a
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	burst_size = 3
 	fire_delay = 1
+	internal_magazine = TRUE
+	tac_reloads = FALSE
 	var/obj/item/gun/ballistic/rocketlauncher/unrestricted/zlauncher
 	var/obj/item/gun/energy/e_gun/dragnet/zdragnet
 	var/obj/item/flamethrower/full/tank/zflamethrower
