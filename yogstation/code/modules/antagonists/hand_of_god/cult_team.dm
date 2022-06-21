@@ -14,14 +14,14 @@
 	var/list/objects = list()
 	var/recalls = 1
 	var/research_projects = list()
-	var/researches = list()
+	var/upgrades = list()
 	var/researching = FALSE
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
 	GLOB.hog_cults += src
 	addtimer(CALLBACK(src, .proc/here_comes_the_money), income_interval)
-	for(var/R in researches)
+	for(var/datum/hog_research/R in upgrades)
 		R = new
 	
 /datum/team/hog_cult/proc/here_comes_the_money()
@@ -58,10 +58,27 @@
 	addtimer(CALLBACK(src, .proc/process_research), 1 SECONDS)
 
 /datum/team/hog_cult/proc/process_research()
+	for(var/datum/hog_research_entry/project in research_projects)
+		if(world.time <= project.when_finished)
+			finish_research(project)
+	if(!research_projects.len)
+		researching = FALSE
+		return
 	addtimer(CALLBACK(src, .proc/process_research), 1 SECONDS)
+
+/datum/team/hog_cult/proc/finish_research(var/datum/hog_research_entry/research)
+	for(var/datum/hog_research/upgrade in upgrades)	
+		if(istype(research.upgrade, upgrade))
+			if(upgrade.levels < upgrade.max_levels)
+				upgrade.levels += 1
+				upgrade.on_researched()
+				break
+	research_projects -= research
+	qdel(research)
 
 /datum/hog_research
 	var/levels = 0
+	var/max_level = 3
 	var/list/affected_objects = list()
 
 /datum/hog_research/proc/on_researched()

@@ -17,10 +17,10 @@
 
 	var/datum/hog_research/new_proj = new research
 	user.cult.research_projects += new_proj
-	new_proj.when_finished = world.time + time_to_make
+	new_proj.when_finished = world.time + new_proj.time_to_make
 	new_proj.lab = owner
-	if(!cult.researching)
-		cult.start_researching()
+	if(!user.cult.researching)
+		user.cult.start_researching()
 
 	. = ..()
 
@@ -28,7 +28,7 @@
 	var/name = "big"
 	var/description = "chungus"
 	var/time_to_make = 1 SECONDS
-	var/datum/hog_research =  /datum/hog_research
+	var/datum/hog_research/upgrade =  /datum/hog_research
 	var/obj/structure/destructible/hog_structure/lab 
 	var/when_finished
 
