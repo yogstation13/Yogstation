@@ -300,7 +300,7 @@
 	icon_state = "securitywebbing"
 	item_state = "securitywebbing"
 	w_class = WEIGHT_CLASS_BULKY
-	custom_premium_price = 800
+	custom_premium_price = 200
 
 /obj/item/storage/belt/security/webbing/ComponentInitialize()
 	. = ..()
