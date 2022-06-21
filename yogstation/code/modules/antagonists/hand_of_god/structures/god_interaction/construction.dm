@@ -34,7 +34,7 @@
 		warp.integrity_per_process = 1
 		warp.icon_state = icon_name
 		warp.name = warp_name 
-		warp.description = warp_description
+		warp.desc = warp_description
 		warp.start()
 
 	. = ..()
@@ -46,7 +46,7 @@
 
 /obj/structure/destructible/warp   ///It is like protoss construction in StarCraft 2 but in SS13
 	name = "Warp rift"
-	description = "For Adun!"  
+	desc = "For Adun!"  
 	max_integrity = 1  
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	var/obj/structure/destructible/hog_structure/structure_type

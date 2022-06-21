@@ -188,3 +188,16 @@
 			return
 	holder.remove_reagent(type, 0.6)	
 
+///////////////////////////////////
+
+/datum/hog_god_interaction/targeted/construction/lance
+    name = "Construct a fountain"
+    description = "Construct a fountain, that will produce godblood. Godblood can be drinked by your servants, to heal them, or can be forcefeeded to heretical cultists, to deconvert them."
+    cost = 175
+    time_builded = 20 SECONDS
+    warp_name = "fountain"
+    warp_description = "a pulsating mass of energy in a form of a fountain"
+    structure_type = /obj/structure/destructible/hog_structure/lance
+    max_constructible_health = 65
+    integrity_per_process = 2
+    icon_name = "fountain_constructing"
