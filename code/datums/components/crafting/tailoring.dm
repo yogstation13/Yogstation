@@ -550,7 +550,7 @@
 	subcategory = CAT_EQUIPMENT
 
 /datum/crafting_recipe/meatbagcloth
-	name = "Cloth Organic Matter Bag"
+	name = "Cloth Organic Matter Pouch"
 	result = /obj/item/storage/bag/meatbag
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/cloth = 3)
@@ -558,7 +558,7 @@
 	subcategory = CAT_EQUIPMENT
 
 /datum/crafting_recipe/meatbagleather // for ashwalkers to make
-	name = "Leather Organic Matter Bag"
+	name = "Leather Organic Matter Pouch"
 	result = /obj/item/storage/bag/meatbag/ashwalker
 	time = 5 SECONDS
 	reqs = list(/obj/item/stack/sheet/leather = 1)
