@@ -38,3 +38,27 @@
 		return		
 	special_interaction(user)
 
+/datum/hog_god_interaction/targeted/construction/shrine
+    name = "Construct a shrine"
+    description = "Construct a shrine, that will produce energy for your cult. Note, that it can be constructed only once per area."
+    cost = 265
+    time_builded = 35 SECONDS
+    warp_name = "shrine"
+    warp_description = "a pulsating mass of energy in a form of a strange structure"
+    structure_type = /obj/structure/destructible/hog_structure/shrine
+    max_constructible_health = 65
+    integrity_per_process = 2
+    icon_name = "shrine_constructing"
+
+/datum/hog_god_interaction/targeted/construction/shrine/can_be_placed(var/turf/open/construction_place, var/datum/team/hog_cult/cult)
+	if(!construction_place)
+		return FALSE
+	var/area/location = construction_place.area
+	if(!location)
+		return FALSE
+	for(var/obj/structure/destructible/hog_structure/structure in area)
+		if(istype(structure, /obj/structure/destructible/hog_structure/shrine))
+			return FALSE
+		if(istype(structure, /obj/structure/destructible/hog_structure/lance/nexus))
+			return FALSE
+	return TRUE

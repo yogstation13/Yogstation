@@ -17,7 +17,7 @@
 		to_chat(user, span_warning("Not a valid entry."))
 		return
 	var/turf/open/construction_place = target
-	if(!construction_place || !can_be_placed(construction_place))
+	if(!construction_place || !can_be_placed(construction_place, user.cult))
 		to_chat(user, span_warning("Not a valid place."))
 		return
 	if(!time_builded)
@@ -39,12 +39,20 @@
 
 	. = ..()
 
-/datum/hog_god_interaction/targeted/construction/proc/can_be_placed(var/turf/open/construction_place)
+/datum/hog_god_interaction/targeted/construction/proc/can_be_placed(var/turf/open/construction_place, var/datum/team/hog_cult/cult)
 	if(!construction_place)
 		return FALSE
-	return TRUE
+    var/can_we = FALSE
+	for(var/obj/structure/destructible/hog_structure/structure in objects)
+        if(!structure.constructor_range)
+            continue
+        if(structure.cult != cult)
+            continue
+        if(get_dist(get_turf(structure), construction_place))
+            can_we = TRUE ///Yes we can!!!
+	return can_we
 
-/obj/structure/destructible/warp   ///It is like protoss construction in StarCraft 2 but in SS13
+/obj/structure/destructible/warp   ///It is like protoss construction in StarCraft 2 but in SS13!
 	name = "Warp rift"
 	desc = "For Adun!"  
 	max_integrity = 1  
