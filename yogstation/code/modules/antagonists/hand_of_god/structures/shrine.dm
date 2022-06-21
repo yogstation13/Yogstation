@@ -56,7 +56,7 @@
 	var/area/location = get_area(construction_place)
 	if(!location)
 		return FALSE
-	for(var/obj/structure/destructible/hog_structure/structure in area)
+	for(var/obj/structure/destructible/hog_structure/structure in location)
 		if(istype(structure, /obj/structure/destructible/hog_structure/shrine))
 			return FALSE
 		if(istype(structure, /obj/structure/destructible/hog_structure/lance/nexus))

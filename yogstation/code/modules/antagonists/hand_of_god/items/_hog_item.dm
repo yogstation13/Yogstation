@@ -20,14 +20,14 @@
 /obj/item/hog_item/book/attack(mob/M, mob/living/carbon/human/user)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(!cultie || cultie.cult != src.cult)
-		if(M != user)
+		if(M == user)
 			return ..()
-	else
 		user.visible_message(span_warning("The [src] sudennly hits [user]!"), \
 			span_cultlarge("I don't think so."))
 		attack(user, user)
 		user.dropItemToGround(src, TRUE)
 		return
+	. = ..()
 
 
 
