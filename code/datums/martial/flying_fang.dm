@@ -260,8 +260,8 @@
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, "martial")
 	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
-	H.physiology.stamina_mod *= 0.66
-	H.physiology.stun_mod *= 0.66
+	H.physiology.stamina_mod *= 0.5
+	H.physiology.stun_mod *= 0.5
 	var/datum/species/S = H.dna?.species
 	if(S)
 		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
@@ -272,8 +272,8 @@
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, "martial")
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, "martial")
 	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
-	H.physiology.stamina_mod /= 0.66
-	H.physiology.stun_mod /= 0.66
+	H.physiology.stamina_mod /= 0.5
+	H.physiology.stun_mod /= 0.5
 	var/datum/species/S = H.dna?.species
 	if(S)
 		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
