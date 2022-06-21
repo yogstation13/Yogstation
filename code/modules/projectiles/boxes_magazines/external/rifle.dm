@@ -20,3 +20,11 @@
 	caliber = "a556"
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/ammo_box/magazine/zf1a
+	name = "ZF-1 Pod Magazine"
+	desc = "This shouldnt be removed... How can you see it?"
+	icon_state = "5.56m"
+	ammo_type = /obj/item/ammo_casing/a556
+	caliber = "a556"
+	max_ammo = 300

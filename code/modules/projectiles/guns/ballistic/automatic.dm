@@ -118,7 +118,7 @@
 	desc = "A three-round burst 5.56 toploading carbine, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
 	icon_state = "m90"
 	item_state = "m90"
-	mag_type = /obj/item/ammo_box/magazine/m556
+	mag_type = /obj/item/ammo_box/magazine/zf1a
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/underbarrel
@@ -214,10 +214,12 @@
 
 /obj/item/gun/ballistic/automatic/zf1
 	name = "Zorg ZF-1 Pod Weapon System"
-	desc = "The ZF-1 is an ambidextrous multifunctional weapon incapable of being detected by X-Rays featuring a titanium recharger, 3000 round clip with a burst of 3 to 300. It also features a variety of other fire modes as well, including a self-destruct button. This one might be lacking a few features..."
+	desc = "The ZF-1 is an ambidextrous multifunctional weapon incapable of being detected by X-Rays featuring a titanium recharger, 300 round clip with a 3 round burst. It also features a variety of other fire modes as well, including a self-destruct button."
 	icon_state = "zf1"
 	item_state = "zf1"
 	slot_flags = 0
+	w_class = WEIGHT_CLASS_HUGE
+	weapon_weight = WEAPON_HEAVY
 	mag_type = /obj/item/ammo_box/magazine/m556
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
@@ -253,8 +255,11 @@
 			select = 4
 			to_chat(user, span_notice("You switch to flamethrower."))
 		if(4)
-			select = 0
+			select = 5
 			to_chat(user, span_notice("You switch to bolt thrower."))
+		if(5)
+			select = 0
+			to_chat(user, span_notice("You hover over the self destruct button..."))
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 	return
 
@@ -267,6 +272,8 @@
 		zflamethrower.afterattack(target, user, flag, params)
 	if(select == 5)
 		zgauss.afterattack(target, user, flag, params)
+	if(select == 0)
+		to_chat(user, span_warning("The device is armed! Its going to explode!.. once its implemented... :)"))
 	else
 		return ..()
 
