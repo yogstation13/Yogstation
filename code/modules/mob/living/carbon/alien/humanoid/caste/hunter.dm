@@ -90,7 +90,7 @@
 		to_chat(src, span_alertalien("You are too fatigued to pounce right now!"))
 		return
 
-	if(!has_gravity() || if(!has_gravity() || !leap_target.has_gravity()))
+	if(!has_gravity() || !has_gravity() || !leap_target.has_gravity())
 		to_chat(src, span_alertalien("It is unsafe to leap without gravity!"))
 		//It's also extremely buggy visually, so it's balance+bugfix
 		return
