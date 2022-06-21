@@ -83,7 +83,7 @@
 			if(flora_spawn_list && !isemptylist(flora_spawn_list) && prob(flora_spawn_chance))
 				var/can_spawn = TRUE
 
-				if(!A.flora_allowed)
+				if(!A.area_flags & FLORA_ALLOWED)
 					can_spawn = FALSE
 				if(can_spawn)
 					spawned_flora = pickweight(flora_spawn_list)
@@ -94,7 +94,7 @@
 			if(feature_spawn_list && !isemptylist(feature_spawn_list) && prob(feature_spawn_chance))
 				var/can_spawn = TRUE
 
-				if(!A.flora_allowed) //checks the same flag because lol dunno
+				if(!(A.area_flags & FLORA_ALLOWED)) //checks the same flag because lol dunno
 					can_spawn = FALSE
 
 				var/atom/picked_feature = pickweight(feature_spawn_list)
@@ -111,13 +111,13 @@
 			if(mob_spawn_list && !isemptylist(mob_spawn_list) && !spawned_flora && !spawned_feature && prob(mob_spawn_chance))
 				var/can_spawn = TRUE
 
-				if(!A.mob_spawn_allowed)
+				if(!(A.area_flags & MOB_SPAWN_ALLOWED))
 					can_spawn = FALSE
 
 				var/atom/picked_mob = pickweight(mob_spawn_list)
 
 				if(picked_mob == SPAWN_MEGAFAUNA) //
-					if((A.megafauna_spawn_allowed) && megafauna_spawn_list?.len) //this is danger. it's boss time.
+					if((A.area_flags & MEGAFAUNA_SPAWN_ALLOWED) && megafauna_spawn_list?.len) //this is danger. it's boss time.
 						picked_mob = pickweight(megafauna_spawn_list)
 					else //this is not danger, don't spawn a boss, spawn something else
 						picked_mob = pickweight(mob_spawn_list - SPAWN_MEGAFAUNA) //What if we used 100% of the brain...and did something (slightly) less shit than a while loop?

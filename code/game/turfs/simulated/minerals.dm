@@ -178,9 +178,6 @@
 			src = M
 			M.levelupdate()
 
-	baseturfs = /turf/open/floor/plating/asteroid/icemoon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-
 /turf/closed/mineral/random/high_chance
 	icon_state = "rock_highchance"
 	mineralChance = 25
