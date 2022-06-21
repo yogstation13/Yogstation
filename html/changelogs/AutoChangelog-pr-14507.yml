@@ -1,7 +1,0 @@
-author: "nmajask"
-delete-after: true 
-changes: 
-  - bugfix: "fixed ashwalker clothing having missing pixels if worn by a female"
-  - bugfix: "fixed footwraps not showing up on the preference menu and being incorrect when a job outfit is selected by an admin"
-  - bugfix: "fixed selecting an outfit for a ghost who had their original body offered teleporting the wrong player"
-  - bugfix: "fixed syringes not embedding"

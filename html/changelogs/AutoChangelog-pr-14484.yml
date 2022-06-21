@@ -1,6 +1,0 @@
-author: "tattax"
-delete-after: true 
-changes: 
-  - rscadd: "you can now hold space bats"
-  - bugfix: "bats can now actually see in the dark"
-  - spellcheck: "uncapitalized simplemob names"
