@@ -1,12 +1,12 @@
 /obj/structure/destructible/hog_structure/item_maker/workshop
 	name = "celestial workshop"
 	desc = "a magical structure, capable of creating otherworldy objects"
-	break_message = span_warning("bruh!") 
+	break_message = span_warning("the celestial workshop shatters into pieces!") 
 	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge, /datum/hog_god_interaction/structure/shield)
 	icon = 'icons/obj/hand_of_god_structures.dmi'
-	icon_originalname = "lance"
+	icon_originalname = "workshop"
 	max_integrity = 100
-	products = list(/datum/hog_product)
+	products = list(/datum/hog_product/sword, /datum/hog_product/shield)
 
 /datum/hog_product/sword
 	name = "Cult sword"
@@ -15,7 +15,7 @@
 	cost = 85
 	result = /obj/item/hog_item/upgradeable/sword
 
-/datum/hog_product/sword
+/datum/hog_product/shield
 	name = "Cult shield"
 	description = "A magical shield, that is capable of blocking some of attacks, if is used by a believer."
 	time_to_make = 20 SECONDS
@@ -32,4 +32,4 @@
 	structure_type = /obj/structure/destructible/hog_structure/item_maker/workshop
 	max_constructible_health = 100
 	integrity_per_process = 6
-	icon_name = "lance_constructing"
+	icon_name = "workshop_constructing"

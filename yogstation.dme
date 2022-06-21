@@ -3559,6 +3559,7 @@
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\fountain.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\item_maker.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\lance.dm"
+#include "yogstation\code\modules\antagonists\hand_of_god\structures\library.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\nexus.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\shrine.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\workshop.dm"
