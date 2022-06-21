@@ -592,7 +592,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/rune_scimmy/examine(mob/living/user)
 	. = ..()
 	. += span_notice("This blade fills you with a need to 'grind'. Slay hostile fauna to increase the Scimmy's power and earn loot.")
-	. += span_notice("The blade has grinded [mobs_grinded] out of [max_grind] to reach maximum power, and will deal [mobs_grinded * 5] bonus damage to fauna.")
+	. += span_notice("The blade has grinded [mobs_grinded] out of [max_grind] fauna to reach maximum power, and will deal [mobs_grinded * 5] bonus damage to fauna.")
 
 /obj/item/rune_scimmy/afterattack(atom/target, mob/user, proximity, click_parameters)
 	. = ..()
