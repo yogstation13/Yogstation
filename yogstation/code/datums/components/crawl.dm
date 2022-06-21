@@ -441,6 +441,10 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 			index = index == 1 ? GLOB.vomit_spots.len : index - 1
 		else
 			index = index == GLOB.vomit_spots.len ? 1 : index + 1
+		var/atom/vomit_spot = GLOB.vomit_spots[index]
+		if(vomit_spot.z != src.z)
+			follow_next(reverse) //im sure this will have no ill effects since a GLOB.vomit_spots of 1 means there's at least your pace to pop out RIGHT
+			return
 		currentvomit = GLOB.vomit_spots[index]
 		follow_vomit()
 

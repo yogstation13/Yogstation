@@ -126,8 +126,8 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
 			D.adjust_money(point_gain)
-			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
-			say("Explosion details and mixture analyzed and sold to the highest bidder for $[point_gain], with a reward of [point_gain] points.")
+			linked_techweb.add_stored_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
+			say("Explosion details and mixture analyzed and sold to the highest bidder for $[point_gain], with a reward of [point_gain] points to be processed by research servers.")
 
 	else //you've made smaller bombs
 		say("Data already captured. Aborting.")

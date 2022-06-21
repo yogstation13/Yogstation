@@ -19,9 +19,8 @@ It can charge at its target, and also heavily damaging anything directly hit in 
 If at half health it will start to charge from all sides with clones.
 
 When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as one of the following: 
- 1.set of knuckles that can trap victims where they stand
- 2. A cursed stomach that allows the user to hop between vomit puddles
- 3.A pair of cuffs allowing the wearer to devour creatures to heal
+ 1.A set of knuckles that can trap victims where they stand
+ 2.A pair of cuffs allowing the wearer to devour creatures to heal
 
 Difficulty: Hard
 

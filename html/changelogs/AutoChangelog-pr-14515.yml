@@ -1,0 +1,4 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - tweak: "Adds in Surgery Duffel and a Medical mask with an Anesthetic tank while removing the surgery tools on the table, this also means they get a sterilizer a razor, and an extra surgery mask now"

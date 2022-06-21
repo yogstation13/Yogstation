@@ -170,8 +170,12 @@
 
 	user.visible_message(span_warning("[user] begins wrapping the wounds on [M]'s [limb.name] with [src]..."), span_warning("You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]..."))
 
+	playsound(src, 'sound/effects/rip2.ogg', 25)
+
 	if(!do_after(user, (user == M ? self_delay : other_delay), M))
 		return
+
+	playsound(src, 'sound/effects/rip1.ogg', 25)
 
 	user.visible_message(span_green("[user] applies [src] to [M]'s [limb.name]."), span_green("You bandage the wounds on [user == M ? "yourself" : "[M]'s"] [limb.name]."))
 	limb.apply_gauze(src)
