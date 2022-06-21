@@ -12,7 +12,7 @@
 	var/when_ready
 	var/list/products = list(/datum/hog_product)
 
-/obj/item/hog_item/prismatic_lance/Initialize()
+/obj/structure/destructible/hog_structure/item_maker/Initialize()
 	. = ..()
 	for(var/datum/hog_product/D in products)
 		D = new
@@ -37,10 +37,12 @@
 		products_to_buy[D.name] = D
 		names += D.name
 
-	var/datum/hog_product/picked_product = products_to_buy[input(god,"What do you want to order?","Item") in names]
+	var/datum/hog_product/picked_product = products_to_buy[input(C,"What do you want to order?","Item") in names]
 	if(!picked_product)
 		return
-	if(hog_product.cost > cult.energy)
+    if(!picked_product.confirm(C))
+        return
+	if(picked_product.cost > cult.energy)
 		to_chat(C,span_warning("Your cult doesn't have enough energy to afford [picked_product.name]!")) 
 		return
 	if(!order(picked_product))
@@ -76,5 +78,11 @@
 	var/time_to_make = 1 SECONDS
 	var/cost = 50
 	var/obj/item/result = /obj/item/hog_item
+
+/datum/hog_product/proc/confirm(var/mob/user)
+	var/confirm = alert(user, "[description]. Creating it will cost [cost] energy, and take [time_to_make / 10] seconds.", "[name]", "Yes", "No")
+	if(confirm == "No")
+		return FALSE
+    return TRUE
 
 
