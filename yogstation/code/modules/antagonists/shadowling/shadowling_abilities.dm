@@ -450,7 +450,7 @@
 	school = "evocation"
 	charge_max = 1 MINUTES
 	clothes_req = FALSE
-	action_icon_state = "void"
+	action_icon_state = "emp"
 
 /obj/item/melee/touch_attack/shadow
 	name = "\improper void touch"
@@ -458,7 +458,7 @@
 	on_use_sound = 'sound/magic/wandodeath.ogg'
 	icon_state = "flagellation"
 	item_state = "hivehand"
-	color = "#FF0000"
+	color = "#000000"
 	catchphrase = FALSE
 
 /obj/item/melee/touch_attack/shadow/afterattack(atom/target, mob/living/carbon/user, proximity)
