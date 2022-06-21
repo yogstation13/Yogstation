@@ -43,7 +43,7 @@
 	if(!construction_place)
 		return FALSE
 	var/can_we = FALSE
-	for(var/obj/structure/destructible/hog_structure/structure in objects)
+	for(var/obj/structure/destructible/hog_structure/structure in cult.objects)
 		if(!structure.constructor_range)
 			continue
 		if(structure.cult != cult)
