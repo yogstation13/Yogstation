@@ -1,0 +1,5 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - rscadd: "the shotgun slug drums purchasable by nuclear operative have had their ammo type replaced with syndicate slugs, which do more damage."
+  - rscadd: "syndicate slugs, shotgun slugs that do 60 brute instead of 42. only purchasable by nuclear operatives"

@@ -1,7 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Adds collapsable fishing rod"
-  - bugfix: "fixes fishing rod right inhand"
-  - bugfix: "eating fish now works"
-  - tweak: "make fishing loot datums make a bit more sense"

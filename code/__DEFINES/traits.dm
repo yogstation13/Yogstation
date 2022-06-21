@@ -259,6 +259,7 @@
 #define TRAIT_ANOREXIC			"anorexic"
 #define TRAIT_SHIFTY_EYES		"shifty_eyes"
 #define TRAIT_ANXIOUS			"anxious"
+#define TRAIT_SEE_REAGENTS		"see_reagents"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"

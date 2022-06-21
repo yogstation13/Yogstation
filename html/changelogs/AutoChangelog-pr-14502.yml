@@ -1,0 +1,4 @@
+author: "stwordcitizen"
+delete-after: true 
+changes: 
+  - bugfix: "made simplemob health doll not spawn on top of the stop pulling button"

@@ -1,0 +1,7 @@
+author: "GalacticRuler"
+delete-after: true 
+changes: 
+  - tweak: "Depleted Uranium Slugs cost 1 less uranium sheet each"
+  - tweak: "Depleted Uranium Slugs have 60 ap (down from 200)"
+  - tweak: "Depleted Uranium Slugs do 30 damage (down from 35)"
+  - tweak: "Depleted Uranium Slugs have a -45 wound mod (down from -30)"

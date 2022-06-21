@@ -768,3 +768,20 @@
 	gain_text = span_danger("You feel like your blood is thin.")
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
+
+/datum/quirk/brain_damage
+	name = "Brain Damage"
+	desc = "The shuttle ride was a bit bumpy to the station."
+	value = -7
+	gain_text = span_danger("Your head hurts.")
+	lose_text = span_notice("Your head feels good again.")
+	medical_record_text = "Patient appears to have brain damage."
+
+/datum/quirk/brain_damage/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/datum/brain_trauma/badtimes = list(BRAIN_TRAUMA_MILD, BRAIN_TRAUMA_SEVERE)
+	var/amount = 0 // Pray you dont get fucked
+	amount = rand(1, 4)
+
+	for(var/i = 0 to amount)
+		H.gain_trauma_type(pick(badtimes), TRAUMA_RESILIENCE_ABSOLUTE) // Mr bones wild rides takes no breaks
