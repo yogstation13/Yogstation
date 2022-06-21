@@ -42,9 +42,9 @@
 		return
 	if(hog_product.cost > cult.energy)
 		to_chat(C,span_warning("Your cult doesn't have enough energy to afford [picked_product.name]!")) 
-        return
+		return
 	if(!order(picked_product))
-        to_chat(C, span_warning("The [src] is currently busy, please wait [(when_ready - world.time)/10] seconds!"))
+		to_chat(C, span_warning("The [src] is currently busy, please wait [(when_ready - world.time)/10] seconds!"))
 
 
 
