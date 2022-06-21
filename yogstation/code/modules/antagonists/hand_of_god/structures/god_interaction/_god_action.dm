@@ -18,7 +18,7 @@
 		if(prob(2))
 			to_chat(user,span_danger("There is not enough minerals!")) ///Funny references
 		else
-			to_chat(user,span_danger("You don't have enough energy to use this!"))
+			to_chat(user,span_warning("You don't have enough energy to use this!"))
 		return FALSE
 	return TRUE
 

@@ -3552,6 +3552,7 @@
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\god_interaction\_god_action.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\god_interaction\construction.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\god_interaction\overcharge.dm"
+#include "yogstation\code\modules\antagonists\hand_of_god\structures\god_interaction\research.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\god_interaction\shield.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\god_interaction\special.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\god_interaction\targeted_interactions.dm"

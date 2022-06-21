@@ -13,11 +13,16 @@
 	var/income_interval = 2 SECONDS
 	var/list/objects = list()
 	var/recalls = 1
+	var/research_projects = list()
+	var/researches = list()
+	var/researching = FALSE
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
 	GLOB.hog_cults += src
 	addtimer(CALLBACK(src, .proc/here_comes_the_money), income_interval)
+	for(var/R in researches)
+		R = new
 	
 /datum/team/hog_cult/proc/here_comes_the_money()
 	var/income = permanent_regen
@@ -47,4 +52,21 @@
 		energy = 0
 	if(energy > max_energy)
 		energy = max_energy
-	
+
+/datum/team/hog_cult/proc/start_researching()
+	researching = TRUE
+	addtimer(CALLBACK(src, .proc/process_research), 1 SECONDS)
+
+/datum/team/hog_cult/proc/process_research()
+	addtimer(CALLBACK(src, .proc/process_research), 1 SECONDS)
+
+/datum/hog_research
+	var/levels = 0
+	var/list/affected_objects = list()
+
+/datum/hog_research/proc/on_researched()
+	for(var/obj/O in affected_objects)
+		apply_research_effects(O)
+
+/datum/hog_research/proc/apply_research_effects(var/obj/O)	
+	return
