@@ -428,3 +428,24 @@
 	STR.max_items = 40
 	STR.insert_preposition = "in"
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/grown, /obj/item/stack/medical/poultice, /obj/item/stack/sheet/ashresin, /obj/item/pestle))
+
+
+/*
+ * Meat Bag :)
+ */
+
+/obj/item/storage/bag/meatbag
+	name = "Organic Matter bag"
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bag"
+	desc = "A bag for holding all manor of pieces from various creatures. Meats, Bones, and more."
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = FLAMMABLE
+
+/obj/item/storage/bag/meatbag/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 100
+	STR.max_items = 50
+	STR.insert_preposition = "in"
+	STR.set_holdable(list(/obj/item/stack/sheet/sinew, /obj/item/stack/sheet/bone, /obj/item/stack/sheet/animalhide/goliath_hide, /obj/item/stack/sheet/animalhide/weaver_chitin, /obj/item/reagent_containers/food/snacks/meat/slab/goliath, /obj/item/reagent_containers/food/snacks/meat/steak/goliath, /obj/item/reagent_containers/food/snacks/meat/slab/spider, /obj/item/reagent_containers/food/snacks/meat/steak/spider,  ))
