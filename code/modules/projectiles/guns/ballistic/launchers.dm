@@ -137,6 +137,9 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	pin = /obj/item/firing_pin
 
+/obj/item/gun/ballistic/gauss/zf1
+	mag_type = /obj/item/ammo_box/magazine/internal/zf1rods
+
 /obj/item/gun/ballistic/gauss/afterattack()
 	. = ..()
 	playsound(loc, "sparks", 75, 1, -1)

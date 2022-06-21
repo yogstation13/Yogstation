@@ -28,3 +28,8 @@
 	caliber = null
 	max_ammo = 1
 
+/obj/item/ammo_box/magazine/internal/zf1rods
+	name = "rods"
+	ammo_type = /obj/item/ammo_casing/caseless/bolts
+	caliber = null
+	max_ammo = 10

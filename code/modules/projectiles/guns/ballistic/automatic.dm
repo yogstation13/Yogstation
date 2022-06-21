@@ -212,6 +212,63 @@
 	burst_size = 3
 	fire_delay = 1
 
+/obj/item/gun/ballistic/automatic/zf1
+	name = "Zorg ZF-1 Pod Weapon System"
+	desc = "The ZF-1 is an ambidextrous multifunctional weapon incapable of being detected by X-Rays featuring a titanium recharger, 3000 round clip with a burst of 3 to 300. It also features a variety of other fire modes as well, including a self-destruct button. This one might be lacking a few features..."
+	icon_state = "zf1"
+	item_state = "zf1"
+	slot_flags = 0
+	mag_type = /obj/item/ammo_box/magazine/m556
+	fire_sound = 'sound/weapons/gunshot_smg.ogg'
+	can_suppress = FALSE
+	burst_size = 3
+	fire_delay = 1
+	var/obj/item/gun/ballistic/rocketlauncher/unrestricted/zlauncher
+	var/obj/item/gun/energy/e_gun/dragnet/zdragnet
+	var/obj/item/flamethrower/full/tank/zflamethrower
+	var/obj/item/gun/ballistic/gauss/zf1/zgauss
+
+/obj/item/gun/ballistic/automatic/zf1/Initialize()
+	. = ..()
+	zlauncher = new /obj/item/gun/ballistic/rocketlauncher/unrestricted(src)
+	zdragnet = new /obj/item/gun/energy/e_gun/dragnet(src)
+	zflamethrower = new /obj/item/flamethrower/full/tank(src)
+	zgauss = new /obj/item/gun/ballistic/gauss/zf1(src)
+
+/obj/item/gun/ballistic/automatic/zf1/burst_select()
+	var/mob/living/carbon/human/user = usr
+	switch(select)
+		if(0)
+			select = 1
+			burst_size = initial(burst_size)
+			fire_delay = initial(fire_delay)
+			to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
+		if(1)
+			select = 2
+			to_chat(user, span_notice("You switch to the rocket launcher."))
+		if(2)
+			select = 3
+			to_chat(user, span_notice("You switch to net launcher."))
+		if(3)
+			select = 4
+			to_chat(user, span_notice("You switch to flamethrower."))
+		if(4)
+			select = 0
+			to_chat(user, span_notice("You switch to bolt thrower."))
+	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+	return
+
+/obj/item/gun/ballistic/automatic/zf1/afterattack(atom/target, mob/living/user, flag, params)
+	if(select == 2)
+		zlauncher.afterattack(target, user, flag, params)
+	if(select == 3)
+		zdragnet.afterattack(target, user, flag, params)
+	if(select == 4)
+		zflamethrower.afterattack(target, user, flag, params)
+	if(select == 5)
+		zgauss.afterattack(target, user, flag, params)
+	else
+		return ..()
 
 // L6 SAW //
 
