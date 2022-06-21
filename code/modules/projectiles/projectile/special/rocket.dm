@@ -101,3 +101,6 @@
 	icon_state = "bolt"
 	desc = "smaller and faster rod"
 	damage = 25
+
+/obj/item/projectile/bullet/bolt/zf1
+	armour_penetration = 20

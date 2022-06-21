@@ -37,3 +37,6 @@
 	projectile_type = /obj/item/projectile/bullet/bolt
 	firing_effect_type = /obj/effect/particle_effect/sparks/electricity
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/ammo_casing/caseless/bolts/zf1
+	projectile_type = /obj/item/projectile/bullet/bolt/zf1
