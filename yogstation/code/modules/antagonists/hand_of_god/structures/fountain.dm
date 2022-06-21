@@ -197,7 +197,7 @@
     time_builded = 20 SECONDS
     warp_name = "fountain"
     warp_description = "a pulsating mass of energy in a form of a fountain"
-    structure_type = /obj/structure/destructible/hog_structure/lance
+    structure_type = /obj/structure/destructible/hog_structure/fountain
     max_constructible_health = 65
     integrity_per_process = 2
     icon_name = "fountain_constructing"
