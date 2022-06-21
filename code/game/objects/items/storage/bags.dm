@@ -434,9 +434,9 @@
  */
 
 /obj/item/storage/bag/meatbag
-	name = "Organic Matter Pouch"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bag"
+	name = "Organic Matter Bag"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "meatbag"
 	desc = "A bag for holding all manor of pieces from various creatures. Meats, Bones, and more."
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
@@ -450,9 +450,9 @@
 	STR.set_holdable(list(/obj/item/stack/sheet/sinew, /obj/item/stack/sheet/bone, /obj/item/stack/sheet/animalhide/goliath_hide, /obj/item/stack/sheet/animalhide/weaver_chitin, /obj/item/reagent_containers/food/snacks/meat/slab/goliath, /obj/item/reagent_containers/food/snacks/meat/steak/goliath, /obj/item/reagent_containers/food/snacks/meat/slab/spider, /obj/item/reagent_containers/food/snacks/meat/steak/spider,  ))
 
 /obj/item/storage/bag/meatbag/ashwalker
-	name = "Makeshift Organic Matter Pouch"
+	name = "Makeshift Organic Matter Bag"
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bag"
+	icon_state = "meatbag_l"
 	desc = "A bag for holding all manor of pieces from various creatures. Meats, Bones, and more."
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
