@@ -83,7 +83,7 @@
 			if(flora_spawn_list && !isemptylist(flora_spawn_list) && prob(flora_spawn_chance))
 				var/can_spawn = TRUE
 
-				if(!A.area_flags & FLORA_ALLOWED)
+				if(!(A.area_flags & FLORA_ALLOWED))
 					can_spawn = FALSE
 				if(can_spawn)
 					spawned_flora = pickweight(flora_spawn_list)

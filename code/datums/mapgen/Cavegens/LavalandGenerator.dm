@@ -35,24 +35,18 @@
 	var/start_time = REALTIMEOFDAY
 	var/node_amount = rand(6,10)
 
-	log_world("Node amount: [node_amount]")
-
 	var/list/possible_turfs = turfs.Copy()
 	for(var/node=1 to node_amount)
-		log_world("Picking a turf")
 		var/turf/picked_turf = pick_n_take(possible_turfs)
 		if(!picked_turf)
 			continue
-		log_world("Found a valid turf: x:[picked_turf.x] y:[picked_turf.y]")
 		//time for bounds
 		var/size_x = rand(big_node_min,big_node_max)
 		var/size_y = rand(big_node_min,big_node_max)
 
 		//time for noise
 		var/node_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[size_x + 1]", "[size_y + 1]")
-		log_world("Length of CA gen: [length(node_gen)]")
 		var/list/changing_turfs = block(locate(picked_turf.x - round(size_x/2),picked_turf.y - round(size_y/2),picked_turf.z),locate(picked_turf.x + round(size_x/2),picked_turf.y + round(size_y/2),picked_turf.z))
-		log_world("Length of turfs: [changing_turfs.len]")
 		for(var/turf/T in changing_turfs) //shitcode
 			if(!ismineralturf(T))
 				continue
