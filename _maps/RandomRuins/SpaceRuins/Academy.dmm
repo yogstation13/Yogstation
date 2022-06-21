@@ -1171,7 +1171,12 @@
 /area/awaymission/academy/academycellar)
 "mn" = (
 /obj/structure/rack,
-/obj/item/claymore,
+/obj/item/claymore[
+	name = "Lapis-Adorned Blade";
+	desc = "A sword made of enchanted lapis. Though, it seems to have lost its magic.";
+	force = 21;
+	block_chance = 30
+],
 /obj/item/toy/figure/wizard,
 /turf/open/floor/vault,
 /area/awaymission/academy/academycellar)

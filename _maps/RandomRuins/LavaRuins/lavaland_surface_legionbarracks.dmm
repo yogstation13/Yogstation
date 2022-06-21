@@ -83,9 +83,10 @@
 "S" = (
 /obj/structure/rack,
 /obj/item/claymore{
+	name = "Ancient Sword";
 	desc = "It's cracked and blunted";
 	force = 21;
-	name = "Ancient Sword"
+	block_chance = 30
 	},
 /obj/item/shield/riot/roman{
 	block_chance = 25;
