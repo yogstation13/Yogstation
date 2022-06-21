@@ -648,8 +648,7 @@
 		/obj/item/bonesetter,
 		/obj/item/melee/transforming/energy/sword/cyborg/saw,
 		/obj/item/roller/robo,
-		/obj/item/card/emag,
-		/obj/item/crowbar/cyborg,
+		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/extinguisher/mini,
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/stack/medical/gauze/cyborg,
@@ -668,6 +667,7 @@
 	name = "Syndicate Saboteur"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		/obj/item/kitchen/knife/combat/cyborg,
 		/obj/item/borg/sight/thermal,
 		/obj/item/construction/rcd/borg/syndicate,
 		/obj/item/pipe_dispenser,
