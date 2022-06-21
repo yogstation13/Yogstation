@@ -190,7 +190,7 @@
 
 ///////////////////////////////////
 
-/datum/hog_god_interaction/targeted/construction/lance
+/datum/hog_god_interaction/targeted/construction/fountain
     name = "Construct a fountain"
     description = "Construct a fountain, that will produce godblood. Godblood can be drinked by your servants, to heal them, or can be forcefeeded to heretical cultists, to deconvert them."
     cost = 175
