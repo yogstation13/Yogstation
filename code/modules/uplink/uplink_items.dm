@@ -1584,7 +1584,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Stimpacks, the tool of many great heroes, make you nearly immune to stuns and knockdowns for about \
 			5 minutes after injection."
 	item = /obj/item/reagent_containers/hypospray/medipen/stimpack/large // Yogs -- Stimpack change
-	cost = 5
+	cost = 8
 	surplus = 90
 
 /datum/uplink_item/device_tools/medkit
