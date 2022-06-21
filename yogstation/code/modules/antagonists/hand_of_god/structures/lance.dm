@@ -24,13 +24,13 @@
 	weapon.cult = cult 
 
 /datum/hog_god_interaction/targeted/construction/lance
-    name = "Construct a prismatic lance"
-    description = "Construct a prismatic lance, that is capable of firing deadly lasers into hostile structures and entities."
-    cost = 135
-    time_builded = 15 SECONDS
-    warp_name = "prismatic lance"
-    warp_description = "a pulsating mass of energy in a form of a crystal"
-    structure_type = /obj/structure/destructible/hog_structure/lance
-    max_constructible_health = 65
-    integrity_per_process = 2
-    icon_name = "lance_constructing"
+	name = "Construct a prismatic lance"
+	description = "Construct a prismatic lance, that is capable of firing deadly lasers into hostile structures and entities."
+	cost = 135
+	time_builded = 15 SECONDS
+	warp_name = "prismatic lance"
+	warp_description = "a pulsating mass of energy in a form of a crystal"
+	structure_type = /obj/structure/destructible/hog_structure/lance
+	max_constructible_health = 65
+	integrity_per_process = 2
+	icon_name = "lance_constructing"

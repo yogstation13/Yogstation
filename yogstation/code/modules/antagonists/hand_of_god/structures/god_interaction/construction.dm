@@ -1,16 +1,16 @@
 /datum/hog_god_interaction/targeted/construction
-    name = "construct something"
-    description = "construct some building idk lol"
-    cost = 0
-    cooldown = 0 
-    is_targeted = TRUE
-    var/time_builded = 10
-    var/warp_name = "Sussy baka"
-    var/warp_description = "Sussy baka"
-    var/obj/structure/destructible/hog_structure/structure_type = /obj/structure/destructible/hog_structure
-    var/max_constructible_health = 10
-    var/integrity_per_process = 1
-    var/icon_name = ""
+	name = "construct something"
+	description = "construct some building idk lol"
+	cost = 0
+	cooldown = 0 
+	is_targeted = TRUE
+	var/time_builded = 10
+	var/warp_name = "Sussy baka"
+	var/warp_description = "Sussy baka"
+	var/obj/structure/destructible/hog_structure/structure_type = /obj/structure/destructible/hog_structure
+	var/max_constructible_health = 10
+	var/integrity_per_process = 1
+	var/icon_name = ""
 
 /datum/hog_god_interaction/targeted/construction/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
 	if(!structure_type)
@@ -42,14 +42,14 @@
 /datum/hog_god_interaction/targeted/construction/proc/can_be_placed(var/turf/open/construction_place, var/datum/team/hog_cult/cult)
 	if(!construction_place)
 		return FALSE
-    var/can_we = FALSE
+	var/can_we = FALSE
 	for(var/obj/structure/destructible/hog_structure/structure in objects)
-        if(!structure.constructor_range)
-            continue
-        if(structure.cult != cult)
-            continue
-        if(get_dist(get_turf(structure), construction_place))
-            can_we = TRUE ///Yes we can!!!
+		if(!structure.constructor_range)
+			continue
+		if(structure.cult != cult)
+			continue
+		if(get_dist(get_turf(structure), construction_place))
+			can_we = TRUE ///Yes we can!!!
 	return can_we
 
 /obj/structure/destructible/warp   ///It is like protoss construction in StarCraft 2 but in SS13!
