@@ -11,7 +11,10 @@
 	update_icon()
 	
 /obj/item/hog_item/proc/handle_owner_change(var/datum/team/hog_cult/new_cult)
+	if(cult)
+		cult.objects -= src
 	cult = new_cult
+	new_cult.objects += src
 	update_icons()
 
 /obj/item/hog_item/book/attack(mob/M, mob/living/carbon/human/user)

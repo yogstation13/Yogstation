@@ -24,11 +24,11 @@
 
 /datum/hog_god_interaction/proc/on_use(var/mob/camera/hog_god/user) ///Calling this proc is made in attack_god()
 	when_recharged = world.time + cooldown
-	user.cult.energy -= cost
+	user.cult.change_energy_amount(-cost)
 
 /datum/hog_god_interaction/proc/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
 	when_recharged = world.time + cooldown
-	user.cult.energy -= cost
+	user.cult.change_energy_amount(-cost)
 
 /datum/hog_god_interaction/structure
 	var/obj/structure/destructible/hog_structure/owner

@@ -94,7 +94,7 @@
 	if(!do_mob(user, C, 1.5 SECONDS))
 		to_chat(user, span_warning("You stop transfering energy to [C]."))
 		return
-	var/energy_to_give = min(HOG_ENERGY_TRANSFER_AMOUNT, user_datum.energy)
+	var/energy_to_give = min(min(HOG_ENERGY_TRANSFER_AMOUNT, user_datum.energy), (c_datum.max_energy - c_datum.energy))
 	if(energy_to_give <= 0)
 		to_chat(user, span_warning("You don't have any energy to give!"))
 		return	

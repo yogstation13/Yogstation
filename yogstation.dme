@@ -3557,6 +3557,7 @@
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\fountain.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\lance.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\structures\nexus.dm"
+#include "yogstation\code\modules\antagonists\hand_of_god\structures\shrine.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\colors.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\cult_team.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\hog_servant_datum.dm"
