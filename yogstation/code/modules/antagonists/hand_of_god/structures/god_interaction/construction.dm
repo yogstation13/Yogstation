@@ -13,63 +13,64 @@
     var/icon_name = ""
 
 /datum/hog_god_interaction/targeted/construction/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
-    if(!structure_type)
-        to_chat(user, span_warning("Not a valid entry."))
-        return
-    var/turf/open/construction_place = target
-    if(!construction_place || !can_be_placed)
-        to_chat(user, span_warning("Not a valid place."))
-    if(!time_builded)
-        var/obj/structure/destructible/hog_structure/newboy = new structure_type (construction_place)
-        newboy.handle_team_change(user.cult)
-    else
-        var/obj/structure/destructible/warp/warp = new(construction_place)
-        warp.structure_type = src.structure_type
-        warp.when_started = world.time
-        warp.when_ready = world.time + time_builded
-        warp.cult = user.cult
-        warp.max_integrity = max_constructible_health
-        warp.obj_integrity = 1
-        warp.integrity_per_process = 1
-        warp.icon_state = icon_name
-        warp.name = warp_name 
-        warp.description = warp_description
-        warp.start()
+	if(!structure_type)
+		to_chat(user, span_warning("Not a valid entry."))
+		return
+	var/turf/open/construction_place = target
+	if(!construction_place || !can_be_placed)
+		to_chat(user, span_warning("Not a valid place."))
+		retun
+	if(!time_builded)
+		var/obj/structure/destructible/hog_structure/newboy = new structure_type (construction_place)
+		newboy.handle_team_change(user.cult)
+	else
+		var/obj/structure/destructible/warp/warp = new(construction_place)
+		warp.structure_type = src.structure_type
+		warp.when_started = world.time
+		warp.when_ready = world.time + time_builded
+		warp.cult = user.cult
+		warp.max_integrity = max_constructible_health
+		warp.obj_integrity = 1
+		warp.integrity_per_process = 1
+		warp.icon_state = icon_name
+		warp.name = warp_name 
+		warp.description = warp_description
+		warp.start()
 	. = ..()
 
 /datum/hog_god_interaction/targeted/construction/proc/can_be_placed(var/turf/open/construction_place)
-    if(!construction_place)
-        return FALSE
-    return TRUE
+	if(!construction_place)
+		return FALSE
+	return TRUE
 
 /obj/structure/destructible/warp   ///It is like protoss construction in StarCraft 2 but in SS13
-    name = "Warp rift"
-    description = "For Adun!"  
-    max_integrity = 1  
+	name = "Warp rift"
+	description = "For Adun!"  
+	max_integrity = 1  
 	icon = 'icons/obj/hand_of_god_structures.dmi'
-    var/obj/structure/destructible/hog_structure/structure_type
-    var/when_ready
-    var/when_started
+	var/obj/structure/destructible/hog_structure/structure_type
+	var/when_ready
+	var/when_started
 	var/datum/team/hog_cult/cult 
-    var/integrity_per_process
+	var/integrity_per_process
 
 /obj/structure/destructible/warp/proc/start()
-    START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSobj, src)
 
 /obj/structure/destructible/warp/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/structure/destructible/warp/process()
-    if(world.time >= when_ready)
-        var/obj/structure/destructible/hog_structure/newboy = new structure_type (get_turf(src))
-        newboy.handle_team_change(cult)
-	    STOP_PROCESSING(SSobj, src)
-        qdel(src)
-    var/time1 = when_ready - when_started
-    var/time2 = when_ready - world.time 
-    var/percentage = time2 / time1
-    var/opacility = min(min(percentage * 100, 20), 90)
-    alpha = opacility   ///So we are becoming more visible untill we are ready
-    take_damage(-integrity_per_process, BRUTE, MELEE, FALSE , 0, 100) ///Basicaly it should gain some percentage of max hp per process, but I don't want to blow my brain up by trying to think how to do that, so i will do it like... this
-    
+	if(world.time >= when_ready)
+		var/obj/structure/destructible/hog_structure/newboy = new structure_type (get_turf(src))
+		newboy.handle_team_change(cult)
+		STOP_PROCESSING(SSobj, src)
+		qdel(src)
+	var/time1 = when_ready - when_started
+	var/time2 = when_ready - world.time 
+	var/percentage = time2 / time1
+	var/opacility = min(min(percentage * 100, 20), 90)
+	alpha = opacility   ///So we are becoming more visible untill we are ready
+	take_damage(-integrity_per_process, BRUTE, MELEE, FALSE , 0, 100) ///Basicaly it should gain some percentage of max hp per process, but I don't want to blow my brain up by trying to think how to do that, so i will do it like... this
+
