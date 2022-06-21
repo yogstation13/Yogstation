@@ -1,4 +1,4 @@
-/obj/item/hog_item/ninja_sword_recall
+/obj/item/hog_item/sword
 	name = "hoggers"
 	desc = "A long, sinistery looking sword."
 	resistance_flags = FIRE_PROOF
