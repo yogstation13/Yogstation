@@ -35,7 +35,7 @@
 
 /obj/structure/destructible/hog_structure/fountain/special_interaction(mob/user)
 	var/mob/living/carbon/C = user
-	if(!user)
+	if(!C)
 		return
 	if(C.reagents)
 		var/amount = min(reagents_amount, MAX_EXTRACTION_AMOUNT)
