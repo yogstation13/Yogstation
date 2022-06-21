@@ -434,7 +434,7 @@
  */
 
 /obj/item/storage/bag/meatbag
-	name = "Organic Matter Bag"
+	name = "organic matter bag"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "meatbag"
 	desc = "A bag for holding all manor of pieces from various creatures. Meats, Bones, and more."
@@ -450,14 +450,14 @@
 	STR.set_holdable(list(/obj/item/stack/sheet/sinew, /obj/item/stack/sheet/bone, /obj/item/stack/sheet/animalhide/goliath_hide, /obj/item/stack/sheet/animalhide/weaver_chitin, /obj/item/reagent_containers/food/snacks/meat/slab/goliath, /obj/item/reagent_containers/food/snacks/meat/steak/goliath, /obj/item/reagent_containers/food/snacks/meat/slab/spider, /obj/item/reagent_containers/food/snacks/meat/steak/spider,  ))
 
 /obj/item/storage/bag/meatbag/ashwalker
-	name = "Makeshift Organic Matter Bag"
+	name = "makeshift organic matter bag"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "meatbag_l"
 	desc = "A bag for holding all manor of pieces from various creatures. Meats, Bones, and more."
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/meatbag/ashlwaker/ComponentInitialize()
+/obj/item/storage/bag/meatbag/ashwalker/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 70
