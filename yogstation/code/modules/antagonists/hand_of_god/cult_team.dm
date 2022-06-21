@@ -23,6 +23,7 @@
 	addtimer(CALLBACK(src, .proc/here_comes_the_money), income_interval)
 	for(var/datum/hog_research/R in upgrades)
 		R = new
+		R.cult = src
 	
 /datum/team/hog_cult/proc/here_comes_the_money()
 	var/income = permanent_regen
@@ -80,10 +81,13 @@
 	var/levels = 0
 	var/max_level = 3
 	var/list/affected_objects = list()
+	var/datum/team/hog_cult/cult
 
 /datum/hog_research/proc/on_researched()
-	for(var/obj/O in affected_objects)
-		apply_research_effects(O)
+	for(var/obj/O in cult.objects)
+		for(var/obj/E in affected_objects)  ///E
+			if(istype(O, E))
+				apply_research_effects(O)
 
 /datum/hog_research/proc/apply_research_effects(var/obj/O)	
 	return
