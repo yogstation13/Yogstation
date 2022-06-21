@@ -275,7 +275,7 @@
 		return FALSE
 	if(upgrade)
 		stamina_damage = initial(stamina_damage)*2
-		hitcost = initial(hitcost)*1.5
+		hitcost = initial(hitcost)*4
 	else
 		stamina_damage = initial(stamina_damage)
 	if(ishuman(L))
