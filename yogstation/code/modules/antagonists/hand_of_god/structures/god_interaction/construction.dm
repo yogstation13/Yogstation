@@ -19,7 +19,7 @@
 	var/turf/open/construction_place = target
 	if(!construction_place || !can_be_placed(construction_place))
 		to_chat(user, span_warning("Not a valid place."))
-		retun
+		return
 	if(!time_builded)
 		var/obj/structure/destructible/hog_structure/newboy = new structure_type (construction_place)
 		newboy.handle_team_change(user.cult)
