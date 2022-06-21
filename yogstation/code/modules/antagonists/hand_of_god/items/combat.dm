@@ -20,7 +20,7 @@
 	bare_wound_bonus = 30
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "rended")
-    starting_force = 21
+	starting_force = 21
 
 
 /obj/item/hog_item/upgradeable/sword/Initialize()
