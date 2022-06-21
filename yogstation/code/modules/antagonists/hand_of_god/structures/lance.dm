@@ -7,8 +7,6 @@
 	icon_state = "lance"
 	icon_originalname = "lance"
 	max_integrity = 65
-	cost = 135
-	time_builded = 15 SECONDS
 
 /obj/structure/destructible/hog_structure/lance/Initialize()
 	. = ..()

@@ -8,14 +8,11 @@
 	density = TRUE
 	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge, /datum/hog_god_interaction/structure/shield)
 	max_integrity = 500
-	cost = 300 ///Zamn
-	time_builded = 35
 	break_message = span_cult("The nexus explodes in a bright flash of light!") 
 	constructor_range = 10
 	var/energy_generation = 10
 
 /obj/structure/destructible/hog_structure/shrine/special_interaction(mob/user)
-	var/mob/living/carbon/C = user
 	if(!user)
 		return
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)

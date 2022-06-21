@@ -7,8 +7,6 @@
 	icon_state = "lance"
 	icon_originalname = "lance"
 	max_integrity = 50
-	cost = 175
-	time_builded = 10 SECONDS
 	var/max_reagents = 30
 	var/reagents_amount = 0
 	var/production_amount = 5

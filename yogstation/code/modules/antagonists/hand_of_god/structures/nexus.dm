@@ -10,8 +10,6 @@
 	density = TRUE
 	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge, /datum/hog_god_interaction/structure/shield, /datum/hog_god_interaction/structure/mass_recall)
 	max_integrity = 500
-	cost = 0
-	time_builded = 0
 	break_message = span_cultlarge("The nexus explodes in a bright flash of light!") 
 	var/last_scream
 	var/mob/camera/hog_god/god
