@@ -15,7 +15,7 @@
 			to_chat(user,span_warning("This reseacrh is alredy in process!"))
 			return
 
-	var/datum/hog_research/new_proj = new research
+	var/datum/hog_research_entry/new_proj = new research
 	user.cult.research_projects += new_proj
 	new_proj.when_finished = world.time + new_proj.time_to_make
 	new_proj.lab = owner

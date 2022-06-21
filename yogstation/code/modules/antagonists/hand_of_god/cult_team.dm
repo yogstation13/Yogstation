@@ -70,7 +70,7 @@
 /datum/team/hog_cult/proc/finish_research(var/datum/hog_research_entry/research)
 	for(var/datum/hog_research/upgrade in upgrades)	
 		if(istype(research.upgrade, upgrade))
-			if(upgrade.levels < upgrade.max_levels)
+			if(upgrade.levels < upgrade.max_level)
 				upgrade.levels += 1
 				upgrade.on_researched()
 				break
@@ -91,3 +91,6 @@
 
 /datum/hog_research/proc/apply_research_effects(var/obj/O)	
 	return
+
+/datum/hog_research/advanced_weaponry
+	affected_objects = list(/obj/item/hog_item/upgradeable/sword)
