@@ -1693,7 +1693,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/anti_stun
 	cost = 12
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/freedom
 	name = "Freedom Implant"
