@@ -379,7 +379,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		qdel(R.mmi)
 
 	var/mob/dead/observer/ghost = mob_occupant.ghostize(FALSE)
-	if(istype(ghost))
+	if(ghost)
 		ghost.mind = null
 	handle_objectives()
 	QDEL_NULL(occupant)
