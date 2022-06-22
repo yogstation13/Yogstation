@@ -378,8 +378,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		R.contents -= R.mmi
 		qdel(R.mmi)
 
-	var/mob/dead/observer/ghost = mob_occupant.ghostize(FALSE)
-	ghost.mind = null
+	mob_occupant.ghostize(FALSE)
 	handle_objectives()
 	QDEL_NULL(occupant)
 	for(var/obj/item/I in get_turf(src))

@@ -483,9 +483,7 @@
 		var/mob/dead/observer/C = pick(candidates)
 		to_chat(M, "Your mob has been taken over by a ghost!")
 		message_admins("[key_name_admin(C)] has taken control of ([ADMIN_LOOKUPFLW(M)])")
-		var/mob/dead/observer/G = M.ghostize(FALSE)
-		if(istype(G))
-			G.mind = null
+		M.ghostize(FALSE)
 		M.key = C.key
 		return TRUE
 	else
