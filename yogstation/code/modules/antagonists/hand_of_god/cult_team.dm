@@ -13,7 +13,7 @@
 	var/income_interval = 2 SECONDS
 	var/list/objects = list()
 	var/recalls = 1
-	var/research_projects = list()
+	var/list/research_projects = list()
 	var/upgrades = list(/datum/hog_research/advanced_weaponry)
 	var/researching = FALSE
 
@@ -62,7 +62,7 @@
 	for(var/datum/hog_research_entry/project in research_projects)
 		if(world.time <= project.when_finished)
 			finish_research(project)
-	if(research_projects.len == 0)
+	if(!research_projects.len)
 		researching = FALSE
 		return
 	addtimer(CALLBACK(src, .proc/process_research), 1 SECONDS)
