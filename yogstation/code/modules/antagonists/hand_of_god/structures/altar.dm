@@ -1,4 +1,4 @@
-/obj/structure/destructible/hog_structure/sac_altar
+/obj/structure/destructible/hog_structure/con_altar
 	name = "conversion altar"
 	desc = "an magical construction, capable of channeling otherworldy energies into mortal entities mind."
 	break_message = span_warning("With a flash, the celestial forge fells appart!") 
@@ -8,7 +8,7 @@
 	icon_originalname = "convertaltar"
 	max_integrity = 100
 
-/obj/structure/destructible/hog_structure/sac_altar/special_interaction(var/mob/user)
+/obj/structure/destructible/hog_structure/con_altar/special_interaction(var/mob/user)
 	var/mob/living/carbon/C = locate() in get_turf(src)
 	if(!C)
 		return
@@ -18,7 +18,7 @@
 	if(!C.mind.hasSoul)
 		to_chat(user,span_warning("[C]'s soul alredy belongs to someone else!"))
 		return
-	if(HAS_TRAIT(C, TRAIT_MINDSHIELD) || IS_BLOODSUCKER(C) || IS_MONSTERHUNTER(C) || ) 
+	if(HAS_TRAIT(C, TRAIT_MINDSHIELD) || IS_BLOODSUCKER(C) || IS_MONSTERHUNTER(C)) 
 		to_chat(user,span_warning("[C]'s mind is too powerfull to enslave!"))
 		return
 	if(IS_BLOODSUCKER(C) || IS_MONSTERHUNTER(C) || IS_HERETIC(C)) 
@@ -48,5 +48,17 @@
 	C.silent = max(C.silent, 5)
 	C.Knockdown(40)
 	cultist_mind.add_antag_datum(/datum/antagonist/hog, cult)
+
+/datum/hog_god_interaction/targeted/construction/lance
+	name = "Construct a convertion altar"
+	description = "Construct a convertion altar, that can convert non-believers into your cult."
+	cost = 145
+	time_builded = 20 SECONDS
+	warp_name = "altar"
+	warp_description = "a pulsating mass of energy in a form of an altar"
+	structure_type = /obj/structure/destructible/hog_structure/forge
+	max_constructible_health = 100
+	integrity_per_process = 6
+	icon_name = "forge_constructing"
 
 
