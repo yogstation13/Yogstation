@@ -33,6 +33,10 @@
 			to_chat(user,span_warning("Faith of [C] in his heretical idol protects him from being converted!"))
 			to_chat(C,span_warning("Your faith into your god protects you from the heretical influence!"))
 		return
+	if(iscultist(C) || is_servant_of_ratvar(C))
+		to_chat(user,span_warning("Faith of [C] in his heretical idol protects him from being converted!"))
+		to_chat(C,span_warning("Your faith into your god protects you from the heretical influence!"))
+		return
 	if(cult.energy < cult.conversion_cost)
 		to_chat(user,span_warning("Your cult doesn't have enough energy to influence [C]!"))
 		return
@@ -69,6 +73,11 @@
 	icon_originalname = "convertaltar"
 	max_integrity = 100
 
+
+#define ENERGY_REWARD_AMOUNT 145
+#define STORAGE_REWARD_AMOUNT 60
+#define REGEN_REWARD_AMOUNT 4
+
 /obj/structure/destructible/hog_structure/sac_altar/special_interaction(var/mob/user)
 	var/mob/living/carbon/C = locate() in get_turf(src)
 	if(!C)
@@ -84,14 +93,20 @@
 		else
 			C.mind.remove_antag_datum(/datum/antagonist/hog)
 	if(HAS_TRAIT(C, TRAIT_MINDSHIELD)) 
-		for(var/obj/item/implant/mindshield/L in target)
+		for(var/obj/item/implant/mindshield/L in C)
 			if(L)
 				qdel(L)
 	if(is_servant_of_ratvar(C))
 		C.mind.remove_antag_datum(/datum/antagonist/clockcult)
-	if(is_cultist(C))
+	if(iscultist(C))
 		C.mind.remove_antag_datum(/datum/antagonist/cult)
-	cult.change_energy_amount(-cult.conversion_cost)
-	to_chat(user,span_notice("You convert [C] to your cult!"))
-	user.say("Ni eth anme of [cult.god], emobce one of su!", language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")  //Yeah, i just used a website that shuffles letters in a sentence
+	cult.change_energy_amount(ENERGY_REWARD_AMOUNT)
+	cult.max_energy += STORAGE_REWARD_AMOUNT
+	cult.permanent_regen += REGEN_REWARD_AMOUNT
+	C.mind.hasSoul = FALSE
+	C.health -= 20
+	C.maxHealth -= 20
+	C.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
+	to_chat(user,span_notice("You sacrifice [C] to your god!"))
+	user.say("[cult.god], I iaierfcsc [C] ni rouy nmae!", language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")  
 
