@@ -14,7 +14,7 @@
 	var/list/objects = list()
 	var/recalls = 1
 	var/research_projects = list()
-	var/upgrades = list()
+	var/upgrades = list(/datum/hog_research/advanced_weaponry)
 	var/researching = FALSE
 
 /datum/team/hog_cult/New(starting_members)
@@ -62,7 +62,7 @@
 	for(var/datum/hog_research_entry/project in research_projects)
 		if(world.time <= project.when_finished)
 			finish_research(project)
-	if(!research_projects.len)
+	if(research_projects.len == 0)
 		researching = FALSE
 		return
 	addtimer(CALLBACK(src, .proc/process_research), 1 SECONDS)
@@ -94,3 +94,15 @@
 
 /datum/hog_research/advanced_weaponry
 	affected_objects = list(/obj/item/hog_item/upgradeable/sword)
+
+/datum/hog_research/advanced_weaponry/apply_research_effects(var/obj/O)	
+	var/obj/item/hog_item/upgradeable/item = O
+	if(!item)
+		return
+	if(item.cult != cult)
+		return
+	item.upgrades += 1
+	item.force = initial(item.force) += (item.upgrades * force_add)
+	item.throwforce = initial(item.throwforce) += (item.upgrades * throwforce_add)
+	item.max_integrity = initial(item.max_integrity) + (integrity_add * item.upgrades)
+	item.obj_integrity += integrity_add * item.upgrades

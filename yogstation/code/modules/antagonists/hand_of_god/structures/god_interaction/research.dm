@@ -12,10 +12,19 @@
 		return
 	for(var/datum/hog_research_entry/project in user.cult.research_projects)
 		if(istype(project, research))
-			to_chat(user,span_warning("This reseacrh is alredy in process!"))
+			to_chat(user,span_warning("This research is alredy in process!"))
 			return
-
 	var/datum/hog_research_entry/new_proj = new research
+	var/yes = FALSE
+	for(var/datum/hog_research/R in upgrades)
+		if(istype(new_proj.upgrade, R))
+			if(R.levels >= R.max_level)
+				to_chat(user,span_warning("This research alredy is on the max level!"))
+				qdel(new_proj)
+				return
+			yes = TRUE
+	if(!yes)
+		to_chat(user,span_warning("You can't research this for some reason..."))
 	user.cult.research_projects += new_proj
 	new_proj.when_finished = world.time + new_proj.time_to_make
 	new_proj.lab = owner

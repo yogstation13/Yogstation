@@ -1,7 +1,8 @@
 /obj/item/hog_item/upgradeable
-    var/starting_force = 0   ///RTS moment
-    var/upgrades = 0
-
+	var/upgrades = 0
+	var/force_add = 0
+	var/throwforce_add = 0
+	var/integrity_add = 0
 
 /obj/item/hog_item/upgradeable/sword
 	name = "divine blade"
@@ -20,7 +21,9 @@
 	bare_wound_bonus = 30
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "rended")
-	starting_force = 21
+	force_add = 2
+	throwforce_add = 2
+	integrity_add = 5
 
 
 /obj/item/hog_item/upgradeable/sword/Initialize()
@@ -34,8 +37,11 @@
 	max_integrity = 30  ///Not very strong, but can be upgraded to become more robust
 	block_chance = 30
 	armor = list(MELEE = 30, BULLET = 40, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
-	starting_force = 10
 	force = 10
+	throwforce = 10
+	force_add = 1
+	throwforce_add = 2
+	integrity_add = 10
 
 /obj/item/hog_item/upgradeable/proc/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	return TRUE    ///Sorry for shield code here
