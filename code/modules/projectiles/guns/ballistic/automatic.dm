@@ -236,7 +236,7 @@
 	. = ..()
 	zlauncher = new /obj/item/gun/ballistic/rocketlauncher/unrestricted(src)
 	zdragnet = new /obj/item/gun/energy/e_gun/dragnet(src)
-	zflamethrower = new /obj/item/flamethrower/full/tank(src)
+	zflamethrower = new /obj/item/flamethrower/full/tank/lit(src)
 	zgauss = new /obj/item/gun/ballistic/gauss/zf1(src)
 
 /obj/item/gun/ballistic/automatic/zf1/burst_select()
@@ -246,10 +246,12 @@
 			select = 1
 			burst_size = initial(burst_size)
 			fire_delay = initial(fire_delay)
+			spread = 7
 			to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 		if(1)
 			select = 2
 			to_chat(user, span_notice("You switch to the rocket launcher."))
+			spread = 0
 		if(2)
 			select = 3
 			to_chat(user, span_notice("You switch to net launcher."))
