@@ -344,8 +344,8 @@
 /obj/item/reagent_containers/syringe/noreact
 	name = "cryo syringe"
 	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	icon_state = "piercing_0"
-	base_icon_state = "piercing"
+	icon_state = "noreact_0"
+	base_icon_state = "noreact"
 	volume = 20
 	reagent_flags = TRANSPARENT | NO_REACT
 
@@ -359,7 +359,7 @@
 		add_overlay(filling_overlay)
 	else
 		rounded_vol = 0
-	icon_state = "pericing_[rounded_vol]"
+	icon_state = "noreact_[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 	if(ismob(loc))
 		var/mob/M = loc

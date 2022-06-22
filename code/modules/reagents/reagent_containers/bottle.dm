@@ -27,16 +27,16 @@
 
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)
+			if(0)
 				filling.icon_state = "[icon_state]-10"
-			if(10 to 29)
-				filling.icon_state = "[icon_state]25"
-			if(30 to 49)
+			if(1 to 5)
+				filling.icon_state = "[icon_state]1"
+			if(6 to 30)
+				filling.icon_state = "[icon_state]30"
+			if(31 to 50)
 				filling.icon_state = "[icon_state]50"
-			if(50 to 69)
-				filling.icon_state = "[icon_state]75"
-			if(70 to INFINITY)
-				filling.icon_state = "[icon_state]100"
+			if(51 to INFINITY)
+				filling.icon_state = "[icon_state]70"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling)

@@ -129,6 +129,30 @@
 /obj/item/reagent_containers/glass/beaker/on_reagent_change(changetype)
 	update_icon()
 
+/obj/item/reagent_containers/glass/beaker/update_icon()
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]10")
+
+		var/percent = round((reagents.total_volume / volume) * 100)
+		switch(percent)
+			if(0)
+				filling.icon_state = "[icon_state]-10"
+			if(1 to 10)
+				filling.icon_state = "[icon_state]1"
+			if(11 to 40)
+				filling.icon_state = "[icon_state]40"
+			if(41 to 60)
+				filling.icon_state = "[icon_state]60"
+			if(61 to 80)
+				filling.icon_state = "[icon_state]80"
+			if(81 to INFINITY)
+				filling.icon_state = "[icon_state]100"
+
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling)
+
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
 	desc = "A large beaker. Can hold up to 100 units."
