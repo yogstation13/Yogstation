@@ -8,6 +8,11 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug
 	materials = list(/datum/material/iron=4000)
 
+/obj/item/ammo_casing/shotgun/syndie
+	name = "syndicate shotgun slug"
+	desc = "An illegal type of ammunition used by the syndicate for their bulldog shotguns. Hopefully you're not the one on the receiving end."
+	projectile_type = /obj/item/projectile/bullet/shotgun_slug/syndie
+
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."

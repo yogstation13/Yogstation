@@ -42,6 +42,7 @@
 
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/cargo
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/rank/miner/lavaland
 	neck = /obj/item/clothing/neck/bodycam/miner

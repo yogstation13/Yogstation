@@ -98,6 +98,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	uniform = /obj/item/clothing/under/rank/engineer
 	uniform_skirt = /obj/item/clothing/under/rank/engineer/skirt
 	shoes = /obj/item/clothing/shoes/workboots
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/engineering
 	head = /obj/item/clothing/head/hardhat
 	r_pocket = /obj/item/t_scanner
 
