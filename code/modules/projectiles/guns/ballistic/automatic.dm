@@ -229,7 +229,7 @@
 	tac_reloads = FALSE
 	var/obj/item/gun/ballistic/rocketlauncher/unrestricted/zlauncher
 	var/obj/item/gun/energy/e_gun/dragnet/zdragnet
-	var/obj/item/flamethrower/full/tank/zflamethrower
+	var/obj/item/flamethrower/full/tank/lit/zflamethrower
 	var/obj/item/gun/ballistic/gauss/zf1/zgauss
 
 /obj/item/gun/ballistic/automatic/zf1/Initialize()
