@@ -82,12 +82,7 @@
 /area/ruin/unpowered)
 "S" = (
 /obj/structure/rack,
-/obj/item/claymore{
-	name = "Ancient Sword";
-	desc = "A cracked and blunted sword, clearly weathered over the ages.";
-	force = 21;
-	block_chance = 30
-	},
+/obj/item/claymore/ruin,
 /obj/item/shield/riot/roman{
 	block_chance = 25;
 	desc = "Bears an inscription on the inside: <i>\"Necropolis venio domus\"</i>.";
