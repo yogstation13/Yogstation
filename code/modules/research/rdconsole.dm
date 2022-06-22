@@ -699,6 +699,13 @@ Nothing else in the console has ID requirements.
 /obj/machinery/computer/rdconsole/proc/machine_icon(atom/item)
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
+/obj/machinery/computer/rdconsole/proc/can_research(mob/user)
+	var/obj/item/card/id/C = user.get_idcard(TRUE)
+	if(C)
+		if(!check_access(C))
+			return FALSE
+		return TRUE
+
 /obj/machinery/computer/rdconsole/proc/ui_techweb_single_node(datum/techweb_node/node, selflink=TRUE, minimal=FALSE)
 	var/list/l = list()
 	if (stored_research.hidden_nodes[node.id])
@@ -974,6 +981,9 @@ Nothing else in the console has ID requirements.
 	if(ls["disk_slot"])
 		disk_slot_selected = text2num(ls["disk_slot"])
 	if(ls["research_node"])
+		if(!can_research)
+			to_chat(usr, "ACCESS DENIED")
+			return
 		if(!research_control)
 			return				//honestly should call them out for href exploiting :^)
 		if(!SSresearch.science_tech.available_nodes[ls["research_node"]])
