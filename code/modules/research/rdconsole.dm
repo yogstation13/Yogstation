@@ -700,7 +700,7 @@ Nothing else in the console has ID requirements.
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
 /obj/machinery/computer/rdconsole/proc/can_research(mob/user)
-	if(locked == FALSE)
+	if(!locked)
 		return TRUE
 	var/obj/item/card/id/C = user.get_idcard(TRUE)
 	if(C)
