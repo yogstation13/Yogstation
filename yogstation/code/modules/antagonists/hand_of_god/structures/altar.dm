@@ -7,6 +7,8 @@
 	icon_state = "convertaltar"
 	icon_originalname = "convertaltar"
 	max_integrity = 100
+	density = 0
+	can_buckle = 1
 
 /obj/structure/destructible/hog_structure/con_altar/special_interaction(var/mob/user)
 	var/mob/living/carbon/C = locate() in get_turf(src)
@@ -62,8 +64,6 @@
 	max_constructible_health = 100
 	integrity_per_process = 6
 	icon_name = "altar_constructing"
-	density = FALSE
-	can_buckle = TRUE
 
 
 
@@ -76,8 +76,8 @@
 	icon_state = "convertaltar"
 	icon_originalname = "convertaltar"
 	max_integrity = 100
-	density = FALSE
-	can_buckle = TRUE
+	density = 0
+	can_buckle = 1
 
 
 #define ENERGY_REWARD_AMOUNT 145

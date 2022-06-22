@@ -5,6 +5,7 @@
 	var/energy = 0 
 	var/max_energy = 0
 	var/permanent_regen = 20 // 20 per 2 seconds seems ok
+	var/energy_regen = 0
 	var/obj/structure/destructible/hog_structure/lance/nexus/nexus 
 	var/state = HOG_TEAM_EXISTING
 	var/cult_color = "black" 
@@ -19,6 +20,7 @@
 	var/conversion_cost = 100
 	var/souls = 0
 	var/sacrificed_people = 0
+	var/can_ascend = FALSE
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
@@ -30,6 +32,7 @@
 	
 /datum/team/hog_cult/proc/here_comes_the_money()
 	var/income = permanent_regen
+	income = += energy_regen
 	for(var/obj/structure/destructible/hog_structure/shrine/shrine in objects)
 		if(!shrine)
 			continue

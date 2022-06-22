@@ -10,7 +10,24 @@
 	max_integrity = 140
 	break_message = span_cult("The nexus explodes in a bright flash of light!") 
 	constructor_range = 10
-	var/energy_generation = 10
+	var/energy_generation = 8
+	var/storage = 100
+
+/obj/structure/destructible/hog_structure/shrine/handle_team_change(datum/team/hog_cult/new_cult)
+	if(cult)
+		cult.energy_regen -= energy_generation
+		cult.max_energy -= storage
+		cult.change_energy_amount(0)
+	new_cult.energy_regen += energy_generation
+	new_cult.max_energy += storage
+	new_cult.change_energy_amount(0)
+	. = ..()
+
+/obj/structure/destructible/hog_structure/shrine/Destroy()
+		cult.energy_regen -= energy_generation
+		cult.max_energy -= storage
+		cult.change_energy_amount(0)	
+	. = ..()
 
 /obj/structure/destructible/hog_structure/shrine/special_interaction(mob/user)
 	if(!user)
