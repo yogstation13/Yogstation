@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 #define AI_MAX_RAM_PER_RACK 4
 
 ///How many AI research points does 1 THz generate?
-#define AI_RESEARCH_PER_CPU 7.5
+#define AI_RESEARCH_PER_CPU 8.5
 
 //How long between each data core being able to send a warning. Wouldn't want any spam if we had jittery temps would we?
 #define AI_DATA_CORE_WARNING_COOLDOWN (5 MINUTES)

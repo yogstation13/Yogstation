@@ -40,6 +40,7 @@
 	ears = /obj/item/radio/headset/headset_medsec
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	shoes = /obj/item/clothing/shoes/jackboots
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular

@@ -73,6 +73,10 @@ SUBSYSTEM_DEF(research)
 	science_tech.last_bitcoins = bitcoins  // Doesn't take tick drift into account
 	for(var/i in bitcoins)
 		bitcoins[i] *= income_time_difference / 10
+		if(science_tech.stored_research_points[i])
+			var/boost_amt = clamp(0, bitcoins[i], science_tech.stored_research_points[i]) //up to 2x research speed when burning stored research
+			bitcoins[i] += boost_amt
+			science_tech.remove_stored_point_type(i, boost_amt)
 	science_tech.add_point_list(bitcoins)
 	last_income = world.time
 

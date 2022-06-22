@@ -3,13 +3,13 @@
 	desc = "A rod used for fishing. Despite ordinary appearances, fishing has evolved to suit the cosmos with various features, like auto-reeling."
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "fishing_rod"
-	lefthand_file = 'icons/mob/inhands/equipment/fishing_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	lefthand_file = 'yogstation/icons/mob/inhands/equipment/fishing_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/equipment/fishing_righthand.dmi'
 	usesound = 'sound/items/crowbar.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	force = 2
 	throwforce = 5
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/iron=50)
 
 	var/fishing_power = 10
@@ -78,7 +78,11 @@
 /obj/item/twohanded/fishingrod/proc/reel_in(var/forced = FALSE)
 	if(!forced && bite) // we got something!!!
 		playsound(fishing_component, 'sound/effects/water_emerge.ogg', 50, FALSE, -5)
-		spawn_reward()
+		var/power = 0
+		if(iscarbon(fisher)) //sorry, non-carbons don't get to wear cool fishing outfits
+			var/mob/living/carbon/carbonfisher = fisher
+			power = carbonfisher.fishing_power
+		spawn_reward(fishing_power + power)
 		if(bait && prob(max(50 - bait.fishing_power,0))) //50 - bait.fishing_power% chance to lose your bait
 			to_chat(fisher, span_notice("Your [bait] is lost!"))
 			cut_overlays()
@@ -112,15 +116,18 @@
 	I.alpha = 0
 	animate(I, pixel_z = 32, alpha = 255, time = 2, easing = ELASTIC_EASING)
 
-/obj/item/twohanded/fishingrod/proc/spawn_reward()
-	var/obj/picked_reward = fishing_component.getCommonLoot()
+/obj/item/twohanded/fishingrod/proc/spawn_reward(var/fishing_power = 0)
+	var/picked_reward = fishing_component.get_reward(fishing_power)
+	if(!picked_reward || picked_reward == FISHING_LOOT_NOTHING) //nothing or something messed up
+		fisher.visible_message(span_notice("[fisher] reels in ... nothing!"), span_notice("You reel in... nothing! Better luck next time!"))
+		return
 	var/obj/reward_item = new picked_reward(fishing_component.parent)
 	reward_item.alpha = 0
 	reward_item.pixel_y = -12
 	animate(reward_item,time = 0.25 SECONDS,pixel_y = 0,alpha = 255,easing = SINE_EASING)
 	if(!fisher) //uh oh
 		return
-	fisher.visible_message(span_notice("[fisher] reels in a [reward_item]!"), span_notice("You reel in a [reward_item]!"))
+	fisher.visible_message(span_notice("[fisher] reels in [reward_item]!"), span_notice("You reel in [reward_item]!"))
 	if(fisher.Adjacent(fishing_component.parent))
 		unwield(fisher,show_message = FALSE)
 		if(fisher.put_in_hands(reward_item))
@@ -147,6 +154,7 @@
 	if(bait)
 		user.put_in_hands(bait)
 		to_chat(user, span_notice("You take the [bait] off the fishing rod."))
+		cut_overlays()
 		bait = null
 		recalculate_power()
 
@@ -154,3 +162,52 @@
 	fishing_power = initial(fishing_power)
 	if(bait)
 		fishing_power += bait.fishing_power
+
+/obj/item/twohanded/fishingrod/collapsable
+	name = "collapsable fishing rod"
+	icon_state = "fishing_rod_collapse_c"
+	desc = "A collapsable fishing rod! This one can fit into your backpack for space hikes and the like."
+	var/opened = FALSE
+	fishing_power = 15
+
+/obj/item/twohanded/fishingrod/collapsable/attackby(obj/item/B, mob/user, params)
+	if(!istype(B,/obj/item/reagent_containers/food/snacks/bait))
+		return
+	if(!opened)
+		to_chat(user,"You can't put bait on a collapsed rod!")
+		return
+	..()
+
+/obj/item/twohanded/fishingrod/collapsable/AltClick(mob/living/user)
+	if(bait)
+		return ..()
+	toggle(user)
+
+/obj/item/twohanded/fishingrod/collapsable/proc/toggle(mob/user)
+	if(wielded)
+		to_chat(user,"You can't collapse the rod if you are holding it with both hands")
+		return
+	if(fishing)
+		to_chat(user,"You can't collapse the fishing rod if you are currently using it!")
+		return
+	if(!user.is_holding(src)) //no uncollapsing in your backpack or pockets
+		return
+	opened = !opened
+	w_class = opened ? WEIGHT_CLASS_BULKY : WEIGHT_CLASS_SMALL
+	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+	update_icon()
+
+/obj/item/twohanded/fishingrod/collapsable/update_icon()
+	icon_state = "fishing_rod_collapse[opened ? "" : "_c"]"
+
+/obj/item/twohanded/fishingrod/collapsable/attack_self(mob/user)
+	if(!opened)
+		toggle(user)
+		return
+	..()
+
+/obj/item/twohanded/fishingrod/collapsable/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(!opened)
+		to_chat(user,"The collapsable rod has to be open before you can do anything!")
+		return
+	..()

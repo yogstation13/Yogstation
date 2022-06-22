@@ -361,3 +361,9 @@
 	icon_state = "halo"
 	item_state = "halo"
 	layer = EARS_LAYER
+
+/obj/item/clothing/head/rainbow_flower
+	name = "Rainbow Flower"
+	desc = "A cute, multicoloured flower. Makes you feel all warm and fuzzy inside."
+	icon_state = "rflower"
+	item_state = "rflower"

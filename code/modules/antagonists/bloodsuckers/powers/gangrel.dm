@@ -42,9 +42,9 @@
 					if(DIGITIGRADE in user_species.species_traits)
 						user_species.species_traits -= DIGITIGRADE
 				minortransformdone = TRUE
-				user_species.punchdamagelow += 5.0
-				user_species.punchdamagehigh += 5.0 //stronk
-				user_species.armor += 30
+				user.dna.species.punchdamagelow += 5.0
+				user.dna.species.punchdamagehigh += 5.0 //stronk
+				user.dna.species.armor += 30
 				to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral and stronger than before."))
 			else
 				to_chat(user, span_notice("You still haven't evolved your ability yet."))
@@ -56,9 +56,9 @@
 				if(DIGITIGRADE in user_species.species_traits)
 					user_species.species_traits -= DIGITIGRADE
 				mediumtransformdone = TRUE
-				user_species.punchdamagelow += 7.5
-				user_species.punchdamagehigh += 7.5 //very stronk
-				user_species.armor += 35
+				user.dna.species.punchdamagelow += 7.5
+				user.dna.species.punchdamagehigh += 7.5 //very stronk
+				user.dna.species.armor += 35
 				to_chat(owner, span_notice("You transform into a gorrila-ey beast, you feel stronger!"))
 			else
 				to_chat(owner, span_notice("You still haven't evolved your ability yet."))

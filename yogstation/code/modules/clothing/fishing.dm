@@ -6,7 +6,7 @@
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 
-/obj/item/clothing/head/fishingcap/Initialize()
+/obj/item/clothing/head/fishing/Initialize()
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,5)
 

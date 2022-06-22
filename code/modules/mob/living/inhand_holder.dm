@@ -77,6 +77,13 @@
 /obj/item/clothing/mob_holder/container_resist()
 	release()
 
+/obj/item/clothing/mob_holder/pre_attack(atom/A, mob/living/user, params)
+	if(isobj(A) && ismachinery(A))
+		if(istype(A, /obj/machinery/deepfryer))
+			to_chat(user, span_warning("You wouldn't deepfry [name]....."))
+		return
+	. = ..()
+
 /obj/item/clothing/mob_holder/drone/deposit(mob/living/L)
 	. = ..()
 	if(!isdrone(L))

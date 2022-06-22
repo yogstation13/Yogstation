@@ -479,6 +479,20 @@
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
+/datum/reagent/consumable/rootbeer
+	name = "Root Beer"
+	description = "Beer, but not."
+	color = "#251505" // rgb: 16, 8, 0
+	taste_description = "root and beer"
+	glass_icon_state  = "glass_brown"
+	glass_name = "glass of root beer"
+	glass_desc = "A glass of refreshing fizzing root beer."
+
+/datum/reagent/consumable/rootbeer/on_mob_life(mob/living/carbon/M)
+	M.drowsyness = max(0,M.drowsyness-5)
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()
+
 /datum/reagent/consumable/nuka_cola
 	name = "Nuka Cola"
 	description = "Cola, cola never changes."
