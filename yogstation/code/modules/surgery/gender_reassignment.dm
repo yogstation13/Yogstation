@@ -5,6 +5,7 @@
 				 /datum/surgery_step/reshape_genitals,
 				 /datum/surgery_step/close)
 	possible_locs = list("groin")
+	icon_state = "gender_change"
 
 
 //reshape_genitals

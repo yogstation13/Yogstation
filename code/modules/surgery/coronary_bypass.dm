@@ -1,5 +1,7 @@
 /datum/surgery/coronary_bypass
 	name = "Coronary Bypass"
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "heart-off"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders,
 				 /datum/surgery_step/incise_heart, /datum/surgery_step/coronary_bypass, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)

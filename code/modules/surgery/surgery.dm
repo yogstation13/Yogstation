@@ -1,6 +1,8 @@
 /datum/surgery
 	var/name = "surgery"
 	var/desc = "surgery description"
+	var/icon = 'icons/misc/surgery_icons.dmi'
+	var/icon_state
 	var/status = 1
 	var/list/steps = list()									//Steps in a surgery
 	var/step_in_progress = 0								//Actively performing a Surgery
@@ -146,6 +148,9 @@
 		probability = 0.7
 
 	return probability + success_multiplier
+
+/datum/surgery/proc/get_icon()
+	return icon(icon, icon_state)
 
 /datum/surgery/advanced
 	name = "advanced surgery"

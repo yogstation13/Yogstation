@@ -1,5 +1,7 @@
 /datum/surgery/experimental_dissection
 	name = "Experimental Dissection"
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "scalpel"
 	desc = "A surgical procedure which deeply analyzes the biology of a corpse, and automatically adds new findings to the research database."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,

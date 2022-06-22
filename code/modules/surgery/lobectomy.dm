@@ -1,5 +1,7 @@
 /datum/surgery/lobectomy
 	name = "Lobectomy"	//not to be confused with lobotomy
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "lungs"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders,
 				 /datum/surgery_step/lobectomy, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)

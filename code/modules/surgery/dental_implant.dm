@@ -1,5 +1,7 @@
 /datum/surgery/dental_implant
 	name = "Dental implant"
+	icon = 'icons/obj/implants.dmi'
+	icon_state = "reagents"
 	steps = list(/datum/surgery_step/drill, /datum/surgery_step/insert_pill)
 	possible_locs = list(BODY_ZONE_PRECISE_MOUTH)
 

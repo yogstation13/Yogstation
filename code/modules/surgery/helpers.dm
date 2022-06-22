@@ -19,6 +19,7 @@
 	if(!current_surgery)
 		var/list/all_surgeries = GLOB.surgeries_list.Copy()
 		var/list/available_surgeries = list()
+		var/list/radial_list = list()
 
 		for(var/datum/surgery/S in all_surgeries)
 			if(!S.possible_locs.Find(selected_zone))
@@ -39,12 +40,17 @@
 			for(var/path in S.target_mobtypes)
 				if(istype(M, path))
 					available_surgeries[S.name] = S
+					var/datum/radial_menu_choice/choice = new
+					choice.image = S.get_icon()
+					choice.info = S.desc
+					radial_list[S.name] = choice
 					break
 
 		if(!available_surgeries.len)
+			to_chat(user, span_warning("You can't preform any surgeries on [M]'s [parse_zone(selected_zone)]!"))
 			return
-
-		var/P = input("Begin which procedure?", "Surgery", null, null) as null|anything in available_surgeries
+		
+		var/P = show_radial_menu(user, M, radial_list, require_near = TRUE, tooltips = TRUE)
 		if(P && user && user.Adjacent(M) && (I in user))
 			var/datum/surgery/S = available_surgeries[P]
 
