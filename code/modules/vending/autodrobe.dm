@@ -231,6 +231,8 @@
 	payment_department = ACCOUNT_SRV
 
 /obj/machinery/vending/autodrobe/canLoadItem(obj/item/I,mob/user)
+	if(istype(I, /obj/item/storage/backpack))
+		return FALSE
 	return (I.type in products)
 
 /obj/machinery/vending/autodrobe/all_access

@@ -87,3 +87,8 @@
 	default_price = 50
 	extra_price = 75
 	payment_department = ACCOUNT_SRV
+
+/obj/machinery/vending/gifts/canLoadItem(obj/item/I,mob/user)
+	if(istype(I, /obj/item/storage/backpack))
+		return FALSE
+	return (I.type in products)
