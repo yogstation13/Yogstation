@@ -122,7 +122,6 @@
 	drop_sound = 'sound/items/handling/beaker_drop.ogg'
 	pickup_sound =  'sound/items/handling/beaker_pickup.ogg'
 	cap_on = TRUE
-	fill_icon_thresholds = list(1, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/glass/beaker/get_part_rating()
 	return reagents.maximum_volume
@@ -151,6 +150,10 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
 
+/obj/item/reagent_containers/glass/beaker/plastic/update_icon()
+	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
+	..()
+	icon_state = "beakerwhite"
 
 /obj/item/reagent_containers/glass/beaker/meta
 	name = "metamaterial beaker"
