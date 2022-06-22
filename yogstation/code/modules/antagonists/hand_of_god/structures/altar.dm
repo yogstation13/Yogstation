@@ -62,7 +62,8 @@
 	max_constructible_health = 100
 	integrity_per_process = 6
 	icon_name = "altar_constructing"
-
+	density = FALSE
+	can_buckle = TRUE
 
 
 
@@ -75,6 +76,8 @@
 	icon_state = "convertaltar"
 	icon_originalname = "convertaltar"
 	max_integrity = 100
+	density = FALSE
+	can_buckle = TRUE
 
 
 #define ENERGY_REWARD_AMOUNT 145
