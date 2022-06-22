@@ -5,7 +5,7 @@
 	var/datum/hog_research_entry/research = /datum/hog_research_entry
 	var/time_to_make = 1 SECONDS
 
-/datum/hog_god_interaction/structure/research/Initialize()
+/datum/hog_god_interaction/structure/research/New()
 	. = ..()
 	description = "[description] It will take [time_to_make / 10] seconds be finished."
 
@@ -20,7 +20,7 @@
 			return
 	var/datum/hog_research_entry/new_proj = new research
 	var/yes = FALSE
-	for(var/datum/hog_research/R in upgrades)
+	for(var/datum/hog_research/R in cult.upgrades)
 		if(istype(new_proj.upgrade, R))
 			if(R.levels >= R.max_level)
 				to_chat(user,span_warning("This research alredy is on the max level!"))
@@ -41,8 +41,7 @@
 	var/datum/hog_research/upgrade =  /datum/hog_research
 	var/obj/structure/destructible/hog_structure/lab 
 	var/when_finished
-
-#define HOG_ADVANCED_WEAPONS_TIME 120 SECONDS
+	var/name = "big chungus"
 
 /datum/hog_god_interaction/structure/research
 	name = "Research Advanced Weaponry"
@@ -52,7 +51,8 @@
 	research = /datum/hog_research_entry/adv_weapons
 
 /datum/hog_research_entry/adv_weapons
-	upgrade =  /datum/hog_research/advanced_weaponry
+	name = "Advanced Weaponry"
+	upgrade = /datum/hog_research/advanced_weaponry
 
 
 	

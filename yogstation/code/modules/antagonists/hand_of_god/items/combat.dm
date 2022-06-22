@@ -3,6 +3,7 @@
 	var/force_add = 0
 	var/throwforce_add = 0
 	var/integrity_add = 0
+	var/armor_add = 0
 
 /obj/item/hog_item/upgradeable/sword
 	name = "divine blade"
@@ -42,6 +43,7 @@
 	force_add = 1
 	throwforce_add = 2
 	integrity_add = 10
+	armor_add = 5
 
 /obj/item/hog_item/upgradeable/proc/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	return TRUE    ///Sorry for shield code here
