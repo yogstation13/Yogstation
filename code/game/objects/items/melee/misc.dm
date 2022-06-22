@@ -64,7 +64,7 @@
 
 /obj/item/melee/cutlass
 	name = "cutlass"
-	desc = "YAAAAAR! A fine weapon for a pirate, fit for slicing land-lubber." //All pirate weapons must have pirate quips from now on it is non-negotiable
+	desc = "YAAAAAR! A fine weapon for a pirate, fit for slicing land-lubbers." //All pirate weapons must have pirate quips from now on it is non-negotiable
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "metalcutlass"
 	item_state = "metalcutlass"
