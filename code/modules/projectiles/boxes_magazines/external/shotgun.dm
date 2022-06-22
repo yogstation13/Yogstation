@@ -37,10 +37,10 @@
 
 /obj/item/ammo_box/magazine/m12g/flechette
 	name = "shotgun magazine (12g flechette)"
-	icon_state = "m12gfl"
+	icon_state = "m12gb"
 	ammo_type = /obj/item/ammo_casing/shotgun/flechette
 
 /obj/item/ammo_box/magazine/m12g/hpbuck
 	name = "shotgun magazine (12g hollow-point buckshot)"
-	icon_state = "m12ghpb"
+	icon_state = "m12gb"
 	ammo_type = /obj/item/ammo_casing/shotgun/hpbuck
