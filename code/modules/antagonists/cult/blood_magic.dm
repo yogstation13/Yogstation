@@ -487,8 +487,16 @@
 				if(is_servant_of_ratvar(L))
 					L.adjustBruteLoss(15)
 		else
-			target.visible_message("<span class='warning'>[target] winces slightly as a red flash eminates from [user]'s hand</span>", \
-									   "<span class='userdanger'>You get a small headache as a red flash eminates from [user]'s hand!</span>")
+			to_chat(user, span_cultitalic("[L] is knocked down by a flash of red light!"))
+			L.Knockdown(1.5 SECONDS)
+			if(iscarbon(target))
+				var/mob/living/carbon/C = L
+				C.silent += 6
+				C.stuttering += 10
+				C.cultslurring += 10
+				C.Jitter(10)
+				if(is_servant_of_ratvar(L))
+					L.adjustBruteLoss(10)
 		uses--
 	..()
 
