@@ -161,7 +161,7 @@
 		else
 			W.forceMove(src)
 			pin = W
-	else if(istype(W, upgrade))
+	else if(istype(W, /obj/item/batonupgrade))
 		if(makeshift)
 			return
 		if(pin)
@@ -171,6 +171,7 @@
 		if(upgrade)
 			to_chat(user, span_notice("[src] already has an upgrade installed. You can remove it with crowbar"))
 		else
+			to_chat(user, span_notice("You apply the [W.name] to the [src]"))
 			W.forceMove(src)
 			upgrade = W	
 	else if(W.tool_behaviour == TOOL_CROWBAR)

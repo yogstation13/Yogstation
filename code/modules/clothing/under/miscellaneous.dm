@@ -963,6 +963,7 @@
 	body_parts_covered = CHEST|GROIN
 	has_sensor = NO_SENSORS
 	can_adjust = FALSE
+	fitted = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/ash_robe/young
 	name = "tribal rags"

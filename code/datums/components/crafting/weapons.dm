@@ -420,7 +420,7 @@
 	name = "Depleted Uranium Slug Shell"
 	result = /obj/item/ammo_casing/shotgun/uraniumpenetrator
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
-				/obj/item/stack/sheet/mineral/uranium = 3,
+				/obj/item/stack/sheet/mineral/uranium = 2,
 				/obj/item/stack/rods = 2,
 				/datum/reagent/thermite = 5)
 	tools = list(TOOL_SCREWDRIVER)
