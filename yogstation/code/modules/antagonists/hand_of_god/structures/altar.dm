@@ -38,7 +38,7 @@
 	if(cult.energy < cult.conversion_cost)
 		to_chat(user,span_warning("Your cult doesn't have enough energy to influence [C]!"))
 		return
-	change_energy_amount(-cult.conversion_cost)
+	cult.change_energy_amount(-cult.conversion_cost)
 	add_hog_cultist(user, cult, C.mind)
 	to_chat(user,span_notice("You convert [C] to your cult!"))
 	user.say("Ni eth anme of [cult.god], emobce one of su!", language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")  //Yeah, i just used a website that shuffles letters in a sentence
