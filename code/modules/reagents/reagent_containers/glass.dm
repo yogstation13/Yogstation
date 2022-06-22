@@ -9,7 +9,7 @@
 
 
 /obj/item/reagent_containers/glass/attack(mob/M, mob/user, obj/target)
-	if(!canconsume(M, user))
+	if(!istype(M))
 		return
 
 	if(!spillable)
@@ -50,6 +50,7 @@
 			reagents.reaction(M, INGEST, fraction)
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, M, 5), 5)
 			playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
+
 
 /obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
 	. = ..()
@@ -116,10 +117,12 @@
 	icon_state = "beaker"
 	item_state = "beaker"
 	materials = list(/datum/material/glass=500)
-
-/obj/item/reagent_containers/glass/beaker/Initialize()
-	. = ..()
-	update_icon()
+	can_have_cap = TRUE
+	cap_icon_state = "beaker_cap"
+	drop_sound = 'sound/items/handling/beaker_drop.ogg'
+	pickup_sound =  'sound/items/handling/beaker_pickup.ogg'
+	cap_on = TRUE
+	fill_icon_thresholds = list(1, 40, 60, 80, 100)
 
 /obj/item/reagent_containers/glass/beaker/get_part_rating()
 	return reagents.maximum_volume
@@ -127,65 +130,33 @@
 /obj/item/reagent_containers/glass/beaker/on_reagent_change(changetype)
 	update_icon()
 
-/obj/item/reagent_containers/glass/beaker/update_icon()
-	cut_overlays()
-
-	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]10")
-
-		var/percent = round((reagents.total_volume / volume) * 100)
-		switch(percent)
-			if(0 to 9)
-				filling.icon_state = "[icon_state]-10"
-			if(10 to 24)
-				filling.icon_state = "[icon_state]10"
-			if(25 to 49)
-				filling.icon_state = "[icon_state]25"
-			if(50 to 74)
-				filling.icon_state = "[icon_state]50"
-			if(75 to 79)
-				filling.icon_state = "[icon_state]75"
-			if(80 to 90)
-				filling.icon_state = "[icon_state]80"
-			if(91 to INFINITY)
-				filling.icon_state = "[icon_state]100"
-
-		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
-
-/obj/item/reagent_containers/glass/beaker/jar
-	name = "honey jar"
-	desc = "A jar for honey. It can hold up to 50 units of sweet delight."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "vapour"
-
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
 	desc = "A large beaker. Can hold up to 100 units."
 	icon_state = "beakerlarge"
+	cap_icon_state = "beakerlarge_cap" //zedaedit: lids!!
 	materials = list(/datum/material/glass=2500)
 	volume = 100
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
 
+
 /obj/item/reagent_containers/glass/beaker/plastic
 	name = "x-large beaker"
 	desc = "An extra-large beaker. Can hold up to 120 units."
 	icon_state = "beakerwhite"
+	cap_icon_state = "beakerlarge_cap" //zedaedit: lids!!
 	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000)
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
 
-/obj/item/reagent_containers/glass/beaker/plastic/update_icon()
-	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
-	..()
-	icon_state = "beakerwhite"
 
 /obj/item/reagent_containers/glass/beaker/meta
 	name = "metamaterial beaker"
 	desc = "A large beaker. Can hold up to 180 units."
 	icon_state = "beakergold"
+	cap_icon_state = "beakergold_cap" //zedaedit: lids!!
 	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000, /datum/material/gold=1000, /datum/material/titanium=1000)
 	volume = 180
 	amount_per_transfer_from_this = 10
@@ -197,9 +168,10 @@
 		reactions. Can hold up to 50 units."
 	icon_state = "beakernoreact"
 	materials = list(/datum/material/iron=3000)
-	reagent_flags = OPENCONTAINER | NO_REACT
+	reagent_flags = NO_REACT
 	volume = 50
 	amount_per_transfer_from_this = 10
+	cap_icon_state = "beakernoreact_cap" //zedaedit: lids!!
 
 /obj/item/reagent_containers/glass/beaker/bluespace
 	name = "bluespace beaker"
@@ -211,6 +183,7 @@
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
+	cap_icon_state = "beakerbluespace_cap" //zedaedit: lids!!
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
@@ -318,31 +291,6 @@
 		return
 	return ..()
 
-/obj/item/reagent_containers/glass/beaker/waterbottle
-	name = "bottle of water"
-	desc = "A bottle of water filled at an old Earth bottling facility."
-	icon = 'icons/obj/drinks.dmi'
-	icon_state = "smallbottle"
-	item_state = "bottle"
-	list_reagents = list(/datum/reagent/water = 49.5, /datum/reagent/fluorine = 0.5)//see desc, don't think about it too hard
-	materials = list(/datum/material/glass=0)
-	volume = 50
-	amount_per_transfer_from_this = 10
-
-/obj/item/reagent_containers/glass/beaker/waterbottle/empty
-	list_reagents = list()
-
-/obj/item/reagent_containers/glass/beaker/waterbottle/large
-	desc = "A fresh commercial-sized bottle of water."
-	icon_state = "largebottle"
-	materials = list(/datum/material/glass=0)
-	list_reagents = list(/datum/reagent/water = 100)
-	volume = 100
-	amount_per_transfer_from_this = 20
-
-/obj/item/reagent_containers/glass/beaker/waterbottle/large/empty
-	list_reagents = list()
-
 /obj/item/pestle
 	name = "pestle"
 	desc = "An ancient, simple tool used in conjunction with a mortar to grind or juice items."
@@ -353,6 +301,7 @@
 /obj/item/reagent_containers/glass/mortar
 	name = "mortar"
 	desc = "A specially formed bowl of ancient design. It is possible to crush or juice items placed in it using a pestle; however the process, unlike modern methods, is slow and physically exhausting. Alt click to eject the item."
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mortar"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50, 100)
@@ -402,11 +351,6 @@
 		grinded = I
 		return
 	to_chat(user, span_danger("You can't grind this!"))
-
-/obj/item/reagent_containers/glass/saline
-	name = "saline canister"
-	volume = 5000
-	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)
 
 /obj/item/reagent_containers/glass/mixbowl //chef's bowl
 	name = "mixing bowl"

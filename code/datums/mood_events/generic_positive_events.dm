@@ -166,6 +166,11 @@
 	mood_change = 4
 	timeout = 4 MINUTES
 
+/datum/mood_event/bottle_flip
+	description = "<span class='nicegreen'>The bottle landing like that was satisfying.</span>\n"
+	mood_change = 1
+	timeout = 1 MINUTES
+
 /datum/mood_event/hope_lavaland
 	description = "<span class='nicegreen'>What a peculiar emblem.  It makes me feel hopeful for my future.</span>\n"
 	mood_change = 5

@@ -7,7 +7,9 @@
 	item_state = "atoxinbottle"
 	possible_transfer_amounts = list(5,10,15,25,30)
 	volume = 30
-
+	can_have_cap = TRUE
+	cap_icon_state = "bottle_cap"
+	cap_on = TRUE
 
 /obj/item/reagent_containers/glass/bottle/Initialize()
 	. = ..()
@@ -63,13 +65,11 @@
 /obj/item/reagent_containers/glass/bottle/morphine
 	name = "morphine bottle"
 	desc = "A small bottle of morphine."
-	icon = 'icons/obj/chemical.dmi'
 	list_reagents = list(/datum/reagent/medicine/morphine = 30)
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
 	name = "chloral hydrate bottle"
 	desc = "A small bottle of Chloral Hydrate. Mickey's favorite!"
-	icon_state = "bottle20"
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 15)
 
 /obj/item/reagent_containers/glass/bottle/mannitol
@@ -137,7 +137,6 @@
 /obj/item/reagent_containers/glass/bottle/traitor
 	name = "syndicate bottle"
 	desc = "A small bottle. Contains a random nasty chemical."
-	icon = 'icons/obj/chemical.dmi'
 	var/extra_reagent = null
 
 /obj/item/reagent_containers/glass/bottle/traitor/Initialize()
@@ -223,7 +222,6 @@
 /obj/item/reagent_containers/glass/bottle/salglu_solution
 	name = "saline-glucose solution bottle"
 	desc = "A small bottle of saline-glucose solution."
-	icon_state = "bottle1"
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 30)
 
 /obj/item/reagent_containers/glass/bottle/atropine
@@ -280,7 +278,6 @@
 /obj/item/reagent_containers/glass/bottle/brainrot
 	name = "Brainrot culture bottle"
 	desc = "A small bottle. Contains Cryptococcus Cosmosis culture in synthblood medium."
-	icon_state = "bottle3"
 	spawned_disease = /datum/disease/brainrot
 
 /obj/item/reagent_containers/glass/bottle/sleepy

@@ -2,7 +2,7 @@
 	name = "medical spray"
 	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap."
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = "medspray"
+	icon_state = "medigel"
 	item_state = "spraycan"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
@@ -23,6 +23,14 @@
 	var/squirt_mode = 0
 	var/squirt_amount = 5
 	custom_price = 40
+	unique_reskin = list(
+		"Blue" = "medigel_blue",
+		"Cyan" = "medigel_cyan",
+		"Green" = "medigel_green",
+		"Red" = "medigel_red",
+		"Orange" = "medigel_orange",
+		"Purple" = "medigel_purple"
+	)
 
 /obj/item/reagent_containers/medspray/attack_self(mob/user)
 	squirt_mode = !squirt_mode
@@ -77,23 +85,25 @@
 /obj/item/reagent_containers/medspray/styptic
 	name = "medical spray (styptic powder)"
 	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains styptic powder, for treating cuts and bruises."
-	icon_state = "brutespray"
+	icon_state = "brutegel"
 	list_reagents = list(/datum/reagent/medicine/styptic_powder = 60)
 
 /obj/item/reagent_containers/medspray/silver_sulf
 	name = "medical spray (silver sulfadiazine)"
 	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains silver sulfadiazine, useful for treating burns."
-	icon_state = "burnspray"
+	icon_state = "burngel"
 	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 60)
 
 /obj/item/reagent_containers/medspray/synthflesh
 	name = "medical spray (synthflesh)"
 	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains synthflesh, an apex brute and burn healing agent."
-	icon_state = "synthspray"
+	icon_state = "synthgel"
 	list_reagents = list(/datum/reagent/medicine/synthflesh = 60)
 	custom_price = 80
 
 /obj/item/reagent_containers/medspray/sterilizine
 	name = "sterilizer spray"
 	desc = "Spray bottle loaded with non-toxic sterilizer. Useful in preparation for surgery."
+	icon_state = "medigel_blue"
+	current_skin = "medigel_blue"
 	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 60)

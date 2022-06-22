@@ -61,7 +61,10 @@
 	if(!proximity)
 		return
 
-	if(target.is_refillable() && is_drainable()) //Something like a glass. Player probably wants to transfer TO it.
+	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
+		if(!is_drainable())
+			to_chat(user, "<span class='warning'>[src] isn't open!</span>")
+			return
 		if(!reagents.total_volume)
 			to_chat(user, span_warning("[src] is empty."))
 			return
@@ -81,7 +84,7 @@
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if (!is_refillable())
-			to_chat(user, span_warning("[src]'s tab isn't open!"))
+			to_chat(user, "<span class='warning'>[src] isn't open!</span>")
 			return
 
 		if(!target.reagents.total_volume)
@@ -257,6 +260,80 @@
 	foodtype = GRAIN
 	isGlass = FALSE
 
+/obj/item/reagent_containers/food/drinks/waterbottle
+	name = "bottle of water"
+	desc = "A bottle of water filled at an old Earth bottling facility."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "smallbottle"
+	item_state = "bottle"
+	list_reagents = list(/datum/reagent/water = 49.5, /datum/reagent/fluorine = 0.5)//see desc, don't think about it too hard
+	custom_materials = list(/datum/material/plastic=1000)
+	volume = 50
+	amount_per_transfer_from_this = 10
+	fill_icon_thresholds = list(0, 10, 25, 50, 75, 80, 90)
+	isGlass = FALSE
+	custom_price = 30
+	can_have_cap = TRUE
+	// The 2 bottles have separate cap overlay icons because if the bottle falls over while bottle flipping the cap stays fucked on the moved overlay
+	cap_icon_state = "bottle_cap_small"
+	cap_on = TRUE
+	var/flip_chance = 10
+
+/obj/item/reagent_containers/food/drinks/waterbottle/attack(mob/target, mob/user, def_zone)
+	if(target && user.a_intent == INTENT_HARM)
+		if(!spillable)
+			to_chat(user, "<span class='warning'>[src] is closed!</span>")
+		else
+			SplashReagents(target)
+		return
+
+	return ..()
+
+// heehoo bottle flipping
+/obj/item/reagent_containers/food/drinks/waterbottle/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(!QDELETED(src) && !spillable && reagents.total_volume)
+		if(prob(flip_chance)) // landed upright
+			src.visible_message("<span class='notice'>[src] lands upright!</span>")
+			if(throwingdatum.thrower)
+				SEND_SIGNAL(throwingdatum.thrower, COMSIG_ADD_MOOD_EVENT, "bottle_flip", /datum/mood_event/bottle_flip)
+		else // landed on it's side
+			animate(src, transform = matrix(prob(50)? 90 : -90, MATRIX_ROTATE), time = 3, loop = 0)
+
+/obj/item/reagent_containers/food/drinks/waterbottle/pickup(mob/user)
+	. = ..()
+	animate(src, transform = null, time = 1, loop = 0)
+
+/obj/item/reagent_containers/food/drinks/waterbottle/empty
+	list_reagents = list()
+	cap_on = FALSE
+
+/obj/item/reagent_containers/food/drinks/waterbottle/large
+	desc = "A fresh commercial-sized bottle of water."
+	icon_state = "largebottle"
+	custom_materials = list(/datum/material/plastic=3000)
+	list_reagents = list(/datum/reagent/water = 100)
+	volume = 100
+	amount_per_transfer_from_this = 20
+	cap_icon_state = "bottle_cap"
+
+/obj/item/reagent_containers/food/drinks/waterbottle/large/empty
+	list_reagents = list()
+	cap_on = FALSE
+
+// Admin spawn
+/obj/item/reagent_containers/food/drinks/waterbottle/relic
+	name = "mysterious bottle"
+	desc = "A bottle quite similar to a water bottle, but with some words scribbled on with a marker. It seems to be radiating some kind of energy."
+	flip_chance = 100 // FLIPP
+
+/obj/item/reagent_containers/food/drinks/waterbottle/relic/Initialize()
+	var/reagent_id = get_random_reagent_id()
+	var/datum/reagent/random_reagent = new reagent_id
+	list_reagents = list(random_reagent.type = 50)
+	. = ..()
+	desc +=  "<span class='notice'>The writing reads '[random_reagent.name]'.</span>"
+	update_icon()
 /obj/item/reagent_containers/food/drinks/beer
 	name = "space beer"
 	desc = "Beer. In space."
@@ -264,6 +341,9 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	foodtype = GRAIN | ALCOHOL
 	age_restricted = TRUE
+	can_have_cap = TRUE
+	cap_icon_state = "bottle_cap_small"
+	cap_on = TRUE
 
 /obj/item/reagent_containers/food/drinks/beer/light
 	name = "Carp Lite"

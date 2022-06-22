@@ -17,7 +17,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	var/const/duration = 13 //Directly relates to the 'knockdown' duration. Lowered by armor (i.e. helmets)
-	var/list/fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
+	fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
 	isGlass = TRUE
 	foodtype = ALCOHOL
 	age_restricted = TRUE
@@ -233,6 +233,9 @@
 	icon_state = "holyflask"
 	list_reagents = list(/datum/reagent/water/holywater = 100)
 	foodtype = NONE
+	can_have_cap = FALSE
+	cap_icon_state = null
+	cap_on = FALSE
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater/hell
 	desc = "A flask of holy water...it's been sitting in the Necropolis a while though."

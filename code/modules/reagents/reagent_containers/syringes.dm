@@ -2,10 +2,11 @@
 	name = "syringe"
 	desc = "A syringe that can hold up to 15 units."
 	icon = 'icons/obj/syringe.dmi'
-	item_state = "syringe_0"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	icon_state = "0"
+	item_state = "syringe"
+	icon_state = "syringe_0"
+	var/base_icon_state = "syringe"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list()
 	volume = 15
@@ -172,6 +173,7 @@
 				update_icon()
 
 
+
 /obj/item/reagent_containers/syringe/update_icon()
 	cut_overlays()
 	var/rounded_vol
@@ -182,7 +184,7 @@
 		add_overlay(filling_overlay)
 	else
 		rounded_vol = 0
-	icon_state = "[rounded_vol]"
+	icon_state = "syringe_[rounded_vol]"
 	item_state = "syringe_[rounded_vol]"
 	if(ismob(loc))
 		var/mob/M = loc
@@ -194,6 +196,7 @@
 				injoverlay = "inject"
 		add_overlay(injoverlay)
 		M.update_inv_hands()
+
 	
 /obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
@@ -279,20 +282,96 @@
 /obj/item/reagent_containers/syringe/bluespace
 	name = "bluespace syringe"
 	desc = "An advanced syringe that can hold 60 units of chemicals."
+	icon_state = "bluespace_0"
+	base_icon_state = "bluespace"
 	amount_per_transfer_from_this = 20
 	volume = 60
 
-/obj/item/reagent_containers/syringe/noreact
-	name = "cryo syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	volume = 20
-	reagent_flags = TRANSPARENT | NO_REACT
+/obj/item/reagent_containers/syringe/bluespace/update_icon()
+	cut_overlays()
+	var/rounded_vol
+	if(reagents && reagents.total_volume)
+		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
+		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
+		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling_overlay)
+	else
+		rounded_vol = 0
+	icon_state = "bluespace_[rounded_vol]"
+	item_state = "syringe_[rounded_vol]"
+	if(ismob(loc))
+		var/mob/M = loc
+		var/injoverlay
+		switch(mode)
+			if (SYRINGE_DRAW)
+				injoverlay = "draw"
+			if (SYRINGE_INJECT)
+				injoverlay = "inject"
+		add_overlay(injoverlay)
+		M.update_inv_hands()
 
 /obj/item/reagent_containers/syringe/piercing
 	name = "piercing syringe"
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
+	icon_state = "piercing_0"
+	base_icon_state = "piercing"
 	volume = 10
 	proj_piercing = 1
+
+/obj/item/reagent_containers/syringe/pericing/update_icon()
+	cut_overlays()
+	var/rounded_vol
+	if(reagents && reagents.total_volume)
+		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
+		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
+		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling_overlay)
+	else
+		rounded_vol = 0
+	icon_state = "pericing_[rounded_vol]"
+	item_state = "syringe_[rounded_vol]"
+	if(ismob(loc))
+		var/mob/M = loc
+		var/injoverlay
+		switch(mode)
+			if (SYRINGE_DRAW)
+				injoverlay = "draw"
+			if (SYRINGE_INJECT)
+				injoverlay = "inject"
+		add_overlay(injoverlay)
+		M.update_inv_hands()
+
+/obj/item/reagent_containers/syringe/noreact
+	name = "cryo syringe"
+	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
+	icon_state = "piercing_0"
+	base_icon_state = "piercing"
+	volume = 20
+	reagent_flags = TRANSPARENT | NO_REACT
+
+/obj/item/reagent_containers/syringe/noreact/update_icon()
+	cut_overlays()
+	var/rounded_vol
+	if(reagents && reagents.total_volume)
+		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
+		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
+		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling_overlay)
+	else
+		rounded_vol = 0
+	icon_state = "pericing_[rounded_vol]"
+	item_state = "syringe_[rounded_vol]"
+	if(ismob(loc))
+		var/mob/M = loc
+		var/injoverlay
+		switch(mode)
+			if (SYRINGE_DRAW)
+				injoverlay = "draw"
+			if (SYRINGE_INJECT)
+				injoverlay = "inject"
+		add_overlay(injoverlay)
+		M.update_inv_hands()
+
 /obj/item/reagent_containers/syringe/crude
 	name = "crude syringe"
 	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."

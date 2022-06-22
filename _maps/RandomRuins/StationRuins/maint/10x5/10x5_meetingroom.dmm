@@ -240,7 +240,7 @@
 /area/template_noop)
 "W" = (
 /obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 

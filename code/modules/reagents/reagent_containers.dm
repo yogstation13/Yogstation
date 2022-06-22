@@ -12,6 +12,16 @@
 	var/spawned_disease = null
 	var/disease_amount = 20
 	var/spillable = FALSE
+	var/list/fill_icon_thresholds = null
+	var/fill_icon_state = null // Optional custom name for reagent fill icon_state prefix
+	var/fill_icon = 'icons/obj/reagentfillings.dmi'
+	/// To enable caps, set can_have_cap to TRUE and define a . Do not change at runtime.
+	var/can_have_cap = FALSE
+	VAR_PROTECTED/cap_icon_state = null
+	/// Whether the container has a cap on. Do not set directly at runtime; use set_cap_status().
+	VAR_PROTECTED/cap_on = FALSE
+	VAR_PRIVATE/cap_lost = FALSE
+	VAR_PRIVATE/mutable_appearance/cap_overlay = null
 
 /obj/item/reagent_containers/Initialize(mapload, vol)
 	. = ..()
@@ -25,9 +35,57 @@
 
 	add_initial_reagents()
 
+	if(can_have_cap)
+		if(!cap_icon_state)
+			WARNING("Container that allows caps is lacking a cap_icon_state!")
+		set_cap_status(cap_on)
+	else
+		cap_on = FALSE
+
 /obj/item/reagent_containers/proc/add_initial_reagents()
 	if(list_reagents)
 		reagents.add_reagent_list(list_reagents)
+
+/// Adds the container's cap if TRUE is passed in, and removes it if FALSE is passed in. Container must be able to accept a cap.
+/obj/item/reagent_containers/proc/set_cap_status(value_to_set)
+	if(!can_have_cap)
+		CRASH("Cannot change cap status of reagent container that disallows caps!")
+
+	if(value_to_set)
+		cap_on = TRUE
+		spillable = FALSE
+		if(!cap_overlay)
+			cap_overlay = mutable_appearance(icon, cap_icon_state)
+		add_overlay(cap_overlay, TRUE)
+	else
+		cap_on = FALSE
+		spillable = TRUE
+		if(cap_overlay)
+			cut_overlay(cap_overlay, TRUE)
+
+	update_icon()
+
+/obj/item/reagent_containers/examine(mob/user)
+	if(!can_have_cap)
+		return ..()
+
+	. = ..()
+	if(cap_lost)
+		. += "<span class='notice'>The cap seems to be missing.</span>"
+	else if(cap_on)
+		. += "<span class='notice'>The cap is firmly on to prevent spilling. Alt-click to remove the cap.</span>"
+	else
+		. += "<span class='notice'>The cap has been taken off. Alt-click to put a cap on.</span>"
+
+/obj/item/reagent_containers/is_refillable()
+	if(can_have_cap && cap_on)
+		return FALSE
+	. = ..()
+
+/obj/item/reagent_containers/is_drainable()
+	if(can_have_cap && cap_on)
+		return FALSE
+	. = ..()
 
 /obj/item/reagent_containers/attack_self(mob/user)
 	if(possible_transfer_amounts.len)
@@ -45,6 +103,26 @@
 /obj/item/reagent_containers/attack(mob/M, mob/user, def_zone)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
+
+/obj/item/reagent_containers/AltClick(mob/user)
+	. = ..()
+	if(can_have_cap)
+		if(cap_lost)
+			to_chat(user, "<span class='warning'>The cap seems to be missing! Where did it go?</span>")
+			return
+
+		var/fumbled = HAS_TRAIT(user, TRAIT_CLUMSY) && prob(5)
+		if(cap_on || fumbled)
+			set_cap_status(FALSE)
+			if(fumbled)
+				to_chat(user, "<span class='warning'>You fumble with [src]'s cap! The cap falls onto the ground and simply vanishes. Where the hell did it go?</span>")
+				cap_lost = TRUE
+			else
+				to_chat(user, "<span class='notice'>You remove the cap from [src].</span>")
+		else
+			set_cap_status(TRUE)
+			to_chat(user, "<span class='notice'>You put the cap on [src].</span>")
+		playsound(src, 'sound/items/glass_cap.ogg', 50, 1)
 
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
 	if(!iscarbon(eater))

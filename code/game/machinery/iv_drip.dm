@@ -228,7 +228,7 @@
 
 /obj/machinery/iv_drip/saline/Initialize(mapload)
     . = ..()
-    beaker = new /obj/item/reagent_containers/glass/saline(src)
+    beaker = new /obj/item/reagent_containers/saline_holder(src)
 
 /obj/machinery/iv_drip/saline/update_icon()
     return
@@ -237,5 +237,11 @@
     return
 /obj/machinery/iv_drip/saline/toggle_mode()
 	return
+
+/obj/item/reagent_containers/saline_holder
+	name = "saline canister"
+	volume = 5000
+	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)
+
 #undef IV_TAKING
 #undef IV_INJECTING

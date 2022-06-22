@@ -774,8 +774,8 @@
 	},
 /obj/item/reagent_containers/food/snacks/grown/apple,
 /obj/item/reagent_containers/food/snacks/grown/parsnip,
-/obj/item/reagent_containers/glass/beaker/waterbottle/large,
-/obj/item/reagent_containers/glass/beaker/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
 /turf/open/floor/plating/asteroid,
 /area/ruin/unpowered/no_grav)
 "Kp" = (
