@@ -28,12 +28,10 @@
 	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(C)
 	if(dude)
 		if(dude.cult == cult)
-			to_chat(user,span_warning("[C] is alredy serving your god!"))
-			return           
+			to_chat(user,span_warning("[C] is alredy serving your god!"))        
 		else
 			to_chat(user,span_warning("Faith of [C] in his heretical idol protects him from being converted!"))
 			to_chat(C,span_warning("Your faith into your god protects you from the heretical influence!"))
-			return
 		return
 	if(cult.energy < cult.conversion_cost)
 		to_chat(user,span_warning("Your cult doesn't have enough energy to influence [C]!"))
@@ -61,4 +59,39 @@
 	integrity_per_process = 6
 	icon_name = "forge_constructing"
 
+/obj/structure/destructible/hog_structure/sac_altar
+	name = "conversion altar"
+	desc = "an magical construction, capable of channeling otherworldy energies into mortal entities mind."
+	break_message = span_warning("With a flash, the celestial forge fells appart!") 
+	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge, /datum/hog_god_interaction/structure/shield, /datum/hog_god_interaction/structure/research/weapons, /datum/hog_god_interaction/structure/research/armor)
+	icon = 'icons/obj/hand_of_god_structures.dmi'
+	icon_state = "convertaltar"
+	icon_originalname = "convertaltar"
+	max_integrity = 100
+
+/obj/structure/destructible/hog_structure/sac_altar/special_interaction(var/mob/user)
+	var/mob/living/carbon/C = locate() in get_turf(src)
+	if(!C)
+		return
+	if(!C.mind.hasSoul || !C.mind)
+		to_chat(user,span_warning("[C]'s soul alredy belongs to someone else!"))
+		return
+	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(C)
+	if(dude)
+		if(dude.cult == cult)
+			to_chat(user,span_warning("You can't sacrifice a fellow cultist!"))
+			return           
+		else
+			C.mind.remove_antag_datum(/datum/antagonist/hog)
+	if(HAS_TRAIT(C, TRAIT_MINDSHIELD)) 
+		for(var/obj/item/implant/mindshield/L in target)
+			if(L)
+				qdel(L)
+	if(is_servant_of_ratvar(C))
+		C.mind.remove_antag_datum(/datum/antagonist/clockcult)
+	if(is_cultist(C))
+		C.mind.remove_antag_datum(/datum/antagonist/cult)
+	cult.change_energy_amount(-cult.conversion_cost)
+	to_chat(user,span_notice("You convert [C] to your cult!"))
+	user.say("Ni eth anme of [cult.god], emobce one of su!", language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")  //Yeah, i just used a website that shuffles letters in a sentence
 
