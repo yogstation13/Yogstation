@@ -16,6 +16,7 @@
 	var/list/research_projects = list()
 	var/upgrades = list(/datum/hog_research/advanced_weaponry)
 	var/researching = FALSE
+	var/conversion_cost = 100
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
@@ -48,7 +49,7 @@
 				to_chat(M, "[message]")
 
 /datum/team/hog_cult/proc/change_energy_amount(var/amount)
-	energy -= amount
+	energy += amount
 	if(energy < 0)
 		energy = 0
 	if(energy > max_energy)
