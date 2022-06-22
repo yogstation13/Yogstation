@@ -17,6 +17,8 @@
 	var/upgrades = list(/datum/hog_research/advanced_weaponry)
 	var/researching = FALSE
 	var/conversion_cost = 100
+	var/souls = 0
+	var/sacrificed_people = 0
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()

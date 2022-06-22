@@ -51,21 +51,24 @@
 	C.Knockdown(40)
 	cultist_mind.add_antag_datum(/datum/antagonist/hog, cult)
 
-/datum/hog_god_interaction/targeted/construction/lance
+/datum/hog_god_interaction/targeted/construction/con_altar
 	name = "Construct a convertion altar"
 	description = "Construct a convertion altar, that can convert non-believers into your cult."
 	cost = 145
 	time_builded = 20 SECONDS
 	warp_name = "altar"
 	warp_description = "a pulsating mass of energy in a form of an altar"
-	structure_type = /obj/structure/destructible/hog_structure/forge
+	structure_type = /obj/structure/destructible/hog_structure/con_altar
 	max_constructible_health = 100
 	integrity_per_process = 6
-	icon_name = "forge_constructing"
+	icon_name = "altar_constructing"
+
+
+
 
 /obj/structure/destructible/hog_structure/sac_altar
 	name = "conversion altar"
-	desc = "an magical construction, capable of channeling otherworldy energies into mortal entities mind."
+	desc = "an magical construction, capable of sacrificing mortals in exchange of transforming their soul into magical energy."
 	break_message = span_warning("With a flash, the celestial forge fells appart!") 
 	god_actions_add = list(/datum/hog_god_interaction/structure/overcharge, /datum/hog_god_interaction/structure/shield, /datum/hog_god_interaction/structure/research/weapons, /datum/hog_god_interaction/structure/research/armor)
 	icon = 'icons/obj/hand_of_god_structures.dmi'
@@ -103,6 +106,8 @@
 	cult.change_energy_amount(ENERGY_REWARD_AMOUNT)
 	cult.max_energy += STORAGE_REWARD_AMOUNT
 	cult.permanent_regen += REGEN_REWARD_AMOUNT
+	cult.sacrificed_people += 1
+	cult.souls += 1
 	C.mind.hasSoul = FALSE
 	C.health -= 20
 	C.maxHealth -= 20
@@ -110,3 +115,18 @@
 	to_chat(user,span_notice("You sacrifice [C] to your god!"))
 	user.say("[cult.god], I iaierfcsc [C] ni rouy nmae!", language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")  
 
+#undef ENERGY_REWARD_AMOUNT 
+#undef STORAGE_REWARD_AMOUNT 
+#undef REGEN_REWARD_AMOUNT 
+
+/datum/hog_god_interaction/targeted/construction/sac_altar
+	name = "Construct a sacrifice altar"
+	description = "Construct a sacrifice altar, that can sacrifice souls of mortalls in exchange of energy for your cult."
+	cost = 125
+	time_builded = 15 SECONDS
+	warp_name = "altar"
+	warp_description = "a pulsating mass of energy in a form of an altar"
+	structure_type = /obj/structure/destructible/hog_structure/sac_altar
+	max_constructible_health = 100
+	integrity_per_process = 6
+	icon_name = "altar_constructing"
