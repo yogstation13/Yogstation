@@ -302,6 +302,11 @@
 /obj/machinery/button/crematorium/indestructible
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
+/obj/machinery/button/holosign
+	name = "holosign button"
+	desc = "A remote control switch for a holosign."
+	device_type = /obj/item/assembly/control/holosign
+
 /obj/item/wallframe/button
 	name = "button frame"
 	desc = "Used for building buttons."

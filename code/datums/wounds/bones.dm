@@ -241,6 +241,7 @@
 	if(!do_after(user, time, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
+	playsound(victim, 'sound/effects/wounds/crack1.ogg', 25)
 	if(prob(65))
 		user.visible_message(span_danger("[user] snaps [victim]'s dislocated [limb.name] back into place!"), span_notice("You snap [victim]'s dislocated [limb.name] back into place!"), ignored_mobs=victim)
 		to_chat(victim, span_userdanger("[user] snaps your dislocated [limb.name] back into place!"))
@@ -260,6 +261,7 @@
 	if(!do_after(user, time, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
+	playsound(victim, 'sound/effects/wounds/crack1.ogg', 25)
 	if(prob(65))
 		user.visible_message(span_danger("[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!"), span_danger("You snap [victim]'s dislocated [limb.name] with a sickening crack!"), ignored_mobs=victim)
 		to_chat(victim, span_userdanger("[user] snaps your dislocated [limb.name] with a sickening crack!"))
@@ -280,7 +282,8 @@
 
 	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
-
+	
+	playsound(I, 'sound/effects/wounds/crack1.ogg', 25)
 	if(victim == user)
 		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message(span_danger("[user] finishes resetting [victim.p_their()] [limb.name]!"), span_userdanger("You reset your [limb.name]!"))
