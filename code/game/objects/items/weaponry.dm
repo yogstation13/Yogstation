@@ -79,6 +79,18 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is falling on [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(BRUTELOSS)
+	
+/obj/item/claymore/excalibur
+	name = "Excalibur"
+	desc = "A legendary sword passed down through the ages, though it seems to have lost its magic."
+	force = 21
+	block_chance = 30
+	
+/obj/item/claymore/ruin
+	name = "Ancient Sword"
+	desc = "A cracked and blunted sword, clearly weathered over the ages."
+	force = 21
+	block_chance = 30
 
 /obj/item/claymore/highlander //ALL COMMENTS MADE REGARDING THIS SWORD MUST BE MADE IN ALL CAPS
 	desc = "<b><i>THERE CAN BE ONLY ONE, AND IT WILL BE YOU!!!</i></b>\nActivate it in your hand to point to the nearest victim."
