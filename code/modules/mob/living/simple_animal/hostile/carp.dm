@@ -62,6 +62,9 @@
 	"silver" = "#fdfbf3", \
 	)
 
+/mob/living/simple_animal/hostile/carp/loan
+	faction = list("hostile")
+
 /mob/living/simple_animal/hostile/carp/Initialize(mapload)
 	. = ..()
 	carp_randomify(rarechance)
