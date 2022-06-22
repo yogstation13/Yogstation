@@ -60,6 +60,9 @@
 
 /datum/team/hog_cult/proc/process_research()
 	for(var/datum/hog_research_entry/project in research_projects)
+		if(!project.lab)
+			to_chat(god,span_warning("The researching of [project], has been interupted, due to destruction of researching building!"))
+			qdel(project)
 		if(world.time <= project.when_finished)
 			finish_research(project)
 	if(!research_projects.len)
@@ -74,6 +77,7 @@
 				upgrade.levels += 1
 				upgrade.on_researched()
 				break
+	to_chat(god,span_warning("The [project] upgrade has been researched!"))
 	research_projects -= research
 	qdel(research)
 
