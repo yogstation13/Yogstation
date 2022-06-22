@@ -187,9 +187,9 @@
 /area/lavaland/surface/outdoors)
 "O" = (
 /obj/item/claymore{
-	name = "Excalibur";
-	desc = "A legendary sword passed down through the ages, though it seems to have lost its magic.";
-	force = 21;
+	name = "Excalibur"
+	desc = "A legendary sword passed down through the ages, though it seems to have lost its magic."
+	force = 21
 	block_chance = 30
 	},
 /obj/item/clothing/shoes/plate,
