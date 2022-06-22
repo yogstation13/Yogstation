@@ -63,7 +63,7 @@
 
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!is_drainable())
-			to_chat(user, "<span class='warning'>[src] isn't open!</span>")
+			to_chat(user, span_warning"[src] isn't open!"))
 			return
 		if(!reagents.total_volume)
 			to_chat(user, span_warning("[src] is empty."))
@@ -84,7 +84,7 @@
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if (!is_refillable())
-			to_chat(user, "<span class='warning'>[src] isn't open!</span>")
+			to_chat(user, span_warning("[src] isn't open!"))
 			return
 
 		if(!target.reagents.total_volume)
@@ -282,7 +282,7 @@
 /obj/item/reagent_containers/food/drinks/waterbottle/attack(mob/target, mob/user, def_zone)
 	if(target && user.a_intent == INTENT_HARM)
 		if(!spillable)
-			to_chat(user, "<span class='warning'>[src] is closed!</span>")
+			to_chat(user, span_warning("[src] is closed!"))
 		else
 			SplashReagents(target)
 		return
@@ -294,7 +294,7 @@
 	. = ..()
 	if(!QDELETED(src) && !spillable && reagents.total_volume)
 		if(prob(flip_chance)) // landed upright
-			src.visible_message("<span class='notice'>[src] lands upright!</span>")
+			src.visible_message(span_notice("[src] lands upright!"))
 			if(throwingdatum.thrower)
 				SEND_SIGNAL(throwingdatum.thrower, COMSIG_ADD_MOOD_EVENT, "bottle_flip", /datum/mood_event/bottle_flip)
 		else // landed on it's side
@@ -332,7 +332,7 @@
 	var/datum/reagent/random_reagent = new reagent_id
 	list_reagents = list(random_reagent.type = 50)
 	. = ..()
-	desc +=  "<span class='notice'>The writing reads '[random_reagent.name]'.</span>"
+	desc +=  span_notice("The writing reads '[random_reagent.name]'.")
 	update_icon()
 /obj/item/reagent_containers/food/drinks/beer
 	name = "space beer"

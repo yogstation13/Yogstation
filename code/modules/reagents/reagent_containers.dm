@@ -71,11 +71,11 @@
 
 	. = ..()
 	if(cap_lost)
-		. += "<span class='notice'>The cap seems to be missing.</span>"
+		. += span_notice("The cap seems to be missing.")
 	else if(cap_on)
-		. += "<span class='notice'>The cap is firmly on to prevent spilling. Alt-click to remove the cap.</span>"
+		. += span_notice("The cap is firmly on to prevent spilling. Alt-click to remove the cap.")
 	else
-		. += "<span class='notice'>The cap has been taken off. Alt-click to put a cap on.</span>"
+		. += span_notice("The cap has been taken off. Alt-click to put a cap on.")
 
 /obj/item/reagent_containers/is_refillable()
 	if(can_have_cap && cap_on)
@@ -108,21 +108,20 @@
 	. = ..()
 	if(can_have_cap)
 		if(cap_lost)
-			to_chat(user, "<span class='warning'>The cap seems to be missing! Where did it go?</span>")
+			to_chat(user, span_warning("The cap seems to be missing! Where did it go?"))
 			return
-
 		var/fumbled = HAS_TRAIT(user, TRAIT_CLUMSY) && prob(5)
 		if(cap_on || fumbled)
 			set_cap_status(FALSE)
 			if(fumbled)
-				to_chat(user, "<span class='warning'>You fumble with [src]'s cap! The cap falls onto the ground and simply vanishes. Where the hell did it go?</span>")
+				to_chat(user, span_warning("You fumble with [src]'s cap! The cap falls onto the ground and simply vanishes. Where the hell did it go?"))
 				cap_lost = TRUE
 			else
-				to_chat(user, "<span class='notice'>You remove the cap from [src].</span>")
+				to_chat(user, span_notice("You remove the cap from [src]."))
 		else
 			set_cap_status(TRUE)
-			to_chat(user, "<span class='notice'>You put the cap on [src].</span>")
-		playsound(src, 'sound/items/glass_cap.ogg', 50, 1)
+			to_chat(user, span_notice("You put the cap on [src]."))
+		playsound(src, 'sound/items/glass_cap.ogg', 50, TRUE)
 
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
 	if(!iscarbon(eater))

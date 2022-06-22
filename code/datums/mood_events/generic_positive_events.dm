@@ -167,7 +167,7 @@
 	timeout = 4 MINUTES
 
 /datum/mood_event/bottle_flip
-	description = "<span class='nicegreen'>The bottle landing like that was satisfying.</span>\n"
+	description = "[span_nicegreen("The bottle landing like that was satisfying.")]\n"
 	mood_change = 1
 	timeout = 1 MINUTES
 
