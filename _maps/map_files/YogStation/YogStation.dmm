@@ -8279,6 +8279,21 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/storage/tools)
+"aHH" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/glass_large{
+	name = "Research Area";
+	req_access_txt = "55"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "aHI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -16084,17 +16099,6 @@
 "bqe" = (
 /turf/closed/wall/r_wall,
 /area/science/explab)
-"bqf" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "bqi" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -116988,7 +116992,7 @@ blJ
 bno
 bkt
 biW
-bqf
+aHH
 bgp
 bmU
 bvK
