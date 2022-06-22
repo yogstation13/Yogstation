@@ -983,7 +983,7 @@ Nothing else in the console has ID requirements.
 	if(ls["disk_slot"])
 		disk_slot_selected = text2num(ls["disk_slot"])
 	if(ls["research_node"])
-		if(!can_research)
+		if(!can_research(usr))
 			to_chat(usr, "ACCESS DENIED")
 			return
 		if(!research_control)
