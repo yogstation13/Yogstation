@@ -52,7 +52,7 @@
 	research = /datum/hog_research_entry/adv_weapons
 
 /datum/hog_research_entry/adv_weapons
-	upgrade =  /datum/hog_research
+	upgrade =  /datum/hog_research/advanced_weaponry
 
 
 	
