@@ -98,7 +98,7 @@
 	host_mob.adjustBruteLoss(nanite_amount/2.5) //Instead of gibbing we'll just do an asston of damage
 	var/heavy_range = FLOOR(nanite_amount/100, 1) - 1
 	var/light_range = FLOOR(nanite_amount/50, 1) - 1
-	explosion(host_mob, dev_range, heavy_range, light_range)
+	explosion(host_mob, 0, heavy_range, light_range)
 	qdel(nanites)
 
 //TODO make it defuse if triggered again
