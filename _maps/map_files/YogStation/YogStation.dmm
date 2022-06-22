@@ -31437,6 +31437,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"giP" = (
+/obj/machinery/door/window/eastright{
+	base_state = "left";
+	dir = 8;
+	icon_state = "left";
+	name = "Research Division Delivery";
+	req_access_txt = "7"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "gjl" = (
 /turf/closed/wall,
 /area/quartermaster/warehouse)
@@ -31769,6 +31780,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"gsd" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/lab)
 "gsx" = (
 /obj/effect/landmark/start/cyborg,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -32491,13 +32510,6 @@
 /obj/machinery/rnd/production/techfab/department/service,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"gHT" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/explab)
 "gIc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -33210,6 +33222,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
+"hcZ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters";
+	name = "Surgery Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/medical/surgery)
 "hdd" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Library"
@@ -34555,18 +34579,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"hFP" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters";
-	name = "Surgery Shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/surgery)
 "hGf" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -38515,6 +38527,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"jte" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters";
+	name = "Surgery Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/medical/surgery)
 "jtq" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/turf_decal/stripes/line{
@@ -42766,6 +42790,14 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"lEQ" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "robotics2";
+	name = "robotics lab shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/robotics/lab)
 "lFb" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -46277,6 +46309,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"npe" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/research/glass{
+	name = "R&D Lab";
+	req_access_txt = "7"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "npo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/official/help_others{
@@ -47688,6 +47735,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"obM" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/medical/medbay/lobby)
 "ocq" = (
 /obj/machinery/door/poddoor{
 	id = "trash";
@@ -47826,29 +47881,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"oeK" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/research{
-	name = "R&D Lab";
-	req_access_txt = "7"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "ogh" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -48279,14 +48311,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"oqI" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/medbay/lobby)
 "ord" = (
 /obj/machinery/power/smes,
 /obj/structure/cable{
@@ -49925,6 +49949,14 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
+"piL" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/medical/sleeper)
 "piV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -50578,17 +50610,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"pAx" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/machinery/computer/rdconsole/production{
-	dir = 8;
-	req_access = list(32)
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "pAL" = (
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
@@ -55941,14 +55962,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
-"slR" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/lab)
 "sma" = (
 /obj/structure/chair{
 	dir = 1
@@ -56663,14 +56676,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"sCr" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "robotics2";
-	name = "robotics lab shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/robotics/lab)
 "sCs" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -56789,6 +56794,29 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"sGR" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/research/glass{
+	name = "R&D Lab";
+	req_access_txt = "7"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "sGW" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 5
@@ -57472,17 +57500,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"sYU" = (
-/obj/machinery/door/window/eastright{
-	base_state = "left";
-	dir = 8;
-	icon_state = "left";
-	name = "Research Division Delivery";
-	req_access_txt = "7"
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/lab)
 "sZg" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -57801,14 +57818,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"tfy" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/sleeper)
 "tfC" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5
@@ -63097,6 +63106,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"vPZ" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/medical/medbay/lobby)
 "vQq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -64616,18 +64633,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"wIY" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters";
-	name = "Surgery Shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/surgery)
 "wJm" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -64798,6 +64803,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"wMP" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/science/explab)
 "wNo" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -65499,21 +65511,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"xjt" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/research{
-	name = "R&D Lab";
-	req_access_txt = "7"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "xjN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -67084,14 +67081,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
-"xXt" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/medbay/lobby)
 "xXT" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -67148,6 +67137,17 @@
 /obj/item/twohanded/rcl/pre_loaded,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"xYI" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/computer/rdconsole/production{
+	dir = 8;
+	req_access = list(32)
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "xYW" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/meson,
@@ -100039,7 +100039,7 @@ ahi
 ajs
 uxH
 akB
-pAx
+xYI
 cMv
 uQS
 gNd
@@ -103607,7 +103607,7 @@ bfF
 ocA
 opn
 wiA
-tfy
+piL
 kJb
 oCO
 bZg
@@ -104121,7 +104121,7 @@ cfu
 uYq
 ogm
 pZK
-tfy
+piL
 mtT
 lvO
 bDR
@@ -104374,7 +104374,7 @@ aco
 dIW
 rJo
 hIu
-xXt
+vPZ
 oQi
 aBB
 vle
@@ -104635,7 +104635,7 @@ gtC
 mKN
 kub
 tva
-tfy
+piL
 tzC
 rUG
 bDR
@@ -104892,7 +104892,7 @@ gtC
 sxa
 kub
 tva
-tfy
+piL
 iTR
 vXI
 gaU
@@ -105916,11 +105916,11 @@ fCh
 dlx
 vMp
 wtY
-oqI
+obM
 sxa
 kub
 hLI
-tfy
+piL
 sTb
 mxh
 sgE
@@ -106434,7 +106434,7 @@ orY
 hHy
 pjc
 hLI
-wIY
+hcZ
 qmI
 xOh
 shN
@@ -106691,7 +106691,7 @@ gtC
 iBZ
 kub
 tva
-hFP
+jte
 jbq
 vvK
 vvK
@@ -106948,7 +106948,7 @@ bEi
 mvC
 cXg
 tva
-hFP
+jte
 bdw
 urv
 uMu
@@ -107205,7 +107205,7 @@ luE
 uSW
 rTC
 tva
-hFP
+jte
 jbq
 lMh
 uuV
@@ -107462,7 +107462,7 @@ bEi
 hoP
 kub
 hLI
-hFP
+jte
 dDo
 gQe
 doF
@@ -112859,7 +112859,7 @@ sUL
 jna
 cIb
 hlz
-sCr
+lEQ
 bgp
 sRl
 byf
@@ -113116,7 +113116,7 @@ dEU
 bTv
 cIb
 rOz
-sCr
+lEQ
 bgp
 pYr
 lcM
@@ -113373,7 +113373,7 @@ bkr
 cHW
 cId
 hkd
-sCr
+lEQ
 nlD
 bnH
 byf
@@ -114401,7 +114401,7 @@ biN
 cHX
 buj
 buj
-sCr
+lEQ
 sGm
 uCv
 byj
@@ -114915,7 +114915,7 @@ bov
 bpU
 brq
 bsW
-sCr
+lEQ
 bgp
 bnx
 byk
@@ -115169,7 +115169,7 @@ bfV
 bfV
 bfV
 box
-sCr
+lEQ
 brs
 box
 box
@@ -116712,7 +116712,7 @@ blK
 bnp
 boA
 boQ
-slR
+gsd
 bro
 bmU
 bvJ
@@ -116969,7 +116969,7 @@ blJ
 bno
 bkt
 biW
-xjt
+npe
 bgp
 bmU
 bvK
@@ -117226,7 +117226,7 @@ bka
 bka
 aCl
 bpo
-oeK
+sGR
 brp
 bmW
 bvK
@@ -117483,7 +117483,7 @@ blL
 biW
 bnh
 biW
-slR
+gsd
 bte
 bmX
 bvK
@@ -117996,9 +117996,9 @@ bgc
 bgc
 bgc
 bgc
-sYU
+giP
 bgc
-gHT
+wMP
 bmZ
 bvK
 bvK
