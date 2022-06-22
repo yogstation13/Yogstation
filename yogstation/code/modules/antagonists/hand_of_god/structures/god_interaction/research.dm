@@ -20,7 +20,7 @@
 			return
 	var/datum/hog_research_entry/new_proj = new research
 	var/yes = FALSE
-	for(var/datum/hog_research/R in cult.upgrades)
+	for(var/datum/hog_research/R in user.cult.upgrades)
 		if(istype(new_proj.upgrade, R))
 			if(R.levels >= R.max_level)
 				to_chat(user,span_warning("This research alredy is on the max level!"))
@@ -43,7 +43,7 @@
 	var/when_finished
 	var/name = "big chungus"
 
-/datum/hog_god_interaction/structure/research
+/datum/hog_god_interaction/structure/research/weapons
 	name = "Research Advanced Weaponry"
 	description = "Increases damage, dealed by meele cult weapons."
 	cost = 225
@@ -54,5 +54,15 @@
 	name = "Advanced Weaponry"
 	upgrade = /datum/hog_research/advanced_weaponry
 
+/datum/hog_god_interaction/structure/research/armor
+	name = "Research Advanced Armor"
+	description = "Increases integrity and armor stats of cult shields and cult armor."
+	cost = 195
+	time_to_make = 100 SECONDS
+	research = /datum/hog_research_entry/protection
+
+/datum/hog_research_entry/protection
+	name = "Advanced Weaponry"
+	upgrade = /datum/hog_research/protection
 
 	

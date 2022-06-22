@@ -104,13 +104,10 @@
 	item.throwforce = initial(item.throwforce) += (item.upgrades * item.throwforce_add)
 	item.max_integrity = initial(item.max_integrity) + (item.integrity_add * item.upgrades)
 	item.obj_integrity += item.integrity_add * item.upgrades
+	item.armor = list(MELEE = 30 + (item.armor_add * item.upgrades), BULLET = 40 + (item.armor_add * item.upgrades), LASER = 20 + (item.armor_add * item.upgrades), ENERGY = 20 + (item.armor_add * item.upgrades), BOMB = 10 + (item.armor_add * item.upgrades), BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 
 /datum/hog_research/advanced_weaponry
 	affected_objects = list(/obj/item/hog_item/upgradeable/sword)
 
 /datum/hog_research/protection
 	affected_objects = list(/obj/item/hog_item/upgradeable/shield)
-
-/datum/hog_research/protection/apply_research_effects(var/obj/O)	
-	. = ..()
-	item.armor = list(MELEE = 30 + (item.armor_add * item.upgrades), BULLET = 40 + (item.armor_add * item.upgrades), LASER = 20 + (item.armor_add * item.upgrades), ENERGY = 20 + (item.armor_add * item.upgrades), BOMB = 10 + (item.armor_add * item.upgrades), BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
