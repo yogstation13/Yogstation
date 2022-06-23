@@ -22,6 +22,7 @@
 	var/datum/action/innate/god/whisper/whisper
 	var/datum/action/innate/god/nexus/nexus
 	var/datum/action/innate/god/place_nexus/place_nexus
+	var/datum/action/innate/god/mass_recall/mass_recall
 
 
 /mob/camera/hog_god/Initialize()	
@@ -35,6 +36,8 @@
 	whisper.Grant(src)
 	nexus = new
 	nexus.Grant(src)
+	mass_recall = new
+	mass_recall.Grant(src)
 	place_nexus = new
 	place_nexus.Grant(src)
 

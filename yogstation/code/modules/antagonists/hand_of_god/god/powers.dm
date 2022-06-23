@@ -69,5 +69,19 @@
 	god.cult.message_all_dudes("<span class='cultlarge'><b>Your god, [god], has placed your nexus in [get_area(nexus)]</b></span>", FALSE)
 	qdel(src)
 
+/datum/action/innate/god/mass_recall
+	name = "Mass Recall"
+	button_icon_state = "recall"
 
+/datum/action/innate/god/mass_recall/Activate()
+	var/mob/camera/hog_god/god = owner
+	if(!god || !god.cult)
+		return
+	if(!god.cult.recalls)
+		to_chat(owner, span_warning("You don't have any mass recall charges!"))
+		return
+	var/confirm = alert(owner, "Do you REALLY want to use mass recall? You have only [god.cult.recalls] charges left.", "Confirm action", "Yes", "No")
+	if(confirm == "No")
+		return
+	god.mass_recall()
 
