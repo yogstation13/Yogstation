@@ -24,9 +24,9 @@
 	. = ..()
 
 /obj/structure/destructible/hog_structure/shrine/Destroy()
-		cult.energy_regen -= energy_generation
-		cult.max_energy -= storage
-		cult.change_energy_amount(0)	
+	cult.energy_regen -= energy_generation
+	cult.max_energy -= storage
+	cult.change_energy_amount(0)	
 	. = ..()
 
 /obj/structure/destructible/hog_structure/shrine/special_interaction(mob/user)

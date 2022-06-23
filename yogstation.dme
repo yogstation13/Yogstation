@@ -3570,6 +3570,7 @@
 #include "yogstation\code\modules\antagonists\hand_of_god\cult_team.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\hog_servant_datum.dm"
 #include "yogstation\code\modules\antagonists\hand_of_god\hud.dm"
+#include "yogstation\code\modules\antagonists\hand_of_god\objectives.dm"
 #include "yogstation\code\modules\antagonists\hijacked_ai\hijacked_ai.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\infiltrator.dm"
 #include "yogstation\code\modules\antagonists\infiltrator\objectives.dm"

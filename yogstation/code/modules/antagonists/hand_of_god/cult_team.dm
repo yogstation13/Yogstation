@@ -21,11 +21,13 @@
 	var/souls = 0
 	var/sacrificed_people = 0
 	var/can_ascend = FALSE
+	var/datum/hog_objective/cult_objective
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
 	GLOB.hog_cults += src
 	addtimer(CALLBACK(src, .proc/here_comes_the_money), income_interval)
+	addtimer(CALLBACK(src, .proc/mission_has_started), 1 MINUTES)
 	for(var/datum/hog_research/R in upgrades)
 		R = new
 		R.cult = src

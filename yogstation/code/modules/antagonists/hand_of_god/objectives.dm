@@ -67,3 +67,14 @@
     if(we_have_shrines => shrines_needed)
         completed = TRUE
 	. = ..()
+
+/datum/team/hog_cult/proc/mission_has_started()
+    var/list/candidates = list()
+    for(var/datum/hog_objective/mission in typesof(/datum/hog_objective))
+        if(!mission.initialy)
+            continue
+        candidates += mission
+    cult_objective = new pick(candidates)
+    cult_objective.setup(src)
+    message_all_dudes("<span class='cultlarge'><b>Your cult objective is: [cult_objective.name]</b></span>", FALSE)
+    message_all_dudes("<span class='cultlarge'><b>[cult_objective.description]</b></span>", FALSE)
