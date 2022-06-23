@@ -34,12 +34,12 @@
 	pda_type = /obj/item/pda/miningmed
 
 	backpack_contents = list(/obj/item/roller = 1,\
-		/obj/item/kitchen/knife/combat/survival = 1,\
-		/obj/item/gps/mining = 1)
+		/obj/item/kitchen/knife/combat/survival = 1)
 	belt = /obj/item/storage/belt/medical/mining
 	ears = /obj/item/radio/headset/headset_medcargo
 	glasses = /obj/item/clothing/glasses/hud/health/meson
 	shoes = /obj/item/clothing/shoes/workboots/mining
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/medical
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/explorer
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/regular

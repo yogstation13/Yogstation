@@ -25,7 +25,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	siemens_coeff = 1.75 //Computers REALLY don't like being shorted out
 	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
 	yogs_draw_robot_hair = TRUE
-	mutanteyes = /obj/item/organ/eyes/preternis
+	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
