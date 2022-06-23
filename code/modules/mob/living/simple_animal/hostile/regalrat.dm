@@ -101,6 +101,8 @@
 	if(!.)
 		return
 	var/turf/T = get_turf(owner)
+	if(!T)
+		return
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 5)
@@ -145,6 +147,9 @@
 /datum/action/cooldown/riot/Trigger()
 	. = ..()
 	if(!.)
+		return
+	if(!isopenturf(owner.loc))
+		to_chat(owner,"<span class='warning'>You can't use raise soldiers while in an object!</span>")
 		return
 	var/cap = CONFIG_GET(number/ratcap)
 	var/something_from_nothing = FALSE
