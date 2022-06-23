@@ -137,7 +137,7 @@
 				to_chat(user, span_notice("You attach [I] to [src]."))
 
 			var/accessory_color = attached_accessory.icon_state
-			accessory_overlay = mutable_appearance(mob_overlay_icon, "[accessory_color]")
+			accessory_overlay = mutable_appearance(attached_accessory.mob_overlay_icon, "[accessory_color]")
 			accessory_overlay.alpha = attached_accessory.alpha
 			accessory_overlay.color = attached_accessory.color
 
