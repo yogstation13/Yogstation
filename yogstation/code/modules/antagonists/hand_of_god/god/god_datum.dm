@@ -6,6 +6,7 @@
 	farewell = "Well... You are no longer a god. It is possibly a bug."
 	greet = "You are a HoG god!"
 	antag_moodlet = /datum/mood_event/hog_god
+	is_god = TRUE
 
 /datum/antagonist/hog/god/equip_cultist()
 	return //Gods don't get things. 

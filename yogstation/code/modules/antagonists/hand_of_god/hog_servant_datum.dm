@@ -1,16 +1,16 @@
 /datum/antagonist/hog
-	name = "Generic HoG servant"   ///Because i plan to make guys have different datums, so... you know
+	name = "HoG servant"   ///Because i plan to make guys have different datums, so... you know
 	roundend_category = "HoG Cultists"
 	antagpanel_category = "HoG Cult"
 	var/hud_type = "dude"
 	var/datum/team/hog_cult/cult
 	var/list/god_actions = list(/datum/hog_god_interaction/targeted/recall, /datum/hog_god_interaction/targeted/purge, /datum/hog_god_interaction/targeted/mood, /datum/hog_god_interaction/targeted/mood) 
-	var/farewell = "You are no longer a cultist!"
-	var/greet = "You are now a HoG cultist!"
 	var/energy = 0
 	var/max_energy = 100
 	var/list/prepared_spells = list()
 	var/banned_by_god = FALSE
+	var/is_god = FALSE
+	var/datum/action/innate/pray/pray
 	antag_moodlet = /datum/mood_event/hog_cultist
 
 /datum/antagonist/hog/can_be_owned(datum/mind/new_owner)
@@ -22,16 +22,19 @@
 /datum/antagonist/hog/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_hog_icons_added(M)
+	pray = new
+	pray.Grant(owner.current)
 
 /datum/antagonist/hog/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_hog_icons_removed(M)
+	qdel(pray)
 
 /datum/antagonist/hog/get_team()
 	return cult
 
 /datum/antagonist/hog/greet()
-	to_chat(owner, span_userdanger("greet"))
+	to_chat(owner, span_cultlarge("You are a HoG cultist!"))
 
 /datum/antagonist/hog/farewell()
 	if(ishuman(owner.current))
