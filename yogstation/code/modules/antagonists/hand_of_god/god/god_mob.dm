@@ -18,6 +18,10 @@
 	var/cool_name = "God"
 	var/lights_breaked_recently = 0
 	var/list/spells = list()
+	var/datum/action/innate/god/godspeak/godspeak
+	var/datum/action/innate/god/whisper/whisper
+	var/datum/action/innate/god/nexus/nexus
+	var/datum/action/innate/god/place_nexus/place_nexus
 
 
 /mob/camera/hog_god/Initialize()	
@@ -25,6 +29,14 @@
 	for(var/datum/hog_god_interaction/targeted/spell in typesof(/datum/hog_god_interaction/targeted))
 		spell = new
 		src.spells += spell
+	godspeak = new
+	godspeak.Grant(src)
+	whisper = new
+	whisper.Grant(src)
+	nexus = new
+	nexus.Grant(src)
+	place_nexus = new
+	place_nexus.Grant(src)
 
 
 /mob/camera/hog_god/proc/select_name()

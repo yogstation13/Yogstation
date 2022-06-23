@@ -28,7 +28,7 @@
 	if(!god)
 		return
 	if(god.cult.nexus)
-		forceMove(get_turf(god.cult.nexus))
+		owner.forceMove(get_turf(god.cult.nexus))
 		to_chat(owner, span_notice("You jump to your nexus."))
 	else
 		to_chat(owner, span_warning("You don't have any nexus to jump to, you need construct one."))
@@ -67,6 +67,7 @@
 	nexus.handle_team_change(god.cult)	
 	god.cult.nexus = nexus
 	god.cult.message_all_dudes("<span class='cultlarge'><b>Your god, [god], has placed your nexus in [get_area(nexus)]</b></span>", FALSE)
+	qdel(src)
 
 
 
