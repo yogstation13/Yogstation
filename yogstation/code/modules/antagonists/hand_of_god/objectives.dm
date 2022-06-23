@@ -12,6 +12,7 @@
 	cult.can_ascend = completed
 	if(cult.can_ascend)
 		cult.message_all_dudes("<span class='cultlarge'><b>Your cult objective is completed! Your god can now trigger the ascencion progress by their will!</b></span>", FALSE)
+
 /datum/hog_objective/proc/setup(var/datum/team/hog_cult/new_cult)
 	cult = new_cult
 
@@ -26,7 +27,7 @@
 	. = ..()
 
 /datum/hog_objective/sacrifice/check_completion()
-	if(cult.sacrificed_people => sacrifices_needed)
+	if(cult.sacrificed_people >= sacrifices_needed)
 		completed = TRUE
 	. = ..()
 
@@ -41,7 +42,7 @@
 	. = ..()
 
 /datum/hog_objective/people/check_completion()
-	if(cult.members.len => members_needed)
+	if(cult.members.len >= members_needed)
 		completed = TRUE
 	. = ..()
 
@@ -64,7 +65,7 @@
 		if(S.cult != cult)
 			continue
 		we_have_shrines += 1
-	if(we_have_shrines => shrines_needed)
+	if(we_have_shrines >= shrines_needed)
 		completed = TRUE
 	. = ..()
 
