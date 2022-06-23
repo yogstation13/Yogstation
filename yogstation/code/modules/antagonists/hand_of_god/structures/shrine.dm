@@ -22,6 +22,9 @@
 	new_cult.max_energy += storage
 	new_cult.change_energy_amount(0)
 	. = ..()
+	if(cult && cult.cult_objective && !cult.cult_objective.completed && istype(cult_objective, /datum/hog_objective/holyland))
+		cult.cult_objective.check_completion()
+
 
 /obj/structure/destructible/hog_structure/shrine/Destroy()
 	cult.energy_regen -= energy_generation
