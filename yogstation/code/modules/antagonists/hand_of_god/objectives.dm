@@ -75,7 +75,8 @@
 		if(!mission.initialy)
 			continue
 		candidates += mission
-	cult_objective = new pick(candidates)
+	cult_objective = pick(candidates)
+	cult_objective = new
 	cult_objective.setup(src)
 	message_all_dudes("<span class='cultlarge'><b>Your cult objective is: [cult_objective.name]</b></span>", FALSE)
 	message_all_dudes("<span class='cultlarge'><b>[cult_objective.description]</b></span>", FALSE)
