@@ -96,13 +96,14 @@
 	if(t2_upgrade_reagents)
 		t2_upgrade_reagents = sortList(t2_upgrade_reagents, /proc/cmp_reagents_asc)
 		display_reagents += t2_upgrade_reagents
+	display_reagents = sortList(display_reagents,/proc/cmp_reagents_asc) //Why is this here you ask? because yogs moved things from t1 to t2 so now it fucks up the ordering. This restores it.
 	if(t3_upgrade_reagents)
 		t3_upgrade_reagents = sortList(t3_upgrade_reagents, /proc/cmp_reagents_asc)
 		display_reagents += t3_upgrade_reagents
 	if(t4_upgrade_reagents)
 		t4_upgrade_reagents = sortList(t4_upgrade_reagents, /proc/cmp_reagents_asc)
 		display_reagents += t4_upgrade_reagents
-	display_reagents = sortList(display_reagents, /proc/cmp_reagents_asc)
+	//we don't sort display_reagents again after adding these because they will fuck up the order
 	update_icon()
 
 /obj/machinery/chem_dispenser/Destroy()
