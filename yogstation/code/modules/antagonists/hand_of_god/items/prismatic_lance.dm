@@ -102,7 +102,7 @@
 			cultie = IS_HOG_CULTIST(M.occupant)
 		if(get_dist(M, src) <= sight_range && M.occupant && !(cultie && cultie.cult == src.cult))
 			if(!length(viewcache))
-				for (var/obj/Z in view(sight_range, src))
+				for(var/obj/Z in view(sight_range, src))
 					viewcache += Z
 			if(M in viewcache)
 				possible_targets += M
