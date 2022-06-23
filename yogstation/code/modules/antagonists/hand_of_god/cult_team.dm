@@ -32,7 +32,7 @@
 	
 /datum/team/hog_cult/proc/here_comes_the_money()
 	var/income = permanent_regen
-	income = += energy_regen
+	income += energy_regen
 	for(var/obj/structure/destructible/hog_structure/shrine/shrine in objects)
 		if(!shrine)
 			continue
