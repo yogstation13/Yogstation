@@ -273,7 +273,7 @@
 	desc = "A dead and lifeless legion skull. Suitable as a trophy for a kinetic crusher."
 	icon_state = "legion_skull"
 	denied_type = /obj/item/crusher_trophy/legion_skull
-	bonus_value = 5
+	bonus_value = 3
 
 /obj/item/crusher_trophy/legion_skull/effect_desc()
 	return "a kinetic crusher to recharge <b>[bonus_value*0.1]</b> second\s faster"
