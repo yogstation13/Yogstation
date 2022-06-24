@@ -121,7 +121,7 @@
 	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."
 	icon_state = "tongueayylmao"
 	say_mod = "gibbers"
-	taste_sensitivity = 101 // ayys cannot taste anything.
+	taste_sensitivity = NO_TASTE_SENSITIVITY // ayys cannot taste anything.
 	modifies_speech = TRUE
 	var/mothership
 
@@ -222,7 +222,7 @@
 	icon_state = "tonguebone"
 	say_mod = "rattles"
 	attack_verb = list("bitten", "chattered", "chomped", "enamelled", "boned")
-	taste_sensitivity = 101 // skeletons cannot taste anything
+	taste_sensitivity = NO_TASTE_SENSITIVITY // skeletons cannot taste anything
 	modifies_speech = TRUE
 	var/chattering = FALSE
 	var/phomeme_type = "sans"
@@ -256,7 +256,12 @@
 	say_mod = "states"
 	attack_verb = list("beeped", "booped")
 	modifies_speech = TRUE
-	taste_sensitivity = 25 // not as good as an organic tongue
+	taste_sensitivity = NO_TASTE_SENSITIVITY // not as good as an organic tongue
+
+/obj/item/organ/tongue/robot/emp_act(severity)
+	owner.apply_effect(EFFECT_STUTTER, 120)
+	owner.emote("scream")
+	to_chat(owner, "<span class='warning'>Alert: Vocal cords are malfunctioning.</span>")
 
 /obj/item/organ/tongue/robot/can_speak_language(language)
 	return TRUE // THE MAGIC OF ELECTRONICS

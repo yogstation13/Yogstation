@@ -536,6 +536,7 @@ ROUNDSTART_RACES plasmaman
 ROUNDSTART_RACES preternis
 ROUNDSTART_RACES polysmorph
 #ROUNDSTART_RACES snail
+ROUNDSTART_RACES ipc
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
