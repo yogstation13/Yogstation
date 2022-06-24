@@ -235,7 +235,7 @@
 					shuttle_spawns.Add(/obj/item/paper/fluff/cargo/bomb/allyourbase)
 
 			if(PETA)
-				for(var/i in 1 to 10)
+				for(var/i in 1 to 20)
 					if(prob(50))
 						shuttle_spawns.Add(/mob/living/simple_animal/hostile/rat/loan)
 					if(prob(40))
