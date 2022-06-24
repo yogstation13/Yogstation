@@ -31,6 +31,10 @@
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 	blink_mob(user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.adjust_disgust(30)	//Won't immediately make you vomit, just dont use more than one or two at a time
+		H.confused += 7
 	use(1)
 
 /obj/item/stack/ore/bluespace_crystal/proc/blink_mob(mob/living/L)
