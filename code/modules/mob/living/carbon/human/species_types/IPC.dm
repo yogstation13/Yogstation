@@ -183,9 +183,10 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		if(H.health < 0)
 			to_chat(user, "<span class='warning'>You have to repair the IPC before using this module!</span>")
 			return FALSE
-		if(H.mind)
-			H.mind.grab_ghost()
-		qdel(I) // One use only >:(
-		H.revive()
-		to_chat(user, "<span class='notice'>You reset the IPC's internal circuitry - reviving them!</span>")
+		if(do_after(user, 5 SECONDS, H))
+			if(H.mind)
+				H.mind.grab_ghost()
+			qdel(I) // One use only >:(
+			H.revive()
+			to_chat(user, "<span class='notice'>You reset the IPC's internal circuitry - reviving them!</span>")
 		return
