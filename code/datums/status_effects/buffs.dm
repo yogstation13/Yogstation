@@ -267,7 +267,7 @@
 
 /datum/status_effect/blooddrunk
 	id = "blooddrunk"
-	duration = 20
+	duration = 10
 	tick_interval = 0
 	alert_type = /obj/screen/alert/status_effect/blooddrunk
 
