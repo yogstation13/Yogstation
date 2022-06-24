@@ -124207,6 +124207,11 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"pJO" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "pKo" = (
 /turf/closed/wall,
 /area/aisat)
@@ -124740,6 +124745,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/patients_rooms/room_c)
+"qPI" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "qQT" = (
 /obj/machinery/status_display/evac{
 	pixel_x = -32
@@ -128510,6 +128525,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"wVk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "wWk" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -128598,6 +128620,13 @@
 /obj/item/instrument/harmonica,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wZE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
 "xaG" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -149740,11 +149769,11 @@ cja
 ckv
 clR
 cnB
-clR
+wZE
 clR
 crI
 clR
-clR
+wZE
 cnB
 clR
 czo
@@ -150508,7 +150537,7 @@ cdE
 cfA
 aaa
 cja
-ckw
+wVk
 aad
 aaa
 abj
@@ -150518,7 +150547,7 @@ abj
 abj
 aaa
 aad
-ctn
+pJO
 cja
 aaa
 cDT
@@ -151536,7 +151565,7 @@ cdF
 cfA
 aaa
 cja
-ckw
+wVk
 aad
 aaa
 abj
@@ -151546,7 +151575,7 @@ abj
 abj
 aaa
 aad
-ctn
+pJO
 cja
 aaa
 cDT
@@ -152310,11 +152339,11 @@ cjc
 ckz
 clU
 clU
-clU
+qPI
 clU
 crL
 clU
-clU
+qPI
 clU
 clU
 czr
