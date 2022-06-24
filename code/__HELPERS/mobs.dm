@@ -117,7 +117,7 @@
 		"pod_hair" = pick(GLOB.pod_hair_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
-		"ipc_chassis" = pick(GLOB.ipc_chassis_list
+		"ipc_chassis" = pick(GLOB.ipc_chassis_list)
 	))
 
 /proc/random_hair_style(gender)
