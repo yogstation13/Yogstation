@@ -26,7 +26,7 @@
 	toxmod = 0
 	clonemod = 0
 	staminamod = 0.8
-	siemens_coeff = 1.5
+	siemens_coeff = 1.75
 	reagent_tag = PROCESS_SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'

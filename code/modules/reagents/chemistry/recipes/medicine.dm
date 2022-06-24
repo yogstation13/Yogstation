@@ -279,7 +279,7 @@
 /datum/chemical_reaction/system_cleaner
 	name = "System Cleaner"
 	id = /datum/reagent/medicine/system_cleaner
-	results = list(/datum/reagent/medicine/system_cleaner = 4)
+	results = list(/datum/reagent/medicine/system_cleaner = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/chlorine = 1, /datum/reagent/phenol = 2, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/liquid_solder
