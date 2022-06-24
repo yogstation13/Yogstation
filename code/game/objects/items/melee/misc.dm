@@ -73,7 +73,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 18
 	throwforce = 10
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_HUGE
 	block_chance = 30
 	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "cut")
