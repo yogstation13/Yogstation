@@ -58,8 +58,14 @@
 	if(covered)
 		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
 		to_chat(user, span_warning("You have to remove [who] [covered] first!"))
-		return 0
-	return 1
+		return FALSE
+	if(!eater.has_mouth())
+		if(eater == user)
+			to_chat(eater, "<span class='warning'>You have no mouth, and cannot eat.</span>")
+		else
+			to_chat(user, "<span class='warning'>You can't feed [eater], because they have no mouth!</span>")
+		return FALSE
+	return TRUE
 
 /obj/item/reagent_containers/ex_act()
 	if(reagents)

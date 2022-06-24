@@ -79,6 +79,14 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/acidmod = 1
 	/// multiplier for stun duration
 	var/stunmod = 1
+	/// multiplier for oxyloss
+	var/oxymod = 1
+	/// multiplier for cloneloss
+	var/clonemod = 1
+	/// multiplier for toxloss
+	var/toxmod = 1
+	/// multiplier for stun duration
+	var/staminamod = 1
 	/// multiplier for money paid at payday, species dependent
 	var/payday_modifier = 1
 	///Type of damage attack does
@@ -111,6 +119,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/datum/action/innate/flight/fly
 	///the icon used for the wings
 	var/wings_icon = "Angel"
+	/// Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
+	var/reagent_tag = PROCESS_ORGANIC
+	/// What kind of gibs to spawn
+	var/species_gibs = "human"
+	/// Can this species use numbers in its name?
+	var/allow_numbers_in_name = FALSE
 
 	/// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()
@@ -403,6 +417,15 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			else	//Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
 				C.put_in_hands(new mutanthands())
 
+	if(ROBOTIC_LIMBS in species_traits)
+		for(var/obj/item/bodypart/B in C.bodyparts)
+			B.change_bodypart_status(BODYPART_ROBOTIC) // Makes all Bodyparts robotic.
+			B.render_like_organic = TRUE
+
+	if(NOMOUTH in species_traits)
+		for(var/obj/item/bodypart/head/head in C.bodyparts)
+			head.mouth = FALSE
+
 	for(var/X in inherent_traits)
 		ADD_TRAIT(C, X, SPECIES_TRAIT)
 
@@ -424,6 +447,13 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		C.dna.blood_type = random_blood_type()
 	if(DIGITIGRADE in species_traits)
 		C.Digitigrade_Leg_Swap(TRUE)
+	if(ROBOTIC_LIMBS in species_traits)
+		for(var/obj/item/bodypart/B in C.bodyparts)
+			B.change_bodypart_status(BODYPART_ORGANIC, FALSE, TRUE)
+			B.render_like_organic = FALSE
+	if(NOMOUTH in species_traits)
+		for(var/obj/item/bodypart/head/head in C.bodyparts)
+			head.mouth = TRUE
 	for(var/X in inherent_traits)
 		REMOVE_TRAIT(C, X, SPECIES_TRAIT)
 
@@ -795,6 +825,14 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			bodyparts_to_add -= "wings_open"
 		else if ("wings" in mutant_bodyparts)
 			bodyparts_to_add -= "wings_open"
+	
+	if("ipc_screen" in mutant_bodyparts)
+		if(!H.dna.features["ipc_screen"] || H.dna.features["ipc_screen"] == "None" || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD)
+			bodyparts_to_add -= "ipc_screen"
+
+	if("ipc_antenna" in mutant_bodyparts)
+		if(!H.dna.features["ipc_antenna"] || H.dna.features["ipc_antenna"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD)
+			bodyparts_to_add -= "ipc_antenna"
 
 	if("teeth" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
@@ -912,6 +950,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					S = GLOB.dorsal_tubes_list[H.dna.features["dorsal_tubes"]]
 				if("ethereal_mark")
 					S = GLOB.ethereal_mark_list[H.dna.features["ethereal_mark"]]
+				if("ipc_screen")
+					S = GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
+				if("ipc_antenna")
+					S = GLOB.ipc_antennas_list[H.dna.features["ipc_antenna"]]
+				if("ipc_chassis")
+					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
 			if(!S || S.icon_state == "none")
 				continue
 
@@ -1208,6 +1252,17 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 /datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.update_mutant_bodyparts()
+
+// Do species-specific reagent handling here
+// Return 1 if it should do normal processing too
+// Return 0 if it shouldn't deplete and do its normal effect
+// Other return values will cause weird badness
+/datum/species/proc/handle_reagents(mob/living/carbon/human/H, datum/reagent/R)
+	if(R.type == exotic_blood)
+		H.blood_volume = min(H.blood_volume + round(R.volume, 0.1), BLOOD_VOLUME_NORMAL(H))
+		H.reagents.del_reagent(R.type)
+		return FALSE
+	return TRUE
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.type == exotic_blood)
@@ -1791,14 +1846,14 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			else
 				H.adjustFireLoss(damage * hit_percent * burnmod * H.physiology.burn_mod)
 		if(TOX)
-			H.adjustToxLoss(damage * hit_percent * H.physiology.tox_mod)
+			H.adjustToxLoss(damage * hit_percent * toxmod * H.physiology.tox_mod)
 		if(OXY)
-			H.adjustOxyLoss(damage * hit_percent * H.physiology.oxy_mod)
+			H.adjustOxyLoss(damage * hit_percent * oxymod * H.physiology.oxy_mod)
 		if(CLONE)
-			H.adjustCloneLoss(damage * hit_percent * H.physiology.clone_mod)
+			H.adjustCloneLoss(damage * hit_percent * clonemod * H.physiology.clone_mod)
 		if(STAMINA)
 			if(BP)
-				if(BP.receive_damage(0, 0, damage * hit_percent * H.physiology.stamina_mod))
+				if(BP.receive_damage(0, 0, damage * staminamod * hit_percent * H.physiology.stamina_mod))
 					H.update_stamina()
 			else
 				H.adjustStaminaLoss(damage * hit_percent * H.physiology.stamina_mod)
@@ -2015,6 +2070,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/ExtinguishMob(mob/living/carbon/human/H)
 	return
 
+/datum/species/proc/spec_revival(mob/living/carbon/human/H)
+	return
 
 ////////////
 //  Stun  //
