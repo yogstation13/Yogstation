@@ -44899,6 +44899,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
+"mzV" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/turf/open/floor/noslip,
+/area/medical/sleeper)
 "mAh" = (
 /obj/machinery/computer/rdconsole/robotics,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -53380,12 +53389,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"qXz" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/turf/open/floor/noslip,
-/area/medical/sleeper)
 "qXB" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 8
@@ -103221,7 +103224,7 @@ cYZ
 bvj
 xgg
 oAz
-qXz
+mzV
 gef
 ogM
 bvj
