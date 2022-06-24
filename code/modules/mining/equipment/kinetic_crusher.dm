@@ -227,7 +227,7 @@
 	desc = "A wing ripped from a watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "watcher_wing"
 	denied_type = /obj/item/crusher_trophy/watcher_wing
-	bonus_value = 15
+	bonus_value = 10
 
 /obj/item/crusher_trophy/watcher_wing/effect_desc()
 	return "mark detonation to prevent certain creatures from using certain attacks for <b>[bonus_value*0.1]</b> second\s"
@@ -265,7 +265,7 @@
 	name = "icewing watcher wing"
 	desc = "A carefully preserved frozen wing from an icewing watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "ice_wing"
-	bonus_value = 25
+	bonus_value = 15
 
 //legion
 /obj/item/crusher_trophy/legion_skull
@@ -296,7 +296,7 @@
 	denied_type = /obj/item/crusher_trophy/miner_eye
 
 /obj/item/crusher_trophy/miner_eye/effect_desc()
-	return "mark detonation to grant stun immunity and <b>90%</b> damage reduction for <b>2</b> second"
+	return "mark detonation to grant stun immunity and <b>90%</b> damage reduction for <b>1</b> second"
 
 /obj/item/crusher_trophy/miner_eye/on_mark_detonation(mob/living/target, mob/living/user)
 	user.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)
