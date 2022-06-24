@@ -207,7 +207,7 @@
 	desc = "A sliced-off goliath tentacle. Suitable as a trophy for a kinetic crusher."
 	icon_state = "goliath_tentacle"
 	denied_type = /obj/item/crusher_trophy/goliath_tentacle
-	bonus_value = 2
+	bonus_value = 10
 	var/missing_health_ratio = 0.1
 	var/missing_health_desc = 10
 
@@ -227,7 +227,7 @@
 	desc = "A wing ripped from a watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "watcher_wing"
 	denied_type = /obj/item/crusher_trophy/watcher_wing
-	bonus_value = 5
+	bonus_value = 15
 
 /obj/item/crusher_trophy/watcher_wing/effect_desc()
 	return "mark detonation to prevent certain creatures from using certain attacks for <b>[bonus_value*0.1]</b> second\s"
@@ -247,7 +247,7 @@
 	desc = "A still-searing wing from a magmawing watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "magma_wing"
 	gender = NEUTER
-	bonus_value = 5
+	bonus_value = 15
 
 /obj/item/crusher_trophy/blaster_tubes/magma_wing/effect_desc()
 	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
@@ -265,7 +265,7 @@
 	name = "icewing watcher wing"
 	desc = "A carefully preserved frozen wing from an icewing watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "ice_wing"
-	bonus_value = 8
+	bonus_value = 25
 
 //legion
 /obj/item/crusher_trophy/legion_skull
@@ -273,7 +273,7 @@
 	desc = "A dead and lifeless legion skull. Suitable as a trophy for a kinetic crusher."
 	icon_state = "legion_skull"
 	denied_type = /obj/item/crusher_trophy/legion_skull
-	bonus_value = 3
+	bonus_value = 5
 
 /obj/item/crusher_trophy/legion_skull/effect_desc()
 	return "a kinetic crusher to recharge <b>[bonus_value*0.1]</b> second\s faster"
@@ -296,7 +296,7 @@
 	denied_type = /obj/item/crusher_trophy/miner_eye
 
 /obj/item/crusher_trophy/miner_eye/effect_desc()
-	return "mark detonation to grant stun immunity and <b>90%</b> damage reduction for <b>1</b> second"
+	return "mark detonation to grant stun immunity and <b>90%</b> damage reduction for <b>2</b> second"
 
 /obj/item/crusher_trophy/miner_eye/on_mark_detonation(mob/living/target, mob/living/user)
 	user.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)
@@ -305,7 +305,7 @@
 /obj/item/crusher_trophy/tail_spike
 	desc = "A spike taken from an ash drake's tail. Suitable as a trophy for a kinetic crusher."
 	denied_type = /obj/item/crusher_trophy/tail_spike
-	bonus_value = 5
+	bonus_value = 20
 
 /obj/item/crusher_trophy/tail_spike/effect_desc()
 	return "mark detonation to do <b>[bonus_value]</b> damage to nearby creatures and push them back"
@@ -330,7 +330,7 @@
 	icon_state = "demon_claws"
 	gender = PLURAL
 	denied_type = /obj/item/crusher_trophy/demon_claws
-	bonus_value = 10
+	bonus_value = 20
 	var/static/list/damage_heal_order = list(BRUTE, BURN, OXY)
 
 /obj/item/crusher_trophy/demon_claws/effect_desc()
@@ -363,7 +363,7 @@
 	icon_state = "blaster_tubes"
 	gender = PLURAL
 	denied_type = /obj/item/crusher_trophy/blaster_tubes
-	bonus_value = 15
+	bonus_value = 30
 	var/deadly_shot = FALSE
 
 /obj/item/crusher_trophy/blaster_tubes/effect_desc()
