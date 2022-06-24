@@ -219,7 +219,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/claymore/bone
 	name = "Bone Sword"
-	desc = "Jagged pieces of bone are tied to what looks like a goliaths femur."
+	desc = "Jagged pieces of bone are tied to what looks like a goliath's femur."
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "bone_sword"
 	item_state = "bone_sword"
