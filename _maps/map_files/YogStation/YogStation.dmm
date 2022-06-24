@@ -28638,6 +28638,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"eBa" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/bed/roller,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "eBC" = (
 /obj/machinery/requests_console{
 	department = "Hydroponics";
@@ -45164,6 +45171,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"mEu" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/structure/bed/roller,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "mFw" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -63711,12 +63725,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"wtY" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "wub" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
 	dir = 8
@@ -105525,8 +105533,8 @@ jQg
 mwV
 fCh
 dlx
-vMp
-wtY
+eBa
+mEu
 orq
 aYC
 aBB
