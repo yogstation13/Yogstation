@@ -126,6 +126,7 @@
 	name = "robotics steampunk labcoat"
 	desc = "A labcoat with a steampunk design to it for a roboticist."
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon_state = "wardt_lab"
 	item_state = "wardt_lab"
 
@@ -133,6 +134,7 @@
 	name = "robotics fancy labcoat"
 	desc = "A labcoat with a few markings denoting it as a labcoat for a roboticist."
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon_state = "aeneasrinil"
 	item_state = "aeneasrinil"
 
