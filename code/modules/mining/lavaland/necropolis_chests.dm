@@ -1171,16 +1171,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 				return
 			next_knuckle = world.time + COOLDOWN_ANIMAL
 
-/obj/item/melee/knuckles/attack_self(mob/living/user)
+/obj/item/melee/knuckles/attack_self(mob/user)
 	var/turf/T = get_turf(user)
 	if(next_splash > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	user.visible_message(span_warning("[user] splashes blood from their knuckles!"))
+	user.visible_message(span_warning("[user] splashes blood from the knuckles!"))
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
 	for(var/i = 0 to splash_range)
 		if(T)
-			user.add_splatter_floor(T)
+			new /obj/effect/decal/cleanable/blood(T)
 		T = get_step(T,user.dir)
 	next_splash = world.time + COOLDOWN
 
@@ -1192,6 +1192,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			return
 		var/valid_reaching = FALSE
 		for(var/mob/living/L in view(7, U))
+			if(L == U)
+				continue
 			for(var/obj/effect/decal/cleanable/B in range(0,L))
 				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
 					valid_reaching = TRUE
