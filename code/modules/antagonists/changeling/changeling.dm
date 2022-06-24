@@ -246,6 +246,9 @@
 	var/mob/living/carbon/user = owner.current
 	if(!istype(user))
 		return
+	if(isipc(target))
+		to_chat(user, "<span class='warning'>We cannot absorb mechanical entities!</span>")
+		return
 	if(stored_profiles.len)
 		var/datum/changelingprofile/prof = stored_profiles[1]
 		if(prof.dna == user.dna && stored_profiles.len >= dna_max)//If our current DNA is the stalest, we gotta ditch it.

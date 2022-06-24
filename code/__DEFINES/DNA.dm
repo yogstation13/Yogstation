@@ -143,6 +143,13 @@
 #define HAS_FLESH	23
 /// if we have bones (can suffer bone wounds)
 #define HAS_BONE	24
+#define NOEYESPRITES	25
+/// Can't be husked.
+#define NOHUSK			26
+/// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
+#define ROBOTIC_LIMBS	27
+/// have no mouth to ingest/eat with
+#define NOMOUTH			28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

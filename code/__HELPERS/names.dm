@@ -19,6 +19,9 @@
 /proc/moth_name()
 	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
 
+/proc/ipc_name()
+	return "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
+
 GLOBAL_VAR(command_name)
 /proc/command_name()
 	if (GLOB.command_name)

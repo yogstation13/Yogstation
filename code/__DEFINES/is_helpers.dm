@@ -80,6 +80,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isvampire(A) (is_species(A,/datum/species/vampire))
 #define ispreternis(A) (is_species(A,/datum/species/preternis))
 #define isszlachta(A) (is_species(A, /datum/species/szlachta))
+#define isipc(A) (is_species(A, /datum/species/ipc))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
