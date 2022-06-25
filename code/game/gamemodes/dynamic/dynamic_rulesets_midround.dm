@@ -500,6 +500,49 @@
 
 //////////////////////////////////////////////
 //                                          //
+//           MORPH (GHOST)                  //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/from_ghosts/morph
+	name = "Morph"
+	antag_datum = /datum/antagonist/nightmare
+	antag_flag = "Morph"
+	antag_flag_override = ROLE_ALIEN
+	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
+	required_enemies = list(2,2,1,1,1,1,0,0,0,0)
+	required_candidates = 1
+	weight = 4
+	cost = 5
+	requirements = list(90,85,80,70,50,40,30,25,20,10)
+	repeatable = TRUE
+	var/list/spawn_locs = list()
+
+/datum/dynamic_ruleset/midround/from_ghosts/morph/execute()
+	for(var/X in GLOB.xeno_spawn)
+		var/turf/T = X
+	if(!spawn_locs.len)
+		return FALSE
+	. = ..()
+
+/datum/dynamic_ruleset/midround/from_ghosts/morph/generate_ruleset_body(mob/applicant)
+	var/datum/mind/player_mind = new /datum/mind(applicant.key)
+	player_mind.active = TRUE
+
+	var/mob/living/simple_animal/hostile/morph/S = new /mob/living/simple_animal/hostile/morph(pick(GLOB.xeno_spawn))
+	player_mind.transfer_to(S)
+	player_mind.assigned_role = "Morph"
+	player_mind.special_role = "Morph"
+	player_mind.add_antag_datum(/datum/antagonist/morph)
+	to_chat(S, S.playstyle_string)
+	SEND_SOUND(S, sound('sound/magic/mutate.ogg'))
+	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a morph by an event.")
+	log_game("[key_name(S)] was spawned as a morph by an event.")
+	spawned_mobs += S
+	return SUCCESSFUL_SPAWN
+
+//////////////////////////////////////////////
+//                                          //
 //                VAMPIRE                   //
 //                                          //
 //////////////////////////////////////////////
