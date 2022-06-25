@@ -68,11 +68,11 @@
 						update_inv_hands()
 						I.pixel_x = initial(I.pixel_x)
 						I.pixel_y = initial(I.pixel_y)
-						I.transform = initial(I.transform)
-						if(mind && mind.martial_art)
-							var/datum/martial_art/M = mind.martial_art
-							if(!(M.can_use(src) && (M.deflection_chance || M.block_chance || M.id == "sleeping carp")))	//Throw mode stays on if it being on is beneficial
-								throw_mode_off()
+						I.transform = initial(I.transform)	
+						//If() explanation: if we have a mind and a martial art that we can use, check if it has a block or deflect chance or it's sleeping carp
+						//Assuming any of that isnt true, then throw mode isnt helpful and it gets turned off. Otherwise, it stays on.
+						if(!(mind && mind.martial_art && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || mind.martial_art.block_chance || mind.martial_art.id == "sleeping carp")))
+							throw_mode_off()
 						return TRUE
 	..()
 
