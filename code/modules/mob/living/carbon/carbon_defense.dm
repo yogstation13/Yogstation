@@ -69,7 +69,10 @@
 						I.pixel_x = initial(I.pixel_x)
 						I.pixel_y = initial(I.pixel_y)
 						I.transform = initial(I.transform)
-						throw_mode_off()
+						if(mind && mind.martial_art)
+							var/datum/martial_art/M = mind.martial_art
+							if(!(M.can_use(src) && (M.deflection_chance || M.block_chance || M.id == "sleeping carp")))	//Throw mode stays on if it being on is beneficial
+								throw_mode_off()
 						return TRUE
 	..()
 
