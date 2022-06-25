@@ -215,7 +215,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			E.add_overlay(choices_icons[choice_id])
 
 		var/datum/radial_menu_choice/choice_datum = choice_datums[choice_id]
-		if(istext(choice_datum.info))
+		if(choice_datum && istext(choice_datum.info))
 			E.desc = choice_datum.info
 
 		E.choice = choice_id
