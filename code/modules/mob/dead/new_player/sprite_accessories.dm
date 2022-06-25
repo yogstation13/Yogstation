@@ -880,6 +880,10 @@
 	name = "ECG Wave"
 	icon_state = "ecgwave"
 
+/datum/sprite_accessory/ipc_screens/blank
+	name = "Null"
+	icon_state = "blank"
+
 /datum/sprite_accessory/ipc_screens/eight
 	name = "Eight"
 	icon_state = "eight"
@@ -928,6 +932,11 @@
 /datum/sprite_accessory/ipc_screens/rainbow
 	name = "Rainbow"
 	icon_state = "rainbow"
+	color_src = 0
+
+/datum/sprite_accessory/ipc_screens/rainbowtwp
+	name = "Rainbow"
+	icon_state = "rainbowdiag"
 	color_src = 0
 
 /datum/sprite_accessory/ipc_screens/red
@@ -1018,6 +1027,10 @@
 /datum/sprite_accessory/ipc_antennas/droneeyes
 	name = "Drone Eyes"
 	icon_state = "droneeyes"
+
+/datum/sprite_accessory/ipc_antennas/brokenlight
+	name = "Broken Light"
+	icon_state = "lightb"
 
 /datum/sprite_accessory/ipc_antennas/light
 	name = "Light"
