@@ -528,9 +528,8 @@
 	player_mind.add_antag_datum(/datum/antagonist/morph)
 	to_chat(S, S.playstyle_string)
 	playsound(S, 'sound/magic/mutate.ogg', 50, TRUE, -1)
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a morph by the midround ruleset.")
-	log_game("DYNAMIC: [key_name(S)] was spawned as a morph by the midround ruleset.")
-	spawned_mobs += S
+	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Morph by the midround ruleset.")
+	log_game("DYNAMIC: [key_name(S)] was spawned as a Morph by the midround ruleset.")
 	return S
 
 //////////////////////////////////////////////
