@@ -884,6 +884,14 @@
 	name = "Null"
 	icon_state = "blank"
 
+/datum/sprite_accessory/ipc_screens/L
+	name = "L"
+	icon_state = "l"
+
+/datum/sprite_accessory/ipc_screens/ring
+	name = "Ring"
+	icon_state = "ring"
+
 /datum/sprite_accessory/ipc_screens/eight
 	name = "Eight"
 	icon_state = "eight"
@@ -934,8 +942,8 @@
 	icon_state = "rainbow"
 	color_src = 0
 
-/datum/sprite_accessory/ipc_screens/rainbowtwp
-	name = "Rainbow"
+/datum/sprite_accessory/ipc_screens/rainbowtwo
+	name = "Rainbow (Diagonal)"
 	icon_state = "rainbowdiag"
 	color_src = 0
 
