@@ -44,7 +44,7 @@
 	uniform = /obj/item/clothing/under/rank/chief_engineer
 	uniform_skirt = /obj/item/clothing/under/rank/chief_engineer/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/command // Provides Command shoes to digitigrade species
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/color/black/ce
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/phone/preset/advanced/command/atmos=1) //yogs - removes eng budget
