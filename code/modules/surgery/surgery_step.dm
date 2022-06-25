@@ -113,6 +113,14 @@
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_probability_multiplier()
 
+		// Blood splatters on tools and user
+		if(tool && prob(20))
+			tool.add_mob_blood(target)
+			to_chat(user, span_warning("Your [tool] gets covered [target]'s blood "))
+		if(prob(10))
+			user.add_mob_blood(target)
+			to_chat(user, span_warning("You get covered [target]'s blood "))
+
 		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
 	 tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
@@ -121,6 +129,7 @@
 		else
 			if(failure(user, target, target_zone, tool, surgery))
 				play_failure_sound(user, target, target_zone, tool, surgery)
+				
 				advance = TRUE
 		if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
 			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON)) //borgs and abductors are immune to this

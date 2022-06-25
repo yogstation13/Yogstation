@@ -1,6 +1,6 @@
 /datum/surgery/cavity_implant
 	name = "Cavity implant"
-	desc = "Replace a severed limb with either a normal or a robotic limb."
+	desc = "Implants or removes an object in the chest. Items up to normal size can be implanted, but tiny and small items won't show what they are in the implanting messages."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/handle_cavity, /datum/surgery_step/close)

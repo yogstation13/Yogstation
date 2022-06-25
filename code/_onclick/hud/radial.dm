@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	. = ..()
 	icon_state = "radial_slice_focus"
 	if(tooltips)
-		openToolTip(usr, src, params, title = name)
+		openToolTip(usr, src, params, title = name, content = desc)
 
 /obj/screen/radial/slice/MouseExited(location, control, params)
 	. = ..()
@@ -170,6 +170,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.cut_overlays()
 	E.alpha = 0
 	E.name = "None"
+	E.desc = null
 	E.maptext = null
 	E.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	E.choice = null
@@ -197,6 +198,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.vis_contents.Cut()
 	if(choice_id == NEXT_PAGE_ID)
 		E.name = "Next Page"
+		E.desc = null
 		E.next_page = TRUE
 		E.add_overlay("radial_next")
 	else
@@ -208,17 +210,17 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		else
 			var/atom/movable/AM = choices_values[choice_id] //Movables only
 			E.name = AM.name
+
+		if(choices_icons[choice_id])
+			E.add_overlay(choices_icons[choice_id])
+
+		var/datum/radial_menu_choice/choice_datum = choice_datums[choice_id]
+		if(istext(choice_datum.info))
+			E.desc = choice_datum.info
+
 		E.choice = choice_id
 		E.maptext = null
 		E.next_page = FALSE
-		if(choices_icons[choice_id])
-			E.add_overlay(choices_icons[choice_id])
-		if (choice_datums[choice_id])
-			var/datum/radial_menu_choice/choice_datum = choice_datums[choice_id]
-			if (choice_datum.info)
-				var/obj/effect/abstract/info/info_button = new(E, choice_datum.info)
-				info_button.layer = ABOVE_HUD_LAYER + 0.1
-				E.vis_contents += info_button
 
 /datum/radial_menu/New()
 	close_button = new
