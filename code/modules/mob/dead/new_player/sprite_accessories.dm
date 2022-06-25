@@ -900,6 +900,14 @@
 	name = "Eyes"
 	icon_state = "eyes"
 
+/datum/sprite_accessory/ipc_screens/eyestall
+	name = "Tall Eyes"
+	icon_state = "eyestall"
+
+/datum/sprite_accessory/ipc_screens/eyesangry
+	name = "Angry Eyes"
+	icon_state = "eyesangry"
+
 /datum/sprite_accessory/ipc_screens/glider
 	name = "Glider"
 	icon_state = "glider"
