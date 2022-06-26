@@ -1,0 +1,5 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a Flechette drum for traitors/nukies"
+  - rscadd: "Adds a Hollow-point buckshot drum for traitors/nukies"
