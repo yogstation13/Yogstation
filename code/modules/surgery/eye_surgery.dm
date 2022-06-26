@@ -1,5 +1,8 @@
 /datum/surgery/eye_surgery
 	name = "Eye surgery"
+	desc = "Fixes all damage done to eyes, though doesnt fix genetic blindness. Failing to fix the eyes will cause brain damage to the patient."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "eyeballs"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/fix_eyes, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_PRECISE_EYES)
