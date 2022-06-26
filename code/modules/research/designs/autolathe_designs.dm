@@ -364,7 +364,7 @@
 	id = "plate"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 1500)
-	build_path = /obj/item/storage/bag/tray
+	build_path = /obj/item/plate
 	category = list("initial","Dinnerware","Service")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
