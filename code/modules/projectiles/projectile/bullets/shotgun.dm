@@ -75,7 +75,20 @@
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank
-	
+
+/obj/item/projectile/bullet/pellet/shotgun_flechette
+	name = "flechette pellet"
+	damage = 15
+	wound_bonus = -5
+	bare_wound_bonus = -15
+	armour_penetration = 40
+
+/obj/item/projectile/bullet/pellet/shotgun_hpbuckshot
+	name = "hollow-point pellet"
+	damage = 25
+	bare_wound_bonus = 5
+	armour_penetration = -40
+
 /obj/item/projectile/bullet/pellet/shotgun_clownshot
 	name = "clownshot pellet"
 	damage = 0
