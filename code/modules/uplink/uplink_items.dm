@@ -767,6 +767,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	item = /obj/item/ammo_box/magazine/m12g/slug
 
+/datum/uplink_item/ammo/shotgun/hpbuck
+	name = "12g Hollow-Point Buckshot Drum"
+	desc = "An alternative 8-round hollow-point buckshot magazine for use with the Bulldog shotgun. For when you really need to put people in the dirt."
+	item = /obj/item/ammo_box/magazine/m12g/hpbuck
+
+/datum/uplink_item/ammo/shotgun/flechette
+	name = "12g Flechette Drum"
+	desc = "An alternative 8-round flechette magazine for use with the Bulldog shotgun. Hope they didnt want to use that armor..."
+	item = /obj/item/ammo_box/magazine/m12g/flechette
+
 /datum/uplink_item/ammo/revolver
 	name = ".357 Speed Loader"
 	desc = "A speed loader that contains seven additional .357 Magnum rounds; usable with the Syndicate revolver. \
@@ -1584,7 +1594,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Stimpacks, the tool of many great heroes, make you nearly immune to stuns and knockdowns for about \
 			5 minutes after injection."
 	item = /obj/item/reagent_containers/hypospray/medipen/stimpack/large // Yogs -- Stimpack change
-	cost = 5
+	cost = 8
 	surplus = 90
 
 /datum/uplink_item/device_tools/medkit
@@ -1693,7 +1703,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/anti_stun
 	cost = 12
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/freedom
 	name = "Freedom Implant"

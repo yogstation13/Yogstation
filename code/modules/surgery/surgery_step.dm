@@ -104,12 +104,22 @@
 	if(IS_MEDICAL(user))
 		user_speed_mod = 0.8
 
+	var/previous_loc = user.loc
+
 	if(do_after(user, time * tool_speed_mod * user_speed_mod, target))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_probability_multiplier()
+
+		// Blood splatters on tools and user
+		if(tool && prob(20))
+			tool.add_mob_blood(target)
+			to_chat(user, span_warning("Your [tool] gets covered [target]'s blood "))
+		if(prob(10))
+			user.add_mob_blood(target)
+			to_chat(user, span_warning("You get covered [target]'s blood "))
 
 		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
 	 tool) && !try_to_fail)
@@ -119,6 +129,7 @@
 		else
 			if(failure(user, target, target_zone, tool, surgery))
 				play_failure_sound(user, target, target_zone, tool, surgery)
+				
 				advance = TRUE
 		if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
 			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON)) //borgs and abductors are immune to this
@@ -129,7 +140,9 @@
 			surgery.status++
 			if(surgery.status > surgery.steps.len)
 				surgery.complete()
-
+	else
+		if(!(previous_loc == user.loc))
+			move_ouchie(user, target, target_zone, tool, advance)
 	surgery.step_in_progress = FALSE
 	return advance
 
@@ -150,7 +163,7 @@
 				break	
 	else
 		sound_file_use = preop_sound
-	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You succeed."),
@@ -169,7 +182,7 @@
 				break	
 	else
 		sound_file_use = success_sound
-	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_warning("You screw up!"),
@@ -188,7 +201,7 @@
 				break	
 	else
 		sound_file_use = failure_sound
-	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return TRUE
@@ -248,8 +261,27 @@
 	var/final_ouchie_chance = SURGERY_FUCKUP_CHANCE * ouchie_mod
 	if(!prob(final_ouchie_chance))
 		return
-	user.visible_message(span_boldwarning("[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!"), span_boldwarning("[target]  flinches, bumping your [tool ? tool.name : "hand"] into something important!"))
+	user.visible_message(span_boldwarning("[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!"), span_boldwarning("[target] flinches, bumping your [tool ? tool.name : "hand"] into something important!"))
 	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone)
 	//if(ishuman(target) &&fuckup_damage_type == BRUTE && prob(final_ouchie_chance/2))
 		//var/mob/living/carbon/human/H = target
 		//H.bleed_rate += min(fuckup_damage/4, 10)
+
+///Deal damage if the user moved during the op
+/datum/surgery_step/proc/move_ouchie(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, success)
+	user.visible_message(span_boldwarning("[user] bumps [p_their(FALSE, user)] [tool ? tool.name : "hand"] into something important!"), span_boldwarning("You move, bumping your [tool ? tool.name : "hand"] into something important!"))
+	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone)
+
+/**
+ * Sends a pain message to the target, including a chance of screaming.
+ *
+ * Arguments:
+ * * target - Who the message will be sent to
+ * * pain_message - The message to be displayed
+ * * mechanical_surgery - Boolean flag that represents if a surgery step is done on a mechanical limb (therefore does not force scream)
+ */
+/datum/surgery_step/proc/display_pain(mob/living/target, pain_message, mechanical_surgery = FALSE)
+	if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED))
+		to_chat(target, span_userdanger(pain_message))
+		if(prob(30) && !mechanical_surgery)
+			target.emote("scream")

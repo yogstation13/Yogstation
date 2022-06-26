@@ -200,6 +200,8 @@
 				//omg this is dumb, just fill in both their tickets
 				// yogs start - Yog Tickets
 				admin_ticket_log(src, msg, FALSE)
+				if(!recipient.current_ticket && !current_ticket) // creates a ticket if there is no ticket of either user
+					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
 				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer()
 				// yogs end - Yog Tickets

@@ -22,6 +22,7 @@ Difficulty: Medium
 	maxHealth = 800
 	icon_state = "legion"
 	icon_living = "legion"
+	health_doll_icon = "mega_legion"
 	desc = "One of many."
 	icon = 'icons/mob/lavaland/legion.dmi'
 	attacktext = "chomps"

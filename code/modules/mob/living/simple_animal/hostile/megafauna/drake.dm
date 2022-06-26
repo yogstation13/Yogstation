@@ -41,6 +41,7 @@ Difficulty: Medium
 	icon_state = "dragon"
 	icon_living = "dragon"
 	icon_dead = "dragon_dead"
+	health_doll_icon = "dragon"
 	friendly = "stares down"
 	speak_emote = list("roars")
 	armour_penetration = 40

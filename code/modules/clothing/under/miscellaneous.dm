@@ -439,12 +439,18 @@
 
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
-	desc = "Yarr."
+	desc = "Yarr! A fine shirt and pants for the enterprising corsair."
 	icon_state = "pirate"
 	item_state = "pirate"
 	item_color = "pirate"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/under/pirate/space
+	name = "syndicate pirate outfit"
+	desc = "Yarr! A set of reinforced pirate clothing worn by boney Syndicate privateers."
+	has_sensor = NO_SENSORS
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 40)
 
 /obj/item/clothing/under/soviet
 	name = "soviet uniform"
@@ -963,6 +969,7 @@
 	body_parts_covered = CHEST|GROIN
 	has_sensor = NO_SENSORS
 	can_adjust = FALSE
+	fitted = NO_FEMALE_UNIFORM
 
 /obj/item/clothing/under/ash_robe/young
 	name = "tribal rags"
