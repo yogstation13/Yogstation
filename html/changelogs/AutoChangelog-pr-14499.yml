@@ -1,0 +1,7 @@
+author: "Arkatos, ported to YogStation by SuperSlayer"
+delete-after: true 
+changes: 
+  - tweak: "Blobbernauts now have a generic living healthdoll and pull icon."
+  - tweak: "Blobbernauts will now show severity of their injuries as a red screen overlay to the user."
+  - tweak: "Blob core remaining health will now show in percentages and in green color. This affects both blobbernauts and blob overminds."
+  - tweak: "Blob power is now in orange color for blob overminds."
