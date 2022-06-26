@@ -903,6 +903,10 @@
 		return
 	if(!ishuman(user)) // no silicons or drones in mechas.
 		return
+	if(islizard(user))
+		to_chat(user, span_warning("You're too tall to enter [name]!"))
+		return
+		
 	log_message("[user] tries to move in.", LOG_MECHA)
 	if (occupant)
 		to_chat(usr, span_warning("The [name] is already occupied!"))
