@@ -903,7 +903,8 @@
 		return
 	if(!ishuman(user)) // no silicons or drones in mechas.
 		return
-	if(islizard(user))
+	var/mob/living/carbon/human/H = user
+	if(islizard(user) && !H.dna.check_mutation(DWARFISM))
 		to_chat(user, span_warning("You're too tall to enter [name]!"))
 		return
 		
