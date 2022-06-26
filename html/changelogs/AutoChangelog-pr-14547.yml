@@ -1,0 +1,6 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Rune Scimitar causes mobs to drop bonus loot from a loot table on kill"
+  - rscadd: "Rune Scimitar gains bonus damage against fauna with each lavaland fauna slain up to 20, for a total of 100 bonus damage. get out there and grind"
+  - tweak: "Rune Scimitar's base force down to 20"
