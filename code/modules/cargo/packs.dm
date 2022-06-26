@@ -720,7 +720,7 @@
 
 /datum/supply_pack/security/armory/wt550ammo
 	name = "WT-650 Assualt Rifle Ammo Crate"
-	desc = "Contains four 30-round magazines for the WT-650 Assualt Rifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	desc = "Contains four 30-round magazines for the WT-650 Assault Rifle. Requires Armory access to open."
 	cost = 4500
 	contains = list(/obj/item/ammo_box/magazine/wt650,
 					/obj/item/ammo_box/magazine/wt650,
