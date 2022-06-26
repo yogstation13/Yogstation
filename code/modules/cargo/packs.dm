@@ -705,7 +705,7 @@
 
 /datum/supply_pack/security/armory/wt650
 	name = "WT-650 Assualt Rifle Crate"
-	desc = "Contains two high-powered, semiautomatic rifles chambered in 5.45mm rounds. Requires Armory access to open."
+	desc = "Contains two high-powered semiautomatic rifles, chambered in 5.45mm rounds. Requires Armory access to open."
 	cost = 12500
 	contains = list(/obj/item/gun/ballistic/automatic/wt650,
 					/obj/item/gun/ballistic/automatic/wt650)
