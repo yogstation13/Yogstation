@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Patches up some weird storage decisions regarding all mining exosuits. Basically, knives and legion cores of all forms should fit on any mining exosuit"
+  - tweak: "Adds bone sword and all bows as options to exosuit slot on goliath, pathfinder, and drake armors"
+  - tweak: "Adds bone spear to drake armor because it had the normal spear only??"
