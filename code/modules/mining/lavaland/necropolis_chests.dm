@@ -1635,9 +1635,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	attack_verb = list("slashed","stabbed")
 	var/fauna_backstab_bonus = 40
 	var/person_backstab_bonus = 10
+	item_flags = SLOWS_WHILE_IN_HAND
 
-
-MOVESPEED_ID_CS_KNIFE 
+/obj/item/cs_knife/Initialize()
+	slowdown = -2
 
 /obj/item/cs_knife/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
@@ -1650,7 +1651,7 @@ MOVESPEED_ID_CS_KNIFE
 			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
 				L.apply_damage(force + fauna_backstab_bonus, BRUTE, blocked = def_check)
 				playsound(user, 'yogstation/sound/weapons/csknife_backstab.ogg', 100, 1)
-	if(proximity_flag && ishuman(target))
+	if(proximity_flag && iscarbon(target))
 		var/mob/living/L = target
 		if(!QDELETED(L))
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
