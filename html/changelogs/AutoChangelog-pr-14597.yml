@@ -1,0 +1,5 @@
+author: "AlvCyktor"
+delete-after: true 
+changes: 
+  - bugfix: "fixed duplicate build path for plate and trays"
+  - tweak: "RSF can now print plates"
