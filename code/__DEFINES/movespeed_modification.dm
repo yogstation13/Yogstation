@@ -62,7 +62,6 @@
 
 #define MOVESPEED_ID_SLAUGHTER                          "SLAUGHTER"
 #define MOVESPEED_ID_DIE_OF_FATE                        "DIE_OF_FATE"
-#define MOVESPEED_ID_CS_KNIFE                           "CS_KNIFE"
 
 #define MOVESPEED_ID_SHOVE                              "SHOVE"
 #define MOVESPEED_ID_PRONE_DRAGGING                     "PRONE_DRAG"
