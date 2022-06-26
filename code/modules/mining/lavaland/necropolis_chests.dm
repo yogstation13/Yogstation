@@ -1627,27 +1627,35 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/cs_knife_base_righthand.dmi'
 	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "cs_knife_base"
-	force = 20
+	force = 10
 	damtype = BRUTE
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_SMALL
-	hitsound = 'yogstation/sound/weapons/rs_slash.ogg'
+	hitsound = 'yogstation/sound/weapons/csknife.ogg'
 	attack_verb = list("slashed","stabbed")
-	var/backstab_bonus = 40
+	var/fauna_backstab_bonus = 40
+	var/person_backstab_bonus = 10
 
 
 MOVESPEED_ID_CS_KNIFE 
 
 /obj/item/cs_knife/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
-	if(proximity_flag && isliving(target))
+	if(proximity_flag && isanimal(target))
 		var/mob/living/L = target
 		if(!QDELETED(L))
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 			var/backstab_dir = get_dir(user, L)
-			var/def_check = L.getarmor(type = BOMB)
+			var/def_check = L.getarmor(type = MELEE)
 			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
-				L.apply_damage(force + backstab_bonus, BRUTE, blocked = def_check)
-				playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
-			else
-				L.apply_damage(force, BRUTE, blocked = def_check)
+				L.apply_damage(force + fauna_backstab_bonus, BRUTE, blocked = def_check)
+				playsound(user, 'yogstation/sound/weapons/csknife_backstab.ogg', 100, 1)
+	if(proximity_flag && ishuman(target))
+		var/mob/living/L = target
+		if(!QDELETED(L))
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			var/backstab_dir = get_dir(user, L)
+			var/def_check = L.getarmor(type = MELEE)
+			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
+				L.apply_damage(force + person_backstab_bonus, BRUTE, blocked = def_check)
+				playsound(user, 'yogstation/sound/weapons/csknife_backstab.ogg', 100, 1)
