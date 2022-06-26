@@ -1633,7 +1633,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	w_class = WEIGHT_CLASS_SMALL
 	hitsound = 'yogstation/sound/weapons/csknife.ogg'
 	attack_verb = list("slashed","stabbed")
-	var/fauna_backstab_bonus = 40
+	var/fauna_backstab_bonus = 50
 	var/person_backstab_bonus = 10
 	item_flags = SLOWS_WHILE_IN_HAND
 
