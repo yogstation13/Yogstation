@@ -129,7 +129,7 @@
 
 /obj/item/gun/ballistic/automatic/wt650
 	name = "WT-650 Assault Rifle"
-	desc = "A long-barreled, assault variant of the WT-550. Uses 5.45 rounds and is specially designed for assault teams, PMC forces, and armies favouring ballistic weapons over their laser counterparts."
+	desc = "A long-barreled assault variant of the WT-550. Uses 5.45mm rounds. and is specially for heavy ballistic warfare."
 	icon_state = "wt650"
 	item_state = "wt650"
 	mag_type = /obj/item/ammo_box/magazine/wt650
