@@ -1617,3 +1617,37 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		H.blood_volume -= 35
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown
+
+// CS Knife
+
+/obj/item/cs_knife
+	name = "M9 Bayonet"
+	desc = "A simple knife, one edge serraded and the other deadly sharp. It fills you with a compulsion to 'Rush B', whatever that means."
+	lefthand_file = 'yogstation/icons/mob/inhands/weapons/cs_knife_base_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/weapons/cs_knife_base_righthand.dmi'
+	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
+	icon_state = "cs_knife_base"
+	force = 20
+	damtype = BRUTE
+	sharpness = SHARP_EDGED
+	w_class = WEIGHT_CLASS_SMALL
+	hitsound = 'yogstation/sound/weapons/rs_slash.ogg'
+	attack_verb = list("slashed","stabbed")
+	var/backstab_bonus = 40
+
+
+MOVESPEED_ID_CS_KNIFE 
+
+/obj/item/cs_knife/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	. = ..()
+	if(proximity_flag && isliving(target))
+		var/mob/living/L = target
+		if(!QDELETED(L))
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			var/backstab_dir = get_dir(user, L)
+			var/def_check = L.getarmor(type = BOMB)
+			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
+				L.apply_damage(force + backstab_bonus, BRUTE, blocked = def_check)
+				playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
+			else
+				L.apply_damage(force, BRUTE, blocked = def_check)
