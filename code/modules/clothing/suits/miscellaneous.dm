@@ -51,14 +51,14 @@
 
 /obj/item/clothing/suit/pirate
 	name = "pirate coat"
-	desc = "Yarr."
+	desc = "Arrrgh! A bulky coat worn by the terrors of the seas."
 	icon_state = "pirate"
 	item_state = "pirate"
-	allowed = list(/obj/item/melee/transforming/energy/sword/pirate, /obj/item/clothing/glasses/eyepatch, /obj/item/reagent_containers/food/drinks/bottle/rum)
+	allowed = list(/obj/item/melee/transforming/energy/sword/pirate, /obj/item/melee/cutlass, /obj/item/reagent_containers/food/drinks/bottle/rum, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 
 /obj/item/clothing/suit/pirate/captain
 	name = "pirate captain coat"
-	desc = "Yarr."
+	desc = "Arrrgh! This treacherous garb of a seaworthy captain instills great fear in those who gaze upon it."
 	icon_state = "hgpirate"
 	item_state = "hgpirate"
 
