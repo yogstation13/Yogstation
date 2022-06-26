@@ -1,0 +1,4 @@
+author: "tralezab, ported to Yogstation by SuperSlayer"
+delete-after: true 
+changes: 
+  - imageadd: "a lot of >32x32 mobs now have icons for their health dolls"
