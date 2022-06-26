@@ -93,7 +93,7 @@
 					  	span_userdanger("[A] leg sweeps you!"))
 	playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 	D.apply_damage(A.dna.species.punchdamagehigh / 2, BRUTE)	//5 damage
-	D.knockdown(40)
+	D.Knockdown(40)
 	log_combat(A, D, "leg sweeped")
 	return 1
 
