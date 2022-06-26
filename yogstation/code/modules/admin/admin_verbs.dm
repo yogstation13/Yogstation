@@ -1,6 +1,6 @@
 /client/proc/rejuv_all()
 	set name = "Revive All"
-	set category = "Misc"
+	set category = "Admin.End Round"
 	set desc = "Rejuvinate every mob/living."
 
 	if(!check_rights(R_ADMIN))
