@@ -1651,7 +1651,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
 				L.apply_damage(force + fauna_backstab_bonus, BRUTE, blocked = def_check)
 				playsound(user, 'yogstation/sound/weapons/csknife_backstab.ogg', 100, 1)
-	if(proximity_flag && iscarbon(target))
+	if(proximity_flag && ishuman(target))
 		var/mob/living/L = target
 		if(!QDELETED(L))
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
