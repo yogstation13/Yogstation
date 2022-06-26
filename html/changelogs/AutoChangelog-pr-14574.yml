@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Adds buttons to preview what higher tier chem dispensers can put out"
