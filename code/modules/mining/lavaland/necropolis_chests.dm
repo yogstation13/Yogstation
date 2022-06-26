@@ -1136,9 +1136,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 #define COOLDOWN 150
 #define COOLDOWN_HUMAN 100
 #define COOLDOWN_ANIMAL 60
+#define COOLDOWN_SPLASH 100
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
-	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters ahead of the user with blood."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "bloodyknuckle"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -1148,7 +1149,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	force = 18
 	var/next_reach = 0
 	var/next_grip = 0
+	var/next_splash = 0
 	var/next_knuckle = 0
+	var/splash_range = 9
 	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
@@ -1168,6 +1171,19 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 				return
 			next_knuckle = world.time + COOLDOWN_ANIMAL
 
+/obj/item/melee/knuckles/attack_self(mob/user)
+	var/turf/T = get_turf(user)
+	if(next_splash > world.time)
+		to_chat(user, span_warning("You can't do that yet!"))
+		return
+	user.visible_message(span_warning("[user] splashes blood from the knuckles!"))
+	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
+	for(var/i = 0 to splash_range)
+		if(T)
+			new /obj/effect/decal/cleanable/blood(T)
+		T = get_step(T,user.dir)
+	next_splash = world.time + COOLDOWN
+
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
 	if(istype(action, /datum/action/item_action/reach))
@@ -1176,6 +1192,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			return
 		var/valid_reaching = FALSE
 		for(var/mob/living/L in view(7, U))
+			if(L == U)
+				continue
 			for(var/obj/effect/decal/cleanable/B in range(0,L))
 				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
 					valid_reaching = TRUE
@@ -1575,15 +1593,15 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
 	H.faction -= "blooded"
-	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise, /obj/effect/proc_holder/spell/aoe_turf/horde)
-	H.RemoveSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
+	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise)
+	H.RemoveSpell (/obj/effect/proc_holder/spell/aoe_turf/horde)
 	..()
 
 /datum/action/item_action/organ_action/threebloodlings
 	name = "Summon bloodlings"
-	desc = "Summon a conjure a few bloodlings at the cost of 13% blood (8 brain damage for those without blood)."
+	desc = "Summon a conjure a few bloodlings at the cost of 6% blood or 8 brain damage for races without blood."
 	var/next_expulsion = 0
-	var/cooldown = 10 //wheres the risk if it has a reasonable cooldown?
+	var/cooldown = 10 
 	
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
 	var/mob/living/carbon/H = owner
@@ -1596,6 +1614,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
 	else
 		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
-		H.blood_volume -= 70 //like 13% of your blood taken
+		H.blood_volume -= 35
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown

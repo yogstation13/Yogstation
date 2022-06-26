@@ -579,6 +579,8 @@
 	else
 		var/mob/living/L = target
 		if(!direct_target)
+			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_STAND) && (L in range(2, starting))) //if we're shooting over someone who's prone and nearby bc formations are cool and not going to be unbalanced
+				return FALSE
 			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_USE | MOBILITY_STAND | MOBILITY_MOVE) || !(L.stat == CONSCIOUS))		//If they're able to 1. stand or 2. use items or 3. move, AND they are not softcrit,  they are not stunned enough to dodge projectiles passing over.
 				return FALSE
 	return TRUE

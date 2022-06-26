@@ -29646,27 +29646,6 @@
 /obj/effect/landmark/start/roboticist,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"aZU" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/item/surgical_drapes,
-/obj/item/retractor,
-/obj/item/cautery,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/robotics/lab)
 "aZV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -29866,28 +29845,6 @@
 "bai" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/science/robotics/lab)
-"baj" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 16
-	},
-/obj/item/hemostat,
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "bak" = (
 /obj/machinery/computer/operating{
@@ -95909,6 +95866,25 @@
 	icon_state = "panelscorched"
 	},
 /area/security/prison)
+"pmX" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "pnQ" = (
 /obj/structure/lattice,
 /obj/structure/girder/reinforced,
@@ -98541,6 +98517,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
+"saU" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+	},
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "sbr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -139712,7 +139707,7 @@ cHi
 waG
 bhC
 aCK
-baj
+saU
 bak
 aZS
 bOL
@@ -140226,7 +140221,7 @@ azN
 aAo
 aBw
 aHM
-aZU
+pmX
 bgB
 bez
 aJV

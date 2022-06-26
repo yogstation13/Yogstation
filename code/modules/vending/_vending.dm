@@ -465,6 +465,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 			break
 
 /obj/machinery/vending/proc/tilt(mob/fatty, crit=FALSE)
+	var/no_tipper = FALSE
+	if(!fatty)
+		no_tipper = TRUE
 	visible_message("<span class='danger'>[src] tips over!</span>")
 	tilted = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -476,7 +479,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(forcecrit)
 		crit_case = forcecrit
 
-	if(in_range(fatty, src))
+	if(no_tipper || in_range(fatty, src))
 		for(var/mob/living/L in get_turf(fatty))
 			var/mob/living/carbon/C = L
 
@@ -544,7 +547,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	M.Turn(pick(90, 270))
 	transform = M
 
-	if(get_turf(fatty) != get_turf(src))
+	if(fatty && get_turf(fatty) != get_turf(src))
 		throw_at(get_turf(fatty), 1, 1, spin=FALSE)
 
 /obj/machinery/vending/proc/untilt(mob/user)
