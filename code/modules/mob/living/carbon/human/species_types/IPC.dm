@@ -160,6 +160,8 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H)
+	to_chat(H, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>."))
+	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
 	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
@@ -171,22 +173,23 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	H.say("Unit [H.real_name] is fully functional. Have a nice day.")
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
-	to_chat(H, "<span class='notice'>You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>.</span>")
 	return
 
 /datum/species/ipc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
-	. = ..()
-	if(istype(I, /obj/item/borg/upgrade/restart))
+	if(istype(I, /obj/item/borg/upgrade/restart) && intent != INTENT_HARM) // Why you would hit someone with a cyborg reboot idk but
 		if(H.stat != DEAD)
-			to_chat(user, "<span class='warning'>This unit is not dead!</span>")
+			to_chat(user, span_warning("This unit is not dead!"))
 			return FALSE
 		if(H.health < 0)
-			to_chat(user, "<span class='warning'>You have to repair the IPC before using this module!</span>")
+			to_chat(user, span_warning("You have to repair the IPC before using this module!"))
 			return FALSE
-		if(do_after(user, 5 SECONDS, H))
-			if(H.mind)
-				H.mind.grab_ghost()
-			qdel(I) // One use only >:(
-			H.revive()
-			to_chat(user, "<span class='notice'>You reset the IPC's internal circuitry - reviving them!</span>")
-		return
+		to_chat(user, span_warning("You start restarting the IPC's internal circuitry."))
+		if(!do_after(user, 5 SECONDS, H))
+			return
+		if(H.mind)
+			H.mind.grab_ghost()
+		qdel(I) // One use only >:(
+		H.revive()
+		to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
+		return TRUE
+	return ..()
