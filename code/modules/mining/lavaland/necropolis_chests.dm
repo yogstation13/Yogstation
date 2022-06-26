@@ -1636,6 +1636,14 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/fauna_backstab_bonus = 50
 	var/person_backstab_bonus = 10
 	item_flags = SLOWS_WHILE_IN_HAND
+	unique_reskin = list("Default" = "cs_knife_base",
+						"Marble Fade" = "cs_knife_marble",
+						"Ultraviolet" = "cs_knife_uv",
+						"Autotronic" = "cs_knife_auto",
+						"Doppler Saphine" = "cs_knife_ds",
+						"Doppler Ruby" = "cs_knife_dr",
+						"Doppler Emerald" = "cs_knife_de"
+						)
 
 /obj/item/cs_knife/Initialize()
 	slowdown = -0.6
