@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Mining belts can now hold lazarus injectors and bottles of whiskey"
+  - tweak: "Mining belts can no longer hold bone swords"
+  - tweak: "Storage on mining webbing and sinewbelt increased"
