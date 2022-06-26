@@ -713,7 +713,7 @@
 
 /datum/supply_pack/security/armory/wt550_single
 	name = "WT-650 Assualt Rifle Single-Pack"
-	desc = "Contains one high-powered, semiautomatic rifle chambered in 5.45mm rounds. Requires Armory access to open."
+	desc = "Contains one high-powered semiautomatic rifle, chambered in 5.45mm rounds. Requires Armory access to open."
 	cost = 8000
 	contains = list(/obj/item/gun/ballistic/automatic/wt650)
 	small_item = TRUE
