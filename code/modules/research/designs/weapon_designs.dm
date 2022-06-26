@@ -424,7 +424,7 @@
 
 /datum/design/mag_wt650/rubber
 	name = "WT-650 Assault Rifle Rubber Magazine (5.45mm)"
-	desc = "A 30 round less-lethal rubber magazine for the WT-650 Assault Rifle."
+	desc = "A 30 round rubber shot magazine for the WT-650 Assault Rifle."
 	id = "mag_wt650_rubber"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000)
