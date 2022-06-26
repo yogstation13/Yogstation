@@ -1,0 +1,6 @@
+author: "Arkatos, ported to YogStation by SuperSlayer"
+delete-after: true 
+changes: 
+  - tweak: "Swarmers now have a generic living healthdoll and pull icon."
+  - tweak: "Swarmers will now show severity of their injuries as a red screen overlay to the user."
+  - tweak: "Swarmer's abilities now have tooltips to clarify their use upon mouse hover."
