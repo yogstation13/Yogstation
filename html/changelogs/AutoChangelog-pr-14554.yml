@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Nanite fake death now has a 4.5 use rate from 3.5"
