@@ -1638,7 +1638,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	item_flags = SLOWS_WHILE_IN_HAND
 
 /obj/item/cs_knife/Initialize()
-	slowdown = -2
+	slowdown = -0.6
 
 /obj/item/cs_knife/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
