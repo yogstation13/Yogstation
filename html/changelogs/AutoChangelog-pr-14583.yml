@@ -1,9 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Space Pirates now have a unique uniform which has armor stats equal to the tactical turtleneck as well as no sensors."
-  - rscadd: "Space Pirate captain now spawns with a Syndicate captain's coat and hat, which has more robust armor than the standard space pirate gear."
-  - rscadd: "Space Pirate gunner now spawns with a Syndicate pirate hat, having their own unique uniform."
-  - rscadd: "The pirate bandana now gives the ability to speak pirate, similar to the pirate and pirate captain's hat."
-  - tweak: "All pirate exosuits can now hold the normal cutlass in addition to the energy one. Normal exosuits can hold emergency tanks now."
-  - tweak: "The normal and space pirate garb have all been given updated descriptions. The Syndicate ones have also received new names and different descriptions."

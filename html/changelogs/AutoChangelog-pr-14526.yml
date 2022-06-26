@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "resonator blasts will no longer stack on top of eachother creating a tile you cannot step on without breaking your bones that has collectable rocks on it"

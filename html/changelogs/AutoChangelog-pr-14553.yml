@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Moves stun immunity of fortitude to level 2."
-  - tweak: "Frenzy state gives stun immunity"

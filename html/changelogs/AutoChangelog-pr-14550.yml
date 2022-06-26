@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Explosive meltdown nanites have a flat 30 second timer now."
-  - tweak: "Explosive meltdown nanites no longer gib you, but still do a buttload of brute damage."
