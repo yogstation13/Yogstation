@@ -327,7 +327,6 @@
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
-#define SHADOWLING_TRAIT "shadowling_trait"
 #define FRENZY_TRAIT "frenzy_trait"
 #define HORROR_TRAIT "horror"
 #define HOLDER_TRAIT "holder_trait"
