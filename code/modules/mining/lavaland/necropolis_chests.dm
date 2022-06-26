@@ -1646,6 +1646,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 						)
 
 /obj/item/cs_knife/Initialize()
+	. = ..()
 	slowdown = -0.6
 
 /obj/item/cs_knife/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
