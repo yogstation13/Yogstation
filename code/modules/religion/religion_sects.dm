@@ -210,7 +210,7 @@
 		id_card.registered_account.adjust_money(-10)
 		id_cardu.registered_account.adjust_money(10)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
-		playsound(user, 'sound/misc/capitialism.ogg', 25, TRUE, -1)
+		playsound(user, 'sound/misc/capitialism-short.ogg', 25, TRUE, -1)
 		H.visible_message(span_notice("[user] blesses [H] with the power of capitalism!"))
 		to_chat(H, span_boldnotice("You feel spiritually enriched, and donate to the cause of [GLOB.deity]!"))
 		H.visible_message(span_notice("[H] donated 10 credits!"))

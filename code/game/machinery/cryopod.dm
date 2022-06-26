@@ -325,6 +325,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		if(LAZYLEN(mob_occupant.mind.objectives))
 			mob_occupant.mind.objectives.Cut()
 			mob_occupant.mind.special_role = null
+		/// Chaplain Stuff
+		var/datum/job/role = GetJob(job)
+		if(mob_occupant.mind.assigned_role == "Chaplain" && role?.current_positions < 1)
+			GLOB.religion = null	/// Clears the religion for the next chaplain
 
 	// Delete them from datacore.
 
@@ -374,7 +378,9 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		R.contents -= R.mmi
 		qdel(R.mmi)
 
-	mob_occupant.ghostize(FALSE)
+	var/mob/dead/observer/ghost = mob_occupant.ghostize(FALSE)
+	if(ghost)
+		ghost.mind = null
 	handle_objectives()
 	QDEL_NULL(occupant)
 	for(var/obj/item/I in get_turf(src))

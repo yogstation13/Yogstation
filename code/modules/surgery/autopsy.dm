@@ -1,6 +1,9 @@
 
 /datum/surgery/autopsy
 	name = "Autopsy"
+	desc = "Tells you what last damaged the patient."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "scalpel"
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/autopsy)
 	target_mobtypes = list(/mob/living)

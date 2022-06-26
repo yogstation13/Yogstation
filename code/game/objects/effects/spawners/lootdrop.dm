@@ -224,7 +224,7 @@
 	name = "pirate hat or bandana spawner"
 	loot = list(
 		/obj/item/clothing/head/pirate = 1,
-		/obj/item/clothing/head/bandana = 1)
+		/obj/item/clothing/head/pirate/bandana = 1)
 
 /obj/effect/spawner/lootdrop/minor/twentyfive_percent_cyborg_mask
 	name = "25% cyborg mask spawner"
@@ -366,6 +366,7 @@
 	name = "secure AI circuit board spawner"
 	loot = list(
 				/obj/item/circuitboard/computer/aiupload,
+				/obj/item/circuitboard/computer/ai_upload_download,
 				/obj/item/circuitboard/computer/borgupload
 				)
 

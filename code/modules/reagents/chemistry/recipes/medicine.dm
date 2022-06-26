@@ -375,10 +375,10 @@
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/medical/bone_gel(location)
 
-/datum/chemical_reaction/radaway
-	name = "RadAway"
-	id = /datum/reagent/medicine/radaway
-	results = list(/datum/reagent/medicine/radaway = 3)
+/datum/chemical_reaction/radscrub
+	name = "Rad Scrub Plus"
+	id = /datum/reagent/medicine/radscrub
+	results = list(/datum/reagent/medicine/radscrub = 3)
 	required_reagents = list(/datum/reagent/medicine/potass_iodide = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/medicine/c2/seiver = 1)
 	required_temp = 200
 	is_cold_recipe = 1

@@ -11,7 +11,7 @@
 	allow_dense = TRUE
 	delivery_icon = null
 	can_weld_shut = FALSE
-	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
+	armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 100, BIO = 0, RAD = 0, FIRE = 100, ACID = 80)
 	anchored = TRUE //So it cant slide around after landing
 	anchorable = FALSE
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
@@ -38,8 +38,8 @@
 	var/style = STYLE_STANDARD //Style is a variable that keeps track of what the pod is supposed to look like. It acts as an index to the GLOB.podstyles list in cargo.dm defines to get the proper icon/name/desc for the pod.
 	var/reversing = FALSE //If true, the pod will not send any items. Instead, after opening, it will close again (picking up items/mobs) and fly back to centcom
 	var/list/reverse_dropoff_coords //Turf that the reverse pod will drop off it's newly-acquired cargo to
-	var/fallDuration = 4
-	var/fallingSoundLength = 11
+	var/fallDuration = 0.4 SECONDS
+	var/fallingSoundLength = 1.1 SECONDS
 	var/fallingSound = 'sound/weapons/mortar_long_whistle.ogg'//Admin sound to play before the pod lands
 	var/landingSound //Admin sound to play when the pod lands
 	var/openingSound //Admin sound to play when the pod opens
@@ -250,14 +250,14 @@
 					organ_to_yeet.Remove(carbon_target_mob) //Note that this isn't the same proc as for lists
 					organ_to_yeet.forceMove(turf_underneath) //Move the organ outta the body
 					organ_to_yeet.throw_at(destination, 2, 3) //Thow the organ at a random tile 3 spots away
-					sleep(1)
+					sleep(0.1 SECONDS)
 				for (var/bp in carbon_target_mob.bodyparts) //Look at the bodyparts in our poor mob beneath our pod as it lands
 					var/obj/item/bodypart/bodypart = bp
 					var/destination = get_edge_target_turf(turf_underneath, pick(GLOB.alldirs))
 					if (bodypart.dismemberable)
 						bodypart.dismember() //Using the power of flextape i've sawed this man's bodypart in half!
 						bodypart.throw_at(destination, 2, 3)
-						sleep(1)
+						sleep(0.1 SECONDS)
 
 		if (effectGib) //effectGib is on, that means whatever's underneath us better be fucking oof'd on
 			target_living.adjustBruteLoss(5000) //THATS A LOT OF DAMAGE (called just in case gib() doesnt work on em)
@@ -410,8 +410,8 @@
 
 /obj/structure/closet/supplypod/proc/preReturn(atom/movable/holder)
 	deleteRubble()
-	animate(holder, alpha = 0, time = 8, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
-	animate(holder, pixel_z = 400, time = 10, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL) //Animate our rising pod
+	animate(holder, alpha = 0, time = 0.8 SECONDS, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
+	animate(holder, pixel_z = 400, time = 1 SECONDS, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL) //Animate our rising pod
 	addtimer(CALLBACK(src, .proc/handleReturnAfterDeparting, holder), 15) //Finish up the pod's duties after a certain amount of time
 
 /obj/structure/closet/supplypod/setOpened() //Proc exists here, as well as in any atom that can assume the role of a "holder" of a supplypod. Check the open_pod() proc for more details
@@ -490,9 +490,9 @@
 	alpha = 255
 
 /obj/effect/engineglow/proc/fadeAway(leaveTime)
-	var/duration = min(leaveTime, 25)
+	var/duration = min(leaveTime, 2.5 SECONDS)
 	animate(src, alpha=0, time = duration)
-	QDEL_IN(src, duration + 5)
+	QDEL_IN(src, duration + 0.5 SECONDS)
 
 /obj/effect/supplypod_smoke/proc/drawSelf(amount)
 	alpha = max(0, 255-(amount*20))
@@ -515,7 +515,7 @@
 	return rubble_overlay
 
 /obj/effect/supplypod_rubble/proc/fadeAway()
-	animate(src, alpha=0, time = 30)
+	animate(src, alpha=0, time = 3 SECONDS)
 	QDEL_IN(src, 35)
 
 /obj/effect/supplypod_rubble/proc/setStyle(type, obj/structure/closet/supplypod/pod)
@@ -580,9 +580,9 @@
 		mob_in_pod.reset_perspective(src)
 	if(pod.effectStun) //If effectStun is true, stun any mobs caught on this DPtarget until the pod gets a chance to hit them
 		for (var/mob/living/target_living in get_turf(src))
-			target_living.Stun(pod.landingDelay+10, ignore_canstun = TRUE)//you ain't goin nowhere, kid.
+			target_living.Stun(pod.landingDelay+1 SECONDS, ignore_canstun = TRUE)//you ain't goin nowhere, kid.
 	if (pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)
-		pod.fallingSoundLength = 3 //The default falling sound is a little long, so if the landing time is shorter than the default falling sound, use a special, shorter default falling sound
+		pod.fallingSoundLength = 0.3 SECONDS //The default falling sound is a little long, so if the landing time is shorter than the default falling sound, use a special, shorter default falling sound
 		pod.fallingSound =  'sound/weapons/mortar_whistle.ogg'
 	var/soundStartTime = pod.landingDelay - pod.fallingSoundLength + pod.fallDuration
 	if (soundStartTime < 0)
@@ -629,14 +629,14 @@
 		smoke_part.filters += filter(type = "blur", size = 4)
 		var/time = (pod.fallDuration / length(smoke_effects))*(length(smoke_effects)-i)
 		addtimer(CALLBACK(smoke_part, /obj/effect/supplypod_smoke/.proc/drawSelf, i), time, TIMER_CLIENT_TIME) //Go onto the last step after a very short falling animation
-		QDEL_IN(smoke_part, pod.fallDuration + 35)
+		QDEL_IN(smoke_part, pod.fallDuration + 3.5 SECONDS)
 
 /obj/effect/DPtarget/proc/drawSmoke()
 	if (pod.style == STYLE_INVISIBLE || pod.style == STYLE_SEETHROUGH)
 		return
 	for (var/obj/effect/supplypod_smoke/smoke_part in smoke_effects)
-		animate(smoke_part, alpha = 0, time = 20, flags = ANIMATION_PARALLEL)
-		animate(smoke_part.filters[1], size = 6, time = 15, easing = CUBIC_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+		animate(smoke_part, alpha = 0, time = 2 SECONDS, flags = ANIMATION_PARALLEL)
+		animate(smoke_part.filters[1], size = 6, time = 1.5 SECONDS, easing = CUBIC_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 
 /obj/effect/DPtarget/proc/endLaunch()
 	pod.tryMakeRubble(drop_location())

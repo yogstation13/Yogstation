@@ -225,7 +225,7 @@
 			W.switched_on(owner) //for some godawful reason this proc handles BOTH switching on and off while switching off just hard disables a welder
 
 	linkedhandler.active_tool = item
-	spawn(1) //so you are probably asking hey theos why are  you using spawn(1) here and that's a good question the answer is the welder APPARENTLY doesn't update its icon immediately, meaning if we don't wait we'll get the pre-toggled icon
+	spawn(1) //so you are probably asking hey why are you using spawn(1) here and that's a good question the answer is the welder APPARENTLY doesn't update its icon immediately, meaning if we don't wait we'll get the pre-toggled icon
 		linkedhandler.update_tool() //so we give it a little bit of breathing space
 
 	var/obj/item/arm_item = owner.get_active_held_item()
@@ -306,6 +306,7 @@
 	tool_behaviour = active_tool.tool_behaviour
 	lefthand_file = active_tool.lefthand_file
 	righthand_file = active_tool.righthand_file
+	linkedarm.owner.update_inv_hands()
 	plane = 22
 
 /obj/item/toolset_handler/attack_self(mob/user)
@@ -324,8 +325,7 @@
 
 /obj/item/toolset_handler/attack(mob/living/M, mob/user)
 	if(active_tool)
-		if(istype(active_tool, /obj/item/surgical_drapes)) //of all the things to not have a tool behavior its drapes
-			attempt_initiate_surgery(src, M, user)
+		if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(active_tool, M, user))
 			return
 	..()
 

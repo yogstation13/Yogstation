@@ -42,12 +42,12 @@
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/pda/heads/cmo
 
-	l_pocket = /obj/item/pinpointer/crew
+	belt = /obj/item/storage/belt/medical/chief/full
 	ears = /obj/item/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/chief_medical_officer
-	uniform_skirt = /obj/item/clothing/under/rank/chief_medical_officer
+	uniform_skirt = /obj/item/clothing/under/rank/chief_medical_officer/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/command // Provides Command shoes to digitigrade species
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen/paramedic
@@ -59,6 +59,8 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 
 	chameleon_extras = list(/obj/item/gun/syringe, /obj/item/stamp/cmo)
+
+	pda_slot = SLOT_L_STORE
 
 /datum/outfit/job/cmo/hardsuit
 	name = "Chief Medical Officer (Hardsuit)"

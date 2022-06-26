@@ -1,6 +1,7 @@
 /obj/item/deployablemine
 	name = "deployable mine"
 	desc = "An unarmed landmine. It can be planted to arm it."
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
 	var/mine_type = /obj/effect/mine
 	var/arming_time = 3 SECONDS
@@ -70,7 +71,7 @@
 		to_chat(user, span_warning("You can't plant the mine here!"))
 		return
 	to_chat(user, span_notice("You start arming the [src]..."))
-	if(do_after(user, arming_time, target = src))
+	if(do_after(user, arming_time, src))
 		new mine_type(plantspot)
 		to_chat(user, span_notice("You plant and arm the [src]."))
 		log_combat(user, src, "planted and armed")
@@ -90,7 +91,7 @@
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
 		to_chat(user, span_notice("You begin to disarm the [src]..."))
-		if(do_after(user, disarm_time, target = src))
+		if(do_after(user, disarm_time, src))
 			to_chat(user, span_notice("You disarm the [src]."))
 			new disarm_product(src.loc)
 			qdel(src)
@@ -248,7 +249,7 @@
 
 /obj/effect/mine/pickup/Initialize()
 	. = ..()
-	animate(src, pixel_y = 4, time = 20, loop = -1)
+	animate(src, pixel_y = 4, time = 2 SECONDS, loop = -1)
 
 /obj/effect/mine/pickup/triggermine(mob/victim)
 	if(triggered)
@@ -289,8 +290,8 @@
 	to_chat(victim, span_warning("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, KILL THEM ALL!"))
 
 	victim.client.color = pure_red
-	animate(victim.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
-	sleep(10)
+	animate(victim.client,color = red_splash, time = 1 SECONDS, easing = SINE_EASING|EASE_OUT)
+	sleep(1 SECONDS)
 	animate(victim.client,color = old_color, time = duration)//, easing = SINE_EASING|EASE_OUT)
 	sleep(duration)
 	to_chat(victim, span_notice("Your bloodlust seeps back into the bog of your subconscious and you regain self control."))

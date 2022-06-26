@@ -1,6 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "changes a bunch of hunter-fu stuff to be in-line with the rest of our martial arts"
-  - tweak: "Most martial arts attacks now respect species punch damage modifications more or less depending on the attack used"
-  - experiment: "The Ingot has found a new recipe, I hope you're hungry..."

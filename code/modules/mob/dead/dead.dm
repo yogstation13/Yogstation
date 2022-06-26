@@ -3,7 +3,7 @@
 INITIALIZE_IMMEDIATE(/mob/dead)
 
 /mob/dead
-	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
+	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	move_resist = INFINITY
 	throwforce = 0
 
@@ -90,7 +90,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	new /obj/screen/splash(C)
 
 	notransform = TRUE
-	sleep(29)	//let the animation play
+	sleep(2.9 SECONDS)	//let the animation play
 	notransform = FALSE
 
 	if(!C)

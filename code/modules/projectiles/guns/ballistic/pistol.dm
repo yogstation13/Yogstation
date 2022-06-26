@@ -104,3 +104,15 @@
 		to_chat(user, span_notice("..and falls into view. Whew, that was a close one."))
 		user.dropItemToGround(src)
 
+/obj/item/gun/ballistic/automatic/pistol/makeshift
+	name = "makeshiftov pistol"
+	desc = "A small, makeshift 10mm handgun. It's a miracle if it'll even fire."
+	icon_state = "makeshift"
+	spawnwithmagazine = FALSE
+
+/obj/item/gun/ballistic/automatic/pistol/makeshift/chamber_round(keep_bullet = FALSE)
+	if(prob(40))
+		playsound(src, dry_fire_sound, 30, TRUE)
+		update_icon()
+		return
+	return ..()

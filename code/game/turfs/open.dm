@@ -172,7 +172,7 @@
 /turf/open/indestructible/grass
 	name = "grass patch"
 	desc = "Yep, it's grass."
-	icon_state = "grass"
+	icon_state = "grass1"
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
@@ -319,7 +319,12 @@
 	light_range = 2
 	light_color = "#AAD84B"
 	color = "#53003f"
-	
+
+/turf/open/floor/grass/fairy/Initialize()
+	. = ..()
+	icon_state = "fairygrass[rand(1,4)]"
+	update_icon()
+
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
 	icon = 'icons/turf/boss_floors.dmi'
@@ -455,6 +460,34 @@
 	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
 	icon_state = "smooth"
 
+/turf/open/indestructible/wiki
+	light_range = 2
+	light_power = 2
+
+/turf/open/indestructible/wiki/greenscreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "greenscreen"
+
+/turf/open/indestructible/wiki/bluescreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "bluescreen"
+
+/turf/open/indestructible/wiki/whitescreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "whitescreen"
+
+/turf/open/indestructible/wiki/greenscreen/border
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "greenborder"
+
+/turf/open/indestructible/wiki/title
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "title"
+
+/turf/open/indestructible/wiki/info
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "info"
+
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
 	update_visuals()
@@ -536,7 +569,6 @@
 			C.stop_pulling()
 		else
 			C.Knockdown(20)
-
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE

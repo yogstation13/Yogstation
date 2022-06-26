@@ -219,10 +219,11 @@
 
 	var/uniform_skirt = null
 
+	/// Which slot the PDA defaults to
 	var/pda_slot = SLOT_BELT
-	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
-	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
-	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
+
+	/// What shoes digitgrade crew should wear
+	var/digitigrade_shoes
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -246,13 +247,9 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
-	if(DIGITIGRADE in H.dna.species.species_traits)
-		if(IS_COMMAND(H)) // command gets snowflake shoes too.
-			shoes = alt_shoes_c
-		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") // Special shoes for sec and brig phys, roll first to avoid defaulting
-			shoes = alt_shoes_s
-		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes to special cases
-			shoes = alt_shoes
+
+	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
+		shoes = digitigrade_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -271,10 +268,7 @@
 			C.assignment = H.mind.role_alt_title
 		else
 			C.assignment = J.title
-		if(H.mind?.assigned_role)
-			C.originalassignment = H.mind.assigned_role
-		else
-			C.originalassignment = J.title
+		C.originalassignment = J.title
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()

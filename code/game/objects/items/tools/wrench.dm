@@ -18,7 +18,11 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_WRENCH
 	toolspeed = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
+
+/obj/item/wrench/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/wrench/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is beating [user.p_them()]self to death with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -41,7 +45,7 @@
 	name = "alien wrench"
 	desc = "A polarized wrench. It causes anything placed between the jaws to turn."
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "wrench"
+	icon_state = "wrench_alien"
 	usesound = 'sound/effects/empulse.ogg'
 	toolspeed = 0.1
 
@@ -60,11 +64,11 @@
 	// during their ascension
 
 	// Stun stops them from wandering off
-	user.Stun(100, ignore_canstun = TRUE)
+	user.Stun(10 SECONDS, ignore_canstun = TRUE)
 	playsound(loc, 'sound/effects/pray.ogg', 50, 1, -1)
 
 	// Let the sound effect finish playing
-	sleep(20)
+	sleep(2 SECONDS)
 
 	if(!user)
 		return
@@ -80,5 +84,19 @@
 		return
 
 	user.dust()
+
+/obj/item/wrench/makeshift
+	name = "makeshift wrench"
+	desc = "A crude, self-wrought wrench with common uses. Can be found in your hand."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "wrench_makeshift"
+	toolspeed = 0.5
+
+/obj/item/wrench/makeshift/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	..()
+	if(prob(5))
+		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
+		qdel(src)
+		return
 
 	return OXYLOSS

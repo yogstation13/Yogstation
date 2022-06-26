@@ -11,7 +11,7 @@
 	throw_range = 7
 	attack_verb = list("banned")
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 70)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
 
 /obj/item/banhammer/suicide_act(mob/user)
@@ -69,7 +69,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	block_chance = 50
 	sharpness = SHARP_EDGED
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 
 /obj/item/claymore/Initialize()
@@ -223,11 +223,63 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	block_chance = 50
 	sharpness = SHARP_EDGED
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 
 /obj/item/katana/cursed
 	slot_flags = null
+
+/obj/item/katana/cursed/basalt
+	name = "basalt katana"
+	desc = "a katana made out of hardened basalt. Particularly damaging to lavaland fauna. (Activate this item in hand to dodge roll in the direction you're facing)"
+	icon_state = "basalt_katana"
+	item_state = "basalt_katana"
+	force = 18
+	block_chance = 20
+
+	var/fauna_damage_bonus = 52
+	var/fauna_damage_type = BRUTE
+	var/next_roll
+	var/roll_dist = 3
+
+/obj/item/katana/cursed/basalt/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+			playsound(L, 'sound/weapons/sear.ogg', 100, 1)
+
+/obj/item/katana/cursed/basalt/attack_self(mob/living/user)
+	if(world.time > next_roll)
+		var/stam_cost = 15
+		var/turf/T = get_turf(user)
+		if(is_mining_level(T.z))
+			stam_cost = 5
+		var/turf/landing_turf = get_ranged_target_turf(user, user.dir, roll_dist)
+		var/spin_direction = FALSE
+		user.adjustStaminaLoss(stam_cost)
+		if (user.getStaminaLoss() >= 100)
+			user.throw_at(landing_turf, 2, 2)
+			user.Paralyze(4 SECONDS)
+			user.visible_message(span_warning("You're too tired tired to finish the roll!"))
+		else
+			playsound(user, 'yogstation/sound/items/dodgeroll.ogg', 50, TRUE)
+			user.apply_status_effect(STATUS_EFFECT_DODGING)
+			if(user.dir == EAST || user.dir == NORTH)
+				spin_direction = TRUE
+			passtable_on(user, src)
+			user.setMovetype(user.movement_type | FLYING)
+			user.safe_throw_at(landing_turf, 4, 1, spin = FALSE)	
+			user.SpinAnimation(speed = 3, loops = 1, clockwise = spin_direction, segments = 3, parallel = TRUE)			
+			passtable_off(user, src)
+			user.setMovetype(user.movement_type & ~FLYING)
+		next_roll = world.time + 1 SECONDS
+	else
+		to_chat(user, span_notice("You need to catch your breath before you can roll again!"))
+
 
 /obj/item/katana/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is slitting [user.p_their()] stomach open with [src]! It looks like [user.p_theyre()] trying to commit seppuku!"))
@@ -615,7 +667,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		return
 	to_chat(user, span_warning("You begin gathering strength..."))
 	playsound(get_turf(src), 'sound/magic/lightning_chargeup.ogg', 65, 1)
-	if(do_after(user, 9 SECONDS, target = src))
+	if(do_after(user, 9 SECONDS, src))
 		to_chat(user, span_userdanger("You gather power! Time for a home run!"))
 		homerun_ready = 1
 	..()
@@ -765,4 +817,4 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "ripped", "diced", "cut")
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)

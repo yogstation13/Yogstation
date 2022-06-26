@@ -90,7 +90,7 @@
 	if(!(SLOT_GLASSES in obscured))
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
-		else if(eye_color == BLOODCULT_EYE && iscultist(src) && HAS_TRAIT(src, CULT_EYES))
+		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
 			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears
@@ -206,7 +206,15 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-
+				
+	if(surgeries.len)
+		var/surgery_text
+		for(var/datum/surgery/S in surgeries)
+			if(!surgery_text)
+				surgery_text = "[t_He] [t_is] being operated on in \the [S.operated_bodypart]"
+			else
+				surgery_text += ", [S.operated_bodypart]"
+		msg += "[surgery_text].\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
@@ -331,8 +339,11 @@
 					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "empath", /datum/mood_event/sad_empath, src)
 				if (HAS_TRAIT(src, TRAIT_BLIND))
 					msg += "[t_He] appear[p_s()] to be staring off into space.\n"
-				if (HAS_TRAIT(src, TRAIT_DEAF))
+				//Yogs -- Fixing being unable to detect some varieties of deafness
+				var/obj/item/organ/ears/ears = src.getorganslot(ORGAN_SLOT_EARS)
+				if (HAS_TRAIT(src, TRAIT_DEAF) || !istype(ears) || ears.deaf)
 					msg += "[t_He] appear[p_s()] to not be responding to noises.\n"
+				//Yogs end
 
 			msg += "</span>"
 
@@ -509,7 +520,7 @@
 	if(!(SLOT_GLASSES in obscured))
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
-		else if(eye_color == BLOODCULT_EYE && iscultist(src) && HAS_TRAIT(src, CULT_EYES))
+		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
 			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears

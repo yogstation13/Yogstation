@@ -215,6 +215,10 @@
 	ui_x = 32
 	ui_y = -832
 
+/datum/techweb_node/xenoorgan_biotech
+	ui_x = 256
+	ui_y = -64
+
 /datum/techweb_node/cyborg_upg_med
 	ui_x = 352
 	ui_y = -160
@@ -282,6 +286,14 @@
 /datum/techweb_node/combat_cyber_implants
 	ui_x = 480
 	ui_y = -32
+
+/datum/techweb_node/ai_cpu_advanced
+	ui_x = 992
+	ui_y = 64
+
+/datum/techweb_node/ai_ram_high_cap
+	ui_x = 544
+	ui_y = 64
 
 /datum/techweb_node/spacepod_storage
 	ui_x = 96
@@ -363,6 +375,18 @@
 	ui_x = -256
 	ui_y = -224
 
+/datum/techweb_node/ai_cpu_bluespace
+	ui_x = 992
+	ui_y = 192
+
+/datum/techweb_node/ai_ram_bluespace
+	ui_x = 544
+	ui_y = 192
+
+/datum/techweb_node/ai_architecture_bluespace
+	ui_x = 768
+	ui_y = 160
+
 /datum/techweb_node/adv_plasma
 	ui_x = 32
 	ui_y = -384
@@ -386,6 +410,14 @@
 /datum/techweb_node/adv_mecha
 	ui_x = -576
 	ui_y = -96
+
+/datum/techweb_node/ai_cpu_1
+	ui_x = 896
+	ui_y = 64
+
+/datum/techweb_node/ai_ram_1
+	ui_x = 640
+	ui_y = 64
 
 /datum/techweb_node/emp_super
 	ui_x = -224
@@ -426,6 +458,18 @@
 /datum/techweb_node/mech_teleporter
 	ui_x = -416
 	ui_y = -256
+
+/datum/techweb_node/ai_cpu_experimental
+	ui_x = 992
+	ui_y = 128
+
+/datum/techweb_node/ai_ram_hyper
+	ui_x = 544
+	ui_y = 128
+
+/datum/techweb_node/magmite_mining
+	ui_x = 160
+	ui_y = -512
 
 /datum/techweb_node/mech_diamond_drill
 	ui_x = 96
@@ -471,6 +515,14 @@
 	ui_x = -416
 	ui_y = -320
 
+/datum/techweb_node/ai_cpu_3
+	ui_x = 896
+	ui_y = 192
+
+/datum/techweb_node/ai_ram_3
+	ui_x = 640
+	ui_y = 192
+
 /datum/techweb_node/spacepod_advplasmacutter
 	ui_x = 160
 	ui_y = -640
@@ -490,6 +542,18 @@
 /datum/techweb_node/adv_mecha_tools
 	ui_x = -576
 	ui_y = -32
+
+/datum/techweb_node/ai_architecture_256
+	ui_x = 768
+	ui_y = 96
+
+/datum/techweb_node/ai_cpu_2
+	ui_x = 896
+	ui_y = 128
+
+/datum/techweb_node/ai_ram_2
+	ui_x = 640
+	ui_y = 128
 
 /datum/techweb_node/xenology
 	ui_x = 480
