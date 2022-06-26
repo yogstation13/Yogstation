@@ -1,0 +1,8 @@
+author: " Nmajask, IndusRobot, Mothblocks"
+delete-after: true 
+changes: 
+  - rscadd: "Selecting surgeries are now done by a radial menu"
+  - tweak: "You can now start surgeries with tools and end surgeries without drapes"
+  - tweak: "Surgeries are now quieter"
+  - tweak: "You can now see if someone is being operated on when you inspect them"
+  - tweak: "Doing a surgery now has a 20% chance to get blood on your tool and 10% chance to get blood on you"
