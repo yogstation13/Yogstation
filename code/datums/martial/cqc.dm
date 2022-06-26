@@ -318,7 +318,6 @@
 		var/hand = user.get_inactive_hand_index()
 		if(!user.put_in_hand(I, hand))
 			I.forceMove(get_turf(attacker))
-	attacker.Paralyze(20)
 	attacker.Knockdown(60)
 	user.adjustStaminaLoss(10)	//Can't block forever. Really, if this becomes a problem you're already screwed.
 

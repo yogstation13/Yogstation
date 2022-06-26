@@ -95,7 +95,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/chem_dispenser,
+/obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "eC" = (
