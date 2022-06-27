@@ -237,7 +237,7 @@
 	T.add_overlay(MA)
 	//Some basic shaking animation
 	for(var/i in 1 to COLLAPSE_DURATION)
-		animate(src, pixel_x=rand(-5,5), pixel_y=rand(-2,2), time=1)
+		animate(src, pixel_x=rand(-5,5), pixel_y=rand(-2,2), time=0.1 SECONDS)
 	QDEL_IN(src,COLLAPSE_DURATION)
 
 /obj/structure/puzzle_element/Moved()
@@ -294,7 +294,7 @@
 
 //Some armor so it's harder to kill someone by mistake.
 /obj/structure/puzzle_element/prison
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, RAD = 50, FIRE = 50, ACID = 50)
 
 /obj/structure/puzzle_element/prison/relaymove(mob/user)
 	return

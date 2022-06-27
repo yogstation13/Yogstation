@@ -115,13 +115,13 @@
 
 /datum/achievement/engineering/Poly_silent
 	name = "Silence Bird!"
-	desc = "As a signal technician, create a script that mutes poly"
+	desc = "As a network admin, create a script that mutes poly"
 	id = 18
 	hidden = TRUE
 
 /datum/achievement/engineering/Poly_loud
 	name = "Embrace the Bird!"
-	desc = "As a signal technician, create a script that makes poly LOUD"
+	desc = "As a network admin, create a script that makes poly LOUD"
 	id = 19
 	hidden = TRUE
 

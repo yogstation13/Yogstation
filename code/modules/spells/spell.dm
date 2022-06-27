@@ -301,6 +301,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	return TRUE
 
 /obj/effect/proc_holder/spell/proc/start_recharge()
+	if(cooldown_overlay)
+		QDEL_NULL(cooldown_overlay)
 	cooldown_overlay = start_cooldown(action.button, world.time + charge_max)
 	recharging = TRUE
 
@@ -320,7 +322,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(user && user.ckey)
 		user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
 	if(recharge)
-		recharging = TRUE
+		start_recharge()
 	if(sound)
 		playMagSound()
 	cast(targets,user=user)
@@ -380,6 +382,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			charge_counter++
 		if("holdervar")
 			adjust_var(user, holder_var_type, -holder_var_amount)
+	QDEL_NULL(cooldown_overlay)
 	if(action)
 		action.UpdateButtonIcon()
 

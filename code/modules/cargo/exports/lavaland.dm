@@ -9,7 +9,6 @@
 						/obj/item/gun/magic/hook,
 						/obj/item/wisp_lantern,
 						/obj/item/reagent_containers/glass/bottle/potion/flight,
-						/obj/item/katana/cursed,
 						/obj/item/clothing/glasses/godeye,
 						/obj/item/melee/ghost_sword,
 						/obj/item/clothing/suit/space/hardsuit/cult,

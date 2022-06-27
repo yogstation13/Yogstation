@@ -141,6 +141,7 @@
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
+	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
 // Engineer survival box
@@ -801,9 +802,15 @@
 
 /obj/item/storage/box/rubbershot
 	name = "box of rubber shots"
-	desc = "A box full of rubber shots, designed for riot shotguns."
+	desc = "A box full of rubber shots designed for shotguns. The box itself is designed for holding any kind of shotgun shell."
 	icon_state = "rubbershot_box"
 	illustration = null
+
+/obj/item/storage/box/rubbershot/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(/obj/item/ammo_casing/shotgun))
 
 /obj/item/storage/box/rubbershot/PopulateContents()
 	for(var/i in 1 to 7)
@@ -811,9 +818,15 @@
 
 /obj/item/storage/box/lethalshot
 	name = "box of lethal shotgun shots"
-	desc = "A box full of lethal shots, designed for riot shotguns."
+	desc = "A box full of lethal shots designed for shotguns. The box itself is designed for holding any kind of shotgun shell."
 	icon_state = "lethalshot_box"
 	illustration = null
+
+/obj/item/storage/box/lethalshot/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(/obj/item/ammo_casing/shotgun))
 
 /obj/item/storage/box/lethalshot/PopulateContents()
 	for(var/i in 1 to 7)
@@ -821,9 +834,15 @@
 
 /obj/item/storage/box/breacherslug
 	name = "box of breaching shotgun shells"
-	desc = "A box full of breaching slugs, designed for rapid entry."
+	desc = "A box full of breaching slugs designed for rapid entry. The box itself is designed for holding any kind of shotgun shell."
 	icon_state = "breachershot_box"
 	illustration = null
+
+/obj/item/storage/box/breacherslug/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(/obj/item/ammo_casing/shotgun))
 
 /obj/item/storage/box/breacherslug/PopulateContents()
 	for(var/i in 1 to 7)
@@ -831,12 +850,18 @@
 
 /obj/item/storage/box/beanbag
 	name = "box of beanbags"
-	desc = "A box full of beanbag shells."
+	desc = "A box full of beanbag shells designed for shotguns. The box itself is designed for holding any kind of shotgun shell."
 	icon_state = "rubbershot_box"
 	illustration = null
 
+/obj/item/storage/box/beanbag/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(/obj/item/ammo_casing/shotgun))
+
 /obj/item/storage/box/beanbag/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 
 /obj/item/storage/box/actionfigure

@@ -15,6 +15,7 @@
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
 	var/overheat_max = 30
+	var/heat_stage = 0
 	var/heat_diffusion = 2
 
 /obj/item/minigunbackpack/Initialize()
@@ -28,6 +29,8 @@
 
 /obj/item/minigunbackpack/process()
 	overheat = max(0, overheat - heat_diffusion)
+	if(overheat == 0 && heat_stage > 0)
+		heat_stage = 0
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/minigunbackpack/attack_hand(var/mob/living/carbon/user)
@@ -51,6 +54,10 @@
 		user.dropItemToGround(gun, TRUE)
 	else
 		..()
+
+/obj/item/minigunbackpack/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Current heat level: [overheat] / [overheat_max]"
 
 /obj/item/minigunbackpack/dropped(mob/user)
 	. = ..()
@@ -106,15 +113,17 @@
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
-	burst_size = 3
+	burst_size = 5
+	var/select = TRUE
 	automatic = FALSE
 	fire_delay = 1
 	recoil = 0.5
-	spread = 34
+	spread = 30
 	fire_sound_volume = 60
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gunshot.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/minigunosprey
+	actions_types = list(/datum/action/item_action/toggle_firemode)
 	tac_reloads = FALSE
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
@@ -141,6 +150,16 @@
 
 /obj/item/gun/ballistic/minigunosprey/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(ammo_pack)
+		if(ammo_pack.overheat > ammo_pack.overheat_max * (1 / 3) && ammo_pack.heat_stage < 1)
+			to_chat(user, "You feel warmth from the handle of the gun.")
+			ammo_pack.heat_stage += 1
+			..()
+
+		if(ammo_pack.overheat > ammo_pack.overheat_max * (2 / 3) && ammo_pack.heat_stage < 2)
+			to_chat(user, "The gun's heat sensor beeps rapidly as it reaches its limit!")
+			ammo_pack.heat_stage += 1
+			..()
+
 		if(ammo_pack.overheat < ammo_pack.overheat_max)
 			ammo_pack.overheat += burst_size
 			..()
@@ -155,3 +174,21 @@
 /obj/item/gun/ballistic/minigunosprey/dropped(mob/living/user)
 	. = ..()
 	ammo_pack.attach_gun(user)
+
+/obj/item/gun/ballistic/minigunosprey/ui_action_click(mob/user, actiontype)
+	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
+		burst_select()
+	. = ..()
+
+/obj/item/gun/ballistic/minigunosprey/proc/burst_select()
+	var/mob/living/carbon/user = usr
+	if(!select)
+		select = TRUE
+		burst_size = initial(burst_size)
+		to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
+	else
+		select = FALSE
+		burst_size = 7
+		to_chat(user, span_notice("You switch to [burst_size]-rnd burst. BRRRRRRRT."))
+	playsound(user, 'sound/weapons/empty.ogg', 100, TRUE)
+	return

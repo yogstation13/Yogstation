@@ -15,6 +15,7 @@
 
 	var/internal_heat_cap = 1000 //needs experimantal data
 	var/internal_temp = T0C
+	var/powermodifier = 0.3
 
 /obj/machinery/power/generator/Initialize(mapload)
 	. = ..()
@@ -91,7 +92,7 @@
 				var/energy_transfer = (hot_subsection_temp - cold_subsection_temp)*internal_heat_cap
 
 				//produce electricity
-				lastgen += energy_transfer*efficiency
+				lastgen += (energy_transfer*efficiency) * powermodifier
 
 				//transfer rest of energy into waste heat/chill
 				internal_temp = cold_subsection_temp + energy_transfer * (1 - efficiency) / (internal_heat_cap * 2)

@@ -87,11 +87,24 @@
 
 /// You can't go to sleep in a coffin with a stake in you.
 /mob/living/proc/StakeCanKillMe()
-	return IsSleeping() || stat >= UNCONSCIOUS || blood_volume <= 0 || HAS_TRAIT(src, TRAIT_NODEATH)
+	if(IsSleeping())
+		return TRUE
+	if(stat >= UNCONSCIOUS)
+		return TRUE
+	if(blood_volume <= 0)
+		return TRUE
+	if(HAS_TRAIT(src, TRAIT_NODEATH))
+		return TRUE
+	return FALSE
 
 /// Can this target be staked? If someone stands up before this is complete, it fails. Best used on someone stationary.
-/mob/living/carbon/proc/can_be_staked()
-	return !(mobility_flags & MOBILITY_MOVE)
+/mob/living/proc/can_be_staked()
+	return FALSE
+
+/mob/living/carbon/can_be_staked()
+	if(!(mobility_flags & MOBILITY_MOVE))
+		return TRUE
+	return FALSE
 
 /obj/item/stake
 	name = "wooden stake"
@@ -113,17 +126,22 @@
 	/// Time it takes to embed the stake into someone's chest.
 	var/staketime = 12 SECONDS
 
-/obj/item/stake/afterattack(mob/living/carbon/target, mob/living/user, proximity, discover_after = TRUE)
+/obj/item/stake/attack(mob/living/target, mob/living/user, params)
+	. = ..()
+	if(.)
+		return TRUE
 	// Invalid Target, or not targetting the chest?
 	if(check_zone(user.zone_selected) != BODY_ZONE_CHEST)
-		return
-	// Needs to be Down/Slipped in some way to Stake.
-	if(!target.can_be_staked() || target == user) // Oops! Can't.
+		return TRUE
+	if(target == user)
+		return TRUE
+	if(!target.can_be_staked()) // Oops! Can't.
 		to_chat(user, span_danger("You can't stake [target] when they are moving about! They have to be laying down or grabbed by the neck!"))
-		return
+		return TRUE
 	if(HAS_TRAIT(target, TRAIT_PIERCEIMMUNE))
 		to_chat(user, span_danger("[target]'s chest resists the stake. It won't go in."))
-		return
+		return TRUE
+
 	to_chat(user, span_notice("You put all your weight into embedding the stake into [target]'s chest..."))
 	playsound(user, 'sound/magic/Demon_consume.ogg', 50, 1)
 	if(!do_mob(user, target, staketime, extra_checks = CALLBACK(target, /mob/living/carbon.proc/can_be_staked))) // user / target / time / uninterruptable / show progress bar / extra checks
@@ -134,7 +152,9 @@
 		span_danger("You drive the [src] into [target]'s chest!"),
 	)
 	playsound(get_turf(target), 'sound/effects/splat.ogg', 40, 1)
-	user.dropItemToGround(src, TRUE) //user.drop_item() // "drop item" doesn't seem to exist anymore. New proc is user.dropItemToGround() but it doesn't seem like it's needed now?
+//	user.dropItemToGround(src, TRUE)
+	if(QDELETED(src)) // in case trying to embed it caused its deletion (say, if it's DROPDEL)
+		return
 	if(!target.mind)
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -225,7 +245,7 @@
 	if((istype(item, /obj/item/kitchen/knife) || item.tool_behaviour == TOOL_WIRECUTTER) && !(flags_1 & HOLOGRAM_1))
 		to_chat(user, span_notice("You feel the gentle whispers of a Librarian telling you not to cut [title]."))
 		return
-	. = ..()
+	return ..()
 
 /*
  *	# Attacking someone with the Book
@@ -278,12 +298,12 @@
 		ui_interact(user)
 		return
 	// Bloodsucker using it
-	else if(IS_BLOODSUCKER(user))
+	if(IS_BLOODSUCKER(user))
 		to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
 		return
 	to_chat(user, span_warning("You feel your eyes burn as you begin to read through [src]!"))
 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
-	user.blur_eyes(10)
+	user.blur_eyes(5)
 	eyes.applyOrganDamage(5)
 
 /obj/item/book/kindred/ui_interact(mob/user, datum/tgui/ui)
@@ -303,59 +323,71 @@
 
 // Flavortext stuff
 /obj/item/book/kindred/proc/search(mob/reader, clan)
-	dat = "<head>List of information gathered on the <b>[clan]</b>:</head><br>"
-	if(clan == CLAN_BRUJAH)
-		dat += "This Clan has proven to be the strongest in melee combat, boasting a <b>powerful punch</b>.<br> \
-		They also appear to be more calm than the others, entering their 'frenzies' whenever they want, but <i>dont seem affected</i>.<br> \
-		Be wary, as they are fearsome warriors, rebels and anarchists, with an inclination towards Frenzy.<br> \
-		<b>Favorite Vassal</b>: Their favorite Vassal gains the Brawn ability. \
-		<b>Strength</b>: Frenzy will not kill them, punches deal a lot of damage.<br> \
-		<b>Weakness</b>: They have to spend Blood on powers while in Frenzy too."
-	if(clan == CLAN_TOREADOR)
-		dat += "The most charming Clan of them all, being borderline <i>party animals</i>, allowing them to <i>very easily</i> disguise among the crew.<br> \
-		They are more in touch with their <i>morals</i>, so they suffer and benefit more strongly from the humanity cost or gain of their actions.<br> \
-		They can be best defined as 'The most humane kind of vampire', due to their kindred with an obsession with perfectionism and beauty<br> \
-		<b>Favorite Vassal</b>: Their favorite Vassal gains the Mesmerize ability \
-		<b>Strength</b>: Highly charismatic and influential.<br> \
-		<b>Weakness</b>: Physically and Morally weak."
-	if(clan == CLAN_NOSFERATU)
-		dat += "This Clan has been the most obvious to find information about.<br> \
-		They are <i>disfigured, ghoul-like</i> vampires upon embrace by their Sire, scouts that travel through desolate paths to avoid violating the Masquerade.<br> \
-		They make <i>no attempts</i> at hiding themselves within the crew, and have a terrible taste for <i>heavy items</i>.<br> \
-		They also seem to manage to fit themsleves into small spaces such as <i>vents</i>.<br> \
-		<b>Favorite Vassal</b>: Their Favorite Vassal gains the ability to ventcrawl while naked and becomes disfigured. \
-		<b>Strength</b>: Ventcrawl.<br> \
-		<b>Weakness</b>: Can't disguise themselves, permanently pale, can easily be discovered by their DNA or Blood Level."
-	if(clan == CLAN_TREMERE)
-		dat += "This Clan seems to hate entering the <i>Chapel</i>.<br> \
-		They are a secluded Clan, they are Vampires who've mastered the power of blood, and seek knowledge.<br> \
-		They appear to be focused more on their Blood Magic than their other Powers, getting stronger faster the more Vassals they have.<br> \
-		They have 3 different paths they can take, from reviving people as Vassals, to stealing blood with beams made of the same essence.<br> \
-		<b>Favorite Vassal</b>: Their Favorite Vassal gains the ability to shift into a Bat at will. \
-		<b>Strength</b>: 3 different Powers that get stupidly strong overtime.<br> \
-		<b>Weakness</b>: Cannot get regular Powers, with no way to get stun resistance outside of Frenzy."
-	if(clan == CLAN_GANGREL)
-		dat += "This Clan seems to be closer to <i>Animals</i> than to other Vampires.<br> \
-		They also go by the name of <i>Werewolves</i>, as that is what appears when they enter a Frenzy.<br> \
-		Despite this, they appear to be scared of <i>'True Faith'</i>, someone's ultimate and undying Faith, which itself doesn't require being something Religious.<br> \
-		They hate seeing many people, and tend to avoid Stations that have <i>more crewmembers than Nanotrasen's average</i>. Due to this, they are harder to find than others.<br> \
-		<b>Favorite Vassal</b>: Their Favorite Vassal turns into a Werewolf whenever their Master does.. \
-		<b>Strength</b>: Feral, Werewolf during Frenzy.<br> \
-		<b>Weakness</b>: Weak to True Faith."
-	if(clan == CLAN_VENTRUE)
-		dat += "This Clan seems to <i>despise</i> drinking from non sentient organics.<br> \
-		They are Masters of manipulation, Greedy and entitled. Authority figures between the kindred society.<br> \
-		They seem to take their Vassal's lives <i>very seriously</i>, going as far as to give Vassals some of their own Blood.<br> \
-		Compared to other types, this one <i>relies</i> on their Vassals, rather than fighting for themselves.<br> \
-		<b>Favorite Vassal</b>: Their Favorite Vassal will slowly be turned into a Bloodsucker overtime. \
-		<b>Strength</b>: Slowly turns a Vassal into a Bloodsucker.<br> \
-		<b>Weakness</b>: Does not gain more abilities overtime, it is best to target the Bloodsucker over the Vassal."
-	if(clan == CLAN_MALKAVIAN)
-		dat += "There is barely any information known about this Clan.<br> \
-		Members of this Clan seems to <i>mumble things to themselves</i>, unaware of their surroundings.<br> \
-		They also seem to enter and dissapear into areas randomly, <i>as if not even they know where they are</i>.<br> \
-		<b>Favorite Vassal</b>: Unknown. \
-		<b>Strength</b>: Unknown.<br> \
-		<b>Weakness</b>: Unknown."
+	dat = "<head>This is all knowledge about the Clan:</head><br>"
+	switch(clan)
+		if(CLAN_BRUJAH)
+			dat += "This Clan has proven to be the strongest in melee combat, boasting a <b>powerful punch</b>.<br> \
+			They also appear to be more calm than the others, entering their 'frenzies' whenever they want, but <i>dont seem affected</i>.<br> \
+			Be wary, as they are fearsome warriors, rebels and anarchists, with an inclination towards Frenzy.<br> \
+			<b>Favorite Vassal</b>: Their favorite Vassal gains the Brawn ability. \
+			<b>Strength</b>: Frenzy will not kill them, punches deal a lot of damage.<br> \
+			<b>Weakness</b>: They have to spend Blood on powers while in Frenzy too."
+		if(CLAN_TOREADOR)
+			dat += "The most charming Clan of them all, being borderline <i>party animals</i>, allowing them to <i>very easily</i> disguise among the crew.<br> \
+			They are more in touch with their <i>morals</i>, so they suffer and benefit more strongly from the humanity cost or gain of their actions.<br> \
+			They can be best defined as 'The most humane kind of vampire', due to their kindred with an obsession with perfectionism and beauty<br> \
+			<b>Favorite Vassal</b>: Their favorite Vassal gains the Mesmerize ability \
+			<b>Strength</b>: Highly charismatic and influential.<br> \
+			<b>Weakness</b>: Physically and Morally weak."
+		if(CLAN_NOSFERATU)
+			dat += "This Clan has been the most obvious to find information about.<br> \
+			They are <i>disfigured, ghoul-like</i> vampires upon embrace by their Sire, scouts that travel through desolate paths to avoid violating the Masquerade.<br> \
+			They make <i>no attempts</i> at hiding themselves within the crew, and have a terrible taste for <i>heavy items</i>.<br> \
+			They also seem to manage to fit themsleves into small spaces such as <i>vents</i>.<br> \
+			<b>Favorite Vassal</b>: Their Favorite Vassal gains the ability to ventcrawl while naked and becomes disfigured. \
+			<b>Strength</b>: Ventcrawl.<br> \
+			<b>Weakness</b>: Can't disguise themselves, permanently pale, can easily be discovered by their DNA or Blood Level."
+		if(CLAN_TREMERE)
+			dat += "This Clan seems to hate entering the <i>Chapel</i>.<br> \
+			They are a secluded Clan, they are Vampires who've mastered the power of blood, and seek knowledge.<br> \
+			They appear to be focused more on their Blood Magic than their other Powers, getting stronger faster the more Vassals they have.<br> \
+			They have 3 different paths they can take, from reviving people as Vassals, to stealing blood with beams made of the same essence.<br> \
+			<b>Favorite Vassal</b>: Their Favorite Vassal gains the ability to shift into a Bat at will. \
+			<b>Strength</b>: 3 different Powers that get stupidly strong overtime.<br> \
+			<b>Weakness</b>: Cannot get regular Powers, with no way to get stun resistance outside of Frenzy."
+		if(CLAN_GANGREL)
+			dat += "This Clan seems to be closer to <i>Animals</i> than to other Vampires.<br> \
+			They also go by the name of <i>Werewolves</i>, as that is what appears when they enter a Frenzy.<br> \
+			Despite this, they appear to be scared of <i>'True Faith'</i>, someone's ultimate and undying Faith, which itself doesn't require being something Religious.<br> \
+			They hate seeing many people, and tend to avoid Stations that have <i>more crewmembers than Nanotrasen's average</i>. Due to this, they are harder to find than others.<br> \
+			<b>Favorite Vassal</b>: Their Favorite Vassal turns into a Werewolf whenever their Master does.. \
+			<b>Strength</b>: Feral, Werewolf during Frenzy.<br> \
+			<b>Weakness</b>: Weak to True Faith."
+		if(CLAN_VENTRUE)
+			dat += "This Clan seems to <i>despise</i> drinking from non sentient organics.<br> \
+			They are Masters of manipulation, Greedy and entitled. Authority figures between the kindred society.<br> \
+			They seem to take their Vassal's lives <i>very seriously</i>, going as far as to give Vassals some of their own Blood.<br> \
+			Compared to other types, this one <i>relies</i> on their Vassals, rather than fighting for themselves.<br> \
+			<b>Favorite Vassal</b>: Their Favorite Vassal will slowly be turned into a Bloodsucker overtime. \
+			<b>Strength</b>: Slowly turns a Vassal into a Bloodsucker.<br> \
+			<b>Weakness</b>: Does not gain more abilities overtime, it is best to target the Bloodsucker over the Vassal."
+		if(CLAN_MALKAVIAN)
+			dat += "There is barely any information known about this Clan.<br> \
+			Members of this Clan seems to <i>mumble things to themselves</i>, unaware of their surroundings.<br> \
+			They also seem to enter and dissapear into areas randomly, <i>as if not even they know where they are</i>.<br> \
+			<b>Favorite Vassal</b>: Unknown. \
+			<b>Strength</b>: Unknown.<br> \
+			<b>Weakness</b>: Unknown."
+		if(CLAN_LASOMBRA)
+			dat += "This Clan seems to adore living in the <i>Shadows</i> and worshipping it's secrets.<br> \
+			They take their research and vanity seriously, they are always very proud of themselves after even minor achievements.<br> \
+			They appear to be in search of a station with a veil weakness to be able to channel their shadow's abyssal powers.<br> \
+			Their research into this sector has lead them to adopt <i>red eyes</i> as to view better in the shadows, which leads unmasked Lasombras to be easily identifiable.<br> \
+			Homewer they have appeared to have also evolved a hard chintin in their veins, which makes them <i>invulnerable</i> to brute damage.<br> \
+			<b>Favorite Vassal</b>: Their Favorite Vassal appears to have been imbued with abyssal essence and is able to blend in with the shadows. \
+			<b>Strength</b>: They are able to slowly advance their abilities.<br> \
+			<b>Weakness</b>: Immensely weak to burn damage."
+		if(CLAN_TZIMISCE)
+			dat += "The page is covered in blood. It seems like it will need time to vanish..."
 
 	reader << browse("<meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")

@@ -20,6 +20,7 @@
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/mob/owner
 	var/syndicate = FALSE // are these buttons only for syndicates?
+	var/obj/screen/cooldown_overlay/cooldown_overlay
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -533,7 +534,7 @@
 
 /datum/action/item_action/visegrip
 	name = "Vise Grip"
-	desc = "Remotely detonate marked targets. People become rooted for 1 second. Nonhumanoids become rooted for 6 seconds and take hefty damage."
+	desc = "Remotely detonate marked targets. People become rooted for 1 second. Animals become rooted for 6 seconds and take hefty damage."
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "leghold"
 	

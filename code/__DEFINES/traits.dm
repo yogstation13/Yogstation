@@ -257,6 +257,9 @@
 #define TRAIT_EAT_LESS			"eat_less"
 #define TRAIT_CRAFTY			"crafty"
 #define TRAIT_ANOREXIC			"anorexic"
+#define TRAIT_SHIFTY_EYES		"shifty_eyes"
+#define TRAIT_ANXIOUS			"anxious"
+#define TRAIT_SEE_REAGENTS		"see_reagents"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
@@ -326,6 +329,7 @@
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
 #define FRENZY_TRAIT "frenzy_trait"
 #define HORROR_TRAIT "horror"
+#define HOLDER_TRAIT "holder_trait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

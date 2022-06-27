@@ -5,7 +5,7 @@
 	damage_type = OXY
 	nodamage = TRUE
 	armour_penetration = 100
-	flag = "magic"
+	flag = MAGIC
 	var/tile_dropoff = 0
 	var/tile_dropoff_s = 0
 
@@ -383,7 +383,7 @@
 	icon_state = "lavastaff"
 	damage = 20
 	damage_type = BURN
-	flag = "magic"
+	flag = MAGIC
 	dismemberment = 50
 	nodamage = FALSE
 
@@ -398,14 +398,14 @@
 	damage_type = BURN
 	nodamage = FALSE
 	armour_penetration = 0
-	flag = "magic"
+	flag = MAGIC
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/item/projectile/magic/locker
 	name = "locker bolt"
 	icon_state = "locker"
 	nodamage = TRUE
-	flag = "magic"
+	flag = MAGIC
 	var/weld = TRUE
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
 	var/locker_suck = TRUE
@@ -461,8 +461,8 @@
 		unmagify()
 
 /obj/structure/closet/decay/proc/decay()
-	animate(src, alpha = 0, time = 30)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 30)
+	animate(src, alpha = 0, time = 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3 SECONDS)
 
 /obj/structure/closet/decay/open(mob/living/user)
 	. = ..()
@@ -616,11 +616,11 @@
 /obj/item/projectile/magic/aoe/lightning
 	name = "lightning bolt"
 	icon_state = "tesla_projectile"	//Better sprites are REALLY needed and appreciated!~
-	damage = 15
+	damage = 25
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3
-	flag = "magic"
+	flag = MAGIC
 
 	var/tesla_power = 20000
 	var/tesla_range = 15
@@ -686,14 +686,14 @@
 	nodamage = TRUE
 	armour_penetration = 100
 	temperature = 50
-	flag = "magic"
+	flag = MAGIC
 
 
 /obj/item/projectile/temp/runic_icycle
 	name = "Icicle"
 	icon_state = "runic_icycle"
 	damage = 6
-	flag = "magic"
+	flag = MAGIC
 	temperature = 80
 
 /obj/item/projectile/temp/runic_icycle/on_hit(target)
@@ -706,7 +706,7 @@
 	name = "Tentacle"
 	icon_state = "tentacle_end"
 	damage = 6
-	flag = "magic"
+	flag = MAGIC
 
 
 /obj/item/projectile/magic/runic_tentacle/on_hit(target)
@@ -723,7 +723,7 @@
 /obj/item/projectile/magic/runic_heal
 	name = "Runic Heal"
 	icon_state = "runic_heal"
-	flag = "magic"
+	flag = MAGIC
 	nodamage = TRUE
 /obj/item/projectile/magic/runic_heal/on_hit(target)
 	. = ..()
@@ -746,7 +746,7 @@
 /obj/item/projectile/magic/runic_fire
 	name = "Runic Fire"
 	icon_state = "lava"
-	flag = "magic"
+	flag = MAGIC
 	nodamage = FALSE
 
 /obj/item/projectile/magic/runic_fire/on_hit(target)
@@ -760,7 +760,7 @@
 /obj/item/projectile/magic/runic_honk
 	name = "Runic Peel"
 	icon_state = "runic_honk"
-	flag = "magic"
+	flag = MAGIC
 	range = 200
 	movement_type = FLYING
 	reflectable = REFLECT_NORMAL
@@ -777,7 +777,7 @@
 /obj/item/projectile/magic/runic_bomb
 	name = "Runic Bomb"
 	icon_state = "runic_bomb"
-	flag = "magic"
+	flag = MAGIC
 	range = 10
 	speed = 4
 	var/boom = 1
@@ -800,7 +800,7 @@
 /obj/item/projectile/magic/runic_toxin
 	name = "Runic Toxin"
 	icon_state = "syringeproj"
-	flag = "magic"
+	flag = MAGIC
 	damage = 1
 	damage_type = BRUTE
 	nodamage = FALSE
@@ -828,7 +828,7 @@
 /obj/item/projectile/magic/runic_death
 	name = "Runic Death"
 	icon_state = "antimagic"
-	flag = "magic"
+	flag = MAGIC
 	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
 
 /obj/item/projectile/magic/runic_death/on_hit(mob/living/target)
@@ -845,7 +845,7 @@
 	name = "Shotgun slug"
 	icon_state = "bullet"
 	damage = 10
-	flag = "magic"
+	flag = MAGIC
 
 /obj/item/projectile/magic/shotgun_slug/on_hit(target)
 	. = ..()
@@ -857,7 +857,7 @@
 	name = "Incendiary shotgun slug"
 	icon_state = "bullet"
 	damage = 5
-	flag = "magic"
+	flag = MAGIC
 
 
 /obj/item/projectile/magic/incediary_slug/on_hit(target)
@@ -871,7 +871,7 @@
 /obj/item/projectile/magic/runic_mutation
 	name = "Runic Mutation"
 	icon_state = "toxin"
-	flag = "magic"
+	flag = MAGIC
 	irradiate = 12
 
 /obj/item/projectile/magic/runic_mutation/on_hit(target)
@@ -887,7 +887,7 @@
 
 /obj/item/projectile/magic/runic_resizement
 	name = "Runic Resizement"
-	flag = "magic"
+	flag = MAGIC
 	icon_state = "cursehand1"
 
 
@@ -903,7 +903,7 @@
 		var/reresize = pick(newsize1, newsize2, newsize3, newsize4, newsize5)
 		X.resize = reresize
 		X.update_transform()
-		sleep(100)
+		sleep(10 SECONDS)
 		if(reresize == 0.5)
 			reresize = 2
 			X.resize = reresize

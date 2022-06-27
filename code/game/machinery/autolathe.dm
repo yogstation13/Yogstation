@@ -210,7 +210,7 @@
 			"You begin to load a design from \the [O]...",
 			"You hear the chatter of a floppy drive.")
 		var/obj/item/disk/design_disk/D = O
-		if(do_after(user, 1.5 SECONDS, target = src))
+		if(do_after(user, 1.5 SECONDS, src))
 			for(var/B in D.blueprints)
 				if(B)
 					stored_research.add_design(B)

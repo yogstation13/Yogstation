@@ -52,7 +52,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	verb_exclaim = "beeps"
 	max_integrity = 300
 	integrity_failure = 100
-	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
+	armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	circuit = /obj/item/circuitboard/machine/vendor
 	payment_department = ACCOUNT_SRV
 	/// Is the machine active (No sales pitches if off)!
@@ -171,6 +171,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
   * * TRUE - all other cases
   */
 /obj/machinery/vending/Initialize(mapload)
+	if(tilted)
+		src.tilt() // We don't need to set tilted to false before tilt because it will handle it.
 	var/build_inv = FALSE
 	if(!refill_canister)
 		circuit = null
@@ -463,6 +465,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 			break
 
 /obj/machinery/vending/proc/tilt(mob/fatty, crit=FALSE)
+	var/no_tipper = FALSE
+	if(!fatty)
+		no_tipper = TRUE
 	visible_message("<span class='danger'>[src] tips over!</span>")
 	tilted = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -474,7 +479,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(forcecrit)
 		crit_case = forcecrit
 
-	if(in_range(fatty, src))
+	if(no_tipper || in_range(fatty, src))
 		for(var/mob/living/L in get_turf(fatty))
 			var/mob/living/carbon/C = L
 
@@ -513,7 +518,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 					if(4) // paralyze this binch
 						// the new paraplegic gets like 4 lines of losing their legs so skip them
 						visible_message("<span class='danger'>[C]'s spinal cord is obliterated with a sickening crunch!</span>")
-						C.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic)
+						C.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic, TRAUMA_RESILIENCE_LOBOTOMY)
 					if(5) // skull squish!
 						var/obj/item/bodypart/head/O = C.get_bodypart(BODY_ZONE_HEAD)
 						if(O)
@@ -542,7 +547,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	M.Turn(pick(90, 270))
 	transform = M
 
-	if(get_turf(fatty) != get_turf(src))
+	if(fatty && get_turf(fatty) != get_turf(src))
 		throw_at(get_turf(fatty), 1, 1, spin=FALSE)
 
 /obj/machinery/vending/proc/untilt(mob/user)
@@ -615,8 +620,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 			return
 
 	if(tilted && !user.buckled && !isAI(user))
-		to_chat(user, "<span class='notice'>You begin righting [src].")
-		if(do_after(user, 50, target=src))
+		to_chat(user, span_notice("You begin righting [src]."))
+		if(do_after(user, 5 SECONDS, src))
 			untilt(user)
 		return
 	return ..()

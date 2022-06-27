@@ -99,6 +99,17 @@
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
 	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
+/datum/emote/living/carbon/human/rattle
+	key = "rattle"
+	key_third_person = "rattles"
+	message = "rattles their bones!"
+	message_param = "rattles %t bones!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/rattled.ogg'
+
+/datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return isskeleton(user)
+	
 /datum/emote/living/carbon/human/pale
 	key = "pale"
 	message = "goes pale for a second."
@@ -206,5 +217,21 @@
 	if(isturf(loc))
 		var/turf/T = loc
 		T.Entered(src)
+
+/datum/emote/living/carbon/human/lick
+	key = "lick"
+	key_third_person = "licks"
+	message = "licks their eyes!"
+	cooldown = 10 SECONDS
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/human/lick/run_emote(mob/user, params)
+	. = ..()
+	if(. && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.adjustOrganLoss(ORGAN_SLOT_EYES, -0.15)
+
+/datum/emote/living/carbon/human/lick/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return islizard(user)
 
 //Ayy lmao

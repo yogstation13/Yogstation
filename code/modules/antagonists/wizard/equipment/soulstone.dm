@@ -254,7 +254,10 @@
 		newstruct.master = stoner
 		var/datum/action/innate/seek_master/SM = new()
 		SM.Grant(newstruct)
-	target.mind.transfer_to(newstruct)
+	if(isliving(target))
+		target.mind.transfer_to(newstruct)
+	else
+		newstruct.key = target.key
 	var/obj/screen/alert/bloodsense/BS
 	if(newstruct.mind && ((stoner && iscultist(stoner)) || cultoverride) && SSticker && SSticker.mode)
 		SSticker.mode.add_cultist(newstruct.mind, 0)

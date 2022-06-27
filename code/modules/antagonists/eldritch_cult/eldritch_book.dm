@@ -58,7 +58,7 @@
 		to_chat(user, span_danger("You have already studied this influence!"))
 		return
 	to_chat(user, span_danger("You start to study [RS]..."))
-	if(do_after(user,10 SECONDS,TRUE,RS))
+	if(do_after(user, 10 SECONDS, RS))
 		var/datum/antagonist/heretic/H = user.mind?.has_antag_datum(/datum/antagonist/heretic)
 		H?.charge += 1
 		to_chat(user, span_notice("You finish your study of [RS]!"))
@@ -74,14 +74,14 @@
 	var/A = get_turf(target)
 	to_chat(user, span_danger("You start drawing a rune..."))
 
-	if(do_after(user,30 SECONDS, target = A))
+	if(do_after(user, 30 SECONDS, A))
 
 		new /obj/effect/eldritch/big(A)
 
 ///Removes runes from the selected turf
 /obj/item/forbidden_book/proc/remove_rune(atom/target,mob/user)
 	to_chat(user, span_danger("You start removing a rune..."))
-	if(do_after(user,2 SECONDS, target = target))
+	if(do_after(user, 2 SECONDS, target))
 		qdel(target)
 
 /obj/item/forbidden_book/ui_interact(mob/user, datum/tgui/ui = null)

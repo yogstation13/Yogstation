@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = ACID_PROOF
-	armor = list("melee" = 30, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 100)
+	armor = list(MELEE = 30, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 70, ACID = 100)
 	max_integrity = 200
 	integrity_failure = 0.25
 	var/obj/item/showpiece = null
@@ -146,7 +146,7 @@
 			to_chat(user, span_warning("You need two glass sheets to fix the case!"))
 			return
 		to_chat(user, span_notice("You start fixing [src]..."))
-		if(do_after(user, 2 SECONDS, target = src))
+		if(do_after(user, 2 SECONDS, src))
 			G.use(2)
 			broken = 0
 			obj_integrity = max_integrity
@@ -207,7 +207,7 @@
 	else if(istype(I, /obj/item/electronics/airlock))
 		to_chat(user, span_notice("You start installing the electronics into [src]..."))
 		I.play_tool_sound(src)
-		if(do_after(user, 3 SECONDS, target = src) && user.transferItemToLoc(I,src))
+		if(do_after(user, 3 SECONDS, src) && user.transferItemToLoc(I,src))
 			electronics = I
 			to_chat(user, span_notice("You install the airlock electronics."))
 	else if(istype(I, /obj/item/stack/sheet/glass))
@@ -216,7 +216,7 @@
 			to_chat(user, span_warning("You need ten glass sheets to do this!"))
 			return
 		to_chat(user, span_notice("You start adding [G] to [src]..."))
-		if(do_after(user, 2 SECONDS, target = src))
+		if(do_after(user, 2 SECONDS, src))
 			G.use(10)
 			var/obj/structure/displaycase/noalert/display = new(src.loc)
 			if(electronics)

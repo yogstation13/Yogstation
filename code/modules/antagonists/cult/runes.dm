@@ -58,7 +58,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 /obj/effect/rune/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user))
 		SEND_SOUND(user,'sound/items/sheath.ogg')
-		if(do_after(user, 1.5 SECONDS, target = src))
+		if(do_after(user, 1.5 SECONDS, src))
 			to_chat(user, span_notice("You carefully erase the [lowertext(cultist_name)] rune."))
 			qdel(src)
 	else if(istype(I, /obj/item/nullrod))
@@ -158,17 +158,17 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/proc/do_invoke_glow()
 	set waitfor = FALSE
-	animate(src, transform = matrix()*2, alpha = 0, time = 5, flags = ANIMATION_END_NOW) //fade out
-	sleep(5)
-	animate(src, transform = matrix(), alpha = 255, time = 0, flags = ANIMATION_END_NOW)
+	animate(src, transform = matrix()*2, alpha = 0, time = 0.5 SECONDS, flags = ANIMATION_END_NOW) //fade out
+	sleep(0.5 SECONDS)
+	animate(src, transform = matrix(), alpha = 255, time = 0 SECONDS, flags = ANIMATION_END_NOW)
 
 /obj/effect/rune/proc/fail_invoke()
 	//This proc contains the effects of a rune if it is not invoked correctly, through either invalid wording or not enough cultists. By default, it's just a basic fizzle.
 	visible_message(span_warning("The markings pulse with a small flash of red light, then fall dark."))
 	var/oldcolor = color
 	color = rgb(255, 0, 0)
-	animate(src, color = oldcolor, time = 5)
-	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 5)
+	animate(src, color = oldcolor, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.5 SECONDS)
 
 //Malformed Rune: This forms if a rune is not drawn correctly. Invoking it does nothing but hurt the user.
 /obj/effect/rune/malformed
@@ -237,8 +237,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		invocation = "Barhah hra zar'garis!"
 		..()
 		do_sacrifice(L, invokers)
-	animate(src, color = oldcolor, time = 5)
-	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 5)
+	animate(src, color = oldcolor, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.5 SECONDS)
 	Cult_team.check_size() // Triggers the eye glow or aura effects if the cult has grown large enough relative to the crew
 	rune_in_use = FALSE
 
@@ -541,7 +541,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	used = TRUE
 	..()
 	sound_to_playing_players('sound/magic/clockwork/narsie_attack.ogg', volume = 100)
-	sleep(20)
+	sleep(2 SECONDS)
 	if(src)
 		color = RUNE_COLOR_RED
 	SSticker.mode.begin_bloodstone_phase() //activate the FINAL STAGE
@@ -550,7 +550,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/narsie/attackby(obj/I, mob/user, params)	//Since the narsie rune takes a long time to make, add logging to removal.
 	if((istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user)))
 		user.visible_message(span_warning("[user.name] begins erasing [src]..."), span_notice("You begin erasing [src]..."))
-		if(do_after(user, 5 SECONDS, target = src))	//Prevents accidental erasures.
+		if(do_after(user, 5 SECONDS, src))	//Prevents accidental erasures.
 			log_game("Summon Narsie rune erased by [key_name(user)] with [I.name]")
 			message_admins("[ADMIN_LOOKUPFLW(user)] erased a Narsie rune with [I.name]")
 			..()
@@ -713,8 +713,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		update_state()
 		var/oldcolor = color
 		add_atom_colour("#696969", FIXED_COLOUR_PRIORITY)
-		animate(src, color = oldcolor, time = 100, easing = EASE_IN) //yogs: 10 seconds instead of 5
-		addtimer(CALLBACK(src, .proc/recharge), 100)
+		animate(src, color = oldcolor, time = 10 SECONDS, easing = EASE_IN) //yogs: 10 seconds instead of 5
+		addtimer(CALLBACK(src, .proc/recharge), 10 SECONDS)
 
 /obj/effect/rune/wall/proc/recharge()
 	recharging = FALSE
@@ -779,6 +779,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 		fail_invoke()
 		log_game("Summon Cultist rune failed - target in away mission")
 		return
+	if(is_centcom_level(cultist_to_summon.z))
+		to_chat(user, "<span class='cult italic'>[cultist_to_summon] is too far from the station!</span>")
+		fail_invoke()
+		log_game("Summon Cultist rune failed - target in centcom Z")
+		return
 	if(istype(cultist_to_summon, /mob/living/simple_animal/shade) && (cultist_to_summon.status_flags & GODMODE))//yogs: fixes shades from being invincible after being summoned
 		cultist_to_summon.status_flags &= ~GODMODE //yogs end
 	cultist_to_summon.visible_message(span_warning("[cultist_to_summon] suddenly disappears in a flash of red light!"), \
@@ -824,18 +829,18 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(L, span_cultlarge("Your blood boils in your veins!"))
 			if(is_servant_of_ratvar(L))
 				to_chat(L, span_userdanger("You feel an unholy darkness dimming the Justiciar's light!"))
-	animate(src, color = "#FCB56D", time = 4)
-	sleep(4)
+	animate(src, color = "#FCB56D", time = 0.4 SECONDS)
+	sleep(0.4 SECONDS)
 	if(QDELETED(src))
 		return
 	do_area_burn(T, 0.5)
-	animate(src, color = "#FFDF80", time = 5)
-	sleep(5)
+	animate(src, color = "#FFDF80", time = 0.5 SECONDS)
+	sleep(0.5 SECONDS)
 	if(QDELETED(src))
 		return
 	do_area_burn(T, 1)
-	animate(src, color = "#FFFDF4", time = 6)
-	sleep(6)
+	animate(src, color = "#FFFDF4", time = 0.6 SECONDS)
+	sleep(0.6 SECONDS)
 	if(QDELETED(src))
 		return
 	do_area_burn(T, 1.5)
@@ -927,7 +932,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			if(user.stat || new_human.InCritical())
 				break
 			user.apply_damage(0.1, BRUTE)
-			sleep(1)
+			sleep(0.1 SECONDS)
 
 		qdel(N)
 		ghosts--
@@ -952,17 +957,17 @@ structure_check() searches for nearby cultist structures required for the invoca
 		while(!QDELETED(affecting))
 			if(!(affecting in T))
 				user.visible_message(span_warning("A spectral tendril wraps around [affecting] and pulls [affecting.p_them()] back to the rune!"))
-				Beam(affecting, icon_state="drainbeam", time=2)
+				Beam(affecting, icon_state="drainbeam", time=0.2 SECONDS)
 				affecting.forceMove(get_turf(src)) //NO ESCAPE :^)
 			if(affecting.key)
 				affecting.visible_message(span_warning("[affecting] slowly relaxes, the glow around [affecting.p_them()] dimming."), \
 									 span_danger("You are re-united with your physical form. [src] releases its hold over you."))
-				affecting.Paralyze(40)
+				affecting.Paralyze(4 SECONDS)
 				break
 			if(affecting.health <= 10)
 				to_chat(G, span_cultitalic("Your body can no longer sustain the connection!"))
 				break
-			sleep(5)
+			sleep(0.5 SECONDS)
 		CM.Remove(G)
 		GM.Remove(G)
 		affecting.remove_atom_colour(ADMIN_COLOUR_PRIORITY, RUNE_COLOR_DARKRED)
@@ -1104,15 +1109,15 @@ structure_check() searches for nearby cultist structures required for the invoca
 	while(end>world.time)
 		for(var/image/I in images)
 			I.override = FALSE
-			animate(I, alpha = 0, time = 25, flags = ANIMATION_PARALLEL)
-		sleep(35)
+			animate(I, alpha = 0, time = 2.5 SECONDS, flags = ANIMATION_PARALLEL)
+		sleep(3.5 SECONDS)
 		for(var/image/I in images)
-			animate(I, alpha = 255, time = 25, flags = ANIMATION_PARALLEL)
-		sleep(25)
+			animate(I, alpha = 255, time = 2.5 SECONDS, flags = ANIMATION_PARALLEL)
+		sleep(2.5 SECONDS)
 		for(var/image/I in images)
 			if(I.icon_state != "bloodsparkles")
 				I.override = TRUE
-		sleep(190)
+		sleep(19 SECONDS)
 
 
 
