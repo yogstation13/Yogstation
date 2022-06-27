@@ -22,48 +22,85 @@
 	mob_size = MOB_SIZE_LARGE
 	layer = LARGE_MOB_LAYER
 	movement_type = FLYING
-    var/datum/team/hog_cult/cult
+	var/datum/team/hog_cult/cult
 
 /mob/living/simple_animal/hostile/free_god/examine(mob/user)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && cultie.cult == src.cult)
-        desc = "Your god and saviour!"
-    else if (cultie)
-        desc = "A heretical demon that defiles this world just with its presence. Strike it down!"
-    else
-        desc = initial(desc)
+		desc = "Your god and saviour!"
+	else if (cultie)
+		desc = "A heretical demon that defiles this world just with its presence. Strike it down!"
+	else
+		desc = initial(desc)
 	. = ..()
 	desc = initial(desc)
 
 /mob/living/simple_animal/hostile/free_god/AttackingTarget()
-    melee_damage_lower = initial(melee_damage_lower)
-    melee_damage_upper = initial(melee_damage_upper)    
+	melee_damage_lower = initial(melee_damage_lower)
+	melee_damage_upper = initial(melee_damage_upper)    
 	attacktext = initial(attacktext)
-    var/mob/living/L = target
-    var/strike_down = FALSE
-        if(L)
-            if(istype(L, /mob/living/simple_animal/hostile/free_god))
-                    if(L == src)
-                        return ..()
-                    melee_damage_lower = 400
-                    melee_damage_upper = 400  
-                    attacktext = "tears into"              
-            else
-                var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(target)
-                if(cultie && cultie.cult == src.cult)
-                    if(prob(30))
-                        to_chat(user,span_warning("Probably, attacking your fellow servants isn't the best idea.")) 
-                    melee_damage_lower = 10
-                    melee_damage_upper = 15     
-                    attacktext = "punishes"
-                else if(!cultie)
-                    strike_down = TRUE
-                    if(prob(50))
-                        attacktext = "strikes down"
+	var/mob/living/L = target
+	var/strike_down = FALSE
+		if(L)
+			if(istype(L, /mob/living/simple_animal/hostile/free_god))
+					if(L == src)
+						return ..()
+					melee_damage_lower = 400
+					melee_damage_upper = 400  
+					attacktext = "tears into"              
+		 else
+			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(target)
+			if(cultie && cultie.cult == src.cult)
+				if(prob(30))
+					to_chat(user,span_warning("Probably, attacking your fellow servants isn't the best idea.")) 
+				melee_damage_lower = 10
+				melee_damage_upper = 15     
+				attacktext = "punishes"
+			else if(!cultie)
+				strike_down = TRUE
+				if(prob(50))
+					attacktext = "strikes down"
 	. = ..()
-    if(strike_down && L)
-        L.Knockdown(2 SECONDS)
+	if(strike_down && L)
+		L.Knockdown(2 SECONDS)
 
 /mob/living/simple_animal/hostile/free_god/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-    message = span_cultlarge(message)
+	message = span_cultlarge(message)
 	. = ..()
+
+/mob/living/simple_animal/hostile/free_god/ex_act(severity)
+	return FALSE
+
+/mob/living/simple_animal/hostile/free_god/singularity_act()
+	///user.say("ahahahaha fuck ya singulo")
+	return FALSE
+
+/mob/living/simple_animal/hostile/free_god/Process_Spacemove()
+	return TRUE
+
+/obj/effect/proc_holder/spell/pointed/kinetic_crush
+	name = "Kinetic Crush"
+	desc = "Attack the target with your psionic power, tearing it into pieces if it isn't protected."
+	school = "conjuration"
+	charge_type = "recharge"
+	charge_max	= 20 SECONDS
+	clothes_req = FALSE
+	invocation = span_cultlarge("D I E!")
+	invocation_type = "shout"
+	range = 7
+	cooldown_min = 20 SECONDS
+	ranged_mousepointer = 'icons/effects/mouse_pointers/mecha_mouse.dmi'
+	action_icon_state = "kinetic_crush"
+	active_msg = "You prepare to crush someone..."
+	deactive_msg = "You relax..."
+
+/obj/effect/proc_holder/spell/pointed/kinetic_crush/can_target(atom/target, mob/user, silent)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(isliving(target))
+		var/mob/living/L = target
+
+
+
+
