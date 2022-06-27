@@ -15,12 +15,6 @@
 	. = ..()
 	if(weight > MOB_SIZE_SMALL)
 		w_class = weight + 2 // rough conversion
-	if(clothing_layer)
-		alternate_worn_layer = clothing_layer
-	if(held_icon)
-		alternate_worn_icon = held_icon
-	if(worn_state)
-		item_state = worn_state
 	if(lh_icon)
 		lefthand_file = lh_icon
 	if(rh_icon)	
@@ -82,6 +76,13 @@
 
 /obj/item/clothing/mob_holder/container_resist()
 	release()
+
+/obj/item/clothing/mob_holder/pre_attack(atom/A, mob/living/user, params)
+	if(isobj(A) && ismachinery(A))
+		if(istype(A, /obj/machinery/deepfryer))
+			to_chat(user, span_warning("You wouldn't deepfry [name]....."))
+		return
+	. = ..()
 
 /obj/item/clothing/mob_holder/drone/deposit(mob/living/L)
 	. = ..()

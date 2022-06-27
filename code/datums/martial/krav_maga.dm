@@ -102,7 +102,7 @@
 				  	span_userdanger("[A] slams your chest! You can't breathe!"))
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
 	if(D.losebreath <= 10)
-		D.losebreath = clamp(D.losebreath + 5, 0, 10)
+		D.losebreath = clamp(D.losebreath + 3, 0, 6)
 	D.adjustOxyLoss(10)
 	log_combat(A, D, "quickchoked")
 	return 1

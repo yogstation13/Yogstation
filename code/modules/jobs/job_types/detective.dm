@@ -47,6 +47,7 @@
 	uniform_skirt = /obj/item/clothing/under/rank/det/skirt
 	neck = /obj/item/clothing/neck/tie/detective
 	shoes = /obj/item/clothing/shoes/sneakers/brown
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	suit = /obj/item/clothing/suit/det_suit
 	gloves = /obj/item/clothing/gloves/color/black/forensic
 	head = /obj/item/clothing/head/fedora/det_hat

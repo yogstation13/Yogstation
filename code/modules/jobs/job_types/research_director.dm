@@ -52,7 +52,7 @@
 	uniform = /obj/item/clothing/under/rank/research_director
 	uniform_skirt = /obj/item/clothing/under/rank/research_director/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/command // Provides Command shoes to digitigrade species
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/laser_pointer

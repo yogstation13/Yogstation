@@ -4,13 +4,13 @@
 	desc = "Plain black gloves without fingertips for the hard working."
 	icon_state = "fingerless"
 	item_state = "fingerless"
-	item_color = null	//So they don't wash.
 	transfer_prints = TRUE
 	strip_delay = 40
 	equip_delay_other = 20
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	custom_price = 10
+	undyeable = TRUE
 
 /obj/item/clothing/gloves/botanic_leather
 	name = "botanist's leather gloves"
@@ -45,7 +45,6 @@
 	desc = "For when you're expecting to get slapped on the wrist. Offers modest protection to your arms."
 	icon_state = "bracers"
 	item_state = "bracers"
-	item_color = null	//So they don't wash.
 	transfer_prints = TRUE
 	strip_delay = 40
 	equip_delay_other = 20
@@ -95,7 +94,7 @@
 
 /obj/item/clothing/gloves/bracer/cuffs
 	name = "rabid cuffs"
-	desc = "Chainless manacles fashioned after one of the hungriest slaughter demons. Wearing these invokes a hunger in the wearer that can only be sated by bloodshed."
+	desc = "Wristbands fashioned after one of the hungriest slaughter demons. Wearing these invokes a hunger in the wearer that can only be sated by bloodshed."
 	icon_state = "cuff"
 	item_state = "cuff"
 	var/obj/effect/proc_holder/swipe/swipe_ability
@@ -116,7 +115,7 @@
 
 obj/effect/proc_holder/swipe
 	name = "Swipe"
-	desc = "Swipe at a target area, dealing damage and consuming dead entities to heal yourself. Creatures take 30 damage while people and cyborgs take 10 damage. Consumed creatures explode into gibs and give the most healing, and people and cyborgs heal for the least. People and cyborgs who have been thoroughly burned and bruised heal you for slightly more! People are ineligible for total consumption." 
+	desc = "Swipe at a target area, dealing damage to heal yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 13 brute/burn/poison while dead ones heal for 20 and get butchered, while killing a creature with a swipe will heal the user for 33. People and cyborgs hit will heal for 5."
 	action_background_icon_state = "bg_demon"
 	action_icon = 'icons/mob/actions/actions_items.dmi'
 	action_icon_state = "cuff"
@@ -154,32 +153,33 @@ obj/effect/proc_holder/swipe
 		return
 	if(!istype(T))
 		return
+	if(!(T in range(9, caller)))
+		to_chat(caller, warning("The target is too far!"))
+		return
 	new /obj/effect/temp_visual/bubblegum_hands/rightpaw(T)
 	new /obj/effect/temp_visual/bubblegum_hands/rightthumb(T)
-	to_chat(L, span_userdanger("A claw swipes at you!"))
+	to_chat(L, span_userdanger("Claws reach out from the floor and maul you!"))
 	to_chat(ranged_ability_user, "You summon claws at [L]'s location!")
+	L.visible_message(span_warning("[caller] rends [L]!"))
 	for(L in range(0,T))
 		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
 		if(isanimal(L))
-			L.adjustBruteLoss(30)
+			L.adjustBruteLoss(60)
+			if(L.stat != DEAD)
+				caller.adjustBruteLoss(-13)
+				caller.adjustFireLoss(-13)
+				caller.adjustToxLoss(-13)
 			if(L.stat == DEAD)
 				L.gib()
+				to_chat(caller, span_notice("You're able to consume the body entirely!"))
 				caller.adjustBruteLoss(-20)
 				caller.adjustFireLoss(-20)
 				caller.adjustToxLoss(-20)
-				caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.10
-		L.adjustBruteLoss(10)
-		if(L.getBruteLoss()+L.getFireLoss() >= 299)
-			to_chat(caller, span_notice("You're able to consume a bit more of the body, as it was previously softened up!"))
-			caller.adjustBruteLoss(-15)
-			caller.adjustFireLoss(-15)
-			caller.adjustToxLoss(-15)
-			caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.05
-		if(L.stat == DEAD)
+		if(iscarbon(L))
+			L.adjustBruteLoss(20)
 			caller.adjustBruteLoss(-5)
 			caller.adjustFireLoss(-5)
 			caller.adjustToxLoss(-5)
-			caller.blood_volume = BLOOD_VOLUME_NORMAL(caller)*1.01
 	COOLDOWN_START(src, scan_cooldown, cooldown)
 	addtimer(CALLBACK(src, .proc/cooldown_over, ranged_ability_user), cooldown)
 	remove_ranged_ability()
