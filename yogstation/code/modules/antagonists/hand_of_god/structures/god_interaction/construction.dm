@@ -48,7 +48,7 @@
 			continue
 		if(structure.cult != cult)
 			continue
-		if(get_dist(get_turf(structure), construction_place))
+		if(get_dist(get_turf(structure), construction_place) <= structure.constructor_range)
 			can_we = TRUE ///Yes we can!!!
 	return can_we
 
@@ -96,4 +96,27 @@
 		if(!build_action.on_called(god))
 			return
 		build_action.on_targeting(god, src)
+
+/turf/open/floor/attack_god(mob/camera/hog_god/god, modifier)
+	if(modifier == "ctrl")
+		var/can_we = FALSE
+		for(var/obj/structure/destructible/hog_structure/structure in god.cult.objects)
+			if(!structure.constructor_range)
+				continue
+			if(structure.cult != god.cult)
+				continue
+			if(get_dist(get_turf(structure), src) <= structure.constructor_range)
+				can_we = TRUE ///Yes we can!!!
+		if(!can_we)
+			to_chat(god, span_warning("You can convert floors only near a shrine or your nexus!"))
+			return
+		if(!do_after(god, 3 SECONDS, src))
+			return
+		var/atom/loca = src.loc 
+		var/turf/open/floor/hog/H
+		H = new(loca)
+		if(!istype(src, /turf/open/floor/hog))
+			H.name = "divine [name]"
+		H.change_hog_team(GOD.CULT)
+		qdel(src)
 
