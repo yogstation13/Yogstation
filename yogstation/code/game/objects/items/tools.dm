@@ -115,6 +115,7 @@
 	desc = "A simple powered hand drill. It's fitted with a bolt bit."
 	icon_state = "drill_bolt"
 	tool_behaviour = TOOL_WRENCH
+	sharpness = SHARP_NONE
 	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
 	if (iscyborg(user))
 		to_chat(user,span_notice("Your servos whirr as the drill reconfigures into bolt mode."))
