@@ -12,13 +12,13 @@
 	new /obj/item/ammo_box/magazine/m10mm(src)
 
 /obj/item/storage/box/syndie_kit/imp_mindslave
-	real_name = "Mindslave Implant (with injector)"
+	real_name = "Implanter (Mindslave)"
 
 /obj/item/storage/box/syndie_kit/imp_mindslave/PopulateContents()
 	new /obj/item/implanter/mindslave(src)
 
 /obj/item/storage/box/syndie_kit/imp_greytide
-	real_name = "Greytide Implant (with injector)"
+	real_name = "Implanter (Greytide)"
 
 /obj/item/storage/box/syndie_kit/imp_greytide/PopulateContents()
 	new /obj/item/implanter/greytide(src)
