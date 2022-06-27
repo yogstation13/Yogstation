@@ -98,9 +98,28 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	var/datum/antagonist/hog/cultie2 = IS_HOG_CULTIST(user)
+	if(!cultie2)
+		to_chat(user, "<span class='warning'>You are unable to cast this spell!</span>")
+		return FALSE
 	if(isliving(target))
 		var/mob/living/L = target
+		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
+		if(cultie && cultie.cult == cultie2.cult)
+			to_chat(user, "<span class='warning'>Crushing your loyal servants isn't the best idea!</span>")
+			return FALSE
+	else if(ismecha(target))
+		var/obj/mecha/M = target 
+		if(M.occupant)
+			var/mob/living/L = M.occupant
+			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
+			if(cultie && cultie.cult == cultie2.cult)
+				to_chat(user, "<span class='warning'>Crushing a mech occupied by your servant isn't a best idea!</span>")
+				return FALSE
+	return TRUE
 
+/obj/effect/proc_holder/spell/pointed/kinetic_crush/cast(list/targets, mob/user)
+	return
 
 
 
