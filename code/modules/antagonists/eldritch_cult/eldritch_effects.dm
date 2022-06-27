@@ -347,6 +347,7 @@
 	owner.status_flags |= GODMODE //knowing how people treat the ninja dojo this is a necessary sacrifice
 	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
 	to_chat(owner, span_notice("You've come into posession of [penance_left] marbles. To escape, you will need to get rid of them."))
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "brazil_penance", /datum/mood_event/brazil_penance)
 	var/destination = pick(GLOB.brazil_reception)
 	owner.forceMove(get_turf(destination))
 	return TRUE
@@ -403,6 +404,7 @@
 /datum/status_effect/brazil_penance/on_remove()
 	. = ..()
 	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of your death prior to entering that strange place.</span>")
+	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "brazil_penance")
 	owner.Unconscious(2 SECONDS, ignore_canstun = TRUE)
 	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
 	if(safe_turf)

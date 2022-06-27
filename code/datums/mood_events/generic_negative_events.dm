@@ -164,6 +164,10 @@
 	timeout = 3 SECONDS
 	hidden = TRUE
 
+/datum/mood_event/brazil_penance
+	description = "<span class='revenbignotice'>WHERE THE FUCK AM I?!</span>\n"
+	mood_change = -12
+
 /datum/mood_event/notcreepingsevere//not hidden since it's so severe
 	description = "<span class='boldwarning'>THEY NEEEEEEED OBSESSIONNNN!!</span>\n"
 	mood_change = -30
