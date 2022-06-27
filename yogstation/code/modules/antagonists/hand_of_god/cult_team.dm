@@ -15,13 +15,14 @@
 	var/list/objects = list()
 	var/recalls = 1
 	var/list/research_projects = list()
-	var/upgrades = list(/datum/hog_research/advanced_weaponry)
+	var/upgrades = list(/datum/hog_research/advanced_weaponry, /datum/hog_research/protection)
 	var/researching = FALSE
 	var/conversion_cost = 100
 	var/souls = 0
 	var/sacrificed_people = 0
 	var/can_ascend = FALSE
 	var/datum/hog_objective/cult_objective
+	var/list/possible_buildings = list()
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
@@ -31,6 +32,9 @@
 	for(var/datum/hog_research/R in upgrades)
 		R = new
 		R.cult = src
+	for(var/datum/hog_god_interaction/targeted/construction/buildin in typesof(/datum/hog_god_interaction/targeted/construction))
+		buildin = new
+		src.possible_buildings += buildin
 	
 /datum/team/hog_cult/proc/here_comes_the_money()
 	var/income = permanent_regen

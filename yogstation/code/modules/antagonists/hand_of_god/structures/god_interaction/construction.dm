@@ -83,3 +83,17 @@
 	alpha = opacility   ///So we are becoming more visible untill we are ready
 	take_damage(-integrity_per_process, BRUTE, MELEE, FALSE , 0, 100) ///Basicaly it should gain some percentage of max hp per process, but I don't want to blow my brain up by trying to think how to do that, so i will do it like... this
 
+/turf/open/floor/hog/attack_god(mob/camera/hog_god/god, modifier)
+	var/list/buildins = list() ///it is misspeled because YES
+	var/list/names = list()
+	if(modifier == "ctrl")
+		for(var/datum/hog_god_interaction/targeted/construction/buildin in god.cult.possible_buildings)
+			buildins[buildin.name] = buildin
+			names += buildin.name
+		var/datum/hog_god_interaction/targeted/construction/build_action = buildins[input(god,"What do you want to build?","Construction") in names]
+		if(!build_action)
+			return
+		if(!build_action.on_called(god))
+			return
+		build_action.on_targeting(god, src)
+
