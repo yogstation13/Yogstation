@@ -38,6 +38,7 @@
 /mob/living/simple_animal/hostile/blob/Destroy()
 	if(overmind)
 		overmind.blob_mobs -= src
+		to_chat(overmind, "<font color=\"#EE4000\">[src] has died in [get_area(src)]!</font>")
 	return ..()
 
 
