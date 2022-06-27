@@ -167,26 +167,26 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
 
 /// Type of landmark that find all others of the same type, and only spawns count number of ruins at them
-/obj/effect/landmark/stationroom/choose
-	var/chose_result = ""
+/obj/effect/landmark/stationroom/limited_spawn
+	var/choose_result = ""
 	var/count = 1
 
-/obj/effect/landmark/stationroom/choose()
+/obj/effect/landmark/stationroom/limited_spawn/choose()
 	if(choose_result != "")
 		return choose_result
 	var/list/landmarks = list()
-	for(var/obj/effect/landmark/choose/L in GLOB.stationroom_landmarks)
+	for(var/obj/effect/landmark/stationroom/limited_spawn/L in GLOB.stationroom_landmarks)
 		if(L.type == src.type)
 			landmarks |= L
 	
 	for(var/i = 0, i < count, i++)
-		var/obj/effect/landmark/choose/L = pick_n_take(landmarks)
-		L.choose_result = pick(landmarks.template_names)
+		var/obj/effect/landmark/stationroom/limited_spawn/L = pick_n_take(landmarks)
+		L.choose_result = pick(L.template_names)
 	
-	for(var/obj/effect/landmark/choose/L in landmarks)
+	for(var/obj/effect/landmark/stationroom/limited_spawn/L in landmarks)
 		L.choose_result = EMPTY_SPAWN
 
-/obj/effect/landmark/stationroom/choose/gax/ai_whale
+/obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale
 	template_names = list("AI Whale")
 
 /obj/effect/landmark/start/infiltrator
