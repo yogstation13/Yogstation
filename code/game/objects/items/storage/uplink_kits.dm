@@ -11,6 +11,18 @@
 	. = ..()
 	name = initial(name)
 
+/obj/item/storage/box/syndie_kit
+	name = "suspicious box"
+	var/real_name = "box"
+
+/obj/item/storage/box/syndie_kit/examine(mob/user)
+	if(is_syndicate(user))
+		name = real_name
+	else
+		name = initial(name)
+	. = ..()
+	name = initial(name)
+
 /obj/item/storage/box/syndicate/bundle_A/PopulateContents()
 	switch (pickweight(list("recon" = 2, "bloodyspai" = 3, "stealth" = 2, "screwed" = 2, "sabotage" = 3, "guns" = 2, "murder" = 2, "implant" = 1, "hacker" = 3, "sniper" = 1, "metaops" = 1)))
 		if("recon")
