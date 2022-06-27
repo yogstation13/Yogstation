@@ -119,8 +119,22 @@
 	return TRUE
 
 /obj/effect/proc_holder/spell/pointed/kinetic_crush/cast(list/targets, mob/user)
-	return
-
+	if(!targets.len)
+		to_chat(user, "<span class='warning'>No target found in range!</span>")
+		return FALSE
+	if(!can_target(targets[1], user))
+		return FALSE
+	
+	if(isliving(targets[1]))
+		var/mob/living/L = targets[1]
+		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
+		if(cultie && cultie.cult == cultie2.cult)
+			to_chat(user, "<span class='warning'>Crushing your loyal servants isn't the best idea!</span>")
+			return FALSE
+		else if(cultie)
+			to_chat(user, "<span class='cult'>You crush [L] with your psionic power, but power of their heretical god protects them!</span>")
+			L.Knockdown(5 SECONDS)
+			L.adjustBruteLoss(35)
 
 
 
