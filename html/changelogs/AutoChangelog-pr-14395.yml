@@ -1,7 +1,0 @@
-author: " actioninja, Ghommie"
-delete-after: true 
-changes: 
-  - rscadd: "Washing machines now support arbitrary dye color"
-  - rscadd: "Washing machines now dye nearly every item."
-  - experiment: "lots of backend changes to clothing overlays, report any issues"
-  - imageadd: "Different cuffs now come with different worn overlays instead of a generic one."
