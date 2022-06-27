@@ -19,6 +19,8 @@
 	smooth = SMOOTH_FALSE
 	/// The amount of time it takes to create a venus human trap, in deciseconds
 	var/growth_time = 1200
+	/// The countdown ghosts see to when the plant will hatch
+	var/obj/effect/countdown/flower_bud/countdown
 
 /obj/structure/alien/resin/flower_bud_enemy/Initialize()
 	. = ..()
@@ -75,6 +77,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap
 	name = "venus human trap"
 	desc = "Now you know how the fly feels."
+	unique_name = TRUE
 	icon_state = "venus_human_trap"
 	layer = SPACEVINE_MOB_LAYER
 	health = 50
@@ -103,8 +106,6 @@
 	var/playable_plant = TRUE
 	/// Used by countdown to check time, this is when the timer will complete and the venus trap will spawn.
 	var/finish_time
-	/// The countdown ghosts see to when the plant will hatch
-	var/obj/effect/countdown/flower_bud/countdown
 
 /mob/living/simple_animal/hostile/venus_human_trap/Life()
 	. = ..()
