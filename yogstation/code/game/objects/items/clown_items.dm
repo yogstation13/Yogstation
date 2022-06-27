@@ -24,7 +24,6 @@
 	name = "sad horn"
 	desc = "Thank you, Doktor."
 	attack_verb = list("Boowomped")
-	funny = FALSE
 
 /obj/item/bikehorn/sad/Initialize()
 	. = ..()
