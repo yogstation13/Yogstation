@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			template_names = current_templates
 	var/chosen_template = pickweight(template_names)
 	if(unique && chosen_template == EMPTY_SPAWN)
-		for(var/obj/effect/landmark/L in stationroom_landmarks)
+		for(var/obj/effect/landmark/stationroom/L in GLOB.stationroom_landmarks)
 			if(L.type != src.type)
 				continue
 			L.template_names -= EMPTY_SPAWN
