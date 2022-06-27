@@ -64,15 +64,18 @@
 
 /obj/item/melee/cutlass
 	name = "cutlass"
-	desc = "A true pirates weapon, seems somewhat dull though"
+	desc = "YAAAAAR! A fine weapon for a pirate, fit for slicing land-lubbers." //All pirate weapons must have pirate quips from now on it is non-negotiable
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "metalcutlass"
 	item_state = "metalcutlass"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 16
-	throwforce = 5
-	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BELT
+	force = 18
+	throwforce = 10
+	w_class = WEIGHT_CLASS_HUGE
+	block_chance = 30
+	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(/datum/material/iron = 1000)

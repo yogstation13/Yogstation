@@ -33,6 +33,10 @@
 	var/has_panel_overlay = TRUE
 	var/macroresolution = 1
 	var/obj/item/reagent_containers/beaker = null
+	//This will display every reagent that it could POSSIBLY dispense if it was fully upgraded (barring emagged chemicals). Ones you can't use will show what tier you need.
+	//If you want to add more to the tiers, it has to be in dispensable_reagents AND the list of what you tier you want it in below.
+	var/list/display_reagents = list() 
+
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
 		/datum/reagent/bromine,
@@ -86,14 +90,20 @@
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
+	display_reagents = dispensable_reagents.Copy()
 	if(emagged_reagents)
 		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
 	if(t2_upgrade_reagents)
 		t2_upgrade_reagents = sortList(t2_upgrade_reagents, /proc/cmp_reagents_asc)
+		display_reagents |= t2_upgrade_reagents
+	display_reagents = sortList(display_reagents,/proc/cmp_reagents_asc) //Why is this here you ask? because yogs moved things from t1 to t2 so now it fucks up the ordering. This restores it.
 	if(t3_upgrade_reagents)
 		t3_upgrade_reagents = sortList(t3_upgrade_reagents, /proc/cmp_reagents_asc)
+		display_reagents |= t3_upgrade_reagents
 	if(t4_upgrade_reagents)
 		t4_upgrade_reagents = sortList(t4_upgrade_reagents, /proc/cmp_reagents_asc)
+		display_reagents |= t4_upgrade_reagents
+	//we don't sort display_reagents again after adding these because they will fuck up the order
 	update_icon()
 
 /obj/machinery/chem_dispenser/Destroy()
@@ -150,6 +160,7 @@
 		return
 	to_chat(user, span_notice("You short out [src]'s safeties."))
 	dispensable_reagents |= emagged_reagents//add the emagged reagents to the dispensable ones
+	display_reagents |= emagged_reagents
 	obj_flags |= EMAGGED
 
 /obj/machinery/chem_dispenser/ex_act(severity, target)
@@ -172,6 +183,16 @@
 	if(A == beaker)
 		beaker = null
 		cut_overlays()
+
+/obj/machinery/chem_dispenser/proc/get_tier_for_chemical(datum/reagent/chem)
+	var/tier = 1
+	if(t4_upgrade_reagents?.Find(chem.type))
+		tier = 4
+	if(t3_upgrade_reagents?.Find(chem.type))
+		tier = 3
+	if(t2_upgrade_reagents?.Find(chem.type))
+		tier = 2
+	return tier
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -210,13 +231,13 @@
 	var/is_hallucinating = FALSE
 	if(user.hallucinating())
 		is_hallucinating = TRUE
-	for(var/re in dispensable_reagents)
+	for(var/re in display_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
 			var/chemname = temp.name
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name), "locked" = (dispensable_reagents.Find(temp.type) ? FALSE : TRUE), "tier" = get_tier_for_chemical(temp))))
 	for(var/recipe in saved_recipes)
 		recipes.Add(list(recipe))
 	data["chemicals"] = chemicals

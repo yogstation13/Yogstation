@@ -1,5 +1,7 @@
 /datum/surgery/stomach_pump
 	name = "Stomach Pump"
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "stomach"
 	steps = list(
 		/datum/surgery_step/incise,
 		/datum/surgery_step/retract_skin,
