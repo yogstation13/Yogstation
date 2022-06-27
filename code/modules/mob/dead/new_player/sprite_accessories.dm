@@ -872,6 +872,10 @@
 	name = "Breakout"
 	icon_state = "breakout"
 
+/datum/sprite_accessory/ipc_screens/blank
+	name = "Null"
+	icon_state = "blank"
+
 /datum/sprite_accessory/ipc_screens/console
 	name = "Console"
 	icon_state = "console"
@@ -879,18 +883,6 @@
 /datum/sprite_accessory/ipc_screens/ecgwave
 	name = "ECG Wave"
 	icon_state = "ecgwave"
-
-/datum/sprite_accessory/ipc_screens/blank
-	name = "Null"
-	icon_state = "blank"
-
-/datum/sprite_accessory/ipc_screens/L
-	name = "L"
-	icon_state = "l"
-
-/datum/sprite_accessory/ipc_screens/ring
-	name = "Ring"
-	icon_state = "ring"
 
 /datum/sprite_accessory/ipc_screens/eight
 	name = "Eight"
@@ -925,6 +917,14 @@
 	icon_state = "heart"
 	color_src = 0
 
+/datum/sprite_accessory/ipc_screens/L
+	name = "L"
+	icon_state = "l"
+
+/datum/sprite_accessory/ipc_screens/loading
+	name = "Loading"
+	icon_state = "loading"
+
 /datum/sprite_accessory/ipc_screens/monoeye
 	name = "Mono-eye"
 	icon_state = "monoeye"
@@ -944,6 +944,10 @@
 /datum/sprite_accessory/ipc_screens/purple
 	name = "Purple"
 	icon_state = "purple"
+
+/datum/sprite_accessory/ipc_screens/ring
+	name = "Ring"
+	icon_state = "ring"
 
 /datum/sprite_accessory/ipc_screens/rainbow
 	name = "Rainbow"
@@ -988,25 +992,17 @@
 	name = "Static"
 	icon_state = "static"
 
-/datum/sprite_accessory/ipc_screens/yellow
-	name = "Yellow"
-	icon_state = "yellow"
-
-/datum/sprite_accessory/ipc_screens/textdrop
-	name = "Text drop"
-	icon_state = "textdrop"
-
 /datum/sprite_accessory/ipc_screens/stars
 	name = "Stars"
 	icon_state = "stars"
 
-/datum/sprite_accessory/ipc_screens/loading
-	name = "Loading"
-	icon_state = "loading"
+/datum/sprite_accessory/ipc_screens/sad
+	name = "Sad"
+	icon_state = "sad"
 
-/datum/sprite_accessory/ipc_screens/windowsxp
-	name = "Windows XP"
-	icon_state = "windowsxp"
+/datum/sprite_accessory/ipc_screens/smiley
+	name = "Smiley"
+	icon_state = "smile"
 
 /datum/sprite_accessory/ipc_screens/tetris
 	name = "Tetris"
@@ -1015,6 +1011,18 @@
 /datum/sprite_accessory/ipc_screens/tv
 	name = "Color Test"
 	icon_state = "tv"
+
+/datum/sprite_accessory/ipc_screens/textdrop
+	name = "Text drop"
+	icon_state = "textdrop"
+
+/datum/sprite_accessory/ipc_screens/windowsxp
+	name = "Windows XP"
+	icon_state = "windowsxp"
+
+/datum/sprite_accessory/ipc_screens/yellow
+	name = "Yellow"
+	icon_state = "yellow"
 
 /datum/sprite_accessory/ipc_antennas
 	icon = 'icons/mob/ipc_accessories.dmi'
