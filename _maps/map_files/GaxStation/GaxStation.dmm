@@ -16777,7 +16777,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "iYZ" = (
-/obj/effect/landmark/stationroom/gax/ai_whale,
+/obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale,
 /turf/open/space/basic,
 /area/space)
 "iZa" = (
