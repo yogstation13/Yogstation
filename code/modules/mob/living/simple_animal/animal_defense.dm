@@ -133,7 +133,6 @@
 	..()
 	if(QDELETED(src))
 		return
-	var/bomb_armor = getarmor(null, "bomb")
 	switch (severity)
 		if (EXPLODE_DEVASTATE)
 			ex_act_devastate()
