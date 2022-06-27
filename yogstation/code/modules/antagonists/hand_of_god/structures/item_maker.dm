@@ -24,11 +24,8 @@
 	return ..()
 
 /obj/structure/destructible/hog_structure/item_maker/special_interaction(mob/user)
-	var/mob/living/carbon/C = user
-	if(!C)
-		return
 	if(working_on)
-		to_chat(C, span_warning("The [src] is currently busy, please wait [(when_ready - world.time)/10] seconds!"))
+		to_chat(user, span_warning("The [src] is currently busy, please wait [(when_ready - world.time)/10] seconds!"))
 
 	var/list/products_to_buy = list()
 	var/list/names = list() ///A bit weird, but if you have any other idea... propose it
@@ -37,18 +34,16 @@
 		products_to_buy[D.name] = D
 		names += D.name
 
-	var/datum/hog_product/picked_product = products_to_buy[input(C,"What do you want to order?","Item") in names]
+	var/datum/hog_product/picked_product = products_to_buy[input(user,"What do you want to order?","Item") in names]
 	if(!picked_product)
 		return
-	if(!picked_product.confirm(C))
+	if(!picked_product.confirm(user))
 		return
 	if(picked_product.cost > cult.energy)
-		to_chat(C,span_warning("Your cult doesn't have enough energy to afford [picked_product.name]!")) 
+		to_chat(user,span_warning("Your cult doesn't have enough energy to afford [picked_product.name]!")) 
 		return
 	if(!order(picked_product))
-		to_chat(C, span_warning("The [src] is currently busy, please wait [(when_ready - world.time)/10] seconds!"))
-
-
+		to_chat(user, span_warning("The [src] is currently busy, please wait [(when_ready - world.time)/10] seconds!"))
 
 /obj/structure/destructible/hog_structure/item_maker/proc/order(var/datum/hog_product/order)
 	if(working_on)
@@ -85,4 +80,7 @@
 		return FALSE
 	return TRUE
 
-
+/obj/structure/destructible/hog_structure/item_maker/attack_god(mob/camera/hog_god/god, modifier)
+	. = ..()
+	if(modifier == "shift")
+		special_interaction(god)

@@ -93,4 +93,4 @@
 			return
 		spelli.on_use(god)
 		return  
-	return 
+
