@@ -221,3 +221,8 @@
 /datum/mood_event/surgery
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
+
+/datum/mood_event/boowomp
+	description = "<span class='warning'>I've been boowomped.</span>\n"
+	mood_change = -1
+	timeout = 4 MINUTES 

@@ -29,3 +29,7 @@
 /obj/item/bikehorn/sad/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, list('yogstation/sound/items/boowomp.ogg'=1), 50)
+
+/obj/item/bikehorn/sad/attack(mob/living/carbon/M, mob/living/carbon/user)
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "boowomp", /datum/mood_event/boowomp) ///because it is a sad horn!
+	return ..() 
