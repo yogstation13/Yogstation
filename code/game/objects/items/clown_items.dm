@@ -153,7 +153,6 @@
 	throw_speed = 3
 	throw_range = 7
 	attack_verb = list("HONKED")
-	var/funny = TRUE
 
 /obj/item/bikehorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
@@ -170,8 +169,7 @@
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
 /obj/item/bikehorn/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(funny)
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
 	return ..()
 
 /obj/item/bikehorn/suicide_act(mob/user)
