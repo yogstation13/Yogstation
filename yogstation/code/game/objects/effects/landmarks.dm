@@ -86,10 +86,13 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			template_names = current_templates
 	var/chosen_template = pickweight(template_names)
 	if(unique && chosen_template == EMPTY_SPAWN)
-		template_names -= EMPTY_SPAWN
-		if(!template_names.len)
-			stack_trace("Station room spawner (type: [type]) has run out of ruins from an EMPTY_SPAWN, unique will be ignored")
-			template_names = current_templates
+		for(var/obj/effect/landmark/L in stationroom_landmarks)
+			if(L.type != src.type)
+				continue
+			L.template_names -= EMPTY_SPAWN
+			if(!L.template_names.len)
+				stack_trace("Station room spawner (type: [type]) has run out of ruins from an EMPTY_SPAWN, unique will be ignored")
+				L.template_names = current_templates
 	return chosen_template
 
 /obj/effect/landmark/stationroom/box/bar
