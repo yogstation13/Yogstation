@@ -30,10 +30,10 @@
 /obj/item/hog_item/upgradeable/sword/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 40, 100)
-	AddComponent(/datum/component/bane, /mob/living/simple_animal/free_god, damage_multiplier = 100)
+	AddComponent(/datum/component/bane, /mob/living/simple_animal/hostile/free_god, damage_multiplier = 100)
 
 /obj/item/hog_item/upgradeable/sword/attack(mob/target, mob/living/carbon/user)
-	if(istype(target, /mob/living/simple_animal/free_god))
+	if(istype(target, /mob/living/simple_animal/hostile/free_god))
 		var/mob/living/simple_animal/free_god/goddie = target
 		if(goddie.cult == src.cult)
 			return

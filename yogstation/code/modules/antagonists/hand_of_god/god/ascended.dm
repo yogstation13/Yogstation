@@ -1,4 +1,4 @@
-/mob/living/simple_animal/free_god
+/mob/living/simple_animal/hostile/free_god
 	name = "<span class='cult'>GOD</span>"
 	desc = "A powerfull bluespace entity, that managed to break into your plane. Uh-oh. It is time to run away."
 	health = 5000
@@ -24,7 +24,7 @@
 	movement_type = FLYING
     var/datum/team/hog_cult/cult
 
-/mob/living/simple_animal/free_god/examine(mob/user)
+/mob/living/simple_animal/hostile/free_god/examine(mob/user)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && cultie.cult == src.cult)
         desc = "Your god and saviour!"
@@ -35,7 +35,7 @@
 	. = ..()
 	desc = initial(desc)
 
-/mob/living/simple_animal/free_god/AttackingTarget()
+/mob/living/simple_animal/hostile/free_god/AttackingTarget()
     melee_damage_lower = initial(melee_damage_lower)
     melee_damage_upper = initial(melee_damage_upper)    
 	attacktext = initial(attacktext)
@@ -56,3 +56,7 @@
 	. = ..()
     if(strike_down && L)
         L.Knockdown(2 SECONDS)
+
+/mob/living/simple_animal/hostile/free_god/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+    message = span_colossus(message)
+	. = ..()

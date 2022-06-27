@@ -253,7 +253,7 @@
 /obj/item/nullrod/Initialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
-	AddComponent(/datum/component/bane, /mob/living/simple_animal/free_god, damage_multiplier = 200)
+	AddComponent(/datum/component/bane, /mob/living/simple_animal/hostile/free_god, damage_multiplier = 200)
 
 /obj/item/nullrod/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is killing [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to get closer to god!"))
