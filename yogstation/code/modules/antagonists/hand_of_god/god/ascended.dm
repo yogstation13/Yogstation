@@ -43,11 +43,11 @@
 	var/strike_down = FALSE
 		if(L)
 			if(istype(L, /mob/living/simple_animal/hostile/free_god))
-					if(L == src)
-						return ..()
-					melee_damage_lower = 400
-					melee_damage_upper = 400  
-					attacktext = "tears into"              
+				if(L == src)
+					return ..()
+				melee_damage_lower = 400
+				melee_damage_upper = 400  
+				attacktext = "tears into"              
 		 else
 			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(target)
 			if(cultie && cultie.cult == src.cult)
@@ -100,6 +100,7 @@
 		return FALSE
 	if(isliving(target))
 		var/mob/living/L = target
+
 
 
 
