@@ -40,19 +40,26 @@
     melee_damage_upper = initial(melee_damage_upper)    
 	attacktext = initial(attacktext)
     var/mob/living/L = target
+    var/strike_down = FALSE
         if(L)
-            var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(target)
-            var/strike_down = FALSE
-            if(cultie && cultie.cult == src.cult)
-                if(prob(30))
-                    to_chat(user,span_warning("Probably, attacking your fellow servants isn't the best idea.")) 
-                melee_damage_lower = 10
-                melee_damage_upper = 15     
-                attacktext = "punishes"
-            else if(!cultie)
-                strike_down = TRUE
-                if(prob(50))
-                    attacktext = "strikes down"
+            if(istype(L, /mob/living/simple_animal/hostile/free_god))
+                    if(L == src)
+                        return ..()
+                    melee_damage_lower = 400
+                    melee_damage_upper = 400  
+                    attacktext = "tears into"              
+            else
+                var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(target)
+                if(cultie && cultie.cult == src.cult)
+                    if(prob(30))
+                        to_chat(user,span_warning("Probably, attacking your fellow servants isn't the best idea.")) 
+                    melee_damage_lower = 10
+                    melee_damage_upper = 15     
+                    attacktext = "punishes"
+                else if(!cultie)
+                    strike_down = TRUE
+                    if(prob(50))
+                        attacktext = "strikes down"
 	. = ..()
     if(strike_down && L)
         L.Knockdown(2 SECONDS)
