@@ -8,7 +8,7 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(ACCESS_MANUFACTURING)
+	access = list()
 	minimal_access = list(ACCESS_MANUFACTURING)
 	alt_titles = list("Salesman", "Gift Shop Attendent", "Retail Worker")
 	outfit = /datum/outfit/job/clerk
