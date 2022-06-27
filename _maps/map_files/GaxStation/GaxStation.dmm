@@ -11297,6 +11297,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fWw" = (
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/cryopods";
+	dir = 8;
+	name = "Cryogenic Crew Storage APC";
+	pixel_x = -25
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "fWC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -12648,6 +12660,17 @@
 /obj/structure/lattice/catwalk,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
+"gKv" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "gLy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -13052,9 +13075,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"gVS" = (
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "gWp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
@@ -23277,23 +23297,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"mBs" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/machinery/light,
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/cryopods";
-	name = "Cryogenic Crew Storage APC";
-	pixel_y = -23
-	},
-/obj/structure/cable,
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "mBJ" = (
 /obj/machinery/camera{
 	c_tag = "Research Director's Office";
@@ -23686,18 +23689,6 @@
 /obj/item/book/manual/wiki/atmospherics,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"mMd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "mMi" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/department/science/central";
@@ -28715,13 +28706,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"pCN" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "pDY" = (
 /obj/structure/chair/pew/right{
 	dir = 1
@@ -32016,6 +32000,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"rxz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "rxG" = (
 /obj/machinery/ai_slipper{
 	uses = 10
@@ -32138,6 +32134,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"rAS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "rBc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -37206,10 +37209,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"uBN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/carpet,
-/area/crew_quarters/cryopods)
 "uBP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -43631,6 +43630,10 @@
 	dir = 1
 	},
 /area/chapel/main)
+"xPX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/carpet,
+/area/crew_quarters/cryopods)
 "xQb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -74722,7 +74725,7 @@ bJd
 eRu
 fXQ
 atJ
-gVS
+fWw
 qhp
 qhp
 qhp
@@ -74979,10 +74982,10 @@ jPa
 oyD
 fXQ
 kGF
-uBN
-mMd
-pCN
-mBs
+rAS
+rxz
+xPX
+gKv
 fXQ
 hBZ
 vNF
