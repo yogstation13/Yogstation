@@ -84,7 +84,7 @@
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
 	if(iscarbon(user)) 	//yogs - rock and stone
 		var/mob/living/carbon/C = user
-		if(prob(0.5) || (prob(5) && C.dna?.check_mutation(DWARFISM)))
+		if(prob(0.5) || (prob(2) && C.dna?.check_mutation(DWARFISM)))
 			var/picked_phrase = pick(list("Rock and stone!","Rock and rollin' stone!","For rock and stone!","Rock solid!"))
 			C.say(picked_phrase)
 /turf/closed/mineral/proc/attempt_drill(mob/user,triggered_by_explosion = FALSE, power = 1)
