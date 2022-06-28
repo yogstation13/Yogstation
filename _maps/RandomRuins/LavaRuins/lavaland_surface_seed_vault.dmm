@@ -6,9 +6,8 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "c" = (
-/obj/machinery/vending/hydronutrients{
-	onstation = 0
-	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "d" = (
@@ -57,10 +56,10 @@
 /area/ruin/powered/seedvault)
 "j" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/seedvault)
 "k" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/seed_vault,
@@ -75,23 +74,9 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "n" = (
-/obj/machinery/smartfridge,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
-"o" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/hatchet,
+/obj/structure/sink{
+	pixel_y = 20
+	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "p" = (
@@ -99,27 +84,19 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "q" = (
-/obj/item/hatchet,
-/obj/item/storage/bag/plants,
-/obj/item/reagent_containers/glass/bucket,
-/obj/structure/table/wood,
-/turf/open/floor/plasteel/freezer,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered/seedvault)
 "r" = (
-/obj/structure/table/wood,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "s" = (
-/obj/structure/table/wood,
-/obj/item/gun/energy/floragun,
-/obj/item/gun/energy/floragun,
-/obj/item/gun/energy/floragun,
-/obj/item/gun/energy/floragun,
-/obj/item/storage/box/disks_plantgene,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/biogenerator,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "t" = (
@@ -131,12 +108,6 @@
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
-"v" = (
-/obj/machinery/vending/hydroseeds{
-	onstation = 0
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
@@ -152,10 +123,8 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "y" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
+/obj/effect/spawner/lootdrop/seed_vault,
+/obj/structure/closet/crate,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "z" = (
@@ -174,8 +143,9 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "B" = (
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "C" = (
@@ -183,7 +153,10 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "D" = (
-/obj/machinery/biogenerator,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "E" = (
@@ -225,12 +198,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"M" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "N" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/disks_plantgene,
@@ -246,26 +213,20 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "P" = (
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/light{
-	dir = 1
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Q" = (
 /turf/closed/wall/r_wall,
 /area/ruin/powered/seedvault)
 "R" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
-"S" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
+/obj/machinery/smartfridge,
+/turf/closed/wall/r_wall,
 /area/ruin/powered/seedvault)
 "U" = (
 /obj/machinery/light,
@@ -310,8 +271,8 @@ a
 a
 a
 a
-b
-b
+a
+a
 "}
 (2,1,1) = {"
 a
@@ -332,8 +293,8 @@ a
 a
 a
 a
-b
-b
+a
+a
 "}
 (3,1,1) = {"
 b
@@ -351,29 +312,29 @@ U
 Q
 Q
 a
-a
-a
 b
 a
-b
+a
+a
+a
 "}
 (4,1,1) = {"
 b
 a
 a
-Q
-Q
-Q
-Q
-Q
-Q
-Z
-Z
-Q
-Q
-Q
-Q
 a
+Q
+Q
+Q
+Q
+Q
+Z
+Z
+Q
+Q
+Q
+Q
+Q
 a
 a
 a
@@ -382,21 +343,21 @@ a
 (5,1,1) = {"
 a
 a
+a
 Q
 Q
+g
 k
 Q
-n
-R
 u
 h
 h
-u
-R
 u
 Q
-a
-a
+p
+p
+Q
+Q
 a
 a
 a
@@ -404,21 +365,21 @@ a
 (6,1,1) = {"
 a
 a
+a
 Q
 d
 h
+h
 Q
-o
 h
 h
 h
 h
-h
-h
-G
 Q
-a
-a
+h
+h
+p
+Q
 a
 a
 a
@@ -426,207 +387,207 @@ a
 (7,1,1) = {"
 a
 a
+a
 Q
 N
 h
+h
 Q
-P
-h
-p
+O
 h
 h
-p
+U
+Q
+n
 h
 X
 Q
-a
-a
-a
-a
+b
+b
 a
 "}
 (8,1,1) = {"
 b
 a
+a
 Q
 e
+h
 h
 A
 h
 h
-c
-h
 h
 B
+A
 F
 F
+c
 V
 L
-a
-a
-a
+b
 a
 "}
 (9,1,1) = {"
 b
 a
+a
 Q
 f
 h
+h
 Q
-p
-h
-n
 h
 h
+h
+D
+Q
 C
 h
-k
+p
 Q
-M
-a
-a
-a
+P
+b
 a
 "}
 (10,1,1) = {"
 a
 a
+a
 Q
-g
+H
+h
 h
 Q
-p
-h
-v
 h
 h
-D
+h
+h
+R
+h
 h
 p
 Q
 b
-a
-a
-a
+b
 a
 "}
 (11,1,1) = {"
 a
 a
+a
 Q
-h
-h
-Q
-q
-h
-x
-h
-h
 E
 h
-H
+h
 Q
-a
-a
-a
-a
+h
+h
+h
+h
+Q
+h
+h
+p
+Q
+b
+b
 a
 "}
 (12,1,1) = {"
 b
 a
+a
+Q
+s
+h
+h
 Q
 O
-h
-Q
-P
-h
-h
-h
-h
 h
 h
 X
 Q
-a
-a
-a
+h
+h
+X
+Q
+b
 a
 a
 "}
 (13,1,1) = {"
 a
 a
+a
 Q
-i
+x
+h
 h
 Q
-r
-h
-h
-p
-p
+G
 h
 h
 I
 Q
-a
-a
-a
+h
+h
+p
+Q
+b
 a
 a
 "}
 (14,1,1) = {"
 a
 a
+a
 Q
 Q
 i
+i
 Q
-s
-S
 y
 h
 h
-y
-S
 J
 Q
-a
-a
-a
+p
+p
+Q
+Q
+b
 a
 a
 "}
 (15,1,1) = {"
 a
 a
+a
 b
 Q
 Q
 Q
 Q
 Q
-Q
 z
 z
 Q
 Q
 Q
 Q
+Q
 a
-a
-a
+b
 a
 a
 "}
 (16,1,1) = {"
-b
 a
-b
-j
-Q
+a
+a
+a
+q
 j
 Q
 j
@@ -639,7 +600,7 @@ Q
 j
 a
 a
-a
+b
 a
 a
 "}
@@ -649,9 +610,9 @@ a
 a
 a
 a
-a
-a
-a
+b
+b
+b
 Q
 m
 m
@@ -662,7 +623,7 @@ b
 a
 a
 a
-b
+a
 b
 "}
 (18,1,1) = {"
@@ -674,13 +635,13 @@ b
 b
 b
 b
+r
 b
 b
+r
 b
 b
-b
-b
-b
+a
 a
 a
 a
