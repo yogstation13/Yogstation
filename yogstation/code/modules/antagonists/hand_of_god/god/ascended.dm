@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/free_god
+/mob/living/simple_animal/hostile/hog/free_god
 	name = "<span class='cult'>GOD</span>"
 	desc = "A powerfull bluespace entity, that managed to break into your plane. Uh-oh. It is time to run away."
 	health = 5000
@@ -22,32 +22,22 @@
 	mob_size = MOB_SIZE_LARGE
 	layer = LARGE_MOB_LAYER
 	movement_type = FLYING
-	var/datum/team/hog_cult/cult
+	cultist_desc = "Your god and saviour!"
+	heretic_desc = "A heretical demon that defiles this world just with its presence. Strike it down!"
 
-/mob/living/simple_animal/hostile/free_god/Initialize()
+/mob/living/simple_animal/hostile/hog/free_god/Initialize()
 	. = ..()
 	var/obj/effect/proc_holder/spell/pointed/kinetic_crush/crush = new
 	AddSpell(crush)
 
-/mob/living/simple_animal/hostile/free_god/examine(mob/user)
-	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
-	if(cultie && cultie.cult == src.cult)
-		desc = "Your god and saviour!"
-	else if (cultie)
-		desc = "A heretical demon that defiles this world just with its presence. Strike it down!"
-	else
-		desc = initial(desc)
-	. = ..()
-	desc = initial(desc)
-
-/mob/living/simple_animal/hostile/free_god/AttackingTarget()
+/mob/living/simple_animal/hostile/hog/free_god/AttackingTarget()
 	melee_damage_lower = initial(melee_damage_lower)
 	melee_damage_upper = initial(melee_damage_upper)    
 	attacktext = initial(attacktext)
 	var/mob/living/L = target
 	var/strike_down = FALSE
 	if(L)
-		if(istype(L, /mob/living/simple_animal/hostile/free_god))
+		if(istype(L, /mob/living/simple_animal/hostile/hog/free_god))
 			if(L == src)
 				return ..()
 			melee_damage_lower = 400
@@ -69,18 +59,18 @@
 	if(strike_down && L)
 		L.Knockdown(2 SECONDS)
 
-/mob/living/simple_animal/hostile/free_god/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/hostile/hog/free_god/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	message = span_cultlarge(message)
 	. = ..()
 
-/mob/living/simple_animal/hostile/free_god/ex_act(severity)
+/mob/living/simple_animal/hostile/hog/free_god/ex_act(severity)
 	return FALSE
 
-/mob/living/simple_animal/hostile/free_god/singularity_act()
+/mob/living/simple_animal/hostile/hog/free_god/singularity_act()
 	///user.say("ahahahaha fuck ya singulo")
 	return FALSE
 
-/mob/living/simple_animal/hostile/free_god/Process_Spacemove()
+/mob/living/simple_animal/hostile/hog/free_god/Process_Spacemove()
 	return TRUE
 
 /obj/effect/proc_holder/spell/pointed/kinetic_crush
