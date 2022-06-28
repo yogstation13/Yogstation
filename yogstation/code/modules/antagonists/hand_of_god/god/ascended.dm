@@ -24,6 +24,11 @@
 	movement_type = FLYING
 	var/datum/team/hog_cult/cult
 
+/mob/living/simple_animal/hostile/free_god/Initialize()
+	. = ..()
+	/obj/effect/proc_holder/spell/pointed/kinetic_crush/crush = new
+	AddSpell(crush)
+
 /mob/living/simple_animal/hostile/free_god/examine(mob/user)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && cultie.cult == src.cult)
@@ -145,11 +150,7 @@
 			to_chat(user, "<span class='cult'>You crush [L] with your psionic power!</span>")
 			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave tearing you into pieces!</span>")
 			L.emote("scream")	
-			if(iscarbon(L))
-				var/mob/living/carbon/C = L
-				C.Gib()
-			else
-				qdel(L)
+			L.gib()
 			return TRUE
 	else if(ismecha(targets[1]))
 		var/obj/mecha/M = targets[1]
