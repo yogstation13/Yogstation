@@ -39992,6 +39992,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"klU" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "klZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -46282,21 +46301,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"npe" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/research/glass{
-	name = "R&D Lab";
-	req_access_txt = "7"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "npo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/official/help_others{
@@ -56788,29 +56792,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"sGR" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/research/glass{
-	name = "R&D Lab";
-	req_access_txt = "7"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "sGW" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 5
@@ -61969,6 +61950,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"vku" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "vkJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -116966,7 +116958,7 @@ blJ
 bno
 bkt
 biW
-npe
+vku
 bgp
 bmU
 bvK
@@ -117223,7 +117215,7 @@ bka
 bka
 aCl
 bpo
-sGR
+klU
 brp
 bmW
 bvK
