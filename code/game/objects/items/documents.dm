@@ -51,8 +51,8 @@
 			to_chat(user, span_warning("You have already forged a seal on [src]!"))
 		else
 			var/obj/item/toy/crayon/C = O
-			name = "[C.item_color] secret documents"
-			icon_state = "docs_[C.item_color]"
-			forgedseal = C.item_color
-			to_chat(user, span_notice("You forge the official seal with a [C.item_color] crayon. No one will notice... right?"))
+			name = "[C.crayon_color] secret documents"
+			icon_state = "docs_[C.crayon_color]"
+			forgedseal = C.crayon_color
+			to_chat(user, span_notice("You forge the official seal with a [C.crayon_color] crayon. No one will notice... right?"))
 			update_icon()

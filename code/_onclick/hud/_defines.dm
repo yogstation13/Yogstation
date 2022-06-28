@@ -125,6 +125,9 @@
 //slimes
 #define ui_slime_health "EAST,CENTER:15"  //same as humans and constructs
 
+//Blobbernauts
+#define ui_blobbernaut_overmind_health "EAST-1:28,CENTER+0:19"
+
 // AI
 
 #define ui_ai_core "CENTER-6:-32,SOUTH:6"
