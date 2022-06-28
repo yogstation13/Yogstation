@@ -249,7 +249,6 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "R" = (
-/obj/machinery/biogenerator,
 /obj/machinery/light{
 	dir = 4
 	},

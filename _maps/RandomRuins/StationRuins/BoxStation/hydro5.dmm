@@ -159,10 +159,6 @@
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"w" = (
-/obj/machinery/biogenerator,
-/turf/open/floor/plasteel,
-/area/template_noop)
 "x" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -390,7 +386,7 @@ G
 d
 X
 C
-w
+Q
 m
 "}
 (5,1,1) = {"
@@ -401,7 +397,7 @@ G
 d
 c
 C
-Q
+C
 m
 "}
 (6,1,1) = {"

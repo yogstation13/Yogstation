@@ -64,19 +64,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
-"m" = (
+"n" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /obj/structure/table/glass,
 /obj/item/storage/box/syringes,
 /obj/item/storage/box/beakers{
 	pixel_x = 2;
 	pixel_y = 2
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"n" = (
-/obj/machinery/biogenerator,
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)
@@ -352,7 +348,7 @@ s
 s
 s
 x
-m
+P
 Q
 "}
 (6,1,1) = {"

@@ -129,10 +129,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel,
 /area/template_noop)
-"w" = (
-/obj/machinery/biogenerator,
-/turf/open/floor/plasteel,
-/area/template_noop)
 "y" = (
 /obj/effect/landmark/start/botanist,
 /turf/open/floor/plasteel,
@@ -401,7 +397,7 @@ W
 Z
 E
 f
-w
+T
 H
 a
 m

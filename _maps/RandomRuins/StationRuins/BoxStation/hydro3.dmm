@@ -200,11 +200,13 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "D" = (
-/obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green,
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
 /turf/open/floor/plasteel,
 /area/template_noop)
 "E" = (
@@ -279,12 +281,6 @@
 	dir = 4
 	},
 /obj/machinery/holopad,
-/turf/open/floor/plasteel,
-/area/template_noop)
-"O" = (
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
-	},
 /turf/open/floor/plasteel,
 /area/template_noop)
 "R" = (
@@ -393,7 +389,7 @@ K
 K
 N
 E
-O
+E
 p
 "}
 (6,1,1) = {"
