@@ -700,13 +700,9 @@ Nothing else in the console has ID requirements.
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
 /obj/machinery/computer/rdconsole/proc/can_research(mob/user)
-	if(!locked)
+	if(!locked || allowed(user))
 		return TRUE
-	var/obj/item/card/id/C = user.get_idcard(TRUE)
-	if(C)
-		if(!check_access(C))
-			return FALSE
-		return TRUE
+	return FALSE
 
 /obj/machinery/computer/rdconsole/proc/ui_techweb_single_node(datum/techweb_node/node, selflink=TRUE, minimal=FALSE)
 	var/list/l = list()
