@@ -350,7 +350,8 @@
  *
  * The odds become:
  *     Player A: 150 / 250 = 0.6 = 60%
- */     Player B: 100 / 250 = 0.4 = 40%
+ *     Player B: 100 / 250 = 0.4 = 40%
+ */
 /datum/game_mode/proc/antag_pick(list/datum/candidates)
 	if(GLOB.antag_token_users.len >= 1) //Antag token users get first priority, no matter their preferences
 		var/client/C = pick_n_take(GLOB.antag_token_users)
