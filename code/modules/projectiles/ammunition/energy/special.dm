@@ -5,7 +5,7 @@
 
 /obj/item/ammo_casing/energy/ion/hos
 	projectile_type = /obj/item/projectile/ion/weak
-	e_cost = 300
+	e_cost = 250
 
 /obj/item/ammo_casing/energy/declone
 	projectile_type = /obj/item/projectile/energy/declone
@@ -45,7 +45,7 @@
 	projectile_type = /obj/item/projectile/energy/net
 	select_name = "netting"
 	pellets = 6
-	variance = 40
+	variance = 26
 	harmful = FALSE
 
 /obj/item/ammo_casing/energy/net/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")

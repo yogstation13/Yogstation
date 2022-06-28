@@ -400,4 +400,25 @@
 
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()
-	.["Remove Persistent Painting"] = "?_src_=vars;[HrefToken()];delete_paint=[REF(src)]"
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_PAINTING, "Remove Persistent Painting")
+
+/obj/structure/sign/painting/vv_do_topic(list/href_list)
+	. = ..()
+	var/mob/user = usr
+	if(!persistence_id || !C)
+		to_chat(user,span_warning("This is not a persistent painting."))
+		return
+	var/md5 = md5(C.get_data_string())
+	var/author = C.author_ckey
+	var/list/current = SSpersistence.paintings[persistence_id]
+	if(current)
+		for(var/list/entry in current)
+			if(entry["md5"] == md5)
+				current -= entry
+		var/png = "data/paintings/[persistence_id]/[md5].png"
+		fdel(png)
+	for(var/obj/structure/sign/painting/PA in SSpersistence.painting_frames)
+		if(PA.C && md5(PA.C.get_data_string()) == md5)
+			QDEL_NULL(PA.C)
+	log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
+	message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

@@ -58,6 +58,12 @@
 	var/obj/item/broken_bottle/B = new (loc)
 	if(!ranged && thrower)
 		thrower.put_in_hands(B)
+	else
+		var/matrix/M = matrix(B.transform)
+		M.Turn(rand(-170, 170))
+		B.transform = M
+		B.pixel_x = rand(-12, 12)
+		B.pixel_y = rand(-12, 12)
 	B.icon_state = icon_state
 
 	var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
@@ -102,7 +108,7 @@
 
 		var/mob/living/carbon/human/H = target
 		var/headarmor = 0 // Target's head armor
-		armor_block = H.run_armor_check(affecting, "melee","","",armour_penetration) // For normal attack damage
+		armor_block = H.run_armor_check(affecting, MELEE,"","",armour_penetration) // For normal attack damage
 
 		//If they have a hat/helmet and the user is targeting their head.
 		if(istype(H.head, /obj/item/clothing/head) && affecting == BODY_ZONE_HEAD)
@@ -115,7 +121,7 @@
 
 	else
 		//Only humans can have armor, right?
-		armor_block = target.run_armor_check(affecting, "melee")
+		armor_block = target.run_armor_check(affecting, MELEE)
 		if(affecting == BODY_ZONE_HEAD)
 			armor_duration = duration + force
 
@@ -560,3 +566,9 @@
 	desc = "A gentle and syrup like drink, tastes of almonds and apricots"
 	icon_state = "disaronno"
 	list_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 100)
+
+/obj/item/reagent_containers/food/drinks/beer/stout
+	name = "Genius Dry Stout"
+	desc = "A fresh bottle of stout, popularized by inhabitants of Space Ireland."
+	icon_state = "stout_bottle" 
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/stout = 40)

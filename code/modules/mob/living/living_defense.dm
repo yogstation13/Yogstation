@@ -1,5 +1,5 @@
 
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null, armour_penetration, penetrated_text)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = MELEE, absorb_text = null, soften_text = null, armour_penetration, penetrated_text)
 	var/armor = getarmor(def_zone, attack_flag)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
@@ -48,9 +48,12 @@
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)
 	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
 	if(!P.nodamage)
+		last_damage = P.name
 		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
+	if(istype(P, /obj/item/projectile/bullet/shotgun_uraniumslug))
+		return P.on_hit(src, armor)
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
@@ -69,29 +72,16 @@
 		var/obj/item/I = AM
 		var/zone = ran_zone(BODY_ZONE_CHEST, 65)//Hits a random part of the body, geared towards the chest
 		var/dtype = BRUTE
-		var/volume = I.get_volume_by_throwforce_and_or_w_class()
 		SEND_SIGNAL(I, COMSIG_MOVABLE_IMPACT_ZONE, src, zone)
 		dtype = I.damtype
-
-		if (I.throwforce > 0) //If the weapon's throwforce is greater than zero...
-			if (I.throwhitsound) //...and throwhitsound is defined...
-				playsound(loc, I.throwhitsound, volume, 1, -1) //...play the weapon's throwhitsound.
-			else if(I.hitsound) //Otherwise, if the weapon's hitsound is defined...
-				playsound(loc, I.hitsound, volume, 1, -1) //...play the weapon's hitsound.
-			else if(!I.throwhitsound) //Otherwise, if throwhitsound isn't defined...
-				playsound(loc, 'sound/weapons/genhit.ogg',volume, 1, -1) //...play genhit.ogg.
-
-		else if(!I.throwhitsound && I.throwforce > 0) //Otherwise, if the item doesn't have a throwhitsound and has a throwforce greater than zero...
-			playsound(loc, 'sound/weapons/genhit.ogg', volume, 1, -1)//...play genhit.ogg
-		if(!I.throwforce)// Otherwise, if the item's throwforce is 0...
-			playsound(loc, 'sound/weapons/throwtap.ogg', 1, volume, -1)//...play throwtap.ogg.
 		if(!blocked)
 			visible_message(span_danger("[src] has been hit by [I]."), \
 							span_userdanger("[src] has been hit by [I]."))
-			var/armor = run_armor_check(zone, "melee", "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
+			var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
 			if(isobj(AM))
 				var/obj/O = AM
 				if(O.damtype != STAMINA)
+					last_damage = I.name
 					apply_damage(I.throwforce, dtype, zone, armor, sharpness=I.get_sharpness())
 					if(I.thrownby)
 						log_combat(I.thrownby, src, "threw and hit", I)
@@ -104,9 +94,11 @@
 
 /mob/living/mech_melee_attack(obj/mecha/M)
 	if(M.occupant.a_intent == INTENT_HARM)
+		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)
 		if(M.damtype == "brute")
-			step_away(src,M,15)
+			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
+			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 		switch(M.damtype)
 			if(BRUTE)
 				Unconscious(20)
@@ -129,6 +121,7 @@
 		visible_message(span_warning("[M] pushes [src] out of the way."), null, null, 5)
 
 /mob/living/fire_act()
+	last_damage = "fire"
 	adjust_fire_stacks(3)
 	IgniteMob()
 
@@ -198,6 +191,7 @@
 				if(!buckled && !density)
 					Move(user.loc)
 			if(GRAB_KILL)
+				last_damage = "grip marks on the neck"
 				log_combat(user, src, "strangled", addition="kill grab")
 				visible_message(span_danger("[user] is strangling [src]!"), \
 								span_userdanger("[user] is strangling you!"))
@@ -223,6 +217,7 @@
 		return FALSE
 
 	if (stat != DEAD)
+		last_damage = "goo"
 		log_combat(M, src, "attacked")
 		M.do_attack_animation(src)
 		visible_message(span_danger("The [M.name] glomps [src]!"), \
@@ -241,6 +236,7 @@
 
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
+		last_damage = "lacerations"
 		M.do_attack_animation(src)
 		visible_message(span_danger("\The [M] [M.attacktext] [src]!"), \
 						span_userdanger("\The [M] [M.attacktext] [src]!"), null, COMBAT_MESSAGE_RANGE)
@@ -263,6 +259,7 @@
 			return FALSE
 		M.do_attack_animation(src, ATTACK_EFFECT_BITE)
 		if (prob(75))
+			last_damage = "minor laceration"
 			log_combat(M, src, "attacked")
 			playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 			visible_message(span_danger("[M.name] bites [src]!"), \
@@ -286,6 +283,7 @@
 
 			L.do_attack_animation(src)
 			if(prob(90))
+				last_damage = "bite"
 				log_combat(L, src, "attacked")
 				visible_message(span_danger("[L.name] bites [src]!"), \
 					span_userdanger("[L.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
@@ -308,20 +306,24 @@
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, span_notice("You don't want to hurt anyone!"))
 				return FALSE
+			last_damage = "deep lacerations"
 			M.do_attack_animation(src)
 			return TRUE
 		if("disarm")
+			last_damage = "minor blunt trauma"
 			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 			return TRUE
 
 /mob/living/ex_act(severity, target, origin)
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
+	last_damage = "compression blast"
 	..()
 
 //Looking for irradiate()? It's been moved to radiation.dm under the rad_act() for mobs.
 
 /mob/living/acid_act(acidpwr, acid_volume)
+	last_damage = "acidic burns"
 	take_bodypart_damage(acidpwr * min(1, acid_volume * 0.1))
 	return 1
 
@@ -333,6 +335,7 @@
 		return FALSE
 	if(shock_damage > 0)
 		if(!illusion)
+			last_damage = "electricity burns"
 			adjustFireLoss(shock_damage)
 		visible_message(
 			span_danger("[src] was shocked by \the [source]!"), \

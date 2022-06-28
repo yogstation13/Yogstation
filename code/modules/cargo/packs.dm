@@ -520,6 +520,7 @@
 	name = "Hellgun Single-Pack"
 	desc = "Contains one hellgun, an old pattern of laser gun infamous for its ability to horribly disfigure targets with burns. Technically violates the Space Geneva Convention when used on humanoids."
 	cost = 1500
+	small_item = TRUE
 	contains = list(/obj/item/gun/energy/laser/hellgun)
 
 /datum/supply_pack/security/armory/energy
@@ -1025,6 +1026,13 @@
 	cost = 1000
 	contains = list(/obj/item/stack/sheet/cardboard/fifty)
 	crate_name = "cardboard sheets crate"
+
+/datum/supply_pack/materials/license50
+	name = "50 Empty License Plates"
+	desc = "'Put those prisoners to work' - Jedi Yoda probably"
+	cost = 1000  // 50 * 25 - 1000 = 250 credits profit
+	contains = list(/obj/item/stack/license_plates/empty/fifty)
+	crate_name = "empty license plate crate"
 
 /datum/supply_pack/materials/glass50
 	name = "50 Glass Sheets"
@@ -2370,7 +2378,7 @@
 		if(prob(50))
 			the_toy = pickweight(GLOB.arcade_prize_pool)
 		else
-			the_toy = pick(subtypesof(/obj/item/toy/plush))
+			the_toy = pick(subtypesof(/obj/item/toy/plush) - typesof(/obj/item/toy/plush/goatplushie/angry/kinggoat))
 			if(istype(the_toy, /obj/item/toy/plush/lizard/azeel/snowflake))
 				the_toy = /obj/item/toy/plush/lizard/azeel
 		new the_toy(.)
@@ -2603,3 +2611,57 @@
 	contains = list(/obj/machinery/jukebox)
 	crate_name = "jukebox crate"
 	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/misc/pda
+	name = "Modular Personal Digital Assistant Crate"
+	desc = "A create containing five modular PDAs, enough for an entire department."
+	cost = 500
+	contains = list(/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic,
+					/obj/item/modular_computer/tablet/pda/preset/basic)
+	crate_name = "pda crate"
+
+/datum/supply_pack/misc/laptop
+	name = "Modular Laptop Crate"
+	desc = "A create containing five modular laptop computers, enough for an entire department."
+	cost = 1000
+	contains = list(/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset,
+					/obj/item/modular_computer/laptop/preset)
+	crate_name = "laptop crate"
+
+/datum/supply_pack/misc/tablet
+	name = "Modular Tablet Crate"
+	desc = "A create containing five modular tablet computers, enough for an entire department."
+	cost = 3000
+	contains = list(/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap,
+					/obj/item/modular_computer/tablet/preset/cheap)
+	crate_name = "tablet crate"
+
+/datum/supply_pack/misc/phone
+	name = "Modular Phone Crate"
+	desc = "A create containing five modular phone computers, enough for an entire department. Does not include games."
+	cost = 4000
+	contains = list(/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap,
+					/obj/item/modular_computer/tablet/phone/preset/cheap)
+	crate_name = "phone crate"
+
+/datum/supply_pack/misc/telescreen
+	name = "Modular Telescreen Crate"
+	desc = "A create containing four modular telescreens, featuring the latest in Nanotrasen digital displaying technology."
+	cost = 1000
+	contains = list(/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset,
+					/obj/item/wallframe/telescreen/preset)
+	crate_name = "telescreen crate"

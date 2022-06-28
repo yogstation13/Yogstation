@@ -7,7 +7,7 @@
 	requires_ntnet = TRUE
 	transfer_access = null
 	available_on_ntnet = FALSE
-	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE
+	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA | PROGRAM_INTEGRATED
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosRadar"
@@ -72,6 +72,7 @@
 /datum/computer_file/program/radar/ui_act(action, params)
 	if(..())
 		return
+	computer.play_interact_sound()
 
 	switch(action)
 		if("selecttarget")
@@ -219,7 +220,7 @@
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_MEDICAL
 	available_on_ntnet = TRUE
-	program_icon = "heartbeat"
+	program_icon = "street-view"
 
 /datum/computer_file/program/radar/lifeline/find_atom()
 	return locate(selected) in GLOB.carbon_list
@@ -261,7 +262,7 @@
 //Nuke Disk Finder App//
 ////////////////////////
 
-///A program that tracks crew members via suit sensors
+///A program that tracks important items like the nuke disk
 /datum/computer_file/program/radar/fission360
 	filename = "Fission360"
 	filedesc = "Fission360"
@@ -273,6 +274,7 @@
 	available_on_ntnet = FALSE
 	available_on_syndinet = TRUE
 	tgui_id = "NtosRadarSyndicate"
+	program_icon = "radiation"
 	arrowstyle = "ntosradarpointerS.png"
 	pointercolor = "red"
 
@@ -301,3 +303,49 @@
 			name = disk.name,
 			)
 		objects += list(nukeinfo)
+
+///////////////////////
+//Implant Tracker App//
+///////////////////////
+
+///A program that tracks people via tracking implants
+/datum/computer_file/program/radar/implant
+	filename = "implanttracker"
+	filedesc = "Implant Tracker"
+	extended_desc = "This program allows for tracking those implanted with tracking implants."
+	requires_ntnet = TRUE
+	transfer_access = ACCESS_BRIG
+	available_on_ntnet = TRUE
+	program_icon = "microchip"
+
+/datum/computer_file/program/radar/implant/find_atom()
+	return locate(selected) in GLOB.mob_living_list
+
+/datum/computer_file/program/radar/implant/scan()
+	if(world.time < next_scan)
+		return
+	next_scan = world.time + (2 SECONDS)
+	objects = list()
+	for(var/obj/item/implant/imp in GLOB.tracked_implants)
+		var/mob/living/target = imp.imp_in
+		if(!istype(target))
+			continue
+		if(!trackable(target))
+			continue
+		var/crewmember_name = "Unknown"
+		if(istype(target, /mob/living/carbon/human))
+			var/mob/living/carbon/human/humanoid = target
+			if(humanoid.wear_id)
+				var/obj/item/card/id/ID = humanoid.wear_id.GetID()
+				if(ID && ID.registered_name)
+					crewmember_name = ID.registered_name
+		var/list/crewinfo = list(
+			ref = REF(target),
+			name = crewmember_name,
+			)
+		objects += list(crewinfo)
+
+/datum/computer_file/program/radar/implant/trackable(mob/living/target)
+	if(!target || !istype(target))
+		return FALSE
+	return TRUE

@@ -71,6 +71,10 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/turf/location = get_turf(M.current)
 	if(!location || istype(location, /turf/open/floor/plasteel/shuttle/red) || istype(location, /turf/open/floor/mineral/plastitanium/red/brig)) // Fails if they are in the shuttle brig
 		return FALSE
+	if(iscarbon(M.current))
+		var/mob/living/carbon/C = M.current
+		if(C.handcuffed && (C.buckled || C.pulledby)) // If handcuffed and being pulled/buckled
+			return FALSE
 	return location.onCentCom() || location.onSyndieBase()
 
 /datum/objective/proc/check_completion()
@@ -175,6 +179,13 @@ GLOBAL_LIST_EMPTY(objectives)
 		explanation_text = team_explanation_text
 
 /datum/objective/proc/give_special_equipment(special_equipment)
+	if(istype(team, /datum/team/infiltrator))
+		for(var/eq_path in special_equipment)
+			if(eq_path)
+				for(var/turf/T in GLOB.infiltrator_objective_items)
+					if(!(eq_path in T.contents))
+						new eq_path(T)
+		return
 	var/datum/mind/receiver = pick(get_owners())
 	if(receiver && receiver.current)
 		if(ishuman(receiver.current))
@@ -183,6 +194,12 @@ GLOBAL_LIST_EMPTY(objectives)
 			for(var/eq_path in special_equipment)
 				var/obj/O = new eq_path
 				H.equip_in_one_of_slots(O, slots)
+
+/// Copy the target from the other objective
+/datum/objective/proc/copy_target(datum/objective/old_obj)
+	target = old_obj.get_target()
+	target_amount = old_obj.target_amount
+	explanation_text = explanation_text
 
 /datum/objective/assassinate
 	name = "assassinate"
@@ -200,7 +217,11 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate/update_explanation_text()
 	..()
 	if(target && target.current)
-		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
+		if(ishuman(target.current))
+			var/mob/living/carbon/human/H = target.current
+			explanation_text = "Assassinate [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
+		else
+			explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 	else
 		explanation_text = "Free Objective"
 
@@ -213,7 +234,11 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate/once/update_explanation_text()
 	START_PROCESSING(SSprocessing, src)
 	if(target && target.current)
-		explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
+		if(ishuman(target.current))
+			var/mob/living/carbon/human/H = target.current
+			explanation_text = "Ensure [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
+		else
+			explanation_text = "Ensure [target.name], the [!target_role_type ? target.assigned_role : target.special_role] has died at least once."
 	else
 		explanation_text = "Free Objective"
 
@@ -228,7 +253,11 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/assassinate/cloned/update_explanation_text()
 	if(target && target.current)
-		explanation_text = "Ensure the [!target_role_type ? target.assigned_role : target.special_role] [target.name]'s original body is dead."
+		if(ishuman(target.current))
+			var/mob/living/carbon/human/H = target.current
+			explanation_text = "Ensure the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role] [target.name]'s original body is dead."
+		else
+			explanation_text = "Ensure the [!target_role_type ? target.assigned_role : target.special_role] [target.name]'s original body is dead."
 		original = target.current
 	else
 		explanation_text = "Free Objective"
@@ -290,7 +319,11 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/maroon/update_explanation_text()
 	if(target && target.current)
-		explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
+		if(ishuman(target.current))
+			var/mob/living/carbon/human/H = target.current
+			explanation_text = "Prevent [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
+		else
+			explanation_text = "Prevent [target.name], the [!target_role_type ? target.assigned_role : target.special_role], from escaping alive."
 	else
 		explanation_text = "Free Objective"
 
@@ -486,7 +519,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/target_real_name // Has to be stored because the target's real_name can change over the course of the round
 	var/target_missing_id
 
-/datum/objective/escape/escape_with_identity/find_target(dupe_search_range)
+/datum/objective/escape/escape_with_identity/find_target(dupe_search_range, blacklist)
 	target = ..()
 	update_explanation_text()
 
@@ -522,6 +555,10 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/escape/escape_with_identity/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
+
+/datum/objective/escape/escape_with_identity/copy_target(datum/objective/escape/escape_with_identity/old_obj)
+	target_real_name = old_obj.target_real_name
+	target_missing_id = old_obj.target_missing_id
 
 /datum/objective/survive
 	name = "survive"
@@ -591,7 +628,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 		for(var/I in subtypesof(/datum/objective_item/steal))
 			new I
 
-/datum/objective/steal/find_target(dupe_search_range)
+/datum/objective/steal/find_target(dupe_search_range, blacklist)
 	var/list/datum/mind/owners = get_owners()
 	if(!dupe_search_range)
 		dupe_search_range = get_owners()
@@ -617,6 +654,10 @@ GLOBAL_LIST_EMPTY(possible_items)
 	else
 		explanation_text = "Free objective"
 		return
+
+/datum/objective/steal/copy_target(datum/objective/steal/old_obj)
+	. = ..()
+	set_target(old_obj.targetinfo)
 
 /datum/objective/steal/admin_edit(mob/admin)
 	var/list/possible_items_all = GLOB.possible_items+"custom"
@@ -661,6 +702,21 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
 				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
 					return TRUE
+	if (istype(team, /datum/team/infiltrator))
+		for (var/area/A in world)
+			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
+				for (var/obj/item/I in A.GetAllContents()) //Check for items
+					if (istype(I, steal_target))
+						if (!targetinfo)
+							return TRUE
+						else if (targetinfo.check_special_completion(I))
+							return TRUE
+					if (targetinfo && (I.type in targetinfo.altitems))
+						if (targetinfo.check_special_completion(I))
+							return TRUE
+					CHECK_TICK
+			CHECK_TICK
+		CHECK_TICK
 	return FALSE
 
 GLOBAL_LIST_EMPTY(possible_items_special)
@@ -673,7 +729,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		for(var/I in subtypesof(/datum/objective_item/special) + subtypesof(/datum/objective_item/stack))
 			new I
 
-/datum/objective/steal/special/find_target(dupe_search_range)
+/datum/objective/steal/special/find_target(dupe_search_range, blacklist)
 	return set_target(pick(GLOB.possible_items_special))
 
 /datum/objective/steal/exchange
@@ -741,6 +797,14 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			var/list/otherwise = M.GetAllContents()
 			for(var/obj/item/disk/tech_disk/TD in otherwise)
 				TD.stored_research.copy_research_to(checking)
+	if (istype(team, /datum/team/infiltrator))
+		for (var/area/A in world)
+			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
+				for (var/obj/item/disk/tech_disk/TD in A.GetAllContents()) //Check for items
+					TD.stored_research.copy_research_to(checking)
+				CHECK_TICK
+			CHECK_TICK
+		CHECK_TICK
 	return checking.researched_nodes.len >= target_amount
 
 /datum/objective/download/admin_edit(mob/admin)
@@ -922,7 +986,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	name = "destroy AI"
 	martyr_compatible = 1
 
-/datum/objective/destroy/find_target(dupe_search_range)
+/datum/objective/destroy/find_target(dupe_search_range, blacklist)
 	var/list/possible_targets = active_ais(1)
 	var/mob/living/silicon/ai/target_ai = pick(possible_targets)
 	target = target_ai.mind
@@ -1187,6 +1251,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		return TRUE
 	return !record || !(record in GLOB.data_core.security)
 
+/datum/objective/minor/secrecords/copy_target(datum/objective/minor/secrecords/old_obj)
+	. = ..()
+	record = old_obj.record
 
 /**
   * # Kill Pet
@@ -1242,7 +1309,11 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/minor/pet/update_explanation_text()
 	explanation_text = "Assassinate the important animal, [pet.name]"
-	
+
+/datum/objective/minor/pet/copy_target(datum/objective/minor/pet/old_obj)
+	. = ..()
+	pet = old_obj.pet
+
 /**
   * Check whether Pet is dead
   */
@@ -1349,6 +1420,18 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/debrain,
 		/datum/objective/protect,
 		/datum/objective/assist,
+		// Fulp edit START - Bloodsuckers
+		// DEFAULT OBJECTIVES //
+		/datum/objective/bloodsucker/lair,
+		/datum/objective/survive/bloodsucker,
+		/datum/objective/bloodsucker/protege,
+		/datum/objective/bloodsucker/heartthief,
+		/datum/objective/bloodsucker/gourmand,
+		// MISC OBJECTIVES //
+		/datum/objective/bloodsucker/monsterhunter,
+		/datum/objective/bloodsucker/vassalhim,
+		/datum/objective/bloodsucker/frenzy,
+		// Fulp edit END
 		/datum/objective/destroy,
 		/datum/objective/hijack,
 		/datum/objective/escape,

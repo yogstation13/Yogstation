@@ -65,6 +65,7 @@
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
 	user.changeNext_move(CLICK_CD_MELEE)
+	var/response = ""
 	if(bin_pen)
 		var/obj/item/pen/P = bin_pen
 		P.add_fingerprint(user)
@@ -74,6 +75,10 @@
 		bin_pen = null
 		update_icon()
 	else if(total_paper >= 1)
+		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon Copy", "Cancel")
+		if (response != "Regular" && response != "Carbon Copy")
+			add_fingerprint(user)
+			return
 		total_paper--
 		update_icon()
 		// If there's any custom paper on the stack, use that instead of creating a new paper.
@@ -82,11 +87,14 @@
 			P = papers[papers.len]
 			papers.Remove(P)
 		else
-			P = new papertype(src)
-			if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
-				if(prob(30))
-					P.info = "<font face=\"[CRAYON_FONT]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</b></font>"
-					P.rigged = 1
+			if(response == "Regular")
+				P = new papertype(src)
+				if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
+					if(prob(30))
+						P.info = "<font face=\"[CRAYON_FONT]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</b></font>"
+						P.rigged = 1
+			else if (response == "Carbon Copy")
+				P = new /obj/item/paper/carbon(src)
 
 		P.add_fingerprint(user)
 		P.forceMove(user.loc)
@@ -122,7 +130,6 @@
 		. += "It contains [total_paper > 1 ? "[total_paper] papers" : " one paper"]."
 	else
 		. += "It doesn't contain anything."
-
 
 /obj/item/paper_bin/update_icon()
 	if(total_paper < 1)

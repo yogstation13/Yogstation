@@ -457,6 +457,15 @@
 		message = params
 		if(type_override)
 			emote_type = type_override
+	if(isnotpretty(message))
+		if(user.client.prefs.muted & MUTE_IC)
+			return
+		user.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+		to_chat(usr, span_notice("You fumble over your action. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
+		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
+		message_admins(log_message)
+		log_emote(log_message)
+		return
 	. = ..()
 	message = null
 	emote_type = EMOTE_VISIBLE

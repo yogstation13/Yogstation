@@ -35,7 +35,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_HOLY, "ohgodohfuck") //sorry no magic
 	alpha = 0
-	animate(src, alpha = 255, time = 10)
+	animate(src, alpha = 255, time = 1 SECONDS)
 	var/obj/item/radio/headset/silicon/ai/radio = new(src) //so the progenitor can hear people's screams over radio
 	radio.wires.cut(WIRE_TX) //but not talk over it
 
@@ -87,9 +87,6 @@
 	action_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	action_icon_state = "veil_mind"
 	action_background_icon_state = "bg_alien"
-
-/obj/effect/proc_holder/spell/aimed/update_icon()
-	return
 
 /obj/effect/proc_holder/spell/targeted/progenitor_curse/cast(list/targets, mob/user = usr)
 	if(!targets.len)

@@ -108,6 +108,7 @@ Class Procs:
 	var/wire_compatible = FALSE
 
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
+	var/works_with_rped_anyways = FALSE //whether it has special RPED behavior despite not having component parts
 	var/panel_open = FALSE
 	var/state_open = FALSE
 	var/critical_machine = FALSE //If this machine is critical to station operation and should have the area be excempted from power failures.
@@ -132,7 +133,7 @@ Class Procs:
 
 /obj/machinery/Initialize()
 	if(!armor)
-		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
+		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
 	GLOB.machines += src
 
@@ -326,7 +327,7 @@ Class Procs:
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		user.visible_message(span_danger("[user.name] smashes against \the [src.name] with its paws."), null, null, COMBAT_MESSAGE_RANGE)
-		take_damage(4, BRUTE, "melee", 1)
+		take_damage(4, BRUTE, MELEE, 1)
 
 /obj/machinery/attack_robot(mob/user)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
@@ -475,6 +476,9 @@ Class Procs:
 						break
 				for(var/obj/item/B in W.contents)
 					if(istype(B, P) && istype(A, P))
+						//won't replace beakers if they have reagents in them to prevent funny explosions
+						if(istype(B,/obj/item/reagent_containers) && !isemptylist(B.reagents?.reagent_list)) 
+							continue
 						// If it's a corrupt or rigged cell, attempting to send it through Bluespace could have unforeseen consequences.
 						if(istype(B, /obj/item/stock_parts/cell) && W.works_from_distance)
 							var/obj/item/stock_parts/cell/checked_cell = B
@@ -552,7 +556,7 @@ Class Procs:
 		else if (prob(50))
 			explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	if(tesla_flags & TESLA_OBJ_DAMAGE)
-		take_damage(power/2000, BURN, "energy")
+		take_damage(power/2000, BURN, ENERGY)
 		if(prob(40))
 			emp_act(EMP_LIGHT)
 
@@ -583,7 +587,7 @@ Class Procs:
 	START_PROCESSING(subsystem, src)
 
 /obj/machinery/rust_heretic_act()
-	take_damage(500, BRUTE, "melee", 1)
+	take_damage(500, BRUTE, MELEE, 1)
 
 /obj/machinery/MouseDrop_T(atom/movable/O, mob/user)
 	. = ..()
@@ -628,7 +632,13 @@ Class Procs:
 									"<span class='notice'>You climb onto [src].</span>")
 				log_combat(user, src, "climbed onto")
 				if(climb_stun)
+					var/mob/living/carbon/human/H = user
+					var/wagging = FALSE
+					if(H && H.dna.species.is_wagging_tail())
+						wagging = TRUE
 					user.Stun(climb_stun)
+					if(wagging)
+						H.dna.species.start_wagging_tail(H)
 				. = 1
 			else
 				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")

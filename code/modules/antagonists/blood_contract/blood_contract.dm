@@ -39,3 +39,19 @@
 		var/obj/item/I = new /obj/item/kitchen/knife/butcher(get_turf(P))
 		P.put_in_hands(I, del_on_fail=TRUE)
 		QDEL_IN(I, duration)
+		INVOKE_ASYNC(src, .proc/end_the_hunt, duration, P)
+	INVOKE_ASYNC(src, .proc/end_the_hunt, duration + (0.5 SECONDS), null)
+		
+
+/datum/antagonist/blood_contract/proc/end_the_hunt(delay, mob/living/carbon/human/P)
+	if(delay > 0)
+		sleep(delay)
+	if(P) // Ending the hunt for a specific person
+		to_chat(P, span_userdanger("You no longer have an overwhelming desire to kill [owner.current]."))
+		return
+	
+	// Removing self from target
+	owner.current.remove_atom_colour("#FF0000", ADMIN_COLOUR_PRIORITY)
+	on_removal() // Remove this antag datum
+	return
+

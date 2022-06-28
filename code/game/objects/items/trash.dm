@@ -45,6 +45,7 @@
 
 /obj/item/trash/plate
 	name = "plate"
+	desc = "a relic from a forgotten time...  I miss eating off of plates..."
 	icon_state = "plate"
 	resistance_flags = NONE
 
@@ -66,6 +67,11 @@
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle4"
 
+/obj/item/trash/candle/resin
+	name = "resin candle"
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "resincandle4"
+
 /obj/item/trash/can
 	name = "crushed can"
 	icon_state = "cola"
@@ -80,3 +86,13 @@
 	icon = 'yogstation/icons/obj/food/containers.dmi'
 	icon_state = "floursad"
 	desc = "Perhaps it shouldn't have been filled with water."
+
+/obj/item/trash/toritose
+	name = "toritose"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "toritoseded"
+
+/obj/item/trash/topkakes
+	name = "top kakes"
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "topkakesded"

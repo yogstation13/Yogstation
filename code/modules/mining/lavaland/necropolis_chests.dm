@@ -1,5 +1,5 @@
 //The chests dropped by mob spawner tendrils. Also contains associated loot.
-
+GLOBAL_LIST_EMPTY(bloodmen_list)
 #define HIEROPHANT_CLUB_CARDINAL_DAMAGE 30
 
 
@@ -13,7 +13,7 @@
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,25)
+	var/loot = rand(1,23)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -22,54 +22,52 @@
 		if(3)
 			new /obj/item/soulstone/anybody(src)
 		if(4)
-			new /obj/item/katana/cursed(src)
-		if(5)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
-		if(6)
+		if(5)
 			new /obj/item/stack/sheet/mineral/mythril(src)
-		if(7)
+		if(6)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-		if(8)
+		if(7)
 			new /obj/item/rod_of_asclepius(src)
-		if(9)
+		if(8)
 			new /obj/item/organ/heart/cursed/wizard(src)
-		if(10)
+		if(9)
 			new /obj/item/ship_in_a_bottle(src)
-		if(11)
+		if(10)
 			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
-		if(12)
+		if(11)
 			new /obj/item/jacobs_ladder(src)
-		if(13)
+		if(12)
 			new /obj/item/nullrod/scythe/talking(src)
-		if(14)
+		if(13)
 			new /obj/item/nullrod/armblade(src)
-		if(15)
+		if(14)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
 			else
 				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(16)
+		if(15)
 			new /obj/item/warp_cube/red(src)
-		if(17)
+		if(16)
 			new /obj/item/organ/heart/gland/heals(src)
+		if(17)
+			new /obj/item/emberflowers(src)
 		if(18)
-			new /obj/item/immortality_talisman(src)
-		if(19)
 			new /obj/item/voodoo(src)
-		if(20)
+		if(19)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
-		if(21)
+		if(20)
 			new /obj/item/book_of_babel(src)
-		if(22)
+		if(21)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(23)
+		if(22)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(24)
+		if(23)
 			new /obj/item/rune_scimmy(src)
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -139,6 +137,8 @@
 	name = "\improper Rod of Asclepius"
 	desc = "A wooden rod about the size of your forearm with a snake carved around it, winding its way up the sides of the rod. Something about it seems to inspire in you the responsibilty and duty to help others."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	icon_state = "asclepius_dormant"
 	var/activated = FALSE
 	var/usedHand
@@ -156,22 +156,22 @@
 		return
 	var/failText = span_warning("The snake seems unsatisfied with your incomplete oath and returns to its previous place on the rod, returning to its dormant, wooden state. You must stand still while completing your oath!")
 	to_chat(itemUser, span_notice("The wooden snake that was carved into the rod seems to suddenly come alive and begins to slither down your arm! The compulsion to help others grows abnormally strong..."))
-	if(do_after(itemUser, 40, target = itemUser))
+	if(do_after(itemUser, 4 SECONDS, itemUser))
 		itemUser.say("I swear to fulfill, to the best of my ability and judgment, this covenant:", forced = "hippocratic oath")
 	else
 		to_chat(itemUser, failText)
 		return
-	if(do_after(itemUser, 20, target = itemUser))
+	if(do_after(itemUser, 2 SECONDS, itemUser))
 		itemUser.say("I will apply, for the benefit of the sick, all measures that are required, avoiding those twin traps of overtreatment and therapeutic nihilism.", forced = "hippocratic oath")
 	else
 		to_chat(itemUser, failText)
 		return
-	if(do_after(itemUser, 30, target = itemUser))
+	if(do_after(itemUser, 3 SECONDS, itemUser))
 		itemUser.say("I will remember that I remain a member of society, with special obligations to all my fellow human beings, those sound of mind and body as well as the infirm.", forced = "hippocratic oath")
 	else
 		to_chat(itemUser, failText)
 		return
-	if(do_after(itemUser, 30, target = itemUser))
+	if(do_after(itemUser, 3 SECONDS, itemUser))
 		itemUser.say("If I do not violate this oath, may I enjoy life and art, respected while I live and remembered with affection thereafter. May I always act so as to preserve the finest traditions of my calling and may I long experience the joy of healing those who seek my help.", forced = "hippocratic oath")
 	else
 		to_chat(itemUser, failText)
@@ -217,8 +217,11 @@
 	if(hasholos.len)
 		to_chat(user, span_warning("The pendant refuses to work with a guardian spirit..."))
 		return
+	if(IS_BLOODSUCKER(user))
+		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
+		return
 	to_chat(user, span_warning("You feel your life being drained by the pendant..."))
-	if(do_after(user, 4 SECONDS, target = user))
+	if(do_after(user, 4 SECONDS, user))
 		to_chat(user, span_notice("Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die."))
 		ADD_TRAIT(user, TRAIT_NODEATH, "memento_mori")
 		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "memento_mori")
@@ -247,7 +250,7 @@
 			MM.memento(owner)
 	else
 		to_chat(owner, span_warning("You try to free your lifeforce from the pendant..."))
-		if(do_after(owner, 40, target = owner))
+		if(do_after(owner, 4 SECONDS, owner))
 			MM.mori()
 
 //Wisp Lantern
@@ -346,7 +349,7 @@
 	new /obj/effect/temp_visual/warp_cube(get_turf(linked), user, linked.teleport_color, FALSE)
 	var/obj/effect/warp_cube/link_holder = new /obj/effect/warp_cube(T)
 	user.forceMove(link_holder) //mess around with loc so the user can't wander around
-	sleep(2.5)
+	sleep(0.25 SECONDS)
 	if(QDELETED(user))
 		qdel(link_holder)
 		return
@@ -355,7 +358,7 @@
 		qdel(link_holder)
 		return
 	link_holder.forceMove(get_turf(linked))
-	sleep(2.5)
+	sleep(0.25 SECONDS)
 	if(QDELETED(user))
 		qdel(link_holder)
 		return
@@ -458,12 +461,17 @@
 	name = "Immortality"
 
 /obj/item/immortality_talisman/attack_self(mob/user)
-	if(cooldown < world.time)
-		SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
-		cooldown = world.time + 600
-		new /obj/effect/immortality_talisman(get_turf(user), user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(cooldown < world.time)
+			SSblackbox.record_feedback("amount", "immortality_talisman_uses", 1)
+			cooldown = world.time + 600
+			L.apply_status_effect(STATUS_EFFECT_VOIDED)
+
+		else
+			to_chat(L, span_warning("[src] is not ready yet!"))
 	else
-		to_chat(user, span_warning("[src] is not ready yet!"))
+		to_chat(user, span_warning("Only the living can attain this power!"))
 
 /obj/effect/immortality_talisman
 	name = "hole in reality"
@@ -475,8 +483,6 @@
 
 /obj/effect/immortality_talisman/Initialize(mapload, mob/new_user)
 	. = ..()
-	if(new_user)
-		vanish(new_user)
 
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message(span_danger("[user] [vanish_description], leaving a hole in [user.p_their()] place!"))
@@ -490,12 +496,10 @@
 
 	can_destroy = FALSE
 
-	addtimer(CALLBACK(src, .proc/unvanish, user), 10 SECONDS)
-
 /obj/effect/immortality_talisman/proc/unvanish(mob/user)
 	user.status_flags &= ~GODMODE
 	user.notransform = FALSE
-	user.forceMove(get_turf(src))
+	user.forceMove(get_turf(user))
 
 	user.visible_message(span_danger("[user] pops back into reality!"))
 	can_destroy = TRUE
@@ -666,6 +670,28 @@
 	name = "jacob's ladder"
 	desc = "An indestructible celestial ladder that violates the laws of physics."
 
+/obj/item/emberflowers
+	name ="emberflower bouqet"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "emberflower"
+
+/obj/item/emberflowers/attack(mob/living/simple_animal/M, mob/user)
+	if(M.client)
+		to_chat(user, span_warning("[M] is too intelligent to charm!"))
+		return
+	if(M.stat)
+		to_chat(user, span_warning("[M] is dead!"))
+		return
+	if(M.sentience_type != SENTIENCE_ORGANIC)
+		to_chat(user, span_warning("[M] cannot be charmed!"))
+		return
+	if(!do_after(user, 1.5 SECONDS, M))
+		return
+	M.visible_message(span_notice("[M] seems happy with you after exposure to the emberflowers!"))
+	M.add_atom_colour("#fcff57", FIXED_COLOUR_PRIORITY)
+	M.faction = user.faction
+	
 ///Bosses
 
 //Miniboss Miner
@@ -789,6 +815,7 @@
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
 	desc = "A rusted and dulled blade. It doesn't look like it'd do much damage. It glows weakly."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "spectral"
 	item_state = "spectral"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -897,9 +924,9 @@
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard)
+			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
+			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.set_species(/datum/species/lizard/draconid)
 			H.eye_color = "fee5a3"
 			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 			H.updateappearance()
@@ -955,9 +982,9 @@
 	var/transform_string = "lava"
 	var/reset_turf_type = /turf/open/floor/plating/asteroid/basalt
 	var/reset_string = "basalt"
-	var/create_cooldown = 100
-	var/create_delay = 30
-	var/reset_cooldown = 50
+	var/create_cooldown = 10 SECONDS
+	var/create_delay = 3 SECONDS
+	var/reset_cooldown = 5 SECONDS
 	var/timer = 0
 	var/static/list/banned_turfs = typecacheof(list(/turf/open/space/transit, /turf/closed))
 
@@ -980,7 +1007,7 @@
 			animate(L, alpha = 255, time = create_delay)
 			user.visible_message(span_danger("[user] points [src] at [T]!"))
 			timer = world.time + create_delay + 1
-			if(do_after(user, create_delay, target = T))
+			if(do_after(user, create_delay, T))
 				var/old_name = T.name
 				if(T.TerraformTurf(turf_type, flags = CHANGETURF_INHERIT_AIR))
 					user.visible_message(span_danger("[user] turns \the [old_name] into [transform_string]!"))
@@ -1032,16 +1059,12 @@
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
-	var/loot = rand(1,4)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/mayhem(src)
+			new /obj/item/melee/knuckles(src)
 		if(2)
-			new /obj/item/blood_contract(src)
-		if(3)
-			new /obj/item/gun/magic/staff/spellblade(src)
-		if(4)
-			new /obj/item/organ/stomach/cursed(src)
+			new /obj/item/clothing/gloves/bracer/cuffs(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher
 	name = "bloody bubblegum chest"
@@ -1110,6 +1133,91 @@
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
+#define COOLDOWN 150
+#define COOLDOWN_HUMAN 100
+#define COOLDOWN_ANIMAL 60
+#define COOLDOWN_SPLASH 100
+/obj/item/melee/knuckles
+	name = "bloody knuckles"
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters ahead of the user with blood."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "bloodyknuckle"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	item_state = "knuckles"
+	w_class = WEIGHT_CLASS_SMALL
+	force = 18
+	var/next_reach = 0
+	var/next_grip = 0
+	var/next_splash = 0
+	var/next_knuckle = 0
+	var/splash_range = 9
+	attack_verb = list("thrashed", "pummeled", "walloped")
+	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
+
+/obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
+	var/mob/living/L = target
+	if (proximity)
+		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+			L.apply_status_effect(/datum/status_effect/roots)
+			return
+		if(next_knuckle > world.time)
+			to_chat(user, span_warning("The knuckles aren't ready to mark yet."))
+			return
+		else
+			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+			if(ishuman(L))
+				next_knuckle = world.time + COOLDOWN_HUMAN
+				return
+			next_knuckle = world.time + COOLDOWN_ANIMAL
+
+/obj/item/melee/knuckles/attack_self(mob/user)
+	var/turf/T = get_turf(user)
+	if(next_splash > world.time)
+		to_chat(user, span_warning("You can't do that yet!"))
+		return
+	user.visible_message(span_warning("[user] splashes blood from the knuckles!"))
+	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
+	for(var/i = 0 to splash_range)
+		if(T)
+			new /obj/effect/decal/cleanable/blood(T)
+		T = get_step(T,user.dir)
+	next_splash = world.time + COOLDOWN
+
+/obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
+	var/mob/living/U = user
+	if(istype(action, /datum/action/item_action/reach))
+		if(next_reach > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
+			return
+		var/valid_reaching = FALSE
+		for(var/mob/living/L in view(7, U))
+			if(L == U)
+				continue
+			for(var/obj/effect/decal/cleanable/B in range(0,L))
+				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+					valid_reaching = TRUE
+					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+		if(!valid_reaching)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
+		next_reach = world.time + COOLDOWN
+	else if(istype(action, /datum/action/item_action/visegrip))
+		if(next_grip > world.time)
+			to_chat(U, span_warning("You can't do that yet!"))
+			return
+		var/valid_casting = FALSE
+		for(var/mob/living/L in view(8, U))
+			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+				valid_casting = TRUE
+				L.apply_status_effect(/datum/status_effect/roots)
+		if(!valid_casting)
+			to_chat(U, span_warning("There's nobody to use this on!"))
+			return
+		next_grip = world.time + COOLDOWN
+		#undef COOLDOWN
+		#undef COOLDOWN_HUMAN
+		#undef COOLDOWN_ANIMAL
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"
@@ -1253,9 +1361,9 @@
 		if(isturf(user.loc))
 			user.visible_message("[span_hierophant_warning("[user] starts fiddling with [src]'s pommel...")]", \
 			span_notice("You start detaching the hierophant beacon..."))
-			timer = world.time + 51
+			timer = world.time + 5.1 SECONDS
 			INVOKE_ASYNC(src, .proc/prepare_icon_update)
-			if(do_after(user, 5 SECONDS, target = user) && !beacon)
+			if(do_after(user, 5 SECONDS, user) && !beacon)
 				var/turf/T = get_turf(user)
 				playsound(T,'sound/magic/blind.ogg', 200, 1, -4)
 				new /obj/effect/temp_visual/hierophant/telegraph/teleport(T, user)
@@ -1282,12 +1390,12 @@
 	teleporting = TRUE //start channel
 	user.update_action_buttons_icon()
 	user.visible_message("[span_hierophant_warning("[user] starts to glow faintly...")]")
-	timer = world.time + 50
+	timer = world.time + 5 SECONDS
 	INVOKE_ASYNC(src, .proc/prepare_icon_update)
 	beacon.icon_state = "hierophant_tele_on"
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE1 = new /obj/effect/temp_visual/hierophant/telegraph/edge(user.loc)
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE2 = new /obj/effect/temp_visual/hierophant/telegraph/edge(beacon.loc)
-	if(do_after(user, 4 SECONDS, target = user) && user && beacon)
+	if(do_after(user, 4 SECONDS, user) && user && beacon)
 		var/turf/T = get_turf(beacon)
 		var/turf/source = get_turf(user)
 		if(is_blocked_turf(T, TRUE))
@@ -1302,7 +1410,7 @@
 		new /obj/effect/temp_visual/hierophant/telegraph(source, user)
 		playsound(T,'sound/magic/wand_teleport.ogg', 200, 1)
 		playsound(source,'sound/machines/airlockopen.ogg', 200, 1)
-		if(!do_after(user, 3, target = user) || !user || !beacon || QDELETED(beacon)) //no walking away shitlord
+		if(!do_after(user, 0.3 SECONDS, user) || !user || !beacon || QDELETED(beacon)) //no walking away shitlord
 			teleporting = FALSE
 			if(user)
 				user.update_action_buttons_icon()
@@ -1330,7 +1438,7 @@
 			B.damage = 30
 		for(var/mob/living/L in range(1, source))
 			INVOKE_ASYNC(src, .proc/teleport_mob, source, L, T, user) //regardless, take all mobs near us along
-		sleep(6) //at this point the blasts detonate
+		sleep(0.6 SECONDS) //at this point the blasts detonate
 		if(beacon)
 			beacon.icon_state = "hierophant_tele_off"
 	else
@@ -1348,20 +1456,20 @@
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
 	if(!turf_to_teleport_to || is_blocked_turf(turf_to_teleport_to, TRUE))
 		return
-	animate(M, alpha = 0, time = 2, easing = EASE_OUT) //fade out
-	sleep(1)
+	animate(M, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
+	sleep(0.1 SECONDS)
 	if(!M)
 		return
 	M.visible_message("[span_hierophant_warning("[M] fades out!")]")
-	sleep(2)
+	sleep(0.2 SECONDS)
 	if(!M)
 		return
 	M.forceMove(turf_to_teleport_to)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	if(!M)
 		return
-	animate(M, alpha = 255, time = 2, easing = EASE_IN) //fade IN
-	sleep(1)
+	animate(M, alpha = 255, time = 0.2 SECONDS, easing = EASE_IN) //fade IN
+	sleep(0.1 SECONDS)
 	if(!M)
 		return
 	M.visible_message("[span_hierophant_warning("[M] fades in!")]")
@@ -1373,7 +1481,7 @@
 		return
 	new /obj/effect/temp_visual/hierophant/telegraph/cardinal(T, user)
 	playsound(T,'sound/effects/bin_close.ogg', 200, 1)
-	sleep(2)
+	sleep(0.2 SECONDS)
 	var/obj/effect/temp_visual/hierophant/blast/B = new(T, user, friendly_fire_check)
 	B.damage = HIEROPHANT_CLUB_CARDINAL_DAMAGE
 	B.monster_damage_boost = FALSE
@@ -1400,7 +1508,7 @@
 		return
 	new /obj/effect/temp_visual/hierophant/telegraph(T, user)
 	playsound(T,'sound/effects/bin_close.ogg', 200, 1)
-	sleep(2)
+	sleep(0.2 SECONDS)
 	for(var/t in RANGE_TURFS(1, T))
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, user, friendly_fire_check)
 		B.damage = 15 //keeps monster damage boost due to lower damage
@@ -1455,3 +1563,57 @@
 			new /obj/item/wisp_lantern(src)
 		if(3)
 			new /obj/item/prisoncube(src)
+
+//Legion
+/obj/item/organ/grandcore
+	name = "grand core"
+	desc = "The source of the Legion's powers. Though mostly expended, you might be able to get some use out of it."
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	icon_state = "grandcore"
+	slot = "hivecore"
+	w_class = WEIGHT_CLASS_SMALL 
+	decay_factor = 0
+	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
+
+/obj/item/organ/grandcore/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
+	if(H == user && istype(H))
+		playsound(user,'sound/effects/singlebeat.ogg',40,1)
+		user.temporarilyRemoveItemFromInventory(src, TRUE)
+		Insert(user)
+
+/obj/item/organ/grandcore/Insert(mob/living/carbon/H, special = 0)
+	..()
+	H.faction |= "blooded"
+	H.AddSpell (new /obj/effect/proc_holder/spell/targeted/touch/raise)
+	H.AddSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
+	if(NOBLOOD in H.dna.species.species_traits)
+		to_chat(owner, "<span class ='userdanger'>Despite lacking blood, you were able to take in the grand core. You will pay for your power in killer headaches!</span>")
+	else
+		to_chat(owner, "<span class ='userdanger'>You've taken in the grand core, allowing you to control minions at the cost of your blood!</span>")
+
+/obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
+	H.faction -= "blooded"
+	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise)
+	H.RemoveSpell (/obj/effect/proc_holder/spell/aoe_turf/horde)
+	..()
+
+/datum/action/item_action/organ_action/threebloodlings
+	name = "Summon bloodlings"
+	desc = "Summon a conjure a few bloodlings at the cost of 6% blood or 8 brain damage for races without blood."
+	var/next_expulsion = 0
+	var/cooldown = 10 
+	
+/datum/action/item_action/organ_action/threebloodlings/Trigger()
+	var/mob/living/carbon/H = owner
+	. = ..() 
+	if(next_expulsion > world.time)
+		to_chat(owner, span_warning("Don't spill your blood so haphazardly!"))
+		return
+	if(NOBLOOD in H.dna.species.species_traits)
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
+		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
+	else
+		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
+		H.blood_volume -= 35
+	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
+	next_expulsion = world.time + cooldown

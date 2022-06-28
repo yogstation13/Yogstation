@@ -35,7 +35,7 @@
 	var/draining = 0
 	var/candrain = 0
 	var/mindrain = 200
-	var/maxdrain = 400
+	var/maxdrain = 3200
 
 
 /obj/item/clothing/gloves/space_ninja/Touch(atom/A,proximity)

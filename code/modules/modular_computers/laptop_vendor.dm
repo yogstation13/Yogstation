@@ -170,6 +170,7 @@
 		if(fabricate)
 			fabricated_phone = new(src)
 			fabricated_phone.install_component(new /obj/item/computer_hardware/battery)
+			fabricated_phone.install_component(new /obj/item/computer_hardware/card_slot)
 			fabricated_phone.install_component(new /obj/item/computer_hardware/processor_unit/small)
 			battery_module = fabricated_phone.all_components[MC_CELL]
 		total_price = 149
@@ -207,11 +208,11 @@
 					fabricated_phone.install_component(new/obj/item/computer_hardware/network_card/advanced)
 				total_price += 149
 		if(dev_printer)
-			fabricated_tablet.install_component(new/obj/item/computer_hardware/printer/mini)
+			fabricated_phone.install_component(new/obj/item/computer_hardware/printer/mini)
 		if(dev_card)
 			total_price += 199
 			if(fabricate)
-				fabricated_tablet.install_component(new/obj/item/computer_hardware/card_slot/secondary)
+				fabricated_phone.install_component(new/obj/item/computer_hardware/card_slot/secondary)
 		return total_price
 	return 0
 

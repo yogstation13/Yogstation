@@ -48,7 +48,10 @@
 		"smmon_4.gif" = 'icons/program_icons/smmon_4.gif',
 		"smmon_5.gif" = 'icons/program_icons/smmon_5.gif',
 		"smmon_6.gif" = 'icons/program_icons/smmon_6.gif',
-		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif'
+		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif',
+		"robotact.gif" = 'icons/program_icons/robotact.gif',
+		"health_green.gif" = 'icons/program_icons/crew_green.gif',
+		"health_red.gif" = 'icons/program_icons/crew_red.gif'
 	)
 
 /datum/asset/simple/radar_assets

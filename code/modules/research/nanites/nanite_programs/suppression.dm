@@ -297,7 +297,7 @@
 					hal_details = hal_chat
 			if("Battle")
 				hal_type = "Battle"
-				var/sound_list = list("random","laser","disabler","esword","gun","stunprod","harmbaton","bomb")
+				var/sound_list = list("random","laser","disabler","esword","gun","stunprod","harmbaton",BOMB)
 				var/hal_choice = input("Choose the hallucination battle type", name) as null|anything in sound_list
 				if(!hal_choice || hal_choice == "random")
 					hal_details = null

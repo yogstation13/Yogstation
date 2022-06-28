@@ -21,6 +21,13 @@
 	Includes a unique(*) laser pistol display case, and the recently introduced I.C.E(tm)."
 	suffix = "lavaland_surface_biodome_winter.dmm"
 
+/datum/map_template/ruin/lavaland/biodome/winter/inn
+	name = "Biodome Inn"
+	id = "biodome-inn"
+	description = "After spending years in a desolate ice planet, the legendary innkeeper managed to get enough cash to put his inn into a biodome and get out of there. \
+	Unfortunately, instead of going to Earth, the dome misfired and landed on another desolate wasteland instead."
+	suffix = "lavaland_surface_biodome_winter_inn"
+
 /datum/map_template/ruin/lavaland/biodome/clown
 	name = "Biodome Clown Planet"
 	id = "biodome-clown"
@@ -223,6 +230,15 @@
 	suffix = "lavaland_surface_puzzle.dmm"
 	cost = 5
 
+/datum/map_template/ruin/lavaland/worldanvil //Plasma magmite upgrading area... always place.
+	name = "World Anvil"
+	id = "worldanvil"
+	description = "An ancient anvil, standing untainted for millennia. Wonders were once forged here."
+	suffix = "lavaland_surface_worldanvil.dmm"
+	always_place = TRUE
+	unpickable = TRUE
+	cost = 0
+
 /datum/map_template/ruin/lavaland/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
 	name = "Mining Base"
 	id = "miningbase"
@@ -250,13 +266,13 @@
 	cost = 10
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/mimingdrill
+/*/datum/map_template/ruin/lavaland/mimingdrill
 	name = "Miming Drill"
 	id = "mimingdrill"
 	description = "A silent mining operation, its workers died as they lived."
 	suffix = "lavaland_surface_mimingdrill.dmm"
 	cost = 5
-	allow_duplicates = FALSE
+	allow_duplicates = FALSE*/
 
 /datum/map_template/ruin/lavaland/cugganscove
 	name = "Cuggans Cove"
@@ -444,5 +460,13 @@
 	id = "doorstuck"
 	description = "A sad tale of inability to move on."
 	suffix = "lavaland_surface_doorstuck.dmm"
+	allow_duplicates = FALSE
+	cost = 5
+
+/datum/map_template/ruin/lavaland/shinobigraveyard
+	name = "Shinobi Graveyard"
+	id = "shinobigraveyard"
+	description = "The space ninjas left a grave of someone powerful."
+	suffix = "lavaland_surface_shinobigraveyard.dmm"
 	allow_duplicates = FALSE
 	cost = 5

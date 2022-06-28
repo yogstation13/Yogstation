@@ -5,6 +5,8 @@
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, span_danger("The laws of physics no longer apply in the future, god help you..."))
+	locked = FALSE
+	area_restricted = FALSE
 	SSachievements.unlock_achievement(/datum/achievement/engineering/pa_emag, user.client)
 	do_sparks(5, 0, src)
 	obj_flags |= EMAGGED

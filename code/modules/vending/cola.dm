@@ -13,10 +13,12 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/sol_dry = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer=10,
 					/obj/item/reagent_containers/glass/beaker/waterbottle = 10)
 	contraband = list(/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 6,
 		              /obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 6,
 					  /obj/item/reagent_containers/food/drinks/soda_cans/buzz_fuzz = 5,
+					  /obj/item/reagent_containers/food/drinks/soda_cans/mystery = 1,
 		              /obj/item/reagent_containers/food/drinks/soda_cans/sprited_cranberry = 2)
 	premium = list(/obj/item/reagent_containers/food/drinks/bottle/nukacola = 1,
 		           /obj/item/reagent_containers/food/drinks/soda_cans/air = 1,
@@ -38,7 +40,7 @@
 
 /obj/machinery/vending/cola/random/Initialize()
 	..()
-	var/T = pick(subtypesof(/obj/machinery/vending/cola) - /obj/machinery/vending/cola/random)
+	var/T = pick(subtypesof(/obj/machinery/vending/cola) - /obj/machinery/vending/cola/random - /obj/machinery/vending/cola/shamblers/prison)
 	new T(loc)
 	return INITIALIZE_HINT_QDEL
 

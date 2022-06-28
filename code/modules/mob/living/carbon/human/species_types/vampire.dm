@@ -103,7 +103,7 @@
 				to_chat(victim, span_warning("[H] tries to bite you, but recoils in disgust!"))
 				to_chat(H, span_warning("[victim] reeks of garlic! you can't bring yourself to drain such tainted blood."))
 				return
-			if(!do_after(H, 30, target = victim))
+			if(!do_after(H, 3 SECONDS, victim))
 				return
 			var/blood_volume_difference = BLOOD_VOLUME_MAXIMUM(H) - H.blood_volume //How much capacity we have left to absorb blood
 			var/drained_blood = min(victim.blood_volume, VAMP_DRAIN_AMOUNT, blood_volume_difference)
@@ -135,7 +135,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/bat
 	name = "Bat Form"
-	desc = "Take on the shape a space bat."
+	desc = "Take on the shape of a space bat."
 	invocation = "Squeak!"
 	charge_max = 50
 	cooldown_min = 50

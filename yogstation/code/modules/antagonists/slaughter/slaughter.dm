@@ -170,7 +170,9 @@
 	Pulling a dead or unconscious mob while you enter a pool will pull \
 	them in with you, allowing you to hug them and regain your health.<BR> \
 	You move quickly upon leaving a pool of blood, but the material world \
-	will soon sap your strength and leave you sluggish.<BR>\
+	will soon sap your strength and leave you sluggish.\
+	You gain strength the more attacks you land on live humanoids, though this resets when you return to the blood zone. You can also \
+	launch a devastating slam attack with ctrl+shift+click, capable of smashing bones in one strike.<BR>\
 	What makes you a little sad is that people seem to die when you tickle \
 	them; but don't worry! When you die, everyone you hugged will be \
 	released and fully healed, because in the end it's just a jape, \

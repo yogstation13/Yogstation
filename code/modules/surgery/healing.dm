@@ -23,6 +23,8 @@
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 65, /obj/item/pen = 55)
 	repeatable = TRUE
 	time = 2 SECONDS
+	success_sound = 'sound/surgery/retractor2.ogg'
+	failure_sound = 'sound/surgery/organ2.ogg'
 	fuckup_damage = 0
 	var/brutehealing = 0
 	var/burnhealing = 0

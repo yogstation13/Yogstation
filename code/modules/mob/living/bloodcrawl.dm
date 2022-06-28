@@ -1,27 +1,3 @@
-/obj/effect/dummy/phased_mob/slaughter //Can't use the wizard one, blocked by jaunt/slow
-	name = "water"
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "nothing"
-	var/canmove = 1
-	density = FALSE
-	anchored = TRUE
-	invisibility = 60
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-
-/obj/effect/dummy/phased_mob/slaughter/relaymove(mob/user, direction)
-	forceMove(get_step(src,direction))
-
-/obj/effect/dummy/phased_mob/slaughter/ex_act()
-	return
-
-/obj/effect/dummy/phased_mob/slaughter/bullet_act()
-	return BULLET_ACT_FORCE_PIERCE
-
-/obj/effect/dummy/phased_mob/slaughter/singularity_act()
-	return
-
-
-
 /mob/living/proc/phaseout(obj/effect/decal/cleanable/B)
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
@@ -51,7 +27,7 @@
 	playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 50, 1, -1)
 	// Extinguish, unbuckle, stop being pulled, set our location into the
 	// dummy object
-	var/obj/effect/dummy/phased_mob/slaughter/holder = new /obj/effect/dummy/phased_mob/slaughter(mobloc)
+	var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob(mobloc)
 	src.ExtinguishMob()
 
 	// Keep a reference to whatever we're pulling, because forceMove()
@@ -100,7 +76,7 @@
 
 	for(var/i in 1 to 3)
 		playsound(get_turf(src),sound, 50, 1)
-		sleep(30)
+		sleep(3 SECONDS)
 
 	if(!victim)
 		return FALSE
@@ -160,7 +136,7 @@
 		to_chat(src, span_warning("Finish eating first!"))
 		return 0
 	B.visible_message(span_warning("[B] starts to bubble..."))
-	if(!do_after(src, 2 SECONDS, target = B))
+	if(!do_after(src, 2 SECONDS, B))
 		return
 	if(!B)
 		return

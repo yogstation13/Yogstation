@@ -45,6 +45,8 @@ Credit where due:
 ///////////
 
 /proc/is_servant_of_ratvar(mob/M)
+	if(!istype(M))
+		return FALSE
 	return M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
 
 /proc/is_eligible_servant(mob/M)
@@ -294,6 +296,7 @@ Credit where due:
 	var/obj/item/card/id/W = new(H)
 	var/obj/item/pda/PDA = H.wear_id
 	W.assignment = "Assistant"
+	W.originalassignment = "Assistant"
 	W.access += ACCESS_MAINT_TUNNELS
 	W.registered_name = H.real_name
 	W.update_label()

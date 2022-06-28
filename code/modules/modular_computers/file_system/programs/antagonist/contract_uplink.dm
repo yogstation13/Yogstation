@@ -26,6 +26,7 @@
 
 	var/mob/living/user = usr
 	var/obj/item/computer_hardware/hard_drive/small/syndicate/hard_drive = computer.all_components[MC_HDD]
+	computer.play_interact_sound()
 
 	switch(action)
 		if("PRG_contract-accept")

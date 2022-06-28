@@ -359,6 +359,15 @@
 	category = list("initial","Dinnerware","Service")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/plate
+	name = "Plate"
+	id = "plate"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 1500)
+	build_path = /obj/item/storage/bag/tray
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/bowl
 	name = "Bowl"
 	id = "bowl"

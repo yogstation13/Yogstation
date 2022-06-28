@@ -84,7 +84,7 @@
 	var/direction = pick(directions)
 	for(var/i in 0 to pick(0, 200; 1, 150; 2, 50))
 		if (!mapload)
-			sleep(2)
+			sleep(0.2 SECONDS)
 		if(i > 0)
 			new /obj/effect/decal/cleanable/blood/splatter(loc, diseases)
 		if(!step_to(src, get_step(src, direction), 0))

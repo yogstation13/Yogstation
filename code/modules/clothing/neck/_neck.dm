@@ -75,9 +75,9 @@
 
 			if(!(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH))))
 				if(heart && istype(heart))
-					heart_strength = span_danger("an unstable")
+					heart_strength = heart.HeartStrengthMessage()
 					if(heart.beating)
-						heart_strength = "a healthy"
+						heart_strength = heart.HeartStrengthMessage()
 				if(lungs && istype(lungs))
 					lung_strength = span_danger("strained")
 					if(!(M.failed_last_breath || M.losebreath))
@@ -267,21 +267,21 @@
 	desc = "A red padded pauldron signifying the rank of Major; offers a small amount of protection to the wearer."
 	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = CHEST
-	armor = list("melee" = 15, "bullet" = 25, "laser" = 10, "energy" = 10, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 15, BULLET = 25, LASER = 10, ENERGY = 10, BOMB = 5, BIO = 10, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/neck/pauldron/commander
 	name = "commodore's pauldron"
 	desc = "A gold alloy reinforced pauldron signifying the rank of Commodore;offers a moderate amount of protection to the wearer."
 	icon_state = "commodore"
 	item_state = "commodore"
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 20, "energy" = 20, "bomb" = 5, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 20, ENERGY = 20, BOMB = 5, BIO = 10, RAD = 0, FIRE = 0, ACID = 50)
 
 /obj/item/clothing/neck/pauldron/colonel
 	name = "colonel's pauldrons"
 	desc = "Gold alloy reinforced pauldrons signifying the rank of Colonel; offers slightly more protection than the Commander's pauldron to the wearer."
 	icon_state = "colonel"
 	item_state = "colonel"
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 35, "energy" = 35, "bomb" = 5, "bio" = 20, "rad" = 0, "fire" = 0, "acid" = 90)
+	armor = list(MELEE = 35, BULLET = 30, LASER = 35, ENERGY = 35, BOMB = 5, BIO = 20, RAD = 0, FIRE = 0, ACID = 90)
 
 /obj/item/clothing/neck/cape
 	name = "admiral's cape"
@@ -297,3 +297,62 @@
 	desc = "A sizable white cape with gold connects."
 	icon_state = "grandadmiral"
 	item_state = "grand_admiral"
+
+
+//Cloaks. No, not THAT kind of cloak.
+
+
+/obj/item/clothing/neck/cloak
+	name = "brown cloak"
+	desc = "It's a cape that can be worn around your neck."
+	icon = 'icons/obj/clothing/neck.dmi'
+	icon_state = "leather"
+	item_state = "leather"
+	w_class = WEIGHT_CLASS_SMALL
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	flags_inv = HIDESUITSTORAGE
+
+/obj/item/clothing/neck/cloak/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return(OXYLOSS)
+
+/obj/item/clothing/neck/cloak/hos
+	name = "head of security's cloak"
+	desc = "Worn by a stressed spaceman. Also comes in red."
+	icon_state = "hoscloak"
+
+/obj/item/clothing/neck/cloak/qm
+	name = "quartermaster's cloak"
+	desc = "Worn by a false idol. Possibly stolen property."
+	icon_state = "qmcloak"
+
+/obj/item/clothing/neck/cloak/cmo
+	name = "chief medical officer's cloak"
+	desc = "Worn by a dedicated life-saver. It's remarkably clean, and elegant."
+	icon_state = "cmocloak"
+
+/obj/item/clothing/neck/cloak/ce
+	name = "chief engineer's cloak"
+	desc = "Worn by the wielder of an unlimited power. Fireproof!"
+	icon_state = "cecloak"
+	resistance_flags = FIRE_PROOF
+
+/obj/item/clothing/neck/cloak/rd
+	name = "research director's external fabric accentuator"
+	desc = "Worn by the head of plasma research. Not fireproof."
+	icon_state = "rdcloak"
+
+/obj/item/clothing/neck/cloak/cap
+	name = "captain's cloak"
+	desc = "Worn by the commander of Space Station 13."
+	icon_state = "capcloak"
+
+/obj/item/clothing/neck/cloak/hop
+	name = "head of personnel's cloak"
+	desc = "Worn by the right hand of the captain. It smells faintly of bureaucracy."
+	icon_state = "hopcloak"
+
+/obj/item/clothing/neck/cloak/tribalmantle
+	name = "ornate mantle"
+	desc = "An ornate mantle commonly worn by a shaman or chieftain."
+	icon_state = "tribal-mantle"

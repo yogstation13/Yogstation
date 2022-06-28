@@ -5,7 +5,7 @@
 	program_icon_state = "id"
 	extended_desc = "Program for viewing and changing job slot avalibility."
 	transfer_access = ACCESS_HEADS
-	requires_ntnet = 0
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE
 	size = 4
 	tgui_id = "NtosJobManager"
 	program_icon = "address-book"
@@ -57,6 +57,7 @@
 	var/authed = FALSE
 	var/mob/user = usr
 	var/obj/item/card/id/user_id = user.get_idcard()
+	computer.play_interact_sound()
 	if(user_id)
 		if(ACCESS_CHANGE_IDS in user_id.access)
 			authed = TRUE

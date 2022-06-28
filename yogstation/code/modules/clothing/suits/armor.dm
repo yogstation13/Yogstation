@@ -5,7 +5,7 @@
 	item_state = "chitenplate"
 	blood_overlay_type = "armor"
 	resistance_flags = FIRE_PROOF
-	armor = list("melee" = 65, "bullet" = 35, "laser" = 25, "energy" = 10, "bomb" = 35, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 65, BULLET = 35, LASER = 25, ENERGY = 10, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator)
 
@@ -65,7 +65,7 @@
 	icon_state = "german_coat"
 	item_state = "german_item"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 90)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90)
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
@@ -94,7 +94,7 @@
 	icon_state = "juggernaut"
 	item_state = "juggernaut"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
-	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 50, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 90, "acid" = 90)
+	armor = list(MELEE = 60, BULLET = 50, LASER = 30, ENERGY = 50, BOMB = 80, BIO = 100, RAD = 0, FIRE = 90, ACID = 90)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	cold_protection = CHEST|GROIN|LEGS|ARMS|FEET
 	heat_protection = CHEST|GROIN|LEGS|ARMS|FEET

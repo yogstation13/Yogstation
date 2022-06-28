@@ -17,6 +17,7 @@
 	burnmod = 0.5 // = 1/2x generic burn damage
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
+	swimming_component = /datum/component/swimming/dissolve
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
@@ -201,7 +202,7 @@
 
 	H.notransform = TRUE
 
-	if(do_after(owner, delay=60, needhand=FALSE, target=owner, progress=TRUE))
+	if(do_after(owner, 6 SECONDS, owner, FALSE))
 		if(H.blood_volume >= BLOOD_VOLUME_SLIME_SPLIT)
 			make_dupe()
 		else
@@ -731,7 +732,7 @@
 
 	to_chat(H, span_notice("You begin linking [target]'s mind to yours..."))
 	to_chat(target, span_warning("You feel a foreign presence within your mind..."))
-	if(do_after(H, 60, target = target))
+	if(do_after(H, 6 SECONDS, target))
 		if(H.pulling != target || H.grab_state < GRAB_AGGRESSIVE)
 			return
 		if(species.link_mob(target))

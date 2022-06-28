@@ -73,7 +73,7 @@
 
 	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
 	var/area/territory = get_area(target)
-	new /obj/effect/decal/cleanable/crayon/gang(target,G.gang,"graffiti",0,user)
+	new /obj/effect/decal/cleanable/crayon/gang(target,G.gang,"letter",0,user)
 	to_chat(user, span_notice("You tagged [territory] for your gang!"))
 
 /obj/item/toy/crayon/spraycan/gang

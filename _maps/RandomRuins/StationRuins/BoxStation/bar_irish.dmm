@@ -1644,6 +1644,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"wc" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "yt" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
@@ -2155,7 +2159,7 @@ bz
 bK
 bZ
 XT
-oj
+wc
 cE
 bX
 nx

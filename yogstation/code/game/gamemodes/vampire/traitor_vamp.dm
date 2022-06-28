@@ -32,7 +32,10 @@
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
+	//yay lets add chaplain here so he cant be the vampire in traitor+vamps
+	restricted_jobs += "Chaplain"
 	var/list/datum/mind/possible_vamps = get_players_for_role(ROLE_VAMPIRE)
+	restricted_jobs -= "Chaplain"
 
 	var/num_vamp = 1
 

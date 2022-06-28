@@ -67,3 +67,15 @@ SUBSYSTEM_DEF(bluespace_locker)
 		internal_locker.dump_contents()
 	internal_locker.update_icon()
 	external_locker.update_icon()
+
+/datum/controller/subsystem/bluespace_locker/proc/redistribute_locker()
+	if(!internal_locker)
+		return
+	var/area/A = get_area(internal_locker)
+	for(var/atom/movable/M in A)
+		if(M == internal_locker)
+			continue
+		if(istype(M, /obj/machinery/light))
+			continue
+		M.forceMove(find_safe_turf())
+	bluespaceify_random_locker()

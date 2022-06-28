@@ -5,7 +5,7 @@
 
 /obj/item/areaeditor
 	name = "area modification item"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "blueprints"
 	attack_verb = list("attacked", "bapped", "hit")
 	var/fluffnotice = "Nobody's gonna read this stuff!"
@@ -21,6 +21,7 @@
 			. += "<p>According to the [src.name], you are now in an unclaimed territory.</p>"
 		if(AREA_SPECIAL)
 			. += "<p>This place is not noted on the [src.name].</p>"
+			return .
 	. += "<p><a href='?src=[REF(src)];create_area=1'>Create or modify an existing area</a></p>"
 
 
@@ -33,6 +34,9 @@
 	if(href_list["create_area"])
 		if(in_use)
 			return
+		var/turf/T = get_turf(usr)
+		if(is_reebe(T.z))
+			to_chat(usr, span_danger("[src] will not function on Reebe!"))
 		in_use = TRUE
 		create_area(usr)
 		in_use = FALSE
@@ -42,8 +46,6 @@
 /obj/item/areaeditor/blueprints
 	name = "station blueprints"
 	desc = "Blueprints of the station. There is a \"Classified\" stamp and several coffee stains on it."
-	icon = 'icons/obj/items_and_weapons.dmi'
-	icon_state = "blueprints"
 	fluffnotice = "Property of Nanotrasen. For heads of staff only. Store in high-secure storage."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/image/showing = list()
@@ -202,8 +204,6 @@
 /obj/item/areaeditor/blueprints/cyborg
 	name = "station schematics"
 	desc = "A digital copy of the station blueprints stored in your memory."
-	icon = 'icons/obj/items_and_weapons.dmi'
-	icon_state = "blueprints"
 	fluffnotice = "Intellectual Property of Nanotrasen. For use in engineering cyborgs only. Wipe from memory upon departure from the station."
 
 /proc/rename_area(a, new_name)

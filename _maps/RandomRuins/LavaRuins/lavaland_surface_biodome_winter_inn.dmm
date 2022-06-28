@@ -1,0 +1,1816 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aA" = (
+/turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"aI" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/obj/machinery/shower{
+	pixel_y = 20
+	},
+/obj/item/soap,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
+"bl" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"bm" = (
+/obj/machinery/door/airlock/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"bI" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/machinery/hydroponics/constructable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered/inn)
+"bJ" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"cw" = (
+/obj/machinery/light,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"dc" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/plasteel,
+/area/ruin/powered/inn)
+"dO" = (
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"es" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"eu" = (
+/obj/machinery/teleport/station,
+/turf/open/floor/plating,
+/area/ruin/powered/inn)
+"fc" = (
+/obj/structure/fans/tiny,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"fL" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
+"fS" = (
+/obj/machinery/light/built{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/pod/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
+/area/ruin/powered/inn)
+"gE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"gK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/clothing{
+	onstation = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"gY" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"hU" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/glass_large,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"hV" = (
+/obj/structure/table/wood,
+/obj/item/storage/pill_bottle/dice,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"iq" = (
+/obj/machinery/computer/teleporter{
+	id = null
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/inn)
+"iN" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/powered/inn)
+"jj" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel,
+/area/ruin/powered/inn)
+"jk" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"kd" = (
+/obj/machinery/door/airlock/wood{
+	name = "Suite"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"kT" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 30
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/powered/inn)
+"kZ" = (
+/obj/machinery/door/airlock/silver,
+/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"lK" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"lL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"mi" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/plantgenes,
+/turf/open/floor/plasteel,
+/area/ruin/powered/inn)
+"mV" = (
+/obj/structure/flora/bush,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"nl" = (
+/turf/template_noop,
+/area/template_noop)
+"nB" = (
+/obj/structure/mopbucket,
+/obj/item/mop,
+/turf/open/floor/pod/light,
+/area/ruin/powered/inn)
+"nC" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"nK" = (
+/obj/structure/chair/stool/bar{
+	pixel_y = 6
+	},
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"py" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/powered/inn)
+"qa" = (
+/obj/machinery/door/airlock/glass_large,
+/obj/structure/fans/tiny,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"qm" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/beanbag,
+/turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"qq" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/hooded/wintercoat/science,
+/obj/item/clothing/shoes/winterboots,
+/obj/item/clothing/gloves/fingerless,
+/obj/item/clothing/mask/balaclava,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"rd" = (
+/obj/machinery/door/airlock/wood{
+	name = "Standard Room"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"ro" = (
+/obj/machinery/smartfridge/disks,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/inn)
+"rW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/cigarette{
+	onstation = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"sH" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck{
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"tm" = (
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"tn" = (
+/obj/structure/rack,
+/obj/item/shovel,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
+/obj/item/clothing/gloves/color/fyellow,
+/obj/item/hatchet/wooden,
+/obj/item/tank/internals/emergency_oxygen,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"tx" = (
+/obj/machinery/vending/dinnerware{
+	onstation = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"tK" = (
+/obj/machinery/door/airlock/wood,
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor/shutters{
+	id = "inndoor"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"tY" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"uA" = (
+/obj/machinery/door/airlock/hatch,
+/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"vd" = (
+/obj/machinery/jukebox,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"vF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"vV" = (
+/turf/open/floor/plating/snowed/smoothed,
+/area/ruin/powered/inn)
+"ws" = (
+/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"wU" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"wV" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"xA" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/smartfridge/drying_rack,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"yj" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ruin/powered/inn)
+"yn" = (
+/obj/item/book/manual/wiki/hydroponicsplants,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/plant_analyzer,
+/obj/item/hatchet,
+/obj/item/shovel/spade,
+/obj/item/cultivator,
+/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/storage/box/disks_plantgene,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"yz" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/item/reagent_containers/glass/woodmug,
+/obj/machinery/button/door{
+	id = "inndoor";
+	name = "Inn Front door Shutter";
+	pixel_x = 6;
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"yW" = (
+/obj/structure/table/wood,
+/obj/item/book/manual/wiki/barman_recipes,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"zq" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"zD" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
+"zN" = (
+/obj/structure/table,
+/obj/item/pen,
+/obj/item/paper_bin,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"zP" = (
+/obj/machinery/vending/hydroseeds{
+	onstation = 0
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"zR" = (
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"zX" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/powered/inn)
+"Ac" = (
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"AQ" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"AT" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"Ba" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"Be" = (
+/obj/machinery/vending/hydronutrients{
+	onstation = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"CC" = (
+/obj/machinery/light/small,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"CN" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"DR" = (
+/obj/machinery/light,
+/turf/open/floor/plating/ice{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"EG" = (
+/obj/structure/dresser,
+/turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"EX" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Fe" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"Fo" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"Fq" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Gh" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"Gm" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/powered/inn)
+"Gs" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"GP" = (
+/obj/machinery/computer/monitor/secret{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"Ht" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/obj/machinery/shower{
+	pixel_y = 20
+	},
+/obj/item/soap/deluxe,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
+"HZ" = (
+/obj/machinery/door/airlock/wood,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Ii" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/item/beacon,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Io" = (
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Ju" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile/ice,
+/obj/machinery/door/poddoor/shutters{
+	id = "innsuite"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/inn)
+"JJ" = (
+/obj/structure/rack,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/matches,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"Kt" = (
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = null;
+	req_access_txt = "0"
+	},
+/obj/item/storage/box/donkpockets,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"KS" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/pod/light,
+/area/ruin/powered/inn)
+"LE" = (
+/turf/open/floor/pod/light,
+/area/ruin/powered/inn)
+"LL" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"LQ" = (
+/obj/structure/toilet{
+	pixel_y = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
+"Mu" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"NE" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"NR" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/effect/mob_spawn/human/innkeeper{
+	dir = 8;
+	short_desc = "You're a simpleman on a desolate wasteland, with the goal of running your inn."
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"OO" = (
+/turf/open/floor/plating/ice{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"OT" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/inn)
+"Pa" = (
+/obj/machinery/processor,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"Pd" = (
+/obj/structure/closet/secure_closet/freezer/meat{
+	req_access = null
+	},
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"PN" = (
+/obj/machinery/teleport/hub,
+/turf/open/floor/plating,
+/area/ruin/powered/inn)
+"PX" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"Qu" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/powered/inn)
+"RD" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Sk" = (
+/obj/structure/flora/grass/green,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"Sr" = (
+/obj/structure/fireplace{
+	fuel_added = 1000;
+	lit = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"SV" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"Tl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"Ts" = (
+/obj/structure/chair/stool,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/inn)
+"TT" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"Ui" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"Ul" = (
+/obj/structure/sink{
+	pixel_y = 30
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"UW" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/glass/rag,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Vg" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/obj/machinery/button/door{
+	id = "innsuite";
+	name = "Suite Window Control";
+	pixel_x = 26;
+	pixel_y = -8
+	},
+/turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"Vi" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"VA" = (
+/obj/machinery/door/airlock/wood,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
+"VK" = (
+/obj/structure/toilet{
+	pixel_y = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
+"VO" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Wd" = (
+/obj/machinery/vending/boozeomat{
+	onstation = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Xp" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/clothing/suit/hooded/wintercoat,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/flashlight/lantern,
+/turf/open/floor/carpet,
+/area/ruin/powered/inn)
+"XP" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"XQ" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"XX" = (
+/obj/machinery/door/airlock/wood{
+	name = "Personal Quarters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Ya" = (
+/obj/structure/chair/stool/bar{
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Yc" = (
+/obj/structure/flora/grass/both,
+/turf/open/floor/plating/asteroid/snow{
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	},
+/area/ruin/powered/inn)
+"Yp" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/inn)
+"Yq" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile/ice,
+/turf/open/floor/plating,
+/area/ruin/powered/inn)
+"Yu" = (
+/obj/structure/table/wood,
+/obj/item/book/manual/wiki/cooking_to_serve_man{
+	pixel_y = 3
+	},
+/obj/item/storage/box/monkeycubes,
+/obj/item/clothing/head/chefhat,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+"Yw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"YN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = null
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered/inn)
+"ZN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/machinery/biogenerator,
+/turf/open/floor/plasteel,
+/area/ruin/powered/inn)
+"ZQ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/inn)
+
+(1,1,1) = {"
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+OT
+OT
+OT
+OT
+uA
+OT
+OT
+OT
+OT
+OT
+OT
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+"}
+(2,1,1) = {"
+nl
+nl
+nl
+nl
+nl
+nl
+OT
+OT
+OT
+OT
+OT
+qq
+gY
+Ac
+LE
+gY
+Ac
+Gs
+OT
+OT
+OT
+OT
+OT
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+"}
+(3,1,1) = {"
+nl
+nl
+nl
+nl
+OT
+OT
+OT
+dO
+Tl
+dO
+OT
+qq
+Ac
+Ac
+LE
+zN
+Ts
+GP
+OT
+dO
+OO
+OO
+OT
+OT
+OT
+XP
+XP
+nl
+nl
+nl
+"}
+(4,1,1) = {"
+nl
+nl
+nl
+OT
+OT
+dO
+dO
+dO
+PX
+Sk
+OT
+yj
+yj
+yj
+kZ
+yj
+yj
+yj
+OT
+dO
+OO
+OO
+OO
+OO
+OT
+OT
+XP
+XP
+nl
+nl
+"}
+(5,1,1) = {"
+nl
+nl
+OT
+OT
+dO
+mV
+dO
+dO
+dO
+dO
+Tl
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+Tl
+dO
+mV
+OO
+OO
+OO
+OO
+OT
+OT
+XP
+lK
+nl
+"}
+(6,1,1) = {"
+nl
+nl
+OT
+CN
+dO
+dO
+dO
+PX
+dO
+dO
+dO
+Ui
+dO
+dO
+dO
+dO
+Yc
+dO
+dO
+dO
+dO
+dO
+dO
+OO
+OO
+OO
+OT
+XP
+lK
+nl
+"}
+(7,1,1) = {"
+nl
+OT
+OT
+dO
+PX
+dO
+dO
+dO
+Ba
+Gm
+Gm
+Gm
+Gm
+Gm
+dO
+AQ
+dO
+Fe
+dO
+dO
+dO
+Yc
+OO
+OO
+OO
+DR
+OT
+OT
+lK
+nl
+"}
+(8,1,1) = {"
+nl
+OT
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+Gm
+EG
+AT
+Xp
+Gm
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+Yc
+OO
+OO
+OO
+OO
+OT
+lK
+lK
+"}
+(9,1,1) = {"
+OT
+OT
+dO
+dO
+Yc
+Gm
+Gm
+Gm
+Gm
+Gm
+NR
+aA
+qm
+Gm
+dO
+dO
+mV
+dO
+dO
+wU
+dO
+dO
+OO
+OO
+OO
+OO
+OO
+OT
+fS
+lK
+"}
+(10,1,1) = {"
+OT
+Gm
+Gm
+Gm
+Gm
+Gm
+ws
+SV
+Pd
+Gm
+Gm
+XX
+Gm
+Gm
+Gm
+Gm
+Gm
+Gm
+Gm
+Gm
+dO
+dO
+OO
+OO
+Ba
+dO
+OO
+OT
+lK
+lK
+"}
+(11,1,1) = {"
+OT
+Gm
+bI
+EX
+ro
+Gm
+Pa
+TT
+Kt
+Gm
+Wd
+Io
+yz
+Gm
+rW
+Io
+EX
+zq
+py
+Gm
+dO
+dO
+dO
+dO
+dO
+OT
+OT
+OT
+OT
+lK
+"}
+(12,1,1) = {"
+OT
+Gm
+dc
+Io
+mi
+Gm
+Fo
+Gh
+NE
+Gm
+Fq
+Io
+Io
+yW
+Ya
+Io
+zq
+Mu
+nK
+Gm
+dO
+dO
+dO
+PX
+cw
+OT
+qq
+qq
+OT
+lK
+"}
+(13,1,1) = {"
+OT
+Gm
+iN
+Io
+ZN
+Gm
+Yw
+gE
+YN
+Gm
+bJ
+Io
+Io
+Mu
+Ya
+Io
+zq
+Mu
+Ya
+Gm
+Ba
+dO
+dO
+dO
+Ui
+OT
+Ac
+CC
+OT
+lK
+"}
+(14,1,1) = {"
+OT
+Gm
+jj
+Io
+Io
+jk
+Io
+Io
+Io
+jk
+Io
+Io
+Io
+UW
+Ya
+ZQ
+zq
+Mu
+Ya
+Gm
+dO
+dO
+dO
+dO
+dO
+OT
+nB
+LE
+OT
+lK
+"}
+(15,1,1) = {"
+OT
+Gm
+Ul
+ZQ
+yn
+Gm
+tx
+xA
+Yu
+Gm
+kT
+LL
+Io
+Gm
+nC
+Io
+Io
+zq
+ZQ
+Gm
+dO
+dO
+vV
+vV
+dO
+qa
+LE
+LE
+hU
+bl
+"}
+(16,1,1) = {"
+OT
+Gm
+Be
+zP
+Gm
+Gm
+Gm
+Gm
+Gm
+Gm
+Gm
+Gm
+bm
+Gm
+vd
+Io
+ZQ
+ZQ
+Io
+tK
+vV
+dO
+dO
+dO
+dO
+fc
+LE
+LE
+fc
+bl
+"}
+(17,1,1) = {"
+OT
+Gm
+Gm
+Gm
+Gm
+zR
+Io
+wV
+Gm
+Qu
+Io
+Io
+Io
+EX
+ZQ
+Io
+Io
+zq
+tY
+Gm
+dO
+dO
+dO
+dO
+Sk
+OT
+KS
+LE
+OT
+lK
+"}
+(18,1,1) = {"
+OT
+dO
+dO
+dO
+Gm
+VO
+Io
+Io
+rd
+Io
+gK
+Gm
+Gm
+Gm
+Gm
+Sr
+Io
+sH
+Io
+Gm
+dO
+dO
+dO
+dO
+dO
+OT
+Ac
+CC
+OT
+lK
+"}
+(19,1,1) = {"
+OT
+dO
+PX
+dO
+Gm
+Gm
+Gm
+Gm
+Gm
+kd
+Gm
+Gm
+aI
+Yp
+Gm
+Io
+zX
+zq
+Io
+Gm
+dO
+PX
+dO
+dO
+cw
+OT
+tn
+JJ
+OT
+lK
+"}
+(20,1,1) = {"
+OT
+dO
+dO
+wU
+Gm
+LQ
+fL
+VA
+Io
+Io
+XQ
+Gm
+VK
+zD
+VA
+Io
+Io
+zq
+Io
+Gm
+dO
+wU
+dO
+mV
+dO
+OT
+OT
+OT
+OT
+lK
+"}
+(21,1,1) = {"
+OT
+Ui
+dO
+dO
+Gm
+Ht
+Gm
+Gm
+RD
+Io
+Gm
+Gm
+Gm
+Gm
+Gm
+Io
+Io
+hV
+tY
+Gm
+dO
+dO
+dO
+dO
+Yc
+dO
+dO
+OT
+lK
+lK
+"}
+(22,1,1) = {"
+OT
+OT
+dO
+dO
+Gm
+Gm
+Gm
+EG
+aA
+Io
+Gm
+iq
+es
+Io
+HZ
+Io
+Io
+zq
+ZQ
+Gm
+dO
+dO
+PX
+dO
+dO
+PX
+dO
+OT
+fS
+lK
+"}
+(23,1,1) = {"
+nl
+OT
+Yc
+dO
+dO
+mV
+Gm
+Vi
+Vg
+Io
+Gm
+eu
+Ii
+tm
+Gm
+Gm
+Gm
+Gm
+Gm
+Gm
+dO
+mV
+dO
+dO
+dO
+dO
+dO
+OT
+lK
+lK
+"}
+(24,1,1) = {"
+nl
+OT
+OT
+dO
+PX
+dO
+Gm
+Gm
+Gm
+Ju
+Gm
+PN
+lL
+Io
+Gm
+dO
+dO
+dO
+dO
+mV
+dO
+dO
+dO
+dO
+dO
+cw
+OT
+OT
+lK
+nl
+"}
+(25,1,1) = {"
+nl
+nl
+OT
+CN
+dO
+dO
+dO
+dO
+dO
+dO
+Gm
+Gm
+Yq
+Yq
+Gm
+dO
+dO
+dO
+PX
+dO
+dO
+dO
+dO
+PX
+dO
+dO
+OT
+XP
+lK
+nl
+"}
+(26,1,1) = {"
+nl
+nl
+OT
+OT
+dO
+Sk
+dO
+PX
+Yc
+dO
+dO
+dO
+dO
+dO
+mV
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+Sk
+dO
+dO
+OT
+OT
+XP
+nl
+nl
+"}
+(27,1,1) = {"
+nl
+nl
+nl
+OT
+OT
+dO
+dO
+dO
+dO
+dO
+dO
+dO
+PX
+dO
+dO
+dO
+dO
+Yc
+wU
+dO
+dO
+PX
+dO
+dO
+OT
+OT
+XP
+XP
+nl
+nl
+"}
+(28,1,1) = {"
+nl
+nl
+nl
+nl
+OT
+OT
+OT
+dO
+vF
+Ui
+dO
+Ba
+dO
+dO
+dO
+dO
+AQ
+dO
+dO
+dO
+vF
+dO
+OT
+OT
+OT
+XP
+XP
+nl
+nl
+nl
+"}
+(29,1,1) = {"
+nl
+nl
+nl
+nl
+nl
+nl
+OT
+OT
+OT
+OT
+OT
+dO
+dO
+Sk
+dO
+dO
+dO
+dO
+OT
+OT
+OT
+OT
+OT
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+"}
+(30,1,1) = {"
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+OT
+OT
+OT
+OT
+OT
+OT
+OT
+OT
+OT
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+nl
+"}

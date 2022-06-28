@@ -1,6 +1,7 @@
 #define YOGS_ION_FILE "yogs_ion_laws.json"
 /datum/round_event_control/ion_storm
 	weight = 20
+	max_alert = SEC_LEVEL_DELTA
 
 /proc/generate_ion_law(ionMessage)
 	if(ionMessage)

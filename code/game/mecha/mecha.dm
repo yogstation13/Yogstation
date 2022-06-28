@@ -4,8 +4,8 @@
 #define MECHA_INT_TANK_BREACH	(1<<3)
 #define MECHA_INT_CONTROL_LOST	(1<<4)
 
-#define MELEE 1
-#define RANGED 2
+#define MECHA_MELEE 1
+#define MECHA_RANGED 2
 
 #define FRONT_ARMOUR 1
 #define SIDE_ARMOUR 2
@@ -35,7 +35,7 @@
 	var/overload_step_energy_drain_min = 100
 	max_integrity = 300 //max_integrity is base health
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	var/list/facing_modifiers = list(FRONT_ARMOUR = 1.5, SIDE_ARMOUR = 1, BACK_ARMOUR = 0.5)
 	var/equipment_disabled = 0 //disabled due to EMP
 	var/obj/item/stock_parts/cell/cell ///Keeps track of the mech's cell
@@ -657,7 +657,12 @@
 
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
+	var/area/newarea = newloc.loc
 	if(newloc.flags_1 & NOJAUNT_1)
+		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
+		return
+
+	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
 		return
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
@@ -795,7 +800,6 @@
 			to_chat(user, "[span_boldnotice("Transfer successful")]: [AI.name] ([rand(1000,9999)].exe) removed from [name] and stored within local memory.")
 
 		if(AI_MECH_HACK) //Called by AIs on the mech
-			AI.linked_core = new /obj/structure/AIcore/deactivated(AI.loc)
 			if(AI.can_dominate_mechs)
 				if(occupant) //Oh, I am sorry, were you using that?
 					to_chat(AI, span_warning("Pilot detected! Forced ejection initiated!"))
@@ -929,7 +933,7 @@
 
 	visible_message("[user] starts to climb into [name].")
 
-	if(do_after(user, enter_delay, target = src))
+	if(do_after(user, enter_delay, src))
 		if(obj_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
@@ -978,7 +982,7 @@
 
 	visible_message(span_notice("[user] starts to insert an MMI into [name]."))
 
-	if(do_after(user, 4 SECONDS, target = src))
+	if(do_after(user, 4 SECONDS, src))
 		if(!occupant)
 			return mmi_moved_inside(mmi_as_oc, user)
 		else
@@ -1025,7 +1029,7 @@
 /obj/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
-	if(do_after(occupant,exit_delay, target = src))
+	if(do_after(occupant, exit_delay, src))
 		to_chat(occupant, "<span class='notice'>You exit the mech.<span>")
 		go_out()
 	else
@@ -1053,6 +1057,7 @@
 	if(!occupant)
 		return
 	var/atom/movable/mob_container
+	var/is_ai_user = FALSE
 	occupant.clear_alert("charge")
 	occupant.clear_alert("mech damage")
 	if(ishuman(occupant))
@@ -1071,17 +1076,21 @@
 			silicon_pilot = FALSE
 			return
 		else
-			if(!AI.linked_core)
-				to_chat(AI, span_userdanger("Inactive core destroyed. Unable to return."))
-				AI.linked_core = null
-				return
-			to_chat(AI, span_notice("Returning to core..."))
+			to_chat(AI, span_notice("Attempting to return to core..."))
 			AI.controlled_mech = null
 			AI.remote_control = null
 			RemoveActions(occupant, 1)
 			mob_container = AI
-			newloc = get_turf(AI.linked_core)
-			qdel(AI.linked_core)
+			newloc = null
+			if(GLOB.primary_data_core)
+				newloc = GLOB.primary_data_core
+			else if(LAZYLEN(GLOB.data_cores))
+				newloc = GLOB.data_cores[1]
+				
+			if(!istype(newloc, /obj/machinery/ai/data_core))
+				to_chat(AI, span_userdanger("No cores available. Core code corrupted."))
+				
+			is_ai_user = TRUE
 	else
 		return
 	var/mob/living/L = occupant
@@ -1101,6 +1110,10 @@
 			L.mobility_flags = NONE
 		icon_state = initial(icon_state)+"-open"
 		setDir(dir_in)
+		if(is_ai_user)
+			var/mob/living/silicon/ai/AI = occupant
+			AI.relocate(TRUE)
+
 
 	if(L && L.client)
 		L.update_mouse_pointer()

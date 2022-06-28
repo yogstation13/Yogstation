@@ -132,6 +132,7 @@
 	var/obj/item/card/id/W = H.wear_id
 	W.access = get_all_accesses()
 	W.assignment = "Tunnel Clown!"
+	W.originalassignment = "Clown"
 	W.registered_name = H.real_name
 	W.update_label(H.real_name)
 
@@ -196,6 +197,7 @@
 	var/obj/item/card/id/syndicate/W = H.wear_id
 	W.access = get_all_accesses()
 	W.assignment = "Reaper"
+	W.originalassignment = "Reaper"
 	W.registered_name = H.real_name
 	W.update_label(H.real_name)
 
@@ -224,6 +226,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("Special Ops Officer")
 	W.assignment = "Special Ops Officer"
+	W.originalassignment = "Special Ops Officer"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -305,6 +308,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("Admiral")
 	W.assignment = "Admiral"
+	W.originalassignment = "Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -326,6 +330,7 @@
 
 	var/obj/item/card/id/W = H.wear_id
 	W.assignment = "Assistant"
+	W.originalassignment = "Assistant"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -379,6 +384,7 @@
 	W.access = get_all_accesses()//They get full station access.
 	W.access += get_centcom_access("Death Commando")//Let's add their alloted CentCom access.
 	W.assignment = "Death Commando"
+	W.originalassignment = "Death Commando"
 	W.registered_name = splittext(H.tag, "_")[2] // 412's ID Card (Death Commando); deathsquad are so edgy they are just numbers
 	W.update_label(W.registered_name, W.assignment)
 

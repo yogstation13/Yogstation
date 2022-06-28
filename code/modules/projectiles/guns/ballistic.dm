@@ -49,6 +49,8 @@
 	var/spawnwithmagazine = TRUE
 	///Compatible magazines with the gun
 	var/mag_type = /obj/item/ammo_box/magazine/m10mm //Removes the need for max_ammo and caliber info
+	///What magazine this gun starts with, if null it will just use mag_type
+	var/starting_mag_type
 	///Whether the sprite has a visible magazine or not
 	var/mag_display = FALSE
 	///Whether the sprite has a visible ammo display or not
@@ -116,7 +118,7 @@
 	if(type && frames)
 		cut_overlays()
 		if (suppressed)
-			add_overlay("[icon_state]_suppressor")
+			add_overlay("[icon_state]_[suppressed.icon_state]")
 		if(type == "fire")
 			if(!chambered)
 				return
@@ -168,9 +170,13 @@
 		update_icon()
 		return
 	if (!magazine)
-		magazine = new mag_type(src)
+		if (!starting_mag_type)
+			magazine = new mag_type(src)
+		else
+			magazine = new starting_mag_type(src)
 	chamber_round()
 	update_icon()
+	
 
 /obj/item/gun/ballistic/update_icon()
 	if (QDELETED(src))
@@ -186,7 +192,7 @@
 	if (bolt_type == BOLT_TYPE_OPEN && bolt_locked)
 		add_overlay("[icon_state]_bolt")
 	if (suppressed)
-		add_overlay("[icon_state]_suppressor")
+		add_overlay("[icon_state]_[suppressed.icon_state]")
 	if(!chambered && empty_indicator)
 		add_overlay("[icon_state]_empty")
 	if (magazine)
@@ -390,12 +396,11 @@
 		return
 	if(loc == user)
 		if(suppressed && can_unsuppress)
-			var/obj/item/suppressor/S = suppressed
 			if(!user.is_holding(src))
 				return ..()
 			to_chat(user, span_notice("You unscrew \the [suppressed] from \the [src]."))
 			user.put_in_hands(suppressed)
-			w_class -= S.w_class
+			w_class -= suppressed.w_class
 			suppressed = null
 			update_icon()
 			return
@@ -473,7 +478,7 @@
 	if (bolt_locked)
 		. += "The [bolt_wording] is locked back and needs to be released before firing."
 	if (suppressed)
-		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
+		. += "It has a [suppressed] attached that can be removed with <b>alt+click</b>."
 
 /obj/item/gun/ballistic/verb/set_reload()
 	set name = "Set Reload Speech"
@@ -511,7 +516,7 @@
 	var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
 	if (B && chambered && chambered.BB && can_trigger_gun(user) && !chambered.BB.nodamage)
 		user.visible_message(span_suicide("[user] is putting the barrel of [src] in [user.p_their()] mouth.  It looks like [user.p_theyre()] trying to commit suicide!"))
-		sleep(25)
+		sleep(2.5 SECONDS)
 		if(user.is_holding(src))
 			var/turf/T = get_turf(user)
 			process_fire(user, user, FALSE, null, BODY_ZONE_HEAD)
@@ -559,7 +564,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		user.visible_message(span_danger("\The [src] goes off!"), span_danger("\The [src] goes off in your face!"))
 		return
 
-	if(do_after(user, 3 SECONDS, target = src))
+	if(do_after(user, 3 SECONDS, src))
 		if(sawn_off)
 			return
 		user.visible_message("[user] shortens \the [src]!", span_notice("You shorten \the [src]."))
@@ -589,6 +594,14 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "suppressor"
 	w_class = WEIGHT_CLASS_TINY
+	var/break_chance = 0 // Chance per shot for the suppressor to fall apart
+
+/obj/item/suppressor/makeshift
+	name = "makeshift suppressor"
+	desc = "A poorly made small-arms suppressor for above average espionage on a budget."
+	icon_state = "suppressor_makeshift"
+	w_class = WEIGHT_CLASS_SMALL
+	break_chance = 10
 
 
 /obj/item/suppressor/specialoffer

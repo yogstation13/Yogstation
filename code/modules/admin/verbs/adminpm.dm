@@ -200,8 +200,10 @@
 				//omg this is dumb, just fill in both their tickets
 				// yogs start - Yog Tickets
 				admin_ticket_log(src, msg, FALSE)
+				if(!recipient.current_ticket) // creates a ticket if there is no ticket of this user
+					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
 				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
-					recipient.current_ticket.Administer(src)
+					recipient.current_ticket.Administer()
 				// yogs end - Yog Tickets
 				if(recipient != src)	//reeee
 					admin_ticket_log(recipient, msg, FALSE) // yogs - Yog Tickets
@@ -225,7 +227,7 @@
 				if(!recipient.current_ticket)
 					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
 				if(!recipient.current_ticket.handling_admin)
-					recipient.current_ticket.Administer(src) // yogs - Yog Tickets
+					recipient.current_ticket.Administer() // yogs - Yog Tickets
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", confidential=TRUE)
 				to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)

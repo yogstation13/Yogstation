@@ -104,6 +104,16 @@
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/batonupgrade
+	name = "Baton Power Upgrade"
+	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of more power usage."
+	id = "baton_upgrade"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/gold = 600, /datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 600, /datum/material/plasma = 600)
+	build_path = /obj/item/batonupgrade
+	category = list("Firing Pins")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/stunmine/sec //mines ported from BeeStation
 	name = "Stun Mine"
 	desc = "A basic non-lethal stunning mine. Stuns anyone who walks over it."
@@ -310,7 +320,7 @@
 
 /datum/design/mag_oldsmg
 	name = "WT-550 Auto Gun Magazine (4.6x30mm)"
-	desc = "A 20 round magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 22 round magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000)
@@ -320,7 +330,7 @@
 
 /datum/design/mag_oldsmg/ap_mag
 	name = "WT-550 Auto Gun Armour Piercing Magazine (4.6x30mm AP)"
-	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_ap"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
@@ -328,7 +338,7 @@
 
 /datum/design/mag_oldsmg/ic_mag
 	name = "WT-550 Auto Gun Incendiary Magazine (4.6x30mm IC)"
-	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_ic"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600, /datum/material/glass = 1000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
@@ -336,7 +346,7 @@
 
 /datum/design/mag_oldsmg/rubber_mag
 	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Rubber)"
-	desc = "A 20 round rubber bullet magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 22 round rubber bullet magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_rubber"
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtr
@@ -401,3 +411,13 @@
 	build_path = /obj/item/ammo_casing/shotgun/dart/noreact
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/hardlightbow
+	name = "Hardlight Bow"
+	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
+	id = "hardlightbow"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
+	build_path = /obj/item/gun/ballistic/bow/energy
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

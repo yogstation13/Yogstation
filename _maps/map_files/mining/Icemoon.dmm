@@ -598,9 +598,7 @@
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "fc" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -1585,23 +1583,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/production)
-"hM" = (
-/obj/machinery/computer/security/mining{
-	dir = 4;
-	icon_state = "computer"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -5;
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/living_quarters)
 "hN" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -1815,14 +1796,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/mine/living_quarters)
-"io" = (
-/obj/machinery/camera{
-	c_tag = "Sleeper Room";
-	dir = 1;
-	network = list("mine")
-	},
-/turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
 "iq" = (
 /obj/effect/turf_decal/tile/bar,
@@ -2327,6 +2300,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/production)
+"pJ" = (
+/obj/machinery/camera{
+	c_tag = "Sleeper Room";
+	dir = 1;
+	network = list("mine")
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
 "re" = (
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
@@ -2359,6 +2343,22 @@
 /obj/machinery/computer/crew{
 	dir = 4;
 	icon_state = "computer"
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/living_quarters)
+"vc" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -5;
+	pixel_y = 30
+	},
+/obj/machinery/modular_computer/console/preset/mining{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/living_quarters)
@@ -2740,9 +2740,7 @@
 /turf/closed/mineral/random/high_chance/snow,
 /area/icemoon/underground/explored)
 "KU" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
+/obj/machinery/power/smes/fullycharged,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -16101,7 +16099,7 @@ fv
 id
 fv
 eU
-hM
+vc
 uV
 CF
 eU
@@ -16360,7 +16358,7 @@ gJ
 gp
 hN
 OH
-io
+pJ
 eU
 fv
 fv

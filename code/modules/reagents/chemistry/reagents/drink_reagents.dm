@@ -203,10 +203,15 @@
 	name = "Cilk"
 	description = "A mixture of milk and.... cola? Who the fuck would do this?"
 	color = "#EAC7A4"
-	taste_description = "dairy and caffiene"
+	taste_description = "dairy and caffeine"
 	glass_icon_state = "glass_cilk"
 	glass_name = "glass of cilk"
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
+
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	. = ..()
+	if(H.reagents.has_reagent(/datum/reagent/consumable/cilk))
+		H.adjustBruteLoss(-0.2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 /datum/reagent/consumable/milk/goat
 	name = "Goat Milk"
@@ -470,6 +475,20 @@
 	glass_desc = "A glass of refreshing Space Cola."
 
 /datum/reagent/consumable/space_cola/on_mob_life(mob/living/carbon/M)
+	M.drowsyness = max(0,M.drowsyness-5)
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()
+
+/datum/reagent/consumable/rootbeer
+	name = "Root Beer"
+	description = "Beer, but not."
+	color = "#251505" // rgb: 16, 8, 0
+	taste_description = "root and beer"
+	glass_icon_state  = "glass_brown"
+	glass_name = "glass of root beer"
+	glass_desc = "A glass of refreshing fizzing root beer."
+
+/datum/reagent/consumable/rootbeer/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(0,M.drowsyness-5)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
@@ -1004,3 +1023,5 @@
 	if(prob(25))
 		to_chat(M, "<span class = 'notice'>[pick("Buzz Buzz.", "Stinging with flavour.", "Ideal of the worker drone", "A Hive of Flavour", "Sap back that missing energy!", "Got Honey?", "The Queen approved it!")]</span>")
 	..()
+
+

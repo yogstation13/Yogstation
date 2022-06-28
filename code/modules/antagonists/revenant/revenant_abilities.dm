@@ -31,7 +31,7 @@
 	draining = TRUE
 	essence_drained += rand(15, 20)
 	to_chat(src, span_revennotice("You search for the soul of [target]."))
-	if(do_after(src, rand(10, 20), 0, target)) //did they get deleted in that second?
+	if(do_after(src, rand(10, 20), target, FALSE)) //did they get deleted in that second?
 		if(target.ckey)
 			to_chat(src, span_revennotice("[target.p_their(TRUE)] soul burns with intelligence."))
 			essence_drained += rand(20, 30)
@@ -40,7 +40,7 @@
 			essence_drained += rand(40, 50)
 		else
 			to_chat(src, span_revennotice("[target.p_their(TRUE)] soul is weak and faltering."))
-		if(do_after(src, rand(15, 20), 0, target)) //did they get deleted NOW?
+		if(do_after(src, rand(15, 20), target, FALSE)) //did they get deleted NOW?
 			switch(essence_drained)
 				if(1 to 30)
 					to_chat(src, span_revennotice("[target] will not yield much essence. Still, every bit counts."))
@@ -50,7 +50,7 @@
 					to_chat(src, span_revenboldnotice("Such a feast! [target] will yield much essence to you."))
 				if(90 to INFINITY)
 					to_chat(src, span_revenbignotice("Ah, the perfect soul. [target] will yield massive amounts of essence to you."))
-			if(do_after(src, rand(15, 25), 0, target)) //how about now
+			if(do_after(src, rand(15, 25), target, FALSE)) //how about now
 				if(!target.stat)
 					to_chat(src, span_revenwarning("[target.p_theyre(TRUE)] now powerful enough to fight off your draining."))
 					to_chat(target, span_boldannounce("You feel something tugging across your body before subsiding."))
@@ -72,7 +72,7 @@
 					draining = FALSE
 					return
 				var/datum/beam/B = Beam(target,icon_state="drain_life",time=INFINITY)
-				if(do_after(src, 4.6 SECONDS, 0, target)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
+				if(do_after(src, 4.6 SECONDS, target, FALSE)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
 					change_essence_amount(essence_drained, FALSE, target)
 					if(essence_drained <= 90 && target.stat != DEAD)
 						essence_regen_cap += 5
