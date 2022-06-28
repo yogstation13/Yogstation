@@ -194,7 +194,7 @@
 		to_chat(user, span_notice("[target] is not a tile!"))
 		return
 	if(use_paint(user))
-		F.AddComponent(/datum/component/decal, 'icons/turf/floors.dmi', stored_decal_total, stored_dir, color, null, null, alpha)
+		F.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, color, null, null, alpha)
 
 /obj/item/airlock_painter/decal/AltClick(mob/user)
 	. = ..()
@@ -247,7 +247,7 @@
 		return
 
 	switch(action)
-		//Lists of floors and designs
+		//Lists of decals and designs
 		if("select decal")
 			var/selected_decal = params["decals"]
 			stored_decal = selected_decal
@@ -261,20 +261,20 @@
 	. = TRUE
 
 /obj/item/airlock_painter/floor_painter
-	name = "floor painter"
+	name = "decal painter"
 	desc = "An airlock painter, reprogramed to use a different style of paint in order to apply decals for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed. Alt-Click to change design."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "floor_sprayer"
 	item_state = "floor_sprayer"
 	painter_mode = 2
 	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
-	var/stored_floor_dir = 2
-	var/stored_floor_color = ""
-	var/stored_floor = "warningline"
-	var/stored_floor_total = "warningline"
-	var/color_floor_list = list("","red","white")
-	var/dir_floor_list = list(1,2,4,8)
-	var/floor_list = list(list("Warning Line","warningline"),
+	var/stored_dir = 2
+	var/stored_color = ""
+	var/stored_decal = "warningline"
+	var/stored_decal_total = "warningline"
+	var/color_list = list("","red","white")
+	var/dir_list = list(1,2,4,8)
+	var/decal_list = list(list("Warning Line","warningline"),
 			list("Warning Line Corner","warninglinecorner"),
 			list("Caution Label","caution"),
 			list("Directional Arrows","arrows"),
@@ -294,7 +294,7 @@
 		to_chat(user, span_notice("[target] is not a tile!"))
 		return
 	if(use_paint(user))
-		F.AddComponent(/datum/component/decal, 'icons/turf/floors.dmi', stored_floor_total, stored_floor_dir, color, null, null, alpha)
+		F.AddComponent(/datum/component/floor_painter, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, color, null, null, alpha)
 
 /obj/item/airlock_painter/floor_painter/AltClick(mob/user)
 	. = ..()
@@ -306,9 +306,9 @@
 
 /obj/item/airlock_painter/floor_painter/proc/update_decal_path()
 	var/yellow_fix = "" //This will have to do until someone refactor's markings.dm
-	if (stored_floor_color)
+	if (stored_color)
 		yellow_fix = "_"
-	stored_floor_total = "[stored_floor][yellow_fix][stored_floor_color]"
+	stored_decal_total = "[stored_decal][yellow_fix][stored_color]"
 	return
 
 /obj/item/airlock_painter/floor_painter/ui_interact(mob/user, datum/tgui/ui)
@@ -319,24 +319,24 @@
 
 /obj/item/airlock_painter/floor_painter/ui_data(mob/user)
 	var/list/data = list()
-	data["floor_paint_direction"] = stored_floor_dir
-	data["floor_color"] = stored_floor_color
-	data["floor_style"] = stored_floor
-	data["floor_list"] = list()
-	data["color_floor_list"] = list()
-	data["dir_floor_list"] = list()
+	data["decal_direction"] = stored_dir
+	data["decal_color"] = stored_color
+	data["decal_style"] = stored_decal
+	data["decal_list"] = list()
+	data["color_list"] = list()
+	data["dir_list"] = list()
 
-	for(var/i in floor_list)
-		data["floor_list"] += list(list(
+	for(var/i in decal_list)
+		data["decal_list"] += list(list(
 			"name" = i[1],
-			"floor" = i[2]
+			"decal" = i[2]
 		))
-	for(var/j in color_floor_list)
-		data["color_floor_list"] += list(list(
+	for(var/j in color_list)
+		data["color_list"] += list(list(
 			"colors" = j
 		))
-	for(var/k in dir_floor_list)
-		data["dir_floor_list"] += list(list(
+	for(var/k in dir_list)
+		data["dir_list"] += list(list(
 			"dirs" = k
 		))
 	return data
@@ -347,15 +347,15 @@
 		return
 
 	switch(action)
-		//Lists of floors and designs
+		//Lists of decals and designs
 		if("select floor paint")
-			var/selected_decal = params["floors"]
-			stored_floor = selected_decal
+			var/selected_decal = params["decals"]
+			stored_decal = selected_decal
 		if("select color")
 			var/selected_color = params["colors"]
-			stored_floor_color = selected_color
+			stored_color = selected_color
 		if("selected direction")
 			var/selected_direction = text2num(params["dirs"])
-			stored_floor_dir = selected_direction
+			stored_dir = selected_direction
 	update_decal_path()
 	. = TRUE
