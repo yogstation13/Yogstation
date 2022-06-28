@@ -30,6 +30,7 @@
 	. = ..()
 	var/obj/effect/proc_holder/spell/pointed/kinetic_crush/crush = new
 	AddSpell(crush)
+	ADD_TRAIT(src, TRAIT_SMIMMUNE, INNATE_TRAIT)   ///It is always stupid when a powerfull god dies just because he contacts with a funny crystal. 
 
 /mob/living/simple_animal/hostile/hog/free_god/AttackingTarget()
 	melee_damage_lower = initial(melee_damage_lower)

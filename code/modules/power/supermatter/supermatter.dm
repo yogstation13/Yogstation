@@ -731,12 +731,16 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		qdel(rip_u)
 
 /obj/machinery/power/supermatter_crystal/attack_paw(mob/user)
-	dust_mob(user, cause = "monkey attack")
+	if(!HAS_TRAIT(user, TRAIT_SMIMMUNE))
+		dust_mob(user, cause = "monkey attack")
 
 /obj/machinery/power/supermatter_crystal/attack_alien(mob/user)
-	dust_mob(user, cause = "alien attack")
+	if(!HAS_TRAIT(user, TRAIT_SMIMMUNE))
+		dust_mob(user, cause = "alien attack")
 
 /obj/machinery/power/supermatter_crystal/attack_animal(mob/living/simple_animal/S)
+	if(HAS_TRAIT(S, TRAIT_SMIMMUNE))
+		return
 	var/murder
 	if(!S.melee_damage_upper && !S.melee_damage_lower)
 		murder = S.friendly
@@ -748,7 +752,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	"simple animal attack")
 
 /obj/machinery/power/supermatter_crystal/attack_robot(mob/user)
-	if(Adjacent(user))
+	if(Adjacent(user) && !HAS_TRAIT(user, TRAIT_SMIMMUNE))
 		dust_mob(user, cause = "cyborg attack")
 
 /obj/machinery/power/supermatter_crystal/attack_ai(mob/user)
@@ -767,7 +771,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		return
 
 	if(!user.is_mouth_covered())
-		if(user.a_intent == INTENT_HARM)
+		if(user.a_intent == INTENT_HARM && !HAS_TRAIT(user, TRAIT_SMIMMUNE))
 			dust_mob(user,
 				"<span class='danger'>As [user] tries to take a bite out of [src] everything goes silent before [user.p_their()] body starts to glow and burst into flames before flashing to ash.</span>",
 				"<span class='userdanger'>You try to take a bite out of [src], but find [p_them()] far too hard to get anywhere before everything starts burning and your ears fill with ringing!</span>",
@@ -776,7 +780,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			return
 
 		var/obj/item/organ/tongue/licking_tongue = user.getorganslot(ORGAN_SLOT_TONGUE)
-		if(licking_tongue)
+		if(licking_tongue && !HAS_TRAIT(user, TRAIT_SMIMMUNE))
 			dust_mob(user,
 				"<span class='danger'>As [user] hesitantly leans in and licks [src] everything goes silent before [user.p_their()] body starts to glow and burst into flames before flashing to ash!</span>",
 				"<span class='userdanger'>You tentatively lick [src], but you can't figure out what it tastes like before everything starts burning and your ears fill with ringing!</span>",
@@ -785,22 +789,22 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			return
 
 	var/obj/item/bodypart/head/forehead = user.get_bodypart(BODY_ZONE_HEAD)
-	if(forehead)
+	if(forehead && !HAS_TRAIT(user, TRAIT_SMIMMUNE))
 		dust_mob(user,
 			"<span class='danger'>As [user]'s forehead bumps into [src], inducing a resonance... Everything goes silent before [user.p_their()] [forehead] flashes to ash!</span>",
 			"<span class='userdanger'>You feel your forehead bump into [src] and everything suddenly goes silent. As your head fills with ringing you come to realize that that was not a wise decision.</span>",
 			"failed lick"
 		)
 		return
-
-	dust_mob(user,
-		"<span class='danger'>[user] leans in and tries to lick [src], inducing a resonance... [user.p_their()] body starts to glow and burst into flames before flashing into dust!</span>",
-		"<span class='userdanger'>You lean in and try to lick [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"</span>",
-		"failed lick"
-	)
+	if(!HAS_TRAIT(user, TRAIT_SMIMMUNE))
+		dust_mob(user,
+			"<span class='danger'>[user] leans in and tries to lick [src], inducing a resonance... [user.p_their()] body starts to glow and burst into flames before flashing into dust!</span>",
+			"<span class='userdanger'>You lean in and try to lick [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\"</span>",
+			"failed lick"
+		)
 
 /obj/machinery/power/supermatter_crystal/proc/dust_mob(mob/living/nom, vis_msg, mob_msg, cause)
-	if(nom.incorporeal_move || nom.status_flags & GODMODE)
+	if(nom.incorporeal_move || nom.status_flags & GODMODE || HAS_TRAIT(user, TRAIT_SMIMMUNE))
 		return
 	if(!vis_msg)
 		vis_msg = span_danger("[nom] reaches out and touches [src], inducing a resonance... [nom.p_their()] body starts to glow and burst into flames before flashing into dust!")
@@ -906,7 +910,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	return TRUE
 
 /obj/machinery/power/supermatter_crystal/Bumped(atom/movable/AM)
-	if(isliving(AM))
+	if(isliving(AM) && !HAS_TRAIT(user, TRAIT_SMIMMUNE))
 		AM.visible_message(span_danger("\The [AM] slams into \the [src] inducing a resonance... [AM.p_their()] body starts to glow and burst into flames before flashing into dust!"),\
 		span_userdanger("You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),\
 		span_italics("You hear an unearthly noise as a wave of heat washes over you."))
@@ -917,8 +921,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		return
 
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
-
-	Consume(AM)
+	if(!HAS_TRAIT(user, TRAIT_SMIMMUNE))
+		Consume(AM)
 
 /obj/machinery/power/supermatter_crystal/proc/Consume(atom/movable/AM)
 	if(isliving(AM))
