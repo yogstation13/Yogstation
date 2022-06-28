@@ -26,7 +26,7 @@
 
 /mob/living/simple_animal/hostile/free_god/Initialize()
 	. = ..()
-	/obj/effect/proc_holder/spell/pointed/kinetic_crush/crush = new
+	var/obj/effect/proc_holder/spell/pointed/kinetic_crush/crush = new
 	AddSpell(crush)
 
 /mob/living/simple_animal/hostile/free_god/examine(mob/user)
