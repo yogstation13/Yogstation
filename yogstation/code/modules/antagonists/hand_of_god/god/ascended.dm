@@ -140,9 +140,26 @@
 			else
 				L.adjustBruteLoss(15)  ///More damage if not a carbon
 			L.adjustBruteLoss(35)
+			return TRUE
 		else
 			to_chat(user, "<span class='cult'>You crush [L] with your psionic power!</span>")
-			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave crushing you into the floor!</span>")			
+			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave tearing you into pieces!</span>")	
+			L.Gib()
+			return TRUE
+	else if(ismecha(target))
+		var/obj/mecha/M = target
+		if(M.occupant)
+			var/mob/living/L = M.occupant
+			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
+			if(cultie && cultie.cult == cultie2.cult)
+				to_chat(user, "<span class='warning'>Crushing a mech piloted by your servant isn't the best idea!</span>")
+				return FALSE
+		var/damage_to_deal = 100 + M.max_integrity /5
+		damage_to_deal = min(damage_to_deal, M.max_integrity*0.8)
+		take_damage(damage_to_deal, BRUTE, ENERGY, 1)
+		return TRUE
+
+
 
 
 
