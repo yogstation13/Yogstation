@@ -131,8 +131,8 @@
 		if(cultie && cultie.cult == cultie2.cult)
 			to_chat(user, "<span class='warning'>Crushing your loyal servants isn't the best idea!</span>")
 			return FALSE
-		else if(cultie)
-			to_chat(user, "<span class='cult'>You crush [L] with your psionic power, but power of their heretical god protects them!</span>")
+		else if(cultie || L.anti_magic_check()) ///Do you really think that just being a chaplain with a nullrod will save you from an angry god?
+			to_chat(user, "<span class='cult'>You crush [L] with your psionic power, but power of their heretical god lowers the damage!</span>")
 			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave crushing you into the floor!</span>")
 			L.emote("scream")
 			if(iscarbon(L))
@@ -143,20 +143,25 @@
 			return TRUE
 		else
 			to_chat(user, "<span class='cult'>You crush [L] with your psionic power!</span>")
-			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave tearing you into pieces!</span>")	
-			L.Gib()
+			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave tearing you into pieces!</span>")
+			L.emote("scream")	
+			if(iscarbon(L))
+				var/mob/living/carbon/C = L
+				C.Gib()
+			else
+				qdel(L)
 			return TRUE
-	else if(ismecha(target))
-		var/obj/mecha/M = target
+	else if(ismecha(targets[1]))
+		var/obj/mecha/M = targets[1]
 		if(M.occupant)
 			var/mob/living/L = M.occupant
 			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
 			if(cultie && cultie.cult == cultie2.cult)
 				to_chat(user, "<span class='warning'>Crushing a mech piloted by your servant isn't the best idea!</span>")
 				return FALSE
-		var/damage_to_deal = 100 + M.max_integrity /5
+		var/damage_to_deal = 100 + M.max_integrity*0.25
 		damage_to_deal = min(damage_to_deal, M.max_integrity*0.8)
-		take_damage(damage_to_deal, BRUTE, ENERGY, 1)
+		M.take_damage(damage_to_deal, BRUTE, ENERGY, 1)
 		return TRUE
 
 
