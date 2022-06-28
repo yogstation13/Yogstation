@@ -21,6 +21,11 @@
 /obj/structure/destructible/hog_structure/lance/nexus/Initialize()
 	. = ..()
 
+/obj/structure/destructible/hog_structure/lance/nexus/Destroy()
+	if(cult && cult.state != HOG_TEAM_SUMMONED)
+		cult.die()
+	. = ..()
+
 /obj/structure/destructible/hog_structure/lance/nexus/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(.)
@@ -41,7 +46,21 @@
 
 /obj/structure/destructible/hog_structure/lance/nexus/proc/Sex()
 	if(progress == BREAK_FREE_TIME)	
-		return /// Not coded yet!
+		max_integrity = INFINITY
+		cult.state = HOG_TEAM_SUMMONED
+		SSshuttle.emergencyCallTime = 1800
+		SSshuttle.emergency.request(null, 0.3)
+		SSshuttle.emergencyNoRecall = TRUE
+		SSticker.force_ending = TRUE
+		cult.message_all_dudes("<span class='cultlarge'><b>[god.name] has breaked into this plane! It is time to show those heretics, who's faith was true!</b></span>", TRUE)
+		to_chat(cult.god, span_cultlarge("You feel gaining more power then you ever have! It is now your time to..."))
+		send_to_playing_players(span_cultlarge("MY TIME HAS COME! PREPARE TO MEET YOUR FATE, HERETICS!"))
+		var/mob/camera/hog_god/goddie = cult.god
+		goddie.forceMove(get_turf(src))
+		var/mob/living/simple_animal/hostile/hog/free_god/dungeon_master = new(get_turf(src))
+		dungeon_master.cult = src.cult
+		god.mind.transfer_to(dungeon_master)
+		qdel(src)
 	progress += 1
 	priority_announce("Time untill the rituall completion - [progress] minutes.", \
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
