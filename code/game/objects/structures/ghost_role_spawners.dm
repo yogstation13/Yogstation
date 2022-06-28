@@ -638,6 +638,7 @@
 
 /obj/effect/mob_spawn/human/pirate/gunner
 	rank = "Gunner"
+	outfit = /datum/outfit/pirate/space/gunner
 
 //The Innkeeper, a iceplanet ghostrole for peacefully operating a rest stop complete with food and drinks.
 /obj/effect/mob_spawn/human/innkeeper

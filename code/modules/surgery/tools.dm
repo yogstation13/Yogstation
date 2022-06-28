@@ -12,6 +12,9 @@
 	tool_behaviour = TOOL_RETRACTOR
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/retractor/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/retractor/augment
 	name = "retractor"
@@ -45,6 +48,9 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "pinched")
 
+/obj/item/hemostat/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/hemostat/augment
 	name = "hemostat"
@@ -79,6 +85,9 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("burnt")
 
+/obj/item/cautery/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/cautery/augment
 	name = "cautery"
@@ -125,6 +134,9 @@
 	SSachievements.unlock_achievement(/datum/achievement/likearecord, user.client)
 	return (MANUAL_SUICIDE)
 
+/obj/item/surgicaldrill/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/surgicaldrill/augment
 	name = "surgical drill"
@@ -166,6 +178,10 @@
 /obj/item/scalpel/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
+
+/obj/item/scalpel/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/scalpel/augment
 	name = "scalpel"
@@ -222,6 +238,10 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
+/obj/item/circular_saw/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
+
 /obj/item/circular_saw/augment
 	name = "circular saw"
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
@@ -258,6 +278,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("corrected", "properly set")
 
+/obj/item/bonesetter/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
+
 /obj/item/bonesetter/bone
 	name = "bone bonesetter"
 	desc = "A bonesetter made of bones... for setting bones with... bones?"
@@ -276,7 +300,7 @@
 	attack_verb = list("slapped")
 
 /obj/item/surgical_drapes/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/surgical_drapes/goliath

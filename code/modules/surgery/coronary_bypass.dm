@@ -1,5 +1,8 @@
 /datum/surgery/coronary_bypass
 	name = "Coronary Bypass"
+	desc = "Restores the heart to a functional state if it is in a non-functional state, making it able to be defibrillated and sustain life. Can only be performed once on an individual heart."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "heart-off"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders,
 				 /datum/surgery_step/incise_heart, /datum/surgery_step/coronary_bypass, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)

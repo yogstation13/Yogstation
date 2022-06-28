@@ -1,4 +1,5 @@
 /datum/surgery/healing
+	icon = 'icons/obj/chemical.dmi'
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/heal,
 				/datum/surgery_step/close)
@@ -105,6 +106,7 @@
 /***************************BRUTE***************************/
 /datum/surgery/healing/brute
 	name = "Tend Wounds (Bruises)"
+	icon_state = "bandaid_brute"
 
 /datum/surgery/healing/brute/basic
 	name = "Tend Wounds (Bruises, Basic)"
@@ -170,6 +172,7 @@
 /***************************BURN***************************/
 /datum/surgery/healing/burn
 	name = "Tend Wounds (Burn)"
+	icon_state = "bandaid_burn"
 
 /datum/surgery/healing/burn/basic
 	name = "Tend Wounds (Burn, Basic)"
@@ -236,6 +239,7 @@
 
 /datum/surgery/healing/combo
 	name = "Tend Wounds (Mixture, Basic)"
+	icon_state = "bandaid_both"
 	replaced_by = /datum/surgery/healing/combo/upgraded
 	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/combo
