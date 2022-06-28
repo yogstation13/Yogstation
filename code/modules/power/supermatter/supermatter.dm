@@ -804,7 +804,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		)
 
 /obj/machinery/power/supermatter_crystal/proc/dust_mob(mob/living/nom, vis_msg, mob_msg, cause)
-	if(nom.incorporeal_move || nom.status_flags & GODMODE || HAS_TRAIT(user, TRAIT_SMIMMUNE))
+	if(nom.incorporeal_move || nom.status_flags & GODMODE || HAS_TRAIT(nom, TRAIT_SMIMMUNE))
 		return
 	if(!vis_msg)
 		vis_msg = span_danger("[nom] reaches out and touches [src], inducing a resonance... [nom.p_their()] body starts to glow and burst into flames before flashing into dust!")
@@ -910,7 +910,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	return TRUE
 
 /obj/machinery/power/supermatter_crystal/Bumped(atom/movable/AM)
-	if(isliving(AM) && !HAS_TRAIT(user, TRAIT_SMIMMUNE))
+	if(isliving(AM) && !HAS_TRAIT(AM, TRAIT_SMIMMUNE))
 		AM.visible_message(span_danger("\The [AM] slams into \the [src] inducing a resonance... [AM.p_their()] body starts to glow and burst into flames before flashing into dust!"),\
 		span_userdanger("You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),\
 		span_italics("You hear an unearthly noise as a wave of heat washes over you."))
@@ -921,7 +921,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		return
 
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
-	if(!HAS_TRAIT(user, TRAIT_SMIMMUNE))
+	if(!HAS_TRAIT(AM, TRAIT_SMIMMUNE))
 		Consume(AM)
 
 /obj/machinery/power/supermatter_crystal/proc/Consume(atom/movable/AM)
