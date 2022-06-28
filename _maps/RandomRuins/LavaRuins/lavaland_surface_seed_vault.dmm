@@ -5,11 +5,6 @@
 "b" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"c" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
 "d" = (
 /obj/structure/table/wood,
 /obj/item/lighter,
@@ -62,6 +57,7 @@
 /area/ruin/powered/seedvault)
 "k" = (
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/seed_vault,
 /obj/effect/spawner/lootdrop/seed_vault,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
@@ -123,8 +119,10 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "y" = (
-/obj/effect/spawner/lootdrop/seed_vault,
-/obj/structure/closet/crate,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "z" = (
@@ -144,19 +142,12 @@
 /area/ruin/powered/seedvault)
 "B" = (
 /obj/structure/disposalpipe/segment{
-	dir = 6
+	dir = 10
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "C" = (
 /obj/machinery/seed_extractor,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/powered/seedvault)
-"D" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "E" = (
@@ -173,6 +164,9 @@
 /obj/item/clothing/under/rank/hydroponics,
 /obj/item/clothing/under/rank/hydroponics,
 /obj/item/clothing/under/rank/hydroponics,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "H" = (
@@ -185,6 +179,7 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
+/obj/machinery/light,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "J" = (
@@ -235,11 +230,6 @@
 "V" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/r_wall,
-/area/ruin/powered/seedvault)
-"X" = (
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/light,
-/turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "Z" = (
 /obj/machinery/door/airlock,
@@ -354,8 +344,8 @@ h
 h
 u
 Q
-p
-p
+h
+h
 Q
 Q
 a
@@ -371,14 +361,14 @@ d
 h
 h
 Q
+O
 h
 h
-h
-h
+U
 Q
 h
 h
-p
+h
 Q
 a
 a
@@ -392,15 +382,15 @@ Q
 N
 h
 h
-Q
-O
+R
 h
 h
-U
+h
+y
 Q
 n
 h
-X
+U
 Q
 b
 b
@@ -422,7 +412,7 @@ B
 A
 F
 F
-c
+F
 V
 L
 b
@@ -437,14 +427,14 @@ f
 h
 h
 Q
+p
 h
-h
-h
-D
-Q
-C
 h
 p
+Q
+h
+h
+h
 Q
 P
 b
@@ -459,14 +449,14 @@ H
 h
 h
 Q
-h
-h
-h
-h
-R
+p
 h
 h
 p
+R
+h
+h
+h
 Q
 b
 b
@@ -481,14 +471,14 @@ E
 h
 h
 Q
-h
-h
-h
-h
-Q
+p
 h
 h
 p
+Q
+h
+h
+h
 Q
 b
 b
@@ -503,14 +493,14 @@ s
 h
 h
 Q
-O
+p
 h
 h
-U
+p
 Q
 h
 h
-X
+U
 Q
 b
 a
@@ -532,7 +522,7 @@ I
 Q
 h
 h
-p
+h
 Q
 b
 a
@@ -547,13 +537,13 @@ Q
 i
 i
 Q
-y
+C
 h
 h
 J
 Q
-p
-p
+h
+h
 Q
 Q
 b
