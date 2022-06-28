@@ -29,7 +29,7 @@
 	for (var/i = 1 to num_traitors)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_TRAITOR
 		M.mind.restricted_roles = restricted_roles
@@ -73,7 +73,7 @@
 		var/datum/team/brother_team/team = new
 		var/team_size = prob(10) ? min(3, candidates.len) : 2
 		for(var/k = 1 to team_size)
-			var/mob/bro = pick_n_take(candidates)
+			var/mob/bro = antag_pick(candidates)
 			assigned += bro.mind
 			team.add_member(bro.mind)
 			bro.mind.special_role = "brother"
@@ -116,7 +116,7 @@
 	for (var/i = 1 to num_changelings)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = ROLE_CHANGELING
@@ -155,7 +155,7 @@
 	for (var/i = 1 to num_ecult)
 		if(candidates.len <= 0)
 			break
-		var/mob/picked_candidate = pick_n_take(candidates)
+		var/mob/picked_candidate = antag_pick(candidates)
 		assigned += picked_candidate.mind
 		picked_candidate.mind.restricted_roles = restricted_roles
 		picked_candidate.mind.special_role = ROLE_HERETIC
@@ -203,7 +203,7 @@
 		return FALSE
 
 	mode.antags_rolled += 1
-	var/mob/M = pick_n_take(candidates)
+	var/mob/M = antag_pick(candidates)
 	if (M)
 		assigned += M.mind
 		M.mind.assigned_role = ROLE_WIZARD
@@ -247,7 +247,7 @@
 	for(var/cultists_number = 1 to cultists)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_CULTIST
 		M.mind.restricted_roles = restricted_roles
@@ -305,7 +305,7 @@
 	for(var/operatives_number = 1 to operatives)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		assigned += M.mind
 		M.mind.assigned_role = "Nuclear Operative"
 		M.mind.special_role = "Nuclear Operative"
@@ -389,7 +389,7 @@
 	for(var/i = 1 to max_candidates)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = antag_flag
@@ -537,7 +537,7 @@
 		starter_servants += round(number_players / 10)
 	starter_servants = min(starter_servants, 8)
 	for (var/i in 1 to starter_servants)
-		var/mob/servant = pick_n_take(candidates)
+		var/mob/servant = antag_pick(candidates)
 		assigned += servant.mind
 		servant.mind.assigned_role = ROLE_SERVANT_OF_RATVAR
 		servant.mind.special_role = ROLE_SERVANT_OF_RATVAR
@@ -653,7 +653,7 @@
 	for(var/j = 0, j < num_devils, j++)
 		if (!candidates.len)
 			break
-		var/mob/devil = pick_n_take(candidates)
+		var/mob/devil = antag_pick(candidates)
 		assigned += devil.mind
 		devil.mind.special_role = ROLE_DEVIL
 		devil.mind.restricted_roles = restricted_roles
@@ -708,7 +708,7 @@
 	for(var/j = 0, j < carriers_to_make, j++)
 		if (!candidates.len)
 			break
-		var/mob/carrier = pick_n_take(candidates)
+		var/mob/carrier = antag_pick(candidates)
 		assigned += carrier.mind
 		carrier.mind.special_role = "Monkey Leader"
 		carrier.mind.restricted_roles = restricted_roles
@@ -809,7 +809,7 @@
 	for(var/shadowling_number = 1 to shadowlings)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_SHADOWLING
 		M.mind.restricted_roles = restricted_roles
@@ -852,7 +852,7 @@
 	for (var/i = 1 to num_vampires)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_VAMPIRE
 		M.mind.restricted_roles = restricted_roles
@@ -889,7 +889,7 @@
 		return FALSE
 
 	for(var/i in antag_cap[indice_pop])
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		if (M)
 			assigned += M.mind
 			M.mind.assigned_role = ROLE_RAGINMAGES
@@ -953,7 +953,7 @@
 	for (var/i = 1 to num_darkspawn)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = antag_pick(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_DARKSPAWN
 		M.mind.restricted_roles = restricted_roles
@@ -990,7 +990,7 @@
 	for(var/i = 1 to num_bloodsuckers)
 		if(candidates.len <= 0)
 			break
-		var/mob/selected_mobs = pick_n_take(candidates)
+		var/mob/selected_mobs = antag_pick(candidates)
 		assigned += selected_mobs.mind
 		selected_mobs.mind.restricted_roles = restricted_roles
 		selected_mobs.mind.special_role = ROLE_BLOODSUCKER
