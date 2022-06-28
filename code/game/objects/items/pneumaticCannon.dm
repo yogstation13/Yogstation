@@ -36,7 +36,7 @@
 	var/spin_item = TRUE //Do the projectiles spin when launched?
 	trigger_guard = TRIGGER_GUARD_NORMAL
 	
-	var/list/blacklist_items = (
+	var/list/blacklist_items = list(
 		/obj/item/melee/baton,
 		/obj/item/melee/supermatter_sword
 		)
