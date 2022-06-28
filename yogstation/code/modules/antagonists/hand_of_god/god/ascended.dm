@@ -74,11 +74,11 @@
 /mob/living/simple_animal/hostile/hog/free_god/Process_Spacemove()
 	return TRUE
 
-/mob/living/simple_animal/hostile/hog/free_god/Death(gibbed)
+/mob/living/simple_animal/hostile/hog/free_god/death(gibbed)
 	if(!e)
 		to_chat(src, "<span class='cultlarge>NO NO NO I CAN'T DIE LIKE THIS</span>")
 		send_to_playing_players(span_cult("<b>\"<font size=6>YOU CAN'T STOP ME</font> <font size=5>I am </font> <font size=4>immortall </font> <font size=3>i will not die...</font> <font size=2>like this</font>\""))
-		sound_to_playing_players('sound/hallucinations/wail.ogg')
+		sound_to_playing_players('sound/machines/clockcult/ark_scream.ogg')
 		cult.die()
 		e = TRUE
 		dust()
