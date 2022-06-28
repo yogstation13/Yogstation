@@ -49,7 +49,7 @@
 			melee_damage_upper = 400  
 			attacktext = "tears into"              
 		else
-			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(target)
+			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
 			if(cultie && cultie.cult == src.cult)
 				if(prob(30))
 					to_chat(src,span_warning("Probably, attacking your fellow servants isn't the best idea.")) 
@@ -133,8 +133,16 @@
 			return FALSE
 		else if(cultie)
 			to_chat(user, "<span class='cult'>You crush [L] with your psionic power, but power of their heretical god protects them!</span>")
-			L.Knockdown(5 SECONDS)
+			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave crushing you into the floor!</span>")
+			L.emote("scream")
+			if(iscarbon(L))
+				L.Knockdown(5 SECONDS)
+			else
+				L.adjustBruteLoss(15)  ///More damage if not a carbon
 			L.adjustBruteLoss(35)
+		else
+			to_chat(user, "<span class='cult'>You crush [L] with your psionic power!</span>")
+			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave crushing you into the floor!</span>")			
 
 
 

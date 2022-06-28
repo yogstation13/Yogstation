@@ -34,7 +34,7 @@
 
 /obj/item/hog_item/upgradeable/sword/attack(mob/target, mob/living/carbon/user)
 	if(istype(target, /mob/living/simple_animal/hostile/free_god))
-		var/mob/living/simple_animal/free_god/goddie = target
+		var/mob/living/simple_animal/hostile/free_god/goddie = target
 		if(goddie.cult == src.cult)
 			return
 	. = ..()
