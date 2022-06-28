@@ -117,6 +117,6 @@
 		H = new(loca)
 		if(!istype(src, /turf/open/floor/hog))
 			H.name = "divine [name]"
-		H.change_hog_team(GOD.CULT)
+		H.change_hog_team(god.cult)
 		qdel(src)
 

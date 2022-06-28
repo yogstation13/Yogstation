@@ -41,18 +41,18 @@
 	attacktext = initial(attacktext)
 	var/mob/living/L = target
 	var/strike_down = FALSE
-		if(L)
-			if(istype(L, /mob/living/simple_animal/hostile/free_god))
-				if(L == src)
-					return ..()
-				melee_damage_lower = 400
-				melee_damage_upper = 400  
-				attacktext = "tears into"              
-		 else
+	if(L)
+		if(istype(L, /mob/living/simple_animal/hostile/free_god))
+			if(L == src)
+				return ..()
+			melee_damage_lower = 400
+			melee_damage_upper = 400  
+			attacktext = "tears into"              
+		else
 			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(target)
 			if(cultie && cultie.cult == src.cult)
 				if(prob(30))
-					to_chat(user,span_warning("Probably, attacking your fellow servants isn't the best idea.")) 
+					to_chat(src,span_warning("Probably, attacking your fellow servants isn't the best idea.")) 
 				melee_damage_lower = 10
 				melee_damage_upper = 15     
 				attacktext = "punishes"
@@ -89,7 +89,7 @@
 	invocation_type = "shout"
 	range = 7
 	cooldown_min = 20 SECONDS
-	ranged_mousepointer = 'icons/effects/mouse_pointers/mecha_mouse.dmi'
+	///ranged_mousepointer = 'icons/effects/mouse_pointers/mecha_mouse.dmi'
 	action_icon_state = "kinetic_crush"
 	active_msg = "You prepare to crush someone..."
 	deactive_msg = "You relax..."
@@ -124,7 +124,7 @@
 		return FALSE
 	if(!can_target(targets[1], user))
 		return FALSE
-	
+	var/datum/antagonist/hog/cultie2 = IS_HOG_CULTIST(user)	
 	if(isliving(targets[1]))
 		var/mob/living/L = targets[1]
 		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
