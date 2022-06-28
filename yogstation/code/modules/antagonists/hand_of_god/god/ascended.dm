@@ -23,7 +23,8 @@
 	layer = LARGE_MOB_LAYER
 	movement_type = FLYING
 	cultist_desc = "Your god and saviour!"
-	heretic_desc = "A heretical demon that defiles this world just with its presence. Strike it down!"
+	heretic_desc = "An ascended heretical demon that defiles this world just with its presence. Strike it down!"
+	var/e = FALSE
 
 /mob/living/simple_animal/hostile/hog/free_god/Initialize()
 	. = ..()
@@ -73,6 +74,16 @@
 /mob/living/simple_animal/hostile/hog/free_god/Process_Spacemove()
 	return TRUE
 
+/mob/living/simple_animal/hostile/hog/free_god/Death(gibbed)
+	if(!e)
+		to_chat(src, "<span class='cultlarge>NO NO NO I CAN'T DIE LIKE THIS</span>")
+		send_to_playing_players(span_cult("<b>\"<font size=6>YOU CAN'T STOP ME</font> <font size=5>I am </font> <font size=4>immortall </font> <font size=3>i will not die...</font> <font size=2>like this</font>\""))
+		sound_to_playing_players('sound/hallucinations/wail.ogg')
+		cult.die()
+		e = TRUE
+		dust()
+	. = ..()
+
 /obj/effect/proc_holder/spell/pointed/kinetic_crush
 	name = "Kinetic Crush"
 	desc = "Attack the target with your psionic power, tearing it into pieces if it isn't protected."
@@ -103,6 +114,9 @@
 		if(cultie && cultie.cult == cultie2.cult)
 			to_chat(user, "<span class='warning'>Crushing your loyal servants isn't the best idea!</span>")
 			return FALSE
+		if(L == user)
+			to_chat(user, "<span class='warning'>Crushing yourself isn't the best idea!</span>")
+			return FALSE
 	else if(ismecha(target))
 		var/obj/mecha/M = target 
 		if(M.occupant)
@@ -126,15 +140,19 @@
 		if(cultie && cultie.cult == cultie2.cult)
 			to_chat(user, "<span class='warning'>Crushing your loyal servants isn't the best idea!</span>")
 			return FALSE
-		else if(cultie || L.anti_magic_check()) ///Do you really think that just being a chaplain with a nullrod will save you from an angry god?
+		else if(cultie || L.anti_magic_check() || istype(L, /mob/living/simple_animal/hostile/hog)) ///Do you really think that just being a chaplain with a nullrod will save you from an angry god?
 			to_chat(user, "<span class='cult'>You crush [L] with your psionic power, but power of their heretical god lowers the damage!</span>")
 			to_chat(L, "<span class='userdanger'>You feel a powerfull psionic wave crushing you into the floor!</span>")
 			L.emote("scream")
+			var/dablage = 35
+
 			if(iscarbon(L))
 				L.Knockdown(5 SECONDS)
+			else if(istype(L, /mob/living/simple_animal/hostile/hog/free_god))
+				dablage = 525
 			else
-				L.adjustBruteLoss(15)  ///More damage if not a carbon
-			L.adjustBruteLoss(35)
+				dablage = 50  ///More damage if not a carbon
+			L.adjustBruteLoss(dablage)
 			return TRUE
 		else
 			to_chat(user, "<span class='cult'>You crush [L] with your psionic power!</span>")

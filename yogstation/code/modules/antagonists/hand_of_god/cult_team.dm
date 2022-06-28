@@ -93,6 +93,9 @@
 	research_projects -= research
 	qdel(research)
 
+/datum/team/hog_cult/proc/die()
+	return ///This will be coded later
+
 /datum/hog_research
 	var/levels = 0
 	var/max_level = 3
