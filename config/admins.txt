@@ -8,13 +8,13 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 
-AshCorr	=	Host
-Xantam	=	Host
+TheGamer01	=	Host
+TheGamer01	=	Host
  
-tehladyk = Council Member
-MenacingManatee = Council Member
-Num1bamf = Council Member
-adamsogm = Council Member
-zxmongoose = Council Member
+TheGamer01 = Council Member
+TheGamer01 = Council Member
+TheGamer01 = Council Member
+TheGamer01 = Council Member
+TheGamer01 = Council Member
  
-jamied12	=	Head Developer
+TheGamer01	=	Head Developer
