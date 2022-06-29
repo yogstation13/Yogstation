@@ -162,6 +162,9 @@
 			var/obj/item/gun/energy/EG = I
 			if(!EG.chambered)
 				EG.recharge_newshot() //try to reload a new shot.
+		else if (istype(I, /obj/item/gun/grenadelauncher/cyborg))
+			var/obj/item/gun/grenadelauncher/cyborg/GL = I
+			GL.reload()
 
 	R.toner = R.tonermax
 
@@ -359,17 +362,12 @@
 	hat_offset = -4
 
 /obj/item/robot_module/security
-	name = "Security"
+	name = "Controller"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
-		/obj/item/gun/energy/disabler/cyborg,
-		/obj/item/clothing/mask/gas/sechailer/cyborg,
-		/obj/item/wantedposterposter,
-		/obj/item/donutsynth,
-		/obj/item/barrier_taperoll/police)
-	radio_channels = list(RADIO_CHANNEL_SECURITY)
+		/obj/item/gun/grenadelauncher/cyborg)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/security,
 		/obj/item/clockwork/weapon/ratvarian_spear)

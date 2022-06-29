@@ -879,6 +879,7 @@
 /mob/living/silicon/robot/modules/security
 	set_module = /obj/item/robot_module/security
 	icon_state = "sec"
+	sensor_protection = TRUE // Controller cyborg is slowed, needs this to not instantly die in melee
 
 /mob/living/silicon/robot/modules/clown
 	set_module = /obj/item/robot_module/clown

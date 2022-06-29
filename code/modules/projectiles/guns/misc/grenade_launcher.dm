@@ -44,3 +44,11 @@
 	F.icon_state = initial(F.icon_state) + "_active"
 	playsound(user.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 	addtimer(CALLBACK(F, /obj/item/grenade.proc/prime), 15)
+
+/obj/item/gun/grenadelauncher/cyborg
+	name = "cyborg grenade launcher"
+	desc = "An integrated grenade launcher that fires tear gas grenades. Reload in a cyborg recharger."
+
+/obj/item/gun/grenadelauncher/cyborg/proc/reload()
+	if(grenades.len < max_grenades)
+		grenades += new /obj/item/grenade/chem_grenade/teargas(src)
