@@ -520,7 +520,7 @@
 	objectives += survive_objective
 
 	// Objective 1: Vassalize a Head/Command, or a specific target
-	var/list/possible_objectives = list(/datum/objective/bloodsucker/gourmand, datum/objective/bloodsucker/heartthief, /datum/objective/bloodsucker/leader)
+	var/list/possible_objectives = list(/datum/objective/bloodsucker/gourmand, /datum/objective/bloodsucker/heartthief, /datum/objective/bloodsucker/leader)
 	var/list/rolled_objectives = list()
 	for(var/i = 1; i <= 2; i++)
 		rolled_objectives += pick(possible_objectives)
