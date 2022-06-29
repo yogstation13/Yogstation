@@ -44,7 +44,6 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/has_announced = FALSE
 	var/basemodifier = 1
 
-
 /mob/camera/blob/Initialize(mapload, starting_points = 60, pointmodifier = 1)
 	validate_location()
 	blob_points = starting_points
@@ -187,7 +186,6 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			BM.overmind = null
 			BM.update_icons()
 	GLOB.overminds -= src
-	QDEL_LIST_ASSOC_VAL(strain_choices)
 
 	SSshuttle.clearHostileEnvironment(src)
 	STOP_PROCESSING(SSobj, src)
