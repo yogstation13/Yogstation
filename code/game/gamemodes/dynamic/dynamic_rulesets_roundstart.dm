@@ -410,7 +410,7 @@
 	if(revolution.members.len)
 		revolution.update_objectives()
 		revolution.update_heads()
-		SSshuttle.registerHostileEnvironment(revolution)
+		SSshuttle.registerHostileEnvironment(src)
 		return TRUE
 	log_game("DYNAMIC: [ruletype] [name] failed to get any eligible headrevs. Refunding [cost] threat.")
 	return FALSE
@@ -420,12 +420,30 @@
 	..()
 
 /datum/dynamic_ruleset/roundstart/revs/rule_process()
-	var/winner = revolution.process_victory(revs_win_threat_injection)
-	if (isnull(winner))
+	if(!revolution)
+		log_game("DYNAMIC: Something went horrifically wrong with [name] - and the antag datum could not be created. Notify coders.")
 		return
-
-	finished = winner
-	return RULESET_STOP_PROCESSING
+	if(check_rev_victory())
+		finished = REVOLUTION_VICTORY
+		return RULESET_STOP_PROCESSING
+	else if (check_heads_victory())
+		finished = STATION_VICTORY
+		SSshuttle.clearHostileEnvironment(src)
+		revolution.save_members()
+		for(var/datum/mind/M in revolution.members)	// Remove antag datums and prevents podcloned or exiled headrevs restarting rebellions.
+			if(M.has_antag_datum(/datum/antagonist/rev/head))
+				var/datum/antagonist/rev/head/R = M.has_antag_datum(/datum/antagonist/rev/head)
+				R.remove_revolutionary(FALSE, "gamemode")
+				if(M.current)
+					var/mob/living/carbon/C = M.current
+					if(istype(C) && C.stat == DEAD)
+						C.makeUncloneable()
+			if(M.has_antag_datum(/datum/antagonist/rev))
+				var/datum/antagonist/rev/R = M.has_antag_datum(/datum/antagonist/rev)
+				R.remove_revolutionary(FALSE, "gamemode")
+		priority_announce("It appears the mutiny has been quelled. Please return yourself and your incapacitated colleagues to work. \
+			We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, null, null, "Central Command Loyalty Monitoring Division")
+		return RULESET_STOP_PROCESSING
 
 /// Checks for revhead loss conditions and other antag datums.
 /datum/dynamic_ruleset/roundstart/revs/proc/check_eligible(var/datum/mind/M)
@@ -440,8 +458,27 @@
 	else
 		return ..()
 
+/datum/dynamic_ruleset/roundstart/revs/proc/check_rev_victory()
+	for(var/datum/objective/mutiny/objective in revolution.objectives)
+		if(!(objective.check_completion()))
+			return FALSE
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/revs/proc/check_heads_victory()
+	for(var/datum/mind/rev_mind in revolution.head_revolutionaries())
+		var/turf/T = get_turf(rev_mind.current)
+		if(!considered_afk(rev_mind) && considered_alive(rev_mind) && is_station_level(T.z))
+			if(ishuman(rev_mind.current) || ismonkey(rev_mind.current))
+				return FALSE
+	return TRUE
+
 /datum/dynamic_ruleset/roundstart/revs/round_result()
-	revolution.round_result(finished)
+	if(finished == REVOLUTION_VICTORY)
+		SSticker.mode_result = "win - heads killed"
+		SSticker.news_report = REVS_WIN
+	else if(finished == STATION_VICTORY)
+		SSticker.mode_result = "loss - rev heads killed"
+		SSticker.news_report = REVS_LOSE
 
 // Admin only rulesets. The threat requirement is 101 so it is not possible to roll them.
 
@@ -663,11 +700,9 @@
 	var/monkeys_to_win = 1
 	var/escaped_monkeys = 0
 	var/datum/team/monkey/monkey_team
-
 /datum/dynamic_ruleset/roundstart/monkey/pre_execute(population)
 	. = ..()
 	var/carriers_to_make = get_antag_cap(population) * (scaled_times + 1)
-
 	for(var/j = 0, j < carriers_to_make, j++)
 		if (!candidates.len)
 			break
@@ -677,14 +712,12 @@
 		carrier.mind.restricted_roles = restricted_roles
 		log_game("[key_name(carrier)] has been selected as a Jungle Fever carrier")
 	return TRUE
-
 /datum/dynamic_ruleset/roundstart/monkey/execute()
 	for(var/datum/mind/carrier in assigned)
 		var/datum/antagonist/monkey/M = add_monkey_leader(carrier)
 		if(M)
 			monkey_team = M.monkey_team
 	return TRUE
-
 /datum/dynamic_ruleset/roundstart/monkey/proc/check_monkey_victory()
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return FALSE
@@ -697,7 +730,6 @@
 		return TRUE
 	else
 		return FALSE
-
 // This does not get called. Look into making it work.
 /datum/dynamic_ruleset/roundstart/monkey/round_result()
 	if(check_monkey_victory())
