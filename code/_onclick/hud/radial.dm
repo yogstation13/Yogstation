@@ -211,20 +211,16 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			var/atom/movable/AM = choices_values[choice_id] //Movables only
 			E.name = AM.name
 
-		E.choice = choice_id
-		E.maptext = null
-		E.next_page = FALSE
-
 		if(choices_icons[choice_id])
 			E.add_overlay(choices_icons[choice_id])
 
-		if (choice_datums[choice_id])
-			var/datum/radial_menu_choice/choice_datum = choice_datums[choice_id]
-			if (choice_datum.info)
-				var/obj/effect/abstract/info/info_button = new(E, choice_datum.info)
-				info_button.layer = ABOVE_HUD_LAYER
-				E.vis_contents += info_button
+		var/datum/radial_menu_choice/choice_datum = choice_datums[choice_id]
+		if(choice_datum && istext(choice_datum.info))
+			E.desc = choice_datum.info
 
+		E.choice = choice_id
+		E.maptext = null
+		E.next_page = FALSE
 
 /datum/radial_menu/New()
 	close_button = new
