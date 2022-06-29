@@ -93,14 +93,14 @@
 
 /obj/screen/blob/ReadaptStrain
 	icon_state = "ui_chemswap"
-	name = "Readapt Strain"
+	name = "Readapt Strain (40)"
 	desc = "Allows you to choose a new strain from 4 random choices for 40 resources."
 
 /obj/screen/blob/ReadaptStrain/MouseEntered(location,control,params)
 	if(hud && hud.mymob && isovermind(hud.mymob))
 		var/mob/camera/blob/B = hud.mymob
 		if(B.free_strain_rerolls)
-			name = "[initial(name)] (FREE)"
+			name = "Readapt Strain (FREE)"
 			desc = "Randomly rerolls your strain for free."
 		else
 			name = "[initial(name)] ([BLOB_REROLL_COST])"
