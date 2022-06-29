@@ -244,7 +244,7 @@
 	if(overmind)
 		. += list("<b>Material: <font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font>[span_notice(".")]</b>",
 		"<b>Material Effects:</b> [span_notice("[overmind.blobstrain.analyzerdescdamage]")]",
-		"<b>Material Properties:</b> <span class='notice'>[overmind.blobstrain.analyzerdesceffect || "N/A"]</span>")
+		"<b>Material Properties:</b> [span_notice("[overmind.blobstrain.analyzerdesceffect]")]")
 	else
 		. += "<b>No Material Detected!</b>"
 
