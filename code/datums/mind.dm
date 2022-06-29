@@ -88,8 +88,6 @@
 	var/afk_verb_used = FALSE
 	/// The timer for the afk verb
 	var/afk_verb_timer
-	/// A lazy list of statuses to add next to this mind in the traitor panel
-	var/list/special_statuses
 
 /datum/mind/New(key)
 	src.key = key
