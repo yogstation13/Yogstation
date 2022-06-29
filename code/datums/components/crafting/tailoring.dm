@@ -368,7 +368,7 @@
 	result = /obj/item/clothing/suit/armor/elder_atmosian
 	time = 6 SECONDS
 	reqs = list(/obj/item/clothing/suit/armor/vest = 1,
-			/obj/item/stack/sheet/mineral/metal_hydrogen = 5)
+			/obj/item/stack/sheet/mineral/metal_hydrogen = 10)
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
 	
@@ -377,7 +377,7 @@
 	result = /obj/item/clothing/head/helmet/elder_atmosian
 	time = 6 SECONDS
 	reqs = list(/obj/item/clothing/head/helmet = 1,
-			/obj/item/stack/sheet/mineral/metal_hydrogen = 3)
+			/obj/item/stack/sheet/mineral/metal_hydrogen = 5)
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
 
