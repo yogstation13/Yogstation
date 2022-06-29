@@ -174,4 +174,4 @@
 
 	using = new /obj/screen/blob/RelocateCore()
 	using.screen_loc = ui_storage2
-	static_inventory += using 
+	static_inventory += using
