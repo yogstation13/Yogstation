@@ -700,9 +700,11 @@
 	var/monkeys_to_win = 1
 	var/escaped_monkeys = 0
 	var/datum/team/monkey/monkey_team
+
 /datum/dynamic_ruleset/roundstart/monkey/pre_execute(population)
 	. = ..()
 	var/carriers_to_make = get_antag_cap(population) * (scaled_times + 1)
+
 	for(var/j = 0, j < carriers_to_make, j++)
 		if (!candidates.len)
 			break
@@ -712,12 +714,14 @@
 		carrier.mind.restricted_roles = restricted_roles
 		log_game("[key_name(carrier)] has been selected as a Jungle Fever carrier")
 	return TRUE
+
 /datum/dynamic_ruleset/roundstart/monkey/execute()
 	for(var/datum/mind/carrier in assigned)
 		var/datum/antagonist/monkey/M = add_monkey_leader(carrier)
 		if(M)
 			monkey_team = M.monkey_team
 	return TRUE
+
 /datum/dynamic_ruleset/roundstart/monkey/proc/check_monkey_victory()
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return FALSE
@@ -730,6 +734,7 @@
 		return TRUE
 	else
 		return FALSE
+
 // This does not get called. Look into making it work.
 /datum/dynamic_ruleset/roundstart/monkey/round_result()
 	if(check_monkey_victory())
