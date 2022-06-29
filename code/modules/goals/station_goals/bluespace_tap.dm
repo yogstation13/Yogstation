@@ -86,10 +86,9 @@
 		/obj/item/grenade/clusterbuster/cleaner = 10,
 		/obj/item/grenade/clusterbuster/soap = 10,
 		/obj/item/toy/katana = 10,
-		/obj/item/stack/sheet/iron/twenty = 15,
+		/obj/item/stack/sheet/metal/twenty = 15,
 		/obj/item/stack/sheet/glass/fifty = 10,
-		/obj/item/stack/sheet/mineral/copper/twenty = 20,
-		/obj/item/sord = 20,
+	    /obj/item/sord = 20,
 		/obj/item/toy/syndicateballoon = 15,
 		/obj/item/lighter/greyscale = 5,
 		/obj/item/lighter = 5,
@@ -98,7 +97,7 @@
 		/obj/item/gun/ballistic/automatic/l6_saw/toy = 1,
 		/obj/item/gun/ballistic/shotgun/toy = 1,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 1,
-		/obj/item/dualsaber/toy = 5,
+		/obj/item/twohanded/dualsaber/toy = 5,
 		/obj/machinery/smoke_machine = 10,
 		/obj/item/clothing/head/kitty = 5,
 		/obj/item/coin/antagtoken = 5,
@@ -134,8 +133,8 @@
 		/obj/item/stack/sheet/mineral/bananium/five = 10,	//bananas are organic, clearly.
 		/obj/item/storage/box/monkeycubes = 5,
 		/obj/item/stack/tile/carpet/black/fifty = 10,
-		/obj/item/stack/tile/carpet/blue/thirtytwo = 10,
-		/obj/item/stack/tile/carpet/cyan/thirtytwo = 10,
+		/obj/item/stack/tile/carpet/blue/fifty = 10,
+		/obj/item/stack/tile/carpet/cyan/fifty = 10,
 		/obj/item/soap/deluxe = 5
 	)
 
@@ -143,8 +142,8 @@
 	name = "fancy food"
 	lootcount = 3
 	loot = list(
-		/obj/item/reagent_containers/food/snacks/burger/crab,
-		/obj/item/reagent_containers/food/snacks/crab_rangoon,
+		/obj/item/reagent_containers/food/snacks/burger/superbite,
+		/obj/item/reagent_containers/food/snacks/monkeycube/goat,
 		/obj/item/reagent_containers/food/snacks/scotchegg,
 		/obj/item/reagent_containers/food/snacks/pancakes/chocolatechip,
 		/obj/item/reagent_containers/food/snacks/carrotfries,
