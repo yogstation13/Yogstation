@@ -415,7 +415,7 @@
 	target_amount = rand(2,3)
 	..()
 
-// EXPLANATION
+// EXPLANATION 
 /datum/objective/bloodsucker/leader/update_explanation_text()
 	. = ..()
 	explanation_text = "Convert [target_amount] of Vassals into your vassals."
