@@ -70,8 +70,6 @@
 
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
 
-	/// Should this job be allowed to be picked for the bureaucratic error event?
-	var/allow_bureaucratic_error = TRUE
 
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
