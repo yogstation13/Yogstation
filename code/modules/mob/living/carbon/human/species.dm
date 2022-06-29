@@ -1469,7 +1469,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
 
-		var/targeted_zone = ran_zone(user.zone_selected, precise = TRUE)
+		var/targeted_zone = ran_zone(user.zone_selected)
 		var/obj/item/bodypart/affecting = target.get_bodypart(check_zone(targeted_zone))
 
 		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
