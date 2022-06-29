@@ -70,7 +70,6 @@
 
 	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
 
-
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
 	and add said map's name to the changed_maps list, like so:
