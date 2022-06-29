@@ -32,7 +32,8 @@
 		"External" = /obj/machinery/door/airlock/external,
 		"External Maintenance"= /obj/machinery/door/airlock/maintenance/external,
 		"Virology" = /obj/machinery/door/airlock/virology,
-		"Standard" = /obj/machinery/door/airlock
+		"Standard" = /obj/machinery/door/airlock,
+	    "Centcom"  = /obj/machinery/door/airlock/centcom
 	)
 
 /obj/item/airlock_painter/Initialize()
@@ -182,7 +183,28 @@
 			list("RAVEN6","RAVEN6"),
 			list("RAVEN7","RAVEN7"),
 			list("RAVEN8","RAVEN8"),
-			list("RAVEN9","RAVEN9"))
+			list("RAVEN9","RAVEN9"),
+			list("Animated Red Circuit","rcircuitanim"),
+	        list("Animated Green Circuit","gcircuitanim"),
+			list("Blue Circuit","bcircuit"),
+			list("Green Circuit","gcircuit"),
+			list("Red Circuit","rcircuit"),
+			list("Grimy","grimy"),
+			list("Chapel tile","chapel"),
+			list("Tile pink","pinkblack"),
+			list("Yellow tile","noslip"),
+			list("Recharge Station","recharge_floor"),
+		    list("Gaming tile","eighties"),
+			list("01010101","binary"),
+	        list("Alien tile","alienpod5"),
+            list("Wood tile","wood"),
+			list("Diamond","diamond"),
+			list("Gold","gold"),
+			list("Plasma","plasma"),
+			list("Silver","silver"),
+			list("Uranium","uranium"),
+			list("Dark tile","elevatorshaft"))
+			
 
 /obj/item/airlock_painter/decal/afterattack(atom/target, mob/user, proximity)
 	. = ..()
