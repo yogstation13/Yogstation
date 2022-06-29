@@ -222,3 +222,7 @@
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
 
+/datum/mood_event/cock_and_ball_torture
+	description = span_boldwarning("MY GROIN!!!\n")
+	mood_change = -9
+	timeout = 15 SECONDS
