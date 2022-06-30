@@ -17,7 +17,8 @@
 
 /obj/item/ammo_box/c38/trac
 	name = "speed loader (.38 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds deal lessened damage and stopping power, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is five minutes."
 	ammo_type = /obj/item/ammo_casing/c38/trac
 
 /obj/item/ammo_box/c38/hotshot

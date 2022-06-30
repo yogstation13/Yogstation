@@ -22,7 +22,8 @@
 
 /obj/item/projectile/bullet/c38/trac
 	name = ".38 TRAC bullet"
-	damage = 10
+	damage = 8
+	stamina = 25
 
 /obj/item/projectile/bullet/c38/trac/on_hit(atom/target, blocked = FALSE)
 	. = ..()
