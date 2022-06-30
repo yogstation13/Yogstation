@@ -253,7 +253,6 @@
 
 /obj/item/organ/heart/cybernetic/ipc
 	desc = "An electronic device that appears to mimic the functions of an organic heart."
-	dose_available = FALSE
 
 /obj/item/organ/heart/cybernetic/ipc/emp_act()
 	. = ..()
