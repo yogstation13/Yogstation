@@ -130,6 +130,12 @@
 	selfcharge = TRUE
 	charge_amount = 3
 
+/obj/item/gun/energy/e_gun/dragnet/cyborg/netting
+	name = "cyborg snare launcher"
+	desc = "An illegal DRAGnet capable of firing teleportation snares. Improper use may cause severe harm."
+	cantelly = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/net)
+
 /obj/item/gun/energy/e_gun/turret
 	name = "hybrid turret gun"
 	desc = "A heavy hybrid energy cannon with two settings: Stun and kill."

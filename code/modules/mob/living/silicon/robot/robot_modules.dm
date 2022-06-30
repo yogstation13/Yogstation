@@ -370,7 +370,7 @@
 		/obj/item/gun/energy/e_gun/dragnet/cyborg,
 		/obj/item/gun/grenadelauncher/cyborg,
 		/obj/item/holosign_creator/security/cyborg)
-	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
+	emag_modules = list(/obj/item/gun/energy/e_gun/dragnet/cyborg/netting)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/security,
 		/obj/item/clockwork/weapon/ratvarian_spear)
 	cyborg_base_icon = "sec"
