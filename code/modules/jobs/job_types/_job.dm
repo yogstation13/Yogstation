@@ -160,7 +160,7 @@
 	. = src.minimal_access.Copy()
 
 	if(!CONFIG_GET(flag/jobs_have_minimal_access)) // If we should give players extra access
-		. += src.access.Copy()
+		. |= src.access.Copy()
 
 	if(CONFIG_GET(flag/everyone_has_maint_access)) //Config has global maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
