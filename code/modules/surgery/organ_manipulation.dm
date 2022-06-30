@@ -97,7 +97,6 @@
 		if(istype(tool, /obj/item/organ/brain/positron))
 			var/obj/item/bodypart/affected = target.get_bodypart(check_zone(target_zone))
 			if(!affected)
-				to_chat(user, "<span class='notice'>Unaffected</span>")
 				return -1
 			if(affected.status != ORGAN_ROBOTIC)
 				to_chat(user, "<span class='notice'>You can't put [tool] into a meat enclosure!</span>")
