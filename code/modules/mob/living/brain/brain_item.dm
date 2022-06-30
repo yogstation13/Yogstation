@@ -256,14 +256,6 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 
-/obj/item/organ/brain/positron/Insert(mob/living/carbon/C, special = 0, drop_if_replaced = 0)
-	..()
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		if(H.dna?.species)
-				if(REVIVESBYHEALING in H.dna.species.species_traits)
-					if(H.health > 0 && !H.hellbound)
-						H.revive(0)
 /obj/item/organ/brain/positron/emp_act(severity)
 	switch(severity)
 		if(1)
