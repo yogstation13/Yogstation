@@ -254,8 +254,16 @@
 	status = ORGAN_ROBOTIC
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. In order for this Posibrain to be used as a newly built Positronic Brain, it must be coupled with an MMI."
 	icon = 'icons/obj/assemblies.dmi'
-	icon_state = "posibrain-occupied"
+	icon_state = "posibrain-ipc"
 
+/obj/item/organ/brain/positron/Insert(mob/living/carbon/C, special = 0, drop_if_replaced = 0)
+	..()
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		if(H.dna?.species)
+				if(REVIVESBYHEALING in H.dna.species.species_traits)
+					if(H.health > 0 && !H.hellbound)
+						H.revive(0)
 /obj/item/organ/brain/positron/emp_act(severity)
 	switch(severity)
 		if(1)

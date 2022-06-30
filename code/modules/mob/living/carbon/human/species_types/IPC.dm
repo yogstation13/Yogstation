@@ -2,11 +2,12 @@
 	name = "IPC" //inherited from the real species, for health scanners and things
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
-	sexes = 0
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOBLOOD,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,NOMOUTH, AGENDER) //all of these + whatever we inherit from the real species
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE)
+	sexes = FALSE
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,NOMOUTH)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	mutant_brain = /obj/item/organ/brain/positron
+	mutant_heart = /obj/item/organ/heart/cybernetic/ipc
 	mutanteyes = /obj/item/organ/eyes/robotic
 	mutanttongue = /obj/item/organ/tongue/robot
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
@@ -17,7 +18,7 @@
 	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
 	skinned_type = /obj/item/stack/sheet/metal{amount = 10}
-	exotic_blood = "oil"
+	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
 	burnmod = 2
@@ -33,8 +34,6 @@
 	allow_numbers_in_name = TRUE
 	deathsound = "sound/voice/borg_deathsound.ogg"
 	var/saved_screen //for saving the screen when they die
-	var/list/initial_species_traits //for getting these values back for assume_disguise()
-	var/list/initial_inherent_traits
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 
 	var/datum/action/innate/change_screen/change_screen
@@ -45,9 +44,14 @@
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/C) // Let's make that IPC actually robotic.
 	. = ..()
-	var/obj/item/organ/appendix/appendix = C.getorganslot("appendix") // Easiest way to remove it.
-	appendix.Remove(C)
-	QDEL_NULL(appendix)
+	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
+	if(A)
+		A.Remove(C)
+		QDEL_NULL(A)
+	var/obj/item/organ/lungs/L = C.getorganslot(ORGAN_SLOT_LUNGS)
+	if(L)
+		L.Remove(C)
+		QDEL_NULL(L)
 	if(ishuman(C) && !change_screen)
 		change_screen = new
 		change_screen.Grant(C)
@@ -60,11 +64,17 @@
 			C.dna.species.species_traits += MUTCOLORS
 		else if(MUTCOLORS in C.dna.species.species_traits)
 			C.dna.species.species_traits -= MUTCOLORS
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.physiology.bleed_mod *= 0.1
 
 datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	if(change_screen)
 		change_screen.Remove(C)
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		H.physiology.bleed_mod *= 10
 
 /datum/species/ipc/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
@@ -76,8 +86,12 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	saved_screen = C.dna.features["ipc_screen"]
 	C.dna.features["ipc_screen"] = "BSOD"
 	C.update_body()
-	sleep(3 SECONDS)
-	C.dna.features["ipc_screen"] = null // Turns off their monitor on death.
+	addtimer(CALLBACK(src, .proc/post_death, C), 5 SECONDS)
+
+/datum/species/ipc/proc/post_death(mob/living/carbon/C)
+	if(C.stat < DEAD)
+		return
+	C.dna.features["ipc_screen"] = null //Turns off screen on death
 	C.update_body()
 
 /datum/action/innate/change_screen
@@ -193,3 +207,11 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
 		return TRUE
 	return ..()
+
+/datum/species/ipc/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	if(H.health <= UNCONSCIOUS && H.stat != DEAD) // So they die eventually instead of being stuck in crit limbo.
+		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
+		if(prob(5))
+			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
+			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
