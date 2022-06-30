@@ -388,7 +388,7 @@ GENE SCANNER
 	if(M.tod && (M.stat == DEAD || ((HAS_TRAIT(M, TRAIT_FAKEDEATH)) && !advanced)))
 		to_chat(user, "[span_info("Time of Death:")] [M.tod]")
 		var/tdelta = round(world.time - M.timeofdeath)
-		if(tdelta < (DEFIB_TIME_LIMIT * 10))
+		if(tdelta < (DEFIB_TIME_LIMIT))
 			to_chat(user, span_danger("Subject died [DisplayTimeText(tdelta)] ago, defibrillation may be possible!"))
 
 	// Wounds

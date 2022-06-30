@@ -15,13 +15,13 @@
 	var/stasis_enabled = TRUE
 	var/last_stasis_sound = FALSE
 	var/stasis_can_toggle = 0
+	var/stasis_amount = -1
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
 	var/mob/living/carbon/human/patient = null
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/stasis/Initialize()
-	. = ..()
+/obj/machinery/stasis/ComponentInitialize()
 	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/machinery/stasis/examine(mob/user)
@@ -51,7 +51,7 @@
 /obj/machinery/stasis/Exited(atom/movable/AM, atom/newloc)
 	if(AM == occupant)
 		var/mob/living/L = AM
-		if(IS_IN_STASIS(L))
+		if(L.has_status_effect(STATUS_EFFECT_STASIS))
 			thaw_them(L)
 	. = ..()
 
@@ -98,7 +98,7 @@
 		return
 	var/freq = rand(24750, 26550)
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 2, frequency = freq)
-	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, stasis_amount)
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
@@ -129,11 +129,11 @@
 		return
 	var/mob/living/L_occupant = occupant
 	if(stasis_running())
-		if(!IS_IN_STASIS(L_occupant))
+		if(!L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 			chill_out(L_occupant)
 		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
 			L_occupant.adjustStaminaLoss(5)
-	else if(IS_IN_STASIS(L_occupant))
+	else if(L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 		thaw_them(L_occupant)
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)

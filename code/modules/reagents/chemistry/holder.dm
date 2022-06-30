@@ -59,7 +59,7 @@
 	var/atom/my_atom = null
 	/// Current temp of the holder volume
 	var/chem_temp = 150
-	/// unused
+	/// Used to check if the tick should be skipped cause of stasis
 	var/last_tick = 1
 	/// see [/datum/reagents/proc/metabolize] for usage
 	var/addiction_tick = 1
@@ -320,7 +320,7 @@
 		var/datum/reagent/R = reagent
 		if(QDELETED(R.holder))
 			continue
-		if(liverless && !R.self_consuming) //need to be metabolized
+		if((liverless || LIFETICK_SKIP(C, last_tick)) && !R.self_consuming) //need to be metabolized
 			continue
 		if(!C)
 			C = R.holder.my_atom
@@ -377,6 +377,7 @@
 		C.updatehealth()
 		C.update_mobility()
 		C.update_stamina()
+	last_tick++
 	update_total()
 
 /// Removes addiction to a specific reagent on [/datum/reagents/var/my_atom]
