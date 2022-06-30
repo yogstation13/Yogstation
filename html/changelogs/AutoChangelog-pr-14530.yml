@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Claymores are now baseline bulky, cannot block projectiles"
+  - tweak: "Bone sword now huge, less block chance"
+  - tweak: "All claymores in ruins are now unique items in code, have updated description, also damage/blockchance nerfed"
