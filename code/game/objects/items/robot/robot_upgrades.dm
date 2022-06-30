@@ -911,4 +911,13 @@
 	if(is_banned_from(R.ckey, "Security Officer"))
 		to_chat(user, span_warning("Nanotrasen has disallowed this unit from becoming this type of module."))
 		return FALSE
+	R.sensor_protection = TRUE
+	R.add_movespeed_modifier("CONTROLLER", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
+
+/obj/item/borg/upgrade/transform/security/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		R.sensor_protection = FALSE
+		if(R.has_movespeed_modifier("CONTROLLER"))
+			R.remove_movespeed_modifier("CONTROLLER")
