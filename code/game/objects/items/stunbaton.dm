@@ -362,7 +362,7 @@
 	force = 3
 	throwforce = 5
 	stunforce = 100
-	stamina_damage = 45
+	stamina_damage = 55
 	hitcost = 2000
 	throw_hit_chance = 10
 	slot_flags = ITEM_SLOT_BACK
