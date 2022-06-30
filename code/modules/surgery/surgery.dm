@@ -84,47 +84,39 @@
 	if(requires_tech)
 		. = FALSE
 
-	var/obj/item/healthanalyzer/advanced/adv = locate() in user.GetAllContents()
-
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/R = user
-		var/obj/item/healthanalyzer/advanced/SP = locate() in R.module.modules
-		if(!SP || (replaced_by in SP.advanced_surgeries))
-			return FALSE
-		if(type in SP.advanced_surgeries)
-			return TRUE
-	if(adv)
-		if((replaced_by in adv.advanced_surgeries))
-			return FALSE
-		if(type in adv.advanced_surgeries)
-			return TRUE
-
 	var/turf/T = get_turf(target)
+	var/list/adv_surgeries = list()
 
-	//Get the relevant operating computer
-	var/obj/machinery/computer/operating/opcomputer
-	var/obj/structure/table/optable/table = locate(/obj/structure/table/optable, T)
-	if(table?.computer)
-		opcomputer = table.computer
-	else
-		var/obj/machinery/stasis/the_stasis_bed = locate(/obj/machinery/stasis, T)
-		if(the_stasis_bed?.computer)
-			opcomputer = the_stasis_bed.computer
+	//Get the surgery bed component and adds available surgeries to the list
+	var/datum/component/surgery_bed/SB
+	for(var/obj/op_table in T.GetAllContents())
+		SB = op_table.GetComponent(/datum/component/surgery_bed)
+		if(istype(SB))
+			break
 
-	if(!opcomputer)
-		return
-	if(opcomputer.stat & (NOPOWER|BROKEN))
-		return .
-	if(replaced_by in opcomputer.advanced_surgeries)
+	if(istype(SB))
+		adv_surgeries |= SB.get_surgeries()
+
+	//Get the advanced health analyzer in the off had if available and adds available surgeries to the list
+	var/obj/item/healthanalyzer/advanced/adv = user.get_inactive_held_item()
+	if(iscyborg(user) && !istype(adv))
+		var/mob/living/silicon/robot/R = user
+		adv = locate() in R.module.modules
+
+	if(istype(adv))
+		adv_surgeries |= adv.advanced_surgeries
+
+	//Get the advanced health analyzer in the off had if available and adds available surgeries to the list
+	if(replaced_by in adv_surgeries)
 		return FALSE
-	if(type in opcomputer.advanced_surgeries)
+	if(type in adv_surgeries)
 		return TRUE
 
 /datum/surgery/proc/next_step(mob/user, intent)
 	if(location != user.zone_selected)
 		return FALSE
 	if(step_in_progress)
-		return 1
+		return TRUE
 
 	var/try_to_fail = FALSE
 	if(intent == INTENT_DISARM)
@@ -164,12 +156,11 @@
 	var/probability = 0.5
 	var/turf/T = get_turf(target)
 
-	if(locate(/obj/structure/table/optable, T) || locate(/obj/machinery/stasis, T))
-		probability = 1
-	else if(locate(/obj/structure/table, T))
-		probability = 0.8
-	else if(locate(/obj/structure/bed, T))
-		probability = 0.7
+	for(var/obj/op_table in T.GetAllContents())
+		var/datum/component/surgery_bed/SB = op_table.GetComponent(/datum/component/surgery_bed)
+		if(SB)
+			probability = SB.success_chance
+			break
 
 	return probability + success_multiplier
 
@@ -199,7 +190,7 @@
 	var/list/req_tech_surgeries = subtypesof(/datum/surgery)
 	for(var/i in req_tech_surgeries)
 		var/datum/surgery/beep = i
-		if(beep.requires_tech)
+		if(initial(beep.requires_tech))
 			surgeries += beep
 
 //INFO

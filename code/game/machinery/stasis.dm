@@ -22,11 +22,7 @@
 
 /obj/machinery/stasis/Initialize()
 	. = ..()
-	for(var/direction in GLOB.cardinals)
-		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
-		if(computer)
-			computer.sbed = src
-			break
+	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
@@ -120,23 +116,12 @@
 	if(stasis_running() && check_nap_violations())
 		chill_out(L)
 	update_icon()
-	check_patient()
-
-/obj/machinery/stasis/proc/check_patient()
-	var/mob/living/carbon/human/M = occupant
-	if(M)
-		patient = M
-		return TRUE
-	else
-		patient = null
-		return FALSE
 
 /obj/machinery/stasis/post_unbuckle_mob(mob/living/L)
 	thaw_them(L)
 	if(L == occupant)
 		occupant = null
 	update_icon()
-	check_patient()
 
 /obj/machinery/stasis/process()
 	if( !( occupant && isliving(occupant) && check_nap_violations() ) )

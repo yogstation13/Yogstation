@@ -485,6 +485,10 @@ GENE SCANNER
 		return TRUE
 	return
 
+/obj/item/healthanalyzer/advanced/debug/Initialize()
+	. = ..()
+	advanced_surgeries = subtypesof(/datum/surgery)
+
 /// Displays wounds with extended information on their status vs medscanners
 /proc/woundscan(mob/user, mob/living/carbon/patient, obj/item/healthanalyzer/wound/scanner)
 	if(!istype(patient))
