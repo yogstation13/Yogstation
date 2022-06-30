@@ -367,7 +367,8 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
-		/obj/item/gun/grenadelauncher/cyborg)
+		/obj/item/gun/grenadelauncher/cyborg,
+		/obj/item/holosign_creator/security/cyborg)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	ratvar_modules = list(/obj/item/clockwork/slab/cyborg/security,
 		/obj/item/clockwork/weapon/ratvarian_spear)

@@ -56,6 +56,12 @@
 	max_integrity = 20
 	var/allow_walk = 1 //can we pass through it on walk intent
 
+/obj/structure/holosign/barrier/reinforced
+	name = "durable holobarrier"
+	desc = "A durable holobarrier. Harder to destroy and cannot be passed through by walking."
+	max_integrity = 30
+	allow_walk = 0
+
 /obj/structure/holosign/barrier/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.)
