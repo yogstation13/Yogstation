@@ -6,6 +6,7 @@
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 10
 	var/obj/item/beacon/teletarget = null
+	var/cantelly = 1
 
 /obj/item/projectile/energy/net/Initialize()
 	. = ..()
@@ -13,14 +14,20 @@
 
 /obj/item/projectile/energy/net/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
-		var/turf/Tloc = get_turf(target)
-		if(!locate(/obj/effect/nettingportal) in Tloc)
-			new /obj/effect/nettingportal(Tloc, destination = teletarget)
+		if(cantelly)
+			var/turf/Tloc = get_turf(target)
+			if(!locate(/obj/effect/nettingportal) in Tloc)
+				new /obj/effect/nettingportal(Tloc, destination = teletarget)
 	..()
 
 /obj/item/projectile/energy/net/on_range()
 	do_sparks(1, TRUE, src)
 	..()
+
+/obj/item/projectile/energy/net/trip
+	name = "cyborg energy netting"
+	damage = 20
+	cantelly = 0
 
 /obj/effect/nettingportal
 	name = "DRAGnet teleportation field"

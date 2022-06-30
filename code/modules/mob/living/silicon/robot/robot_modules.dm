@@ -367,6 +367,7 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
+		/obj/item/gun/energy/e_gun/dragnet/cyborg,
 		/obj/item/gun/grenadelauncher/cyborg,
 		/obj/item/holosign_creator/security/cyborg)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)

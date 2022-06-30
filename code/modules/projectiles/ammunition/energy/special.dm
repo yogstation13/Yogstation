@@ -48,6 +48,11 @@
 	variance = 26
 	harmful = FALSE
 
+/obj/item/ammo_casing/energy/net/trip
+	projectile_type = /obj/item/projectile/energy/net/trip
+	e_cost = 350
+	select_name = "incapacitate"
+
 /obj/item/ammo_casing/energy/net/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
 	..()
 	if(loc && istype(loc, /obj/item/gun/energy/e_gun/dragnet))
