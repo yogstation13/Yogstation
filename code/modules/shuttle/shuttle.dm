@@ -31,6 +31,8 @@
 	///are we invisible to shuttle navigation computers?
 	var/hidden = FALSE
 
+	///Delete this port after ship fly off.
+	var/delete_after = FALSE
 
 	//these objects are indestructible
 /obj/docking_port/Destroy(force)
