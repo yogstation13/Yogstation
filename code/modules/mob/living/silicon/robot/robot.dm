@@ -876,8 +876,8 @@
 	set_module = /obj/item/robot_module/engineering
 	icon_state = "engineer"
 
-/mob/living/silicon/robot/modules/security
-	set_module = /obj/item/robot_module/security
+/mob/living/silicon/robot/modules/controller
+	set_module = /obj/item/robot_module/controller
 	icon_state = "sec"
 	sensor_protection = TRUE // Controller cyborg is slowed, needs this to not instantly die in melee
 

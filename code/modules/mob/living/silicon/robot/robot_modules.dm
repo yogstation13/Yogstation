@@ -361,7 +361,7 @@
 	magpulsing = TRUE
 	hat_offset = -4
 
-/obj/item/robot_module/security
+/obj/item/robot_module/controller
 	name = "Controller"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
@@ -419,7 +419,7 @@
 /obj/item/robot_module/peacekeeper/do_transform_animation()
 	..()
 	to_chat(loc, "<span class='userdanger'>Under ASIMOV, you are an enforcer of the PEACE and preventer of HUMAN HARM. \
-	You are not a controller module and you are expected to follow orders and prevent harm above all else. Space law means nothing to you.</span>")
+	You are expected to follow orders and prevent harm above all else. Space law means nothing to you.</span>")
 
 /obj/item/robot_module/janitor
 	name = "Janitor"

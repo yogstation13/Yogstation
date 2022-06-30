@@ -71,45 +71,46 @@
 	ammo_x_offset = 1
 	weapon_weight = WEAPON_MEDIUM
 	var/obj/item/beacon/teletarget = null
-	var/cantelly = 1
+	var/teleport_enabled = TRUE
 
 /obj/item/gun/energy/e_gun/dragnet/AltClick(mob/living/user) //stolen from hand teleporter code
-	if(cantelly)
-		var/turf/current_location = get_turf(user)//What turf is the user on?
-		var/area/current_area = current_location.loc
+	if(!teleport_enabled)
+		return FALSE
+	var/turf/current_location = get_turf(user)//What turf is the user on?
+	var/area/current_area = current_location.loc
+	if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
+		to_chat(user, span_notice("\The [src] isn't capable of locking a beacon from here."))
+		return
+	var/list/L = list(  )
+	for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
+		if(com.target)
+			var/area/A = get_area(com.target)
+			if(!A || A.noteleport)
+				continue
+			if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)
+				L["[get_area(com.target)] (Active)"] = com.target
+			else
+				L["[get_area(com.target)] (Inactive)"] = com.target
+	L["None (Dangerous)"] = null
+	var/t1 = input(user, "Please select a teleporter to lock in on.", "DRAGnet") as anything in L
+	if(user.incapacitated())
+		return
+	if(!L[t1])
+		teletarget = null
+		user.show_message(span_notice("Random teleport enabled."))
+	else
+		var/obj/item/beacon/T = L[t1]
+		var/area/A = get_area(T)
+		if(A.noteleport)
+			to_chat(user, span_notice("\The [src] is malfunctioning."))
+			return
+		current_location = get_turf(user)	//Recheck.
+		current_area = current_location.loc
 		if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
 			to_chat(user, span_notice("\The [src] isn't capable of locking a beacon from here."))
 			return
-		var/list/L = list(  )
-		for(var/obj/machinery/computer/teleporter/com in GLOB.machines)
-			if(com.target)
-				var/area/A = get_area(com.target)
-				if(!A || A.noteleport)
-					continue
-				if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)
-					L["[get_area(com.target)] (Active)"] = com.target
-				else
-					L["[get_area(com.target)] (Inactive)"] = com.target
-		L["None (Dangerous)"] = null
-		var/t1 = input(user, "Please select a teleporter to lock in on.", "DRAGnet") as anything in L
-		if(user.incapacitated())
-			return
-		if(!L[t1])
-			teletarget = null
-			user.show_message(span_notice("Random teleport enabled."))
-		else
-			var/obj/item/beacon/T = L[t1]
-			var/area/A = get_area(T)
-			if(A.noteleport)
-				to_chat(user, span_notice("\The [src] is malfunctioning."))
-				return
-			current_location = get_turf(user)	//Recheck.
-			current_area = current_location.loc
-			if(!current_location || current_area.noteleport || is_away_level(current_location.z) || !isturf(user.loc))//If turf was not found or they're on z level 2 or >7 which does not currently exist. or if user is not located on a turf
-				to_chat(user, span_notice("\The [src] isn't capable of locking a beacon from here."))
-				return
-			teletarget = T
-			user.show_message(span_notice("Locked In."), MSG_AUDIBLE)
+		teletarget = T
+		user.show_message(span_notice("Locked In."), MSG_AUDIBLE)
 
 /obj/item/gun/energy/e_gun/dragnet/proc/modify_projectile(obj/item/projectile/energy/net/N)
 	N.teletarget = teletarget
@@ -118,12 +119,12 @@
 	name = "Energy Snare Launcher"
 	desc = "Fires an energy snare that slows the target down."
 	ammo_type = list(/obj/item/ammo_casing/energy/trap)
-	cantelly = 0
+	teleport_enabled = FALSE
 
 /obj/item/gun/energy/e_gun/dragnet/cyborg
 	name = "cyborg TRIPnet launcher"
 	desc = "A modified DRAGnet capable of firing TRIPnets and energy snares. For safety reasons, the teleportation function has been removed."
-	cantelly = 0
+	teleport_enabled = FALSE
 	ammo_type = list(/obj/item/ammo_casing/energy/net/trip, /obj/item/ammo_casing/energy/trap)
 	charge_delay = 5
 	can_charge = FALSE
@@ -133,7 +134,7 @@
 /obj/item/gun/energy/e_gun/dragnet/cyborg/netting
 	name = "cyborg snare launcher"
 	desc = "An illegal DRAGnet capable of firing teleportation snares. Improper use may cause severe harm."
-	cantelly = 1
+	teleport_enabled = FALSE
 	ammo_type = list(/obj/item/ammo_casing/energy/net)
 
 /obj/item/gun/energy/e_gun/turret

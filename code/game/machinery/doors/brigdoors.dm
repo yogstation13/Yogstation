@@ -210,14 +210,13 @@
 	timer_duration = new_time
 
 /obj/machinery/door_timer/ui_interact(mob/user, datum/tgui/ui)
-	if (!issilicon(user))
-		ui = SStgui.try_update_ui(user, src, ui)
-		if(!ui)
-			ui = new(user, src, "BrigTimer", name)
-			ui.open()
-	else
+	if (issilicon(user))
 		to_chat(user, span_warning("You can't use this."))
 		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BrigTimer", name)
+		ui.open()
 
 //icon update function
 // if NOPOWER, display blank

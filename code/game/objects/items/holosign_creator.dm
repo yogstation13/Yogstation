@@ -78,7 +78,7 @@
 	name = "cyborg holobarrier projector"
 	desc = "Projects reinforced holobarriers that are impassable and tougher, at the cost of taking longer to project."
 	holosign_type = /obj/structure/holosign/barrier/reinforced
-	creation_time = 50
+	creation_time = 5 SECONDS
 	max_signs = 4
 
 /obj/item/holosign_creator/engineering

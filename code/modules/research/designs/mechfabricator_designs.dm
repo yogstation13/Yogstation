@@ -687,11 +687,11 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
-/datum/design/borg_transform_security
-	name = "Cyborg Upgrade (Security Module)"
-	id = "borg_transform_security"
+/datum/design/borg_transform_controller
+	name = "Cyborg Upgrade (Controller Module)"
+	id = "borg_transform_controller"
 	build_type = MECHFAB
-	build_path = /obj/item/borg/upgrade/transform/security
+	build_path = /obj/item/borg/upgrade/transform/controller
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 15000, /datum/material/uranium = 3000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")

@@ -115,37 +115,6 @@
 	if (.)
 		R.remove_movespeed_modifier("VTEC")
 
-/obj/item/borg/upgrade/disablercooler
-	name = "cyborg rapid disabler cooling module"
-//	desc = "Used to cool a mounted disabler, increasing the potential current in it and thus its recharge rate."
-	desc = "It used to give unspeakable power to security modules. Now it rests; broken, abandoned."
-	icon_state = "cyborg_upgrade3"
-	require_module = 1
-	module_type = /obj/item/robot_module/security
-	module_flags = BORG_MODULE_SECURITY
-
-/obj/item/borg/upgrade/disablercooler/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.module.modules
-		if(!T)
-			to_chat(user, span_notice("There's no disabler in this unit!"))
-			return FALSE
-		if(T.charge_delay <= 2)
-			to_chat(R, span_notice("A cooling unit is already installed!"))
-			to_chat(user, span_notice("There's no room for another cooling unit!"))
-			return FALSE
-
-		T.charge_delay = max(2 , T.charge_delay - 4)
-
-/obj/item/borg/upgrade/disablercooler/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		var/obj/item/gun/energy/disabler/cyborg/T = locate() in R.module.modules
-		if(!T)
-			return FALSE
-		T.charge_delay = initial(T.charge_delay)
-
 /obj/item/borg/upgrade/thrusters
 	name = "ion thruster upgrade"
 	desc = "An energy-operated thruster system for cyborgs."
@@ -898,13 +867,13 @@
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/clown
 
-/obj/item/borg/upgrade/transform/security
+/obj/item/borg/upgrade/transform/controller
 	name = "borg module picker (Controller)"
 	desc = "Allows you to turn a cyborg into a protector, DISPERSE!"
 	icon_state = "cyborg_upgrade3"
-	new_module = /obj/item/robot_module/security
+	new_module = /obj/item/robot_module/controller
 
-/obj/item/borg/upgrade/transform/security/action(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/transform/controller/action(mob/living/silicon/robot/R, user = usr)
 	if(CONFIG_GET(flag/disable_secborg))
 		to_chat(user, span_warning("Nanotrasen policy disallows the use of weapons of mass destruction."))
 		return FALSE
@@ -915,7 +884,7 @@
 	R.add_movespeed_modifier("CONTROLLER", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
 
-/obj/item/borg/upgrade/transform/security/deactivate(mob/living/silicon/robot/R, user = usr)
+/obj/item/borg/upgrade/transform/controller/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
 		R.sensor_protection = FALSE
