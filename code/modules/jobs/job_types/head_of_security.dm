@@ -20,8 +20,8 @@
 	outfit = /datum/outfit/job/hos
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
-	access = list(ACCESS_CAPTAIN)
-	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY,
+	added_access = list(ACCESS_CAPTAIN)
+	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY,
 			            ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_ATMOSPHERICS, // yogs - HoS needs same access as engineering armband
 			            ACCESS_RESEARCH, ACCESS_ENGINE, ACCESS_MINING, ACCESS_MEDICAL, ACCESS_CONSTRUCTION, ACCESS_MAILSORTING,
 			            ACCESS_HEADS, ACCESS_HOS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM, ACCESS_BRIG_PHYS) //Yogs: Gives HoS access to the brig physicians locker
@@ -34,8 +34,8 @@
 	changed_maps = list("YogsPubby")
 
 /datum/job/hos/proc/YogsPubbyChanges()
-	access += ACCESS_CREMATORIUM
-	minimal_access += ACCESS_CREMATORIUM
+	added_access |= ACCESS_CREMATORIUM
+	base_access |= ACCESS_CREMATORIUM
 
 /datum/outfit/job/hos
 	name = "Head of Security"

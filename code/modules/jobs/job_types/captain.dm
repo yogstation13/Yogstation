@@ -19,8 +19,8 @@
 
 	outfit = /datum/outfit/job/captain
 
-	access = list() 			//See get_access()
-	minimal_access = list() 	//See get_access()
+	added_access = list() 			//See get_access()
+	base_access = list() 	//See get_access()
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 

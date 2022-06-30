@@ -14,8 +14,8 @@
 
 	outfit = /datum/outfit/job/doctor
 
-	access = list(ACCESS_CHEMISTRY, ACCESS_GENETICS)
-	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_CHEMISTRY, ACCESS_GENETICS)
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING, ACCESS_MECH_MEDICAL, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 
@@ -32,8 +32,8 @@
 	selection_color = "#ffffff"
 	total_positions = 3
 	spawn_positions = 3
-	access = list()
-	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS)
+	added_access = list()
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS)
 	supervisors = "the captain and the head of personnel"
 
 /datum/outfit/job/doctor

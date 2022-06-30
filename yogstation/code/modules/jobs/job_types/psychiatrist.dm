@@ -14,8 +14,8 @@
 
 	minimal_character_age = 24 // "According to age statistics published by the Association of American Medical Colleges, the average age among medical students who matriculated at U.S. medical schools in the 2017-2018 school year was 24"
 
-	access = list()
-	minimal_access = list(ACCESS_MEDICAL)
+	added_access = list()
+	base_access = list(ACCESS_MEDICAL)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST

@@ -19,8 +19,8 @@
 
 	outfit = /datum/outfit/job/hop
 
-	access = list(ACCESS_CAPTAIN)
-	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_COURT, ACCESS_WEAPONS,
+	added_access = list(ACCESS_CAPTAIN)
+	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_COURT, ACCESS_WEAPONS,
 			            ACCESS_MEDICAL, ACCESS_ENGINE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_EVA, ACCESS_HEADS,
 			            ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR, ACCESS_CONSTRUCTION, ACCESS_MORGUE,
 			            ACCESS_CREMATORIUM, ACCESS_KITCHEN, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_QM, ACCESS_HYDROPONICS, ACCESS_LAWYER,
@@ -36,8 +36,8 @@
 	changed_maps = list("OmegaStation")
 
 /datum/job/hop/proc/OmegaStationChanges()
-	access = get_all_accesses()
-	minimal_access = get_all_accesses()
+	added_access = get_all_accesses()
+	base_access = get_all_accesses()
 
 /datum/outfit/job/hop
 	name = "Head of Personnel"
