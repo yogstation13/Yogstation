@@ -26,7 +26,7 @@
 
 /obj/item/projectile/energy/net/trip
 	name = "cyborg energy netting"
-	damage = 20
+	damage = 16
 	cantelly = 0
 
 /obj/effect/nettingportal
