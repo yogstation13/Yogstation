@@ -59,12 +59,12 @@
 	item_state = "spacepol"
 
 /obj/item/clothing/mask/gas/sechailer/cyborg
-	name = "security hailer"
-	desc = "A set of recognizable pre-recorded messages for cyborgs to use when apprehending criminals."
+	name = "cyborg verbal dissuasion tool"
+	desc = "A tool for cyborgs to use to dissuade criminals. Allows cyborg voice modulation, but cannot request backup."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorder_idle"
 	aggressiveness = 1 //Borgs are nicecurity!
-	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/dispatch)
+	actions_types = list(/datum/action/item_action/halt)
 
 /obj/item/clothing/mask/gas/sechailer/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
