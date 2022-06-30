@@ -346,8 +346,12 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	/// Required -- what to display for this button
 	var/image
 
-	/// If provided, will display an info button that will put this text in your chat
+	/// If provided, will display a tool tip with this text
 	var/info
+
+/datum/radial_menu_choice/New(_image, _info)
+	image = _image
+	info = _info
 
 /datum/radial_menu_choice/Destroy(force, ...)
 	. = ..()
