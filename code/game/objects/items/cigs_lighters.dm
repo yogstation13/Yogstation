@@ -86,6 +86,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			cig.attackby(src, user)
 		else
 			cig.light(span_notice("[user] holds [src] out for [M], and lights [cig]."))
+			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 	else
 		..()
 
@@ -289,6 +290,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			cig.attackby(src, user)
 		else
 			cig.light(span_notice("[user] holds the [name] out for [M], and lights [M.p_their()] [cig.name]."))
+			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 	else
 		return ..()
 
@@ -656,8 +658,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			if(fancy)
 				cig.light(span_rose("[user] whips the [name] out and holds it for [M]. [user.p_their(TRUE)] arm is as steady as the unflickering flame [user.p_they()] light[user.p_s()] \the [cig] with."))
+				playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 			else
 				cig.light(span_notice("[user] holds the [name] out for [M], and lights [M.p_their()] [cig.name]."))
+				playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 	else
 		..()
 
@@ -715,6 +719,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/lighter/greyscale/ignition_effect(atom/A, mob/user)
 	if(is_hot())
 		. = span_notice("After some fiddling, [user] manages to light [A] with [src].")
+		playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 
 
 /obj/item/lighter/slime
