@@ -94,7 +94,7 @@
 	if(.)
 		user.visible_message("<span class='danger'>\The [target] has been struck by \the [user]!</span>")
 		playsound(user.loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
-		target.stun_effect_act(0, 60, user.zone_selected)
+		target.apply_damage(70, STAMINA, BODY_ZONE_CHEST)
 		return TRUE
 
 /datum/psionic_power/coercion/spasm
@@ -120,9 +120,9 @@
 		to_chat(target, "<span class='danger'>The muscles in your arms cramp horrendously!</span>")
 		if(prob(75))
 			target.emote("scream")
-		if(prob(75) && target.l_hand && target.l_hand.simulated && target.unEquip(target.l_hand))
+		if(prob(75) && target.l_hand && target.unEquip(target.l_hand))
 			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their left hand spasms!</span>")
-		if(prob(75) && target.r_hand && target.r_hand.simulated && target.unEquip(target.r_hand))
+		if(prob(75) && target.r_hand && target.unEquip(target.r_hand))
 			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their right hand spasms!</span>")
 		return TRUE
 

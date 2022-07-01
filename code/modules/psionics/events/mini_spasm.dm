@@ -25,11 +25,11 @@
 	for(var/obj/item/radio/radio in GLOB.all_radios)
 		if(radio.on)
 			for(var/mob/living/victim in range(radio.canhear_range, radio.loc))
-				if(isnull(victims[victim]) && victim.stat == CONSCIOUS && !victim.ear_deaf)
+				if(isnull(victims[victim]) && victim.stat == CONSCIOUS && !HAS_TRAIT(victim, TRAIT_DEAF))
 					victims[victim] = radio
 	for(var/thing in victims)
 		var/mob/living/victim = thing
-		var/obj/item/device/radio/source = victims[victim]
+		var/obj/item/radio/source = victims[victim]
 		do_spasm(victim, source)
 
 /datum/round_event/minispasm/proc/do_spasm(var/mob/living/victim, var/obj/item/radio/source)
@@ -39,16 +39,18 @@
 		playsound(source, 'sound/creatures/narsie_rises.ogg', 75) //LOUD AS FUCK BOY
 		to_chat(victim, span_danger("A hauntingly familiar sound hisses from \icon[source] \the [source], and your vision flickers!"))
 		victim.psi.backblast(rand(5,15))
-		victim.Paralyse(5)
-		victim.make_jittery(100)
+		victim.Paralyze(5)
+		victim.Jitter(100)
 	else
-		to_chat(victim, span_danger("An indescribable, brain-tearing sound hisses from \icon[source] \the [source], and you collapse in a seizure!"))
-		victim.seizure()
+		victim.visible_message(span_danger("[victim] starts having a seizure!"), span_userdanger("An indescribable, brain-tearing sound hisses from \icon[source] \the [source], and you collapse in a seizure!"))
+		victim.Unconscious(200)
+		victim.Jitter(10)
+		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "minispasm", /datum/mood_event/epilepsy)
 		var/new_latencies = rand(2,4)
 		var/list/faculties = list(PSI_COERCION, PSI_REDACTION, PSI_ENERGISTICS, PSI_PSYCHOKINESIS)
 		for(var/i = 1 to new_latencies)
 			to_chat(victim, span_danger("<font size = 3>[pick(psi_operancy_messages)]</font>"))
-			victim.adjustBrainLoss(rand(10,20))
+			victim.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(10,20))
 			victim.set_psi_rank(pick_n_take(faculties), 1)
 			sleep(30)
 		victim.psi.update()

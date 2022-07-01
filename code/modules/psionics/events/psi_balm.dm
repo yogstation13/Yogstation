@@ -13,8 +13,8 @@
 	else if(psi.stamina < psi.max_stamina)
 		psi.stamina = min(psi.max_stamina, psi.stamina + rand(1,3))
 		soothed = TRUE
-	else if(psi.owner.getBrainLoss() > 0)
-		psi.owner.adjustBrainLoss(-1)
+	else if(psi.owner.getOrganLoss(ORGAN_SLOT_BRAIN) > 0)
+		psi.owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1)
 		soothed = TRUE
 	if(soothed && prob(10))
 		to_chat(psi.owner, span_notice("<i>[pick(balm_messages)]</i>"))

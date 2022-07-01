@@ -2,7 +2,7 @@
 	SEND_SOUND(owner, sound('sound/effects/psi/power_fail.ogg'))
 	if(LAZYLEN(manifested_items))
 		for(var/thing in manifested_items)
-			owner.drop_from_inventory(thing)
+			owner.dropItemToGround(thing)
 			qdel(thing)
 		manifested_items = null
 
@@ -81,14 +81,14 @@
 	if(prob(value*10)) owner.emote("scream")
 
 	// Your head asplode.
-	owner.adjustBrainLoss(value)
-	owner.adjustHalLoss(value * 25) //Ouch.
+	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, value)
+	//owner.adjustHalLoss(value * 25) //Ouch.
 	if(ishuman(owner))
 		var/mob/living/carbon/human/pop = owner
-		var/obj/item/organ/internal/brain/sponge = pop.internal_organs_by_name[ORGAN_SLOT_BRAIN]
-		if(sponge && sponge.damage >= sponge.max_damage)
+		var/obj/item/organ/brain/sponge = pop.getorganslot(ORGAN_SLOT_BRAIN)
+		if(sponge && pop.getOrganLoss(ORGAN_SLOT_BRAIN) >= sponge.maxHealth)
 			pop.ghostize()
-			sponge.Remove(sponge)
+			sponge.Remove(owner)
 			qdel(sponge)
 
 			/* Need to fix this later

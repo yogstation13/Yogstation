@@ -6,7 +6,7 @@
 			if(result) { \
 				power.handle_post_power(holder, target); \
 				if(istype(result)) { \
-					sound_to(holder, sound('sound/effects/psi/power_evoke.ogg')); \
+					holder.playsound_local(soundin = 'sound/effects/psi/power_evoke.ogg'); \
 					LAZYADD(holder.psi.manifested_items, result); \
 					holder.put_in_hands(result); \
 				} \
@@ -14,7 +14,6 @@
 			} \
 		} \
 	}
-
 /mob/living/UnarmedAttack(var/atom/A, var/proximity)
 	. = ..()
 	if(. && psi)
@@ -23,11 +22,6 @@
 /mob/living/RangedAttack(var/atom/A, var/params)
 	if(psi)
 		INVOKE_PSI_POWERS(src, psi.get_ranged_powers(SSpsi.faculties_by_intent[a_intent]), A, TRUE)
-	. = ..()
-
-/mob/living/proc/check_psi_grab(var/obj/item/grab/grab)
-	if(psi && ismob(grab.affecting))
-		INVOKE_PSI_POWERS(src, psi.get_grab_powers(SSpsi.faculties_by_intent[a_intent]), grab.affecting, FALSE)
 	. = ..()
 
 /mob/living/attack_empty_hand(var/bp_hand)

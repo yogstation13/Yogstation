@@ -86,8 +86,8 @@
 		else if(owner?.stat == UNCONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(3,5))
 
-	if(!owner.nervous_system_failure() && owner.stat == CONSCIOUS && stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
-		attempt_regeneration()
+//	if(!owner.nervous_system_failure() && owner.stat == CONSCIOUS && stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
+//		attempt_regeneration()
 
 	var/next_aura_size = max(0.1,((stamina/max_stamina)*min(3,rating))/5)
 	var/next_aura_alpha = round(((suppressed ? max(0,rating - 2) : rating)/5)*255)
@@ -109,7 +109,7 @@
 	var/heal_general =  FALSE
 	var/heal_poison =   FALSE
 	var/heal_internal = FALSE
-	var/heal_bleeding = FALSE
+//	var/heal_bleeding = FALSE
 	var/heal_rate =     0
 	var/mend_prob =     0
 
@@ -146,17 +146,13 @@
 
 		var/mob/living/carbon/human/H = owner
 
-		// Fix some pain.
-		if(heal_rate > 0)
-			H.shock_stage = max(0, H.shock_stage - max(1, round(heal_rate/2)))
-
 		// Mend internal damage.
 		if(prob(mend_prob))
-
+/*
 			// Fix our heart if we're paramount.
 			if(heal_general && H.is_asystole() && spend_power(heal_rate))
 				H.resuscitate()
-
+*/
 			// Heal organ damage.
 			if(heal_internal)
 				for(var/obj/item/organ/I in H.internal_organs)
@@ -165,7 +161,7 @@
 						continue
 
 					if(I.damage > 0 && spend_power(heal_rate))
-						I.damage = max(I.damage - heal_rate, 0)
+						I.applyOrganDamage(-heal_rate)
 						if(prob(25))
 							to_chat(H, span_notice("Your innards itch as your autoredactive faculty mends your [I.name]."))
 						return
@@ -209,10 +205,10 @@
 	// Heal radiation, cloneloss and poisoning.
 	if(heal_poison)
 
-		if(owner.total_radiation && spend_power(heal_rate))
+		if(owner.radiation && spend_power(heal_rate))
 			if(prob(25))
 				to_chat(owner, span_notice("Your autoredactive faculty repairs some of the radiation damage to your body."))
-			owner.total_radiation = max(0, owner.total_radiation - heal_rate)
+			owner.radiation = max(0, owner.radiation - heal_rate)
 			return
 
 		if(owner.getCloneLoss() && spend_power(heal_rate))

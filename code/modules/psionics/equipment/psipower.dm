@@ -1,9 +1,7 @@
 /obj/item/psychic_power
 	name = "psychic power"
 	icon = 'icons/obj/psychic_powers.dmi'
-	flags = 0
-	simulated = 1
-	anchored = 1
+	anchored = TRUE
 	var/maintain_cost = 3
 	var/mob/living/owner
 
@@ -22,12 +20,9 @@
 	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
 
-/obj/item/psychic_power/get_storage_cost()
-	return 5
-
 /obj/item/psychic_power/attack_self(var/mob/user)
-	sound_to(owner, 'sound/effects/psi/power_fail.ogg')
-	user.drop_from_inventory(src)
+	user.playsound_local(soundin = 'sound/effects/psi/power_fail.ogg')
+	user.dropItemToGround(src)
 
 /obj/item/psychic_power/dropped()
 	..()
@@ -36,16 +31,10 @@
 /obj/item/psychic_power/process()
 	if(istype(owner))
 		owner.psi.spend_power(maintain_cost)
-	if(!owner || loc != owner || (owner.l_hand != src && owner.r_hand != src))
+	if(!owner || loc != owner || !(src in owner.held_items))
 		if(istype(loc,/mob/living))
 			var/mob/living/carbon/human/host = loc
-			if(istype(host))
-				for(var/obj/item/organ/external/organ in host.organs)
-					for(var/obj/item/O in organ.implants)
-						if(O == src)
-							organ.implants -= src
-			host.pinned -= src
-			host.embedded -= src
-			host.drop_from_inventory(src)
+			host.remove_embedded_object(src)
+			host.dropItemToGround(src)
 		else
 			qdel(src)

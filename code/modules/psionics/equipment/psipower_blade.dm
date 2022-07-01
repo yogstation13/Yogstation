@@ -1,8 +1,7 @@
 /obj/item/psychic_power/psiblade
 	name = "psychokinetic slash"
 	force = 10
-	sharp = 1
-	edge = 1
+	sharpness = SHARP_EDGED
 	maintain_cost = 1
 	icon_state = "psiblade_short"
 	hitsound = 'sound/weapons/psisword.ogg'

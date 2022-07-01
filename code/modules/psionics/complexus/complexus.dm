@@ -37,9 +37,9 @@
 /datum/psi_complexus/proc/get_aura_image()
 	if(_aura_image && !istype(_aura_image))
 		var/atom/A = _aura_image
-		CRASH("Non-image found in psi complexus: \ref[A] - \the [A] - [istype(A) ? A.type : "non-atom"]")
 		destroy_aura_image(_aura_image)
 		_aura_image = null
+		CRASH("Non-image found in psi complexus: \ref[A] - \the [A] - [istype(A) ? A.type : "non-atom"]")
 	if(!_aura_image)
 		_aura_image = create_aura_image(owner)
 	return _aura_image
