@@ -17,8 +17,6 @@
 				return FALSE
 		if(istype(I, /obj/item/storage/box)) //no putting boxes back, sorry
 			return FALSE
-		if(istype(I, /obj/item/storage/backpack)) //stop eating everything in my bag
-			return FALSE
 		return TRUE
 		
 /obj/machinery/vending/wardrobe/sec_wardrobe
