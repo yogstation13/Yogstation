@@ -78,7 +78,6 @@ export const NtosSupermatterMonitorContent = (props, context) => {
                   // The threshold where enough radiation gets to the
                   // collectors to start generating power. Experimentally
                   // determined, because radiation waves are inscrutable.
-                  teal: [-Infinity, 320],
                   good: [320, 5000],
                   average: [5000, 7000],
                   bad: [7000, Infinity],
