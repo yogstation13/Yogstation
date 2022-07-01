@@ -33,13 +33,11 @@
 /obj/effect/proc_holder/spell/targeted/sling/InterceptClickOn(mob/living/caller, params, atom/t)
 	if(!isliving(t))
 		to_chat(caller, span_warning("You may only use this ability on living things!"))
-		revert_cast()
-		return
+		return FALSE
 	user = caller
 	target = t
 	if(!shadowling_check(user))
-		revert_cast()
-		return
+		return FALSE
 
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
