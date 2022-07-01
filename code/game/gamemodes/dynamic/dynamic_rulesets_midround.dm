@@ -167,7 +167,7 @@
 	name = "Syndicate Sleeper Agent"
 	antag_datum = /datum/antagonist/traitor
 	antag_flag = ROLE_TRAITOR
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
+	protected_roles = list("Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	required_candidates = 1
 	weight = 7
@@ -375,7 +375,7 @@
 	name = "Blob Infection"
 	antag_datum = /datum/antagonist/blob
 	antag_flag = ROLE_BLOB
-	protected_roles = list("Prisoner", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	protected_roles = list("Prisoner","Prisoner", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
@@ -508,7 +508,7 @@
 	name = "Vampire"
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
-	protected_roles = list("Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
+	protected_roles = list("Prisoner","Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
 	weight = 5
@@ -656,7 +656,7 @@
 	protected_roles = list(
 		"Captain", "Head of Personnel", "Head of Security",
 		"Warden", "Security Officer", "Detective", "Brig Physician",
-		"Curator"
+		"Prisoner","Curator"
 	)
 	restricted_roles = list("AI","Cyborg", "Positronic Brain")
 	required_candidates = 1

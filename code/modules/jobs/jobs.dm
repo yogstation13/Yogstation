@@ -45,6 +45,7 @@ GLOBAL_LIST_INIT(original_civilian_positions, list(
 	"Clown",
 	"Mime",
 	"Assistant",
+	"Prisoner",
 	"Clerk",
 	"Tourist",
 	"Artist"))

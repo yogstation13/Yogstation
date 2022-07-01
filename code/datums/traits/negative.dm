@@ -135,6 +135,8 @@
 				heirloom_type = pick(/obj/item/pen/fountain, /obj/item/storage/pill_bottle/dice)
 			if("Assistant")
 				heirloom_type = /obj/item/storage/toolbox/mechanical/old/heirloom
+			if("Prisoner")
+				heirloom_type = /obj/item/pen/blue
 			//Security/Command
 			if("Captain")
 				heirloom_type = /obj/item/reagent_containers/food/drinks/flask/gold
