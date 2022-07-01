@@ -1,213 +1,207 @@
-/datum/computer_file/program/supermatter_monitor
-	filename = "smmonitor"
-	filedesc = "Supermatter Monitoring"
-	category = PROGRAM_CATEGORY_ENGI
-	ui_header = "smmon_0.gif"
-	program_icon_state = "smmon_0"
-	extended_desc = "This program connects to specially calibrated supermatter sensors to provide information on the status of supermatter-based engines."
-	requires_ntnet = TRUE
-	transfer_access = ACCESS_ENGINE
-	network_destination = "supermatter monitoring system"
-	size = 5
-	tgui_id = "NtosSupermatterMonitor"
-	program_icon = "radiation"
-	alert_able = TRUE
+import { sortBy } from 'common/collections';
+import { flow } from 'common/fp';
+import { toFixed } from 'common/math';
+import { useBackend } from '../backend';
+import { Button, Flex, LabeledList, ProgressBar, Section, Table } from '../components';
+import { getGasColor, getGasLabel } from '../constants';
+import { NtosWindow } from '../layouts';
 
-	var/last_status = SUPERMATTER_INACTIVE
-	var/list/supermatters
-	var/obj/machinery/power/supermatter_crystal/active		// Currently selected supermatter crystal.
-	var/data_corrupted = FALSE //used for when supermatter corruptor is attached
+const logScale = value => Math.log2(16 + Math.max(0, value)) - 4;
 
-/datum/computer_file/program/supermatter_monitor/Destroy()
-	clear_signals()
-	active = null
-	return ..()
+export const NtosSupermatterMonitor = (props, context) => {
+  return (
+    <NtosWindow
+      width={600}
+      height={350}
+      resizable>
+      <NtosWindow.Content scrollable>
+        <NtosSupermatterMonitorContent />
+      </NtosWindow.Content>
+    </NtosWindow>
+  );
+};
 
-/datum/computer_file/program/supermatter_monitor/process_tick()
-	..()
-	var/new_status = get_status()
-	if(last_status != new_status)
-		last_status = new_status
-		ui_header = "smmon_[last_status].gif"
-		program_icon_state = "smmon_[last_status]"
-		if(istype(computer))
-			computer.update_icon()
+export const NtosSupermatterMonitorContent = (props, context) => {
+  const { act, data } = useBackend(context);
+  const {
+    active,
+    SM_integrity,
+    SM_power,
+    SM_radiation,
+    SM_ambienttemp,
+    SM_ambientpressure,
+    SM_moles,
+  } = data;
+  if (!active) {
+    return (
+      <SupermatterList />
+    );
+  }
+  const gases = flow([
+    gases => gases.filter(gas => gas.amount >= 0.01),
+    sortBy(gas => -gas.amount),
+  ])(data.gases || []);
+  const gasMaxAmount = Math.max(1, ...gases.map(gas => gas.amount));
+  return (
+    <Flex spacing={1}>
+      <Flex.Item width="270px">
+        <Section title="Metrics">
+          <LabeledList>
+            <LabeledList.Item label="Integrity">
+              <ProgressBar
+                value={SM_integrity / 100}
+                ranges={{
+                  good: [0.90, Infinity],
+                  average: [0.5, 0.90],
+                  bad: [-Infinity, 0.5],
+                }} />
+            </LabeledList.Item>
+            <LabeledList.Item label="Relative EER">
+              <ProgressBar
+                value={SM_power}
+                minValue={0}
+                maxValue={5000}
+                ranges={{
+                  good: [-Infinity, 5000],
+                  average: [5000, 7000],
+                  bad: [7000, Infinity],
+                }}>
+                {toFixed(SM_power) + ' MeV/cm3'}
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Item label="Radiation">
+              <ProgressBar
+                value={SM_radiation}
+                minValue={0}
+                maxValue={7000}
+                ranges={{
+                  // The threshold where enough radiation gets to the
+                  // collectors to start generating power. Experimentally
+                  // determined, because radiation waves are inscrutable.
+                  grey: [-Infinity, 320],
+                  good: [320, 5000],
+                  average: [5000, 7000],
+                  bad: [7000, Infinity],
+                }}>
+                {toFixed(SM_radiation) + ' Sv/h'}
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Item label="Temperature">
+              <ProgressBar
+                value={logScale(SM_ambienttemp)}
+                minValue={0}
+                maxValue={logScale(10000)}
+                ranges={{
+                  teal: [-Infinity, logScale(80)],
+                  good: [logScale(80), logScale(373)],
+                  average: [logScale(373), logScale(1000)],
+                  bad: [logScale(1000), Infinity],
+                }}>
+                {toFixed(SM_ambienttemp) + ' K'}
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Item label="Pressure">
+              <ProgressBar
+                value={logScale(SM_ambientpressure)}
+                minValue={0}
+                maxValue={logScale(50000)}
+                ranges={{
+                  good: [logScale(1), logScale(300)],
+                  average: [-Infinity, logScale(1000)],
+                  bad: [logScale(1000), +Infinity],
+                }}>
+                {toFixed(SM_ambientpressure) + ' kPa'}
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Item label="Total Moles">
+              <ProgressBar
+                value={logScale(SM_moles)}
+                minValue={0}
+                maxValue={logScale(50000)}
+                ranges={{
+                  good: [-Infinity, logScale(1800 * 0.75)],
+                  average: [
+                    logScale(1800 * 0.75),
+                    logScale(1800),
+                  ],
+                  bad: [logScale(1800), Infinity],
+                }}>
+                {toFixed(SM_moles) + ' moles'}
+              </ProgressBar>
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+      </Flex.Item>
+      <Flex.Item grow={1} basis={0}>
+        <Section
+          title="Gases"
+          buttons={(
+            <Button
+              icon="arrow-left"
+              content="Back"
+              onClick={() => act('PRG_clear')} />
+          )}>
+          <LabeledList>
+            {gases.map(gas => (
+              <LabeledList.Item
+                key={gas.name}
+                label={getGasLabel(gas.name)}>
+                <ProgressBar
+                  color={getGasColor(gas.name)}
+                  value={gas.amount}
+                  minValue={0}
+                  maxValue={gasMaxAmount}>
+                  {toFixed(gas.amount, 2) + '%'}
+                </ProgressBar>
+              </LabeledList.Item>
+            ))}
+          </LabeledList>
+        </Section>
+      </Flex.Item>
+    </Flex>
+  );
+};
 
-/datum/computer_file/program/supermatter_monitor/run_program(mob/living/user)
-	. = ..(user)
-	if(!(active in GLOB.machines))
-		active = null
-	refresh()
-
-/datum/computer_file/program/supermatter_monitor/kill_program(forced = FALSE)
-	supermatters = null
-	..()
-
-// Refreshes list of active supermatter crystals
-/datum/computer_file/program/supermatter_monitor/proc/refresh()
-	supermatters = list()
-	var/turf/T = get_turf(ui_host())
-	if(!T)
-		return
-	for(var/obj/machinery/power/supermatter_crystal/S in GLOB.machines)
-		// Delaminating, not within coverage, not on a tile.
-		if (!isturf(S.loc) || !(is_station_level(S.z) || is_mining_level(S.z) || S.z == T.z))
-			continue
-		supermatters.Add(S)
-
-	if(!(active in supermatters))
-		active = null
-
-/datum/computer_file/program/supermatter_monitor/proc/get_status()
-	. = SUPERMATTER_INACTIVE
-	for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
-		. = max(., S.get_status())
-
-/**
-  * Sets up the signal listener for Supermatter delaminations.
-  *
-  * Unregisters any old listners for SM delams, and then registers one for the SM refered
-  * to in the `active` variable. This proc is also used with no active SM to simply clear
-  * the signal and exit.
- */
-/datum/computer_file/program/supermatter_monitor/proc/set_signals()
-	if(active)
-		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_ALARM, .proc/send_alert, override = TRUE)
-		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_START_ALARM, .proc/send_start_alert, override = TRUE)
-
-/**
-  * Removes the signal listener for Supermatter delaminations from the selected supermatter.
-  *
-  * Pretty much does what it says.
- */
-/datum/computer_file/program/supermatter_monitor/proc/clear_signals()
-	if(active)
-		UnregisterSignal(active, COMSIG_SUPERMATTER_DELAM_ALARM)
-		UnregisterSignal(active, COMSIG_SUPERMATTER_DELAM_START_ALARM)
-
-/**
-  * Sends an SM delam alert to the computer.
-  *
-  * Triggered by a signal from the selected supermatter, this proc sends a notification
-  * to the computer if the program is either closed or minimized. We do not send these
-  * notifications to the comptuer if we're the active program, because engineers fixing
-  * the supermatter probably don't need constant beeping to distract them.
- */
-/datum/computer_file/program/supermatter_monitor/proc/send_alert()
-	if(!computer.get_ntnet_status())
-		return
-	if(computer.active_program != src)
-		computer.alert_call(src, "Crystal delamination in progress!")
-		alert_pending = TRUE
-
-/**
-  * Sends an SM delam start alert to the computer.
-  *
-  * Triggered by a signal from the selected supermatter at the start of a delamination,
-  * this proc sends a notification to the computer if this program is the active one.
-  * We do this so that people carrying a tablet with NT CIMS open but with the NTOS window
-  * closed will still get one audio alert. This is not sent to computers with the program
-  * minimized or closed to avoid double-notifications.
- */
-/datum/computer_file/program/supermatter_monitor/proc/send_start_alert()
-	if(!computer.get_ntnet_status())
-		return
-	if(computer.active_program == src)
-		computer.alert_call(src, "Crystal delamination in progress!")
-
-/datum/computer_file/program/supermatter_monitor/ui_data()
-	var/list/data = get_header_data()
-
-	if(istype(active))
-		var/turf/T = get_turf(active)
-		if(!T)
-			active = null
-			refresh()
-			return
-		var/datum/gas_mixture/air = T.return_air()
-		if(!air)
-			active = null
-			return
-		if(active.corruptor_attached)
-			data_corrupted = TRUE
-
-		data["active"] = TRUE
-		if(data_corrupted) //yes it goes negative, that's even more funny
-			data["SM_integrity"] = active.get_fake_integrity()
-			data["SM_power"] = active.power + round((rand()-0.5)*12000,1)
-			data["SM_radiation"] = active.last_rads + round((rand()-0.5)*12000,1)
-			data["SM_ambienttemp"] = air.return_temperature() + round((rand()-0.5)*20000,1)
-			data["SM_ambientpressure"] = air.return_pressure() + round((rand()-0.5)*15000,1)
-			data["SM_moles"] = air.total_moles() + round((rand()-0.5)*1800,1)
-		else
-			data["SM_integrity"] = active.get_integrity()
-			data["SM_power"] = active.power
-			data["SM_radiation"] = active.last_rads
-			data["SM_ambienttemp"] = air.return_temperature()
-			data["SM_ambientpressure"] = air.return_pressure()
-			data["SM_moles"] = air.total_moles()
-		//data["SM_EPR"] = round((air.total_moles / air.group_multiplier) / 23.1, 0.01)
-		var/list/gasdata = list()
-
-
-		if(air.total_moles())
-			for(var/gasid in air.get_gases())
-				if(data_corrupted)
-					gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = round(rand()*100,0.01))))
-				else
-					gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
-
-		else
-			for(var/gasid in air.get_gases())
-				gasdata.Add(list(list(
-					"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
-					"amount" = 0)))
-
-		data["gases"] = gasdata
-	else
-		var/list/SMS = list()
-		for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
-			var/area/A = get_area(S)
-			if(A)
-				if(S.corruptor_attached)
-					SMS.Add(list(list(
-					"area_name" = A.name,
-					"integrity" = S.get_fake_integrity(),
-					"uid" = S.uid
-					)))
-				else
-					SMS.Add(list(list(
-					"area_name" = A.name,
-					"integrity" = S.get_integrity(),
-					"uid" = S.uid
-					)))
-
-		data["active"] = FALSE
-		data["supermatters"] = SMS
-
-	return data
-
-/datum/computer_file/program/supermatter_monitor/ui_act(action, params)
-	if(..())
-		return TRUE
-	computer.play_interact_sound()
-
-	switch(action)
-		if("PRG_clear")
-			clear_signals()
-			active = null
-			return TRUE
-		if("PRG_refresh")
-			refresh()
-			return TRUE
-		if("PRG_set")
-			var/newuid = text2num(params["target"])
-			for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
-				if(S.uid == newuid)
-					active = S
-					set_signals()
-			return TRUE
+const SupermatterList = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { supermatters = [] } = data;
+  return (
+    <Section
+      title="Detected Supermatters"
+      buttons={(
+        <Button
+          icon="sync"
+          content="Refresh"
+          onClick={() => act('PRG_refresh')} />
+      )}>
+      <Table>
+        {supermatters.map(sm => (
+          <Table.Row key={sm.uid}>
+            <Table.Cell>
+              {sm.uid + '. ' + sm.area_name}
+            </Table.Cell>
+            <Table.Cell collapsing color="label">
+              Integrity:
+            </Table.Cell>
+            <Table.Cell collapsing width="120px">
+              <ProgressBar
+                value={sm.integrity / 100}
+                ranges={{
+                  good: [0.90, Infinity],
+                  average: [0.5, 0.90],
+                  bad: [-Infinity, 0.5],
+                }} />
+            </Table.Cell>
+            <Table.Cell collapsing>
+              <Button
+                content="Details"
+                onClick={() => act('PRG_set', {
+                  target: sm.uid,
+                })} />
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
+    </Section>
+  );
+};
