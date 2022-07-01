@@ -136,6 +136,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	/// Additonal power to add over time comes from sliver extraction(800) or consuming(200)
 	var/matter_power = 0
+	var/last_rads = 0
 
 	///How much the bullets damage should be multiplied by when it is added to the internal variables
 	var/config_bullet_energy = 2
@@ -499,7 +500,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(prob(50))
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
-			radiation_pulse(src, max((power * (1 + (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER))))) * radmodifier)) //Yogs addition, radmodifier
+			last_rads = max((power * (1 + (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER))))) * radmodifier) //Yogs addition, radmodifier
+			radiation_pulse(src, last_rads)
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
 			src.fire_nuclear_particle()			// Start to emit radballs at a maximum of 50% chance per tick
