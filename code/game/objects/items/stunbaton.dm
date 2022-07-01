@@ -178,7 +178,7 @@ GLOBAL_VAR_INIT(batons_upgraded, FALSE)
 			W.forceMove(src)
 			upgrade = W
 			if(GLOB.batons_upgraded == FALSE)
-				GLOB.batons_upgraded == TRUE
+				GLOB.batons_upgraded = TRUE
 				message_admins("Batons have been upgraded")
 				log_admin("Batons Upgrades")
 	else if(W.tool_behaviour == TOOL_CROWBAR)
