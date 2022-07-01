@@ -108,7 +108,7 @@
 				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 			var/backstab_dir = get_dir(user, L)
-			var/def_check = L.getarmor(type = "bomb")
+			var/def_check = L.getarmor(type = BOMB)
 			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
 				if(!QDELETED(C))
 					C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
@@ -132,7 +132,7 @@
 	nodamage = TRUE
 	damage = 0 //We're just here to mark people. This is still a melee weapon.
 	damage_type = BRUTE
-	flag = "bomb"
+	flag = BOMB
 	range = 6
 	log_override = TRUE
 	var/obj/item/twohanded/required/kinetic_crusher/hammer_synced
@@ -154,7 +154,7 @@
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
 		new /obj/effect/temp_visual/kinetic_blast(M)
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 	..()
 
 //trophies
@@ -422,7 +422,7 @@
 	bonus_value = 40
 
 /obj/item/crusher_trophy/malformed_bone/effect_desc()
-	return "mark detonation to have a <b>[bonus_value]</b>% chance to trigger a second detonation"
+	return "mark detonation to have a <b>[bonus_value]</b>% chance to mark nearby targets"
 
 /obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/required/kinetic_crusher/hammer_synced)
     if(hammer_synced)

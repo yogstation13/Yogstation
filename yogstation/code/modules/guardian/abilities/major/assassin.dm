@@ -23,7 +23,7 @@
 	guardian.do_temp_anchor = initial(guardian.do_temp_anchor)
 
 /datum/guardian_ability/major/assassin/Health(amount)
-	if(amount > 0)
+	if (amount > 0)
 		mode = FALSE
 		Mode(TRUE)
 
@@ -32,13 +32,13 @@
 	Mode(TRUE)
 
 /datum/guardian_ability/major/assassin/AfterAttack(atom/target)
-	if(mode && (isliving(target) || istype(target, /obj/structure/window) || istype(target, /obj/structure/grille)))
+	if (mode && (isliving(target) || istype(target, /obj/structure/window) || istype(target, /obj/structure/grille)))
 		mode = FALSE
 		Mode()
 
 /datum/guardian_ability/major/assassin/Mode(forced = FALSE)
-	if(mode)
-		if(next_stealth >= world.time)
+	if (mode)
+		if (next_stealth >= world.time)
 			to_chat(guardian, span_bolddanger("You cannot yet enter stealth, wait another [DisplayTimeText(next_stealth - world.time)]!"))
 			mode = FALSE
 			Mode()
@@ -59,21 +59,21 @@
 		guardian.environment_smash = initial(guardian.environment_smash)
 		guardian.alpha = initial(guardian.alpha)
 		master_stats.Apply(guardian)
-		if(!forced)
+		if (!forced)
 			guardian.visible_message(span_danger("[guardian] suddenly appears!"))
 			next_stealth = world.time + stealthcooldown
 			guardian.cooldown = world.time + 40
 		updatestealthalert()
 
 /datum/guardian_ability/major/assassin/proc/updatestealthalert()
-	if(next_stealth <= world.time)
-		if(mode)
-			if(!instealthalert)
+	if (next_stealth <= world.time)
+		if (mode)
+			if (!instealthalert)
 				instealthalert = guardian.throw_alert("instealth", /obj/screen/alert/instealth)
 				guardian.clear_alert("canstealth")
 				canstealthalert = null
 		else
-			if(!canstealthalert)
+			if (!canstealthalert)
 				canstealthalert = guardian.throw_alert("canstealth", /obj/screen/alert/canstealth)
 				guardian.clear_alert("instealth")
 				instealthalert = null

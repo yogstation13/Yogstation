@@ -38,7 +38,8 @@
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
-	belt = /obj/item/pda/toxins
+	pda_type = /obj/item/pda/toxins
+
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/scientist
 	uniform_skirt = /obj/item/clothing/under/rank/scientist/skirt

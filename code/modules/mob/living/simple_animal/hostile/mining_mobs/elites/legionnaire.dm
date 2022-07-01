@@ -24,6 +24,7 @@
 	icon_aggro = "legionnaire"
 	icon_dead = "legionnaire_dead"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "legionnaire"
 	maxHealth = 800
 	health = 800
 	melee_damage_lower = 30
@@ -112,7 +113,7 @@
 	var/turf/T = get_step(get_turf(src), move_dir)
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
-		M.gets_drilled()
+		M.attempt_drill()
 	if(T.density)
 		return
 	for(var/obj/structure/window/W in T.contents)

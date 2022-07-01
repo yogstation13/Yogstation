@@ -28,6 +28,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/obj/screen/ling/chems/lingchemdisplay
 	var/obj/screen/ling/sting/lingstingdisplay
 
+	var/obj/screen/bloodsucker/blood_counter/blood_display
+	var/obj/screen/bloodsucker/rank_counter/vamprank_display
+	var/obj/screen/bloodsucker/sunlight_counter/sunlight_display
+
 	var/obj/screen/blobpwrdisplay
 
 	var/obj/screen/alien_plasma_display

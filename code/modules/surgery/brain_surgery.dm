@@ -1,5 +1,8 @@
 /datum/surgery/brain_surgery
 	name = "Brain surgery"
+	desc = "This procedure cures all severe and basic traumas and reduces brain damage by a large amount. Failing to fix the brain causes hefty brain damage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "brain"
 	steps = list(
 	/datum/surgery_step/incise,
 	/datum/surgery_step/retract_skin,
@@ -15,7 +18,10 @@
 /datum/surgery_step/fix_brain
 	name = "fix brain"
 	implements = list(TOOL_HEMOSTAT = 85, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15) //don't worry, pouring some alcohol on their open brain will get that chance to 100
-	time = 120 //long and complicated
+	time = 12 SECONDS //long and complicated
+	preop_sound = 'sound/surgery/hemostat1.ogg'
+	success_sound = 'sound/surgery/hemostat1.ogg'
+	failure_sound = 'sound/surgery/organ2.ogg'
 	fuckup_damage = 20
 
 /datum/surgery/brain_surgery/can_start(mob/user, mob/living/carbon/target)

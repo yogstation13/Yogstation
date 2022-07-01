@@ -136,6 +136,16 @@
 	build_path = /obj/item/bikehorn/airhorn
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//HONK!
+	
+/datum/design/clownshot
+	name = "Clownshot Shell"
+	desc = "A tactical round used by the clown planet's finest soldiers."
+	id = "clownshot"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/bananium = 1000)
+	build_path = /obj/item/ammo_casing/shotgun/clownshot
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/mesons
 	name = "Optical Meson Scanners"
@@ -444,16 +454,16 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////////////////////////
-////////////////Armour///////////////////
+////////////////Armor///////////////////
 /////////////////////////////////////////
 
-/datum/design/reactive_armour
-	name = "Reactive Armour Shell"
-	desc = "An experimental suit of armour capable of utilizing an implanted anomaly core to protect the user."
-	id = "reactive_armour"
+/datum/design/reactive_armor
+	name = "Reactive Armor Shell"
+	desc = "An experimental suit of armor capable of utilizing an implanted anomaly core to protect the user."
+	id = "reactive_armor"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/diamond = 5000, /datum/material/uranium = 8000, /datum/material/silver = 4500, /datum/material/gold = 5000)
-	build_path = /obj/item/reactive_armour_shell
+	build_path = /obj/item/reactive_armor_shell
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 

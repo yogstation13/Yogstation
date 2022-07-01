@@ -10,13 +10,20 @@
 		if(legcuffed)
 			. += legcuffed.slowdown
 
-/mob/living/carbon/slip(knockdown_amount, obj/O, lube, paralyze, force_drop)
+/mob/living/carbon/slip(knockdown_amount, obj/O, lube, stun, force_drop)
 	if(movement_type & FLYING)
 		return 0
 	if(!(lube&SLIDE_ICE))
 		log_combat(src, (O ? O : get_turf(src)), "slipped on the", null, ((lube & SLIDE) ? "(LUBE)" : null))
-	return loc.handle_slip(src, knockdown_amount, O, lube, paralyze, force_drop)
-
+	. = ..()
+	var/wagging = FALSE
+	if(src.dna.species.is_wagging_tail())
+		wagging = TRUE
+	loc.handle_slip(src, knockdown_amount, O, lube, stun, force_drop)
+	if(wagging)
+		src.dna.species.start_wagging_tail(src)
+	return
+	
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
 	if(..())
 		return 1

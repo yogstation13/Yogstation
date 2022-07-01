@@ -5,8 +5,6 @@
  * lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
  */
 
-#define PAPER_FIELD "<span class=\"paper_field\"></span>"
-
 /datum/langtext // A datum to describe a piece of writing that stores a language value with it.
 	var/text = "" // The text that is written.
 	var/datum/language/lang // the language it's written in.
@@ -77,13 +75,13 @@
 	icon_state = "paper"
 
 
-/obj/item/paper/examine(mob/user)
+/obj/item/paper/examine(mob/user, force = FALSE)
 	. = ..()
 	var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/simple/paper)
 	assets.send(user)
 
-	if(in_range(user, src) || isobserver(user))
-		if(user.is_literate())
+	if(in_range(user, src) || isobserver(user) || force)
+		if(user.is_literate() || force)
 			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user)]<HR>[stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 		else
@@ -320,6 +318,27 @@
 		user.visible_message(span_danger("[user] lights [src] ablaze with [P]!"), span_danger("You light [src] on fire!"))
 		fire_act()
 
+	if(istype(P, /obj/item/paper) || istype(P, /obj/item/photo))
+		if (istype(P, /obj/item/paper/carbon))
+			var/obj/item/paper/carbon/C = P
+			if (!C.iscopy && !C.copied)
+				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
+				add_fingerprint(user)
+				return
+		var/obj/item/paper_bundle/B = new(src.loc)
+		if (name != "paper")
+			B.name = name
+		else if (P.name != "paper" && P.name != "photo")
+			B.name = P.name
+		user.dropItemToGround(P)
+		user.dropItemToGround(src)
+		user.put_in_hands(B)
+
+		to_chat(user, "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>")
+		src.loc = B
+		P.loc = B
+		B.amount = 2
+		B.update_icon()
 
 	add_fingerprint(user)
 
@@ -363,5 +382,3 @@
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"
 
-
-#undef PAPER_FIELD

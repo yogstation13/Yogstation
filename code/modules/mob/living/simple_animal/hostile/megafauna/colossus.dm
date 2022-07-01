@@ -31,6 +31,7 @@ Difficulty: Very Hard
 	icon_state = "eva"
 	icon_living = "eva"
 	icon_dead = ""
+	health_doll_icon = "eva"
 	friendly = "stares down"
 	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
 	speak_emote = list("roars")
@@ -703,6 +704,28 @@ Difficulty: Very Hard
 	remove_verb(src, /mob/verb/me_verb)
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.add_hud_to(src)
+	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/plants)
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/plants
+	name = "Seed Plants"
+	desc = "This spell seeds a random plant into the floor."
+	school = "conjuration"
+	charge_max = 200
+	clothes_req = FALSE
+	invocation = "none"
+	invocation_type = "none"
+	range = 0
+	summon_type = list(
+		/obj/structure/flora/ausbushes,
+		/obj/structure/flora/ausbushes/leafybush,
+		/obj/structure/flora/ausbushes/sunnybush,
+		/obj/structure/flora/ausbushes/lavendergrass,
+		/obj/structure/flora/ausbushes/ywflowers,
+		/obj/structure/flora/ausbushes/ppflowers,
+		/obj/structure/flora/ausbushes/fullgrass
+	)
+	action_icon = 'icons/mob/actions/actions_animal.dmi'
+	action_icon_state = "plant"
 
 /mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
 	. = ..()
@@ -734,7 +757,7 @@ Difficulty: Very Hard
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
-	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them."
+	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor."
 
 /obj/effect/mob_spawn/photogeist/Initialize()
 	. = ..()

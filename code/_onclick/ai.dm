@@ -43,11 +43,8 @@
 	if(!can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
-		message_admins("[ADMIN_LOOKUPFLW(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
-		log_admin("[key_name(src)] was kicked because they failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)])")
-		to_chat(src, span_reallybig("You have been automatically kicked because you clicked a turf you shouldn't have been able to see as an AI. You should reconnect automatically. If you do not, you can reconnect using the File --> Reconnect button."))
-		winset(usr, null, "command=.reconnect")
-		QDEL_IN(client, 3 SECONDS) //fallback if the reconnection doesnt work
+		message_admins("[ADMIN_LOOKUPFLW(src)] failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
+		log_admin("[key_name(src)] failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)])")
 		return
 
 	var/list/modifiers = params2list(params)

@@ -237,7 +237,7 @@
 	results = list(/datum/reagent/consumable/milk/swiss = 30)
 
 ////////////////////////////////////////////CHEESE////////////////////////////////////////////
-datum/chemical_reaction/american
+/datum/chemical_reaction/american
 	name = "American Cheese Block"
 	id = "americancheeseblock"
 	required_reagents = list(/datum/reagent/consumable/milk = 40)

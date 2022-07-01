@@ -172,7 +172,7 @@
 /turf/open/indestructible/grass
 	name = "grass patch"
 	desc = "Yep, it's grass."
-	icon_state = "grass"
+	icon_state = "grass1"
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_GRASS
@@ -262,6 +262,69 @@
 	clawfootstep = FOOTSTEP_WATER
 	heavyfootstep = FOOTSTEP_WATER
 
+/turf/open/floor/grass/fairy //like grass but fae-er
+	name = "fairygrass patch"
+	desc = "Something about this grass makes you want to frolic. Or get high."
+	icon_state = "fairygrass"
+	floor_tile = /obj/item/stack/tile/fairygrass
+	light_range = 2
+	light_power = 0.80
+	light_color = "#33CCFF"
+	color = "#33CCFF"
+
+/turf/open/floor/grass/fairy/white
+	name = "white fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/white
+	light_color = "#FFFFFF"
+	color = "#FFFFFF"
+
+/turf/open/floor/grass/fairy/red
+	name = "red fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/red
+	light_color = "#FF3333"
+	color = "#FF3333"
+
+/turf/open/floor/grass/fairy/yellow
+	name = "yellow fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/yellow
+	light_color = "#FFFF66"
+	color = "#FFFF66"
+
+/turf/open/floor/grass/fairy/green
+	name = "green fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/green
+	light_color = "#99FF99"
+	color = "#99FF99"
+
+/turf/open/floor/grass/fairy/blue
+	floor_tile = /obj/item/stack/tile/fairygrass/blue
+	name = "blue fairygrass patch"
+
+/turf/open/floor/grass/fairy/purple
+	name = "purple fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/purple
+	light_color = "#D966FF"
+	color = "#D966FF"
+
+/turf/open/floor/grass/fairy/pink
+	name = "pink fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/pink
+	light_color = "#FFB3DA"
+	color = "#FFB3DA"
+
+/turf/open/floor/grass/fairy/dark
+	name = "dark fairygrass patch"
+	floor_tile = /obj/item/stack/tile/fairygrass/dark
+	light_power = -0.15
+	light_range = 2
+	light_color = "#AAD84B"
+	color = "#53003f"
+
+/turf/open/floor/grass/fairy/Initialize()
+	. = ..()
+	icon_state = "fairygrass[rand(1,4)]"
+	update_icon()
+
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"
 	icon = 'icons/turf/boss_floors.dmi'
@@ -346,23 +409,84 @@
 
 /turf/open/indestructible/brazil
 	name = ".."
-	desc = "it hurts to look at it hurts to see it hurts to think it hurts it hurts it hurts."
+	desc = "..."
+
+/turf/open/indestructible/brazil/Entered()
+	..()
+	START_PROCESSING(SSfastprocess, src)
+
+/turf/open/indestructible/brazil/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	. = ..()
+
+/turf/open/indestructible/brazil/process()
+	if(!gtfo())
+		STOP_PROCESSING(SSfastprocess, src)
+
+///teleports people back to a safe station turf in case they somehow manage to end up here without the status effect
+/turf/open/indestructible/brazil/proc/gtfo()
+	. = FALSE
+	for(var/mob/living/L in src)
+		if(!L.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE))
+			. = TRUE
+			to_chat(L, span_velvet("Get out of here, stalker."))
+			var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
+			if(safe_turf)
+				L.forceMove(safe_turf)
+				flash_color(L, flash_color = "#000000", flash_time = 10)
+
+/turf/open/indestructible/brazil/space
 	icon = 'icons/turf/space.dmi'
 
-/turf/open/indestructible/brazil/Initialize(mapload)
+/turf/open/indestructible/brazil/space/Initialize(mapload)
 	. = ..()
 	icon_state = "[rand(1,25)]"
 	add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), FIXED_COLOUR_PRIORITY)
 
-/turf/open/indestructible/brazil/Enter(atom/movable/AM, atom/old_loc)
-	if(isliving(AM))
-		var/mob/living/L = AM
-		if(!L.has_status_effect(STATUS_EFFECT_HERETIC_SACRIFICE))
-			var/turf/open/floor/safe_turf = find_safe_turf(zlevels = 2)
-			if(safe_turf)
-				to_chat(L, span_warning("You're not supposed to be here..."))
-				do_teleport(AM, safe_turf , 0, channel = TELEPORT_CHANNEL_FREE)
-	return FALSE //don't forget, you're here forever
+/turf/open/indestructible/brazil/narsie
+	icon_state = "cult"
+
+/turf/open/indestructible/brazil/necropolis
+	icon_state = "necro1"
+
+/turf/open/indestructible/brazil/necropolis/Initialize()
+	. = ..()
+	if(prob(12))
+		icon_state = "necro[rand(2,3)]"
+
+/turf/open/indestructible/brazil/lostit
+	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
+	canSmoothWith = list(/turf/open/indestructible/brazil/lostit)
+	icon = 'yogstation/icons/turf/floors/ballpit_smooth.dmi'
+	icon_state = "smooth"
+
+/turf/open/indestructible/wiki
+	light_range = 2
+	light_power = 2
+
+/turf/open/indestructible/wiki/greenscreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "greenscreen"
+
+/turf/open/indestructible/wiki/bluescreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "bluescreen"
+
+/turf/open/indestructible/wiki/whitescreen
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "whitescreen"
+
+/turf/open/indestructible/wiki/greenscreen/border
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "greenborder"
+
+/turf/open/indestructible/wiki/title
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "title"
+
+/turf/open/indestructible/wiki/info
+	icon = 'yogstation/icons/turf/floors/wiki.dmi'
+	icon_state = "info"
 
 /turf/open/Initalize_Atmos(times_fired)
 	set_excited(FALSE)
@@ -414,7 +538,7 @@
 		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
+/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun_amount, force_drop)
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
@@ -441,11 +565,10 @@
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)
-			C.Paralyze(paralyze_amount)
+			C.Stun(stun_amount)
 			C.stop_pulling()
 		else
 			C.Knockdown(20)
-
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE

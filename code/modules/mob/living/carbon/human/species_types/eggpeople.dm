@@ -21,7 +21,7 @@
 	meat = /obj/item/reagent_containers/food/snacks/omelette
 	skinned_type = /obj/item/stack/sheet/animalhide/egg
 	exotic_blood = /datum/reagent/consumable/eggyolk
-	disliked_food = GROSS | DAIRY | EGG
+	disliked_food = GROSS | DAIRY | EGG | MICE
 	liked_food = MEAT // Eggpeople are carnivores.
 	screamsound = 'yogstation/sound/voice/eggperson/egg_scream.ogg' // (Hopefully) the sound of an egg cracking
 	species_language_holder = /datum/language_holder/egg

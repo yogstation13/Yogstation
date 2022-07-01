@@ -1,3 +1,13 @@
+#define PENANCE_LIFE "Lose your life (10 marbles)"
+#define PENANCE_SOUL "Lose your soul (14 marbles)"
+#define PENANCE_LIMB "Lose a limb (5 marbles)"
+#define PENANCE_SKELETON "Lose your flesh (1 marbles)"
+#define PENANCE_TRAUMA_ADV "Lose your mind (5 marbles)"
+#define PENANCE_TRAUMA_BASIC "Lose a smaller, but still important part of your mind (1 marbles)"
+#define TRAUMA_ADV_CAP 1
+#define TRAUMA_BASIC_CAP 3
+
+
 /obj/effect/eldritch
 	name = "Generic rune"
 	desc = "Weird combination of shapes and symbols etched into the floor itself. The indentation is filled with thick black tar-like fluid."
@@ -192,8 +202,11 @@
 	if(!ishuman(user))
 		return ..()
 	var/mob/living/carbon/human/human_user = user
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(IS_HERETIC(human_user))
-		to_chat(human_user,span_boldwarning("You know better than to tempt forces out of your control!"))
+		to_chat(human_user, span_boldwarning("You know better than to tempt forces out of your control!"))
+	if(IS_BLOODSUCKER(human_user) || bloodsuckerdatum.my_clan == CLAN_LASOMBRA)
+		to_chat(human_user, span_boldwarning("This shard has already been harvested!"))
 	else
 		var/obj/item/bodypart/arm = human_user.get_active_hand()
 		if(prob(25))
@@ -218,7 +231,7 @@
 			human_user.safe_throw_at(throwtarget, rand(1,20), 1, src, force = MOVE_FORCE_OVERPOWERING , quickstart = TRUE)
 			human_user.Shake(rand(-100,100), rand(-100,100), 110) //oh we are TOTALLY stacking these //turns out we are not in fact stacking these
 			to_chat(user, span_userdanger("[pick("I- I- I-", "NO-", "IT HURTS-", "GETOUTOFMYHEADGETOUTOFMY-", "<i>POD-</i>","<i>COVE-</i>", "AAAAAAAAA-")]"))
-			sleep(1.1) //Spooky flavor message spam
+			sleep(0.11 SECONDS) //Spooky flavor message spam
 		to_chat(user, span_cultbold("That was a really bad idea..."))
 		human_user.ghostize()
 		var/obj/item/bodypart/head/head = locate() in human_user.bodyparts
@@ -292,3 +305,182 @@
 	var/static/list/postfix = list("Flaw","Presence","Crack","Heat","Cold","Memory","Reminder","Breeze","Grasp","Sight","Whisper","Flow","Touch","Veil","Thought","Imperfection","Blemish","Blush")
 
 	name = pick(prefix) + " " + pick(postfix)
+
+
+/*
+ *
+ * brazil related statuses and effects
+ * used to create a "fun and intuitive gameplay" for people who get sacrificed by heretics
+ * and by that i mean they get to lose stuff
+ *
+ */
+
+/datum/status_effect/brazil_penance
+	id = "brazil_penance"
+	alert_type = /obj/screen/alert/status_effect/brazil_penance
+	///counts how close to escaping brazil the owner is
+	var/penance_left = 15
+	///sacrifices made to reduce penance_left, each is applied when leaving
+	var/list/penance_sources = list()
+	///list of limbs to do stuff to
+	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+
+/obj/screen/alert/status_effect/brazil_penance
+	name = "Otherworldly Tarrif"
+	desc = "The things of this place want something from you. You won't be able to leave until enough has been taken."
+	icon_state = "shadow_mend"
+
+/obj/screen/alert/status_effect/brazil_penance/MouseEntered(location,control,params)
+	desc = initial(desc)
+	var/datum/status_effect/brazil_penance/P = attached_effect
+	desc += "<br><font size=3><b>You currently need to sacrifice [P.penance_left] marbles to escape.</b></font>"
+	..()
+
+/datum/status_effect/brazil_penance/on_apply()
+	var/datum/effect_system/smoke_spread/S = new
+	S.set_up(1, get_turf(owner))
+	S.start()
+	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
+	owner.regenerate_organs()
+	owner.regenerate_limbs()
+	owner.grab_ghost()
+	owner.status_flags |= GODMODE //knowing how people treat the ninja dojo this is a necessary sacrifice
+	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
+	to_chat(owner, span_notice("You've come into posession of [penance_left] marbles. To escape, you will need to get rid of them."))
+	var/destination = pick(GLOB.brazil_reception)
+	owner.forceMove(get_turf(destination))
+	return TRUE
+
+/datum/status_effect/brazil_penance/tick()
+	if(penance_left <= 0)
+		apply_effects()
+		qdel(src)
+
+/datum/status_effect/brazil_penance/proc/apply_effects()
+	owner.status_flags &= ~GODMODE
+	var/mob/living/carbon/C = owner
+	for(var/P in penance_sources)
+		while(penance_sources[P])
+			switch(P)
+				if(PENANCE_SOUL)
+					owner.hellbound = TRUE
+					to_chat(owner, span_velvet("You feel a peculular emptiness..."))
+				if(PENANCE_LIMB)
+					var/obj/item/bodypart/BP
+					while(!BP)
+						if(!LAZYLEN(unspooked_limbs))
+							message_admins(span_notice("Someone managed to break brazil limb sacrificing stuff tell theos"))
+							break
+						var/target_zone = pick_n_take(unspooked_limbs)
+						BP = C.get_bodypart(target_zone)
+					C.visible_message(span_warning("[owner]'s [BP] suddenly disintegrates!"), span_warning("In a flash, your [BP] is torn from your body and disintegrates!"))
+					BP.dismember(BURN)
+				if(PENANCE_SKELETON)
+					var/obj/item/bodypart/BP
+					while(!BP || BP.species_id == "skeleton")
+						if(!LAZYLEN(unspooked_limbs))
+							message_admins(span_notice("Someone managed to break brazil limb sacrificing stuff tell theos"))
+							break
+						var/target_zone = pick_n_take(unspooked_limbs)
+						BP = C.get_bodypart(target_zone)
+					var/obj/item/bodypart/replacement_part = new BP.type
+					replacement_part.max_damage = 15
+					replacement_part.species_id = "skeleton"
+					replacement_part.original_owner = "inside"
+					replacement_part.replace_limb(owner)
+					C.visible_message(span_warning("The skin on [owner]'s [BP] suddenly melts off, revealing bone!"), span_warning("The skin and muscle on your [BP] is suddenly melted off!"))
+				if(PENANCE_TRAUMA_ADV)
+					C.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
+				if(PENANCE_TRAUMA_BASIC)
+					C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_SURGERY)
+				if(PENANCE_LIFE)
+					to_chat(owner, span_cultsmall("You feel the strange sensation of all your blood exiting your body."))
+					owner.blood_volume = 0
+					owner.death()
+			penance_sources[P] --
+			sleep(0.2 SECONDS)
+
+/datum/status_effect/brazil_penance/on_remove()
+	. = ..()
+	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of your death prior to entering that strange place.</span>")
+	owner.Unconscious(2 SECONDS, ignore_canstun = TRUE)
+	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
+	if(safe_turf)
+		owner.forceMove(safe_turf)
+
+/obj/effect/penance_giver
+	name = "code ing"
+	desc = "it takes your soul, and other stuff"
+	icon = 'icons/mob/triangle.dmi'
+	icon_state = "triangle"
+	///list of penance this can give with the amount of points they are worth
+	var/list/penance_given = list(PENANCE_LIFE = 10, PENANCE_SOUL = 14, PENANCE_LIMB = 5, PENANCE_SKELETON = 1, PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
+
+/obj/effect/penance_giver/attack_hand(mob/user)
+	..()
+	setDir(get_dir(src, user)) //look at the guy
+	var/mob/living/carbon/C = user
+	var/datum/status_effect/brazil_penance/ticket = C.has_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
+	if(!ticket)
+		return
+	var/loss = input("What will you offer?", "Lose") as null|anything in penance_given
+	if(!loss)
+		return
+	switch(loss) //check fail cases (soul/life can only be taken once and conflict, limb stuff requires existing limbs, etc)
+		if(PENANCE_LIFE, PENANCE_SOUL)
+			if(ticket.penance_sources[PENANCE_LIFE] || ticket.penance_sources[PENANCE_SOUL])
+				to_chat(user, span_warning("You can only die here once."))
+				return
+		if(PENANCE_LIMB, PENANCE_SKELETON)
+			var/available_parts = -(ticket.penance_sources[PENANCE_LIMB] + ticket.penance_sources[PENANCE_SKELETON]) //get all the current limb effecting penance
+			var/obj/item/bodypart/BP
+			for(var/target_zone in ticket.unspooked_limbs) //get all the current effectable limbs
+				BP = C.get_bodypart(target_zone)
+				if(BP) //these skeleton limbs are worse than normal ones and even surplus prosthetics so it doesnt matter if you have those
+					available_parts++
+			if(available_parts <= 0)
+				to_chat(user, span_warning("You've got no limbs to spare! Expendable limbs, that is."))
+				return
+		if(PENANCE_TRAUMA_ADV)
+			if(ticket.penance_sources[PENANCE_TRAUMA_ADV] == TRAUMA_ADV_CAP)
+				to_chat(user, span_warning("You've lost a rather large portion of your mind already. You need to find another way to lose your marbles."))
+				return
+		if(PENANCE_TRAUMA_BASIC)
+			if(ticket.penance_sources[PENANCE_TRAUMA_BASIC] == TRAUMA_BASIC_CAP)
+				to_chat(user, span_warning("You've lost enough bits of your mind already. You need to find another way to lose your marbles."))
+				return
+	ticket.penance_sources[loss]++
+	ticket.penance_left -= penance_given[loss]
+	to_chat(user, span_notice("[src] accepts [penance_given[loss]] of your marbles, you have [ticket.penance_left] marbles remaining.")) //better flavor text maybe idk
+
+/obj/effect/penance_giver/blood
+	name = "Bloody Construct"
+	desc = "This ominous construct will accept marbles in exchange for blood. Your blood of course."
+	icon = 'icons/obj/cult_large.dmi'
+	icon_state = "shell_narsie_active"
+	pixel_x = -16
+	pixel_y = -17
+	penance_given = list(PENANCE_LIFE = 10, PENANCE_LIMB = 5)
+
+/obj/effect/penance_giver/mind
+	name = "Headache"
+	desc = "A small, gaseous blob that makes your head pound as you approach it. It will accept your marbles." //get it you LOSe your mARlbeSe hehehahaeheahaeh
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "curseblob"
+	penance_given = list(PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
+
+/obj/effect/penance_giver/eldritch
+	name = "The Antipope of Hell"
+	desc = "This denizen of hell will accept your soul, and flesh, for your marbles."
+	icon = 'icons/mob/evilpope.dmi' //fun fact the pope's mask is off center on his north sprite and now you have to see it too
+	icon_state = "EvilPope"
+	penance_given = list(PENANCE_SOUL = 14, PENANCE_SKELETON = 1)
+
+#undef PENANCE_LIFE
+#undef PENANCE_SOUL
+#undef PENANCE_LIMB
+#undef PENANCE_SKELETON
+#undef PENANCE_TRAUMA_ADV
+#undef PENANCE_TRAUMA_BASIC
+#undef TRAUMA_ADV_CAP
+#undef TRAUMA_BASIC_CAP

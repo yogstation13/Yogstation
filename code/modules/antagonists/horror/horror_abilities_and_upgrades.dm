@@ -249,23 +249,23 @@
 		return
 
 	to_chat(owner, span_warning("You move your tentacles away from [B.victim] and begin to transfer to [C]..."))
-	var/delay = 20 SECONDS
+	var/delay = 30 SECONDS
 	var/silent
 	if(B.victim.pulling != C)
 		silent = TRUE
 	else
 		switch(B.victim.grab_state)
 			if(GRAB_PASSIVE)
-				delay = 10 SECONDS
+				delay = 20 SECONDS
 			if(GRAB_AGGRESSIVE)
-				delay = 5 SECONDS
+				delay = 10 SECONDS
 			if(GRAB_NECK)
-				delay = 3 SECONDS
+				delay = 5 SECONDS
 			else
-				delay = 1 SECONDS
+				delay = 3 SECONDS
 
 	transferring = TRUE
-	if(!do_after(B.victim, delay, target = C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
+	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
 		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return
@@ -337,7 +337,7 @@
 		for(var/turf/open/t in range(1, B))
 			if(prob(60) && B.Adjacent(t))
 				t.MakeSlippery(TURF_WET_LUBE, 100)
-		sleep(5)
+		sleep(0.5 SECONDS)
 		spins_remaining--
 		if(!B.can_use_ability())
 			return TRUE
@@ -366,7 +366,7 @@
 /datum/horror_upgrade/proc/apply_effects()
 	return
 
-//Upgrades the stun ability
+//Upgrades the knockdown ability
 /datum/horror_upgrade/paralysis
 	name = "Electrocharged tentacle"
 	id = "paralysis"
@@ -389,7 +389,7 @@
 	soul_price = 2
 
 /datum/horror_upgrade/chemical_regen/apply_effects()
-	B.chem_regen_rate += 2
+	B.chem_regen_rate += 3
 
 //Lets horror regenerate chemicals outside of a host
 /datum/horror_upgrade/nohost_regen
@@ -415,13 +415,6 @@
 /datum/horror_upgrade/hp_up/apply_effects()
 	B.health = round(min(B.maxHealth,B.health * 2))
 	B.maxHealth = round(B.maxHealth * 2)
-
-//Makes horror almost invisible for a short time after leaving a host
-/datum/horror_upgrade/invisibility
-	name = "Reflective fluids"
-	id = "invisible_exit"
-	desc = "You build up reflective solution inside host's brain. Upon exiting a host, you're briefly covered in it, rendering you near invisible for a few seconds. This mutation also makes the host unable to notice you exiting it directly."
-	soul_price = 2
 
 //Increases melee damage to 20
 /datum/horror_upgrade/dmg_up

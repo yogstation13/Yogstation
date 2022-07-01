@@ -224,7 +224,7 @@
 	name = "pirate hat or bandana spawner"
 	loot = list(
 		/obj/item/clothing/head/pirate = 1,
-		/obj/item/clothing/head/bandana = 1)
+		/obj/item/clothing/head/pirate/bandana = 1)
 
 /obj/effect/spawner/lootdrop/minor/twentyfive_percent_cyborg_mask
 	name = "25% cyborg mask spawner"
@@ -241,7 +241,10 @@
 				/obj/item/aiModule/core/full/hippocratic,
 				/obj/item/aiModule/core/full/paladin_devotion,
 				/obj/item/aiModule/core/full/paladin,
-				/obj/item/aiModule/core/full/mother
+				/obj/item/aiModule/core/full/chapai,
+				/obj/item/aiModule/core/full/silicop,
+				/obj/item/aiModule/core/full/mother,
+				/obj/item/aiModule/core/full/druid
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_neutral // These shouldn't allow the AI to start butchering people without reason
@@ -255,7 +258,13 @@
 				/obj/item/aiModule/core/full/robocop,
 				/obj/item/aiModule/core/full/liveandletlive,
 				/obj/item/aiModule/core/full/hulkamania,
-				/obj/item/aiModule/core/full/cowboy
+				/obj/item/aiModule/core/full/cowboy,
+				/obj/item/aiModule/core/full/metaexperiment,
+				/obj/item/aiModule/core/full/spotless,
+				/obj/item/aiModule/core/full/construction,
+				/obj/item/aiModule/core/full/researcher,
+				/obj/item/aiModule/core/full/clown,
+				/obj/item/aiModule/core/full/detective
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called
@@ -265,6 +274,7 @@
 				/obj/item/aiModule/core/full/balance,
 				/obj/item/aiModule/core/full/tyrant,
 				/obj/item/aiModule/core/full/thermurderdynamic,
+				/obj/item/aiModule/core/full/siliconcollective,
 				/obj/item/aiModule/core/full/damaged
 				)
 
@@ -356,6 +366,7 @@
 	name = "secure AI circuit board spawner"
 	loot = list(
 				/obj/item/circuitboard/computer/aiupload,
+				/obj/item/circuitboard/computer/ai_upload_download,
 				/obj/item/circuitboard/computer/borgupload
 				)
 

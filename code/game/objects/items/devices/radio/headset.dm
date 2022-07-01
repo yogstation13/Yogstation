@@ -127,6 +127,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "eng_headset"
 	keyslot = new /obj/item/encryptionkey/headset_eng
 
+/obj/item/radio/headset/headset_network
+	name = "network admins radio headset"
+	desc = "When the half-engineer half-scientist wishes to chat to people."
+	icon_state = "eng_headset"
+	keyslot = new /obj/item/encryptionkey/headset_net
+
 /obj/item/radio/headset/headset_rob
 	name = "robotics radio headset"
 	desc = "Made specifically for the roboticists, who cannot decide between departments."

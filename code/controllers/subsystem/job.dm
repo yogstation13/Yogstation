@@ -293,8 +293,6 @@ SUBSYSTEM_DEF(job)
 	if(SSticker.triai)
 		for(var/datum/job/ai/A in occupations)
 			A.spawn_positions = 3
-		for(var/obj/effect/landmark/start/ai/secondary/S in GLOB.start_landmarks_list)
-			S.latejoin_active = TRUE
 
 	//Get the players who are ready
 	for(var/mob/dead/new_player/player in GLOB.player_list)
@@ -555,50 +553,55 @@ SUBSYSTEM_DEF(job)
 		qdel(B)
 
 /datum/controller/subsystem/job/proc/random_bar_init()
-	var/list/player_box = list()
-	for(var/mob/H in GLOB.player_list)
-		if(H.client && H.client.prefs) // Prefs was null once and there was no bar
-			player_box += H.client.prefs.bar_choice
+	try
+		var/list/player_box = list()
+		for(var/mob/H in GLOB.player_list)
+			if(H.client && H.client.prefs) // Prefs was null once and there was no bar
+				player_box += H.client.prefs.bar_choice
 
-	var/choice
-	if(player_box.len == 0)
-		choice = "Random"
-	else
-		choice = pick(player_box)
-
-	if(choice != "Random")
-		var/bar_sanitize = FALSE
-		for(var/A in GLOB.potential_box_bars)
-			if(choice == A)
-				bar_sanitize = TRUE
-				break
-	
-		if(!bar_sanitize)
+		var/choice
+		if(player_box.len == 0)
 			choice = "Random"
-	
-	if(choice == "Random")
-		choice = pick(GLOB.potential_box_bars)
-	
-	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+		else
+			choice = pick(player_box)
 
-	if(isnull(template))
-		message_admins("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
-		log_game("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
-		for(var/backup_bar in GLOB.potential_box_bars)
-			template = SSmapping.station_room_templates[backup_bar]
-			if(!isnull(template))
-				break
-			message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
-			log_game("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+		if(choice != "Random")
+			var/bar_sanitize = FALSE
+			for(var/A in GLOB.potential_box_bars)
+				if(choice == A)
+					bar_sanitize = TRUE
+					break
+		
+			if(!bar_sanitize)
+				choice = "Random"
+		
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_bars)
 
-	if(isnull(template))
-		message_admins("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
-		log_game("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
-		return
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
 
-	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
-		template.load(B.loc, centered = FALSE)
-		qdel(B)
+		if(isnull(template))
+			message_admins("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			log_game("WARNING: BAR TEMPLATE [choice] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+			for(var/backup_bar in GLOB.potential_box_bars)
+				template = SSmapping.station_room_templates[backup_bar]
+				if(!isnull(template))
+					break
+				message_admins("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+				log_game("WARNING: BAR TEMPLATE [backup_bar] FAILED TO LOAD! ATTEMPTING TO LOAD BACKUP")
+
+		if(isnull(template))
+			message_admins("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
+			log_game("WARNING: BAR RECOVERY FAILED! THERE WILL BE NO BAR FOR THIS ROUND!")
+			return
+
+		for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN RANDOM_BAR_INIT")
+		spawn_bar()
+		throw e
 
 /proc/spawn_bar()
 	var/datum/map_template/template
@@ -721,7 +724,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/Recover()
 	set waitfor = FALSE
 	var/oldjobs = SSjob.occupations
-	sleep(20)
+	sleep(2 SECONDS)
 	for (var/datum/job/J in oldjobs)
 		INVOKE_ASYNC(src, .proc/RecoverJob, J)
 

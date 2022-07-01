@@ -231,9 +231,11 @@
 		death(FALSE)
 
 /mob/living/proc/suicide_log()
+	last_damage = "self-inflicted"
 	log_game("[key_name(src)] committed suicide at [AREACOORD(src)] as [src.type].")
 
 /mob/living/carbon/human/suicide_log()
+	last_damage = "self-inflicted"
 	log_game("[key_name(src)] (job: [src.job ? "[src.job]" : "None"]) committed suicide at [AREACOORD(src)].")
 
 //IS_IMPORTANT()

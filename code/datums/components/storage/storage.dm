@@ -215,7 +215,7 @@
 		return
 	var/datum/progressbar/progress = new(M, len, I.loc)
 	var/list/rejections = list()
-	while(do_after(M, 1 SECONDS, TRUE, parent, FALSE, CALLBACK(src, .proc/handle_mass_pickup, things, I.loc, rejections, progress)))
+	while(do_after(M, 1 SECONDS, parent, TRUE, FALSE, CALLBACK(src, .proc/handle_mass_pickup, things, I.loc, rejections, progress)))
 		stoplag(1)
 	qdel(progress)
 	to_chat(M, span_notice("You put everything you could [insert_preposition] [parent]."))
@@ -273,7 +273,7 @@
 	var/turf/T = get_turf(A)
 	var/list/things = contents()
 	var/datum/progressbar/progress = new(M, length(things), T)
-	while (do_after(M, 1 SECONDS, TRUE, T, FALSE, CALLBACK(src, .proc/mass_remove_from_storage, T, things, progress)))
+	while (do_after(M, 1 SECONDS, T, TRUE, FALSE, CALLBACK(src, .proc/mass_remove_from_storage, T, things, progress)))
 		stoplag(1)
 	qdel(progress)
 
@@ -540,6 +540,8 @@
 		if(!over_object)
 			return FALSE
 		if(ismecha(M.loc)) // stops inventory actions in a mech
+			return FALSE
+		if(ismouse(M) && (locate(/obj/structure/table) in get_turf(parent))) // Prevents mice using storages on tables
 			return FALSE
 		// this must come before the screen objects only block, dunno why it wasn't before
 		if(over_object == M)

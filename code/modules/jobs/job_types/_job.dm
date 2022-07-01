@@ -206,23 +206,24 @@
 	var/jobtype = null
 
 	uniform = /obj/item/clothing/under/color/grey
-	id = /obj/item/card/id
 	ears = /obj/item/radio/headset
-	belt = /obj/item/pda
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival
 
+	var/obj/item/id_type = /obj/item/card/id
+	var/obj/item/pda_type = /obj/item/pda
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
 	var/uniform_skirt = null
 
+	/// Which slot the PDA defaults to
 	var/pda_slot = SLOT_BELT
-	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
-	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
-	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
+
+	/// What shoes digitgrade crew should wear
+	var/digitigrade_shoes
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -246,13 +247,9 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
-	if(DIGITIGRADE in H.dna.species.species_traits)
-		if(IS_COMMAND(H)) // command gets snowflake shoes too.
-			shoes = alt_shoes_c
-		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") // Special shoes for sec and brig phys, roll first to avoid defaulting
-			shoes = alt_shoes_s
-		else if(find_job(H) == "Shaft Miner" || find_job(H) == "Mining Medic" || IS_ENGINEERING(H)) // Check to assign default digitigrade shoes to special cases
-			shoes = alt_shoes
+
+	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
+		shoes = digitigrade_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -262,7 +259,7 @@
 	if(!J)
 		J = SSjob.GetJob(H.job)
 
-	var/obj/item/card/id/C = H.wear_id
+	var/obj/item/card/id/C = new id_type()
 	if(istype(C))
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
@@ -271,10 +268,7 @@
 			C.assignment = H.mind.role_alt_title
 		else
 			C.assignment = J.title
-		if(H.mind?.assigned_role)
-			C.originalassignment = H.mind.assigned_role
-		else
-			C.originalassignment = J.title
+		C.originalassignment = J.title
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
@@ -286,14 +280,27 @@
 				break
 		H.sec_hud_set_ID()
 
-	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
+	var/obj/item/pda/PDA = new pda_type()
 	if(istype(PDA))
 		PDA.owner = H.real_name
 		if(H.mind?.role_alt_title)
 			PDA.ownjob = H.mind.role_alt_title
 		else
 			PDA.ownjob = J.title
+
+		if (H.id_in_pda)
+			PDA.InsertID(C)
+			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+		else // just in case you hate change
+			H.equip_to_slot_if_possible(PDA, pda_slot)
+			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+		
 		PDA.update_label()
+		PDA.update_icon()
+		PDA.update_filters()
+		
+	else
+		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
 
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()

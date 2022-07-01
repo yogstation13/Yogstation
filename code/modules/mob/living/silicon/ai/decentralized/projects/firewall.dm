@@ -1,7 +1,7 @@
 /datum/ai_project/firewall
 	name = "Download Firewall"
 	description = "By hiding your various functions you should be able to prolong the time it takes to download your consciousness by 2x."
-	research_cost = 1000
+	research_cost = 1500
 	ram_required = 2
 	research_requirements_text = "None"
 	category = AI_PROJECT_MISC

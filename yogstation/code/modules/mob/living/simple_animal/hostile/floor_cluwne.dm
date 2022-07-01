@@ -132,6 +132,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	else
 		walk_to(src,0)
 
+/mob/living/simple_animal/hostile/floor_cluwne/mob_negates_gravity()
+	return TRUE
 
 /mob/living/simple_animal/hostile/floor_cluwne/FindTarget()
 	return current_victim
@@ -153,13 +155,30 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return FALSE
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Found_You()
+	var/foundVictim = FALSE
+	
 	for(var/obj/structure/closet/hiding_spot in orange(7,src))
 		if(current_victim.loc == hiding_spot)
 			hiding_spot.bust_open()
-			current_victim.Paralyze(40)
 			to_chat(current_victim, span_warning("...edih t'nac uoY"))
-			return TRUE
-	return FALSE
+			foundVictim = TRUE
+	
+	for(var/obj/mecha/hiding_spot in orange(7,src))
+		if(hiding_spot.occupant == current_victim)
+			hiding_spot.go_out(TRUE)
+			to_chat(current_victim, span_warning("...thgif t'nac uoY"))
+			foundVictim = TRUE
+
+	for(var/obj/structure/bed/roller/cheap_escape in orange(7,src))
+		if(cheap_escape.buckled_mobs.Find(current_victim))
+			cheap_escape.unbuckle_mob(current_victim, TRUE)
+			to_chat(current_victim, span_warning("...epacse t'nac uoY"))
+			foundVictim = TRUE
+
+	if(foundVictim)
+		current_victim.Paralyze(40)
+
+	return foundVictim
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Acquire_Victim(specific)
 	for(var/I in GLOB.player_list)//better than a potential recursive loop
@@ -181,7 +200,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	message_admins("Floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
 	qdel(src)
 
-
+/**
+ * Using an external variable to modify the basic behaviour of a proc like this is confusing and unnecessary.
+ * Instead, there should be two procs, one for the manifest behavior animation and one for demanifesting. If not this, then the "manifested" variable should be set within this proc instead.
+ * It is intuitive for this proc to implicitly toggle it.
+ * - AP
+**/
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Manifest()//handles disappearing and appearance anim
 	if(manifested)
 		mobility_flags &= ~MOBILITY_MOVE
@@ -206,10 +230,9 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Reset_View(screens, colour, mob/living/carbon/human/H)
 	if(screens)
 		for(var/whole_screen in screens)
-			animate(whole_screen, transform = matrix(), time = 5, easing = QUAD_EASING)
+			animate(whole_screen, transform = matrix(), time = 0.5 SECONDS, easing = QUAD_EASING)
 	if(colour && H)
 		H.client.color = colour
-
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/On_Stage()
 	var/mob/living/carbon/human/H = current_victim
@@ -259,6 +282,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				to_chat(H, "<i>yalp ot tnaw I</i>")
 				Appear()
 				manifested = FALSE
+				addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Manifest), 2)
 				current_victim.set_drugginess(rand(1,10))
 
 		if(STAGE_TORMENT)
@@ -343,7 +367,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Grab(mob/living/carbon/human/H)
 	to_chat(H, span_userdanger("You feel a cold, gloved hand clamp down on your ankle!"))
 	for(var/I in 1 to get_dist(src, H))
-		if(do_after(src, 0.5 SECONDS, target = H))
+		if(do_after(src, 0.5 SECONDS, H))
+			Found_You()
 			step_towards(H, src)
 			playsound(H, pick('yogstation/sound/effects/bodyscrape-01.ogg', 'yogstation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			if(prob(40))
@@ -354,7 +379,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 	if(get_dist(src,H) <= 1)
 		visible_message(span_danger("[src] begins dragging [H] under the floor!"))
-		if(do_after(src, 5 SECONDS, target = H) && eating)
+		if(do_after(src, 5 SECONDS, H) && eating)
 			H.become_blind()
 			H.layer = GAME_PLANE
 			H.invisibility = INVISIBILITY_OBSERVER
@@ -380,10 +405,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
 	H.client.color = pure_red
-	animate(H.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
+	animate(H.client,color = red_splash, time = 1 SECONDS, easing = SINE_EASING|EASE_OUT)
 	for(var/turf/T in orange(H, 4))
 		H.add_splatter_floor(T)
-	if(do_after(src, 5 SECONDS, target = H))
+	if(do_after(src, 5 SECONDS, H))
 		H.unequip_everything()//more runtime prevention
 		if(prob(75))
 			H.gib(FALSE)
@@ -397,7 +422,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			H.density = initial(H.density)
 			H.anchored = initial(H.anchored)
 			H.blur_eyes(10)
-			animate(H.client,color = old_color, time = 20)
+			animate(H.client,color = old_color, time = 2 SECONDS)
 
 	eating = FALSE
 	switch_stage = switch_stage * 0.75 //he gets faster after each feast

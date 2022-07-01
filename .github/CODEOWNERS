@@ -9,20 +9,24 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
-#Teams
+#HeadDev
 
 /.github/ @yogstation13/head-coders
 /SQL/ @yogstation13/head-coders
-/_maps/ @yogstation13/map
 /config/ @yogstation13/head-coders
-/goon/ @yogstation13/art
-/icons/ @yogstation13/art
 /yogstation/SQL/ @yogstation13/head-coders
-/yogstation/icons/ @yogstation13/art
-
 /code/modules/client/preferences.dm @yogstation13/head-coders
 /code/modules/client/preferences_savefile.dm @yogstation13/head-coders
 /html/templates/ @yogstation13/head-coders
+/sound/ @yogstation13/head-coders
+/yogstation/sound/ @yogstation13/head-coders
+
+#Teams
+
+/_maps/ @yogstation13/map
+/goon/ @yogstation13/art
+/icons/ @yogstation13/art
+/yogstation/icons/ @yogstation13/art
 
 #monster860
 

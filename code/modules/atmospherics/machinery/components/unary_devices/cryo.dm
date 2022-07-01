@@ -6,7 +6,7 @@
 	icon_state = "pod-off"
 	density = TRUE
 	max_integrity = 350
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 30, ACID = 30)
 	layer = ABOVE_WINDOW_LAYER
 	state_open = FALSE
 	circuit = /obj/item/circuitboard/machine/cryo_tube
@@ -193,11 +193,11 @@
 		return
 
 	/// Individuals with the MEDICALIGNORE trait will stop the cryo from functioning and display a unique warning unless there is clone damage on the body which cryo happens to be able to heal even with MEDICALIGNORE (oversight probably but one of the one ways to heal their clone damage atm). - Hopek
-	if(HAS_TRAIT(mob_occupant,TRAIT_MEDICALIGNORE) && !mob_occupant.getCloneLoss())
+	if(HAS_TRAIT(mob_occupant,TRAIT_MEDICALIGNORE) && !(mob_occupant.getCloneLoss() + mob_occupant.getToxLoss() + mob_occupant.getOxyLoss()))
 		src.visible_message(span_warning("[src] is unable to treat [mob_occupant] as they cannot be treated with conventional medicine."))
 		playsound(src,'sound/machines/cryo_warning_ignore.ogg',60,1)
 		on = FALSE
-		sleep(2)// here for timing. Shuts off right at climax of the effect before falloff.
+		sleep(0.2 SECONDS)// here for timing. Shuts off right at climax of the effect before falloff.
 		update_icon()
 		return
 
@@ -301,7 +301,7 @@
 	user.visible_message(span_notice("You see [user] kicking against the glass of [src]!"), \
 		span_notice("You struggle inside [src], kicking the release with your foot... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a thump from [src]."))
-	if(do_after(user, breakout_time, target = src))
+	if(do_after(user, breakout_time, src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
@@ -327,7 +327,7 @@
 			close_machine(target)
 	else
 		user.visible_message("<b>[user]</b> starts shoving [target] inside [src].", span_notice("You start shoving [target] inside [src]."))
-		if (do_after(user, 25, target=target))
+		if (do_after(user, 2.5 SECONDS, target))
 			close_machine(target)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
@@ -482,6 +482,8 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
+	if(user == occupant && !issilicon(user))
+		return
 	if(on)
 		on = FALSE
 	else if(!state_open)
@@ -490,6 +492,8 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(user == occupant && !issilicon(user))
 		return
 	if(state_open)
 		close_machine()

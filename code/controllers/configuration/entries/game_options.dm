@@ -294,6 +294,11 @@
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/number/config_gateway_chance
+	integer = FALSE
+	min_val = 0
+	max_val = 100
+
 /datum/config_entry/flag/ghost_interaction
 
 /datum/config_entry/flag/near_death_experience //If carbons can hear ghosts when unconscious and very close to death
@@ -315,6 +320,11 @@
 	value_mode = VALUE_MODE_FLAG
 
 /datum/config_entry/keyed_list/law_weight
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_NUM
+	splitter = ","
+
+/datum/config_entry/keyed_list/ion_law_weight
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_NUM
 	splitter = ","
@@ -397,6 +407,10 @@
 
 /datum/config_entry/number/monkeycap
 	config_entry_value = 64
+	min_val = 0
+
+/datum/config_entry/number/ratcap
+	default = 64
 	min_val = 0
 
 /datum/config_entry/flag/dynamic_config_enabled

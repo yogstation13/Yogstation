@@ -170,6 +170,8 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
+	var/open_sound = 'sound/machines/podopen.ogg'
+	var/close_sound = 'sound/machines/podclose.ogg'
 
 	// 5 minutes-ish safe period before being despawned.
 	var/time_till_despawn = 15 MINUTES // Time if a player gets forced into cryo
@@ -227,6 +229,8 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		..(user)
 		icon_state = "cryopod"
 		var/mob/living/mob_occupant = occupant
+		if(close_sound)
+			playsound(src, close_sound, 40)
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, span_boldnotice("You feel cool air surround you. You go numb as your senses turn inward."))
 		if(!occupant) //Check they still exist
@@ -247,6 +251,8 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 /obj/machinery/cryopod/open_machine()
 	..()
 	icon_state = GLOB.cryopods_enabled ? "cryopod-open" : "cryopod-off"
+	if(open_sound)
+		playsound(src, open_sound, 40)
 	density = TRUE
 	name = initial(name)
 
@@ -319,6 +325,10 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		if(LAZYLEN(mob_occupant.mind.objectives))
 			mob_occupant.mind.objectives.Cut()
 			mob_occupant.mind.special_role = null
+		/// Chaplain Stuff
+		var/datum/job/role = GetJob(job)
+		if(mob_occupant.mind.assigned_role == "Chaplain" && role?.current_positions < 1)
+			GLOB.religion = null	/// Clears the religion for the next chaplain
 
 	// Delete them from datacore.
 
@@ -368,7 +378,9 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		R.contents -= R.mmi
 		qdel(R.mmi)
 
-	mob_occupant.ghostize(FALSE)
+	var/mob/dead/observer/ghost = mob_occupant.ghostize(FALSE)
+	if(ghost)
+		ghost.mind = null
 	handle_objectives()
 	QDEL_NULL(occupant)
 	for(var/obj/item/I in get_turf(src))

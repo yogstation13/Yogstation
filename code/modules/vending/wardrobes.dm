@@ -8,7 +8,16 @@
 	input_display_header = "Returned Clothing"
 
 /obj/machinery/vending/wardrobe/canLoadItem(obj/item/I,mob/user)
-	return (I.type in products)
+	if(I.type in products)
+		// Yogs -- weird snowflake check to make sure you can't print an endless amount of encryption chips.
+		// In general, vending machines should try to ensure that anything they dare accept as input is in the exact same state that it came out of them with.
+		if(istype(I,/obj/item/radio/headset) && I.type != /obj/item/radio/headset)
+			var/obj/item/radio/headset/HS = I
+			if(HS.keyslot != initial(HS.keyslot)) // Hey, you stole something!
+				return FALSE
+		if(istype(I, /obj/item/storage/box)) //no putting boxes back, sorry
+			return FALSE
+		return TRUE
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper SecDrobe"
@@ -74,6 +83,7 @@
 					/obj/item/clothing/suit/toggle/labcoat/md = 4,
 					/obj/item/clothing/suit/toggle/labcoat/emt = 4,
 					/obj/item/clothing/shoes/sneakers/white = 4,
+					/obj/item/clothing/shoes/xeno_wraps/medical = 4,
 					/obj/item/clothing/head/soft/emt = 4,
 					/obj/item/clothing/suit/apron/surgical = 4,
 					/obj/item/clothing/mask/surgical = 4,
@@ -99,6 +109,7 @@
 					/obj/item/clothing/under/rank/engineer/hazard = 3,
 					/obj/item/clothing/suit/hazardvest = 3,
 					/obj/item/clothing/shoes/workboots = 3,
+					/obj/item/clothing/shoes/xeno_wraps/engineering = 3,
 					/obj/item/clothing/head/beret/eng = 3,
 					/obj/item/clothing/head/hardhat = 3,
 					/obj/item/clothing/head/welding/demon = 1,
@@ -132,7 +143,7 @@
 
 /obj/machinery/vending/wardrobe/sig_wardrobe
 	name = "SigDrobe"
-	desc = "A rarely used vending machine that provides clothing for Signal Technicians."
+	desc = "A rarely used vending machine that provides clothing for Network Admins."
 	icon_state = "sigdrobe"
 	product_ads = "Dress to impress yourself!;The drones will love you!;Get your clothing here!"
 	vend_reply = "Thank you for using the SigDrobe!"
@@ -140,9 +151,9 @@
 					/obj/item/storage/backpack/industrial = 1,
 					/obj/item/storage/backpack/satchel/eng = 1,
 					/obj/item/clothing/suit/hooded/wintercoat/engineering/tcomms = 1,
-					/obj/item/clothing/under/yogs/rank/signal_tech = 1,
+					/obj/item/clothing/under/yogs/rank/network_admin = 1,
 					/obj/item/clothing/shoes/workboots = 1,
-					/obj/item/clothing/under/yogs/rank/signal_tech/skirt = 1)
+					/obj/item/clothing/under/yogs/rank/network_admin/skirt = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/sig_wardrobe
 	payment_department = ACCOUNT_ENG
 /obj/item/vending_refill/wardrobe/sig_wardrobe
@@ -158,6 +169,7 @@
 					/obj/item/clothing/under/rank/cargotech = 3,
 					/obj/item/clothing/under/rank/cargotech/skirt = 3,
 					/obj/item/clothing/shoes/sneakers/black = 3,
+					/obj/item/clothing/shoes/xeno_wraps/cargo = 3,
 					/obj/item/clothing/gloves/fingerless = 3,
 					/obj/item/clothing/head/soft = 3,
 					/obj/item/radio/headset/headset_cargo = 3,
@@ -208,6 +220,7 @@
 					/obj/item/clothing/under/rank/scientist/skirt = 3,
 					/obj/item/clothing/suit/toggle/labcoat/science = 3,
 					/obj/item/clothing/shoes/sneakers/white = 3,
+					/obj/item/clothing/shoes/xeno_wraps/science = 3,
 					/obj/item/radio/headset/headset_sci = 3,
 					/obj/item/clothing/mask/gas = 3,
 					/obj/item/clothing/accessory/armband/science = 2)

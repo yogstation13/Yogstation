@@ -16,6 +16,16 @@
 			return
 	..()
 
+/obj/item/clothing/mask/muzzle/tape
+	name = "tape muzzle"
+	icon_state = "tape"
+	
+/obj/item/clothing/mask/muzzle/tape/attack_self(mob/user)
+	..()
+	user.visible_message(span_notice("You take apart [src]."), span_notice("[user] takes apart [src]."))
+	new /obj/item/stack/tape(user.drop_location())
+	qdel(src)
+
 /obj/item/clothing/mask/surgical
 	name = "sterile mask"
 	desc = "A sterile mask designed to help prevent the spread of diseases."
@@ -28,7 +38,7 @@
 	visor_flags_cover = MASKCOVERSMOUTH
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.01
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 25, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 25, RAD = 0, FIRE = 0, ACID = 0)
 	actions_types = list(/datum/action/item_action/adjust)
 
 /obj/item/clothing/mask/surgical/attack_self(mob/user)
@@ -127,7 +137,7 @@
 
 /obj/item/clothing/mask/cowmask
 	name = "cow mask"
-	icon = 'icons/mob/mask.dmi'
+	icon = 'icons/mob/clothing/mask/mask.dmi'
 	icon_state = "cowmask"
 	item_state = "cowmask"
 	clothing_flags = VOICEBOX_TOGGLABLE

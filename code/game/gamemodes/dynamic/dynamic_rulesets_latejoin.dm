@@ -26,6 +26,9 @@
 		if ((exclusive_roles.len > 0) && !(P.mind.assigned_role in exclusive_roles)) // Is the rule exclusive to their job?
 			candidates.Remove(P)
 			continue
+		if(P.mind.quiet_round) //Does the candidate have quiet mode enabled?
+			candidates.Remove(P)
+			continue
 
 /datum/dynamic_ruleset/latejoin/ready(forced = 0)
 	if (!forced)
@@ -221,3 +224,42 @@
 	requirements = list(45,40,30,30,20,20,15,10,10,10)
 	minimum_players = 36
 	repeatable = TRUE
+
+//////////////////////////////////////////////
+//                                          //
+//              BLOODSUCKER                 //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/latejoin/bloodsucker
+	name = "Bloodsucker Breakout"
+	antag_datum = /datum/antagonist/bloodsucker
+	antag_flag = ROLE_BLOODSUCKERBREAKOUT
+	antag_flag_override = ROLE_BLOODSUCKER
+	protected_roles = list(
+		"Captain", "Head of Personnel", "Head of Security",
+		"Warden", "Security Officer", "Detective", "Brig Physician",
+		"Curator"
+	)
+	restricted_roles = list("AI","Cyborg")
+	required_candidates = 1
+	weight = 5
+	cost = 10
+	requirements = list(10,10,10,10,10,10,10,10,10,10)
+	repeatable = FALSE
+
+/datum/dynamic_ruleset/latejoin/bloodsucker/execute()
+	var/mob/latejoiner = pick(candidates) // This should contain a single player, but in case.
+	assigned += latejoiner.mind
+
+	for(var/selected_player in assigned)
+		var/datum/mind/bloodsuckermind = selected_player
+		var/datum/antagonist/bloodsucker/sucker = new
+		if(!bloodsuckermind.make_bloodsucker(selected_player))
+			assigned -= selected_player
+			message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
+			return FALSE
+		sucker.bloodsucker_level_unspent = rand(2,3)
+		message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
+		log_game("DYNAMIC: [key_name(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
+	return TRUE

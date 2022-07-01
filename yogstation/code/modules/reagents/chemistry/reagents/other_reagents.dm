@@ -36,3 +36,16 @@
 		M.adjustToxLoss(-2, 0)
 		. = 1
 	return ..() || .
+
+/datum/reagent/shadowfrost
+	name = "Shadowfrost"
+	description = "A dark liquid that seems to slow down anything that comes into contact with it."
+	color = "#000000" //Complete black (RGB: 0, 0, 0)
+
+/datum/reagent/shadowfrost/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=2)
+
+/datum/reagent/shadowfrost/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()

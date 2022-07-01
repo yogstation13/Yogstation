@@ -1,5 +1,7 @@
 /datum/surgery/plastic_surgery
 	name = "Plastic surgery"
+	desc = "If the patient's face is damaged and unrecognizable it restores it, otherwise it change the face and identity of the patient."
+	icon_state = "plastic_surgery"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/reshape_face, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_HEAD)
 

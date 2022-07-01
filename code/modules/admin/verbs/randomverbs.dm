@@ -1100,7 +1100,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 									ADMIN_PUNISHMENT_CRACK,
 									ADMIN_PUNISHMENT_BLEED,
 									ADMIN_PUNISHMENT_PERFORATE,
-									ADMIN_PUNISHMENT_SCARIFY
+									ADMIN_PUNISHMENT_SCARIFY,
+									ADMIN_PUNISHMENT_SMSPIDER,
+									ADMIN_PUNISHMENT_FLASHBANG
 									)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1190,6 +1192,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, span_reallybigphobia("HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT."))
 			var/mob/living/carbon/human/H = target
 			H?.cluwneify()
+		if(ADMIN_PUNISHMENT_SMSPIDER)
+			var/confirm = alert(usr, "Dust target with a spider? There is no chance of revival!", "Supermatter Spider", "Yes", "No")
+			if(confirm == "No")
+				return
+			//What's an open turf within the target's sight? Lets make a list of them.
+			var/FOVlist = circleviewturfs(target,5)
+			//Okay, now we spawn a spider on the turf...
+			var/mob/living/simple_animal/hostile/smspider/spider = new /mob/living/simple_animal/hostile/smspider(pick(FOVlist))
+			//And have it target the victim.
+			spider.GiveTarget(target)
+			to_chat(usr, span_alert("Dusting target with a spider..."))
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
 				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
@@ -1262,6 +1275,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/C = target
 			C.generate_fake_scars(rand(1, 4))
 			to_chat(C, span_warning("You feel your body grow jaded and torn..."))
+
+		if(ADMIN_PUNISHMENT_FLASHBANG)
+			var/mob/living/carbon/chucklenuts = target
+			playsound(chucklenuts,'sound/misc/thinkfast.ogg',300 , FALSE)
+			to_chat(chucklenuts, span_warning("Think Fast!"))
+			sleep(1.5 SECONDS)
+			var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(target.loc)
+			CB.prime()
+			chucklenuts.flash_act()
+
 	punish_log(target, punishment)
 
 /**
@@ -1276,6 +1299,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
   * * wound_bonus- the wounding power we're assigning to the bullet, since we don't care about the base one
   * * damage- the damage we're assigning to the bullet, since we don't care about the base one
   */
+
 /proc/firing_squad(mob/living/carbon/target, turf/source_turf, body_zone, wound_bonus, damage)
 	if(!target.get_bodypart(body_zone))
 		return
@@ -1364,7 +1388,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/obj/item/reagent_containers/food/snacks/pie/cream/admin/p = new (get_turf(pick(oview(3,user))))
 	p.item_flags = UNCATCHABLE
 	p.throw_at(user, 10, 0.5, usr)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	var/mob/living/carbon/human/T = user
 	if(!T.IsParalyzed())
 		var/obj/item/reagent_containers/food/snacks/pie/cream/admin/pie = new (get_turf(pick(oview(1,user))))
@@ -1398,7 +1422,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Spawn on Centcom"
 	if(!check_rights(R_ADMIN))
 		return
-	var/turf/T = locate(196,82,1) // Magic number alert!
+	var/turf/T
+	for(var/obj/effect/landmark/centcom/centcomturf in GLOB.landmarks_list)
+		T = centcomturf.loc
 	if(ismob(usr))
 		var/mob/M = usr
 		if(isobserver(M))
@@ -1439,10 +1465,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	playsound(T,'sound/magic/warpwhistle.ogg', 200, 1)
 	user.mobility_flags &= ~MOBILITY_MOVE
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(20)
+	sleep(2 SECONDS)
 	user.invisibility = INVISIBILITY_MAXIMUM
 	user.status_flags |= GODMODE
-	sleep(20)
+	sleep(2 SECONDS)
 	var/breakout = 0
 	while(breakout < 50)
 		var/turf/potential_T = find_safe_turf()
@@ -1453,8 +1479,36 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			break
 		breakout += 1
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(20)
+	sleep(2 SECONDS)
 	user.invisibility = initial(user.invisibility)
 	user.status_flags &= ~GODMODE
 	user.update_mobility()
-	sleep(40)
+	sleep(4 SECONDS)
+
+/datum/admins/proc/cmd_create_wiki()
+	set category = "Misc"
+	set name = "Go to Wiki Room"
+	if(!check_rights(R_ADMIN))
+		return
+	var/turf/T
+	for(var/obj/effect/landmark/wiki/wikiturf in GLOB.landmarks_list)
+		T = wikiturf.loc
+	if(ismob(usr))
+		var/mob/M = usr
+		if(isobserver(M))
+			var/mob/living/carbon/human/H = new(T)
+			var/datum/preferences/A = new
+			A.copy_to(H)
+			H.dna.update_dna_identity()
+
+			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.
+			// For that reason, we're making a new one. This mimics the behavior of, say, lone operatives, and I believe other ghostroles.
+			Mind.active = 1
+			Mind.transfer_to(H)
+
+			var/msg = "[key_name_admin(H)] has spawned in the wiki room [ADMIN_VERBOSEJMP(H)]."
+			message_admins(msg)
+			log_admin(msg)
+			return
+		else
+			usr.forceMove(T)

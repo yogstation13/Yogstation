@@ -8,8 +8,8 @@
 
 /obj/effect/clockwork/general_marker/Initialize()
 	. = ..()
-	animate(src, alpha = 0, time = 10)
-	QDEL_IN(src, 10)
+	animate(src, alpha = 0, time = 1 SECONDS)
+	QDEL_IN(src, 1 SECONDS)
 
 /obj/effect/clockwork/general_marker/singularity_act()
 	return

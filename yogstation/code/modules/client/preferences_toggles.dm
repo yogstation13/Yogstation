@@ -16,3 +16,11 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, ghost_ckey)()
 	usr.client.prefs.chat_toggles ^= GHOST_CKEY
 	usr.client.prefs.save_preferences()
 	to_chat(usr, "Your ckey is [(usr.client.prefs.chat_toggles & GHOST_CKEY) ? "no longer" : "now"] visible in deadchat.")
+
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, typing_indicators)()
+	set name = "Show/Hide typing indicators"
+	set category = "Preferences"
+	set desc = "Toggle typing indicators"
+	usr.client.prefs.chat_toggles ^= CHAT_TYPING_INDICATOR
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_TYPING_INDICATOR) ? "now" : "no longer"] see typing indicators.")

@@ -165,6 +165,42 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/chapai_module
+	name = "Core Module Design (ChapAI)"
+	desc = "Allows for the construction of a ChapAI AI Core Module."
+	id = "chapai_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/chapai
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/silicop_module
+	name = "Core Module Design (Silicop)"
+	desc = "Allows for the construction of a Silicop AI Core Module."
+	id = "silicop_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/silicop
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/researcher_module
+	name = "Core Module Design (Ethical Researcher)"
+	desc = "Allows for the construction of a Ethical Researcher AI Core Module."
+	id = "researcher_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/researcher
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/clown_module
+	name = "Core Module Design (Clown)"
+	desc = "Allows for the construction of a Clown AI Core Module."
+	id = "clown_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/clown
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/mother
 	name = "Core Module Design (Mother M(A.I.))"
 	desc = "Allows for the construction of a Mother M(A.I.) AI Core Module."
@@ -174,23 +210,57 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-
-//AI CPU + RAM
-
-/datum/design/board/processing_card_1
-	name = "AI CPU board (Tier 1)"
-	desc = "Allows for the construction of a basic AI processing board."
-	id = "ai_cpu_1"
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 4000)
-	build_path = /obj/item/processing_card
+/datum/design/board/metaexperiment
+	name = "Core Module Design (Meta Experiment)"
+	desc = "Allows for the construction of a Meta Experiment AI Core Module."
+	id = "metaexperiment_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/metaexperiment
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/memory_card_1
-	name = "AI Memory board (Tier 1)"
-	desc = "Allows for the construction of a basic AI memory board."
-	id = "ai_memory_1"
-	materials = list(/datum/material/glass = 2000, /datum/material/gold = 4000)
-	build_path = /obj/item/memory_card
+/datum/design/board/siliconcollective
+	name = "Core Module Design (Silicon Collective)"
+	desc = "Allows for the construction of a Silicon Collective AI Core Module."
+	id = "siliconcollective_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/aiModule/core/full/siliconcollective
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/spotless
+	name = "Core Module Design (Spotless Reputation)"
+	desc = "Allows for the construction of a Spotless Reputation AI Core Module."
+	id = "spotless_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/spotless
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/construction_module
+	name = "Core Module Design (Construction Drone)"
+	desc = "Allows for the construction of a Construction Drone AI Core Module."
+	id = "construction_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/construction
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/druid
+	name = "Core Module Design (Druid)"
+	desc = "Allows for the construction of a Druid AI Core Module."
+	id = "druid_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/druid
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/detective
+	name = "Core Module Design (Detective)"
+	desc = "Allows for the construction of a Detective AI Core Module."
+	id = "detective_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/detective
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+

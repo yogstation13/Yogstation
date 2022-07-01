@@ -24,6 +24,15 @@
 	symptoms = list(new/datum/symptom/necroseed)
 	..()
 
+/datum/disease/advance/tumor
+	copy_type = /datum/disease/advance
+
+/datum/disease/advance/tumor/New()
+	name = "Tumors"
+	symptoms = list(new/datum/symptom/tumor,new/datum/symptom/sneeze,new/datum/symptom/fever,new/datum/symptom/shivering,new/datum/symptom/itching,new/datum/symptom/cough)
+	..()
+
+
 //Randomly generated Disease, for virus crates and events
 /datum/disease/advance/random
 	name = "Experimental Disease"

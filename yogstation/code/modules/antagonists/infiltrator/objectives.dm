@@ -23,7 +23,7 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 	item_type = /obj/item/ai_hijack_device
 
 
-/datum/objective/infiltrator/exploit/find_target(dupe_search_range)
+/datum/objective/infiltrator/exploit/find_target(dupe_search_range, blacklist)
 	var/list/possible_targets = active_ais(TRUE)
 	for (var/mob/living/silicon/ai/AI in possible_targets)
 		if (AI.mind.quiet_round)
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 /datum/objective/infiltrator/kidnap/is_possible()
 	return LAZYLEN(potential_targets())
 
-/datum/objective/infiltrator/kidnap/find_target(dupe_search_range)
+/datum/objective/infiltrator/kidnap/find_target(dupe_search_range, blacklist)
 	target = pickweight(potential_targets())
 	update_explanation_text()
 	return target

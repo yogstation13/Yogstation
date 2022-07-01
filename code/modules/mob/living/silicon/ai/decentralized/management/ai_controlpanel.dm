@@ -4,7 +4,6 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	name = "\improper AI control console"
 	desc = "Used for accessing the central AI repository from which AIs can be downloaded or uploaded."
 	req_access = list(ACCESS_RD)
-	circuit = /obj/item/circuitboard/computer/aifixer
 	icon_keyboard = "tech_key"
 	icon_screen = "ai-fixer"
 	light_color = LIGHT_COLOR_PINK
@@ -28,6 +27,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	. = ..()
 	if(mapload)
 		cleared_for_use = TRUE
+
+/obj/machinery/computer/ai_control_console/Destroy()
+	stop_download()
+	. = ..()
 
 /obj/machinery/computer/ai_control_console/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/aicard))
@@ -204,7 +207,12 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	return data
 
 /obj/machinery/computer/ai_control_console/proc/finish_download()
+	if(!is_station_level(z))
+		return
 	if(intellicard)
+		if(!isaicore(downloading.loc))
+			stop_download(TRUE)
+			return
 		downloading.transfer_ai(AI_TRANS_TO_CARD, user_downloading, null, intellicard)
 		intellicard.forceMove(get_turf(src))
 		intellicard.update_icon()
@@ -234,9 +242,15 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	if(!cleared_for_use)
 		if(action == "clear_for_use")
-			var/code = text2num(params["control_code"])
+			var/code = params["control_code"]
 			
-			var/length_of_number = round(log(10, code) + 1)
+			if(!code)
+				return
+			
+			if(!GLOB.ai_control_code)
+				return
+			
+			var/length_of_number = length(code)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
 				return
@@ -245,15 +259,11 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(usr, span_warning("Incorrect code. Too long"))
 				return
 
-
-			if(!GLOB.ai_control_code)
-				return
-
 			if(!is_station_level(z))
 				to_chat(usr, span_warning("Unable to connect to NT Servers. Please verify you are onboard the station."))
 				return
 
-			if(code == text2num(GLOB.ai_control_code))
+			if(code == GLOB.ai_control_code)
 				cleared_for_use = TRUE
 			else
 				to_chat(usr, span_warning("Incorrect code. Make sure you have the latest one."))
@@ -279,9 +289,15 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(check_access(H.get_idcard()))
 				authenticated = TRUE
 		if(action == "log_in_control_code")
-			var/code = text2num(params["control_code"])
+			var/code = params["control_code"]
 			
-			var/length_of_number = round(log(10, code) + 1)
+			if(!code)
+				return
+			
+			if(!GLOB.ai_control_code)
+				return
+			
+			var/length_of_number = length(code)
 			if(length_of_number < 6)
 				to_chat(usr, span_warning("Incorrect code. Too short"))
 				return
@@ -290,10 +306,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(usr, span_warning("Incorrect code. Too long"))
 				return
 
-			if(!GLOB.ai_control_code)
-				return
-
-			if(code == text2num(GLOB.ai_control_code))
+			if(code == GLOB.ai_control_code)
 				cleared_for_use = TRUE
 				authenticated = TRUE
 				one_time_password_used = TRUE
@@ -328,7 +341,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 		if("stop_download")
 			if(isAI(usr))
-				to_chat(span_warning("You need physical access to stop the download!"))
+				to_chat(usr, span_warning("You need physical access to stop the download!"))
+				return
+			if(!is_station_level(z))
+				to_chat(usr, span_warning("No connection. Try again later."))
 				return
 			stop_download()
 
@@ -341,6 +357,9 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!istype(target.loc, /obj/machinery/ai/data_core))
 				return
 			if(!target.can_download)
+				return
+			if(!is_station_level(z))
+				to_chat(usr, span_warning("No connection. Try again later."))
 				return
 			downloading = target
 			to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(src)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
@@ -356,6 +375,9 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		if("start_hijack")
 			var/mob/user = usr
 			if(!is_infiltrator(usr))
+				return
+			if(!is_station_level(z))
+				to_chat(user, span_warning("No connection. Try again later."))
 				return
 			if(!istype(user.get_active_held_item(), /obj/item/ai_hijack_device))
 				to_chat(user, span_warning("You need to be holding the serial exploitation unit to initiate the hijacking process!"))
@@ -375,7 +397,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(user, span_warning("[A] is already in the process of being hijacked!"))
 				return
 			user.visible_message(span_warning("[user] begins furiously typing something into [src]..."))
-			if(do_after(user, 55, target = src))
+			if(do_after(user, 5.5 SECONDS, src))
 				user.dropItemToGround(device)
 				device.forceMove(A)
 				A.hijacking = device
@@ -396,9 +418,13 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				return
 			var/mob/living/silicon/ai/A = target
 			var/mob/user = usr
+
+			if(!is_station_level(z))
+				to_chat(user, span_warning("No connection. Try again later."))
+				return
 			
 			user.visible_message(span_danger("[user] attempts to cancel a process on [src]."), span_notice("An unknown process seems to be interacting with [A]! You attempt to end the proccess.."))
-			if (do_after(user,100,target = src))
+			if (do_after(user, 10 SECONDS, src))
 				A.hijacking.forceMove(get_turf(src))
 				A.hijacking = null
 				A.hijack_start = 0

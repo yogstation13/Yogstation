@@ -355,7 +355,7 @@
 /datum/species/golem/uranium/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	. = ..()
 	var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
-	var/radiation_block = target.run_armor_check(affecting, "rad")
+	var/radiation_block = target.run_armor_check(affecting, RAD)
 	///standard damage roll for use in determining how much you irradiate per punch
 	var/attacker_irradiate_value = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
 	target.apply_effect(attacker_irradiate_value*5, EFFECT_IRRADIATE, radiation_block)
@@ -399,7 +399,7 @@
 
 /datum/species/golem/sand/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H))
-		if(P.flag == "bullet" || P.flag == "bomb")
+		if(P.flag == BULLET || P.flag == BOMB)
 			playsound(H, 'sound/effects/shovel_dig.ogg', 70, 1)
 			H.visible_message(span_danger("The [P.name] sinks harmlessly in [H]'s sandy body!"), \
 			span_userdanger("The [P.name] sinks harmlessly in [H]'s sandy body!"))
@@ -432,7 +432,7 @@
 
 /datum/species/golem/glass/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H)) //self-shots don't reflect
-		if(P.flag == "laser" || P.flag == "energy")
+		if(P.flag == LASER || P.flag == ENERGY)
 			H.visible_message(span_danger("The [P.name] gets reflected by [H]'s glass skin!"), \
 			span_userdanger("The [P.name] gets reflected by [H]'s glass skin!"))
 			if(P.starting)
@@ -510,7 +510,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "jaunt"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
-	var/cooldown = 150
+	var/cooldown = 15 SECONDS
 	var/last_teleport = 0
 
 /datum/action/innate/unstable_teleport/IsAvailable()
@@ -534,7 +534,7 @@
 	do_teleport(H, get_turf(H), 12, asoundin = 'sound/weapons/emitter2.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 	last_teleport = world.time
 	UpdateButtonIcon() //action icon looks unavailable
-	sleep(cooldown + 5)
+	sleep(cooldown + 0.5 SECONDS)
 	UpdateButtonIcon() //action icon looks available again
 
 
@@ -788,8 +788,8 @@
 	name = "pile of bandages"
 	desc = "It emits a strange aura, as if there was still life within it..."
 	max_integrity = 50
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 25, "energy" = 80, "bomb" = 50, "bio" = 100, "fire" = -50, "acid" = -50)
-	icon = 'icons/obj/items_and_weapons.dmi'
+	armor = list(MELEE = 90, BULLET = 90, LASER = 25, ENERGY = 80, BOMB = 50, BIO = 100, FIRE = -50, ACID = -50)
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "pile_bandages"
 	resistance_flags = FLAMMABLE
 
@@ -828,7 +828,7 @@
 	new /obj/effect/temp_visual/mummy_animation(get_turf(src))
 	if(cloth_golem.revive(full_heal = TRUE, admin_revive = TRUE))
 		cloth_golem.grab_ghost() //won't pull if it's a suicide
-	sleep(20)
+	sleep(2 SECONDS)
 	cloth_golem.forceMove(get_turf(src))
 	cloth_golem.visible_message(span_danger("[src] rises and reforms into [cloth_golem]!"),span_userdanger("You reform into yourself!"))
 	cloth_golem = null
@@ -875,7 +875,7 @@
 /datum/species/golem/bronze/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	if(!(world.time > last_gong_time + gong_cooldown))
 		return BULLET_ACT_HIT
-	if(P.flag == "bullet" || P.flag == "bomb")
+	if(P.flag == BULLET || P.flag == BOMB)
 		gong(H)
 		return BULLET_ACT_HIT
 
@@ -1014,7 +1014,7 @@
 			to_chat(H, span_warning("You do not have enough cardboard!"))
 			return FALSE
 		to_chat(H, span_notice("You attempt to create a new cardboard brother."))
-		if(do_after(user, 3 SECONDS, target = user))
+		if(do_after(user, 3 SECONDS, user))
 			if(last_creation + brother_creation_cooldown > world.time) //no cheesing dork
 				return
 			if(!C.use(10))
@@ -1387,3 +1387,158 @@
 /datum/species/golem/ruinous/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_CULTLARGE
 	playsound(source, 'sound/effects/curseattack.ogg', 100, 1, 1)
+
+/datum/species/golem/wax //has a love-hate relationship with fire
+	name = "Wax Golem"
+	id = "wax golem"
+	limbs_id = "waxgolem"
+	sexes = FALSE
+	info_text = "As a <span class='danger'>Wax Golem</span>, you are made of very resilient wax and wick. \
+	While you can burn, you take much less burn damage than other golems. You also have the ability to revive after death if you died while on fire."
+	species_traits = list(NOBLOOD,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING, NOEYESPRITES) //no mutcolors or eyesprites
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOGUNS) //no resistheat or nofire
+	armor = 10 // made of wax, tough wax but still wax
+	burnmod = 0.75
+	speedmod = 1 // not as heavy as stone
+	heatmod = 0.1 //very little damage, but still there. Its like how a candle doesn't melt in seconds but still melts.
+	punchstunthreshold = 7
+	punchdamagehigh = 9 // not as heavy as stone
+	prefix = "Wax"
+	special_names = list("Candelabra", "Candle")
+
+/datum/species/golem/wax/spec_life(mob/living/carbon/human/H)
+	if(H.fire_stacks < 1)
+		H.adjust_fire_stacks(1) //always prone to burning
+	..()
+
+/datum/species/golem/wax/spec_death(gibbed, mob/living/carbon/human/H)
+	if(gibbed)
+		return
+	if(H.on_fire)
+		H.visible_message(span_danger("[H] melts apart into wax!"))
+		new /obj/structure/wax_pile(get_turf(H), H)
+		return
+	else
+		return
+
+/obj/structure/wax_pile
+	name = "pile of wax"
+	desc = "It emits a strange aura, as if there was still life within it..."
+	max_integrity = 150
+	armor = list(MELEE = 50, BULLET = 50, LASER = 25, ENERGY = 80, BOMB = 50, BIO = 100, FIRE = 95, ACID = -50)
+	icon = 'icons/obj/misc.dmi'
+	icon_state = "pile_wax"
+
+	var/revive_time = 80 SECONDS
+	var/mob/living/carbon/human/wax_golem
+
+/obj/structure/wax_pile/Initialize(mapload, mob/living/carbon/human/H)
+	. = ..()
+	if(!QDELETED(H) && is_species(H, /datum/species/golem/wax))
+		H.unequip_everything()
+		H.forceMove(src)
+		wax_golem = H
+		to_chat(wax_golem, span_notice("You start gathering your life energy, preparing to rise again..."))
+		addtimer(CALLBACK(src, .proc/revive), revive_time)
+	else
+		return INITIALIZE_HINT_QDEL
+
+/obj/structure/wax_pile/Destroy()
+	if(wax_golem)
+		QDEL_NULL(wax_golem)
+	return ..()
+
+/obj/structure/wax_pile/proc/revive()
+	if(QDELETED(src) || QDELETED(wax_golem)) //QDELETED also checks for null, so if no wax golem is set this won't runtime
+		return
+	if(wax_golem.suiciding || wax_golem.hellbound)
+		QDEL_NULL(wax_golem)
+		return
+
+	invisibility = INVISIBILITY_MAXIMUM //disappear before the animation
+	new /obj/effect/temp_visual/wax_animation(get_turf(src))
+	if(wax_golem.revive(full_heal = TRUE, admin_revive = TRUE))
+		wax_golem.grab_ghost() //won't pull if it's a suicide
+	sleep(2 SECONDS)
+	wax_golem.forceMove(get_turf(src))
+	wax_golem.visible_message(span_danger("[src] rises and reforms into [wax_golem]!"),span_userdanger("You reform into yourself!"))
+	wax_golem = null
+	qdel(src)
+
+/datum/species/golem/supermatter
+	name = "Supermatter Golem"
+	id = "supermatter golem"
+	mutanthands = /obj/item/melee/supermatter_sword/hand
+	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
+	changesource_flags = MIRROR_BADMIN 
+	random_eligible = FALSE // Hell no
+	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
+	attack_verb = "dusting punch"
+	attack_sound = 'sound/effects/supermatter.ogg'
+	fixed_mut_color = "ff0"
+	brutemod = 1.5
+	burnmod = 3
+	var/burnheal = 1
+	var/bruteheal = 0.5
+	var/randexplode = FALSE
+
+/datum/species/golem/supermatter/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
+	..()
+	H.adjustFireLoss(2)
+	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+	H.visible_message(span_danger("[AM] knocks into [H], and then turns into dust in a flash of light!"))
+	qdel(AM)
+	
+/datum/species/golem/supermatter/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+	..()
+	M.visible_message(span_danger("[M] tries to punch [H], but turns into dust in a brilliant flash of light!"))
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+	M.dust()
+
+/datum/species/golem/supermatter/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
+	..()
+	H.visible_message(span_danger("[user] tries to attack [H] with [I], but in a brilliant flash of light [I] turns into dust!"))
+	playsound(get_turf(H), 'sound/effects/supermatter.ogg', 10, TRUE)
+	qdel(I)
+	
+
+/datum/species/golem/supermatter/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	. = ..()
+	if(istype(P, /obj/item/projectile/magic) || P.flag == LASER || P.flag == ENERGY)
+		return .
+	H.visible_message(span_danger("[P] melts on collision with [H]!"))
+	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
+	return BULLET_ACT_FORCE_PIERCE 
+
+/datum/species/golem/supermatter/spec_life(mob/living/carbon/C)
+	. = ..()
+	C.adjustFireLoss(-burnheal)
+	C.adjustBruteLoss(-bruteheal)
+	if(C.InCritical() && prob(1.5))
+		randexplode = TRUE
+		C.visible_message(span_danger("[C]'s body violently explodes!"))
+		explosion(get_turf(C), 1 ,3, 6)
+		qdel(C)
+
+/datum/species/golem/supermatter/spec_death(gibbed, mob/living/carbon/human/H)
+	if(gibbed)
+		return
+	if(randexplode) //No double explosions
+		return
+	H.visible_message(span_danger("[H]'s body violently explodes!"))
+	explosion(get_turf(H), 1 ,3, 6)
+	qdel(H)
+
+/obj/item/melee/supermatter_sword/hand
+	name = "supermatter hand"
+	desc = "A hand of a robust supermatter golem."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	color = "#ffff00"
+
+/obj/item/melee/supermatter_sword/hand/Initialize(mapload,silent,synthetic)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, INNATE_TRAIT)

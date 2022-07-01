@@ -60,7 +60,7 @@
 /obj/structure/flora/ash/attackby(obj/item/W, mob/user, params)
 	if(!harvested && needs_sharp_harvest && W.is_sharp())
 		user.visible_message(span_notice("[user] starts to harvest from [src] with [W]."),span_notice("You begin to harvest from [src] with [W]."))
-		if(do_after(user, harvest_time, target = src))
+		if(do_after(user, harvest_time, src))
 			harvest(user)
 	else
 		return ..()
@@ -71,7 +71,7 @@
 		return
 	if(!harvested && !needs_sharp_harvest)
 		user.visible_message(span_notice("[user] starts to harvest from [src]."),span_notice("You begin to harvest from [src]."))
-		if(do_after(user, harvest_time, target = src))
+		if(do_after(user, harvest_time, src))
 			harvest(user)
 
 /obj/structure/flora/ash/tall_shroom //exists only so that the spawning check doesn't allow these spawning near other things

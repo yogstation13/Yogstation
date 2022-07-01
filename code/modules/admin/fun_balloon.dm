@@ -88,7 +88,7 @@
 /obj/effect/station_crash
 	name = "station crash"
 	desc = "With no survivors!"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
 
@@ -166,3 +166,6 @@
 	name = "The Arena"
 	has_gravity = STANDARD_GRAVITY
 	requires_power = FALSE
+	hidden = TRUE
+	mood_bonus = 25
+	mood_message = span_nicegreen("NO TIME TO THINK, JUST RIP AND TEAR!!/n")

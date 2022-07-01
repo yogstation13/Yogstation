@@ -4,6 +4,7 @@
 /obj/item/melee/chainofcommand
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "chain"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -43,6 +44,7 @@
 /obj/item/melee/sabre
 	name = "officer's sabre"
 	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "sabre"
 	item_state = "sabre"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -62,14 +64,18 @@
 
 /obj/item/melee/cutlass
 	name = "cutlass"
-	desc = "A true pirates weapon, seems somewhat dull though"
+	desc = "YAAAAAR! A fine weapon for a pirate, fit for slicing land-lubbers." //All pirate weapons must have pirate quips from now on it is non-negotiable
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "metalcutlass"
 	item_state = "metalcutlass"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 16
-	throwforce = 5
-	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BELT
+	force = 18
+	throwforce = 10
+	w_class = WEIGHT_CLASS_HUGE
+	block_chance = 30
+	sharpness = SHARP_EDGED
 	attack_verb = list("slashed", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(/datum/material/iron = 1000)
@@ -139,7 +145,7 @@
 /obj/item/melee/beesword
 	name = "The Stinger"
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "beesword"
 	item_state = "stinger"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -169,7 +175,7 @@
 /obj/item/melee/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "baton"
 	item_state = "classic_baton"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -180,10 +186,11 @@
 
 	var/cooldown_check = 0 // Used interally, you don't want to modify
 
-	var/cooldown = 3 SECONDS // Default wait time until can stun again.
+	var/cooldown = 1 SECONDS // Default wait time until can stun again.
 	var/knockdown_time_carbon = 1.5 SECONDS // Knockdown length for carbons.
 	var/stun_time_silicon = 5 SECONDS // If enabled, how long do we stun silicons.
-	var/stamina_damage = 55 // Do we deal stamina damage.
+	var/stamina_damage = 60 // How much stamina damage we deal.
+	var/block_threshold = 60 // Threshold at which armor blocks special effects.
 	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.
 	var/on_stun_sound = "sound/effects/woodhit.ogg" // Default path to sound for when we stun.
@@ -199,6 +206,71 @@
 
 	wound_bonus = 15
 
+// Handles all the effects if a successful strike
+/obj/item/melee/classic_baton/proc/stun(mob/living/target, mob/living/user)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+			playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
+			return
+		var/datum/martial_art/M = H.check_block()
+		if(M)
+			M.handle_counter(target, user)
+			return
+
+	var/list/desc = get_hit_description(target, user)
+
+	var/obj/item/bodypart/affecting = target.get_bodypart(user.zone_selected)
+	var/armor_block = target.run_armor_check(affecting, MELEE)
+	target.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
+	var/current_stamina_damage = target.getStaminaLoss()
+
+	if(stun_animation)
+		user.do_attack_animation(target)
+
+	if(user)
+		target.lastattacker = user.real_name
+		target.lastattackerckey = user.ckey
+		log_combat(user, target, "stunned")
+
+	playsound(get_turf(src), on_stun_sound, 75, 1, -1)
+
+	if(current_stamina_damage >= 100)
+		desc = get_stun_description(target, user)
+		target.Knockdown(knockdown_time_carbon)
+		target.visible_message(desc["visible"], desc["local"])
+		return
+	
+	if(armor_block >= block_threshold)
+		target.visible_message(desc["visible"], desc["local"])
+		playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
+		return
+
+	// Special effects
+	if(affecting.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/l_leg) || istype(affecting, /obj/item/bodypart/r_leg)))
+		desc = get_stun_description(target, user)
+		target.Knockdown(knockdown_time_carbon)
+
+	else if(istype(affecting, /obj/item/bodypart/l_arm) && target.held_items[LEFT_HANDS])
+		target.dropItemToGround(target.held_items[LEFT_HANDS])
+	else if(istype(affecting, /obj/item/bodypart/r_arm) && target.held_items[RIGHT_HANDS])
+		target.dropItemToGround(target.held_items[RIGHT_HANDS])
+	target.visible_message(desc["visible"], desc["local"])
+
+// Are we applying any special effects when we stun to silicon
+/obj/item/melee/classic_baton/proc/stun_silicon(mob/living/silicon/target, mob/living/user)
+	var/list/desc = get_silicon_stun_description(target, user)
+
+	target.flash_act(affect_silicon = TRUE)
+	target.Paralyze(stun_time_silicon)
+	additional_effects_silicon(target, user)
+
+	user.visible_message(desc["visible"], desc["local"])
+	playsound(get_turf(src), on_stun_sound, 100, TRUE, -1)
+
+	if (stun_animation)
+		user.do_attack_animation(target)
+
 // Description for trying to stun when still on cooldown.
 /obj/item/melee/classic_baton/proc/get_wait_description()
 	return
@@ -207,8 +279,17 @@
 /obj/item/melee/classic_baton/proc/get_on_description()
 	. = list()
 
-	.["local_on"] = "<span class ='warning'>You extend the baton.</span>"
-	.["local_off"] = "<span class ='notice'>You collapse the baton.</span>"
+	.["local_on"] = span_danger("You extend the baton.")
+	.["local_off"] = span_danger("You collapse the baton.")
+
+	return .
+
+// Default message for hitting mob.
+/obj/item/melee/classic_baton/proc/get_hit_description(mob/living/target, mob/living/user)
+	. = list()
+
+	.["visible"] =  span_danger("[user] struck [target] with [src]!")
+	.["local"] = span_danger("[user] struck [target] with [src]!")
 
 	return .
 
@@ -216,8 +297,8 @@
 /obj/item/melee/classic_baton/proc/get_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] =  "<span class ='danger'>[user] has knocked down [target] with [src]!</span>"
-	.["local"] = "<span class ='danger'>[user] has knocked down [target] with [src]!</span>"
+	.["visible"] =  span_danger("[user] has knocked down [target] with [src]!")
+	.["local"] = span_danger("[user] has knocked down [target] with [src]!")
 
 	return .
 
@@ -261,17 +342,7 @@
 		// We don't stun if we're on harm.
 		if (user.a_intent != INTENT_HARM)
 			if (affect_silicon)
-				var/list/desc = get_silicon_stun_description(target, user)
-
-				target.flash_act(affect_silicon = TRUE)
-				target.Paralyze(stun_time_silicon)
-				additional_effects_silicon(target, user)
-
-				user.visible_message(desc["visible"], desc["local"])
-				playsound(get_turf(src), on_stun_sound, 100, TRUE, -1)
-
-				if (stun_animation)
-					user.do_attack_animation(target)
+				stun_silicon(target, user)
 			else
 				..()
 		else
@@ -286,35 +357,7 @@
 			return
 	else
 		if(cooldown_check <= world.time)
-			if(ishuman(target))
-				var/mob/living/carbon/human/H = target
-				if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
-					return
-				var/datum/martial_art/M = H.check_block()
-				if(M)
-					M.handle_counter(target, user)
-					return
-
-			var/list/desc = get_stun_description(target, user)
-
-			if (stun_animation)
-				user.do_attack_animation(target)
-
-			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
-			target.Knockdown(knockdown_time_carbon)
-			target.adjustStaminaLoss(stamina_damage)
-			additional_effects_carbon(target, user)
-
-			log_combat(user, target, "stunned", src)
-			add_fingerprint(user)
-
-			target.visible_message(desc["visible"], desc["local"])
-
-			if(!iscarbon(user))
-				target.LAssailant = null
-			else
-				target.LAssailant = user
-			cooldown_check = world.time + cooldown
+			stun(target, user)
 		else
 			var/wait_desc = get_wait_description()
 			if (wait_desc)
@@ -323,7 +366,6 @@
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
 	desc = "A compact yet robust personal defense weapon. Can be concealed when folded."
-	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "telebaton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -340,6 +382,8 @@
 	on_item_state = "nullrod"
 	force_on = 10
 	force_off = 0
+	stamina_damage = 40
+	block_threshold = 50
 	weight_class_on = WEIGHT_CLASS_BULKY
 	bare_wound_bonus = 5
 
@@ -353,7 +397,7 @@
 	else
 		playsound(src, on_sound, 50, 1)
 		add_fingerprint(user)
-	sleep(3)
+	sleep(0.3 SECONDS)
 	if (!QDELETED(H))
 		if(!QDELETED(B))
 			H.internal_organs -= B
@@ -371,6 +415,7 @@
 		item_state = on_item_state
 		w_class = weight_class_on
 		force = force_on
+		stamina_damage = initial(stamina_damage)
 		attack_verb = list("smacked", "struck", "cracked", "beaten")
 	else
 		to_chat(user, desc["local_off"])
@@ -379,6 +424,7 @@
 		slot_flags = ITEM_SLOT_BELT
 		w_class = WEIGHT_CLASS_SMALL
 		force = force_off
+		stamina_damage = 0
 		attack_verb = list("hit", "poked")
 
 	playsound(src.loc, on_sound, 50, 1)
@@ -387,7 +433,6 @@
 /obj/item/melee/classic_baton/telescopic/contractor_baton
 	name = "contractor baton"
 	desc = "A compact, specialised baton assigned to Syndicate contractors. Applies light electrical shocks to targets."
-	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "contractor_baton_0"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -411,6 +456,38 @@
 	force_off = 5
 	weight_class_on = WEIGHT_CLASS_NORMAL
 
+/obj/item/melee/classic_baton/telescopic/contractor_baton/stun(mob/living/target, mob/living/user)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+			playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
+			return
+		var/datum/martial_art/M = H.check_block()
+		if(M)
+			M.handle_counter(target, user)
+			return
+
+	var/list/desc = get_stun_description(target, user)
+
+	if (stun_animation)
+		user.do_attack_animation(target)
+
+	playsound(get_turf(src), on_stun_sound, 75, 1, -1)
+	target.Knockdown(knockdown_time_carbon)
+	target.adjustStaminaLoss(stamina_damage)
+	additional_effects_carbon(target, user)
+
+	log_combat(user, target, "stunned", src)
+	add_fingerprint(user)
+
+	target.visible_message(desc["visible"], desc["local"])
+
+	if(!iscarbon(user))
+		target.LAssailant = null
+	else
+		target.LAssailant = user
+	cooldown_check = world.time + cooldown
+
 /obj/item/melee/classic_baton/telescopic/contractor_baton/get_wait_description()
 	return span_danger("The baton is still charging!")
 
@@ -421,7 +498,7 @@
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"
 	desc = "In a station full of bad ideas, this might just be the worst."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "supermatter_sword"
 	item_state = "supermatter_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -519,7 +596,7 @@
 /obj/item/melee/singularity_sword
 	name = "singularity sword"
 	desc = "Spins so hard that it turns any struck foe into mincemeat instantaneously. Make sure not to stick around when you swing it at someone."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "singularity_sword"
 	item_state = "singularity_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -545,6 +622,7 @@
 /obj/item/melee/curator_whip
 	name = "curator's whip"
 	desc = "Somewhat eccentric and outdated, it still stings like hell to be hit by."
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "whip"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -564,6 +642,7 @@
 /obj/item/melee/roastingstick
 	name = "advanced roasting stick"
 	desc = "A telescopic roasting stick with a miniature shield generator designed to ensure entry into various high-tech shielded cooking ovens and firepits."
+	icon = 'icons/obj/weapons/baton.dmi'
 	icon_state = "roastingstick_0"
 	item_state = "null"
 	slot_flags = ITEM_SLOT_BELT
@@ -657,7 +736,7 @@
 			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 		else
 			return
-		if(do_after(user, 10 SECONDS, target = user))
+		if(do_after(user, 10 SECONDS, user))
 			finish_roasting(user, target)
 		else
 			QDEL_NULL(beam)
