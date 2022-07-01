@@ -1,0 +1,5 @@
+author: "SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Blob gets a message when a blobbernaut dies"
+  - rscadd: "Alliens get a message when a humanoid alien dies"
