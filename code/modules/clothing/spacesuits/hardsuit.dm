@@ -795,6 +795,28 @@
 	icon_state = "hardsuit0-inq"
 	item_state = "hardsuit0-inq"
 
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/warded
+	name = "warded hardsuit"
+	desc = "Powerful wards are built into this hardsuit, protecting the user from all manner of paranormal threats. This suit looks a bit dated, and worn. It might not protect against temperature as well as if it was new!"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/twohanded/required/kinetic_crusher)
+	armor = list(MELEE = 55, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 50, BIO = 50, RAD = 50, FIRE = 100, ACID = 100)
+	slowdown = 1.25
+	siemens_coefficient = 0.6
+	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	icon_state = "knight_grey"
+	item_state = "knight_grey"
+	hardsuit_type = "knight_grey"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal
+
+/obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/warded
+	name = "warded helmet"
+	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	armor = list(MELEE = 55, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 50, BIO = 50, RAD = 50, FIRE = 100, ACID = 100)
+	icon_state = "hardsuit0-prt"
+	item_state = "hardsuit0-prt"
+
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker
 	name = "champion's hardsuit"
 	desc = "Voices echo from the hardsuit, driving the user insane."
