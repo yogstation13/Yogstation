@@ -1,0 +1,4 @@
+author: " SuperSlayer"
+delete-after: true 
+changes: 
+  - bugfix: "Regalrat now cannot use abilities while in a tube"
