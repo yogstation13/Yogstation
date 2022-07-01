@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Throw mode stays on when it's beneficial to keep it on and you catch something."
+  - experiment: "Oh no martial arts buffs"
