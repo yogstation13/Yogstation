@@ -908,14 +908,13 @@
 	name = "Goggles"
 	icon_state = "goggles"
 
-/datum/sprite_accessory/ipc_screens/green
-	name = "Green"
-	icon_state = "green"
+/datum/sprite_accessory/ipc_screens/exclamation
+	name = "Exclamation Point"
+	icon_state = "excla"
 
 /datum/sprite_accessory/ipc_screens/heart
 	name = "Heart"
 	icon_state = "heart"
-	color_src = 0
 
 /datum/sprite_accessory/ipc_screens/L
 	name = "L"
@@ -941,9 +940,9 @@
 	name = "Pink"
 	icon_state = "pink"
 
-/datum/sprite_accessory/ipc_screens/purple
-	name = "Purple"
-	icon_state = "purple"
+/datum/sprite_accessory/ipc_screens/question
+	name = "Question Mark"
+	icon_state = "question"
 
 /datum/sprite_accessory/ipc_screens/ring
 	name = "Ring"
@@ -958,10 +957,6 @@
 	name = "Rainbow (Diagonal)"
 	icon_state = "rainbowdiag"
 	color_src = 0
-
-/datum/sprite_accessory/ipc_screens/red
-	name = "Red"
-	icon_state = "red"
 
 /datum/sprite_accessory/ipc_screens/redtext
 	name = "Red Text"
