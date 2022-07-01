@@ -417,14 +417,14 @@
 	desc = "A Nanotrasen Diversity & Inclusion Center-sponsored holographic pin to show off your sexuality, reminding the crew of their unwavering commitment to equity, diversity, and inclusion!"
 	icon_state = "pride"
 	above_suit_adjustable = TRUE
-	var/static/list/pride_reskins = list("Rainbow Pride"	= list("icon" = "pride",			"info" = "Gay gay homosexual gay"),
-										 "Bisexual Pride"	= list("icon" = "pride_bi",			"info" = "Info"),
-										 "Pansexual Pride"	= list("icon" = "pride_pan",		"info" = "Info"),
-										 "Asexual Pride"	= list("icon" = "pride_ace",		"info" = "Info"),
-										 "Non-binary Pride"	= list("icon" = "pride_enby",		"info" = "Info"),
-										 "Transgender Pride"= list("icon" = "pride_trans",		"info" = "Info"),
-										 "Intersex Pride"	= list("icon" = "pride_intersex",	"info" = "Info"),
-										 "Lesbian Pride"	= list("icon" = "pride_lesbian", 	"info" = "Info"),
+	var/static/list/pride_reskins = list("Rainbow Pride"	= list("icon" = "pride_rainbow",	"info" = "A colorful striped rainbow that represents diversity and Gay Pride, pride in same-gender love!"),
+										 "Bisexual Pride"	= list("icon" = "pride_bi",			"info" = "Purple, dark pink and dark blue stripes that represent Bisexual Pride, pride in loving both binary genders!"),
+										 "Pansexual Pride"	= list("icon" = "pride_pan",		"info" = "Yellow, pink and blue stripes that represent Pansexual Pride, pride in loving regardless of sex or gender!"),
+										 "Asexual Pride"	= list("icon" = "pride_ace",		"info" = "Black, grey, white and purple stripes that represent Asexual Pride, pride in nonsexual love!"),
+										 "Non-binary Pride"	= list("icon" = "pride_enby",		"info" = "Yellow, white, purple and black stripes that represent Non-Binary pride, pride in identifying as a Non-Binary gender!"),
+										 "Transgender Pride"= list("icon" = "pride_trans",		"info" = "Blue, pink and white stripes that represent Transgender pride, pride in transitioning genders!"),
+										 "Intersex Pride"	= list("icon" = "pride_intersex",	"info" = "A yellow background with a disctint purple circle that represents Intersex pride, pride in atypical sex characteristics!"),
+										 "Lesbian Pride"	= list("icon" = "pride_lesbian", 	"info" = "Orange and pink shaded stripes that represent Lesbian pride, pride in same-gender love among women!"),
 										)
 
 /obj/item/clothing/accessory/pride/attack_self(mob/user)
@@ -433,5 +433,4 @@
 	for(var/pin_type in pride_reskins)
 		radial_menu[pin_type] =  new/datum/radial_menu_choice(icon(icon, pride_reskins[pin_type]["icon"]), pride_reskins[pin_type]["info"])
 	var/P = show_radial_menu(user, user, radial_menu, tooltips = TRUE)
-	if(P)
-		icon_state = pride_reskins[P]["icon"]
+	icon_state = P ? pride_reskins[P]["icon"] : initial(icon_state)
