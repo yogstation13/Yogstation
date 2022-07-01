@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Plasma Shotgun uses 1/2 energy"
+  - tweak: "Increase bullet count by 1 and increase variance slightly"
