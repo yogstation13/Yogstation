@@ -20,9 +20,12 @@
 	paycheck_department = ACCOUNT_MED
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation","GaxStation")
 
 /datum/job/psych/proc/OmegaStationChanges()
+	return TRUE
+
+/datum/job/psych/proc/GaxStationChanges() // I'M SORRY
 	return TRUE
 
 /datum/outfit/job/psych
