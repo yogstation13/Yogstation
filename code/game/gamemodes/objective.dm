@@ -2,6 +2,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective
+	var/objective_name = "Objective"
 	var/datum/mind/owner				//The primary owner of the objective. !!SOMEWHAT DEPRECATED!! Prefer using 'team' for new code.
 	var/datum/team/team					//An alternative to 'owner': a team. Use this when writing new code.
 	var/name = "generic objective" 		//Name for admin prompts
@@ -582,6 +583,19 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!considered_alive(M, FALSE))
+			return FALSE
+	return TRUE
+
+/datum/objective/exile
+	name = "exile"
+	explanation_text = "Stay alive off station. Do not go to CentCom."
+
+/datum/objective/exile/check_completion()
+	var/list/owners = get_owners()
+	for(var/datum/mind/mind as anything in owners)
+		if(!considered_alive(mind))
+			return FALSE
+		if(SSmapping.level_has_any_trait(mind.current.z, list(ZTRAIT_STATION, ZTRAIT_CENTCOM))) //went to centcom or ended round on station
 			return FALSE
 	return TRUE
 

@@ -11,6 +11,8 @@
 	antag_moodlet = /datum/mood_event/revolution
 	var/hud_type = "rev"
 	var/datum/team/revolution/rev_team
+	///when this antagonist is being de-antagged, this is why
+	var/deconversion_reason
 
 	/// What message should the player receive when they are being demoted, and the revolution has won?
 	var/victory_message = "The revolution has overpowered the command staff! Viva la revolution! Execute any head of staff and security should you find them alive."
@@ -236,6 +238,19 @@
 		owner.current.visible_message("[span_deconversion_message("The frame beeps contentedly, purging the hostile memory engram from the MMI before initalizing it.")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("The frame's firmware detects and deletes your neural reprogramming! You remember nothing but the name of the one who flashed you."))
 
+/datum/antagonist/rev/head/farewell()
+	if (announce_victorious() || deconversion_reason == DECONVERTER_STATION_WIN)
+		return
+	if((ishuman(owner.current)))
+		if(owner.current.stat != DEAD)
+			owner.current.visible_message("<span class='deconversion_message'>[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!</span>", null, null, null, owner.current)
+			to_chat(owner, "<span class ='deconversion_message bold'>You have given up your cause of overthrowing the command staff. You are no longer a Head Revolutionary.</span>")
+		else
+			to_chat(owner, "<span class ='deconversion_message bold'>The sweet release of death. You are no longer a Head Revolutionary.</span>")
+	else if(issilicon(owner.current))
+		owner.current.visible_message("<span class='deconversion_message'>The frame beeps contentedly, suppressing the disloyal personality traits from the MMI before initalizing it.</span>", null, null, null, owner.current)
+		to_chat(owner, "<span class='userdanger'>The frame's firmware detects and suppresses your unwanted personality traits! You feel more content with the leadership around these parts.</span>")
+
 //blunt trauma deconversions call this through species.dm spec_attacked_by()
 /datum/antagonist/rev/proc/remove_revolutionary(borged, deconverter)
 	log_attack("[key_name(owner.current)] has been deconverted from the revolution by [ismob(deconverter) ? key_name(deconverter) : deconverter]!")
@@ -245,11 +260,20 @@
 	if(iscarbon(owner.current) && deconverter != DECONVERTER_REVS_WIN)
 		var/mob/living/carbon/C = owner.current
 		C.Unconscious(100)
+	deconversion_reason = deconverter
 	owner.remove_antag_datum(type)
 
 /datum/antagonist/rev/head/remove_revolutionary(borged,deconverter)
+	var/re_antag = FALSE
+	var/datum/mind/old_owner = owner //owner gets nulled when rev antag removed
 	if(borged || deconverter == DECONVERTER_STATION_WIN || deconverter == DECONVERTER_REVS_WIN)
+		if(owner.current.stat != DEAD && deconverter == DECONVERTER_STATION_WIN)
+			re_antag = TRUE
 		. = ..()
+
+		if(re_antag)
+			old_owner.add_antag_datum(/datum/antagonist/enemy_of_the_state) //needs to be post ..() so old antag status is cleaned up
+
 
 /datum/antagonist/rev/head/equip_rev()
 	var/mob/living/carbon/H = owner.current
@@ -277,21 +301,6 @@
 		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/S = new(H)
 		S.Insert(H, special = FALSE, drop_if_replaced = FALSE)
 		to_chat(H, "Your eyes have been implanted with a cybernetic security HUD which will help you keep track of who is mindshield-implanted, and therefore unable to be recruited.")
-
-/// "Enemy of the Revolutionary", given to heads and security when the revolution wins
-/datum/antagonist/revolution_enemy
-	name = "Enemy of the Revolution"
-	show_in_antagpanel = FALSE
-
-/datum/antagonist/revolution_enemy/on_gain()
-	owner.special_role = "revolution enemy"
-
-	var/datum/objective/survive/survive = new /datum/objective/survive
-	survive.owner = owner
-	survive.explanation_text = "The station has been overrun by revolutionaries, stay alive until the end."
-	objectives += survive
-
-	return ..()
 
 /datum/antagonist/rev/head/on_gain()
 	. = ..()
@@ -422,7 +431,7 @@
 
 			var/mob/living/carbon/target_body = mind.current
 
-			mind.add_antag_datum(/datum/antagonist/revolution_enemy)
+			mind.add_antag_datum(/datum/antagonist/enemy_of_the_revolution)
 
 			if (!istype(target_body))
 				continue
