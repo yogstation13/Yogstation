@@ -64,6 +64,9 @@
 	bluespace = TRUE
 	explosionSize = list(0,0,1,2)
 	landingDelay = 15 //Slightly quicker than the supplypod
+	
+/obj/structure/closet/supplypod/bluespacepod/syndicate
+	style = STYLE_SYNDICATE
 
 /obj/structure/closet/supplypod/extractionpod
 	name = "Syndicate Extraction Pod"
