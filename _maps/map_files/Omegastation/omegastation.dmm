@@ -2884,20 +2884,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aep" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/white{
-	icon_state = "2-8"
-	},
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 8;
-	icon_state = "right";
-	name = "Unisex Shower"
-	},
-/obj/structure/window/reinforced/tinted,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aeq" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "secexterior";
@@ -3485,18 +3471,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"afb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/soap/nanotrasen,
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/structure/window/reinforced/tinted,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "afc" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -13686,23 +13660,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard)
-"azT" = (
-/obj/structure/bed,
-/obj/item/bedsheet/prisoner,
-/obj/machinery/camera{
-	c_tag = "Prison Cell 2";
-	network = list("ss13","prison")
-	},
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	dir = 2;
-	name = "Prison Intercom (General)";
-	pixel_y = 24;
-	prison_radio = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "azV" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -13731,23 +13688,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"aAa" = (
-/obj/structure/bed,
-/obj/item/bedsheet/prisoner,
-/obj/machinery/camera{
-	c_tag = "Prison Cell 1";
-	network = list("ss13","prison")
-	},
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	dir = 2;
-	name = "Prison Intercom (General)";
-	pixel_y = 24;
-	prison_radio = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aAc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/stool,
@@ -14296,6 +14236,18 @@
 "aCe" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
+"aCj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/soap/nanotrasen,
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/toilet)
 "aCm" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/white{
@@ -24065,6 +24017,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"cko" = (
+/obj/structure/bed,
+/obj/item/bedsheet/prisoner,
+/obj/machinery/camera{
+	c_tag = "Prison Cell 1";
+	network = list("ss13","prison")
+	},
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	dir = 2;
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "clF" = (
 /obj/machinery/light{
 	dir = 1
@@ -24246,27 +24216,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"cuq" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/button/door{
-	id = "permabolt1";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "cuw" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -24860,6 +24809,28 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port)
+"dbu" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door{
+	id = "permabolt1";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "dbw" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/neutral,
@@ -26358,6 +26329,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"eGR" = (
+/obj/structure/bed,
+/obj/item/bedsheet/prisoner,
+/obj/machinery/camera{
+	c_tag = "Prison Cell 2";
+	network = list("ss13","prison")
+	},
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	dir = 2;
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "eIa" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -27673,27 +27662,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar/atrium)
-"ggK" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/button/door{
-	id = "permabolt2";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "ghD" = (
 /obj/structure/cable/white{
 	icon_state = "1-4"
@@ -34618,6 +34586,20 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"ncI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 8;
+	icon_state = "right";
+	name = "Unisex Shower"
+	},
+/obj/structure/window/reinforced/tinted,
+/turf/open/floor/plasteel,
+/area/security/prison/toilet)
 "ncW" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -43725,6 +43707,28 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"uzI" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door{
+	id = "permabolt2";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "uAt" = (
 /obj/structure/cable/white{
 	icon_state = "1-4"
@@ -81511,7 +81515,7 @@ aem
 aem
 ajb
 arD
-azT
+eGR
 aCq
 arD
 aCB
@@ -82025,7 +82029,7 @@ qka
 ahz
 aAc
 arD
-cuq
+dbu
 aCt
 arD
 abq
@@ -82539,7 +82543,7 @@ agH
 jgp
 aFM
 arD
-aAa
+cko
 aCu
 arD
 abx
@@ -82791,7 +82795,7 @@ aac
 aac
 aad
 abO
-aep
+ncI
 aFo
 rYR
 hiR
@@ -83048,12 +83052,12 @@ aac
 aad
 aad
 abO
-afb
+aCj
 ahA
 aiq
 aCp
 arD
-ggK
+uzI
 aCt
 arD
 aDp

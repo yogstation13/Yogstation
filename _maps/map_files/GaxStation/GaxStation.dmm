@@ -986,20 +986,6 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
-"azB" = (
-/obj/machinery/button/door{
-	id = "permabolt2";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "azQ" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Prison Wing";
@@ -3436,6 +3422,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"bOW" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1;
+	open = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "bPi" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 4
@@ -4793,21 +4787,6 @@
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"cxG" = (
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	name = "Prison Intercom (General)";
-	pixel_y = 24;
-	prison_radio = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Prison Cell 1";
-	network = list("ss13","prison")
-	},
-/obj/structure/bed,
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "cxT" = (
 /obj/machinery/door/poddoor{
 	id = "trash";
@@ -16321,6 +16300,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"iJb" = (
+/obj/machinery/button/door{
+	id = "permabolt1";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/chair/stool,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "iJF" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -18876,16 +18870,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"keR" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "kfq" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -21109,20 +21093,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
-"luT" = (
-/obj/machinery/button/door{
-	id = "permabolt1";
-	name = "Cell Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = 25;
-	specialfunctions = 4
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "lvc" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -26740,14 +26710,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"otH" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1;
-	open = 1
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "otI" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -29275,6 +29237,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"pVj" = (
+/obj/machinery/button/door{
+	id = "permabolt2";
+	name = "Cell Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = 25;
+	specialfunctions = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/chair/stool,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pVm" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
@@ -30052,6 +30029,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"qpz" = (
+/obj/machinery/door/airlock{
+	name = "Unisex Restroom"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "qpJ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -31202,21 +31189,6 @@
 /obj/item/storage/box/syringes,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"raq" = (
-/obj/item/radio/intercom{
-	desc = "Talk through this. It looks like it has been modified to not broadcast.";
-	name = "Prison Intercom (General)";
-	pixel_y = 24;
-	prison_radio = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Prison Cell 2";
-	network = list("ss13","prison")
-	},
-/obj/structure/bed,
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "raB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
@@ -31664,6 +31636,22 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
+"rpg" = (
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Prison Cell 2";
+	network = list("ss13","prison")
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "rph" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 4;
@@ -37127,16 +37115,6 @@
 /obj/item/pickaxe,
 /turf/open/floor/plating/asteroid/airless,
 /area/science/test_area)
-"uAF" = (
-/obj/machinery/door/airlock{
-	name = "Unisex Restroom"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "uBb" = (
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/supply)
@@ -40160,6 +40138,22 @@
 	},
 /turf/open/floor/plating,
 /area/security/brig)
+"wao" = (
+/obj/item/radio/intercom{
+	desc = "Talk through this. It looks like it has been modified to not broadcast.";
+	name = "Prison Intercom (General)";
+	pixel_y = 24;
+	prison_radio = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Prison Cell 1";
+	network = list("ss13","prison")
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "waJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -41851,6 +41845,16 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"wTb" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "wTc" = (
 /turf/open/floor/plasteel/dark,
 /area/security/main)
@@ -61014,9 +61018,9 @@ tgh
 wXJ
 gsO
 aOU
-uAF
-keR
-otH
+qpz
+wTb
+bOW
 wXJ
 mVq
 nxd
@@ -61529,7 +61533,7 @@ nxv
 dXC
 mrO
 wXJ
-raq
+rpg
 eFT
 wXJ
 tNs
@@ -62043,7 +62047,7 @@ esr
 uum
 lia
 wXJ
-azB
+pVj
 fKD
 wXJ
 tzz
@@ -62557,7 +62561,7 @@ esr
 esr
 rkY
 wXJ
-cxG
+wao
 blK
 wXJ
 pWa
@@ -63071,7 +63075,7 @@ fPh
 nAI
 kFD
 wXJ
-luT
+iJb
 fKD
 wXJ
 sZo

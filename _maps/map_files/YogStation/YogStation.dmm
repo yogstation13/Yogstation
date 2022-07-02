@@ -18438,15 +18438,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"bAL" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1;
-	open = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "bAO" = (
 /obj/vehicle/ridden/janicart,
 /obj/item/key/janitor,
@@ -31079,6 +31070,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/teleporter)
+"fVv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "fVy" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/sign/warning/vacuum/external{
@@ -31527,13 +31526,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"gkk" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "gkA" = (
 /obj/effect/landmark/start/medical_doctor,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -43336,6 +43328,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"lYm" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "lYK" = (
 /obj/machinery/status_display/ai{
 	pixel_y = -32
@@ -49881,6 +49888,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"pej" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1;
+	open = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "pew" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
@@ -53375,21 +53392,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"qZY" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/official/cleanliness{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "raa" = (
 /obj/machinery/light{
 	dir = 4
@@ -93793,7 +93795,7 @@ aat
 aat
 acd
 ajk
-gkk
+fVv
 acd
 nAW
 vDK
@@ -94821,7 +94823,7 @@ uNu
 aat
 acd
 rRB
-gkk
+fVv
 acd
 lig
 fsi
@@ -95849,7 +95851,7 @@ aat
 aat
 acd
 lIi
-gkk
+fVv
 acd
 iOJ
 fsi
@@ -96362,8 +96364,8 @@ aev
 afc
 aga
 agJ
-qZY
-bAL
+lYm
+pej
 acd
 dpI
 wKR

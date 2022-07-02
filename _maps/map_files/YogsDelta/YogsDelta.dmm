@@ -14097,21 +14097,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"ayr" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
-/area/security/prison)
 "ays" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -14127,25 +14112,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"ayt" = (
-/obj/machinery/door/airlock{
-	name = "Bathroom"
-	},
-/obj/structure/sign/poster/official/cleanliness{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "ayu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -16751,15 +16717,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/bar/atrium)
-"aCO" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/item/soap/nanotrasen,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aCP" = (
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -27423,17 +27380,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"aUv" = (
-/obj/structure/bed,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aUw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/brown,
@@ -27456,18 +27402,6 @@
 	dir = 1
 	},
 /area/engine/atmos)
-"aUy" = (
-/obj/structure/bed,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "aUz" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mining Office";
@@ -119108,6 +119042,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/virology)
+"gbS" = (
+/obj/machinery/door/airlock{
+	name = "Bathroom"
+	},
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/toilet)
 "gcN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -119361,6 +119314,19 @@
 "gCK" = (
 /turf/closed/wall,
 /area/maintenance/department/science)
+"gEi" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "gFZ" = (
 /obj/machinery/nanite_program_hub,
 /obj/effect/turf_decal/bot,
@@ -125121,6 +125087,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research)
+"rlt" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/item/soap/nanotrasen,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison/toilet)
 "rlu" = (
 /obj/structure/closet/secure_closet/security/med,
 /obj/effect/turf_decal/tile/red{
@@ -126189,6 +126165,21 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"tgA" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/security/prison/toilet)
 "tgJ" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/effect/turf_decal/tile/blue{
@@ -127069,6 +127060,18 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"uRS" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "uSj" = (
 /obj/machinery/status_display/evac{
 	pixel_x = -32
@@ -181075,8 +181078,8 @@ ajr
 aaa
 aad
 aFm
-aCO
-ayr
+rlt
+tgA
 uLK
 mQZ
 mue
@@ -181333,7 +181336,7 @@ aaa
 aad
 aFm
 aKV
-ayt
+gbS
 uLK
 uLK
 uLK
@@ -181594,7 +181597,7 @@ ayu
 aPh
 aQZ
 aKV
-aUv
+uRS
 doV
 aAi
 jFL
@@ -182622,7 +182625,7 @@ ayN
 ats
 aRd
 aKV
-aUy
+gEi
 dpt
 aAi
 jEg
@@ -183650,7 +183653,7 @@ azb
 aPp
 aRg
 aKV
-aUv
+uRS
 dpz
 aAi
 wTQ

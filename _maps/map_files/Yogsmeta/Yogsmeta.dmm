@@ -815,16 +815,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"abY" = (
-/obj/machinery/door/airlock{
-	name = "Unisex Restroom"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "abZ" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes{
@@ -917,15 +907,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/security/prison)
-"acp" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/toilet{
-	dir = 4
-	},
-/turf/open/floor/plasteel/freezer,
 /area/security/prison)
 "acq" = (
 /obj/structure/table,
@@ -1359,16 +1340,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
-"ads" = (
-/obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Prison Cell 3";
-	network = list("ss13","prison")
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "adt" = (
 /obj/structure/chair/stool,
 /obj/machinery/light/small{
@@ -1382,16 +1353,6 @@
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/security/prison)
-"adu" = (
-/obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Prison Cell 2";
-	network = list("ss13","prison")
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/prisoner,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "adw" = (
@@ -1409,16 +1370,6 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
-/area/security/prison)
-"adx" = (
-/obj/structure/bed,
-/obj/machinery/camera{
-	c_tag = "Prison Cell 1";
-	network = list("ss13","prison")
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/bedsheet/prisoner,
-/turf/open/floor/plasteel,
 /area/security/prison)
 "ady" = (
 /obj/structure/chair/stool,
@@ -66758,6 +66709,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"gDJ" = (
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Prison Cell 3";
+	network = list("ss13","prison")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "gDK" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{
@@ -72830,6 +72792,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"mRz" = (
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Prison Cell 2";
+	network = list("ss13","prison")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "mRX" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 8
@@ -77870,6 +77843,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"rYl" = (
+/obj/structure/bed,
+/obj/machinery/camera{
+	c_tag = "Prison Cell 1";
+	network = list("ss13","prison")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bedsheet/prisoner,
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "rYE" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
@@ -80497,6 +80481,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"uFA" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/landmark/start/prisoner,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "uGb" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -83247,6 +83241,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"xfY" = (
+/obj/machinery/door/airlock{
+	name = "Unisex Restroom"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison/toilet)
 "xgC" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/machinery/camera{
@@ -105598,8 +105602,8 @@ aaf
 aay
 abh
 abA
-abY
-acp
+xfY
+uFA
 aax
 jLt
 adp
@@ -106116,7 +106120,7 @@ abZ
 acq
 acD
 abe
-ads
+gDJ
 adC
 abe
 vLg
@@ -107144,7 +107148,7 @@ abX
 acc
 acn
 abe
-adu
+mRz
 adP
 abe
 krZ
@@ -108172,7 +108176,7 @@ dlk
 acw
 acH
 abe
-adx
+rYl
 adR
 abe
 nZV
