@@ -32,6 +32,8 @@
 
 /// How much extra radioactivity to emit
 #define BZ_RADIOACTIVITY_MODIFIER 5 // Up to 500% rads
+#define TRITIUM_RADIOACTIVITY_MODIFIER 3 
+#define PLUOXIUM_RADIOACTIVITY_MODIFIER -2
 
 /// Higher == Gas makes the crystal more resistant against heat damage.
 #define N2O_HEAT_RESISTANCE 6
@@ -461,6 +463,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
 		var/tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
 		var/bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
+		var/pluoxiumbonus = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
+
 
 		// Mole releated calculations
 		var/bzmol = max(removed.get_moles(/datum/gas/bz), 0)
@@ -501,7 +505,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(prob(50))
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
-			last_rads = power * (1 + (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier //Yogs addition, radmodifier
+			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) * pluoxiumbonus) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
 			radiation_pulse(src, max(last_rads))
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
