@@ -1722,6 +1722,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
+"agJ" = (
+/obj/machinery/door/airlock{
+	name = "Unisex Restroom"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "agL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -18371,6 +18382,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
+"bAL" = (
+/obj/structure/toilet{
+	cistern = 1;
+	dir = 1;
+	open = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "bAO" = (
 /obj/vehicle/ridden/janicart,
 /obj/item/key/janitor,
@@ -31434,6 +31454,13 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"gkk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "gkA" = (
 /obj/effect/landmark/start/medical_doctor,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -37862,14 +37889,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
-"jha" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/effect/landmark/start/prisoner,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "jhc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -48640,16 +48659,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
-"oxV" = (
-/obj/structure/toilet{
-	cistern = 1;
-	dir = 1;
-	open = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/prisoner,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison/toilet)
 "oyd" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -53310,6 +53319,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"qZY" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/freezer,
+/area/security/prison)
 "raa" = (
 /obj/machinery/light{
 	dir = 4
@@ -54927,17 +54951,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"rPI" = (
-/obj/machinery/door/airlock{
-	name = "Unisex Restroom"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/freezer,
-/area/security/prison/toilet)
 "rPP" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -63188,21 +63201,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"vTQ" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/official/cleanliness{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison/toilet)
 "vUc" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -93768,7 +93766,7 @@ aat
 aat
 acd
 ajk
-jha
+gkk
 acd
 nAW
 vDK
@@ -94796,7 +94794,7 @@ uNu
 aat
 acd
 rRB
-jha
+gkk
 acd
 lig
 fsi
@@ -95824,7 +95822,7 @@ aat
 aat
 acd
 lIi
-jha
+gkk
 acd
 iOJ
 fsi
@@ -96336,9 +96334,9 @@ ads
 aev
 afc
 aga
-rPI
-vTQ
-oxV
+agJ
+qZY
+bAL
 acd
 dpI
 wKR
