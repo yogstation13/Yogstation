@@ -418,7 +418,7 @@
 					pod.explosionSize = list(0,0,0,0)
 					new /obj/item/station_charter/revolution(pod)
 					var/turf/landing_location = get_turf(rev_mind.current)
-					new /obj/effect/pod_landingzone(landing_location, pod)
+					new /obj/effect/DPtarget(landing_location, pod)
 					to_chat(rev_mind.current, "<span class='hear'>You hear something crackle in your ears for a moment before a voice speaks. \
 						\"Please stand by for a message from your benefactor. Message as follows, provocateur. \
 						<b>You have been chosen out of your fellow provocateurs to rename the station. Choose wisely.</b> Message ends.\"</span>")
