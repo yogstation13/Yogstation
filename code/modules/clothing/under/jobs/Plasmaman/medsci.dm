@@ -3,7 +3,7 @@
 	desc = "A plasmaman envirosuit worn by those with the know-how to achieve the position of \"Research Director\"."
 	icon_state = "rd_envirosuit"
 	item_state = "rd_envirosuit"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 35)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 100, RAD = 0, FIRE = 95, ACID = 95)
 
 /obj/item/clothing/under/plasmaman/medical
 	name = "medical envirosuit"
