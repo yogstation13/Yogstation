@@ -19,6 +19,15 @@
 		. = 1
 	..()
 
+/datum/reagent/consumable/minion
+	name = "Minionade"
+	description = "The most gorgeous banana-lemonade you can ever drink!"
+	color = "#f6ff00" // rgb: 231, 129, 8
+	taste_description = "oranges"
+	glass_icon_state = "glass_orange"
+	glass_name = "glass of minionade"
+	glass_desc = "BANANA!!! BANANA!!!"
+
 /datum/reagent/consumable/tomatojuice
 	name = "Tomato Juice"
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
