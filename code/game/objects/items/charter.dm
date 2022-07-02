@@ -150,11 +150,6 @@
 /obj/item/station_charter/revolution
 	name = "revolutionary banner"
 	desc = "A banner symbolizing a bloody victory over treacherous tyrants."
-	icon = 'icons/obj/banner.dmi'
-	icon_state = "banner_revolution"
-	inhand_icon_state = "banner-red"
-	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
 	w_class = 5
 	force = 15
 	ignores_timeout = TRUE //non roundstart!
