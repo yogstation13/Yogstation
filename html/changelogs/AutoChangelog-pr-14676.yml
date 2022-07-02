@@ -1,5 +1,0 @@
-author: "Addust"
-delete-after: true 
-changes: 
-  - rscadd: "Free Miners now have pens."
-  - tweak: "Free Miner ship console orientation is no longer braindead and the map file has passthroughs on the exterior."
