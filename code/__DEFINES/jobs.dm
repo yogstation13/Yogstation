@@ -1,4 +1,3 @@
-
 #define ENGSEC			(1<<0)
 
 #define CAPTAIN			(1<<0)
