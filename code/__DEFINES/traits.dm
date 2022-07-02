@@ -220,6 +220,7 @@
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
+#define TRAIT_HIVE_BURNT		 "hive-burnt"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -321,7 +322,7 @@
 #define LOCKED_HELMET_TRAIT "locked-helmet"
 #define NINJA_SUIT_TRAIT "ninja-suit"
 #define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
-#define HIVEMIND_ONE_MIND_TRAIT "one_mind"
+#define HIVEMIND_TRAIT "hivemind-trait"
 #define VR_ZONE_TRAIT "vr_zone_trait"
 #define GUARDIAN_TRAIT "guardian_trait"
 #define RANDOM_BLACKOUTS "random_blackouts"

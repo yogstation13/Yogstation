@@ -30,6 +30,7 @@
 #define ROLE_BROTHER			"Blood Brother"
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
 #define ROLE_HIVE				"Hivemind Host"
+#define ROLE_HIVE_VESSEL		"Awakened Vessel"
 #define ROLE_OBSESSED			"Obsessed"
 #define ROLE_SENTIENCE			"Sentience Potion Spawn"
 #define ROLE_MIND_TRANSFER		"Mind Transfer Potion"
