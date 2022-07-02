@@ -488,3 +488,9 @@
 	job = "Ghost"
 	path = /obj/item/clothing/neck/skillcape
 	id = "ghost"
+
+/datum/skillcape/trimmed/ghost
+	name = "grand cape of invisible skill"
+	job = "Ghost"
+	path = /obj/item/clothing/neck/skillcape/trimmed
+	id = "ghost"

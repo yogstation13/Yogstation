@@ -9,7 +9,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESUITSTORAGE
 
-/obj/item/clothing/neck/skillcape
+/obj/item/clothing/neck/skillcape/trimmed
 	name = "cape of invisible skill"
 	desc = "It looks... empty. But hey! there's gold trim on it!"
 	icon = 'icons/obj/clothing/skillcapes.dmi'
