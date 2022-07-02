@@ -655,6 +655,7 @@
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 95, ACID = 95)
+	resistance_flags = FIRE_PROOF
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	can_adjust = FALSE
 	strip_delay = 80
