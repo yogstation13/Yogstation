@@ -1,7 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscdel: "kills psych on gaxstation"
-  - bugfix: "fixes bad areas on gaxstation"
-  - tweak: "adds more floor trim to gaxstation"
-  - tweak: "give virology airlock style airlocks on gaxstation"
