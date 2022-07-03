@@ -47,6 +47,7 @@
 	var/brightness_on = 4 //luminosity when the light is on
 	var/on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_screen)
+	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT
 	flash_protect = 2
 	tint = 2
 
