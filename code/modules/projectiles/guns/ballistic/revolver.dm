@@ -126,6 +126,13 @@
 			to_chat(user, span_notice("You remove the modifications on [src]. Now it will fire .38 rounds."))
 	return TRUE
 
+/obj/item/gun/ballistic/revolver/tracking
+	name = "\improper Caldwell Tracking Revolver"
+	desc = "A modified autorevolver with a innately suppressed barrel that is typically used by security personnel. Uses .38 TRAC ammo."
+	icon_state = "detective_bladerunner"
+	suppressed = TRUE
+	can_unsuppress = FALSE
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra38
 
 /obj/item/gun/ballistic/revolver/mateba
 	name = "\improper Unica 6 auto-revolver"

@@ -22,11 +22,6 @@
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38
 
-/obj/item/ammo_casing/c38/trac
-	name = ".38 TRAC bullet casing"
-	desc = "A .38 \"TRAC\" bullet casing."
-	projectile_type = /obj/item/projectile/bullet/c38/trac
-
 /obj/item/ammo_casing/c38/hotshot
 	name = ".38 Hot Shot bullet casing"
 	desc = "A .38 Hot Shot bullet casing."
@@ -38,3 +33,15 @@
 	desc = "A .38 Iceblox bullet casing."
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/iceblox
+
+/obj/item/ammo_casing/c38/gutterpunch
+	name = ".38 Gutterpunch bullet casing"
+	desc = "A .38 Gutterpunch bullet casing"
+	caliber = "38"
+	projectile_type = /obj/item/projectile/bullet/c38/gutterpunch
+
+/obj/item/ammo_casing/tra38
+	name = ".38 TRAC bullet casing"
+	desc = "A .38 \"TRAC\" bullet casing."
+	caliber = "38 TRAC"
+	projectile_type = /obj/item/projectile/bullet/tra38

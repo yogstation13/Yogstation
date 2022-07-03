@@ -8,19 +8,10 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/c38_trac
-	name = "Speed Loader (.38 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
-	id = "c38_trac"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/silver = 5000, /datum/material/gold = 1000)
-	build_path = /obj/item/ammo_box/c38/trac
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
 /datum/design/c38_hotshot
 	name = "Speed Loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an incendiary payload which sets targets ablaze."
 	id = "c38_hotshot"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
@@ -30,13 +21,46 @@
 
 /datum/design/c38_iceblox
 	name = "Speed Loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for a cryogenic payload which significantly reduces the body temperature of targets hit."
 	id = "c38_iceblox"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
 	build_path = /obj/item/ammo_box/c38/iceblox
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/c38_gutterpunch
+	name = "Speed Loader (.38 Gutterpunch)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
+	id = "c38_gutterpunch"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
+	build_path = /obj/item/ammo_box/c38/gutterpunch
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/tracrevolver
+	name = "Caldwell Tracking Revolver"
+	desc = "A modified autorevolver with a innately suppressed barrel that is typically used by security personnel. Uses .38 TRAC ammo."
+	id = "tracrevolver"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 10000, /datum/material/silver = 3000, /datum/material/titanium = 2000)
+	build_path = /obj/item/gun/ballistic/revolver/tracking
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/c38_trac
+	name = "Speed Loader (.38 TRAC)"
+	desc = "A six-shot speed loader designed for specialized .38 revolvers. \
+			These rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is fifteen minutes."
+	id = "tra38"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/silver = 5000, /datum/material/gold = 1000)
+	build_path = /obj/item/ammo_box/tra38
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/rubbershot/sec
 	id = "sec_rshot"

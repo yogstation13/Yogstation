@@ -520,7 +520,7 @@
 	display_name = "Subdermal Implants"
 	description = "Electronic implants buried beneath the skin."
 	prereq_ids = list("biotech")
-	design_ids = list("implanter", "implantcase", "implant_chem", "implant_tracking", "locator", "c38_trac")
+	design_ids = list("implanter", "implantcase", "implant_chem", "implant_tracking", "locator", "tra38", "tracrevolver")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -778,7 +778,7 @@
 	display_name = "Exotic Ammunition"
 	description = "They won't know what hit em."
 	prereq_ids = list("adv_weaponry")
-	design_ids = list("techshotshell", "c38_hotshot", "c38_iceblox")
+	design_ids = list("techshotshell", "c38_hotshot", "c38_iceblox", "c38_gutterpunch")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
