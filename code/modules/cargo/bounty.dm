@@ -80,7 +80,7 @@ GLOBAL_LIST_EMPTY(bounties_list)
 
 // Returns a new bounty of random type, but does not add it to GLOB.bounties_list.
 /proc/random_bounty()
-	switch(rand(1, 13))
+	switch(rand(1, 14))
 		if(1)
 			var/subtype = pick(subtypesof(/datum/bounty/item/assistant))
 			return new subtype
@@ -123,9 +123,11 @@ GLOBAL_LIST_EMPTY(bounties_list)
 			var/subtype
 			if(rand(2) == 1)
 				subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
-				subtype = pick(subtypesof(/datum/bounty/item/atmos/h2metal))
 			else
 				subtype = pick(subtypesof(/datum/bounty/item/atmos/complex))
+			return new subtype
+		if(14)
+			var/subtype = pick(subtypesof(/datum/bounty/item/h2metal))
 			return new subtype
 
 // Called lazily at startup to populate GLOB.bounties_list with random bounties.
@@ -142,7 +144,7 @@ GLOBAL_LIST_EMPTY(bounties_list)
 											/datum/bounty/item/mining = 3,
 											/datum/bounty/item/medical = 2,
 											/datum/bounty/item/botany = 3,
-											/datum/bounty/item/atmos/h2metal = 3,
+											/datum/bounty/item/h2metal = 3,
 											/datum/bounty/item/atmos/complex = 1,
 											/datum/bounty/item/atmos/simple = 4)
 

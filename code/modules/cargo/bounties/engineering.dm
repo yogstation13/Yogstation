@@ -57,21 +57,21 @@
 	reward = 12000
 	gas_type = /datum/gas/stimulum
 
-/datum/bounty/item/atmos/h2metal/metallic_hydrogen_armor
+/datum/bounty/item/h2metal/metallic_hydrogen_armor
 	name = "5 Metallic Hydrogen Armors"
 	description = "Nanotrasen is requiring new armor to be made. Ship them 5 metallic hydrogen armors."
 	reward = 8000
 	required_count = 5
 	wanted_types = list(/obj/item/clothing/suit/armor/elder_atmosian)
 
-/datum/bounty/item/atmos/h2metal/metallic_hydrogen_helmet
+/datum/bounty/item/h2metal/metallic_hydrogen_helmet
 	name = "5 Metallic Hydrogen Armors"
 	description = "Nanotrasen is requiring new helmet to be made. Ship them 5 metallic hydrogen helmets."
 	reward = 7000
 	required_count = 5
 	wanted_types = list(/obj/item/clothing/head/helmet/elder_atmosian)
 
-/datum/bounty/item/atmos/h2metal/metallic_hydrogen_axe
+/datum/bounty/item/h2metal/metallic_hydrogen_axe
 	name = "5 Metallic Hydrogen axes"
 	description = "Nanotrasen is requiring new axe to be made. Ship them 5 metallic hydrogen helmets."
 	reward = 7500
