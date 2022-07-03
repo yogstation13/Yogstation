@@ -71,7 +71,7 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_screen(mob/living/user)
 	if(weldingvisortoggle(user))
-		playsound(src, 'sound/mecha/mechmove03.ogg', 50, 1) //Sound of the welding screen sliding down, maybe
+		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Sound of the welding screen sliding down, maybe
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
