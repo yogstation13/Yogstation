@@ -795,27 +795,6 @@
 	icon_state = "hardsuit0-inq"
 	item_state = "hardsuit0-inq"
 
-/obj/item/clothing/suit/space/hardsuit/ert/paranormal/warded
-	name = "warded hardsuit"
-	desc = "Powerful wards are built into this hardsuit, protecting the user from all manner of paranormal threats. This suit looks a bit dated, and worn. It might not protect against temperature as well as if it was new!"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/twohanded/required/kinetic_crusher)
-	armor = list(MELEE = 55, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 50, BIO = 50, RAD = 50, FIRE = 100, ACID = 100)
-	slowdown = 0
-	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	resistance_flags = FIRE_PROOF
-	icon_state = "knight_grey"
-	item_state = "knight_grey"
-	hardsuit_type = "knight_grey"
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal
-
-/obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/warded
-	name = "warded helmet"
-	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	resistance_flags = FIRE_PROOF
-	armor = list(MELEE = 55, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 50, BIO = 50, RAD = 50, FIRE = 100, ACID = 100)
-	icon_state = "hardsuit0-prt"
-	item_state = "hardsuit0-prt"
-
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker
 	name = "champion's hardsuit"
 	desc = "Voices echo from the hardsuit, driving the user insane."
@@ -1125,20 +1104,35 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
 	name = "Advanced power helmet"
-	desc = "It's an advanced power armor Mk I helmet. It looks somewhat threatening."
+	desc = "It's an advanced power armor X-01 helmet. It looks somewhat threatening."
 	icon_state = "hardsuit0-advpa1"
 	item_state = "advpa1_helm"
 	hardsuit_type = "advpa1"
-	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48, BIO = 0, RAD = 0, FIRE = 0, ACID = 25)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/twohanded/required/kinetic_crusher)
+	armor = list(MELEE = 55, BULLET = 40, LASER = 30, ENERGY = 30, BOMB = 60, BIO = 100, RAD = 80, FIRE = 100, ACID = 100, WOUND = 10)
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
+
+/obj/item/clothing/head/helmet/space/hardsuit/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_OCLOTHING)
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
 	name = "Advanced power armor"
-	desc = "An advanced suit of power armor. It looks pretty impressive and threatening."
+	desc = "An advanced suit of power armor. It looks pretty impressive and threatening. A rusty plaque on the thigh mentions \"X-01\"?"
 	icon_state = "hardsuit-advancedpa1"
 	item_state = "advpa1_hardsuit"
-	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48, BIO = 0, RAD = 0, FIRE = 0, ACID = 25)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
 	hardsuit_type = "advancedpa1"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/twohanded/required/kinetic_crusher)
+	armor = list(MELEE = 55, BULLET = 40, LASER = 30, ENERGY = 30, BOMB = 60, BIO = 100, RAD = 80, FIRE = 100, ACID = 100, WOUND = 10)
+	slowdown = 0
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
+
+/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/Initialize()
+	. = ..()
+	AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_OCLOTHING)
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/debug // reused code so I dont have to make new procs
 	name = "debug hardsuit helmet"
