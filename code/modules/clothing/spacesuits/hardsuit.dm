@@ -1113,10 +1113,6 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
-/obj/item/clothing/head/helmet/space/hardsuit/Initialize()
-	. = ..()
-	AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_OCLOTHING)
-
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
 	name = "Advanced power armor"
 	desc = "An advanced suit of power armor. It looks pretty impressive and threatening. A rusty plaque on the thigh mentions \"X-01\"?"
@@ -1129,10 +1125,6 @@
 	slowdown = 0
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
-
-/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/Initialize()
-	. = ..()
-	AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_OCLOTHING)
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/debug // reused code so I dont have to make new procs
 	name = "debug hardsuit helmet"
