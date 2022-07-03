@@ -71,7 +71,6 @@
 	required_count = 5
 	wanted_types = list(/obj/item/clothing/head/helmet/elder_atmosian)
 
-
 /datum/bounty/item/metallic_hydrogen_axe
 	name = "5 Metallic Hydrogen axes"
 	description = "Nanotrasen is requiring new axe to be made. Ship them 5 metallic hydrogen helmets."
