@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(bounties_list)
 											/datum/bounty/item/mining = 3,
 											/datum/bounty/item/medical = 2,
 											/datum/bounty/item/botany = 3,
-											/datum/bounty/item/atmos = 3,
+											/datum/bounty/item/atmos/h2metal = 3,
 											/datum/bounty/item/atmos/complex = 1,
 											/datum/bounty/item/atmos/simple = 4)
 
