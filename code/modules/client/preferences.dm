@@ -151,7 +151,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				max_save_slots = 8
 			// yogs start - Donor features
 			else if(is_donator(C) || (C.ckey in get_donators())) // the Latter handles race cases where the prefs are not fully loaded in, or GLOB.donators hasn't loaded in yet
-				max_save_slots = DONOR_CHARACTER_SLOTS
+				max_save_slots = max(DONOR_CHARACTER_SLOTS, max_save_slots)
 			// yogs end
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
