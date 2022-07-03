@@ -124,6 +124,8 @@ GLOBAL_LIST_EMPTY(bounties_list)
 			if(rand(2) == 1)
 				subtype = pick(subtypesof(/datum/bounty/item/atmos/simple))
 			else
+		        subtype = pick(subtypesof(/datum/bounty/item/atmos/h2metal))
+			else
 				subtype = pick(subtypesof(/datum/bounty/item/atmos/complex))
 			return new subtype
 
