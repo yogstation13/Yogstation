@@ -1,5 +1,5 @@
 /datum/bounty/item/atmos
-	wanted_types = list(/obj/item/tank)
+	wanted_types = list(/obj/item)
 	var/moles_required = 20 // A full tank is 28 moles, but CentCom ignores that fact.
 	var/gas_type
 
