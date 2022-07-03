@@ -42,6 +42,6 @@
 
 /obj/item/ammo_casing/tra38
 	name = ".38 TRAC bullet casing"
-	desc = "A .38 \"TRAC\" bullet casing."
+	desc = "A .38 "TRAC" bullet casing."
 	caliber = "38 TRAC"
 	projectile_type = /obj/item/projectile/bullet/tra38
