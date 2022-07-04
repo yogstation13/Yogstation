@@ -109,7 +109,7 @@
 		pinpointer_owner = user
 
 	if (pinpointer_owner && pinpointer_owner != user)
-		to_chat(user, span_notice("The pinpointer doesn't respond. It seems to only recognise its owner."))
+		to_chat(user, span_notice("The pinpointer doesn't respond; it seems to only recognise its owner."))
 		return
 
 	var/list/name_counts = list()
@@ -179,7 +179,7 @@
 		pinpointer_owner = user
 
 	if (pinpointer_owner && pinpointer_owner != user)
-		to_chat(user, span_notice("The pinpointer doesn't respond. It seems to only recognise its owner."))
+		to_chat(user, span_notice("The pinpointer doesn't respond; it seems to only recognise its owner."))
 		return
 
 	var/list/name_counts = list()
