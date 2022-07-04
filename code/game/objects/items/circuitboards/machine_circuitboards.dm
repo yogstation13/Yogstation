@@ -1344,3 +1344,10 @@
 	build_path = /obj/machinery/atmospherics/components/unary/shuttle/heater
 	req_components = list(/obj/item/stock_parts/micro_laser = 2,
 		/obj/item/stock_parts/matter_bin = 1)
+
+/obj/item/circuitboard/machine/shuttle/capacitor_bank
+	name = "ion thruster capacitor bank (Machine Board)"
+	build_path = /obj/machinery/power/engine_capacitor_bank
+	req_components = list(
+		/obj/item/stock_parts/capacitor = 3,
+		/obj/item/stock_parts/micro_laser = 1)
