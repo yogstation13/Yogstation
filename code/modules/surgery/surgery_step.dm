@@ -37,7 +37,7 @@
 	if(accept_hand)
 		if(!tool)
 			success = TRUE
-		if(iscyborg(user))
+		if(iscyborg(user) && istype(tool, /obj/item/borg/cyborghug))
 			success = TRUE
 
 // yogs start - tool switcher
