@@ -40,8 +40,8 @@
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/gutterpunch
 
-/obj/item/ammo_casing/32trac
+/obj/item/ammo_casing/tra32
 	name = ".32 TRAC bullet casing"
 	desc = "A .32 TRAC bullet casing."
 	caliber = "32trac"
-	projectile_type = /obj/item/projectile/bullet/32trac
+	projectile_type = /obj/item/projectile/bullet/tra32

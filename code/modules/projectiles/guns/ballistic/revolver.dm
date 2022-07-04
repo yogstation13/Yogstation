@@ -132,7 +132,7 @@
 	icon_state = "tracrevolver"
 	suppressed = TRUE
 	can_unsuppress = FALSE
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/32trac
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra32
 
 /obj/item/gun/ballistic/revolver/mateba
 	name = "\improper Unica 6 auto-revolver"

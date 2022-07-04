@@ -51,14 +51,14 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/32trac
+/datum/design/tra32
 	name = "Speed Loader (.32 TRAC)"
 	desc = "A six-shot speed loader designed for specialized .32 revolvers. \
 			These rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is fifteen minutes."
-	id = "32trac"
+	id = "tra32"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/silver = 5000, /datum/material/gold = 1000)
-	build_path = /obj/item/ammo_box/32trac
+	build_path = /obj/item/ammo_box/tra32
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 

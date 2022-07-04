@@ -520,7 +520,7 @@
 	display_name = "Subdermal Implants"
 	description = "Electronic implants buried beneath the skin."
 	prereq_ids = list("biotech")
-	design_ids = list("implanter", "implantcase", "implant_chem", "implant_tracking", "locator", "32trac", "tracrevolver")
+	design_ids = list("implanter", "implantcase", "implant_chem", "implant_tracking", "locator", "tra32", "tracrevolver")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
