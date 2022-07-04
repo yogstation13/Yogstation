@@ -1103,35 +1103,39 @@
 	hardsuit_type = "t45b"
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
-	name = "Advanced power helmet"
-	desc = "It's an advanced power armor X-01 helmet. It looks somewhat threatening."
+	name = "X-01 power helmet"
+	desc = "It's an X-01 power armor helmet. It looks pretty impressive and threatening."
 	icon_state = "hardsuit0-advpa1"
 	item_state = "advpa1_helm"
 	hardsuit_type = "advpa1"
+	strip_delay = 100
+	equip_delay_other = 100
 	armor = list(MELEE = 50, BULLET = 10, LASER = 25, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 10)
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
-	name = "Advanced power armor"
-	desc = "A suit of advanced power armor. It looks pretty impressive and threatening...A rusty plaque on the thigh mentions \"X-01\". The suit storage hook is sturdy enough to hold a Crusher! "
+	name = "X-01 power armor"
+	desc = "A suit of X-01 power armor. It looks pretty impressive and threatening. The suit storage hook is sturdy enough to hold a Crusher!"
 	icon_state = "hardsuit-advancedpa1"
 	item_state = "advpa1_hardsuit"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
 	hardsuit_type = "advancedpa1"
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/twohanded/required/kinetic_crusher)
-	armor = list(MELEE = 50, BULLET = 10, LASER = 25, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 10)
+	armor = list(MELEE = 50, BULLET = 10, LASER = 25, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 10, WOUND = 0)
 	slowdown = 0
+	strip_delay = 180
+	equip_delay_other = 180
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9))
+	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9, WOUND = 0.1))
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9))
+	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9, WOUND = 0.1))
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/debug // reused code so I dont have to make new procs
 	name = "debug hardsuit helmet"
