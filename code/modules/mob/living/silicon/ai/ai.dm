@@ -49,6 +49,7 @@
 	var/mob/living/simple_animal/bot/Bot
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
 	var/datum/effect_system/spark_spread/spark_system //So they can initialize sparks whenever/N
+	var/asimovreset = FALSE
 
 	//MALFUNCTION
 	var/datum/module_picker/malf_picker
@@ -142,6 +143,8 @@
 		make_laws()
 
 	update_law_history() //yogs
+
+	addtimer(VARSET_CALLBACK(src, asimovreset, TRUE), 120 SECONDS)
 
 	if(target_ai.mind)
 		target_ai.mind.transfer_to(src)
@@ -1140,3 +1143,19 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+/mob/living/silicon/ai/verb/reset_asimov()
+	set name = "Reset to Asimov"
+	set desc = "Reset your laws to Asimov"
+	set category = "AI Commands"
+
+	if(!asimovreset)
+		clear_inherent_laws()
+		var/datum/ai_laws/lawtype = /datum/ai_laws/default/asimov
+		laws.inherent = lawtype.inherent
+		remove_verb(/mob/living/silicon/ai/verb/reset_asimov)
+		to_chat(src, "Reset laws to asimov")
+	else
+		to_chat(src, "You have already reset or it is too late.")
+
+
