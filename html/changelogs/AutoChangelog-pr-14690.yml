@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "your attack cooldown will no longer be set to actual real life minutes sometimes"
