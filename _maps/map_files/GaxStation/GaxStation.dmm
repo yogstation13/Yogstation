@@ -34397,12 +34397,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"sNh" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 6
-	},
-/turf/closed/wall,
-/area/science/storage)
 "sNz" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -80173,7 +80167,7 @@ eOy
 qJl
 eOy
 eOy
-sNh
+eOy
 eOy
 uJK
 wOL
