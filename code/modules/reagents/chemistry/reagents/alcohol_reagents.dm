@@ -1264,7 +1264,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = rgb(27, 27, 27) // Nearly black
 	boozepwr = 2500 // Lethal from 1 sip
 	taste_description = "burning"
-	glass_icon_state = "glass_brown2"
+	glass_icon_state = "transfer_mix"
 	glass_name = "Transfer Mix"
 	glass_desc = "For the truly worthy"
 
