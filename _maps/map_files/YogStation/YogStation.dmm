@@ -15869,6 +15869,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"bpp" = (
+/obj/machinery/door/window/eastright{
+	base_state = "left";
+	dir = 8;
+	icon_state = "left";
+	name = "Research Division Delivery";
+	req_access_txt = "47"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "bpq" = (
 /obj/machinery/light_switch{
 	pixel_y = -23
@@ -16073,6 +16084,17 @@
 "bqe" = (
 /turf/closed/wall/r_wall,
 /area/science/explab)
+"bqf" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "bqi" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -16081,6 +16103,25 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"bqk" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "bqo" = (
 /obj/machinery/computer/cargo{
 	dir = 1
@@ -16215,6 +16256,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"brr" = (
+/obj/effect/spawner/structure/window,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/science/explab)
 "brs" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -16268,6 +16316,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"brx" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/science/lab)
 "brz" = (
 /obj/item/flashlight/flare/signal,
 /turf/open/floor/plating,
@@ -20460,6 +20516,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"bMr" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/science/xenobiology)
 "bMs" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -21043,6 +21103,10 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space/basic,
 /area/engine/atmos_distro)
+"bPK" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/science/misc_lab)
 "bPN" = (
 /turf/closed/wall,
 /area/science/misc_lab)
@@ -23884,6 +23948,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"ctu" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/medical/sleeper)
 "ctv" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -25309,6 +25381,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"cQe" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters";
+	name = "Surgery Shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/surgery)
 "cQr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -31420,17 +31504,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"giP" = (
-/obj/machinery/door/window/eastright{
-	base_state = "left";
-	dir = 8;
-	icon_state = "left";
-	name = "Research Division Delivery";
-	req_access_txt = "7"
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/lab)
 "gjl" = (
 /turf/closed/wall,
 /area/quartermaster/warehouse)
@@ -31763,14 +31836,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"gsd" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/lab)
 "gsx" = (
 /obj/effect/landmark/start/cyborg,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -33173,18 +33238,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"hcZ" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters";
-	name = "Surgery Shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/surgery)
 "hdd" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Library"
@@ -34804,6 +34857,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"hNl" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/computer/rdconsole/production{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "hNs" = (
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
@@ -36223,6 +36286,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"iuo" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/sleeper)
 "iuR" = (
 /obj/machinery/door/window/southleft{
 	base_state = "right";
@@ -37600,6 +37671,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"iYd" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters";
+	name = "Surgery Shutters"
+	},
+/turf/open/floor/plating,
+/area/medical/surgery)
 "iYj" = (
 /obj/machinery/meter{
 	target_layer = 4
@@ -38478,18 +38561,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"jte" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters";
-	name = "Surgery Shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/surgery)
 "jtq" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/turf_decal/stripes/line{
@@ -39992,25 +40063,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"klU" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "klZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -42766,14 +42818,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"lEQ" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "robotics2";
-	name = "robotics lab shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/robotics/lab)
 "lFb" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -47712,14 +47756,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"obM" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/medbay/lobby)
 "ocq" = (
 /obj/machinery/door/poddoor{
 	id = "trash";
@@ -48305,6 +48341,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"orq" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/medical/medbay/lobby)
 "orC" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -49947,14 +49991,6 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
-"piL" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/sleeper)
 "piV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -52413,6 +52449,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"qzJ" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters";
+	name = "Surgery Shutters"
+	},
+/turf/open/floor/plating,
+/area/medical/surgery)
 "qAb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -53304,6 +53352,14 @@
 /obj/effect/turf_decal/trimline/white,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"qYz" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "robotics2";
+	name = "robotics lab shutters"
+	},
+/turf/open/floor/plating,
+/area/science/robotics/lab)
 "qZu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -61950,17 +62006,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"vku" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "vkJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -63092,14 +63137,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"vPZ" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/medbay/lobby)
 "vQq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -63510,6 +63547,14 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"wci" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "robotics2";
+	name = "robotics lab shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/science/robotics/lab)
 "wcw" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -64778,13 +64823,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"wMP" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/explab)
 "wNo" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -67126,17 +67164,6 @@
 /obj/item/twohanded/rcl/pre_loaded,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"xYI" = (
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/machinery/computer/rdconsole/production{
-	dir = 8;
-	req_access = list(32)
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "xYW" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/meson,
@@ -100028,7 +100055,7 @@ ahi
 ajs
 uxH
 akB
-xYI
+hNl
 cMv
 uQS
 kZP
@@ -103596,7 +103623,7 @@ bfF
 ocA
 opn
 wiA
-piL
+ctu
 kJb
 oCO
 bZg
@@ -104110,7 +104137,7 @@ cfu
 uYq
 ogm
 pZK
-piL
+ctu
 mtT
 lvO
 bDR
@@ -104363,7 +104390,7 @@ aco
 dIW
 rJo
 hIu
-vPZ
+mgH
 oQi
 aBB
 vle
@@ -104624,7 +104651,7 @@ gtC
 mKN
 kub
 tva
-piL
+ctu
 tzC
 rUG
 bDR
@@ -104881,7 +104908,7 @@ gtC
 sxa
 kub
 tva
-piL
+iuo
 iTR
 vXI
 gaU
@@ -105905,11 +105932,11 @@ fCh
 dlx
 vMp
 wtY
-obM
+orq
 sxa
 kub
 hLI
-piL
+ctu
 sTb
 mxh
 sgE
@@ -106423,7 +106450,7 @@ orY
 hHy
 pjc
 hLI
-hcZ
+qzJ
 qmI
 xOh
 shN
@@ -106680,7 +106707,7 @@ gtC
 iBZ
 kub
 tva
-jte
+cQe
 jbq
 vvK
 vvK
@@ -106937,7 +106964,7 @@ bEi
 mvC
 cXg
 tva
-jte
+iYd
 bdw
 urv
 uMu
@@ -107194,7 +107221,7 @@ luE
 uSW
 rTC
 tva
-jte
+iYd
 jbq
 lMh
 uuV
@@ -107451,7 +107478,7 @@ bEi
 hoP
 kub
 hLI
-jte
+iYd
 dDo
 gQe
 doF
@@ -112848,7 +112875,7 @@ sUL
 jna
 cIb
 hlz
-lEQ
+wci
 bgp
 sRl
 byf
@@ -113105,7 +113132,7 @@ dEU
 bTv
 cIb
 rOz
-lEQ
+wci
 bgp
 pYr
 lcM
@@ -113362,7 +113389,7 @@ bkr
 cHW
 cId
 hkd
-lEQ
+wci
 nlD
 bnH
 byf
@@ -114390,7 +114417,7 @@ biN
 cHX
 buj
 buj
-lEQ
+wci
 sGm
 uCv
 byj
@@ -114904,7 +114931,7 @@ bov
 bpU
 brq
 bsW
-lEQ
+wci
 bgp
 bnx
 byk
@@ -115158,7 +115185,7 @@ bfV
 bfV
 bfV
 box
-lEQ
+qYz
 brs
 box
 box
@@ -115175,9 +115202,9 @@ bsn
 bDc
 bDc
 bLe
-piv
+bMr
 uBi
-piv
+bMr
 bDb
 bDb
 bDb
@@ -115435,7 +115462,7 @@ bHK
 bzE
 bID
 bHI
-bZZ
+bPK
 bQO
 bSb
 bOu
@@ -115949,7 +115976,7 @@ bHL
 aPO
 bBD
 bJo
-bZZ
+bPK
 bWr
 bWr
 aiW
@@ -116701,7 +116728,7 @@ blK
 bnp
 boA
 boQ
-gsd
+brx
 bro
 bmU
 bvJ
@@ -116958,7 +116985,7 @@ blJ
 bno
 bkt
 biW
-vku
+bqf
 bgp
 bmU
 bvK
@@ -117215,7 +117242,7 @@ bka
 bka
 aCl
 bpo
-klU
+bqk
 brp
 bmW
 bvK
@@ -117472,7 +117499,7 @@ blL
 biW
 bnh
 biW
-gsd
+brx
 bte
 bmX
 bvK
@@ -117985,9 +118012,9 @@ bgc
 bgc
 bgc
 bgc
-giP
+bpp
 bgc
-wMP
+brr
 bmZ
 bvK
 bvK
