@@ -70661,13 +70661,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"nMg" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/medical/paramedic)
 "nNr" = (
 /obj/machinery/light{
 	dir = 4
@@ -107031,7 +107024,7 @@ bXL
 fTu
 bXL
 lnY
-nMg
+azi
 eOb
 bBf
 qAU
