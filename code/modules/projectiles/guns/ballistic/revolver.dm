@@ -128,11 +128,17 @@
 
 /obj/item/gun/ballistic/revolver/tracking
 	name = "\improper Caldwell Tracking Revolver"
-	desc = "A modified autorevolver with a innately suppressed barrel that is typically used by security personnel. Uses .32 TRAC ammo."
+	desc = "A modified autorevolver initially designed for tracking megafauna, now utilized by security personnel. Uses .32 TRAC ammo."
 	icon_state = "tracrevolver"
 	suppressed = TRUE
 	can_unsuppress = FALSE
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra32
+
+/obj/item/gun/ballistic/revolver/tracking/examine(mob/user) //So the suppressor doesn't have a weird detach text
+	. = ..()
+	if (suppressed)
+		. -= "It has a [suppressed] attached that can be removed with <b>alt+click</b>."
+		. += "It has an innate <b>suppressor</b> built into the barrel."
 
 /obj/item/gun/ballistic/revolver/mateba
 	name = "\improper Unica 6 auto-revolver"
