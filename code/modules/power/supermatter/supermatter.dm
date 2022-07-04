@@ -32,6 +32,8 @@
 
 /// How much extra radioactivity to emit
 #define BZ_RADIOACTIVITY_MODIFIER 5 // Up to 500% rads
+#define TRITIUM_RADIOACTIVITY_MODIFIER 3 
+#define PLUOXIUM_RADIOACTIVITY_MODIFIER -2
 
 /// Higher == Gas makes the crystal more resistant against heat damage.
 #define N2O_HEAT_RESISTANCE 6
@@ -136,6 +138,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	/// Additonal power to add over time comes from sliver extraction(800) or consuming(200)
 	var/matter_power = 0
+	var/last_rads = 0
 
 	///How much the bullets damage should be multiplied by when it is added to the internal variables
 	var/config_bullet_energy = 2
@@ -349,6 +352,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			M.rad_act(rads)
 
 	var/turf/T = get_turf(src)
+	INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, 200 * max(0.2, gasmix_power_ratio), 300 * max(0.2, gasmix_power_ratio), TRUE, FALSE, FALSE, TRUE)
 	for(var/_M in GLOB.player_list)
 		var/mob/M = _M
 		var/turf/T2 = get_turf(M)
@@ -459,6 +463,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/pluoxiumcomp = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
 		var/tritiumcomp = max(removed.get_moles(/datum/gas/tritium)/combined_gas, 0)
 		var/bzcomp = max(removed.get_moles(/datum/gas/bz)/combined_gas, 0)
+		var/pluoxiumbonus = max(removed.get_moles(/datum/gas/pluoxium)/combined_gas, 0)
+
 
 		// Mole releated calculations
 		var/bzmol = max(removed.get_moles(/datum/gas/bz), 0)
@@ -499,7 +505,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		if(prob(50))
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
-			radiation_pulse(src, max((power * (1 + (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER))))) * radmodifier)) //Yogs addition, radmodifier
+			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) * pluoxiumbonus) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
+			radiation_pulse(src, max(last_rads))
 
 		if(bzcomp >= 0.4 && prob(50 * bzcomp))
 			src.fire_nuclear_particle()			// Start to emit radballs at a maximum of 50% chance per tick
