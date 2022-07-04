@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "melee weapons that theoretically have range will not theoretically always use their maximum range cooldown when attacking qdel on death mobs"
