@@ -161,9 +161,8 @@
 
 /obj/item/pinpointer/tracker/proc/implanted(mob/living/H)
 	var/turf/here = get_turf(src)
-	for(var/obj/item/implant/I in H.implants)
-		if(!istype(I, /obj/item/implant/tracking))
-			continue
+	if(!locate(/obj/item/implant/tracking) in H.implants)
+		return FALSE
 
 	if(H.z == 0 || H.z == here.z)
 		var/turf/there = get_turf(H)
