@@ -43,7 +43,7 @@
 
 /datum/design/tracrevolver
 	name = "Caldwell Tracking Revolver"
-	desc = "A modified autorevolver with a innately suppressed barrel that is typically used by security personnel. Uses .32 TRAC ammo."
+	desc = "A modified autorevolver initially designed for tracking megafauna, now utilized by security personnel. Uses .32 TRAC ammo."
 	id = "tracrevolver"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/silver = 3000, /datum/material/titanium = 2000)

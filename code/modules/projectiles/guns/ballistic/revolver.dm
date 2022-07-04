@@ -138,7 +138,7 @@
 	. = ..()
 	if (suppressed)
 		. -= "It has a [suppressed] attached that can be removed with <b>alt+click</b>."
-		. += "It has an innate <b>suppressor</b> built into the barrel."
+		. += "It has a <b>suppressor</b> built into the barrel."
 
 /obj/item/gun/ballistic/revolver/mateba
 	name = "\improper Unica 6 auto-revolver"
