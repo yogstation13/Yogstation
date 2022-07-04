@@ -1114,7 +1114,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
 	name = "Advanced power armor"
-	desc = "An antique suit of advanced power armor. It looks pretty impressive and threatening. A rusty plaque on the thigh mentions \"X-01\"? The suit storage hook looks like it might be sturdy enough to hold a Crusher!"
+	desc = "A suit of advanced power armor. It looks pretty impressive and threatening...A rusty plaque on the thigh mentions \"X-01\". The suit storage hook is sturdy enough to hold a Crusher! "
 	icon_state = "hardsuit-advancedpa1"
 	item_state = "advpa1_hardsuit"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
