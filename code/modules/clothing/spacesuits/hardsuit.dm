@@ -1110,7 +1110,7 @@
 	hardsuit_type = "advpa1"
 	strip_delay = 100
 	equip_delay_other = 100
-	armor = list(MELEE = 50, BULLET = 10, LASER = 25, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 10)
+	armor = list(MELEE = 50, BULLET = 10, LASER = 25, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 10, WOUND = 0)
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
