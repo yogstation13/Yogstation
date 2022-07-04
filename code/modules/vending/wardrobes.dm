@@ -18,7 +18,7 @@
 		if(istype(I, /obj/item/storage/box)) //no putting boxes back, sorry
 			return FALSE
 		return TRUE
-		
+
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper SecDrobe"
 	desc = "A vending machine for security and security-related clothing!"
