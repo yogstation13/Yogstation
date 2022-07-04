@@ -1128,11 +1128,11 @@
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/mineral/plastitanium, list(MELEE = 2, BULLET = 4, LASER = 0.5, ENERGY = 3, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9))
+	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9))
 
-/obj/item/clothing/head/helmet/space/hardsuit/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/plastitaniumglass, list(MELEE = 2, BULLET = 4, LASER = 0.5, ENERGY = 3, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9))
+	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9))
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/debug // reused code so I dont have to make new procs
 	name = "debug hardsuit helmet"
