@@ -2,7 +2,6 @@
 	name = "engineering hardsuit helmet"
 	icon_state = "hardsuit0-engineering"
 	item_state = "eng_helm"
-	item_color = "engineering"
 	armor = list(MELEE = 35, BULLET = 15, LASER = 30,ENERGY = 10, BOMB = 10, BIO = 100, RAD = 50, FIRE = 75, ACID = 75)
 	syndicate = TRUE
 

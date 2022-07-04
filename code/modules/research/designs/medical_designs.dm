@@ -217,7 +217,7 @@
 	id = "rollerbed"
 	build_path = /obj/item/roller
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 8000, /datum/material/plastic = 2000) // balancing is a bitch, what does this even mean? i don't really know.
+	materials = list(/datum/material/iron = 8000)
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 

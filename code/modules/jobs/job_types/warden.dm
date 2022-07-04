@@ -50,6 +50,7 @@
 	uniform = /obj/item/clothing/under/rank/warden
 	uniform_skirt = /obj/item/clothing/under/rank/warden/skirt
 	shoes = /obj/item/clothing/shoes/jackboots
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/jackboots
 	suit = /obj/item/clothing/suit/armor/vest/warden/alt
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/warden
