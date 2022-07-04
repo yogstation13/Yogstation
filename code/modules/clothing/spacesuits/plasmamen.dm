@@ -5,7 +5,7 @@
 	name = "EVA plasma envirosuit"
 	desc = "A special plasma containment suit designed to be space-worthy, as well as worn over other clothing. Like its smaller counterpart, it can automatically extinguish the wearer in a crisis, and holds twice as many charges."
 	allowed = list(/obj/item/gun, /obj/item/ammo_casing, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/transforming/energy/sword, /obj/item/restraints/handcuffs, /obj/item/tank)
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 100, ACID = 75)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 50, FIRE = 100, ACID = 75)
 	resistance_flags = FIRE_PROOF
 	icon_state = "plasmaman_suit"
 	item_state = "plasmaman_suit"
@@ -46,8 +46,10 @@
 	resistance_flags = FIRE_PROOF
 	var/brightness_on = 4 //luminosity when the light is on
 	var/on = FALSE
-	actions_types = list(/datum/action/item_action/toggle_helmet_light)
-	flash_protect = 0
+	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_screen)
+	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT
+	flash_protect = 2
+	tint = 2
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/user)
 	on = !on
@@ -64,12 +66,19 @@
 		var/datum/action/A=X
 		A.UpdateButtonIcon()
 
+/obj/item/clothing/head/helmet/space/plasmaman/AltClick(mob/user)
+	toggle_welding_screen(user)
+
+/obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_screen(mob/living/user)
+	if(weldingvisortoggle(user))
+		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Sound of the welding screen sliding down, maybe
+
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
-	desc = "A plasma containment helmet designed for security, protecting them from being flashed and burning alive, along-side other undesirables."
+	desc = "A plasma containment helmet designed for security, protecting them from being bludgeoned and burning alive, along-side other undesirables."
 	icon_state = "deathcurity_envirohelm"
 	item_state = "deathcurity_envirohelm"
-	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 100, ACID = 75)
+	armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 0, FIRE = 100, ACID = 75, WOUND = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/blue
 	name = "blue envirosuit helmet"
@@ -88,7 +97,7 @@
 	desc = "A space-worthy helmet specially designed for engineer plasmamen, the usual purple stripes being replaced by engineering's orange."
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 10, FIRE = 100, ACID = 75)
+	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 100, RAD = 20, FIRE = 100, ACID = 75, WOUND = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator
 	name = "prototype envirosuit helmet"
