@@ -164,8 +164,6 @@
 	for(var/obj/item/implant/I in H.implants)
 		if(istype(I, /obj/item/implant/tracking))
 			continue
-		else
-			return FALSE
 
 	if(H.z == 0 || H.z == here.z)
 		var/turf/there = get_turf(H)
