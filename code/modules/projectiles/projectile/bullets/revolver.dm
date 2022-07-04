@@ -57,19 +57,19 @@
 
 // .38 TRAC (Caldwell Tracking Revolver)
 
-/obj/item/projectile/bullet/tra38
-	name = ".38 TRAC bullet"
+/obj/item/projectile/bullet/32trac
+	name = ".32 TRAC bullet"
 	damage = 5
 
-/obj/item/projectile/bullet/tra38/on_hit(atom/target, blocked = FALSE)
+/obj/item/projectile/bullet/32trac/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/mob/living/carbon/M = target
-	var/obj/item/implant/tracking/tra38/imp
-	for(var/obj/item/implant/tracking/tra38/TI in M.implants) //checks if the target already contains a tracking implant
+	var/obj/item/implant/tracking/32trac/imp
+	for(var/obj/item/implant/tracking/32trac/TI in M.implants) //checks if the target already contains a tracking implant
 		imp = TI
 		return
 	if(!imp)
-		imp = new /obj/item/implant/tracking/tra38(M)
+		imp = new /obj/item/implant/tracking/32trac(M)
 		imp.implant(M)
 
 

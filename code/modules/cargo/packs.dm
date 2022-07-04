@@ -560,9 +560,9 @@
 	desc = "Contains four tracking implants and three speedloaders for the Caldwell Tracking Revolver. Requires Armory access to open."
 	cost = 2000
 	contains = list(/obj/item/storage/box/trackimp,
-					/obj/item/ammo_box/tra38,
-					/obj/item/ammo_box/tra38,
-					/obj/item/ammo_box/tra38)
+					/obj/item/ammo_box/32trac,
+					/obj/item/ammo_box/32trac,
+					/obj/item/ammo_box/32trac)
 	crate_name = "tracking implant crate"
 
 /datum/supply_pack/security/armory/laserarmor

@@ -4,11 +4,11 @@
 	caliber = "38"
 	max_ammo = 6
 
-/obj/item/ammo_box/magazine/internal/cylinder/tra38
+/obj/item/ammo_box/magazine/internal/cylinder/32trac
 	name = "\improper Caldwell revolver cylinder"
-	ammo_type = /obj/item/ammo_casing/tra38
-	caliber = "38 TRAC"
-	max_ammo = 6
+	ammo_type = /obj/item/ammo_casing/32trac
+	caliber = "32trac"
+	max_ammo = 7
 
 /obj/item/ammo_box/magazine/internal/cylinder/rev762
 	name = "\improper Nagant revolver cylinder"
