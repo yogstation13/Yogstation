@@ -74341,16 +74341,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/wood,
 /area/maintenance/port/fore)
-"cyR" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/box/corners,
-/turf/open/floor/plasteel/dark,
-/area/maintenance/port/fore)
 "cyS" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -84390,6 +84380,15 @@
 	},
 /turf/open/floor/plating/asteroid/airless,
 /area/space/nearstation)
+"eac" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/turf_decal/box/corners,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/port/fore)
 "eaj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -123499,7 +123498,7 @@ aeu
 cwp
 cwq
 aht
-cyR
+eac
 cyY
 adv
 czj
