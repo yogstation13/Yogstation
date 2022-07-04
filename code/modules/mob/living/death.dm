@@ -1,5 +1,3 @@
-GLOBAL_VAR_INIT(permadeath, FALSE)
-
 /mob/living/gib(no_brain, no_organs, no_bodyparts)
 	var/prev_lying = lying
 	if(stat != DEAD)
@@ -90,8 +88,5 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	for(var/s in sharedSoullinks)
 		var/datum/soullink/S = s
 		S.sharerDies(gibbed)
-	
-	if(GLOB.permadeath)
-		ghostize(FALSE)
 
 	return TRUE
