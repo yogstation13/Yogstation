@@ -31,6 +31,7 @@
 	name = "speed loader (.38 Gutterpunch)"
 	desc = "A six-shot speed loader designed for .38 revolvers \
 			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
+	icon_state = "38gut"
 	ammo_type = /obj/item/ammo_casing/c38/gutterpunch
 
 /obj/item/ammo_box/tra32
