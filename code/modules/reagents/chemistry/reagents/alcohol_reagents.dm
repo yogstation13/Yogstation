@@ -1258,7 +1258,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Bacchus' Blessing"
 	glass_desc = "You didn't think it was possible for a liquid to be so utterly revolting. Are you sure about this...?"
 
-
+/datum/reagent/consumable/ethanol/transfermix
+	name = "Transfer Mix"
+	description = "A syringe-like filled with a lethal concotion of alcohol"
+	color = rgb(27, 27, 27) // Nearly black
+	boozepwr = 2500 // Lethal from 1 sip
+	taste_description = "burning"
+	glass_icon_state = "glass_brown2"
+	glass_name = "Transfer Mix"
+	glass_desc = "For the truly worthy"
 
 /datum/reagent/consumable/ethanol/atomicbomb
 	name = "Atomic Bomb"

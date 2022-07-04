@@ -563,6 +563,13 @@
 	required_reagents = list(/datum/reagent/consumable/ethanol/hooch = 1, /datum/reagent/consumable/ethanol/absinthe = 1, /datum/reagent/consumable/ethanol/manly_dorf = 1, /datum/reagent/consumable/ethanol/syndicatebomb = 1)
 	mix_message = span_warning("The mixture turns to a sickening froth.")
 
+/datum/chemical_reaction/transfer_mix
+	name = "Bacchus' Blessing"
+	id = /datum/reagent/consumable/ethanol/transfermix
+	results = list(/datum/reagent/consumable/ethanol/transfermix = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/hooch = 5, /datum/reagent/consumable/ethanol/bacchus_blessing = 5, /datum/reagent/consumable/ethanol/beepsky_smash = 5)
+	mix_message = span_warning("The mixture turns black.")
+
 /datum/chemical_reaction/lemonade
 	name = "Lemonade"
 	id = /datum/reagent/consumable/lemonade
