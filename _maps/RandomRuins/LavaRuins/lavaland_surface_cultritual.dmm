@@ -186,7 +186,9 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "O" = (
-/obj/item/claymore/ruin/excalibur,
+/obj/item/claymore{
+	name = "Excalibur"
+	},
 /obj/item/clothing/shoes/plate,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/ash/large,

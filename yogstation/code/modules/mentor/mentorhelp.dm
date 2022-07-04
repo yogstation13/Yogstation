@@ -1,9 +1,7 @@
-/client/verb/mentorhelp(msg as text)
+/client/verb/mentorhelp(msg as text, fromadmins as null|num)
 	set category = "Mentor"
 	set name = "Mentorhelp"
-	mhelp(msg, FALSE)
 
-/client/proc/mhelp(msg as text, fromadmins as num)
 	//clean the input msg
 	if(!msg)	return
 
@@ -27,7 +25,7 @@
 
 	var/admininfo = "MENTORHELP:"
 	if(fromadmins)
-		admininfo = "MENTORHELP (From Admins):"
+		admininfo = "MENTORHELP(From Admins):"
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
 	var/mentor_msg = "<span class='mentornotice purple'><b>[admininfo]</b> <b>[key_name_mentor(src, 1, 0, 1, show_char)]</b>: [msg]</span>"
 	log_mentor("[admininfo] [key_name_mentor(src, 0, 0, 0, 0)]: [msg]")
