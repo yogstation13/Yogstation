@@ -146,6 +146,37 @@
 			return FALSE
 		T.charge_delay = initial(T.charge_delay)
 
+/obj/item/borg/upgrade/batonupgrade
+	name = "cyborg stun-baton upgrade module"
+	desc = "Increases the connectivity between the cyborg's battery cell and stun baton, allowing it to shock harder."
+	icon_state = "cyborg_upgrade3"
+	require_module = 1
+	module_type = /obj/item/robot_module/security
+	module_flags = BORG_MODULE_SECURITY
+
+/obj/item/borg/upgrade/batonupgrade/action(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if(.)
+		var/obj/item/melee/baton/T = locate() in R.module.modules
+		if(!T)
+			to_chat(user, span_notice("There's no baton in this unit!"))
+			return FALSE
+		if(T.upgrade)
+			to_chat(R, span_notice("A baton upgrade is already installed!"))
+			to_chat(user, span_notice("There's no room for another baton upgrade!"))
+			return FALSE
+
+		var/baton_upgrade = new /obj/item/batonupgrade(src)
+		T.upgrade = baton_upgrade
+
+/obj/item/borg/upgrade/batonupgrade/deactivate(mob/living/silicon/robot/R, user = usr)
+	. = ..()
+	if (.)
+		var/obj/item/melee/baton/T = locate() in R.module.modules
+		if(!T)
+			return FALSE
+		T.upgrade = null
+
 /obj/item/borg/upgrade/thrusters
 	name = "ion thruster upgrade"
 	desc = "An energy-operated thruster system for cyborgs."

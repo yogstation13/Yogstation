@@ -633,6 +633,15 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
+/datum/design/borg_upgrade_batonupgrade
+	name = "Cyborg Upgrade (Stunbaton Upgrade Module)"
+	id = "borg_upgrade_batonupgrade"
+	build_type = MECHFAB
+	build_path = /obj/item/borg/upgrade/batonupgrade
+	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 6000, /datum/material/gold = 2000, /datum/material/diamond = 2000)
+	construction_time = 120
+	category = list("Cyborg Upgrade Modules")
+
 /datum/design/borg_upgrade_diamonddrill
 	name = "Cyborg Upgrade (Diamond Drill)"
 	id = "borg_upgrade_diamonddrill"

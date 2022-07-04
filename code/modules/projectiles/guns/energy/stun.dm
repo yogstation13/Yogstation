@@ -49,8 +49,6 @@
 /obj/item/gun/energy/disabler/cyborg
 	name = "cyborg disabler"
 	desc = "A cyborg-integrated disabler that self charges."
-	charge_delay = 5
 	can_charge = FALSE
-	selfcharge = TRUE
-	charge_amount = 3
+	use_cyborg_cell = TRUE
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/cyborg)
