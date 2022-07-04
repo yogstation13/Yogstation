@@ -14,6 +14,17 @@
 			return TRUE
 	return FALSE
 
+/datum/surgery/advanced/dna_recovery/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/incise_heart, 
+				/datum/surgery_step/coronary_bypass,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
+
 
 //an incision but with greater bleed, and a 90% base success chance
 /datum/surgery_step/incise_heart
@@ -80,11 +91,12 @@
 	return TRUE
 
 /datum/surgery_step/coronary_bypass/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		display_results(user, target, span_warning("You screw up in attaching the graft, and it tears off, tearing part of the heart!"),
-			span_warning("[user] screws up, causing blood to spurt out of [H]'s chest profusely!"),
-			span_warning("[user] screws up, causing blood to spurt out of [H]'s chest profusely!"))
-		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
-		BP.generic_bleedstacks += 30
+	var/obj/item/organ/heart/heart = target.getorganslot(ORGAN_SLOT_HEART)
+	if(heart)
+		heart.operated = TRUE
+	display_results(user, target, span_warning("You screw up in attaching the graft, and it tears off, tearing part of the heart!"),
+		span_warning("[user] screws up, causing blood to spurt out of [target]'s chest profusely!"),
+		span_warning("[user] screws up, causing blood to spurt out of [target]'s chest profusely!"))
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+	BP.generic_bleedstacks += 30
 	return FALSE

@@ -35,7 +35,7 @@
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
 
 /obj/structure/table/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 0.8, TRUE)
+	AddComponent(/datum/component/surgery_bed, 0.8)
 
 /** Performs a complex check for toe stubbing as people would scream "IMPROVE DONT REMOVE" if I had my way.
   * Uses an early probability based return for to save cycles which is perfectly valid since the highest probability is 20 anyway.
@@ -523,6 +523,9 @@
 	smooth = SMOOTH_FALSE
 	can_buckle = TRUE
 	buckle_requires_restraints = TRUE
+
+/obj/structure/table/optable/ComponentInitialize()
+	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)

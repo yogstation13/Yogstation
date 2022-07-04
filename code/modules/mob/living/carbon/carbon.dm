@@ -68,14 +68,7 @@
 		mode() // Activate held item
 
 /mob/living/carbon/attackby(obj/item/I, mob/user, params)
-	for(var/datum/surgery/S in surgeries)
-		if(!(mobility_flags & MOBILITY_STAND) || !S.lying_required)
-			if((S.self_operable || user != src) && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
-				if(S.next_step(user,user.a_intent))
-					return TRUE
-
 	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
-
 	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
 		user.changeNext_move(CLICK_CD_MELEE)
 		if(I.use_tool(src, user, 0, volume=50, amount=1))
@@ -84,8 +77,8 @@
 					span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.name]."))
 				if(!do_mob(user, src, 50))
 					return TRUE
-			item_heal_robotic(src, user, 15, 0)
-			return TRUE
+			if(item_heal_robotic(src, user, 15, 0))
+				return TRUE
 
 	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
 		return ..()

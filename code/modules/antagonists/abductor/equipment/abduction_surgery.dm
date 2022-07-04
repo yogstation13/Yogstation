@@ -1,5 +1,8 @@
 /datum/surgery/organ_extraction
 	name = "Experimental organ replacement"
+	desc = "An experimental surgery that replaces the patient's heart with a gland"
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "scalpel_alien"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/extract_organ, /datum/surgery_step/gland_insert)
 	possible_locs = list(BODY_ZONE_CHEST)
 	ignore_clothes = 1

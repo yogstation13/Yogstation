@@ -3,6 +3,8 @@
 	var/desc = "surgery description"
 	var/icon = 'icons/misc/surgery_icons.dmi'
 	var/icon_state
+	/// Determines what overlay to apply to the surgery icon
+	var/tier = "0"
 	var/status = 1
 	/// Steps in a surgery
 	var/list/steps = list()									
@@ -37,7 +39,7 @@
 	/// Does the vicitm needs to be lying down.
 	var/lying_required = TRUE								
 	/// Can the surgery be performed on yourself.
-	var/self_operable = FALSE								
+	var/self_operable = TRUE								
 	/// Handles techweb-oriented surgeries, previously restricted to the /advanced subtype (You still need to add designs)
 	var/requires_tech = FALSE								
 	/// Type; doesn't show up if this type exists. Set to /datum/surgery if you want to hide a "base" surgery (useful for typing parents IE healing.dm just make sure to null it out again)
@@ -66,7 +68,7 @@
 	return ..()
 
 
-/datum/surgery/proc/can_start(mob/user, mob/living/carbon/target) //FALSE to not show in list
+/datum/surgery/proc/can_start(mob/user, mob/living/target) //FALSE to not show in list
 	. = TRUE
 	if(replaced_by == /datum/surgery)
 		return FALSE
@@ -165,7 +167,11 @@
 	return probability + success_multiplier
 
 /datum/surgery/proc/get_icon()
-	return icon(icon, icon_state)
+	var/mutable_appearance/new_icon = mutable_appearance(icon, icon_state)
+	new_icon.add_overlay(image('icons/misc/surgery_icons.dmi', icon_state = tier))
+	if(requires_bodypart_type == BODYPART_ROBOTIC)
+		new_icon.add_overlay(image('icons/misc/surgery_icons.dmi', "robotic"))
+	return new_icon
 
 /datum/surgery/advanced
 	name = "advanced surgery"

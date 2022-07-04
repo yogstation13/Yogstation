@@ -92,7 +92,6 @@
 	return FALSE
 
 /datum/surgery/advanced/revival/mechanic
-	name = "Reboot"
 	steps = list(/datum/surgery_step/mechanic_open,
 				/datum/surgery_step/open_hatch,
 				/datum/surgery_step/mechanic_unwrench,

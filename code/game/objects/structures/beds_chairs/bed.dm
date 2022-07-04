@@ -23,7 +23,7 @@
 	var/bolts = TRUE
 
 /obj/structure/bed/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 0.7, TRUE)
+	AddComponent(/datum/component/surgery_bed, 0.7)
 
 /obj/structure/bed/examine(mob/user)
 	. = ..()

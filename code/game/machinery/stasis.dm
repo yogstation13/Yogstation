@@ -18,8 +18,6 @@
 	var/stasis_amount = -1
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
-	var/mob/living/carbon/human/patient = null
-	var/obj/machinery/computer/operating/computer = null
 
 /obj/machinery/stasis/ComponentInitialize()
 	AddComponent(/datum/component/surgery_bed, 1, TRUE)

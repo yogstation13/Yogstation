@@ -8,7 +8,7 @@
 	possible_locs = list(BODY_ZONE_CHEST)
 
 /datum/surgery/implant_removal/mechanical
-	name = "Prosthesis implant removal"
+	name = "implant removal"
 	steps = list(/datum/surgery_step/mechanic_open, /datum/surgery_step/open_hatch, /datum/surgery_step/prepare_electronics, /datum/surgery_step/extract_implant, /datum/surgery_step/mechanic_close)
 	possible_locs = list(BODY_ZONE_CHEST)
 	requires_bodypart_type = BODYPART_ROBOTIC
@@ -66,14 +66,3 @@
 	else
 		to_chat(user, span_warning("You can't find anything in [target]'s [target_zone]!"))
 	return 1
-
-/datum/surgery/implant_removal/mechanic
-	name = "implant removal"
-	requires_bodypart_type = BODYPART_ROBOTIC
-	steps = list(
-		/datum/surgery_step/mechanic_open,
-		/datum/surgery_step/open_hatch,
-		/datum/surgery_step/mechanic_unwrench,
-		/datum/surgery_step/extract_implant,
-		/datum/surgery_step/mechanic_wrench,
-		/datum/surgery_step/mechanic_close)

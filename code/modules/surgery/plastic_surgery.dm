@@ -25,15 +25,7 @@
 			"[user] successfully restores [target]'s appearance!",
 			"[user] finishes the operation on [target]'s face.")
 	else
-		var/list/names = list()
-		if(!isabductor(user))
-			for(var/i in 1 to 10)
-				names += target.dna.species.random_name(target.gender, TRUE)
-		else
-			for(var/_i in 1 to 9)
-				names += "Subject [target.gender == MALE ? "i" : "o"]-[pick("a", "b", "c", "d", "e")]-[rand(10000, 99999)]"
-			names += target.dna.species.random_name(target.gender, TRUE) //give one normal name in case they want to do regular plastic surgery
-		var/chosen_name = input(user, "Choose a new name to assign.", "Plastic Surgery") as null|anything in names
+		var/chosen_name = stripped_input(user, "Choose a new name to assign.", "Plastic Surgery", null, MAX_NAME_LEN)
 		if(!chosen_name)
 			return
 		var/oldname = target.real_name
@@ -53,3 +45,10 @@
 		"[user] finishes the operation on [target]'s face.")
 	ADD_TRAIT(target, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	return FALSE
+
+/datum/surgery/plastic_surgery/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/reshape_face,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC

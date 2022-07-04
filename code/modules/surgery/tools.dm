@@ -288,6 +288,7 @@
 	icon_state = "bone setter_bone"
 	toolspeed = 1.25
 
+// Pointless now that tools can initiate surgery
 /obj/item/surgical_drapes
 	name = "surgical drapes"
 	desc = "Nanotrasen brand surgical drapes provide optimal safety and infection control."
@@ -516,3 +517,18 @@
 	var/obj/structure/bed/surgical_mat/M = new placed(location)
 	M.add_fingerprint(user)
 	qdel(src)
+
+/obj/structure/bed/surgical_mat/syndicate
+	name = "surgical mat"
+	desc = "A sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "opmat"
+	can_buckle = TRUE
+	picked_up = /obj/item/surgical_mat/syndicate
+
+/obj/item/surgical_mat/syndicate
+	name = "surgical mat"
+	desc = "A rolled up, sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "surgical_drapes"
+	placed = /obj/structure/bed/surgical_mat/syndicate

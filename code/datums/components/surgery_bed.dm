@@ -58,5 +58,4 @@
 		surgeries |= computer.advanced_surgeries
 	if(extra_surgeries)
 		surgeries |= extra_surgeries
-	message_admins("[surgeries.len]")
 	return surgeries
