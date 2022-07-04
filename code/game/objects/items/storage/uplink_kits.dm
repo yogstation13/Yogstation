@@ -480,6 +480,20 @@
 	new /obj/item/reagent_containers/glass/bottle/amanitin(src)
 	new /obj/item/reagent_containers/syringe(src)
 
+/obj/item/storage/box/syndie_kit/pistolammo
+	name = "10mm magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/magazine/m10mm(src)
+
+/obj/item/storage/box/syndie_kit/pistolsleepyammo
+	name = "10mm soporific magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolsleepyammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/magazine/m10mm/sp(src)
+
 /obj/item/storage/box/syndie_kit/nuke
 	name = "box"
 
