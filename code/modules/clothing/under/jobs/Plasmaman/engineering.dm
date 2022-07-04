@@ -18,3 +18,4 @@
 	icon_state = "atmos_envirosuit"
 	item_state = "atmos_envirosuit"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 10, FIRE = 95, ACID = 95)
+	
