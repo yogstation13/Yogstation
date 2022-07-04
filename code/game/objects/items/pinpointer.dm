@@ -170,7 +170,6 @@
 	if(H.z == 0 || H.z == here.z)
 		var/turf/there = get_turf(H)
 		return (H.z != 0 || (there && there.z == here.z))
-
 	return FALSE
 
 /obj/item/pinpointer/tracker/attack_self(mob/living/user)
