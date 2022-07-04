@@ -214,7 +214,7 @@
 		var/mob/living/H = target
 		if(!implanted(H))
 			target = null
-	if(!target) 
+	else
 		active = FALSE
 
 /obj/item/pinpointer/pair
