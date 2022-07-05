@@ -1262,7 +1262,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Transfer Mix"
 	description = "A syringe-like filled with a lethal concotion of alcohol"
 	color = rgb(27, 27, 27) // Nearly black
-	boozepwr = 2500 // Lethal from 1 sip
+	boozepwr = 1200 // Lethal from a couple of sips
 	taste_description = "burning"
 	glass_icon_state = "transfer_mix"
 	glass_name = "Transfer Mix"
