@@ -5807,6 +5807,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"daB" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/bridge)
 "daM" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -11258,6 +11272,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
+"fUN" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/closed/wall/r_wall,
+/area/bridge)
 "fVq" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor/border_only{
@@ -15208,6 +15228,20 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
+"hVZ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "hWe" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -21656,6 +21690,14 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/teleporter)
+"lEO" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/box/fancy/donut_box,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "lEP" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -22503,6 +22545,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"mbx" = (
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "mbK" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -24579,6 +24625,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"nhh" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/bridge)
 "nhu" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/plasteel/white,
@@ -25334,11 +25391,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ai_monitored/secondarydatacore)
-"nEm" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "nEp" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
@@ -28243,17 +28295,6 @@
 	},
 /turf/open/floor/engine/o2,
 /area/engine/atmos_distro)
-"pma" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/preopen{
-	id = "bridge blast";
-	name = "bridge blast door"
-	},
-/turf/open/floor/plating,
-/area/bridge)
 "pmg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -28768,25 +28809,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"pBP" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/obj/item/radio/off{
-	pixel_x = 5;
-	pixel_y = 7
-	},
-/obj/item/multitool{
-	pixel_x = -7;
-	pixel_y = 3
-	},
-/obj/item/assembly/signaler{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "pCi" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 1
@@ -32363,6 +32385,20 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
+"rCK" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "bridge blast";
+	name = "bridge blast door"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/bridge)
 "rCR" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/techstorage/rnd,
@@ -32444,6 +32480,25 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"rFX" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/radio/off{
+	pixel_x = 5;
+	pixel_y = 7
+	},
+/obj/item/multitool{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/obj/item/assembly/signaler{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "rGc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -33455,20 +33510,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"snz" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/obj/item/storage/firstaid/regular{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = -4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "snA" = (
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 1;
@@ -36355,13 +36396,6 @@
 /obj/item/pen,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"tNQ" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "tOk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -37889,6 +37923,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
+"uLk" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/closed/wall/r_wall,
+/area/bridge)
 "uLK" = (
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 4;
@@ -92220,17 +92260,17 @@ npT
 cgw
 cgw
 aCD
-cgw
+nhh
 nvT
 xJC
 dKK
-dRI
-tNQ
-dRI
+rFX
+lEO
+hVZ
 xJC
 dKK
 bza
-dvi
+daB
 aCD
 fGy
 fGy
@@ -92477,7 +92517,7 @@ vRP
 vRP
 vRP
 vRP
-pma
+rCK
 hTe
 fvV
 qLE
@@ -92739,7 +92779,7 @@ kAj
 lzV
 lbS
 lzV
-nEm
+mbx
 lzV
 lbS
 lzV
@@ -92991,8 +93031,8 @@ vRP
 vRP
 vRP
 vRP
-aKi
-pBP
+uMP
+uLk
 seO
 fzI
 pwH
@@ -93000,8 +93040,8 @@ fGl
 bxx
 msJ
 qQw
-snz
-lHr
+fUN
+vBM
 vRP
 vRP
 vRP
@@ -93248,17 +93288,17 @@ vRP
 vRP
 vRP
 vRP
+vRP
 uMP
 pEA
-pEA
 oir
 pEA
 pEA
 pEA
 oir
-pEA
 pEA
 vBM
+vRP
 vRP
 vRP
 vRP
