@@ -3,7 +3,7 @@
 #define POWER_SOFTCAP_2 3000000000.0 //3GJ or 10MW/s for 300s
 #define SOFTCAP_BUDGET_1 3000 //reward for reaching the first softcap
 #define SOFTCAP_BUDGET_2 5000 //extra money added on top of the first softcap for going beyond it, until softcap 2
-#define HARDCAP_BUDGET 10000 //last tranche of money for going above and beyond the call of duty until hitting the hardcap
+#define HARDCAP_BUDGET 12000 //last tranche of money for going above and beyond the call of duty until hitting the hardcap
 
 /obj/item/energy_harvester
 	desc = "A Device which upon connection to a node, will harvest the energy and send it to engineerless stations in return for credits, derived from a syndicate powersink model."
