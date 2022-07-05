@@ -1,6 +1,6 @@
 #define MAXIMUM_POWER_LIMIT 1000000000000000.0 //1 Petawatt, same as PTL
-#define POWER_SOFTCAP_1 100000000.0 //100MJ, or 250KW/s for 400s, which is the cycle time of SSeconomy, power below this threshold gets treated differently.
-#define POWER_SOFTCAP_2 4000000000.0 //4GJ or 10MW/s for 400s
+#define POWER_SOFTCAP_1 120000000.0 //120MJ, or 400KW/s for 300s, which is the cycle time of SSeconomy, power below this threshold gets treated differently.
+#define POWER_SOFTCAP_2 6000000000.0 //6GJ or 20MW/s for 300s
 #define SOFTCAP_BUDGET_1 5000 //reward for reaching the first softcap
 #define SOFTCAP_BUDGET_2 10000 //extra money added on top of the first softcap for going beyond it, until softcap 2
 #define HARDCAP_BUDGET 20000 //last tranche of money for going above and beyond the call of duty until hitting the hardcap
