@@ -201,7 +201,7 @@
 	if(money_to_donate <= 0)
 		user.visible_message(span_notice("[H] is too poor to recieve [GLOB.deity]'s blessing!"))
 	else
-		last_dono = world.time + 15 SECONDS // healing CD is 15 seconds but your healing strength is 2.5x stronger
+		last_dono = world.time + 15 SECONDS // healing CD is 15 seconds but your healing strength is 3x stronger
 		var/heal_amt = 30
 		var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
 
