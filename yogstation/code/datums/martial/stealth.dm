@@ -5,7 +5,6 @@
 #define PRE_INJECTION_COMBO "DH"
 #define INJECTION_COMBO "DHD"
 ///fingergun
-#define PRE_FINGERGUN_COMBO "HD"
 #define FINGERGUN_COMBO "HDD"
 
 /datum/martial_art/stealth
@@ -47,8 +46,8 @@
 	if(findtext(streak, PRE_INJECTION_COMBO))
 		injection(A,D)
 		return TRUE
-	if(findtext(streak, PRE_FINGERGUN_COMBO))
-		fingergun(A,D)
+	if(findtext(streak, FINGERGUN_COMBO))
+		fingergun(A)
 		return TRUE
 
 /datum/martial_art/stealth/proc/hidden_knife(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -81,5 +80,42 @@
 		to_chat(A, span_warning("You inject cyanide into [D]!"))
 		to_chat(D, span_notice("You feel a tiny prick."))		
 
-/datum/martial_art/stealth/proc/fingergun(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/stealth/proc/fingergun(mob/living/carbon/human/A)
+	var/obj/item/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+	user.put_in_hands(gun)
+	to_chat(A, span_notice("You extract a hiden gun from your hand."))	
+	streak = ""
 
+/obj/item/gun/ballistic/automatic/pistol/martial
+	desc = "A concelated version of a stechkin APS pistol, that comes with special Preternis upgrade modules."
+	can_suppress = TRUE
+	fire_sound_volume = 30
+	lefthand_file = null  ///We don't want it to be visible inhands
+	righthand_file = null
+	var/dying = FALSE
+
+/obj/item/gun/ballistic/automatic/pistol/martial/Initialize(mapload)
+	. = ..()
+	var/obj/item/suppressor/S = new(src)
+	install_suppressor(S)
+
+/obj/item/gun/ballistic/automatic/pistol/martial/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
+	return FALSE
+
+/obj/item/gun/ballistic/automatic/pistol/martial/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
+	return FALSE
+
+/obj/item/gun/ballistic/automatic/pistol/martial/attack_self(mob/living/user)
+	to_chat(A, span_notice("You decide that it isn't the best time to use [src]"))
+	qdel(src)
+	return
+
+/obj/item/gun/ballistic/automatic/pistol/martial/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	if(!dying)
+		addtimer(CALLBACK(src, .proc/process_burst), 2 SECONDS)  ///I, kinda, don't very understand what gun code does, but it seems to be OK.
+		dying = TRUE
+	. = ..()
+
+/obj/item/gun/ballistic/automatic/pistol/martial/proc/Die()
+	to_chat(A, span_warning("You hide [src]."))	
+	qdel(src)	
