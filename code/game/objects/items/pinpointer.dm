@@ -14,6 +14,7 @@
 	throw_range = 7
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 250)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
 	var/active = FALSE
 	var/atom/movable/target //The thing we're searching for
 	var/minimum_range = 0 //at what range the pinpointer declares you to be at your destination

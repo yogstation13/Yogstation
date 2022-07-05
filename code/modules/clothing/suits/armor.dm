@@ -10,6 +10,7 @@
 	max_integrity = 250
 	resistance_flags = NONE
 	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+	cryo_preserve = TRUE
 
 /obj/item/clothing/suit/armor/Initialize()
 	. = ..()
