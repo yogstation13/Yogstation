@@ -128,7 +128,7 @@
 
 /obj/item/gun/ballistic/revolver/tracking
 	name = "\improper Caldwell Tracking Revolver"
-	desc = "A modified autorevolver initially designed for tracking megafauna, now utilized by security personnel. Uses .32 TRAC ammo."
+	desc = "A modified autorevolver initially designed by colonists on hostile worlds, now utilized by security personnel. Uses .32 TRAC ammo."
 	icon_state = "tracrevolver"
 	suppressed = TRUE
 	can_unsuppress = FALSE
