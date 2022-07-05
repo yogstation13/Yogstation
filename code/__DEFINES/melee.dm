@@ -12,6 +12,7 @@
 #define MARTIALART_FLYINGFANG "flying fang"
 #define MARTIALART_HUNTERFU "hunterfu"
 #define MARTIALART_FRENZYGRAB "frenzy grabbing"
+#define MARTIALART_PRETERNISSTEALTH "preternis stealth"
 
 
 //Weapon stat defines
