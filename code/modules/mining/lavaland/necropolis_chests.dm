@@ -580,12 +580,86 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_righthand.dmi'
 	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "rune_scimmy"
-	force = 28
+	force = 20
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	damtype = BRUTE
 	sharpness = SHARP_EDGED
 	hitsound = 'yogstation/sound/weapons/rs_slash.ogg'
 	attack_verb = list("slashed","pk'd","atk'd")
+	var/mobs_grinded = 0
+	var/max_grind = 20
+
+/obj/item/rune_scimmy/examine(mob/living/user)
+	. = ..()
+	. += span_notice("This blade fills you with a need to 'grind'. Slay hostile fauna to increase the Scimmy's power and earn loot.")
+	. += span_notice("The blade has grinded [mobs_grinded] out of [max_grind] fauna to reach maximum power, and will deal [mobs_grinded * 5] bonus damage to fauna.")
+
+/obj/item/rune_scimmy/afterattack(atom/target, mob/user, proximity, click_parameters)
+	. = ..()
+	if(!proximity)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
+			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
+				RegisterSignal(target,COMSIG_MOB_DEATH,.proc/roll_loot, TRUE)
+			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
+			L.apply_damage(mobs_grinded*5,BRUTE)
+
+///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
+/obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
+	UnregisterSignal(target, COMSIG_MOB_DEATH)
+	if(mobs_grinded<max_grind)
+		mobs_grinded++
+	var/spot = get_turf(target)
+	var/loot = rand(1,100)
+	switch(loot)
+		if(1 to 20)//20% chance at 3 gold coins, the most basic rs drop
+			for(var/i in 1 to 3) 
+				new /obj/item/coin/gold(spot)
+		if(21 to 30)//10% chance for 5 gold coins
+			for(var/i in 1 to 5)
+				new /obj/item/coin/gold(spot)
+		if(31 to 40)//10% chance for 2 GOLD (banana) DOUBLOONS 
+			for(var/i in 1 to 2)
+				new /obj/item/coin/bananium(spot)
+		if(41 to 50) //10% chance to spawn 10 gold, diamond, or bluespace crystal ores, because runescape ore drops and gem drops
+			for(var/i in 1 to 5)
+				switch(rand(1,5))
+					if(1 to 2)
+						new /obj/item/stack/ore/gold(spot)
+					if(3 to 4)
+						new /obj/item/stack/ore/diamond(spot)
+					if(5)
+						new /obj/item/stack/sheet/bluespace_crystal(spot)
+		if(51 to 60)//10% for bow and bronze tipped arrows, bronze are supposed to be the worst in runescape but they kinda slap in here, hopefully limited by the 5 arrows
+			new /obj/item/gun/ballistic/bow(spot)
+			for(var/i in 1 to 5)
+				new /obj/item/ammo_casing/caseless/arrow/bronze(spot)
+		if(61 to 70)//10% chance at a seed drop, runescape drops seeds somewhat frequently for players to plant and harvest later
+			switch(rand(1,5))
+				if(1)
+					new /obj/item/seeds/lavaland/cactus(spot)
+				if(2)
+					new /obj/item/seeds/lavaland/ember(spot)
+				if(3)
+					new /obj/item/seeds/lavaland/inocybe(spot) 
+				if(4)
+					new /obj/item/seeds/lavaland/polypore(spot) 
+				if(5)
+					new /obj/item/seeds/lavaland/porcini(spot) 
+			if(prob(25)) //25% chance to get strange seeds, should they feel like cooperating with botanists. this would also be interesting to see ash walkers get lmao
+				new /obj/item/seeds/random(spot)
+		if(71 to 80) //magmite is cool and somewhat rare i think?
+			new /obj/item/magmite(spot)
+		if(81 to 90) //i could make it drop foods for healing items like rs dropping fish, but i think the rewards should be a bit more immediate
+			new /obj/item/reagent_containers/hypospray/medipen/survival(spot)
+		if(91 to 95) //5% PET DROP LET'S GO
+			new /mob/living/simple_animal/hostile/mining_drone(spot)
+		if(96 to 99) //4% DHIDE ARMOR
+			new /obj/item/stack/sheet/animalhide/ashdrake(spot)
+		if(100)
+			new /obj/structure/closet/crate/necropolis(spot)
 
 //Potion of Flight
 /obj/item/reagent_containers/glass/bottle/potion
@@ -1171,16 +1245,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 				return
 			next_knuckle = world.time + COOLDOWN_ANIMAL
 
-/obj/item/melee/knuckles/attack_self(mob/living/user)
+/obj/item/melee/knuckles/attack_self(mob/user)
 	var/turf/T = get_turf(user)
 	if(next_splash > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	user.visible_message(span_warning("[user] splashes blood from their knuckles!"))
+	user.visible_message(span_warning("[user] splashes blood from the knuckles!"))
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
 	for(var/i = 0 to splash_range)
 		if(T)
-			user.add_splatter_floor(T)
+			new /obj/effect/decal/cleanable/blood(T)
 		T = get_step(T,user.dir)
 	next_splash = world.time + COOLDOWN
 
@@ -1192,6 +1266,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			return
 		var/valid_reaching = FALSE
 		for(var/mob/living/L in view(7, U))
+			if(L == U)
+				continue
 			for(var/obj/effect/decal/cleanable/B in range(0,L))
 				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
 					valid_reaching = TRUE

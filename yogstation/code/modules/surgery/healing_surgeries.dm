@@ -65,10 +65,16 @@
 //surgeries go here
 /datum/surgery/heal_brute
 	name = "patch wounds"
+	desc = "Heals a body part of brute damage. Useful for allowing a body to be defibrillated."
+	icon = 'icons/obj/stack_medical.dmi'
+	icon_state = "brutepack_3"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/debride, /datum/surgery_step/apply_dressing, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
 
 /datum/surgery/heal_burn
 	name = "treat burns"
+	desc = "Heals a body part of burn damage. Useful for allowing a body to be defibrillated."
+	icon = 'icons/obj/stack_medical.dmi'
+	icon_state = "ointment_3"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/debride, /datum/surgery_step/apply_dressing/burn, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
