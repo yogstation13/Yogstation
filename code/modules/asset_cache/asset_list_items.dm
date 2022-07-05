@@ -254,6 +254,11 @@
 		"pill22" = 'icons/UI_Icons/Pills/pill22.png',
 	)
 
+/datum/asset/simple/safe
+	assets = list(
+		"safe_dial.png" = 'html/safe_dial.png'
+	)
+
 //this exists purely to avoid meta by pre-loading all language icons.
 /datum/asset/language/register()
 	for(var/path in typesof(/datum/language))
