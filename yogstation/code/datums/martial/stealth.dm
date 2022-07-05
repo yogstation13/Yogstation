@@ -53,7 +53,7 @@
 /datum/martial_art/stealth/proc/hidden_knife(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(findtext(streak, DAGGER_COMBO))
 		var/selected_zone = A.zone_selected
-		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(selected_zone))
+		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 40)
 		D.apply_damage(30, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 
 		to_chat(A, span_warning("You stab [D] with a hidden blade!"))
@@ -62,7 +62,7 @@
 		return TRUE
 	else 
 		var/selected_zone = A.zone_selected
-		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(selected_zone))
+		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 10)
 		D.apply_damage(20, STAMINA, affecting, armor_block)
 		D.apply_damage(5, BRUTE, affecting, armor_block)
@@ -82,7 +82,7 @@
 
 /datum/martial_art/stealth/proc/fingergun(mob/living/carbon/human/A)
 	var/obj/item/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
-	user.put_in_hands(gun)
+	A.put_in_hands(gun)
 	to_chat(A, span_notice("You extract a hiden gun from your hand."))	
 	streak = ""
 
@@ -106,7 +106,7 @@
 	return FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/martial/attack_self(mob/living/user)
-	to_chat(A, span_notice("You decide that it isn't the best time to use [src]"))
+	to_chat(user, span_notice("You decide that it isn't the best time to use [src]"))
 	qdel(src)
 	return
 
@@ -117,5 +117,5 @@
 	. = ..()
 
 /obj/item/gun/ballistic/automatic/pistol/martial/proc/Die()
-	to_chat(A, span_warning("You hide [src]."))	
+	to_chat(user, span_warning("You hide [src]."))	
 	qdel(src)	
