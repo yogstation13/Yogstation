@@ -81,7 +81,7 @@
 		to_chat(D, span_notice("You feel a tiny prick."))		
 
 /datum/martial_art/stealth/proc/fingergun(mob/living/carbon/human/A)
-	var/obj/item/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+	var/obj/item/gun/ballistic/automatic/pistol/martial/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 	gun.gun_owner = A
 	A.put_in_hands(gun)
 	to_chat(A, span_notice("You extract a hiden gun from your hand."))	
