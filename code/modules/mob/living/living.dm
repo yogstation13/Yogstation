@@ -279,7 +279,7 @@
 
 		log_combat(src, M, "grabbed", addition="passive grab")
 		if(!supress_message && !(iscarbon(AM) && HAS_TRAIT(src, TRAIT_STRONG_GRABBER)))
-			visible_message(span_warning("[src] has grabbed [M][(zone_selected == "l_arm" || zone_selected == "r_arm")? " by their hands!":" passively!"]"))
+			visible_message(span_warning("[src] has grabbed [M] passively!"))
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
