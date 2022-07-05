@@ -82,6 +82,7 @@
 
 /datum/martial_art/stealth/proc/fingergun(mob/living/carbon/human/A)
 	var/obj/item/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
+	gun.master = A
 	A.put_in_hands(gun)
 	to_chat(A, span_notice("You extract a hiden gun from your hand."))	
 	streak = ""
@@ -92,6 +93,7 @@
 	fire_sound_volume = 30
 	lefthand_file = null  ///We don't want it to be visible inhands
 	righthand_file = null
+	var/mob/master //Dungeon master
 	var/dying = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/martial/Initialize(mapload)
@@ -117,5 +119,5 @@
 	. = ..()
 
 /obj/item/gun/ballistic/automatic/pistol/martial/proc/Die()
-	to_chat(user, span_warning("You hide [src]."))	
+	to_chat(master, span_warning("You hide [src]."))	
 	qdel(src)	
