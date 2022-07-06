@@ -398,6 +398,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	for(var/obj/structure/window/struct in T.contents) //no fulltile window exploit
 		Consume(struct)
+	for(var/obj/machinery/machine in T.contents) //no WELDED AIRLOCK EXPLOIT
+		Consume(machine)
 
 	if(power)
 		soundloop.volume = clamp((50 + (power / 50)), 50, 100)
