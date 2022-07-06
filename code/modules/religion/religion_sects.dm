@@ -376,7 +376,7 @@
 
 /datum/religion_sect/Honkmother
 	 name = "The Honkmother"
-    desc = "A sect dedicated to the Honkmother"
+	desc = "A sect dedicated to the Honkmother"
 	convert_opener = "The Honkmother welcomes you to her to the party, prankster.<br>Sacrifice bananas to power our pranks and grant you favor."
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
@@ -387,8 +387,8 @@
 /datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana, mob/living/user)
 	if(!istype(offering))
 		return
-    to_chat(user, span_notice("HONK"))
+	to_chat(user, span_notice("HONK"))
 	if(istype(offering, /obj/item/reagent_containers/food/snacks/grown/banana))
-    	adjust_favor(10, user)
-    qdel(offering)
-    return
+		adjust_favor(10, user)
+	qdel(offering)
+	return
