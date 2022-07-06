@@ -572,7 +572,7 @@
 				 /obj/item/stack/sheet/sinew = 1)
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/medipen
+/datum/crafting_recipe/epinephrine_medipen
 	name = "Epinephrine Medipen"
 	result = /obj/item/reagent_containers/hypospray/medipen
 	tools = list(TOOL_SCREWDRIVER)
@@ -582,7 +582,7 @@
 				/datum/reagent/medicine/epinephrine = 10) // Sanguirite is unobtainable
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/medipen
+/datum/crafting_recipe/atropine_medipen
 	name = "Atropine Autoinjector"
 	result = /obj/item/reagent_containers/hypospray/medipen/atropine
 	tools = list(TOOL_SCREWDRIVER)
