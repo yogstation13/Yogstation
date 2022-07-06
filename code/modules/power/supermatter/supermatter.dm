@@ -399,7 +399,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	for(var/obj/structure/window/struct in T.contents) //no fulltile window exploit
 		Consume(struct)
 	for(var/obj/machinery/machine in T.contents)
-		if(machine.density) //if it's THICC like i dunno a WELDED AIRLOCK
+		if(machine.density && machine != src) //if it's THICC like i dunno a WELDED AIRLOCK
 			Consume(machine)
 
 	if(power)
