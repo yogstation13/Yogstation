@@ -92,7 +92,7 @@
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
 		var/armor_block = D.run_armor_check(affecting, MELEE, 0)
 		A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
-		playsound(D, 'sound/effects/explosion1.ogg', 50, TRUE, -1)
+		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		var/current_stamina_damage = D.getStaminaLoss()
 		var/damage_to_deal = 55
 
