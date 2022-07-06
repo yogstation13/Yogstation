@@ -384,9 +384,6 @@
 	rites_list = list(/datum/religion_rites/holypie, /datum/religion_rites/honkabot, /datum/religion_rites/bananablessing)
 	altar_icon_state = "convertaltar-red"
 
-//Honk bible should heal only clowns, honk others like a horn, and slip
-/datum/religion_sect/honkmother/sect_bless(mob/living/L)
-
 /datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana, mob/living/user)
     if(!istype(offering))
 	    return
