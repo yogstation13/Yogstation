@@ -10,7 +10,7 @@
 /datum/martial_art/stealth
 	name = "Stealth"   //Sorry for shitty name, I am bad at this
 	id =  MARTIALART_PRETERNISSTEALTH
-	//help_verb = /mob/living/carbon/human/proc/CQC_help
+	help_verb = /mob/living/carbon/human/proc/preternis_martial_help
 
 /datum/martial_art/stealth/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(A.a_intent == INTENT_GRAB && A!=D && (can_use(A))) // A!=D prevents grabbing yourself
@@ -47,8 +47,8 @@
 		injection(A,D)
 		return TRUE
 	if(findtext(streak, FINGERGUN_COMBO))
-		fingergun(A)
-		return TRUE
+		fingergun(A,D)
+		return FALSE
 
 /datum/martial_art/stealth/proc/hidden_knife(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(findtext(streak, DAGGER_COMBO))
@@ -80,11 +80,12 @@
 		to_chat(A, span_warning("You inject cyanide into [D]!"))
 		to_chat(D, span_notice("You feel a tiny prick."))		
 
-/datum/martial_art/stealth/proc/fingergun(mob/living/carbon/human/A)
+/datum/martial_art/stealth/proc/fingergun(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	var/obj/item/gun/ballistic/automatic/pistol/martial/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 	gun.gun_owner = A
 	A.put_in_hands(gun)
 	to_chat(A, span_notice("You extract a hiden gun from your hand."))	
+	D.Paralyze(1 SECONDS)
 	streak = ""
 
 /obj/item/gun/ballistic/automatic/pistol/martial
@@ -100,6 +101,7 @@
 	. = ..()
 	var/obj/item/suppressor/S = new(src)
 	install_suppressor(S)
+	ADD_TRAIT(src, TRAIT_NODROP, "martial")
 
 /obj/item/gun/ballistic/automatic/pistol/martial/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
 	return FALSE
@@ -121,3 +123,13 @@
 /obj/item/gun/ballistic/automatic/pistol/martial/proc/Die()
 	to_chat(gun_owner, span_warning("You hide [src]."))	
 	qdel(src)	
+
+/mob/living/carbon/human/proc/preternis_martial_help()
+	set name = "Refresh Data"
+	set desc = "You try to remember some basic actions from your upgraded combat modules."
+	set category = "Combat Modules"
+	to_chat(usr, "<b><i>You try to remember some basic actions from your upgraded combat modules.</i></b>")
+
+	to_chat(usr, "[span_notice("Hidden Blade")]: Harm Harm Grab. The second strike will deal 20 stamina and 5 brute damage, and finishing the combo will make you stab the victim with a hiden blade, dealing 30 brute damage.")
+	to_chat(usr, "[span_notice("Injection")]: Disarm Harm Disarm. The second and third attack will stealthy inject respectively 5 units of cyanide and 8 unites of sodium thiopental.")
+	to_chat(usr, "[span_notice("Finger gun")]: Harm Disarm Disarm. Finishing the combo will paralyze your target and place a stealthy version of a stechkin in your hand.")
