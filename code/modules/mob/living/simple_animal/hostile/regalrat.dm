@@ -102,6 +102,8 @@
 	if(!.)
 		return
 	var/turf/T = get_turf(owner)
+	if(!T)
+		return
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 5)
@@ -147,6 +149,9 @@
 	. = ..()
 	if(!.)
 		return
+	if(!isopenturf(owner.loc))
+		to_chat(owner,"<span class='warning'>You can't use raise soldiers while in an object!</span>")
+		return
 	var/cap = CONFIG_GET(number/ratcap)
 	var/something_from_nothing = FALSE
 	for(var/mob/living/simple_animal/mouse/M in oview(owner, 5))
@@ -188,6 +193,8 @@
 
 /datum/action/cooldown/domain/proc/domain()
 	var/turf/T = get_turf(owner)
+	if(!T)
+		return
 	T.atmos_spawn_air("miasma=4;TEMP=[T20C]")
 	switch (rand(1,10))
 		if (8)
