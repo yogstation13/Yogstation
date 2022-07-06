@@ -385,9 +385,9 @@
 	altar_icon_state = "convertaltar-red"
 
 /datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana, mob/living/user)
-	  if(!istype(offering))
+	if(!istype(offering))
 		return
-    to_chat(user, span_notice("HONK")
+    to_chat(user, span_notice("HONK"))
 	if(istype(offering, /obj/item/reagent_containers/food/snacks/grown/banana))
     	adjust_favor(10, user)
     qdel(offering)
