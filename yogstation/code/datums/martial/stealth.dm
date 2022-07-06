@@ -12,12 +12,15 @@
 	id =  MARTIALART_PRETERNISSTEALTH
 	help_verb = /mob/living/carbon/human/proc/preternis_martial_help
 
+/datum/martial_art/stealth/can_use(mob/living/carbon/human/H)
+	return ispreternis(H)
+
 /datum/martial_art/stealth/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(A.a_intent == INTENT_GRAB && A!=D && (can_use(A))) // A!=D prevents grabbing yourself
 		add_to_streak("G",D)
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
-		return TRUE
+		return FALSE
 	else
 		return FALSE
 
@@ -133,3 +136,9 @@
 	to_chat(usr, "[span_notice("Hidden Blade")]: Harm Harm Grab. The second strike will deal 20 stamina and 5 brute damage, and finishing the combo will make you stab the victim with a hiden blade, dealing 30 brute damage.")
 	to_chat(usr, "[span_notice("Injection")]: Disarm Harm Disarm. The second and third attack will stealthy inject respectively 5 units of cyanide and 8 unites of sodium thiopental.")
 	to_chat(usr, "[span_notice("Finger gun")]: Harm Disarm Disarm. Finishing the combo will paralyze your target and place a stealthy version of a stechkin in your hand.")
+
+#undef PRE_DAGGER_COMBO
+#undef DAGGER_COMBO 
+#undef PRE_INJECTION_COMBO 
+#undef INJECTION_COMBO 
+#undef FINGERGUN_COMBO 
