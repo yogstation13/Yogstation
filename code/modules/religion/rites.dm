@@ -553,7 +553,7 @@
 
 /datum/religion_rites/honkabot/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	var/altar_turf = get_turf(religious_tool)
-	new /obj/effect/mob_spawn/bot/honkbot(altar_turf)
+	new /mob/living/simple_animal/bot/honkbot(altar_turf)
 	return TRUE
 
 /datum/religion_rites/bananablessing
