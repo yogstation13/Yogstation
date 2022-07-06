@@ -545,19 +545,19 @@
 	return TRUE
 
 /datum/religion_rites/honkabot
-    name = "Honk a Bot"
+	name = "Honk a Bot"
 	desc = "Summons a Honkbot to bring honking to the station"
 	ritual_length = 5 SECONDS
 	invoke_msg = "Great Honkmother, hear my pray: HONK!"
 	favor_cost = 150
 
 /datum/religion_rites/honkabot/invoke_effect(mob/living/user, atom/movable/religious_tool)
-    var/altar_turf = get_turf(religious_tool)
+	var/altar_turf = get_turf(religious_tool)
 	new /obj/effect/mob_spawn/honkbot
 	return TRUE
 
 /datum/religion_rites/bananablessing
-    name = "Banana Blessing"
+	name = "Banana Blessing"
 	desc = "Creates a piece of bananium to further the clown researches"
 	ritual_length = 30 SECONDS
 	ritual_invocations = list(
