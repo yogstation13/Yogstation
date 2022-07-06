@@ -23,6 +23,8 @@
 	var/stunforce = 10 SECONDS
 	///how much stamina damage we deal per hit, this is combatted by energy armor
 	var/stamina_damage = 70
+	///are we turned on
+	var/status = FALSE
 	///the cell used by the baton
 	var/obj/item/stock_parts/cell/cell
 	///how much charge is deducted from the cell when we slap someone while on
