@@ -384,7 +384,7 @@
 	rites_list = list(/datum/religion_rites/holypie, /datum/religion_rites/honkabot, /datum/religion_rites/bananablessing)
 	altar_icon_state = "convertaltar-red"
 
-/datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana, mob/living/user)
+/datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana/offering, mob/living/user)
 	if(!istype(offering))
 		return
 	adjust_favor(10, user)			
