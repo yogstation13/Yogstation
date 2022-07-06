@@ -3830,7 +3830,6 @@
 #include "yogstation\code\modules\surgery\bodypart.dm"
 #include "yogstation\code\modules\surgery\gender_reassignment.dm"
 #include "yogstation\code\modules\surgery\healing_surgeries.dm"
-#include "yogstation\code\modules\surgery\tools.dm"
 #include "yogstation\code\modules\surgery\organs\heart.dm"
 #include "yogstation\code\modules\surgery\organs\lungs.dm"
 #include "yogstation\code\modules\surgery\organs\shadowling_organs.dm"

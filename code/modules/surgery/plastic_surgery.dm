@@ -5,6 +5,15 @@
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/reshape_face, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_HEAD)
 
+/datum/surgery/plastic_surgery/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/reshape_face,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
+	lying_required = FALSE
+	self_operable = TRUE
+
 //reshape_face
 /datum/surgery_step/reshape_face
 	name = "reshape face"
@@ -45,10 +54,3 @@
 		"[user] finishes the operation on [target]'s face.")
 	ADD_TRAIT(target, TRAIT_DISFIGURED, TRAIT_GENERIC)
 	return FALSE
-
-/datum/surgery/plastic_surgery/mechanic
-	steps = list(/datum/surgery_step/mechanic_open,
-				/datum/surgery_step/open_hatch,
-				/datum/surgery_step/reshape_face,
-				/datum/surgery_step/mechanic_close)
-	requires_bodypart_type = BODYPART_ROBOTIC

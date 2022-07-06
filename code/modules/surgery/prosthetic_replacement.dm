@@ -12,14 +12,14 @@
 	if(!iscarbon(target))
 		return FALSE
 	var/mob/living/carbon/C = target
+	var/obj/item/bodypart/chest = C.get_bodypart(BODY_ZONE_CHEST)
+	if(!chest || !(chest.status == BODYPART_ORGANIC))
+		return FALSE
 	if(!C.get_bodypart(user.zone_selected)) //can only start if limb is missing
 		return TRUE
 
 /datum/surgery/prosthetic_replacement/mechanic_limb
-	name = "Attach mechanical limb"
 	self_operable = TRUE
-	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	target_mobtypes = list(/mob/living/carbon/human)
 	lying_required = FALSE
 	steps = list(
 		/datum/surgery_step/prepare_electronics,
@@ -27,10 +27,10 @@
 		)
 
 /datum/surgery/prosthetic_replacement/mechanic_limb/can_start(mob/user, mob/living/carbon/target)
-	if(!ispreternis(target))
-		return FALSE
-
 	var/mob/living/carbon/C = target
+	var/obj/item/bodypart/chest = C.get_bodypart(BODY_ZONE_CHEST)
+	if(!chest || !(chest.status == BODYPART_ROBOTIC))
+		return FALSE
 	return !C.get_bodypart(user.zone_selected) //can only start if limb is missing
 
 /datum/surgery_step/add_prosthetic

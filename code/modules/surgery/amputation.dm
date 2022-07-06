@@ -18,9 +18,6 @@
 		/datum/surgery_step/sever_limb/mechanic
 		)
 
-/datum/surgery/amputation/mechanic/can_start(mob/user, mob/living/carbon/target)
-	return ispreternis(target)
-
 /datum/surgery_step/sever_limb
 	name = "sever limb"
 	implements = list(TOOL_SCALPEL = 100, TOOL_SAW = 100, /obj/item/melee/arm_blade = 80, /obj/item/twohanded/required/chainsaw = 80, /obj/item/mounted_chainsaw = 80, /obj/item/twohanded/fireaxe = 50, /obj/item/hatchet = 40, /obj/item/kitchen/knife/butcher = 25)

@@ -27,7 +27,6 @@
 
 	if (QDELETED(src))
 		return 0
-
 	if(LIFETICK_SKIP(src, times_fired))
 		if(.) //not dead
 

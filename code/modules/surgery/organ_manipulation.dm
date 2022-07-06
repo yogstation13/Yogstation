@@ -115,22 +115,18 @@
 		var/mob/living/simple_animal/horror/H = target.has_horror_inside()
 		if(H)
 			user.visible_message("[user] begins to extract [H] from [target]'s [parse_zone(target_zone)].",
-					"<span class='notice'>You begin to extract [H] from [target]'s [parse_zone(target_zone)]...</span>")
+					span_notice("You begin to extract [H] from [target]'s [parse_zone(target_zone)]..."))
 			return TRUE
 		if(!organs.len)
 			to_chat(user, span_notice("There are no removable organs in [target]'s [parse_zone(target_zone)]!"))
 			return -1
 		else
+			var/list/radial_menu = list()
 			for(var/obj/item/organ/O in organs)
 				O.on_find(user)
-				organs -= O
-				organs[O.name] = O
-
-			I = input("Remove which organ?", "Surgery", null, null) as null|anything in organs
+				radial_menu[O] = image(O)
+			I = show_radial_menu(user, target, radial_menu, tooltips = TRUE)
 			if(I && user && target && user.Adjacent(target) && user.get_active_held_item() == tool)
-				I = organs[I]
-				if(!I)
-					return -1
 				display_results(user, target, span_notice("You begin to extract [I] from [target]'s [parse_zone(target_zone)]..."),
 					"[user] begins to extract [I] from [target]'s [parse_zone(target_zone)].",
 					"[user] begins to extract something from [target]'s [parse_zone(target_zone)].")

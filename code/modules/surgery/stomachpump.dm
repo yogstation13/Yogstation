@@ -23,6 +23,18 @@
 		return FALSE
 	return ..()
 
+/datum/surgery/stomach_pump/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/stomach_pump,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
+	lying_required = FALSE
+	self_operable = TRUE
+
 //Working the stomach by hand in such a way that you induce vomiting.
 /datum/surgery_step/stomach_pump
 	name = "Pump Stomach"

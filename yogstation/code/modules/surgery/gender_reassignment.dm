@@ -8,6 +8,14 @@
 				 /datum/surgery_step/close)
 	possible_locs = list("groin")
 
+/datum/surgery/stomach_pump/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/reshape_genitals,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
+	lying_required = FALSE
+	self_operable = TRUE
 
 //reshape_genitals
 /datum/surgery_step/reshape_genitals

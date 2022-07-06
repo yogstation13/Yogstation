@@ -202,14 +202,14 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/surgical_drapes
-	name = "Surgical Drapes"
-	id = "surgical_drapes"
+/datum/design/surgical_mat
+	name = "Surgical Mat"
+	id = "surgical_mat"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 2000)
-	build_path = /obj/item/surgical_drapes
+	build_path = /obj/item/surgical_mat
 	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/rollerbed
 	name = "Roller Bed"

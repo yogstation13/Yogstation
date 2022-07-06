@@ -8,7 +8,7 @@
 				/datum/surgery_step/autopsy)
 	target_mobtypes = list(/mob/living)
 	requires_bodypart_type = 0
-	ignore_clothes = 1 // just cut through the clothes
+	ignore_clothes = TRUE // just cut through the clothes
 	possible_locs = list(BODY_ZONE_CHEST)
 
 /datum/surgery/autopsy/can_start(mob/user, mob/living/carbon/target)

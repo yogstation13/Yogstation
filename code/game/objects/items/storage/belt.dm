@@ -183,7 +183,6 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/breath/medical,
-		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
@@ -205,7 +204,8 @@
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
 		/obj/item/stack/medical/bone_gel,
-		/obj/item/holosign_creator/medical
+		/obj/item/holosign_creator/medical,
+		/obj/item/holosign_creator/firstaid
 		))
 
 /obj/item/storage/belt/medical/chief
@@ -215,7 +215,6 @@
 	item_state = "medical_cmo"
 
 /obj/item/storage/belt/medical/chief/full/PopulateContents()
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/scalpel/advanced(src)
 	new /obj/item/retractor/advanced(src)
 	new /obj/item/cautery/advanced(src)
@@ -499,7 +498,6 @@
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"white")
 
 /obj/item/storage/belt/military/abductor/scientist/PopulateContents()
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/scalpel/alien(src)
 	new /obj/item/hemostat/alien(src)
 	new /obj/item/retractor/alien(src)
@@ -537,7 +535,6 @@
 	new /obj/item/grenade/flashbang(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/melee/baton/loaded(src)
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/scalpel/alien(src)
 	new /obj/item/hemostat/alien(src)
 	new /obj/item/retractor/alien(src)

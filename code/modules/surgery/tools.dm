@@ -519,16 +519,31 @@
 	qdel(src)
 
 /obj/structure/bed/surgical_mat/syndicate
-	name = "surgical mat"
+	name = "syndicate surgical mat"
 	desc = "A sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
-	icon = 'icons/obj/surgery.dmi'
 	icon_state = "opmat"
 	can_buckle = TRUE
 	picked_up = /obj/item/surgical_mat/syndicate
 
 /obj/item/surgical_mat/syndicate
-	name = "surgical mat"
+	name = "syndicate surgical mat"
 	desc = "A rolled up, sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
-	icon = 'icons/obj/surgery.dmi'
 	icon_state = "surgical_drapes"
 	placed = /obj/structure/bed/surgical_mat/syndicate
+
+/obj/structure/bed/surgical_mat/goliath
+	name = "goliath hide surgical mat"
+	desc = "An improvised mat for preforming primative surgery on patients."
+	icon_state = "opmat_goli"
+	picked_up = /obj/item/surgical_mat/goliath
+
+/obj/structure/bed/surgical_mat/goliath/ComponentInitialize()
+	..()
+	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
+	SB.success_chance = 0.85
+
+/obj/item/surgical_mat/goliath
+	name = "goliath hide surgical mat"
+	desc = "A rolled up, improvised mat for preforming primative surgery on patients."
+	icon_state = "surgical_drapes_goli"
+	placed = /obj/structure/bed/surgical_mat/goliath
