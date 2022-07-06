@@ -86761,21 +86761,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
-"gsQ" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/maintenance/port/fore)
 "gtB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -87427,14 +87412,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"hgS" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/maintenance/port)
 "hhY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -88270,6 +88247,14 @@
 	},
 /turf/closed/wall/rust,
 /area/maintenance/disposal/incinerator)
+"hYA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/maintenance/port)
 "hYN" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -95598,6 +95583,21 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/toilet/restrooms)
+"oVb" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/port/fore)
 "oVx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -121217,7 +121217,7 @@ cIc
 crP
 bcY
 liV
-hgS
+hYA
 crH
 csv
 fQF
@@ -124010,7 +124010,7 @@ cwq
 cwp
 cyH
 pcW
-gsQ
+oVb
 bES
 eyF
 czx
