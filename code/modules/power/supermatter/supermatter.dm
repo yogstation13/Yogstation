@@ -396,12 +396,18 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(!istype(T)) 	//We are in a crate or somewhere that isn't turf, if we return to turf resume processing but for now.
 		return  //Yeah just stop.
 
-	for(var/obj/O in T.contents) // Forbids putting things on the SM
-		if(O == src)
+	for(var/atom/A in T.contents) // Forbids putting things on the SM
+		if(A == src)
 			continue
-		if(istype(O, /obj/effect))
+		if(iseffect(A))
 			continue
-		Consume(O)
+		if(istype(A, /atom/movable/lighting_object))
+			continue
+		if(isobserver(A))
+			continue
+		if(istype(A, /obj/structure/lattice)) // Why theres arent turfs yet is beyond me
+			continue
+		Consume(A)
 
 	if(power)
 		soundloop.volume = clamp((50 + (power / 50)), 50, 100)
