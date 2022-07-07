@@ -39,7 +39,7 @@
 	/// Does the vicitm needs to be lying down.
 	var/lying_required = TRUE								
 	/// Can the surgery be performed on yourself.
-	var/self_operable = TRUE								
+	var/self_operable = FALSE								
 	/// Handles techweb-oriented surgeries, previously restricted to the /advanced subtype (You still need to add designs)
 	var/requires_tech = FALSE								
 	/// Type; doesn't show up if this type exists. Set to /datum/surgery if you want to hide a "base" surgery (useful for typing parents IE healing.dm just make sure to null it out again)
