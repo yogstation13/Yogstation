@@ -19,7 +19,7 @@
 			return TRUE
 	return FALSE
 
-/datum/surgery/advanced/dna_recovery/mechanic
+/datum/surgery/coronary_bypass/mechanic
 	steps = list(/datum/surgery_step/mechanic_open,
 				/datum/surgery_step/open_hatch,
 				/datum/surgery_step/mechanic_unwrench,
