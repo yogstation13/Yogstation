@@ -415,10 +415,13 @@
 
 /obj/machinery/light/process()
 	if (!cell)
-		return PROCESS_KILL
+		return
+	// 0.04% Chance to burn out each tick
+	if(on && prob(0.04))
+		burn_out()
 	if(has_power())
 		if (cell.charge == cell.maxcharge)
-			return PROCESS_KILL
+			return
 		cell.charge = min(cell.maxcharge, cell.charge + LIGHT_EMERGENCY_POWER_USE) //Recharge emergency power automatically while not using it
 	if(emergency_mode && !use_emergency_power(LIGHT_EMERGENCY_POWER_USE))
 		update(FALSE) //Disables emergency mode and sets the color to normal
