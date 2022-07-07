@@ -16792,6 +16792,26 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+"iZK" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/laserproof{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/storage/lockbox/loyalty{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/gun/energy/e_gun/dragnet{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "iZW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -43012,18 +43032,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
-"xAW" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/laserproof{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/storage/lockbox/loyalty{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "xBz" = (
 /obj/effect/turf_decal/trimline/neutral/filled/corner{
 	dir = 4
@@ -65930,7 +65938,7 @@ tkl
 dll
 pSb
 uwK
-xAW
+iZK
 vVo
 hlo
 oOB
