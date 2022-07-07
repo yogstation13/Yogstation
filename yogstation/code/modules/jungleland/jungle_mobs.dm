@@ -309,4 +309,91 @@
 			A.FindTarget(list(target))
 			B.FindTarget(list(target))
 	return ..()
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito
+	name = "Giant Mosquito"
+	desc = "Massively overgrown bug, how did it get so big?"
+	icon_state = "mosquito"
+	icon_living = "mosquito"
+	icon_dead = "mosquito_dead"
+	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
+	speak = list("eak!","sheik!","ahik!","keish!")
+	speak_emote = list("shimmers", "vibrates")
+	emote_hear = list("vibes.","sings.","shimmers.")
+	emote_taunt = list("tremors", "shakes")
+	speak_chance = 0
+	taunt_chance = 0
+	turns_per_move = 0
+	butcher_results = list()
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "hits"
+	maxHealth = 60
+	health = 60
+	spacewalk = TRUE
+
+	melee_damage_lower = 10
+	melee_damage_upper = 40 
+
+	var/can_charge = TRUE
+	var/cooldown = 15 SECONDS
+	var/charge_ramp_up = 2 SECONDS
+
+	var/has_blood = FALSE
+	var/overshoot_dist = 5
+
+	var/charging = FALSE
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/Aggro()
+	. = ..()
+	prepare_charge()
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/Goto(target, delay, minimum_distance)
+	if(!charging)
+		return ..()
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/Bumped(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM) || !charging)
+		return 
 	
+	var/mob/living/carbon/human/humie = AM 
+	humie.blood_volume -= 100 // ouch!
+	has_blood = TRUE 
+	rapid_melee = TRUE
+	melee_damage_lower = 30 
+	melee_damage_upper = 50
+	icon_state = "mosquito_blood"
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/prepare_charge()
+	if(!get_charge())
+		return FALSE 
+
+	var/dir = Get_Angle(src.loc,target.loc)
+
+	var/tx = clamp(0,round(loc.x + cos(dir) * overshoot_dist),255)
+	var/ty = clamp(0,round(loc.y + sin(dir) * overshoot_dist),255)
+
+	var/turf = locate(tx,ty,loc.z)
+	if(turf == null)
+		return FALSE 
+	
+	var/dist = get_dist(src,turf)
+
+	sleep(charge_ramp_up)
+	Goto(turf,0,dist - 1)
+	charging = TRUE 
+	addtimer(CALLBACK(src,.proc/reset_charging), 2*dist + 4 ) 
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/reset_charging()
+	charging = FALSE 
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/reset_charge()
+	can_charge = TRUE
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/use_charge()
+	can_charge = FALSE 
+	addtimer(CALLBACK(src,.proc/reset_charge),cooldown,TIMER_UNIQUE)
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/get_charge()
+	return can_charge 

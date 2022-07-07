@@ -1,3 +1,8 @@
+#define NOON_DIVISOR 1.6 
+#define LIGHTING_GRANULARITY 3.4
+#define UPDATES_IN_QUARTER_DAY 5
+
+
 /area/pregen
 	name = "Pregenerated Space"
 	icon = 'yogstation/icons/turf/floors/jungle.dmi'
@@ -5,6 +10,44 @@
 	map_generator = /datum/map_generator/jungleland
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = TRUE
+
+/area/jungleland
+	name = "Improper Jungleland"
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	outdoors = TRUE
+	var/daynight_cycle = TRUE
+	var/update_interval = 60 SECONDS
+	var/updates = 0 
+	var/cached_luminosity = 0
+
+/area/jungleland/Initialize()
+	. = ..()
+	INVOKE_ASYNC(src,.proc/daynight_cycle)
+
+
+/area/jungleland/proc/daynight_cycle()
+	set waitfor = FALSE
+	updates += 1
+	//whew that's quite a bit of math! it's quite simple once you get it tho, think of (current_inteval/update_interval) as x, sin(x * arcsin(1)) turns sin()'s period from 2*PI to 4,
+	//working with integers is nicer, all the other stuff is mostly fluff to make it so it takes 10 update_interval to go from day to night and back. clamping at zero since light power cannot go negative.
+	var/new_luminosity = CEILING( (LIGHTING_GRANULARITY  *sin( ( updates * arcsin(1) ) / UPDATES_IN_QUARTER_DAY) ) ,1 )/NOON_DIVISOR
+	if(new_luminosity != cached_luminosity)
+		if(new_luminosity > 0 && cached_luminosity < 0)
+			for(var/mob/M in contents)
+				to_chat(M,span_alertwarning("The dawn lights the whole jungle in new glorious light... a new day begins!"))
+		if(new_luminosity < 0 && cached_luminosity > 0)
+			for(var/mob/M in contents)
+				to_chat(M,span_alertwarning("You can see the stars high in the sky... the night begins!"))
+		var/counter = 0	
+		for(var/turf/open/T in src)
+			T.set_light(1,new_luminosity) // we do not use dynamic light, because they are so insanely slow, it's just.. not worth it.
+			if(counter == 255)
+				CHECK_TICK
+				counter = 0
+			counter++
+		cached_luminosity = new_luminosity
+
+	addtimer(CALLBACK(src,.proc/daynight_cycle), update_interval, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /turf/open/floor/plating/dirt/jungleland
 	name = "generic jungle land turf"
