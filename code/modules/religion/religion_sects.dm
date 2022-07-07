@@ -190,6 +190,8 @@
 					  /datum/religion_rites/looks)
 
 /datum/religion_sect/capitalists/sect_bless(mob/living/L, mob/living/user)
+	if(!ishuman(L))
+		return
 	if(world.time < last_dono) // immersion broken
 		user.visible_message(span_notice("You are getting too greedy! You can recieve another donation in [(last_dono - world.time)/10] seconds!"))
 		return
