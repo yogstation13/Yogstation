@@ -554,9 +554,23 @@ RLD
 	qdel(rcd_effect)
 	return FALSE
 
+/obj/item/construction/rcd/proc/rcd_switch(atom/A, mob/user)
+	var/cost = 1
+	var/delay = 1
+	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
+	if(checkResource(cost, user))
+		if(do_after(user, delay, target = A))
+			if(checkResource(cost, user))
+				rcd_effect.end_animation()
+				useResource(cost, user)
+				activate()
+				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+				new /obj/item/conveyor_switch_construct(A)
+	qdel(rcd_effect)
+
 /obj/item/construction/rcd/proc/rcd_conveyor(atom/A, mob/user)
 	var/delay = 5
-	var/cost = 12
+	var/cost = 5
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
 	if(checkResource(cost, user))
 		if(do_after(user, delay, target = A))
@@ -571,7 +585,6 @@ RLD
 					if(cdir in GLOB.cardinals)
 						last_placed.setDir(get_dir(last_placed, A))
 				last_placed = new/obj/machinery/conveyor(A, cdir, linked_switch_id)
-				return
 	qdel(rcd_effect)
 
 /obj/item/construction/rcd/Initialize()
@@ -622,7 +635,8 @@ RLD
 		)
 	if(upgrade & RCD_UPGRADE_CONVEYORS)
 		choices += list(
-		"Conveyor" = image(icon = 'icons/obj/recycling.dmi', icon_state = "conveyor_construct")
+		"Conveyor" = image(icon = 'icons/obj/recycling.dmi', icon_state = "conveyor_construct"),
+		"Switch" = image(icon = 'icons/obj/recycling.dmi', icon_state = "switch-off")
 		)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
@@ -666,7 +680,9 @@ RLD
 			mode = RCD_CONVEYOR
 			linked_switch_id = null
 			last_placed = null
-		else
+		if("Switch")
+			mode = RCD_SWITCH
+		else 
 			return
 	playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
 	to_chat(user, span_notice("You change RCD's mode to '[choice]'."))
@@ -679,7 +695,7 @@ RLD
 
 /obj/item/construction/rcd/afterattack(atom/A, mob/user, proximity)
 	. = ..()
-	if (mode == RCD_CONVEYOR)	
+	if (mode == RCD_CONVEYOR)
 		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/machinery/conveyor) || !isopenturf(A) || istype(A, /area/shuttle))
 			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
 			return
@@ -689,8 +705,16 @@ RLD
 		if (get_turf(A) == get_turf(user))
 			to_chat(user, "<span class='notice'>Cannot place conveyor below your feet!</span>")
 			return
-
+		if(!proximity)
+			return
 		rcd_conveyor(A, user)
+	if (mode == RCD_SWITCH)
+		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/item/conveyor_switch_construct) || !isopenturf(A) || istype(A, /area/shuttle))
+			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
+			return
+		if(!proximity)
+			return
+		rcd_switch(A, user)
 	else
 		if(!prox_check(proximity))
 			return

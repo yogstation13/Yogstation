@@ -113,6 +113,7 @@
 #define RCD_COMPUTER (1<<5)
 #define RCD_FURNISHING (1<<6)
 #define RCD_CONVEYOR (1<<7)
+#define RCD_SWITCH (1<<8)
 
 #define RCD_UPGRADE_FRAMES (1<<0)
 #define RCD_UPGRADE_SIMPLE_CIRCUITS	(1<<1)
