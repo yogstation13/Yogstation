@@ -168,7 +168,7 @@
 			D.visible_message(span_danger("[A] violently grabs [D]'s neck!"), \
 							span_userdanger("[A] violently grabs your neck!"))		
 			log_combat(A, D, "grabs by the neck(Explosive Fist)")
-			playsound(get_turf(D), 'sound/weapons/punch.ogg', 50, TRUE, -1)
+			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 			streak = ""
 			A.adjust_fire_stacks(3)
 			D.adjust_fire_stacks(3)
