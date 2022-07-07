@@ -45,8 +45,8 @@
 	D.apply_damage(10, BRUTE, selected_zone, brute_block) 
 	D.apply_damage(10, BURN, selected_zone, burn_block) 
 	D.visible_message(span_danger("[A] [A.dna.species.attack_verb]s [D]!"), \
-					  span_userdanger("[A] [A.dna.species.atk_verb]s you!"))
-	log_combat(A, D, "[A.dna.species.atk_verb]s(Explosive Fist)")
+					  span_userdanger("[A] [A.dna.species.attack_verb]s you!"))
+	log_combat(A, D, "[A.dna.species.attack_verb]s(Explosive Fist)")
 
 
 /datum/martial_art/explosive_fist/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -168,7 +168,7 @@
 			D.visible_message(span_danger("[A] violently grabs [D]'s neck!"), \
 							span_userdanger("[A] violently grabs your neck!"))		
 			log_combat(A, D, "grabs by the neck(Explosive Fist)")
-			playsound(target, 'sound/weapons/punch.ogg', 50, TRUE, -1)
+			playsound(get_turf(D), 'sound/weapons/punch.ogg', 50, TRUE, -1)
 			streak = ""
 			A.adjust_fire_stacks(3)
 			D.adjust_fire_stacks(3)
@@ -178,7 +178,7 @@
 
 	else if(findtext(streak, ALMOST_LIFEFORCE_TRADE_COMBO))
 		A.do_attack_animation(D, ATTACK_EFFECT_DISARM)			
-		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+		playsound(get_turf(D), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
 		D.visible_message(span_danger("[A] staggers [D]!"), \
 						span_userdanger("[A] staggers you!"))		
@@ -222,7 +222,7 @@
 			for(var/mob/living/target in view_or_range(2, A, "range"))
 				if(target == A)  
 					continue
-				if(get_dist(get_turf(A), get_turf(target)) =< 1)
+				if(get_dist(get_turf(A), get_turf(target)) <= 1)
 					target.IgniteMob()  ///If we are close, we ignite, if not - take 30 burn damage
 				else 
 					target.adjustFireLoss(30)
