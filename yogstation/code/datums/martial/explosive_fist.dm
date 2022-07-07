@@ -46,7 +46,7 @@
 	D.apply_damage(10, BURN, selected_zone, burn_block) 
 	D.visible_message(span_danger("[A] [A.dna.species.attack_verb]s [D]!"), \
 					  span_userdanger("[A] [A.dna.species.atk_verb]s you!"))
-		log_combat(A, D, "[A.dna.species.atk_verb]s(Explosive Fist)")
+	log_combat(A, D, "[A.dna.species.atk_verb]s(Explosive Fist)")
 
 
 /datum/martial_art/explosive_fist/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -87,7 +87,7 @@
 	log_combat(A, D, "blasts(Explosive Fist)")
 	D.visible_message(span_danger("[A] blasts [D]!"), \
 				span_userdanger("[A] blasts you!"))
-	var/atom/throw_target = get_edge_target_turf(D, dir)
+	var/atom/throw_target = get_edge_target_turf(D, get_dir(A,D))
 	D.throw_at(throw_target, rand(1,2), 7, A)
 	streak = ""
 
@@ -97,12 +97,12 @@
 		log_combat(A, D, "detonates(Explosive Fist)")
 		D.visible_message(span_danger("[A] detonates [D]!"), \
 					span_userdanger("[A] detonates you!"))
-		explosion(get_turf(affected_mob), -1, 0, 2, 0, 0, 2)
+		explosion(get_turf(D), -1, 0, 2, 0, 0, 2)
 		D.IgniteMob()
 		playsound(D, 'sound/effects/explosion1.ogg', 50, TRUE, -1)
 		
 		var/obj/item/bodypart/affecting = A.get_bodypart(BODY_ZONE_CHEST)
-		var/armor_block = target.run_armor_check(affecting, BOMB)
+		var/armor_block = A.run_armor_check(affecting, BOMB)
 		A.apply_damage(15, BRUTE, BODY_ZONE_CHEST, armor_block) 
 		streak = ""
 
@@ -111,7 +111,7 @@
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
 		var/armor_block = D.run_armor_check(affecting, MELEE, 0)
 		A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
-		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+		playsound(D, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		var/current_stamina_damage = D.getStaminaLoss()
 		var/damage_to_deal = 55
 
@@ -177,26 +177,26 @@
 			proceed_lifeforce_trade(A, D)
 
 	else if(findtext(streak, ALMOST_LIFEFORCE_TRADE_COMBO))
-			A.do_attack_animation(D, ATTACK_EFFECT_DISARM)			
-			playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+		A.do_attack_animation(D, ATTACK_EFFECT_DISARM)			
+		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
-			D.visible_message(span_danger("[A] staggers [D]!"), \
-							span_userdanger("[A] staggers you!"))		
-			log_combat(A, D, "staggers(Explosive Fist)")
+		D.visible_message(span_danger("[A] staggers [D]!"), \
+						span_userdanger("[A] staggers you!"))		
+		log_combat(A, D, "staggers(Explosive Fist)")
 
-			var/selected_zone = A.zone_selected
-			var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
-			var/stamina_block = D.run_armor_check(affecting, MELEE, 0)
-			var/burn_block = D.run_armor_check(affecting, BOMB, 0)
-			D.apply_damage(20, STAMINA, selected_zone, stamina_block) 
-			D.apply_damage(5, BURN, selected_zone, burn_block) 
+		var/selected_zone = A.zone_selected
+		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
+		var/stamina_block = D.run_armor_check(affecting, MELEE, 0)
+		var/burn_block = D.run_armor_check(affecting, BOMB, 0)
+		D.apply_damage(20, STAMINA, selected_zone, stamina_block) 
+		D.apply_damage(5, BURN, selected_zone, burn_block) 
 
-			if(!D.has_movespeed_modifier(MOVESPEED_ID_SHOVE)) /// We apply a more long shove slowdown if our target doesn't already have one
-				D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
-				addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), 4 SECONDS)
+		if(!D.has_movespeed_modifier(MOVESPEED_ID_SHOVE)) /// We apply a more long shove slowdown if our target doesn't already have one
+			D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
+			addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), 4 SECONDS)
 
-			ADD_TRAIT(D, TRAIT_POOR_AIM, "martial")
-			addtimer(CALLBACK(src, .proc/remove_stagger, D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		ADD_TRAIT(D, TRAIT_POOR_AIM, "martial")
+		addtimer(CALLBACK(src, .proc/remove_stagger, D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 
@@ -222,7 +222,7 @@
 			for(var/mob/living/target in view_or_range(2, A, "range"))
 				if(target == A)  
 					continue
-				if(get_dist(get_turf(A), get_turf(target) =< 1))
+				if(get_dist(get_turf(A), get_turf(target)) =< 1)
 					target.IgniteMob()  ///If we are close, we ignite, if not - take 30 burn damage
 				else 
 					target.adjustFireLoss(30)
@@ -292,7 +292,7 @@
 	D.adjustFireLoss(dam)
 	var/bruteloss = D.getBruteLoss()
 	var/fireloss = D.getFireLoss()
-	A.heal_overall_damage(bruteloss/2, fireloss/2, 0, required_status, updating_health = TRUE, CONSCIOUS, TRUE)
+	A.heal_overall_damage(bruteloss/2, fireloss/2, 0, CONSCIOUS, TRUE)
 	to_chat(A, span_notice("You drain lifeforce from [D]"))
 	proceed_lifeforce_trade(A, D)
 	
