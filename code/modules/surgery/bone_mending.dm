@@ -4,6 +4,8 @@
 ///// Repair Hairline Fracture (Severe)
 /datum/surgery/repair_bone_hairline
 	name = "Repair bone fracture (hairline)"
+	icon_state = "bone"
+	tier = 2
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/repair_bone_hairline, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
@@ -21,6 +23,8 @@
 ///// Repair Compound Fracture (Critical)
 /datum/surgery/repair_bone_compound
 	name = "Repair Compound Fracture"
+	icon_state = "bone"
+	tier = 3
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/reset_compound_fracture, /datum/surgery_step/repair_bone_compound, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)

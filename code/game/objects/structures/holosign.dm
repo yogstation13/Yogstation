@@ -175,8 +175,21 @@
 	buckle_lying = 90
 	max_integrity = 1
 	layer = BELOW_OBJ_LAYER
+	var/obj/item/holosign_creator/projector
 	var/atom/movable/occupant = null
 	var/stasis = TRUE
+
+/obj/structure/holobed/New(loc, source_projector)
+	if(source_projector)
+		projector = source_projector
+		projector.signs += src
+	..()
+
+/obj/structure/holobed/Destroy()
+	if(projector)
+		projector.signs -= src
+		projector = null
+	return ..()
 
 /obj/structure/holobed/ComponentInitialize()
 	AddComponent(/datum/component/surgery_bed, 0.8)
@@ -189,7 +202,7 @@
 	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
 
 /obj/structure/holobed/update_icon()
-	icon_state = "[initial(icon_state)]_[stasis ? "on" : "off"]"
+	icon_state = "[initial(icon_state)][stasis ? "" : "_off"]"
 
 /obj/structure/holobed/AltClick(mob/living/user)
 	if(user.a_intent == INTENT_HELP)

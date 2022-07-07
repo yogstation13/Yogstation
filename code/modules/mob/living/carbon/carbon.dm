@@ -80,8 +80,20 @@
 			if(item_heal_robotic(src, user, 15, 0))
 				return TRUE
 
-	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
+	// Fun situation, needing surgery code to be at the /mob/living level but needing it to happen before wound code so you can actualy do the wound surgeries
+	for(var/datum/surgery/S in surgeries)
+		if(!(S.location != user.zone_selected)) 
+			continue
+		if((mobility_flags & MOBILITY_STAND) && S.lying_required)
+			continue
+		if(!S.self_operable || user == src)
+			continue
+		if(!(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
+			continue
 		return ..()
+	
+	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
+		return ..()	
 
 	for(var/i in shuffle(all_wounds))
 		var/datum/wound/W = i
