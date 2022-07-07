@@ -559,7 +559,7 @@ RLD
 	var/delay = 1
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
 	if(checkResource(cost, user))
-		if(do_after(user, delay, target = A))
+		if(do_after(user, delay, A))
 			if(checkResource(cost, user))
 				rcd_effect.end_animation()
 				useResource(cost, user)
