@@ -130,7 +130,7 @@ obj/item/energy_harvester/Initialize()
 		return 0
 	var/softcap_1_payout = clamp(SOFTCAP_BUDGET_1 * (accumulated_power/POWER_SOFTCAP_1), 0, SOFTCAP_BUDGET_1)
 	var/softcap_2_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_1)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2)
-	var/hardcap_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_2)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*SOFTCAP_BUDGET_2, 0, SOFTCAP_BUDGET_2)
+	var/hardcap_payout = clamp(((log(10, accumulated_power) - log(10, POWER_SOFTCAP_2)) / (log(10, POWER_SOFTCAP_2) - log(10, POWER_SOFTCAP_1)))*HARDCAP_BUDGET, 0, HARDCAP_BUDGET)
 	var/potential_payout = softcap_1_payout + softcap_2_payout + hardcap_payout
 	return potential_payout
 

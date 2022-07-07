@@ -95,11 +95,16 @@ SUBSYSTEM_DEF(economy)
 	var/station_integrity = min(PERCENT(GLOB.start_state.score(engineering_check)), 100)
 	station_integrity *= 0.01
 	engineering_cash *= station_integrity
-	if(moneysink)
-		engineering_cash += moneysink.payout()
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
 	if(D)
 		D.adjust_money(engineering_cash)
+	
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	if(moneysink && D)
+		D.adjust_money(moneysink.payout())
+
+
+	
 
 
 /datum/controller/subsystem/economy/proc/car_payout()
