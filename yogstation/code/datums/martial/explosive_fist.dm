@@ -16,7 +16,7 @@
 /datum/martial_art/explosive_fist
 	name = "Explosive Fist"
 	id =  MARTIALART_PRETERNISSTEALTH
-	//help_verb = /mob/living/carbon/human/proc/preternis_martial_help
+	help_verb = /mob/living/carbon/human/proc/explosive_fist_help
 
 /datum/martial_art/explosive_fist/can_use(mob/living/carbon/human/H)
 	return isplasmaman(H)
@@ -315,3 +315,16 @@
 
 /datum/martial_art/explosive_fist/proc/remove_stagger(mob/living/carbon/human/D)
 	REMOVE_TRAIT(D, TRAIT_POOR_AIM, "martial")
+
+/mob/living/carbon/human/proc/explosive_fist_help()
+	set name = "Remember the basics"
+	set desc = "You try to remember some basic actions from the explosive fist art."
+	set category = "Explosive Fist"
+	to_chat(usr, "<b><i>You try to remember some basic actions from the explosive fist art.</i></b>")
+
+	to_chat(usr, span_notice("<b>Harm Intent</b> Will deal 10 burn and 10 brute damage to people who you hit."))
+
+	to_chat(usr, "[span_notice("Explosive disarm")]: Disarm Disarm. Finishing this combo will deal 10 damage to you and 18 to your target, aswell as throwing your target away and knocking down for three seconds.")
+	to_chat(usr, "[span_notice("Detonate")]: Harm Harm Disarm Harm. Second strike will deal 12/12 brute/burn and apply 2 fire stacks to the target. Third strike will apply 4 fire stacks and deal some stamina damage if the target has less then 50 stamina damage. The final strike will ignite the target, make a light explosion and deal 15 damage to you.")
+	to_chat(usr, "[span_notice("Life force trade")]: Disarm Grab Disarm Grab. Second strike will deal 20 damage to the target and 5 damage to you. Third strike will deall 20 stamina and 5 burn damage to the target, and will make it unable to use ranged weapons for 2 second as well as a more long shove slowdown. Finishing the combo with a headwear on will just deal 25/25 brute/burn damage to the target, and if you don't wear a helmet, you will instantly grab the target by a neck, aswell as start to drain life from them.")
+	to_chat(usr, "[span_notice("Immolate")]: Disarm Disarm. Second strike will deal 25 burn damage to the target and 5 burn damage to you. Third strike will apply 5 fire stacks to EVERYONE in the range of 2 tiles. Finishing the combo will, if you don't wear any headwear, will deal 30 burn damage to anyone except you in the range of 2 tiles, or ignite them if they are close enough to you. You target will get additional 10 burn damage and get blurry vision.")
