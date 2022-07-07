@@ -8,12 +8,15 @@
 #define PRE_LIFEFORCE_TRADE_COMBO "DG" 
 #define ALMOST_LIFEFORCE_TRADE_COMBO "DGD" 
 
+#define IMMOLATE_COMBO "DHDG" 
+#define PRE_IMMOLATE_COMBO "DH" 
+#define ALMOST_IMMOLATE_COMBO "DHD" 
+
 
 /datum/martial_art/explosive_fist
 	name = "Explosive Fist"
 	id =  MARTIALART_PRETERNISSTEALTH
 	//help_verb = /mob/living/carbon/human/proc/preternis_martial_help
-	var/life_force_trade_active = FALSE
 
 /datum/martial_art/explosive_fist/can_use(mob/living/carbon/human/H)
 	return isplasmaman(H)
@@ -38,7 +41,7 @@
 	var/brute_block = D.run_armor_check(affecting, MELEE, 0)
 	var/burn_block = D.run_armor_check(affecting, BOMB, 0)
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-	playsound(D, 'sound/effects/explosion1.ogg', 50, TRUE, -1)
+	playsound(get_turf(D), 'sound/effects/explosion1.ogg', 50, TRUE, -1)
 	D.apply_damage(10, BRUTE, selected_zone, brute_block) 
 	D.apply_damage(10, BURN, selected_zone, burn_block) 
 	D.visible_message(span_danger("[A] [A.dna.species.attack_verb]s [D]!"), \
@@ -65,13 +68,14 @@
 		return TRUE
 	if(findtext(streak, PRE_LIFEFORCE_TRADE_COMBO))
 		lifeforce_trade(A,D)
-		return TRUE
+	if(findtext(streak,PRE_IMMOLATE_COMBO))
+		return immolate(A,D)
 
 /datum/martial_art/explosive_fist/proc/explosive_disarm(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
 	var/armor_block = D.run_armor_check(affecting, BOMB, 0)
-	D.apply_damage(18, BURN, BODY_ZONE_CHEST, armor_block)
+	D.apply_damage(18, BURN, selected_zone, armor_block)
  
 	var/obj/item/bodypart/affecting_p = A.get_bodypart(BODY_ZONE_CHEST) // p - plasmamen
 	var/armor_block_p = A.run_armor_check(affecting_p, BOMB)
@@ -157,18 +161,120 @@
 			log_combat(A, D, "headbutts(Explosive Fist)")
 			streak = ""
 		else
-			if(!life_force_trade_active)
-				return
 			if(A.grab_state < GRAB_NECK)
 				A.grab_state = GRAB_NECK
 			if(!(A.pulling == D))
 				D.grabbedby(A, 1)
+			D.visible_message(span_danger("[A] violently grabs [D]'s neck!"), \
+							span_userdanger("[A] violently grabs your neck!"))		
+			log_combat(A, D, "grabs by the neck(Explosive Fist)")
+			playsound(target, 'sound/weapons/punch.ogg', 50, TRUE, -1)
 			streak = ""
 			A.adjust_fire_stacks(3)
 			D.adjust_fire_stacks(3)
 			A.IgniteMob()
 			D.IgniteMob()
-			proceed_lifeforce_trade(A, D)	
+			proceed_lifeforce_trade(A, D)
+
+	else if(findtext(streak, ALMOST_LIFEFORCE_TRADE_COMBO))
+			A.do_attack_animation(D, ATTACK_EFFECT_DISARM)			
+			playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+
+			D.visible_message(span_danger("[A] staggers [D]!"), \
+							span_userdanger("[A] staggers you!"))		
+			log_combat(A, D, "staggers(Explosive Fist)")
+
+			var/selected_zone = A.zone_selected
+			var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
+			var/stamina_block = D.run_armor_check(affecting, MELEE, 0)
+			var/burn_block = D.run_armor_check(affecting, BOMB, 0)
+			D.apply_damage(20, STAMINA, selected_zone, stamina_block) 
+			D.apply_damage(5, BURN, selected_zone, burn_block) 
+
+			if(!D.has_movespeed_modifier(MOVESPEED_ID_SHOVE)) /// We apply a more long shove slowdown if our target doesn't already have one
+				D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
+				addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), 4 SECONDS)
+
+			ADD_TRAIT(D, TRAIT_POOR_AIM, "martial")
+			addtimer(CALLBACK(src, .proc/remove_stagger, D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	else
+		A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
+
+		var/selected_zone = A.zone_selected
+		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
+		var/armor_block = D.run_armor_check(affecting, BOMB, 0)
+		D.apply_damage(20, BURN, selected_zone, armor_block)
+	
+		var/obj/item/bodypart/affecting_p = A.get_bodypart(BODY_ZONE_CHEST)
+		var/armor_block_p = A.run_armor_check(affecting_p, BOMB)
+		A.apply_damage(5, BURN, BODY_ZONE_CHEST, armor_block_p) 
+
+		D.visible_message(span_danger("[A] burns [D]!"), \
+						span_userdanger("[A] burns you!"))		
+		log_combat(A, D, "burns(Explosive Fist)")
+
+/datum/martial_art/explosive_fist/proc/immolate(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(findtext(streak,IMMOLATE_COMBO))
+		if(A.get_item_by_slot(ITEM_SLOT_HEAD))   //No helmets???
+			streak = ""
+			return FALSE
+		else 
+			for(var/mob/living/target in view_or_range(2, A, "range"))
+				if(target == A)  
+					continue
+				if(get_dist(get_turf(A), get_turf(target) =< 1))
+					target.IgniteMob()  ///If we are close, we ignite, if not - take 30 burn damage
+				else 
+					target.adjustFireLoss(30)
+
+			var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
+			var/armor_block = D.run_armor_check(hed, BOMB)
+			D.apply_damage(10, BURN, BODY_ZONE_HEAD, armor_block) 	
+			D.emote("scream")		
+			D.blur_eyes(4)
+
+			var/obj/item/bodypart/affecting_p = A.get_bodypart(BODY_ZONE_CHEST)
+			var/armor_block_p = A.run_armor_check(affecting_p, BOMB)
+			A.apply_damage(15, BURN, BODY_ZONE_CHEST, armor_block_p) 
+
+			A.visible_message(span_danger("[A] explodes violently!"), \
+						span_userdanger("You unleash the flames from yourself!"))
+			log_combat(A, D, "immolates(Explosive Fist)")	
+			playsound(get_turf(A), 'sound/effects/explosion1.ogg', 50, TRUE, -1)			
+	
+	else if(findtext(streak,ALMOST_IMMOLATE_COMBO))
+		for(var/mob/living/target in view_or_range(2, A, "range"))
+			target.adjust_fire_stacks(5)
+			var/selected_zone = A.zone_selected
+			var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(A.zone_selected))
+			var/burn_block = target.run_armor_check(affecting, BOMB, 0)
+			var/brute_block = target.run_armor_check(affecting, MELEE, 0)
+			target.apply_damage(10, BURN, selected_zone, burn_block)
+			target.apply_damage(5, BRUTE, selected_zone, brute_block)
+		D.visible_message(span_danger("[A] primes [D]!"), \
+					span_userdanger("[A] primes you!"))
+		log_combat(A, D, "primes(Explosive Fist)")	
+		playsound(get_turf(D), 'sound/effects/explosion1.ogg', 50, TRUE, -1)
+
+
+	else
+		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
+		playsound(get_turf(D), 'sound/weapons/punch.ogg', 50, 1, -1)
+
+		var/selected_zone = A.zone_selected
+		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
+		var/armor_block = D.run_armor_check(affecting, BOMB, 0)
+		D.apply_damage(25, BURN, selected_zone, armor_block)
+	
+		var/obj/item/bodypart/affecting_p = A.get_bodypart(BODY_ZONE_CHEST) // p - plasmamen
+		var/armor_block_p = A.run_armor_check(affecting_p, BOMB)
+		A.apply_damage(5, BURN, BODY_ZONE_CHEST, armor_block_p) 
+
+		D.visible_message(span_danger("[A] burns [D]!"), \
+						span_userdanger("[A] burns you!"))		
+		log_combat(A, D, "burns(Explosive Fist)")
+
+	return TRUE
 
 /datum/martial_art/explosive_fist/proc/proceed_lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)	
 	if(!can_suck_life(A, D))
@@ -177,9 +283,11 @@
 		return
 	if(!can_suck_life(A, D))
 		return
-	var/message = pick("You feel your life force being drained!", "It hurts!", "You stare into [A]'s expressionless skull and see only fire and death.")
-	to_chat(D, span_userdanger(message))
-	D.emote("scream")
+	if(prob(35))
+		var/message = pick("You feel your life force being drained!", "It hurts!", "You stare into [A]'s expressionless skull and see only fire and death.")
+		to_chat(D, span_userdanger(message))
+	if(prob(25))
+		D.emote("scream")
 	var/dam = 2
 	D.adjustFireLoss(dam)
 	var/bruteloss = D.getBruteLoss()
@@ -205,3 +313,5 @@
 		return FALSE
 	return TRUE
 
+/datum/martial_art/explosive_fist/proc/remove_stagger(mob/living/carbon/human/D)
+	REMOVE_TRAIT(D, TRAIT_POOR_AIM, "martial")
