@@ -15,6 +15,8 @@
 	name = "thread veins"
 	accept_hand = TRUE
 	time = 125
+	preop_sound = 'sound/surgery/organ2.ogg'
+	success_sound = 'sound/surgery/organ1.ogg'
 
 /datum/surgery_step/thread_veins/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You start weaving [target]'s circulatory system."),

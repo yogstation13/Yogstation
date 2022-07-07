@@ -20,6 +20,8 @@
 	name = "extract core"
 	implements = list(/obj/item/hemostat = 100, TOOL_CROWBAR = 100)
 	time = 1.6 SECONDS
+	preop_sound = 'sound/surgery/scalpel1.ogg'
+	success_sound = 'sound/surgery/scalpel2.ogg'
 
 /datum/surgery_step/extract_core/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to extract a core from [target]..."),

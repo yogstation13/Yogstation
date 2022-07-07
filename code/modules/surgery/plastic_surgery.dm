@@ -18,8 +18,10 @@
 /datum/surgery_step/reshape_face
 	name = "reshape face"
 	implements = list(TOOL_SCALPEL = 100, /obj/item/kitchen/knife = 50, TOOL_WIRECUTTER = 35)
-	time = 64
+	time = 6.4 SECONDS
 	fuckup_damage = 0
+	preop_sound = 'sound/surgery/scalpel1.ogg'
+	success_sound = 'sound/surgery/scalpel2.ogg'
 
 /datum/surgery_step/reshape_face/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] begins to alter [target]'s appearance.", span_notice("You begin to alter [target]'s appearance..."))

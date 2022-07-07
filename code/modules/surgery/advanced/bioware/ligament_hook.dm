@@ -15,7 +15,9 @@
 /datum/surgery_step/reshape_ligaments
 	name = "reshape ligaments"
 	accept_hand = TRUE
-	time = 125
+	time = 12.5 SECONDS
+	preop_sound = 'sound/surgery/bone1.ogg'
+	success_sound = 'sound/surgery/bone3.ogg'
 
 /datum/surgery_step/reshape_ligaments/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You start reshaping [target]'s ligaments into a hook-like shape."),

@@ -30,6 +30,7 @@
 	accept_hand = TRUE
 	fuckup_damage = 0
 	repeatable = TRUE
+	preop_sound = 'sound/surgery/hemostat1.ogg'
 	var/obj/item/target_item = null
 	var/obj/item/bodypart/L = null
 

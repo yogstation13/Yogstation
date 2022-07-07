@@ -121,7 +121,7 @@
 		if(user == target)
 			var/obj/item/bodypart/operated_bodypart = target.get_bodypart(target_zone)
 			if(!operated_bodypart || !(operated_bodypart.status == BODYPART_ROBOTIC))
-				prob_chance *= 0.25
+				prob_chance *= 0.05
 
 		// Blood splatters on tools and user
 		if(tool && prob(bloody_chance))
@@ -171,6 +171,8 @@
 				break	
 	else
 		sound_file_use = preop_sound
+	if(!sound_file_use)
+		return
 	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -190,6 +192,8 @@
 				break	
 	else
 		sound_file_use = success_sound
+	if(!sound_file_use)
+		return
 	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -209,6 +213,8 @@
 				break	
 	else
 		sound_file_use = failure_sound
+	if(!sound_file_use)
+		return
 	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)

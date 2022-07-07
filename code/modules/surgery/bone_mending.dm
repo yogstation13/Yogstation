@@ -39,8 +39,18 @@
 ///// Repair Hairline Fracture (Severe)
 /datum/surgery_step/repair_bone_hairline
 	name = "repair hairline fracture (bonesetter/bone gel/tape)"
-	implements = list(/obj/item/bonesetter = 100, /obj/item/stack/medical/bone_gel = 100)
-	time = 40
+	implements = list(/obj/item/bonesetter = 100, /obj/item/stack/medical/bone_gel = 100, /obj/item/stack/tape = 30)
+	preop_sound = list(
+		/obj/item/stack/medical/bone_gel = 'sound/effects/ointment.ogg',
+		/obj/item/stack/tape = 'sound/effects/tape.ogg',
+		/obj/item = 'sound/surgery/bone1.ogg'
+	) 
+	success_sound = list(
+		/obj/item/stack/medical/bone_gel = FALSE,
+		/obj/item = 'sound/surgery/bone3.ogg'
+	) 
+	failure_sound = 'sound/effects/wounds/crack1.ogg'
+	time = 4 SECONDS
 
 /datum/surgery_step/repair_bone_hairline/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)
@@ -75,8 +85,13 @@
 ///// Reset Compound Fracture (Crticial)
 /datum/surgery_step/reset_compound_fracture
 	name = "reset bone"
-	implements = list(/obj/item/bonesetter = 100)
-	time = 40
+	implements = list(/obj/item/bonesetter = 100, /obj/item/stack/tape = 20)
+	preop_sound = list(
+		/obj/item/stack/tape = 'sound/effects/tape.ogg',
+		/obj/item = 'sound/surgery/bone1.ogg'
+	) 
+	success_sound = 'sound/surgery/bone3.ogg'
+	time = 4 SECONDS
 
 /datum/surgery_step/reset_compound_fracture/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)
@@ -109,8 +124,12 @@
 ///// Repair Compound Fracture (Crticial)
 /datum/surgery_step/repair_bone_compound
 	name = "repair compound fracture (bone gel/tape)"
-	implements = list(/obj/item/stack/medical/bone_gel = 100)
-	time = 40
+	implements = list(/obj/item/stack/medical/bone_gel = 100, /obj/item/stack/tape = 30)
+	time = 4 SECONDS
+	preop_sound = list(
+		/obj/item/stack/medical/bone_gel = 'sound/effects/ointment.ogg',
+		/obj/item/stack/tape = 'sound/effects/tape.ogg',
+	) 
 
 /datum/surgery_step/repair_bone_compound/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(surgery.operated_wound)

@@ -14,7 +14,9 @@
 /datum/surgery_step/splice_nerves
 	name = "splice nerves"
 	accept_hand = TRUE
-	time = 155
+	time = 15.5 SECONDS
+	preop_sound = 'sound/surgery/organ2.ogg'
+	success_sound = 'sound/surgery/organ1.ogg'
 
 /datum/surgery_step/splice_nerves/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You start splicing together [target]'s nerves."),

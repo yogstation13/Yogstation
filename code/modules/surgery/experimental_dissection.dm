@@ -31,6 +31,8 @@
 	time = 12.5 SECONDS
 	silicons_obey_prob = TRUE
 	repeatable = TRUE
+	preop_sound = 'sound/surgery/scalpel1.ogg'
+	success_sound = 'sound/surgery/scalpel2.ogg'
 
 /datum/surgery_step/dissection/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] starts dissecting [target].", span_notice("You start dissecting [target]."))

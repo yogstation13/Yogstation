@@ -15,7 +15,9 @@
 /datum/surgery_step/reinforce_ligaments
 	name = "reinforce ligaments"
 	accept_hand = TRUE
-	time = 125
+	time = 12.5 SECONDS
+	preop_sound = 'sound/surgery/bone1.ogg'
+	success_sound = 'sound/surgery/bone3.ogg'
 
 /datum/surgery_step/reinforce_ligaments/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You start reinforcing [target]'s ligaments."),

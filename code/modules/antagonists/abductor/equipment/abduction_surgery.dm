@@ -21,7 +21,9 @@
 /datum/surgery_step/extract_organ
 	name = "remove heart"
 	accept_hand = 1
-	time = 32
+	time = 3.2 SECONDS
+	preop_sound = 'sound/surgery/hemostat1.ogg'
+	success_sound = 'sound/surgery/organ2.ogg'
 	var/obj/item/organ/IC = null
 	var/list/organ_types = list(/obj/item/organ/heart)
 
@@ -45,7 +47,9 @@
 /datum/surgery_step/gland_insert
 	name = "insert gland"
 	implements = list(/obj/item/organ/heart/gland = 100)
-	time = 32
+	time = 3.2 SECONDS
+	preop_sound = 'sound/surgery/organ2.ogg'
+	success_sound = 'sound/surgery/organ1.ogg'
 
 /datum/surgery_step/gland_insert/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] starts to insert [tool] into [target].", "<span class ='notice'>You start to insert [tool] into [target]...</span>")

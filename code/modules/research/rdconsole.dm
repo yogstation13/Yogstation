@@ -122,7 +122,7 @@ Nothing else in the console has ID requirements.
 	if(istype(D, /obj/item/research_notes))
 		var/obj/item/research_notes/R = D
 		SSresearch.science_tech.add_point_list(R.points)
-		playsound(src, 'sound/machines/copier.ogg')
+		playsound(src, 'sound/items/pshred.ogg', 25, 1)
 		qdel(R)
 		return TRUE
 	//Loading a disk into it.

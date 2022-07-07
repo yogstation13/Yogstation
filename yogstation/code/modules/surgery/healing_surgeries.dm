@@ -2,7 +2,9 @@
 /datum/surgery_step/debride
 	name = "clean wound"
 	implements = list(TOOL_SCALPEL = 100, /obj/item/kitchen/knife = 65, /obj/item/shard = 45)
-	time = 40
+	time = 4 SECONDS
+	preop_sound = 'sound/surgery/scalpel1.ogg'
+	success_sound = 'sound/surgery/scalpel2.ogg'
 
 /datum/surgery_step/debride/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] begins to cut off dead flesh around the wound upon [target]'s [parse_zone(target_zone)].", span_notice("You begin cutting away the dead and damaged tissue on [target]'s [parse_zone(target_zone)], creating a cleaner wound bed..."))
@@ -18,8 +20,10 @@
 /datum/surgery_step/apply_dressing //brute
 	name = "apply gauze"
 	implements = list(/obj/item/stack/medical/gauze = 100, /obj/item/medical/bandage/improvised = 65, /obj/item/clothing/torncloth = 35)
-	time = 24
+	time = 2.4 SECONDS
 	fuckup_damage = 0
+	preop_sound = 'sound/effects/rip2.ogg'
+	success_sound = 'sound/effects/rip1.ogg'
 	var/dressing_type = "brute"
 
 /datum/surgery_step/apply_dressing/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

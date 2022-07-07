@@ -21,7 +21,9 @@
 /datum/surgery_step/reshape_genitals
 	name = "reshape genitals"
 	implements = list(TOOL_SCALPEL = 100, /obj/item/melee/transforming/energy/sword = 15, /obj/item/kitchen/knife = 35, /obj/item/shard = 25)
-	time = 64
+	time = 6.4 SECONDS
+	preop_sound = 'sound/surgery/scalpel1.ogg'
+	success_sound = 'sound/surgery/scalpel2.ogg'
 
 /datum/surgery/gender_reassignment/can_start(mob/user, mob/living/carbon/target)
 	if(target.dna && ((AGENDER in target.dna.species.species_traits) || (MGENDER in target.dna.species.species_traits) || (FGENDER in target.dna.species.species_traits)))

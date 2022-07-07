@@ -14,7 +14,9 @@
 /datum/surgery_step/muscled_veins
 	name = "shape vein muscles"
 	accept_hand = TRUE
-	time = 125
+	time = 12.5 SECONDS
+	preop_sound = 'sound/surgery/organ2.ogg'
+	success_sound = 'sound/surgery/organ1.ogg'
 
 /datum/surgery_step/muscled_veins/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You start wrapping muscles around [target]'s circulatory system."),
