@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(economy)
 	if(D)
 		D.adjust_money(engineering_cash)
 	
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	D = get_dep_account(ACCOUNT_CAR)
 	if(moneysink && D)
 		D.adjust_money(moneysink.payout())
 
