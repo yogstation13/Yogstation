@@ -399,13 +399,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	for(var/atom/A in T.contents) // Forbids putting things on the SM
 		if(A == src)
 			continue
-		if(iseffect(A))
-			continue
-		if(istype(A, /atom/movable/lighting_object))
-			continue
-		if(isobserver(A))
-			continue
-		if(istype(A, /obj/structure/lattice)) // Why theres arent turfs yet is beyond me
+		if(!A.density)
 			continue
 		Consume(A)
 
