@@ -259,7 +259,7 @@
 
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-		playsound(get_turf(D), 'sound/weapons/punch.ogg', 50, 1, -1)
+		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 
 		var/selected_zone = A.zone_selected
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
