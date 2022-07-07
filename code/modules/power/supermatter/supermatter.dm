@@ -396,8 +396,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(!istype(T)) 	//We are in a crate or somewhere that isn't turf, if we return to turf resume processing but for now.
 		return  //Yeah just stop.
 
-	for(var/obj/structure/window/struct in T.contents) //no fulltile window exploit
-		Consume(struct)
+	for(var/atom/A in T.contents) // Forbids putting things on the SM
+		if(A == src)
+			return
+		Consume(A)
 
 	if(power)
 		soundloop.volume = clamp((50 + (power / 50)), 50, 100)
