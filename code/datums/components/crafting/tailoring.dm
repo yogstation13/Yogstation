@@ -363,21 +363,13 @@
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
 
-/datum/crafting_recipe/hydrogenarmor
-	name = "Metallic Hydrogen Armor"
-	result = /obj/item/clothing/suit/armor/elder_atmosian
-	time = 6 SECONDS
-	reqs = list(/obj/item/clothing/suit/armor/vest = 1,
-			/obj/item/stack/sheet/mineral/metal_hydrogen = 10)
-	category = CAT_APPAREL
-	subcategory = CAT_ARMOR
-	
-/datum/crafting_recipe/hydrogenhelmet
-	name = "Metallic Hydrogen Helmet"
-	result = /obj/item/clothing/head/helmet/elder_atmosian
-	time = 6 SECONDS
-	reqs = list(/obj/item/clothing/head/helmet = 1,
-			/obj/item/stack/sheet/mineral/metal_hydrogen = 5)
+/datum/crafting_recipe/hydrogen_hardsuit
+	name = "Metallic Hydrogen Elder Atmosian Hardsuit"
+	result = /obj/item/clothing/suit/space/hardsuit/elder_atmosian
+	time = 10 SECONDS
+	reqs = list(/obj/item/clothing/suit/armor/elder_atmosian = 1,
+	    	/obj/item/clothing/head/helmet/elder_atmosian = 1,
+			/obj/item/stack/sheet/mineral/diamond = 5)
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
 

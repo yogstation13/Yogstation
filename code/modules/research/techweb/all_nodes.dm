@@ -649,7 +649,7 @@
 	id = "rcd_upgrade"
 	display_name = "RCD designs upgrade"
 	description = "Unlocks new RCD designs."
-	design_ids = list("rcd_upgrade_frames", "rcd_upgrade_simple_circuits", "rcd_upgrade_furnishing")
+	design_ids = list("rcd_upgrade_frames", "rcd_upgrade_simple_circuits", "rcd_upgrade_furnishing", "rcd_upgrade_conveyor")
 	prereq_ids = list("adv_engi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
