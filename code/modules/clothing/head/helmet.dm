@@ -470,6 +470,6 @@
 	desc = "A superb helmet made with the toughest and rarest materials available to man."
 	icon_state = "h2helmet"
 	item_state = "h2helmet"
-	armor = list(MELEE = 50, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 20, BIO = 10, RAD = 50, FIRE = 65, ACID = 40, WOUND = 15)
+	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 30, BOMB = 20, BIO = 10, RAD = 50, FIRE = 65, ACID = 40, WOUND = 15)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
