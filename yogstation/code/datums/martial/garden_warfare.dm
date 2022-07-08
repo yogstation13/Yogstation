@@ -54,3 +54,31 @@
 /datum/action/vine_snatch/New()
     . = ..()
     last_time_marked = world.time
+
+/datum/action/vine_snatch/Trigger()
+	if(owner.incapacitated())
+		to_chat(owner, span_warning("You can't use [name] while you're incapacitated."))
+		return
+    if(!target)
+		to_chat(owner, span_warning("You can't use [name] while not having anyone marked."))
+		return
+	if(world.time < last_time_marked + 3 SECONDS)
+        to_chat(owner, span_warning("Your mark has expired, you can't use [name]."))
+		return
+	if(get_dist(get_turf(owner),get_turf(target)) > 2)
+        to_chat(owner, span_warning("Your target needs to be in a range of two titles, to be able to use [name]."))
+		return
+    to_chat(owner, span_notice("You throw a vine into [target]!"))
+    var/obj/item/I = target.get_active_held_item()
+    if(I && HAS_TRAIT(I, TRAIT_NODROP))
+		target.visible_message(span_warning("[owner] hits [target] with a vine, pulling [I] out of their hands!"), \
+							span_userdanger("[owner] hits you with a vine, pulling [I] out of your hands!"))     
+		if(I && D.temporarilyRemoveItemFromInventory(I))
+			D.forceMove(get_turf(owner))
+    else
+        target.throw_at(get_step_towards(owner, target), 7, 2) 
+		target.visible_message(span_warning("[owner] hits [target] with a vine, knocking them down and pulling them to themselfes!"), \
+							span_userdanger("[owner] hits you with a vine, pulling you to themselfs!"))  
+        target.Knockdown(3 SECONDS)
+    target = null
+                
