@@ -51,17 +51,27 @@
 	flash_protect = 2
 	tint = 2
 
-/obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/user)
-	on = !on
-	icon_state = "[initial(icon_state)][on ? "-light":""]"
-	item_state = icon_state
-	user.update_inv_head() //So the mob overlay updates
+/obj/item/clothing/head/helmet/space/plasmaman/Initialize()
+	. = ..()
+	visor_toggling() //So the shield starts up
 
+/obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/user)
+	toggle_helmet_light(user)
+
+/obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_helmet_light(mob/user)
+	if(!on && !up) //Easier to have it in the start if I want to go back and add sprites
+		to_chat(user, span_warning("Your shield raises as your toggle on your lights."))
+		toggle_welding_shield(user)
+
+	on = !on
 	if(on)
 		set_light(brightness_on)
 	else
 		set_light(0)
 
+	icon_state = "[initial(icon_state)][on ? "-light":""]"
+	item_state = icon_state
+	user.update_inv_head()
 	for(var/X in actions)
 		var/datum/action/A=X
 		A.UpdateButtonIcon()
@@ -70,9 +80,23 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		toggle_welding_shield(user)
 
-/obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_shield(mob/living/user)
+/obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_shield(mob/user)
+	if(on && up) //Easier to have it in the start if I want to go back and add sprites
+		to_chat(user, span_warning("Your lights turn off as you toggle on the shield."))
+		toggle_helmet_light(user)
+
 	if(weldingvisortoggle(user))
 		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE)
+
+/obj/item/clothing/head/helmet/space/plasmaman/visor_toggling() //So the icon_state doesn't get altered
+    up = !up
+    clothing_flags ^= visor_flags
+    flags_inv ^= visor_flags_inv
+    flags_cover ^= initial(flags_cover)
+    if(visor_vars_to_toggle & VISOR_FLASHPROTECT)
+        flash_protect ^= initial(flash_protect)
+    if(visor_vars_to_toggle & VISOR_TINT)
+        tint ^= initial(tint)
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
@@ -86,34 +110,35 @@
 	desc = "A generic blue envirohelm."
 	icon_state = "blue_envirohelm"
 	item_state = "blue_envirohelm"
-
+	
 /obj/item/clothing/head/helmet/space/plasmaman/viro
 	name = "virology envirosuit helmet"
-	desc = "The helmet worn by the safest people on the station, those who are completely immune to the monstrosities they create."
+	desc = "A helmet specially designated for virologist plasmamen."
 	icon_state = "virologist_envirohelm"
 	item_state = "virologist_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	name = "engineering envirosuit helmet"
-	desc = "A space-worthy helmet specially designed for engineer plasmamen, the usual purple stripes being replaced by engineering's orange."
+	desc = "A space-worthy helmet specifically designed for engineer plasmamen."
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
 	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 100, RAD = 20, FIRE = 100, ACID = 75, WOUND = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator
 	name = "prototype envirosuit helmet"
-	desc = "A slight modification on a tradiational voidsuit helmet, this helmet was Nano-Trasen's first solution to the *logistical problems* that come with employing plasmamen. Despite their limitations, these helmets still see use by historian and old-styled plasmamen alike."
+	desc = "An ancient helmet from the second generation of Nanotrasen-plasmaman related equipment. Clunky, but still sees use due to its reliability."
 	icon_state = "curator_envirohelm"
 	item_state = "curator_envirohelm"
-
+	
 /obj/item/clothing/head/helmet/space/plasmaman/mime
 	name = "mime envirosuit helmet"
-	desc = "The make-up is painted on, it's a miracle it doesn't chip. It's not very colourful."
+	desc = "The make-up is painted on. It's a miracle it doesn't chip. It's not very colourful."
 	icon_state = "mime_envirohelm"
 	item_state = "mime_envirohelm"
-
+	
 /obj/item/clothing/head/helmet/space/plasmaman/clown
 	name = "clown envirosuit helmet"
-	desc = "The make-up is painted on, it's a miracle it doesn't chip. <i>'HONK!'</i>"
+	desc = "The make-up is painted on. It's a miracle it doesn't chip. <i>'HONK!'</i>"
 	icon_state = "clown_envirohelm"
 	item_state = "clown_envirohelm"
+	
