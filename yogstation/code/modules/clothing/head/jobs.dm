@@ -17,6 +17,7 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "emtsecsoft"
+	soft_type = "emtsec"
 
 /obj/item/clothing/head/beret/med/phys
 	name = "Brig Physician's beret"
