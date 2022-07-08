@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "fixes tumors not spreading if taken out of their original body and also fixes curing them"
