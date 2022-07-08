@@ -382,6 +382,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
+"nB" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 6
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
 "nF" = (
 /obj/structure/rack,
 /obj/item/twohanded/fishingrod,
@@ -575,6 +588,13 @@
 	},
 /turf/open/water/safe,
 /area/ruin/powered/fishing)
+"wN" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
 "ym" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 30;
@@ -606,6 +626,36 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
+"zf" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "fishing biodome inner airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
+"zh" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs_middle{
+	dir = 1
+	},
 /area/ruin/powered/fishing)
 "zk" = (
 /obj/effect/turf_decal/pool{
@@ -643,6 +693,21 @@
 	},
 /obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
+"BH" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs_middle{
+	dir = 1
+	},
 /area/ruin/powered/fishing)
 "BV" = (
 /obj/machinery/light{
@@ -706,6 +771,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
+"Eg" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/sign/nanotrasen{
+	pixel_y = -32
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
 "Eo" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -783,6 +855,18 @@
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 8
 	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
+"Ia" = (
+/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 5
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
 "Ie" = (
@@ -1250,6 +1334,21 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"WD" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "fishing biodome outer airlock"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 9
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
 "WK" = (
 /obj/machinery/light{
@@ -1739,7 +1838,7 @@ JL
 aa
 "}
 (13,1,1) = {"
-aa
+US
 JL
 ZT
 ZT
@@ -1771,10 +1870,10 @@ JL
 US
 "}
 (14,1,1) = {"
-aa
+Eg
 JL
-ZT
-ZT
+JL
+JL
 ZT
 ZT
 ZT
@@ -1803,11 +1902,11 @@ JL
 Vu
 "}
 (15,1,1) = {"
-aa
-JL
-ZT
-ZT
-dA
+US
+WD
+BH
+zf
+rQ
 rQ
 rQ
 uy
@@ -1835,11 +1934,11 @@ HV
 US
 "}
 (16,1,1) = {"
-aa
-JL
-ZT
-es
-eK
+US
+Ia
+zh
+nB
+eT
 eT
 eT
 if
@@ -1867,10 +1966,10 @@ Fy
 US
 "}
 (17,1,1) = {"
-aa
+Eg
 JL
-ZT
-ZT
+JL
+JL
 ZT
 ZT
 ZT
@@ -1899,7 +1998,7 @@ JL
 Vu
 "}
 (18,1,1) = {"
-aa
+US
 JL
 ZT
 ZT
@@ -1919,7 +2018,7 @@ ZT
 ZT
 ZT
 YV
-Ch
+wN
 JL
 sI
 CI
