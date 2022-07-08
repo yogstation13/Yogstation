@@ -15,7 +15,7 @@
 
 /datum/martial_art/explosive_fist
 	name = "Explosive Fist"
-	id =  MARTIALART_PRETERNISSTEALTH
+	id =  MARTIALART_EXPLOSIVEFIST
 	help_verb = /mob/living/carbon/human/proc/explosive_fist_help
 
 /datum/martial_art/explosive_fist/can_use(mob/living/carbon/human/H)
@@ -55,7 +55,7 @@
 	add_to_streak("D",D)
 	if(check_streak(A,D))
 		return TRUE
-	return FALSE  ///Same as with harm_act
+	return FALSE  
 
 /datum/martial_art/explosive_fist/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))

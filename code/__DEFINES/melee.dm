@@ -13,6 +13,7 @@
 #define MARTIALART_HUNTERFU "hunterfu"
 #define MARTIALART_FRENZYGRAB "frenzy grabbing"
 #define MARTIALART_PRETERNISSTEALTH "preternis stealth"
+#define MARTIALART_EXPLOSIVEFIST "explosive fist"
 
 
 //Weapon stat defines
