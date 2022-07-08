@@ -265,12 +265,6 @@
 	if(istype(H))
 		H.toggle_welding_screen(owner)
 
-<<<<<<< HEAD
-/datum/action/item_action/toggle_welding_shield
-	name = "Toggle Welding Shield"
-
-=======
->>>>>>> parent of 38403e0e38d (bullshit fix?)
 /datum/action/item_action/toggle_headphones
 	name = "Toggle Headphones"
 	desc = "UNTZ UNTZ UNTZ"
