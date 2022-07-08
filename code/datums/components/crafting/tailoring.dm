@@ -368,7 +368,7 @@
 	result = /obj/item/clothing/suit/space/hardsuit/elder_atmosian
 	time = 10 SECONDS
 	reqs = list(/obj/item/clothing/suit/armor/elder_atmosian = 1,
-	    	/obj/item/clothing/head/helmet = 1,
+	    	/obj/item/clothing/head/helmet/elder_atmosian = 1,
 			/obj/item/stack/sheet/mineral/diamond = 5)
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
