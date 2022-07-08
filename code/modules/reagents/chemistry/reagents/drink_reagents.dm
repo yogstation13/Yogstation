@@ -212,7 +212,7 @@
 	if(iscatperson(M))
 		quality = DRINK_GOOD
 	else
-		quality = initial(quality)
+		quality = initial(quality) //before you ask "why is this here" I will explain it is to stop people from feeding cilk to a feline just to extract it and give it to other people for the mood buff the same way a mother bird feeds its young I know the mood buff is small but someone would definitely realize they could do it eventually
 	. = ..()
 
 /datum/reagent/consumable/milk/goat
