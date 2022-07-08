@@ -12,7 +12,7 @@
 	// Used for something in preferences_savefile.dm
 	var/department_flag = NONE
 	var/flag = NONE //Deprecated
-	/// Automatic deadmin for a jobd. Usually head/security positions
+	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
 	// Players will be allowed to spawn in as jobs that are set to "Station"
 	var/faction = "None"
