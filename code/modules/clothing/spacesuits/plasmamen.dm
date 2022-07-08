@@ -46,7 +46,7 @@
 	resistance_flags = FIRE_PROOF
 	var/brightness_on = 4 //luminosity when the light is on
 	var/on = FALSE
-	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_shield)
+	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_screen)
 	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT
 	flash_protect = 2
 	tint = 2
@@ -67,11 +67,17 @@
 		A.UpdateButtonIcon()
 
 /obj/item/clothing/head/helmet/space/plasmaman/AltClick(mob/user)
-	toggle_welding_shield(user)
+	toggle_welding_screen(user)
 
+<<<<<<< HEAD
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_shield(mob/living/user)
+	weldingvisortoggle(user)
+	playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Delicious welding shield
+=======
+/obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_screen(mob/living/user)
 	if(weldingvisortoggle(user))
-		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Delicious welding shield
+		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Sound of the welding screen sliding down, maybe
+>>>>>>> parent of 38403e0e38d (bullshit fix?)
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
