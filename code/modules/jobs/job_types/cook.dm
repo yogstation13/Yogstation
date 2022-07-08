@@ -24,7 +24,7 @@
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/cook/proc/OmegaStationChanges()
-	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
+	added_access = list()
 	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 
 /datum/job/cook/proc/EclipseStationChanges()

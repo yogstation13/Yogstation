@@ -34,7 +34,6 @@
 	changed_maps = list("YogsPubby")
 
 /datum/job/hos/proc/YogsPubbyChanges()
-	added_access |= ACCESS_CREMATORIUM
 	base_access |= ACCESS_CREMATORIUM
 
 /datum/outfit/job/hos

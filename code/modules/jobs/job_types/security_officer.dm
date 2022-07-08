@@ -32,7 +32,6 @@
 	spawn_positions = 10
 
 /datum/job/officer/proc/YogsPubbyChanges()
-	added_access |= ACCESS_CREMATORIUM
 	base_access |= ACCESS_CREMATORIUM
 
 /datum/job/officer/proc/OmegaStationChanges()
