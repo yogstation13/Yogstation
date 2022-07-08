@@ -115,6 +115,13 @@
 	soft_type = "rainbow"
 	dog_fashion = null
 
+/obj/item/clothing/head/soft/fishfear
+	name = "strange fishing cap"
+	desc = "It's an extra-tall baseball hat with a picture of a fish, and text that reads: \"Women fear me. Fish fear me. Men turn their eyes away from me as I walk. No beast dares make a sound in my presence. I am alone on this barren Earth.\""
+	icon_state = "fishfearsoft"
+	soft_type = "fishfear"
+	dog_fashion = null
+
 /obj/item/clothing/head/soft/sec
 	name = "security cap"
 	desc = "It's a robust baseball hat in tasteful red colour."
