@@ -73,6 +73,8 @@
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_shield(mob/living/user)
 	if(weldingvisortoggle(user))
 		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE)
+	icon_state = "[initial(icon_state)][on ? "-light":""]"
+	item_state = icon_state
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
