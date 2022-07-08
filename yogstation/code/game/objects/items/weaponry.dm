@@ -43,10 +43,11 @@
 	else if(ishuman(target) && (target.stat == CONSCIOUS) && (istype(target.get_active_held_item(), /obj/item/handholding)) )
 		var/obj/item/handholding/downlow = target.get_active_held_item() //this should get a new name but like hell im doing that
 		user.visible_message(span_notice("[user] and [target] hold hands."), span_notice("You hold hands with [target]!"))
-		if(!user.pulling == target) //give everyone a passive grab on eachother if they dont have one already
-			user.grabbedby(target, 1)
-		if(!target.pulling == user)
-			target.grabbedby(user, 1)
+		var/mob/living/T = target
+		if(!user.pulling == T) //give everyone a passive grab on eachother if they dont have one already
+			user.grabbedby(T, 1)
+		if(!T.pulling == user)
+			T.grabbedby(user, 1)
 		qdel(src)
 		qdel(downlow)
 	else
