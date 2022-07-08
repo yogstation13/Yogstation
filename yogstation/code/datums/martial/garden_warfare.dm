@@ -1,5 +1,8 @@
 #define VINE_SNATCH_COMBO "DD"
 
+#define STRANGLE_COMBO "GGG"
+#define PRE_STRANGLE_COMBO "GG"
+
 /datum/martial_art/gardern_warfare
 	name = "Garden Warfare" //I feel like that I deserve a bullet into my head for this names
 	id = MARTIALART_KRAVMAGA
@@ -11,7 +14,7 @@
 	add_to_streak("H",D)
 	if(check_streak(A,D))
 		return TRUE
-    return FALSE
+	return FALSE
 
 /datum/martial_art/gardern_warfare/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!(can_use(A)))
@@ -36,49 +39,92 @@
 	if(findtext(streak, VINE_SNATCH_COMBO))
 		vine_mark(A,D)
 		return FALSE
+	if(findtext(streak, PRE_STRANGLE_COMBO))
+		vine_mark(A,D)
+		return FALSE  ///Zamn
 
 /datum/martial_art/gardern_warfare/proc/vine_mark(mob/living/carbon/human/A, mob/living/carbon/human/D)
-    to_chat(A, span_notice("You mark [D] with a vine mark. Using vine snatch now will pull an item from their active hands to you, or knokdown them and pull them to you."))
-    to_chat(D, span_danger("[A] marks you!"))
-    vine_snatch.target = D
-    vine_snatch.last_time_marked = world.time
-    streak = ""
+	to_chat(A, span_notice("You mark [D] with a vine mark. Using vine snatch now will pull an item from their active hands to you, or knokdown them and pull them to you."))
+	to_chat(D, span_danger("[A] marks you!"))
+	vine_snatch.target = D
+	vine_snatch.last_time_marked = world.time
+	streak = ""
+
+/datum/martial_art/gardern_warfare/proc/strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(findtext(streak, STRANGLE_COMBO))
+		streak = ""
+		ADD_TRAIT(D, TRAIT_MUTE, "martial")
+		final_strangle(A,D)
+	else 
+		D.visible_message(span_danger("[A] wraps a vine around [D]'s throat!"), \
+					span_userdanger("[A] wraps a vine around your throat!"))
+		log_combat(A, D, "pre-strangles(Garden Warfare)")		
+
+		D.Stun(1 SECONDS)
+		D.adjustOxyLoss(10)
+
+/datum/martial_art/gardern_warfare/proc/final_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(!can_strangle(A, D))
+		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
+		return
+	if(!do_mob(A, D, 1 SECONDS))
+		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
+		return
+	if(!can_strangle(A, D))
+		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
+		return
+	D.adjustOxyLoss(7)
+	if(prob(35))
+		to_chat(D, span_danger("You can't breath!"))
+
+/datum/martial_art/gardern_warfare/proc/can_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(!can_use(A))
+		return FALSE
+	if(!A.pulling)
+		return FALSE
+	if(!(A.pulling == D))
+		return FALSE
+	if(A.stat == DEAD || A.stat == UNCONSCIOUS)
+		return FALSE
+	if(D.stat == DEAD)
+		return FALSE
+	return TRUE
 
 /datum/action/vine_snatch
 	name = "Vine Snatch - using it while having a target, recently marked with a vine mark in the range of 2 tiles will pull an item in their active hands to you, or pull and knockdown them.."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "neckchop"
-    var/mob/living/carbon/human/target = null
-    var/last_time_marked = 0
+	var/mob/living/carbon/human/target = null
+	var/last_time_marked = 0
 
 /datum/action/vine_snatch/New()
-    . = ..()
-    last_time_marked = world.time
+	. = ..()
+	last_time_marked = world.time
 
 /datum/action/vine_snatch/Trigger()
 	if(owner.incapacitated())
 		to_chat(owner, span_warning("You can't use [name] while you're incapacitated."))
 		return
-    if(!target)
+	if(!target)
 		to_chat(owner, span_warning("You can't use [name] while not having anyone marked."))
 		return
 	if(world.time < last_time_marked + 3 SECONDS)
-        to_chat(owner, span_warning("Your mark has expired, you can't use [name]."))
+		to_chat(owner, span_warning("Your mark has expired, you can't use [name]."))
 		return
 	if(get_dist(get_turf(owner),get_turf(target)) > 2)
-        to_chat(owner, span_warning("Your target needs to be in a range of two titles, to be able to use [name]."))
+		to_chat(owner, span_warning("Your target needs to be in a range of two titles, to be able to use [name]."))
 		return
-    to_chat(owner, span_notice("You throw a vine into [target]!"))
-    var/obj/item/I = target.get_active_held_item()
-    if(I && HAS_TRAIT(I, TRAIT_NODROP))
+	to_chat(owner, span_notice("You throw a vine into [target]!"))
+	var/obj/item/I = target.get_active_held_item()
+	if(I && HAS_TRAIT(I, TRAIT_NODROP))
 		target.visible_message(span_warning("[owner] hits [target] with a vine, pulling [I] out of their hands!"), \
 							span_userdanger("[owner] hits you with a vine, pulling [I] out of your hands!"))     
 		if(I && D.temporarilyRemoveItemFromInventory(I))
 			D.forceMove(get_turf(owner))
-    else
-        target.throw_at(get_step_towards(owner, target), 7, 2) 
+	else
+		target.throw_at(get_step_towards(owner, target), 7, 2) 
 		target.visible_message(span_warning("[owner] hits [target] with a vine, knocking them down and pulling them to themselfes!"), \
 							span_userdanger("[owner] hits you with a vine, pulling you to themselfs!"))  
-        target.Knockdown(3 SECONDS)
-    target = null
-                
+		target.Knockdown(3 SECONDS)
+	target = null
+				
