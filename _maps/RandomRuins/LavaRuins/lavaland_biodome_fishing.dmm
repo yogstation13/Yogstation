@@ -517,6 +517,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
+"tz" = (
+/obj/structure/window/reinforced/spawner/east,
+/mob/living/simple_animal/hostile/carp/cayenne{
+	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
+	health = 200;
+	icon_dead = "base_dead";
+	icon_gib = "carp_gib";
+	icon_living = "base";
+	icon_state = "magicarp";
+	maxHealth = 200;
+	name = "Jimmy"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/bed/dogbed{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/turf/open/water/safe,
+/area/ruin/powered/fishing)
 "tB" = (
 /obj/effect/turf_decal/trimline/white/filled/line,
 /obj/machinery/vending/games,
@@ -785,27 +806,6 @@
 	products = list(/obj/item/twohanded/fishingrod = 12, /obj/item/reagent_containers/food/snacks/bait/apprentice = 30, /obj/item/reagent_containers/food/snacks/bait/journeyman = 20, /obj/item/clothing/head/fishing = 6, /obj/item/clothing/suit/fishing = 6, /obj/item/clothing/gloves/fishing = 6, /obj/item/clothing/shoes/fishing = 6)
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/fishing)
-"IM" = (
-/obj/structure/window/reinforced/spawner/east,
-/mob/living/simple_animal/hostile/carp/cayenne{
-	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
-	health = 200;
-	icon_dead = "magicarp_dead";
-	icon_gib = "magicarp_gib";
-	icon_living = "magicarp";
-	icon_state = "magicarp";
-	maxHealth = 200;
-	name = "Jimmy"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/structure/bed/dogbed{
-	pixel_x = -7;
-	pixel_y = 3
-	},
-/turf/open/water/safe,
 /area/ruin/powered/fishing)
 "Je" = (
 /obj/effect/turf_decal/stripes{
@@ -1471,7 +1471,7 @@ ZT
 ZT
 ZT
 JL
-IM
+tz
 vw
 bh
 JL
