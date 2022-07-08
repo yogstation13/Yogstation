@@ -208,10 +208,12 @@
 	glass_name = "glass of cilk"
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
 
-/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+/datum/reagent/consumable/cilk/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	if(isfelinid(M))
+		quality = DRINK_GOOD
+	else
+		quality = initial(quality)
 	. = ..()
-	if(H.reagents.has_reagent(/datum/reagent/consumable/cilk))
-		H.adjustBruteLoss(-0.2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 /datum/reagent/consumable/milk/goat
 	name = "Goat Milk"
