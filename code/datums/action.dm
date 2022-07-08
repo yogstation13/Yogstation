@@ -265,6 +265,14 @@
 	if(istype(H))
 		H.toggle_welding_screen(owner)
 
+/datum/action/item_action/toggle_welding_shield
+	name = "Toggle Welding Shield"
+
+/datum/action/item_action/toggle_welding_shield/Trigger()
+	var/obj/item/clothing/head/helmet/space/plasmamen/P = target
+	if(istype(P))
+		G.toggle_welding_shield(owner)
+
 /datum/action/item_action/toggle_headphones
 	name = "Toggle Headphones"
 	desc = "UNTZ UNTZ UNTZ"
