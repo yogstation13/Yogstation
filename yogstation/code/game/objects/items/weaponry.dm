@@ -44,10 +44,11 @@
 		var/obj/item/handholding/downlow = target.get_active_held_item() //this should get a new name but like hell im doing that
 		user.visible_message(span_notice("[user] and [target] hold hands."), span_notice("You hold hands with [target]!"))
 		var/mob/living/T = target
-		if(!user.pulling == T) //give everyone a passive grab on eachother if they dont have one already
-			user.grabbedby(T, 1)
-		if(!T.pulling == user)
-			T.grabbedby(user, 1)
+		var/mob/living/U = user
+		if(!U.pulling == T) //give everyone a passive grab on eachother if they dont have one already
+			U.grabbedby(T, 1)
+		if(!T.pulling == U)
+			T.grabbedby(U, 1)
 		qdel(src)
 		qdel(downlow)
 	else
