@@ -209,7 +209,7 @@
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
 
 /datum/reagent/consumable/cilk/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(isfelinid(M))
+	if(iscatperson(M))
 		quality = DRINK_GOOD
 	else
 		quality = initial(quality)
