@@ -312,7 +312,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/pizza
 	filling_color = "#CD853F"
 	tastes = list("tomato sauce" = 2, "dough" = 2, "cheese"= 2)
-	foodtype = GRAIN | DAIRY
+	foodtype = GRAIN | DAIRY | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/donkpocket/warm/pizza
 	name = "warm pizza donkpocket"
@@ -321,7 +321,7 @@
 	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/tomatojuice = 2)
 	tastes = list("tomato sauce" = 2, "dough" = 2, "melty cheese"= 2)
-	foodtype = GRAIN | DAIRY
+	foodtype = GRAIN | DAIRY | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/donkpocket/honk
 	name = "honkpocket"
@@ -329,7 +329,7 @@
 	icon_state = "donkpocketbanana"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
 	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/honk
-	filling_color = "#XXXXXX"
+	filling_color = "#ffd51c"
 	tastes = list("banana" = 2, "dough" = 2, "children's antibiotics" = 1)
 	foodtype = GRAIN | FRUIT
 

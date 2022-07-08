@@ -1780,13 +1780,9 @@
 	/obj/item/storage/box/donkpockets/donkpocketteriyaki,
 	/obj/item/storage/box/donkpockets/donkpocketpizza,
 	/obj/item/storage/box/donkpockets/donkpocketberry,
-	/obj/item/storage/box/donkpockets/donkpockethonk)
+	/obj/item/storage/box/donkpockets/donkpockethonk,
+	/obj/item/storage/box/donkpockets)
 	crate_name = "donk pocket crate"
-
-/datum/supply_pack/service/randomized/donkpockets/fill(obj/structure/closet/crate/C)
-	for(var/i in 1 to 10)
-		var/item = pick(contains)
-		new item(C)
 
 /datum/supply_pack/organic/randomized/chef
 	name = "Excellent Meat Crate"
