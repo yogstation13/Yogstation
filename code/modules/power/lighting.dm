@@ -418,7 +418,7 @@
 	if (!cell)
 		return
 	// 0.04% Chance to burn out each tick
-	if(on && prob(0.04))
+	if(on && prob(0.02))
 		burn_out()
 	if(has_power())
 		if (cell.charge == cell.maxcharge)
