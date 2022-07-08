@@ -288,7 +288,7 @@
 					target.Knockdown(120)
 					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 						if(ispreternis(target))
-							to_chat(user, span_notice("Your old servant's mind has been corrupted by other machinery. You begin to shut down the implant preventing your command - this will take some time..."))
+							to_chat(user, span_notice("Your servant's mind has been corrupted by other machinery. You begin to shut down the implant preventing your command - this will take some time..."))
 							user.visible_message(span_warning("[user] growls in frustration, then dips their head with determination!"))
 						else
 							to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
