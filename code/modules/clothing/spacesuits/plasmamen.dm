@@ -69,15 +69,9 @@
 /obj/item/clothing/head/helmet/space/plasmaman/AltClick(mob/user)
 	toggle_welding_screen(user)
 
-<<<<<<< HEAD
-/obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_shield(mob/living/user)
-	weldingvisortoggle(user)
-	playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Delicious welding shield
-=======
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_screen(mob/living/user)
 	if(weldingvisortoggle(user))
 		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE) //Sound of the welding screen sliding down, maybe
->>>>>>> parent of 38403e0e38d (bullshit fix?)
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
