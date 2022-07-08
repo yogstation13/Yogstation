@@ -199,7 +199,8 @@
 
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_HOLY, type)
+	if(!iscatperson(M))
+		ADD_TRAIT(L, TRAIT_HOLY, type)
 
 /datum/reagent/water/holywater/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_HOLY, type)
