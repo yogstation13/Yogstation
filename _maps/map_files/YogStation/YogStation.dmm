@@ -4077,7 +4077,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -7518,7 +7518,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	icon_state = "cognacglass";
-	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac=20);
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -20102,7 +20102,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -24915,7 +24915,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "cIO" = (
 /obj/effect/turf_decal/loading_area{
@@ -25632,7 +25633,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "cUP" = (
 /obj/effect/turf_decal/plaque{
@@ -26317,7 +26319,8 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/gravity_generator)
 "dsT" = (
 /obj/machinery/camera{
@@ -26883,7 +26886,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "dHE" = (
 /obj/structure/lattice/catwalk,
@@ -27158,7 +27162,8 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/gravity_generator)
 "dPg" = (
 /obj/item/twohanded/required/kirbyplants/random,
@@ -27473,7 +27478,8 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "edg" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -27496,7 +27502,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "edp" = (
 /obj/structure/chair{
@@ -28303,7 +28310,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -29030,7 +29037,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "eRb" = (
 /obj/machinery/door/airlock/maintenance{
@@ -30260,7 +30268,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "fAd" = (
 /obj/machinery/light,
@@ -30695,7 +30704,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -39234,7 +39243,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -41987,7 +41996,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "lly" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -43272,7 +43282,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/gravity_generator)
 "lYh" = (
 /turf/open/floor/plasteel/white,
@@ -43546,7 +43557,8 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/floor/plasteel,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "mfl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -46037,7 +46049,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "niv" = (
 /obj/effect/turf_decal/box/corners{
@@ -48800,7 +48813,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "oAL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
@@ -49804,7 +49818,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -50151,7 +50165,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/gravity_generator)
 "ppg" = (
 /obj/effect/turf_decal/stripes/line{
@@ -56894,7 +56909,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -57120,7 +57135,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "sQc" = (
 /obj/structure/lattice/catwalk,
@@ -57304,7 +57320,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -61412,7 +61428,8 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "uVm" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -65549,7 +65566,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "xkZ" = (
 /turf/open/floor/plating{
@@ -65718,7 +65736,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
-/turf/open/floor/plasteel,
+/obj/structure/lattice/catwalk/over,
+/turf/open/floor/plating,
 /area/engine/engine_smes)
 "xqf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
