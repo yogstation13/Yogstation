@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "Emagging the holodeck and using a emag program doesnt add to emag programs the normal list now"
