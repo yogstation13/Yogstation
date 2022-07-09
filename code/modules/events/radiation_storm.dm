@@ -13,6 +13,8 @@
 
 /datum/round_event/radiation_storm/announce(fake)
 	priority_announce("High levels of radiation detected near the station. Maintenance is best shielded from radiation.", "Anomaly Alert", ANNOUNCER_RADIATION)
+	if((get_living_heads().len == 0) && (active_ais().len == 0)) // No heads or AIs
+		make_maint_all_access()
 	//sound not longer matches the text, but an audible warning is probably good
 
 /datum/round_event/radiation_storm/start()
