@@ -1,7 +1,0 @@
-author: " dawsonkeyes(Sprite) Ghilker(code)"
-delete-after: true 
-changes: 
-  - rscadd: "hydrogen armor"
-  - rscadd: "hydrogen helmet"
-  - rscadd: "new cargo bounty for hydrogen armor, helmet and axe"
-  - rscadd: "New hydrogen hardsuit"

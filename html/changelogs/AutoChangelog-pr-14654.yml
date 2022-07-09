@@ -1,8 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "Added Ion Thruster"
-  - rscadd: "Added Capacitor Bank"
-  - rscdel: "Removed old things"
-  - bugfix: "fixed a few things"
-  - imageadd: "added new icon for capacitor bank"

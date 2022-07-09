@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a new pinpointer, the tracking implant pinpointer"
-  - imageadd: "New pinpointer sprite"
-  - tweak: "Adjusts crew pinpointer titling in code and minor description adjustments"

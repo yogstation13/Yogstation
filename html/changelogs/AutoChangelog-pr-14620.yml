@@ -1,5 +1,0 @@
-author: "jachlompsky"
-delete-after: true 
-changes: 
-  - rscadd: "Adds makeshift weapons 101, air shoes, camera bug, and chameleon chest rig to contractor gear"
-  - rscdel: "Removes haunted eightball, mulligan, sentience potion, and encryption key from contractor gear"

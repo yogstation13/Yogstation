@@ -1,5 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - tweak: "Forces returned items to be vended first for free"
-  - bugfix: "Stops vending machines from deleting your stored items when it accepts storage objects"
