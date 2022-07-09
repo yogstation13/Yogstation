@@ -1,0 +1,7 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "The cost of AP, HP, and incind 10mm magazines have all been reduced to 1 TC each"
+  - tweak: "Normal and soporific 10mm magazines are now bought in pairs, they come in a box"
+  - tweak: "HP 10mm now does 45 damage with only -45 AP, up from 40/-50"
+  - tweak: "Incind 10mm now does 20 damage, up from 15"
