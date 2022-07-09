@@ -8,8 +8,22 @@
 
 /datum/martial_art/gardern_warfare
 	name = "Garden Warfare" //I feel like that I deserve a bullet into my head for this names
-	id = MARTIALART_KRAVMAGA
+	id = MARTIALART_GARDENWARFARE
+	block_chance = 50
+	help_verb =  /mob/living/carbon/human/proc/gardern_warfare_help
 	var/datum/action/vine_snatch/vine_snatch = new/datum/action/vine_snatch()
+
+/datum/martial_art/gardern_warfare/can_use(mob/living/carbon/human/H)
+	return ispodperson(H)
+
+/datum/martial_art/krav_maga/teach(mob/living/carbon/human/H,make_temporary=0)
+	if(..())
+		vine_snatch.Grant(H)
+		H.dna.species.speedmod = 0
+
+/datum/martial_art/krav_maga/on_remove(mob/living/carbon/human/H)
+	vine_snatch.Remove(H)
+	H.dna.species.speedmod = initial(H.dna.species.speedmod)
 
 /datum/martial_art/gardern_warfare/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -100,6 +114,7 @@
 		D.apply_damage(15, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	
 
 /datum/martial_art/gardern_warfare/proc/final_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	block_chance = initial(block_chance)
 	if(!can_strangle(A, D))
 		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
 		return
@@ -109,9 +124,11 @@
 	if(!can_strangle(A, D))
 		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
 		return
-	D.adjustOxyLoss(7)
+	block_chance = 25 
+	D.adjustOxyLoss(10)
 	if(prob(35))
 		to_chat(D, span_danger("You can't breath!"))
+	final_strangle(A,D)
 
 /datum/martial_art/gardern_warfare/proc/can_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -178,3 +195,36 @@
 
 /obj/item/splinter/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	part.receive_damage(passive_damage, wound_bonus=-30, sharpness = TRUE)
+
+/datum/martial_art/gardern_warfare/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
+	if(!can_use(user))
+		return
+	if(!in_throw_mode)
+		return
+	user.do_attack_animation(attacker, ATTACK_EFFECT_SLASH)
+	playsound(get_turf(attacker), 'sound/weapons/slash.ogg', 50, TRUE, -1)
+	attacker.visible_message(span_danger("[user] stabs [attacker]!"), \
+				span_userdanger("[user] stabs you!"))
+	log_combat(user, attacker, "counterattacks(Garden Warfare)")		
+
+	var/selected_zone = user.zone_selected
+	var/obj/item/bodypart/affecting = attacker.get_bodypart(ran_zone(selected_zone))
+	var/armor_block = attacker.run_armor_check(affecting, MELEE, 0)
+
+	attacker.apply_damage(10, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	
+
+	var/obj/item/splinter = new /obj/item/splinter(attacker)
+	attacker.embed_object(splinter, affecting, FALSE, FALSE, TRUE)
+	streak = ""	
+
+/mob/living/carbon/human/proc/gardern_warfare_help()
+	set name = "Remember the basics"
+	set desc = "You try to remember some basic actions from the garden warfare art."
+	set category = "Garden Warfare"
+	to_chat(usr, "<b><i>You try to remember some basic actions from the garden warfare art.</i></b>")
+
+	to_chat(usr, "[span_notice("Vine snatch")]: Disarm Disarm. Finishning this combo will mark the victim with a vine mark, allowing you to drag them or an item in their active hand by using ["Vine Snatch"] ability. The mark lasts only 3 seconds.")
+	to_chat(usr, "[span_notice("Strangle")]: Grab Grab Grab. The second grab will deal 10 oxyloss damage to the target, and finishing the combo will upgrade your grab, making it mute the target and deal 10 oxyloss damage per second.")
+	to_chat(usr, "[span_notice("Splinter stab")]: Harm harm Harm. The second attack will deal increased damage with 30 armor penetration, and finishing the combo will deal 20 damage with 30 armor penetration, while also embedding a splinter into the targets limb.")
+
+	to_chat(usr, span_notice("Additionaly, you have a passive 50% block chance(25% if strangling someone), and having throw mode on will allow you to counterattack attackers, dealing them 10 damage and embedding a splinter into them."))
