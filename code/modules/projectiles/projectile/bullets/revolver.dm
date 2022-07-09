@@ -61,7 +61,6 @@
 		imp = new /obj/item/implant/tracking/tra32(M)
 		imp.implant(M)
 
-
 // .357 (Syndie Revolver)
 
 /obj/item/projectile/bullet/a357

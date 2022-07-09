@@ -34,6 +34,8 @@
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/iceblox
 
+// .32 (Caldwell Tracking Revolver)
+
 /obj/item/ammo_casing/tra32
 	name = ".32 TRAC bullet casing"
 	desc = "A .32 TRAC bullet casing."

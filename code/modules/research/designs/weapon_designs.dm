@@ -10,8 +10,7 @@
 
 /datum/design/c38_hotshot
 	name = "Speed Loader (.38 Hot Shot)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade exhaustive properties for an incendiary payload which sets targets ablaze."
+	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
 	id = "c38_hotshot"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
@@ -21,8 +20,7 @@
 
 /datum/design/c38_iceblox
 	name = "Speed Loader (.38 Iceblox)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade exhaustive properties for a cryogenic payload which significantly reduces the body temperature of targets hit."
+	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
 	id = "c38_iceblox"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
@@ -42,8 +40,7 @@
 
 /datum/design/tra32
 	name = "Speed Loader (.32 TRAC)"
-	desc = "A six-shot speed loader designed for specialized .32 revolvers. \
-			These rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is fifteen minutes."
+	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant."
 	id = "tra32"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/silver = 5000, /datum/material/gold = 1000)
@@ -114,16 +111,6 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 200)
 	build_path = /obj/item/firing_pin/implant/mindshield
-	category = list("Firing Pins")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
-/datum/design/batonupgrade
-	name = "Baton Power Upgrade"
-	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of more power usage."
-	id = "baton_upgrade"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/gold = 600, /datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 600, /datum/material/plasma = 600)
-	build_path = /obj/item/batonupgrade
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
