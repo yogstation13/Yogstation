@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - rscadd: "Adds three welding goggles to engineering gear crate"
+  - rscdel: "Removes three welding helmets from engineering gear crate"
