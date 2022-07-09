@@ -1,0 +1,6 @@
+author: " Qustinnus, ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Lavaland/Icemoon/Asteroids is no longer generated in broken diagonals, instead utilizing a map_generator datum."
+  - rscdel: "removes all previous turf based cave generation cause that shit is cringe"
+  - tweak: "turns a lot of mining related area variables into area_flags like tg has"
