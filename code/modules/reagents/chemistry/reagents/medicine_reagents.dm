@@ -1158,7 +1158,7 @@
 	can_synth = FALSE
 
 /datum/reagent/medicine/grubjuice/on_mob_life(mob/living/carbon/M)
-	M.heal_bodypart_damage(7,7)
+	M.heal_bodypart_damage(5,5)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 2*REM)
 	..()
 	return TRUE
