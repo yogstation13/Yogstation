@@ -196,7 +196,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Local Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Godmode"
 	if(!check_rights(R_ADMIN))
 		return
@@ -582,7 +582,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_change_command_name()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Change Command Name"
 
 	if(!check_rights(R_ADMIN))
@@ -639,7 +639,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Manage Job Slots") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Explosion"
 
 	if(!check_rights(R_ADMIN))
@@ -675,7 +675,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /client/proc/cmd_admin_emp(atom/O as obj|mob|turf in world)
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "EM Pulse"
 
 	if(!check_rights(R_ADMIN))
@@ -700,7 +700,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /client/proc/cmd_admin_gib(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Gib"
 
 	if(!check_rights(R_ADMIN))
@@ -727,7 +727,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_gib_self()
 	set name = "Gibself"
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm == "Yes")
@@ -809,7 +809,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/everyone_random()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Make Everyone Random"
 	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
 
@@ -927,7 +927,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/run_weather()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Run Weather"
 	set desc = "Triggers a weather on the z-level you choose."
 
@@ -1080,7 +1080,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/smite(mob/living/target as mob)
 	set name = "Smite"
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
@@ -1418,7 +1418,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /datum/admins/proc/cmd_create_centcom()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Spawn on Centcom"
 	if(!check_rights(R_ADMIN))
 		return
@@ -1486,7 +1486,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	sleep(4 SECONDS)
 
 /datum/admins/proc/cmd_create_wiki()
-	set category = "Misc"
+	set category = "OOC"
 	set name = "Go to Wiki Room"
 	if(!check_rights(R_ADMIN))
 		return
