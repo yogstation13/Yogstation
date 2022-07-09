@@ -38,7 +38,7 @@
 //I just want the light feature of the hardsuit helmet
 /obj/item/clothing/head/helmet/space/plasmaman
 	name = "purple envirosuit helmet"
-	desc = "A generic purple envirohelm of Nanotrasen design. This updated model comes with an activatable welding shield."
+	desc = "A generic purple envirohelm of Nanotrasen design. This updated model comes with a built-in lamp."
 	icon_state = "purple_envirohelm"
 	item_state = "purple_envirohelm"
 	strip_delay = 80
@@ -46,23 +46,12 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/brightness_on = 4 //luminosity when the light is on
 	var/on = FALSE
-	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_shield)
-	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT
-	flash_protect = 2
-	tint = 2
-
-/obj/item/clothing/head/helmet/space/plasmaman/Initialize()
-	. = ..()
-	visor_toggling() //So the shield starts up
+	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/user)
 	toggle_helmet_light(user)
 
 /obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_helmet_light(mob/user)
-	if(!on && !up) //Easier to have it in the start if I want to go back and add sprites
-		to_chat(user, span_warning("Your shield raises as your toggle on your lights."))
-		toggle_welding_shield(user)
-
 	on = !on
 	if(on)
 		set_light(brightness_on)
@@ -75,28 +64,6 @@
 	for(var/X in actions)
 		var/datum/action/A=X
 		A.UpdateButtonIcon()
-
-/obj/item/clothing/head/helmet/space/plasmaman/AltClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE))
-		toggle_welding_shield(user)
-
-/obj/item/clothing/head/helmet/space/plasmaman/proc/toggle_welding_shield(mob/user)
-	if(on && up) //Easier to have it in the start if I want to go back and add sprites
-		to_chat(user, span_warning("Your lights turn off as you toggle on the shield."))
-		toggle_helmet_light(user)
-
-	if(weldingvisortoggle(user))
-		playsound(src, 'sound/mecha/mechmove03.ogg', 50, TRUE)
-
-/obj/item/clothing/head/helmet/space/plasmaman/visor_toggling() //So the icon_state doesn't get altered
-    up = !up
-    clothing_flags ^= visor_flags
-    flags_inv ^= visor_flags_inv
-    flags_cover ^= initial(flags_cover)
-    if(visor_vars_to_toggle & VISOR_FLASHPROTECT)
-        flash_protect ^= initial(flash_protect)
-    if(visor_vars_to_toggle & VISOR_TINT)
-        tint ^= initial(tint)
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
