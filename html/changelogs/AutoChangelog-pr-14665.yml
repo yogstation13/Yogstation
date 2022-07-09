@@ -1,0 +1,7 @@
+author: " VaelophisNyx, @ToasterBiome, @LazennG, @Chubbygummibear, @tattax"
+delete-after: true 
+changes: 
+  - rscadd: "Adds X-01 Power Armor to necropolis chest loot pool."
+  - tweak: "Adjusts X-01 Power Armor's stats to reflect its place as a replacement for the Inquisitor hardsuit in the necropolis chest loot pool."
+  - tweak: "Renames Advanced Power Armor to X-01 Power Armor."
+  - rscdel: "removes Inquisitor Hardsuit from necropolis chest loot pool."
