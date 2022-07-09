@@ -11,8 +11,8 @@
 
 	outfit = /datum/outfit/job/artist
 	alt_titles = list("Painter", "Composer", "Artisan")
-	access = list()
-	minimal_access = list()
+	added_access = list()
+	base_access = list()
 	paycheck = PAYCHECK_ASSISTANT
 	paycheck_department = ACCOUNT_CIV
 

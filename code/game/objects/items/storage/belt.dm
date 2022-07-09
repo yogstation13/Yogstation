@@ -256,6 +256,7 @@
 		/obj/item/flashlight/seclite,
 		/obj/item/melee/classic_baton/telescopic,
 		/obj/item/radio,
+		/obj/item/pinpointer/tracker,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/holosign_creator/security,
