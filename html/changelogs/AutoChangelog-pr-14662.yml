@@ -1,0 +1,4 @@
+author: "13spacemen"
+delete-after: true 
+changes: 
+  - rscadd: "The round time, current map, and alert level now show in the hub entry"
