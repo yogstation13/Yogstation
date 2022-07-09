@@ -1,0 +1,5 @@
+author: "SuperSlayer"
+delete-after: true 
+changes: 
+  - tweak: "Syndicate kits now are named as \"suspicious box\" to non-syndicates."
+  - spellcheck: "Something implant(with injector) --> Implant(Something)"
