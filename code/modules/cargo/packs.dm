@@ -269,7 +269,6 @@
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
-					/obj/item/ammo_box/c38/gutterpunch,
 					/obj/item/ammo_box/c38/hotshot,
 					/obj/item/ammo_box/c38/iceblox)
 	crate_name = "ammo crate"
