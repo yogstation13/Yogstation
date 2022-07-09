@@ -133,6 +133,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	//Tape vars
 	var/taped = FALSE
 
+	/// Should the cryo console preserve this item
+	var/cryo_preserve = FALSE
+
 /obj/item/Initialize()
 
 	materials =	typelist("materials", materials)

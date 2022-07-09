@@ -217,21 +217,3 @@
 	if(isturf(loc))
 		var/turf/T = loc
 		T.Entered(src)
-
-/datum/emote/living/carbon/human/lick
-	key = "lick"
-	key_third_person = "licks"
-	message = "licks their eyes!"
-	cooldown = 10 SECONDS
-	emote_type = EMOTE_AUDIBLE
-
-/datum/emote/living/carbon/human/lick/run_emote(mob/user, params)
-	. = ..()
-	if(. && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.adjustOrganLoss(ORGAN_SLOT_EYES, -0.15)
-
-/datum/emote/living/carbon/human/lick/can_run_emote(mob/living/user, status_check = TRUE, intentional)
-	return islizard(user)
-
-//Ayy lmao
