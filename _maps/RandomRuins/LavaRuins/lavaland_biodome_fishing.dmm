@@ -429,18 +429,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"pd" = (
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/structure/table/wood,
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing)
 "px" = (
 /obj/structure/mirror{
 	pixel_x = 29;
@@ -667,6 +655,16 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
+"Cb" = (
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/turf/open/floor/carpet/purple,
 /area/ruin/powered/fishing)
 "Cg" = (
 /turf/open/floor/plasteel,
@@ -1598,7 +1596,7 @@ em
 em
 em
 Sv
-pd
+Cb
 rB
 JL
 JL
