@@ -1846,13 +1846,12 @@
 					/obj/item/reagent_containers/food/snacks/grown/citrus/lemon)
 	crate_name = "food crate"
 
-/datum/supply_pack/organic/cream_piee
+/datum/supply_pack/organic/cream_pie
 	name = "High-yield Clown-grade Cream Pie Crate"
 	desc = "Designed by Aussec's Advanced Warfare Research Division, these high-yield, Clown-grade cream pies are powered by a synergy of performance and efficiency. Guaranteed to provide maximum results."
-	cost = 6000
+	cost = 4500
 	contains = list(/obj/item/storage/backpack/duffelbag/clown/cream_pie)
 	crate_name = "party equipment crate"
-	contraband = TRUE
 	access = ACCESS_THEATRE
 	crate_type = /obj/structure/closet/crate/secure
 

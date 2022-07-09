@@ -75,17 +75,12 @@
 
 			if(S.ignore_clothes || get_location_accessible(M, selected_zone))
 				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)
-				var/datum/surgery_step/step = procedure.get_surgery_step()
 				user.visible_message("[user] prepares to operate on [M]'s [parse_zone(selected_zone)].", \
 					span_notice("You prepare to operate on [M]'s [parse_zone(selected_zone)]."))
 				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff = 1)
 				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
-				if(procedure.step_in_progress)
-					return
-				var/try_to_fail = FALSE
-				if(user.a_intent == INTENT_DISARM)
-					try_to_fail = TRUE
-				step.try_op(user, M, user.zone_selected, I, procedure, try_to_fail)
+				if(S.self_operable || user != M)
+					procedure.next_step(user, user.a_intent)
 			else
 				to_chat(user, span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
 
