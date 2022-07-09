@@ -10,7 +10,6 @@
 	reroll_friendly = FALSE
 	title_icon = "ss13"
 	time_required = 600
-	show_to_ghosts = TRUE
 
 	announce_span = "danger"
 	announce_text = "The station's Artificial Intelligence is rogue!\n\
