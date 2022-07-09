@@ -308,7 +308,7 @@
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	hitsound = "swing_hit"
 	armour_penetration = 35
-	item_color = "green"
+	var/saber_color = "green"
 	light_color = "#00ff00"//green
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 75
@@ -349,8 +349,8 @@
 /obj/item/twohanded/dualsaber/Initialize()
 	. = ..()
 	if(LAZYLEN(possible_colors))
-		item_color = pick(possible_colors)
-		switch(item_color)
+		saber_color = pick(possible_colors)
+		switch(saber_color)
 			if("red")
 				light_color = LIGHT_COLOR_RED
 			if("green")
@@ -366,7 +366,7 @@
 
 /obj/item/twohanded/dualsaber/update_icon()
 	if(wielded)
-		icon_state = "dualsaber[item_color][wielded]"
+		icon_state = "dualsaber[saber_color][wielded]"
 	else
 		icon_state = "dualsaber0"
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
@@ -473,7 +473,7 @@
 		if(!hacked)
 			hacked = TRUE
 			to_chat(user, span_warning("2XRNBW_ENGAGE"))
-			item_color = "rainbow"
+			saber_color = "rainbow"
 			update_icon()
 		else
 			to_chat(user, span_warning("It's starting to look like a triple rainbow - no, nevermind."))
@@ -543,7 +543,7 @@
 		force += 1
 		throwforce += 1
 		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
-		alternate_worn_icon = 'yogstation/icons/mob/back.dmi' //yogs
+		mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi' //yogs
 		icon_prefix = "spearplasma"
 	update_icon()
 	qdel(tip)

@@ -1,5 +1,7 @@
 /datum/surgery/organ_manipulation
 	name = "Organ manipulation"
+	icon_state = "organ_manipulation"
+	desc = "This surgery covers operations to remove/insert internal organs, tails, and cyber implants."
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 	requires_real_bodypart = 1

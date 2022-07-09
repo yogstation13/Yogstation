@@ -325,8 +325,7 @@
 
 /obj/item/toolset_handler/attack(mob/living/M, mob/user)
 	if(active_tool)
-		if(istype(active_tool, /obj/item/surgical_drapes)) //of all the things to not have a tool behavior its drapes
-			attempt_initiate_surgery(src, M, user)
+		if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
 			return
 	..()
 
