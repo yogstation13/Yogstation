@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "cilk provides a mood buff to felinids rather than healing them"
-  - rscdel: "cilk no longer heals felinids"

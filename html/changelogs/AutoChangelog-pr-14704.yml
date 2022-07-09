@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "fixed cryoing engi borgs preserving their blueprints, resulting in undroppable blueprints being saved"
