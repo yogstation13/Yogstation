@@ -38,12 +38,12 @@
 //I just want the light feature of the hardsuit helmet
 /obj/item/clothing/head/helmet/space/plasmaman
 	name = "purple envirosuit helmet"
-	desc = "A generic purple envirohelm."
+	desc = "A generic purple envirohelm of Nanotrasen design. This updated model comes with an activatable welding shield."
 	icon_state = "purple_envirohelm"
 	item_state = "purple_envirohelm"
 	strip_delay = 80
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 100, ACID = 75)
-	resistance_flags = FIRE_PROOF
+	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/brightness_on = 4 //luminosity when the light is on
 	var/on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_shield)
@@ -100,7 +100,7 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
-	desc = "A plasma containment helmet designed for security, protecting them from being bludgeoned and burning alive, along-side other undesirables."
+	desc = "A reinforced envirohelm designed for security personnel, reducing most traditional forms of injury."
 	icon_state = "deathcurity_envirohelm"
 	item_state = "deathcurity_envirohelm"
 	armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 0, FIRE = 100, ACID = 75, WOUND = 10)
@@ -113,20 +113,20 @@
 	
 /obj/item/clothing/head/helmet/space/plasmaman/viro
 	name = "virology envirosuit helmet"
-	desc = "A helmet specially designated for virologist plasmamen."
+	desc = "An envirohelm specially designated for virologists."
 	icon_state = "virologist_envirohelm"
 	item_state = "virologist_envirohelm"
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	name = "engineering envirosuit helmet"
-	desc = "A space-worthy helmet specifically designed for engineer plasmamen."
+	desc = "A tougher, space-worthy envirohelm designed for engineering personnel."
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
 	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 100, RAD = 20, FIRE = 100, ACID = 75, WOUND = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator
 	name = "prototype envirosuit helmet"
-	desc = "An ancient helmet from the second generation of Nanotrasen-plasmaman related equipment. Clunky, but still sees use due to its reliability."
+	desc = "An ancient envirohelm from the second generation of Nanotrasen-plasmaman related equipment. Clunky, but still sees use due to its reliability."
 	icon_state = "curator_envirohelm"
 	item_state = "curator_envirohelm"
 	
