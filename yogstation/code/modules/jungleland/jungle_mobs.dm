@@ -338,55 +338,64 @@
 	var/can_charge = TRUE
 	var/cooldown = 15 SECONDS
 	var/charge_ramp_up = 2 SECONDS
+	var/charging = FALSE
 
 	var/has_blood = FALSE
 	var/overshoot_dist = 5
-
-	var/charging = FALSE
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/Aggro()
 	. = ..()
 	prepare_charge()
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/Goto(target, delay, minimum_distance)
+	if (iscarbon(target) && get_dist(src,target) > 4 && get_charge())
+		prepare_charge()
+		return
+
 	if(!charging)
 		return ..()
 
-/mob/living/simple_animal/hostile/yog_jungle/mosquito/Bumped(atom/movable/AM)
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	if(!ishuman(AM) || !charging)
+	charging = FALSE
+	if(!ishuman(hit_atom))
+		animate(src,color = initial(color),time = charge_ramp_up/2)
 		return 
 	
-	var/mob/living/carbon/human/humie = AM 
+	var/mob/living/carbon/human/humie = hit_atom
 	humie.blood_volume -= 100 // ouch!
+	var/malaria_chance = ((humie.wear_suit ? 100 - humie.wear_suit.armor.bio : 100)  +  (humie.head ? 100 - humie.head.armor.bio : 100) )/2
+	if(prob(malaria_chance * 0.25))
+		var/datum/disease/malaria/infection = new() 
+		humie.ForceContractDisease(infection,FALSE,TRUE)
 	has_blood = TRUE 
 	rapid_melee = TRUE
 	melee_damage_lower = 30 
 	melee_damage_upper = 50
 	icon_state = "mosquito_blood"
+	animate(src,color = initial(color),time = charge_ramp_up*2)
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/prepare_charge()
 	if(!get_charge())
 		return FALSE 
 
 	var/dir = Get_Angle(src.loc,target.loc)
+	
+	//i actually fucking hate this utility function, for whatever reason Get_Angle returns the angle assuming that [0;-1] is 0 degrees rather than [1;0] like any sane being.
+	var/tx = clamp(0,round(target.loc.x + sin(dir) * overshoot_dist),255)
+	var/ty = clamp(0,round(target.loc.y + cos(dir) * overshoot_dist),255)
 
-	var/tx = clamp(0,round(loc.x + cos(dir) * overshoot_dist),255)
-	var/ty = clamp(0,round(loc.y + sin(dir) * overshoot_dist),255)
+	var/turf/found_turf = locate(tx,ty,loc.z)
 
-	var/turf = locate(tx,ty,loc.z)
-	if(turf == null)
+	if(found_turf == null)
 		return FALSE 
 	
-	var/dist = get_dist(src,turf)
+	var/dist = get_dist(src,found_turf)
 
+	charging = TRUE
+	animate(src,color = rgb(163, 0, 0),time = charge_ramp_up)
 	sleep(charge_ramp_up)
-	Goto(turf,0,dist - 1)
-	charging = TRUE 
-	addtimer(CALLBACK(src,.proc/reset_charging), 2*dist + 4 ) 
-
-/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/reset_charging()
-	charging = FALSE 
+	throw_at(found_turf,dist + overshoot_dist,4,spin = FALSE)
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/reset_charge()
 	can_charge = TRUE
