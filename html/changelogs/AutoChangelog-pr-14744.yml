@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - rscadd: "New unique flavortext lines for preternis thralls and veils"
+  - rscadd: "New unique flavortext when a sling attempts to thrall a mindshielded preternis"
+  - experiment: "Do you guys not have lore?"
