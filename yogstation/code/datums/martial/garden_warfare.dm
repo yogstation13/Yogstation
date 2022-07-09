@@ -155,8 +155,8 @@
 	if(I && !HAS_TRAIT(I, TRAIT_NODROP))
 		marked_dude.visible_message(span_warning("[owner] hits [marked_dude] with a vine, pulling [I] out of their hands!"), \
 							span_userdanger("[owner] hits you with a vine, pulling [I] out of your hands!"))     
-		if(I && D.temporarilyRemoveItemFromInventory(I))
-			D.forceMove(get_turf(owner))
+		if(I && marked_dude.temporarilyRemoveItemFromInventory(I))
+			I.forceMove(get_turf(owner))
 	else
 		marked_dude.throw_at(get_step_towards(owner, marked_dude), 7, 2) 
 		marked_dude.visible_message(span_warning("[owner] hits [marked_dude] with a vine, knocking them down and pulling them to themselfes!"), \
