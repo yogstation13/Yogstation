@@ -18,7 +18,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
 	desc = "A banner with Nanotrasen's logo on it."
 	slowdown = 2
-	throw_speed = 0
+	throw_speed = 0 //Comment
 	throw_range = 1
 	force = 200
 	armour_penetration = 1000
