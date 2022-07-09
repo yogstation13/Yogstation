@@ -3345,6 +3345,7 @@
 #include "yogstation\code\datums\diseases\advance\symptoms\heal.dm"
 #include "yogstation\code\datums\looping_sounds\darkspawn.dm"
 #include "yogstation\code\datums\martial\explosive_fist.dm"
+#include "yogstation\code\datums\martial\garden_warfare.dm"
 #include "yogstation\code\datums\martial\stealth.dm"
 #include "yogstation\code\datums\mood_events\generic_positive_events.dm"
 #include "yogstation\code\datums\mutations\alcohol.dm"

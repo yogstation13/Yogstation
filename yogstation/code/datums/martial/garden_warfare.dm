@@ -3,6 +3,9 @@
 #define STRANGLE_COMBO "GGG"
 #define PRE_STRANGLE_COMBO "GG"
 
+#define SPLINTER_COMBO "HHH"
+#define PRE_SPLINTER_COMBO "HH"
+
 /datum/martial_art/gardern_warfare
 	name = "Garden Warfare" //I feel like that I deserve a bullet into my head for this names
 	id = MARTIALART_KRAVMAGA
@@ -40,8 +43,11 @@
 		vine_mark(A,D)
 		return FALSE
 	if(findtext(streak, PRE_STRANGLE_COMBO))
-		vine_mark(A,D)
+		strangle(A,D)
 		return FALSE  ///Zamn
+	if(findtext(streak, PRE_SPLINTER_COMBO))
+		splinter_stab(A,D)
+		return TRUE
 
 /datum/martial_art/gardern_warfare/proc/vine_mark(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	to_chat(A, span_notice("You mark [D] with a vine mark. Using vine snatch now will pull an item from their active hands to you, or knokdown them and pull them to you."))
@@ -62,6 +68,36 @@
 
 		D.Stun(1 SECONDS)
 		D.adjustOxyLoss(10)
+
+/datum/martial_art/gardern_warfare/proc/splinter_stab(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(findtext(streak, SPLINTER_COMBO))
+		A.do_attack_animation(D, ATTACK_EFFECT_SLASH)
+		playsound(get_turf(D), 'sound/weapons/slash.ogg', 50, TRUE, -1)
+		D.visible_message(span_danger("[A] impales [D]!"), \
+					span_userdanger("[A] impales you!"))
+		log_combat(A, D, "impales(Garden Warfare)")		
+
+		var/selected_zone = A.zone_selected
+		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
+		var/armor_block = D.run_armor_check(affecting, MELEE, 30)
+
+		D.apply_damage(20, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	
+
+		var/obj/item/splinter = new /obj/item/splinter(D)
+		D.embed_object(splinter, affecting, FALSE, FALSE, TRUE)
+		streak = ""
+	else
+		A.do_attack_animation(D, ATTACK_EFFECT_SLASH)
+		playsound(get_turf(D), 'sound/weapons/slash.ogg', 50, TRUE, -1)
+		D.visible_message(span_danger("[A] stabs [D]!"), \
+					span_userdanger("[A] stabs you!"))
+		log_combat(A, D, "stabs(Garden Warfare)")		
+
+		var/selected_zone = A.zone_selected
+		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
+		var/armor_block = D.run_armor_check(affecting, MELEE, 30)
+
+		D.apply_damage(15, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	
 
 /datum/martial_art/gardern_warfare/proc/final_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_strangle(A, D))
@@ -128,3 +164,17 @@
 		target.Knockdown(3 SECONDS)
 	target = null
 				
+/obj/item/splinter
+	name = "splinter"
+	desc = "It's sharp!"
+	throwforce = 3
+	sharpness = IS_SHARP
+	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0)
+	var/passive_damage = 3
+
+/obj/item/splinter/on_embed_removal(mob/living/carbon/human/embedde)
+	qdel(src)
+	. = ..()
+
+/obj/item/splinter/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	part.receive_damage(passive_damage, wound_bonus=-30, sharpness = TRUE)
