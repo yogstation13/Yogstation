@@ -713,7 +713,7 @@
 
 /datum/supply_pack/engineering/bluespace_tap
 	name = "Bluespace Harvester Parts"
-	cost = 15000
+	cost = 10000
 	special = TRUE
 	contains = list(
 					/obj/item/circuitboard/machine/bluespace_tap,
