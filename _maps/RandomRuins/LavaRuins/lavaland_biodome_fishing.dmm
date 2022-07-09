@@ -2,13 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"aI" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 6
-	},
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing)
 "aW" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 8
@@ -178,20 +171,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
-"gh" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 8
-	},
-/obj/machinery/vending/fishing{
-	contraband = list(/obj/item/reagent_containers/food/snacks/bait/type = 6);
-	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 10);
-	products = list(/obj/item/twohanded/fishingrod = 12, /obj/item/reagent_containers/food/snacks/bait/apprentice = 30, /obj/item/reagent_containers/food/snacks/bait/journeyman = 20, /obj/item/clothing/head/fishing = 6, /obj/item/clothing/suit/fishing = 6, /obj/item/clothing/gloves/fishing = 6, /obj/item/clothing/shoes/fishing = 6)
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing)
 "gt" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /turf/open/floor/plasteel,
@@ -241,6 +220,14 @@
 /area/ruin/powered/fishing)
 "hO" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
+"hT" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 6
+	},
+/obj/machinery/light,
+/obj/structure/table/wood,
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
 "if" = (
@@ -371,36 +358,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing)
-"nw" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 5
-	},
-/obj/machinery/vending/fishing{
-	contraband = list(/obj/item/reagent_containers/food/snacks/bait/type = 6);
-	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 10);
-	products = list(/obj/item/twohanded/fishingrod = 12, /obj/item/reagent_containers/food/snacks/bait/apprentice = 30, /obj/item/reagent_containers/food/snacks/bait/journeyman = 20, /obj/item/clothing/head/fishing = 6, /obj/item/clothing/suit/fishing = 6, /obj/item/clothing/gloves/fishing = 6, /obj/item/clothing/shoes/fishing = 6)
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing)
-"nF" = (
-/obj/structure/rack,
-/obj/item/twohanded/fishingrod,
-/obj/item/storage/toolbox/mechanical/insulateds{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/stack/spacecash/c1{
-	amount = 2000;
-	pixel_x = -4;
-	pixel_y = 3
-	},
-/obj/item/stack/spacecash/c1{
-	amount = 2000;
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing)
 "nN" = (
 /obj/effect/turf_decal/pool{
 	dir = 4
@@ -463,6 +420,20 @@
 /obj/item/paicard,
 /obj/item/reagent_containers/glass/gromitmug,
 /turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
+"qy" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 30;
+	pixel_y = -7
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing)
+"qA" = (
+/obj/structure/sign/painting{
+	pixel_y = -31
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
 /area/ruin/powered/fishing)
 "rb" = (
 /obj/machinery/light{
@@ -538,11 +509,6 @@
 	},
 /turf/open/water/safe,
 /area/ruin/powered/fishing)
-"tB" = (
-/obj/effect/turf_decal/trimline/white/filled/line,
-/obj/machinery/vending/games,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing)
 "tG" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/pool/corner,
@@ -575,12 +541,13 @@
 	},
 /turf/open/water/safe,
 /area/ruin/powered/fishing)
-"ym" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 30;
-	pixel_y = -7
+"xI" = (
+/obj/structure/rack,
+/obj/item/twohanded/fishingrod,
+/obj/item/storage/toolbox/mechanical/insulateds{
+	pixel_x = 1;
+	pixel_y = -1
 	},
-/obj/machinery/computer/arcade,
 /turf/open/floor/carpet/purple,
 /area/ruin/powered/fishing)
 "ys" = (
@@ -725,6 +692,21 @@
 /obj/item/bedsheet/random,
 /turf/open/floor/carpet/purple,
 /area/ruin/powered/fishing)
+"CE" = (
+/obj/effect/turf_decal/trimline/white/filled/line,
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c1{
+	amount = 2000;
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/stack/spacecash/c1{
+	amount = 2000;
+	pixel_x = -1;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
 "CI" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 8
@@ -817,6 +799,15 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"GT" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
 "HA" = (
 /obj/effect/turf_decal/pool,
@@ -1010,12 +1001,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/fishing)
-"LH" = (
-/obj/structure/sign/painting{
-	pixel_y = -31
-	},
-/turf/open/floor/wood,
 /area/ruin/powered/fishing)
 "LW" = (
 /obj/structure/table/reinforced,
@@ -1249,6 +1234,13 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
+"TZ" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 5
+	},
+/obj/machinery/computer/arcade,
+/turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
 "Uz" = (
 /obj/machinery/firealarm{
@@ -1640,7 +1632,7 @@ em
 em
 em
 em
-nF
+xI
 JL
 aa
 aa
@@ -1669,7 +1661,7 @@ JL
 JL
 CD
 em
-ym
+qy
 Uz
 px
 WW
@@ -1874,7 +1866,7 @@ Dn
 JL
 JL
 JL
-ZT
+Xx
 ZT
 ZT
 uR
@@ -1970,7 +1962,7 @@ Dn
 JL
 JL
 JL
-ZT
+Xx
 ZT
 ZT
 uR
@@ -1986,7 +1978,7 @@ ZT
 ZT
 ZT
 YV
-LH
+qA
 JL
 PG
 PH
@@ -2057,7 +2049,7 @@ Vt
 Vt
 gJ
 Vt
-aI
+hT
 JL
 aa
 "}
@@ -2119,7 +2111,7 @@ IB
 py
 fZ
 py
-gh
+GT
 NU
 Fj
 JL
@@ -2147,13 +2139,13 @@ ZT
 ZT
 YV
 nj
-nw
+TZ
 ck
 ck
 ck
 TK
 Cg
-tB
+CE
 JL
 aa
 "}
