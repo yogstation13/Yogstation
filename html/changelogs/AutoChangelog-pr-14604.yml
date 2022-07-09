@@ -1,0 +1,5 @@
+author: "tralezab, Ghommie, ported by SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Flower Buds now have a countdown for ghosts"
+  - bugfix: "Venus human traps and swarmers' names are now numbered."
