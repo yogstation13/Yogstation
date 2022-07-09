@@ -591,3 +591,19 @@
 				/obj/item/reagent_containers/syringe = 1,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_TOOLS
+
+/datum/crafting_recipe/refill_epinephrine_medipen
+	name = "Refill Epinephrine Medipen"
+	result = /obj/item/reagent_containers/hypospray/medipen
+	time = 2 SECONDS
+	reqs = list(/obj/item/reagent_containers/hypospray/medipen = 1,
+				/datum/reagent/medicine/epinephrine = 10)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/refill_atropine_medipen
+	name = "Refill Atropine Autoinjector"
+	result = /obj/item/reagent_containers/hypospray/medipen/atropine
+	time = 4 SECONDS
+	reqs = list(/obj/item/reagent_containers/hypospray/medipen/atropine,
+				/datum/reagent/medicine/atropine = 10)
+	category = CAT_TOOLS
