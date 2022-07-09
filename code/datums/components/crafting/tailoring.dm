@@ -369,7 +369,10 @@
 	time = 10 SECONDS
 	reqs = list(/obj/item/clothing/suit/armor/elder_atmosian = 1,
 	    	/obj/item/clothing/head/helmet/elder_atmosian = 1,
-			/obj/item/stack/sheet/mineral/diamond = 5)
+			/obj/item/clothing/head/hardhat/atmos,
+			/obj/item/clothing/suit/fire,
+			/obj/item/stack/sheet/mineral/diamond = 5,
+			/obj/item/stack/sheet/mineral/metal_hydrogen = 10)
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
 
