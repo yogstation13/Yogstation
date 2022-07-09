@@ -199,7 +199,7 @@
 /datum/martial_art/gardern_warfare/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
 	if(!can_use(user))
 		return
-	if(!in_throw_mode)
+	if(!user.in_throw_mode)
 		return
 	user.do_attack_animation(attacker, ATTACK_EFFECT_SLASH)
 	playsound(get_turf(attacker), 'sound/weapons/slash.ogg', 50, TRUE, -1)
