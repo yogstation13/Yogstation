@@ -13,6 +13,7 @@
 	var/give_equipment = FALSE
 	var/datum/team/cult/cult_team
 	var/original_eye_color = "000" //this will store the eye color of the cultist so it can be returned if they get deconverted
+	show_to_ghosts = TRUE
 
 
 /datum/antagonist/cult/get_team()
