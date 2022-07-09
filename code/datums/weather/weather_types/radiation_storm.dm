@@ -3,7 +3,7 @@
 	name = "radiation storm"
 	desc = "A cloud of intense radiation passes through the area dealing rad damage to those who are unprotected."
 
-	telegraph_duration = 400
+	telegraph_duration = 25 SECONDS
 	telegraph_message = span_danger("The air begins to grow warm.")
 
 	weather_message = span_userdanger("<i>You feel waves of heat wash over you! Find shelter!</i>")

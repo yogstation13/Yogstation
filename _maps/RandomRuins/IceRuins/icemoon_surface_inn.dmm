@@ -567,7 +567,7 @@
 /turf/open/floor/carpet,
 /area/ruin/powered/inn)
 "QK" = (
-/turf/closed/mineral/random/snow/no_caves,
+/turf/closed/mineral/random/snow,
 /area/icemoon/underground/explored)
 "QU" = (
 /obj/structure/chair/stool/bar{

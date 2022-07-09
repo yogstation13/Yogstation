@@ -23,6 +23,7 @@
 	obj_damage = 0
 	melee_damage_lower = 0
 	melee_damage_upper = 0
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "chomps"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	throw_message = "is avoided by the"
