@@ -441,7 +441,7 @@ LAW_WEIGHT crewsimov,5
 ION_LAW_WEIGHT crewsimov,1
 LAW_WEIGHT asimovpp,0
 ION_LAW_WEIGHT asimovpp,2
-LAW_WEIGHT paladin,3
+LAW_WEIGHT paladin,0
 ION_LAW_WEIGHT paladin,2
 ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
