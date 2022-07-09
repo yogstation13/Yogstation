@@ -118,7 +118,7 @@
 
 /datum/reagent/consumable/cooking_oil/reaction_obj(obj/O, reac_volume)
 	if(holder && holder.chem_temp >= fry_temperature)
-		if(isitem(O) && !istype(O, /obj/item/reagent_containers/food/snacks/deepfryholder))
+		if(istype(O, /obj/item/reagent_containers/food) && !istype(O, /obj/item/reagent_containers/food/snacks/deepfryholder))
 			O.loc.visible_message(span_warning("[O] rapidly fries as it's splashed with hot oil! Somehow."))
 			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(O.drop_location(), O)
 			F.fry(volume)
