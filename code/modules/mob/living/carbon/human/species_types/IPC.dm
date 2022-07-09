@@ -21,6 +21,7 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
+	payday_modifier = 0.6 //Mass producible labor
 	burnmod = 2
 	heatmod = 1.5
 	brutemod = 1
