@@ -152,7 +152,7 @@
 		return
 	to_chat(owner, span_notice("You throw a vine into [marked_dude]!"))
 	var/obj/item/I = marked_dude.get_active_held_item()
-	if(I && HAS_TRAIT(I, TRAIT_NODROP))
+	if(I && !HAS_TRAIT(I, TRAIT_NODROP))
 		marked_dude.visible_message(span_warning("[owner] hits [marked_dude] with a vine, pulling [I] out of their hands!"), \
 							span_userdanger("[owner] hits you with a vine, pulling [I] out of your hands!"))     
 		if(I && D.temporarilyRemoveItemFromInventory(I))
@@ -168,7 +168,7 @@
 	name = "splinter"
 	desc = "It's sharp!"
 	throwforce = 3
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0)
 	var/passive_damage = 3
 
