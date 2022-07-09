@@ -105,10 +105,6 @@
 	H.facial_hair_style = "Beard (Dwarf)"
 	H.update_hair()
 
-/datum/mutation/human/dwarfism/on_life()
-	if(owner.facial_hair_style != "Beard (Dwarf)")
-		grow_beard(owner)
-
 /datum/mutation/human/dwarfism/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
