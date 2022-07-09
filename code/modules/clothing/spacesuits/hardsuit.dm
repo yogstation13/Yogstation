@@ -227,7 +227,7 @@
 	jetpack = /obj/item/tank/jetpack/suit
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_1 = RAD_PROTECT_CONTENTS_1
-	slowdown = 0.33
+	slowdown = 0.6
 
 	//Chief Engineer's hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/engine/elite
