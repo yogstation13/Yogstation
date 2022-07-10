@@ -137,6 +137,10 @@
 
 #define STATUS_EFFECT_BUGGED /datum/status_effect/bugged //Lets other mobs listen in on what it hears
 
+#define STATUS_EFFECT_HIVE_TRACKER /datum/status_effect/hive_track
+
+#define STATUS_EFFECT_HIVE_RADAR /datum/status_effect/agent_pinpointer/hivemind
+
 #define STATUS_EFFECT_BOUNTY /datum/status_effect/bounty //rewards the person who added this to the target with refreshed spells and a fair heal
 
 #define STATUS_EFFECT_HELDUP /datum/status_effect/heldup // someone is currently pointing a gun at you
