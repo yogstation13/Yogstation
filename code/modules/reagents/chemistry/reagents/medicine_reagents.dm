@@ -950,7 +950,7 @@
 	description = "Increases stun resistance and movement speed in addition to restoring minor damage and weakness. Overdose causes weakness and toxin damage."
 	color = "#78008C"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshold = 60
+	overdose_threshold = 70
 
 /datum/reagent/medicine/stimulants/on_mob_metabolize(mob/living/L)
 	..()
