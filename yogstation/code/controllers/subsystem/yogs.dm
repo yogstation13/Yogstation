@@ -141,6 +141,10 @@ SUBSYSTEM_DEF(Yogs)
 	for(var/path in subtypesof(/datum/corporation))
 		new path
 
+	// Clean up TTS files that happened in the last 10 seconds of last round
+	for(var/filename in flist("dectalk/"))
+		fdel("dectalk/[filename]")
+
 	return ..()
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
