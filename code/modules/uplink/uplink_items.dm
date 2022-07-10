@@ -2269,3 +2269,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/stamp/syndiround
 	cost = 1
 	illegal_tech = FALSE
+
+/datum/uplink_item/badass/box
+	name = "Box"
+	desc = "If you are too lasy to find one."
+	item = /obj/item/storage/box/syndicate
+	cost = 1
+	illegal_tech = FALSE
