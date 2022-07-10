@@ -283,10 +283,6 @@
 		if(O)
 			O.unlock_code = null
 
-/datum/mind/proc/remove_from_hives()
-	SIGNAL_HANDLER
-	remove_hivemember(src)
-
 /datum/mind/proc/remove_all_antag() //For the Lazy amongst us.
 	remove_changeling()
 	remove_traitor()
