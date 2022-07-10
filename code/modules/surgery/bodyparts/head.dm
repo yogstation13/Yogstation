@@ -95,6 +95,8 @@
 
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
+	if(owner && isipc(owner))
+		return TRUE
 	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
 	return ..()
@@ -133,6 +135,10 @@
 		C = source
 	else
 		C = owner
+
+	if(isipc(C))
+		max_damage = 50
+		disabled_wound_penalty = 250 // 200 Makes it possible to delimb so 250 for some better chance
 
 	real_name = C.real_name
 	if(HAS_TRAIT(C, TRAIT_HUSK))
