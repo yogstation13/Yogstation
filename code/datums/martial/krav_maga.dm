@@ -161,6 +161,7 @@
 
 /obj/item/clothing/gloves/krav_maga
 	var/datum/martial_art/krav_maga/style = new
+	cryo_preserve = TRUE
 
 /obj/item/clothing/gloves/krav_maga/equipped(mob/user, slot)
 	. = ..()
