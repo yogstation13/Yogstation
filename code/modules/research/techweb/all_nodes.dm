@@ -1146,17 +1146,6 @@
 			continue
 		boost_item_paths |= UI.item	//allows deconning to unlock.
 
-/datum/techweb_node/syndicate_biotech
-	id = "syndicate_biotech"
-	display_name = "Syndicate Biotech"
-	description = "Dangerous research used to create dangerous objects."
-	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
-	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "largecrossbow", "hardlightbow", "donksofttoyvendor", "donksoft_refill")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-	export_price = 5000
-	hidden = TRUE
-
-
 ////////////////////////AI Hardware////////////////////////
 /datum/techweb_node/ai_cpu_advanced
 	id = "ai_cpu_advanced"
