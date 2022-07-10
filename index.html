@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(445 modules,
-    705/7259 macros, 9.7%)</aside></h3>
+<aside>(446 modules,
+    707/7264 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -247,6 +247,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/game/objects/structures/girders.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;girders">girders</a></li>
     <li><a href="code/game/objects/structures/kitchen_spike.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;kitchen_spike">kitchen_spike</a></li>
     <li><a href="code/game/objects/structures/manned_turret.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;manned_turret">manned_turret</a></li>
+    <li><a href="code/game/objects/structures/safe.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;safe">safe</a></li>
     <li><a href="code/game/objects/structures/statues.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;statues">statues</a></li>
     </ul></li>
     </ul></li>
@@ -690,7 +691,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(476 detailed/1102 documented/25053 total, 4.4%)</aside></h3>
+<aside>(477 detailed/1104 documented/25086 total, 4.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -955,7 +956,8 @@ The total amount of loading points among all subsystems. Should be defined by MC
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;chaosdonut">Chaos Donut</span> - DONUTS</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;chococornet">Chocolate Cornet</span> - OTHER</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;chocolateegg">Chocolate Egg</span> - EGG RECIPES</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;dankpocket">Dankpocket</span> - DONK POCKETS</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;donkpocket">Original Donkpocket</span> - DONK POCKETS
+DONKPOCCKETS</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;doubleratkebab">Double Rat Kebab</span> - KEBAB</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;flaverless_sc">Flaverless snowcone</span> - SNOW CONES</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;grilledcheesesandwich">Cheese Sandwich</span> - SANDWICHES</li>
@@ -1900,7 +1902,9 @@ Given to Nuke Ops members.</li>
     <li><a href="obj/item/reagent_containers/food/snacks/badrecipe.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;badrecipe">burned mess</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;candy">candy</span> - SNACKS FROM VENDING MACHINES</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;chocolateegg">chocolate egg</span> - EGGS</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie">cookie</span> - OTHER</li>
+    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie">cookie</span> - DONKPOCKETS<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie&#x2F;sleepy">sleepy</span> - OTHER</li>
+    </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cubancarp">Cuban carp</span> - FISH</li>
     <li><span class="no-substance">customizable&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;customizable&#x2F;burger">burger</span> - Customizable Food Types</li>
     <li><span class="no-substance">donkpocket&#x2F;</span><a href="obj/item/reagent_containers/food/snacks/donkpocket/warm.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;donkpocket&#x2F;warm">warm donkpocket</a></li>
@@ -2160,6 +2164,7 @@ Chance to give Bat form, or turn them into a bat.</li>
     <li><a href="obj/structure/mineral_door.html" title="&#x2F;obj&#x2F;structure&#x2F;mineral_door">metal door</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;ore_box">ore box</span> - Ore box</li>
     <li><a href="obj/structure/railing.html" title="&#x2F;obj&#x2F;structure&#x2F;railing">railing</a></li>
+    <li><a href="obj/structure/safe.html" title="&#x2F;obj&#x2F;structure&#x2F;safe">safe</a></li>
     <li><span class="no-substance">sign&#x2F;</span><a href="obj/structure/sign/painting.html" title="&#x2F;obj&#x2F;structure&#x2F;sign&#x2F;painting">Painting</a></li>
     <li class="has-children"><a href="obj/structure/slime_crystal.html" title="&#x2F;obj&#x2F;structure&#x2F;slime_crystal">slimic pylon</a><ul class="index-tree">
     <li><a href="obj/structure/slime_crystal/bluespace.html" title="&#x2F;obj&#x2F;structure&#x2F;slime_crystal&#x2F;bluespace">bluespace</a></li>
@@ -2211,7 +2216,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/440d0946d1123efdea450fa6bb71beccb2d6feb4">440d094</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/203fc87dd7a4a409da57c0dc55e3613ad4077d95">203fc87</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
