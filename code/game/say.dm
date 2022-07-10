@@ -46,10 +46,10 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	// TTS
 	var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
 	if(!fexists("dectalk/[md5(message)].wav"))
-		world.shelleo("say.exe -w \"dectalk/[md5(str)].wav\" \"[san_message]\"")
-	playsound(src, "dectalk/[md5(str)].wav", 100)
+		world.shelleo("say.exe -w \"dectalk/[md5(message)].wav\" \"[san_message]\"")
+	playsound(src, "dectalk/[md5(message)].wav", 100)
 	spawn(10 SECONDS)
-		fdel("dectalk/[md5(str)].wav")
+		fdel("dectalk/[md5(message)].wav")
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.

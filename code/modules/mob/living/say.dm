@@ -321,10 +321,10 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	// TTS
 	var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
 	if(!fexists("dectalk/[md5(message)].wav"))
-		world.shelleo("say.exe -w \"dectalk/[md5(str)].wav\" \"[san_message]\"")
-	playsound(src, "dectalk/[md5(str)].wav", 100)
+		world.shelleo("say.exe -w \"dectalk/[md5(message)].wav\" \"[san_message]\"")
+	playsound(src, "dectalk/[md5(message)].wav", 100)
 	spawn(10 SECONDS)
-		fdel("dectalk/[md5(str)].wav")
+		fdel("dectalk/[md5(message)].wav")
 
 /mob/proc/binarycheck()
 	return FALSE
