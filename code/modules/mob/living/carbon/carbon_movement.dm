@@ -25,25 +25,24 @@
 	return
 	
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
-	. = ..()
 	if(!isturf(loc))
 		return FALSE
 	// Do we have a jetpack implant (and is it on)?
 	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_THRUSTERS)
 	if(istype(T))
 		if(movement_dir && T.allow_thrust(0.01))
-			return TRUE
-		if(!. && !T.on && pulledby)
-			pulledby.stop_pulling()
-			return TRUE
+			. = TRUE
 
 	var/obj/item/tank/jetpack/J = get_jetpack()
 	if(istype(J))
 		if((movement_dir || J.stabilizers) && J.allow_thrust(0.01, src))
-			return TRUE
-		if(!. && !J.on && pulledby)
-			pulledby.stop_pulling()
-			return TRUE
+			. =  TRUE
+
+	if(!.)
+		. = ..()
+	if(!. && pulledby) // If it still returned false
+		pulledby.stop_pulling()
+		return TRUE
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
