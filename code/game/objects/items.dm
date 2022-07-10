@@ -135,6 +135,9 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	//Tape vars
 	var/taped = FALSE
 
+	/// Should the cryo console preserve this item
+	var/cryo_preserve = FALSE
+
 /obj/item/Initialize()
 
 	materials =	typelist("materials", materials)

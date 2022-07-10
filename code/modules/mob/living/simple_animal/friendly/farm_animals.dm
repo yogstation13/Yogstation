@@ -25,6 +25,7 @@
 	minbodytemp = 180
 	melee_damage_lower = 1
 	melee_damage_upper = 2
+	attack_vis_effect = ATTACK_EFFECT_KICK
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	stop_automated_movement_when_pulled = 1
 	blood_volume = BLOOD_VOLUME_GENERIC
@@ -138,6 +139,7 @@
 	var/obj/item/udder/udder = null
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
+	attack_vis_effect = ATTACK_EFFECT_KICK
 
 	do_footstep = TRUE
 
