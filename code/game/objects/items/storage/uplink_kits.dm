@@ -355,12 +355,12 @@
 		/obj/item/clothing/shoes/airshoes,
 		/obj/item/clothing/glasses/thermal/syndi,
 		/obj/item/camera_bug,
-		/obj/item/storage/box/syndie_kit/imp_radio,
-		/obj/item/storage/box/syndie_kit/imp_uplink,
+		/obj/item/implanter/radio/syndicate,
+		/obj/item/implanter/uplink,
 		/obj/item/clothing/gloves/krav_maga/combatglovesplus,
 		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
 		/obj/item/reagent_containers/syringe/stimulants,
-		/obj/item/storage/box/syndie_kit/imp_freedom,
+		/obj/item/implanter/freedom,
 		/obj/item/storage/belt/chameleon/syndicate
 	)
 
