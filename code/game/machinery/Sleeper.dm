@@ -185,8 +185,10 @@
 /obj/machinery/sleeper/process()
 	..()
 	check_nap_violations()
+	if(issilicon(occupant))
+		return
 	var/mob/living/carbon/C = occupant
-	if(!issilicon(occupant))
+	if(C)
 		if(stasis && (C.stat == DEAD || C.health < 0))
 			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
 		else
