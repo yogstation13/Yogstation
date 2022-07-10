@@ -65,7 +65,7 @@
 						fear_string = ""
 				C.visible_message(span_danger("[C] fiddles with and pulls at [src]..."), \
 				span_danger("You [fear_string] try to pull at [src]..."), "<i>You hear clicking and ticking.</i>")
-				if(!do_after(user, 2 SECONDS, target = src))
+				if(!do_after(user, 2 SECONDS, src))
 					struggling = FALSE
 					return
 				if(!prob(escape_chance))
@@ -88,7 +88,7 @@
 	target.visible_message(span_warning("[user] starts forcing [src] onto [target]'s head!"), \
 	span_userdanger("[target] starts forcing [src] onto your head!"), "<i>You hear clanking.</i>")
 	to_chat(user, span_danger("You start forcing [src] onto [target]'s head..."))
-	if(!do_after(user, 3 SECONDS, target = target) || target.get_item_by_slot(SLOT_HEAD))
+	if(!do_after(user, 3 SECONDS, target) || target.get_item_by_slot(SLOT_HEAD))
 		return
 	target.visible_message(span_warning("[user] forces and locks [src] onto [target]'s head!"), \
 	span_userdanger("[target] locks [src] onto your head!"), "<i>You hear a click, and then a timer ticking down.</i>")

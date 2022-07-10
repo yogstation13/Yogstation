@@ -12,7 +12,7 @@
 	has_gravity = TRUE
 
 /area/jungleland
-	name = "Improper Jungleland"
+	name = "Jungleland"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	outdoors = TRUE
 	var/daynight_cycle = TRUE

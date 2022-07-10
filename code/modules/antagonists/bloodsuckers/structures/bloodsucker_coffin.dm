@@ -2,24 +2,25 @@
 	// ALREADY CLAIMED
 	if(claimed.resident)
 		if(claimed.resident == owner.current)
-			to_chat(owner, "This is your [src].")
+			to_chat(owner, "This is your [claimed.name].")
 		else
-			to_chat(owner, "This [src] has already been claimed by another.")
+			to_chat(owner, "This [claimed.name] has already been claimed by another.")
 		return FALSE
 	if(!(/datum/crafting_recipe/vassalrack in owner?.learned_recipes))
 		owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
+		//owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/staketrap)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/woodenducky)
-		owner.teach_crafting_recipe(/datum/crafting_recipe/bloodaltar)
+		if(my_clan != CLAN_TZIMISCE) // better things to do
+			owner.teach_crafting_recipe(/datum/crafting_recipe/bloodaltar)
 		to_chat(owner, span_danger("You learned new recipes - You can view them in the Structure and Weaponry section of the crafting menu!"))
 	// This is my Lair
 	coffin = claimed
 	lair = get_area(claimed)
 	to_chat(owner, span_userdanger("You have claimed the [claimed] as your place of immortal rest! Your lair is now [lair]."))
-	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the tribal tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals."))
+	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the structure tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals and the <i>Blood Altar</i> which lets you gain two tasks per night to Rank Up."))
 	return TRUE
 
 /// From crate.dm
@@ -41,14 +42,12 @@
 	desc = "For those departed who are not so dear."
 	icon_state = "coffin"
 	icon = 'icons/obj/vamp_obj.dmi'
-	open_sound = 'sound/effects/coffin_open.ogg'
-	close_sound = 'sound/effects/coffin_close.ogg'
 	breakout_time = 30 SECONDS
 	pryLidTimer = 20 SECONDS
 	resistance_flags = NONE
 	material_drop = /obj/item/stack/sheet/metal
 	material_drop_amount = 2
-	armor = list(MELEE = 50, BULLET = 20, LASER = 30, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 70, ACID = 60)
+	armor = list("melee" = 50, "bullet" = 20, "laser" = 30, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 
 /obj/structure/closet/crate/coffin/securecoffin
 	name = "secure coffin"
@@ -62,7 +61,7 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 	material_drop = /obj/item/stack/sheet/metal
 	material_drop_amount = 2
-	armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 0, BOMB = 100, BIO = 0, FIRE = 100, ACID = 100)
+	armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 100, "fire" = 100, "acid" = 100)
 
 /obj/structure/closet/crate/coffin/meatcoffin
 	name = "meat coffin"
@@ -76,7 +75,7 @@
 	pryLidTimer = 20 SECONDS
 	material_drop = /obj/item/reagent_containers/food/snacks/meat/slab
 	material_drop_amount = 3
-	armor = list(MELEE = 70, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 70, BIO = 0, FIRE = 70, ACID = 60)
+	armor = list("melee" = 70, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 70, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 
 /obj/structure/closet/crate/coffin/metalcoffin
 	name = "metal coffin"
@@ -89,7 +88,7 @@
 	breakout_time = 25 SECONDS
 	pryLidTimer = 30 SECONDS
 	material_drop = /obj/item/stack/sheet/metal
-	armor = list(MELEE = 40, BULLET = 15, LASER = 50, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 70, ACID = 60)
+	armor = list("melee" = 40, "bullet" = 15, "laser" = 50, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 50, "fire" = 70, "acid" = 60)
 
 //////////////////////////////////////////////
 

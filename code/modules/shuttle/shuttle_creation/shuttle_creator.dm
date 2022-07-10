@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	req_access_txt = "11"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 	var/ready = TRUE
 	//pre-designation
@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	var/overwritten_area = /area/space
 	var/list/loggedTurfs = list()
 	var/loggedOldArea
-	var/recorded_shuttle_area
+	var/area/recorded_shuttle_area
 	var/datum/shuttle_creator_overlay_holder/overlay_holder
 	//After designation
 	var/linkedShuttleId
@@ -184,12 +184,13 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 
 	var/obj/docking_port/mobile/port = new /obj/docking_port/mobile(get_turf(target))
 	var/obj/docking_port/stationary/stationary_port = new /obj/docking_port/stationary(get_turf(target))
+	stationary_port.delete_after = TRUE
+	stationary_port.name = "[recorded_shuttle_area.name] Custom Shuttle construction site"
 	port.callTime = 50
 	port.dir = 1	//Point away from space.
 	port.id = "custom_[GLOB.custom_shuttle_count]"
 	linkedShuttleId = port.id
 	port.ignitionTime = 25
-	port.name = "Custom Shuttle"
 	port.port_direction = 2
 	port.preferred_direction = EAST
 	port.preferred_direction = 4

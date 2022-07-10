@@ -13,7 +13,7 @@
 	icon_state = "vest_stealth"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 70, "acid" = 70)
+	armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 15, FIRE = 70, ACID = 70)
 	actions_types = list(/datum/action/item_action/hands_free/activate)
 	allowed = list(
 		/obj/item/abductor,
@@ -26,8 +26,8 @@
 	var/stealth_active = 0
 	var/combat_cooldown = 10
 	var/datum/icon_snapshot/disguise
-	var/stealth_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 70, "acid" = 70)
-	var/combat_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 90, "acid" = 90)
+	var/stealth_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, RAD = 15, FIRE = 70, ACID = 70)
+	var/combat_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, RAD = 50, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/toggle_nodrop()
 	if(HAS_TRAIT_FROM(src, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT))
@@ -230,7 +230,7 @@
 		to_chat(user, span_warning("You need to be next to the specimen to prepare it for transport!"))
 		return
 	to_chat(user, span_notice("You begin preparing [target] for transport..."))
-	if(do_after(user, 10 SECONDS, target = target))
+	if(do_after(user, 10 SECONDS, target))
 		marked = target
 		to_chat(user, span_notice("You finish preparing [target] for transport."))
 
@@ -523,7 +523,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 		L.visible_message(span_danger("[user] has induced sleep in [L] with [src]!"), \
 							span_userdanger("You suddenly feel very drowsy!"))
 		playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
-		L.Sleeping(1200)
+		L.Sleeping(30 SECONDS)
 		log_combat(user, L, "put to sleep")
 	else
 		if(L.anti_magic_check(FALSE, FALSE, TRUE, 0))
@@ -752,7 +752,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			to_chat(user, span_warning("You need one alien alloy sheet to do this!"))
 			return
 		to_chat(user, span_notice("You start adding [P] to [src]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			P.use(1)
 			new /obj/structure/table/abductor(src.loc)
 			qdel(src)
@@ -763,7 +763,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			to_chat(user, span_warning("You need one sheet of silver to do	this!"))
 			return
 		to_chat(user, span_notice("You start adding [P] to [src]..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			P.use(1)
 			new /obj/structure/table/optable/abductor(src.loc)
 			qdel(src)

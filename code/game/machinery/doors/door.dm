@@ -9,7 +9,7 @@
 	layer = OPEN_DOOR_LAYER
 	power_channel = ENVIRON
 	max_integrity = 350
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 70)
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	flags_1 = PREVENT_CLICK_UNDER_1
 	damage_deflection = 10
@@ -316,9 +316,9 @@
 	operating = TRUE
 	do_animate("opening")
 	set_opacity(0)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	density = FALSE
-	sleep(5)
+	sleep(0.5 SECONDS)
 	layer = initial(layer)
 	update_icon()
 	set_opacity(0)
@@ -348,9 +348,9 @@
 	layer = closingLayer
 	if(air_tight)
 		density = TRUE
-	sleep(5)
+	sleep(0.5 SECONDS)
 	density = TRUE
-	sleep(5)
+	sleep(0.5 SECONDS)
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)
@@ -365,7 +365,7 @@
 
 /obj/machinery/door/proc/CheckForMobs()
 	if(locate(/mob/living) in get_turf(src))
-		sleep(1)
+		sleep(0.1 SECONDS)
 		open()
 
 /obj/machinery/door/proc/crush()

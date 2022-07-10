@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(original_engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
 	"Atmospheric Technician",
-	"Signal Technician"))
+	"Network Admin"))
 
 GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Chief Medical Officer",
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(alt_security_positions, list(
 	"Security Commander", "Security Chief",
 	"Brig Watchman", "Brig Superintendent", "Security Staff Sergeant", "Security Dispatcher", "Prison Supervisor",
 	"Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector",
-	"Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Marine",
+	"Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer",
 	))
 
 GLOBAL_LIST_INIT(alt_nonhuman_positions, list(

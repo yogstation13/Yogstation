@@ -609,6 +609,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"eN" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/rack,
+/obj/item/pickaxe,
+/obj/item/shovel,
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "eO" = (
 /obj/machinery/washing_machine,
 /obj/machinery/camera{
@@ -1039,16 +1046,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"jQ" = (
-/obj/item/gps/mining{
-	gpstag = "MINER_1"
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/personal/miner{
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "jW" = (
 /obj/structure/sign/poster/random{
 	pixel_y = -32
@@ -1311,16 +1308,6 @@
 "oh" = (
 /turf/closed/wall,
 /area/mine/maintenance)
-"oi" = (
-/obj/item/gps/mining{
-	gpstag = "MINER_2"
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/personal/miner{
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "oF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1979,10 +1966,6 @@
 /obj/machinery/meter/atmos,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"zw" = (
-/obj/machinery/telecomms/relay/preset/mining,
-/turf/open/floor/circuit/green/telecomms,
-/area/mine/maintenance)
 "zK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2577,16 +2560,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/mine/eva)
-"Gk" = (
-/obj/item/gps/mining{
-	gpstag = "MINER_4"
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/personal/miner{
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "Gv" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -2742,6 +2715,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"IZ" = (
+/obj/machinery/telecomms/relay/preset/mining,
+/obj/item/gps/internal/base,
+/turf/open/floor/circuit/green/telecomms,
+/area/mine/maintenance)
 "Je" = (
 /obj/machinery/door/airlock/mining{
 	name = "Mining Station Storage";
@@ -3042,6 +3020,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"Ow" = (
+/turf/template_noop,
+/area/lavaland/surface/outdoors)
 "OC" = (
 /obj/machinery/power/smes/engineering,
 /obj/structure/cable{
@@ -3466,16 +3447,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
-"Um" = (
-/obj/item/gps/mining{
-	gpstag = "MINER_3"
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/secure_closet/personal/miner{
-	anchored = 1
-	},
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "Ux" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -3806,8 +3777,28 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 "}
 (2,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -3890,8 +3881,23 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 "}
 (4,1,1) = {"
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -3921,6 +3927,11 @@ Ap
 ab
 ab
 ab
+ab
+ab
+ab
+Ow
+Ow
 ab
 ab
 ab
@@ -3945,6 +3956,11 @@ ab
 ab
 ab
 ab
+ab
+ab
+ak
+ab
+ak
 Ap
 Ap
 Ap
@@ -3965,6 +3981,11 @@ Ap
 ab
 ab
 Ap
+Ow
+Ow
+Ow
+Ow
+Ow
 ab
 ab
 ab
@@ -3987,6 +4008,11 @@ ab
 ab
 ab
 ab
+ab
+ak
+ak
+ak
+ak
 Ap
 zW
 zW
@@ -4007,9 +4033,14 @@ Ap
 Ap
 Ap
 Ap
-ab
-ab
+Ow
+Ow
 Ap
+Ow
+Ow
+Ow
+Ow
+ab
 ab
 ab
 ab
@@ -4024,11 +4055,16 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
 ab
+ab
+ab
+ab
+ab
+ak
+ak
+ak
+ak
+ak
 Ap
 zW
 id
@@ -4042,7 +4078,7 @@ Ap
 Ap
 pB
 LZ
-zw
+IZ
 Si
 pB
 Cv
@@ -4053,6 +4089,11 @@ Ap
 Ap
 Ap
 Ap
+Ow
+Ow
+Ow
+ab
+ab
 ab
 ab
 ab
@@ -4067,6 +4108,11 @@ ab
 ab
 ab
 ab
+ab
+ab
+Ow
+ak
+ak
 ak
 ak
 ak
@@ -4096,6 +4142,11 @@ Cv
 Cv
 Ap
 Ap
+Ow
+Ow
+Ow
+ab
+ab
 ab
 ab
 ab
@@ -4108,6 +4159,11 @@ ab
 ab
 ab
 ab
+ab
+ab
+Ow
+Ow
+Ow
 YA
 YA
 JJ
@@ -4139,6 +4195,11 @@ Cv
 Cv
 Ap
 Ap
+Ow
+Ow
+Ow
+ab
+ab
 ab
 ab
 ab
@@ -4150,6 +4211,11 @@ ab
 ab
 ab
 ab
+ab
+Ow
+Ow
+Ow
+Ow
 YA
 XC
 XC
@@ -4181,6 +4247,11 @@ qK
 Cv
 Cv
 Ap
+ak
+Ow
+Ow
+Ow
+Ow
 ab
 ab
 ab
@@ -4192,6 +4263,11 @@ ab
 ab
 ab
 ab
+Ow
+Ow
+Ow
+ak
+ak
 YA
 XC
 aJ
@@ -4223,7 +4299,12 @@ sW
 sW
 Cv
 Ap
-ab
+ak
+Ow
+Ow
+Ow
+Ow
+Ow
 ab
 ab
 "}
@@ -4233,7 +4314,12 @@ ab
 ab
 ab
 ab
-ab
+Ow
+Ow
+Ow
+ak
+ak
+ak
 YA
 XC
 aW
@@ -4265,17 +4351,27 @@ qK
 sW
 Cv
 Ap
-ab
-ab
-ab
+ak
+ak
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
 "}
 (13,1,1) = {"
 ab
 ab
 ab
 ab
-ab
-ab
+Ow
+Ow
+Ow
+Ow
+ak
+ak
+ak
 YA
 sp
 jX
@@ -4307,17 +4403,27 @@ sW
 sW
 Cv
 Ap
-ab
-ab
-ab
+ak
+ak
+Ow
+ak
+ak
+Ow
+Ow
+Ow
 "}
 (14,1,1) = {"
 ab
 ab
-ab
-ab
-ab
-ab
+Ow
+Ow
+Ow
+Ow
+Ow
+ak
+ak
+ak
+ak
 YA
 yf
 SI
@@ -4349,16 +4455,26 @@ qK
 Cv
 Cv
 ak
-ab
-ab
-ab
+ak
+ak
+ak
+ak
+ak
+ak
+Ow
+Ow
 "}
 (15,1,1) = {"
 ab
 ab
-ab
-ab
-ab
+Ow
+Ow
+Ow
+ak
+ak
+ak
+ak
+ak
 ak
 YA
 YA
@@ -4391,16 +4507,26 @@ Cv
 Cv
 ak
 ak
-ab
-ab
-ab
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+Ow
 "}
 (16,1,1) = {"
 ab
-ab
+Ow
+Ow
 ak
-ab
-ab
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 RR
 FR
@@ -4423,23 +4549,33 @@ Xo
 Su
 UX
 zW
-Gk
+eN
 dX
 ef
 qc
-Um
+eN
 ND
 Cv
 ak
 ak
 ak
 ak
-ab
-ab
+ak
+ak
+ak
+ak
+ak
+ak
+Ow
 "}
 (17,1,1) = {"
 ab
-ab
+Ow
+Ow
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -4476,11 +4612,21 @@ ak
 ak
 ak
 ak
-ab
-ab
+ak
+ak
+ak
+ak
+ak
+Ow
+Ow
 "}
 (18,1,1) = {"
-ab
+Ow
+Ow
+ak
+ak
+ak
+ak
 ak
 ai
 cU
@@ -4518,11 +4664,21 @@ ND
 vl
 hq
 ak
-ab
-ab
+ak
+ak
+ak
+ak
+ak
+Ow
+Ow
 "}
 (19,1,1) = {"
-ab
+Ow
+Ow
+ak
+ak
+ak
+ak
 ak
 ak
 RR
@@ -4561,10 +4717,20 @@ ND
 ak
 ak
 ak
-ab
+ak
+ak
+ak
+ak
+ak
+Ow
 "}
 (20,1,1) = {"
-ab
+Ow
+Ow
+ak
+ak
+ak
+ak
 ak
 ak
 qL
@@ -4603,10 +4769,20 @@ PQ
 ak
 ak
 ak
-ab
+ak
+ak
+ak
+ak
+ak
+Ow
 "}
 (21,1,1) = {"
-ab
+Ow
+Ow
+ak
+ak
+ak
+ak
 ak
 ak
 RR
@@ -4645,10 +4821,20 @@ ND
 ak
 ak
 ak
-ab
+ak
+ak
+ak
+ak
+ak
+Ow
 "}
 (22,1,1) = {"
-ab
+Ow
+Ow
+ak
+ak
+ak
+ak
 ak
 ai
 cU
@@ -4687,11 +4873,21 @@ vl
 hq
 ak
 ak
-ab
+ak
+ak
+ak
+ak
+ak
+Ow
 "}
 (23,1,1) = {"
-ab
-ab
+Ow
+Ow
+ak
+ak
+ak
+ak
+ak
 ak
 ak
 ak
@@ -4729,13 +4925,23 @@ Ap
 ak
 ak
 ak
-ab
+ak
+ak
+ak
+ak
+Ow
+Ow
 "}
 (24,1,1) = {"
-ab
-ab
-ab
-ab
+Ow
+Ow
+Ow
+ak
+ak
+ak
+ak
+ak
+ak
 ak
 Ap
 RR
@@ -4759,26 +4965,36 @@ Xo
 kO
 Xc
 zW
-jQ
+eN
 iT
 Hy
 iT
-oi
+eN
 ND
 Ap
 Ap
 ak
 ak
 ak
-ab
-ab
+ak
+ak
+ak
+ak
+ak
+Ow
+Ow
 "}
 (25,1,1) = {"
 ab
-ab
-ab
-ab
-ab
+Ow
+Ow
+Ow
+ak
+ak
+ak
+ak
+ak
+ak
 Ap
 Uf
 Uf
@@ -4812,16 +5028,26 @@ ak
 ak
 ak
 ak
-ab
-ab
+ak
+ak
+ak
+ak
+Ow
+Ow
+Ow
 "}
 (26,1,1) = {"
 ab
-ab
-ab
-ab
-ab
-ab
+Ow
+Ow
+Ow
+ak
+ak
+ak
+ak
+ak
+ak
+ak
 Uf
 Rl
 Rl
@@ -4854,16 +5080,26 @@ ak
 ak
 ak
 ak
-ab
-ab
+ak
+ak
+ak
+Ow
+Ow
+Ow
+Ow
 "}
 (27,1,1) = {"
 ab
 ab
-ab
-ab
-ab
-ab
+Ow
+Ow
+Ow
+ak
+ak
+ak
+Ow
+ak
+ak
 Bx
 Rl
 Hi
@@ -4895,16 +5131,26 @@ ez
 ez
 ak
 ak
-ab
-ab
-ab
+ak
+ak
+ak
+ak
+Ow
+Ow
+Ow
+Ow
 "}
 (28,1,1) = {"
 ab
 ab
 ab
-ab
-ab
+Ow
+Ow
+ak
+ak
+ak
+Ow
+Ow
 Ap
 Uf
 gk
@@ -4937,16 +5183,26 @@ QQ
 ez
 ak
 ak
-ab
-ab
-ab
+ak
+ak
+ak
+ak
+Ow
+Ow
+Ow
+Ow
 "}
 (29,1,1) = {"
 ab
 ab
 ab
-ab
-ab
+Ow
+Ow
+ak
+ak
+Ow
+Ow
+Ow
 Ap
 Bx
 Rl
@@ -4979,8 +5235,13 @@ ez
 ez
 ak
 ak
-ab
-ab
+ak
+ak
+ak
+ak
+Ow
+Ow
+Ow
 ab
 "}
 (30,1,1) = {"
@@ -4988,7 +5249,12 @@ ab
 ab
 ab
 ab
-ab
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
 Ap
 Uf
 Rl
@@ -5021,8 +5287,13 @@ ez
 Ap
 ak
 ak
-ab
-ab
+ak
+ak
+ak
+ak
+Ow
+Ow
+Ow
 ab
 "}
 (31,1,1) = {"
@@ -5031,6 +5302,11 @@ ab
 ab
 ab
 ab
+ab
+Ow
+Ow
+Ow
+Ow
 Ap
 Uf
 Uf
@@ -5063,7 +5339,12 @@ Ap
 Ap
 ak
 ak
-ab
+ak
+ak
+ak
+Ow
+Ow
+Ow
 ab
 ab
 "}
@@ -5073,11 +5354,16 @@ ab
 ab
 ab
 ab
+ab
+Ow
+Ow
+Ow
+Ow
 Ap
 Ap
-ab
-ab
-ab
+Ow
+Ow
+ak
 ak
 ak
 zW
@@ -5105,7 +5391,12 @@ Ap
 Ap
 ak
 ak
-ab
+ak
+ak
+ak
+Ow
+Ow
+Ow
 ab
 ab
 "}
@@ -5117,11 +5408,16 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+ak
+ak
 zW
 we
 fO
@@ -5142,11 +5438,16 @@ Ap
 Ap
 Ap
 Ap
-ab
+Ow
 Ap
 Ap
 ak
-ab
+Ow
+ak
+ak
+Ow
+Ow
+Ow
 ab
 ab
 ab
@@ -5162,8 +5463,13 @@ ab
 ab
 ab
 ab
-ab
-ab
+Ow
+Ow
+Ow
+Ow
+Ow
+ak
+ak
 zW
 zW
 lH
@@ -5184,10 +5490,15 @@ Ap
 ab
 ab
 ab
-ab
-ab
+Ow
+Ow
 Ap
 ak
+Ow
+Ow
+Ow
+Ow
+Ow
 ab
 ab
 ab
@@ -5203,6 +5514,11 @@ ab
 ab
 ab
 ab
+ab
+ab
+Ow
+Ow
+Ow
 ak
 ak
 ak
@@ -5227,9 +5543,14 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
 ab
 ab
 ab
@@ -5248,10 +5569,15 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+ab
+ab
 ak
 ak
-ab
-ab
+ak
+ak
 ak
 ak
 Ap
@@ -5270,7 +5596,12 @@ ab
 ab
 ab
 ab
-ab
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
 ab
 ab
 ab
@@ -5296,6 +5627,11 @@ ab
 ab
 ab
 ab
+ak
+ak
+ak
+ak
+ab
 ab
 ab
 ab
@@ -5311,6 +5647,11 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+Ow
+Ow
 ab
 ab
 ab
@@ -5339,10 +5680,20 @@ ab
 ab
 ab
 ab
+ak
+ab
+ab
+ab
+ab
 ab
 ab
 ab
 Ap
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -5402,8 +5753,28 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 "}
 (40,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab

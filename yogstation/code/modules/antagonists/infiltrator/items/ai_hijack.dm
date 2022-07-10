@@ -24,7 +24,7 @@
 			to_chat(user, span_warning("[A] is already in the process of being hijacked!"))
 			return
 		user.visible_message(span_warning("[user] begins attaching something to [A]..."))
-		if(do_after(user, 55, target = A))
+		if(do_after(user, 5.5 SECONDS, A))
 			user.dropItemToGround(src)
 			forceMove(A)
 			A.hijacking = src

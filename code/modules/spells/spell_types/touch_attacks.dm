@@ -97,3 +97,16 @@
 	action_icon_state = "raise"
 	hand_path = /obj/item/melee/touch_attack/raisehand
 	clothes_req = FALSE
+
+/obj/effect/proc_holder/spell/targeted/touch/pacify
+	name = "Pacify"
+	desc = "This spell charges your hand with pure pacifism, alows to pacify your targets and turn them into gondolas. Also temporary mutes them."
+	hand_path = /obj/item/melee/touch_attack/pacifism
+
+	school = "evocation"
+	charge_max = 1 MINUTES
+	clothes_req = FALSE
+	cooldown_min = 20 SECONDS
+	action_icon ='icons/mob/gondolas.dmi'
+
+	action_icon_state = "gondola"

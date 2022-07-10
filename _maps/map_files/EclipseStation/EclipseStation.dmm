@@ -26599,6 +26599,7 @@
 	pixel_x = 5;
 	pixel_y = 28
 	},
+/obj/machinery/medical_kiosk,
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay/lobby)
 "bfb" = (
@@ -75871,7 +75872,7 @@
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "daF" = (
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /obj/structure/chair/office/light,
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/darkgreen{
@@ -86651,7 +86652,7 @@
 /area/maintenance/department/science)
 "nUq" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
-/obj/machinery/ai/expansion_card_holder,
+/obj/machinery/ai/server_cabinet,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/ai_monitored/secondarydatacore)
 "nWA" = (
@@ -89308,7 +89309,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "sVd" = (
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
 "sVG" = (

@@ -26,7 +26,7 @@
 	if(total_dam>=100)
 		to_chat(target, span_warning("You really feel like you should heal your burns!"))
 	for(var/i in 1 to real_duration)
-		sleep(10)
+		sleep(1 SECONDS)
 		target.adjustFireLoss(damage_per_tick)
 
 /datum/spellbook_entry/cauterize

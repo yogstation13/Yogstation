@@ -8,7 +8,7 @@
 	obj_integrity = 150
 	max_integrity = 150
 	//Smaller turnstile easier to smash
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 0, "energy" = 60, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
+	armor = list(MELEE = 30, BULLET = 20, LASER = 0, ENERGY = 60, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
 	anchored = TRUE
 	use_power = FALSE
 	idle_power_usage = 2

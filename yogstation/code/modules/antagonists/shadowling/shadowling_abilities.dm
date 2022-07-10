@@ -33,13 +33,11 @@
 /obj/effect/proc_holder/spell/targeted/sling/InterceptClickOn(mob/living/caller, params, atom/t)
 	if(!isliving(t))
 		to_chat(caller, span_warning("You may only use this ability on living things!"))
-		revert_cast()
-		return
+		return FALSE
 	user = caller
 	target = t
 	if(!shadowling_check(user))
-		revert_cast()
-		return
+		return FALSE
 
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
@@ -179,13 +177,13 @@
 			qdel(LO)
 
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
-		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
+		if(G.light_power > 0)
 			var/obj/structure/glowshroom/shadowshroom/S = new /obj/structure/glowshroom/shadowshroom(G.loc) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
 			S.generation = G.generation
 			G.visible_message(span_warning("[G] suddenly turns dark!"))
 			qdel(G)
 	for(var/turf/open/floor/grass/fairy/F in view(7, user))
-		if(!istype(F, /turf/open/floor/grass/fairy/dark))
+		if(F.light_power > 0)
 			F.visible_message(span_warning("[F] suddenly turns dark!"))
 			F.ChangeTurf(/turf/open/floor/grass/fairy/dark, flags = CHANGETURF_INHERIT_AIR)
 	for(var/obj/structure/marker_beacon/M in view(7, user))
@@ -397,7 +395,7 @@
 		if(is_thrall(M))
 			thralls++
 			to_chat(M, span_shadowling("You feel hooks sink into your mind and pull."))
-	if(!do_after(user, 3 SECONDS, target = user))
+	if(!do_after(user, 3 SECONDS, user))
 		to_chat(user, span_warning("Your concentration has been broken. The mental hooks you have sent out now retract into your mind."))
 		return
 	if(thralls >= CEILING(3 * SSticker.mode.thrall_ratio, 1) && !screech_acquired)
@@ -472,7 +470,7 @@
 	target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
 
 	to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-	if(!do_after(user, 15 SECONDS, target=target_apc))
+	if(!do_after(user, 15 SECONDS, target_apc))
 		//Whoops!  The APC's light turns back on
 		to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
 		target_apc.set_light(2)
@@ -710,7 +708,7 @@
 						  span_notice("You begin to draw [M]'s life force."))
 		M.visible_message(span_warning("[M]'s face falls slack, their jaw slightly distending."), \
 						  span_boldannounce("You are suddenly transported... far, far away..."))
-		if(!do_after(user, 5 SECONDS, target = M))
+		if(!do_after(user, 5 SECONDS, M))
 			to_chat(M, span_warning("You are snapped back to reality, your haze dissipating!"))
 			to_chat(user, span_warning("You have been interrupted. The draw has failed."))
 			return
@@ -751,6 +749,13 @@
 	var/apply_damage = TRUE
 
 /obj/effect/proc_holder/spell/targeted/void_jaunt/cast(list/targets,mob/living/user = usr)
+	if(iscarbon(usr))	//If we're not an ascendant sling
+		var/mob/living/carbon/C = usr
+		if(C.on_fire)
+			user.visible_message(span_boldwarning("[user]'s body shudders and flickers into darkness for a moment!"),
+													span_shadowling("The void rejects the flames engulfing your body, throwing you back into the burning light!"))
+			revert_cast()										
+			return
 	if(!shadowling_check(user) && !istype(user, /mob/living/simple_animal/ascendant_shadowling))
 		revert_cast()
 		return
@@ -774,6 +779,9 @@
 		user.forceMove(S2)
 		S2.jaunter = user
 		charge_counter = charge_max //Don't have to wait for cooldown to exit
+		QDEL_NULL(cooldown_overlay) //since we're giving them a free cooldown, no more cooldown_overlay
+		S2.jaunt_spell = src
+
 
 //Both have to be high to cancel out natural regeneration
 #define VOIDJAUNT_STAM_PENALTY_DARK 10
@@ -793,6 +801,8 @@
 	var/apply_damage = TRUE
 	var/move_delay = 0			//Time until next move allowed
 	var/move_speed = 2			//Deciseconds per move
+
+	var/obj/effect/proc_holder/spell/targeted/void_jaunt/jaunt_spell //what spell we actually came from (for forced cooldown)
 
 /obj/effect/dummy/phased_mob/shadowling/relaymove(mob/user, direction)
 	if(move_delay > world.time && apply_damage)	//Ascendants get no slowdown
@@ -821,6 +831,8 @@
 															span_shadowling("You exit the void."))
 
 		playsound(get_turf(jaunter), 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
+		jaunt_spell?.charge_counter = 0
+		jaunt_spell?.start_recharge()
 		jaunter = null
 	qdel(src)
 

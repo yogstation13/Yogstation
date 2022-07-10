@@ -293,8 +293,6 @@ SUBSYSTEM_DEF(job)
 	if(SSticker.triai)
 		for(var/datum/job/ai/A in occupations)
 			A.spawn_positions = 3
-		for(var/obj/effect/landmark/start/ai/secondary/S in GLOB.start_landmarks_list)
-			S.latejoin_active = TRUE
 
 	//Get the players who are ready
 	for(var/mob/dead/new_player/player in GLOB.player_list)
@@ -726,7 +724,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/Recover()
 	set waitfor = FALSE
 	var/oldjobs = SSjob.occupations
-	sleep(20)
+	sleep(2 SECONDS)
 	for (var/datum/job/J in oldjobs)
 		INVOKE_ASYNC(src, .proc/RecoverJob, J)
 

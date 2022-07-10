@@ -4,6 +4,15 @@
 /mob/living/carbon/human/species/egg
 	race = /datum/species/egg
 
+/mob/living/carbon/human/species/preternis
+	race = /datum/species/preternis
+
+/mob/living/carbon/human/species/lizard/ashwalker/cosmic
+	race = /datum/species/lizard/ashwalker/cosmic
+
+/mob/living/carbon/human/species/szlachta
+	race = /datum/species/szlachta
+
 /mob/living/carbon/human/species/pod/ivymen //jungleland
 	race = /datum/species/pod/ivymen
 

@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "being inside a locker/mech will no longer cause the heretic heart to display \"vertical?\" for people on the same z level as you"

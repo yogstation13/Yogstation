@@ -20,7 +20,7 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
 
 	materials = list(/datum/material/iron=70, /datum/material/glass=30)
@@ -75,7 +75,7 @@
 	//Welders left on now use up fuel, but lets not have them run out quite that fast
 		if(1)
 			force = 15
-			damtype = "fire"
+			damtype = BURN
 			++burned_fuel_for
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 				use(1)
@@ -94,6 +94,10 @@
 	var/plasmaAmount = reagents.get_reagent_amount(/datum/reagent/toxin/plasma)
 	dyn_explosion(T, plasmaAmount/5)//20 plasma in a standard welder has a 4 power explosion. no breaches, but enough to kill/dismember holder
 	qdel(src)
+
+/obj/item/weldingtool/attack(mob/living/M, mob/user)
+	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
@@ -172,7 +176,7 @@
 			to_chat(user, span_notice("You switch [src] on."))
 			playsound(loc, acti_sound, 50, 1)
 			force = 15
-			damtype = "fire"
+			damtype = BURN
 			hitsound = 'sound/items/welder.ogg'
 			update_icon()
 			START_PROCESSING(SSobj, src)

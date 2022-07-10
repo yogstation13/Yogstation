@@ -175,6 +175,7 @@
 	return return_list
 		
 /datum/map_generator/jungleland/generate_terrain(list/turfs)
+	var/area/jungleland/jungle_area = new()
 	var/start_time = REALTIMEOFDAY
 	var/list/ore_map = generate_ores(turfs)
 	
@@ -217,10 +218,12 @@
 		var/datum/biome/selected_biome = possible_biomes[toxic_pick][humid_pick]
 
 		selected_biome = SSmapping.biomes[selected_biome] //Get the instance of this biome from SSmapping
-		var/GT = selected_biome.generate_turf(gen_turf,density_strings)
+		var/turf/GT = selected_biome.generate_turf(gen_turf,density_strings)
 		if(istype(GT,/turf/open/floor/plating/dirt/jungleland))
 			var/turf/open/floor/plating/dirt/jungleland/J = GT
 			J.ore_present = ore_map[world.maxx * (gen_turf.y - 1) + gen_turf.x]
+		
+		GT.change_area(GT.loc,jungle_area)
 		CHECK_TICK
 
 	var/message = "Jungle land finished in [(REALTIMEOFDAY - start_time)/10]s!"

@@ -104,6 +104,8 @@
 #define SIGNFONT "Times New Roman"
 #define CHARCOAL_FONT "Candara"
 
+#define PAPER_FIELD "<span class=\"paper_field\"></span>"
+
 
 #define RESIZE_DEFAULT_SIZE 1
 

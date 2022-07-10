@@ -24,28 +24,28 @@
 			if(3)
 				visible_message(span_userdanger("Sigils form along [src]'s body. \His skin blackens as \he glows a blinding purple."), \
 									span_velvet("Your body begins to warp. Sigils etch themselves upon your flesh."))
-				animate(src, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 150) //Produces a slow skin-blackening effect
+				animate(src, color = list(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0)), time = 15 SECONDS) //Produces a slow skin-blackening effect
 				playsound(src, 'yogstation/sound/magic/divulge_03.ogg', 50, 0)
-		if(!do_after(src, 15 SECONDS, target = src))
+		if(!do_after(src, 15 SECONDS, src))
 			visible_message(span_warning("[src] falls to the ground!"), span_userdanger("Your transformation was interrupted!"))
-			animate(src, color = initial(src.color), pixel_y = initial(src.pixel_y), time = 10)
+			animate(src, color = initial(src.color), pixel_y = initial(src.pixel_y), time = 1 SECONDS)
 			return
 	playsound(src, 'yogstation/sound/magic/divulge_ending.ogg', 50, 0)
 	visible_message(span_userdanger("[src] rises into the air, crackling with power!"), "<span class='velvet bold'>Your mind...! can't--- THINK--</span>")
-	animate(src, pixel_y = src.pixel_y + 8, time = 60)
-	sleep(45)
-	Shake(5, 5, 110)
+	animate(src, pixel_y = src.pixel_y + 8, time = 6 SECONDS)
+	sleep(4.5 SECONDS)
+	Shake(5, 5, 11 SECONDS)
 	for(var/i in 1 to 20)
 		to_chat(src, "<span class='velvet bold'>[pick("I- I- I-", "Mind-", "Sigils-", "Can't think-", "<i>POWER-</i>","<i>TAKE-</i>", "M-M-MOOORE-")]</span>")
-		sleep(1.1) //Spooky flavor message spam
+		sleep(0.11 SECONDS) //Spooky flavor message spam
 	visible_message(span_userdanger("A tremendous shockwave emanates from [src]!"), "<span class='velvet big'><b>YOU ARE FREE!!</b></span>")
 	playsound(src, 'yogstation/sound/magic/divulge_end.ogg', 50, 0)
-	animate(src, color = initial(color), pixel_y = initial(pixel_y), time = 30)
+	animate(src, color = initial(color), pixel_y = initial(pixel_y), time = 3 SECONDS)
 	for(var/mob/living/L in view(7, src))
 		if(L == src)
 			continue
 		L.flash_act(1, 1)
-		L.Knockdown(50)
+		L.Knockdown(5 SECONDS)
 	if(istype(src,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
 		H.make_moja()

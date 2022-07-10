@@ -4,3 +4,9 @@
 ///This proc will be ran by areas on Initialize, and provides the areas turfs as argument to allow for generation.
 /datum/map_generator/proc/generate_terrain(list/turfs)
 	return
+
+/turf/open/genturf
+	name = "ungenerated turf"
+	desc = "If you see this, and you're not a ghost, yell at coders"
+	icon = 'icons/turf/debug.dmi'
+	icon_state = "genturf"

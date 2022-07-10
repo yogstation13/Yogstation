@@ -94,7 +94,7 @@
 
 		add_fingerprint(user)
 
-		if(do_after(user, gibtime, target = src))
+		if(do_after(user, gibtime, src))
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
 				user.visible_message(span_danger("[user] stuffs [C] into the gibber!"))
 				C.forceMove(src)
@@ -148,7 +148,7 @@
 	update_icon()
 
 	var/offset = prob(50) ? -2 : 2
-	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
+	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = 200) //start shaking
 	var/mob/living/mob_occupant = occupant
 	var/sourcename = mob_occupant.real_name
 	var/sourcejob

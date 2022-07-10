@@ -4,10 +4,11 @@
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "plasma"
 	item_state = ""	//no inhands
-	item_color = "plasma" //On accessories, this controls the worn sprite. That's a bit weird.
+	mob_overlay_icon = 'icons/mob/clothing/accessories.dmi'
 	slot_flags = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/above_suit = FALSE
+	var/above_suit_adjustable = FALSE
 	var/minimize_when_attached = TRUE // TRUE if shown as a small icon in corner, FALSE if overlayed
 	var/datum/component/storage/detached_pockets
 	var/attachment_slot = CHEST
@@ -75,7 +76,7 @@
 
 /obj/item/clothing/accessory/AltClick(mob/user)
 	if(istype(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		if(initial(above_suit))
+		if(above_suit_adjustable)
 			above_suit = !above_suit
 			to_chat(user, "[src] will be worn [above_suit ? "above" : "below"] your suit.")
 
@@ -90,7 +91,6 @@
 	desc = "For some classy, murderous fun."
 	icon_state = "waistcoat"
 	item_state = "waistcoat"
-	item_color = "waistcoat"
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -99,9 +99,9 @@
 	desc = "The best part of a maid costume."
 	icon_state = "maidapron"
 	item_state = "maidapron"
-	item_color = "maidapron"
 	minimize_when_attached = FALSE
 	attachment_slot = null
+
 
 //////////
 //Medals//
@@ -111,12 +111,12 @@
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
-	item_color = "bronze"
 	materials = list(/datum/material/iron=1000)
 	resistance_flags = FIRE_PROOF
 	var/medaltype = "medal" //Sprite used for medalbox
 	var/commended = FALSE
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 //Pinning medals on people
 /obj/item/clothing/accessory/medal/attack(mob/living/carbon/human/M, mob/living/user)
@@ -138,7 +138,7 @@
 			var/input
 			if(!commended && user != M)
 				input = stripped_input(user,"Please input a reason for this commendation, it will be recorded by Nanotrasen.", ,"", 140)
-			if(do_after(user, delay, target = M))
+			if(do_after(user, delay, M))
 				if(U.attach_accessory(src, user, 0)) //Attach it, do not notify the user of the attachment
 					if(user == M)
 						to_chat(user, span_notice("You attach [src] to [U]."))
@@ -171,7 +171,6 @@
 	name = "ribbon"
 	desc = "A ribbon"
 	icon_state = "cargo"
-	item_color = "cargo"
 
 /obj/item/clothing/accessory/medal/ribbon/cargo
 	name = "\"cargo tech of the shift\" award"
@@ -181,7 +180,6 @@
 	name = "silver medal"
 	desc = "A silver medal."
 	icon_state = "silver"
-	item_color = "silver"
 	medaltype = "medal-silver"
 	materials = list(/datum/material/silver=1000)
 
@@ -209,7 +207,6 @@
 	name = "gold medal"
 	desc = "A prestigious golden medal."
 	icon_state = "gold"
-	item_color = "gold"
 	medaltype = "medal-gold"
 	materials = list(/datum/material/gold=1000)
 
@@ -217,6 +214,7 @@
 	name = "medal of captaincy"
 	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
@@ -226,9 +224,8 @@
 	name = "plasma medal"
 	desc = "An eccentric medal made of plasma."
 	icon_state = "plasma"
-	item_color = "plasma"
 	medaltype = "medal-plasma"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = -10, "acid" = 0) //It's made of plasma. Of course it's flammable.
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = -10, ACID = 0) //It's made of plasma. Of course it's flammable.
 	materials = list(/datum/material/plasma=1000)
 
 /obj/item/clothing/accessory/medal/plasma/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -241,6 +238,7 @@
 	name = "nobel sciences award"
 	desc = "A plasma medal which represents significant contributions to the field of science or robotics."
 
+
 ////////////
 //Armbands//
 ////////////
@@ -249,9 +247,9 @@
 	name = "red armband"
 	desc = "An fancy red armband!"
 	icon_state = "redband"
-	item_color = "redband"
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "security deputy armband"
@@ -261,43 +259,37 @@
 	name = "cargo bay guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is brown."
 	icon_state = "cargoband"
-	item_color = "cargoband"
 
 /obj/item/clothing/accessory/armband/engine
 	name = "engineering guard armband"
 	desc = "An armband, worn by security members to display which department they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engieband"
-	item_color = "engieband"
 
 /obj/item/clothing/accessory/armband/science
 	name = "science guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is purple."
 	icon_state = "rndband"
-	item_color = "rndband"
 
 /obj/item/clothing/accessory/armband/service
 	name = "service guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is green."
 	icon_state = "serviceband"
-	item_color = "serviceband"
 
 /obj/item/clothing/accessory/armband/hydro
 	name = "hydroponics guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is green and blue."
 	icon_state = "hydroband"
-	item_color = "hydroband"
 
 /obj/item/clothing/accessory/armband/med
 	name = "medical guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is white."
 	icon_state = "medband"
-	item_color = "medband"
 
 /obj/item/clothing/accessory/armband/medblue
 	name = "medical guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is white and blue."
 	icon_state = "medblueband"
-	item_color = "medblueband"
+
 
 //////////////
 //OBJECTION!//
@@ -307,7 +299,6 @@
 	name = "attorney's badge"
 	desc = "Fills you with the conviction of JUSTICE. Lawyers tend to want to show it to everyone they meet."
 	icon_state = "lawyerbadge"
-	item_color = "lawyerbadge"
 
 /obj/item/clothing/accessory/lawyers_badge/attack_self(mob/user)
 	if(prob(1))
@@ -324,14 +315,15 @@
 	if(L)
 		L.bubble_icon = initial(L.bubble_icon)
 
+
 ////////////////
 //HA HA! NERD!//
 ////////////////
+
 /obj/item/clothing/accessory/pocketprotector
 	name = "pocket protector"
 	desc = "Can protect your clothing from ink stains, but you'll look like a nerd if you're using one."
 	icon_state = "pocketprotector"
-	item_color = "pocketprotector"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/pocketprotector
 
 /obj/item/clothing/accessory/pocketprotector/full/Initialize()
@@ -345,6 +337,7 @@
 	for(var/i in 1 to 3)
 		new /obj/item/lipstick/random(src)
 
+
 ////////////////
 //OONGA BOONGA//
 ////////////////
@@ -353,37 +346,50 @@
 	name = "bone talisman"
 	desc = "A hunter's talisman, some say the old gods smile on those who wear it."
 	icon_state = "talisman"
-	item_color = "talisman"
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
 
 /obj/item/clothing/accessory/skullcodpiece
 	name = "skull codpiece"
 	desc = "A skull shaped ornament, intended to protect the important things in life."
 	icon_state = "skull"
-	item_color = "skull"
 	above_suit = TRUE
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+	above_suit_adjustable = TRUE
+	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
+	attachment_slot = GROIN
+
+/obj/item/clothing/accessory/skilt
+	name = "Sinew Skirt"
+	desc = "For the last time. IT'S A KILT not a skirt."
+	icon_state = "skilt"
+	above_suit_adjustable = TRUE
+	minimize_when_attached = FALSE
+	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
 	attachment_slot = GROIN
 
 /obj/item/clothing/accessory/resinband
 	name = "resin armband"
 	desc = "A smooth amber colored armband made of solid resin, generally worn by tribal aristocracy."
 	icon_state = "resinband"
-	item_color = "resinband"
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25)
+	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
 	attachment_slot = null
 	above_suit = TRUE
+	above_suit_adjustable = TRUE
+
+
 
 /////////////
 //Poppy Pin//
 /////////////
+
 /obj/item/clothing/accessory/poppypin
 	name = "Poppy pins"
 	desc = "A poppy pin that is meant to commemorate the fallen soldiers in wars. It symbolizes the gunshot that killed the soldiers."
 	icon_state = "poppy"
-	item_color = "poppy"
+
+
 //////////////
 //Ooh shiny!//
 //////////////
@@ -392,9 +398,9 @@
 	name = "singularity shard necklace"
 	desc = "The gem mounted inside seems to glow with an unearthly, pulsing light. It is bitter cold to the touch."
 	icon_state = "sing_necklace"
-	item_color = "sing_necklace"
 	above_suit = TRUE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = -5, "fire" = 0, "acid" = 0) //It IS radioactive after all. Watch me get yelled at for powergaming because I'm making this my """donator""" item - Mqiib
+	above_suit_adjustable = TRUE
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = -5, FIRE = 0, ACID = 0) //It IS radioactive after all. Watch me get yelled at for powergaming because I'm making this my """donator""" item - Mqiib
 	attachment_slot = null
 	light_power = 2
 	light_range = 1.4 //Same as cosmic bedsheet

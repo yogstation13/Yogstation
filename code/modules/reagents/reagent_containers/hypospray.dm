@@ -73,6 +73,7 @@
 /obj/item/reagent_containers/hypospray/CMO
 	list_reagents = list(/datum/reagent/medicine/omnizine = 30)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
 
 /obj/item/reagent_containers/hypospray/combat
 	name = "combat stimulant injector"
