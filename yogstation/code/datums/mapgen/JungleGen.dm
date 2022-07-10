@@ -175,7 +175,7 @@
 	return return_list
 		
 /datum/map_generator/jungleland/generate_terrain(list/turfs)
-	var/area/jungleland/jungle_area = new()
+	var/area/jungleland/jungle_area = new /area/jungleland()
 	var/start_time = REALTIMEOFDAY
 	var/list/ore_map = generate_ores(turfs)
 	
@@ -222,10 +222,13 @@
 		if(istype(GT,/turf/open/floor/plating/dirt/jungleland))
 			var/turf/open/floor/plating/dirt/jungleland/J = GT
 			J.ore_present = ore_map[world.maxx * (gen_turf.y - 1) + gen_turf.x]
-		
-		GT.change_area(GT.loc,jungle_area)
+		var/area/old_area = GT.loc
+		old_area.contents -= GT 
+		jungle_area.contents += GT
+		GT.change_area(old_area,jungle_area)
 		CHECK_TICK
 
+	jungle_area.finish_generation()
 	var/message = "Jungle land finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, "<span class='boldannounce'>[message]</span>")
 	log_world(message)

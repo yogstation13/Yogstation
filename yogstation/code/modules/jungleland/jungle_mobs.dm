@@ -1,9 +1,14 @@
 /mob/living/simple_animal/hostile/yog_jungle //yog_jungle and not just jungle because TG has some mobs under /jungle/ that i dont want to fuck with and override (they are unused, but like whats the point..)
 	icon = 'yogstation/icons/mob/jungle.dmi'
 	stat_attack = UNCONSCIOUS
+	weather_immunities = WEATHER_ACID
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	robust_searching = TRUE
 	faction = list("mining")
 	see_in_dark = 8
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	pressure_resistance = 100
 
 /mob/living/simple_animal/hostile/yog_jungle/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
@@ -154,6 +159,7 @@
 	speak_emote = list("roars", "howls")
 	emote_hear = list("stalks.","listens.","hears.")
 	emote_taunt = list("defies", "roars")
+	faction = list() //hostile even to the jungle itself
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
@@ -219,6 +225,7 @@
 		lure_encryption_key = headphones.keyslot
 
 	fully_heal()
+	faction = list("mining")
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/reveal_true_form()
 	new /obj/effect/temp_visual/skin_twister_out(get_turf(src))
@@ -232,6 +239,7 @@
 	speak_chance = initial(speak_chance)
 	taunt_chance = initial(taunt_chance)
 	human_lure = FALSE
+	faction = list()
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/pick_lure()
 	var/mob/living/picked = pick(subtypesof(/mob/living/simple_animal/hostile/yog_jungle))
@@ -317,10 +325,10 @@
 	icon_living = "mosquito"
 	icon_dead = "mosquito_dead"
 	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
-	speak = list("eak!","sheik!","ahik!","keish!")
-	speak_emote = list("shimmers", "vibrates")
-	emote_hear = list("vibes.","sings.","shimmers.")
-	emote_taunt = list("tremors", "shakes")
+	speak = list("bzzzzz")
+	speak_emote = list("buzzes")
+	emote_hear = list("buzzes")
+	emote_taunt = list("buzzes")
 	speak_chance = 0
 	taunt_chance = 0
 	turns_per_move = 0
@@ -342,6 +350,12 @@
 
 	var/has_blood = FALSE
 	var/overshoot_dist = 5
+
+	var/awoke = TRUE
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs,COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,.proc/react_to_daynight_change)
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/Aggro()
 	. = ..()
@@ -375,6 +389,14 @@
 	icon_state = "mosquito_blood"
 	animate(src,color = initial(color),time = charge_ramp_up*2)
 
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(!awoke && stat != DEAD)
+		toggle_ai(AI_ON) 
+		awoke = TRUE 
+		icon_state = icon_living
+		FindTarget(user)
+
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/prepare_charge()
 	if(!get_charge())
 		return FALSE 
@@ -395,6 +417,10 @@
 	charging = TRUE
 	animate(src,color = rgb(163, 0, 0),time = charge_ramp_up)
 	sleep(charge_ramp_up)
+	if(stat == DEAD)
+		animate(src,color = initial(color),time = charge_ramp_up)
+		return
+
 	throw_at(found_turf,dist + overshoot_dist,4,spin = FALSE)
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/reset_charge()
@@ -406,3 +432,17 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/get_charge()
 	return can_charge 
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/react_to_daynight_change(updates,luminosity)
+	if(stat == DEAD)
+		return 
+
+	if(luminosity > 0 && awoke && !target)
+		toggle_ai(AI_OFF)
+		awoke = FALSE 
+		icon_state = "mosquito_sleeping"
+	
+	if(luminosity <= 0 && !awoke)
+		toggle_ai(AI_ON) 
+		awoke = TRUE 
+		icon_state = has_blood ? "mosquito_blood" : icon_living

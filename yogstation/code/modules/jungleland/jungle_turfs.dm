@@ -15,22 +15,31 @@
 	name = "Jungleland"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	outdoors = TRUE
+	has_gravity = TRUE
+	always_unpowered = TRUE
+	poweralm = FALSE
+	power_environ = FALSE
+	power_equip = FALSE
+	power_light = FALSE
+	requires_power = TRUE
+
 	var/daynight_cycle = TRUE
 	var/update_interval = 60 SECONDS
 	var/updates = 0 
 	var/cached_luminosity = 0
 
-/area/jungleland/Initialize()
-	. = ..()
+/area/jungleland/proc/finish_generation()
 	INVOKE_ASYNC(src,.proc/daynight_cycle)
-
 
 /area/jungleland/proc/daynight_cycle()
 	set waitfor = FALSE
 	updates += 1
 	//whew that's quite a bit of math! it's quite simple once you get it tho, think of (current_inteval/update_interval) as x, sin(x * arcsin(1)) turns sin()'s period from 2*PI to 4,
-	//working with integers is nicer, all the other stuff is mostly fluff to make it so it takes 10 update_interval to go from day to night and back. clamping at zero since light power cannot go negative.
+	//working with integers is nicer, all the other stuff is mostly fluff to make it so it takes 10 update_interval to go from day to night and back.
 	var/new_luminosity = CEILING( (LIGHTING_GRANULARITY  *sin( ( updates * arcsin(1) ) / UPDATES_IN_QUARTER_DAY) ) ,1 )/NOON_DIVISOR
+	
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,updates,new_luminosity)
+	
 	if(new_luminosity != cached_luminosity)
 		if(new_luminosity > 0 && cached_luminosity < 0)
 			for(var/mob/M in contents)
@@ -54,7 +63,8 @@
 	desc = "pain"
 	icon = 'yogstation/icons/turf/floors/jungle.dmi'
 	icon_state = "jungle"
-
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+	planetary_atmos = TRUE
 	var/can_spawn_ore = TRUE
 	var/ore_present = ORE_EMPTY
 
@@ -110,6 +120,8 @@
 	name = "sulphuric pit"
 	color = "#00c167"
 	slowdown = 2
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+	planetary_atmos = TRUE
 
 /turf/open/water/toxic_pit/Entered(atom/movable/AM)
 	. = ..()
