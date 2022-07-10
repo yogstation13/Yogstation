@@ -28,14 +28,14 @@
 		reagents.add_reagent(reagent_id, potency)						   //processes
 
 /obj/structure/reagent_dispensers/geyser/attackby(obj/item/W, mob/user, params)
-	if(istype(/obj/item/t_scanner/adv_mining_scanner))
+	if(istype(W, /obj/item/t_scanner/adv_mining_scanner))
 		if(activated)
 			to_chat(user, span_warning("The [src] is already activated!"))
 			return
 		to_chat(user, span_notice("You start activating the [src]...")) ///Power of mining scanners
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, span_notice("You activate the [src]"))
-			var/obj/item/card/id/I = M.get_idcard(TRUE)
+			var/obj/item/card/id/I = user.get_idcard(TRUE)
 			if(I)
 				to_chat(user, span_notice("You gain 100 mining points for scanning the [src]."))
 				I.mining_points += points
@@ -47,7 +47,6 @@
 	return  
 
 /obj/structure/reagent_dispensers/geyser/random
-	erupting_state = null
 	var/list/options = list(/datum/reagent/oil = 2, /datum/reagent/clf3 = 1) //fucking add more
 
 /obj/structure/reagent_dispensers/geyser/random/Initialize()

@@ -12,7 +12,7 @@
 	var/powered = FALSE
 	var/pump_power = 2 //units we pump per process (2 seconds)
 
-	var/obj/structure/geyser/geyser
+	var/obj/structure/reagent_dispensers/geyser/geyser
 	var/volume = 200
 
 
@@ -49,7 +49,7 @@
 	if(!anchored)
 		return
 	if(!geyser)
-		for(var/obj/structure/geyser/G in loc.contents)
+		for(var/obj/structure/reagent_dispensers/geyser/G in loc.contents)
 			geyser = G
 		if(!geyser) //we didnt find one, abort
 			toggle_active()
