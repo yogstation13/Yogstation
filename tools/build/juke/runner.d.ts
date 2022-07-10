@@ -1,15 +1,11 @@
 /// <reference types="node" />
 import EventEmitter from 'events';
-import { Parameter, ParameterType } from './parameter';
-import { Target } from './target';
+import { Parameter } from './parameter';
+import { ExecutionContext, Target } from './target';
 export declare type RunnerConfig = {
     targets?: Target[];
     default?: Target;
     parameters?: Parameter[];
-};
-export declare type ExecutionContext = {
-    /** Get parameter value. */
-    get: <T extends ParameterType>(parameter: Parameter<T>) => (T extends Array<unknown> ? T : T | null);
 };
 export declare const runner: {
     defaultTarget?: Target | undefined;
@@ -17,16 +13,17 @@ export declare const runner: {
     parameters: Parameter[];
     workers: Worker[];
     configure(config: RunnerConfig): void;
-    start(): Promise<void>;
+    start(): Promise<number>;
 };
 declare class Worker {
     readonly target: Target;
     readonly context: ExecutionContext;
+    readonly dependsOn: Target[];
     dependencies: Set<Target>;
     generator?: AsyncGenerator;
     emitter: EventEmitter;
     hasFailed: boolean;
-    constructor(target: Target, context: ExecutionContext);
+    constructor(target: Target, context: ExecutionContext, dependsOn: Target[]);
     resolveDependency(target: Target): void;
     rejectDependency(target: Target): void;
     start(): void;

@@ -29,7 +29,7 @@ const Juke = require('./juke');
 const { yarn } = require('./cbt/yarn');
 const { dm } = require('./cbt/dm');
 
-const DME_NAME = 'tgstation';
+const DME_NAME = 'yogstation';
 
 const YarnTarget = Juke.createTarget({
   name: 'yarn',
@@ -44,21 +44,21 @@ const YarnTarget = Juke.createTarget({
   executes: () => yarn('install'),
 });
 
-const TgFontTarget = Juke.createTarget({
-  name: 'tgfont',
-  dependsOn: [YarnTarget],
-  inputs: [
-    'tgui/.yarn/install-target',
-    'tgui/packages/tgfont/**/*.+(js|cjs|svg)',
-    'tgui/packages/tgfont/package.json',
-  ],
-  outputs: [
-    'tgui/packages/tgfont/dist/tgfont.css',
-    'tgui/packages/tgfont/dist/tgfont.eot',
-    'tgui/packages/tgfont/dist/tgfont.woff2',
-  ],
-  executes: () => yarn('workspace', 'tgfont', 'build'),
-});
+//const TgFontTarget = Juke.createTarget({
+//  name: 'tgfont',
+//  dependsOn: [YarnTarget],
+//  inputs: [
+//    'tgui/.yarn/install-target',
+//    'tgui/packages/tgfont/**/*.+(js|cjs|svg)',
+//    'tgui/packages/tgfont/package.json',
+//  ],
+//  outputs: [
+//    'tgui/packages/tgfont/dist/tgfont.css',
+//    'tgui/packages/tgfont/dist/tgfont.eot',
+//    'tgui/packages/tgfont/dist/tgfont.woff2',
+//  ],
+//  executes: () => yarn('workspace', 'tgfont', 'build'),
+//});
 
 const TguiTarget = Juke.createTarget({
   name: 'tgui',
@@ -114,7 +114,7 @@ const DmTarget = Juke.createTarget({
 
 const DefaultTarget = Juke.createTarget({
   name: 'default',
-  dependsOn: [TguiTarget, TgFontTarget, DmTarget],
+  dependsOn: [TguiTarget, DmTarget],
 });
 
 /**
@@ -130,13 +130,19 @@ const DefaultTarget = Juke.createTarget({
 
 const TgsTarget = Juke.createTarget({
   name: 'tgs',
-  dependsOn: [TguiTarget, TgFontTarget],
+  dependsOn: [TguiTarget],
   executes: async () => {
     Juke.logger.info('Prepending TGS define');
     prependDefines('TGS');
   },
 });
 
-Juke.setup({
-  default: DefaultTarget,
-});
+const TGS_MODE = process.env.CBT_BUILD_MODE === 'TGS';
+
+Juke
+  .setup({
+    default: TGS_MODE ? TgsTarget : DefaultTarget,
+  })
+  .then((code) => {
+    process.exit(code);
+  });
