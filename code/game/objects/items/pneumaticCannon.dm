@@ -35,7 +35,11 @@
 	var/fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	var/spin_item = TRUE //Do the projectiles spin when launched?
 	trigger_guard = TRIGGER_GUARD_NORMAL
-
+	
+	var/list/blacklist_items = list(
+		/obj/item/melee/baton,
+		/obj/item/melee/supermatter_sword
+		)
 
 /obj/item/pneumatic_cannon/Initialize()
 	. = ..()
@@ -102,6 +106,10 @@
 /obj/item/pneumatic_cannon/proc/can_load_item(obj/item/I, mob/user)
 	if(!istype(I))			//Players can't load non items, this allows for admin varedit inserts.
 		return TRUE
+	if(blacklist_items && is_type_in_list(I, blacklist_items))
+		if(user)
+			to_chat(user, span_warning("You are prevented from putting [I] into [src]!"))
+		return
 	if(allowed_typecache && !is_type_in_typecache(I, allowed_typecache))
 		if(user)
 			to_chat(user, span_warning("[I] won't fit into [src]!"))

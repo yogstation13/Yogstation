@@ -13,8 +13,8 @@
 
 	alt_titles = list("Custodian", "Sanitation Worker", "Cleaner", "Caretaker", "Maid")
 
-	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
+	added_access = list()
+	base_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
@@ -23,8 +23,8 @@
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/janitor/proc/OmegaStationChanges()
-	access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
-	minimal_access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
+	added_access = list()
+	base_access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
 	supervisors = "the captain and the head of personnel"
 
 /datum/job/janitor/proc/EclipseStationChanges()

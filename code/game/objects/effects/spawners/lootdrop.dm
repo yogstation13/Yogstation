@@ -87,6 +87,18 @@
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 			/obj/item/trash/syndi_cakes = 1)
 
+/obj/effect/spawner/lootdrop/donkpockets
+	name = "donk pocket box spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/item/storage/box/donkpockets/donkpocketspicy = 1,
+			/obj/item/storage/box/donkpockets/donkpocketteriyaki = 1,
+			/obj/item/storage/box/donkpockets/donkpocketpizza = 1,
+			/obj/item/storage/box/donkpockets/donkpocketberry = 1,
+			/obj/item/storage/box/donkpockets/donkpockethonk = 1,
+		)
+
 /obj/effect/spawner/lootdrop/three_course_meal
 	name = "three course meal spawner"
 	lootcount = 3
