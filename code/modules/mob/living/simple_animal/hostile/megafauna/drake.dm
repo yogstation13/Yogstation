@@ -47,6 +47,7 @@ Difficulty: Medium
 	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	speed = 5
 	move_to_delay = 5
 	ranged = TRUE

@@ -781,6 +781,12 @@
 	suffix = "5x3_yogsmaintrpg.dmm"
 	name = "Maint yogsmaintrpg"
 
+///Author: Vaelophis
+/datum/map_template/ruin/station/maint/fivexthree/smallfish
+	id = "smallfish"
+	suffix = "5x3_smallfish.dmm"
+	name = "Maint smallfish"
+
 ///Author: Veeblefetzer
 /datum/map_template/ruin/station/maint/fivexthree/podmin
 	id = "podmin"
