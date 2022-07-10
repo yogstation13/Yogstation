@@ -8,6 +8,7 @@
 	anchored = TRUE
 	reagent_id = /datum/reagent/oil
 	tank_volume = 500
+	filled = FALSE
 
 	var/activated = FALSE //whether we are active and generating chems
 	var/potency = 2 //how much reagents we add every process (2 seconds)
