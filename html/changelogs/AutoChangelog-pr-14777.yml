@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "fixed not being able to make ion thrust or capacitor bank"
