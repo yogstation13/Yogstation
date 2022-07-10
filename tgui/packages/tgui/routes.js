@@ -10,7 +10,7 @@ import { Window } from './layouts';
 
 const requireInterface = require.context('./interfaces', false, /\.js$/);
 
-const routingError = (type, name) => () => {
+const routingError = (type, name) => {
   return (
     <Window resizable>
       <Window.Content scrollable>

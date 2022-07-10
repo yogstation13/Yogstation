@@ -124,22 +124,22 @@
    },
  });
 
- export const TgFontTarget = new Juke.Target({
-   dependsOn: [YarnTarget],
-   inputs: [
-     'tgui/.yarn/install-target',
-     'tgui/packages/tgfont/**/*.+(js|cjs|svg)',
-     'tgui/packages/tgfont/package.json',
-   ],
-   outputs: [
-     'tgui/packages/tgfont/dist/tgfont.css',
-     'tgui/packages/tgfont/dist/tgfont.eot',
-     'tgui/packages/tgfont/dist/tgfont.woff2',
-   ],
-   executes: async () => {
-     await yarn('workspace', 'tgfont', 'build');
-   },
- });
+ //export const TgFontTarget = new Juke.Target({
+ //  dependsOn: [YarnTarget],
+ //  inputs: [
+ //    'tgui/.yarn/install-target',
+ //    'tgui/packages/tgfont/**/*.+(js|cjs|svg)',
+ //    'tgui/packages/tgfont/package.json',
+ //  ],
+ //  outputs: [
+ //    'tgui/packages/tgfont/dist/tgfont.css',
+ //    'tgui/packages/tgfont/dist/tgfont.eot',
+ //    'tgui/packages/tgfont/dist/tgfont.woff2',
+ //  ],
+ //  executes: async () => {
+ //    await yarn('workspace', 'tgfont', 'build');
+ //  },
+ //});
 
  export const TguiTarget = new Juke.Target({
    dependsOn: [YarnTarget],
@@ -172,12 +172,12 @@
    },
  });
 
- export const TguiTscTarget = new Juke.Target({
-   dependsOn: [YarnTarget],
-   executes: async () => {
-     await yarn('tsc');
-   },
- });
+ //export const TguiTscTarget = new Juke.Target({
+ //  dependsOn: [YarnTarget],
+ //  executes: async () => {
+ //    await yarn('tsc');
+ //  },
+ //});
 
  export const TguiTestTarget = new Juke.Target({
    dependsOn: [YarnTarget],
@@ -187,7 +187,7 @@
  });
 
  export const TguiLintTarget = new Juke.Target({
-   dependsOn: [YarnTarget, TguiEslintTarget, TguiTscTarget, TguiTestTarget],
+   dependsOn: [YarnTarget, TguiEslintTarget, TguiTestTarget],
  });
 
  export const TguiDevTarget = new Juke.Target({
@@ -213,7 +213,7 @@
  });
 
  export const BuildTarget = new Juke.Target({
-   dependsOn: [TguiTarget, TgFontTarget, DmTarget],
+   dependsOn: [TguiTarget, DmTarget],
  });
 
  export const ServerTarget = new Juke.Target({
@@ -282,7 +282,7 @@
  };
 
  export const TgsTarget = new Juke.Target({
-   dependsOn: [TguiTarget, TgFontTarget],
+   dependsOn: [TguiTarget],
    executes: async () => {
      Juke.logger.info('Prepending TGS define');
      prependDefines('TGS');
