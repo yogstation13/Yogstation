@@ -7,8 +7,8 @@
 	spawn_positions = 0
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list()
-	minimal_access = list()
+	added_access = list()
+	base_access = list()
 	alt_titles = list("Visitor", "Traveler", "Siteseer")
 	outfit = /datum/outfit/job/tourist
 	paycheck = PAYCHECK_EASY
