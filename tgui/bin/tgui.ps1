@@ -53,7 +53,7 @@ function task-clean {
   Remove-Quiet -Recurse -Force ".yarn\unplugged"
   Remove-Quiet -Recurse -Force ".yarn\build-state.yml"
   Remove-Quiet -Recurse -Force ".yarn\install-state.gz"
-  Remove-Quiet -Force ".pnp.js"
+  Remove-Quiet -Force ".pnp.*"
   ## NPM artifacts
   Get-ChildItem -Path "." -Include "node_modules" -Recurse -File:$false | Remove-Item -Recurse -Force
   Remove-Quiet -Force "package-lock.json"
