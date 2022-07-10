@@ -5,7 +5,8 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	robust_searching = TRUE
 	faction = list("mining")
-	see_in_dark = 8
+	see_in_dark = 3
+	vision_range = 4
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	pressure_resistance = 100
