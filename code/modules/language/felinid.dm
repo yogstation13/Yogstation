@@ -1,6 +1,6 @@
 /datum/language/felinid
 	name = "Felinid"
-	desc = "A language devised by felinids to secretly plot against regular humans"
+	desc = "A language devised by felinids to collaborate and hunt more efficiently"
 	exclaim_verb = "miaows"
 	key = "f"
 	flags = TONGUELESS_SPEECH
