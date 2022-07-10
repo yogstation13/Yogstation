@@ -247,6 +247,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = UNIQUE_RENAME
 	wound_bonus = -10
+	cryo_preserve = TRUE
 	var/reskinned = FALSE
 	var/chaplain_spawnable = TRUE
 
