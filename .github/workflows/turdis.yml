@@ -6,7 +6,7 @@ name: Turdis
 # events but only for the master branch
 on:
   pull_request:
-    branches: [master, beta, aeiou]
+    branches: [master, beta]
   push:
     branches: [master, beta]
 
