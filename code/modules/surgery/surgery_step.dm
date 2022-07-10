@@ -37,7 +37,7 @@
 	if(accept_hand)
 		if(!tool)
 			success = TRUE
-		if(iscyborg(user))
+		if(iscyborg(user) && istype(tool, /obj/item/borg/cyborghug))
 			success = TRUE
 
 // yogs start - tool switcher
@@ -116,10 +116,10 @@
 		// Blood splatters on tools and user
 		if(tool && prob(20))
 			tool.add_mob_blood(target)
-			to_chat(user, span_warning("Your [tool] gets covered [target]'s blood "))
+			to_chat(user, span_warning("[tool] gets covered in [target]'s blood "))
 		if(prob(10))
 			user.add_mob_blood(target)
-			to_chat(user, span_warning("You get covered [target]'s blood "))
+			to_chat(user, span_warning("You get covered in [target]'s blood "))
 
 		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
 	 tool) && !try_to_fail)
