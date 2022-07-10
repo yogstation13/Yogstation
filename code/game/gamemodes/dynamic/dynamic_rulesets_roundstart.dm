@@ -1002,4 +1002,3 @@
 		if(!bloodsuckermind.make_bloodsucker(assigned_bloodsuckers))
 			assigned -= assigned_bloodsuckers
 	return TRUE
-
