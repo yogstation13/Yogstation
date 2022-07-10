@@ -392,66 +392,12 @@
 	for(var/i in 1 to 5)
 		new /obj/item/paper(src)
 
-/obj/item/storage/box/syndie_kit/imp_freedom
-	real_name = "freedom implant box"
-
-/obj/item/storage/box/syndie_kit/imp_freedom/PopulateContents()
-	new /obj/item/implanter/freedom(src)
-
-/obj/item/storage/box/syndie_kit/imp_microbomb
-	real_name = "microbomb implant box"
-
-/obj/item/storage/box/syndie_kit/imp_microbomb/PopulateContents()
-	new /obj/item/implanter/explosive(src)
-
-/obj/item/storage/box/syndie_kit/imp_macrobomb
-	real_name = "macrobomb implant box"
-
-/obj/item/storage/box/syndie_kit/imp_macrobomb/PopulateContents()
-	new /obj/item/implanter/explosive_macro(src)
-
-/obj/item/storage/box/syndie_kit/imp_uplink
-	real_name = "uplink implant box"
-
-/obj/item/storage/box/syndie_kit/imp_uplink/PopulateContents()
-	new /obj/item/implanter/uplink(src)
-
 /obj/item/storage/box/syndie_kit/bioterror
 	real_name = "bioterror syringe box"
 
 /obj/item/storage/box/syndie_kit/bioterror/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/syringe/bioterror(src)
-
-/obj/item/storage/box/syndie_kit/imp_adrenal
-	real_name = "adrenal implant box"
-
-/obj/item/storage/box/syndie_kit/imp_adrenal/PopulateContents()
-	new /obj/item/implanter/adrenalin(src)
-
-/obj/item/storage/box/syndie_kit/imp_storage
-	real_name = "storage implant box"
-
-/obj/item/storage/box/syndie_kit/imp_storage/PopulateContents()
-	new /obj/item/implanter/storage(src)
-
-/obj/item/storage/box/syndie_kit/imp_stealth
-	real_name = "stealth implant box"
-
-/obj/item/storage/box/syndie_kit/imp_stealth/PopulateContents()
-	new /obj/item/implanter/stealth(src)
-
-/obj/item/storage/box/syndie_kit/imp_radio
-	real_name = "syndicate radio implant box"
-
-/obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
-	new /obj/item/implanter/radio/syndicate(src)
-	
-/obj/item/storage/box/syndie_kit/imp_mindshield
-	real_name = "mindshield implant box"
-
-/obj/item/storage/box/syndie_kit/imp_mindshield/PopulateContents()
-	new /obj/item/implanter/mindshield/tot(src)
 
 /obj/item/storage/box/syndie_kit/space
 	real_name = "boxed space suit and helmet"

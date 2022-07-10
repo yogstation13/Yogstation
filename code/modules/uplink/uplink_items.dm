@@ -1693,7 +1693,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Adrenal Implant"
 	desc = "An implant injected into the body, and later activated at the user's will. It will inject a chemical \
 			cocktail which removes all incapacitating effects, lets the user run faster and has a mild healing effect."
-	item = /obj/item/storage/box/syndie_kit/imp_adrenal
+	item = /obj/item/implanter/adrenalin
 	cost = 8
 	player_minimum = 25
 
@@ -1708,7 +1708,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Freedom Implant"
 	desc = "An implant injected into the body and later activated at the user's will. It will attempt to free the \
 			user from common restraints such as handcuffs."
-	item = /obj/item/storage/box/syndie_kit/imp_freedom
+	item = /obj/item/implanter/freedom
 	cost = 5
 	manufacturer = /datum/corporation/traitor/waffleco
 
@@ -1717,7 +1717,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \
 			The more implants inside of you, the higher the explosive power. \
 			This will permanently destroy your body, however."
-	item = /obj/item/storage/box/syndie_kit/imp_microbomb
+	item = /obj/item/implanter/explosive
 	cost = 2
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -1725,7 +1725,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Macrobomb Implant"
 	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \
 			Upon death, releases a massive explosion that will wipe out everything nearby."
-	item = /obj/item/storage/box/syndie_kit/imp_macrobomb
+	item = /obj/item/implanter/explosive_macro
 	cost = 20
 	include_modes = list(/datum/game_mode/nuclear)
 	restricted = TRUE
@@ -1734,7 +1734,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Internal Syndicate Radio Implant"
 	desc = "An implant injected into the body, allowing the use of an internal Syndicate radio. \
 			Used just like a regular headset, but can be disabled to use external headsets normally and to avoid detection."
-	item = /obj/item/storage/box/syndie_kit/imp_radio
+	item = /obj/item/implanter/radio/syndicate
 	cost = 4
 	manufacturer = /datum/corporation/traitor/donkco
 	restricted = TRUE
@@ -1751,7 +1751,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Stealth Implant"
 	desc = "This one-of-a-kind implant will make you almost invisible if you play your cards right. \
 			On activation, it will conceal you inside a chameleon cardboard box that is only revealed once someone bumps into it."
-	item = /obj/item/storage/box/syndie_kit/imp_stealth
+	item = /obj/item/implanter/stealth
 	manufacturer = /datum/corporation/traitor/donkco
 	cost = 8
 
@@ -1759,7 +1759,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Storage Implant"
 	desc = "An implant injected into the body, and later activated at the user's will. It will open a small bluespace \
 			pocket capable of storing two regular-sized items."
-	item = /obj/item/storage/box/syndie_kit/imp_storage
+	item = /obj/item/implanter/storage
 	cost = 8
 
 /datum/uplink_item/implants/thermals
@@ -1774,7 +1774,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Uplink Implant"
 	desc = "An implant injected into the body, and later activated at the user's will. Has no telecrystals and must be charged by the use of physical telecrystals. \
 			Undetectable (except via surgery), and excellent for escaping confinement."
-	item = /obj/item/storage/box/syndie_kit/imp_uplink
+	item = /obj/item/implanter/uplink
 	cost = UPLINK_IMPLANT_TELECRYSTAL_COST
 	// An empty uplink is kinda useless.
 	surplus = 0
@@ -1783,7 +1783,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/mindshield
 	name = "Syndicate Brainwash Denial Implant"
 	desc = "An implant injected into the body, to deny brainwashing attempts."
-	item = /obj/item/storage/box/syndie_kit/imp_mindshield
+	item = /obj/item/implanter/mindshield/tot
 	limited_stock = 3
 	player_minimum = 30
 	illegal_tech = FALSE // This is a cheap knockoff of NT tech.

@@ -123,7 +123,7 @@
 /datum/uplink_item/implants/mindslave
 	name = "Mindslave Implant"
 	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
-	item = /obj/item/storage/box/syndie_kit/imp_mindslave
+	item = /obj/item/implanter/mindslave
 	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 20
@@ -132,7 +132,7 @@
 /datum/uplink_item/implants/greytide
 	name = "Greytide Implant"
 	desc = "An implant injected into another body, forcing the victim to greytide."
-	item = /obj/item/storage/box/syndie_kit/imp_greytide
+	item = /obj/item/implanter/greytide
 	cost = 5
 	surplus = 20
 	restricted_roles = list("Assistant")
