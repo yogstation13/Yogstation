@@ -2272,7 +2272,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/box
 	name = "Box"
-	desc = "If you are too lasy to find one."
+	desc = "If you are too lazy to find one."
 	item = /obj/item/storage/box/syndicate
 	cost = 1
 	illegal_tech = FALSE
