@@ -279,6 +279,10 @@
 "Ct" = (
 /turf/closed/indestructible/riveted,
 /area/reebe)
+"Us" = (
+/obj/machinery/recharge_station/fullupgrade,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 "Vl" = (
 /obj/structure/table/reinforced/brass,
 /obj/effect/landmark/servant_of_ratvar/scarab,
@@ -4602,7 +4606,7 @@ ai
 am
 aj
 aj
-aj
+Us
 as
 ah
 ah
