@@ -874,7 +874,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/toggle_nuke(obj/machinery/nuclearbomb/N in GLOB.nuke_list)
 	set name = "Toggle Nuke"
-	set category = "Admin.End Round"
+	set category = "Admin.Round End"
 	set popup_menu = FALSE
 	if(!check_rights(R_DEBUG))
 		return
@@ -988,7 +988,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Mass Zombie Cure")
 
 /client/proc/polymorph_all()
-	set category = "Admin.End Round"
+	set category = "Admin.Round End"
 	set name = "Polymorph All"
 	set desc = "Applies the effects of the bolt of change to every single mob."
 

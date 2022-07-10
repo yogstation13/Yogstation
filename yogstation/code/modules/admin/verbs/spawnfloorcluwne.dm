@@ -19,7 +19,7 @@
 	message_admins("[key_name(usr)] spawned floor cluwne.")
 
 /client/proc/nerf_or_nothing() // Thank you Groudon, very cool
-	set category = "Admin.End Round"
+	set category = "Admin.Round End"
 	set name = "Begin Nerf War"
 	set desc = "Gives all living PC humans a nerf gun, and alerts that a Nerf War has begun."
 
