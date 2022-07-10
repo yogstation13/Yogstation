@@ -319,9 +319,8 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, speech_bubble_recipients, 30)
 
 	// TTS
-	var/str = "[message][tag]"
 	var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
-	if(!fexists("dectalk/[md5(str)].wav"))
+	if(!fexists("dectalk/[md5(message)].wav"))
 		world.shelleo("say.exe -w \"dectalk/[md5(str)].wav\" \"[san_message]\"")
 	playsound(src, "dectalk/[md5(str)].wav", 100)
 	spawn(10 SECONDS)
