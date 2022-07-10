@@ -51,7 +51,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "pnp-webpack-plugin": "^1.6.4",
     "prettier": "npm:prettierx@0.19.0",
-    "sass": "^1.37.5",
+    "sass": "^1.22.12",
     "sass-loader": "^11.1.1",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.1.4",
