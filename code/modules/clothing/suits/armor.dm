@@ -424,6 +424,7 @@
 	desc = initial(desc)
 	armor = initial(armor)
 	slowdown = initial(slowdown)
+	w_class = initial(w_class)
 	plating = null
 
 /obj/item/clothing/suit/armor/plated/attackby(obj/item/I, mob/user, params)
@@ -443,6 +444,7 @@
 	desc += K.desc_add
 	slowdown = K.slowdown_set
 	armor = K.armor_set
+	w_class = WEIGHT_CLASS_BULKY
 	plating = K
 
 //////////////// ARMOR PLATES ////////////////////////////////////////////////
