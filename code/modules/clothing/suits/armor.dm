@@ -397,3 +397,110 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	clothing_flags = THICKMATERIAL
+
+//////////////// PLATED ARMOR ////////////////
+// Helmet type in code/modules/clothing/head/helmet.dm
+/obj/item/clothing/suit/armor/plated
+	name = "empty plated armor vest"	
+	desc = "A lightweight general-purpose over-armor suit that is designed to hold various types of kevlar plating. Won't do much without them."
+	icon_state = "plate-armor"
+	item_state = "plate-armor"
+	blood_overlay_type = "armor"
+	w_class = WEIGHT_CLASS_SMALL // It's just some fabric, after all
+	armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 0, WOUND = 0)
+	slowdown = 0
+
+	var/obj/item/kevlar_plating/plating
+
+/obj/item/clothing/suit/armor/plated/attack_self(mob/user)
+	if(!plating)
+		return
+	
+	user.visible_message("[user] removes [plating] from [src]!", span_notice("You remove [plating]."))
+
+	user.put_in_hands(plating)
+
+	name = initial(name)
+	desc = initial(desc)
+	armor = initial(armor)
+	slowdown = initial(slowdown)
+	plating = null
+
+/obj/item/clothing/suit/armor/plated/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(plating)
+		return 
+	if(!istype(I, /obj/item/kevlar_plating))
+		return
+	if(!user.transferItemToLoc(I, src))
+		return
+	
+	user.visible_message("[user] inserts [plating] into [src]!", span_notice("You insert [plating] into [src]."))
+
+	var/obj/item/kevlar_plating/K = I
+
+	name = "[K.name_set] plated armor vest"
+	desc += K.desc_add
+	slowdown = K.slowdown_set
+	armor = K.armor_set
+	plating = K
+
+//////////////// ARMOR PLATES ////////////////////////////////////////////////
+// These armors are supposed to be a mid-game direct upgrade for security that enables
+// them to dynamically respond depending on their skillset and/or the situation at hand
+//
+// balancing reference:
+// default armor, slowdown 0
+// armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+// bulletproof armor, slowdown 0
+// armor = list(MELEE = 15, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+// hos hardsuit, slowdown 1
+// armor = list(MELEE = 45, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 50, FIRE = 95, ACID = 95, WOUND = 25)
+// riot armor, slowdown 0.33
+// armor = list(MELEE = 50, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 80, WOUND = 30)
+//////////////////////////////////////////////////////////////////////////////
+/obj/item/kevlar_plating
+	name = "debug plating"
+	desc = "You shouldn't see this!"
+	var/name_set = "debug"
+	var/desc_add = " It has incredibly robust pieces of adminium slotted into it."
+	var/slowdown_set = 0 // Slowdown value to set on the vest, for reference a hardsuit has "1" slowdown
+	var/armor_set = list( // Armor value to set on the vest
+		MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 100)
+
+/obj/item/kevlar_plating/mki
+	name = "MK.I kevlar plating"
+	desc = "Incredibly light armor plating that offers great movement while also providing some protection."
+	name_set = "MK.I"
+	desc_add = "\nIt has MK.I kevlar plates slotted into it."
+	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
+	armor_set = list( // Slightly worse than default armor
+		MELEE = 20, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 40, WOUND = 10)
+
+/obj/item/kevlar_plating/mkii
+	name = "MK.II kevlar plating"
+	desc = "Light armor plating that can be carried easily while providing robust protection."
+	name_set = "MK.II"
+	desc_add = "\nIt has MK.II kevlar plates slotted into it."
+	slowdown_set = 0
+	armor_set = list( // Slightly better than default armor
+		MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+
+/obj/item/kevlar_plating/mkiii
+	name = "MK.III kevlar plating"
+	desc = "Weighted armor plating that impedes movement but greatly improves the durability of the wearer."
+	name_set = "MK.III"
+	desc_add = "\nIt has MK.III kevlar plates slotted into it."
+	slowdown_set = 0.15 // Slow
+	armor_set = list( // Robust
+		MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 60, ACID = 60, WOUND = 35)
+
+/obj/item/kevlar_plating/mkiv
+	name = "MK.IV kevlar plating"
+	desc = "Incredibly heavy armor plating that makes shooting the covered areas almost pointless."
+	name_set = "MK.IV"
+	w_class = WEIGHT_CLASS_BULKY
+	desc_add = "\nIt has MK.IV kevlar plates slotted into it."
+	slowdown_set = 0.4 // Very slow
+	armor_set = list( // Walking tank
+		MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 75, ACID = 75, WOUND = 50)

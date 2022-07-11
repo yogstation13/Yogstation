@@ -678,8 +678,8 @@
 	id = "weaponry"
 	display_name = "Weapon Development Technology"
 	description = "Our researchers have found new ways to weaponize just about everything now."
-	prereq_ids = list("engineering")
-	design_ids = list("pin_testing", "tele_shield")
+	prereq_ids = list("engineering", "sec_basic")
+	design_ids = list("pin_testing", "tele_shield", "platingmki", "platingmkiii")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
 
@@ -697,7 +697,7 @@
 	display_name = "Advanced Weapon Development Technology"
 	description = "Our weapons are breaking the rules of reality by now."
 	prereq_ids = list("adv_engi", "weaponry")
-	design_ids = list("pin_loyalty", "borg_transform_security")
+	design_ids = list("pin_loyalty", "borg_transform_security", "platingmkii", "platingmkiv")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
 
