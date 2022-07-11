@@ -13,7 +13,7 @@
 	var/activated = FALSE //whether we are active and generating chems
 	var/potency = 2 //how much reagents we add every process (2 seconds)
 	var/start_volume = 50
-	var/points = 100
+	var/points = 150
 
 /obj/structure/reagent_dispensers/geyser/proc/start_chemming()
 	activated = TRUE
@@ -47,7 +47,7 @@
 	return  
 
 /obj/structure/reagent_dispensers/geyser/random
-	var/list/options = list(/datum/reagent/oil = 2, /datum/reagent/clf3 = 1) //fucking add more
+	var/list/options = list(/datum/reagent/oil = 2, /datum/reagent/clf3 = 1, /datum/reagent/toxin/plasma) //fucking add more
 
 /obj/structure/reagent_dispensers/geyser/random/Initialize()
 	. = ..()
