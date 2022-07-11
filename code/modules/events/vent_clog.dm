@@ -45,10 +45,6 @@
 			foam.set_up(200, get_turf(vent), R)
 			foam.start()
 
-			var/cockroaches = prob(33) ? 3 : 0
-			while(cockroaches)
-				new /mob/living/simple_animal/cockroach(get_turf(vent))
-				cockroaches--
 		CHECK_TICK
 
 /datum/round_event_control/vent_clog/threatening

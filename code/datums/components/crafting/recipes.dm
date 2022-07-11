@@ -551,7 +551,7 @@
 /datum/crafting_recipe/bone_spade
 	name = "Bone Spade"
 	result = /obj/item/shovel/spade/bone
-	time = 80
+	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 1,
 				 /obj/item/stack/sheet/sinew = 1)
 	category = CAT_TOOLS
@@ -559,7 +559,7 @@
 /datum/crafting_recipe/bone_hatchet
 	name = "Bone Hatchet"
 	result = /obj/item/hatchet/bone
-	time = 80
+	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 1,
 				 /obj/item/stack/sheet/sinew = 1)
 	category = CAT_TOOLS
@@ -567,7 +567,27 @@
 /datum/crafting_recipe/bone_cultivator
 	name = "Bone Cultivator"
 	result = /obj/item/cultivator/bone
-	time = 80
+	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/bone = 2,
 				 /obj/item/stack/sheet/sinew = 1)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/epinephrine_medipen
+	name = "Epinephrine Medipen"
+	result = /obj/item/reagent_containers/hypospray/medipen
+	tools = list(TOOL_SCREWDRIVER)
+	time = 2 SECONDS
+	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
+				/obj/item/reagent_containers/syringe = 1,
+				/datum/reagent/medicine/epinephrine = 10) // Sanguirite is unobtainable
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/atropine_medipen
+	name = "Atropine Autoinjector"
+	result = /obj/item/reagent_containers/hypospray/medipen/atropine
+	tools = list(TOOL_SCREWDRIVER)
+	time = 4 SECONDS
+	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
+				/obj/item/reagent_containers/syringe = 1,
+				/datum/reagent/medicine/atropine = 10)
 	category = CAT_TOOLS

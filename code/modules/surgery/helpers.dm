@@ -79,7 +79,8 @@
 					span_notice("You prepare to operate on [M]'s [parse_zone(selected_zone)]."))
 				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff = 1)
 				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
-				procedure.next_step(user, user.a_intent)
+				if(S.self_operable || user != M)
+					procedure.next_step(user, user.a_intent)
 			else
 				to_chat(user, span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
 

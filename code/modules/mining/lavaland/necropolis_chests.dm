@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/voodoo(src)
 		if(19)
 			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
-			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
+			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
 		if(20)
 			new /obj/item/book_of_babel(src)
 		if(21)
@@ -789,7 +789,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	attack_verb_on = list("cleaved", "swiped", "slashed", "chopped")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
+	w_class_on = WEIGHT_CLASS_BULKY
 	sharpness = SHARP_EDGED
 	faction_bonus_force = 30
 	nemesis_factions = list("mining", "boss")

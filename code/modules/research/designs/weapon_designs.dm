@@ -104,16 +104,6 @@
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/batonupgrade
-	name = "Baton Power Upgrade"
-	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of more power usage."
-	id = "baton_upgrade"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/gold = 600, /datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 600, /datum/material/plasma = 600)
-	build_path = /obj/item/batonupgrade
-	category = list("Firing Pins")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
 /datum/design/stunmine/sec //mines ported from BeeStation
 	name = "Stun Mine"
 	desc = "A basic non-lethal stunning mine. Stuns anyone who walks over it."

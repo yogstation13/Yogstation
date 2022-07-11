@@ -3,7 +3,7 @@
 	desc = "It's a baseball hat in a tasteless yellow colour."
 	icon_state = "cargosoft"
 	item_state = "helmet"
-	//Determines used sprites: [soft_type]soft
+	/// Determines used sprites: [soft_type]soft
 	var/soft_type = "cargo"
 
 	dog_fashion = /datum/dog_fashion/head/cargo_tech

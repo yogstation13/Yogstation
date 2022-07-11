@@ -41,7 +41,7 @@
 	if(accept_hand)
 		if(!tool)
 			success = TRUE
-		if(iscyborg(user))
+		if(iscyborg(user) && istype(tool, /obj/item/borg/cyborghug))
 			success = TRUE
 
 // yogs start - tool switcher
@@ -116,12 +116,6 @@
 		if(implement_type)	//this means it isn't a require hand or any item step.
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_probability_multiplier()
-
-		// If doing self surgery, you arent going to have a hard time keeping your hands still through the pain, if you feel it that is
-		if(user == target)
-			var/obj/item/bodypart/operated_bodypart = target.get_bodypart(target_zone)
-			if(!operated_bodypart || !(operated_bodypart.status == BODYPART_ROBOTIC))
-				prob_chance *= 0.05
 
 		// Blood splatters on tools and user
 		if(tool && prob(bloody_chance))
