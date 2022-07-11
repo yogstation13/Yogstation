@@ -1,7 +1,3 @@
-#define NOON_DIVISOR 1.6 
-#define LIGHTING_GRANULARITY 3.4
-#define UPDATES_IN_QUARTER_DAY 5
-
 
 /area/pregen
 	name = "Pregenerated Space"
@@ -10,7 +6,6 @@
 	map_generator = /datum/map_generator/jungleland
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = TRUE
-
 /area/jungleland
 	name = "Jungleland"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
@@ -23,40 +18,22 @@
 	power_light = FALSE
 	requires_power = TRUE
 
-	var/daynight_cycle = TRUE
-	var/update_interval = 60 SECONDS
-	var/updates = 0 
-	var/cached_luminosity = 0
+/area/jungleland/ocean
+	name = "Toxic Ocean"
+/area/jungleland/proper 
+	name = "Deep Jungle"
 
-/area/jungleland/proc/finish_generation()
-	INVOKE_ASYNC(src,.proc/daynight_cycle)
+/area/jungleland/toxic_pit 
+	name = "Toxic Pit"
 
-/area/jungleland/proc/daynight_cycle()
-	set waitfor = FALSE
-	updates += 1
-	//whew that's quite a bit of math! it's quite simple once you get it tho, think of (current_inteval/update_interval) as x, sin(x * arcsin(1)) turns sin()'s period from 2*PI to 4,
-	//working with integers is nicer, all the other stuff is mostly fluff to make it so it takes 10 update_interval to go from day to night and back.
-	var/new_luminosity = CEILING( (LIGHTING_GRANULARITY  *sin( ( updates * arcsin(1) ) / UPDATES_IN_QUARTER_DAY) ) ,1 )/NOON_DIVISOR
-	
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,updates,new_luminosity)
-	
-	if(new_luminosity != cached_luminosity)
-		if(new_luminosity > 0 && cached_luminosity < 0)
-			for(var/mob/M in contents)
-				to_chat(M,span_alertwarning("The dawn lights the whole jungle in new glorious light... a new day begins!"))
-		if(new_luminosity < 0 && cached_luminosity > 0)
-			for(var/mob/M in contents)
-				to_chat(M,span_alertwarning("You can see the stars high in the sky... the night begins!"))
-		var/counter = 0	
-		for(var/turf/open/T in src)
-			T.set_light(1,new_luminosity) // we do not use dynamic light, because they are so insanely slow, it's just.. not worth it.
-			if(counter == 255)
-				CHECK_TICK
-				counter = 0
-			counter++
-		cached_luminosity = new_luminosity
+/area/jungleland/barren_rocks 
+	name = "Barren Rocks"
 
-	addtimer(CALLBACK(src,.proc/daynight_cycle), update_interval, TIMER_UNIQUE | TIMER_OVERRIDE)
+/area/jungleland/dry_swamp 
+	name = "Rocky Beach"
+
+/area/jungleland/dying_forest
+	name = "Dying Jungle"
 
 /turf/open/floor/plating/dirt/jungleland
 	name = "generic jungle land turf"
@@ -65,6 +42,10 @@
 	icon_state = "jungle"
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
+	baseturfs = /turf/open/water/toxic_pit
+	icon_state_regular_floor = "jungle" //used to remember what icon state the tile should have by default
+	icon_regular_floor = 'yogstation/icons/turf/floors/jungle.dmi' //used to remember what icon the tile should have by default
+	icon_plating = "jungle"
 	var/can_spawn_ore = TRUE
 	var/ore_present = ORE_EMPTY
 
@@ -97,24 +78,38 @@
 		spawn_rock()
 /turf/open/floor/plating/dirt/jungleland/barren_rocks
 	icon_state = "barren_rocks"
+	icon_plating = "barren_rocks"
+	icon_state_regular_floor = "barren_rocks" 
 
 /turf/open/floor/plating/dirt/jungleland/toxic_rocks
 	icon_state = "toxic_rocks"
+	icon_plating = "toxic_rocks"
+	icon_state_regular_floor = "toxic_rocks" 
 
 /turf/open/floor/plating/dirt/jungleland/dry_swamp
 	icon_state = "dry_swamp"
+	icon_plating = "dry_swamp"
+	icon_state_regular_floor = "dry_swamp" 
 
 /turf/open/floor/plating/dirt/jungleland/toxic_pit
 	icon_state = "toxic_pit"
+	icon_plating = "toxic_pit"
+	icon_state_regular_floor = "toxic_pit" 
 
 /turf/open/floor/plating/dirt/jungleland/dry_swamp1
 	icon_state = "dry_swamp1"
+	icon_plating = "dry_swamp1"
+	icon_state_regular_floor = "dry_swamp1" 
 
 /turf/open/floor/plating/dirt/jungleland/dying_forest
 	icon_state = "dying_forest"
+	icon_plating = "dying_forest"
+	icon_state_regular_floor = "dying_forest" 
 
 /turf/open/floor/plating/dirt/jungleland/jungle
 	icon_state = "jungle"
+	icon_plating = "jungle"
+	icon_state_regular_floor = "jungle" 
 
 /turf/open/water/toxic_pit
 	name = "sulphuric pit"
@@ -122,6 +117,7 @@
 	slowdown = 2
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
+	baseturfs = /turf/open/water/toxic_pit
 
 /turf/open/water/toxic_pit/Entered(atom/movable/AM)
 	. = ..()

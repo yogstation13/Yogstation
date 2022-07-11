@@ -431,6 +431,52 @@
 			return
 
 	//instead of it being chance based, malaria is based on time
+#define NOON_DIVISOR 1.6 
+#define LIGHTING_GRANULARITY 3.4
+#define UPDATES_IN_QUARTER_DAY 5
 
+/datum/daynight_cycle 
+	var/daynight_cycle = TRUE
+	var/update_interval = 60 SECONDS
+	var/updates = 0 
+	var/cached_luminosity = 0
+	var/list/affected_areas = list()
 
+/datum/daynight_cycle/proc/finish_generation()
+	var/list/levels = SSmapping.levels_by_trait(ZTRAIT_DAYNIGHT_CYCLE)
+	for(var/z as anything in levels)
+		for(var/area/A as anything in SSmapping.areas_in_z["[z]"])
+			if(A.outdoors)
+				affected_areas += A
+	INVOKE_ASYNC(src,.proc/daynight_cycle)
+
+/datum/daynight_cycle/proc/daynight_cycle()
+	set waitfor = FALSE
+	updates += 1
+	//whew that's quite a bit of math! it's quite simple once you get it tho, think of (current_inteval/update_interval) as x, sin(x * arcsin(1)) turns sin()'s period from 2*PI to 4,
+	//working with integers is nicer, all the other stuff is mostly fluff to make it so it takes 10 update_interval to go from day to night and back.
+	var/new_luminosity = CEILING( (LIGHTING_GRANULARITY  *sin( ( updates * arcsin(1) ) / UPDATES_IN_QUARTER_DAY) ) ,1 )/NOON_DIVISOR
 	
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,updates,new_luminosity)
+
+	var/counter = 0	
+	for(var/area/A as anything in affected_areas)
+		for(var/turf/open/T in A)
+			for(var/mob/living/L in T)
+				if(!L.client)
+					continue
+				if(new_luminosity != cached_luminosity)
+					if(new_luminosity > 0 && cached_luminosity < 0)
+						to_chat(L,span_alertwarning("The dawn lights the whole jungle in new glorious light... a new day begins!"))
+					if(new_luminosity < 0 && cached_luminosity > 0)
+						to_chat(L,span_alertwarning("You can see the stars high in the sky... the night begins!"))
+
+			T.set_light(1,new_luminosity) // we do not use dynamic light, because they are so insanely slow, it's just.. not worth it.
+			if(counter == 255)
+				CHECK_TICK
+				counter = 0
+			counter++
+	cached_luminosity = new_luminosity
+
+	addtimer(CALLBACK(src,.proc/daynight_cycle), update_interval, TIMER_UNIQUE | TIMER_OVERRIDE)
+

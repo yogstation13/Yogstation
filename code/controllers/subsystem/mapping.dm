@@ -20,6 +20,11 @@ SUBSYSTEM_DEF(mapping)
 	var/list/lava_ruins_templates = list()
 	var/list/ice_ruins_templates = list()
 	var/list/ice_ruins_underground_templates = list()
+	//Yogs edit 
+	var/list/jungleland_proper_ruins_templates = list()
+	var/list/jungleland_dying_ruins_templates = list()
+	var/list/jungleland_swamp_ruins_templates = list()
+	//Yogs end
 
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
@@ -111,7 +116,13 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/underground/unexplored), ice_ruins_underground_templates)
 		for(var/ice_z in ice_ruins_underground)
 			spawn_rivers(ice_z, 4, /turf/open/lava/plasma/ice_moon, /area/icemoon/underground/unexplored)
-
+	//Yogs edit begin
+	var/list/jungle_ruins = levels_by_trait(ZTRAIT_JUNGLE_RUINS)
+	if (jungle_ruins.len)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/proper), jungleland_proper_ruins_templates)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/dying_forest), jungleland_dying_ruins_templates)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/toxic_pit), jungleland_swamp_ruins_templates)
+	//Yogs end
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
 	if (space_ruins.len)
@@ -416,6 +427,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/list/banned = generateMapList("[global.config.directory]/lavaruinblacklist.txt")
 	banned += generateMapList("[global.config.directory]/spaceruinblacklist.txt")
 	banned += generateMapList("[global.config.directory]/iceruinblacklist.txt")
+	banned += generateMapList("[global.config.directory]/jungleruinblacklist.txt")
 
 	for(var/item in sortList(subtypesof(/datum/map_template/ruin), /proc/cmp_ruincost_priority))
 		var/datum/map_template/ruin/ruin_type = item
@@ -430,6 +442,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		map_templates[R.name] = R
 		ruins_templates[R.name] = R
 
+
 		if(istype(R, /datum/map_template/ruin/lavaland))
 			lava_ruins_templates[R.name] = R
 		else if(istype(R, /datum/map_template/ruin/icemoon/underground))
@@ -438,9 +451,16 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			ice_ruins_templates[R.name] = R
 		else if(istype(R, /datum/map_template/ruin/space))
 			space_ruins_templates[R.name] = R
-		else if(istype(R, /datum/map_template/ruin/station)) //yogs
-			station_room_templates[R.name] = R //yogs
-
+		//Yogs begin
+		else if(istype(R, /datum/map_template/ruin/station)) 
+			station_room_templates[R.name] = R 
+		else if(istype(R,/datum/map_template/ruin/jungle/proper))
+			jungleland_proper_ruins_templates[R.name] = R
+		else if(istype(R,/datum/map_template/ruin/jungle/dying))
+			jungleland_dying_ruins_templates[R.name] = R
+		else if(istype(R,/datum/map_template/ruin/jungle/swamp))
+			jungleland_swamp_ruins_templates[R.name] = R
+		//Yogs end
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")
 

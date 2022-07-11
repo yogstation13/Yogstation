@@ -33,6 +33,9 @@
 				qdel(monster)
 			for(var/obj/structure/flora/ash/plant in T)
 				qdel(plant)
+			//yogs edit 
+			for(var/obj/structure/struct in T)
+				qdel(struct)
 
 		load(central_turf,centered = TRUE)
 		loaded++

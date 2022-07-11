@@ -175,7 +175,6 @@
 	return return_list
 		
 /datum/map_generator/jungleland/generate_terrain(list/turfs)
-	var/area/jungleland/jungle_area = new /area/jungleland()
 	var/start_time = REALTIMEOFDAY
 	var/list/ore_map = generate_ores(turfs)
 	
@@ -215,20 +214,26 @@
 
 		var/humid_pick = text2num(humid_strings[HIGH_HUMIDITY][world.maxx * (gen_turf.y - 1) + gen_turf.x]) ? HIGH_HUMIDITY : text2num(humid_strings[MED_HUMIDITY][world.maxx * (gen_turf.y - 1) + gen_turf.x]) ? MED_HUMIDITY : LOW_HUMIDITY
 
-		var/datum/biome/selected_biome = possible_biomes[toxic_pick][humid_pick]
+		var/datum/biome/jungleland/selected_biome = possible_biomes[toxic_pick][humid_pick]
 
 		selected_biome = SSmapping.biomes[selected_biome] //Get the instance of this biome from SSmapping
 		var/turf/GT = selected_biome.generate_turf(gen_turf,density_strings)
 		if(istype(GT,/turf/open/floor/plating/dirt/jungleland))
 			var/turf/open/floor/plating/dirt/jungleland/J = GT
 			J.ore_present = ore_map[world.maxx * (gen_turf.y - 1) + gen_turf.x]
+		var/area/jungleland/jungle_area = selected_biome.this_area 
 		var/area/old_area = GT.loc
 		old_area.contents -= GT 
 		jungle_area.contents += GT
 		GT.change_area(old_area,jungle_area)
 		CHECK_TICK
 
-	jungle_area.finish_generation()
+	for(var/grouping in possible_biomes)
+		for(var/biome as anything in grouping)
+			grouping[biome].reg_in_areas_in_z()
+
+	GLOB.jungleland_daynight_cycle.finish_generation()
+
 	var/message = "Jungle land finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, "<span class='boldannounce'>[message]</span>")
 	log_world(message)

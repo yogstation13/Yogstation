@@ -356,6 +356,12 @@
 	config_entry_value = 16
 	integer = FALSE
 	min_val = 0
+//Yogs edit
+/datum/config_entry/number/jungleland_budget
+	config_entry_value = 20
+	integer = FALSE
+	min_val = 0
+//Yogs end
 
 /datum/config_entry/flag/allow_random_events	// Enables random events mid-round when set
 
