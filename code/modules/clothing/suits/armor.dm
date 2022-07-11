@@ -474,7 +474,7 @@
 
 /obj/item/kevlar_plating/mki
 	name = "MK.I kevlar plating"
-	desc = "Incredibly light armor plating that offers great movement while also providing some protection."
+	desc = "Incredibly light bluespace-infused armor plating that offers great movement while also providing some protection."
 	name_set = "MK.I"
 	desc_add = "\nIt has MK.I kevlar plates slotted into it."
 	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor

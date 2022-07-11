@@ -472,7 +472,7 @@
 	desc = "Plating fitted for a plated vest or helmet. Makes you faster, but gives less armor."
 	id = "platingmki"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 10000, /datum/material/silver = 5000, /datum/material/plastic = 5000)
+	materials = list(/datum/material/iron = 10000, /datum/material/silver = 5000, /datum/material/plastic = 5000, /datum/material/bluespace = 1500)
 	build_path = /obj/item/kevlar_plating/mki
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
