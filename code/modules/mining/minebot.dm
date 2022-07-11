@@ -3,7 +3,7 @@
 #define MINEDRONE_ATTACK 2
 
 /mob/living/simple_animal/hostile/mining_drone
-	name = "nanotrasen minebot"
+	name = "minebot"
 	desc = "The instructions printed on the side read: This is a small robot used to support miners, can be set to search and collect loose ore, or to help fend off wildlife."
 	gender = NEUTER
 	icon = 'icons/mob/aibots.dmi'
@@ -37,19 +37,33 @@
 	del_on_death = TRUE
 	var/mode = MINEDRONE_COLLECT
 	var/light_on = 0
-	var/obj/item/gun/energy/kinetic_accelerator/minebot/stored_gun
+	var/maintance_hatch_open = FALSE
+
+	var/obj/item/gun/energy/kinetic_accelerator/stored_gun
+	var/obj/item/gun/energy/plasmacutter/cutter
+	var/obj/item/t_scanner/adv_mining_scanner/scanner
+
+	var/datum/action/innate/minedrone/toggle_light/toggle_light_action
+	var/datum/action/innate/minedrone/toggle_meson_vision/toggle_meson_vision_action
+	var/datum/action/innate/minedrone/toggle_mode/toggle_mode_action
+	var/datum/action/innate/minedrone/dump_ore/dump_ore_action
 
 /mob/living/simple_animal/hostile/mining_drone/Initialize()
 	. = ..()
-	stored_gun = new(src)
-	var/datum/action/innate/minedrone/toggle_light/toggle_light_action = new()
+	///Granting actions
+	toggle_light_action = new()
 	toggle_light_action.Grant(src)
-	var/datum/action/innate/minedrone/toggle_meson_vision/toggle_meson_vision_action = new()
+	toggle_meson_vision_action = new()
 	toggle_meson_vision_action.Grant(src)
-	var/datum/action/innate/minedrone/toggle_mode/toggle_mode_action = new()
+	toggle_mode_action = new()
 	toggle_mode_action.Grant(src)
-	var/datum/action/innate/minedrone/dump_ore/dump_ore_action = new()
+	dump_ore_action = new()
 	dump_ore_action.Grant(src)
+
+	///Equiping
+	var/obj/item/gun/energy/kinetic_accelerator/newgun = new(src)
+	equip_gun(newgun)
+
 	var/obj/item/implant/radio/mining/imp = new(src)
 	imp.implant(src)
 
@@ -78,7 +92,7 @@
 			. += span_warning("[t_He] look[t_s] slightly dented.")
 		else
 			. += span_boldwarning("[t_He] look[t_s] severely dented!")
-	. += {"<span class='notice'>Using a mining scanner on [t_him] will instruct [t_him] to drop stored ore. <b>[max(0, LAZYLEN(contents) - 1)] Stored Ore</b>\n
+	. += {"<span class='notice'>Alt+clicking on [t_him] will instruct [t_him] to drop stored ore. <b>[max(0, LAZYLEN(contents) - 1)] Stored Ore</b>\n
 	Field repairs can be done with a welder."}
 	if(stored_gun && stored_gun.max_mod_capacity)
 		. += "<b>[stored_gun.get_remaining_mod_capacity()]%</b> mod capacity remaining."
@@ -100,14 +114,43 @@
 		adjustBruteLoss(-15)
 		to_chat(user, span_info("You repair some of the armor on [src]."))
 
+/mob/living/simple_animal/hostile/mining_drone/screwdriver_act(mob/living/user, obj/item/I)
+	. = TRUE
+	maintance_hatch_open = -maintance_hatch_open
+	if(maintance_hatch_open)
+		to_chat(user, span_info("You open [src]'s maintance hatch."))
+	else
+		to_chat(user, span_info("You close [src]'s maintance hatch."))
+
+/mob/living/simple_animal/hostile/mining_drone/multitool_act(mob/living/user)
+	if(stat == DEAD && maintance_hatch_open)
+		if(health >= maxHealth/2)
+			to_chat(user, span_info("You pulse [src]'s wires, reactivating it!."))
+			revive()
+		else
+			to_chat(user, span_info("You pulse [src]'s wires, but nothing happens!."))
+
 /mob/living/simple_animal/hostile/mining_drone/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner))
-		to_chat(user, span_info("You instruct [src] to drop any collected ore."))
-		DropOre()
-		return
-	if(I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/borg/upgrade/modkit))
-		I.melee_attack_chain(user, stored_gun, params)
-		return
+	if(maintance_hatch_open)
+		if(I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/borg/upgrade/modkit))
+			I.melee_attack_chain(user, stored_gun, params)
+			scanner.forceMove(get_turf(src))
+			cutter.forceMove(get_turf(src))
+			return
+		else if(istype(W, /obj/item/stack/cable_coil) && health < maxHealth)
+			to_chat(user, span_notice("You begin replacing broken wires on [src]..."))
+			repair_burn(CC, user)	
+			return	
+		else if(istype(I, /obj/item/gun/energy/plasmacutter) && !cutter)
+			to_chat(user, span_notice("You insert [I] into the plasma cutter mount on the [src]..."))
+			I.forceMove(src)
+			cutter = I
+		else if(istype(I, /obj/item/stack/ore/plasma) && cutter)
+			cutter.attackby(I)
+			if(cutter.cell.charge == cutter.cell.maxcharge) 
+				collect_ore()	
+				forceMove(src)		
+
 	..()
 
 /mob/living/simple_animal/hostile/mining_drone/death()
@@ -221,6 +264,34 @@
 			SetCollectBehavior()
 		else
 			SetOffenseBehavior()
+
+/mob/living/simple_animal/hostile/mining_drone/proc/equip_gun(obj/item/gun/energy/kinetic_accelerator/new_gun)
+	new_gun.trigger_guard = TRIGGER_GUARD_ALLOW_ALL
+	new_gun.overheat_time = 20
+	new_gun.holds_charge = TRUE
+	new_gun.unique_frequency = TRUE
+	stored_gun = new_gun
+
+/mob/living/simple_animal/hostile/mining_drone/proc/unequip_gun(obj/item/gun/energy/kinetic_accelerator/gun)
+	gun.trigger_guard = initial(gun.trigger_guard)
+	gun.overheat_time = initial(gun.overheat_time)
+	gun.holds_charge = initial(gun.holds_charge)
+	gun.unique_frequency = initial(gun.unique_frequency)
+	gun.forceMove(get_turf(src))
+	stored_gun = null
+
+/mob/living/simple_animal/hostile/mining_drone/proc/repair_burn(var/obj/item/stack/cable_coil/CC, var/mob/user)
+	if(!maintance_hatch_open)
+		return
+	if(health >= maxHealth)
+		return
+	if(!do_mob(user, src, 1 SECONDS))
+		return
+	if(CC.use(1))
+		to_chat(user, span_notice("You replace some broken wires on [src]..."))
+		to_chat(src, span_notice("[user] replaces some broken wires on you..."))
+		adjustFireLoss(-15)
+		repair_burn(CC, user)
 
 //Actions for sentient minebots
 
