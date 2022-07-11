@@ -10,4 +10,4 @@
 
 /obj/item/modular_computer/laptop/preset/brig_physician
 	desc = "A low-end laptop often used by brig physicians."
-	starting_files = list(new /datum/computer_file/program/SecurEye)
+	starting_files = list(new /datum/computer_file/program/secureye)
