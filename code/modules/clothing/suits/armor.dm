@@ -414,6 +414,7 @@
 
 /obj/item/clothing/suit/armor/plated/attack_self(mob/user)
 	if(!plating)
+		to_chat(user, span_warning("[src] doesn't have any plating to remove!"))
 		return
 	
 	user.visible_message("[user] removes [plating] from [src]!", span_notice("You remove [plating]."))
@@ -429,10 +430,11 @@
 
 /obj/item/clothing/suit/armor/plated/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(plating)
-		return 
 	if(!istype(I, /obj/item/kevlar_plating))
 		return
+	if(plating)
+		to_chat(user, span_warning("[src] already has [plating] slotted!"))
+		return 
 	if(!user.transferItemToLoc(I, src))
 		return
 	
