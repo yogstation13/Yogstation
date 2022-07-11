@@ -14,8 +14,8 @@
 
 	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist")
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
+	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
@@ -24,8 +24,8 @@
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/cook/proc/OmegaStationChanges()
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
-	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
+	added_access = list()
+	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 
 /datum/job/cook/proc/EclipseStationChanges()
 	total_positions = 4
