@@ -522,12 +522,13 @@
 		client.prefs.tts_voice = "Random"
 	
 	if(client.prefs.tts_voice == "Random")
-		if(gender == MALE)
-			H.tts = pick("Masc1", "Masc2", "Masc3", "Masc4")
-		else if(gender == FEMALE)
-			H.tts = pick("Fem1", "Fem2", "Fem3", "Fem4")
-		else
-			H.tts = pick("Masc1", "Masc2", "Masc3", "Masc4", "Fem1", "Fem2", "Fem3", "Fem4")
+		switch(gender)
+			if(MALE)
+				H.tts = pick("Masc1", "Masc2", "Masc3", "Masc4")
+			if(FEMALE)
+				H.tts = pick("Fem1", "Fem2", "Fem3", "Fem4")
+			else
+				H.tts = pick("Masc1", "Masc2", "Masc3", "Masc4", "Fem1", "Fem2", "Fem3", "Fem4")
 	else
 		H.tts = client.prefs.tts_voice
 
