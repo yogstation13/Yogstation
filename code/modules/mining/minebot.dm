@@ -54,6 +54,9 @@
 	var/datum/action/innate/minedrone/toggle_mode/toggle_mode_action
 	var/datum/action/innate/minedrone/dump_ore/dump_ore_action
 
+	var/weapon_verb = /mob/living/simple_animal/hostile/mining_drone/proc/cycle_weapon
+	var/reload_verb = /mob/living/simple_animal/hostile/mining_drone/proc/reload_pk
+
 /mob/living/simple_animal/hostile/mining_drone/Initialize()
 	. = ..()
 	///Granting actions
@@ -65,6 +68,9 @@
 	toggle_mode_action.Grant(src)
 	dump_ore_action = new()
 	dump_ore_action.Grant(src)
+
+	add_verb(src, weapon_verb)
+	add_verb(src, reload_verb)
 
 	///Equiping
 	var/obj/item/gun/energy/kinetic_accelerator/newgun = new(src)
@@ -93,6 +99,8 @@
 	if(honk)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
 		honk.forceMove(get_turf(src))
+	remove_verb(src, weapon_verb)
+	remove_verb(src, reload_verb)
 	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/sentience_act()
