@@ -76,6 +76,8 @@
 /mob/living/simple_animal/hostile/mining_drone/Destroy()
 	for (var/datum/action/innate/minedrone/action in actions)
 		qdel(action)
+	if(istype(stored_gun, /obj/item/gun/energy/kinetic_accelerator/mega))
+		unequip_gun()
 	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/sentience_act()
@@ -137,20 +139,25 @@
 			scanner.forceMove(get_turf(src))
 			cutter.forceMove(get_turf(src))
 			return
-		else if(istype(W, /obj/item/stack/cable_coil) && health < maxHealth)
+		else if(istype(I, /obj/item/stack/cable_coil) && health < maxHealth)
 			to_chat(user, span_notice("You begin replacing broken wires on [src]..."))
-			repair_burn(CC, user)	
+			repair_burn(I, user)	
 			return	
-		else if(istype(I, /obj/item/gun/energy/plasmacutter) && !cutter)
-			to_chat(user, span_notice("You insert [I] into the plasma cutter mount on the [src]..."))
+		else if(istype(I, /obj/item/gun/energy/plasmacutter))
+			if(cutter)
+				to_chat(user, span_notice("You replace [src]'s plasmacutter with [I]..."))
+				cutter.forceMove(get_turf(user))
+				cutter = null
+			else
+				to_chat(user, span_notice("You insert [I] into the plasma cutter mount on the [src]..."))
 			I.forceMove(src)
 			cutter = I
 		else if(istype(I, /obj/item/stack/ore/plasma) && cutter)
 			cutter.attackby(I)
 			if(cutter.cell.charge == cutter.cell.maxcharge) 
-				collect_ore()	
-				forceMove(src)		
-
+				I.forceMove(src)		
+		else if(istype(I, /obj/item/gun/energy/kinetic_accelerator/mega))
+			equip_gun(I)
 	..()
 
 /mob/living/simple_animal/hostile/mining_drone/death()
@@ -266,18 +273,20 @@
 			SetOffenseBehavior()
 
 /mob/living/simple_animal/hostile/mining_drone/proc/equip_gun(obj/item/gun/energy/kinetic_accelerator/new_gun)
+	if(stored_gun)
+		unequip_gun()
 	new_gun.trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	new_gun.overheat_time = 20
 	new_gun.holds_charge = TRUE
 	new_gun.unique_frequency = TRUE
 	stored_gun = new_gun
 
-/mob/living/simple_animal/hostile/mining_drone/proc/unequip_gun(obj/item/gun/energy/kinetic_accelerator/gun)
-	gun.trigger_guard = initial(gun.trigger_guard)
-	gun.overheat_time = initial(gun.overheat_time)
-	gun.holds_charge = initial(gun.holds_charge)
-	gun.unique_frequency = initial(gun.unique_frequency)
-	gun.forceMove(get_turf(src))
+/mob/living/simple_animal/hostile/mining_drone/proc/unequip_gun()
+	stored_gun.trigger_guard = initial(gun.trigger_guard)
+	stored_gun.overheat_time = initial(gun.overheat_time)
+	stored_gun.holds_charge = initial(gun.holds_charge)
+	stored_gun.unique_frequency = initial(gun.unique_frequency)
+	stored_gun.forceMove(get_turf(src))
 	stored_gun = null
 
 /mob/living/simple_animal/hostile/mining_drone/proc/repair_burn(var/obj/item/stack/cable_coil/CC, var/mob/user)
