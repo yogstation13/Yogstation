@@ -2,6 +2,9 @@
 #define MINEDRONE_COLLECT 1
 #define MINEDRONE_ATTACK 2
 
+#define MINEDRONE_KA 0
+#define MINEDRONE_CUTTER 1
+
 /mob/living/simple_animal/hostile/mining_drone
 	name = "minebot"
 	desc = "The instructions printed on the side read: This is a small robot used to support miners, can be set to search and collect loose ore, or to help fend off wildlife."
@@ -38,10 +41,12 @@
 	var/mode = MINEDRONE_COLLECT
 	var/light_on = 0
 	var/maintance_hatch_open = FALSE
+	var/fireMode = MINEDRONE_KA
 
 	var/obj/item/gun/energy/kinetic_accelerator/stored_gun
 	var/obj/item/gun/energy/plasmacutter/cutter
 	var/obj/item/t_scanner/adv_mining_scanner/scanner
+	var/obj/item/reagent_containers/hypospray/medipen/pen 
 	var/obj/item/bikehorn/honk
 
 	var/datum/action/innate/minedrone/toggle_light/toggle_light_action
@@ -83,6 +88,8 @@
 		cutter.forceMove(get_turf(src))
 	if(scanner)
 		scanner.forceMove(get_turf(src))
+	if(pen)
+		pen.forceMove(get_turf(src))
 	if(honk)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
 		honk.forceMove(get_turf(src))
@@ -169,6 +176,16 @@
 		else if(istype(I, /obj/item/gun/energy/kinetic_accelerator/mega))
 			equip_gun(I)
 			return
+		else if(istype(I, /obj/item/reagent_containers/hypospray/medipen))
+			if(pen)
+				to_chat(user, "You replace [src]'s medipen with a new one.")
+				to_chat(src, "[user] replaces your current medipen with a new one.")
+				pen.forceMove(get_turf(src))
+			else
+				to_chat(user, "You insert a medipen into [src].")
+				to_chat(src, "[user] inserts a new medipen into you.")
+			I.forceMove(src)
+			stored_medipen = I
 	..()
 	if(honk)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
@@ -195,6 +212,9 @@
 	if(.)
 		return
 	if(M.a_intent == INTENT_HELP)
+		if(client) 
+			to_chat(user, span_info("[src] is currently controlled by an onboard AI. There is no need to touch it's controlls."))
+			return ..()
 		toggle_mode()
 		switch(mode)
 			if(MINEDRONE_COLLECT)
@@ -202,6 +222,18 @@
 			if(MINEDRONE_ATTACK)
 				to_chat(M, span_info("[src] has been set to attack hostile wildlife."))
 		return
+
+/// Handles dropping ore
+/mob/living/simple_animal/hostile/mining_drone/AltClick(mob/user)
+	. = ..()
+	to_chat(user, "<span class='info'>You order [src] to drop any collected ore.</span>")
+	drop_ore()
+
+/// Handles activating installed minebot mods
+/mob/living/simple_animal/hostile/mining_drone/AltClickOn(atom/target)
+	. = ..()
+	if(istype(target, mob/living/carbon) && pen)
+		pen.attack(target, src)
 
 /mob/living/simple_animal/hostile/mining_drone/CanAllowThrough(atom/movable/O)
 	. = ..()
@@ -250,7 +282,14 @@
 		return
 	if(honk)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
-	stored_gun.afterattack(A, src) //of the possible options to allow minebots to have KA mods, would you believe this is the best?
+	switch(fireMode)
+		if(MINEDRONE_KA)
+			stored_gun.afterattack(A, src) //of the possible options to allow minebots to have KA mods, would you believe this is the best?
+		if(MINEDRONE_CUTTER)
+			if(cutter && cutter.can_shoot())
+				cutter.afterattack(A, src)
+			else
+				stored_gun.afterattack(A, src)
 
 /mob/living/simple_animal/hostile/mining_drone/proc/CollectOre()
 	for(var/obj/item/stack/ore/O in range(1, src))
