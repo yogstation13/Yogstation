@@ -231,9 +231,8 @@
 	message = "beeps."
 	message_param = "beeps at %t."
 
-/datum/emote/living/carbon/human/robot_tongue/beep/run_emote(mob/user, params)
-	if(..())
-		playsound(user.loc, 'sound/machines/twobeep.ogg', 50)
+/datum/emote/living/carbon/human/robot_tongue/beep/get_sound(mob/living/user)
+	return 'sound/machines/twobeep.ogg'
 
 /datum/emote/living/carbon/human/robot_tongue/buzz
 	key = "buzz"
@@ -241,26 +240,23 @@
 	message = "buzzes."
 	message_param = "buzzes at %t."
 
-/datum/emote/living/carbon/human/robot_tongue/buzz/run_emote(mob/user, params)
-	if(..())
-		playsound(user.loc, 'sound/machines/buzz-sigh.ogg', 50)
+/datum/emote/living/carbon/human/robot_tongue/buzz/get_sound(mob/living/user)
+	return 'sound/machines/buzz-sigh.ogg'
 
 /datum/emote/living/carbon/human/robot_tongue/buzz2
 	key = "buzz2"
 	message = "buzzes twice."
 
-/datum/emote/living/carbon/human/robot_tongue/buzz2/run_emote(mob/user, params)
-	if(..())
-		playsound(user.loc, 'sound/machines/buzz-two.ogg', 50)
+/datum/emote/living/carbon/human/robot_tongue/buzz2/get_sound(mob/living/user)
+	return 'sound/machines/buzz-two.ogg'
 
 /datum/emote/living/carbon/human/robot_tongue/chime
 	key = "chime"
 	key_third_person = "chimes"
 	message = "chimes."
 
-/datum/emote/living/carbon/human/robot_tongue/chime/run_emote(mob/user, params)
-	if(..())
-		playsound(user.loc, 'sound/machines/chime.ogg', 50)
+/datum/emote/living/carbon/human/robot_tongue/chime/get_sound(mob/living/user)
+	return 'sound/machines/chime.ogg'
 
 /datum/emote/living/carbon/human/robot_tongue/ping
 	key = "ping"
@@ -268,9 +264,8 @@
 	message = "pings."
 	message_param = "pings at %t."
 
-/datum/emote/living/carbon/human/robot_tongue/ping/run_emote(mob/user, params)
-	if(..())
-		playsound(user.loc, 'sound/machines/ping.ogg', 50)
+/datum/emote/living/carbon/human/robot_tongue/ping/get_sound(mob/living/user)
+	return 'sound/machines/ping.ogg'
 
  // Clown Robotic Tongue ONLY. Henk.
 
@@ -285,15 +280,13 @@
 	key_third_person = "honks"
 	message = "honks."
 
-/datum/emote/living/carbon/human/robot_tongue/clown/honk/run_emote(mob/user, params)
-	if(..())
-		playsound(user.loc, 'sound/items/bikehorn.ogg', 50)
+/datum/emote/living/carbon/human/robot_tongue/clown/honk/get_sound(mob/living/user)
+	return 'sound/items/bikehorn.ogg'
 
 /datum/emote/living/carbon/human/robot_tongue/clown/sad
 	key = "sad"
 	key_third_person = "plays a sad trombone..."
 	message = "plays a sad trombone..."
 
-/datum/emote/living/carbon/human/robot_tongue/clown/sad/run_emote(mob/user, params)
-	if(..())
-		playsound(user.loc, 'sound/misc/sadtrombone.ogg', 50)
+/datum/emote/living/carbon/human/robot_tongue/clown/sad/run_emote(mob/living/user)
+	return 'sound/misc/sadtrombone.ogg'
