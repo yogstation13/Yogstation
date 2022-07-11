@@ -1,5 +1,5 @@
 /obj/item/vending_refill/fishing
-	icon_state = "refill_clothes"
+	icon_state = "refill_fishing"
 
 /obj/machinery/vending/fishing
 	name = "\improper Tackle Box 2000"	
