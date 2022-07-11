@@ -44,12 +44,12 @@
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
+	r_hand = list(/obj/item/modular_computer/laptop/preset/brig_physician=1)
 	gloves = /obj/item/clothing/gloves/color/latex
 	head = /obj/item/clothing/head/soft/emt/phys
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival
-	backpack_contents = list(/obj/item/modular_computer/laptop/preset/brig_physician=1)
 
 	implants = list(/obj/item/implant/mindshield)
