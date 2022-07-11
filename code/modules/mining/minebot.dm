@@ -402,6 +402,50 @@
 	var/mob/living/simple_animal/hostile/mining_drone/user = owner
 	user.DropOre()
 
+/mob/living/simple_animal/hostile/mining_drone/verb/cycle_weapon()
+	set name = "Cycle Weapon"
+	set desc = "Switch between a plasma cutter or a KA."
+	set category = "Mining Bot"
+
+	if(!cutter)
+		to_chat(usr, span_warning("You don't have a plasma cutter to switch to!"))
+	
+	if(fireMode == MINEDRONE_KA)
+		fireMode = MINEDRONE_CUTTER
+	else 
+		fireMode = MINEDRONE_KA
+
+	switch(fireMode)
+		if(MINEDRONE_KA)
+			to_chat(usr, span_notice("You will now shoot a kinetic accelerator"))
+		if(MINEDRONE_CUTTER)
+			to_chat(usr, span_notice("You will now shoot a plasma cutter"))
+
+/mob/living/simple_animal/hostile/mining_drone/verb/reload_pk()
+	set name = "PK Reload"
+	set desc = "Reloads your plasmacutter(if you have one) with plasma stucks from your contents. "
+	set category = "Mining Bot"
+
+	if(!cutter)
+		to_chat(usr, span_warning("You don't have a plasma cutter to reload!"))
+		return
+
+	if(cutter.cell.charge == cutter.cell.maxcharge) 
+		to_chat(usr, span_warning("You don't need to recharge your plasma cutter!"))
+		return
+
+	var/yes = FALSE //No
+	for(var/atom/movable/AM in src)
+		if(istype(AM, /obj/item/stack/ore/plasma) && cutter)
+			var/obj/item/stack/ore/plasma/ammo = AM
+			cutter.attackby(ammo)
+			yes = TRUE //Yes
+			if(cutter.cell.charge == cutter.cell.maxcharge) 
+				break
+	if(yes)
+		to_chat(usr, span_info("You recharge your plasma cutter!"))
+	else
+		to_chat(usr, span_info("You don't have any plasma to recharge your plasma cutter with."))
 
 /**********************Minebot Upgrades**********************/
 
