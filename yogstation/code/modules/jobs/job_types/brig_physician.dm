@@ -50,6 +50,6 @@
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival
-	backpack_contents = list(/obj/item/modular_computer/tablet/phone/preset/cheap=1)
+	backpack_contents = list(/obj/item/modular_computer/laptop/preset/brig_physician=1)
 
 	implants = list(/obj/item/implant/mindshield)
