@@ -241,7 +241,7 @@
 			I.forceMove(src)
 			scanner = I
 			return
-		else if(istype(I, /obj/item/pen && user.intent == INTENT_HELP))  //So we can get attacked by edaggers
+		else if(istype(I, /obj/item/pen && user.a_intent == INTENT_HELP))  //So we can get attacked by edaggers
 			var/new_name = input(user, "Choose a new name for the minig bot", "Name")
 			if(!new_name)
 				to_chat(user, span_notice("Not a valid name."))
