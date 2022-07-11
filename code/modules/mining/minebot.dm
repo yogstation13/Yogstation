@@ -192,14 +192,32 @@
 			return
 		else if(istype(I, /obj/item/reagent_containers/hypospray/medipen))
 			if(pen)
-				to_chat(user, "You replace [src]'s medipen with a new one.")
-				to_chat(src, "[user] replaces your current medipen with a new one.")
+				to_chat(user, span_notice("You replace [src]'s medipen with a new one."))
+				to_chat(src, span_notice("[user] replaces your current medipen with a new one."))
 				pen.forceMove(get_turf(src))
 			else
-				to_chat(user, "You insert a medipen into [src].")
-				to_chat(src, "[user] inserts a new medipen into you.")
+				to_chat(user, span_notice("You insert a medipen into [src]."))
+				to_chat(src, span_notice("[user] inserts a new medipen into you."))
 			I.forceMove(src)
 			pen = I
+			return
+		else if(istype(I, /obj/item/wormhole_jaunter))
+			if(jaunter)
+				to_chat(user, span_warning("[src] already has a jaunter!"))
+				return
+			to_chat(user, span_notice("You install a jaunter into [src]!"))
+			I.forceMove(src)
+			jaunter = I
+			return
+		else if(istype(I, /obj/item/bikehorn))
+			if(honk)   /// HONK HONK HONK HONK HONK XDXDXDXD 
+				to_chat(user, span_warning("[src] already has a bike horn!"))
+				return
+			to_chat(user, span_notice("You install a bike horn into [src]!"))
+			I.forceMove(src)
+			honk = I
+			playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
+			return
 	..()
 	if(honk)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
