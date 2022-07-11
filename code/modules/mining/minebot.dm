@@ -14,7 +14,6 @@
 	icon_living = "mining_drone"
 	status_flags = CANSTUN|CANKNOCKDOWN|CANPUSH
 	mouse_opacity = MOUSE_OPACITY_ICON
-	obj_flags = UNIQUE_RENAME
 	weather_immunities = list("ash")
 	faction = list("neutral")
 	a_intent = INTENT_HARM
@@ -242,6 +241,16 @@
 			I.forceMove(src)
 			scanner = I
 			return
+		else if(istype(I, /obj/item/pen/blue && user.intent == INTENT_HELP))  //So we can get attacked by edaggers
+			var/new_name = input(user, "Choose a new name for the minig bot", "Name")
+			if(!new_name)
+				to_chat(user, span_notice("Not a valid name."))
+				return
+			to_chat(user, span_notice("[src]'s new name is now [new_name]'."))
+			name = new_name
+			if(gpsy)
+				gpsy.name = new_name
+			
 	..()
 	if(honk)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
