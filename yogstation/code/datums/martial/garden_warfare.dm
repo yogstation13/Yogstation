@@ -16,12 +16,12 @@
 /datum/martial_art/gardern_warfare/can_use(mob/living/carbon/human/H)
 	return ispodperson(H)
 
-/datum/martial_art/krav_maga/teach(mob/living/carbon/human/H,make_temporary=0)
+/datum/martial_art/gardern_warfare/teach(mob/living/carbon/human/H,make_temporary=0)
 	if(..())
 		vine_snatch.Grant(H)
 		H.dna.species.speedmod = 0
 
-/datum/martial_art/krav_maga/on_remove(mob/living/carbon/human/H)
+/datum/martial_art/gardern_warfare/on_remove(mob/living/carbon/human/H)
 	vine_snatch.Remove(H)
 	H.dna.species.speedmod = initial(H.dna.species.speedmod)
 
