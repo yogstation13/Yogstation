@@ -42,6 +42,7 @@
 	var/obj/item/gun/energy/kinetic_accelerator/stored_gun
 	var/obj/item/gun/energy/plasmacutter/cutter
 	var/obj/item/t_scanner/adv_mining_scanner/scanner
+	var/obj/item/bikehorn/honk
 
 	var/datum/action/innate/minedrone/toggle_light/toggle_light_action
 	var/datum/action/innate/minedrone/toggle_meson_vision/toggle_meson_vision_action
@@ -78,6 +79,13 @@
 		qdel(action)
 	if(istype(stored_gun, /obj/item/gun/energy/kinetic_accelerator/mega))
 		unequip_gun()
+	if(cutter)
+		cutter.forceMove(get_turf(src))
+	if(scanner)
+		scanner.forceMove(get_turf(src))
+	if(honk)
+		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
+		honk.forceMove(get_turf(src))
 	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/sentience_act()
@@ -152,19 +160,33 @@
 				to_chat(user, span_notice("You insert [I] into the plasma cutter mount on the [src]..."))
 			I.forceMove(src)
 			cutter = I
+			return
 		else if(istype(I, /obj/item/stack/ore/plasma) && cutter)
 			cutter.attackby(I)
 			if(cutter.cell.charge == cutter.cell.maxcharge) 
-				I.forceMove(src)		
+				I.forceMove(src)
+			return		
 		else if(istype(I, /obj/item/gun/energy/kinetic_accelerator/mega))
 			equip_gun(I)
+			return
 	..()
+	if(honk)
+		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
 
 /mob/living/simple_animal/hostile/mining_drone/death()
 	DropOre(0)
 	if(stored_gun)
 		for(var/obj/item/borg/upgrade/modkit/M in stored_gun.modkits)
 			M.uninstall(stored_gun)
+		if(istype(stored_gun, /obj/item/gun/energy/kinetic_accelerator/mega))
+			unequip_gun()
+	if(cutter)
+		cutter.forceMove(get_turf(src))
+	if(scanner)
+		scanner.forceMove(get_turf(src))
+	if(honk)
+		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
+		honk.forceMove(get_turf(src))
 	deathmessage = "blows apart!"
 	..()
 
@@ -226,6 +248,8 @@
 /mob/living/simple_animal/hostile/mining_drone/OpenFire(atom/A)
 	if(CheckFriendlyFire(A))
 		return
+	if(honk)
+		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
 	stored_gun.afterattack(A, src) //of the possible options to allow minebots to have KA mods, would you believe this is the best?
 
 /mob/living/simple_animal/hostile/mining_drone/proc/CollectOre()
@@ -282,10 +306,10 @@
 	stored_gun = new_gun
 
 /mob/living/simple_animal/hostile/mining_drone/proc/unequip_gun()
-	stored_gun.trigger_guard = initial(gun.trigger_guard)
-	stored_gun.overheat_time = initial(gun.overheat_time)
-	stored_gun.holds_charge = initial(gun.holds_charge)
-	stored_gun.unique_frequency = initial(gun.unique_frequency)
+	stored_gun.trigger_guard = initial(stored_gun.trigger_guard)
+	stored_gun.overheat_time = initial(stored_gun.overheat_time)
+	stored_gun.holds_charge = initial(stored_gun.holds_charge)
+	stored_gun.unique_frequency = initial(stored_gun.unique_frequency)
 	stored_gun.forceMove(get_turf(src))
 	stored_gun = null
 
