@@ -464,6 +464,8 @@
 /obj/item/kevlar_plating
 	name = "debug plating"
 	desc = "You shouldn't see this!"
+	icon = 'icons/obj/kevlar.dmi'
+	icon_state = "mki"
 	var/name_set = "debug"
 	var/desc_add = " It has incredibly robust pieces of adminium slotted into it."
 	var/slowdown_set = 0 // Slowdown value to set on the vest, for reference a hardsuit has "1" slowdown
@@ -482,6 +484,7 @@
 /obj/item/kevlar_plating/mkii
 	name = "MK.II kevlar plating"
 	desc = "Light armor plating that can be carried easily while providing robust protection."
+	icon_state = "mkii"
 	name_set = "MK.II"
 	desc_add = "\nIt has MK.II kevlar plates slotted into it."
 	slowdown_set = 0
@@ -491,6 +494,7 @@
 /obj/item/kevlar_plating/mkiii
 	name = "MK.III kevlar plating"
 	desc = "Weighted armor plating that impedes movement but greatly improves the durability of the wearer."
+	icon_state = "mkiii"
 	name_set = "MK.III"
 	desc_add = "\nIt has MK.III kevlar plates slotted into it."
 	slowdown_set = 0.15 // Slow
@@ -500,6 +504,7 @@
 /obj/item/kevlar_plating/mkiv
 	name = "MK.IV kevlar plating"
 	desc = "Incredibly heavy armor plating that makes shooting the covered areas almost pointless."
+	icon_state = "mkiv"
 	name_set = "MK.IV"
 	w_class = WEIGHT_CLASS_BULKY
 	desc_add = "\nIt has MK.IV kevlar plates slotted into it."
