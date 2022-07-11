@@ -294,6 +294,7 @@
 	prof.underwear = H.underwear
 	prof.undershirt = H.undershirt
 	prof.socks = H.socks
+	prof.tts = H.tts
 	if(H.mind)//yes we need to check this
 		prof.accent = H.mind.accent_name
 
@@ -545,6 +546,7 @@
 	var/undershirt
 	var/socks
 	var/accent = null
+	var/tts = "Masc1"
 	/// What scars the target had when we copied them, in string form (like persistent scars)
 	var/list/stored_scars
 
@@ -568,6 +570,7 @@
 	newprofile.undershirt = undershirt
 	newprofile.socks = socks
 	newprofile.accent = accent
+	newprofile.tts = tts
 	newprofile.stored_scars = stored_scars.Copy()
 
 

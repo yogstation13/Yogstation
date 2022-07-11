@@ -111,6 +111,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	user.undershirt = chosen_prof.undershirt
 	user.socks = chosen_prof.socks
 	user.mind.accent_name = chosen_prof.accent
+	user.tts = chosen_prof.tts
 	user.mind.RegisterSignal(user, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
 
 	chosen_dna.transfer_identity(user, 1)
