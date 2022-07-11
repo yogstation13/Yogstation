@@ -48,6 +48,7 @@
 	item_state = "tile"
 	lefthand_file = 'icons/mob/inhands/misc/sheets_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/sheets_righthand.dmi'
+	cryo_preserve = TRUE
 	var/obj/item/nuke_core/core
 
 /obj/item/nuke_core_container/Destroy()
