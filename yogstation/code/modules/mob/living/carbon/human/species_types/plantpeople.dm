@@ -288,14 +288,14 @@
 	speedmod = 0
 	mutantlungs = /obj/item/organ/lungs/ashwalker/ivymen
 	breathid = "n2" // yogs end
-	disliked_food = DAIRY | MICE
+	disliked_food = DAIRY
 
 /datum/species/lizard/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "ash"
+	C.weather_immunities |= "acid"
 
 /datum/species/lizard/ivymen/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	C.weather_immunities -= "ash"
+	C.weather_immunities -= "acid"
 
 #undef STATUS_MESSAGE_COOLDOWN
