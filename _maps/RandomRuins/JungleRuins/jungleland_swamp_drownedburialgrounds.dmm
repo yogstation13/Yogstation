@@ -25,17 +25,6 @@
 /obj/item/pickaxe/mini,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
-"m" = (
-/obj/structure/closet/crate/coffin/blackcoffin,
-/obj/item/wisp_lantern,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/ruin/unpowered)
-"n" = (
-/obj/item/candle/infinite{
-	lit = 1
-	},
-/turf/open/floor/plating/ashplanet/rocky,
-/area/ruin/unpowered)
 "o" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -44,8 +33,9 @@
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
-"x" = (
-/turf/open/floor/plating/ashplanet/rocky,
+"w" = (
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
 "y" = (
 /obj/structure/table/wood,
@@ -61,9 +51,11 @@
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/water/toxic_pit,
 /area/ruin/unpowered)
-"J" = (
-/mob/living/simple_animal/hostile/skeleton,
-/turf/open/floor/plating/ashplanet/rocky,
+"I" = (
+/obj/item/candle/infinite{
+	lit = 1
+	},
+/turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
 "M" = (
 /obj/structure/closet/crate/coffin{
@@ -71,9 +63,17 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
-"T" = (
+"P" = (
 /mob/living/simple_animal/hostile/skeleton/templar,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"V" = (
+/obj/structure/closet/crate/coffin/blackcoffin,
+/obj/item/wisp_lantern,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"Z" = (
+/turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -157,8 +157,8 @@ a
 a
 a
 o
-x
-x
+Z
+Z
 o
 B
 B
@@ -180,8 +180,8 @@ y
 j
 a
 a
-x
-x
+Z
+Z
 a
 g
 B
@@ -203,8 +203,8 @@ g
 g
 a
 M
-J
-x
+w
+Z
 o
 g
 B
@@ -226,8 +226,8 @@ d
 g
 a
 a
-x
-x
+Z
+Z
 a
 g
 B
@@ -249,8 +249,8 @@ g
 E
 g
 o
-x
-x
+Z
+Z
 o
 g
 g
@@ -272,8 +272,8 @@ g
 g
 g
 a
-x
-x
+Z
+Z
 a
 a
 a
@@ -289,14 +289,14 @@ B
 g
 a
 o
-n
-x
-n
+I
+Z
+I
 g
 g
 o
-x
-x
+Z
+Z
 o
 a
 o
@@ -310,21 +310,21 @@ k
 h
 B
 g
-x
-x
-x
-m
-T
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
+Z
+Z
+Z
+V
+P
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
 B
 z
 z
@@ -335,14 +335,14 @@ B
 a
 a
 M
-n
-x
-n
+I
+Z
+I
 o
 a
 o
-x
-x
+Z
+Z
 o
 a
 o
@@ -364,8 +364,8 @@ a
 a
 a
 a
-x
-x
+Z
+Z
 a
 a
 a
@@ -387,8 +387,8 @@ a
 a
 a
 o
-x
-x
+Z
+Z
 M
 v
 a
@@ -410,8 +410,8 @@ o
 a
 a
 a
-J
-x
+w
+Z
 a
 a
 B
@@ -433,8 +433,8 @@ a
 a
 a
 M
-x
-x
+Z
+Z
 o
 a
 B
@@ -456,8 +456,8 @@ y
 j
 a
 a
-x
-x
+Z
+Z
 a
 a
 B
@@ -479,8 +479,8 @@ g
 g
 a
 o
-x
-x
+Z
+Z
 o
 B
 B

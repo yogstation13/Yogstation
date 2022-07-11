@@ -144,3 +144,9 @@
 
 /turf/open/floor/plating/jungle_baseturf/dying
 	baseturfs = /turf/open/floor/plating/dirt/jungleland/dying_forest
+
+/turf/open/indestructible/grass/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
+/turf/open/floor/plasteel/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS

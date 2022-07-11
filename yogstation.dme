@@ -3372,6 +3372,7 @@
 #include "yogstation\code\game\area\areas\centcom.dm"
 #include "yogstation\code\game\area\areas\holodeck.dm"
 #include "yogstation\code\game\area\areas\shuttles.dm"
+#include "yogstation\code\game\area\areas\ruins\jungleland.dm"
 #include "yogstation\code\game\gamemodes\game_mode.dm"
 #include "yogstation\code\game\gamemodes\objective.dm"
 #include "yogstation\code\game\gamemodes\objective_items.dm"

@@ -23,9 +23,6 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
-"f" = (
-/turf/open/floor/wood/lavaland,
-/area/template_noop)
 "h" = (
 /obj/structure/table/wood,
 /obj/structure/bedsheetbin/empty,
@@ -91,6 +88,9 @@
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/wheat/rice,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/template_noop)
+"D" = (
+/turf/open/floor/wood/jungle,
 /area/template_noop)
 "F" = (
 /obj/structure/table/wood,
@@ -588,12 +588,12 @@ I
 G
 G
 G
-f
-f
-f
-f
-f
-f
+D
+D
+D
+D
+D
+D
 X
 h
 w
@@ -615,12 +615,12 @@ L
 L
 G
 G
-f
-f
-f
-f
-f
-f
+D
+D
+D
+D
+D
+D
 e
 P
 l
