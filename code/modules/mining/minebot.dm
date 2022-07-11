@@ -58,6 +58,13 @@
 	var/weapon_verb = /mob/living/simple_animal/hostile/mining_drone/proc/cycle_weapon
 	var/reload_verb = /mob/living/simple_animal/hostile/mining_drone/proc/reload_pk
 	var/jaunter_verb = /mob/living/simple_animal/hostile/mining_drone/proc/use_jaunter
+	var/gps_verb = /mob/living/simple_animal/hostile/mining_drone/proc/toggle_gps
+
+	var/obj/item/gps/internal/gpsy = 
+
+/obj/item/gps/internal/mining_bot
+	gpstag = "Mining Bot"
+	desc = "It is a mining bot."
 
 /mob/living/simple_animal/hostile/mining_drone/Initialize()
 	. = ..()
@@ -74,6 +81,7 @@
 	add_verb(src, weapon_verb)
 	add_verb(src, reload_verb)
 	add_verb(src, jaunter_verb)
+	add_verb(src, gps_verb)
 
 	///Equiping
 	var/obj/item/gun/energy/kinetic_accelerator/newgun = new(src)
@@ -107,6 +115,7 @@
 	remove_verb(src, weapon_verb)
 	remove_verb(src, reload_verb)
 	remove_verb(src, jaunter_verb)
+	remove_verb(src, gps_verb)
 	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/sentience_act()
@@ -488,7 +497,20 @@
 		to_chat(usr, span_warning("You don't have a jaunter to activate!"))
 		return
 
-	jaunter.attack_self(mob/user)
+	jaunter.attack_self(usr)
+
+/mob/living/simple_animal/hostile/mining_drone/proc/toggle_gps()
+	set name = "Toggle GPS"
+	set desc = "Makes you emmit a GPS signal, or stop emmitting it if you already are doing that. "
+	set category = "Mining Bot"
+
+	if(!gpsy)
+		var/obj/item/gps/internal/mining_bot/new_gps = new(src)
+		new_gps.name = usr.name
+		to_chat(usr, span_notice("You now emmit a GPS signal."))
+	else
+		qdel(gpsy)
+		to_chat(usr, span_notice("You no more emmit a GPS signal."))
 
 /**********************Minebot Upgrades**********************/
 
