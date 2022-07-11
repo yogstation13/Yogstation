@@ -300,6 +300,29 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesdropping = stars(message)
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
 
+	var/voice = "Masc1"
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		voice = H.tts
+	
+	var/match_voice = list("Masc1" = ":np", "Masc2" = ":nh", "Masc3" = ":nf", "Masc4" = ":nd", "Fem1" = ":nb", "Fem2" = ":nr", "Fem3" = ":nu", "Fem4" = ":nw")
+	
+	voice = match_voice[voice]
+	
+	var/msghash = md5(message)
+	if(voice != "Masc1")
+		msghash = md5("[voice][message]") // Different voices should be cached separately
+
+	// TTS generation
+	var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
+	if(!fexists("dectalk/[md5(message)].wav"))
+		if(world.system_type == MS_WINDOWS)
+			world.shelleo("say.exe -w \"dectalk/[md5(msghash)].wav\" \"\[[voice]\][san_message]\"")
+		else
+			world.shelleo("say_demo_us -fo \"dectalk/[md5(msghash)].wav\" -a \"\[[voice]\][san_message]\"")
+	spawn(10 SECONDS)
+		fdel("dectalk/[md5(msghash)].wav")
+
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 	for(var/_AM in listening)
 		var/atom/movable/AM = _AM
@@ -307,6 +330,10 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mods)
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mods)
+		if(ismob(AM))
+			var/mob/MB = AM
+			if(MB.client && !(MB.client.prefs.chat_toggles & HEAR_TTS) && MB.has_language(message_language))
+				MB.playsound_local(get_turf(src), "dectalk/[md5(msghash)].wav", 100) // TTS play
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble
@@ -317,17 +344,6 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, speech_bubble_recipients, 30)
-
-	// TTS
-	var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
-	if(!fexists("dectalk/[md5(message)].wav"))
-		if(world.system_type == MS_WINDOWS)
-			world.shelleo("say.exe -w \"dectalk/[md5(message)].wav\" \"[san_message]\"")
-		else
-			world.shelleo("say_demo_us -fo \"dectalk/[md5(message)].wav\" -a \"[san_message]\"")
-	playsound(src, "dectalk/[md5(message)].wav", 100)
-	spawn(10 SECONDS)
-		fdel("dectalk/[md5(message)].wav")
 
 /mob/proc/binarycheck()
 	return FALSE

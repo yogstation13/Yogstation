@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	37
+#define SAVEFILE_VERSION_MAX	38
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -51,6 +51,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		toggles |= SOUND_ALT
 	if (current_version < 37)
 		chat_toggles |= CHAT_TYPING_INDICATOR
+	if (current_version < 38)
+		chat_toggles |= HEAR_TTS // Muted by default
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
@@ -233,6 +235,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["accent"], accent) // Accents, too!
 
+	READ_FILE(S["tts_voice"], tts_voice) // TTS Voice
+
 	READ_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end
 
@@ -297,7 +301,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	purrbation      = sanitize_integer(purrbation, FALSE, TRUE, initial(purrbation))
 
 	accent			= sanitize_text(accent, initial(accent)) // Can't use sanitize_inlist since it doesn't support falsely default values.
+	
+	tts_voice		= sanitize_text(tts_voice, initial(tts_voice))
 	// yogs end
+
+	
 
 	load_keybindings(S) // yogs - Custom keybindings
 
@@ -370,6 +378,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["purrbation"], purrbation)
 
 	WRITE_FILE(S["accent"], accent) // Accents, too!
+
+	WRITE_FILE(S["tts_voice"], tts_voice) // TTS Voice
 	
 	WRITE_FILE(S["mood_tail_wagging"], mood_tail_wagging)
 	// yogs end

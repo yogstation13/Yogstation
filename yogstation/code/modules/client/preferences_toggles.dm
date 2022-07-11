@@ -24,3 +24,11 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, typing_indicators)()
 	usr.client.prefs.chat_toggles ^= CHAT_TYPING_INDICATOR
 	usr.client.prefs.save_preferences()
 	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & CHAT_TYPING_INDICATOR) ? "now" : "no longer"] see typing indicators.")
+
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, hear_tts)()
+	set name = "Hear/Mute Text-To-Speech"
+	set category = "Preferences"
+	set desc = "Toggle Text-To-Speech"
+	usr.client.prefs.chat_toggles ^= HEAR_TTS
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & HEAR_TTS) ? "no longer" : "now"] hear text-to-speech.")

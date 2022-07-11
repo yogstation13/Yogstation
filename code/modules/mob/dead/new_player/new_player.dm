@@ -519,6 +519,16 @@
 		client.prefs.random_character()
 		client.prefs.accent = null
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
+		H.tts = "Random"
+	
+	if(H.tts == "Random")
+		if(gender == MALE)
+			H.tts = pick("Masc1", "Masc2", "Masc3", "Masc4")
+		else if(gender == FEMALE)
+			H.tts = pick("Fem1", "Fem2", "Fem3", "Fem4")
+		else
+			H.tts = pick("Masc1", "Masc2", "Masc3", "Masc4", "Fem1", "Fem2", "Fem3", "Fem4")
+
 	client.prefs.copy_to(H)
 
 	client.prefs.copy_to(H)

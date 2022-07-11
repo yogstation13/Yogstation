@@ -38,21 +38,25 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return 1
 
 /atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list())
+	// TTS generation
+	if(!isobserver(src)) // Ghosts can shut the fuck up please
+		var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
+		if(!fexists("dectalk/[md5(message)].wav"))
+			if(world.system_type == MS_WINDOWS)
+				world.shelleo("say.exe -w \"dectalk/[md5(message)].wav\" \"[san_message]\"")
+			else
+				world.shelleo("say_demo_us -fo \"dectalk/[md5(message)].wav\" -a \"[san_message]\"")
+		spawn(10 SECONDS)
+			fdel("dectalk/[md5(message)].wav")
+	
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 	for(var/_AM in get_hearers_in_view(range, source))
 		var/atom/movable/AM = _AM
 		AM.Hear(rendered, src, message_language, message, , spans, message_mods)
-	
-	// TTS
-	var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
-	if(!fexists("dectalk/[md5(message)].wav"))
-		if(world.system_type == MS_WINDOWS)
-			world.shelleo("say.exe -w \"dectalk/[md5(message)].wav\" \"[san_message]\"")
-		else
-			world.shelleo("say_demo_us -fo \"dectalk/[md5(message)].wav\" -a \"[san_message]\"")
-	playsound(src, "dectalk/[md5(message)].wav", 100)
-	spawn(10 SECONDS)
-		fdel("dectalk/[md5(message)].wav")
+		if(!isobserver(src) && ismob(AM))
+			var/mob/MB = AM
+			if(MB.client && !(MB.client.prefs.chat_toggles & HEAR_TTS) && MB.has_language(message_language))
+				MB.playsound_local(get_turf(src), "dectalk/[md5(message)].wav", 100) // TTS play
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.

@@ -75,6 +75,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
+	var/tts_voice = "Random"
+	var/list/tts_voices = list("Random", "Masc1", "Masc2", "Masc3", "Masc4", "Fem1", "Fem2", "Fem3", "Fem4")
 
 	var/list/random_locks = list()
 
@@ -267,7 +269,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 			dat += "<b>Language:</b><BR>"
-			dat += "<a href='?_src_=prefs;preference=accent;task=input'><b>Accent:</b> [accent ? accent : "None"]</a><BR></td>"
+			dat += "<a href='?_src_=prefs;preference=accent;task=input'><b>Accent:</b> [accent ? accent : "None"]</a><BR>"
+
+			dat += "<br>"
+			dat += "<a href='?_src_=prefs;preference=tts_voice;task=input'><b>TTS Voice:</b> [tts_voice ? tts_voice : "Random"]</a><br></td>"
 
 			dat += "</tr></table>"
 
@@ -1810,6 +1815,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							accent = initial(accent)
 						else
 							accent = aksent
+				
+				if("tts_voice")
+					var/chosen_voice = input(user, "Choose your voice:", "TTS Voice") as null|anything in tts_voices
+					if(chosen_voice)
+						tts_voice = chosen_voice
+
 				if ("preferred_map")
 					var/maplist = list()
 					var/default = "Default"
