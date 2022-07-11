@@ -853,6 +853,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
+"qo" = (
+/obj/machinery/power/smes/fullycharged,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shuttle/yogs/stealthcruiser)
 "rY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm{
@@ -916,16 +926,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
-"Dr" = (
-/obj/machinery/power/smes/fullycharged,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
+"Bd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "Ey" = (
@@ -981,6 +983,19 @@
 /obj/machinery/computer/crew/syndie,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
+"JT" = (
+/obj/machinery/recharge_station/fullupgrade,
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Syndicate Cutter APC";
+	pixel_x = -25;
+	req_access = 150
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/shuttle/yogs/stealthcruiser)
 "Lb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -997,33 +1012,9 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
-"No" = (
-/obj/machinery/recharge_station/fullupgrade,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Syndicate Cutter APC";
-	pixel_x = -25;
-	req_access = 150
-	},
-/turf/open/floor/plating,
-/area/shuttle/yogs/stealthcruiser)
 "Pz" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
-/area/shuttle/yogs/stealthcruiser)
-"QS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24;
-	req_access = 150
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "Re" = (
 /obj/machinery/button/door{
@@ -1038,6 +1029,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
+"SN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24;
+	req_access = 150
+	},
+/turf/open/floor/plating,
+/area/shuttle/yogs/stealthcruiser)
 "Vb" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/airalarm{
@@ -1050,13 +1052,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/shuttle/yogs/stealthcruiser)
-"Ys" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
 /area/shuttle/yogs/stealthcruiser)
 "YI" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -1122,8 +1117,8 @@ ad
 am
 az
 aL
-No
-Dr
+JT
+qo
 Ey
 cP
 ad
@@ -1137,8 +1132,8 @@ ag
 an
 aA
 aM
-QS
-Ys
+SN
+Bd
 aA
 bH
 bQ
