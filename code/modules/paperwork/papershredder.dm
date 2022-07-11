@@ -50,6 +50,10 @@
 		shred_amount = 3
 	else if(istype(W, /obj/item/station_charter))
 		shred_amount = 3
+	else if(istype(W, /obj/item/card/emag))
+		qdel(W)
+		explosion(src, -1, 0, 1,)
+		visible_message(("<span class='danger'>The [src] short-circuits and explodes! </span>"))
 	else if(istype(W, /obj/item/paper_bundle))
 		shred_amount = 3
 	else if(istype(W, /obj/item/book))
