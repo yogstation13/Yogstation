@@ -14,6 +14,7 @@
 	icon_living = "mining_drone"
 	status_flags = CANSTUN|CANKNOCKDOWN|CANPUSH
 	mouse_opacity = MOUSE_OPACITY_ICON
+	obj_flags = UNIQUE_RENAME
 	weather_immunities = list("ash")
 	faction = list("neutral")
 	a_intent = INTENT_HARM
@@ -59,8 +60,9 @@
 	var/reload_verb = /mob/living/simple_animal/hostile/mining_drone/proc/reload_pk
 	var/jaunter_verb = /mob/living/simple_animal/hostile/mining_drone/proc/use_jaunter
 	var/gps_verb = /mob/living/simple_animal/hostile/mining_drone/proc/toggle_gps
+	var/scanner_verb = /mob/living/simple_animal/hostile/mining_drone/proc/toggle_scanner
 
-	var/obj/item/gps/internal/gpsy = 
+	var/obj/item/gps/internal/gpsy
 
 /obj/item/gps/internal/mining_bot
 	gpstag = "Mining Bot"
@@ -82,6 +84,7 @@
 	add_verb(src, reload_verb)
 	add_verb(src, jaunter_verb)
 	add_verb(src, gps_verb)
+	add_verb(src, scanner_verb)
 
 	///Equiping
 	var/obj/item/gun/energy/kinetic_accelerator/newgun = new(src)
@@ -116,6 +119,7 @@
 	remove_verb(src, reload_verb)
 	remove_verb(src, jaunter_verb)
 	remove_verb(src, gps_verb)
+	remove_verb(src, scanner_verb)
 	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/sentience_act()
@@ -226,6 +230,17 @@
 			I.forceMove(src)
 			honk = I
 			playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
+			return
+		else if(istype(I, /obj/item/t_scanner/adv_mining_scanner/))
+			if(scanner)
+				to_chat(user, span_notice("You replace [src]'s mining scanner with a new one."))
+				to_chat(src, span_notice("[user] replaces your current mining scanner with a new one."))
+				scanner.forceMove(get_turf(src))
+			else
+				to_chat(user, span_notice("You insert a mining scanner into [src]."))
+				to_chat(src, span_notice("[user] inserts a new mining scanner into you."))
+			I.forceMove(src)
+			scanner = I
 			return
 	..()
 	if(honk)
@@ -512,6 +527,18 @@
 		qdel(gpsy)
 		to_chat(usr, span_notice("You no more emmit a GPS signal."))
 
+/mob/living/simple_animal/hostile/mining_drone/proc/toggle_scanner()
+	set name = "Toggle Mining Scanner"
+	set desc = "Toggles your mining scanner on and off. "
+	set category = "Mining Bot"
+
+	if(!scanner)
+		to_chat(usr, span_warning("You don't have a mining scanner!"))
+		return
+	scanner.toggle_on()
+	to_chat(usr, span_notice("You toggle your mining scanner."))
+
+
 /**********************Minebot Upgrades**********************/
 
 //Melee
@@ -557,20 +584,12 @@
 	icon_state = "door_electronics"
 	icon = 'icons/obj/module.dmi'
 	sentience_type = SENTIENCE_MINEBOT
-	var/base_health_add = 5 //sentient minebots are penalized for beign sentient; they have their stats reset to normal plus these values
-	var/base_damage_add = 1 //this thus disables other minebot upgrades
 	var/base_speed_add = 1
-	var/base_cooldown_add = 10 //base cooldown isn't reset to normal, it's just added on, since it's not practical to disable the cooldown module
 
 /obj/item/slimepotion/slime/sentience/mining/after_success(mob/living/user, mob/living/simple_animal/SM)
 	if(istype(SM, /mob/living/simple_animal/hostile/mining_drone))
 		var/mob/living/simple_animal/hostile/mining_drone/M = SM
-		M.maxHealth = initial(M.maxHealth) + base_health_add
-		M.melee_damage_lower = initial(M.melee_damage_lower) + base_damage_add
-		M.melee_damage_upper = initial(M.melee_damage_upper) + base_damage_add
 		M.move_to_delay = initial(M.move_to_delay) + base_speed_add
-		if(M.stored_gun)
-			M.stored_gun.overheat_time += base_cooldown_add
 
 #undef MINEDRONE_COLLECT
 #undef MINEDRONE_ATTACK
