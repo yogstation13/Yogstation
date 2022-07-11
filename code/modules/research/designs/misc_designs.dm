@@ -468,7 +468,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/platingmki
-	name = "MK.I kevlar plating"
+	name = "MK.I bluespace plating"
 	desc = "Plating fitted for a plated vest or helmet. Makes you faster, but gives less armor."
 	id = "platingmki"
 	build_type = PROTOLATHE
@@ -478,7 +478,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/platingmkii
-	name = "MK.II kevlar plating"
+	name = "MK.II ceramic plating"
 	desc = "Plating fitted for a plated vest or helmet. Better than what you get at the start of the shift."
 	id = "platingmkii"
 	build_type = PROTOLATHE
@@ -488,7 +488,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/platingmkiii
-	name = "MK.III kevlar plating"
+	name = "MK.III plasteel plating"
 	desc = "Plating fitted for a plated vest or helmet. Makes you slower, but gives more armor."
 	id = "platingmkiii"
 	build_type = PROTOLATHE
@@ -498,7 +498,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/platingmkiv
-	name = "MK.IV kevlar plating"
+	name = "MK.IV titanium plating"
 	desc = "Plating fitted for a plated vest or helmet. Turns you into a walking tank."
 	id = "platingmkiv"
 	build_type = PROTOLATHE

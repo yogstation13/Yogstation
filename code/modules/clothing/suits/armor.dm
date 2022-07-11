@@ -402,7 +402,7 @@
 // Helmet type in code/modules/clothing/head/helmet.dm
 /obj/item/clothing/suit/armor/plated
 	name = "empty plated armor vest"	
-	desc = "A lightweight general-purpose over-armor suit that is designed to hold various types of kevlar plating. Won't do much without them."
+	desc = "A lightweight general-purpose over-armor suit that is designed to hold various types of armor plating. Won't do much without them."
 	icon_state = "plate-armor"
 	item_state = "plate-armor"
 	blood_overlay_type = "armor"
@@ -473,41 +473,41 @@
 		MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 100)
 
 /obj/item/kevlar_plating/mki
-	name = "MK.I kevlar plating"
+	name = "MK.I bluespace plating"
 	desc = "Incredibly light bluespace-infused armor plating that offers great movement while also providing some protection."
-	name_set = "MK.I"
-	desc_add = "\nIt has MK.I kevlar plates slotted into it."
+	name_set = "MK.I bluespace"
+	desc_add = "\nIt has MK.I bluespace plates slotted into it."
 	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
 	armor_set = list( // Slightly worse than default armor
 		MELEE = 20, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 40, WOUND = 10)
 
 /obj/item/kevlar_plating/mkii
-	name = "MK.II kevlar plating"
+	name = "MK.II ceramic plating"
 	desc = "Light armor plating that can be carried easily while providing robust protection."
 	icon_state = "mkii"
-	name_set = "MK.II"
-	desc_add = "\nIt has MK.II kevlar plates slotted into it."
+	name_set = "MK.II ceramic"
+	desc_add = "\nIt has MK.II ceramic plates slotted into it."
 	slowdown_set = 0
 	armor_set = list( // Slightly better than default armor
 		MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
 
 /obj/item/kevlar_plating/mkiii
-	name = "MK.III kevlar plating"
+	name = "MK.III plasteel plating"
 	desc = "Weighted armor plating that impedes movement but greatly improves the durability of the wearer."
 	icon_state = "mkiii"
-	name_set = "MK.III"
-	desc_add = "\nIt has MK.III kevlar plates slotted into it."
+	name_set = "MK.III plasteel"
+	desc_add = "\nIt has MK.III plasteel plates slotted into it."
 	slowdown_set = 0.15 // Slow
 	armor_set = list( // Robust
 		MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 60, ACID = 60, WOUND = 35)
 
 /obj/item/kevlar_plating/mkiv
-	name = "MK.IV kevlar plating"
+	name = "MK.IV titanium plating"
 	desc = "Incredibly heavy armor plating that makes shooting the covered areas almost pointless."
 	icon_state = "mkiv"
-	name_set = "MK.IV"
+	name_set = "MK.IV titanium"
 	w_class = WEIGHT_CLASS_BULKY
-	desc_add = "\nIt has MK.IV kevlar plates slotted into it."
+	desc_add = "\nIt has MK.IV titanium plates slotted into it."
 	slowdown_set = 0.4 // Very slow
 	armor_set = list( // Walking tank
 		MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 75, ACID = 75, WOUND = 50)

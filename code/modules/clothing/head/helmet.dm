@@ -482,7 +482,7 @@
 // Kevlar plates are in code/modules/clothing/suits/armor.dm
 /obj/item/clothing/head/helmet/plated
 	name = "empty plated helmet"
-	desc = "A lightweight combat helmet that has slots designed to hold various types of kevlar plating. Won't do much without them."
+	desc = "A lightweight combat helmet that has slots designed to hold various types of armor plating. Won't do much without them."
 	icon_state = "plate-helmet"
 	item_state = "plate-helmet"
 	armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 0, WOUND = 0)
