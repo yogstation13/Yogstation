@@ -185,7 +185,7 @@
 				to_chat(user, "You insert a medipen into [src].")
 				to_chat(src, "[user] inserts a new medipen into you.")
 			I.forceMove(src)
-			stored_medipen = I
+			pen = I
 	..()
 	if(honk)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
@@ -213,7 +213,7 @@
 		return
 	if(M.a_intent == INTENT_HELP)
 		if(client) 
-			to_chat(user, span_info("[src] is currently controlled by an onboard AI. There is no need to touch it's controlls."))
+			to_chat(M, span_info("[src] is currently controlled by an onboard AI. There is no need to touch it's controlls."))
 			return ..()
 		toggle_mode()
 		switch(mode)
@@ -227,12 +227,12 @@
 /mob/living/simple_animal/hostile/mining_drone/AltClick(mob/user)
 	. = ..()
 	to_chat(user, "<span class='info'>You order [src] to drop any collected ore.</span>")
-	drop_ore()
+	DropOre()
 
 /// Handles activating installed minebot mods
 /mob/living/simple_animal/hostile/mining_drone/AltClickOn(atom/target)
 	. = ..()
-	if(istype(target, mob/living/carbon) && pen)
+	if(istype(target, /mob/living/carbon) && pen)
 		pen.attack(target, src)
 
 /mob/living/simple_animal/hostile/mining_drone/CanAllowThrough(atom/movable/O)
