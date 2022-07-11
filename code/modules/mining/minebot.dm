@@ -47,6 +47,7 @@
 	var/obj/item/gun/energy/plasmacutter/cutter
 	var/obj/item/t_scanner/adv_mining_scanner/scanner
 	var/obj/item/reagent_containers/hypospray/medipen/pen 
+	var/obj/item/wormhole_jaunter/jaunter
 	var/obj/item/bikehorn/honk
 
 	var/datum/action/innate/minedrone/toggle_light/toggle_light_action
@@ -56,6 +57,7 @@
 
 	var/weapon_verb = /mob/living/simple_animal/hostile/mining_drone/proc/cycle_weapon
 	var/reload_verb = /mob/living/simple_animal/hostile/mining_drone/proc/reload_pk
+	var/jaunter_verb = /mob/living/simple_animal/hostile/mining_drone/proc/use_jaunter
 
 /mob/living/simple_animal/hostile/mining_drone/Initialize()
 	. = ..()
@@ -71,6 +73,7 @@
 
 	add_verb(src, weapon_verb)
 	add_verb(src, reload_verb)
+	add_verb(src, jaunter_verb)
 
 	///Equiping
 	var/obj/item/gun/energy/kinetic_accelerator/newgun = new(src)
@@ -96,11 +99,14 @@
 		scanner.forceMove(get_turf(src))
 	if(pen)
 		pen.forceMove(get_turf(src))
+	if(jaunter)
+		jaunter.forceMove(get_turf(src))
 	if(honk)
 		playsound(src, 'sound/items/bikehorn.ogg', 50, TRUE)
 		honk.forceMove(get_turf(src))
 	remove_verb(src, weapon_verb)
 	remove_verb(src, reload_verb)
+	remove_verb(src, jaunter_verb)
 	return ..()
 
 /mob/living/simple_animal/hostile/mining_drone/sentience_act()
@@ -410,7 +416,7 @@
 	var/mob/living/simple_animal/hostile/mining_drone/user = owner
 	user.DropOre()
 
-/mob/living/simple_animal/hostile/mining_drone/verb/cycle_weapon()
+/mob/living/simple_animal/hostile/mining_drone/proc/cycle_weapon()
 	set name = "Cycle Weapon"
 	set desc = "Switch between a plasma cutter or a KA."
 	set category = "Mining Bot"
@@ -429,7 +435,7 @@
 		if(MINEDRONE_CUTTER)
 			to_chat(usr, span_notice("You will now shoot a plasma cutter"))
 
-/mob/living/simple_animal/hostile/mining_drone/verb/reload_pk()
+/mob/living/simple_animal/hostile/mining_drone/proc/reload_pk()
 	set name = "PK Reload"
 	set desc = "Reloads your plasmacutter(if you have one) with plasma stucks from your contents. "
 	set category = "Mining Bot"
@@ -454,6 +460,17 @@
 		to_chat(usr, span_info("You recharge your plasma cutter!"))
 	else
 		to_chat(usr, span_info("You don't have any plasma to recharge your plasma cutter with."))
+
+/mob/living/simple_animal/hostile/mining_drone/proc/use_jaunter()
+	set name = "Activate Wormhole Jaunter"
+	set desc = "Activates your wormhole jaunter, if you have one. "
+	set category = "Mining Bot"
+
+	if(!jaunter)
+		to_chat(usr, span_warning("You don't have a jaunter to activate!"))
+		return
+
+	jaunter.attack_self(mob/user)
 
 /**********************Minebot Upgrades**********************/
 
