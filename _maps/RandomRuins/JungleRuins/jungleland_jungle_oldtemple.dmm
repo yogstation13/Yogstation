@@ -3,6 +3,9 @@
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
+"c" = (
+/turf/closed/mineral/ash_rock/jungle,
+/area/ruin/unpowered)
 "d" = (
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
@@ -15,9 +18,6 @@
 	startDead = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/ruin/unpowered)
-"j" = (
-/turf/closed/mineral/ash_rock,
 /area/ruin/unpowered)
 "m" = (
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -126,12 +126,12 @@ m
 m
 m
 o
-j
-j
-j
-j
-j
-j
+c
+c
+c
+c
+c
+c
 m
 m
 m
@@ -144,12 +144,12 @@ u
 m
 m
 u
-j
+c
 y
 z
 F
 z
-j
+c
 m
 m
 m
@@ -158,16 +158,16 @@ a
 (4,1,1) = {"
 o
 a
-j
-j
-j
-j
-j
+c
+c
+c
+c
+c
 d
 Q
 Q
 d
-j
+c
 m
 o
 a
@@ -175,8 +175,8 @@ m
 "}
 (5,1,1) = {"
 m
-j
-j
+c
+c
 O
 d
 d
@@ -185,7 +185,7 @@ d
 Q
 Q
 d
-j
+c
 m
 u
 m
@@ -193,7 +193,7 @@ m
 "}
 (6,1,1) = {"
 a
-j
+c
 d
 d
 d
@@ -203,15 +203,15 @@ d
 Q
 Q
 d
-j
-j
+c
+c
 m
 o
 a
 "}
 (7,1,1) = {"
 o
-j
+c
 Q
 Q
 Q
@@ -222,14 +222,14 @@ Q
 Z
 d
 d
-j
+c
 m
 m
 m
 "}
 (8,1,1) = {"
 m
-j
+c
 p
 F
 Q
@@ -247,7 +247,7 @@ o
 "}
 (9,1,1) = {"
 o
-j
+c
 Q
 I
 Q
@@ -265,7 +265,7 @@ m
 "}
 (10,1,1) = {"
 m
-j
+c
 Q
 Q
 Q
@@ -276,14 +276,14 @@ Q
 Q
 d
 d
-j
+c
 a
 m
 u
 "}
 (11,1,1) = {"
 m
-j
+c
 d
 d
 d
@@ -293,16 +293,16 @@ U
 Q
 Q
 d
-j
-j
+c
+c
 m
 m
 m
 "}
 (12,1,1) = {"
 a
-j
-j
+c
+c
 J
 d
 d
@@ -311,7 +311,7 @@ f
 Q
 Q
 h
-j
+c
 u
 m
 a
@@ -320,16 +320,16 @@ m
 (13,1,1) = {"
 o
 m
-j
-j
-j
-j
-j
+c
+c
+c
+c
+c
 d
 Q
 Q
 d
-j
+c
 a
 m
 m
@@ -342,12 +342,12 @@ a
 m
 m
 m
-j
+c
 z
 y
 z
 y
-j
+c
 m
 m
 m
@@ -360,12 +360,12 @@ m
 m
 m
 o
-j
-j
-j
-j
-j
-j
+c
+c
+c
+c
+c
+c
 m
 m
 o

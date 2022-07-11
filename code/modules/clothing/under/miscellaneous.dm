@@ -918,3 +918,9 @@
 	desc = "A tattered dress of white fabric."
 	icon_state = "cheongsam_s"
 	item_state = "cheongsam_s"
+
+//ivymen name variatons
+
+/obj/item/clothing/under/ash_robe/hunter/jungle
+	name = "primal rags"
+	desc = "Light primal rags that are fashionable and practical, while still maximizing photosynthesis capability for plantpeople."

@@ -282,12 +282,14 @@
  Podpeople subspecies: IVYMEN
 */
 /datum/species/pod/ivymen
-	// A unique podpeople mutation native to Jungleland. They are adapted to the region, don't mind meat, and move faster than normal podpeople, but lack the ability to use guns.
+	// A unique podpeople mutation native to Jungleland. 
+	// They are adapted to the region, don't mind meat, and move faster than normal podpeople.
+	// However, they can't use guns or machines.
 	name = "Ivymen"
 	inherent_traits = list(TRAIT_NOGUNS)
 	speedmod = 0
 	mutantlungs = /obj/item/organ/lungs/ashwalker/ivymen
-	breathid = "n2" // yogs end
+	breathid = "n2"
 	disliked_food = DAIRY
 
 /datum/species/lizard/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)

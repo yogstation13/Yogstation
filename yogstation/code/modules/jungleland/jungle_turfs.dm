@@ -150,3 +150,8 @@
 
 /turf/open/floor/plasteel/jungle
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
+/turf/closed/mineral/ash_rock/jungle
+	turf_type = /turf/open/floor/plating/jungle_baseturf
+	baseturfs = /turf/open/floor/plating/jungle_baseturf
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS

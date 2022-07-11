@@ -29,6 +29,9 @@
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
+"q" = (
+/turf/closed/mineral/ash_rock/jungle,
+/area/ruin/unpowered)
 "v" = (
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -44,9 +47,6 @@
 "z" = (
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
-"B" = (
-/turf/closed/mineral/ash_rock,
-/area/ruin/unpowered)
 "E" = (
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/water/toxic_pit,
@@ -125,19 +125,19 @@ z
 (3,1,1) = {"
 h
 h
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
 h
 h
 h
@@ -147,8 +147,8 @@ z
 "}
 (4,1,1) = {"
 h
-B
-B
+q
+q
 g
 a
 a
@@ -160,8 +160,8 @@ o
 Z
 Z
 o
-B
-B
+q
+q
 h
 h
 h
@@ -170,7 +170,7 @@ z
 "}
 (5,1,1) = {"
 h
-B
+q
 a
 g
 g
@@ -184,7 +184,7 @@ Z
 Z
 a
 g
-B
+q
 h
 h
 z
@@ -193,7 +193,7 @@ z
 "}
 (6,1,1) = {"
 h
-B
+q
 a
 g
 g
@@ -207,7 +207,7 @@ w
 Z
 o
 g
-B
+q
 h
 h
 h
@@ -216,7 +216,7 @@ z
 "}
 (7,1,1) = {"
 h
-B
+q
 g
 g
 a
@@ -230,16 +230,16 @@ Z
 Z
 a
 g
-B
-B
-B
+q
+q
+q
 h
 h
 z
 "}
 (8,1,1) = {"
 h
-B
+q
 g
 a
 a
@@ -256,13 +256,13 @@ g
 g
 g
 g
-B
+q
 h
 z
 "}
 (9,1,1) = {"
 h
-B
+q
 g
 a
 a
@@ -279,13 +279,13 @@ a
 a
 g
 g
-B
+q
 h
 z
 "}
 (10,1,1) = {"
 h
-B
+q
 g
 a
 o
@@ -302,13 +302,13 @@ a
 o
 a
 g
-B
+q
 z
 k
 "}
 (11,1,1) = {"
 h
-B
+q
 g
 Z
 Z
@@ -325,13 +325,13 @@ Z
 Z
 Z
 Z
-B
+q
 z
 z
 "}
 (12,1,1) = {"
 h
-B
+q
 a
 a
 M
@@ -348,13 +348,13 @@ a
 o
 a
 o
-B
+q
 z
 z
 "}
 (13,1,1) = {"
 h
-B
+q
 a
 a
 v
@@ -371,13 +371,13 @@ a
 a
 a
 a
-B
+q
 h
 z
 "}
 (14,1,1) = {"
 h
-B
+q
 a
 a
 a
@@ -394,13 +394,13 @@ v
 a
 a
 a
-B
+q
 h
 h
 "}
 (15,1,1) = {"
 h
-B
+q
 a
 a
 a
@@ -414,16 +414,16 @@ w
 Z
 a
 a
-B
-B
-B
+q
+q
+q
 h
 h
 h
 "}
 (16,1,1) = {"
 h
-B
+q
 a
 a
 a
@@ -437,7 +437,7 @@ Z
 Z
 o
 a
-B
+q
 h
 h
 h
@@ -446,7 +446,7 @@ z
 "}
 (17,1,1) = {"
 h
-B
+q
 a
 a
 j
@@ -460,7 +460,7 @@ Z
 Z
 a
 a
-B
+q
 h
 h
 h
@@ -469,8 +469,8 @@ z
 "}
 (18,1,1) = {"
 h
-B
-B
+q
+q
 a
 a
 a
@@ -482,8 +482,8 @@ o
 Z
 Z
 o
-B
-B
+q
+q
 h
 h
 h
@@ -493,19 +493,19 @@ z
 (19,1,1) = {"
 h
 h
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
 h
 h
 h
