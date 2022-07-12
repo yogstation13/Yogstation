@@ -18,13 +18,6 @@
 /obj/item/clothing/glasses/meson,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"ag" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "ah" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -130,6 +123,14 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"aF" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "aG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -147,22 +148,9 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"aK" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "aL" = (
 /obj/structure/particle_accelerator/power_box,
 /turf/open/floor/engine,
-/area/engine/engineering)
-"aM" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "aO" = (
 /obj/structure/particle_accelerator/particle_emitter/left,
@@ -190,13 +178,6 @@
 "bb" = (
 /turf/closed/wall,
 /area/engine/engineering)
-"be" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "bf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -220,12 +201,6 @@
 "bu" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
-"bv" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "bx" = (
 /obj/structure/closet/radiation,
@@ -430,6 +405,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"fn" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "gc" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
@@ -455,10 +437,6 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"gl" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
 /area/engine/engineering)
 "gm" = (
 /turf/open/space/basic,
@@ -562,18 +540,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"oc" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/window,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "oD" = (
 /obj/machinery/power/tesla_coil,
 /obj/structure/cable/orange{
@@ -588,12 +554,6 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering)
-"py" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "pA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -602,14 +562,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"pX" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
 /area/engine/engineering)
 "qG" = (
 /obj/machinery/camera/emp_proof{
@@ -711,6 +663,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wO" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "xD" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -765,6 +724,13 @@
 	icon_state = "1-8"
 	},
 /turf/open/space/basic,
+/area/engine/engineering)
+"AE" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Bp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
@@ -863,6 +829,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Hf" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "Hy" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
@@ -938,6 +908,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"ME" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/engineering)
+"MT" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "On" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -957,6 +948,15 @@
 	icon_state = "1-4"
 	},
 /turf/open/space/basic,
+/area/engine/engineering)
+"Qf" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Rj" = (
 /obj/item/wrench,
@@ -1012,6 +1012,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"UO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "VD" = (
 /obj/machinery/power/rad_collector,
 /obj/structure/cable/orange{
@@ -1029,22 +1038,31 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"Wu" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/obj/machinery/door/firedoor/window,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "WN" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"XA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "XG" = (
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
+/area/engine/engineering)
+"Zr" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 
 (1,1,1) = {"
@@ -1332,8 +1350,8 @@ ca
 cc
 ap
 Uz
-aK
-aM
+XA
+fn
 ad
 gm
 gm
@@ -1360,9 +1378,9 @@ ac
 ac
 dO
 uq
-bv
-ag
-oc
+Zr
+wO
+MT
 yN
 yN
 yN
@@ -1388,9 +1406,9 @@ ac
 ac
 ls
 bH
-ac
-aE
-Wu
+ai
+bg
+ME
 gm
 gm
 kU
@@ -1416,10 +1434,10 @@ aj
 bI
 Cw
 bG
-ac
-aE
-Wu
-gl
+UO
+bg
+ME
+Hf
 kU
 sd
 gm
@@ -1445,9 +1463,9 @@ ad
 BI
 ad
 ad
-pX
-pX
-gl
+aF
+aF
+Hf
 kU
 gm
 gm
@@ -1475,7 +1493,7 @@ rX
 bA
 ar
 bf
-gl
+Hf
 gm
 gm
 gm
@@ -1503,7 +1521,7 @@ bz
 as
 aO
 bg
-gl
+Hf
 gm
 gm
 gm
@@ -1531,7 +1549,7 @@ au
 aL
 aP
 xO
-gl
+Hf
 kU
 gm
 gm
@@ -1559,7 +1577,7 @@ as
 bB
 ba
 bg
-gl
+Hf
 kU
 sd
 kU
@@ -1587,7 +1605,7 @@ ch
 aG
 aG
 bh
-gl
+Hf
 kU
 gm
 gm
@@ -1613,9 +1631,9 @@ ad
 uA
 ad
 ad
-pX
-pX
-gl
+aF
+aF
+Hf
 kU
 gm
 gm
@@ -1640,10 +1658,10 @@ bx
 bK
 xD
 ci
-ac
-aE
-Wu
-gl
+ai
+bg
+ME
+Hf
 kU
 sd
 gm
@@ -1668,9 +1686,9 @@ ac
 ac
 ls
 ac
-ac
-aE
-Wu
+ai
+bg
+ME
 gm
 gm
 kU
@@ -1696,9 +1714,9 @@ ac
 ac
 ge
 bF
-bv
-ag
-oc
+Zr
+wO
+MT
 yN
 yN
 yN
@@ -1724,8 +1742,8 @@ ae
 cd
 an
 Jf
-py
-be
+Qf
+AE
 ad
 gm
 gm
