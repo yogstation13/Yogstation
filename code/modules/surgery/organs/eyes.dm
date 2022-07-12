@@ -149,13 +149,13 @@
 	sight_flags = SEE_TURFS
 	see_in_dark = 4
 
-/obj/item/organ/eyes/robotic/flashlight/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
+/obj/item/organ/eyes/robotic/xray/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, initialising)
 	. = ..()
-	ADD_TRAIT(user, TRAIT_MESONS)
+	ADD_TRAIT(M, TRAIT_MESONS, src)
 
-/obj/item/organ/eyes/robotic/flashlight/Remove(var/mob/living/carbon/M, var/special = 0)
+/obj/item/organ/eyes/robotic/xray/Remove(mob/living/carbon/M, special = 0)
 	. = ..()
-	REMOVE_TRAIT(user, TRAIT_MESONS)
+	REMOVE_TRAIT(M, TRAIT_MESONS, src)
 
 /obj/item/organ/eyes/robotic/xray/syndicate
 	name = "\improper X-ray eyes"
