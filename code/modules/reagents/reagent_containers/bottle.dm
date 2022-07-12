@@ -438,14 +438,7 @@
 /obj/item/reagent_containers/glass/bottle/bromine
 	name = "bromine bottle"
 	list_reagents = list(/datum/reagent/bromine = 30)
-
-//Hypospray bottles
-
-/obj/item/reagent_containers/glass/bottle/combat
-	name = "combat hypospray mix bottle"
-	list_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/medicine/omnizine = 10, /datum/reagent/medicine/leporazine = 9, /datum/reagent/medicine/atropine = 9)
-
-
+	
 /obj/item/reagent_containers/glass/woodmug
 	name = "wooden mug"
 	desc = "Style is everything, whether it be an ashtray or a keychain or a kitchen timer, we’re living in an age of design, where the physical contours of an object are paramount. Look at this wooden mug, for instance, and see how much it deviates, in its conception, from the ordinary mug. Not much. It is round, tallish, has a handle just like any coffee mug. But it’s not an ordinary coffee mug. First of all its form is totally different; it’s made of wood, not ceramic or plastic. It’s an object that cannot be used casually and put it away, you would love to possess it."
@@ -459,11 +452,29 @@
 	name = "vial"
 	desc = "A small vial for holding small amounts of reagents."
 	icon_state = "vial"
-	item_state = "atoxinbottle"
+	item_state = "atoxinbottle"	
+	unique_reskin = list("vial" = "vial",
+						"white vial" = "vial_white",
+						"red vial" = "vial_red",
+						"blue vial" = "vial_blue",
+						"green vial" = "vial_green",
+						"orange vial" = "vial_orange",
+						"purple vial" = "vial_purple",
+						"black vial" = "vial_black"
+						)
 	possible_transfer_amounts = list(5, 10, 15)
 	volume = 15
 	disease_amount = 15
+	/// Name that used as the base for pen renaming, so subtypes can have different names without having to worry about messing with it
 	var/base_name = "vial"
+	var/base_icon_state = "vial"
+	/// List of icon_states that require the stripe overlay to look good. Not a very good way of doing it, but its the best I can come up with right now.
+	var/list/striped_vial_skins = list("vial_white", "vial_red", "vial_blue", "vial_green", "vial_orange", "vial_purple", "vial_black", "viallarge_white", "viallarge_red", "viallarge_blue", "viallarge_green", "viallarge_orange", "viallarge_purple", "viallarge_black")
+
+/obj/item/reagent_containers/glass/bottle/vial/Initialize()
+	if(icon_state in striped_vial_skins)
+		filling_icon_state = "[base_icon_state]stripe"
+	..()
 
 /obj/item/reagent_containers/glass/bottle/vial/attackby(obj/P, mob/user, params)
 	add_fingerprint(user)
@@ -483,32 +494,33 @@
 /obj/item/reagent_containers/glass/bottle/vial/brute
 	name = "vial (Brute)"
 	icon_state = "vial_red"
-	filling_icon_state = "vialstripe"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 15)
 
 /obj/item/reagent_containers/glass/bottle/vial/burn
 	name = "vial (Burn)"
-	icon_state = "vial_red"
-	filling_icon_state = "vialstripe"
+	icon_state = "vial_orange"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 15)
 
 /obj/item/reagent_containers/glass/bottle/vial/tox
 	name = "vial (Toxic)"
-	icon_state = "vial_red"
-	filling_icon_state = "vialstripe"
+	icon_state = "vial_green"
 	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
 
 /obj/item/reagent_containers/glass/bottle/vial/oxy
 	name = "vial (Oxygen)"
 	icon_state = "vial_blue"
-	filling_icon_state = "vialstripe"
 	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 15)
 
 /obj/item/reagent_containers/glass/bottle/vial/epi
 	name = "vial (Epinephrine)"
 	icon_state = "vial_white"
-	filling_icon_state = "vialstripe"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 3)
+
+/obj/item/reagent_containers/glass/bottle/vial/lavaland
+	name = "vial (Lavaland Extract Mix)"
+	icon_state = "vial_black"
+	reagent_flags = 0
+	list_reagents = list(/datum/reagent/medicine/tricordrazine = 3, /datum/reagent/medicine/epinephrine = 6, /datum/reagent/medicine/lavaland_extract = 3, /datum/reagent/medicine/omnizine = 3)
 
 /obj/item/reagent_containers/glass/bottle/vial/random_virus
 	name = "Experimental disease culture vial"
@@ -530,7 +542,16 @@
 	base_name = "large vial"
 	desc = "A large vial for holding a sizable amounts of reagents."
 	icon_state = "viallarge"
-	item_state = "atoxinbottle"
+	base_icon_state = "viallarge"
+	unique_reskin = list("large vial" = "viallarge",
+						"white large vial" = "viallarge_white",
+						"red large vial" = "viallarge_red",
+						"blue large vial" = "viallarge_blue",
+						"green large vial" = "viallarge_green",
+						"orange large vial" = "viallarge_orange",
+						"purple large vial" = "viallarge_purple",
+						"black large vial" = "viallarge_black"
+						)
 	w_class = WEIGHT_CLASS_SMALL
 	possible_transfer_amounts = list(5, 10, 15, 30)
 	volume = 30
@@ -539,43 +560,52 @@
 /obj/item/reagent_containers/glass/bottle/vial/large/omnizine
 	name = "large vial (Omnizine)"
 	icon_state = "viallarge_white"
-	filling_icon_state = "viallargestripe"
 	list_reagents = list(/datum/reagent/medicine/omnizine = 30)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/brute
 	name = "large vial (Brute)"
 	icon_state = "viallarge_red"
-	filling_icon_state = "viallargestripe"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 30)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/burn
 	name = "large vial (Burn)"
 	icon_state = "viallarge_orange"
-	filling_icon_state = "viallargestripe"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 30)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/tox
 	name = "large vial (Toxic)"
 	icon_state = "viallarge_green"
-	filling_icon_state = "viallargestripe"
 	list_reagents = list(/datum/reagent/medicine/charcoal = 30)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/oxy
 	name = "large vial (Oxygen)"
 	icon_state = "viallarge_blue"
-	filling_icon_state = "viallargestripe"
 	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 30)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/epi
 	name = "large vial (Epinephrine)"
 	icon_state = "viallarge_white"
-	filling_icon_state = "viallargestripe"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 24, /datum/reagent/medicine/coagulant = 6)
+
+/obj/item/reagent_containers/glass/bottle/vial/large/combat
+	name = "large vial (Combat Hypospray Mix)"
+	icon_state = "viallarge_black"
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/medicine/omnizine = 10, /datum/reagent/medicine/leporazine = 9, /datum/reagent/medicine/atropine = 9)
 
 /obj/item/reagent_containers/glass/bottle/vial/bluespace
 	name = "bluespace vial"
 	base_name = "bluespace vial"
 	desc = "A small vial powered by experimental bluespace technology capable of holding 60 units."
 	icon_state = "vialbluespace"
+	base_icon_state = "vialbluespace"
+	unique_reskin = list("bluespace vial" = "vialbluespace",
+						"white bluespace vial" = "vialbluespace_white",
+						"red bluespace vial" = "vialbluespace_red",
+						"blue bluespace vial" = "vialbluespace_blue",
+						"green bluespace vial" = "vialbluespace_green",
+						"orange bluespace vial" = "vialbluespace_orange",
+						"purple bluespace vial" = "vialbluespace_purple",
+						"black bluespace vial" = "vialbluespace_black"
+						)
 	possible_transfer_amounts = list(5,10,15,30,45)
 	volume = 60

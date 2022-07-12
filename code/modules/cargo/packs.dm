@@ -1194,14 +1194,14 @@
 	name = "Medipen Variety-Pak"
 	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
 	cost = 2000
-	contains = list(/obj/item/reagent_containers/hypospray/medipen/,
-					/obj/item/reagent_containers/hypospray/medipen/,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen/,
+					/obj/item/reagent_containers/autoinjector/medipen/,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss
 )
 	crate_name = "medipen crate"
 
@@ -1249,7 +1249,7 @@
 	name = "Medipen Two-Pak"
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
 	cost = 500
-	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/autoinjector/medipen/ekit)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/chemical

@@ -120,8 +120,6 @@
 
 /obj/structure/closet/secure_closet/mmedical/PopulateContents()
 	..()
-	new /obj/item/reagent_containers/hypospray/mixi(src)
-	new /obj/item/reagent_containers/hypospray/derm(src)
 	if(prob(50))
 		new /obj/item/storage/backpack/medic(src)
 	else
