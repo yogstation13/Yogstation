@@ -4818,6 +4818,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"alP" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/advanced_airlock_controller{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "alQ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -63931,20 +63945,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"dMm" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/advanced_airlock_controller{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "dMJ" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
@@ -124887,7 +124887,7 @@ aaa
 aaa
 aaf
 hRH
-dMm
+alP
 gFp
 amT
 uik
@@ -125144,7 +125144,7 @@ aaf
 aaf
 aaf
 dnh
-bfq
+dnh
 dnh
 apd
 eRs
