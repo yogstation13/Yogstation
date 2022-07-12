@@ -2072,7 +2072,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 /datum/species/proc/ExtinguishMob(mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/spec_revival(mob/living/carbon/human/H)
+/datum/species/proc/spec_revival(mob/living/carbon/human/H, admin_revive = FALSE)
 	return
 
 ////////////

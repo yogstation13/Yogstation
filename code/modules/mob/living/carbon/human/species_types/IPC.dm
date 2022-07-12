@@ -174,7 +174,9 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
-/datum/species/ipc/spec_revival(mob/living/carbon/human/H)
+/datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
+	if(admin_revive)
+		return ..()
 	to_chat(H, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>."))
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
@@ -194,6 +196,9 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	if(istype(I, /obj/item/borg/upgrade/restart) && intent != INTENT_HARM) // Why you would hit someone with a cyborg reboot idk but
 		if(H.stat != DEAD)
 			to_chat(user, span_warning("This unit is not dead!"))
+			return FALSE
+		if(H.suicided || H.brainmob?.suiciding)
+			to_chat(user, span_warning("This units personality matrix is gone."))
 			return FALSE
 		if(H.health < 0)
 			to_chat(user, span_warning("You have to repair the IPC before using this module!"))
