@@ -63768,20 +63768,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"dMm" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/advanced_airlock_controller{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "dMJ" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
@@ -72743,6 +72729,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison/hallway)
+"mSn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/advanced_airlock_controller{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "mSs" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -124908,7 +124908,7 @@ aaa
 aaa
 aaf
 hRH
-dMm
+mSn
 gFp
 amT
 uik
@@ -125165,7 +125165,7 @@ aaf
 aaf
 aaf
 dnh
-bfq
+dnh
 dnh
 apd
 eRs
