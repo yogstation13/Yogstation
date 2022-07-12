@@ -132,10 +132,10 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
-/datum/design/crewpinpointer
+/datum/design/pinpointer_crew
 	name = "Crew Pinpointer"
 	desc = "Allows tracking of someone's location if their suit sensors are turned to tracking beacon."
-	id = "crewpinpointer"
+	id = "pinpointer_crew"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/gold = 200)
 	build_path = /obj/item/pinpointer/crew
@@ -217,7 +217,7 @@
 	id = "rollerbed"
 	build_path = /obj/item/roller
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 8000, /datum/material/plastic = 2000) // balancing is a bitch, what does this even mean? i don't really know.
+	materials = list(/datum/material/iron = 8000)
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 

@@ -24,6 +24,7 @@
 	icon_aggro = "herald"
 	icon_dead = "herald_dying"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "herald"
 	maxHealth = 800
 	health = 800
 	melee_damage_lower = 20

@@ -188,10 +188,9 @@
 	else
 		if(recipient.holder)
 			if(holder)
-				to_chat(recipient,
-					type = MESSAGE_TYPE_ADMINPM,
-					html = span_danger("Admin PM from-<b>[key_name(src, recipient, 1)]</b>: [span_linkify("[keywordparsedmsg]")]"),
-					confidential = TRUE)
+				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", confidential=TRUE)
+				to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)
+				to_chat(recipient, span_adminsay("<i>Click on the administrator's name to reply.</i>"), confidential=TRUE)
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: [span_linkify("[keywordparsedmsg]")]"),
@@ -200,7 +199,7 @@
 				//omg this is dumb, just fill in both their tickets
 				// yogs start - Yog Tickets
 				admin_ticket_log(src, msg, FALSE)
-				if(!recipient.current_ticket) // creates a ticket if there is no ticket of this user
+				if(!recipient.current_ticket && !current_ticket) // creates a ticket if there is no ticket of either user
 					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
 				if(recipient.current_ticket && !recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer()

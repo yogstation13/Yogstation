@@ -37,7 +37,7 @@
 	if(accept_hand)
 		if(!tool)
 			success = TRUE
-		if(iscyborg(user))
+		if(iscyborg(user) && istype(tool, /obj/item/borg/cyborghug))
 			success = TRUE
 
 // yogs start - tool switcher
@@ -113,6 +113,14 @@
 			prob_chance = implements[implement_type]
 		prob_chance *= surgery.get_probability_multiplier()
 
+		// Blood splatters on tools and user
+		if(tool && prob(20))
+			tool.add_mob_blood(target)
+			to_chat(user, span_warning("[tool] gets covered in [target]'s blood "))
+		if(prob(10))
+			user.add_mob_blood(target)
+			to_chat(user, span_warning("You get covered in [target]'s blood "))
+
 		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
 	 tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
@@ -121,6 +129,7 @@
 		else
 			if(failure(user, target, target_zone, tool, surgery))
 				play_failure_sound(user, target, target_zone, tool, surgery)
+				
 				advance = TRUE
 		if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
 			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON)) //borgs and abductors are immune to this
@@ -154,7 +163,7 @@
 				break	
 	else
 		sound_file_use = preop_sound
-	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You succeed."),
@@ -173,7 +182,7 @@
 				break	
 	else
 		sound_file_use = success_sound
-	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_warning("You screw up!"),
@@ -192,7 +201,7 @@
 				break	
 	else
 		sound_file_use = failure_sound
-	playsound(get_turf(target), sound_file_use, 75, TRUE, falloff = 1)
+	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return TRUE
