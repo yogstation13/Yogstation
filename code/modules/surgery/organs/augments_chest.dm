@@ -213,8 +213,8 @@
 	switch(severity)
 		if(EMP_HEAVY)
 			owner.adjustFireLoss(35)
-			to_chat(owner, span_warning("Your thruster implant malfunctions and mildly burns you!"))
+			to_chat(owner, span_warning("Your thruster implant malfunctions and severely burns you!"))
 		if(EMP_LIGHT)
 			owner.adjustFireLoss(10)
-			to_chat(owner, span_danger("Your thruster implant malfunctions and severely burns you!"))
+			to_chat(owner, span_danger("Your thruster implant malfunctions and mildly burns you!"))
 
