@@ -197,9 +197,12 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		if(H.stat != DEAD)
 			to_chat(user, span_warning("This unit is not dead!"))
 			return FALSE
-		if(H.suicided || H.brainmob?.suiciding)
-			to_chat(user, span_warning("This units personality matrix is gone."))
-			return FALSE
+
+		var/obj/item/organ/brain/BR = H.getorgan(/obj/item/organ/brain)
+		if(BR)
+			if(BR.suicided || BR.brainmob?.suiciding)
+				to_chat(user, span_warning("This units personality matrix is gone."))
+				return FALSE
 		if(H.health < 0)
 			to_chat(user, span_warning("You have to repair the IPC before using this module!"))
 			return FALSE
