@@ -564,9 +564,18 @@
 	id = "combat_cyber_implants"
 	display_name = "Combat Cybernetic Implants"
 	description = "Military grade combat implants to improve performance."
-	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency","syndicate_basic")
+	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
 	design_ids = list("ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+
+/datum/techweb_node/illegal_cyber_implants
+	id = "illegal_cyber_implants"
+	display_name = "Illegal Cybernetic Implants"
+	description = "Nanotrasen would like to remind employees that use of unlicensed cybernetic implants violates multiple employee contract clauses."
+	prereq_ids = list("combat_cyber_implants","syndicate_basic")
+	design_ids = list("ci-xray")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
 
 ////////////////////////Tools////////////////////////
