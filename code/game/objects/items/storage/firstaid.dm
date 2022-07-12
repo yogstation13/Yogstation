@@ -81,6 +81,7 @@
 		/obj/item/flashlight/pen,
 		/obj/item/extinguisher/mini,
 		/obj/item/reagent_containers/hypospray,
+		/obj/item/hypospray,
 		/obj/item/sensor_device,
 		/obj/item/radio,
 		/obj/item/clothing/gloves/,
@@ -246,6 +247,29 @@
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/storage/pill_bottle/penacid = 1)
 	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray
+	name = "hypospray medical kit"
+	desc = "An advanced kit containing a hypospray and vials for most situations."
+	icon_state = "bezerk"
+	item_state = "firstaid-bezerk"
+	custom_premium_price = 300
+
+/obj/item/storage/firstaid/hypospray/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/storage/firstaid/hypospray/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/brute(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/burn(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/tox(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/oxy(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi(src)
+	new	/obj/item/healthanalyzer(src)
 
 /obj/item/storage/firstaid/tactical
 	name = "combat medical kit"

@@ -556,6 +556,24 @@
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/vial
+	name = "Vial"
+	id = "vial"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/glass = 250)
+	build_path = /obj/item/reagent_containers/glass/bottle/vial
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/large_vial
+	name = "Large Vial"
+	id = "large_vial"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/glass = 1250)
+	build_path = /obj/item/reagent_containers/glass/bottle/vial/large
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/healthanalyzer
 	name = "Health Analyzer"
 	id = "healthanalyzer"

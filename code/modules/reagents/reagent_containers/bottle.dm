@@ -7,6 +7,8 @@
 	item_state = "atoxinbottle"
 	possible_transfer_amounts = list(5,10,15,25,30)
 	volume = 30
+	/// Base icon state of the filling overlay. Leave blank to use the default icon state
+	var/filling_icon_state
 
 
 /obj/item/reagent_containers/glass/bottle/Initialize()
@@ -20,25 +22,26 @@
 
 /obj/item/reagent_containers/glass/bottle/update_icon()
 	cut_overlays()
+	if(!filling_icon_state)
+		filling_icon_state = icon_state
 	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]-10")
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[filling_icon_state]-10")
 
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
 			if(0 to 9)
-				filling.icon_state = "[icon_state]-10"
+				filling.icon_state = "[filling_icon_state]-10"
 			if(10 to 29)
-				filling.icon_state = "[icon_state]25"
+				filling.icon_state = "[filling_icon_state]25"
 			if(30 to 49)
-				filling.icon_state = "[icon_state]50"
+				filling.icon_state = "[filling_icon_state]50"
 			if(50 to 69)
-				filling.icon_state = "[icon_state]75"
+				filling.icon_state = "[filling_icon_state]75"
 			if(70 to INFINITY)
-				filling.icon_state = "[icon_state]100"
+				filling.icon_state = "[filling_icon_state]100"
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling)
-
 
 /obj/item/reagent_containers/glass/bottle/epinephrine
 	name = "epinephrine bottle"
@@ -436,6 +439,13 @@
 	name = "bromine bottle"
 	list_reagents = list(/datum/reagent/bromine = 30)
 
+//Hypospray bottles
+
+/obj/item/reagent_containers/glass/bottle/combat
+	name = "combat hypospray mix bottle"
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/medicine/omnizine = 10, /datum/reagent/medicine/leporazine = 9, /datum/reagent/medicine/atropine = 9)
+
+
 /obj/item/reagent_containers/glass/woodmug
 	name = "wooden mug"
 	desc = "Style is everything, whether it be an ashtray or a keychain or a kitchen timer, we’re living in an age of design, where the physical contours of an object are paramount. Look at this wooden mug, for instance, and see how much it deviates, in its conception, from the ordinary mug. Not much. It is round, tallish, has a handle just like any coffee mug. But it’s not an ordinary coffee mug. First of all its form is totally different; it’s made of wood, not ceramic or plastic. It’s an object that cannot be used casually and put it away, you would love to possess it."
@@ -443,15 +453,62 @@
 	icon = 'icons/obj/drinks.dmi'
 	volume = 30
 
+
 //Yogs: Vials
 /obj/item/reagent_containers/glass/bottle/vial
 	name = "vial"
 	desc = "A small vial for holding small amounts of reagents."
 	icon_state = "vial"
 	item_state = "atoxinbottle"
-	possible_transfer_amounts = list(5,10,15)
+	possible_transfer_amounts = list(5, 10, 15)
 	volume = 15
 	disease_amount = 15
+	var/base_name = "vial"
+
+/obj/item/reagent_containers/glass/bottle/vial/attackby(obj/P, mob/user, params)
+	add_fingerprint(user)
+	if(istype(P, /obj/item/pen))
+		if(!user.is_literate())
+			to_chat(user, span_notice("You scribble illegibly on the label of [src]!"))
+			return
+		var/t = pretty_filter(stripped_input(user, "What would you like the label to be?", text("[]", name), null))
+		if (user.get_active_held_item() != P)
+			return
+		if(!user.canUseTopic(src, BE_CLOSE))
+			return
+		name = "[base_name][t ? " ([t])" : ""]"
+	else
+		return ..()
+
+/obj/item/reagent_containers/glass/bottle/vial/brute
+	name = "vial (Brute)"
+	icon_state = "vial_red"
+	filling_icon_state = "vialstripe"
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/burn
+	name = "vial (Burn)"
+	icon_state = "vial_red"
+	filling_icon_state = "vialstripe"
+	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/tox
+	name = "vial (Toxic)"
+	icon_state = "vial_red"
+	filling_icon_state = "vialstripe"
+	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/oxy
+	name = "vial (Oxygen)"
+	icon_state = "vial_blue"
+	filling_icon_state = "vialstripe"
+	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/epi
+	name = "vial (Epinephrine)"
+	icon_state = "vial_white"
+	filling_icon_state = "vialstripe"
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 3)
 
 /obj/item/reagent_containers/glass/bottle/vial/random_virus
 	name = "Experimental disease culture vial"
@@ -467,3 +524,58 @@
 	name = "Flu virion culture vial"
 	desc = "A small vial for holding small amounts of reagents. Contains H13N1 flu virion culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/flu
+
+/obj/item/reagent_containers/glass/bottle/vial/large
+	name = "large vial"
+	base_name = "large vial"
+	desc = "A large vial for holding a sizable amounts of reagents."
+	icon_state = "viallarge"
+	item_state = "atoxinbottle"
+	w_class = WEIGHT_CLASS_SMALL
+	possible_transfer_amounts = list(5, 10, 15, 30)
+	volume = 30
+	disease_amount = 30
+
+/obj/item/reagent_containers/glass/bottle/vial/large/omnizine
+	name = "large vial (Omnizine)"
+	icon_state = "viallarge_white"
+	filling_icon_state = "viallargestripe"
+	list_reagents = list(/datum/reagent/medicine/omnizine = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/large/brute
+	name = "large vial (Brute)"
+	icon_state = "viallarge_red"
+	filling_icon_state = "viallargestripe"
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/large/burn
+	name = "large vial (Burn)"
+	icon_state = "viallarge_orange"
+	filling_icon_state = "viallargestripe"
+	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/large/tox
+	name = "large vial (Toxic)"
+	icon_state = "viallarge_green"
+	filling_icon_state = "viallargestripe"
+	list_reagents = list(/datum/reagent/medicine/charcoal = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/large/oxy
+	name = "large vial (Oxygen)"
+	icon_state = "viallarge_blue"
+	filling_icon_state = "viallargestripe"
+	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/large/epi
+	name = "large vial (Epinephrine)"
+	icon_state = "viallarge_white"
+	filling_icon_state = "viallargestripe"
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 24, /datum/reagent/medicine/coagulant = 6)
+
+/obj/item/reagent_containers/glass/bottle/vial/bluespace
+	name = "bluespace vial"
+	base_name = "bluespace vial"
+	desc = "A small vial powered by experimental bluespace technology capable of holding 60 units."
+	icon_state = "vialbluespace"
+	possible_transfer_amounts = list(5,10,15,30,45)
+	volume = 60
