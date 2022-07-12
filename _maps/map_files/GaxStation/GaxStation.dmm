@@ -336,25 +336,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"agu" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -1;
-	pixel_y = -3
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = 2;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel,
-/area/storage/primary)
 "agx" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
@@ -1427,6 +1408,11 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
+"aLb" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/fyellow,
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "aLd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3737,6 +3723,20 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"bTE" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "SMES";
+	req_one_access_txt = "11;32"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_smes)
 "bTR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -6300,6 +6300,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"dpa" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Secure Tech Storage";
+	req_access_txt = "19;23";
+	security_level = 6
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/storage/tech)
 "dpf" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/secondarydatacore)
@@ -7683,12 +7698,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
-"efU" = (
-/obj/structure/table,
-/obj/item/storage/belt/utility,
-/obj/item/clothing/gloves/color/fyellow,
-/turf/open/floor/plasteel,
-/area/storage/primary)
 "efX" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -16105,6 +16114,17 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"iyi" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 5
+	},
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "iyv" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
@@ -16878,14 +16898,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"iWJ" = (
-/obj/structure/rack,
-/obj/item/brace,
-/obj/item/brace,
-/obj/item/brace,
-/obj/item/wrench,
-/turf/open/floor/plasteel,
-/area/security/warden)
 "iWM" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -19925,16 +19937,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"kIq" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "SMES";
-	req_one_access_txt = "11;32"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/engine_smes)
 "kIL" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Conference Room Maintenance";
@@ -24273,6 +24275,24 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"mRy" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = 10
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "mRV" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -27522,22 +27542,6 @@
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"oDv" = (
-/obj/structure/rack,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/item/storage/belt/utility{
-	pixel_x = -2;
-	pixel_y = -4
-	},
-/obj/item/storage/belt/utility{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel,
-/area/storage/primary)
 "oDC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -27838,6 +27842,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"oQr" = (
+/obj/structure/rack,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/item/storage/belt/utility{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/obj/item/storage/belt/utility{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "oQX" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
@@ -28755,15 +28775,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"pwR" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Secure Tech Storage";
-	req_access_txt = "19;23";
-	security_level = 6
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/plasteel/dark,
-/area/storage/tech)
 "pwX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -31607,18 +31618,6 @@
 /obj/machinery/air_sensor/atmos/mix_tank,
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos_distro)
-"rbK" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/electrical{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/obj/item/storage/toolbox/electrical{
-	pixel_x = 3;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel,
-/area/storage/primary)
 "rbT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -33040,6 +33039,14 @@
 "rUE" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/maintenance/central/secondary)
+"rUZ" = (
+/obj/structure/rack,
+/obj/item/brace,
+/obj/item/brace,
+/obj/item/brace,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plasteel,
+/area/security/warden)
 "rVb" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastleft{
@@ -65732,7 +65739,7 @@ oon
 hVC
 wtF
 dll
-iWJ
+rUZ
 poB
 hwa
 ldq
@@ -68067,7 +68074,7 @@ pyH
 kHf
 fqY
 ohg
-kIq
+bTE
 rRm
 fDQ
 wxQ
@@ -69093,7 +69100,7 @@ lmD
 xXt
 eKF
 tGv
-pwR
+dpa
 cCx
 eKF
 eKF
@@ -85814,7 +85821,7 @@ fBg
 xVt
 dNW
 ngb
-agu
+mRy
 oYc
 fYs
 oSl
@@ -86071,7 +86078,7 @@ fJy
 nkA
 nwr
 sFD
-oDv
+oQr
 oYc
 fyZ
 sjP
@@ -86325,7 +86332,7 @@ aeV
 pBk
 wYP
 fJy
-efU
+aLb
 dNW
 cKB
 lNV
@@ -86582,7 +86589,7 @@ vyJ
 pBk
 wYP
 fJy
-rbK
+iyi
 yhE
 myr
 rDM
