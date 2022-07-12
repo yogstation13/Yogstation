@@ -14072,7 +14072,7 @@
 /obj/item/reagent_containers/glass/bottle/epinephrine{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/hypospray/medipen,
+/obj/item/reagent_containers/autoinjector/medipen,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -20038,7 +20038,7 @@
 	dir = 8
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/obj/item/reagent_containers/hypospray/medipen/stimpack/large,
+/obj/item/reagent_containers/autoinjector/medipen/stimpack/large,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aOc" = (
