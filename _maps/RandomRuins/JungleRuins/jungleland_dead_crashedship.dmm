@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/ruin/unpowered)
 "b" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -12,16 +8,14 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/template_noop)
+"c" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
 "d" = (
-/obj/machinery/computer{
-	dir = 8
-	},
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
-"f" = (
-/obj/structure/table,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/jungle,
+/area/ruin/unpowered)
 "g" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -35,13 +29,17 @@
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/template_noop)
 "i" = (
-/obj/structure/table_frame,
-/turf/open/floor/plating/lavaland_baseturf,
+/obj/structure/table,
+/turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
 "j" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/lavaland_baseturf,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
+"l" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/ruin/unpowered)
 "n" = (
 /obj/structure/table,
 /obj/item/flashlight,
@@ -54,21 +52,30 @@
 /turf/open/floor/plating/lavaland_baseturf,
 /area/template_noop)
 "p" = (
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating/lavaland_baseturf,
+/turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
 "r" = (
 /turf/closed/wall/mineral/titanium,
 /area/ruin/unpowered)
+"s" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
 "t" = (
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor/plating/lavaland_baseturf,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"u" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
 "v" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/plating/lavaland_baseturf,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
 "w" = (
 /obj/structure/flora/tree/dead/jungle,
@@ -79,9 +86,11 @@
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/template_noop)
 "y" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/ruin/unpowered)
+/obj/machinery/computer{
+	dir = 8
+	},
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
 "B" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/directional{
 	dir = 4
@@ -89,34 +98,25 @@
 /turf/open/floor/plating/lavaland_baseturf,
 /area/template_noop)
 "C" = (
-/turf/open/floor/plating/lavaland_baseturf,
-/area/ruin/unpowered)
+/turf/open/floor/plasteel/jungle,
+/area/template_noop)
 "D" = (
 /turf/template_noop,
 /area/template_noop)
-"E" = (
+"F" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/lavaland,
-/area/ruin/unpowered)
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
 "G" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/plating/lavaland_baseturf,
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
-"H" = (
-/turf/open/floor/plasteel/lavaland,
-/area/ruin/unpowered)
 "I" = (
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
-"J" = (
-/turf/open/floor/plasteel/lavaland,
-/area/template_noop)
+/turf/open/floor/plasteel/jungle,
+/area/ruin/unpowered)
 "K" = (
-/obj/item/stack/sheet/metal,
-/turf/open/floor/plating/lavaland_baseturf,
+/obj/structure/table_frame,
+/turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
 "L" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/end{
@@ -124,13 +124,17 @@
 	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/template_noop)
+"N" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/ruin/unpowered)
 "O" = (
 /turf/open/floor/plating/lavaland_baseturf,
 /area/template_noop)
 "P" = (
-/obj/effect/decal/cleanable/ash,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/jungle,
+/area/ruin/unpowered)
 "R" = (
 /obj/machinery/door/airlock/titanium,
 /turf/open/floor/plating/lavaland_baseturf,
@@ -139,14 +143,9 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/template_noop)
-"U" = (
-/obj/structure/frame/machine,
-/turf/open/floor/plasteel/lavaland,
-/area/ruin/unpowered)
 "V" = (
-/obj/item/stack/rods,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/ruin/unpowered)
 "W" = (
 /turf/closed/wall/mineral/titanium,
 /area/template_noop)
@@ -159,6 +158,10 @@
 "Y" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"Z" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/jungle_baseturf/dying,
 /area/template_noop)
 
 (1,1,1) = {"
@@ -209,7 +212,7 @@ D
 D
 h
 h
-p
+G
 h
 h
 h
@@ -251,11 +254,11 @@ D
 "}
 (5,1,1) = {"
 D
-p
+G
 h
 h
 h
-p
+G
 X
 h
 X
@@ -298,12 +301,12 @@ D
 h
 h
 W
-p
+G
 W
 r
 r
 r
-C
+V
 r
 r
 r
@@ -320,13 +323,13 @@ D
 h
 h
 W
-O
-O
+p
+p
 r
-U
-E
-C
-y
+P
+d
+V
+l
 r
 h
 h
@@ -342,16 +345,16 @@ D
 h
 h
 W
-O
-O
-r
-H
-C
-a
-C
-r
 p
 p
+r
+I
+V
+N
+V
+r
+G
+G
 h
 h
 h
@@ -364,16 +367,16 @@ D
 h
 h
 W
-O
 p
+G
 r
-C
-C
-C
-C
-C
-O
+V
+V
+V
+V
+V
 p
+G
 W
 h
 h
@@ -386,16 +389,16 @@ D
 h
 h
 h
+G
 p
-O
 r
 r
 R
 r
 r
 r
+G
 p
-O
 W
 h
 h
@@ -408,16 +411,16 @@ D
 h
 w
 h
+G
+G
 p
 p
-O
-O
-O
-J
-O
-O
-O
-K
+p
+p
+p
+p
+p
+Z
 W
 h
 h
@@ -431,15 +434,15 @@ h
 h
 h
 Y
-O
+p
+G
+G
+Z
+p
+C
 p
 p
-K
-O
-J
-O
-O
-p
+G
 W
 h
 h
@@ -453,15 +456,15 @@ h
 h
 h
 h
-O
 p
-p
-j
+G
+G
+F
 h
-P
+s
 W
-p
-p
+G
+G
 h
 h
 h
@@ -474,16 +477,16 @@ D
 h
 h
 h
-p
-p
+G
+G
 W
-p
-p
+G
+G
 h
-O
+p
 W
-O
-I
+p
+v
 W
 h
 h
@@ -495,17 +498,17 @@ D
 D
 h
 h
+G
+v
+G
+h
 p
-I
 p
 h
-O
-O
 h
-h
-O
-O
-O
+p
+p
+p
 W
 h
 h
@@ -518,16 +521,16 @@ D
 h
 h
 W
-O
 p
+G
 W
-i
+K
 n
-f
-O
-O
-O
-O
+i
+p
+p
+p
+p
 W
 h
 h
@@ -540,17 +543,17 @@ D
 h
 h
 W
-j
-O
-W
-W
-W
-W
-W
-O
+F
 p
-O
+W
+W
+W
+W
+W
 p
+G
+p
+G
 h
 h
 h
@@ -562,16 +565,16 @@ D
 h
 h
 W
-O
-K
-O
-O
-j
 p
-j
+Z
 p
-O
-O
+p
+F
+G
+F
+G
+p
+p
 W
 h
 h
@@ -584,16 +587,16 @@ D
 h
 h
 W
-p
-p
-O
-V
-O
-O
-J
 G
+G
+p
+c
 O
 p
+C
+u
+p
+G
 W
 h
 h
@@ -606,16 +609,16 @@ D
 h
 h
 W
-O
+p
+G
+G
+G
+G
+C
 p
 p
-p
-p
-J
-O
-O
-p
-p
+G
+G
 W
 h
 h
@@ -628,16 +631,16 @@ D
 h
 h
 W
-O
-v
-p
 p
 j
-O
-O
-O
+G
+G
+F
 p
 p
+p
+G
+G
 W
 h
 h
@@ -650,16 +653,16 @@ D
 h
 h
 W
-O
-W
-O
-P
-t
-K
-J
-J
+p
 W
 p
+s
+t
+Z
+C
+C
+W
+G
 W
 h
 h
@@ -675,10 +678,10 @@ h
 h
 W
 W
-O
-O
-O
-j
+p
+p
+p
+F
 W
 W
 h
@@ -697,10 +700,10 @@ h
 h
 h
 W
-J
-j
-d
-O
+C
+F
+y
+p
 W
 h
 h

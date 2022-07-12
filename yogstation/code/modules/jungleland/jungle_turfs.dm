@@ -127,3 +127,27 @@
 	var/chance = ((humie.wear_suit ? 100 - humie.wear_suit.armor.bio : 100)  +  (humie.head ? 100 - humie.head.armor.bio : 100) )/2
 	if(prob(chance * 0.33))
 		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
+
+/turf/open/floor/wood/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
+/turf/open/floor/plating/ashplanet/rocky/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
+/turf/open/floor/plating/jungle_baseturf
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
+/turf/open/floor/plating/jungle_baseturf/dying
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/dying_forest
+
+/turf/open/indestructible/grass/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
+/turf/open/floor/plasteel/jungle
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
+/turf/closed/mineral/ash_rock/jungle
+	turf_type = /turf/open/floor/plating/jungle_baseturf
+	baseturfs = /turf/open/floor/plating/jungle_baseturf
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
