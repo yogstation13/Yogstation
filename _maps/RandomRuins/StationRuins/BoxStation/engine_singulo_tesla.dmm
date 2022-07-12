@@ -456,6 +456,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"gl" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "gm" = (
 /turf/open/space/basic,
 /area/engine/engineering)
@@ -558,6 +562,18 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"oc" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "oD" = (
 /obj/machinery/power/tesla_coil,
 /obj/structure/cable/orange{
@@ -586,6 +602,14 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"pX" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/engine/engineering)
 "qG" = (
 /obj/machinery/camera/emp_proof{
@@ -719,14 +743,6 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering)
-"zh" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "zz" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -818,15 +834,6 @@
 /obj/item/wirecutters,
 /turf/open/space/basic,
 /area/engine/engineering)
-"Gt" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/obj/machinery/door/firedoor/window,
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "GG" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -900,18 +907,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"Jt" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "engsm";
-	name = "Radiation Chamber Shutters"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/window,
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "Jy" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -966,10 +961,6 @@
 "Rj" = (
 /obj/item/wrench,
 /turf/open/space/basic,
-/area/engine/engineering)
-"Rl" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
 /area/engine/engineering)
 "Rn" = (
 /obj/machinery/the_singularitygen,
@@ -1037,6 +1028,15 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
+/area/engine/engineering)
+"Wu" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "engsm";
+	name = "Radiation Chamber Shutters"
+	},
+/obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/engine/engineering)
 "WN" = (
 /obj/structure/sign/warning/securearea,
@@ -1362,7 +1362,7 @@ dO
 uq
 bv
 ag
-Jt
+oc
 yN
 yN
 yN
@@ -1390,7 +1390,7 @@ ls
 bH
 ac
 aE
-Gt
+Wu
 gm
 gm
 kU
@@ -1418,8 +1418,8 @@ Cw
 bG
 ac
 aE
-Gt
-Rl
+Wu
+gl
 kU
 sd
 gm
@@ -1445,9 +1445,9 @@ ad
 BI
 ad
 ad
-zh
-zh
-Rl
+pX
+pX
+gl
 kU
 gm
 gm
@@ -1475,7 +1475,7 @@ rX
 bA
 ar
 bf
-Rl
+gl
 gm
 gm
 gm
@@ -1503,7 +1503,7 @@ bz
 as
 aO
 bg
-Rl
+gl
 gm
 gm
 gm
@@ -1531,7 +1531,7 @@ au
 aL
 aP
 xO
-Rl
+gl
 kU
 gm
 gm
@@ -1559,7 +1559,7 @@ as
 bB
 ba
 bg
-Rl
+gl
 kU
 sd
 kU
@@ -1587,7 +1587,7 @@ ch
 aG
 aG
 bh
-Rl
+gl
 kU
 gm
 gm
@@ -1613,9 +1613,9 @@ ad
 uA
 ad
 ad
-zh
-zh
-Rl
+pX
+pX
+gl
 kU
 gm
 gm
@@ -1642,8 +1642,8 @@ xD
 ci
 ac
 aE
-Gt
-Rl
+Wu
+gl
 kU
 sd
 gm
@@ -1670,7 +1670,7 @@ ls
 ac
 ac
 aE
-Gt
+Wu
 gm
 gm
 kU
@@ -1698,7 +1698,7 @@ ge
 bF
 bv
 ag
-Jt
+oc
 yN
 yN
 yN
