@@ -2201,27 +2201,6 @@
 /obj/structure/chair/comfy/black,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
-"aii" = (
-/obj/machinery/light_switch{
-	pixel_y = -23
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
-"aij" = (
-/obj/structure/noticeboard{
-	dir = 1;
-	pixel_y = -27
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "aik" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -10476,16 +10455,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"aQy" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/mineral/plasma,
-/obj/item/stack/sheet/mineral/plasma,
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "aQz" = (
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -16672,22 +16641,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"btE" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/donkpockets{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 8;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 8;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "btG" = (
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
@@ -32042,14 +31995,6 @@
 	},
 /turf/open/floor/wood,
 /area/vacant_room)
-"gxm" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "gxA" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -41071,6 +41016,50 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/solar/port/aft)
+"kNr" = (
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -27
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -5
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "kNz" = (
 /turf/open/floor/engine/plasma,
 /area/engine/atmos_distro)
@@ -44176,6 +44165,18 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/primary/central)
+"msS" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "msT" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -44833,6 +44834,26 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"mEk" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -9;
+	pixel_y = 9
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "mFw" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -50296,6 +50317,16 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"psk" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "ptm" = (
 /obj/structure/window/reinforced,
 /obj/machinery/camera{
@@ -54171,6 +54202,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"rxJ" = (
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/plasteel,
+/area/security/main)
 "rxM" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -96657,7 +96700,7 @@ bnS
 gvN
 bVJ
 azq
-btE
+mEk
 pJB
 pJB
 aJw
@@ -99685,7 +99728,7 @@ arD
 aqm
 agX
 agY
-aij
+kNr
 adR
 ajc
 lLO
@@ -99942,7 +99985,7 @@ ilp
 aqm
 eut
 ahH
-aii
+rxJ
 adR
 anS
 akc
@@ -108753,7 +108796,7 @@ uEc
 ufj
 bNd
 bIK
-aQy
+msS
 bLd
 bRQ
 aUf
@@ -109009,7 +109052,7 @@ kYK
 oOo
 ufj
 bNd
-gxm
+psk
 wPt
 nhI
 bRQ
