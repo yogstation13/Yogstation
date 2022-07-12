@@ -42,10 +42,10 @@
 	name = "Nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	reagent_state = SOLID
-	nutriment_factor = 15 * REAGENTS_METABOLISM
+	nutriment_factor = 6 * REAGENTS_METABOLISM
 	color = "#664330" // rgb: 102, 67, 48
 
-	var/brute_heal = 0.5
+	var/brute_heal = 0
 	var/burn_heal = 0
 
 /datum/reagent/consumable/nutriment/on_mob_life(mob/living/carbon/M)
@@ -104,7 +104,7 @@
 	name = "Protein"
 	description = "A natural polyamide made up of amino acids. An essential constituent of mosts known forms of life."
 	brute_heal = 0.8 //Rewards the player for eating a balanced diet.
-	nutriment_factor = 9 * REAGENTS_METABOLISM //45% as calorie dense as corn oil.
+	nutriment_factor = 15 * REAGENTS_METABOLISM 
 
 /datum/reagent/consumable/cooking_oil
 	name = "Cooking Oil"
@@ -449,7 +449,7 @@
 /datum/reagent/consumable/cornoil
 	name = "Corn Oil"
 	description = "An oil derived from various types of corn."
-	nutriment_factor = 15 * REAGENTS_METABOLISM
+	nutriment_factor = 20 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "slime"
 
@@ -570,7 +570,7 @@
 	name = "Honey"
 	description = "Sweet sweet honey that decays into sugar. Has antibacterial and natural healing properties."
 	color = "#d3a308"
-	nutriment_factor = 15 * REAGENTS_METABOLISM
+	nutriment_factor = 9 * REAGENTS_METABOLISM
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	taste_description = "sweetness"
 
@@ -638,7 +638,7 @@
 	name = "Stabilized Nutriment"
 	description = "A bioengineered protien-nutrient structure designed to decompose in high saturation. In layman's terms, it won't get you fat."
 	reagent_state = SOLID
-	nutriment_factor = 15 * REAGENTS_METABOLISM
+	nutriment_factor = 6 * REAGENTS_METABOLISM
 	color = "#664330" // rgb: 102, 67, 48
 
 /datum/reagent/consumable/nutriment/stabilized/on_mob_life(mob/living/carbon/M)
@@ -766,7 +766,7 @@
 	color = "#BBD4D9"
 	taste_description = "mint frosting"
 	description = "These restorative peptides not only speed up wound healing, but are nutritious as well!"
-	nutriment_factor = 10 * REAGENTS_METABOLISM // 33% less than nutriment to reduce weight gain
+	nutriment_factor = 4 * REAGENTS_METABOLISM // 33% less than nutriment to reduce weight gain
 	brute_heal = 3
 	burn_heal = 1
 
@@ -821,7 +821,7 @@
 /datum/reagent/consumable/drippings
 	name = "meat drippings"
 	description = "Full of fat and flavor. Mix it with water and flour to make gravy."
-	nutriment_factor = 3 * REAGENTS_METABOLISM
+	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#85482c"
 	taste_mult = 2
 	taste_description = "meat"
@@ -829,7 +829,7 @@
 /datum/reagent/consumable/gravy
 	name = "gravy"
 	description = "Delicious brown sauce, thickened with flour."
-	nutriment_factor = 5 * REAGENTS_METABOLISM
+	nutriment_factor = 8 * REAGENTS_METABOLISM
 	color = "#75553a"
 	taste_mult = 1.5
 	taste_description = "gravy"
