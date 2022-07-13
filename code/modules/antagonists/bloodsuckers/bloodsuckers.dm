@@ -371,7 +371,7 @@
 	else
 		//perish or just fuck up and fail your primary objectives
 		flavor_message += pick(list(
-			"Thus ends the story of [ReturnFullName(TRUE)]. Hopefully future generations will look back on your legacy and reflect on the lessons of the past."
+			"Thus ends the story of [ReturnFullName(TRUE)]. No doubt future generations will look back on your legacy and reflect on the lessons of the past. If they remember you at all."
 		))
 	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
 	return "<div>[flavor.Join("<br>")]</div>"
