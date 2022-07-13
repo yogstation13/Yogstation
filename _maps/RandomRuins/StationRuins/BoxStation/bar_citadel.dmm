@@ -462,27 +462,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"lj" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 6;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 7;
-	pixel_y = 6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -7;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -7;
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "lk" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only{
@@ -1306,6 +1285,19 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"SL" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "SZ" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -1795,7 +1787,7 @@ JA
 tx
 Ci
 Yb
-lj
+SL
 ZA
 Lq
 Lq

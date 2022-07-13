@@ -562,30 +562,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"rg" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 7;
-	pixel_y = -7
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -8;
-	pixel_y = -8
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 7;
-	pixel_y = 7
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "ru" = (
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/fifty,
@@ -705,6 +681,22 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"vA" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "vV" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/grass,
@@ -1637,7 +1629,7 @@ am
 bU
 bl
 am
-rg
+vA
 fJ
 kW
 kW

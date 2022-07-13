@@ -994,27 +994,6 @@
 /obj/item/toy/figure/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"BH" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 5;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -8;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "Eu" = (
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/wall,
@@ -1092,6 +1071,19 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"NK" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 5;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -9;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -1448,7 +1440,7 @@ bd
 aj
 bq
 aY
-BH
+NK
 ZD
 bC
 bC

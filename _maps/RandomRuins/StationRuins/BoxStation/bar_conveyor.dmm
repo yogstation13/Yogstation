@@ -1272,7 +1272,13 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
-"RR" = (
+"RU" = (
+/obj/structure/table,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
+"Sy" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/mint,
 /obj/effect/spawner/lootdrop/donkpockets{
@@ -1280,23 +1286,9 @@
 	pixel_y = -7
 	},
 /obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 7;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
 	pixel_x = -9;
 	pixel_y = 5
 	},
-/turf/open/floor/plasteel/vaporwave,
-/area/crew_quarters/kitchen)
-"RU" = (
-/obj/structure/table,
-/obj/item/book/manual/chef_recipes,
-/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
 "SA" = (
@@ -1615,7 +1607,7 @@ bn
 al
 bl
 bO
-RR
+Sy
 Ha
 bN
 bN

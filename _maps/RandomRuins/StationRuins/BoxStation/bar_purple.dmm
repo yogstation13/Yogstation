@@ -1226,27 +1226,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
-"kV" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 6;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -9;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/turf/open/floor/mineral/titanium/purple,
-/area/crew_quarters/kitchen)
 "mp" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -1596,6 +1575,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"Yf" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "YX" = (
 /obj/item/storage/secure/safe{
 	pixel_x = 1;
@@ -1901,7 +1893,7 @@ br
 ak
 bR
 cm
-kV
+Yf
 ND
 db
 do

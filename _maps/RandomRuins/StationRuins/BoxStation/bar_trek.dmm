@@ -1295,6 +1295,19 @@
 /obj/machinery/griddle,
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
+"uZ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/turf/open/floor/mineral/titanium,
+/area/crew_quarters/kitchen)
 "zM" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
@@ -1506,27 +1519,6 @@
 	name = "privacy shutters"
 	},
 /turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"Vp" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 6;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -7;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -8;
-	pixel_y = 6
-	},
-/turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
 
 (1,1,1) = {"
@@ -1826,7 +1818,7 @@ bo
 al
 bF
 bR
-Vp
+uZ
 sm
 bQ
 bQ
