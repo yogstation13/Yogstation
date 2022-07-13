@@ -481,12 +481,10 @@
 
 /datum/mutation/human/cerebral/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
-	if(owner.physiology)
-		owner.physiology.stamina_mod *= 0.7
-		owner.physiology.stun_mod *= 0.85
+	owner?.physiology?.stamina_mod *= 0.7
+	owner?.physiology?.stun_mod *= 0.85
 
 /datum/mutation/human/cerebral/on_losing(mob/living/carbon/human/owner)
 	. = ..()
-	if(owner.physiology)
-		owner.physiology.stamina_mod /= 0.7
-		owner.physiology.stun_mod /= 0.85
+	owner?.physiology?.stamina_mod /= 0.7
+	owner?.physiology?.stun_mod /= 0.85
