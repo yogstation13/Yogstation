@@ -896,27 +896,6 @@
 /obj/structure/closet/bombcloset/security,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
-"adc" = (
-/obj/machinery/camera{
-	c_tag = "Garden";
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/item/reagent_containers/glass/bucket/wooden,
-/obj/item/reagent_containers/glass/bucket/wooden,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 5
-	},
-/obj/structure/closet/crate/wooden,
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
 "add" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -32910,16 +32889,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"gZk" = (
-/obj/machinery/light_switch{
-	pixel_x = -28
-	},
-/obj/structure/table,
-/obj/effect/turf_decal/trimline/green/filled/end{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
 "gZw" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bottle/epinephrine,
@@ -45366,6 +45335,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"mWg" = (
+/obj/machinery/camera{
+	c_tag = "Garden";
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics/garden)
 "mWh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -54334,10 +54317,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"rCu" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
 "rCG" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/aft)
@@ -56150,6 +56129,36 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"soZ" = (
+/obj/machinery/light_switch{
+	pixel_x = -28
+	},
+/obj/structure/table,
+/obj/effect/turf_decal/trimline/green/filled/end{
+	dir = 8
+	},
+/obj/item/cultivator,
+/obj/item/cultivator{
+	pixel_x = 3
+	},
+/obj/item/shovel/spade{
+	pixel_x = -1;
+	pixel_y = -3
+	},
+/obj/item/shovel/spade{
+	pixel_x = 8;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/glass/bucket/wooden{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/glass/bucket/wooden{
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics/garden)
 "spl" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /obj/effect/turf_decal/trimline/purple/filled/corner{
@@ -83646,7 +83655,7 @@ gUm
 jDb
 kem
 xNQ
-gZk
+soZ
 azF
 cmN
 aNj
@@ -85188,10 +85197,10 @@ azF
 pYO
 ung
 pYO
-adc
+mWg
 ukh
 uef
-rCu
+aNl
 vqd
 aLE
 jVr
@@ -85444,7 +85453,7 @@ bwa
 azF
 azF
 azF
-rCu
+aNl
 azF
 azF
 azF
