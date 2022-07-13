@@ -9,7 +9,7 @@
 	var/hand_type = FALSE
 
 /datum/action/innate/hog_cult/IsAvailable()
-	if(!IS_HOG_CULTIST(owner) || IS_HOG_CULTIST(owner) != datum || owner.incapacitated())
+	if(!IS_HOG_CULTIST(owner) || IS_HOG_CULTIST(owner) != antag_datum || owner.incapacitated())
 		return FALSE
 	return ..()
 
