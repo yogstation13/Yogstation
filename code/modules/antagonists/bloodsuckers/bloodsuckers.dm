@@ -359,7 +359,7 @@
 	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && escaped)
 		//finish primary objectives only, don't break masquerade, escape
 		flavor_message += pick(list(
-			"That station didn't suit you anyway, and so now it's time to find a new locale. Maybe your next haunt will prove more comfortable."
+			"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
 		))
 		message_color = "#517fff"
 	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && !escaped)
