@@ -546,7 +546,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 		return ..()
 
 /obj/item/stack/cable_coil/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal, burn_heal)
-	if(I.use_tool(user, user, 1 SECONDS, amount=1))
+	if(I.use_tool(H, user, 2 SECONDS, amount=1))
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal)
 		return TRUE
