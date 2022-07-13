@@ -329,31 +329,31 @@
 	else if(objectives_complete && optional_objectives_complete && broke_masquerade && !escaped)
 		//finish all objectives, break masquerade, don't evac
 		flavor_message += pick(list(
-			"You ran amok of the station, completed every task set before you, and killed any who opposed you. The Camarilla dare not risk a move against you for breaking the Masquerade."
+			"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. Let the Camarilla and the witchers come. You will be waiting."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && escaped)
 		//finish all objectives, don't break masquerade, escape
 		flavor_message += pick(list(
-			"You've proven your skills, you even managed to escape the station. Upon arriving back at Centom, an unassuming assistant hands you an invitation stamped with the Camerilla seal. High society is waiting for you."
+			"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. High society awaits: a delicacy you have earned."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && !escaped)
 		//finish all objectives, don't break masquerade, don't escape
 		flavor_message += pick(list(
-			"This station is your own slice of paradise. Each batch of crew is ripe for the picking of vassals and food. At this rate you might even start your own clan here."
+			"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. Who knows? If they prove to elevate your power enough, perhaps a new clan might be founded here."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && escaped)
 		//finish primary objectives only, break masquerade, escape
 		flavor_message += pick(list(
-			"You may have completed what was asked of you, but that doesn't change the fact that you violated the masqerade. Good thing you got off the station, because it's time to disappear."
+			"Your mission accomplished, you step off the spacecraft, feeling the mark of exile on your neck. Your allies gone, your veins thrum with a singular purpose: survival."
 		))
 		message_color = "#517fff"
 	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && !escaped)
 		//finish primary objectives only, break masquerade, don't escape
 		flavor_message += pick(list(
-			"You survived, but you broke the masquerade, and both monster hunters and bloodsuckers are going to know where to find you... Perhaps it's time to see what's so about special this Sol the cattle keep talking about."
+			"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
 		))
 		message_color = "#ef2f3c"
 	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && escaped)
@@ -365,7 +365,7 @@
 	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && !escaped)
 		//finish primary objectives only, don't break masquerade, don't escape
 		flavor_message += pick(list(
-			"A low profile has always suited you best. Just enough to get by, don't make waves, and keep your head low. It's not luxorious living, but it beats being dead."
+			"You completed your mission and kept your identity free of heresy, though your mark here is not strong enough to lay a claim. Best stow away when the next shuttle comes around."
 		))
 		message_color = "#517fff"
 	else
