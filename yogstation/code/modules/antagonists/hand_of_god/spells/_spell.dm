@@ -4,6 +4,9 @@
 	buttontooltipstyle = "cult"
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 	var/datum/antagonist/hog/antag_datum
+	var/charges = 1
+	var/obj/item/melee/hog_magic/godhand
+	var/hand_type = FALSE
 
 /datum/action/innate/hog_cult/IsAvailable()
 	if(!IS_HOG_CULTIST(owner) || IS_HOG_CULTIST(owner) != datum || owner.incapacitated())
@@ -20,6 +23,21 @@
 	if(antag_datum)
 		antag_datum.magic -= src
 	..()
+
+/datum/action/innate/hog_cult/Activate()
+	if(hand_type) //If this spell flows from the hand
+		if(!godhand)
+			godhand = new hand_type(owner, src)
+			if(!owner.put_in_hands(godhand))
+				qdel(godhand)
+				godhand = null
+				to_chat(owner, span_warning("You have no empty hand for invoking magic!"))
+				return
+			return
+		if(godhand)
+			qdel(godhand)
+			godhand = null
+			to_chat(owner, span_warning("You snuff out the spell, saving it for later."))
 
 /datum/hog_spell_preparation
 	var/name = "Prepare Nothing"
@@ -47,3 +65,41 @@
 	var/datum/action/innate/hog_cult/new_spell = new poggy(user)
 	new_spell.Grant(user, antag_datum)
 	antag_datum.magic += new_spell
+
+/obj/item/melee/hog_magic
+	name = "\improper hand of god" ///Ahahaha joke
+	desc = "A cool, magic hand. If you ask, i want to have one for myself."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
+	w_class = WEIGHT_CLASS_HUGE
+	throwforce = 0
+	throw_range = 0
+	throw_speed = 0
+	var/uses = 1
+	var/datum/antagonist/hog/antag
+	var/datum/action/innate/hog_cult/parent
+
+/obj/item/melee/blood_magic/New(loc, spell)
+	parent = spell
+	antag = parent.antag_datum
+	uses = parent.charges
+	..()
+
+/obj/item/melee/blood_magic/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
+
+/obj/item/melee/blood_magic/Destroy()
+	if(!QDELETED(parent))
+		if(uses <= 0)
+			parent.godhand = null
+			qdel(parent)
+			parent = null
+		else
+			parent.hand_magic = null
+			parent.charges = uses
+	..()
