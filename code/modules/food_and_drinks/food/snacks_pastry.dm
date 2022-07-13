@@ -247,8 +247,8 @@
 /obj/item/reagent_containers/food/snacks/donkpocket/warm
 	name = "warm donkpocket"
 	desc = "The heated food of choice for the seasoned crewmember."
-	bonus_reagents = list(/datum/reagent/nutriment/vitamin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/nutriment/vitamin = 3)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 3)
 	cooked_type = null
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtype = GRAIN | MEAT
@@ -375,7 +375,7 @@
 	name = "warm berry donkpocket"
 	desc = "A relentlessly sweet donk-pocket, now warm and delicious."
 	icon_state = "donkpocketberry"
-	bonus_reagents = list(/datum/reagent/consumable/consumable/nutriment/vitamin = 1)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/berryjuice = 3)
 	tastes = list("dough" = 2, "warm jam" = 2)
 	foodtype = GRAIN | FRUIT | SUGAR
