@@ -268,7 +268,7 @@
 			return TRUE
 		to_chat(user, "<span class='notice'>You enslave [L]'s will, converting them to your cult!</span>")
 		to_chat(L, "<span class='userdanger'>A powerfull mental attack crushes your mind, enslaving you to [user]'s cult!</span>")
-		add_hog_cultist(user, cultie2.cult, C.mind)
+		add_hog_cultist(user, cultie2.cult, L.mind)
 		return TRUE
 	return FALSE
 		
