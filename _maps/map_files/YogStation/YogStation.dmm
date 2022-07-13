@@ -28166,21 +28166,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"evS" = (
-/obj/machinery/power/apc{
-	areastring = "/area/janitor";
-	name = "Custodial Closet APC";
-	pixel_y = -23
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/white/filled/line,
-/turf/open/floor/plasteel,
-/area/janitor)
 "evX" = (
 /obj/machinery/door/window/eastright{
 	base_state = "left";
@@ -56839,6 +56824,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"sFz" = (
+/obj/machinery/power/apc{
+	areastring = "/area/janitor";
+	name = "Custodial Closet APC";
+	pixel_y = -23
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/filled/line,
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plasteel,
+/area/janitor)
 "sFG" = (
 /obj/machinery/porta_turret/ai{
 	scan_range = 5
@@ -99283,7 +99284,7 @@ bCv
 tLK
 qtq
 kgG
-evS
+sFz
 bCv
 eEO
 bAw
