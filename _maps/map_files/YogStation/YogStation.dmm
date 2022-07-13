@@ -8945,6 +8945,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"aKg" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "aKh" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -19705,14 +19713,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/virology)
-"bIK" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "bIM" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
@@ -28390,26 +28390,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"eBc" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 8;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 8;
-	pixel_y = 1
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -9;
-	pixel_y = 9
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -8;
-	pixel_y = -4
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "eBC" = (
 /obj/machinery/requests_console{
 	department = "Hydroponics";
@@ -29826,6 +29806,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"foA" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "fpR" = (
 /obj/machinery/computer/shuttle/labor,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -34260,33 +34256,6 @@
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"hzZ" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 6;
-	pixel_y = -2
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -7;
-	pixel_y = -2
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 6;
-	pixel_y = 9
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -7;
-	pixel_y = 8
-	},
-/obj/item/storage/box/fancy/donut_box,
-/turf/open/floor/plasteel,
-/area/security/main)
 "hAt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -39611,6 +39580,13 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/aft)
+"kfe" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "kfj" = (
 /obj/machinery/light{
 	dir = 4
@@ -45847,6 +45823,23 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"ncY" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 1;
+	pixel_y = 9
+	},
+/obj/item/storage/box/fancy/donut_box{
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "ncZ" = (
 /obj/effect/decal/cleanable/oil,
 /obj/machinery/power/apc{
@@ -52089,18 +52082,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
-"qrC" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "qrP" = (
 /obj/machinery/power/apc/highcap{
 	dir = 8;
@@ -96685,7 +96666,7 @@ bnS
 gvN
 bVJ
 azq
-eBc
+foA
 pJB
 pJB
 aJw
@@ -99197,7 +99178,7 @@ aEv
 age
 aIV
 bNT
-hzZ
+ncY
 cxk
 auH
 adR
@@ -108780,8 +108761,8 @@ kYK
 uEc
 ufj
 bNd
-bIK
-qrC
+aKg
+kfe
 bLd
 bRQ
 aUf

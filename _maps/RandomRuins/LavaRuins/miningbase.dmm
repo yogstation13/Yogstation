@@ -289,31 +289,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"cc" = (
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/item/kitchen/knife,
-/obj/machinery/firealarm{
-	pixel_y = 32
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -7;
-	pixel_y = 7
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 8;
-	pixel_y = 7
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 7;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -7;
-	pixel_y = -6
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "cl" = (
 /obj/machinery/light{
 	dir = 8
@@ -602,6 +577,15 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/mine/vacant)
+"et" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/item/kitchen/knife,
+/obj/machinery/firealarm{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "ey" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
@@ -1405,6 +1389,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"py" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/ale,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 15;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/mine/break_room)
 "pB" = (
 /turf/closed/wall/r_wall,
 /area/mine/maintenance)
@@ -3695,11 +3688,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/wood,
 /area/mine/break_room)
-"YL" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/ale,
-/turf/open/floor/wood,
-/area/mine/break_room)
 "YN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
 	dir = 8
@@ -5180,7 +5168,7 @@ Jx
 zW
 Aa
 Oe
-YL
+py
 DS
 Mq
 kD
@@ -5230,7 +5218,7 @@ gm
 AG
 qe
 zW
-cc
+et
 Oe
 YV
 aZ
