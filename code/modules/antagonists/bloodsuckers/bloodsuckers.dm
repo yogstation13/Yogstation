@@ -323,7 +323,7 @@
 	if(objectives_complete && optional_objectives_complete && broke_masquerade && escaped)
 		//finish all objectives, break masquerade, evac
 		flavor_message += pick(list(
-			"Describing you as a tyrant is a disservice to your abilities. You're a god amongst Bloodsuckers, and a demon in the eyes of everyone else. That station was just the beginning for you."
+			"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
 		))
 		message_color = "#008000"
 	else if(objectives_complete && optional_objectives_complete && broke_masquerade && !escaped)
