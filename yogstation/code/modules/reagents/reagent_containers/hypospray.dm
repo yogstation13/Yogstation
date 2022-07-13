@@ -16,12 +16,12 @@
 
 /obj/item/reagent_containers/hypospray/medipen/stimpack/large
 	name = "stimpack injector"
-	desc = "Contains two heavy doses of stimulants."
+	desc = "Contains three heavy doses of stimulants."
 	icon = 'yogstation/icons/obj/syringe.dmi'
 	icon_state = "stimpakpen"
-	volume = 50
+	volume = 75
 	amount_per_transfer_from_this = 25
-	list_reagents = list(/datum/reagent/medicine/stimulants = 50)
+	list_reagents = list(/datum/reagent/medicine/stimulants = 75)
 
 /obj/item/reagent_containers/hypospray/medipen/stimpack/large/update_icon()
 	if(reagents.total_volume > 25)

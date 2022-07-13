@@ -119,7 +119,7 @@
 	display_name = "Basic Shuttle Research"
 	description = "Research the technology required to create and use basic shuttles."
 	prereq_ids = list("bluespace_travel", "adv_engi", "spacevehicle_basic")
-	design_ids = list("shuttle_creator", "engine_plasma", "engine_heater", "shuttle_control", "shuttle_docker")
+	design_ids = list("shuttle_creator", "engine_plasma", "engine_heater", "shuttle_control", "shuttle_docker", "engine_ion", "engine_capacitor_bank")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 

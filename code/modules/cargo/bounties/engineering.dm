@@ -56,3 +56,24 @@
 	description = "Station 14's staff are behind schedule on important research. Ship them some Stimulum to get them back up to speed. (20 Moles)"
 	reward = 12000
 	gas_type = /datum/gas/stimulum
+
+/datum/bounty/item/h2metal/metallic_hydrogen_armor
+	name = "Metallic Hydrogen Armors"
+	description = "Nanotrasen is requiring new armor to be made. Ship them some metallic hydrogen armors."
+	reward = 8000
+	required_count = 1
+	wanted_types = list(/obj/item/clothing/suit/armor/elder_atmosian)
+
+/datum/bounty/item/h2metal/metallic_hydrogen_helmet
+	name = "Metallic Hydrogen Armors"
+	description = "Nanotrasen is requiring new helmet to be made. Ship them some metallic hydrogen helmets."
+	reward = 7000
+	required_count = 1
+	wanted_types = list(/obj/item/clothing/head/helmet/elder_atmosian)
+
+/datum/bounty/item/h2metal/metallic_hydrogen_axe
+	name = "Metallic Hydrogen axes"
+	description = "Nanotrasen is requiring new axe to be made. Ship them some metallic hydrogen helmets."
+	reward = 7500
+	required_count = 3
+	wanted_types = list(/obj/item/twohanded/fireaxe/metal_h2_axe)

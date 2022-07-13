@@ -91,14 +91,14 @@
 		return
 	host_mob.visible_message(span_warning("[host_mob] starts emitting a high-pitched buzzing, and [host_mob.p_their()] skin begins to glow..."),\
 							span_userdanger("You start emitting a high-pitched buzzing, and your skin begins to glow..."))
-	addtimer(CALLBACK(src, .proc/boom), clamp((nanites.nanite_volume * 0.35), 25, 150))
+	addtimer(CALLBACK(src, .proc/boom), 30 SECONDS) //You have 30 seconds to live
 
 /datum/nanite_program/triggered/explosive/proc/boom()
 	var/nanite_amount = nanites.nanite_volume
-	var/dev_range = FLOOR(nanite_amount/200, 1) - 1
+	host_mob.adjustBruteLoss(nanite_amount/2.5) //Instead of gibbing we'll just do an asston of damage
 	var/heavy_range = FLOOR(nanite_amount/100, 1) - 1
 	var/light_range = FLOOR(nanite_amount/50, 1) - 1
-	explosion(host_mob, dev_range, heavy_range, light_range)
+	explosion(host_mob, 0, heavy_range, light_range)
 	qdel(nanites)
 
 //TODO make it defuse if triggered again

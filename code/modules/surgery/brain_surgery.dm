@@ -1,5 +1,8 @@
 /datum/surgery/brain_surgery
 	name = "Brain surgery"
+	desc = "This procedure cures all severe and basic traumas and reduces brain damage by a large amount. Failing to fix the brain causes hefty brain damage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "brain"
 	steps = list(
 	/datum/surgery_step/incise,
 	/datum/surgery_step/retract_skin,

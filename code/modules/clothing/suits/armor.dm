@@ -10,6 +10,7 @@
 	max_integrity = 250
 	resistance_flags = NONE
 	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+	cryo_preserve = TRUE
 
 /obj/item/clothing/suit/armor/Initialize()
 	. = ..()
@@ -161,7 +162,7 @@
 /obj/item/clothing/suit/armor/pathfinder
 	name = "pathfinder cloak"
 	desc = "A thick cloak woven from sinew and hides meant to protect its wearer from hazardous weather."
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat/bone, /obj/item/kitchen/knife/combat/survival)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "pathcloak"
 	item_state = "pathcloak"
 	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
@@ -331,7 +332,7 @@
 	name = "goliath cloak"
 	icon_state = "goliath_cloak"
 	desc = "A staunch, practical cape made out of numerous monster materials, it is coveted amongst exiles & hermits."
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat/bone, /obj/item/kitchen/knife/combat/survival)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10) //a fair alternative to bone armor, requiring alternative materials and gaining a suit slot
 	resistance_flags = FIRE_PROOF
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/goliath
@@ -367,7 +368,7 @@
 	name = "drake armour"
 	icon_state = "dragon"
 	desc = "A suit of armour fashioned from the remains of an ash drake."
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/twohanded/spear)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/drake
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -384,3 +385,15 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/clothing/suit/armor/elder_atmosian
+	name = "\improper Elder Atmosian Armor"
+	desc = "A superb armor made with the toughest and rarest materials available to man."
+	icon_state = "h2armor"
+	item_state = "h2armor"
+	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 85, BIO = 20, RAD = 50, FIRE = 75, ACID = 40, WOUND = 15)
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	clothing_flags = THICKMATERIAL

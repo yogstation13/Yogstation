@@ -82,6 +82,7 @@
 					  /obj/item/cartridge/rd = 2,
 					  /obj/item/cartridge/captain = 1)
 	premium = list(/obj/item/multitool = 1,
+				   /obj/item/clothing/head/soft/fishfear = 4,
 				   /obj/item/pda/clear = 1)
 
 	default_price = 50

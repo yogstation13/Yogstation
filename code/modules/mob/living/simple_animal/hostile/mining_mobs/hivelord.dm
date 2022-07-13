@@ -75,6 +75,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 2
 	melee_damage_upper = 2
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "slashes"
 	speak_emote = list("telepathically cries")
 	attack_sound = 'sound/weapons/pierce.ogg'
@@ -103,6 +104,7 @@
 	obj_damage = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "lashes out at"
 	speak_emote = list("echoes")
 	attack_sound = 'sound/weapons/pierce.ogg'
@@ -248,6 +250,7 @@
 	icon_state = "legion"
 	icon_living = "legion"
 	icon_dead = "legion"
+	health_doll_icon = "legion"
 	health = 450
 	maxHealth = 450
 	melee_damage_lower = 20

@@ -36,6 +36,7 @@ Difficulty: Hard
 	icon_state = "bubblegum"
 	icon_living = "bubblegum"
 	icon_dead = ""
+	health_doll_icon = "bubblegum"
 	friendly = "stares down"
 	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
 	speak_emote = list("gurgles")

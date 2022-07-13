@@ -4,7 +4,7 @@
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "plasma"
 	item_state = ""	//no inhands
-	item_color = "plasma" //On accessories, this controls the worn sprite. That's a bit weird.
+	mob_overlay_icon = 'icons/mob/clothing/accessories.dmi'
 	slot_flags = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/above_suit = FALSE
@@ -91,7 +91,6 @@
 	desc = "For some classy, murderous fun."
 	icon_state = "waistcoat"
 	item_state = "waistcoat"
-	item_color = "waistcoat"
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
@@ -100,9 +99,9 @@
 	desc = "The best part of a maid costume."
 	icon_state = "maidapron"
 	item_state = "maidapron"
-	item_color = "maidapron"
 	minimize_when_attached = FALSE
 	attachment_slot = null
+
 
 //////////
 //Medals//
@@ -112,7 +111,6 @@
 	name = "bronze medal"
 	desc = "A bronze medal."
 	icon_state = "bronze"
-	item_color = "bronze"
 	materials = list(/datum/material/iron=1000)
 	resistance_flags = FIRE_PROOF
 	var/medaltype = "medal" //Sprite used for medalbox
@@ -173,7 +171,6 @@
 	name = "ribbon"
 	desc = "A ribbon"
 	icon_state = "cargo"
-	item_color = "cargo"
 
 /obj/item/clothing/accessory/medal/ribbon/cargo
 	name = "\"cargo tech of the shift\" award"
@@ -183,7 +180,6 @@
 	name = "silver medal"
 	desc = "A silver medal."
 	icon_state = "silver"
-	item_color = "silver"
 	medaltype = "medal-silver"
 	materials = list(/datum/material/silver=1000)
 
@@ -211,7 +207,6 @@
 	name = "gold medal"
 	desc = "A prestigious golden medal."
 	icon_state = "gold"
-	item_color = "gold"
 	medaltype = "medal-gold"
 	materials = list(/datum/material/gold=1000)
 
@@ -219,6 +214,7 @@
 	name = "medal of captaincy"
 	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
@@ -228,7 +224,6 @@
 	name = "plasma medal"
 	desc = "An eccentric medal made of plasma."
 	icon_state = "plasma"
-	item_color = "plasma"
 	medaltype = "medal-plasma"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = -10, ACID = 0) //It's made of plasma. Of course it's flammable.
 	materials = list(/datum/material/plasma=1000)
@@ -243,6 +238,7 @@
 	name = "nobel sciences award"
 	desc = "A plasma medal which represents significant contributions to the field of science or robotics."
 
+
 ////////////
 //Armbands//
 ////////////
@@ -251,7 +247,6 @@
 	name = "red armband"
 	desc = "An fancy red armband!"
 	icon_state = "redband"
-	item_color = "redband"
 	attachment_slot = null
 	above_suit = TRUE
 	above_suit_adjustable = TRUE
@@ -264,43 +259,37 @@
 	name = "cargo bay guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is brown."
 	icon_state = "cargoband"
-	item_color = "cargoband"
 
 /obj/item/clothing/accessory/armband/engine
 	name = "engineering guard armband"
 	desc = "An armband, worn by security members to display which department they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engieband"
-	item_color = "engieband"
 
 /obj/item/clothing/accessory/armband/science
 	name = "science guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is purple."
 	icon_state = "rndband"
-	item_color = "rndband"
 
 /obj/item/clothing/accessory/armband/service
 	name = "service guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is green."
 	icon_state = "serviceband"
-	item_color = "serviceband"
 
 /obj/item/clothing/accessory/armband/hydro
 	name = "hydroponics guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is green and blue."
 	icon_state = "hydroband"
-	item_color = "hydroband"
 
 /obj/item/clothing/accessory/armband/med
 	name = "medical guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is white."
 	icon_state = "medband"
-	item_color = "medband"
 
 /obj/item/clothing/accessory/armband/medblue
 	name = "medical guard armband"
 	desc = "An armband, worn by engineers and security members to display which department they're assigned to. This one is white and blue."
 	icon_state = "medblueband"
-	item_color = "medblueband"
+
 
 //////////////
 //OBJECTION!//
@@ -310,7 +299,6 @@
 	name = "attorney's badge"
 	desc = "Fills you with the conviction of JUSTICE. Lawyers tend to want to show it to everyone they meet."
 	icon_state = "lawyerbadge"
-	item_color = "lawyerbadge"
 
 /obj/item/clothing/accessory/lawyers_badge/attack_self(mob/user)
 	if(prob(1))
@@ -327,14 +315,15 @@
 	if(L)
 		L.bubble_icon = initial(L.bubble_icon)
 
+
 ////////////////
 //HA HA! NERD!//
 ////////////////
+
 /obj/item/clothing/accessory/pocketprotector
 	name = "pocket protector"
 	desc = "Can protect your clothing from ink stains, but you'll look like a nerd if you're using one."
 	icon_state = "pocketprotector"
-	item_color = "pocketprotector"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/pocketprotector
 
 /obj/item/clothing/accessory/pocketprotector/full/Initialize()
@@ -348,6 +337,7 @@
 	for(var/i in 1 to 3)
 		new /obj/item/lipstick/random(src)
 
+
 ////////////////
 //OONGA BOONGA//
 ////////////////
@@ -356,7 +346,6 @@
 	name = "bone talisman"
 	desc = "A hunter's talisman, some say the old gods smile on those who wear it."
 	icon_state = "talisman"
-	item_color = "talisman"
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
 	attachment_slot = null
 	above_suit = TRUE
@@ -366,7 +355,6 @@
 	name = "skull codpiece"
 	desc = "A skull shaped ornament, intended to protect the important things in life."
 	icon_state = "skull"
-	item_color = "skull"
 	above_suit = TRUE
 	above_suit_adjustable = TRUE
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
@@ -376,7 +364,6 @@
 	name = "Sinew Skirt"
 	desc = "For the last time. IT'S A KILT not a skirt."
 	icon_state = "skilt"
-	item_color = "skilt"
 	above_suit_adjustable = TRUE
 	minimize_when_attached = FALSE
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
@@ -386,11 +373,11 @@
 	name = "resin armband"
 	desc = "A smooth amber colored armband made of solid resin, generally worn by tribal aristocracy."
 	icon_state = "resinband"
-	item_color = "resinband"
 	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25)
 	attachment_slot = null
 	above_suit = TRUE
 	above_suit_adjustable = TRUE
+
 
 
 /////////////
@@ -401,7 +388,6 @@
 	name = "Poppy pins"
 	desc = "A poppy pin that is meant to commemorate the fallen soldiers in wars. It symbolizes the gunshot that killed the soldiers."
 	icon_state = "poppy"
-	item_color = "poppy"
 
 
 //////////////
@@ -412,7 +398,6 @@
 	name = "singularity shard necklace"
 	desc = "The gem mounted inside seems to glow with an unearthly, pulsing light. It is bitter cold to the touch."
 	icon_state = "sing_necklace"
-	item_color = "sing_necklace"
 	above_suit = TRUE
 	above_suit_adjustable = TRUE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = -5, FIRE = 0, ACID = 0) //It IS radioactive after all. Watch me get yelled at for powergaming because I'm making this my """donator""" item - Mqiib
