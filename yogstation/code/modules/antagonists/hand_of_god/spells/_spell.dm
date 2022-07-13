@@ -100,6 +100,6 @@
 			qdel(parent)
 			parent = null
 		else
-			parent.hand_magic = null
+			parent.godhand = null
 			parent.charges = uses
 	..()

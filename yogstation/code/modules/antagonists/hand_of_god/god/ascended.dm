@@ -33,6 +33,7 @@
 	var/obj/effect/proc_holder/spell/pointed/enslave_mind/mental_attack = new
 	AddSpell(mental_attack)
 	ADD_TRAIT(src, TRAIT_SMIMMUNE, INNATE_TRAIT)   ///It is always stupid when a powerfull god dies just because he contacts with a funny crystal. 
+	ADD_TRAIT(src, TRAIT_ANTIMAGIC, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/hog/free_god/AttackingTarget()
 	melee_damage_lower = initial(melee_damage_lower)
@@ -78,9 +79,6 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/hog/free_god/wabbajack_act()
-	return
-
-/mob/living/simple_animal/hostile/hog/free_god/wabbajack()
 	return
 
 /mob/living/simple_animal/hostile/hog/free_god/death(gibbed) // Go kill myself
@@ -262,7 +260,7 @@
 			L.mind.remove_antag_datum(/datum/antagonist/clockcult)
 			L.AdjustSleeping(30)
 			return TRUE
-		if(iscultist(C))
+		if(iscultist(L))
 			to_chat(user, "<span class='notice'>You inflitrate [L]'s mind, purging the presence of a heretical god from their mind!</span>")
 			to_chat(L, "<span class='userdanger'>A powerull mental attack crushes your mind, purging the presence of Nar'Sie from it!</span>")
 			L.mind.remove_antag_datum(/datum/antagonist/cult)
