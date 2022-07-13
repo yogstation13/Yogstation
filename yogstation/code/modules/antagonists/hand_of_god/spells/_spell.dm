@@ -33,7 +33,7 @@
 	if(confirm == "No")
 		return FALSE
 	if(cost > antag_datum.energy)
-			to_chat(user,span_warning("You don't have enough energy to prepare this spell!"))
+		to_chat(user,span_warning("You don't have enough energy to prepare this spell!"))
 		return FALSE
 	return TRUE
 
