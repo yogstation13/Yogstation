@@ -83,17 +83,17 @@
 	var/datum/antagonist/hog/antag
 	var/datum/action/innate/hog_cult/parent
 
-/obj/item/melee/blood_magic/New(loc, spell)
+/obj/item/melee/hog_magic/New(loc, spell)
 	parent = spell
 	antag = parent.antag_datum
 	uses = parent.charges
 	..()
 
-/obj/item/melee/blood_magic/Initialize()
+/obj/item/melee/hog_magic/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
-/obj/item/melee/blood_magic/Destroy()
+/obj/item/melee/hog_magic/Destroy()
 	if(!QDELETED(parent))
 		if(uses <= 0)
 			parent.godhand = null
