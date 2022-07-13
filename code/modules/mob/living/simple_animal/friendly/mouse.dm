@@ -306,7 +306,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	icon_state = "mouse_gray_dead"
 	bitesize = 3
 	eatverb = "devour"
-	list_reagents = list(/datum/reagent/consumable/protein = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtype = MICE
 	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/liquidgibs = 5)
 
