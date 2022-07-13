@@ -6,7 +6,7 @@
 	flags = TONGUELESS_SPEECH
 	space_chance = 90
 	syllables = list(
-		"mhm", "phweet", "mia","meow","miaow","mmrrrr"
+		"mhm", "mew", "mia","meow","miaow","mmrrrr"
 	)
 	icon_state = "felinid"
 	default_priority = 90
