@@ -1,21 +1,18 @@
-/obj/effect/proc_holder/hog/book_charge
+/datum/hog_spell_preparation/empower
 	name = "Empower"
-	desc = "Empowers your book with your deity's power, allowing to stun people with it."
-	panel = "HoG Spells"
-	has_action = TRUE
-	action_icon = 'icons/mob/actions/actions_xeno.dmi'
-	action_icon_state = "spell_default"
-	action_background_icon_state = "bg_alien"
-	energy_cost = 20
-	preparation_time = 3 SECONDS
-	availible = TRUE
-	var/charging_amount = 3
-	var/item/hog_item/book/tome = null
-	
-/obj/effect/proc_holder/hog/book_charge/prepare(obj/item/hog_item/book/book, mob/living/user, datum/antagonist/hog/hog)
-	. = ..()
-	book.charges += charging_amount /// A bit stupid way to do this, but just cry about it
-	if(book.charges > 4)
-		book.charges = 4
-	hog.prepared_spells -= src
-	qdel(src)
+	description = "Empowers your tome with power, allowing to deal stamina damage and stun people on disarm intent."
+	cost = 40
+	p_time = 4 SECONDS 
+	poggy = null //No poggy
+
+/datum/hog_spell_preparation/empower/on_prepared(mob/user, datum/antagonist/hog/antag_datum, obj/item/hog_item/book/tome)
+	if(tome.charges >= 4)
+		to_chat(user,span_warning("The [tome] is already charged!"))
+		return
+	..()
+	tome.charges += 2
+	if(tome.charges > 4)
+		tome.charges = 4
+
+/datum/hog_spell_preparation/empower/give_spell(mob/user, datum/antagonist/hog/antag_datum)
+	return //We don't give any spells!!!!!!

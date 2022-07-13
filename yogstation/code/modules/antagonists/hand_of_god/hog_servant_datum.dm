@@ -5,6 +5,7 @@
 	var/hud_type = "dude"
 	var/datum/team/hog_cult/cult
 	var/list/god_actions = list(/datum/hog_god_interaction/targeted/recall, /datum/hog_god_interaction/targeted/purge, /datum/hog_god_interaction/targeted/mood, /datum/hog_god_interaction/targeted/mood) 
+	var/list/magic = list()
 	var/energy = 0
 	var/max_energy = 100
 	var/list/prepared_spells = list()

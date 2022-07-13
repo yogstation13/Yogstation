@@ -13,7 +13,7 @@
 		return FALSE		
 	var/confirm = alert(user, "[description] It will cost [cost] energy.", "Confirm action", "Yes", "No")
 	if(confirm == "No")
-		return
+		return FALSE
 	if(cost > user.cult.energy)
 		if(prob(2))
 			to_chat(user,span_danger("There is not enough minerals!")) ///Funny references
