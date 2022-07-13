@@ -32910,21 +32910,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"gYE" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/vending/hydroseeds{
-	contraband = list(/obj/item/seeds/cannabis = 3);
-	premium = list();
-	products = list(/obj/item/seeds/aloe = 3, /obj/item/seeds/ambrosia = 3, /obj/item/seeds/apple = 3, /obj/item/seeds/banana = 3, /obj/item/seeds/berry = 3, /obj/item/seeds/cabbage = 3, /obj/item/seeds/carrot = 3, /obj/item/seeds/cherry = 3, /obj/item/seeds/chanter = 3, /obj/item/seeds/chili = 3, /obj/item/seeds/cinnamomum = 3, /obj/item/seeds/cocoapod = 3, /obj/item/seeds/coffee = 3, /obj/item/seeds/cotton = 3, /obj/item/seeds/eggplant = 3, /obj/item/seeds/garlic = 3, /obj/item/seeds/grape = 3, /obj/item/seeds/grass = 3, /obj/item/seeds/lemon = 3, /obj/item/seeds/lime = 3, /obj/item/seeds/onion = 3, /obj/item/seeds/orange = 3, /obj/item/seeds/peas = 3, /obj/item/seeds/pineapple = 3, /obj/item/seeds/potato = 3, /obj/item/seeds/poppy = 3, /obj/item/seeds/pumpkin = 3, /obj/item/seeds/wheat/rice = 3, /obj/item/seeds/soya = 3, /obj/item/seeds/sunflower = 3, /obj/item/seeds/tea = 3, /obj/item/seeds/tobacco = 3, /obj/item/seeds/tomato = 3, /obj/item/seeds/tower = 3, /obj/item/seeds/watermelon = 3, /obj/item/seeds/wheat = 3, /obj/item/seeds/whitebeet = 3);
-	slogan_delay = 700
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
 "gZk" = (
 /obj/machinery/light_switch{
 	pixel_x = -28
@@ -59964,6 +59949,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"uef" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_x = 29
+	},
+/obj/machinery/vending/hydronutrients{
+	products = list(/obj/item/reagent_containers/glass/bottle/nutrient/ez = 30, /obj/item/reagent_containers/glass/bottle/nutrient/l4z = 20, /obj/item/reagent_containers/glass/bottle/nutrient/rh = 10, /obj/item/reagent_containers/spray/pestspray = 20, /obj/item/storage/bag/plants = 3, /obj/item/plant_analyzer = 2)
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics/garden)
 "uej" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -60197,6 +60195,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"ukh" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/obj/machinery/vending/hydroseeds/weak,
+/turf/open/floor/plasteel,
+/area/hydroponics/garden)
 "ukj" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/effect/turf_decal/siding/thinplating{
@@ -62117,17 +62125,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"vmc" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = 29
-	},
-/obj/machinery/vending/hydronutrients,
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
 "vmm" = (
 /turf/closed/wall,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -85192,8 +85189,8 @@ pYO
 ung
 pYO
 adc
-gYE
-vmc
+ukh
+uef
 rCu
 vqd
 aLE
