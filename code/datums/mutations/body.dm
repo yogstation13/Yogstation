@@ -458,11 +458,10 @@
 
 /datum/mutation/human/densebones/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
-	if(owner.physiology)
-		owner.physiology.armor.melee += 5
-		owner.physiology.armor.wound += 10
-		if(GET_MUTATION_POWER(src) > 1)
-			ADD_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
+	owner?.physiology?.armor?.melee += 5
+	owner?.physiology?.armor?.wound += 10
+	if(GET_MUTATION_POWER(src) > 1)
+		ADD_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
 
 /datum/mutation/human/densebones/on_losing(mob/living/carbon/human/owner)
 	. = ..()
