@@ -24600,6 +24600,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"cEj" = (
+/obj/structure/table,
+/obj/item/radio/off,
+/obj/item/screwdriver{
+	pixel_y = 10
+	},
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "cEm" = (
 /obj/effect/turf_decal/arrows/white{
 	color = "#99ccff";
@@ -42701,6 +42710,12 @@
 /obj/item/hand_labeler,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"lDN" = (
+/obj/machinery/camera{
+	c_tag = "Atmospherics Corridor North"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "lDX" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/white,
@@ -47599,13 +47614,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"nUM" = (
-/obj/machinery/camera{
-	c_tag = "Atmospherics Corridor North"
-	},
-/obj/machinery/lapvend,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "nUQ" = (
 /obj/effect/decal/cleanable/oil,
 /obj/item/cigbutt,
@@ -56665,6 +56673,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"szv" = (
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/lapvend,
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "szB" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
@@ -60917,6 +60935,15 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/medical/psych)
+"uBq" = (
+/obj/structure/table,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/cell_charger,
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "uBx" = (
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -63252,17 +63279,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
-"vTD" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "vTG" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -67199,15 +67215,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"xYW" = (
-/obj/structure/table,
-/obj/item/clothing/glasses/meson,
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "xZb" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
@@ -67728,14 +67735,6 @@
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"yln" = (
-/obj/structure/table,
-/obj/item/radio/off,
-/obj/item/screwdriver{
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel,
-/area/engine/foyer)
 "yly" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -98272,9 +98271,9 @@ qmg
 nNC
 nVj
 vKp
-vTD
-xYW
-yln
+szv
+uBq
+cEj
 vKp
 bWJ
 xne
@@ -99032,7 +99031,7 @@ bCv
 eEO
 bAw
 bLK
-nUM
+lDN
 bOd
 wRZ
 acF
