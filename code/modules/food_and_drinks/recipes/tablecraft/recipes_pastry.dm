@@ -271,7 +271,7 @@ datum/crafting_recipe/food/donut/meat
 	name = "Faux-Gondola Donkpocket"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
-		/obj/item/reagent_containers/food/snacks/meat/meatball = 1,
+		/obj/item/reagent_containers/food/snacks/meatball = 1,
 		/datum/reagent/pax = 15
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket/gondola/fake

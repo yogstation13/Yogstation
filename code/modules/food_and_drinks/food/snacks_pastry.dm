@@ -391,8 +391,8 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/donkpocket/gondola/fake
-	name = "gondola faux-donkpocket"
-	desc = "A more market-friendly version of the infamous Gondolapocket. Donk Co certifies no gondolas were harmed in the making of this donk pocket." //Only a monster would craft this.
+	name = "faux-gondola donkpocket"
+	desc = "A more market-friendly version of the infamous Gondolapocket. Donk Co certifies no gondolas were harmed in the making of this donk pocket."
 	icon_state = "donkpocketgondola"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/pax = 15)
 	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/gondola/fake

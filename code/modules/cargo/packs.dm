@@ -2213,8 +2213,8 @@
 					/obj/item/storage/pill_bottle/aranesp,
 					/obj/item/storage/pill_bottle/stimulant,
 					/obj/item/toy/cards/deck/syndicate,
-					/obj/item/storage/box/donkpockets/donkpocketgondola/fake
-					/obj/item/storage/box/donkpockets/donkpocketsyndie
+					/obj/item/storage/box/donkpockets/donkpocketgondola/fake,
+					/obj/item/storage/box/donkpockets/donkpocketsyndie,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,
 					/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate,
