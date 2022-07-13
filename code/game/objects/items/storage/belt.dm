@@ -256,6 +256,7 @@
 		/obj/item/flashlight/seclite,
 		/obj/item/melee/classic_baton/telescopic,
 		/obj/item/radio,
+		/obj/item/pinpointer/tracker,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/holosign_creator/security,
@@ -300,7 +301,7 @@
 	icon_state = "securitywebbing"
 	item_state = "securitywebbing"
 	w_class = WEIGHT_CLASS_BULKY
-	custom_premium_price = 800
+	custom_premium_price = 200
 
 /obj/item/storage/belt/security/webbing/ComponentInitialize()
 	. = ..()
@@ -317,9 +318,9 @@
 /obj/item/storage/belt/mining/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
+	STR.max_items = 8
 	STR.max_w_class = WEIGHT_CLASS_BULKY
-	STR.max_combined_w_class = 20
+	STR.max_combined_w_class = 24
 	STR.set_holdable(list(
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
@@ -346,12 +347,14 @@
 		/obj/item/stack/medical,
 		/obj/item/kitchen/knife,
 		/obj/item/reagent_containers/hypospray,
+		/obj/item/lazarus_injector,
 		/obj/item/gps,
 		/obj/item/storage/bag/ore,
 		/obj/item/survivalcapsule,
 		/obj/item/t_scanner/adv_mining_scanner,
 		/obj/item/reagent_containers/pill,
 		/obj/item/storage/pill_bottle,
+		/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 		/obj/item/stack/ore,
 		/obj/item/reagent_containers/food/drinks,
 		/obj/item/hivelordstabilizer,
@@ -361,8 +364,7 @@
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
-		/obj/item/restraints/legcuffs/bola/watcher,
-		/obj/item/claymore/bone
+		/obj/item/restraints/legcuffs/bola/watcher
 		))
 
 
@@ -382,7 +384,7 @@
 /obj/item/storage/belt/mining/primitive/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 5
+	STR.max_items = 6
 
 /obj/item/storage/belt/soulstone
 	name = "soul stone belt"
@@ -741,7 +743,7 @@
 	desc = "A dorky fannypack for keeping small items in."
 	icon_state = "fannypack_leather"
 	item_state = "fannypack_leather"
-	item_color = "fannypackleather"
+	dying_key = DYE_REGISTRY_FANNYPACK
 	custom_price = 15
 
 /obj/item/storage/belt/fannypack/ComponentInitialize()
@@ -754,61 +756,51 @@
 	name = "black fannypack"
 	icon_state = "fannypack_black"
 	item_state = "fannypack_black"
-	item_color = "black"
 
 /obj/item/storage/belt/fannypack/red
 	name = "red fannypack"
 	icon_state = "fannypack_red"
 	item_state = "fannypack_red"
-	item_color = "red"
 
 /obj/item/storage/belt/fannypack/purple
 	name = "purple fannypack"
 	icon_state = "fannypack_purple"
 	item_state = "fannypack_purple"
-	item_color = "purple"
 
 /obj/item/storage/belt/fannypack/blue
 	name = "blue fannypack"
 	icon_state = "fannypack_blue"
 	item_state = "fannypack_blue"
-	item_color = "blue"
 
 /obj/item/storage/belt/fannypack/orange
 	name = "orange fannypack"
 	icon_state = "fannypack_orange"
 	item_state = "fannypack_orange"
-	item_color = "orange"
 
 /obj/item/storage/belt/fannypack/white
 	name = "white fannypack"
 	icon_state = "fannypack_white"
 	item_state = "fannypack_white"
-	item_color = "white"
 
 /obj/item/storage/belt/fannypack/green
 	name = "green fannypack"
 	icon_state = "fannypack_green"
 	item_state = "fannypack_green"
-	item_color = "green"
 
 /obj/item/storage/belt/fannypack/pink
 	name = "pink fannypack"
 	icon_state = "fannypack_pink"
 	item_state = "fannypack_pink"
-	item_color = "pink"
 
 /obj/item/storage/belt/fannypack/cyan
 	name = "cyan fannypack"
 	icon_state = "fannypack_cyan"
 	item_state = "fannypack_cyan"
-	item_color = "cyan"
 
 /obj/item/storage/belt/fannypack/yellow
 	name = "yellow fannypack"
 	icon_state = "fannypack_yellow"
 	item_state = "fannypack_yellow"
-	item_color = "yellow"
 
 /obj/item/storage/belt/sabre
 	name = "sabre sheath"

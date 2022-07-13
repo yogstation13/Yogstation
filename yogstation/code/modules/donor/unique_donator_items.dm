@@ -118,7 +118,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "green cosmic bedsheet"
 	icon_state = "sheetcosmos_green"
 	item_state = "sheetcosmos_green"
-	item_color = "cosmos_green"
 
 /datum/donator_gear/azeelium
 	name = "Utatul-Azeel plushie"

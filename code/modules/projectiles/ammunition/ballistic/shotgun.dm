@@ -69,6 +69,22 @@
 	pellets = 6
 	variance = 25
 
+/obj/item/ammo_casing/shotgun/hpbuck
+	name = "hollow-point buckshot shell"
+	desc = "A 12 gauge hollow-point buckshot shell."
+	icon_state = "hpbshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_hpbuckshot
+	pellets = 6
+	variance = 25
+
+/obj/item/ammo_casing/shotgun/flechette
+	name = "flechette shell"
+	desc = "A 12 gauge flechette shell."
+	icon_state = "flshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_flechette
+	pellets = 6
+	variance = 15
+
 /obj/item/ammo_casing/shotgun/clownshot
 	name = "buckshot shell..?"
 	desc = "This feels a little light for a buckshot shell."
