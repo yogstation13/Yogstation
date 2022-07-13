@@ -289,6 +289,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
+"cc" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/item/kitchen/knife,
+/obj/machinery/firealarm{
+	pixel_y = 32
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "cl" = (
 /obj/machinery/light{
 	dir = 8
@@ -3583,16 +3608,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
-"Wp" = (
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/item/storage/box/donkpockets,
-/obj/item/kitchen/knife,
-/obj/machinery/firealarm{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "WJ" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -5215,7 +5230,7 @@ gm
 AG
 qe
 zW
-Wp
+cc
 Oe
 YV
 aZ
