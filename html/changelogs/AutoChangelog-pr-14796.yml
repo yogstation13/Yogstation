@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscdel: "Removed hell water from necrochests"
+  - tweak: "adds hellwater to the cult altar ruin"
