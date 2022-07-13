@@ -69,6 +69,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"aq" = (
+/obj,
+/turf/open/space/basic,
+/area/space)
 "ar" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -949,15 +953,6 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering)
-"Qf" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Rj" = (
 /obj/item/wrench,
 /turf/open/space/basic,
@@ -1042,15 +1037,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"XA" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "XG" = (
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
@@ -1102,8 +1088,8 @@ ab
 ab
 ab
 aa
-aa
-aa
+aq
+aq
 aa
 aa
 aa
@@ -1350,7 +1336,7 @@ ca
 cc
 ap
 Uz
-XA
+ah
 fn
 ad
 gm
@@ -1742,7 +1728,7 @@ ae
 cd
 an
 Jf
-Qf
+ak
 AE
 ad
 gm
