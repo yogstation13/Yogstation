@@ -444,7 +444,7 @@
 /datum/mutation/human/hypermarrow/on_life()
 	if(owner.blood_volume < BLOOD_VOLUME_NORMAL(owner))
 		owner.blood_volume += GET_MUTATION_POWER(src) * 2 - 1
-		owner.physiology.hunger_mod *= GET_MUTATION_POWER(src) * 2 - 0.8
+		owner?.physiology?.hunger_mod *= GET_MUTATION_POWER(src) * 2 - 0.8
 
 /datum/mutation/human/densebones
 	name = "Bone Densification"
