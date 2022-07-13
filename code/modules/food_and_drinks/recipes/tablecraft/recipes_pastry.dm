@@ -256,6 +256,7 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/donkpocket/berry
 	subcategory = CAT_PASTRY
 
+/*
 /datum/crafting_recipe/food/donkpocket/gondola
 	time = 15
 	name = "Gondola Donkpocket"
@@ -265,6 +266,7 @@ datum/crafting_recipe/food/donut/meat
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket/gondola
 	subcategory = CAT_PASTRY
+*/
 
 /datum/crafting_recipe/food/donkpocket/gondola/fake
 	time = 15
