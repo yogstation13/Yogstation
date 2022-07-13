@@ -247,8 +247,8 @@
 /obj/item/reagent_containers/food/snacks/donkpocket/warm
 	name = "warm donkpocket"
 	desc = "The heated food of choice for the seasoned crewmember."
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 3)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 6)
 	cooked_type = null
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtype = GRAIN | MEAT
@@ -264,7 +264,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/syndiepocket
 	filling_color = "#CD853F"
-	tastes = list("meat" = 2, "dough" = 2, "medicine" = 1)
+	tastes = list("meat" = 2, "dough" = 2)
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/donkpocket/warm/syndiepocket
@@ -299,8 +299,8 @@
 	name = "warm spicy donkpocket"
 	desc = "The classic snack food, now maybe a bit too spicy."
 	icon_state = "donkpocketspicy"
-	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/capsaicin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/capsaicin = 2)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/capsaicin = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/capsaicin = 2)
 	tastes = list("meat" = 2, "dough" = 2, "weird spices" = 2)
 	foodtype = GRAIN | MEAT
 
@@ -318,8 +318,8 @@
 	name = "warm teriyaki donkpocket"
 	desc = "An east-asian take on the classic stationside snack, now steamy and warm."
 	icon_state = "donkpocketteriyaki"
-	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/soysauce = 2)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/soysauce = 2)
 	tastes = list("meat" = 2, "dough" = 2, "soy sauce" = 2)
 	foodtype = GRAIN | MEAT
 
@@ -337,8 +337,8 @@
 	name = "warm pizza donkpocket"
 	desc = "Delicious, cheesy, and even better when hot."
 	icon_state = "donkpocketpizza"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/tomatojuice = 2)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/tomatojuice = 2)
 	tastes = list("tomato sauce" = 2, "dough" = 2, "melty cheese"= 2)
 	foodtype = GRAIN | DAIRY | VEGETABLES
 
@@ -356,8 +356,8 @@
 	name = "warm honkpocket"
 	desc = "The award-winning donk-pocket, now warm and toasty."
 	icon_state = "donkpocketbanana"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/laughter = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/banana = 4, /datum/reagent/consumable/laughter = 3)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/laughter = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/banana = 4, /datum/reagent/consumable/laughter = 3)
 	tastes = list("dough" = 2, "children's antibiotics" = 1)
 	foodtype = GRAIN | FRUIT
 
@@ -375,8 +375,8 @@
 	name = "warm berry donkpocket"
 	desc = "A relentlessly sweet donk-pocket, now warm and delicious."
 	icon_state = "donkpocketberry"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/berryjuice = 3)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/berryjuice = 3)
 	tastes = list("dough" = 2, "warm jam" = 2)
 	foodtype = GRAIN | FRUIT | SUGAR
 
@@ -404,8 +404,8 @@
 	name = "warm gondola donkpocket"
 	desc = "The choice to use real gondola meat in the recipe is controversial, to say the least."
 	icon_state = "donkpocketgondola"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/tranquility = 5)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/tranquility = 5)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/tranquility = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/tranquility = 5)
 	tastes = list("meat" = 2, "dough" = 2, "inner peace" = 1)
 	foodtype = GRAIN | MEAT
 
@@ -413,8 +413,8 @@
 	name = "warm faux-gondola donkpocket"
 	desc = "A more market-friendly version of the infamous Gondolapocket. Donk Co certifies no gondolas were harmed in the making of this donk pocket."
 	icon_state = "donkpocketgondola"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/pax = 5)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/pax = 15)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/pax = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/pax = 15)
 	tastes = list("meat" = 2, "dough" = 2, "inner peace" = 1)
 	foodtype = GRAIN | MEAT
 
