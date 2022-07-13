@@ -494,6 +494,8 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		new /datum/stack_recipe("donk-pockets pizza box", /obj/item/storage/box/donkpockets/donkpocketpizza),			\
 		new /datum/stack_recipe("donk-pockets berry box", /obj/item/storage/box/donkpockets/donkpocketberry),			\
 		new /datum/stack_recipe("donk-pockets honk box", /obj/item/storage/box/donkpockets/donkpockethonk),				\
+		new /datum/stack_recipe("donk-pockets gondola box", /obj/item/storage/box/donkpockets/donkpocketgondola),				\
+		new /datum/stack_recipe("donk-pockets faux-gondola box", /obj/item/storage/box/donkpockets/donkpocketgondola),				\
 		new /datum/stack_recipe("donut box", /obj/item/storage/box/fancy/donut_box),				\
 		new /datum/stack_recipe("egg box", /obj/item/storage/box/fancy/egg_box),					\
 		new /datum/stack_recipe("monkey cube box", /obj/item/storage/box/monkeycubes),			\

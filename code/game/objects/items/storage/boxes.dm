@@ -450,6 +450,11 @@
 	for(var/i in 1 to 6)
 		new donktype(src)
 
+/obj/item/storage/box/donkpockets/donkpocketsyndie
+	name = "box of original recipe donk-pockets"
+	icon_state = "donkpocketbox"
+	donktype = /obj/item/reagent_containers/food/snacks/donkpocket/syndiepocket
+
 /obj/item/storage/box/donkpockets/donkpocketspicy
 	name = "box of spicy-flavoured donk-pockets"
 	icon_state = "donkpocketboxspicy"
@@ -464,6 +469,11 @@
 	name = "box of pizza-flavoured donk-pockets"
 	icon_state = "donkpocketboxpizza"
 	donktype = /obj/item/reagent_containers/food/snacks/donkpocket/pizza
+
+/obj/item/storage/box/donkpockets/donkpocketgondola/fake
+	name = "box of faux-gondola-flavoured donk-pockets"
+	icon_state = "donkpocketboxgondola"
+	donktype = /obj/item/reagent_containers/food/snacks/donkpocket/gondola/fake
 
 /obj/item/storage/box/donkpockets/donkpocketgondola
 	name = "box of gondola-flavoured donk-pockets"
