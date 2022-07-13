@@ -18,14 +18,14 @@
 		to_chat(user,span_warning("Braindead cultist are not usefull to your cult!"))
 		return
 	if(!C.mind.hasSoul)
-		to_chat(user,span_warning("[C]'s soul alredy belongs to someone else!"))
+		to_chat(user,span_warning("[C]'s soul already belongs to someone else!"))
 		return
-	if(HAS_TRAIT(C, TRAIT_MINDSHIELD) || IS_BLOODSUCKER(C) || IS_MONSTERHUNTER(C)) 
+	if(HAS_TRAIT(C, TRAIT_MINDSHIELD)) 
 		to_chat(user,span_warning("[C]'s mind is too powerfull to enslave!"))
 		return
 	if(IS_BLOODSUCKER(C) || IS_MONSTERHUNTER(C) || IS_HERETIC(C)) 
 		to_chat(user,span_warning("[C]'s mind is too powerfull to enslave!"))
-		to_chat(C,span_warning("Power of your will protects you from being enslved to the cult!"))
+		to_chat(C,span_warning("Power of your will protects you from being enslaved to the cult!"))
 		return
 	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(C)
 	if(dude)
@@ -35,6 +35,12 @@
 			to_chat(user,span_warning("Faith of [C] in his heretical idol protects him from being converted!"))
 			to_chat(C,span_warning("Your faith into your god protects you from the heretical influence!"))
 		return
+	if(C.anti_magic_check())
+		to_chat(user,span_warning("[C] is protected from magic! You can't convert them!"))
+		return
+	if(HAS_TRAIT(C, TRAIT_HOLY)) 
+		to_chat(user,span_warning("[C] resists your inflience!"))
+		return	
 	if(iscultist(C) || is_servant_of_ratvar(C))
 		to_chat(user,span_warning("Faith of [C] in his heretical idol protects him from being converted!"))
 		to_chat(C,span_warning("Your faith into your god protects you from the heretical influence!"))

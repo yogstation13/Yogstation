@@ -30,6 +30,8 @@
 	. = ..()
 	var/obj/effect/proc_holder/spell/pointed/kinetic_crush/crush = new
 	AddSpell(crush)
+	var/obj/effect/proc_holder/spell/pointed/enslave_mind/mental_attack = new
+	AddSpell(mental_attack)
 	ADD_TRAIT(src, TRAIT_SMIMMUNE, INNATE_TRAIT)   ///It is always stupid when a powerfull god dies just because he contacts with a funny crystal. 
 
 /mob/living/simple_animal/hostile/hog/free_god/AttackingTarget()
@@ -74,6 +76,12 @@
 
 /mob/living/simple_animal/hostile/hog/free_god/Process_Spacemove()
 	return TRUE
+
+/mob/living/simple_animal/hostile/hog/free_god/wabbajack_act()
+	return
+
+/mob/living/simple_animal/hostile/hog/free_god/wabbajack()
+	return
 
 /mob/living/simple_animal/hostile/hog/free_god/death(gibbed)
 	if(!e)
@@ -173,6 +181,101 @@
 		damage_to_deal = min(damage_to_deal, M.max_integrity*0.8)
 		M.take_damage(damage_to_deal, BRUTE, ENERGY, 1)
 		return TRUE
+
+/obj/effect/proc_holder/spell/pointed/enslave_mind
+	name = "Enslave Mind"
+	desc = "Instantly convert the target if it's mind isn't protected, otherwise deconverts from heretical cults or breaks mindshields."
+	school = "conjuration"
+	charge_type = "recharge"
+	charge_max	= 30 SECONDS
+	clothes_req = FALSE
+	invocation = span_cultlarge("OBEY")
+	invocation_type = "shout"
+	range = 7
+	cooldown_min = 30 SECONDS
+	///ranged_mousepointer = 'icons/effects/mouse_pointers/mecha_mouse.dmi'
+	action_icon_state = "enslave_mind"
+	active_msg = "You prepare your mental attack..."
+	deactive_msg = "You relax..."
+
+/obj/effect/proc_holder/spell/pointed/enslave_mind/can_target(atom/target, mob/user, silent)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/datum/antagonist/hog/cultie2 = IS_HOG_CULTIST(user)
+	if(!cultie2)
+		to_chat(user, "<span class='warning'>You are unable to cast this spell!</span>")
+		return FALSE
+	if(isliving(target))
+		var/mob/living/L = target
+		if(!L.mind)
+			to_chat(user, "<span class='warning'>You don't need a braindead servant!</span>")
+			return FALSE
+		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
+		if(cultie && cultie.cult == cultie2.cult)
+			to_chat(user, "<span class='warning'>[target] already serves you!</span>")
+			return FALSE
+		if(L == user)
+			//to_chat(user, "<span class='warning'>You can't enslave yourself, dumbfuck</span>")
+			to_chat(user, "<span class='warning'>You can't enslave yourself</span>")
+			return FALSE
+	else 
+		return FALSE
+	return TRUE
+
+/obj/effect/proc_holder/spell/pointed/enslave_mind/cast(list/targets, mob/user)
+	if(!targets.len)
+		to_chat(user, "<span class='warning'>No target found in range!</span>")
+		return FALSE
+	if(!can_target(targets[1], user))
+		return FALSE
+	var/datum/antagonist/hog/cultie2 = IS_HOG_CULTIST(user)	
+	if(isliving(targets[1]))
+		var/mob/living/L = targets[1]
+		if(istype(L, /mob/living/simple_animal/hostile/hog))
+			var/message = "<span class='warning'>[L] is too different to serve you!</span>"
+			if(istype(L, /mob/living/simple_animal/hostile/hog/free_god))
+				message = "<span class='warning'>[L] is too powerfull to be enslaved. They should die.</span>"
+			to_chat(user, message)
+			return FALSE
+		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
+		if(cultie && cultie.cult == cultie2.cult)
+			to_chat(user, "<span class='warning'>[L] already serves you!</span>")
+			return FALSE
+		else if(HAS_TRAIT(L, TRAIT_MINDSHIELD)) ///Kinda yes
+			to_chat(user, "<span class='notice'>You inflitrate [L]'s mind, destroying all their mindshield implants!</span>")
+			to_chat(L, "<span class='userdanger'>A powerull mental attack crushes your mind, destroying all mindshield implants in your brain!</span>")
+			for(var/obj/item/implant/mindshield/I in L)
+				if(I)
+					qdel(I)
+			L.Knockdown(2 SECONDS)
+			return TRUE
+		else if(cultie)
+			to_chat(user, "<span class='notice'>You inflitrate [L]'s mind, purging the presence of a heretical god from their mind!</span>")
+			to_chat(L, "<span class='userdanger'>A powerull mental attack crushes your mind, purging your god presence from it!</span>")
+			L.mind.remove_antag_datum(/datum/antagonist/hog)
+			L.AdjustSleeping(30)
+			return TRUE
+		if(is_servant_of_ratvar(L))
+			to_chat(user, "<span class='notice'>You inflitrate [L]'s mind, purging the presence of a heretical god from their mind!</span>")
+			to_chat(L, "<span class='userdanger'>Unholy tendrils of darkness spread through your mind, purging the Justiciar's light!</span>")  ///Poor dude
+			L.mind.remove_antag_datum(/datum/antagonist/clockcult)
+			L.AdjustSleeping(30)
+			return TRUE
+		if(iscultist(C))
+			to_chat(user, "<span class='notice'>You inflitrate [L]'s mind, purging the presence of a heretical god from their mind!</span>")
+			to_chat(L, "<span class='userdanger'>A powerull mental attack crushes your mind, purging the presence of Nar'Sie from it!</span>")
+			L.mind.remove_antag_datum(/datum/antagonist/cult)
+			L.AdjustSleeping(30)
+			return TRUE
+		to_chat(user, "<span class='notice'>You enslave [L]'s will, converting them to your cult!</span>")
+		to_chat(L, "<span class='userdanger'>A powerfull mental attack crushes your mind, enslaving you to [user]'s cult!</span>")
+		add_hog_cultist(user, cultie2.cult, C.mind)
+		return TRUE
+	return FALSE
+		
+		
+
 
 
 
