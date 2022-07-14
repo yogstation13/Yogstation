@@ -285,6 +285,26 @@
 	tastes = list("meat" = 2, "dough" = 2, "weird spices" = 2)
 	foodtype = GRAIN | MEAT
 
+/obj/item/reagent_containers/food/snacks/donkpocket/meaty
+	name = "meatpocket"
+	desc = "Can this really be called a donkpocket? You should...probably cook this."
+	icon_state = "donkpocketmeaty"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/meaty
+	filling_color = "#CD853F"
+	tastes = list("raw meat" = 4)
+	foodtype = MICE
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/meaty
+	name = "warm meatpocket"
+	desc = "Can this really be called a donkpocket?"
+	icon_state = "donkpocketcookedmeaty"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/drippings = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/drippings = 3)
+	tastes = list("meat" = 4)
+	foodtype = MEAT
+
 /obj/item/reagent_containers/food/snacks/donkpocket/teriyaki
 	name = "teriyaki donkpocket"
 	desc = "An east-asian take on the classic stationside snack."
