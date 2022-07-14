@@ -359,6 +359,62 @@
 
 //////////////////////////////////////////////
 //                                          //
+//             INFILTRATORS                 //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/infiltration
+	name = "Infiltration"
+	antag_flag = ROLE_INFILTRATOR
+	antag_datum = ANTAG_DATUM_INFILTRATOR
+	minimum_required_age = 14
+	restricted_roles = list("Head of Security", "Captain")
+	required_candidates = 5
+	weight = 4
+	cost = 18
+	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	flags = HIGH_IMPACT_RULESET
+	antag_cap = list("denominator" = 15, "offset" = 1)
+	var/datum/team/infiltrator/sit_team
+	minimum_players = 30
+
+/datum/dynamic_ruleset/roundstart/infiltration/ready(population, forced = FALSE)
+	required_candidates = get_antag_cap(population)
+	. = ..()
+
+/datum/dynamic_ruleset/roundstart/infiltration/pre_execute(population)
+	. = ..()
+	var/inflitrators_amount = get_antag_cap(population)
+	for(var/i = 1 to inflitrators_amount)
+		if(candidates.len <= 0)
+			break
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.assigned_role = "Syndicate Infiltrator"
+		M.mind.special_role = "Syndicate Infiltrator"
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/infiltration/execute()
+	sit_team = new /datum/team/infiltrator
+	for(var/datum/mind/sit_mind in assigned)
+		sit_mind.add_antag_datum(ANTAG_DATUM_INFILTRATOR, sit_team)
+	sit_team.update_objectives()
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/infiltration/round_result()
+	var/result = sit_team.get_result()
+	switch(result)
+		if(INFILTRATION_ALLCOMPLETE)
+			SSticker.mode_result = "major win - objectives complete"
+		if(INFILTRATION_MOSTCOMPLETE)
+			SSticker.mode_result = "minor win - most objectives complete"
+		if(INFILTRATION_SOMECOMPLETE)
+			SSticker.mode_result = "neutral - some objectives complete"
+		else
+			SSticker.mode_result = "loss - no objectives complete"
+
+//////////////////////////////////////////////
+//                                          //
 //               REVS		                //
 //                                          //
 //////////////////////////////////////////////
