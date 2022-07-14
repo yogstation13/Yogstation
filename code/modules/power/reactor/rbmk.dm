@@ -61,7 +61,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor
 	name = "Advanced Gas-Cooled Nuclear Reactor"
 	desc = "A tried and tested design which can output stable power at an acceptably low risk. The moderator can be changed to provide different effects."
-	icon = 'ModularTegustation/Teguicons/reactor/rbmk.dmi'
+	icon = 'icons/reactor/rbmk.dmi'
 	icon_state = "reactor_map"
 	pixel_x = -32
 	pixel_y = -32
@@ -565,7 +565,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/item/fuel_rod
 	name = "Uranium-235 Fuel Rod"
 	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder inside, and a breeding blanket of uranium-238 around it, used to kick off a fission reaction and breed plutonium fuel respectivly."
-	icon = 'ModularTegustation/Teguicons/reactor/control_rod.dmi'
+	icon = 'icons/reactor/control_rod.dmi'
 	icon_state = "irradiated"
 	w_class = WEIGHT_CLASS_BULKY
 	var/depletion = 0 //Each fuel rod will deplete in around 30 minutes.
@@ -597,7 +597,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/machinery/computer/reactor
 	name = "Reactor control console"
 	desc = "Scream"
-	icon = 'ModularTegustation/Teguicons/reactor/computer.dmi'
+	icon = 'icons/reactor/computer.dmi'
 	icon_state = "oldcomp"
 	icon_screen = "library"
 	icon_keyboard = null
@@ -919,7 +919,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/effect/decal/nuclear_waste
 	name = "Plutonium sludge"
 	desc = "A writhing pool of heavily irradiated, spent reactor fuel. You probably shouldn't step through this..."
-	icon = 'ModularTegustation/Teguicons/reactor/reactor_parts.dmi'
+	icon = 'icons/reactor/reactor_parts.dmi'
 	icon_state = "nuclearwaste"
 	alpha = 150
 	light_color = LIGHT_COLOR_CYAN
@@ -1020,7 +1020,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/item/sealant
 	name = "Flexi seal"
 	desc = "A neat spray can that can repair torn inflatable segments, and more!"
-	icon = 'ModularTegustation/Teguicons/reactor/inflatable.dmi'
+	icon = 'icons/reactor/inflatable.dmi'
 	icon_state = "sealant"
 	w_class = 1
 
