@@ -60,6 +60,7 @@
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
+#define UF_CHANGED "uf changed"
 
 #define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 255
 #define CHAMELEON_MUTATION_MINIMUM_TRANSPARENCY 30
@@ -81,6 +82,11 @@
 //DNA - Because fuck you and your magic numbers being all over the codebase.
 #define DNA_BLOCK_SIZE				3
 
+//this should be in a colors.dm define but we don't use that like tg does
+#define DEFAULT_HEX_COLOR_LEN 6
+
+#define DNA_BLOCK_SIZE_COLOR DEFAULT_HEX_COLOR_LEN
+
 #define DNA_UNI_IDENTITY_BLOCKS		7
 #define DNA_HAIR_COLOR_BLOCK		1
 #define DNA_FACIAL_HAIR_COLOR_BLOCK	2
@@ -89,6 +95,27 @@
 #define DNA_GENDER_BLOCK			5
 #define DNA_FACIAL_HAIR_STYLE_BLOCK	6
 #define DNA_HAIR_STYLE_BLOCK		7
+
+#define DNA_FEATURE_BLOCKS 19
+#define DNA_MUTANT_COLOR_BLOCK 1
+#define DNA_ETHEREAL_COLOR_BLOCK 2
+#define DNA_LIZARD_MARKINGS_BLOCK 3
+#define DNA_LIZARD_TAIL_BLOCK 4
+#define DNA_SNOUT_BLOCK 5
+#define DNA_HORNS_BLOCK 6
+#define DNA_FRILLS_BLOCK 7
+#define DNA_SPINES_BLOCK 8
+#define DNA_HUMAN_TAIL_BLOCK 9
+#define DNA_EARS_BLOCK 10
+#define DNA_MOTH_WINGS_BLOCK 11
+#define DNA_MUSHROOM_CAPS_BLOCK 12
+#define DNA_POLY_TAIL_BLOCK 13
+#define DNA_POLY_TEETH_BLOCK 14
+#define DNA_POLY_DOME_BLOCK 15
+#define DNA_POLY_DORSAL_BLOCK 16
+#define DNA_ETHEREAL_MARK_BLOCK 17
+#define DNA_PLANT_HAIR_BLOCK 18
+#define DNA_PLANT_FLOWER_BLOCK 19
 
 #define DNA_SEQUENCE_LENGTH			4
 #define DNA_MUTATION_BLOCKS			8

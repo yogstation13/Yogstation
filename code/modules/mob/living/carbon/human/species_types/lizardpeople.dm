@@ -262,7 +262,7 @@
 	name = "Draconid"
 	id = "draconid"
 	limbs_id = "lizard"
-	fixed_mut_color = "A02720" 	//Deep red
+	fixed_mut_color = "#A02720" 	//Deep red
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_RESISTHEAT)	//Dragons like fire, not cold blooded because they generate fire inside themselves or something
 	burnmod = 0.8

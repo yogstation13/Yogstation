@@ -63,7 +63,7 @@
 		return
 
 	var/mob/living/carbon/human/ethereal = C
-	default_color = "#[ethereal.dna.features["ethcolor"]]"
+	default_color = ethereal.dna.features["ethcolor"]
 	r1 = GETREDPART(default_color)
 	g1 = GETGREENPART(default_color)
 	b1 = GETBLUEPART(default_color)
@@ -93,7 +93,7 @@
 		H.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
 		ethereal_light.set_light_range_power_color(light_range, healthpercent, current_color)
 		ethereal_light.set_light_on(TRUE)
-		fixed_mut_color = copytext_char(current_color, 2)
+		fixed_mut_color = current_color
 	else
 		H.set_light(0)
 		ethereal_light.set_light_on(FALSE)
