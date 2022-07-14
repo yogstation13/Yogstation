@@ -258,10 +258,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	//Next up, handle moderators!
 //	if(moderator_input.total_moles() >= minimum_coolant_level)
 	var/total_fuel_moles = 0
-	moderator_input.assert_gas(/datum/gas/plasma)
-	moderator_input.assert_gas(/datum/gas/tritium)
-	total_fuel_moles += moderator_input.gases[/datum/gas/plasma][MOLES]
-	total_fuel_moles += moderator_input.gases[/datum/gas/tritium][MOLES]*10
+	total_fuel_moles += moderator_input.get_moles(/datum/gas/plasma)
+	total_fuel_moles += moderator_input.get_moles(/datum/gas/tritium)
 	moderator_input.garbage_collect()
 	var/power_modifier = 0
 
