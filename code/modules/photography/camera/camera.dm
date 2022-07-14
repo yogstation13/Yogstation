@@ -285,7 +285,7 @@
 
 /obj/item/camera/tator/Initialize()
 	. = ..()
-	flashy = new /obj/item/assembly/flash/tator(src)
+	flashy = new (src)
 
 /obj/item/camera/tator/attack(mob/living/carbon/human/M, mob/user)
 	if(is_syndicate(user) && flashy && (world.time < last_time_used + flashy_cooldown))
