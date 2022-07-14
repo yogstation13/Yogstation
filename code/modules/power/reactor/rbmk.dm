@@ -392,7 +392,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				if(70 to 95)
 					grilled_item.name = "Three-Mile Nuclear-Grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "A [initial(grilled_item.name)]. It's been put on top of a nuclear reactor running at extreme power by some badass engineer."
-					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+					if(!(grilled_item.foodtype & TRAIT_FOOD_GRILLED)
 						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 				if(95 to INFINITY)
 					grilled_item.name = "Ultimate Meltdown Grilled [initial(grilled_item.name)]"
