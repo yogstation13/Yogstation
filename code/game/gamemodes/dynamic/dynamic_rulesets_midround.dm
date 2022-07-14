@@ -386,7 +386,7 @@
 	new_character.mind.assigned_role = "Syndicate Infiltrator"
 	if(!sit_team)
 		sit_team = new /datum/team/infiltrator
-	sit_mind.add_antag_datum(ANTAG_DATUM_INFILTRATOR, sit_team)
+	new_character.mind.add_antag_datum(ANTAG_DATUM_INFILTRATOR, sit_team)
 	sit_team.update_objectives()
 
 //////////////////////////////////////////////
