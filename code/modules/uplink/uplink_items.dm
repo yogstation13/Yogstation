@@ -1995,6 +1995,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
 
+/datum/uplink_item/role_restricted/deadlydonut
+	name = "Box of Infinity Donuts"
+	desc = "A box with six Waffle Co. brand infinity donuts. Banned in four sectors for their shear calorie content. \
+			Caution: Product known to the safety board of Nanotrasen to increase risks of stomach cancer and cause instant obesity."
+	item = /obj/item/storage/box/fancy/donut_box/deadly
+	cost = 6
+	manufacturer = /datum/corporation/traitor/waffleco
+	restricted_roles = list("Assistant", "Cook", "Clerk")
+	illegal_tech = FALSE
+
 /datum/uplink_item/role_restricted/clown_bomb
 	name = "Clown Bomb"
 	desc = "The Clown bomb is a hilarious device capable of massive pranks. It has an adjustable timer, \
