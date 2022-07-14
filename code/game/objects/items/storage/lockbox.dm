@@ -85,6 +85,7 @@
 		if(2)
 			emag_act(null)
 		if(3)
+			var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
 			locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 			if(locked)
