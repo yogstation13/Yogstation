@@ -279,7 +279,7 @@
 			picture.log_to_file()
 
 /obj/item/camera/tator
-	var/obj/item/assembly/flash/flashy
+	var/obj/item/assembly/flash/tator/flashy
 	var/last_time_used
 	var/flashy_cooldown = 9 SECONDS
 
