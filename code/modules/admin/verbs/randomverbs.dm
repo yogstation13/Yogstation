@@ -879,6 +879,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_DEBUG))
 		return
 
+	var/areyousure = alert(src, "Are you sure you want to trigger a nuke?", "Options", "Yes", "No", "Cancel")
+	if(areyousure == "Cancel" || areyousure == "No")
+		return
+
+	if(N.type != /obj/machinery/nuclearbomb/beer)
+		var/areyousure2 = alert(src, "THIS WILL BLOW UP THE STATION?", "Options", "Yes", "No", "Cancel")
+		if(areyousure2 == "Cancel" || areyousure2 == "No")
+			return
+
 	if(!N.timing)
 		var/newtime = input(usr, "Set activation timer.", "Activate Nuke", "[N.timer_set]") as num|null
 		if(!newtime)
