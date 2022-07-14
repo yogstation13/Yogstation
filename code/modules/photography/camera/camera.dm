@@ -281,14 +281,14 @@
 /obj/item/camera/tator
 	var/obj/item/assembly/flash/flashy
 	var/last_time_used
-	var/cooldown = 9 SECONDS
+	var/flashy_cooldown = 9 SECONDS
 
 /obj/item/camera/tator/Initialize()
 	. = ..()
 	flashy = new /obj/item/assembly/flash/tator(src)
 
 /obj/item/camera/tator/attack(mob/living/carbon/human/M, mob/user)
-	if(is_syndicate(user) && flashy && (world.time < last_time_used + cooldown))
+	if(is_syndicate(user) && flashy && (world.time < last_time_used + flashy_cooldown))
 		update_flash()
 		if(flashy.attack(M, user))
 			last_time_used = world.time
