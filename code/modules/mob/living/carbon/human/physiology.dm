@@ -27,7 +27,7 @@
 
 	var/punchdamagehigh_bonus = 0		//Increased maximum punch damage 
 	var/punchdamagelow_bonus = 0		//Increased minimum punch damage
-	var/punchstunthreshhold_bonus = 0	//Increased stun threshhold on punches so we don't get knockdown hands
+	var/punchstunthreshold_bonus = 0	//Increased stun threshhold on punches so we don't get knockdown hands
 
 /datum/physiology/New()
 	armor = new

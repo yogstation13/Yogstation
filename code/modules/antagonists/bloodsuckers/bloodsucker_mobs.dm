@@ -230,7 +230,7 @@
 				additionalmessage = "You have mutated werewolf claws!"
 				user.physiology.punchdamagehigh_bonus += 2.5
 				user.physiology.punchdamagelow_bonus += 2.5
-				user.physiology.punchstunthreshhold_bonus += 2.5
+				user.physiology.punchstunthreshold_bonus += 2.5
 				mutation = /obj/item/clothing/gloves/wolfclaws
 				slot = SLOT_GLOVES
 			if(4)
