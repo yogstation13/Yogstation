@@ -484,6 +484,7 @@ Difficulty: Very Hard
 		var/datum/job/clown/C = new /datum/job/clown()
 		C.equip(H)
 		qdel(C)
+		H.dna.remove_mutation(CLOWNMUT)
 		affected_targets.Add(H)
 
 /obj/machinery/anomalous_crystal/theme_warp //Warps the area you're in to look like a new one
@@ -777,7 +778,7 @@ Difficulty: Very Hard
 	. = ..()
 	ADD_TRAIT(src, TRAIT_MUTE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_EMOTEMUTE, INNATE_TRAIT)
-		
+
 /obj/machinery/anomalous_crystal/refresher //Deletes and recreates a copy of the item, "refreshing" it.
 	observer_desc = "This crystal \"refreshes\" items that it affects, rendering them as new."
 	activation_method = ACTIVATE_TOUCH
