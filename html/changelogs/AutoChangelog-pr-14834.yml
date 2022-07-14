@@ -1,0 +1,12 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "adds trims to the janitorial closet"
+  - rscadd: "Adds a second janicart, and space cleaner bottle to the janitor closet"
+  - rscadd: "adds a modular PC vendor to atmos"
+  - rscdel: "deletes the two pipe dispensers in atmos"
+  - tweak: "changes the water tank in the janitorial closet into a high capacity variant"
+  - tweak: "moves engineering hallway northern firelocks"
+  - tweak: "shifts janitorial/atmos maint hallway so nothing is too far from where it was, to make room for the janitorial closet changes"
+  - tweak: "moves atmos' disposal down a tile"
+  - tweak: "shifts the janitor closet disposal and table/rack combo down a tile"
