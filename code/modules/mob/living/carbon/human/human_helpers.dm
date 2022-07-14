@@ -280,13 +280,10 @@
 
 
 /mob/living/carbon/human/proc/get_punchdamagehigh()	//Gets the total maximum punch damage
-	var/punchhigh = dna.species.punchdamagehigh + physiology.punchdamagehigh_bonus
-	return punchhigh
+	return dna.species.punchdamagehigh + physiology.punchdamagehigh_bonus
 
 /mob/living/carbon/human/proc/get_punchdamagelow()	//Gets the total minimum punch damage
-	var/punchlow = dna.species.punchdamagelow + physiology.punchdamagelow_bonus
-	return punchlow
+	return dna.species.punchdamagelow + physiology.punchdamagelow_bonus
 
 /mob/living/carbon/human/proc/get_punchstunthreshold()	//Gets the total punch damage needed to knock down someone
-	var/punchstun = dna.species.punchstunthreshold + physiology.punchstunthreshold_bonus
-	return punchstun
+	return dna.species.punchstunthreshold + physiology.punchstunthreshold_bonus
