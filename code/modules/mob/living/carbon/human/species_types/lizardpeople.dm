@@ -22,7 +22,7 @@
 	exotic_bloodtype = "L"
 	disliked_food = GRAIN | DAIRY
 	liked_food = GROSS | MEAT | GRILLED | SEAFOOD | MICE
-	inert_mutation = GIGANTISM
+	inert_mutation = CHAMELEON
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"
