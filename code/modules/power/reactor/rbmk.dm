@@ -397,7 +397,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				if(95 to INFINITY)
 					grilled_item.name = "Ultimate Meltdown Grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "A [initial(grilled_item.name)]. A grill this perfect is a rare technique only known by a few engineers who know how to perform a 'controlled' meltdown whilst also having the time to throw food on a reactor. I'll bet it tastes amazing."
-					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+					if(!(grilled_item.foodtype & TRAIT_FOOD_GRILLED)
 						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(var/sound, var/message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
