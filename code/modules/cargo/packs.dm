@@ -2680,7 +2680,7 @@
 /datum/supply_pack/engine/bananium_fuel_rod
 	name = "Bananium Fuel Rod crate"
 	desc = "Two fuel rods designed to utilize and multiply bananium in a reactor, requires CE access to open. Caution: Radioactive"
-	cost = CARGO_CRATE_VALUE*20
+	cost = 10000
 	access = ACCESS_CE // Nag your local CE
 	contains = list(/obj/item/fuel_rod/material/bananium,
 					/obj/item/fuel_rod/material/bananium)
