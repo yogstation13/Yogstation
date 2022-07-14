@@ -300,7 +300,7 @@
 	flashy.icon_state = icon_state
 	flashy.icon_state = item_state
 
-/obj/item/camera/tator/proc/examine(mob/user)
+/obj/item/camera/tator/examine(mob/user)
 	. = ..()
 	if(is_syndicate(user)) //helpful to other syndicates
 		. += "This camera has an upgraded lightbulb and is capable of flashing people."
