@@ -2682,8 +2682,8 @@
 	desc = "Two fuel rods designed to utilize and multiply bananium in a reactor, requires CE access to open. Caution: Radioactive"
 	cost = 10000
 	access = ACCESS_CE // Nag your local CE
-	contains = list(/obj/item/fuel_rod/material/bananium,
-					/obj/item/fuel_rod/material/bananium)
+	contains = list(/obj/item/twohanded/required/fuel_rod/material/bananium,
+					/obj/item/twohanded/required/fuel_rod/material/bananium)
 	crate_name = "Bluespace Crystal Fuel Rod crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
@@ -2694,8 +2694,8 @@
 	desc = "Two additional fuel rods for use in a reactor, requires CE access to open. Caution: Radioactive"
 	cost = 5000
 	access = ACCESS_CE
-	contains = list(/obj/item/fuel_rod,
-					/obj/item/fuel_rod)
+	contains = list(/obj/item/twohanded/required/fuel_rod,
+					/obj/item/twohanded/required/fuel_rod)
 	crate_name = "Uranium-235 Fuel Rod crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
