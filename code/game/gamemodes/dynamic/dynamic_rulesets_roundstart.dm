@@ -707,7 +707,7 @@
 /datum/dynamic_ruleset/roundstart/zombie/pre_execute(population)
 	. = ..()
 	var/zombies = get_antag_cap(population)
-	for(var/i = 1 to cultists)
+	for(var/i = 1 to zombies)
 		if(candidates.len <= 0)
 			break
 		var/mob/M = pick_n_take(candidates)
