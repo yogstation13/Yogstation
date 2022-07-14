@@ -22,7 +22,7 @@
 	exotic_bloodtype = "L"
 	disliked_food = GRAIN | DAIRY
 	liked_food = GROSS | MEAT | GRILLED | SEAFOOD | MICE
-	inert_mutation = FIREBREATH
+	inert_mutation = GIGANTISM
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"
@@ -100,6 +100,7 @@
 	mutantlungs = /obj/item/organ/lungs/ashwalker
 	breathid = "n2" // yogs end
 	species_language_holder = /datum/language_holder/lizard/ash
+	inert_mutation = FIREBREATH
 
 // yogs start - Ashwalkers now have ash immunity
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -127,6 +128,7 @@
 	punchdamagelow = 3
 	punchdamagehigh = 12
 	punchstunthreshold = 12	//+2 claws of powergaming
+	inert_mutation = FIREBREATH
 
 /datum/species/lizard/draconid/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
