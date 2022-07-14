@@ -66,13 +66,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/backbag = DBACKPACK				//backpack type
 	var/jumpsuit_style = PREF_SUIT      //suit/skirt
 	var/hair_style = "Bald"				//Hair type
-	var/hair_color = "000"				//Hair color
+	var/hair_color = "#000000"				//Hair color
 	var/facial_hair_style = "Shaved"	//Face hair type
-	var/facial_hair_color = "000"		//Facial hair color
+	var/facial_hair_color = "#000000"		//Facial hair color
 	var/skin_tone = "caucasian1"		//Skin color
-	var/eye_color = "000"				//Eye color
+	var/eye_color = "#000000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
+	var/list/features = list("mcolor" = "#FFFFFF", "gradientstyle" = "None", "gradientcolor" = "#000000", "ethcolor" = "#9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Mutant Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span>"
+				dat += "<span style='border: 1px solid #161616; background-color: [features["mcolor"]];'>&nbsp;&nbsp;&nbsp;</span>"
 				dat += "<a href='?_src_=prefs;preference=mcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=mcolor;task=lock'>[random_locks["mcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_colors = TRUE
@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Ethereal Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span>"
+				dat += "<span style='border: 1px solid #161616; background-color: [features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span>"
 				dat += "<a href='?_src_=prefs;preference=ethcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=ethcolor;task=lock'>[random_locks["ethcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 
@@ -340,7 +340,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h3>Eye Color</h3>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[eye_color];'>&nbsp;&nbsp;&nbsp;</span>"
+				dat += "<span style='border: 1px solid #161616; background-color: [eye_color];'>&nbsp;&nbsp;&nbsp;</span>"
 				dat += "<a href='?_src_=prefs;preference=eyes;task=input'>Change</a> <a href ='?_src_=prefs;preference=eyes;task=lock'>[random_locks["eyes"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "</td>"
@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input'>&gt;</a><BR>"
 
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a>"
+				dat += "<span style='border:1px solid #161616; background-color: [hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=hair_color;task=lock'>[random_locks["hair"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "<h3>Facial Hair Style</h3>"
@@ -368,7 +368,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<a href='?_src_=prefs;preference=previous_facehair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_facehair_style;task=input'>&gt;</a><BR>"
 
-				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
+				dat += "<span style='border: 1px solid #161616; background-color: [facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "<h3>Hair Gradient</h3>"
@@ -378,7 +378,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<a href='?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
 
-				dat += "<span style='border:1px solid #161616; background-color: #[features["gradientcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
+				dat += "<span style='border:1px solid #161616; background-color: [features["gradientcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=hair_gradient_color;task=lock'>[random_locks["gradientcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 				dat += "</td>"
@@ -575,7 +575,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>Head Vegitation Style</h3>"
 				dat += "<a href='?_src_=prefs;preference=pod_hair;task=input'>[features["pod_hair"]]</a>"
 				dat += "<a href ='?_src_=prefs;preference=pod_hair;task=lock'>[random_locks["pod_hair"] ? "Unlock" : "Lock"]</a><BR>"
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pod_hair_color;task=input'>Change</a>"
+				dat += "<span style='border:1px solid #161616; background-color: [hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pod_hair_color;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=hair_color;task=lock'>[random_locks["hair"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
@@ -587,7 +587,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
 				dat += "<h3>Head Flowers Color</h3>"
-				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pod_flower_color;task=input'>Change</a>"
+				dat += "<span style='border: 1px solid #161616; background-color: [facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pod_flower_color;task=input'>Change</a>"
 				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
 
 				mutant_category++
@@ -1388,11 +1388,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("age")
 					age = rand(AGE_MIN, AGE_MAX)
 				if("hair")
-					hair_color = random_short_color()
+					hair_color = "#[random_color()]"
 				if("hair_style")
 					hair_style = random_hair_style(gender)
 				if("facial")
-					facial_hair_color = random_short_color()
+					facial_hair_color = "#[random_color()]"
 				if("facial_hair_style")
 					facial_hair_style = random_facial_hair_style(gender)
 				if("underwear")
@@ -1495,7 +1495,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
 				if("hair")
-					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
+					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference",hair_color) as color|null
 					if(new_hair)
 						hair_color = sanitize_hexcolor(new_hair)
 
@@ -1527,7 +1527,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						hair_style = previous_list_item(hair_style, GLOB.hair_styles_list)
 
 				if("facial")
-					var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference","#"+facial_hair_color) as color|null
+					var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference",facial_hair_color) as color|null
 					if(new_facial)
 						facial_hair_color = sanitize_hexcolor(new_facial)
 
@@ -1559,7 +1559,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						facial_hair_style = previous_list_item(facial_hair_style, GLOB.facial_hair_styles_list)
 
 				if("hair_gradient")
-					var/new_hair_gradient_color = input(user, "Choose your character's hair gradient colour:", "Character Preference","#"+features["gradientcolor"]) as color|null
+					var/new_hair_gradient_color = input(user, "Choose your character's hair gradient colour:", "Character Preference",features["gradientcolor"]) as color|null
 					if(new_hair_gradient_color)
 						features["gradientcolor"] = sanitize_hexcolor(new_hair_gradient_color)
 
@@ -1604,7 +1604,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						socks = new_socks
 
 				if(BODY_ZONE_PRECISE_EYES)
-					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference","#"+eye_color) as color|null
+					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference",eye_color) as color|null
 					if(new_eyes)
 						eye_color = sanitize_hexcolor(new_eyes)
 
@@ -1617,16 +1617,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pref_species = new newtype()
 						//Now that we changed our species, we must verify that the mutant colour is still allowed.
 						var/temp_hsv = RGBtoHSV(features["mcolor"])
-						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
+						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#777777")[3]))
 							features["mcolor"] = pref_species.default_color
 
 				if("mcolor")
-					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
+					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference",features["mcolor"]) as color|null
 					if(new_mutantcolor)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
 						if(new_mutantcolor == "#000000")
 							features["mcolor"] = pref_species.default_color
-						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#777777")[3]) // mutantcolors must be bright, but only if they affect the skin
 							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						else
 							to_chat(user, span_danger("Invalid color. Your color is not bright enough."))
@@ -1739,24 +1739,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						features["pod_hair"] = new_pod_hair
 						features["pod_flower"] = new_pod_hair
 				if("pod_hair_color")
-					var/new_hair = input(user, "Choose your character's \"hair\" colour:", "Character Preference","#"+hair_color) as color|null
+					var/new_hair = input(user, "Choose your character's \"hair\" colour:", "Character Preference",hair_color) as color|null
 					if(new_hair)
 						var/temp_hsv = RGBtoHSV(new_hair)
 						if(new_hair == "#000000")
 							hair_color = pref_species.default_color
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#777777")[3]) // mutantcolors must be bright, but only if they affect the skin
 							hair_color = sanitize_hexcolor(new_hair)
 						else
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
 				if("pod_flower_color")
-					var/new_facial = input(user, "Choose your character's head flower colour:", "Character Preference","#"+facial_hair_color) as color|null
+					var/new_facial = input(user, "Choose your character's head flower colour:", "Character Preference",facial_hair_color) as color|null
 					if(new_facial)
 						var/temp_hsv = RGBtoHSV(new_facial)
 						if(new_facial == "#000000")
 							facial_hair_color = pref_species.default_color
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#777777")[3]) // mutantcolors must be bright, but only if they affect the skin
 							facial_hair_color = sanitize_hexcolor(new_facial)
 						else
 							to_chat(user, span_danger("Invalid head flower color. Your color is not bright enough."))

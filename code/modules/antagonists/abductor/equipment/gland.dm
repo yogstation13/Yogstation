@@ -246,6 +246,7 @@
 	randomize_human(owner)
 	var/species = pick(list(/datum/species/human, /datum/species/lizard, /datum/species/gorilla, /datum/species/moth, /datum/species/fly)) // yogs -- gorilla people
 	owner.set_species(species)
+	owner.dna.update_dna_identity()
 
 /obj/item/organ/heart/gland/ventcrawling
 	true_name = "pliant cartilage enabler"

@@ -29,7 +29,7 @@
 		var/mob/living/carbon/human/H = C
 		if(!pref_load)			//Hah! They got forcefully purrbation'd. Force default felinid parts on them if they have no mutant parts in those areas!
 			if(H.dna.features["tail_human"] == "None")
-				H.dna.features["tail_human"] = "Cat"
+				H.dna.features["tail_human"] = "Cat"				
 			if(H.dna.features["ears"] == "None")
 				H.dna.features["ears"] = "Cat"
 		if(H.dna.features["ears"] == "Cat")
@@ -42,6 +42,8 @@
 			tail.Insert(H, drop_if_replaced = FALSE)
 		else
 			mutanttail = null
+		H.dna.update_uf_block(DNA_HUMAN_TAIL_BLOCK)
+		H.dna.update_uf_block(DNA_EARS_BLOCK)
 
 /datum/species/human/felinid/on_species_loss(mob/living/carbon/H, datum/species/new_species, pref_load)
 	var/obj/item/organ/ears/cat/ears = H.getorgan(/obj/item/organ/ears/cat)
@@ -58,7 +60,7 @@
 			// Go with default ears
 			NE = new /obj/item/organ/ears
 		NE.Insert(H, drop_if_replaced = FALSE)
-
+		H.dna.update_uf_block(DNA_EARS_BLOCK)
 	if(tail)
 		var/obj/item/organ/tail/NT
 		if(new_species && new_species.mutanttail)
@@ -70,6 +72,8 @@
 			NT.Insert(H, drop_if_replaced = FALSE)
 		else
 			tail.Remove(H)
+		H.dna.update_uf_block(DNA_HUMAN_TAIL_BLOCK)
+	
 
 ///turn everyone into catgirls. Technically not girls specifically but you get the point.
 /proc/mass_purrbation()

@@ -580,7 +580,7 @@
 	R.fields["name"] = mob_occupant.real_name
 	R.fields["id"] = copytext_char(md5(mob_occupant.real_name), 2, 6)
 	R.fields["UE"] = dna.unique_enzymes
-	R.fields["UI"] = dna.uni_identity
+	R.fields["UI"] = dna.unique_identity
 	R.fields["SE"] = dna.mutation_index
 	R.fields["blood_type"] = dna.blood_type
 	R.fields["features"] = dna.features
@@ -616,7 +616,7 @@
 	var/datum/data/record/old_record = find_record("mindref", REF(mob_occupant.mind), records)
 	if(body_only)
 		old_record = find_record("UE", dna.unique_enzymes, records) //Body-only records cannot be identified by mind, so we use the DNA
-		if(old_record && ((old_record.fields["UI"] != dna.uni_identity) || (!old_record.fields["body_only"]))) //Never overwrite a mind-and-body record if it exists
+		if(old_record && ((old_record.fields["UI"] != dna.unique_identity) || (!old_record.fields["body_only"]))) //Never overwrite a mind-and-body record if it exists
 			old_record = null
 	if(old_record)
 		records -= old_record
