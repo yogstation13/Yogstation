@@ -84,3 +84,9 @@
 	blacklisted_turfs += typecacheof(/turf/open/indestructible) //yogs added indestructible floors to the shelter black list
 	whitelisted_turfs = typecacheof(/turf/closed/mineral)
 	banned_objects = typecacheof(/obj/structure/stone_tile) 
+
+/datum/map_template/shelter/reactor
+	name = "RBMK Reactor"
+	shelter_id = "reactor"
+	description = "A reactor core, coolant and moderator loop not included."
+	mappath = "_maps/templates/rbmk_1.dmm"

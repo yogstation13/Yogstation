@@ -1,0 +1,109 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
+"h" = (
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/cargo,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/space)
+"i" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/space)
+"j" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
+"l" = (
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/space)
+"o" = (
+/turf/open/floor/plating,
+/area/space)
+"p" = (
+/obj/effect/turf_decal/trimline/red/corner{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/space)
+"r" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
+"w" = (
+/obj/effect/turf_decal/trimline/red/corner,
+/turf/open/floor/engine,
+/area/space)
+"B" = (
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/turf/open/floor/engine,
+/area/space)
+"J" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/space)
+"K" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/space)
+"U" = (
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/turf/open/floor/plating,
+/area/space)
+"Z" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
+
+(1,1,1) = {"
+w
+r
+j
+r
+a
+"}
+(2,1,1) = {"
+B
+o
+j
+o
+K
+"}
+(3,1,1) = {"
+U
+U
+h
+J
+J
+"}
+(4,1,1) = {"
+B
+o
+Z
+o
+K
+"}
+(5,1,1) = {"
+p
+i
+Z
+i
+l
+"}
