@@ -691,7 +691,7 @@
 	antag_flag = ROLE_ZOMBIE
 	antag_datum = /datum/antagonist/zombie
 	minimum_required_age = 14
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Medical Officer", "Brig Physician", "AI", "Cyborg")
+	restricted_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Medical Officer", "Brig Physician", "AI", "Cyborg")
 	required_candidates = 2
 	weight = 3
 	cost = 101
