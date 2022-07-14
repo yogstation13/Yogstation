@@ -382,7 +382,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				if(20 to 39)
 					grilled_item.name = "grilled [initial(grilled_item.name)]"
 					grilled_item.desc = "[initial(I.desc)] It's been grilled over a nuclear reactor."
-					if(!grilled_item.foodtype & TRAIT_FOOD_GRILLED)
+					if(!(grilled_item.foodtype & TRAIT_FOOD_GRILLED))
 						grilled_item.foodtype |= TRAIT_FOOD_GRILLED
 				if(40 to 70)
 					grilled_item.name = "heavily grilled [initial(grilled_item.name)]"
