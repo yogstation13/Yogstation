@@ -277,3 +277,36 @@
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))
 			picture.log_to_file()
+
+/obj/item/camera/tator
+	var/obj/item/assembly/flash/flashy
+	var/last_time_used
+	var/cooldown = 9 SECONDS
+
+/obj/item/camera/tator/Initialize()
+	. = ..()
+	flashy = new /obj/item/assembly/flash/tator(src)
+
+/obj/item/camera/tator/attack(mob/living/carbon/human/M, mob/user)
+	if(is_syndicate(user) && flashy && (world.time < last_time_used + cooldown))
+		update_flash()
+		if(flashy.attack(M, user))
+			last_time_used = world.time
+		return
+	. = ..()
+
+/obj/item/camera/tator/proc/update_flash()
+	flashy.name = name
+	flashy.icon_state = icon_state
+	flashy.icon_state = item_state
+
+/obj/item/assembly/flash/tator
+	name = "camera"
+	desc = "This flash is morbin'. You shouldn't see it."  //Anyone wouldn't see this so it is ok
+	burnout_resistance = 999999   //No burning out
+	icon = 'icons/obj/artstuff.dmi'
+	icon_state = "camera"
+	item_state = "camera"
+
+/obj/item/assembly/flash/tator/emp_act(severity)
+	return
