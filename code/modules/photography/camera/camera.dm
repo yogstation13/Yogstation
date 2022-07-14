@@ -300,6 +300,11 @@
 	flashy.icon_state = icon_state
 	flashy.icon_state = item_state
 
+/obj/item/camera/tator/proc/examine(mob/user)
+	. = ..()
+	if(is_syndicate(user)) //helpful to other syndicates
+		. += "This camera has an upgraded lightbulb and is capable of flashing people."
+
 /obj/item/assembly/flash/tator
 	name = "camera"
 	desc = "This flash is morbin'. You shouldn't see it."  //Anyone wouldn't see this so it is ok
