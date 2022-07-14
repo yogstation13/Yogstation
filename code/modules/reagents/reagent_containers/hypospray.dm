@@ -512,7 +512,7 @@
 
 	//If not mob
 	else 
-		if(!target.reagents.total_volume)
+		if(!target?.reagents?.total_volume)
 			to_chat(user, span_warning("[target] is empty!"))
 			return
 
@@ -559,6 +559,7 @@
 /obj/item/hypospray/combat
 	name = "combat hypospray"
 	desc = "A combat-ready deluxe hypospray that acts almost instantly."
+	icon_state = "hypo_syndie"
 	allowed_containers = list(/obj/item/reagent_containers/glass/bottle)
 	vial = /obj/item/reagent_containers/glass/bottle/vial/large/combat
 	max_container_size = WEIGHT_CLASS_SMALL

@@ -516,6 +516,11 @@
 	icon_state = "vial_white"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 3)
 
+/obj/item/reagent_containers/glass/bottle/vial/coagulant
+	name = "vial (Coagulant)"
+	icon_state = "vial_red"
+	list_reagents = list(/datum/reagent/medicine/coagulant = 15)
+
 /obj/item/reagent_containers/glass/bottle/vial/lavaland
 	name = "vial (Lavaland Extract Mix)"
 	icon_state = "vial_black"
@@ -591,6 +596,16 @@
 	name = "large vial (Combat Hypospray Mix)"
 	icon_state = "viallarge_black"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/medicine/omnizine = 10, /datum/reagent/medicine/leporazine = 9, /datum/reagent/medicine/atropine = 9)
+
+/obj/item/reagent_containers/glass/bottle/vial/large/stimulants
+	name = "large vial (Stimulants)"
+	icon_state = "viallarge_purple"
+	list_reagents = list(/datum/reagent/medicine/stimulants = 30)
+
+/obj/item/reagent_containers/glass/bottle/vial/large/morphine
+	name = "large vial (Morphine)"
+	icon_state = "viallarge_blue"
+	list_reagents = list(/datum/reagent/medicine/morphine = 30)
 
 /obj/item/reagent_containers/glass/bottle/vial/bluespace
 	name = "bluespace vial"

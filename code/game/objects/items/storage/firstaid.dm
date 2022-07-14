@@ -274,8 +274,6 @@
 /obj/item/storage/firstaid/hypospray/qmc
 	name = "QMC hypospray kit"
 	desc = "An advanced kit containing a QMC hypospray and medical supplies for most situations found on lavaland."
-	icon_state = "bezerk"
-	item_state = "firstaid-bezerk"
 
 /obj/item/storage/firstaid/hypospray/qmc/PopulateContents()
 	if(empty)
@@ -286,6 +284,40 @@
 	new /obj/item/reagent_containers/glass/bottle/vial/lavaland(src)
 	new /obj/item/stack/medical/suture(src)
 	new /obj/item/stack/medical/mesh(src)
+	new	/obj/item/healthanalyzer(src)
+
+/obj/item/storage/firstaid/hypospray/paramedic
+	name = "first aid autosyringe kit"
+	desc = "A simple first aid kit containing an autosyringe and vials with chemicals used to secure and stabilize serious wounds for later treatment."
+	icon_state = "medbriefcase"
+	item_state = "firstaid"
+
+/obj/item/storage/firstaid/hypospray/paramedic/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/coagulant(src)
+	new /obj/item/stack/medical/suture(src)
+	new /obj/item/stack/medical/mesh(src)
+	new	/obj/item/healthanalyzer(src)
+
+/obj/item/storage/firstaid/hypospray/syndicate
+	name = "combat hypospray kit"
+	desc = "An advanced kit containing a combat hypospray and a wide variety of vials containing \"perfectly legal chemicals\" to treat combatants."
+	icon_state = "syndicate"
+	item_state = "firstaid-syndicate"
+
+/obj/item/storage/firstaid/hypospray/syndicate/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray/combat(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/combat(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/combat(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/omnizine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/morphine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/epi(src)
 	new	/obj/item/healthanalyzer(src)
 
 /obj/item/storage/firstaid/tactical

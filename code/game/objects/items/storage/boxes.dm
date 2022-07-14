@@ -258,6 +258,28 @@
 	new /obj/item/reagent_containers/glass/beaker/noreact(src)
 	new /obj/item/reagent_containers/glass/beaker/bluespace(src)
 
+/obj/item/storage/box/vials
+	name = "box of vials"
+	illustration = "vial"
+
+/obj/item/storage/box/vials/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/glass/bottle/vial(src)
+
+/obj/item/storage/box/vials/large
+	name = "box of large vials"
+
+/obj/item/storage/box/vials/large/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/glass/bottle/vial/large(src)
+
+/obj/item/storage/box/vials/bluespace
+	name = "box of bluespace vials"
+
+/obj/item/storage/box/vials/bluespace/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/glass/bottle/vial/bluespace(src)
+
 /obj/item/storage/box/medsprays
 	name = "box of medical sprayers"
 	desc = "A box full of medical sprayers, with unscrewable caps and precision spray heads."

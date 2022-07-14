@@ -86,7 +86,7 @@
 		new /obj/item/storage/backpack/medic(src)
 	else
 		new /obj/item/storage/backpack/satchel/med(src)
-	new /obj/item/storage/firstaid/regular(src)
+	new /obj/item/storage/firstaid/hypospray/paramedic(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	switch(pick("blue", "green", "purple"))
 		if ("blue")
