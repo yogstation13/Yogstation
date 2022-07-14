@@ -2703,7 +2703,7 @@
 /datum/supply_pack/engine/reactor
 	name = "RMBK Nuclear Reactor Kit" // (not) a toy
 	desc = "Contains a reactor beacon and 3 reactor consoles. Uranium rods not included."
-	cost = CARGO_CRATE_VALUE*60
+	cost = 30000
 	access = ACCESS_CE
 	contains = list(/obj/item/survivalcapsule/reactor,
 					/obj/machinery/computer/reactor/control_rods/cargo,
