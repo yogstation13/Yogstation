@@ -1997,7 +1997,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/role_restricted/deadlydonut
 	name = "Box of Infinity Donuts"
-	desc = "A box with six Waffle Co. brand infinity donuts. Banned in four sectors for their shear calorie content. \
+	desc = "A box with six Waffle Co. brand infinity donuts. Banned in four sectors for their sheer calorie content. \
 			Caution: Product known to the safety board of Nanotrasen to increase risks of stomach cancer and cause instant obesity."
 	item = /obj/item/storage/box/fancy/donut_box/deadly
 	cost = 6
