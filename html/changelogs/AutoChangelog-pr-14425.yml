@@ -1,4 +1,0 @@
-author: "TheBonded, ported to YogStation by SuperSlayer"
-delete-after: true 
-changes: 
-  - rscadd: "podpeople from replica pods now have water blood by default, and inherit their blood chemical from the most abundant chemical trait in their seeds if applicable."

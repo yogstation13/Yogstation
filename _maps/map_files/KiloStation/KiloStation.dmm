@@ -29646,27 +29646,6 @@
 /obj/effect/landmark/start/roboticist,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"aZU" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/item/surgical_drapes,
-/obj/item/retractor,
-/obj/item/cautery,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/robotics/lab)
 "aZV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -29866,28 +29845,6 @@
 "bai" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/science/robotics/lab)
-"baj" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 16
-	},
-/obj/item/hemostat,
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "bak" = (
 /obj/machinery/computer/operating{
@@ -71333,15 +71290,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port)
-"csm" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/area/maintenance/port)
 "csn" = (
 /obj/machinery/conveyor{
 	id = "garbage"
@@ -74384,16 +74332,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/wood,
 /area/maintenance/port/fore)
-"cyR" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/box/corners,
-/turf/open/floor/plasteel/dark,
-/area/maintenance/port/fore)
 "cyS" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -74402,22 +74340,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/maintenance/port/fore)
-"cyT" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/fore)
@@ -84433,6 +84355,15 @@
 	},
 /turf/open/floor/plating/asteroid/airless,
 /area/space/nearstation)
+"eac" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/turf_decal/box/corners,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/port/fore)
 "eaj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -88316,6 +88247,14 @@
 	},
 /turf/closed/wall/rust,
 /area/maintenance/disposal/incinerator)
+"hYA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/maintenance/port)
 "hYN" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -95644,6 +95583,21 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/toilet/restrooms)
+"oVb" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/port/fore)
 "oVx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -95909,6 +95863,25 @@
 	icon_state = "panelscorched"
 	},
 /area/security/prison)
+"pmX" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "pnQ" = (
 /obj/structure/lattice,
 /obj/structure/girder/reinforced,
@@ -98541,6 +98514,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
+"saU" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+	},
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "sbr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -121225,7 +121217,7 @@ cIc
 crP
 bcY
 liV
-csm
+hYA
 crH
 csv
 fQF
@@ -123504,7 +123496,7 @@ aeu
 cwp
 cwq
 aht
-cyR
+eac
 cyY
 adv
 czj
@@ -124018,7 +124010,7 @@ cwq
 cwp
 cyH
 pcW
-cyT
+oVb
 bES
 eyF
 czx
@@ -139712,7 +139704,7 @@ cHi
 waG
 bhC
 aCK
-baj
+saU
 bak
 aZS
 bOL
@@ -140226,7 +140218,7 @@ azN
 aAo
 aBw
 aHM
-aZU
+pmX
 bgB
 bez
 aJV

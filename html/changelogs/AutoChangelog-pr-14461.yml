@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "adds line battles, you can now shoot over people who are both prone and within 2 tiles of you"
-  - tweak: "this also means you can combat flop to matrix bullets at close range"

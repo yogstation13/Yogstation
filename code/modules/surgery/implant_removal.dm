@@ -1,5 +1,8 @@
 /datum/surgery/implant_removal
 	name = "implant removal"
+	desc = "Extracts implants from the patient. If you don't have an empty implant case in your other hand, the implant will be ruined on extraction."
+	icon = 'icons/obj/implants.dmi'
+	icon_state = "implantcase-b"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/extract_implant, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)

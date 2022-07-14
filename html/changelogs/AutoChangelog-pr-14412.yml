@@ -1,4 +1,0 @@
-author: "jachlompsky"
-delete-after: true 
-changes: 
-  - bugfix: "gangrel transform now gives the user armor and increased punch damage"
