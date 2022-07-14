@@ -29,7 +29,7 @@
 		if(1)
 			qdel(src)
 		if(2)
-			take_damage(50, BRUTE, "energy", 0)
+			take_damage(50, BRUTE, ENERGY, 0)
 
 /obj/structure/emergency_shield/play_attack_sound(damage, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
@@ -157,7 +157,7 @@
 			to_chat(user, span_warning("You need one length of cable to repair [src]!"))
 			return
 		to_chat(user, span_notice("You begin to replace the wires..."))
-		if(do_after(user, 3 SECONDS, target = src))
+		if(do_after(user, 3 SECONDS, src))
 			if(coil.get_amount() < 1)
 				return
 			coil.use(1)

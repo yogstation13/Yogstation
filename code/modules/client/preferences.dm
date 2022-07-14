@@ -86,6 +86,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Quirk list
 	var/list/all_quirks = list()
 
+	var/mood_tail_wagging = TRUE
+
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
 
@@ -146,10 +148,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			load_path(C.ckey)
 			unlock_content |= C.IsByondMember() // yogs - Donor features
 			if(unlock_content)
-				max_save_slots = 8
+				max_save_slots += 2
 			// yogs start - Donor features
-			else if(is_donator(C) || (C.ckey in get_donators())) // the Latter handles race cases where the prefs are not fully loaded in, or GLOB.donators hasn't loaded in yet
-				max_save_slots = DONOR_CHARACTER_SLOTS
+			if(is_donator(C) || (C.ckey in get_donators())) // the Latter handles race cases where the prefs are not fully loaded in, or GLOB.donators hasn't loaded in yet
+				max_save_slots += DONOR_CHARACTER_SLOTS
 			// yogs end
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
@@ -753,6 +755,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			//yogs start -- Mood preference toggling
 			if(CONFIG_GET(flag/disable_human_mood))
 				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
+				dat += "<b>Mood Tail Wagging:</b> <a href='?_src_=prefs;preference=moodtailwagging'>[mood_tail_wagging  ? "Enabled" : "Disabled"] </a><br>"
 			//yogs end
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
@@ -2084,6 +2087,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("mood")
 					yogtoggles ^= PREF_MOOD
+
+				if("moodtailwagging")
+					mood_tail_wagging = !mood_tail_wagging
 				// yogs end
 
 	ShowChoices(user)

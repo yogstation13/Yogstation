@@ -879,6 +879,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_DEBUG))
 		return
 
+	var/areyousure = alert(src, "Are you sure you want to trigger a nuke?", "Options", "Yes", "No", "Cancel")
+	if(areyousure == "Cancel" || areyousure == "No")
+		return
+
+	if(N.type != /obj/machinery/nuclearbomb/beer)
+		var/areyousure2 = alert(src, "THIS WILL BLOW UP THE STATION?", "Options", "Yes", "No", "Cancel")
+		if(areyousure2 == "Cancel" || areyousure2 == "No")
+			return
+
 	if(!N.timing)
 		var/newtime = input(usr, "Set activation timer.", "Activate Nuke", "[N.timer_set]") as num|null
 		if(!newtime)
@@ -1280,7 +1289,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/chucklenuts = target
 			playsound(chucklenuts,'sound/misc/thinkfast.ogg',300 , FALSE)
 			to_chat(chucklenuts, span_warning("Think Fast!"))
-			sleep(15)
+			sleep(1.5 SECONDS)
 			var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(target.loc)
 			CB.prime()
 			chucklenuts.flash_act()
@@ -1388,7 +1397,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/obj/item/reagent_containers/food/snacks/pie/cream/admin/p = new (get_turf(pick(oview(3,user))))
 	p.item_flags = UNCATCHABLE
 	p.throw_at(user, 10, 0.5, usr)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	var/mob/living/carbon/human/T = user
 	if(!T.IsParalyzed())
 		var/obj/item/reagent_containers/food/snacks/pie/cream/admin/pie = new (get_turf(pick(oview(1,user))))
@@ -1465,10 +1474,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	playsound(T,'sound/magic/warpwhistle.ogg', 200, 1)
 	user.mobility_flags &= ~MOBILITY_MOVE
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(20)
+	sleep(2 SECONDS)
 	user.invisibility = INVISIBILITY_MAXIMUM
 	user.status_flags |= GODMODE
-	sleep(20)
+	sleep(2 SECONDS)
 	var/breakout = 0
 	while(breakout < 50)
 		var/turf/potential_T = find_safe_turf()
@@ -1479,11 +1488,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			break
 		breakout += 1
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(20)
+	sleep(2 SECONDS)
 	user.invisibility = initial(user.invisibility)
 	user.status_flags &= ~GODMODE
 	user.update_mobility()
-	sleep(40)
+	sleep(4 SECONDS)
 
 /datum/admins/proc/cmd_create_wiki()
 	set category = "Misc"

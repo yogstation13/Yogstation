@@ -1,11 +1,16 @@
 /// Runs from COMSIG_LIVING_BIOLOGICAL_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick()
 
-	if(isbrain(owner.current))
-		return
-	if(!owner)
+	if(!owner && !owner.current)
 		INVOKE_ASYNC(src, .proc/HandleDeath)
 		return
+
+	if(istype(owner.current, /mob/living/simple_animal/hostile/bloodsucker))
+		return
+
+	if(isbrain(owner.current))
+		return
+
 	// Deduct Blood
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		INVOKE_ASYNC(src, .proc/AddBloodVolume, passive_blood_drain) // -.1 currently
@@ -31,7 +36,7 @@
 		to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanity, you are far from Human."))
 		return
 	humanity_lost += value
-	to_chat(owner.current, span_warning("You feel as if you lost some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)] Blood."))
+	to_chat(owner.current, span_warning("You feel as if you lost some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + humanity_lost * 10] Blood."))
 
 /// mult: SILENT feed is 1/3 the amount
 /datum/antagonist/bloodsucker/proc/HandleFeeding(mob/living/carbon/target, mult=1, power_level)
@@ -171,6 +176,7 @@
 		if(my_clan == CLAN_LASOMBRA && ishuman(bloodsuckeruser))
 			var/mob/living/carbon/human/bloodsucker = bloodsuckeruser
 			bloodsucker.eye_color = "f00"
+			bloodsuckeruser.update_body()
 	bloodsuckeruser.update_sight()
 
 	// Step 3
@@ -230,7 +236,7 @@
 	// BLOOD_VOLUME_GOOD: [336] - Pale
 //	handled in bloodsucker_integration.dm
 	// BLOOD_VOLUME_EXIT: [560] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
-	if(owner.current.blood_volume >= FRENZY_THRESHOLD_EXIT && frenzied)
+	if(owner.current.blood_volume >= (FRENZY_THRESHOLD_EXIT + humanity_lost * 10) && frenzied)
 		owner.current.remove_status_effect(STATUS_EFFECT_FRENZY)
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(owner.current.blood_volume < BLOOD_VOLUME_BAD(owner.current) && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
@@ -240,7 +246,7 @@
 		owner.current.blur_eyes(8 - 8 * (owner.current.blood_volume / BLOOD_VOLUME_BAD(owner.current)))
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
-	if(owner.current.blood_volume < (FRENZY_THRESHOLD_ENTER + (humanity_lost * 10)) && !frenzied)
+	if(owner.current.blood_volume < (FRENZY_THRESHOLD_ENTER + humanity_lost * 10) && !frenzied)
 		if(!iscarbon(owner.current))
 			return
 		if(owner.current.stat == DEAD)
@@ -270,24 +276,25 @@
 				owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
 				return
 			if(2 to INFINITY)
-				AddBloodVolume(560 - user.blood_volume) //so it doesn't happen multiple times and refills your blood when you get out again
+				AddBloodVolume(FRENZY_THRESHOLD_EXIT + humanity_lost * 10 - user.blood_volume) //so it doesn't happen multiple times and refills your blood when you get out again
 				if(!do_mob(user, user, 2 SECONDS, TRUE))
 					return
-				playsound(user.loc, 'sound/weapons/slash.ogg', 25, 1)
+				playsound(user.loc, 'sound/weapons/slash.ogg', 25, TRUE)
 				to_chat(user, span_warning("<i><b>You skin rips and tears.</b></i>"))
 				if(!do_mob(user, user,  1 SECONDS, TRUE))
 					return
-				playsound(user.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
+				playsound(user.loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
 				to_chat(user, span_warning("<i><b>You heart pumps blackened blood into your veins as your skin turns into fur.</b></i>"))
 				if(!do_mob(user, user,  1 SECONDS, TRUE))
 					return
-				playsound(user.loc, 'sound/weapons/slice.ogg', 25, 1)
+				playsound(user.loc, 'sound/weapons/slice.ogg', 25, TRUE)
 				to_chat(user, span_boldnotice("<i><b><FONT size = 3>YOU HAVE AWOKEN.</b></i>"))
 				var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww
 				if(!ww || ww.stat == DEAD)
 					ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
 					user.forceMove(ww)
 					ww.bloodsucker = user
+					user.status_flags |= GODMODE
 					user.mind.transfer_to(ww)
 					var/list/wolf_powers = list(new /datum/action/bloodsucker/targeted/feast,)
 					for(var/datum/action/bloodsucker/power in powers)
@@ -385,7 +392,10 @@
 	var/mob/living/carbon/human/bloodsucker = owner.current
 	owner.current.grab_ghost()
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
-	bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
+	if(my_clan == CLAN_LASOMBRA)
+		bloodsucker.physiology.brute_mod *= 0
+	else
+		bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
 	REMOVE_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_DEATHCOMA, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(owner.current, TRAIT_FAKEDEATH, BLOODSUCKER_TRAIT)
@@ -396,9 +406,8 @@
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath()
 	FreeAllVassals()
-	var/dust_timer
 	// If we have no body, end here.
-	if(!owner.current || dust_timer)
+	if(!owner.current)
 		return
 
 	DisableAllPowers()
@@ -417,13 +426,13 @@
 			span_warning("[owner.current]'s skin crackles and dries, their skin and bones withering to dust. A hollow cry whips from what is now a sandy pile of remains."),
 			span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
 			span_hear("You hear a dry, crackling sound."))
-		dust_timer = addtimer(CALLBACK(owner.current, /mob/living.proc/dust), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
-		return
-	owner.current.visible_message(
-		span_warning("[owner.current]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),
-		span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
-		span_hear("<span class='italics'>You hear a wet, bursting sound."))
-	owner.current.gib(TRUE, FALSE, FALSE)
+		addtimer(CALLBACK(owner.current, /mob/living.proc/dust), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+	else
+		owner.current.visible_message(
+			span_warning("[owner.current]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),
+			span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
+			span_hear("<span class='italics'>You hear a wet, bursting sound."))
+		owner.current.gib(TRUE, FALSE, FALSE)
 
 
 // Bloodsuckers moodlets //

@@ -136,6 +136,16 @@
 	build_path = /obj/item/bikehorn/airhorn
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//HONK!
+	
+/datum/design/clownshot
+	name = "Clownshot Shell"
+	desc = "A tactical round used by the clown planet's finest soldiers."
+	id = "clownshot"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/bananium = 1000)
+	build_path = /obj/item/ammo_casing/shotgun/clownshot
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/mesons
 	name = "Optical Meson Scanners"
@@ -488,6 +498,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/titanium = 5000, /datum/material/glass = 1000, /datum/material/gold = 2500, /datum/material/silver = 3000) // made of titanium instead of metal + extra silver
 	build_path = /obj/item/detective_scanner/advanced
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/pinpointer_tracker
+	name = "Tracking Pinpointer"
+	desc = "Allows tracking of creatures with active tracking implants."
+	id = "pinpointer_tracker"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/gold = 200)
+	build_path = /obj/item/pinpointer/tracker
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 

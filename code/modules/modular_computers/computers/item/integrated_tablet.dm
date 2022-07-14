@@ -33,6 +33,11 @@
 		return ..()
 	return FALSE
 
+/obj/item/modular_computer/tablet/integrated/play_computer_sound(soundin, vol, vary)
+	if(isobserver(usr) || !borgo)
+		return
+	borgo.playsound_local(loc, soundin, vol, vary, -1)
+
 /**
   * Returns a ref to the RoboTact app, creating the app if need be.
   *

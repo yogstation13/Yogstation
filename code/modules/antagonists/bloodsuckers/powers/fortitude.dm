@@ -24,7 +24,7 @@
 	ADD_TRAIT(owner, TRAIT_PIERCEIMMUNE, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(owner, TRAIT_NODISMEMBER, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, BLOODSUCKER_TRAIT)
-	if(level_current >= 4)
+	if(level_current >= 2)
 		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT) // They'll get stun resistance + this, who cares.
 	var/mob/living/carbon/human/bloodsucker_user = owner
 	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
@@ -109,9 +109,9 @@
 	user_species.punchdamagelow += 0.5 * level_current
 	user_species.punchdamagehigh += 0.5 * level_current
 
-/datum/action/bloodsucker/fortitude/shadow/process()
+/datum/action/bloodsucker/fortitude/shadow/UsePower()
 	. = ..()
-	var/turf/T = owner.loc
+	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
 	var/mob/living/carbon/user = owner
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)

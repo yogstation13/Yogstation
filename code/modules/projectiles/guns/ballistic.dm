@@ -516,7 +516,7 @@
 	var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
 	if (B && chambered && chambered.BB && can_trigger_gun(user) && !chambered.BB.nodamage)
 		user.visible_message(span_suicide("[user] is putting the barrel of [src] in [user.p_their()] mouth.  It looks like [user.p_theyre()] trying to commit suicide!"))
-		sleep(25)
+		sleep(2.5 SECONDS)
 		if(user.is_holding(src))
 			var/turf/T = get_turf(user)
 			process_fire(user, user, FALSE, null, BODY_ZONE_HEAD)
@@ -564,7 +564,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		user.visible_message(span_danger("\The [src] goes off!"), span_danger("\The [src] goes off in your face!"))
 		return
 
-	if(do_after(user, 3 SECONDS, target = src))
+	if(do_after(user, 3 SECONDS, src))
 		if(sawn_off)
 			return
 		user.visible_message("[user] shortens \the [src]!", span_notice("You shorten \the [src]."))

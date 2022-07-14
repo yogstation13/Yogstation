@@ -13,8 +13,8 @@
 
 	alt_titles = list("Priest", "Preacher", "Cleric", "Exorcist")
 
-	access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
-	minimal_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
+	added_access = list()
+	base_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_THEATRE)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 
@@ -138,6 +138,8 @@
 			B.name = "station repair drone user manual"
 		if("nugget")
 			B.name = "A tenders tale"
+		if("the holy flame","holy flame","okran")
+			B.name = "The Holy Flame"
 		if("egotism")
 			B.name = "Marjes guide to robustness" //yogs end
 		else

@@ -17,6 +17,8 @@
 	response_harm = "slashes"
 	melee_damage_lower = 13
 	melee_damage_upper = 15
+	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -45,6 +47,7 @@
 	var/title = pick("King","Lord","Prince","Emperor","Supreme","Overlord","Master","Shogun","Bojar","Tsar","Hetman")
 	name = "[kingdom] [title]"
 	language_holder += new /datum/language_holder/mouse(src)
+	qdel(src)
 
 /mob/living/simple_animal/hostile/regalrat/handle_automated_action()
 	if(prob(20))
@@ -101,6 +104,8 @@
 	if(!.)
 		return
 	var/turf/T = get_turf(owner)
+	if(!T)
+		return
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 5)
@@ -146,6 +151,9 @@
 	. = ..()
 	if(!.)
 		return
+	if(!isopenturf(owner.loc))
+		to_chat(owner,"<span class='warning'>You can't use raise soldiers while in an object!</span>")
+		return
 	var/cap = CONFIG_GET(number/ratcap)
 	var/something_from_nothing = FALSE
 	for(var/mob/living/simple_animal/mouse/M in oview(owner, 5))
@@ -187,6 +195,8 @@
 
 /datum/action/cooldown/domain/proc/domain()
 	var/turf/T = get_turf(owner)
+	if(!T)
+		return
 	T.atmos_spawn_air("miasma=4;TEMP=[T20C]")
 	switch (rand(1,10))
 		if (8)
@@ -215,9 +225,9 @@
 		return
 
 	if (target.reagents && target.is_injectable(src, allowmobs = TRUE) && !istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))
-		src.visible_message(span_warning("[src] starts licking [target] passionately!"),span_notice("You start licking [target]..."))
-		if (do_mob(src, target, 2 SECONDS))
-			target.reagents.add_reagent(/datum/reagent/rat_spit,rand(1,3),no_react = TRUE)
+		src.visible_message(span_warning("[src] starts licking [target] passionately!"), span_notice("You start licking [target]..."))
+		if(do_mob(src, target, 2 SECONDS))
+			target.reagents.add_reagent(/datum/reagent/rat_spit, rand(1,3), no_react = TRUE)
 			to_chat(src, span_notice("You finish licking [target]."))
 	else if(istype(target, /obj/item/reagent_containers/food/snacks/cheesewedge))
 		to_chat(src, span_green("You eat [src], restoring some health."))

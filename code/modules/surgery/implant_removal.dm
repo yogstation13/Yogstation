@@ -1,5 +1,8 @@
 /datum/surgery/implant_removal
 	name = "implant removal"
+	desc = "Extracts implants from the patient. If you don't have an empty implant case in your other hand, the implant will be ruined on extraction."
+	icon = 'icons/obj/implants.dmi'
+	icon_state = "implantcase-b"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/extract_implant, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -16,7 +19,8 @@
 /datum/surgery_step/extract_implant
 	name = "extract implant"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 65)
-	time = 64
+	time = 6.4 SECONDS
+	success_sound = 'sound/surgery/hemostat1.ogg'
 	var/obj/item/implant/I = null
 
 /datum/surgery_step/extract_implant/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

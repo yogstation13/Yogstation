@@ -87,6 +87,42 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of beer"
 	glass_desc = "A freezing pint of beer."
 
+//////////STOUT AND ITS COCKTAILS//////////
+/datum/reagent/consumable/ethanol/beer/stout
+	name = "Stout Beer"
+	description = "a darker colored beer, made of barley and roast malt."
+	color = "#221915" // rgb: 34, 25, 21
+	taste_description = "malt and chocolate"
+	glass_name = "glass of stout"
+	glass_desc = "a cold pint of 'genius' brand stout."
+
+/datum/reagent/consumable/ethanol/beer/stout/irishflip
+	name = "Irish Flip"
+	description = "A creamy stout drink with... an egg?"
+	color = "#deaf57" // rgb: 222, 175, 87
+	taste_description = "chocolate cream and egg"
+	glass_icon_state = "irish_flip"
+	glass_name = "glass of irish flip"
+	glass_desc = "a fancy glass of creamy cocktail."
+
+/datum/reagent/consumable/ethanol/beer/stout/blackvelvet
+	name = "Black Velvet"
+	description = "A interesting mix of Champagne and Stout, made for the mourning of Prince Albert."
+	color = "#963900"  // rgb: 150, 57, 0
+	taste_description = "Champagne with a hint of chocolate."
+	glass_icon_state = "black_velvet"
+	glass_name = "glass of black velvet"
+	glass_desc = "a fancy drink with a melancholic past."
+
+/datum/reagent/consumable/ethanol/beer/stout/espressomartini
+	name = "Espresso Martini"
+	description = "A wake-me-the-fuck-up cocktail mix, guaranteed strong."
+	color = "#652a05"  
+	taste_description = "bitterness, chocolate, and cream."
+	glass_icon_state = "espresso_martini"
+	glass_name = "glass of espresso martini"
+	glass_desc = "a cocktail guaranteed to keep you awake."
+///////////////////////////////////////////
 /datum/reagent/consumable/ethanol/beer/light
 	name = "Light Beer"
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. This variety has reduced calorie and alcohol content."
@@ -1218,7 +1254,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = rgb(51, 19, 3) //Sickly brown
 	boozepwr = 300 //I warned you
 	taste_description = "a wall of bricks"
-	glass_icon_state = "glass_brown2"
+	glass_icon_state = "bacchus"
 	glass_name = "Bacchus' Blessing"
 	glass_desc = "You didn't think it was possible for a liquid to be so utterly revolting. Are you sure about this...?"
 
@@ -2358,4 +2394,3 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Glass of Amber Moon"
 	glass_desc = "A strange cocktail with a cracked egg believed to treat hangovers."
 	shot_glass_icon_state = "ambermoonshotglass"
-

@@ -11,6 +11,6 @@
     if(L.incapacitated() || !(L.mobility_flags & MOBILITY_STAND))
         return
     var/cached_transform = L.transform
-    animate(L, pixel_z = 4, time = 0)
-    animate(pixel_z = 0, transform = turn(cached_transform, pick(-12, 0, 12)), time=2)
-    animate(pixel_z = 0, transform = cached_transform, time = 0)
+    animate(L, pixel_z = 4, time = 0 SECONDS)
+    animate(pixel_z = 0, transform = turn(cached_transform, pick(-12, 0, 12)), time=0.2 SECONDS)
+    animate(pixel_z = 0, transform = cached_transform, time = 0 SECONDS)

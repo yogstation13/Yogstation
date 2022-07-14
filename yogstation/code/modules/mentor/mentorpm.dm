@@ -48,7 +48,7 @@
 		if(is_mentor())
 			to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>", confidential=TRUE)
 		else
-			mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
+			mhelp(msg, FALSE)	//Mentor we are replying to left. Mentorhelp instead(check below)
 		return
 
 	//get message text, limit it's length.and clean/escape html

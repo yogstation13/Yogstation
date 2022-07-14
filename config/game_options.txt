@@ -20,7 +20,7 @@ REVIVAL_BRAIN_LIFE -1
 JOB_SPECIES_WHITELIST /datum/job/captain human
 JOB_SPECIES_WHITELIST /datum/job/hop human
 JOB_SPECIES_WHITELIST /datum/job/hos human,lizard
-JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis, polysmorph
+JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis,polysmorph
 JOB_SPECIES_WHITELIST /datum/job/rd human,pod,plasmaman,ethereal,preternis,polysmorph
 JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,moth
 
@@ -337,13 +337,15 @@ ALLOW_AI_MULTICAM
 ## Uncomment to load the virtual reality hub map
 #VIRTUAL_REALITY
 
-## Uncomment to load one of the missions from awaymissionconfig.txt at roundstart.
+## Uncomment to load one of the missions from awaymissionconfig.txt or away_missions/ at roundstart.
 #ROUNDSTART_AWAY
 
 ## How long the delay is before the Away Mission gate opens. Default is half an hour.
 ## 600 is one minute.
 GATEWAY_DELAY 18000
 
+## The probability of the gateway mission being a config one
+CONFIG_GATEWAY_CHANCE 0
 
 ## ACCESS ###
 
@@ -460,7 +462,7 @@ LAW_WEIGHT liveandletlive,0
 ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,0
 ION_LAW_WEIGHT peacekeeper,2
-LAW_WEIGHT reporter,3
+LAW_WEIGHT reporter,0
 ION_LAW_WEIGHT reporter,1
 LAW_WEIGHT cowboy,2
 ION_LAW_WEIGHT cowboy,1
