@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(dynamic_forced_roundstart_ruleset)
 GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 /datum/game_mode/dynamic
-	name = "dynamic mode"
+	name = "Dynamic Mode"
 	config_tag = "dynamic"
 	report_type = "dynamic"
 	title_icon = "ss13"
@@ -167,7 +167,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 /datum/game_mode/dynamic/admin_panel()
 	var/list/dat = list("<html><head><title>Game Mode Panel</title></head><body><h1><B>Game Mode Panel</B></h1>")
-	dat += "Dynamic Mode <a href='?_src_=vars;[HrefToken()];Vars=[REF(src)]'>\[VV\]</a> <a href='?src=\ref[src];[HrefToken()]'>\[Refresh\]</a><BR>"
+	dat += "[name] <a href='?_src_=vars;[HrefToken()];Vars=[REF(src)]'>\[VV\]</a> <a href='?src=\ref[src];[HrefToken()]'>\[Refresh\]</a><BR>"
 	dat += "Threat Level: <b>[threat_level]</b><br/>"
 	dat += "Budgets (Roundstart/Midrounds): <b>[initial_round_start_budget]/[threat_level - initial_round_start_budget]</b><br/>"
 
@@ -409,6 +409,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		var/datum/dynamic_ruleset/ruleset = new rule()
 		// Simple check if the ruleset should be added to the lists.
 		if(ruleset.name == "")
+			continue
+		if(istype(src, /datum/game_mode/dynamic/balanced) && !ruleset.allow_dynamic_balanced)
 			continue
 		configure_ruleset(ruleset)
 		switch(ruleset.ruletype)
@@ -824,3 +826,11 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 #undef FAKE_REPORT_CHANCE
 #undef REPORT_NEG_DIVERGENCE
 #undef REPORT_POS_DIVERGENCE
+
+/datum/game_mode/dynamic/balanced
+	name = "balanced dynamic"
+	config_tag = "balanced_dynamic"
+	report_type = "dynamic"
+	title_icon = "ss13"
+	announce_span = "danger"
+	announce_text = "Balanced dynamic mode!"

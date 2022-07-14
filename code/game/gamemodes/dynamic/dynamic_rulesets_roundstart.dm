@@ -235,6 +235,7 @@
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 20, "offset" = 1)
+	allow_dynamic_balanced = FALSE
 	var/datum/team/cult/main_cult
 
 /datum/dynamic_ruleset/roundstart/bloodcult/ready(population, forced = FALSE)
@@ -380,6 +381,7 @@
 	blocking_rules = list(/datum/dynamic_ruleset/latejoin/provocateur)
 	// I give up, just there should be enough heads with 35 players...
 	minimum_players = 35
+	allow_dynamic_balanced = FALSE
 	var/datum/team/revolution/revolution
 	var/finished = FALSE
 
@@ -526,6 +528,7 @@
 	antag_cap = list(4,4,4,5,5,6,6,7,7,8) //this isn't used but having it probably stops a runtime
 	flags = HIGH_IMPACT_RULESET
 	minimum_players = 38
+	allow_dynamic_balanced = FALSE
 	var/ark_time
 
 //FIX(?) CLOCKCULT XOXEYOS 3/13/2021 IF IT ALL GOES TO SHIT!
@@ -696,6 +699,7 @@
 	cost = 70
 	requirements = list(100,100,95,90,85,80,80,80,80,70)
 	flags = LONE_RULESET
+	allow_dynamic_balanced = FALSE
 	var/players_per_carrier = 25
 	var/monkeys_to_win = 1
 	var/escaped_monkeys = 0
@@ -797,6 +801,7 @@
 	flags = HIGH_IMPACT_RULESET
 	minimum_players = 30
 	antag_cap = 3
+	allow_dynamic_balanced = FALSE
 	var/datum/team/shadowling/shadowling
 
 /datum/dynamic_ruleset/roundstart/shadowling/ready(population, forced = FALSE)

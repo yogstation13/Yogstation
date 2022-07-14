@@ -76,6 +76,9 @@
 	/// If written as a linear equation, will be in the form of `list("denominator" = denominator, "offset" = offset).
 	var/antag_cap = 0
 
+	/// Is it availible on balanced dynamic gamemode?
+	var/allow_dynamic_balanced = TRUE 
+
 
 /datum/dynamic_ruleset/New()
 	..()

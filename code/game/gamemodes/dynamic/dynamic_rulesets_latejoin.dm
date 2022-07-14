@@ -91,6 +91,7 @@
 	delay = 1 MINUTES
 	requirements = list(80,75,60,60,55,50,40,30,20,20)
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/revs)
+	allow_dynamic_balanced = FALSE
 	var/required_heads_of_staff = 3
 	var/finished = FALSE
 	var/datum/team/revolution/revolution

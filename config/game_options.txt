@@ -142,6 +142,8 @@ PROBABILITY DEVIL 0
 PROBABILITY DEVIL_AGENTS 0
 PROBABILITY ZOMBIE 1
 PROBABILITY DYNAMIC 8
+PROBABILITY BALANCED_DYNAMIC 5
+
 
 ## Percent weight reductions for three of the most recent modes
 
@@ -165,6 +167,7 @@ CONTINUOUS MALF
 CONTINUOUS SHADOWLING
 CONTINUOUS VAMPIRE
 CONTINUOUS DYNAMIC
+CONTINUOUS BALANCED_DYNAMIC
 CONTINUOUS HERESY
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
