@@ -306,8 +306,6 @@
 /obj/item/storage/firstaid/hypospray/syndicate
 	name = "combat hypospray kit"
 	desc = "An advanced kit containing a combat hypospray and a wide variety of vials containing \"perfectly legal chemicals\" to treat combatants."
-	icon_state = "syndicate"
-	item_state = "firstaid-syndicate"
 
 /obj/item/storage/firstaid/hypospray/syndicate/PopulateContents()
 	if(empty)

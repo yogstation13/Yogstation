@@ -573,6 +573,7 @@
 /obj/item/hypospray/qmc
 	name = "QMC hypospray"
 	desc = "A modified, well used quick-mix capital combat hypospray designed to treat those on the field with hardsuits."
+	icon_state = "hypo_qmc"
 	quickload = TRUE
 	penetrates = TRUE
 
