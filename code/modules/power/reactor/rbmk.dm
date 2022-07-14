@@ -471,7 +471,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			return
 		next_warning = world.time + 30 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
 		warning = TRUE //Start warning the crew of the imminent danger.
-		relay('ModularTegustation/Tegusounds/rmbk/alarm.ogg', null, loop=TRUE, channel = CHANNEL_REACTOR_ALERT)
+		relay('sound/rmbk/alarm.ogg', null, loop=TRUE, channel = CHANNEL_REACTOR_ALERT)
 		set_light(0)
 		light_color = COLOR_SOFT_RED
 		set_light(10)
@@ -487,7 +487,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	icon_state = "reactor_slagged"
 	AddComponent(/datum/component/radioactive, 15000 , src)
 	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner/strong(get_turf(src))
-	relay('ModularTegustation/Tegusounds/rmbk/meltdown.ogg', "<span class='userdanger'>You hear a horrible metallic hissing.</span>")
+	relay('sound/rmbk/meltdown.ogg', "<span class='userdanger'>You hear a horrible metallic hissing.</span>")
 	stop_relay(CHANNEL_REACTOR_ALERT)
 	NSW.fire() //This will take out engineering for a decent amount of time as they have to clean up the sludge.
 	for(var/obj/machinery/power/apc/apc in GLOB.apcs_list)
@@ -542,7 +542,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	START_PROCESSING(SSmachines, src)
 	desired_k = 1
 	set_light(10)
-	var/startup_sound = pick('ModularTegustation/Tegusounds/rmbk/startup.ogg', 'ModularTegustation/Tegusounds/rmbk/startup2.ogg')
+	var/startup_sound = pick('sound/rmbk/startup.ogg', 'sound/rmbk/startup2.ogg')
 	playsound(loc, startup_sound, 100)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/radio_alert()
@@ -725,8 +725,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/atom/movable/fuel_rod = input(usr, "Select a fuel rod to remove", "[src]", null) as null|anything in reactor.fuel_rods
 	if(!fuel_rod)
 		return
-	playsound(src, pick('ModularTegustation/Tegusounds/rmbk/switch.ogg','ModularTegustation/Tegusounds/rmbk/switch2.ogg','ModularTegustation/Tegusounds/rmbk/switch3.ogg'), 100, FALSE)
-	playsound(reactor, 'ModularTegustation/Tegusounds/rmbk/crane_1.wav', 100, FALSE)
+	playsound(src, pick('sound/rmbk/switch.ogg','sound/rmbk/switch2.ogg','sound/rmbk/switch3.ogg'), 100, FALSE)
+	playsound(reactor, 'sound/rmbk/crane_1.wav', 100, FALSE)
 	fuel_rod.forceMove(get_turf(reactor))
 	reactor.fuel_rods -= fuel_rod
 
@@ -770,7 +770,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	. = ..()
 	if(!is_operational)
 		return FALSE
-	playsound(loc, pick('ModularTegustation/Tegusounds/rmbk/switch.ogg','ModularTegustation/Tegusounds/rmbk/switch2.ogg','ModularTegustation/Tegusounds/rmbk/switch3.ogg'), 100, FALSE)
+	playsound(loc, pick('sound/rmbk/switch.ogg','sound/rmbk/switch2.ogg','sound/rmbk/switch3.ogg'), 100, FALSE)
 	visible_message("<span class='notice'>[src]'s switch flips [on ? "off" : "on"].</span>")
 	on = !on
 	signal(on)
