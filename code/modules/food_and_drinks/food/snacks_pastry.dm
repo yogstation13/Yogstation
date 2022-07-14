@@ -75,6 +75,11 @@
 	tastes = list("infinity" = 2, "countless donuts" = 2, "sugar" = 2)
 	filling_color = "#D2691E"
 
+/obj/item/reagent_containers/food/snacks/donut/deadly/On_Consume(mob/living/eater)
+	. = ..()
+	to_chat(eater, span_notice("You couldn't stop yourself...it was so delicious..."))
+	eater.set_nutrition(1000)
+
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
 	desc = "You jelly?"
