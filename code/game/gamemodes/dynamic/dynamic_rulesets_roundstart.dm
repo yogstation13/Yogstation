@@ -682,6 +682,49 @@
 
 //////////////////////////////////////////////
 //                                          //
+//                ZOMBIE                    //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/zombie
+	name = "Zombies"
+	antag_flag = ROLE_ZOMBIE
+	antag_datum = /datum/antagonist/zombie
+	minimum_required_age = 14
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Medical Officer", "Brig Physician", "AI", "Cyborg")
+	required_candidates = 2
+	weight = 3
+	cost = 101
+	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	flags = HIGH_IMPACT_RULESET
+	antag_cap = list("denominator" = 20, "offset" = 1)
+	var/datum/team/zombie/main_team
+
+/datum/dynamic_ruleset/roundstart/zombie/ready(population, forced = FALSE)
+	required_candidates = get_antag_cap(population)
+	. = ..()
+
+/datum/dynamic_ruleset/roundstart/zombie/pre_execute(population)
+	. = ..()
+	var/zombies = get_antag_cap(population)
+	for(var/i = 1 to cultists)
+		if(candidates.len <= 0)
+			break
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.special_role = ROLE_ZOMBIE
+		M.mind.restricted_roles = restricted_roles
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/zombie/execute()
+	main_team = new
+	for(var/datum/mind/M in assigned)
+		M.add_antag_datum(antag_datum, main_team)
+	main_team.setup_objectives()
+	return TRUE
+
+//////////////////////////////////////////////
+//                                          //
 //               MONKEY                     //
 //                                          //
 //////////////////////////////////////////////
