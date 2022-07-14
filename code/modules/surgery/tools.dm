@@ -481,7 +481,7 @@
 /obj/structure/bed/surgical_mat/ComponentInitialize()
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
-	SB.success_chance = 0.9
+	SB.success_chance = 0.8
 
 /obj/structure/bed/surgical_mat/MouseDrop(over_object, src_location, over_location)
 	. = ..()

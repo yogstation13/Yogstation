@@ -192,7 +192,7 @@
 	return ..()
 
 /obj/structure/holobed/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 0.8)
+	AddComponent(/datum/component/surgery_bed, 0.7)
 
 /obj/structure/holobed/examine(mob/user)
 	. = ..()
