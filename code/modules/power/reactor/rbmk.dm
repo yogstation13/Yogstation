@@ -248,7 +248,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			color = "[COLOR_RED]"
 			investigate_log("Reactor taking damage from the lack of coolant", INVESTIGATE_SINGULO)
 	//Now, heat up the output and set our pressure.
-	coolant_output.set_temperature(CELSIUS_TO_KELVIN(temperature)
+	coolant_output.set_temperature(CELSIUS_TO_KELVIN(temperature))
 	last_output_temperature = KELVIN_TO_CELSIUS(coolant_output.return_temperature())
 	pressure = KPA_TO_PSI(coolant_output.return_pressure())
 	power = (temperature / RBMK_TEMPERATURE_CRITICAL) * 100
