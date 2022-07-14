@@ -106,4 +106,4 @@
 		span_warning("[user] screws up, causing blood to spurt out of [target]'s chest profusely!"))
 	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
 	BP.generic_bleedstacks += 30
-	return FALSE
+	return TRUE
