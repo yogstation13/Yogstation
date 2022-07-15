@@ -183,7 +183,7 @@
 						H.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						H.dna.update_uf_block(DNA_MUTANT_COLOR_BLOCK)
 					else
-							to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
+						to_chat(H, span_notice("Invalid color. Your color is not bright enough."))
 
 			H.update_body()
 			H.update_hair()

@@ -56,6 +56,9 @@
 	if(!istext(color))
 		color = ""
 
+	//start checks for a leading "#", and if there is it skips past it before doing the color logic.
+	//this means you can pass something like "#FFFFFF" into sanitize_hexcolor without arguments, and it will automatically cut the leading #, and readd it at the end
+	//there is no risk of accidentally creating a malformed color like ##FFFFFF
 	var/start = 1 + (text2ascii(color, 1) == 35)
 	var/len = length(color)
 	var/char = ""
@@ -77,7 +80,8 @@
 				. += char
 			else
 				break
-		switch(format_input_ratio)
+		switch(format_input_ratio) 
+		//if you're trying to convert up from short hex (3 characters) to a full hex 6, that's what these switch statements are doing, adding and removing to meet the desired format
 			if("3:8", "4:8", "3:6", "4:6") //skip next one. RRGGBB(AA) -> RGB(A)
 				i += length(color[i])
 			if("6:4", "6:3", "8:4", "8:3") //add current char again. RGB(A) -> RRGGBB(AA)

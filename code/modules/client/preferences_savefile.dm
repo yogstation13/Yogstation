@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	37
+#define SAVEFILE_VERSION_MAX	38
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -151,7 +151,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		preferred_map = null
 	if(current_version < 34) // default to on
 		toggles |= SOUND_VOX
-		
+	if(current_version < 38)
+		save_character()
+		to_chat(parent, span_userdanger(span_big("Color code has been reworked. Check all your character preferences, especially colors, before playing.")))
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -407,11 +409,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(newtype)
 			pref_species = new newtype
 
-	if(!S["features["mcolor"]"] || S["features["mcolor"]"] == "#000")
-		WRITE_FILE(S["features["mcolor"]"]	, "#FFF")
+	if(!S["feature_mcolor"] || S["feature_mcolor"] == "#000000")//|| !findtext(S["feature_mcolor"],"#")
+		WRITE_FILE(S["feature_mcolor"]	, "#FFFF77")
 
-	if(!S["feature_ethcolor"] || S["feature_ethcolor"] == "#000")
-		WRITE_FILE(S["feature_ethcolor"]	, "9c3030")
+	if(!S["feature_ethcolor"] || S["feature_ethcolor"] == "#000000")//|| !findtext(S["feature_ethcolor"],"#")
+		WRITE_FILE(S["feature_ethcolor"]	, "#9C3030")
 
 	//Character
 	READ_FILE(S["real_name"], real_name)
@@ -497,11 +499,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!custom_names[custom_name_id])
 			custom_names[custom_name_id] = get_default_name(custom_name_id)
 
-	if(!features["mcolor"] || features["mcolor"] == "#000")
-
+	if(!features["mcolor"] || features["mcolor"] == "#000000")
 		features["mcolor"] = "#[pick("7F","FF")][pick("7F","FF")][pick("7F","FF")]"
 
-	if(!features["ethcolor"] || features["ethcolor"] == "#000")
+	if(!features["ethcolor"] || features["ethcolor"] == "#000000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
@@ -536,7 +537,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], default = FALSE)
 	features["gradientstyle"]			= sanitize_inlist(features["gradientstyle"], GLOB.hair_gradients_list)
 	features["gradientcolor"]		= sanitize_hexcolor(features["gradientcolor"], default = FALSE)
-	features["ethcolor"]	= sanitize_hexcolor(sanitize_inlist(features["ethcolor"], GLOB.color_list_ethereal), include_crunch = FALSE,default = FALSE)
+	features["ethcolor"]	= sanitize_hexcolor(features["ethcolor"])
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_polysmorph"]	= sanitize_inlist(features["tail_polysmorph"], GLOB.tails_list_polysmorph)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")
