@@ -891,3 +891,12 @@
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
 	construction_time = 100
 	category = list("IPC Components") 
+
+/datum/design/ipcrevive
+	name = "IPC Revival Board"
+	id = "ipcrevive"
+	build_type = MECHFAB
+	build_path = /obj/item/ipcrevive
+	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 5000)
+	construction_time = 120
+	category = list("IPC Components") 

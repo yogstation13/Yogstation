@@ -183,7 +183,10 @@
 			hair_alpha = S.hair_alpha
 		else
 			hair_style = "Bald"
-			hair_color = "000"
+			if(H && H.hair_color)
+				hair_color = H.hair_color
+			else
+				hair_color = "000"
 			hair_alpha = initial(hair_alpha)
 		// lipstick
 		if(H.lip_style && (LIPS in S.species_traits))

@@ -153,3 +153,9 @@
 	user.gib()
 	playsound(src, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return MANUAL_SUICIDE
+
+/obj/item/ipcrevive // Doesnt do much beside be cosmetic
+	name = "IPC Revival Board"
+	desc = "Used to revive an IPC once fixed."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade1"

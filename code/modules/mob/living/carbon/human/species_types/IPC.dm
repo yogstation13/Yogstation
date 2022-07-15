@@ -193,7 +193,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	return
 
 /datum/species/ipc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
-	if(istype(I, /obj/item/borg/upgrade/restart) && intent != INTENT_HARM) // Why you would hit someone with a cyborg reboot idk but
+	if(istype(I, /obj/item/ipcrevive) && intent != INTENT_HARM)
 		if(H.stat != DEAD)
 			to_chat(user, span_warning("This unit is not dead!"))
 			return FALSE
