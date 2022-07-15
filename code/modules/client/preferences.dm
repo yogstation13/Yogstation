@@ -87,6 +87,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/all_quirks = list()
 
 	var/mood_tail_wagging = TRUE
+	
+	var/visualized_blushing = FALSE
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
@@ -756,6 +758,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(CONFIG_GET(flag/disable_human_mood))
 				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
 				dat += "<b>Mood Tail Wagging:</b> <a href='?_src_=prefs;preference=moodtailwagging'>[mood_tail_wagging  ? "Enabled" : "Disabled"] </a><br>"
+				dat += "<b>Visualized Blushing:</b> <a href='?_src_=prefs;preference=visualizedblushing'>[visualized_blushing  ? "Enabled" : "Disabled"] </a><br>"
 			//yogs end
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
@@ -2090,6 +2093,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("moodtailwagging")
 					mood_tail_wagging = !mood_tail_wagging
+				
+				if("visualizedblushing")
+					visualized_blushing = !visualized_blushing
 				// yogs end
 
 	ShowChoices(user)

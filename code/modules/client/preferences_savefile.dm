@@ -234,6 +234,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["accent"], accent) // Accents, too!
 
 	READ_FILE(S["mood_tail_wagging"], mood_tail_wagging)
+	READ_FILE(S["visualized_blushing"], visualized_blushing)
 	// yogs end
 
 	//try to fix any outdated data if necessary
@@ -372,6 +373,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["accent"], accent) // Accents, too!
 	
 	WRITE_FILE(S["mood_tail_wagging"], mood_tail_wagging)
+	WRITE_FILE(S["visualized_blushing"], visualized_blushing)
 	// yogs end
 
 	save_keybindings(S) // yogs - Custom keybindings
