@@ -66,14 +66,15 @@
 	filling_color = "#803280"
 
 /obj/item/reagent_containers/food/snacks/donut/deadly
-	name = "unusually heavy donut"
-	desc = "Man this thing weighs like...as much as a hundred donuts! Smells irresistable!"
+	name = "donut"
+	desc = "Goes great with robust coffee. This one feels...dense."
 	icon_state = "donut1"
 	volume = 1000
 	bitesize = 1000
 	list_reagents = list(/datum/reagent/consumable/nutriment = 950, /datum/reagent/consumable/sugar = 50,)
-	tastes = list("infinity" = 2, "countless donuts" = 2, "sugar" = 2)
+	tastes = list("countless donuts" = 2, "sugar" = 2)
 	filling_color = "#D2691E"
+	foodtype = SUGAR | FRIED | GRAIN
 
 /obj/item/reagent_containers/food/snacks/donut/deadly/On_Consume(mob/living/eater)
 	. = ..()
