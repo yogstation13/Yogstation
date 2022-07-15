@@ -51,6 +51,19 @@
 				return default
 	return default
 
+/**
+  * Sanitize_Hexcolor takes in a color in hexcode as a string, be it shorthand hex as 3 characters, or full-sized 6 digit hex, with or without a leading #
+  * you can pass it a full hexcode with leading #, such as "#FFFFFF", and with the default arguments you will get exactly that color back, because it accounts for
+  * leading # signs and ignores them, then later in the function will either readd one, or won't depending on what you want.
+  * 
+  * Full hexcolors will just be validated, shorthand hex of 3 characters can be cleanly converted up to full hex with a leading # no problem.
+  * 
+  * With default arguments:
+  * * "FFF" -> "#FFFFFF"
+  * * "#FFFFFF" -> "#FFFFFF"
+  * 
+  * converting down to short, with or without the # is doable by setting the desired format to the length you want and specifying the crunch to true for adding a # or false to not
+  */
 /proc/sanitize_hexcolor(color, desired_format = DEFAULT_HEX_COLOR_LEN, include_crunch = TRUE, default)
 	var/crunch = include_crunch ? "#" : ""
 	if(!istext(color))
