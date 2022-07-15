@@ -192,7 +192,7 @@
 	damage = 100
 	damage_type = BRUTE
 	flag = BOMB
-	range = 5
+	range = 4
 	log_override = TRUE
 	power = 2
 
