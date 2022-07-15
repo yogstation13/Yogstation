@@ -79,7 +79,7 @@
 /obj/item/storage/lockbox/emp_act(severity)
 	switch(severity)
 		if(1)
-			emag_act(null)
+			emag_act()
 			for(var/atom/movable/AM in src)
 				AM.emp_act(3)
 		if(2)
