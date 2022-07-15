@@ -281,7 +281,7 @@
 /obj/item/camera/tator
 	var/obj/item/assembly/flash/tator/flashy
 	COOLDOWN_DECLARE(flash_cooldown)
-	var/cooldown = 9 SECONDS
+	cooldown = 9 SECONDS
 
 /obj/item/camera/tator/Initialize()
 	. = ..()
