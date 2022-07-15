@@ -161,6 +161,38 @@
 		return 1
 	return 0
 
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/kineticaccel
+	equip_cooldown = 10
+	name = "Advanced Kinetic Accelerator"
+	desc = "A completed Kinetic Accelerator, out of prototyping and fitted for mining exosuits "
+	icon_state = "mecha_kineticgun"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	energy_drain = 30
+	projectile = /obj/item/projectile/kinetic/mech
+	fire_sound = 'sound/weapons/kenetic_accel.ogg'
+	harmful = TRUE
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/kineticaccel/can_attach(obj/mecha/M)
+	if(..()) //combat mech
+		return 1
+	else if(M.equipment.len < M.max_equip && istype(M))
+		return 1
+	return 0
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/kineticaccelunlocked //for adminbus or mining deathsquads or something idk
+	equip_cooldown = 10
+	name = "Advanced Unlocked Kinetic Accelerator"
+	desc = "A completed Kinetic Accelerator, out of prototyping and fitted for exosuits, capable of working in all pressures"
+	icon_state = "mecha_kineticgun"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	energy_drain = 30
+	projectile = /obj/item/projectile/kinetic/mech_pressurized
+	fire_sound = 'sound/weapons/kenetic_accel.ogg'
+	harmful = TRUE
+
+
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
 	name = "\improper PBT \"Pacifier\" mounted taser"
 	desc = "A weapon for combat exosuits. Shoots non-lethal stunning electrodes."
