@@ -203,7 +203,7 @@
 	text_gain_indication = span_notice("Your skin begins to glow softly.")
 	instability = 5
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
-	var/glow = 2.5
+	var/glow = 3.5
 	var/range = 2.5
 	var/color 
 	power_coeff = 1
@@ -240,7 +240,7 @@
 	name = "Anti-Glow"
 	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
 	text_gain_indication = span_notice("Your light around you seems to disappear.")
-	glow = -2.5 //Slightly stronger, since negating light tends to be harder than making it.
+	glow = -3.5
 	conflicts = list(/datum/mutation/human/glow)
 	locked = TRUE
 
