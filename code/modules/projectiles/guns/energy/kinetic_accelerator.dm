@@ -186,6 +186,32 @@
 	var/pressure_decrease = 0.25
 	var/obj/item/gun/energy/kinetic_accelerator/kinetic_gun
 
+/obj/item/projectile/kinetic/mech
+	name = "kinetic force"
+	icon_state = null
+	damage = 100
+	damage_type = BRUTE
+	flag = BOMB
+	range = 5
+	log_override = TRUE
+	power = 2
+
+	pressure_decrease_active = FALSE
+	pressure_decrease = 0.20
+
+/obj/item/projectile/kinetic/mech_pressurized
+	name = "kinetic force"
+	icon_state = null
+	damage = 100
+	damage_type = BRUTE
+	flag = BOMB
+	range = 5
+	log_override = TRUE
+	power = 2
+
+	pressure_decrease_active = FALSE
+	pressure_decrease = 1
+
 /obj/item/projectile/kinetic/Destroy()
 	kinetic_gun = null
 	return ..()
