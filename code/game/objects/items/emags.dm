@@ -27,8 +27,13 @@
 	var/atom/A = target
 	if(!proximity && prox_check)
 		return
+    if(!can_emag(target, user))
+        return
 	log_combat(user, A, "attempted to emag")
 	A.emag_act(user)
+
+/obj/item/card/emag/proc/can_emag(atom/target, mob/user)
+	return TRUE
 
 /obj/item/card/emagfake
 	desc = "It's a card with a magnetic strip attached to some circuitry. Closer inspection shows that this card is a poorly made replica, with a \"DonkCo\" logo stamped on the back."
