@@ -67,7 +67,7 @@
 
 /obj/item/reagent_containers/food/snacks/donut/deadly
 	name = "donut"
-	desc = "Goes great with robust coffee. This one feels...dense."
+	desc = "Goes great with Doctor's Delight."
 	icon_state = "donut1"
 	volume = 1000
 	bitesize = 1000
