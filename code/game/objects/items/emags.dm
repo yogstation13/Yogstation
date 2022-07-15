@@ -57,7 +57,7 @@
 
 /obj/item/card/emag/doorjack/Initialize(mapload)
 	. = ..()
-	type_whitelist = list(subtypesof(/obj/machinery/door/airlock), subtypesof(/obj/machinery/door/window/)) //list of all acceptable typepaths that this device can affect
+	type_whitelist = list(subtypesof(/obj/machinery/door/airlock), subtypesof(/obj/machinery/door/window)) //list of all acceptable typepaths that this device can affect
 
 /obj/item/card/emag/doorjack/proc/use_charge(mob/user)
 	charges --
