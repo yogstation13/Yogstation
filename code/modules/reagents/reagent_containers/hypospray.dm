@@ -274,7 +274,7 @@
 	/// The sound that plays when you spray someone with the hypospray
 	var/spray_sound = 'sound/effects/spray2.ogg'
 	/// The sound that plays when you draw from someone with the hypospray
-	var/draw_sound = 'sound/effects/spray2.ogg'
+	var/draw_sound = 'sound/items/autoinjector.ogg'
 
 /obj/item/hypospray/Initialize()
 	. = ..()
@@ -406,40 +406,41 @@
 /obj/item/hypospray/proc/inject(mob/living/carbon/target, mob/user)
 	//Initial Checks/Logging
 	var/mob/living/carbon/C = target
-	if(!istype(C) || !C.can_inject(user, 1))
-		return
+	if(istype(C) && C.can_inject(user, 1))
+		if(ishuman(C))
+			var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
+			if(!affecting)
+				to_chat(user, span_warning("The limb is missing!"))
+				return
+			if(affecting.status != BODYPART_ORGANIC)
+				to_chat(user, span_notice("Medicine won't work on a robotic limb!"))
+				return
 
-	if(ishuman(C))
-		var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
-		if(!affecting)
-			to_chat(user, span_warning("The limb is missing!"))
+		log_combat(user, C, "attemped to spray", src, addition = "which had [vial.reagents.log_list()]")
+
+		//Pre messages
+		to_chat(C, span_warning("You feel a tiny prick!"))
+		to_chat(user, span_notice("You begin to inject [C] with [src]."))
+
+		//Checks
+		if(!do_mob(user, C, (C == user) ? inject_self : inject_wait))
 			return
-		if(affecting.status != BODYPART_ORGANIC)
-			to_chat(user, span_notice("Medicine won't work on a robotic limb!"))
+		if((!penetrates && !C.can_inject(user, 1)) || !vial?.reagents?.total_volume || C.reagents.total_volume >= C.reagents.maximum_volume)
 			return
 
-	log_combat(user, C, "attemped to spray", src, addition = "which had [vial.reagents.log_list()]")
+		//Post Messages/sounds
+		C.visible_message(span_danger("[user] injects [C] with [src]!"), span_userdanger("[user] injects you with [src]!"))
+		playsound(loc, pick(inject_sound), 25)
 
-	//Pre messages
-	to_chat(C, span_warning("You feel a tiny prick!"))
-	to_chat(user, span_notice("You begin to inject [C] with [src]."))
-
-	//Checks
-	if(!do_mob(user, C, (C == user) ? inject_self : inject_wait))
-		return
-	if((!penetrates && !C.can_inject(user, 1)) || !vial?.reagents?.total_volume || C.reagents.total_volume >= C.reagents.maximum_volume)
-		return
-
-	//Post Messages/sounds
-	C.visible_message(span_danger("[user] injects [C] with [src]!"), span_userdanger("[user] injects you with [src]!"))
-	playsound(loc, pick(inject_sound), 25)
-
-	//Logging
-	var/contained = vial.reagents.log_list()
-	user.log_message("applied [src] to  [C == user ? "themselves" : C ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
-	if(C != user)
-		log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (INTENT: [uppertext(user.a_intent)]) (MODE: [mode])")
-		
+		//Logging
+		var/contained = vial.reagents.log_list()
+		user.log_message("applied [src] to  [C == user ? "themselves" : C ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
+		if(C != user)
+			log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (INTENT: [uppertext(user.a_intent)]) (MODE: [mode])")
+	else
+		if(!target.is_injectable(user))
+			to_chat(user, span_warning("You cannot directly fill [target]!"))
+			return
 	
 	//The actual reagent transfer
 	var/fraction = min(transfer_amount/vial.reagents.total_volume, 1)
@@ -450,38 +451,40 @@
 /obj/item/hypospray/proc/spray(mob/living/carbon/target, mob/user)
 	//Initial Checks/Logging
 	var/mob/living/carbon/C = target
-	if(!istype(C) || !C.can_inject(user, 1))
-		return
+	if(istype(C) && C.can_inject(user, 1))
+		if(ishuman(C))
+			var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
+			if(!affecting)
+				to_chat(user, span_warning("The limb is missing!"))
+				return
+			if(affecting.status != BODYPART_ORGANIC)
+				to_chat(user, span_notice("Medicine won't work on a robotic limb!"))
+				return
 
-	if(ishuman(C))
-		var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
-		if(!affecting)
-			to_chat(user, span_warning("The limb is missing!"))
+		log_combat(user, C, "attemped to spray", src, addition = "which had [vial.reagents.log_list()]")
+
+		//Pre messages
+		to_chat(user, span_notice("You begin to spray [C] with [src]."))
+
+		//Checks Again
+		if(!do_mob(user, C, (C == user) ? spray_self : spray_wait))
 			return
-		if(affecting.status != BODYPART_ORGANIC)
-			to_chat(user, span_notice("Medicine won't work on a robotic limb!"))
+		if(!C.can_inject(user, 1) || !vial?.reagents?.total_volume || C.reagents.total_volume >= C.reagents.maximum_volume)
 			return
 
-	log_combat(user, C, "attemped to spray", src, addition = "which had [vial.reagents.log_list()]")
+		//Post Messages / Sound
+		C.visible_message(span_danger("[user] sprays [C] with [src]!"), span_userdanger("[user] sprays you with [src]!"))
+		playsound(loc, pick(spray_sound), 25)
 
-	//Pre messages
-	to_chat(user, span_notice("You begin to spray [C] with [src]."))
-
-	//Checks Again
-	if(!do_mob(user, C, (C == user) ? spray_self : spray_wait))
-		return
-	if(!C.can_inject(user, 1) || !vial?.reagents?.total_volume || C.reagents.total_volume >= C.reagents.maximum_volume)
-		return
-
-	//Post Messages / Sound
-	C.visible_message(span_danger("[user] sprays [C] with [src]!"), span_userdanger("[user] sprays you with [src]!"))
-	playsound(loc, pick(spray_sound), 25)
-
-	//Logging
-	var/contained = vial.reagents.log_list()
-	user.log_message("applied [src] to  [C == user ? "themselves" : C ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
-	if(C != user)
-		log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (INTENT: [uppertext(user.a_intent)]) (MODE: [mode])")
+		//Logging
+		var/contained = vial.reagents.log_list()
+		user.log_message("applied [src] to  [C == user ? "themselves" : C ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
+		if(C != user)
+			log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (INTENT: [uppertext(user.a_intent)]) (MODE: [mode])")
+	else
+		if(!target.is_injectable(user))
+			to_chat(user, span_warning("You cannot directly fill [target]!"))
+			return
 
 	//The actual reagent transfer
 	var/fraction = min(transfer_amount/vial.reagents.total_volume, 1)
