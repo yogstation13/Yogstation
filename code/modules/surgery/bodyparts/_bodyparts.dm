@@ -141,9 +141,7 @@
 							to_chat(user, "<span class='warning'>You try to force [src] into [H.p_their()] empty socket, but it doesn't fit</span>")
 						return
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
-				if(!attach_limb(C))
-					to_chat(user, span_warning("[H]'s body rejects [src]!"))
-					forceMove(H.loc)
+				attach_limb(C)
 				if(H == user)
 					H.visible_message(span_warning("[H] jams [src] into [H.p_their()] empty socket!"),\
 					span_notice("You force [src] into your empty socket, and it locks into place!"))
