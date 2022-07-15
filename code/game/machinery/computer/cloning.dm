@@ -70,7 +70,11 @@
 		return
 
 	if(scanner.occupant && scanner.scan_level > 2)
+		if(!canscan(mob_occupant)) // Screw off
+			return 
 		scan_occupant(scanner.occupant)
+
+	var/mob/living/mob_occupant = get_mob_or_brainmob(scanner.occupant)
 
 	for(var/datum/data/record/R in records)
 		var/obj/machinery/clonepod/pod = GetAvailableEfficientPod(R.fields["mindref"])
@@ -541,31 +545,10 @@
 	if(isbrain(mob_occupant))
 		dna = B.stored_dna
 
-	if(!istype(dna))
-		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
+	if(!canscan(mob_occupant, body_only))
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-		return
-	if(!body_only && (mob_occupant.suiciding || mob_occupant.hellbound))
-		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-		return
-	if(HAS_TRAIT(mob_occupant, TRAIT_BADDNA))
-		scantemp = "<font class='bad'>Subject's DNA is too damaged to initiate cloning procedure.</font>"
-		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
-		return
-	if((HAS_TRAIT(mob_occupant, TRAIT_HUSK)) && (src.scanner.scan_level < 2))
-		scantemp = "<font class='bad'>Subject's body is too damaged to scan properly.</font>"
-		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
-		return
-	if (!body_only && isnull(mob_occupant.mind))
-		scantemp = "<font class='bad'>Mental interface failure.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-		return
-	if(!body_only && SSeconomy.full_ancap)
-		if(!has_bank_account)
-			scantemp = "<font class='average'>Subject is either missing an ID card with a bank account on it, or does not have an account to begin with. Please ensure the ID card is on the body before attempting to scan.</font>"
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			return
+		return 
+
 	var/datum/data/record/R = new()
 	if(dna.species)
 		// We store the instance rather than the path, because some
@@ -626,3 +609,43 @@
 	records += R
 	log_cloning("[M ? key_name(M) : "Autoprocess"] added the [body_only ? "body-only " : ""]record of [key_name(mob_occupant)] to [src] at [AREACOORD(src)].")
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50)
+
+/obj/machinery/computer/cloning/proc/canscan(mob/living/mob_occupant, body_only = FALSE)
+	var/datum/dna/dna
+	var/datum/bank_account/has_bank_account
+
+	// Do not use unless you know what they are.
+	var/mob/living/carbon/C = mob_occupant
+	var/mob/living/brain/B = mob_occupant
+
+	if(ishuman(mob_occupant))
+		dna = C.has_dna()
+		var/obj/item/card/id/I = C.get_idcard(TRUE)
+		if(I)
+			has_bank_account = I.registered_account
+	if(isbrain(mob_occupant))
+		dna = B.stored_dna
+
+	if(HAS_TRAIT(mob_occupant, TRAIT_NOCLONE))
+		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
+		return FALSE
+	if(!istype(dna))
+		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
+		return FALSE
+	if(!body_only && (mob_occupant.suiciding || mob_occupant.hellbound))
+		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
+		return FALSE
+	if(HAS_TRAIT(mob_occupant, TRAIT_BADDNA))
+		scantemp = "<font class='bad'>Subject's DNA is too damaged to initiate cloning procedure.</font>"
+		return FALSE
+	if((HAS_TRAIT(mob_occupant, TRAIT_HUSK)) && (src.scanner.scan_level < 2))
+		scantemp = "<font class='bad'>Subject's body is too damaged to scan properly.</font>"
+		return FALSE
+	if (!body_only && isnull(mob_occupant.mind))
+		scantemp = "<font class='bad'>Mental interface failure.</font>"
+		return FALSE
+	if(!body_only && SSeconomy.full_ancap)
+		if(!has_bank_account)
+			scantemp = "<font class='average'>Subject is either missing an ID card with a bank account on it, or does not have an account to begin with. Please ensure the ID card is on the body before attempting to scan.</font>"
+			return FALSE
+	return TRUE
