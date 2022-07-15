@@ -309,11 +309,11 @@
 		report += span_marooned("The [name] survived, but has not made a name for [owner.current.p_them()]self...")
 	else		
 		report += span_redtext(span_big("The [name] has failed!"))
-	report += get_Flavor(objectives_complete, optional_objectives_complete)
+	report += get_flavor(objectives_complete, optional_objectives_complete)
 	return report
 
 /// Evaluates the conditions of the bloodsucker at the end of each round to pick a flavor message to add
-/datum/antagonist/bloodsucker/proc/get_Flavor(objectives_complete, optional_objectives_complete)
+/datum/antagonist/bloodsucker/proc/get_flavor(objectives_complete, optional_objectives_complete)
 	var/list/flavor = list()
 	var/flavor_message
 	var/escaped = (owner.current.onCentCom() || owner.current.onSyndieBase())
