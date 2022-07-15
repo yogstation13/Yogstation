@@ -370,6 +370,7 @@
 	C.update_damage_overlays()
 	C.update_mobility()
 
+	return TRUE
 
 /obj/item/bodypart/head/attach_limb(mob/living/carbon/C, special)
 	//Transfer some head appearance vars over
