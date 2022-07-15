@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 //EXAMPLE (with initial values as of feature introduction)
 //20 free CPU. 10 are used for research, 10 are used for bitcoin
 //10 * AI_RESEARCH_PER_CPU = 85 bitcoin per tick. Modified for scaling 85*0.54=46
-//46 * AI_BITCOIN_PRICE = 9,2 credits per 2 seconds (8280 credits per 30 min)
-#define MAX_AI_BITCOIN_MINED_PER_TICK 100
-//Self explanatory, see MAX_AI_BITCOIN_MINED_PER_TICK * this = max money 1 AI can contribute per tick. (20 credits every 2 seconds, max 72k over 2 hours)
-#define AI_BITCOIN_PRICE 0.2
+//46 * AI_BITCOIN_PRICE = 2,3 credits per 2 seconds (2070 credits per 30 min)
+#define MAX_AI_BITCOIN_MINED_PER_TICK 350
+//Self explanatory, see MAX_AI_BITCOIN_MINED_PER_TICK * this = max money 1 AI can contribute per tick. (17,5 credits every 2 seconds, max 63k over 2 hours)
+#define AI_BITCOIN_PRICE 0.05
