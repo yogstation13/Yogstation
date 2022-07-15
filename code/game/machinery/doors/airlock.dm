@@ -1467,7 +1467,7 @@
 
 /obj/machinery/door/airlock/emag_act(mob/user, obj/item/card/emag/E)
 	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
-		if(istype)
+		if(istype(E, /obj/item/card/emag/doorjack))
 			E.use_charge(user)
 		operating = TRUE
 		update_icon(AIRLOCK_EMAG, 1)
