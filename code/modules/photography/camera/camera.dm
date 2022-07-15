@@ -290,7 +290,7 @@
 	if(is_syndicate(user) && flashy && COOLDOWN_FINISHED(src, flash_cooldown))
 		update_flash()
 		if(flashy.attack(M, user))
-			START_COOLDOWN(src, flash_cooldown, cooldown)
+			START_COOLDOWN(src, flash_cooldown, 9 SECONDS)
 		return
 	. = ..()
 
