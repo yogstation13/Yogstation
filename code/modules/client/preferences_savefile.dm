@@ -87,6 +87,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		write_preference(GLOB.preference_entries[/datum/preference/color_legacy/ipc_antenna_color], read_preference(/datum/preference/color_legacy/hair_color))
 		write_preference(GLOB.preference_entries[/datum/preference/color_legacy/pod_flower_color], read_preference(/datum/preference/color_legacy/facial_hair_color))
 		write_preference(GLOB.preference_entries[/datum/preference/color_legacy/ipc_screen_color], read_preference(/datum/preference/color_legacy/eye_color))
+	
+	if(current_version < 43)
+		save_character()
+		to_chat(parent, span_userdanger(span_big("Color code has been reworked. Check all your character preferences, especially colors, before playing.")))
 
 /// checks through keybindings for outdated unbound keys and updates them
 /datum/preferences/proc/check_keybindings()

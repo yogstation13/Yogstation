@@ -213,19 +213,8 @@
 /datum/mutation/human/glow/modify()
 	if(!glowth)
 		return
-
-	var/glow_color
-
-	if(owner.dna.features["mcolor"][1] != "#")
-		//if it doesn't start with a pound, it needs that for the color
-		glow_color += "#"
-	if(length(owner.dna.features["mcolor"]) < 6)
-		//this atrocity converts shorthand hex rgb back into full hex that's required for light to be given a functional value
-		glow_color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
-	else
-		glow_color += owner.dna.features["mcolor"]
-
-	glowth.set_light_range_power_color(range * GET_MUTATION_POWER(src), glow, glow_color)
+	var/power = GET_MUTATION_POWER(src)
+	glowth.set_light(range * power, glow * power, sanitize_hexcolor(owner.dna.features["mcolor"]))
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()
