@@ -2044,6 +2044,7 @@
 #include "code\modules\goals\department_goals\science.dm"
 #include "code\modules\goals\department_goals\security.dm"
 #include "code\modules\goals\department_goals\service.dm"
+#include "code\modules\goals\station_goals\bluespace_tap.dm"
 #include "code\modules\goals\station_goals\bsa.dm"
 #include "code\modules\goals\station_goals\dna_vault.dm"
 #include "code\modules\goals\station_goals\shield.dm"
