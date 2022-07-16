@@ -305,6 +305,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"age" = (
+/obj/structure/table,
+/obj/machinery/light,
+/obj/item/hand_labeler,
+/obj/item/stack/packageWrap{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "agf" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -2302,15 +2315,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"bgz" = (
-/obj/structure/chair/office/dark{
-	dir = 4
-	},
-/obj/machinery/keycard_auth{
-	pixel_y = -24
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/hop)
 "bgF" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "armory_eva";
@@ -7170,6 +7174,31 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"dPD" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/machinery/button/flasher{
+	id = "hopflash";
+	pixel_x = 6;
+	pixel_y = 36
+	},
+/obj/machinery/button/door{
+	id = "hop";
+	name = "Privacy Shutters Control";
+	pixel_x = 6;
+	pixel_y = 25;
+	req_access_txt = "57"
+	},
+/obj/machinery/button/door{
+	id = "hopqueue";
+	name = "Queue Shutters Control";
+	pixel_x = -4;
+	pixel_y = 25;
+	req_access_txt = "57"
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/hop)
 "dPW" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -7555,6 +7584,19 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"ebx" = (
+/obj/machinery/ministile/hop{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hopqueue";
+	name = "HoP Queue Shutters"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "ebL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/rack,
@@ -8519,6 +8561,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"eBS" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/northleft{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/machinery/door/window/brigdoor{
+	base_state = "rightsecure";
+	dir = 4;
+	icon_state = "rightsecure";
+	name = "Head of Personnel's Desk";
+	req_access_txt = "57"
+	},
+/obj/machinery/flasher{
+	id = "hopflash";
+	pixel_y = 22
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "eCc" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -12478,13 +12543,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"gyR" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/heads/hop)
 "gyY" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -13898,6 +13956,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
+"hmZ" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hop)
 "hnn" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 4
@@ -16935,15 +17004,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"iXg" = (
-/obj/machinery/ministile/hop{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "iXq" = (
 /obj/effect/turf_decal/pool,
 /turf/open/floor/plasteel,
@@ -20188,19 +20248,6 @@
 "kOZ" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"kPj" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Head of Personnel's Desk";
-	departmentType = 5;
-	name = "Head of Personnel RC";
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/hop)
 "kPv" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -22700,16 +22747,6 @@
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"mbi" = (
-/obj/structure/table,
-/obj/machinery/light,
-/obj/item/hand_labeler,
-/obj/item/stack/packageWrap{
-	pixel_x = -1;
-	pixel_y = -1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "mbx" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/dark,
@@ -24587,21 +24624,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"nbP" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft{
-	dir = 8;
-	name = "Reception Window"
-	},
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 4;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk";
-	req_access_txt = "57"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "ncf" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
@@ -34245,6 +34267,19 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"sCB" = (
+/obj/structure/chair/office/dark{
+	dir = 4
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Personnel's Desk";
+	departmentType = 5;
+	name = "Head of Personnel RC";
+	pixel_y = -32
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/hop)
 "sCL" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 8
@@ -42297,15 +42332,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
-"wQJ" = (
-/obj/machinery/ministile/hop{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "wQK" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
@@ -42547,6 +42573,19 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"wXh" = (
+/obj/machinery/ministile/hop{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hopqueue";
+	name = "HoP Queue Shutters"
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "wXp" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
@@ -89150,10 +89189,10 @@ fDs
 wNv
 kjg
 fnc
-iXg
+ebx
 wPV
 tNM
-wQJ
+wXh
 dIB
 gXE
 rbp
@@ -89664,9 +89703,9 @@ wRr
 hxP
 jWK
 omw
-nbP
-gyR
-gyR
+eBS
+hmZ
+hmZ
 omw
 omw
 iUF
@@ -89921,7 +89960,7 @@ sKg
 vSf
 jdR
 omw
-kPj
+dPD
 iBU
 aiT
 oXc
@@ -90181,7 +90220,7 @@ omw
 hKa
 jDP
 fgt
-bgz
+sCB
 omw
 hPZ
 deS
@@ -90438,7 +90477,7 @@ xdL
 nzI
 izV
 aSz
-mbi
+age
 omw
 vjf
 vTy
