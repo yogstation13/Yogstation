@@ -311,6 +311,10 @@
 	icon_state = "tonguetied"
 	modifies_speech = TRUE
 	organ_flags = ORGAN_UNREMOVABLE
+	// The tonal indicator shown when we finish sending a message. If it's empty, none appears.
+	var/tonal_indicator = null
+	// The timerid for our tonal indicator
+	var/tonal_timerid
 
 /obj/item/organ/tongue/tied/Insert(mob/living/carbon/M)
 	. = ..()
@@ -319,16 +323,18 @@
 	M.verb_whisper = "subtly signs"
 	M.verb_sing = "rythmically signs"
 	M.verb_yell = "emphatically signs"
+	M.bubble_icon = "signlang"
 	ADD_TRAIT(M, TRAIT_SIGN_LANG, "tongue")
 	REMOVE_TRAIT(M, TRAIT_MUTE, "tongue")
 
     /obj/item/organ/tongue/tied/Remove(mob/living/carbon/M, special = 0)
     ..()
-	M.verb_ask = initial(verb_ask)
-	M.verb_exclaim = initial(verb_exclaim)
-	M.verb_whisper = initial(verb_whisper)
-	M.verb_sing = initial(verb_sing)
-	M.verb_yell = initial(verb_yell)
+	M.verb_ask = initial(M.verb_ask)
+	M.verb_exclaim = initial(M.verb_exclaim)
+	M.verb_whisper = initial(M.verb_whisper)
+	M.verb_sing = initial(M.verb_sing)
+	M.verb_yell = initial(M.verb_yell)
+	M.bubble_icon = initial(M.bubble_icon)
 	REMOVE_TRAIT(M, TRAIT_SIGN_LANG, "tongue") //People who are Ahealed get "cured" of their sign language-having ways. If I knew how to make the tied tongue persist through aheals, I'd do that.
 
     
@@ -339,7 +345,6 @@
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/exclamation_found = findtext(message, "!")
 	var/question_found = findtext(message, "?")
-	var/mob/living/carbon/M = owner
 	new_message = message
 	if(exclamation_found)
 		new_message = replacetext(new_message, "!", ".")
@@ -348,7 +353,20 @@
 	speech_args[SPEECH_MESSAGE] = new_message
 
 	if(exclamation_found && question_found)
-		M.visible_message("<span class='notice'>[M] lowers one of [M.p_their()] eyebrows, raising the other.</span>")
+		if(question_found) // Prioritize questions
+		tonal_indicator = mutable_appearance('icons/mob/talk.dmi', "signlang2", TYPING_LAYER)
+		owner.visible_message(span_notice("[owner] raises [owner.p_their()] eyebrows."))
+	if(!isnull(tonal_indicator) && owner?.client.typing_indicators)
+		owner.add_overlay(tonal_indicator)
+		tonal_timerid = addtimer(CALLBACK(src, .proc/remove_tonal_indicator), 2.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	else // If we're not gonna use it, just be sure we get rid of it
+		tonal_indicator = null
+
+/obj/item/organ/internal/tongue/tied/proc/remove_tonal_indicator()
+	if(isnull(tonal_indicator))
+		return
+	owner.cut_overlay(tonal_indicator)
+	tonal_indicator = null
 	else if(exclamation_found)
 		M.visible_message("<span class='notice'>[M] raises [M.p_their()] eyebrows.</span>")
 	else if(question_found)
