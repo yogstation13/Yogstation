@@ -11175,19 +11175,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"cxE" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/door/airlock/maintenance/external{
-	welded = 1
-	},
-/obj/effect/turf_decal/sand,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "cxS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -11588,15 +11575,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
-"cEW" = (
-/obj/structure/plasticflaps{
-	opacity = 1
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/closed/wall,
-/area/medical/medbay/central)
 "cFh" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical{
@@ -21656,6 +21634,22 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"gSo" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=4";
+	dir = 4;
+	freq = 1400;
+	location = "Medbay"
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/plasticflaps{
+	opacity = 1
+	},
+/turf/open/floor/plating,
+/area/medical/medbay/central)
 "gSE" = (
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -27997,6 +27991,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"jzy" = (
+/obj/structure/barricade/wooden,
+/obj/machinery/door/airlock/maintenance/external{
+	welded = 1
+	},
+/obj/effect/turf_decal/sand,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "jzE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -28542,19 +28549,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"jLE" = (
-/obj/machinery/door/window/eastleft{
-	name = "Medical Delivery";
-	req_access_txt = "5"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "jLJ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -42144,6 +42138,20 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"pNd" = (
+/obj/machinery/door/window/eastleft{
+	name = "Medical Delivery";
+	req_access_txt = "5"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "pNj" = (
 /obj/machinery/computer/security,
 /turf/open/floor/plasteel,
@@ -48479,21 +48487,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"swp" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/door/airlock/maintenance/external{
-	welded = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "swD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -48558,6 +48551,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
+"sxV" = (
+/obj/structure/barricade/wooden,
+/obj/machinery/door/airlock/maintenance/external{
+	welded = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "sym" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -85613,7 +85621,7 @@ hgs
 rtZ
 rtZ
 ihQ
-cEW
+gSo
 ihQ
 aGU
 aGU
@@ -85870,7 +85878,7 @@ tWA
 lwe
 bqw
 aaA
-jLE
+pNd
 aPv
 aGU
 tHP
@@ -87174,7 +87182,7 @@ aPk
 aPk
 awB
 awB
-swp
+sxV
 awB
 msb
 msb
@@ -88202,7 +88210,7 @@ sux
 msb
 msb
 awB
-swp
+sxV
 awB
 msb
 msb
@@ -91021,7 +91029,7 @@ aNL
 aQo
 kpv
 aQo
-cxE
+jzy
 slC
 slC
 slC
