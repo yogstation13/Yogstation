@@ -655,7 +655,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(71 to 80) //magmite is cool and somewhat rare i think?
 			new /obj/item/magmite(spot)
 		if(81 to 90) //i could make it drop foods for healing items like rs dropping fish, but i think the rewards should be a bit more immediate
-			new /obj/item/reagent_containers/hypospray/medipen/survival(spot)
+			new /obj/item/reagent_containers/autoinjector/medipen/survival(spot)
 		if(91 to 95) //5% PET DROP LET'S GO
 			new /mob/living/simple_animal/hostile/mining_drone(spot)
 		if(96 to 99) //4% DHIDE ARMOR
