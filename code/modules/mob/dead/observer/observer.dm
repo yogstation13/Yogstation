@@ -856,6 +856,22 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
 			observetarget = mob_eye
+			var/datum/action/unobserve/UO = new // Convinent way to unobserve
+			UO.Grant(src)
+
+/datum/action/unobserve
+	name = "Stop Observing"
+	desc = "Stops observing the person."
+	icon_icon = 'icons/mob/mob.dmi'
+	button_icon_state = "ghost_nodir"
+
+/datum/action/unobserve/Trigger()
+	owner.reset_perspective(null)
+	qdel(src)
+
+/datum/action/unobserve/IsAvailable()
+	return TRUE
+
 
 /mob/dead/observer/proc/on_observing_z_changed(datum/source, turf/old_turf, turf/new_turf)
 	SHOULD_NOT_SLEEP(TRUE)

@@ -59,6 +59,17 @@
 		var/mob/living/M = target
 		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
 
+/obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
+	name = ".38 Gutterpunch bullet"
+	damage = 15
+	stamina = 0
+
+/obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target 
+		M.adjust_disgust(20)
+
 // .357 (Syndie Revolver)
 
 /obj/item/projectile/bullet/a357

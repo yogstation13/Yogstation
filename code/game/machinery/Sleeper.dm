@@ -185,6 +185,8 @@
 /obj/machinery/sleeper/process()
 	..()
 	check_nap_violations()
+	if(issilicon(occupant))
+		return
 	var/mob/living/carbon/C = occupant
 	if(C)
 		if(stasis && (C.stat == DEAD || C.health < 0))
