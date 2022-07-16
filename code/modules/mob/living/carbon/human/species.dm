@@ -1372,7 +1372,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					. += (health_deficiency / 75)
 				else
 					. += (health_deficiency / 25)
-		if(CONFIG_GET(flag/disable_human_mood) && !H.mood_enabled) // Yogs -- Mood as preference
+		if(CONFIG_GET(flag/disable_human_mood)) // Yogs -- Mood as preference
 			if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.

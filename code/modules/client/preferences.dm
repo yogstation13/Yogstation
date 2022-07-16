@@ -754,7 +754,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<b>Preferred Map:</b> <a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a><br>"
 			//yogs start -- Mood preference toggling
 			if(CONFIG_GET(flag/disable_human_mood))
-				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
 				dat += "<b>Mood Tail Wagging:</b> <a href='?_src_=prefs;preference=moodtailwagging'>[mood_tail_wagging  ? "Enabled" : "Disabled"] </a><br>"
 			//yogs end
 
@@ -1215,7 +1214,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			for(var/_V in all_quirks)
 				if(_V == quirk_name)
 					has_quirk = TRUE
-			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood) && !(yogtoggles & PREF_MOOD)))//Yogs -- Adds mood to preferences
+			if(initial(T.mood_quirk) && (CONFIG_GET(flag/disable_human_mood)))//Yogs -- Adds mood to preferences
 				lock_reason = "Mood is disabled."
 			else
 				var/datum/quirk/t = new T(no_init = TRUE)
@@ -2084,9 +2083,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				// yogs start - Custom keybindings
 				if("reset_bindings")
 					reset_keybindings()
-
-				if("mood")
-					yogtoggles ^= PREF_MOOD
 
 				if("moodtailwagging")
 					mood_tail_wagging = !mood_tail_wagging
