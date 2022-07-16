@@ -13,7 +13,7 @@
 	if(!user.transferItemToLoc(src, M))
 		to_chat(user, span_warning("\The [src] is stuck to your hand, you cannot put it in \the [M]!"))
 		return FALSE
-	if(!istype(M.occupant?.loc, /obj/item/mmi/posibrain)) // Cannot attach parts when someone is driving, unless it is a posi
+	if(M.occupant || !istype(M.occupant?.loc, /obj/item/mmi/posibrain)) // Cannot attach parts when someone is driving, unless it is a posi
 		to_chat(user, span_warning("Someone is driving \the [M]!"))
 		return FALSE
 	user.visible_message("[user] attaches [src] to [M].", span_notice("You attach [src] to [M]."))
