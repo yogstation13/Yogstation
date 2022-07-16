@@ -14,6 +14,7 @@
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_TOURIST
+	minimal_character_age = 18 //Gotta go explore the galaxy and see the stuff
 
 /datum/outfit/job/tourist
 	name = "Tourist"

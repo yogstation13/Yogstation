@@ -15,6 +15,7 @@
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_CLERK
+	minimal_character_age = 18 //Capitalism doesn't care about age
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
