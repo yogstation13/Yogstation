@@ -93,7 +93,7 @@
 		read[2] = 64
 		read[3] = 64
 
-	paint_color = rgb(read[1], read[1], read[3])
+	paint_color = rgb(read[1], read[2], read[3])
 
 /obj/item/toy/crayon/Initialize()
 	. = ..()
