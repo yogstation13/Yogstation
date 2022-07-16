@@ -1,6 +1,0 @@
-author: " VaelophisNyx, @AlvCyktor"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new Fish Fear Me meme hat"
-  - rscadd: "Adds new Fish Fear Me meme hat to the gift vendor"
-  - imageadd: "adds new icon and mob sprites to handle the new hat"

@@ -220,6 +220,7 @@
 	name = "vial box"
 	desc = "A small box that can hold up to six vials in a sealed enviroment."
 	icon = 'icons/obj/vial_box.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "vialbox"
 	req_access = list(ACCESS_MEDICAL)
 	icon_locked = "vialbox"
@@ -250,9 +251,6 @@
 	if(!broken)
 		var/mutable_appearance/led = mutable_appearance(icon, "led[locked]")
 		add_overlay(led)
-	if(!open)
-		var/mutable_appearance/lid = mutable_appearance(icon, "vialboxcover")
-		add_overlay(lid)
 	..()
 
 /obj/item/storage/lockbox/vialbox/Initialize()
@@ -262,29 +260,36 @@
 /obj/item/storage/lockbox/vialbox/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_w_class = WEIGHT_CLASS_TINY
-	STR.max_combined_w_class = 6
+	STR.max_w_class = WEIGHT_CLASS_SMALL
+	STR.max_combined_w_class = 12
 	STR.max_items = 6
 	STR.locked = TRUE
 	STR.set_holdable(list(/obj/item/reagent_containers/glass/bottle/vial))
-
-/obj/item/storage/lockbox/vialbox/AltClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE))
-		if(!SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED))
-			open = (open ? FALSE : TRUE)
-			update_icon()
-			if(open)
-				to_chat(user, span_danger("You open the lid on [src.name]."))
-			else
-				to_chat(user, span_danger("You put the lid on [src.name]."))
 
 /obj/item/storage/lockbox/vialbox/attackby(obj/item/W, mob/user, params)
 	. = ..()
 	update_icon()
 
+/obj/item/storage/lockbox/vialbox/AltClick(mob/user)
+	..()
+	update_icon()
+
 /obj/item/storage/lockbox/vialbox/full/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/glass/bottle/vial(src)
+
+/obj/item/storage/lockbox/vialbox/hypo_deluxe
+	name = "deluxe hypospray vial box"
+	desc = "A small box that can hold up to six vials in a sealed enviroment. This one contains a plethora of different vials for various medical ailments, designed for use in a deluxe hypospray."
+	req_access = list(ACCESS_MEDICAL)
+
+/obj/item/storage/lockbox/vialbox/hypo_deluxe/PopulateContents()
+	new /obj/item/reagent_containers/glass/bottle/vial/large/omnizine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/brute(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/burn(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/tox(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/oxy(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/epi(src)
 
 /obj/item/storage/lockbox/vialbox/virology
 	name = "virology vial box"
