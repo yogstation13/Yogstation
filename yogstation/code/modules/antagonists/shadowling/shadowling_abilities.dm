@@ -33,13 +33,11 @@
 /obj/effect/proc_holder/spell/targeted/sling/InterceptClickOn(mob/living/caller, params, atom/t)
 	if(!isliving(t))
 		to_chat(caller, span_warning("You may only use this ability on living things!"))
-		revert_cast()
-		return
+		return FALSE
 	user = caller
 	target = t
 	if(!shadowling_check(user))
-		revert_cast()
-		return
+		return FALSE
 
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
@@ -287,8 +285,12 @@
 					to_chat(target, span_danger("A terrible red light floods your mind. You collapse as conscious thought is wiped away."))
 					target.Knockdown(120)
 					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-						to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
-						user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
+						if(ispreternis(target))
+							to_chat(user, span_notice("Your servant's mind has been corrupted by other machinery. You begin to shut down the implant preventing your command - this will take some time..."))
+							user.visible_message(span_warning("[user] growls in frustration, then dips their head with determination!"))
+						else
+							to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
+							user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
 						to_chat(target, span_boldannounce("You feel your mental protection faltering!"))
 						if(!do_mob(user, target, 650)) //65 seconds to remove a loyalty implant. yikes!
 							to_chat(user, span_warning("The enthralling has been interrupted - your target's mind returns to its previous state."))

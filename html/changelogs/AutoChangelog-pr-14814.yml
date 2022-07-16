@@ -1,0 +1,8 @@
+author: " Poojawa, MarkSuckerberg, triplezeta, nmajask"
+delete-after: true 
+changes: 
+  - rscadd: "Added new hyposprays that replace the CMO's hypospray and available to doctors which can be loaded with vials"
+  - rscadd: "Added bluespace (60u) and large (30u) vials"
+  - rscadd: "Added a new medkit containing a hypospray and some vials for 300 credits in the medical vendor"
+  - tweak: "vials can now be renamed with pens"
+  - tweak: "vials boxes no longer have a lid, so you can unlock them with alt click"

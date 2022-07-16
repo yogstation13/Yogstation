@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "thruster implants can now be EMPed"
+  - tweak: "thruster implants now only as fast as a jetpack"

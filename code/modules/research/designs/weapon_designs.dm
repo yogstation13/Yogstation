@@ -38,6 +38,17 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
+/datum/design/c38_gutterpunch
+	name = "Speed Loader (.38 Gutterpunch)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
+	id = "c38_gutterpunch"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
+	build_path = /obj/item/ammo_box/c38/gutterpunch
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
 /datum/design/rubbershot/sec
 	id = "sec_rshot"
 	build_type = PROTOLATHE
@@ -101,16 +112,6 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 200)
 	build_path = /obj/item/firing_pin/implant/mindshield
-	category = list("Firing Pins")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
-/datum/design/batonupgrade
-	name = "Baton Power Upgrade"
-	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of more power usage."
-	id = "baton_upgrade"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/gold = 600, /datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 600, /datum/material/plasma = 600)
-	build_path = /obj/item/batonupgrade
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
