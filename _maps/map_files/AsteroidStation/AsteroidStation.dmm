@@ -11175,6 +11175,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"cxE" = (
+/obj/structure/barricade/wooden,
+/obj/machinery/door/airlock/maintenance/external{
+	welded = 1
+	},
+/obj/effect/turf_decal/sand,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "cxS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -47503,14 +47516,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"rYd" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/door/airlock/maintenance/external{
-	welded = 1
-	},
-/obj/effect/turf_decal/sand,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "rYw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -48474,6 +48479,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"swp" = (
+/obj/structure/barricade/wooden,
+/obj/machinery/door/airlock/maintenance/external{
+	welded = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "swD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -53368,20 +53388,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"uNP" = (
-/obj/structure/barricade/wooden,
-/obj/machinery/door/airlock/maintenance/external{
-	welded = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "uNX" = (
 /obj/structure/grille,
 /obj/machinery/meter{
@@ -87168,7 +87174,7 @@ aPk
 aPk
 awB
 awB
-uNP
+swp
 awB
 msb
 msb
@@ -88196,7 +88202,7 @@ sux
 msb
 msb
 awB
-uNP
+swp
 awB
 msb
 msb
@@ -91015,7 +91021,7 @@ aNL
 aQo
 kpv
 aQo
-rYd
+cxE
 slC
 slC
 slC
