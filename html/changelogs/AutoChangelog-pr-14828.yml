@@ -1,4 +1,4 @@
 author: "redmoogle"
 delete-after: true 
 changes: 
-  - rscadd: "Gives ghost a unobserve button"
+  - tweak: "Healing on robotic limbs repeat now"

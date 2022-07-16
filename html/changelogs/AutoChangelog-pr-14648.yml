@@ -1,6 +1,0 @@
-author: "SuperSlayer"
-delete-after: true 
-changes: 
-  - rscadd: "New objective to bloodsuckers to get 2-3 vassals on their side"
-  - rscdel: "Bloodsuckers no more can gain protege objective"
-  - tweak: "Changed how bloodsucker objectives are picked"

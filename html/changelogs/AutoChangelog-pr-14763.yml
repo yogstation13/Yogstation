@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds .38 Gutterpunch, an experimental .38 ammo that inflicts nausea on its targets"
-  - imageadd: "New sprites for the .38 Gutterpunch speedloader"
-  - tweak: "Adds one thing of the new ammo type to the ammo crate from Cargo"
