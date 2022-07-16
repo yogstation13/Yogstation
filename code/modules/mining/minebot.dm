@@ -159,7 +159,7 @@
 
 /mob/living/simple_animal/hostile/mining_drone/screwdriver_act(mob/living/user, obj/item/I)
 	. = TRUE
-	maintance_hatch_open = -maintance_hatch_open
+	maintance_hatch_open = !maintance_hatch_open
 	if(maintance_hatch_open)
 		to_chat(user, span_info("You open [src]'s maintance hatch."))
 	else
