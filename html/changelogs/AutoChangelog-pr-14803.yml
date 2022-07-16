@@ -1,0 +1,4 @@
+author: "KillerOrcaCora"
+delete-after: true 
+changes: 
+  - bugfix: "If a bug was a human who caused issues then why don't we call it a bugfix."
