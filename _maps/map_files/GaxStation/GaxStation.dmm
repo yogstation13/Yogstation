@@ -16917,6 +16917,22 @@
 /obj/effect/turf_decal/pool,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"iYg" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/fancy/donut_box{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/hand_tele{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 5;
+	pixel_y = -26
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "iYZ" = (
 /obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale,
 /turf/open/space/basic,
@@ -17660,6 +17676,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"jxm" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32;
+	pixel_y = -10
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "jxo" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -22657,16 +22686,6 @@
 /obj/effect/turf_decal/trimline/brown/filled/line,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"mbi" = (
-/obj/structure/table,
-/obj/machinery/light,
-/obj/item/hand_labeler,
-/obj/item/stack/packageWrap{
-	pixel_x = -1;
-	pixel_y = -1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "mbx" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/dark,
@@ -34733,18 +34752,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
-"sPZ" = (
-/obj/structure/table/wood,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/item/flashlight/lamp/green{
-	on = 0;
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "sQn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -36312,6 +36319,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"tJp" = (
+/obj/structure/table/wood,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/item/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/machinery/recharger,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "tJI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -42904,6 +42924,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"xjr" = (
+/obj/structure/table,
+/obj/machinery/light,
+/obj/item/hand_labeler,
+/obj/item/stack/packageWrap{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 5;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "xjv" = (
 /obj/machinery/light{
 	dir = 4
@@ -42913,18 +42947,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"xjw" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/hand_tele{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "xjy" = (
 /obj/machinery/shower{
 	pixel_y = 20
@@ -65459,7 +65481,7 @@ aLA
 tTq
 cbG
 sWk
-sPZ
+tJp
 swx
 qCU
 xGP
@@ -89900,7 +89922,7 @@ ovq
 fLI
 ksF
 tFm
-xjw
+iYg
 hVM
 wpd
 rXh
@@ -90404,7 +90426,7 @@ xdL
 nzI
 izV
 aSz
-mbi
+xjr
 omw
 vjf
 vTy
@@ -91945,7 +91967,7 @@ wND
 rcq
 vSg
 rcq
-rcq
+jxm
 nMP
 dxA
 fTY
