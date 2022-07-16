@@ -1,0 +1,9 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "Added fullupgrade subtype of recharger_station for mappers"
+  - tweak: "replaces borg chargers  in the nuke ops ship with fullupgrade borg chargers"
+  - rscadd: "adds fullupgrad borg chargers to the nuclear ops base"
+  - rscadd: "adds fullupgrad borg chargers to the infiltrator ship"
+  - rscadd: "adds fullupgrad borg chargers to the infiltrator base"
+  - tweak: "swapped the infiltrator ship's sleeper with a syndicate variant"

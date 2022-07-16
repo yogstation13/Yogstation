@@ -28,6 +28,7 @@
 /goon/ @yogstation13/art
 /icons/ @yogstation13/art
 /yogstation/icons/ @yogstation13/art
+*.dm @yogstation/code
 
 #monster860
 
