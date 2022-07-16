@@ -367,3 +367,4 @@
 	desc = "A cute, multicoloured flower. Makes you feel all warm and fuzzy inside."
 	icon_state = "rflower"
 	item_state = "rflower"
+	w_class = WEIGHT_CLASS_TINY
