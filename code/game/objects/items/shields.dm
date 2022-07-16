@@ -25,7 +25,7 @@
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	transparent = TRUE
 	max_integrity = 75
-	var/repair_material = /obj/item/stack/sheet/mineral/titanium
+	var/obj/item/stack/sheet/mineral/repair_material = /obj/item/stack/sheet/mineral/titanium
 
 /obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(transparent && (hitby.pass_flags & PASSGLASS))
