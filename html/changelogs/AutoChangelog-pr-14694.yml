@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "SM rad monitor"
+  - tweak: "SM releases emp on explosion"
