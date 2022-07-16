@@ -44,6 +44,7 @@
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/physician
 	l_hand = /obj/item/storage/firstaid/regular
+	r_hand = /obj/item/modular_computer/laptop/preset/brig_physician
 	gloves = /obj/item/clothing/gloves/color/latex
 	head = /obj/item/clothing/head/soft/emt/phys
 	backpack = /obj/item/storage/backpack/medic
