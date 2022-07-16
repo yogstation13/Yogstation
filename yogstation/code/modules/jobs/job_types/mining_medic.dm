@@ -13,7 +13,7 @@
 
 	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer")
 
-	minimal_character_age = 24 //Matches MD
+	minimal_character_age = 26 //Matches MD
 
 	added_access = list(ACCESS_SURGERY, ACCESS_CARGO)
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MECH_MINING, ACCESS_MECH_MEDICAL)
