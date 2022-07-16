@@ -152,7 +152,7 @@
 		if(allow_thrust(0.01))
 			ion_trail.start()
 			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/move_react)
-			owner.add_movespeed_modifier(MOVESPEED_ID_CYBER_THRUSTER, priority=100, multiplicative_slowdown=-2, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
+			owner.add_movespeed_modifier(MOVESPEED_ID_CYBER_THRUSTER, priority=100, multiplicative_slowdown=-0.3, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 			if(!silent)
 				to_chat(owner, span_notice("You turn your thrusters set on."))
 	else
@@ -207,3 +207,14 @@
 
 	toggle(silent = TRUE)
 	return 0
+
+/obj/item/organ/cyberimp/chest/thrusters/emp_act(severity)
+	. = ..()
+	switch(severity)
+		if(EMP_HEAVY)
+			owner.adjustFireLoss(35)
+			to_chat(owner, span_warning("Your thruster implant malfunctions and severely burns you!"))
+		if(EMP_LIGHT)
+			owner.adjustFireLoss(10)
+			to_chat(owner, span_danger("Your thruster implant malfunctions and mildly burns you!"))
+

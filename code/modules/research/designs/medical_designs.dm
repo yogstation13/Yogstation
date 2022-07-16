@@ -34,6 +34,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/bluespacevial
+	name = "Bluespace Vial"
+	desc = "A small vial powered by experimental bluespace technology capable of holding 60 units."
+	id = "bluespacevial"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/glass = 2500, /datum/material/plasma = 1500, /datum/material/diamond = 500, /datum/material/bluespace = 500)
+	build_path = /obj/item/reagent_containers/glass/bottle/vial/bluespace
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/noreactbeaker
 	name = "Cryostasis Beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
@@ -250,6 +260,16 @@
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2000, /datum/material/plasma = 2000, /datum/material/uranium = 3000, /datum/material/titanium = 3000)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/hypospray
+	name = "Hypospray"
+	desc = "A sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	id = "hypospray"
+	build_path = /obj/item/hypospray
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2000, /datum/material/plastic = 1500, /datum/material/silver = 3000, /datum/material/titanium = 3000)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////////////////////////
 //////////Cybernetic Implants////////////

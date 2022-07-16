@@ -1,4 +1,0 @@
-author: "TymurShatillo"
-delete-after: true 
-changes: 
-  - tweak: "The Ark now properly messages servants about it's destructions in non-clockcult gamemodes"
