@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/environment = T.return_air()
 	var/pressure = (environment)? environment.return_pressure() : 0
-	if(pressure < SOUND_MINIMUM_PRESSURE)
+	if(pressure < SOUND_MINIMUM_PRESSURE && !HAS_TRAIT(H, TRAIT_SIGN_LANG))
 		message_range = 1
 	//yogs end
 
