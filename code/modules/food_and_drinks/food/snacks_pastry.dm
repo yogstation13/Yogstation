@@ -65,6 +65,18 @@
 	tastes = list("donut" = 3, "fizzy tutti frutti" = 1,)
 	filling_color = "#803280"
 
+/obj/item/reagent_containers/food/snacks/donut/deadly
+	volume = 1000
+	bitesize = 1000
+	list_reagents = list(/datum/reagent/consumable/nutriment = 950, /datum/reagent/consumable/sugar = 50,)
+	tastes = list("countless donuts" = 2, "sugar" = 2)
+	foodtype = SUGAR | FRIED | GRAIN
+
+/obj/item/reagent_containers/food/snacks/donut/deadly/On_Consume(mob/living/eater)
+	. = ..()
+	to_chat(eater, span_notice("You couldn't stop yourself... It was so delicious..."))
+	eater.set_nutrition(1000)
+
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
 	desc = "You jelly?"
