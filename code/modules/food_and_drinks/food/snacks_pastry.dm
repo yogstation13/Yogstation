@@ -66,19 +66,15 @@
 	filling_color = "#803280"
 
 /obj/item/reagent_containers/food/snacks/donut/deadly
-	name = "donut"
-	desc = "Goes great with Doctor's Delight."
-	icon_state = "donut1"
 	volume = 1000
 	bitesize = 1000
 	list_reagents = list(/datum/reagent/consumable/nutriment = 950, /datum/reagent/consumable/sugar = 50,)
 	tastes = list("countless donuts" = 2, "sugar" = 2)
-	filling_color = "#D2691E"
 	foodtype = SUGAR | FRIED | GRAIN
 
 /obj/item/reagent_containers/food/snacks/donut/deadly/On_Consume(mob/living/eater)
 	. = ..()
-	to_chat(eater, span_notice("You couldn't stop yourself...it was so delicious..."))
+	to_chat(eater, span_notice("You couldn't stop yourself... It was so delicious..."))
 	eater.set_nutrition(1000)
 
 /obj/item/reagent_containers/food/snacks/donut/jelly
