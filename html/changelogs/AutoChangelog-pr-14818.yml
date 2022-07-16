@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "fixes loading area decal floor icon"
