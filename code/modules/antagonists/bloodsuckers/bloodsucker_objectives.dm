@@ -411,6 +411,7 @@
 
 /datum/objective/bloodsucker/leader
 	name = "leader"
+
 /datum/objective/bloodsucker/leader/New()
 	target_amount = rand(2,3)
 	..()
