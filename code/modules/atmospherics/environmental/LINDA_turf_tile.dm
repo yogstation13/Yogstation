@@ -27,6 +27,9 @@
 
 	var/list/atmos_overlay_types //gas IDs of current active gas overlays
 
+/turf/proc/should_conduct_to_space()
+	return get_z_base_turf() == /turf/open/space
+
 /turf/open/Initialize()
 	if(!blocks_air)
 		air = new(2500,src)

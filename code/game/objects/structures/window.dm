@@ -511,6 +511,11 @@
 	if (fulltile)
 		. += new /obj/item/shard/plasma(location)
 
+/obj/structure/window/plasma/BlockThermalConductivity(opp_dir)
+	if(!anchored || !density)
+		return FALSE
+	return FULLTILE_WINDOW_DIR == dir || dir == opp_dir
+
 /obj/structure/window/plasma/spawner/east
 	dir = EAST
 

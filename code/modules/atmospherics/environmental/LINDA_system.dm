@@ -18,7 +18,6 @@
 
 /turf/open/CanAtmosPass(turf/T, vertical = FALSE)
 	var/dir = vertical? get_dir_multiz(src, T) : get_dir(src, T)
-	var/opp = REVERSE_DIR(dir)
 	. = TRUE
 	if(vertical && !(zAirOut(dir, T) && T.zAirIn(dir, src)))
 		. = FALSE
@@ -30,13 +29,23 @@
 		var/turf/other = (O.loc == src ? T : src)
 		if(!(vertical? (CANVERTICALATMOSPASS(O, other)) : (CANATMOSPASS(O, other))))
 			. = FALSE
-		if(O.BlockThermalConductivity()) 	//the direction and open/closed are already checked on CanAtmosPass() so there are no arguments
+
+/turf/proc/update_conductivity(turf/T)
+	var/dir = get_dir_multiz(src, T)
+	var/opp = REVERSE_DIR(dir)
+	//all these must be above zero for auxmos to even consider them
+	if(!thermal_conductivity || !heat_capacity || !T.thermal_conductivity || !T.heat_capacity)
+		return
+	for(var/obj/O in contents+T.contents)
+		conductivity_blocked_directions &= ~dir
+		T.conductivity_blocked_directions &= ~opp
+		if(O.BlockThermalConductivity(opp)) 	//the direction and open/closed are already checked on CanAtmosPass() so there are no arguments
 			conductivity_blocked_directions |= dir
 			T.conductivity_blocked_directions |= opp
-			if(!.)
-				return .
+			return
 
-/atom/movable/proc/BlockThermalConductivity() // Objects that don't let heat through.
+//dir of this obj to the other turf
+/atom/movable/proc/BlockThermalConductivity(dir) // Objects that don't let heat through.
 	return FALSE
 
 /turf/proc/ImmediateCalculateAdjacentTurfs()
@@ -54,6 +63,8 @@
 		var/other_contains_firelock = 1
 		if(locate(/obj/machinery/door/firedoor) in T)
 			other_contains_firelock |= 2
+		
+		update_conductivity(T)
 
 		if(isopenturf(T) && !(blocks_air || T.blocks_air) && ((direction & (UP|DOWN))? (canvpass && CANVERTICALATMOSPASS(T, src)) : (canpass && CANATMOSPASS(T, src))) )
 			LAZYINITLIST(atmos_adjacent_turfs)
@@ -66,6 +77,7 @@
 			if (T.atmos_adjacent_turfs)
 				T.atmos_adjacent_turfs -= src
 			UNSETEMPTY(T.atmos_adjacent_turfs)
+
 		T.__update_auxtools_turf_adjacency_info(isspaceturf(T.get_z_base_turf()))
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs

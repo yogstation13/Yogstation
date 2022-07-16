@@ -402,6 +402,12 @@
 	else
 		return TRUE
 
+/obj/machinery/door/firedoor/border_only/BlockThermalConductivity(opp_dir)
+	if(opp_dir == dir)
+		return density
+	else
+		return FALSE
+
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"
 	icon = 'icons/obj/doors/doorfire.dmi'

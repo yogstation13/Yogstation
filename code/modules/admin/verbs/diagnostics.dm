@@ -6,7 +6,7 @@
 		if(T.active_hotspot)
 			burning = TRUE
 
-	var/list/lines = list(span_adminnotice("[AREACOORD(target)]: [env.return_temperature()] K ([env.return_temperature() - T0C] C), [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]"))
+	var/list/lines = list(span_adminnotice("[AREACOORD(target)] A: [env.return_temperature()] K ([env.return_temperature() - T0C] C),T: [target.return_temperature()] K,  [env.return_pressure()] kPa[(burning)?(", <font color='red'>burning</font>"):(null)]"))
 	for(var/id in env.get_gases())
 		var/moles = env.get_moles(id)
 		if (abs(moles) >= 0.00001)

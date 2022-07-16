@@ -412,7 +412,7 @@
 		GLOB.cameranet.updateVisibility(src, 0)
 
 /obj/machinery/door/BlockThermalConductivity() // All non-glass airlocks block heat, this is intended.
-	if(opacity || heat_proof)
+	if(heat_proof && density)
 		return TRUE
 	return FALSE
 
