@@ -867,7 +867,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /datum/action/unobserve/Trigger()
 	owner.reset_perspective(null)
-	Remove(owner)
+	qdel(src)
 
 /datum/action/unobserve/IsAvailable()
 	return TRUE
