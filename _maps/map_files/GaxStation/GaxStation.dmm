@@ -15409,6 +15409,18 @@
 /obj/machinery/computer/slot_machine,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"ifi" = (
+/obj/structure/table/wood,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/item/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "ifn" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
@@ -36319,19 +36331,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"tJp" = (
-/obj/structure/table/wood,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/item/flashlight/lamp/green{
-	on = 0;
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/obj/machinery/recharger,
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "tJI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -65481,7 +65480,7 @@ aLA
 tTq
 cbG
 sWk
-tJp
+ifi
 swx
 qCU
 xGP
