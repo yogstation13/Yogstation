@@ -56,6 +56,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/deadchat_name
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
+	var/datum/action/unobserve/UO 
 
 	// Current Viewrange
 	var/view = 0
@@ -806,6 +807,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				remove_verb(src, /mob/dead/observer/verb/possess)
 
 /mob/dead/observer/reset_perspective(atom/A)
+	if(UO)
+		qdel(UO)
 	if(client)
 		if(ismob(client.eye) && (client.eye != src))
 			cleanup_observe()
@@ -856,8 +859,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
 			observetarget = mob_eye
-			var/datum/action/unobserve/UO = new // Convinent way to unobserve
-			UO.Grant(src)
+		UO = new // Convinent way to unobserve
+		UO.Grant(src)
 
 /datum/action/unobserve
 	name = "Stop Observing"
