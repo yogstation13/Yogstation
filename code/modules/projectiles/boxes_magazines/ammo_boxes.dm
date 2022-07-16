@@ -29,6 +29,13 @@
 	icon_state = "38ice"
 	ammo_type = /obj/item/ammo_casing/c38/iceblox
 
+/obj/item/ammo_box/c38/gutterpunch
+	name = "speed loader (.38 Gutterpunch)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
+	icon_state = "38gut"
+	ammo_type = /obj/item/ammo_casing/c38/gutterpunch
+
 /obj/item/ammo_box/tra32
 	name = "speed loader (.32 TRAC)"
 	desc = "A seven-shot speed loader designed for the Caldwell Tracking Revolver. \

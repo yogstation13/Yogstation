@@ -1,0 +1,8 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "adds syndicate variant of xray eyes that are un-nerfed for nuclear operative autosurgeons"
+  - tweak: "xray eyes are now simply Meson Eyes that do not provide mob or object vision through walls. Does provide SM hallucination protection"
+  - rscadd: "adds new tech node for Illegal Cybernetic Implants, which costs 10000 points, and requires Illegal Tech and Combat Cybernetic Implants"
+  - rscadd: "adds syndicate xray eyes to Illegal Cybernetic Implants tech node"
+  - tweak: "meson eyes are available in Cybernetic Implants tech node instead of Combat Cybernetic Implants"

@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,23)
+	var/loot = rand(1,24)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -58,7 +58,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(18)
 			new /obj/item/voodoo(src)
 		if(19)
-			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
 		if(20)
 			new /obj/item/book_of_babel(src)
@@ -69,6 +68,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 		if(23)
 			new /obj/item/rune_scimmy(src)
+		if(24)
+			new /obj/item/dnainjector/dwarf(src)
+
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
 	name = "KA Mod Disk"

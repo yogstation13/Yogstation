@@ -34,6 +34,12 @@
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/iceblox
 
+/obj/item/ammo_casing/c38/gutterpunch
+	name = ".38 Gutterpunch bullet casing"
+	desc = "A .38 Gutterpunch bullet casing"
+	caliber = "38"
+	projectile_type = /obj/item/projectile/bullet/c38/gutterpunch
+
 // .32 (Caldwell Tracking Revolver)
 
 /obj/item/ammo_casing/tra32

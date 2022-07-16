@@ -172,7 +172,7 @@
 			list("Box Corner","box_corners"),
 			list("Delivery Marker","delivery"),
 			list("Warning Box","warn_full"),
-			list("Loading Arrow","loadingate"),
+			list("Loading Arrow","loadingarea"),
 			list("Bot","bot"),
 			list("Bot Corners","bot_right"),
 			list("RAVEN1","RAVEN1"),
