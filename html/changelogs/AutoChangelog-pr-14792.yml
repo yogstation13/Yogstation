@@ -1,0 +1,4 @@
+author: " VaelophisNyx, @Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "You may no longer repair silicons in a sleeper"

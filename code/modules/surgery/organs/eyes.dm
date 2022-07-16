@@ -132,17 +132,37 @@
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	if(prob(10 * severity))
+	if(prob(20 * severity))
 		return
-	to_chat(owner, span_warning("Static obfuscates your vision!"))
-	owner.flash_act(visual = 1)
+	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
+	to_chat(owner, span_danger("your eyes overload and blind you!"))
+	owner.flash_act(override_blindness_check = 1)
+	owner.blind_eyes(5)
+	owner.blur_eyes(8)
+	eyes.applyOrganDamage(25)
 
 /obj/item/organ/eyes/robotic/xray
+	name = "\improper meson eyes"
+	desc = "These cybernetic eyes will give you meson-vision. Looks like it could withstand seeing a supermatter crystal!."
+	eye_color = "00FF00"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	sight_flags = SEE_TURFS
+	see_in_dark = 4
+
+/obj/item/organ/eyes/robotic/xray/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, initialising)
+	. = ..()
+	ADD_TRAIT(M, TRAIT_MESONS, src)
+
+/obj/item/organ/eyes/robotic/xray/Remove(mob/living/carbon/M, special = 0)
+	. = ..()
+	REMOVE_TRAIT(M, TRAIT_MESONS, src)
+
+/obj/item/organ/eyes/robotic/xray/syndicate
 	name = "\improper X-ray eyes"
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	desc = "These cybernetic eyes will give you true X-ray vision. Blinking is futile."
 	eye_color = "000"
-	see_in_dark = 8
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
+	see_in_dark = 8
 
 /obj/item/organ/eyes/robotic/thermals
 	name = "thermal eyes"

@@ -222,6 +222,7 @@
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
 #define TRAIT_NOCLONE			"noclone" // No cloning
 #define TRAIT_NODEFIB			"nodefib" // No defibbing
+#define TRAIT_MESONS			"mesons"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.

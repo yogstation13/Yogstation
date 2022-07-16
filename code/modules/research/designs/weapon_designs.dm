@@ -38,6 +38,17 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
+/datum/design/c38_gutterpunch
+	name = "Speed Loader (.38 Gutterpunch)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
+	id = "c38_gutterpunch"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
+	build_path = /obj/item/ammo_box/c38/gutterpunch
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
 /datum/design/rubbershot/sec
 	id = "sec_rshot"
 	build_type = PROTOLATHE
