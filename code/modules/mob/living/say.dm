@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		return
 	var/deaf_message
 	var/deaf_type
-    if(HAS_TRAIT(speaker, TRAIT_SIGN_LANG)) //Checks if speaker is using sign language
+	if(HAS_TRAIT(speaker, TRAIT_SIGN_LANG)) //Checks if speaker is using sign language
 		deaf_message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods)
 		if(speaker != src)
 			if(!radio_freq) //I'm about 90% sure there's a way to make this less cluttered
@@ -301,24 +301,24 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesdrop_range = EAVESDROP_EXTRA_RANGE
 	var/list/listening = get_hearers_in_view(message_range+eavesdrop_range, source)
 	var/list/the_dead = list()
-    if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
+	if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
 		var/mob/living/carbon/mute = src
 		if(istype(mute))
-			var/empty_indexes = get_empty_held_indexes() //How many hands the player has empty
-			if(length(empty_indexes) == 1 || !mute.get_bodypart(BODY_ZONE_L_ARM) || !mute.get_bodypart(BODY_ZONE_R_ARM))
-				message = stars(message)
-			if(length(empty_indexes) == 0)//Both hands full, can't sign
-				to_chat(src, "<span class='warning'>You can't sign with your hands full!</span.?>")
-				return FALSE
-			if(length(empty_indexes) == 0 || (length(empty_indexes) < 2 && (!mute.get_bodypart(BODY_ZONE_L_ARM) || !mute.get_bodypart(BODY_ZONE_R_ARM))))//All existing hands full, can't sign
-				mute.visible_message("tries to sign, but can't with [src.p_their()] hands full!</span.?>", visible_message_flags = EMOTE_MESSAGE)
-				return FALSE
-			if(mute.handcuffed)//Can't sign when your hands are cuffed, but can at least make a visual effort to
-				mute.visible_message("<span class='warning'>[src] tries to sign, but can't with [src.p_their()] hands bound!</span.?>")
-				return FALSE
-			if(mute.has_status_effect(STATUS_EFFECT_PARALYZED))
-				to_chat(src, "<span class='warning'>You can't sign at the moment!</span.?>")
-				return FALSE
+			switch(mute.check_signables_state())
+				if(SIGN_ONE_HAND) // One arm
+					message = stars(message)
+				if(SIGN_HANDS_FULL) // Full hands
+					mute.visible_message("tries to sign, but can't with [src.p_their()] hands full!", visible_message_flags = EMOTE_MESSAGE)
+					return FALSE
+				if(SIGN_ARMLESS) // No arms
+					to_chat(src, span_warning("You can't sign with no hands!"))
+					return FALSE
+				if(SIGN_TRAIT_BLOCKED) // Hands Blocked or Emote Mute traits
+					to_chat(src, span_warning("You can't sign at the moment!"))
+					return FALSE
+				if(SIGN_CUFFED) // Cuffed
+					mute.visible_message("tries to sign, but can't with [src.p_their()] hands bound!", visible_message_flags = EMOTE_MESSAGE)
+					return FALSE
 	for(var/_M in GLOB.player_list)
 		var/mob/M = _M
 		if(!M)				//yogs
@@ -378,13 +378,13 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno and ling channels
 	if(HAS_TRAIT(src, TRAIT_MUTE))
-		return (HAS_TRAIT(src, TRAIT_SIGN_LANG) && !H.mind.miming) //Makes sure mimes can't speak using sign language
+		return (HAS_TRAIT(src, TRAIT_SIGN_LANG)) //Makes sure mimes can't speak using sign language
 
 	if(is_muzzled())
-		return (HAS_TRAIT(src, TRAIT_SIGN_LANG) && !H.mind.miming)
+		return (HAS_TRAIT(src, TRAIT_SIGN_LANG)
 
 	if(!IsVocal())
-		return (HAS_TRAIT(src, TRAIT_SIGN_LANG) && !H.mind.miming)
+		return (HAS_TRAIT(src, TRAIT_SIGN_LANG))
 
 	return TRUE
 
