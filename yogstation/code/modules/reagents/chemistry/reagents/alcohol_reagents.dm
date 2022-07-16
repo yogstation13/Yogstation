@@ -1,3 +1,5 @@
+#define CATSIP_MEOW_MAX 2
+
 /datum/reagent/consumable/ethanol/catsip
 	name = "Catsip"
 	description = "A kawaii drink from space-Japan."
@@ -8,10 +10,13 @@
 	glass_icon_state = "catsip"
 	glass_name = "Catsip"
 	glass_desc = "Unfortunately has a tendency to induce the peculiar vocal tics of a wapanese mutant in the imbiber."
+	/// Number of times the chemical is allowed to cause forced speech
+	var/meowcount = CATSIP_MEOW_MAX
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_life(mob/living/M)
-	if(prob(8))
+	if(prob(8) && meowcount)
 		M.say(pick("Nya.", "N-nya!", "NYA!"), forced = "catsip")
+		meowcount--
 	return ..()
 
 /datum/reagent/consumable/ethanol/catsip/on_mob_add(mob/living/carbon/human/M)
@@ -68,3 +73,4 @@
 	if(prob(10))
 		M.hallucination += hal_amt //conscious dreamers can be treasurers to their own currency
 	..()
+#undef CATSIP_MEOW_MAX
