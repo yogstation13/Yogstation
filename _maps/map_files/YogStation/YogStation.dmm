@@ -1190,15 +1190,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
-"aey" = (
-/obj/structure/table,
-/obj/item/stack/packageWrap,
-/obj/item/pen,
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "aez" = (
 /obj/machinery/flasher{
 	id = "Cell 1";
@@ -1758,17 +1749,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
-"agV" = (
-/obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "agX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -1831,30 +1811,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
-"ahd" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10476,16 +10432,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"aQy" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/mineral/plasma,
-/obj/item/stack/sheet/mineral/plasma,
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "aQz" = (
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -16639,22 +16585,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"btE" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/donkpockets{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 8;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 8;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "btG" = (
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
@@ -19382,6 +19312,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"bGU" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/microwave{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "bGW" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -20619,21 +20566,6 @@
 /obj/structure/bed,
 /obj/item/bedsheet/red,
 /turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
-"bNT" = (
-/obj/structure/table,
-/obj/machinery/syndicatebomb/training,
-/obj/item/gun/energy/laser/practice,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/security/main)
 "bNY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -28202,6 +28134,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"exp" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "exz" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -29952,6 +29900,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
+"fsP" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "fsU" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -31988,14 +31946,6 @@
 	},
 /turf/open/floor/wood,
 /area/vacant_room)
-"gxm" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "gxA" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -40657,6 +40607,32 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"kEC" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/item/pen,
+/obj/item/stack/packageWrap,
+/turf/open/floor/plasteel,
+/area/security/main)
 "kEF" = (
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 4;
@@ -56698,6 +56674,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"szH" = (
+/obj/structure/table,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/syndicatebomb/training,
+/obj/item/gun/energy/laser/practice,
+/turf/open/floor/plasteel,
+/area/security/main)
 "sAl" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Starboard Bow Solar Access";
@@ -57107,6 +57092,24 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"sLg" = (
+/obj/structure/table,
+/obj/item/storage/box/fancy/donut_box{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "sLr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -66130,6 +66133,11 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"xyN" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/donkpockets,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
 "xyU" = (
 /turf/closed/wall,
 /area/engine/atmos)
@@ -96702,7 +96710,7 @@ bnS
 gvN
 bVJ
 azq
-btE
+exp
 pJB
 pJB
 aJw
@@ -99213,8 +99221,8 @@ aEu
 aEv
 age
 aIV
-bNT
-agV
+bGU
+sLg
 cxk
 auH
 adR
@@ -101784,7 +101792,7 @@ add
 gzT
 afV
 ufI
-ahd
+kEC
 atg
 clS
 adR
@@ -102294,7 +102302,7 @@ aaa
 aaa
 aaf
 akt
-aey
+szH
 afj
 afX
 ahV
@@ -108798,7 +108806,7 @@ uEc
 ufj
 bNd
 bIK
-aQy
+xyN
 bLd
 bRQ
 aUf
@@ -109054,7 +109062,7 @@ kYK
 oOo
 ufj
 bNd
-gxm
+fsP
 wPt
 nhI
 bRQ
