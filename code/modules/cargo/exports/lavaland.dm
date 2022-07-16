@@ -32,7 +32,7 @@
 	unit_name = "lava planet artifact"
 	export_types = list(/obj/item/guardiancreator,
 						/obj/item/rod_of_asclepius,
-						/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced,
+						/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced,
 						/obj/item/prisoncube,
 						/obj/item/staff/storm)
 
