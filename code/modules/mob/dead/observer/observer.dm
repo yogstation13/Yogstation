@@ -859,8 +859,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
 			observetarget = mob_eye
-		UO = new // Convinent way to unobserve
-		UO.Grant(src)
+		if(!UO)
+			UO = new // Convinent way to unobserve
+			UO.Grant(src)
 
 /datum/action/unobserve
 	name = "Stop Observing"
