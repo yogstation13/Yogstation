@@ -26,8 +26,6 @@
 #define COLOR_BLUE_LIGHT       "#33CCFF"
 #define COLOR_NAVY             "#000080"
 #define COLOR_PINK             "#FFC0CB"
-#define COLOR_BLUSH_PINK       "#DE5D83"
-#define COLOR_BLUSH_POLYSMORPH "#00FF32"
 #define COLOR_MAGENTA          "#FF00FF"
 #define COLOR_PURPLE           "#800080"
 #define COLOR_ORANGE           "#FF9900"
@@ -60,3 +58,7 @@
 #define COLOR_ASSEMBLY_LBLUE   "#5D99BE"
 #define COLOR_ASSEMBLY_BLUE    "#38559E"
 #define COLOR_ASSEMBLY_PURPLE  "#6F6192"
+
+//Colors for blushes
+#define COLOR_BLUSH_PINK       "#DE5D83"
+#define COLOR_BLUSH_POLYSMORPH "#00FF32"
