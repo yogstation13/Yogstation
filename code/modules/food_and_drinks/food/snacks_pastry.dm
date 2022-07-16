@@ -66,6 +66,7 @@
 	filling_color = "#803280"
 
 /obj/item/reagent_containers/food/snacks/donut/deadly
+	desc = "Goes great with Doctor's Delight."
 	volume = 1000
 	bitesize = 1000
 	list_reagents = list(/datum/reagent/consumable/nutriment = 950, /datum/reagent/consumable/sugar = 50,)
