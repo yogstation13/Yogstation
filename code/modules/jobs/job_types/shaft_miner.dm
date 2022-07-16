@@ -18,6 +18,7 @@
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
+	minimal_character_age = 18 //Young and fresh bodies for a high mortality job, what more could you ask for
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
