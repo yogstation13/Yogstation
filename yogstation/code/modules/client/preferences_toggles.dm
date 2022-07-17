@@ -31,4 +31,4 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, hear_tts)()
 	set desc = "Toggle Text-To-Speech"
 	usr.client.prefs.chat_toggles ^= HEAR_TTS
 	usr.client.prefs.save_preferences()
-	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & HEAR_TTS) ? "no longer" : "now"] hear text-to-speech.")
+	to_chat(usr, "You will [(usr.client.prefs.chat_toggles & HEAR_TTS) ? "now" : "no longer"] hear text-to-speech.")

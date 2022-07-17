@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		AM.Hear(rendered, src, message_language, message, , spans, message_mods)
 		if(ismob(AM))
 			var/mob/MB = AM
-			if(MB.client && !(MB.client.prefs.chat_toggles & HEAR_TTS) && MB.has_language(message_language))
+			if(MB.client && MB.client.prefs.chat_toggles & HEAR_TTS && MB.has_language(message_language))
 				MB.playsound_local(get_turf(src), "dectalk/[md5(message)].wav", 100) // TTS play
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), face_name = FALSE)
