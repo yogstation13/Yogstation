@@ -1,0 +1,6 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "adds fishing to the box station Garden"
+  - rscadd: "adds weaker MegaSeed Vendor that only has garden-approved seeds"
+  - tweak: "massive overhaul for the box station Garden"

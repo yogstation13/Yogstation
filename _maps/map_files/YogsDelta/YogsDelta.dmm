@@ -77618,7 +77618,7 @@
 	areastring = "/area/science/server";
 	dir = 4;
 	name = "Research Division Server Room APC";
-	pixel_x = 25
+	pixel_x = 24
 	},
 /obj/machinery/computer/rdservercontrol,
 /obj/structure/cable/white{
@@ -97114,17 +97114,6 @@
 /obj/machinery/smartfridge/chemistry/preloaded,
 /turf/closed/wall,
 /area/medical/medbay/central)
-"cZx" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/white,
-/obj/item/reagent_containers/hypospray/medipen,
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/medical/medbay/central)
 "cZy" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bottle/charcoal{
@@ -111562,7 +111551,7 @@
 	areastring = "/area/ai_monitored/secondarydatacore";
 	dir = 1;
 	name = "AI Secondary Datacore";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -123471,6 +123460,17 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
+"mIh" = (
+/obj/structure/table/reinforced,
+/obj/item/folder/white,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/item/reagent_containers/autoinjector/medipen,
+/turf/open/floor/plasteel,
+/area/medical/medbay/central)
 "mIB" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -172853,7 +172853,7 @@ cpK
 cDQ
 cQU
 cXO
-cZx
+mIh
 dbk
 cUC
 cXI

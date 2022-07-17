@@ -30,7 +30,7 @@
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
-	minimal_character_age = 26 // "A PhD takes twice as long as a bachelor's degree to complete. The average student takes 8.2 years to slog through a PhD program and is 33 years old before earning that top diploma."
+	minimal_character_age = 26 //Barely knows more than actual scientists, just responsibility and AI things
 
 	changed_maps = list("OmegaStation")
 
