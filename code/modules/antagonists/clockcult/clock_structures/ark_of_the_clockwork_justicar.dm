@@ -23,8 +23,6 @@
 	var/active = FALSE
 	var/progress_in_seconds = 0 //Once this reaches GATEWAY_RATVAR_ARRIVAL, it's game over
 	var/grace_period = ARK_GRACE_PERIOD //This exists to allow the crew to gear up and prepare for the invasion
-	var/initial_activation_delay = -1 //How many seconds the Ark will have initially taken to activate
-	var/seconds_until_activation = -1 //How many seconds until the Ark activates; if it should never activate, set this to -1
 	var/purpose_fulfilled = FALSE
 	var/first_sound_played = FALSE
 	var/second_sound_played = FALSE
@@ -69,14 +67,6 @@
 		next_spaghetti = world.time + spaghetti_cooldown
 	. = ..()
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/final_countdown(ark_time) //WE'RE LEAVING TOGETHEEEEEEEEER
-	if(!ark_time)
-		ark_time = 30 //minutes
-	initial_activation_delay = ark_time * 60
-	seconds_until_activation = ark_time * 60 //60 seconds in a minute * number of minutes
-	GLOB.servants_active = TRUE
-	SSshuttle.registerHostileEnvironment(src)
-
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/cry_havoc()
 	visible_message(span_boldwarning("[src] shudders and roars to life, its parts beginning to whirr and screech!"))
 	hierophant_message("<span class='bold large_brass'>The Ark is activating! You will be transported there soon!</span>")
@@ -94,6 +84,7 @@
 	@!$, [text2ratvar("PURGE ALL UNTRUTHS")] <&. the anomalies and destroy their source to prevent further damage to corporate property. This is \
 	not a drill.[grace_period ? " Estimated time of appearance: [grace_period] seconds. Use this time to prepare for an attack on [station_name()]." : ""]", \
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
+	SSshuttle.registerHostileEnvironment(src)
 	set_security_level(SEC_LEVEL_GAMMA)
 	for(var/V in SSticker.mode.servants_of_ratvar)
 		var/datum/mind/M = V
@@ -264,21 +255,7 @@
 					to_chat(user, span_boldwarning("The anomaly is stable! Something is coming through!"))
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/process()
-	if(seconds_until_activation == -1) //we never do anything
-		return
 	adjust_clockwork_power(2.5) //Provides weak power generation on its own
-	if(seconds_until_activation)
-		if(!countdown)
-			countdown = new(src)
-			countdown.start()
-		seconds_until_activation--
-		if(!GLOB.script_scripture_unlocked && initial_activation_delay * 0.5 > seconds_until_activation)
-			GLOB.script_scripture_unlocked = TRUE
-			hierophant_message("<span class='large_brass bold'>The Ark is halfway prepared. Script scripture is now available!</span>")
-		if(!seconds_until_activation)
-			cry_havoc()
-			seconds_until_activation = -1 //we'll set this after cry_havoc()
-		return
 	if(!first_sound_played || prob(7))
 		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))

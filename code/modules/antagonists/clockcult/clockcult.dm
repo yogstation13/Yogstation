@@ -81,6 +81,7 @@
 	..()
 	to_chat(current, "<b>This is Ratvar's will:</b> [CLOCKCULT_OBJECTIVE]")
 	antag_memory += "<b>Ratvar's will:</b> [CLOCKCULT_OBJECTIVE]<br>" //Memorize the objectives
+	check_ark_status()
 
 /datum/antagonist/clockcult/apply_innate_effects(mob/living/mob_override)
 	. = ..()
