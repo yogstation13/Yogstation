@@ -290,7 +290,7 @@
 	if(G.active)
 		to_chat(invoker, "<span class='brass'>The celestial gateway is already active. No need to activate it again.</span>")
 		return FALSE
-	if(!is_reebe(get_area(invoker).z))
+	if(!is_reebe(invoker.z))
 		to_chat(invoker, "<span class='brass'>You need to be near the gateway to channel its energy!</span>")
 		return FALSE
 	return TRUE
