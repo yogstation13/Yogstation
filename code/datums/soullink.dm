@@ -1,6 +1,7 @@
 
 
 /mob/living
+	var/last_tts = 0
 	var/list/ownedSoullinks //soullinks we are the owner of
 	var/list/sharedSoullinks //soullinks we are a/the sharer of
 

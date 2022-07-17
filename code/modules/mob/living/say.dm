@@ -311,7 +311,8 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	// TTS generation
 	var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
-	if(!fexists("dectalk/[md5(message)].wav"))
+	if(!fexists("dectalk/[md5(message)].wav") && last_tts + 2 SECONDS <= world.time)
+		last_tts = world.time
 		if(world.system_type == MS_WINDOWS)
 			world.shelleo("say.exe -w \"dectalk/[md5(msghash)].wav\" \"\[[voice]\][san_message]\"")
 		else
