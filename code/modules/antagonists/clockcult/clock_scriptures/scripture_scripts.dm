@@ -284,12 +284,19 @@
 /datum/clockwork_scripture/ark_activation/check_special_requirements()
 	if(!..())
 		return FALSE
+	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+	if(!G)
+		to_chat(invoker, "<span class='brass'>There is no celestial gateway to activate. Contact the admins.</span>")
+		return FALSE
+	if(G.active)
+		to_chat(invoker, "<span class='brass'>The celestial gateway is already active. No need to activate it again.</span>")
+		return FALSE
 	if(!is_reebe(get_area(invoker).z))
 		to_chat(invoker, "<span class='brass'>You need to be near the gateway to channel its energy!</span>")
 		return FALSE
 	return TRUE
 
-/datum/clockcult/scripture/ark_activation/invoke_success()
+/datum/clockcult/scripture/ark_activation/scripture_effects()
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(!G)
 		to_chat(invoker, "<span class='brass'>No celestial gateway located, contact the admins.</span>")
@@ -297,4 +304,4 @@
 	if(G.active)
 		to_chat(invoker, "<span class='brass'>The celestial gateway is already active. No need to activate it again.</span>")
 		return FALSE
-	gateway.let_slip_the_dogs()
+	G.let_slip_the_dogs()
