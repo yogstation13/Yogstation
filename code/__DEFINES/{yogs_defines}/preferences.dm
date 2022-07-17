@@ -10,9 +10,6 @@
 
 // TTS enums
 GLOBAL_LIST_INIT(tts_enum, list("Masc1" = ":np", "Masc2" = ":nh", "Masc3" = ":nf", "Masc4" = ":nd", "Fem1" = ":nb", "Fem2" = ":nr", "Fem3" = ":nu", "Fem4" = ":nw"))
-GLOBAL_LIST_INIT(tts_all, list(MASC1, MASC2, MASC3, MASC4, FEM1, FEM2, FEM3, FEM4))
-GLOBAL_LIST_INIT(tts_masc, list(MASC1, MASC2, MASC3, MASC4))
-GLOBAL_LIST_INIT(tts_fem, list(FEM1, FEM2, FEM3, FEM4))
 #define MASC1 ":np"
 #define MASC2 ":nh"
 #define MASC3 ":nf"
@@ -21,6 +18,10 @@ GLOBAL_LIST_INIT(tts_fem, list(FEM1, FEM2, FEM3, FEM4))
 #define FEM2 ":nr"
 #define FEM3 ":nu"
 #define FEM4 ":nw"
+GLOBAL_LIST_INIT(tts_all, list(MASC1, MASC2, MASC3, MASC4, FEM1, FEM2, FEM3, FEM4))
+GLOBAL_LIST_INIT(tts_masc, list(MASC1, MASC2, MASC3, MASC4))
+GLOBAL_LIST_INIT(tts_fem, list(FEM1, FEM2, FEM3, FEM4))
+
 
 //YOGS pref.yogstoggles enum's
 
