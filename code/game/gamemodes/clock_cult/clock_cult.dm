@@ -159,7 +159,7 @@ Credit where due:
 	return TRUE
 
 /proc/send_sound_to_servants(sound/S)
-	for(var/datum/mind/M in GLOB.servants_of_ratvar)
+	for(var/datum/mind/M in SSticker.mode.servants_of_ratvar)
 		if(M.current.mind)
 			SEND_SOUND(M.current, S)
 	for(var/mob/dead/observer/O in GLOB.player_list)
