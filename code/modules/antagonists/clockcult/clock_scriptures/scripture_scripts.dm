@@ -275,7 +275,6 @@
 	multiple_invokers_used = TRUE
 	invokers_required = 6
 	tier = SCRIPTURE_SCRIPT
-	recital_sound = 'sound/magic/clockwork/narsie_attack.ogg'
 	quickbind = FALSE
 
 /datum/clockwork_scripture/ark_activation/New()
@@ -296,7 +295,7 @@
 		return FALSE
 	return TRUE
 
-/datum/clockcult/scripture/ark_activation/scripture_effects()
+/datum/clockwork_scripture/ark_activation/scripture_effects()
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
 	if(!G)
 		to_chat(invoker, "<span class='brass'>No celestial gateway located, contact the admins.</span>")
