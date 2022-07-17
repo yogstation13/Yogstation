@@ -1,6 +1,8 @@
 GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot of the cult's structures work or not
 
 GLOBAL_VAR(critical_servant_count)
+
+GLOBAL_VAR_INIT(conversion_warning_stage, CONVERSION_WARNING_NONE)
 /*
 
 CLOCKWORK CULT: Based off of the failed pull requests from /vg/

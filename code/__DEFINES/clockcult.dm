@@ -137,3 +137,9 @@ GLOBAL_LIST_EMPTY(all_scripture)
 
 /// The percent of servant over living players before they enter hardmode and have a warp penalty on non-clockwork tiles
 #define SERVANT_HARDMODE_PERCENT 0.2
+
+//Conversion warnings
+#define CONVERSION_WARNING_NONE 0
+#define CONVERSION_WARNING_HALFWAY 1
+#define CONVERSION_WARNING_THREEQUARTERS 2
+#define CONVERSION_WARNING_CRITIAL 3

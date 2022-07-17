@@ -473,14 +473,14 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		if(G)
 			var/time_info = G.get_arrival_time(FALSE)
 			var/time_name
-			if(G.seconds_until_activation)
-				time_name = "until the Ark activates"
-			else if(G.grace_period)
+			if(G.grace_period)
 				time_name = "of grace period remaining"
 			else if(G.progress_in_seconds)
 				time_name = "until the Ark finishes summoning"
-			if(time_info)
+			if(time_info && time_name)
 				textlist += "<b>[time_info / 60] minutes</b> [time_name].<br>"
+			else if(GLOB.critical_servant_count)
+				desc += "Upon reaching [GLOB.critical_servant_count] the Ark will open, or it can be opened immediately by invoking Gateway Activation with 6 servants."
 		textlist += "<b>[DisplayEnergy(get_clockwork_power())] / [DisplayEnergy(MAX_CLOCKWORK_POWER)]</b> power available for use."
 		desc = textlist.Join()
 	..()
