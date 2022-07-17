@@ -93,6 +93,19 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
+/obj/item/melee/hog_magic/afterattack(atom/target, mob/living/user)
+	if(proximity)
+		if(ranged_attack(target, user))
+			qdel(src)
+	else if(melee_attack(target, user))
+		qdel(src)
+
+/obj/item/melee/hog_magic/proc/ranged_attack(atom/target, mob/living/user)
+	return FALSE
+
+/obj/item/melee/hog_magic/proc/melee_attack(atom/target, mob/living/user)
+	return FALSE
+
 /obj/item/melee/hog_magic/Destroy()
 	if(!QDELETED(parent))
 		if(uses <= 0)
