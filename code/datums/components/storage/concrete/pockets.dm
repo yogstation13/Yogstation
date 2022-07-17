@@ -46,7 +46,7 @@
 	set_holdable(list(
 		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen,
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
-		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
 		/obj/item/firing_pin
 		),
@@ -58,7 +58,7 @@
 	set_holdable(list(
 		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen,
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
-		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
 		/obj/item/firing_pin, /obj/item/bikehorn),
 		list(/obj/item/handdrill)
