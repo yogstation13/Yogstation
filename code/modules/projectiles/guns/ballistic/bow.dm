@@ -297,9 +297,11 @@
 		return FALSE
 
 /obj/item/gun/ballistic/bow/energy/syndicate/CtrlClick(mob/living/user)
+	if(!user.is_holding(src))
+		to_chat(user, span_notice("You need be holding [src] to do that!"))
+		return
 	folded = !folded
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
-	
 	if(folded)
 		to_chat(user, span_notice("You fold [src]."))
 		w_class = WEIGHT_CLASS_NORMAL
