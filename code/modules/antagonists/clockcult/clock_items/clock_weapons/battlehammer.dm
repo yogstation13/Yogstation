@@ -16,7 +16,6 @@
 		target.throw_at(throw_target, 1, 4)
 
 /obj/item/clockwork/weapon/brass_battlehammer/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	var/turf/T = get_turf(hit_atom)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		if(is_servant_of_ratvar(L))
