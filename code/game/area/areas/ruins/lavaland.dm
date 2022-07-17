@@ -1,9 +1,15 @@
 //Lavaland Ruins
 
 /area/ruin/powered/beach
+	name = "Biodome Beach"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/fishing
+	name = "Biodome Fishing Dock"
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/clownplanet
+	name = "Biodome Clownplanet"
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/animal_hospital
