@@ -1346,6 +1346,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			to_chat(H, span_notice("You no longer feel vigorous."))
 		H.metabolism_efficiency = 1
 
+	get_hunger_alert(H)
+
+/datum/species/proc/get_hunger_alert(mob/living/carbon/human/H)
 	switch(H.nutrition)
 		if(NUTRITION_LEVEL_FULL to INFINITY)
 			H.throw_alert("nutrition", /obj/screen/alert/fat)

@@ -133,7 +133,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		return
 
 	if(A.cell && A.cell.charge > 0)
-		if(H.nutrition >= NUTRITION_LEVEL_WELL_FED)
+		if(H.nutrition >= NUTRITION_LEVEL_FULL)
 			to_chat(user, "<span class='warning'>You are already fully charged!</span>")
 			return
 		else
@@ -144,7 +144,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /obj/item/apc_powercord/proc/powerdraw_loop(obj/machinery/power/apc/A, mob/living/carbon/human/H)
 	H.visible_message("<span class='notice'>[H] inserts a power connector into the [A].</span>", "<span class='notice'>You begin to draw power from the [A].</span>")
-	while(do_after(H, 10, target = A))
+	while(do_after(H, 1 SECONDS, target = A))
 		if(loc != H)
 			to_chat(H, "<span class='warning'>You must keep your connector out while charging!</span>")
 			break
@@ -161,10 +161,21 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			A.cell.charge = 0
 			to_chat(H, "<span class='notice'>You siphon off as much as the [A] can spare.</span>")
 			break
-		if(H.nutrition > NUTRITION_LEVEL_WELL_FED)
+		if(H.nutrition > NUTRITION_LEVEL_FULL)
 			to_chat(H, "<span class='notice'>You are now fully charged.</span>")
 			break
 	H.visible_message("<span class='notice'>[H] unplugs from the [A].</span>", "<span class='notice'>You unplug from the [A].</span>")
+
+/datum/species/ipc/get_hunger_alert(mob/living/carbon/human/H)
+	switch(H.nutrition)
+		if(NUTRITION_LEVEL_FED to INFINITY)
+			H.clear_alert("nutrition")
+		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+			H.throw_alert("nutrition", /obj/screen/alert/lowcell, 1)
+		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+			H.throw_alert("nutrition", /obj/screen/alert/lowcell, 2)
+		if(0 to NUTRITION_LEVEL_STARVING)
+			H.throw_alert("nutrition", /obj/screen/alert/emptycell, 3)
 
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
