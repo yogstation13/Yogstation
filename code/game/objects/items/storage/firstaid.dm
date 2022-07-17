@@ -36,7 +36,7 @@
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/autoinjector/medipen = 1,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -53,7 +53,7 @@
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/suture/emergency = 1,
 		/obj/item/stack/medical/ointment = 1,
-		/obj/item/reagent_containers/hypospray/medipen/ekit = 2,)
+		/obj/item/reagent_containers/autoinjector/medipen/ekit = 2,)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/medical
@@ -80,7 +80,8 @@
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/extinguisher/mini,
-		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/autoinjector,
+		/obj/item/hypospray,
 		/obj/item/sensor_device,
 		/obj/item/radio,
 		/obj/item/clothing/gloves/,
@@ -123,7 +124,7 @@
 		/obj/item/stack/medical/gauze/twelve = 1,
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
-		/obj/item/reagent_containers/hypospray/medipen/ekit = 1,
+		/obj/item/reagent_containers/autoinjector/medipen/ekit = 1,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/surgical_drapes = 1,
 		/obj/item/scalpel = 1,
@@ -165,7 +166,7 @@
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/pill/patch/silver_sulf = 3,
 		/obj/item/reagent_containers/pill/oxandrolone = 2,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/autoinjector/medipen = 1,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -207,7 +208,7 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/syringe/perfluorodecalin = 5,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/autoinjector/medipen = 1,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -242,10 +243,80 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/pill/patch/synthflesh = 3,
-		/obj/item/reagent_containers/hypospray/medipen/atropine = 2,
+		/obj/item/reagent_containers/autoinjector/medipen/atropine = 2,
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/storage/pill_bottle/penacid = 1)
 	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray
+	name = "hypospray medical kit"
+	desc = "An advanced kit containing a hypospray and vials for most situations."
+	icon_state = "bezerk"
+	item_state = "firstaid-bezerk"
+	custom_premium_price = 300
+
+/obj/item/storage/firstaid/hypospray/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/storage/firstaid/hypospray/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/brute(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/burn(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/tox(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/oxy(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi(src)
+	new	/obj/item/healthanalyzer(src)
+
+/obj/item/storage/firstaid/hypospray/qmc
+	name = "QMC hypospray kit"
+	desc = "An advanced kit containing a QMC hypospray and medical supplies for most situations found on lavaland."
+
+/obj/item/storage/firstaid/hypospray/qmc/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray/qmc(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/brute(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/burn(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/lavaland(src)
+	new /obj/item/stack/medical/suture(src)
+	new /obj/item/stack/medical/mesh(src)
+	new	/obj/item/healthanalyzer(src)
+
+/obj/item/storage/firstaid/hypospray/paramedic
+	name = "first aid autosyringe kit"
+	desc = "A simple first aid kit containing an autosyringe and vials with chemicals used to secure and stabilize serious wounds for later treatment."
+	icon_state = "medbriefcase"
+	item_state = "firstaid"
+
+/obj/item/storage/firstaid/hypospray/paramedic/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/coagulant(src)
+	new /obj/item/stack/medical/suture(src)
+	new /obj/item/stack/medical/mesh(src)
+	new	/obj/item/healthanalyzer(src)
+
+/obj/item/storage/firstaid/hypospray/syndicate
+	name = "combat hypospray kit"
+	desc = "An advanced kit containing a combat hypospray and a wide variety of vials containing \"perfectly legal chemicals\" to treat combatants."
+
+/obj/item/storage/firstaid/hypospray/syndicate/PopulateContents()
+	if(empty)
+		return
+	new /obj/item/hypospray/combat(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/combat(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/combat(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/omnizine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/morphine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/epi(src)
+	new	/obj/item/healthanalyzer(src)
 
 /obj/item/storage/firstaid/tactical
 	name = "combat medical kit"
@@ -263,7 +334,7 @@
 		return
 	new /obj/item/stack/medical/gauze(src)
 	new /obj/item/defibrillator/compact/combat/loaded(src)
-	new /obj/item/reagent_containers/hypospray/combat(src)
+	new /obj/item/hypospray/combat(src)
 	new /obj/item/reagent_containers/pill/patch/styptic(src)
 	new /obj/item/reagent_containers/pill/patch/styptic(src)
 	new /obj/item/reagent_containers/pill/patch/silver_sulf(src)

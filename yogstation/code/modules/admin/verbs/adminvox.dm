@@ -1,7 +1,7 @@
 /client/proc/admin_vox()
 	//This proc is a slightly-rewritten clone of /mob/living/silicon/ai/proc/announcement()
 	//Check over there to see what's different, if this ever breaks.
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Force AI Vox"
 	set hidden = 0
 

@@ -27,7 +27,7 @@
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	minimal_character_age = 28
+	minimal_character_age = 35 //Feasibly expected to know everything and potentially do anything. Leagues of experience, briefing, training, and trust required for this role
 
 /datum/job/captain/get_access()
 	return get_all_accesses()
