@@ -607,3 +607,13 @@
 	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_TOOLS
+
+/datum/crafting_recipe/radiogloves
+	name = "Translation Gloves"
+	result = /obj/item/clothing/gloves/radio
+	time = 15
+	reqs = list(/obj/item/clothing/gloves/color/black = 1,
+				/obj/item/stack/cable_coil = 2,
+				/obj/item/radio = 1)
+	tools = list(TOOL_WIRECUTTER)
+	category = CAT_CLOTHING

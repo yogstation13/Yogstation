@@ -221,6 +221,7 @@
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
 #define TRAIT_MESONS			"mesons"
+#define TRAIT_SIGN_LANG         "sign_language"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
