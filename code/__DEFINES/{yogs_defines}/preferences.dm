@@ -9,6 +9,7 @@
 #define TOGGLES_DEFAULT_CHAT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_PULLR|CHAT_GHOSTWHISPER|CHAT_GHOSTPDA|CHAT_GHOSTRADIO|CHAT_BANKCARD|CHAT_LOOC|GHOST_CKEY|CHAT_TYPING_INDICATOR)
 
 // TTS enums
+GLOBAL_LIST_INIT(tts_selection, list("Random", "Masc1", "Masc2", "Masc3", "Masc4", "Fem1", "Fem2", "Fem3", "Fem4"))
 GLOBAL_LIST_INIT(tts_enum, list("Masc1" = ":np", "Masc2" = ":nh", "Masc3" = ":nf", "Masc4" = ":nd", "Fem1" = ":nb", "Fem2" = ":nr", "Fem3" = ":nu", "Fem4" = ":nw"))
 #define MASC1 ":np"
 #define MASC2 ":nh"

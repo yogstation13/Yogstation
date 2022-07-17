@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 	var/tts_voice = "Random"
-	var/list/tts_voices = list("Random", "Masc1", "Masc2", "Masc3", "Masc4", "Fem1", "Fem2", "Fem3", "Fem4")
+	var/list/tts_voices = GLOB.tts_selection
 
 	var/list/random_locks = list()
 
