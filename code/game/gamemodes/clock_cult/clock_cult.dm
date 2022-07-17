@@ -112,23 +112,23 @@ Credit where due:
 			L.playsound_local(get_turf(L), 'sound/ambience/antag/clockcultalr.ogg', 40, TRUE, frequency = 100000, pressure_affected = FALSE)
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 5)
 
-	if(ishuman(M) && (servant_type == /datum/antagonist/servant_of_ratvar) && GLOB.critical_servant_count)
+	if(GLOB.critical_servant_count)
 		if((GLOB.critical_servant_count)/2 < SSticker.mode.servants_of_ratvar.len)
 			if(GLOB.conversion_warning_stage < CONVERSION_WARNING_HALFWAY)
-				send_sound_to_servants(sound('sound/magic/clockwork/scripture_tier_up.ogg'))
-				hierophant_message("Rat'var's influence is growing. The Ark will be torn open if [GLOB.critical_servant_count - GLOB.human_servants_of_ratvar.len] more minds are converted to the faith of Rat'var.", span="<span class='large_brass'>")
+				send_sound_to_servants('sound/magic/clockwork/scripture_tier_up.ogg')
+				hierophant_message("Rat'var's influence is growing. The Ark will be torn open if [GLOB.critical_servant_count - SSticker.mode.servants_of_ratvar.len] more minds are converted to the faith of Rat'var.", span="<span class='large_brass'>")
 				GLOB.script_scripture_unlocked = TRUE
 				GLOB.conversion_warning_stage = CONVERSION_WARNING_HALFWAY
 				sleep(10)
 				hierophant_message("Script scriptures are availible now.", span="<span class='large_brass'>")
 		else if((3/4) * GLOB.critical_servant_count < SSticker.mode.servants_of_ratvar.len)
 			if(GLOB.conversion_warning_stage < CONVERSION_WARNING_THREEQUARTERS)
-				send_sound_to_servants(sound('sound/magic/clockwork/scripture_tier_up.ogg'))
-				hierophant_message("You feel the boundary between reality and fiction lessen as the Ark sparks with an arcane energy.<br> The Ark will be torn open if [GLOB.critical_servant_count - GLOB.human_servants_of_ratvar.len] more minds are converted to the faith of Rat'var.", span="<span class='large_brass'>", use_sanitisation=FALSE)
+				send_sound_to_servants('sound/magic/clockwork/scripture_tier_up.ogg')
+				hierophant_message("You feel the boundary between reality and fiction lessen as the Ark sparks with an arcane energy.<br> The Ark will be torn open if [GLOB.critical_servant_count - SSticker.mode.servants_of_ratvar.len] more minds are converted to the faith of Rat'var.", span="<span class='large_brass'>", use_sanitisation=FALSE)
 				GLOB.conversion_warning_stage = CONVERSION_WARNING_THREEQUARTERS
 		else if(GLOB.critical_servant_count-1 == SSticker.mode.servants_of_ratvar.len)
 			if(GLOB.conversion_warning_stage < CONVERSION_WARNING_CRITIAL)
-				send_sound_to_servants(sound('sound/magic/clockwork/scripture_tier_up.ogg'))
+				send_sound_to_servants('sound/magic/clockwork/scripture_tier_up.ogg')
 				hierophant_message("The internal cogs of the Ark begin spinning, ready for activation.<br> Upon the next conversion, the dimensional barrier will become too weak for the Celestial Gateway to remain closed and it will be forced open.", span="<span class='large_brass'>", use_sanitisation=FALSE)
 				GLOB.conversion_warning_stage = CONVERSION_WARNING_CRITIAL
 
@@ -229,7 +229,6 @@ Credit where due:
 	for(var/turf/T in cog_spawns)
 		new /obj/item/clockwork/construct_chassis/cogscarab(T)
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar //that's a mouthful
-	G.final_countdown(ark_time)
 	calculate_clockcult_values()
 	..()
 	return 1
