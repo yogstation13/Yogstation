@@ -181,6 +181,10 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
+	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
+	return
+
+/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
 	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
 	sleep(3 SECONDS)
 	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")
@@ -190,32 +194,6 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	H.say("Unit [H.real_name] is fully functional. Have a nice day.")
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
-	return
-
-/datum/species/ipc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
-	if(istype(I, /obj/item/ipcrevive) && intent != INTENT_HARM)
-		if(H.stat != DEAD)
-			to_chat(user, span_warning("This unit is not dead!"))
-			return FALSE
-
-		var/obj/item/organ/brain/BR = H.getorgan(/obj/item/organ/brain)
-		if(BR)
-			if(BR.suicided || BR.brainmob?.suiciding)
-				to_chat(user, span_warning("This units personality matrix is gone."))
-				return FALSE
-		if(H.health < 0)
-			to_chat(user, span_warning("You have to repair the IPC before using this module!"))
-			return FALSE
-		to_chat(user, span_warning("You start restarting the IPC's internal circuitry."))
-		if(!do_after(user, 5 SECONDS, H))
-			return
-		if(H.mind)
-			H.mind.grab_ghost()
-		qdel(I) // One use only >:(
-		H.revive()
-		to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
-		return TRUE
-	return ..()
 
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
