@@ -88,7 +88,7 @@
 	desc = "Adds the silo direct link to the RCD."
 	id = "rcd_upgrade_silo_link"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2500, /datum/material/glass = 2500, /datum/material/silver = 2500, /datum/material/titanium = 2500, /datum/material/bluespace = 2500)
+	materials = list(/datum/material/iron = 2500, /datum/material/glass = 2500, /datum/material/bluespace = 2500)
 	build_path = /obj/item/rcd_upgrade/silo_link
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
