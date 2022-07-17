@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Fixing a robotic limb no longer displays tool name"
