@@ -76,7 +76,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 	var/tts_voice = "Random"
-	var/list/tts_voices = GLOB.tts_selection
 
 	var/list/random_locks = list()
 
@@ -1817,7 +1816,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							accent = aksent
 				
 				if("tts_voice")
-					var/chosen_voice = input(user, "Choose your voice:", "TTS Voice") as null|anything in tts_voices
+					var/chosen_voice = input(user, "Choose your voice:", "TTS Voice") as null|anything in GLOB.tts_selection
 					if(chosen_voice)
 						tts_voice = GLOB.tts_enum[chosen_voice]
 
