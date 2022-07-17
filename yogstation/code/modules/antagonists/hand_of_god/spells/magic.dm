@@ -16,7 +16,7 @@
 	var/obj/item/projectile/feedback/F = null
 	var/target_turf = get_turf(target)
 	var/angle_to_target = Get_Angle(user, target_turf)
-	F = new (startloc)
+	F = new /obj/item/projectile/feedback(startloc)
 	F.cult = antag.cult
 	F.preparePixelProjectile(startloc, startloc)
 	F.firer = user

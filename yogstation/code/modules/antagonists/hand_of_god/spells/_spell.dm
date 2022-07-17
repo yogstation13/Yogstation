@@ -93,7 +93,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
-/obj/item/melee/hog_magic/afterattack(atom/target, mob/living/user)
+/obj/item/melee/hog_magic/afterattack(atom/target, mob/living/user, proximity)
 	if(proximity)
 		if(ranged_attack(target, user))
 			qdel(src)
