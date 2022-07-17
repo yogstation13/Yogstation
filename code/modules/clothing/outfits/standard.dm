@@ -246,7 +246,7 @@
 	suit = /obj/item/clothing/suit/cultrobes/alt/ghost
 	shoes = /obj/item/clothing/shoes/cult/alt/ghost
 	head = /obj/item/clothing/head/culthood/alt/ghost
-	r_hand = /obj/item/melee/cultblade/ghost
+	r_hand = /obj/item/twohanded/vibro_weapon/cultblade/ghost
 
 /datum/outfit/wizard
 	name = "Blue Wizard"

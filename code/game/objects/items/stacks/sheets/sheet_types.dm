@@ -583,9 +583,9 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
  */
 
 GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
-	new/datum/stack_recipe("altar", /obj/structure/destructible/cult/talisman, 3, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("archives", /obj/structure/destructible/cult/tome, 3, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("forge", /obj/structure/destructible/cult/forge, 3, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("altar", /obj/structure/destructible/cult/talisman, 10, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("archives", /obj/structure/destructible/cult/tome, 10, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("forge", /obj/structure/destructible/cult/forge, 10, time = 60, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("pylon", /obj/structure/destructible/cult/pylon, 4, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("runed door", /obj/machinery/door/airlock/cult, 1, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("runed girder", /obj/structure/girder/cult, 1, time = 50, one_per_turf = TRUE, on_floor = TRUE), \

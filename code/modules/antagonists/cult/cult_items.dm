@@ -22,7 +22,7 @@
 	throwforce = 25
 	wound_bonus = -10
 	bare_wound_bonus = 20
-	armour_penetration = 35
+	armour_penetration = 10
 	actions_types = list(/datum/action/item_action/cult_dagger)
 
 /obj/item/melee/cultblade/dagger/Initialize()
@@ -31,7 +31,7 @@
 	I.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_dagger", I)
 
-/obj/item/melee/cultblade
+/obj/item/twohanded/vibro_weapon/cultblade
 	name = "eldritch longsword"
 	desc = "A sword humming with unholy energy. It glows with a dim red light."
 	icon = 'icons/obj/weapons/swords.dmi'
@@ -42,18 +42,21 @@
 	flags_1 = CONDUCT_1
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_BULKY
-	force = 25
+	armour_penetration = 15
+	block_chance = 5
+	force_wielded = 30
+	force = 15
 	throwforce = 10
 	wound_bonus = -80
 	bare_wound_bonus = 30
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "rended")
 
-/obj/item/melee/cultblade/Initialize()
+/obj/item/twohanded/vibro_weapon/cultblade/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 40, 100)
 
-/obj/item/melee/cultblade/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/twohanded/vibro_weapon/cultblade/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!iscultist(user))
 		user.Paralyze(100)
 		user.dropItemToGround(src, TRUE)
@@ -67,17 +70,21 @@
 		return
 	..()
 
-/obj/item/melee/cultblade/ghost
+/obj/item/twohanded/vibro_weapon/update_icon()
+	icon_state = "cultblade"
+
+/obj/item/twohanded/vibro_weapon/cultblade/ghost
 	name = "eldritch sword"
-	force = 19 //can't break normal airlocks
+	force_wielded = 19 //can't break normal airlocks
+	force = 10
 	item_flags = NEEDS_PERMIT | DROPDEL
 	flags_1 = NONE
 
-/obj/item/melee/cultblade/ghost/Initialize()
+/obj/item/twohanded/vibro_weapon/cultblade/ghost/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
-/obj/item/melee/cultblade/pickup(mob/living/user)
+/obj/item/twohanded/vibro_weapon/cultblade/pickup(mob/living/user)
 	..()
 	if(!iscultist(user))
 		if(!is_servant_of_ratvar(user))
@@ -96,7 +103,7 @@
 	block_chance = 50
 	throwforce = 20
 	force = 35
-	armour_penetration = 45
+	armour_penetration = 20
 	throw_speed = 1
 	throw_range = 3
 	sharpness = SHARP_EDGED
@@ -300,7 +307,7 @@
 	icon_state = "cultrobes"
 	item_state = "cultrobes"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
+	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
 	armor = list(MELEE = 40, BULLET = 30, LASER = 40,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = CHEST|GROIN|LEGS|ARMS
@@ -351,7 +358,7 @@
 	icon_state = "magusred"
 	item_state = "magusred"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
+	allowed = list(/obj/item/tome, /obj/item/melee/cultblade/dagger)
 	armor = list(MELEE = 50, BULLET = 30, LASER = 50,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
@@ -370,7 +377,7 @@
 	item_state = "cult_armor"
 	desc = "A heavily-armored exosuit worn by warriors of the Nar-Sien cult. It can withstand hard vacuum."
 	w_class = WEIGHT_CLASS_BULKY
-	allowed = list(/obj/item/tome, /obj/item/melee/cultblade, /obj/item/tank/internals/)
+	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade, /obj/item/tank/internals/)
 	armor = list(MELEE = 70, BULLET = 50, LASER = 30,ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 40, ACID = 75)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/cult
 
@@ -394,7 +401,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	armor = list(MELEE = 50, BULLET = 40, LASER = 50,ENERGY = 30, BOMB = 50, BIO = 30, RAD = 30, FIRE = 50, ACID = 60)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
+	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
 	var/current_charges = 3
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie
 
@@ -444,7 +451,7 @@
 	icon_state = "cultrobes"
 	item_state = "cultrobes"
 	flags_inv = HIDEJUMPSUIT
-	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
+	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	armor = list(MELEE = -45, BULLET = -45, LASER = -45,ENERGY = -45, BOMB = -45, BIO = -45, RAD = -45, FIRE = 0, ACID = 0)
 	slowdown = -0.6
@@ -672,7 +679,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	force_wielded = 24
 	throwforce = 40
 	throw_speed = 2
-	armour_penetration = 30
+	armour_penetration = 15
 	block_chance = 30
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
 	sharpness = SHARP_POINTY
@@ -931,6 +938,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	throwforce = 15
 	throw_speed = 1
 	throw_range = 4
+	block_chance = 40
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("bumped", "prodded")
 	hitsound = 'sound/weapons/smash.ogg'
@@ -1006,13 +1014,10 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
 		else if(!..())
 			if(!L.anti_magic_check())
-				if(L.buckled)
-					L.buckled.unbuckle_mob(L)
-
 				if(is_servant_of_ratvar(L))
-					L.Paralyze(60)
+					L.Knockdown(60)
 				else
-					L.Paralyze(30)
+					L.Knockdown(30)
 				if(D?.thrower)
 					for(var/mob/living/Next in orange(2, T))
 						if(!Next.density || iscultist(Next))

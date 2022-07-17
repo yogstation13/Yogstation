@@ -656,7 +656,7 @@
 		C.equip_to_slot_or_del(new /obj/item/storage/backpack/cultpack(user), SLOT_BACK)
 		if(C == user)
 			qdel(src) //Clears the hands
-		C.put_in_hands(new /obj/item/melee/cultblade(user))
+		C.put_in_hands(new /obj/item/twohanded/vibro_weapon/cultblade(user))
 		C.put_in_hands(new /obj/item/restraints/legcuffs/bola/cult(user))
 		..()
 

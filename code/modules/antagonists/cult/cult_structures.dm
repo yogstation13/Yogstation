@@ -112,7 +112,7 @@
 		if("Flask of Unholy Water")
 			pickedtype += /obj/item/reagent_containers/glass/beaker/unholywater
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
-		cooldowntime = world.time + 2400
+		cooldowntime = world.time + 3600
 		for(var/N in pickedtype)
 			new N(get_turf(src))
 			to_chat(user, span_cultitalic("You kneel before the altar and your faith is rewarded with the [choice]!"))
@@ -152,7 +152,7 @@
 		if("Mirror Shield")
 			pickedtype += /obj/item/shield/mirror
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
-		cooldowntime = world.time + 2400
+		cooldowntime = world.time + 3600
 		for(var/N in pickedtype)
 			new N(get_turf(src))
 			to_chat(user, span_cultitalic("You work the forge as dark knowledge guides your hands, creating the [choice]!"))
@@ -267,7 +267,7 @@
 			pickedtype += /obj/item/cult_shift
 			pickedtype += /obj/item/flashlight/flare/culttorch
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
-		cooldowntime = world.time + 2400
+		cooldowntime = world.time + 3600
 		for(var/N in pickedtype)
 			new N(get_turf(src))
 			to_chat(user, span_cultitalic("You summon the [choice] from the archives!"))
