@@ -51,8 +51,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		toggles |= SOUND_ALT
 	if (current_version < 37)
 		chat_toggles |= CHAT_TYPING_INDICATOR
-	if (current_version < 38)
-		chat_toggles |= HEAR_TTS // Muted by default
 	return
 
 /datum/preferences/proc/update_character(current_version, savefile/S)

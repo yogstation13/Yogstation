@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			AM.Hear(rendered, src, message_language, message, , spans, message_mods)
 		if(ismob(AM))
 			var/mob/MB = AM
-			if(MB.client && !(MB.client.prefs.chat_toggles & HEAR_TTS) && MB.has_language(message_language))
+			if(MB?.client?.prefs.chat_toggles & ~HEAR_TTS && MB.has_language(message_language))
 				MB.playsound_local(get_turf(src), "dectalk/[md5(msghash)].wav", 100) // TTS play
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
