@@ -1256,6 +1256,62 @@
 	contains = list(/obj/item/storage/firstaid/o2)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
+/datum/supply_pack/medical/hypospraykitvial_single
+	name = "Hypospray Kit Single-Pack"
+	desc = "Contains a hypospray kit containing a hypospray and empty vials for applying reagents to patients."
+	cost = 200
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/vial)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitbasic_single
+	name = "Basic Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing hypospray vials for most common situations."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/basic)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitbrute_single
+	name = "Brute Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing hypospray vials to treat most blunt trauma."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/brute)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitburn_single
+	name = "Burn Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing hypospray vials to treat most burns."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/burn)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkittox_single
+	name = "Toxin Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing hypospray vials to cure toxic damage."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/toxin)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitoxy_single
+	name = "Oxygen Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing a vials to treat suffication."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/oxygen)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitadv_single
+	name = "Advanced Hypospray Vial Kit Single-Pack"
+	desc = "Contains an advanced hypospray vial kit containing vials for most situations."
+	cost = 200
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/advanced)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
 /datum/supply_pack/medical/medipen_twopak
 	name = "Medipen Two-Pak"
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
