@@ -261,3 +261,40 @@
 		duration = max(duration, 100)
 	return slab.procure_gateway(invoker, duration, portal_uses)
 
+//==================================//
+// !      Dimensional Breach      ! //
+//==================================//
+/datum/clockwork_scripture/ark_activation
+	name = "Ark Invigoration"
+	descname = "Dimensional Breach"
+	desc = "Prepares the Ark for activation, alerting the crew of your existence. Requires 6 invokers."
+	usage_tip = "Prepares the Ark for activation, alerting the crew of your existence."
+	power_cost = 10000
+	channel_time = 140
+	invocations = list("Oh great Engine, take my soul...", "...it is time for you to rise...", "...through rifts you shall come...", "...to rise among the stars again!")
+	multiple_invokers_used = TRUE
+	invokers_required = 6
+	tier = SCRIPTURE_SCRIPT
+	recital_sound = 'sound/magic/clockwork/narsie_attack.ogg'
+	quickbind = FALSE
+
+/datum/clockwork_scripture/ark_activation/New()
+	. = ..()
+
+/datum/clockwork_scripture/ark_activation/check_special_requirements()
+	if(!..())
+		return FALSE
+	if(!is_reebe(get_area(invoker).z))
+		to_chat(invoker, "<span class='brass'>You need to be near the gateway to channel its energy!</span>")
+		return FALSE
+	return TRUE
+
+/datum/clockcult/scripture/ark_activation/invoke_success()
+	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+	if(!G)
+		to_chat(invoker, "<span class='brass'>No celestial gateway located, contact the admins.</span>")
+		return FALSE
+	if(G.active)
+		to_chat(invoker, "<span class='brass'>The celestial gateway is already active. No need to activate it again.</span>")
+		return FALSE
+	gateway.let_slip_the_dogs()

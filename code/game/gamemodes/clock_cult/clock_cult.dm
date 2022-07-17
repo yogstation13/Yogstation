@@ -134,9 +134,6 @@ Credit where due:
 				hierophant_message(span_large_brass("The internal cogs of the Ark begin spinning, ready for activation.<br> Upon the next conversion, the dimensional barrier will become too weak for the Celestial Gateway to remain closed and it will be forced open."))
 				GLOB.conversion_warning_stage = CONVERSION_WARNING_CRITIAL
 
-
-
-
 /proc/remove_servant_of_ratvar(mob/L, silent = FALSE)
 	if(!L || !L.mind)
 		return
@@ -154,11 +151,19 @@ Credit where due:
 /proc/check_ark_status()
 	if(!GLOB.critical_servant_count)
 		return
-	if(GLOB.ark_of_the_clockwork_justiciar.active)
+	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
+	if(G.active)
 		return
 	hierophant_message("The Ark's many cogs suddenly whir to life, steam gushing out of its many crevices; it will open in 5 minutes!", null, "<span class='large_brass'>")
-	GLOB.ark_of_the_clockwork_justiciar.let_slip_the_dogs()
+	G.let_slip_the_dogs()
 	return TRUE
+
+/proc/send_sound_to_servants(sound/S)
+	for(var/datum/mind/M in GLOB.servants_of_ratvar)
+		if(M.current.mind)
+			SEND_SOUND(M.current, S)
+	for(var/mob/dead/observer/O in GLOB.player_list)
+		SEND_SOUND(O, S)
 
 ///////////////
 // GAME MODE //
@@ -230,7 +235,6 @@ Credit where due:
 	var/list/cog_spawns = GLOB.servant_spawns_scarabs.Copy()
 	for(var/turf/T in cog_spawns)
 		new /obj/item/clockwork/construct_chassis/cogscarab(T)
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar //that's a mouthful
 	calculate_clockcult_values()
 	..()
 	return 1

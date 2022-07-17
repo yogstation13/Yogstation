@@ -70,10 +70,7 @@
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/cry_havoc()
 	visible_message(span_boldwarning("[src] shudders and roars to life, its parts beginning to whirr and screech!"))
 	hierophant_message("<span class='bold large_brass'>The Ark is activating! You will be transported there soon!</span>")
-	for(var/mob/M in GLOB.player_list)
-		var/turf/T = get_turf(M)
-		if(is_servant_of_ratvar(M) || isobserver(M) || (T && T.z == z))
-			M.playsound_local(M, 'sound/magic/clockwork/ark_activation_sequence.ogg', 30, FALSE, pressure_affected = FALSE)
+	send_sound_to_servants('sound/magic/clockwork/ark_activation_sequence.ogg')
 	addtimer(CALLBACK(src, .proc/let_slip_the_dogs), 300)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/let_slip_the_dogs()
@@ -84,7 +81,6 @@
 	@!$, [text2ratvar("PURGE ALL UNTRUTHS")] <&. the anomalies and destroy their source to prevent further damage to corporate property. This is \
 	not a drill.[grace_period ? " Estimated time of appearance: [grace_period] seconds. Use this time to prepare for an attack on [station_name()]." : ""]", \
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
-	SSshuttle.registerHostileEnvironment(src)
 	set_security_level(SEC_LEVEL_GAMMA)
 	for(var/V in SSticker.mode.servants_of_ratvar)
 		var/datum/mind/M = V
@@ -116,7 +112,6 @@
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/spawn_animation()
 	hierophant_message("<span class='bold large_brass'>The Ark has activated! [grace_period ? "You have [round(grace_period / 60)] minutes until the crew invades! " : ""]Defend it at all costs!</span>", FALSE, src)
 	sound_to_playing_players(volume = 10, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
-	seconds_until_activation = 0
 	SSshuttle.registerHostileEnvironment(src)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/initiate_mass_recall()
@@ -203,9 +198,7 @@
 	take_damage(damage, BRUTE, BOMB, 0)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_time(var/deciseconds = TRUE)
-	if(seconds_until_activation)
-		. = seconds_until_activation
-	else if(grace_period)
+	if(grace_period)
 		. = grace_period
 	else if(GATEWAY_RATVAR_ARRIVAL - progress_in_seconds > 0)
 		. = round(max((GATEWAY_RATVAR_ARRIVAL - progress_in_seconds) / (GATEWAY_SUMMON_RATE), 0), 1)
@@ -213,8 +206,6 @@
 		. *= 10
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_text(s_on_time)
-	if(seconds_until_activation)
-		return "[get_arrival_time()][s_on_time ? "S" : ""]"
 	if(grace_period)
 		return "[get_arrival_time()][s_on_time ? "S" : ""]"
 	. = "IMMINENT"
@@ -350,9 +341,9 @@
 			if(alert(user, "You're REALLY SURE? This cannot be undone.", name, "Yes - Activate the Ark", "No") == "Yes - Activate the Ark")
 				message_admins(span_danger("Admin [key_name_admin(user)] started the Ark's countdown!"))
 				log_admin("Admin [key_name(user)] started the Ark's countdown on a non-clockcult mode!")
-				to_chat(user, "<span class='userdanger'>The gamemode is now being treated as clockwork cult, and the Ark is counting down from 30 \
-				minutes. You will need to create servant players yourself.</span>")
-				final_countdown(35)
+				calculate_clockcult_values()
+				to_chat(user, "<span class='userdanger'>The gamemode is now being treated as clockwork cult, and the Ark will activate once there will be\
+				[GLOB.critical_servant_count] servants of Rat'var. You will need to create servant players yourself.</span>")
 
 
 
