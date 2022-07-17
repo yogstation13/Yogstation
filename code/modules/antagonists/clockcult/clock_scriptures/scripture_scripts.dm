@@ -126,7 +126,7 @@
 	span_brass("You bind clockwork equipment to yourself. Use Clockwork Armaments and Call Spear to summon them."))
 	var/datum/action/innate/clockwork_armaments/A = new()
 	A.Grant(invoker)
-	var/choice = input(M,"What weapon do you want to call upon?", "Clockwork Armaments") as anything in list("Brass Spear","Brass Battlehammer","Brass Sword", "Brass Bow")
+	var/choice = input(invoker,"What weapon do you want to call upon?", "Clockwork Armaments") as anything in list("Brass Spear","Brass Battlehammer","Brass Sword", "Brass Bow")
 	switch(choice)
 		if("Brass Spear")
 			var/datum/action/innate/call_weapon/ratvarian_spear/S = new()
@@ -219,24 +219,11 @@
 	desc = "Calls a brass battlehammer into your hands to fight your enemies."
 	weapon_type = /obj/item/clockwork/weapon/brass_battlehammer
 
-//Brass Bow: Creates a brass bow, which is capable of firing redlight arrows.
-/datum/clockwork_scripture/create_object/brass_bow
-	descname = "Self Recharging Ranged Weapon"
-	name = "Brass Bow"
-	desc = "Creates a bow capable of firing redlight arrows, doing moderate damage but recharges after use. The bow will recharge after 1 1/2 seconds."
-	invocations = list("Grant me armaments...", "...from the forge of Armorer!") // Temp text
-	channel_time = 10
-	power_cost = 400
-	whispered = TRUE
-	object_path = /obj/item/gun/ballistic/bow/energy/clockwork
-	creator_message = span_brass("You form a Brass Bow, which is capable of firing redlight arrows.")
-	usage_tip = "The bow will recharge after 1 1/2 seconds."
-	tier = SCRIPTURE_SCRIPT
-	space_allowed = TRUE
-	primary_component = BELLIGERENT_EYE
-	sort_priority = 6
-	quickbind = TRUE
-	quickbind_desc = "Creates a brass bow capable of firing redlight arrows, doing moderate damage but recharges after use."
+//Call brass bow: Creates or calls a brass bow, which is capable of firing redlight arrows.
+/datum/action/innate/call_weapon/brass_bow
+	name = "Call Brass Bow"
+	desc = "Calls a brass bowcapable of firing redlight arrows, doing moderate damage but recharges after use. The bow will recharge after 1.5 seconds.."
+	weapon_type = /obj/item/clockwork/weapon/brass_battlehammer
 
 
 //Spatial Gateway: Allows the invoker to teleport themselves and any nearby allies to a conscious servant or clockwork obelisk.

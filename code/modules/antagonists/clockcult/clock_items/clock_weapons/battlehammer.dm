@@ -5,14 +5,15 @@
 	force = 15
 	throwforce = 10
 	armour_penetration = -15
-	sharpness = IS_BLUNT
+	sharpness = SHARP_NONE
 	attack_verb = list("bashed", "smitted", "hammered", "attacked")
-	clockwork_desc = "Enemies hit by this will be flung back."
+	clockwork_desc = "A powerful hammer of Ratvarian making. Enemies hit with it would be flung back."
 
 /obj/item/clockwork/weapon/brass_battlehammer/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
-	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
-	target.throw_at(throw_target, 1, 4)
+	if(!is_servant_of_ratvar(target))
+		var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
+		target.throw_at(throw_target, 1, 4)
 
 /obj/item/clockwork/weapon/brass_battlehammer/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/turf/T = get_turf(hit_atom)
@@ -25,7 +26,7 @@
 				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
 		else if(!..())
 			if(!L.anti_magic_check())
-				var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
-				target.throw_at(throw_target, 1, 4)               
+				var/atom/throw_target = get_edge_target_turf(L, get_dir(src, get_step_away(L, src)))
+				L.throw_at(throw_target, 1, 4)               
 	else
 		..()
