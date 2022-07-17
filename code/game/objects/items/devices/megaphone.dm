@@ -26,7 +26,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/megaphone/equipped(mob/M, slot && !HAS_TRAIT(M, TRAIT_SIGN_LANG))
+/obj/item/megaphone/equipped(mob/M, slot)
 	. = ..()
 	if (slot == SLOT_HANDS)
 		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
