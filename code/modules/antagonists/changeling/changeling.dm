@@ -546,7 +546,7 @@
 	var/undershirt
 	var/socks
 	var/accent = null
-	var/tts = "Masc1"
+	var/tts = MASC1
 	/// What scars the target had when we copied them, in string form (like persistent scars)
 	var/list/stored_scars
 

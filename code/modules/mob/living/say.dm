@@ -300,17 +300,13 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesdropping = stars(message)
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
 
-	var/voice = "Masc1"
+	var/voice = MASC1
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		voice = H.tts
 	
-	var/match_voice = list("Masc1" = ":np", "Masc2" = ":nh", "Masc3" = ":nf", "Masc4" = ":nd", "Fem1" = ":nb", "Fem2" = ":nr", "Fem3" = ":nu", "Fem4" = ":nw")
-	
-	voice = match_voice[voice]
-	
 	var/msghash = md5(message)
-	if(voice != "Masc1")
+	if(voice != MASC1)
 		msghash = md5("[voice][message]") // Different voices should be cached separately
 
 	// TTS generation

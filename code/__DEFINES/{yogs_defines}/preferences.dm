@@ -8,8 +8,19 @@
 #undef TOGGLES_DEFAULT_CHAT
 #define TOGGLES_DEFAULT_CHAT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_PULLR|CHAT_GHOSTWHISPER|CHAT_GHOSTPDA|CHAT_GHOSTRADIO|CHAT_BANKCARD|CHAT_LOOC|GHOST_CKEY|CHAT_TYPING_INDICATOR|HEAR_TTS)
 
-
-
+// TTS enums
+GLOBAL_LIST_INIT(tts_enum, list("Masc1" = ":np", "Masc2" = ":nh", "Masc3" = ":nf", "Masc4" = ":nd", "Fem1" = ":nb", "Fem2" = ":nr", "Fem3" = ":nu", "Fem4" = ":nw"))
+GLOBAL_LIST_INIT(tts_all, list(MASC1, MASC2, MASC3, MASC4, FEM1, FEM2, FEM3, FEM4))
+GLOBAL_LIST_INIT(tts_masc, list(MASC1, MASC2, MASC3, MASC4))
+GLOBAL_LIST_INIT(tts_fem, list(FEM1, FEM2, FEM3, FEM4))
+#define MASC1 ":np"
+#define MASC2 ":nh"
+#define MASC3 ":nf"
+#define MASC4 ":nd"
+#define FEM1 ":nb"
+#define FEM2 ":nr"
+#define FEM3 ":nu"
+#define FEM4 ":nw"
 
 //YOGS pref.yogstoggles enum's
 

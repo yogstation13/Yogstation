@@ -1819,7 +1819,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("tts_voice")
 					var/chosen_voice = input(user, "Choose your voice:", "TTS Voice") as null|anything in tts_voices
 					if(chosen_voice)
-						tts_voice = chosen_voice
+						tts_voice = GLOB.tts_enum[chosen_voice]
 
 				if ("preferred_map")
 					var/maplist = list()
