@@ -33,16 +33,17 @@
 /turf/proc/update_conductivity(turf/T)
 	var/dir = get_dir_multiz(src, T)
 	var/opp = REVERSE_DIR(dir)
+
 	//all these must be above zero for auxmos to even consider them
 	if(!thermal_conductivity || !heat_capacity || !T.thermal_conductivity || !T.heat_capacity)
 		return
+	
+	conductivity_blocked_directions &= ~dir
+	T.conductivity_blocked_directions &= ~opp
 	for(var/obj/O in contents+T.contents)
-		conductivity_blocked_directions &= ~dir
-		T.conductivity_blocked_directions &= ~opp
 		if(O.BlockThermalConductivity(opp)) 	//the direction and open/closed are already checked on CanAtmosPass() so there are no arguments
 			conductivity_blocked_directions |= dir
 			T.conductivity_blocked_directions |= opp
-			return
 
 //dir of this obj to the other turf
 /atom/movable/proc/BlockThermalConductivity(dir) // Objects that don't let heat through.
