@@ -138,7 +138,7 @@
 			var/datum/action/innate/call_weapon/sword/SW = new()
 			SW.Grant(invoker)
 		if("Brass Bow")
-			var/datum/clockwork_scripture/create_object/brass_bow/B = new()
+			var/datum/action/innate/call_weapon/brass_bow/B = new()
 			B.Grant(invoker)
 	return TRUE
 
@@ -223,7 +223,7 @@
 /datum/action/innate/call_weapon/brass_bow
 	name = "Call Brass Bow"
 	desc = "Calls a brass bowcapable of firing redlight arrows, doing moderate damage but recharges after use. The bow will recharge after 1.5 seconds.."
-	weapon_type = /obj/item/clockwork/weapon/brass_battlehammer
+	weapon_type = /obj/item/gun/ballistic/bow/energy/clockwork
 
 
 //Spatial Gateway: Allows the invoker to teleport themselves and any nearby allies to a conscious servant or clockwork obelisk.
