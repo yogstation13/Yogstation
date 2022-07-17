@@ -236,7 +236,8 @@
 				beaker.reagents.reaction(occupant, VAPOR)
 				if(air1.get_moles(/datum/gas/pluoxium) > 5 )//Use pluoxium over oxygen
 					air1.adjust_moles(/datum/gas/pluoxium, -max(0,air1.get_moles(/datum/gas/pluoxium) - 0.5 / efficiency))
-				else air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
+				else 
+					air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
 			if(++reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
 		if(air1.get_moles(/datum/gas/healium) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
@@ -255,7 +256,7 @@
 
 	var/datum/gas_mixture/air1 = airs[1]
 
-	if(!nodes[1] || !airs[1] || air1.get_moles(/datum/gas/oxygen) < 5 || air1.get_moles(/datum/gas/pluoxium) < 5) // Turn off if the machine won't work.
+	if(!nodes[1] || !airs[1] || (air1.get_moles(/datum/gas/oxygen) < 5 && air1.get_moles(/datum/gas/pluoxium) < 5)) // Turn off if the machine won't work.
 		on = FALSE
 		update_icon()
 		return
