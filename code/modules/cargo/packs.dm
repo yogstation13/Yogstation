@@ -271,7 +271,8 @@
 					/obj/item/storage/box/rubbershot,
 					/obj/item/ammo_box/c38/trac,
 					/obj/item/ammo_box/c38/hotshot,
-					/obj/item/ammo_box/c38/iceblox)
+					/obj/item/ammo_box/c38/iceblox,
+					/obj/item/ammo_box/c38/gutterpunch)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/security/armor
@@ -713,7 +714,7 @@
 
 /datum/supply_pack/engineering/bluespace_tap
 	name = "Bluespace Harvester Parts"
-	cost = 15000
+	cost = 10000
 	special = TRUE
 	contains = list(
 					/obj/item/circuitboard/machine/bluespace_tap,
@@ -1204,14 +1205,14 @@
 	name = "Medipen Variety-Pak"
 	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
 	cost = 2000
-	contains = list(/obj/item/reagent_containers/hypospray/medipen/,
-					/obj/item/reagent_containers/hypospray/medipen/,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen/,
+					/obj/item/reagent_containers/autoinjector/medipen/,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss
 )
 	crate_name = "medipen crate"
 
@@ -1259,7 +1260,7 @@
 	name = "Medipen Two-Pak"
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
 	cost = 500
-	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/autoinjector/medipen/ekit)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/chemical

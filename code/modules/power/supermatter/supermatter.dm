@@ -234,8 +234,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
 	. = ..()
 	if (istype(user, /mob/living/carbon))
-		var/mob/living/carbon/C = user
-		if (!istype(C.glasses, /obj/item/clothing/glasses/meson) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
+		if ((!HAS_TRAIT(user, TRAIT_MESONS)) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
 			. += span_danger("You get headaches just from looking at it.")
 
 /obj/machinery/power/supermatter_crystal/proc/get_status()
@@ -549,7 +548,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			air_update_turf()
 
 	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
-		if(!istype(l.glasses, /obj/item/clothing/glasses/meson) || corruptor_attached)
+		if((!HAS_TRAIT(l, TRAIT_MESONS)) || corruptor_attached)
 			var/D = sqrt(1 / max(1, get_dist(l, src)))
 			l.hallucination += power * config_hallucination_power * D
 			l.hallucination = clamp(l.hallucination, 0, 200)

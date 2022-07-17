@@ -19,6 +19,7 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_NETWORK_ADMIN
+	minimal_character_age = 22 //Feasibly same level as engineer, mostly a data engineer instead of a mechanical or construction-based one, though is still capable of making certain machines
 
 	changed_maps = list("OmegaStation")
 

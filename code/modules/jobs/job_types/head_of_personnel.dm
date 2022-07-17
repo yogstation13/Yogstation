@@ -31,7 +31,7 @@
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
-	minimal_character_age = 25
+	minimal_character_age = 26 //Baseline age requirement and competency, as well as ability to assume leadership in shite situations
 
 	changed_maps = list("OmegaStation")
 
