@@ -557,8 +557,7 @@
 		greet_servant(S)
 		equip_servant(S)
 		add_servant_of_ratvar(S, TRUE)
-	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar //that's a mouthful
-	G.final_countdown(ark_time)
+	calculate_clockcult_values()
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/clockcult/proc/greet_servant(mob/M) //Description of their role

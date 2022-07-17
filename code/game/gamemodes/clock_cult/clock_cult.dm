@@ -122,7 +122,7 @@ Credit where due:
 				GLOB.script_scripture_unlocked = TRUE
 				GLOB.conversion_warning_stage = CONVERSION_WARNING_HALFWAY
 				sleep(10)
-				hierophant_message(span_large_brass("Script scriptures are availible now.", span="<span class='large_brass'>"))
+				hierophant_message(span_large_brass("Script scriptures are availible now."))
 		else if((3/4) * GLOB.critical_servant_count < SSticker.mode.servants_of_ratvar.len)
 			if(GLOB.conversion_warning_stage < CONVERSION_WARNING_THREEQUARTERS)
 				send_sound_to_servants('sound/magic/clockwork/scripture_tier_up.ogg')
