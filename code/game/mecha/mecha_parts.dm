@@ -15,7 +15,7 @@
 		return FALSE
 	
 	// If there is an occupant and it is not a posibrain
-	if(M.occupant && !istype(M.occupant.loc, /obj/item/mmi/posibrain)) 
+	if(M.occupant && !istype(M.occupant.loc, /obj/item/mmi)) 
 		to_chat(user, span_warning("Someone is driving \the [M]!"))
 		return FALSE
 	user.visible_message("[user] attaches [src] to [M].", span_notice("You attach [src] to [M]."))
