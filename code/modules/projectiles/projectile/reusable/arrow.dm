@@ -179,4 +179,6 @@
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
+	fauna_damage_bonus = 0
+	damage = 13
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/clockbolt
