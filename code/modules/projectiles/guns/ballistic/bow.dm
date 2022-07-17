@@ -276,22 +276,22 @@
 	var/stored_ammo ///what was stored in the magazine before being folded?
 
 /obj/item/gun/ballistic/bow/energy/syndicate/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
-	if(folded == FALSE)
-		. = ..()
+	if(!folded)
+		return ..()
 	else
 		to_chat(user, span_notice("You must unfold [src] before firing it!"))
 		return FALSE
 
 /obj/item/gun/ballistic/bow/energy/syndicate/attack_self(mob/living/user)
-	if(folded == FALSE)
-		. = ..()
+	if(!folded)
+		return ..()
 	else
 		to_chat(user, span_notice("You must unfold [src] to chamber a round!"))
 		return FALSE
 
 /obj/item/gun/ballistic/bow/energy/syndicate/AltClick(mob/living/user)
-	if(folded == FALSE)
-		. = ..()
+	if(!folded)
+		return ..()
 	else
 		to_chat(user, span_notice("You must unfold [src] to switch firing modes!"))
 		return FALSE
