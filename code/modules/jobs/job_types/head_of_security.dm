@@ -29,7 +29,7 @@
 	paycheck_department = ACCOUNT_SEC
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
-	minimal_character_age = 28
+	minimal_character_age = 28 //You need some experience on your belt and a little gruffiness; you're still a foot soldier, not quite a tactician commander back at base
 
 	changed_maps = list("YogsPubby")
 

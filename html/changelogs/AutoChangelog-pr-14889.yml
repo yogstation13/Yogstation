@@ -1,0 +1,7 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "adds an organ fridge to the meta medbay"
+  - tweak: "wires the meta medbay treatment center,"
+  - tweak: "adds some firelocks to meta medbay"
+  - tweak: "fixed the cooler in meta medbay"

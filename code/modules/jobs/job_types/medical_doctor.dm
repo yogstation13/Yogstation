@@ -20,7 +20,7 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
-	minimal_character_age = 24
+	minimal_character_age = 26 //Barely acceptable considering the theoretically absurd knowledge they have, but fine
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
