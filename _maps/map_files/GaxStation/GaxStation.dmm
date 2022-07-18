@@ -17771,6 +17771,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"jyo" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/fancy/donut_box{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/hand_tele{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 5;
+	pixel_y = -26
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "jyu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -28021,16 +28037,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"oXc" = (
-/obj/machinery/computer/cargo{
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/hop)
 "oXL" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -35386,6 +35392,20 @@
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"thW" = (
+/obj/machinery/computer/cargo{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 5;
+	pixel_y = -26
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/hop)
 "tia" = (
 /turf/closed/wall,
 /area/clerk)
@@ -39587,6 +39607,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+"vvQ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32;
+	pixel_y = 5
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32;
+	pixel_y = -2
+	},
+/obj/machinery/recharger/wallrecharger{
+	pixel_x = 32;
+	pixel_y = -10
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "vwg" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -42986,18 +43024,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"xjw" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/hand_tele{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "xjy" = (
 /obj/machinery/shower{
 	pixel_y = 20
@@ -89963,7 +89989,7 @@ omw
 dPD
 iBU
 aiT
-oXc
+thW
 omw
 lmR
 add
@@ -89973,7 +89999,7 @@ ovq
 fLI
 ksF
 tFm
-xjw
+jyo
 hVM
 wpd
 rXh
@@ -92018,7 +92044,7 @@ wND
 rcq
 vSg
 rcq
-rcq
+vvQ
 nMP
 dxA
 fTY
