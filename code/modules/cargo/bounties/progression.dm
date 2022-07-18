@@ -13,7 +13,7 @@
 /datum/bounty/item/progression/mining_basic
 	name = "Common Mineral Prospecting"
 	description = "Basic materials are worth pocket change, but are integral for station longevity. Ship us a sheet of gold, uranium, or silver to certify your mining program as \"functional\""
-	reward = 1000
+	reward = 5000
 	wanted_types = list(/obj/item/stack/sheet/mineral/silver,/obj/item/stack/sheet/mineral/gold,/obj/item/stack/sheet/mineral/uranium)
 	unlocked_crates = list(/datum/supply_pack/clearance/ka_damage,/datum/supply_pack/clearance/ka_cooldown,/datum/supply_pack/clearance/ka_range)
 
@@ -34,7 +34,7 @@
 /datum/bounty/item/progression/mining_advanced
 	name = "Strange Material Prospecting"
 	description = "Initial scanning of your mining locale showed anomalous readings in line with that of bluespace crystals. ship us one to confirm their presence and we'll allow you to order a special treat."
-	reward = 1000
+	reward = 15000
 	wanted_types = list(/obj/item/stack/sheet/bluespace_crystal, /obj/item/stack/ore/bluespace_crystal) //we'll let them send artficial crystals since those would require department cooperation or shooting swarmers
 	unlocked_crates = list(/datum/supply_pack/clearance/plasmacutter_advanced)
 
