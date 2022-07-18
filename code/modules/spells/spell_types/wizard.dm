@@ -16,7 +16,7 @@
 	sound = 'sound/magic/magic_missile.ogg'
 
 /obj/item/projectile/magic/spell/magic_missile
-	name = "a magic missile"
+	name = "magic missile"
 	icon_state = "magicm"
 	range = 20
 	speed = 5

@@ -43,8 +43,8 @@
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_BULKY
 	armour_penetration = 15
-	block_chance = 5
-	force_wielded = 30
+	block_chance = 10
+	force_wielded = 12
 	force = 15
 	throwforce = 10
 	wound_bonus = -80
@@ -75,7 +75,7 @@
 
 /obj/item/twohanded/vibro_weapon/cultblade/ghost
 	name = "eldritch sword"
-	force_wielded = 19 //can't break normal airlocks
+	force_wielded = 9 //can't break normal airlocks
 	force = 10
 	item_flags = NEEDS_PERMIT | DROPDEL
 	flags_1 = NONE
@@ -486,7 +486,7 @@
 	name = "zealot's blindfold"
 	icon_state = "blindfold"
 	item_state = "blindfold"
-	flash_protect = 1
+	flash_protect = 2
 
 /obj/item/clothing/glasses/hud/health/night/cultblind/equipped(mob/living/user, slot)
 	..()
