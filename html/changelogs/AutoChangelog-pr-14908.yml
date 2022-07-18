@@ -1,0 +1,4 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes fishing biodome lockdown and fridge access"
