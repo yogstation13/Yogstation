@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 /atom/movable/proc/send_speech(message, range = 7, obj/source = src, bubble_type, list/spans, datum/language/message_language = null, list/message_mods = list())
 	// TTS generation
 	if(!isobserver(src)) // Ghosts can shut the fuck up please
-		var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
+		var/san_message = whitelist_alphanumeric(message)
 		if(!fexists("dectalk/[md5(message)].wav"))
 			if(world.system_type == MS_WINDOWS)
 				world.shelleo("say.exe -w \"dectalk/[md5(message)].wav\" \"[san_message]\"")

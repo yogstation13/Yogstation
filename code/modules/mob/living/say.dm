@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		msghash = md5("[voice][message]") // Different voices should be cached separately
 
 	// TTS generation
-	var/san_message = sanitize_simple(message, list(";"="", "'"="", "/"="", "\\"="", "\""="", "\["="", "\]"="", ":"=""))
+	var/san_message = whitelist_alphanumeric(message)
 	if(!fexists("dectalk/[md5(message)].wav") && last_tts + 2 SECONDS <= world.time)
 		last_tts = world.time
 		if(world.system_type == MS_WINDOWS)
