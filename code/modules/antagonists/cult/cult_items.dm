@@ -22,7 +22,7 @@
 	throwforce = 25
 	wound_bonus = -10
 	bare_wound_bonus = 20
-	armour_penetration = 10
+	armour_penetration = 15
 	actions_types = list(/datum/action/item_action/cult_dagger)
 
 /obj/item/melee/cultblade/dagger/Initialize()
