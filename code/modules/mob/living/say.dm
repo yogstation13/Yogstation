@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	var/voice = MASC1
 	
 	// GLOBs can be varedited, this cannot
-	var/list/immutable_voices = list("Masc1", "Masc2", "Masc3", "Masc4", "Fem1", "Fem2", "Fem3", "Fem4")
+	var/list/immutable_voices = list(MASC1, MASC2, MASC3, MASC4, FEM1, FEM2, FEM3, FEM4)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(immutable_voices.Find(H.tts)) // Sanitize H.tts with an immutable list
