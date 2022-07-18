@@ -18,7 +18,7 @@
 	payday_modifier = 0.6 // It's literally a fish
 	mutantbrain = /obj/item/organ/brain/fish
 	var/thirst = NUTRITION_LEVEL_FULL
-	var/thirst_drain = 0.5
+	var/thirst_drain = 1
 	wings_icon = "Robotic"
 	species_language_holder = /datum/language_holder/fishperson
 
