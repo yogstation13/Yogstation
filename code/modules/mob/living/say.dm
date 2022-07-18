@@ -303,7 +303,10 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	var/voice = MASC1
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		voice = H.tts
+		if(GLOB.tts_enum[voice])
+			voice = H.tts
+		else
+			voice = MASC1
 	
 	var/msghash = md5(message)
 	if(voice != MASC1)
