@@ -301,9 +301,12 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
 
 	var/voice = MASC1
+	
+	// GLOBs can be varedited, this cannot
+	var/list/immutable_voices = list("Masc1", "Masc2", "Masc3", "Masc4", "Fem1", "Fem2", "Fem3", "Fem4")
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(GLOB.tts_enum[voice])
+		if(immutable_voices.Find(H.tts)) // Sanitize H.tts with an immutable list
 			voice = H.tts
 		else
 			voice = MASC1
@@ -313,7 +316,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		msghash = md5("[voice][message]") // Different voices should be cached separately
 
 	// TTS generation
-	var/san_message = whitelist_alphanumeric(message)
+	var/san_message = whitelist_alphanumeric(message) // Only the 26 letter alphabet & numbers are allowed through
 	if(!fexists("dectalk/[md5(message)].wav") && last_tts + 2 SECONDS <= world.time)
 		last_tts = world.time
 		if(world.system_type == MS_WINDOWS)
