@@ -247,6 +247,10 @@
 	desc = "We barely understand the brains of terrestial animals. Who knows what we may find in the brain of such an advanced species?"
 	icon_state = "brain-x"
 
+/obj/item/organ/brain/fish
+	name = "sentient fish"
+	desc = "It can't survive for long out of water. Better get it in a bowl."
+	icon_state = "brain-fish"
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////
 

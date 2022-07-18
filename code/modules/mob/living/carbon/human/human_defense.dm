@@ -574,7 +574,7 @@
 				to_chat(src, span_notice("Your [head_clothes.name] protects your head and face from the acid!"))
 		else
 			. = get_bodypart(BODY_ZONE_HEAD)
-			if(.)
+			if(. && !isfishperson(src)) // Yogs: Fishpeople have glass bowls for heads
 				damaged += .
 			if(ears)
 				inventory_items_to_kill += ears

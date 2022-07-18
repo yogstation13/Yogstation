@@ -6,3 +6,8 @@
 	name = "Low power"
 	desc = "Find a power cell to recharge from or you may lose power."
 	icon_state = "lowcell"
+
+/obj/screen/alert/fish_thirsty
+	name = "Thirsty"
+	desc = "Drink some water or your fish bowl will run dry."
+	icon_state = "thirsty"
