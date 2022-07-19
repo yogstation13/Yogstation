@@ -20,7 +20,7 @@
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
-	minimal_character_age = 18
+	minimal_character_age = 22 //Engineering, AI theory, robotic knowledge and the like
 
 	changed_maps = list("OmegaStation")
 
