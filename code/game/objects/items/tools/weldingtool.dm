@@ -104,9 +104,9 @@
 				to_chat(user, span_warning("[affecting] is already in good condition!"))
 				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
-			user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.name]."), span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.name]."))
+			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			heal_robo_limb(src, H, user, 15, 0)
-			user.visible_message(span_notice("[user] fixes some of the dents on [src]'s [affecting.name]."), span_notice("You fix some of the dents on [src == user ? "your" : "[src]'s"] [affecting.name]."))
+			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
 
 	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
