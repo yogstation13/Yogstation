@@ -82,19 +82,19 @@
 		if (M.id == src.id)
 			INVOKE_ASYNC(M, /obj/machinery/door/poddoor.proc/open)
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == src.id)
 			M.drive()
 
-	sleep(60)
+	sleep(6 SECONDS)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if (M.id == src.id)
 			INVOKE_ASYNC(M, /obj/machinery/door/poddoor.proc/close)
 
-	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
+	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 SECONDS)
 
 
 /obj/item/assembly/control/igniter
@@ -143,5 +143,20 @@
 	for (var/obj/structure/bodycontainer/crematorium/C in GLOB.crematoriums)
 		if (C.id == id)
 			C.cremate(usr)
+
+	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 50)
+
+
+/obj/item/assembly/control/holosign
+	name = "holosign controller"
+	desc = "A remote controller for a holosign."
+
+/obj/item/assembly/control/holosign/activate()
+	if(cooldown)
+		return
+	cooldown = TRUE
+	for(var/obj/machinery/holosign/H in GLOB.machines)
+		if(H.id == id)
+			H.toggle()
 
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 50)

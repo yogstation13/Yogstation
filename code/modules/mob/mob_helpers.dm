@@ -245,10 +245,10 @@
 
 	for(var/i in 0 to duration-1)
 		if (i == 0)
-			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
+			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
 		else
-			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
-	animate(pixel_x=oldx, pixel_y=oldy, time=1)
+			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
+	animate(pixel_x=oldx, pixel_y=oldy, time=0.1 SECONDS)
 
 
 ///Find if the message has the real name of any user mob in the mob_list
@@ -440,9 +440,9 @@
 				H.update_damage_overlays()
 			user.visible_message("[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [affecting.name].", \
 			span_notice("You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [affecting.name]."))
-			return 1 //successful heal
+			return TRUE //successful heal
 		else
-			to_chat(user, span_warning("[affecting] is already in good condition!"))
+			return FALSE
 
 ///Is the passed in mob an admin ghost
 /proc/IsAdminGhost(var/mob/user)
@@ -483,7 +483,9 @@
 		var/mob/dead/observer/C = pick(candidates)
 		to_chat(M, "Your mob has been taken over by a ghost!")
 		message_admins("[key_name_admin(C)] has taken control of ([ADMIN_LOOKUPFLW(M)])")
-		M.ghostize(0)
+		var/mob/dead/observer/G = M.ghostize(FALSE)
+		if(istype(G))
+			G.mind = null
 		M.key = C.key
 		return TRUE
 	else

@@ -1,5 +1,8 @@
 /datum/surgery/dental_implant
 	name = "Dental implant"
+	desc = "This allows you to insert pills/patches into a tooth cavity, allowing you to pop it any time to ingest it. This works for both stimulants and suicide pills."
+	icon = 'icons/obj/implants.dmi'
+	icon_state = "reagents"
 	steps = list(/datum/surgery_step/drill, /datum/surgery_step/insert_pill)
 	possible_locs = list(BODY_ZONE_PRECISE_MOUTH)
 

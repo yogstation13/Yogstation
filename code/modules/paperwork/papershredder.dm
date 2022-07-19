@@ -48,6 +48,12 @@
 		shred_amount = 3
 	else if(istype(W, /obj/item/card/id))
 		shred_amount = 3
+	else if(istype(W, /obj/item/station_charter))
+		shred_amount = 3
+	else if(istype(W, /obj/item/card/emag))
+		qdel(W)
+		explosion(src, -1, 0, 1,)
+		visible_message(("<span class='danger'>The [src] short-circuits and explodes! </span>"))
 	else if(istype(W, /obj/item/paper_bundle))
 		shred_amount = 3
 	else if(istype(W, /obj/item/book))
@@ -154,7 +160,7 @@
 		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!</span>", \
 		"[class]You hold \the [P] up to \the [src], burning it slowly.</span>")
 
-		if(do_after(user, 2 SECONDS, TRUE, src))
+		if(do_after(user, 2 SECONDS, src))
 			user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 			"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 

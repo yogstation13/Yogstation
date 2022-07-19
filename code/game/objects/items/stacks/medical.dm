@@ -40,6 +40,8 @@
 	. = ..()
 	try_heal(M, user)
 
+/obj/item/stack/medical/get_belt_overlay()
+	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "stack_medical")
 
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
@@ -168,8 +170,12 @@
 
 	user.visible_message(span_warning("[user] begins wrapping the wounds on [M]'s [limb.name] with [src]..."), span_warning("You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]..."))
 
-	if(!do_after(user, (user == M ? self_delay : other_delay), target=M))
+	playsound(src, 'sound/effects/rip2.ogg', 25)
+
+	if(!do_after(user, (user == M ? self_delay : other_delay), M))
 		return
+
+	playsound(src, 'sound/effects/rip1.ogg', 25)
 
 	user.visible_message(span_green("[user] applies [src] to [M]'s [limb.name]."), span_green("You bandage the wounds on [user == M ? "yourself" : "[M]'s"] [limb.name]."))
 	limb.apply_gauze(src)

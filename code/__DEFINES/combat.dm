@@ -80,15 +80,15 @@
 
 //Actual combat defines
 
-//click cooldowns, in tenths of a second, used for various combat actions
-#define CLICK_CD_MELEE 8
-#define CLICK_CD_RANGE 4
-#define CLICK_CD_RAPID 2
-#define CLICK_CD_CLICK_ABILITY 6
-#define CLICK_CD_BREAKOUT 100
-#define CLICK_CD_HANDCUFFED 10
-#define CLICK_CD_RESIST 20
-#define CLICK_CD_GRABBING 10
+//click cooldowns, in seconds, used for various combat actions
+#define CLICK_CD_MELEE 0.8 SECONDS
+#define CLICK_CD_RANGE 0.4 SECONDS
+#define CLICK_CD_RAPID 0.2 SECONDS
+#define CLICK_CD_CLICK_ABILITY 0.6 SECONDS
+#define CLICK_CD_BREAKOUT 10 SECONDS
+#define CLICK_CD_HANDCUFFED 1 SECONDS
+#define CLICK_CD_RESIST 2 SECONDS
+#define CLICK_CD_GRABBING 1 SECONDS
 
 //Cuff resist speeds
 #define FAST_CUFFBREAK 1

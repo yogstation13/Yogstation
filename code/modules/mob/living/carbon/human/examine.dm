@@ -206,7 +206,15 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-
+				
+	if(surgeries.len)
+		var/surgery_text
+		for(var/datum/surgery/S in surgeries)
+			if(!surgery_text)
+				surgery_text = "[t_He] [t_is] being operated on in \the [S.operated_bodypart]"
+			else
+				surgery_text += ", [S.operated_bodypart]"
+		msg += "[surgery_text].\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"

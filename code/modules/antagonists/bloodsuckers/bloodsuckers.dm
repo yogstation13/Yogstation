@@ -24,8 +24,6 @@
 	var/humanity_lost = 0
 	///Have we been broken the Masquerade?
 	var/broke_masquerade = FALSE
-	///Blood required to enter Frenzy
-	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
@@ -110,7 +108,6 @@
 
 /// These handles the application of antag huds/special abilities
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
-	. = ..()
 	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/LifeTick)
 	if((owner.assigned_role == "Clown"))
 		var/mob/living/carbon/H = owner.current
@@ -120,7 +117,6 @@
 				to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
-	. = ..()
 	UnregisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE)
 	if(owner.assigned_role == "Clown")
 		var/mob/living/carbon/human/H = owner.current
@@ -164,6 +160,39 @@
 	update_bloodsucker_icons_removed(owner.current)
 	ClearAllPowersAndStats()
 	return ..()
+
+/datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	. = ..()
+	if(istype(new_body, /mob/living/simple_animal/hostile/bloodsucker) || istype(old_body, /mob/living/simple_animal/hostile/bloodsucker))
+		return
+	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+		all_powers.Remove(old_body)
+		all_powers.Grant(new_body)
+	var/old_punchdamagelow
+	var/old_punchdamagehigh
+	if(ishuman(old_body))
+		var/mob/living/carbon/human/old_user = old_body
+		var/datum/species/old_species = old_user.dna.species
+		old_species.species_traits -= DRINKSBLOOD
+		//Keep track of what they were
+		old_punchdamagelow = old_species.punchdamagelow
+		old_punchdamagehigh = old_species.punchdamagehigh
+		//Then reset them
+		old_species.punchdamagelow = initial(old_species.punchdamagelow)
+		old_species.punchdamagehigh = initial(old_species.punchdamagehigh)
+	if(ishuman(new_body))
+		var/mob/living/carbon/human/new_user = new_body
+		var/datum/species/new_species = new_user.dna.species
+		new_species.species_traits += DRINKSBLOOD
+		//Give old punch damage values
+		new_species.punchdamagelow = old_punchdamagelow
+		new_species.punchdamagehigh = old_punchdamagehigh
+
+	//Give Bloodsucker Traits
+	for(var/all_traits in bloodsucker_traits)
+		REMOVE_TRAIT(old_body, all_traits, BLOODSUCKER_TRAIT)
+		ADD_TRAIT(new_body, all_traits, BLOODSUCKER_TRAIT)
+
 
 /datum/antagonist/bloodsucker/greet()
 	. = ..()
@@ -491,14 +520,10 @@
 	objectives += survive_objective
 
 	// Objective 1: Vassalize a Head/Command, or a specific target
+	var/list/possible_objectives = list(/datum/objective/bloodsucker/gourmand, /datum/objective/bloodsucker/heartthief, /datum/objective/bloodsucker/leader)
 	var/list/rolled_objectives = list()
-	switch(rand(1, 3))
-		if(1) // Protege and Drink Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/gourmand)
-		if(2) // Heart Thief and Protege Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief)
-		if(3) // Heart Thief and Drink Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
+	for(var/i = 1; i <= 2; i++)
+		rolled_objectives += pick(possible_objectives)
 	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
 		objective.owner = owner
 		objectives += objective
