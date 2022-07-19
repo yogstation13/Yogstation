@@ -18,7 +18,6 @@ map yogstation
 endmap
 
 map asteroidstation
-	votable
 endmap
 
 map omegastation
