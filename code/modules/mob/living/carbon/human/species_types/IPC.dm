@@ -133,7 +133,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		return
 
 	if(A.cell && A.cell.charge > 0)
-		if(H.nutrition >= NUTRITION_LEVEL_FULL)
+		if(H.nutrition >= NUTRITION_LEVEL_MOSTLY_FULL)
 			to_chat(user, "<span class='warning'>You are already fully charged!</span>")
 			return
 		else
@@ -151,6 +151,9 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		if(A.cell.charge == 0)
 			to_chat(H, "<span class='warning'>The [A] doesn't have enough charge to spare.</span>")
 			break
+		if(H.nutrition > NUTRITION_LEVEL_MOSTLY_FULL)
+			to_chat(H, "<span class='notice'>You are now fully charged.</span>")
+			break
 		A.charging = 1
 		if(A.cell.charge >= 500)
 			H.nutrition += 50
@@ -160,9 +163,6 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			H.nutrition += A.cell.charge/10
 			A.cell.charge = 0
 			to_chat(H, "<span class='notice'>You siphon off as much as the [A] can spare.</span>")
-			break
-		if(H.nutrition > NUTRITION_LEVEL_FULL)
-			to_chat(H, "<span class='notice'>You are now fully charged.</span>")
 			break
 	H.visible_message("<span class='notice'>[H] unplugs from the [A].</span>", "<span class='notice'>You unplug from the [A].</span>")
 
