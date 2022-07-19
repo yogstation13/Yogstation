@@ -1,5 +1,5 @@
 /obj/spacepod/process(time)
-	time /= 10 // fuck off with your deciseconds
+	time /= 10 // fuck off with your deciseconds // uh oh
 
 	if(world.time > last_slowprocess + 15)
 		last_slowprocess = world.time
@@ -199,14 +199,14 @@
 	transform = mat_from
 	pixel_x = last_offset_x*32
 	pixel_y = last_offset_y*32
-	animate(src, transform=mat_to, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time*10, flags=ANIMATION_END_NOW)
+	animate(src, transform=mat_to, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time SECONDS, flags=ANIMATION_END_NOW)
 	for(var/mob/living/M in contents)
 		var/client/C = M.client
 		if(!C)
 			continue
 		C.pixel_x = last_offset_x*32
 		C.pixel_y = last_offset_y*32
-		animate(C, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time*10, flags=ANIMATION_END_NOW)
+		animate(C, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time SECONDS, flags=ANIMATION_END_NOW)
 	user_thrust_dir = 0
 	update_icon()
 

@@ -82,6 +82,9 @@ effective or pretty fucking useless.
 	if(!irradiate || !is_syndicate(user)) // only syndicates are aware of this being a rad laser and know how to use it.
 		return
 	if(!used)
+		if(beep_cooldown < world.time)
+			playsound(src, 'sound/effects/fastbeep.ogg', 20)
+			beep_cooldown = world.time + 40
 		log_combat(user, M, "irradiated", src)
 		var/cooldown = get_cooldown()
 		used = TRUE
@@ -256,7 +259,7 @@ effective or pretty fucking useless.
 			charge = max(0,charge - 25)//Quick decrease in light
 		else
 			charge = min(max_charge,charge + 50) //Charge in the dark
-		animate(user,alpha = clamp(255 - charge,0,255),time = 10)
+		animate(user,alpha = clamp(255 - charge,0,255),time = 1 SECONDS)
 
 
 /obj/item/jammer

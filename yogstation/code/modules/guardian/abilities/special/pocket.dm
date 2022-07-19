@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	. = ..()
 	var/datum/space_level/level = SSmapping.get_level(z)
 	if (!level)
-		to_chat(world, "uh oh, stinky!!")
+		debug_admins("uh oh, stinky!!")
 		return INITIALIZE_HINT_QDEL
 	GLOB.pocket_corners[level.name] = list(
 		"bl-corner" = get_turf(src), // Bottom left corner
@@ -318,8 +318,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	var/i,f
 	for (i=1, i<=7, ++i)
 		f = filters[i]
-		var/next = rand()*20+10
-		animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
+		var/next = rand()*20+(1 SECONDS)
+		animate(f, offset=f:offset, time=0 SECONDS, loop=3, flags=ANIMATION_PARALLEL)
 		animate(offset=f:offset-1, time=next)
 		next_animate = world.time + next
 
@@ -461,8 +461,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	var/i,f
 	for (i=1, i<=7, ++i)
 		f = filters[i]
-		var/next = rand()*20+10
-		animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
+		var/next = rand()*20+(1 SECONDS)
+		animate(f, offset=f:offset, time=0 SECONDS, loop=3, flags=ANIMATION_PARALLEL)
 		animate(offset=f:offset-1, time=next)
 		next_animate = world.time + next
 

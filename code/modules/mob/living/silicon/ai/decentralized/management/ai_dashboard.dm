@@ -6,12 +6,15 @@
 	//What we're currently using, not what we're being granted by the ai data core
 	var/list/cpu_usage
 	var/list/ram_usage 
+	var/free_ram = 0
 
 	var/completed_projects
 
 	var/running_projects
 	///Should we be contributing spare CPU to generate research points?
 	var/contribute_spare_cpu = TRUE
+	///Are we using 50% of our spare CPU to mine bitcoin?
+	var/crypto_mining = FALSE
 
 /datum/ai_dashboard/New(mob/living/silicon/ai/new_owner)
 	if(!istype(new_owner))
@@ -28,7 +31,7 @@
 
 
 /datum/ai_dashboard/proc/is_interactable(mob/user)
-	if(IsAdminGhost(user))
+	if(user?.client?.holder)
 		return TRUE
 	if(user != owner || owner.incapacitated())
 		return FALSE
@@ -56,6 +59,7 @@
 
 	data["current_cpu"] = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
 	data["current_ram"] = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	data["current_ram"] += free_ram
 
 	var/total_cpu_used = 0
 	for(var/I in cpu_usage)
@@ -207,6 +211,7 @@
 
 /datum/ai_dashboard/proc/run_project(datum/ai_project/project)
 	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	current_ram += free_ram
 
 	var/total_ram_used = 0
 	for(var/I in ram_usage)
@@ -255,11 +260,18 @@
 	if(notify_user)
 		to_chat(owner, span_notice("'[ability.name]' has been recharged."))
 
+/datum/ai_dashboard/proc/is_project_running(datum/ai_project/project)
+	var/datum/ai_project/found_project = locate(project) in running_projects
+	if(found_project)
+		return found_project.running
+
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
 	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.total_cpu * GLOB.ai_os.cpu_assigned[owner] : 0
 	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	current_ram += free_ram
+
 
 	var/total_ram_used = 0
 	for(var/I in ram_usage)
@@ -285,9 +297,20 @@
 	for(var/I in cpu_usage)
 		remaining_cpu -= cpu_usage[I]
 
-	if(remaining_cpu > 0)
-		var/points = round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster)
+	if(remaining_cpu > 0 && contribute_spare_cpu)
+		var/points = max(round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster), 0)
+
+		if(crypto_mining)
+			points *= 0.5
+			var/bitcoin_mined = points * (1-0.05*sqrt(points))	
+			bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money(bitcoin_mined * AI_BITCOIN_PRICE)
+
 		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
+		
+
 
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])
@@ -299,6 +322,8 @@
 			cpu_usage[project_being_researched] = 0
 			continue
 		if(has_completed_project(project.type)) //This means we're an ability recharging
+			if(!project.ability_recharge_cost) //No ability, just waste the CPU
+				continue
 			project.ability_recharge_invested += used_cpu
 			if(project.ability_recharge_invested > project.ability_recharge_cost)
 				owner.playsound_local(owner, 'sound/machines/ping.ogg', 50, 0)

@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/retaliate/spaceman
-	name = "Spaceman"
+	name = "spaceman"
 	desc = "What in the actual hell..?"
 	icon_state = "old"
 	icon_living = "old"
@@ -22,7 +22,6 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	del_on_death = 0
 
 	do_footstep = TRUE
 

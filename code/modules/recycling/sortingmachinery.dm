@@ -68,7 +68,7 @@
 		AM.relay_container_resist(user, O)
 		return
 	to_chat(user, span_notice("You lean on the back of [O] and start pushing to rip the wrapping around it."))
-	if(do_after(user, 5 SECONDS, target = O))
+	if(do_after(user, 5 SECONDS, O))
 		if(!user || user.stat != CONSCIOUS || user.loc != O || O.loc != src )
 			return
 		to_chat(user, span_notice("You successfully removed [O]'s wrapping !"))

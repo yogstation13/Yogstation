@@ -97,6 +97,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), SLOT_WEAR_SUIT)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), SLOT_HEAD)
 			H.set_species(/datum/species/shadow/ling) //can't be a shadowling without being a shadowling
+			H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
 			H.mind.RemoveSpell(src)
 			if(!do_mob(H,H,10,1))
 				return
@@ -162,9 +163,8 @@
 			for(var/mob/living/M in orange(7, H))
 				M.Knockdown(10)
 				to_chat(M, span_userdanger("An immense pressure slams you onto the ground!"))
-			to_chat(world, "<font size=5><span class='shadowling'><b>\"VYSHA NERADA YEKHEZET U'RUU!!\"</font></span>")
-			for(var/mob/M in GLOB.player_list)
-				SEND_SOUND(M, sound('sound/hallucinations/veryfar_noise.ogg'))
+			send_to_playing_players("<font size=5><span class='shadowling'><b>\"VYSHA NERADA YEKHEZET U'RUU!!\"</font></span>")
+			sound_to_playing_players('sound/hallucinations/veryfar_noise.ogg')
 			for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
 				A.overload_lighting()
 			SSachievements.unlock_achievement(/datum/achievement/greentext/slingascend, H.client)

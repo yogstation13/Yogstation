@@ -1,56 +1,3 @@
-//////////
-// GUNS //
-//////////
-
-/datum/crafting_recipe/makeshiftlasrifle
-	name = "Makeshift Laser Rifle"
-	result = /obj/item/gun/energy/laser/makeshiftlasrifle
-	reqs = list(/obj/item/stack/cable_coil = 15,
-				/obj/item/weaponcrafting/stock = 1,
-				/obj/item/pipe = 1,
-				/obj/item/light/bulb = 1,
-				/obj/item/stock_parts/cell = 1)
-	tools = list(TOOL_SCREWDRIVER)
-	time = 12 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/makeshiftpistol
-	name = "Makeshift Pistol"
-	result = /obj/item/gun/ballistic/automatic/pistol/makeshift
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/stack/sheet/metal = 4,
-				/obj/item/stack/rods = 2,
-           		/obj/item/stack/tape = 3)
-	tools = list(TOOL_SCREWDRIVER)
-	time = 12 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-	always_availible = FALSE
-
-/datum/crafting_recipe/makeshiftmagazine
-	name = "Makeshift Pistol Magazine (10mm)"
-	result = /obj/item/ammo_box/magazine/m10mm/makeshift
-	reqs = list(/obj/item/stack/sheet/metal = 2,
-        		/obj/item/stack/tape = 2)
-	time = 12 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
-	always_availible = FALSE
-
-/datum/crafting_recipe/makeshiftsuppressor
-	name = "Makeshift Suppressor"
-	result = /obj/item/suppressor/makeshift
-	reqs = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1,
-				/obj/item/stack/rods = 1,
-				/obj/item/stack/sheet/cloth = 2,
-           		/obj/item/stack/tape = 1)
-	time = 12 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-	always_availible = FALSE
-
-
 ///////////
 // TOOLS //
 ///////////
@@ -140,3 +87,13 @@
 	time = 12 SECONDS
 	category = CAT_TOOLS
 	always_availible = FALSE
+
+/datum/crafting_recipe/makeshiftid
+	name = "Makeshift ID"
+	result = /obj/item/card/id/makeshift
+	reqs = list(/obj/item/stack/sheet/cardboard = 2,
+				/obj/item/stack/tape = 1,
+				/obj/item/pen = 1)
+	tools = list(TOOL_WIRECUTTER)
+	time = 30
+	category = CAT_MISC

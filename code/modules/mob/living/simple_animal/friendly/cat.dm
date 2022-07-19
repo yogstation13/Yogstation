@@ -14,9 +14,9 @@
 	speak_chance = 1
 	turns_per_move = 5
 	see_in_dark = 6
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSCOMPUTER
-	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	minbodytemp = 200
 	maxbodytemp = 400
@@ -27,11 +27,12 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	var/turns_since_scan = 0
 	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "cat"
-
+	can_be_held = TRUE
 	do_footstep = TRUE
 
 /mob/living/simple_animal/pet/cat/Initialize()
@@ -76,9 +77,9 @@
 	icon_state = "kitten"
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
+	held_state = "cat2"
 	density = FALSE
 	pass_flags = PASSMOB
-	mob_size = MOB_SIZE_SMALL
 	collar_type = "kitten"
 	var/list/pet_kitten_names = list("Fajita", "Pumpkin", "Meowchael", "Catrick", "Genghis Kat", "Sir Isaac Mewton", "Nugget", "Meowchelangelo", "Meowgaret", "Lemon", "Meowria", "Todd Meoward", "Dolly Purrton", "Pickle", "Runt", "Claws", "Patches", "Skippy", "Teddy", "Frank", "Quilt", "Lenny", "Benny", "Hubert", "Scrungemuffin", "Pizza", "Pawl Meowcartney")
 	var/list/rare_pet_kitten_names = list("Fuckface", "Chief Meowdical Officer", "Mewcular Opurrative", "Dumbass Cat", "Backup Ian")
@@ -238,22 +239,21 @@
 	. = ..()
 	switch(M.a_intent)
 		if(INTENT_HELP)
-			wuv(1, M)
+			wuv(M)
 		if(INTENT_HARM)
-			wuv(-1, M)
+			wuv(M, FALSE)
 
-/mob/living/simple_animal/pet/cat/proc/wuv(change, mob/M)
+/mob/living/simple_animal/pet/cat/wuv(mob/M, change = TRUE)
 	if(change)
-		if(change > 0)
-			if(M && stat != DEAD)
-				new /obj/effect/temp_visual/heart(loc)
-				emote("me", 1, "purrs!", TRUE)
-				if(flags_1 & HOLOGRAM_1)
-					return
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
-		else
-			if(M && stat != DEAD)
-				emote("me", 1, "hisses!", TRUE)
+		if(M && stat != DEAD)
+			new /obj/effect/temp_visual/heart(loc)
+			emote("me", 1, "purrs!", TRUE)
+			if(flags_1 & HOLOGRAM_1)
+				return
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
+	else
+		if(M && stat != DEAD)
+			emote("me", 1, "hisses!", TRUE)
 
 /mob/living/simple_animal/pet/cat/cak //I told you I'd do it, Remie
 	name = "Keeki"

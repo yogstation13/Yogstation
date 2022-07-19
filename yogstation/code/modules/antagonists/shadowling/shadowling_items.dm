@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/space/shadowling
 	name = "chitin shell"
 	desc = "A dark, semi-transparent shell. Protects against vacuum, but not against the light of the stars." //Still takes damage from spacewalking but is immune to space itself
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "sl_shell"
 	item_state = "sl_shell"
@@ -24,7 +24,7 @@
 /obj/item/clothing/head/shadowling
 	name = "chitin helm"
 	desc = "A helmet-like enclosure of the head."
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	icon_state = "sl_head"
 	item_state = "sl_head"

@@ -2060,7 +2060,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/thunderdome)
 "lX" = (
-/obj/machinery/chem_dispenser,
+/obj/machinery/chem_dispenser/fullupgrade,
 /obj/item/storage/box/beakers,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)

@@ -99,8 +99,8 @@
 			target_pixel_y = -16
 			layer = ABOVE_MOB_LAYER
 	hal_target.client.images += blood
-	animate(blood, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = 5)
-	addtimer(CALLBACK(src, .proc/cleanup_blood), 5)
+	animate(blood, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/cleanup_blood), 0.5 SECONDS)
 
 /obj/item/projectile/hallucination/proc/cleanup_blood(image/blood)
 	hal_target.client.images -= blood
@@ -131,8 +131,8 @@
 	hal_hitsound_wall = "ricochet"
 	hal_impact_effect = "impact_bullet"
 	hal_impact_effect_wall = "impact_bullet"
-	hit_duration = 5
-	hit_duration_wall = 5
+	hit_duration = 0.5 SECONDS
+	hit_duration_wall = 0.5 SECONDS
 
 /obj/item/projectile/hallucination/bullet/hal_apply_effect()
 	hal_target.adjustStaminaLoss(60)
@@ -146,8 +146,8 @@
 	hal_hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	hal_impact_effect = "impact_laser"
 	hal_impact_effect_wall = "impact_laser_wall"
-	hit_duration = 4
-	hit_duration_wall = 10
+	hit_duration = 0.4 SECONDS
+	hit_duration_wall = 1 SECONDS
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 
 /obj/item/projectile/hallucination/laser/hal_apply_effect()
@@ -182,7 +182,7 @@
 	hal_hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	hal_impact_effect = "impact_laser_blue"
 	hal_impact_effect_wall = null
-	hit_duration = 4
+	hit_duration = 0.4 SECONDS
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 
 /obj/item/projectile/hallucination/disabler/hal_apply_effect()
