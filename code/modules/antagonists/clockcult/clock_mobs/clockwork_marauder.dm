@@ -119,7 +119,7 @@ COOLDOWN_START(src, last_time_deflected, MARAUDER_WELDER_PENALTY)
 	var/welding_time = 2 SECONDS
 	if(GLOB.ratvar_awakens)
 		welding_time = 1 SECONDS  //??? Ratvar powered welder
-	else if(last_time_deflected + MARAUDER_WELDER_PENALTY > world.time)   //More if attacked recently
+	else if(COOLDOWN_FINISHED(src, last_time_deflected)   //More if attacked recently
 		welding_time = 4 SECONDS
 	if(!do_mob(user, src, welding_time))
 		is_welded = FALSE
