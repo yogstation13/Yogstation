@@ -26,14 +26,14 @@
 
 	if(!reagents || !reagents.total_volume)
 		to_chat(user, span_warning("[src] is empty!"))
-		return 0
+		return FALSE
 
 	if(!canconsume(M, user))
-		return 0
+		return FALSE
 
 	if (!is_drainable())
 		to_chat(user, span_warning("[src]'s lid hasn't been opened!"))
-		return 0
+		return FALSE
 
 	if(M == user)
 		user.visible_message(span_notice("[user] swallows a gulp of [src]."), span_notice("You swallow a gulp of [src]."))
@@ -61,7 +61,11 @@
 	if(!proximity)
 		return
 
-	if(target.is_refillable() && is_drainable()) //Something like a glass. Player probably wants to transfer TO it.
+	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
+		if (!is_drainable())
+			to_chat(user, span_warning("[src] isn't open!"))
+			return FALSE
+
 		if(!reagents.total_volume)
 			to_chat(user, span_warning("[src] is empty."))
 			return
@@ -81,7 +85,7 @@
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if (!is_refillable())
-			to_chat(user, span_warning("[src]'s tab isn't open!"))
+			to_chat(user, span_warning("[src] isn't open!"))
 			return
 
 		if(!target.reagents.total_volume)

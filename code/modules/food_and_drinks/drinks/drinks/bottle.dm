@@ -17,31 +17,13 @@
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	var/const/duration = 13 //Directly relates to the 'knockdown' duration. Lowered by armor (i.e. helmets)
-	var/list/fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
+	fill_icon_thresholds = list(0, 10, 20, 30, 40, 50, 60, 70, 80, 90)
 	isGlass = TRUE
 	foodtype = ALCOHOL
 	age_restricted = TRUE
 
-/obj/item/reagent_containers/food/drinks/bottle/on_reagent_change(changetype)
-	update_icon()
-
 /obj/item/reagent_containers/food/drinks/bottle/update_icon()
-	cut_overlays()
-
-	if(reagents.total_volume)
-		var/fill_name = icon_state
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[fill_name][fill_icon_thresholds[1]]")
-
-		var/percent = round((reagents.total_volume / volume) * 100)
-		for(var/i in 1 to fill_icon_thresholds.len)
-			var/threshold = fill_icon_thresholds[i]
-			var/threshold_end = (i == fill_icon_thresholds.len)? INFINITY : fill_icon_thresholds[i+1]
-			if(threshold <= percent && percent < threshold_end)
-				filling.icon_state = "[fill_name][fill_icon_thresholds[i]]"
-
-		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
-
+	..()
 	add_overlay("[initial(icon_state)]shine")
 
 /obj/item/reagent_containers/food/drinks/bottle/small

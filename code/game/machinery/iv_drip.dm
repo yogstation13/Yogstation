@@ -235,7 +235,14 @@
 
 /obj/machinery/iv_drip/saline/eject_beaker()
     return
+
 /obj/machinery/iv_drip/saline/toggle_mode()
 	return
+
+/obj/item/reagent_containers/glass/saline
+	name = "saline canister"
+	volume = 5000
+	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)
+	
 #undef IV_TAKING
 #undef IV_INJECTING

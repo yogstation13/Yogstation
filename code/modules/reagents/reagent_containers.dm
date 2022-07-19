@@ -12,6 +12,15 @@
 	var/spawned_disease = null
 	var/disease_amount = 20
 	var/spillable = FALSE
+	var/list/fill_icon_thresholds = null
+	var/fill_icon_state = null // Optional custom name for reagent fill icon_state prefix
+	/// To enable caps, set can_have_cap to TRUE and define a . Do not change at runtime.
+	var/can_have_cap = FALSE
+	VAR_PROTECTED/cap_icon_state = null
+	/// Whether the container has a cap on. Do not set directly at runtime; use set_cap_status().
+	VAR_PROTECTED/cap_on = FALSE
+	VAR_PRIVATE/cap_lost = FALSE
+	VAR_PRIVATE/mutable_appearance/cap_overlay = null
 
 /obj/item/reagent_containers/Initialize(mapload, vol)
 	. = ..()
@@ -25,9 +34,81 @@
 
 	add_initial_reagents()
 
+	if(can_have_cap)
+		if(!cap_icon_state)
+			WARNING("Container that allows caps is lacking a cap_icon_state!")
+		set_cap_status(cap_on)
+	else
+		cap_on = FALSE
+
+/obj/item/reagent_containers/update_icon(dont_fill=FALSE)
+	if(!fill_icon_thresholds || dont_fill)
+		return ..()
+
+	cut_overlays()
+
+	if(reagents.total_volume)
+		var/fill_name = fill_icon_state? fill_icon_state : icon_state
+		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[fill_name][fill_icon_thresholds[1]]")
+
+		var/percent = round((reagents.total_volume / volume) * 100)
+		for(var/i in 1 to fill_icon_thresholds.len)
+			var/threshold = fill_icon_thresholds[i]
+			var/threshold_end = (i == fill_icon_thresholds.len)? INFINITY : fill_icon_thresholds[i+1]
+			if(threshold <= percent && percent < threshold_end)
+				filling.icon_state = "[fill_name][fill_icon_thresholds[i]]"
+
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		add_overlay(filling)
+	. = ..()
+
+/obj/item/reagent_containers/on_reagent_change(changetype)
+	update_icon()
+
 /obj/item/reagent_containers/proc/add_initial_reagents()
 	if(list_reagents)
 		reagents.add_reagent_list(list_reagents)
+
+/// Adds the container's cap if TRUE is passed in, and removes it if FALSE is passed in. Container must be able to accept a cap.
+/obj/item/reagent_containers/proc/set_cap_status(value_to_set)
+	if(!can_have_cap)
+		CRASH("Cannot change cap status of reagent container that disallows caps!")
+
+	if(value_to_set)
+		cap_on = TRUE
+		spillable = FALSE
+		if(!cap_overlay)
+			cap_overlay = mutable_appearance(icon, cap_icon_state)
+		add_overlay(cap_overlay, TRUE)
+	else
+		cap_on = FALSE
+		spillable = TRUE
+		if(cap_overlay)
+			cut_overlay(cap_overlay, TRUE)
+
+	update_icon()
+
+/obj/item/reagent_containers/examine(mob/user)
+	if(!can_have_cap)
+		return ..()
+
+	. = ..()
+	if(cap_lost)
+		. += span_notice("The cap seems to be missing.")
+	else if(cap_on)
+		. += span_notice("The cap is firmly on to prevent spilling. Alt-click to remove the cap.")
+	else
+		. += span_notice("The cap has been taken off. Alt-click to put a cap on.")
+
+/obj/item/reagent_containers/is_refillable()
+	if(can_have_cap && cap_on)
+		return FALSE
+	. = ..()
+
+/obj/item/reagent_containers/is_drainable()
+	if(can_have_cap && cap_on)
+		return FALSE
+	. = ..()
 
 /obj/item/reagent_containers/attack_self(mob/user)
 	if(possible_transfer_amounts.len)
@@ -45,6 +126,26 @@
 /obj/item/reagent_containers/attack(mob/M, mob/user, def_zone)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
+
+/obj/item/reagent_containers/AltClick(mob/user)
+	. = ..()
+	if(can_have_cap)
+		if(cap_lost)
+			to_chat(user, span_warning("The cap seems to be missing! Where did it go?"))
+			return
+
+		var/fumbled = HAS_TRAIT(user, TRAIT_CLUMSY) && prob(5)
+		if(cap_on || fumbled)
+			set_cap_status(FALSE)
+			if(fumbled)
+				to_chat(user, span_warning("You fumble with [src]'s cap! The cap falls onto the ground and simply vanishes. Where the hell did it go?"))
+				cap_lost = TRUE
+			else
+				to_chat(user, span_notice("You remove the cap from [src]."))
+		else
+			set_cap_status(TRUE)
+			to_chat(user, span_notice("You put the cap on [src]."))
+		playsound(src, 'sound/items/glass_cap.ogg', 50, 1)
 
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
 	if(!iscarbon(eater))
@@ -90,6 +191,7 @@
 			reagents.total_volume *= rand(5,10) * 0.1 //Not all of it makes contact with the target
 		var/mob/M = target
 		var/R
+		playsound(src, 'sound/items/glass_splash.ogg', 50, 1)
 		target.visible_message(span_danger("[M] has been splashed with something!"), \
 						span_userdanger("[M] has been splashed with something!"))
 		for(var/datum/reagent/A in reagents.reagent_list)
@@ -109,6 +211,7 @@
 			log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
 			log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
 			message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
+		playsound(src, 'sound/items/glass_splash.ogg', 50, 1)
 		visible_message(span_notice("[src] spills its contents all over [target]."))
 		reagents.reaction(target, TOUCH)
 		if(QDELETED(src))

@@ -667,6 +667,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/reagent_containers/glass/bottle/potion
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "potionflask"
+	can_have_cap = FALSE
+	cap_icon_state = null
+	cap_on = FALSE
 
 
 /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
