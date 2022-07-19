@@ -30,16 +30,17 @@
 
 /datum/species/fishperson/proc/handle_thirst(mob/living/carbon/human/H)
 	thirst = clamp(thirst - thirst_drain,0,NUTRITION_LEVEL_FULL)
-	if(thirst == 0)
-		to_chat(H,span_userdanger("You are out of water! Get some now!"))
-		H.adjustOxyLoss(15) // you have 4 ticks until you are in crit
-		H.emote("gasp")
-		H.throw_alert("fish_thirst", /obj/screen/alert/fish_thirsty, 4)
-	else if(thirst < NUTRITION_LEVEL_STARVING)
-		H.throw_alert("fish_thirst", /obj/screen/alert/fish_thirsty, 3)
-	else if(thirst < NUTRITION_LEVEL_HUNGRY)
-		H.throw_alert("fish_thirst", /obj/screen/alert/fish_thirsty, 2)
-	else if(thirst < NUTRITION_LEVEL_FED)
-		H.throw_alert("fish_thirst", /obj/screen/alert/fish_thirsty, 1)
-	else
-		H.clear_alert("fish_thirst")
+	switch(thirst)
+		if(0)
+			to_chat(H,span_userdanger("You are out of water! Get some now!"))
+			H.adjustOxyLoss(15) // you have 4 ticks until you are in crit
+			H.emote("gasp")
+			H.throw_alert("fish_thirst", /obj/screen/alert/fish_thirsty, 4)
+		if(0.01 to NUTRITION_LEVEL_STARVING)
+			H.throw_alert("fish_thirst", /obj/screen/alert/fish_thirsty, 3)
+		if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+			H.throw_alert("fish_thirst", /obj/screen/alert/fish_thirsty, 2)
+		if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+			H.throw_alert("fish_thirst", /obj/screen/alert/fish_thirsty, 1)
+		else
+			H.clear_alert("fish_thirst")
