@@ -461,8 +461,8 @@
 		unmagify()
 
 /obj/structure/closet/decay/proc/decay()
-	animate(src, alpha = 0, time = 30)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 30)
+	animate(src, alpha = 0, time = 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3 SECONDS)
 
 /obj/structure/closet/decay/open(mob/living/user)
 	. = ..()
@@ -903,7 +903,7 @@
 		var/reresize = pick(newsize1, newsize2, newsize3, newsize4, newsize5)
 		X.resize = reresize
 		X.update_transform()
-		sleep(100)
+		sleep(10 SECONDS)
 		if(reresize == 0.5)
 			reresize = 2
 			X.resize = reresize

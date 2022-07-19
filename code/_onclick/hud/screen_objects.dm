@@ -607,14 +607,10 @@
 	screen_loc = ui_internal
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/screen/healths/blob/naut
-	name = "health"
-	icon = 'icons/mob/blob.dmi'
-	icon_state = "nauthealth"
-
-/obj/screen/healths/blob/naut/core
+/obj/screen/healths/blob/overmind
 	name = "overmind health"
-	screen_loc = ui_health
+	icon = 'icons/mob/blob.dmi'
+	screen_loc = ui_blobbernaut_overmind_health
 	icon_state = "corehealth"
 
 /obj/screen/healths/guardian
@@ -715,10 +711,10 @@
 	if(QDELETED(src))
 		return
 	if(out)
-		animate(src, alpha = 0, time = 30)
+		animate(src, alpha = 0, time = 3 SECONDS)
 	else
 		alpha = 0
-		animate(src, alpha = 255, time = 30)
+		animate(src, alpha = 255, time = 3 SECONDS)
 	if(qdel_after)
 		QDEL_IN(src, 30)
 

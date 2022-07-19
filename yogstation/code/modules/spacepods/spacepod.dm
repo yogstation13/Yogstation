@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			if(L.on)
 				user.visible_message(user, span_warning("[user] is drilling through [src]'s lock!"),
 					span_notice("You start drilling through [src]'s lock!"))
-				if(do_after(user, 10 SECONDS * W.toolspeed, target = src))
+				if(do_after(user, 10 SECONDS * W.toolspeed, src))
 					if(lock)
 						var/obj/O = lock
 						lock.on_uninstall()
@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		if(target && istype(target))
 			src.visible_message(span_warning("[user] is trying to rip the door open and pull [target] out of [src]!"),
 				span_warning("You see [user] outside the door trying to rip it open!"))
-			if(do_after(user, 5 SECONDS, target = src) && construction_state == SPACEPOD_ARMOR_WELDED)
+			if(do_after(user, 5 SECONDS, src) && construction_state == SPACEPOD_ARMOR_WELDED)
 				if(remove_rider(target))
 					target.Stun(20)
 					target.visible_message(span_warning("[user] flings the door open and tears [target] out of [src]"),
@@ -519,7 +519,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 
 	if(passengers.len <= max_passengers || !pilot)
 		visible_message(span_notice("[user] starts to climb into [src]."))
-		if(do_after(user, 4 SECONDS, target = src) && construction_state == SPACEPOD_ARMOR_WELDED)
+		if(do_after(user, 4 SECONDS, src) && construction_state == SPACEPOD_ARMOR_WELDED)
 			var/success = add_rider(user)
 			if(!success)
 				to_chat(user, span_notice("You were too slow. Try better next time, loser."))
@@ -550,7 +550,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		to_chat(usr, span_notice("You attempt to stumble out of [src]. This will take two minutes."))
 		if(pilot)
 			to_chat(pilot, span_warning("[usr] is trying to escape [src]."))
-		if(!do_after(usr, 2 MINUTES, target = src))
+		if(!do_after(usr, 2 MINUTES, src))
 			return
 
 	if(remove_rider(usr))

@@ -548,7 +548,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			newangle += 360
 	var/matrix/M = matrix()
 	if (get_dist(get_turf(holo),new_turf) <= 1)
-		animate(ray, transform = turn(M.Scale(1,sqrt(distx*distx+disty*disty)),newangle),time = 1)
+		animate(ray, transform = turn(M.Scale(1,sqrt(distx*distx+disty*disty)),newangle),time = 0.1 SECONDS)
 	else
 		ray.transform = turn(M.Scale(1,sqrt(distx*distx+disty*disty)),newangle)
 

@@ -48,7 +48,7 @@
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
 					setDir(i)
-					sleep(1)
+					sleep(0.1 SECONDS)
 	else
 		..()
 
@@ -86,3 +86,13 @@
 	if(pcollar && collar_type)
 		add_overlay("[collar_type]collar")
 		add_overlay("[collar_type]tag")
+
+/mob/living/simple_animal/pet/proc/wuv(mob/M, change = TRUE)
+	if(change)
+		if(M && stat != DEAD)
+			new /obj/effect/temp_visual/heart(loc)
+			emote("me", 1, "yaps happily!", TRUE)
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
+	else
+		if(M && stat != DEAD)
+			emote("me", 1, "growls!", TRUE)

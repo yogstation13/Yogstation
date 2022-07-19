@@ -308,7 +308,7 @@
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	hitsound = "swing_hit"
 	armour_penetration = 35
-	item_color = "green"
+	var/saber_color = "green"
 	light_color = "#00ff00"//green
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 75
@@ -336,7 +336,7 @@
 				user.emote("spin")
 				if (i == 3 && myhead)
 					myhead.drop_limb()
-				sleep(3)
+				sleep(0.3 SECONDS)
 			else
 				user.visible_message(span_suicide("[user] panics and starts choking to death!"))
 				return OXYLOSS
@@ -349,8 +349,8 @@
 /obj/item/twohanded/dualsaber/Initialize()
 	. = ..()
 	if(LAZYLEN(possible_colors))
-		item_color = pick(possible_colors)
-		switch(item_color)
+		saber_color = pick(possible_colors)
+		switch(saber_color)
 			if("red")
 				light_color = LIGHT_COLOR_RED
 			if("green")
@@ -366,7 +366,7 @@
 
 /obj/item/twohanded/dualsaber/update_icon()
 	if(wielded)
-		icon_state = "dualsaber[item_color][wielded]"
+		icon_state = "dualsaber[saber_color][wielded]"
 	else
 		icon_state = "dualsaber0"
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
@@ -389,7 +389,7 @@
 		user.setDir(i)
 		if(i == WEST)
 			user.emote("flip")
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 /obj/item/twohanded/dualsaber/proc/impale(mob/living/user)
 	to_chat(user, span_warning("You twirl around a bit before losing your balance and impaling yourself on [src]."))
@@ -473,7 +473,7 @@
 		if(!hacked)
 			hacked = TRUE
 			to_chat(user, span_warning("2XRNBW_ENGAGE"))
-			item_color = "rainbow"
+			saber_color = "rainbow"
 			update_icon()
 		else
 			to_chat(user, span_warning("It's starting to look like a triple rainbow - no, nevermind."))
@@ -543,7 +543,7 @@
 		force += 1
 		throwforce += 1
 		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
-		alternate_worn_icon = 'yogstation/icons/mob/back.dmi' //yogs
+		mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi' //yogs
 		icon_prefix = "spearplasma"
 	update_icon()
 	qdel(tip)
@@ -676,6 +676,28 @@
 		playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
 		return 1
 	return 0
+
+/obj/item/twohanded/required/chainsaw/demon
+	name = "demon chainsaw"
+	desc = "anime reference here"
+	item_state = "demon_off"
+	icon_state = "demon_off"
+	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
+	force = 13
+	force_on = 30
+
+
+/obj/item/twohanded/required/chainsaw/demon/attack_self(mob/user)
+	on = !on
+	to_chat(user, "As you pull the starting cord dangling from [src], [on ? "it begins to whirr." : "the chain stops moving."]")
+	force = on ? force_on : initial(force)
+	throwforce = on ? force_on : initial(force)
+	icon_state = "demon_[on ? "on" : "off"]"
+
+/obj/item/twohanded/required/chainsaw/demon/Initialize()
+	. = ..()
+	AddComponent(/datum/component/lifesteal, 30)
 
 //GREY TIDE
 /obj/item/twohanded/spear/grey_tide

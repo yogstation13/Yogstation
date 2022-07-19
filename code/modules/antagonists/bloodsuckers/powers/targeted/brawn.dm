@@ -45,8 +45,8 @@
 		if(!istype(closet))
 			return FALSE
 		closet.visible_message(
-			span_warning("closet] tears apart as [user] bashes it open from within!"),
-			span_warning("closet] tears apart as you bash it open from within!"),
+			span_warning("[closet] tears apart as [user] bashes it open from within!"),
+			span_warning("[closet] tears apart as you bash it open from within!"),
 		)
 		to_chat(user, span_warning("We bash [closet] wide open!"))
 		addtimer(CALLBACK(src, .proc/break_closet, user, closet), 1)
@@ -80,7 +80,7 @@
 
 	// Did we end up using our ability? If so, play the sound effect and return TRUE
 	if(used)
-		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, 1, -1)
+		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
 	return used
 
 // This is its own proc because its done twice, to repeat code copypaste.
@@ -96,7 +96,7 @@
 		return FALSE
 	var/mob/pulled_mob = owner.pulledby
 	var/pull_power = pulled_mob.grab_state
-	playsound(get_turf(pulled_mob), 'sound/effects/woodhit.ogg', 75, 1, -1)
+	playsound(get_turf(pulled_mob), 'sound/effects/woodhit.ogg', 75, TRUE, -1)
 	// Knock Down (if Living)
 	if(isliving(pulled_mob))
 		var/mob/living/hit_target = pulled_mob
@@ -133,7 +133,7 @@
 			target.Knockdown(min(5, rand(10, 10 * powerlevel)))
 		// Attack!
 		to_chat(owner, span_warning("You punch [target]!"))
-		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, 1, -1)
+		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, TRUE, -1)
 		user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(target.zone_selected))
 		target.apply_damage(hitStrength, BRUTE, affecting)
@@ -153,11 +153,11 @@
 			return FALSE
 		target_closet.visible_message(span_danger("[target_closet] breaks open as [user] bashes it!"))
 		addtimer(CALLBACK(src, .proc/break_closet, user, target_closet), 1)
-		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, 1, -1)
+		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
 	// Target Type: Door
 	else if(istype(target_atom, /obj/machinery/door) && level_current >= 4)
 		var/obj/machinery/door/target_airlock = target_atom
-		playsound(get_turf(user), 'sound/machines/airlock_alien_prying.ogg', 40, 1, -1)
+		playsound(get_turf(user), 'sound/machines/airlock_alien_prying.ogg', 40, TRUE, -1)
 		to_chat(owner, span_warning("You prepare to tear open [target_airlock]..."))
 		if(!do_mob(user, target_airlock, 2.5 SECONDS))
 			return FALSE
@@ -165,7 +165,7 @@
 			target_airlock.visible_message(span_danger("[target_airlock] breaks open as [user] bashes it!"))
 			user.Stun(10)
 			user.do_attack_animation(target_airlock, ATTACK_EFFECT_SMASH)
-			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, 1, -1)
+			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, TRUE, -1)
 			target_airlock.open(2) // open(2) is like a crowbar or jaws of life.
 
 /datum/action/bloodsucker/targeted/brawn/CheckValidTarget(atom/target_atom)

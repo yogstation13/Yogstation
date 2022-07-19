@@ -465,7 +465,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	user.visible_message(span_warning("[src] begins to shake violently!"), \
 		span_notice("You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear banging from [src]."))
-	if(do_after(user,(breakout_time), target = src))
+	if(do_after(user, (breakout_time), src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
 			return
 		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting

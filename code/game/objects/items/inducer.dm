@@ -124,7 +124,7 @@
 				return TRUE
 			user.visible_message("[user] starts recharging [A] with [src].",span_notice("You start recharging [A] with [src]."))
 			while(preternis.charge < PRETERNIS_LEVEL_FULL - 25)
-				if(do_after(user, 1 SECONDS, target = user) && cell.charge)
+				if(do_after(user, 1 SECONDS, user) && cell.charge)
 					done_any = TRUE
 					cell.use(totransfer*coefficient)
 					preternis.charge = clamp(preternis.charge + (powertransfer*coefficient), PRETERNIS_LEVEL_NONE, PRETERNIS_LEVEL_FULL)
@@ -149,7 +149,7 @@
 			return TRUE
 		user.visible_message("[user] starts recharging [A] with [src].",span_notice("You start recharging [A] with [src]."))
 		while(C.charge < C.maxcharge)
-			if(do_after(user, 1 SECONDS, target = user) && cell.charge)
+			if(do_after(user, 1 SECONDS, user) && cell.charge)
 				done_any = TRUE
 				induce(C, coefficient)
 				do_sparks(1, FALSE, A)

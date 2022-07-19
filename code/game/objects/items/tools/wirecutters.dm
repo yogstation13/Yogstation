@@ -57,9 +57,11 @@
 		return
 	else if(istype(C) && C.has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 		to_chat(C, span_notice("You attempt to remove the durathread strand from around your neck."))
-		if(do_after(user, 1.5 SECONDS, null, C))
+		if(do_after(user, 1.5 SECONDS, C))
 			to_chat(C, span_notice("You succesfuly remove the durathread strand."))
 			C.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
+	else if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, C, user))
+		return
 	else
 		..()
 
