@@ -36,10 +36,10 @@
 
 	//all these must be above zero for auxmos to even consider them
 	if(!thermal_conductivity || !heat_capacity || !T.thermal_conductivity || !T.heat_capacity)
+		conductivity_blocked_directions |= dir
+		T.conductivity_blocked_directions |= opp
 		return
 	
-	conductivity_blocked_directions &= ~dir
-	T.conductivity_blocked_directions &= ~opp
 	for(var/obj/O in contents+T.contents)
 		if(O.BlockThermalConductivity(opp)) 	//the direction and open/closed are already checked on CanAtmosPass() so there are no arguments
 			conductivity_blocked_directions |= dir
@@ -52,9 +52,13 @@
 /turf/proc/ImmediateCalculateAdjacentTurfs()
 	var/canpass = CANATMOSPASS(src, src)
 	var/canvpass = CANVERTICALATMOSPASS(src, src)
+
+	conductivity_blocked_directions = 0
+
 	for(var/direction in GLOB.cardinals_multiz)
 		var/turf/T = get_step_multiz(src, direction)
 		if(!istype(T))
+			conductivity_blocked_directions |= dir
 			continue
 
 		var/src_contains_firelock = 1
