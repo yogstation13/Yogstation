@@ -19627,7 +19627,7 @@
 /obj/item/twohanded/required/cult_bastard{
 	pixel_y = 3
 	},
-/obj/item/twohanded/cult_spear,
+/obj/item/twohanded/spear/cult_spear,
 /obj/item/kitchen/knife/envy,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
