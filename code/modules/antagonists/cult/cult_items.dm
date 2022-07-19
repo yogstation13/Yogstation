@@ -403,7 +403,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
 	var/current_charges = 0
-	var/max_charges = 8
+	var/max_charges = 4
 	var/recharge_delay = 150 //How long after we've been shot before we can start recharging. 
 	var/recharge_cooldown = 0 //Time since we've last been shot
 	var/recharge_rate = 1 //How quickly the shield recharges once it starts charging
@@ -704,7 +704,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		to_chat(user, span_warning("\The [src] can only transport items!"))
 
 
-/obj/item/twohanded/cult_spear
+/obj/item/twohanded/spear/cult_spear
 	name = "blood halberd"
 	desc = "A sickening spear composed entirely of crystallized blood."
 	icon = 'icons/obj/weapons/spears.dmi'
@@ -712,7 +712,9 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	slot_flags = 0
-	force = 17
+	weapon_stats = list(SWING_SPEED = 0.7, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
+	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
+	force = 8
 	force_wielded = 24
 	throwforce = 40
 	throw_speed = 2
@@ -723,19 +725,19 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/datum/action/innate/cult/spear/spear_act
 
-/obj/item/twohanded/cult_spear/Initialize()
+/obj/item/twohanded/spear/cult_spear/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 90)
 
-/obj/item/twohanded/cult_spear/Destroy()
+/obj/item/twohanded/spear/cult_spear/Destroy()
 	if(spear_act)
 		qdel(spear_act)
 	..()
 
-/obj/item/twohanded/cult_spear/update_icon()
+/obj/item/twohanded/spear/cult_spear/update_icon()
 	icon_state = "bloodspear[wielded]"
 
-/obj/item/twohanded/cult_spear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/twohanded/spear/cult_spear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/turf/T = get_turf(hit_atom)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
@@ -755,7 +757,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	else
 		..()
 
-/obj/item/twohanded/cult_spear/proc/break_spear(turf/T)
+/obj/item/twohanded/spear/cult_spear/proc/break_spear(turf/T)
 	if(src)
 		if(!T)
 			T = get_turf(src)
@@ -766,7 +768,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			playsound(T, 'sound/effects/glassbr3.ogg', 100)
 	qdel(src)
 
-/obj/item/twohanded/cult_spear/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/twohanded/spear/cult_spear/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(wielded)
 		final_block_chance *= 2
 	if(prob(final_block_chance))
@@ -785,7 +787,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	desc = "Call the blood spear back to your hand!"
 	background_icon_state = "bg_demon"
 	button_icon_state = "bloodspear"
-	var/obj/item/twohanded/cult_spear/spear
+	var/obj/item/twohanded/spear/cult_spear/spear
 	var/cooldown = 0
 
 /datum/action/innate/cult/spear/Grant(mob/user, obj/blood_spear)
@@ -814,7 +816,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	name = "blood bolt barrage"
 	desc = "Blood for blood."
 	color = "#ff0000"
-	guns_left = 24
+	guns_left = 18
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage/blood
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 
