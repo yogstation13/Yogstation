@@ -2,10 +2,15 @@
 // stores power
 
 //Cache defines
-#define SMES_OUTPUTTING		7
-#define SMES_NOT_OUTPUTTING 8
-#define SMES_INPUTTING		9
-#define SMES_INPUT_ATTEMPT	10
+#define SMES_CLEVEL_1		1
+#define SMES_CLEVEL_2		2
+#define SMES_CLEVEL_3		3
+#define SMES_CLEVEL_4		4
+#define SMES_CLEVEL_5		5
+#define SMES_OUTPUTTING		6
+#define SMES_NOT_OUTPUTTING 7
+#define SMES_INPUTTING		8
+#define SMES_INPUT_ATTEMPT	9
 
 /obj/machinery/power/smes
 	name = "power storage unit"
@@ -129,7 +134,7 @@
 		to_chat(user, span_notice("You start building the power terminal..."))
 		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 
-		if(do_after(user, 2 SECONDS, src))
+		if(do_after(user, 2 SECONDS, target = src))
 			if(C.get_amount() < 10 || !C)
 				return
 			var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one
@@ -214,15 +219,15 @@
 		return
 
 	if(outputting)
-		add_overlay("smes-out1")
+		add_overlay("smes-op1")
 	else
-		add_overlay("smes-out0")
+		add_overlay("smes-op0")
 
 	if(inputting)
-		add_overlay("smes-inp1")
+		add_overlay("smes-oc1")
 	else
 		if(input_attempt)
-			add_overlay("smes-inp0")
+			add_overlay("smes-oc0")
 
 	var/clevel = chargedisplay()
 	if(clevel>0)
@@ -230,7 +235,7 @@
 
 
 /obj/machinery/power/smes/proc/chargedisplay()
-	return clamp(round(6.5*charge/capacity),0,6)
+	return clamp(round(5.5*charge/capacity),0,5)
 
 /obj/machinery/power/smes/process()
 	if(stat & BROKEN)
@@ -448,6 +453,12 @@
 	log_smes(user)
 	update_icon()
 
+
+#undef SMES_CLEVEL_1
+#undef SMES_CLEVEL_2
+#undef SMES_CLEVEL_3
+#undef SMES_CLEVEL_4
+#undef SMES_CLEVEL_5
 #undef SMES_OUTPUTTING
 #undef SMES_NOT_OUTPUTTING
 #undef SMES_INPUTTING

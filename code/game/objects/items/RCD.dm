@@ -38,9 +38,6 @@ RLD
 	var/banned_upgrades = NONE
 	var/datum/component/remote_materials/silo_mats //remote connection to the silo
 	var/silo_link = FALSE //switch to use internal or remote storage
-	var/linked_switch_id = null	//integer variable, the id for the assigned conveyor switch
-	var/obj/machinery/conveyor/last_placed
-	var/color_choice = null
 
 /obj/item/construction/Initialize(mapload)
 	. = ..()
@@ -543,7 +540,7 @@ RLD
 	var/delay = rcd_results["delay"] * delay_mod
 	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
 	if(checkResource(rcd_results["cost"], user))
-		if(do_after(user, delay, A))
+		if(do_after(user, delay, target = A))
 			if(checkResource(rcd_results["cost"], user))
 				if(A.rcd_act(user, src, rcd_results["mode"]))
 					rcd_effect.end_animation()
@@ -551,40 +548,6 @@ RLD
 					activate()
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					return TRUE
-	qdel(rcd_effect)
-	return FALSE
-
-/obj/item/construction/rcd/proc/rcd_switch(atom/A, mob/user)
-	var/cost = 1
-	var/delay = 1
-	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
-	if(checkResource(cost, user))
-		if(do_after(user, delay, A))
-			if(checkResource(cost, user))
-				rcd_effect.end_animation()
-				useResource(cost, user)
-				activate()
-				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-				new /obj/item/conveyor_switch_construct(A)
-	qdel(rcd_effect)
-
-/obj/item/construction/rcd/proc/rcd_conveyor(atom/A, mob/user)
-	var/delay = 5
-	var/cost = 5
-	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
-	if(checkResource(cost, user))
-		if(do_after(user, delay, target = A))
-			if(checkResource(cost, user))
-				rcd_effect.end_animation()
-				useResource(cost, user)
-				activate()
-				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-				var/cdir = get_dir(A, user)
-				if (last_placed)
-					cdir = get_dir(A, last_placed)
-					if(cdir in GLOB.cardinals)
-						last_placed.setDir(get_dir(last_placed, A))
-				last_placed = new/obj/machinery/conveyor(A, cdir, linked_switch_id)
 	qdel(rcd_effect)
 
 /obj/item/construction/rcd/Initialize()
@@ -633,11 +596,6 @@ RLD
 		choices += list(
 		"Change Furnishing Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "chair")
 		)
-	if(upgrade & RCD_UPGRADE_CONVEYORS)
-		choices += list(
-		"Conveyor" = image(icon = 'icons/obj/recycling.dmi', icon_state = "conveyor_construct"),
-		"Switch" = image(icon = 'icons/obj/recycling.dmi', icon_state = "switch-off")
-		)
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
@@ -676,13 +634,7 @@ RLD
 		if("Silo Link")
 			toggle_silo_link(user)
 			return
-		if("Conveyor")
-			mode = RCD_CONVEYOR
-			linked_switch_id = null
-			last_placed = null
-		if("Switch")
-			mode = RCD_SWITCH
-		else 
+		else
 			return
 	playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
 	to_chat(user, span_notice("You change RCD's mode to '[choice]'."))
@@ -695,30 +647,9 @@ RLD
 
 /obj/item/construction/rcd/afterattack(atom/A, mob/user, proximity)
 	. = ..()
-	if (mode == RCD_CONVEYOR)
-		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/machinery/conveyor) || !isopenturf(A) || istype(A, /area/shuttle))
-			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
-			return
-		if (!linked_switch_id)
-			to_chat(user, "<span class='warning'>Error! [src] is not linked!</span>")
-			return
-		if (get_turf(A) == get_turf(user))
-			to_chat(user, "<span class='notice'>Cannot place conveyor below your feet!</span>")
-			return
-		if(!proximity)
-			return
-		rcd_conveyor(A, user)
-	if (mode == RCD_SWITCH)
-		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/item/conveyor_switch_construct) || !isopenturf(A) || istype(A, /area/shuttle))
-			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
-			return
-		if(!proximity)
-			return
-		rcd_switch(A, user)
-	else
-		if(!prox_check(proximity))
-			return
-		rcd_create(A, user)
+	if(!prox_check(proximity))
+		return
+	rcd_create(A, user)
 
 /obj/item/construction/rcd/proc/detonate_pulse()
 	audible_message("<span class='danger'><b>[src] begins to vibrate and \
@@ -827,7 +758,7 @@ RLD
 	has_ammobar = FALSE
 
 /obj/item/construction/rcd/arcd/afterattack(atom/A, mob/user)
-	..()
+	. = ..()
 	if(!range_check(A,user))
 		return
 	if(target_check(A,user))
@@ -863,6 +794,9 @@ RLD
 	var/floordelay = 10
 	var/decondelay = 15
 
+	var/color_choice = null
+
+
 /obj/item/construction/rld/ui_action_click(mob/user, datum/action/A)
 	if(istype(A, /datum/action/item_action/pick_color))
 		color_choice = input(user,"","Choose Color",color_choice) as color
@@ -887,12 +821,6 @@ RLD
 			mode = REMOVE_MODE
 			to_chat(user, span_notice("You change RLD's mode to 'Deconstruct'."))
 
-/obj/item/construction/rcd/attackby(obj/item/I, mob/user, params)
-	..()
-	if(upgrade & RCD_UPGRADE_CONVEYORS && istype(I, /obj/item/conveyor_switch_construct))
-		to_chat(user, "<span class='notice'>You link the switch to the [src].</span>")
-		var/obj/item/conveyor_switch_construct/C = I
-		linked_switch_id = C.id
 
 /obj/item/construction/rld/proc/checkdupes(var/target)
 	. = list()
@@ -903,7 +831,7 @@ RLD
 
 
 /obj/item/construction/rld/afterattack(atom/A, mob/user)
-	..()
+	. = ..()
 	if(!range_check(A,user))
 		return
 	var/turf/start = get_turf(src)
@@ -914,7 +842,7 @@ RLD
 					to_chat(user, span_notice("You start deconstructing [A]..."))
 					user.Beam(A,icon_state="nzcrentrs_power",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-					if(do_after(user, decondelay, A))
+					if(do_after(user, decondelay, target = A))
 						if(!useResource(deconcost, user))
 							return FALSE
 						activate()
@@ -929,7 +857,7 @@ RLD
 					user.Beam(A,icon_state="nzcrentrs_power",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, FALSE)
-					if(do_after(user, floordelay, A))
+					if(do_after(user, floordelay, target = A))
 						if(!istype(W))
 							return FALSE
 						var/list/candidates = list()
@@ -975,7 +903,7 @@ RLD
 					user.Beam(A,icon_state="light_beam",time=15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, TRUE)
-					if(do_after(user, floordelay, A))
+					if(do_after(user, floordelay, target = A))
 						if(!istype(F))
 							return 0
 						if(!useResource(floorcost, user))
@@ -1022,10 +950,7 @@ RLD
 /obj/item/rcd_upgrade/furnishing
 	desc = "It contains the design for chairs, stools, tables, and glass tables."
 	upgrade = RCD_UPGRADE_FURNISHING
-/obj/item/rcd_upgrade/conveyor
-	desc = "The disk warns against building an endless conveyor trap, but we know what you're gonna do."
-	upgrade = RCD_UPGRADE_CONVEYORS
-	
+
 #undef GLOW_MODE
 #undef LIGHT_MODE
 #undef REMOVE_MODE

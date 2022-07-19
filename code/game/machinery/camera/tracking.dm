@@ -103,7 +103,7 @@
 					tracking = 0
 					return
 				else
-					sleep(1 SECONDS)
+					sleep(10)
 					continue
 
 			else
@@ -118,7 +118,7 @@
 				U.cameraFollow = null
 				return
 
-			sleep(1 SECONDS)
+			sleep(10)
 
 /proc/near_camera(mob/living/M)
 	if (!isturf(M.loc))

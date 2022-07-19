@@ -74,6 +74,19 @@
 				if(S.next_step(user,user.a_intent))
 					return TRUE
 
+	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
+
+	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
+		user.changeNext_move(CLICK_CD_MELEE)
+		if(I.use_tool(src, user, 0, volume=50, amount=1))
+			if(user == src)
+				user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.name]."),
+					span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.name]."))
+				if(!do_mob(user, src, 50))
+					return TRUE
+			item_heal_robotic(src, user, 15, 0)
+			return TRUE
+
 	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
 		return ..()
 
@@ -174,7 +187,6 @@
 
 	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !HAS_TRAIT(I, TRAIT_NODROP))
 		thrown_thing = I
-		SEND_SIGNAL(thrown_thing, COMSIG_MOVABLE_PRE_DROPTHROW, src)
 		dropItemToGround(I, silent = TRUE)
 
 		if(HAS_TRAIT(src, TRAIT_PACIFISM) && I.throwforce)
@@ -277,7 +289,7 @@
 				return
 			var/damage_amount = I.embedding.embedded_unsafe_removal_pain_multiplier * I.w_class
 			L.receive_damage(damage_amount, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
-			if(remove_embedded_object(I, get_turf(src), (damage_amount == 0)))
+			if(remove_embedded_object(I, get_turf(src), damage_amount))
 				usr.put_in_hands(I)
 				usr.visible_message("[usr] successfully rips [I] out of [usr.p_their()] [L.name]!", span_notice("You successfully remove [I] from your [L.name]."))
 		return
@@ -305,7 +317,7 @@
 			buckle_cd = O.breakouttime
 		visible_message(span_warning("[src] attempts to unbuckle [p_them()]self!"), \
 					span_notice("You attempt to unbuckle yourself... (This will take around [round(buckle_cd/10,1)] second\s, and you need to stay still.)"))
-		if(do_after(src, buckle_cd, src, FALSE))
+		if(do_after(src, buckle_cd, 0, target = src))
 			if(!buckled)
 				return
 			buckled.user_unbuckle_mob(src,src)
@@ -317,11 +329,11 @@
 
 /mob/living/carbon/resist_fire()
 	fire_stacks -= 5
-	Paralyze(6 SECONDS, TRUE, TRUE)
+	Paralyze(60, TRUE, TRUE)
 	spin(32,2)
 	visible_message(span_danger("[src] rolls on the floor, trying to put [p_them()]self out!"), \
 		span_notice("You stop, drop, and roll!"))
-	sleep(3 SECONDS)
+	sleep(30)
 	if(fire_stacks <= 0)
 		visible_message(span_danger("[src] has successfully extinguished [p_them()]self!"), \
 			span_notice("You extinguish yourself."))
@@ -356,7 +368,7 @@
 	if(!cuff_break)
 		visible_message(span_warning("[src] attempts to remove [I]!"))
 		to_chat(src, span_notice("You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
-		if(do_after(src, breakouttime, src, FALSE))
+		if(do_after(src, breakouttime, 0, target = src))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to remove [I]!"))
@@ -365,7 +377,7 @@
 		breakouttime = 50
 		visible_message(span_warning("[src] is trying to break [I]!"))
 		to_chat(src, span_notice("You attempt to break [I]... (This will take around 5 seconds and you need to stand still.)"))
-		if(do_after(src, breakouttime, src, FALSE))
+		if(do_after(src, breakouttime, 0, target = src))
 			clear_cuffs(I, cuff_break)
 		else
 			to_chat(src, span_warning("You fail to break [I]!"))
@@ -485,8 +497,8 @@
 		return 0
 	return ..()
 
-/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
+/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE)
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return TRUE
 
 	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
@@ -526,9 +538,12 @@
 				add_splatter_floor(T)
 			if(stun)
 				adjustBruteLoss(3)
+		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam, needs_metabolizing = TRUE))
+			if(T)
+				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
 			if(T)
-				T.add_vomit_floor(src, vomit_type, purge_ratio) //toxic barf looks different || call purge when doing detoxicfication to pump more chems out of the stomach.
+				T.add_vomit_floor(src, VOMIT_TOXIC)//toxic barf looks different
 		T = get_step(T, dir)
 		if (is_blocked_turf(T))
 			break
@@ -1220,9 +1235,6 @@
 		scaries.generate(scar_part, phantom_wound)
 		scaries.fake = TRUE
 		QDEL_NULL(phantom_wound)
-
-/mob/living/carbon/is_face_visible()
-	return ..() && !(wear_mask?.flags_inv & HIDEFACE) && !(head?.flags_inv & HIDEFACE) // Yogs -- you can no longer make eye contact with a cigarette butt that contains a tator
 
 /**
   * get_biological_state is a helper used to see what kind of wounds we roll for. By default we just assume carbons (read:monkeys) are flesh and bone, but humans rely on their species datums

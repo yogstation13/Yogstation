@@ -27,7 +27,7 @@
 			to_chat(user, span_notice("You deactivate [F]."))
 			qdel(F)
 			return
-	if(do_after(user, creation_time, target))
+	if(do_after(user, creation_time, target = target))
 		var/turf/T = get_turf(target)
 		var/obj/structure/projected_forcefield/found_field = locate() in T
 		if(found_field)

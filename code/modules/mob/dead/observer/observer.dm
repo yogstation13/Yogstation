@@ -56,7 +56,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/deadchat_name
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
-	var/datum/action/unobserve/UO 
 
 	// Current Viewrange
 	var/view = 0
@@ -129,7 +128,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		remove_verb(src, /mob/dead/observer/verb/boo)
 		remove_verb(src, /mob/dead/observer/verb/possess)
 
-	animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
+	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 	add_to_dead_mob_list()
 
@@ -152,13 +151,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/narsie_act()
 	var/old_color = color
 	color = "#960000"
-	animate(src, color = old_color, time = 1 SECONDS, flags = ANIMATION_PARALLEL)
+	animate(src, color = old_color, time = 10, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 10)
 
 /mob/dead/observer/ratvar_act()
 	var/old_color = color
 	color = "#FAE48C"
-	animate(src, color = old_color, time = 1 SECONDS, flags = ANIMATION_PARALLEL)
+	animate(src, color = old_color, time = 10, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 10)
 
 /mob/dead/observer/Destroy()
@@ -477,7 +476,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	. = ..()
 	//restart our floating animation after orbit is done.
 	pixel_y = 0
-	animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
+	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -807,8 +806,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				remove_verb(src, /mob/dead/observer/verb/possess)
 
 /mob/dead/observer/reset_perspective(atom/A)
-	if(UO)
-		qdel(UO)
 	if(client)
 		if(ismob(client.eye) && (client.eye != src))
 			cleanup_observe()
@@ -859,22 +856,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
 			observetarget = mob_eye
-		if(!UO)
-			UO = new // Convinent way to unobserve
-			UO.Grant(src)
-
-/datum/action/unobserve
-	name = "Stop Observing"
-	desc = "Stops observing the person."
-	icon_icon = 'icons/mob/mob.dmi'
-	button_icon_state = "ghost_nodir"
-
-/datum/action/unobserve/Trigger()
-	owner.reset_perspective(null)
-
-/datum/action/unobserve/IsAvailable()
-	return TRUE
-
 
 /mob/dead/observer/proc/on_observing_z_changed(datum/source, turf/old_turf, turf/new_turf)
 	SHOULD_NOT_SLEEP(TRUE)

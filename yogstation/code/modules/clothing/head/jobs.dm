@@ -15,9 +15,9 @@
 	name = "Brig Physician's cap"
 	desc = "It's a baseball hat with a dark brown color and a reflective cross on the top. Has BP embossed into it."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "emtsecsoft"
-	soft_type = "emtsec"
+	item_color = "emtsec"
 
 /obj/item/clothing/head/beret/med/phys
 	name = "Brig Physician's beret"
@@ -28,6 +28,6 @@
 	name = "corporate physician beret"
 	desc = "A special black beret for the mundane life of a corporate brig physician."
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
-	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
+	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
 	icon_state = "beret_corporate_phys"
 	armor = list(BIO = 20) //So it isnt a direct upgrade over the normal berret

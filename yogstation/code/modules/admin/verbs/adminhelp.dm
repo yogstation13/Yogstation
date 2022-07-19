@@ -134,7 +134,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 	var/static/ticket_counter = 0
 	var/static/last_bwoinking = 0
-	var/static/last_unclaimed_notification = 0
 
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
@@ -230,22 +229,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/check_owner() // Handles unclaimed tickets; returns TRUE if no longer unclaimed
 	if(!handling_admin && state == AHELP_ACTIVE)
-		var/msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font></span>")
-		for(var/client/X in GLOB.admins)
-			if(check_rights_for(X,R_BAN))
-				to_chat(X,
-					type = MESSAGE_TYPE_ADMINLOG,
-					html = msg,
-					confidential = TRUE)
-			else
-				if(world.time > last_unclaimed_notification)
-					last_unclaimed_notification = world.time + 1 SECONDS
-					msg = "<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Unclaimed Tickets!</font></span>"
-					to_chat(X,
-						type = MESSAGE_TYPE_ADMINLOG,
-						html = msg,
-						confidential = TRUE)
-				
+		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
 		if(world.time > last_bwoinking)
 			last_bwoinking = world.time + 1 SECONDS
 			for(var/client/X in GLOB.admins)
@@ -472,7 +456,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(initiator)
 		to_chat(initiator, msg, confidential=TRUE)
-		initiator.mhelp(name, TRUE)
+		initiator.mentorhelp(name)
 
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "MHelp")
 	msg = "Ticket [TicketHref("#[id]")] marked as MHelp by [key_name]"

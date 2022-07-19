@@ -2,6 +2,7 @@
 	name = "red pj's"
 	desc = "Sleepwear."
 	icon_state = "red_pyjamas"
+	item_color = "red_pyjamas"
 	item_state = "w_suit"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
@@ -10,6 +11,7 @@
 	name = "blue pj's"
 	desc = "Sleepwear."
 	icon_state = "blue_pyjamas"
+	item_color = "blue_pyjamas"
 	item_state = "w_suit"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
@@ -19,6 +21,7 @@
 	desc = "Motorcycle not included."
 	icon_state = "ek"
 	item_state = "ek"
+	item_color = "ek"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -27,6 +30,7 @@
 	desc = "A white suit, suitable for an excellent host."
 	icon_state = "scratch"
 	item_state = "scratch"
+	item_color = "scratch"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -35,6 +39,7 @@
 	desc = "A white suitskirt, suitable for an excellent host."
 	icon_state = "white_suit_skirt"
 	item_state = "scratch"
+	item_color = "white_suit_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
@@ -44,6 +49,7 @@
 	desc = "It's a very amish looking suit."
 	name = "amish suit"
 	icon_state = "sl_suit"
+	item_color = "sl_suit"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -51,6 +57,7 @@
 	name = "\improper Roman armor"
 	desc = "Ancient Roman armor. Made of metallic and leather straps."
 	icon_state = "roman"
+	item_color = "roman"
 	item_state = "armor"
 	can_adjust = FALSE
 	strip_delay = 100
@@ -61,6 +68,7 @@
 	desc = "It's a very smart uniform with a special pocket for tips."
 	icon_state = "waiter"
 	item_state = "waiter"
+	item_color = "waiter"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -69,6 +77,7 @@
 	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "prisoner"
 	item_state = "o_suit"
+	item_color = "prisoner"
 	has_sensor = LOCKED_SENSORS
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
@@ -79,6 +88,7 @@
 	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "prisoner_skirt"
 	item_state = "o_suit"
+	item_color = "prisoner_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
@@ -89,22 +99,23 @@
 	desc = "<i>'Special delivery!'</i>"
 	icon_state = "mailman"
 	item_state = "b_suit"
+	item_color = "mailman"
 	mutantrace_variation = MUTANTRACE_VARIATION
-
 /* Commented out in favor of yogstation custom content
 /obj/item/clothing/under/rank/psyche
 	name = "psychedelic jumpsuit"
 	desc = "Groovy!"
 	icon_state = "psyche"
 	item_state = "p_suit"
+	item_color = "psyche"
 	mutantrace_variation = MUTANTRACE_VARIATION
 */
-
 /obj/item/clothing/under/rank/clown/sexy
 	name = "sexy-clown suit"
 	desc = "It makes you look HONKable!"
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
+	item_color = "sexyclown"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -113,6 +124,7 @@
 	desc = "The leather club is two sectors down."
 	icon_state = "darkholme"
 	item_state = "darkholme"
+	item_color = "darkholme"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -121,6 +133,7 @@
 	desc = "It's the standard issue pretty-boy outfit, as seen on Holo-Vision."
 	icon_state = "vice"
 	item_state = "gy_suit"
+	item_color = "vice"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -129,6 +142,7 @@
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "officer"
 	item_state = "g_suit"
+	item_color = "officer"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/centcom_commander
@@ -136,6 +150,7 @@
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "centcom"
 	item_state = "dg_suit"
+	item_color = "centcom"
 	alt_covers_chest = TRUE
 	mutantrace_variation = MUTANTRACE_VARIATION
 	can_adjust = TRUE //too important to look unimportant.
@@ -158,6 +173,7 @@
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
 	icon_state = "black"
 	item_state = "bl_suit"
+	item_color = "black"
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
@@ -174,6 +190,7 @@
 	name = "administrative cybernetic jumpsuit"
 	icon_state = "syndicate"
 	item_state = "bl_suit"
+	item_color = "syndicate"
 	desc = "A cybernetically enhanced jumpsuit used for administrative duties."
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -191,6 +208,7 @@
 	name = "owl uniform"
 	desc = "A soft brown jumpsuit made of synthetic feathers and strong conviction."
 	icon_state = "owl"
+	item_color = "owl"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -198,6 +216,7 @@
 	name = "griffon uniform"
 	desc = "A soft brown jumpsuit with a white feather collar made of synthetic feathers and a lust for mayhem."
 	icon_state = "griffin"
+	item_color = "griffin"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -205,6 +224,7 @@
 	name = "cloud"
 	desc = "cloud"
 	icon_state = "cloud"
+	item_color = "cloud"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
@@ -212,6 +232,7 @@
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
 	item_state = "dg_suit"
+	item_color = "green_suit"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -220,6 +241,7 @@
 	desc = "A green suitskirt and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit_skirt"
 	item_state = "dg_suit"
+	item_color = "green_suit_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
@@ -230,6 +252,7 @@
 	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
 	icon_state = "teal_suit"
 	item_state = "g_suit"
+	item_color = "teal_suit"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -238,6 +261,7 @@
 	desc = "A teal suitskirt and yellow necktie. An authoritative yet tacky ensemble."
 	icon_state = "teal_suit_skirt"
 	item_state = "g_suit"
+	item_color = "teal_suit_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
@@ -248,6 +272,7 @@
 	desc = "A black suit and red tie. Very formal."
 	icon_state = "black_suit"
 	item_state = "bl_suit"
+	item_color = "black_suit"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -256,18 +281,21 @@
 	desc = "A formal black suit and red tie, intended for the station's finest."
 	icon_state = "really_black_suit"
 	item_state = "bl_suit"
+	item_color = "really_black_suit"
 
 /obj/item/clothing/under/suit_jacket/female
 	name = "executive suit"
 	desc = "A formal trouser suit for women, intended for the station's finest."
 	icon_state = "black_suit_fem"
 	item_state = "black_suit_fem"
+	item_color = "black_suit_fem"
 
 /obj/item/clothing/under/suit_jacket/green
 	name = "green suit"
 	desc = "A green suit and yellow necktie. Baller."
 	icon_state = "green_suit"
 	item_state = "dg_suit"
+	item_color = "green_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/suit_jacket/red
@@ -275,48 +303,56 @@
 	desc = "A red suit and blue tie. Somewhat formal."
 	icon_state = "red_suit"
 	item_state = "r_suit"
+	item_color = "red_suit"
 
 /obj/item/clothing/under/suit_jacket/charcoal
 	name = "charcoal suit"
 	desc = "A charcoal suit and red tie. Very professional."
 	icon_state = "charcoal_suit"
 	item_state = "charcoal_suit"
+	item_color = "charcoal_suit"
 
 /obj/item/clothing/under/suit_jacket/navy
 	name = "navy suit"
 	desc = "A navy suit and red tie, intended for the station's finest."
 	icon_state = "navy_suit"
 	item_state = "navy_suit"
+	item_color = "navy_suit"
 
 /obj/item/clothing/under/suit_jacket/burgundy
 	name = "burgundy suit"
 	desc = "A burgundy suit and black tie. Somewhat formal."
 	icon_state = "burgundy_suit"
 	item_state = "burgundy_suit"
+	item_color = "burgundy_suit"
 
 /obj/item/clothing/under/suit_jacket/checkered
 	name = "checkered suit"
 	desc = "That's a very nice suit you have there. Shame if something were to happen to it, eh?"
 	icon_state = "checkered_suit"
 	item_state = "checkered_suit"
+	item_color = "checkered_suit"
 
 /obj/item/clothing/under/suit_jacket/tan
 	name = "tan suit"
 	desc = "A tan suit with a yellow tie. Smart, but casual."
 	icon_state = "tan_suit"
 	item_state = "tan_suit"
+	item_color = "tan_suit"
 
 /obj/item/clothing/under/suit_jacket/white
 	name = "white suit"
 	desc = "A white suit and jacket with a blue shirt. You wanna play rough? OKAY!"
 	icon_state = "white_suit"
 	item_state = "white_suit"
+	item_color = "white_suit"
 
 /obj/item/clothing/under/burial
 	name = "burial garments"
 	desc = "Traditional burial garments from the early 22nd century."
 	icon_state = "burial"
 	item_state = "burial"
+	item_color = "burial"
 	has_sensor = NO_SENSORS
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -324,6 +360,7 @@
 	name = "black skirt"
 	desc = "A black skirt, very fancy!"
 	icon_state = "blackskirt"
+	item_color = "blackskirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -332,6 +369,7 @@
 	name = "blue skirt"
 	desc = "A blue, casual skirt."
 	icon_state = "blueskirt"
+	item_color = "blueskirt"
 	item_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
@@ -342,6 +380,7 @@
 	name = "red skirt"
 	desc = "A red, casual skirt."
 	icon_state = "redskirt"
+	item_color = "redskirt"
 	item_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
@@ -352,6 +391,7 @@
 	name = "purple skirt"
 	desc = "A purple, casual skirt."
 	icon_state = "purpleskirt"
+	item_color = "purpleskirt"
 	item_state = "p_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
@@ -364,6 +404,7 @@
 	desc = "It's just like one of my Japanese animes!"
 	icon_state = "schoolgirl"
 	item_state = "schoolgirl"
+	item_color = "schoolgirl"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -372,45 +413,45 @@
 	name = "red schoolgirl uniform"
 	icon_state = "schoolgirlred"
 	item_state = "schoolgirlred"
+	item_color = "schoolgirlred"
 
 /obj/item/clothing/under/schoolgirl/green
 	name = "green schoolgirl uniform"
 	icon_state = "schoolgirlgreen"
 	item_state = "schoolgirlgreen"
+	item_color = "schoolgirlgreen"
 
 /obj/item/clothing/under/schoolgirl/orange
 	name = "orange schoolgirl uniform"
 	icon_state = "schoolgirlorange"
 	item_state = "schoolgirlorange"
+	item_color = "schoolgirlorange"
 
 /obj/item/clothing/under/overalls
 	name = "laborer's overalls"
 	desc = "A set of durable overalls for getting the job done."
 	icon_state = "overalls"
 	item_state = "lb_suit"
+	item_color = "overalls"
 	can_adjust = FALSE
 	custom_price = 20
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
-	desc = "Yarr! A fine shirt and pants for the enterprising corsair."
+	desc = "Yarr."
 	icon_state = "pirate"
 	item_state = "pirate"
+	item_color = "pirate"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
-
-/obj/item/clothing/under/pirate/space
-	name = "syndicate pirate outfit"
-	desc = "Yarr! A set of reinforced pirate clothing worn by boney Syndicate privateers."
-	has_sensor = NO_SENSORS
-	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 40)
 
 /obj/item/clothing/under/soviet
 	name = "soviet uniform"
 	desc = "For the Motherland!"
 	icon_state = "soviet"
 	item_state = "soviet"
+	item_color = "soviet"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -419,6 +460,7 @@
 	desc = "Looks old."
 	icon_state = "redcoat"
 	item_state = "redcoat"
+	item_color = "redcoat"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -427,6 +469,7 @@
 	desc = "Includes shoes and plaid."
 	icon_state = "kilt"
 	item_state = "kilt"
+	item_color = "kilt"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -444,6 +487,7 @@
 	desc = "The only time when you DON'T enjoy looking at someone's rack."
 	icon_state = "sexymime"
 	item_state = "sexymime"
+	item_color = "sexymime"
 	body_parts_covered = CHEST|GROIN|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -454,6 +498,7 @@
 	desc = "Are you not entertained? Is that not why you are here?"
 	icon_state = "gladiator"
 	item_state = "gladiator"
+	item_color = "gladiator"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
@@ -468,6 +513,7 @@
 	desc = "Makes you want to frolic in a field of daisies."
 	icon_state = "sundress"
 	item_state = "sundress"
+	item_color = "sundress"
 	body_parts_covered = CHEST|GROIN
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -477,6 +523,7 @@
 	desc = "A captain's luxury-wear, for special occasions."
 	icon_state = "captain_parade"
 	item_state = "by_suit"
+	item_color = "captain_parade"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -485,6 +532,7 @@
 	desc = "A male head of security's luxury-wear, for special occasions."
 	icon_state = "hos_parade_male"
 	item_state = "r_suit"
+	item_color = "hos_parade_male"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -493,6 +541,7 @@
 	desc = "A female head of security's luxury-wear, for special occasions."
 	icon_state = "hos_parade_fem"
 	item_state = "r_suit"
+	item_color = "hos_parade_fem"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
@@ -502,6 +551,7 @@
 	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
 	icon_state = "assistant_formal"
 	item_state = "gy_suit"
+	item_color = "assistant_formal"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -510,6 +560,7 @@
 	desc = "Filled with Latin fire."
 	icon_state = "black_tango"
 	item_state = "wcoat"
+	item_color = "black_tango"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
@@ -518,6 +569,7 @@
 	desc = "Fashion in space."
 	icon_state = "striped_dress"
 	item_state = "stripeddress"
+	item_color = "striped_dress"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_FULL
 	can_adjust = FALSE
@@ -527,6 +579,7 @@
 	desc = "Formal wear for a leading lady."
 	icon_state = "sailor_dress"
 	item_state = "sailordress"
+	item_color = "sailor_dress"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -536,6 +589,7 @@
 	desc = "Fancy dress for space bar singers."
 	icon_state = "red_evening_gown"
 	item_state = "redeveninggown"
+	item_color = "red_evening_gown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
@@ -544,6 +598,7 @@
 	desc = "Maid in China."
 	icon_state = "maid"
 	item_state = "maid"
+	item_color = "maid"
 	body_parts_covered = CHEST|GROIN
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -558,6 +613,7 @@
 	desc = "A simple maid uniform for housekeeping."
 	icon_state = "janimaid"
 	item_state = "janimaid"
+	item_color = "janimaid"
 	body_parts_covered = CHEST|GROIN|FEET|LEGS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -567,6 +623,7 @@
 	desc = "A preppy red skirt with a white blouse."
 	icon_state = "plaid_red"
 	item_state = "plaid_red"
+	item_color = "plaid_red"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
@@ -577,6 +634,7 @@
 	desc = "A preppy blue skirt with a white blouse."
 	icon_state = "plaid_blue"
 	item_state = "plaid_blue"
+	item_color = "plaid_blue"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
@@ -586,6 +644,7 @@
 	desc = "A preppy purple skirt with a white blouse."
 	icon_state = "plaid_purple"
 	item_state = "plaid_purple"
+	item_color = "plaid_purple"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
@@ -595,6 +654,7 @@
 	desc = "Just looking at this makes you want to sing."
 	icon_state = "ysing"
 	item_state = "ysing"
+	item_color = "ysing"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = NO_FEMALE_UNIFORM
 	alternate_worn_layer = ABOVE_SHOES_LAYER
@@ -606,6 +666,7 @@
 	desc = "Just looking at this makes you want to sing."
 	icon_state = "bsing"
 	item_state = "bsing"
+	item_color = "bsing"
 	body_parts_covered = CHEST|GROIN|ARMS
 	alternate_worn_layer = ABOVE_SHOES_LAYER
 	fitted = FEMALE_UNIFORM_TOP
@@ -617,6 +678,7 @@
 	desc = "A preppy green skirt with a white blouse."
 	icon_state = "plaid_green"
 	item_state = "plaid_green"
+	item_color = "plaid_green"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
@@ -625,12 +687,14 @@
 	name = "jester suit"
 	desc = "A jolly dress, well suited to entertain your master, nuncle."
 	icon_state = "jester"
+	item_color = "jester"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/geisha
 	name = "geisha suit"
 	desc = "Cute space ninja senpai not included."
 	icon_state = "geisha"
+	item_color = "geisha"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 
@@ -638,6 +702,7 @@
 	name = "villain suit"
 	desc = "A change of wardrobe is necessary if you ever want to catch a real superhero."
 	icon_state = "villain"
+	item_color = "villain"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -646,16 +711,17 @@
 	desc = "Skipper's in the wardroom drinkin' gin."
 	icon_state = "sailor"
 	item_state = "b_suit"
+	item_color = "sailor"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/plasmaman
 	name = "envirosuit"
-	desc = "The latest generation of Nanotrasen-designed plasmamen envirosuits. This new version has an extinguisher built into the uniform's workings. While airtight, the suit is not EVA-rated."
+	desc = "A special containment suit that allows plasma-based lifeforms to exist safely in an oxygenated environment, and automatically extinguishes them in a crisis. Despite being airtight, it's not spaceworthy."
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
+	item_color = "plasmaman"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 95, ACID = 95)
-	resistance_flags = FIRE_PROOF | ACID_PROOF
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	can_adjust = FALSE
 	strip_delay = 80
@@ -704,6 +770,7 @@
 	desc = "The latest in fashionable Russian outfits."
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
+	item_color = "hostanclothes"
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/mummy
@@ -711,6 +778,7 @@
 	desc = "Return the slab or suffer my stale references."
 	icon_state = "mummy"
 	item_state = "mummy"
+	item_color = "mummy"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
@@ -722,6 +790,7 @@
 	desc = "Perfect camouflage for hiding in botany."
 	icon_state = "scarecrow"
 	item_state = "scarecrow"
+	item_color = "scarecrow"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
@@ -733,6 +802,7 @@
 	desc = "A dress inspired by the ancient \"Victorian\" era."
 	icon_state = "draculass"
 	item_state = "draculass"
+	item_color = "draculass"
 	body_parts_covered = CHEST|GROIN|ARMS
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
@@ -742,6 +812,7 @@
 	desc = "A modified scientist jumpsuit to look extra cool."
 	icon_state = "drfreeze"
 	item_state = "drfreeze"
+	item_color = "drfreeze"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/lobster
@@ -749,6 +820,7 @@
 	desc = "Who beheaded the college mascot?"
 	icon_state = "lobster"
 	item_state = "lobster"
+	item_color = "lobster"
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
 
@@ -757,6 +829,7 @@
 	desc = "Now you're cooking."
 	icon_state = "gondola"
 	item_state = "lb_suit"
+	item_color = "gondola"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
@@ -765,6 +838,7 @@
 	desc = "A black jumpsuit with a white bone pattern printed on it. Spooky!"
 	icon_state = "skeleton"
 	item_state = "skeleton"
+	item_color = "skeleton"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
@@ -776,6 +850,7 @@
 	desc = "A jumpsuit made from durathread, its resilient fibres provide some protection to the wearer."
 	icon_state = "durathread"
 	item_state = "durathread"
+	item_color = "durathread"
 	can_adjust = FALSE
 	armor = list(MELEE = 10, LASER = 10, FIRE = 40, ACID = 10, BOMB = 5)
 	mutantrace_variation = MUTANTRACE_VARIATION
@@ -810,6 +885,7 @@
 	desc = "A peculier garment woven in silk; under the lower dress appears to be a lamp and a switch."
 	icon_state = "lampskirt_male"
 	item_state = "lampskirt_male"
+	item_color = "lampskirt_male"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
 	var/brightness_on = 1 //luminosity when the light is on
@@ -835,6 +911,7 @@
 /obj/item/clothing/under/lampskirt/female
 	icon_state = "lampskirt_female"
 	item_state = "lampskirt_female"
+	item_color = "lampskirt_female"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
@@ -844,78 +921,5 @@
 	desc = "The meat part of a hot dog costume. People may think you're trying to compensate for something."
 	icon_state = "weiner"
 	item_state = "weiner"
+	item_color = "weiner"
 	can_adjust = FALSE
-
-// Ashwalker Clothes
-/obj/item/clothing/under/chestwrap
-	name = "loincloth and chestwrap"
-	desc = "A poorly sewn dress made of leather."
-	icon_state = "chestwrap"
-	has_sensor = NO_SENSORS
-	body_parts_covered = CHEST|GROIN
-
-/obj/item/clothing/under/raider_leather
-	name = "scavenged rags"
-	desc = "A porly made outfit made of scrapped materials."
-	icon_state = "raider_leather"
-	item_state = "raider_leather"
-	armor = list(MELEE = 5, FIRE = 5)
-	has_sensor = NO_SENSORS
-	can_adjust = FALSE
-	mutantrace_variation = MUTANTRACE_VARIATION
-
-/obj/item/clothing/under/tribal
-	name = "metal plated rags"
-	desc = "Thin metal bolted over poorly tanned leather."
-	icon_state = "tribal"
-	item_state = "tribal"
-	body_parts_covered = CHEST|GROIN|ARMS
-	armor = list(MELEE = 5)
-	has_sensor = NO_SENSORS
-	can_adjust = FALSE
-
-/obj/item/clothing/under/ash_robe
-	name = "tribal robes"
-	desc = "A robe from the ashlands. This one seems to be for common tribespeople."
-	icon_state = "robe_liz"
-	item_state = "robe_liz"
-	fitted = NO_FEMALE_UNIFORM
-	body_parts_covered = CHEST|GROIN
-	has_sensor = NO_SENSORS
-	can_adjust = FALSE
-	fitted = NO_FEMALE_UNIFORM
-
-/obj/item/clothing/under/ash_robe/young
-	name = "tribal rags"
-	desc = "Rags from Lavaland, coated with light ash. This one seems to be for the juniors of a tribe."
-	icon_state = "tribalrags"
-
-/obj/item/clothing/under/ash_robe/hunter
-	name = "hunter tribal rags"
-	desc = "A robe from the ashlands. This one seems to be for hunters."
-	icon_state = "hhunterrags"
-	item_state = "hhunterrags"
-
-/obj/item/clothing/under/ash_robe/chief
-	name = "chief tribal rags"
-	desc = "Rags from Lavaland, coated with heavy ash. This one seems to be for the elders of a tribe."
-	icon_state = "chiefrags"
-	item_state = "chiefrags"
-
-/obj/item/clothing/under/ash_robe/shaman
-	name = "shaman tribal rags"
-	desc = "Rags from Lavaland, drenched with ash, it has fine jewel coated bones sewn around the neck. This one seems to be for the shaman of a tribe."
-	icon_state = "shamanrags"
-	item_state = "shamanrags"
-
-/obj/item/clothing/under/ash_robe/tunic
-	name = "tribal tunic"
-	desc = "A tattered red tunic of reddened fabric."
-	icon_state = "caesar_clothes"
-	item_state = "caesar_clothes"
-
-/obj/item/clothing/under/ash_robe/dress
-	name = "tribal dress"
-	desc = "A tattered dress of white fabric."
-	icon_state = "cheongsam_s"
-	item_state = "cheongsam_s"

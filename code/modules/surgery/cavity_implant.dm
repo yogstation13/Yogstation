@@ -1,8 +1,5 @@
 /datum/surgery/cavity_implant
 	name = "Cavity implant"
-	desc = "Implants or removes an object in the chest. Items up to normal size can be implanted, but tiny and small items won't show what they are in the implanting messages."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "flashlight"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/incise, /datum/surgery_step/handle_cavity, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -20,9 +17,7 @@
 	name = "implant item"
 	accept_hand = 1
 	accept_any_item = 1
-	time = 3.2 SECONDS
-	preop_sound = 'sound/surgery/organ1.ogg'
-	success_sound = 'sound/surgery/organ2.ogg'
+	time = 32
 	var/obj/item/IC = null
 
 /datum/surgery_step/handle_cavity/preop(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/surgery/surgery)

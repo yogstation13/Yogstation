@@ -3,16 +3,15 @@
 	desc = "It's a baseball hat in a tasteless yellow colour."
 	icon_state = "cargosoft"
 	item_state = "helmet"
-	/// Determines used sprites: [soft_type]soft
-	var/soft_type = "cargo"
+	item_color = "cargo"
 
 	dog_fashion = /datum/dog_fashion/head/cargo_tech
 
-	var/flipped = FALSE
+	var/flipped = 0
 
 /obj/item/clothing/head/soft/dropped()
-	icon_state = "[soft_type]soft"
-	flipped = FALSE
+	src.icon_state = "[item_color]soft"
+	src.flipped=0
 	..()
 
 /obj/item/clothing/head/soft/verb/flipcap()
@@ -32,12 +31,12 @@
 
 /obj/item/clothing/head/soft/proc/flip(mob/user)
 	if(!user.incapacitated())
-		flipped = !flipped
-		if(flipped)
-			icon_state = "[soft_type]soft_flipped"
+		src.flipped = !src.flipped
+		if(src.flipped)
+			icon_state = "[item_color]soft_flipped"
 			to_chat(user, span_notice("You flip the hat backwards."))
 		else
-			icon_state = "[soft_type]soft"
+			icon_state = "[item_color]soft"
 			to_chat(user, span_notice("You flip the hat back in normal position."))
 		usr.update_inv_head()	//so our mob-overlays update
 
@@ -49,104 +48,77 @@
 	name = "red cap"
 	desc = "It's a baseball hat in a tasteless red colour."
 	icon_state = "redsoft"
-	soft_type = "red"
+	item_color = "red"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/blue
 	name = "blue cap"
 	desc = "It's a baseball hat in a tasteless blue colour."
 	icon_state = "bluesoft"
-	soft_type = "blue"
+	item_color = "blue"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/green
 	name = "green cap"
 	desc = "It's a baseball hat in a tasteless green colour."
 	icon_state = "greensoft"
-	soft_type = "green"
+	item_color = "green"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/yellow
 	name = "yellow cap"
 	desc = "It's a baseball hat in a tasteless yellow colour."
 	icon_state = "yellowsoft"
-	soft_type = "yellow"
+	item_color = "yellow"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/grey
 	name = "grey cap"
 	desc = "It's a baseball hat in a tasteful grey colour."
 	icon_state = "greysoft"
-	soft_type = "grey"
+	item_color = "grey"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/orange
 	name = "orange cap"
 	desc = "It's a baseball hat in a tasteless orange colour."
 	icon_state = "orangesoft"
-	soft_type = "orange"
+	item_color = "orange"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/mime
 	name = "white cap"
 	desc = "It's a baseball hat in a tasteless white colour."
 	icon_state = "mimesoft"
-	soft_type = "mime"
+	item_color = "mime"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/purple
 	name = "purple cap"
 	desc = "It's a baseball hat in a tasteless purple colour."
 	icon_state = "purplesoft"
-	soft_type = "purple"
+	item_color = "purple"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/black
 	name = "black cap"
 	desc = "It's a baseball hat in a tasteless black colour."
 	icon_state = "blacksoft"
-	soft_type = "black"
+	item_color = "black"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/rainbow
 	name = "rainbow cap"
 	desc = "It's a baseball hat in a bright rainbow of colors."
 	icon_state = "rainbowsoft"
-	soft_type = "rainbow"
+	item_color = "rainbow"
 	dog_fashion = null
-
-/obj/item/clothing/head/soft/fishfear
-	name = "novelty fishing cap"
-	desc = "It's an extra-tall snap-back hat with a picture of a fish, and text that reads: \"Women fear me. Fish fear me. Men turn their eyes away from me as I walk. No beast dares make a sound in my presence. I am alone on this barren Earth.\""
-	mob_overlay_icon = 'icons/mob/clothing/head/fishfear.dmi'
-	worn_x_dimension = 32
-	worn_y_dimension = 64
-	icon_state = "fishfearsoft"
-	soft_type = "fishfear"
-	dog_fashion = null
-
-/obj/item/clothing/head/soft/fishfear/Initialize()
-	. = ..()
-	AddComponent(/datum/component/fishingbonus,5)
-
-/obj/item/clothing/head/soft/fishfear/legendary
-	name = "strange fishing cap"
-	desc = "It's an extra-tall snap-back hat with a picture of a fish, and text that reads: \"Women fear me. Fish fear me. Men turn their eyes away from me as I walk. No beast dares make a sound in my presence. I am alone on this barren Earth.\" This one feels like it's radiating a powerful energy...and smells of salt water?"
-
-/obj/item/clothing/head/soft/fishfear/legendary/Initialize()
-	. = ..()
-	AddComponent(/datum/component/fishingbonus,15)
-
-/obj/item/clothing/head/soft/fishfear/legendary/equipped(mob/user, slot)
-	. = ..()
-	if(ishuman(user) && slot == SLOT_HEAD)
-		to_chat(user, span_notice("You feel like you could catch anything in the sea!"))
 
 /obj/item/clothing/head/soft/sec
 	name = "security cap"
 	desc = "It's a robust baseball hat in tasteful red colour."
 	icon_state = "secsoft"
-	soft_type = "sec"
+	item_color = "sec"
 	armor = list(MELEE = 30, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 20, ACID = 50)
 	strip_delay = 60
 	dog_fashion = null
@@ -155,12 +127,12 @@
 	name = "EMT cap"
 	desc = "It's a baseball hat with a dark turquoise color and a reflective cross on the top."
 	icon_state = "emtsoft"
-	soft_type = "emt"
+	item_color = "emt"
 	dog_fashion = null
 
 /obj/item/clothing/head/soft/emt/green
 	name = "green EMT cap"
 	desc = "It's a baseball hat with a green color and a reflective cross on the top."
 	icon_state = "emtgrsoft"
-	soft_type = "emtgr"
+	item_color = "emtgr"
 	dog_fashion = null

@@ -205,9 +205,7 @@
 
 /obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks)
 	if(amount)
-		target.add_overlay(GLOB.welding_sparks)
 		. = ..()
-		target.cut_overlay(GLOB.welding_sparks)	
 	else
 		. = ..(amount=1)
 
@@ -233,11 +231,9 @@
 	name = "plasma cutter shotgun"
 	icon_state = "miningshotgun"
 	item_state = "miningshotgun"
-	desc = "An industrial-grade, heavy-duty mining shotgun."
+	desc = "An industrial-grade heavy-duty mining shotgun"
 	force = 10
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter)
-
-
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	. = ..()
@@ -245,13 +241,6 @@
 		to_chat(user, span_notice("You install [I] into [src]"))
 		playsound(loc, 'sound/items/screwdriver.ogg', 100, 1)
 		qdel(I)
-
-/obj/item/gun/energy/plasmacutter/scatter/mega
-	name = "mega plasma cutter shotgun"
-	icon_state = "miningshotgun_mega"
-	item_state = "miningshotgun_mega"
-	desc = "An industrial-grade, heavy-duty mining shotgun. This one seems... mega!"
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter/adv/mega)
 
 /obj/item/gun/energy/plasmacutter/adv/cyborg
 	name = "cyborg advanced plasma cutter"
@@ -283,10 +272,6 @@
 		ammo_type = list(kaboom)
 		return TRUE
 	return FALSE
-
-//no upgrading this one either (for now)
-/obj/item/gun/energy/plasmacutter/scatter/mega/try_upgrade(obj/item/I)
-	return
 
 /obj/item/gun/energy/wormhole_projector
 	name = "bluespace wormhole projector"

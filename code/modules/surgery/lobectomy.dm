@@ -1,8 +1,5 @@
 /datum/surgery/lobectomy
 	name = "Lobectomy"	//not to be confused with lobotomy
-	desc = "Restores the lungs to a functional state if it is in a non-functional state, making it able to sustain life. Can only be performed once on an individual set of lungs."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "lungs"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders,
 				 /datum/surgery_step/lobectomy, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -20,10 +17,7 @@
 	name = "excise damaged lung node"
 	implements = list(TOOL_SCALPEL = 95, /obj/item/melee/transforming/energy/sword = 65, /obj/item/kitchen/knife = 45,
 		/obj/item/shard = 35)
-	time = 4.2 SECONDS
-	preop_sound = 'sound/surgery/scalpel1.ogg'
-	success_sound = 'sound/surgery/organ1.ogg'
-	failure_sound = 'sound/surgery/organ2.ogg'
+	time = 42
 	fuckup_damage = 20
 
 /datum/surgery_step/lobectomy/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

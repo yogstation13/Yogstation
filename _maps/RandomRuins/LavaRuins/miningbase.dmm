@@ -609,13 +609,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"eN" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/rack,
-/obj/item/pickaxe,
-/obj/item/shovel,
-/turf/open/floor/plasteel,
-/area/mine/eva)
 "eO" = (
 /obj/machinery/washing_machine,
 /obj/machinery/camera{
@@ -1046,6 +1039,16 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"jQ" = (
+/obj/item/gps/mining{
+	gpstag = "MINER_1"
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/secure_closet/personal/miner{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "jW" = (
 /obj/structure/sign/poster/random{
 	pixel_y = -32
@@ -1308,6 +1311,16 @@
 "oh" = (
 /turf/closed/wall,
 /area/mine/maintenance)
+"oi" = (
+/obj/item/gps/mining{
+	gpstag = "MINER_2"
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/secure_closet/personal/miner{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "oF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1966,6 +1979,10 @@
 /obj/machinery/meter/atmos,
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
+"zw" = (
+/obj/machinery/telecomms/relay/preset/mining,
+/turf/open/floor/circuit/green/telecomms,
+/area/mine/maintenance)
 "zK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -2560,6 +2577,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/mine/eva)
+"Gk" = (
+/obj/item/gps/mining{
+	gpstag = "MINER_4"
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/secure_closet/personal/miner{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "Gv" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -2715,11 +2742,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"IZ" = (
-/obj/machinery/telecomms/relay/preset/mining,
-/obj/item/gps/internal/base,
-/turf/open/floor/circuit/green/telecomms,
-/area/mine/maintenance)
 "Je" = (
 /obj/machinery/door/airlock/mining{
 	name = "Mining Station Storage";
@@ -3020,9 +3042,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"Ow" = (
-/turf/template_noop,
-/area/lavaland/surface/outdoors)
 "OC" = (
 /obj/machinery/power/smes/engineering,
 /obj/structure/cable{
@@ -3447,6 +3466,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
+"Um" = (
+/obj/item/gps/mining{
+	gpstag = "MINER_3"
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/secure_closet/personal/miner{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/mine/eva)
 "Ux" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -3777,28 +3806,8 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
 "}
 (2,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
 ab
 ab
 ab
@@ -3881,23 +3890,8 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
 "}
 (4,1,1) = {"
-ab
-ab
-ab
-ab
-ab
 ab
 ab
 ab
@@ -3927,11 +3921,6 @@ Ap
 ab
 ab
 ab
-ab
-ab
-ab
-Ow
-Ow
 ab
 ab
 ab
@@ -3956,11 +3945,6 @@ ab
 ab
 ab
 ab
-ab
-ab
-ak
-ab
-ak
 Ap
 Ap
 Ap
@@ -3981,11 +3965,6 @@ Ap
 ab
 ab
 Ap
-Ow
-Ow
-Ow
-Ow
-Ow
 ab
 ab
 ab
@@ -4008,11 +3987,6 @@ ab
 ab
 ab
 ab
-ab
-ak
-ak
-ak
-ak
 Ap
 zW
 zW
@@ -4033,14 +4007,9 @@ Ap
 Ap
 Ap
 Ap
-Ow
-Ow
-Ap
-Ow
-Ow
-Ow
-Ow
 ab
+ab
+Ap
 ab
 ab
 ab
@@ -4055,16 +4024,11 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
 ak
 ak
 ak
 ak
-ak
+ab
 Ap
 zW
 id
@@ -4078,7 +4042,7 @@ Ap
 Ap
 pB
 LZ
-IZ
+zw
 Si
 pB
 Cv
@@ -4089,11 +4053,6 @@ Ap
 Ap
 Ap
 Ap
-Ow
-Ow
-Ow
-ab
-ab
 ab
 ab
 ab
@@ -4108,11 +4067,6 @@ ab
 ab
 ab
 ab
-ab
-ab
-Ow
-ak
-ak
 ak
 ak
 ak
@@ -4142,11 +4096,6 @@ Cv
 Cv
 Ap
 Ap
-Ow
-Ow
-Ow
-ab
-ab
 ab
 ab
 ab
@@ -4159,11 +4108,6 @@ ab
 ab
 ab
 ab
-ab
-ab
-Ow
-Ow
-Ow
 YA
 YA
 JJ
@@ -4195,11 +4139,6 @@ Cv
 Cv
 Ap
 Ap
-Ow
-Ow
-Ow
-ab
-ab
 ab
 ab
 ab
@@ -4211,11 +4150,6 @@ ab
 ab
 ab
 ab
-ab
-Ow
-Ow
-Ow
-Ow
 YA
 XC
 XC
@@ -4247,11 +4181,6 @@ qK
 Cv
 Cv
 Ap
-ak
-Ow
-Ow
-Ow
-Ow
 ab
 ab
 ab
@@ -4263,11 +4192,6 @@ ab
 ab
 ab
 ab
-Ow
-Ow
-Ow
-ak
-ak
 YA
 XC
 aJ
@@ -4299,12 +4223,7 @@ sW
 sW
 Cv
 Ap
-ak
-Ow
-Ow
-Ow
-Ow
-Ow
+ab
 ab
 ab
 "}
@@ -4314,12 +4233,7 @@ ab
 ab
 ab
 ab
-Ow
-Ow
-Ow
-ak
-ak
-ak
+ab
 YA
 XC
 aW
@@ -4351,27 +4265,17 @@ qK
 sW
 Cv
 Ap
-ak
-ak
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
+ab
+ab
+ab
 "}
 (13,1,1) = {"
 ab
 ab
 ab
 ab
-Ow
-Ow
-Ow
-Ow
-ak
-ak
-ak
+ab
+ab
 YA
 sp
 jX
@@ -4403,27 +4307,17 @@ sW
 sW
 Cv
 Ap
-ak
-ak
-Ow
-ak
-ak
-Ow
-Ow
-Ow
+ab
+ab
+ab
 "}
 (14,1,1) = {"
 ab
 ab
-Ow
-Ow
-Ow
-Ow
-Ow
-ak
-ak
-ak
-ak
+ab
+ab
+ab
+ab
 YA
 yf
 SI
@@ -4455,26 +4349,16 @@ qK
 Cv
 Cv
 ak
-ak
-ak
-ak
-ak
-ak
-ak
-Ow
-Ow
+ab
+ab
+ab
 "}
 (15,1,1) = {"
 ab
 ab
-Ow
-Ow
-Ow
-ak
-ak
-ak
-ak
-ak
+ab
+ab
+ab
 ak
 YA
 YA
@@ -4507,26 +4391,16 @@ Cv
 Cv
 ak
 ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-Ow
+ab
+ab
+ab
 "}
 (16,1,1) = {"
 ab
-Ow
-Ow
+ab
 ak
-ak
-ak
-ak
-ak
-ak
-ak
+ab
+ab
 ak
 RR
 FR
@@ -4549,33 +4423,23 @@ Xo
 Su
 UX
 zW
-eN
+Gk
 dX
 ef
 qc
-eN
+Um
 ND
 Cv
 ak
 ak
 ak
 ak
-ak
-ak
-ak
-ak
-ak
-ak
-Ow
+ab
+ab
 "}
 (17,1,1) = {"
 ab
-Ow
-Ow
-ak
-ak
-ak
-ak
+ab
 ak
 ak
 ak
@@ -4612,21 +4476,11 @@ ak
 ak
 ak
 ak
-ak
-ak
-ak
-ak
-ak
-Ow
-Ow
+ab
+ab
 "}
 (18,1,1) = {"
-Ow
-Ow
-ak
-ak
-ak
-ak
+ab
 ak
 ai
 cU
@@ -4664,21 +4518,11 @@ ND
 vl
 hq
 ak
-ak
-ak
-ak
-ak
-ak
-Ow
-Ow
+ab
+ab
 "}
 (19,1,1) = {"
-Ow
-Ow
-ak
-ak
-ak
-ak
+ab
 ak
 ak
 RR
@@ -4717,20 +4561,10 @@ ND
 ak
 ak
 ak
-ak
-ak
-ak
-ak
-ak
-Ow
+ab
 "}
 (20,1,1) = {"
-Ow
-Ow
-ak
-ak
-ak
-ak
+ab
 ak
 ak
 qL
@@ -4769,20 +4603,10 @@ PQ
 ak
 ak
 ak
-ak
-ak
-ak
-ak
-ak
-Ow
+ab
 "}
 (21,1,1) = {"
-Ow
-Ow
-ak
-ak
-ak
-ak
+ab
 ak
 ak
 RR
@@ -4821,20 +4645,10 @@ ND
 ak
 ak
 ak
-ak
-ak
-ak
-ak
-ak
-Ow
+ab
 "}
 (22,1,1) = {"
-Ow
-Ow
-ak
-ak
-ak
-ak
+ab
 ak
 ai
 cU
@@ -4873,21 +4687,11 @@ vl
 hq
 ak
 ak
-ak
-ak
-ak
-ak
-ak
-Ow
+ab
 "}
 (23,1,1) = {"
-Ow
-Ow
-ak
-ak
-ak
-ak
-ak
+ab
+ab
 ak
 ak
 ak
@@ -4925,23 +4729,13 @@ Ap
 ak
 ak
 ak
-ak
-ak
-ak
-ak
-Ow
-Ow
+ab
 "}
 (24,1,1) = {"
-Ow
-Ow
-Ow
-ak
-ak
-ak
-ak
-ak
-ak
+ab
+ab
+ab
+ab
 ak
 Ap
 RR
@@ -4965,36 +4759,26 @@ Xo
 kO
 Xc
 zW
-eN
+jQ
 iT
 Hy
 iT
-eN
+oi
 ND
 Ap
 Ap
 ak
 ak
 ak
-ak
-ak
-ak
-ak
-ak
-Ow
-Ow
+ab
+ab
 "}
 (25,1,1) = {"
 ab
-Ow
-Ow
-Ow
-ak
-ak
-ak
-ak
-ak
-ak
+ab
+ab
+ab
+ab
 Ap
 Uf
 Uf
@@ -5028,26 +4812,16 @@ ak
 ak
 ak
 ak
-ak
-ak
-ak
-ak
-Ow
-Ow
-Ow
+ab
+ab
 "}
 (26,1,1) = {"
 ab
-Ow
-Ow
-Ow
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+ab
+ab
+ab
+ab
+ab
 Uf
 Rl
 Rl
@@ -5080,26 +4854,16 @@ ak
 ak
 ak
 ak
-ak
-ak
-ak
-Ow
-Ow
-Ow
-Ow
+ab
+ab
 "}
 (27,1,1) = {"
 ab
 ab
-Ow
-Ow
-Ow
-ak
-ak
-ak
-Ow
-ak
-ak
+ab
+ab
+ab
+ab
 Bx
 Rl
 Hi
@@ -5131,26 +4895,16 @@ ez
 ez
 ak
 ak
-ak
-ak
-ak
-ak
-Ow
-Ow
-Ow
-Ow
+ab
+ab
+ab
 "}
 (28,1,1) = {"
 ab
 ab
 ab
-Ow
-Ow
-ak
-ak
-ak
-Ow
-Ow
+ab
+ab
 Ap
 Uf
 gk
@@ -5183,26 +4937,16 @@ QQ
 ez
 ak
 ak
-ak
-ak
-ak
-ak
-Ow
-Ow
-Ow
-Ow
+ab
+ab
+ab
 "}
 (29,1,1) = {"
 ab
 ab
 ab
-Ow
-Ow
-ak
-ak
-Ow
-Ow
-Ow
+ab
+ab
 Ap
 Bx
 Rl
@@ -5235,13 +4979,8 @@ ez
 ez
 ak
 ak
-ak
-ak
-ak
-ak
-Ow
-Ow
-Ow
+ab
+ab
 ab
 "}
 (30,1,1) = {"
@@ -5249,12 +4988,7 @@ ab
 ab
 ab
 ab
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
+ab
 Ap
 Uf
 Rl
@@ -5287,13 +5021,8 @@ ez
 Ap
 ak
 ak
-ak
-ak
-ak
-ak
-Ow
-Ow
-Ow
+ab
+ab
 ab
 "}
 (31,1,1) = {"
@@ -5302,11 +5031,6 @@ ab
 ab
 ab
 ab
-ab
-Ow
-Ow
-Ow
-Ow
 Ap
 Uf
 Uf
@@ -5339,12 +5063,7 @@ Ap
 Ap
 ak
 ak
-ak
-ak
-ak
-Ow
-Ow
-Ow
+ab
 ab
 ab
 "}
@@ -5354,16 +5073,11 @@ ab
 ab
 ab
 ab
+Ap
+Ap
 ab
-Ow
-Ow
-Ow
-Ow
-Ap
-Ap
-Ow
-Ow
-ak
+ab
+ab
 ak
 ak
 zW
@@ -5391,12 +5105,7 @@ Ap
 Ap
 ak
 ak
-ak
-ak
-ak
-Ow
-Ow
-Ow
+ab
 ab
 ab
 "}
@@ -5408,16 +5117,11 @@ ab
 ab
 ab
 ab
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
-ak
-ak
+ab
+ab
+ab
+ab
+ab
 zW
 we
 fO
@@ -5438,16 +5142,11 @@ Ap
 Ap
 Ap
 Ap
-Ow
+ab
 Ap
 Ap
 ak
-Ow
-ak
-ak
-Ow
-Ow
-Ow
+ab
 ab
 ab
 ab
@@ -5463,13 +5162,8 @@ ab
 ab
 ab
 ab
-Ow
-Ow
-Ow
-Ow
-Ow
-ak
-ak
+ab
+ab
 zW
 zW
 lH
@@ -5490,15 +5184,10 @@ Ap
 ab
 ab
 ab
-Ow
-Ow
+ab
+ab
 Ap
 ak
-Ow
-Ow
-Ow
-Ow
-Ow
 ab
 ab
 ab
@@ -5514,11 +5203,6 @@ ab
 ab
 ab
 ab
-ab
-ab
-Ow
-Ow
-Ow
 ak
 ak
 ak
@@ -5543,14 +5227,9 @@ ab
 ab
 ab
 ab
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
+ab
+ab
+ab
 ab
 ab
 ab
@@ -5569,15 +5248,10 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
 ak
 ak
-ak
-ak
+ab
+ab
 ak
 ak
 Ap
@@ -5596,12 +5270,7 @@ ab
 ab
 ab
 ab
-Ow
-Ow
-Ow
-Ow
-Ow
-Ow
+ab
 ab
 ab
 ab
@@ -5627,11 +5296,6 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ab
 ab
 ab
 ab
@@ -5647,11 +5311,6 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-Ow
-Ow
 ab
 ab
 ab
@@ -5680,20 +5339,10 @@ ab
 ab
 ab
 ab
-ak
-ab
-ab
-ab
-ab
 ab
 ab
 ab
 Ap
-ab
-ab
-ab
-ab
-ab
 ab
 ab
 ab
@@ -5753,28 +5402,8 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
 "}
 (40,1,1) = {"
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
 ab
 ab
 ab

@@ -20,7 +20,7 @@
 
 	return screen
 
-/mob/proc/clear_fullscreen(category, animated = 1 SECONDS)
+/mob/proc/clear_fullscreen(category, animated = 10)
 	var/obj/screen/fullscreen/screen = screens[category]
 	if(!screen)
 		return

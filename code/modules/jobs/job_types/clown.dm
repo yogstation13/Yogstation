@@ -13,13 +13,12 @@
 
 	alt_titles = list("Entertainer", "Comedian", "Jester")
 
-	added_access = list()
-	base_access = list(ACCESS_THEATRE)
+	access = list(ACCESS_THEATRE)
+	minimal_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
-	minimal_character_age = 18 //Honk
 
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)

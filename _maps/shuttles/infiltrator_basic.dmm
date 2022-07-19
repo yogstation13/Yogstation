@@ -1166,6 +1166,10 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/shuttle/syndicate/hallway)
+"cs" = (
+/obj/machinery/recharge_station,
+/turf/open/floor/circuit/red,
+/area/shuttle/syndicate/armory)
 "ct" = (
 /obj/machinery/telecomms/allinone{
 	intercept = 1
@@ -1281,10 +1285,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
-"sI" = (
-/obj/machinery/recharge_station/fullupgrade,
-/turf/open/floor/circuit/red,
-/area/shuttle/syndicate/armory)
 "tZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -1730,7 +1730,7 @@ bO
 bW
 cg
 bP
-sI
+cs
 cy
 cE
 "}
@@ -1780,7 +1780,7 @@ bQ
 bX
 ci
 cn
-sI
+cs
 cy
 cG
 "}

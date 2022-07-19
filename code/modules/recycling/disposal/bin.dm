@@ -182,11 +182,11 @@
 /obj/machinery/disposal/proc/flush()
 	flushing = TRUE
 	flushAnimation()
-	sleep(1 SECONDS)
+	sleep(10)
 	if(last_sound < world.time + 1)
 		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 		last_sound = world.time
-	sleep(0.5 SECONDS)
+	sleep(5)
 	if(QDELETED(src))
 		return
 	var/obj/structure/disposalholder/H = new(src)

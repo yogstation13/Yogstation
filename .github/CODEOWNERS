@@ -20,7 +20,6 @@
 /html/templates/ @yogstation13/head-coders
 /sound/ @yogstation13/head-coders
 /yogstation/sound/ @yogstation13/head-coders
-/yogstation/code/game/world.dm @yogstation13/head-coders
 
 #Teams
 
@@ -28,7 +27,6 @@
 /goon/ @yogstation13/art
 /icons/ @yogstation13/art
 /yogstation/icons/ @yogstation13/art
-*.dm @yogstation/code
 
 #monster860
 

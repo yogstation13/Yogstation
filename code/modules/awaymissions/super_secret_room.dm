@@ -113,7 +113,7 @@
 	for(var/i in 1 to statements.len)
 		say(span_deadsay("[statements[i]]"))
 		if(i != statements.len)
-			sleep(3 SECONDS)
+			sleep(30)
 
 /obj/item/rupee
 	name = "weird crystal"

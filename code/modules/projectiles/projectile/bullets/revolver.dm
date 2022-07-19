@@ -37,20 +37,18 @@
 
 /obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
 	name = ".38 Hot Shot bullet"
-	damage = 15
-	stamina = 0
+	damage = 20
 
 /obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
-		M.adjust_fire_stacks(2)
+		M.adjust_fire_stacks(6)
 		M.IgniteMob()
 
 /obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code
 	name = ".38 Iceblox bullet"
-	damage = 15
-	stamina = 0
+	damage = 20
 	var/temperature = 100
 
 /obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
@@ -58,17 +56,6 @@
 	if(isliving(target))
 		var/mob/living/M = target
 		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
-
-/obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
-	name = ".38 Gutterpunch bullet"
-	damage = 15
-	stamina = 0
-
-/obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
-		var/mob/living/carbon/M = target 
-		M.adjust_disgust(20)
 
 // .357 (Syndie Revolver)
 

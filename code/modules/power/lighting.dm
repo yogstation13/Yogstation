@@ -626,7 +626,7 @@
 				break
 			on = !on
 			update(0)
-			sleep(rand(0.5, 1.5) SECONDS)
+			sleep(rand(5, 15))
 		on = (status == LIGHT_OK) && !forced_off
 		update(0)
 	flickering = 0
@@ -662,7 +662,7 @@
 			var/datum/species/ethereal/eth_species = H.dna?.species
 			if(istype(eth_species))
 				to_chat(H, span_notice("You start channeling some power through the [fitting] into your body."))
-				if(do_after(user, 5 SECONDS, src))
+				if(do_after(user, 5 SECONDS, target = src))
 					var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 					if(istype(stomach))
 						to_chat(H, span_notice("You receive some charge from the [fitting]."))
@@ -772,9 +772,9 @@
 	set waitfor = 0
 	var/turf/T = get_turf(src.loc)
 	break_light_tube()	// break it first to give a warning
-	sleep(0.2 SECONDS)
+	sleep(2)
 	explosion(T, 0, 1, 2, 4)
-	sleep(0.1 SECONDS)
+	sleep(1)
 	qdel(src)
 
 // the light item

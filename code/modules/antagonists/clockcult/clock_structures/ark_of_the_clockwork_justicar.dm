@@ -150,16 +150,15 @@
 	recalls_remaining--
 	recalling = FALSE
 	transform = matrix() * 2
-	animate(src, transform = matrix() * 0.5, time = 3 SECONDS, flags = ANIMATION_END_NOW)
+	animate(src, transform = matrix() * 0.5, time = 30, flags = ANIMATION_END_NOW)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	SSshuttle.clearHostileEnvironment(src)
-	if(!purpose_fulfilled)
+	if(!purpose_fulfilled && istype(SSticker.mode, /datum/game_mode/clockwork_cult))
 		hierophant_message("<span class='bold large_brass'>The Ark has fallen!</span>")
 		sound_to_playing_players(null, channel = CHANNEL_JUSTICAR_ARK)
-		if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
-			SSticker.force_ending = TRUE //rip
+		SSticker.force_ending = TRUE //rip
 	if(glow)
 		qdel(glow)
 		glow = null
@@ -198,7 +197,7 @@
 			make_glow()
 			glow.icon_state = "clockwork_gateway_disrupted"
 			resistance_flags |= INDESTRUCTIBLE
-			sleep(2.7 SECONDS)
+			sleep(27)
 			explosion(src, 1, 3, 8, 8)
 			sound_to_playing_players('sound/effects/explosion_distant.ogg', volume = 50)
 	qdel(src)
@@ -337,13 +336,13 @@
 				resistance_flags |= INDESTRUCTIBLE
 				purpose_fulfilled = TRUE
 				make_glow()
-				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 12.5 SECONDS)
+				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 125)
 				sound_to_playing_players(volume = 100, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
-				sleep(12.5 SECONDS)
+				sleep(125)
 				make_glow()
-				animate(glow, transform = matrix() * 3, alpha = 0, time = 0.5 SECONDS)
-				QDEL_IN(src, 0.3 SECONDS)
-				sleep(0.3 SECONDS)
+				animate(glow, transform = matrix() * 3, alpha = 0, time = 5)
+				QDEL_IN(src, 3)
+				sleep(3)
 				GLOB.clockwork_gateway_activated = TRUE
 				var/turf/T = SSmapping.get_station_center()
 				new /obj/structure/destructible/clockwork/massive/ratvar(T)

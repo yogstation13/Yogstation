@@ -25,7 +25,6 @@
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 	transparent = TRUE
 	max_integrity = 75
-	var/obj/item/stack/sheet/mineral/repair_material = /obj/item/stack/sheet/mineral/titanium
 
 /obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(transparent && (hitby.pass_flags & PASSGLASS))
@@ -42,11 +41,11 @@
 			user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
-	else if(istype(W, repair_material))
+	else if(istype(W, /obj/item/stack/sheet/mineral/titanium))
 		if (obj_integrity >= max_integrity)
 			to_chat(user, span_notice("[src] is already in perfect condition."))
 		else
-			var/obj/item/stack/sheet/mineral/T = W
+			var/obj/item/stack/sheet/mineral/titanium/T = W
 			T.use(1)
 			obj_integrity = max_integrity
 			to_chat(user, span_notice("You repair [src] with [T]."))
@@ -90,7 +89,6 @@
 	transparent = FALSE
 	materials = list(/datum/material/iron=8500)
 	max_integrity = 65
-	repair_material = /obj/item/stack/sheet/mineral/wood
 
 /obj/item/shield/riot/roman/fake
 	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>. It appears to be a bit flimsy."
@@ -115,7 +113,6 @@
 	transparent = FALSE
 	max_integrity = 55
 	w_class = WEIGHT_CLASS_NORMAL
-	repair_material = /obj/item/stack/sheet/mineral/wood
 
 /obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
 	playsound(owner, 'sound/effects/bang.ogg', 50)
@@ -174,7 +171,7 @@
 			return
 		else
 			to_chat(user, "You begin to replace the bulb.")
-			if(do_after(user, 2 SECONDS, user))
+			if(do_after(user, 2 SECONDS, target = user))
 				if(flash.burnt_out || !flash || QDELETED(flash))
 					return
 				playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)

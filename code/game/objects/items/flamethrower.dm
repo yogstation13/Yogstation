@@ -9,8 +9,6 @@
 	flags_1 = CONDUCT_1
 	force = 3
 	throwforce = 10
-	var/acti_sound = 'sound/items/welderactivate.ogg'
-	var/deac_sound = 'sound/items/welderdeactivate.ogg'
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
@@ -18,7 +16,6 @@
 	resistance_flags = FIRE_PROOF
 	var/status = FALSE
 	var/lit = FALSE	//on or off
-	light_color = LIGHT_COLOR_FIRE
 	var/operating = FALSE//cooldown
 	var/obj/item/weldingtool/weldtool = null
 	var/obj/item/assembly/igniter/igniter = null
@@ -162,15 +159,11 @@
 	to_chat(user, span_notice("You [lit ? "extinguish" : "ignite"] [src]!"))
 	lit = !lit
 	if(lit)
-		set_light(1)
-		playsound(loc, acti_sound, 50, TRUE)
 		START_PROCESSING(SSobj, src)
 		if(!warned_admins)
 			message_admins("[ADMIN_LOOKUPFLW(user)] has lit a flamethrower.")
 			warned_admins = TRUE
 	else
-		set_light(0)
-		playsound(loc, deac_sound, 50, TRUE)
 		STOP_PROCESSING(SSobj,src)
 	update_icon()
 
@@ -199,7 +192,7 @@
 			igniter.ignite_turf(src,T)
 		else
 			default_ignite(T)
-		sleep(0.1 SECONDS)
+		sleep(1)
 		previousturf = T
 	operating = FALSE
 	for(var/mob/M in viewers(1, loc))

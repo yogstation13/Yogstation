@@ -4,7 +4,6 @@
 	icon = 'icons/obj/clothing/skillcapes.dmi'
 	icon_state = "ghost-skillcape"
 	item_state = "ghost-skillcape"
-	mob_overlay_icon = 'icons/mob/clothing/neck/skillcapes.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESUITSTORAGE
@@ -87,13 +86,13 @@
 
 /obj/item/clothing/neck/skillcape/hos
 	name = "cape of the head of security"
-	desc = "A slick, blue cape. The owner must have executed many Syndicate personnel."
+	desc = "A slick, blue cape. The owner must have executed many syndicate personnel."
 	icon_state = "hos-skillcape"
 	item_state = "hos-skillcape"
 
 /obj/item/clothing/neck/skillcape/trimmed/hos
 	name = "cape of the grand executor"
-	desc = "A shiny, blue cape. The owner is the bane of the Syndicate."
+	desc = "A shiny, blue cape. The owner is the bane of the syndicate."
 	icon_state = "hos-trimmed"
 	item_state = "hos-trimmed"
 

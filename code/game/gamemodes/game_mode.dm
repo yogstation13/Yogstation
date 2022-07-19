@@ -58,15 +58,15 @@
 
 	var/time_required = 0 // Framework for future setting of required time for antag roles
 
-/// Shows the gamemode's name and a fast description.
-/datum/game_mode/proc/announce()
+/datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
 	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
 	to_chat(world, "<b>[announce_text]</b>")
 
 /datum/game_mode/proc/admin_panel()
 	return
 
-/// Checks to see if the game can be setup and ran with the current number of players or whatnot.
+
+///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start()
 	var/playerC = 0
 	var/unreadiedPlayers = 0
@@ -90,9 +90,9 @@
 		return TRUE
 
 
-/// Attempts to select players for special roles the mode might have.
+///Attempts to select players for special roles the mode might have.
 /datum/game_mode/proc/pre_setup()
-	return TRUE
+	return 1
 
 ///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
 /datum/game_mode/proc/post_setup(report) //Gamemodes can override the intercept report. Passing TRUE as the argument will force a report.
@@ -131,17 +131,17 @@
 		addtimer(CALLBACK(src, .proc/send_intercept, 0), rand(waittime_l, waittime_h))
 	generate_station_goals()
 	gamemode_ready = TRUE
-	return TRUE
+	return 1
 
 
-/// Handles late-join antag assignments
+///Handles late-join antag assignments
 /datum/game_mode/proc/make_antag_chance(mob/living/carbon/human/character)
 	if(replacementmode && round_converted == 2)
 		replacementmode.make_antag_chance(character)
 	return
 
 
-/// Allows rounds to basically be "rerolled" should the initial premise fall through. Also known as mulligan antags.
+///Allows rounds to basically be "rerolled" should the initial premise fall through. Also known as mulligan antags.
 /datum/game_mode/proc/convert_roundtype()
 	set waitfor = FALSE
 	var/list/living_crew = list()
@@ -170,10 +170,10 @@
 
 	switch(SSshuttle.emergency.mode) //Rounds on the verge of ending don't get new antags, they just run out
 		if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE)
-			return TRUE
+			return 1
 		if(SHUTTLE_CALL)
 			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergencyCallTime)*0.5)
-				return TRUE
+				return 1
 
 	var/matc = CONFIG_GET(number/midround_antag_time_check)
 	if(world.time >= (matc * 600))
@@ -202,7 +202,7 @@
 
 	. = 1
 
-	sleep(rand(1 MINUTES, 3 MINUTES))
+	sleep(rand(600,1800))
 	if(!SSticker.IsRoundInProgress())
 		message_admins("Roundtype conversion cancelled, the game appears to have finished!")
 		round_converted = 0
@@ -210,7 +210,7 @@
 	 //somewhere between 1 and 3 minutes from now
 	if(!CONFIG_GET(keyed_list/midround_antag)[SSticker.mode.config_tag])
 		round_converted = 0
-		return TRUE
+		return 1
 	for(var/mob/living/carbon/human/H in antag_candidates)
 		if(H.client)
 			replacementmode.make_antag_chance(H)
@@ -219,17 +219,16 @@
 	message_admins("-- IMPORTANT: The roundtype has been converted to [replacementmode.name], antagonists may have been created! --")
 
 
-/// Called by the SSticker fires every second
+///Called by the gameSSticker
 /datum/game_mode/process()
-	return FALSE
+	return 0
 
-/// For things that do not die easily
+//For things that do not die easily
 /datum/game_mode/proc/are_special_antags_dead()
 	return TRUE
 
 
-/// Determines if a gamemode should end the round
-/datum/game_mode/proc/check_finished(force_ending)
+/datum/game_mode/proc/check_finished(force_ending) //to be called by SSticker
 	if(!SSticker.setup_done || !gamemode_ready)
 		return FALSE
 	if(replacementmode && round_converted == 2)
@@ -246,45 +245,45 @@
 				if(Player.mind)
 					if(Player.mind.special_role || LAZYLEN(Player.mind.antag_datums))
 						continuous_sanity_checked = 1
-						return FALSE
+						return 0
 			if(!continuous_sanity_checked)
 				message_admins("The roundtype ([config_tag]) has no antagonists, continuous round has been defaulted to on and midround_antag has been defaulted to off.")
 				continuous[config_tag] = TRUE
 				midround_antag[config_tag] = FALSE
 				SSshuttle.clearHostileEnvironment(src)
-				return FALSE
+				return 0
 
 
 		if(living_antag_player && living_antag_player.mind && isliving(living_antag_player) && living_antag_player.stat != DEAD && !isnewplayer(living_antag_player) &&!isbrain(living_antag_player) && (living_antag_player.mind.special_role || LAZYLEN(living_antag_player.mind.antag_datums)))
-			return FALSE //A resource saver: once we find someone who has to die for all antags to be dead, we can just keep checking them, cycling over everyone only when we lose our mark.
+			return 0 //A resource saver: once we find someone who has to die for all antags to be dead, we can just keep checking them, cycling over everyone only when we lose our mark.
 
 		for(var/mob/Player in GLOB.alive_mob_list)
 			if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) &&!isbrain(Player) && Player.client && (Player.mind.special_role || LAZYLEN(Player.mind.antag_datums))) //Someone's still antagging but is their antagonist datum important enough to skip mulligan?
 				for(var/datum/antagonist/antag_types in Player.mind.antag_datums)
 					if(antag_types.prevent_roundtype_conversion)
 						living_antag_player = Player //they were an important antag, they're our new mark
-						return FALSE
+						return 0
 
 		if(!are_special_antags_dead())
 			return FALSE
 
 		if(!continuous[config_tag] || force_ending)
-			return TRUE
+			return 1
 
 		else
 			round_converted = convert_roundtype()
 			if(!round_converted)
 				if(round_ends_with_antag_death)
-					return TRUE
+					return 1
 				else
 					midround_antag[config_tag] = 0
-					return FALSE
+					return 0
 
-	return FALSE
+	return 0
 
-// Checks if the antags have won
-/datum/game_mode/proc/check_win()
-	return FALSE
+
+/datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
+	return 0
 
 /datum/game_mode/proc/send_intercept()
 	var/intercepttext = "<b><i>Central Command Status Summary</i></b><hr>"
@@ -339,19 +338,18 @@
 		. += "[station_trait.get_report()]\n"
 	return
 
-/* This is a frequency selection system. You may imagine it like a raffle where each player can have some number of tickets. The more tickets you have the more likely you are to
- * "win". The default is 100 tickets. If no players use any extra tickets (earned with the antagonist rep system) calling this function should be equivalent to calling the normal
- * pick() function. By default you may use up to 100 extra tickets per roll, meaning at maximum a player may double their chances compared to a player who has no extra tickets.
- *
- * The odds of being picked are simply (your_tickets / total_tickets). Suppose you have one player using fifty (50) extra tickets, and one who uses no extra:
- *     Player A: 150 tickets
- *     Player B: 100 tickets
- *        Total: 250 tickets
- *
- * The odds become:
- *     Player A: 150 / 250 = 0.6 = 60%
- *     Player B: 100 / 250 = 0.4 = 40%
- */
+// This is a frequency selection system. You may imagine it like a raffle where each player can have some number of tickets. The more tickets you have the more likely you are to
+// "win". The default is 100 tickets. If no players use any extra tickets (earned with the antagonist rep system) calling this function should be equivalent to calling the normal
+// pick() function. By default you may use up to 100 extra tickets per roll, meaning at maximum a player may double their chances compared to a player who has no extra tickets.
+//
+// The odds of being picked are simply (your_tickets / total_tickets). Suppose you have one player using fifty (50) extra tickets, and one who uses no extra:
+//     Player A: 150 tickets
+//     Player B: 100 tickets
+//        Total: 250 tickets
+//
+// The odds become:
+//     Player A: 150 / 250 = 0.6 = 60%
+//     Player B: 100 / 250 = 0.4 = 40%
 /datum/game_mode/proc/antag_pick(list/datum/candidates)
 	if(GLOB.antag_token_users.len >= 1) //Antag token users get first priority, no matter their preferences
 		var/client/C = pick_n_take(GLOB.antag_token_users)
@@ -522,30 +520,30 @@
 
 			print_command_report(suicide_command_report, "Central Command Personnel Update")
 
-
-/// Gets all living crewmembers for a department
-/datum/game_mode/proc/get_living_by_department(department)
+/datum/game_mode/proc/get_living_by_department(var/department)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.mob_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in department))
 			. |= player.mind
 
-/// Gets all crewmembers for a department including dead ones
-/datum/game_mode/proc/get_all_by_department(department)
+/datum/game_mode/proc/get_all_by_department(var/department)
 	. = list()
 	for(var/mob/player in GLOB.mob_list)
 		if(player.mind && (player.mind.assigned_role in department))
 			. |= player.mind
 
-
-/// Gets all living silicon members
+/////////////////////////////////////////////
+//Keeps track of all living silicon members//
+/////////////////////////////////////////////
 /datum/game_mode/proc/get_living_silicon()
 	. = list()
 	for(var/mob/living/silicon/player in GLOB.mob_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in GLOB.nonhuman_positions))
 			. |= player.mind
 
-/// Gets all silicon members including dead ones
+///////////////////////////////////////
+//Keeps track of all silicon members //
+///////////////////////////////////////
 /datum/game_mode/proc/get_all_silicon()
 	. = list()
 	for(var/mob/living/silicon/player in GLOB.mob_list)
@@ -613,14 +611,13 @@
 	for (var/C in GLOB.admins)
 		to_chat(C, msg.Join())
 		log_admin(msg.Join())
-
-/// If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
+//If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/game_mode/proc/age_check(client/C)
 	if(get_remaining_days(C) == 0)
-		return TRUE	//Available in 0 days = available right now = player is old enough to play.
-	return FALSE
+		return 1	//Available in 0 days = available right now = player is old enough to play.
+	return 0
 
-/// Returns the numbers of days before the player can access a specific role
+
 /datum/game_mode/proc/get_remaining_days(client/C)
 	if(!C)
 		return 0
@@ -633,7 +630,6 @@
 
 	return max(0, enemy_minimum_age - C.player_age)
 
-/// Used to remove antag status on borging for some gamemodes
 /datum/game_mode/proc/remove_antag_for_borging(datum/mind/newborgie)
 	SSticker.mode.remove_cultist(newborgie, 0, 0)
 	var/datum/antagonist/rev/rev = newborgie.has_antag_datum(/datum/antagonist/rev)
@@ -660,7 +656,7 @@
 /datum/game_mode/proc/special_report()
 	return
 
-/// Set the round results
+//Set result and news report here
 /datum/game_mode/proc/set_round_result()
 	SSticker.mode_result = "undefined"
 	if(station_was_nuked)

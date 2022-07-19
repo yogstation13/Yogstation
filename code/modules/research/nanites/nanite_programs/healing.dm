@@ -227,14 +227,14 @@
 /datum/nanite_program/triggered/defib/proc/zap()
 	var/mob/living/carbon/C = host_mob
 	playsound(C, 'sound/machines/defib_charge.ogg', 50, 0)
-	sleep(3 SECONDS)
+	sleep(30)
 	playsound(C, 'sound/machines/defib_zap.ogg', 50, 0)
 	if(C.can_defib())
 		playsound(C, 'sound/machines/defib_success.ogg', 50, 0)
 		C.set_heartattack(FALSE)
 		C.revive()
 		C.emote("gasp")
-		C.Jitter(10 SECONDS)
+		C.Jitter(100)
 		SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
 	else
 		playsound(C, 'sound/machines/defib_failed.ogg', 50, 0)

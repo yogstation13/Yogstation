@@ -3,10 +3,9 @@
 	max_occurrences = 1
 	weight = 5
 	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
-	max_occurrences = 2
 	min_players = 25
 	earliest_start = 30 MINUTES
-	gamemode_whitelist = list("bloodsucker","traitorsucker")
+	gamemode_whitelist = list("bloodsucker","traitorsucker","dynamic")
 
 /datum/round_event/ghost_role/tzimisce/bloodsucker
 	fakeable = FALSE
@@ -26,7 +25,7 @@
 	name = "Spawn Tzimisce"
 	typepath = /datum/round_event/ghost_role/tzimisce
 	max_occurrences = 1
-	min_players = 25
+	min_players = 15
 	earliest_start = 45 MINUTES
 
 /datum/round_event/ghost_role/tzimisce
@@ -81,7 +80,7 @@
 	return SUCCESSFUL_SPAWN
 
 
-/datum/round_event/ghost_role/tzimisce/proc/spawn_event_tzimisce()
+/proc/spawn_event_tzimisce()
 	var/mob/living/carbon/human/new_tzimisce = new()
 	SSjob.SendToLateJoin(new_tzimisce)
 	var/datum/preferences/A = new() //Randomize appearance.
@@ -89,7 +88,7 @@
 	new_tzimisce.dna.update_dna_identity()
 	return new_tzimisce
 
-/datum/round_event/ghost_role/tzimisce/proc/create_tzimisce_mind(key)
+/proc/create_tzimisce_mind(key)
 	var/datum/mind/Mind = new /datum/mind(key)
 	Mind.special_role = ROLE_BLOODSUCKER
 	return Mind

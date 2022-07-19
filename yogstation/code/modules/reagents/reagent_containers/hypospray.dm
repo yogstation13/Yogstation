@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/autoinjector/mixi
+/obj/item/reagent_containers/hypospray/mixi
 	name = "QMC Libital Injector"
 	desc = "A quick-mix capital combat injector loaded with libital."
 	amount_per_transfer_from_this = 5
@@ -6,7 +6,7 @@
 	volume = 50
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 50)
 
-/obj/item/reagent_containers/autoinjector/derm
+/obj/item/reagent_containers/hypospray/derm
 	name = "QMC Aiuri Injector"
 	desc = "A quick-mix capital combat injector loaded with aiuri."
 	amount_per_transfer_from_this = 5
@@ -14,16 +14,16 @@
 	volume = 50
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 50)
 
-/obj/item/reagent_containers/autoinjector/medipen/stimpack/large
+/obj/item/reagent_containers/hypospray/medipen/stimpack/large
 	name = "stimpack injector"
-	desc = "Contains three heavy doses of stimulants."
+	desc = "Contains two heavy doses of stimulants."
 	icon = 'yogstation/icons/obj/syringe.dmi'
 	icon_state = "stimpakpen"
-	volume = 75
+	volume = 50
 	amount_per_transfer_from_this = 25
-	list_reagents = list(/datum/reagent/medicine/stimulants = 75)
+	list_reagents = list(/datum/reagent/medicine/stimulants = 50)
 
-/obj/item/reagent_containers/autoinjector/medipen/stimpack/large/update_icon()
+/obj/item/reagent_containers/hypospray/medipen/stimpack/large/update_icon()
 	if(reagents.total_volume > 25)
 		icon_state = initial(icon_state)
 	else if(reagents.total_volume)
@@ -31,7 +31,7 @@
 	else
 		icon_state = "[initial(icon_state)]0"
 
-/obj/item/reagent_containers/autoinjector/medipen/stimpack/large/redpill
+/obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill
 	name = "Red Pill injector"
 	desc = "Contains two heavy doses of Red Pills (Stimulants)."
 	icon = 'yogstation/icons/obj/syringe.dmi'
@@ -40,7 +40,7 @@
 	amount_per_transfer_from_this = 25
 	list_reagents = list(/datum/reagent/medicine/stimulants = 50)
 
-/obj/item/reagent_containers/autoinjector/medipen/stimpack/large/redpill/update_icon()
+/obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill/update_icon()
 	if(reagents.total_volume > 25)
 		icon_state = initial(icon_state)
 	else if(reagents.total_volume)

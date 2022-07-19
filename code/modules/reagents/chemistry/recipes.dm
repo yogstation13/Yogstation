@@ -69,11 +69,11 @@
 				spawn(0) //so everything moves at the same time.
 					if(setting_type)
 						for(var/i = 0, i < moving_power, i++)
-							sleep(0.2 SECONDS)
+							sleep(2)
 							if(!step_away(X, T))
 								break
 					else
 						for(var/i = 0, i < moving_power, i++)
-							sleep(0.2 SECONDS)
+							sleep(2)
 							if(!step_towards(X, T))
 								break

@@ -16,15 +16,12 @@
 /obj/item/ammo_casing/energy/plasma/scatter
 	projectile_type = /obj/item/projectile/plasma/scatter
 	delay = 15
-	e_cost = 35
-	pellets = 6
-	variance = 30
+	e_cost = 70
+	pellets = 5
+	variance = 25
 
 /obj/item/ammo_casing/energy/plasma/scatter/adv
 	projectile_type = /obj/item/projectile/plasma/scatter/adv
-
-/obj/item/ammo_casing/energy/plasma/scatter/adv/mega
-	projectile_type = /obj/item/projectile/plasma/scatter/adv/mega
 
 /obj/item/ammo_casing/energy/plasma/adv/cyborg
 	projectile_type = /obj/item/projectile/plasma/adv

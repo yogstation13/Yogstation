@@ -187,7 +187,7 @@
 			electricity_level = 1
 
 		use_power(electricity_level * 5)
-		sleep((1.3 SECONDS) - electricity_level)
+		sleep(13 - electricity_level)
 
 	magneting = FALSE
 
@@ -372,9 +372,9 @@
 			speed = 1
 
 		if(speed == 10)
-			sleep(0.1 SECONDS)
+			sleep(1)
 		else
-			sleep((1.2 SECONDS)-speed)
+			sleep(12-speed)
 
 	looping = 0
 

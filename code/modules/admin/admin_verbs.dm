@@ -69,7 +69,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
 	/client/proc/cmd_admin_local_narrate,	/*sends text to all mobs within view of atom*/
 	/client/proc/cmd_admin_create_centcom_report,
-	/client/proc/send_global_fax,
 	/client/proc/cmd_change_command_name,
 	/client/proc/cmd_admin_check_player_exp, /* shows players by playtime */
 	/client/proc/toggle_combo_hud, // toggle display of the combination pizza antag and taco sci/med/eng hud
@@ -495,7 +494,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stealth Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_bomb()
-	set category = "Admin.Round Interaction"
+	set category = "Misc"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -584,7 +583,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[key_name_admin(usr)] has  modified Dynamic Explosion Scale: [ex_scale]")
 
 /client/proc/give_spell(mob/T in GLOB.mob_list)
-	set category = "Admin.Player Interaction"
+	set category = "Misc"
 	set name = "Give Spell"
 	set desc = "Gives a spell to a mob."
 
@@ -608,7 +607,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		message_admins(span_danger("Spells given to mindless mobs will not be transferred in mindswap or cloning!"))
 
 /client/proc/remove_spell(mob/T in GLOB.mob_list)
-	set category = "Admin.Player Interaction"
+	set category = "Misc"
 	set name = "Remove Spell"
 	set desc = "Remove a spell from the selected mob."
 
@@ -621,7 +620,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Remove Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/give_disease(mob/living/T in GLOB.mob_living_list)
-	set category = "Admin.Player Interaction"
+	set category = "Misc"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
 	if(!istype(T))
@@ -787,7 +786,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	log_admin("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 	message_admins("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 
-	sleep(2 SECONDS)
+	sleep(20)
 
 	if(!dump_memory_profile("data/logs/memory/[fname]"))
 		to_chat(usr, span_warning("Dumping memory failed at dll call."))

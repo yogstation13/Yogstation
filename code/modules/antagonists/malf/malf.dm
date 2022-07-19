@@ -2,7 +2,6 @@
 	malf = TRUE
 	roundend_category = "malfunctioning AIs"
 	name = "Malf"
-	show_to_ghosts = TRUE
 
 /datum/antagonist/traitor/malf/forge_ai_objectives()
 	var/datum/objective/block/block_objective = new

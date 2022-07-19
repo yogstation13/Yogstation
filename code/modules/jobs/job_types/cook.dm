@@ -14,19 +14,18 @@
 
 	alt_titles = list("Chef", "Hash Slinger", "Sous-chef", "Culinary Artist")
 
-	added_access = list(ACCESS_HYDROPONICS, ACCESS_BAR)
-	base_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
+	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
+	minimal_access = list(ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_COOK
-	minimal_character_age = 18 //My guy they just a cook
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/cook/proc/OmegaStationChanges()
-	added_access = list()
-	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
+	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
+	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 
 /datum/job/cook/proc/EclipseStationChanges()
 	total_positions = 4

@@ -9,7 +9,6 @@
 	response_help  = "thinks better of touching"
 	response_disarm = "flails at"
 	response_harm   = "punches"
-	attack_vis_effect = ATTACK_EFFECT_CLAW
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "daemon"
 	icon_living = "daemon"
@@ -117,7 +116,6 @@
 	emote_hear = list("guffaws","laughs")
 	response_help  = "hugs"
 	attacktext = "wildly tickles"
-	attack_vis_effect = null
 
 	attack_sound = 'sound/items/bikehorn.ogg'
 	feast_sound = 'sound/spookoween/scary_horn2.ogg'

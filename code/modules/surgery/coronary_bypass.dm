@@ -1,8 +1,5 @@
 /datum/surgery/coronary_bypass
 	name = "Coronary Bypass"
-	desc = "Restores the heart to a functional state if it is in a non-functional state, making it able to be defibrillated and sustain life. Can only be performed once on an individual heart."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "heart-off"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders,
 				 /datum/surgery_step/incise_heart, /datum/surgery_step/coronary_bypass, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -20,10 +17,7 @@
 	name = "incise heart"
 	implements = list(TOOL_SCALPEL = 90, /obj/item/melee/transforming/energy/sword = 45, /obj/item/kitchen/knife = 45,
 		/obj/item/shard = 25)
-	time = 1.6 SECONDS
-	preop_sound = 'sound/surgery/scalpel1.ogg'
-	success_sound = 'sound/surgery/scalpel2.ogg'
-	failure_sound = 'sound/surgery/organ2.ogg'
+	time = 16
 	fuckup_damage = 20
 
 /datum/surgery_step/incise_heart/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -58,10 +52,7 @@
 /datum/surgery_step/coronary_bypass
 	name = "graft coronary bypass"
 	implements = list(TOOL_HEMOSTAT = 90, TOOL_WIRECUTTER = 35, /obj/item/stack/packageWrap = 15, /obj/item/stack/cable_coil = 5)
-	time = 9 SECONDS
-	preop_sound = 'sound/surgery/hemostat1.ogg'
-	success_sound = 'sound/surgery/hemostat1.ogg'
-	failure_sound = 'sound/surgery/organ2.ogg'
+	time = 90
 	fuckup_damage = 20
 
 /datum/surgery_step/coronary_bypass/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

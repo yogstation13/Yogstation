@@ -6,7 +6,6 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
 	var/brightness_on = 3
-	var/saber_color = null
 
 /obj/item/melee/transforming/energy/Initialize()
 	. = ..()
@@ -37,8 +36,8 @@
 	. = ..()
 	if(.)
 		if(active)
-			if(saber_color)
-				icon_state = "sword[saber_color]"
+			if(item_color)
+				icon_state = "sword[item_color]"
 			START_PROCESSING(SSobj, src)
 			set_light(brightness_on)
 		else
@@ -102,12 +101,11 @@
 	embedding = list("embed_chance" = 75, "embedded_impact_pain_multiplier" = 10)
 	armour_penetration = 35
 	block_chance = 50
-	saber_color = "green"
 
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
-	if(. && active && saber_color)
-		icon_state = "sword[saber_color]"
+	if(. && active && item_color)
+		icon_state = "sword[item_color]"
 
 /obj/item/melee/transforming/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
@@ -115,7 +113,7 @@
 	return 0
 
 /obj/item/melee/transforming/energy/sword/cyborg
-	saber_color = "red"
+	item_color = "red"
 	var/hitcost = 50
 
 /obj/item/melee/transforming/energy/sword/cyborg/attack(mob/M, var/mob/living/silicon/robot/R)
@@ -136,7 +134,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "esaw_0"
 	icon_state_on = "esaw_1"
-	saber_color = null //stops icon from breaking when turned on.
+	item_color = null //stops icon from breaking when turned on.
 	hitcost = 75 //Costs more than a standard cyborg esword
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
@@ -159,7 +157,7 @@
 	. = ..()
 	if(LAZYLEN(possible_colors))
 		var/set_color = pick(possible_colors)
-		saber_color = set_color
+		item_color = set_color
 		light_color = possible_colors[set_color]
 
 /obj/item/melee/transforming/energy/sword/saber/process()
@@ -185,7 +183,7 @@
 	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!hacked)
 			hacked = TRUE
-			saber_color = "rainbow"
+			item_color = "rainbow"
 			to_chat(user, span_warning("RNBW_ENGAGE"))
 
 			if(active)

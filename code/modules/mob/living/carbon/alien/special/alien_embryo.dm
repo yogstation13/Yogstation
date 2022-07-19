@@ -105,7 +105,7 @@
 	new_xeno.notransform = 1
 	new_xeno.invisibility = INVISIBILITY_MAXIMUM
 
-	sleep(0.6 SECONDS)
+	sleep(6)
 
 	if(QDELETED(src) || QDELETED(owner))
 		return

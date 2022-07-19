@@ -8,6 +8,29 @@
 GLOBAL_LIST_EMPTY(cryopods)
 GLOBAL_LIST_EMPTY(cryopod_computers)
 
+// These items are preserved when the process() despawn proc occurs.
+GLOBAL_LIST_INIT(typecache_cryoitems, typecacheof(list(
+		/obj/item/hand_tele,
+		/obj/item/card/id/captains_spare,
+		/obj/item/aicard,
+		/obj/item/mmi,
+		/obj/item/paicard,
+		/obj/item/gun,
+		/obj/item/pinpointer,
+		/obj/item/clothing/shoes/magboots,
+		/obj/item/areaeditor/blueprints,
+		/obj/item/clothing/head/helmet/space,
+		/obj/item/clothing/suit/space,
+		/obj/item/clothing/suit/armor,
+		/obj/item/defibrillator/compact,
+		/obj/item/reagent_containers/hypospray/CMO,
+		/obj/item/clothing/accessory/medal/gold/captain,
+		/obj/item/clothing/gloves/krav_maga,
+		/obj/item/nullrod,
+		/obj/item/tank/jetpack,
+		/obj/item/documents,
+		/obj/item/nuke_core_container)))
+
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
@@ -302,10 +325,6 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		if(LAZYLEN(mob_occupant.mind.objectives))
 			mob_occupant.mind.objectives.Cut()
 			mob_occupant.mind.special_role = null
-		/// Chaplain Stuff
-		var/datum/job/role = GetJob(job)
-		if(mob_occupant.mind.assigned_role == "Chaplain" && role?.current_positions < 1)
-			GLOB.religion = null	/// Clears the religion for the next chaplain
 
 	// Delete them from datacore.
 
@@ -339,7 +358,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		if(W.loc.loc && (( W.loc.loc == loc ) || (W.loc.loc == control_computer)))
 			continue//means we already moved whatever this thing was in
 			//I'm a professional, okay
-		if(W.cryo_preserve)
+		if(is_type_in_typecache(W, GLOB.typecache_cryoitems))
 			if(control_computer && control_computer.allow_items)
 				control_computer.frozen_items += W
 				mob_occupant.transferItemToLoc(W, control_computer, TRUE)
@@ -355,13 +374,11 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 		R.contents -= R.mmi
 		qdel(R.mmi)
 
-	var/mob/dead/observer/ghost = mob_occupant.ghostize(FALSE)
-	if(ghost)
-		ghost.mind = null
+	mob_occupant.ghostize(FALSE)
 	handle_objectives()
 	QDEL_NULL(occupant)
 	for(var/obj/item/I in get_turf(src))
-		if(I.cryo_preserve)
+		if(is_type_in_typecache(I, GLOB.typecache_cryoitems))
 			continue //Double safety check
 		qdel(I) //Cleanup anything left
 	open_machine()

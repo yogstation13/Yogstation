@@ -30,7 +30,7 @@
 	icon = 'icons/mob/carp.dmi'
 	flick("carp_swell", src)
 	//Wait for animation to end
-	sleep(0.6 SECONDS)
+	sleep(6)
 	if(!src || QDELETED(src))//we got toasted while animating
 		return
 	//Make space carp
@@ -55,7 +55,7 @@
 	if(istype(H))
 		H.Paralyze(30)
 		forceMove(H) //we move it AWAAAYY
-		sleep(2 SECONDS)
+		sleep(20)
 		
 		if(QDELETED(src))
 			return SHAME
@@ -65,7 +65,7 @@
 			forceMove(get_turf(H)) //we move it back
 		icon = 'icons/mob/carp.dmi'
 		flick("carp_swell", src)
-		sleep(0.6 SECONDS) //let the animation play out
+		sleep(6) //let the animation play out
 	
 		if(!QDELETED(src))
 			var/mob/living/M = new mobtype(get_turf(src))

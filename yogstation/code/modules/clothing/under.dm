@@ -4,6 +4,7 @@
 	alternate_screams = list('yogstation/sound/voice/cluwnelaugh1.ogg','yogstation/sound/voice/cluwnelaugh2.ogg','yogstation/sound/voice/cluwnelaugh3.ogg')
 	icon_state = "cluwne"
 	item_state = "cluwne"
+	item_color = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	item_flags = DROPDEL
 	can_adjust = 0
@@ -25,6 +26,7 @@
 	desc = "<i>'An old uniform that was used as a mascot in commercial advertising to make children smile while in other places slaughtering children.'</i>"
 	icon_state = "ronald_s"
 	item_state = "clown"
+	item_color = "ronald_s"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
@@ -33,6 +35,7 @@
 	desc = "Seize the means of production in style!"
 	icon_state = "soviet_dress_uniform"
 	item_state = "soviet_dress_uniform"
+	item_color = "soviet_dress_uniform"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/lederhosen
@@ -40,4 +43,5 @@
 	desc = "<i>'Nothing like wearing a lederhosen for another hard day at work on a space station.'</i>"
 	icon_state = "lederhosen"
 	item_state = "lederhosen"
+	item_color = "lederhosen"
 	can_adjust = FALSE

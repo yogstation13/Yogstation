@@ -24,10 +24,12 @@
 	return "Master : [master.owner.name]"
 
 /datum/antagonist/vassal/apply_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.apply_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
 
 /datum/antagonist/vassal/remove_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
 

@@ -10,14 +10,11 @@
 	materials = list(/datum/material/iron=2000)
 	clumsy_check = 0
 	fire_sound = 'sound/items/syringeproj.ogg'
-	var/load_sound = 'sound/weapons/shotguninsert.ogg'
 	var/list/syringes = list()
 	var/max_syringes = 1
-	var/has_syringe_overlay = TRUE ///If it has an overlay for inserted syringes. If true, the overlay is determined by the number of syringes inserted into it.
 
 /obj/item/gun/syringe/Initialize()
 	. = ..()
-	update_icon()
 	chambered = new /obj/item/ammo_casing/syringegun(src)
 
 /obj/item/gun/syringe/handle_atom_del(atom/A)
@@ -36,7 +33,6 @@
 /obj/item/gun/syringe/process_chamber()
 	if(chambered && !chambered.BB) //we just fired
 		recharge_newshot()
-	update_icon()
 
 /obj/item/gun/syringe/examine(mob/user)
 	. = ..()
@@ -45,18 +41,18 @@
 /obj/item/gun/syringe/attack_self(mob/living/user)
 	if(!syringes.len)
 		to_chat(user, span_warning("[src] is empty!"))
-		return FALSE
+		return 0
 
 	var/obj/item/reagent_containers/syringe/S = syringes[syringes.len]
 
 	if(!S)
-		return FALSE
+		return 0
 	user.put_in_hands(S)
 
 	syringes.Remove(S)
 	to_chat(user, span_notice("You unload [S] from \the [src]."))
 
-	return TRUE
+	return 1
 
 /obj/item/gun/syringe/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
 	if(istype(A, /obj/item/reagent_containers/syringe))
@@ -66,19 +62,10 @@
 			to_chat(user, span_notice("You load [A] into \the [src]."))
 			syringes += A
 			recharge_newshot()
-			update_icon()
-			playsound(loc, load_sound, 40)
 			return TRUE
 		else
 			to_chat(user, span_warning("[src] cannot hold more syringes!"))
 	return FALSE
-
-/obj/item/gun/syringe/update_icon()
-	. = ..()
-	if(!has_syringe_overlay)
-		return
-	var/syringe_count = syringes.len
-	add_overlay("[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]")
 
 /obj/item/gun/syringe/rapidsyringe
 	name = "rapid syringe gun"
@@ -116,8 +103,6 @@
 			to_chat(user, span_notice("You load \the [D] into \the [src]."))
 			syringes += D
 			recharge_newshot()
-			update_icon()
-			playsound(loc, load_sound, 40)
 			return TRUE
 		else
 			to_chat(user, span_warning("[src] cannot hold more syringes!"))
@@ -129,12 +114,11 @@
 	icon_state = "blowgun"
 	item_state = "blowgun"
 	fire_sound = 'sound/items/syringeproj.ogg'
-	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //it's a fucking blowgun it shouldn't even have a triggerguard
 
 /obj/item/gun/syringe/blowgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	visible_message(span_danger("[user] starts aiming with a blowgun!"))
-	if(do_after(user, 2.5 SECONDS, src))
+	if(do_after(user, 25, target = src))
 		user.adjustStaminaLoss(20)
 		user.adjustOxyLoss(20)
 		..()

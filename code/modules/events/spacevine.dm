@@ -522,7 +522,7 @@
 						if(!istype(D, /obj/machinery/door/airlock/external))
 							var/obj/machinery/door/airlock/A = D
 							playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
-							sleep(6 SECONDS)
+							sleep(60)
 							A.open(2)
 							for(var/datum/spacevine_mutation/SM in mutations)
 								SM.on_spread(src, stepturf)

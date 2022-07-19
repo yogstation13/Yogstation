@@ -43,7 +43,7 @@
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/frenchtoast
-	name = "raw French toast"
+	name = "French Toast"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1,
@@ -51,7 +51,7 @@
 		/datum/reagent/consumable/sugar = 5,
 		/datum/reagent/consumable/eggyolk = 5
 	)
-	result = /obj/item/reagent_containers/food/snacks/frenchtoast/raw
+	result = /obj/item/reagent_containers/food/snacks/frenchtoast
 	subcategory = CAT_BREAD
 
 /datum/crafting_recipe/food/garlicbread
@@ -114,5 +114,3 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/store/bread/xenomeat
 	subcategory = CAT_BREAD
-
-

@@ -87,7 +87,7 @@
 			coinsToProduce--
 			newCoins++
 			src.updateUsrDialog()
-			sleep(0.5 SECONDS)
+			sleep(5)
 
 		icon_state = "coinpress0"
 		processing = FALSE

@@ -20,9 +20,6 @@ const VendingRow = (props, context) => {
       && data.user
       && data.department === data.user.department
     )
-    // yogs start -- patch to make ignores_capitalism work again
-    || data.ignores_capitalism
-    // yogs end
   );
   return (
     <Table.Row>

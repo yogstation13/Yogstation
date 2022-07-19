@@ -16,7 +16,7 @@
 	var/direction = pick(directions)
 	for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50), i++)
 		if (!mapload)
-			sleep(0.2 SECONDS)
+			sleep(2)
 		if (i > 0)
 			if (prob(40))
 				new /obj/effect/decal/cleanable/oil/streak(src.loc)

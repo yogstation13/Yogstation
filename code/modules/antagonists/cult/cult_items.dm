@@ -115,7 +115,7 @@
 	var/datum/action/innate/dash/cult/jaunt
 	var/datum/action/innate/cult/spin2win/linked_action
 	var/spinning = FALSE
-	var/spin_cooldown = 25 SECONDS
+	var/spin_cooldown = 250
 	var/dash_toggled = TRUE
 
 /obj/item/twohanded/required/cult_bastard/Initialize()
@@ -266,7 +266,6 @@
 	name = "nar'sien bola"
 	desc = "A strong bola, bound with dark magic that allows it to pass harmlessly through Nar'sien cultists. Throw it to trip and slow your victim."
 	icon_state = "bola_cult"
-	item_state = "bola_cult"
 	breakouttime = 60
 	immobilize = 20
 
@@ -538,7 +537,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		to_chat(user, span_danger("You shatter the orb! A dark essence spirals into the air, then disappears."))
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 50, 1)
 		qdel(src)
-		sleep(2 SECONDS)
+		sleep(20)
 		var/curses = list("A fuel technician just slit his own throat and begged for death.",
 			"The shuttle's navigation programming was replaced by a file containing just two words: IT COMES.",
 			"The shuttle's custodian was found washing the windows with their own blood.",
@@ -840,11 +839,11 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		return
 	charging = TRUE
 	INVOKE_ASYNC(src, .proc/charge, user)
-	if(do_after(user, 9 SECONDS, user))
+	if(do_after(user, 90, target = user))
 		firing = TRUE
 		INVOKE_ASYNC(src, .proc/pewpew, user, params)
 		var/obj/structure/emergency_shield/invoker/N = new(user.loc)
-		if(do_after(user, 9 SECONDS, user))
+		if(do_after(user, 90, target = user))
 			user.Paralyze(40)
 			to_chat(user, "<span class='cult italic'>You have exhausted the power of this spell!</span>")
 		firing = FALSE
@@ -860,7 +859,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		if(!charging)
 			break
 		if(i > 1)
-			sleep(1.5 SECONDS)
+			sleep(15)
 		if(i < 4)
 			O = new /obj/effect/temp_visual/cult/rune_spawn/rune1/inner(user.loc, 30, "#ff0000")
 		else
@@ -879,7 +878,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			set_angle = angle - spread
 			spread -= 8
 		else
-			sleep(1.5 SECONDS)
+			sleep(15)
 			set_angle = angle + spread
 		second = !second //Handles beam firing in pairs
 		if(!firing)

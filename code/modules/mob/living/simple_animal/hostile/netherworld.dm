@@ -9,7 +9,6 @@
 	obj_damage = 100
 	melee_damage_lower = 25
 	melee_damage_upper = 50
-	attack_vis_effect = ATTACK_EFFECT_SLASH // I always thought they bit. Guess I was wrong.
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = list("creature")

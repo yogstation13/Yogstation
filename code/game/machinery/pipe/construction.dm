@@ -183,7 +183,7 @@ Buildable meters
 			C.vomit(0, TRUE, FALSE, 4, FALSE)
 			if(prob(20))
 				C.spew_organ()
-			sleep(0.5 SECONDS)
+			sleep(5)
 		C.blood_volume = 0
 	return(OXYLOSS|BRUTELOSS)
 

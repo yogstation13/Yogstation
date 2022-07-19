@@ -27,8 +27,8 @@
 
 /obj/item/projectile/bullet/c10mm_hp
 	name = "10mm hollow-point bullet"
-	damage = 45
-	armour_penetration = -45
+	damage = 40
+	armour_penetration = -50
 
 /obj/item/projectile/bullet/c10mm_sp
 	name = "10mm soporific bullet"
@@ -45,5 +45,5 @@
 
 /obj/item/projectile/bullet/incendiary/c10mm
 	name = "10mm incendiary bullet"
-	damage = 20
+	damage = 15
 	fire_stacks = 2

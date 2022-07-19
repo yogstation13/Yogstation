@@ -76,20 +76,20 @@
 	INVOKE_ASYNC(src, .proc/begin_the_end)
 
 /obj/singularity/narsie/large/cult/proc/begin_the_end()
-	ending_helper()
-	sleep(5 SECONDS)
-	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 30 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
-	sleep(30 SECONDS)
-	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: 30 SECONDS. ","Central Command Higher Dimensional Affairs")
-	sleep(5 SECONDS)
+	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
+	sleep(50)
+	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
+	sleep(500)
+	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. ","Central Command Higher Dimensional Affairs")
+	sleep(50)
 	set_security_level("delta")
 	SSshuttle.registerHostileEnvironment(src)
 	SSshuttle.lockdown = TRUE
-	sleep(25 SECONDS)
+	sleep(600)
 	if(resolved == FALSE)
 		resolved = TRUE
 		sound_to_playing_players('sound/machines/alarm.ogg')
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/cult_ending_helper), 12 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/cult_ending_helper), 120)
 
 /obj/singularity/narsie/large/cult/Destroy()
 	GLOB.cult_narsie = null
@@ -100,9 +100,9 @@
 
 /proc/cult_ending_helper(var/no_explosion = 0)
 	if(no_explosion)
-		Cinematic(CINEMATIC_CULT,world)
+		Cinematic(CINEMATIC_CULT,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
 	else
-		Cinematic(CINEMATIC_CULT_NUKE,world)
+		Cinematic(CINEMATIC_CULT_NUKE,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/singularity/narsie/large/attack_ghost(mob/dead/observer/user as mob)
@@ -138,7 +138,7 @@
 		if(M.stat == CONSCIOUS)
 			if(!iscultist(M))
 				to_chat(M, span_cultsmall("You feel conscious thought crumble away in an instant as you gaze upon [src.name]..."))
-				M.apply_effect(6 SECONDS, EFFECT_STUN)
+				M.apply_effect(60, EFFECT_STUN)
 
 
 /obj/singularity/narsie/consume(atom/A)
@@ -220,7 +220,7 @@
 	setDir(SOUTH)
 	move_self = 0
 	flick("narsie_spawn_anim",src)
-	sleep(1.1 SECONDS)
+	sleep(11)
 	move_self = 1
 	icon = initial(icon)
 

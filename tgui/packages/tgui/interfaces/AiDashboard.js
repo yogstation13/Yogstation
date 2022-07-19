@@ -1,19 +1,19 @@
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from '../backend';
+import { useBackend, useSharedState } from '../backend';
 import { Box, Button, Tabs, ProgressBar, Section, Divider, LabeledControls, NumberInput, Input } from '../components';
 import { Window } from '../layouts';
 
 export const AiDashboard = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const [search, setSearch] = useLocalState(context, 'search', null);
-  const [searchCompleted, setSearchCompleted] = useLocalState(context, 'searchCompleted', null);
-  const [tab, setTab] = useLocalState(context, 'tab', 1);
-  const [selectedCategory, setCategory] = useLocalState(context, 'selectedCategory', data.categories[0]);
-  const [activeProjectsOnly, setActiveProjectsOnly] = useLocalState(context, 'activeProjectsOnly', true);
+  const [search, setSearch] = useSharedState(context, 'search', null);
+  const [searchCompleted, setSearchCompleted] = useSharedState(context, 'searchCompleted', null);
+  const [tab, setTab] = useSharedState(context, 'tab', 1);
+  const [selectedCategory, setCategory] = useSharedState(context, 'selectedCategory', data.categories[0]);
+  const [activeProjectsOnly, setActiveProjectsOnly] = useSharedState(context, 'activeProjectsOnly', true);
 
   let remaining_cpu = (1 - data.used_cpu) * 100;
-  let amount_of_cpu = data.current_cpu ? data.current_cpu * data.max_cpu : 0;
+  let amount_of_cpu = data.current_cpu ? data.current_cpu * amount_of_cpu : 0;
 
   return (
     <Window
@@ -257,7 +257,7 @@ export const AiDashboard = (props, context) => {
           <Section title="Computing Resources">
             <Section title="CPU Resources">
               <ProgressBar
-                value={amount_of_cpu}
+                value={data.amount_of_cpu}
                 maxValue={data.max_cpu}>{amount_of_cpu}/{data.max_cpu} THz
               </ProgressBar>
             </Section>

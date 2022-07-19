@@ -1,15 +1,9 @@
 //Lavaland Ruins
 
 /area/ruin/powered/beach
-	name = "Biodome Beach"
-	icon_state = "dk_yellow"
-
-/area/ruin/powered/fishing
-	name = "Biodome Fishing Dock"
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/clownplanet
-	name = "Biodome Clownplanet"
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/animal_hospital
@@ -46,7 +40,7 @@
 	name = "Lavaland Gas Station"
 	icon_state = "dk_yellow" // yogs end
 
-/area/ruin/powered/syndicate_lava_base
+/area/ruin/unpowered/syndicate_lava_base
 	name = "Secret Base"
 	icon_state = "dk_yellow"
 	ambientsounds = HIGHSEC
@@ -61,37 +55,37 @@
 	name = "Russian Bunker"
 	noteleport = TRUE
 
-/area/ruin/powered/syndicate_lava_base/engineering
+/area/ruin/unpowered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
 
-/area/ruin/powered/syndicate_lava_base/medbay
+/area/ruin/unpowered/syndicate_lava_base/medbay
 	name = "Syndicate Lavaland Medbay"
 
-/area/ruin/powered/syndicate_lava_base/arrivals
+/area/ruin/unpowered/syndicate_lava_base/arrivals
 	name = "Syndicate Lavaland Arrivals"
 
-/area/ruin/powered/syndicate_lava_base/bar
+/area/ruin/unpowered/syndicate_lava_base/bar
 	name = "Syndicate Lavaland Bar"
 
-/area/ruin/powered/syndicate_lava_base/main
+/area/ruin/unpowered/syndicate_lava_base/main
 	name = "Syndicate Lavaland Primary Hallway"
 
-/area/ruin/powered/syndicate_lava_base/cargo
+/area/ruin/unpowered/syndicate_lava_base/cargo
 	name = "Syndicate Lavaland Cargo Bay"
 
-/area/ruin/powered/syndicate_lava_base/chemistry
+/area/ruin/unpowered/syndicate_lava_base/chemistry
 	name = "Syndicate Lavaland Chemistry"
 
-/area/ruin/powered/syndicate_lava_base/virology
+/area/ruin/unpowered/syndicate_lava_base/virology
 	name = "Syndicate Lavaland Virology"
 
-/area/ruin/powered/syndicate_lava_base/testlab
+/area/ruin/unpowered/syndicate_lava_base/testlab
 	name = "Syndicate Lavaland Experimentation Lab"
 
-/area/ruin/powered/syndicate_lava_base/dormitories
+/area/ruin/unpowered/syndicate_lava_base/dormitories
 	name = "Syndicate Lavaland Dormitories"
 
-/area/ruin/powered/syndicate_lava_base/telecomms
+/area/ruin/unpowered/syndicate_lava_base/telecomms
 	name = "Syndicate Lavaland Telecommunications"
 
 /area/ruin/unpowered/dragonslair //yogs start

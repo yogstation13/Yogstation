@@ -87,18 +87,6 @@
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 			/obj/item/trash/syndi_cakes = 1)
 
-/obj/effect/spawner/lootdrop/donkpockets
-	name = "donk pocket box spawner"
-	lootdoubles = FALSE
-
-	loot = list(
-			/obj/item/storage/box/donkpockets/donkpocketspicy = 1,
-			/obj/item/storage/box/donkpockets/donkpocketteriyaki = 1,
-			/obj/item/storage/box/donkpockets/donkpocketpizza = 1,
-			/obj/item/storage/box/donkpockets/donkpocketberry = 1,
-			/obj/item/storage/box/donkpockets/donkpockethonk = 1,
-		)
-
 /obj/effect/spawner/lootdrop/three_course_meal
 	name = "three course meal spawner"
 	lootcount = 3
@@ -236,7 +224,7 @@
 	name = "pirate hat or bandana spawner"
 	loot = list(
 		/obj/item/clothing/head/pirate = 1,
-		/obj/item/clothing/head/pirate/bandana = 1)
+		/obj/item/clothing/head/bandana = 1)
 
 /obj/effect/spawner/lootdrop/minor/twentyfive_percent_cyborg_mask
 	name = "25% cyborg mask spawner"
@@ -378,7 +366,6 @@
 	name = "secure AI circuit board spawner"
 	loot = list(
 				/obj/item/circuitboard/computer/aiupload,
-				/obj/item/circuitboard/computer/ai_upload_download,
 				/obj/item/circuitboard/computer/borgupload
 				)
 

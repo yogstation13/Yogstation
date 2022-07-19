@@ -129,14 +129,13 @@
 			return TRUE
 		if(lifted == TRUE)
 			return TRUE
+		if(allowed(mover))
+			return TRUE
 
 /obj/structure/barrier_tape/Bumped(atom/movable/AM)
 	. = ..()
 	if(iscarbon(AM))
 		add_fingerprint(AM)
-		if(allowed(AM))
-			to_chat(AM, span_notice("You lift [src] to pass under it"))
-			lift_tape()
 		if(lifted == FALSE)
 			to_chat(AM, span_warning("You are not supposed to go past [src]... (You can break the tape with something sharp or lift the tape with HELP intent)"))
 
@@ -147,13 +146,10 @@
 	if (user.a_intent == "help" )
 		user.visible_message(span_notice("[user] lifts [src], allowing passage."))
 		crumple()
-		lift_tape()
+		lifted = TRUE
+		addtimer(VARSET_CALLBACK(src, lifted, FALSE), 20)
 	else
 		breaktape(null, user)
-
-/obj/structure/barrier_tape/proc/lift_tape()
-	lifted = TRUE
-	addtimer(VARSET_CALLBACK(src, lifted, FALSE), 2 SECONDS)
 
 /obj/structure/barrier_tape/proc/breaktape(var/obj/item/W, var/mob/user)
 	if(user.a_intent == INTENT_HELP && W && !W.is_sharp() && allowed(user))

@@ -57,7 +57,6 @@
 		if(GOHOME_FLICKER_TWO)
 			INVOKE_ASYNC(src, .proc/flicker_lights, 4, 60)
 		if(GOHOME_TELEPORT)
-			do_mob(user, user, 1 SECONDS, TRUE)
 			INVOKE_ASYNC(src, .proc/teleport_to_coffin, user)
 	teleporting_stage++
 
@@ -65,24 +64,24 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!isturf(user.loc))
+	if(!isturf(owner.loc))
 		return FALSE
 	if(!bloodsuckerdatum_power.coffin)
-		to_chat(user, span_warning("Your coffin has been destroyed! You no longer have a destination."))
+		to_chat(owner, span_warning("Your coffin has been destroyed! You no longer have a destination."))
 		return FALSE
 	return TRUE
 
 /datum/action/bloodsucker/gohome/proc/flicker_lights(flicker_range, beat_volume)
 	for(var/obj/machinery/light/nearby_lights in view(flicker_range, get_turf(owner)))
 		nearby_lights.flicker(5)
-	playsound(get_turf(owner), 'sound/effects/singlebeat.ogg', beat_volume, TRUE)
+	playsound(get_turf(owner), 'sound/effects/singlebeat.ogg', beat_volume, 1)
 
 /datum/action/bloodsucker/gohome/proc/teleport_to_coffin(mob/living/carbon/user)
 	var/drop_item = FALSE
-	var/turf/current_turf = get_turf(user)
+	var/turf/current_turf = get_turf(owner)
 	// If we aren't in the dark, anyone watching us will cause us to drop out stuff
 	if(current_turf && current_turf.lighting_object && current_turf.get_lumcount() >= 0.2)
-		for(var/mob/living/watchers in viewers(world.view, get_turf(user)) - user)
+		for(var/mob/living/watchers in viewers(world.view, get_turf(owner)) - owner)
 			if(!watchers.client)
 				continue
 			if(watchers.has_unlimited_silicon_privilege)
@@ -100,10 +99,10 @@
 		var/obj/item/legcuffs = user.legcuffed
 		user.dropItemToGround(legcuffs)
 	if(drop_item)
-		for(var/obj/item/literally_everything in user)
-			user.dropItemToGround(literally_everything, TRUE)
+		for(var/obj/item/literally_everything in owner)
+			owner.dropItemToGround(literally_everything, TRUE)
 
-	playsound(current_turf, 'sound/magic/summon_karp.ogg', 60, TRUE)
+	playsound(current_turf, 'sound/magic/summon_karp.ogg', 60, 1)
 	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread/bloodsucker()
 	puff.set_up(3, 0, current_turf)
 	puff.start()
@@ -113,13 +112,13 @@
 	new new_mob(current_turf)
 	/// TELEPORT: Move to Coffin & Close it!
 	user.set_resting(TRUE, TRUE, FALSE)
-	do_teleport(user, bloodsuckerdatum_power.coffin, no_effects = TRUE, forced = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
+	do_teleport(owner, bloodsuckerdatum_power.coffin, no_effects = TRUE, forced = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	user.Stun(3 SECONDS, TRUE)
 	// Puts me inside.
-	if(!bloodsuckerdatum_power.coffin.close(user))
+	if(!bloodsuckerdatum_power.coffin.insert(owner))
 		// CLOSE LID: If fail, force me in.
-		bloodsuckerdatum_power.coffin.insert(user)
-		playsound(bloodsuckerdatum_power.coffin.loc, bloodsuckerdatum_power.coffin.close_sound, 15, TRUE, -3)
+		bloodsuckerdatum_power.coffin.close(owner)
+		playsound(bloodsuckerdatum_power.coffin.loc, bloodsuckerdatum_power.coffin.close_sound, 15, 1, -3)
 
 	DeactivatePower()
 

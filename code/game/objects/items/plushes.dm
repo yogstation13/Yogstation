@@ -133,9 +133,6 @@
 		if(grenade)
 			to_chat(user, span_warning("[src] already has a grenade!"))
 			return
-		if(taped) //yogs - no
-			to_chat(user, span_warning("[src] is too sticky to add a grenade!"))
-			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		user.visible_message(span_warning("[user] slides [grenade] into [src]."), \
@@ -218,7 +215,7 @@
 
 /obj/item/toy/plush/proc/heartbreak(obj/item/toy/plush/Brutus)
 	if(lover != Brutus)
-		debug_admins("lover != Brutus")
+		to_chat(world, "lover != Brutus")
 		return	//why are we considering someone we don't love?
 
 	scorned.Add(Brutus)
@@ -412,7 +409,7 @@
 			P.clashing = FALSE
 			return
 		playsound(src, 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE, frequency = 2)
-		sleep(0.24 SECONDS)
+		sleep(2.4)
 		if(QDELETED(src))
 			P.clashing = FALSE
 			return
@@ -423,7 +420,7 @@
 			a_winnar_is = src
 			break
 		P.SpinAnimation(5, 0)
-		sleep(0.5 SECONDS)
+		sleep(5)
 		if(QDELETED(src))
 			P.clashing = FALSE
 			return
@@ -431,7 +428,7 @@
 			clash_target = null
 			return
 		playsound(P, 'sound/magic/clockwork/narsie_attack.ogg', 50, TRUE, frequency = 2)
-		sleep(0.33 SECONDS)
+		sleep(3.3)
 		if(QDELETED(src))
 			P.clashing = FALSE
 			return
@@ -443,7 +440,7 @@
 			break
 		SpinAnimation(5, 0)
 		victory_chance += 10
-		sleep(0.5 SECONDS)
+		sleep(5)
 	if(!a_winnar_is)
 		a_winnar_is = pick(src, P)
 	if(a_winnar_is == src)

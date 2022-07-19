@@ -29,7 +29,7 @@
 		return FALSE
 	if(occupant_amount() >= max_occupants)
 		return FALSE
-	if(do_after(M, get_enter_delay(M), src, FALSE))
+	if(do_after(M, get_enter_delay(M), FALSE, src, TRUE))
 		mob_enter(M)
 		return TRUE
 	return FALSE

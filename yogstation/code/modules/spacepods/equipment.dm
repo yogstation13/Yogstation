@@ -58,7 +58,7 @@
 	for(var/I in 1 to shots_per)
 		spacepod.fire_projectiles(projectile_type, target)
 		playsound(src, fire_sound, 50, TRUE)
-		sleep(0.2 SECONDS)
+		sleep(2)
 
 /*
 ///////////////////////////////////////

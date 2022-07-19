@@ -430,12 +430,12 @@
 	playsound(T,'sound/magic/warpwhistle.ogg', 200, 1)
 	user.mobility_flags &= ~MOBILITY_MOVE
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(2 SECONDS)
+	sleep(20)
 	if(interrupted(user))
 		return
 	user.invisibility = INVISIBILITY_MAXIMUM
 	user.status_flags |= GODMODE
-	sleep(2 SECONDS)
+	sleep(20)
 	if(interrupted(user))
 		end_effect(user)
 		return
@@ -449,12 +449,12 @@
 			break
 		breakout += 1
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(2 SECONDS)
+	sleep(20)
 	end_effect(user)
 	if(interrupted(user))
 		return
 	on_cooldown = 2
-	sleep(4 SECONDS)
+	sleep(40)
 	on_cooldown = 0
 
 /obj/item/warpwhistle/Destroy()
@@ -474,4 +474,4 @@
 
 /obj/effect/temp_visual/tornado/Initialize()
 	. = ..()
-	animate(src, pixel_x = -500, time = 4 SECONDS)
+	animate(src, pixel_x = -500, time = 40)

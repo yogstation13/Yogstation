@@ -245,7 +245,7 @@
 		psi = min(psi + 1, psi_cap)
 		total_regen--
 		update_psi_hud()
-		sleep(0.05 SECONDS)
+		sleep(0.5)
 	psi_used_since_regen = 0
 	psi_regen_ticks = psi_regen_delay
 	psi_regenerating = FALSE
@@ -334,9 +334,11 @@
 	H.do_jitter_animation(1000)
 	var/processed_message = span_velvet("<b>\[Mindlink\] [H.real_name] has not divulged in time and is now forcefully divulging.</b>")
 	for(var/mob/M in GLOB.player_list)
-		if(M.stat != DEAD && isdarkspawn(M))
+		if(M.stat == DEAD)
+			var/link = FOLLOW_LINK(M, H)
+			to_chat(M, "[link] [processed_message]")
+		else if(isdarkspawn(M))
 			to_chat(M, processed_message)
-	deadchat_broadcast(processed_message, null, H)
 	addtimer(CALLBACK(src, .proc/divulge), 25)
 	addtimer(CALLBACK(/atom/.proc/visible_message, H, span_boldwarning("[H]'s skin sloughs off, revealing black flesh covered in symbols!"), \
 	span_userdanger("You have forcefully divulged!")), 25)
@@ -367,7 +369,8 @@
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)
-	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 70, FALSE, pressure_affected = FALSE)
+	for(var/mob/M in GLOB.player_list)
+		M.playsound_local(M, 'yogstation/sound/magic/sacrament_complete.ogg', 70, FALSE, pressure_affected = FALSE)
 	psi = 9999
 	psi_cap = 9999
 	psi_regen = 9999

@@ -1,10 +1,9 @@
 /obj/item/mmi
 	name = "\improper Man-Machine Interface"
-	desc = "The bland acronym- 'MMI', cloaks the true nature of this infernal machine. Nonetheless, its presense has worked its way into many Nanotrasen stations."
+	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
-	cryo_preserve = TRUE
 	var/braintype = "Cyborg"
 	var/obj/item/radio/radio = null //Let's give it a radio.
 	var/mob/living/brain/brainmob = null //The current occupant.
@@ -86,10 +85,7 @@
 
 	else if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O
-		if(can_update_laws)
-			M.install(laws, user)
-		else
-			to_chat(user, span_warning("[src]'s indicator light flashes red: it does not allow law changes."))
+		M.install(laws, user)
 	else if(brainmob)
 		O.attack(brainmob, user) //Oh noooeeeee
 	else
@@ -103,7 +99,7 @@
 	else
 		user.visible_message(span_notice("[user] begins to remove the brain from [src]"), span_danger("You begin to pry the brain out of [src], ripping out the wires and probes"))
 		to_chat(brainmob, span_userdanger("You feel your mind failing as you are slowly ripped from the [src]"))
-		if(do_after(user, remove_time, src))
+		if(do_after(user, remove_time, target = src))
 			if(!brainmob) return
 			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg" : ""]"))
 			eject_brain(user)

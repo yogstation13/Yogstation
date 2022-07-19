@@ -48,13 +48,13 @@
 			correctness = 100
 		correctness -= U.getOrganLoss(ORGAN_SLOT_BRAIN) * 0.5 //Brain damage makes researching hard.
 		speed += U.getOrganLoss(ORGAN_SLOT_BRAIN) * 3
-	if(do_after(user, speed, user, FALSE))
+	if(do_after(user, speed, 0, user))
 		var/usedName = devilName
 		if(!prob(correctness))
 			usedName += "x"
 		var/datum/antagonist/devil/devil = devilInfo(usedName)
 		display_devil(devil, user, usedName)
-	sleep(1 SECONDS)
+	sleep(10)
 	onclose(user, "book")
 	inUse = FALSE
 

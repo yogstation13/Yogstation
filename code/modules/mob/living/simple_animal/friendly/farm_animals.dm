@@ -25,7 +25,6 @@
 	minbodytemp = 180
 	melee_damage_lower = 1
 	melee_damage_upper = 2
-	attack_vis_effect = ATTACK_EFFECT_KICK
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	stop_automated_movement_when_pulled = 1
 	blood_volume = BLOOD_VOLUME_GENERIC
@@ -139,7 +138,6 @@
 	var/obj/item/udder/udder = null
 	gold_core_spawnable = FRIENDLY_SPAWN
 	blood_volume = BLOOD_VOLUME_GENERIC
-	attack_vis_effect = ATTACK_EFFECT_KICK
 
 	do_footstep = TRUE
 
@@ -394,7 +392,7 @@
 			to_chat(user, span_warning("The sheep doesn't have enough wool, try again later..."))
 			return
 		user.visible_message("[user] starts to shave [src] using \the [O].", span_notice("You start to shave [src] using \the [O]..."))
-		if(do_after(user, 5 SECONDS, src))
+		if(do_after(user, 5 SECONDS, target = src))
 			if(shaved)
 				user.visible_message("[src] has already been shaved!")
 				return

@@ -39,7 +39,6 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	armour_penetration = 35
-	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/rapierhit.ogg'
 

@@ -4,7 +4,6 @@
 		"platymuus.dm-langclient",
 		"EditorConfig.EditorConfig",
 		"arcanis.vscode-zipfs",
-		"dbaeumer.vscode-eslint",
-		"anturk.dmi-editor"
+		"dbaeumer.vscode-eslint"
 	]
 }

@@ -14072,7 +14072,7 @@
 /obj/item/reagent_containers/glass/bottle/epinephrine{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/autoinjector/medipen,
+/obj/item/reagent_containers/hypospray/medipen,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -14296,7 +14296,6 @@
 /obj/item/ammo_box/c38,
 /obj/item/ammo_box/c38/hotshot,
 /obj/item/ammo_box/c38/iceblox,
-/obj/item/ammo_box/c38/gutterpunch,
 /obj/item/ammo_box/c38/trac,
 /obj/item/ammo_box/a357,
 /obj/item/ammo_box/a762,
@@ -15608,7 +15607,7 @@
 	dir = 1;
 	light_color = "#c1caff"
 	},
-/mob/living/simple_animal/pet/dog/eggdog,
+/mob/living/simple_animal/pet/eggdog,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aFZ" = (
@@ -20039,7 +20038,7 @@
 	dir = 8
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/obj/item/reagent_containers/autoinjector/medipen/stimpack/large,
+/obj/item/reagent_containers/hypospray/medipen/stimpack/large,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aOc" = (
@@ -23140,6 +23139,21 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
+"aUj" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/firealarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/obj/structure/table,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/mineral/plastitanium,
+/area/yogs/infiltrator_base)
 "aUk" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/holofloor/snow,
@@ -24299,6 +24313,21 @@
 	icon_state = "darkfull"
 	},
 /area/holodeck/rec_center/gym)
+"aWF" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm{
+	pixel_y = 24;
+	req_access = 150
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/flashlight,
+/turf/open/floor/mineral/plastitanium,
+/area/yogs/infiltrator_base)
 "aWG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -26045,22 +26074,6 @@
 "dbb" = (
 /turf/open/indestructible/wiki/greenscreen,
 /area/centcom/testchamber)
-"dgz" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/airalarm{
-	pixel_y = 24;
-	req_access = 150
-	},
-/obj/structure/table,
-/obj/item/storage/toolbox/syndicate,
-/obj/item/flashlight,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor/mineral/plastitanium,
-/area/yogs/infiltrator_base)
 "dgH" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info25"
@@ -26234,20 +26247,6 @@
 	icon_state = "title2"
 	},
 /area/centcom/testchamber)
-"nfW" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/firealarm{
-	dir = 2;
-	pixel_y = 24
-	},
-/obj/machinery/recharge_station/fullupgrade,
-/turf/open/floor/mineral/plastitanium,
-/area/yogs/infiltrator_base)
 "nIM" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title8"
@@ -26285,10 +26284,6 @@
 	icon_state = "info11"
 	},
 /area/centcom/testchamber)
-"ria" = (
-/obj/machinery/recharge_station/fullupgrade,
-/turf/open/floor/plasteel/dark,
-/area/syndicate_mothership/control)
 "rib" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info7"
@@ -42498,7 +42493,7 @@ aSh
 aVw
 afo
 aSA
-dgz
+aWF
 aPX
 aLw
 aBm
@@ -43526,7 +43521,7 @@ adu
 aUR
 abs
 aSA
-nfW
+aUj
 ayS
 aLw
 aLD
@@ -45651,7 +45646,7 @@ aVf
 apZ
 awp
 aku
-ria
+axG
 axG
 axG
 azx

@@ -190,7 +190,6 @@
 /// if someone is using ointment on our burns
 /datum/wound/burn/proc/ointment(obj/item/stack/medical/ointment/I, mob/user)
 	user.visible_message(span_notice("[user] begins applying [I] to [victim]'s [limb.name]..."), span_notice("You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name]..."))
-	playsound(I, pick(I.apply_sounds), 25)
 	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
@@ -211,8 +210,7 @@
 		to_chat(user, span_warning("You need to open [I] first."))
 		return
 	user.visible_message(span_notice("[user] begins wrapping [victim]'s [limb.name] with [I]..."), span_notice("You begin wrapping [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
-	playsound(I, pick(I.apply_sounds), 25)
-	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, (user == victim ? I.self_delay : I.other_delay), target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	limb.heal_damage(I.heal_brute, I.heal_burn)

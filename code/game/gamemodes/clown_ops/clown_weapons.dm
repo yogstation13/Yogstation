@@ -65,7 +65,7 @@
 	attack_verb_on = list("slipped")
 	clumsy_check = FALSE
 	sharpness = SHARP_NONE
-	saber_color = "yellow"
+	item_color = "yellow"
 	heat = 0
 	light_color = "#ffff00"
 	var/next_trombone_allowed = 0

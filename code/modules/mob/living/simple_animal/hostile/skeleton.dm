@@ -17,7 +17,6 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attack_vis_effect = ATTACK_EFFECT_CLAW
 	minbodytemp = 0
 	maxbodytemp = 1500
 	healable = 0 //they're skeletons how would bruise packs help them??
@@ -116,7 +115,6 @@
 	harm_intent_damage = 15
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attack_vis_effect = null // jackhammer moment
 	attacktext = "blasts"
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)

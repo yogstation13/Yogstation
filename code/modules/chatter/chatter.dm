@@ -22,16 +22,16 @@
 				// simulate pausing in talking
 				// ignore semi-colons because of their use in HTML escaping
 				if (item in list(",", ":"))
-					sleep(0.3 SECONDS)
+					sleep(3)
 				if (item in list("!", "?", "."))
-					sleep(0.6 SECONDS)
+					sleep(6)
 				continue
 
 			if(isnum(item))
 				var/length = min(item, 10)
 				if (length == 0)
 					// "verbalise" long spaces
-					sleep(0.1 SECONDS)
+					sleep(1)
 				chatter_speak_word(A.loc, phomeme, length)
 
 /proc/chatter_speak_word(loc, phomeme, length)

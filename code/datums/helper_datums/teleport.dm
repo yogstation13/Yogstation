@@ -187,8 +187,6 @@
 		return F
 
 /proc/get_teleport_turfs(turf/center, precision = 0)
-	if(is_centcom_level(center.z))
-		precision = 0
 	if(!precision)
 		return list(center)
 	var/list/posturfs = list()

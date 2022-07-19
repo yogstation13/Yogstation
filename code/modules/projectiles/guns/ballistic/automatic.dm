@@ -83,13 +83,12 @@
 
 /obj/item/gun/ballistic/automatic/wt550
 	name = "security auto rifle"
-	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle. Has a two-round burst or a semi-automatic firing mode."
+	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle. Has a single fire burst mode, but you still can't figure out what advantage that has over semi automatic."
 	icon_state = "wt550"
 	item_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
-	burst_size = 2
-	weapon_weight = WEAPON_MEDIUM
+	burst_size = 1
 	can_suppress = FALSE
 	can_bayonet = TRUE
 	knife_x_offset = 25
@@ -97,6 +96,7 @@
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
+	weapon_weight = WEAPON_MEDIUM
 
 /obj/item/gun/ballistic/automatic/wt550/occupying
 	name = "surplus security auto rifle"

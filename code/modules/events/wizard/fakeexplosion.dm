@@ -7,5 +7,5 @@
 
 /datum/round_event/wizard/fake_explosion/start()
 	sound_to_playing_players('sound/machines/alarm.ogg')
-	sleep(10 SECONDS)
+	sleep(100)
 	Cinematic(CINEMATIC_NUKE_FAKE,world)

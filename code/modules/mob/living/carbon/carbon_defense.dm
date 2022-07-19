@@ -54,7 +54,7 @@
 	if(istype(I, /obj/item))
 		if(((throwingdatum ? throwingdatum.speed : I.throw_speed) >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
 			var/obj/item/bodypart/body_part = pick(bodyparts)
-			if(prob(clamp(I.embedding.embed_chance - run_armor_check(body_part, MELEE), 0, 100)) && embed_object(I, body_part, deal_damage = TRUE))
+			if(prob(clamp(I.embedding.embed_chance - run_armor_check(body_part, MELEE), 0, 100)) && embed_object(I, deal_damage = TRUE))
 				hitpush = FALSE
 				skipcatch = TRUE //can't catch the now embedded item
 		if(!skipcatch)	//ugly, but easy
@@ -68,11 +68,8 @@
 						update_inv_hands()
 						I.pixel_x = initial(I.pixel_x)
 						I.pixel_y = initial(I.pixel_y)
-						I.transform = initial(I.transform)	
-						//If() explanation: if we have a mind and a martial art that we can use, check if it has a block or deflect chance or it's sleeping carp
-						//Assuming any of that isnt true, then throw mode isnt helpful and it gets turned off. Otherwise, it stays on.
-						if(!(mind && mind.martial_art && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || mind.martial_art.block_chance || mind.martial_art.id == "sleeping carp")))
-							throw_mode_off()
+						I.transform = initial(I.transform)
+						throw_mode_off()
 						return TRUE
 	..()
 
@@ -115,6 +112,8 @@
 			body_part = part
 	if(!body_part)
 		return
+	if(!embedded.on_embed_removal(src))
+		return
 	body_part.embedded_objects -= embedded
 	if(!silent)
 		emote("scream")
@@ -123,7 +122,6 @@
 		SEND_SIGNAL(usr, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 	if(new_loc)
 		embedded.forceMove(new_loc)
-	embedded.on_embed_removal(src)
 	return TRUE
 
 /**
@@ -242,7 +240,7 @@
 
 	for(var/datum/surgery/S in surgeries)
 		if(!(mobility_flags & MOBILITY_STAND) || !S.lying_required)
-			if((S.self_operable || user != src) && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
+			if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
 				if(S.next_step(user, user.a_intent))
 					return TRUE
 
@@ -370,8 +368,6 @@
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
-			adjustOxyLoss(-50)
-			adjustToxLoss(-50)
 			revive()
 			INVOKE_ASYNC(src, .proc/emote, "gasp")
 			Jitter(100)
@@ -546,7 +542,7 @@
 		return
 
 	to_chat(src, span_warning("You grasp at your [grasped_part.name], trying to stop the bleeding..."))
-	if(!do_after(src, 1.5 SECONDS, src))
+	if(!do_after(src, 1.5 SECONDS, target = src))
 		to_chat(src, span_danger("You can't get a good enough grip to slow the bleeding on [grasped_part.name]."))
 		return
 

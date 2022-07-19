@@ -301,6 +301,15 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		return
 	qdel(src)
 
+//plasa magmite functions like an ore in the way it's mined, but we don't want to be redeeming this. Since Gibtonite is stuck with other ores it's okay to put it here.
+/obj/item/magmite
+	name = "plasma magmite"
+	desc = "A chunk of plasma magmite, crystallized deep under lavaland's surface. Its strength seems to fluctuate depending on the distance to the planet."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "Magmite ore"
+	w_class = WEIGHT_CLASS_NORMAL
+
+
 /*****************************Coin********************************/
 
 // The coin's value is a value of it's materials.
@@ -477,7 +486,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		icon_state = "coin_[cmineral]_[coinflip]"
 		playsound(user.loc, 'sound/items/coinflip.ogg', 50, 1)
 		var/oldloc = loc
-		sleep(1.5 SECONDS)
+		sleep(15)
 		if(loc == oldloc && user && !user.incapacitated())
 			user.visible_message("[user] has flipped [src]. It lands on [coinflip].", \
  							 span_notice("You flip [src]. It lands on [coinflip]."), \

@@ -13,15 +13,19 @@
 	req_admin_notify = 1
 	minimal_player_age = 7
 	exp_type_department = EXP_TYPE_SCIENCE
-	exp_requirements = 720
+	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SCIENCE
 	alt_titles = list("Chief Science Officer", "Head of Research")
 
 	outfit = /datum/outfit/job/rd
 
-	added_access = list(ACCESS_CAPTAIN)
-	base_access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+	access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
+			            ACCESS_TOX_STORAGE, ACCESS_TELEPORTER, ACCESS_SEC_DOORS, ACCESS_MECH_SCIENCE,
+			            ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD,
+			            ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM,
+			            ACCESS_TECH_STORAGE, ACCESS_MINISAT, ACCESS_MAINT_TUNNELS, ACCESS_NETWORK)
+	minimal_access = list(ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
 			            ACCESS_TOX_STORAGE, ACCESS_TELEPORTER, ACCESS_SEC_DOORS, ACCESS_MECH_SCIENCE,
 			            ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD,
 			            ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM,
@@ -30,7 +34,6 @@
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
-	minimal_character_age = 26 //Barely knows more than actual scientists, just responsibility and AI things
 
 	changed_maps = list("OmegaStation")
 
@@ -49,7 +52,7 @@
 	uniform = /obj/item/clothing/under/rank/research_director
 	uniform_skirt = /obj/item/clothing/under/rank/research_director/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
+	alt_shoes = /obj/item/clothing/shoes/xeno_wraps/command // Provides Command shoes to digitigrade species
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	l_hand = /obj/item/clipboard
 	l_pocket = /obj/item/laser_pointer

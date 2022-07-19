@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 			var/turf/T = get_turf(M)
 			if(T.z == z_level)
 				SEND_SOUND(M, sound2)
-	sleep(3 SECONDS)
+	sleep(30)
 	if(canceled)
 		return
 	// Play for everyone else

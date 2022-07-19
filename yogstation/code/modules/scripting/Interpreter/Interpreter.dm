@@ -129,7 +129,7 @@
 
 			if(cur_statements < MAX_STATEMENTS)
 				for(var/node/S in Block.statements)
-					while(paused) sleep(1 SECONDS)
+					while(paused) sleep(10)
 
 					cur_statements++
 					if(cur_statements >= MAX_STATEMENTS)

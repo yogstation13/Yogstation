@@ -13,7 +13,7 @@
 		if(M.occupant)
 			return A
 	// yogs start
-	else if(isspacepod(A))
+	else if(istype(A, /obj/spacepod))
 		var/obj/spacepod/M = A
 		if(M.pilot || M.passengers.len)
 			return A

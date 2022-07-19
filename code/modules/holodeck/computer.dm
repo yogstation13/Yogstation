@@ -108,7 +108,7 @@
 			var/valid = FALSE
 			var/list/checked = program_cache
 			if(obj_flags & EMAGGED)
-				checked = checked + emag_programs
+				checked |= emag_programs
 			for(var/prog in checked)
 				var/list/P = prog
 				if(P["type"] == program_to_load)

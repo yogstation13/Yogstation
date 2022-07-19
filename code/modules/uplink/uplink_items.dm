@@ -566,14 +566,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 10
 
-/datum/uplink_item/dangerous/hardlightbow
-	name = "Hardlight Bow"
-	desc = "A modern bow that can fabricate hardlight arrows, designed for silent takedowns of targets."
-	item = /obj/item/gun/ballistic/bow/energy/syndicate
-	cost = 12
-	surplus = 25
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
-
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
 	category = "Stealthy Weapons"
@@ -693,9 +685,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 40
 
 /datum/uplink_item/ammo/pistol
-	name = "Pair of 10mm Handgun Magazines"
-	desc = "A box that contains two additional 8-round 10mm magazines; compatible with the Stechkin Pistol."
-	item = /obj/item/storage/box/syndie_kit/pistolammo
+	name = "10mm Handgun Magazine"
+	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol."
+	item = /obj/item/ammo_box/magazine/m10mm
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
@@ -704,7 +696,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are less effective at injuring the target but penetrate protective gear."
 	item = /obj/item/ammo_box/magazine/m10mm/ap
-	cost = 1
+	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistolhp
@@ -712,23 +704,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are more damaging but ineffective against armour."
 	item = /obj/item/ammo_box/magazine/m10mm/hp
-	cost = 1
+	cost = 3
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistolsleepy
-	name = "Pair of 10mm Soporific Magazines"
-	desc = "A box that contains 2 additional 8-round 10mm magazines; compatible with the Stechkin Pistol. \
+	name = "10mm Soporific Magazine"
+	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds will deliver small doses of tranqulizers on hit, knocking the target out after a few successive hits."
-	item = /obj/item/storage/box/syndie_kit/pistolsleepyammo
+	item = /obj/item/ammo_box/magazine/m10mm/sp
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistolfire
 	name = "10mm Incendiary Magazine"
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
-			Loaded with incendiary rounds which inflict reduced damage, but ignite the target."
+			Loaded with incendiary rounds which inflict little damage, but ignite the target."
 	item = /obj/item/ammo_box/magazine/m10mm/fire
-	cost = 1
+	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/shotgun
@@ -766,16 +758,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Now 8 times less likely to shoot your pals."
 	cost = 3
 	item = /obj/item/ammo_box/magazine/m12g/slug
-
-/datum/uplink_item/ammo/shotgun/hpbuck
-	name = "12g Hollow-Point Buckshot Drum"
-	desc = "An alternative 8-round hollow-point buckshot magazine for use with the Bulldog shotgun. For when you really need to put people in the dirt."
-	item = /obj/item/ammo_box/magazine/m12g/hpbuck
-
-/datum/uplink_item/ammo/shotgun/flechette
-	name = "12g Flechette Drum"
-	desc = "An alternative 8-round flechette magazine for use with the Bulldog shotgun. Hope they didnt want to use that armor..."
-	item = /obj/item/ammo_box/magazine/m12g/flechette
 
 /datum/uplink_item/ammo/revolver
 	name = ".357 Speed Loader"
@@ -1511,6 +1493,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/infiltration)
 
+/datum/uplink_item/device_tools/brainwash_disk
+	name = "Brainwashing Surgery Program"
+	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
+	Insert into an Operating Console to enable the procedure."
+	item = /obj/item/disk/surgery/brainwashing
+	cost = 5
+	manufacturer = /datum/corporation/traitor/cybersun
+
 /datum/uplink_item/device_tools/hypnotic_flash
 	name = "Hypnotic Flash"
 	desc = "A modified flash able to hypnotize targets. If the target is not in a mentally vulnerable state, it will only confuse and pacify them temporarily."
@@ -1593,8 +1583,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Stimpack"
 	desc = "Stimpacks, the tool of many great heroes, make you nearly immune to stuns and knockdowns for about \
 			5 minutes after injection."
-	item = /obj/item/reagent_containers/autoinjector/medipen/stimpack/large // Yogs -- Stimpack change
-	cost = 8
+	item = /obj/item/reagent_containers/hypospray/medipen/stimpack/large // Yogs -- Stimpack change
+	cost = 5
 	surplus = 90
 
 /datum/uplink_item/device_tools/medkit
@@ -1604,13 +1594,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			and other supplies helpful for a field medic."
 	item = /obj/item/storage/firstaid/tactical
 	cost = 4
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-
-/datum/uplink_item/device_tools/hypospray_kit
-	name = "Syndicate Combat Hypospray Kit"
-	desc = "An advanced kit containing a combat hypospray and a wide variety of vials containing \"perfectly legal chemicals\" to treat combatants."
-	item = /obj/item/storage/firstaid/hypospray/syndicate
-	cost = 5
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/soap
@@ -1710,6 +1693,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/anti_stun
 	cost = 12
 	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/freedom
 	name = "Freedom Implant"
@@ -1782,7 +1766,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An implant injected into the body, and later activated at the user's will. Has no telecrystals and must be charged by the use of physical telecrystals. \
 			Undetectable (except via surgery), and excellent for escaping confinement."
 	item = /obj/item/storage/box/syndie_kit/imp_uplink
-	cost = UPLINK_IMPLANT_TELECRYSTAL_COST
+	cost = 4
 	// An empty uplink is kinda useless.
 	surplus = 0
 	restricted = TRUE
@@ -1964,16 +1948,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	manufacturer = /datum/corporation/traitor/cybersun
 
-/datum/uplink_item/role_restricted/brainwash_disk
-	name = "Brainwashing Surgery Program"
-	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
-	Insert into an Operating Console to enable the procedure."
-	item = /obj/item/disk/surgery/brainwashing
-	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist", "Research Director") //yogs
-	player_minimum = 28
-	cost = 5
-	manufacturer = /datum/corporation/traitor/cybersun
-
 /datum/uplink_item/role_restricted/cat_grenade
 	name = "Feral Cat Delivery Grenade"
 	desc = "The feral cat delivery grenade contains 5 dehydrated feral cats in a similar manner to dehydrated monkeys, which, upon detonation, will be rehydrated by a small reservoir of water contained within the grenade. These cats will then attack anything in sight."
@@ -2001,16 +1975,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
-
-/datum/uplink_item/role_restricted/deadlydonut
-	name = "Box of Singulonuts"
-	desc = "A box with six Waffle Co. brand Singulonuts. Banned in four sectors for their sheer calorie content. \
-			Caution: Product known to the safety board of Nanotrasen to increase risks of stomach cancer and cause instant obesity. \ Disguised as a regular box of regular donuts."
-	item = /obj/item/storage/box/fancy/donut_box/deadly
-	cost = 6
-	manufacturer = /datum/corporation/traitor/waffleco
-	restricted_roles = list("Assistant", "Cook", "Clerk")
-	illegal_tech = FALSE
 
 /datum/uplink_item/role_restricted/clown_bomb
 	name = "Clown Bomb"
@@ -2134,7 +2098,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Magillitis Serum Autoinjector"
 	desc = "A single-use autoinjector which contains an experimental serum that causes rapid muscular growth in Hominidae. \
 			Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
-	item = /obj/item/reagent_containers/autoinjector/magillitis
+	item = /obj/item/reagent_containers/hypospray/magillitis
 	cost = 15
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
@@ -2174,19 +2138,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/hierophant_antenna
 	name = "Hierophant's Antenna"
 	desc = "Amplifies the reception signals of the hierophant staff, allows the herald's power to reach the station!"
-	cost = 7
+	cost = 14
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/hierophant_antenna
 	restricted_roles = list("Shaft Miner")
-
-/datum/uplink_item/role_restricted/mining_charge_hacker
-	name = "Mining Charge Hacker"
-	desc = "Looks and functions like an advanced mining scanner, but allows mining charges to be placed anywhere and destroy more than rocks. \
-	Use it on a mining charge to override its safeties. Reduces explosive power of mining charges due to the modification of their internals."
-	cost = 4
-	manufacturer = /datum/corporation/traitor/cybersun
-	item = /obj/item/t_scanner/adv_mining_scanner/syndicate
-	restricted_roles = list("Shaft Miner","Quartermaster","Mining Medic")
 
 // Pointless
 /datum/uplink_item/badass

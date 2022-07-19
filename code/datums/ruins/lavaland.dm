@@ -14,13 +14,6 @@
 	Comes with a rustic wooden bar and suicidal bartender."
 	suffix = "lavaland_biodome_beach.dmm"
 
-/datum/map_template/ruin/lavaland/biodome/fishing
-	name = "Biodome Fishing Pier"
-	id = "biodome-fishing"
-	description = "A freshwater fishing pier, contained in a biodome? In MY lavaland? \
-	Comes with a rustic wooden pier, kitchen, a gift shop, and two fishermen."
-	suffix = "lavaland_biodome_fishing.dmm"
-
 /datum/map_template/ruin/lavaland/biodome/winter
 	name = "Biodome Winter"
 	id = "biodome-winter"
@@ -237,15 +230,6 @@
 	suffix = "lavaland_surface_puzzle.dmm"
 	cost = 5
 
-/datum/map_template/ruin/lavaland/worldanvil //Plasma magmite upgrading area... always place.
-	name = "World Anvil"
-	id = "worldanvil"
-	description = "An ancient anvil, standing untainted for millennia. Wonders were once forged here."
-	suffix = "lavaland_surface_worldanvil.dmm"
-	always_place = TRUE
-	unpickable = TRUE
-	cost = 0
-
 /datum/map_template/ruin/lavaland/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
 	name = "Mining Base"
 	id = "miningbase"
@@ -273,13 +257,13 @@
 	cost = 10
 	allow_duplicates = FALSE
 
-/*/datum/map_template/ruin/lavaland/mimingdrill
+/datum/map_template/ruin/lavaland/mimingdrill
 	name = "Miming Drill"
 	id = "mimingdrill"
 	description = "A silent mining operation, its workers died as they lived."
 	suffix = "lavaland_surface_mimingdrill.dmm"
 	cost = 5
-	allow_duplicates = FALSE*/
+	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/cugganscove
 	name = "Cuggans Cove"

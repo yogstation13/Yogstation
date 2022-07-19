@@ -83,11 +83,10 @@
 	uniform = /obj/item/clothing/under/pirate
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/pirate
-	head = /obj/item/clothing/head/pirate/bandana
+	head = /obj/item/clothing/head/bandana
 	glasses = /obj/item/clothing/glasses/eyepatch
 
 /datum/outfit/pirate/space
-	uniform = /obj/item/clothing/under/pirate/space
 	suit = /obj/item/clothing/suit/space/pirate
 	head = /obj/item/clothing/head/helmet/space/pirate/bandana
 	mask = /obj/item/clothing/mask/breath
@@ -95,12 +94,8 @@
 	ears = /obj/item/radio/headset/syndicate
 	id = /obj/item/card/id
 
-/datum/outfit/pirate/space/gunner
-	head = /obj/item/clothing/head/helmet/space/pirate
-
 /datum/outfit/pirate/space/captain
-	suit = /obj/item/clothing/suit/space/pirate/captain
-	head = /obj/item/clothing/head/helmet/space/pirate/captain
+	head = /obj/item/clothing/head/helmet/space/pirate
 
 /datum/outfit/pirate/post_equip(mob/living/carbon/human/H)
 	H.faction |= "pirate"

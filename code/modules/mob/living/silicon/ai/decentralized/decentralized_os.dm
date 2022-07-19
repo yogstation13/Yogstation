@@ -11,8 +11,6 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	var/list/cpu_assigned
 	var/list/ram_assigned
 
-	var/temp_limit = AI_TEMP_LIMIT
-
 /datum/ai_os/New()
 	update_hardware()
 	cpu_assigned = list()
@@ -31,8 +29,8 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 
 /datum/ai_os/proc/total_ram_assigned()
 	var/total = 0
-	for(var/mob/living/silicon/ai/AI in ram_assigned)
-		total += (ram_assigned[AI] - AI.dashboard.free_ram)
+	for(var/N in ram_assigned)
+		total += ram_assigned[N]
 	return total
 
 /datum/ai_os/proc/update_hardware()
@@ -67,13 +65,13 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 		var/needed_amount = total_assigned_ram - total_ram
 		for(var/A in ram_assigned_copy)
 			var/mob/living/silicon/ai/AI = A
-			if((ram_assigned_copy[AI] - AI.dashboard.free_ram) >= needed_amount)
+			if(ram_assigned_copy[AI] >= needed_amount)
 				ram_assigned_copy[AI] -= needed_amount
 				total_assigned_ram -= needed_amount
 				affected_AIs |= AI
 				break
 			else if(ram_assigned_copy[AI])
-				var/amount = ram_assigned_copy[AI] - AI.dashboard.free_ram
+				var/amount = ram_assigned_copy[AI]
 				ram_assigned_copy[AI] -= amount
 				affected_AIs |= AI
 				needed_amount -= amount
@@ -126,6 +124,3 @@ GLOBAL_DATUM_INIT(ai_os, /datum/ai_os, new)
 	cpu_assigned[AI] = 0
 
 	update_allocations()
-
-/datum/ai_os/proc/get_temp_limit()
-	return temp_limit

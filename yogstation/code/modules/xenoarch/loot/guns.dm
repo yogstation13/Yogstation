@@ -42,7 +42,7 @@
 
 	if(chargesound != oldsound)
 		playsound(src, chargesound, 100)
-		sleep(0.1 SECONDS)
+		sleep(1)
 		playsound(src, chargesound, 75)
 	return
 
@@ -112,7 +112,7 @@
 	var/image/impact = image('yogstation/icons/obj/xenoarch/guns.dmi',T,"spur_range")
 	impact.layer = ABOVE_MOB_LAYER
 	T.overlays += impact
-	sleep(0.3 SECONDS)
+	sleep(3)
 	T.overlays -= impact
 	qdel(impact)
 	..()

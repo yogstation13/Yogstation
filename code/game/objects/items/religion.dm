@@ -33,7 +33,7 @@
 		user.say("[warcry]", forced="banner")
 	var/old_transform = user.transform
 	user.transform *= 1.2
-	animate(user, transform = old_transform, time = 1 SECONDS)
+	animate(user, transform = old_transform, time = 10)
 	morale_time = world.time + morale_cooldown
 
 	var/list/inspired = list()
@@ -280,7 +280,7 @@
 /obj/item/clothing/head/helmet/plate/crusader/prophet
 	name = "Prophet's Hat"
 	desc = "A religious-looking hat."
-	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	flags_1 = 0
 	armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 50, BOMB = 70, BIO = 50, RAD = 50, FIRE = 60, ACID = 60) //religion protects you from disease and radiation, honk.
 	worn_x_dimension = 64
@@ -309,7 +309,7 @@
 	if(staffcooldown + staffwait > world.time)
 		return
 	user.visible_message("[user] chants deeply and waves [user.p_their()] staff!")
-	if(do_after(user, 2 SECONDS, src))
+	if(do_after(user, 2 SECONDS,1,src))
 		target.add_atom_colour(conversion_color, WASHABLE_COLOUR_PRIORITY) //wololo
 	staffcooldown = world.time
 

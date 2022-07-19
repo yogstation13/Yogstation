@@ -1,8 +1,12 @@
 
+
+/mob/living/carbon/monkey
+
+
 /mob/living/carbon/monkey/Life()
 	set invisibility = 0
 
-	if(notransform)
+	if (notransform)
 		return
 
 	if(..() && !IS_IN_STASIS(src))
@@ -12,8 +16,7 @@
 				if(on_fire || buckled || restrained())
 					if(!resisting && prob(MONKEY_RESIST_PROB))
 						resisting = TRUE
-						if(mobility_flags & MOBILITY_MOVE)
-							walk_to(src,0)
+						walk_to(src,0)
 						resist()
 				else if(resisting)
 					resisting = FALSE
@@ -23,8 +26,7 @@
 					else if(prob(1))
 						emote(pick("scratch","jump","roll","tail"))
 			else
-				if(mobility_flags & MOBILITY_MOVE)
-					walk_to(src,0)
+				walk_to(src,0)
 
 /mob/living/carbon/monkey/handle_mutations_and_radiation()
 	if(radiation)

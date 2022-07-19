@@ -196,7 +196,6 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 	health = 65
 	melee_damage_lower = 20
 	melee_damage_upper = 20
-	attack_vis_effect = ATTACK_EFFECT_SLASH
 	retreat_distance = 2 //AI wraiths will move in and out of combat
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -342,7 +341,6 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 	sight = SEE_MOBS
 	melee_damage_lower = 15
 	melee_damage_upper = 20
-	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "butchers"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/area_conversion,

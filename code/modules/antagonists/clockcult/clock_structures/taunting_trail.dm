@@ -27,7 +27,7 @@
 					qdel(TT)
 	setDir(pick(GLOB.cardinals))
 	transform = matrix()*1.3
-	animate(src, alpha = 100, time = 1.5 SECONDS)
+	animate(src, alpha = 100, time = 15)
 
 /obj/structure/destructible/clockwork/taunting_trail/Destroy()
 	deltimer(timerid)

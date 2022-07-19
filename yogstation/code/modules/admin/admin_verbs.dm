@@ -1,6 +1,6 @@
 /client/proc/rejuv_all()
 	set name = "Revive All"
-	set category = "Admin.Round End"
+	set category = "Misc"
 	set desc = "Rejuvinate every mob/living."
 
 	if(!check_rights(R_ADMIN))
@@ -23,7 +23,7 @@
 	var/fluff_revive = pick("revive","rejuvenate","rekindle","renew","restore","resuscitate","revitalize","repair")
 	var/fluff_everyone = pick("everyone","every single one of you","the populace","the masses","each person","anybody and everybody","every player","all the greytiders","all the wonderful individuals")
 
-	send_to_playing_players("<b>[fluff_the] [fluff_adjective] [fluff_admins] have [fluff_decide] to [fluff_adverb] [fluff_revive] [fluff_everyone]. :)</b>")
+	to_chat(world, "<b>[fluff_the] [fluff_adjective] [fluff_admins] have [fluff_decide] to [fluff_adverb] [fluff_revive] [fluff_everyone]. :)</b>")
 	message_admins("[src] revived [revive_count] mobs.")
 	log_admin("[src] revived [revive_count] mobs.")
 

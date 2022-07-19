@@ -38,17 +38,6 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
-/datum/design/c38_gutterpunch
-	name = "Speed Loader (.38 Gutterpunch)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
-	id = "c38_gutterpunch"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/gutterpunch
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
 /datum/design/rubbershot/sec
 	id = "sec_rshot"
 	build_type = PROTOLATHE
@@ -321,7 +310,7 @@
 
 /datum/design/mag_oldsmg
 	name = "WT-550 Auto Gun Magazine (4.6x30mm)"
-	desc = "A 22 round magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 20 round magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000)
@@ -331,7 +320,7 @@
 
 /datum/design/mag_oldsmg/ap_mag
 	name = "WT-550 Auto Gun Armour Piercing Magazine (4.6x30mm AP)"
-	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_ap"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
@@ -339,7 +328,7 @@
 
 /datum/design/mag_oldsmg/ic_mag
 	name = "WT-550 Auto Gun Incendiary Magazine (4.6x30mm IC)"
-	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 20 round armour piercing magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_ic"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600, /datum/material/glass = 1000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
@@ -347,7 +336,7 @@
 
 /datum/design/mag_oldsmg/rubber_mag
 	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Rubber)"
-	desc = "A 22 round rubber bullet magazine for the out of date security WT-550 Auto Rifle."
+	desc = "A 20 round rubber bullet magazine for the out of date security WT-550 Auto Rifle."
 	id = "mag_oldsmg_rubber"
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtr
@@ -412,13 +401,3 @@
 	build_path = /obj/item/ammo_casing/shotgun/dart/noreact
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/hardlightbow
-	name = "Hardlight Bow"
-	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
-	id = "hardlightbow"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
-	build_path = /obj/item/gun/ballistic/bow/energy
-	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
