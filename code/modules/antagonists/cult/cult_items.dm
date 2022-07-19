@@ -349,7 +349,7 @@
 	item_state = "magus"
 	desc = "A helm worn by the followers of Nar-Sie."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS|HIDEEYES
-	armor = list(MELEE = 30, BULLET = 30, LASER = 30,ENERGY = 20, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 10)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 10)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
 /obj/item/clothing/suit/magusred
@@ -359,7 +359,7 @@
 	item_state = "magusred"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade/dagger)
-	armor = list(MELEE = 50, BULLET = 30, LASER = 50,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 50,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/head/helmet/space/hardsuit/cult
@@ -399,22 +399,28 @@
 	icon_state = "cult_armor"
 	item_state = "cult_armor"
 	w_class = WEIGHT_CLASS_BULKY
-	armor = list(MELEE = 50, BULLET = 40, LASER = 50,ENERGY = 30, BOMB = 50, BIO = 30, RAD = 30, FIRE = 50, ACID = 60)
+	armor = list(MELEE = 15, BULLET = 20, LASER = 40, ENERGY = 20, BOMB = 50, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
-	var/current_charges = 3
+	var/current_charges = 0
+	var/max_charges = 8
+	var/recharge_delay = 150 //How long after we've been shot before we can start recharging. 
+	var/recharge_cooldown = 0 //Time since we've last been shot
+	var/recharge_rate = 1 //How quickly the shield recharges once it starts charging
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie
 
 /obj/item/clothing/head/hooded/cult_hoodie
 	name = "empowered cultist armor"
 	desc = "Empowered garb which creates a powerful shield around the user."
 	icon_state = "cult_hoodalt"
-	armor = list(MELEE = 50, BULLET = 40, LASER = 50,ENERGY = 30, BOMB = 50, BIO = 30, RAD = 30, FIRE = 50, ACID = 50)
+	armor = list(MELEE = 15, BULLET = 20, LASER = 40, ENERGY = 30, BOMB = 50, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/equipped(mob/living/user, slot)
 	..()
+	if(iscultist(user))
+		START_PROCESSING(SSobj, src)
 	if(!iscultist(user))
 		if(!is_servant_of_ratvar(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
@@ -429,20 +435,51 @@
 			user.adjustBruteLoss(25)
 			user.dropItemToGround(src, TRUE)
 
-/obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(current_charges)
-		owner.visible_message(span_danger("\The [attack_text] is deflected in a burst of blood-red sparks!"))
+/obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK && !PROJECTILE_ATTACK)
+	recharge_cooldown = world.time + recharge_delay
+	if(current_charges > 0)
+		if(recharge_rate)
+			START_PROCESSING(SSobj, src)
+		owner.visible_message(span_danger("[attack_text] is deflected in a burst of blood-red sparks!"))
 		current_charges--
 		new /obj/effect/temp_visual/cult/sparks(get_turf(owner))
-		if(!current_charges)
+		if(current_charges < 1)
 			owner.visible_message(span_danger("The runed shield around [owner] suddenly disappears!"))
 			owner.update_inv_wear_suit()
 		return 1
 	return 0
 
+/obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = PROJECTILE_ATTACK && !MELEE_ATTACK)
+	recharge_cooldown = world.time + recharge_delay
+	if(current_charges > 0)
+		if(recharge_rate)
+			START_PROCESSING(SSobj, src)
+		owner.visible_message(span_danger("[attack_text] is stopped by [owner]'s shield!"))
+		current_charges--
+		new /obj/effect/temp_visual/cult/sparks(get_turf(owner))
+		if(current_charges < 1)
+			owner.visible_message(span_danger("The runed shield around [owner] suddenly disappears!"))
+			owner.update_inv_wear_suit()
+		return 1
+	return 0
+
+/obj/item/clothing/suit/space/hardsuit/shielded/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/clothing/suit/hooded/cultrobes/cult_shield/process()
+	if(world.time > recharge_cooldown && current_charges < max_charges)
+		current_charges = clamp((current_charges + recharge_rate), 0, max_charges)
+		playsound(loc, 'sound/magic/charge.ogg', 50, 1)
+		if(current_charges == max_charges)
+			STOP_PROCESSING(SSobj, src)
+		if(ishuman(loc))
+			var/mob/living/carbon/human/C = loc
+			C.update_inv_wear_suit()
+
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/worn_overlays(isinhands)
 	. = list()
-	if(!isinhands && current_charges)
+	if(!isinhands && current_charges > 0)
 		. += mutable_appearance('icons/effects/cult_effects.dmi', "shield-cult", MOB_LAYER + 0.01)
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker
