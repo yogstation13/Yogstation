@@ -177,14 +177,6 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			H.throw_alert("nutrition", /obj/screen/alert/emptycell)
 
-/datum/species/ipc/spec_life(mob/living/carbon/human/H)
-	. = ..()
-	if(H.health <= UNCONSCIOUS && H.stat != DEAD) // So they die eventually instead of being stuck in crit limbo.
-		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
-		if(prob(5))
-			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
-			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
-
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
 		return ..()
@@ -208,7 +200,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
-	if(H.health <= UNCONSCIOUS && H.stat != DEAD) // So they die eventually instead of being stuck in crit limbo.
+	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD) // So they die eventually instead of being stuck in crit limbo.
 		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
