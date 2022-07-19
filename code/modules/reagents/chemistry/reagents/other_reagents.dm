@@ -187,6 +187,9 @@
 	. = ..()
 	if(M.blood_volume)
 		M.blood_volume += 0.1 // water is good for you!
+	if(isfishperson(M))
+		var/datum/species/fishperson/F = M.dna.species
+		F.thirst = clamp(F.thirst + 5,0,NUTRITION_LEVEL_FULL)
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
