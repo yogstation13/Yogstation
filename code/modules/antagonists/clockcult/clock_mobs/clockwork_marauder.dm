@@ -28,7 +28,7 @@
 	empower_string = span_neovgre("The Anima Bulwark's power flows through you! Your weapon will strike harder, your armor is sturdier, and your shield is more durable.")
 	var/max_shield_health = 4
 	var/shield_health = 4 //Amount of projectiles that can be deflected within
-	var/last_time_deflected = 0
+	COOLDOWN_DECLARE(last_time_deflected)
 	var/is_welded = FALSE
 
 /mob/living/simple_animal/hostile/clockwork/marauder/examine_info()
