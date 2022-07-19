@@ -97,6 +97,12 @@
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
+/obj/item/clothing/glasses/hud/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(user.mind.assigned_role == "Detective")
+		to_chat(user, span_notice("Your mind can't comprehend the abhorent though of becoming Detcurity, and you violently explode!"))
+		user.gib()
+
 /obj/item/clothing/glasses/hud/security/chameleon
 	name = "chameleon security HUD"
 	desc = "A stolen security HUD integrated with Syndicate chameleon technology. Provides flash protection."
