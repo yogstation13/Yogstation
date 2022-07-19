@@ -128,7 +128,7 @@
 		is_welded = FALSE
 		return
 	to_chat(user, span_notice("You fix some dents on [src]'s shield."))
-	shield_health += 1
+	shield_health++
 	weld(user)
 
 #undef MARAUDER_SLOWDOWN_PERCENTAGE
