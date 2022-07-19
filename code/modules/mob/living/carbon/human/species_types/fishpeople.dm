@@ -16,7 +16,7 @@
 	heatmod = 2 // Fish do not like hot water
 	siemens_coeff = 2 // Water is an amazing conductor
 	payday_modifier = 0.6 // It's literally a fish
-	mutantbrain = /obj/item/organ/brain/fish
+	mutant_brain = /obj/item/organ/brain/fish
 	var/thirst = NUTRITION_LEVEL_FULL
 	var/thirst_drain = 1
 	wings_icon = "Robotic"
