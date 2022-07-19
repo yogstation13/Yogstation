@@ -421,6 +421,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/clothing/head/wizard/marisa/fake
 	slot = SLOT_HEAD
 
+/datum/donator_gear/skull
+	name = "Skull Helmet (Collectable)"
+	unlock_path = /obj/item/clothing/head/collectable/skull
+	slot = SLOT_HEAD
+
 //End of items
 
 //Generic donator items
