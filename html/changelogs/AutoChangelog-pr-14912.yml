@@ -1,0 +1,5 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "You can choose the color of your Ethereal face mark with eye color"
+  - tweak: "Ethereals have the eye color tag now."
