@@ -1056,7 +1056,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				if(is_servant_of_ratvar(L))
 					L.Knockdown(6 SECONDS)
 				else
-					L.Knockdown(30)
+					L.Knockdown(3 SECONDS)
 				if(D?.thrower)
 					for(var/mob/living/Next in orange(2, T))
 						if(!Next.density || iscultist(Next))
