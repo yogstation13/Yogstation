@@ -470,6 +470,7 @@
 	label_name = stripped_input(user, "What would you like the name of the label to be?", "[src] Customization", label_name, MAX_NAME_LEN) // Should be safe, as the name isnt updated until after the pretty check
 	if(isnotpretty(label_name))
 		trip_pretty_filter(user, label_name)
+		return
 	name = "[initial(name)][label_name ? " ([label_name])" : ""]"
 
 	// Label Desc
