@@ -100,7 +100,7 @@
 	bladeattached = TRUE
 
 /obj/vehicle/ridden/lawnmower/emagged
-	emagged = TRUE
+	obj_flags |= EMAGGED
 
 /obj/vehicle/ridden/lawnmower/upgraded/emagged
 	bladeattached = TRUE
