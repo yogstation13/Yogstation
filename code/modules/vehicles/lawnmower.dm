@@ -85,6 +85,7 @@
 
 /obj/vehicle/ridden/lawnmower/upgraded
 	bladeattached = TRUE
+	mowable = typecacheof(list(/obj/structure/flora, /obj/structure/glowshroom, /obj/structure/spacevine, /obj/structure/alien/weeds))
 
 /obj/vehicle/ridden/lawnmower/emagged
 	obj_flags = EMAGGED
@@ -92,6 +93,7 @@
 /obj/vehicle/ridden/lawnmower/upgraded/emagged
 	bladeattached = TRUE
 	obj_flags = EMAGGED
+	mowable = typecacheof(list(/obj/structure/flora, /obj/structure/glowshroom, /obj/structure/spacevine, /obj/structure/alien/weeds))
 
 /obj/vehicle/ridden/lawnmower/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
