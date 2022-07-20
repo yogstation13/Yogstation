@@ -61,7 +61,7 @@
 		user.visible_message(span_suicide("[user] rolls a [rng] and fails their saving throw!"))
 		return OXYLOSS
 	user.visible_message(span_suicide("[user] rolls a [rng] and succeeds their saving thow."))
-	return SHAME // Lucky bastard
+	return MANUAL_SUICIDE_NONLETHAL // Lucky bastard
 
 /obj/item/dice/d1
 	name = "d1"
