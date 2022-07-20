@@ -165,10 +165,9 @@
 		if(iscultist(target))
 			M.visible_message(span_warning("Nar-Sie's power protects [target] from [src]!"))
 			return BULLET_ACT_BLOCK
-		else
-			if(M.anti_magic_check())
-				M.visible_message(span_warning("[src] vanishes on contact with [target]!"))
-				return BULLET_ACT_BLOCK
+		if(M.anti_magic_check())
+			M.visible_message(span_warning("[src] vanishes on contact with [target]!"))
+			return BULLET_ACT_BLOCK
 	. = ..()
 
 /obj/effect/proc_holder/spell/targeted/smoke/disable
