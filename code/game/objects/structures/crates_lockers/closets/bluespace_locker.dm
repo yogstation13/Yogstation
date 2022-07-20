@@ -151,7 +151,7 @@
 
 /obj/structure/closet/bluespace/external/Destroy()
 	SSbluespace_locker.external_locker = null
-	SSbluespace_locker.bluespaceify_random_locker()
+	SSbluespace_locker.redistribute_locker()
 	return ..()
 
 /obj/structure/closet/bluespace/external/can_open()

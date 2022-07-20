@@ -220,6 +220,7 @@
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
+#define TRAIT_MESONS			"mesons"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -259,6 +260,7 @@
 #define TRAIT_ANOREXIC			"anorexic"
 #define TRAIT_SHIFTY_EYES		"shifty_eyes"
 #define TRAIT_ANXIOUS			"anxious"
+#define TRAIT_SEE_REAGENTS		"see_reagents"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"

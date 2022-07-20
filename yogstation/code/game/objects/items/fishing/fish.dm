@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/snacks/fish
-	name = "development fish"
-	desc = "if you see this, get help"
+	name = "debug fish"
+	desc = "If you see this, get help!"
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "bass"
 
@@ -23,17 +23,17 @@
 	var/mutable_appearance/showoff_overlay
 
 /obj/item/reagent_containers/food/snacks/fish/Initialize(mapload)
-	. = ..()
 	length = rand(min_length,max_length)
 	weight = rand(min_weight,max_weight)
 	list_reagents = list(/datum/reagent/consumable/nutriment = (3 * slices_num), /datum/reagent/consumable/nutriment/vitamin = (2 * slices_num))
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/fish/proc/GetChumValue()
 	return //not used yet
 
 /obj/item/reagent_containers/food/snacks/fish/examine(mob/user)
 	. = ..()
-	. += "It's [length] inches and [weight] ounces!"
+	. += "It's [length] inch[length > 1 ? "es" : ""] and [weight] ounce[weight > 1 ? "s" : ""]!"
 
 /obj/item/reagent_containers/food/snacks/fish/attack_self(mob/M)
 	if(showoff_overlay)
@@ -44,8 +44,8 @@
 	showoff_overlay = mutable_appearance(icon,icon_state)
 	M.add_overlay(showoff_overlay)
 	showoffer = M
-	M.visible_message("[M] shows off [src]. It's [length] inches long and weighs [weight] ounces!", \
-						 span_notice("You show off [src]. It's [length] inches long and weighs [weight] ounces!"))
+	M.visible_message("[M] shows off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!", \
+						 span_notice("You show off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!"))
 	RegisterSignal(M,COMSIG_ATOM_DIR_CHANGE,.proc/stop_overlay,TRUE)
 
 /obj/item/reagent_containers/food/snacks/fish/proc/stop_overlay()
@@ -57,7 +57,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/goldfish
 	name = "galactic goldfish"
-	desc = "it's so... small!"
+	desc = "It's so... small!"
 	icon_state = "fish_goldfish"
 	min_length = 1
 	max_length = 2
@@ -67,7 +67,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/goldfish/giant
 	name = "giant galactic goldfish"
-	desc = "it's so... big!"
+	desc = "It's so... big!"
 	icon_state = "fish_goldfish_big"
 	min_length = 6
 	max_length = 19
@@ -77,7 +77,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/salmon
 	name = "space salmon"
-	desc = "i thought they were supposed to be red"
+	desc = "I thought they were supposed to be red..."
 	icon_state = "fish_salmon"
 	min_length = 28
 	max_length = 32
@@ -87,7 +87,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/bass
 	name = "big bang bass"
-	desc = "how am I supposed to play this thing?"
+	desc = "How am I supposed to play this thing?"
 	icon_state = "fish_bass"
 	min_length = 12
 	max_length = 32
@@ -97,7 +97,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/tuna
 	name = "temporal tuna"
-	desc = "you can tune a piano but you can't tuna fish"
+	desc = "You can tune a piano but you can't tuna fish!"
 	icon_state = "fish_tuna"
 	min_length = 15
 	max_length = 79
@@ -107,7 +107,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/shrimp
 	name = "space shrimp"
-	desc = "he looks a little shrimpy"
+	desc = "He looks a little shrimpy."
 	icon_state = "fish_shrimp"
 	min_length = 1
 	max_length = 6
@@ -117,7 +117,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/squid
 	name = "space squid"
-	desc = "like the game?"
+	desc = "Like the game?"
 	icon_state = "fish_squid"
 	min_length = 18
 	max_length = 24
@@ -127,7 +127,7 @@
 
 /obj/item/reagent_containers/food/snacks/fish/puffer
 	name = "plasma pufferfish"
-	desc = "it doesn't look like it's made of plasma..."
+	desc = "It doesn't look like it's made of plasma..."
 	icon_state = "fish_puffer"
 	min_length = 1
 	max_length = 1.4

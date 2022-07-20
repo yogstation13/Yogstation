@@ -24,8 +24,6 @@
 	var/humanity_lost = 0
 	///Have we been broken the Masquerade?
 	var/broke_masquerade = FALSE
-	///Blood required to enter Frenzy
-	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
@@ -522,14 +520,10 @@
 	objectives += survive_objective
 
 	// Objective 1: Vassalize a Head/Command, or a specific target
+	var/list/possible_objectives = list(/datum/objective/bloodsucker/gourmand, /datum/objective/bloodsucker/heartthief, /datum/objective/bloodsucker/leader)
 	var/list/rolled_objectives = list()
-	switch(rand(1, 3))
-		if(1) // Protege and Drink Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/gourmand)
-		if(2) // Heart Thief and Protege Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief)
-		if(3) // Heart Thief and Drink Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
+	for(var/i = 1; i <= 2; i++)
+		rolled_objectives += pick(possible_objectives)
 	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
 		objective.owner = owner
 		objectives += objective

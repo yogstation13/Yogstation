@@ -74,19 +74,6 @@
 				if(S.next_step(user,user.a_intent))
 					return TRUE
 
-	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
-
-	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
-		user.changeNext_move(CLICK_CD_MELEE)
-		if(I.use_tool(src, user, 0, volume=50, amount=1))
-			if(user == src)
-				user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.name]."),
-					span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.name]."))
-				if(!do_mob(user, src, 50))
-					return TRUE
-			item_heal_robotic(src, user, 15, 0)
-			return TRUE
-
 	if(!all_wounds || !(user.a_intent == INTENT_HELP || user == src))
 		return ..()
 
@@ -498,8 +485,8 @@
 		return 0
 	return ..()
 
-/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE)
-	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
+/mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
+	if((HAS_TRAIT(src, TRAIT_NOHUNGER) || HAS_TRAIT(src, TRAIT_TOXINLOVER)) && !force)
 		return TRUE
 
 	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
@@ -539,12 +526,9 @@
 				add_splatter_floor(T)
 			if(stun)
 				adjustBruteLoss(3)
-		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam, needs_metabolizing = TRUE))
-			if(T)
-				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
 			if(T)
-				T.add_vomit_floor(src, VOMIT_TOXIC)//toxic barf looks different
+				T.add_vomit_floor(src, vomit_type, purge_ratio) //toxic barf looks different || call purge when doing detoxicfication to pump more chems out of the stomach.
 		T = get_step(T, dir)
 		if (is_blocked_turf(T))
 			break

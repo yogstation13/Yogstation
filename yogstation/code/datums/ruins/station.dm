@@ -781,6 +781,12 @@
 	suffix = "5x3_yogsmaintrpg.dmm"
 	name = "Maint yogsmaintrpg"
 
+///Author: Vaelophis
+/datum/map_template/ruin/station/maint/fivexthree/smallfish
+	id = "smallfish"
+	suffix = "5x3_smallfish.dmm"
+	name = "Maint smallfish"
+
 ///Author: Veeblefetzer
 /datum/map_template/ruin/station/maint/fivexthree/podmin
 	id = "podmin"
@@ -1254,3 +1260,9 @@
 	id = "fourshops"
 	suffix = "10x10_fourshops.dmm"
 	name = "Maint fourshops"
+
+///Author: Vaelophis
+/datum/map_template/ruin/station/maint/tenxten/fishinghole
+	id= "fishinghole"
+	suffix = "10x10_fishinghole.dmm"
+	name = "Maint fishinghole"

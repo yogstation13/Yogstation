@@ -1010,7 +1010,7 @@
 // Underwear Definitions //
 ///////////////////////////
 /datum/sprite_accessory/underwear
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/underwear.dmi'
 
 /datum/sprite_accessory/underwear/nude
 	name = "Nude"
@@ -1212,7 +1212,7 @@
 ////////////////////////////
 
 /datum/sprite_accessory/undershirt
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/undershirt.dmi'
 
 /datum/sprite_accessory/undershirt/nude
 	name = "Nude"
@@ -1496,7 +1496,7 @@
 ///////////////////////
 
 /datum/sprite_accessory/socks
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/socks.dmi'
 
 /datum/sprite_accessory/socks/nude
 	name = "Nude"
@@ -2174,7 +2174,7 @@
 //ETHEREAL FACE MARKINGS
 /datum/sprite_accessory/ethereal_mark
 	icon = 'icons/mob/mutant_bodyparts.dmi'
-	//color_src = MUTCOLORS
+	color_src = EYECOLOR
 
 /datum/sprite_accessory/ethereal_mark/eyes
 	name = "Eyes"
