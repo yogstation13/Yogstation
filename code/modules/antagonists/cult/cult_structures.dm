@@ -152,7 +152,7 @@
 		if("Mirror Shield")
 			pickedtype += /obj/item/shield/mirror
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
-		cooldowntime = world.time + 3600
+		cooldowntime = world.time + 6 MINUTES
 		for(var/N in pickedtype)
 			new N(get_turf(src))
 			to_chat(user, span_cultitalic("You work the forge as dark knowledge guides your hands, creating the [choice]!"))
