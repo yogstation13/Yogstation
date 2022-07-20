@@ -107,7 +107,7 @@
 	emagged = TRUE
 
 /obj/vehicle/ridden/lawnmower/emag_act(mob/user)
-	if(emagged)
+	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("The safety mechanisms on [src] are already disabled!"))
 		return
 	to_chat(user, span_warning("You disable the safety mechanisms on [src]."))
