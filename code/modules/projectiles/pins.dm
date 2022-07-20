@@ -225,6 +225,20 @@
 		return FALSE
 	return TRUE
 
+/obj/item/firing_pin/explorer/cyborg
+	name = "cyborg explorer firing pin"
+	desc = "You probably shouldn't be reading this."
+
+/obj/item/firing_pin/explorer/pin_auth(mob/living/user)
+	if(iscyborg(user))
+		var/mob/living/silicon/robot/R = user
+		if(R.emagged)
+			return TRUE
+		else
+			return ..()
+
+
+
 // Laser tag pins
 /obj/item/firing_pin/tag
 	name = "laser tag firing pin"
