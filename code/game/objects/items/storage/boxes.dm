@@ -46,9 +46,8 @@
 		myhead.forceMove(src)//force your enemies to kill themselves with your head collection box!
 		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
 		return BRUTELOSS
-	else
-		user.visible_message(span_suicide("[user] attempts to put [user.p_their()] head into \the [src], but realizes [user.p_their()] has no head!"))
-		return SHAME
+	user.visible_message(span_suicide("[user] attempts to put [user.p_their()] head into \the [src], but realizes [user.p_their()] has no head!"))
+	return SHAME
 
 /obj/item/storage/box/update_icon()
 	. = ..()
