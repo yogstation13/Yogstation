@@ -437,7 +437,7 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK && !PROJECTILE_ATTACK)
 	COOLDOWN_START(src, recharge_cooldown, recharge_delay)
-	if(current_charges > 0)
+	if(current_charges)
 		if(recharge_rate)
 			START_PROCESSING(SSobj, src)
 		owner.visible_message(span_danger("[attack_text] is deflected in a burst of blood-red sparks!"))
