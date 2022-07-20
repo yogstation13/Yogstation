@@ -470,7 +470,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/process()
 	if(COOLDOWN_FINISHED(src, recharge_cooldown) && current_charges < max_charges)
 		current_charges = clamp((current_charges + recharge_rate), 0, max_charges)
-		playsound(loc, 'sound/magic/charge.ogg', 50, 1)
+		playsound(loc, 'sound/magic/charge.ogg', 50, TRUE)
 		if(current_charges == max_charges)
 			STOP_PROCESSING(SSobj, src)
 		if(ishuman(loc))
