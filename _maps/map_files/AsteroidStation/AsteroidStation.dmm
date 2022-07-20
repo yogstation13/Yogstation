@@ -15200,6 +15200,15 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"edf" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "edh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -22188,14 +22197,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"haz" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
-/turf/open/floor/circuit/green,
-/area/ai_monitored/turret_protected/aisat_interior)
 "hbg" = (
 /obj/machinery/shower{
 	dir = 8
@@ -28353,12 +28354,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"jzE" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/aisat_interior)
 "jzG" = (
 /obj/effect/turf_decal/tile/darkblue{
 	dir = 8
@@ -31187,6 +31182,18 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"kQO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat_interior)
 "kRe" = (
 /obj/structure/table/wood,
 /obj/item/folder/blue,
@@ -36422,19 +36429,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"mUv" = (
-/obj/structure/rack,
-/obj/item/clothing/gloves/color/black,
-/obj/item/clothing/gloves/color/black,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/aisat_interior)
 "mUE" = (
 /obj/effect/turf_decal/stripes,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -48313,6 +48307,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
+"rFx" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/green,
+/area/ai_monitored/turret_protected/aisat_interior)
 "rFI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/holopad,
@@ -60349,6 +60349,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"wVB" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/circuit/green,
+/area/ai_monitored/turret_protected/aisat_interior)
 "wVI" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/public/glass{
@@ -60379,6 +60390,28 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"wWk" = (
+/obj/structure/rack,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/gloves/color/black,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/turret_protected/aisat_interior";
+	dir = 4;
+	name = "MiniSat Antechamber APC";
+	pixel_x = 24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "wWl" = (
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = -32
@@ -117530,8 +117563,8 @@ gza
 qNg
 mAX
 xjc
-haz
-fhH
+wVB
+kQO
 oNj
 nJz
 pKl
@@ -117788,7 +117821,7 @@ aSh
 trU
 uOl
 xqx
-uOl
+rFx
 lKQ
 aSh
 iQJ
@@ -118045,7 +118078,7 @@ aSh
 bDV
 tXb
 ijv
-jzE
+edf
 bDV
 aSh
 qun
@@ -118302,7 +118335,7 @@ aSh
 fAR
 iXS
 tPg
-mUv
+wWk
 vfb
 aSh
 feE
