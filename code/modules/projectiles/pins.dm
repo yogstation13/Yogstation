@@ -234,8 +234,7 @@
 		var/mob/living/silicon/robot/R = user
 		if(R.emagged)
 			return TRUE
-		else
-			return ..()
+		return ..()
 
 
 

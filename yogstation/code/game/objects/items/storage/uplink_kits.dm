@@ -30,3 +30,10 @@
 	new /obj/item/autosurgeon/plasmavessel(src)
 	new /obj/item/organ/alien/resinspinner(src)
 	new /obj/item/organ/alien/acid(src)
+
+/obj/item/storage/box/syndie_kit/pka
+	real_name = "proto-kinetic accelerator hacking kit"
+
+/obj/item/storage/box/syndie_kit/pka/PopulateContents()
+	new /obj/item/borg/upgrade/modkit/indoors(src)
+	new /obj/item/firing_pin(src)

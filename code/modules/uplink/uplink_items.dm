@@ -2104,10 +2104,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 
 /datum/uplink_item/role_restricted/pressure_mod
-	name = "Kinetic Accelerator Pressure Mod"
+	name = "Kinetic Accelerator Pressure Kit"
 	desc = "A modification kit which allows Kinetic Accelerators to do greatly increased damage while indoors. \
-			Occupies 35% mod capacity."
-	item = /obj/item/borg/upgrade/modkit/indoors
+			Occupies 35% mod capacity. Comes with an electronic firing pin, enabling use while on-station."
+	item = /obj/item/storage/box/syndie_kit/pka
 	cost = 5 //you need two for full damage, so total of 10 for maximum damage
 	manufacturer = /datum/corporation/traitor/donkco // Unless you're donk co, then it's 8
 	limited_stock = 2 //you can't use more than two!
