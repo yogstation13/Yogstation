@@ -6,7 +6,6 @@
 	are_legs_exposed = TRUE
 	var/obj/item/storage/bag/trash/mybag = null
 	var/bladeattached = FALSE
-	var/emagged = FALSE
 	var/active = FALSE
 	var/obj/item/reagent_containers/glass/mycontainer = null
 	var/static/list/mowable = typecacheof(list(/obj/structure/flora, /obj/structure/glowshroom))
