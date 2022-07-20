@@ -1054,7 +1054,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		else if(!..())
 			if(!L.anti_magic_check())
 				if(is_servant_of_ratvar(L))
-					L.Knockdown(60)
+					L.Knockdown(6 SECONDS)
 				else
 					L.Knockdown(30)
 				if(D?.thrower)
