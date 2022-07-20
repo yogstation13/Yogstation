@@ -404,8 +404,8 @@
 	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
 	var/current_charges = 0
 	var/max_charges = 4
-	var/recharge_delay = 150 //How long after we've been shot before we can start recharging. 
-	var/recharge_cooldown = 0 //Time since we've last been shot
+	COOLDOWN_DECLARE(recharge_cooldown) //Time since we've last been shot
+	var/recharge_delay = 15 SECONDS //How long after we've been shot before we can start recharging. 
 	var/recharge_rate = 1 //How quickly the shield recharges once it starts charging
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie
 
