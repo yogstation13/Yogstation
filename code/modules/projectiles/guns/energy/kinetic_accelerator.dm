@@ -8,6 +8,7 @@
 	item_flags = NONE
 	obj_flags = UNIQUE_RENAME
 	weapon_weight = WEAPON_LIGHT
+	pin = /obj/item/firing_pin/explorer
 	can_flashlight = TRUE
 	flight_x_offset = 15
 	flight_y_offset = 9

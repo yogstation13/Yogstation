@@ -69,6 +69,7 @@
 		new /datum/data/mining_equipment("Point Transfer Card (1000)", 	/obj/item/card/mining_point_card/thousand,							1000, VENDING_MISC),
 		new /datum/data/mining_equipment("Point Transfer Card (5000)", 	/obj/item/card/mining_point_card/fivethousand,						5000, VENDING_MISC),
 		new /datum/data/mining_equipment("Point Transfer Card (10000)",	/obj/item/card/mining_point_card/tenthousand,						10000, VENDING_MISC),
+		new /datum/data/mining_equipment("Box of Explorer Firing Pins",	/obj/item/storage/box/firingpins/explorer,						3000, VENDING_MISC),
 		new /datum/data/mining_equipment("Alien Toy",					/obj/item/clothing/mask/facehugger/toy,								300, VENDING_MISC),
 		new /datum/data/mining_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100, VENDING_MISC),
 		new /datum/data/mining_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100, VENDING_MISC),

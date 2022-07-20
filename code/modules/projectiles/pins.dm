@@ -213,6 +213,18 @@
 	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link. It has a small explosive charge on it."
 	selfdestruct = TRUE
 
+/obj/item/firing_pin/explorer
+	name = "explorer firing pin"
+	desc = "A firing pin traditionally issued to shaft miners, to prevent malicious use of mining tools while on the station."
+	icon_state = "firing_pin"
+	fail_message = "<span class='warning'>LOCATION CHECK FAILED.</span>"
+
+/obj/item/firing_pin/explorer/pin_auth(mob/living/user)
+	var/turf/station_check = get_turf(user)
+	if(!station_check||is_station_level(station_check.z))
+		return FALSE
+	return TRUE
+
 // Laser tag pins
 /obj/item/firing_pin/tag
 	name = "laser tag firing pin"
