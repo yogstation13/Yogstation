@@ -112,11 +112,14 @@
 #define RCD_MACHINE (1<<4)
 #define RCD_COMPUTER (1<<5)
 #define RCD_FURNISHING (1<<6)
+#define RCD_CONVEYOR (1<<7)
+#define RCD_SWITCH (1<<8)
 
 #define RCD_UPGRADE_FRAMES (1<<0)
 #define RCD_UPGRADE_SIMPLE_CIRCUITS	(1<<1)
 #define RCD_UPGRADE_SILO_LINK (1<<2)
 #define RCD_UPGRADE_FURNISHING (1<<3)
+#define RCD_UPGRADE_CONVEYORS (1<<4)
 
 #define RCD_WINDOW_FULLTILE "full tile"
 #define RCD_WINDOW_DIRECTIONAL "directional"
