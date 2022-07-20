@@ -59,3 +59,12 @@
 	mid_length = 10
 	end_sound = 'sound/machines/microwave/microwave-end.ogg'
 	volume = 90
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/datum/looping_sound/mower
+	start_sound = 'sound/machines/generator/generator_start.ogg'
+	start_length = 4
+	mid_sounds = list('sound/vehicles/mowermove1.ogg'=1, 'sound/vehicles/mowermove2.ogg'=1)
+	mid_length = 1
+	end_sound = 'sound/machines/generator/generator_end.ogg'
+	volume = 50

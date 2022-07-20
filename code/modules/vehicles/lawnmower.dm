@@ -7,9 +7,10 @@
 	var/obj/item/storage/bag/trash/mybag = null
 	var/bladeattached = FALSE
 	var/emagged = FALSE
-	var/fuel = 0
+	var/active = FALSE
 	var/obj/item/reagent_containers/glass/mycontainer = null
 	var/static/list/mowable = typecacheof(list(/obj/structure/flora, /obj/structure/glowshroom))
+	var/datum/looping_sound/mower/soundloop
 
 /obj/vehicle/ridden/lawnmower/Initialize(mapload)
 	. = ..()
@@ -34,19 +35,38 @@
 /obj/vehicle/ridden/lawnmower/examine(mob/user)
 	. += ..()
 	if(bladeattached)
-		. += "It has been upgraded with a energy blade."
+		. += "It has been upgraded with an energy blade."
+
+/obj/vehicle/ridden/lawnmower/proc/HasFuel() //Placeholder for fuel check.
+
+
+/obj/vehicle/ridden/lawnmower/proc/UseFuel() //Placeholder for fuel use.
+
+
+/obj/vehicle/ridden/lawnmower/proc/ToggleEngine()
+	if(active)
+		active = FALSE
+		soundloop.stop()
+	else if(HasFuel)
+		if(key_type)
+			active = TRUE
+			START_PROCESSING(SSobj, src)
+			soundloop.start()
+		else
+			return
+
+/obj/vehicle/ridden/lawnmower/process()
+	if(active)
+		if(!HasFuel() || !key_type)
+			TogglePower()
+			return
+		else
+			UseFuel()
+	else
+		return
 
 /obj/vehicle/ridden/lawnmower/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/storage/bag/trash))
-		if(mybag)
-			to_chat(user, span_warning("[src] already has a trashbag hooked!"))
-			return
-		if(!user.transferItemToLoc(I, src))
-			return
-		to_chat(user, span_notice("You hook the trashbag onto [src]."))
-		mybag = I
-		update_icon()
-	else if(istype(I, /obj/item/mowerupgrade))
+	if(istype(I, /obj/item/mowerupgrade))
 		if(bladeattached)
 			to_chat(user, span_warning("[src] already has an energy blade!"))
 			return
@@ -108,8 +128,6 @@
 		if(is_type_in_typecache(S, mowable))
 			qdel(S)
 			mowed = TRUE
-		if(mowed)
-			playsound(loc, pick(list("sound/vehicles/mowermove1.ogg", "sound/vehicles/mowermove2.ogg")), 50, 1)
 
 /obj/vehicle/ridden/lawnmower/proc/add_type_to_cache()
 	mowable = typecacheof(list(/obj/structure/flora, /obj/structure/glowshroom, /obj/structure/spacevine, /obj/structure/alien/weeds))
