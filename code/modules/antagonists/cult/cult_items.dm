@@ -468,7 +468,7 @@
 	return ..()
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/process()
-	if(world.time > recharge_cooldown && current_charges < max_charges)
+	if(COOLDOWN_FINISHED(src, recharge_cooldown) && current_charges < max_charges)
 		current_charges = clamp((current_charges + recharge_rate), 0, max_charges)
 		playsound(loc, 'sound/magic/charge.ogg', 50, 1)
 		if(current_charges == max_charges)
