@@ -218,6 +218,14 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
 	category = list ("Medical Machinery")
 
+/datum/design/board/chem_dispenser/mutagensaltpeter
+	name = "Machine Design (Botanical Chem Dispenser Board)"
+	desc = "The circuit board for a botanical chem dispenser."
+	id = "botany_chem_dispenser"
+	build_path = /obj/item/circuitboard/machine/chem_dispenser/mutagensaltpeter
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SERVICE
+	category = list ("Misc. Machinery")
+
 /datum/design/board/chem_master
 	name = "Machine Design (Chem Master Board)"
 	desc = "The circuit board for a Chem Master 3000."

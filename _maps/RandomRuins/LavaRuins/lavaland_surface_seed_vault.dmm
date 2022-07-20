@@ -187,7 +187,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "E" = (
-/obj/machinery/chem_dispenser/mutagensaltpeter,
+/obj/machinery/chem_dispenser/mutagensaltpeter/fullupgrade,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "F" = (

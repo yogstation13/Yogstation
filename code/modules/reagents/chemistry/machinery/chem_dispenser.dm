@@ -617,30 +617,33 @@
 /obj/machinery/chem_dispenser/mutagensaltpeter
 	name = "botanical chemical dispenser"
 	desc = "Creates and dispenses chemicals useful for botany."
-	flags_1 = NODECONSTRUCT_1
+	circuit = /obj/item/circuitboard/machine/chem_dispenser/mutagensaltpeter
 
 	dispensable_reagents = list(
-		/datum/reagent/toxin/mutagen,
 		/datum/reagent/saltpetre,
+		/datum/reagent/ash,
+		/datum/reagent/ammonia,)
+	t2_upgrade_reagents = list(
 		/datum/reagent/plantnutriment/eznutriment,
 		/datum/reagent/plantnutriment/left4zednutriment,
 		/datum/reagent/plantnutriment/robustharvestnutriment,
-		/datum/reagent/water,
+		/datum/reagent/water,)
+	t3_upgrade_reagents = list(
 		/datum/reagent/toxin/plantbgone,
 		/datum/reagent/toxin/plantbgone/weedkiller,
-		/datum/reagent/toxin/pestkiller,
+		/datum/reagent/toxin/pestkiller,)
+	t4_upgrade_reagents = list(
+		/datum/reagent/toxin/mutagen,
 		/datum/reagent/medicine/cryoxadone,
-		/datum/reagent/ammonia,
-		/datum/reagent/ash,
 		/datum/reagent/diethylamine)
-	t2_upgrade_reagents = null
-	t3_upgrade_reagents = null
-	t4_upgrade_reagents = null
 
-/obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()
+/obj/machinery/chem_dispenser/mutagensaltpeter/fullupgrade
+	name = "botanical chemical dispenser"
+
+/obj/machinery/chem_dispenser/mutagensaltpeter/fullupgrade/Initialize()
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/mutagensaltpeter(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
 	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
