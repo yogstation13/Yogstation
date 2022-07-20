@@ -103,7 +103,7 @@
 			if(affected.status != ORGAN_ROBOTIC)
 				to_chat(user, "<span class='notice'>You can't put [tool] into a meat enclosure!</span>")
 				return -1
-			if(target_zone != "chest")
+			if(target_zone != BODY_ZONE_CHEST)
 				to_chat(user, "<span class='notice'>You have to install [tool] in [target]'s chest!</span>")
 				return -1
 			if(target.getorganslot(ORGAN_SLOT_BRAIN))
