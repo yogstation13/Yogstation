@@ -443,11 +443,11 @@
 		owner.visible_message(span_danger("[attack_text] is deflected in a burst of blood-red sparks!"))
 		current_charges--
 		new /obj/effect/temp_visual/cult/sparks(get_turf(owner))
-		if(current_charges < 1)
+		if(!current_charges)
 			owner.visible_message(span_danger("The runed shield around [owner] suddenly disappears!"))
 			owner.update_inv_wear_suit()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = PROJECTILE_ATTACK && !MELEE_ATTACK)
 	recharge_cooldown = world.time + recharge_delay
