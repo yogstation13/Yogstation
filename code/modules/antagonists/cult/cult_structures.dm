@@ -112,7 +112,7 @@
 		if("Flask of Unholy Water")
 			pickedtype += /obj/item/reagent_containers/glass/beaker/unholywater
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
-		cooldowntime = world.time + 3600
+		cooldowntime = world.time + 6 MINUTES
 		for(var/N in pickedtype)
 			new N(get_turf(src))
 			to_chat(user, span_cultitalic("You kneel before the altar and your faith is rewarded with the [choice]!"))
