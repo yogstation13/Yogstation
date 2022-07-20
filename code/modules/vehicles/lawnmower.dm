@@ -54,7 +54,7 @@
 
 /obj/vehicle/ridden/lawnmower/process()
 	if(active)
-		if(!fuel() || !key_type)
+		if(!fuel || !key_type)
 			ToggleEngine()
 			return
 		else
