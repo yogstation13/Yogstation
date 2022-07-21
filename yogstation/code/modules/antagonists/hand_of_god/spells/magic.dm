@@ -124,6 +124,7 @@
 	if(healing_left > 0)
 		burn_damage_to_heal = min(healing_left, target.getFireLoss())
 	target.heal_overall_damage(brute = brute_damage_to_heal, burn = burn_damage_to_heal, updating_health = TRUE)
+	target.visible_message(span_notice("[target] is healed by a wave of positive energy!"),span_notice("You are healed by a wave of positive energy!"))
 	charges--
 	if(!charges)
 		qdel(src)

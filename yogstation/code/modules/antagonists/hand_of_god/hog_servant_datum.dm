@@ -102,3 +102,4 @@
 
 /datum/antagonist/hog/proc/fuck_magic(severity)
 	get_energy(-HOG_EMP_DAMAGE_MULTIPLER/severity)
+	to_chat(owner.current, span_cultlarge("You feel your cult energy leaving you!"))
