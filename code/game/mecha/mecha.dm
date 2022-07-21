@@ -1238,7 +1238,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 /obj/mecha/attack_god(mob/camera/hog_god/god, modifier)
 	if(occupant)
 		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(occupant)
-		if(cultie && cultie.cult == god.cult)
+		if(cultie?.cult == god.cult)
 			occupant.attack_god(god, modifier)
 			return
 	get_fucked_by_hog_pylons(src, god.cult, god)
