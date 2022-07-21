@@ -9461,10 +9461,6 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"bMY" = (
-/obj/effect/landmark/stationroom/maint/fivexthree,
-/turf/template_noop,
-/area/space/nearstation)
 "bNr" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -10048,14 +10044,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"bYm" = (
-/obj/machinery/light,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/disposal/bin,
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
 "bYq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -38174,34 +38162,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_b)
-"nEi" = (
-/obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/hydro{
-	desc = "An armband meant to wick up sweat while working out";
-	name = "Sweatband";
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/clothing/accessory/armband/hydro{
-	desc = "An armband meant to wick up sweat while working out";
-	name = "Sweatband";
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/item/clothing/accessory/armband/hydro{
-	desc = "An armband meant to wick up sweat while working out";
-	name = "Sweatband";
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/obj/item/clothing/accessory/armband/hydro{
-	desc = "An armband meant to wick up sweat while working out";
-	name = "Sweatband";
-	pixel_x = -7;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/port)
 "nFe" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
@@ -42543,6 +42503,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"psR" = (
+/obj/machinery/light,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "pta" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -47643,6 +47611,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
+"row" = (
+/obj/item/banhammer,
+/obj/item/bedsheet/centcom,
+/turf/open/floor/plating,
+/area/maintenance/central/secondary)
 "roA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -52774,6 +52747,34 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"tEg" = (
+/obj/structure/table/wood,
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "tEj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -63169,11 +63170,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
-"xYh" = (
-/obj/item/banhammer,
-/obj/item/bedsheet/centcom,
-/turf/open/floor/plating,
-/area/maintenance/central/secondary)
 "xYj" = (
 /obj/structure/sign/poster/contraband/random,
 /turf/closed/wall,
@@ -76757,7 +76753,7 @@ aJI
 wPo
 jdx
 jCC
-nEi
+tEg
 aJI
 roB
 fsx
@@ -82390,7 +82386,7 @@ aQy
 aQy
 aQy
 aQy
-bYm
+psR
 eXk
 fFP
 fgc
@@ -84950,7 +84946,7 @@ jXS
 rkL
 qXw
 avV
-xYh
+row
 akp
 rUS
 mnQ
@@ -90911,10 +90907,10 @@ aQo
 aQo
 aPk
 msb
-lrc
+msb
 msb
 uYh
-msb
+lrc
 msb
 msb
 msb
@@ -91168,9 +91164,9 @@ aPk
 aPk
 aPk
 msb
+msb
+msb
 lrc
-lrc
-uYh
 lrc
 vbH
 msb
@@ -91181,11 +91177,11 @@ msb
 msb
 msb
 msb
-pZo
-pZo
 msb
-sux
-sux
+msb
+msb
+msb
+msb
 msb
 msb
 msb
@@ -91425,12 +91421,12 @@ msb
 msb
 msb
 msb
-msb
+awB
+awB
 lrc
+aPk
+aPk
 lrc
-lrc
-lrc
-lrc
 msb
 msb
 msb
@@ -91438,11 +91434,11 @@ msb
 msb
 msb
 msb
-pZo
-qjw
-qjw
-bMY
-sux
+msb
+msb
+msb
+msb
+msb
 msb
 msb
 msb
@@ -91682,12 +91678,12 @@ msb
 msb
 msb
 msb
-msb
-msb
+awB
+aKc
+aKc
+atp
+aPk
 lrc
-lrc
-msb
-lrc
 msb
 msb
 msb
@@ -91695,11 +91691,11 @@ msb
 msb
 msb
 msb
-pZo
-qjw
-qjw
-qjw
-pZo
+msb
+msb
+msb
+msb
+msb
 msb
 msb
 msb
@@ -91939,23 +91935,23 @@ msb
 msb
 msb
 msb
+awB
+aKc
+aKc
+aKc
+awB
+msb
+msb
+msb
+msb
 msb
 lrc
-lrc
 msb
 msb
 msb
 msb
 msb
 msb
-msb
-lrc
-msb
-msb
-msb
-qjw
-qjw
-qjw
 msb
 msb
 msb
@@ -92197,8 +92193,16 @@ msb
 msb
 msb
 msb
+aKc
+aKc
+aKc
+msb
+msb
+msb
+msb
+msb
+msb
 lrc
-lrc
 msb
 msb
 msb
@@ -92206,14 +92210,6 @@ msb
 msb
 msb
 msb
-lrc
-msb
-msb
-pZo
-qjw
-qjw
-qjw
-sux
 msb
 msb
 msb
@@ -92453,7 +92449,14 @@ msb
 msb
 msb
 msb
-lrc
+awB
+aKc
+aKc
+aKc
+aPk
+msb
+msb
+msb
 lrc
 lrc
 lrc
@@ -92461,16 +92464,9 @@ msb
 msb
 msb
 msb
-lrc
-lrc
-lrc
 msb
 msb
-pZo
-qjw
-qjw
-qjw
-sux
+msb
 msb
 msb
 msb
@@ -92710,24 +92706,24 @@ msb
 msb
 msb
 msb
+awB
+aKc
+aKc
+aKc
+aPk
+msb
+msb
+msb
 lrc
 lrc
-lrc
-lrc
 msb
 msb
 msb
 msb
-lrc
-lrc
 msb
 msb
 msb
-sux
-pZo
 msb
-pZo
-pZo
 msb
 msb
 msb
@@ -92967,11 +92963,11 @@ awB
 lrc
 awB
 lrc
-lrc
+aPk
+awB
 msb
-msb
-lrc
-lrc
+awB
+awB
 msb
 msb
 msb
