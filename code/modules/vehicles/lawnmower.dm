@@ -69,7 +69,6 @@
 			panel_open = FALSE
 			to_chat(user, span_notice("You close the service panel of [src]."))
 			return
-		return 1
 	return 0
 
 /obj/vehicle/ridden/lawnmower/attackby(obj/item/I, mob/user, params)
