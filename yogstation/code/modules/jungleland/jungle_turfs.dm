@@ -17,6 +17,7 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
+	outdoors = TRUE
 
 /area/jungleland/ocean
 	name = "Toxic Ocean"

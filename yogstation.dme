@@ -3671,6 +3671,7 @@
 #include "yogstation\code\modules\jobs\job_types\tourist.dm"
 #include "yogstation\code\modules\jungleland\jungle_datums.dm"
 #include "yogstation\code\modules\jungleland\jungle_items.dm"
+#include "yogstation\code\modules\jungleland\jungle_megafauna.dm"
 #include "yogstation\code\modules\jungleland\jungle_mobs.dm"
 #include "yogstation\code\modules\jungleland\jungle_projectiles.dm"
 #include "yogstation\code\modules\jungleland\jungle_structures.dm"

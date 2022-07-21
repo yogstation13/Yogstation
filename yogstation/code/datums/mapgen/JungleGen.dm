@@ -228,9 +228,9 @@
 		GT.change_area(old_area,jungle_area)
 		CHECK_TICK
 
-	for(var/grouping in possible_biomes)
-		for(var/biome as anything in grouping)
-			grouping[biome].reg_in_areas_in_z()
+	for(var/biome in subtypesof(/datum/biome/jungleland))
+		var/datum/biome/jungleland/selected_biome = SSmapping.biomes[biome] 
+		selected_biome.this_area.reg_in_areas_in_z()
 
 	GLOB.jungleland_daynight_cycle.finish_generation()
 

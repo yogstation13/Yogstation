@@ -448,6 +448,7 @@
 		for(var/area/A as anything in SSmapping.areas_in_z["[z]"])
 			if(A.outdoors)
 				affected_areas += A
+				message_admins("[A.name] added to daynight cycle!")
 	INVOKE_ASYNC(src,.proc/daynight_cycle)
 
 /datum/daynight_cycle/proc/daynight_cycle()
