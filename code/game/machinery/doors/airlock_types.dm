@@ -704,7 +704,7 @@
 /obj/machinery/door/airlock/hog/emp_act(severity)
 	if(prob(80/severity))
 		open()
-	take_damage(HOG_EMP_DAMAGE_MULTIPLER*severity, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), severity)   ///HoG structures don't like EMP's.
+	take_damage(HOG_EMP_DAMAGE_MULTIPLER/severity, BURN, MELEE, "sound/items/welder.ogg" , get_dir(src, src), severity)   ///HoG structures don't like EMP's.
 
 /obj/machinery/door/airlock/hog/canAIControl(mob/user)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)    ///Idk maybe i will in far future make AI and silicon convertion

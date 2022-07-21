@@ -46,7 +46,7 @@
 		else if(cultie)
 			bad_cultie = TRUE
 	..()
-	if(cultie && bad_cultie)
+	if(cultie && bad_cultie)   //It drains energy AND damages, if the target is a hostile cultist with energy. Otherwise it just empulses it.
 		var/damage_to_deal = min(cultie.energy, energy_drain)
 		if(damage_to_deal)
 			cultie.get_energy(-damage_to_deal)
@@ -55,7 +55,7 @@
 			L.emote("scream")
 			to_chat(L, span_cult("You feel your magic leave you, as the bolt of heretical energy hits your body!"))
 		else
-			empulse(target, 1, 1)
+			empulse(target, 1, 1)  /
 	else
 		empulse(target, 1, 1)
 	return BULLET_ACT_HIT

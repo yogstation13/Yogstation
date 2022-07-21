@@ -25,11 +25,13 @@
 	update_hog_icons_added(M)
 	pray = new
 	pray.Grant(owner.current)
+	RegisterSignal(owner.current, COMSIG_ATOM_EMP_ACT, .proc/fuck_magic)
 
 /datum/antagonist/hog/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_hog_icons_removed(M)
 	qdel(pray)
+	UnregisterSignal(owner.current, COMSIG_ATOM_EMP_ACT)
 
 /datum/antagonist/hog/get_team()
 	return cult
@@ -97,3 +99,6 @@
 		energy = 0
 	if(energy > max_energy)
 		energy= max_energy
+
+/datum/antagonist/hog/proc/fuck_magic(severity)
+	get_energy(-HOG_EMP_DAMAGE_MULTIPLER/severity)
