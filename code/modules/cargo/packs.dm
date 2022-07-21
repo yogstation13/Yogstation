@@ -1554,6 +1554,24 @@
 	crate_name = "\improper MULEbot Crate"
 	crate_type = /obj/structure/closet/crate/large
 
+/datum/supply_pack/service/lawnmower
+	name = "Lawnmower Crate"
+	desc = "A large crate containing a full size, fully constructed, combustion engine powered Riding Lawnmower. Keyed for janitorial staff. Extra keys sold separately."
+	cost = 15000
+	contains = list(/obj/vehicle/ridden/lawnmower)
+	crate_name = "lawnmower crate"
+	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/service/lawnmower/key
+	name = "Janicart Key Single-Pack"
+	desc = "A key for a janicart or lawnmower. Requires Janitorial Access. Vehicles sold separately."
+	cost = 250
+	access = ACCESS_JANITOR
+	contains = list(/obj/item/key/janitor)
+	small_item = TRUE
+	crate_name = "janicart key crate"
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
 /datum/supply_pack/service/party
 	name = "Party Equipment"
 	desc = "Celebrate both life and death on the station with Nanotrasen's Party Essentials(tm)! Contains seven colored glowsticks, four beers, two ales, and a bottle of patron, goldschlager, and shaker!"
