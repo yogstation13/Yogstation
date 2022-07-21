@@ -355,7 +355,7 @@
 
 /turf/open/floor/hog/crowbar_act(mob/living/user, obj/item/I)
 	user.visible_message(span_notice("[user] begins slowly prying up [src]..."), span_notice("You begin painstakingly prying up [src]..."))
-	if(I.use_tool(src, user, 70, volume=80))
+	if(I.use_tool(src, user, 7 SECONDS, volume=80))
 		user.visible_message(span_notice("[user] pries up [src], but then it vanishes in a spark of magic!"), span_notice("You pry up [src], but then it vanishes in a spark of magic!"))
 		qdel(src)
 	return TRUE
