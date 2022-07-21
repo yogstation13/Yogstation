@@ -336,7 +336,7 @@
 			continue
 		. = TRUE
 		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
-		if(!cultie || cultie.cult != src.cult)
+		if(cultie?.cult != src.cult)
 			continue
 		var/image/I = new('icons/effects/effects.dmi', src, "heal", ABOVE_MOB_LAYER) //fake a healing glow for servants
 		I.appearance_flags = RESET_COLOR
