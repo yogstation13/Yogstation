@@ -7,6 +7,7 @@
 /datum/action/innate/hog_cult/feedback
 	name = "Feedback"
 	desc = "Empowers your hand to shoot a projectile, that will drain energy from heretical cultists and EMP other targets."
+	hand_type = /obj/item/melee/hog_magic/feedback
 
 /obj/item/melee/hog_magic/feedback
 	name = "\improper charged hand" 
@@ -75,6 +76,7 @@
 /datum/action/innate/hog_cult/chain_heal
 	name = "Chain Heal"
 	desc = "Empowers your hand with positive energy, allowing you to launch healing waves into your allies."
+		hand_type = /obj/item/melee/hog_magic/heal
 
 /obj/item/melee/hog_magic/heal
 	name = "\improper charged hand" 

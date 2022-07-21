@@ -19,8 +19,15 @@
 
 /datum/hog_spell_preparation/feedback
 	name = "Feedback"
-	description = "Grants you a spell, that allows you to shoot projectiles into your enemies, that drain energy from hostile cultists and empulse everyone else.."
+	description = "Grants you a spell, that allows you to shoot projectiles into your enemies, that drain energy from hostile cultists and empulse everyone else."
 	cost = 40
 	p_time = 4 SECONDS 
 	poggy = /datum/action/innate/hog_cult/feedback
+
+/datum/hog_spell_preparation/chain_heal
+	name = "Chain Heal"
+	description = "Grants you a spell, that allows you to heal your allies with chains of light."
+	cost = 60
+	p_time = 6 SECONDS 
+	poggy = /datum/action/innate/hog_cult/chain_heal
 
