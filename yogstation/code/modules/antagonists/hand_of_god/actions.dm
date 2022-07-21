@@ -9,9 +9,7 @@
 
 /datum/action/innate/pray/Activate()
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(owner)
-	if(!cultie)
-		return
-	if(!cultie.cult.god || !cultie.cult)
+	if(!cultie?.cult?.god)
 		to_chat(owner, span_warning("You don't have any god to pray to!"))
 		return
 	var/msg = input(owner,"Speak to your god","pray","") as null|text
