@@ -3,10 +3,9 @@
 	button_icon_state = "godspeak"
 	
 /datum/action/innate/pray/IsAvailable()
-	if(..())
-		if(IS_HOG_CULTIST(owner))
-			return 1
-		return 0
+	if(..() && (IS_HOG_CULTIST(owner))
+		return TRUE
+	return FALSE
 
 /datum/action/innate/pray/Activate()
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(owner)
