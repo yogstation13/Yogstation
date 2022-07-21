@@ -96,8 +96,10 @@
 /obj/item/melee/hog_magic/afterattack(atom/target, mob/living/user, proximity)
 	if(proximity)
 		if(ranged_attack(target, user))
-			qdel(src)
+			uses--
 	else if(melee_attack(target, user))
+		uses--
+	if(!uses)
 		qdel(src)
 
 /obj/item/melee/hog_magic/proc/ranged_attack(atom/target, mob/living/user)

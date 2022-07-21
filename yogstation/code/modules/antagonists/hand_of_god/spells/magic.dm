@@ -1,3 +1,9 @@
+//////////////////////////////////////////
+//                                      //
+//              FEEDBACK                //
+//                                      //
+//////////////////////////////////////////
+
 /datum/action/innate/hog_cult/feedback
 	name = "Feedback"
 	desc = "Empowers your hand to shoot a projectile, that will drain energy from heretical cultists and EMP other targets."
@@ -59,3 +65,93 @@
 	else
 		empulse(target, 1, 1)
 	return BULLET_ACT_HIT
+
+//////////////////////////////////////////
+//                                      //
+//              CHAIN HEAL              //
+//                                      //
+//////////////////////////////////////////
+
+/datum/action/innate/hog_cult/chain_heal
+	name = "Chain Heal"
+	desc = "Empowers your hand with positive energy, allowing you to launch healing waves into your allies."
+
+/obj/item/melee/hog_magic/heal
+	name = "\improper charged hand" 
+	desc = "A hand, charged by positive energy. It can heal people."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+
+/obj/item/melee/hog_magic/heal/ranged_attack(atom/target, mob/living/user)
+	if(isliving(target))
+		return FALSE
+	var/mob/living/L = target
+	if(L.stat == DEAD)
+		return FALSE
+	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
+	if(cultie && cultie.cult != antag.cult)  //You can target non-cultists, but you can't target hostile cultists
+		return FALSE
+	var/datum/chain_heal/healing_datum = new(antag.cult, user)
+	INVOKE_ASYNC(healing_datum, /datum/chain_heal.proc/heal, L)
+	return TRUE
+	
+/datum/chain_heal
+	var/list/blacklist = list()
+	var/healing_amount = 20
+	var/datum/team/hog_cult/cult
+	var/mob/living/last_healed
+	var/charges = 2
+	var/range = 4
+
+/datum/chain_heal/New(var/datum/team/hog_cult/cult/team, var/mob/living/user)
+	. = ..()
+	cult = team
+	blacklist += user
+	last_healed = user
+
+/datum/chain_heal/proc/heal(mob/living/target)
+	if(!charges)
+		return
+	INVOKE_ASYNC(last_healed, /atom/.proc/Beam, target, icon_state = "warden_beam", time = 1.75 SECONDS) 
+	sleep(0.5 SECONDS)
+	var/brute_damage_to_heal
+	var/burn_damage_to_heal
+	brute_damage_to_heal = min(healing_amount, target.getBruteLoss())
+	var/healing_left = healing_amount - brute_damage_to_heal
+	if(healing_left > 0)
+		burn_damage_to_heal = min(healing_left, target.getFireLoss())
+	target.heal_overall_damage(brute = brute_damage_to_heal, burn = burn_damage_to_heal, updating_health = TRUE)
+	charges--
+	if(!charges)
+		qdel(src)
+		return
+	healing_amount = healing amount*0.7
+	last_healed = target
+	blacklist += last_healed
+	find-targets()
+
+/datum/chain_heal/proc/find-targets()
+	var/list/valid_targets = list()
+	for(var/mob/living/L in viewers(range, src)) 
+		if(L.stat == DEAD)
+			continue
+		if(L in blacklist)
+			continue
+		if(!L.mind)
+			continue
+		var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
+		if(cultie?.cult != cult)
+			continue
+		if(L.anti_magic_check())
+			continue
+		valid_targets += L
+	if(!valid_targets)
+		qdel(src)
+		return
+	heal(pick(valid_targets))
+
+
+	
