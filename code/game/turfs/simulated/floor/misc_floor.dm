@@ -334,7 +334,7 @@
 	for(var/mob/living/L in src)
 		if(L.stat == DEAD)
 			continue
-		. = 1
+		. = TRUE
 		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(L)
 		if(!cultie || cultie.cult != src.cult)
 			continue
