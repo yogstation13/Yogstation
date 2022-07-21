@@ -128,7 +128,7 @@
 	if(!charges)
 		qdel(src)
 		return
-	healing_amount = healing amount*0.7
+	healing_amount = healing_amount*0.7
 	last_healed = target
 	blacklist += last_healed
 	find-targets()
