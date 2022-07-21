@@ -432,6 +432,14 @@
 	access = ACCESS_ARMORY
 	crate_type = /obj/structure/closet/crate/secure/weapon
 
+/datum/supply_pack/security/armory/mindpins
+	name = "Mindshield Firing Pin Crate"
+	desc = "Contains ten mindshield firing pins, perfect for the security team that slips on the Clown's bananas and loses their guns. Requires Armory access to open."
+	cost = 10000
+	contains = list(/obj/item/storage/box/firingpins/loyalty,
+					/obj/item/storage/box/firingpins/loyalty)
+	crate_name = "mindshield firing pin crate"
+
 /datum/supply_pack/security/armory/bulletarmor
 	name = "Bulletproof Armor Crate"
 	desc = "Contains three sets of bulletproof armor. Guaranteed to reduce a bullet's stopping power by over half. Requires Armory access to open."
