@@ -34,6 +34,9 @@
 	var/dir = get_dir_multiz(src, T)
 	var/opp = REVERSE_DIR(dir)
 
+	if(T == src)
+		return
+
 	//all these must be above zero for auxmos to even consider them
 	if(!thermal_conductivity || !heat_capacity || !T.thermal_conductivity || !T.heat_capacity)
 		conductivity_blocked_directions |= dir
@@ -58,7 +61,7 @@
 	for(var/direction in GLOB.cardinals_multiz)
 		var/turf/T = get_step_multiz(src, direction)
 		if(!istype(T))
-			conductivity_blocked_directions |= dir
+			conductivity_blocked_directions |= direction
 			continue
 
 		var/src_contains_firelock = 1
