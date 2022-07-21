@@ -115,7 +115,7 @@
 /datum/chain_heal/proc/heal(mob/living/target)
 	if(!charges)
 		return
-	INVOKE_ASYNC(last_healed, /atom/.proc/Beam, target, icon_state = "warden_beam", time = 1.75 SECONDS) 
+	//INVOKE_ASYNC(last_healed, /atom/.proc/Beam, target, icon_state = "warden_beam", time = 1.75 SECONDS) 
 	sleep(0.5 SECONDS)
 	var/brute_damage_to_heal
 	var/burn_damage_to_heal
