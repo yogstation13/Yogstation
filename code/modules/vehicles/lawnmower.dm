@@ -189,7 +189,7 @@
 /obj/vehicle/ridden/lawnmower/proc/mow_lawn()
 	var/mowed = FALSE
 	for(var/obj/structure/S in loc)
-		if(is_type_in_typecache(S, mowable))
+		if(!mowed && is_type_in_typecache(S, mowable))
 			qdel(S)
 			mowed = TRUE //still want this here so I can make it make a different sound for actually mowing
 			UseFuel(MOWER_MOW)
