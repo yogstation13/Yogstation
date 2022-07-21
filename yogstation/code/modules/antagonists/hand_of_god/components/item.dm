@@ -4,7 +4,7 @@
 /datum/component/hog_item/Initialize(var/datum/team/hog_cult/team)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-    cult = team
+	cult = team
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/try_punish)
 	RegisterSignal(parent, COMSIG_ITEM_PICKUP, .proc/try_punish)
 	RegisterSignal(parent, COMSIG_HOG_ACT, .proc/try_change_cult)
