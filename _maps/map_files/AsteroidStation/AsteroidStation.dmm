@@ -14476,10 +14476,6 @@
 /obj/structure/closet/boxinggloves,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"dOi" = (
-/obj/effect/landmark/stationroom/maint/fivexfour,
-/turf/template_noop,
-/area/maintenance/port)
 "dOn" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
@@ -17042,6 +17038,11 @@
 	},
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
+"eTf" = (
+/obj/structure/weightmachine/weightlifter,
+/obj/effect/decal/cleanable/glitter/blue,
+/turf/open/floor/carpet/royalblack,
+/area/maintenance/port)
 "eTi" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -27546,6 +27547,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
+"jiq" = (
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "jiC" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/glowstick,
@@ -30320,6 +30324,10 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"ksZ" = (
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "ktf" = (
 /obj/machinery/door/airlock{
 	name = "Gift Shop";
@@ -31821,6 +31829,17 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/unpowered/russianbunker)
+"ldz" = (
+/obj/structure/table/wood,
+/obj/item/clothing/ears/headphones{
+	pixel_y = 4
+	},
+/obj/item/clothing/ears/headphones{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "ldF" = (
 /obj/structure/table,
 /obj/item/instrument/harmonica,
@@ -33342,6 +33361,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"lMv" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy{
+	pixel_x = -8;
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "lMI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -43652,6 +43687,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/chief)
+"pRn" = (
+/obj/structure/weightmachine/stacklifter,
+/mob/living/simple_animal/mouse/brown,
+/obj/effect/decal/cleanable/glitter/blue,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "pRt" = (
 /obj/machinery/atmospherics/components/binary/pump/on,
 /obj/effect/landmark/event_spawn,
@@ -48596,6 +48637,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
+"rKe" = (
+/mob/living/simple_animal/mouse/brown,
+/obj/effect/decal/cleanable/glitter/blue,
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "rKz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -49416,6 +49462,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"sgC" = (
+/obj/structure/table/wood,
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "sgV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
 	dir = 4
@@ -52935,6 +53003,11 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/fore)
+"tIJ" = (
+/obj/structure/weightmachine/stacklifter,
+/obj/effect/decal/cleanable/glitter/blue,
+/turf/open/floor/carpet/royalblack,
+/area/maintenance/port)
 "tIM" = (
 /mob/living/simple_animal/pet/dog/corgi/borgi,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -59696,6 +59769,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"wGI" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/meatclown{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/snacks/meatclown{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "wHG" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -62288,6 +62373,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"xJl" = (
+/obj/structure/weightmachine/weightlifter,
+/mob/living/simple_animal/mouse/brown,
+/obj/effect/decal/cleanable/glitter/blue,
+/turf/open/floor/carpet/royalblack,
+/area/maintenance/port)
 "xJF" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -76649,10 +76740,10 @@ aHv
 aHv
 qEB
 aJI
-aHv
-aHv
-aHv
-dOi
+pRn
+ksZ
+rKe
+sgC
 aJI
 roB
 fsx
@@ -76906,10 +76997,10 @@ aHv
 aHv
 aHv
 aJI
-aHv
-aHv
-aHv
-aHv
+tIJ
+jiq
+jiq
+lMv
 aJI
 jda
 aHR
@@ -77163,10 +77254,10 @@ aHv
 aHv
 aHv
 nsK
-aHv
-aHv
-aHv
-aHv
+jiq
+jiq
+jiq
+rKe
 aJI
 lPd
 fOc
@@ -77420,10 +77511,10 @@ aHv
 aHv
 aHv
 aJI
-aHv
-aHv
-aHv
-aHv
+eTf
+rKe
+jiq
+ldz
 aJI
 thZ
 qtG
@@ -77677,10 +77768,10 @@ aHv
 aHv
 aHv
 aJI
-aHv
-aHv
-aHv
-aHv
+xJl
+jiq
+jiq
+wGI
 aJI
 dJi
 abv
