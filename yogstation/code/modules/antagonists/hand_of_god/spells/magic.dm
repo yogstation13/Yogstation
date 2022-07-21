@@ -131,7 +131,7 @@
 	healing_amount = healing_amount*0.7
 	last_healed = target
 	blacklist += last_healed
-	find-targets()
+	find_targets()
 
 /datum/chain_heal/proc/find_targets()
 	var/list/valid_targets = list()
