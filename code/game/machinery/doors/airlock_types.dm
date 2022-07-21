@@ -732,9 +732,7 @@
 
 /obj/machinery/door/airlock/hog/attackby(obj/item/I, mob/living/user, params)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)    ///Idk maybe i will in far future make AI and silicon convertion
-	if(!cultie)
-		return ..()
-	if(cultie.cult != src.cult)
+	if(cultie?.cult != src.cult)
 		return ..()
 	var/obj/item/hog_item/book/tome = I	
 	if(!tome)
