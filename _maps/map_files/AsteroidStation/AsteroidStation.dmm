@@ -10048,6 +10048,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"bYm" = (
+/obj/machinery/light,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "bYq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -26802,13 +26810,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/courtroom)
-"iXx" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
 "iXK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -28711,28 +28712,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"jFB" = (
-/obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/hydro{
-	desc = "An armband meant to wick up sweat while working out";
-	name = "Sweatband";
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/clothing/accessory/armband/hydro{
-	desc = "An armband meant to wick up sweat while working out";
-	name = "Sweatband";
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/item/clothing/accessory/armband/hydro{
-	desc = "An armband meant to wick up sweat while working out";
-	name = "Sweatband";
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/port)
 "jFD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -38195,6 +38174,34 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_b)
+"nEi" = (
+/obj/structure/table/wood,
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/item/clothing/accessory/armband/hydro{
+	desc = "An armband meant to wick up sweat while working out";
+	name = "Sweatband";
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "nFe" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
@@ -62928,13 +62935,6 @@
 /mob/living/simple_animal/hostile/bear/snow,
 /turf/open/floor/grass/snow/safe,
 /area/ruin/unpowered/russianbunker)
-"xUM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/bridge/meeting_room)
 "xUY" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -63169,6 +63169,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
+"xYh" = (
+/obj/item/banhammer,
+/obj/item/bedsheet/centcom,
+/turf/open/floor/plating,
+/area/maintenance/central/secondary)
 "xYj" = (
 /obj/structure/sign/poster/contraband/random,
 /turf/closed/wall,
@@ -76752,7 +76757,7 @@ aJI
 wPo
 jdx
 jCC
-jFB
+nEi
 aJI
 roB
 fsx
@@ -82128,7 +82133,7 @@ aGM
 aGM
 aGM
 aGM
-iXx
+aGM
 nUc
 nJl
 fgc
@@ -82385,7 +82390,7 @@ aQy
 aQy
 aQy
 aQy
-xUM
+bYm
 eXk
 fFP
 fgc
@@ -84688,7 +84693,7 @@ lAy
 ocv
 lcm
 avV
-apB
+avV
 kRH
 akp
 akp
@@ -84945,7 +84950,7 @@ jXS
 rkL
 qXw
 avV
-jOQ
+xYh
 akp
 rUS
 mnQ
