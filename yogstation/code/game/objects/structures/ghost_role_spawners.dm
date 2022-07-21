@@ -290,7 +290,7 @@
 
 /datum/outfit/ivymen
 	name = "Ivyman"
-	uniform = /obj/item/clothing/under/gladiator
+	uniform = /obj/item/clothing/under/ash_robe/hunter/jungle
 
 /datum/outfit/ivymen/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	H.underwear = "Nude"

@@ -25,27 +25,20 @@
 /obj/item/pickaxe/mini,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
-"m" = (
-/obj/structure/closet/crate/coffin/blackcoffin,
-/obj/item/wisp_lantern,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/ruin/unpowered)
-"n" = (
-/obj/item/candle/infinite{
-	lit = 1
-	},
-/turf/open/floor/plating/ashplanet/rocky,
-/area/ruin/unpowered)
 "o" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/ruin/unpowered)
+"q" = (
+/turf/closed/mineral/ash_rock/jungle,
 /area/ruin/unpowered)
 "v" = (
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
-"x" = (
-/turf/open/floor/plating/ashplanet/rocky,
+"w" = (
+/mob/living/simple_animal/hostile/skeleton,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
 "y" = (
 /obj/structure/table/wood,
@@ -54,16 +47,15 @@
 "z" = (
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
-"B" = (
-/turf/closed/mineral/ash_rock,
-/area/ruin/unpowered)
 "E" = (
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/water/toxic_pit,
 /area/ruin/unpowered)
-"J" = (
-/mob/living/simple_animal/hostile/skeleton,
-/turf/open/floor/plating/ashplanet/rocky,
+"I" = (
+/obj/item/candle/infinite{
+	lit = 1
+	},
+/turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
 "M" = (
 /obj/structure/closet/crate/coffin{
@@ -71,9 +63,17 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
-"T" = (
+"P" = (
 /mob/living/simple_animal/hostile/skeleton/templar,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"V" = (
+/obj/structure/closet/crate/coffin/blackcoffin,
+/obj/item/wisp_lantern,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"Z" = (
+/turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -125,19 +125,19 @@ z
 (3,1,1) = {"
 h
 h
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
 h
 h
 h
@@ -147,8 +147,8 @@ z
 "}
 (4,1,1) = {"
 h
-B
-B
+q
+q
 g
 a
 a
@@ -157,11 +157,11 @@ a
 a
 a
 o
-x
-x
+Z
+Z
 o
-B
-B
+q
+q
 h
 h
 h
@@ -170,7 +170,7 @@ z
 "}
 (5,1,1) = {"
 h
-B
+q
 a
 g
 g
@@ -180,11 +180,11 @@ y
 j
 a
 a
-x
-x
+Z
+Z
 a
 g
-B
+q
 h
 h
 z
@@ -193,7 +193,7 @@ z
 "}
 (6,1,1) = {"
 h
-B
+q
 a
 g
 g
@@ -203,11 +203,11 @@ g
 g
 a
 M
-J
-x
+w
+Z
 o
 g
-B
+q
 h
 h
 h
@@ -216,7 +216,7 @@ z
 "}
 (7,1,1) = {"
 h
-B
+q
 g
 g
 a
@@ -226,20 +226,20 @@ d
 g
 a
 a
-x
-x
+Z
+Z
 a
 g
-B
-B
-B
+q
+q
+q
 h
 h
 z
 "}
 (8,1,1) = {"
 h
-B
+q
 g
 a
 a
@@ -249,20 +249,20 @@ g
 E
 g
 o
-x
-x
+Z
+Z
 o
 g
 g
 g
 g
-B
+q
 h
 z
 "}
 (9,1,1) = {"
 h
-B
+q
 g
 a
 a
@@ -272,89 +272,89 @@ g
 g
 g
 a
-x
-x
+Z
+Z
 a
 a
 a
 g
 g
-B
+q
 h
 z
 "}
 (10,1,1) = {"
 h
-B
+q
 g
 a
 o
-n
-x
-n
+I
+Z
+I
 g
 g
 o
-x
-x
-o
-a
+Z
+Z
 o
 a
+o
+a
 g
-B
+q
 z
 k
 "}
 (11,1,1) = {"
 h
-B
+q
 g
-x
-x
-x
-m
-T
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-B
+Z
+Z
+Z
+V
+P
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+q
 z
 z
 "}
 (12,1,1) = {"
 h
-B
+q
 a
 a
 M
-n
-x
-n
+I
+Z
+I
 o
 a
 o
-x
-x
+Z
+Z
 o
 a
 o
 a
 o
-B
+q
 z
 z
 "}
 (13,1,1) = {"
 h
-B
+q
 a
 a
 v
@@ -364,20 +364,20 @@ a
 a
 a
 a
-x
-x
+Z
+Z
 a
 a
 a
 a
 a
-B
+q
 h
 z
 "}
 (14,1,1) = {"
 h
-B
+q
 a
 a
 a
@@ -387,20 +387,20 @@ a
 a
 a
 o
-x
-x
+Z
+Z
 M
 v
 a
 a
 a
-B
+q
 h
 h
 "}
 (15,1,1) = {"
 h
-B
+q
 a
 a
 a
@@ -410,20 +410,20 @@ o
 a
 a
 a
-J
-x
+w
+Z
 a
 a
-B
-B
-B
+q
+q
+q
 h
 h
 h
 "}
 (16,1,1) = {"
 h
-B
+q
 a
 a
 a
@@ -433,11 +433,11 @@ a
 a
 a
 M
-x
-x
+Z
+Z
 o
 a
-B
+q
 h
 h
 h
@@ -446,7 +446,7 @@ z
 "}
 (17,1,1) = {"
 h
-B
+q
 a
 a
 j
@@ -456,11 +456,11 @@ y
 j
 a
 a
-x
-x
+Z
+Z
 a
 a
-B
+q
 h
 h
 h
@@ -469,8 +469,8 @@ z
 "}
 (18,1,1) = {"
 h
-B
-B
+q
+q
 a
 a
 a
@@ -479,11 +479,11 @@ g
 g
 a
 o
-x
-x
+Z
+Z
 o
-B
-B
+q
+q
 h
 h
 h
@@ -493,19 +493,19 @@ z
 (19,1,1) = {"
 h
 h
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
-B
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
 h
 h
 h
