@@ -522,7 +522,9 @@
 	var/list/possible_objectives = list(/datum/objective/bloodsucker/gourmand, /datum/objective/bloodsucker/heartthief, /datum/objective/bloodsucker/leader)
 	var/list/rolled_objectives = list()
 	for(var/i = 1; i <= 2; i++)
-		rolled_objectives += pick(possible_objectives)
+		var/new_obj = pick(possible_objectives)
+		rolled_objectives += new_obj
+		possible_objectives -= new_obj
 	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
 		objective = new
 		objective.owner = owner
