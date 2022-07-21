@@ -13,10 +13,10 @@
 
 /obj/item/melee/hog_magic/feedback/ranged_attack(atom/target, mob/living/user)
 	var/turf/startloc = get_turf(user)
-	var/obj/item/projectile/feedback/F = null
+	var/obj/item/projectile/magic/feedback/F = null
 	var/target_turf = get_turf(target)
 	var/angle_to_target = Get_Angle(user, target_turf)
-	F = new /obj/item/projectile/feedback(startloc)
+	F = new /obj/item/projectile/magic/feedback(startloc)
 	F.cult = antag.cult
 	F.preparePixelProjectile(startloc, startloc)
 	F.firer = user
