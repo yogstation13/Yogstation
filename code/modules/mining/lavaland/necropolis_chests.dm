@@ -749,7 +749,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name ="enchanted flowers"
 	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. <b>Megafauna need to be exposed 40 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "emberflower"
+	icon_state = "eflower"
 	var/next_summon = 0
 	var/list/summons = list()
 	attack_verb = list("thumped", "brushed", "bumped")
