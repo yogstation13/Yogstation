@@ -1,5 +1,5 @@
 /datum/component/hog_item
-    var/datum/team/hog_cult/cult
+	var/datum/team/hog_cult/cult
 
 /datum/component/hog_item/Initialize(var/datum/team/hog_cult/team)
 	if(!isitem(parent))
@@ -10,7 +10,7 @@
 	RegisterSignal(parent, COMSIG_HOG_ACT, .proc/try_change_cult)
 
 /datum/component/hog_item/proc/try_punish(obj/item/source, mob/user, slot)
-    if(!isliving(user))
+	if(!isliving(user))
 		return
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
 	if(cultie && cultie.cult == cult)
