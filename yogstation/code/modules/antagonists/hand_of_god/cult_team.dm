@@ -111,8 +111,8 @@
 	if(item?.cult != cult)
 		return
 	item.upgrades++
-	item.force = initial(item.force) += (item.upgrades * item.force_add)
-	item.throwforce = initial(item.throwforce) += (item.upgrades * item.throwforce_add)
+	item.force = initial(item.force) + (item.upgrades * item.force_add)
+	item.throwforce = initial(item.throwforce) + (item.upgrades * item.throwforce_add)
 	item.max_integrity = initial(item.max_integrity) + (item.integrity_add * item.upgrades)
 	item.obj_integrity += item.integrity_add * item.upgrades
 	item.armor = list(MELEE = 30 + (item.armor_add * item.upgrades), BULLET = 40 + (item.armor_add * item.upgrades), LASER = 20 + (item.armor_add * item.upgrades), ENERGY = 20 + (item.armor_add * item.upgrades), BOMB = 10 + (item.armor_add * item.upgrades), BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
