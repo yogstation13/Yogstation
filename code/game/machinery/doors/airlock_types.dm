@@ -708,9 +708,7 @@
 
 /obj/machinery/door/airlock/hog/canAIControl(mob/user)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)    ///Idk maybe i will in far future make AI and silicon convertion
-	if(!cultie)
-		return FALSE
-	if(cultie.cult != src.cult)
+	if(cultie?.cult != src.cult)
 		return FALSE
 	if(!isAllPowerCut())
 		return FALSE
