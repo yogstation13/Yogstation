@@ -22,11 +22,6 @@
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38
 
-/obj/item/ammo_casing/c38/trac
-	name = ".38 TRAC bullet casing"
-	desc = "A .38 \"TRAC\" bullet casing."
-	projectile_type = /obj/item/projectile/bullet/c38/trac
-
 /obj/item/ammo_casing/c38/hotshot
 	name = ".38 Hot Shot bullet casing"
 	desc = "A .38 Hot Shot bullet casing."
@@ -44,3 +39,11 @@
 	desc = "A .38 Gutterpunch bullet casing"
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/gutterpunch
+
+// .32 (Caldwell Tracking Revolver)
+
+/obj/item/ammo_casing/tra32
+	name = ".32 TRAC bullet casing"
+	desc = "A .32 TRAC bullet casing."
+	caliber = "32trac"
+	projectile_type = /obj/item/projectile/bullet/tra32
