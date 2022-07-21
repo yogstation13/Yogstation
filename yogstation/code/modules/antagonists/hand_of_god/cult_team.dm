@@ -108,11 +108,9 @@
 
 /datum/hog_research/proc/apply_research_effects(var/obj/O)	
 	var/obj/item/hog_item/upgradeable/item = O
-	if(!item)
+	if(item?.cult != cult)
 		return
-	if(item.cult != cult)
-		return
-	item.upgrades += 1
+	item.upgrades++
 	item.force = initial(item.force) += (item.upgrades * item.force_add)
 	item.throwforce = initial(item.throwforce) += (item.upgrades * item.throwforce_add)
 	item.max_integrity = initial(item.max_integrity) + (item.integrity_add * item.upgrades)
