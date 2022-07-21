@@ -1,4 +1,4 @@
-/datum/action/innate/hog_cult/emp
+/datum/action/innate/hog_cult/feedback
 	name = "Feedback"
 	desc = "Empowers your hand to shoot a projectile, that will drain energy from heretical cultists and EMP other targets."
 
@@ -55,7 +55,7 @@
 			L.emote("scream")
 			to_chat(L, span_cult("You feel your magic leave you, as the bolt of heretical energy hits your body!"))
 		else
-			empulse(target, 1, 1)  /
+			empulse(target, 1, 1)
 	else
 		empulse(target, 1, 1)
 	return BULLET_ACT_HIT

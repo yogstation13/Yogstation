@@ -16,3 +16,11 @@
 
 /datum/hog_spell_preparation/empower/give_spell(mob/user, datum/antagonist/hog/antag_datum)
 	return //We don't give any spells!!!!!!
+
+/datum/hog_spell_preparation/feedback
+	name = "Feedback"
+	description = "Grants you a spell, that allows you to shoot projectiles into your enemies, that drain energy from hostile cultists and empulse everyone else.."
+	cost = 40
+	p_time = 4 SECONDS 
+	poggy = /datum/action/innate/hog_cult/feedback
+
