@@ -361,8 +361,7 @@
 	return TRUE
 
 /turf/open/floor/hog/proc/change_hog_team(datum/team/hog_cult/new_cult)
-	if(cult)
-		cult.objects -= src
+	cult?.objects -= src
 	cult = new_cult
 	new_cult.objects += src
 	icon_state = "[initial_icon_state]_[new_cult.cult_color]"
