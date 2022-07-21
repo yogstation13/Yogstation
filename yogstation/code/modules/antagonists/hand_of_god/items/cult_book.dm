@@ -131,11 +131,7 @@
 	if(cultie.energy < cost)
 		to_chat(user, span_notice("You fail to influence the [target]."))  ///We check again, because energy amount of the dude can change before the process is complete.
 		return
-	if(!target.hog_act(cultie.cult))
-		to_chat(user, span_warning("You fail to influence the [target]."))
-	else
-		to_chat(user, span_notice("You succesfully influence the [target]!"))
-		cultie.get_energy(-cost)
+	target.hog_act(cultie.cult)
 
 /atom/proc/hog_rcding_time()
 	return 2 SECONDS
@@ -147,5 +143,5 @@
 	return 15
 
 /atom/proc/hog_act(var/datum/team/hog_cult/act_cult)
-	return FALSE
+	SEND_SIGNAL(src, COMSIG_HOG_ACT, act)
 
