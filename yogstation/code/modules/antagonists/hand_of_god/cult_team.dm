@@ -40,9 +40,7 @@
 	var/income = permanent_regen
 	income += energy_regen
 	for(var/obj/structure/destructible/hog_structure/shrine/shrine in objects)
-		if(!shrine)
-			continue
-		if(shrine.cult != src)
+		if(shrine?.cult != src)
 			continue
 		income += shrine.energy_generation		
 	change_energy_amount(income)
