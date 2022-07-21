@@ -696,11 +696,10 @@
 /obj/machinery/door/airlock/hog/examine(mob/user)
 	. = ..()
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
-	if(cultie)
-		if(cultie.cult == src.cult)
-			. += "It belongs to your cult."
-		else
-			. += "It belongs to a heretical cult!"
+	if(cultie?.cult == src.cult)
+		. += "It belongs to your cult."
+	else
+		. += "It belongs to a heretical cult!"
 
 /obj/machinery/door/airlock/hog/emp_act(severity)
 	if(prob(80/severity))
