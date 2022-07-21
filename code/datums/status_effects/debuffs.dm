@@ -1112,3 +1112,54 @@
 /datum/status_effect/knuckled/be_replaced()
     owner.underlays -= bruise 
     ..()
+
+/datum/status_effect/taming
+	id = "taming"
+	duration = -1
+	tick_interval = 6
+	alert_type = null
+	var/tame_amount = 1
+	var/tame_buildup = 1
+	var/tame_crit = 10
+	var/needs_to_tame = FALSE
+	var/reminder = 0
+	var/mob/living/tamer
+	var/obj/item/eflowers/flowers
+
+/datum/status_effect/taming/on_creation(mob/living/owner, mob/living/user, obj/item/eflowers)
+	. = ..()
+	if(!.)
+		return
+	tamer = user
+	flowers = eflowers
+
+/datum/status_effect/taming/on_apply()
+	if(owner.stat == DEAD)
+		return FALSE
+	return ..()
+
+/datum/status_effect/taming/tick()
+	if(owner.stat == DEAD)
+		qdel(src)
+
+/datum/status_effect/taming/proc/add_tame(amount)
+	tame_amount += amount
+	if(tame_amount)
+		if(tame_amount >= tame_crit)
+			needs_to_tame = TRUE
+			qdel(src)
+	else
+		qdel(src)
+
+/datum/status_effect/taming/on_remove(var/list/summons)
+	var/mob/living/simple_animal/hostile/M = owner
+	if(needs_to_tame)
+		var/turf/T = get_turf(M)
+		new /obj/effect/temp_visual/love_heart(T)
+		M.drop_loot()
+		M.loot = null
+		flowers.summons |= M
+		M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
+		M.faction = tamer.faction
+		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
+		. = ..()
