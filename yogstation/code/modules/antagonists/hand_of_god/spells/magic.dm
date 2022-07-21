@@ -92,7 +92,7 @@
 	if(L.stat == DEAD)
 		return FALSE
 	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
-	if(cultie && cultie.cult != antag.cult)  //You can target non-cultists, but you can't target hostile cultists
+	if(dude && dude.cult != antag.cult)  //You can target non-cultists, but you can't target hostile cultists
 		return FALSE
 	var/datum/chain_heal/healing_datum = new(antag.cult, user)
 	INVOKE_ASYNC(healing_datum, /datum/chain_heal.proc/heal, L)
@@ -106,7 +106,7 @@
 	var/charges = 2
 	var/range = 4
 
-/datum/chain_heal/New(var/datum/team/hog_cult/cult/team, var/mob/living/user)
+/datum/chain_heal/New(var/datum/team/hog_cult/team, var/mob/living/user)
 	. = ..()
 	cult = team
 	blacklist += user
@@ -143,7 +143,7 @@
 		if(!L.mind)
 			continue
 		var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
-		if(cultie?.cult != cult)
+		if(dude?.cult != cult)
 			continue
 		if(L.anti_magic_check())
 			continue
