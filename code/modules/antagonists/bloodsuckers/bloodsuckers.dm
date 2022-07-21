@@ -591,14 +591,10 @@
 	objectives += survive_objective
 
 	// Objective 1: Vassalize a Head/Command, or a specific target
+	var/list/possible_objectives = list(/datum/objective/bloodsucker/gourmand, /datum/objective/bloodsucker/heartthief, /datum/objective/bloodsucker/leader)
 	var/list/rolled_objectives = list()
-	switch(rand(1, 3))
-		if(1) //Drink Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/gourmand)
-		if(2) //Protege Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege)
-		if(3) //Heart Thief
-			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief)
+	for(var/i = 1; i <= 2; i++)
+		rolled_objectives += pick(possible_objectives)
 	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
 		objective.owner = owner
 		objective.objective_name = "Optional Objective"
