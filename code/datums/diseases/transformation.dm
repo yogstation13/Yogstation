@@ -47,7 +47,7 @@
 			do_disease_transformation(affected_mob)
 
 /datum/disease/transformation/proc/do_disease_transformation(mob/living/affected_mob)
-	if(istype(affected_mob, /mob/living/carbon) && affected_mob.stat != DEAD)
+	if(istype(affected_mob, /mob/living/carbon) && (affected_mob.stat != DEAD && !process_dead)) //doesn't work on the dead- unless the disease processes while dead
 		if(stage5)
 			to_chat(affected_mob, pick(stage5))
 		if(QDELETED(affected_mob))
@@ -72,6 +72,8 @@
 		new_mob.name = affected_mob.real_name
 		new_mob.real_name = new_mob.name
 		qdel(affected_mob)
+		return new_mob
+	return
 
 /datum/disease/transformation/proc/replace_banned_player(var/mob/living/new_mob) // This can run well after the mob has been transferred, so need a handle on the new mob to kill it if needed.
 	set waitfor = FALSE
