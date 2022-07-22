@@ -1123,14 +1123,12 @@
 	var/tame_crit = 35
 	var/needs_to_tame = FALSE
 	var/mob/living/tamer
-	var/obj/item/eflowers/flowers
 
-/datum/status_effect/taming/on_creation(mob/living/owner, mob/living/user, obj/item/eflowers)
+/datum/status_effect/taming/on_creation(mob/living/owner, mob/living/user)
 	. = ..()
 	if(!.)
 		return
 	tamer = user
-	flowers = eflowers
 
 /datum/status_effect/taming/on_apply()
 	if(owner.stat == DEAD)
@@ -1150,14 +1148,13 @@
 	else
 		qdel(src)
 
-/datum/status_effect/taming/on_remove(var/list/summons)
+/datum/status_effect/taming/on_remove()
 	var/mob/living/simple_animal/hostile/M = owner
 	if(needs_to_tame)
 		var/turf/T = get_turf(M)
 		new /obj/effect/temp_visual/love_heart(T)
 		M.drop_loot()
 		M.loot = null
-		flowers.summons |= M
 		M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
 		M.faction = tamer.faction
 		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))

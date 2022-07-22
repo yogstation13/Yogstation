@@ -749,7 +749,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 #define COOLDOWN_SUMMON 1 MINUTES
 /obj/item/eflowers
 	name ="enchanted flowers"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. <b>Megafauna need to be exposed 35 times to become friendly.</b>"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. Megafauna cannot be summoned.<b>Megafauna need to be exposed 35 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "eflower"
 	var/next_summon = 0
@@ -758,11 +758,12 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/eflowers/attack_self(mob/user)
 	var/turf/T = get_turf(user)
+	var/area/A = get_area(user)
 	if(next_summon > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	if(is_station_level(T.z))
-		to_chat(user, span_warning("You feel like calling a bunch of animals to you near the station is a bad idea."))
+	if(is_station_level(T.z) && !A.outdoors)
+		to_chat(user, span_warning("You feel like calling a bunch of animals indoors is a bad idea."))
 		return
 	user.visible_message(span_warning("[user] holds the bouqet out, summoning their allies!"))
 	for(var/mob/m in summons)
@@ -786,7 +787,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		return
 	if(M.sentience_type == SENTIENCE_BOSS)
 		if(!G)
-			M.apply_status_effect(STATUS_EFFECT_TAMING, user, src)
+			M.apply_status_effect(STATUS_EFFECT_TAMING, user)
 		else
 			G.add_tame(G.tame_buildup)
 			if(ISMULTIPLE(G.tame_crit-G.tame_amount, 5))
