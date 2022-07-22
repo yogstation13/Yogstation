@@ -75,6 +75,7 @@
 	name = "glowing goo"
 	desc = "Jeez. I hope that's not for lunch."
 	icon_state = "greenglow"
+	var/lifetime = 240
 	light_power = 1
 	light_range = 2
 	light_color = LIGHT_COLOR_GREEN
@@ -82,9 +83,26 @@
 /obj/effect/decal/cleanable/greenglow/ex_act()
 	return
 
+/obj/effect/decal/cleanable/greenglow/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/effect/decal/cleanable/greenglow/process()
+	if(lifetime)
+		lifetime--
+	if(!lifetime)
+		name = "dried goo"
+		light_power = 0
+		light_range = 0
+		STOP_PROCESSING(SSobj, src)
+		update_light()
+	else
+		return
+
 /obj/effect/decal/cleanable/greenglow/filled/Initialize()
 	. = ..()
 	reagents.add_reagent(pick(/datum/reagent/uranium, /datum/reagent/uranium/radium), 5)
+
 
 /obj/effect/decal/cleanable/cobweb
 	name = "cobweb"
