@@ -86,7 +86,7 @@
 
 /obj/effect/decal/cleanable/greenglow/Initialize()
 	. = ..()
-    AddComponent(/datum/component/radioactive, 15, src, 0, FALSE)
+	AddComponent(/datum/component/radioactive, 15, src, 0, FALSE)
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/greenglow/process()
