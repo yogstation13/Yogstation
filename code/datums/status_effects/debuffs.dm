@@ -1120,9 +1120,8 @@
 	alert_type = null
 	var/tame_amount = 1
 	var/tame_buildup = 1
-	var/tame_crit = 10
+	var/tame_crit = 35
 	var/needs_to_tame = FALSE
-	var/reminder = 0
 	var/mob/living/tamer
 	var/obj/item/eflowers/flowers
 

@@ -747,7 +747,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 #define COOLDOWN_SUMMON 1 MINUTES
 /obj/item/eflowers
 	name ="enchanted flowers"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. <b>Megafauna need to be exposed 40 times to become friendly.</b>"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. <b>Megafauna need to be exposed 35 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "eflower"
 	var/next_summon = 0
