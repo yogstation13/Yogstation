@@ -1,5 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Added Intercoms to GaxStation and its Whale"
-  - rscdel: "Removed duplicate Intercomm inside the Ai Upload"
