@@ -184,6 +184,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		L.choose_result = pick(L.template_names)
 		var/turf/T = get_turf(L)
 		message_admins(span_adminnotice("Spawning limited_spawn landmark at [ADMIN_COORDJMP(T)]"))
+		log_game("Spawning limited_spawn landmark at: [AREACOORD(T)]")
 	
 	for(var/obj/effect/landmark/stationroom/limited_spawn/L in landmarks)
 		L.choose_result = EMPTY_SPAWN
