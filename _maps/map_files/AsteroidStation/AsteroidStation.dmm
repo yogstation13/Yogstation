@@ -5613,15 +5613,6 @@
 "aNJ" = (
 /turf/closed/wall/r_wall,
 /area/tcommsat/server)
-"aNL" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/medical/sleeper)
 "aNM" = (
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -12496,6 +12487,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"cYG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/closed/wall,
+/area/medical/sleeper)
 "cYL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -31225,10 +31222,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/ruin/unpowered/russianbunker)
-"kKS" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/quartermaster/storage)
 "kKU" = (
 /obj/effect/mine/gas/plasma,
 /obj/effect/decal/cleanable/dirt,
@@ -51698,12 +51691,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"sZE" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 9
-	},
-/turf/closed/wall,
-/area/medical/genetics/cloning)
 "tab" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -54856,10 +54843,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"upf" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/quartermaster/warehouse)
 "upm" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -61766,11 +61749,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"xmT" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/quartermaster/warehouse)
 "xnf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -76522,7 +76500,7 @@ qGt
 dBp
 kTY
 dkV
-upf
+aZs
 acb
 acb
 acb
@@ -76779,7 +76757,7 @@ ycq
 ycq
 ycq
 ycq
-upf
+aZs
 acb
 acb
 acb
@@ -77036,7 +77014,7 @@ rZJ
 bXp
 aLc
 gBO
-upf
+aZs
 acb
 acb
 acb
@@ -77293,7 +77271,7 @@ uco
 fti
 rId
 dCg
-upf
+aZs
 acb
 acb
 acb
@@ -77550,7 +77528,7 @@ cBQ
 rtU
 wsV
 aIg
-upf
+aZs
 acb
 acb
 acb
@@ -77807,7 +77785,7 @@ jeY
 fSi
 aIH
 kfZ
-upf
+aZs
 acb
 acb
 acb
@@ -78064,7 +78042,7 @@ cit
 reA
 ruC
 scF
-upf
+aZs
 acb
 acb
 acb
@@ -78316,12 +78294,12 @@ aDE
 aDE
 ugj
 pAu
-kKS
-kKS
+aDE
+aDE
 tOg
-kKS
-kKS
-xmT
+aDE
+aDE
+aZs
 msb
 acb
 acb
@@ -93480,7 +93458,7 @@ nMM
 aCz
 cdP
 cTo
-aNL
+cYG
 aQo
 kpv
 aQo
@@ -98614,7 +98592,7 @@ ohh
 plt
 ivb
 agB
-sZE
+agB
 pAt
 pAt
 pAt
