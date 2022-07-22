@@ -77,7 +77,7 @@
 		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
 	*/
 
-	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
+	if(istype(mymob) && mymob?.client?.prefs?.ambientocclusion)
 		add_filter("backdrop_ambient_occlusion",1,YOGS_AMBIENT_OCCLUSION)
 	if(istype(mymob) && mymob.eye_blurry)
 		add_filter("backdrop_gaussian_blur",1,YOGS_GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3)))
