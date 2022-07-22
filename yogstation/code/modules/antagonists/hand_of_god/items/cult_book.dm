@@ -143,5 +143,5 @@
 	return 15
 
 /atom/proc/hog_act(var/datum/team/hog_cult/act_cult)
-	SEND_SIGNAL(src, COMSIG_HOG_ACT, act)
+	SEND_SIGNAL(src, COMSIG_HOG_ACT, act_cult)
 
