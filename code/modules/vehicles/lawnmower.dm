@@ -165,6 +165,28 @@
 	UseFuel(MOWER_MOVE)
 	mow_lawn() //https://www.youtube.com/watch?v=kMxzkBdzTNU
 
+/obj/vehicle/ridden/lawnmower/proc/mow_living(mob/living/L)
+
+	var/mob/living/carbon/H
+	if(has_buckled_mobs())
+		H = buckled_mobs[1]
+
+	for(L in loc)
+		if(iscarbon(L) || isanimal(L))
+			if(L == H)
+				return
+			if(L.stat == CONSCIOUS)
+				L.say("ARRRRRRRRRRRGH!!!", forced="recycler grinding")
+			add_mob_blood(L)
+		else
+			return
+
+	// Instantly lie down, also go unconscious from the pain, before you die.
+	L.Unconscious(100)
+	L.adjustBruteLoss(400)
+
+/obj/vehicle/ridden/lawnmower/proc/chop_living(mob/living/L)
+
 /obj/vehicle/ridden/lawnmower/upgraded
 	bladeattached = TRUE
 
@@ -193,8 +215,14 @@
 			qdel(S)
 			mowed = TRUE //still want this here so I can make it make a different sound for actually mowing
 			UseFuel(MOWER_MOW)
-
-
+	if(obj_flags && EMAGGED && !bladeattached)
+		for(var/mob/living/D)
+			mow_living()
+			mowed = TRUE
+	if(obj_flags && EMAGGED && bladeattached)
+		for(var/mob/living/D)
+			chop_living()
+			mowed = TRUE
 
 /obj/vehicle/ridden/lawnmower/proc/upgrade()
 	mowable = typecacheof(default_mowables + upgraded_mowables) //oh hey turns out energy blades CAN cut steel- I mean space vines.
