@@ -72,7 +72,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/OpenFire()
 	var/list/combo = forge_combo()
-	SetRecoveryTime( 3.5 SECONDS + ((health/maxHealth) * 0.5 SECONDS)) 
+	SetRecoveryTime( 3 SECONDS + ((health/maxHealth) * 0.5 SECONDS)) 
 	
 	for(var/move as anything in combo)	
 		currently_attacking = TRUE
@@ -91,7 +91,7 @@
 
 		currently_attacking = FALSE
 		Goto(target,move_to_delay,minimum_distance)
-		SLEEP_CHECK_DEATH(5 SECONDS)
+		SLEEP_CHECK_DEATH(1 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/react(move)
 	last_done_attack = move
@@ -126,12 +126,10 @@
 		var/direction = pickweightAllowZero(attack_adjustments[L.real_name][move])
 		message_admins(direction)
 		var/actual_direction 
-		if(prob(50))
-			actual_direction = turn(text2dir(direction),dir2angle(get_dir(src,L)))
-			if(!actual_direction)
-				actual_direction = get_dir(src,L)
-		else 
+		actual_direction = turn(text2dir(direction),dir2angle(get_dir(src,L)))
+		if(!actual_direction || prob(35))
 			actual_direction = get_dir(src,L)
+
 		Move(get_step(src,actual_direction),actual_direction)
 		setDir(adjusted_dir)
 
