@@ -9013,19 +9013,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"eJm" = (
-/obj/machinery/door/airlock/public/glass{
-	id_tag = "permabolt1";
-	name = "Cell 1"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "eJw" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -26277,6 +26264,23 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"nMi" = (
+/obj/machinery/door/airlock/public/glass{
+	id_tag = "permabolt1";
+	name = "Cell 1"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/poddoor/preopen{
+	id = "permacell1";
+	name = "cell blast door"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "nMP" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -28795,6 +28799,23 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+"pjB" = (
+/obj/machinery/door/airlock/public/glass{
+	id_tag = "permabolt2";
+	name = "Cell 2"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/poddoor/preopen{
+	id = "permacell2";
+	name = "cell blast door"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pjW" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 4;
@@ -28826,19 +28847,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"pkL" = (
-/obj/machinery/door/airlock/public/glass{
-	id_tag = "permabolt2";
-	name = "Cell 2"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "pkT" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
@@ -34058,6 +34066,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"shm" = (
+/obj/machinery/button/door{
+	id = "bridge blast";
+	name = "Bridge Blast Door Control";
+	pixel_y = -25;
+	req_access_txt = "19"
+	},
+/obj/structure/chair/comfy/black{
+	dir = 4;
+	name = "Command Station"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "siC" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -34195,27 +34216,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"sop" = (
-/obj/machinery/button/door{
-	id = "tcomms_bridge";
-	name = "Telecommunications server shutters control";
-	pixel_x = -6;
-	pixel_y = -34;
-	req_one_access_txt = "19;61"
-	},
-/obj/machinery/button/door{
-	id = "bridge blast";
-	name = "Bridge Blast Door Control";
-	pixel_x = -6;
-	pixel_y = -25;
-	req_access_txt = "19"
-	},
-/obj/structure/chair/comfy/black{
-	dir = 4;
-	name = "Command Station"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "sou" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -62718,7 +62718,7 @@ esr
 mFH
 nJE
 kiv
-pkL
+pjB
 nJE
 gyI
 txl
@@ -63746,7 +63746,7 @@ esr
 dHX
 gWp
 tKC
-eJm
+nMi
 gWp
 fiH
 seq
@@ -92301,7 +92301,7 @@ vvQ
 nMP
 dxA
 fTY
-sop
+shm
 nMe
 wgx
 yfc
