@@ -12,7 +12,11 @@
 
 /turf/open/chasm/Initialize()
 	. = ..()
-	AddComponent(/datum/component/chasm, SSmapping.get_turf_below(src))
+	var/turf/T = get_chasm_turf()
+	AddComponent(/datum/component/chasm, T)
+
+/turf/open/chasm/proc/get_chasm_turf()
+	return SSmapping.get_turf_below(src)
 
 /turf/open/chasm/proc/set_target(turf/target)
 	var/datum/component/chasm/chasm_component = GetComponent(/datum/component/chasm)
@@ -79,6 +83,7 @@
 /turf/open/chasm/CanAllowThrough(atom/movable/AM, turf/target)
 	. = ..()
 	return TRUE
+
 // Chasms for Lavaland, with planetary atmos and lava glow
 /turf/open/chasm/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -87,6 +92,11 @@
 	light_range = 1.9 //slightly less range than lava
 	light_power = 0.65 //less bright, too
 	light_color = LIGHT_COLOR_LAVA //let's just say you're falling into lava, that makes sense right
+
+/turf/open/chasm/lavaland/get_chasm_turf()
+	var/turf/T = SSmapping.get_turf_below(src)
+	if(SSmapping.level_has_all_traits(T.z, list(ZTRAIT_MINING)) && SSmapping.level_has_all_traits(z, list(ZTRAIT_MINING)))
+		return T // Same planet below us
 
 // Chasms for Ice moon, with planetary atmos and glow
 /turf/open/chasm/icemoon

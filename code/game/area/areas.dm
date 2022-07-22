@@ -192,19 +192,26 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	power_change()		// all machines set to current power level, also updates icon
 
 /area/proc/RunGeneration()
+	var/list/turf/zturf = list()
 	if(map_generator)
 		map_generator = new map_generator()
-		var/list/turfs = list()
 		for(var/turf/T in contents)
-			turfs += T
-		map_generator.generate_terrain(turfs)
+			if(!zturf["[T.z]"])
+				zturf["[T.z]"] = list()
+			zturf["[T.z]"] += T
+		for(var/level in zturf)
+			map_generator.generate_terrain(zturf[level])
 
 /area/proc/test_gen()
+	var/list/turf/zturf = list()
 	if(map_generator)
-		var/list/turfs = list()
+		map_generator = new map_generator()
 		for(var/turf/T in contents)
-			turfs += T
-		map_generator.generate_terrain(turfs)
+			if(!zturf["[T.z]"])
+				zturf["[T.z]"] = list()
+			zturf["[T.z]"] += T
+		for(var/level in zturf)
+			map_generator.generate_terrain(zturf[level])
 
 /**
   * Register this area as belonging to a z level

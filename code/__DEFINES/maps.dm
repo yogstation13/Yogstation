@@ -89,6 +89,7 @@ require only minor tweaks.
     ZTRAIT_ASHSTORM = TRUE, \
     ZTRAIT_LAVA_RUINS = TRUE, \
     ZTRAIT_BOMBCAP_MULTIPLIER = 2.5, \
+	ZTRAIT_DOWN = 1, \
     ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 #define ZTRAITS_ICEMOON list(\
     ZTRAIT_MINING = TRUE, \
