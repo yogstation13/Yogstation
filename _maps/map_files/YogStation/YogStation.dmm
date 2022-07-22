@@ -29708,6 +29708,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"fld" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/camera{
+	c_tag = "Medbay Cryocells";
+	dir = 1;
+	network = list("ss13","medbay")
+	},
+/obj/structure/closet/secure_closet/personal/patient,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "flZ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 0
@@ -35759,6 +35769,19 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"ihi" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "ihF" = (
 /obj/machinery/holopad,
 /turf/open/floor/wood,
@@ -40175,13 +40198,6 @@
 	},
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/ai)
-"koF" = (
-/obj/structure/closet/secure_closet/personal/patient,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "koH" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -42534,6 +42550,13 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"lvh" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "lvn" = (
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/wood,
@@ -54250,19 +54273,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"roq" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/structure/closet/emcloset,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "roG" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "Biohazard";
@@ -54923,15 +54933,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"rFi" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/machinery/camera{
-	c_tag = "Medbay Cryocells";
-	dir = 1;
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "rFs" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/pool{
@@ -59824,6 +59825,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"tWG" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "tWQ" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
@@ -103619,8 +103627,8 @@ fGv
 bvj
 gUR
 xuu
-roq
-koF
+ihi
+tWG
 uCw
 bvj
 liS
@@ -103878,7 +103886,7 @@ kil
 vjt
 bDR
 bDR
-rFi
+fld
 bvj
 btW
 sCs
@@ -105159,7 +105167,7 @@ cfl
 cJP
 gbV
 vLS
-spy
+lvh
 bDR
 vcz
 uxg
