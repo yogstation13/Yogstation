@@ -253,6 +253,7 @@
 	item_state = "defibcompact"
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
+	cryo_preserve = TRUE
 
 /obj/item/defibrillator/compact/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBeltSlot())
