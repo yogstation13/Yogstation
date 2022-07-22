@@ -75,7 +75,6 @@
 	name = "glowing goo"
 	desc = "Jeez. I hope that's not for lunch."
 	icon_state = "greenglow"
-	var/lifetime = 240
 	light_power = 1
 	light_range = 2
 	light_color = LIGHT_COLOR_GREEN
