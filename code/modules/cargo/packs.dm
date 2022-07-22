@@ -259,7 +259,7 @@
 
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
-	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo and special .38 speedloarders. Requires Security access to open."
+	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo, and special .38 speedloaders. Requires Security access to open."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
@@ -269,9 +269,9 @@
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
-					/obj/item/ammo_box/c38/trac,
 					/obj/item/ammo_box/c38/hotshot,
-					/obj/item/ammo_box/c38/iceblox)
+					/obj/item/ammo_box/c38/iceblox,
+					/obj/item/ammo_box/c38/gutterpunch)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/security/armor
@@ -557,12 +557,12 @@
 
 /datum/supply_pack/security/armory/trackingimp
 	name = "Tracking Implants Crate"
-	desc = "Contains four tracking implants and three tracking speedloaders of tracing .38 ammo. Requires Armory access to open."
+	desc = "Contains four tracking implants and three speedloaders for the Caldwell Tracking Revolver. Requires Armory access to open."
 	cost = 2000
 	contains = list(/obj/item/storage/box/trackimp,
-					/obj/item/ammo_box/c38/trac,
-					/obj/item/ammo_box/c38/trac,
-					/obj/item/ammo_box/c38/trac)
+					/obj/item/ammo_box/tra32,
+					/obj/item/ammo_box/tra32,
+					/obj/item/ammo_box/tra32)
 	crate_name = "tracking implant crate"
 
 /datum/supply_pack/security/armory/laserarmor
@@ -711,6 +711,16 @@
 	group = "Engineering"
 	crate_type = /obj/structure/closet/crate/engineering
 
+/datum/supply_pack/engineering/bluespace_tap
+	name = "Bluespace Harvester Parts"
+	cost = 10000
+	special = TRUE
+	contains = list(
+					/obj/item/circuitboard/machine/bluespace_tap,
+					/obj/item/paper/bluespace_tap
+					)
+	crate_name = "bluespace harvester parts crate"
+
 /datum/supply_pack/engineering/shieldgen
 	name = "Anti-breach Shield Projector Crate"
 	desc = "Hull breaches again? Say no more with the Nanotrasen Anti-Breach Shield Projector! Uses forcefield technology to keep the air in, and the space out. Contains two shield projectors."
@@ -748,7 +758,7 @@
 
 /datum/supply_pack/engineering/engiequipment
 	name = "Engineering Gear Crate"
-	desc = "Gear up with three toolbelts, high-visibility vests, welding helmets, hardhats, and two pairs of meson goggles!"
+	desc = "Gear up with three toolbelts, high-visibility vests, welding goggles, hardhats, and two pairs of meson goggles!"
 	cost = 1300
 	contains = list(/obj/item/storage/belt/utility,
 					/obj/item/storage/belt/utility,
@@ -756,9 +766,9 @@
 					/obj/item/clothing/suit/hazardvest,
 					/obj/item/clothing/suit/hazardvest,
 					/obj/item/clothing/suit/hazardvest,
-					/obj/item/clothing/head/welding,
-					/obj/item/clothing/head/welding,
-					/obj/item/clothing/head/welding,
+					/obj/item/clothing/glasses/welding,
+					/obj/item/clothing/glasses/welding,
+					/obj/item/clothing/glasses/welding,
 					/obj/item/clothing/head/hardhat,
 					/obj/item/clothing/head/hardhat,
 					/obj/item/clothing/head/hardhat,
@@ -1194,14 +1204,14 @@
 	name = "Medipen Variety-Pak"
 	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
 	cost = 2000
-	contains = list(/obj/item/reagent_containers/hypospray/medipen/,
-					/obj/item/reagent_containers/hypospray/medipen/,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen/,
+					/obj/item/reagent_containers/autoinjector/medipen/,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss
 )
 	crate_name = "medipen crate"
 
@@ -1249,7 +1259,7 @@
 	name = "Medipen Two-Pak"
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
 	cost = 500
-	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/autoinjector/medipen/ekit)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/chemical
@@ -1771,6 +1781,18 @@
 					/obj/item/melee/flyswatter)
 	crate_name = "beekeeping starter crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
+
+/datum/supply_pack/organic/randomized/donkpockets
+	name = "Donk Pocket Variety Crate"
+	desc = "Featuring a line up of Donk Co.'s most popular pastry!"
+	cost = 2000
+	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy,
+	/obj/item/storage/box/donkpockets/donkpocketteriyaki,
+	/obj/item/storage/box/donkpockets/donkpocketpizza,
+	/obj/item/storage/box/donkpockets/donkpocketberry,
+	/obj/item/storage/box/donkpockets/donkpockethonk,
+	/obj/item/storage/box/donkpockets)
+	crate_name = "donk pocket crate"
 
 /datum/supply_pack/organic/randomized/chef
 	name = "Excellent Meat Crate"

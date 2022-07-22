@@ -501,6 +501,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/pinpointer_tracker
+	name = "Tracking Pinpointer"
+	desc = "Allows tracking of creatures with active tracking implants."
+	id = "pinpointer_tracker"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/gold = 200)
+	build_path = /obj/item/pinpointer/tracker
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/pepperspray
 	name = "Pepper Spray"
 	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. Printed pepper sprays do not contain reagents."
