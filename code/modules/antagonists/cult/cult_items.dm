@@ -403,7 +403,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
 	var/current_charges = 0
-	var/max_charges = 4
+	var/max_charges = 3
 	COOLDOWN_DECLARE(recharge_cooldown) //Time since we've last been shot
 	var/recharge_delay = 15 SECONDS //How long after we've been shot before we can start recharging. 
 	var/recharge_rate = 1 //How quickly the shield recharges once it starts charging
@@ -435,7 +435,7 @@
 			user.adjustBruteLoss(25)
 			user.dropItemToGround(src, TRUE)
 
-/obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK && !PROJECTILE_ATTACK)
+/obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK || PROJECTILE_ATTACK)
 	COOLDOWN_START(src, recharge_cooldown, recharge_delay)
 	if(current_charges)
 		if(recharge_rate)
@@ -448,20 +448,6 @@
 			owner.update_inv_wear_suit()
 		return TRUE
 	return FALSE
-
-/obj/item/clothing/suit/hooded/cultrobes/cult_shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = PROJECTILE_ATTACK && !MELEE_ATTACK)
-	recharge_cooldown = world.time + recharge_delay
-	if(current_charges > 0)
-		if(recharge_rate)
-			START_PROCESSING(SSobj, src)
-		owner.visible_message(span_danger("[attack_text] is stopped by [owner]'s shield!"))
-		current_charges--
-		new /obj/effect/temp_visual/cult/sparks(get_turf(owner))
-		if(current_charges < 1)
-			owner.visible_message(span_danger("The runed shield around [owner] suddenly disappears!"))
-			owner.update_inv_wear_suit()
-		return 1
-	return 0
 
 /obj/item/clothing/suit/space/hardsuit/shielded/Destroy()
 	STOP_PROCESSING(SSobj, src)
