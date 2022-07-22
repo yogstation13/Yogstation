@@ -87,19 +87,13 @@
 /obj/effect/decal/cleanable/greenglow/Initialize()
 	. = ..()
 	AddComponent(/datum/component/radioactive, 15, src, 0, FALSE)
-	START_PROCESSING(SSobj, src)
+	addtimer(CALLBACK(src, .proc/Decay), 24 SECONDS)
 
-/obj/effect/decal/cleanable/greenglow/process()
-	if(lifetime)
-		lifetime--
-	if(!lifetime)
-		name = "dried goo"
-		light_power = 0
-		light_range = 0
-		STOP_PROCESSING(SSobj, src)
-		update_light()
-	else
-		return
+/obj/effect/decal/cleanable/greenglow/proc/Decay()
+	name = "dried goo"
+	light_power = 0
+	light_range = 0
+	update_light()
 
 /obj/effect/decal/cleanable/greenglow/filled/Initialize()
 	. = ..()
