@@ -9409,20 +9409,6 @@
 "axx" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"axy" = (
-/obj/structure/rack,
-/obj/item/pickaxe{
-	pixel_x = 5
-	},
-/obj/item/shovel{
-	pixel_x = -5
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "axz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -9889,10 +9875,6 @@
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"ayE" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/quartermaster/miningoffice)
 "ayF" = (
 /turf/closed/wall/r_wall,
 /area/security/detectives_office)
@@ -28943,14 +28925,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bmh" = (
-/obj/machinery/mineral/ore_redemption,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/quartermaster/office)
 "bmi" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/disposalpipe/segment,
@@ -70429,6 +70403,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/aft)
+"nEl" = (
+/obj/machinery/mineral/ore_redemption,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "nFe" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -70740,6 +70723,14 @@
 /obj/structure/frame/machine,
 /turf/open/floor/engine,
 /area/engine/atmos_distro)
+"nTn" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/arrows,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "nTE" = (
 /obj/structure/table,
 /obj/item/taperecorder{
@@ -101196,8 +101187,8 @@ aAC
 bED
 avV
 aAC
-axy
-ayE
+nTn
+nEl
 azq
 aAm
 aKQ
@@ -103531,7 +103522,7 @@ lDr
 lzS
 aPN
 bkp
-bmh
+bbN
 aXS
 bpT
 bcf
