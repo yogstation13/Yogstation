@@ -263,7 +263,7 @@
 		H.SetImmobilized(10 SECONDS)
 	animate(user, pixel_y = (32*8), time = 10 SECONDS)
 	addtimer(CALLBACK(src, .proc/suicide, user), 10 SECONDS)
-	return MANUAL_SUICIDE_NONLETHAL
+	return MANUAL_SUICIDE
 
 /obj/item/nullrod/proc/suicide(mob/user)
 	if(ishuman(user))
