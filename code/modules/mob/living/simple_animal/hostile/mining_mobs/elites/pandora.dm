@@ -24,6 +24,7 @@
 	icon_aggro = "pandora"
 	icon_dead = "pandora_dead"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "pandora"
 	maxHealth = 800
 	health = 800
 	melee_damage_lower = 15
@@ -133,7 +134,7 @@
 	new /obj/effect/temp_visual/hierophant/telegraph(T, src)
 	new /obj/effect/temp_visual/hierophant/telegraph(source, src)
 	playsound(source,'sound/machines/airlockopen.ogg', 200, 1)
-	addtimer(CALLBACK(src, .proc/pandora_teleport_2, T, source), 2)
+	addtimer(CALLBACK(src, .proc/pandora_teleport_2, T, source), 0.2 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora/proc/pandora_teleport_2(var/turf/T, var/turf/source)
 	new /obj/effect/temp_visual/hierophant/telegraph/teleport(T, src)
@@ -142,14 +143,14 @@
 		new /obj/effect/temp_visual/hierophant/blast/pandora(t, src)
 	for(var/t in RANGE_TURFS(1, source))
 		new /obj/effect/temp_visual/hierophant/blast/pandora(t, src)
-	animate(src, alpha = 0, time = 2, easing = EASE_OUT) //fade out
+	animate(src, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
 	visible_message("[span_hierophant_warning("[src] fades out!")]")
 	density = FALSE
-	addtimer(CALLBACK(src, .proc/pandora_teleport_3, T), 2)
+	addtimer(CALLBACK(src, .proc/pandora_teleport_3, T), 0.2 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora/proc/pandora_teleport_3(var/turf/T)
 	forceMove(T)
-	animate(src, alpha = 255, time = 2, easing = EASE_IN) //fade IN
+	animate(src, alpha = 255, time = 0.2 SECONDS, easing = EASE_IN) //fade IN
 	density = TRUE
 	visible_message("[span_hierophant_warning("[src] fades in!")]")
 
@@ -179,7 +180,7 @@
 	desc = "Found at the bottom of Pandora. After all the evil was released, this was the only thing left inside."
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "hope"
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 20, "bio" = 20, "rad" = 5, "fire" = 0, "acid" = 25) //something something determination something
+	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 20, RAD = 5, FIRE = 0, ACID = 25) //something something determination something
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/accessory/pandora_hope/on_clothing_equip(obj/item/clothing/U, user)

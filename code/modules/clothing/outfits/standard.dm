@@ -83,10 +83,11 @@
 	uniform = /obj/item/clothing/under/pirate
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/pirate
-	head = /obj/item/clothing/head/bandana
+	head = /obj/item/clothing/head/pirate/bandana
 	glasses = /obj/item/clothing/glasses/eyepatch
 
 /datum/outfit/pirate/space
+	uniform = /obj/item/clothing/under/pirate/space
 	suit = /obj/item/clothing/suit/space/pirate
 	head = /obj/item/clothing/head/helmet/space/pirate/bandana
 	mask = /obj/item/clothing/mask/breath
@@ -94,8 +95,12 @@
 	ears = /obj/item/radio/headset/syndicate
 	id = /obj/item/card/id
 
-/datum/outfit/pirate/space/captain
+/datum/outfit/pirate/space/gunner
 	head = /obj/item/clothing/head/helmet/space/pirate
+
+/datum/outfit/pirate/space/captain
+	suit = /obj/item/clothing/suit/space/pirate/captain
+	head = /obj/item/clothing/head/helmet/space/pirate/captain
 
 /datum/outfit/pirate/post_equip(mob/living/carbon/human/H)
 	H.faction |= "pirate"
@@ -132,6 +137,7 @@
 	var/obj/item/card/id/W = H.wear_id
 	W.access = get_all_accesses()
 	W.assignment = "Tunnel Clown!"
+	W.originalassignment = "Clown"
 	W.registered_name = H.real_name
 	W.update_label(H.real_name)
 
@@ -196,6 +202,7 @@
 	var/obj/item/card/id/syndicate/W = H.wear_id
 	W.access = get_all_accesses()
 	W.assignment = "Reaper"
+	W.originalassignment = "Reaper"
 	W.registered_name = H.real_name
 	W.update_label(H.real_name)
 
@@ -224,6 +231,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("Special Ops Officer")
 	W.assignment = "Special Ops Officer"
+	W.originalassignment = "Special Ops Officer"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -305,6 +313,7 @@
 	W.access = get_all_accesses()
 	W.access += get_centcom_access("Admiral")
 	W.assignment = "Admiral"
+	W.originalassignment = "Admiral"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -326,6 +335,7 @@
 
 	var/obj/item/card/id/W = H.wear_id
 	W.assignment = "Assistant"
+	W.originalassignment = "Assistant"
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -379,6 +389,7 @@
 	W.access = get_all_accesses()//They get full station access.
 	W.access += get_centcom_access("Death Commando")//Let's add their alloted CentCom access.
 	W.assignment = "Death Commando"
+	W.originalassignment = "Death Commando"
 	W.registered_name = splittext(H.tag, "_")[2] // 412's ID Card (Death Commando); deathsquad are so edgy they are just numbers
 	W.update_label(W.registered_name, W.assignment)
 

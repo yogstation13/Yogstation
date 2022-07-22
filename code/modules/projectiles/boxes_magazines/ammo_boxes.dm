@@ -1,6 +1,6 @@
 /obj/item/ammo_box/a357
 	name = "speed loader (.357)"
-	desc = "Designed to quickly reload revolvers."
+	desc = "A seven-shot speed loader designed for .357 revolvers."
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/a357
 	max_ammo = 7
@@ -8,27 +8,42 @@
 
 /obj/item/ammo_box/c38
 	name = "speed loader (.38)"
-	desc = "Designed to quickly reload revolvers."
+	desc = "A six-shot speed loader designed for .38 revolvers."
 	icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	materials = list(/datum/material/iron = 20000)
 
-/obj/item/ammo_box/c38/trac
-	name = "speed loader (.38 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
-	ammo_type = /obj/item/ammo_casing/c38/trac
-
 /obj/item/ammo_box/c38/hotshot
 	name = "speed loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an incendiary payload which sets targets ablaze."
+	icon_state = "38hot"
 	ammo_type = /obj/item/ammo_casing/c38/hotshot
 
 /obj/item/ammo_box/c38/iceblox
 	name = "speed loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for a cryogenic payload which significantly reduces the body temperature of targets hit."
+	icon_state = "38ice"
 	ammo_type = /obj/item/ammo_casing/c38/iceblox
+
+/obj/item/ammo_box/c38/gutterpunch
+	name = "speed loader (.38 Gutterpunch)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
+	icon_state = "38gut"
+	ammo_type = /obj/item/ammo_casing/c38/gutterpunch
+
+/obj/item/ammo_box/tra32
+	name = "speed loader (.32 TRAC)"
+	desc = "A seven-shot speed loader designed for the Caldwell Tracking Revolver. \
+			These needle-like rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is fifteen minutes."
+	icon_state = "32trac"
+	ammo_type = /obj/item/ammo_casing/tra32
+	max_ammo = 7
+	multiple_sprites = AMMO_BOX_PER_BULLET
 
 /obj/item/ammo_box/c9mm
 	name = "ammo box (9mm)"

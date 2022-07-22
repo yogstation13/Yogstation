@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	desc = "Gross, slimy, and green intestines retrieved from a Gold Grub. Legends say it is valuable in traditional medicines."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "goldgrubguts"
-	grind_results = list(/datum/reagent/medicine/grubjuice = 5)
+	grind_results = list(/datum/reagent/medicine/grubjuice = 10)
 
 /obj/item/stack/sheet/hairlesshide
 	name = "hairless hide"
@@ -168,7 +168,7 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("leather shoes", /obj/item/clothing/shoes/laceup, 2), \
 	new/datum/stack_recipe("footwraps", /obj/item/clothing/shoes/xeno_wraps, 2), \
 	new/datum/stack_recipe("leather overcoat", /obj/item/clothing/suit/jacket/leather/overcoat, 10), \
-	new/datum/stack_recipe("leather shawl", /obj/item/clothing/neck/yogs/shawl, 5), \
+	new/datum/stack_recipe("leather cloak", /obj/item/clothing/neck/cloak, 5), \
 ))
 
 /obj/item/stack/sheet/leather/Initialize(mapload, new_amount, merge = TRUE)
@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	if(W.is_sharp())
 		playsound(loc, 'sound/weapons/slice.ogg', 50, 1, -1)
 		user.visible_message("[user] starts cutting hair off \the [src].", span_notice("You start cutting the hair off \the [src]..."), span_italics("You hear the sound of a knife rubbing against flesh."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			to_chat(user, span_notice("You cut the hair from this [src.singular_name]."))
 			new /obj/item/stack/sheet/hairlesshide(user.drop_location(), 1)
 			use(1)

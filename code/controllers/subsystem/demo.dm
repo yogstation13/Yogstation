@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(demo)
 	init_order = INIT_ORDER_DEMO
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
+	loading_points = 12.6 SECONDS // Yogs -- loading times
+
 	var/list/pre_init_lines = list() // stuff like chat before the init
 	var/list/icon_cache = list()
 	var/list/icon_state_caches = list()
@@ -64,7 +66,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/Initialize()
 	WRITE_LOG_NO_FORMAT(GLOB.demo_log, "demo version 1\n") // increment this if you change the format
 	if(GLOB.revdata)
-		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "commit [GLOB.revdata.originmastercommit || GLOB.revdata.commit]\n")
+		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "commit [GLOB.revdata.commit || GLOB.revdata.originmastercommit]\n")
 
 	// write a "snapshot" of the world at this point.
 	// start with turfs

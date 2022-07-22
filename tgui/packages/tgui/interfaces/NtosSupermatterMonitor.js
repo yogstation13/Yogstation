@@ -27,8 +27,10 @@ export const NtosSupermatterMonitorContent = (props, context) => {
     active,
     SM_integrity,
     SM_power,
+    SM_radiation,
     SM_ambienttemp,
     SM_ambientpressure,
+    SM_moles,
   } = data;
   if (!active) {
     return (
@@ -67,6 +69,23 @@ export const NtosSupermatterMonitorContent = (props, context) => {
                 {toFixed(SM_power) + ' MeV/cm3'}
               </ProgressBar>
             </LabeledList.Item>
+            <LabeledList.Item label="Radiation">
+              <ProgressBar
+                value={SM_radiation}
+                minValue={0}
+                maxValue={7000}
+                ranges={{
+                  // The threshold where enough radiation gets to the
+                  // collectors to start generating power. Experimentally
+                  // determined, because radiation waves are inscrutable.
+                  grey: [-Infinity, 320],
+                  good: [320, 5000],
+                  average: [5000, 7000],
+                  bad: [7000, Infinity],
+                }}>
+                {toFixed(SM_radiation) + ' Sv/h'}
+              </ProgressBar>
+            </LabeledList.Item>
             <LabeledList.Item label="Temperature">
               <ProgressBar
                 value={logScale(SM_ambienttemp)}
@@ -92,6 +111,22 @@ export const NtosSupermatterMonitorContent = (props, context) => {
                   bad: [logScale(1000), +Infinity],
                 }}>
                 {toFixed(SM_ambientpressure) + ' kPa'}
+              </ProgressBar>
+            </LabeledList.Item>
+            <LabeledList.Item label="Total Moles">
+              <ProgressBar
+                value={logScale(SM_moles)}
+                minValue={0}
+                maxValue={logScale(50000)}
+                ranges={{
+                  good: [-Infinity, logScale(1800 * 0.75)],
+                  average: [
+                    logScale(1800 * 0.75),
+                    logScale(1800),
+                  ],
+                  bad: [logScale(1800), Infinity],
+                }}>
+                {toFixed(SM_moles) + ' moles'}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>

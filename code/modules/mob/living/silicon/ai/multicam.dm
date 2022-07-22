@@ -125,7 +125,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	icon_state = "ai_pip_camera"
 	var/obj/screen/movable/pic_in_pic/ai/screen
 	var/list/cameras_telegraphed = list()
-	var/telegraph_cameras = TRUE
+	var/telegraph_cameras = FALSE
 	var/telegraph_range = 7
 	ai_detector_color = COLOR_ORANGE
 
@@ -225,7 +225,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 		start_multicam()
 
 /mob/living/silicon/ai/proc/start_multicam()
-	if(multicam_on || aiRestorePowerRoutine || !isturf(loc))
+	if(multicam_on || aiRestorePowerRoutine || !(isturf(loc) || istype(loc, /obj/machinery/ai/data_core)))
 		return
 	if(!GLOB.ai_camera_room_landmark)
 		to_chat(src, span_warning("This function is not available at this time."))

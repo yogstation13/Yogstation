@@ -27,6 +27,7 @@
 	obj_damage = 60
 	melee_damage_lower = 15 // i know it's like half what it used to be, but bears cause bleeding like crazy now so it works out
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	wound_bonus = -5
 	bare_wound_bonus = 10 // BEAR wound bonus am i right
 	sharpness = SHARP_EDGED
@@ -44,6 +45,9 @@
 
 	do_footstep = TRUE
 
+/mob/living/simple_animal/hostile/bear/loan
+	faction = list("hostile")
+
 //SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT MY HAND OFF!!
 /mob/living/simple_animal/hostile/bear/Hudson
 	name = "Hudson"
@@ -56,7 +60,7 @@
 	icon_living = "snowbear"
 	icon_dead = "snowbear_dead"
 	desc = "It's a polar bear, in space, but not actually in space."
-	weather_immunities = list("snow")
+	weather_immunities = list(WEATHER_SNOW)
 
 /mob/living/simple_animal/hostile/bear/russian
 	name = "combat bear"
@@ -86,7 +90,6 @@
 	name = "pile of bear armor"
 	desc = "A scattered pile of various shaped armor pieces fitted for a bear, some duct tape, and a nail filer. Crude instructions \
 		are written on the back of one of the plates in russian. This seems like an awful idea."
-	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "bear_armor_upgrade"
 
 /obj/item/bear_armor/afterattack(atom/target, mob/user, proximity_flag)

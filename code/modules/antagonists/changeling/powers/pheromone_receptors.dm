@@ -9,6 +9,7 @@
 	helptext = "We will know the general direction of nearby changelings, with closer scents being stronger.  Our chemical generation is slowed while this is active."
 	chemical_cost = 0 //Reduces regain rate while active.
 	dna_cost = 2
+	xenoling_available = FALSE
 	var/receptors_active = FALSE
 
 /datum/action/changeling/pheromone_receptors/sting_action(mob/living/carbon/user)

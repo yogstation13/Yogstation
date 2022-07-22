@@ -13,12 +13,13 @@
 
 	alt_titles = list("Entertainer", "Comedian", "Jester")
 
-	access = list(ACCESS_THEATRE)
-	minimal_access = list(ACCESS_THEATRE)
+	added_access = list()
+	base_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
+	minimal_character_age = 18 //Honk
 
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -29,7 +30,8 @@
 	name = "Clown"
 	jobtype = /datum/job/clown
 
-	belt = /obj/item/pda/clown
+	pda_type = /obj/item/pda/clown
+
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/clown
 	shoes = /obj/item/clothing/shoes/clown_shoes
@@ -62,6 +64,8 @@
 	if(visualsOnly)
 		return
 
+	if(H.mind)
+		H.mind.teach_crafting_recipe(/datum/crafting_recipe/woodenducky)
 	H.fully_replace_character_name(H.real_name, pick(GLOB.clown_names)) //rename the mob AFTER they're equipped so their ID gets updated properly.
 	H.dna.add_mutation(CLOWNMUT)
 	for(var/datum/mutation/human/clumsy/M in H.dna.mutations)

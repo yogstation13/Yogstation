@@ -104,8 +104,7 @@
 			break
 
 	for(var/obj/item/I in embedded_objects)
-		embedded_objects -= I
-		I.forceMove(src)
+		phantom_owner.remove_embedded_object(I, src, TRUE, TRUE)
 	if(!phantom_owner.has_embedded_objects())
 		phantom_owner.clear_alert("embeddedobject")
 		SEND_SIGNAL(phantom_owner, COMSIG_CLEAR_MOOD_EVENT, "embedded")
@@ -321,7 +320,7 @@
 
 /obj/item/bodypart/proc/attach_limb(mob/living/carbon/C, special)
 	moveToNullspace()
-	owner = C
+	set_owner(C)
 	C.bodyparts += src
 	if(held_index)
 		if(held_index > C.hand_bodyparts.len)

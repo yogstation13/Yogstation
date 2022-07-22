@@ -6,6 +6,7 @@ is currently following.
 
 GLOBAL_LIST_INIT(disease_ability_singletons, list(
 new /datum/disease_ability/action/cough,
+new /datum/disease_ability/symptom/mild/sentient,
 new /datum/disease_ability/action/sneeze,
 new /datum/disease_ability/action/infect,
 new /datum/disease_ability/symptom/mild/cough,
@@ -267,6 +268,7 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 	StartCooldown()
 	return TRUE
 
+
 /*******************BASE SYMPTOM TYPES*******************/
 // cost is for convenience and can be changed. If you're changing req_tot_points then don't use the subtype...
 //healing costs more so you have to techswitch from naughty disease otherwise we'd have friendly disease for easy greentext (no fun!)
@@ -296,6 +298,29 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 
 
 /******MILD******/
+/datum/disease_ability/symptom/mild/sentient
+	cost = 0
+	required_total_points = 0
+	name = "Sentient Resistance"
+	start_with = TRUE
+	symptoms = list(/datum/symptom/sentient)
+	short_desc = "Due to its sentience, the virus is able to passively increase its resistance to detection and cures"
+	long_desc = "Due to its sentience, the virus is able to passively increase its resistance to detection and cures"
+
+	
+/datum/symptom/sentient
+	name = "Sentient Resistance"
+	desc = "Due to its sentience, the virus is able to passively increase its resistance to detection and cures"
+	stealth = 2
+	resistance = 2
+	stage_speed = 0
+	transmittable = 0
+	level = 0
+	severity = 0
+	symptom_delay_min = 2
+	symptom_delay_max = 15
+	var/infective = FALSE
+	threshold_descs = list()
 
 /datum/disease_ability/symptom/mild/cough
 	name = "Involuntary Coughing"

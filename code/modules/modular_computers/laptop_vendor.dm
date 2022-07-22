@@ -208,11 +208,11 @@
 					fabricated_phone.install_component(new/obj/item/computer_hardware/network_card/advanced)
 				total_price += 149
 		if(dev_printer)
-			fabricated_tablet.install_component(new/obj/item/computer_hardware/printer/mini)
+			fabricated_phone.install_component(new/obj/item/computer_hardware/printer/mini)
 		if(dev_card)
 			total_price += 199
 			if(fabricate)
-				fabricated_tablet.install_component(new/obj/item/computer_hardware/card_slot/secondary)
+				fabricated_phone.install_component(new/obj/item/computer_hardware/card_slot/secondary)
 		return total_price
 	return 0
 

@@ -48,7 +48,10 @@
 		"smmon_4.gif" = 'icons/program_icons/smmon_4.gif',
 		"smmon_5.gif" = 'icons/program_icons/smmon_5.gif',
 		"smmon_6.gif" = 'icons/program_icons/smmon_6.gif',
-		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif'
+		"borg_mon.gif" = 'icons/program_icons/borg_mon.gif',
+		"robotact.gif" = 'icons/program_icons/robotact.gif',
+		"health_green.gif" = 'icons/program_icons/crew_green.gif',
+		"health_red.gif" = 'icons/program_icons/crew_red.gif'
 	)
 
 /datum/asset/simple/radar_assets
@@ -249,6 +252,11 @@
 		"pill20" = 'icons/UI_Icons/Pills/pill20.png',
 		"pill21" = 'icons/UI_Icons/Pills/pill21.png',
 		"pill22" = 'icons/UI_Icons/Pills/pill22.png',
+	)
+
+/datum/asset/simple/safe
+	assets = list(
+		"safe_dial.png" = 'html/safe_dial.png'
 	)
 
 //this exists purely to avoid meta by pre-loading all language icons.

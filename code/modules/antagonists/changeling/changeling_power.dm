@@ -15,7 +15,8 @@
 	var/req_absorbs = 0 //similar to req_dna, but only gained from absorbing, not DNA sting
 	var/req_stat = CONSCIOUS // CONSCIOUS, UNCONSCIOUS or DEAD
 	var/ignores_fakedeath = FALSE // usable with the FAKEDEATH flag
-	var/active = FALSE//used by a few powers that toggle
+	var/active = FALSE //used by a few powers that toggle
+	var/xenoling_available = TRUE // Avaliable to xenolings
 
 /*
 changeling code now relies on on_purchase to grant powers.

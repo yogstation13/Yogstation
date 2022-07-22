@@ -1294,6 +1294,12 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/bar)
+"Zr" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel{
+	icon_state = "cafeteria"
+	},
+/area/crew_quarters/kitchen)
 
 (1,1,1) = {"
 aa
@@ -1609,7 +1615,7 @@ bs
 bp
 bF
 js
-Ga
+Zr
 bU
 bD
 pL

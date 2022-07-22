@@ -40,6 +40,11 @@
 	. = ..()
 	. += "Currently set to \"[dept_list[target_dept]]\"."
 
+/obj/item/circuitboard/computer/ai_ship
+	name = "AI Ship Shuttle (Computer Board)"
+	icon_state = "command"
+	build_path = /obj/machinery/computer/shuttle/ai_ship
+
 
 //obj/item/circuitboard/computer/shield
 //	name = "Shield Control (Computer Board)"
@@ -347,6 +352,8 @@
 
 /obj/item/circuitboard/computer/rdconsole/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+		if(build_path == /obj/machinery/computer/rdconsole/production)
+			return
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "R&D Console - Robotics (Computer Board)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
@@ -385,6 +392,21 @@
 /obj/item/circuitboard/computer/shuttle/docker
 	name = "Shuttle Navigation Computer (Computer Board)"
 	build_path = /obj/machinery/computer/camera_advanced/shuttle_docker/custom
+
+/obj/item/circuitboard/computer/ai_upload_download
+	name = "AI Control Console (Computer Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/computer/ai_control_console
+
+/obj/item/circuitboard/computer/ai_server_overview
+	name = "AI Server Overview Console (Computer Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/computer/ai_server_console
+
+/obj/item/circuitboard/computer/ai_resource_distribution
+	name = "AI Resource Distribution Console (Computer Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/computer/ai_resource_distribution
 
 //Security
 
@@ -504,3 +526,4 @@
 	name = "Mining Shuttle (Computer Board)"
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/shuttle/mining
+

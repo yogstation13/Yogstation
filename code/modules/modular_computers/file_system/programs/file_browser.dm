@@ -4,7 +4,6 @@
 	extended_desc = "This program allows management of files."
 	program_icon_state = "generic"
 	size = 8
-	requires_ntnet = FALSE
 	available_on_ntnet = FALSE
 	undeletable = TRUE
 	tgui_id = "NtosFileManager"
@@ -19,6 +18,7 @@
 
 	var/obj/item/computer_hardware/hard_drive/HDD = computer.all_components[MC_HDD]
 	var/obj/item/computer_hardware/hard_drive/RHDD = computer.all_components[MC_SDD]
+	computer.play_interact_sound()
 
 	switch(action)
 		if("PRG_deletefile")

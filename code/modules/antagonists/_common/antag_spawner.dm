@@ -3,7 +3,10 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE
-	var/discountPrice = 0 //if this is discounted, we keep track of that, for refund purposes
+
+/obj/item/antag_spawner/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
 
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return
@@ -11,6 +14,8 @@
 /obj/item/antag_spawner/proc/equip_antag(mob/target)
 	return
 
+/obj/item/antag_spawner/proc/refund_check()
+	return !used
 
 ///////////WIZARD
 
@@ -269,7 +274,7 @@
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	var/obj/effect/dummy/crawling/holder = new /obj/effect/dummy/crawling(T) //yogs start
-	//var/obj/effect/dummy/phased_mob/slaughter/holder = new /obj/effect/dummy/phased_mob/slaughter(T)
+	//var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob(T)
 	var/mob/living/simple_animal/slaughter/S = new demon_type(holder)
 	//S.holder = holder //yogs end
 	S.key = C.key

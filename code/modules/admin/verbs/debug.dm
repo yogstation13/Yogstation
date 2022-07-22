@@ -236,7 +236,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Air Status In Location") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_robotize(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Make Robot"
 
 	if(!SSticker.HasRoundStarted())
@@ -252,7 +252,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_blobize(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Make Blob"
 
 	if(!SSticker.HasRoundStarted())
@@ -267,7 +267,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /client/proc/cmd_admin_animalize(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Make Simple Animal"
 
 	if(!SSticker.HasRoundStarted())
@@ -288,7 +288,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /client/proc/makepAI(turf/T in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
 
@@ -315,7 +315,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make pAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Make Alien"
 
 	if(!SSticker.HasRoundStarted())
@@ -330,7 +330,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_slimeize(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Make slime"
 
 	if(!SSticker.HasRoundStarted())
@@ -345,7 +345,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_pacmanize(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Make pacman"
 
 	if(!SSticker.HasRoundStarted())
@@ -473,6 +473,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			id.access = get_debug_access()
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
+			id.originalassignment = "Captain"
 			id.update_label()
 
 			if(worn)
@@ -731,7 +732,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	cmd_admin_areatest(FALSE)
 
 /client/proc/cmd_admin_dress(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Select equipment"
 
 	if(!check_rights(R_SPAWN))

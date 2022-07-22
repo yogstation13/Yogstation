@@ -1150,6 +1150,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"PF" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "PK" = (
 /obj/effect/overlay/palmtree_r,
 /turf/open/floor/plating/beach/coastline_t/sandwater_inner{
@@ -1754,7 +1758,7 @@ PP
 hH
 Fx
 jN
-xz
+PF
 WE
 aM
 IL

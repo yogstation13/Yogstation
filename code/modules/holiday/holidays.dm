@@ -93,7 +93,7 @@
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
-	end_day = 17
+	end_day = 15
 	begin_month = FEBRUARY
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=cEwZpejd4rM", // Charlie Wilson - Forever Valentine
@@ -185,13 +185,16 @@
 	begin_day = 1
 	end_day = 5
 	begin_month = APRIL
+	lobby_music = list(
+		"https://www.youtube.com/watch?v=5QtxOr4iSBY", // Gay Activity - Clive Richardson
+		"https://www.youtube.com/watch?v=ytWz0qVvBZ0", // Diggy Diggy Hole - Sparkles*
+		"https://www.youtube.com/watch?v=ko_A6YW6Krk", // Blockbuster - Jack Waldenmaier
+		"https://www.youtube.com/watch?v=qOVLUiha1B8", // Welcome To YogLabs - Mattokamus
+		"https://www.youtube.com/watch?v=9whQIbNmu9s"  // Clown.wmv - Admiral Hippie
+	)
 
 /datum/holiday/april_fools/celebrate()
 	SSjob.set_overflow_role("Clown")
-	SSticker.login_music = 'sound/ambience/clown.ogg'
-	for(var/mob/dead/new_player/P in GLOB.mob_list)
-		if(P.client)
-			P.client.playtitlemusic()
 
 /datum/holiday/april_fools/greet()
 	return "NOTICE: Yogstation will be down from April 2nd to April 5th as we transfer to the Source engine. Please join our discord for more info."
@@ -321,7 +324,6 @@
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
-		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà
 		)
 
 /datum/holiday/france/getStationPrefix()
@@ -579,7 +581,11 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=WgEVI8DEkF8",	// Nat King Cole - Deck the Halls
 		"https://www.youtube.com/watch?v=noMhM1CjM78",	// Christopher Lee - Silent Night
 		"https://www.youtube.com/watch?v=KmddeUJJEuU",	// Perry Como - It's Beginning to Look a Lot Like Christmas
-		"https://www.youtube.com/watch?v=kfZtNVEqsBs"  // Christopher Lee - Jingle Hell
+		"https://www.youtube.com/watch?v=kfZtNVEqsBs",  // Christopher Lee - Jingle Hell
+		"https://soundcloud.com/garym03062/beacons-in-the-darkness",	// Gary McGath - Beacons in the Darkness
+		"https://www.youtube.com/watch?v=KGEfBop0nkI",	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
+		"https://www.youtube.com/watch?v=1twga61Kd14",	// Julia Ecklar - #1 - Christmas Time
+		"https://www.youtube.com/watch?v=imjMjnczqkU"	// Pete Gold - Ive Been a Bad Boy
 		)
 
 /datum/holiday/xmas/greet()

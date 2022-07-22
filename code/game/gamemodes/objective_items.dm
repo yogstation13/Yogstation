@@ -64,7 +64,7 @@
 
 /datum/objective_item/steal/hypo
 	name = "the hypospray."
-	targetitem = /obj/item/reagent_containers/hypospray/CMO
+	targetitem = /obj/item/hypospray/deluxe/cmo
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer")
 
@@ -135,7 +135,14 @@
 				continue
 			var/obj/item/tank/T = o
 			found_amount += T.air_contents.get_moles(/datum/gas/plasma)
-
+	if (istype(objective.team, /datum/team/infiltrator))
+		for (var/area/A in world)
+			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
+				for (var/obj/item/tank/T in A.GetAllContents()) //Check for items
+					found_amount += T.air_contents.get_moles(/datum/gas/plasma)
+					CHECK_TICK
+			CHECK_TICK
+		CHECK_TICK
 	return found_amount >= target_amount
 
 
@@ -181,7 +188,7 @@
 	name = "the telecommunications blackbox."
 	targetitem = /obj/item/blackbox
 	difficulty = 10
-	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Signal Technician")
+	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician","Network Admin")
 
 //Unique Objectives
 /datum/objective_item/unique/docs_red

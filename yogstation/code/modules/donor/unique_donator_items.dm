@@ -118,7 +118,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "green cosmic bedsheet"
 	icon_state = "sheetcosmos_green"
 	item_state = "sheetcosmos_green"
-	item_color = "cosmos_green"
 
 /datum/donator_gear/azeelium
 	name = "Utatul-Azeel plushie"
@@ -130,6 +129,30 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Mqiib"
 	unlock_path = /obj/item/clothing/accessory/sing_necklace
 
+/datum/donator_gear/cowbot
+	name = "Singularity Wakizashi"
+	ckey = "Cowbot93"
+	unlock_path = /obj/item/toy/katana/singulo_wakizashi
+
+/datum/donator_gear/marmio64
+	name = "Eldritch Cowl"
+	ckey = "Marmio64"
+	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
+
+/datum/donator_gear/manatee
+	name = "Peacekeeper Beret"
+	ckey = "Majesticmanateee"
+	unlock_path = /obj/item/clothing/head/peacekeeperberet
+
+/datum/donator_gear/Hisakaki
+	name = "Transdimensional halo"
+	ckey = "Hisakaki"
+	unlock_path = /obj/item/clothing/head/halo
+
+/datum/donator_gear/skrem
+	name = "Rainbow flower"
+	ckey = "Skrem7"
+	unlock_path = /obj/item/clothing/head/rainbow_flower
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
@@ -378,7 +401,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/clothing/head/crown
 	slot = SLOT_HEAD
 
-/datum/donator_gear/wizard
+/datum/donator_gear/wizard/red
 	name = "Wizard's Hat (Red, Collectable)"
 	unlock_path = /obj/item/clothing/head/wizard/fake/red
 	slot = SLOT_HEAD
@@ -432,6 +455,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/air_horn
 	name = "air horn"
 	unlock_path = /obj/item/bikehorn/airhorn
+/datum/donator_gear/sad_horn
+	name = "sad horn"
+	unlock_path = /obj/item/bikehorn/sad
 /datum/donator_gear/camera
 	name = "camera"
 	unlock_path = /obj/item/camera
@@ -456,6 +482,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/hardsuit_clown
 	name = "clown hardsuit"
 	unlock_path = /obj/item/clothing/suit/yogs/armor/hardsuit_clown
+/datum/donator_gear/orca_dress
+	name = "creator's dress"
+	unlock_path = /obj/item/clothing/suit/yogs/keiki
 /datum/donator_gear/oreo
 	name = "Black and white sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers
@@ -471,7 +500,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/moonrock
 	name = "Rare brown sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers/darkbrown
-/datum/donator_gear/pirate
+/datum/donator_gear/blackvox
 	name = "Rare vox black sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers/black
 /datum/donator_gear/zebrasweat

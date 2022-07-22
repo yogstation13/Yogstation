@@ -60,7 +60,7 @@
 /obj/structure/flora/ash/attackby(obj/item/W, mob/user, params)
 	if(!harvested && needs_sharp_harvest && W.is_sharp())
 		user.visible_message(span_notice("[user] starts to harvest from [src] with [W]."),span_notice("You begin to harvest from [src] with [W]."))
-		if(do_after(user, harvest_time, target = src))
+		if(do_after(user, harvest_time, src))
 			harvest(user)
 	else
 		return ..()
@@ -71,7 +71,7 @@
 		return
 	if(!harvested && !needs_sharp_harvest)
 		user.visible_message(span_notice("[user] starts to harvest from [src]."),span_notice("You begin to harvest from [src]."))
-		if(do_after(user, harvest_time, target = src))
+		if(do_after(user, harvest_time, src))
 			harvest(user)
 
 /obj/structure/flora/ash/tall_shroom //exists only so that the spawning check doesn't allow these spawning near other things
@@ -231,7 +231,7 @@
 	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/consumable/sugar = 0.06, /datum/reagent/consumable/ethanol = 0.04, /datum/reagent/stabilizing_agent = 0.06, /datum/reagent/toxin/minttoxin = 0.02, /datum/reagent/consumable/ashresin = 0.04)
+	reagents_add = list(/datum/reagent/consumable/sugar = 0.06, /datum/reagent/consumable/ethanol = 0.04, /datum/reagent/stabilizing_agent = 0.06, /datum/reagent/toxin/minttoxin = 0.02, /datum/reagent/consumable/ashresin = 0.08)
 
 /obj/item/seeds/lavaland/porcini
 	name = "pack of porcini mycelium"
@@ -267,6 +267,12 @@
 	reagents_add = list(/datum/reagent/consumable/tinlux = 0.04, /datum/reagent/consumable/nutriment = 0.02, /datum/reagent/drug/space_drugs = 0.02, /datum/reagent/consumable/ashresin = 0.02)
 
 //CRAFTING
+/datum/crafting_recipe/mushroomwood
+	name = "Wood Substitute"
+	result = /obj/item/stack/sheet/mineral/wood/mushroom
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings = 2)
+	time = 2 SECONDS
+	category = CAT_PRIMAL
 
 /datum/crafting_recipe/mushroom_bowl
 	name = "Mushroom Bowl"

@@ -108,7 +108,7 @@
 
 /obj/effect/ctf/flag_reset
 	name = "banner landmark"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/banners.dmi'
 	icon_state = "banner"
 	desc = "This is where a banner with Nanotrasen's logo on it would go."
 	layer = LOW_ITEM_LAYER
@@ -678,7 +678,7 @@
 	capture(user)
 
 /obj/machinery/control_point/proc/capture(mob/user)
-	if(do_after(user, 3 SECONDS, target = src))
+	if(do_after(user, 3 SECONDS, src))
 		for(var/obj/machinery/capture_the_flag/CTF in GLOB.machines)
 			if(CTF.ctf_enabled && (user.ckey in CTF.team_members))
 				controlling = CTF

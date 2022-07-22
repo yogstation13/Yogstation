@@ -560,11 +560,10 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/lightpink/attack_ghost(mob/user)
 	. = ..()
-	var/mob/living/simple_animal/hostile/lightgeist/healing/slime/L = new(get_turf(src))
-	L.ckey = user.ckey
-	affected_mobs[L] = 0
-	ADD_TRAIT(L,TRAIT_MUTE,type)
-	ADD_TRAIT(L,TRAIT_EMOTEMUTE,type)
+	var/be_helper = alert("Become a Lightgeist? (Warning, You can no longer be cloned!)",,"Yes","No")
+	if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
+		var/mob/living/simple_animal/hostile/lightgeist/healing/W = new /mob/living/simple_animal/hostile/lightgeist/healing/slime(get_turf(loc))
+		W.key = user.key
 
 /obj/structure/slime_crystal/lightpink/on_mob_leave(mob/living/affected_mob)
 	if(istype(affected_mob,/mob/living/simple_animal/hostile/lightgeist/healing/slime))

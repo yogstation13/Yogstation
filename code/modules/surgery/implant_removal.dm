@@ -1,5 +1,8 @@
 /datum/surgery/implant_removal
 	name = "implant removal"
+	desc = "Extracts implants from the patient. If you don't have an empty implant case in your other hand, the implant will be ruined on extraction."
+	icon = 'icons/obj/implants.dmi'
+	icon_state = "implantcase-b"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/extract_implant, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -16,7 +19,8 @@
 /datum/surgery_step/extract_implant
 	name = "extract implant"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 65)
-	time = 64
+	time = 6.4 SECONDS
+	success_sound = 'sound/surgery/hemostat1.ogg'
 	var/obj/item/implant/I = null
 
 /datum/surgery_step/extract_implant/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -34,26 +38,30 @@
 
 /datum/surgery_step/extract_implant/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(I)
-		display_results(user, target, span_notice("You successfully remove [I] from [target]'s [target_zone]."),
-			"[user] successfully removes [I] from [target]'s [target_zone]!",
-			"[user] successfully removes something from [target]'s [target_zone]!")
 		I.removed(target)
-
-		var/obj/item/implantcase/case
-		for(var/obj/item/implantcase/ic in user.held_items)
-			case = ic
-			break
-		if(!case)
-			case = locate(/obj/item/implantcase) in get_turf(target)
-		if(case && !case.imp)
-			case.imp = I
-			I.forceMove(case)
-			case.update_icon()
-			display_results(user, target, span_notice("You place [I] into [case]."),
-				"[user] places [I] into [case]!",
-				"[user] places it into [case]!")
+		if (QDELETED(I)) // yogs: properly handle self-deleting implants
+			display_results(user, target, span_notice("You remove [I] from [target]'s [target_zone], destroying it in the process!"),
+				"[user] removes [I] from [target]'s [target_zone], destroying it in the process!",
+				"[user] removes something from [target]'s [target_zone], destroying it in the process!")
 		else
-			qdel(I)
+			display_results(user, target, span_notice("You successfully remove [I] from [target]'s [target_zone]."),
+				"[user] successfully removes [I] from [target]'s [target_zone]!",
+				"[user] successfully removes something from [target]'s [target_zone]!")
+			var/obj/item/implantcase/case
+			for(var/obj/item/implantcase/ic in user.held_items)
+				case = ic
+				break
+			if(!case)
+				case = locate(/obj/item/implantcase) in get_turf(target)
+			if(case && !case.imp)
+				case.imp = I
+				I.forceMove(case)
+				case.update_icon()
+				display_results(user, target, span_notice("You place [I] into [case]."),
+					"[user] places [I] into [case]!",
+					"[user] places it into [case]!")
+			else
+				qdel(I)
 
 	else
 		to_chat(user, span_warning("You can't find anything in [target]'s [target_zone]!"))

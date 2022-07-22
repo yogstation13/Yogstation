@@ -8,11 +8,14 @@
 #define Z_TURFS(ZLEVEL) block(locate(1,1,ZLEVEL), locate(world.maxx, world.maxy, ZLEVEL))
 #define CULT_POLL_WAIT 2400
 
-/proc/get_area_name(atom/X, format_text = FALSE)
+/proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
 		return null
-	return format_text ? format_text(A.name) : A.name
+	var/name = A.name
+	if (is_sensor && !A.show_on_sensors)
+		name = Gibberish(name, TRUE, 90)
+	return format_text ? format_text(name) : name
 
 /proc/get_areas_in_range(dist=0, atom/center=usr)
 	if(!dist)
@@ -379,6 +382,10 @@
 				H = M.current
 			return M.current.stat != DEAD && !issilicon(M.current) && !isbrain(M.current) && (!H || H.dna.species.id != "memezombies")
 		else if(isliving(M.current))
+			if(isAI(M.current))
+				var/mob/living/silicon/ai/AI = M.current
+				if(AI.is_dying)
+					return FALSE
 			return M.current.stat != DEAD
 	return FALSE
 
@@ -722,11 +729,22 @@
 	return pick(possible_loc)
 
 /proc/power_fail(duration_min, duration_max)
+	var/list/data_core_areas = list()
+	for(var/obj/machinery/ai/data_core/core as anything in GLOB.data_cores)
+		if(!core.valid_data_core())
+			continue
+		if(!isarea(core.loc))
+			continue
+		var/area/A = core.loc
+		data_core_areas[A.type] = TRUE
+
 	for(var/P in GLOB.apcs_list)
 		var/obj/machinery/power/apc/C = P
 		if(C.cell && SSmapping.level_trait(C.z, ZTRAIT_STATION))
 			var/area/A = C.area
 			if(GLOB.typecache_powerfailure_safe_areas[A.type])
+				continue
+			if(data_core_areas[A.type])
 				continue
 
 			C.energy_fail(rand(duration_min,duration_max))

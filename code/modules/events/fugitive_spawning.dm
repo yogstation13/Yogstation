@@ -33,7 +33,7 @@
 	var/member_size = min(candidates.len, 5)
 	var/leader
 	switch(backstory)
-		if("cultist" || "synth")
+		if("cultist","synth") // Yogs -- fixes this switch case
 			leader = pick_n_take(candidates)
 		if("waldo")
 			member_size = 0 //solo refugees have no leader so the member_size gets bumped to one a bit later

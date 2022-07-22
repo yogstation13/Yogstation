@@ -268,6 +268,23 @@
 					M.adjust_fire_stacks(3)
 					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
+	if(ishuman(M) && is_sinfuldemon(M) && prob(80))
+		switch(data)
+			if(1 to 4)
+				to_chat(M, span_warning("Your unholy blood begins to burn as holy power creeps through you."))
+				M.adjustFireLoss(1)
+			if(5 to 10)
+				to_chat(M, span_danger("The burning deepens and strengthens!"))
+				M.adjustFireLoss(2)
+			if(11 to 12)
+				to_chat(M, span_danger("Your flesh itself begins to melt apart in agony!"))
+				M.adjustFireLoss(3)
+				M.emote("scream")
+			if(13 to INFINITY)
+				M.visible_message("<span class='danger'>[M] suddenly ignites in a brilliant flash of white!<span>", span_userdanger("You suddenly ignite in a holy fire!"))
+				M.adjust_fire_stacks(3)
+				M.IgniteMob()
+				M.adjustFireLoss(4)
 	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
@@ -551,6 +568,20 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/pod
 	mutationtext = span_danger("The pain subsides. You feel... plantlike.")
+
+/datum/reagent/mutationtoxin/ethereal
+	name = "Ethereal Mutation Toxin"
+	description = "An electrifying toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/ethereal
+	mutationtext = span_danger("The pain subsides. You feel... ecstatic.")
+
+/datum/reagent/mutationtoxin/polysmorph
+	name = "Polysmorph Mutation Toxin"
+	description = "An acidic toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/polysmorph
+	mutationtext = span_danger("The pain subsides. You feel... Alien.")
 
 /datum/reagent/mutationtoxin/jelly
 	name = "Imperfect Mutation Toxin"
@@ -921,6 +952,8 @@
 
 /datum/reagent/silver/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.has_bane(BANE_SILVER))
+		M.reagents.add_reagent(/datum/reagent/toxin, reac_volume)
+	if(ishuman(M) && is_sinfuldemon(M) && prob(80)) //sinful demons have a lesser reaction to silver
 		M.reagents.add_reagent(/datum/reagent/toxin, reac_volume)
 	..()
 
@@ -1308,17 +1341,17 @@
 
 /datum/reagent/healium/on_mob_metabolize(mob/living/L)
 	. = ..()
-	L.SetSleeping(1000)
-	L.SetUnconscious(1000)
+	L.SetSleeping(1000, ignore_canstun = TRUE)
+	L.SetUnconscious(1000, ignore_canstun = TRUE)
 
 /datum/reagent/healium/on_mob_life(mob/living/carbon/M)
-	M.SetSleeping(1000)
-	M.SetUnconscious(1000) //in case you have sleep immunity :^)
+	M.SetSleeping(1000, ignore_canstun = TRUE)
+	M.SetUnconscious(1000, ignore_canstun = TRUE) //in case you have sleep immunity :^)
 	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
-	L.SetSleeping(10)
-	L.SetUnconscious(10)
+	L.SetSleeping(10, ignore_canstun = TRUE)
+	L.SetUnconscious(10, ignore_canstun = TRUE)
 	return ..()
 
 /datum/reagent/halon
@@ -1769,6 +1802,13 @@
 		ZI.Insert(H)
 	..()
 
+/datum/reagent/romerol/on_mob_life(mob/living/carbon/human/H)
+	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
+		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
+		ZI.Insert(H)
+	if(holder)
+		holder.remove_reagent(type, INFINITY) //By default it slowly disappears.
+
 /datum/reagent/magillitis
 	name = "Magillitis"
 	description = "An experimental serum which causes rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
@@ -2003,3 +2043,15 @@
 			wounded_part.heal_damage(0.25, 0.25)
 		M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
 	..()
+
+
+/datum/reagent/plaguebacteria
+	name = "Yersinia pestis"
+	description = "A horrible plague, in a container. It is a TERRIBLE idea to drink this."
+	color = "#7CFC00"
+	taste_description = "death"
+	can_synth = FALSE
+
+/datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
+	if(method == INGEST || method == TOUCH || method == INJECT)
+		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)

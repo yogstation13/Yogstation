@@ -118,8 +118,11 @@ God bless America.
 	else if(default_deconstruction_screwdriver(user, "fryer_off", "fryer_off" ,I))	//where's the open maint panel icon?!
 		return
 	else
-		if(is_type_in_typecache(I, deepfry_blacklisted_items) || HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
+		if(user.a_intent != INTENT_HELP)
 			return ..()
+		if((!superfry && !istype(I, /obj/item/reagent_containers/food)) || HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
+			to_chat(user, span_warning("Your cooking skills do not allow you to fry [I]..."))
+			return
 		else if(!frying && user.transferItemToLoc(I, src))
 			to_chat(user, span_notice("You put [I] into [src]."))
 			var/item_reags = I.grind_results
@@ -183,6 +186,23 @@ God bless America.
 				qdel(H)
 				fry_loop.start()
 				return
+	if(user.pulling && user.a_intent == INTENT_GRAB && ishuman(user.pulling))
+		var/mob/living/carbon/human/the_guy = user.pulling
+		var/list/missing_limbs = the_guy.get_missing_limbs()
+		if(missing_limbs.len >= 4)
+			to_chat(user, "<span class ='notice'>You dunk [the_guy] into [src],</span>")
+			frying = new /obj/item/reagent_containers/food/snacks/deepfryholder(src, the_guy)
+			fry_loop.start()
+			icon_state = "fryer_on"
+			var /obj/item/reagent_containers/food/snacks/nugget/the_nugget = new /obj/item/reagent_containers/food/snacks/nugget(drop_location(src))
+			if(istype(the_guy) && the_guy.mind)
+				the_nugget.nugget_man = new(the_nugget)
+				the_nugget.nugget_man.real_name = the_nugget.name
+				the_nugget.nugget_man.name = the_nugget.name
+				the_nugget.nugget_man.stat = CONSCIOUS
+				the_guy.mind.transfer_to(the_nugget.nugget_man)
+			qdel(the_guy)
+			return
 				
 	if(user.pulling && user.a_intent == INTENT_GRAB && iscarbon(user.pulling) && reagents.total_volume && isliving(user.pulling))
 		var/mob/living/carbon/C = user.pulling

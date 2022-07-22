@@ -14,6 +14,8 @@
 	item_flags = NOBLUDGEON
 	var/self_delay = 50
 	var/other_delay = 0
+	/// Sound/Sounds to play when this is applied
+	var/apply_sounds
 	var/repeating = FALSE
 	/// How much brute we heal per application
 	var/heal_brute
@@ -31,21 +33,27 @@
 	var/absorption_capacity
 	/// How quickly we lower the blood flow on a cut wound we're bandaging. Expected lifetime of this bandage in ticks is thus absorption_capacity/absorption_rate, or until the cut heals, whichever comes first
 	var/absorption_rate
+	/// Coefficient for applying this stack to a wound
+	var/treatment_speed = 1
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
 	. = ..()
 	try_heal(M, user)
 
+/obj/item/stack/medical/get_belt_overlay()
+	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "stack_medical")
 
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
 		return
 	if(M == user)
+		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [user.p_them()]self..."), span_notice("You begin applying \the [src] on yourself..."))
 		if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
 			return
 	else if(other_delay)
+		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [M]."), span_notice("You begin applying \the [src] on [M]..."))
 		if(!do_mob(user, M, other_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
@@ -90,6 +98,7 @@
 	icon_state = "brutepack"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	heal_brute = 40
 	self_delay = 40
 	other_delay = 20
@@ -124,6 +133,7 @@
 	gender = PLURAL
 	singular_name = "medical gauze"
 	icon_state = "gauze"
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	self_delay = 50
 	other_delay = 20
 	max_amount = 12
@@ -160,8 +170,12 @@
 
 	user.visible_message(span_warning("[user] begins wrapping the wounds on [M]'s [limb.name] with [src]..."), span_warning("You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]..."))
 
-	if(!do_after(user, (user == M ? self_delay : other_delay), target=M))
+	playsound(src, 'sound/effects/rip2.ogg', 25)
+
+	if(!do_after(user, (user == M ? self_delay : other_delay), M))
 		return
+
+	playsound(src, 'sound/effects/rip1.ogg', 25)
 
 	user.visible_message(span_green("[user] applies [src] to [M]'s [limb.name]."), span_green("You bandage the wounds on [user == M ? "yourself" : "[M]'s"] [limb.name]."))
 	limb.apply_gauze(src)
@@ -208,8 +222,8 @@
 	icon_state = "suture"
 	self_delay = 30
 	other_delay = 10
-	amount = 10
-	max_amount = 10
+	amount = 15
+	max_amount = 15
 	repeating = TRUE
 	heal_brute = 10
 	stop_bleeding = 0.6
@@ -226,8 +240,11 @@
 	name = "medicated suture"
 	icon_state = "suture_purp"
 	desc = "A suture infused with drugs that speed up wound healing of the treated laceration."
+	amount = 25
+	max_amount = 25
 	heal_brute = 15
 	stop_bleeding = 0.75
+	treatment_speed = 0.5
 	grind_results = list(/datum/reagent/medicine/polypyr = 2)
 
 /obj/item/stack/medical/suture/heal(mob/living/M, mob/user)
@@ -259,11 +276,11 @@
 	icon_state = "ointment"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	apply_sounds = list('sound/effects/ointment.ogg')
 	amount = 8
 	max_amount = 8
 	self_delay = 40
 	other_delay = 20
-
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.25
@@ -290,8 +307,8 @@
 	self_delay = 30
 	other_delay = 10
 	amount = 15
-	heal_burn = 10
 	max_amount = 15
+	heal_burn = 10
 	repeating = TRUE
 	sanitization = 0.75
 	flesh_regeneration = 3
@@ -350,10 +367,11 @@
 /obj/item/stack/medical/mesh/advanced
 	name = "advanced regenerative mesh"
 	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
-
 	gender = PLURAL
 	singular_name = "advanced regenerative mesh"
 	icon_state = "aloe_mesh"
+	amount = 25
+	max_amount = 25
 	heal_burn = 15
 	sanitization = 1.25
 	flesh_regeneration = 3.5
@@ -367,8 +385,8 @@
 /obj/item/stack/medical/aloe
 	name = "aloe cream"
 	desc = "A healing paste you can apply on wounds."
-
 	icon_state = "aloe_paste"
+	apply_sounds = list('sound/effects/ointment.ogg')
 	self_delay = 20
 	other_delay = 10
 	novariants = TRUE
@@ -415,6 +433,7 @@
 	icon_state = "bone-gel"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	apply_sounds = list('sound/effects/ointment.ogg')
 
 	amount = 4
 	self_delay = 20
@@ -457,6 +476,7 @@
 	singular_name = "mourning poultice"
 	desc = "A type of primitive herbal poultice.\nWhile traditionally used to prepare corpses for the mourning feast, it can also treat scrapes and burns on the living, however, it is liable to cause shortness of breath when employed in this manner.\nIt is imbued with ancient wisdom."
 	icon_state = "poultice"
+	apply_sounds = list('sound/misc/soggy.ogg')
 	amount = 15
 	max_amount = 15
 	heal_brute = 10
@@ -469,7 +489,6 @@
 
 /obj/item/stack/medical/poultice/heal(mob/living/M, mob/user)
 	if(iscarbon(M))
-		playsound(src, 'sound/misc/soggy.ogg', 30, TRUE)
 		return heal_carbon(M, user, heal_brute, heal_burn)
 	return ..()
 

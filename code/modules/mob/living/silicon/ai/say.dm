@@ -153,9 +153,12 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 	GLOB.announcing_vox = world.time + VOX_DELAY
 
 	log_game("[key_name(src)] made a vocal announcement with the following message: [message].")
+	var/z_coord = z
+	if(istype(loc, /obj/machinery/ai/data_core))
+		z_coord = loc.z
 
 	for(var/word in words)
-		play_vox_word(word, src.z, null, voxType) //yogs - male vox
+		play_vox_word(word, z_coord, null, voxType) //yogs - male vox
 
 
 /proc/play_vox_word(word, z_level, mob/only_listener, voxType = "Verity (female)", pitch = 0) // Yogs -- Pitch variation

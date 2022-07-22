@@ -7,7 +7,7 @@
 	requires_ntnet = TRUE
 	transfer_access = null
 	available_on_ntnet = FALSE
-	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE
+	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA | PROGRAM_INTEGRATED
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosRadar"
@@ -72,6 +72,7 @@
 /datum/computer_file/program/radar/ui_act(action, params)
 	if(..())
 		return
+	computer.play_interact_sound()
 
 	switch(action)
 		if("selecttarget")
@@ -219,7 +220,7 @@
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_MEDICAL
 	available_on_ntnet = TRUE
-	program_icon = "heartbeat"
+	program_icon = "street-view"
 
 /datum/computer_file/program/radar/lifeline/find_atom()
 	return locate(selected) in GLOB.carbon_list
@@ -273,6 +274,7 @@
 	available_on_ntnet = FALSE
 	available_on_syndinet = TRUE
 	tgui_id = "NtosRadarSyndicate"
+	program_icon = "radiation"
 	arrowstyle = "ntosradarpointerS.png"
 	pointercolor = "red"
 
@@ -312,7 +314,7 @@
 	filedesc = "Implant Tracker"
 	extended_desc = "This program allows for tracking those implanted with tracking implants."
 	requires_ntnet = TRUE
-	transfer_access = ACCESS_SECURITY
+	transfer_access = ACCESS_BRIG
 	available_on_ntnet = TRUE
 	program_icon = "microchip"
 

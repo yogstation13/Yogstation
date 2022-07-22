@@ -536,9 +536,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/freighter3)
 "gR" = (
-/obj/machinery/power/smes{
-	charge = 0
-	},
+/obj/machinery/power/smes/empty,
 /obj/structure/cable/yellow,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -809,9 +807,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/caravan/freighter2)
 "iq" = (
-/obj/machinery/power/smes{
-	charge = 0
-	},
+/obj/machinery/power/smes/empty,
 /obj/structure/cable/yellow,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5

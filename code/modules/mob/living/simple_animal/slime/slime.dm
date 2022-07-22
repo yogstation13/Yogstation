@@ -272,7 +272,7 @@
 			Feedon(Food)
 	return ..()
 
-/mob/living/simple_animal/slime/doUnEquip(obj/item/W)
+/mob/living/simple_animal/slime/doUnEquip(obj/item/W, force, newloc, no_move, invdrop = TRUE, silent = FALSE)
 	return
 
 /mob/living/simple_animal/slime/start_pulling(atom/movable/AM, state, force = move_force, supress_message = FALSE)
@@ -488,7 +488,7 @@
 		mobility_flags &= ~MOBILITY_MOVE
 		if(user)
 			step_away(src,user,15)
-		sleep(3)
+		sleep(0.3 SECONDS)
 		if(user)
 			step_away(src,user,15)
 		update_mobility()

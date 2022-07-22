@@ -984,6 +984,10 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/bar)
+"hd" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/vaporwave,
+/area/crew_quarters/kitchen)
 "ht" = (
 /obj/effect/landmark/event_spawn,
 /turf/closed/wall,
@@ -1617,7 +1621,7 @@ bD
 br
 bP
 ms
-Ha
+hd
 cf
 bN
 MC

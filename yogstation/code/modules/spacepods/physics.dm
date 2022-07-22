@@ -1,5 +1,5 @@
 /obj/spacepod/process(time)
-	time /= 10 // fuck off with your deciseconds
+	time /= 10 // fuck off with your deciseconds // uh oh
 
 	if(world.time > last_slowprocess + 15)
 		last_slowprocess = world.time
@@ -48,7 +48,7 @@
 				if(velocity_mag > 5 && prob(velocity_mag * 4) && istype(T, /turf/open/floor))
 					var/turf/open/floor/TF = T
 					TF.make_plating() // pull up some floor tiles. Stop going so fast, ree.
-					take_damage(3, BRUTE, "melee", FALSE)
+					take_damage(3, BRUTE, MELEE, FALSE)
 			var/datum/gas_mixture/env = T.return_air()
 			if(env)
 				var/pressure = env.return_pressure()
@@ -199,14 +199,14 @@
 	transform = mat_from
 	pixel_x = last_offset_x*32
 	pixel_y = last_offset_y*32
-	animate(src, transform=mat_to, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time*10, flags=ANIMATION_END_NOW)
+	animate(src, transform=mat_to, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time SECONDS, flags=ANIMATION_END_NOW)
 	for(var/mob/living/M in contents)
 		var/client/C = M.client
 		if(!C)
 			continue
 		C.pixel_x = last_offset_x*32
 		C.pixel_y = last_offset_y*32
-		animate(C, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time*10, flags=ANIMATION_END_NOW)
+		animate(C, pixel_x = offset_x*32, pixel_y = offset_y*32, time = time SECONDS, flags=ANIMATION_END_NOW)
 	user_thrust_dir = 0
 	update_icon()
 
@@ -246,13 +246,13 @@
 		// wew lad, might wanna slow down there
 		explosion(A, -1, round((strength - 1) / 2), round(strength))
 		message_admins("[key_name_admin(pilot)] has impacted a spacepod into [A] with velocity [bump_velocity]")
-		take_damage(strength*10, BRUTE, "melee", TRUE)
+		take_damage(strength*10, BRUTE, MELEE, TRUE)
 		log_game("[key_name(pilot)] has impacted a spacepod into [A] with velocity [bump_velocity]")
 		visible_message(span_danger("The force of the impact causes a shockwave"))
 	else if(isliving(A) && bump_velocity > 5)
 		var/mob/living/M = A
 		M.apply_damage(bump_velocity * 2)
-		take_damage(bump_velocity, BRUTE, "melee", FALSE)
+		take_damage(bump_velocity, BRUTE, MELEE, FALSE)
 		playsound(M.loc, "swing_hit", 1000, 1, -1)
 		M.Knockdown(bump_velocity * 2)
 		M.visible_message(span_warning("The force of the impact knocks [M] down!"),span_userdanger("The force of the impact knocks you down!"))

@@ -658,9 +658,8 @@
 /datum/chemical_reaction/resinsolidification
 	name = "Ash Resin Solidification"
 	id = "resin_solid"
-	mix_message = "The resin solidifies from the extreme heat."
-	required_reagents = list(/datum/reagent/consumable/ashresin = 5)
-	required_temp = 800
+	mix_message = "The resin mixes with the water and solidifies."
+	required_reagents = list(/datum/reagent/consumable/ashresin = 5, /datum/reagent/water = 10)
 
 /datum/chemical_reaction/resinsolidification/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)

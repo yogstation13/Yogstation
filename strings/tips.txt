@@ -236,6 +236,13 @@ As a Revenant, the illness inflicted on humans by Blight can be easily cured by 
 As a Swarmer, you can deconstruct more things than you think. Try deconstructing light switches, buttons, air alarms and more. Experiment!
 As a Swarmer, you can teleport fellow swarmers away if you think they are in danger.
 As a Morph, you can talk while disguised, but your words have a chance of being slurred, giving you away!
+As an Eldritch Horror, improvise! You have many abilities you can mutate, most of them applying to diverse situations. Experiment!
+As an Eldritch Horror, don't forget that you're not exempt from server rules while mind-controlling someone. Their actions become your actions.
+You can remove an Eldritch Horror from someone's head via surgery. Decapitation also works!
+You can detect an Eldritch Horror inside someone's head with an advanced health analyzer.
+If you see an Eldritch Horror trying to enter someone's head, you can quickly shove it away to interrupt the process!
+Eldritch Horrors can enter any creature that has a brain organ. Yes, that includes xenomorphs.
+Contrary to popular belief, Eldritch Horrors are not "cute".
 As a Drone, you can ping other drones to alert them of areas in the station in need of repair.
 As a Ghost, you can see the inside of a container on the ground by clicking on it.
 As a Ghost, you can double click on just about anything to follow it. Or just warp around!
@@ -269,3 +276,4 @@ Anything you can light a cigarette with, you can use to cauterize a bleeding wou
 Moderate and Severe cuts will slowly clot by themselves and don't require immediate attention on their own. Critical cuts will actively get worse with time, and are an immediate threat to the patient's life.
 Laying down will help slow down bloodloss. Death will halt it entirely.
 If you're bleeding, you can apply pressure to the limb by grabbing yourself while targeting the bleeding limb. This will slow you down and take up a hand, but it'll slow down how fast you lose blood. Note this won't help the bleeding clot any faster.
+The TOME OF HERBAL KNOWLEDGE in the ashwalker's den provides useful information on surviving the lavaland wastes.

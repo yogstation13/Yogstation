@@ -98,6 +98,10 @@ Bonus
 		"Stealth 5" = "The symptom remains hidden until active.",
 	)
 
+/datum/symptom/flesh_death/zombie
+	zombie = TRUE
+	naturally_occuring = FALSE
+
 /datum/symptom/flesh_death/Start(datum/disease/advance/A)
 	. = ..()
 	if(!.)
