@@ -1,0 +1,6 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - rscadd: "Adds blood regen mutation"
+  - rscadd: "Adds wound armor mutation"
+  - rscadd: "Adds stamina modifier combined mutation"

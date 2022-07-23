@@ -47,6 +47,7 @@
 	var/brightness_on = 4 //luminosity when the light is on
 	var/on = FALSE
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
+	flash_protect = 0
 
 /obj/item/clothing/head/helmet/space/plasmaman/attack_self(mob/user)
 	toggle_helmet_light(user)

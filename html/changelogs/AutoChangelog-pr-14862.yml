@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "shades are now deconverted from cult when purified"

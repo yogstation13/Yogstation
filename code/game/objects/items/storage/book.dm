@@ -226,6 +226,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				if(M.mind)
 					SS.icon_state = "purified_soulstone2"
 			for(var/mob/living/simple_animal/shade/EX in SS)
+				SSticker.mode.remove_cultist(EX.mind, 1, 0)
 				EX.icon_state = "ghost1"
 				EX.name = "Purified [initial(EX.name)]"
 			user.visible_message(span_notice("[user] has purified [SS]!"))

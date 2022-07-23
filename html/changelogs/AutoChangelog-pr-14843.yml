@@ -1,0 +1,10 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscadd: "Adds punch damage mods to the physiology datum"
+  - rscadd: "Also adds three new human procs to get the total punch damage values"
+  - bugfix: "Makes punch damage modifiers more consistent after species changes"
+  - bugfix: "Bloodsucker punch damage (re)calculations changed to be more consistent"
+  - bugfix: "Lasombra clan can no longer permanently trade 30 blood for more punch damage infinitely"
+  - tweak: "Bloodsuckers no longer get insane knockdown chance on hit"
+  - tweak: "Martial arts now use the new procs instead of just species damage"

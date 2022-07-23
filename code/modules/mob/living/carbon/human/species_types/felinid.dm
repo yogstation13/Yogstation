@@ -159,9 +159,6 @@
 
 	H.set_species(/datum/species/human)
 
-/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
-
 /datum/species/human/felinid/get_scream_sound(mob/living/carbon/human/H)
 	return pick(screamsound)
 

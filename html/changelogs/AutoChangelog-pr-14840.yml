@@ -1,0 +1,10 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - experiment: "Initial steps to reeling in Genetic Mutations"
+  - tweak: "Shock Touch is now Incompatible with Extended Shock Touch"
+  - tweak: "(Extended) Shock Touch is now Incompatible with Insulated"
+  - tweak: "Cryokinesis is now Incompatible with Fire Breath"
+  - tweak: "(Anti) Glowy is now Incompatible with Chameleon"
+  - tweak: "glowy is now exactly as strong as antiglow instead of considerably weaker"
+  - tweak: "Strength now lets you fireman carry people very quickly"
