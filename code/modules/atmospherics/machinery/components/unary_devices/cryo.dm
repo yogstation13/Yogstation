@@ -201,9 +201,15 @@
 		update_icon()
 		return
 
-	if(mob_occupant.health >= mob_occupant.getMaxHealth()) // Don't bother with fully healed people.
-		if(iscarbon(mob_occupant))
-			var/mob/living/carbon/C = mob_occupant
+	var/robotic_limb_damage = 0 // brute and burn damage to robotic limbs
+	var/mob/living/carbon/C
+	if(iscarbon(mob_occupant))
+		C = mob_occupant
+		for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
+			robotic_limb_damage += limb.get_damage(FALSE)
+	
+	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
+		if(C)
 			if(C.all_wounds)
 				if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
 					treating_wounds = TRUE
@@ -218,6 +224,8 @@
 			update_icon()
 			playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
 			var/msg = "Patient fully restored."
+			if(robotic_limb_damage)
+				msg += " Remaining damage is to mechanical limbs."
 			if(autoeject) // Eject if configured.
 				msg += " Auto ejecting patient now."
 				open_machine()
@@ -236,7 +244,8 @@
 				beaker.reagents.reaction(occupant, VAPOR)
 				if(air1.get_moles(/datum/gas/pluoxium) > 5 )//Use pluoxium over oxygen
 					air1.adjust_moles(/datum/gas/pluoxium, -max(0,air1.get_moles(/datum/gas/pluoxium) - 0.5 / efficiency))
-				else air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
+				else 
+					air1.adjust_moles(/datum/gas/oxygen, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency)) //Let's use gas for this
 			if(++reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
 		if(air1.get_moles(/datum/gas/healium) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
@@ -255,7 +264,7 @@
 
 	var/datum/gas_mixture/air1 = airs[1]
 
-	if(!nodes[1] || !airs[1] || air1.get_moles(/datum/gas/oxygen) < 5 || air1.get_moles(/datum/gas/pluoxium) < 5) // Turn off if the machine won't work.
+	if(!nodes[1] || !airs[1] || (air1.get_moles(/datum/gas/oxygen) < 5 && air1.get_moles(/datum/gas/pluoxium) < 5)) // Turn off if the machine won't work.
 		on = FALSE
 		update_icon()
 		return
