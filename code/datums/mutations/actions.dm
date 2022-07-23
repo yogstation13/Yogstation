@@ -107,7 +107,8 @@
 	instability = 30
 	energy_coeff = 1
 	power_coeff = 1
-	
+	conflicts = list(/datum/mutation/human/cryokinesis)
+
 /datum/mutation/human/firebreath/modify()
 	if(power)
 		var/obj/effect/proc_holder/spell/aimed/firebreath/S = power

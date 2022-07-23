@@ -203,7 +203,7 @@
 	text_gain_indication = span_notice("Your skin begins to glow softly.")
 	instability = 5
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
-	var/glow = 2.5
+	var/glow = 3.5
 	var/range = 2.5
 	var/color 
 	power_coeff = 1
@@ -240,7 +240,7 @@
 	name = "Anti-Glow"
 	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
 	text_gain_indication = span_notice("Your light around you seems to disappear.")
-	glow = -3.5 //Slightly stronger, since negating light tends to be harder than making it.
+	glow = -3.5
 	conflicts = list(/datum/mutation/human/glow)
 	locked = TRUE
 
@@ -283,6 +283,7 @@
 	owner.dna.species.punchdamagelow += strength_punchpower
 	owner.dna.species.punchdamagehigh += strength_punchpower
 	owner.dna.species.punchstunthreshold += strength_punchpower //So we dont change the stun chance
+	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, src)	
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -291,6 +292,7 @@
 	owner.dna.species.punchdamagelow -= strength_punchpower
 	owner.dna.species.punchdamagehigh -= strength_punchpower
 	owner.dna.species.punchstunthreshold -= strength_punchpower
+	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)	
 //Yogs end
 
 /datum/mutation/human/insulated
@@ -301,6 +303,7 @@
 	text_lose_indication = span_notice("Your fingertips regain feeling.")
 	difficulty = 16
 	instability = 25
+	conflicts = list(/datum/mutation/human/shock, /datum/mutation/human/shock/far)
 
 /datum/mutation/human/insulated/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
