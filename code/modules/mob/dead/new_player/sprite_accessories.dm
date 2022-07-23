@@ -2174,7 +2174,7 @@
 //ETHEREAL FACE MARKINGS
 /datum/sprite_accessory/ethereal_mark
 	icon = 'icons/mob/mutant_bodyparts.dmi'
-	//color_src = MUTCOLORS
+	color_src = EYECOLOR
 
 /datum/sprite_accessory/ethereal_mark/eyes
 	name = "Eyes"
