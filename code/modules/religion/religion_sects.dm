@@ -372,7 +372,7 @@
 	qdel(offering)
 	return 
 	
-/**** The Honkmother sect, sacrifice bananas to feed your prank power. ****/
+/// The Honkmother sect, sacrifice bananas to feed your prank power. 
 
 /datum/religion_sect/honkmother
 	name = "The Honkmother"
@@ -380,7 +380,7 @@
 	convert_opener = "The Honkmother welcomes you to her to the party, prankster.<br>Sacrifice bananas to power our pranks and grant you favor."
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
-	desired_items = list(obj/item/reagent_containers/food/snacks/grown/banana)
+	desired_items = list(/obj/item/reagent_containers/food/snacks/grown/banana)
 	rites_list = list(/datum/religion_rites/holypie, /datum/religion_rites/honkabot, /datum/religion_rites/bananablessing)
 	altar_icon_state = "convertaltar-red"
 
