@@ -1,8 +1,0 @@
-author: " @tattax, Truzkawa, @Skrem7, Chubbygummibear"
-delete-after: true 
-changes: 
-  - rscadd: "added code that supports optional objectives"
-  - rscadd: "bloodsucker round-end report comes with epilogue blurbs based on how you did"
-  - tweak: "bloodsucker assigned objectives at spawn are \"optional\""
-  - tweak: "objectives you get for joining a clan through ranking up are NOT optional"
-  - tweak: "epic greentext is only achieved through finishing both primary and optional. only primary will net you a neutral ending"

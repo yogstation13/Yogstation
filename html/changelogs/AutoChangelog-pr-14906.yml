@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "plasma fixation will now properly heal dead people if its disease has necrotic metabolism"
