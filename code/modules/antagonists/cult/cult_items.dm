@@ -46,7 +46,7 @@
 	block_chance = 10
 	force_wielded = 12
 	force = 15
-	throwforce = 10
+	throwforce = 9
 	wound_bonus = -80
 	bare_wound_bonus = 30
 	hitsound = 'sound/weapons/bladeslice.ogg'
