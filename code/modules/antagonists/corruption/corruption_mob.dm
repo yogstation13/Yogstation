@@ -31,7 +31,7 @@
 		disease.try_infect(H, make_copy = FALSE)
 	if(rust_last_time_used + 5 SECONDS < world.time)
 		rust_last_time_used = world.time
-		playsound(user, 'sound/items/welder.ogg', 75, TRUE)
+		playsound(get_turf(src), 'sound/items/welder.ogg', 75, TRUE)
 		target.rust_heretic_act()
 
 /mob/living/simple_animal/hostile/corruption/Life(seconds, times_fired)
@@ -41,7 +41,7 @@
 		heal_bodypart_damage(2)
 	else if(prob(30))
 		turfo.rust_heretic_act()
-		playsound(user, 'sound/items/welder.ogg', 75, TRUE)
+		playsound(turfo, 'sound/items/welder.ogg', 75, TRUE)
 
 
 
