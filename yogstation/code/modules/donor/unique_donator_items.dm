@@ -111,7 +111,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 
 /datum/donator_gear/orca
 	name = "Megumus Dress"
-	ckey = "redmooogle"
+	ckey = "orcacora"
 	unlock_path = /obj/item/storage/box/megumu
 
 /datum/donator_gear/fatal_eyes
