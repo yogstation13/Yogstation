@@ -28502,12 +28502,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"pkT" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "pkV" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/showroomfloor,
@@ -29875,6 +29869,13 @@
 "pZd" = (
 /turf/open/floor/plating/asteroid/airless,
 /area/science/test_area)
+"pZo" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/obj/machinery/medical_kiosk,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "qaa" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -77703,7 +77704,7 @@ rtg
 jcz
 etE
 wZX
-pkT
+pZo
 bEM
 xyy
 jxk
