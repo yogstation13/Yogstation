@@ -336,7 +336,7 @@
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "commune"
 
-/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(mob/living/user,mob/user = usr)
+/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(list/targets, mob/user = usr)
 	if(!is_shadow(user))
 		to_chat(user, span_warning("You must be a shadowling to do that!"))
 		return
