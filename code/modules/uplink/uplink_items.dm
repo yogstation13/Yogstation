@@ -572,7 +572,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/bow/energy/syndicate
 	cost = 12
 	surplus = 25
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
