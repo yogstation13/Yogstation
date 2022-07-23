@@ -38,7 +38,7 @@
 			if(prob(4))
 				to_chat(affected_mob, span_danger("You feel your flesh decaying!"))
 				affected_mob.emote("scream")
-				if(affected_mob.get_damage_amount(CLONE) > 35)	
+				if(affected_mob.get_damage_amount(CLONE) < 35)	
 					affected_mob.adjustCloneLoss(3)		
 			if(prob(10))
 				to_chat(affected_mob, span_danger("You feel... not the same."))
@@ -56,7 +56,7 @@
 				affected_mob.vomit(30)	
 				affected_mob.Dizzy(10)
 			if(prob(4))                              ///They still have negative effects but they ignore it because they are already fucked up
-				if(affected_mob.get_damage_amount(CLONE) > 35)	
+				if(affected_mob.get_damage_amount(CLONE) < 35)	
 					affected_mob.adjustCloneLoss(3)		
 			if(prob(10))
 				affected_mob.Dizzy(5)
