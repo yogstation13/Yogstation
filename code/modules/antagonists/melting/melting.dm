@@ -24,9 +24,9 @@
 	attacktext = "glomps"
 	attack_sound = 'sound/effects/blobattack.ogg'
 	del_on_death = TRUE
-	/obj/effect/proc_holder/spell/targeted/mark/mark
-	/datum/action/innate/colorchange/colors
-	/obj/effect/proc_holder/spell/aimed/slime/slimeball
+	var/obj/effect/proc_holder/spell/targeted/mark/mark
+	var/datum/action/innate/colorchange/colors
+	var/obj/effect/proc_holder/spell/aimed/slime/slimeball
 
 /mob/living/simple_animal/hostile/melting/Initialize()
 	. = ..()
