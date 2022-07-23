@@ -95,6 +95,8 @@
 
 /turf/open/chasm/lavaland/get_chasm_turf()
 	var/turf/T = SSmapping.get_turf_below(src)
+	if(ismineralturf(T)) // Hijacking proc
+		T.ScrapeAway()
 	if(SSmapping.level_has_all_traits(T.z, list(ZTRAIT_MINING)) && SSmapping.level_has_all_traits(z, list(ZTRAIT_MINING)))
 		return T // Same planet below us
 
