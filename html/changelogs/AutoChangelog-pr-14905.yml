@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Fire breath mutation no longer can be given damaging explosions"
+  - tweak: "Fire breath mutation explosion radius reduced to 3 baseline"
+  - tweak: "Fire breath mutation cooldown reduced from 60 to 45 seconds"
