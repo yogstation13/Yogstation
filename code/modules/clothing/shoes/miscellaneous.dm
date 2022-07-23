@@ -547,6 +547,7 @@
 	xenoshoe = YES_DIGIT 
 	mutantrace_variation = MUTANTRACE_VARIATION
 
+
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
