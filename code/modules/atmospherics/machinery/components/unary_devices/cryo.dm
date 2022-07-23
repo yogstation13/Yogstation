@@ -202,13 +202,14 @@
 		return
 
 	var/robotic_limb_damage = 0 // brute and burn damage to robotic limbs
+	var/mob/living/carbon/C
 	if(iscarbon(mob_occupant))
-		var/mob/living/carbon/C = mob_occupant
+		C = mob_occupant
 		for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
 			robotic_limb_damage += limb.get_damage(FALSE)
 	
 	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
-		if(iscarbon(mob_occupant))
+		if(C)
 			if(C.all_wounds)
 				if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
 					treating_wounds = TRUE
