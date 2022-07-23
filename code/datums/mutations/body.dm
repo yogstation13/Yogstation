@@ -292,7 +292,7 @@
 	owner.physiology.punchdamagehigh_bonus -= strength_punchpower
 	owner.physiology.punchdamagelow_bonus -= strength_punchpower
 	owner.physiology.punchstunthreshold_bonus -= strength_punchpower
-  REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)	
+		REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)	
 
 //Yogs end
 
