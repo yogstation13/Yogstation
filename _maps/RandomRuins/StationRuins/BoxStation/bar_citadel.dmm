@@ -1285,6 +1285,19 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"SL" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "SZ" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
@@ -1439,15 +1452,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"Zf" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "Zr" = (
 /obj/structure/musician/piano{
 	icon_state = "piano"
@@ -1783,7 +1787,7 @@ JA
 tx
 Ci
 Yb
-Zf
+SL
 ZA
 Lq
 Lq
