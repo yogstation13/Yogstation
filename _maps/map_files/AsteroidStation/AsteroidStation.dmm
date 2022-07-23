@@ -137,6 +137,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
+"aaU" = (
+/obj/effect/decal/cleanable/glitter/blue,
+/mob/living/simple_animal/mouse/brown{
+	desc = "The immense sight of its jacked figure makes you feel the NEED to bench. Looks like it'll even spot for you! ";
+	name = "Gym Rat"
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/port)
 "aaV" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
@@ -23669,15 +23677,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
-"hDD" = (
-/obj/structure/weightmachine/weightlifter,
-/obj/effect/decal/cleanable/glitter/blue,
-/mob/living/simple_animal/mouse/brown{
-	desc = "This cute little guy just loves the taste of MONKEY ENERGY. Isn't he RIPPED?";
-	name = "Gym Rat"
-	},
-/turf/open/floor/carpet/royalblack,
-/area/maintenance/port)
 "hDL" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -52959,6 +52958,15 @@
 /obj/machinery/holopad,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
+"tAQ" = (
+/obj/structure/weightmachine/weightlifter,
+/obj/effect/decal/cleanable/glitter/blue,
+/mob/living/simple_animal/mouse/brown{
+	desc = "The immense sight of its jacked figure makes you feel the NEED to bench. Looks like it'll even spot for you! ";
+	name = "Gym Rat"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/maintenance/port)
 "tBa" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
@@ -58899,6 +58907,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"weJ" = (
+/obj/structure/weightmachine/stacklifter,
+/obj/effect/decal/cleanable/glitter/blue,
+/mob/living/simple_animal/mouse/brown{
+	desc = "The immense sight of its jacked figure makes you feel the NEED to bench. Looks like it'll even spot for you! ";
+	name = "Gym Rat"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
 "weO" = (
 /obj/machinery/camera{
 	c_tag = "Arrivals Bay 1 East";
@@ -60539,15 +60556,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
-"wPo" = (
-/obj/structure/weightmachine/stacklifter,
-/mob/living/simple_animal/mouse/brown{
-	desc = "This cute little guy just loves the taste of MONKEY ENERGY. Isn't he RIPPED?";
-	name = "Gym Rat"
-	},
-/obj/effect/decal/cleanable/glitter/blue,
-/turf/open/floor/plating,
-/area/maintenance/port)
 "wPx" = (
 /obj/machinery/camera{
 	c_tag = "Engineering Escape Pod";
@@ -76998,9 +77006,9 @@ aHv
 aHv
 qEB
 aJI
-wPo
+weJ
 jdx
-jCC
+aaU
 tEg
 aJI
 roB
@@ -77515,7 +77523,7 @@ nsK
 ifa
 ifa
 ifa
-jCC
+aaU
 aJI
 lPd
 fOc
@@ -78026,7 +78034,7 @@ aHv
 aHv
 aHv
 aJI
-hDD
+tAQ
 ifa
 ifa
 hGY
