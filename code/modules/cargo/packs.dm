@@ -1255,6 +1255,14 @@
 	contains = list(/obj/item/storage/firstaid/o2)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
+/datum/supply_pack/medical/firstaidadvanced_single
+	name = "Advanced Treatment Kit Single-Pack"
+	desc = "Contains one advanced first aid kit able to heal many advanced ailments."
+	cost = 600
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/advanced)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
 /datum/supply_pack/medical/medipen_twopak
 	name = "Medipen Two-Pak"
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
