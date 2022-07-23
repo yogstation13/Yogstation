@@ -892,7 +892,7 @@
 
 /obj/effect/proc_holder/spell/targeted/lesser_glare/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
-		if(!caller.getorganslot(ORGAN_SLOT_EYES))
+		if(!user.getorganslot(ORGAN_SLOT_EYES))
 			to_chat(user, span_warning("You need eyes to glare!"))
 			revert_cast()
 			return
