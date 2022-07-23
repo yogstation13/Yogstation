@@ -501,11 +501,15 @@
 	user.put_in_hands(plating)
 
 	name = initial(name)
-	desc = initial(desc)
 	armor = initial(armor)
 	slowdown = initial(slowdown)
 	w_class = initial(w_class)
 	plating = null
+
+/obj/item/clothing/head/helmet/plated/examine(mob/user)
+	.=..()
+	if(plating)
+		. += span_info("It has [plating] slotted.")
 
 /obj/item/clothing/head/helmet/plated/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -522,7 +526,6 @@
 	var/obj/item/kevlar_plating/K = I
 
 	name = "[K.name_set] plated helmet"
-	desc += K.desc_add
 	slowdown = K.slowdown_set
 	armor = K.armor_set
 	w_class = WEIGHT_CLASS_BULKY
