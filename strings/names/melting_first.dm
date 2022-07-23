@@ -1,0 +1,11 @@
+Spreading
+Disolving
+Smouldering
+Spicy
+Insatiable
+Ceaseless
+Yearning
+Sweltering
+Scorching
+Blissful
+Coagulating
