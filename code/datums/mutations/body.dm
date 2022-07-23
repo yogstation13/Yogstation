@@ -280,19 +280,20 @@
 	if(..())
 		return
 	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1 //Normally +1, strength chromosome increases it to +2
-	owner.dna.species.punchdamagelow += strength_punchpower
-	owner.dna.species.punchdamagehigh += strength_punchpower
-	owner.dna.species.punchstunthreshold += strength_punchpower //So we dont change the stun chance
+	owner.physiology.punchdamagehigh_bonus += strength_punchpower
+	owner.physiology.punchdamagelow_bonus += strength_punchpower
+	owner.physiology.punchstunthreshold_bonus += strength_punchpower //So we dont change the stun chance
 	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, src)	
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1
-	owner.dna.species.punchdamagelow -= strength_punchpower
-	owner.dna.species.punchdamagehigh -= strength_punchpower
-	owner.dna.species.punchstunthreshold -= strength_punchpower
+	owner.physiology.punchdamagehigh_bonus -= strength_punchpower
+	owner.physiology.punchdamagelow_bonus -= strength_punchpower
+	owner.physiology.punchstunthreshold_bonus -= strength_punchpower
 	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)	
+
 //Yogs end
 
 /datum/mutation/human/insulated

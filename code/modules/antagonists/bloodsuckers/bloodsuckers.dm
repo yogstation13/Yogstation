@@ -170,6 +170,10 @@
 		all_powers.Grant(new_body)
 	var/old_punchdamagelow
 	var/old_punchdamagehigh
+	var/old_punchstunthreshold
+	var/old_species_punchdamagelow
+	var/old_species_punchdamagehigh
+	var/old_species_punchstunthreshold
 	if(ishuman(old_body))
 		var/mob/living/carbon/human/old_user = old_body
 		var/datum/species/old_species = old_user.dna.species
@@ -177,16 +181,23 @@
 		//Keep track of what they were
 		old_punchdamagelow = old_species.punchdamagelow
 		old_punchdamagehigh = old_species.punchdamagehigh
+		old_punchstunthreshold = old_species.punchstunthreshold
 		//Then reset them
 		old_species.punchdamagelow = initial(old_species.punchdamagelow)
 		old_species.punchdamagehigh = initial(old_species.punchdamagehigh)
+		old_species.punchstunthreshold = initial(old_species.punchstunthreshold)
+		//Then save the new, old, original species values so we can use them in the next part. This is starting to get convoluted.
+		old_species_punchdamagelow = old_species.punchdamagelow
+		old_species_punchdamagehigh = old_species.punchdamagehigh
+		old_species_punchstunthreshold = old_species.punchstunthreshold
 	if(ishuman(new_body))
 		var/mob/living/carbon/human/new_user = new_body
 		var/datum/species/new_species = new_user.dna.species
 		new_species.species_traits += DRINKSBLOOD
-		//Give old punch damage values
-		new_species.punchdamagelow = old_punchdamagelow
-		new_species.punchdamagehigh = old_punchdamagehigh
+		//Adjust new species punch damage
+		new_species.punchdamagelow += (old_punchdamagelow - old_species_punchdamagelow)			//Takes whatever DIFFERENCE you had between your punch damage and that of the baseline species
+		new_species.punchdamagehigh += (old_punchdamagehigh - old_species_punchdamagehigh)		//and adds it to your new species, thus preserving whatever bonuses you got
+		new_species.punchstunthreshold += (old_punchstunthreshold - old_species_punchstunthreshold)
 
 	//Give Bloodsucker Traits
 	for(var/all_traits in bloodsucker_traits)
@@ -426,6 +437,7 @@
 		user.dna?.remove_all_mutations()
 		user_species.punchdamagelow += 1 //lowest possible punch damage - 0
 		user_species.punchdamagehigh += 1 //highest possible punch damage - 9
+		user_species.punchstunthreshold += 1	//To not change rng knockdowns
 	/// Give Bloodsucker Traits
 	for(var/all_traits in bloodsucker_traits)
 		ADD_TRAIT(owner.current, all_traits, BLOODSUCKER_TRAIT)
@@ -557,6 +569,7 @@
 		user_species.punchdamagelow += 0.5
 		// This affects the hitting power of Brawn.
 		user_species.punchdamagehigh += 0.5
+		user_species.punchstunthreshold += 0.5
 
 	// We're almost done - Spend your Rank now.
 	bloodsucker_level++
