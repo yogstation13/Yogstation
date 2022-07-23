@@ -204,7 +204,7 @@ obj/effect/proc_holder/swipe
 	heat_protection = ARMS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = LAVA_PROOF | FIRE_PROOF //they are from lavaland after all
-	armor = list(melee = 25, bullet = 25, laser = 15, energy = 25, bomb = 100, bio = 0, rad = 0, fire = 100, acid = 100)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 15, ENERGY = 25, BOMB = 100, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 
 /obj/item/clothing/gloves/gauntlets/equipped(mob/user, slot)
 	. = ..()
