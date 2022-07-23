@@ -4,6 +4,7 @@
 	can_hijack = HIJACK_HIJACKER
 
 /datum/antagonist/corruption/on_gain()
+	. = ..()
 	to_chat(owner, span_userdanger("You are the Corrution Avatar!"))
 	forge_objectives()
 
@@ -23,6 +24,7 @@
 	var/mob/living/corruption_avatar
 
 /datum/antagonist/corrupted/on_gain()
+	. = ..()
 	to_chat(owner, span_userdanger("You have been corrupted!"))
 	forge_objectives()
 

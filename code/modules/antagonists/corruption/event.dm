@@ -36,8 +36,8 @@
 	player_mind.assigned_role = "Corruption Avatar"
 	player_mind.special_role = "Corruption Avatar"
 	player_mind.add_antag_datum(/datum/antagonist/corruption)
-	playsound(S, 'yogstation/sound/creatures/progenitor_attack.ogg', 50, 1, -1)
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into Corruption Avatar by an event.")
-	log_game("[key_name(S)] was spawned as Corruption Avatar by an event.")
-	spawned_mobs += S
+	playsound(C, 'yogstation/sound/creatures/progenitor_attack.ogg', 50, 1, -1)
+	message_admins("[ADMIN_LOOKUPFLW(C)] has been made into Corruption Avatar by an event.")
+	log_game("[key_name(C)] was spawned as Corruption Avatar by an event.")
+	spawned_mobs += C
 	return SUCCESSFUL_SPAWN

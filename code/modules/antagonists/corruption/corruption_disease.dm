@@ -29,7 +29,7 @@
 				to_chat(affected_mob, span_danger("You feel your flesh decaying!"))
 				affected_mob.emote("scream")
 				if(affected_mob.get_damage_amount(CLONE) > 25)	
-					adjustCloneLoss(2)		
+					affected_mob.adjustCloneLoss(2)		
 			if(prob(10))
 				to_chat(affected_mob, span_danger("You feel darkness spread through your mind."))
 			if(prob(5))
@@ -39,7 +39,7 @@
 				to_chat(affected_mob, span_danger("You feel your flesh decaying!"))
 				affected_mob.emote("scream")
 				if(affected_mob.get_damage_amount(CLONE) > 35)	
-					adjustCloneLoss(3)		
+					affected_mob.adjustCloneLoss(3)		
 			if(prob(10))
 				to_chat(affected_mob, span_danger("You feel... not the same."))
 				affected_mob.Dizzy(5)
@@ -55,9 +55,9 @@
 				affected_mob.emote("scream")
 				affected_mob.vomit(30)	
 				affected_mob.Dizzy(10)
-			if(prob(4))                              ///Funny diseased dudes
+			if(prob(4))                              ///They still have negative effects but they ignore it because they are already fucked up
 				if(affected_mob.get_damage_amount(CLONE) > 35)	
-					adjustCloneLoss(3)		
+					affected_mob.adjustCloneLoss(3)		
 			if(prob(10))
 				affected_mob.Dizzy(5)
 			if(prob(5))
@@ -67,5 +67,5 @@
 
 /datum/disease/corruption/cure(add_resistance)
 	affected_mob.cure_husk()
-	affected_mob.remove_antag_datum(/datum/antagonist/corrupted)
+	affected_mob.mind.remove_antag_datum(/datum/antagonist/corrupted)
 	. = ..()
