@@ -278,7 +278,6 @@
 /mob/living/carbon/human/get_biological_state()
 	return dna.species.get_biological_state()
 
-
 /mob/living/carbon/human/proc/get_punchdamagehigh()	//Gets the total maximum punch damage
 	return dna.species.punchdamagehigh + physiology.punchdamagehigh_bonus
 
