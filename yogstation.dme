@@ -1527,6 +1527,7 @@
 #include "code\modules\antagonists\corruption\corruption_antag.dm"
 #include "code\modules\antagonists\corruption\corruption_disease.dm"
 #include "code\modules\antagonists\corruption\corruption_mob.dm"
+#include "code\modules\antagonists\corruption\event.dm"
 #include "code\modules\antagonists\creep\creep.dm"
 #include "code\modules\antagonists\cult\blood_magic.dm"
 #include "code\modules\antagonists\cult\cult.dm"

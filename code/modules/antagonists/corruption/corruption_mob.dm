@@ -19,7 +19,7 @@
 	spacewalk = TRUE
 	gold_core_spawnable = FALSE
 	faction = list("corruption")
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0 "min_n2" = 0, "max_n2" = 0)
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	var/rust_last_time_used
 
 /mob/living/simple_animal/hostile/corruption/AttackingTarget()
