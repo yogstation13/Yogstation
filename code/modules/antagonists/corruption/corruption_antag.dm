@@ -5,7 +5,7 @@
 
 /datum/antagonist/corruption/on_gain()
 	to_chat(owner, span_userdanger("You are the Corrution Avatar!"))
-    forge_objectives()
+	forge_objectives()
 
 /datum/antagonist/corruption/proc/forge_objectives()
 	var/datum/objective/new_objective = new
@@ -20,11 +20,11 @@
 /datum/antagonist/corrupted
 	name = "Corrupted"
 	show_name_in_check_antagonists = TRUE
-    var/mob/living/corruption_avatar
+	var/mob/living/corruption_avatar
 
 /datum/antagonist/corrupted/on_gain()
 	to_chat(owner, span_userdanger("You have been corrupted!"))
-    forge_objectives()
+	forge_objectives()
 
 /datum/antagonist/corrupted/proc/forge_objectives()
 	var/datum/objective/new_objective = new
@@ -34,4 +34,4 @@
 	new_objective.explanation_text = "Serve [corruption_avatar] in their mission."
 
 /datum/antagonist/corrupted/farewell()
-    to_chat(owner, span_userdanger("You are no longer corrupted. You feel... free."))
+	to_chat(owner, span_userdanger("You are no longer corrupted. You feel... free."))
