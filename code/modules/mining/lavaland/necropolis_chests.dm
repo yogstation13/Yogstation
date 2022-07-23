@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,24)
+	var/loot = rand(1,25)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -70,6 +70,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/rune_scimmy(src)
 		if(24)
 			new /obj/item/dnainjector/dwarf(src)
+		if(25)
+			new /obj/item/clothing/gloves/gauntlets(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
