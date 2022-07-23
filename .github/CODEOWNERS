@@ -12,7 +12,7 @@
 # Teams
 # Placed first so specific files can be owned by others
 *.dmi @yogstation13/art
-*.dm @yogstation/code
+*.dm @yogstation13/code
 *.dmm @yogstation13/map
 
 #HeadDev
