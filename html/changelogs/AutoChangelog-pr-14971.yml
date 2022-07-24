@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Empty plate armor is now in SecTech instead of SecDrobe"
