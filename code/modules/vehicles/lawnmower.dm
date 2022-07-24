@@ -24,7 +24,6 @@
 	. = ..()
 	mowable = typecacheof(default_mowables)
 	create_reagents(100, OPENCONTAINER)
-	mow_lawn() //so if we start on a tile we could mow, pre-mow it
 	reagents.add_reagent(/datum/reagent/oil, 100)
 	// .list_reagents = list(/datum/reagent/oil = 100) 
 	// for(var/reagent_id in consumed_reagents_list)	//we don't need to do the check since we control what it inits with
@@ -110,12 +109,17 @@
 			fuelNeeded = 1
 	if(reagents.has_reagent(/datum/reagent/oil))
 		fuelEfficiencyCoef *= 1
+		movedelay = 2.2
+	if(reagents.has_reagent(/datum/reagent/nitrous_oxide))
+		fuelEfficiencyCoef *= 2.2
+		movedelay = 0.5
 	if(reagents.has_reagent(/datum/reagent/fuel))
 		fuelEfficiencyCoef *= 0.5
+		movedelay = 1.2
 	if(reagents.has_reagent(/datum/reagent/consumable/ethanol))
 		fuelEfficiencyCoef *= 2 // alcohol as a fuel sucks ass
+		movedelay = 1 //but is more energy dense
 	if(reagents.has_reagent(/datum/reagent/toxin/plasma))
-		//if(active) //i think this is redundant because usefuel is only when active
 		explosion(get_turf(src), 0, 0, 4, flame_range = 3, smoke = TRUE)
 		qdel(src)
 	reagents.remove_all(fuelNeeded * fuelEfficiencyCoef)
@@ -123,16 +127,10 @@
 		hasfuel = FALSE
 	
 /obj/vehicle/ridden/lawnmower/proc/ToggleEngine()
-	// if(reagents.total_volume > 0)
-	// 	hasfuel = TRUE
 	if(active)
 		active = FALSE
 		soundloop.stop()
 		return
-	// if(active && !hasfuel || key_type && !is_key(inserted_key))
-	// 	active = FALSE
-	// 	soundloop.stop() //put fuel and the key in it first ya goof
-	// 	return
 	if(!active && hasfuel && key_type && is_key(inserted_key))
 		active = TRUE
 		START_PROCESSING(SSobj, src)
@@ -165,27 +163,37 @@
 	UseFuel(MOWER_MOVE)
 	mow_lawn() //https://www.youtube.com/watch?v=kMxzkBdzTNU
 
+/obj/vehicle/ridden/lawnmower/Bump(atom/A)
+	. = ..()
+	if(iscarbon(A))
+		var/mob/living/carbon/C = A
+		//knocked over
+		if(obj_flags & EMAGGED)
+			C.Paralyze(20) 
+		else
+			playsound(src, 'sound/machines/buzz-sigh.ogg', 50)
+
 /obj/vehicle/ridden/lawnmower/proc/mow_living(mob/living/L)
 
-	var/mob/living/carbon/H
-	if(has_buckled_mobs())
-		H = buckled_mobs[1]
-
-	for(L in loc)
-		if(iscarbon(L) || isanimal(L))
-			if(L == H)
-				return
-			if(L.stat == CONSCIOUS)
-				L.say("ARRRRRRRRRRRGH!!!", forced="recycler grinding")
-			add_mob_blood(L)
-		else
-			return
-
-	// Instantly lie down, also go unconscious from the pain, before you die.
-	L.Unconscious(100)
-	L.adjustBruteLoss(400)
-
-/obj/vehicle/ridden/lawnmower/proc/chop_living(mob/living/L)
+	// for(var/mob/living/carbon/H)
+	// 	if(ishuman(H))
+	// 		H = buckled_mobs
+	// for(L in loc)
+	if(iscarbon(L))
+		if(L.stat == CONSCIOUS)
+			L.say("ARRRRRRRRRRRGH!!!", forced = "recycler grinding")
+		add_mob_blood(L)
+		if(obj_flags & EMAGGED & !bladeattached)	// Instantly lie down, also go unconscious from the pain, before you die.
+			L.Unconscious(100)
+			L.apply_damage(150, BRUTE)
+		if(obj_flags & EMAGGED & bladeattached)
+			L.Unconscious(100)
+			L.apply_damage(600, BRUTE)
+			var/mob/living/carbon/CM = L
+			for(var/obj/item/bodypart/bodypart in CM.bodyparts)
+				if(bodypart.body_part != CHEST)
+					if(bodypart.dismemberable)
+						bodypart.dismember()
 
 /obj/vehicle/ridden/lawnmower/upgraded
 	bladeattached = TRUE
@@ -215,14 +223,12 @@
 			qdel(S)
 			mowed = TRUE //still want this here so I can make it make a different sound for actually mowing
 			UseFuel(MOWER_MOW)
-	if(obj_flags && EMAGGED && !bladeattached)
-		for(var/mob/living/D)
-			mow_living()
-			mowed = TRUE
-	if(obj_flags && EMAGGED && bladeattached)
-		for(var/mob/living/D)
-			chop_living()
-			mowed = TRUE
+	if(obj_flags & EMAGGED)
+		var/mob/living/R = buckled_mobs[1]
+		for(var/mob/living/D in loc)
+			if(D != R)
+				mow_living(D)
+				mowed = TRUE
 
 /obj/vehicle/ridden/lawnmower/proc/upgrade()
 	mowable = typecacheof(default_mowables + upgraded_mowables) //oh hey turns out energy blades CAN cut steel- I mean space vines.
