@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(449 modules,
-    707/7281 macros, 9.7%)</aside></h3>
+<aside>(450 modules,
+    707/7284 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -136,6 +136,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/datums/components/refundable.html" title="code&#x2F;datums&#x2F;components&#x2F;refundable">refundable</a></li>
     <li><a href="code/datums/components/religious_tool.html" title="code&#x2F;datums&#x2F;components&#x2F;religious_tool">religious_tool</a></li>
     <li><a href="code/datums/components/riding.html" title="code&#x2F;datums&#x2F;components&#x2F;riding">riding</a></li>
+    <li><a href="code/datums/components/surgery_bed.html" title="code&#x2F;datums&#x2F;components&#x2F;surgery_bed">surgery_bed</a></li>
     <li><a href="code/datums/components/uplink.html" title="code&#x2F;datums&#x2F;components&#x2F;uplink">uplink</a></li>
     </ul></li>
     <li><a href="code/datums/datum.html" title="code&#x2F;datums&#x2F;datum">datum</a></li>
@@ -696,7 +697,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(486 detailed/1117 documented/25207 total, 4.4%)</aside></h3>
+<aside>(489 detailed/1122 documented/25280 total, 4.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -882,6 +883,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
 Refundable items are expected to register COMSIG_ITEM_REFUND themselves.</li>
     <li><a href="datum/component/religious_tool.html" title="&#x2F;datum&#x2F;component&#x2F;religious_tool">religious_tool</a> - Allows the parent to act similarly to the Altar of Gods with modularity. Invoke and Sect Selection is done via attacking with a bible. This means you cannot sacrifice Bibles (you shouldn't want to do this anyways although now that I mentioned it you probably will want to).</li>
     <li><span class="no-substance">riding&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;riding&#x2F;human">human</span> - Yes, I said humans. No, this won't end well...</li>
+    <li><a href="datum/component/surgery_bed.html" title="&#x2F;datum&#x2F;component&#x2F;surgery_bed">surgery_bed</a> - A component for surgery beds and those that act like them, handles patient information, success chance, and available surgeries</li>
     <li><a href="datum/component/uplink.html" title="&#x2F;datum&#x2F;component&#x2F;uplink">syndicate uplink</a> - Uplinks</li>
     </ul></li>
     <li class="has-children"><span class="no-substance">computer_file&#x2F;</span><a href="datum/computer_file/program.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program">program</a><ul class="index-tree">
@@ -1040,7 +1042,7 @@ DONKPOCCKETS</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;dna">dna</span> - DNA DATUM</li>
     <li class="has-children"><a href="datum/donator_gear.html" title="&#x2F;datum&#x2F;donator_gear">Base type donator item</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;donator_gear&#x2F;beanie">Beanie</span> - Generic donator hats, ckey agnostic.</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;donator_gear&#x2F;fatal_eyes">Green Cosmic Bedsheet (FatalEyes)</span> - Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;donator_gear&#x2F;orca">Megumus Dress</span> - Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)</li>
     </ul></li>
     <li><a href="datum/donator_gear_resources.html" title="&#x2F;datum&#x2F;donator_gear_resources">Unique Donator Items Controller</a></li>
     <li class="has-children"><a href="datum/dynamic_ruleset.html" title="&#x2F;datum&#x2F;dynamic_ruleset">dynamic_ruleset</a><ul class="index-tree">
@@ -1315,6 +1317,7 @@ All of this is passed to the Request Console UI in order to present in organized
     <li><span class="no-substance" title="&#x2F;datum&#x2F;status_effect&#x2F;firecookie">firecookie</span> - CONSUMING EXTRACTS</li>
     <li><a href="datum/status_effect/frenzy.html" title="&#x2F;datum&#x2F;status_effect&#x2F;frenzy">Status effect</a> - This is the status effect given to Bloodsuckers in a Frenzy
 This deals with everything entering/exiting Frenzy is meant to deal with.</li>
+    <li><span class="no-substance">incapacitating&#x2F;</span><a href="datum/status_effect/incapacitating/stasis.html" title="&#x2F;datum&#x2F;status_effect&#x2F;incapacitating&#x2F;stasis">stasis</a></li>
     <li><a href="datum/status_effect/limp.html" title="&#x2F;datum&#x2F;status_effect&#x2F;limp">limp</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;status_effect&#x2F;masquerade">Status effect</span> - This is what the Masquerade power gives, handles their bonuses and gives them a neat icon to tell them they're on Masquerade.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;status_effect&#x2F;stabilized">stabilized</span> - STABILIZED EXTRACTS</li>
@@ -1566,10 +1569,12 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance">targeted&#x2F;</span><a href="obj/effect/proc_holder/spell/targeted/fire_sworn.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;targeted&#x2F;fire_sworn">Oath of Fire</a></li>
     </ul></li>
     </ul></li>
-    <li><a href="obj/effect/randomdrink.html" title="&#x2F;obj&#x2F;effect&#x2F;randomdrink">randomdrink</a></li>
-    <li><a href="obj/effect/randomfood.html" title="&#x2F;obj&#x2F;effect&#x2F;randomfood">randomfood</a></li>
     <li><a href="obj/effect/reality_smash.html" title="&#x2F;obj&#x2F;effect&#x2F;reality_smash">&#x2F;improper reality smash</a></li>
-    <li><span class="no-substance">spawner&#x2F;lootdrop&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;spawner&#x2F;lootdrop&#x2F;lavaland_surface_ufo_crash">alien tile</span> - Loot Spawner For UFO</li>
+    <li class="has-children"><span class="no-substance">spawner&#x2F;</span><span title="&#x2F;obj&#x2F;effect&#x2F;spawner&#x2F;lootdrop">lootdrop</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;spawner&#x2F;lootdrop&#x2F;lavaland_surface_ufo_crash">alien tile</span> - Loot Spawner For UFO</li>
+    <li><a href="obj/effect/spawner/lootdrop/randomdrink.html" title="&#x2F;obj&#x2F;effect&#x2F;spawner&#x2F;lootdrop&#x2F;randomdrink">randomdrink</a></li>
+    <li><a href="obj/effect/spawner/lootdrop/randomfood.html" title="&#x2F;obj&#x2F;effect&#x2F;spawner&#x2F;lootdrop&#x2F;randomfood">randomfood</a></li>
+    </ul></li>
     <li><a href="obj/effect/sunlight.html" title="&#x2F;obj&#x2F;effect&#x2F;sunlight">sunlight</a> - Over Time, tick down toward a &quot;Solar Flare&quot; of UV buffeting the station. This period is harmful to vamps.</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;turf_decal">turf_decal</span><ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;turf_decal&#x2F;tile">tile</span><ul class="index-tree">
@@ -1773,6 +1778,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy&#x2F;xray">X-ray laser gun</span> - X-ray gun</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;medbeam">medbeam</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;medbeam&#x2F;arm">medical beamgun arm</span> - Arm Version</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;medbeam&#x2F;mech">mech</span> - Mech Version</li>
     <li class="has-children"><a href="obj/item/gun/medbeam/uber.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;medbeam&#x2F;uber">augmented medical beamgun</a> - I AM ZE ÃBERMENSCH<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;medbeam&#x2F;uber&#x2F;precharged">fully-charged augmented medical beamgun</span> - Fully charged for debugging/bus purposes</li>
@@ -1815,6 +1821,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;wormhole_generator">mounted wormhole generator</span> - WORMHOLE GENERATOR</li>
     </ul></li>
     </ul></li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;medbeam_arm">medical beamgun arm</span> - Just a placeholder until its put on as to not let people use it when its detached</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;melee">melee</span><ul class="index-tree">
     <li><a href="obj/item/melee/baton.html" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;baton">stun baton</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;melee&#x2F;curator_whip">curator&#x27;s whip</span> - Simple whip that does additional damage(8 brute to be exact) to simple animals</li>
@@ -1966,6 +1973,7 @@ Given to Nuke Ops members.</li>
     </ul></li>
     </ul></li>
     <li><a href="obj/item/relic.html" title="&#x2F;obj&#x2F;item&#x2F;relic">strange object</a> - SPECIAL ITEMS</li>
+    <li><a href="obj/item/research_notes.html" title="&#x2F;obj&#x2F;item&#x2F;research_notes">research notes</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;resonator">resonator</span> - Resonator</li>
     <li><a href="obj/item/robot_module.html" title="&#x2F;obj&#x2F;item&#x2F;robot_module">Default</a></li>
     <li><a href="obj/item/robot_suit.html" title="&#x2F;obj&#x2F;item&#x2F;robot_suit">cyborg endoskeleton</a></li>
@@ -2241,7 +2249,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/527078fe5b72028ba118a900cf6b8ea8bd29f42b">527078f</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/e5173e8fd643398c612d3133a4c94f38949c6866">e5173e8</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
