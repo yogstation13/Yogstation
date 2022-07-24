@@ -805,7 +805,7 @@
 	item_state = "fannypack_yellow"
 
 /obj/item/storage/belt/sabre
-	name = "sabre sheath"
+	name = "officer's sheath"
 	desc = "An ornate sheath designed to hold an officer's blade."
 	icon_state = "sheath"
 	item_state = "sheath"
@@ -850,6 +850,47 @@
 /obj/item/storage/belt/sabre/PopulateContents()
 	new /obj/item/melee/sabre(src)
 	update_icon()
+
+/obj/item/storage/belt/sabre/leather
+	name = "leather sheath"
+	desc = "A leather sheath designed to hold a sword."
+	icon_state = "sheath"
+	item_state = "sheath"
+
+/obj/item/storage/belt/sabre/leather/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 1
+	STR.rustle_sound = FALSE
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.set_holdable(list(
+		/obj/item/melee/cutlass,
+		/obj/item/twohanded/vibro_weapon,
+		/obj/item/katana,
+		/obj/item/sord,
+		/obj/item/claymore,
+		/obj/item/melee/cultblade
+		))
+
+/obj/item/storage/belt/sabre/leather/update_icon()
+	icon_state = "sheath"
+	item_state = "sheath"
+	if(contents.len)
+		icon_state += "-sabre"
+		item_state += "-sabre"
+	if(loc && isliving(loc))
+		var/mob/living/L = loc
+		L.regenerate_icons()
+	..()
+
+/obj/item/storage/belt/sabre/leather/PopulateContents()
+	return
+
+/obj/item/storage/belt/sabre/leather/goliath
+	name = "goliath sheath"
+	desc = "A goliath hide and leather sheath designed to hold a sword."
+	icon_state = "sheath"
+	item_state = "sheath"
 
 /obj/item/storage/belt/multi
 	name = "multi-belt"

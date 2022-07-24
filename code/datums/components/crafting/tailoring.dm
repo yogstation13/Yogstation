@@ -578,3 +578,13 @@
 				/obj/item/stack/sheet/animalhide/goliath_hide = 1)
 	category = CAT_APPAREL
 	subcategory = CAT_EQUIPMENT
+
+/datum/crafting_recipe/goliathsheath
+	name = "Goliath Sheath"
+	result = /obj/item/storage/belt/sabre/leather/goliath
+	time = 15 SECONDS
+	reqs = list(/obj/item/stack/sheet/leather = 4,
+				/obj/item/stack/sheet/sinew = 1,
+				/obj/item/stack/sheet/animalhide/goliath_hide = 4)
+	category = CAT_APPAREL
+	subcategory = CAT_EQUIPMENT
