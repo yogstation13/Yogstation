@@ -422,11 +422,15 @@
 	user.put_in_hands(plating)
 
 	name = initial(name)
-	desc = initial(desc)
 	armor = initial(armor)
 	slowdown = initial(slowdown)
 	w_class = initial(w_class)
 	plating = null
+
+/obj/item/clothing/suit/armor/plated/examine(mob/user)
+	.=..()
+	if(plating)
+		. += span_info("It has [plating] slotted.")
 
 /obj/item/clothing/suit/armor/plated/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -443,7 +447,6 @@
 	var/obj/item/kevlar_plating/K = I
 
 	name = "[K.name_set] plated armor vest"
-	desc += K.desc_add
 	slowdown = K.slowdown_set
 	armor = K.armor_set
 	w_class = WEIGHT_CLASS_BULKY
@@ -470,7 +473,6 @@
 	icon_state = "mki"
 	force = 2
 	var/name_set = "debug"
-	var/desc_add = " It has incredibly robust pieces of adminium slotted into it."
 	var/slowdown_set = 0 // Slowdown value to set on the vest, for reference a hardsuit has "1" slowdown
 	var/armor_set = list( // Armor value to set on the vest
 		MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 100)
@@ -479,7 +481,6 @@
 	name = "MK.I bluespace plating"
 	desc = "Incredibly light bluespace-infused armor plating that offers great movement while also providing some protection."
 	name_set = "MK.I bluespace"
-	desc_add = "\nIt has MK.I bluespace plates slotted into it."
 	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
 	armor_set = list( // Slightly worse than default armor
 		MELEE = 20, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 40, WOUND = 10)
@@ -490,7 +491,6 @@
 	icon_state = "mkii"
 	force = 4
 	name_set = "MK.II ceramic"
-	desc_add = "\nIt has MK.II ceramic plates slotted into it."
 	slowdown_set = 0
 	armor_set = list( // Slightly better than default armor
 		MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
@@ -501,7 +501,6 @@
 	icon_state = "mkiii"
 	force = 6
 	name_set = "MK.III plasteel"
-	desc_add = "\nIt has MK.III plasteel plates slotted into it."
 	slowdown_set = 0.15 // Slow
 	armor_set = list( // Robust
 		MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 60, ACID = 60, WOUND = 35)
@@ -513,7 +512,6 @@
 	force = 8
 	name_set = "MK.IV titanium"
 	w_class = WEIGHT_CLASS_BULKY
-	desc_add = "\nIt has MK.IV titanium plates slotted into it."
 	slowdown_set = 0.4 // Very slow
 	armor_set = list( // Walking tank
 		MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 75, ACID = 75, WOUND = 50)
