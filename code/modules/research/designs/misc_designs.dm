@@ -467,6 +467,46 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/platingmki
+	name = "MK.I bluespace plating"
+	desc = "Plating fitted for a plated vest or helmet. Makes you faster, but gives less armor."
+	id = "platingmki"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 10000, /datum/material/silver = 5000, /datum/material/plastic = 5000, /datum/material/bluespace = 1500)
+	build_path = /obj/item/kevlar_plating/mki
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkii
+	name = "MK.II ceramic plating"
+	desc = "Plating fitted for a plated vest or helmet. Better than what you get at the start of the shift."
+	id = "platingmkii"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/silver = 5000, /datum/material/plasma = 7500)
+	build_path = /obj/item/kevlar_plating/mkii
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkiii
+	name = "MK.III plasteel plating"
+	desc = "Plating fitted for a plated vest or helmet. Makes you slower, but gives more armor."
+	id = "platingmkiii"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 7500, /datum/material/gold = 5000, /datum/material/uranium = 2500, /datum/material/plasma = 7500)
+	build_path = /obj/item/kevlar_plating/mkiii
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkiv
+	name = "MK.IV titanium plating"
+	desc = "Plating fitted for a plated vest or helmet. Turns you into a walking tank."
+	id = "platingmkiv"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 40000, /datum/material/titanium = 30000, /datum/material/gold = 15000, /datum/material/diamond = 15000)
+	build_path = /obj/item/kevlar_plating/mkiv
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /////////////////////////////////////////
 /////////////Security////////////////////
 /////////////////////////////////////////

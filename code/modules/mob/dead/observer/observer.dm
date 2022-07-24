@@ -807,8 +807,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				remove_verb(src, /mob/dead/observer/verb/possess)
 
 /mob/dead/observer/reset_perspective(atom/A)
-	if(UO)
-		qdel(UO)
+	src.actions -= UO
 	if(client)
 		if(ismob(client.eye) && (client.eye != src))
 			cleanup_observe()
@@ -861,7 +860,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			observetarget = mob_eye
 		if(!UO)
 			UO = new // Convinent way to unobserve
-			UO.Grant(src)
+		UO.Grant(src)
 
 /datum/action/unobserve
 	name = "Stop Observing"
