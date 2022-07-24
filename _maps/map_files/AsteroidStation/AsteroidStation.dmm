@@ -23741,6 +23741,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"hEy" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/quantumpad{
+	map_pad_id = "bridgetoai";
+	map_pad_link_id = "aitobridge"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/carpet/red,
+/area/bridge)
 "hEY" = (
 /obj/machinery/computer/secure_data{
 	dir = 8
@@ -25194,22 +25210,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"ihn" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/quantumpad{
-	map_pad_id = "bridgeetoai";
-	map_pad_link_id = "aitobridge"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/carpet/red,
-/area/bridge)
 "ihr" = (
 /obj/structure/table/reinforced,
 /obj/item/radio/off{
@@ -86595,7 +86595,7 @@ flW
 oRY
 rGh
 nUk
-ihn
+hEy
 tjP
 ciW
 pPl
