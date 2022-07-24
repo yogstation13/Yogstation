@@ -572,7 +572,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/bow/energy/syndicate
 	cost = 12
 	surplus = 25
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
@@ -1621,6 +1621,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 50
+	illegal_tech = FALSE
 
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
@@ -2257,6 +2258,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 40
+	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
