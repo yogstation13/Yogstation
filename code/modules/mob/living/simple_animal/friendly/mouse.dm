@@ -62,14 +62,14 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	icon_dead = "mouse_[body_color]_dead"
 
 /mob/living/simple_animal/mouse/proc/splat()
-	if(!key)
-		src.health = 0
-		src.icon_dead = "mouse_[body_color]_splat"
-		death()
-	else
+	if(key)
 		adjustHealth(rand(7,12))
 		if(health <= 0)
 			src.icon_dead = "mouse_[body_color]_splat"
+	else
+		src.health = 0
+		src.icon_dead = "mouse_[body_color]_splat"
+		death()
 
 /mob/living/simple_animal/mouse/death(gibbed, toast)
 	GLOB.mouse_killed++
