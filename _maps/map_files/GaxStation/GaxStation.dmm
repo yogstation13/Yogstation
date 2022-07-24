@@ -5599,6 +5599,28 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/engine/atmos_distro)
+"cTk" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer2{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/camera{
+	c_tag = "Mining Dock External";
+	dir = 6
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/obj/item/radio/intercom{
+	dir = 4;
+	name = "Station Intercom (General)";
+	pixel_x = 27
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "cTo" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/department/medical/central)
@@ -6726,23 +6748,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"dAn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer2{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/machinery/camera{
-	c_tag = "Mining Dock External";
-	dir = 6
-	},
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "dAr" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
@@ -14464,6 +14469,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"hwP" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/item/stack/ore/silver,
+/obj/item/stack/ore/silver,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "hxw" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -18198,14 +18211,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"jIZ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/item/stack/ore/silver,
-/obj/item/stack/ore/silver,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "jJf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -23988,13 +23993,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"mKH" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/item/stack/ore/iron,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "mKW" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -34039,16 +34037,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"srr" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "ssn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -38979,6 +38967,13 @@
 	},
 /turf/open/floor/plating,
 /area/medical/genetics/cloning)
+"uYJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "uZk" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -39241,6 +39236,16 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+"vgU" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "vhk" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -67193,7 +67198,7 @@ lPS
 vgx
 kjX
 fli
-mKH
+uYJ
 lee
 vRP
 vRP
@@ -67450,7 +67455,7 @@ sWa
 iRa
 cPL
 gNJ
-srr
+vgU
 hpl
 gjL
 vRP
@@ -67706,8 +67711,8 @@ gqg
 qDp
 ePR
 kjX
-dAn
-jIZ
+cTk
+hwP
 lee
 vRP
 vRP
