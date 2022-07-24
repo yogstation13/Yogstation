@@ -4,6 +4,10 @@
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
 
+/obj/item/projectile/bullet/shotgun_slug/syndie
+	name = "12g syndicate shotgun slug"
+	damage = 60
+
 /obj/item/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
 	damage = 5
@@ -63,7 +67,7 @@
 
 /obj/item/projectile/bullet/pellet
 	var/tile_dropoff = 0.45
-	var/tile_dropoff_s = 0.5
+	var/tile_dropoff_s = 0.35
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
@@ -71,7 +75,20 @@
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank
-	
+
+/obj/item/projectile/bullet/pellet/shotgun_flechette
+	name = "flechette pellet"
+	damage = 15
+	wound_bonus = -5
+	bare_wound_bonus = -15
+	armour_penetration = 40
+
+/obj/item/projectile/bullet/pellet/shotgun_hpbuckshot
+	name = "hollow-point pellet"
+	damage = 25
+	bare_wound_bonus = 5
+	armour_penetration = -40
+
 /obj/item/projectile/bullet/pellet/shotgun_clownshot
 	name = "clownshot pellet"
 	damage = 0
@@ -80,7 +97,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
 	damage = 3
-	stamina = 11
+	stamina = 13
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/shotgun_cryoshot
@@ -98,9 +115,9 @@
 /obj/item/projectile/bullet/shotgun_uraniumslug
 	name = "depleted uranium slug"
 	icon_state = "ubullet"
-	damage = 35
-	armour_penetration = 200 // he he funny round go through armor
-	wound_bonus = -30
+	damage = 30
+	armour_penetration = 60 // he he funny round go through armor
+	wound_bonus = -45
 
 /obj/item/projectile/bullet/shotgun_uraniumslug/on_hit(atom/target)
 	. = ..()

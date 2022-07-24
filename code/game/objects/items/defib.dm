@@ -253,6 +253,7 @@
 	item_state = "defibcompact"
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
+	cryo_preserve = TRUE
 
 /obj/item/defibrillator/compact/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBeltSlot())
@@ -371,11 +372,12 @@
 		C.update_inv_hands()
 
 /obj/item/twohanded/shockpaddles/suicide_act(mob/user)
+	if(req_defib && !defib.deductcharge(revivecost))
+		user.visible_message(span_danger("[user] is putting the paddles on [user.p_their()] chest but it has no charge!"))
+		return SHAME
 	user.visible_message(span_danger("[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
-	if(req_defib)
-		defib.deductcharge(revivecost)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
-	return (OXYLOSS)
+	return OXYLOSS
 
 /obj/item/twohanded/shockpaddles/dropped(mob/user)
 	if(!req_defib)
@@ -624,6 +626,7 @@
 					H.emote("gasp")
 					H.Jitter(100)
 					SEND_SIGNAL(H, COMSIG_LIVING_MINOR_SHOCK)
+					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 					log_combat(user, H, "revived", defib)
 				if(req_defib)
 					defib.deductcharge(revivecost)

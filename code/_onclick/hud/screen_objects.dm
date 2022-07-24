@@ -607,14 +607,10 @@
 	screen_loc = ui_internal
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/screen/healths/blob/naut
-	name = "health"
-	icon = 'icons/mob/blob.dmi'
-	icon_state = "nauthealth"
-
-/obj/screen/healths/blob/naut/core
+/obj/screen/healths/blob/overmind
 	name = "overmind health"
-	screen_loc = ui_health
+	icon = 'icons/mob/blob.dmi'
+	screen_loc = ui_blobbernaut_overmind_health
 	icon_state = "corehealth"
 
 /obj/screen/healths/guardian

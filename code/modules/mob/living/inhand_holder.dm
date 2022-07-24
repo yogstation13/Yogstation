@@ -11,14 +11,10 @@
 	var/mob/living/held_mob
 	var/destroying = FALSE
 
-/obj/item/clothing/mob_holder/Initialize(mapload, mob/living/M, worn_state, held_icon, lh_icon, rh_icon, worn_slot_flags =	null, clothing_layer)
+/obj/item/clothing/mob_holder/Initialize(mapload, mob/living/M, worn_state, held_icon, lh_icon, rh_icon, clothing_layer, weight, worn_slot_flags = null)
 	. = ..()
-	if(clothing_layer)
-		alternate_worn_layer = clothing_layer
-	if(held_icon)
-		alternate_worn_icon = held_icon
-	if(worn_state)
-		item_state = worn_state
+	if(weight > MOB_SIZE_SMALL)
+		w_class = weight + 2 // rough conversion
 	if(lh_icon)
 		lefthand_file = lh_icon
 	if(rh_icon)	
@@ -35,16 +31,14 @@
 
 /obj/item/clothing/mob_holder/dropped()
 	. = ..()
-	if(HAS_TRAIT_FROM(held_mob, TRAIT_NOBREATH, HOLDER_TRAIT) && iscarbon(held_mob))
-		REMOVE_TRAIT(held_mob, TRAIT_NOBREATH, HOLDER_TRAIT)
 	if(held_mob && isturf(loc))
 		release()
 
 /obj/item/clothing/mob_holder/proc/deposit(mob/living/L)
 	if(!istype(L))
 		return FALSE
-	if(iscarbon(held_mob))
-		ADD_TRAIT(held_mob, TRAIT_NOBREATH, HOLDER_TRAIT) //so monkeys don't die
+	if(iscarbon(L))
+		ADD_TRAIT(L, TRAIT_NOBREATH, HOLDER_TRAIT) //so monkeys don't die
 	L.setDir(SOUTH)
 	update_visuals(L)
 	held_mob = L
@@ -67,6 +61,8 @@
 		L.dropItemToGround(src)
 	else
 		held_mob.visible_message(span_warning("[held_mob] wriggles free!"))
+	if(HAS_TRAIT_FROM(held_mob, TRAIT_NOBREATH, HOLDER_TRAIT) && iscarbon(held_mob))
+		REMOVE_TRAIT(held_mob, TRAIT_NOBREATH, HOLDER_TRAIT)
 	held_mob.forceMove(get_turf(held_mob))
 	held_mob.reset_perspective()
 	held_mob.setDir(SOUTH)
@@ -80,6 +76,13 @@
 
 /obj/item/clothing/mob_holder/container_resist()
 	release()
+
+/obj/item/clothing/mob_holder/pre_attack(atom/A, mob/living/user, params)
+	if(isobj(A) && ismachinery(A))
+		if(istype(A, /obj/machinery/deepfryer))
+			to_chat(user, span_warning("You wouldn't deepfry [name]....."))
+		return
+	. = ..()
 
 /obj/item/clothing/mob_holder/drone/deposit(mob/living/L)
 	. = ..()

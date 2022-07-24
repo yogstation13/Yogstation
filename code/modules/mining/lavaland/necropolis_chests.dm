@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,23)
+	var/loot = rand(1,24)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -54,12 +54,11 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(16)
 			new /obj/item/organ/heart/gland/heals(src)
 		if(17)
-			new /obj/item/emberflowers(src)
+			new /obj/item/eflowers(src)
 		if(18)
 			new /obj/item/voodoo(src)
 		if(19)
-			new /obj/item/reagent_containers/food/drinks/bottle/holywater/hell(src)
-			new /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor(src)
+			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
 		if(20)
 			new /obj/item/book_of_babel(src)
 		if(21)
@@ -69,6 +68,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 		if(23)
 			new /obj/item/rune_scimmy(src)
+		if(24)
+			new /obj/item/dnainjector/dwarf(src)
+
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
 	name = "KA Mod Disk"
@@ -580,12 +582,86 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/scimmy_righthand.dmi'
 	icon = 'yogstation/icons/obj/lavaland/artefacts.dmi'
 	icon_state = "rune_scimmy"
-	force = 28
+	force = 20
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	damtype = BRUTE
 	sharpness = SHARP_EDGED
 	hitsound = 'yogstation/sound/weapons/rs_slash.ogg'
 	attack_verb = list("slashed","pk'd","atk'd")
+	var/mobs_grinded = 0
+	var/max_grind = 20
+
+/obj/item/rune_scimmy/examine(mob/living/user)
+	. = ..()
+	. += span_notice("This blade fills you with a need to 'grind'. Slay hostile fauna to increase the Scimmy's power and earn loot.")
+	. += span_notice("The blade has grinded [mobs_grinded] out of [max_grind] fauna to reach maximum power, and will deal [mobs_grinded * 5] bonus damage to fauna.")
+
+/obj/item/rune_scimmy/afterattack(atom/target, mob/user, proximity, click_parameters)
+	. = ..()
+	if(!proximity)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
+			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
+				RegisterSignal(target,COMSIG_MOB_DEATH,.proc/roll_loot, TRUE)
+			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
+			L.apply_damage(mobs_grinded*5,BRUTE)
+
+///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
+/obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
+	UnregisterSignal(target, COMSIG_MOB_DEATH)
+	if(mobs_grinded<max_grind)
+		mobs_grinded++
+	var/spot = get_turf(target)
+	var/loot = rand(1,100)
+	switch(loot)
+		if(1 to 20)//20% chance at 3 gold coins, the most basic rs drop
+			for(var/i in 1 to 3) 
+				new /obj/item/coin/gold(spot)
+		if(21 to 30)//10% chance for 5 gold coins
+			for(var/i in 1 to 5)
+				new /obj/item/coin/gold(spot)
+		if(31 to 40)//10% chance for 2 GOLD (banana) DOUBLOONS 
+			for(var/i in 1 to 2)
+				new /obj/item/coin/bananium(spot)
+		if(41 to 50) //10% chance to spawn 10 gold, diamond, or bluespace crystal ores, because runescape ore drops and gem drops
+			for(var/i in 1 to 5)
+				switch(rand(1,5))
+					if(1 to 2)
+						new /obj/item/stack/ore/gold(spot)
+					if(3 to 4)
+						new /obj/item/stack/ore/diamond(spot)
+					if(5)
+						new /obj/item/stack/sheet/bluespace_crystal(spot)
+		if(51 to 60)//10% for bow and bronze tipped arrows, bronze are supposed to be the worst in runescape but they kinda slap in here, hopefully limited by the 5 arrows
+			new /obj/item/gun/ballistic/bow(spot)
+			for(var/i in 1 to 5)
+				new /obj/item/ammo_casing/caseless/arrow/bronze(spot)
+		if(61 to 70)//10% chance at a seed drop, runescape drops seeds somewhat frequently for players to plant and harvest later
+			switch(rand(1,5))
+				if(1)
+					new /obj/item/seeds/lavaland/cactus(spot)
+				if(2)
+					new /obj/item/seeds/lavaland/ember(spot)
+				if(3)
+					new /obj/item/seeds/lavaland/inocybe(spot) 
+				if(4)
+					new /obj/item/seeds/lavaland/polypore(spot) 
+				if(5)
+					new /obj/item/seeds/lavaland/porcini(spot) 
+			if(prob(25)) //25% chance to get strange seeds, should they feel like cooperating with botanists. this would also be interesting to see ash walkers get lmao
+				new /obj/item/seeds/random(spot)
+		if(71 to 80) //magmite is cool and somewhat rare i think?
+			new /obj/item/magmite(spot)
+		if(81 to 90) //i could make it drop foods for healing items like rs dropping fish, but i think the rewards should be a bit more immediate
+			new /obj/item/reagent_containers/autoinjector/medipen/survival(spot)
+		if(91 to 95) //5% PET DROP LET'S GO
+			new /mob/living/simple_animal/hostile/mining_drone(spot)
+		if(96 to 99) //4% DHIDE ARMOR
+			new /obj/item/stack/sheet/animalhide/ashdrake(spot)
+		if(100)
+			new /obj/structure/closet/crate/necropolis(spot)
 
 //Potion of Flight
 /obj/item/reagent_containers/glass/bottle/potion
@@ -670,27 +746,63 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "jacob's ladder"
 	desc = "An indestructible celestial ladder that violates the laws of physics."
 
-/obj/item/emberflowers
-	name ="emberflower bouqet"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it."
+#define COOLDOWN_SUMMON 1 MINUTES
+/obj/item/eflowers
+	name ="enchanted flowers"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. Megafauna cannot be summoned.<b>Megafauna need to be exposed 35 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "emberflower"
+	icon_state = "eflower"
+	var/next_summon = 0
+	var/list/summons = list()
+	attack_verb = list("thumped", "brushed", "bumped")
 
-/obj/item/emberflowers/attack(mob/living/simple_animal/M, mob/user)
+/obj/item/eflowers/attack_self(mob/user)
+	var/turf/T = get_turf(user)
+	var/area/A = get_area(user)
+	if(next_summon > world.time)
+		to_chat(user, span_warning("You can't do that yet!"))
+		return
+	if(is_station_level(T.z) && !A.outdoors)
+		to_chat(user, span_warning("You feel like calling a bunch of animals indoors is a bad idea."))
+		return
+	user.visible_message(span_warning("[user] holds the bouqet out, summoning their allies!"))
+	for(var/mob/m in summons)
+		m.forceMove(T)
+	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
+	next_summon = world.time + COOLDOWN_SUMMON
+
+/obj/item/eflowers/afterattack(mob/living/simple_animal/M, mob/user, proximity)
+	var/datum/status_effect/taming/G = M.has_status_effect(STATUS_EFFECT_TAMING)
+	. = ..()
+	if(!proximity)
+		return
 	if(M.client)
-		to_chat(user, span_warning("[M] is too intelligent to charm!"))
+		to_chat(user, span_warning("[M] is too intelligent to tame!"))
 		return
 	if(M.stat)
 		to_chat(user, span_warning("[M] is dead!"))
 		return
+	if(M.faction == user.faction)
+		to_chat(user, span_warning("[M] is already on your side!"))
+		return
+	if(M.sentience_type == SENTIENCE_BOSS)
+		if(!G)
+			M.apply_status_effect(STATUS_EFFECT_TAMING, user)
+		else
+			G.add_tame(G.tame_buildup)
+			if(ISMULTIPLE(G.tame_crit-G.tame_amount, 5))
+				to_chat(user, span_notice("[M] has to be exposed [G.tame_crit-G.tame_amount] more times to accept your gift!"))
+		return
 	if(M.sentience_type != SENTIENCE_ORGANIC)
-		to_chat(user, span_warning("[M] cannot be charmed!"))
+		to_chat(user, span_warning("[M] cannot be tamed!"))
 		return
 	if(!do_after(user, 1.5 SECONDS, M))
 		return
-	M.visible_message(span_notice("[M] seems happy with you after exposure to the emberflowers!"))
-	M.add_atom_colour("#fcff57", FIXED_COLOUR_PRIORITY)
+	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouqet!"))
+	M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
+	M.drop_loot()
 	M.faction = user.faction
+	summons |= M
 	
 ///Bosses
 
@@ -715,7 +827,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	attack_verb_on = list("cleaved", "swiped", "slashed", "chopped")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	hitsound_on = 'sound/weapons/bladeslice.ogg'
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
+	w_class_on = WEIGHT_CLASS_BULKY
 	sharpness = SHARP_EDGED
 	faction_bonus_force = 30
 	nemesis_factions = list("mining", "boss")
@@ -1062,9 +1175,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
-			new /obj/item/organ/stomach/cursed(src)
-		if(2)
 			new /obj/item/melee/knuckles(src)
+		if(2)
+			new /obj/item/clothing/gloves/bracer/cuffs(src)
 
 /obj/structure/closet/crate/necropolis/bubblegum/crusher
 	name = "bloody bubblegum chest"
@@ -1136,9 +1249,10 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 #define COOLDOWN 150
 #define COOLDOWN_HUMAN 100
 #define COOLDOWN_ANIMAL 60
+#define COOLDOWN_SPLASH 100
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
-	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner."
+	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters ahead of the user with blood."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "bloodyknuckle"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -1148,7 +1262,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	force = 18
 	var/next_reach = 0
 	var/next_grip = 0
+	var/next_splash = 0
 	var/next_knuckle = 0
+	var/splash_range = 9
 	attack_verb = list("thrashed", "pummeled", "walloped")
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
@@ -1168,6 +1284,19 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 				return
 			next_knuckle = world.time + COOLDOWN_ANIMAL
 
+/obj/item/melee/knuckles/attack_self(mob/user)
+	var/turf/T = get_turf(user)
+	if(next_splash > world.time)
+		to_chat(user, span_warning("You can't do that yet!"))
+		return
+	user.visible_message(span_warning("[user] splashes blood from the knuckles!"))
+	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
+	for(var/i = 0 to splash_range)
+		if(T)
+			new /obj/effect/decal/cleanable/blood(T)
+		T = get_step(T,user.dir)
+	next_splash = world.time + COOLDOWN
+
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
 	if(istype(action, /datum/action/item_action/reach))
@@ -1176,6 +1305,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			return
 		var/valid_reaching = FALSE
 		for(var/mob/living/L in view(7, U))
+			if(L == U)
+				continue
 			for(var/obj/effect/decal/cleanable/B in range(0,L))
 				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
 					valid_reaching = TRUE
@@ -1575,15 +1706,15 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/organ/grandcore/Remove(mob/living/carbon/H, special = 0)
 	H.faction -= "blooded"
-	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise, /obj/effect/proc_holder/spell/aoe_turf/horde)
-	H.RemoveSpell (new /obj/effect/proc_holder/spell/aoe_turf/horde)
+	H.RemoveSpell (/obj/effect/proc_holder/spell/targeted/touch/raise)
+	H.RemoveSpell (/obj/effect/proc_holder/spell/aoe_turf/horde)
 	..()
 
 /datum/action/item_action/organ_action/threebloodlings
 	name = "Summon bloodlings"
-	desc = "Summon a conjure a few bloodlings at the cost of 13% blood (8 brain damage for those without blood)."
+	desc = "Summon a conjure a few bloodlings at the cost of 6% blood or 8 brain damage for races without blood."
 	var/next_expulsion = 0
-	var/cooldown = 10 //wheres the risk if it has a reasonable cooldown?
+	var/cooldown = 10 
 	
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
 	var/mob/living/carbon/H = owner
@@ -1596,6 +1727,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
 	else
 		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")
-		H.blood_volume -= 70 //like 13% of your blood taken
+		H.blood_volume -= 35
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown

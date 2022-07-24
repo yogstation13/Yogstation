@@ -12,6 +12,9 @@
 	tool_behaviour = TOOL_RETRACTOR
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/retractor/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/retractor/augment
 	name = "retractor"
@@ -21,6 +24,13 @@
 	materials = list(/datum/material/iron=6000, /datum/material/glass=3000)
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
+
+
+/obj/item/retractor/bone
+	name = "bone retractor"
+	desc = "Kinda looks like a chicken bone."
+	icon_state = "retractor_bone"
+	toolspeed = 1.25
 
 
 /obj/item/hemostat
@@ -38,6 +48,9 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "pinched")
 
+/obj/item/hemostat/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/hemostat/augment
 	name = "hemostat"
@@ -48,6 +61,13 @@
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
 	attack_verb = list("attacked", "pinched")
+
+
+/obj/item/hemostat/bone
+	name = "hemostat"
+	desc = "Bones that are strapped together with sinews. Used to stop bleeding."
+	icon_state = "hemostat_bone"
+	toolspeed = 1.25
 
 
 /obj/item/cautery
@@ -65,6 +85,9 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("burnt")
 
+/obj/item/cautery/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/cautery/augment
 	name = "cautery"
@@ -75,6 +98,13 @@
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
 	attack_verb = list("burnt")
+
+
+/obj/item/cautery/bone
+	name = "bone cautery"
+	desc = "A heated chuck of plasma strapped to a bone. It can close wounds."
+	icon_state = "cautery_bone"
+	toolspeed = 1.25
 
 
 /obj/item/surgicaldrill
@@ -104,6 +134,9 @@
 	SSachievements.unlock_achievement(/datum/achievement/likearecord, user.client)
 	return (MANUAL_SUICIDE)
 
+/obj/item/surgicaldrill/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/surgicaldrill/augment
 	name = "surgical drill"
@@ -146,6 +179,10 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
 
+/obj/item/scalpel/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
+
 /obj/item/scalpel/augment
 	name = "scalpel"
 	desc = "Ultra-sharp blade attached directly to your bone for extra-accuracy."
@@ -166,6 +203,13 @@
 	user.visible_message(span_suicide("[user] is slitting [user.p_their()] [pick("wrists", "throat", "stomach")] with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
+
+/obj/item/scalpel/bone
+	name = "bone scalpel"
+	desc = "Bones and a Diamond tied together to make a scalpel."
+	icon_state = "scalpel_bone"
+	force = 5
+	toolspeed = 1.25
 
 /obj/item/circular_saw
 	name = "circular saw"
@@ -194,6 +238,10 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
+/obj/item/circular_saw/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
+
 /obj/item/circular_saw/augment
 	name = "circular saw"
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
@@ -209,6 +257,13 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = SHARP_EDGED
 
+/obj/item/circular_saw/bone
+	name = "bone bonesaw"
+	desc = "A bone with diamond teeth strapped to cut through bones."
+	icon_state = "saw_bone"
+	force = 5
+	toolspeed = 1.25
+
 /obj/item/bonesetter
 	name = "bonesetter"
 	desc = "For setting things right."
@@ -223,6 +278,16 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("corrected", "properly set")
 
+/obj/item/bonesetter/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
+
+/obj/item/bonesetter/bone
+	name = "bone bonesetter"
+	desc = "A bonesetter made of bones... for setting bones with... bones?"
+	icon_state = "bone setter_bone"
+	toolspeed = 1.25
+
 /obj/item/surgical_drapes
 	name = "surgical drapes"
 	desc = "Nanotrasen brand surgical drapes provide optimal safety and infection control."
@@ -235,8 +300,13 @@
 	attack_verb = list("slapped")
 
 /obj/item/surgical_drapes/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
 		..()
+
+/obj/item/surgical_drapes/goliath
+	name = "goliath drapes"
+	desc = "Probably not the most hygienic but what else are you gonna use?"
+	icon_state = "surgical_drapes_goli"
 
 /obj/item/organ_storage //allows medical cyborgs to manipulate organs without hands
 	name = "organ storage bag"

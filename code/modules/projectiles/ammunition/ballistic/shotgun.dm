@@ -8,6 +8,11 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug
 	materials = list(/datum/material/iron=4000)
 
+/obj/item/ammo_casing/shotgun/syndie
+	name = "syndicate shotgun slug"
+	desc = "An illegal type of ammunition used by the syndicate for their bulldog shotguns. Hopefully you're not the one on the receiving end."
+	projectile_type = /obj/item/projectile/bullet/shotgun_slug/syndie
+
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
@@ -63,6 +68,22 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	pellets = 6
 	variance = 25
+
+/obj/item/ammo_casing/shotgun/hpbuck
+	name = "hollow-point buckshot shell"
+	desc = "A 12 gauge hollow-point buckshot shell."
+	icon_state = "hpbshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_hpbuckshot
+	pellets = 6
+	variance = 25
+
+/obj/item/ammo_casing/shotgun/flechette
+	name = "flechette shell"
+	desc = "A 12 gauge flechette shell."
+	icon_state = "flshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_flechette
+	pellets = 6
+	variance = 15
 
 /obj/item/ammo_casing/shotgun/clownshot
 	name = "buckshot shell..?"
@@ -133,12 +154,30 @@
 	name = "shotgun dart"
 	desc = "A dart for use in shotguns. Can be injected with up to 30 units of any chemical."
 	icon_state = "cshell"
-	projectile_type = /obj/item/projectile/bullet/dart
+	projectile_type = /obj/item/projectile/bullet/reusable/dart
 	var/reagent_amount = 30
+	var/no_react = FALSE
 
 /obj/item/ammo_casing/shotgun/dart/Initialize()
 	. = ..()
 	create_reagents(reagent_amount, OPENCONTAINER)
+	if(no_react)
+		ENABLE_BITFIELD(reagents.flags, NO_REACT)
+
+/obj/item/ammo_casing/shotgun/dart/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
+	if(!BB)
+		return
+	if(reagents.total_volume < 0)
+		return
+	var/obj/item/projectile/bullet/reusable/dart/D = BB
+	var/obj/item/reagent_containers/syringe/dart/temp/new_dart = new(D)
+
+	new_dart.volume = reagents.total_volume
+	if(no_react)
+		new_dart.reagent_flags |= NO_REACT
+	reagents.trans_to(new_dart, reagents.total_volume, transfered_by = user)
+	D.add_dart(new_dart)
+	..()
 
 /obj/item/ammo_casing/shotgun/dart/attackby()
 	return
@@ -148,10 +187,7 @@
 	desc = "A dart for use in shotguns, using similar technology as cryostatis beakers to keep internal reagents from reacting. Can be injected with up to 10 units of any chemical."
 	icon_state = "cnrshell"
 	reagent_amount = 10
-
-/obj/item/ammo_casing/shotgun/dart/noreact/Initialize()
-	. = ..()
-	ENABLE_BITFIELD(reagents.flags, NO_REACT)
+	no_react = TRUE
 
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	desc = "A shotgun dart filled with deadly toxins."

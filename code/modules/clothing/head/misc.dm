@@ -135,7 +135,7 @@
 
 /obj/item/clothing/head/pirate
 	name = "pirate hat"
-	desc = "Yarr."
+	desc = "Ahoy! This hat inspires you to take arms to scourge the several seas."
 	icon_state = "pirate"
 	item_state = "pirate"
 	dog_fashion = /datum/dog_fashion/head/pirate
@@ -161,13 +161,14 @@
 		to_chat(user, "You can no longer speak like a pirate.")
 
 /obj/item/clothing/head/pirate/captain
-	name = "pirate captain"
+	name = "pirate captain hat"
+	desc = "Ahoy! A hat befit only for the greatest pirates. May your exploits be legendary and your treasure hoard safe!"
 	icon_state = "hgpiratecap"
 	item_state = "hgpiratecap"
 
-/obj/item/clothing/head/bandana
+/obj/item/clothing/head/pirate/bandana
 	name = "pirate bandana"
-	desc = "Yarr."
+	desc = "Ahoy! A colorful wrap to collect and wipe up sweat after long days at sea."
 	icon_state = "bandana"
 	item_state = "bandana"
 	dynamic_hair_suffix = ""
@@ -446,3 +447,8 @@
 			return
 		playsound(loc, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
 		recharge_time = world.time + recharge_rate
+
+/obj/item/clothing/head/shamanash
+	name = "shaman skull"
+	desc = "The skull of a long dead animal bolted to the front of a repurposed pan."
+	icon_state = "shamskull"

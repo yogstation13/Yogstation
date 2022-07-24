@@ -91,6 +91,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/overlays_x_offset = 0	//x offset to use for certain overlays
 
 	var/underline_flag = TRUE //flag for underline
+	var/beep_cooldown = 0
 
 /obj/item/pda/suicide_act(mob/living/carbon/user)
 	var/deathMessage = msg_input(user)
@@ -1025,6 +1026,9 @@ GLOBAL_LIST_EMPTY(PDAs)
 		switch(scanmode)
 
 			if(PDA_SCANNER_MEDICAL)
+				if(beep_cooldown < world.time)
+					playsound(src, 'sound/effects/fastbeep.ogg', 20)
+					beep_cooldown = world.time + 40
 				C.visible_message(span_alert("[user] has analyzed [C]'s vitals!"))
 				healthscan(user, C, 1)
 				add_fingerprint(user)

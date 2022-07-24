@@ -18,7 +18,9 @@ It may summon clones charging from all sides, one of these charges being bubbleg
 It can charge at its target, and also heavily damaging anything directly hit in the charge.
 If at half health it will start to charge from all sides with clones.
 
-When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as a set of knuckles that can trap victims where they stand
+When Bubblegum dies, it leaves behind a H.E.C.K. mining suit as well as one of the following: 
+ 1.A set of knuckles that can trap victims where they stand
+ 2.A pair of cuffs allowing the wearer to devour creatures to heal
 
 Difficulty: Hard
 
@@ -34,6 +36,7 @@ Difficulty: Hard
 	icon_state = "bubblegum"
 	icon_living = "bubblegum"
 	icon_dead = ""
+	health_doll_icon = "bubblegum"
 	friendly = "stares down"
 	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
 	speak_emote = list("gurgles")
