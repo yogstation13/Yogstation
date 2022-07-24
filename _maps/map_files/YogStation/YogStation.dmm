@@ -587,6 +587,44 @@
 "acd" = (
 /turf/closed/wall,
 /area/security/prison)
+"ace" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "permacell2";
+	name = "cell blast door"
+	},
+/obj/machinery/door/airlock/public/glass{
+	id_tag = "permabolt2";
+	name = "Cell 2"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel,
+/area/security/prison)
+"acf" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "permacell1";
+	name = "cell blast door"
+	},
+/obj/machinery/door/airlock/public/glass{
+	id_tag = "permabolt1";
+	name = "Cell 1"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "acg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -24599,20 +24637,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"cKc" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "permacell2";
-	name = "cell blast door"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "cKh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -63023,22 +63047,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"vJA" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "permacell1";
-	name = "cell blast door"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "vJH" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel,
@@ -94689,7 +94697,7 @@ uNu
 aef
 jhc
 ijq
-cKc
+ace
 ijq
 nBq
 gts
@@ -95717,7 +95725,7 @@ aat
 aat
 aeL
 baB
-vJA
+acf
 baB
 acv
 hQy
