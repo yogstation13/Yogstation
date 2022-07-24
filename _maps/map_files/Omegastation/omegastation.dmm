@@ -11049,7 +11049,7 @@
 	},
 /obj/item/storage/box/syringes,
 /obj/item/gun/syringe,
-/obj/item/hypospray/deluxe/cmo,
+/obj/item/storage/firstaid/hypospray/deluxe/cmo,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /obj/item/clothing/neck/stethoscope,
