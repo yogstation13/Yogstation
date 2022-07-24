@@ -1,0 +1,6 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "adds some mapping spawners for randomized water/foam/fuel tanks"
+  - imageadd: "adds a sprite for randomized tanks"
+  - bugfix: "fixes pathing for random food and drink spawners"
