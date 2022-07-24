@@ -217,19 +217,23 @@
 
 /datum/bounty/item/botany/steelcaps
 	name = "Steel-Cap Logs"
-	description = "Central Command's head chef wants only the best organic skewers for a fine [foodtype]."
 	wanted_types = list(/obj/item/grown/log/steel)
 	required_count = 20
 	multiplier = 5
 	foodtype = "kebab"
 
+/datum/bounty/item/botany/steelcaps/New()
+	description = "Central Command's head chef wants only the best organic skewers for a fine [foodtype]."
+
 /datum/bounty/item/botany/towercaps
 	name = "Tower-Cap Logs"
-	description = "Central Command's head chef wants only the best wood as fuel for a corporate [foodtype]."
 	wanted_types = list(/obj/item/grown/log)
 	exclude_types = list(/obj/item/grown/log/steel)
 	required_count = 20
 	foodtype = "grill-out"
+
+/datum/bounty/item/botany/towercaps/New()
+	description = "Central Command's head chef wants only the best wood as fuel for a corporate [foodtype]."
 
 /datum/bounty/item/botany/killertomato
 	name = "Killer Tomato Meat"
