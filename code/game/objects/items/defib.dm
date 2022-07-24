@@ -307,7 +307,7 @@
 	var/req_defib = TRUE
 	var/combat = FALSE //If it penetrates armor and gives additional functionality
 	var/grab_ghost = TRUE
-	var/tlimit = DEFIB_TIME_LIMIT * 10
+	var/tlimit = DEFIB_TIME_LIMIT
 
 	var/mob/listeningTo
 
@@ -372,11 +372,12 @@
 		C.update_inv_hands()
 
 /obj/item/twohanded/shockpaddles/suicide_act(mob/user)
+	if(req_defib && !defib.deductcharge(revivecost))
+		user.visible_message(span_danger("[user] is putting the paddles on [user.p_their()] chest but it has no charge!"))
+		return SHAME
 	user.visible_message(span_danger("[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
-	if(req_defib)
-		defib.deductcharge(revivecost)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
-	return (OXYLOSS)
+	return OXYLOSS
 
 /obj/item/twohanded/shockpaddles/dropped(mob/user)
 	if(!req_defib)

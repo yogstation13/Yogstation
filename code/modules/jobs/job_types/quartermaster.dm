@@ -19,6 +19,7 @@
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
+	minimal_character_age = 20 //Probably just needs some baseline experience with bureaucracy, enough trust to land the position
 
 	changed_maps = list("OmegaStation")
 

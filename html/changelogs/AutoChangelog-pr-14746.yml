@@ -1,9 +1,0 @@
-author: " VaelophisNyx, @nmajask, @KillerOrcaCora"
-delete-after: true 
-changes: 
-  - rscadd: "Added new Fishing Pier Biodome to Lavaland"
-  - rscadd: "Added new Fisherman Sleeper ghost spawn role"
-  - bugfix: "fixed fishing vendor restock item not existing"
-  - tweak: "lavaboats can now move on water"
-  - tweak: "lavaland biodome areas now properly named"
-  - imageadd: "adds a new fishing vendor restock sprite"
