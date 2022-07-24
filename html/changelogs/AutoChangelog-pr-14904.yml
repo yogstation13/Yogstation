@@ -1,0 +1,8 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - rscadd: "Added 6 new hypospray kits: basic, brute, burn, oxygen, toxic, advanced, and deluxe"
+  - tweak: "hypospray kits can now only hold items pertaining to hyposprays with a few exceptions instead of just being a direct upgrade over regular medkits"
+  - tweak: "renamed the regular hypospray kit to the basic hypospray kit"
+  - tweak: "hypospray vials now say what is inside of them instead of what they heal"
+  - imageadd: "added new sprites for the hypospray kits"
