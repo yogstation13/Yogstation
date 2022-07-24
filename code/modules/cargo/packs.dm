@@ -259,7 +259,7 @@
 
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
-	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo and special .38 speedloarders. Requires Security access to open."
+	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo, and special .38 speedloaders. Requires Security access to open."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
@@ -269,7 +269,6 @@
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
-					/obj/item/ammo_box/c38/trac,
 					/obj/item/ammo_box/c38/hotshot,
 					/obj/item/ammo_box/c38/iceblox,
 					/obj/item/ammo_box/c38/gutterpunch)
@@ -558,12 +557,12 @@
 
 /datum/supply_pack/security/armory/trackingimp
 	name = "Tracking Implants Crate"
-	desc = "Contains four tracking implants and three tracking speedloaders of tracing .38 ammo. Requires Armory access to open."
+	desc = "Contains four tracking implants and three speedloaders for the Caldwell Tracking Revolver. Requires Armory access to open."
 	cost = 2000
 	contains = list(/obj/item/storage/box/trackimp,
-					/obj/item/ammo_box/c38/trac,
-					/obj/item/ammo_box/c38/trac,
-					/obj/item/ammo_box/c38/trac)
+					/obj/item/ammo_box/tra32,
+					/obj/item/ammo_box/tra32,
+					/obj/item/ammo_box/tra32)
 	crate_name = "tracking implant crate"
 
 /datum/supply_pack/security/armory/laserarmor
@@ -1254,6 +1253,14 @@
 	cost = 70 //oxygen damage tends to be far rarer and these kits use perf which is objectively bad without any toxin healing
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/o2)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/firstaidadvanced_single
+	name = "Advanced Treatment Kit Single-Pack"
+	desc = "Contains one advanced first aid kit able to heal many advanced ailments."
+	cost = 600
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/advanced)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/medipen_twopak

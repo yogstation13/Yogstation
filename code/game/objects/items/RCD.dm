@@ -244,6 +244,11 @@ RLD
 	var/obj/item/electronics/airlock/airlock_electronics
 
 /obj/item/construction/rcd/suicide_act(mob/user)
+	mode = RCD_FLOORWALL
+	if(!rcd_create(get_turf(user), user))
+		return SHAME
+	if(isfloorturf(get_turf(user)))
+		return SHAME
 	user.visible_message(span_suicide("[user] sets the RCD to 'Wall' and points it down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide.."))
 	return (BRUTELOSS)
 

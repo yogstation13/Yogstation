@@ -98,15 +98,14 @@
 	update_text()
 
 /obj/item/paper/contract/infernal/suicide_act(mob/user)
-	if(signed && (user == target.current) && istype(user, /mob/living/carbon/human/))
+	if(signed && (user == target.current) && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.say("OH GREAT INFERNO!  I DEMAND YOU COLLECT YOUR BOUNTY IMMEDIATELY!", forced = "infernal contract suicide")
 		H.visible_message(span_suicide("[H] holds up a contract claiming [user.p_their()] soul, then immediately catches fire.  It looks like [user.p_theyre()] trying to commit suicide!"))
 		H.adjust_fire_stacks(20)
 		H.IgniteMob()
 		return(FIRELOSS)
-	else
-		..()
+	return ..()
 
 /obj/item/paper/contract/infernal/update_text()
 	info = "This shouldn't be seen.  Error DEVIL:6"
