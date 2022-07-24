@@ -82,7 +82,7 @@
 /datum/bounty/item/botany/cannabis_ultimate
 	name = "Omega Weed Leaves"
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/cannabis/ultimate)
-	multiplier = 10 //omega weed is ACTUAL CBT to get to mutate.
+	multiplier = 10
 	bonus_desc = "Under no circumstances mention this shipment to security."
 	foodtype = "batch of \"brownies\""
 
