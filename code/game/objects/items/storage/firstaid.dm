@@ -90,7 +90,6 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/breath/medical,
-		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
@@ -114,6 +113,7 @@
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
 		/obj/item/holosign_creator/medical,
+		/obj/item/holosign_creator/firstaid,
 		/obj/item/book/manual/wiki/medicine
 		))
 
@@ -126,7 +126,6 @@
 		/obj/item/stack/medical/mesh = 2,
 		/obj/item/reagent_containers/autoinjector/medipen/ekit = 1,
 		/obj/item/healthanalyzer = 1,
-		/obj/item/surgical_drapes = 1,
 		/obj/item/scalpel = 1,
 		/obj/item/hemostat = 1,
 		/obj/item/cautery = 1,

@@ -453,6 +453,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/holobed
+	name = "First Aid Holobed Projector"
+	desc = "A holographic projector that can create holobed, a sterile mat that slows down metabolism and acts as a clean workplace for surgery."
+	build_type = PROTOLATHE
+	build_path = /obj/item/holosign_creator/firstaid
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 100, /datum/material/plastic = 500)
+	id = "holobed_projector"
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /////////////////////////////////////////
 ////////////////Armor///////////////////
 /////////////////////////////////////////
