@@ -223,7 +223,7 @@
 	multiplier = 5
 	foodtype = "kebab"
 
-/datum/bounty/item/botany/steelcaps
+/datum/bounty/item/botany/towercaps
 	name = "Tower-Cap Logs"
 	description = "Central Command's head chef wants only the best wood as fuel for a corporate [foodtype]."
 	wanted_types = list(/obj/item/grown/log)
