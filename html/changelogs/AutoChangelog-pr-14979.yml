@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "no more looking like you're wearing cuffs if you have them on your belt"
