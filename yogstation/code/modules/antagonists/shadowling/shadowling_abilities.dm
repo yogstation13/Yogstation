@@ -62,6 +62,10 @@
 	. = ..()
 	if(!target)
 		return
+	if(!caller.getorganslot(ORGAN_SLOT_EYES))
+		to_chat(user, span_warning("You need eyes to glare!"))
+		revert_cast()
+		return
 	if(target.stat)
 		to_chat(usr, span_warning("[target] must be conscious!"))
 		revert_cast()
@@ -888,8 +892,12 @@
 
 /obj/effect/proc_holder/spell/targeted/lesser_glare/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
+		if(!user.getorganslot(ORGAN_SLOT_EYES))
+			to_chat(user, span_warning("You need eyes to glare!"))
+			revert_cast()
+			return
 		if(!ishuman(target) || !target)
-			to_chat(user, span_warning("You nay only glare at humans!"))
+			to_chat(user, span_warning("You may only glare at humans!"))
 			revert_cast()
 			return
 		if(target.stat)
