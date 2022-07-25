@@ -217,7 +217,7 @@
 
 /datum/status_effect/berserker/tick()
 	var/mob/living/carbon/C = owner
-	if(!c)
+	if(!C)
 		return
 	C.AdjustAllImmobility(-60, FALSE)
 	C.adjustStaminaLoss(-30*REM, 0)
