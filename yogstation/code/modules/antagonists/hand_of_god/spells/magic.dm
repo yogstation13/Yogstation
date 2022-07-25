@@ -156,5 +156,65 @@
 		return
 	heal(pick(valid_targets))
 
+//////////////////////////////////////////
+//                                      //
+//              BERSERKER               //
+//                                      //
+//////////////////////////////////////////
 
-	
+/datum/action/innate/hog_cult/berserker
+	name = "Enrage"
+	desc = "Fall into state of a berserker, making you more resistant to stuns and damage slowdown, at the cost of making you unable to use advanced tools, magic and communicate with other people."
+	hand_type = null
+
+/datum/action/innate/hog_cult/berserker/Activate()
+	if(iscarbon(owner))
+		owner.apply_status_effect(STATUS_EFFECT_BERSERKER)
+		qdel(src)
+	else
+		to_chat(owner, span_warning("You need to be a carbon in order to use this spell!"))
+
+/datum/status_effect/berserker
+	id = "berserker"
+	duration = 20 SECONDS
+	alert_type = /obj/screen/alert/status_effect/berserker
+	var/tools = FALSE
+
+/obj/screen/alert/status_effect/berserker
+	name = "Berserker"
+	desc = "<span class='cult'>FIGHT OR DIE</span>"
+	icon_state = "regenerative_core"
+
+/datum/status_effect/berserker/on_apply()
+	var/mob/living/carbon/human/H = owner
+	playsound(owner, 'sound/effects/wounds/blood3.ogg', 50, 1)
+	to_chat(owner, span_warning("You feel the bloodlust seeping into your mind."))
+	ADD_TRAIT(owner, TRAIT_MUTE, STATUS_EFFECT_TRAIT)
+	ADD_TRAIT(owner, TRAIT_DEAF, STATUS_EFFECT_TRAIT)
+	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, STATUS_EFFECT_TRAIT)
+	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, STATUS_EFFECT_TRAIT)
+	ADD_TRAIT(owner, TRAIT_NO_SPELLS, STATUS_EFFECT_TRAIT)
+	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
+	if(H.IsAdvancedToolUser())
+		tools = TRUE
+		ADD_TRAIT(owner, TRAIT_MONKEYLIKE, STATUS_EFFECT_TRAIT)
+	return ..()
+
+/datum/status_effect/berserker/on_remove()
+	var/mob/living/carbon/human/H = owner
+	to_chat(owner, span_warning("You feel your humanity returning back."))
+	REMOVE_TRAIT(owner, TRAIT_MUTE, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_DEAF, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_NO_SPELLS, STATUS_EFFECT_TRAIT)
+	if(tools)
+		REMOVE_TRAIT(owner, TRAIT_MONKEYLIKE, STATUS_EFFECT_TRAIT)
+		tools = FALSE
+	owner.remove_client_colour(/datum/client_colour/cursed_heart_blood)
+	return ..()
+
+
+/datum/status_effect/berserker/tick()
+	M.AdjustAllImmobility(-60, FALSE)
+	M.adjustStaminaLoss(-30*REM, 0)

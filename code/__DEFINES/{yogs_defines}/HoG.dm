@@ -8,3 +8,5 @@
 #define HOG_ENERGY_TRANSFER_AMOUNT 15
 
 #define HOG_EMP_DAMAGE_MULTIPLER 30
+
+#define TRAIT_NO_SPELLS		"no_spells"
