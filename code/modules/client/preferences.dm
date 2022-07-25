@@ -136,6 +136,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 
+	var/disable_alternative_announcers = FALSE
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -655,6 +657,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Hear alternative station announcers:</b> <a href='?_src_=prefs;preference=alternative_announcers'>[disable_alternative_announcers ? "Disabled" : "Enabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
@@ -1887,6 +1890,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+				if("alternative_announcers")
+					disable_alternative_announcers = !disable_alternative_announcers
 			// yogs start - Custom keybindings
 			if(href_list["keybinding"])
 				update_keybindings(user, href_list["keybinding"], href_list["dir"])
