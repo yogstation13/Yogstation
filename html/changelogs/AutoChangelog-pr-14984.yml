@@ -1,7 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - rscadd: "adds a bunch of new socks and tank tops"
-  - bugfix: "fixes bee socks not being ordered correctly in the list"
-  - bugfix: "fixes some inconsistent capitalization"
-  - tweak: "lets ethereals wear socks and undershirts"
