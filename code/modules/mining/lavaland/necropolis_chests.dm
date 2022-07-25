@@ -70,6 +70,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/rune_scimmy(src)
 		if(24)
 			new /obj/item/dnainjector/dwarf(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
