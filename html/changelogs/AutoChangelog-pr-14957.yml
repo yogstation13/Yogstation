@@ -1,7 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Adds concussive gauntlets to necropolis chest loot"
-  - tweak: "increased acid armor to 100"
-  - tweak: "tweaked to covers arms instead of hands"
-  - imageadd: "added concussive gauntlets sprites"
