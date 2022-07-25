@@ -45,11 +45,20 @@
 							H.domutcheck()
 		L.rad_act(20)
 
+/datum/weather/rad_storm/start()
+	if(..())
+		return
+	priority_announce("The station has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
+	for(var/obj/machinery/telecomms/T in GLOB.telecomms_list)
+		T.emp_act(EMP_HEAVY)
+
 /datum/weather/rad_storm/end()
 	if(..())
 		return
 	priority_announce("The radiation threat has passed. Please return to your workplaces.", "Anomaly Alert")
 	status_alarm(FALSE)
+	sleep(1 MINUTES) // Want to give them time to get out of maintenance.
+	revoke_maint_all_access()
 
 /datum/weather/rad_storm/proc/status_alarm(active)	//Makes the status displays show the radiation warning for those who missed the announcement.
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)

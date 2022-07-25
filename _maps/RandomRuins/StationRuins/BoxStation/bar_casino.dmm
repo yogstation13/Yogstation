@@ -794,15 +794,6 @@
 /obj/structure/sign/barsign,
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"fG" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "ge" = (
 /obj/structure/table,
 /obj/item/kitchen/rollingpin{
@@ -844,6 +835,19 @@
 /area/crew_quarters/bar)
 "tZ" = (
 /obj/machinery/griddle,
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
+"xa" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
 "yX" = (
@@ -1382,7 +1386,7 @@ bi
 am
 bA
 bQ
-fG
+xa
 tZ
 co
 co

@@ -168,7 +168,7 @@
 	reqs = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1,
 				/obj/item/stack/cable_coil = 3,
 				/obj/item/weaponcrafting/receiver = 1, //it recieves the blood
-				/obj/item/reagent_containers/hypospray/medipen/pumpup = 1)
+				/obj/item/reagent_containers/autoinjector/medipen/pumpup = 1)
 	tools = list(TOOL_WIRECUTTER, TOOL_WELDER)
 	time = 15 SECONDS
 	category = CAT_MISC
@@ -489,8 +489,8 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/goliath_drapes
-	name = "Goliath Drapes"
-	result = /obj/item/surgical_drapes/goliath
+	name = "Goliath Mat"
+	result = /obj/item/surgical_mat/goliath
 	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/sinew = 1,
 				 /obj/item/stack/sheet/animalhide/goliath_hide = 1)
@@ -574,7 +574,7 @@
 
 /datum/crafting_recipe/epinephrine_medipen
 	name = "Epinephrine Medipen"
-	result = /obj/item/reagent_containers/hypospray/medipen
+	result = /obj/item/reagent_containers/autoinjector/medipen
 	tools = list(TOOL_SCREWDRIVER)
 	time = 2 SECONDS
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
@@ -584,10 +584,26 @@
 
 /datum/crafting_recipe/atropine_medipen
 	name = "Atropine Autoinjector"
-	result = /obj/item/reagent_containers/hypospray/medipen/atropine
+	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
 	tools = list(TOOL_SCREWDRIVER)
 	time = 4 SECONDS
 	reqs = list(/obj/item/pen = 1, // You feel a tiny prick!
 				/obj/item/reagent_containers/syringe = 1,
+				/datum/reagent/medicine/atropine = 10)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/refill_epinephrine_medipen
+	name = "Refill Epinephrine Medipen"
+	result = /obj/item/reagent_containers/autoinjector/medipen
+	time = 2 SECONDS
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen = 1,
+				/datum/reagent/medicine/epinephrine = 10)
+	category = CAT_TOOLS
+
+/datum/crafting_recipe/refill_atropine_medipen
+	name = "Refill Atropine Autoinjector"
+	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
+	time = 4 SECONDS
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_TOOLS
