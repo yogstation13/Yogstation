@@ -289,7 +289,7 @@
 	. = ..()
 
 
-/obj/item/clothing/head/culthood
+/obj/item/clothing/head/culthood //inaccessible by cult members
 	name = "ancient cultist hood"
 	icon_state = "culthood"
 	desc = "A torn, dust-caked hood. Strange letters line the inside."
@@ -301,7 +301,7 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 
-/obj/item/clothing/suit/cultrobes
+/obj/item/clothing/suit/cultrobes //inaccessible by cult members
 	name = "ancient cultist robes"
 	desc = "A ragged, dusty set of robes. Strange letters line the inside."
 	icon_state = "cultrobes"
@@ -343,26 +343,26 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 
-/obj/item/clothing/head/magus
+/obj/item/clothing/head/magus //inaccessible by cult members
 	name = "magus helm"
 	icon_state = "magus"
 	item_state = "magus"
 	desc = "A helm worn by the followers of Nar-Sie."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS|HIDEEYES
-	armor = list(MELEE = 20, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 10)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 30,ENERGY = 20, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 10)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
-/obj/item/clothing/suit/magusred
+/obj/item/clothing/suit/magusred //inaccessible by cult members
 	name = "magus robes"
 	desc = "A set of armored robes worn by the followers of Nar-Sie."
 	icon_state = "magusred"
 	item_state = "magusred"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade/dagger)
-	armor = list(MELEE = 20, BULLET = 10, LASER = 50,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
+	armor = list(MELEE = 50, BULLET = 30, LASER = 50,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
-/obj/item/clothing/head/helmet/space/hardsuit/cult
+/obj/item/clothing/head/helmet/space/hardsuit/cult //inaccessible by cult members
 	name = "\improper Nar-Sien hardened helmet"
 	desc = "A heavily-armored helmet worn by warriors of the Nar-Sien cult. It can withstand hard vacuum."
 	icon_state = "cult_helmet"
@@ -371,7 +371,7 @@
 	brightness_on = 0
 	actions_types = list()
 
-/obj/item/clothing/suit/space/hardsuit/cult
+/obj/item/clothing/suit/space/hardsuit/cult //inaccessible by cult members
 	name = "\improper Nar-Sien hardened armor"
 	icon_state = "cult_armor"
 	item_state = "cult_armor"
@@ -399,13 +399,13 @@
 	icon_state = "cult_armor"
 	item_state = "cult_armor"
 	w_class = WEIGHT_CLASS_BULKY
-	armor = list(MELEE = 15, BULLET = 20, LASER = 40, ENERGY = 20, BOMB = 50, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 25, BULLET = 20, LASER = 40, ENERGY = 20, BOMB = 50, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
 	var/current_charges = 0
 	var/max_charges = 3
 	COOLDOWN_DECLARE(recharge_cooldown) //Time since we've last been shot
-	var/recharge_delay = 15 SECONDS //How long after we've been shot before we can start recharging. 
+	var/recharge_delay = 8 SECONDS //How long after we've been shot before we can start recharging. 
 	var/recharge_rate = 1 //How quickly the shield recharges once it starts charging
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie
 
@@ -413,14 +413,15 @@
 	name = "empowered cultist armor"
 	desc = "Empowered garb which creates a powerful shield around the user."
 	icon_state = "cult_hoodalt"
-	armor = list(MELEE = 15, BULLET = 20, LASER = 40, ENERGY = 30, BOMB = 50, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 25, BULLET = 20, LASER = 40, ENERGY = 30, BOMB = 50, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/equipped(mob/living/user, slot)
 	..()
 	if(iscultist(user))
-		START_PROCESSING(SSobj, src)
+		if(slot == SLOT_WEAR_SUIT)
+			START_PROCESSING(SSobj, src)
 	if(!iscultist(user))
 		if(!is_servant_of_ratvar(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
@@ -456,7 +457,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/process()
 	if(COOLDOWN_FINISHED(src, recharge_cooldown) && current_charges < max_charges)
 		current_charges = clamp((current_charges + recharge_rate), 0, max_charges)
-		playsound(loc, 'sound/magic/charge.ogg', 50, TRUE)
+		playsound(loc, 'sound/magic/charge.ogg', 30, TRUE)
 		if(current_charges == max_charges)
 			STOP_PROCESSING(SSobj, src)
 		if(ishuman(loc))
@@ -476,17 +477,17 @@
 	flags_inv = HIDEJUMPSUIT
 	allowed = list(/obj/item/tome, /obj/item/twohanded/vibro_weapon/cultblade)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	armor = list(MELEE = -45, BULLET = -45, LASER = -45,ENERGY = -45, BOMB = -45, BIO = -45, RAD = -45, FIRE = 0, ACID = 0)
+	armor = list(MELEE = -30, BULLET = -50, LASER = -50, ENERGY = 0, BOMB = -50, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	slowdown = -0.6
 	hoodtype = /obj/item/clothing/head/hooded/berserkerhood
 
 /obj/item/clothing/head/hooded/berserkerhood
 	name = "flagellant's robes"
-	desc = "Blood-soaked garb infused with dark magic; allows the user to move at inhuman speeds, but at the cost of increased damage."
+	desc = "Blood-soaked garb infused with dark magic; allows the user to move at inhuman speeds, but at the cost of increased damage. Nar-Sie's power boosts your resolve, allowing you to quickly recover from most knockdowns and stuns quickly."
 	icon_state = "culthood"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
-	armor = list(MELEE = -50, BULLET = -50, LASER = -50, ENERGY = -50, BOMB = -50, BIO = -50, RAD = -50, FIRE = 0, ACID = 0)
+	armor = list(MELEE = -30, BULLET = -50, LASER = -50, ENERGY = 0, BOMB = -50, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()
