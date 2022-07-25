@@ -31,3 +31,10 @@
 	p_time = 6 SECONDS 
 	poggy = /datum/action/innate/hog_cult/chain_heal
 
+/datum/hog_spell_preparation/berserker
+	name = "Berserker"
+	description = "Grants you a spell, that allows you to become immune to stuns and resistant to slowdowns, at the cost of being unable to communicate and cast spells."
+	cost = 55
+	p_time = 5 SECONDS 
+	poggy = /datum/action/innate/hog_cult/berserker
+

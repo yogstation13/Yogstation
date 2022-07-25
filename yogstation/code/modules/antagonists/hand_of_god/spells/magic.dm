@@ -169,7 +169,8 @@
 
 /datum/action/innate/hog_cult/berserker/Activate()
 	if(iscarbon(owner))
-		owner.apply_status_effect(STATUS_EFFECT_BERSERKER)
+		var/mob/living/carbon/C = owner
+		C.apply_status_effect(STATUS_EFFECT_BERSERKER)
 		qdel(src)
 	else
 		to_chat(owner, span_warning("You need to be a carbon in order to use this spell!"))
@@ -186,7 +187,7 @@
 	icon_state = "regenerative_core"
 
 /datum/status_effect/berserker/on_apply()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/carbon/C = owner
 	playsound(owner, 'sound/effects/wounds/blood3.ogg', 50, 1)
 	to_chat(owner, span_warning("You feel the bloodlust seeping into your mind."))
 	ADD_TRAIT(owner, TRAIT_MUTE, STATUS_EFFECT_TRAIT)
@@ -195,13 +196,12 @@
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, STATUS_EFFECT_TRAIT)
 	ADD_TRAIT(owner, TRAIT_NO_SPELLS, STATUS_EFFECT_TRAIT)
 	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
-	if(H.IsAdvancedToolUser())
+	if(C.IsAdvancedToolUser())
 		tools = TRUE
 		ADD_TRAIT(owner, TRAIT_MONKEYLIKE, STATUS_EFFECT_TRAIT)
 	return ..()
 
 /datum/status_effect/berserker/on_remove()
-	var/mob/living/carbon/human/H = owner
 	to_chat(owner, span_warning("You feel your humanity returning back."))
 	REMOVE_TRAIT(owner, TRAIT_MUTE, STATUS_EFFECT_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_DEAF, STATUS_EFFECT_TRAIT)
@@ -216,5 +216,8 @@
 
 
 /datum/status_effect/berserker/tick()
-	M.AdjustAllImmobility(-60, FALSE)
-	M.adjustStaminaLoss(-30*REM, 0)
+	var/mob/living/carbon/C = owner
+	if(!c)
+		return
+	C.AdjustAllImmobility(-60, FALSE)
+	C.adjustStaminaLoss(-30*REM, 0)
