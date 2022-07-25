@@ -483,7 +483,7 @@
 
 /obj/item/clothing/head/hooded/berserkerhood
 	name = "flagellant's robes"
-	desc = "Blood-soaked garb infused with dark magic; allows the user to move at inhuman speeds, but at the cost of increased damage. Nar-Sie's power boosts your resolve, allowing you to quickly recover from most knockdowns and stuns quickly."
+	desc = "Blood-soaked garb infused with dark magic; allows the user to move at inhuman speeds, but at the cost of increased damage."
 	icon_state = "culthood"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
