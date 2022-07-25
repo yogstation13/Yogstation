@@ -242,6 +242,19 @@
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 
+/obj/item/melee/hog_magic/lifeforce/ranged_attack(atom/target, mob/living/user)
+	if(isliving(target))
+		return FALSE
+	var/mob/living/L = target
+	if(L.stat == DEAD)
+		return FALSE
+	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
+	if(!dude || dude.cult != antag.cult) 
+		return FALSE
+	L.apply_status_effect(/datum/status_effect/lifeforce_trade, user)
+	to_chat(user, span_warning("You link yourself with [L]."))
+	return TRUE
+
 /datum/status_effect/lifeforce_trade
 	id = "lifeforce_trade"
 	duration = 15 SECONDS
@@ -254,7 +267,7 @@
 	. = ..()
 
 /datum/status_effect/lifeforce_trade/on_apply()
-	to_chat(owner, span_warning("You feel getting linked with [trading_dude]..."))
+	to_chat(owner, span_warning("You feel getting linked with [trader]..."))
 	return ..()
 
 /datum/status_effect/lifeforce_trade/tick()
