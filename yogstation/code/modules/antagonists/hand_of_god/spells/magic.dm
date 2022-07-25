@@ -221,3 +221,74 @@
 		return
 	C.AdjustAllImmobility(-60, FALSE)
 	C.adjustStaminaLoss(-30*REM, 0)
+
+//////////////////////////////////////////
+//                                      //
+//          LIFEFORCE TRADE             //
+//                                      //
+//////////////////////////////////////////
+
+/datum/action/innate/hog_cult/lifeforce
+	name = "Lifeforce Trade"
+	desc = "Target a fellow cultist with this spell, and they will get quickly healed of immobility effects(sleeping, knockdown, etc.), but you will get 65% of effect duration."
+	hand_type =  /obj/item/melee/hog_magic/lifeforce
+
+/obj/item/melee/hog_magic/lifeforce
+	name = "\improper charged hand" 
+	desc = "A hand, that can link you and someone else for a lifeforce trade."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+
+/datum/status_effect/lifeforce_trade
+	id = "lifeforce_trade"
+	duration = 15 SECONDS
+	alert_type = null
+	tick_interval = 1.2 SECONDS
+	var/mob/living/carbon/trader
+
+/datum/status_effect/lifeforce_trade/on_creation(mob/living/new_owner, mob/living/carbon/trading_dude)
+	trader = trading_dude
+	. = ..()
+
+/datum/status_effect/lifeforce_trade/on_apply()
+	to_chat(owner, span_warning("You feel getting linked with [trading_dude]..."))
+	return ..()
+
+/datum/status_effect/lifeforce_trade/tick()
+	var/what_do_we_do
+	var/knockdowned = owner.AmountKnockdown()
+	if(knockdowned)
+		owner.SetKnockdown(0, TRUE, TRUE)
+		trader.AdjustKnockdown(knockdowned*0.65)
+		what_do_we_do = "arise"
+	var/immobilized = owner.AmountImmobilized()
+	if(immobilized)
+		owner.SetImmobilized(0, TRUE, TRUE)
+		trader.AdjustImmobilized(immobilized*0.65)
+		what_do_we_do = "move again"
+	var/paralyzed = owner.AmountParalyzed()
+	if(paralyzed)
+		owner.SetParalyzed(0, TRUE, TRUE)
+		trader.AdjustParalyzed(paralyzed*0.65)
+		what_do_we_do = "move again"
+	var/unconsinius = owner.AmountUnconscious()
+	if(unconsinius)
+		owner.SetUnconscious(0, TRUE, TRUE)
+		trader.AdjustUnconscious(unconsinius*0.65)
+		what_do_we_do = "return to consciousness"
+	var/sleepin = owner.AmountSleeping()
+	if(sleepin)
+		owner.SetSleeping(0, TRUE, TRUE)
+		trader.AdjustSleeping(sleepin*0.65)
+		what_do_we_do = "awake"
+	var/stun = owner.AmountStun()
+	if(stun)
+		owner.SetStun(0, TRUE, TRUE)
+		trader.AdjustStun(stun*0.65)
+		what_do_we_do = "move again"
+	if(what_do_we_do)
+		to_chat(owner, span_warning("You feel new energy entering your body. You [what_do_we_do]."))
+		to_chat(trader, span_warning("You feel your energy leaving your body, as you sacrifice it to [owner]."))
