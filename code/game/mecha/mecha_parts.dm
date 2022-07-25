@@ -13,6 +13,11 @@
 	if(!user.transferItemToLoc(src, M))
 		to_chat(user, span_warning("\The [src] is stuck to your hand, you cannot put it in \the [M]!"))
 		return FALSE
+	
+	// If there is an occupant and it is not a posibrain
+	if(M.occupant && !istype(M.occupant.loc, /obj/item/mmi)) 
+		to_chat(user, span_warning("Someone is driving \the [M]!"))
+		return FALSE
 	user.visible_message("[user] attaches [src] to [M].", span_notice("You attach [src] to [M]."))
 	return TRUE
 

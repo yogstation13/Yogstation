@@ -8930,19 +8930,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"eJm" = (
-/obj/machinery/door/airlock/public/glass{
-	id_tag = "permabolt1";
-	name = "Cell 1"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "eJw" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -11442,6 +11429,19 @@
 	density = 0;
 	department = "Bridge";
 	name = "Bridge Fax Machine"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"fUf" = (
+/obj/machinery/button/door{
+	id = "bridge blast";
+	name = "Bridge Blast Door Control";
+	pixel_y = -26;
+	req_access_txt = "19"
+	},
+/obj/structure/chair/comfy/black{
+	dir = 4;
+	name = "Command Station"
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -14469,6 +14469,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"hwP" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/item/stack/ore/silver,
+/obj/item/stack/ore/silver,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "hxw" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -19150,12 +19158,6 @@
 "kfu" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
-"kfz" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "kfL" = (
 /obj/item/wrench,
 /turf/open/floor/plating,
@@ -25628,6 +25630,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"nFs" = (
+/obj/machinery/door/airlock/public/glass{
+	id_tag = "permabolt1";
+	name = "Cell 1"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/poddoor/preopen{
+	id = "permacell1";
+	name = "cell blast door"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "nFB" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 8
@@ -28471,19 +28490,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"pkL" = (
-/obj/machinery/door/airlock/public/glass{
-	id_tag = "permabolt2";
-	name = "Cell 2"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "pkR" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -28502,12 +28508,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"pkT" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "pkV" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/showroomfloor,
@@ -28543,6 +28543,23 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
+"pmj" = (
+/obj/machinery/door/airlock/public/glass{
+	id_tag = "permabolt2";
+	name = "Cell 2"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/poddoor/preopen{
+	id = "permacell2";
+	name = "cell blast door"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "pmk" = (
 /obj/machinery/door/airlock/security{
 	name = "Labor Shuttle";
@@ -29103,15 +29120,6 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/closed/wall,
 /area/hallway/primary/starboard)
-"pCA" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "pCE" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
@@ -29875,6 +29883,13 @@
 "pZd" = (
 /turf/open/floor/plating/asteroid/airless,
 /area/science/test_area)
+"pZo" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/obj/machinery/medical_kiosk,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "qaa" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -33870,27 +33885,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"sop" = (
-/obj/machinery/button/door{
-	id = "tcomms_bridge";
-	name = "Telecommunications server shutters control";
-	pixel_x = -6;
-	pixel_y = -34;
-	req_one_access_txt = "19;61"
-	},
-/obj/machinery/button/door{
-	id = "bridge blast";
-	name = "Bridge Blast Door Control";
-	pixel_x = -6;
-	pixel_y = -25;
-	req_access_txt = "19"
-	},
-/obj/structure/chair/comfy/black{
-	dir = 4;
-	name = "Command Station"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "sou" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -37217,16 +37211,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
-"ufv" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "ufA" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -38984,6 +38968,13 @@
 	},
 /turf/open/floor/plating,
 /area/medical/genetics/cloning)
+"uYJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/item/stack/ore/iron,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "uZk" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -39246,6 +39237,16 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
+"vgU" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "vhk" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -62769,7 +62770,7 @@ esr
 mFH
 nJE
 kiv
-pkL
+pmj
 nJE
 gyI
 txl
@@ -63797,7 +63798,7 @@ esr
 dHX
 gWp
 tKC
-eJm
+nFs
 gWp
 fiH
 seq
@@ -67198,7 +67199,7 @@ lPS
 vgx
 kjX
 fli
-pCA
+uYJ
 lee
 vRP
 vRP
@@ -67455,7 +67456,7 @@ sWa
 iRa
 cPL
 gNJ
-ufv
+vgU
 hpl
 gjL
 vRP
@@ -67712,7 +67713,7 @@ qDp
 ePR
 kjX
 cTk
-kfz
+hwP
 lee
 vRP
 vRP
@@ -77703,7 +77704,7 @@ rtg
 jcz
 etE
 wZX
-pkT
+pZo
 bEM
 xyy
 jxk
@@ -92352,7 +92353,7 @@ rcq
 nMP
 dxA
 fTY
-sop
+fUf
 nMe
 wgx
 yfc
