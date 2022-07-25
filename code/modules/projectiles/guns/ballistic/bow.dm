@@ -125,7 +125,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow
 	name = "wooden crossbow"
-	desc = "A bow with a locking mechanism that more closly resembles a modern gun."
+	desc = "A bow with a locking mechanism that more closely resembles a modern gun."
 	icon_state = "crossbow"
 	spread = 0
 	draw_time = 2 SECONDS
