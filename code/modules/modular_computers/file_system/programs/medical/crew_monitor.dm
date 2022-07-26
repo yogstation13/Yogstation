@@ -2,7 +2,7 @@
 	filename = "crewmon"
 	filedesc = "Crew Suit Sensor Monitor"
 	extended_desc = "This program allows for viewing of crew members vitals via their suit sensors."
-	category = PROGRAM_CATEGORY_CREW
+	category = PROGRAM_CATEGORY_MED
 	ui_header = "health_green.gif"
 	program_icon_state = "crew"
 	requires_ntnet = TRUE

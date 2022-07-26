@@ -78,9 +78,11 @@
 #define PROGRAM_STATE_BACKGROUND 1
 #define PROGRAM_STATE_ACTIVE 2
 //Program categories
-#define PROGRAM_CATEGORY_CREW "Crew"
+#define PROGRAM_CATEGORY_CMD "Command"
+#define PROGRAM_CATEGORY_SEC "Security"
 #define PROGRAM_CATEGORY_ENGI "Engineering"
-#define PROGRAM_CATEGORY_ROBO "Robotics"
+#define PROGRAM_CATEGORY_SCI "Science"
+#define PROGRAM_CATEGORY_MED "Medical"
 #define PROGRAM_CATEGORY_SUPL "Supply"
 #define PROGRAM_CATEGORY_MISC "Other"
 

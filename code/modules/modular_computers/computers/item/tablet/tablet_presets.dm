@@ -4,7 +4,8 @@
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer/micro,
 								/obj/item/computer_hardware/hard_drive/small,
-								/obj/item/computer_hardware/network_card)
+								/obj/item/computer_hardware/network_card,
+								/obj/item/computer_hardware/card_slot)
 
 // Alternative version, an average one, for higher ranked positions mostly
 /obj/item/modular_computer/tablet/preset/advanced
@@ -49,7 +50,7 @@
 								/obj/item/computer_hardware/network_card/advanced,
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini)
-	finish_color = "red"
+	finish_color = "crimson"
 
 /// Given by the syndicate as part of the contract uplink bundle - loads in the Contractor Uplink.
 /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink
