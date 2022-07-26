@@ -8,17 +8,17 @@
 	var/unique_blood = null
 	var/labelled = 0
 
-/obj/item/reagent_containers/blood/attack(mob/user, mob/user, def_zone)
+/obj/item/reagent_containers/blood/attack(mob/target, mob/user, def_zone)
 	if(reagents.total_volume > 0)
-		if(user != user)
+		if(target != user)
 			user.visible_message(
-				span_notice("[user] forces [user] to drink from the [src]."),
-				span_notice("You put the [src] up to [user]'s mouth."),
+				span_notice("[user] forces [target] to drink from the [src]."),
+				span_notice("You put the [src] up to [target]'s mouth."),
 			)
-			if(!do_mob(user, user, 5 SECONDS))
+			if(!do_mob(user, target, 5 SECONDS))
 				return
 		else
-			if(!do_mob(user, user, 1 SECONDS))
+			if(!do_mob(user, target, 1 SECONDS))
 				return
 			user.visible_message(
 				span_notice("[user] puts the [src] up to their mouth."),

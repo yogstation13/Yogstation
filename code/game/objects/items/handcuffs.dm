@@ -1,7 +1,6 @@
 /obj/item/restraints
 	icon = 'icons/obj/handcuffs.dmi'
 	breakouttime = 600
-	mob_overlay_icon = 'icons/mob/restraints.dmi'
 	var/break_strength = 2 // Minimum strength required for a holopara to break it
 
 /obj/item/restraints/suicide_act(mob/living/carbon/user)
