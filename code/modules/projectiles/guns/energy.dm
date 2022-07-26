@@ -21,6 +21,7 @@
 	var/charge_amount = 1
 	var/use_cyborg_cell = FALSE //whether the gun's cell drains the cyborg user's cell to recharge
 	var/dead_cell = FALSE //set to true so the gun is given an empty cell
+	weapon_weight = WEAPON_MEDIUM //most energy weapons cannot be dual wielded
 
 /obj/item/gun/energy/emp_act(severity)
 	. = ..()
