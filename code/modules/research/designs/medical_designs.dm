@@ -192,6 +192,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/gastric_pump
+	name = "Gastric Pump"
+	desc = "a pump and a valve that connects directly to your stomach."
+	id = "g_pump"
+	build_path = /obj/item/gastric_pump
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron=3000, /datum/material/glass=1500)
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/healthanalyzer_advanced
 	name = "Advanced Health Analyzer"
 	desc = "A hand-held body scanner, able to distinguish vital signs of the subject with high accuracy."
