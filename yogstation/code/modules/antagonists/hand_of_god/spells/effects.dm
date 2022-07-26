@@ -117,28 +117,28 @@
 /datum/status_effect/hog_blade_effect
 	id = "hog_blade_effect_idk"
 	duration = 20 SECONDS
-    var/apply_message = "fuck you"
-    var/remove_message = "you fuck"
+	var/apply_message = "fuck you"
+	var/remove_message = "you fuck"
 
 /datum/status_effect/hog_blade_effect/on_apply()
 	RegisterSignal(owner, COMSIG_ATTACK_HOG_BLADE, .proc/blade_effect)
-    to_chat(owner, span_notice(apply_message))
-    return ..()
+	to_chat(owner, span_notice(apply_message))
+	return ..()
 
 
 /datum/status_effect/hog_blade_effect/on_remove()
-    UnregisterSignal(owner, COMSIG_ATTACK_HOG_BLADE)
-    to_chat(owner, span_warning(remove_message))
-    return ..()
+	UnregisterSignal(owner, COMSIG_ATTACK_HOG_BLADE)
+	to_chat(owner, span_warning(remove_message))
+	return ..()
 
 /datum/status_effect/hog_blade_effect/proc/blade_effect(mob/living/source, obj/item/weapon, mob/target)  ///Do nothing IDK
-    return
+	return
 
 /datum/status_effect/hog_blade_effect/lifesteal
 	id = "hog_lifesteal"
 	duration = 20 SECONDS
-    apply_message = "You enchant yourself, making your blade attacks steal life from your enemies"
-    remove_message = "The lifesteal effect has faded, you no longer steal life with your attacks."
+	apply_message = "You enchant yourself, making your blade attacks steal life from your enemies"
+	remove_message = "The lifesteal effect has faded, you no longer steal life with your attacks."
 
 /datum/status_effect/hog_blade_effect/lifesteal/blade_effect(mob/living/source, obj/item/weapon, mob/target)
-    source.heal_overall_damage(5, 5)
+	source.heal_overall_damage(5, 5)

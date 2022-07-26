@@ -273,3 +273,67 @@
 		qdel(src)
 	else
 		to_chat(owner, span_warning("You need to be a carbon in order to use this spell!"))
+
+//////////////////////////////////////////
+//                                      //
+//                BLINK                 //
+//                                      //
+//////////////////////////////////////////
+
+/datum/action/innate/hog_cult/blink
+	name = "Teleport"
+	desc = "Charges your handwith bluespace energy, allowing to teleport yourself or your allied cultist."
+	hand_type =  /obj/item/melee/hog_magic/blink
+
+/obj/item/melee/hog_magic/blink
+	name = "\improper bluespace charged hand" 
+	desc = "A hand, that can teleport people."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	var/inner_tele_radius = 0
+	var/outer_tele_radius = 6
+
+/obj/item/melee/hog_magic/blink/melee_attack(atom/target, mob/living/user)
+	if(isliving(target))
+		return FALSE
+	var/mob/living/L = target
+	if(L.stat == DEAD)
+		return FALSE
+	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
+	if(!dude || dude.cult != antag.cult)
+		return FALSE
+
+	playsound(get_turf(L), 'sound/magic/blink.ogg', 50,1)
+	var/list/turfs = new/list()
+	for(var/turf/T in range(target,outer_tele_radius))
+		if(T in range(target,inner_tele_radius))
+			continue
+		if(isspaceturf(T))
+			continue
+		if(T.density)
+			continue
+		if(T.x>world.maxx-outer_tele_radius || T.x<outer_tele_radius)
+			continue	//putting them at the edge is dumb
+		if(T.y>world.maxy-outer_tele_radius || T.y<outer_tele_radius)
+			continue
+		turfs += T
+
+	if(!turfs.len)
+		var/list/turfs_to_pick_from = list()
+		for(var/turf/T in orange(target,outer_tele_radius))
+			if(!(T in orange(target,inner_tele_radius)))
+				turfs_to_pick_from += T
+		turfs += pick(/turf in turfs_to_pick_from)
+
+	var/turf/picked = pick(turfs)
+
+	if(!picked || !isturf(picked))
+		return FALSE
+
+	if(do_teleport(L, picked, forceMove = TRUE, channel = TELEPORT_CHANNEL_MAGIC))
+		playsound(get_turf(L), 'sound/magic/blink.ogg', 50,1)
+		return TRUE
+	return FALSE
