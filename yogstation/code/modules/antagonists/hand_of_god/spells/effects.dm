@@ -20,36 +20,39 @@
 	return ..()
 
 /datum/status_effect/lifeforce_trade/tick()
+	var/ratio = 0.65
+	if(HAS_TRAIT(owner, TRAIT_CULTIST_ROBED))
+		ratio = 0.55
 	var/what_do_we_do
 	var/knockdowned = owner.AmountKnockdown()
 	if(knockdowned)
 		owner.SetKnockdown(0, TRUE, TRUE)
-		trader.AdjustKnockdown(knockdowned*0.65)
+		trader.AdjustKnockdown(knockdowned*ratio)
 		what_do_we_do = "arise"
 	var/immobilized = owner.AmountImmobilized()
 	if(immobilized)
 		owner.SetImmobilized(0, TRUE, TRUE)
-		trader.AdjustImmobilized(immobilized*0.65)
+		trader.AdjustImmobilized(immobilized*ratio)
 		what_do_we_do = "move again"
 	var/paralyzed = owner.AmountParalyzed()
 	if(paralyzed)
 		owner.SetParalyzed(0, TRUE, TRUE)
-		trader.AdjustParalyzed(paralyzed*0.65)
+		trader.AdjustParalyzed(paralyzed*ratio)
 		what_do_we_do = "move again"
 	var/unconsinius = owner.AmountUnconscious()
 	if(unconsinius)
 		owner.SetUnconscious(0, TRUE, TRUE)
-		trader.AdjustUnconscious(unconsinius*0.65)
+		trader.AdjustUnconscious(unconsinius*ratio)
 		what_do_we_do = "return to consciousness"
 	var/sleepin = owner.AmountSleeping()
 	if(sleepin)
 		owner.SetSleeping(0, TRUE, TRUE)
-		trader.AdjustSleeping(sleepin*0.65)
+		trader.AdjustSleeping(sleepin*ratio)
 		what_do_we_do = "awake"
 	var/stun = owner.AmountStun()
 	if(stun)
 		owner.SetStun(0, TRUE, TRUE)
-		trader.AdjustStun(stun*0.65)
+		trader.AdjustStun(stun*ratio)
 		what_do_we_do = "move again"
 	if(what_do_we_do)
 		to_chat(owner, span_warning("You feel new energy entering your body. You [what_do_we_do]."))
@@ -66,6 +69,7 @@
 	duration = 20 SECONDS
 	alert_type = /obj/screen/alert/status_effect/berserker
 	var/tools = FALSE
+	var/reduced_slowdown = FALSE
 
 /obj/screen/alert/status_effect/berserker
 	name = "Berserker"
@@ -78,7 +82,9 @@
 	to_chat(owner, span_warning("You feel the bloodlust seeping into your mind."))
 	ADD_TRAIT(owner, TRAIT_MUTE, STATUS_EFFECT_TRAIT)
 	ADD_TRAIT(owner, TRAIT_DEAF, STATUS_EFFECT_TRAIT)
-	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, STATUS_EFFECT_TRAIT)
+	if(HAS_TRAIT(owner, TRAIT_CULTIST_ROBED))
+		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, STATUS_EFFECT_TRAIT)
+		reduced_slowdown = TRUE
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, STATUS_EFFECT_TRAIT)
 	ADD_TRAIT(owner, TRAIT_NO_SPELLS, STATUS_EFFECT_TRAIT)
 	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
@@ -91,7 +97,8 @@
 	to_chat(owner, span_warning("You feel your humanity returning back."))
 	REMOVE_TRAIT(owner, TRAIT_MUTE, STATUS_EFFECT_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_DEAF, STATUS_EFFECT_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, STATUS_EFFECT_TRAIT)
+	if(reduced_slowdown)
+		REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, STATUS_EFFECT_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, STATUS_EFFECT_TRAIT)
 	REMOVE_TRAIT(owner, TRAIT_NO_SPELLS, STATUS_EFFECT_TRAIT)
 	if(tools)
@@ -147,4 +154,7 @@
 	remove_message = "The lifesteal effect has faded, you no longer steal life with your attacks."
 
 /datum/status_effect/hog_blade_effect/lifesteal/blade_effect(mob/living/source, obj/item/weapon, mob/target)
-	source.heal_overall_damage(5, 5)
+	var/heal = 5
+	if(HAS_TRAIT(source, TRAIT_CULTIST_ROBED))
+		heal = 7
+	source.heal_overall_damage(heal, heal)

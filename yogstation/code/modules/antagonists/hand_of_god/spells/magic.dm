@@ -389,6 +389,6 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
-		if(L?.cult == cult)
+		if(dude?.cult == cult)
 			nodamage = TRUE
 	return ..()
