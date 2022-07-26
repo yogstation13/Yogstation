@@ -44,7 +44,7 @@
 	item_state = "cultrobes"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/hog_item/upgradeable)
-	armor = list(MELEE = 30, BULLET = 20, LASER = 30,ENERGY = 10, BOMB = 15, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 20, ENERGY = 0, BOMB = 5, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
@@ -61,7 +61,7 @@
 	name = "mage robe"
 	desc = "A magical robe, decorated with strange shining crystals."
 	icon_state = "cult_hoodalt"
-	armor = list(MELEE = 30, BULLET = 20, LASER = 30,ENERGY = 10, BOMB = 15, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 20, BULLET = 15, LASER = 20, ENERGY = 0, BOMB = 5, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 

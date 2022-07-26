@@ -107,8 +107,8 @@
 				apply_research_effects(O)
 
 /datum/hog_research/proc/apply_research_effects(var/obj/O)	
-	var/obj/item/hog_item/upgradeable/item = O
-	if(item)
+	if(istype(O, /obj/item/hog_item/upgradeable))
+		var/obj/item/hog_item/upgradeable/item = O
 		if(item?.cult != cult)
 			return
 		item.upgrades++
@@ -126,9 +126,18 @@
 		apply_research_effects_special(O)	
 
 /datum/hog_research/proc/apply_research_effects_special(var/obj/O)	
+	return
 
 /datum/hog_research/advanced_weaponry
 	affected_objects = list(/obj/item/hog_item/upgradeable/sword)
 
 /datum/hog_research/protection
-	affected_objects = list(/obj/item/hog_item/upgradeable/shield)
+	affected_objects = list(/obj/item/hog_item/upgradeable/shield, /obj/item/clothing/suit/hooded/hog_robe_mage, /obj/item/clothing/suit/hooded/hog_robe_warrior, /obj/item/clothing/head/hooded/hog_robe_warrior, /obj/item/clothing/head/hooded/hog_robe_mage)
+
+/datum/hog_research/protection/apply_research_effects_special(var/obj/O)
+	O.armor = O.armor.setRating(
+		melee = initial(O.armor.melee) + (6 * levels),
+		bullet = initial(O.armor.bullet) + (6 * levels),
+		laser = initial(O.armor.laser) + (6 * levels),
+		energy = initial(O.armor.energy) + (6 * levels)
+	)	

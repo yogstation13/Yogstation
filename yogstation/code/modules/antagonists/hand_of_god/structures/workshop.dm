@@ -6,7 +6,7 @@
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_originalname = "workshop"
 	max_integrity = 100
-	products = list(/datum/hog_product/sword, /datum/hog_product/shield)
+	products = list(/datum/hog_product/sword, /datum/hog_product/shield, /datum/hog_product/war_robe)
 
 /datum/hog_product/sword
 	name = "Cult sword"
@@ -21,6 +21,13 @@
 	time_to_make = 20 SECONDS
 	cost = 70
 	result = /obj/item/hog_item/upgradeable/shield
+
+/datum/hog_product/war_robe
+	name = "Warrior Robe"
+	description = "An armored magical robe."
+	time_to_make = 50 SECONDS
+	cost = 95
+	result = /obj/item/clothing/suit/hooded/hog_robe_warrior
 
 /datum/hog_god_interaction/targeted/construction/workshop
 	name = "Construct a celestial workshop"

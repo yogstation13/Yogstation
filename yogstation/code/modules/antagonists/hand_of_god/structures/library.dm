@@ -6,7 +6,7 @@
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_originalname = "librarium"
 	max_integrity = 75
-	products = list(/datum/hog_product/cultbook)
+	products = list(/datum/hog_product/cultbook, /datum/hog_product/mage_robe)
 
 /datum/hog_product/cultbook
 	name = "Cult tome"
@@ -15,9 +15,16 @@
 	cost = 120
 	result = /obj/item/hog_item/book
 
+/datum/hog_product/mage_robe
+	name = "Mage robe"
+	description = "A enchanted magical robe. It will empower it's user spells when worn."
+	time_to_make = 45 SECONDS
+	cost = 80
+	result = /obj/item/clothing/suit/hooded/hog_robe_mage
+
 /datum/hog_god_interaction/targeted/construction/library
 	name = "Construct a librarium"
-	description = "Construct a librarium, that can produce cult tomes and unlock advanced spells."
+	description = "Construct a librarium, that can produce cult tomes and mage robes."
 	cost = 200
 	time_builded = 35 SECONDS
 	warp_name = "librarium"
