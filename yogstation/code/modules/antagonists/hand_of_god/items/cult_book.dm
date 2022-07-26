@@ -23,7 +23,7 @@
 			if(!dude.magic.len)
 				to_chat(user, span_warning("You don't have any spells to remove."))
 				return
-			var/nullify_spell = input(owner, "Choose a spell to remove.", "Current Spells") as null|anything in dude.magic
+			var/nullify_spell = input(user, "Choose a spell to remove.", "Current Spells") as null|anything in dude.magic
 			if(nullify_spell)
 				qdel(nullify_spell)
 		if("Prepare Spell")
@@ -33,7 +33,7 @@
 				actuall_spells[spell.name] = spell
 				names += spell.name
 			var/spell_to_prepare = actuall_spells[input(user,"What do you want to prepare?","Spell") in names]
-			if(!spell || !spell_to_prepare.confirm(user, cultie))
+			if(!spell_to_prepare || !spell_to_prepare.confirm(user, cultie))
 				for(var/datum/hog_spell_preparation/spell in actuall_spells)
 					qdel(spell)
 				return
