@@ -504,6 +504,7 @@
 	armor = initial(armor)
 	slowdown = initial(slowdown)
 	w_class = initial(w_class)
+	// Does not cover additional limbs like vest does
 	plating = null
 
 /obj/item/clothing/head/helmet/plated/examine(mob/user)
@@ -529,4 +530,5 @@
 	slowdown = K.slowdown_set
 	armor = K.armor_set
 	w_class = WEIGHT_CLASS_BULKY
+	// Does not cover additional limbs like vest does
 	plating = K

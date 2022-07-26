@@ -425,6 +425,7 @@
 	armor = initial(armor)
 	slowdown = initial(slowdown)
 	w_class = initial(w_class)
+	body_parts_partial_covered = initial(body_parts_partial_covered)
 	plating = null
 
 /obj/item/clothing/suit/armor/plated/examine(mob/user)
@@ -450,6 +451,7 @@
 	slowdown = K.slowdown_set
 	armor = K.armor_set
 	w_class = WEIGHT_CLASS_BULKY
+	body_parts_partial_covered = K.partial_coverage
 	plating = K
 
 //////////////// ARMOR PLATES ////////////////////////////////////////////////
@@ -476,6 +478,7 @@
 	var/slowdown_set = 0 // Slowdown value to set on the vest, for reference a hardsuit has "1" slowdown
 	var/armor_set = list( // Armor value to set on the vest
 		MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 100)
+	var/partial_coverage = LEGS|FEET|ARMS|HANDS // Areas that the vest will cover besides the chest, NEVER INCLUDE CHEST OR GROIN
 
 /obj/item/kevlar_plating/mki
 	name = "MK.I bluespace plating"
@@ -484,6 +487,7 @@
 	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
 	armor_set = list( // Slightly worse than default armor
 		MELEE = 20, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 40, WOUND = 10)
+	partial_coverage = 0
 
 /obj/item/kevlar_plating/mkii
 	name = "MK.II ceramic plating"
@@ -494,20 +498,22 @@
 	slowdown_set = 0
 	armor_set = list( // Slightly better than default armor
 		MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	partial_coverage = 0
 
 /obj/item/kevlar_plating/mkiii
 	name = "MK.III plasteel plating"
-	desc = "Weighted armor plating that impedes movement but greatly improves the durability of the wearer."
+	desc = "Weighted armor plating that impedes movement but greatly improves the durability of the wearer. Covers your limbs partially."
 	icon_state = "mkiii"
 	force = 6
 	name_set = "MK.III plasteel"
 	slowdown_set = 0.15 // Slow
 	armor_set = list( // Robust
 		MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 60, ACID = 60, WOUND = 35)
+	partial_coverage = LEGS|ARMS
 
 /obj/item/kevlar_plating/mkiv
 	name = "MK.IV titanium plating"
-	desc = "Incredibly heavy armor plating that makes shooting the covered areas almost pointless."
+	desc = "Incredibly heavy armor plating that makes shooting the covered areas almost pointless. Covers your limbs partially."
 	icon_state = "mkiv"
 	force = 8
 	name_set = "MK.IV titanium"
@@ -515,3 +521,4 @@
 	slowdown_set = 0.4 // Very slow
 	armor_set = list( // Walking tank
 		MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 75, ACID = 75, WOUND = 50)
+	partial_coverage = LEGS|ARMS
