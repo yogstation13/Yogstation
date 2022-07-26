@@ -76,7 +76,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							/obj/item/circuitboard/computer/arcade/amputation = 2)
 		var/thegame = pickweight(gameodds)
 		var/obj/item/circuitboard/CB = new thegame()
-		new CB.build_path(loc, CB)
+		var/atom/newgame = new CB.build_path(loc, CB)
+		newgame.dir = dir
+		
 		return INITIALIZE_HINT_QDEL
 	Reset()
 
