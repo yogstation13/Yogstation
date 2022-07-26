@@ -57,6 +57,8 @@
 				span_notice("[user] forces [target_human] to vomit, cleansing their stomach of some chemicals!"),
 				"[user] forces [target_human] to vomit!")
 		target_human.vomit(20, FALSE, TRUE, 1, TRUE, FALSE, purge_ratio = 0.67) //higher purge ratio than regular vomiting
+		target_human.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5)
+		target_human.adjustBruteLoss(5)
 	return ..()
 
 /datum/surgery_step/stomach_pump/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -65,5 +67,5 @@
 		display_results(user, target, span_warning("You screw up, brusing [target_human]'s chest!"),
 			span_warning("[user] screws up, brusing [target_human]'s abdomen!"),
 			span_warning("[user] screws up!"))
-		target_human.adjustOrganLoss(ORGAN_SLOT_STOMACH, 10)
-		target_human.adjustBruteLoss(5)
+		target_human.adjustOrganLoss(ORGAN_SLOT_STOMACH, 20)
+		target_human.adjustBruteLoss(10)
