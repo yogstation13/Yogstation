@@ -4,7 +4,7 @@
 // DNA vaults require high tier stock parts and cold
 // After completion each crewmember can receive single upgrade chosen out of 2 for the mob.
 #define VAULT_TOXIN "Toxin Adaptation"
-#define VAULT_NOBLOOD "Lung Enhancement"
+#define VAULT_SELFSUFFICIENT "Celluar Self-Sufficiency"
 #define VAULT_FIREPROOF "Thermal Regulation"
 #define VAULT_STUNTIME "Neural Repathing"
 #define VAULT_ARMOUR "Bone Reinforcement"
@@ -188,7 +188,7 @@
 	if(user in power_lottery)
 		return
 	var/list/L = list()
-	var/list/possible_powers = list(VAULT_TOXIN,VAULT_NOBLOOD,VAULT_FIREPROOF,VAULT_STUNTIME,VAULT_ARMOUR,VAULT_SPEED,VAULT_QUICK)
+	var/list/possible_powers = list(VAULT_TOXIN,VAULT_SELFSUFFICIENT,VAULT_FIREPROOF,VAULT_STUNTIME,VAULT_ARMOUR,VAULT_SPEED,VAULT_QUICK)
 	L += pick_n_take(possible_powers)
 	L += pick_n_take(possible_powers)
 	power_lottery[user] = L
@@ -265,10 +265,13 @@
 				L.tox_breath_dam_max = 0
 			ADD_TRAIT(H, TRAIT_VIRUSIMMUNE, "dna_vault")
 			P.tox_mod *= 0.2
-		if(VAULT_NOBLOOD)
-			to_chat(H, span_notice("Oxygen doesn't seem so attractive any more."))
+			H.dna.species.acidmod *= 0.2	//Remind me to move this to physiolgy later - Mqiib
+		if(VAULT_SELFSUFFICIENT)
+			to_chat(H, span_notice("You feel suddenly rejuvenated."))
 			ADD_TRAIT(H, TRAIT_NOBREATH, "dna_vault")
-			H.dna.species.species_traits += NOBLOOD
+			H.dna.species.species_traits += NOBLOOD	//This will definitely not create some strange interactions
+			P.oxy_mod *= 0							//To be triple hella sure
+			P.hunger_mod *= 0.1
 		if(VAULT_FIREPROOF)
 			to_chat(H, span_notice("You feel fireproof."))
 			P.burn_mod *= 0.5
