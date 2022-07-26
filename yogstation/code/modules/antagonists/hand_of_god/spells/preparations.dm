@@ -38,3 +38,16 @@
 	p_time = 5 SECONDS 
 	poggy = /datum/action/innate/hog_cult/berserker
 
+/datum/hog_spell_preparation/lifeforce
+	name = "Lifeforce Trade"
+	description = "Grants you a spell, that allows you to make you absorb stuns and other immobility effects of your allied cultist."
+	cost = 40
+	p_time = 4 SECONDS 
+	poggy = /datum/action/innate/hog_cult/lifeforce
+
+/datum/hog_spell_preparation/cleave
+	name = "Cleave"
+	description = "Grants you a spell, that allows you to deal area damage with high armor penetration and cause bleeding on targets."
+	cost = 35
+	p_time = 4 SECONDS 
+	poggy = /datum/action/innate/hog_cult/cleave

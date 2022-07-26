@@ -305,3 +305,50 @@
 	if(what_do_we_do)
 		to_chat(owner, span_warning("You feel new energy entering your body. You [what_do_we_do]."))
 		to_chat(trader, span_warning("You feel your energy leaving your body, as you sacrifice it to [owner]."))
+
+//////////////////////////////////////////
+//                                      //
+//                CLEAVE                //
+//                                      //
+//////////////////////////////////////////
+
+/datum/action/innate/hog_cult/cleave
+	name = "Cleave"
+	desc = "Charges your hand, allowing to deal bleeding wounds and damage to multiple people when used."
+	hand_type =  /obj/item/melee/hog_magic/cleave
+
+/obj/item/melee/hog_magic/cleave
+	name = "\improper bloody hand" 
+	desc = "A hand, that can cause bleeding wounds on multiple people."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+
+/obj/item/melee/hog_magic/cleave/melee_attack(atom/target, mob/living/user)
+	if(isliving(target))
+		return FALSE
+	var/mob/living/L = target
+	if(L.stat == DEAD)
+		return FALSE
+	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
+	if(dude && dude.cult == antag.cult)
+		return FALSE
+	L.apply_damage(16, BRUTE, user.zone_selected, 0, sharpness = SHARP_EDGED)
+	to_chat(user, span_warning("You cut [L]'s veins with your magic."))
+	L.visible_message(span_danger("[L] is cut by [user]'s magic!"), \
+					  span_userdanger("[user] cuts you with their magic!"))
+	var/already_damaged_people_amount = 1
+	for(var/mob/living/aoe_target in view_or_range(1, L, "range")) 
+		if(aoe_target.stat == DEAD)
+			continue
+		var/datum/antagonist/hog/man = IS_HOG_CULTIST(aoe_target)
+		if(man?.cult != antag.cult)
+			continue
+		if(aoe_target.anti_magic_check())
+			continue
+		aoe_target.apply_damage(max(16 - already_damaged_people_amount*3, 5), BRUTE, user.zone_selected, 0, sharpness = SHARP_EDGED)
+		to_chat(aoe_target, span_userdanger("You are cut by [user]'s magic!"))
+		already_damaged_people_amount++
+	return TRUE
