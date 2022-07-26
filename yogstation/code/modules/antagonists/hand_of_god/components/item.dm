@@ -16,7 +16,6 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_PICKUP, COMSIG_HOG_ACT, COMSIG_ITEM_EQUIPPED))
 
 /datum/component/hog_item/proc/try_punish(obj/item/source, mob/user, slot)
-	SIGNAL_HANDLER
 	if(!cult)
 		return
 	if(!isliving(user))
@@ -33,7 +32,6 @@
 			C.vomit(20)
 
 /datum/component/hog_item/proc/try_change_cult(atom/source, datum/team/hog_cult/act_cult)
-	SIGNAL_HANDLER
 	if(act_cult == cult)
 		return
 	cult = act_cult
