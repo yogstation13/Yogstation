@@ -17,11 +17,11 @@
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-    hoodtype = /obj/item/clothing/head/hooded/hog_robe_warrior
+	hoodtype = /obj/item/clothing/head/hooded/hog_robe_warrior
 
 /obj/item/clothing/suit/hooded/hog_robe_warrior/Initialize()
 	. = ..()
-    AddComponent(/datum/component/hog_item, null)
+	AddComponent(/datum/component/hog_item, null)
 
 /obj/item/clothing/head/hooded/hog_robe_warrior
 	name = "warrior robe"
@@ -50,11 +50,11 @@
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-    hoodtype = /obj/item/clothing/head/hooded/hog_robe_mage
+	hoodtype = /obj/item/clothing/head/hooded/hog_robe_mage
 
 /obj/item/clothing/suit/hooded/hog_robe_mage/Initialize()
 	. = ..()
-    AddComponent(/datum/component/hog_item, null)
+	AddComponent(/datum/component/hog_item, null)
 
 /obj/item/clothing/head/hooded/hog_robe_mage
 	name = "mage robe"

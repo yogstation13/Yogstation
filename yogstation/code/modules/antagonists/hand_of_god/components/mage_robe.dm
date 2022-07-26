@@ -17,14 +17,14 @@
 
 	if(!(source.slot_flags & slot))
 		return
-    if(!IS_HOG_CULTIST(user))
-        return
+	if(!IS_HOG_CULTIST(user))
+		return
 
-    ADD_TRAIT(user, TRAIT_CULTIST_ROBED, ELEMENT_TRAIT(source))
+	ADD_TRAIT(user, TRAIT_CULTIST_ROBED, ELEMENT_TRAIT(source))
 
 /datum/component/mage_robe/proc/remove_trait(obj/item/source, mob/user)
 	SIGNAL_HANDLER
 
-    REMOVE_TRAIT(user, TRAIT_CULTIST_ROBED, ELEMENT_TRAIT(source))
+	REMOVE_TRAIT(user, TRAIT_CULTIST_ROBED, ELEMENT_TRAIT(source))
 
 
