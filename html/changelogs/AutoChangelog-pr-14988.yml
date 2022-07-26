@@ -1,6 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Adds Gaxbeacons"
-  - rscadd: "CMOs get an Intercom now"
-  - bugfix: "Bots work on Gax"
