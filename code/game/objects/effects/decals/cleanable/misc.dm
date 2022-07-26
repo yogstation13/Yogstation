@@ -89,7 +89,7 @@
 	addtimer(CALLBACK(src, .proc/Decay), 24 SECONDS)
 
 /obj/effect/decal/cleanable/greenglow/proc/Decay()
-	var/datum/component/radioactive/R = src.GetComponent(/datum/component/radioactive)
+	var/datum/component/radioactive/R = GetComponent(/datum/component/radioactive)
 	name = "dried goo"
 	light_power = 0
 	light_range = 0
