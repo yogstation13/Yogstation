@@ -1627,7 +1627,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 								all_quirks -= Q
 								to_chat(user, span_danger("[Q] is incompatible with the species [pref_species], and has been removed from your quirk list."))
 								if(GetQuirkBalance() < 0)
-								to_chat(user, span_danger("Your quirk balance is now negative, and you will need to re-balance it or all quirks will be disabled."))
+									to_chat(user, span_danger("Your quirk balance is now negative, and you will need to re-balance it or all quirks will be disabled."))
 
 				if("mcolor")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
