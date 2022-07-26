@@ -11,7 +11,39 @@
 	var/can_rcd = TRUE ///Can it convert objects?
 
 /obj/item/hog_item/book/attack_self(mob/user)
-	return ///Here will be code for making spells
+	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
+	if(!cultie || cultie.cult != cult)
+		user.visible_message(span_warning("The [src] sudennly hits [user]!"), \
+			span_cultlarge("I don't think so."))
+		attack(user, user)
+		user.dropItemToGround(src, TRUE)
+		return
+	switch(input("What do you want to do?","Action") in list("Prepare Spell", "Remove Spell"))
+				if("Remove Spell")
+					if(!dude.magic.len)
+						to_chat(user, span_warning("You don't have any spells to remove."))
+						return
+					var/nullify_spell = input(owner, "Choose a spell to remove.", "Current Spells") as null|anything in dude.magic
+					if(nullify_spell)
+						qdel(nullify_spell)
+				if("Prepare Spell")
+					var/list/names = list()
+					var/list/actuall_spells
+					for(var/datum/hog_spell_preparation/spell in subtypesof(/datum/hog_spell_preparation))
+						actuall_spells[spell.name] = spell
+						names += spell.name
+					var/spell_to_prepare = actuall_spells[input(user,"What do you want to prepare?","Spell") in names]
+					if(!spell || !spell_to_prepare.confirm(user, cultie))
+						for(var/datum/hog_spell_preparation/spell in actuall_spells)
+							qdel(spell)
+						return
+					if(!do_after(user, spell_to_prepare.p_time , src))
+						for(var/datum/hog_spell_preparation/spell in actuall_spells)
+							qdel(spell)
+						return
+					spell_to_prepare.on_prepared(user, cultie, src)	
+					for(var/datum/hog_spell_preparation/spell in actuall_spells)
+						qdel(spell)									
 
 /obj/item/hog_item/book/attack(mob/M, mob/living/carbon/human/user)
 	if(!iscarbon(M))
