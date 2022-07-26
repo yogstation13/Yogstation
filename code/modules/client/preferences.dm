@@ -1356,9 +1356,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if((quirk in L) && (Q in L) && !(Q == quirk)) //two quirks have lined up in the list of the list of quirks that conflict with each other, so return (see quirks.dm for more details)
 							to_chat(user, span_danger("[quirk] is incompatible with [Q]."))
 							return
-				if(quirk in pref_species.quirk_blacklist)
-					to_chat(user, span_danger("[quirk] is incompatible with the species [pref_species]."))
-					return
 				var/value = SSquirks.quirk_points[quirk] // The value of the chosen quirk.
 				var/balance = GetQuirkBalance()
 				if(quirk in all_quirks)
@@ -1622,12 +1619,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/temp_hsv = RGBtoHSV(features["mcolor"])
 						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
 							features["mcolor"] = pref_species.default_color
+						var/CQ
 						for(var/Q in all_quirks)
-							if(Q in pref_species.quirk_blacklist)
+							var/quirk_type = SSquirks.quirks[Q]
+							var/datum/quirk/quirk = new quirk_type(no_init = TRUE)
+							CQ = quirk.check_quirk(src)
+							if(CQ)
 								all_quirks -= Q
-								to_chat(user, span_danger("[Q] is incompatible with the species [pref_species], and has been removed from your quirk list."))
+								to_chat(user, span_danger(CQ))
 								if(GetQuirkBalance() < 0)
-								to_chat(user, span_danger("Your quirk balance is now negative, and you will need to re-balance it or all quirks will be disabled."))
+									to_chat(user, span_danger("Your quirk balance is now negative, and you will need to re-balance it or all quirks will be disabled."))
 
 				if("mcolor")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null

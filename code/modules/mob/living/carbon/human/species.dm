@@ -160,9 +160,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	//The component to add when swimming
 	var/swimming_component = /datum/component/swimming
 
-	//Blacklisted quirks
-	var/list/quirk_blacklist = list()
-
 ///////////
 // PROCS //
 ///////////
