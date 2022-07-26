@@ -661,7 +661,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(96 to 99) //4% DHIDE ARMOR
 			new /obj/item/stack/sheet/animalhide/ashdrake(spot)
 		if(100)
-			new /obj/structure/closet/crate/necropolis(spot)
+			new /obj/structure/closet/crate/necropolis/tendril(spot)
 
 //Potion of Flight
 /obj/item/reagent_containers/glass/bottle/potion
