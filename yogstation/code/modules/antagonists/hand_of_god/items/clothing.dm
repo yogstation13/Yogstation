@@ -55,6 +55,7 @@
 /obj/item/clothing/suit/hooded/hog_robe_mage/Initialize()
 	. = ..()
 	AddComponent(/datum/component/hog_item, null)
+	AddComponent(/datum/component/mage_robe)
 
 /obj/item/clothing/head/hooded/hog_robe_mage
 	name = "mage robe"

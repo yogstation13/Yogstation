@@ -1,7 +1,7 @@
 /datum/component/mage_robe
 	var/datum/team/hog_cult/cult
 
-/datum/component/mage_robe/Initialize(var/datum/team/hog_cult/team)
+/datum/component/mage_robe/Initialize()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
