@@ -32,7 +32,7 @@
 			for(var/datum/hog_spell_preparation/spell in subtypesof(/datum/hog_spell_preparation))
 				actuall_spells[spell.name] = spell
 				names += spell.name
-			var//datum/hog_spell_preparation/spell_to_prepare = actuall_spells[input(user,"What do you want to prepare?","Spell") in names]
+			var/datum/hog_spell_preparation/spell_to_prepare = actuall_spells[input(user,"What do you want to prepare?","Spell") in names]
 			if(!spell_to_prepare || !spell_to_prepare.confirm(user, cultie))
 				for(var/datum/hog_spell_preparation/spell in actuall_spells)
 					qdel(spell)
