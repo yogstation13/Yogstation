@@ -134,6 +134,12 @@
 /datum/status_effect/hog_blade_effect/proc/blade_effect(mob/living/source, obj/item/weapon, mob/target)  ///Do nothing IDK
 	return
 
+//////////////////////////////////////////
+//                                      //
+//              LIFESTEAL               //
+//                                      //
+//////////////////////////////////////////
+
 /datum/status_effect/hog_blade_effect/lifesteal
 	id = "hog_lifesteal"
 	duration = 20 SECONDS

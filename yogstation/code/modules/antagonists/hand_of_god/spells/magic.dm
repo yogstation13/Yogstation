@@ -337,3 +337,58 @@
 		playsound(get_turf(L), 'sound/magic/blink.ogg', 50,1)
 		return TRUE
 	return FALSE
+
+//////////////////////////////////////////
+//                                      //
+//           ARCANE BARRAGE             //
+//                                      //
+//////////////////////////////////////////
+
+/datum/action/innate/hog_cult/arcane_barrage
+	name = "Arcane Barrage"
+	desc = "Empowers your hand to shoot a 5 projectiles that deal 12 damage on hit."
+	hand_type = /obj/item/melee/hog_magic/arcane_barrage
+	charges = 5
+
+/obj/item/melee/hog_magic/arcane_barrage
+	name = "\improper charged hand" 
+	desc = "A hand, that can shoot magical projectiles into enemies. There is 5 projectiles left."
+	icon = 'icons/obj/wizard.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
+	icon_state = "disintegrate"
+	item_state = "disintegrate"
+	uses = 5
+
+/obj/item/melee/hog_magic/arcane_barrage/New(loc, spell)
+	. = ..()
+	desc = "A hand, that can shoot magical projectiles into enemies. There is [uses] projectiles left."
+
+/obj/item/melee/hog_magic/arcane_barrage/ranged_attack(atom/target, mob/living/user)
+	var/turf/startloc = get_turf(user)
+	var/obj/item/projectile/magic/arcane_barrage/B = null
+	var/target_turf = get_turf(target)
+	var/angle_to_target = Get_Angle(user, target_turf)
+	B = new /obj/item/projectile/magic/arcane_barrage(startloc)
+	B.cult = antag.cult
+	B.preparePixelProjectile(startloc, startloc)
+	B.firer = user
+	B.fire(angle_to_target)
+	desc = "A hand, that can shoot magical projectiles into enemies. There is [uses-1] projectiles left."
+	return TRUE
+
+/obj/item/projectile/magic/arcane_barrage
+	name = "arcane barrage"
+	icon_state = "magicm"
+	damage = 12
+	damage_type = BURN
+	hitsound = 'sound/magic/mm_hit.ogg'
+	var/datum/team/hog_cult/cult
+
+/obj/item/projectile/magic/arcane_barrage/on_hit(atom/target, blocked = FALSE)
+	if(isliving(target))
+		var/mob/living/L = target
+		var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
+		if(L?.cult == cult)
+			nodamage = TRUE
+	return ..()

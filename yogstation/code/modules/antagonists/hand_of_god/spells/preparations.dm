@@ -57,11 +57,18 @@
 	description = "Grants you a spell, that allows you to enchant your blade attacks, making them heal you."
 	cost = 35
 	p_time = 4 SECONDS 
-	poggy = /datum/action/innate/hog_cult/cleave
+	poggy = /datum/action/innate/hog_cult/lifesteel
 
 /datum/hog_spell_preparation/blink
 	name = "Blink"
 	description = "Grants you a spell, that allows you to teleport you or your fellow cultists."
 	cost = 35
 	p_time = 4 SECONDS 
-	poggy = /datum/action/innate/hog_cult/cleave
+	poggy = /datum/action/innate/hog_cult/blink
+
+/datum/hog_spell_preparation/arcane_barrage
+	name = "Arcane Barrage"
+	description = "Grants you a spell, that allows you to shoot projectiles into your enemies."
+	cost = 50
+	p_time = 6 SECONDS 
+	poggy = /datum/action/innate/hog_cult/arcane_barrage
