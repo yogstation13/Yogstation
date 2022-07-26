@@ -356,7 +356,8 @@ const CargoCart = (props, context) => {
               </Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 {formatMoney(entry.paid ? Math.round(entry.cost * 1.1) : entry.cost)} cr
-              </Table.Cell><Table.Cell collapsing>
+              </Table.Cell>
+              <Table.Cell collapsing>
                 {can_send &&(
                   <Button
                     icon="minus"
