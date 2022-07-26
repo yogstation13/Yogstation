@@ -7,7 +7,7 @@
 
 /datum/component/mage_robe/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/add_trait)
-	RegisterSignal(target, COMSIG_ITEM_DROPPED, .proc/remove_trait)
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/remove_trait)
 
 /datum/component/mage_robe/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED,COMSIG_ITEM_DROPPED))
