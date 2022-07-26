@@ -27,6 +27,8 @@
 	F.cult = antag.cult
 	F.preparePixelProjectile(startloc, startloc)
 	F.firer = user
+	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
+		energy_drain = initial(energy_drain) + 5
 	F.fire(angle_to_target)
 	return TRUE
 
@@ -97,6 +99,8 @@
 	if(dude && dude.cult != antag.cult)  //You can target non-cultists, but you can't target hostile cultists
 		return FALSE
 	var/datum/chain_heal/healing_datum = new(antag.cult, user)
+	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
+		healing_datum.charges = initial(charges) + 1
 	INVOKE_ASYNC(healing_datum, /datum/chain_heal.proc/heal, L)
 	return TRUE
 	
@@ -242,6 +246,8 @@
 	L.visible_message(span_danger("[L] is cut by [user]'s magic!"), \
 					  span_userdanger("[user] cuts you with their magic!"))
 	var/already_damaged_people_amount = 1
+	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
+		already_damaged_people_amount--
 	for(var/mob/living/aoe_target in view_or_range(1, L, "range")) 
 		if(aoe_target.stat == DEAD)
 			continue
@@ -305,6 +311,11 @@
 	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
 	if(!dude || dude.cult != antag.cult)
 		return FALSE
+
+	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
+		outer_tele_radius = initial(outer_tele_radius) + 1
+	else 
+		outer_tele_radius = initial(outer_tele_radius)
 
 	playsound(get_turf(L), 'sound/magic/blink.ogg', 50,1)
 	var/list/turfs = new/list()
@@ -373,6 +384,8 @@
 	B.cult = antag.cult
 	B.preparePixelProjectile(startloc, startloc)
 	B.firer = user
+	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
+		B.damage = 14
 	B.fire(angle_to_target)
 	desc = "A hand, that can shoot magical projectiles into enemies. There is [uses-1] projectiles left."
 	return TRUE
