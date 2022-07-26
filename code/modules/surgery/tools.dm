@@ -25,13 +25,22 @@
 	w_class = WEIGHT_CLASS_TINY
 	toolspeed = 0.5
 
-
 /obj/item/retractor/bone
 	name = "bone retractor"
 	desc = "Kinda looks like a chicken bone."
 	icon_state = "retractor_bone"
 	toolspeed = 1.25
 
+/obj/item/gastric_pump
+	name = "gastric pump"
+	desc = "a pump and a valve that connects directly to your stomach."
+	icon_state = "gastric_pump"
+	toolspeed = 0.85
+	materials = list(/datum/material/iron=3000, /datum/material/glass=1500)
+	flags_1 = CONDUCT_1
+	item_flags = SURGICAL_TOOL
+	tool_behaviour = TOOL_RETRACTOR
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/hemostat
 	name = "hemostat"
