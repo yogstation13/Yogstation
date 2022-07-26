@@ -28,7 +28,7 @@
 	F.preparePixelProjectile(startloc, startloc)
 	F.firer = user
 	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
-		energy_drain = initial(energy_drain) + 5
+		F.energy_drain = initial(F.energy_drain) + 5
 	F.fire(angle_to_target)
 	return TRUE
 
@@ -100,7 +100,7 @@
 		return FALSE
 	var/datum/chain_heal/healing_datum = new(antag.cult, user)
 	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
-		healing_datum.charges = initial(charges) + 1
+		healing_datum.charges = initial(healing_datum.charges) + 1
 	INVOKE_ASYNC(healing_datum, /datum/chain_heal.proc/heal, L)
 	return TRUE
 	
