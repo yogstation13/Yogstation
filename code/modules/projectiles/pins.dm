@@ -216,7 +216,6 @@
 /obj/item/firing_pin/explorer
 	name = "explorer firing pin"
 	desc = "A firing pin traditionally issued to shaft miners, to prevent malicious use of mining tools while on the station."
-	icon_state = "firing_pin"
 	fail_message = "<span class='warning'>LOCATION CHECK FAILED.</span>"
 
 /obj/item/firing_pin/explorer/pin_auth(mob/living/user)
@@ -229,12 +228,13 @@
 	name = "cyborg explorer firing pin"
 	desc = "You probably shouldn't be reading this."
 
-/obj/item/firing_pin/explorer/pin_auth(mob/living/user)
+/obj/item/firing_pin/explorer/cyborg/pin_auth(mob/living/user)
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
 		if(R.emagged)
 			return TRUE
 		return ..()
+	return FALSE
 
 
 
