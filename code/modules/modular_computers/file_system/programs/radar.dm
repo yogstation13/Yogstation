@@ -312,6 +312,7 @@
 /datum/computer_file/program/radar/implant
 	filename = "implanttracker"
 	filedesc = "Implant Tracker"
+	category = PROGRAM_CATEGORY_SEC
 	extended_desc = "This program allows for tracking those implanted with tracking implants."
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_BRIG
