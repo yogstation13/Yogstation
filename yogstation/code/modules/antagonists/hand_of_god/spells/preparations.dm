@@ -58,3 +58,10 @@
 	cost = 35
 	p_time = 4 SECONDS 
 	poggy = /datum/action/innate/hog_cult/cleave
+
+/datum/hog_spell_preparation/blink
+	name = "Blink"
+	description = "Grants you a spell, that allows you to teleport you or your fellow cultists."
+	cost = 35
+	p_time = 4 SECONDS 
+	poggy = /datum/action/innate/hog_cult/cleave

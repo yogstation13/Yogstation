@@ -10,3 +10,4 @@
 #define HOG_EMP_DAMAGE_MULTIPLER 30
 
 #define TRAIT_NO_SPELLS		"no_spells"
+#define TRAIT_CULTIST_ROBED		"hog_cultist_robed"

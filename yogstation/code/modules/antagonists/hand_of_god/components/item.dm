@@ -4,12 +4,21 @@
 /datum/component/hog_item/Initialize(var/datum/team/hog_cult/team)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	cult = team
+	if(team)
+		cult = team
+
+/datum/component/hog_item/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/try_punish)
 	RegisterSignal(parent, COMSIG_ITEM_PICKUP, .proc/try_punish)
 	RegisterSignal(parent, COMSIG_HOG_ACT, .proc/try_change_cult)
 
+/datum/component/hog_item/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_ITEM_PICKUP, COMSIG_HOG_ACT, COMSIG_ITEM_EQUIPPED))
+
 /datum/component/hog_item/proc/try_punish(obj/item/source, mob/user, slot)
+	SIGNAL_HANDLER
+	if(!cult)
+		return
 	if(!isliving(user))
 		return
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
@@ -24,6 +33,7 @@
 			C.vomit(20)
 
 /datum/component/hog_item/proc/try_change_cult(atom/source, datum/team/hog_cult/act_cult)
+	SIGNAL_HANDLER
 	if(act_cult == cult)
 		return
 	cult = act_cult

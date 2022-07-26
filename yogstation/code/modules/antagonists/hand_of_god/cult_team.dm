@@ -108,14 +108,24 @@
 
 /datum/hog_research/proc/apply_research_effects(var/obj/O)	
 	var/obj/item/hog_item/upgradeable/item = O
-	if(item?.cult != cult)
-		return
-	item.upgrades++
-	item.force = initial(item.force) + (item.upgrades * item.force_add)
-	item.throwforce = initial(item.throwforce) + (item.upgrades * item.throwforce_add)
-	item.max_integrity = initial(item.max_integrity) + (item.integrity_add * item.upgrades)
-	item.obj_integrity += item.integrity_add * item.upgrades
-	item.armor = list(MELEE = 30 + (item.armor_add * item.upgrades), BULLET = 40 + (item.armor_add * item.upgrades), LASER = 20 + (item.armor_add * item.upgrades), ENERGY = 20 + (item.armor_add * item.upgrades), BOMB = 10 + (item.armor_add * item.upgrades), BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
+	if(item)
+		if(item?.cult != cult)
+			return
+		item.upgrades++
+		item.force = initial(item.force) + (item.upgrades * item.force_add)
+		item.throwforce = initial(item.throwforce) + (item.upgrades * item.throwforce_add)
+		item.max_integrity = initial(item.max_integrity) + (item.integrity_add * item.upgrades)
+		item.obj_integrity += item.integrity_add * item.upgrades
+		item.armor = item.armor.setRating(
+			melee = initial(item.armor.melee) + (item.armor_add * item.upgrades),
+			bullet = initial(item.armor.bullet) + (item.armor_add * item.upgrades),
+			laser = initial(item.armor.laser) + (item.armor_add * item.upgrades),
+			energy = initial(item.armor.energy) + (item.armor_add * item.upgrades)
+		)
+	else
+		apply_research_effects_special(O)	
+
+/datum/hog_research/proc/apply_research_effects_special(var/obj/O)	
 
 /datum/hog_research/advanced_weaponry
 	affected_objects = list(/obj/item/hog_item/upgradeable/sword)
