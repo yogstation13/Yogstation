@@ -32,12 +32,13 @@
 	AddComponent(/datum/component/butchering, 40, 100)
 	AddComponent(/datum/component/bane, /mob/living/simple_animal/hostile/hog/free_god, 100)
 
-/obj/item/hog_item/upgradeable/sword/attack(mob/target, mob/living/carbon/user)
+/obj/item/hog_item/upgradeable/sword/attack(mob/target, mob/living/user)
 	if(istype(target, /mob/living/simple_animal/hostile/hog/free_god))
 		var/mob/living/simple_animal/hostile/hog/free_god/goddie = target
 		if(goddie.cult == src.cult)
 			return
 	. = ..()
+	SEND_SIGNAL(user, COMSIG_ATTACK_HOG_BLADE, src, target)
 
 /obj/item/hog_item/upgradeable/shield
 	name = "shield"

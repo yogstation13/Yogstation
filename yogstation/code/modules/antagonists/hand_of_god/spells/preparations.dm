@@ -51,3 +51,10 @@
 	cost = 35
 	p_time = 4 SECONDS 
 	poggy = /datum/action/innate/hog_cult/cleave
+
+/datum/hog_spell_preparation/lifesteal
+	name = "Lifesteal"
+	description = "Grants you a spell, that allows you to enchant your blade attacks, making them heal you."
+	cost = 35
+	p_time = 4 SECONDS 
+	poggy = /datum/action/innate/hog_cult/cleave

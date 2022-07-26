@@ -3,3 +3,6 @@
 #define COMSIG_PROCESS_MOVE "process_move"						//from base of client/Move(): (num/direction)
 #define COMSIG_STORAGE_INSERTED "storage_inserted"				//from base of /datum/component/storage/handle_item_insertion(): (obj/item/I, mob/M)
 #define COMSIG_STORAGE_REMOVED "storage_removed"				//from base of /datum/component/storage/remove_from_storage(): (atom/movable/AM, atom/new_location)
+
+#define COMSIG_HOG_ACT "hand_of_god_act" ///Called by hog_act()
+#define COMSIG_ATTACK_HOG_BLADE "hand_of_god_blade"

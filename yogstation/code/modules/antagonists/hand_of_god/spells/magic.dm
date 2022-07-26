@@ -175,53 +175,6 @@
 	else
 		to_chat(owner, span_warning("You need to be a carbon in order to use this spell!"))
 
-/datum/status_effect/berserker
-	id = "berserker"
-	duration = 20 SECONDS
-	alert_type = /obj/screen/alert/status_effect/berserker
-	var/tools = FALSE
-
-/obj/screen/alert/status_effect/berserker
-	name = "Berserker"
-	desc = "<span class='cult'>FIGHT OR DIE</span>"
-	icon_state = "regenerative_core"
-
-/datum/status_effect/berserker/on_apply()
-	var/mob/living/carbon/C = owner
-	playsound(owner, 'sound/effects/wounds/blood3.ogg', 50, 1)
-	to_chat(owner, span_warning("You feel the bloodlust seeping into your mind."))
-	ADD_TRAIT(owner, TRAIT_MUTE, STATUS_EFFECT_TRAIT)
-	ADD_TRAIT(owner, TRAIT_DEAF, STATUS_EFFECT_TRAIT)
-	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, STATUS_EFFECT_TRAIT)
-	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, STATUS_EFFECT_TRAIT)
-	ADD_TRAIT(owner, TRAIT_NO_SPELLS, STATUS_EFFECT_TRAIT)
-	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
-	if(C.IsAdvancedToolUser())
-		tools = TRUE
-		ADD_TRAIT(owner, TRAIT_MONKEYLIKE, STATUS_EFFECT_TRAIT)
-	return ..()
-
-/datum/status_effect/berserker/on_remove()
-	to_chat(owner, span_warning("You feel your humanity returning back."))
-	REMOVE_TRAIT(owner, TRAIT_MUTE, STATUS_EFFECT_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_DEAF, STATUS_EFFECT_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, STATUS_EFFECT_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, STATUS_EFFECT_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_NO_SPELLS, STATUS_EFFECT_TRAIT)
-	if(tools)
-		REMOVE_TRAIT(owner, TRAIT_MONKEYLIKE, STATUS_EFFECT_TRAIT)
-		tools = FALSE
-	owner.remove_client_colour(/datum/client_colour/cursed_heart_blood)
-	return ..()
-
-
-/datum/status_effect/berserker/tick()
-	var/mob/living/carbon/C = owner
-	if(!C)
-		return
-	C.AdjustAllImmobility(-60, FALSE)
-	C.adjustStaminaLoss(-30*REM, 0)
-
 //////////////////////////////////////////
 //                                      //
 //          LIFEFORCE TRADE             //
@@ -254,57 +207,6 @@
 	L.apply_status_effect(/datum/status_effect/lifeforce_trade, user)
 	to_chat(user, span_warning("You link yourself with [L]."))
 	return TRUE
-
-/datum/status_effect/lifeforce_trade
-	id = "lifeforce_trade"
-	duration = 15 SECONDS
-	alert_type = null
-	tick_interval = 1.2 SECONDS
-	var/mob/living/carbon/trader
-
-/datum/status_effect/lifeforce_trade/on_creation(mob/living/new_owner, mob/living/carbon/trading_dude)
-	trader = trading_dude
-	. = ..()
-
-/datum/status_effect/lifeforce_trade/on_apply()
-	to_chat(owner, span_warning("You feel getting linked with [trader]..."))
-	return ..()
-
-/datum/status_effect/lifeforce_trade/tick()
-	var/what_do_we_do
-	var/knockdowned = owner.AmountKnockdown()
-	if(knockdowned)
-		owner.SetKnockdown(0, TRUE, TRUE)
-		trader.AdjustKnockdown(knockdowned*0.65)
-		what_do_we_do = "arise"
-	var/immobilized = owner.AmountImmobilized()
-	if(immobilized)
-		owner.SetImmobilized(0, TRUE, TRUE)
-		trader.AdjustImmobilized(immobilized*0.65)
-		what_do_we_do = "move again"
-	var/paralyzed = owner.AmountParalyzed()
-	if(paralyzed)
-		owner.SetParalyzed(0, TRUE, TRUE)
-		trader.AdjustParalyzed(paralyzed*0.65)
-		what_do_we_do = "move again"
-	var/unconsinius = owner.AmountUnconscious()
-	if(unconsinius)
-		owner.SetUnconscious(0, TRUE, TRUE)
-		trader.AdjustUnconscious(unconsinius*0.65)
-		what_do_we_do = "return to consciousness"
-	var/sleepin = owner.AmountSleeping()
-	if(sleepin)
-		owner.SetSleeping(0, TRUE, TRUE)
-		trader.AdjustSleeping(sleepin*0.65)
-		what_do_we_do = "awake"
-	var/stun = owner.AmountStun()
-	if(stun)
-		owner.SetStun(0, TRUE, TRUE)
-		trader.AdjustStun(stun*0.65)
-		what_do_we_do = "move again"
-	if(what_do_we_do)
-		to_chat(owner, span_warning("You feel new energy entering your body. You [what_do_we_do]."))
-		to_chat(trader, span_warning("You feel your energy leaving your body, as you sacrifice it to [owner]."))
 
 //////////////////////////////////////////
 //                                      //
@@ -352,3 +254,22 @@
 		to_chat(aoe_target, span_userdanger("You are cut by [user]'s magic!"))
 		already_damaged_people_amount++
 	return TRUE
+
+//////////////////////////////////////////
+//                                      //
+//              LIFESTEAL               //
+//                                      //
+//////////////////////////////////////////
+
+/datum/action/innate/hog_cult/lifesteel
+	name = "Lifesteel"
+	desc = "Enchant your blade attacks, making them heal you. Works ONLY on cult blades."
+	hand_type = null
+
+/datum/action/innate/hog_cult/lifesteel/Activate()
+	if(iscarbon(owner))
+		var/mob/living/carbon/C = owner
+		C.apply_status_effect(/datum/status_effect/hog_blade_effect/lifesteal)
+		qdel(src)
+	else
+		to_chat(owner, span_warning("You need to be a carbon in order to use this spell!"))

@@ -436,6 +436,3 @@
 #define COMPONENT_BAKING_BAD_RESULT (1<<2)
 ///Called when an object is turned into another item through baking in an oven
 #define COMSIG_BAKE_COMPLETED "item_bake_completed"
-
-///Called by hog_act()
-#define COMSIG_HOG_ACT "hand_of_god_act"
