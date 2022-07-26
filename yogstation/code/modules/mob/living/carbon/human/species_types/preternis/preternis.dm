@@ -16,14 +16,14 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
-	brutemod = 1.25 //Have you ever punched a metal plate?
-	burnmod = 1.5 //Computers don't like heat
-	coldmod = 0.8 //Computers like cold, but their lungs may not
-	heatmod = 1.75 //Again, computers don't like heat
-	speedmod = 0.1 //Metal legs are heavy and slow
+	brutemod = 0.8 //Robusto plasma plating
+	burnmod = 0.9 //Circuitry isn't happy with the heat, even if plasma plating lessens it
+	coldmod = 0.8 //Cold can help to regulate, but it's not perfect
+	heatmod = 0.9 //Again, circuitry isn't happy, but the plating they have on the outside can protect a little
+	speedmod = 1 //Effectively a plasteel body, big and slow
 	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist.
 	siemens_coeff = 1.75 //Computers REALLY don't like being shorted out
-	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
+	payday_modifier = 0.8 //Useful to NT for engineering, but relations between humans and preterni tend to not be the greatest
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
@@ -60,24 +60,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_teslium")
-
-/datum/species/preternis/spec_emp_act(mob/living/carbon/human/H, severity)
-	. = ..()
-	switch(severity)
-		if(EMP_HEAVY)
-			H.adjustBruteLoss(20)
-			H.adjustFireLoss(20)
-			H.Paralyze(50)
-			charge *= 0.4
-			H.visible_message(span_danger("Electricity ripples over [H]'s subdermal implants, smoking profusely."), \
-							span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
-		if(EMP_LIGHT)
-			H.adjustBruteLoss(10)
-			H.adjustFireLoss(10)
-			H.Paralyze(20)
-			charge *= 0.6
-			H.visible_message(span_danger("A faint fizzling emanates from [H]."), \
-							span_userdanger("A fit of twitching overtakes you as your subdermal implants convulse violently from the electromagnetic disruption. Your sustenance reserves have been partially depleted from the blast."))
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user)
 	. = ..()

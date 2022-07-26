@@ -534,6 +534,8 @@
 	. = ..()
 	if(. & EMP_PROTECT_CONTENTS)
 		return
+	if(ispreternis(src)) //Snowflake-ass way to make preternis limbs immune to emp
+		return
 	var/informed = FALSE
 	for(var/obj/item/bodypart/L in src.bodyparts)
 		if(L.status == BODYPART_ROBOTIC)

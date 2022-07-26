@@ -77,7 +77,7 @@
 
 /obj/item/organ/lungs/preternis
 	name = "preternis lungs"
-	desc = "An experimental set of lungs.Due to the cybernetic nature of these lungs,they are less resistant to heat and cold but are more efficent at filtering oxygen."
+	desc = "An experimental set of lungs. Due to the cybernetic nature of these lungs, they are less resistant to heat and cold but are more efficent at filtering oxygen."
 	icon_state = "lungs-c"
 	safe_oxygen_min = 12
 	safe_toxins_max = 10
