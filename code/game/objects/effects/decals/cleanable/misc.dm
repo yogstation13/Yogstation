@@ -94,7 +94,8 @@
 	light_power = 0
 	light_range = 0
 	update_light()
-	R.RemoveComponent()
+	if(R)
+		R.RemoveComponent()
 
 /obj/effect/decal/cleanable/greenglow/filled/Initialize()
 	. = ..()
