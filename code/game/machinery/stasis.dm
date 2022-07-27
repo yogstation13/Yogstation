@@ -168,7 +168,17 @@
 		if(!L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 			chill_out(L_occupant)
 		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
-			L_occupant.adjustStaminaLoss(-20 * stasis_amount) // stasis_amount is -0.25 to -1 and this needs to be positive
+			var/stam_mult = 1
+			switch(stasis_amount)
+				if(0.5) // T1
+					stam_mult = 1
+				if(1) // T2
+					stam_mult = 2
+				if(3) // T3
+					stam_mult = 3
+				if(-1) // T4
+					stam_mult = 4
+			L_occupant.adjustStaminaLoss(5*stam_mult)
 	else if(L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 		thaw_them(L_occupant)
 
