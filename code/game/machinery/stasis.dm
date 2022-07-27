@@ -21,7 +21,7 @@
 
 /obj/machinery/stasis/RefreshParts()
 	stasis_amount = initial(stasis_amount)
-	stasis_cooldown = inital(stasis_cooldown)
+	stasis_cooldown = initial(stasis_cooldown)
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		stasis_amount *= C.rating // T1 is 75% organ decay, T4 is 0%
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
