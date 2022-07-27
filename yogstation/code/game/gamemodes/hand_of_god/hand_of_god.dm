@@ -72,7 +72,6 @@
 
 /datum/game_mode/hand_of_god/generate_credit_text()
 	var/list/round_credits = list()
-	var/len_before_addition
 
 	for(var/datum/team/hog_cult/C in GLOB.hog_cults)
 		round_credits += C.roundend_report()

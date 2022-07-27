@@ -25,7 +25,7 @@
 	update_hog_icons_added(M)
 	pray = new
 	pray.Grant(owner.current)
-	if((cult.state = HOG_TEAM_SUMMONING || cult.state = HOG_TEAM_SUMMONED) && ishuman(owner.current))
+	if((cult.state == HOG_TEAM_SUMMONING || cult.state == HOG_TEAM_SUMMONED) && ishuman(owner.current))
 		owner.current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
 	RegisterSignal(owner.current, COMSIG_ATOM_EMP_ACT, .proc/fuck_magic)
 
