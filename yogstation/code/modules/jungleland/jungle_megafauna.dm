@@ -238,7 +238,7 @@
 	else 
 		closest = GLOB.tar_pits[0]
 	
-	if(!closest)
+	if(!closest || closest > 7)
 		return
 
 	visible_message(span_colossus("Ishakt-Tarim!"))			

@@ -152,3 +152,12 @@
 	turf_type = /turf/open/floor/plating/jungle_baseturf
 	baseturfs = /turf/open/floor/plating/jungle_baseturf
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+
+/turf/open/water/tar_basin
+	name = "tar basin"
+	color = "#680047"
+	slowdown = 4
+	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/water/tar_basin
+

@@ -1,0 +1,216 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"c" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/block/cracked{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"d" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"g" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"i" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/surrounding/cracked,
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"k" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"m" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/surrounding/cracked{
+	dir = 1;
+	icon_state = "cracked_surrounding1"
+	},
+/obj/structure/stone_tile/surrounding/cracked,
+/obj/structure/stone_tile/center/cracked,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"p" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/center/cracked,
+/obj/structure/stone_tile/surrounding/cracked,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"r" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"s" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"v" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"z" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"D" = (
+/mob/living/simple_animal/hostile/megafauna/bubblegum,
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/surrounding,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"G" = (
+/obj/structure/stone_tile/slab,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"H" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/slab,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"I" = (
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"L" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"N" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"Q" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"R" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"S" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"T" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"X" = (
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+"Y" = (
+/obj/effect/decal/cleanable/blood/bubblegum,
+/obj/structure/stone_tile/slab,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/space)
+
+(1,1,1) = {"
+a
+T
+Q
+c
+X
+I
+a
+"}
+(2,1,1) = {"
+I
+g
+Y
+z
+i
+I
+I
+"}
+(3,1,1) = {"
+I
+g
+p
+H
+S
+I
+I
+"}
+(4,1,1) = {"
+d
+z
+s
+D
+m
+v
+s
+"}
+(5,1,1) = {"
+L
+R
+G
+r
+z
+Y
+I
+"}
+(6,1,1) = {"
+I
+I
+S
+k
+I
+I
+I
+"}
+(7,1,1) = {"
+a
+I
+N
+s
+I
+I
+a
+"}
