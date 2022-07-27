@@ -80,6 +80,28 @@
 	icon_state = "power_display"
 	screen_loc = ui_lingchemdisplay
 
+/obj/screen/hand_of_god
+	invisibility = INVISIBILITY_ABSTRACT
+
+/obj/screen/hand_of_god/proc/update_counter()
+	invisibility = 0
+
+/obj/screen/hand_of_god/energy
+	name = "energy"
+	icon_state = "power_display"
+	screen_loc = ui_energy_display
+
+/obj/screen/hand_of_god/cult_energy
+	name = "cult energy"
+	icon_state = "power_display"
+	screen_loc = ui_cult_energy_display
+
+/obj/screen/hand_of_god/objective_stat
+	name = "Objective"
+	icon_state = "power_display"
+	screen_loc = ui_objective_status
+	desc = "you shoudln't see this"
+
 /obj/screen/bloodsucker
 	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	invisibility = INVISIBILITY_ABSTRACT
@@ -334,6 +356,14 @@
 	infodisplay += vamprank_display
 	sunlight_display = new /obj/screen/bloodsucker/sunlight_counter
 	infodisplay += sunlight_display
+
+	//hand of god
+	mana_display = new /obj/screen/hand_of_god/energy
+	infodisplay += mana_display
+	cult_energy_display = new /obj/screen/hand_of_god/cult_energy
+	infodisplay += cult_energy_display
+	objective_status_display = new /obj/screen/hand_of_god/objective_stat
+	infodisplay += objective_status_display
 
 	zone_select =  new /obj/screen/zone_sel()
 	zone_select.icon = ui_style

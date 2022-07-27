@@ -26,7 +26,7 @@
 		restricted_jobs += "Assistant"
 
 	//1 cult per 16 players
-	var/cults_to_create = max(2, round(num_players()/16))
+	var/cults_to_create = max(2, round(num_players()/16, 1))
 	cults_to_create = min(cults_to_create, GLOB.possible_hog_cults.len)
 	for(var/i in 1 to cults_to_create*4)
 		if(!antag_candidates.len)
@@ -61,6 +61,7 @@
 		M.add_antag_datum(G, godcult)
 	
 	while(culties.len)
+
 		if(!cults.len)
 			break
 		for(var/datum/team/hog_cult/C in cults)

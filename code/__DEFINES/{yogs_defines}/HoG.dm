@@ -11,3 +11,7 @@
 
 #define TRAIT_NO_SPELLS		"no_spells"
 #define TRAIT_CULTIST_ROBED		"hog_cultist_robed"
+
+#define ui_energy_display "WEST:6,CENTER-1:0"
+#define ui_cult_energy_display "WEST:6,CENTER-2:-5"
+#define ui_objective_status "WEST:6,CENTER-0:0"

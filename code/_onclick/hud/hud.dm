@@ -32,6 +32,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/obj/screen/bloodsucker/rank_counter/vamprank_display
 	var/obj/screen/bloodsucker/sunlight_counter/sunlight_display
 
+	var/obj/screen/hand_of_god/energy/mana_display
+	var/obj/screen/hand_of_god/cult_energy/cult_energy_display
+	var/obj/screen/hand_of_god/objective_stat/objective_status_display
+
 	var/obj/screen/blobpwrdisplay
 
 	var/obj/screen/alien_plasma_display

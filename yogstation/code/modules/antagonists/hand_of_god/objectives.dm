@@ -8,6 +8,9 @@
 	var/completed = FALSE
 	var/initialy = TRUE
 
+/datum/hog_objective/proc/progress_text()
+	return "amongus"
+
 /datum/hog_objective/proc/check_completion()
 	cult.can_ascend = completed
 	if(cult.can_ascend)
@@ -31,6 +34,14 @@
 		completed = TRUE
 	. = ..()
 
+/datum/hog_objective/sacrifice/progress_text()
+	text = ""
+	if(completed)
+		text = "The objective is completed."
+	else
+		text = "You need to sacrifice [sacrifices_needed - cult.sacrificed_people] more people to complete your objective."
+	return text
+
 /datum/hog_objective/people
 	name = "Uprising"
 	description = "You need to convert X people into your cult, to be able to free your god and let him into the mortal plane!"
@@ -42,10 +53,17 @@
 	. = ..()
 
 /datum/hog_objective/people/check_completion()
-	if(cult.members.len >= members_needed)
+	if(cult.members.len >= members_needed && cult.state != HOG_TEAM_DEAD)
 		completed = TRUE
 	. = ..()
 
+/datum/hog_objective/people/progress_text()
+	text = ""
+	if(completed)
+		text = "The objective is completed."
+	else
+		text = "You need to convert [members_needed - cult.members.len] more people to complete the objective."
+	return text
 
 /datum/hog_objective/holyland
 	name = "Holy Land"
@@ -68,6 +86,21 @@
 	if(we_have_shrines >= shrines_needed)
 		completed = TRUE
 	. = ..()
+
+/datum/hog_objective/holyland/progress_text()
+	text = ""
+	if(completed)
+		text = "The objective is completed."
+	else
+		var/we_have_shrines = 0
+		for(var/obj/structure/destructible/hog_structure/shrine/S in cult.objects)
+			if(!S)
+				continue
+			if(S.cult != cult)
+				continue
+			we_have_shrines += 1
+		text = "You need to construct [shrines_needed - we_have_shrines] more shrines to complete the objective."
+	return text
 
 /datum/team/hog_cult/proc/mission_has_started()
 	var/list/candidates = list()

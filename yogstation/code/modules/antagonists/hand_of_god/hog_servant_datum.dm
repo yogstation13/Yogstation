@@ -28,6 +28,7 @@
 	if((cult.state == HOG_TEAM_SUMMONING || cult.state == HOG_TEAM_SUMMONED) && ishuman(owner.current))
 		owner.current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
 	RegisterSignal(owner.current, COMSIG_ATOM_EMP_ACT, .proc/fuck_magic)
+	update_hud()
 
 /datum/antagonist/hog/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
@@ -35,6 +36,7 @@
 	M.cut_overlays()
 	M.regenerate_icons()
 	UnregisterSignal(owner.current, COMSIG_ATOM_EMP_ACT)
+	remove_hud()
 
 /datum/antagonist/hog/get_team()
 	return cult
@@ -92,7 +94,6 @@
 	owner.current.log_message("<font color='red'>Has been converted to the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
 
 /datum/antagonist/hog/proc/remove_from_cult()
-	cult.remove_member(owner)
 	owner.current.log_message("<font color='red'>Has been deconverted from the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
 
 /datum/antagonist/hog/proc/equip_cultist(roundstart = TRUE)
