@@ -2,7 +2,752 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
+"av" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/hall)
+"aw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/shop)
+"aF" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "kitchen storage";
+	req_access_txt = "Fisherman"
+	},
+/obj/effect/turf_decal/trimline/brown/filled/end,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
 "aG" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/hydroponics/constructable,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	dir = 8;
+	max_integrity = 600
+	},
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	dir = 1;
+	max_integrity = 600
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"aY" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 23
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"bg" = (
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"bA" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"bC" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"cJ" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/toy/plush/blahaj,
+/obj/item/toy/plush/carpplushie,
+/obj/item/toy/plush/carpplushie,
+/obj/item/toy/plush/snakeplushie,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"cL" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/water/safe,
+/area/ruin/powered/fishing)
+"dc" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/corner,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"dg" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/pool/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"dA" = (
+/obj/structure/chair/stool/bamboo,
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/obj/effect/turf_decal/pool{
+	dir = 8
+	},
+/obj/effect/turf_decal/pool/innercorner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"dS" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/shop)
+"dT" = (
+/obj/effect/decal/cleanable/oil,
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 6
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"dV" = (
+/obj/structure/rack,
+/obj/item/twohanded/fishingrod,
+/obj/item/twohanded/fishingrod,
+/obj/item/storage/toolbox/mechanical/insulateds{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"es" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/water/safe,
+/area/ruin/powered/fishing)
+"et" = (
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	max_integrity = 600
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/telecomms/receiver/preset_left{
+	autolinkers = list("receiverF");
+	freq_listening = list(1558);
+	id = "Receiver F";
+	name = "subspace receiver";
+	network = "fish";
+	tempfreq = 1558
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"eC" = (
+/obj/machinery/vending/dinnerware,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
+"eK" = (
+/obj/structure/chair/stool/bamboo,
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/obj/effect/turf_decal/pool/innercorner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"eT" = (
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"fo" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "fishing biodome outer airlock"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 9
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"fx" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"gv" = (
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	max_integrity = 600
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"gx" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/shop)
+"gD" = (
+/obj/effect/turf_decal/pool,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"gL" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/shop)
+"gO" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"gR" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"gZ" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/hall)
+"hz" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/template_noop)
+"hJ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"if" = (
+/obj/effect/turf_decal/pool/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"il" = (
+/obj/machinery/light,
+/turf/open/water/safe,
+/area/ruin/powered/fishing)
+"iG" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"iX" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/pool/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"jo" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/dresser,
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"jw" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"jM" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing/kitchen)
+"jO" = (
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"jZ" = (
+/obj/effect/turf_decal/trimline/white/filled/corner,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"kr" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"kA" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/white/filled/corner,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"kB" = (
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = "Fisherman"
+	},
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
+"kG" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/obj/machinery/shower{
+	pixel_y = 18
+	},
+/turf/open/water/safe,
+/area/ruin/powered/fishing/bedroom)
+"kR" = (
+/obj/machinery/oven,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"ld" = (
+/obj/structure/rack,
+/obj/item/ship_in_a_bottle,
+/obj/item/clothing/under/sailor,
+/obj/item/clothing/under/sailor,
+/obj/item/clothing/under/sailor,
+/obj/item/clothing/under/sailor,
+/obj/effect/spawner/lootdrop/glowstick,
+/obj/effect/spawner/lootdrop/glowstick,
+/obj/effect/spawner/lootdrop/glowstick,
+/obj/effect/spawner/lootdrop/glowstick,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"ly" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"lD" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/seed_extractor,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	dir = 8;
+	max_integrity = 600
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"lZ" = (
+/obj/structure/sign/painting{
+	pixel_y = -31
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"me" = (
+/obj/structure/table/wood,
+/obj/item/pen/fountain{
+	pixel_x = -6
+	},
+/obj/item/paper_bin{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/obj/item/soap/nanotrasen,
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	frequency = 1558;
+	name = "Fishing Biodome Comms";
+	pixel_x = -29;
+	pixel_y = -1
+	},
+/obj/item/radio{
+	frequency = 1558;
+	name = "dome bounced radio";
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/radio{
+	frequency = 1558;
+	name = "dome bounced radio";
+	pixel_x = 10;
+	pixel_y = 3
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"mU" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/pool/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"nl" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"nm" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 25
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"nN" = (
+/obj/effect/turf_decal/pool{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"ok" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/cultivator{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/shovel/spade{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	dir = 8;
+	max_integrity = 600
+	},
+/obj/item/hatchet/wooden,
+/obj/item/storage/box/disks_plantgene,
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"pj" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"pv" = (
+/obj/machinery/grill,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"pA" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 5
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
+"pR" = (
+/obj/machinery/light,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"qd" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "pier access"
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 9
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
+"qn" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	max_integrity = 600
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"qq" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/bedroom)
+"qQ" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/hall)
+"rb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/water/safe,
+/area/ruin/powered/fishing)
+"rh" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/machinery/chem_dispenser/mutagensaltpeter{
+	dispensable_reagents = list(/datum/reagent/saltpetre,/datum/reagent/plantnutriment/eznutriment,/datum/reagent/plantnutriment/left4zednutriment,/datum/reagent/plantnutriment/robustharvestnutriment,/datum/reagent/water,/datum/reagent/toxin/plantbgone,/datum/reagent/toxin/plantbgone/weedkiller,/datum/reagent/toxin/pestkiller,/datum/reagent/medicine/cryoxadone,/datum/reagent/ammonia,/datum/reagent/ash,/datum/reagent/diethylamine)
+	},
+/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	dir = 8;
+	max_integrity = 600
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"rj" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 5
+	},
+/obj/machinery/computer/arcade,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"rQ" = (
+/obj/effect/turf_decal/pool{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"sv" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "fishing biodome outer airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"sR" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "fishing biodome inner airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
+"sZ" = (
+/obj/machinery/smartfridge/food,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"tG" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/pool/corner,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"uy" = (
+/obj/effect/turf_decal/pool/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"uI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/shop)
+"uN" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/telecomms/server/presets/common{
+	autolinkers = list("fishing");
+	freq_listening = list(1558);
+	id = "Fishing Server";
+	network = "fish";
+	tempfreq = 1558
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"uR" = (
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"ve" = (
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"vs" = (
 /obj/machinery/light{
 	dir = 1
 	},
@@ -26,12 +771,231 @@
 /obj/item/bedsheet/random,
 /turf/open/floor/carpet/purple,
 /area/ruin/powered/fishing/bedroom)
-"bf" = (
-/obj/structure/reagent_dispensers/cooking_oil,
+"vN" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 6
+	},
+/obj/item/book/manual/chef_recipes,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/kitchen)
-"bh" = (
+"vV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/filled/end{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/toy/crayon/spraycan{
+	pixel_x = 1;
+	pixel_y = 7
+	},
+/obj/item/toy/crayon/spraycan{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/toy/crayon/spraycan{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"vY" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/telecomms/bus/preset_four{
+	autolinkers = list("processorF","fishing");
+	freq_listening = list(1558);
+	id = "BusF";
+	network = "fish";
+	tempfreq = 1558
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"wg" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "fishing lockdown";
+	name = "Lockdown Control";
+	pixel_x = 25;
+	pixel_y = -6;
+	req_access_txt = "Fisherman"
+	},
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"wm" = (
+/obj/structure/rack,
+/obj/machinery/light,
+/obj/item/toy/prize/deathripley,
+/obj/item/toy/prize/durand,
+/obj/item/toy/prize/fireripley,
+/obj/item/toy/prize/gygax,
+/obj/item/toy/prize/honk,
+/obj/item/toy/prize/marauder,
+/obj/item/toy/prize/mauler,
+/obj/item/toy/prize/odysseus,
+/obj/item/toy/prize/phazon,
+/obj/item/toy/prize/reticence,
+/obj/item/toy/prize/seraph,
+/obj/item/toy/prize/ripley,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"wH" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing/kitchen)
+"wO" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/telecomms/hub/preset{
+	autolinkers = list("hubF","fishing","receiverF","broadcasterF","autorelay");
+	id = "HubF";
+	network = "fish";
+	tempfreq = 1558
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"xa" = (
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/tcom)
+"xn" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"xr" = (
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	max_integrity = 600
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"xs" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/telecomms/broadcaster/preset_left{
+	autolinkers = list("broadcasterF");
+	id = "Broadcaster F";
+	name = "subspace broadcaster";
+	network = "fish";
+	tempfreq = 1558
+	},
+/obj/machinery/airalarm/tcomms{
+	locked = 0;
+	pixel_y = 24
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"xQ" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/fishing/shop)
+"yD" = (
+/obj/structure/chair/americandiner/black,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"yH" = (
+/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 5
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"yZ" = (
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"zk" = (
+/obj/effect/turf_decal/pool{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"zo" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"zI" = (
+/obj/effect/turf_decal/trimline/brown/filled/corner,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"zN" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/obj/machinery/door/window/westleft{
+	dir = 2;
+	req_access_txt = "Fisherman"
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
+"Ak" = (
+/obj/effect/turf_decal/trimline/green/filled/line,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"Ay" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 4
 	},
@@ -41,50 +1005,58 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/hall)
-"bH" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/stairs/goon/stairs_middle,
-/area/ruin/powered/fishing/hall)
-"bR" = (
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
-"bU" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"cd" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
+"AI" = (
+/obj/machinery/smartfridge/drying_rack,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"cL" = (
-/obj/machinery/light{
+/area/ruin/powered/fishing/shop)
+"AN" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -27
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 6
+	},
+/obj/machinery/vending/autodrobe,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"AP" = (
+/obj/machinery/door/window{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/water/safe,
+/area/ruin/powered/fishing/bedroom)
+"AS" = (
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"cQ" = (
+"AW" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"Bj" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"Bz" = (
 /obj/item/reagent_containers/food/snacks/bait/master{
 	pixel_x = -1;
 	pixel_y = -5
@@ -151,93 +1123,115 @@
 /obj/structure/closet/crate/wooden{
 	name = "bait crate"
 	},
-/obj/machinery/airalarm/tcomms{
+/obj/machinery/airalarm{
 	pixel_y = 24
 	},
 /turf/open/floor/carpet/purple,
 /area/ruin/powered/fishing/bedroom)
-"cS" = (
-/obj/structure/rack,
-/obj/item/toy/prize/ripley,
-/obj/item/toy/prize/seraph,
-/obj/item/toy/prize/reticence,
-/obj/item/toy/prize/phazon,
-/obj/item/toy/prize/odysseus,
-/obj/item/toy/prize/mauler,
-/obj/item/toy/prize/marauder,
-/obj/item/toy/prize/honk,
-/obj/item/toy/prize/gygax,
-/obj/item/toy/prize/fireripley,
-/obj/item/toy/prize/durand,
-/obj/item/toy/prize/deathripley,
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"dg" = (
-/obj/machinery/light{
-	dir = 8
+"BB" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = -2;
+	pixel_y = 10
 	},
-/obj/effect/turf_decal/pool/corner{
-	dir = 8
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 4
 	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"dA" = (
-/obj/structure/chair/stool/bamboo,
-/obj/effect/turf_decal/pool{
+/obj/item/reagent_containers/glass/rag,
+/obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/turf_decal/pool{
-	dir = 8
-	},
-/obj/effect/turf_decal/pool/innercorner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"dP" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/cultivator{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/shovel/spade{
-	pixel_x = 5;
-	pixel_y = -1
-	},
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor/preopen{
 	id = "fishing lockdown"
 	},
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	dir = 8;
-	max_integrity = 600
+/turf/open/floor/wood,
+/area/ruin/powered/fishing/kitchen)
+"Ch" = (
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"Ct" = (
+/obj/structure/chair/stool/bamboo,
+/obj/effect/turf_decal/pool,
+/obj/effect/turf_decal/pool{
+	dir = 4
 	},
-/obj/item/hatchet/wooden,
-/obj/item/storage/box/disks_plantgene,
-/obj/effect/turf_decal/trimline/green/filled/line{
+/obj/effect/turf_decal/pool/innercorner,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"CD" = (
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/chem_master/condimaster,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/turf_decal/trimline/brown/filled/end,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"CJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/pool/corner{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	frequency = 1558;
+	name = "Fishing Biodome Comms";
+	pixel_x = 28
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"Dh" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"Dn" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/sign/nanotrasen{
+	pixel_y = -32
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"Dt" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	dir = 4;
+	target_temperature = 73
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"Dv" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"Dz" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/pool/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"DV" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"ej" = (
-/obj/machinery/vending/gifts,
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 10
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"es" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/safe,
-/area/ruin/powered/fishing)
-"eE" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"Ej" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters{
 	id = "fishshop"
@@ -258,525 +1252,36 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
-"eK" = (
+"Ex" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"EP" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"Fe" = (
 /obj/structure/chair/stool/bamboo,
 /obj/effect/turf_decal/pool{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/turf_decal/pool{
 	dir = 1
 	},
 /obj/effect/turf_decal/pool/innercorner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"eT" = (
-/obj/effect/turf_decal/pool{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"fm" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 31
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
-"ft" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/shop)
-"fC" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"fO" = (
-/obj/machinery/vending/dinnerware,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
-"fP" = (
-/obj/effect/turf_decal/trimline/white/filled/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"fR" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"fW" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"gD" = (
-/obj/effect/turf_decal/pool,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"gO" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"hu" = (
-/obj/effect/turf_decal/trimline/white/filled/corner,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"hz" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/template_noop)
-"ib" = (
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	max_integrity = 600
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/telecomms/receiver/preset_left{
-	autolinkers = list("receiverF");
-	freq_listening = list(1558);
-	id = "Receiver F";
-	name = "subspace receiver";
-	network = "fish";
-	tempfreq = 1558
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"if" = (
-/obj/effect/turf_decal/pool/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"il" = (
-/obj/machinery/light,
-/turf/open/water/safe,
-/area/ruin/powered/fishing)
-"iJ" = (
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/hall)
-"iO" = (
-/obj/machinery/griddle,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"iU" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/telecomms/server/presets/common{
-	autolinkers = list("fishing");
-	freq_listening = list(1558);
-	id = "Fishing Server";
-	network = "fish";
-	tempfreq = 1558
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"iX" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/pool/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"jN" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -28
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"jZ" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/telecomms/bus/preset_four{
-	autolinkers = list("processorF","fishing");
-	freq_listening = list(1558);
-	id = "BusF";
-	network = "fish";
-	tempfreq = 1558
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"kA" = (
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"kX" = (
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/tcom)
-"ls" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1558;
-	name = "Fishing Biodome Comms";
-	pixel_x = -29;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"lZ" = (
-/obj/structure/sign/painting{
-	pixel_y = -31
-	},
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"mu" = (
-/obj/machinery/door/airlock/glass_large{
-	name = "fishing biodome inner airlock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 10
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing)
-"mU" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/pool/corner{
 	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"mX" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/shop)
-"ng" = (
-/obj/structure/table/wood,
-/obj/item/pen/fountain{
-	pixel_x = -6
-	},
-/obj/item/paper_bin{
-	pixel_x = 6;
-	pixel_y = 1
-	},
-/obj/item/soap/nanotrasen,
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1558;
-	name = "Fishing Biodome Comms";
-	pixel_x = -29;
-	pixel_y = -1
-	},
-/obj/item/radio{
-	frequency = 1558;
-	name = "dome bounced radio";
-	pixel_x = -6;
-	pixel_y = 2
-	},
-/obj/item/radio{
-	frequency = 1558;
-	name = "dome bounced radio";
-	pixel_x = 10;
-	pixel_y = 3
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
-"nN" = (
-/obj/effect/turf_decal/pool{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"ou" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/dresser,
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
-"oT" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"pl" = (
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"pq" = (
-/obj/structure/window/reinforced/spawner/east,
-/mob/living/simple_animal/hostile/carp/cayenne{
-	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
-	health = 200;
-	icon_dead = "base_dead";
-	icon_gib = "carp_gib";
-	icon_living = "base";
-	icon_state = "magicarp";
-	maxHealth = 200;
-	name = "Jimmy"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/structure/bed/dogbed{
-	pixel_x = -7;
-	pixel_y = 3
-	},
-/turf/open/water/safe,
-/area/ruin/powered/fishing/bedroom)
-"pr" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/toy/plush/blahaj,
-/obj/item/toy/plush/carpplushie,
-/obj/item/toy/plush/carpplushie,
-/obj/item/toy/plush/snakeplushie,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"pv" = (
-/obj/machinery/grill,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"py" = (
-/obj/structure/window/reinforced/tinted,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"pz" = (
-/obj/structure/rack,
-/obj/item/twohanded/fishingrod,
-/obj/item/twohanded/fishingrod,
-/obj/item/storage/toolbox/mechanical/insulateds{
-	pixel_x = 1;
-	pixel_y = -1
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
-"pG" = (
-/obj/machinery/door/window/westleft{
-	req_access_txt = "Fisherman"
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "fishshop"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"pQ" = (
-/obj/effect/turf_decal/stripes{
-	dir = 8
-	},
-/obj/structure/janitorialcart,
-/obj/item/reagent_containers/glass/bucket/wooden,
-/obj/item/mop,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"pR" = (
-/obj/machinery/light,
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"pY" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/telecomms/processor/preset_one{
-	network = "fish";
-	tempfreq = 1558
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"qb" = (
-/obj/effect/turf_decal/trimline/white/filled/line,
-/obj/structure/table/wood,
-/obj/item/stack/spacecash/c1{
-	amount = 2000;
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"qr" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"qs" = (
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "fishing lockdown";
-	name = "Lockdown Control";
-	pixel_x = 25;
-	pixel_y = -6;
-	req_access_txt = "Fisherman"
-	},
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"qw" = (
-/obj/structure/rack,
-/obj/item/storage/firstaid/brute{
-	pixel_x = -5;
-	pixel_y = -3
-	},
-/obj/item/storage/firstaid/fire{
-	pixel_x = 8;
-	pixel_y = -3
-	},
-/obj/item/storage/firstaid/regular,
-/obj/item/radio,
-/obj/item/radio,
-/obj/item/storage/pill_bottle/charcoal{
-	pixel_x = -6;
-	pixel_y = -2
-	},
-/obj/item/storage/pill_bottle/charcoal{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
-"qD" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	dir = 8;
-	max_integrity = 600
-	},
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	dir = 1;
-	max_integrity = 600
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"rb" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/water/safe,
-/area/ruin/powered/fishing)
-"rg" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"rx" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -28
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"rQ" = (
-/obj/effect/turf_decal/pool{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"sc" = (
-/obj/structure/window/reinforced/spawner/east,
-/obj/structure/flora/ausbushes/stalkybush,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/water/safe,
-/area/ruin/powered/fishing/bedroom)
-"se" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/pool/corner{
-	dir = 4
-	},
-/obj/machinery/airalarm/tcomms{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"sy" = (
+"Ff" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 8
 	},
@@ -799,246 +1304,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
-"sG" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 6
-	},
-/obj/item/book/manual/chef_recipes,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
-"tG" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/pool/corner,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"ue" = (
-/obj/effect/turf_decal/caution/stand_clear,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/hall)
-"um" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/window/reinforced/tinted,
-/obj/structure/rack,
-/obj/item/toy/plush/pkplushie,
-/obj/item/toy/plush/beeplushie,
-/obj/item/toy/plush/lizard/azeel,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"ur" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 8
-	},
-/obj/machinery/airalarm/tcomms{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"uu" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"uy" = (
-/obj/effect/turf_decal/pool/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"uR" = (
-/obj/effect/turf_decal/pool{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"ve" = (
-/obj/effect/turf_decal/pool{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"vK" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 9
-	},
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	max_integrity = 600
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"vT" = (
-/obj/machinery/oven,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"vX" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
-"wb" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
+"Fr" = (
 /turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/shop)
-"ww" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"wK" = (
-/obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = "Fisherman"
-	},
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/kitchen)
-"xp" = (
-/obj/machinery/door/airlock/glass_large{
-	name = "fishing biodome inner airlock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/hall)
-"xy" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/machinery/chem_dispenser/mutagensaltpeter{
-	dispensable_reagents = list(/datum/reagent/saltpetre,/datum/reagent/plantnutriment/eznutriment,/datum/reagent/plantnutriment/left4zednutriment,/datum/reagent/plantnutriment/robustharvestnutriment,/datum/reagent/water,/datum/reagent/toxin/plantbgone,/datum/reagent/toxin/plantbgone/weedkiller,/datum/reagent/toxin/pestkiller,/datum/reagent/medicine/cryoxadone,/datum/reagent/ammonia,/datum/reagent/ash,/datum/reagent/diethylamine)
-	},
-/obj/item/reagent_containers/glass/bucket/wooden,
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	dir = 8;
-	max_integrity = 600
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"xz" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/seed_extractor,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	dir = 8;
-	max_integrity = 600
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"xB" = (
-/obj/machinery/door/airlock/glass_large{
-	name = "pier access"
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 9
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing)
-"xG" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 5
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing)
-"xX" = (
-/obj/structure/flora/rock/pile,
-/obj/machinery/airalarm/tcomms{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/open/water/safe,
-/area/ruin/powered/fishing/bedroom)
-"yD" = (
-/obj/structure/chair/americandiner/black,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"yE" = (
+"Fs" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 4
 	},
@@ -1053,351 +1322,62 @@
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/hall)
-"yP" = (
-/obj/effect/mob_spawn/human/fishing/alive{
-	dir = 8
+"FC" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/brute{
+	pixel_x = -5;
+	pixel_y = -3
 	},
-/obj/structure/cloth_curtain,
-/obj/structure/bed,
-/obj/item/bedsheet/random,
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
-"yW" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+/obj/item/storage/firstaid/fire{
+	pixel_x = 8;
+	pixel_y = -3
 	},
-/obj/machinery/telecomms/hub/preset{
-	autolinkers = list("hubF","fishing","receiverF","broadcasterF","autorelay");
-	id = "HubF";
-	network = "fish";
-	tempfreq = 1558
+/obj/item/storage/firstaid/regular,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/storage/pill_bottle/charcoal{
+	pixel_x = -6;
+	pixel_y = -2
 	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"yZ" = (
-/obj/effect/turf_decal/pool{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"zc" = (
-/obj/structure/mirror{
-	pixel_x = 29;
+/obj/item/storage/pill_bottle/charcoal{
+	pixel_x = 5;
 	pixel_y = -2
 	},
 /turf/open/floor/carpet/purple,
 /area/ruin/powered/fishing/bedroom)
-"zk" = (
-/obj/effect/turf_decal/pool{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"zN" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 4
-	},
-/obj/machinery/door/window/westleft{
-	dir = 2;
-	req_access_txt = "Fisherman"
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing)
-"zQ" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"Af" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"Au" = (
-/obj/item/vending_refill/cigarette,
-/obj/structure/closet/crate{
-	icon_state = "crate"
-	},
-/obj/item/vending_refill/dinnerware,
-/obj/item/lazarus_injector,
-/obj/item/vending_refill/boozeomat,
-/obj/item/vending_refill/boozeomat,
-/obj/item/vending_refill/fishing,
-/obj/item/vending_refill/fishing,
-/obj/item/rack_parts,
-/obj/item/rack_parts,
-/obj/item/vending_refill/hydroseeds,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"AA" = (
-/obj/effect/decal/cleanable/oil,
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 6
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"AP" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -27
-	},
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 6
-	},
-/obj/machinery/vending/autodrobe,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"AS" = (
-/obj/effect/turf_decal/pool{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"AW" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/structure/disposaloutlet,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
-"BS" = (
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/telecomms/broadcaster/preset_left{
-	autolinkers = list("broadcasterF");
-	id = "Broadcaster F";
-	name = "subspace broadcaster";
-	network = "fish";
-	tempfreq = 1558
-	},
-/obj/machinery/airalarm/tcomms{
-	locked = 0;
-	pixel_y = 24
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"Ca" = (
-/obj/machinery/deepfryer,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"Cf" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 5
-	},
-/obj/machinery/computer/arcade,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"Ch" = (
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"Ct" = (
-/obj/structure/chair/stool/bamboo,
-/obj/effect/turf_decal/pool,
-/obj/effect/turf_decal/pool{
-	dir = 4
-	},
-/obj/effect/turf_decal/pool/innercorner,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"Cu" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/filled/corner,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"CJ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/pool/corner{
-	dir = 1
-	},
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1558;
-	name = "Fishing Biodome Comms";
-	pixel_x = 28
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"Dm" = (
-/obj/machinery/door/window{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/water/safe,
-/area/ruin/powered/fishing/bedroom)
-"Dn" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/structure/sign/nanotrasen{
-	pixel_y = -32
-	},
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
-"Dz" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/pool/corner{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"DD" = (
-/obj/effect/turf_decal/stripes{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"DK" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/item/toy/plush/bubbleplush,
-/obj/item/toy/plush/goatplushie,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"Eq" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 6
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing)
-"Ew" = (
-/obj/effect/turf_decal/trimline/green/filled/line,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"EG" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/mineral/bamboo{
-	amount = 50
-	},
-/obj/item/paicard,
-/obj/item/reagent_containers/glass/gromitmug,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"ET" = (
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
-"Fe" = (
-/obj/structure/chair/stool/bamboo,
-/obj/effect/turf_decal/pool{
-	dir = 8
-	},
-/obj/effect/turf_decal/pool{
-	dir = 1
-	},
-/obj/effect/turf_decal/pool/innercorner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"FC" = (
-/obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = "Fisherman"
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
 "FM" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -28
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"FO" = (
-/obj/structure/disposalpipe/segment{
+/obj/structure/railing{
 	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/shop)
-"GQ" = (
-/obj/effect/turf_decal/pool/corner{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"Hq" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/fishing/shop)
-"Hw" = (
-/obj/machinery/light{
-	dir = 8
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 8
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/hall)
-"HD" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
+"Gi" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/water/safe,
-/area/ruin/powered/fishing/bedroom)
-"HI" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"Gk" = (
+/obj/machinery/smartfridge/drying_rack,
+/obj/effect/turf_decal/trimline/white/filled/line,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"Go" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
@@ -1411,51 +1391,127 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/shop)
-"HJ" = (
-/obj/structure/flora/rock/pile,
-/turf/open/water/safe,
-/area/ruin/powered/fishing)
-"IA" = (
-/obj/effect/turf_decal/stripes/corner{
+"Gv" = (
+/obj/machinery/door/airlock/wood{
+	name = "bunk room";
+	req_access_txt = "Fisherman"
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/firealarm{
-	pixel_y = 26
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"Ja" = (
-/obj/machinery/light{
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/kitchen)
+"GB" = (
+/obj/structure/flora/rock/pile,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/water/safe,
+/area/ruin/powered/fishing/bedroom)
+"GQ" = (
+/obj/effect/turf_decal/pool/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"GS" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"GU" = (
+/obj/structure/railing{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 10
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26;
+	pixel_y = -13
 	},
 /obj/item/radio/intercom{
 	broadcasting = 1;
 	frequency = 1558;
 	name = "Fishing Biodome Comms";
-	pixel_x = -26;
-	pixel_y = -3
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
+	pixel_x = -25;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"Jj" = (
-/obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/area/ruin/powered/fishing/hall)
+"Hx" = (
+/obj/machinery/vending/gifts,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"HJ" = (
+/obj/structure/flora/rock/pile,
+/turf/open/water/safe,
+/area/ruin/powered/fishing)
+"HR" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 5
+	dir = 6
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
+"It" = (
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"IB" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/fishing/shop)
+"IM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
+"IW" = (
+/obj/machinery/door/window/westleft{
+	req_access_txt = "Fisherman"
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "fishshop"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
+/area/ruin/powered/fishing/shop)
 "Jl" = (
 /obj/machinery/light{
 	dir = 4
@@ -1463,63 +1519,41 @@
 /obj/effect/turf_decal/pool/corner,
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"Jn" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"Jy" = (
-/obj/structure/rack,
-/obj/item/ship_in_a_bottle,
-/obj/item/clothing/under/sailor,
-/obj/item/clothing/under/sailor,
-/obj/item/clothing/under/sailor,
-/obj/item/clothing/under/sailor,
-/obj/effect/spawner/lootdrop/glowstick,
-/obj/effect/spawner/lootdrop/glowstick,
-/obj/effect/spawner/lootdrop/glowstick,
-/obj/effect/spawner/lootdrop/glowstick,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
 "JL" = (
 /turf/closed/wall/r_wall,
 /area/ruin/powered/fishing)
-"JR" = (
-/obj/structure/window/reinforced/tinted,
-/obj/machinery/chem_master/condimaster,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/trimline/brown/filled/end,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"JZ" = (
-/obj/machinery/smartfridge/drying_rack,
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
 "Kd" = (
-/turf/closed/wall/r_wall,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 9
+	},
+/obj/machinery/vending/fishing{
+	contraband = list(/obj/item/reagent_containers/food/snacks/bait/type = 6);
+	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 10);
+	products = list(/obj/item/twohanded/fishingrod = 12, /obj/item/reagent_containers/food/snacks/bait/apprentice = 30, /obj/item/reagent_containers/food/snacks/bait/journeyman = 20, /obj/item/clothing/head/fishing = 6, /obj/item/clothing/suit/fishing = 6, /obj/item/clothing/gloves/fishing = 6, /obj/item/clothing/shoes/fishing = 6)
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
-"Kp" = (
-/obj/structure/railing{
-	dir = 4
+"Kv" = (
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -12;
+	pixel_y = 3
 	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1558;
-	name = "Fishing Biodome Comms";
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
+"Kx" = (
+/obj/machinery/firealarm{
+	dir = 8;
 	pixel_x = 28
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/hall)
@@ -1530,18 +1564,50 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"La" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "kitchen storage";
-	req_access_txt = "Fisherman"
+"KJ" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 8
 	},
-/obj/effect/turf_decal/trimline/brown/filled/end,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"KO" = (
+/obj/structure/sign/warning/fire{
+	desc = "A warning sign which reads 'DANGER: DISPOSAL LEADS TO LAVA'.";
+	name = "\improper DANGER: DISPOSAL LEADS TO LAVA"
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/kitchen)
+"LO" = (
+/obj/effect/mob_spawn/human/fishing/alive{
+	dir = 8
+	},
+/obj/structure/cloth_curtain,
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"LV" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"LW" = (
+/obj/structure/window/reinforced/tinted{
+	damage_deflection = 21;
+	max_integrity = 600
+	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
-	dir = 1
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 8;
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
 "Mc" = (
 /obj/effect/turf_decal/pool{
 	dir = 1
@@ -1552,28 +1618,55 @@
 /obj/machinery/vending/cigarette/beach,
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"Mf" = (
+"Mp" = (
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"Nw" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"Om" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/powered/fishing/shop)
+"Oq" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/toy/plush/bubbleplush,
+/obj/item/toy/plush/goatplushie,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"OG" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 6
+	},
+/obj/machinery/vending/hydroseeds/weak,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"PG" = (
 /obj/structure/window/reinforced/tinted{
 	damage_deflection = 21;
 	max_integrity = 600
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ruin/powered/fishing/tcom)
-"MC" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"MH" = (
+"Qa" = (
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"Qn" = (
 /obj/effect/turf_decal/caution/stand_clear,
 /obj/machinery/door/airlock/glass{
 	name = "kitchen access";
@@ -1594,14 +1687,105 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/kitchen)
-"Nm" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/obj/machinery/shower{
-	pixel_y = 18
+"QC" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
-/turf/open/water/safe,
-/area/ruin/powered/fishing/bedroom)
-"Oa" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/fishing/shop)
+"QF" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs_middle,
+/area/ruin/powered/fishing/hall)
+"QL" = (
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = "Fisherman"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
+"QY" = (
+/obj/effect/turf_decal/pool/corner,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"Rb" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"RB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
+	},
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	frequency = 1558;
+	name = "Fishing Biodome Comms";
+	pixel_x = -25;
+	pixel_y = -14
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"RJ" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"RP" = (
+/obj/effect/turf_decal/trimline/white/filled/line,
+/obj/structure/table/wood,
+/obj/item/stack/spacecash/c1{
+	amount = 2000;
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/shop)
+"Sp" = (
+/obj/effect/turf_decal/pool/corner{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
+"Sz" = (
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing/hall)
+"SB" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
+"SK" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
 	},
@@ -1610,133 +1794,91 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
-"Oy" = (
-/obj/structure/reagent_dispensers/watertank/high,
+"SM" = (
+/obj/structure/window/reinforced/spawner/east,
+/mob/living/simple_animal/hostile/carp/cayenne{
+	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
+	health = 200;
+	icon_dead = "base_dead";
+	icon_gib = "carp_gib";
+	icon_living = "base";
+	icon_state = "magicarp";
+	maxHealth = 200;
+	name = "Jimmy"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/bed/dogbed{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/turf/open/water/safe,
+/area/ruin/powered/fishing/bedroom)
+"SO" = (
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/obj/structure/janitorialcart,
+/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/mop,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"TB" = (
+/obj/effect/turf_decal/trimline/brown/filled/line,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
+"TF" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"OC" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 8
-	},
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	max_integrity = 600
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"Pd" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/fishing/shop)
-"Ph" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/fishing/shop)
-"Pl" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 9
-	},
-/obj/machinery/vending/fishing{
-	contraband = list(/obj/item/reagent_containers/food/snacks/bait/type = 6);
-	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 10);
-	products = list(/obj/item/twohanded/fishingrod = 12, /obj/item/reagent_containers/food/snacks/bait/apprentice = 30, /obj/item/reagent_containers/food/snacks/bait/journeyman = 20, /obj/item/clothing/head/fishing = 6, /obj/item/clothing/suit/fishing = 6, /obj/item/clothing/gloves/fishing = 6, /obj/item/clothing/shoes/fishing = 6)
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"Pq" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = -2;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/rag,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing/kitchen)
-"QB" = (
-/obj/effect/turf_decal/caution/stand_clear,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/hall)
-"QR" = (
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	max_integrity = 600
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 8;
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"QT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/shop)
-"QY" = (
-/obj/effect/turf_decal/pool/corner,
+/obj/effect/turf_decal/pool,
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"Rb" = (
+"Uq" = (
+/obj/structure/reagent_dispensers/cooking_oil,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/kitchen)
+"UL" = (
+/obj/effect/turf_decal/trimline/white/filled/corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
-"Re" = (
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"Rs" = (
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/kitchen)
-"RE" = (
+"US" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"Va" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/telecomms/processor/preset_one{
+	network = "fish";
+	tempfreq = 1558
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ruin/powered/fishing/tcom)
+"Ve" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/structure/rack,
+/obj/item/toy/plush/pkplushie,
+/obj/item/toy/plush/beeplushie,
+/obj/item/toy/plush/lizard/azeel,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"Vf" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 8
 	},
@@ -1756,50 +1898,31 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ruin/powered/fishing/tcom)
-"RY" = (
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/bedroom)
-"Sp" = (
+"Vn" = (
 /obj/effect/turf_decal/pool/corner{
-	dir = 8
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"SF" = (
-/obj/machinery/door/airlock/wood{
-	name = "bunk room";
-	req_access_txt = "Fisherman"
+"Vu" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
 	},
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"VC" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/structure/flora/ausbushes/stalkybush,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/kitchen)
-"SY" = (
-/obj/structure/window/reinforced/tinted{
-	damage_deflection = 21;
-	max_integrity = 600
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"Tu" = (
-/obj/effect/turf_decal/trimline/white/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/white/filled/corner,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"Ty" = (
+/turf/open/water/safe,
+/area/ruin/powered/fishing/bedroom)
+"VJ" = (
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1818,97 +1941,12 @@
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle,
 /area/ruin/powered/fishing/hall)
-"TF" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/pool,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"TG" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/preopen{
-	id = "fishing lockdown"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing/kitchen)
-"TT" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/filled/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"TV" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"Ui" = (
-/obj/structure/sink/kitchen{
-	dir = 4;
-	pixel_x = -12;
-	pixel_y = 3
-	},
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
-"US" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
-"UU" = (
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"UY" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
-	dir = 4;
-	target_temperature = 73
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ruin/powered/fishing/tcom)
-"Vg" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/airalarm/tcomms{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/shop)
-"Vn" = (
-/obj/effect/turf_decal/pool/corner{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"Vu" = (
-/obj/structure/sign/nanotrasen{
-	pixel_y = 32
-	},
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/lavaland_baseturf,
-/area/template_noop)
-"VD" = (
+"Wr" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/brown/filled/corner,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/powered/fishing/kitchen)
 "Wz" = (
 /obj/structure/chair/stool/bamboo,
@@ -1921,42 +1959,32 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"WE" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 6
+"Xf" = (
+/obj/structure/mirror{
+	pixel_x = 29;
+	pixel_y = -2
 	},
-/obj/machinery/vending/hydroseeds/weak,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"Xv" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
+/turf/open/floor/carpet/purple,
+/area/ruin/powered/fishing/bedroom)
+"Xi" = (
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/pool/corner{
 	dir = 4
 	},
-/obj/machinery/airalarm/tcomms{
-	pixel_y = 24
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
 	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing/kitchen)
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
 "Xx" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/water/safe,
 /area/ruin/powered/fishing)
-"XD" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/powered/fishing/bedroom)
 "XJ" = (
 /obj/structure/chair/stool/bamboo,
 /obj/effect/turf_decal/pool{
@@ -1968,45 +1996,32 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"XT" = (
-/obj/machinery/smartfridge/drying_rack,
-/obj/effect/turf_decal/trimline/white/filled/line,
-/obj/machinery/airalarm/tcomms{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/shop)
-"YL" = (
+"XU" = (
 /obj/machinery/door/airlock/glass_large{
-	name = "fishing biodome outer airlock"
+	name = "fishing biodome inner airlock"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 10
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"YN" = (
-/obj/machinery/door/airlock/glass_large{
-	name = "fishing biodome outer airlock"
-	},
-/obj/structure/fans/tiny,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 9
+	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/preopen{
+	id = "fishing lockdown"
+	},
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/hall)
+"Yl" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/hall)
 "YV" = (
@@ -2018,62 +2033,64 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
-"YX" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner{
-	dir = 8
+"Zb" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/bamboo{
+	amount = 50
 	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/hall)
-"Zm" = (
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 8
+/obj/item/paicard,
+/obj/item/reagent_containers/glass/gromitmug,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"Zd" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
 	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"ZH" = (
-/obj/structure/sign/warning/fire{
-	desc = "A warning sign which reads 'DANGER: DISPOSAL LEADS TO LAVA'.";
-	name = "\improper DANGER: DISPOSAL LEADS TO LAVA"
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/powered/fishing/kitchen)
-"ZS" = (
-/obj/machinery/smartfridge/food,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/ruin/powered/fishing/kitchen)
-"ZT" = (
 /turf/open/water/safe,
-/area/ruin/powered/fishing)
-"ZZ" = (
-/obj/machinery/light{
-	dir = 4
+/area/ruin/powered/fishing/bedroom)
+"Zk" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 8
 	},
-/obj/effect/turf_decal/trimline/white/filled/end{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/item/toy/crayon/spraycan{
-	pixel_x = 1;
-	pixel_y = 7
-	},
-/obj/item/toy/crayon/spraycan{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/toy/crayon/spraycan{
-	pixel_x = 6;
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	frequency = 1558;
+	name = "Fishing Biodome Comms";
+	pixel_x = -29;
 	pixel_y = 2
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/shop)
+"ZF" = (
+/obj/item/vending_refill/cigarette,
+/obj/structure/closet/crate{
+	icon_state = "crate"
+	},
+/obj/item/vending_refill/dinnerware,
+/obj/item/lazarus_injector,
+/obj/item/vending_refill/boozeomat,
+/obj/item/vending_refill/boozeomat,
+/obj/item/vending_refill/fishing,
+/obj/item/vending_refill/fishing,
+/obj/item/rack_parts,
+/obj/item/rack_parts,
+/obj/item/vending_refill/hydroseeds,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing/shop)
+"ZT" = (
+/turf/open/water/safe,
+/area/ruin/powered/fishing)
+"ZU" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/powered/fishing/kitchen)
 
 (1,1,1) = {"
 aa
@@ -2127,11 +2144,11 @@ rb
 ZT
 es
 ZT
-RY
-RY
-RY
-RY
-RY
+qq
+qq
+qq
+qq
+qq
 aa
 aa
 aa
@@ -2159,13 +2176,13 @@ ZT
 ZT
 ZT
 ZT
-RY
-Nm
-HD
-xX
-RY
-RY
-RY
+qq
+kG
+Zd
+GB
+qq
+qq
+qq
 aa
 aa
 aa
@@ -2191,14 +2208,14 @@ ZT
 ZT
 ZT
 ZT
-RY
-pq
-Dm
-sc
-RY
-RY
-RY
-RY
+qq
+SM
+AP
+VC
+qq
+qq
+qq
+qq
 aa
 aa
 aa
@@ -2223,15 +2240,15 @@ ZT
 ZT
 HJ
 ZT
-RY
-cQ
-ET
-ET
-ng
-bR
-ou
-RY
-RY
+qq
+Bz
+Qa
+Qa
+me
+It
+jo
+qq
+qq
 aa
 aa
 "}
@@ -2255,23 +2272,23 @@ ZT
 ZT
 ZT
 ZT
-RY
-yP
-ET
-ET
-ET
-ET
-ET
-pz
-RY
+qq
+LO
+Qa
+Qa
+Qa
+Qa
+Qa
+dV
+qq
 aa
 aa
 "}
 (7,1,1) = {"
 aa
-kX
-kX
-RE
+xa
+xa
+Vf
 gD
 ZT
 ZT
@@ -2287,23 +2304,23 @@ Wz
 ZT
 ZT
 il
-RY
-RY
-aG
-ET
-fm
-XD
-zc
-qw
-RY
-RY
+qq
+qq
+vs
+Qa
+aY
+nm
+Xf
+FC
+qq
+qq
 aa
 "}
 (8,1,1) = {"
 aa
-kX
-UY
-OC
+xa
+Dt
+qn
 gD
 ZT
 ZT
@@ -2320,22 +2337,22 @@ ZT
 ZT
 ZT
 Mc
-Rs
-Rs
-SF
-Rs
-Rs
-Rs
-Rs
-Rs
-Rs
+Fr
+Fr
+Gv
+Fr
+Fr
+Fr
+Fr
+Fr
+Fr
 aa
 "}
 (9,1,1) = {"
 aa
-kX
-BS
-vK
+xa
+xs
+PG
 gD
 ZT
 ZT
@@ -2353,21 +2370,21 @@ ZT
 ZT
 YV
 yD
-TG
-UU
-vT
-Ja
-Rs
-Ui
-bf
-Rs
+jM
+bA
+kR
+RB
+Fr
+Kv
+Uq
+Fr
 aa
 "}
 (10,1,1) = {"
 aa
-kX
-yW
-Mf
+xa
+wO
+xr
 gD
 ZT
 ZT
@@ -2385,21 +2402,21 @@ ZT
 ZT
 YV
 yD
-TG
-Af
-iO
-Cu
-JR
-vX
-wK
-Rs
+jM
+RJ
+kr
+dc
+CD
+IM
+kB
+Fr
 aa
 "}
 (11,1,1) = {"
 aa
-kX
-iU
-ib
+xa
+uN
+et
 gD
 HJ
 ZT
@@ -2417,21 +2434,21 @@ ZT
 ZT
 YV
 yD
-Pq
-Af
-Ca
-Re
-ZS
-vX
-FC
-Rs
+BB
+RJ
+Rb
+TB
+sZ
+IM
+QL
+Fr
 aa
 "}
 (12,1,1) = {"
 aa
-kX
-pY
-SY
+xa
+Va
+gv
 gD
 ZT
 ZT
@@ -2449,21 +2466,21 @@ ZT
 ZT
 YV
 yD
-TG
-Af
-pl
-Cu
-La
-vX
-sG
-Rs
+jM
+RJ
+GS
+dc
+aF
+IM
+vN
+Fr
 aa
 "}
 (13,1,1) = {"
 US
-kX
-jZ
-QR
+xa
+vY
+LW
 gD
 ZT
 ZT
@@ -2481,21 +2498,21 @@ ZT
 ZT
 YV
 yD
-oT
-VD
-Zm
-MC
-Rs
-Xv
-fO
-Rs
+wH
+Wr
+DV
+ZU
+Fr
+SB
+eC
+Fr
 US
 "}
 (14,1,1) = {"
 Dn
-kX
-kX
-kX
+xa
+xa
+xa
 TF
 ZT
 ZT
@@ -2513,27 +2530,27 @@ ZT
 ZT
 yZ
 pR
-ZH
-MH
-Rs
-Rs
-Rs
-Rs
-Rs
-Rs
+KO
+Qn
+Fr
+Fr
+Fr
+Fr
+Fr
+Fr
 Vu
 "}
 (15,1,1) = {"
 US
-YN
-jN
-mu
+fo
+GU
+sR
 GQ
 rQ
 rQ
 uy
 Ch
-se
+Xi
 rQ
 rQ
 rQ
@@ -2545,21 +2562,21 @@ zk
 zk
 Sp
 Ch
-xB
-TT
-Hw
-rx
-ur
-xp
-Ty
-YL
+qd
+zo
+hJ
+Yl
+gR
+XU
+VJ
+sv
 US
 "}
 (16,1,1) = {"
 US
-Jj
-Kp
-Eq
+yH
+FM
+HR
 eT
 eT
 eT
@@ -2577,20 +2594,20 @@ nN
 nN
 Vn
 Ch
-xG
-fC
-TV
-uu
-uu
-yE
-bH
-AA
+pA
+ly
+zI
+LV
+LV
+Fs
+QF
+dT
 US
 "}
 (17,1,1) = {"
 Dn
-iJ
-iJ
+gZ
+gZ
 JL
 Xx
 ZT
@@ -2609,14 +2626,14 @@ ZT
 ZT
 AS
 lZ
-iJ
-ue
-QB
-qD
-dP
-xy
-xz
-iJ
+gZ
+qQ
+av
+aG
+ok
+rh
+lD
+gZ
 Vu
 "}
 (18,1,1) = {"
@@ -2641,14 +2658,14 @@ ZT
 ZT
 AS
 gO
-iJ
-rg
-YX
-kA
-kA
-kA
-Ew
-iJ
+gZ
+bC
+fx
+Sz
+Sz
+Sz
+Ak
+gZ
 US
 "}
 (19,1,1) = {"
@@ -2673,14 +2690,14 @@ ZT
 ZT
 AS
 pv
-Hq
-Jn
-uu
-qs
-cd
-bh
-WE
-iJ
+xQ
+xn
+LV
+wg
+Kx
+Ay
+OG
+gZ
 aa
 "}
 (20,1,1) = {"
@@ -2704,15 +2721,15 @@ ZT
 es
 ZT
 AS
-Pd
-Ph
-pG
-eE
-Kd
-Kd
-Kd
-Kd
-Kd
+IB
+QC
+IW
+Ej
+gx
+gx
+gx
+gx
+gx
 aa
 "}
 (21,1,1) = {"
@@ -2736,15 +2753,15 @@ ZT
 ZT
 ZT
 AS
-Hq
-Pl
-ww
-Oa
-ls
-sy
-FM
-ej
+xQ
 Kd
+KJ
+SK
+Zk
+Ff
+jw
+Hx
+gx
 aa
 "}
 (22,1,1) = {"
@@ -2768,15 +2785,15 @@ ZT
 ZT
 ZT
 AS
-Hq
-Cf
-qr
-qr
-qr
-fP
-Rb
-qb
-Kd
+xQ
+rj
+Nw
+Nw
+Nw
+UL
+jO
+RP
+gx
 aa
 "}
 (23,1,1) = {"
@@ -2800,15 +2817,15 @@ ZT
 ZT
 ZT
 ve
-Kd
-pr
-HI
-DK
-um
-fR
-hu
-AP
-Kd
+gx
+cJ
+Go
+Oq
+Ve
+iG
+jZ
+AN
+gx
 aa
 "}
 (24,1,1) = {"
@@ -2831,16 +2848,16 @@ Ct
 ZT
 ZT
 il
-FO
-Kd
-IA
-zQ
-zQ
-py
-fR
-XT
-Kd
-Kd
+Om
+gx
+EP
+nl
+nl
+bg
+iG
+Gk
+gx
+gx
 aa
 "}
 (25,1,1) = {"
@@ -2863,15 +2880,15 @@ ZT
 ZT
 ZT
 ZT
-FO
-Oy
-DD
-zQ
-zQ
-Vg
-Tu
-JZ
-Kd
+Om
+Gi
+Dh
+nl
+nl
+Mp
+kA
+AI
+gx
 hz
 aa
 "}
@@ -2895,15 +2912,15 @@ ZT
 ZT
 ZT
 ZT
-FO
-bU
-DD
-zQ
-zQ
-Kd
-ZZ
-Kd
-Kd
+Om
+pj
+Dh
+nl
+nl
+Bj
+vV
+gx
+gx
 hz
 aa
 "}
@@ -2927,14 +2944,14 @@ ZT
 ZT
 ZT
 ZT
-FO
-pQ
-fW
-zQ
-cS
-Kd
-Kd
-Kd
+Om
+SO
+Dv
+nl
+Ex
+wm
+gx
+gx
 hz
 hz
 aa
@@ -2959,13 +2976,13 @@ ZT
 es
 ZT
 ZT
-FO
-Au
-Jy
-EG
-wb
-ft
-ft
+Om
+ZF
+ld
+Zb
+aw
+dS
+dS
 AW
 hz
 hz
@@ -2991,11 +3008,11 @@ cL
 ZT
 ZT
 HJ
-QT
-ft
-ft
-ft
-mX
+gL
+dS
+dS
+dS
+uI
 hz
 hz
 hz
