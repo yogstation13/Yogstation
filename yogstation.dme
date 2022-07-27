@@ -3387,6 +3387,7 @@
 #include "yogstation\code\game\gamemodes\gangs\gang_pen.dm"
 #include "yogstation\code\game\gamemodes\gangs\gangs.dm"
 #include "yogstation\code\game\gamemodes\gangs\gangtool.dm"
+#include "yogstation\code\game\gamemodes\hand_of_god\hand_of_god.dm"
 #include "yogstation\code\game\gamemodes\infiltration\infiltration.dm"
 #include "yogstation\code\game\gamemodes\shadowling\shadowling.dm"
 #include "yogstation\code\game\gamemodes\traitor\double_agents.dm"
