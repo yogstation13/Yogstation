@@ -27,9 +27,9 @@
 	// 4 life_tickrate is 25% organ decay or 75% stasis
 	// 5 life_tickrate is 20% organ decay or 80% stasis
 	var/stasis_amount = 1.5 // How much it adds to life tickrate
-	// T1 = 1.5, 33% stasis
-	// T2 = 2, 50% stasis
-	// T3 = 4, 75% stasis
+	// T1 = 0.5, 33% stasis
+	// T2 = 1, 50% stasis
+	// T3 = 3, 75% stasis
 	// T4 = -1, 100% stasis
 
 	
@@ -43,11 +43,11 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		switch(C.rating)
 			if(1)
-				stasis_amount = 1.5 // 33% stasis
+				stasis_amount = 0.5 // 33% stasis
 			if(2)
-				stasis_amount = 2 // 50% stasis
+				stasis_amount = 1 // 50% stasis, equivalent to a holobed
 			if(3)
-				stasis_amount = 4 // 75% stasis
+				stasis_amount = 3 // 75% stasis
 			if(4)
 				stasis_amount = -1 // 100% stasis
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
