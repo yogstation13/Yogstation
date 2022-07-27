@@ -15,12 +15,12 @@
 	throw_speed = 3
 	throw_range = 7
 	amount_per_transfer_from_this = 10
-	volume = 60
+	volume = 30
 	var/can_fill_from_container = TRUE
 	var/apply_type = PATCH
 	var/apply_method = "spray"
-	var/self_delay = 30
-	var/squirt_mode = 0
+	var/self_delay = 3 SECONDS
+	var/squirt_mode = FALSE
 	var/squirt_amount = 5
 	custom_price = 40
 
@@ -78,22 +78,22 @@
 	name = "medical spray (styptic powder)"
 	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains styptic powder, for treating cuts and bruises."
 	icon_state = "brutespray"
-	list_reagents = list(/datum/reagent/medicine/styptic_powder = 60)
+	list_reagents = list(/datum/reagent/medicine/styptic_powder = 30)
 
 /obj/item/reagent_containers/medspray/silver_sulf
 	name = "medical spray (silver sulfadiazine)"
 	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains silver sulfadiazine, useful for treating burns."
 	icon_state = "burnspray"
-	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 60)
+	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 30)
 
 /obj/item/reagent_containers/medspray/synthflesh
 	name = "medical spray (synthflesh)"
 	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains synthflesh, an apex brute and burn healing agent."
 	icon_state = "synthspray"
-	list_reagents = list(/datum/reagent/medicine/synthflesh = 60)
+	list_reagents = list(/datum/reagent/medicine/synthflesh = 30)
 	custom_price = 80
 
 /obj/item/reagent_containers/medspray/sterilizine
 	name = "sterilizer spray"
 	desc = "Spray bottle loaded with non-toxic sterilizer. Useful in preparation for surgery."
-	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 60)
+	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 30)
