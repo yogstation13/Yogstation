@@ -1461,6 +1461,36 @@
 	icon_state = "tank_white"
 	gender = NEUTER
 
+/datum/sprite_accessory/undershirt/tank_rainbow
+	name = "Tank Top (Rainbow)"
+	icon_state = "tank_rainbow"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_ace
+	name = "Tank Top (Asexual)"
+	icon_state = "tank_ace"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_bi
+	name = "Tank Top (Bi)"
+	icon_state = "tank_bi"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_les
+	name = "Tank Top (Lesbian)"
+	icon_state = "tank_les"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_enby
+	name = "Tank Top (Nonbinary)"
+	icon_state = "tank_enby"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_trans
+	name = "Tank Top (Trans)"
+	icon_state = "tank_trans"
+	gender = NEUTER
+
 /datum/sprite_accessory/undershirt/redtop
 	name = "Top (Red)"
 	icon_state = "redtop"
@@ -1504,21 +1534,45 @@
 
 // please make sure they're sorted alphabetically and categorized
 
+/datum/sprite_accessory/socks/bee_knee
+	name = "Knee-high (Bee)"
+	icon_state = "bee_knee"
+
 /datum/sprite_accessory/socks/black_knee
 	name = "Knee-high (Black)"
 	icon_state = "black_knee"
 
 /datum/sprite_accessory/socks/commie_knee
-	name = "Knee-High (Commie)"
+	name = "Knee-high (Commie)"
 	icon_state = "commie_knee"
 
 /datum/sprite_accessory/socks/usa_knee
-	name = "Knee-High (Freedom)"
+	name = "Knee-high (Freedom)"
 	icon_state = "assblastusa_knee"
 
 /datum/sprite_accessory/socks/rainbow_knee
 	name = "Knee-high (Rainbow)"
 	icon_state = "rainbow_knee"
+
+/datum/sprite_accessory/socks/ace_knee
+	name = "Knee-high (Asexual)"
+	icon_state = "ace_knee" // can be used to show that you follow rule 0.2
+
+/datum/sprite_accessory/socks/bi_knee
+	name = "Knee-high (Bi)"
+	icon_state = "bi_knee"
+
+/datum/sprite_accessory/socks/les_knee
+	name = "Knee-high (Lesbian)"
+	icon_state = "les_knee"
+
+/datum/sprite_accessory/socks/enby_knee
+	name = "Knee-high (Nonbinary)"
+	icon_state = "enby_knee"
+
+/datum/sprite_accessory/socks/trans_knee
+	name = "Knee-high (Trans)"
+	icon_state = "trans_knee"
 
 /datum/sprite_accessory/socks/striped_knee
 	name = "Knee-high (Striped)"
@@ -1535,10 +1589,6 @@
 /datum/sprite_accessory/socks/white_knee
 	name = "Knee-high (White)"
 	icon_state = "white_knee"
-
-/datum/sprite_accessory/socks/bee_knee
-	name = "Knee-high (Bee)"
-	icon_state = "bee_knee"
 
 /datum/sprite_accessory/socks/black_norm
 	name = "Normal (Black)"
@@ -1592,6 +1642,10 @@
 	name = "Stockings (Yellow)"
 	icon_state = "stockings_yellow"
 
+/datum/sprite_accessory/socks/bee_thigh
+	name = "Thigh-high (Bee)"
+	icon_state = "bee_thigh"
+
 /datum/sprite_accessory/socks/black_thigh
 	name = "Thigh-high (Black)"
 	icon_state = "black_thigh"
@@ -1608,6 +1662,26 @@
 	name = "Thigh-high (Rainbow)"
 	icon_state = "rainbow_thigh"
 
+/datum/sprite_accessory/socks/ace_thigh
+	name = "Thigh-high (Asexual)"
+	icon_state = "ace_thigh"
+
+/datum/sprite_accessory/socks/bi_thigh
+	name = "Thigh-high (Bi)"
+	icon_state = "bi_thigh" //bi thigh highs? we gotta study this
+
+/datum/sprite_accessory/socks/les_thigh
+	name = "Thigh-high (Lesbian)"
+	icon_state = "les_thigh"
+
+/datum/sprite_accessory/socks/enby_thigh
+	name = "Thigh-high (Nonbinary)"
+	icon_state = "enby_thigh"
+
+/datum/sprite_accessory/socks/trans_thigh
+	name = "Thigh-high (Trans)"
+	icon_state = "trans_thigh"
+
 /datum/sprite_accessory/socks/striped_thigh
 	name = "Thigh-high (Striped)"
 	icon_state = "striped_thigh"
@@ -1623,10 +1697,6 @@
 /datum/sprite_accessory/socks/white_thigh
 	name = "Thigh-high (White)"
 	icon_state = "white_thigh"
-
-/datum/sprite_accessory/socks/bee_thigh
-	name = "Thigh-high (Bee)"
-	icon_state = "bee_thigh"
 
 //////////.//////////////////
 // MutantParts Definitions //

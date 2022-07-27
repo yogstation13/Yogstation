@@ -109,6 +109,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 
 ///Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
 
+/datum/donator_gear/orca
+	name = "Megumus Dress"
+	ckey = "orcacora"
+	unlock_path = /obj/item/storage/box/megumu
+
 /datum/donator_gear/fatal_eyes
 	name = "Green Cosmic Bedsheet (FatalEyes)"
 	ckey = "fataleyes"

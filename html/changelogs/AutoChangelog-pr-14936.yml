@@ -1,6 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - rscadd: "Adds Hydrogen Gas Miner"
-  - rscadd: "Adds Hydrogen Air Floor"
-  - tweak: "adjusts plasma miner color to better match plasma tank colors so hydrogen miners can be red"

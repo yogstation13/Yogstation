@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Ash drake's \"mass fire\" fires more times when low hp"
-  - tweak: "Ash drake's \"fire cone\" is fires more lines and leaves less gaps"
-  - tweak: "Ash drake's fire does more damage"
