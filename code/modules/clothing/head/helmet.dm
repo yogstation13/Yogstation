@@ -529,8 +529,8 @@
 	slowdown = K.slowdown_set
 	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
 		armor = getArmor(arglist(armor))
-	if (islist(armor) || isnull(armor))
-		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
 
 	armor = armor.attachArmor(K.armor)
 	w_class = WEIGHT_CLASS_BULKY

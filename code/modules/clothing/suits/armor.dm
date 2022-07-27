@@ -451,8 +451,8 @@
 
 	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
 		armor = getArmor(arglist(armor))
-	if (islist(armor) || isnull(armor))
-		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
 
 	armor = armor.attachArmor(K.armor)
 	w_class = WEIGHT_CLASS_BULKY
@@ -487,7 +487,7 @@
 	desc = "Incredibly light bluespace-infused armor plating that offers great movement while also providing some protection."
 	name_set = "MK.I bluespace"
 	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
-	armor = list(MELEE = 15, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 40, WOUND = 10) // Slightly worse than default armor
+	armor = list(MELEE = 15, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 30, ACID = 40, WOUND = 10) // Slightly worse than default armor
 
 /obj/item/kevlar_plating/mkii
 	name = "MK.II ceramic plating"
@@ -496,7 +496,7 @@
 	force = 4
 	name_set = "MK.II ceramic"
 	slowdown_set = 0
-	armor = list(MELEE = 30, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20) 	// Slightly better than default armor
+	armor = list(MELEE = 30, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 40, ACID = 50, WOUND = 20) 	// Slightly better than default armor
 
 /obj/item/kevlar_plating/mkiii
 	name = "MK.III plasteel plating"
@@ -505,7 +505,7 @@
 	force = 6
 	name_set = "MK.III plasteel"
 	slowdown_set = 0.15 // Slow
-	armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 60, ACID = 60, WOUND = 35)	//Robust
+	armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 50, ACID = 60, WOUND = 35)	//Robust
 
 /obj/item/kevlar_plating/mkiv
 	name = "MK.IV titanium plating"
@@ -515,4 +515,4 @@
 	name_set = "MK.IV titanium"
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown_set = 0.4 // Very slow
-	armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 75, ACID = 75, WOUND = 50)	//Walking tank
+	armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 65, ACID = 75, WOUND = 50)	//Walking tank
