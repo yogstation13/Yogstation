@@ -31,7 +31,7 @@
 		owner.forceMove(get_turf(god.cult.nexus))
 		to_chat(owner, span_notice("You jump to your nexus."))
 	else
-		to_chat(owner, span_warning("You don't have any nexus to jump to, you need construct one."))
+		to_chat(owner, span_warning("You don't have any nexus to jump to, you need to place one first."))
 
 /datum/action/innate/god/whisper
 	name = "Whisper"
@@ -56,6 +56,11 @@
 	var/datum/antagonist/hog/god = IS_HOG_CULTIST(owner)
 	if(!god)
 		return
+	if(god.cult.nexus)
+		return
+	var/choice = input("Do you REALLY want to place your nexus here?","Confirm") in list("Yes", "No")
+		if(choice == "No")
+			return
 	var/turf/open/T = get_turf(owner)
 	if(!T || !istype(T))
 		to_chat(owner, span_warning("Not a valid place!"))
@@ -66,6 +71,7 @@
 	var/obj/structure/destructible/hog_structure/lance/nexus/nexus = new (T)
 	nexus.handle_team_change(god.cult)	
 	god.cult.nexus = nexus
+	nexus.god = god.cult.god
 	god.cult.message_all_dudes("<span class='cultlarge'><b>Your god, [god], has placed your nexus in [get_area(nexus)]</b></span>", FALSE)
 	qdel(src)
 

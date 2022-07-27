@@ -111,10 +111,10 @@
 	if(nexus)
 		qdel(nexus)
 	for(var/obj/O in objects)
-		if(istype(/obj/structure/destructible/hog_structure))
+		if(istype(O, /obj/structure/destructible/hog_structure))
 			var/obj/structure/destructible/hog_structure/S = O
 			S.handle_team_change(null)
-		else if(istype(/obj/item/hog_item))
+		else if(istype(O, /obj/item/hog_item))
 			var/obj/item/hog_item/I = O
 			I.handle_owner_change(null)
 		else 

@@ -23,6 +23,7 @@
 	var/datum/action/innate/god/nexus/nexus
 	var/datum/action/innate/god/place_nexus/place_nexus
 	var/datum/action/innate/god/mass_recall/mass_recall
+	var/ticks_till_autoplace = 7 
 
 
 /mob/camera/hog_god/Initialize()	
@@ -40,7 +41,7 @@
 	mass_recall.Grant(src)
 	place_nexus = new
 	place_nexus.Grant(src)
-
+	addtimer(CALLBACK(src, .proc/autoplacenexustick), 1 MINUTES)
 
 /mob/camera/hog_god/proc/select_name()
 	var/new_name = input(src, "Choose your new name", "Name")
@@ -103,3 +104,23 @@
 		to_chat(src, "You fail to initiate mass recall")
 		return FALSE
 
+/mob/camera/hog_god/proc/autoplacenexustick()
+	if(cult.nexus)
+		return
+	if(ticks_till_autoplace)
+		if(ticks_till_autoplace <= 3)
+			to_chat(src, span_userdanger("You have [ticks_till_autoplace] minutes left untill your nexus will be placed automatically!"))
+		else
+			to_chat(src, span_warning("You have [ticks_till_autoplace] minutes left untill your nexus will be placed automatically!"))
+		ticks_till_autoplace--
+		addtimer(CALLBACK(src, .proc/autoplacenexustick), 1 MINUTES)
+	else
+		if(!GLOB.xeno_spawn)  //I could make special markers for nexuses, but i hate mapping and i don't want my gamemode to die just because of merge conflicts
+			log_game("[cult.name] nexus had failed to autoplace!.")
+			return
+		var/obj/structure/destructible/hog_structure/lance/nexus/nexus = new (pick(GLOB.xeno_spawn))
+		nexus.handle_team_change(cult)	
+		cult.nexus = nexus
+		nexus.god = src
+		cult.message_all_dudes("<span class='cultlarge'><b>Your nexus has been autoplaced in [get_area(nexus)]</b></span>", FALSE)
+		
