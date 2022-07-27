@@ -253,7 +253,6 @@
 			M.stuttering = 0
 			holder.remove_reagent(type, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
-		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M)
 		else 
 			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M)
 			if(cultie)

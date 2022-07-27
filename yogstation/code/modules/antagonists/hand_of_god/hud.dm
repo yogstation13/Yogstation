@@ -54,7 +54,7 @@
 /datum/antagonist/hog/god/update_hud()
 	var/datum/hud/human/hud = owner.current.hud_used
 	hud.cult_energy_display.update_counter(cult.energy, "#E6E6FA")
-	if(cult.objective)
+	if(cult.cult_objective)
 		hud.objective_status_display.update_counter(cult.cult_objective.progress_text())
 	else
 		hud.objective_status_display.update_counter("Your cult didn't get assigned an objective yet.")
