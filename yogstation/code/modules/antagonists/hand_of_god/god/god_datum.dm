@@ -21,3 +21,19 @@
 
 /datum/antagonist/hog/god/equip_cultist()
 	return //Gods don't get things. 
+
+/datum/antagonist/hog/god/on_gain()
+	. = ..()
+	if(!istype(owner.current, /mob/camera/hog_god))
+		var/mob/oldbody = owner.current
+		var/mob/camera/hog_god/Allah = new(get_turf(oldbody))
+		owner.transfer_to(Allah)
+		qdel(oldbody)
+
+/datum/antagonist/hog/god/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/M = mob_override || owner.current
+	update_hog_icons_added(M)
+
+/datum/antagonist/hog/god/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/M = mob_override || owner.current
+	update_hog_icons_removed(M)

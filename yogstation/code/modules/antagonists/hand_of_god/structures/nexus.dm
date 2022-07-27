@@ -43,6 +43,12 @@
 	addtimer(CALLBACK(src, .proc/Sex), 1 MINUTES)	
 	cult.message_all_dudes("<span class='cultlarge'><b>Servants of [god.name]! Our time has come! Defend the nexus at all costs!</b></span>", TRUE)
 	cult.state = HOG_TEAM_SUMMONING
+	for(var/V in cult.members)
+		var/datum/mind/M = V
+		if(!M || !M.current)
+			continue
+		if(ishuman(M.current))
+			M.current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))  //I will change this when i will get sprites
 
 /obj/structure/destructible/hog_structure/lance/nexus/proc/Sex()
 	if(progress == BREAK_FREE_TIME)	

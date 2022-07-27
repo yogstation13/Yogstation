@@ -25,12 +25,15 @@
 	update_hog_icons_added(M)
 	pray = new
 	pray.Grant(owner.current)
+	if((cult.state = HOG_TEAM_SUMMONING || cult.state = HOG_TEAM_SUMMONED) && ishuman(owner.current))
+		owner.current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
 	RegisterSignal(owner.current, COMSIG_ATOM_EMP_ACT, .proc/fuck_magic)
 
 /datum/antagonist/hog/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	update_hog_icons_removed(M)
-	qdel(pray)
+	M.cut_overlays()
+	M.regenerate_icons()
 	UnregisterSignal(owner.current, COMSIG_ATOM_EMP_ACT)
 
 /datum/antagonist/hog/get_team()
@@ -52,6 +55,9 @@
 
 /datum/antagonist/hog/on_removal()
 	remove_from_cult()
+	qdel(pray)
+	for(var/A in prepared_spells)
+		qdel(A)
 	SEND_SIGNAL(owner.current, COMSIG_CLEAR_MOOD_EVENT, "god_moraleboost") 
 	SEND_SIGNAL(owner.current, COMSIG_CLEAR_MOOD_EVENT, "pleased_gods") 
 	..()
@@ -77,7 +83,7 @@
 		if(team)
 			cult = team
 			return
-		var/datum/team/gang/cultteam = pick_n_take(GLOB.possible_hog_cults)
+		var/datum/team/hog_cult/cultteam = pick_n_take(GLOB.possible_hog_cults)
 		if(cultteam)
 			cult = new cultteam
 
