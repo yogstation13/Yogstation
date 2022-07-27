@@ -931,7 +931,17 @@
 /obj/item/radio,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
-"Tv" = (
+"TK" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"TW" = (
+/obj/machinery/computer/arcade/minesweeper,
+/turf/open/floor/carpet,
+/area/ruin/space/has_grav/powered/gaming)
+"Ui" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/chocolatebar{
 	pixel_x = -9;
@@ -965,25 +975,13 @@
 	pixel_x = -5;
 	pixel_y = 8
 	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 6;
-	pixel_y = 7
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
 	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 7;
-	pixel_y = 8
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
 	},
 /turf/open/floor/circuit,
-/area/ruin/space/has_grav/powered/gaming)
-"TK" = (
-/obj/structure/chair/sofa/right{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/ruin/space/has_grav/powered/gaming)
-"TW" = (
-/obj/machinery/computer/arcade/minesweeper,
-/turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/gaming)
 "US" = (
 /obj/machinery/light_switch{
@@ -1628,7 +1626,7 @@ IX
 XL
 wv
 yl
-Tv
+Ui
 XL
 XL
 XL
