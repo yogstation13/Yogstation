@@ -15,7 +15,25 @@
 	var/last_stasis_sound = FALSE
 	var/stasis_can_toggle = 0
 	var/stasis_cooldown = 5 SECONDS
-	var/stasis_amount = -0.25 // -1 is completely frozen in time, 0 would do nothing, so -0.25 is 25% slow, -0.5 : 50%, etc
+
+	// Life tickrate is processed as follows
+	// if (living.life_tickrate && (tick % living.life_tickrate) == 0) is true, life will tick on that tick
+	// Thus,
+	// 0 life_tickrate is 0% organ decay or 100% stasis
+	// 1 life_tickrate is 100% organ decay or 0% stasis
+	// 1.5 life_tickrate is 66% orcan decay or 33% stasis
+	// 2 life_tickrate is 50% organ decay or 50% stasis
+	// 3 life_tickrate is 33% organ decay or 66% stasis
+	// 4 life_tickrate is 25% organ decay or 75% stasis
+	// 5 life_tickrate is 20% organ decay or 80% stasis
+	var/stasis_amount = 1.5 // How much it adds to life tickrate
+	// T1 = 1.5, 33% stasis
+	// T2 = 2, 50% stasis
+	// T3 = 4, 75% stasis
+	// T4 = -1, 100% stasis
+
+	
+
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
 
@@ -23,7 +41,15 @@
 	stasis_amount = initial(stasis_amount)
 	stasis_cooldown = initial(stasis_cooldown)
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		stasis_amount *= C.rating // T1 is 75% organ decay, T4 is 0%
+		switch(C.rating)
+			if(1)
+				stasis_amount = 1.5 // 33% stasis
+			if(2)
+				stasis_amount = 2 // 50% stasis
+			if(3)
+				stasis_amount = 4 // 75% stasis
+			if(4)
+				stasis_amount = -1 // 100% stasis
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		stasis_cooldown *= 1/M.rating // 100%, 50%, 33%, 25%
 	if(occupant)
