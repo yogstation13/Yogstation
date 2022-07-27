@@ -90,36 +90,32 @@
 	owner.current.log_message("<font color='red'>Has been deconverted from the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
 
 /datum/antagonist/hog/proc/equip_cultist(roundstart = TRUE)
-	var/living/carbon/mob = owner.current
+	var/living/carbon/culte = owner.current
 	if(roundstart)
 		var/list/slots = list(
 			"backpack" = SLOT_IN_BACKPACK,
 			"left pocket" = SLOT_L_STORE,
 			"right pocket" = SLOT_R_STORE
 		)
-		var/obj/item/hog_item/T = new /obj/item/hog_item/book(mob)
+		var/obj/item/hog_item/T = new /obj/item/hog_item/book(culte)
 		if(cult)
 			T.handle_owner_change(cult)
-		else if(team)
-			T.handle_owner_change(team)
 		else
 			log_game("[key_name(owner.current)] has been equiped without a cult.")
 		var/item_name = initial(T.name)
-		var/where = mob.equip_in_one_of_slots(T, slots)
+		var/where = culte.equip_in_one_of_slots(T, slots)
 		if(!where)
-			to_chat(mob, span_userdanger("Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately."))
+			to_chat(culte, span_userdanger("Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately."))
 			return 0
 		else
-			to_chat(mob, span_danger("You have a [item_name] in your [where]."))
+			to_chat(culte, span_danger("You have a [item_name] in your [where]."))
 			if(where == "backpack")
-				SEND_SIGNAL(mob.back, COMSIG_TRY_STORAGE_SHOW, mob)
+				SEND_SIGNAL(culte.back, COMSIG_TRY_STORAGE_SHOW, culte)
 			return TRUE
 	else
-		var/obj/item/hog_item/T = new /obj/item/hog_item/book(get_turf(mob))
+		var/obj/item/hog_item/T = new /obj/item/hog_item/book(get_turf(culte))
 		if(cult)
 			T.handle_owner_change(cult)
-		else if(team)
-			T.handle_owner_change(team)
 		else
 			log_game("[key_name(owner.current)] has been equiped without a cult.")
 		

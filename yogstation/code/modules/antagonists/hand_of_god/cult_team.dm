@@ -37,6 +37,8 @@
 		src.possible_buildings += buildin
 	
 /datum/team/hog_cult/proc/here_comes_the_money()
+	if(state == HOG_TEAM_DEAD)
+		return
 	var/income = permanent_regen
 	income += energy_regen
 	for(var/obj/structure/destructible/hog_structure/shrine/shrine in objects)
@@ -65,10 +67,14 @@
 		energy = max_energy
 
 /datum/team/hog_cult/proc/start_researching()
+	if(state == HOG_TEAM_DEAD)
+		return
 	researching = TRUE
 	addtimer(CALLBACK(src, .proc/process_research), 1 SECONDS)
 
 /datum/team/hog_cult/proc/process_research()
+	if(state == HOG_TEAM_DEAD)
+		return
 	for(var/datum/hog_research_entry/project in research_projects)
 		if(!project.lab)
 			to_chat(god,span_warning("The researching of [project], has been interupted, due to destruction of researching building!"))
@@ -92,7 +98,7 @@
 	qdel(research)
 
 /datum/team/hog_cult/proc/die()
-	return ///This will be coded later
+	for(var/datum/mind/M)
 
 /datum/hog_research
 	var/levels = 0
