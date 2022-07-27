@@ -659,11 +659,11 @@
 	desc = "An upgrade for hyposprays that installs a quickloading mechanism, allowing tactical reloads by using a container on it."
 
 /obj/item/hypospray_upgrade/quickload/install(var/obj/item/hypospray/hypo, mob/user)
-	if(quickload)
+	if(hypo.quickload)
 		to_chat(user, span_notice("[hypo] already has a quickloading mechanism!"))
 		return FALSE
 	else
-		quickload = TRUE
+		hypo.quickload = TRUE
 		return TRUE
 
 /obj/item/hypospray_upgrade/piercing
@@ -671,11 +671,11 @@
 	desc = "An upgrade for hyposprays that installs a diamond tipped needle, allowing it to pierce thick clothing."
 
 /obj/item/hypospray_upgrade/piercing/install(var/obj/item/hypospray/hypo, mob/user)
-	if(penetrates)
+	if(hypo.penetrates)
 		to_chat(user, span_notice("[hypo] already has a piercing mechanism!"))
 		return FALSE
 	else
-		penetrates = TRUE
+		hypo.penetrates = TRUE
 		return TRUE
 
 #undef HYPO_INJECT
