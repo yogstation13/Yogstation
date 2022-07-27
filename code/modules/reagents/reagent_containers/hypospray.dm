@@ -633,6 +633,7 @@
 		var/obj/item/hypospray_upgrade/MK = I
 		if(MK.install(src, user))
 			to_chat(user, span_notice("You install the [MK] into the [src]."))
+			playsound(src, 'sound/items/screwdriver.ogg', 100, 1)
 			qdel(MK)
 	else
 		..()
@@ -648,6 +649,7 @@
 	if(istype(A, /obj/item/hypospray) && !issilicon(user))
 		if(install(A, user))
 			to_chat(user, span_notice("You install the [src] into the [A]."))
+			playsound(A, 'sound/items/screwdriver.ogg', 100, 1)
 			qdel(src)
 	else
 		..()
