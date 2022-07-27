@@ -60,10 +60,8 @@
 		cults += godcult
 		M.add_antag_datum(G, godcult)
 	
-	while
-		if(!culties.len)
-			break
-		if(cults.len)
+	while(culties.len)
+		if(!cults.len)
 			break
 		for(var/datum/team/hog_cult/C in cults)
 			var/datum/mind/cultist = pick(culties)
@@ -86,7 +84,7 @@
 	..()
 	var/didcultswin = FALSE
 	for(var/datum/team/hog_cult/C in GLOB.hog_cults)
-		if(C.state = HOG_TEAM_SUMMONED)
+		if(C.state == HOG_TEAM_SUMMONED)
 			didcultswin = TRUE
 			break
 
