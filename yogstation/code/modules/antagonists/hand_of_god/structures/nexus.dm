@@ -31,7 +31,7 @@
 	if(.)
 		if(last_scream < world.time)
 			cult.message_all_dudes("<span class='cultlarge'><b>Your nexus is under attack! Defend it, or your cult will perish!</b></span>", FALSE)
-			last_scream = world.time + ARK_SCREAM_COOLDOWN
+			last_scream = world.time + 10 SECONDS
 
 /obj/structure/destructible/hog_structure/lance/nexus/proc/Activate()
 	active = TRUE
@@ -52,6 +52,9 @@
 		SSshuttle.emergency.request(null, 0.3)
 		SSshuttle.emergencyNoRecall = TRUE
 		SSticker.force_ending = TRUE
+		priority_announce("A powerfull bluespace emanation has been detected in [get_area(src)]. It seems that you have failed to stop the ritual. Any remaining surviours \
+		are ordered to immidiately head to the emergency shuttle in order to escape the station and save their lifes.", \
+		"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
 		cult.message_all_dudes("<span class='cultlarge'><b>[god.name] has breaked into this plane! It is time to show those heretics, who's faith was true!</b></span>", TRUE)
 		to_chat(cult.god, span_cultlarge("You feel gaining more power then you ever have! It is now your time to..."))
 		send_to_playing_players(span_cultlarge("MY TIME HAS COME! PREPARE TO MEET YOUR FATE, HERETICS!"))

@@ -140,7 +140,7 @@
 					break
 			qdel(cringeshit)
 			if(escaped)
-				("<span class='neutraltext big'>Neutral Victory</span>")
+				report += ("<span class='neutraltext big'>Neutral Victory</span>")
 				report += ("<B>The [name] has failed to free it's god, but it's members had survive and escape on the shuttle.</B>")
 			else
 				report += ("<span class='redtext big'>Cult Minor Defeat</span>")
