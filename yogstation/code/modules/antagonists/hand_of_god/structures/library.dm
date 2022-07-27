@@ -31,5 +31,4 @@
 	warp_description = "A chaotic energy mass"
 	structure_type = /obj/structure/destructible/hog_structure/item_maker/library
 	max_constructible_health = 75
-	integrity_per_process = 5
 	icon_name = "librarium_constructing"

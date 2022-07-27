@@ -9,7 +9,6 @@
 	var/warp_description = "Sussy baka"
 	var/obj/structure/destructible/hog_structure/structure_type = /obj/structure/destructible/hog_structure
 	var/max_constructible_health = 10
-	var/integrity_per_process = 1
 	var/icon_name = ""
 
 /datum/hog_god_interaction/targeted/construction/on_targeting(var/mob/camera/hog_god/user, var/atom/target) ///Same as on_use but for targeted ones
@@ -31,7 +30,6 @@
 		warp.cult = user.cult
 		warp.max_integrity = max_constructible_health
 		warp.obj_integrity = 1
-		warp.integrity_per_process = 1
 		warp.icon_state = icon_name
 		warp.name = warp_name 
 		warp.desc = warp_description
@@ -65,6 +63,7 @@
 
 /obj/structure/destructible/warp/proc/start()
 	START_PROCESSING(SSobj, src)
+	integrity_per_process = max_integrity/((when_ready-when_started)/20)
 
 /obj/structure/destructible/warp/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -81,7 +80,7 @@
 	var/percentage = time2 / time1
 	var/opacility = min(min(percentage * 100, 20), 90)
 	alpha = opacility   ///So we are becoming more visible untill we are ready
-	take_damage(-integrity_per_process, BRUTE, MELEE, FALSE , 0, 100) ///Basicaly it should gain some percentage of max hp per process, but I don't want to blow my brain up by trying to think how to do that, so i will do it like... this
+	take_damage(-integrity_per_process, BRUTE, MELEE, FALSE , 0, 100)
 
 /turf/open/floor/hog/attack_god(mob/camera/hog_god/god, modifier)
 	var/list/buildins = list() ///it is misspeled because YES

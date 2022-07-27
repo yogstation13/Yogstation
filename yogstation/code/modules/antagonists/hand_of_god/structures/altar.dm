@@ -53,6 +53,8 @@
 	cultie.equip_cultist(FALSE)
 	to_chat(user,span_notice("You convert [C] to your cult!"))
 	user.say("Ni eth anme of [cult.god], emobce one of su!", language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")  //Yeah, i just used a website that shuffles letters in a sentence
+	if(cult && cult.cult_objective && !cult.cult_objective.completed && istype(cult.cult_objective, /datum/hog_objective/people))
+		cult.cult_objective.check_completion()
 
 /proc/add_hog_cultist(mob/user, datum/team/hog_cult/cult, datum/mind/cultist_mind)
 	var/mob/living/carbon/C = cultist_mind.current
@@ -69,7 +71,6 @@
 	warp_description = "a pulsating mass of energy in a form of an altar"
 	structure_type = /obj/structure/destructible/hog_structure/con_altar
 	max_constructible_health = 100
-	integrity_per_process = 6
 	icon_name = "altar_constructing"
 
 /obj/structure/destructible/hog_structure/sac_altar
@@ -122,6 +123,8 @@
 	C.apply_status_effect(STATUS_EFFECT_BRAZIL_PENANCE)
 	to_chat(user,span_notice("You sacrifice [C] to your god!"))
 	user.say("[cult.god], I iaierfcsc [C] ni rouy nmae!", language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")  
+	if(cult && cult.cult_objective && !cult.cult_objective.completed && istype(cult.cult_objective, /datum/hog_objective/sacrifice))
+		cult.cult_objective.check_completion()
 
 #undef ENERGY_REWARD_AMOUNT 
 #undef STORAGE_REWARD_AMOUNT 
@@ -136,5 +139,4 @@
 	warp_description = "a pulsating mass of energy in a form of an altar"
 	structure_type = /obj/structure/destructible/hog_structure/sac_altar
 	max_constructible_health = 100
-	integrity_per_process = 6
 	icon_name = "altar_constructing"

@@ -66,8 +66,7 @@
 	warp_name = "shrine"
 	warp_description = "a pulsating mass of energy in a form of a strange structure"
 	structure_type = /obj/structure/destructible/hog_structure/shrine
-	max_constructible_health = 65
-	integrity_per_process = 5
+	max_constructible_health = 140
 	icon_name = "shrine_constructing"
 
 /datum/hog_god_interaction/targeted/construction/shrine/can_be_placed(var/turf/open/construction_place, var/datum/team/hog_cult/cult)

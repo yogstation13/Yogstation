@@ -38,5 +38,4 @@
 	warp_description = "a pulsating mass of energy in a form of a strange looking machine"
 	structure_type = /obj/structure/destructible/hog_structure/item_maker/workshop
 	max_constructible_health = 100
-	integrity_per_process = 6
 	icon_name = "workshop_constructing"
