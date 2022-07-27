@@ -8,23 +8,23 @@
 	name = "Biodome Fishing Pier"
 	icon_state = "dk_yellow"
 
-/area/ruin/powered/fishing
+/area/ruin/powered/fishingkitchen
 	name = "Biodome Fishing Kitchen"
 	icon_state = "dk_yellow"
 
-/area/ruin/powered/fishing
+/area/ruin/powered/fishingbedroom
 	name = "Biodome Fishing Bedroom"
 	icon_state = "dk_yellow"
 
-/area/ruin/powered/fishing
+/area/ruin/powered/fishingshop
 	name = "Biodome Fishing Giftshop"
 	icon_state = "dk_yellow"
 
-/area/ruin/powered/fishing
+/area/ruin/powered/fishinghall
 	name = "Biodome Fishing Hallway"
 	icon_state = "dk_yellow"
 
-/area/ruin/powered/fishing
+/area/ruin/powered/fishingtcom
 	name = "Biodome Fishing Telecomm"
 	icon_state = "dk_yellow"
 
