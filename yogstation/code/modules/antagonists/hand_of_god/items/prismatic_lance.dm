@@ -24,13 +24,20 @@
 	if(target)
 		if(get_dist(get_turf(target), get_turf(src)) > sight_range)
 			target = null
+			return
 		else
 			if(last_process + coldown < world.time)
 				if(isliving(target))
-					var/mob/living/L = target
+					var/mob/living/L = target					
+					if(L.stat == DEAD)
+						target = null
+						return
 					if(!L.anti_magic_check(chargecost = 0))
 						if(isrevenant(L))
 							var/mob/living/simple_animal/revenant/R = L
+							if(R.stasis)
+								target = null
+								return
 							if(R.revealed)
 								R.unreveal_time += 2
 							else
@@ -42,18 +49,24 @@
 						L.adjustFireLoss(damage_per_shot) 
 						Beam(L, icon_state = "warden_beam", time = 10)	
 						last_process = world.time
-					if(L.stat == DEAD)
-						target = null
 				else if(ismecha(target))
 					var/obj/mecha/M = target
+					if(!M.occupant)
+						target = null
+						return
 					Beam(M, icon_state = "warden_beam", time = 10)	
 					M.take_damage(damage_per_shot * 2, BURN, MELEE, 1, get_dir(src, M)) ///Mechas get fucked more hardly(because they are cringe(very cringe))
 					last_process = world.time 
-				else if(istype(target, /obj/structure/destructible/hog_structure/))
-					var/obj/structure/S = target
+				else if(istype(target, /obj/structure/destructible/hog_structure))
+					var/obj/structure/destructible/hog_structure/S = target
+					if(S.cult == cult)
+						target = null
+						return
 					Beam(S, icon_state = "warden_beam", time = 10)	
 					S.take_damage(damage_per_shot, BURN, MELEE, 1, get_dir(src, S)) ///Enjoy cannon rush
 					last_process = world.time 
+				else 
+					target = null
 	if(!target)
 		get_target()
 
@@ -61,14 +74,6 @@
 	var/list/possible_targets = list()
 	var/datum/antagonist/hog/cultie
 	for(var/mob/living/L in viewers(sight_range, src)) 
-		var/obj/item/storage/book/bible/B = L.bible_check()
-		if(B)
-			if(!(B.resistance_flags & ON_FIRE))
-				to_chat(L, span_warning("Your [B.name] bursts into flames!"))
-			for(var/obj/item/storage/book/bible/BI in L.GetAllContents())
-				if(!(BI.resistance_flags & ON_FIRE))
-					BI.fire_act()
-			continue
 		if((HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
 			continue
 		cultie = IS_HOG_CULTIST(L)

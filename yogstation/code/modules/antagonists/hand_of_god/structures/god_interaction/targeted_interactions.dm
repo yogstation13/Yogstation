@@ -61,9 +61,6 @@
 		return
 	to_chat(user, span_warning("You purge heretical reagents from [dude]'s blood!"))
 	to_chat(dude, span_warning("You feel your god's light cleaning your bloodstream!"))
-
-
-
 	. = ..()
 
 /datum/hog_god_interaction/targeted/mood
@@ -107,9 +104,10 @@
 	if(antag_datum.banned_by_god)
 		to_chat(user, span_warning("You dissallow [dude] to use your structures."))
 		to_chat(dude, span_warning("You have angered your god. You no more can use your cult's structures."))
+		log_game("[key_name(user)] as a hand of god deity had restricted [key_name(dude)] from using their cult structures.")
 		SEND_SIGNAL(dude, COMSIG_CLEAR_MOOD_EVENT, "god_moraleboost") 
 	else
 		to_chat(user, span_warning("You allow [dude] to use your structures."))
 		to_chat(dude, span_warning("Your god has forgave you. You can interact with your cult structures again.."))
-
+		log_game("[key_name(user)] as a hand of god deity had allowed [key_name(dude)] to use their cult structures.")
 	. = ..()

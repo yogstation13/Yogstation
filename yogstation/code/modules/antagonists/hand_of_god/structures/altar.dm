@@ -49,7 +49,8 @@
 		to_chat(user,span_warning("Your cult doesn't have enough energy to influence [C]!"))
 		return
 	cult.change_energy_amount(-cult.conversion_cost)
-	add_hog_cultist(user, cult, C.mind)
+	var/datum/antagonist/hog/cultie = add_hog_cultist(user, cult, C.mind)
+	cultie.equip_cultist(FALSE)
 	to_chat(user,span_notice("You convert [C] to your cult!"))
 	user.say("Ni eth anme of [cult.god], emobce one of su!", language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")  //Yeah, i just used a website that shuffles letters in a sentence
 
@@ -57,7 +58,7 @@
 	var/mob/living/carbon/C = cultist_mind.current
 	C.silent = max(C.silent, 5)
 	C.Knockdown(40)
-	cultist_mind.add_antag_datum(/datum/antagonist/hog, cult)
+	return cultist_mind.add_antag_datum(/datum/antagonist/hog, cult) 
 
 /datum/hog_god_interaction/targeted/construction/con_altar
 	name = "Construct a convertion altar"
@@ -70,8 +71,6 @@
 	max_constructible_health = 100
 	integrity_per_process = 6
 	icon_name = "altar_constructing"
-
-
 
 /obj/structure/destructible/hog_structure/sac_altar
 	name = "conversion altar"

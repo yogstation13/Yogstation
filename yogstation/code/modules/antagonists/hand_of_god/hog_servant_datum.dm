@@ -42,14 +42,13 @@
 /datum/antagonist/hog/farewell()
 	if(ishuman(owner.current))
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just returned a part of themselfes!")]", null, null, null, owner.current)
-		to_chat(owner, span_userdanger("farewell"))
+		to_chat(owner, span_userdanger("You are no longer a HoG cultist!"))
 
 /datum/antagonist/hog/on_gain()
 	if(!cult)
 		create_team()
 	..()
 	add_to_cult()
-	equip_cultist()
 
 /datum/antagonist/hog/on_removal()
 	remove_from_cult()
@@ -90,9 +89,40 @@
 	cult.remove_member(owner)
 	owner.current.log_message("<font color='red'>Has been deconverted from the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
 
-/datum/antagonist/hog/proc/equip_cultist()
-	return ///No items coded yet, so for now it does nothing. 
-
+/datum/antagonist/hog/proc/equip_cultist(roundstart = TRUE)
+	var/mob/living/mob = owner.current
+	if(roundstart)
+		var/list/slots = list(
+			"backpack" = SLOT_IN_BACKPACK,
+			"left pocket" = SLOT_L_STORE,
+			"right pocket" = SLOT_R_STORE
+		)
+		var/obj/item/hog_item/T = new /obj/item/hog_item/book(mob)
+		if(cult)
+			T.handle_owner_change(cult)
+		else if(team)
+			T.handle_owner_change(team)
+		else
+			log_game("[key_name(owner.current)] has been equiped without a cult.")
+		var/item_name = initial(T.name)
+		var/where = mob.equip_in_one_of_slots(T, slots)
+		if(!where)
+			to_chat(mob, span_userdanger("Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately."))
+			return 0
+		else
+			to_chat(mob, span_danger("You have a [item_name] in your [where]."))
+			if(where == "backpack")
+				SEND_SIGNAL(mob.back, COMSIG_TRY_STORAGE_SHOW, mob)
+			return TRUE
+	else
+		var/obj/item/hog_item/T = new /obj/item/hog_item/book(get_turf(mob))
+		if(cult)
+			T.handle_owner_change(cult)
+		else if(team)
+			T.handle_owner_change(team)
+		else
+			log_game("[key_name(owner.current)] has been equiped without a cult.")
+		
 /datum/antagonist/hog/proc/get_energy(var/amount)
 	energy += amount
 	if(energy < 0)

@@ -121,8 +121,7 @@
 /datum/chain_heal/proc/heal(mob/living/target)
 	if(!charges)
 		return
-	INVOKE_ASYNC(last_healed, /atom/.proc/Beam, target, "warden_beam", 'icons/effects/beam.dmi', 1.75 SECONDS, 10, /obj/effect/ebeam, 0) 
-	sleep(0.5 SECONDS)
+	INVOKE_ASYNC(last_healed, /atom/.proc/Beam, target, "warden_beam", 'icons/effects/beam.dmi', 1.5 SECONDS, 10, /obj/effect/ebeam, 0) 
 	var/brute_damage_to_heal
 	var/burn_damage_to_heal
 	brute_damage_to_heal = min(healing_amount, target.getBruteLoss())
@@ -288,8 +287,9 @@
 
 /datum/action/innate/hog_cult/blink
 	name = "Teleport"
-	desc = "Charges your handwith bluespace energy, allowing to teleport yourself or your allied cultist."
+	desc = "Charges your hand with bluespace energy, allowing to teleport yourself or your allied cultist."
 	hand_type =  /obj/item/melee/hog_magic/blink
+	charges = 2
 
 /obj/item/melee/hog_magic/blink
 	name = "\improper bluespace charged hand" 
@@ -299,6 +299,7 @@
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
+	uses = 2
 	var/inner_tele_radius = 0
 	var/outer_tele_radius = 6
 
