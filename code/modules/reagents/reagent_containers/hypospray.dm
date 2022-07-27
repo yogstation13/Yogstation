@@ -633,6 +633,7 @@
 		var/obj/item/hypospray_upgrade/MK = I
 		if(MK.install(src, user))
 			to_chat(user, span_notice("You install the [MK] into the [src]."))
+			qdel(MK)
 	else
 		..()
 
