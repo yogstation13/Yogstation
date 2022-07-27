@@ -647,6 +647,7 @@
 	if(istype(A, /obj/item/hypospray) && !issilicon(user))
 		if(install(A, user))
 			to_chat(user, span_notice("You install the [src] into the [A]."))
+			qdel(src)
 	else
 		..()
 
