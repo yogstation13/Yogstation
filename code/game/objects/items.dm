@@ -138,6 +138,9 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	/// Should the cryo console preserve this item
 	var/cryo_preserve = FALSE
 
+	/// Is this item fryable without a syndicate frying pan
+	var/fryable = FALSE
+
 /obj/item/Initialize()
 
 	materials =	typelist("materials", materials)

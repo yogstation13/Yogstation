@@ -153,6 +153,7 @@
 	throw_speed = 3
 	throw_range = 7
 	attack_verb = list("HONKED")
+	fryable = TRUE
 
 /obj/item/bikehorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
