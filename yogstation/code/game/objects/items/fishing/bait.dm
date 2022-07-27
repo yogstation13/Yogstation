@@ -42,6 +42,31 @@
 	icon_state = "leech"
 	fishing_power = 20
 
+/obj/item/reagent_containers/food/snacks/bait/leech/attackby(obj/item/I, mob/user, params)
+	span_userdanger("[user] is putting a leech onto [target]!")
+	return
+
+/obj/item/reagent_containers/food/snacks/bait/leech/afterattack(atom/target, mob/user , proximity)
+	. = ..()
+	var/existing = C.reagents.reagent_list
+	if(busy)
+		return
+	if(!proximity)
+		return
+	var/mob/living/L
+	if(isliving(target))
+		L = target
+		if(L)
+			span_userdanger("[user] put a leech onto [target] and absorbed toxins.")
+			adjustToxLoss(10)
+			L.blood_volume -= 5\
+				if(istype(var/datum/reagent/T in C.reagents.reagent_list))
+					C.reagents.remove_reagent(T.type, 5)
+				if(prob(10))
+					span_userdanger("The leech firmly holds onto[target] and rips the skin off!")
+					adjustBruteloss(2)
+		return 
+
 /obj/item/reagent_containers/food/snacks/bait/type
 	name = "type bait"
 	desc = "Are you talking to me?"
