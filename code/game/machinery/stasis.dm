@@ -1,4 +1,3 @@
-#define STASIS_TOGGLE_COOLDOWN 50
 /obj/machinery/stasis
 	name = "lifeform stasis unit"
 	desc = "A not so comfortable looking bed with some nozzles at the top and bottom. It will keep someone in stasis."
@@ -15,9 +14,22 @@
 	var/stasis_enabled = TRUE
 	var/last_stasis_sound = FALSE
 	var/stasis_can_toggle = 0
-	var/stasis_amount = -1
+	var/stasis_cooldown = 5 SECONDS
+	var/stasis_amount = -0.25 // -1 is completely frozen in time, 0 would do nothing, so -0.25 is 25% slow, -0.5 : 50%, etc
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
+
+/obj/machinery/stasis/RefreshParts()
+	stasis_amount = initial(stasis_amount)
+	stasis_cooldown = inital(stasis_cooldown)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		stasis_amount *= C.rating // T1 is 75% organ decay, T4 is 0%
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+		stasis_cooldown *= 1/M.rating // 100%, 50%, 33%, 25%
+	if(occupant)
+		thaw_them(occupant)
+		chill_out(occupant)
+	
 
 /obj/machinery/stasis/ComponentInitialize()
 	AddComponent(/datum/component/surgery_bed, 1, TRUE)
@@ -41,7 +53,7 @@
 /obj/machinery/stasis/AltClick(mob/user)
 	if(world.time >= stasis_can_toggle && user.canUseTopic(src, !issilicon(user)))
 		stasis_enabled = !stasis_enabled
-		stasis_can_toggle = world.time + STASIS_TOGGLE_COOLDOWN
+		stasis_can_toggle = world.time + stasis_cooldown
 		playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 		play_power_sound()
 		update_icon()
@@ -130,7 +142,7 @@
 		if(!L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 			chill_out(L_occupant)
 		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
-			L_occupant.adjustStaminaLoss(5)
+			L_occupant.adjustStaminaLoss(-20 * stasis_amount) // stasis_amount is -0.25 to -1 and this needs to be positive
 	else if(L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 		thaw_them(L_occupant)
 
@@ -160,5 +172,3 @@
 		return
 	to_chat(user, span_notice("You override the stasis bed's safeties!"))
 	obj_flags |= EMAGGED
-
-#undef STASIS_TOGGLE_COOLDOWN
