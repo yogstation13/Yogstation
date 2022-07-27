@@ -495,61 +495,73 @@
 	name = "vial (Libital)"
 	icon_state = "vial_red"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 15)
+	custom_premium_price = 25
 
 /obj/item/reagent_containers/glass/bottle/vial/aiuri
 	name = "vial (Aiuri)"
 	icon_state = "vial_orange"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 15)
+	custom_premium_price = 25
 
 /obj/item/reagent_containers/glass/bottle/vial/charcoal
 	name = "vial (Charcoal)"
 	icon_state = "vial_green"
 	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
+	custom_premium_price = 25
 
 /obj/item/reagent_containers/glass/bottle/vial/perfluorodecalin
 	name = "vial (Perfluorodecalin)"
 	icon_state = "vial_blue"
 	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 15)
+	custom_premium_price = 25
 
 /obj/item/reagent_containers/glass/bottle/vial/epi
 	name = "vial (Epinephrine)"
 	icon_state = "vial_white"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 3)
+	custom_premium_price = 25
 
 /obj/item/reagent_containers/glass/bottle/vial/styptic
 	name = "vial (Styptic Powder)"
 	icon_state = "vial_orange"
 	list_reagents = list(/datum/reagent/medicine/styptic_powder = 15)
+	custom_premium_price = 30
 
 /obj/item/reagent_containers/glass/bottle/vial/silver_sulfadiazine
 	name = "vial (Silver Sulfadiazine)"
 	icon_state = "vial_red"
 	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 15)
+	custom_premium_price = 30
 
 /obj/item/reagent_containers/glass/bottle/vial/sal_acid
 	name = "vial (Salicyclic Acid)"
 	icon_state = "vial_white"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 15)
+	custom_premium_price = 50
 
 /obj/item/reagent_containers/glass/bottle/vial/oxandrolone
 	name = "vial (Oxandrolone)"
 	icon_state = "vial_black"
 	list_reagents = list(/datum/reagent/medicine/oxandrolone = 15)
+	custom_premium_price = 50
 
 /obj/item/reagent_containers/glass/bottle/vial/calomel
 	name = "vial (Calomel)"
 	icon_state = "vial_black"
 	list_reagents = list(/datum/reagent/medicine/calomel = 15)
+	custom_premium_price = 50
 
 /obj/item/reagent_containers/glass/bottle/vial/salbutamol
 	name = "vial (Salbutamol)"
 	icon_state = "vial_white"
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 15)
+	custom_premium_price = 50
 
 /obj/item/reagent_containers/glass/bottle/vial/coagulant
 	name = "vial (Coagulant)"
 	icon_state = "vial_red"
 	list_reagents = list(/datum/reagent/medicine/coagulant = 15)
+	custom_premium_price = 50
 
 /obj/item/reagent_containers/glass/bottle/vial/lavaland
 	name = "vial (Lavaland Extract Mix)"
