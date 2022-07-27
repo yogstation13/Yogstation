@@ -21,6 +21,8 @@
 	return ..()
 
 /obj/item/hog_item/prismatic_lance/process()
+	if(!cult)
+		return
 	if(target)
 		if(get_dist(get_turf(target), get_turf(src)) > sight_range)
 			target = null

@@ -98,7 +98,23 @@
 	qdel(research)
 
 /datum/team/hog_cult/proc/die()
-	for(var/datum/mind/M)
+	message_all_dudes("The [name] has been destroyed! Any remaining members are now free from it's influence!", TRUE)
+	for(var/datum/mind/M in members)
+		var/datum/antagonist/hog/cultie = has_antag_datum(/datum/antagonist/hog)
+		M.remove_antag_datum(cultie)
+	if(god)
+		qdel(god)
+	if(nexus)
+		qdel(nexus)
+	for(var/obj/O in objects)
+		if(istype(/obj/structure/destructible/hog_structure))
+			var/obj/structure/destructible/hog_structure/S = O
+			O.handle_team_change(null)
+		else if(istype(/obj/item/hog_item))
+			var/obj/item/hog_item/I = O
+			O.handle_owner_change(null)
+		else 
+			SEND_SIGNAL(src, COMSIG_HOG_ACT, null)
 
 /datum/hog_research
 	var/levels = 0

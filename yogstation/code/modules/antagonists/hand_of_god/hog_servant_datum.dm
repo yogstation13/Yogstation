@@ -90,7 +90,7 @@
 	owner.current.log_message("<font color='red'>Has been deconverted from the [cult.name] cult!</font>", INDIVIDUAL_ATTACK_LOG)
 
 /datum/antagonist/hog/proc/equip_cultist(roundstart = TRUE)
-	var/living/carbon/culte = owner.current
+	var/mob/living/carbon/culte = owner.current
 	if(roundstart)
 		var/list/slots = list(
 			"backpack" = SLOT_IN_BACKPACK,

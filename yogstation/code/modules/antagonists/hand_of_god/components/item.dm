@@ -19,6 +19,7 @@
 
 /datum/component/hog_item/proc/try_punish(obj/item/source, mob/user, slot)
 	if(!cult)
+		punish(source,user)
 		return
 	if(!isliving(user))
 		return
@@ -26,6 +27,9 @@
 	if(cultie && cultie.cult == cult)
 		return
 	to_chat(user, span_cultlarge("No."))
+	punish(source,user)
+
+/datum/component/hog_item/punish(obj/item/source, mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
 		L.dropItemToGround(source, TRUE)
