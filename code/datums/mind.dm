@@ -632,6 +632,9 @@
 	to_chat(current, span_notice("Your current objectives:"))
 	for(var/datum/objective/objective as anything in get_all_objectives())
 		to_chat(current, "<B>[objective.objective_name] #[obj_count]</B>: [objective.explanation_text]")
+	for(var/objective in get_all_objectives())
+		var/datum/objective/O = objective
+		to_chat(current, "<B>[O.objective_name] #[obj_count]</B>: [O.explanation_text]")
 		obj_count++
 
 /datum/mind/proc/find_syndicate_uplink()

@@ -27,6 +27,7 @@
 	difficulty = 12
 	synchronizer_coeff = 1
 	power = /obj/effect/proc_holder/spell/aimed/cryo
+	conflicts = list(/datum/mutation/human/firebreath)
 
 /obj/effect/proc_holder/spell/aimed/cryo
 	name = "Cryobeam"

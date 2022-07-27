@@ -74,7 +74,7 @@
 		return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', icon_state)
 
 /obj/item/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(!user.a_intent == INTENT_HARM && attempt_initiate_surgery(src, M, user))
+	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
 		return
 	if(!istype(M))
 		return ..()
