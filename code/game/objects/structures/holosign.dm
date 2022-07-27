@@ -218,7 +218,7 @@
 /obj/structure/holobed/proc/handle_stasis(mob/living/target)
 	if(target == occupant && stasis)
 		if(!target.has_status_effect(STATUS_EFFECT_STASIS))
-			target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, 1)
+			target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, -1)
 	else
 		if(istype(target) && target.has_status_effect(STATUS_EFFECT_STASIS))
 			target.remove_status_effect(STATUS_EFFECT_STASIS)
