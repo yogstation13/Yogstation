@@ -23,6 +23,7 @@
 	var/can_ascend = FALSE
 	var/datum/hog_objective/cult_objective
 	var/list/possible_buildings = list()
+	var/summoned_but_died = FALSE
 
 /datum/team/hog_cult/New(starting_members)
 	. = ..()
@@ -98,9 +99,12 @@
 	qdel(research)
 
 /datum/team/hog_cult/proc/die()
+	if(state == HOG_TEAM_DEAD)//Already dead
+		return 
+	state = HOG_TEAM_DEAD
 	message_all_dudes("The [name] has been destroyed! Any remaining members are now free from it's influence!", TRUE)
 	for(var/datum/mind/M in members)
-		var/datum/antagonist/hog/cultie = has_antag_datum(/datum/antagonist/hog)
+		var/datum/antagonist/hog/cultie = M.has_antag_datum(/datum/antagonist/hog)
 		M.remove_antag_datum(cultie)
 	if(god)
 		qdel(god)
@@ -109,12 +113,53 @@
 	for(var/obj/O in objects)
 		if(istype(/obj/structure/destructible/hog_structure))
 			var/obj/structure/destructible/hog_structure/S = O
-			O.handle_team_change(null)
+			S.handle_team_change(null)
 		else if(istype(/obj/item/hog_item))
 			var/obj/item/hog_item/I = O
-			O.handle_owner_change(null)
+			I.handle_owner_change(null)
 		else 
 			SEND_SIGNAL(src, COMSIG_HOG_ACT, null)
+
+/datum/team/hog_cult/roundend_report()
+	if(!show_roundend_report)
+		return
+
+	var/list/report = list()
+
+	report += span_header("[name]:")
+	report += "The [member_name]s were:"
+	report += printplayerlist(members)
+
+	switch(state)
+		if(HOG_TEAM_EXISTING)
+			var/escaped = FALSE
+			var/datum/objective/cringeshit = new
+			for(var/datum/mind/M in members)
+				if(cringeshit.considered_escaped(M) || M.has_antag_datum(/datum/antagonist/hog))
+					escaped = TRUE
+					break
+			qdel(cringeshit)
+			if(escaped)
+				("<span class='neutraltext big'>Neutral Victory</span>")
+				report += ("<B>The [name] has failed to free it's god, but it's members had survive and escape on the shuttle.</B>")
+			else
+				report += ("<span class='redtext big'>Cult Minor Defeat</span>")
+				report += ("<B>The [name] has failed to free it's god!</B>")
+		if(HOG_TEAM_SUMMONING)
+			report += ("<span class='neutraltext big'>Neutral Victory</span>")
+			report += ("<B>The [name] had attempted to summon it's god, but didn't do it in time!</B>")
+		if(HOG_TEAM_SUMMONED)
+			report += ("<span class='greentext big'>Cult Major Victory</span>")
+			report += ("<B>The [name] had summoned it's god!</B>")
+		if(HOG_TEAM_DEAD)
+			if(summoned_but_died)
+				report += ("<span class='redtext big'>Cult Minor Defeat</span>")
+				report += ("<B>The [name] had summoned it's god, but someone managed to kill it! Be more carefull next time!</B>")
+			else
+				report += ("<span class='redtext big'>Cult Major Defeat</span>")
+				report += ("<B>The [name] was completely annihilated! What a shame!</B>")					
+
+	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
 /datum/hog_research
 	var/levels = 0

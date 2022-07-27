@@ -29,7 +29,7 @@
 	to_chat(user, span_cultlarge("No."))
 	punish(source,user)
 
-/datum/component/hog_item/punish(obj/item/source, mob/user)
+/datum/component/hog_item/proc/punish(obj/item/source, mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
 		L.dropItemToGround(source, TRUE)
