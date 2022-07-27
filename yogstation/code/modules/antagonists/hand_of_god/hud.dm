@@ -40,8 +40,8 @@
 	var/datum/hud/human/hud = owner.current.hud_used
 	hud.mana_display.update_counter(energy, "#F0F8FF")
 	hud.cult_energy_display.update_counter(cult.energy, "#E6E6FA")
-	if(cult.objective)
-		hud.objective_status_display.update_counter(cult.objective.progress_text())
+	if(cult.cult_objective)
+		hud.objective_status_display.update_counter(cult.cult_objective.progress_text())
 	else
 		hud.objective_status_display.update_counter("You didn't get assigned an objective yet.")
 
@@ -55,7 +55,7 @@
 	var/datum/hud/human/hud = owner.current.hud_used
 	hud.cult_energy_display.update_counter(cult.energy, "#E6E6FA")
 	if(cult.objective)
-		hud.objective_status_display.update_counter(cult.objective.progress_text())
+		hud.objective_status_display.update_counter(cult.cult_objective.progress_text())
 	else
 		hud.objective_status_display.update_counter("Your cult didn't get assigned an objective yet.")
 

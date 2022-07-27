@@ -9,7 +9,8 @@
 	var/initialy = TRUE
 
 /datum/hog_objective/proc/progress_text()
-	return "amongus"
+	var/text = "amongus"
+	return text
 
 /datum/hog_objective/proc/check_completion()
 	cult.can_ascend = completed
@@ -35,7 +36,7 @@
 	. = ..()
 
 /datum/hog_objective/sacrifice/progress_text()
-	text = ""
+	var/text = ""
 	if(completed)
 		text = "The objective is completed."
 	else
@@ -58,7 +59,7 @@
 	. = ..()
 
 /datum/hog_objective/people/progress_text()
-	text = ""
+	var/text = ""
 	if(completed)
 		text = "The objective is completed."
 	else
@@ -88,7 +89,7 @@
 	. = ..()
 
 /datum/hog_objective/holyland/progress_text()
-	text = ""
+	var/text = ""
 	if(completed)
 		text = "The objective is completed."
 	else

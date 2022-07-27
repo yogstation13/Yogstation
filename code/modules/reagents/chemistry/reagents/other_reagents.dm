@@ -254,11 +254,13 @@
 			holder.remove_reagent(type, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
 		var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M)
-		else if(cultie)
-			cultie.cult.remove_member(M.mind)
-			M.mind.remove_antag_datum(cultie)
-			M.jitteriness = 0
-			M.stuttering = 0
+		else 
+			var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M)
+			if(cultie)
+				cultie.cult.remove_member(M.mind)
+				M.mind.remove_antag_datum(cultie)
+				M.jitteriness = 0
+				M.stuttering = 0
 	if(ishuman(M) && is_vampire(M) && prob(80)) // Yogs Start
 		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
 		if(!V.get_ability(/datum/vampire_passive/full))
