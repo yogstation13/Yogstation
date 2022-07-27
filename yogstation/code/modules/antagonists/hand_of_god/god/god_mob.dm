@@ -23,6 +23,7 @@
 	var/datum/action/innate/god/nexus/nexus
 	var/datum/action/innate/god/place_nexus/place_nexus
 	var/datum/action/innate/god/mass_recall/mass_recall
+	var/datum/action/innate/god/ascendance/ass 
 	var/ticks_till_autoplace = 7 
 
 
@@ -41,6 +42,8 @@
 	mass_recall.Grant(src)
 	place_nexus = new
 	place_nexus.Grant(src)
+	ass = new
+	ass.Grant(src)
 	addtimer(CALLBACK(src, .proc/autoplacenexustick), 1 MINUTES)
 
 /mob/camera/hog_god/proc/select_name()

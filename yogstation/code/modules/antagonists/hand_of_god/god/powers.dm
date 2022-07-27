@@ -56,11 +56,11 @@
 	var/datum/antagonist/hog/god = IS_HOG_CULTIST(owner)
 	if(!god)
 		return
-	if(god.cult.nexus)
+	if(!god.cult.nexus)
 		return
 	var/choice = input("Do you REALLY want to place your nexus here?","Confirm") in list("Yes", "No")
-		if(choice == "No")
-			return
+	if(choice == "No")
+		return
 	var/turf/open/T = get_turf(owner)
 	if(!T || !istype(T))
 		to_chat(owner, span_warning("Not a valid place!"))
@@ -91,3 +91,21 @@
 		return
 	god.mass_recall()
 
+/datum/action/innate/god/ascendance
+	name = "Break Free"
+	button_icon_state = "ascendance"
+
+/datum/action/innate/god/ascendance/Activate()
+	var/mob/camera/hog_god/god = owner
+	if(!god || !god.cult)
+		return
+	if(!god.cult.nexus)
+		to_chat(owner, span_warning("You don't have a nexus!"))
+	if(!god.cult.cult_objective.check_completion())
+		to_chat(owner, span_warning("You need to complete your objective first!"))
+		return
+	var/confirm = alert(owner, "Do you REALLY want to start the ascencion process? It will alert all the station of your nexus position.", "Confirm", "Yes", "No")
+	if(confirm == "No")
+		return
+	god.cult.nexus.Activate()
+	qdel(src)
