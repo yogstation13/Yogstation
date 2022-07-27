@@ -2060,7 +2060,6 @@
 	name = "Adrenaline"
 	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
 	color = "#d1cd9a"
-	metabolization_rate = 1 // Just a flat 1
 	can_synth = FALSE
 
 /datum/reagent/adrenaline/on_mob_add(mob/living/L)
