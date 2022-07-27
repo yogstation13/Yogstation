@@ -208,7 +208,7 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/syringe/perfluorodecalin = 4,
-		/obj/item/reagent_containers/hypospray/medipen = 2,
+		/obj/item/reagent_containers/autoinjector/medipen = 2,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -255,7 +255,7 @@
 		/obj/item/stack/medical/mesh/advanced = 2,
 		/obj/item/storage/pill_bottle/penacid = 1,
 		/obj/item/reagent_containers/syringe/calomel = 1,
-		/obj/item/reagent_containers/hypospray/medipen/atropine = 2,
+		/obj/item/reagent_containers/autoinjector/medipen/atropine = 2,
 		/obj/item/healthanalyzer/advanced = 1)
 	generate_items_inside(items_inside,src)
 
