@@ -2053,6 +2053,7 @@
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_sandwich.dm"
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_soup.dm"
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_spaghetti.dm"
+#include "code\modules\food_and_drinks\recipes\recipes_bait.dm"
 #include "code\modules\games\cas.dm"
 #include "code\modules\games\wizoff.dm"
 #include "code\modules\goals\department_goals\cargo.dm"

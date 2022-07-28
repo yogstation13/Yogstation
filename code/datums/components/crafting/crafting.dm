@@ -39,6 +39,7 @@
 					CAT_SANDWICH,
 					CAT_SOUP,
 					CAT_SPAGHETTI,
+					CAT_BAIT,
 				),
 				CAT_DRINK = CAT_NONE,
 				CAT_APPAREL = list(
