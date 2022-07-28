@@ -7,6 +7,7 @@
 	var/charges = 1
 	var/obj/item/melee/hog_magic/godhand
 	var/hand_type = FALSE
+	var/cost
 
 /datum/action/innate/hog_cult/IsAvailable()
 	if(!IS_HOG_CULTIST(owner) || IS_HOG_CULTIST(owner) != antag_datum || owner.incapacitated())
@@ -18,6 +19,7 @@
 	..()
 	button.locked = TRUE
 	button.ordered = FALSE
+	update_desc()
 
 /datum/action/innate/hog_cult/Remove()
 	if(antag_datum)
@@ -39,30 +41,35 @@
 			godhand = null
 			to_chat(owner, span_warning("You snuff out the spell, saving it for later."))
 
+/datum/action/innate/hog_cult/proc/pay()
+	if(!antag_datum)
+		return FALSE
+	if(antag_datum.energy < cost)
+		to_chat(owner, span_warning("You don't have enoguh energy to do this!"))
+		return FALSE
+	antag_datum.get_energy(-cost)
+	return TRUE
+
+/datum/action/innate/hog_cult/proc/update_desc()
+	desc = "[initial(desc)] It has [charges] charges left. Using this spell will cost [cost] energy."
+
 /datum/hog_spell_preparation
 	var/name = "Prepare Nothing"
 	var/description = "Kinda useless thingie it doesn't prepare anything don't do this please it will be just a waste of time and your energy."
-	var/cost = 40
 	var/p_time = 3 SECONDS 
-	var/datum/action/innate/hog_cult/poggy = /datum/action/innate/hog_cult
+	var/datum/action/innate/hog_cult/spell = /datum/action/innate/hog_cult
 
 /datum/hog_spell_preparation/proc/confirm(mob/user, datum/antagonist/hog/antag_datum)
-	var/confirm = alert(user, "[description] It will cost [cost] energy.", "[name]", "Yes", "No")
+	var/confirm = alert(user, description, "Yes", "No")
 	if(confirm == "No")
-		return FALSE
-	if(cost > antag_datum.energy)
-		to_chat(user,span_warning("You don't have enough energy to prepare this spell!"))
 		return FALSE
 	return TRUE
 
 /datum/hog_spell_preparation/proc/on_prepared(mob/user, datum/antagonist/hog/antag_datum, obj/item/hog_item/book/tome)
-	if(cost > antag_datum.energy)
-		return
-	antag_datum.get_energy(-cost)
 	give_spell(user, antag_datum)
 
 /datum/hog_spell_preparation/proc/give_spell(mob/user, datum/antagonist/hog/antag_datum)
-	var/datum/action/innate/hog_cult/new_spell = new poggy(user)
+	var/datum/action/innate/hog_cult/new_spell = new spell(user)
 	new_spell.Grant(user, antag_datum)
 	antag_datum.magic += new_spell
 
@@ -117,4 +124,5 @@
 		else
 			parent.godhand = null
 			parent.charges = uses
+			parent.update_desc()
 	..()

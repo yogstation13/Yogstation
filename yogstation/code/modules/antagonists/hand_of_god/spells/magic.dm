@@ -8,6 +8,7 @@
 	name = "Feedback"
 	desc = "Empowers your hand to shoot a projectile, that will drain energy from heretical cultists and EMP other targets."
 	hand_type = /obj/item/melee/hog_magic/feedback
+	cost = 30
 
 /obj/item/melee/hog_magic/feedback
 	name = "\improper charged hand" 
@@ -19,6 +20,8 @@
 	item_state = "disintegrate"
 
 /obj/item/melee/hog_magic/feedback/ranged_attack(atom/target, mob/living/user)
+	if(!parent.pay())
+		return
 	var/turf/startloc = get_turf(user)
 	var/obj/item/projectile/magic/feedback/F = null
 	var/target_turf = get_turf(target)
@@ -79,6 +82,7 @@
 	name = "Chain Heal"
 	desc = "Empowers your hand with positive energy, allowing you to launch healing waves into your allies."
 	hand_type = /obj/item/melee/hog_magic/heal
+	cost = 60
 
 /obj/item/melee/hog_magic/heal
 	name = "\improper charged hand" 
@@ -98,6 +102,8 @@
 	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
 	if(dude && dude.cult != antag.cult)  //You can target non-cultists, but you can't target hostile cultists
 		return FALSE
+	if(!parent.pay())
+		return
 	var/datum/chain_heal/healing_datum = new(antag.cult, user)
 	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
 		healing_datum.charges = initial(healing_datum.charges) + 1
@@ -169,9 +175,12 @@
 	name = "Enrage"
 	desc = "Fall into state of a berserker, making you more resistant to stuns and damage slowdown, at the cost of making you unable to use advanced tools, magic and communicate with other people."
 	hand_type = null
+	cost = 55
 
 /datum/action/innate/hog_cult/berserker/Activate()
 	if(iscarbon(owner))
+		if(!parent.pay())
+			return
 		var/mob/living/carbon/C = owner
 		C.apply_status_effect(STATUS_EFFECT_BERSERKER)
 		qdel(src)
@@ -188,6 +197,7 @@
 	name = "Lifeforce Trade"
 	desc = "Target a fellow cultist with this spell, and they will get quickly healed of immobility effects(sleeping, knockdown, etc.), but you will get 65% of effect duration."
 	hand_type =  /obj/item/melee/hog_magic/lifeforce
+	cost = 40
 
 /obj/item/melee/hog_magic/lifeforce
 	name = "\improper charged hand" 
@@ -207,6 +217,8 @@
 	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
 	if(!dude || dude.cult != antag.cult) 
 		return FALSE
+	if(!parent.pay())
+		return
 	L.apply_status_effect(/datum/status_effect/lifeforce_trade, user)
 	to_chat(user, span_warning("You link yourself with [L]."))
 	return TRUE
@@ -221,6 +233,7 @@
 	name = "Cleave"
 	desc = "Charges your hand, allowing to deal bleeding wounds and damage to multiple people when used."
 	hand_type =  /obj/item/melee/hog_magic/cleave
+	cost = 35
 
 /obj/item/melee/hog_magic/cleave
 	name = "\improper bloody hand" 
@@ -240,6 +253,8 @@
 	var/datum/antagonist/hog/dude = IS_HOG_CULTIST(L)
 	if(dude && dude.cult == antag.cult)
 		return FALSE
+	if(!parent.pay())
+		return
 	L.apply_damage(16, BRUTE, user.zone_selected, 0, sharpness = SHARP_EDGED)
 	to_chat(user, span_warning("You cut [L]'s veins with your magic."))
 	L.visible_message(span_danger("[L] is cut by [user]'s magic!"), \
@@ -270,9 +285,12 @@
 	name = "Lifesteel"
 	desc = "Enchant your blade attacks, making them heal you. Works ONLY on cult blades."
 	hand_type = null
+	cost = 35
 
 /datum/action/innate/hog_cult/lifesteel/Activate()
 	if(iscarbon(owner))
+		if(!parent.pay())
+			return
 		var/mob/living/carbon/C = owner
 		C.apply_status_effect(/datum/status_effect/hog_blade_effect/lifesteal)
 		qdel(src)
@@ -290,6 +308,7 @@
 	desc = "Charges your hand with bluespace energy, allowing to teleport yourself or your allied cultist."
 	hand_type =  /obj/item/melee/hog_magic/blink
 	charges = 2
+	cost = 15
 
 /obj/item/melee/hog_magic/blink
 	name = "\improper bluespace charged hand" 
@@ -317,7 +336,8 @@
 		outer_tele_radius = initial(outer_tele_radius) + 1
 	else 
 		outer_tele_radius = initial(outer_tele_radius)
-
+	if(!parent.pay())
+		return
 	playsound(get_turf(L), 'sound/magic/blink.ogg', 50,1)
 	var/list/turfs = new/list()
 	for(var/turf/T in range(target,outer_tele_radius))
@@ -361,6 +381,7 @@
 	desc = "Empowers your hand to shoot a 5 projectiles that deal 12 damage on hit."
 	hand_type = /obj/item/melee/hog_magic/arcane_barrage
 	charges = 5
+	cost = 10
 
 /obj/item/melee/hog_magic/arcane_barrage
 	name = "\improper charged hand" 
@@ -377,6 +398,8 @@
 	desc = "A hand, that can shoot magical projectiles into enemies. There is [uses] projectiles left."
 
 /obj/item/melee/hog_magic/arcane_barrage/ranged_attack(atom/target, mob/living/user)
+	if(!parent.pay())
+		return
 	var/turf/startloc = get_turf(user)
 	var/obj/item/projectile/magic/arcane_barrage/B = null
 	var/target_turf = get_turf(target)

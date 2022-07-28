@@ -180,7 +180,7 @@
 				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
 			else if(is_servant_of_ratvar(M))
 				remove_servant_of_ratvar(M)
-			else 
+			else
 				var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(M)
 				if(cultie)
 					cultie.cult.remove_member(M.mind)
