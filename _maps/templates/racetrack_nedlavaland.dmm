@@ -1,0 +1,1097 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"am" = (
+/obj/structure/stone_tile/block/burnt{
+	dir = 8
+	},
+/obj/structure/stone_tile/burnt{
+	dir = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"aF" = (
+/obj/structure/spawner/lavaland{
+	broken = 1;
+	mob_types = null
+	},
+/turf/open/indestructible/necropolis,
+/area/space)
+"bk" = (
+/obj/structure/stone_tile/block/burnt,
+/turf/open/lava/smooth,
+/area/space)
+"bK" = (
+/obj/effect/turf_decal/tile/brown/half,
+/obj/structure/closet/secure_closet/miner{
+	anchored = 1
+	},
+/turf/open/indestructible,
+/area/space)
+"ca" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center/cracked,
+/turf/open/lava/smooth,
+/area/space)
+"cu" = (
+/turf/closed/indestructible/riveted/boss/see_through,
+/area/space)
+"cC" = (
+/obj/structure/stone_tile/block/burnt,
+/turf/open/indestructible/necropolis,
+/area/space)
+"eH" = (
+/turf/open/indestructible/necropolis/air,
+/area/space)
+"eL" = (
+/obj/structure/stone_tile/center/burnt,
+/obj/structure/stone_tile/surrounding,
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	light_range = 7;
+	on = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"eN" = (
+/obj/effect/turf_decal/tile/brown/half,
+/obj/machinery/light,
+/turf/open/indestructible,
+/area/space)
+"fd" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"fB" = (
+/turf/closed/mineral,
+/area/space)
+"gD" = (
+/obj/structure/stone_tile/block,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"iW" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/turf/open/lava/smooth,
+/area/space)
+"ja" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/space)
+"jO" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/lava/smooth,
+/area/space)
+"lH" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/space)
+"mG" = (
+/obj/structure/stone_tile/block/cracked,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"nY" = (
+/obj/structure/stone_tile/block/burnt{
+	dir = 8
+	},
+/turf/open/lava/smooth,
+/area/space)
+"oF" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"pe" = (
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/indestructible,
+/area/space)
+"pk" = (
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/lava/smooth,
+/area/space)
+"pl" = (
+/obj/effect/mob_spawn/human/miner/explorer,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"py" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/lava/smooth,
+/area/space)
+"pV" = (
+/turf/open/indestructible/necropolis,
+/area/space)
+"sm" = (
+/obj/structure/stone_tile/burnt{
+	dir = 4
+	},
+/obj/structure/stone_tile/block/burnt,
+/obj/structure/stone_tile/burnt{
+	dir = 1
+	},
+/turf/open/lava/smooth,
+/area/space)
+"sp" = (
+/obj/structure/stone_tile/surrounding/cracked,
+/obj/structure/stone_tile/center/cracked,
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	light_range = 7;
+	on = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"sI" = (
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 1
+	},
+/obj/machinery/mineral/ore_redemption,
+/turf/open/indestructible,
+/area/space)
+"sY" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/mineral/plastitanium/airless,
+/area/space)
+"tl" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/turf/open/lava/smooth,
+/area/space)
+"tV" = (
+/turf/open/indestructible,
+/area/space)
+"vd" = (
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/item/extinguisher,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"vl" = (
+/turf/closed/indestructible/fakeglass,
+/area/space)
+"vw" = (
+/obj/structure/stone_tile/block/burnt{
+	dir = 1
+	},
+/turf/open/lava/smooth,
+/area/space)
+"vT" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"wC" = (
+/turf/closed/mineral/bscrystal,
+/area/space)
+"wI" = (
+/turf/closed/indestructible/syndicate,
+/area/space)
+"xB" = (
+/obj/structure/stone_tile/surrounding/burnt,
+/obj/structure/stone_tile/center,
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	light_range = 7;
+	on = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"xS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/space)
+"ze" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall,
+/area/space)
+"zN" = (
+/turf/closed/wall,
+/area/space)
+"Ax" = (
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/indestructible,
+/area/space)
+"Bi" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/lava/smooth,
+/area/space)
+"Bk" = (
+/turf/closed/mineral/bananium,
+/area/space)
+"Bm" = (
+/obj/structure/stone_tile/block/cracked,
+/turf/open/lava/smooth,
+/area/space)
+"CG" = (
+/obj/structure/stone_tile/slab,
+/turf/open/lava/smooth,
+/area/space)
+"CH" = (
+/obj/structure/stone_tile/block/burnt{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/space)
+"DK" = (
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/lava/smooth,
+/area/space)
+"DZ" = (
+/obj/structure/stone_tile/burnt{
+	dir = 2
+	},
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/burnt{
+	dir = 3
+	},
+/turf/open/lava/smooth,
+/area/space)
+"Ed" = (
+/turf/open/floor/mineral/plastitanium,
+/area/space)
+"Eu" = (
+/turf/closed/mineral/diamond,
+/area/space)
+"Fe" = (
+/obj/structure/guncase/shotgun{
+	gun_category = null;
+	open = 0
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/space)
+"Fp" = (
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"FR" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/indestructible/necropolis,
+/area/space)
+"FV" = (
+/obj/structure/stone_tile/slab/burnt,
+/turf/open/lava/smooth,
+/area/space)
+"GI" = (
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 1
+	},
+/turf/open/lava/smooth,
+/area/space)
+"HM" = (
+/obj/structure/stone_tile/burnt{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/block,
+/turf/open/lava/smooth,
+/area/space)
+"IH" = (
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	light_range = 7;
+	on = 1
+	},
+/turf/open/indestructible/necropolis/air,
+/area/space)
+"Jb" = (
+/obj/structure/stone_tile/burnt{
+	dir = 1
+	},
+/obj/structure/stone_tile/block/cracked,
+/turf/open/lava/smooth,
+/area/space)
+"Lo" = (
+/obj/structure/necropolis_arch,
+/turf/open/indestructible/necropolis,
+/area/space)
+"LJ" = (
+/obj/structure/stone_tile/surrounding/burnt,
+/obj/structure/stone_tile/center/cracked,
+/obj/structure/fluff/drake_statue/falling,
+/turf/open/lava/smooth,
+/area/space)
+"MB" = (
+/turf/closed/mineral/plasma,
+/area/space)
+"MZ" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/burnt{
+	dir = 4
+	},
+/turf/open/lava/smooth,
+/area/space)
+"Nf" = (
+/obj/effect/turf_decal/tile/brown/half{
+	dir = 1
+	},
+/obj/structure/ore_box{
+	anchored = 1
+	},
+/turf/open/indestructible,
+/area/space)
+"NM" = (
+/obj/machinery/door/airlock/mining/glass,
+/turf/open/indestructible,
+/area/space)
+"Od" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center/burnt,
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	light_range = 7;
+	on = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"Py" = (
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	light_range = 7;
+	on = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"QP" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	light_range = 7;
+	on = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"Tc" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 8
+	},
+/turf/open/lava/smooth,
+/area/space)
+"Tf" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/lava/smooth,
+/area/space)
+"UB" = (
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"UY" = (
+/obj/structure/sign/departments/minsky/supply/mining,
+/turf/closed/wall,
+/area/space)
+"Wj" = (
+/turf/open/lava/smooth,
+/area/space)
+"Wt" = (
+/obj/effect/mob_spawn/human/corpse/syndicatecommando,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"WA" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/space)
+"Xx" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center/cracked,
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	light_range = 7;
+	on = 1
+	},
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"XE" = (
+/obj/effect/mob_spawn/human/miner/explorer,
+/turf/open/indestructible/necropolis,
+/area/space)
+"XW" = (
+/obj/structure/stone_tile/block,
+/turf/open/lava/smooth,
+/area/space)
+"Yo" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/indestructible/plating,
+/area/space)
+
+(1,1,1) = {"
+pV
+pV
+XE
+Fp
+QP
+Fp
+Fp
+Fp
+QP
+"}
+(2,1,1) = {"
+pV
+aF
+pV
+Fp
+Fp
+Fp
+Fp
+Fp
+Fp
+"}
+(3,1,1) = {"
+pV
+pV
+pV
+Fp
+Fp
+Fp
+Fp
+Fp
+Fp
+"}
+(4,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+Fp
+Fp
+Fp
+Fp
+Fp
+"}
+(5,1,1) = {"
+pl
+Fp
+Fp
+Fp
+wI
+wI
+sY
+sY
+wI
+"}
+(6,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+lH
+WA
+Ed
+Ed
+WA
+"}
+(7,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+lH
+Fe
+ja
+ja
+Fe
+"}
+(8,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+lH
+Fe
+ja
+ja
+Fe
+"}
+(9,1,1) = {"
+Fp
+Fp
+pl
+Fp
+lH
+xS
+Ed
+Ed
+xS
+"}
+(10,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+wI
+wI
+sY
+sY
+wI
+"}
+(11,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(12,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Wt
+"}
+(13,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(14,1,1) = {"
+UY
+NM
+NM
+UY
+zN
+Fp
+Fp
+Fp
+QP
+"}
+(15,1,1) = {"
+pe
+tV
+tV
+eN
+zN
+Fp
+Fp
+Fp
+Fp
+"}
+(16,1,1) = {"
+Nf
+tV
+tV
+bK
+Yo
+Fp
+Fp
+Fp
+Fp
+"}
+(17,1,1) = {"
+sI
+tV
+tV
+bK
+Yo
+Fp
+Fp
+Fp
+Fp
+"}
+(18,1,1) = {"
+Nf
+tV
+tV
+bK
+Yo
+Fp
+Fp
+Fp
+Fp
+"}
+(19,1,1) = {"
+Ax
+tV
+tV
+eN
+zN
+Fp
+Fp
+Fp
+Fp
+"}
+(20,1,1) = {"
+ze
+NM
+NM
+ze
+zN
+Fp
+Fp
+Fp
+QP
+"}
+(21,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(22,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Wt
+Fp
+Fp
+"}
+(23,1,1) = {"
+Od
+Fp
+Fp
+Od
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(24,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(25,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(26,1,1) = {"
+Fp
+fB
+fB
+fB
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(27,1,1) = {"
+Fp
+fB
+fB
+fB
+cu
+vl
+vl
+vl
+vl
+"}
+(28,1,1) = {"
+Fp
+fB
+fB
+fB
+cu
+oF
+oF
+oF
+oF
+"}
+(29,1,1) = {"
+Fp
+Fp
+Fp
+fB
+cu
+vd
+vd
+vd
+vd
+"}
+(30,1,1) = {"
+fB
+fB
+Fp
+fB
+cu
+vl
+vl
+vl
+vl
+"}
+(31,1,1) = {"
+fB
+fB
+Fp
+fB
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(32,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(33,1,1) = {"
+eL
+Fp
+Fp
+eL
+cu
+py
+CG
+Tf
+bk
+"}
+(34,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+GI
+MZ
+Jb
+DK
+"}
+(35,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Wj
+ca
+FV
+Wj
+"}
+(36,1,1) = {"
+Fp
+Eu
+Bk
+Fp
+cu
+Wj
+pk
+Bm
+Wj
+"}
+(37,1,1) = {"
+Fp
+wC
+Bk
+Fp
+cu
+Wj
+CG
+Tf
+Wj
+"}
+(38,1,1) = {"
+Fp
+MB
+wC
+Fp
+cu
+jO
+DZ
+sm
+Tc
+"}
+(39,1,1) = {"
+Fp
+MB
+MB
+Fp
+cu
+iW
+Tf
+HM
+Bm
+"}
+(40,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(41,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+sp
+Fp
+Fp
+xB
+"}
+(42,1,1) = {"
+Xx
+Fp
+Fp
+Od
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(43,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+iW
+Fp
+Fp
+Bm
+"}
+(44,1,1) = {"
+Fp
+fB
+fB
+fB
+cu
+iW
+Fp
+Fp
+bk
+"}
+(45,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+vw
+Fp
+Fp
+XW
+"}
+(46,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+iW
+Fp
+Fp
+bk
+"}
+(47,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+py
+Fp
+Fp
+Bm
+"}
+(48,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+vw
+Fp
+Fp
+XW
+"}
+(49,1,1) = {"
+Od
+Fp
+Fp
+Xx
+cu
+py
+Fp
+Fp
+Bm
+"}
+(50,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(51,1,1) = {"
+Fp
+Fp
+Fp
+Fp
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(52,1,1) = {"
+cu
+mG
+vT
+cu
+cu
+Wj
+am
+gD
+Wj
+"}
+(53,1,1) = {"
+cu
+mG
+CH
+cu
+cu
+Wj
+UB
+fd
+Wj
+"}
+(54,1,1) = {"
+cu
+cC
+FR
+cu
+cu
+Wj
+vT
+gD
+Wj
+"}
+(55,1,1) = {"
+IH
+eH
+eH
+eH
+cu
+Fp
+Fp
+Fp
+Fp
+"}
+(56,1,1) = {"
+nY
+Bi
+eH
+eH
+pV
+Fp
+Fp
+Fp
+Fp
+"}
+(57,1,1) = {"
+LJ
+Bm
+Fp
+eH
+Lo
+Fp
+Fp
+Fp
+Fp
+"}
+(58,1,1) = {"
+tl
+DK
+eH
+eH
+pV
+Fp
+Fp
+Fp
+Fp
+"}
+(59,1,1) = {"
+IH
+eH
+eH
+eH
+cu
+Fp
+Py
+Py
+Fp
+"}

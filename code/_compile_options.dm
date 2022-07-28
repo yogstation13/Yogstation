@@ -28,7 +28,7 @@
 								//	2 for preloading absolutely everything;
 
 #ifdef LOWMEMORYMODE
-#define FORCE_MAP "_maps/runtimestation.json"
+#define FORCE_MAP "_maps/racestation.json"
 #endif
 
 //Update this whenever you need to take advantage of more recent byond features
