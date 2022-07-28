@@ -16,6 +16,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
+	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
+	disliked_food = GROSS | VEGETABLES
 	brutemod = 1.25 //Have you ever punched a metal plate?
 	burnmod = 1.5 //Computers don't like heat
 	coldmod = 0.8 //Computers like cold, but their lungs may not
