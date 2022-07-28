@@ -12,9 +12,10 @@
 
 
 /obj/structure/toilet/Initialize()
-	. = ..()
-	open = round(rand(0, 1))
-	update_icon()
+	..()
+	var/obj/structure/toilet_bong/bong = new(loc)
+	bong.dir = dir
+	return INITIALIZE_HINT_QDEL
 
 
 /obj/structure/toilet/attack_hand(mob/living/user)
