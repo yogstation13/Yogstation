@@ -42,30 +42,19 @@
 	icon_state = "leech"
 	fishing_power = 20
 
-/obj/item/reagent_containers/food/snacks/bait/leech/attackby(obj/item/I, mob/user, params)
-	span_userdanger("[user] is putting a leech onto [target]!")
-	return
-
-/obj/item/reagent_containers/food/snacks/bait/leech/afterattack(atom/target, mob/user , proximity)
-	. = ..()
-	var/existing = C.reagents.reagent_list
-	if(busy)
-		return
-	if(!proximity)
-		return
-	var/mob/living/L
-	if(isliving(target))
-		L = target
-		if(L)
-			span_userdanger("[user] put a leech onto [target] and absorbed toxins.")
-			adjustToxLoss(10)
-			L.blood_volume -= 5\
-				if(istype(var/datum/reagent/T in C.reagents.reagent_list))
-					C.reagents.remove_reagent(T.type, 5)
-				if(prob(10))
-					span_userdanger("The leech firmly holds onto[target] and rips the skin off!")
-					adjustBruteloss(2)
-		return 
+/obj/item/reagent_containers/food/snacks/bait/leech/attack(mob/living/M, mob/living/user)
+	if(user.a_intent == INTENT_HARM)
+		return ..()//wait no not there this is hitting 
+	M.visible_message(span_danger("[user] is putting a leech onto [M]!"))
+	if(!do_after(user, 2 SECONDS, M)) 
+		M.visible_message(span_danger("[M] avoids the leech!"))
+		return FALSE
+	M.adjustToxLoss(-5)
+	M.blood_volume -= 5
+	for(var/datum/reagent/T in M.reagents.reagent_list)
+		if(istype(T, /datum/reagent/toxin))
+			M.reagents.trans_id_to(src, T.type, 5)
+	return FALSE 
 
 /obj/item/reagent_containers/food/snacks/bait/type
 	name = "type bait"
