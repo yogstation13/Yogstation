@@ -501,11 +501,15 @@
 	user.put_in_hands(plating)
 
 	name = initial(name)
-	desc = initial(desc)
-	armor = initial(armor)
+	armor = armor.setRating(5,0,0,0,0,0,0,10,0,0,0)
 	slowdown = initial(slowdown)
 	w_class = initial(w_class)
 	plating = null
+
+/obj/item/clothing/head/helmet/plated/examine(mob/user)
+	.=..()
+	if(plating)
+		. += span_info("It has [plating] slotted.")
 
 /obj/item/clothing/head/helmet/plated/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -522,8 +526,12 @@
 	var/obj/item/kevlar_plating/K = I
 
 	name = "[K.name_set] plated helmet"
-	desc += K.desc_add
 	slowdown = K.slowdown_set
-	armor = K.armor_set
+	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
+		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
+
+	armor = armor.attachArmor(K.armor)
 	w_class = WEIGHT_CLASS_BULKY
 	plating = K
