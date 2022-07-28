@@ -1,4 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - bugfix: "glowing goo from spilled radium or uranium is no longer PERMANENTLY radioactive"
