@@ -659,6 +659,13 @@
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/vending_refill/donksoft = 1)
 
+/obj/item/circuitboard/machine/vending/fishing
+	name = "Tackle Box 2000 Vendor (Machine Board)"
+	build_path = /obj/machinery/vending/fishing
+	req_components = list(
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/vending_refill/fishing = 1)
+
 //Medical
 
 /obj/item/circuitboard/machine/chem_dispenser
