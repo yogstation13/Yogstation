@@ -8,7 +8,7 @@
 	if(tome.charges >= 4)
 		to_chat(user,span_warning("The [tome] is already charged!"))
 		return
-	if(antag_datum.energy < cost)
+	if(antag_datum.energy < 40)
 		to_chat(user, span_warning("You don't have enoguh energy to do this!"))
 		return FALSE
 	antag_datum.get_energy(-40)
