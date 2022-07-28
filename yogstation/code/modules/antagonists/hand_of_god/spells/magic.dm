@@ -179,7 +179,7 @@
 
 /datum/action/innate/hog_cult/berserker/Activate()
 	if(iscarbon(owner))
-		if(!parent.pay())
+		if(!pay())
 			return
 		var/mob/living/carbon/C = owner
 		C.apply_status_effect(STATUS_EFFECT_BERSERKER)
@@ -289,7 +289,7 @@
 
 /datum/action/innate/hog_cult/lifesteel/Activate()
 	if(iscarbon(owner))
-		if(!parent.pay())
+		if(!pay())
 			return
 		var/mob/living/carbon/C = owner
 		C.apply_status_effect(/datum/status_effect/hog_blade_effect/lifesteal)

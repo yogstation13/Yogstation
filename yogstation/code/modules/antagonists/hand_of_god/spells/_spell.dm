@@ -47,7 +47,10 @@
 	if(antag_datum.energy < cost)
 		to_chat(owner, span_warning("You don't have enoguh energy to do this!"))
 		return FALSE
-	antag_datum.get_energy(-cost)
+	var/cost_multiplier = 1
+	if(HAS_TRAIT(user, TRAIT_CULTIST_ROBED))
+		cost_multiplier = 0.75
+	antag_datum.get_energy(-cost*cost_multiplier)
 	return TRUE
 
 /datum/action/innate/hog_cult/proc/update_desc()

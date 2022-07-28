@@ -9,7 +9,7 @@
 		to_chat(user,span_warning("The [tome] is already charged!"))
 		return
 	if(antag_datum.energy < cost)
-		to_chat(owner, span_warning("You don't have enoguh energy to do this!"))
+		to_chat(user, span_warning("You don't have enoguh energy to do this!"))
 		return FALSE
 	antag_datum.get_energy(-40)
 	..()
@@ -23,7 +23,6 @@
 /datum/hog_spell_preparation/feedback
 	name = "Feedback"
 	description = "Grants you a spell, that allows you to shoot projectiles into your enemies, that drain energy from hostile cultists and empulse everyone else."
-	cost = 40
 	p_time = 4 SECONDS 
 	spell = /datum/action/innate/hog_cult/feedback
 
