@@ -22,10 +22,10 @@
 
 /datum/bounty/item/progression/mining_plasma
 	name = "Plasma Extraction"
-	description = "The reason you're here: plasma. Ship us a stack of it and we can certify your mining program as \"profitable\", allowing access to plasma-based mining equipment."
-	reward = 9000 //1000 less than a normal ship of plasma as a fee
+	description = "The reason you're here: plasma. Ship us 10 sheets of it and we can certify your mining program as \"profitable\", allowing access to plasma-based mining equipment."
+	reward = 4000
 	wanted_types = list(/obj/item/stack/sheet/mineral/plasma)
-	required_count = 50
+	required_count = 10
 	unlocked_crates = list(/datum/supply_pack/clearance/plasmacutter)
 
 /datum/bounty/item/progression/mining_plasma/reward_string()
