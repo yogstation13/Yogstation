@@ -18,6 +18,7 @@
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
+	minimal_character_age = 18 //Young and fresh bodies for a high mortality job, what more could you ask for
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
@@ -46,7 +47,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/rank/miner/lavaland
 	neck = /obj/item/clothing/neck/bodycam/miner
-	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
+	l_pocket = /obj/item/reagent_containers/autoinjector/medipen/survival
 	r_pocket = /obj/item/flashlight/seclite
 	backpack_contents = list(
 		/obj/item/storage/bag/ore=1,\

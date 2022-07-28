@@ -24,6 +24,10 @@
 	var/fuckup_damage = 10			
 	/// Damage type fuckup_damage is dealt as
 	var/fuckup_damage_type = BRUTE
+	/// If silicons have to deal with success chance
+	var/silicons_obey_prob = FALSE
+	/// If this step causes blood to get on the user
+	var/bloody_chance = 20
 
 	/// Sound played when the step is started
 	var/preop_sound 
@@ -86,7 +90,7 @@
 	return FALSE
 
 
-/datum/surgery_step/proc/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
+/datum/surgery_step/proc/initiate(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	surgery.step_in_progress = TRUE
 	var/advance = FALSE
 
@@ -114,15 +118,14 @@
 		prob_chance *= surgery.get_probability_multiplier()
 
 		// Blood splatters on tools and user
-		if(tool && prob(20))
+		if(tool && prob(bloody_chance))
 			tool.add_mob_blood(target)
-			to_chat(user, span_warning("[tool] gets covered in [target]'s blood "))
-		if(prob(10))
+			to_chat(user, span_warning("\The [tool] gets covered in [target]'s blood."))
+		if(prob(bloody_chance * 0.5))
 			user.add_mob_blood(target)
-			to_chat(user, span_warning("You get covered in [target]'s blood "))
+			to_chat(user, span_warning("You get covered in [target]'s blood."))
 
-		if((prob(prob_chance) || iscyborg(user)) && chem_check(target, user,
-	 tool) && !try_to_fail)
+		if((prob(prob_chance) || (iscyborg(user) && !silicons_obey_prob)) && chem_check(target, user, tool) && !try_to_fail)
 			if(success(user, target, target_zone, tool, surgery))
 				play_success_sound(user, target, target_zone, tool, surgery)
 				advance = TRUE
@@ -131,7 +134,7 @@
 				play_failure_sound(user, target, target_zone, tool, surgery)
 				
 				advance = TRUE
-		if(!HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
+		if(iscarbon(target) && !HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
 			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON)) //borgs and abductors are immune to this
 				var/obj/item/bodypart/operated_bodypart = target.get_bodypart(target_zone)
 				if(!operated_bodypart || operated_bodypart?.status == BODYPART_ORGANIC) //robot limbs don't feel pain
@@ -146,13 +149,12 @@
 	surgery.step_in_progress = FALSE
 	return advance
 
-
-/datum/surgery_step/proc/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/proc/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to perform surgery on [target]..."),
 		"[user] begins to perform surgery on [target].",
 		"[user] begins to perform surgery on [target].")
 
-/datum/surgery_step/proc/play_preop_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/proc/play_preop_sound(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(!preop_sound)
 		return
 	var/sound_file_use
@@ -163,15 +165,17 @@
 				break	
 	else
 		sound_file_use = preop_sound
+	if(!sound_file_use)
+		return
 	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
-/datum/surgery_step/proc/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/proc/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You succeed."),
 		"[user] succeeds!",
 		"[user] finishes.")
 	return TRUE
 
-/datum/surgery_step/proc/play_success_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/proc/play_success_sound(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(!success_sound)
 		return
 	var/sound_file_use
@@ -182,15 +186,17 @@
 				break	
 	else
 		sound_file_use = success_sound
+	if(!sound_file_use)
+		return
 	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
-/datum/surgery_step/proc/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/proc/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_warning("You screw up!"),
 		span_warning("[user] screws up!"),
 		"[user] finishes.", TRUE) //By default the patient will notice if the wrong thing has been cut
 	return FALSE
 
-/datum/surgery_step/proc/play_failure_sound(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/proc/play_failure_sound(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(!failure_sound)
 		return
 	var/sound_file_use
@@ -201,12 +207,14 @@
 				break	
 	else
 		sound_file_use = failure_sound
+	if(!sound_file_use)
+		return
 	playsound(get_turf(target), sound_file_use, 30, TRUE, falloff = 2)
 
 /datum/surgery_step/proc/tool_check(mob/user, obj/item/tool)
 	return TRUE
 
-/datum/surgery_step/proc/chem_check(mob/living/carbon/target, user,  obj/item/tool)
+/datum/surgery_step/proc/chem_check(mob/living/target, user,  obj/item/tool)
 	if(!LAZYLEN(chems_needed))
 		return TRUE
 	var/obj/item/reagent_containers/syringe/S
@@ -255,7 +263,7 @@
 			ouchie_mod *= ouchie_modifying_chems[R]
 	if(target.stat == UNCONSCIOUS)
 		ouchie_mod *= 0.8
-	ouchie_mod *= clamp(1-target.drunkenness/100, 0, 1)
+	ouchie_mod *= clamp(1 - target.drunkenness / 100, 0, 1)
 	if(!success)
 		ouchie_mod *= 2
 	var/final_ouchie_chance = SURGERY_FUCKUP_CHANCE * ouchie_mod
@@ -263,9 +271,6 @@
 		return
 	user.visible_message(span_boldwarning("[target] flinches, bumping [user]'s [tool ? tool.name : "hand"] into something important!"), span_boldwarning("[target] flinches, bumping your [tool ? tool.name : "hand"] into something important!"))
 	target.apply_damage(fuckup_damage, fuckup_damage_type, target_zone)
-	//if(ishuman(target) &&fuckup_damage_type == BRUTE && prob(final_ouchie_chance/2))
-		//var/mob/living/carbon/human/H = target
-		//H.bleed_rate += min(fuckup_damage/4, 10)
 
 ///Deal damage if the user moved during the op
 /datum/surgery_step/proc/move_ouchie(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, success)

@@ -20,6 +20,7 @@
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_COOK
+	minimal_character_age = 18 //My guy they just a cook
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 

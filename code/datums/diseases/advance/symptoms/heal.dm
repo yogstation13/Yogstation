@@ -398,7 +398,8 @@
 	if(environment)
 		if(environment.get_moles(/datum/gas/plasma) > GLOB.meta_gas_info[/datum/gas/plasma][META_GAS_MOLES_VISIBLE]) //if there's enough plasma in the air to see
 			. += power * 0.5
-	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = TRUE))
+	var/requires_metabolizing = !(A.process_dead && M.stat == DEAD) //don't require metabolizing if our host is dead and we have necrotic metabolsim
+	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = requires_metabolizing))
 		. +=  power * 0.75
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)

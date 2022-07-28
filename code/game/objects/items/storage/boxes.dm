@@ -46,8 +46,8 @@
 		myhead.forceMove(src)//force your enemies to kill themselves with your head collection box!
 		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
 		return BRUTELOSS
-	user.visible_message(span_suicide("[user] beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return BRUTELOSS
+	user.visible_message(span_suicide("[user] attempts to put [user.p_their()] head into \the [src], but realizes [user.p_their()] has no head!"))
+	return SHAME
 
 /obj/item/storage/box/update_icon()
 	. = ..()
@@ -127,7 +127,7 @@
 /obj/item/storage/box/survival/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
@@ -142,13 +142,13 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/gps/mining(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 // Engineer survival box
 /obj/item/storage/box/engineer/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -163,7 +163,7 @@
 /obj/item/storage/box/security/PopulateContents()
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
@@ -173,7 +173,7 @@
 /obj/item/storage/box/plasmaman/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -219,7 +219,7 @@
 
 /obj/item/storage/box/medipens/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/hypospray/medipen(src)
+		new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 /obj/item/storage/box/medipens/utility
 	name = "stimpack value kit"
@@ -229,7 +229,7 @@
 /obj/item/storage/box/medipens/utility/PopulateContents()
 	..() // includes regular medipens.
 	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/hypospray/medipen/stimpack(src)
+		new /obj/item/reagent_containers/autoinjector/medipen/stimpack(src)
 
 /obj/item/storage/box/beakers
 	name = "box of beakers"
@@ -257,6 +257,28 @@
 	new /obj/item/reagent_containers/glass/beaker/meta(src)
 	new /obj/item/reagent_containers/glass/beaker/noreact(src)
 	new /obj/item/reagent_containers/glass/beaker/bluespace(src)
+
+/obj/item/storage/box/vials
+	name = "box of vials"
+	illustration = "vial"
+
+/obj/item/storage/box/vials/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/glass/bottle/vial(src)
+
+/obj/item/storage/box/vials/large
+	name = "box of large vials"
+
+/obj/item/storage/box/vials/large/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/glass/bottle/vial/large(src)
+
+/obj/item/storage/box/vials/bluespace
+	name = "box of bluespace vials"
+
+/obj/item/storage/box/vials/bluespace/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/glass/bottle/vial/bluespace(src)
 
 /obj/item/storage/box/medsprays
 	name = "box of medical sprayers"
@@ -820,12 +842,12 @@
 /obj/item/storage/box/hug/medical/PopulateContents()
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 /obj/item/storage/box/hug/survival/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)

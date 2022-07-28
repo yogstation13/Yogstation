@@ -164,3 +164,11 @@
 	item_state = "swat"
 	resistance_flags = NONE
 	flags_inv = HIDEHAIR
+
+/obj/item/clothing/head/collectable/skull
+	name = "collectable skull helmet"
+	desc = "A decently authentic plastic shell that resembles a spooky skull. Probably not anywhere near as protective as the one in your head."
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	flags_cover = HEADCOVERSEYES
+	icon_state = "skull"
+	item_state = "skull"
