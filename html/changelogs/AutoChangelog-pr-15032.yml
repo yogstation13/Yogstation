@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes kevlar plating not working and then game ending the armor datum when removed"
