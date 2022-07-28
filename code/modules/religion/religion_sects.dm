@@ -385,9 +385,9 @@
 
 //honkmother bible is supposed to only cure clowns, honk, and be slippery. I don't know how I'll do that
 /datm/religion_sect/honkmother/sect_bless(mob/living/blessed, mob/living/user)
-	if(!ishuman(L))
+	if(!ishuman(blessed))
 		return
-	var/mob/living/carbon/human/H = L
+	var/mob/living/carbon/human/H = blessed
 	var/datum/mind/M = H.mind
 	if(M.assigned_role == "Clown")
 		return
