@@ -18,6 +18,7 @@ map yogstation
 endmap
 
 map asteroidstation
+	maxplayers 40
 endmap
 
 map omegastation
