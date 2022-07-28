@@ -30,19 +30,26 @@
 	if(prob(1))
 		desc = "Don't you dare say it"
 
+/*/obj/item/reagent_containers/food/snacks/bait/empowered //needed for the future, commented out for now
+	name = "empowered bait"
+	desc = "Bait infused with the power of Bluespace Slimes. What could this catch?..."
+	icon_state = "bait_3"
+	fishing_power = 100
+*/
+
 /obj/item/reagent_containers/food/snacks/bait/worm
 	name = "worm bait"
 	desc = "Might be able to catch a lizard with this..."
 	icon_state = "bait_worm"
 	fishing_power = 15
 
-/obj/item/reagent_containers/food/snacks/bait/leech
+/obj/item/reagent_containers/food/snacks/bait/worm/leech //subtype of worm so recipes work for bait
 	name = "leech"
 	desc = "What isn't fun about a little recycling?"
 	icon_state = "leech"
 	fishing_power = 20
 
-/obj/item/reagent_containers/food/snacks/bait/leech/attack(mob/living/M, mob/living/user)
+/obj/item/reagent_containers/food/snacks/bait/worm/leech/attack(mob/living/M, mob/living/user)
 	if(user.a_intent == INTENT_HARM)
 		return ..()//wait no not there this is hitting 
 	M.visible_message(span_danger("[user] is putting a leech onto [M]!"))
@@ -61,3 +68,8 @@
 	desc = "Are you talking to me?"
 	icon_state = "bait_t"
 	fishing_power = 25
+
+/obj/item/reagent_containers/food/snacks/bait/type/wild
+	name = "wild bait"
+	desc = "A hand crafted bait that is attractive to most fish"
+	icon_state = "bait_wild"
