@@ -225,22 +225,21 @@
 			list("Bluespace Floor","bluespace"),
 			list("Reinforced Floor","engine"),
 			list("Bananium Floor","bananium"),
-			list("Brass Floor","clockwork_floor"),
+			list("Clockwork Floor","clockwork_floor"),
 			list("Cult Floor","cult"),
-			list("Lava Floor","lava"),
 			list("Paper Floor","paperfloor"),
 			list("Titanium Floor","titanium_white"),
 			list("Plastitanium Floor","plastitanium"),
-			list("River Water","riverwater_motion"),
-			list("Liquid Plasma","liquidplasma"),
 			list("Lavaland Floor","basalt1"),
 			list("Hierophant Floor","hiero"),
 			list("Wobby Hierophant Floor","hierophant1"),
 			list("Necro Floor","necro1"),
+			list("Lava","lava"),
+			list("River Water","riverwater_motion"),
+			list("Liquid Plasma","liquidplasma"),
 			list("Error","error"),
-			list("Magic Floor","magic"),
 			list("01010101","binary"),
-			list("Space Floor","space"))
+			list("Space","space"))
 
 /obj/item/airlock_painter/decal/afterattack(atom/target, mob/user, proximity)
 	. = ..()
