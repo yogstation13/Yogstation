@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "Cloner autoprocess will consider cloning conditions"
+  - tweak: "Cloner biomass levels can be upgraded"
