@@ -422,7 +422,7 @@
 	user.put_in_hands(plating)
 
 	name = initial(name)
-	armor = initial(armor)
+	armor = armor.setRating(5,0,0,0,0,0,0,10,0,0,0)	//because initial(armor) apparently doesn't work
 	slowdown = initial(slowdown)
 	w_class = initial(w_class)
 	plating = null
@@ -448,7 +448,13 @@
 
 	name = "[K.name_set] plated armor vest"
 	slowdown = K.slowdown_set
-	armor = K.armor_set
+
+	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
+		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
+
+	armor = armor.attachArmor(K.armor)
 	w_class = WEIGHT_CLASS_BULKY
 	plating = K
 
@@ -474,16 +480,14 @@
 	force = 2
 	var/name_set = "debug"
 	var/slowdown_set = 0 // Slowdown value to set on the vest, for reference a hardsuit has "1" slowdown
-	var/armor_set = list( // Armor value to set on the vest
-		MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 100)
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 100) // Armor value to set on the vest
 
 /obj/item/kevlar_plating/mki
 	name = "MK.I bluespace plating"
 	desc = "Incredibly light bluespace-infused armor plating that offers great movement while also providing some protection."
 	name_set = "MK.I bluespace"
 	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
-	armor_set = list( // Slightly worse than default armor
-		MELEE = 20, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 40, WOUND = 10)
+	armor = list(MELEE = 15, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 30, ACID = 40, WOUND = 10) // Slightly worse than default armor
 
 /obj/item/kevlar_plating/mkii
 	name = "MK.II ceramic plating"
@@ -492,8 +496,7 @@
 	force = 4
 	name_set = "MK.II ceramic"
 	slowdown_set = 0
-	armor_set = list( // Slightly better than default armor
-		MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+	armor = list(MELEE = 30, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 40, ACID = 50, WOUND = 20) 	// Slightly better than default armor
 
 /obj/item/kevlar_plating/mkiii
 	name = "MK.III plasteel plating"
@@ -502,8 +505,7 @@
 	force = 6
 	name_set = "MK.III plasteel"
 	slowdown_set = 0.15 // Slow
-	armor_set = list( // Robust
-		MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 60, ACID = 60, WOUND = 35)
+	armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 50, ACID = 60, WOUND = 35)	//Robust
 
 /obj/item/kevlar_plating/mkiv
 	name = "MK.IV titanium plating"
@@ -513,5 +515,4 @@
 	name_set = "MK.IV titanium"
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown_set = 0.4 // Very slow
-	armor_set = list( // Walking tank
-		MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 75, ACID = 75, WOUND = 50)
+	armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 65, ACID = 75, WOUND = 50)	//Walking tank
