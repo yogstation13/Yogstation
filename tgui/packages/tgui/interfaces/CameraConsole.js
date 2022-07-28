@@ -131,9 +131,9 @@ export const CameraConsoleContent = (props, context) => {
                 && camera.name === activeCamera.name
                 && 'Button--selected',
               ])}
-              onClick={() => act('switch_camera', {
+              onClick={() => [act('switch_camera', {
                 name: camera.name,
-              })}>
+              }), document.getElementsByClassName('CameraConsole__left')[0].focus()]}>
               {camera.name}
             </div>
           ))}

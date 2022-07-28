@@ -1414,12 +1414,15 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	gravity = H.has_gravity()
 
 	if(!HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && gravity)
+		// Clothing slowdown
 		if(H.wear_suit)
 			. += H.wear_suit.slowdown
 		if(H.shoes)
 			. += H.shoes.slowdown
 		if(H.back)
 			. += H.back.slowdown
+		if(H.head)
+			. += H.head.slowdown
 		for(var/obj/item/I in H.held_items)
 			if(I.item_flags & SLOWS_WHILE_IN_HAND)
 				. += I.slowdown
