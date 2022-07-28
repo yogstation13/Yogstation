@@ -853,7 +853,7 @@
 
 /obj/item/storage/belt/sabre/leather
 	name = "leather sheath"
-	desc = "A leather sheath designed to hold a sword."
+	desc = "A leather sheath designed to hold swords."
 	icon_state = "sheath"
 	item_state = "sheath"
 
@@ -867,9 +867,7 @@
 		/obj/item/melee/cutlass,
 		/obj/item/twohanded/vibro_weapon,
 		/obj/item/katana,
-		/obj/item/sord,
-		/obj/item/claymore,
-		/obj/item/melee/cultblade
+		/obj/item/sord
 		))
 
 /obj/item/storage/belt/sabre/leather/update_icon()
@@ -888,9 +886,36 @@
 
 /obj/item/storage/belt/sabre/leather/goliath
 	name = "goliath sheath"
-	desc = "A goliath hide and leather sheath designed to hold a sword."
+	desc = "A goliath hide and leather sheath designed to hold bulky swords."
 	icon_state = "sheath"
 	item_state = "sheath"
+
+/obj/item/storage/belt/sabre/leather/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 1
+	STR.rustle_sound = FALSE
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.set_holdable(list(
+		/obj/item/claymore/
+		))
+
+/obj/item/storage/belt/sabre/leather/axe
+	name = "axe scabbard"
+	desc = "A leather scabbard designed to hold axes."
+	icon_state = "sheath"
+	item_state = "sheath"
+
+/obj/item/storage/belt/sabre/leather/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 1
+	STR.rustle_sound = FALSE
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.set_holdable(list(
+		/obj/item/twohanded/fireaxe,
+		/obj/item/hatchet
+		))
 
 /obj/item/storage/belt/multi
 	name = "multi-belt"
