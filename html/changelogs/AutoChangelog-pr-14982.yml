@@ -1,0 +1,5 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - tweak: "potassium + water explosions are now capped at 50u volume created"
+  - tweak: "potassium + holywater explosions are now capped at 100u volume"
