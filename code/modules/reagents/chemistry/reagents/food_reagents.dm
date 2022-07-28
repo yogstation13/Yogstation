@@ -515,6 +515,12 @@
 		if(reagentdecal)
 			reagentdecal.reagents.add_reagent(/datum/reagent/consumable/flour, reac_volume)
 
+/datum/reagent/consumable/batter
+	name = "Batter"
+	description = "This is what you dip things in to get them extra crunchy when fried."
+	color = "#fdffdb"
+	taste_description = "damp flour and beer"
+
 /datum/reagent/consumable/cherryjelly
 	name = "Cherry Jelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."

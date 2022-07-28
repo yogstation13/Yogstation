@@ -134,11 +134,3 @@
 	min_weight = 1
 	max_weight = 2
 	slices_num = 2
-
-/obj/item/reagent_containers/food/snacks/carpmeat/fish //basic fish fillet (no carpotoxin) for fish butchering
-	name = "fish fillet"
-	desc = "A fillet of spess fish meat."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
-
-
-	
