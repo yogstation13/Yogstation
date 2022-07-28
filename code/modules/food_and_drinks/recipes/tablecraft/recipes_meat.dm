@@ -68,12 +68,21 @@
 	result = /obj/item/reagent_containers/food/snacks/sashimi
 	subcategory = CAT_MEAT
 
+/datum/crafting_recipe/food/battered_fish
+	name = "Battered Fish Fillet"
+	reqs = list(
+		/datum/reagent/consumable/batter = 2,
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/carpmeat/fish/battered
+	subcategory = CAT_MEAT
+
 /datum/crafting_recipe/food/cubancarp
 	name = "Cuban Carp"
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/obj/item/reagent_containers/food/snacks/grown/chili = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/cubancarp
 	subcategory = CAT_MEAT
@@ -82,7 +91,7 @@
 	name = "Fish and Chips"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/fries = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/battered = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishandchips
 	subcategory = CAT_MEAT
@@ -92,7 +101,7 @@
 	reqs = list(
 		/datum/reagent/consumable/flour = 5,
 		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishfingers
 	subcategory = CAT_MEAT
@@ -102,7 +111,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/tortilla = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1,
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishtaco
@@ -243,7 +252,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/grown/corn = 1,
 		/obj/item/reagent_containers/food/snacks/grown/peas =1,
-		/obj/item/reagent_containers/food/snacks/carpmeat = 1
+		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishfry
 	subcategory = CAT_MEAT

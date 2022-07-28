@@ -74,16 +74,41 @@
 	bitesize = 6
 	filling_color = "#FA8072"
 	tastes = list("fish" = 1)
-	foodtype = SEAFOOD
+	foodtype = SEAFOOD | GROSS
 
 /obj/item/reagent_containers/food/snacks/carpmeat/Initialize()
 	. = ..()
 	eatverb = pick("bite","chew","gnaw","swallow","chomp")
 
+/obj/item/reagent_containers/food/snacks/carpmeat/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked, rand(30 SECONDS, 60 SECONDS), TRUE, TRUE)  //loses its carpotoxin in the heat :)
 /obj/item/reagent_containers/food/snacks/carpmeat/imitation
 	name = "imitation carp fillet"
 	desc = "Almost just like the real thing, kinda."
 
+/obj/item/reagent_containers/food/snacks/carpmeat/imitation/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked, rand(40 SECONDS, 60 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/carpmeat/fish //basic fish fillet (no carpotoxin) for fish butchering
+	name = "fish fillet"
+	desc = "A fillet of spess fish meat. You should cook this."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+
+/obj/item/reagent_containers/food/snacks/carpmeat/fish/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked, rand(30 SECONDS, 60 SECONDS), TRUE, TRUE)
+/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked
+	name = "cooked fish fillet"
+	desc = "A fillet of spess fish meat. Cooked to perfection."
+	icon_state = "fishfillet_cooked"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 5) //cooked fish is actually pretty good for you
+	foodtype = SEAFOOD
+
+/obj/item/reagent_containers/food/snacks/carpmeat/fish/battered
+	name = "battered fish fillet"
+	desc = "A fillet of spess fish meat. Coated in crunchy fried beer batter."
+	icon_state = "fishfillet_battered"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cooking_oil = 1) //spontaniously fries because battering code doesn't actually exist yet.
+	foodtype = SEAFOOD
 /obj/item/reagent_containers/food/snacks/fishfingers
 	name = "fish fingers"
 	desc = "A finger of fish."
