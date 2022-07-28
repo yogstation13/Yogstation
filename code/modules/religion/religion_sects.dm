@@ -388,8 +388,8 @@
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L
-		var/datum/mind/M = H.mind
-		if(M.assigned_role == "Clown")
+	var/datum/mind/M = H.mind
+	if(M.assigned_role == "Clown")
 		return
 	var/heal_amt = 10
 	var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
