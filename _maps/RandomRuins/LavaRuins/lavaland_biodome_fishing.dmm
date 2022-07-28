@@ -291,6 +291,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/hall)
+"hK" = (
+/obj/effect/turf_decal/pool{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
 "if" = (
 /obj/effect/turf_decal/pool/corner{
 	dir = 1
@@ -434,13 +447,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing/hall)
-"lZ" = (
-/obj/structure/sign/painting{
-	pixel_y = -31
-	},
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
 "me" = (
 /obj/structure/table/wood,
 /obj/item/pen/fountain{
@@ -732,18 +738,6 @@
 "uR" = (
 /obj/effect/turf_decal/pool{
 	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"ve" = (
-/obj/effect/turf_decal/pool{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/fishing)
@@ -2014,6 +2008,14 @@
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/hall)
+"Yc" = (
+/obj/structure/sign/painting{
+	pixel_y = -31
+	},
+/obj/machinery/light,
+/obj/structure/chair/stool,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
 "Yl" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 8
@@ -2625,7 +2627,7 @@ ZT
 ZT
 ZT
 AS
-lZ
+Yc
 gZ
 qQ
 av
@@ -2816,7 +2818,7 @@ gD
 ZT
 ZT
 ZT
-ve
+hK
 gx
 cJ
 Go
