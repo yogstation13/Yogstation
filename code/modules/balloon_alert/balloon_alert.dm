@@ -19,7 +19,7 @@
 	hearers -= ignored_mobs
 
 	for (var/mob/hearer in hearers)
-		if (HAS_TRAIT(hearer, TRAIT_BLIND))
+		if (is_blind(hearer))
 			continue
 
 		balloon_alert(hearer, (hearer == src && self_message) || message)
