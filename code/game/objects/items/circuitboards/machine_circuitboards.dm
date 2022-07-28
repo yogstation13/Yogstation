@@ -619,7 +619,8 @@
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
 		/obj/machinery/vending/sovietsoda = "BODA",
-		/obj/machinery/vending/security = "SecTech")//Yogs
+		/obj/machinery/vending/security = "SecTech",
+		/obj/machinery/vending/fishing = "Tackle Box 2000")//Yogs
 		//obj/machinery/vending/modularpc = "Deluxe Silicate Selections") // Yogs comment-out, because ktlwjec is bad at merging mirrors
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
@@ -659,13 +660,6 @@
 	req_components = list(
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/vending_refill/donksoft = 1)
-
-/obj/item/circuitboard/machine/vending/fishing
-	name = "Tackle Box 2000 Vendor (Machine Board)"
-	build_path = /obj/machinery/vending/fishing
-	req_components = list(
-		/obj/item/stack/sheet/glass = 1,
-		/obj/item/vending_refill/fishing = 1)
 
 //Medical
 
