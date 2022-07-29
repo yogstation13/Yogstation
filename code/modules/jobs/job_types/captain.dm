@@ -12,21 +12,22 @@
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
-	exp_requirements = 180
+	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
 	alt_titles = list("Station Commander", "Facility Director")
 
 	outfit = /datum/outfit/job/captain
 
-	access = list() 			//See get_access()
-	minimal_access = list() 	//See get_access()
+	added_access = list() 			//See get_access()
+	base_access = list() 	//See get_access()
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
+	minimal_character_age = 35 //Feasibly expected to know everything and potentially do anything. Leagues of experience, briefing, training, and trust required for this role
 
 /datum/job/captain/get_access()
 	return get_all_accesses()

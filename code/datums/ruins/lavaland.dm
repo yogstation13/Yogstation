@@ -14,6 +14,13 @@
 	Comes with a rustic wooden bar and suicidal bartender."
 	suffix = "lavaland_biodome_beach.dmm"
 
+/datum/map_template/ruin/lavaland/biodome/fishing
+	name = "Biodome Fishing Pier"
+	id = "biodome-fishing"
+	description = "A freshwater fishing pier, contained in a biodome? In MY lavaland? \
+	Comes with a rustic wooden pier, kitchen, a gift shop, and two fishermen."
+	suffix = "lavaland_biodome_fishing.dmm"
+
 /datum/map_template/ruin/lavaland/biodome/winter
 	name = "Biodome Winter"
 	id = "biodome-winter"

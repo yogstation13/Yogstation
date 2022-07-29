@@ -307,7 +307,10 @@
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
 	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_SHADOWTHRALL))
-		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+		if(getorganslot(ORGAN_SLOT_EYES))
+			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+		else
+			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
 
 	if(!appears_dead)
 		if(drunkenness && !skipface) //Drunkenness

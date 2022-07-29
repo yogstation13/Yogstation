@@ -20,6 +20,7 @@
 	obj_damage = 60
 	melee_damage_lower = 25
 	melee_damage_upper = 25
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "slashes"
 	speak_emote = list("hisses")
 	bubble_icon = "alien"

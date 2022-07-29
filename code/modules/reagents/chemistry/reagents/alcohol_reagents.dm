@@ -1254,7 +1254,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = rgb(51, 19, 3) //Sickly brown
 	boozepwr = 300 //I warned you
 	taste_description = "a wall of bricks"
-	glass_icon_state = "glass_brown2"
+	glass_icon_state = "bacchus"
 	glass_name = "Bacchus' Blessing"
 	glass_desc = "You didn't think it was possible for a liquid to be so utterly revolting. Are you sure about this...?"
 

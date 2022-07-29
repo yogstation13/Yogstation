@@ -341,8 +341,8 @@
 			parts += "<span class='redtext big'>Crew Major Victory!</span>"
 			parts += "<B>The Research Staff has saved the disk and killed the [syndicate_name] Operatives</B>"
 		if(NUKE_RESULT_CREW_WIN)
-			parts += "<span class='redtext big'>Crew Minor Victory</span>"
-			parts += "<B>The Research Staff has saved the disk and fled the station!</B>"
+			parts += "<span class='redtext big'>Crew Major Victory</span>"
+			parts += "<B>The Research Staff has saved the disk and stopped the [syndicate_name] Operatives!</B>"
 		if(NUKE_RESULT_DISK_LOST)
 			parts += "<span class='neutraltext big'>Neutral Victory!</span>"
 			parts += "<B>The Research Staff failed to secure the authentication disk but did manage to kill most of the [syndicate_name] Operatives!</B>"

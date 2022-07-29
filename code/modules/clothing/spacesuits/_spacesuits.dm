@@ -21,6 +21,7 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	resistance_flags = NONE
 	dog_fashion = null
+	cryo_preserve = TRUE
 
 /obj/item/clothing/suit/space
 	name = "space suit"
@@ -44,3 +45,4 @@
 	equip_delay_other = 80
 	resistance_flags = NONE
 	item_flags = MEDRESIST
+	cryo_preserve = TRUE

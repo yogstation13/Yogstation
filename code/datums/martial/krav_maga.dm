@@ -92,7 +92,7 @@
 	D.visible_message(span_warning("[A] leg sweeps [D]!"), \
 					  	span_userdanger("[A] leg sweeps you!"))
 	playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
-	D.apply_damage(A.dna.species.punchdamagehigh / 2, BRUTE)	//5 damage
+	D.apply_damage(A.get_punchdamagehigh() / 2, BRUTE)	//5 damage
 	D.Paralyze(40)
 	log_combat(A, D, "leg sweeped")
 	return 1
@@ -111,7 +111,7 @@
 	D.visible_message(span_warning("[A] karate chops [D]'s neck!"), \
 				  	span_userdanger("[A] karate chops your neck, rendering you unable to speak!"))
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
-	D.apply_damage(A.dna.species.punchdamagehigh / 2, A.dna.species.attack_type)	//5 damage
+	D.apply_damage(A.get_punchdamagehigh() / 2, A.dna.species.attack_type)	//5 damage
 	if(D.silent <= 10)
 		D.silent = clamp(D.silent + 10, 0, 10)
 	log_combat(A, D, "neck chopped")
@@ -122,7 +122,7 @@
 		return 1
 	log_combat(A, D, "punched")
 	var/picked_hit_type = pick("punches", "kicks")
-	var/bonus_damage = A.dna.species.punchdamagehigh	//10 damage
+	var/bonus_damage = A.get_punchdamagehigh()	//10 damage
 	if(!(D.mobility_flags & MOBILITY_STAND))
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
@@ -161,6 +161,7 @@
 
 /obj/item/clothing/gloves/krav_maga
 	var/datum/martial_art/krav_maga/style = new
+	cryo_preserve = TRUE
 
 /obj/item/clothing/gloves/krav_maga/equipped(mob/user, slot)
 	. = ..()

@@ -180,9 +180,21 @@ datum/crafting_recipe/food/donut/meat
 
 ////////////////////////////////////////////////DONK POCKETS////////////////////////////////////////////////
 
+////////////////////////////////////////////////DONKPOCCKETS////////////////////////////////////////////////
+
+/datum/crafting_recipe/food/donkpocket
+	time = 15
+	name = "Original Donkpocket"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/meatball = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donkpocket
+	subcategory = CAT_PASTRY
+
 /datum/crafting_recipe/food/dankpocket
-	time = 1.5 SECONDS
-	name = "Dankpocket"
+	time = 15
+	name = "Dank-pocket"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cannabis = 1
@@ -190,14 +202,68 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/dankpocket
 	subcategory = CAT_PASTRY
 
-/datum/crafting_recipe/food/donkpocket
-	time = 1.5 SECONDS
-	name = "Donkpocket"
+/datum/crafting_recipe/food/donkpocket/spicy
+	time = 15
+	name = "Spicy Donkpocket"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
-		/obj/item/reagent_containers/food/snacks/meatball = 1
+		/obj/item/reagent_containers/food/snacks/meatball = 1,
+		/obj/item/reagent_containers/food/snacks/grown/chili = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/donkpocket
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/spicy
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donkpocket/teriyaki
+	time = 15
+	name = "Teriyaki Donkpocket"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/meatball = 1,
+		/datum/reagent/consumable/soysauce = 3
+	)
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/teriyaki
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donkpocket/pizza
+	time = 15
+	name = "Pizza Donkpocket"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/pizza
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donkpocket/honk
+	time = 15
+	name = "Honkpocket"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/grown/banana = 2,
+	)
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/honk
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donkpocket/meaty
+	time = 15
+	name = "Meatpocket"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/meat/slab = 1,
+		/obj/item/reagent_containers/food/snacks/meat/raw_cutlet = 2,
+	)
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/meaty
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donkpocket/berry
+	time = 15
+	name = "Berry Donkpocket"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
+		/obj/item/reagent_containers/food/snacks/grown/berries = 1,
+		/datum/reagent/consumable/sugar = 3
+	)
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/berry
 	subcategory = CAT_PASTRY
 
 ////////////////////////////////////////////////MUFFINS AND CUPCAKES////////////////////////////////////////////////

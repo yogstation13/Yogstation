@@ -306,6 +306,8 @@
 	if(factory)
 		factory.naut = null //remove this naut from its factory
 		factory.max_integrity = initial(factory.max_integrity)
+	if(overmind)
+		to_chat(overmind, "<font color=\"#EE4000\">[src] has died in [get_area(src)]!</font>")
 	flick("blobbernaut_death", src)
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/independent

@@ -365,30 +365,38 @@
 	filling_color = "#B22222"
 	foodtype = MEAT
 	tastes = list("meat" = 1)
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
+	slices_num = 3
 	juice_results = list(/datum/reagent/consumable/drippings = 15)
 	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain
-    foodtype = MEAT
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain
+	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain/human
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/plain/human
 	tastes = list("tender meat" = 1)
 	foodtype = MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/steak/killertomato
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/killertomato
 	name = "killer tomato steak"
 	tastes = list("tomato" = 1)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/bear
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/bear
 	name = "bear steak"
 	tastes = list("meat" = 1, "salmon" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/xeno
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/xeno
 	name = "xeno steak"
 	tastes = list("meat" = 1, "acid" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/spider
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/spider
 	name = "spider steak"
 	tastes = list("cobwebs" = 1)
 
@@ -402,15 +410,18 @@
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/gondola
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/gondola
 	name = "gondola steak"
 	tastes = list("meat" = 1, "tranquility" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/penguin
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin
 	name = "penguin steak"
 	icon_state = "birdsteak"
 	tastes = list("beef" = 1, "cod fish" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain/human/lizard
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
 	name = "lizard steak"
 	icon_state = "birdsteak"
 	tastes = list("juicy chicken" = 3, "scales" = 1)
@@ -422,6 +433,7 @@
 	tastes = list("enhanced char" = 2, "suspicious tenderness" = 2, "natural & artificial dyes" = 2, "emulsifying agents" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/synth
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
 	name = "synthsteak"
 	desc = "A synthetic meat steak. It doesn't look quite right, now does it?"
 	icon_state = "meatsteak_old"

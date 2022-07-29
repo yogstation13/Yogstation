@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/open/space,
-/area/space)
+/turf/template_noop,
+/area/template_noop)
 "ab" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "cargo bay";
@@ -92,6 +92,9 @@
 "al" = (
 /obj/structure/closet/emcloset,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/pen,
+/obj/item/pen,
+/obj/item/pen,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "am" = (
@@ -309,7 +312,9 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "aN" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner,
+/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aO" = (
@@ -679,6 +684,12 @@
 "fw" = (
 /obj/structure/table,
 /obj/item/storage/photo_album,
+/obj/item/paper/crumpled{
+	inertia_dir = 0;
+	info = "It was bugging me that we didn't have pens, so I looted a ruin for some more. They're in the emergency closet. -E";
+	pixel_x = 1;
+	pixel_y = 6
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "gv" = (
@@ -886,7 +897,7 @@
 	height = 15;
 	id = "whiteship";
 	launch_status = 0;
-	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
+	movement_force = list("KNOCKDOWN"=0,"THROW"=0);
 	name = "Free Miner Ship";
 	port_direction = 8;
 	preferred_direction = 4;
@@ -905,7 +916,9 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "pP" = (
-/obj/machinery/computer/shuttle/white_ship/miner,
+/obj/machinery/computer/shuttle/white_ship/miner{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "qA" = (
@@ -1055,6 +1068,7 @@
 	pixel_x = -1;
 	pixel_y = 2
 	},
+/obj/item/pen/fountain,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Fj" = (

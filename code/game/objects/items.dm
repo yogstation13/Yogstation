@@ -4,6 +4,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // if true, everyone item when created will have its name changed to be
 // more... RPG-like.
 
+GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, ABOVE_LIGHTING_PLANE))
+
 /obj/item
 	name = "item"
 	icon = 'icons/obj/misc.dmi'
@@ -132,6 +134,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	//Tape vars
 	var/taped = FALSE
+
+	/// Should the cryo console preserve this item
+	var/cryo_preserve = FALSE
 
 /obj/item/Initialize()
 

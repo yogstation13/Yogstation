@@ -1154,12 +1154,12 @@
 	reagent_state = LIQUID
 	color = "#43bf1d"
 	taste_description = "bug intestines"
-	overdose_threshold = 10
+	overdose_threshold = 20
 	can_synth = FALSE
 
 /datum/reagent/medicine/grubjuice/on_mob_life(mob/living/carbon/M)
-	M.heal_bodypart_damage(7,7)
-	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 2*REM)
+	M.heal_bodypart_damage(3,3)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1*REM)
 	..()
 	return TRUE
 

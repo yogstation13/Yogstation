@@ -11,12 +11,13 @@
 
 	outfit = /datum/outfit/job/artist
 	alt_titles = list("Painter", "Composer", "Artisan")
-	access = list()
-	minimal_access = list()
+	added_access = list()
+	base_access = list()
 	paycheck = PAYCHECK_ASSISTANT
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_ARTIST
+	minimal_character_age = 18 //Young folks can be crazy crazy artists, something talented that can be self-taught feasibly
 
 /datum/outfit/job/artist
 	name = "Artist"

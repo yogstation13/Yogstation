@@ -24,6 +24,7 @@
 	obj_damage = 60
 	melee_damage_lower = 12
 	melee_damage_upper = 12
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "bites into"
 	a_intent = INTENT_HARM
 	speak_emote = list("chitters")
@@ -72,6 +73,7 @@
 	throw_message = "bounces harmlessly off of"
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = null // doesn't bite unlike the parent type.
 	attacktext = "impales"
 	a_intent = INTENT_HARM
 	speak_emote = list("telepathically cries")
