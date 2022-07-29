@@ -368,6 +368,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			if(I)
 				I.Remove(C)
 				QDEL_NULL(I)
+	else
+		for(var/mutantorgan in mutant_organs)
+			var/obj/item/organ/I = C.getorgan(mutantorgan)
+			if(I)
+				I.Remove(C)
+				QDEL_NULL(I)
 
 	for(var/path in mutant_organs)
 		var/obj/item/organ/I = new path()
