@@ -12142,29 +12142,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"cNF" = (
-/obj/structure/table,
-/obj/item/roller{
-	pixel_x = -3;
-	pixel_y = 14
-	},
-/obj/item/roller{
-	pixel_x = -3;
-	pixel_y = 10
-	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_x = 7;
-	pixel_y = 12
-	},
-/obj/item/clothing/glasses/hud/health{
-	pixel_x = 7;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/paramedic)
 "cNJ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -32638,13 +32615,6 @@
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
-"ljy" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_y = 32
-	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/turf/open/floor/engine/vacuum,
-/area/science/mixing/chamber)
 "ljF" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
@@ -36644,6 +36614,26 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/teleporter)
+"mLb" = (
+/obj/structure/table,
+/obj/item/storage/box/syringes{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -8;
+	pixel_y = 11
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/vending/wallmed{
+	pixel_y = -28
+	},
+/obj/item/pickaxe/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/paramedic)
 "mLr" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Dormitory"
@@ -41943,6 +41933,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/starboard)
+"oOZ" = (
+/obj/machinery/sparker/toxmix{
+	id = "mixingsparker";
+	pixel_y = 32
+	},
+/turf/open/floor/engine/vacuum,
+/area/science/mixing/chamber)
 "oPc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -55933,6 +55930,30 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"uut" = (
+/obj/structure/table,
+/obj/item/roller{
+	pixel_x = -3;
+	pixel_y = 14
+	},
+/obj/item/roller{
+	pixel_x = -3;
+	pixel_y = 10
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 7;
+	pixel_y = 12
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/item/pickaxe/mini,
+/turf/open/floor/plasteel/white,
+/area/medical/paramedic)
 "uuN" = (
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
@@ -59156,25 +59177,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"vQY" = (
-/obj/structure/table,
-/obj/item/storage/box/syringes{
-	pixel_x = 5;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = -8
-	},
-/obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = -8;
-	pixel_y = 11
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/machinery/vending/wallmed{
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/paramedic)
 "vRb" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -59794,6 +59796,17 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/tcoms)
+"wco" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/sparker/toxmix{
+	id = "mixingsparker";
+	pixel_y = 32
+	},
+/obj/structure/sign/warning/vacuum/external{
+	pixel_y = 32
+	},
+/turf/open/floor/engine/vacuum,
+/area/science/mixing/chamber)
 "wcs" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/rust,
@@ -96582,7 +96595,7 @@ aGK
 nlk
 bNQ
 xVJ
-cNF
+uut
 aPX
 cBy
 lBc
@@ -97610,7 +97623,7 @@ aGK
 umD
 jHG
 yff
-vQY
+mLb
 aVN
 mmq
 dSi
@@ -101945,7 +101958,7 @@ nwl
 mlb
 aOn
 mlb
-ljy
+wco
 keF
 gon
 aAA
@@ -102716,7 +102729,7 @@ tBa
 xZV
 oZl
 xZV
-oki
+oOZ
 oki
 gon
 aAA
