@@ -21,6 +21,8 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	can_be_held = TRUE
 	do_footstep = TRUE
+	wuv_happy = "yaps happily!"
+	wuv_angy = "growls!"
 
 //Captain fox
 /mob/living/simple_animal/pet/fox/Renault
