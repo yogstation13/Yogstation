@@ -17,8 +17,9 @@
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony //emergency get out of jail card, but better. It also eats everything.
 	name = "Gluttony Demon Form"
-	desc = "Take on your true demon form. This form is strong but very obvious and especially weak to holy influence. \
-	Also, note that damage taken in this form can transform into your normal body. Heal by attacking living creatures before transforming back if gravely wounded! \
+	desc = "Take on your true demon form. This form is strong but very obvious. It's full demonic nature in this realm is taxing on you \
+	and you will slowly lose life while in this form, while also being especially weak to holy influences. \
+	Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them! \
 	Your unique form as a demon of gluttony also allows you to eat corpses to heal yourself."
 	shapeshift_type = /mob/living/simple_animal/lesserdemon/gluttony
 

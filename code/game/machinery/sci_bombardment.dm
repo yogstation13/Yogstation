@@ -21,7 +21,7 @@
 */
 /obj/machinery/sci_bombardment
 	name = "Lavaland Artillery Mainframe"
-	desc = "A machine consisting of Bluespace relays and a targetting mechanism, the L.A.M. tracks signals visible on nearby planetary bodies. Modern advancements to the Bluespace guidance system makes it significantly more accurate than its predecessor, the Lavaland Instantaneous Geotracking Missile Armament.\n"
+	desc = "A machine consisting of Bluespace relays and a targetting mechanism, the L.A.M. tracks signals visible on nearby planetary bodies. Modern advancements to the Bluespace guidance system makes it significantly more accurate than its predecessor, the Lavaland Missile Firing Abomination Obliterator.\n"
 	icon = 'icons/obj/machines/lam.dmi'
 	icon_state = "LAM_Base"
 	light_color = LIGHT_COLOR_PINK

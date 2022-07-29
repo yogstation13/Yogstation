@@ -10,6 +10,16 @@
 
 	possible_locs = list(BODY_ZONE_HEAD)
 
+/datum/surgery/advanced/dna_recovery/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/dna_recovery,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
+
 /datum/surgery/advanced/dna_recovery/alien
 	name = "Alien DNA recovery"
 	target_mobtypes = list(/mob/living/carbon/alien/humanoid)
@@ -34,7 +44,7 @@
 /datum/surgery_step/dna_recovery
 	name = "recover DNA"
 	implements = list(/obj/item/reagent_containers/syringe = 100, /obj/item/pen = 30)
-	time = 150
+	time = 15 SECONDS
 	chems_needed = list(/datum/reagent/medicine/rezadone, /datum/reagent/toxin/amanitin, /datum/reagent/consumable/entpoly)
 	require_all_chems = FALSE
 

@@ -3,8 +3,13 @@
 	desc = "Restores the heart to a functional state if it is in a non-functional state, making it able to be defibrillated and sustain life. Can only be performed once on an individual heart."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "heart-off"
-	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders,
-				 /datum/surgery_step/incise_heart, /datum/surgery_step/coronary_bypass, /datum/surgery_step/close)
+	steps = list(/datum/surgery_step/incise, 
+				/datum/surgery_step/retract_skin, 
+				/datum/surgery_step/saw, 
+				/datum/surgery_step/clamp_bleeders,
+				/datum/surgery_step/incise_heart, 
+				/datum/surgery_step/coronary_bypass, 
+				/datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)
 
 /datum/surgery/coronary_bypass/can_start(mob/user, mob/living/carbon/target)
@@ -13,6 +18,19 @@
 		if(H.damage > 60 && !H.operated)
 			return TRUE
 	return FALSE
+
+/datum/surgery/coronary_bypass/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/incise_heart, 
+				/datum/surgery_step/coronary_bypass,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
+	lying_required = FALSE
+	self_operable = TRUE
 
 
 //an incision but with greater bleed, and a 90% base success chance
@@ -80,11 +98,12 @@
 	return TRUE
 
 /datum/surgery_step/coronary_bypass/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		display_results(user, target, span_warning("You screw up in attaching the graft, and it tears off, tearing part of the heart!"),
-			span_warning("[user] screws up, causing blood to spurt out of [H]'s chest profusely!"),
-			span_warning("[user] screws up, causing blood to spurt out of [H]'s chest profusely!"))
-		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
-		BP.generic_bleedstacks += 30
-	return FALSE
+	var/obj/item/organ/heart/heart = target.getorganslot(ORGAN_SLOT_HEART)
+	if(heart)
+		heart.operated = TRUE
+	display_results(user, target, span_warning("You screw up in attaching the graft, and it tears off, tearing part of the heart!"),
+		span_warning("[user] screws up, causing blood to spurt out of [target]'s chest profusely!"),
+		span_warning("[user] screws up, causing blood to spurt out of [target]'s chest profusely!"))
+	var/obj/item/bodypart/BP = target.get_bodypart(target_zone)
+	BP.generic_bleedstacks += 30
+	return TRUE

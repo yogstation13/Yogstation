@@ -1,7 +1,6 @@
 /obj/item/restraints
 	icon = 'icons/obj/handcuffs.dmi'
 	breakouttime = 600
-	mob_overlay_icon = 'icons/mob/restraints.dmi'
 	var/break_strength = 2 // Minimum strength required for a holopara to break it
 
 /obj/item/restraints/suicide_act(mob/living/carbon/user)
@@ -238,9 +237,12 @@
 	icon_state = "[initial(icon_state)][armed]"
 
 /obj/item/restraints/legcuffs/beartrap/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is sticking [user.p_their()] head in the [src.name]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
-	return (BRUTELOSS)
+	if(armed)
+		user.visible_message(span_suicide("[user] is sticking [user.p_their()] head in the [name]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+		return BRUTELOSS
+	user.visible_message(span_suicide("[user] is sticking [user.p_their()] head in the [name] but the [name] is disarmed!"))
+	return SHAME
 
 /obj/item/restraints/legcuffs/beartrap/attack_self(mob/user)
 	..()

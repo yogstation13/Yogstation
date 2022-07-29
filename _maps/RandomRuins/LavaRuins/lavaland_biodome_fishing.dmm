@@ -160,18 +160,6 @@
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle,
 /area/ruin/powered/fishing)
-"fG" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_x = 1;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing)
 "fI" = (
 /obj/effect/turf_decal/pool,
 /turf/open/floor/wood{
@@ -307,19 +295,6 @@
 /area/ruin/powered/fishing)
 "jO" = (
 /turf/open/floor/plasteel/dark,
-/area/ruin/powered/fishing)
-"kZ" = (
-/obj/machinery/button/door{
-	id = "fishing lockdown";
-	name = "Lockdown Control";
-	pixel_x = -23;
-	pixel_y = 1;
-	req_access_txt = "19"
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
 "lg" = (
 /obj/machinery/vending/dinnerware,
@@ -573,6 +548,13 @@
 	},
 /turf/open/water/safe,
 /area/ruin/powered/fishing)
+"xb" = (
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = "Fisherman"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
 "ys" = (
 /obj/machinery/door/airlock/wood{
 	name = "bunk room";
@@ -610,6 +592,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing)
+"zd" = (
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = "Fisherman"
+	},
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/fishing)
 "zk" = (
 /obj/effect/turf_decal/pool{
 	dir = 8
@@ -645,6 +641,19 @@
 	dir = 6
 	},
 /obj/machinery/vending/autodrobe,
+/turf/open/floor/plasteel,
+/area/ruin/powered/fishing)
+"By" = (
+/obj/machinery/button/door{
+	id = "fishing lockdown";
+	name = "Lockdown Control";
+	pixel_x = -23;
+	pixel_y = 1;
+	req_access_txt = "Fisherman"
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/fishing)
 "BV" = (
@@ -756,11 +765,6 @@
 	pixel_y = -26
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/fishing)
-"Eo" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing)
 "Fb" = (
 /obj/structure/railing{
@@ -1759,7 +1763,7 @@ SQ
 Jt
 JL
 UO
-fG
+zd
 JL
 aa
 "}
@@ -1791,7 +1795,7 @@ XA
 gt
 OQ
 UO
-Eo
+xb
 JL
 aa
 "}
@@ -2014,7 +2018,7 @@ sI
 CI
 HX
 HX
-kZ
+By
 WS
 JL
 US
