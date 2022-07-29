@@ -5,6 +5,8 @@
 	Otherwise pretty standard.
 */
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
+	if(psi)
+		INVOKE_PSI_POWERS(src, psi.get_melee_powers(SSpsi.faculties_by_intent[a_intent]), A, FALSE)
 	if(HAS_TRAIT(A, TRAIT_NOINTERACT))
 		to_chat(A, span_notice("You can't touch things!"))
 		return
@@ -33,6 +35,14 @@
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
 	A.attack_hand(src)
+
+/mob/living/carbon/human/attack_empty_hand()
+	if(psi)
+		INVOKE_PSI_POWERS(src, psi.get_manifestations(), src, FALSE)
+
+/mob/living/carbon/human/RangedAttack(atom/A, params)
+	if(psi)
+		INVOKE_PSI_POWERS(src, psi.get_ranged_powers(SSpsi.faculties_by_intent[a_intent]), A, TRUE)
 
 //Return TRUE to cancel other attack hand effects that respect it.
 /atom/proc/attack_hand(mob/user)
@@ -114,8 +124,6 @@
 /*
 	Animals & All Unspecified
 */
-/mob/living/UnarmedAttack(atom/A)
-	A.attack_animal(src)
 
 /atom/proc/attack_animal(mob/user)
 	return

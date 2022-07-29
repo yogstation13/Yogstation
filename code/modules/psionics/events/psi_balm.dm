@@ -1,3 +1,10 @@
+/datum/round_event_control/balm
+	name = "Psi Balm"
+	typepath = /datum/round_event/psi/balm
+	weight = 20
+	max_occurrences = 3
+	max_alert = SEC_LEVEL_DELTA
+
 /datum/round_event/psi/balm
 	var/static/list/balm_messages = list(
 		"A soothing balm washes over your psyche.",

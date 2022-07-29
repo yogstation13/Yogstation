@@ -118,22 +118,22 @@
 		heal_general = TRUE
 		heal_poison = TRUE
 		heal_internal = TRUE
-		heal_bleeding = TRUE
+//		heal_bleeding = TRUE
 		mend_prob = 50
 		heal_rate = 7
 	else if(use_rank == PSI_RANK_GRANDMASTER)
 		heal_poison = TRUE
 		heal_internal = TRUE
-		heal_bleeding = TRUE
+//		heal_bleeding = TRUE
 		mend_prob = 20
 		heal_rate = 5
 	else if(use_rank == PSI_RANK_MASTER)
 		heal_internal = TRUE
-		heal_bleeding = TRUE
+//		heal_bleeding = TRUE
 		mend_prob = 10
 		heal_rate = 3
 	else if(use_rank == PSI_RANK_OPERANT)
-		heal_bleeding = TRUE
+//		heal_bleeding = TRUE
 		mend_prob = 5
 		heal_rate = 1
 	else

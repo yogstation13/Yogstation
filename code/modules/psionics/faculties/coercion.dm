@@ -32,9 +32,7 @@
 		for(var/mob/living/M in orange(user, user.psi.get_rank(PSI_COERCION)))
 			if(M == user)
 				continue
-			if(prob(60) && iscarbon(M))
-				var/mob/living/carbon/C = M
-				M.emote("scream")
+			M.emote("scream")
 			to_chat(M, span_danger("Your senses are blasted into oblivion by a psionic scream!"))
 			M.eye_blind = max(M.eye_blind,3)
 //			M.ear_deaf = max(M.ear_deaf,6)
@@ -120,9 +118,9 @@
 		to_chat(target, "<span class='danger'>The muscles in your arms cramp horrendously!</span>")
 		if(prob(75))
 			target.emote("scream")
-		if(prob(75) && target.l_hand && target.unEquip(target.l_hand))
+		if(prob(75) && target.held_items[1] && target.dropItemToGround(target.get_item_for_held_index(1)))
 			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their left hand spasms!</span>")
-		if(prob(75) && target.r_hand && target.unEquip(target.r_hand))
+		if(prob(75) && target.held_items[2] && target.dropItemToGround(target.get_item_for_held_index(2)))
 			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their right hand spasms!</span>")
 		return TRUE
 
@@ -204,7 +202,7 @@
 
 		var/coercion_rank = user.psi.get_rank(PSI_COERCION)
 		if(coercion_rank >= PSI_RANK_GRANDMASTER)
-			target.AdjustParalysis(-1)
+			target.SetParalyzed(0)
 		target.drowsyness = 0
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon/M = target
@@ -226,8 +224,7 @@
 	. = ..()
 	if(.)
 		user.visible_message("<i><span class='notice'>[user] touches their fingers to their temple.</span></i>")
-		var/text = input("What would you like to say?", "Speak to creature", null, null)
-		text = sanitize(text)
+		var/text = pretty_filter(stripped_input(user, "What would you like to say?", "Speak to creature", null, null))
 
 		if(!text)
 			return
@@ -236,30 +233,30 @@
 			to_chat(user,"<span class='cult'>Not even a psion of your level can speak to the dead.</span>")
 			return
 
-		if (target.isSynthetic())
+		if (issilicon(target)) 
 			to_chat(user,"<span class='warning'>This can only be used on living organisms.</span>")
 			return
 
-		log_say("[key_name(user)] communed to [key_name(target)]: [text]",ckey=key_name(src))
+		log_say("[key_name(user)] communed to [key_name(target)]: [text]")
 
 		for (var/mob/M in GLOB.player_list)
-			else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
+			if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
 				to_chat(M,"<span class='notice'>[user] psionically says to [target]:</span> [text]")
 
 		var/mob/living/carbon/human/H = target
-		if (target.can_commune())
-			to_chat(H,"<b>You instinctively sense [user] sending their thoughts into your mind, hearing:</b> [text]")
-		else if(prob(25) && (target.mind && target.mind.assigned_role=="Chaplain"))
+//		if (target.can_commune())
+		to_chat(H,"<b>You instinctively sense [user] sending their thoughts into your mind, hearing:</b> [text]")
+		if(prob(25) && (target.mind && target.mind.assigned_role == "Chaplain"))
 			to_chat(H,"<b>You sense [user]'s psyche enter your mind, whispering quietly:</b> [text]")
 		else
 			to_chat(H,"<b>You feel something crawl behind your eyes, hearing:</b> [text]")
 			if(istype(H))
-				if (H.can_commune())
-					return
-				if(prob(10) && !(H.species.flags & NOBLOOD))
+				//if (H.can_commune())
+				//	return
+				if(prob(10) && !(H.dna.species.species_traits & NOBLOOD))
 					to_chat(H,"<span class='warning'>Your nose begins to bleed...</span>")
-					H.drip(3)
-				else if(prob(25) && (H.can_feel_pain()))
+					//H.drip(3)
+				else if(prob(25))
 					to_chat(H,"<span class='warning'>Your head hurts...</span>")
 				else if(prob(50))
 					to_chat(H,"<span class='warning'>Your mind buzzes...</span>")
@@ -283,7 +280,7 @@
 		var/list/dirs = list()
 		for(var/mob/living/L in range(20))
 			var/turf/T = get_turf(L)
-			if(!T || L == user || L.stat == DEAD || L.isSynthetic())
+			if(!T || L == user || L.stat == DEAD || issilicon(L))
 				continue
 			var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = user)
 			ping_image.plane = LIGHTING_LAYER+1

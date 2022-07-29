@@ -46,13 +46,13 @@
 	use_description = "Target a patient while on help intent at melee range to mend a variety of maladies, such as bleeding or broken bones. Higher ranks in this faculty allow you to mend a wider range of problems."
 
 /datum/psionic_power/redaction/mend/invoke(var/mob/living/user, var/mob/living/carbon/human/target)
-	if(!istype(user) || !istype(target))
+	if(!istype(user) || !istype(target) || user.zone_selected != BODY_ZONE_CHEST)
 		return FALSE
 	. = ..()
 	if(.)
-		var/obj/item/organ/external/E = target.get_organ(user.zone_sel.selecting)
+		var/obj/item/bodypart/E = target.get_bodypart(user.zone_selected)
 
-		if(!E || E.is_stump())
+		if(!E)
 			to_chat(user, span_warning("They are missing that limb."))
 			return TRUE
 
@@ -68,13 +68,12 @@
 		if(pk_rank >= PSI_RANK_LATENT && redaction_rank >= PSI_RANK_MASTER)
 			var/removal_size = clamp(5-pk_rank, 0, 5)
 			var/valid_objects = list()
-			for(var/thing in E.implants)
-				var/obj/imp = thing
-				if(imp.w_class >= removal_size && !istype(imp, /obj/item/implant))
-					valid_objects += imp
+			for(var/obj/item/thing in E.embedded_objects)
+				if(thing.w_class >= removal_size)
+					valid_objects += thing
 			if(LAZYLEN(valid_objects))
 				var/removing = pick(valid_objects)
-				target.remove_implant(removing, TRUE)
+				target.remove_embedded_object(removing)
 				to_chat(user, span_notice("You extend a tendril of psychokinetic-redactive power and carefully tease \the [removing] free of \the [E]."))
 				return TRUE
 /*
@@ -130,6 +129,7 @@
 	if(.)
 		// No messages, as Mend procs them even if it fails to heal anything, and Cleanse is always checked after Mend.
 		var/removing = rand(20,25)
+		/*
 		if(target.total_radiation)
 			to_chat(user, span_notice("You repair some of the radiation-damaged tissue within \the [target]..."))
 			if(target.total_radiation > removing)
@@ -137,6 +137,7 @@
 			else
 				target.total_radiation = 0
 			return TRUE
+			*/
 		if(target.getCloneLoss())
 			to_chat(user, span_notice("You stitch together some of the mangled DNA within \the [target]..."))
 			if(target.getCloneLoss() >= removing)
@@ -158,7 +159,7 @@
 	admin_log = FALSE
 
 /datum/psionic_power/revive/invoke(var/mob/living/user, var/mob/living/target)
-	if(!isliving(target) || !istype(target) || user.zone_sel.selecting != BODY_ZONE_HEAD)
+	if(!isliving(target) || !istype(target) || user.zone_selected != BODY_ZONE_HEAD)
 		return FALSE
 	. = ..()
 	if(.)
@@ -183,5 +184,5 @@
 		to_chat(target, span_notice("<font size = 3><b>Life floods back into your body!</b></font>"))
 		target.visible_message(span_notice("\The [target] shudders violently!"))
 		target.adjustOxyLoss(-rand(15,20))
-		target.basic_revival()
+		target.revive()
 		return TRUE

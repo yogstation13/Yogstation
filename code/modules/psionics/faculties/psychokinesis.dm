@@ -68,7 +68,7 @@
 	if(.)
 
 		var/distance = get_dist(user, target)
-		if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS))
+		if(distance > user.psi.get_rank(PSI_PSYCHOKINESIS) * 2)
 			to_chat(user, span_warning("Your telekinetic power won't reach that far."))
 			return FALSE
 

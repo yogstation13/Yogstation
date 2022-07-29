@@ -1,3 +1,10 @@
+/datum/round_event_control/wail
+	name = "Psi Wail"
+	typepath = /datum/round_event/psi/wail
+	weight = 20
+	max_occurrences = 3
+	max_alert = SEC_LEVEL_DELTA
+
 /datum/round_event/psi/wail
 	var/static/list/whine_messages = list(
 		"A nerve-tearing psychic whine intrudes on your thoughts.",

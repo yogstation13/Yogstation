@@ -1,3 +1,10 @@
+/datum/round_event_control/minispasm
+	name = "Minispasms"
+	typepath = /datum/round_event/minispasm
+	weight = 8
+	max_occurrences = 1
+	earliest_start = 30 MINUTES
+
 /datum/round_event/minispasm
 	startWhen = 60
 	endWhen = 90

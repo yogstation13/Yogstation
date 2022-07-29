@@ -16,7 +16,7 @@
 	use_description = "Target the head, eyes or mouth while on harm intent to use a melee attack that causes a localized electromagnetic pulse."
 
 /datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_sel.selecting != BODY_ZONE_HEAD && user.zone_sel.selecting != BODY_ZONE_PRECISE_EYES && user.zone_sel.selecting != BODY_ZONE_PRECISE_MOUTH)
+	if(user.zone_selected != BODY_ZONE_HEAD && user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_PRECISE_MOUTH)
 		return FALSE
 	if(istype(target, /turf))
 		return FALSE
@@ -35,7 +35,7 @@
 	use_description = "Target the chest or groin while on harm intent to use a melee attack that electrocutes a victim."
 
 /datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_sel.selecting != BODY_ZONE_CHEST && user.zone_sel.selecting != BODY_ZONE_PRECISE_GROIN)
+	if(user.zone_selected != BODY_ZONE_CHEST && user.zone_selected != BODY_ZONE_PRECISE_GROIN)
 		return FALSE
 	if(istype(target, /turf))
 		return FALSE
@@ -43,10 +43,10 @@
 	if(.)
 		user.visible_message("<span class='danger'>\The [user] sends a jolt of electricity arcing into \the [target]!</span>")
 		if(istype(target))
-			target.electrocute_act(rand(15,45), user, 1, user.zone_sel.selecting)
+			target.electrocute_act(rand(15,45), user, 1, user.zone_selected)
 			return TRUE
 		else if(istype(target, /atom))
-			var/obj/item/cell/charging_cell = target.get_cell()
+			var/obj/item/stock_parts/cell/charging_cell = target.get_cell()
 			if(istype(charging_cell))
 				charging_cell.give(rand(15,45))
 			return TRUE
@@ -86,8 +86,8 @@
 			playsound(pew.loc, pew_sound, 25, 1)
 			pew.original = target
 			pew.starting = get_turf(user)
-			pew.shot_from = user
-			pew.launch_projectile(target)
+			pew.firer = user
+			pew.fire(direct_target = target)
 			return TRUE
 
 /datum/psionic_power/energistics/spark
@@ -99,7 +99,8 @@
 	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."
 
 /datum/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target)
-	if(isnull(target) || istype(target)) return FALSE
+	if(isnull(target) || istype(target)) 
+		return FALSE
 	. = ..()
 	if(.)
 		if(istype(target,/obj/item/clothing/mask/cigarette))

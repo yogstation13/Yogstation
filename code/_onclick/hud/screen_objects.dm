@@ -214,6 +214,8 @@
 		var/obj/item/I = hud.mymob.get_active_held_item()
 		if(I)
 			I.Click(location, control, params)
+		else
+			hud.mymob.attack_empty_hand(hud.mymob.active_hand_index)
 	else
 		hud.mymob.swap_hand(held_index)
 	return 1

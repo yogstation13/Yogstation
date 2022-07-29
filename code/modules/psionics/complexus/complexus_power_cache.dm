@@ -2,7 +2,6 @@
 	if(rebuild_power_cache)
 
 		melee_powers =         list()
-		grab_powers =          list()
 		ranged_powers =        list()
 		manifestation_powers = list()
 		powers_by_faculty =    list()
@@ -13,19 +12,15 @@
 			for(var/thing in faculty_decl.powers)
 				var/datum/psionic_power/power = thing
 				if(relevant_rank >= power.min_rank)
-					if(!powers_by_faculty[power.faculty]) powers_by_faculty[power.faculty] = list()
-					powers_by_faculty[power.faculty] += power
+					LAZYADD(powers_by_faculty[power.faculty], power)
 					if(power.use_ranged)
-						if(!ranged_powers[faculty]) ranged_powers[faculty] = list()
-						ranged_powers[faculty] += power
+						if(!ranged_powers[faculty]) 
+							ranged_powers[faculty] = list()
+						LAZYADD(ranged_powers[faculty], power)
 					if(power.use_melee)
-						if(!melee_powers[faculty]) melee_powers[faculty] = list()
-						melee_powers[faculty] += power
+						LAZYADD(melee_powers[faculty], power)
 					if(power.use_manifest)
 						manifestation_powers += power
-					if(power.use_grab)
-						if(!grab_powers[faculty]) grab_powers[faculty] = list()
-						grab_powers[faculty] += power
 		rebuild_power_cache = FALSE
 
 /datum/psi_complexus/proc/get_powers_by_faculty(var/faculty)
@@ -39,10 +34,6 @@
 /datum/psi_complexus/proc/get_ranged_powers(var/faculty)
 	rebuild_power_cache()
 	return ranged_powers[faculty]
-
-/datum/psi_complexus/proc/get_grab_powers(var/faculty)
-	rebuild_power_cache()
-	return grab_powers[faculty]
 
 /datum/psi_complexus/proc/get_manifestations()
 	rebuild_power_cache()

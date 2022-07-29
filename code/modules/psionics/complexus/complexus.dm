@@ -1,23 +1,38 @@
 /datum/psi_complexus
+	/// Whether or not we have been announced to our holder yet.
+	var/announced = FALSE
+	/// Whether or not we are suppressing our psi powers.
+	var/suppressed = TRUE
+	/// Whether or not we should automatically deflect/block incoming damage.
+	var/use_psi_armour = TRUE
+	/// Whether or not we need to rebuild our cache of psi powers.
+	var/rebuild_power_cache = TRUE
 
-	var/announced = FALSE             // Whether or not we have been announced to our holder yet.
-	var/suppressed = TRUE             // Whether or not we are suppressing our psi powers.
-	var/use_psi_armour = TRUE         // Whether or not we should automatically deflect/block incoming damage.
-	var/rebuild_power_cache = TRUE    // Whether or not we need to rebuild our cache of psi powers.
+	/// Overall psi rating.
+	var/rating = 0
+	/// Multiplier for power use stamina costs.
+	var/cost_modifier = 1
+	/// Number of process ticks we are stunned for.             
+	var/stun = 0
+	/// world.time minimum before next power use.
+	var/next_power_use = 0
+	/// Current psi pool.
+	var/stamina = 50
+	/// Max psi pool.
+	var/max_stamina = 50
 
-	var/rating = 0                    // Overall psi rating.
-	var/cost_modifier = 1             // Multiplier for power use stamina costs.
-	var/stun = 0                      // Number of process ticks we are stunned for.
-	var/next_power_use = 0            // world.time minimum before next power use.
-	var/stamina = 50                  // Current psi pool.
-	var/max_stamina = 50              // Max psi pool.
-
-	var/list/latencies                // List of all currently latent faculties.
-	var/list/ranks                    // Assoc list of psi faculties to current rank.
-	var/list/base_ranks               // Assoc list of psi faculties to base rank, in case reset is needed
-	var/list/manifested_items         // List of atoms manifested/maintained by psychic power.
-	var/next_latency_trigger = 0      // world.time minimum before a trigger can be attempted again.
-	var/last_armor_check              // world.time of last armour check.
+	/// List of all currently latent faculties.
+	var/list/latencies
+	/// Assoc list of psi faculties to current rank.
+	var/list/ranks
+	/// Assoc list of psi faculties to base rank, in case reset is needed
+	var/list/base_ranks
+	/// List of atoms manifested/maintained by psychic power.
+	var/list/manifested_items
+	/// world.time minimum before a trigger can be attempted again.
+	var/next_latency_trigger = 0
+	/// world.time of last armour check.
+	var/last_armor_check              
 	var/last_aura_size
 	var/last_aura_alpha
 	var/last_aura_color
