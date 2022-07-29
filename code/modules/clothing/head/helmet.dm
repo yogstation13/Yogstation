@@ -501,7 +501,7 @@
 	user.put_in_hands(plating)
 
 	name = initial(name)
-	armor = initial(armor)
+	armor = armor.setRating(5,0,0,0,0,0,0,10,0,0,0)
 	slowdown = initial(slowdown)
 	w_class = initial(w_class)
 	plating = null
@@ -527,6 +527,11 @@
 
 	name = "[K.name_set] plated helmet"
 	slowdown = K.slowdown_set
-	armor = K.armor_set
+	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
+		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
+
+	armor = armor.attachArmor(K.armor)
 	w_class = WEIGHT_CLASS_BULKY
 	plating = K
