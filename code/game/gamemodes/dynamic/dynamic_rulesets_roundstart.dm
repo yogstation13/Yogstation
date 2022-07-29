@@ -1002,3 +1002,37 @@
 		if(!bloodsuckermind.make_bloodsucker(assigned_bloodsuckers))
 			assigned -= assigned_bloodsuckers
 	return TRUE
+
+//////////////////////////////////////////////
+//                                          //
+//         Internal Affairs Agents          //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/iaa
+	name = "Traitors"
+	persistent = TRUE
+	antag_flag = ROLE_INTERNAL_AFFAIRS
+	antag_datum = /datum/antagonist/traitor/internal_affairs
+	minimum_required_age = 0
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
+	restricted_roles = list("Cyborg", "AI")
+	required_candidates = 1
+	weight = 5
+	cost = 10
+	scaling_cost = 9
+	requirements = list(25,25,25,25,25,25,25,25,25,25)
+	antag_cap = list("denominator" = 24)
+
+/datum/dynamic_ruleset/roundstart/iaa/pre_execute(population)
+	. = ..()
+	var/num_traitors = get_antag_cap(population) * (scaled_times + 1)
+	for (var/i = 1 to num_traitors)
+		if(candidates.len <= 0)
+			break
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.special_role = ROLE_INTERNAL_AFFAIRS
+		M.mind.restricted_roles = restricted_roles
+		log_game("[key_name(M)] has been selected as a Internal Affairs Agent")
+	return TRUE
