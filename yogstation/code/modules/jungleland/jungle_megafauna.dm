@@ -24,8 +24,8 @@
 	movement_type = GROUND
 	ranged = TRUE 
 	speak_emote = list("roars")
-	speed = 1.5
-	move_to_delay = 1.5
+	speed = 2
+	move_to_delay = 2
 	pixel_x = -16
 	pixel_y = -16
 	del_on_death = TRUE
@@ -299,7 +299,7 @@
 /obj/effect/tar_king/orb_out	
 	pixel_x = -16
 	pixel_y = -16
-	icon = 'yogstation/icons/effects/jungle.dmi'
+	icon = 'yogstation/icons/effects/64x64.dmi'
 
 /obj/effect/tar_king/orb_out/New(loc, ...)
 	. = ..()
@@ -309,7 +309,7 @@
 /obj/effect/tar_king/orb_in
 	pixel_x = -16
 	pixel_y = -16
-	icon = 'yogstation/icons/effects/jungle.dmi'
+	icon = 'yogstation/icons/effects/64x64.dmi'
 
 /obj/effect/tar_king/orb_in/New(loc, ...)
 	. = ..()

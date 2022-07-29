@@ -19,8 +19,13 @@
 	requires_power = TRUE
 	outdoors = TRUE
 
+/area/jungleland/Initialize()
+	. = ..()
+	if(outdoors)
+		GLOB.jungleland_daynight_cycle.affected_areas += src
 /area/jungleland/ocean
 	name = "Toxic Ocean"
+
 /area/jungleland/proper 
 	name = "Deep Jungle"
 

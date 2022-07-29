@@ -51,6 +51,10 @@
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
 	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 
+	//YOGS EDIT
+	var/inverse_faction_check = FALSE
+	//YOGS END
+
 /mob/living/simple_animal/hostile/Initialize()
 	. = ..()
 
@@ -203,7 +207,10 @@
 	if(search_objects < 2)
 		if(isliving(the_target))
 			var/mob/living/L = the_target
-			var/faction_check = faction_check_mob(L)
+			//YOGS EDIT
+			//factions check returns a number so we have to coerce it into a range of 0-1 before xoring it with inverse_faction_check
+			var/faction_check = (faction_check_mob(L) > 0 ) ^ inverse_faction_check
+			//YOGS END
 			if(robust_searching)
 				if(faction_check && !attack_same)
 					return FALSE

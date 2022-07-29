@@ -443,12 +443,6 @@
 	var/list/affected_areas = list()
 
 /datum/daynight_cycle/proc/finish_generation()
-	var/list/levels = SSmapping.levels_by_trait(ZTRAIT_DAYNIGHT_CYCLE)
-	for(var/z as anything in levels)
-		for(var/area/A as anything in SSmapping.areas_in_z["[z]"])
-			if(A.outdoors)
-				affected_areas += A
-				message_admins("[A.name] added to daynight cycle!")
 	INVOKE_ASYNC(src,.proc/daynight_cycle)
 
 /datum/daynight_cycle/proc/daynight_cycle()

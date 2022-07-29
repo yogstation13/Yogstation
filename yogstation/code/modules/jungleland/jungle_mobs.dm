@@ -160,7 +160,7 @@
 	speak_emote = list("roars", "howls")
 	emote_hear = list("stalks.","listens.","hears.")
 	emote_taunt = list("defies", "roars")
-	faction = list() //hostile even to the jungle itself
+	faction = list("skin_walkers") //hostile even to the jungle itself
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
@@ -240,7 +240,7 @@
 	speak_chance = initial(speak_chance)
 	taunt_chance = initial(taunt_chance)
 	human_lure = FALSE
-	faction = list()
+	faction = initial(faction)
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/pick_lure()
 	var/mob/living/picked = pick(subtypesof(/mob/living/simple_animal/hostile/yog_jungle))
@@ -447,3 +447,62 @@
 		toggle_ai(AI_ON) 
 		awoke = TRUE 
 		icon_state = has_blood ? "mosquito_blood" : icon_living
+
+
+/mob/living/simple_animal/hostile/tar 
+	icon = 'yogstation/icons/mob/jungle.dmi'
+	stat_attack = DEAD
+	weather_immunities = WEATHER_ACID
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	robust_searching = TRUE
+	see_in_dark = 3
+	vision_range = 4
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	pressure_resistance = 100
+	faction = list("tar")
+
+/mob/living/simple_animal/hostile/tar/amalgamation
+	name = "Tar Amalgamation"
+	desc = "Tar amalgamate, it has blades for hands and crystalline plates cover it's body"
+	icon_state = "tar_faithless"
+	health = 200
+	maxHealth = 200
+	melee_damage_lower = 15
+	melee_damage_upper = 30
+
+/mob/living/simple_animal/hostile/tar/dryad
+	name = "Tar Dryad"
+	desc = "Once a creature of the forest. It now belongs to the dominion of tar."
+	icon_state = "tar_dryad"
+	health = 100
+	maxHealth = 100
+	inverse_faction_check = TRUE
+	ranged = TRUE
+	ranged_cooldown_time = 5 SECONDS
+	projectiletype = /obj/item/projectile/jungle/heal_orb
+
+/mob/living/simple_animal/hostile/tar/dryad/PickTarget(list/Targets)
+	if(!Targets.len)//We didnt find nothin!
+		return
+
+	var/lowest_hp = INFINITY
+	for(var/pos_targ in Targets)
+		if(isliving(pos_targ))
+			var/mob/living/L = pos_targ 
+			if( L.health > lowest_hp)
+				continue
+			. = L
+	
+	if(!.)
+		return pick(Targets)
+
+/mob/living/simple_animal/hostile/tar/shade
+	name = "Tar Priest"
+	desc = "A lingering spirit of a priest, he serves his lord in death as he did in life."
+	icon_state = "tar_shade"
+	health = 150
+	maxHealth = 150
+
+	ranged = TRUE 
+	ranged_cooldown_time = 15 SECONDS

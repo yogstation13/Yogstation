@@ -203,10 +203,10 @@
 												"[world.maxx]",
 												"1",
 												"2")
-	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","65","[world.maxx]","-0.2","1.1")
+	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","75","[world.maxx]","0.0","1.1")
 	var/list/humid_strings = list()
-	humid_strings[HIGH_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","65","[world.maxx]","0.0","1.1")
-	humid_strings[MED_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","65","[world.maxx]","-0.2","0.0")
+	humid_strings[HIGH_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.1","1.1")
+	humid_strings[MED_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.3","-0.1")
 
 	for(var/t in turfs) //Go through all the turfs and generate them
 		var/turf/gen_turf = t
@@ -231,8 +231,6 @@
 	for(var/biome in subtypesof(/datum/biome/jungleland))
 		var/datum/biome/jungleland/selected_biome = SSmapping.biomes[biome] 
 		selected_biome.this_area.reg_in_areas_in_z()
-
-	GLOB.jungleland_daynight_cycle.finish_generation()
 
 	var/message = "Jungle land finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, "<span class='boldannounce'>[message]</span>")

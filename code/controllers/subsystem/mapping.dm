@@ -122,6 +122,7 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/proper), jungleland_proper_ruins_templates)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/dying_forest), jungleland_dying_ruins_templates)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/toxic_pit), jungleland_swamp_ruins_templates)
+		GLOB.jungleland_daynight_cycle.finish_generation() // I HAVE NO IDEA  WHERE TO PUT THIS, BUT THIS NEEDS TO BE WAY AFTER MAPGEN IS OVER	
 	//Yogs end
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
