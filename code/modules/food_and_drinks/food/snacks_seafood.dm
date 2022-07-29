@@ -25,6 +25,7 @@
 
 /obj/item/reagent_containers/food/snacks/carpmeat/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked, rand(30 SECONDS, 60 SECONDS), TRUE, TRUE)  //loses its carpotoxin in the heat :)
+
 /obj/item/reagent_containers/food/snacks/carpmeat/imitation
 	name = "imitation carp fillet"
 	desc = "Almost just like the real thing, kinda."
@@ -39,6 +40,7 @@
 
 /obj/item/reagent_containers/food/snacks/carpmeat/fish/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked, rand(30 SECONDS, 60 SECONDS), TRUE, TRUE)
+
 /obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked
 	name = "cooked fish fillet"
 	desc = "A fillet of spess fish meat. Cooked to perfection."
