@@ -26,11 +26,7 @@
 	if(owner.current && isAI(owner.current))
 		traitor_kind = TRAITOR_AI
 
-	if(traitor_kind == TRAITOR_AI)
-		company = /datum/corporation/self
-	else if(!company)
-		company = pick(subtypesof(/datum/corporation/traitor))
-	owner.add_employee(company)
+	pick_employer()
 
 	SSticker.mode.traitors += owner
 	owner.special_role = special_role
@@ -40,6 +36,12 @@
 	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 	..()
 
+/datum/antagonist/traitor/proc/pick_employer()
+	if(traitor_kind == TRAITOR_AI)
+		company = /datum/corporation/self
+	else if(!company)
+		company = pick(subtypesof(/datum/corporation/traitor))
+	owner.add_employee(company)
 
 /datum/antagonist/traitor/apply_innate_effects()
 	if(owner.assigned_role == "Clown")
