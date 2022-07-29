@@ -7,9 +7,9 @@
 	var/obj/item/clothing/neck/petcollar/pcollar
 	var/collar_type //if the mob has collar sprites, define them.
 	/// wuv emote for being pet
-	var/wuv_happy = "yaps happily!"
+	var/wuv_happy = "looks happy!"
 	/// wuv emote for being slapped
-	var/wuv_angy = "growls!"
+	var/wuv_angy = "looks upset!"
 
 /mob/living/simple_animal/pet/handle_atom_del(atom/A)
 	if(A == pcollar)
