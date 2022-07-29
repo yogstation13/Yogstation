@@ -158,21 +158,38 @@
 
 /obj/item/organ/cyberimp/arm/gun/laser
 	name = "arm-mounted laser implant"
-	desc = "A variant of the arm cannon implant that fires lethal laser beams. The cannon emerges from the subject's arm and remains inside when not in use."
+	desc = "An arm cannon implant that fires lethal laser beams. The cannon emerges from the subject's arm and remains inside when not in use. Has a non-replacible self-charging power cell."
 	icon_state = "arm_laser"
 	contents = newlist(/obj/item/gun/energy/laser/mounted)
 
 /obj/item/organ/cyberimp/arm/gun/laser/l
 	zone = BODY_ZONE_L_ARM
 
+/obj/item/organ/cyberimp/arm/gun/laser/weak
+	name = "arm-mounted laser implant"
+	desc = "An arm laser implant that fires lethal laser beams. The laser emerges from the subject's arm and remains inside when not in use. Has a low quality non-replacible self-charging power cell."
+	icon_state = "arm_laser"
+	contents = newlist(/obj/item/gun/energy/laser/mounted/weak)
+
+/obj/item/organ/cyberimp/arm/gun/laser/weak/l
+	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/gun/taser
-	name = "arm-mounted taser implant"
-	desc = "A variant of the arm cannon implant that fires electrodes and disabler shots. The cannon emerges from the subject's arm and remains inside when not in use."
+	name = "arm-mounted disabler implant"
+	desc = "A variant of the arm cannon implant that fires electrodes and disabler shots. The cannon emerges from the subject's arm and remains inside when not in use. Has a non-replacible self-charging power cell."
 	icon_state = "arm_taser"
 	contents = newlist(/obj/item/gun/energy/e_gun/advtaser/mounted)
 
 /obj/item/organ/cyberimp/arm/gun/taser/l
+	zone = BODY_ZONE_L_ARM
+
+/obj/item/organ/cyberimp/arm/gun/disabler
+	name = "arm-mounted disabler implant"
+	desc = "A variant of the arm laser implant that fires disabler shots. The laser emerges from the subject's arm and remains inside when not in use. Has a non-replacible self-charging power cell."
+	icon_state = "arm_taser"
+	contents = newlist(/obj/item/gun/energy/disabler/cyborg/mounted)
+
+/obj/item/organ/cyberimp/arm/gun/disabler/l
 	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/toolset

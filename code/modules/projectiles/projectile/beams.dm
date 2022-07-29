@@ -24,6 +24,11 @@
 	wound_bonus = -30
 	bare_wound_bonus = 40
 
+/obj/item/projectile/beam/laser/mounted //shitty garbage lasers, because it's running off a bad power source.
+	damage = 17
+	wound_bonus = -35
+	bare_wound_bonus = 20
+
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/item/projectile/beam/laser/hellfire
 	name = "hellfire laser"

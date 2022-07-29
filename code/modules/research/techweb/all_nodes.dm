@@ -573,8 +573,8 @@
 	id = "illegal_cyber_implants"
 	display_name = "Illegal Cybernetic Implants"
 	description = "Nanotrasen would like to remind employees that use of unlicensed cybernetic implants violates multiple employee contract clauses."
-	prereq_ids = list("combat_cyber_implants","syndicate_basic")
-	design_ids = list("ci-xray")
+	prereq_ids = list("adv_weaponry", "combat_cyber_implants","syndicate_basic")
+	design_ids = list("ci-xray", "ci-laser", "ci-disabler")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
 

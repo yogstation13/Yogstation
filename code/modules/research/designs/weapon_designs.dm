@@ -432,3 +432,27 @@
 	build_path = /obj/item/gun/ballistic/bow/energy
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+//armguns
+
+/datum/design/cyberimp_laser
+	name = "Arm Laser Implant"
+	desc = "A concealed self-recharging low-power laser gun, designed to be installed on the subject's arm."
+	id = "ci-laser"
+	build_type = PROTOLATHE
+	materials = list (/datum/material/iron = 8000, /datum/material/glass = 2000, /datum/material/uranium = 1500, /datum/material/titanium = 2000, /datum/material/silver = 1500)
+	construction_time = 200
+	build_path = /obj/item/organ/cyberimp/arm/gun/laser/weak
+	category = list("Implants", "Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/cyberimp_disabler
+	name = "Arm Disabler Implant"
+	desc = "A concealed self-recharging disabler gun, designed to be installed on the subject's arm."
+	id = "ci-disabler"
+	build_type = PROTOLATHE
+	materials = list (/datum/material/iron = 8000, /datum/material/glass = 2000, /datum/material/uranium = 1500, /datum/material/titanium = 2000, /datum/material/silver = 1500)
+	construction_time = 200
+	build_path = /obj/item/organ/cyberimp/arm/gun/disabler
+	category = list("Implants", "Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
