@@ -28,17 +28,20 @@
 		if(reagents.total_volume <= 0)
 			return
 		var/gulp_size = 5
-		if(IS_BLOODSUCKER(user))
-			var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+		if(IS_BLOODSUCKER(target))
+			var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			bloodsuckerdatum.AddBloodVolume(5)
-			var/mob/living/carbon/H = user
-			reagents.trans_to(user, INGEST, 500)
+			var/mob/living/carbon/H = target
+			reagents.trans_to(target, INGEST, 500)
 			if(H.blood_volume >= bloodsuckerdatum.max_blood_volume)
-				to_chat(user, span_notice("You are full, and can't consume more blood"))
+				to_chat(target, span_notice("You are full, and can't consume more blood"))
 				return
+		else if(is_vampire(target))
+			var/datum/antagonist/vampire/V = has_antag_datum(ANTAG_DATUM_VAMPIRE)
+			V.usable_blood += 5
 		else
-			reagents.reaction(user, INGEST, gulp_size)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, user, 5), 5)
+			reagents.reaction(target, INGEST, gulp_size)
+			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, target, 5), 5)
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10,50), 1)
 	return ..()
 
