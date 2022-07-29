@@ -20,6 +20,9 @@
 	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
 	var/remove_window = 10 SECONDS /// The window in which someone has to remove the brain to lose memory of being killed as a borg
 	var/reboot_timer = null
+	var/welcome_message = "<b>You are a brain within a Man-Machine Interface.\n\
+	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
+	Being placed in a mech does not slave you to any laws.</b>"
 
 /obj/item/mmi/update_icon()
 	if(!brain)
@@ -155,6 +158,7 @@
 		brain.name = "[L.real_name]'s brain"
 
 	name = "[initial(name)]: [brainmob.real_name]"
+	to_chat(brainmob, welcome_message)
 	update_icon()
 	return
 
