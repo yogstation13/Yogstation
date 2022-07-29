@@ -167,6 +167,8 @@
 #define TRAIT_NOBREATH			"no_breath"
 #define TRAIT_ANTIMAGIC			"anti_magic"
 #define TRAIT_HOLY				"holy"
+#define TRAIT_FAN_CLOWN			"fan_clown"
+#define TRAIT_FAN_MIME			"fan_mime"
 #define TRAIT_DEPRESSION		"depression"
 #define TRAIT_JOLLY				"jolly"
 #define TRAIT_NOCRITDAMAGE		"no_crit"

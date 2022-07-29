@@ -50,6 +50,7 @@
 
 	status_hold_up = shooter.apply_status_effect(STATUS_EFFECT_HOLDUP)
 	status_held_up = target.apply_status_effect(STATUS_EFFECT_HELDUP)
+	SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "gunpoint", /datum/mood_event/gunpoint)
 
 	addtimer(CALLBACK(src, .proc/update_stage, 2), GUNPOINT_DELAY_STAGE_2)
 
@@ -90,6 +91,7 @@
 		cancel()
 
 /datum/component/gunpoint/proc/trigger_reaction()
+	SEND_SIGNAL(target, COMSIG_CLEAR_MOOD_EVENT, "gunpoint")
 	var/mob/living/shooter = parent
 	if(disrupted)
 		return
@@ -120,6 +122,7 @@
 		if(weapon.chambered.BB.wound_bonus != CANT_WOUND)
 			weapon.chambered.BB.wound_bonus -= damage_mult * GUNPOINT_BASE_WOUND_BONUS
 			weapon.chambered.BB.bare_wound_bonus -= damage_mult * GUNPOINT_BASE_WOUND_BONUS
+		SEND_SIGNAL(target, COMSIG_CLEAR_MOOD_EVENT, "gunpoint")
 	qdel(src)
 
 ///called if the shooter does anything that would cause the target to move, preventing a charged shot from being fired for a short duration

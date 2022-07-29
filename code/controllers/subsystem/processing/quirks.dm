@@ -29,7 +29,8 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Prosthetic Limb (Right Leg)","Prosthetic Limb"),
 		list("Prosthetic Limb (Left Leg)","Paraplegic"),
 		list("Prosthetic Limb (Right Leg)","Paraplegic"),
-		list("Prosthetic Limb","Paraplegic")
+		list("Prosthetic Limb","Paraplegic"),
+		list("Clown Fan","Mime Fan")
 	)
 	return ..()
 
