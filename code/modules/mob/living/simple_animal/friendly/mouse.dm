@@ -250,7 +250,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /mob/living/simple_animal/mouse/proc/cheese_down()
 	cheesed = FALSE
-	maxHealth = 15
+	maxHealth = 10
 	health = maxHealth
 	resize = 0.5
 	update_transform()

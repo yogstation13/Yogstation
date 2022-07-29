@@ -1018,7 +1018,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	M.language_holder = new /datum/language_holder/mouse(M)
 	M.pass_flags |= PASSDOOR
 	M.sentience_act()
-	M.maxHealth = 15
+	M.maxHealth = 10
 	M.health = M.maxHealth
 
 	to_chat(M , "<span class='warning'>You are now possessing a mouse. \
