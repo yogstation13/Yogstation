@@ -53,7 +53,7 @@
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
-			var/msg = "Plasma depleted, recommend replacing tank."
+			var/msg = "Plasma depleted, replacement tank required."
 			radio.talk_into(src, msg, RADIO_CHANNEL_ENGINEERING)
 			eject()
 		else
