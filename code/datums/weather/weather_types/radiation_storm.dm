@@ -3,7 +3,7 @@
 	name = "radiation storm"
 	desc = "A cloud of intense radiation passes through the area dealing rad damage to those who are unprotected."
 
-	telegraph_duration = 400
+	telegraph_duration = 25 SECONDS
 	telegraph_message = span_danger("The air begins to grow warm.")
 
 	weather_message = span_userdanger("<i>You feel waves of heat wash over you! Find shelter!</i>")
@@ -18,7 +18,7 @@
 
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
-	/area/ai_monitored/turret_protected/ai, /area/storage/emergency/starboard, /area/storage/emergency/port, /area/shuttle, /area/ai_monitored/storage/satellite)
+	/area/ai_monitored/turret_protected/ai, /area/storage/emergency/starboard, /area/storage/emergency/port, /area/shuttle, /area/ai_monitored/storage/satellite, /area/security/prison)
 	target_trait = ZTRAIT_STATION
 
 	immunity_type = WEATHER_RAD
@@ -29,7 +29,7 @@
 
 
 /datum/weather/rad_storm/weather_act(mob/living/L)
-	var/resist = L.getarmor(null, "rad")
+	var/resist = L.getarmor(null, RAD)
 	if(prob(40))
 		if(ishuman(L))
 			if (!HAS_TRAIT(L,TRAIT_RADIMMUNE)) //if they dont have radimmune, continue
@@ -45,11 +45,20 @@
 							H.domutcheck()
 		L.rad_act(20)
 
+/datum/weather/rad_storm/start()
+	if(..())
+		return
+	priority_announce("The station has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
+	for(var/obj/machinery/telecomms/T in GLOB.telecomms_list)
+		T.emp_act(EMP_HEAVY)
+
 /datum/weather/rad_storm/end()
 	if(..())
 		return
 	priority_announce("The radiation threat has passed. Please return to your workplaces.", "Anomaly Alert")
 	status_alarm(FALSE)
+	sleep(1 MINUTES) // Want to give them time to get out of maintenance.
+	revoke_maint_all_access()
 
 /datum/weather/rad_storm/proc/status_alarm(active)	//Makes the status displays show the radiation warning for those who missed the announcement.
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)

@@ -8,6 +8,8 @@
 			GLOB.mentors -= C
 			continue // weird runtime that happens randomly
 		var/suffix = ""
+		if(C.holder)
+			continue
 		if(holder)
 			if(isobserver(C.mob))
 				suffix += " - Observing"

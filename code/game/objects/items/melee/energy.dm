@@ -1,10 +1,12 @@
 /obj/item/melee/transforming/energy
 	hitsound_on = 'sound/weapons/blade1.ogg'
+	icon = 'icons/obj/weapons/energy.dmi'
 	heat = 3500
 	max_integrity = 200
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
 	var/brightness_on = 3
+	var/saber_color = null
 
 /obj/item/melee/transforming/energy/Initialize()
 	. = ..()
@@ -35,8 +37,8 @@
 	. = ..()
 	if(.)
 		if(active)
-			if(item_color)
-				icon_state = "sword[item_color]"
+			if(saber_color)
+				icon_state = "sword[saber_color]"
 			START_PROCESSING(SSobj, src)
 			set_light(brightness_on)
 		else
@@ -100,11 +102,12 @@
 	embedding = list("embed_chance" = 75, "embedded_impact_pain_multiplier" = 10)
 	armour_penetration = 35
 	block_chance = 50
+	saber_color = "green"
 
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
-	if(. && active && item_color)
-		icon_state = "sword[item_color]"
+	if(. && active && saber_color)
+		icon_state = "sword[saber_color]"
 
 /obj/item/melee/transforming/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
@@ -112,7 +115,7 @@
 	return 0
 
 /obj/item/melee/transforming/energy/sword/cyborg
-	item_color = "red"
+	saber_color = "red"
 	var/hitcost = 50
 
 /obj/item/melee/transforming/energy/sword/cyborg/attack(mob/M, var/mob/living/silicon/robot/R)
@@ -133,7 +136,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "esaw_0"
 	icon_state_on = "esaw_1"
-	item_color = null //stops icon from breaking when turned on.
+	saber_color = null //stops icon from breaking when turned on.
 	hitcost = 75 //Costs more than a standard cyborg esword
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
@@ -156,7 +159,7 @@
 	. = ..()
 	if(LAZYLEN(possible_colors))
 		var/set_color = pick(possible_colors)
-		item_color = set_color
+		saber_color = set_color
 		light_color = possible_colors[set_color]
 
 /obj/item/melee/transforming/energy/sword/saber/process()
@@ -182,7 +185,7 @@
 	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!hacked)
 			hacked = TRUE
-			item_color = "rainbow"
+			saber_color = "rainbow"
 			to_chat(user, span_warning("RNBW_ENGAGE"))
 
 			if(active)

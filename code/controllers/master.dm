@@ -184,6 +184,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	// Sort subsystems by init_order, so they initialize in the correct order.
 	sortTim(subsystems, /proc/cmp_subsystem_init)
+	//yogs -- loading progress stuff; have to initialize this static
+	for(var/s in subsystems)
+		var/datum/controller/subsystem/SS = s
+		SS.total_loading_points += SS.loading_points
+	//yogs end
 
 	var/start_timeofday = REALTIMEOFDAY
 	// Initialize subsystems.
@@ -218,7 +223,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	if(sleep_offline_after_initializations)
 		world.sleep_offline = TRUE
-	sleep(1)
+	sleep(0.1 SECONDS)
 
 	if(sleep_offline_after_initializations && CONFIG_GET(flag/resume_after_initializations))
 		world.sleep_offline = FALSE
@@ -315,7 +320,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		var/starting_tick_usage = TICK_USAGE
 		if (processing <= 0)
 			current_ticklimit = TICK_LIMIT_RUNNING
-			sleep(10)
+			sleep(1 SECONDS)
 			continue
 
 		//Anti-tick-contention heuristics:
@@ -370,7 +375,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				iteration++
 			error_level++
 			current_ticklimit = TICK_LIMIT_RUNNING
-			sleep(10)
+			sleep(1 SECONDS)
 			continue
 
 		if (queue_head)
@@ -382,7 +387,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 					iteration++
 				error_level++
 				current_ticklimit = TICK_LIMIT_RUNNING
-				sleep(10)
+				sleep(1 SECONDS)
 				continue
 		error_level--
 		if (!queue_head) //reset the counts if the queue is empty, in the off chance they get out of sync

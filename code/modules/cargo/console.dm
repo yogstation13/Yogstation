@@ -9,6 +9,7 @@
 		cannot transport live organisms, human remains, classified nuclear weaponry \
 		or homing beacons. Additionally, remove any privately ordered crates from the shuttle."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
+	var/self_paid = FALSE
 
 	light_color = "#E2853D"//orange
 
@@ -63,7 +64,7 @@
 	if(D)
 		data["points"] = D.account_balance
 	data["away"] = SSshuttle.supply.getDockedId() == "supply_away"
-	//data["self_paid"] = self_paid //This is present on TG, but not here, we'll see if it's necessary.
+	data["self_paid"] = self_paid
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
@@ -228,6 +229,9 @@
 					break
 		if("denyall")
 			SSshuttle.requestlist.Cut()
+			. = TRUE
+		if("toggleprivate")
+			self_paid = !self_paid
 			. = TRUE
 	if(.)
 		post_signal("supply")

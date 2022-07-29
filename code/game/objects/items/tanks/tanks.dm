@@ -13,7 +13,7 @@
 	throw_range = 4
 	materials = list(/datum/material/iron = 500)
 	actions_types = list(/datum/action/item_action/set_internals)
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 80, ACID = 30)
 	var/datum/gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE
 	var/integrity = 3
@@ -138,7 +138,7 @@
 			var/obj/item/bodypart/BP = i
 			BP.generic_bleedstacks += 5
 		H.gib_animation()
-		sleep(3)
+		sleep(0.3 SECONDS)
 		H.adjustBruteLoss(1000) //to make the body super-bloody
 		H.spawn_gibs()
 		H.spill_organs()

@@ -20,7 +20,7 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
 
 	materials = list(/datum/material/iron=70, /datum/material/glass=30)
@@ -75,7 +75,7 @@
 	//Welders left on now use up fuel, but lets not have them run out quite that fast
 		if(1)
 			force = 15
-			damtype = "fire"
+			damtype = BURN
 			++burned_fuel_for
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 				use(1)
@@ -86,8 +86,13 @@
 
 
 /obj/item/weldingtool/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return (FIRELOSS)
+	if(isOn())
+		user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
+		if(!use_tool(user, 5 SECONDS, user))
+			return MANUAL_SUICIDE_NONLETHAL
+		return FIRELOSS
+	user.visible_message(span_suicide("[user] tries welds [user.p_their()] every orifice closed! But forgot to turn the [src] on."))
+	return SHAME
 
 /obj/item/weldingtool/proc/explode()
 	var/turf/T = get_turf(loc)
@@ -95,24 +100,29 @@
 	dyn_explosion(T, plasmaAmount/5)//20 plasma in a standard welder has a 4 power explosion. no breaches, but enough to kill/dismember holder
 	qdel(src)
 
-/obj/item/weldingtool/attack(mob/living/carbon/human/H, mob/user)
-	if(!istype(H))
-		return ..()
+/obj/item/weldingtool/attack(mob/living/M, mob/user)
+	if(isOn() && user.a_intent == INTENT_HELP && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+		if(affecting?.status == BODYPART_ROBOTIC)
+			if(affecting.brute_dam <= 0)
+				to_chat(user, span_warning("[affecting] is already in good condition!"))
+				return FALSE
+			user.changeNext_move(CLICK_CD_MELEE)
+			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
+			heal_robo_limb(src, H, user, 15, 0)
+			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
+			return TRUE
 
-	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
-	if(affecting && affecting.status == BODYPART_ROBOTIC && user.a_intent != INTENT_HARM)
-		if(src.use_tool(H, user, 0, volume=50, amount=1))
-			if(user == H)
-				user.visible_message(span_notice("[user] starts to fix some of the dents on [H]'s [affecting.name]."),
-					span_notice("You start fixing some of the dents on [H == user ? "your" : "[H]'s"] [affecting.name]."))
-				if(!do_mob(user, H, 50))
-					return
-			item_heal_robotic(H, user, 15, 0)
-	else
-		return ..()
-
-
+/obj/item/weldingtool/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal, burn_heal)
+	if(I.use_tool(H, user, 2 SECONDS, volume=50, amount=1))
+		if(item_heal_robotic(H, user, brute_heal, burn_heal))
+			return heal_robo_limb(I, H, user, brute_heal, burn_heal)
+		return TRUE
+	
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
 	if(!proximity)
@@ -145,6 +155,10 @@
 
 	update_icon()
 
+/obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+	target.add_overlay(GLOB.welding_sparks)
+	. = ..()
+	target.cut_overlay(GLOB.welding_sparks)
 
 // Returns the amount of fuel in the welder
 /obj/item/weldingtool/proc/get_fuel()
@@ -190,7 +204,7 @@
 			to_chat(user, span_notice("You switch [src] on."))
 			playsound(loc, acti_sound, 50, 1)
 			force = 15
-			damtype = "fire"
+			damtype = BURN
 			hitsound = 'sound/items/welder.ogg'
 			update_icon()
 			START_PROCESSING(SSobj, src)
@@ -323,7 +337,7 @@
 	name = "alien welding tool"
 	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "welder"
+	icon_state = "welder_alien"
 	toolspeed = 0.1
 	light_intensity = 0
 	change_icons = 0
@@ -368,5 +382,24 @@
 	if(get_fuel() < max_fuel && nextrefueltick < world.time)
 		nextrefueltick = world.time + 10
 		reagents.add_reagent(/datum/reagent/fuel, 1)
+
+/obj/item/weldingtool/makeshift
+	name = "makeshift welding tool"
+	desc = "A MacGyver-style welder."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "welder_makeshift"
+	toolspeed = 2
+	max_fuel = 10
+	materials = list(MAT_METAL=140)
+
+/obj/item/weldingtool/makeshift/switched_on(mob/user)
+	..()
+	if(welding && get_fuel() >= 1 && prob(2))
+		var/datum/effect_system/reagents_explosion/e = new()
+		to_chat(user, span_userdanger("Shoddy construction causes [src] to blow the fuck up!"))
+		e.set_up(round(get_fuel() / 10, 1), get_turf(src), 0, 0)
+		e.start()
+		qdel(src)
+		return
 
 #undef WELDER_FUEL_BURN_INTERVAL

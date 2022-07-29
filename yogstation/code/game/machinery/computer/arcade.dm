@@ -423,5 +423,5 @@
 		for(var/x69=x-column_limit;x69<x+column_limit;x69++)
 			if(prob(mine_limit_v2))	//Probability of explosion happening, according to how many mines were on the board... up to a limit
 				var/explosionloc
-				explosionloc = locate(y69,x69,z)
-				explosion(explosionloc, ,rand(1,2),rand(1,5),rand(3,10), adminlog = FALSE)
+				explosionloc = locate(x69,y69,z)
+				explosion(explosionloc,0,rand(1,2),rand(1,5),rand(3,10), adminlog = FALSE)

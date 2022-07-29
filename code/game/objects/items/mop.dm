@@ -52,7 +52,7 @@
 		if(IS_JOB(user, "Janitor"))
 			realspeed *= 0.8
 
-		if(do_after(user, realspeed, target = T))
+		if(do_after(user, realspeed, T))
 			to_chat(user, span_notice("You finish mopping."))
 			clean(T)
 

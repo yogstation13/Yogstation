@@ -1,4 +1,4 @@
-/mob/living/carbon/Life()
+/mob/living/carbon/Life(seconds, times_fired)
 	set invisibility = 0
 
 	if(notransform)
@@ -8,7 +8,7 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(!IS_IN_STASIS(src))
+	if(LIFETICK_SKIP(src, times_fired))
 
 		if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 			handle_organs()
@@ -17,6 +17,10 @@
 
 		if (QDELETED(src))
 			return
+
+		// yogs start -- typing indicators, look in yogstation specific folder for proc
+		handle_typing_indicator()
+		//yogs end
 
 		if(.) //not dead
 			handle_blood()
@@ -32,6 +36,10 @@
 
 		if(stat != DEAD)
 			handle_liver()
+
+		if(stat != DEAD)
+			//Stuff jammed in your limbs hurts
+			handle_embedded_objects()
 
 	else
 		. = ..()
@@ -54,9 +62,8 @@
 /mob/living/carbon/handle_breathing(times_fired)
 	var/next_breath = 4
 	var/obj/item/organ/lungs/L = getorganslot(ORGAN_SLOT_LUNGS)
-	if(L)
-		if(L.damage)
-			next_breath *= L.get_organ_efficiency()
+	if(L?.damage)
+		next_breath = max(next_breath * L.get_organ_efficiency(), 1)
 
 	if((times_fired % next_breath) == 0 || failed_last_breath)
 		breathe() //Breathe per 4 ticks if healthy, down to 1 based on lung damage, unless suffocating
@@ -468,7 +475,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					temp = amplitude * cos(saved_dizz * world.time)
 					pixel_y_diff += temp
 					C.pixel_y += temp
-					sleep(3)
+					sleep(0.3 SECONDS)
 					if(C)
 						temp = amplitude * sin(saved_dizz * world.time)
 						pixel_x_diff += temp
@@ -476,7 +483,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						temp = amplitude * cos(saved_dizz * world.time)
 						pixel_y_diff += temp
 						C.pixel_y += temp
-					sleep(3)
+					sleep(0.3 SECONDS)
 					if(C)
 						C.pixel_x -= pixel_x_diff
 						C.pixel_y -= pixel_y_diff
@@ -598,6 +605,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 //used in human and monkey handle_environment()
 /mob/living/carbon/proc/natural_bodytemperature_stabilization()
 	var/body_temperature_difference = BODYTEMP_NORMAL - bodytemperature
+	if(HAS_TRAIT(src, TRAIT_COLDBLOODED)) // Return 0 as your natural temperature. Species proc handle_environment() will adjust your temperature based on this.
+		return 0
 	switch(bodytemperature)
 		if(-INFINITY to BODYTEMP_COLD_DAMAGE_LIMIT) //Cold damage limit is 50 below the default, the temperature where you start to feel effects.
 			return max((body_temperature_difference * metabolism_efficiency / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
@@ -646,6 +655,35 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	for(var/T in get_traumas())
 		var/datum/brain_trauma/BT = T
 		BT.on_life()
+
+
+////////////
+// EMBEDS //
+////////////
+
+/mob/living/carbon/proc/handle_embedded_objects()
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/BP = X
+		for(var/obj/item/I in BP.embedded_objects)
+			I.embed_tick(src, BP)
+			var/pain_chance_current = I.embedding.embedded_pain_chance
+			if(!(mobility_flags & MOBILITY_STAND))
+				pain_chance_current *= 0.2
+			if(prob(pain_chance_current))
+				BP.receive_damage(I.w_class*I.embedding.embedded_pain_multiplier, wound_bonus = CANT_WOUND)
+				to_chat(src, span_userdanger("[I] embedded in your [BP.name] hurts!"))
+
+			var/fall_chance_current = I.embedding.embedded_fall_chance
+			if(!(mobility_flags & MOBILITY_STAND))
+				fall_chance_current *= 0.2
+
+			if(prob(fall_chance_current))
+				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier, wound_bonus = CANT_WOUND) // can wound
+				remove_embedded_object(I, drop_location(), FALSE)
+				visible_message(span_danger("[I] falls out of [name]'s [BP.name]!"), span_userdanger("[I] falls out of your [BP.name]!"))
+				if(!has_embedded_objects())
+					clear_alert("embeddedobject")
+					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 /////////////////////////////////////
 //MONKEYS WITH TOO MUCH CHOLOESTROL//

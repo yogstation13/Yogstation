@@ -387,7 +387,7 @@
 	nonhuman_mobtype = /obj/machinery/ai/data_core
 
 /datum/preset_holoimage/ai/upgradeboard
-	nonhuman_mobtype = /obj/machinery/ai/expansion_card_holder
+	nonhuman_mobtype = /obj/machinery/ai/server_cabinet
 
 /obj/item/disk/holodisk/donutstation/whiteship
 	name = "Blackbox Print-out #DS024"

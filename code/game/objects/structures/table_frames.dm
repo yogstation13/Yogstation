@@ -36,7 +36,7 @@
 			to_chat(user, span_warning("You need one [material.name] sheet to do this!"))
 			return
 		to_chat(user, span_notice("You start adding [material] to [src]..."))
-		if(do_after(user, 2 SECONDS, target = src) && material.use(1))
+		if(do_after(user, 2 SECONDS, src) && material.use(1))
 			make_new_table(material.tableVariant)
 	else
 		return ..()
@@ -90,7 +90,7 @@
 				to_chat(user, span_warning("You need one [material.name] sheet to do this!"))
 				return
 			to_chat(user, span_notice("You start adding [material] to [src]..."))
-			if(do_after(user, 2 SECONDS, target = src) && material.use(1))
+			if(do_after(user, 2 SECONDS, src) && material.use(1))
 				make_new_table(toConstruct)
 	else
 		return ..()
@@ -118,7 +118,7 @@
 			to_chat(user, span_warning("You need one brass sheet to do this!"))
 			return
 		to_chat(user, span_notice("You start adding [W] to [src]..."))
-		if(do_after(user, 2 SECONDS, target = src) && W.use(1))
+		if(do_after(user, 2 SECONDS, src) && W.use(1))
 			make_new_table(/obj/structure/table/reinforced/brass)
 	else
 		return ..()
@@ -128,5 +128,5 @@
 	if(src) //do we still exist?
 		var/previouscolor = color
 		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
+		animate(src, color = previouscolor, time = 0.8 SECONDS)
+		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)

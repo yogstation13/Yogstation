@@ -3,7 +3,7 @@
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	item_state = "helmet"
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10)
+	armor = list(MELEE = 35, BULLET = 30, LASER = 30,ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 	flags_inv = HIDEEARS
 	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
@@ -86,7 +86,7 @@
 	desc = "A bulletproof combat helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
 	icon_state = "helmetalt"
 	item_state = "helmetalt"
-	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 5)
+	armor = list(MELEE = 15, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 5)
 	can_flashlight = TRUE
 	dog_fashion = null
 
@@ -110,7 +110,7 @@
 	toggle_message = "You pull the visor down on"
 	alt_toggle_message = "You push the visor up on"
 	can_toggle = 1
-	armor = list("melee" = 45, "bullet" = 15, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
+	armor = list(MELEE = 45, BULLET = 15, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
 	flags_inv = HIDEEARS|HIDEFACE
 	strip_delay = 80
 	actions_types = list(/datum/action/item_action/toggle)
@@ -147,7 +147,7 @@
 			if(active_sound)
 				while(up)
 					playsound(src, "[active_sound]", 100, FALSE, 4)
-					sleep(15)
+					sleep(1.5 SECONDS)
 
 /obj/item/clothing/head/helmet/justice
 	name = "helmet of justice"
@@ -173,7 +173,7 @@
 	desc = "An extremely robust, space-worthy helmet in a nefarious red and black stripe pattern."
 	icon_state = "swatsyndie"
 	item_state = "swatsyndie"
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 30,"energy" = 30, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50, "wound" = 15)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30,ENERGY = 30, BOMB = 50, BIO = 90, RAD = 20, FIRE = 50, ACID = 50, WOUND = 15)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	heat_protection = HEAD
@@ -200,7 +200,7 @@
 	flags_inv = HIDEEARS|HIDEHAIR
 	icon_state = "thunderdome"
 	item_state = "thunderdome"
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 25,"energy" = 10, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 25,ENERGY = 10, BOMB = 25, BIO = 10, RAD = 0, FIRE = 50, ACID = 50)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	heat_protection = HEAD
@@ -213,7 +213,7 @@
 	desc = "An ancient helmet made of bronze and leather."
 	flags_inv = HIDEEARS|HIDEHAIR
 	flags_cover = HEADCOVERSEYES
-	armor = list("melee" = 25, "bullet" = 0, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50, "wound" = 5)
+	armor = list(MELEE = 25, BULLET = 0, LASER = 25, ENERGY = 10, BOMB = 10, BIO = 0, RAD = 0, FIRE = 100, ACID = 50, WOUND = 5)
 	resistance_flags = FIRE_PROOF
 	icon_state = "roman"
 	item_state = "roman"
@@ -222,7 +222,7 @@
 
 /obj/item/clothing/head/helmet/roman/fake
 	desc = "An ancient helmet made of plastic and leather."
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/head/helmet/roman/legionnaire
 	name = "\improper Roman legionnaire helmet"
@@ -232,7 +232,7 @@
 
 /obj/item/clothing/head/helmet/roman/legionnaire/fake
 	desc = "An ancient helmet made of plastic and leather. Has a red crest on top of it."
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/head/helmet/gladiator
 	name = "gladiator helmet"
@@ -249,7 +249,7 @@
 	icon_state = "redtaghelm"
 	flags_cover = HEADCOVERSEYES
 	item_state = "redtaghelm"
-	armor = list("melee" = 15, "bullet" = 10, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 15, BULLET = 10, LASER = 20,ENERGY = 10, BOMB = 20, BIO = 0, RAD = 0, FIRE = 0, ACID = 50)
 	// Offer about the same protection as a hardhat.
 	dog_fashion = null
 
@@ -259,7 +259,7 @@
 	icon_state = "bluetaghelm"
 	flags_cover = HEADCOVERSEYES
 	item_state = "bluetaghelm"
-	armor = list("melee" = 15, "bullet" = 10, "laser" = 20,"energy" = 10, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 15, BULLET = 10, LASER = 20,ENERGY = 10, BOMB = 20, BIO = 0, RAD = 0, FIRE = 0, ACID = 50)
 	// Offer about the same protection as a hardhat.
 	dog_fashion = null
 
@@ -268,7 +268,7 @@
 	desc = "A classic metal helmet."
 	icon_state = "knight_green"
 	item_state = "knight_green"
-	armor = list("melee" = 41, "bullet" = 15, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 41, BULLET = 15, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	strip_delay = 80
@@ -297,7 +297,7 @@
 	desc = "An intimidating tribal helmet, it doesn't look very comfortable."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	flags_cover = HEADCOVERSEYES
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 5, "rad" = 20, "fire" = 40, "acid" = 20)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 10, BIO = 5, RAD = 20, FIRE = 40, ACID = 20)
 	icon_state = "skull"
 	item_state = "skull"
 	strip_delay = 100
@@ -307,24 +307,25 @@
 	desc = "A helmet crafted from bones and sinew meant to protect its wearer from hazardous weather."
 	icon_state = "pathhead"
 	item_state = "pathhead"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEFACE
 	flags_cover = HEAD
 	resistance_flags = FIRE_PROOF
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	heat_protection = HEAD
-	armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 5, "rad" = 10, "fire" = 50, "acid" = 50, "wound" = 5)
+	armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 50, BIO = 5, RAD = 10, FIRE = 50, ACID = 50, WOUND = 5)
 
 /obj/item/clothing/head/helmet/kasa/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, null, null, list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5)) //maximum armor 65/35/35/25
+	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5)) //maximum armor 65/35/35/25
 
 /obj/item/clothing/head/helmet/durathread
 	name = "durathread helmet"
 	desc = "A helmet made from durathread and leather."
 	icon_state = "durathread"
 	item_state = "durathread"
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 20,"energy" = 10, "bomb" = 30, "bio" = 15, "rad" = 20, "fire" = 100, "acid" = 50, "wound" = 5)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 20,ENERGY = 10, BOMB = 30, BIO = 15, RAD = 20, FIRE = 100, ACID = 50, WOUND = 5)
 	strip_delay = 60
 
 /obj/item/clothing/head/helmet/rus_helmet
@@ -332,7 +333,7 @@
 	desc = "It can hold a bottle of vodka."
 	icon_state = "rus_helmet"
 	item_state = "rus_helmet"
-	armor = list("melee" = 30, "bullet" = 25, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 20, "fire" = 30, "acid" = 50, "wound" = 5)
+	armor = list(MELEE = 30, BULLET = 25, LASER = 20,ENERGY = 10, BOMB = 25, BIO = 0, RAD = 20, FIRE = 30, ACID = 50, WOUND = 5)
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/helmet
 
 /obj/item/clothing/head/helmet/rus_ushanka
@@ -344,7 +345,7 @@
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
-	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 0, "wound" = 5)
+	armor = list(MELEE = 10, BULLET = 5, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 50, RAD = 20, FIRE = -10, ACID = 0, WOUND = 5)
 
 //LightToggle
 
@@ -440,7 +441,7 @@
 	desc = "Battle Helmet from a long lost empire"
 	icon_state = "stormtrooperhelmet"
 	item_state = "stormtrooperhelmet"
-	armor = list("melee" = 35, "bullet" = 25, "laser" = 35,"energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 20, "fire" = 40, "acid" = 50)
+	armor = list(MELEE = 35, BULLET = 25, LASER = 35,ENERGY = 20, BOMB = 25, BIO = 40, RAD = 20, FIRE = 40, ACID = 50)
 	flags_inv = HIDEEARS|HIDEHAIR
 	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
@@ -462,4 +463,75 @@
 	desc = "Hand carved skull headdress, uniquely suited for the harsh lavaland hellscapes."
 	icon_state = "shamanhat"
 	item_state = "shamanhat"
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 10, "bio" = 5, "rad" = 20, "fire" = 40, "acid" = 20)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 10, BIO = 5, RAD = 20, FIRE = 40, ACID = 20)
+
+/obj/item/clothing/head/helmet/elder_atmosian
+	name = "\improper Elder Atmosian Helmet"
+	desc = "A superb helmet made with the toughest and rarest materials available to man."
+	icon_state = "h2helmet"
+	item_state = "h2helmet"
+	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 30, BOMB = 20, BIO = 10, RAD = 50, FIRE = 65, ACID = 40, WOUND = 15)
+	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | HIDEHAIR
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	cold_protection = HEAD
+	heat_protection = HEAD
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	clothing_flags = THICKMATERIAL
+
+//////////////// PLATED ARMOR ////////////////
+// Kevlar plates are in code/modules/clothing/suits/armor.dm
+/obj/item/clothing/head/helmet/plated
+	name = "empty plated helmet"
+	desc = "A lightweight combat helmet that has slots designed to hold various types of armor plating. Won't do much without them."
+	icon_state = "plate-helmet"
+	item_state = "plate-helmet"
+	armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 0, WOUND = 0)
+	slowdown = 0
+	dog_fashion = null
+
+	var/obj/item/kevlar_plating/plating
+
+/obj/item/clothing/head/helmet/plated/attack_self(mob/user)
+	if(!plating)
+		to_chat(user, span_warning("[src] doesn't have any plating to remove!"))
+		return
+	
+	user.visible_message("[user] removes [plating] from [src]!", span_notice("You remove [plating]."))
+
+	user.put_in_hands(plating)
+
+	name = initial(name)
+	armor = armor.setRating(5,0,0,0,0,0,0,10,0,0,0)
+	slowdown = initial(slowdown)
+	w_class = initial(w_class)
+	plating = null
+
+/obj/item/clothing/head/helmet/plated/examine(mob/user)
+	.=..()
+	if(plating)
+		. += span_info("It has [plating] slotted.")
+
+/obj/item/clothing/head/helmet/plated/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/kevlar_plating))
+		return
+	if(plating)
+		to_chat(user, span_warning("[src] already has [plating] slotted!"))
+		return 
+	if(!user.transferItemToLoc(I, src))
+		return
+	
+	user.visible_message("[user] inserts [plating] into [src]!", span_notice("You insert [plating] into [src]."))
+
+	var/obj/item/kevlar_plating/K = I
+
+	name = "[K.name_set] plated helmet"
+	slowdown = K.slowdown_set
+	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
+		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
+
+	armor = armor.attachArmor(K.armor)
+	w_class = WEIGHT_CLASS_BULKY
+	plating = K

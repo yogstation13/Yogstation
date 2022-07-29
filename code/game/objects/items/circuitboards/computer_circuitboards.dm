@@ -40,6 +40,11 @@
 	. = ..()
 	. += "Currently set to \"[dept_list[target_dept]]\"."
 
+/obj/item/circuitboard/computer/ai_ship
+	name = "AI Ship Shuttle (Computer Board)"
+	icon_state = "command"
+	build_path = /obj/machinery/computer/shuttle/ai_ship
+
 
 //obj/item/circuitboard/computer/shield
 //	name = "Shield Control (Computer Board)"
@@ -347,6 +352,8 @@
 
 /obj/item/circuitboard/computer/rdconsole/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
+		if(build_path == /obj/machinery/computer/rdconsole/production)
+			return
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "R&D Console - Robotics (Computer Board)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
@@ -519,3 +526,4 @@
 	name = "Mining Shuttle (Computer Board)"
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/shuttle/mining
+

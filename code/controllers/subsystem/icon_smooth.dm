@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(icon_smooth)
 	priority = FIRE_PRIOTITY_SMOOTHING
 	flags = SS_TICKER
 
+	loading_points = 3.3 SECONDS // Yogs -- loading times
+
 	var/list/smooth_queue = list()
 	var/list/deferred = list()
 

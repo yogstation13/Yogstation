@@ -10,7 +10,7 @@
 	heat_protection = null
 	max_heat_protection_temperature = null
 	clothing_flags = null
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 5, ENERGY = 0, BOMB = 5, BIO = 0, FIRE = 80, ACID = 80)
 	slowdown = 0.5
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
@@ -24,7 +24,7 @@
 	heat_protection = null
 	max_heat_protection_temperature = null
 	clothing_flags = null
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 5, ENERGY = 0, BOMB = 5, BIO = 0, FIRE = 80, ACID = 80)
 	slowdown = 0.33
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
@@ -33,7 +33,7 @@
 	desc = "A custom-made Black Templar helmet, it's abnormally light. The words 'Purge Heresy' are written on the side."
 	icon_state = "darktemplar-follower1"
 	item_state = "darktemplar-follower1"
-	armor = list("melee" = 20, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	cold_protection = null
 	min_cold_protection_temperature = null
 	heat_protection = null
@@ -47,7 +47,7 @@
 	desc = "A custom-made Black Templar chaplain battle-helmet, it's abnormally light. The words 'Purge Heresy' are written on the side."
 	icon_state = "darktemplar-chaplain1"
 	item_state = "darktemplar-chaplain1"
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 55, "acid" = 55)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 15, BIO = 0, RAD = 0, FIRE = 55, ACID = 55)
 	cold_protection = null
 	min_cold_protection_temperature = null
 	heat_protection = null
@@ -61,7 +61,7 @@
 	desc = "Deus Vult."
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 40, BULLET = 10, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	strip_delay = 80
@@ -72,7 +72,7 @@
 	desc = "God wills it!"
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 40, BULLET = 10, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 50)
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	slowdown = 0
 	blocks_shove_knockdown = FALSE
@@ -134,7 +134,7 @@
 /obj/item/clothing/head/helmet/chaplain/cage
 	name = "cage"
 	desc = "A cage that restrains the will of the self, allowing one to see the profane world for what it is."
-	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "cage"
 	item_state = "cage"
 	worn_x_dimension = 64
@@ -212,14 +212,14 @@
 	desc = "Now you're ready for some 50 dollar bling water."
 	icon_state = "chaplain_hoodie_leader"
 	item_state = "chaplain_hoodie_leader"
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
+	armor = list(MELEE = 15, BULLET = 5, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 25)
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood/leader
 
 /obj/item/clothing/head/hooded/chaplain_hood/leader
 	name = "leader hood"
 	desc = "I mean, you don't /have/ to seek bling water. I just think you should."
 	icon_state = "chaplain_hood_leader"
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
+	armor = list(MELEE = 15, BULLET = 5, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 25)
 
 /obj/item/storage/box/holy/darktemplar
 	name = "Founder Kit of the Black Templars"
@@ -247,6 +247,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = UNIQUE_RENAME
 	wound_bonus = -10
+	cryo_preserve = TRUE
 	var/reskinned = FALSE
 	var/chaplain_spawnable = TRUE
 
@@ -256,7 +257,20 @@
 
 /obj/item/nullrod/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is killing [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to get closer to god!"))
-	return (BRUTELOSS|FIRELOSS)
+	playsound(user, 'sound/effects/pray.ogg', 50)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.SetImmobilized(10 SECONDS)
+	animate(user, pixel_y = (32*8), time = 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/suicide, user), 10 SECONDS)
+	return MANUAL_SUICIDE
+
+/obj/item/nullrod/proc/suicide(mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.dropItemToGround(src, TRUE, TRUE)
+	qdel(user, TRUE)
+	
 
 /obj/item/nullrod/attack_self(mob/user)
 	if(user.mind && (user.mind.holy_role) && !reskinned)
@@ -332,7 +346,8 @@
 	. = span_notice("[user] grasps [A] with [user.p_their()] flaming hand, igniting it in a burst of holy flame. Holy hot damn, that is badass. ")
 
 /obj/item/nullrod/staff
-	icon_state = "godstaff-red"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "staff-red"
 	item_state = "godstaff-red"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
@@ -350,12 +365,14 @@
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
 
 /obj/item/nullrod/staff/blue
+	icon = 'icons/obj/wizard.dmi'
 	name = "blue holy staff"
-	icon_state = "godstaff-blue"
+	icon_state = "staff-blue"
 	item_state = "godstaff-blue"
 	shield_icon = "shield-old"
 
 /obj/item/nullrod/claymore
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "holyblade"
 	item_state = "holyblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -421,6 +438,7 @@
 /obj/item/nullrod/claymore/saber
 	name = "light energy sword"
 	hitsound = 'sound/weapons/blade1.ogg'
+	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "swordblue"
 	item_state = "swordblue"
 	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
@@ -475,6 +493,7 @@
 /obj/item/nullrod/sord
 	name = "\improper UNREAL SORD"
 	desc = "This thing is so unspeakably HOLY you are having a hard time even holding it."
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "sord"
 	item_state = "sord"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -486,6 +505,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/nullrod/scythe
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "scythe1"
 	item_state = "scythe1"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
@@ -503,6 +523,7 @@
 	AddComponent(/datum/component/butchering, 70, 110) //the harvest gives a high bonus chance
 
 /obj/item/nullrod/scythe/vibro
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
 	item_state = "hfrequency1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -527,6 +548,7 @@
 	hitsound = 'sound/effects/sparks4.ogg'
 
 /obj/item/nullrod/scythe/spellblade
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "spellblade"
 	item_state = "spellblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -537,6 +559,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
 /obj/item/nullrod/scythe/talking
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "talking_sword"
 	item_state = "talking_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -588,6 +611,7 @@
 	return ..()
 
 /obj/item/nullrod/scythe/talking/chainsword
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "chainswordon"
 	item_state = "chainswordon"
 	name = "possessed chainsaw sword"
@@ -600,6 +624,7 @@
 
 
 /obj/item/nullrod/hammmer
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "hammeron"
 	item_state = "hammeron"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
@@ -613,6 +638,7 @@
 /obj/item/nullrod/chainsaw
 	name = "chainsaw hand"
 	desc = "Good? Bad? You're the guy with the chainsaw hand."
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "chainsaw_on"
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
@@ -640,6 +666,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/nullrod/pride_hammer
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "pride"
 	name = "Pride-struck Hammer"
 	desc = "It resonates an aura of Pride."
@@ -663,6 +690,7 @@
 /obj/item/nullrod/whip
 	name = "holy whip"
 	desc = "What a terrible night to be on Space Station 13."
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "chain"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -732,6 +760,7 @@
 		used_blessing = TRUE
 
 /obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
+	icon = 'icons/obj/weapons/misc.dmi'
 	name = "monk's staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
 	w_class = WEIGHT_CLASS_BULKY
@@ -741,13 +770,14 @@
 	sharpness = SHARP_NONE
 	hitsound = "swing_hit"
 	attack_verb = list("smashed", "slammed", "whacked", "thwacked")
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "bostaff0"
 	item_state = "bostaff0"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 
 /obj/item/nullrod/tribal_knife
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "crysknife"
 	item_state = "crysknife"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -775,6 +805,7 @@
 
 
 /obj/item/nullrod/pitchfork
+	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'

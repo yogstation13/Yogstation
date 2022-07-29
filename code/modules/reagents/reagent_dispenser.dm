@@ -13,7 +13,7 @@
 /obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
-		if(tank_volume && (damage_flag == "bullet" || damage_flag == "laser"))
+		if(tank_volume && (damage_flag == BULLET || damage_flag == LASER))
 			boom()
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user, params)
@@ -89,7 +89,7 @@
 			boom()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/living/user, params)
-	if(I.tool_behaviour == TOOL_WELDER)
+	if(istype(I, /obj/item/weldingtool))
 		if(!reagents.has_reagent(/datum/reagent/fuel))
 			to_chat(user, span_warning("[src] is out of fuel!"))
 			return

@@ -309,6 +309,7 @@
 				O.lawupdate = 0
 				if(M.laws.id == DEFAULT_AI_LAWID)
 					O.make_laws()
+					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transfered!"))
 
 			SSticker.mode.remove_antag_for_borging(BM.mind)
 			if(!istype(M.laws, /datum/ai_laws/ratvar))

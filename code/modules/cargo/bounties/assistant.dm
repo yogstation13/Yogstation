@@ -234,7 +234,7 @@
 	name = "Pump-up"
 	description = "We are attempting to make a combat drug to increase the effectiveness of our soldiers, and we would like to examine pump-up's effects for our drug. Ship one of the syringes over for us to look at."
 	reward = 900
-	wanted_types = list(/obj/item/reagent_containers/hypospray/medipen/pumpup)
+	wanted_types = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup)
 
 /datum/bounty/item/assistant/candy
 	name = "Candy Bars"

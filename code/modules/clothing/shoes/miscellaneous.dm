@@ -4,7 +4,6 @@
 /obj/item/clothing/shoes/sneakers/mime
 	name = "mime shoes"
 	icon_state = "mime"
-	item_color = "mime"
 
 /obj/item/clothing/shoes/combat //basic syndicate combat boots for nuke ops and mob corpses
 	name = "combat boots"
@@ -13,7 +12,7 @@
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 70, "acid" = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 70, ACID = 50)
 	strip_delay = 70
 	resistance_flags = NONE
 	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
@@ -28,7 +27,7 @@
 	desc = "High speed, no drag combat boots."
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 50)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 30, RAD = 30, FIRE = 90, ACID = 50)
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain wooden sandals."
@@ -59,7 +58,7 @@
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 75)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 75)
 	can_be_bloody = FALSE
 	custom_price = 100
 
@@ -78,7 +77,6 @@
 	icon_state = "clown"
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN+1
-	item_color = "clown"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
 	var/datum/component/waddle
 	var/enabled_waddle = TRUE
@@ -132,7 +130,6 @@
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	item_color = "hosred"
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
@@ -195,7 +192,6 @@
 	desc = "A pair of boots worn by the followers of Nar'Sie."
 	icon_state = "cult"
 	item_state = "cult"
-	item_color = "cult"
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
 	heat_protection = FEET
@@ -244,7 +240,6 @@
 	desc = "A specialized pair of combat boots with a built-in propulsion system for rapid foward movement."
 	icon_state = "jetboots"
 	item_state = "jetboots"
-	item_color = "hosred"
 	resistance_flags = FIRE_PROOF
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	actions_types = list(/datum/action/item_action/bhop)
@@ -407,7 +402,7 @@
 		to_chat(user, span_notice("[target] slithers into [src]"))
 
 /obj/item/clothing/shoes/cowboy/container_resist(mob/living/user)
-	if(!do_after(user, 1 SECONDS, target = user))
+	if(!do_after(user, 1 SECONDS, user))
 		return
 	user.forceMove(user.drop_location())
 	occupants -= user
@@ -431,7 +426,7 @@
 	name = "lizard skin boots"
 	desc = "You can hear a faint hissing from inside the boots; you hope it is just a mournful ghost."
 	icon_state = "lizardboots_green"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 0) //lizards like to stay warm
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 0) //lizards like to stay warm
 
 /obj/item/clothing/shoes/cowboy/lizard/masterwork
 	name = "\improper Hugs-The-Feet lizard skin boots"
@@ -473,13 +468,10 @@
 	desc = "These make your feet feel snug and secure, while still being breathable and light."
 	icon_state = "footwraps_s"
 	item_state = "footwraps_s"
-	strip_delay = 25 // Half time to take off
-	equip_delay_other = 25 // Half time
+	strip_delay = 2.5 SECONDS // Half time to take off
+	equip_delay_other = 2.5 SECONDS // Half time
 	resistance_flags = NONE
 	permeability_coefficient = 0.70 // Fabric is more permeable than boot, but still somewhat resistant
-	// pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes -- No storage pocket for wraps
-	xenoshoe = EITHER_STYLE // This can be worn by digitigrade or straight legs, or a hybridization thereof (one prosthetic one digitigrade). Xenoshoe variable will default to NO_DIGIT, excluding digitigrade feet.
-	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
 
 /obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
 	name = "command footwraps"
@@ -487,7 +479,73 @@
 	icon_state = "footwraps_c"
 	item_state = "footwraps_c"
 	xenoshoe = YES_DIGIT // This is digitigrade leg exclusive
-	mutantrace_variation = MUTANTRACE_VARIATION // Yes these shoes account for non-straight leg situations, such as jumpskirts
+
+/obj/item/clothing/shoes/xeno_wraps/goliath
+	name = "goliath hide footwraps"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_goliath"
+	item_state = "footwraps_goliath"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
+	body_parts_covered = LEGS|FEET
+	resistance_flags = FIRE_PROOF
+	strip_delay = 2.5 SECONDS
+	equip_delay_other = 2.5 SECONDS
+
+/obj/item/clothing/shoes/xeno_wraps/dragon
+	name = "ash drake hide footwraps"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_dragon"
+	item_state = "footwraps_dragon"
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 0)
+	body_parts_covered = LEGS|FEET
+	strip_delay = 5 SECONDS
+	equip_delay_other = 5 SECONDS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	permeability_coefficient = 0.70
+
+/obj/item/clothing/shoes/xeno_wraps/carpdragon
+	name = "carp dragon hide footwraps"
+	desc = "These make your feet feel snug and secure, while still being breathable and light."
+	icon_state = "footwraps_carpdragon"
+	item_state = "footwraps_carpdragon"
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
+	body_parts_covered = LEGS|FEET
+	strip_delay = 5 SECONDS
+	equip_delay_other = 5 SECONDS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	permeability_coefficient = 0.70
+
+/obj/item/clothing/shoes/xeno_wraps/engineering
+	name = "engineering footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, specially made for the frequent glass treader."
+	icon_state = "footwraps_e"
+	item_state = "footwraps_e"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/science
+	name = "science footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, to reduce fatigue when standing at a console all day."
+	icon_state = "footwraps_sc"
+	item_state = "footwraps_sc"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/medical
+	name = "medical footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, for when you dont want other people's blood all over your feet."
+	icon_state = "footwraps_m"
+	item_state = "footwraps_m"
+	xenoshoe = YES_DIGIT
+	mutantrace_variation = MUTANTRACE_VARIATION
+
+/obj/item/clothing/shoes/xeno_wraps/cargo
+	name = "cargo footwraps"
+	desc = "Standard issue NanoTrasen cloth footwraps, with reinforcment to protect against falling crates."
+	icon_state = "footwraps_ca"
+	item_state = "footwraps_ca"
+	xenoshoe = YES_DIGIT 
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"

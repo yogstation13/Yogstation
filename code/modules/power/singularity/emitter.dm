@@ -239,9 +239,9 @@
 		P.fire(dir2angle(dir))
 	if(!manual)
 		last_shot = world.time
-		if(shot_number >= shots_before_reload)
+		shot_number++
+		if(shot_number < shots_before_reload)
 			fire_delay = delay_between_shots
-			shot_number ++
 		else
 			fire_delay = rand(minimum_reload_time,maximum_reload_time)
 			shot_number = 0

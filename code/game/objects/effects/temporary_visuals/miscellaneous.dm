@@ -1,7 +1,7 @@
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
 	icon = 'icons/effects/blood.dmi'
-	duration = 5
+	duration = 0.5 SECONDS
 	randomdir = FALSE
 	layer = BELOW_MOB_LAYER
 	var/splatter_type = "splatter"
@@ -55,13 +55,13 @@
 	name = "speedbike trails"
 	icon_state = "ion_fade"
 	layer = BELOW_MOB_LAYER
-	duration = 10
+	duration = 1 SECONDS
 	randomdir = 0
 
 /obj/effect/temp_visual/dir_setting/firing_effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "firing_effect"
-	duration = 2
+	duration = 0.2 SECONDS
 
 /obj/effect/temp_visual/dir_setting/firing_effect/setDir(newdir)
 	switch(newdir)
@@ -79,17 +79,17 @@
 
 /obj/effect/temp_visual/dir_setting/firing_effect/energy
 	icon_state = "firing_effect_energy"
-	duration = 3
+	duration = 0.3 SECONDS
 
 /obj/effect/temp_visual/dir_setting/firing_effect/magic
 	icon_state = "shieldsparkles"
-	duration = 3
+	duration = 0.3 SECONDS
 
 /obj/effect/temp_visual/dir_setting/ninja
 	name = "ninja shadow"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "uncloak"
-	duration = 9
+	duration = 0.9 SECONDS
 
 /obj/effect/temp_visual/dir_setting/ninja/cloak
 	icon_state = "cloak"
@@ -108,24 +108,24 @@
 	name = "blood"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "phase_shift2"
-	duration = 12
+	duration = 1.2 SECONDS
 
 /obj/effect/temp_visual/dir_setting/wraith/out
 	icon_state = "phase_shift"
 
 /obj/effect/temp_visual/dir_setting/tailsweep
 	icon_state = "tailsweep"
-	duration = 4
+	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/dir_setting/curse
 	icon_state = "curse"
-	duration = 32
+	duration = 3.2 SECONDS
 	var/fades = TRUE
 
 /obj/effect/temp_visual/dir_setting/curse/Initialize(mapload, set_dir)
 	. = ..()
 	if(fades)
-		animate(src, alpha = 0, time = 32)
+		animate(src, alpha = 0, time = 3.2 SECONDS)
 
 /obj/effect/temp_visual/dir_setting/curse/blob
 	icon_state = "curseblob"
@@ -135,11 +135,11 @@
 	layer = LARGE_MOB_LAYER
 	pixel_y = -16
 	pixel_x = -16
-	duration = 32
+	duration = 3.2 SECONDS
 	fades = FALSE
 
 /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading
-	duration = 32
+	duration = 3.2 SECONDS
 	fades = TRUE
 
 /obj/effect/temp_visual/dir_setting/curse/hand
@@ -156,7 +156,7 @@
 	icon_state = "beam_splash_l"
 	layer = ABOVE_ALL_MOB_LAYER
 	pixel_y = -16
-	duration = 50
+	duration = 5 SECONDS
 
 /obj/effect/temp_visual/bsa_splash/Initialize(mapload, dir)
 	. = ..()
@@ -173,16 +173,16 @@
 	name = "water"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "reappear"
-	duration = 5
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/wizard/out
 	icon_state = "liquify"
-	duration = 12
+	duration = 1.2 SECONDS
 
 /obj/effect/temp_visual/monkeyify
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "h2monkey"
-	duration = 22
+	duration = 2.2 SECONDS
 
 /obj/effect/temp_visual/monkeyify/humanify
 	icon_state = "monkey2h"
@@ -190,13 +190,13 @@
 /obj/effect/temp_visual/borgflash
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "blspell"
-	duration = 5
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/guardian
 	randomdir = 0
 
 /obj/effect/temp_visual/guardian/phase
-	duration = 5
+	duration = 0.5 SECONDS
 	icon_state = "phasein"
 
 /obj/effect/temp_visual/guardian/phase/out
@@ -204,7 +204,7 @@
 
 /obj/effect/temp_visual/decoy
 	desc = "It's a decoy!"
-	duration = 15
+	duration = 1.5 SECONDS
 
 /obj/effect/temp_visual/decoy/Initialize(mapload, atom/mimiced_atom)
 	. = ..()
@@ -220,27 +220,27 @@
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/decoy/fading/threesecond
-	duration = 40
+	duration = 4 SECONDS
 
 /obj/effect/temp_visual/decoy/fading/fivesecond
-	duration = 50
+	duration = 5 SECONDS
 
 /obj/effect/temp_visual/decoy/fading/halfsecond
-	duration = 5
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/small_smoke
 	icon_state = "smoke"
-	duration = 50
+	duration = 5 SECONDS
 
 /obj/effect/temp_visual/small_smoke/halfsecond
-	duration = 5
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/fire
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"
 	light_range = LIGHT_RANGE_FIRE
 	light_color = LIGHT_COLOR_FIRE
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/revenant
 	name = "spooky lights"
@@ -249,17 +249,17 @@
 /obj/effect/temp_visual/revenant/cracks
 	name = "glowing cracks"
 	icon_state = "purplecrack"
-	duration = 6
+	duration = 0.6 SECONDS
 
 /obj/effect/temp_visual/gravpush
 	name = "gravity wave"
 	icon_state = "shieldsparkles"
-	duration = 5
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/telekinesis
 	name = "telekinetic force"
 	icon_state = "empdisable"
-	duration = 5
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/emp
 	name = "emp sparks"
@@ -268,17 +268,17 @@
 /obj/effect/temp_visual/emp/pulse
 	name = "emp pulse"
 	icon_state = "emppulse"
-	duration = 8
+	duration = 0.8 SECONDS
 	randomdir = 0
 
 /obj/effect/temp_visual/bluespace_fissure
 	name = "bluespace fissure"
 	icon_state = "bluestream_fade"
-	duration = 9
+	duration = 0.9 SECONDS
 
 /obj/effect/temp_visual/gib_animation
 	icon = 'icons/mob/mob.dmi'
-	duration = 15
+	duration = 1.5 SECONDS
 
 /obj/effect/temp_visual/gib_animation/Initialize(mapload, gib_icon)
 	icon_state = gib_icon // Needs to be before ..() so icon is correct
@@ -289,7 +289,7 @@
 
 /obj/effect/temp_visual/dust_animation
 	icon = 'icons/mob/mob.dmi'
-	duration = 15
+	duration = 1.5 SECONDS
 
 /obj/effect/temp_visual/dust_animation/Initialize(mapload, dust_icon)
 	icon_state = dust_icon // Before ..() so the correct icon is flick()'d
@@ -298,12 +298,17 @@
 /obj/effect/temp_visual/mummy_animation
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "mummy_revive"
-	duration = 20
+	duration = 2 SECONDS
+
+/obj/effect/temp_visual/wax_animation
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "wax_revive"
+	duration = 2 SECONDS
 
 /obj/effect/temp_visual/heal //color is white by default, set to whatever is needed
 	name = "healing glow"
 	icon_state = "heal"
-	duration = 15
+	duration = 1.5 SECONDS
 
 /obj/effect/temp_visual/heal/Initialize(mapload, set_color)
 	if(set_color)
@@ -317,7 +322,7 @@
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "kinetic_blast"
 	layer = ABOVE_ALL_MOB_LAYER
-	duration = 4
+	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/explosion
 	name = "explosion"
@@ -325,27 +330,27 @@
 	icon_state = "explosion"
 	pixel_x = -32
 	pixel_y = -32
-	duration = 8
+	duration = 0.8 SECONDS
 
 /obj/effect/temp_visual/explosion/fast
 	icon_state = "explosionfast"
-	duration = 4
+	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/blob
 	name = "blob"
 	icon_state = "blob_attack"
 	alpha = 140
 	randomdir = 0
-	duration = 6
+	duration = 0.6 SECONDS
 
 /obj/effect/temp_visual/desynchronizer
 	name = "desynchronizer field"
 	icon_state = "chronofield"
-	duration = 3
+	duration = 0.3 SECONDS
 
 /obj/effect/temp_visual/impact_effect
 	icon_state = "impact_bullet"
-	duration = 5
+	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/impact_effect/Initialize(mapload, x, y)
 	pixel_x = x
@@ -354,45 +359,45 @@
 
 /obj/effect/temp_visual/impact_effect/red_laser
 	icon_state = "impact_laser"
-	duration = 4
+	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/impact_effect/red_laser/wall
 	icon_state = "impact_laser_wall"
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/impact_effect/blue_laser
 	icon_state = "impact_laser_blue"
-	duration = 4
+	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/impact_effect/green_laser
 	icon_state = "impact_laser_green"
-	duration = 4
+	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/impact_effect/purple_laser
 	icon_state = "impact_laser_purple"
-	duration = 4
+	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/impact_effect/ion
 	icon_state = "shieldsparkles"
-	duration = 6
+	duration = 0.6 SECONDS
 
 /obj/effect/temp_visual/heart
 	name = "heart"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "heart"
-	duration = 25
+	duration = 2.5 SECONDS
 
 /obj/effect/temp_visual/heart/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-4,4)
 	pixel_y = rand(-4,4)
-	animate(src, pixel_y = pixel_y + 32, alpha = 0, time = 25)
+	animate(src, pixel_y = pixel_y + 32, alpha = 0, time = 2.5 SECONDS)
 
 /obj/effect/temp_visual/love_heart
 	name = "love heart"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "heart"
-	duration = 25
+	duration = 2.5 SECONDS
 
 /obj/effect/temp_visual/love_heart/Initialize(mapload)
 	. = ..()
@@ -415,7 +420,7 @@
 	name = "bleed"
 	icon = 'icons/effects/bleed.dmi'
 	icon_state = "bleed0"
-	duration = 10
+	duration = 1 SECONDS
 	var/shrink = TRUE
 
 /obj/effect/temp_visual/bleed/Initialize(mapload, atom/size_calc_target)
@@ -435,11 +440,11 @@
 
 /obj/effect/temp_visual/bleed/explode
 	icon_state = "bleed10"
-	duration = 12
+	duration = 1.2 SECONDS
 	shrink = FALSE
 
 /obj/effect/temp_visual/warp_cube
-	duration = 5
+	duration = 0.5 SECONDS
 	var/outgoing = TRUE
 
 /obj/effect/temp_visual/warp_cube/Initialize(mapload, atom/teleporting_atom, warp_color, new_outgoing)
@@ -470,7 +475,7 @@
 	icon = 'icons/effects/atmospherics.dmi'
 	icon_state = "space_wind"
 	layer = FLY_LAYER
-	duration = 20
+	duration = 2 SECONDS
 	mouse_opacity = 0
 
 /obj/effect/temp_visual/dir_setting/space_wind/Initialize(mapload, set_dir, set_alpha = 255)
@@ -488,3 +493,42 @@
 	randomdir = FALSE
 	duration = 2 SECONDS
 	icon_state = "summon"
+
+/obj/effect/constructing_effect
+	icon = 'icons/effects/effects_rcd.dmi'
+	icon_state = ""
+	layer = ABOVE_ALL_MOB_LAYER
+	var/status = 0
+	var/delay = 0
+
+/obj/effect/constructing_effect/Initialize(mapload, rcd_delay, rcd_status)
+	. = ..()
+	status = rcd_status
+	delay = rcd_delay
+	if (status == RCD_DECONSTRUCT)
+		addtimer(CALLBACK(src, .proc/update_icon), 11)
+		delay -= 11
+		icon_state = "rcd_end_reverse"
+	else
+		update_icon()
+
+/obj/effect/constructing_effect/update_icon()
+	icon_state = "rcd"
+	if (delay < 10)
+		icon_state += "_shortest"
+	else if (delay < 20)
+		icon_state += "_shorter"
+	else if (delay < 37)
+		icon_state += "_short"
+	if (status == RCD_DECONSTRUCT)
+		icon_state += "_reverse"
+
+/obj/effect/constructing_effect/proc/end_animation()
+	if (status == RCD_DECONSTRUCT)
+		qdel(src)
+	else
+		icon_state = "rcd_end"
+		addtimer(CALLBACK(src, .proc/end), 15)
+
+/obj/effect/constructing_effect/proc/end()
+	qdel(src)

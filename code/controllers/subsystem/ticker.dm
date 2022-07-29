@@ -316,9 +316,6 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
-	to_chat(world, "<h2>The way the AI works has changed. These changes are relevant if: you have an objective to steal/destroy the AI, are playing as the AI / as a Borg, are the Research Director, or, are the Network Admin. \
-	Please read the following: https://github.com/yogstation13/Yogstation/pull/12815 </h2>")
-
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
@@ -662,7 +659,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
 
-	var/skip_delay = check_rights()
+	var/skip_delay = check_rights(show_msg=FALSE)
 	if(delay_end && !skip_delay)
 		to_chat(world, span_boldannounce("An admin has delayed the round end."))
 		return

@@ -111,3 +111,9 @@
 
 	if(container)
 		. += "[container.type]"
+
+/mob/living/brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+	if(container && container.rebooting)
+		to_chat(src, span_danger("Speech synthesizers still offine, wait for the reboot process to complete"))
+		return
+	return ..()

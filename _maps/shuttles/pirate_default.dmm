@@ -18,6 +18,11 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/recharger,
+/obj/item/gun/ballistic/handcannon,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},

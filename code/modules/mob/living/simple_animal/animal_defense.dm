@@ -31,6 +31,7 @@
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
 				to_chat(M, span_notice("You don't want to hurt [src]!"))
 				return
+			last_damage = "fist"
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message(span_danger("[M] [response_harm] [src]!"),\
 			span_userdanger("[M] [response_harm] [src]!"), null, COMBAT_MESSAGE_RANGE)
@@ -106,7 +107,7 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = "melee")
+/mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = MELEE)
 	var/temp_damage = damage
 	if(!damage_coeff[damagetype])
 		temp_damage = 0
@@ -122,6 +123,7 @@
 
 /mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
 	apply_damage(Proj.damage, Proj.damage_type)
+	last_damage = Proj.name
 	Proj.on_hit(src)
 	return BULLET_ACT_HIT
 
@@ -131,7 +133,7 @@
 	..()
 	if(QDELETED(src))
 		return
-	var/bomb_armor = getarmor(null, "bomb")
+	var/bomb_armor = getarmor(null, BOMB)
 	switch (severity)
 		if (EXPLODE_DEVASTATE)
 			if(prob(bomb_armor))
@@ -157,7 +159,9 @@
 
 /mob/living/simple_animal/do_attack_animation(atom/A, visual_effect_icon, used_item, no_effect)
 	if(!no_effect && !visual_effect_icon && melee_damage_upper)
-		if(melee_damage_upper < 10)
+		if(attack_vis_effect && !iswallturf(A)) // override the standard visual effect.
+			visual_effect_icon = attack_vis_effect
+		else if(melee_damage_upper < 10)
 			visual_effect_icon = ATTACK_EFFECT_PUNCH
 		else
 			visual_effect_icon = ATTACK_EFFECT_SMASH

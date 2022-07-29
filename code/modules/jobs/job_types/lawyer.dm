@@ -13,13 +13,14 @@
 
 	outfit = /datum/outfit/job/lawyer
 
-	access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
-	minimal_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
+	added_access = list()
+	base_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CIV
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_LAWYER
+	minimal_character_age = 24 //Law is already absurd, never mind the wacky-ass shit that is space law
 
 	changed_maps = list("OmegaStation")
 
@@ -30,7 +31,8 @@
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer
 
-	belt = /obj/item/pda/lawyer
+	pda_type = /obj/item/pda/lawyer
+
 	ears = /obj/item/radio/headset/headset_srvsec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit
 	uniform_skirt = /obj/item/clothing/under/lawyer/bluesuit/skirt

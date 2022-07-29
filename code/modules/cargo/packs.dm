@@ -259,7 +259,7 @@
 
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
-	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo and special .38 speedloarders. Requires Security access to open."
+	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo, and special .38 speedloaders. Requires Security access to open."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
@@ -269,9 +269,9 @@
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
-					/obj/item/ammo_box/c38/trac,
 					/obj/item/ammo_box/c38/hotshot,
-					/obj/item/ammo_box/c38/iceblox)
+					/obj/item/ammo_box/c38/iceblox,
+					/obj/item/ammo_box/c38/gutterpunch)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/security/armor
@@ -520,6 +520,7 @@
 	name = "Hellgun Single-Pack"
 	desc = "Contains one hellgun, an old pattern of laser gun infamous for its ability to horribly disfigure targets with burns. Technically violates the Space Geneva Convention when used on humanoids."
 	cost = 1500
+	small_item = TRUE
 	contains = list(/obj/item/gun/energy/laser/hellgun)
 
 /datum/supply_pack/security/armory/energy
@@ -556,12 +557,12 @@
 
 /datum/supply_pack/security/armory/trackingimp
 	name = "Tracking Implants Crate"
-	desc = "Contains four tracking implants and three tracking speedloaders of tracing .38 ammo. Requires Armory access to open."
+	desc = "Contains four tracking implants and three speedloaders for the Caldwell Tracking Revolver. Requires Armory access to open."
 	cost = 2000
 	contains = list(/obj/item/storage/box/trackimp,
-					/obj/item/ammo_box/c38/trac,
-					/obj/item/ammo_box/c38/trac,
-					/obj/item/ammo_box/c38/trac)
+					/obj/item/ammo_box/tra32,
+					/obj/item/ammo_box/tra32,
+					/obj/item/ammo_box/tra32)
 	crate_name = "tracking implant crate"
 
 /datum/supply_pack/security/armory/laserarmor
@@ -710,6 +711,16 @@
 	group = "Engineering"
 	crate_type = /obj/structure/closet/crate/engineering
 
+/datum/supply_pack/engineering/bluespace_tap
+	name = "Bluespace Harvester Parts"
+	cost = 10000
+	special = TRUE
+	contains = list(
+					/obj/item/circuitboard/machine/bluespace_tap,
+					/obj/item/paper/bluespace_tap
+					)
+	crate_name = "bluespace harvester parts crate"
+
 /datum/supply_pack/engineering/shieldgen
 	name = "Anti-breach Shield Projector Crate"
 	desc = "Hull breaches again? Say no more with the Nanotrasen Anti-Breach Shield Projector! Uses forcefield technology to keep the air in, and the space out. Contains two shield projectors."
@@ -747,7 +758,7 @@
 
 /datum/supply_pack/engineering/engiequipment
 	name = "Engineering Gear Crate"
-	desc = "Gear up with three toolbelts, high-visibility vests, welding helmets, hardhats, and two pairs of meson goggles!"
+	desc = "Gear up with three toolbelts, high-visibility vests, welding goggles, hardhats, and two pairs of meson goggles!"
 	cost = 1300
 	contains = list(/obj/item/storage/belt/utility,
 					/obj/item/storage/belt/utility,
@@ -755,9 +766,9 @@
 					/obj/item/clothing/suit/hazardvest,
 					/obj/item/clothing/suit/hazardvest,
 					/obj/item/clothing/suit/hazardvest,
-					/obj/item/clothing/head/welding,
-					/obj/item/clothing/head/welding,
-					/obj/item/clothing/head/welding,
+					/obj/item/clothing/glasses/welding,
+					/obj/item/clothing/glasses/welding,
+					/obj/item/clothing/glasses/welding,
 					/obj/item/clothing/head/hardhat,
 					/obj/item/clothing/head/hardhat,
 					/obj/item/clothing/head/hardhat,
@@ -1026,6 +1037,13 @@
 	contains = list(/obj/item/stack/sheet/cardboard/fifty)
 	crate_name = "cardboard sheets crate"
 
+/datum/supply_pack/materials/license50
+	name = "50 Empty License Plates"
+	desc = "'Put those prisoners to work' - Jedi Yoda probably"
+	cost = 1000  // 50 * 25 - 1000 = 250 credits profit
+	contains = list(/obj/item/stack/license_plates/empty/fifty)
+	crate_name = "empty license plate crate"
+
 /datum/supply_pack/materials/glass50
 	name = "50 Glass Sheets"
 	desc = "Let some nice light in with fifty glass sheets!"
@@ -1186,14 +1204,14 @@
 	name = "Medipen Variety-Pak"
 	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
 	cost = 2000
-	contains = list(/obj/item/reagent_containers/hypospray/medipen/,
-					/obj/item/reagent_containers/hypospray/medipen/,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/ekit,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss,
-					/obj/item/reagent_containers/hypospray/medipen/blood_loss
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen/,
+					/obj/item/reagent_containers/autoinjector/medipen/,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/ekit,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss
 )
 	crate_name = "medipen crate"
 
@@ -1236,12 +1254,76 @@
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/o2)
 	crate_type = /obj/structure/closet/crate/secure/cheap
+  
+/datum/supply_pack/medical/firstaidadvanced_single
+	name = "Advanced Treatment Kit Single-Pack"
+	desc = "Contains one advanced first aid kit able to heal many advanced ailments."
+	cost = 600
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/advanced)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+  
+/datum/supply_pack/medical/hypospraykitvial_single
+	name = "Hypospray Kit Single-Pack"
+	desc = "Contains a hypospray kit containing a hypospray and empty vials for applying reagents to patients."
+	cost = 200
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/vial)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitbasic_single
+	name = "Basic Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing hypospray vials for most common situations."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/basic)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitbrute_single
+	name = "Brute Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing hypospray vials to treat most blunt trauma."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/brute)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitburn_single
+	name = "Burn Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing hypospray vials to treat most burns."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/burn)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkittox_single
+	name = "Toxin Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing hypospray vials to cure toxic damage."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/toxin)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitoxy_single
+	name = "Oxygen Hypospray Vial Kit Single-Pack"
+	desc = "Contains a hypospray vial kit containing a vials to treat suffication."
+	cost = 100
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/oxygen)
+	crate_type = /obj/structure/closet/crate/secure/cheap
+
+/datum/supply_pack/medical/hypovialkitadv_single
+	name = "Advanced Hypospray Vial Kit Single-Pack"
+	desc = "Contains an advanced hypospray vial kit containing vials for most situations."
+	cost = 200
+	small_item = TRUE
+	contains = list(/obj/item/storage/firstaid/hypospray/advanced)
+	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/medipen_twopak
 	name = "Medipen Two-Pak"
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
 	cost = 500
-	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/autoinjector/medipen/ekit)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/chemical
@@ -1764,6 +1846,18 @@
 	crate_name = "beekeeping starter crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
+/datum/supply_pack/organic/randomized/donkpockets
+	name = "Donk Pocket Variety Crate"
+	desc = "Featuring a line up of Donk Co.'s most popular pastry!"
+	cost = 2000
+	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy,
+	/obj/item/storage/box/donkpockets/donkpocketteriyaki,
+	/obj/item/storage/box/donkpockets/donkpocketpizza,
+	/obj/item/storage/box/donkpockets/donkpocketberry,
+	/obj/item/storage/box/donkpockets/donkpockethonk,
+	/obj/item/storage/box/donkpockets)
+	crate_name = "donk pocket crate"
+
 /datum/supply_pack/organic/randomized/chef
 	name = "Excellent Meat Crate"
 	desc = "The best cuts in the whole galaxy."
@@ -1838,13 +1932,12 @@
 					/obj/item/reagent_containers/food/snacks/grown/citrus/lemon)
 	crate_name = "food crate"
 
-/datum/supply_pack/organic/cream_piee
+/datum/supply_pack/organic/cream_pie
 	name = "High-yield Clown-grade Cream Pie Crate"
 	desc = "Designed by Aussec's Advanced Warfare Research Division, these high-yield, Clown-grade cream pies are powered by a synergy of performance and efficiency. Guaranteed to provide maximum results."
-	cost = 6000
+	cost = 4500
 	contains = list(/obj/item/storage/backpack/duffelbag/clown/cream_pie)
 	crate_name = "party equipment crate"
-	contraband = TRUE
 	access = ACCESS_THEATRE
 	crate_type = /obj/structure/closet/crate/secure
 
@@ -2370,7 +2463,7 @@
 		if(prob(50))
 			the_toy = pickweight(GLOB.arcade_prize_pool)
 		else
-			the_toy = pick(subtypesof(/obj/item/toy/plush))
+			the_toy = pick(subtypesof(/obj/item/toy/plush) - typesof(/obj/item/toy/plush/goatplushie/angry/kinggoat))
 			if(istype(the_toy, /obj/item/toy/plush/lizard/azeel/snowflake))
 				the_toy = /obj/item/toy/plush/lizard/azeel
 		new the_toy(.)

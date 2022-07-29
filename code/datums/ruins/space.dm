@@ -347,8 +347,8 @@
 	name = "Game Room"
 	description = "A room in space in which you can play card games and munch on some snacks."
 
-/datum/map_template/ruin/space/gaming
-	id = "puby"
+/datum/map_template/ruin/space/pubby
+	id = "pubby"
 	suffix = "pubby_monastery.dmm"
 	name = "Pubby Monastery"
 	description = "A beautiful monastery that used to have a station attached to it"

@@ -1,5 +1,7 @@
 GLOBAL_LIST_EMPTY(chosen_station_templates)
 
+#define EMPTY_SPAWN "empty_spawn"
+
 /obj/effect/landmark/start/yogs
 	icon = 'yogstation/icons/mob/landmarks.dmi'
 
@@ -7,8 +9,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	name = "Mining Medic"
 	icon_state = "Mining Medic"
 
-/obj/effect/landmark/start/yogs/signal_technician
-	name = "Signal Technician"
+/obj/effect/landmark/start/yogs/network_admin
+	name = "Network Admin"
 	icon_state = "Signal Technician"
 
 /obj/effect/landmark/start/yogs/clerk
@@ -52,11 +54,11 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		return FALSE
 	if(!template_name)
 		for(var/t in template_names)
-			if(!SSmapping.station_room_templates[t])
+			if(!SSmapping.station_room_templates[t] && t != EMPTY_SPAWN)
 				stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
 				template_names -= t
 		template_name = choose()
-	if(!template_name)
+	if(!template_name || template_name == EMPTY_SPAWN)
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
 		return FALSE
@@ -75,14 +77,20 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 // Examples where this would be useful, would be choosing certain templates depending on conditions such as holidays,
 // Or co-dependent templates, such as having a template for the core and one for the satelite, and swapping AI and comms.git
 /obj/effect/landmark/stationroom/proc/choose()
+	var/list/current_templates = template_names
 	if(unique)
-		var/list/current_templates = template_names
 		for(var/i in GLOB.chosen_station_templates)
 			template_names -= i
 		if(!template_names.len)
 			stack_trace("Station room spawner (type: [type]) has run out of ruins, unique will be ignored")
 			template_names = current_templates
-	return pickweight(template_names)
+	var/chosen_template = pickweight(template_names)
+	if(unique && chosen_template == EMPTY_SPAWN)
+		template_names -= EMPTY_SPAWN
+		if(!template_names.len)
+			stack_trace("Station room spawner (type: [type]) has run out of ruins from an EMPTY_SPAWN, unique will be ignored")
+			template_names = current_templates
+	return chosen_template
 
 /obj/effect/landmark/stationroom/box/bar
 	template_names = list("Bar Trek", "Bar Spacious", "Bar Box", "Bar Casino", "Bar Citadel", "Bar Conveyor", "Bar Diner", "Bar Disco", "Bar Purple", "Bar Cheese", "Bar Clock", "Bar Arcade")
@@ -94,7 +102,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM", "Engine Singulo And Tesla", "Engine TEG")
+	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 30, "Engine TEG" = 20)
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
@@ -106,12 +114,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(2)
 			return "Engine Singulo And Tesla"
 		if(3)
-			if(prob(33))
-				return "Engine SM"
-			if(prob(33))
-				return "Engine Singulo And Tesla"
-			if(prob(33))
-				return "Engine TEG"
+			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
 			return "Engine TEG"
 
@@ -129,7 +132,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Hydroponics 1", "Hydroponics 2", "Hydroponics 3", "Hydroponics 4", "Hydroponics 5", "Hydroponics 6")
 
 /obj/effect/landmark/stationroom/box/execution
-	template_names = list("Transfer 1", "Transfer 2", "Transfer 3", "Transfer 4", "Transfer 5", "Transfer 6", "Transfer 7", "Transfer 8", "Transfer 9")
+	template_names = list("Transfer 1", "Transfer 2", "Transfer 3", "Transfer 4", "Transfer 5", "Transfer 6", "Transfer 7", "Transfer 8", "Transfer 9", "Transfer 10")
 
 /obj/effect/landmark/stationroom/eclipse/bar
 	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
@@ -163,6 +166,32 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
 	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
 
+/// Type of landmark that find all others of the same type, and only spawns count number of ruins at them
+/obj/effect/landmark/stationroom/limited_spawn
+	var/choose_result = ""
+	var/count = 1
+
+/obj/effect/landmark/stationroom/limited_spawn/choose()
+	if(choose_result != "")
+		return choose_result
+	var/list/landmarks = list()
+	for(var/obj/effect/landmark/stationroom/limited_spawn/L in GLOB.stationroom_landmarks)
+		if(L.type == src.type)
+			landmarks |= L
+	
+	for(var/i = 0, i < count, i++)
+		var/obj/effect/landmark/stationroom/limited_spawn/L = pick_n_take(landmarks)
+		L.choose_result = pick(L.template_names)
+		var/turf/T = get_turf(L)
+		message_admins(span_adminnotice("Spawning limited_spawn landmark at [ADMIN_COORDJMP(T)]"))
+		log_game("Spawning limited_spawn landmark at: [AREACOORD(T)]")
+	
+	for(var/obj/effect/landmark/stationroom/limited_spawn/L in landmarks)
+		L.choose_result = EMPTY_SPAWN
+
+/obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale
+	template_names = list("AI Whale")
+
 /obj/effect/landmark/start/infiltrator
 	name = "infiltrator"
 	icon = 'icons/effects/landmarks_static.dmi'
@@ -182,3 +211,5 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	..()
 	GLOB.infiltrator_objective_items += loc
 	return INITIALIZE_HINT_QDEL 
+
+#undef EMPTY_SPAWN

@@ -99,6 +99,17 @@
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
 	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
+/datum/emote/living/carbon/human/rattle
+	key = "rattle"
+	key_third_person = "rattles"
+	message = "rattles their bones!"
+	message_param = "rattles %t bones!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/rattled.ogg'
+
+/datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return isskeleton(user)
+	
 /datum/emote/living/carbon/human/pale
 	key = "pale"
 	message = "goes pale for a second."
@@ -206,5 +217,3 @@
 	if(isturf(loc))
 		var/turf/T = loc
 		T.Entered(src)
-
-//Ayy lmao

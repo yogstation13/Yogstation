@@ -46,6 +46,8 @@
 
 #define STATUS_EFFECT_DETERMINED /datum/status_effect/determined //currently in a combat high from being seriously wounded
 
+#define STATUS_EFFECT_FRENZY /datum/status_effect/frenzy //Makes you fast and stronger
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -78,13 +80,19 @@
 
 #define STATUS_EFFECT_SUMMONEDGHOST /datum/status_effect/cultghost //is a cult ghost and can't use manifest runes
 
+#define STATUS_EFFECT_SHADOWAFFLICTED /datum/status_effect/the_shadow //Heavy hallucinations + ear damage with a shadowman overlay
+
 #define STATUS_EFFECT_CRUSHERMARK /datum/status_effect/crusher_mark //if struck with a proto-kinetic crusher, takes a ton of damage
+
+#define STATUS_EFFECT_KNUCKLED /datum/status_effect/knuckled //if struck with bloody knuckles or their ability, gets rooted
 
 #define STATUS_EFFECT_SAWBLEED /datum/status_effect/saw_bleed //if the bleed builds up enough, takes a ton of damage
 
 #define STATUS_EFFECT_BLOODLETTING /datum/status_effect/saw_bleed/bloodletting //same but smaller
 
 #define STATUS_EFFECT_EXPOSED /datum/status_effect/exposed //increases incoming damage
+
+#define STATUS_EFFECT_TAMING /datum/status_effect/taming //tames the target after enough tame stacks
 
 #define STATUS_EFFECT_NECROPOLIS_CURSE /datum/status_effect/necropolis_curse
 #define STATUS_EFFECT_HIVEMIND_CURSE /datum/status_effect/necropolis_curse/hivemind
@@ -115,13 +123,7 @@
 
 #define STATUS_EFFECT_LIMP /datum/status_effect/limp //For when you have a busted leg (or two!) and want additional slowdown when walking on that leg
 
-#define STATUS_EFFECT_HERETIC_SACRIFICE /datum/status_effect/heretic_sacrifice //controls heretic sacrifice events
-
-#define STATUS_EFFECT_HERETIC_SACRIFICE_ASH /datum/status_effect/heretic_sacrifice/ash
-
-#define STATUS_EFFECT_HERETIC_SACRIFICE_FLESH /datum/status_effect/heretic_sacrifice/flesh
-
-#define STATUS_EFFECT_HERETIC_SACRIFICE_RUST /datum/status_effect/heretic_sacrifice/rust
+#define STATUS_EFFECT_BRAZIL_PENANCE /datum/status_effect/brazil_penance //controls heretic sacrifice
 
 /////////////
 // NEUTRAL //
@@ -153,6 +155,8 @@
 
 #define STATUS_EFFECT_PROGENITORCURSE /datum/status_effect/progenitor_curse
 
+#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade 
+
 /////////////
 //  SLIME  //
 /////////////
@@ -162,4 +166,5 @@
 
 // Stasis helpers
 
-#define IS_IN_STASIS(mob) (mob.has_status_effect(STATUS_EFFECT_STASIS))
+#define IS_IN_STASIS(mob) (mob.life_tickrate == 0)
+#define LIFETICK_SKIP(living, tick) (living.life_tickrate && (tick % living.life_tickrate) == 0)

@@ -271,6 +271,8 @@
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			if(player.stat != DEAD)
+				if(istype(player.loc, /obj/effect/dummy/crawling))
+					continue
 				if(issilicon(player)) //Borgs are technically dead anyways
 					continue
 				if(isanimal(player)) //animals don't count

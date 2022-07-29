@@ -338,6 +338,8 @@ SUBSYSTEM_DEF(explosions)
 				var/atom/A = I
 				if (length(A.contents) && !(A.flags_1 & PREVENT_CONTENTS_EXPLOSION_1)) //The atom/contents_explosion() proc returns null if the contents ex_acting has been handled by the atom, and TRUE if it hasn't.
 					items += A.GetAllContents()
+				if(istype(A, /mob/living))
+					items -= A				//So we don't do double damage to mobs for balance raisins
 			for(var/thing in items)
 				var/atom/movable/movable_thing = thing
 				if(QDELETED(movable_thing))

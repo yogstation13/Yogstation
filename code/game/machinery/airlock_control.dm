@@ -33,7 +33,7 @@
 			locked = FALSE
 			update_icon()
 
-			sleep(2)
+			sleep(0.2 SECONDS)
 			open(1)
 
 			locked = TRUE
@@ -44,7 +44,7 @@
 			close(1)
 
 			locked = TRUE
-			sleep(2)
+			sleep(0.2 SECONDS)
 			update_icon()
 
 	send_status()

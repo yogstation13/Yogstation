@@ -205,7 +205,7 @@
 			user.visible_message(span_warning("[user] jams [src] into the airlock and starts prying it open!"), span_warning("We start forcing the airlock open."), //yogs modified description
 			span_italics("You hear a metal screeching sound."))
 			playsound(A, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
-			if(!do_after(user, 10 SECONDS, target = A))
+			if(!do_after(user, 10 SECONDS, A))
 				return
 		//user.say("Heeeeeeeeeerrre's Johnny!")
 		user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the airlock to open."), //yogs modified description
@@ -483,7 +483,7 @@
 	item_flags = DROPDEL
 	clothing_flags = STOPSPRESSUREDAMAGE //Not THICKMATERIAL because it's organic tissue, so if somebody tries to inject something into it, it still ends up in your blood. (also balance but muh fluff)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/oxygen)
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90) //No armor at all.
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 90, ACID = 90) //No armor at all.
 
 /obj/item/clothing/suit/space/changeling/Initialize()
 	. = ..()
@@ -503,7 +503,7 @@
 	desc = "A covering of pressure and temperature-resistant organic tissue with a glass-like chitin front."
 	item_flags = DROPDEL
 	clothing_flags = STOPSPRESSUREDAMAGE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 90, ACID = 90)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
 /obj/item/clothing/head/helmet/space/changeling/Initialize()
@@ -535,7 +535,7 @@
 	icon_state = "lingarmor"
 	item_flags = DROPDEL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 4, "rad" = 0, "fire" = 90, "acid" = 90)
+	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 20, BOMB = 10, BIO = 4, RAD = 0, FIRE = 90, ACID = 90)
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = 0
 	heat_protection = 0
@@ -552,9 +552,92 @@
 	desc = "A tough, hard covering of black chitin with transparent chitin in front."
 	icon_state = "lingarmorhelmet"
 	item_flags = DROPDEL
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 4, "rad" = 0, "fire" = 90, "acid" = 90)
+	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 20, BOMB = 10, BIO = 4, RAD = 0, FIRE = 90, ACID = 90)
 	flags_inv = HIDEEARS|HIDEHAIR|HIDEEYES|HIDEFACIALHAIR|HIDEFACE
 
 /obj/item/clothing/head/helmet/changeling/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
+
+/***************************************\
+|***************FLESH MAUL**************|
+\***************************************/
+/datum/action/changeling/weapon/flesh_maul
+	name = "Flesh Maul"
+	desc = "We reform one of our arms into a dense mass of flesh and bone. Costs 20 chemicals."
+	helptext = "We may reabsorb the mass in the same way it was formed. It is too heavy to be used in our lesser form."
+//	button_icon = 'icons/obj/changeling.dmi'
+	button_icon_state = "flesh_maul"
+	chemical_cost = 20
+	dna_cost = 3
+	req_human = 1
+	weapon_type = /obj/item/melee/flesh_maul
+	weapon_name_simple = "maul"
+	xenoling_available = FALSE
+
+/obj/item/melee/flesh_maul
+	name = "flesh maul"
+	desc = "A horrifying mass of pulsing flesh and glistening bone. More than capable of crushing anyone unfortunate enough to be hit by it."
+	icon = 'icons/obj/changeling.dmi'
+	icon_state = "flesh_maul"
+	item_state = "flesh_maul"
+	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
+	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
+	w_class = WEIGHT_CLASS_HUGE
+	tool_behaviour = TOOL_MINING
+	weapon_stats = list(SWING_SPEED = 2, ENCUMBRANCE = 1, ENCUMBRANCE_TIME = 20, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)	//Heavy and slow
+	force = 30					//SHATTER BONE
+	throwforce = 0 				//Just to be on the safe side
+	throw_range = 0
+	throw_speed = 0
+	armour_penetration = -20	//Armor will help stop some of the damage
+	wound_bonus = 30			//But your bones will be sad :(
+	hitsound = "swing_hit"
+	attack_verb = list("smashed", "slammed", "crushed", "whacked")
+	sharpness = SHARP_NONE
+	var/can_drop = FALSE
+	var/fake = FALSE
+	resistance_flags = ACID_PROOF
+
+/obj/item/melee/flesh_maul/Initialize(mapload,silent,synthetic)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CHANGELING_TRAIT)
+	if(ismob(loc) && !silent)
+		loc.visible_message(span_warning("[loc.name]\'s arm snaps and shifts into a grisly maul!"), span_warning("Our arm twists and mutates, transforming into a powerful maul."), span_italics("You hear organic matter ripping and tearing!"))
+	if(synthetic)
+		can_drop = TRUE
+
+/obj/item/melee/flesh_maul/afterattack(atom/target, mob/user, proximity)	
+	. = ..()
+	if(!proximity)
+		return
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.add_movespeed_modifier("flesh maul", update=TRUE, priority=101, multiplicative_slowdown=1)						//Slows the target because big whack
+		addtimer(CALLBACK(C, /mob.proc/remove_movespeed_modifier, "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	
+		to_chat(target, span_danger("You are staggered from the blow!"))
+
+	else if(iscyborg(target))
+		var/mob/living/silicon/robot/R = target
+		R.Paralyze(1 SECONDS)						//One second stun on borgs because they get their circuits rattled or something
+
+	else if(isstructure(target) || ismachinery(target))	
+		var/obj/structure/S = target			//Works for machinery because they have the same variable that does the same thing
+		var/structure_damage = S.max_integrity		
+		var/make_sound = TRUE
+		if(istype(target, /obj/structure/window) || istype(target, /obj/structure/grille))
+			structure_damage *= 2 				// Because of melee armor
+			make_sound = FALSE
+		if(ismachinery(target) || istype(target, /obj/structure/door_assembly))
+			structure_damage *= 0.5
+		if(istype(target, /obj/machinery/door/airlock))
+			structure_damage = 29				//Should make it better than armblades for airlock smashing. No bonus vs plasteel-reinforced airlocks, though.
+		if(istype(target, /obj/structure/table))	//Hate tables
+			var/obj/structure/table/T = target
+			T.deconstruct(FALSE)
+			return
+		if(!isnull(target))
+			S.take_damage(structure_damage, BRUTE, "melee", 0)
+		if(make_sound)
+			playsound(src, 'sound/effects/bang.ogg', 50, 1)

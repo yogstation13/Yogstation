@@ -58,9 +58,8 @@
 /turf/open/floor/wood,
 /area/ruin/powered)
 "aF" = (
-/obj/item/reagent_containers/glass/bottle/potass_iodide{
-	desc = "War. War never changes. But this can take away your radiation problems!";
-	name = "rad-away"
+/obj/item/reagent_containers/glass/bottle/radscrub{
+	desc = "War. War never changes. But this can clean your radiation contamination problems!";
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)

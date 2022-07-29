@@ -3,13 +3,45 @@
 //Damage and status effect defines
 
 //Damage defines //TODO: merge these down to reduce on defines
+
+/// Physical fracturing and warping of the material.
 #define BRUTE		"brute"
-#define BURN		"fire"
-#define TOX			"tox"
-#define OXY			"oxy"
+/// Scorching and charring of the material.
+#define BURN		"burn"
+/// Poisoning. Mostly caused by reagents.
+#define TOX			"toxin"
+/// Suffocation.
+#define OXY			"oxygen"
+/// Cellular degredation. Rare and difficult to treat.
 #define CLONE		"clone"
+/// Exhaustion and nonlethal damage.
 #define STAMINA 	"stamina"
+/// Brain damage. Should probably be decomissioned and replaced with proper organ damage.
 #define BRAIN		"brain"
+
+//Damage flag defines //
+/// Involves a melee attack or a thrown object.
+#define MELEE		"melee"
+/// Involves a solid projectile.
+#define BULLET		"bullet"
+/// Involves a laser.
+#define LASER		"laser"
+/// Involves an EMP or energy-based projectile.
+#define ENERGY		"energy"
+/// Involves a shockwave, usually from an explosion.
+#define BOMB		"bomb"
+/// Involved in checking wheter a disease can infect or spread. Also involved in xeno neurotoxin.
+#define BIO			"bio"
+/// Involves ionizing radiation.
+#define RAD			"rad"
+/// Involves fire or temperature extremes.
+#define FIRE		"fire"
+/// Involves corrosive substances.
+#define ACID		"acid"
+/// Involves magic.
+#define MAGIC		"magic"
+/// Involved in checking the likelyhood of applying a wound to a mob.
+#define WOUND		"wound"
 
 //bitflag damage defines used for suicide_act
 #define BRUTELOSS 	            	(1<<0)
@@ -48,15 +80,15 @@
 
 //Actual combat defines
 
-//click cooldowns, in tenths of a second, used for various combat actions
-#define CLICK_CD_MELEE 8
-#define CLICK_CD_RANGE 4
-#define CLICK_CD_RAPID 2
-#define CLICK_CD_CLICK_ABILITY 6
-#define CLICK_CD_BREAKOUT 100
-#define CLICK_CD_HANDCUFFED 10
-#define CLICK_CD_RESIST 20
-#define CLICK_CD_GRABBING 10
+//click cooldowns, in seconds, used for various combat actions
+#define CLICK_CD_MELEE 0.8 SECONDS
+#define CLICK_CD_RANGE 0.4 SECONDS
+#define CLICK_CD_RAPID 0.2 SECONDS
+#define CLICK_CD_CLICK_ABILITY 0.6 SECONDS
+#define CLICK_CD_BREAKOUT 10 SECONDS
+#define CLICK_CD_HANDCUFFED 1 SECONDS
+#define CLICK_CD_RESIST 2 SECONDS
+#define CLICK_CD_GRABBING 1 SECONDS
 
 //Cuff resist speeds
 #define FAST_CUFFBREAK 1

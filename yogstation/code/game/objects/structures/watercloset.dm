@@ -5,7 +5,7 @@
 			return
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		user.visible_message(span_notice("[user] begins to attach [I] to [src]..."), span_notice("You begin attaching [I] to [src]..."))
-		if (!do_after(user, 5 SECONDS, target = src))
+		if (!do_after(user, 5 SECONDS, src))
 			return
 		for (var/obj/item/cistern_item in contents)
 			cistern_item.forceMove(loc)

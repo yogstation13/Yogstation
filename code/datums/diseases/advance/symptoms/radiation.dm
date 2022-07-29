@@ -52,4 +52,4 @@
 /datum/symptom/radiation/proc/radiate(mob/living/carbon/M, chance)
 	if(prob(chance))
 		to_chat(M, span_danger("You feel a wave of pain throughout your body!"))
-		M.radiation += 4
+		M.rad_act(RAD_BACKGROUND_RADIATION + 4) // Yogs -- being irradiated actually causes radiation damage

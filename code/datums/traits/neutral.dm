@@ -102,6 +102,13 @@
 	if(quirk_holder)
 		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
 
+/datum/quirk/shifty_eyes
+	name = "Shifty Eyes"
+	desc = "Your eyes tend to wander all over the place, whether you mean to or not, causing people to sometimes think you're looking directly at them when you aren't."
+	value = 0
+	medical_record_text = "Fucking creep kept staring at me the whole damn checkup. I'm only diagnosing this because it's less awkward than thinking it was on purpose."
+	mob_trait = TRAIT_SHIFTY_EYES
+
 /datum/quirk/random_accent
 	name = "Randomized Accent"
 	desc = "You have developed a random accent."

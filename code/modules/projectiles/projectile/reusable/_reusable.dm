@@ -7,13 +7,13 @@
 
 /obj/item/projectile/bullet/reusable/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	handle_drop()
+	handle_drop(target)
 
 /obj/item/projectile/bullet/reusable/on_range()
 	handle_drop()
 	..()
 
-/obj/item/projectile/bullet/reusable/proc/handle_drop()
+/obj/item/projectile/bullet/reusable/proc/handle_drop(atom/target)
 	if(!dropped)
 		var/turf/T = get_turf(src)
 		new ammo_type(T)

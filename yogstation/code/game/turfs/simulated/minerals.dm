@@ -11,3 +11,7 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
+
+/turf/closed/mineral/dilithium/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 2

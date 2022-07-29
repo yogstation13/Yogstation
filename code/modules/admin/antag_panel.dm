@@ -55,6 +55,7 @@ GLOBAL_VAR(antag_prototypes)
 
 /datum/antagonist/proc/antag_panel_memory()
 	var/out = "<b>Memory:</b><br>"
+	out += task_memory
 	out += antag_memory
 	out += "<br><a href='?src=[REF(src)];memory_edit=1'>Edit memory</a><br>"
 	return out

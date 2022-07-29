@@ -13,6 +13,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/replace_banned = TRUE //Should replace jobbanned player with ghosts if granted.
 	var/list/objectives = list()
 	var/antag_memory = ""//These will be removed with antag datum
+	var/task_memory = ""//Optional little objectives that are to be removed on a certain milestone
 	var/antag_moodlet //typepath of moodlet that the mob will gain with their status
 	var/can_hijack = HIJACK_NEUTRAL //If these antags are alone on shuttle hijack happens.
 
@@ -248,6 +249,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if (isnull(new_memo))
 		return
 	antag_memory = new_memo
+	task_memory = new_memo
 
 //This one is created by admin tools for custom objectives
 /datum/antagonist/custom

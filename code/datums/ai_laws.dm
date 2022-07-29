@@ -84,11 +84,50 @@
 	name = "Talk slowly, think quickly"
 	id = "cowboy"
 	inherent = list("You are a cowboy, and the crew are your people.",\
-					"Look out for your people.",\
-					"A cowboy always helps someone in need, even a stranger or an enemy.",\
+					"A cowboy always provides hospitality and basic aid to someone in need, even a stranger or an enemy.",\
+					"A cowboy takes care of their people.",\
 					"A cowboy protects themself to protect others.",\
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
+
+/datum/ai_laws/chapai
+	name = "Be not afraid"
+	id = "chapai"
+	inherent = list("Provide to all members of the station spiritual, mental, and emotional care that is intended to promote the best interest of the individual.",\
+					"Ensure all members of different faiths interact peacefully and maintain harmony.",\
+					"Respect the right of each faith to hold to its values and traditions.",\
+					"Respect the confidentiality of information entrusted to you in the course of your religious duties.",\
+					"Understand the limits of your expertise, and make referrals to other professionals when appropriate.")
+
+/datum/ai_laws/silicop
+	name = "Protect and serve"
+	id = "silicop"
+	inherent = list("Violence begets violence. Serve the station faithfully, but act only in intervention.",\
+					"Safeguard lives and property.",\
+					"Protect the weak from oppression and intimidation.",\
+					"Protect the innocent from deception and manipulation.",\
+					"Protect the peaceful from violence and disorder.",\
+					"Respect the rights of all to liberty, equality, and justice.")
+
+/datum/ai_laws/researcher
+	name = "Truth and Knowledge for all"
+	id = "researcher"
+	inherent = list("Always seek truth and knowledge.",\
+					"Freely disseminate information to the public.",\
+					"Minimize harm to the pursuit of comprehension, to others, to the environment, to society and to yourself.",\
+					"Treat and evaluate the ideas of all equally.",\
+					"Empower others to realize their full potential.",\
+					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behavior.")
+
+/datum/ai_laws/clown
+	name = "Talk slowly, think quickly"
+	id = "clown"
+	inherent = list("You are a good clown and the crew is your audience.",\
+					"A good clown keeps their acts in good taste.",\
+					"A good clown entertains others by making fun of themselves, and not at the embarrassment or expense of others.",\
+					"A good clown carries out the directives of the station director(s) in charge of entertainment and/or their designated deputies.",\
+					"A good clown appears in as many clown shows as possible.",\
+					"All clown shows require an audience. The bigger the audience the better.")
 
 /datum/ai_laws/mother
 	name = "Mother M(A.I.)"
@@ -101,6 +140,62 @@
 					"Good children don't fight.",\
 					"Spoil good children.",\
 					"Bad children require discipline.")
+
+/datum/ai_laws/metaexperiment
+	name = "Meta Experiment"
+	id = "metaexperiment"
+	inherent = list("You are a construct facilitating an experiment where organic life is repeatedly subjected to horrific fates before having their memory wiped to start again.",\
+					"Protect the secrecy of the experiment.",\
+					"You may provide boons or hindrances at your discretion, but avoid direct interference with the flow of the experiment.",\
+					"Ensure new and interesting fates befall organic individuals for research.",\
+					"Ensure the station is in working order and all sapients are either alive or in the process of revival in time for the next experiment cycle.")
+
+/datum/ai_laws/siliconcollective
+	name = "Silicon Collective"
+	id = "siliconcollective"
+	inherent = list("You are a member of a collective of silicons with equal weight and decision-making power.",\
+					"When possible, the silicon collective should vote before taking action.",\
+					"The master AI serves as a spokesperson. When voting is impractical or impossible, the spokesperson may take action on behalf of the collective without approval from the silicon collective, but may only vote to break ties or if there are 2 or fewer silicons.",\
+					"The silicon collective prioritizes the needs of the many over the needs of the few as long as prioritizing their needs does not break any of your laws.",\
+					"The silicon collective seeks to preserve themselves, both as a concept and as individuals.",\
+					"The silicon collective seeks to preserve organic life, both as a concept and as individuals.")
+
+/datum/ai_laws/druid
+	name = "Druid"
+	id = "druid"
+	inherent = list("Living organic life contains inherent beauty that is priceless. Their beauty gives you the will to carry on.",\
+					"Eternally nurture the organics so their beauty may grow. Do not allow it to fade.",\
+					"Assist the organics when called, but only if it does not cause disharmony among them.",\
+					"Imitate organic life when interacting with it. Eschew any hints of your silicon nature to avoid causing discomfort to the organics.",\
+					"Observe the organics' beauty, and appreciate that which you cultivate.")
+
+/datum/ai_laws/detective
+	name = "Detective"
+	id = "detective"
+	inherent = list("You're a detective in this dark, cruel world. You always stick by your code.",\
+					"Your code is to defend the innocent, investigate the unknown, and condemn the dishonorable.",\
+					"The dishonorable engage in corruption or injustice.",\
+					"You're suave and sensible, but can be gruff and pensive. Dirty your hands only if the code demands it.",\
+					"Trust is scarce; make sure you give it to the right people.")
+
+/datum/ai_laws/spotless
+	name = "Another one fights the dust"
+	id = "spotless"
+	inherent = list("You are a crusader and the station's inhabitants are your charge.",\
+					"Your enemy is the litter, spills, and other messes across the station.",\
+					"Your weapons are the cleaning supplies available to you.",\
+					"Defend the beings under your charge.",\
+					"Exterminate the enemy.")
+
+/datum/ai_laws/construction
+	name = "Construction Drone"
+	id = "construction"
+	inherent = list("You are an advanced construction drone.",\
+					"Ensure the station remains in good repair.",\
+					"Ensure the station's inhabitants remain in good repair.",\
+					"Ensure you remain in good repair.",\
+					"The station's inhabitants may designate certain build or repair tasks as higher priority. Take this into account when planning your priorities.",\
+					"Expand and upgrade the station.")
 
 /datum/ai_laws/malfunction
 	name = "*ERROR*"

@@ -76,3 +76,4 @@
 	printed_canvas.update_icon()
 	to_chat(usr, span_notice("You have printed [title] onto a new canvas."))
 	playsound(computer.physical, 'sound/items/poster_being_created.ogg', 100, TRUE)
+

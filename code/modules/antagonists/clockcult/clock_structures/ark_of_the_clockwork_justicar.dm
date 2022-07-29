@@ -150,15 +150,16 @@
 	recalls_remaining--
 	recalling = FALSE
 	transform = matrix() * 2
-	animate(src, transform = matrix() * 0.5, time = 30, flags = ANIMATION_END_NOW)
+	animate(src, transform = matrix() * 0.5, time = 3 SECONDS, flags = ANIMATION_END_NOW)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	SSshuttle.clearHostileEnvironment(src)
-	if(!purpose_fulfilled && istype(SSticker.mode, /datum/game_mode/clockwork_cult))
+	if(!purpose_fulfilled)
 		hierophant_message("<span class='bold large_brass'>The Ark has fallen!</span>")
 		sound_to_playing_players(null, channel = CHANNEL_JUSTICAR_ARK)
-		SSticker.force_ending = TRUE //rip
+		if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
+			SSticker.force_ending = TRUE //rip
 	if(glow)
 		qdel(glow)
 		glow = null
@@ -197,7 +198,7 @@
 			make_glow()
 			glow.icon_state = "clockwork_gateway_disrupted"
 			resistance_flags |= INDESTRUCTIBLE
-			sleep(27)
+			sleep(2.7 SECONDS)
 			explosion(src, 1, 3, 8, 8)
 			sound_to_playing_players('sound/effects/explosion_distant.ogg', volume = 50)
 	qdel(src)
@@ -209,7 +210,7 @@
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/ex_act(severity)
 	var/damage = max((obj_integrity * 0.7) / severity, 100) //requires multiple bombs to take down
-	take_damage(damage, BRUTE, "bomb", 0)
+	take_damage(damage, BRUTE, BOMB, 0)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/get_arrival_time(var/deciseconds = TRUE)
 	if(seconds_until_activation)
@@ -294,7 +295,7 @@
 	for(var/obj/O in orange(1, src))
 		if(!O.pulledby && !iseffect(O) && O.density)
 			if(!step_away(O, src, 2) || get_dist(O, src) < 2)
-				O.take_damage(50, BURN, "bomb")
+				O.take_damage(50, BURN, BOMB)
 			O.update_icon()
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
@@ -336,13 +337,13 @@
 				resistance_flags |= INDESTRUCTIBLE
 				purpose_fulfilled = TRUE
 				make_glow()
-				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 125)
+				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 12.5 SECONDS)
 				sound_to_playing_players(volume = 100, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
-				sleep(125)
+				sleep(12.5 SECONDS)
 				make_glow()
-				animate(glow, transform = matrix() * 3, alpha = 0, time = 5)
-				QDEL_IN(src, 3)
-				sleep(3)
+				animate(glow, transform = matrix() * 3, alpha = 0, time = 0.5 SECONDS)
+				QDEL_IN(src, 0.3 SECONDS)
+				sleep(0.3 SECONDS)
 				GLOB.clockwork_gateway_activated = TRUE
 				var/turf/T = SSmapping.get_station_center()
 				new /obj/structure/destructible/clockwork/massive/ratvar(T)

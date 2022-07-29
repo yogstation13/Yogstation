@@ -166,7 +166,7 @@
 					return
 				message_admins("[key_name(usr)] spawned a blob with base resource gain [strength].")
 				log_admin("[key_name(usr)] spawned a blob with base resource gain [strength].")
-				new/datum/round_event/ghost_role/blob(TRUE, strength)
+				new/datum/round_event/ghost_role/blob(strength)
 			if("centcom")
 				message_admins("[key_name(usr)] is creating a CentCom response team...")
 				if(src.makeEmergencyresponseteam())
@@ -1070,10 +1070,10 @@
 		for(var/obj/item/I in L)
 			L.dropItemToGround(I, TRUE)
 
-		L.Unconscious(100)
-		sleep(5)
+		L.Unconscious(10 SECONDS)
+		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdome1))
-		spawn(50)
+		spawn(5 SECONDS)
 			to_chat(L, span_adminnotice("You have been sent to the Thunderdome."))
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Team 1)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Team 1)")
@@ -1097,10 +1097,10 @@
 		for(var/obj/item/I in L)
 			L.dropItemToGround(I, TRUE)
 
-		L.Unconscious(100)
-		sleep(5)
+		L.Unconscious(10 SECONDS)
+		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdome2))
-		spawn(50)
+		spawn(5 SECONDS)
 			to_chat(L, span_adminnotice("You have been sent to the Thunderdome."))
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Team 2)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Team 2)")
@@ -1121,10 +1121,10 @@
 			return
 		var/mob/living/L = M
 
-		L.Unconscious(100)
-		sleep(5)
+		L.Unconscious(10 SECONDS)
+		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdomeadmin))
-		spawn(50)
+		spawn(5 SECONDS)
 			to_chat(L, span_adminnotice("You have been sent to the Thunderdome."))
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Admin.)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Admin.)")
@@ -1152,10 +1152,10 @@
 			var/mob/living/carbon/human/observer = L
 			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_W_UNIFORM)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(observer), SLOT_SHOES)
-		L.Unconscious(100)
-		sleep(5)
+		L.Unconscious(10 SECONDS)
+		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdomeobserve))
-		spawn(50)
+		spawn(5 SECONDS)
 			to_chat(L, span_adminnotice("You have been sent to the Thunderdome."))
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Observer.)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Observer.)")
@@ -1285,7 +1285,7 @@
 		var/client/C = usr.client
 		if(!isobserver(usr))
 			C.admin_ghost()
-		sleep(2)
+		sleep(0.2 SECONDS)
 		C.jumptocoord(x,y,z)
 
 	else if(href_list["adminchecklaws"])
@@ -1430,7 +1430,12 @@
 
 		var/mob/M = locate(href_list["HeadsetMessage"])
 		usr.client.admin_headset_message(M)
-
+	else if(href_list["accept_custom_name"]) // yogs start
+		if(!check_rights(R_ADMIN))
+			return
+		var/obj/item/station_charter/charter = locate(href_list["accept_custom_name"])
+		if(istype(charter))
+			charter.accept_proposed(usr) // yogs end
 	else if(href_list["reject_custom_name"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1979,7 +1984,14 @@
 			SD.r_code = code
 		message_admins("[key_name_admin(usr)] has set the self-destruct \
 			code to \"[code]\".")
-
+	else if(href_list["set_beer_code"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/code = random_nukecode()
+		for(var/obj/machinery/nuclearbomb/beer/BN in GLOB.nuke_list)
+			BN.r_code = code
+		message_admins("[key_name_admin(usr)] has set the beer nuke \
+			code to \"[code]\".")
 	else if(href_list["add_station_goal"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -2258,6 +2270,68 @@
 
 	else if(href_list["beakerpanel"])
 		beaker_panel_act(href_list)
+
+	else if(href_list["checkAIDash"])
+		var/mob/living/silicon/ai/AI = locate(href_list["checkAIDash"])
+		if(!AI)
+			return
+		if(!AI.dashboard)
+			return
+		AI.dashboard.ui_interact(src.owner.mob)
+
+	else if(href_list["AdminFaxView"])
+		var/obj/info = locate(href_list["AdminFaxView"]) in GLOB.adminfaxes
+		if(info)
+			info.examine(usr, TRUE)
+
+	else if(href_list["CentcomFaxReply"])
+		var/obj/machinery/photocopier/faxmachine/F = locate(href_list["originfax"]) in GLOB.allfaxes
+		if(!istype(F)) 
+			to_chat(src.owner, span_danger("Unable to locate fax!"))
+			return
+		owner.send_admin_fax(F)
+
+/client/proc/send_global_fax()
+	set category = "Admin.Round Interaction"
+	set name = "Send Global Fax"
+	if(!check_rights(R_ADMIN)) 
+		return
+	send_admin_fax()
+
+/client/proc/send_admin_fax(obj/machinery/photocopier/faxmachine/F)
+	var/inputsubject = input(src, "Please enter a subject", "Outgoing message from CentCom", "") as text|null
+	if(!inputsubject)	
+		return
+
+	var/inputmessage = input(src, "Please enter the message sent to [istype(F) ? F : "all fax machines"] via secure connection. Supports pen markdown.", "Outgoing message from CentCom", "") as message|null
+	if(!inputmessage)
+		return
+
+	var/inputsigned = input(src, "Please enter CentCom Official name.", "Outgoing message from CentCom", usr?.client?.holder?.admin_signature || "") as text|null
+	if(!inputsigned)
+		return
+
+	var/customname = input(src, "Pick a title for the report", "Title") as text|null
+	var/prefix = "<center><b>NanoTrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
+	var/suffix = "<hr><b>Signed:</b> <font face=\"[SIGNFONT]\"><i>[inputsigned]</i></font>"
+
+	inputmessage = parsemarkdown(inputmessage)
+	inputmessage = "[prefix]<font face=\"Verdana\" color=black>[inputmessage]</font>[suffix]"
+
+	var/list/T = splittext(inputmessage,PAPER_FIELD,1,0,TRUE) // The list of subsections.. Splits the text on where paper fields have been created.
+	//The TRUE marks that we're keeping these "seperator" paper fields; they're included in this list.
+
+	log_admin("[key_name(src)] sent a fax message to [istype(F) ? F : "all fax machines"]: [inputmessage]")
+	message_admins("[key_name_admin(src)] sent a fax message to [istype(F) ? F : "all fax machines"]")
+	if(!istype(F))
+		minor_announce("Central Command has sent a fax message, it will be printed out at all fax machines.")
+
+	if(istype(F))
+		INVOKE_ASYNC(F, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
+		return
+	
+	for(var/obj/machinery/photocopier/faxmachine/fax in GLOB.allfaxes)
+		INVOKE_ASYNC(fax, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

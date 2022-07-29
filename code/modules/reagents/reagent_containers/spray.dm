@@ -100,7 +100,7 @@
 	for(var/i=0, i<range, i++)
 		range_left--
 		step_towards(D,A)
-		sleep(2)
+		sleep(0.2 SECONDS)
 
 		for(var/atom/T in get_turf(D))
 			if(T == D || T.invisibility) //we ignore the puff itself and stuff below the floor
@@ -212,7 +212,7 @@
 /obj/item/reagent_containers/spray/pepper
 	name = "pepperspray"
 	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. Now contains red dye to mark fleeing suspects!"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "pepperspray"
 	item_state = "pepperspray"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'

@@ -44,10 +44,15 @@
 	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_obj(src, user))
 
 /mob/living/attackby(obj/item/I, mob/living/user, params)
+	for(var/datum/surgery/S in surgeries)
+		if(!(mobility_flags & MOBILITY_STAND) || !S.lying_required)
+			if((S.self_operable || user != src) && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
+				if(S.next_step(user, user.a_intent))
+					return TRUE
+	var/dist = get_dist(src,user)
 	if(..())
 		return TRUE
-	var/dist = get_dist(src,user)
-	user.changeNext_move(CLICK_CD_MELEE * I.weapon_stats[SWING_SPEED] * (I.range_cooldown_mod ? (dist > 0 ? dist * I.range_cooldown_mod : I.range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
+	user.changeNext_move(CLICK_CD_MELEE * I.weapon_stats[SWING_SPEED] * (I.range_cooldown_mod ? (dist > 0 ? min(dist, I.weapon_stats[REACH]) * I.range_cooldown_mod : I.range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
 	user.weapon_slow(I)
 	if(user.a_intent == INTENT_HARM && stat == DEAD && (butcher_results || guaranteed_butcher_results)) //can we butcher it?
 		var/datum/component/butchering/butchering = I.GetComponent(/datum/component/butchering)
@@ -56,7 +61,7 @@
 			playsound(loc, butchering.butcher_sound, 50, TRUE, -1)
 			if(do_mob(user, src, butchering.speed) && Adjacent(I))
 				butchering.Butcher(user, src)
-			return 1
+			return TRUE
 		else if(I.is_sharp() && !butchering) //give sharp objects butchering functionality, for consistency
 			I.AddComponent(/datum/component/butchering, 80 * I.toolspeed)
 			attackby(I, user, params) //call the attackby again to refresh and do the butchering check again
@@ -92,6 +97,9 @@
 	M.lastattacker = user.real_name
 	M.lastattackerckey = user.ckey
 
+	if(force)
+		M.last_damage = name
+
 	user.do_attack_animation(M)
 	M.attacked_by(src, user)
 
@@ -107,7 +115,7 @@
 	if(item_flags & NOBLUDGEON)
 		return
 	var/dist = get_dist(O,user)
-	user.changeNext_move(CLICK_CD_MELEE * weapon_stats[SWING_SPEED] * (range_cooldown_mod ? (dist > 0 ? dist * range_cooldown_mod : range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
+	user.changeNext_move(CLICK_CD_MELEE * weapon_stats[SWING_SPEED] * (range_cooldown_mod ? (dist > 0 ? min(dist, weapon_stats[REACH]) * range_cooldown_mod : range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
 	user.do_attack_animation(O)
 	O.attacked_by(src, user)
 	user.weapon_slow(src)
@@ -121,7 +129,7 @@
 		visible_message(span_danger("[user] has hit [src] with [I]!"), null, null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
 		log_combat(user, src, "attacked", I)
-	take_damage(I.force, I.damtype, "melee", 1)
+	take_damage(I.force, I.damtype, MELEE, 1)
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)

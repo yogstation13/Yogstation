@@ -70,7 +70,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		direction = pick(GLOB.alldirs)
 	var/steps_amt = pick(1,2,3)
 	for(var/j in 1 to steps_amt)
-		sleep(5)
+		sleep(0.5 SECONDS)
 		step(E,direction)
 	if(!QDELETED(src))
 		addtimer(CALLBACK(src, .proc/decrement_total_effect), 20)

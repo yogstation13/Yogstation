@@ -1,6 +1,6 @@
 #define STASIS_TOGGLE_COOLDOWN 50
 /obj/machinery/stasis
-	name = "Lifeform Stasis Unit"
+	name = "lifeform stasis unit"
 	desc = "A not so comfortable looking bed with some nozzles at the top and bottom. It will keep someone in stasis."
 	icon = 'icons/obj/machines/stasis.dmi'
 	icon_state = "stasis"
@@ -15,18 +15,12 @@
 	var/stasis_enabled = TRUE
 	var/last_stasis_sound = FALSE
 	var/stasis_can_toggle = 0
+	var/stasis_amount = -1
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
-	var/mob/living/carbon/human/patient = null
-	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/stasis/Initialize()
-	. = ..()
-	for(var/direction in GLOB.cardinals)
-		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
-		if(computer)
-			computer.sbed = src
-			break
+/obj/machinery/stasis/ComponentInitialize()
+	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
@@ -55,7 +49,7 @@
 /obj/machinery/stasis/Exited(atom/movable/AM, atom/newloc)
 	if(AM == occupant)
 		var/mob/living/L = AM
-		if(IS_IN_STASIS(L))
+		if(L.has_status_effect(STATUS_EFFECT_STASIS))
 			thaw_them(L)
 	. = ..()
 
@@ -74,7 +68,7 @@
 		if(mattress_on.alpha ? !_running : _running) //check the inverse of _running compared to truthy alpha, to see if they differ
 			var/new_alpha = _running ? 255 : 0
 			var/easing_direction = _running ? EASE_OUT : EASE_IN
-			animate(mattress_on, alpha = new_alpha, time = 50, easing = CUBIC_EASING|easing_direction)
+			animate(mattress_on, alpha = new_alpha, time = 5 SECONDS, easing = CUBIC_EASING|easing_direction)
 
 		overlays_to_remove = managed_vis_overlays - mattress_on
 
@@ -102,7 +96,7 @@
 		return
 	var/freq = rand(24750, 26550)
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 2, frequency = freq)
-	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, stasis_amount)
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
@@ -120,23 +114,12 @@
 	if(stasis_running() && check_nap_violations())
 		chill_out(L)
 	update_icon()
-	check_patient()
-
-/obj/machinery/stasis/proc/check_patient()
-	var/mob/living/carbon/human/M = occupant
-	if(M)
-		patient = M
-		return TRUE
-	else
-		patient = null
-		return FALSE
 
 /obj/machinery/stasis/post_unbuckle_mob(mob/living/L)
 	thaw_them(L)
 	if(L == occupant)
 		occupant = null
 	update_icon()
-	check_patient()
 
 /obj/machinery/stasis/process()
 	if( !( occupant && isliving(occupant) && check_nap_violations() ) )
@@ -144,11 +127,11 @@
 		return
 	var/mob/living/L_occupant = occupant
 	if(stasis_running())
-		if(!IS_IN_STASIS(L_occupant))
+		if(!L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 			chill_out(L_occupant)
 		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
 			L_occupant.adjustStaminaLoss(5)
-	else if(IS_IN_STASIS(L_occupant))
+	else if(L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 		thaw_them(L_occupant)
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)

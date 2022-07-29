@@ -29,7 +29,7 @@
 		. += span_notice("It looks like the dents could be <i>welded</i> smooth.")
 		return
 	if(attachment_holes)
-		. += span_notice("There are a few attachment holes for a new <i>tile</i> or reinforcement <i>rods</i>.")
+		. += span_notice("There are a few attachment holes for a new <i>tile</i>, reinforcement <i>sheets</i> or catwalk <i>rods</i>.")
 	else
 		. += span_notice("You might be able to build ontop of it with some <i>tiles</i>...")
 
@@ -57,20 +57,33 @@
 		if(broken || burnt)
 			to_chat(user, span_warning("Repair the plating first!"))
 			return
-		var/obj/item/stack/rods/R = C
-		if (R.get_amount() < 2)
-			to_chat(user, span_warning("You need two rods to make a reinforced floor!"))
+		if(locate(/obj/structure/lattice/catwalk/over, src))
+			return
+		if (istype(C, /obj/item/stack/rods))
+			var/obj/item/stack/rods/R = C
+			if (R.use(2))
+				to_chat(user, span_notice("You lay down the catwalk."))
+				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+				new /obj/structure/lattice/catwalk/over(src)
+				return
+	if(istype(C, /obj/item/stack/sheet/metal) && attachment_holes)
+		if(broken || burnt)
+			to_chat(user, span_warning("Repair the plating first!"))
+			return
+		var/obj/item/stack/sheet/metal/R = C
+		if (R.get_amount() < 1)
+			to_chat(user, span_warning("You need one sheet to make a reinforced floor!"))
 			return
 		else
 			to_chat(user, span_notice("You begin reinforcing the floor..."))
-			if(do_after(user, 3 SECONDS, target = src))
-				if (R.get_amount() >= 2 && !istype(src, /turf/open/floor/engine))
+			if(do_after(user, 3 SECONDS, src))
+				if (R.get_amount() >= 1 && !istype(src, /turf/open/floor/engine))
 					PlaceOnTop(/turf/open/floor/engine, flags = CHANGETURF_INHERIT_AIR)
 					playsound(src, 'sound/items/deconstruct.ogg', 80, 1)
-					R.use(2)
+					R.use(1)
 					to_chat(user, span_notice("You reinforce the floor."))
 				return
-	else if(istype(C, /obj/item/stack/tile))
+	else if(istype(C, /obj/item/stack/tile) && !locate(/obj/structure/lattice/catwalk, src))
 		if(!broken && !burnt)
 			for(var/obj/O in src)
 				if(O.level == 1) //ex. pipes laid underneath a tile
@@ -155,3 +168,8 @@
 
 /turf/open/floor/plating/foam/tool_act(mob/living/user, obj/item/I, tool_type)
 	return
+
+/turf/open/floor/plating/can_have_cabling()
+	if(locate(/obj/structure/lattice/catwalk, src))
+		return FALSE
+	return TRUE

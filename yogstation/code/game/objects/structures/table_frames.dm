@@ -16,7 +16,7 @@
 			to_chat(user, span_warning("You need one bananium sheet to do this!"))
 			return
 		to_chat(user, span_notice("You start adding [W] to [src]..."))
-		if(do_after(user, 2 SECONDS, target = src) && W.use(1))
+		if(do_after(user, 2 SECONDS, src) && W.use(1))
 			make_new_table(/obj/structure/table/bananium)
 	else
 		return ..()

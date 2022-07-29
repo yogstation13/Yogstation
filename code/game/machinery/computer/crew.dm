@@ -53,7 +53,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	jobs["Chief Engineer"] = 40
 	jobs["Station Engineer"] = 41
 	jobs["Atmospheric Technician"] = 42
-	jobs["Signal Technician"] = 43 //Yogs: Added IDs for this job
+	jobs["Network Admin"] = 43 //Yogs: Added IDs for this job
 	jobs["Quartermaster"] = 51
 	jobs["Shaft Miner"] = 52
 	jobs["Cargo Technician"] = 53
@@ -181,7 +181,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if (nanite_sensors || U.sensor_mode >= SENSOR_COORDS)
 					if (!pos)
 						pos = get_turf(H)
-					area = get_area_name(H, TRUE)
+					area = get_area_name(H, TRUE, is_sensor = TRUE)
 					pos_x = pos.x
 					pos_y = pos.y
 				else

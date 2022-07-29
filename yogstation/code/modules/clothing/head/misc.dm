@@ -12,7 +12,7 @@
 	item_state = "goatpelt"
 	color = "#ffd700"
 	body_parts_covered = HEAD
-	armor = list("melee" = 60, "bullet" = 55, "laser" = 55, "energy" = 45, "bomb" = 100, "bio" = 20, "rad" = 20, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 60, BULLET = 55, LASER = 55, ENERGY = 45, BOMB = 100, BIO = 20, RAD = 20, FIRE = 100, ACID = 100)
 	dog_fashion = null
 	resistance_flags = FIRE_PROOF
 
@@ -29,11 +29,11 @@
 /obj/item/clothing/head/helmet/juggernaut
 	name = "Juggernaut Helmet"
 	desc = "I...am...the...JUGGERNAUT!!!."
-	alternate_worn_icon = 'yogstation/icons/mob/head.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	icon_state = "juggernauthelm"
 	item_state = "juggernauthelm"
-	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 50, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 90, "acid" = 90)
+	armor = list(MELEE = 60, BULLET = 50, LASER = 30, ENERGY = 50, BOMB = 80, BIO = 100, RAD = 0, FIRE = 90, ACID = 90)
 	strip_delay = 120
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flash_protect = TRUE
@@ -50,7 +50,7 @@
 /obj/item/clothing/head/yogs/goatpope
 	name = "goat pope hat"
 	desc = "And on the seventh day King Goat said there will be cabbage!"
-	alternate_worn_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "goatpope"
 	item_state = "goatpope"
 	worn_x_dimension = 64

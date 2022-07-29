@@ -393,7 +393,7 @@
 	harvest = 0
 	weedlevel = 0 // Reset
 
-	sleep(5) // Wait a while
+	sleep(0.5 SECONDS) // Wait a while
 	update_icon()
 	visible_message(span_warning("[oldPlantName] suddenly mutates into [myseed.plantname]!"))
 	update_name()
@@ -413,7 +413,7 @@
 		harvest = 0
 		weedlevel = 0 // Reset
 
-		sleep(5) // Wait a while
+		sleep(0.5 SECONDS) // Wait a while
 		update_icon()
 		visible_message(span_warning("The mutated weeds in [src] spawn some [myseed.plantname]!"))
 		update_name()

@@ -12,7 +12,7 @@ Format:
 	disabled (disables the map)
 	votable (is this map votable)
 
-map yogsbox
+map yogstation
 	voteweight 0.7
 	votable
 endmap
@@ -33,6 +33,11 @@ map yogsdelta
 endmap
 
 map kilostation
+	maxplayers 40
+	disabled
+endmap
+
+map gaxstation
 	maxplayers 40
 	votable
 endmap

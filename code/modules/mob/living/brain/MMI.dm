@@ -1,9 +1,10 @@
 /obj/item/mmi
 	name = "\improper Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
+	desc = "The bland acronym- 'MMI', cloaks the true nature of this infernal machine. Nonetheless, its presense has worked its way into many Nanotrasen stations."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
+	cryo_preserve = TRUE
 	var/braintype = "Cyborg"
 	var/obj/item/radio/radio = null //Let's give it a radio.
 	var/mob/living/brain/brainmob = null //The current occupant.
@@ -15,6 +16,10 @@
 	var/overrides_aicore_laws = TRUE // Whether the laws on the MMI are transferred when it's uploaded as an AI
 	var/override_cyborg_laws = FALSE // Do custom laws uploaded to the MMI get transferred to borgs? If yes the borg will be unlinked and have lawsync disabled.
 	var/can_update_laws = TRUE //Can we use a lawboard to change the laws of this MMI?
+	var/remove_time = 2 SECONDS /// The time to remove the brain or reset the posi brain
+	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
+	var/remove_window = 10 SECONDS /// The window in which someone has to remove the brain to lose memory of being killed as a borg
+	var/reboot_timer = null
 
 /obj/item/mmi/update_icon()
 	if(!brain)
@@ -81,7 +86,10 @@
 
 	else if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O
-		M.install(laws, user)
+		if(can_update_laws)
+			M.install(laws, user)
+		else
+			to_chat(user, span_warning("[src]'s indicator light flashes red: it does not allow law changes."))
 	else if(brainmob)
 		O.attack(brainmob, user) //Oh noooeeeee
 	else
@@ -93,10 +101,19 @@
 		radio.on = !radio.on
 		to_chat(user, span_notice("You toggle [src]'s radio system [radio.on==1 ? "on" : "off"]."))
 	else
-		eject_brain(user)
-		update_icon()
-		name = initial(name)
-		to_chat(user, span_notice("You unlock and upend [src], spilling the brain onto the floor."))
+		user.visible_message(span_notice("[user] begins to remove the brain from [src]"), span_danger("You begin to pry the brain out of [src], ripping out the wires and probes"))
+		to_chat(brainmob, span_userdanger("You feel your mind failing as you are slowly ripped from the [src]"))
+		if(do_after(user, remove_time, src))
+			if(!brainmob) return
+			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg" : ""]"))
+			eject_brain(user)
+			update_icon()
+			name = initial(name)
+			user.visible_message(span_notice("[user] rips the brain out of [src]"), span_danger("You successfully remove the brain from the [src][rebooting ? ", interrupting the reboot process" : ""]"))
+			if(rebooting)
+				rebooting = FALSE
+				deltimer(reboot_timer)
+				reboot_timer = null
 
 /obj/item/mmi/proc/eject_brain(mob/user)
 	brainmob.container = null //Reset brainmob mmi var.
@@ -108,6 +125,7 @@
 	brainmob.add_to_dead_mob_list()
 	brain.brainmob = brainmob //Set the brain to use the brainmob
 	brainmob = null //Set mmi brainmob var to null
+	brain.setOrganDamage(brain.maxHealth) // Kill the brain, requiring mannitol
 	if(user)
 		user.put_in_hands(brain) //puts brain in the user's hand or otherwise drops it on the user's turf
 	else
@@ -218,6 +236,26 @@
 
 /obj/item/mmi/relaymove(mob/user)
 	return //so that the MMI won't get a warning about not being able to move if it tries to move
+
+/obj/item/mmi/proc/beginReboot()
+	rebooting = TRUE
+	visible_message(span_danger("The indicator lights on [src] begin to glow faintly as the reboot process begins"))
+	to_chat(brainmob, span_userdanger("You begin to reboot after being removed from the destroyed body"))
+	reboot_timer = addtimer(CALLBACK(src, .proc/halfwayReboot), remove_window / 2, TIMER_STOPPABLE)
+
+/obj/item/mmi/proc/halfwayReboot()
+	visible_message(span_danger("The indicator lights on [src] begin to glow stronger and the reboot process approaches the halfway point"))
+	reboot_timer = addtimer(CALLBACK(src, .proc/rebootNoReturn), remove_window / 2, TIMER_STOPPABLE)
+
+/obj/item/mmi/proc/rebootNoReturn()
+	visible_message(span_danger("The indicator lights on [src] begin to blink as the reboot process nears completion"))
+	reboot_timer = addtimer(CALLBACK(src, .proc/rebootFinish), remove_time, TIMER_STOPPABLE)
+
+/obj/item/mmi/proc/rebootFinish()
+	visible_message(span_danger("The indicator lights on [src] return to normal as the reboot process completes"))
+	to_chat(brainmob, span_userdanger("You return to normal functionality now that your reboot process has completed"))
+	rebooting = FALSE
+	reboot_timer = null
 
 /obj/item/mmi/syndie
 	name = "\improper Syndicate Man-Machine Interface"

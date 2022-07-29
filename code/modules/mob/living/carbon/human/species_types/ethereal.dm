@@ -10,16 +10,24 @@
 	mutantstomach = /obj/item/organ/stomach/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
-	brutemod = 1.25 //They're weak to punches
+	brutemod = 1.5 //Don't rupture their membranes
+	burnmod = 0.8 //Bodies are resilient to heat and energy
+	heatmod = 0.5 //Bodies are resilient to heat and energy
+	coldmod = 2.0 //Don't extinguish the stars
+	speedmod = -0.1 //Light and energy move quickly
+	punchdamagehigh  = 11 //Fire hand more painful
+	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
 	payday_modifier = 0.7 //Neutrally useful to NT
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
-	species_traits = list(NOEYESPRITES,DYNCOLORS, AGENDER, NO_UNDERWEAR, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE) // i mean i guess they have blood so they can have wounds too
+	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER)
 	mutant_bodyparts = list("ethereal_mark")
 	default_features = list("ethereal_mark" = "Eyes")
 	species_language_holder = /datum/language_holder/ethereal
+	deathsound = 'yogstation/sound/voice/ethereal/deathsound.ogg'
+	screamsound = list('sound/voice/ethereal/ethereal_scream_1.ogg', 'sound/voice/ethereal/ethereal_scream_2.ogg', 'sound/voice/ethereal/ethereal_scream_3.ogg')
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
 	inert_mutation = SHOCKTOUCH

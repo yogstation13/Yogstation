@@ -153,7 +153,7 @@
 	icon = 'icons/obj/supermatter_delaminator.dmi'
 	icon_state = "antinoblium_tongs"
 	toolspeed = 0.75
-	damtype = "fire"
+	damtype = BURN
 	var/obj/item/supermatter_delaminator/antinoblium_shard/shard
 
 /obj/item/hemostat/antinoblium/Destroy()

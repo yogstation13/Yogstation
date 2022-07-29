@@ -21,7 +21,7 @@
 
 	tool_behaviour = TOOL_WIRECUTTER
 	toolspeed = 1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	var/random_color = TRUE
 	var/static/list/wirecutter_colors = list(
 		"blue" = "#1861d5",
@@ -57,9 +57,11 @@
 		return
 	else if(istype(C) && C.has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 		to_chat(C, span_notice("You attempt to remove the durathread strand from around your neck."))
-		if(do_after(user, 1.5 SECONDS, null, C))
+		if(do_after(user, 1.5 SECONDS, C))
 			to_chat(C, span_notice("You succesfuly remove the durathread strand."))
 			C.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
+	else if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, C, user))
+		return
 	else
 		..()
 
@@ -80,7 +82,7 @@
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	icon = 'icons/obj/abductor.dmi'
-	icon_state = "cutters"
+	icon_state = "cutters_alien"
 	toolspeed = 0.1
 
 	random_color = FALSE
@@ -89,3 +91,18 @@
 	name = "wirecutters"
 	desc = "This cuts wires."
 	toolspeed = 0.5
+
+/obj/item/wirecutters/makeshift
+	name = "makeshift wirecutters"
+	desc = "Mind your fingers."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "cutters_makeshift"
+	toolspeed = 0.5
+	random_color = FALSE
+
+/obj/item/wirecutters/makeshift/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	..()
+	if(prob(5))
+		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
+		qdel(src)
+		return

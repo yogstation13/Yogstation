@@ -9,7 +9,8 @@
 	equip_delay_other = 40
 	max_integrity = 250
 	resistance_flags = NONE
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+	cryo_preserve = TRUE
 
 /obj/item/clothing/suit/armor/Initialize()
 	. = ..()
@@ -49,13 +50,13 @@
 	icon_state = "hos"
 	item_state = "greatcoat"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 90, "wound" = 20)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
-	name = "armored trenchoat"
+	name = "armored trenchcoat"
 	desc = "A trenchcoat enhanced with a special lightweight kevlar. The epitome of tactical plainclothes."
 	icon_state = "hostrench"
 	item_state = "hostrench"
@@ -96,7 +97,7 @@
 	icon_state = "capcarapace"
 	item_state = "armor"
 	body_parts_covered = CHEST|GROIN
-	armor = list("melee" = 50, "bullet" = 40, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 90, "wound" = 10)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 100, ACID = 90, WOUND = 10)
 	dog_fashion = null
 	resistance_flags = FIRE_PROOF
 
@@ -125,7 +126,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "wound" = 30)
+	armor = list(MELEE = 50, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 80, WOUND = 30)
 	blocks_shove_knockdown = TRUE
 	strip_delay = 80
 	equip_delay_other = 60
@@ -137,8 +138,16 @@
 	icon_state = "bonearmor"
 	item_state = "bonearmor"
 	blood_overlay_type = "armor"
-	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10)
+	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+
+/obj/item/clothing/suit/armor/bone/heavy
+	name = "heavy bone armor"
+	desc = "A heavy tribal armor plate, crafted from a lot animal bone."
+	icon_state = "hbonearmor"
+	item_state = "hbonearmor"
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 15, BOMB = 20, BIO = 0, RAD = 0, FIRE = 60, ACID = 30, WOUND = 20)
+	slowdown = 0.20
 
 /obj/item/clothing/suit/armor/tribalcoat
 	name = "tribal coat"
@@ -146,17 +155,17 @@
 	icon_state = "tribalcoat"
 	item_state = "tribalcoat"
 	blood_overlay_type = "armor"
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/suit/armor/pathfinder
 	name = "pathfinder cloak"
 	desc = "A thick cloak woven from sinew and hides meant to protect its wearer from hazardous weather."
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat/bone, /obj/item/kitchen/knife/combat/survival)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "pathcloak"
 	item_state = "pathcloak"
-	armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 15)
+	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
@@ -167,7 +176,7 @@
 
 /obj/item/clothing/suit/armor/pathfinder/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, null, null, list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 5)) //maximum armor 65/35/35/25
+	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5)) //maximum armor 65/40/40/25
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof armor"
@@ -175,7 +184,7 @@
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
-	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 20)
+	armor = list(MELEE = 15, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
 	strip_delay = 70
 	equip_delay_other = 50
 
@@ -188,7 +197,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 60, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 10, BULLET = 10, LASER = 60, ENERGY = 50, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/hit_reflect_chance = 50
 
@@ -225,7 +234,7 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/heavy
 	name = "heavy armor"
@@ -238,7 +247,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 3
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/tdome
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -246,7 +255,7 @@
 	clothing_flags = THICKMATERIAL
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
+	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 90, ACID = 90)
 
 /obj/item/clothing/suit/armor/tdome/red
 	name = "thunderdome suit"
@@ -288,14 +297,14 @@
 	equip_delay_other = 40
 	max_integrity = 200
 	resistance_flags = FLAMMABLE
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 5, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 30, ENERGY = 5, BOMB = 15, BIO = 0, RAD = 0, FIRE = 40, ACID = 50)
 
 /obj/item/clothing/suit/armor/vest/russian
 	name = "russian vest"
 	desc = "A bulletproof vest with forest camo. Good thing there's plenty of forests to hide in around here, right?"
 	icon_state = "rus_armor"
 	item_state = "rus_armor"
-	armor = list("melee" = 25, "bullet" = 30, "laser" = 0, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 50, "wound" = 10)
+	armor = list(MELEE = 25, BULLET = 30, LASER = 0, ENERGY = 15, BOMB = 10, BIO = 0, RAD = 20, FIRE = 20, ACID = 50, WOUND = 10)
 
 /obj/item/clothing/suit/armor/vest/russian_coat
 	name = "russian battle coat"
@@ -305,7 +314,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
-	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 20, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 50, "wound" = 10)
+	armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 50, RAD = 20, FIRE = -10, ACID = 50, WOUND = 10)
 
 /obj/item/clothing/suit/armor/stormtrooper
 	name = "Storm Trooper Armor"
@@ -316,5 +325,194 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 50, "energy" = 15, "bomb" = 30, "bio" = 20, "rad" = 10, "fire" = 80, "acid" = 80, "wound" = 10)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 50, ENERGY = 15, BOMB = 30, BIO = 20, RAD = 10, FIRE = 80, ACID = 80, WOUND = 10)
 	slowdown = 0.9
+
+/obj/item/clothing/suit/hooded/cloak/goliath
+	name = "goliath cloak"
+	icon_state = "goliath_cloak"
+	desc = "A staunch, practical cape made out of numerous monster materials, it is coveted amongst exiles & hermits."
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
+	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10) //a fair alternative to bone armor, requiring alternative materials and gaining a suit slot
+	resistance_flags = FIRE_PROOF
+	hoodtype = /obj/item/clothing/head/hooded/cloakhood/goliath
+	body_parts_covered = CHEST|GROIN|ARMS
+
+/obj/item/clothing/head/hooded/cloakhood/goliath
+	name = "goliath cloak hood"
+	icon_state = "golhood"
+	desc = "A protective & concealing hood."
+	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 10)
+	resistance_flags = FIRE_PROOF
+	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
+	transparent_protection = HIDEMASK
+
+/obj/item/clothing/suit/hooded/cloak/goliath/desert
+	name = "brown leather cape"
+	desc = "An ash coated cloak."
+	icon_state = "desertcloak"
+	armor = list()
+	resistance_flags = 0
+	hoodtype = /obj/item/clothing/head/hooded/cloakhood/goliath/desert
+
+/obj/item/clothing/head/hooded/cloakhood/goliath/desert
+	name = "goliath cloak hood"
+	icon_state = "desertcloak"
+	desc = "An ash coated cloak hood."
+	armor = list()
+	resistance_flags = 0
+	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
+	transparent_protection = HIDEMASK
+
+/obj/item/clothing/suit/hooded/cloak/drake
+	name = "drake armour"
+	icon_state = "dragon"
+	desc = "A suit of armour fashioned from the remains of an ash drake."
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
+	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	hoodtype = /obj/item/clothing/head/hooded/cloakhood/drake
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
+
+/obj/item/clothing/head/hooded/cloakhood/drake
+	name = "drake helm"
+	icon_state = "dragon"
+	desc = "The skull of a dragon."
+	armor = list(MELEE = 70, BULLET = 30, LASER = 50, ENERGY = 40, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	heat_protection = HEAD
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/clothing/suit/armor/elder_atmosian
+	name = "\improper Elder Atmosian Armor"
+	desc = "A superb armor made with the toughest and rarest materials available to man."
+	icon_state = "h2armor"
+	item_state = "h2armor"
+	armor = list(MELEE = 35, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 85, BIO = 20, RAD = 50, FIRE = 75, ACID = 40, WOUND = 15)
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	clothing_flags = THICKMATERIAL
+
+//////////////// PLATED ARMOR ////////////////
+// Helmet type in code/modules/clothing/head/helmet.dm
+/obj/item/clothing/suit/armor/plated
+	name = "empty plated armor vest"	
+	desc = "A lightweight general-purpose over-armor suit that is designed to hold various types of armor plating. Won't do much without them."
+	icon_state = "plate-armor"
+	item_state = "plate-armor"
+	blood_overlay_type = "armor"
+	w_class = WEIGHT_CLASS_SMALL // It's just some fabric, after all
+	armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 0, WOUND = 0)
+	slowdown = 0
+
+	var/obj/item/kevlar_plating/plating
+
+/obj/item/clothing/suit/armor/plated/attack_self(mob/user)
+	if(!plating)
+		to_chat(user, span_warning("[src] doesn't have any plating to remove!"))
+		return
+	
+	user.visible_message("[user] removes [plating] from [src]!", span_notice("You remove [plating]."))
+
+	user.put_in_hands(plating)
+
+	name = initial(name)
+	armor = armor.setRating(5,0,0,0,0,0,0,10,0,0,0)	//because initial(armor) apparently doesn't work
+	slowdown = initial(slowdown)
+	w_class = initial(w_class)
+	plating = null
+
+/obj/item/clothing/suit/armor/plated/examine(mob/user)
+	.=..()
+	if(plating)
+		. += span_info("It has [plating] slotted.")
+
+/obj/item/clothing/suit/armor/plated/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/kevlar_plating))
+		return
+	if(plating)
+		to_chat(user, span_warning("[src] already has [plating] slotted!"))
+		return 
+	if(!user.transferItemToLoc(I, src))
+		return
+	
+	user.visible_message("[user] inserts [plating] into [src]!", span_notice("You insert [plating] into [src]."))
+
+	var/obj/item/kevlar_plating/K = I
+
+	name = "[K.name_set] plated armor vest"
+	slowdown = K.slowdown_set
+
+	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
+		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
+
+	armor = armor.attachArmor(K.armor)
+	w_class = WEIGHT_CLASS_BULKY
+	plating = K
+
+//////////////// ARMOR PLATES ////////////////////////////////////////////////
+// These armors are supposed to be a mid-game direct upgrade for security that enables
+// them to dynamically respond depending on their skillset and/or the situation at hand
+//
+// balancing reference:
+// default armor, slowdown 0
+// armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+// bulletproof armor, slowdown 0
+// armor = list(MELEE = 15, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+// hos hardsuit, slowdown 1
+// armor = list(MELEE = 45, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 50, FIRE = 95, ACID = 95, WOUND = 25)
+// riot armor, slowdown 0.33
+// armor = list(MELEE = 50, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 80, WOUND = 30)
+//////////////////////////////////////////////////////////////////////////////
+/obj/item/kevlar_plating
+	name = "debug plating"
+	desc = "You shouldn't see this!"
+	icon = 'icons/obj/kevlar.dmi'
+	icon_state = "mki"
+	force = 2
+	var/name_set = "debug"
+	var/slowdown_set = 0 // Slowdown value to set on the vest, for reference a hardsuit has "1" slowdown
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 100) // Armor value to set on the vest
+
+/obj/item/kevlar_plating/mki
+	name = "MK.I bluespace plating"
+	desc = "Incredibly light bluespace-infused armor plating that offers great movement while also providing some protection."
+	name_set = "MK.I bluespace"
+	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
+	armor = list(MELEE = 15, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 30, ACID = 40, WOUND = 10) // Slightly worse than default armor
+
+/obj/item/kevlar_plating/mkii
+	name = "MK.II ceramic plating"
+	desc = "Light armor plating that can be carried easily while providing robust protection."
+	icon_state = "mkii"
+	force = 4
+	name_set = "MK.II ceramic"
+	slowdown_set = 0
+	armor = list(MELEE = 30, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 40, ACID = 50, WOUND = 20) 	// Slightly better than default armor
+
+/obj/item/kevlar_plating/mkiii
+	name = "MK.III plasteel plating"
+	desc = "Weighted armor plating that impedes movement but greatly improves the durability of the wearer."
+	icon_state = "mkiii"
+	force = 6
+	name_set = "MK.III plasteel"
+	slowdown_set = 0.15 // Slow
+	armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 50, ACID = 60, WOUND = 35)	//Robust
+
+/obj/item/kevlar_plating/mkiv
+	name = "MK.IV titanium plating"
+	desc = "Incredibly heavy armor plating that makes shooting the covered areas almost pointless."
+	icon_state = "mkiv"
+	force = 8
+	name_set = "MK.IV titanium"
+	w_class = WEIGHT_CLASS_BULKY
+	slowdown_set = 0.4 // Very slow
+	armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 65, ACID = 75, WOUND = 50)	//Walking tank

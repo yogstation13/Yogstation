@@ -41,13 +41,10 @@
 				R.add_reagent(pick(saferChems), reagentsAmount)
 
 			var/datum/effect_system/foam_spread/foam = new
+			foam.one_apply_per_object = TRUE
 			foam.set_up(200, get_turf(vent), R)
 			foam.start()
 
-			var/cockroaches = prob(33) ? 3 : 0
-			while(cockroaches)
-				new /mob/living/simple_animal/cockroach(get_turf(vent))
-				cockroaches--
 		CHECK_TICK
 
 /datum/round_event_control/vent_clog/threatening
@@ -101,11 +98,12 @@
 /datum/round_event/vent_clog/beer/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent in vents)
 		if(vent && vent.loc)
-			var/datum/reagents/R = new/datum/reagents(1000)
+			var/datum/reagents/R = new/datum/reagents(100)
 			R.my_atom = vent
 			R.add_reagent(/datum/reagent/consumable/ethanol/beer, reagentsAmount)
 
 			var/datum/effect_system/foam_spread/foam = new
+			foam.one_apply_per_object = TRUE
 			foam.set_up(200, get_turf(vent), R)
 			foam.start()
 		CHECK_TICK
@@ -119,7 +117,7 @@
 /datum/round_event/vent_clog/cleaner/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent in vents)
 		if(vent && vent.loc)
-			var/datum/reagents/R = new/datum/reagents(1000)
+			var/datum/reagents/R = new/datum/reagents(100)
 			R.my_atom = vent
 			R.add_reagent(/datum/reagent/space_cleaner, reagentsAmount)
 

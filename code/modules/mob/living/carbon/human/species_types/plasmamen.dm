@@ -12,9 +12,12 @@
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
 	mutantstomach = /obj/item/organ/stomach/plasmaman
-	burnmod = 1.5
-	heatmod = 1.5
-	brutemod = 1.5
+	burnmod = 1.5 //Lives in suits and burns easy. Lasers are bad for this
+	heatmod = 1.5 //Same goes for hot hot hot
+	brutemod = 1.2 //Rattle me bones, but less because plasma bones are very hard
+	siemens_coeff = 1.5 //Sparks are bad for the combustable race, mkay?
+	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
+	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
 	payday_modifier = 0.8 //Useful to NT for plasma research
 	breathid = "tox"
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.
@@ -129,7 +132,7 @@
 		if("Clown")
 			O = new /datum/outfit/job/plasmaman/clown
 
-		if("Signal Technician")
+		if("Network Admin")
 			O = new /datum/outfit/job/plasmaman/sigtech
 
 		if("Mining Medic")

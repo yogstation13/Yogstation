@@ -11049,7 +11049,7 @@
 	},
 /obj/item/storage/box/syringes,
 /obj/item/gun/syringe,
-/obj/item/reagent_containers/hypospray/CMO,
+/obj/item/storage/firstaid/hypospray/deluxe/cmo,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /obj/item/clothing/neck/stethoscope,
@@ -20781,7 +20781,7 @@
 "bbr" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/white,
-/obj/item/reagent_containers/hypospray/medipen,
+/obj/item/reagent_containers/autoinjector/medipen,
 /obj/machinery/door/window/westleft{
 	dir = 2;
 	name = "Medbay Desk";
@@ -22566,22 +22566,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/main)
-"bjQ" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes,
-/obj/machinery/status_display/evac{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Xenobiology South";
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/science/xenobiology)
 "bjR" = (
 /obj/machinery/computer/camera_advanced/xenobio{
 	dir = 1
@@ -26692,7 +26676,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "fav" = (
@@ -35518,7 +35502,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/landmark/start/yogs/signal_technician,
+/obj/effect/landmark/start/yogs/network_admin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
@@ -35647,6 +35631,23 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"oat" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
+/obj/machinery/status_display/evac{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Xenobiology South";
+	dir = 1
+	},
+/obj/item/book/manual/wiki/xenobiology,
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "oaV" = (
 /obj/structure/grille,
 /obj/machinery/meter,
@@ -37584,7 +37585,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/ai/expansion_card_holder/prefilled,
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "pZe" = (
@@ -91861,7 +91862,7 @@ aWb
 xJG
 aZQ
 gZr
-bjQ
+oat
 bfP
 aad
 aad

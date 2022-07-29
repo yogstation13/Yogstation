@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			update_air_ref()
 		SSair.add_to_active(newTurf)
 	else
-		if(ispath(path,/turf/closed))
+		if(ispath(path,/turf/closed)|| ispath(path,/turf/cordon))
 			flags |= CHANGETURF_RECALC_ADJACENT
 		return ..()
 

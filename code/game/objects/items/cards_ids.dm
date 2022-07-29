@@ -106,7 +106,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	slot_flags = ITEM_SLOT_ID
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	var/mining_points = 0 //For redeeming at mining equipment vendors
 	var/list/access = list()
@@ -416,6 +416,39 @@ update_label("John Doe", "Clowny")
 
 	to_chat(user, span_warning("The account ID number provided is invalid."))
 	return
+
+/obj/item/card/id/makeshift
+	name = "makeshift ID"
+	desc = "A humble piece of cardboard with a name written on it. This will probably never fool anyone."
+	icon = 'icons/obj/card.dmi'
+	icon_state = "makeshift"
+	item_state = "makeshift"
+	registered_name = "John Doe"
+	var/bank_account = FALSE
+	var/forged = FALSE
+
+/obj/item/card/id/makeshift/attack_self(mob/user)
+	if(isliving(user) && user.mind)
+		var/popup_input = alert(user, "Choose Action", "ID", "Show", "Forge/Reset")
+		if(user.incapacitated())
+			return
+		if(popup_input == "Forge/Reset")
+			var/input_name = stripped_input(user, "What name would you like to write on this card? Leave blank to randomize.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
+			input_name = reject_bad_name(input_name)
+			if(!input_name)
+				// Invalid/blank names give a randomly generated one.
+				if(user.gender == FEMALE)
+					input_name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
+				else
+					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
+
+			var/newAge = input(user, "Choose an age to display:\n([AGE_MIN]-[AGE_MAX])", "Agent card age") as num|null
+			if(newAge)
+				registered_age = max(round(text2num(newAge)), 0)
+
+			registered_name = input_name
+			forged = TRUE
+			to_chat(user, span_notice("You scribble a new name onto the makeshift ID."))
 
 /obj/item/card/id/syndicate/anyone
 	anyone = TRUE

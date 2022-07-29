@@ -488,7 +488,7 @@
 		mobility_flags &= ~MOBILITY_MOVE
 		if(user)
 			step_away(src,user,15)
-		sleep(3)
+		sleep(0.3 SECONDS)
 		if(user)
 			step_away(src,user,15)
 		update_mobility()

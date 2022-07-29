@@ -8,6 +8,40 @@
 	var/unique_blood = null
 	var/labelled = 0
 
+/obj/item/reagent_containers/blood/attack(mob/target, mob/user, def_zone)
+	if(reagents.total_volume > 0)
+		if(target != user)
+			user.visible_message(
+				span_notice("[user] forces [target] to drink from the [src]."),
+				span_notice("You put the [src] up to [target]'s mouth."),
+			)
+			if(!do_mob(user, target, 5 SECONDS))
+				return
+		else
+			if(!do_mob(user, target, 1 SECONDS))
+				return
+			user.visible_message(
+				span_notice("[user] puts the [src] up to their mouth."),
+				span_notice("You take a sip from the [src]."),
+			)
+		// Safety: In case you spam clicked the blood bag on yourself, and it is now empty (below will divide by zero)
+		if(reagents.total_volume <= 0)
+			return
+		var/gulp_size = 5
+		if(IS_BLOODSUCKER(user))
+			var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+			bloodsuckerdatum.AddBloodVolume(5)
+			var/mob/living/carbon/H = user
+			reagents.trans_to(user, INGEST, 500)
+			if(H.blood_volume >= bloodsuckerdatum.max_blood_volume)
+				to_chat(user, span_notice("You are full, and can't consume more blood"))
+				return
+		else
+			reagents.reaction(user, INGEST, gulp_size)
+			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, user, 5), 5)
+		playsound(user.loc, 'sound/items/drink.ogg', rand(10,50), 1)
+	return ..()
+
 /obj/item/reagent_containers/blood/Initialize()
 	. = ..()
 	if(blood_type != null)

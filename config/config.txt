@@ -399,10 +399,10 @@ BASE_MC_TICK_RATE 1
 HIGH_POP_MC_TICK_RATE 1.1
 
 ##Engage high pop mode if player count raises above this (Player in this context means any connected user. Lobby, ghost or in-game all count)
-HIGH_POP_MC_MODE_AMOUNT 60
+HIGH_POP_MC_MODE_AMOUNT 65
 
 ##Disengage high pop mode if player count drops below this
-DISABLE_HIGH_POP_MC_MODE_AMOUNT 50
+DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
 
 ## Uncomment to prevent the world from sleeping while no players are connected after initializations
 #RESUME_AFTER_INITIALIZATIONS

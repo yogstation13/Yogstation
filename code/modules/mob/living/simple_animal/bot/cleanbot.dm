@@ -214,7 +214,7 @@
 		mode = BOT_CLEANING
 
 		var/turf/T = get_turf(A)
-		if(do_after(src, 0.1 SECONDS, target = T))
+		if(do_after(src, 0.1 SECONDS, T))
 			T.wash(CLEAN_WASH)
 			visible_message(span_notice("[src] cleans \the [T]."))
 			target = null

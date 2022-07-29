@@ -38,6 +38,10 @@
 		if(5 to TANK_DISPENSER_CAPACITY)
 			add_overlay("plasma-5")
 
+/obj/structure/tank_dispenser/attack_ai(mob/user)
+	. = ..()
+	return ui_interact(user)
+
 /obj/structure/tank_dispenser/attackby(obj/item/I, mob/user, params)
 	var/full
 	if(istype(I, /obj/item/tank/internals/plasma))
@@ -90,13 +94,19 @@
 		if("plasma")
 			var/obj/item/tank/internals/plasma/tank = locate() in src
 			if(tank && Adjacent(usr))
-				usr.put_in_hands(tank)
+				if(iscyborg(usr))
+					usr.transferItemToLoc(tank, src.loc)
+				else
+					usr.put_in_hands(tank)
 				plasmatanks--
 			. = TRUE
 		if("oxygen")
 			var/obj/item/tank/internals/oxygen/tank = locate() in src
 			if(tank && Adjacent(usr))
-				usr.put_in_hands(tank)
+				if(iscyborg(usr))
+					usr.transferItemToLoc(tank,src.loc)
+				else
+					usr.put_in_hands(tank)
 				oxygentanks--
 			. = TRUE
 	update_icon()

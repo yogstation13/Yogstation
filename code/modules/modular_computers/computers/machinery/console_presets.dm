@@ -170,3 +170,19 @@
 
 	starting_files = list(	new /datum/computer_file/program/portrait_printer)
 	initial_program = /datum/computer_file/program/portrait_printer
+
+//Curator gets to be special
+/obj/machinery/modular_computer/console/preset/curator/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/canvas))
+		if(alert(user, "Are you sure you want to upload this painting? This will irreversibly delete the current painting and require you to print it out again in future rounds.", "Confirm", "No", "Yes") != "Yes")
+			return
+		var/obj/item/canvas/P = I
+		var/obj/structure/sign/painting/frame = new(src)
+		frame.persistence_id = "public_paintings"
+		frame.C = P
+		frame.C.finalize(user)
+		frame.save_persistent()
+		qdel(P)
+		qdel(frame)
+		return FALSE
+	return ..()

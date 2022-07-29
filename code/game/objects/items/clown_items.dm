@@ -14,7 +14,7 @@
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
 	gender = PLURAL
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/janitor.dmi'
 	icon_state = "soap"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
@@ -104,7 +104,7 @@
 		to_chat(user, span_warning("You need to take that [target.name] off before cleaning it!"))
 	else if(istype(target, /obj/effect/decal/cleanable))
 		user.visible_message("[user] begins to scrub \the [target.name] out with [src].", span_warning("You begin to scrub \the [target.name] out with [src]..."))
-		if(do_after(user, src.cleanspeed, target = target))
+		if(do_after(user, src.cleanspeed, target))
 			to_chat(user, span_notice("You scrub \the [target.name] out."))
 			qdel(target)
 			decreaseUses(user)
@@ -118,14 +118,14 @@
 		return
 	else if(istype(target, /obj/structure/window))
 		user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))
-		if(do_after(user, src.cleanspeed, target = target))
+		if(do_after(user, src.cleanspeed, target))
 			to_chat(user, span_notice("You clean \the [target.name]."))
 			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 			target.set_opacity(initial(target.opacity))
 			decreaseUses(user)
 	else
 		user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))
-		if(do_after(user, src.cleanspeed, target = target))
+		if(do_after(user, src.cleanspeed, target))
 			to_chat(user, span_notice("You clean \the [target.name]."))
 			target.wash(CLEAN_SCRUB)
 			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
@@ -141,7 +141,7 @@
 /obj/item/bikehorn
 	name = "bike horn"
 	desc = "A horn off of a bicycle."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/toy.dmi'
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	lefthand_file = 'icons/mob/inhands/equipment/horns_lefthand.dmi'

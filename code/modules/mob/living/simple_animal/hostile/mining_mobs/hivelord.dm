@@ -75,6 +75,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 2
 	melee_damage_upper = 2
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "slashes"
 	speak_emote = list("telepathically cries")
 	attack_sound = 'sound/weapons/pierce.ogg'
@@ -103,6 +104,7 @@
 	obj_damage = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "lashes out at"
 	speak_emote = list("echoes")
 	attack_sound = 'sound/weapons/pierce.ogg'
@@ -248,6 +250,7 @@
 	icon_state = "legion"
 	icon_living = "legion"
 	icon_dead = "legion"
+	health_doll_icon = "legion"
 	health = 450
 	maxHealth = 450
 	melee_damage_lower = 20
@@ -317,9 +320,9 @@
 			if(prob(20))
 				suit = pickweight(list(/obj/item/clothing/suit/hooded/explorer = 18, /obj/item/clothing/suit/hooded/cloak/goliath = 2))
 			if(prob(30))
-				r_pocket = pickweight(list(/obj/item/stack/marker_beacon = 20, /obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/hypospray/medipen/survival = 2, /obj/item/borg/upgrade/modkit/damage = 1 ))
+				r_pocket = pickweight(list(/obj/item/stack/marker_beacon = 20, /obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/autoinjector/medipen/survival = 2, /obj/item/borg/upgrade/modkit/damage = 1 ))
 			if(prob(10))
-				l_pocket = pickweight(list(/obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/hypospray/medipen/survival = 2, /obj/item/borg/upgrade/modkit/cooldown = 1 ))
+				l_pocket = pickweight(list(/obj/item/stack/spacecash/c1000 = 7, /obj/item/reagent_containers/autoinjector/medipen/survival = 2, /obj/item/borg/upgrade/modkit/cooldown = 1 ))
 		if("Ashwalker")
 			mob_species = /datum/species/lizard/ashwalker
 			uniform = /obj/item/clothing/under/gladiator/ash_walker
@@ -395,6 +398,56 @@
 			backpack_contents = list(/obj/item/reagent_containers/glass/beaker/unholywater = 1, /obj/item/cult_shift = 1, /obj/item/flashlight/flare/culttorch = 1, /obj/item/stack/sheet/runed_metal = 15)
 	. = ..()
 
+//Bloodman
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman
+	name = "bloodman"
+	desc = "It's contantly dripping and absorbing blood."
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	faction = list("blooded")
+	icon_state = "bloodman"
+	icon_living = "bloodman"
+	icon_aggro = "bloodman"
+	icon_dead = "bloodman"
+	maxHealth = 30
+	health = 30 //dont want crew to have a hard time killing actual fodder
+	loot = null
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
 
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/Initialize()
+	. = ..()
+	GLOB.bloodmen_list += src
+	return
 
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/death()
+	. = ..()
+	GLOB.bloodmen_list -= src
+	return
 
+//Bloodling
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
+	name = "bloodling"
+	desc = "Blood that hates."
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "bloodling"
+	icon_living = "bloodling"
+	icon_aggro = "bloodling"
+	icon_dead = "bloodling"
+	icon_gib = "syndicate_gib"
+	friendly = "buzzes near"
+	faction = list("blooded")
+	harm_intent_damage = 2
+	melee_damage_lower = 2
+	melee_damage_upper = 2 //fodder isnt supposed to be strong
+	attacktext = "gnashes at"
+	stat_attack = DEAD
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/Life()
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
+	if(isturf(loc))
+		for(var/mob/living/carbon/human/M in view(src,1))
+			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2) //max of 3 bloodmen to minimize shitshows
+				L = new(M.loc)
+				L.stored_mob = M
+				M.forceMove(L)
+				qdel(src)
+	..() //couldnt figure out how to make infesting work without getting duplicate def errors so just doing this

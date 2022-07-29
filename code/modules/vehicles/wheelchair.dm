@@ -5,13 +5,11 @@
 	icon_state = "wheelchair"
 	layer = OBJ_LAYER
 	max_integrity = 100
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 30)	//Wheelchairs aren't super tough yo
+	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 20, ACID = 30)	//Wheelchairs aren't super tough yo
 	legs_required = 0	//You'll probably be using this if you don't have legs
 	canmove = TRUE
 	density = FALSE		//Thought I couldn't fix this one easily, phew
 	movedelay = 4
-	///Determines the typepath of what the object folds into
-	var/foldabletype = /obj/item/wheelchair
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
@@ -42,27 +40,28 @@
 		if(canmove && (user.get_num_arms() < arms_required))
 			to_chat(user, span_warning("You don't have enough arms to operate the wheels!"))
 			canmove = FALSE
-			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 20)
+			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
 			return FALSE
-		var/datum/component/riding/D = GetComponent(/datum/component/riding)
-		//1.5 (movespeed as of this change) multiplied by 4 gets 6, which gives you a delay of 3 assuming the user has two arms,
-		//getting the speed of the wheelchair roughly equal to the speed of a scooter based on testing.
-		//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
 		//paraplegic quirk users get a halved movedelay to model their life of wheelchair useage - yogs
 		if(user.has_quirk(/datum/quirk/paraplegic))
 			movedelay = 2
 		else
 			movedelay = 4
-		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / min(user.get_num_arms(), 2)
+		set_move_delay(user)
 	return ..()
+
+/obj/vehicle/ridden/wheelchair/proc/set_move_delay(mob/living/user)
+	var/datum/component/riding/D = GetComponent(/datum/component/riding)
+	//1.5 (movespeed as of this change) multiplied by 6.7 gets ABOUT 10 (rounded), the old constant for the wheelchair that gets divided by how many arms they have
+	//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
+	D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * movedelay) / min(user.get_num_arms(), 2)
 
 /obj/vehicle/ridden/wheelchair/Moved()
 	. = ..()
 	cut_overlays()
-	playsound(src, 'sound/effects/roll.ogg', 75, 1)
+	playsound(src, 'sound/effects/roll.ogg', 75, TRUE)
 	if(has_buckled_mobs())
 		handle_rotation_overlayed()
-
 
 /obj/vehicle/ridden/wheelchair/post_buckle_mob(mob/living/user)
 	. = ..()
@@ -78,7 +77,7 @@
 
 /obj/vehicle/ridden/wheelchair/wrench_act(mob/living/user, obj/item/I)	//Attackby should stop it attacking the wheelchair after moving away during decon
 	to_chat(user, span_notice("You begin to detach the wheels..."))
-	if(I.use_tool(src, user, 40, volume=50))
+	if(I.use_tool(src, user, 4 SECONDS, volume=50))
 		to_chat(user, span_notice("You detach the wheels and deconstruct the chair."))
 		new /obj/item/stack/rods(drop_location(), 6)
 		new /obj/item/stack/sheet/metal(drop_location(), 4)
@@ -97,8 +96,6 @@
 	var/image/V = image(icon = icon, icon_state = "wheelchair_overlay", layer = FLY_LAYER, dir = src.dir)
 	add_overlay(V)
 
-
-
 /obj/vehicle/ridden/wheelchair/proc/can_be_rotated(mob/living/user)
 	return TRUE
 
@@ -111,6 +108,16 @@
 		return TRUE
 	return FALSE
 
+/obj/vehicle/ridden/wheelchair/CtrlClick(mob/user)
+	if(has_buckled_mobs() && pick(buckled_mobs) == user)
+		return
+	. = ..()
+
+/obj/vehicle/ridden/wheelchair/post_buckle_mob(mob/living/L)
+	if(L.pulling && src.pulledby == L)
+		L.stop_pulling()
+	. = ..()
+
 /obj/vehicle/ridden/wheelchair/the_whip/driver_move(mob/living/user, direction)
 	if(istype(user))
 		var/datum/component/riding/D = GetComponent(/datum/component/riding)
@@ -119,7 +126,6 @@
 
 /obj/item/wheelchair
 	name = "wheelchair"
-	desc = "A collapsed wheelchair that can be carried around."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "wheelchair_folded"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -127,25 +133,35 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 8 //Force is same as a chair
 	custom_materials = list(/datum/material/iron = 10000)
-	var/unfolded_type = /obj/vehicle/ridden/wheelchair
+	var/obj/vehicle/ridden/wheelchair/wheelchair
 
 /obj/vehicle/ridden/wheelchair/MouseDrop(over_object, src_location, over_location)  //Lets you collapse wheelchair
 	. = ..()
-	if(over_object != usr || !Adjacent(usr) || !foldabletype)
+	if(over_object != usr || !Adjacent(usr))
 		return FALSE
 	if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
 		return FALSE
 	if(has_buckled_mobs())
+		to_chat(usr, span_warning("You need to unbuckle the passenger from [src] first!"))
 		return FALSE
-	usr.visible_message("<span class='notice'>[usr] collapses [src].</span>", "<span class='notice'>You collapse [src].</span>")
-	var/obj/vehicle/ridden/wheelchair/wheelchair_folded = new foldabletype(get_turf(src))
+	usr.visible_message(span_notice("[usr] collapses [src]."), span_notice("You collapse [src]."))
+	var/obj/item/wheelchair/wheelchair_folded = new /obj/item/wheelchair(get_turf(src))
+	forceMove(wheelchair_folded)
+	wheelchair_folded.desc = "A collapsed [name] that can be carried around." 
+	wheelchair_folded.name = name
+	wheelchair_folded.wheelchair = src
 	usr.put_in_hands(wheelchair_folded)
-	qdel(src)
-
+	
 /obj/item/wheelchair/attack_self(mob/user)  //Deploys wheelchair on in-hand use
 	deploy_wheelchair(user, user.loc)
 
 /obj/item/wheelchair/proc/deploy_wheelchair(mob/user, atom/location)
-	var/obj/vehicle/ridden/wheelchair/wheelchair_unfolded = new unfolded_type(location)
-	wheelchair_unfolded.add_fingerprint(user)
+	if(!wheelchair)
+		wheelchair = new /obj/vehicle/ridden/wheelchair(location)
+	wheelchair.add_fingerprint(user)
+	wheelchair.forceMove(location)
 	qdel(src)
+
+/obj/item/wheelchair/Destroy()
+	wheelchair = null
+	. = ..()

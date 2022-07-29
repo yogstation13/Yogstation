@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_map = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
+	var/id_in_pda = FALSE
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
 
@@ -71,7 +72,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None")
+	var/list/features = list("mcolor" = "FFF", "gradientstyle" = "None", "gradientcolor" = "000", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "tail_polysmorph" = "Polys", "teeth" = "None", "dome" = "None", "dorsal_tubes" = "No", "ethereal_mark" = "None", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	var/list/genders = list(MALE, FEMALE, PLURAL)
 	var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
 
@@ -84,6 +85,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Quirk list
 	var/list/all_quirks = list()
+
+	var/mood_tail_wagging = TRUE
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
@@ -98,7 +101,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/ignoring = list()
 
-	var/clientfps = 0
+	var/clientfps = 40
 
 	var/parallax
 
@@ -145,10 +148,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			load_path(C.ckey)
 			unlock_content |= C.IsByondMember() // yogs - Donor features
 			if(unlock_content)
-				max_save_slots = 8
+				max_save_slots += 2
 			// yogs start - Donor features
-			else if(is_donator(C) || (C.ckey in get_donators())) // the Latter handles race cases where the prefs are not fully loaded in, or GLOB.donators hasn't loaded in yet
-				max_save_slots = DONOR_CHARACTER_SLOTS
+			if(is_donator(C) || (C.ckey in get_donators())) // the Latter handles race cases where the prefs are not fully loaded in, or GLOB.donators hasn't loaded in yet
+				max_save_slots += DONOR_CHARACTER_SLOTS
 			// yogs end
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
@@ -330,7 +333,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=ethcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=ethcolor;task=lock'>[random_locks["ethcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 
-			if((EYECOLOR in pref_species.species_traits) && !(NOEYESPRITES in pref_species.species_traits))
+			if((EYECOLOR in pref_species.species_traits) || !(NOEYESPRITES in pref_species.species_traits))
 
 				if(!use_skintones && !mutant_colors)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -565,6 +568,33 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+			if("pod_hair" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Head Vegitation Style</h3>"
+				dat += "<a href='?_src_=prefs;preference=pod_hair;task=input'>[features["pod_hair"]]</a>"
+				dat += "<a href ='?_src_=prefs;preference=pod_hair;task=lock'>[random_locks["pod_hair"] ? "Unlock" : "Lock"]</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pod_hair_color;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=hair_color;task=lock'>[random_locks["hair"] ? "Unlock" : "Lock"]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+			
+			if("pod_flower" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<h3>Head Flowers Color</h3>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pod_flower_color;task=input'>Change</a>"
+				dat += "<a href ='?_src_=prefs;preference=facial_hair_style_color;task=lock'>[random_locks["facial"] ? "Unlock" : "Lock"]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+			
 			if("tail_human" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -631,6 +661,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
+			dat += "<b>PDA Starts in ID Slot:</b> <a href='?_src_=prefs;task=input;preference=id_in_pda'>[id_in_pda ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape_id != "None") ? "[GLOB.skillcapes[skillcape_id]]" : "None"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Map:</b> <a href='?_src_=prefs;task=input;preference=map'>[map ? "Enabled" : "Disabled"]</a><br>"
@@ -724,6 +755,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			//yogs start -- Mood preference toggling
 			if(CONFIG_GET(flag/disable_human_mood))
 				dat += "<b>Mood:</b> <a href='?_src_=prefs;preference=mood'>[yogtoggles & PREF_MOOD ? "Enabled" : "Disabled"]</a><br>"
+				dat += "<b>Mood Tail Wagging:</b> <a href='?_src_=prefs;preference=moodtailwagging'>[mood_tail_wagging  ? "Enabled" : "Disabled"] </a><br>"
 			//yogs end
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
@@ -840,6 +872,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Donator Preferences</h2>"
 			if(is_donator(user.client))
 				dat += "<b>Quiet round:</b> <a href='?_src_=prefs;preference=donor;task=quiet_round'>[(src.yogtoggles & QUIET_ROUND) ? "Yes" : "No"]</a><br>"
+				dat += "Wear fancy hat as borg: "
+				dat += "<a href='?_src_=prefs;preference=donor;task=borghat'>[borg_hat ? "Yes" : "No"]</a><br>"
 				dat += "<b>Fancy Hat:</b> "
 				///This is the typepath of the donor's hat that they may choose to spawn with.
 				var/typehat = donor_hat
@@ -1223,10 +1257,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return bal
 
 /datum/preferences/proc/GetPositiveQuirkCount()
-	. = 0
+	var/sum = 0
 	for(var/q in all_quirks)
 		if(SSquirks.quirk_points[q] > 0)
-			.++
+			sum++
+	return sum
 
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
 	. = ..()
@@ -1241,6 +1276,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(is_donator(user))
 			var/client/C = (istype(user, /client)) ? user : user.client
 			switch(href_list["task"])
+				if("borghat")
+					borg_hat = !borg_hat
 				if("hat")
 					C.custom_donator_item()
 				if("item")
@@ -1319,7 +1356,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if((quirk in L) && (Q in L) && !(Q == quirk)) //two quirks have lined up in the list of the list of quirks that conflict with each other, so return (see quirks.dm for more details)
 							to_chat(user, span_danger("[quirk] is incompatible with [Q]."))
 							return
-				var/value = SSquirks.quirk_points[quirk]
+				var/value = SSquirks.quirk_points[quirk] // The value of the chosen quirk.
 				var/balance = GetQuirkBalance()
 				if(quirk in all_quirks)
 					if(balance + value < 0)
@@ -1327,7 +1364,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						return
 					all_quirks -= quirk
 				else
-					if(GetPositiveQuirkCount() >= MAX_QUIRKS)
+					var/positive_count = GetPositiveQuirkCount() // Yogs -- fixes weird behaviour when at max positive quirks
+					if(positive_count > MAX_QUIRKS || (positive_count == MAX_QUIRKS && value > 0)) // Yogs
 						to_chat(user, span_warning("You can't have more than [MAX_QUIRKS] positive quirks!"))
 						return
 					if(balance - value < 0)
@@ -1693,7 +1731,35 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_ethereal_mark = input(user, "Choose if your character has a facial mark", "Character Preference") as null|anything in GLOB.ethereal_mark_list
 					if(new_ethereal_mark)
 						features["ethereal_mark"] = new_ethereal_mark
-
+				
+				if("pod_hair")
+					var/new_pod_hair
+					new_pod_hair = input(user, "Choose the style of your head vegitation", "Character Preference") as null|anything in GLOB.pod_hair_list
+					if(new_pod_hair)
+						features["pod_hair"] = new_pod_hair
+						features["pod_flower"] = new_pod_hair
+				if("pod_hair_color")
+					var/new_hair = input(user, "Choose your character's \"hair\" colour:", "Character Preference","#"+hair_color) as color|null
+					if(new_hair)
+						var/temp_hsv = RGBtoHSV(new_hair)
+						if(new_hair == "#000000")
+							hair_color = pref_species.default_color
+							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+							hair_color = sanitize_hexcolor(new_hair)
+						else
+							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
+				if("pod_flower_color")
+					var/new_facial = input(user, "Choose your character's head flower colour:", "Character Preference","#"+facial_hair_color) as color|null
+					if(new_facial)
+						var/temp_hsv = RGBtoHSV(new_facial)
+						if(new_facial == "#000000")
+							facial_hair_color = pref_species.default_color
+							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+							facial_hair_color = sanitize_hexcolor(new_facial)
+						else
+							to_chat(user, span_danger("Invalid head flower color. Your color is not bright enough."))
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones
 					if(new_s_tone)
@@ -1781,6 +1847,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
+				if("id_in_pda")
+					id_in_pda = !id_in_pda
 				if("skillcape")
 					var/list/selectablecapes = list()
 					var/max_eligable = TRUE
@@ -2019,6 +2087,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("mood")
 					yogtoggles ^= PREF_MOOD
+
+				if("moodtailwagging")
+					mood_tail_wagging = !mood_tail_wagging
 				// yogs end
 
 	ShowChoices(user)
@@ -2067,6 +2138,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.backbag = backbag
 
 	character.jumpsuit_style = jumpsuit_style
+	character.id_in_pda = id_in_pda
 
 	var/datum/species/chosen_species
 	chosen_species = pref_species.type

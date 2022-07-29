@@ -26,7 +26,7 @@
 	name = "CQC"
 	id = MARTIALART_CQC
 	help_verb = /mob/living/carbon/human/proc/CQC_help
-	block_chance = 75
+	block_chance = 90 //Don't get into melee with someone specifically trained for melee and prepared for your attacks
 	nonlethal = TRUE //all attacks deal solely stamina damage or knock out before dealing lethal amounts of damage
 	///whether the art checks for being inside the kitchen for use
 	var/just_a_cook = FALSE
@@ -89,7 +89,7 @@
 						  	span_userdanger("[A] slams you into the ground!"))
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1) //using hit_kick because for some stupid reason slam.ogg is delayed
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
-		D.apply_damage(15, STAMINA)
+		D.apply_damage(A.get_punchdamagehigh() + 5, STAMINA)	//15 damage
 		D.Paralyze(30)
 		D.Knockdown(80)
 		log_combat(A, D, "slammed (CQC)")
@@ -110,7 +110,7 @@
 							span_userdanger("[A] kicks you back!"))
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 		step(D, A.dir)
-		D.apply_damage(15, STAMINA)
+		D.apply_damage(A.get_punchdamagehigh() + 5, STAMINA)	//15 damage
 		log_combat(A, D, "kicked (CQC)")
 		D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
 		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), SHOVE_SLOWDOWN_LENGTH)
@@ -119,8 +119,9 @@
 		D.visible_message(span_warning("[A] firmly kicks [D] in the abdomen!"), \
 					  		span_userdanger("[A] kicks you in the abdomen!"))
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
+		var/kickdamage = A.get_punchdamagehigh() * 2 + 20	//40 damage
 		D.Paralyze(5)
-		D.apply_damage(40, STAMINA)
+		D.apply_damage(kickdamage, STAMINA)
 		D.silent += 2
 	return TRUE
 
@@ -145,7 +146,7 @@
 	D.visible_message(span_warning("[A] dislocates [D]'s [hit_limb]!"), \
 						"<span class = 'userdanger'>[A] dislocates your [hit_limb]!</span>")
 	D.drop_all_held_items()
-	D.apply_damage(50, STAMINA, selected_zone)
+	D.apply_damage(50, STAMINA, selected_zone)	//not based on species damage since this should just disable the limb outright anyways, which caps at 50 damage
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
 
@@ -182,13 +183,14 @@
 		return FALSE
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	if(D.mobility_flags & MOBILITY_STAND)
+		var/consecutivedamage = A.get_punchdamagehigh() * 1.5 + 10 //25 damage
 		log_combat(A, D, "consecutive CQC'd (CQC)")
 		D.visible_message(span_warning("[A] delivers a firm blow to [D]'s head, knocking them down!"), \
 							span_userdanger("[A] delivers a firm blow to your head, causing you to fall over!"))
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
 		D.Paralyze(50)
 		D.Knockdown(100)
-		D.apply_damage(25, STAMINA)
+		D.apply_damage(consecutivedamage, STAMINA)
 	return TRUE
 
 ///CQC grab, stuns for 1.5 seconds on use
@@ -215,7 +217,7 @@
 	log_combat(A, D, "attacked (CQC)")
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/picked_hit_type = pick("CQC'd", "Big Bossed")
-	var/bonus_damage = 15
+	var/bonus_damage = A.get_punchdamagehigh() + 5 //15 damage
 	D.apply_damage(bonus_damage, STAMINA)
 	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	D.visible_message(span_danger("[A] [picked_hit_type] [D]!"), \
@@ -251,7 +253,7 @@
 			if(I && D.temporarilyRemoveItemFromInventory(I))
 				A.put_in_hands(I)
 			D.Jitter(2)
-			D.apply_damage(5, STAMINA)
+			D.apply_damage(A.get_punchdamagehigh()/2, STAMINA) //5 damage
 		else
 			D.visible_message(span_danger("[A] grabs at [D]'s arm, but misses!"), \
 								span_userdanger("[A] grabs at your arm, but misses!"))
@@ -316,8 +318,8 @@
 		var/hand = user.get_inactive_hand_index()
 		if(!user.put_in_hand(I, hand))
 			I.forceMove(get_turf(attacker))
-	attacker.Paralyze(20)
 	attacker.Knockdown(60)
+	user.adjustStaminaLoss(10)	//Can't block forever. Really, if this becomes a problem you're already screwed.
 
 /**
   * CQC help proc
@@ -337,9 +339,9 @@
 	to_chat(usr, span_notice("<b>Harm Intent</b> Will deal a competitive amount of stamina damage, and hitting a standing opponent while you are prone will both knock them down and stand you up"))
 
 	to_chat(usr, "[span_notice("Slam")]: Grab Harm. Slam opponent into the ground, knocking them down and dealing decent stamina damage.")
-	to_chat(usr, "[span_notice("CQC Kick")]: Disarm Harm. Knocks opponent away and slows them. Deals heavy stamina damage to prone opponents.")
+	to_chat(usr, "[span_notice("CQC Kick")]: Disarm Harm. Knocks opponent away and slows them. Deals heavy stamina damage to prone opponents, as well as muting them for a short time.")
 	to_chat(usr, "[span_notice("Restrain")]: Grab Grab. Locks opponents into a restraining position, making your grab harder to break out of. Disarm to begin a chokehold which deal gradual oxygen damage until the opponent is unconscious, with the damage increasing based on their stamina damage. Failing to complete the chokehold will weaken and possibly break your grab.")
 	to_chat(usr, "[span_notice("Pressure")]: Disarm Grab. Disables the targetted limb or a random limb if the head or chest are targetted, as well as forcing the target to drop anything they are holding.")
 	to_chat(usr, "[span_notice("Consecutive CQC")]: Harm Harm Harm Harm Harm. Offensive move, deals bonus stamina damage and knocking down on the last hit.")
 
-	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to counter attacks done to you.</i></b>")
+	to_chat(usr, "<b><i>In addition, by having your throw mode on when being attacked, you enter an active defense mode where you have a chance to counter attacks done to you. Beware, counter-attacks are tiring and you won't be able to defend yourself forever!</i></b>")

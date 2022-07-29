@@ -58,10 +58,8 @@
 	new /obj/item/clothing/neck/cloak/cmo(src)
 	new /obj/item/defibrillator/compact/loaded(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
-	new /obj/item/storage/belt/medical(src)
-	new /obj/item/healthanalyzer/advanced(src)
 	new /obj/item/assembly/flash/handheld(src)
-	new /obj/item/reagent_containers/hypospray/CMO(src)
+	new /obj/item/storage/firstaid/hypospray/deluxe/cmo(src)
 	new /obj/item/autosurgeon/cmo(src)
 	new /obj/item/door_remote/chief_medical_officer(src)
 	new /obj/item/clothing/neck/petcollar(src)
@@ -87,7 +85,7 @@
 		new /obj/item/storage/backpack/medic(src)
 	else
 		new /obj/item/storage/backpack/satchel/med(src)
-	new /obj/item/storage/firstaid/regular(src)
+	new /obj/item/storage/firstaid/hypospray/paramedic(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	switch(pick("blue", "green", "purple"))
 		if ("blue")
@@ -121,8 +119,6 @@
 
 /obj/structure/closet/secure_closet/mmedical/PopulateContents()
 	..()
-	new /obj/item/reagent_containers/hypospray/mixi(src)
-	new /obj/item/reagent_containers/hypospray/derm(src)
 	if(prob(50))
 		new /obj/item/storage/backpack/medic(src)
 	else

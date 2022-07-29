@@ -38,7 +38,7 @@
 		var/turf/T = get_turf(computer)
 		z = T.z
 	var/list/death_list = GLOB.crewmonitor.death_list?["[z]"]
-	if(death_list.len > 0)
+	if(death_list && death_list.len > 0)
 		alarm = TRUE
 	else
 		alarm = FALSE

@@ -73,3 +73,31 @@
 			return BULLET_ACT_HIT
 	//if(istype(target, /turf/closed) || ismecha(target))
 	new /obj/item/broken_missile(get_turf(src), 1)
+
+/obj/item/projectile/bullet/cball
+	name = "cannonball"
+	icon_state = "cannonball"
+	desc = "Not for bowling purposes"
+	damage = 30
+
+/obj/item/projectile/bullet/cball/on_hit(atom/target, blocked=0)
+	var/mob/living/carbon/human/H = firer
+	var/atom/throw_target = get_edge_target_turf(target, H.dir)
+	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
+		damage = 500 
+		..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(!L.anchored && !L.throwing)//avoid double hits
+			if(iscarbon(L))
+				var/mob/living/carbon/C = L
+				var/mob/M = firer
+				if(istype(M))
+					C.throw_at(throw_target, 2, 4, H, 3)
+					return BULLET_ACT_HIT
+
+/obj/item/projectile/bullet/bolt
+	name = "bolt"
+	icon_state = "bolt"
+	desc = "smaller and faster rod"
+	damage = 25

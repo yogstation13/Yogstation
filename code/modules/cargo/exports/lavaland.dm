@@ -9,7 +9,6 @@
 						/obj/item/gun/magic/hook,
 						/obj/item/wisp_lantern,
 						/obj/item/reagent_containers/glass/bottle/potion/flight,
-						/obj/item/katana/cursed,
 						/obj/item/clothing/glasses/godeye,
 						/obj/item/melee/ghost_sword,
 						/obj/item/clothing/suit/space/hardsuit/cult,
@@ -33,7 +32,7 @@
 	unit_name = "lava planet artifact"
 	export_types = list(/obj/item/guardiancreator,
 						/obj/item/rod_of_asclepius,
-						/obj/item/clothing/suit/space/hardsuit/ert/paranormal,
+						/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced,
 						/obj/item/prisoncube,
 						/obj/item/staff/storm)
 

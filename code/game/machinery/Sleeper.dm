@@ -36,6 +36,8 @@
 	///if the sleeper puts its patient into stasis
 	var/stasis = FALSE
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
+	var/open_sound = 'sound/machines/podopen.ogg'
+	var/close_sound = 'sound/machines/podclose.ogg'
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
 
@@ -86,6 +88,8 @@
 		if(mob_occupant)
 			mob_occupant.remove_status_effect(STATUS_EFFECT_STASIS)
 		flick("[initial(icon_state)]-anim", src)
+		if(open_sound)
+			playsound(src, open_sound, 40)
 		..()
 
 /obj/machinery/sleeper/close_machine(mob/user)
@@ -97,6 +101,8 @@
 			to_chat(occupant, "[enter_message]")
 		if(mob_occupant && stasis)
 			mob_occupant.ExtinguishMob()
+		if(close_sound)
+			playsound(src, close_sound, 40)
 
 /obj/machinery/sleeper/emp_act(severity)
 	. = ..()
@@ -179,15 +185,17 @@
 /obj/machinery/sleeper/process()
 	..()
 	check_nap_violations()
+	if(issilicon(occupant))
+		return
 	var/mob/living/carbon/C = occupant
 	if(C)
 		if(stasis && (C.stat == DEAD || C.health < 0))
-			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, -1)
 		else
 			C.remove_status_effect(STATUS_EFFECT_STASIS)
 		if(obj_flags & EMAGGED)
 			var/existing = C.reagents.get_reagent_amount(/datum/reagent/toxin/amanitin)
-			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1 - existing)) //this should be enough that you immediately eat shit on exiting but not before
+			C.reagents.add_reagent(/datum/reagent/toxin/amanitin, max(0, 1.5 - existing)) //this should be enough that you immediately eat shit on exiting but not before
 		switch(active_treatment)
 			if(SLEEPER_TEND)
 				C.heal_bodypart_damage(SLEEPER_HEAL_RATE,SLEEPER_HEAL_RATE) //this is slow as hell, use the rest of medbay you chumps
@@ -207,6 +215,8 @@
 							break
 			if(SLEEPER_CHEMPURGE)
 				C.adjustToxLoss(-SLEEPER_HEAL_RATE)
+				if(obj_flags & EMAGGED)
+					return
 				var/purge_rate = 0.5 * efficiency
 				for(var/datum/reagent/R in C.reagents.reagent_list)
 					if(istype(R, /datum/reagent/toxin))

@@ -26,7 +26,7 @@
 /obj/item/organ/brain/Insert(mob/living/carbon/C, special = 0,no_id_transfer = FALSE)
 	..()
 
-	name = "brain"
+	name = initial(name)
 
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling) && !no_id_transfer)	//congrats, you're trapped in a body you don't control
 		if(brainmob && !(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_DEATHCOMA))))
@@ -122,7 +122,7 @@
 			return
 
 		user.visible_message("[user] starts to pour the contents of [O] onto [src].", span_notice("You start to slowly pour the contents of [O] onto [src]."))
-		if(!do_after(user, 6 SECONDS, TRUE, src))
+		if(!do_after(user, 6 SECONDS, src))
 			to_chat(user, span_warning("You failed to pour [O] onto [src]!"))
 			return
 

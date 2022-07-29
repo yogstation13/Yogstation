@@ -57,6 +57,8 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 
 	
 	if(C in GLOB.antag_token_users) // If they're in the list take them out
+		if(alert("Someone already approved this antag token. Are you sure you want to reject it?", "Confirm", "Yes", "No") != "Yes")
+			return
 		GLOB.antag_token_users -= C
 		token = FALSE // Redundency if you clowns figure out how to break it
 	else

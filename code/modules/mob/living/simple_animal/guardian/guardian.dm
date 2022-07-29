@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	updatetheme(pickedtheme)
 
 /mob/living/simple_animal/hostile/guardian/proc/updatetheme(theme) //update the guardian's theme to whatever its datum is; proc for adminfuckery
-	name = "[namedatum.prefixname] [namedatum.suffixcolour]"
+	name = "[namedatum.prefixname] [namedatum.suffixcolor]"
 	real_name = "[name]"
 	icon_living = "[namedatum.parasiteicon]"
 	icon_state = "[namedatum.parasiteicon]"
@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	bubble_icon = "[namedatum.bubbleicon]"
 
 	if (namedatum.stainself)
-		add_atom_colour(namedatum.colour, FIXED_COLOUR_PRIORITY)
+		add_atom_colour(namedatum.color, FIXED_COLOUR_PRIORITY)
 
 	//Special case holocarp, because #snowflake code
 	if(theme == "carp")
@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(!summoner)
 		to_chat(src, "<span class='holoparasite bold'>For some reason, somehow, you have no summoner. Please report this bug immediately.</span>")
 		return
-	to_chat(src, span_holoparasite("You are <font color=\"[namedatum.colour]\"><b>[real_name]</b></font>, bound to serve [summoner.real_name]."))
+	to_chat(src, span_holoparasite("You are <font color=\"[namedatum.color]\"><b>[real_name]</b></font>, bound to serve [summoner.real_name]."))
 	to_chat(src, span_holoparasite("You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.p_them()] privately there."))
 	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself."))
 	to_chat(src, playstyle_string)
@@ -360,7 +360,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			return
 
 		var/preliminary_message = "<span class='holoparasite bold'>[input]</span>" //apply basic color/bolding
-		var/my_message = "<font color=\"[namedatum.colour]\"><b><i>[src]:</i></b></font> [preliminary_message]" //add source, color source with the guardian's color
+		var/my_message = "<font color=\"[namedatum.color]\"><b><i>[src]:</i></b></font> [preliminary_message]" //add source, color source with the guardian's color
 
 		to_chat(summoner, my_message)
 		var/list/guardians = summoner.hasparasites()
@@ -387,7 +387,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/list/guardians = hasparasites()
 	for(var/para in guardians)
 		var/mob/living/simple_animal/hostile/guardian/G = para
-		to_chat(G, "<font color=\"[G.namedatum.colour]\"><b><i>[src]:</i></b></font> [preliminary_message]" )
+		to_chat(G, "<font color=\"[G.namedatum.color]\"><b><i>[src]:</i></b></font> [preliminary_message]" )
 	for(var/M in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(M, src)
 		to_chat(M, "[link] [my_message]")
@@ -418,12 +418,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(guardians.len)
 		var/mob/living/simple_animal/hostile/guardian/G = input(src, "Pick the guardian you wish to reset", "Guardian Reset") as null|anything in guardians
 		if(G)
-			to_chat(src, span_holoparasite("You attempt to reset <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>'s personality..."))
+			to_chat(src, span_holoparasite("You attempt to reset <font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font>'s personality..."))
 			var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as [src.real_name]'s [G.real_name]?", ROLE_PAI, null, FALSE, 100)
 			if(LAZYLEN(candidates))
 				var/mob/dead/observer/C = pick(candidates)
 				to_chat(G, span_holoparasite("Your user reset you, and your body was taken over by a ghost. Looks like they weren't happy with your performance."))
-				to_chat(src, "<span class='holoparasite bold'>Your <font color=\"[G.namedatum.colour]\">[G.real_name]</font> has been successfully reset.</span>")
+				to_chat(src, "<span class='holoparasite bold'>Your <font color=\"[G.namedatum.color]\">[G.real_name]</font> has been successfully reset.</span>")
 				message_admins("[key_name_admin(C)] has taken control of ([ADMIN_LOOKUPFLW(G)])")
 				G.ghostize(0)
 				G.setthemename(G.namedatum.theme) //give it a new color, to show it's a new person
@@ -431,14 +431,14 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				G.reset = 1
 				switch(G.namedatum.theme)
 					if("tech")
-						to_chat(src, span_holoparasite("<font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> is now online!"))
+						to_chat(src, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> is now online!"))
 					if("magic")
-						to_chat(src, span_holoparasite("<font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!"))
+						to_chat(src, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been summoned!"))
 				guardians -= G
 				if(!guardians.len)
 					remove_verb(src, /mob/living/proc/guardian_reset)
 			else
-				to_chat(src, span_holoparasite("There were no ghosts willing to take control of <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>. Looks like you're stuck with it for now."))
+				to_chat(src, span_holoparasite("There were no ghosts willing to take control of <font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font>. Looks like you're stuck with it for now."))
 		else
 			to_chat(src, span_holoparasite("You decide not to reset [guardians.len > 1 ? "any of your guardians":"your guardian"]."))
 	else
@@ -562,13 +562,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	switch(theme)
 		if("tech")
 			to_chat(user, "[G.tech_fluff_string]")
-			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> is now online!"))
+			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> is now online!"))
 		if("magic")
 			to_chat(user, "[G.magic_fluff_string]")
-			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!"))
+			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been summoned!"))
 		if("carp")
 			to_chat(user, "[G.carp_fluff_string]")
-			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been caught!"))
+			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been caught!"))
 
 	add_verb(user, list(/mob/living/proc/guardian_comm, \
 						/mob/living/proc/guardian_recall, \

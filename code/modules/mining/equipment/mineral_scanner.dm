@@ -54,6 +54,12 @@
 	range = 4
 	cooldown = 50
 
+/obj/item/t_scanner/adv_mining_scanner/goat_scanner
+	desc = "An advanced scanner used by the goat king to sate his appetite for explosions; It allows the user to always receive high potency gibtonite after defusing them."
+	name = "goat king's scanner"
+	icon_state = "goat_mining0"
+	cooldown = 20
+
 /obj/item/t_scanner/adv_mining_scanner/scan()
 	if(current_cooldown <= world.time)
 		current_cooldown = world.time + cooldown
@@ -78,10 +84,11 @@
 	layer = FLASH_LAYER
 	icon = 'icons/effects/ore_visuals.dmi'
 	appearance_flags = 0 //to avoid having TILE_BOUND in the flags, so that the 480x480 icon states let you see it no matter where you are
-	duration = 35
+	duration = 3.5 SECONDS
 	pixel_x = -224
 	pixel_y = -224
 
 /obj/effect/temp_visual/mining_overlay/Initialize()
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_IN)
+

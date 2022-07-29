@@ -109,6 +109,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 
 ///Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
 
+/datum/donator_gear/orca
+	name = "Megumus Dress"
+	ckey = "orcacora"
+	unlock_path = /obj/item/storage/box/megumu
+
 /datum/donator_gear/fatal_eyes
 	name = "Green Cosmic Bedsheet (FatalEyes)"
 	ckey = "fataleyes"
@@ -118,7 +123,6 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "green cosmic bedsheet"
 	icon_state = "sheetcosmos_green"
 	item_state = "sheetcosmos_green"
-	item_color = "cosmos_green"
 
 /datum/donator_gear/azeelium
 	name = "Utatul-Azeel plushie"
@@ -130,6 +134,30 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Mqiib"
 	unlock_path = /obj/item/clothing/accessory/sing_necklace
 
+/datum/donator_gear/cowbot
+	name = "Singularity Wakizashi"
+	ckey = "Cowbot93"
+	unlock_path = /obj/item/toy/katana/singulo_wakizashi
+
+/datum/donator_gear/marmio64
+	name = "Eldritch Cowl"
+	ckey = "Marmio64"
+	unlock_path = /obj/item/clothing/suit/hooded/eldritchcowl
+
+/datum/donator_gear/manatee
+	name = "Peacekeeper Beret"
+	ckey = "Majesticmanateee"
+	unlock_path = /obj/item/clothing/head/peacekeeperberet
+
+/datum/donator_gear/Hisakaki
+	name = "Transdimensional halo"
+	ckey = "Hisakaki"
+	unlock_path = /obj/item/clothing/head/halo
+
+/datum/donator_gear/skrem
+	name = "Rainbow flower"
+	ckey = "Skrem7"
+	unlock_path = /obj/item/clothing/head/rainbow_flower
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
@@ -398,6 +426,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/clothing/head/wizard/marisa/fake
 	slot = SLOT_HEAD
 
+/datum/donator_gear/skull
+	name = "Skull Helmet (Collectable)"
+	unlock_path = /obj/item/clothing/head/collectable/skull
+	slot = SLOT_HEAD
+
 //End of items
 
 //Generic donator items
@@ -432,6 +465,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/air_horn
 	name = "air horn"
 	unlock_path = /obj/item/bikehorn/airhorn
+/datum/donator_gear/sad_horn
+	name = "sad horn"
+	unlock_path = /obj/item/bikehorn/sad
 /datum/donator_gear/camera
 	name = "camera"
 	unlock_path = /obj/item/camera
@@ -456,6 +492,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/hardsuit_clown
 	name = "clown hardsuit"
 	unlock_path = /obj/item/clothing/suit/yogs/armor/hardsuit_clown
+/datum/donator_gear/orca_dress
+	name = "creator's dress"
+	unlock_path = /obj/item/clothing/suit/yogs/keiki
 /datum/donator_gear/oreo
 	name = "Black and white sneakers"
 	unlock_path = /obj/item/clothing/shoes/yogs/trainers

@@ -105,6 +105,11 @@
 #define ui_internal "EAST-1:28,CENTER:17"
 #define ui_mood "EAST-1:28,CENTER-3:10"
 
+//living
+#define ui_living_pull "EAST-1:28,CENTER-3:15"
+#define ui_living_health "EAST-1:28,CENTER:15"
+#define ui_living_healthdoll "EAST-1:28,CENTER-1:15"
+
 //borgs
 #define ui_borg_health "EAST-1:28,CENTER-1:15"		//borgs have the health display where humans have the pressure damage indicator.
 
@@ -115,10 +120,13 @@
 
 //constructs
 #define ui_construct_pull "EAST,CENTER-2:15"
-#define ui_construct_health "EAST,CENTER:15"  //same as borgs and humans
+#define ui_construct_health "EAST,CENTER:15"  //same as humans and slimes
 
 //slimes
-#define ui_slime_health "EAST,CENTER:15"  //same as borgs, constructs and humans
+#define ui_slime_health "EAST,CENTER:15"  //same as humans and constructs
+
+//Blobbernauts
+#define ui_blobbernaut_overmind_health "EAST-1:28,CENTER+0:19"
 
 // AI
 
@@ -139,7 +147,7 @@
 #define ui_ai_view_images "CENTER+7:-32,SOUTH:6"
 #define ui_ai_sensor "CENTER+7,SOUTH:6"
 #define ui_ai_multicam "CENTER+6,SOUTH+1:6"
-#define ui_ai_add_multicam "CENTER+6,SOUTH+1:6"
+#define ui_ai_add_multicam "CENTER+7,SOUTH+1:6"
 #define ui_ai_language_menu "CENTER+5,SOUTH+1:9"
 #define ui_ai_dashboard_widescreen "CENTER-8,SOUTH:6"
 #define ui_ai_add_multicam_widescreen "CENTER+9,SOUTH:6"

@@ -199,10 +199,10 @@
 /datum/martial_art/wrestling/proc/FlipAnimation(mob/living/carbon/human/D)
 	set waitfor = FALSE
 	if (D)
-		animate(D, transform = matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
-	sleep(15)
+		animate(D, transform = matrix(180, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+	sleep(1.5 SECONDS)
 	if (D)
-		animate(D, transform = null, time = 1, loop = 0)
+		animate(D, transform = null, time = 0.1 SECONDS, loop = 0)
 
 /datum/martial_art/wrestling/proc/slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D)
@@ -259,7 +259,7 @@
 				D.pixel_y = 0
 			return 0
 
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 	if (A && D)
 		A.pixel_x = 0
@@ -286,17 +286,18 @@
 
 		A.visible_message("<span class = 'danger'><B>[A] [fluff] [D]!</B></span>")
 		playsound(A.loc, "swing_hit", 50, 1)
+		var/bodyslam_damage = A.get_punchdamagehigh() * 1.5 + 5 //base damage of the slam, 20
 		if (!D.stat)
 			D.emote("scream")
 			D.Paralyze(40)
 
 			switch(rand(1,3))
 				if (2)
-					D.adjustBruteLoss(rand(20,30))
+					D.adjustBruteLoss(bodyslam_damage + rand(0,10)) //20-30 damage
 				if (3)
 					D.ex_act(EXPLODE_LIGHT)
 				else
-					D.adjustBruteLoss(rand(10,20))
+					D.adjustBruteLoss(bodyslam_damage - rand(0,10))	//10-20 damage
 		else
 			D.ex_act(EXPLODE_LIGHT)
 
@@ -328,7 +329,7 @@
 		addtimer(CALLBACK(src, .proc/CheckStrikeTurf, A, T), 4)
 
 		A.visible_message("<span class = 'danger'><b>[A] headbutts [D]!</b></span>")
-		D.adjustBruteLoss(rand(10,20))
+		D.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
 		playsound(A.loc, "swing_hit", 50, 1)
 		D.Unconscious(20)
 	log_combat(A, D, "headbutted")
@@ -342,7 +343,7 @@
 
 	A.visible_message("<span class = 'danger'><B>[A] roundhouse-kicks [D]!</B></span>")
 	playsound(A.loc, "swing_hit", 50, 1)
-	D.adjustBruteLoss(rand(10,20))
+	D.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
 
 	var/turf/T = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
 	if (T && isturf(T))
@@ -375,7 +376,7 @@
 		A.visible_message("<span class = 'danger'><B>[A] climbs onto [surface]!</b></span>")
 		A.pixel_y = 10
 		falling = 1
-		sleep(10)
+		sleep(1 SECONDS)
 
 	if (A && D)
 		// These are necessary because of the sleep call.
@@ -384,7 +385,7 @@
 			A.pixel_y = 0
 			if (falling == 1)
 				A.visible_message("<span class = 'danger'><B>...and dives head-first into the ground, ouch!</b></span>")
-				A.adjustBruteLoss(rand(10,20))
+				A.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
 				A.Paralyze(60)
 			to_chat(A, "[D] is too far away!")
 			return 0
@@ -395,24 +396,25 @@
 			return 0
 
 		if(A)
-			animate(A, transform = matrix(90, MATRIX_ROTATE), time = 1, loop = 0)
-		sleep(10)
+			animate(A, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+		sleep(1 SECONDS)
 		if(A)
-			animate(A, transform = null, time = 1, loop = 0)
+			animate(A, transform = null, time = 0.1 SECONDS, loop = 0)
 
 		A.forceMove(D.loc)
 
 		A.visible_message("<span class = 'danger'><B>[A] leg-drops [D]!</B></span>")
 		playsound(A.loc, "swing_hit", 50, 1)
 		A.emote("scream")
+		var/legdrop_damage = A.get_punchdamagehigh() * 2 + rand(0,10)	//20-30 damage
 
 		if (falling == 1)
 			if (prob(33) || D.stat)
 				D.ex_act(EXPLODE_LIGHT)
 			else
-				D.adjustBruteLoss(rand(20,30))
+				D.adjustBruteLoss(legdrop_damage)
 		else
-			D.adjustBruteLoss(rand(20,30))
+			D.adjustBruteLoss(legdrop_damage)
 
 		D.Paralyze(40)
 

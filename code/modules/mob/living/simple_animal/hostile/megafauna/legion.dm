@@ -22,6 +22,7 @@ Difficulty: Medium
 	maxHealth = 800
 	icon_state = "legion"
 	icon_living = "legion"
+	health_doll_icon = "mega_legion"
 	desc = "One of many."
 	icon = 'icons/mob/lavaland/legion.dmi'
 	attacktext = "chomps"
@@ -30,6 +31,7 @@ Difficulty: Medium
 	armour_penetration = 50
 	melee_damage_lower = 25
 	melee_damage_upper = 25
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	speed = 5
 	ranged = TRUE
 	del_on_death = TRUE
@@ -167,10 +169,10 @@ Difficulty: Medium
 				break
 		if(last_legion)
 			loot = list(/obj/item/staff/storm,
-			/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker,
+			/obj/item/organ/grandcore,
 			/obj/item/keycard/necropolis)
 			crusher_loot = list(/obj/item/crusher_trophy/malformed_bone,/obj/item/staff/storm,
-			/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker,
+			/obj/item/organ/grandcore,
 			/obj/item/keycard/necropolis) //the way it is now you can get this if you just whip out the crusher towards the end but nobody's gonna do that probably
 			elimination = FALSE
 		else if(prob(10))

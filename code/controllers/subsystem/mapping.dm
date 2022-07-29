@@ -3,6 +3,8 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
+	loading_points = 11 SECONDS // Yogs -- loading times
+
 	var/list/nuke_tiles = list()
 	var/list/nuke_threats = list()
 
@@ -64,6 +66,7 @@ SUBSYSTEM_DEF(mapping)
 	repopulate_sorted_areas()
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
+	run_map_generation()
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
 	while (space_levels_so_far < config.space_ruin_levels)
@@ -76,7 +79,7 @@ SUBSYSTEM_DEF(mapping)
 
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
-		createRandomZlevel()
+		createRandomZlevel(prob(CONFIG_GET(number/config_gateway_chance)))
 
 	// Load the virtual reality hub
 	if(CONFIG_GET(flag/virtual_reality))
@@ -319,6 +322,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if(!GLOB.the_station_areas.len)
 		log_world("ERROR: Station areas list failed to generate!")
 
+/datum/controller/subsystem/mapping/proc/run_map_generation()
+	for(var/area/A in world)
+		A.RunGeneration()
+
 /datum/controller/subsystem/mapping/proc/maprotate()
 	if(map_voted)
 		map_voted = FALSE
@@ -463,8 +470,10 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/list/possible_options = GLOB.potentialRandomZlevels + "Custom"
 	var/away_name
 	var/datum/space_level/away_level
-
-	var/answer = input("What kind ? ","Away") as null|anything in possible_options
+	var/secret = FALSE
+	if(alert(usr, "Do you want your mission secret? (This will prevent ghosts from looking at your map in any way other than through a living player's eyes.)", "Are you $$$ekret?", list("Yes", "No")) == "Yes")
+		secret = TRUE
+	var/answer = input("What kind?","Away") as null|anything in possible_options
 	switch(answer)
 		if("Custom")
 			var/mapfile = input("Pick file:", "File") as null|file
@@ -473,13 +482,13 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			away_name = "[mapfile] custom"
 			to_chat(usr,span_notice("Loading [away_name]..."))
 			var/datum/map_template/template = new(mapfile, "Away Mission")
-			away_level = template.load_new_z()
+			away_level = template.load_new_z(secret)
 		else
 			if(answer in GLOB.potentialRandomZlevels)
 				away_name = answer
 				to_chat(usr,span_notice("Loading [away_name]..."))
 				var/datum/map_template/template = new(away_name, "Away Mission")
-				away_level = template.load_new_z()
+				away_level = template.load_new_z(secret)
 			else
 				return
 

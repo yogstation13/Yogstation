@@ -146,7 +146,7 @@
 			span_hear("You hear the chatter of a floppy drive."))
 		processing = TRUE
 		var/obj/item/disk/design_disk/D = O
-		if(do_after(user, 1 SECONDS, target = src))
+		if(do_after(user, 1 SECONDS, src))
 			for(var/B in D.blueprints)
 				if(B)
 					stored_research.add_design(B)

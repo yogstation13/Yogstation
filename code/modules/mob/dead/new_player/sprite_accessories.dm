@@ -1010,7 +1010,7 @@
 // Underwear Definitions //
 ///////////////////////////
 /datum/sprite_accessory/underwear
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/underwear.dmi'
 
 /datum/sprite_accessory/underwear/nude
 	name = "Nude"
@@ -1212,7 +1212,7 @@
 ////////////////////////////
 
 /datum/sprite_accessory/undershirt
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/undershirt.dmi'
 
 /datum/sprite_accessory/undershirt/nude
 	name = "Nude"
@@ -1461,6 +1461,36 @@
 	icon_state = "tank_white"
 	gender = NEUTER
 
+/datum/sprite_accessory/undershirt/tank_rainbow
+	name = "Tank Top (Rainbow)"
+	icon_state = "tank_rainbow"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_ace
+	name = "Tank Top (Asexual)"
+	icon_state = "tank_ace"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_bi
+	name = "Tank Top (Bi)"
+	icon_state = "tank_bi"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_les
+	name = "Tank Top (Lesbian)"
+	icon_state = "tank_les"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_enby
+	name = "Tank Top (Nonbinary)"
+	icon_state = "tank_enby"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/tank_trans
+	name = "Tank Top (Trans)"
+	icon_state = "tank_trans"
+	gender = NEUTER
+
 /datum/sprite_accessory/undershirt/redtop
 	name = "Top (Red)"
 	icon_state = "redtop"
@@ -1496,7 +1526,7 @@
 ///////////////////////
 
 /datum/sprite_accessory/socks
-	icon = 'icons/mob/underwear.dmi'
+	icon = 'icons/mob/clothing/sprite_accessories/socks.dmi'
 
 /datum/sprite_accessory/socks/nude
 	name = "Nude"
@@ -1504,21 +1534,45 @@
 
 // please make sure they're sorted alphabetically and categorized
 
+/datum/sprite_accessory/socks/bee_knee
+	name = "Knee-high (Bee)"
+	icon_state = "bee_knee"
+
 /datum/sprite_accessory/socks/black_knee
 	name = "Knee-high (Black)"
 	icon_state = "black_knee"
 
 /datum/sprite_accessory/socks/commie_knee
-	name = "Knee-High (Commie)"
+	name = "Knee-high (Commie)"
 	icon_state = "commie_knee"
 
 /datum/sprite_accessory/socks/usa_knee
-	name = "Knee-High (Freedom)"
+	name = "Knee-high (Freedom)"
 	icon_state = "assblastusa_knee"
 
 /datum/sprite_accessory/socks/rainbow_knee
 	name = "Knee-high (Rainbow)"
 	icon_state = "rainbow_knee"
+
+/datum/sprite_accessory/socks/ace_knee
+	name = "Knee-high (Asexual)"
+	icon_state = "ace_knee" // can be used to show that you follow rule 0.2
+
+/datum/sprite_accessory/socks/bi_knee
+	name = "Knee-high (Bi)"
+	icon_state = "bi_knee"
+
+/datum/sprite_accessory/socks/les_knee
+	name = "Knee-high (Lesbian)"
+	icon_state = "les_knee"
+
+/datum/sprite_accessory/socks/enby_knee
+	name = "Knee-high (Nonbinary)"
+	icon_state = "enby_knee"
+
+/datum/sprite_accessory/socks/trans_knee
+	name = "Knee-high (Trans)"
+	icon_state = "trans_knee"
 
 /datum/sprite_accessory/socks/striped_knee
 	name = "Knee-high (Striped)"
@@ -1535,10 +1589,6 @@
 /datum/sprite_accessory/socks/white_knee
 	name = "Knee-high (White)"
 	icon_state = "white_knee"
-
-/datum/sprite_accessory/socks/bee_knee
-	name = "Knee-high (Bee)"
-	icon_state = "bee_knee"
 
 /datum/sprite_accessory/socks/black_norm
 	name = "Normal (Black)"
@@ -1592,6 +1642,10 @@
 	name = "Stockings (Yellow)"
 	icon_state = "stockings_yellow"
 
+/datum/sprite_accessory/socks/bee_thigh
+	name = "Thigh-high (Bee)"
+	icon_state = "bee_thigh"
+
 /datum/sprite_accessory/socks/black_thigh
 	name = "Thigh-high (Black)"
 	icon_state = "black_thigh"
@@ -1608,6 +1662,26 @@
 	name = "Thigh-high (Rainbow)"
 	icon_state = "rainbow_thigh"
 
+/datum/sprite_accessory/socks/ace_thigh
+	name = "Thigh-high (Asexual)"
+	icon_state = "ace_thigh"
+
+/datum/sprite_accessory/socks/bi_thigh
+	name = "Thigh-high (Bi)"
+	icon_state = "bi_thigh" //bi thigh highs? we gotta study this
+
+/datum/sprite_accessory/socks/les_thigh
+	name = "Thigh-high (Lesbian)"
+	icon_state = "les_thigh"
+
+/datum/sprite_accessory/socks/enby_thigh
+	name = "Thigh-high (Nonbinary)"
+	icon_state = "enby_thigh"
+
+/datum/sprite_accessory/socks/trans_thigh
+	name = "Thigh-high (Trans)"
+	icon_state = "trans_thigh"
+
 /datum/sprite_accessory/socks/striped_thigh
 	name = "Thigh-high (Striped)"
 	icon_state = "striped_thigh"
@@ -1623,10 +1697,6 @@
 /datum/sprite_accessory/socks/white_thigh
 	name = "Thigh-high (White)"
 	icon_state = "white_thigh"
-
-/datum/sprite_accessory/socks/bee_thigh
-	name = "Thigh-high (Bee)"
-	icon_state = "bee_thigh"
 
 //////////.//////////////////
 // MutantParts Definitions //
@@ -2174,7 +2244,7 @@
 //ETHEREAL FACE MARKINGS
 /datum/sprite_accessory/ethereal_mark
 	icon = 'icons/mob/mutant_bodyparts.dmi'
-	//color_src = MUTCOLORS
+	color_src = EYECOLOR
 
 /datum/sprite_accessory/ethereal_mark/eyes
 	name = "Eyes"
@@ -2203,3 +2273,101 @@
 /datum/sprite_accessory/ethereal_mark/x
 	name = "X"
 	icon_state = "x"
+
+//Phytosian hair
+/datum/sprite_accessory/pod_hair
+	icon = 'icons/mob/pod_hair.dmi'
+	color_src = HAIR
+
+/datum/sprite_accessory/pod_hair/bud
+	name = "Bud"
+	icon_state = "pod_hair_bud"
+
+/datum/sprite_accessory/pod_hair/cabbage
+	name = "Cabbage"
+	icon_state = "pod_hair_cabbage"
+
+/datum/sprite_accessory/pod_hair/fig
+	name = "Fig"
+	icon_state = "pod_hair_fig"
+
+/datum/sprite_accessory/pod_hair/hibiscus
+	name = "Hibiscus"
+	icon_state = "pod_hair_hibiscus"
+
+/datum/sprite_accessory/pod_hair/ivy
+	name = "Ivy"
+	icon_state = "pod_hair_ivy"
+
+/datum/sprite_accessory/pod_hair/orchid
+	name = "Orchid"
+	icon_state = "pod_hair_orchid"
+
+/datum/sprite_accessory/pod_hair/prayer
+	name = "Prayer"
+	icon_state = "pod_hair_prayer"
+
+/datum/sprite_accessory/pod_hair/rose
+	name = "Rose"
+	icon_state = "pod_hair_rose"
+
+/datum/sprite_accessory/pod_hair/shrub
+	name = "Shrub"
+	icon_state = "pod_hair_shrub"
+
+/datum/sprite_accessory/pod_hair/spinach
+	name = "Spinach"
+	icon_state = "pod_hair_spinach"
+
+/datum/sprite_accessory/pod_hair/vine
+	name = "Vine"
+	icon_state = "pod_hair_vine"
+
+//Phytosian hair flower
+/datum/sprite_accessory/pod_flower
+	icon = 'icons/mob/pod_hair.dmi'
+	color_src = FACEHAIR
+
+/datum/sprite_accessory/pod_flower/bud
+	name = "Bud"
+	icon_state = "pod_flower_bud"
+
+/datum/sprite_accessory/pod_flower/cabbage
+	name = "Cabbage"
+	icon_state = "pod_flower_cabbage"
+
+/datum/sprite_accessory/pod_flower/fig
+	name = "Fig"
+	icon_state = "pod_flower_fig"
+
+/datum/sprite_accessory/pod_flower/hibiscus
+	name = "Hibiscus"
+	icon_state = "pod_flower_hibiscus"
+
+/datum/sprite_accessory/pod_flower/ivy
+	name = "Ivy"
+	icon_state = "pod_flower_ivy"
+
+/datum/sprite_accessory/pod_flower/orchid
+	name = "Orchid"
+	icon_state = "pod_flower_orchid"
+
+/datum/sprite_accessory/pod_flower/prayer
+	name = "Prayer"
+	icon_state = "pod_flower_prayer"
+
+/datum/sprite_accessory/pod_flower/rose
+	name = "Rose"
+	icon_state = "pod_flower_rose"
+
+/datum/sprite_accessory/pod_flower/shrub
+	name = "Shrub"
+	icon_state = "pod_flower_shrub"
+
+/datum/sprite_accessory/pod_flower/spinach
+	name = "Spinach"
+	icon_state = "pod_flower_spinach"
+
+/datum/sprite_accessory/pod_flower/vine
+	name = "Vine"
+	icon_state = "pod_flower_vine"

@@ -8,9 +8,9 @@
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
 	level = 1		// underfloor
-	layer = LOW_OBJ_LAYER
+	layer = UNDER_CATWALK
 	max_integrity = 500
-	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
+	armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 
 	var/open = FALSE		// true if cover is open
 	var/locked = TRUE		// true if controls are locked

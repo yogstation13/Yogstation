@@ -93,7 +93,7 @@
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
-	end_day = 17
+	end_day = 15
 	begin_month = FEBRUARY
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=cEwZpejd4rM", // Charlie Wilson - Forever Valentine
@@ -324,7 +324,6 @@
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
-		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà
 		)
 
 /datum/holiday/france/getStationPrefix()

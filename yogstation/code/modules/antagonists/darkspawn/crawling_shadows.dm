@@ -99,7 +99,7 @@
 		to_chat(H, span_userdanger("[src] grab you and dangle you in the air!"))
 		H.Stun(30)
 		H.pixel_y += 4
-		if(!do_after(src, 1 SECONDS, target = target))
+		if(!do_after(src, 1 SECONDS, target))
 			H.pixel_y -= 4
 			knocking_out = FALSE
 			return

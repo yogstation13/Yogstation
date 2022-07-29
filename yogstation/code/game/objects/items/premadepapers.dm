@@ -393,6 +393,19 @@
 	written += new/datum/langtext("",/datum/language/common)
 	update_icon()
 
+// How to perform autopsy
+
+/obj/item/paper/autopsy
+	name = "Autopsy 101"
+
+/obj/item/paper/autopsy/Initialize()
+	. = ..()
+	written = list()
+	written += new/datum/langtext("Step 1: Apply drapes to the chest and select Autopsy.<br>",/datum/language/common)
+	written += new/datum/langtext("Step 2: Incise the chest with a scalpel.<br>",/datum/language/common)
+	written += new/datum/langtext("Step 3: While holding a forensic scanner in your off-hand, perform the autopsy using the scalpel again.<br>",/datum/language/common)
+	update_icon()
+
 //academy ruin papers
 
 /**

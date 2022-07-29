@@ -78,25 +78,66 @@
 	if(can_shoot())
 		user.notransform = TRUE
 		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, 1, 5)
-		animate(user, pixel_z = 300, time = 30, easing = LINEAR_EASING)
-		sleep(70)
-		animate(user, pixel_z = 0, time = 5, easing = LINEAR_EASING)
-		sleep(5)
+		animate(user, pixel_z = 300, time = 3 SECONDS, easing = LINEAR_EASING)
+		sleep(7 SECONDS)
+		animate(user, pixel_z = 0, time = 0.5 SECONDS, easing = LINEAR_EASING)
+		sleep(0.5 SECONDS)
 		user.notransform = FALSE
 		process_fire(user, user, TRUE)
 		if(!QDELETED(user)) //if they weren't gibbed by the explosion, take care of them for good.
 			user.gib()
 		return MANUAL_SUICIDE
 	else
-		sleep(5)
+		sleep(0.5 SECONDS)
 		shoot_with_empty_chamber(user)
-		sleep(20)
+		sleep(2 SECONDS)
 		user.visible_message(span_warning("[user] looks about the room realizing [user.p_theyre()] still there. [user.p_they(TRUE)] proceed to shove [src] down their throat and choke [user.p_them()]self with it!"), \
 			span_userdanger("You look around after realizing you're still here, then proceed to choke yourself to death with [src]!"))
-		sleep(20)
+		sleep(2 SECONDS)
 		return OXYLOSS
+		
+/obj/item/gun/ballistic/handcannon
+	name = "hand cannon"
+	desc = "Since the times of shooting cannonballs from ships has long passed, pirate culture has moved onto making these ship-piercing weapons handheld."
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "handcannon"
+	item_state = "handycannon"
+	mag_type = /obj/item/ammo_box/magazine/internal/cannonball
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
+	casing_ejector = FALSE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	internal_magazine = TRUE
+	empty_indicator = TRUE
+	tac_reloads = FALSE
+	can_suppress = FALSE
+	force = 10
+	cartridge_wording = "cannonball"
+	fire_sound = 'sound/effects/bang.ogg'
+	pin = /obj/item/firing_pin
 
+/obj/item/gun/ballistic/gauss
+	name = "Gauss rifle"
+	desc = "A makeshift gauss rifle, barely holding together with tape and cables"
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "gauss"
+	item_state = "gauss"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	mag_type = /obj/item/ammo_box/magazine/internal/rods
+	w_class = WEIGHT_CLASS_HUGE
+	weapon_weight = WEAPON_HEAVY
+	casing_ejector = FALSE
+	bolt_type = BOLT_TYPE_NO_BOLT
+	internal_magazine = TRUE
+	empty_indicator = TRUE
+	can_suppress = FALSE
+	force = 10
+	cartridge_wording = "rod"
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+	pin = /obj/item/firing_pin
 
-
-
-
+/obj/item/gun/ballistic/gauss/afterattack()
+	. = ..()
+	playsound(loc, "sparks", 75, 1, -1)
+	do_sparks(8, 3, usr)

@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 	light_range = 4
 	var/game_starting = FALSE
 	var/game_start_time = FALSE
-	var/fall_wait = 5 // time in deciseconds between randomly falling tiles
+	var/fall_wait = 0.5 SECONDS // time in seconds between randomly falling tiles
 
 /obj/effect/portal/permanent/one_way/recall/pit_faller/teleport(atom/movable/M, force = FALSE)
 	if(GLOB.vr_runner_active)
@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 			return FALSE
 		for(var/mob/living/carbon/human/H in GLOB.vr_runner_players)
 			to_chat(H, span_notice("Game starting in [seconds_remaining]."))
-		sleep(10)
+		sleep(1 SECONDS)
 	if(GLOB.vr_runner_players.len)
 		GLOB.vr_runner_active = TRUE
 		for(var/mob/living/carbon/human/H in GLOB.vr_runner_players)
@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 	name = "Shaky Ground"
 	desc = "If you walk on that that you better keep running!"
 	var/not_reset = FALSE // check so turfs dont fall after being reset
-	var/falling_time = 15 // time it takes for the turf to fall
+	var/falling_time = 1.5 SECONDS // time it takes for the turf to fall
 
 /turf/open/indestructible/runner/Initialize()
 	. = ..()

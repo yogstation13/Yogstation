@@ -15,7 +15,7 @@
 	var/obj/item/organ/eyes/E = user.getorganslot(ORGAN_SLOT_EYES)
 	if (E)
 		E.flash_protect = 2 //Adjust the user's eyes' flash protection
-		if(istype(E, /obj/item/organ/eyes/preternis))
+		if(istype(E, /obj/item/organ/eyes/robotic/preternis))
 			E.Remove(user, 1)
 			var/obj/item/organ/eyes/neweyes = new(user)
 			neweyes.Insert(user, 1)

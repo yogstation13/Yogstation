@@ -147,13 +147,13 @@
 /obj/item/bodypart/attackby(obj/item/W, mob/user, params)
 	if(W.get_sharpness())
 		add_fingerprint(user)
-		if(!contents.len)
+		if(!contents.len && !embedded_objects.len)
 			to_chat(user, span_warning("There is nothing left inside [src]!"))
 			return
 		playsound(loc, 'sound/weapons/slice.ogg', 50, TRUE, -1)
 		user.visible_message(span_warning("[user] begins to cut open [src]."),\
 			span_notice("You begin to cut open [src]..."))
-		if(do_after(user, 5.4 SECONDS, target = src))
+		if(do_after(user, 5.4 SECONDS, src))
 			drop_organs(user, TRUE)
 	else
 		return ..()
@@ -174,7 +174,7 @@
 		QDEL_NULL(current_gauze)
 	for(var/obj/item/organ/drop_organ in get_organs())
 		drop_organ.transfer_to_limb(src, owner)
-	for(var/obj/item/I in src)
+	for(var/obj/item/I in embedded_objects)
 		I.forceMove(T)
 
 ///since organs aren't actually stored in the bodypart themselves while attached to a person, we have to query the owner for what we should have
@@ -390,7 +390,7 @@
 		for(var/i in clothing)
 			var/obj/item/clothing/clothes_check = i
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
-			if(clothes_check.armor.getRating("wound"))
+			if(clothes_check.armor.getRating(WOUND))
 				bare_wound_bonus = 0
 				break
 
@@ -450,7 +450,7 @@
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
-			armor_ablation += C.armor.getRating("wound")
+			armor_ablation += C.armor.getRating(WOUND)
 			if(wounding_type == WOUND_SLASH)
 				C.take_damage_zone(body_zone, damage, BRUTE)
 			else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
@@ -715,6 +715,10 @@
 			no_update = FALSE
 
 	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
+		if(ishuman(C))
+			var/mob/living/carbon/human/S = C
+			if(isszlachta(S))
+				return
 		species_id = "husk" //overrides species_id
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
@@ -907,7 +911,8 @@
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)
 	for(var/obj/item/embeddies in embedded_objects)
-		bleed_rate += 0.5
+		if(!embeddies.taped)
+			bleed_rate += 0.5
 
 	for(var/thing in wounds)
 		var/datum/wound/W = thing

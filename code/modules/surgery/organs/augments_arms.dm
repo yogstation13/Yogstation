@@ -180,16 +180,164 @@
 	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on subject's arm. Contains all necessary tools."
 	contents = newlist(/obj/item/screwdriver/cyborg, /obj/item/wrench/cyborg, /obj/item/weldingtool/largetank/cyborg,
 		/obj/item/crowbar/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool/cyborg)
+	///currently used pallate
+	var/obj/item/toolset_handler/linkedhandler
 
 /obj/item/organ/cyberimp/arm/toolset/l
 	zone = BODY_ZONE_L_ARM
+
+/obj/item/organ/cyberimp/arm/toolset/Initialize()
+	. = ..()
+	linkedhandler = new
+	linkedhandler.linkedarm = src
+	ADD_TRAIT(linkedhandler, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/organ/cyberimp/arm/toolset/emag_act()
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))
 		items_list += new /obj/item/kitchen/knife/combat/cyborg(src)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
+
+/obj/item/organ/cyberimp/arm/toolset/Retract()
+	if(!linkedhandler || !(linkedhandler in owner.contents))
+		return
+
+	owner.visible_message(span_notice("[owner] retracts [linkedhandler] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+		span_notice("[linkedhandler] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+		span_italics("You hear a short mechanical noise."))
+
+	if(istype(linkedhandler.active_tool, /obj/item/weldingtool))
+		var/obj/item/weldingtool/W = linkedhandler.active_tool
+		if(W.welding)
+			W.switched_on(owner)
+
+	owner.transferItemToLoc(linkedhandler, src, TRUE)
+	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
+
+/obj/item/organ/cyberimp/arm/toolset/Extend(var/obj/item/item)
+	if(!(item in src))
+		return
+
+	if(istype(item, /obj/item/weldingtool))
+		var/obj/item/weldingtool/W = item
+		if(!W.welding)
+			W.switched_on(owner) //for some godawful reason this proc handles BOTH switching on and off while switching off just hard disables a welder
+
+	linkedhandler.active_tool = item
+	spawn(1) //so you are probably asking hey why are you using spawn(1) here and that's a good question the answer is the welder APPARENTLY doesn't update its icon immediately, meaning if we don't wait we'll get the pre-toggled icon
+		linkedhandler.update_tool() //so we give it a little bit of breathing space
+
+	var/obj/item/arm_item = owner.get_active_held_item()
+
+	if(arm_item && arm_item != linkedhandler)
+		if(!owner.dropItemToGround(arm_item))
+			to_chat(owner, span_warning("Your [arm_item] interferes with [src]!"))
+			return
+		else
+			to_chat(owner, span_notice("You drop [arm_item] to activate [src]!"))
+
+	var/result = FALSE
+	var/need_switch = TRUE
+	if(linkedhandler in owner.contents)
+		result = TRUE
+		need_switch = FALSE
+	else
+		result = (zone == BODY_ZONE_R_ARM ? owner.put_in_r_hand(linkedhandler) : owner.put_in_l_hand(linkedhandler))
+	if(!result)
+		to_chat(owner, span_warning("Your [name] fails to activate!"))
+		return
+
+	// Activate the hand that now holds our item.
+	if(need_switch)
+		owner.swap_hand(result)//... or the 1st hand if the index gets lost somehow
+
+	owner.visible_message(span_notice("[owner] extends [item] from [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+		span_notice("You extend [item] from your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+		span_italics("You hear a short mechanical noise."))
+	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
+
+/obj/item/organ/cyberimp/arm/toolset/ui_action_click()
+	if((organ_flags & ORGAN_FAILING) || (!holder && !contents.len) || !linkedhandler)
+		to_chat(owner, span_warning("The implant doesn't respond. It seems to be broken..."))
+		return
+
+	var/list/choice_list = list()
+	for(var/obj/item/I in items_list)
+		choice_list[I] = image(I)
+	choice_list["Retract"] = image(icon = 'icons/mob/landmarks.dmi', icon_state = "x")
+	var/choice = show_radial_menu(owner, owner, choice_list)
+	if(!choice)
+		return
+	Retract()
+	if(owner && owner == usr && owner.stat != DEAD && (src in owner.internal_organs) && (choice in contents))
+		// This monster sanity check is a nice example of how bad input is.
+		Extend(choice)
+
+/obj/item/organ/cyberimp/arm/toolset/surgery
+	name = "surgical toolset implant"
+	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
+	contents = newlist(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment)
+
+/obj/item/toolset_handler
+	name = "cybernetic apparatus"
+	desc = "A set of fine manipulators installed inside arm toolsets, significantly increasing the precision of which their user can manipulate any installed tools."
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	toolspeed = 0.5
+	///tracks the implant we are attacked to
+	var/obj/item/organ/cyberimp/arm/linkedarm
+	///tracks our current tool
+	var/obj/item/active_tool
+
+/obj/item/toolset_handler/examine(mob/user)
+	. = active_tool.examine(user)
+	. += span_notice("Use this in hand to switch tools, alt+click to use the tool itself in hand")
+
+///inherit visual & functional aesthetic from our tool because it technically isn't doing anything
+/obj/item/toolset_handler/proc/update_tool()
+	name = active_tool.name
+	desc = active_tool.desc
+	force = active_tool.force
+	sharpness = active_tool.sharpness
+	usesound = active_tool.usesound
+	appearance = active_tool.appearance
+	hitsound = active_tool.hitsound
+	item_state = active_tool.item_state
+	tool_behaviour = active_tool.tool_behaviour
+	lefthand_file = active_tool.lefthand_file
+	righthand_file = active_tool.righthand_file
+	linkedarm.owner.update_inv_hands()
+	plane = 22
+
+/obj/item/toolset_handler/attack_self(mob/user)
+	linkedarm.ui_action_click()
+
+/obj/item/toolset_handler/AltClick(mob/user)
+	active_tool.attack_self(user)
+	spawn(1)
+		update_tool()
+
+/obj/item/toolset_handler/pre_attack(atom/target, mob/living/user, params)
+	if(istype(target, /obj/structure/reagent_dispensers) && active_tool?.tool_behaviour == TOOL_WELDER)
+		target.attackby(active_tool, user, params)
+		return
+	. = ..()
+
+/obj/item/toolset_handler/attack(mob/living/M, mob/user)
+	if(active_tool)
+		if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+			return
+	..()
+
+//we still USE the tools because while we are pretending to use them we are actually pretending to pretend to use them
+/obj/item/toolset_handler/tool_start_check(mob/living/user, amount)
+	return active_tool.tool_start_check(user, amount)
+
+/obj/item/toolset_handler/tool_use_check(mob/living/user, amount)
+	return active_tool.tool_use_check(user, amount)
+
+/obj/item/toolset_handler/use(amount)
+	return active_tool.use(amount)
 
 /obj/item/organ/cyberimp/arm/esword
 	name = "arm-mounted energy blade"
@@ -228,11 +376,6 @@
 	if(locate(/obj/item/assembly/flash/armimplant) in items_list)
 		var/obj/item/assembly/flash/armimplant/F = locate(/obj/item/assembly/flash/armimplant) in items_list
 		F.I = src
-
-/obj/item/organ/cyberimp/arm/surgery
-	name = "surgical toolset implant"
-	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
-	contents = newlist(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment, /obj/item/surgical_drapes)
 
 /obj/item/organ/cyberimp/arm/syndie_mantis
 	name = "G.O.R.L.E.X. mantis blade implants"

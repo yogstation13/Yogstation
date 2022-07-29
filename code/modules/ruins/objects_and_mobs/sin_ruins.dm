@@ -14,6 +14,9 @@
 		return
 	if(obj_flags & IN_USE)
 		return
+	if(is_sinfuldemon(user)) //this is probably a snowflake way of doing it but sure. Demons of Greed don't need to farm this.
+		to_chat(user,"Reserve this foolish game for mortals.")
+		return
 	obj_flags |= IN_USE
 	user.health -= 20
 	user.maxHealth -= 20
@@ -41,6 +44,8 @@
 		if(user)
 			to_chat(user, span_boldwarning("Fucking machine! Must be rigged. Still... one more try couldn't hurt, right?"))
 
+/obj/structure/cursed_slot_machine/betterchance //doubled chance of winnning.
+	win_prob = 10
 
 /obj/structure/cursed_money
 	name = "bag of money"

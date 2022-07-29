@@ -12,24 +12,24 @@
 
 /obj/effect/proc_holder/spell/targeted/guardian/Click()
 	var/mob/living/user = usr
-	if(!istype(user))
+	if (!istype(user))
 		return
 	var/msg
-	if(!can_cast(user))
+	if (!can_cast(user))
 		msg = span_warning("You can no longer cast [name]!")
 		remove_ranged_ability(msg)
 		return
-	if(active)
+	if (active)
 		remove_ranged_ability()
 	else
 		add_ranged_ability(user, null, TRUE)
 
-	if(action)
+	if (action)
 		action.UpdateButtonIcon()
 
 
 /obj/effect/proc_holder/spell/targeted/guardian/InterceptClickOn(mob/living/caller, params, atom/t)
-	if(!isliving(t))
+	if (!isliving(t))
 		to_chat(caller, span_warning("You may only use this ability on living things!"))
 		revert_cast()
 		return FALSE
@@ -41,5 +41,5 @@
 
 /obj/effect/proc_holder/spell/targeted/guardian/start_recharge()
 	. = ..()
-	if(action)
+	if (action)
 		action.UpdateButtonIcon()

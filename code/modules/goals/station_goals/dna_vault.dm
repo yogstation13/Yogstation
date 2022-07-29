@@ -66,7 +66,7 @@
 	item_state = "hypo"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	icon_state = "hypo"
+	icon_state = "old_hypo"
 	item_flags = NOBLUDGEON
 	var/list/animals = list()
 	var/list/plants = list()

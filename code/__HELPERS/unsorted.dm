@@ -482,6 +482,16 @@ Turf and target are separate in case you want to teleport some distance from a t
 			processing += A.contents
 			. += A
 
+/atom/proc/get_all_contents_type(type)
+	var/list/processing_list = list(src)
+	. = list()
+	while(length(processing_list))
+		var/atom/checked_atom = processing_list[1]
+		processing_list.Cut(1, 2)
+		processing_list += checked_atom.contents
+		if(istype(checked_atom, type))
+			. += checked_atom
+
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
@@ -760,6 +770,8 @@ GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
 	if(is_type_in_typecache(W, GLOB.can_embed_types))
 		return TRUE
 
+	if(W.taped)
+		return TRUE
 
 /*
 Checks if that loc and dir has an item on the wall
@@ -1211,7 +1223,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 #undef DELTA_CALC
 
-/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=20)
+/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=2 SECONDS)
 	var/client/C
 	if(ismob(mob_or_client))
 		var/mob/M = mob_or_client
@@ -1243,7 +1255,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/initialpixely = pixel_y
 	var/shiftx = rand(-pixelshiftx,pixelshiftx)
 	var/shifty = rand(-pixelshifty,pixelshifty)
-	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.2, loop = duration)
+	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.02 SECONDS, loop = duration)
 	pixel_x = initialpixelx
 	pixel_y = initialpixely
 

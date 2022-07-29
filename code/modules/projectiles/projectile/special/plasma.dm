@@ -15,7 +15,7 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 		if(mine_range)
 			mine_range--
 			range++
@@ -33,6 +33,10 @@
 	range = 5
 	mine_range = 5
 
+/obj/item/projectile/plasma/adv/mega
+	range = 7
+	mine_range = 7
+
 /obj/item/projectile/plasma/scatter
 	damage = 2
 	range = 5
@@ -41,6 +45,11 @@
 
 // Same as the scatter but with automatic defusing
 /obj/item/projectile/plasma/scatter/adv
+
+//mega plasma shotgun auto defuses
+/obj/item/projectile/plasma/scatter/adv/mega
+	range = 7
+	mine_range = 3
 
 /obj/item/projectile/plasma/adv/mech
 	damage = 10

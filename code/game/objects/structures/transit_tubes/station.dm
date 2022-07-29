@@ -13,14 +13,14 @@
 	tube_construction = /obj/structure/c_transit_tube/station
 	var/open_status = STATION_TUBE_CLOSED
 	var/pod_moving = 0
-	var/cooldown_delay = 50
+	var/cooldown_delay = 5 SECONDS
 	var/launch_cooldown = 0
 	var/reverse_launch = FALSE
 	var/base_icon = "station0"
 	var/boarding_dir //from which direction you can board the tube
 
-	var/const/OPEN_DURATION = 6
-	var/const/CLOSE_DURATION = 6
+	var/const/OPEN_DURATION = 0.6 SECONDS
+	var/const/CLOSE_DURATION = 0.6 SECONDS
 
 /obj/structure/transit_tube/station/New()
 	..()
@@ -78,7 +78,7 @@
 						return
 					for(var/obj/structure/transit_tube_pod/pod in loc)
 						pod.visible_message(span_warning("[user] starts putting [GM] into the [pod]!"))
-						if(do_after(user, 1.5 SECONDS, target = src))
+						if(do_after(user, 1.5 SECONDS, src))
 							if(open_status == STATION_TUBE_OPEN && GM && user.grab_state >= GRAB_AGGRESSIVE && user.pulling == GM && !GM.buckled && !GM.has_buckled_mobs())
 								GM.Paralyze(100)
 								src.Bumped(GM)
@@ -92,7 +92,7 @@
 					else if(open_status == STATION_TUBE_OPEN)
 						if(pod.contents.len && user.loc != pod)
 							user.visible_message("[user] starts emptying [pod]'s contents onto the floor.", span_notice("You start emptying [pod]'s contents onto the floor..."))
-							if(do_after(user, 1 SECONDS, target = src)) //So it doesn't default to close_animation() on fail
+							if(do_after(user, 1 SECONDS, src)) //So it doesn't default to close_animation() on fail
 								if(pod && pod.loc == loc)
 									for(var/atom/movable/AM in pod)
 										AM.forceMove(get_turf(user))
@@ -174,7 +174,7 @@
 		if (pod.cargo)
 			launch_cooldown = cooldown_delay * 0.5 + world.time //Cargo pods spend half as long at the station
 		open_animation()
-		sleep(OPEN_DURATION + 2)
+		sleep(OPEN_DURATION + 0.2 SECONDS)
 		pod_moving = FALSE
 		if(!QDELETED(pod))
 			var/datum/gas_mixture/floor_mixture = loc.return_air()

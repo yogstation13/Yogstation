@@ -63,7 +63,7 @@
 	SEND_SOUND(usr, get_sfx("terminal_type"))
 	transform = turn(matrix() * 0.9, pick(-8, 8))
 	alpha = 200
-	animate(src, transform = matrix(), time=4, alpha=255)
+	animate(src, transform = matrix(), time=0.4 SECONDS, alpha=255)
 	return TRUE
 
 //Hide/Show Action Buttons ... Button

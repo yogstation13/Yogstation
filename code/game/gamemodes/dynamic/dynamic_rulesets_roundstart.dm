@@ -27,6 +27,8 @@
 	COOLDOWN_START(src, autotraitor_cooldown_check, autotraitor_cooldown)
 	var/num_traitors = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_traitors)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_TRAITOR
@@ -112,6 +114,8 @@
 	. = ..()
 	var/num_changelings = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_changelings)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
@@ -149,6 +153,8 @@
 	var/num_ecult = get_antag_cap(population) * (scaled_times + 1)
 
 	for (var/i = 1 to num_ecult)
+		if(candidates.len <= 0)
+			break
 		var/mob/picked_candidate = pick_n_take(candidates)
 		assigned += picked_candidate.mind
 		picked_candidate.mind.restricted_roles = restricted_roles
@@ -844,6 +850,8 @@
 	COOLDOWN_START(src, autovamp_cooldown_check, autovamp_cooldown)
 	var/num_vampires = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_vampires)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_VAMPIRE
@@ -943,9 +951,54 @@
 	. = ..()
 	var/num_darkspawn = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_darkspawn)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_DARKSPAWN
 		M.mind.restricted_roles = restricted_roles
 		log_game("[key_name(M)] has been selected as a Darkspawn")
+	return TRUE
+
+//////////////////////////////////////////////
+//                                          //
+//               BLOODSUCKER                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/bloodsucker
+	name = "Bloodsuckers"
+	antag_flag = ROLE_BLOODSUCKER
+	antag_datum = /datum/antagonist/bloodsucker
+	protected_roles = list(
+		"Captain", "Head of Personnel", "Head of Security",
+		"Warden", "Security Officer", "Detective", "Brig Physician",
+		"Curator"
+	)
+	restricted_roles = list("AI", "Cyborg")
+	required_candidates = 1
+	weight = 5
+	cost = 10
+	scaling_cost = 9
+	requirements = list(10,10,10,10,10,10,10,10,10,10)
+	antag_cap = list("denominator" = 24)
+
+/datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
+	. = ..()
+	var/num_bloodsuckers = get_antag_cap(population) * (scaled_times + 1)
+
+	for(var/i = 1 to num_bloodsuckers)
+		if(candidates.len <= 0)
+			break
+		var/mob/selected_mobs = pick_n_take(candidates)
+		assigned += selected_mobs.mind
+		selected_mobs.mind.restricted_roles = restricted_roles
+		selected_mobs.mind.special_role = ROLE_BLOODSUCKER
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/bloodsucker/execute()
+	for(var/assigned_bloodsuckers in assigned)
+		var/datum/mind/bloodsuckermind = assigned_bloodsuckers
+		if(!bloodsuckermind.make_bloodsucker(assigned_bloodsuckers))
+			assigned -= assigned_bloodsuckers
 	return TRUE

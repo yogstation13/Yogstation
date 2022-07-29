@@ -220,6 +220,13 @@
 	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
 	admin_notes = "For player punishment."
 
+/datum/map_template/shuttle/emergency/pool
+	suffix = "pool"
+	name = "Pool Party!"
+	description = "A modified version of the Box escape shuttle that comes with a preinstalled pool. Fun for the whole family!"
+	admin_notes = "Pool filter can be very easily filled with acid or other harmful chemicals."
+	credit_cost = 15000
+	
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
@@ -243,7 +250,7 @@
 	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
 	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
-	credit_cost = 50000
+	credit_cost = 125000
 
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"
@@ -474,6 +481,10 @@
 	suffix = "kilo"
 	name = "supply shuttle (Kilo)"
 
+/datum/map_template/shuttle/cargo/gax
+	suffix = "gax"
+	name = "supply shuttle (Gax)"
+
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
 	name = "Delta Station Emergency Shuttle"
@@ -513,6 +524,10 @@
 /datum/map_template/shuttle/labour/kilo
 	suffix = "kilo"
 	name = "labour shuttle (Kilo)"
+
+/datum/map_template/shuttle/labour/gax
+	suffix = "gax"
+	name = "labour shuttle (Gax)"
 
 /datum/map_template/shuttle/infiltrator/basic
 	suffix = "basic"
@@ -597,3 +612,13 @@
 /datum/map_template/shuttle/snowdin/excavation
 	suffix = "excavation"
 	name = "Snowdin Excavation Elevator"
+
+/datum/map_template/shuttle/arrival/gax
+	suffix = "gax"
+	name = "arrival shuttle (Gax)"
+
+/datum/map_template/shuttle/ai/gax
+	port_id = "ai"
+	suffix = "gax"
+	name = "ai ship shuttle (Gax)"
+

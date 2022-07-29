@@ -2,20 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ac" = (
-/obj/machinery/door/airlock{
-	name = "Theatre Backstage";
-	req_access_txt = "46"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/theatre)
 "ae" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
@@ -569,15 +555,6 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"bK" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "bL" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plasteel/ameridiner,
@@ -721,15 +698,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
-"cV" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/ameridiner,
-/area/crew_quarters/kitchen)
 "cX" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -780,6 +748,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
+"dS" = (
+/obj/machinery/door/airlock{
+	name = "Theatre Backstage";
+	req_access_txt = "46"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/theatre)
 "fj" = (
 /obj/structure/chair/americandiner/black{
 	dir = 8;
@@ -864,6 +845,19 @@
 /obj/machinery/griddle,
 /turf/open/floor/plasteel/ameridiner,
 /area/crew_quarters/kitchen)
+"sB" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "vH" = (
 /obj/structure/table,
 /obj/machinery/requests_console{
@@ -881,6 +875,14 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"AW" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/ameridiner,
+/area/crew_quarters/kitchen)
 "Cr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1146,7 +1148,7 @@ cZ
 ai
 "}
 (5,1,1) = {"
-ac
+dS
 ao
 VS
 an
@@ -1378,7 +1380,7 @@ bj
 ak
 bG
 bZ
-cV
+sB
 qv
 cy
 cy
@@ -1440,7 +1442,7 @@ ak
 bb
 bm
 ak
-bK
+AW
 bd
 cC
 cC

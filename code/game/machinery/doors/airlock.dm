@@ -527,7 +527,7 @@
 /obj/machinery/door/airlock/proc/handlePowerRestore()
 	var/cont = TRUE
 	while (cont)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 		cont = FALSE
@@ -641,7 +641,7 @@
 					part.transform = T
 				if(AIRLOCK_CLOSING)
 					part.transform = T
-					animate(part, transform = T, time = 5 - part.move_end_time, flags = ANIMATION_LINEAR_TRANSFORM)
+					animate(part, transform = T, time = 0.5 SECONDS - part.move_end_time, flags = ANIMATION_LINEAR_TRANSFORM)
 					animate(transform = matrix(), time = part.move_end_time - part.move_start_time, flags = ANIMATION_LINEAR_TRANSFORM)
 				if(AIRLOCK_OPENING)
 					part.transform = matrix()
@@ -658,7 +658,7 @@
 				if(AIRLOCK_CLOSING)
 					part.pixel_x = part.open_px
 					part.pixel_y = part.open_py
-					animate(part, pixel_x = part.open_px, pixel_y = part.open_py, time = 5 - part.move_end_time)
+					animate(part, pixel_x = part.open_px, pixel_y = part.open_py, time = 0.5 SECONDS - part.move_end_time)
 					animate(pixel_x = 0, pixel_y = 0, time = part.move_end_time - part.move_start_time)
 				if(AIRLOCK_OPENING)
 					part.pixel_x = 0
@@ -763,7 +763,7 @@
 			if(!stat)
 				update_icon(AIRLOCK_DENY)
 				playsound(src,doorDeni,50,0,3)
-				sleep(6)
+				sleep(0.6 SECONDS)
 				update_icon(AIRLOCK_CLOSED)
 
 /obj/machinery/door/airlock/examine(mob/user)
@@ -830,7 +830,7 @@
 	if(!aiHacking)
 		aiHacking = TRUE
 		to_chat(user, "Airlock AI control has been blocked. Beginning fault-detection.")
-		sleep(50)
+		sleep(5 SECONDS)
 		if(canAIControl(user))
 			to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 			aiHacking = FALSE
@@ -840,9 +840,9 @@
 			aiHacking = FALSE
 			return
 		to_chat(user, "Fault confirmed: airlock control wire disabled or cut.")
-		sleep(20)
+		sleep(2 SECONDS)
 		to_chat(user, "Attempting to hack into airlock. This may take some time.")
-		sleep(200)
+		sleep(20 SECONDS)
 		if(canAIControl(user))
 			to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 			aiHacking = FALSE
@@ -852,7 +852,7 @@
 			aiHacking = FALSE
 			return
 		to_chat(user, "Upload access confirmed. Loading control program into airlock software.")
-		sleep(170)
+		sleep(17 SECONDS)
 		if(canAIControl(user))
 			to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
 			aiHacking = FALSE
@@ -862,11 +862,11 @@
 			aiHacking = FALSE
 			return
 		to_chat(user, "Transfer complete. Forcing airlock to execute program.")
-		sleep(50)
+		sleep(5 SECONDS)
 		//disable blocked control
 		aiControlDisabled = AI_WIRE_HACKED
 		to_chat(user, "Receiving control information from airlock.")
-		sleep(10)
+		sleep(1 SECONDS)
 		//bring up airlock dialog
 		aiHacking = FALSE
 		if(user)
@@ -913,7 +913,7 @@
 
 /obj/machinery/door/airlock/proc/electrified_loop()
 	while (secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		sleep(10)
+		sleep(1 SECONDS)
 		if(QDELETED(src))
 			return
 
@@ -961,7 +961,7 @@
 						to_chat(user, span_warning("You need at least 2 metal sheets to reinforce [src]."))
 						return
 					to_chat(user, span_notice("You start reinforcing [src]."))
-					if(do_after(user, 2 SECONDS, TRUE, src))
+					if(do_after(user, 2 SECONDS, src))
 						if(!panel_open || !S.use(2))
 							return
 						user.visible_message(span_notice("[user] reinforces \the [src] with metal."),
@@ -975,7 +975,7 @@
 						to_chat(user, span_warning("You need at least 2 plasteel sheets to reinforce [src]."))
 						return
 					to_chat(user, span_notice("You start reinforcing [src]."))
-					if(do_after(user, 2 SECONDS, TRUE, src))
+					if(do_after(user, 2 SECONDS, src))
 						if(!panel_open || !S.use(2))
 							return
 						user.visible_message(span_notice("[user] reinforces \the [src] with plasteel."),
@@ -1141,10 +1141,10 @@
 				user.visible_message(span_warning("[user] starts forcing open [src]!"), span_velvet("<b>ueahz</b><br>You begin forcing open [src]..."))
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE)
 				if(!T.twin)
-					if(!do_after(user, 7.5 SECONDS, target = src))
+					if(!do_after(user, 7.5 SECONDS, src))
 						return
 				else
-					if(!do_after(user, 5 SECONDS, target = src))
+					if(!do_after(user, 5 SECONDS, src))
 						return
 				open(2)
 				if(density && !open(2))
@@ -1158,12 +1158,12 @@
 				"<span class='velvet italics'>You loudly begin smashing down [src].</span>")
 				while(obj_integrity > max_integrity * 0.25)
 					if(T.twin)
-						if(!do_after(user, rand(4, 6), target = src))
+						if(!do_after(user, rand(4, 6), src))
 							T.darkspawn.use_psi(30)
 							qdel(T)
 							return
 					else
-						if(!do_after(user, rand(8, 10), target = src))
+						if(!do_after(user, rand(8, 10), src))
 							T.darkspawn.use_psi(30)
 							qdel(T)
 							return
@@ -1249,7 +1249,7 @@
 
 	if(istype(I, /obj/item/jawsoflife))
 		if(isElectrified())
-			shock(user,100)//it's like sticking a forck in a power socket
+			shock(user,100)//it's like sticking a fork in a power socket
 			return
 
 		if(!density)//already open
@@ -1288,7 +1288,7 @@
 
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
-				if(do_after(user, time_to_open, TRUE, src))
+				if(do_after(user, time_to_open, src))
 					open(2)
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
@@ -1322,7 +1322,7 @@
 
 		if(hasPower())
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
-			if(do_after(user, time_to_open, TRUE, src))
+			if(do_after(user, time_to_open, src))
 				open(2)
 				if(density && !open(2))
 					to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
@@ -1358,14 +1358,14 @@
 			welded = !welded
 	operating = TRUE
 	update_icon(AIRLOCK_OPENING, 1)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	set_opacity(0)
 	update_freelook_sight()
-	sleep(1)
+	sleep(0.1 SECONDS)
 	density = FALSE
-	sleep(3)
+	sleep(0.3 SECONDS)
 	air_update_turf(1)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	layer = OPEN_DOOR_LAYER
 	update_icon(AIRLOCK_OPEN, 1)
 	operating = FALSE
@@ -1407,17 +1407,17 @@
 	if(air_tight)
 		density = TRUE
 		air_update_turf(1)
-	sleep(1)
+	sleep(0.1 SECONDS)
 	density = TRUE
 	if(!air_tight)
 		air_update_turf(1)
-	sleep(4)
+	sleep(0.4 SECONDS)
 	if(!safe)
 		crush()
 	if(visible && !glass)
 		set_opacity(1)
 	update_freelook_sight()
-	sleep(1)
+	sleep(0.1 SECONDS)
 	update_icon(AIRLOCK_CLOSED, 1)
 	operating = FALSE
 	delayed_close_requested = FALSE
@@ -1469,7 +1469,7 @@
 	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
 		operating = TRUE
 		update_icon(AIRLOCK_EMAG, 1)
-		sleep(6)
+		sleep(0.6 SECONDS)
 		if(QDELETED(src))
 			return
 		operating = FALSE
@@ -1500,7 +1500,7 @@
 		playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
 
 
-	if(do_after(user, time_to_open, TRUE, src))
+	if(do_after(user, time_to_open, src))
 		if(density && !open(2)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
 			to_chat(user, span_warning("Despite your efforts, [src] managed to resist your attempts to open it!"))
 

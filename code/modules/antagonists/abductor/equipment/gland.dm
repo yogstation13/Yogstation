@@ -6,15 +6,15 @@
 	status = ORGAN_ROBOTIC
 	beating = TRUE
 	var/true_name = "baseline placebo referencer"
-	var/cooldown_low = 300
-	var/cooldown_high = 300
+	var/cooldown_low = 30 SECONDS
+	var/cooldown_high = 30 SECONDS
 	var/next_activation = 0
-	var/uses // -1 For infinite
+	var/uses = -1 // -1 For infinite
 	var/human_only = FALSE
 	var/active = FALSE
 
 	var/mind_control_uses = 1
-	var/mind_control_duration = 1800
+	var/mind_control_duration = 180 SECONDS
 	var/active_mind_control = FALSE
 
 /obj/item/organ/heart/gland/Initialize()
@@ -110,12 +110,11 @@
 
 /obj/item/organ/heart/gland/heals
 	true_name = "coherency harmonizer"
-	cooldown_low = 200
-	cooldown_high = 400
-	uses = -1
+	cooldown_low = 20 SECONDS
+	cooldown_high = 40 SECONDS
 	icon_state = "health"
 	mind_control_uses = 3
-	mind_control_duration = 3000
+	mind_control_duration = 5 MINUTES
 
 /obj/item/organ/heart/gland/heals/activate()
 	to_chat(owner, span_notice("You feel curiously revitalized."))
@@ -125,17 +124,21 @@
 
 /obj/item/organ/heart/gland/slime
 	true_name = "gastric animation galvanizer"
-	cooldown_low = 600
-	cooldown_high = 1200
-	uses = -1
+	cooldown_low = 1 MINUTES
+	cooldown_high = 2 MINUTES
 	icon_state = "slime"
 	mind_control_uses = 1
-	mind_control_duration = 2400
+	mind_control_duration = 4 MINUTES
 
 /obj/item/organ/heart/gland/slime/Insert(mob/living/carbon/M, special = 0)
 	..()
 	owner.faction |= "slime"
 	owner.grant_language(/datum/language/slime)
+
+/obj/item/organ/heart/gland/slime/Remove(mob/living/carbon/M, special)
+	. = ..()
+	owner.faction -= "slime"
+	owner.remove_language(/datum/language/slime)
 
 /obj/item/organ/heart/gland/slime/activate()
 	to_chat(owner, span_warning("You feel nauseated!"))
@@ -147,12 +150,11 @@
 
 /obj/item/organ/heart/gland/mindshock
 	true_name = "neural crosstalk uninhibitor"
-	cooldown_low = 400
-	cooldown_high = 700
-	uses = -1
+	cooldown_low = 40 SECONDS
+	cooldown_high = 70 SECONDS
 	icon_state = "mindshock"
 	mind_control_uses = 1
-	mind_control_duration = 6000
+	mind_control_duration = 10 MINUTES
 	var/list/mob/living/carbon/human/broadcasted_mobs = list()
 
 /obj/item/organ/heart/gland/mindshock/activate()
@@ -212,12 +214,12 @@
 
 /obj/item/organ/heart/gland/access
 	true_name = "anagraphic electro-scrambler"
-	cooldown_low = 600
-	cooldown_high = 1200
+	cooldown_low = 1 MINUTES
+	cooldown_high = 2 MINUTES
 	uses = 1
 	icon_state = "mindshock"
 	mind_control_uses = 3
-	mind_control_duration = 900
+	mind_control_duration = 90 SECONDS
 
 /obj/item/organ/heart/gland/access/activate()
 	to_chat(owner, span_notice("You feel like a VIP for some reason."))
@@ -231,14 +233,13 @@
 	..()
 
 /obj/item/organ/heart/gland/pop
-	true_name = "anthropmorphic transmorphosizer"
-	cooldown_low = 900
-	cooldown_high = 1800
-	uses = -1
+	true_name = "anthropomorphic transmorphosizer"
+	cooldown_low = 90 SECONDS
+	cooldown_high = 3 MINUTES
 	human_only = TRUE
 	icon_state = "species"
 	mind_control_uses = 7
-	mind_control_duration = 300
+	mind_control_duration = 30 SECONDS
 
 /obj/item/organ/heart/gland/pop/activate()
 	to_chat(owner, span_notice("You feel unlike yourself."))
@@ -248,25 +249,32 @@
 
 /obj/item/organ/heart/gland/ventcrawling
 	true_name = "pliant cartilage enabler"
-	cooldown_low = 1800
-	cooldown_high = 2400
+	cooldown_low = 3 MINUTES
+	cooldown_high = 4 MINUTES
 	uses = 1
 	icon_state = "vent"
 	mind_control_uses = 4
-	mind_control_duration = 1800
+	mind_control_duration = 3 MINUTES
+	var/previous_ventcrawling
 
 /obj/item/organ/heart/gland/ventcrawling/activate()
 	to_chat(owner, span_notice("You feel very stretchy."))
+	previous_ventcrawling = owner.ventcrawler
 	owner.ventcrawler = VENTCRAWLER_ALWAYS
+
+/obj/item/organ/heart/gland/ventcrawling/Remove(mob/living/carbon/M, special)
+	. = ..()
+	owner.ventcrawler = previous_ventcrawling
+	previous_ventcrawling = VENTCRAWLER_NONE
 
 /obj/item/organ/heart/gland/viral
 	true_name = "contamination incubator"
-	cooldown_low = 1800
-	cooldown_high = 2400
+	cooldown_low = 3 MINUTES
+	cooldown_high = 4 MINUTES
 	uses = 1
 	icon_state = "viral"
 	mind_control_uses = 1
-	mind_control_duration = 1800
+	mind_control_duration = 3 MINUTES
 
 /obj/item/organ/heart/gland/viral/activate()
 	to_chat(owner, span_warning("You feel sick."))
@@ -296,12 +304,12 @@
 
 /obj/item/organ/heart/gland/trauma
 	true_name = "white matter randomiser"
-	cooldown_low = 800
-	cooldown_high = 1200
+	cooldown_low = 80 SECONDS
+	cooldown_high = 2 MINUTES
 	uses = 5
 	icon_state = "emp"
 	mind_control_uses = 3
-	mind_control_duration = 1800
+	mind_control_duration = 3 MINUTES
 
 /obj/item/organ/heart/gland/trauma/activate()
 	to_chat(owner, span_warning("You feel a spike of pain in your head."))
@@ -315,12 +323,11 @@
 
 /obj/item/organ/heart/gland/quantum
 	true_name = "quantic de-observation matrix"
-	cooldown_low = 150
-	cooldown_high = 150
-	uses = -1
+	cooldown_low = 15 SECONDS
+	cooldown_high = 15 SECONDS
 	icon_state = "emp"
 	mind_control_uses = 2
-	mind_control_duration = 1200
+	mind_control_duration = 2 MINUTES
 	var/mob/living/carbon/entangled_mob
 
 /obj/item/organ/heart/gland/quantum/activate()
@@ -330,7 +337,7 @@
 		if(!iscarbon(M))
 			continue
 		entangled_mob = M
-		addtimer(CALLBACK(src, .proc/quantum_swap), rand(600, 2400))
+		addtimer(CALLBACK(src, .proc/quantum_swap), rand(1 MINUTES, 4 MINUTES))
 		return
 
 /obj/item/organ/heart/gland/quantum/proc/quantum_swap()
@@ -363,12 +370,11 @@
 
 /obj/item/organ/heart/gland/spiderman
 	true_name = "araneae cloister accelerator"
-	cooldown_low = 450
-	cooldown_high = 900
-	uses = -1
+	cooldown_low = 45 SECONDS
+	cooldown_high = 90 SECONDS
 	icon_state = "spider"
 	mind_control_uses = 2
-	mind_control_duration = 2400
+	mind_control_duration = 4 MINUTES
 
 /obj/item/organ/heart/gland/spiderman/activate()
 	to_chat(owner, span_warning("You feel something crawling in your skin."))
@@ -378,14 +384,13 @@
 
 /obj/item/organ/heart/gland/egg
 	true_name = "roe/enzymatic synthesizer"
-	cooldown_low = 300
-	cooldown_high = 400
-	uses = -1
+	cooldown_low = 30 SECONDS
+	cooldown_high = 40 SECONDS
 	icon_state = "egg"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	mind_control_uses = 2
-	mind_control_duration = 1800
+	mind_control_duration = 3 MINUTES
 
 /obj/item/organ/heart/gland/egg/activate()
 	owner.visible_message(span_alertalien("[owner] [pick(EGG_LAYING_MESSAGES)]"))
@@ -395,14 +400,13 @@
 
 /obj/item/organ/heart/gland/blood
 	true_name = "pseudonuclear hemo-destabilizer"
-	cooldown_low = 1200
-	cooldown_high = 1800
-	uses = -1
+	cooldown_low = 2 MINUTES
+	cooldown_high = 3 MINUTES
 	icon_state = "egg"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	mind_control_uses = 3
-	mind_control_duration = 1500
+	mind_control_duration = 3 MINUTES
 
 /obj/item/organ/heart/gland/blood/activate()
 	if(!ishuman(owner) || !owner.dna.species)
@@ -414,12 +418,11 @@
 
 /obj/item/organ/heart/gland/electric
 	true_name = "electron accumulator/discharger"
-	cooldown_low = 800
-	cooldown_high = 1200
+	cooldown_low = 80 SECONDS
+	cooldown_high = 2 MINUTES
 	icon_state = "species"
-	uses = -1
 	mind_control_uses = 2
-	mind_control_duration = 900
+	mind_control_duration = 90 SECONDS
 
 /obj/item/organ/heart/gland/electric/Insert(mob/living/carbon/M, special = 0)
 	..()
@@ -441,9 +444,8 @@
 
 /obj/item/organ/heart/gland/chem
 	true_name = "intrinsic pharma-provider"
-	cooldown_low = 50
-	cooldown_high = 50
-	uses = -1
+	cooldown_low = 5 SECONDS
+	cooldown_high = 5 SECONDS
 	icon_state = "viral"
 	mind_control_uses = 3
 	mind_control_duration = 1200
@@ -462,17 +464,16 @@
 
 /obj/item/organ/heart/gland/plasma
 	true_name = "effluvium sanguine-synonym emitter"
-	cooldown_low = 1200
-	cooldown_high = 1800
+	cooldown_low = 2 MINUTES
+	cooldown_high = 3 MINUTES
 	icon_state = "slime"
-	uses = -1
 	mind_control_uses = 1
-	mind_control_duration = 800
+	mind_control_duration = 80 SECONDS
 
 /obj/item/organ/heart/gland/plasma/activate()
 	to_chat(owner, span_warning("You feel bloated."))
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, owner, span_userdanger("A massive stomachache overcomes you.")), 150)
-	addtimer(CALLBACK(src, .proc/vomit_plasma), 200)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
+	addtimer(CALLBACK(src, .proc/vomit_plasma), 20 SECONDS)
 
 /obj/item/organ/heart/gland/plasma/proc/vomit_plasma()
 	if(!owner)

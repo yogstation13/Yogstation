@@ -26,7 +26,7 @@
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	category = "Conspicuous Weapons"
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
 
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
@@ -143,3 +143,10 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
+
+/datum/uplink_item/stealthy_weapons/camera_flash
+	name = "Camera Flash"
+	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down; avoid burning out altogether."
+	item = /obj/item/camera/tator
+	cost = 4
+	surplus = 15

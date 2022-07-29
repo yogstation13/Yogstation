@@ -2,7 +2,7 @@
 	name = "THESE WOUNDS, THEY WILL NOT HEAL"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
-	var/canmove = 1
+	var/canmove = TRUE
 	density = FALSE
 	anchored = TRUE
 	invisibility = 60
@@ -10,7 +10,7 @@
 
 /obj/effect/dummy/crawling/relaymove(mob/user, direction)
 	forceMove(get_step(src,direction))
-
+	
 /obj/effect/dummy/crawling/ex_act()
 	return
 /obj/effect/dummy/crawling/bullet_act()
@@ -140,7 +140,7 @@
 
 /datum/component/crawl/blood/stop_crawling(atom/target, mob/living/user)
 	target.visible_message(span_warning("[target] starts to bubble..."))
-	if(!do_after(user, 2 SECONDS, target = target))
+	if(!do_after(user, 2 SECONDS, target))
 		return
 	if(!target)
 		return
@@ -167,7 +167,7 @@
 		sound = 'sound/magic/demon_consume.ogg'
 	for(var/i=1 to 3)
 		playsound(get_turf(user), sound, 100, 1)
-		sleep(30)
+		sleep(3 SECONDS)
 	if(!victim)
 		to_chat(user, span_danger("You happily devour... nothing? Your meal vanished at some point!"))
 		return
@@ -250,7 +250,7 @@
 	to_chat(user, span_notice("You close your eyes, plug your ears and start counting to three..."))
 	target.visible_message("<span class='warning'>[target] starts shaking uncontrollably!</span")
 	target.Shake(3, 3, 3 SECONDS * 5)
-	if(!do_after(user, 3 SECONDS, target = target))
+	if(!do_after(user, 3 SECONDS, target))
 		return
 	..()
 	to_chat(user, span_notice("You open your eyes and find yourself in the locker dimension."))
@@ -260,7 +260,7 @@
 /datum/component/crawl/locker/stop_crawling(atom/target, mob/living/user)
 	target.visible_message("<span class='warning'>[target] starts shaking uncontrollably!</span")
 	target.Shake(3, 3, 3 SECONDS * 5)
-	if(!do_after(user, 3 SECONDS, target = target))
+	if(!do_after(user, 3 SECONDS, target))
 		return
 	user.forceMove(target)
 	qdel(holder)
@@ -328,7 +328,9 @@
 	thing = "silicons"
 	crawl_name = "siliconcrawl"
 	crawling_types = list(/mob/living/silicon)
-	
+
+GLOBAL_LIST_EMPTY(vomit_spots)
+
 ////////////VOMITCRAWL
 /datum/component/crawl/vomit //ABSOLUTELY DISGUSIN
 	var/obj/effect/decal/cleanable/enteredvomit
@@ -360,7 +362,10 @@
 	RegisterSignal(target, COMSIG_PARENT_PREQDELETED, .proc/throw_out)
 	user.visible_message(span_warning("[user] sinks into the pool of vomit!?"))
 	playsound(get_turf(target), 'sound/magic/mutate.ogg', 50, 1, -1)
-	..()
+	holder = new /obj/effect/dummy/crawling/vomit(get_turf(user))
+	user.forceMove(holder)
+	var/obj/effect/dummy/crawling/vomit/vomitholder = holder
+	vomitholder.currentvomit = target
 
 /datum/component/crawl/vomit/proc/exit_vomit_effect(atom/target, mob/living/user)
 	playsound(get_turf(target), 'sound/misc/splort.ogg', 100, 1, -1)
@@ -375,7 +380,7 @@
 
 /datum/component/crawl/vomit/stop_crawling(atom/target, mob/living/user)
 	target.visible_message(span_warning("[target] starts to bubble...?"))
-	if(!do_after(user, 2 SECONDS, target = target))
+	if(!do_after(user, 2 SECONDS, target))
 		return
 	if(!target)
 		return
@@ -413,3 +418,37 @@
 /obj/item/vomitcrawl/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
+/obj/effect/dummy/crawling/vomit
+	canmove = FALSE
+	//this is for crawling to work more like a sentient disease movement, where it moves to various targets instead of noclipping through everything
+	var/last_move_tick = 0
+	var/move_delay = 1
+	var/obj/effect/decal/cleanable/currentvomit
+
+/obj/effect/dummy/crawling/vomit/relaymove(mob/user, direction)
+	if(canmove)
+		forceMove(get_step(src,direction))
+	else
+		if(world.time > (last_move_tick + move_delay))
+			follow_next(direction & NORTHWEST)
+			last_move_tick = world.time
+
+/obj/effect/dummy/crawling/vomit/proc/follow_next(reverse = FALSE)
+	var/index = GLOB.vomit_spots.Find(currentvomit)
+	if(index)
+		if(reverse)
+			index = index == 1 ? GLOB.vomit_spots.len : index - 1
+		else
+			index = index == GLOB.vomit_spots.len ? 1 : index + 1
+		var/atom/vomit_spot = GLOB.vomit_spots[index]
+		if(vomit_spot.z != src.z)
+			follow_next(reverse) //im sure this will have no ill effects since a GLOB.vomit_spots of 1 means there's at least your pace to pop out RIGHT
+			return
+		currentvomit = GLOB.vomit_spots[index]
+		follow_vomit()
+
+/obj/effect/dummy/crawling/vomit/proc/follow_vomit()
+	var/turf/T = get_turf(currentvomit)
+	if(T)
+		forceMove(T)

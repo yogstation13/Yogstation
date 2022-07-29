@@ -33,13 +33,11 @@
 /obj/effect/proc_holder/spell/targeted/sling/InterceptClickOn(mob/living/caller, params, atom/t)
 	if(!isliving(t))
 		to_chat(caller, span_warning("You may only use this ability on living things!"))
-		revert_cast()
-		return
+		return FALSE
 	user = caller
 	target = t
 	if(!shadowling_check(user))
-		revert_cast()
-		return
+		return FALSE
 
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
@@ -63,6 +61,10 @@
 /obj/effect/proc_holder/spell/targeted/sling/glare/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
 	if(!target)
+		return
+	if(!caller.getorganslot(ORGAN_SLOT_EYES))
+		to_chat(user, span_warning("You need eyes to glare!"))
+		revert_cast()
 		return
 	if(target.stat)
 		to_chat(usr, span_warning("[target] must be conscious!"))
@@ -99,7 +101,7 @@
 	name = "Veil"
 	desc = "Extinguishes most nearby light sources."
 	panel = "Shadowling Abilities"
-	charge_max = 150 //Short cooldown because people can just turn the lights back on
+	charge_max = 120 //Short cooldown because people can just turn the lights back on
 	human_req = TRUE
 	clothes_req = FALSE
 	range = 5
@@ -175,20 +177,28 @@
 		if(istype(LO, /obj/machinery/power/floodlight))
 			var/obj/machinery/power/floodlight/FL = LO
 			FL.change_setting(2) // Set floodlight to lowest setting
+		if(istype(LO, /obj/structure/light_prism))
+			qdel(LO)
 
 	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
-		if(!istype(G, /obj/structure/glowshroom/shadowshroom))
+		if(G.light_power > 0)
 			var/obj/structure/glowshroom/shadowshroom/S = new /obj/structure/glowshroom/shadowshroom(G.loc) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
 			S.generation = G.generation
 			G.visible_message(span_warning("[G] suddenly turns dark!"))
 			qdel(G)
+	for(var/turf/open/floor/grass/fairy/F in view(7, user))
+		if(F.light_power > 0)
+			F.visible_message(span_warning("[F] suddenly turns dark!"))
+			F.ChangeTurf(/turf/open/floor/grass/fairy/dark, flags = CHANGETURF_INHERIT_AIR)
+	for(var/obj/structure/marker_beacon/M in view(7, user))
+		M.deconstruct()
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
-	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage."
+	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
 	panel = "Shadowling Abilities"
 	range = 3
-	charge_max = 250
+	charge_max = 1 MINUTES
 	human_req = TRUE
 	clothes_req = FALSE
 	action_icon = 'yogstation/icons/mob/actions.dmi'
@@ -211,11 +221,12 @@
 					continue
 			to_chat(M, span_userdanger("A wave of shockingly cold air engulfs you!"))
 			M.Stun(2)
-			M.apply_damage(10, BURN)
+			M.apply_damage(5, BURN)
 			if(M.bodytemperature)
-				M.adjust_bodytemperature(-200, 50)
+				M.adjust_bodytemperature(-100, 50)
 			if(M.reagents)
-				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 15) //Half of a cryosting
+				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 5) //some amount of a cryo sting fucked if I care
+				M.reagents.add_reagent(/datum/reagent/shadowfrost, 5)
 			extinguishMob(M, TRUE)
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F, TRUE)
@@ -278,8 +289,12 @@
 					to_chat(target, span_danger("A terrible red light floods your mind. You collapse as conscious thought is wiped away."))
 					target.Knockdown(120)
 					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-						to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
-						user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
+						if(ispreternis(target))
+							to_chat(user, span_notice("Your servant's mind has been corrupted by other machinery. You begin to shut down the implant preventing your command - this will take some time..."))
+							user.visible_message(span_warning("[user] growls in frustration, then dips their head with determination!"))
+						else
+							to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
+							user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
 						to_chat(target, span_boldannounce("You feel your mental protection faltering!"))
 						if(!do_mob(user, target, 650)) //65 seconds to remove a loyalty implant. yikes!
 							to_chat(user, span_warning("The enthralling has been interrupted - your target's mind returns to its previous state."))
@@ -310,8 +325,8 @@
 		var/obj/item/organ/internal/shadowtumor/ST = new
 		ST.Insert(target, FALSE, FALSE)
 		target.add_thrall()
-		if(target.reagents.has_reagent("frostoil")) //Stabilize body temp incase the sling froze them earlier
-			target.reagents.remove_reagent("frostoil")
+		if(target.reagents.has_reagent(/datum/reagent/consumable/frostoil)) //Stabilize body temp incase the sling froze them earlier
+			target.reagents.remove_reagent(/datum/reagent/consumable/frostoil)
 			to_chat(target, span_notice("You feel warmer... It feels good."))
 			target.bodytemperature = 310
 
@@ -325,7 +340,7 @@
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "commune"
 
-/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(mob/living/user,mob/user = usr)
+/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(list/targets, mob/user = usr)
 	if(!is_shadow(user))
 		to_chat(user, span_warning("You must be a shadowling to do that!"))
 		return
@@ -366,7 +381,7 @@
 	name = "Collective Hivemind"
 	desc = "Gathers the power of all of your thralls and compares it to what is needed for ascendance. Also gains you new abilities."
 	panel = "Shadowling Abilities"
-	charge_max = 300 //30 second cooldown to prevent spam
+	charge_max = 10 SECONDS //10 second cooldown to prevent spam
 	human_req = TRUE
 	clothes_req = FALSE
 	action_icon_state = "collective_mind"
@@ -388,7 +403,7 @@
 		if(is_thrall(M))
 			thralls++
 			to_chat(M, span_shadowling("You feel hooks sink into your mind and pull."))
-	if(!do_after(user, 3 SECONDS, target = user))
+	if(!do_after(user, 3 SECONDS, user))
 		to_chat(user, span_warning("Your concentration has been broken. The mental hooks you have sent out now retract into your mind."))
 		return
 	if(thralls >= CEILING(3 * SSticker.mode.thrall_ratio, 1) && !screech_acquired)
@@ -399,6 +414,9 @@
 		blind_smoke_acquired = TRUE
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Blinding Smoke</b> ability. It will create a choking cloud that will blind any non-thralls who enter. \
 			</i></span>")
+		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Dark Acceleration</b> ability. This will allow you to turn one of your thralls into a weaker shadowling. \
+			</i></span>")
+		user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/empower_thrall(null))
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/blindness_smoke(null))
 	if(thralls >= CEILING(7 * SSticker.mode.thrall_ratio, 1) && !null_charge_acquired)
 		null_charge_acquired = TRUE
@@ -413,7 +431,7 @@
 	if(thralls < victory_threshold)
 		to_chat(user, span_shadowling("You do not have the power to ascend. You require [victory_threshold] thralls, but only [thralls] living thralls are present."))
 	else if(thralls >= victory_threshold)
-		to_chat(user, span_shadowling("<b>You are now powerful enough to ascend. Use the Ascendance ability when you are ready. <i>This will kill all of your thralls.</i>"))
+		to_chat(user, span_shadowling("<b>You are now powerful enough to ascend. Use the Ascendance ability when you are ready."))
 		to_chat(user, span_shadowling("<b>You may find Ascendance in the Shadowling Evolution tab.</b>"))
 		for(M in GLOB.alive_mob_list)
 			if(is_shadow(M))
@@ -460,7 +478,7 @@
 	target_apc.visible_message(span_warning("The [target_apc] flickers and begins to grow dark."))
 
 	to_chat(user, span_shadowling("You dim the APC's screen and carefully begin siphoning its power into the void."))
-	if(!do_after(user, 20 SECONDS, target=target_apc))
+	if(!do_after(user, 15 SECONDS, target_apc))
 		//Whoops!  The APC's light turns back on
 		to_chat(user, span_shadowling("Your concentration breaks and the APC suddenly repowers!"))
 		target_apc.set_light(2)
@@ -538,9 +556,78 @@
 				var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
 				sp.set_up(5, 1, S)
 				sp.start()
-				S.Paralyze(6)
+				S.Paralyze(50)
 		for(var/obj/structure/window/W in T.contents)
 			W.take_damage(rand(80, 100))
+
+/obj/effect/proc_holder/spell/targeted/empower_thrall //turns a thrall into a lesser shadowling
+	name = "Dark Acceleration"
+	desc = "Empowers a thrall. You can only have 3 empowered thralls at a time. Empowered thralls become lesser versions of yourself, gaining a small selection of your abilities as well as your healing in the dark and aversion to light."
+	panel = "Shadowling Abilities"
+	range = 1
+	charge_max = 600
+	human_req = TRUE
+	clothes_req = FALSE
+	include_user = FALSE
+	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon_state = "darksight"
+
+/obj/effect/proc_holder/spell/targeted/empower_thrall/cast(list/targets,mob/user = usr)
+	if(!shadowling_check(user))
+		revert_cast()
+		return
+	for(var/mob/living/carbon/human/thrallToEmpower in targets)
+		if(!is_thrall(thrallToEmpower))
+			to_chat(user, span_warning("[thrallToEmpower] is not a thrall."))
+			revert_cast()
+			return
+		if(thrallToEmpower.stat != CONSCIOUS)
+			to_chat(user, span_warning("[thrallToEmpower] must be conscious to become empowered."))
+			revert_cast()
+			return
+		if(thrallToEmpower.dna.species.id == "l_shadowling")
+			to_chat(user, span_warning("[thrallToEmpower] is already empowered."))
+			revert_cast()
+			return
+		var/empowered_thralls = 0
+		for(var/datum/mind/M in SSticker.mode.thralls)
+			if(!ishuman(M.current))
+				return
+			var/mob/living/carbon/human/H = M.current
+			if(H.dna.species.id == "l_shadowling")
+				empowered_thralls++
+		if(empowered_thralls >= EMPOWERED_THRALL_LIMIT)
+			to_chat(user, span_warning("You cannot spare this much energy. There are too many empowered thralls."))
+			revert_cast()
+			return
+		user.visible_message(span_danger("[user] places their hands over [thrallToEmpower]'s face, red light shining from beneath."), \
+							span_shadowling("You place your hands on [thrallToEmpower]'s face and begin gathering energy..."))
+		to_chat(thrallToEmpower, span_userdanger("[user] places their hands over your face. You feel energy gathering. Stand still..."))
+		if(!do_mob(user, thrallToEmpower, 80))
+			to_chat(user, span_warning("Your concentration snaps. The flow of energy ebbs."))
+			revert_cast()
+			return
+		to_chat(user, span_shadowling("<b><i>You release a massive surge of power into [thrallToEmpower]!</b></i>"))
+		user.visible_message(span_boldannounce("<i>Red lightning surges into [thrallToEmpower]'s face!</i>"))
+		playsound(thrallToEmpower, 'sound/weapons/Egloves.ogg', 50, 1)
+		playsound(thrallToEmpower, 'sound/machines/defib_zap.ogg', 50, 1)
+		user.Beam(thrallToEmpower,icon_state="red_lightning",time=1)
+		thrallToEmpower.Knockdown(5)
+		thrallToEmpower.visible_message(span_warning("<b>[thrallToEmpower] collapses, their skin and face distorting!"), \
+									   span_userdanger("<i>AAAAAAAAAAAAAAAAAAAGH-</i>"))
+		if (!do_mob(user, thrallToEmpower, 5))
+			thrallToEmpower.Unconscious(600)
+			thrallToEmpower.visible_message(span_warning("<b>[thrallToEmpower] gasps, and passes out!</b>"), span_warning("<i>That... feels nice....</i>"))
+			to_chat(user, span_warning("We have been interrupted! [thrallToEmpower] will need to rest to recover."))
+			return
+		thrallToEmpower.visible_message(span_warning("[thrallToEmpower] slowly rises, no longer recognizable as human."), \
+									   "<span class='shadowling'><b>You feel new power flow into you. You have been gifted by your masters. You now closely resemble them. You are empowered in \
+										darkness but wither slowly in light. In addition, Lesser Glare has been upgraded into it's true form, and you've been given the ability to turn off nearby lights.</b></span>")
+		thrallToEmpower.set_species(/datum/species/shadow/ling/lesser)
+		thrallToEmpower.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/lesser_glare)
+		thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
+		thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
+		thrallToEmpower.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
 
 /obj/effect/proc_holder/spell/targeted/revive_thrall //Completely revives a dead thrall
 	name = "Black Recuperation"
@@ -559,100 +646,43 @@
 		revert_cast()
 		return
 	for(var/mob/living/carbon/human/thrallToRevive in targets)
-		var/choice = alert(user,"Empower a living thrall or revive a dead one?",,"Empower","Revive","Cancel")
-		switch(choice)
-			if("Empower")
-				if(!is_thrall(thrallToRevive))
-					to_chat(user, span_warning("[thrallToRevive] is not a thrall."))
-					revert_cast()
-					return
-				if(thrallToRevive.stat != CONSCIOUS)
-					to_chat(user, span_warning("[thrallToRevive] must be conscious to become empowered."))
-					revert_cast()
-					return
-				if(thrallToRevive.dna.species.id == "l_shadowling")
-					to_chat(user, span_warning("[thrallToRevive] is already empowered."))
-					revert_cast()
-					return
-				var/empowered_thralls = 0
-				for(var/datum/mind/M in SSticker.mode.thralls)
-					if(!ishuman(M.current))
-						return
-					var/mob/living/carbon/human/H = M.current
-					if(H.dna.species.id == "l_shadowling")
-						empowered_thralls++
-				if(empowered_thralls >= EMPOWERED_THRALL_LIMIT)
-					to_chat(user, span_warning("You cannot spare this much energy. There are too many empowered thralls."))
-					revert_cast()
-					return
-				user.visible_message(span_danger("[user] places their hands over [thrallToRevive]'s face, red light shining from beneath."), \
-									span_shadowling("You place your hands on [thrallToRevive]'s face and begin gathering energy..."))
-				to_chat(thrallToRevive, span_userdanger("[user] places their hands over your face. You feel energy gathering. Stand still..."))
-				if(!do_mob(user, thrallToRevive, 80))
-					to_chat(user, span_warning("Your concentration snaps. The flow of energy ebbs."))
-					revert_cast()
-					return
-				to_chat(user, span_shadowling("<b><i>You release a massive surge of power into [thrallToRevive]!</b></i>"))
-				user.visible_message(span_boldannounce("<i>Red lightning surges into [thrallToRevive]'s face!</i>"))
-				playsound(thrallToRevive, 'sound/weapons/Egloves.ogg', 50, 1)
-				playsound(thrallToRevive, 'sound/machines/defib_zap.ogg', 50, 1)
-				user.Beam(thrallToRevive,icon_state="red_lightning",time=1)
-				thrallToRevive.Knockdown(5)
-				thrallToRevive.visible_message(span_warning("<b>[thrallToRevive] collapses, their skin and face distorting!"), \
-											   span_userdanger("<i>AAAAAAAAAAAAAAAAAAAGH-</i>"))
-				if (!do_mob(user, thrallToRevive, 5))
-					thrallToRevive.Unconscious(600)
-					thrallToRevive.visible_message(span_warning("<b>[thrallToRevive] gasps, and passes out!</b>"), span_warning("<i>That... feels nice....</i>"))
-					to_chat(user, span_warning("We have been interrupted! [thrallToRevive] will need to rest to recover."))
-					return
-				thrallToRevive.visible_message(span_warning("[thrallToRevive] slowly rises, no longer recognizable as human."), \
-											   "<span class='shadowling'><b>You feel new power flow into you. You have been gifted by your masters. You now closely resemble them. You are empowered in \
-											    darkness but wither slowly in light. In addition, Lesser Glare has been upgraded into it's true form, and you've been given the ability to turn off nearby lights.</b></span>")
-				thrallToRevive.set_species(/datum/species/shadow/ling/lesser)
-				thrallToRevive.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/lesser_glare)
-				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
-				thrallToRevive.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
-			if("Revive")
-				if(!is_thrall(thrallToRevive))
-					to_chat(user, span_warning("[thrallToRevive] is not a thrall."))
-					revert_cast()
-					return
-				if(thrallToRevive.stat != DEAD)
-					to_chat(user, span_warning("[thrallToRevive] is not dead."))
-					revert_cast()
-					return
-				if(HAS_TRAIT(thrallToRevive, TRAIT_BADDNA))
-					to_chat(user, span_warning("[thrallToRevive] is too far gone."))
-					revert_cast()
-					return
+		if(!is_thrall(thrallToRevive))
+			to_chat(user, span_warning("[thrallToRevive] is not a thrall."))
+			revert_cast()
+			return
+		if(thrallToRevive.stat != DEAD)
+			to_chat(user, span_warning("[thrallToRevive] is not dead."))
+			revert_cast()
+			return
+		if(HAS_TRAIT(thrallToRevive, TRAIT_BADDNA))
+			to_chat(user, span_warning("[thrallToRevive] is too far gone."))
+			revert_cast()
+			return
 
-				user.visible_message(span_danger("[user] kneels over [thrallToRevive], placing their hands on \his chest."), \
-									span_shadowling("You crouch over the body of your thrall and begin gathering energy..."))
-				thrallToRevive.notify_ghost_cloning("Your masters are resuscitating you! Re-enter your corpse if you wish to be brought to life.", source = thrallToRevive)
-				if(!do_mob(user, thrallToRevive, 30))
-					to_chat(user, span_warning("Your concentration snaps. The flow of energy ebbs."))
-					revert_cast()
-					return
-				to_chat(user, span_shadowling("<b><i>You release a massive surge of power into [thrallToRevive]!</b></i>"))
-				user.visible_message(span_boldannounce("<i>Red lightning surges from [user]'s hands into [thrallToRevive]'s chest!</i>"))
-				playsound(thrallToRevive, 'sound/weapons/Egloves.ogg', 50, 1)
-				playsound(thrallToRevive, 'sound/machines/defib_zap.ogg', 50, 1)
-				user.Beam(thrallToRevive,icon_state="red_lightning",time=1)
-				var/b = do_mob(user, thrallToRevive, 20)
-				if(thrallToRevive.revive(full_heal = 1))
-					thrallToRevive.visible_message(span_boldannounce("[thrallToRevive] heaves in breath, dim red light shining in their eyes."), \
-											   span_shadowling("<b><i>You have returned. One of your masters has brought you from the darkness beyond.</b></i>"))
-					thrallToRevive.Knockdown(4)
-					thrallToRevive.emote("gasp")
-					playsound(thrallToRevive, "bodyfall", 50, 1)
-					if (!b)
-						thrallToRevive.Knockdown(50)
-						thrallToRevive.Unconscious(500)
-						thrallToRevive.visible_message(span_boldannounce("[thrallToRevive] collapses in exhaustion."), \
-						   span_warning("<b><i>You collapse in exhaustion... nap..... dark.</b></i>"))
-			else
-				revert_cast()
-				return
+		user.visible_message(span_danger("[user] kneels over [thrallToRevive], placing their hands on \his chest."), \
+							span_shadowling("You crouch over the body of your thrall and begin gathering energy..."))
+		thrallToRevive.notify_ghost_cloning("Your masters are resuscitating you! Re-enter your corpse if you wish to be brought to life.", source = thrallToRevive)
+		if(!do_mob(user, thrallToRevive, 30))
+			to_chat(user, span_warning("Your concentration snaps. The flow of energy ebbs."))
+			revert_cast()
+			return
+		to_chat(user, span_shadowling("<b><i>You release a massive surge of power into [thrallToRevive]!</b></i>"))
+		user.visible_message(span_boldannounce("<i>Red lightning surges from [user]'s hands into [thrallToRevive]'s chest!</i>"))
+		playsound(thrallToRevive, 'sound/weapons/Egloves.ogg', 50, 1)
+		playsound(thrallToRevive, 'sound/machines/defib_zap.ogg', 50, 1)
+		user.Beam(thrallToRevive,icon_state="red_lightning",time=1)
+		var/b = do_mob(user, thrallToRevive, 20)
+		if(thrallToRevive.revive(full_heal = 1))
+			thrallToRevive.visible_message(span_boldannounce("[thrallToRevive] heaves in breath, dim red light shining in their eyes."), \
+										   span_shadowling("<b><i>You have returned. One of your masters has brought you from the darkness beyond.</b></i>"))
+			thrallToRevive.Knockdown(4)
+			thrallToRevive.emote("gasp")
+			playsound(thrallToRevive, "bodyfall", 50, 1)
+			if (!b)
+				thrallToRevive.Knockdown(50)
+				thrallToRevive.Unconscious(500)
+				thrallToRevive.visible_message(span_boldannounce("[thrallToRevive] collapses in exhaustion."), \
+				   span_warning("<b><i>You collapse in exhaustion... nap..... dark.</b></i>"))
 
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle
 	name = "Destroy Engines"
@@ -686,7 +716,7 @@
 						  span_notice("You begin to draw [M]'s life force."))
 		M.visible_message(span_warning("[M]'s face falls slack, their jaw slightly distending."), \
 						  span_boldannounce("You are suddenly transported... far, far away..."))
-		if(!do_after(user, 5 SECONDS, target = M))
+		if(!do_after(user, 5 SECONDS, M))
 			to_chat(M, span_warning("You are snapped back to reality, your haze dissipating!"))
 			to_chat(user, span_warning("You have been interrupted. The draw has failed."))
 			return
@@ -727,6 +757,13 @@
 	var/apply_damage = TRUE
 
 /obj/effect/proc_holder/spell/targeted/void_jaunt/cast(list/targets,mob/living/user = usr)
+	if(iscarbon(usr))	//If we're not an ascendant sling
+		var/mob/living/carbon/C = usr
+		if(C.on_fire)
+			user.visible_message(span_boldwarning("[user]'s body shudders and flickers into darkness for a moment!"),
+													span_shadowling("The void rejects the flames engulfing your body, throwing you back into the burning light!"))
+			revert_cast()										
+			return
 	if(!shadowling_check(user) && !istype(user, /mob/living/simple_animal/ascendant_shadowling))
 		revert_cast()
 		return
@@ -750,6 +787,9 @@
 		user.forceMove(S2)
 		S2.jaunter = user
 		charge_counter = charge_max //Don't have to wait for cooldown to exit
+		QDEL_NULL(cooldown_overlay) //since we're giving them a free cooldown, no more cooldown_overlay
+		S2.jaunt_spell = src
+
 
 //Both have to be high to cancel out natural regeneration
 #define VOIDJAUNT_STAM_PENALTY_DARK 10
@@ -769,6 +809,8 @@
 	var/apply_damage = TRUE
 	var/move_delay = 0			//Time until next move allowed
 	var/move_speed = 2			//Deciseconds per move
+
+	var/obj/effect/proc_holder/spell/targeted/void_jaunt/jaunt_spell //what spell we actually came from (for forced cooldown)
 
 /obj/effect/dummy/phased_mob/shadowling/relaymove(mob/user, direction)
 	if(move_delay > world.time && apply_damage)	//Ascendants get no slowdown
@@ -797,6 +839,8 @@
 															span_shadowling("You exit the void."))
 
 		playsound(get_turf(jaunter), 'sound/magic/ethereal_exit.ogg', 50, 1, -1)
+		jaunt_spell?.charge_counter = 0
+		jaunt_spell?.start_recharge()
 		jaunter = null
 	qdel(src)
 
@@ -848,8 +892,12 @@
 
 /obj/effect/proc_holder/spell/targeted/lesser_glare/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
+		if(!user.getorganslot(ORGAN_SLOT_EYES))
+			to_chat(user, span_warning("You need eyes to glare!"))
+			revert_cast()
+			return
 		if(!ishuman(target) || !target)
-			to_chat(user, span_warning("You nay only glare at humans!"))
+			to_chat(user, span_warning("You may only glare at humans!"))
 			revert_cast()
 			return
 		if(target.stat)

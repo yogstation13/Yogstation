@@ -4,7 +4,7 @@
 	id = "polysmorph"
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
-	liked_food = GROSS | MEAT
+	liked_food = GROSS | MEAT | MICE
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
 	say_mod = "hisses"
 	species_language_holder = /datum/language_holder/polysmorph

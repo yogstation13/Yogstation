@@ -118,7 +118,7 @@
 	if(!eyeobj.eye_initialized)
 		var/camera_location
 		var/turf/myturf = get_turf(src)
-		if(eyeobj.use_static != USE_STATIC_NONE)
+		if(eyeobj.use_static != FALSE)
 			if((!z_lock.len || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
@@ -177,7 +177,7 @@
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
 	user.sight = SEE_TURFS | SEE_BLACKNESS
 	user.see_in_dark = 2
-	return 1
+	return TRUE
 
 /mob/camera/aiEye/remote/Destroy()
 	if(origin && eye_user)
@@ -198,14 +198,16 @@
 			forceMove(T)
 		else
 			moveToNullspace()
+
 		update_ai_detect_hud()
-		if(use_static != USE_STATIC_NONE)
+
+		if(use_static)
 			GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-		if(visible_icon)
-			if(eye_user.client)
-				eye_user.client.images -= user_image
-				user_image = image(icon,loc,icon_state,FLY_LAYER)
-				eye_user.client.images += user_image
+
+		if(visible_icon && eye_user.client)
+			eye_user.client.images -= user_image
+			user_image = image(icon,loc,icon_state,FLY_LAYER)
+			eye_user.client.images += user_image
 
 /mob/camera/aiEye/remote/relaymove(mob/user,direct)
 	var/initial = initial(sprint)
@@ -370,7 +372,7 @@
 		to_chat(user, "[span_sevtug_small("The [target.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...")]")
 		warp_time = 300
 	warping = new(T, user, warp_time)
-	if(!do_after(user, warp_time, target = warping, extra_checks = CALLBACK(src, .proc/is_canceled)))
+	if(!do_after(user, warp_time, warping, extra_checks = CALLBACK(src, .proc/is_canceled)))
 		to_chat(user, "<span class='bold sevtug_small'>Warp interrupted.</span>")
 		QDEL_NULL(warping)
 		button_icon_state = "warp_down"

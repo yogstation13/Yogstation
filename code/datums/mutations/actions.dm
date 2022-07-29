@@ -107,7 +107,8 @@
 	instability = 30
 	energy_coeff = 1
 	power_coeff = 1
-	
+	conflicts = list(/datum/mutation/human/cryokinesis)
+
 /datum/mutation/human/firebreath/modify()
 	if(power)
 		var/obj/effect/proc_holder/spell/aimed/firebreath/S = power
@@ -117,7 +118,7 @@
 	name = "Fire Breath"
 	desc = "You can breathe fire at a target."
 	school = "evocation"
-	charge_max = 600
+	charge_max = 450
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	range = 20
@@ -144,8 +145,7 @@
 	if(!istype(P, /obj/item/projectile/magic/aoe/fireball))
 		return
 	var/obj/item/projectile/magic/aoe/fireball/F = P
-	F.exp_light = strength-1
-	F.exp_fire += strength
+	F.exp_fire += (strength - 1) * 4	// +0, +2 if empowered
 
 obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	. = ..()
@@ -156,7 +156,7 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	exp_heavy = 0
 	exp_light = 0
 	exp_flash = 0
-	exp_fire= 4
+	exp_fire= 3
 
 /datum/mutation/human/void
 	name = "Void Magnet"
@@ -172,7 +172,7 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	if(!isturf(owner.loc))
 		return
 	if(prob((0.5+((100-dna.stability)/20))) * GET_MUTATION_SYNCHRONIZER(src)) //very rare, but enough to annoy you hopefully. +0.5 probability for every 10 points lost in stability
-		new /obj/effect/immortality_talisman/void(get_turf(owner), owner)
+		owner.apply_status_effect(STATUS_EFFECT_VOIDED)
 
 /obj/effect/proc_holder/spell/self/void
 	name = "Convoke Void" //magic the gathering joke here
@@ -183,14 +183,14 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	charge_max = 600
 	invocation = "DOOOOOOOOOOOOOOOOOOOOM!!!"
 	invocation_type = "shout"
-	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	action_icon = 'icons/mob/actions/actions_humble.dmi'
 	action_icon_state = "void_magnet"
 
-/obj/effect/proc_holder/spell/self/void/can_cast(mob/user = usr)
+/obj/effect/proc_holder/spell/self/void/can_cast(mob/living/user = usr)
 	. = ..()
 	if(!isturf(user.loc))
 		return FALSE
 
-/obj/effect/proc_holder/spell/self/void/cast(mob/user = usr)
+/obj/effect/proc_holder/spell/self/void/cast(mob/living/user = usr)
 	. = ..()
-	new /obj/effect/immortality_talisman/void(get_turf(user), user)
+	user.apply_status_effect(STATUS_EFFECT_VOIDED)

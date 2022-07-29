@@ -515,7 +515,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		if ("print")
 			if (!( printing ))
 				printing = 1
-				sleep(50)
+				sleep(5 SECONDS)
 				var/obj/item/paper/P = new /obj/item/paper( loc )
 				var/t1 = "<B>Crew Manifest:</B><BR>"
 				for(var/datum/data/record/t in sortRecord(GLOB.data_core.general))

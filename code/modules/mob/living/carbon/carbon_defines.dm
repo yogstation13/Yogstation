@@ -5,13 +5,23 @@
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,GLAND_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	has_limbs = 1
 	held_items = list(null, null)
-	var/list/internal_organs		= list()	//List of /obj/item/organ in the mob. They don't go in the contents for some reason I don't want to know.
-	var/list/internal_organs_slot= list() //Same as above, but stores "slot ID" - "organ" pairs for easy access.
-	var/silent = FALSE 		//Can't talk. Value goes down every life proc. //NOTE TO FUTURE CODERS: DO NOT INITIALIZE NUMERICAL VARS AS NULL OR I WILL MURDER YOU.
-	var/dreaming = 0 //How many dream images we have left to send
+	/// List of /obj/item/organ in the mob. 
+	/// They don't go in the contents for some reason I don't want to know.
+	var/list/internal_organs		= list()	
+	/// List of /obj/item/organ in the mob by slot ID for easy access. 
+	/// They don't go in the contents for some reason I don't want to know.
+	var/list/internal_organs_slot= list()
 
-	var/obj/item/handcuffed = null //Whether or not the mob is handcuffed
-	var/obj/item/legcuffed = null  //Same as handcuffs but for legs. Bear traps use this.
+	/// Can't talk. Value goes down every life proc.
+	/// NOTE TO FUTURE CODERS: DO NOT INITIALIZE NUMERICAL VARS AS NULL OR I WILL MURDER YOU.
+	var/silent = FALSE 		
+	/// How many dream images we have left to send
+	var/dreaming = 0 
+
+	/// A reference to the current handcuff on this carbon if one is equipped.
+	var/obj/item/restraints/handcuffed = null 
+	/// A reference to the current legcuff on this carbon if one is equipped. Bear traps use this.
+	var/obj/item/restraints/legcuffed = null
 
 	var/disgust = 0
 
@@ -71,5 +81,6 @@
 	var/list/all_wounds
 	/// All of the scars a carbon has afflicted throughout their limbs
 	var/list/all_scars
+	var/visible_tumors = FALSE //if you are seem with some tumors, for examine
 
 	COOLDOWN_DECLARE(bleeding_message_cd)

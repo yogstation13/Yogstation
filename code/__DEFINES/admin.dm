@@ -38,10 +38,10 @@
 #define R_SPAWN			(1<<12)
 #define R_AUTOLOGIN		(1<<13)
 #define R_DBRANKS		(1<<14)
+#define R_DEV			(1<<15) // Stuff NOONE should be touching except for head-dev/maints, I guess council too..
+#define R_EVERYTHING 	(1<<16)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define R_DEFAULT R_AUTOLOGIN
-
-#define R_EVERYTHING (1<<15)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define ADMIN_QUE(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(user)]'>FLW</a>)"
@@ -57,6 +57,7 @@
 #define ADMIN_LOOKUP(user) "[key_name_admin(user)][ADMIN_QUE(user)]"
 #define ADMIN_LOOKUPFLW(user) "[key_name_admin(user)][ADMIN_QUE(user)] [ADMIN_FLW(user)]"
 #define ADMIN_SET_SD_CODE "(<a href='?_src_=holder;[HrefToken(TRUE)];set_selfdestruct_code=1'>SETCODE</a>)"
+#define ADMIN_SET_BC_CODE "(<a href='?_src_=holder;[HrefToken(TRUE)];set_beer_code=1'>SETBEER</a>)"
 #define ADMIN_FULLMONTY_NONAME(user) "[ADMIN_QUE(user)] [ADMIN_PP(user)] [ADMIN_VV(user)] [ADMIN_SM(user)] [ADMIN_FLW(user)] [ADMIN_TP(user)] [ADMIN_INDIVIDUALLOG(user)] [ADMIN_SMITE(user)]"
 #define ADMIN_FULLMONTY(user) "[key_name_admin(user)] [ADMIN_FULLMONTY_NONAME(user)]"
 #define ADMIN_JMP(src) "(<a href='?_src_=holder;[HrefToken(TRUE)];adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)"
@@ -83,6 +84,8 @@
 #define ADMIN_PUNISHMENT_BLEED ":B:loodless"
 #define ADMIN_PUNISHMENT_PERFORATE ":B:erforate"
 #define ADMIN_PUNISHMENT_SCARIFY "Scarify"
+#define ADMIN_PUNISHMENT_SMSPIDER "SM Spider"
+#define ADMIN_PUNISHMENT_FLASHBANG "Flashbang"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2

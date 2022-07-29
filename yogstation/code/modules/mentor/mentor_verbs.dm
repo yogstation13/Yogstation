@@ -45,6 +45,7 @@ GLOBAL_PROTECT(mentor_verbs)
 	var/msg = "<b>Current Mentors & Wiki:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.mentors)
+			if(C.holder) continue
 			if(C.mentor_datum.position)
 				position = C.mentor_datum.position
 			msg += "\t[C] is a [position]"
@@ -64,6 +65,7 @@ GLOBAL_PROTECT(mentor_verbs)
 			msg += "\n"
 	else
 		for(var/client/C in GLOB.mentors)
+			if(C.holder) continue
 			if(C.mentor_datum.position)	
 				position = C.mentor_datum.position
 			if(C.holder && C.holder.fakekey)

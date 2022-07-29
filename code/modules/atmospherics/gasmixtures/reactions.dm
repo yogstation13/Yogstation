@@ -236,6 +236,34 @@ nobliumformation = 1001
 
 	return cached_results["fire"] ? REACTING : NO_REACTION
 
+/datum/gas_reaction/n2odecomp
+	priority = 0
+	name = "Nitrous Oxide Decomposition"
+	id = "n2odecomp"
+
+/datum/gas_reaction/n2odecomp/init_reqs()
+	min_requirements = list(
+		"TEMP" = N2O_DECOMPOSITION_MIN_HEAT,
+		/datum/gas/nitrous_oxide = MINIMUM_MOLE_COUNT*2
+	)
+
+/datum/gas_reaction/n2odecomp/react(datum/gas_mixture/air, datum/holder)
+	var/old_heat_capacity = air.heat_capacity()
+	var/temperature = air.return_temperature()
+	var/nitrous = air.get_moles(/datum/gas/nitrous_oxide)
+
+	var/burned_fuel = min(N2O_DECOMPOSITION_RATE*nitrous*temperature*(temperature-N2O_DECOMPOSITION_MAX_HEAT)/((-1/4)*(N2O_DECOMPOSITION_MAX_HEAT**2)), nitrous)
+	if(burned_fuel>0)
+		air.set_moles(/datum/gas/nitrous_oxide, QUANTIZE(nitrous - burned_fuel))
+		air.set_moles(/datum/gas/nitrogen, QUANTIZE(air.get_moles(/datum/gas/nitrogen) + burned_fuel))
+		air.set_moles(/datum/gas/oxygen, QUANTIZE(air.get_moles(/datum/gas/oxygen) + burned_fuel/2))
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature((temperature*old_heat_capacity + burned_fuel*N2O_DECOMPOSITION_ENERGY)/new_heat_capacity)
+		return REACTING
+
+	return NO_REACTION
+
 //fusion: a terrible idea that was fun but broken. Now reworked to be less broken and more interesting. Again (and again, and again). Again!
 //Fusion Rework Counter: Please increment this if you make a major overhaul to this system again.
 //6 reworks
@@ -507,16 +535,16 @@ nobliumformation = 1001
 	air.adjust_moles(/datum/gas/pluoxium, -reaction_rate)
 	air.adjust_moles(/datum/gas/nitryl, reaction_rate*5)
 	air.adjust_moles(/datum/gas/plasma, -plasma_burned)
-	if(energy_released)
-		var/new_heat_capacity = air.heat_capacity()
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			air.set_temperature(clamp((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY))
-		return REACTING
 	if(balls_shot && !isnull(location))
 		var/angular_increment = 360/balls_shot
 		var/random_starting_angle = rand(0,360)
 		for(var/i in 1 to balls_shot)
 			location.fire_nuclear_particle((i*angular_increment+random_starting_angle))
+	if(energy_released)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature(clamp((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY))
+		return REACTING
 
 //freon reaction (is not a fire yet)
 /datum/gas_reaction/freonfire

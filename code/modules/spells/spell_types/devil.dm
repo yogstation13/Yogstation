@@ -106,7 +106,7 @@
 
 /obj/effect/proc_holder/spell/targeted/infernal_jaunt/cast(list/targets, mob/living/user = usr)
 	if(istype(user))
-		if(istype(user.loc, /obj/effect/dummy/phased_mob/slaughter/))
+		if(istype(user.loc, /obj/effect/dummy/phased_mob))
 			if(valid_location(user))
 				to_chat(user, span_warning("You are now phasing in."))
 				if(do_mob(user,user,150))
@@ -147,7 +147,7 @@
 	spawn_dust()
 	visible_message(span_warning("[src] disappears in a flashfire!"))
 	playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 100, 1, -1)
-	var/obj/effect/dummy/phased_mob/slaughter/holder = new /obj/effect/dummy/phased_mob/slaughter(loc)
+	var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob(loc)
 	ExtinguishMob()
 	forceMove(holder)
 	holder = holder

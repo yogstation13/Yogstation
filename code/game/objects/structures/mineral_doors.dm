@@ -11,7 +11,7 @@
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 	max_integrity = 200
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 50, ACID = 50)
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -90,7 +90,7 @@
 	playsound(src, openSound, 100, 1)
 	set_opacity(FALSE)
 	flick("[initial(icon_state)]opening",src)
-	sleep(10)
+	sleep(1 SECONDS)
 	density = FALSE
 	door_opened = TRUE
 	layer = OPEN_DOOR_LAYER
@@ -110,7 +110,7 @@
 	isSwitchingStates = TRUE
 	playsound(src, closeSound, 100, 1)
 	flick("[initial(icon_state)]closing",src)
-	sleep(10)
+	sleep(1 SECONDS)
 	density = TRUE
 	set_opacity(TRUE)
 	door_opened = FALSE
@@ -332,7 +332,7 @@
 
 	if((user.a_intent != INTENT_HARM) && istype(I, /obj/item/paper) && (obj_integrity < max_integrity))
 		user.visible_message("[user] starts to patch the holes in [src].", span_notice("You start patching some of the holes in [src]!"))
-		if(do_after(user, 2 SECONDS, TRUE, src))
+		if(do_after(user, 2 SECONDS, src))
 			obj_integrity = min(obj_integrity+4,max_integrity)
 			qdel(I)
 			user.visible_message("[user] patches some of the holes in [src].", span_notice("You patch some of the holes in [src]!"))

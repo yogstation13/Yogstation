@@ -3,7 +3,7 @@
 	desc = "Take on the form of an immovable rod, destroying all in your path. Purchasing this spell multiple times will also increase the rod's damage and travel range."
 	clothes_req = TRUE
 	human_req = FALSE
-	charge_max = 250
+	charge_max = 300
 	cooldown_min = 100
 	range = -1
 	include_user = TRUE

@@ -11,7 +11,7 @@
 	heat_proof = TRUE
 	safe = FALSE
 	max_integrity = 600
-	armor = list("melee" = 50, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
+	armor = list(MELEE = 50, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
 	damage_deflection = 70
 	poddoor = TRUE
@@ -134,7 +134,7 @@
 		if(W.tool_behaviour == TOOL_WIRECUTTER)
 			if(id != null)
 				to_chat(user, span_notice("You start to unlink the door."))
-				if(do_after(user, 1 SECONDS SECONDS, target = src))
+				if(do_after(user, 10 SECONDS, src))
 					to_chat(user, span_notice("You unlink the door."))
 					id = null
 			else
@@ -145,7 +145,7 @@
 		if(W.tool_behaviour == TOOL_WELDER && constructionstate == INTACT)
 			to_chat(user, span_notice("You start to remove the outer plasteel cover."))
 			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
-			if(do_after(user, 1 SECONDS SECONDS, target = src))
+			if(do_after(user, 10 SECONDS, src))
 				to_chat(user, span_notice("You remove the outer plasteel cover."))
 				constructionstate = CUT_COVER
 				id = null // Effectivley breaks the door
@@ -156,7 +156,7 @@
 		
 		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == CUT_COVER)
 			to_chat(user, span_notice("You start to remove all of the internal components"))
-			if(do_after(user, 15 SECONDS, target = src))
+			if(do_after(user, 15 SECONDS, src))
 				if(istype(src, /obj/machinery/door/poddoor/shutters)) // Simplified Code 
 					new /obj/item/stack/sheet/plasteel(loc, 5)
 					new /obj/item/electronics/airlock(loc)

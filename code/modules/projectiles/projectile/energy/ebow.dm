@@ -14,4 +14,4 @@
 	icon_state = "candy_corn"
 
 /obj/item/projectile/energy/bolt/large
-	damage = 40
+	damage = 30 //we already deal 60 stamina damage per hit

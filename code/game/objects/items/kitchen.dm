@@ -9,6 +9,7 @@
  *		Combat Knife
  *		Rolling Pins
  *		Shank
+ *		Makeshift knives
  */
 
 /obj/item/kitchen
@@ -29,7 +30,7 @@
 	flags_1 = CONDUCT_1
 	attack_verb = list("attacked", "stabbed", "poked")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	sharpness = SHARP_POINTY
 	var/datum/reagent/forkload //used to eat omelette
 	var/loaded_food = "nothing" /// The name of the thing on the fork
@@ -94,7 +95,7 @@
 	materials = list(/datum/material/iron=12000)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharpness = SHARP_EDGED
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	var/bayonet = TRUE	//Can this be attached to a gun?
 	custom_price = 30
 	wound_bonus = 5
@@ -105,7 +106,9 @@
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10) //bonus chance increases depending on force
 
 /obj/item/kitchen/knife/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
+	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+		return
+	else if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 			M = user
 		return eyestab(M,user)
@@ -128,9 +131,22 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/kitchen/knife/ritual/holy
-	name = "ruinous knife"
-	desc = "The runes inscribed on the knife radiate a strange power."
-	force = 12
+	name = "ruinous knife" 
+	desc = "The runes inscribed on the knife radiate a strange power. It looks like it could have more runes inscribed upon it..."
+
+/obj/item/kitchen/knife/ritual/holy/strong
+	name = "great ruinous knife" 
+	desc = "A heavy knife inscribed with dozens of runes."
+	force = 15
+
+/obj/item/kitchen/knife/ritual/holy/strong/blood
+	name = "blood-soaked ruinous knife" 
+	desc = "Runes stretch across the surface of the knife, seemingly endless."
+	wound_bonus = 20 //a bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
+
+/obj/item/kitchen/knife/ritual/holy/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 70, 110) //the old gods demandeth more flesh output
 
 /obj/item/kitchen/knife/bloodletter
 	name = "bloodletter"
@@ -216,7 +232,7 @@
 	break_message = "%SRC snaps into unusable carrot-bits"
 	materials = list()
 	attack_verb = list("shanked", "shivved")
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/kitchen/knife/carrotshiv/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] forcefully drives \the [src] into [user.p_their()] eye! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -224,9 +240,9 @@
 
 // Shank - Makeshift weapon that can embed on throw
 /obj/item/kitchen/knife/shank
-	name = "Shank"
+	name = "shank"
 	desc = "A crude knife fashioned by securing a glass shard and a rod together with cables, and welding them together."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "shank"
 	item_state = "shank"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_EARS
@@ -240,6 +256,7 @@
 	weapon_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 5, DAMAGE_HIGH = 7)
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 20, "embedded_fall_chance" = 10) // Incentive to disengage/stop chasing when stuck
 	attack_verb = list("stuck", "shanked", "stabbed", "shivved")
+	materials = list(/datum/material/iron=1150, /datum/material/glass=2075)
 
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"
@@ -256,4 +273,20 @@
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
+	
+/obj/item/kitchen/knife/makeshift
+	name = "makeshift knife"
+	icon_state = "knife_makeshift"
+	icon = 'icons/obj/improvised.dmi'
+	desc = "A flimsy, poorly made replica of a classic cooking utensil."
+	force = 8
+	throwforce = 8
+
+/obj/item/kitchen/knife/makeshift/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	..()
+	if(prob(5))
+		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
+		qdel(src)
+		return
+
 /* Trays  moved to /obj/item/storage/bag */

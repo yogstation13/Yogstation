@@ -10,6 +10,7 @@
 	var/taste_sensitivity = 15 // lower is more sensitive.
 	var/modifies_speech = TRUE // set to TRUE now because otherwise default tongues can't be honked. Not even sure why this would ever be set to false since it doesn't do anything.
 	var/honked = FALSE // This tongue has a bike horn jammed inside of it and will honk every time something is spoken.
+	var/honkednoise = 'sound/items/bikehorn.ogg'
 	var/static/list/languages_possible_base = typecacheof(list(
 		/datum/language/common,
 		/datum/language/draconic,
@@ -43,7 +44,7 @@
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
 	if(honked) // you have a bike horn inside of your tongue. Time to honk
-		playsound(source, 'sound/items/bikehorn.ogg', 50, TRUE)
+		playsound(source, honkednoise, 50, TRUE)
 		say_mod = "honks" // overrides original tongue here 
 
 /obj/item/organ/tongue/Insert(mob/living/carbon/M, special = 0)
@@ -66,6 +67,9 @@
 
 /obj/item/organ/tongue/honked // allows admins to spawn honked tongues from the item menu vs having to change the variable.
 	honked = TRUE
+
+/obj/item/organ/tongue/honked/boowomp
+	honkednoise = 'yogstation/sound/items/boowomp.ogg'
 
 /obj/item/organ/tongue/Initialize() // this only exists to make sure the spawned tongue has a horn inside of it visually
 	. = ..()
@@ -133,7 +137,7 @@
 		to_chat(H, span_notice("[src] is already attuned to the same channel as your own."))
 
 	H.visible_message(span_notice("[H] holds [src] in their hands, and concentrates for a moment."), span_notice("You attempt to modify the attunation of [src]."))
-	if(do_after(H, 1.5 SECONDS, target=src))
+	if(do_after(H, 1.5 SECONDS, src))
 		to_chat(H, span_notice("You attune [src] to your own channel."))
 		mothership = T.mothership
 

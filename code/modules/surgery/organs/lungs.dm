@@ -520,7 +520,7 @@
 /obj/item/organ/lungs/ghetto
 	name = "oxygen tanks welded to a modular reciever"
 	desc = "A pair of oxygen tanks which have been attached to a modular (oxygen) receiver. They are incapable of supplying air, but can work as a replacement for lungs."
-	icon_state = "lungs_g"
+	icon_state = "lungs-g"
 	organ_efficiency = 0.5
 	organ_flags = ORGAN_SYNTHETIC //the moment i understood the weakness of flesh, it disgusted me, and i yearned for the certainty, of steel
 

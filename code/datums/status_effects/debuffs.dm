@@ -90,6 +90,8 @@
 	tick_interval = 10
 	alert_type = /obj/screen/alert/status_effect/stasis
 	var/last_dead_time
+	/// What is added to the *life_tickrate*, -1 to freeze the ticks
+	var/stasis_mod = -1
 
 /datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
 	if(last_dead_time)
@@ -101,16 +103,20 @@
 	if(owner.stat == DEAD)
 		last_dead_time = world.time
 
-/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove, new_stasis_mod)
 	. = ..()
+	stasis_mod = new_stasis_mod
+	new_owner.life_tickrate += stasis_mod
 	update_time_of_death()
-	owner.reagents?.end_metabolization(owner, FALSE)
+	if(stasis_mod == -1)
+		owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/incapacitating/stasis/tick()
 	update_time_of_death()
 
 /datum/status_effect/incapacitating/stasis/on_remove()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
@@ -147,24 +153,11 @@
 /obj/screen/alert/status_effect/strandling/Click(location, control, params)
 	. = ..()
 	to_chat(mob_viewer, span_notice("You attempt to remove the durathread strand from around your neck."))
-	if(do_after(mob_viewer, 3.5 SECONDS, null, mob_viewer))
+	if(do_after(mob_viewer, 3.5 SECONDS, mob_viewer, FALSE))
 		if(isliving(mob_viewer))
 			var/mob/living/L = mob_viewer
 			to_chat(mob_viewer, span_notice("You succesfuly remove the durathread strand."))
 			L.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
-
-
-/datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
-	if(isnum(set_duration))
-		duration = set_duration
-	. = ..()
-
-/datum/status_effect/pacify/on_apply()
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
-	return ..()
-
-/datum/status_effect/pacify/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
 
 //OTHER DEBUFFS
 /datum/status_effect/pacify
@@ -358,6 +351,41 @@
 	if(owner.reagents)
 		owner.reagents.del_reagent(/datum/reagent/water/holywater) //can't be deconverted
 
+/datum/status_effect/the_shadow
+	id = "the_shadow"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	duration = -1
+	var/mutable_appearance/shadow
+
+/datum/status_effect/the_shadow/on_apply()
+	if(ishuman(owner))
+		shadow = mutable_appearance('icons/effects/effects.dmi', "curse")
+		shadow.pixel_x = -owner.pixel_x
+		shadow.pixel_y = -owner.pixel_y
+		owner.add_overlay(shadow)
+		to_chat(owner, span_boldwarning("The shadows invade your mind, MUST. GET. THEM. OUT"))
+		return TRUE
+	return FALSE
+
+/datum/status_effect/the_shadow/tick()
+	var/turf/T = get_turf(owner)
+	var/light_amount = T.get_lumcount()
+	if(light_amount > 0.2)
+		to_chat(owner, span_notice("As the light reaches the shadows, they dissipate!"))
+		qdel(src)
+	if(owner.stat == DEAD)
+		qdel(src)
+	owner.hallucination += 2
+	owner.confused += 2
+	owner.adjustEarDamage(0, 5)
+
+/datum/status_effect/the_shadow/Destroy()
+	if(owner)
+		owner.cut_overlay(shadow)
+	QDEL_NULL(shadow)
+	return ..()
+
 /datum/status_effect/crusher_mark
 	id = "crusher_mark"
 	duration = 300 //if you leave for 30 seconds you lose the mark, deal with it
@@ -525,7 +553,7 @@
 		wasting_effect.setDir(owner.dir)
 		wasting_effect.transform = owner.transform //if the owner has been stunned the overlay should inherit that position
 		wasting_effect.alpha = 255
-		animate(wasting_effect, alpha = 0, time = 32)
+		animate(wasting_effect, alpha = 0, time = 3.2 SECONDS)
 		playsound(owner, 'sound/effects/curse5.ogg', 20, 1, -1)
 		owner.adjustFireLoss(0.75)
 	if(effect_last_activation <= world.time)
@@ -1066,122 +1094,74 @@
 		for(var/i in S.damage_coeff)
 			S.damage_coeff[i] /= power
 
-#define HERETIC_SACRIFICE_EFFECT_THRESHOLD 3 //number of ticks per event, this will get cut off if it occurs at the same time the effect ends.
-#define LIMB_SPOOK "limb_skeletonification"
-#define WOUNDING "oof_ouch_my_bones"
-#define BRAIN_DAMAGE "shouldnt_have_done_that"
+/datum/status_effect/knuckled
+    id = "knuckle_wound"
+    duration = 10 SECONDS
+    status_type = STATUS_EFFECT_REPLACE
+    alert_type = null
+    var/mutable_appearance/bruise
+    var/obj/item/melee/knuckles
 
-/datum/status_effect/heretic_sacrifice
-	id = "heretic_sac"
+/datum/status_effect/knuckled/on_apply()
+    bruise = mutable_appearance('icons/effects/effects.dmi', "rshield")
+    bruise.pixel_x = -owner.pixel_x
+    bruise.pixel_y = -owner.pixel_y
+    owner.underlays += bruise
+    return TRUE
+
+/datum/status_effect/knuckled/Destroy()
+    if(owner)
+        owner.underlays -= bruise
+    QDEL_NULL(bruise)
+    return ..()
+
+/datum/status_effect/knuckled/be_replaced()
+    owner.underlays -= bruise 
+    ..()
+
+/datum/status_effect/taming
+	id = "taming"
+	duration = -1
+	tick_interval = 6
 	alert_type = null
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 4 MINUTES
-	tick_interval = 15 SECONDS
-	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
-	var/list/all_limbs = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_CHEST, BODY_ZONE_HEAD)
-	var/next_event_timer = 0
-	var/list/limb_removal_flavor = list("The skin on your %LIMB falls off, revealing the skeleton beneath!")
-	var/dam_type = BRUTE
-	var/wound_type = /datum/wound/blunt/critical
-	var/list/wound_flavor = list("The bones in your %LIMB suddenly snap!")
-	var/list/brain_traumas = list(/datum/brain_trauma/mild/phobia/space, /datum/brain_trauma/mild/phobia/supernatural, /datum/brain_trauma/severe/monophobia, /datum/brain_trauma/special/death_whispers, /datum/brain_trauma/mild/phobia/clowns,/datum/brain_trauma/mild/phobia/robots,/datum/brain_trauma/mild/phobia/conspiracies) //if death whipsers is too stupid feel free to axe it
-	var/list/brain_damage_flavor = list("You see... nothing...? It hurts.", "The stars are wrong.", "One of the dark stars suddenly vanishes. You think? Your mind slips.", "You catch a glimpse of something of something of something- that shouldn't- that's too- that's... old. Then it's gone.")
+	var/tame_amount = 1
+	var/tame_buildup = 1
+	var/tame_crit = 35
+	var/needs_to_tame = FALSE
+	var/mob/living/tamer
 
-/datum/status_effect/heretic_sacrifice/on_apply()
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(1, get_turf(owner))
-	S.start()
-	owner.revive(full_heal = TRUE) //this totally won't be used to bypass stuff(tm)
-	owner.regenerate_organs()
-	owner.regenerate_limbs()
-	owner.grab_ghost()
-	owner.SetStun(60 MINUTES, ignore_canstun = TRUE)
-	to_chat(owner, "<span class='revenbignotice'>You find yourself floating in a strange, unfamiliar void. Are you dead? ... no ... that feels different... Maybe there's a way out?</span>")
-	for(var/i in GLOB.brazil_reception)
-		if(locate(/mob) in get_turf(i)) //there are actually 64 total spots at brazil to get teleported to so if this gets filled (unlikely) they just get returned as a failsafe
-			continue
-		owner.forceMove(get_turf(i))
-		return TRUE
-
-/datum/status_effect/heretic_sacrifice/tick()
-	owner.SetStun(60 MINUTES, ignore_canstun = TRUE) //not getting out of it that easy
-	if(!iscarbon(owner))
-		return
-	if(prob(20))
-		to_chat(owner, span_velvet(pick("The stars flicker in the distance.", "You faintly see movement.", "You feel something turn its gaze to you, then move on.", "This can't be it, can it?")))
-	next_event_timer++
-	var/mob/living/carbon/C = owner
-	if(!(next_event_timer % HERETIC_SACRIFICE_EFFECT_THRESHOLD))
-		if(prob(1)) //small chance of no effect
-			to_chat(owner, span_boldnotice("You float, The glow of the dark stars oddly relaxing. Everything feels alright for once.</span>"))
-			return
-		var/effect = pick(LIMB_SPOOK, WOUNDING, BRAIN_DAMAGE)
-		switch(effect)
-			if(LIMB_SPOOK)
-				var/obj/item/bodypart/BP
-				while(!BP)
-					if(!LAZYLEN(unspooked_limbs))
-						break
-					var/target_zone = pick_n_take(unspooked_limbs)
-					BP = C.get_bodypart(target_zone)
-					var/obj/item/bodypart/replacement_part = new BP.type
-					if(BP.species_id == "skeleton")
-						continue
-					var/msg = pick(limb_removal_flavor)
-					msg = replacetext(msg, "%LIMB", BP.name)
-					to_chat(owner, span_userdanger(msg))
-					replacement_part.species_id = "skeleton"
-					replacement_part.original_owner = "inside"
-					replacement_part.replace_limb(owner)
-					C.apply_damage(30, damagetype = dam_type, def_zone = target_zone, wound_bonus = CANT_WOUND)
-					owner.emote("scream")
-				if(BP)
-					qdel(BP)
-			if(WOUNDING)
-				var/obj/item/bodypart/BP
-				while(!BP)
-					if(!LAZYLEN(all_limbs))
-						break
-					BP = C.get_bodypart(pick_n_take(all_limbs))
-					BP.force_wound_upwards(wound_type)
-					var/msg = pick(wound_flavor)
-					msg = replacetext(msg, "%LIMB", BP.name)
-					to_chat(owner, span_userdanger(msg))
-			if(BRAIN_DAMAGE)
-				var/msg = pick(brain_damage_flavor)
-				to_chat(owner, span_userdanger(msg))
-				if(!owner.has_status_effect(STATUS_EFFECT_NECROPOLIS_CURSE) && prob(20)) //20% chance for a blinding necropolis curse instead of a permanent trauma (only happens once, lasts several minutes)
-					owner.apply_necropolis_curse(CURSE_BLINDING)
-				else
-					var/trauma = pick_n_take(brain_traumas)
-					var/datum/brain_trauma/T = new trauma
-					C.gain_trauma(T, TRAUMA_RESILIENCE_LOBOTOMY)
-
-/datum/status_effect/heretic_sacrifice/on_remove()
+/datum/status_effect/taming/on_creation(mob/living/owner, mob/living/user)
 	. = ..()
-	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of the past few minutes, or any proof of it beyond your mangled state.</span>")
-	owner.SetStun(2 SECONDS, ignore_canstun = TRUE)
-	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary))
-	if(safe_turf)
-		owner.forceMove(safe_turf)
+	if(!.)
+		return
+	tamer = user
 
-/datum/status_effect/heretic_sacrifice/ash
-	limb_removal_flavor = list("The flesh on your %LIMB ignites and burns off, revealing the bones beneath!")
-	wound_type = /datum/wound/burn/critical
-	wound_flavor = list("You feel a stinging pain as the skin on your %LIMB suddenly bursts into flames!")
-	brain_damage_flavor = list("You see a fire, people, burning, screaming.", "Suddenly, two flaming eyes appear before you. Their stare burning into your eyes, your mind.", "For a moment, you are in the middle of a raging inferno, you can see your skin burn and melt, then you're back here.", "You see someone you know trapped in a fire, but you can't reach them. You can't help.")
+/datum/status_effect/taming/on_apply()
+	if(owner.stat == DEAD)
+		return FALSE
+	return ..()
 
-/datum/status_effect/heretic_sacrifice/flesh
-	limb_removal_flavor = list("The flesh on your %LIMB suddenly rots off, revealing the bones beneath!", "You feel a presence by your side, then a flash of pain. By the time you can turn, your %LIMB is already reduced to bones, and the presence is gone.")
-	wound_flavor = list("Your %LIMB's bones suddenly crumble beneath your skin!")
-	brain_damage_flavor = list("You see bodies. So many bodies...  The worst part is, you think you can recognize some of them.", "You see yourself, bleeding, dying.", "For a minute, you feel something... knitting? Your skin. But whenever you turn, it moves somewhere else.")
+/datum/status_effect/taming/tick()
+	if(owner.stat == DEAD)
+		qdel(src)
 
-/datum/status_effect/heretic_sacrifice/rust
-	limb_removal_flavor = list("The flesh on your %LIMB begins to flake off, revealing the bones beneath!")
-	wound_flavor = list("Your %LIMB's bones, brittle and aching at the joints, finally break!")
-	brain_damage_flavor = list("You see everything you've worked for reduced to dust before your eyes...", "You see an ending.", "You find yourself on the station for a moment, but it's rusted and derelict. You check the time... it's only been an hour?")
+/datum/status_effect/taming/proc/add_tame(amount)
+	tame_amount += amount
+	if(tame_amount)
+		if(tame_amount >= tame_crit)
+			needs_to_tame = TRUE
+			qdel(src)
+	else
+		qdel(src)
 
-#undef HERETIC_SACRIFICE_EFFECT_THRESHOLD
-#undef LIMB_SPOOK
-#undef WOUNDING
-#undef BRAIN_DAMAGE
+/datum/status_effect/taming/on_remove()
+	var/mob/living/simple_animal/hostile/M = owner
+	if(needs_to_tame)
+		var/turf/T = get_turf(M)
+		new /obj/effect/temp_visual/love_heart(T)
+		M.drop_loot()
+		M.loot = null
+		M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
+		M.faction = tamer.faction
+		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
+		. = ..()

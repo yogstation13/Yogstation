@@ -7,6 +7,7 @@
 	dna_cost = 1
 	req_human = 1
 	ignores_fakedeath = TRUE
+	req_stat = DEAD
 
 /datum/action/changeling/headcrab/sting_action(mob/user)
 	set waitfor = FALSE
@@ -36,7 +37,7 @@
 	H?.leave_victim()
 	user.gib()
 	. = TRUE
-	sleep(5) // So it's not killed in explosion
+	sleep(0.5 SECONDS) // So it's not killed in explosion
 	var/mob/living/simple_animal/hostile/headcrab/crab = new(turf)
 	for(var/obj/item/organ/I in organs)
 		I.forceMove(crab)

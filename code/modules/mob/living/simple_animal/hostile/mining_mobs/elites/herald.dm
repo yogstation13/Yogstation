@@ -24,6 +24,7 @@
 	icon_aggro = "herald"
 	icon_dead = "herald_dying"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "herald"
 	maxHealth = 800
 	health = 800
 	melee_damage_lower = 20
@@ -229,7 +230,7 @@
 	. = ..()
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled()
+		M.attempt_drill()
 		return
 	else if(isliving(target))
 		var/mob/living/L = target
@@ -266,10 +267,9 @@
 	H.fire(set_angle)
 
 /obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(!prob(hit_reaction_chance))
-		return FALSE
-	owner.visible_message(span_danger("[owner]'s [src] emits a loud noise as [owner] is struck!"))
-	var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
-	playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
-	addtimer(CALLBACK(src, .proc/reactionshot, owner), 10)
-	return TRUE
+	. = FALSE
+	if(prob(hit_reaction_chance))
+		owner.visible_message(span_danger("[owner]'s [src] emits a loud noise as [owner] is struck!"))
+		var/static/list/directional_shot_angles = list(0, 45, 90, 135, 180, 225, 270, 315)
+		playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
+		addtimer(CALLBACK(src, .proc/reactionshot, owner), 10)

@@ -14,10 +14,12 @@
 	if(!target)
 		to_chat(user,span_warning("No target could be found. Put the living heart on the rune and use the rune to recieve a target."))
 		return
-	var/dist = get_dist(get_turf(user),get_turf(target))
-	var/dir = get_dir(get_turf(user),get_turf(target))
+	var/turf/userturf = get_turf(user)
+	var/turf/targetturf = get_turf(target)
+	var/dist = get_dist(userturf,targetturf)
+	var/dir = get_dir(userturf,targetturf)
 
-	if(user.z != target.z)
+	if(userturf.z != targetturf.z)
 		to_chat(user,span_warning("[target.real_name] is ... vertical to you?"))
 	else
 		switch(dist)
@@ -77,7 +79,8 @@
 	flags_1 = CONDUCT_1
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 17
+	force = 20
+	armour_penetration = 25
 	throwforce = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
@@ -174,7 +177,7 @@
 	allowed = list(/obj/item/melee/sickly_blade, /obj/item/forbidden_book)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	// slightly better than normal cult robes
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50,"energy" = 50, "bomb" = 35, "bio" = 20, "rad" = 0, "fire" = 20, "acid" = 20)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50,ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20)
 
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"

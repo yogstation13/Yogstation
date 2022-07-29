@@ -131,7 +131,12 @@
 		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
 			best_item = I
 			best_quality = I.toolspeed
-
+//yogs start -- fucking stupid but modular holotool patch
+	if(quality == TOOL_MULTITOOL)
+		if(istype(best_item,/obj/item/holotool))
+			var/obj/item/holotool/H = best_item
+			return H.internal_multitool
+//yogs end
 	return best_item
 
 

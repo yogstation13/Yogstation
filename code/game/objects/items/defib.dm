@@ -14,7 +14,7 @@
 	throwforce = 6
 	w_class = WEIGHT_CLASS_BULKY
 	actions_types = list(/datum/action/item_action/toggle_paddles)
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 
 	var/on = FALSE //if the paddles are equipped (1) or on the defib (0)
 	var/safety = TRUE //if you can zap people with the defibs on harm mode
@@ -253,6 +253,7 @@
 	item_state = "defibcompact"
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
+	cryo_preserve = TRUE
 
 /obj/item/defibrillator/compact/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBeltSlot())
@@ -306,7 +307,7 @@
 	var/req_defib = TRUE
 	var/combat = FALSE //If it penetrates armor and gives additional functionality
 	var/grab_ghost = TRUE
-	var/tlimit = DEFIB_TIME_LIMIT * 10
+	var/tlimit = DEFIB_TIME_LIMIT
 
 	var/mob/listeningTo
 
@@ -371,11 +372,12 @@
 		C.update_inv_hands()
 
 /obj/item/twohanded/shockpaddles/suicide_act(mob/user)
+	if(req_defib && !defib.deductcharge(revivecost))
+		user.visible_message(span_danger("[user] is putting the paddles on [user.p_their()] chest but it has no charge!"))
+		return SHAME
 	user.visible_message(span_danger("[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
-	if(req_defib)
-		defib.deductcharge(revivecost)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
-	return (OXYLOSS)
+	return OXYLOSS
 
 /obj/item/twohanded/shockpaddles/dropped(mob/user)
 	if(!req_defib)
@@ -484,7 +486,7 @@
 	if(req_defib)
 		defib.cooldowncheck(user)
 	else
-		recharge(60)
+		recharge(6 SECONDS)
 
 /obj/item/twohanded/shockpaddles/proc/do_harm(mob/living/carbon/H, mob/living/user)
 	if(req_defib && defib.safety)
@@ -495,7 +497,7 @@
 		span_warning("You overcharge the paddles and begin to place them onto [H]'s chest..."))
 	busy = TRUE
 	update_icon()
-	if(do_after(user, 3 SECONDS, target = H))
+	if(do_after(user, 3 SECONDS, H))
 		user.visible_message(span_notice("[user] places [src] on [H]'s chest."),
 			span_warning("You place [src] on [H]'s chest and begin to charge them."))
 		var/turf/T = get_turf(defib)
@@ -504,7 +506,7 @@
 			T.audible_message(span_warning("\The [defib] lets out an urgent beep and lets out a steadily rising hum..."))
 		else
 			user.audible_message(span_warning("[src] let out an urgent beep."))
-		if(do_after(user, 3 SECONDS, target = H)) //Takes longer due to overcharging
+		if(do_after(user, 3 SECONDS, H)) //Takes longer due to overcharging
 			if(!H)
 				busy = FALSE
 				update_icon()
@@ -535,7 +537,7 @@
 			busy = FALSE
 			update_icon()
 			if(!req_defib)
-				recharge(60)
+				recharge(6 SECONDS)
 			if(req_defib && (defib.cooldowncheck(user)))
 				return
 	busy = FALSE
@@ -545,17 +547,17 @@
 	user.visible_message(span_warning("[user] begins to place [src] on [H]'s chest."), span_warning("You begin to place [src] on [H]'s chest..."))
 	busy = TRUE
 	update_icon()
-	if(do_after(user, 3 SECONDS, target = H)) //beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
+	if(do_after(user, 3 SECONDS, H)) //beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
 		user.visible_message(span_notice("[user] places [src] on [H]'s chest."), span_warning("You place [src] on [H]'s chest."))
 		playsound(src, 'sound/machines/defib_charge.ogg', 75, 0)
 		var/total_burn	= 0
 		var/total_brute	= 0
 		var/tplus = world.time - H.timeofdeath	//length of time spent dead
 		var/obj/item/organ/heart = H.getorgan(/obj/item/organ/heart)
-		if(do_after(user, 1.5 SECONDS, target = H))
+		if(do_after(user, 1.5 SECONDS, H))
 			if(user.job == "Medical Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
 				user.say("Clear!", forced = "defib")
-		if(do_after(user, 0.5 SECONDS, target = H)) //Counting the delay for "Clear", revive time is 5sec total
+		if(do_after(user, 0.5 SECONDS, H)) //Counting the delay for "Clear", revive time is 5sec total
 			for(var/obj/item/carried_item in H.contents)
 				if(istype(carried_item, /obj/item/clothing/suit/space))
 					if((!combat && !req_defib) || (req_defib && !defib.combat))
@@ -624,6 +626,7 @@
 					H.emote("gasp")
 					H.Jitter(100)
 					SEND_SIGNAL(H, COMSIG_LIVING_MINOR_SHOCK)
+					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 					log_combat(user, H, "revived", defib)
 				if(req_defib)
 					defib.deductcharge(revivecost)
@@ -632,7 +635,7 @@
 				if(req_defib)
 					defib.cooldowncheck(user)
 				else
-					recharge(60)
+					recharge(6 SECONDS)
 			else if (!H.getorgan(/obj/item/organ/heart))
 				user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Patient's heart is missing. Operation aborted."))
 				playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)

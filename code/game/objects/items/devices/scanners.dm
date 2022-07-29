@@ -94,6 +94,7 @@ GENE SCANNER
 	materials = list(/datum/material/iron=200)
 	var/scanmode = 0
 	var/advanced = FALSE
+	var/beep_cooldown = 0
 
 /obj/item/healthanalyzer/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
@@ -111,7 +112,9 @@ GENE SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
 	flick("[icon_state]-scan", src)	//makes it so that it plays the scan animation upon scanning, including clumsy scanning
-	playsound(src, 'sound/effects/fastbeep.ogg', 20)
+	if(beep_cooldown<world.time)
+		playsound(src, 'sound/effects/fastbeep.ogg', 20)
+		beep_cooldown = world.time+40
 
 	// Clumsiness/brain damage check
 	if ((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
@@ -375,13 +378,17 @@ GENE SCANNER
 			mutant = TRUE
 
 		to_chat(user, span_info("Species: [S.name][mutant ? "-derived mutant" : ""]"))
-	to_chat(user, span_info("Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)"))
+	var/temp_span = "notice"
+	if(M.bodytemperature <= BODYTEMP_HEAT_DAMAGE_LIMIT || M.bodytemperature >= BODYTEMP_COLD_DAMAGE_LIMIT)
+		temp_span = "warning"
+	
+	to_chat(user, "<span_class = '[temp_span]'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 
 	// Time of death
 	if(M.tod && (M.stat == DEAD || ((HAS_TRAIT(M, TRAIT_FAKEDEATH)) && !advanced)))
 		to_chat(user, "[span_info("Time of Death:")] [M.tod]")
 		var/tdelta = round(world.time - M.timeofdeath)
-		if(tdelta < (DEFIB_TIME_LIMIT * 10))
+		if(tdelta < (DEFIB_TIME_LIMIT))
 			to_chat(user, span_danger("Subject died [DisplayTimeText(tdelta)] ago, defibrillation may be possible!"))
 
 	// Wounds
@@ -419,7 +426,9 @@ GENE SCANNER
 					blood_type = R.name
 				else
 					blood_type = blood_id
-			if(C.blood_volume <= BLOOD_VOLUME_SAFE(C) && C.blood_volume > BLOOD_VOLUME_OKAY(C))
+			if(HAS_TRAIT(M, TRAIT_MASQUERADE)) //bloodsuckers
+				to_chat(user, span_info("Blood level 100%, 560 cl, type: [blood_type]"))
+			else if(C.blood_volume <= BLOOD_VOLUME_SAFE(C) && C.blood_volume > BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "[span_danger("LOW blood level [blood_percent] %, [C.blood_volume] cl,")] [span_info("type: [blood_type]")]")
 			else if(C.blood_volume <= BLOOD_VOLUME_OKAY(C))
 				to_chat(user, "[span_danger("CRITICAL blood level [blood_percent] %, [C.blood_volume] cl,")] [span_info("type: [blood_type]")]")
@@ -465,16 +474,20 @@ GENE SCANNER
 	if(istype(O, /obj/item/disk/surgery))
 		to_chat(user, span_notice("You load the surgery protocol from [O] into [src]."))
 		var/obj/item/disk/surgery/D = O
-		if(do_after(user, 1 SECONDS, target = O))
+		if(do_after(user, 1 SECONDS, O))
 			advanced_surgeries |= D.surgeries
 		return TRUE
 	if(istype(O, /obj/machinery/computer/operating))
 		to_chat(user, span_notice("You copy surgery protocols from [O] into [src]."))
 		var/obj/machinery/computer/operating/OC = O
-		if(do_after(user, 1 SECONDS, target = O))
+		if(do_after(user, 1 SECONDS, O))
 			advanced_surgeries |= OC.advanced_surgeries
 		return TRUE
 	return
+
+/obj/item/healthanalyzer/advanced/debug/Initialize()
+	. = ..()
+	advanced_surgeries = subtypesof(/datum/surgery)
 
 /// Displays wounds with extended information on their status vs medscanners
 /proc/woundscan(mob/user, mob/living/carbon/patient, obj/item/healthanalyzer/wound/scanner)
@@ -924,6 +937,46 @@ GENE SCANNER
 		return  "[HM.name] ([HM.alias])"
 	else
 		return HM.alias
+
+/obj/item/scanner_wand
+	name = "kiosk scanner wand"
+	icon = 'icons/obj/device.dmi'
+	icon_state = "scanner_wand"
+	item_state = "healthanalyzer"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	desc = "A wand that medically scans people. Inserting it into a medical kiosk makes it able to perform a health scan on the patient."
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_BULKY
+	var/selected_target = null
+
+/obj/item/scanner_wand/attack(mob/living/M, mob/living/carbon/human/user)
+	flick("[icon_state]_active", src) //nice little visual flash when scanning someone else.
+
+	if((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(25))
+		user.visible_message(span_warning("[user] targets himself for scanning."), \
+		to_chat(user, span_info("You try scanning [M], before realizing you're holding the scanner backwards. Whoops.")))
+		selected_target = user
+		return
+
+	if(!ishuman(M))
+		to_chat(user, span_info("You can only scan human-like, non-robotic beings."))
+		selected_target = null
+		return
+
+	user.visible_message(span_notice("[user] targets [M] for scanning."), \
+						span_notice("You target [M] vitals."))
+	selected_target = M
+	return
+
+/obj/item/scanner_wand/attack_self(mob/user)
+	to_chat(user, span_info("You clear the scanner's target."))
+	selected_target = null
+
+/obj/item/scanner_wand/proc/return_patient()
+	var/returned_target = selected_target
+	return returned_target
 
 #undef SCANMODE_HEALTH
 #undef SCANMODE_CHEMICAL

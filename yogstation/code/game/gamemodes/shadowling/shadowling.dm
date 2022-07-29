@@ -160,10 +160,12 @@ Made by Xhuis
 	C.draw_yogs_parts(TRUE)
 	eyes_overlay = mutable_appearance('yogstation/icons/mob/sling.dmi', "eyes", 25)
 	C.add_overlay(eyes_overlay)
+	RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/apply_darkness_speed)
 	. = ..()
 
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)
 	C.draw_yogs_parts(FALSE)
+	UnregisterSignal(C, COMSIG_MOVABLE_MOVED)
 	C.remove_movespeed_modifier(id)
 	if(eyes_overlay)
 		C.cut_overlay(eyes_overlay)
@@ -177,7 +179,6 @@ Made by Xhuis
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
 			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN)
-			H.remove_movespeed_modifier(id)
 			if(H.stat != DEAD)
 				to_chat(H, span_userdanger("The light burns you!")) //Message spam to say "GET THE FUCK OUT"
 				H.playsound_local(get_turf(H), 'sound/weapons/sear.ogg', 150, 1, pressure_affected = FALSE)
@@ -189,7 +190,6 @@ Made by Xhuis
 			H.SetKnockdown(0)
 			H.SetStun(0)
 			H.SetParalyzed(0)
-			H.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 	var/charge_time = 400 - ((SSticker.mode.thralls && SSticker.mode.thralls.len) || 0)*10
 	if(world.time >= charge_time+last_charge)
 		shadow_charges = min(shadow_charges + 1, 3)
@@ -205,6 +205,15 @@ Made by Xhuis
 			shadow_charges = min(shadow_charges - 1, 0)
 			return -1
 	return 0
+
+/datum/species/shadow/ling/proc/apply_darkness_speed(mob/living/carbon/C)
+	var/turf/T = get_turf(C)
+	var/light_amount = T.get_lumcount()
+	if(light_amount > LIGHT_DAM_THRESHOLD)
+		C.remove_movespeed_modifier(id)
+	else
+		C.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+	
 
 /datum/species/shadow/ling/lesser //Empowered thralls. Obvious, but powerful
 	name = "Lesser Shadowling"

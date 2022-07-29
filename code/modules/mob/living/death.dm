@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(permadeath, FALSE)
+
 /mob/living/gib(no_brain, no_organs, no_bodyparts)
 	var/prev_lying = lying
 	if(stat != DEAD)
@@ -74,7 +76,7 @@
 	med_hud_set_health()
 	med_hud_set_status()
 	if(!gibbed && !QDELETED(src))
-		addtimer(CALLBACK(src, .proc/med_hud_set_status), (DEFIB_TIME_LIMIT * 10) + 1)
+		addtimer(CALLBACK(src, .proc/med_hud_set_status), (DEFIB_TIME_LIMIT) + 1)
 	stop_pulling()
 
 	. = ..()
@@ -88,5 +90,8 @@
 	for(var/s in sharedSoullinks)
 		var/datum/soullink/S = s
 		S.sharerDies(gibbed)
+	
+	if(GLOB.permadeath)
+		ghostize(FALSE)
 
 	return TRUE

@@ -15,6 +15,7 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	sharpness = SHARP_POINTY
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5)
 
 /obj/item/reagent_containers/syringe/Initialize()
 	. = ..()
@@ -193,6 +194,13 @@
 				injoverlay = "inject"
 		add_overlay(injoverlay)
 		M.update_inv_hands()
+	
+/obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	reagents.trans_to(embedde, amount_per_transfer_from_this)
+	return TRUE
+	
+/obj/item/reagent_containers/syringe/embed_tick(embedde, part)
+	reagents.trans_to(embedde, amount_per_transfer_from_this * 0.2)
 
 /obj/item/reagent_containers/syringe/epinephrine
 	name = "syringe (epinephrine)"
@@ -286,7 +294,6 @@
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
 	volume = 10
 	proj_piercing = 1
-
 /obj/item/reagent_containers/syringe/crude
 	name = "crude syringe"
 	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."
@@ -296,3 +303,15 @@
 	name = "spider extract syringe"
 	desc = "Contains crikey juice - makes any gold core create the most deadly companions in the world."
 	list_reagents = list(/datum/reagent/spider_extract = 1)
+
+/obj/item/reagent_containers/syringe/dart
+	name = "reagent dart"
+	amount_per_transfer_from_this = 10
+	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
+
+/obj/item/reagent_containers/syringe/dart/temp
+	item_flags = DROPDEL
+
+/obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
+	qdel(src)
+	

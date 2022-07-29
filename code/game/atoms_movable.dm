@@ -492,6 +492,12 @@
 /atom/movable/proc/forceMove(atom/destination)
 	. = FALSE
 	if(destination)
+		var/turf/new_turf = get_turf(destination)
+		if(new_turf && ismob(src))
+			var/mob/M = src
+			if(is_secret_level(new_turf.z) && !M.client?.holder)
+				return
+
 		. = doMove(destination)
 	else
 		CRASH("No valid destination passed into forceMove")
@@ -564,21 +570,18 @@
 //movement_dir == 0 when stopping or any dir when trying to move
 /atom/movable/proc/Process_Spacemove(movement_dir = 0)
 	if(has_gravity(src))
-		return 1
-
-	if(pulledby)
-		return 1
+		return TRUE
 
 	if(throwing)
-		return 1
+		return TRUE
 
 	if(!isturf(loc))
-		return 1
+		return TRUE
 
 	if(locate(/obj/structure/lattice) in range(1, get_turf(src))) //Not realistic but makes pushing things in space easier
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 
 /atom/movable/proc/newtonian_move(direction) //Only moves the object if it's under no gravity
@@ -784,8 +787,8 @@
 	else if(direction & WEST)
 		pixel_x_diff = -8
 
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
-	animate(src, pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 2)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 0.2 SECONDS)
+	animate(src, pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 0.2 SECONDS)
 
 /atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item)
 	var/image/I
@@ -825,13 +828,12 @@
 	if(ismob(src) &&  ismob(A) && (!used_item))
 		var/mob/M = src
 		t_color = M.a_intent == INTENT_HARM ? "#ff0000" : "#ffffff"
-	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3, color = t_color) //yogs end
+	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 0.3 SECONDS, color = t_color) //yogs end
 
 /atom/movable/vv_get_dropdown()
 	. = ..()
-	. -= "Jump to"
-	.["Follow"] = "?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]"
-	.["Get"] = "?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]"
+	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
+	. += "<option value='?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"
 
 /atom/movable/proc/ex_check(ex_id)
 	if(!ex_id)
@@ -847,12 +849,12 @@
 	if(throwing)
 		return
 	if(on && !(movement_type & FLOATING))
-		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
-		sleep(10)
-		animate(src, pixel_y = pixel_y - 2, time = 10, loop = -1)
+		animate(src, pixel_y = pixel_y + 2, time = 1 SECONDS, loop = -1)
+		sleep(1 SECONDS)
+		animate(src, pixel_y = pixel_y - 2, time = 1 SECONDS, loop = -1)
 		setMovetype(movement_type | FLOATING)
 	else if (!on && (movement_type & FLOATING))
-		animate(src, pixel_y = initial(pixel_y), time = 10)
+		animate(src, pixel_y = initial(pixel_y), time = 1 SECONDS)
 		setMovetype(movement_type & ~FLOATING)
 
 /* 	Language procs
@@ -982,6 +984,6 @@
 	flick_overlay(I, GLOB.clients, 6)
 	var/matrix/M = new
 	M.Turn(pick(-30, 30))
-	animate(I, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 3, transform = M, easing = CUBIC_EASING)
-	sleep(1)
-	animate(I, alpha = 0, transform = matrix(), time = 1)
+	animate(I, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 0.3 SECONDS, transform = M, easing = CUBIC_EASING)
+	sleep(0.1 SECONDS)
+	animate(I, alpha = 0, transform = matrix(), time = 0.1 SECONDS)

@@ -82,7 +82,7 @@
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full/engi
 	assignedrole = "Free Miner Engineer"
 	outfit = /datum/outfit/freeminer/engi
 	prompt_name = "a free miner engineer"
@@ -92,7 +92,7 @@
 	l_pocket = null
 	r_pocket = null
 	gloves = /obj/item/clothing/gloves/color/yellow
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full/engi
 	id = /obj/item/card/id/freeminer/engi
 
 /obj/effect/mob_spawn/human/free_miner/captain

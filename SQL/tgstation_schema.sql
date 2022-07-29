@@ -116,6 +116,19 @@ CREATE TABLE IF NOT EXISTS `ban` (
 ) ENGINE=InnoDB AUTO_INCREMENT=39587 DEFAULT CHARSET=utf8;
 
 
+DROP TABLE IF EXISTS `bound_credentials`;
+CREATE TABLE `bound_credentials` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ckey` varchar(32) NOT NULL,
+  `computerid` varchar(32) DEFAULT NULL,
+  `ip` int(10) unsigned DEFAULT NULL,
+  `flags` set('bypass_bans') DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_ckey_lookup` (`ckey`),
+  KEY `idx_cid_lookup` (`computerid`),
+  KEY `idx_ip_lookup` (`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `connection_log`;
 CREATE TABLE IF NOT EXISTS `connection_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
