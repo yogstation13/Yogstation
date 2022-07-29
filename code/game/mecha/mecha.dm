@@ -1020,7 +1020,7 @@
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
 		Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
 	else
-		to_chat(brainmob, "<b>Remember, you are still member of the crew act like it</b>")//yogs end
+		to_chat(brainmob, "<b>If you were a member of the crew, you still are! Do not use this new form as an excuse to break rules.</b>")//yogs end
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 	GrantActions(brainmob)

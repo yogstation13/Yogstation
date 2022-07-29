@@ -228,9 +228,9 @@
 
 		else
 			. += span_notice("The MMI indicates the brain is active.")
-	. += span_notice("It has a port for reading AI law modules. Any AI uploaded using this MMI will use these uploded laws.")
+	. += span_notice("It has a port for reading AI law modules.")
 	if(laws)
-		. += "<b>The following laws are loaded into [src]: </b>"
+		. += span_notice("Any AI uploaded using this MMI will use these uploaded laws:")
 		for(var/law in laws.get_law_list())
 			. += law
 
