@@ -15,6 +15,9 @@
 /area/medical/psych
 	name = "Psychiatrists office"
 	icon_state = "exam_room"
+	mood_bonus = 3
+	mood_message = "<span class='nicegreen'>I feel at ease here.\n</span>"
+	ambientsounds = list('sound/ambience/aurora_caelus_short.ogg')
 
 /area/clerk
 	name = "Clerks office"

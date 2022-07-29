@@ -204,6 +204,14 @@
 	mood_change = -25
 	timeout = 4 MINUTES
 
+/datum/mood_event/deaths_door
+	description = "<span class='boldwarning'>This is it... I'm really going to die.</span>\n"
+	mood_change = -20
+
+/datum/mood_event/gunpoint
+	description = "<span class='boldwarning'>This guy is insane! I better be careful....</span>\n"
+	mood_change = -10
+
 //These are unused so far but I want to remember them to use them later
 /datum/mood_event/cloned_corpse
 	description = "<span class='boldwarning'>I recently saw my own corpse...</span>\n"

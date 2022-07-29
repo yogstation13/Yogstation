@@ -48,3 +48,9 @@
 					rev.remove_revolutionary(TRUE)
 					visible_message("<span class='danger'>The electric shock cleared [buckled_mob]'s brainwashing!'")
 	visible_message(span_danger("The electric chair went off!"), span_italics("You hear a deep sharp shock!"))
+
+/obj/structure/chair/e_chair/post_buckle_mob(mob/living/L)
+	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "dying", /datum/mood_event/deaths_door)
+
+/obj/structure/chair/e_chair/post_unbuckle_mob(mob/living/L)
+	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "dying") 
