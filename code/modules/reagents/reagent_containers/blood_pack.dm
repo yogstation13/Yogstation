@@ -29,7 +29,7 @@
 			return
 		var/gulp_size = 5
 		if(is_vampire(target))
-			gulp_size = 20
+			gulp_size = 10
 			var/datum/antagonist/vampire/V = is_vampire(target)
 			V.usable_blood += 5
 		
