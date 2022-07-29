@@ -567,37 +567,3 @@
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
 
-/obj/item/reagent_containers/food/snacks/dolphincereal
-	name = "dolphin cereal"
-	desc = "Finest dolphin skin flakes. This looks flippin' disgusting."
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "dolphincereal"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("milk" = 1, "old cardboard" = 1)
-
-/obj/item/reagent_containers/food/snacks/dolphinandchips
-	name = "dolphin and chips"
-	desc = "Dolphin and chips, wrapped in the finest newspaper from the clown's newscaster channel."
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "dolphinandchips"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("dolphin meat" = 1, "fries" = 1)
-
-/obj/item/reagent_containers/food/snacks/youmonster
-	name = "full dolphin platter"
-	desc = "A whole dolphin. Good luck eating this. (WARNING: do not consume any wafer thin mints after consumption)"
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "youmonster"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("dolphin meat" = 1, "regret" = 1)
-
-/obj/item/reagent_containers/food/snacks/seaweedsheet
-	name = "seaweed sheet"
-	desc = "A dried sheet of seaweed used for making sushi."
-	icon_state = "seaweedsheet"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("seaweed" = 1)
-	foodtype = VEGETABLES

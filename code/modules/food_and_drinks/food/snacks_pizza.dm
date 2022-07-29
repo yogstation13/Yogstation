@@ -244,10 +244,37 @@
 /obj/item/reagent_containers/food/snacks/pizzaslice/pineapple
 	name = "\improper Hawaiian pizza slice"
 	desc = "A slice of delicious controversy."
-	icon_state = "pineapplepizzaslice"
+	icon_state = "pineapplepizza"
 	filling_color = "#FF4500"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pineapple" = 2, "ham" = 2)
 	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
+
+/obj/item/reagent_containers/food/snacks/pizza/seafood
+	name = "\improper Tuna pizza"
+	desc = "Steak of the sea, now topping of the sea."
+	icon_state = "tunapizza"
+	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/seafood
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 8) //got that omega 3 fatty acid
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "tuna" = 2)
+	foodtype = GRAIN | VEGETABLES | SEAFOOD | DAIRY
+
+/obj/item/reagent_containers/food/snacks/pizza/seafood/raw
+	name = "raw Tuna pizza"
+	icon_state = "tunapizza_raw"
+	foodtype =  GRAIN | VEGETABLES |  SEAFOOD | DAIRY | RAW
+	burns_in_oven = FALSE
+	slice_path = null
+
+/obj/item/reagent_containers/food/snacks/pizza/seafood/raw/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/seafood, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/pizzaslice/seafood
+	name = "\improper Tuna pizza slice"
+	desc = "A slice of delicious tuna pizza."
+	icon_state = "tunapizzaslice"
+	filling_color = "#ffdebf"
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "tuna" = 2)
+	foodtype = GRAIN | VEGETABLES | SEAFOOD | DAIRY
 
 /obj/item/reagent_containers/food/snacks/pizza/arnold
 	name = "\improper Arnold pizza"

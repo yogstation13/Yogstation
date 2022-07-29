@@ -30,6 +30,7 @@
 					CAT_BURGER,
 					CAT_CAKE,
 					CAT_EGG,
+					CAT_BAIT, //this is alphabetical in game
 					CAT_MEAT,
 					CAT_MISCFOOD,
 					CAT_PASTRY,
@@ -39,7 +40,7 @@
 					CAT_SANDWICH,
 					CAT_SOUP,
 					CAT_SPAGHETTI,
-					CAT_BAIT,
+					CAT_SEAFOOD,
 				),
 				CAT_DRINK = CAT_NONE,
 				CAT_APPAREL = list(

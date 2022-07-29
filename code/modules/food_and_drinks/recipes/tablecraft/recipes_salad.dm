@@ -106,3 +106,67 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/salad/edensalad
 	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/friedrice
+	name = "Fried Rice"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/reagent_containers/food/snacks/grown/rice = 3,
+		/datum/reagent/consumable/soysauce = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/salad/friedrice
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/friedrice_veg
+	name = "Veggie Fried Rice"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/reagent_containers/food/snacks/grown/rice = 3,
+		/datum/reagent/consumable/soysauce = 1,
+		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
+		/obj/item/reagent_containers/food/snacks/grown/garlic = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1,
+		/obj/item/reagent_containers/food/snacks/grown/corn = 1,
+		/obj/item/reagent_containers/food/snacks/grown/carrot = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/salad/friedrice/veggie
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/friedrice_meat
+	name = "Meat Fried Rice"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/reagent_containers/food/snacks/grown/rice = 3,
+		/datum/reagent/consumable/soysauce = 1,
+		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/salad/friedrice/meat
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/friedrice_shrimp
+	name = "Shrimp Fried Rice"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/reagent_containers/food/snacks/grown/rice = 3,
+		/datum/reagent/consumable/soysauce = 1,
+		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/salad/friedrice/shrimp
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/friedrice_supreme
+	name = "Supreme Fried Rice"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/reagent_containers/food/snacks/grown/rice = 3,
+		/datum/reagent/consumable/soysauce = 1,
+		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
+		/obj/item/reagent_containers/food/snacks/grown/garlic = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cabbage = 1,
+		/obj/item/reagent_containers/food/snacks/grown/corn = 1,
+		/obj/item/reagent_containers/food/snacks/grown/carrot = 1,
+		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1,
+		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/salad/friedrice/supreme
+	subcategory = CAT_SALAD

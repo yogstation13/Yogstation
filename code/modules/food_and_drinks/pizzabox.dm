@@ -308,6 +308,7 @@
 		/obj/item/reagent_containers/food/snacks/pizza/mushroom = 1,
 		/obj/item/reagent_containers/food/snacks/pizza/margherita = 1,
 		/obj/item/reagent_containers/food/snacks/pizza/sassysage = 0.8,
+		/obj/item/reagent_containers/food/snacks/pizza/seafood = 0.8,
 		/obj/item/reagent_containers/food/snacks/pizza/vegetable = 0.8,
    		/obj/item/reagent_containers/food/snacks/pizza/pineapple = 0.5,
 		/obj/item/reagent_containers/food/snacks/pizza/donkpocket = 0.3,

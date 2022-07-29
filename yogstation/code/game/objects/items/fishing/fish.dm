@@ -8,6 +8,7 @@
 	tastes = list("fishy" = 1)
 	foodtype = MEAT | SEAFOOD
 	slice_path = /obj/item/reagent_containers/food/snacks/carpmeat/fish
+	juice_results = list(/datum/reagent/consumable/cooking_oil/fish = 5)
 
 	//fish handling stuff
 	var/length = 0
