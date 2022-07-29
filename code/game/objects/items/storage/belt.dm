@@ -365,7 +365,9 @@
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
-		/obj/item/restraints/legcuffs/bola/watcher
+		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/stack/sheet/mineral,
+		/obj/item/grenade/plastic/miningcharge
 		))
 
 
