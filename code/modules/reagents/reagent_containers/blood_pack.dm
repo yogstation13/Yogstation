@@ -31,6 +31,7 @@
 		if(is_vampire(target))
 			var/datum/antagonist/vampire/V = is_vampire(target)
 			V.usable_blood += 5
+		
 		if(IS_BLOODSUCKER(target))
 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			bloodsuckerdatum.AddBloodVolume(5)
