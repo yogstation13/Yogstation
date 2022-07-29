@@ -220,17 +220,17 @@
 		add_fingerprint(user)
 
 /obj/machinery/suit_storage_unit/proc/cook()
+	var/mob/living/mob_occupant = occupant
 	if(uv_cycles)
 		uv_cycles--
 		uv = TRUE
 		locked = TRUE
 		update_icon()
 		if(occupant)
-			var/mob/living/mob_occupant = occupant
 			if(uv_super)
 				mob_occupant.adjustFireLoss(rand(20, 36))
 			else
-				mob_occupant.adjustFireLoss(rand(10, 16))
+				mob_occupant.adjustFireLoss(rand(2, 8))
 			mob_occupant.emote("scream")
 		addtimer(CALLBACK(src, .proc/cook), 50)
 	else
@@ -255,6 +255,7 @@
 				visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
 			else
 				visible_message(span_warning("[src]'s door slides open, barraging you with the nauseating smell of charred flesh."))
+				mob_occupant.radiation = 0
 			playsound(src, 'sound/machines/airlockclose.ogg', 25, 1)
 			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
 			if(suit)
