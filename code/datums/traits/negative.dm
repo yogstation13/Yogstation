@@ -784,6 +784,11 @@
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
 
+/datum/quirk/allergic/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOBLOOD in prefs.pref_species.species_traits)) //can't lose blood if your species doesn't have any
+		return "You dont have blood!"
+	return FALSE
+
 /datum/quirk/brain_damage
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpy to the station."
