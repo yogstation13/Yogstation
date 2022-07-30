@@ -181,7 +181,7 @@
 	var/ice_creamed = 0
 	var/cone_type
 	bitesize = 3
-	foodtype = DAIRY
+	foodtype = GRAIN
 
 /obj/item/reagent_containers/food/snacks/icecream/Initialize()
 	. = ..()
@@ -208,18 +208,22 @@
 	switch (flavour_name) // adding the actual reagents advertised in the ingredient list
 		if ("vanilla")
 			desc = "A delicious [cone_type] cone filled with vanilla ice cream. All the other ice creams take content from it."
+			foodtype = DAIRY | SUGAR
 		if ("chocolate")
 			desc = "A delicious [cone_type] cone filled with chocolate ice cream. Surprisingly, made with real cocoa."
-			foodtype = DAIRY | CHOCOLATE
+			foodtype = DAIRY | CHOCOLATE | SUGAR
 			reagents.add_reagent(/datum/reagent/consumable/coco, 2)
 		if ("strawberry")
 			desc = "A delicious [cone_type] cone filled with strawberry ice cream. Definitely not made with real strawberries."
+			foodtype = DAIRY | FRUIT | SUGAR
 			reagents.add_reagent(/datum/reagent/consumable/berryjuice, 2)
 		if ("blue")
 			desc = "A delicious [cone_type] cone filled with blue ice cream. Made with real... blue?"
+			foodtype = DAIRY | SUGAR | ALCOHOL
 			reagents.add_reagent(/datum/reagent/consumable/ethanol/singulo, 2)
 		if ("mob")
 			desc = "A suspicious [cone_type] cone filled with bright red ice cream. That's probably not strawberry..."
+			foodtype = DAIRY | MICE | SUGAR
 			reagents.add_reagent(/datum/reagent/liquidgibs, 2)
 	ice_creamed = 1
 
