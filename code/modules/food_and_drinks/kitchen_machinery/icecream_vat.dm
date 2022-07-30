@@ -190,8 +190,6 @@
 			reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		if ("chocolate")
 			reagents.add_reagent(/datum/reagent/consumable/coco, 1) // chocolate ain't as nutritious kids
-		if ("taiyaki")
-			reagents.add_reagent(/datum/reagent/consumable/cooking_oil/fish, 1)
 
 	desc = "Delicious [cone_name] cone, but no ice cream."
 
