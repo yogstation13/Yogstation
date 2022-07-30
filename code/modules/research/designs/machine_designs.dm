@@ -464,7 +464,7 @@
 	id = "recycler"
 	build_path = /obj/item/circuitboard/machine/recycler
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/scanner_gate
 	name = "Machine Design (Scanner Gate)"
@@ -472,7 +472,7 @@
 	id = "scanner_gate"
 	build_path = /obj/item/circuitboard/machine/scanner_gate
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/holopad
 	name = "Machine Design (AI Holopad Board)"
