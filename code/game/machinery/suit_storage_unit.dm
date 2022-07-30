@@ -25,7 +25,7 @@
 
 	var/uv = FALSE
 	var/uv_super = FALSE
-	var/uv_cycles = 6
+	var/uv_cycles = 3
 	var/message_cooldown
 	var/breakout_time = 300
 
