@@ -4,7 +4,6 @@
 #define ICECREAM_BLUE 4
 #define CONE_WAFFLE 5
 #define CONE_CHOC 6
-#define CONE_FISH 7
 
 /obj/machinery/icecream_vat
 	name = "ice cream vat"
@@ -42,8 +41,6 @@
 			return list(/datum/reagent/consumable/flour, /datum/reagent/consumable/sugar)
 		if(CONE_CHOC)
 			return list(/datum/reagent/consumable/flour, /datum/reagent/consumable/sugar, /datum/reagent/consumable/coco)
-		if(CONE_FISH)
-			return list(/datum/reagent/consumable/flour, /datum/reagent/consumable/sugar, /datum/reagent/consumable/cooking_oil/fish)
 		else //ICECREAM_VANILLA
 			return list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/vanilla)
 
@@ -60,8 +57,6 @@
 			return "waffle"
 		if(CONE_CHOC)
 			return "chocolate"
-		if(CONE_FISH)
-			return "taiyaki"
 		else //ICECREAM_VANILLA
 			return "vanilla"
 
@@ -85,7 +80,6 @@
 	dat += "<b>Blue ice cream:</b> <a href='?src=[REF(src)];select=[ICECREAM_BLUE]'><b>Select</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BLUE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[ICECREAM_BLUE];amount=5'><b>x5</b></a> [product_types[ICECREAM_BLUE]] dollops left. (Ingredients: milk, ice, singulo)<br></div>"
 	dat += "<br><b>CONES</b><br><div class='statusDisplay'>"
 	dat += "<b>Waffle cones:</b> <a href='?src=[REF(src)];cone=[CONE_WAFFLE]'><b>Dispense</b></a> <a href='?src=[REF(src)];make=[CONE_WAFFLE];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[CONE_WAFFLE];amount=5'><b>x5</b></a> [product_types[CONE_WAFFLE]] cones left. (Ingredients: flour, sugar)<br>"
-	dat += "<b>Taiyaki cones:</b> <a href='?src=[REF(src)];cone=[CONE_FISH]'><b>Dispense</b></a> <a href='?src=[REF(src)];make=[CONE_FISH];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[CONE_FISH];amount=5'><b>x5</b></a> [product_types[CONE_FISH]] cones left. (Ingredients: flour, sugar, fish oil)<br>"
 	dat += "<b>Chocolate cones:</b> <a href='?src=[REF(src)];cone=[CONE_CHOC]'><b>Dispense</b></a> <a href='?src=[REF(src)];make=[CONE_CHOC];amount=1'><b>Make</b></a> <a href='?src=[REF(src)];make=[CONE_CHOC];amount=5'><b>x5</b></a> [product_types[CONE_CHOC]] cones left. (Ingredients: flour, sugar, coco powder)<br></div>"
 	dat += "<br>"
 	dat += "<b>VAT CONTENT</b><br>"
@@ -243,4 +237,3 @@
 #undef ICECREAM_BLUE
 #undef CONE_WAFFLE
 #undef CONE_CHOC
-#undef CONE_FISH
