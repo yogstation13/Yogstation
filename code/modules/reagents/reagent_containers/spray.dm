@@ -385,3 +385,4 @@
 	desc = "Warning, do not consume."
 	volume = 100
 	list_reagents = list(/datum/reagent/medicine/radscrub = 100)
+	stream_amount = 5
