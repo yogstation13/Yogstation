@@ -20,7 +20,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	burnmod = 0.9 //Circuitry isn't happy with the heat, even if plasma plating lessens it
 	coldmod = 0.8 //Cold can help to regulate, but it's not perfect
 	heatmod = 0.9 //Again, circuitry isn't happy, but the plating they have on the outside can protect a little
-	speedmod = 1 //Effectively a plasteel body, big and slow
+	speedmod = 0.5 //Effectively a plasteel body, big and slow, not so brutally slow that you can't actually do anything
 	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist.
 	siemens_coeff = 1.75 //Computers REALLY don't like being shorted out
 	payday_modifier = 0.8 //Useful to NT for engineering, but relations between humans and preterni tend to not be the greatest
