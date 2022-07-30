@@ -182,3 +182,43 @@
 	icon_state = "rainbow_sc"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/laughter = 25)
 	tastes = list("sunlight" = 5, "light" = 5, "slime" = 5, "paint" = 3, "clouds" = 3)
+
+/obj/item/reagent_containers/food/snacks/taiyaki
+	name = "vanilla taiyaki"
+	desc = "A vanilla flavored ice cream treat with a rolled cookie and cherry, in a whimsical fish shaped cone."
+	icon_state = "deluxe_taiyaki_vanilla"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2)
+	tastes = list("ice cream" = 1, "cherry" = 1, "cookie" = 1, "vanilla" = 1)
+	foodtype = DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/taiyaki/chocolate
+	name = "chocolate taiyaki"
+	desc = "A chocolate flavored ice cream treat with a rolled cookie and cherry, in a whimsical fish shaped cone."
+	icon_state = "deluxe_taiyaki_chocolate"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2,  /datum/reagent/consumable/coco = 2)
+	tastes = list("ice cream" = 1, "cherry" = 1, "cookie" = 1, "chocolate" = 1)
+	foodtype = FRUIT | DAIRY | SUGAR | CHOCOLATE
+
+/obj/item/reagent_containers/food/snacks/taiyaki/strawberry
+	name = "strawberry taiyaki"
+	desc = "A strawberry flavored ice cream treat with a rolled cookie and cherry, in a whimsical fish shaped cone."
+	icon_state = "deluxe_taiyaki_strawberry"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/consumable/berryjuice = 2)
+	tastes = list("ice cream" = 1, "blue cherry" = 1, "cookie" = 1, "strawberry" = 1)
+	foodtype = FRUIT | DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/taiyaki/blue
+	name = "blue taiyaki"
+	desc = "A...blue...flavored ice cream treat with a rolled cookie and cherry, in a whimsical fish shaped cone."
+	icon_state = "deluxe_taiyaki_vanilla"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/consumable/ethanol/singulo = 2)
+	tastes = list("ice cream" = 1, "cherry" = 1, "cookie" = 1, "blue" = 1)
+	foodtype = ALCOHOL | DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/taiyaki/mobflavor
+	name = "red taiyaki"
+	desc = "A...red...flavored ice cream treat with a rolled cookie and cherry, in a whimsical fish shaped cone. You're pretty sure that's not strawberry?"
+	icon_state = "deluxe_taiyaki_strawberry"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/blood = 1)
+	tastes = list("ice cream" = 1, "blue cherry" = 1, "cookie" = 1, "blood" = 1)
+	foodtype = DAIRY | SUGAR | MICE

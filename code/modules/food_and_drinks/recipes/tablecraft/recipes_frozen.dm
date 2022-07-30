@@ -47,15 +47,63 @@
 	subcategory = CAT_ICE
 
 /datum/crafting_recipe/food/taiyaki
-	name ="Deluxe Vanilla Taiyaki"
+	name ="Vanilla Taiyaki"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
 		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/datum/reagent/consumable/cooking_oil/fish = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/honkdae
+	result = /obj/item/reagent_containers/food/snacks/taiyaki
 	subcategory = CAT_ICE
 
+/datum/crafting_recipe/food/taiyaki/chocolate
+	name ="Chocolate Taiyaki"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/cookie = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
+		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/datum/reagent/consumable/cooking_oil/fish = 1,
+		/datum/reagent/consumable/coco = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/taiyaki/chocolate
+	subcategory = CAT_ICE
+
+/datum/crafting_recipe/food/taiyaki/strawberry
+	name ="Strawberry Taiyaki"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/cookie = 1,
+		/obj/item/reagent_containers/food/snacks/grown/bluecherries = 1,
+		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/datum/reagent/consumable/cooking_oil/fish = 1,
+		/datum/reagent/consumable/berryjuice = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/taiyaki/strawberry
+	subcategory = CAT_ICE
+
+/datum/crafting_recipe/food/taiyaki/blue
+	name ="Blue Taiyaki"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/cookie = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
+		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/datum/reagent/consumable/cooking_oil/fish = 1,
+		/datum/reagent/consumable/ethanol/singulo = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/taiyaki/blue
+	subcategory = CAT_ICE
+
+/datum/crafting_recipe/food/taiyaki/mobflavor
+	name ="Blood Taiyaki"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/cookie = 1,
+		/obj/item/reagent_containers/food/snacks/grown/bluecherries = 1,
+		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/datum/reagent/consumable/cooking_oil/fish = 1,
+		/datum/reagent/blood = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/taiyaki/mobflavor
+	subcategory = CAT_ICE
 
 //////////////////////////SNOW CONES///////////////////////
 
