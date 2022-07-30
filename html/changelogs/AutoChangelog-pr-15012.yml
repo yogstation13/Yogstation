@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "quirks that a species can't have are no longer kept if the species is switched to after confirming quirks"
-  - bugfix: "several quirks are now properly blacklisted from species they wouldn't effect"

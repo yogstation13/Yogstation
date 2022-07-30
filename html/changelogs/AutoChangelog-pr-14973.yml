@@ -1,9 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - rscadd: "Added new botany bounties!"
-  - tweak: "Appendix bounty now pays more."
-  - tweak: "Mining Progression Bounties now pay considerably more instead of a pittance."
-  - tweak: "Omega Weed bounty now pays a lot more."
-  - tweak: "adjusts payout of basic and advanced bar drink bounties, to reflect the difficulty differences in making them"
-  - spellcheck: "fixed Metal Hydrogen Axe bounty description."
