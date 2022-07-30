@@ -26,8 +26,7 @@
 		/datum/reagent/consumable/coco = 5,
 		/datum/reagent/consumable/vanilla = 5,
 		/datum/reagent/consumable/berryjuice = 5,
-		/datum/reagent/consumable/ethanol/singulo = 5,
-		/datum/reagent/consumable/cooking_oil/fish = 5)
+		/datum/reagent/consumable/ethanol/singulo = 5)
 
 /obj/machinery/icecream_vat/proc/get_ingredient_list(type)
 	switch(type)
