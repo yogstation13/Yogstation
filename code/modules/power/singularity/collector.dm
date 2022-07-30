@@ -35,9 +35,9 @@
 	/// What is it producing
 	var/mode = POWER
 	/// What gasses are we using
-	var/list/using = list()
+	var/list/using = list(/datum/gas/plasma)
 	/// Gasses we give
-	var/list/giving = list()
+	var/list/giving = list(/datum/gas/tritium = 1)
 	/// Last output used to calculate per minute
 	var/last_output = 0
 
