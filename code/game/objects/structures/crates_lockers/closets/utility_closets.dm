@@ -138,6 +138,7 @@
 	new /obj/item/storage/firstaid/toxin(src)
 	new /obj/item/storage/pill_bottle/penacid(src)
 	new /obj/item/storage/pill_bottle/mutadone(src)
+	new /obj/item/reagent_containers/spray/radbgone(src)
 
 /*
  * Bombsuit closet

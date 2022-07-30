@@ -378,3 +378,10 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
 	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
+
+// Rad-B-Gone
+/obj/item/reagent_containers/spray/radbgone
+	name = "Rad-B-Gone"
+	desc = "Warning, do not consume."
+	volume = 100
+	list_reagents = list(/datum/reagent/medicine/radscrub = 100)
