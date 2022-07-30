@@ -756,6 +756,20 @@
 					/obj/item/paper/guides/conveyor)
 	crate_name = "conveyor assembly crate"
 
+/datum/supply_pack/engineering/atmos/fire
+	name = "Advanced Atmos Firesuit Crate"
+	desc = "Contains 4 atmos firesuits"
+	cost = 2000
+	contains = list(/obj/item/clothing/suit/fire/atmos,
+					/obj/item/clothing/suit/fire/atmos,
+					/obj/item/clothing/suit/fire/atmos,
+					/obj/item/clothing/suit/fire/atmos,
+					/obj/item/clothing/head/hardhat/atmos,
+					/obj/item/clothing/head/hardhat/atmos,
+					/obj/item/clothing/head/hardhat/atmos,
+					/obj/item/clothing/head/hardhat/atmos)
+	crate_name = "advanced atmos firesuit crate"
+
 /datum/supply_pack/engineering/engiequipment
 	name = "Engineering Gear Crate"
 	desc = "Gear up with three toolbelts, high-visibility vests, welding goggles, hardhats, and two pairs of meson goggles!"
