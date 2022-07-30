@@ -14,8 +14,8 @@
 
 /obj/item/ammo_casing/energy/lasergun/mounted
 	projectile_type = /obj/item/projectile/beam/laser/mounted
-	e_cost = 120
-	variance = 10
+	e_cost = 140
+	variance = 15
 	select_name = "kill"
 
 /obj/item/ammo_casing/energy/lasergun/old
