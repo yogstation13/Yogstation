@@ -1640,6 +1640,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/shop)
+"Os" = (
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_y = -31
+	},
+/obj/machinery/light,
+/obj/structure/chair/stool,
+/turf/open/floor/wood,
+/area/ruin/powered/fishing)
 "OG" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/trimline/green/filled/line{
@@ -2008,14 +2017,6 @@
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/hall)
-"Yc" = (
-/obj/structure/sign/painting{
-	pixel_y = -31
-	},
-/obj/machinery/light,
-/obj/structure/chair/stool,
-/turf/open/floor/wood,
-/area/ruin/powered/fishing)
 "Yl" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 8
@@ -2627,7 +2628,7 @@ ZT
 ZT
 ZT
 AS
-Yc
+Os
 gZ
 qQ
 av
