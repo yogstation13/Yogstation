@@ -145,7 +145,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if(prob(30/severity) && owner && (organ_flags & ORGAN_FAILING))
+	if(owner)
 		Retract()
 		owner.visible_message(span_danger("A loud bang comes from [owner]\'s [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm!"))
 		playsound(get_turf(owner), 'sound/weapons/flashbang.ogg', 100, 1)
@@ -161,6 +161,7 @@
 	desc = "An arm cannon implant that fires lethal laser beams. The cannon emerges from the subject's arm and remains inside when not in use. Has a non-replacible self-charging power cell."
 	icon_state = "arm_laser"
 	contents = newlist(/obj/item/gun/energy/laser/mounted)
+	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/gun/laser/l
 	zone = BODY_ZONE_L_ARM
@@ -179,6 +180,7 @@
 	desc = "A variant of the arm cannon implant that fires electrodes and disabler shots. The cannon emerges from the subject's arm and remains inside when not in use. Has a non-replacible self-charging power cell."
 	icon_state = "arm_taser"
 	contents = newlist(/obj/item/gun/energy/e_gun/advtaser/mounted)
+	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/gun/taser/l
 	zone = BODY_ZONE_L_ARM
@@ -188,6 +190,7 @@
 	desc = "A variant of the arm laser implant that fires disabler shots. The laser emerges from the subject's arm and remains inside when not in use. Has a non-replacible self-charging power cell."
 	icon_state = "arm_taser"
 	contents = newlist(/obj/item/gun/energy/disabler/cyborg/mounted)
+	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/gun/disabler/l
 	zone = BODY_ZONE_L_ARM
