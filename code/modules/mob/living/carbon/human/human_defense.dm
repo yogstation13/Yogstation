@@ -33,7 +33,7 @@
 			if(C.body_parts_covered & def_zone.body_part)
 				protection += C.armor.getRating(d_type)
 			else if(C.body_parts_partial_covered & def_zone.body_part)
-				protection += C.armor.getRating(d_type) / 2
+				protection += C.armor.getRating(d_type) * 0.5
 	protection += physiology.armor.getRating(d_type)
 	return protection
 
