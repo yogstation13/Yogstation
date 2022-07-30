@@ -435,7 +435,7 @@
 
 //armguns
 
-/datum/design/cyberimp_laser
+/*/datum/design/cyberimp_laser //commented out because ""sec printing bad"" - Gus
 	name = "Arm Laser Implant"
 	desc = "A concealed self-recharging low-power laser gun, designed to be installed on the subject's arm."
 	id = "ci-laser"
@@ -456,3 +456,4 @@
 	build_path = /obj/item/organ/cyberimp/arm/gun/disabler
 	category = list("Implants", "Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+*/
