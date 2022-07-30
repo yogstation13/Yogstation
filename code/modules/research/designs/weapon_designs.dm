@@ -440,7 +440,7 @@
 	desc = "A concealed self-recharging low-power laser gun, designed to be installed on the subject's arm."
 	id = "ci-laser"
 	build_type = PROTOLATHE
-	materials = list (/datum/material/iron = 8000, /datum/material/glass = 2000, /datum/material/uranium = 1500, /datum/material/titanium = 2000, /datum/material/silver = 1500)
+	materials = list (/datum/material/iron = 8000, /datum/material/glass = 2000, /datum/material/uranium = 1500, /datum/material/titanium = 2000, /datum/material/silver = 1500, /datum/material/plastic = 20000)
 	construction_time = 200
 	build_path = /obj/item/organ/cyberimp/arm/gun/laser/weak
 	category = list("Implants", "Weapons")
@@ -451,7 +451,7 @@
 	desc = "A concealed self-recharging disabler gun, designed to be installed on the subject's arm."
 	id = "ci-disabler"
 	build_type = PROTOLATHE
-	materials = list (/datum/material/iron = 8000, /datum/material/glass = 2000, /datum/material/uranium = 1500, /datum/material/titanium = 2000, /datum/material/silver = 1500)
+	materials = list (/datum/material/iron = 8000, /datum/material/glass = 2000, /datum/material/uranium = 1500, /datum/material/titanium = 2000, /datum/material/silver = 1500, /datum/material/plastic = 20000)
 	construction_time = 200
 	build_path = /obj/item/organ/cyberimp/arm/gun/disabler
 	category = list("Implants", "Weapons")

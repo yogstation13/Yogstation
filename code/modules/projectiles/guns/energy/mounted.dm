@@ -17,9 +17,11 @@
 	desc = "An arm mounted weapon that fires disabler shots."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "taser"
-	item_state = "taser"
+	item_state = "armcannonstun4"
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/cyborg/weak)
 	force = 5
 	selfcharge = 1
+	slowcharge = TRUE
 	can_flashlight = FALSE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses neural signals instead
 
@@ -43,6 +45,7 @@
 
 /obj/item/gun/energy/laser/mounted/weak
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/mounted)
+	slowcharge = TRUE
 
 /obj/item/gun/energy/laser/mounted/weak/dropped()
 	..()

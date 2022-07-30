@@ -15,7 +15,8 @@
 	ammo_x_offset = 2
 	var/shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
 	var/old_ratio = 0 // stores the gun's previous ammo "ratio" to see if it needs an updated icon
-	var/selfcharge = 0
+	var/selfcharge = FALSE
+	var/slowcharge = FALSE //do we charge at half speed?
 	var/charge_tick = 0
 	var/charge_delay = 4
 	var/charge_amount = 1
@@ -65,7 +66,10 @@
 
 /obj/item/gun/energy/process()
 	if(selfcharge && cell && cell.percent() < 100)
-		charge_tick++
+		if(!slowcharge)
+			charge_tick++
+		if(slowcharge)
+			charge_tick += 0.5
 		if(charge_tick < charge_delay)
 			return
 		charge_tick = 0
