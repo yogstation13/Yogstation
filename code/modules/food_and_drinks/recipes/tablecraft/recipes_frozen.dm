@@ -46,6 +46,17 @@
 	result = /obj/item/reagent_containers/food/snacks/honkdae
 	subcategory = CAT_ICE
 
+/datum/crafting_recipe/food/taiyaki
+	name ="Deluxe Vanilla Taiyaki"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/cookie = 1,
+		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
+		/obj/item/reagent_containers/food/snacks/icecream = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/honkdae
+	subcategory = CAT_ICE
+
+
 //////////////////////////SNOW CONES///////////////////////
 
 /datum/crafting_recipe/food/flaverless_sc
