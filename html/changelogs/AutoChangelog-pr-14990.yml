@@ -1,0 +1,4 @@
+author: "TheGamerdk"
+delete-after: true 
+changes: 
+  - rscadd: "There is now a game preference to disable wacky announcers like the intern and medbot."
