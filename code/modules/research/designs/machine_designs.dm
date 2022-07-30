@@ -480,7 +480,7 @@
 	id = "holopad"
 	build_path = /obj/item/circuitboard/machine/holopad
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/autolathe
 	name = "Machine Design (Autolathe Board)"
