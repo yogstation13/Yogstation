@@ -336,7 +336,7 @@
 
 /datum/supply_pack/security/caldwell
 	name = "Tracking Revolver Crate"
-	desc = "Contains one Caldwell Tracking Revolver and a spare clip."
+	desc = "Contains one Caldwell Tracking Revolver and a spare clip. Requires Security access to open."
 	cost = 5000
 	contains = list(
 		/obj/item/gun/ballistic/revolver/tracking,
