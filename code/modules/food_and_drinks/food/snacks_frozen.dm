@@ -201,7 +201,7 @@
 
 /obj/item/reagent_containers/food/snacks/taiyaki/strawberry
 	name = "strawberry taiyaki"
-	desc = "A strawberry flavored ice cream treat with a rolled cookie and cherry, in a whimsical fish shaped cone."
+	desc = "A strawberry flavored ice cream treat with a rolled cookie and a blue cherry, in a whimsical fish shaped cone."
 	icon_state = "deluxe_taiyaki_strawberry"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/consumable/berryjuice = 2)
 	tastes = list("ice cream" = 1, "blue cherry" = 1, "cookie" = 1, "strawberry" = 1)
@@ -217,7 +217,7 @@
 
 /obj/item/reagent_containers/food/snacks/taiyaki/mobflavor
 	name = "red taiyaki"
-	desc = "A...red...flavored ice cream treat with a rolled cookie and cherry, in a whimsical fish shaped cone. You're pretty sure that's not strawberry?"
+	desc = "A...red...flavored ice cream treat with a rolled cookie and a blue cherry, in a whimsical fish shaped cone. You're pretty sure that's not strawberry?"
 	icon_state = "deluxe_taiyaki_strawberry"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ice = 2, /datum/reagent/consumable/cream = 2, /datum/reagent/blood = 1)
 	tastes = list("ice cream" = 1, "blue cherry" = 1, "cookie" = 1, "blood" = 1)
