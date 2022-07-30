@@ -504,6 +504,7 @@
 	armor = armor.setRating(5,0,0,0,0,0,0,10,0,0,0)
 	slowdown = initial(slowdown)
 	w_class = initial(w_class)
+	// Does not cover additional limbs like vest does
 	plating = null
 
 /obj/item/clothing/head/helmet/plated/examine(mob/user)
@@ -534,4 +535,5 @@
 
 	armor = armor.attachArmor(K.armor)
 	w_class = WEIGHT_CLASS_BULKY
+	// Does not cover additional limbs like vest does
 	plating = K

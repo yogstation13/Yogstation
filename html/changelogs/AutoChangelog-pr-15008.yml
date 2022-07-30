@@ -1,0 +1,6 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "Adjusts the size of the Yogsmeta telecomms room"
+  - tweak: "Repositions the equipment in the Yogsmeta telecomms room"
+  - bugfix: "you can now reach the turret controls, requests console, fire alarm, air alarm and telescreen, in Yogsmeta telecomms."

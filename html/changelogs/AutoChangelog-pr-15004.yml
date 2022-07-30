@@ -1,0 +1,6 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "DNA vault toxin adaptation grants 0.2x toxin and acid mods"
+  - tweak: "DNA vault self respiration now self-sufficiency, grants immunity to oxyloss, blood stuff, breathing, and a 0.1x hunger mod"
+  - tweak: "DNA vault stun resistance now also grants a 0.5x stamina mod"

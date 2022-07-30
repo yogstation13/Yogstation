@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	//The component to add when swimming
 	var/swimming_component = /datum/component/swimming
-	
+
 ///////////
 // PROCS //
 ///////////
@@ -671,7 +671,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				standing+=hair_overlay
 				//var/mutable_appearance/pod_flower = mutable_appearance(GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon, GLOB.pod_flower_list[H.dna.features["pod_flower"]].icon_state, -HAIR_LAYER)
 				S = GLOB.pod_flower_list[H.dna.features["pod_flower"]]
-				if(S)					
+				if(S)
 					var/flower_state = S.icon_state
 					var/flower_file = S.icon
 					// flower_overlay.icon = flower_file
@@ -685,10 +685,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 								flower_overlay.color = "#[fixed_mut_color]"
 							else
 								flower_overlay.color = "#" + hair_color
-						else		
+						else
 							flower_overlay.color = "#" + H.facial_hair_color
 					flower_overlay.alpha = hair_alpha
-					standing += flower_overlay			
+					standing += flower_overlay
 	if(standing.len)
 		H.overlays_standing[HAIR_LAYER] = standing
 
@@ -847,7 +847,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if("dome" in mutant_bodyparts)
 		if(!H.dna.features["dome"] || H.dna.features["dome"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "dome"
-	
+
 	if("ethereal_mark" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || (H.head && (H.head.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "ethereal_mark"
@@ -855,7 +855,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if("pod_hair" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "pod_hair"
-	
+
 	if("pod_flower" in mutant_bodyparts)
 		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || (H.head && (H.head.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "pod_flower"
@@ -1035,7 +1035,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(BODY_ADJ_LAYER)
 			return "ADJ"
 		if(BODY_FRONT_LAYER)
-			return "FRONT"	
+			return "FRONT"
 
 /datum/species/proc/spec_life(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
