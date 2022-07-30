@@ -63,6 +63,16 @@
 
 	new /obj/effect/DPtarget(get_turf(src), pod)
 
+/obj/item/choice_beacon/supermatter
+	name = "Supermatter Kit"
+	desc = "Kit containing a supermatter shard."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-blue"
+	item_state = "radio"
+
+/obj/item/choice_beacon/supermatter/generate_display_names()
+	return list("Supermatter Shard" = /obj/machinery/power/supermatter_crystal/shard)
+
 /obj/item/choice_beacon/hero
 	name = "heroic beacon"
 	desc = "To summon heroes from the past to protect the future."

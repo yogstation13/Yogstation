@@ -1018,7 +1018,7 @@
 	desc = "The power of the heavens condensed into a single crystal. Requires CE access to open."
 	cost = 10000
 	access = ACCESS_CE
-	contains = list(/obj/machinery/power/supermatter_crystal/shard)
+	contains = list(/obj/item/choice_beacon/supermatter)
 	crate_name = "supermatter shard crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
