@@ -1815,6 +1815,40 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/implants/armgunkit
+	name = "Cybersun Arm Cannon Kit"
+	desc = "A special kit of Cybersun's new Arm Laser and Arm Disabler implants, ready to go. All packaged with autosurgeons."
+	item = /obj/item/storage/briefcase/armguns
+	cost = 30
+	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear) // yogs: infiltration
+
+/datum/uplink_item/implants/laser
+	name = "Arm Laser Implant (Right Arm)"
+	desc = "A laser gun built into an internal implant that both charges it and conceals it from view, but not from external scans. Comes with an autosurgeon."
+	item = /obj/item/autosurgeon/organ/syndicate/laser
+	cost = 16
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/implants/laser/l
+	name = "Arm Laser Implant (Left Arm)"
+	item = /obj/item/autosurgeon/organ/syndicate/laser/l
+
+/datum/uplink_item/implants/disabler
+	name = "Arm Disabler Implant (Right Arm)"
+	desc = "A laser gun built into an internal implant that both charges it and conceals it from view, but not from external scans. Comes with an autosurgeon."
+	item = /obj/item/autosurgeon/organ/syndicate/disabler
+	cost = 14
+	surplus = 0
+	manufacturer = /datum/corporation/traitor/cybersun
+
+/datum/uplink_item/implants/disabler/l
+	name = "Arm Disabler Implant (Left Arm)"
+	item = /obj/item/autosurgeon/organ/syndicate/disabler/l
+
+
 // Events
 /datum/uplink_item/services
 	category = "Services"

@@ -54,3 +54,11 @@
 	..()
 	new /obj/item/autosurgeon/organ/syndicate/syndie_mantis(src)
 	new /obj/item/autosurgeon/organ/syndicate/syndie_mantis/l(src)
+
+/obj/item/storage/briefcase/armguns
+	desc = "A sleek briefcase. It has the brand symbol CYBERSUN on it"
+
+/obj/item/storage/briefcase/syndie_mantis/PopulateContents()
+	..()
+	new /obj/item/autosurgeon/organ/syndicate/laser(src)
+	new /obj/item/autosurgeon/organ/syndicate/disabler/l(src)

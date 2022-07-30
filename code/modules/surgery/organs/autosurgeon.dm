@@ -99,6 +99,22 @@
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
 
+/obj/item/autosurgeon/organ/syndicate/laser
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/gun/laser/weak
+
+/obj/item/autosurgeon/organ/syndicate/laser/l
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/gun/laser/weak/l
+
+/obj/item/autosurgeon/organ/syndicate/disabler
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/gun/disabler
+
+/obj/item/autosurgeon/organ/syndicate/disabler/l
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/gun/disabler/l
+
 /obj/item/autosurgeon/organ/syndicate/syndie_mantis
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis
