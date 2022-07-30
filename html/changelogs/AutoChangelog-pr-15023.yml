@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "updates the Lavaland Fishing biodome."
+  - bugfix: "lavaland Fishing Biodome lockdown now works properly."
