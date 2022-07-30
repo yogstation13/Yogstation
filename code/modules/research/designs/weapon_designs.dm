@@ -39,26 +39,6 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
-/datum/design/tracrevolver
-	name = "Caldwell Tracking Revolver"
-	desc = "A modified autorevolver initially designed by colonists on hostile worlds, now utilized by security personnel. Uses .32 TRAC ammo."
-	id = "tracrevolver"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 10000, /datum/material/silver = 3000, /datum/material/titanium = 2000)
-	build_path = /obj/item/gun/ballistic/revolver/tracking
-	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
-/datum/design/tra32
-	name = "Speed Loader (.32 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant."
-	id = "tra32"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/silver = 5000, /datum/material/gold = 1000)
-	build_path = /obj/item/ammo_box/tra32
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
 /datum/design/rubbershot/sec
 	id = "sec_rshot"
 	build_type = PROTOLATHE

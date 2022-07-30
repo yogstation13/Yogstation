@@ -334,6 +334,15 @@
 					/obj/item/gun/energy/laser)
 	crate_name = "laser crate"
 
+/datum/supply_pack/security/caldwell
+	name = "Tracking Revolver Crate"
+	desc = "Contains one Caldwell Tracking Revolver and a spare clip."
+	cost = 5000
+	contains = list(
+		/obj/item/gun/ballistic/revolver/tracking,
+		/obj/item/ammo_box/tra32)
+	crate_name = "tracking revolver crate"
+
 /datum/supply_pack/security/securitybarriers
 	name = "Security Barrier Grenades"
 	desc = "Stem the tide with four Security Barrier grenades. Requires Security access to open."
