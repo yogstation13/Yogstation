@@ -51,7 +51,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/datum/reagent/consumable/cooking_oil/fish = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/taiyaki
@@ -62,7 +62,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/datum/reagent/consumable/cooking_oil/fish = 1,
 		/datum/reagent/consumable/coco = 2
 	)
@@ -74,7 +74,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/bluecherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/datum/reagent/consumable/cooking_oil/fish = 1,
 		/datum/reagent/consumable/berryjuice = 2
 	)
@@ -86,7 +86,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/datum/reagent/consumable/cooking_oil/fish = 1,
 		/datum/reagent/consumable/ethanol/singulo = 2
 	)
@@ -98,7 +98,7 @@
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/cookie = 1,
 		/obj/item/reagent_containers/food/snacks/grown/bluecherries = 1,
-		/obj/item/reagent_containers/food/snacks/icecream = 1
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
 		/datum/reagent/consumable/cooking_oil/fish = 1,
 		/datum/reagent/blood = 2
 	)
