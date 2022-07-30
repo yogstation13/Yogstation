@@ -297,6 +297,11 @@
 	open_machine()
 	dump_contents()
 
+/obj/machinery/suit_storage_unit/attackby(obj/item/W, mob/user)
+	if(default_unfasten_wrench(user, W))
+		return
+	return 
+
 /obj/machinery/suit_storage_unit/container_resist(mob/living/user)
 	if(!locked)
 		open_machine()
@@ -461,7 +466,7 @@
 			. = TRUE
 	update_icon()
 
-/obj/machinery/suit_storage_unit/CtrlClick(mob/user)
+/obj/machinery/suit_storage_unit/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(state_open)
@@ -471,7 +476,7 @@
 		if(occupant)
 			dump_contents() // Dump out contents if someone is in there.
 
-/obj/machinery/suit_storage_unit/AltClick(mob/user)
+/obj/machinery/suit_storage_unit/CtrlShiftClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
 		return
 	locked = !locked
