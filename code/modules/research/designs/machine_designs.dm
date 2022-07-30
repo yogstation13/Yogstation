@@ -464,7 +464,7 @@
 	id = "recycler"
 	build_path = /obj/item/circuitboard/machine/recycler
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ALL
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/scanner_gate
 	name = "Machine Design (Scanner Gate)"
@@ -472,7 +472,7 @@
 	id = "scanner_gate"
 	build_path = /obj/item/circuitboard/machine/scanner_gate
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ALL
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/holopad
 	name = "Machine Design (AI Holopad Board)"
@@ -480,7 +480,7 @@
 	id = "holopad"
 	build_path = /obj/item/circuitboard/machine/holopad
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ALL
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/autolathe
 	name = "Machine Design (Autolathe Board)"
@@ -488,7 +488,7 @@
 	id = "autolathe"
 	build_path = /obj/item/circuitboard/machine/autolathe
 	category = list ("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ALL		//Lets be honest here half the maps have public ones.
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/recharger
 	name = "Machine Design (Weapon Recharger Board)"
@@ -497,7 +497,7 @@
 	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
 	build_path = /obj/item/circuitboard/machine/recharger
 	category = list("Misc. Machinery")
-	departmental_flags = DEPARTMENTAL_FLAG_ALL
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/board/vendor
 	name = "Machine Design (Vendor Board)"
