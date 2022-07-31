@@ -164,33 +164,12 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
-"au" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate,
-/obj/item/storage/box/donkpockets{
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_y = 3
-	},
-/obj/item/storage/box/donkpockets{
-	pixel_x = 2
-	},
-/obj/item/reagent_containers/food/snacks/chocolatebar{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/bot_white,
-/turf/open/floor/plasteel/dark,
-/area/yogs/infiltrator_base)
 "av" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 9
 	},
 /obj/machinery/airalarm{
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = 150
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -312,7 +291,7 @@
 "aH" = (
 /obj/structure/chair/stool,
 /obj/machinery/airalarm{
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = list(150)
 	},
 /obj/effect/landmark/start/infiltrator,
@@ -611,7 +590,7 @@
 /area/yogs/infiltrator_base)
 "bn" = (
 /obj/machinery/airalarm{
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = 150
 	},
 /obj/structure/bed,
@@ -781,7 +760,7 @@
 	dir = 4
 	},
 /obj/machinery/airalarm{
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = 150
 	},
 /obj/machinery/light/small{
@@ -1119,7 +1098,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm{
-	pixel_y = 23;
+	pixel_y = 24;
 	req_access = 150
 	},
 /obj/structure/table,
@@ -1691,6 +1670,26 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/yogs/infiltrator_base/outside)
+"wp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/snacks/chocolatebar{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/bot_white,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/yogs/infiltrator_base)
 "Lx" = (
 /obj/machinery/vending/cigarette/syndicate,
 /turf/closed/indestructible/riveted,
@@ -2235,7 +2234,7 @@ ad
 ab
 ab
 aq
-au
+wp
 ab
 aJ
 aW
