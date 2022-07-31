@@ -21,7 +21,10 @@
 	display_order = JOB_DISPLAY_ORDER_NETWORK_ADMIN
 	minimal_character_age = 22 //Feasibly same level as engineer, mostly a data engineer instead of a mechanical or construction-based one, though is still capable of making certain machines
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RaceStation")
+
+/datum/job/network_admin/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/network_admin/proc/OmegaStationChanges()
 	added_access = list()

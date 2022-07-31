@@ -26,7 +26,10 @@
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation", "RaceStation")
+
+/datum/job/detective/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/detective/proc/EclipseStationChanges()
 	total_positions = 2
