@@ -3619,6 +3619,7 @@
 #include "yogstation\code\modules\crafting\recipes.dm"
 #include "yogstation\code\modules\donor\borg_ai_skin_datums.dm"
 #include "yogstation\code\modules\donor\borg_skins.dm"
+#include "yogstation\code\modules\donor\donatorsay.dm"
 #include "yogstation\code\modules\donor\unique_donator_items.dm"
 #include "yogstation\code\modules\economy\pay_stand.dm"
 #include "yogstation\code\modules\events\bad_wizard.dm"
