@@ -1,6 +1,6 @@
 #define TRANSFORMATION_DURATION 22
 
-/mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
+/mob/living/carbon/proc/monkeyize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG | TR_KEEPAI))
 	if (notransform || transformation_timer)
 		return
 	if(has_horror_inside())
@@ -13,6 +13,9 @@
 		Itemlist += held_items
 		for(var/obj/item/W in Itemlist)
 			dropItemToGround(W)
+	
+	if(tr_flags & TR_KEEPAI)
+		ai_controller.PossessPawn(O)
 
 	//Make mob invisible and spawn animation
 	notransform = TRUE
@@ -178,7 +181,7 @@
 //////////////////////////           Humanize               //////////////////////////////
 //Could probably be merged with monkeyize but other transformations got their own procs, too
 
-/mob/living/carbon/proc/humanize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
+/mob/living/carbon/proc/humanize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG | TR_KEEPAI))
 	if (notransform || transformation_timer)
 		return
 	//now the rest
@@ -189,6 +192,9 @@
 			dropItemToGround(W, TRUE)
 			if (client)
 				client.screen -= W
+
+	if(tr_flags & TR_KEEPAI)
+		ai_controller.PossessPawn(O)
 
 	//Make mob invisible and spawn animation
 	notransform = TRUE

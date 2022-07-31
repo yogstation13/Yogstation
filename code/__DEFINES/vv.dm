@@ -74,6 +74,7 @@
 #define VV_HK_TRIGGER_EXPLOSION "explode"
 #define VV_HK_AUTO_RENAME "auto_rename"
 #define VV_HK_RADIATE "radiate"
+#define VV_HK_ADD_AI "add_ai"
 #define VV_HK_SHOW_HIDDENPRINTS "show_hiddenprints"
 
 // /obj

@@ -18,6 +18,8 @@
 	else
 		if(prob(5))
 			name = pick(rare_pet_monkey_names)
+			if(name == "Furious George")
+				ai_controller = /datum/ai_controller/monkey/angry //hes always mad
 		else
 			name = pick(pet_monkey_names)
 		gender = pick(MALE, FEMALE)
