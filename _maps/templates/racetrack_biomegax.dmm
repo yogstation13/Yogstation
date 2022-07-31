@@ -62,8 +62,7 @@
 /turf/open/floor/plasteel,
 /area/space)
 "ca" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/turf/open/floor/plasteel,
+/turf/closed/indestructible/fakeglass,
 /area/space)
 "ce" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
@@ -442,10 +441,6 @@
 	},
 /turf/open/floor/plating,
 /area/space)
-"rF" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/floor/plasteel,
-/area/space)
 "rH" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -666,14 +661,13 @@
 /turf/open/floor/plasteel,
 /area/space)
 "BT" = (
-/obj/structure/reagent_dispensers/watertank/high,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
 	},
-/turf/open/floor/plasteel/white,
+/turf/closed/indestructible/fakeglass,
 /area/space)
 "Cf" = (
 /obj/machinery/nanite_programmer,
@@ -805,14 +799,13 @@
 /turf/open/floor/plasteel,
 /area/space)
 "GF" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
 	},
-/turf/open/floor/plasteel/white,
+/turf/closed/indestructible/fakeglass,
 /area/space)
 "GS" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -884,9 +877,8 @@
 /turf/open/floor/plasteel/white,
 /area/space)
 "Jt" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
 /obj/effect/turf_decal/trimline/neutral/filled/corner,
-/turf/open/floor/plasteel,
+/turf/closed/indestructible/fakeglass,
 /area/space)
 "Jz" = (
 /obj/machinery/computer/atmos_alert{
@@ -1032,11 +1024,10 @@
 /turf/open/floor/plasteel/white,
 /area/space)
 "Nj" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/closed/indestructible/fakeglass,
 /area/space)
 "Nk" = (
 /obj/machinery/door/airlock/maintenance{
@@ -1228,16 +1219,6 @@
 /area/space)
 "Ue" = (
 /obj/effect/turf_decal/trimline/brown/filled/line,
-/turf/open/floor/plasteel,
-/area/space)
-"Ug" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/space)
 "Um" = (
@@ -1716,10 +1697,10 @@ Ve
 kZ
 Sm
 Lf
-Ug
-rF
-rF
-rF
+ql
+cW
+cW
+cW
 "}
 (29,1,1) = {"
 ce
@@ -1750,7 +1731,7 @@ ly
 Mr
 xd
 GF
-rF
+ca
 Jt
 Nj
 "}

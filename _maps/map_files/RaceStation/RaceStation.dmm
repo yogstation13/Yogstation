@@ -148,6 +148,20 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
+"cf" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/landmark/start/cyborg,
+/turf/open/floor/bluespace,
+/area/centcom/testchamber)
 "cv" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -242,9 +256,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/randomfood,
-/obj/effect/randomdrink,
 /obj/structure/table,
+/obj/effect/spawner/lootdrop/randomfood,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "ev" = (
@@ -394,26 +407,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/turf/open/floor/bluespace,
-/area/centcom/testchamber)
-"ge" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/airlock/public/glass{
-	name = "airlock"
-	},
-/obj/machinery/door/airlock/public/glass{
-	name = "airlock"
-	},
-/obj/machinery/door/firedoor,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "gn" = (
@@ -688,6 +681,7 @@
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/gravity_generator/main/station/admin,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/testchamber)
 "iU" = (
@@ -801,6 +795,21 @@
 	},
 /obj/item/twohanded/binoculars,
 /obj/item/twohanded/binoculars,
+/turf/open/floor/bluespace,
+/area/centcom/testchamber)
+"kG" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/randomdrink,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "kI" = (
@@ -1217,6 +1226,10 @@
 /obj/structure/sign/warning/docking,
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
+"rj" = (
+/obj/machinery/gravity_generator/main/station/admin,
+/turf/open/space/basic,
+/area/space)
 "rn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -1678,11 +1691,6 @@
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/centcom/testchamber)
 "wV" = (
-/obj/machinery/camera{
-	c_tag = "Telecomms Server Room";
-	network = list("ss13","tcomms");
-	pixel_x = 22
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -2102,12 +2110,11 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/randomfood,
-/obj/effect/randomdrink,
 /obj/structure/table,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/spawner/lootdrop/randomfood,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "AU" = (
@@ -2636,6 +2643,10 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/testchamber)
+"GV" = (
+/obj/effect/spawner/lootdrop/randomfood,
+/turf/open/space/basic,
+/area/space)
 "GZ" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
@@ -2803,11 +2814,6 @@
 	pixel_x = -23;
 	pixel_y = 6
 	},
-/obj/machinery/camera{
-	c_tag = "Telecomms Server Room Access";
-	dir = 4;
-	network = list("ss13","tcomms")
-	},
 /turf/open/floor/plasteel/white,
 /area/centcom/testchamber)
 "JE" = (
@@ -2914,12 +2920,11 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/randomfood,
-/obj/effect/randomdrink,
 /obj/structure/table,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/spawner/lootdrop/randomfood,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "KQ" = (
@@ -2953,11 +2958,6 @@
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "La" = (
-/obj/machinery/camera/motion{
-	c_tag = "Telecomms Maintenance";
-	dir = 1;
-	network = list("ss13","tcomms")
-	},
 /obj/machinery/computer/message_monitor{
 	dir = 1
 	},
@@ -3615,11 +3615,6 @@
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/centcom/testchamber)
 "SM" = (
-/obj/machinery/camera{
-	c_tag = "Telecomms Control Room";
-	dir = 4;
-	network = list("ss13","tcomms")
-	},
 /obj/machinery/announcement_system,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/testchamber)
@@ -26805,6 +26800,7 @@ VD
 VD
 VD
 VD
+GV
 VD
 VD
 VD
@@ -26813,8 +26809,7 @@ VD
 VD
 VD
 VD
-VD
-VD
+rj
 VD
 VD
 VD
@@ -30179,7 +30174,7 @@ Pd
 Pd
 kd
 ex
-ge
+ex
 kd
 kd
 kd
@@ -30701,7 +30696,7 @@ lf
 ox
 qT
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -30958,7 +30953,7 @@ xP
 ox
 th
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -31215,7 +31210,7 @@ ap
 pD
 kd
 kd
-eg
+kG
 hh
 VN
 kd
@@ -31472,7 +31467,7 @@ xP
 ox
 qT
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -31729,7 +31724,7 @@ xP
 ox
 th
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -31986,7 +31981,7 @@ ap
 pD
 kd
 kd
-eg
+kG
 hh
 VN
 kd
@@ -32243,7 +32238,7 @@ xP
 kd
 iU
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -32500,7 +32495,7 @@ xP
 ox
 qT
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -32757,7 +32752,7 @@ xP
 ox
 th
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -33014,7 +33009,7 @@ ap
 pD
 kd
 kd
-eg
+kG
 hh
 VN
 kd
@@ -33271,7 +33266,7 @@ xP
 ox
 qT
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -33528,7 +33523,7 @@ xP
 ox
 th
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -33785,7 +33780,7 @@ ap
 pD
 kd
 kd
-eg
+kG
 hh
 VN
 kd
@@ -34042,7 +34037,7 @@ xP
 ox
 qT
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -34299,7 +34294,7 @@ xP
 ox
 th
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -34556,7 +34551,7 @@ sw
 pD
 kd
 kd
-eg
+kG
 hh
 VN
 kd
@@ -34813,7 +34808,7 @@ xP
 ox
 qT
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -35070,7 +35065,7 @@ xP
 ox
 th
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -35327,7 +35322,7 @@ ap
 pD
 kd
 kd
-eg
+kG
 hh
 VN
 kd
@@ -35528,7 +35523,7 @@ hh
 gy
 gy
 hh
-hh
+cf
 Pd
 VD
 VD
@@ -35584,7 +35579,7 @@ xP
 ox
 qT
 Pd
-eg
+kG
 hh
 hh
 Pd
@@ -35841,7 +35836,7 @@ xP
 ox
 th
 Pd
-eg
+kG
 hh
 hh
 Pd

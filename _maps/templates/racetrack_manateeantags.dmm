@@ -299,10 +299,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ai_monitored/turret_protected/ai)
-"nf" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/carpet/cyan,
-/area/ai_monitored/turret_protected/ai)
 "nk" = (
 /obj/effect/decal/cleanable/blood/gibs{
 	pixel_x = -4;
@@ -494,8 +490,7 @@
 /turf/open/floor/wood,
 /area/ai_monitored/turret_protected/ai)
 "tL" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/wood,
+/turf/closed/indestructible/fakeglass,
 /area/ai_monitored/turret_protected/ai)
 "tN" = (
 /obj/machinery/light,
@@ -559,10 +554,6 @@
 	},
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass/fairy/green,
-/area/ai_monitored/turret_protected/ai)
-"xc" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/wood,
 /area/ai_monitored/turret_protected/ai)
 "xD" = (
 /obj/structure/easel,
@@ -685,20 +676,6 @@
 "AL" = (
 /turf/closed/wall/mineral/wood/nonmetal,
 /area/ai_monitored/turret_protected/ai)
-"Bh" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/white,
-/area/ai_monitored/turret_protected/ai)
 "Bk" = (
 /obj/structure/alien/weeds,
 /obj/structure/alien/weeds{
@@ -774,10 +751,6 @@
 "FC" = (
 /obj/structure/window/plastitanium,
 /turf/open/floor/mineral/plasma,
-/area/ai_monitored/turret_protected/ai)
-"Ga" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/carpet/cyan,
 /area/ai_monitored/turret_protected/ai)
 "Gs" = (
 /obj/structure/table/wood/fancy,
@@ -1013,10 +986,6 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass/fairy/green,
 /area/ai_monitored/turret_protected/ai)
-"Np" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/black,
-/area/ai_monitored/turret_protected/ai)
 "Nx" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/abductor,
@@ -1175,20 +1144,6 @@
 /obj/machinery/door/airlock/plasma,
 /turf/open/floor/mineral/plasma,
 /area/ai_monitored/turret_protected/ai)
-"Px" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red,
-/turf/open/floor/white,
-/area/ai_monitored/turret_protected/ai)
 "PX" = (
 /obj/machinery/door/airlock/public{
 	icon = 'icons/obj/doors/airlocks/cult/runed/cult.dmi'
@@ -1262,8 +1217,17 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ai_monitored/turret_protected/ai)
 "Ux" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/white,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red,
+/turf/closed/indestructible/fakeglass,
 /area/ai_monitored/turret_protected/ai)
 "Uz" = (
 /obj/structure/displaycase/trophy,
@@ -1703,10 +1667,10 @@ iZ
 ZR
 tN
 Lo
-Oh
-Oh
-Oh
-Oh
+xY
+xY
+xY
+xY
 "}
 (28,1,1) = {"
 IK
@@ -1714,10 +1678,10 @@ ad
 ad
 yj
 Lo
-Np
-xc
-Ga
-Px
+Oh
+Oh
+Oh
+Oh
 "}
 (29,1,1) = {"
 NC
@@ -1726,8 +1690,8 @@ hd
 NC
 Lo
 tL
-nf
-Bh
+tL
+tL
 Ux
 "}
 (30,1,1) = {"
@@ -1747,10 +1711,10 @@ vE
 Nc
 zZ
 cO
-Np
-xc
-Ga
-Px
+tL
+tL
+tL
+Ux
 "}
 (32,1,1) = {"
 Yq

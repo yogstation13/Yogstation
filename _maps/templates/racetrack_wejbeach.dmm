@@ -795,10 +795,6 @@
 	dir = 4
 	},
 /area/space)
-"ZO" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/turf/open/floor/plasteel/vaporwave,
-/area/space)
 
 (1,1,1) = {"
 lo
@@ -1114,10 +1110,10 @@ HR
 CB
 fY
 Qz
-ZO
-ZO
-ZO
-ZO
+Ir
+Ir
+Ir
+Ir
 "}
 (30,1,1) = {"
 Ju

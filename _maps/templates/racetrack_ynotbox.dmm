@@ -252,20 +252,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/testchamber)
-"gK" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/structure/reagent_dispensers/watertank/high,
-/turf/open/floor/wood,
-/area/centcom/testchamber)
 "gR" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -844,10 +830,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/centcom/testchamber)
-"tr" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/turf/open/floor/wood,
 /area/centcom/testchamber)
 "ts" = (
 /obj/machinery/light,
@@ -1583,7 +1565,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
 "RQ" = (
@@ -2261,10 +2242,10 @@ Cs
 ug
 ix
 pC
-gK
+af
 RD
-tr
-tr
+PN
+PN
 "}
 (28,1,1) = {"
 tt

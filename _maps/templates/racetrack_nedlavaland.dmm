@@ -96,10 +96,6 @@
 	},
 /turf/open/lava/smooth,
 /area/space)
-"oF" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/turf/open/indestructible/grass/basalt,
-/area/space)
 "pe" = (
 /obj/effect/turf_decal/tile/brown/half{
 	dir = 1
@@ -738,10 +734,10 @@ fB
 fB
 fB
 cu
-vl
-vl
-vl
-vl
+Fp
+Fp
+Fp
+Fp
 "}
 (28,1,1) = {"
 Fp
@@ -749,10 +745,10 @@ fB
 fB
 fB
 cu
-oF
-oF
-oF
-oF
+vl
+vl
+vl
+vl
 "}
 (29,1,1) = {"
 Fp
@@ -826,10 +822,10 @@ Fp
 Fp
 Fp
 cu
-Wj
+Bm
 ca
 FV
-Wj
+py
 "}
 (36,1,1) = {"
 Fp
@@ -837,10 +833,10 @@ Eu
 Bk
 Fp
 cu
-Wj
+bk
 pk
 Bm
-Wj
+iW
 "}
 (37,1,1) = {"
 Fp
@@ -848,10 +844,10 @@ wC
 Bk
 Fp
 cu
-Wj
+bk
 CG
 Tf
-Wj
+py
 "}
 (38,1,1) = {"
 Fp

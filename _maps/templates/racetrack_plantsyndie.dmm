@@ -548,7 +548,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/mineral/plastitanium,
 /area/awaymission/secret/powered/fullbright)
 "lZ" = (
