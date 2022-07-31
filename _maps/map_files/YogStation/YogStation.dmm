@@ -15570,13 +15570,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white/side,
 /area/science/research)
-"boQ" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "boR" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -29329,6 +29322,29 @@
 "ffb" = (
 /turf/closed/wall,
 /area/maintenance/solars/port/aft)
+"ffY" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/research{
+	name = "RnD Lab";
+	req_access_txt = "7"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "fgc" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
@@ -31504,14 +31520,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"gsd" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/lab)
 "gsx" = (
 /obj/effect/landmark/start/cyborg,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -39744,25 +39752,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"klU" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "klZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -47331,6 +47320,28 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"nQN" = (
+/obj/item/folder/white,
+/obj/structure/table,
+/obj/item/disk/tech_disk,
+/obj/item/disk/tech_disk,
+/obj/item/disk/design_disk,
+/obj/item/disk/design_disk{
+	pixel_x = 1
+	},
+/obj/item/paicard{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/obj/machinery/button/door{
+	id = "labdesk";
+	name = "Research Lab Shutter Control";
+	pixel_x = -23;
+	pixel_y = 1;
+	req_access_txt = "47"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "nQW" = (
 /obj/machinery/light{
 	dir = 8
@@ -49622,18 +49633,6 @@
 /obj/item/stock_parts/subspace/analyzer,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
-"oRC" = (
-/obj/item/folder/white,
-/obj/structure/table,
-/obj/item/disk/tech_disk,
-/obj/item/disk/tech_disk,
-/obj/item/disk/design_disk,
-/obj/item/disk/design_disk,
-/obj/item/paicard{
-	pixel_x = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "oRG" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -53499,6 +53498,10 @@
 	},
 /turf/open/water/safe,
 /area/hydroponics/garden)
+"raT" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "raU" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -61675,6 +61678,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"uVS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/cell_charger{
+	pixel_y = 4
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "uWH" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -62175,17 +62196,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"vku" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "vkJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -62423,6 +62433,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"vrH" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "labdesk";
+	name = "research lab shutters"
+	},
+/turf/open/floor/plating,
+/area/science/lab)
 "vrW" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -62808,6 +62826,26 @@
 /obj/structure/table_frame,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"vCf" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "labdesk";
+	name = "research lab shutters"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/southright{
+	name = "Research and Development Desk";
+	req_access_txt = "7"
+	},
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "vCE" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -63331,6 +63369,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"vST" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rnd2";
+	name = "research lab shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/research{
+	name = "RnD Lab";
+	req_access_txt = "7"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "vTi" = (
 /obj/item/shard,
 /obj/structure/disposalpipe/segment{
@@ -116604,8 +116657,8 @@ biU
 bks
 blI
 bnn
-boA
-oRC
+uVS
+nQN
 abd
 bgp
 bmU
@@ -116862,8 +116915,8 @@ biW
 blK
 bnp
 boA
-boQ
-gsd
+raT
+vCf
 bro
 bmU
 bvJ
@@ -117120,7 +117173,7 @@ blJ
 bno
 bkt
 biW
-vku
+vrH
 bgp
 bmU
 bvK
@@ -117377,7 +117430,7 @@ bka
 bka
 aCl
 bpo
-klU
+ffY
 brp
 bmW
 bvK
@@ -117634,7 +117687,7 @@ blL
 biW
 bnh
 biW
-gsd
+vST
 bte
 bmX
 bvK
