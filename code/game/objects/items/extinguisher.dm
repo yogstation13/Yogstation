@@ -174,7 +174,8 @@
 			var/datum/reagents/R = new/datum/reagents(5)
 			W.reagents = R
 			R.my_atom = W
-			reagents.trans_to(W,1, transfered_by = user)
+			//reagents.trans_to(W,1, transfered_by = user)
+			R.add_reagent(/datum/reagent/water, 1)
 
 		//Make em move dat ass, hun
 		addtimer(CALLBACK(src, /obj/item/extinguisher/proc/move_particles, water_particles), 2)

@@ -22,7 +22,10 @@
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 	minimal_character_age = 22 //Engineering, AI theory, robotic knowledge and the like
 
-	changed_maps = list("OmegaStation")
+	changed_maps = list("OmegaStation", "RaceStation")
+
+/datum/job/roboticist/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"

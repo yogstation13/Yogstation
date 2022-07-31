@@ -23,7 +23,10 @@
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 	minimal_character_age = 22 //You need to know a lot of complicated stuff about engines, could theoretically just have a traditional bachelor's
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation", "RaceStation")
+
+/datum/job/engineer/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/engineer/proc/EclipseStationChanges()
 	total_positions = 6

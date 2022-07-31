@@ -21,7 +21,10 @@
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 	minimal_character_age = 24 //Intense understanding of thermodynamics, gas law, gas interaction, construction and safe containment of gases, creation of new ones, math beyond your wildest imagination
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	changed_maps = list("OmegaStation", "EclipseStation", "RaceStation")
+
+/datum/job/atmos/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/atmos/proc/OmegaStationChanges()
 	total_positions = 3

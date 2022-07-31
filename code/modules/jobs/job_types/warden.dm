@@ -27,7 +27,10 @@
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 	minimal_character_age = 20 //You're a sergeant, probably has some experience in the field
 
-	changed_maps = list("YogsPubby", "OmegaStation")
+	changed_maps = list("YogsPubby", "OmegaStation", "RaceStation")
+
+/datum/job/warden/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/warden/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM

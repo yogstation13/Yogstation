@@ -22,7 +22,10 @@
 	display_order = JOB_DISPLAY_ORDER_COOK
 	minimal_character_age = 18 //My guy they just a cook
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	changed_maps = list("OmegaStation", "EclipseStation", "RaceStation")
+
+/datum/job/cook/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/cook/proc/OmegaStationChanges()
 	added_access = list()

@@ -26,7 +26,10 @@
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 	minimal_character_age = 18 //Just a few months of boot camp, not a whole year
 
-	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
+	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation", "RaceStation")
+
+/datum/job/officer/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/officer/proc/EclipseStationChanges()
 	total_positions = 14

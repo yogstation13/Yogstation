@@ -15,7 +15,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	changed_maps = list("EclipseStation", "OmegaStation", "RaceStation")
+
+/datum/job/cyborg/proc/RaceStationChanges()
+	return TRUE
 
 /datum/job/cyborg/proc/EclipseStationChanges()
 	spawn_positions = 3

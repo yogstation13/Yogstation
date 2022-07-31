@@ -30,6 +30,11 @@
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	minimal_character_age = 30 //Combine all the jobs together; that's a lot of physics, mechanical, electrical, and power-based knowledge
 
+	changed_maps = list("RaceStation")
+
+/datum/job/chief_engineer/proc/RaceStationChanges()
+	return TRUE
+
 /datum/outfit/job/ce
 	name = "Chief Engineer"
 	jobtype = /datum/job/chief_engineer
