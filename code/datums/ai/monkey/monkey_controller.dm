@@ -146,26 +146,22 @@ have ways of interacting with a specific mob and control it.
 	enemies[L] += MONKEY_HATRED_AMOUNT
 
 /datum/ai_controller/monkey/proc/on_attackby(datum/source, obj/item/I, mob/user)
-	SIGNAL_HANDLER
 	if(I.force && I.damtype != STAMINA)
 		retaliate(user)
 
 /datum/ai_controller/monkey/proc/on_attack_hand(datum/source, mob/living/L)
-	SIGNAL_HANDLER
 	if(L.a_intent == INTENT_HARM && prob(MONKEY_RETALIATE_HARM_PROB))
 		retaliate(L)
 	else if(L.a_intent == INTENT_DISARM && prob(MONKEY_RETALIATE_DISARM_PROB))
 		retaliate(L)
 
 /datum/ai_controller/monkey/proc/on_attack_paw(datum/source, mob/living/L)
-	SIGNAL_HANDLER
 	if(L.a_intent == INTENT_HARM && prob(MONKEY_RETALIATE_HARM_PROB))
 		retaliate(L)
 	else if(L.a_intent == INTENT_DISARM && prob(MONKEY_RETALIATE_DISARM_PROB))
 		retaliate(L)
 
 /datum/ai_controller/monkey/proc/on_bullet_act(datum/source, obj/projectile/Proj)
-	SIGNAL_HANDLER
 	var/mob/living/living_pawn = pawn
 	if(istype(Proj , /obj/projectile/beam)||istype(Proj, /obj/projectile/bullet))
 		if((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE))
@@ -173,7 +169,6 @@ have ways of interacting with a specific mob and control it.
 				retaliate(Proj.firer)
 
 /datum/ai_controller/monkey/proc/on_hitby(datum/source, atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
-	SIGNAL_HANDLER
 	if(istype(AM, /obj/item))
 		var/mob/living/living_pawn = pawn
 		var/obj/item/I = AM
@@ -182,7 +177,6 @@ have ways of interacting with a specific mob and control it.
 			retaliate(H)
 
 /datum/ai_controller/monkey/proc/on_Crossed(datum/source, atom/movable/AM)
-	SIGNAL_HANDLER
 	var/mob/living/living_pawn = pawn
 	if(!IS_DEAD_OR_INCAP(living_pawn) && ismob(AM))
 		var/mob/living/in_the_way_mob = AM
@@ -190,24 +184,20 @@ have ways of interacting with a specific mob and control it.
 		return
 
 /datum/ai_controller/monkey/proc/on_startpulling(datum/source, atom/movable/puller, state, force)
-	SIGNAL_HANDLER
 	var/mob/living/living_pawn = pawn
 	if(!IS_DEAD_OR_INCAP(living_pawn) && prob(MONKEY_PULL_AGGRO_PROB)) // nuh uh you don't pull me!
 		retaliate(living_pawn.pulledby)
 		return TRUE
 
 /datum/ai_controller/monkey/proc/on_try_syringe(datum/source, mob/user)
-	SIGNAL_HANDLER
 	// chance of monkey retaliation
 	if(prob(MONKEY_SYRINGE_RETALIATION_PROB))
 		retaliate(user)
 
 /datum/ai_controller/monkey/proc/on_attack_hulk(datum/source, mob/user)
-	SIGNAL_HANDLER
 	retaliate(user)
 
 /datum/ai_controller/monkey/proc/on_attempt_cuff(datum/source, mob/user)
-	SIGNAL_HANDLER
 	// chance of monkey retaliation
 	if(prob(MONKEY_CUFF_RETALIATION_PROB))
 		retaliate(user)
