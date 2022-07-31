@@ -18,3 +18,17 @@
 	drone.resources -= 20
 	TerraformTurf(/turf/closed/wall/feather)
 
+/mob/living/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(stat == DEAD || IsStun() || IsImmobilized() || IsParalyzed() || IsUnconscious() || IsSleeping())
+		to_chat(drone, span_warning("You attempt to disintegrate [src] into resources."))
+		if(!do_mob(drone, src, 4 SECONDS))
+			return
+		if(drone.resources >= drone.max_resources)
+			to_chat(drone, span_warning("You disintegrate [src], but your storage is full!"))
+			gib()
+		else
+			to_chat(drone, span_warning("You sucessfully transform [src] into your resources."))
+			drone.resources += maxHealth/2
+			dust()
+	else
+		return

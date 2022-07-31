@@ -2,7 +2,7 @@
 	name = "flock drone"
 	desc = "A weird glowy thing."
 	speak_emote = list("tones")
-	initial_language_holder = /datum/language_holder/swarmer
+	initial_language_holder = /datum/language_holder/flock
 	bubble_icon = "swarmer"
 	mob_biotypes = MOB_ROBOTIC
 	health = 40
@@ -46,7 +46,11 @@
 	var/resources = 0
 	var/max_resources = 100
 	var/murderer = FALSE
-	var/mob/camera/pilot
+	var/mob/camera/flocktrace
+
+/mob/living/simple_animal/hostile/flockdrone/Initialize()
+	. = ..()
+	var/obj/item/radio/headset/silicon/ai/radio = new(src)
 
 /mob/living/simple_animal/hostile/flockdrone/OpenFire(atom/A)
 	if(!ismecha(A) && !isliving(A) && !mind)
