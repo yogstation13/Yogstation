@@ -168,13 +168,53 @@
 //                                          //
 //////////////////////////////////////////////
 
-/mob/living/simple_animal/hostile/flockdrone/attack_flocktrace(/mob/camera/flocktrace/user, var/list/modifiers)
+/mob/living/simple_animal/hostile/flockdrone/attack_flocktrace(mob/camera/flocktrace/user, var/list/modifiers)
 	if(!user.client)
 		return
 	if(mind)
+		if(!pilot)
+			return
 		if(!isflockmind(user))
 			to_chat(user, span_warning("[src] is already piloted!"))
 			return
 		else
 			if(isflockmind(pilot))
 				return
+			var/confirmation = input(user,"Do you want to posses an already controled drone? The current pilot will be ejected.","Confiramtion") in list("Yes", "No")
+			if(confirmation == "No")
+				return
+			EjectPilot()
+			Posses(user)
+		return
+	else
+		var/confirmation = input(user,"Do you want to posses [src]?","Confiramtion") in list("Yes", "No")
+		if(confirmation == "No")
+			return
+		Posses(user)
+
+
+/mob/living/simple_animal/hostile/flockdrone/EjectPilot()
+	if(!pilot)
+		return
+	mind.transfer_to(pilot)
+	var/turf/location = get_turf(src)
+	if(location && istype(location))
+		pilot.forceMove(location)
+	else
+		pilot.forceMove(loc)
+	pilot = null
+	toggle_ai()
+
+/mob/living/simple_animal/hostile/flockdrone/Posses(/mob/camera/flocktrace/user)
+	if(!user)
+		return
+	if(pilot || mind)
+		return
+	user.forceMove(src)
+	user.mind.transfer_to(src)
+	pilot = user
+	toggle_ai()
+	
+/mob/living/simple_animal/hostile/flockdrone/death(gibbed)
+	EjectPilot()
+	. = ..()
