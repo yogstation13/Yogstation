@@ -168,5 +168,5 @@
 //                                          //
 //////////////////////////////////////////////
 
-/mob/living/simple_animal/hostile/flockdrone/attack_flocktraceattack_flocktrace(/mob/camera/flocktrace/user, var/list/modifiers)
+/mob/living/simple_animal/hostile/flockdrone/attack_flocktrace(/mob/camera/flocktrace/user, var/list/modifiers)
 	return
