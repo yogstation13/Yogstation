@@ -14,9 +14,6 @@
 /obj/screen/movable/action_button/proc/can_use(mob/user)
 	if (linked_action)
 		return linked_action.owner == user
-	else if (isobserver(user))
-		var/mob/dead/observer/O = user
-		return !O.observetarget
 	else
 		return TRUE
 
