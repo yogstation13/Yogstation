@@ -329,11 +329,6 @@
 /obj/item/stock_parts/subspace/transmitter,
 /obj/item/stock_parts/subspace/transmitter,
 /obj/item/stock_parts/subspace/transmitter,
-/obj/machinery/camera{
-	c_tag = "Telecomms Tech Storage";
-	dir = 4;
-	network = list("ss13","telecomms")
-	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
 "fh" = (
@@ -1226,10 +1221,6 @@
 /obj/structure/sign/warning/docking,
 /turf/closed/indestructible/riveted,
 /area/centcom/testchamber)
-"rj" = (
-/obj/machinery/gravity_generator/main/station/admin,
-/turf/open/space/basic,
-/area/space)
 "rn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -2643,10 +2634,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/centcom/testchamber)
-"GV" = (
-/obj/effect/spawner/lootdrop/randomfood,
-/turf/open/space/basic,
-/area/space)
 "GZ" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21"
@@ -3116,6 +3103,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/machinery/ore_silo,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/testchamber)
 "MN" = (
@@ -26800,7 +26788,6 @@ VD
 VD
 VD
 VD
-GV
 VD
 VD
 VD
@@ -26809,7 +26796,8 @@ VD
 VD
 VD
 VD
-rj
+VD
+VD
 VD
 VD
 VD

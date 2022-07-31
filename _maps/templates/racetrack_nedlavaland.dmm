@@ -6,6 +6,10 @@
 /obj/structure/stone_tile/burnt{
 	dir = 1
 	},
+/obj/structure/window/plasma/reinforced{
+	dir = 1;
+	alpha = 1
+	},
 /turf/open/indestructible/grass/basalt,
 /area/space)
 "aF" = (
@@ -29,6 +33,10 @@
 "ca" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/stone_tile/center/cracked,
+/obj/structure/window/plasma/reinforced{
+	dir = 1;
+	alpha = 1
+	},
 /turf/open/lava/smooth,
 /area/space)
 "cu" = (
@@ -56,8 +64,18 @@
 /obj/machinery/light,
 /turf/open/indestructible,
 /area/space)
+"eX" = (
+/obj/structure/stone_tile/slab/cracked,
+/obj/structure/window/plasma/reinforced{
+	alpha = 1
+	},
+/turf/open/lava/smooth,
+/area/space)
 "fd" = (
 /obj/structure/stone_tile/slab/cracked,
+/obj/structure/window/plasma/reinforced{
+	alpha = 1
+	},
 /turf/open/indestructible/grass/basalt,
 /area/space)
 "fB" = (
@@ -65,7 +83,18 @@
 /area/space)
 "gD" = (
 /obj/structure/stone_tile/block,
+/obj/structure/window/plasma/reinforced{
+	alpha = 1
+	},
 /turf/open/indestructible/grass/basalt,
+/area/space)
+"il" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/window/plasma/reinforced{
+	dir = 1;
+	alpha = 1
+	},
+/turf/open/lava/smooth,
 /area/space)
 "iW" = (
 /obj/structure/stone_tile/block/cracked{
@@ -80,6 +109,10 @@
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
 	},
+/obj/structure/window/plasma/reinforced{
+	dir = 8;
+	alpha = 1
+	},
 /turf/open/lava/smooth,
 /area/space)
 "lH" = (
@@ -88,6 +121,13 @@
 /area/space)
 "mG" = (
 /obj/structure/stone_tile/block/cracked,
+/turf/open/indestructible/grass/basalt,
+/area/space)
+"nc" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8;
+	alpha = 1
+	},
 /turf/open/indestructible/grass/basalt,
 /area/space)
 "nY" = (
@@ -109,6 +149,10 @@
 /obj/structure/stone_tile/block/cracked,
 /obj/structure/stone_tile/block{
 	dir = 1
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 1;
+	alpha = 1
 	},
 /turf/open/lava/smooth,
 /area/space)
@@ -165,6 +209,14 @@
 "tV" = (
 /turf/open/indestructible,
 /area/space)
+"ur" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/window/plasma/reinforced{
+	dir = 4;
+	alpha = 1
+	},
+/turf/open/lava/smooth,
+/area/space)
 "vd" = (
 /obj/effect/turf_decal/stripes{
 	dir = 4
@@ -195,6 +247,13 @@
 /area/space)
 "wI" = (
 /turf/closed/indestructible/syndicate,
+/area/space)
+"xp" = (
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/window/plasma/reinforced{
+	alpha = 1
+	},
+/turf/open/lava/smooth,
 /area/space)
 "xB" = (
 /obj/structure/stone_tile/surrounding/burnt,
@@ -240,6 +299,16 @@
 "Bm" = (
 /obj/structure/stone_tile/block/cracked,
 /turf/open/lava/smooth,
+/area/space)
+"BC" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 1;
+	alpha = 1
+	},
+/turf/open/indestructible/grass/basalt,
 /area/space)
 "CG" = (
 /obj/structure/stone_tile/slab,
@@ -291,11 +360,18 @@
 /area/space)
 "FV" = (
 /obj/structure/stone_tile/slab/burnt,
+/obj/structure/window/plasma/reinforced{
+	alpha = 1
+	},
 /turf/open/lava/smooth,
 /area/space)
 "GI" = (
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 1
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 4;
+	alpha = 1
 	},
 /turf/open/lava/smooth,
 /area/space)
@@ -323,6 +399,13 @@
 	},
 /obj/structure/stone_tile/block/cracked,
 /turf/open/lava/smooth,
+/area/space)
+"Kv" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 4;
+	alpha = 1
+	},
+/turf/open/indestructible/grass/basalt,
 /area/space)
 "Lo" = (
 /obj/structure/necropolis_arch,
@@ -392,6 +475,10 @@
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 8
 	},
+/obj/structure/window/plasma/reinforced{
+	dir = 8;
+	alpha = 1
+	},
 /turf/open/lava/smooth,
 /area/space)
 "Tf" = (
@@ -400,6 +487,10 @@
 /area/space)
 "UB" = (
 /obj/structure/stone_tile/slab,
+/obj/structure/window/plasma/reinforced{
+	dir = 1;
+	alpha = 1
+	},
 /turf/open/indestructible/grass/basalt,
 /area/space)
 "UY" = (
@@ -814,7 +905,7 @@ cu
 GI
 MZ
 Jb
-DK
+ur
 "}
 (35,1,1) = {"
 Fp
@@ -822,10 +913,10 @@ Fp
 Fp
 Fp
 cu
-Bm
+Wj
 ca
 FV
-py
+Wj
 "}
 (36,1,1) = {"
 Fp
@@ -833,10 +924,10 @@ Eu
 Bk
 Fp
 cu
-bk
+Wj
 pk
-Bm
-iW
+xp
+Wj
 "}
 (37,1,1) = {"
 Fp
@@ -844,10 +935,10 @@ wC
 Bk
 Fp
 cu
-bk
-CG
-Tf
-py
+Wj
+il
+eX
+Wj
 "}
 (38,1,1) = {"
 Fp
@@ -998,10 +1089,10 @@ Fp
 Fp
 Fp
 cu
+Kv
 Fp
 Fp
-Fp
-Fp
+Kv
 "}
 (52,1,1) = {"
 cu
@@ -1032,7 +1123,7 @@ FR
 cu
 cu
 Wj
-vT
+BC
 gD
 Wj
 "}
@@ -1042,10 +1133,10 @@ eH
 eH
 eH
 cu
+nc
 Fp
 Fp
-Fp
-Fp
+nc
 "}
 (56,1,1) = {"
 nY
