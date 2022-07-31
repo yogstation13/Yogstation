@@ -482,7 +482,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			prefs = new
 
-		var/override = FALSE
+		var/override = TRUE
 		if(M.client && M.client.holder && (prefs.chat_toggles & CHAT_DEAD))
 			override = TRUE
 		if(HAS_TRAIT(M, TRAIT_SIXTHSENSE))
