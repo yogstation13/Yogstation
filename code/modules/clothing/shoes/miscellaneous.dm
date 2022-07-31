@@ -606,7 +606,7 @@
 
 /obj/item/clothing/shoes/drip
 	name = "fashionable shoes"
-	desc = "Expensive-looking designer sneakers. Loud, ostentatious, agressively attractive. The elaborate design on the sole could probably give you some decent traction."
+	desc = "Expensive-looking designer sneakers. Loud, ostentatious, agressively attractive, you detest the idea of taking them off. The elaborate design on the sole could probably give you some decent traction."
 	icon = 'icons/obj/clothing/shoes.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/feet/feet.dmi'
 	icon_state = "dripshoes"

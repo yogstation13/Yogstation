@@ -922,7 +922,7 @@
 
 /obj/item/clothing/under/drip
 	name = "incredibly fashionable outfit"
-	desc = "Expensive-looking designer vest. It radiates an agressively attractive aura."
+	desc = "Expensive-looking designer vest. It radiates an agressively attractive aura. You feel putting this on would change you forever..."
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/uniform/uniform.dmi'
 	icon_state = "drippy"
