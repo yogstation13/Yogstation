@@ -40,9 +40,13 @@
 	deathmessage = "explodes with a sharp pop!"
 	light_color = LIGHT_COLOR_CYAN
 	speech_span = SPAN_ROBOT
+	wanted_objects = list(/obj/item)
+	unwanted_objects = list(/obj/item/disk/nuclear) //We don't want to eat dat fukken disk
+	search_objects = 1
 	var/resources = 0
 	var/max_resources = 100
-	var/mob/camera/flockcontroler
+	var/murderer = FALSE
+	var/mob/camera/pilot
 
 /mob/living/simple_animal/hostile/flockdrone/OpenFire(atom/A)
 	if(!ismecha(A) && !isliving(A) && !mind)
@@ -52,28 +56,32 @@
 /mob/living/simple_animal/hostile/flockdrone/Shoot(atom/targeted_atom)
 	if(mind)
 		return ..()
-	if(!ishuman(targeted_atom) && !ismonkey(targeted_atom))
-		projectiletype = /obj/item/projectile/beam/flock
-	else
+	if(ishuman(targeted_atom) || ismonkey(targeted_atom))  //If the target is a stunable monke/human, we try to shoot it down with a disabler. If it isn't stunable, we shoot it to death
 		var/mob/living/carbon/C = targeted_atom
 		if(HAS_TRAIT(C, TRAIT_STUNIMMUNE) || HAS_TRAIT(C, TRAIT_STUNRESISTANCE))
-			projectiletype = /obj/item/projectile/beam/flock
+			set_murdering(TRUE)
 		else
-			projectiletype = initial(projectiletype)
+			set_murdering(FALSE)
+
+	else if(ismecha(targeted_atom) || isliving(targeted_atom)) //If the target is a mech or a non-human/monke, we KILL IT
+		set_murdering(TRUE)
 
 	return ..()
 
 /mob/living/simple_animal/hostile/flockdrone/AttackingTarget()
-	if(isliving(target))
+	if(isitem(target))
+		target.flock_act(src)
+		return
+	else if(isliving(target) || !mind)
 		var/mob/living/L = target
 		if(L.stat == DEAD || L.IsStun() || L.IsImmobilized() || L.IsParalyzed() || L.IsUnconscious() || L.IsSleeping())
-			CageOrDeconstruct(L)
+			L.flock_act(src) //We place them in a cage or just recycle if a simplemob/silicon
 			return
 		else if(ishuman(L) || ismonkey(L))
 			if(HAS_TRAIT(L, TRAIT_STUNIMMUNE) || HAS_TRAIT(L, TRAIT_STUNRESISTANCE))
-				melee_damage_type = BRUTE
+				set_murdering(TRUE)
 			else 
-				melee_damage_type = initial(melee_damage_type)
+				set_murdering(FALSE)
 	. = ..()
 	if(. && isliving(target)) //We deal bonus 5 brute damage to living/alive targets. Always.
 		var/mob/living/L = target
@@ -86,8 +94,61 @@
 		var/armor = run_armor_check(affecting, MELEE, armour_penetration = src.armour_penetration)
 		apply_damage(5, BRUTE, affecting, armor)
 
-/mob/living/simple_animal/hostile/flockdrone/proc/CageOrDeconstruct(mob/living/L)
-	return
+/mob/living/simple_animal/hostile/flockdrone/get_status_tab_items()
+	. = ..()
+	. += "Resources: [resources]/[max_resources]"
+
+/mob/living/simple_animal/hostile/flockdrone/CanAllowThrough(atom/movable/O)
+	. = ..()
+	if(istype(O, /obj/item/projectile/beam/disabler/flock) || istype(O, /obj/item/projectile/beam/flock))//Allows for swarmers to fight as a group without wasting their shots hitting each other
+		return TRUE
+	if(isflockdrone(O))
+		return TRUE
+
+/mob/living/simple_animal/hostile/flockdrone/Life(seconds, times_fired)
+	. = ..()
+	if(!mind && !client && (resources > 20)) //The drone will try to convert tiles around it if not player-controlled.
+		for(var/tile in spiral_range_turfs(grav_pull, src))
+			var/turf/T = tile
+			if(!T || !isturf(loc))
+				continue
+			if(get_dist(T, src) > 1)
+				if(prob(25))
+					flock_act(src)
+					if(prob(50))
+						break
+
+/mob/living/simple_animal/hostile/flockdrone/proc/Eat(obj/item/target)
+	var/resource_gain = target.integrate_amount()
+	if(resources + resource_gain > max_resources)
+		to_chat(src, span_warning("You cannot hold more materials!"))
+		return TRUE
+	if(!resource_gain)
+		to_chat(src, span_warning("You cannot recycle this."))
+		return FALSE
+	resources += resource_gain
+	do_attack_animation(target)
+	changeNext_move(CLICK_CD_RAPID)
+	var/obj/effect/temp_visual/swarmer/integrate/I = new /obj/effect/temp_visual/swarmer/integrate(get_turf(target))
+	I.pixel_x = target.pixel_x
+	I.pixel_y = target.pixel_y
+	I.pixel_z = target.pixel_z
+	if(istype(target, /obj/item/stack))
+		var/obj/item/stack/S = target
+		S.use(1)
+		if(S.amount)
+			return TRUE
+	qdel(target)
+	return TRUE
+
+/mob/living/simple_animal/hostile/flockdrone/proc/set_murdering(true_or_false = TRUE)
+	murderer = true_or_false
+	if(murderer)
+		melee_damage_type = BRUTE
+		projectiletype = /obj/item/projectile/beam/flock
+	else
+		melee_damage_type = STAMINA
+		projectiletype = /obj/item/projectile/beam/disabler/flock
 
 /obj/item/projectile/beam/disabler/flock
 	name = "flock disabler"
