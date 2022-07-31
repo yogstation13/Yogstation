@@ -180,7 +180,7 @@
 	if(has_owner && creator)
 		short_desc = "You are a Golem."
 		flavour_text = "You move slowly and are unable to wear clothes, but can still use most tools. Depending on the material you were made of, you will have different strengths and weaknesses \
-		Serve [creator], and assist [creator.p_them()] in completing [creator.p_their()] goals at any cost."
+		Serve [creator.real_name], and assist [creator.p_them()] in completing [creator.p_their()] goals at any cost."
 		owner = creator
 
 /obj/effect/mob_spawn/human/golem/special(mob/living/new_spawn, name)
