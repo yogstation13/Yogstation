@@ -108,11 +108,11 @@
 /mob/living/simple_animal/hostile/flockdrone/Life(seconds, times_fired)
 	. = ..()
 	if(!mind && !client && (resources > 20)) //The drone will try to convert tiles around it if not player-controlled.
-		for(var/tile in spiral_range_turfs(grav_pull, src))
+		for(var/tile in spiral_range_turfs(1, src))
 			var/turf/T = tile
 			if(!T || !isturf(loc))
 				continue
-			if(get_dist(T, src) > 1)
+			if(get_dist(T, src) <= 1)
 				if(prob(25))
 					flock_act(src)
 					if(prob(50))
