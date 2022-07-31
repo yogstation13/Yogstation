@@ -66,21 +66,28 @@
 /mob/living/simple_animal/hostile/flockdrone/AttackingTarget()
 	if(isliving(target))
 		var/mob/living/L = target
-		if(C.stat == DEAD || C.IsStun() || C.IsImmobilized() || C.IsParalyzed() || C.IsUnconscious() || C.IsSleeping())
-			CageOrDeconstruct(C)
+		if(L.stat == DEAD || L.IsStun() || L.IsImmobilized() || L.IsParalyzed() || L.IsUnconscious() || L.IsSleeping())
+			CageOrDeconstruct(L)
 			return
 		else if(ishuman(L) || ismonkey(L))
-			if(HAS_TRAIT(C, TRAIT_STUNIMMUNE) || HAS_TRAIT(C, TRAIT_STUNRESISTANCE))
+			if(HAS_TRAIT(L, TRAIT_STUNIMMUNE) || HAS_TRAIT(L, TRAIT_STUNRESISTANCE))
 				melee_damage_type = BRUTE
 			else 
 				melee_damage_type = initial(melee_damage_type)
 	. = ..()
-	if(. && isliving(target))
+	if(. && isliving(target)) //We deal bonus 5 brute damage to living/alive targets. Always.
 		var/mob/living/L = target
 		if(L.stat == DEAD)
 			return
+		var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+		var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
+		if(!affecting)
+			affecting = get_bodypart(BODY_ZONE_CHEST)
+		var/armor = run_armor_check(affecting, MELEE, armour_penetration = src.armour_penetration)
+		apply_damage(5, BRUTE, affecting, armor)
 
 /mob/living/simple_animal/hostile/flockdrone/proc/CageOrDeconstruct(mob/living/L)
+	return
 
 /obj/item/projectile/beam/disabler/flock
 	name = "flock disabler"
