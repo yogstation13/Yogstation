@@ -17,3 +17,5 @@
 		if((movement_dir & EAST) && (movement_dir & WEST))
 			movement_dir &= ~(EAST|WEST)
 		user.Move(get_step(src, movement_dir), movement_dir)
+		return !!movement_dir
+	return FALSE

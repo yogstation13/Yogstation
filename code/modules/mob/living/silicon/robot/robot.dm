@@ -719,6 +719,9 @@
 	set category = "IC"
 	set src = usr
 
+	return ..()
+
+/mob/living/silicon/robot/execute_mode()
 	if(incapacitated())
 		return
 	var/obj/item/W = get_active_held_item()
@@ -1295,14 +1298,13 @@
 			riding_datum.restore_position(user)
 	. = ..(user)
 
-/mob/living/silicon/robot/resist() // for unbuckling people
+/mob/living/silicon/robot/execute_resist() // for unbuckling people
 	. = ..()
 	if(!buckled_mobs?.len) // Runtimes if noone is on you and you resist without the ?.
 		return
 
-	for(var/i in buckled_mobs)
-		var/mob/target = i
-		unbuckle_mob(target, FALSE)
+	for(var/mob/unbuckle_me_now as anything in buckled_mobs)
+		unbuckle_mob(unbuckle_me_now, FALSE)
 
 /mob/living/silicon/robot/proc/TryConnectToAI()
 	set_connected_ai(select_active_ai_with_fewest_borgs())
