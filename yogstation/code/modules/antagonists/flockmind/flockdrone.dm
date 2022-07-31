@@ -13,13 +13,13 @@
 	icon_dead = "swarmer_unactivated"
 	icon_gib = null
 	wander = TRUE
-	harm_intent_damage = 5
+	harm_intent_damage = 10
 	minbodytemp = 0
 	maxbodytemp = 500
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 0
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_lower = 10
+	melee_damage_upper = 10
 	melee_damage_type = BRUTE
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	obj_damage = 0
@@ -29,7 +29,7 @@
 	friendly = "pinches"
 	speed = 0
 	faction = list("flock")
-	AIStatus = AI_OFF
+	AIStatus = AI_ON
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_TINY
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -42,6 +42,7 @@
 	speech_span = SPAN_ROBOT
 	var/resources = 0
 	var/max_resources = 100
+	var/mob/camera/flockcontroler
 
 /mob/living/simple_animal/hostile/flockdrone/OpenFire(atom/A)
 	if(!ismecha(A) && !isliving(A) && !mind)
@@ -59,8 +60,27 @@
 			projectiletype = /obj/item/projectile/beam/flock
 		else
 			projectiletype = initial(projectiletype)
-			
+
 	return ..()
+
+/mob/living/simple_animal/hostile/flockdrone/AttackingTarget()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(C.stat == DEAD || C.IsStun() || C.IsImmobilized() || C.IsParalyzed() || C.IsUnconscious() || C.IsSleeping())
+			CageOrDeconstruct(C)
+			return
+		else if(ishuman(L) || ismonkey(L))
+			if(HAS_TRAIT(C, TRAIT_STUNIMMUNE) || HAS_TRAIT(C, TRAIT_STUNRESISTANCE))
+				melee_damage_type = BRUTE
+			else 
+				melee_damage_type = initial(melee_damage_type)
+	. = ..()
+	if(. && isliving(target))
+		var/mob/living/L = target
+		if(L.stat == DEAD)
+			return
+
+/mob/living/simple_animal/hostile/flockdrone/proc/CageOrDeconstruct(mob/living/L)
 
 /obj/item/projectile/beam/disabler/flock
 	name = "flock disabler"
