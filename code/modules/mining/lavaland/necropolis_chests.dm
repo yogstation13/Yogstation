@@ -70,6 +70,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/rune_scimmy(src)
 		if(24)
 			new /obj/item/dnainjector/dwarf(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
 		if(25)
 			new /obj/item/clothing/gloves/gauntlets(src)
 
@@ -663,7 +666,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(96 to 99) //4% DHIDE ARMOR
 			new /obj/item/stack/sheet/animalhide/ashdrake(spot)
 		if(100)
-			new /obj/structure/closet/crate/necropolis(spot)
+			new /obj/structure/closet/crate/necropolis/tendril(spot)
 
 //Potion of Flight
 /obj/item/reagent_containers/glass/bottle/potion

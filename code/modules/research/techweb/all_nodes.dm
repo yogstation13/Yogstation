@@ -607,7 +607,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 	hidden = TRUE
-	boost_item_paths = list(/obj/item/magmite)
+	boost_item_paths = list(/obj/item/magmite,/obj/item/grenade/plastic/miningcharge/mega) //you can get mega mining charges from necropolis chests
 
 /datum/techweb_node/camera_theory
 	id = "cam_theory"
