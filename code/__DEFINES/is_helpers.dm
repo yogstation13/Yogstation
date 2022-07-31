@@ -154,6 +154,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isflocktrace(A) (istype(A, /mob/camera/flocktrace))
 
+#define isflockmind(A) (istype(A, /mob/camera/flocktrace/flockmind))
+
 GLOBAL_LIST_INIT(shoefootmob, typecacheof(list(
 	/mob/living/carbon/human/,
 	/mob/living/simple_animal/cow,

@@ -46,7 +46,7 @@
 	var/resources = 0
 	var/max_resources = 100
 	var/murderer = FALSE
-	var/mob/camera/flocktrace
+	var/mob/camera/flocktrace/pilot
 
 /mob/living/simple_animal/hostile/flockdrone/Initialize()
 	. = ..()
@@ -169,4 +169,12 @@
 //////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/flockdrone/attack_flocktrace(/mob/camera/flocktrace/user, var/list/modifiers)
-	return
+	if(!user.client)
+		return
+	if(mind)
+		if(!isflockmind(user))
+			to_chat(user, span_warning("[src] is already piloted!"))
+			return
+		else
+			if(isflockmind(pilot))
+				return
