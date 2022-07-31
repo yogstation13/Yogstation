@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			GLOB.mentors += src
 
 	if(is_donator(src))
-		add_verb(src, /client/proc/cmd_donator_say)
+		src.add_donator_verbs()
 	// yogs end
 
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
