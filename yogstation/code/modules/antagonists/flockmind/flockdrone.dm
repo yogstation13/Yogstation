@@ -161,3 +161,12 @@
 /obj/item/projectile/beam/flock
 	name = "flock laser"
 	damage = 15
+
+//////////////////////////////////////////////
+//                                          //
+//                PILOTING                  //
+//                                          //
+//////////////////////////////////////////////
+
+/mob/living/simple_animal/hostile/flockdrone/attack_flocktraceattack_flocktrace(/mob/camera/flocktrace/user, var/list/modifiers)
+	return
