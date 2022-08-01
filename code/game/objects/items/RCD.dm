@@ -573,6 +573,20 @@ RLD
 				new /obj/item/conveyor_switch_construct(A)
 	qdel(rcd_effect)
 
+/obj/item/construction/rcd/proc/rcd_catwalk(atom/A, mob/user)
+	var/cost = 1
+	var/delay = 0
+	var/obj/effect/constructing_effect/rcd_effect = new(get_turf(A), delay, src.mode)
+	if(checkResource(cost, user))
+		if(do_after(user, delay, A))
+			if(checkResource(cost, user))
+				rcd_effect.end_animation()
+				useResource(cost, user)
+				activate()
+				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+				new /obj/structure/lattice/catwalk(A)
+	qdel(rcd_effect)
+
 /obj/item/construction/rcd/proc/rcd_conveyor(atom/A, mob/user)
 	var/delay = 5
 	var/cost = 5
@@ -609,7 +623,8 @@ RLD
 		"Airlock" = image(icon = 'icons/mob/radial.dmi', icon_state = "airlock"),
 		"Deconstruct" = image(icon= 'icons/mob/radial.dmi', icon_state = "delete"),
 		"Grilles & Windows" = image(icon = 'icons/mob/radial.dmi', icon_state = "grillewindow"),
-		"Floors & Walls" = image(icon = 'icons/mob/radial.dmi', icon_state = "wallfloor")
+		"Floors & Walls" = image(icon = 'icons/mob/radial.dmi', icon_state = "wallfloor"),
+		"Catwalk" = image(icon = 'icons/obj/smooth_structures/catwalk.dmi', icon_state = "catwalk")
 	)
 	if(upgrade & RCD_UPGRADE_FRAMES)
 		choices += list(
@@ -687,6 +702,8 @@ RLD
 			last_placed = null
 		if("Switch")
 			mode = RCD_SWITCH
+		if("Catwalk")
+			mode = RCD_CATWALK
 		else 
 			return
 	playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
@@ -720,6 +737,13 @@ RLD
 		if(!proximity)
 			return
 		rcd_switch(A, user)
+	if (mode == RCD_CATWALK)
+		if(!range_check(A, user) || !target_check(A,user)  || istype(A, /obj/structure/lattice/catwalk) || !isopenturf(A) || istype(A, /area/shuttle))
+			to_chat(user, "<span class='warning'>Error! Invalid tile!</span>")
+			return
+		if(!proximity)
+			return
+		rcd_catwalk(A, user)
 	else
 		if(!prox_check(proximity))
 			return
