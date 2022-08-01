@@ -47,7 +47,7 @@
 			return TRUE
 		if(D.mind.has_antag_datum(/datum/antagonist/changeling))
 			to_chat(D, span_cultlarge("Our DNA shakes as we are body slammed!"))
-			D.apply_damage(A.dna.species.punchdamagehigh + 5, BRUTE)	//15 damage
+			D.apply_damage(A.get_punchdamagehigh() + 5, BRUTE)	//15 damage
 			D.Paralyze(60)
 			A.Paralyze(25)
 			return TRUE
@@ -67,9 +67,9 @@
 	to_chat(A, span_danger("You stab [D] viciously!"))
 	playsound(get_turf(A), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	log_combat(A, D, "stakestabbed (Hunter-Fu)")
-	var/stake_damagehigh = A.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
+	var/stake_damagehigh = A.get_punchdamagehigh() * 1.5 + 10	//25 damage
 	if(!D.mind)
-		D.apply_damage(A.dna.species.punchdamagehigh + 5, BRUTE, BODY_ZONE_CHEST)	//15 damage
+		D.apply_damage(A.get_punchdamagehigh() + 5, BRUTE, BODY_ZONE_CHEST)	//15 damage
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/changeling))
 		to_chat(D, span_danger("Their arm tears through our monstrous form!"))
@@ -81,11 +81,11 @@
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/bloodsucker))
 		to_chat(D, span_cultlarge("Their arm stakes straight into our undead flesh!"))
-		D.apply_damage(A.dna.species.punchdamagehigh + 10, BURN)				//20 damage
-		D.apply_damage(A.dna.species.punchdamagehigh, BRUTE, BODY_ZONE_CHEST)	//10 damage
+		D.apply_damage(A.get_punchdamagehigh() + 10, BURN)				//20 damage
+		D.apply_damage(A.get_punchdamagehigh(), BRUTE, BODY_ZONE_CHEST)	//10 damage
 		return TRUE
 	else
-		D.apply_damage(A.dna.species.punchdamagehigh + 5, BRUTE, BODY_ZONE_CHEST)	//15 damage
+		D.apply_damage(A.get_punchdamagehigh() + 5, BRUTE, BODY_ZONE_CHEST)	//15 damage
 	return TRUE
 
 /datum/martial_art/hunterfu/proc/neck_snap(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -108,7 +108,7 @@
 			return TRUE
 		if(D.mind.has_antag_datum(/datum/antagonist/heretic))
 			to_chat(D, span_cultlarge("The power of the Codex Cicatrix flares as we are swiftly put to sleep!"))
-			D.apply_damage(A.dna.species.punchdamagehigh + 5, BRUTE, BODY_ZONE_HEAD)	//15 damage
+			D.apply_damage(A.get_punchdamagehigh() + 5, BRUTE, BODY_ZONE_HEAD)	//15 damage
 			D.SetSleeping(40)
 			return TRUE
 		if(D.mind.has_antag_datum(/datum/antagonist/bloodsucker))
@@ -130,8 +130,8 @@
 	to_chat(A, span_danger("You holy kick [D]!"))
 	playsound(get_turf(A), 'sound/weapons/slash.ogg', 50, TRUE, -1)
 	log_combat(A, D, "holy kicked (Hunter-Fu)")
-	var/holykick_staminadamage = A.dna.species.punchdamagehigh * 3 + 30 //60 damage (holy shit)
-	var/holykick_hereticburn = A.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
+	var/holykick_staminadamage = A.get_punchdamagehigh() * 3 + 30 //60 damage (holy shit)
+	var/holykick_hereticburn = A.get_punchdamagehigh() * 1.5 + 10	//25 damage
 	if(!D.mind)
 		D.apply_damage(holykick_staminadamage, STAMINA)
 		D.Paralyze(20)
@@ -186,7 +186,7 @@
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/atk_verb = pick("kick", "chop", "hit", "slam")
-	var/harm_damage = A.dna.species.punchdamagehigh + rand(0,5)	//10-15 damage
+	var/harm_damage = A.get_punchdamagehigh() + rand(0,5)	//10-15 damage
 	D.visible_message(
 		span_danger("[A] [atk_verb]s [D]!"),
 		span_userdanger("[A] [atk_verb]s you!"),

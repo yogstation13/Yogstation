@@ -9,6 +9,7 @@
 	power = /obj/effect/proc_holder/spell/targeted/touch/shock
 	instability = 20
 	locked = TRUE
+	conflicts = list(/datum/mutation/human/shock/far, /datum/mutation/human/insulated)
 
 /obj/effect/proc_holder/spell/targeted/touch/shock
 	name = "Shock Touch"

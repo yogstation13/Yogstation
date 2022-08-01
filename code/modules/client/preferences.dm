@@ -136,6 +136,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
 
+	var/disable_alternative_announcers = FALSE
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -333,7 +335,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=ethcolor;task=input'>Change</a> <a href ='?_src_=prefs;preference=ethcolor;task=lock'>[random_locks["ethcolor"] ? "Unlock" : "Lock"]</a><BR>"
 
 
-			if((EYECOLOR in pref_species.species_traits) && !(NOEYESPRITES in pref_species.species_traits))
+			if((EYECOLOR in pref_species.species_traits) || !(NOEYESPRITES in pref_species.species_traits))
 
 				if(!use_skintones && !mutant_colors)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -553,7 +555,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
-			
+
 			if("ethereal_mark" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -582,7 +584,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
-			
+
 			if("pod_flower" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -594,7 +596,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
-			
+
 			if("tail_human" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -655,6 +657,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Hear alternative station announcers:</b> <a href='?_src_=prefs;preference=alternative_announcers'>[disable_alternative_announcers ? "Disabled" : "Enabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
@@ -1619,6 +1622,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/temp_hsv = RGBtoHSV(features["mcolor"])
 						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
 							features["mcolor"] = pref_species.default_color
+						var/CQ
+						for(var/Q in all_quirks)
+							var/quirk_type = SSquirks.quirks[Q]
+							var/datum/quirk/quirk = new quirk_type(no_init = TRUE)
+							CQ = quirk.check_quirk(src)
+							if(CQ)
+								all_quirks -= Q
+								to_chat(user, span_danger(CQ))
+								if(GetQuirkBalance() < 0)
+									to_chat(user, span_danger("Your quirk balance is now negative, and you will need to re-balance it or all quirks will be disabled."))
 
 				if("mcolor")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
@@ -1731,7 +1744,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_ethereal_mark = input(user, "Choose if your character has a facial mark", "Character Preference") as null|anything in GLOB.ethereal_mark_list
 					if(new_ethereal_mark)
 						features["ethereal_mark"] = new_ethereal_mark
-				
+
 				if("pod_hair")
 					var/new_pod_hair
 					new_pod_hair = input(user, "Choose the style of your head vegitation", "Character Preference") as null|anything in GLOB.pod_hair_list
@@ -1887,6 +1900,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+				if("alternative_announcers")
+					disable_alternative_announcers = !disable_alternative_announcers
 			// yogs start - Custom keybindings
 			if(href_list["keybinding"])
 				update_keybindings(user, href_list["keybinding"], href_list["dir"])
