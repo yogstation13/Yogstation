@@ -51,12 +51,12 @@
 
 /mob/living/simple_animal/hostile/flockdrone/Initialize()
 	. = ..()
-	var/obj/item/radio/headset/silicon/ai/radio = new(src)
+	new /obj/item/radio/headset/silicon/ai(src)
 
 /mob/living/simple_animal/hostile/flockdrone/OpenFire(atom/A)
 	if(!ismecha(A) && !isliving(A) && !mind)
 		return 
-	if(a_intent = INTENT_HELP)
+	if(a_intent == INTENT_HELP)
 		projectiletype = /obj/item/projectile/beam/disabler/flock
 	else 
 		projectiletype = /obj/item/projectile/beam/flock
@@ -91,7 +91,7 @@
 				a_intent_change(INTENT_HARM)
 			else 
 				a_intent_change(INTENT_HELP)
-	if(a_intent = INTENT_HELP)
+	if(a_intent == INTENT_HELP)
 		melee_damage_type = STAMINA
 	else 
 		melee_damage_type = initial(melee_damage_type)
