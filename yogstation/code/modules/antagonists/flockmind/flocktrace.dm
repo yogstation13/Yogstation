@@ -28,7 +28,7 @@
 	if (!message)
 		return
 
-	ping_flock(message)
+	ping_flock(message, src)
 
 /mob/camera/flocktrace/flockmind
 	name = "Flockmind"
