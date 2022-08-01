@@ -31,6 +31,13 @@
 		/obj/effect/proc_holder/spell/targeted/touch/envy,
 		/obj/effect/proc_holder/spell/aoe_turf/conjure/summon_mirror))
 
+	var/static/list/sinfuldemon_traits = list(
+		TRAIT_GENELESS,
+		TRAIT_STABLEHEART,
+		TRAIT_NOSOFTCRIT,
+		TRAIT_NOCRITDAMAGE,
+	)
+
 /datum/antagonist/sinfuldemon/proc/sinfuldemon_life()
 	var/mob/living/carbon/C = owner.current
 	if(!C)
@@ -82,12 +89,6 @@
 				objectives += kill_objective
 		if(SIN_ENVY)
 			O = new /datum/objective/demon/envy
-			if(prob(50))
-				var/datum/objective/escape/escape_with_identity/identity_theft = new
-				identity_theft.owner = owner
-				identity_theft.find_target()
-				identity_theft.update_explanation_text()
-				objectives += identity_theft
 		if(SIN_PRIDE)
 			O = new /datum/objective/demon/pride
 	objectives += O
@@ -112,6 +113,7 @@
 
 /datum/antagonist/sinfuldemon/greet()
 	to_chat(owner.current, span_warning("<b>You remember your link to the infernal. You are a demon of [demonsin] released from hell to spread sin amongst the living.</b>"))
+	to_chat(owner.current, span_warning("<b>Your half demon, half human form grants you increased fortitude, allowing you to resist more damage before going down.</b>"))
 	to_chat(owner.current, span_warning("<b>However, your infernal form is not without weaknesses.</b>"))
 	to_chat(owner.current, "You are incredibly vulnerable to holy artifacts and influence.")
 	to_chat(owner.current, "While blessed with the unholy ability to transform into your true form, this form is extremely obvious and vulnerable to holy weapons.")
@@ -124,6 +126,8 @@
 	forge_objectives()
 	owner.special_role = "sinfuldemon"
 	owner.current.faction += "hell"
+	for(var/all_traits in sinfuldemon_traits) ///adds demon traits
+		ADD_TRAIT(owner.current, all_traits, SINFULDEMON_TRAIT)
 	if(owner.assigned_role == "Clown" && ishuman(owner.current))
 		var/mob/living/carbon/human/S = owner.current
 		to_chat(S, span_notice("Your infernal nature has allowed you to overcome your clownishness."))
@@ -132,6 +136,7 @@
 		if(SIN_GLUTTONY)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall/gluttony)
+			ADD_TRAIT(owner.current, TRAIT_EAT_MORE, SINFULDEMON_TRAIT) //gluttonous demons hunger thrice as fast, unique to just them.
 		if(SIN_GREED)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon)
 			owner.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/summon_greedslots)
@@ -149,6 +154,8 @@
 /datum/antagonist/sinfuldemon/on_removal()
 	owner.special_role = null
 	owner.current.faction -= "hell"
+	for(var/all_status_traits in owner.current.status_traits) //removes demon traits
+		REMOVE_TRAIT(owner.current, all_status_traits, SINFULDEMON_TRAIT)
 	remove_spells()
 	to_chat(owner.current, span_userdanger("Your infernal link has been severed! You are no longer a demon!"))
 	.=..()

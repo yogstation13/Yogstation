@@ -12,6 +12,7 @@
 	var/mob_trait //if applicable, apply and remove this mob trait
 	var/mob/living/quirk_holder
 	var/not_init = FALSE // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
+	var/list/species_blacklist = list()
 
 /datum/quirk/New(mob/living/quirk_mob, spawn_effects, no_init = FALSE)
 	..()

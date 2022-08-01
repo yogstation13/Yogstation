@@ -228,4 +228,4 @@
 
 /obj/item/paper/fluff/holodeck/disclaimer
 	name = "Holodeck Disclaimer"
-	info = "Bruises sustained in the holodeck can be healed simply by sleeping."
+	info = "Any fatigue experienced in the holodeck will wear off by itself over time."

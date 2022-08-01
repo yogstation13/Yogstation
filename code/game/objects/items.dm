@@ -4,6 +4,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // if true, everyone item when created will have its name changed to be
 // more... RPG-like.
 
+GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, ABOVE_LIGHTING_PLANE))
+
 /obj/item
 	name = "item"
 	icon = 'icons/obj/misc.dmi'
@@ -68,6 +70,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/interaction_flags_item = INTERACT_ITEM_ATTACK_HAND_PICKUP
 
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
+	var/body_parts_partial_covered = 0 //same bit flags as above, only applies half armor to these body parts
+
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -135,6 +139,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	/// Should the cryo console preserve this item
 	var/cryo_preserve = FALSE
+
+	/// Is this item fryable without a syndicate frying pan
+	var/fryable = FALSE
 
 /obj/item/Initialize()
 

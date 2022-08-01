@@ -19,6 +19,7 @@
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
+	minimal_character_age = 21 //I shouldn't have to explain this one
 
 	changed_maps = list("OmegaStation")
 

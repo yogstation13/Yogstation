@@ -557,6 +557,12 @@
 	suffix = "3x3_vendoraccident.dmm"
 	name = "Maint vendoraccident"
 
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/threexthree/donut
+	id = "donut" 
+	suffix = "3x3_donut.dmm"
+	name = "Maint donut"
+
 ///The base for the 3x5 rooms.
 /datum/map_template/ruin/station/maint/threexfive
 	prefix = "_maps/RandomRuins/StationRuins/maint/3x5/"

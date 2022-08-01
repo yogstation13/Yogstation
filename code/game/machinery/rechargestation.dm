@@ -101,3 +101,17 @@
 	if(!occupant)
 		return
 	SEND_SIGNAL(occupant, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, recharge_speed, repairs)
+
+/obj/machinery/recharge_station/fullupgrade
+	flags_1 = NODECONSTRUCT_1
+
+/obj/machinery/recharge_station/fullupgrade/Initialize()
+	. = ..()
+	update_icon()
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/cyborgrecharger(null)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	RefreshParts()
