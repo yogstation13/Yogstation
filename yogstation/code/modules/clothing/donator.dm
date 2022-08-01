@@ -98,6 +98,12 @@
 	icon_state = "megumu_cape"
 	item_state = "megumu_cape"
 
+/obj/item/clothing/head/yogs/froghat
+	name = "frog hat"
+	desc = "A strange hat that looks somewhat like a frog?"
+	icon_state = "froghat"
+	item_state = "froghat"
+
 /obj/item/storage/box/megumu
 	name = "Megumu's box"
 	desc = "Contains Tofu"
@@ -106,3 +112,4 @@
 	. = ..()
 	new /obj/item/clothing/suit/yogs/megumu(src)
 	new /obj/item/clothing/neck/yogs/megumu(src)
+	new /obj/item/clothing/head/yogs/froghat(src)
