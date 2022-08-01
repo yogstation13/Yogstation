@@ -14,7 +14,6 @@
 			qdel(FT.stored_action)
 			FT.stored_action = null			
 		FT.stored_action = new action(FT)
-		to_chat(owner, span_warning(messg))
 
 /datum/action/cooldown/flock/IsAvailable()
 	return (next_use_time <= world.time) && (isflockdrone(owner) || isflocktrace(owner))
@@ -61,5 +60,4 @@
 /datum/action/cooldown/flock/eject
 	name = "Designate Enemy"
 	desc = "Alert your Flock that someone is definitely an enemy of your flock. NPC drones will fire lethal lasers at them regardles of conditions."
-	action =  /datum/flock_command/enemy_of_the_flock
-	messg = "Next living being you will click will be designated as The Enemy Of The Flock"
+	action = /datum/flock_command/enemy_of_the_flock

@@ -124,18 +124,23 @@
 	if(isflockdrone(O))
 		return TRUE
 
-/mob/living/simple_animal/hostile/flockdrone/Life(seconds, times_fired)
-	. = ..()
-	if(!mind && !client && (resources > 20)) //The drone will try to convert tiles around it if not player-controlled.
-		for(var/tile in spiral_range_turfs(1, src))
-			var/turf/T = tile
-			if(!T || !isturf(loc))
-				continue
-			if(get_dist(T, src) <= 1)
-				if(prob(25))
-					flock_act(src)
-					if(prob(50))
-						break
+/mob/living/simple_animal/hostile/flockdrone/handle_automated_action()
+	if(resources > 20) //The drone will try to convert tiles around it if not player-controlled.
+		convert_random_turf(FALSE)
+	return ..()
+
+/mob/living/simple_animal/hostile/flockdrone/convert_random_turf(var/force = FALSE)
+	for(var/tile in spiral_range_turfs(1, src))
+		var/turf/T = tile
+		if(!T || !isturf(loc))
+			continue
+		if(isflockturf(T))
+			continue
+		if(get_dist(T, src) <= 1)
+			if(prob(25) || force)
+				flock_act(src)
+				if(prob(50))
+					break
 
 /mob/living/simple_animal/hostile/flockdrone/proc/Eat(obj/item/target)
 	var/resource_gain = target.integrate_amount()
@@ -232,31 +237,6 @@
 //                                          //
 //////////////////////////////////////////////
 
-/mob/living/simple_animal/hostile/flockdrone/attack_flocktrace(mob/camera/flocktrace/user, var/list/modifiers)
-	if(!user.client)
-		return
-	if(mind)
-		if(!pilot)
-			return
-		if(!isflockmind(user))
-			to_chat(user, span_warning("[src] is already piloted!"))
-			return
-		else
-			if(isflockmind(pilot))
-				return
-			var/confirmation = input(user,"Do you want to posses an already controled drone? The current pilot will be ejected.","Confiramtion") in list("Yes", "No")
-			if(confirmation == "No")
-				return
-			EjectPilot()
-			Posses(user)
-		return
-	else
-		var/confirmation = input(user,"Do you want to posses [src]?","Confiramtion") in list("Yes", "No")
-		if(confirmation == "No")
-			return
-		Posses(user)
-
-
 /mob/living/simple_animal/hostile/flockdrone/proc/EjectPilot()
 	if(!pilot)
 		return
@@ -299,3 +279,51 @@
 /obj/item/projectile/beam/flock
 	name = "flock laser"
 	damage = 15
+
+//////////////////////////////////////////////
+//                                          //
+//            RTS HOLY SHIT                 //
+//                                          //
+//////////////////////////////////////////////
+
+/mob/living/simple_animal/hostile/flockdrone/attack_flocktrace(mob/camera/flocktrace/user, var/list/modifiers)
+	if(!modifiers["middle"])
+		if(!user.client)
+			return
+		if(mind)
+			if(!pilot)
+				return
+			if(!isflockmind(user))
+				to_chat(user, span_warning("[src] is already piloted!"))
+				return
+			else
+				if(isflockmind(pilot))
+					return
+				var/confirmation = input(user,"Do you want to posses an already controled drone? The current pilot will be ejected.","Confiramtion") in list("Yes", "No")
+				if(confirmation == "No")
+					return
+				EjectPilot()
+				Posses(user)
+			return
+		else
+			var/confirmation = input(user,"Do you want to posses [src]?","Confiramtion") in list("Yes", "No")
+			if(confirmation == "No")
+				return
+			Posses(user)
+	else if(istype(user, /mob/camera/flocktrace/flockmind))
+		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Nearby Tile", "Nothing")
+		switch(order)
+			if("Move")
+				new /datum/flock_command/move (user, src)
+			if("Cancel Order")
+				LoseTarget()
+				Goto(get_turf(src))
+				to_chat(user, span_notice("You order [src] to cancel it's current order."))
+			if("Repair Self")
+				flock_act(src)
+				to_chat(user, span_notice("You order [src] to attempt to repair itself."))
+			if("Convert Nearby Tile")
+				convert_random_turf(TRUE)
+				to_chat(user, span_notice("You order [src] to attempt to convert a random turf nearby."))
+			if("Nothing")
+				return

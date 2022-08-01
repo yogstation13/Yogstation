@@ -48,6 +48,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isvalidAIloc(A) ((isturf(A) || isaicore(A)))
 
+#define isflockturf(A) ((istype(A, /turf/closed/wall/feather) || istype(A, /turf/open/floor/feather)))
+
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
