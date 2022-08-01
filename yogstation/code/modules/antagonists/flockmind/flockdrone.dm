@@ -13,6 +13,7 @@
 	icon_living = "swarmer"
 	icon_dead = "swarmer_unactivated"
 	icon_gib = null
+	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	wander = TRUE
 	harm_intent_damage = 10
 	minbodytemp = 0
@@ -174,20 +175,24 @@
 		if(stored_pulling)
 			start_pulling(stored_pulling, supress_message = TRUE) 
 
-/mob/living/simple_animal/hostile/flockdrone/proc/change_resources(var/amount)
+/mob/living/simple_animal/hostile/flockdrone/proc/change_resources(var/amount, silent = FALSE)
 	if(resources >= max_resources)
-		to_chat(src, span_warning("You gain [amount] resources, but your storage is full!"))
+		if(!silent )
+			to_chat(src, span_warning("You gain [amount] resources, but your storage is full!"))
 		return
 	resources += amount
 	if(resources > max_resources)
-		to_chat(src, span_warning("You gain [amount] resources, but [resources - max_resources] of them don't fit in your storage!"))
+		if(!silent )
+			to_chat(src, span_warning("You gain [amount] resources, but [resources - max_resources] of them don't fit in your storage!"))
 		resources = max_resources
 	else if(resources < 0)
 		resources = 0
 	else if(amount >= 0)
-		to_chat(src, span_notice("You gain [amount] resources."))
+		if(!silent )
+			to_chat(src, span_notice("You gain [amount] resources."))
 	else 
-		to_chat(src, span_notice("You spend [amount] resources."))
+		if(!silent )
+			to_chat(src, span_notice("You spend [amount] resources."))
 	if(hud_used && istype(hud_used, /datum/hud/living/flock))
 		var/datum/hud/living/flock/flockhud = hud_used
 		flockhud.resources.update_counter(resources)
@@ -204,7 +209,7 @@
 		visible_message(span_notice("[user] finishes repairing [user == src ? "itself" : src]!"), \
 				span_notice("[user == src ? "You finish" : "[user] finishes"] repairing [user == src ? "yourself" : src]!"))
 		return
-	if(user.resources < 7)
+	if(user.resources < 10)
 		to_chat(user, span_notice("You don't have enough resources to repair [user == src ? "yourself" : src] further."))
 		return
 	if(!do_mob(drone, src, 1 SECONDS))
@@ -215,7 +220,7 @@
 		adjustFireLoss(10)
 	visible_message(span_notice("[user] fixes some damage on [user == src ? "itself" : src]!"), \
 			span_notice("[user == src ? "You fix" : "[user] fixes"] some damage on [user == src ? "yourself" : src]!"))
-	change_resources(-7)
+	user.change_resources(-10, TRUE)
 	repair(user)
 
 /obj/item/projectile/beam/disabler/flock

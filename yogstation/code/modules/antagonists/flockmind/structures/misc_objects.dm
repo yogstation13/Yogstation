@@ -28,3 +28,16 @@
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/obj/structure/flock_barricade
+	name = "barricade"
+	desc = "An energy blockade. Only flockdrones can pass through it."
+	icon_state = "barricade"
+	light_range = MINIMUM_USEFUL_LIGHT_RANGE
+	max_integrity = 50
+	density = TRUE
+
+/obj/structure/flock_barricade/CanAllowThrough(atom/movable/O)
+	. = ..()
+	if(isflockdrone(O))
+		return TRUE

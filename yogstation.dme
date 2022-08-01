@@ -3548,7 +3548,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\psi_regen.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\spacewalking.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\twin_tendrils.dm"
-#include "yogstation\code\modules\antagonists\flockmind\structures\flocktile.dm"
+#include "yogstation\code\modules\antagonists\flockmind\structures\misc_objects.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flock_act.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flock.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flockdrone.dm"

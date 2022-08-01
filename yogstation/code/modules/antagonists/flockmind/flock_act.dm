@@ -53,14 +53,21 @@
 		if(QDELETED(src))
 			return
 		drone.change_resources(resources)
-		change_resources(-resources)
+		change_resources(-resources, TRUE)
 		qdel(src)
 		return
 	if(drone.a_intent == INTENT_HELP)
 		if(health >= maxHealth)
 			to_chat(user, span_notice("[drone == src ? "You are" : "[user] is"] already in good conditions."))
 			return
-		if(resources < 7)
+		if(drone.resources < 10)
 			to_chat(user, span_notice("You don't have enough resources to repair [drone == src ? "yourself" : src]."))
 			return
+		repair(drone)
 		
+/turf/open/floor/feather/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(drone.resources < 25)
+		to_chat(user, span_notice("You don't have enough resources to build a barricade."))
+		return
+	new /obj/structure/flock_barricade (src)
+	drone.change_resources(-25)
