@@ -27,12 +27,22 @@
 
 	var/bitcoinproduction_drain = 0.15
 	var/bitcoinmining = FALSE
+	var/obj/item/radio/radio
 
+/obj/machinery/power/rad_collector/Initialize(mapload)
+	. = ..()
+
+	radio = new(src)
+	radio.keyslot = new /obj/item/encryptionkey/headset_eng
+	radio.subspace_transmission = TRUE
+	radio.canhear_range = 0
+	radio.recalculateChannels()
 
 /obj/machinery/power/rad_collector/anchored
 	anchored = TRUE
 
 /obj/machinery/power/rad_collector/Destroy()
+	QDEL_NULL(radio)
 	return ..()
 
 /obj/machinery/power/rad_collector/process()
@@ -43,6 +53,8 @@
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
+			var/msg = "Plasma depleted, replacement tank required."
+			radio.talk_into(src, msg, RADIO_CHANNEL_ENGINEERING)
 			eject()
 		else
 			var/gasdrained = min(powerproduction_drain*drainratio,loaded_tank.air_contents.get_moles(GAS_PLASMA))

@@ -113,7 +113,7 @@ Difficulty: Medium
 			if(2)
 				fire_cone()
 			if(3)
-				mass_fire()
+				mass_fire(12, 15, 3)
 			if(4)
 				lava_swoop()
 		return
@@ -166,7 +166,7 @@ Difficulty: Medium
 		fire_cone()
 	SetRecoveryTime(40)
 
-/mob/living/simple_animal/hostile/megafauna/dragon/proc/mass_fire(var/spiral_count = 12, var/range = 15, var/times = 3)
+/mob/living/simple_animal/hostile/megafauna/dragon/proc/mass_fire(var/spiral_count = 12, var/range = 15, var/times = 6)
 	SLEEP_CHECK_DEATH(0)
 	for(var/i = 1 to times)
 		SetRecoveryTime(50)
@@ -232,7 +232,7 @@ Difficulty: Medium
 	move_to_delay = move_to_delay / 2
 	light_range = 10
 	SLEEP_CHECK_DEATH(10) // run.
-	mass_fire(20, 15, 3)
+	mass_fire(20, 15, 6)
 	move_to_delay = initial(move_to_delay)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	light_range = initial(light_range)
@@ -244,11 +244,15 @@ Difficulty: Medium
 		INVOKE_ASYNC(src, .proc/fire_rain)
 	var/range = 15
 	var/list/turfs = list()
-	turfs = line_target(-40, range, at)
+	turfs = line_target(-50, range, at)
+	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	turfs = line_target(-25, range, at)
 	INVOKE_ASYNC(src, .proc/fire_line, turfs)
 	turfs = line_target(0, range, at)
 	INVOKE_ASYNC(src, .proc/fire_line, turfs)
-	turfs = line_target(40, range, at)
+	turfs = line_target(25, range, at)
+	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	turfs = line_target(50, range, at)
 	INVOKE_ASYNC(src, .proc/fire_line, turfs)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/line_target(var/offset, var/range, var/atom/at = target)
@@ -279,7 +283,7 @@ Difficulty: Medium
 			if(L in hit_list || L == source)
 				continue
 			hit_list += L
-			L.adjustFireLoss(20)
+			L.adjustFireLoss(30)
 			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
 
 		// deals damage to mechs

@@ -11,7 +11,7 @@
 #define WRITE_LOG(log, text) extools_log_write(log, text, TRUE)
 #define WRITE_LOG_NO_FORMAT(log, text) extools_log_write(log, text, FALSE)
 #else
-#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
+#define WRITE_LOG(log, text) rustg_log_write(log, "\[[worldtime2text()]\] [text]", "true")
 #define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
 #endif
 

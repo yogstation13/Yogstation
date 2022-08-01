@@ -85,7 +85,7 @@
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
 	description = "CentCom is thirsty! Send a shipment of [name] to CentCom to quench the company's thirst."
-	reward += rand(0, 2) * 500
+	reward += rand(0, 2) * 300
 
 /datum/bounty/reagent/complex_drink
 	name = "Complex Drink"
@@ -118,7 +118,7 @@
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
 	description = "CentCom is offering a reward for talented mixologists. Ship a container of [name] to claim the prize."
-	reward += rand(0, 4) * 500
+	reward += rand(0, 4) * 650
 
 /datum/bounty/reagent/chemical_simple
 	name = "Simple Chemical"

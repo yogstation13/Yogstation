@@ -397,3 +397,129 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	clothing_flags = THICKMATERIAL
+
+//////////////// PLATED ARMOR ////////////////
+// Helmet type in code/modules/clothing/head/helmet.dm
+/obj/item/clothing/suit/armor/plated
+	name = "empty plated armor vest"	
+	desc = "A lightweight general-purpose over-armor suit that is designed to hold various types of armor plating. Won't do much without them."
+	icon_state = "plate-armor"
+	item_state = "plate-armor"
+	blood_overlay_type = "armor"
+	w_class = WEIGHT_CLASS_SMALL // It's just some fabric, after all
+	armor = list(MELEE = 5, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 0, WOUND = 0)
+	slowdown = 0
+
+	var/obj/item/kevlar_plating/plating
+
+/obj/item/clothing/suit/armor/plated/attack_self(mob/user)
+	if(!plating)
+		to_chat(user, span_warning("[src] doesn't have any plating to remove!"))
+		return
+	
+	user.visible_message("[user] removes [plating] from [src]!", span_notice("You remove [plating]."))
+
+	user.put_in_hands(plating)
+
+	name = initial(name)
+	armor = armor.setRating(5,0,0,0,0,0,0,10,0,0,0)	//because initial(armor) apparently doesn't work
+	slowdown = initial(slowdown)
+	w_class = initial(w_class)
+	body_parts_partial_covered = initial(body_parts_partial_covered)
+	plating = null
+
+/obj/item/clothing/suit/armor/plated/examine(mob/user)
+	.=..()
+	if(plating)
+		. += span_info("It has [plating] slotted.")
+
+/obj/item/clothing/suit/armor/plated/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/kevlar_plating))
+		return
+	if(plating)
+		to_chat(user, span_warning("[src] already has [plating] slotted!"))
+		return 
+	if(!user.transferItemToLoc(I, src))
+		return
+	
+	user.visible_message("[user] inserts [plating] into [src]!", span_notice("You insert [plating] into [src]."))
+
+	var/obj/item/kevlar_plating/K = I
+
+	name = "[K.name_set] plated armor vest"
+	slowdown = K.slowdown_set
+
+	if (islist(armor) || isnull(armor))		//For an explanation see code/modules/clothing/under/accessories.dm#L39 - accessory detach proc							
+		armor = getArmor(arglist(armor))
+	if (islist(K.armor) || isnull(K.armor))
+		K.armor = getArmor(arglist(K.armor))
+
+	armor = armor.attachArmor(K.armor)
+	w_class = WEIGHT_CLASS_BULKY
+	body_parts_partial_covered = K.partial_coverage
+	plating = K
+
+//////////////// ARMOR PLATES ////////////////////////////////////////////////
+// These armors are supposed to be a mid-game direct upgrade for security that enables
+// them to dynamically respond depending on their skillset and/or the situation at hand
+//
+// balancing reference:
+// default armor, slowdown 0
+// armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+// bulletproof armor, slowdown 0
+// armor = list(MELEE = 15, BULLET = 60, LASER = 10, ENERGY = 10, BOMB = 40, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 20)
+// hos hardsuit, slowdown 1
+// armor = list(MELEE = 45, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 50, FIRE = 95, ACID = 95, WOUND = 25)
+// riot armor, slowdown 0.33
+// armor = list(MELEE = 50, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 80, WOUND = 30)
+//////////////////////////////////////////////////////////////////////////////
+/obj/item/kevlar_plating
+	name = "debug plating"
+	desc = "You shouldn't see this!"
+	icon = 'icons/obj/kevlar.dmi'
+	icon_state = "mki"
+	force = 2
+	var/name_set = "debug"
+	var/slowdown_set = 0 // Slowdown value to set on the vest, for reference a hardsuit has "1" slowdown
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 100) // Armor value to set on the vest
+	var/partial_coverage = LEGS|FEET|ARMS|HANDS // Areas that the vest will cover besides the chest, NEVER INCLUDE CHEST OR GROIN
+
+/obj/item/kevlar_plating/mki
+	name = "MK.I bluespace plating"
+	desc = "Incredibly light bluespace-infused armor plating that offers great movement while also providing some protection."
+	name_set = "MK.I bluespace"
+	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
+	armor = list(MELEE = 15, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 30, ACID = 40, WOUND = 10) // Slightly worse than default armor
+	partial_coverage = 0
+
+/obj/item/kevlar_plating/mkii
+	name = "MK.II ceramic plating"
+	desc = "Light armor plating that can be carried easily while providing robust protection."
+	icon_state = "mkii"
+	force = 4
+	name_set = "MK.II ceramic"
+	slowdown_set = 0
+	armor = list(MELEE = 30, BULLET = 35, LASER = 35, ENERGY = 15, BOMB = 25, BIO = 0, RAD = 0, FIRE = 40, ACID = 50, WOUND = 20) 	// Slightly better than default armor
+	partial_coverage = 0
+
+/obj/item/kevlar_plating/mkiii
+	name = "MK.III plasteel plating"
+	desc = "Weighted armor plating that impedes movement but greatly improves the durability of the wearer. Covers your limbs partially."
+	icon_state = "mkiii"
+	force = 6
+	name_set = "MK.III plasteel"
+	slowdown_set = 0.15 // Slow
+	armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 25, BOMB = 30, BIO = 0, RAD = 0, FIRE = 50, ACID = 60, WOUND = 35)	//Robust
+	partial_coverage = LEGS|ARMS
+
+/obj/item/kevlar_plating/mkiv
+	name = "MK.IV titanium plating"
+	desc = "Incredibly heavy armor plating that makes shooting the covered areas almost pointless. Covers your limbs partially."
+	icon_state = "mkiv"
+	force = 8
+	name_set = "MK.IV titanium"
+	w_class = WEIGHT_CLASS_BULKY
+	slowdown_set = 0.4 // Very slow
+	armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 40, BOMB = 40, BIO = 0, RAD = 0, FIRE = 65, ACID = 75, WOUND = 50)	//Walking tank
+	partial_coverage = LEGS|ARMS
