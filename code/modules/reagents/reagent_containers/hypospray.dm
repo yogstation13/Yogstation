@@ -83,7 +83,7 @@
 	name = "combat stimulant autoinjector"
 	desc = "A modified air-needle autoinjector, used by support operatives to quickly heal injuries in combat."
 	amount_per_transfer_from_this = 10
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	volume = 90
 	ignore_flags = 1 // So they can heal their comrades.
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 30, /datum/reagent/medicine/omnizine = 30, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/atropine = 15)
@@ -96,7 +96,7 @@
 /obj/item/reagent_containers/autoinjector/magillitis
 	name = "experimental autoinjector"
 	desc = "A modified air-needle autoinjector with a small single-use reservoir. It contains an experimental serum."
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	volume = 5
 	reagent_flags = NONE
 	list_reagents = list(/datum/reagent/magillitis = 5)
