@@ -12,7 +12,7 @@
 		if(drone.resources < 15) //No money?
 			to_chat(drone, span_warning("Not enough resources!"))
 			return
-		change_resources(-15)
+		drone.change_resources(-15)
 	TerraformTurf(/turf/open/floor/feather)
 
 /turf/closed/wall/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
@@ -20,7 +20,7 @@
 		if(drone.resources < 20)
 			to_chat(drone, span_warning("Not enough resources!"))
 			return
-		change_resources(-20)
+		drone.change_resources(-20)
 	TerraformTurf(/turf/closed/wall/feather)
 
 /mob/living/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
@@ -33,7 +33,7 @@
 			gib()
 		else
 			to_chat(drone, span_warning("You sucessfully transform [src] into your resources."))
-			change_resources(maxHealth/2)
+			drone.change_resources(maxHealth/2)
 			dust()
 	else
 		return

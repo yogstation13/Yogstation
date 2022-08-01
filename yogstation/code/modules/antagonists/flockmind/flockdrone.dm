@@ -183,8 +183,8 @@
 		to_chat(src, span_notice("You gain [amount] resources."))
 	else 
 		to_chat(src, span_notice("You spend [amount] resources."))
-	if(owner.current.hud_used && istype(owner.current.hud_used, /datum/hud/living/flock))
-		var/datum/hud/living/flock/flockhud = owner.current.hud_used
+	if(hud_used && istype(hud_used, /datum/hud/living/flock))
+		var/datum/hud/living/flock/flockhud = hud_used
 		flockhud.resources.update_counter(resources)
 
 /obj/item/projectile/beam/disabler/flock
