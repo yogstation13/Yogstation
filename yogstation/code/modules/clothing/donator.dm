@@ -108,7 +108,6 @@
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,10)
 
-
 /obj/item/storage/box/megumu
 	name = "Megumu's box"
 	desc = "Contains Tofu"
