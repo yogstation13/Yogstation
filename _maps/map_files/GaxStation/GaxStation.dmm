@@ -5510,6 +5510,13 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"cGj" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/library)
 "cGk" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrogen_input{
 	dir = 4
@@ -11448,6 +11455,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"fCl" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/carpet/purple,
+/area/chapel/main)
 "fCm" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/trimline/neutral/filled/line{
@@ -11455,16 +11469,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"fCs" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Chapel"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/carpet/purple,
-/area/chapel/main)
 "fCE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -23576,16 +23580,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/fitness)
-"lIN" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Library"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/carpet,
-/area/library)
 "lIQ" = (
 /obj/machinery/chem_master/condimaster,
 /obj/machinery/light/small{
@@ -33268,6 +33262,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
+"qJo" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/glass_large{
+	name = "Library"
+	},
+/turf/open/floor/carpet,
+/area/library)
 "qKa" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -35448,6 +35452,16 @@
 	},
 /turf/open/floor/plating,
 /area/security/warden)
+"rMp" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/glass_large{
+	name = "Chapel"
+	},
+/turf/open/floor/carpet/purple,
+/area/chapel/main)
 "rMA" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
@@ -42717,16 +42731,6 @@
 /obj/item/stamp/cmo,
 /turf/open/floor/carpet/exoticblue,
 /area/crew_quarters/heads/cmo)
-"vxL" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Chapel"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/carpet/purple,
-/area/chapel/main)
 "vyp" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -76660,7 +76664,7 @@ imB
 rfm
 nUm
 nUm
-vxL
+rMp
 uMn
 ptM
 gCR
@@ -76917,7 +76921,7 @@ lmN
 rVG
 nUm
 nUm
-fCs
+fCl
 hbu
 ptM
 pQK
@@ -80258,7 +80262,7 @@ cuu
 mzE
 xIl
 xIl
-lIN
+qJo
 uMn
 ptM
 pQK
@@ -80515,7 +80519,7 @@ agH
 xIl
 xIl
 xIl
-lIN
+cGj
 hbu
 ptM
 dAf
