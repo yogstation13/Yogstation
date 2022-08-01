@@ -572,3 +572,80 @@
 	if(prob(15))
 		M.adjustToxLoss(2, 0)
 	..()
+
+/datum/reagent/drug/three_eye
+	name = "Three Eye"
+	taste_description = "liquid starlight"
+	description = "Three Eye is one of the most notorious narcotics to ever come out of the independant habitats, allowing those who take it to see through walls."
+	reagent_state = LIQUID
+	color = "#ccccff"
+	metabolization_rate = REAGENTS_METABOLISM
+	overdose_threshold = 25
+
+	// M A X I M U M C H E E S E
+	var/global/list/dose_messages = list(
+		"Your name is called. It is your time.",
+		"You are dissolving. Your hands are wax...",
+		"It all runs together. It all mixes.",
+		"It is done. It is over. You are done. You are over.",
+		"You won't forget. Don't forget. Don't forget.",
+		"Light seeps across the edges of your vision...",
+		"Something slides and twitches within your sinus cavity...",
+		"Your bowels roil. It waits within.",
+		"Your gut churns. You are heavy with potential.",
+		"Your heart flutters. It is winged and caged in your chest.",
+		"There is a precious thing, behind your eyes.",
+		"Everything is ending. Everything is beginning.",
+		"Nothing ends. Nothing begins.",
+		"Wake up. Please wake up.",
+		"Stop it! You're hurting them!",
+		"It's too soon for this. Please go back.",
+		"We miss you. Where are you?",
+		"Come back from there. Please."
+	)
+
+	var/global/list/overdose_messages = list(
+		"THE SIGNAL THE SIGNAL THE SIGNAL THE SIGNAL",
+		"IT CRIES IT CRIES IT WAITS IT CRIES",
+		"NOT YOURS NOT YOURS NOT YOURS NOT YOURS",
+		"THAT IS NOT FOR YOU",
+		"IT RUNS IT RUNS IT RUNS IT RUNS",
+		"THE BLOOD THE BLOOD THE BLOOD THE BLOOD",
+		"THE LIGHT THE DARK A STAR IN CHAINS"
+	)
+
+/datum/reagent/drug/three_eye/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(L, TRAIT_XRAY_VISION, type)
+	L.add_client_colour(/datum/client_colour/thirdeye)
+	L.update_sight()
+
+/datum/reagent/drug/three_eye/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_XRAY_VISION, type)
+	L.remove_client_colour(/datum/client_colour/thirdeye)
+	L.update_sight()
+	..()
+
+/datum/reagent/drug/three_eye/on_mob_life(mob/living/carbon/M)
+	M.hallucination += 50
+	M.Jitter(3)
+	M.Dizzy(3)
+	if(prob(0.1))
+		M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
+		M.Unconscious(100)
+		M.Jitter(350)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(8, 12))
+	if(prob(5))
+		to_chat(M, span_warning("[pick(dose_messages)]"))
+
+/datum/reagent/drug/three_eye/overdose_process(mob/living/M)
+	..()
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 5))
+	if(prob(10))
+		M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
+		M.Unconscious(100)
+		M.Jitter(350)
+	if(prob(10))
+		to_chat(M, span_danger("[pick(overdose_messages)]"))
+	if(M.psi)
+		M.psi.check_latency_trigger(30, "a Three Eye overdose")

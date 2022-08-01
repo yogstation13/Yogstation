@@ -12,7 +12,7 @@
 	QDEL_NULL(psi)
 	. = ..()
 
-/mob/living/proc/set_psi_rank(var/faculty, var/rank, var/take_larger, var/defer_update, var/temporary)
+/mob/living/proc/set_psi_rank(faculty, rank, take_larger, defer_update, temporary)
 	if(!psi)
 		psi = new(src)
 	var/current_rank = psi.get_rank(faculty)

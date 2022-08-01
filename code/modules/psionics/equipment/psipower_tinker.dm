@@ -2,7 +2,6 @@
 	name = "psychokinetic crowbar"
 	icon_state = "tinker"
 	force = 1
-	tool
 	tool_behaviour = TOOL_CROWBAR
 
 /obj/item/psychic_power/tinker/attack_self()

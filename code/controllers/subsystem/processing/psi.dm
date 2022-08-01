@@ -17,7 +17,7 @@ PROCESSING_SUBSYSTEM_DEF(psi)
 /datum/controller/subsystem/processing/psi/New()
 	NEW_SS_GLOBAL(SSpsi)
 
-/datum/controller/subsystem/processing/psi/proc/get_faculty(var/faculty)
+/datum/controller/subsystem/processing/psi/proc/get_faculty(faculty)
 	return faculties_by_name[faculty] || faculties_by_id[faculty]
 
 /datum/controller/subsystem/processing/psi/Initialize()
@@ -37,3 +37,9 @@ PROCESSING_SUBSYSTEM_DEF(psi)
 			var/datum/psionic_faculty/faculty = get_faculty(power.faculty)
 			if(faculty)
 				faculty.powers |= power
+
+/datum/controller/subsystem/processing/psi/proc/report_failure(implant)
+	return // TODO
+
+/datum/controller/subsystem/processing/psi/proc/report_violation(implant, stress)
+	return // TODO

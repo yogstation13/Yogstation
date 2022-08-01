@@ -6,7 +6,6 @@
 
 /datum/psionic_power/psychokinesis
 	faculty = PSI_PSYCHOKINESIS
-	use_manifest = TRUE
 	use_sound = null
 
 /datum/psionic_power/psychokinesis/psiblade
@@ -15,13 +14,16 @@
 	cooldown =        30
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Click on or otherwise activate an empty hand while on harm intent to manifest a psychokinetic cutting blade. The power the blade will vary based on your mastery of the faculty."
+	use_manifest = TRUE
 	admin_log = FALSE
 
 /datum/psionic_power/psychokinesis/psiblade/invoke(var/mob/living/user, var/mob/living/target)
-	if((target && user != target) || user.a_intent != INTENT_GRAB)
+	message_admins("B")
+	if((target && user != target) || user.a_intent != INTENT_HARM)
 		return FALSE
 	. = ..()
 	if(.)
+		message_admins("C")
 		switch(user.psi.get_rank(faculty))
 			if(PSI_RANK_PARAMOUNT)
 				return new /obj/item/psychic_power/psiblade/master/grand/paramount(user, user)
@@ -38,10 +40,11 @@
 	cooldown =        10
 	min_rank =        PSI_RANK_MASTER
 	use_description = "Click on or otherwise activate an empty hand while on help intent to manifest a psychokinetic tool. Use it in-hand to switch between tool types."
+	use_manifest = TRUE
 	admin_log = FALSE
 
 /datum/psionic_power/psychokinesis/tinker/invoke(var/mob/living/user, var/mob/living/target)
-	if((target && user != target) || user.a_intent != INTENT_GRAB)
+	if((target && user != target) || user.a_intent != INTENT_HELP)
 		return FALSE
 	. = ..()
 	if(.)

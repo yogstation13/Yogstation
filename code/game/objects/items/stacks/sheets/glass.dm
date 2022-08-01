@@ -249,6 +249,67 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	recipes = GLOB.plastitaniumglass_recipes
 	return ..()
 
+GLOBAL_LIST_INIT(nullglass_recipes, list ( \
+	new/datum/stack_recipe("directional window", /obj/structure/window/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+))
+
+/obj/item/stack/sheet/nullglass
+	name = "nullglass"
+	desc = "A glass sheet made out of a strange black glass capable of nullifying magic."
+	singular_name = "nullglass sheet"
+	icon_state = "sheet-nullglass"
+	item_state = "sheet-nullglass"
+	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	merge_type = /obj/item/stack/sheet/nullglass
+	grind_results = list(/datum/reagent/crystal = 1)
+	matter_amount = 4
+
+/obj/item/stack/sheet/nullglass/fifty
+	amount = 50
+
+/obj/item/stack/sheet/nullglass/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.nullglass_recipes
+	return ..()
+
+/obj/item/stack/sheet/glass/attackby(obj/item/W, mob/user, params)
+	add_fingerprint(user)
+	if(istype(W, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/CC = W
+		if (get_amount() < 1 || CC.get_amount() < 5)
+			to_chat(user, "<span class='warning>You need five lengths of coil and one sheet of glass to make wired glass!</span>")
+			return
+		CC.use(5)
+		use(1)
+		to_chat(user, span_notice("You attach wire to the [name]."))
+		var/obj/item/stack/light_w/new_tile = new(user.loc)
+		new_tile.add_fingerprint(user)
+	else if(istype(W, /obj/item/stack/rods))
+		var/obj/item/stack/rods/V = W
+		if (V.get_amount() >= 1 && get_amount() >= 1)
+			var/obj/item/stack/sheet/rglass/RG = new (get_turf(user))
+			RG.add_fingerprint(user)
+			var/replace = user.get_inactive_held_item()==src
+			V.use(1)
+			use(1)
+			if(QDELETED(src) && replace)
+				user.put_in_hands(RG)
+		else
+			to_chat(user, span_warning("You need one rod and one sheet of glass to make reinforced glass!"))
+			return
+	else if(istype(W, /obj/item/lightreplacer/cyborg)) //yogs start janiborgs can refill lightreplacers with glass now
+		var/obj/item/lightreplacer/cyborg/G = W
+		if(G.uses >= G.max_uses)
+			to_chat(user, span_warning("[W.name] is full."))
+			return
+		else if(src.use(1))
+			G.AddUses(G.increment)
+			to_chat(user, span_notice("You insert a piece of glass into \the [G.name]. You have [G.uses] light\s remaining."))
+			return
+		else
+			to_chat(user, span_warning("You need one sheet of glass to replace lights!")) //yogs end
+	else
+		return ..()
+
 /obj/item/shard
 	name = "shard"
 	desc = "A nasty looking shard of glass."
@@ -355,3 +416,12 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	icon_state = "plasmalarge"
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	icon_prefix = "plasma"
+
+/obj/item/shard/nullglass
+	name = "null shard"
+	desc = "A nasty looking shard of nullglass."
+	icon_state = "nulllarge"
+	icon_prefix = "null"
+
+/obj/item/shard/nullglass/disrupts_psionics()
+	return src

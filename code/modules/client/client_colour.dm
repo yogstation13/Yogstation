@@ -111,3 +111,7 @@
 /datum/client_colour/monochrome
 	colour = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	priority = INFINITY //we can't see colors anyway!
+
+/datum/client_colour/thirdeye
+	colour = list(rgb(16,16,16), rgb(32,32,32), rgb(80,80,80))
+	priority = 300

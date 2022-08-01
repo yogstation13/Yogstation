@@ -23,7 +23,7 @@
 	use_description = "Target the eyes or mouth on disarm intent and click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
 
 /datum/psionic_power/coercion/blindstrike/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_selected != "mouth" && user.zone_selected != BODY_ZONE_PRECISE_EYES)
+	if((user.zone_selected != BODY_ZONE_PRECISE_MOUTH && user.zone_selected != BODY_ZONE_PRECISE_EYES) || target.pulledby == user)
 		return FALSE
 	. = ..()
 	if(.)
@@ -48,14 +48,14 @@
 	use_description = "Target the head on disarm intent at melee range to attempt to read a victim's surface thoughts."
 
 /datum/psionic_power/coercion/mindread/invoke(var/mob/living/user, var/mob/living/target)
-	if(!isliving(target) || !istype(target) || user.zone_selected != BODY_ZONE_HEAD)
+	if(!isliving(target) || !istype(target) || user.zone_selected != BODY_ZONE_HEAD || target.pulledby == user)
 		return FALSE
 	. = ..()
 	if(!.)
 		return
 
 	if(target.stat == DEAD || (HAS_TRAIT(target, TRAIT_FAKEDEATH)) || !target.client)
-		to_chat(user, span_warning("\The [target] is in no state for a mind-ream."))
+		to_chat(user, span_warning("\The [target] is in no state for a mind-read."))
 		return TRUE
 
 	user.visible_message(span_warning("\The [user] touches \the [target]'s temple..."))
@@ -128,12 +128,12 @@
 	name =          "Mindslave"
 	cost =          28
 	cooldown =      200
-	use_grab =      TRUE
+	use_melee =      TRUE
 	min_rank =      PSI_RANK_PARAMOUNT
 	use_description = "Grab a victim, target the eyes, then use the grab on them while on disarm intent, in order to convert them into a loyal mind-slave. The process takes some time, and failure is punished harshly."
 
 /datum/psionic_power/coercion/mindslave/invoke(var/mob/living/user, var/mob/living/target)
-	if(!istype(target) || user.zone_selected != BODY_ZONE_PRECISE_EYES)
+	if(!istype(target) || user.zone_selected != BODY_ZONE_PRECISE_EYES || target.pulledby != user)
 		return FALSE
 	. = ..()
 	if(.)
@@ -151,19 +151,19 @@
 			return TRUE
 		to_chat(user, "<span class='danger'>You sear through \the [target]'s neurons, reshaping as you see fit and leaving them subservient to your will!</span>")
 		to_chat(target, "<span class='danger'>Your defenses have eroded away and \the [user] has made you their mindslave.</span>")
-		target.mind.add_antag_datum(ANTAG_DATUM_SHADOWTHRALL)
+		target.mind.add_antag_datum(ANTAG_DATUM_THRALL)
 		return TRUE
 
 /datum/psionic_power/coercion/assay
 	name =            "Assay"
 	cost =            15
 	cooldown =        100
-	use_grab =        TRUE
+	use_melee =      TRUE
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Grab a patient, target the head, then use the grab on them while on disarm intent, in order to perform a deep coercive-redactive probe of their psionic potential."
 
 /datum/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_selected != BODY_ZONE_HEAD)
+	if(!istype(target) || user.zone_selected != BODY_ZONE_HEAD || target.pulledby != user)
 		return FALSE
 	. = ..()
 	if(.)
@@ -182,12 +182,12 @@
 	name =          "Focus"
 	cost =          10
 	cooldown =      80
-	use_grab =     TRUE
+	use_melee =      TRUE
 	min_rank =      PSI_RANK_MASTER
 	use_description = "Grab a patient, target the mouth, then use the grab on them while on disarm intent, in order to cure ailments of the mind."
 
 /datum/psionic_power/coercion/focus/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_selected != "mouth")
+	if(user.zone_selected != BODY_ZONE_PRECISE_MOUTH || target.pulledby != user)
 		return FALSE
 	. = ..()
 	if(.)

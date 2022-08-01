@@ -668,6 +668,14 @@
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/aranesp(src)
 
+/obj/item/storage/pill_bottle/three_eye
+	name = "bottle of Three Eye pills"
+	desc = "Highly illegal drug. Stimulates rarely used portions of the brain."
+
+/obj/item/storage/pill_bottle/three_eye/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/reagent_containers/pill/three_eye(src)
+
 /obj/item/storage/pill_bottle/psicodine
 	name = "bottle of psicodine pills"
 	desc = "Contains pills used to treat mental distress and traumas."

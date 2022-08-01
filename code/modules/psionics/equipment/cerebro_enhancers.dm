@@ -2,13 +2,8 @@
 /obj/item/clothing/head/helmet/space/psi_amp
 	name = "cerebro-energetic enhancer"
 	desc = "A matte-black, eyeless cerebro-energetic enhancement helmet. It uses highly sophisticated, and illegal, techniques to drill into your brain and install psi-infected AIs into the fluid cavities between your lobes."
-	action_button_name = "Install Boosters"
+	//actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	icon_state = "cerebro"
-
-	item_state_slots = list(
-		slot_l_hand_str = "helmet",
-		slot_r_hand_str = "helmet"
-		)
 
 	var/operating = FALSE
 	var/list/boosted_faculties
@@ -36,10 +31,6 @@
 /obj/item/clothing/head/helmet/space/psi_amp/attack_self(var/mob/user)
 
 	if(operating)
-		return
-
-	if(!canremove)
-		deintegrate()
 		return
 
 	var/mob/living/carbon/human/H = loc
@@ -77,13 +68,7 @@
 	if(operating)
 		return
 
-	if(canremove)
-		return
-
 	var/mob/living/carbon/human/H = loc
-	if(!istype(H) || H.head != src)
-		canremove = TRUE
-		return
 
 	to_chat(H, span_warning("You feel a strange tugging sensation as \the [src] begins removing the slave-minds from your brain..."))
 	playsound(H, 'sound/weapons/circsawhit.ogg', 50, 1, -1)
@@ -96,13 +81,11 @@
 
 	to_chat(H, span_notice("\The [src] chimes quietly as it finishes removing the slave-minds from your brain."))
 
-	canremove = TRUE
+	REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
 	operating = FALSE
 
 	verbs -= /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate
 	verbs |= /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate
-
-	action_button_name = "Integrate Psionic Amplifier"
 	H.update_action_buttons()
 
 	set_light(0)
@@ -116,7 +99,7 @@
 			H.psi.reset()
 		H = loc
 		if(!istype(H) || H.head != src)
-			canremove = TRUE
+			REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
 
 /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate()
 
@@ -128,9 +111,6 @@
 	if(operating)
 		return
 
-	if(!canremove)
-		return
-
 	if(LAZYLEN(boosted_faculties) < max_boosted_faculties)
 		to_chat(usr, span_notice("You still have [max_boosted_faculties - LAZYLEN(boosted_faculties)] facult[LAZYLEN(boosted_faculties) == 1 ? "y" : "ies"] to select. Use \the [src] in-hand to select them."))
 		return
@@ -140,7 +120,7 @@
 		to_chat(usr, span_warning("\The [src] must be worn on your head in order to be activated."))
 		return
 
-	canremove = FALSE
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
 	operating = TRUE
 	to_chat(H, span_warning("You feel a series of sharp pinpricks as \the [src] anaesthetises your scalp before drilling down into your brain."))
 	playsound(H, 'sound/weapons/circsawhit.ogg', 50, 1, -1)
@@ -161,7 +141,6 @@
 	verbs |= /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate
 	verbs -= /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate
 	operating = FALSE
-	action_button_name = "Remove Psionic Amplifier"
 	H.update_action_buttons()
 
 	set_light(0.5, 0.1, 3, 2, l_color = "#880000")

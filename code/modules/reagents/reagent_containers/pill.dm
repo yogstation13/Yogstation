@@ -239,6 +239,12 @@
 	icon_state = "pill_happy"
 	list_reagents = list(/datum/reagent/drug/happiness = 10)
 
+/obj/item/reagent_containers/pill/three_eye
+	name = "strange pill"
+	desc = "The surface of this unlabelled pill crawls against your skin."
+	icon_state = "pill12"
+	list_reagents = list(/datum/reagent/drug/three_eye = 10)
+
 /obj/item/reagent_containers/pill/floorpill
 	name = "floorpill"
 	desc = "A strange pill found in the depths of maintenance."

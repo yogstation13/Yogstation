@@ -10,6 +10,12 @@
 #define PSI_RANK_GRANDMASTER   4
 #define PSI_RANK_PARAMOUNT     5
 
+#define PSI_IMPLANT_AUTOMATIC  "Security Level Derived"
+#define PSI_IMPLANT_SHOCK      "Issue Neural Shock"
+#define PSI_IMPLANT_WARN       "Issue Reprimand"
+#define PSI_IMPLANT_LOG        "Log Incident"
+#define PSI_IMPLANT_DISABLED   "Disabled"
+
 #define INVOKE_PSI_POWERS(holder, powers, target, return_on_invocation) \
 	if(holder && holder.psi && holder.psi.can_use()) { \
 		for(var/thing in powers) { \

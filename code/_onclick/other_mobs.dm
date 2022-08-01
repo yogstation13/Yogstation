@@ -37,6 +37,7 @@
 	A.attack_hand(src)
 
 /mob/living/carbon/human/attack_empty_hand()
+	message_admins("A")
 	if(psi)
 		INVOKE_PSI_POWERS(src, psi.get_manifestations(), src, FALSE)
 

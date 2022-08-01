@@ -305,12 +305,15 @@
 	if(restrained())
 		changeNext_move(CLICK_CD_BREAKOUT)
 		last_special = world.time + CLICK_CD_BREAKOUT
-		var/buckle_cd = 600
+		var/buckle_cd = 1 MINUTES
+		if(psi && psi.can_use())
+			buckle_cd = max(0, buckle_cd - ((10 SECONDS) * psi.get_rank(PSI_PSYCHOKINESIS)))
+
 		if(handcuffed)
 			var/obj/item/restraints/O = src.get_item_by_slot(SLOT_HANDCUFFED)
 			buckle_cd = O.breakouttime
 		visible_message(span_warning("[src] attempts to unbuckle [p_them()]self!"), \
-					span_notice("You attempt to unbuckle yourself... (This will take around [round(buckle_cd/10,1)] second\s, and you need to stay still.)"))
+					span_notice("You attempt to unbuckle yourself... (This will take around [DisplayTimeText(buckle_cd)] second\s, and you need to stay still.)"))
 		if(do_after(src, buckle_cd, src, FALSE))
 			if(!buckled)
 				return
@@ -353,12 +356,17 @@
 		cuff_resist(I)
 
 
-/mob/living/carbon/proc/cuff_resist(obj/item/I, breakouttime = 600, cuff_break = 0)
+/mob/living/carbon/proc/cuff_resist(obj/item/I, breakouttime = 60 SECONDS, cuff_break = 0)
 	if(I.item_flags & BEING_REMOVED)
 		to_chat(src, span_warning("You're already attempting to remove [I]!"))
 		return
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.breakouttime
+
+	if(psi && psi.can_use())
+		var/psi_mod = (1 - (psi.get_rank(PSI_PSYCHOKINESIS)*0.2))
+		breakouttime = max(5, breakouttime * psi_mod)
+
 	if(!cuff_break)
 		visible_message(span_warning("[src] attempts to remove [I]!"))
 		to_chat(src, span_notice("You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
@@ -368,9 +376,9 @@
 			to_chat(src, span_warning("You fail to remove [I]!"))
 
 	else if(cuff_break == FAST_CUFFBREAK)
-		breakouttime = 50
+		breakouttime = breakouttime / 12
 		visible_message(span_warning("[src] is trying to break [I]!"))
-		to_chat(src, span_notice("You attempt to break [I]... (This will take around 5 seconds and you need to stand still.)"))
+		to_chat(src, span_notice("You attempt to break [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)"))
 		if(do_after(src, breakouttime, src, FALSE))
 			clear_cuffs(I, cuff_break)
 		else

@@ -29,19 +29,18 @@
 
 /datum/round_event/minispasm/start()
 	var/list/victims = list()
-	for(var/obj/item/radio/radio in GLOB.all_radios)
+	for(var/obj/item/radio/radio in world)
 		if(radio.on)
 			for(var/mob/living/victim in range(radio.canhear_range, radio.loc))
-				if(isnull(victims[victim]) && victim.stat == CONSCIOUS && !HAS_TRAIT(victim, TRAIT_DEAF))
-					victims[victim] = radio
+				if(!isnull(victims[victim]) || victim.stat != CONSCIOUS || HAS_TRAIT(victim, TRAIT_DEAF))
+					continue
+				victims[victim] = radio
 	for(var/thing in victims)
 		var/mob/living/victim = thing
 		var/obj/item/radio/source = victims[victim]
 		do_spasm(victim, source)
 
-/datum/round_event/minispasm/proc/do_spasm(var/mob/living/victim, var/obj/item/radio/source)
-	set waitfor = 0
-
+/datum/round_event/minispasm/proc/do_spasm(mob/living/victim, obj/item/radio/source)
 	if(victim.psi)
 		playsound(source, 'sound/creatures/narsie_rises.ogg', 75) //LOUD AS FUCK BOY
 		to_chat(victim, span_danger("A hauntingly familiar sound hisses from \icon[source] \the [source], and your vision flickers!"))
