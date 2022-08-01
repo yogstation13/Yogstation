@@ -35,6 +35,11 @@
 	},
 /turf/open/floor/plating,
 /area/template_noop)
+"g" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/guillotine,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
 "h" = (
 /obj/structure/table,
 /obj/item/storage/backpack/duffelbag/sec/surgery{
@@ -95,6 +100,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
+"n" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
 "o" = (
 /obj/structure/chair{
 	dir = 1
@@ -121,10 +132,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/template_noop)
-"p" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "q" = (
 /turf/open/floor/plasteel/dark,
@@ -349,13 +356,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"R" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/guillotine,
-/turf/open/floor/plasteel/showroomfloor,
-/area/template_noop)
 "T" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp{
@@ -457,8 +457,8 @@ q
 T
 "}
 (5,1,1) = {"
-R
-p
+n
+g
 b
 E
 D
