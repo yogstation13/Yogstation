@@ -195,7 +195,7 @@
 	box = /obj/item/storage/box/survival
 
 	var/obj/item/id_type = /obj/item/card/id
-	var/obj/item/pda_type = /obj/item/pda
+	var/obj/item/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
@@ -263,14 +263,8 @@
 				break
 		H.sec_hud_set_ID()
 
-	var/obj/item/pda/PDA = new pda_type()
+	var/obj/item/modular_computer/tablet/PDA = new pda_type()
 	if(istype(PDA))
-		PDA.owner = H.real_name
-		if(H.mind?.role_alt_title)
-			PDA.ownjob = H.mind.role_alt_title
-		else
-			PDA.ownjob = J.title
-
 		if (H.id_in_pda)
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
