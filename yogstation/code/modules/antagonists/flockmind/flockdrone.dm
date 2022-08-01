@@ -223,13 +223,8 @@
 	user.change_resources(-10, TRUE)
 	repair(user)
 
-/obj/item/projectile/beam/disabler/flock
-	name = "flock disabler"
-	damage = 25
-
-/obj/item/projectile/beam/flock
-	name = "flock laser"
-	damage = 15
+/mob/living/simple_animal/hostile/flockdroneProcess_Spacemove()
+	return TRUE
 
 //////////////////////////////////////////////
 //                                          //
@@ -290,3 +285,17 @@
 /mob/living/simple_animal/hostile/flockdrone/death(gibbed)
 	EjectPilot()
 	. = ..()
+
+//////////////////////////////////////////////
+//                                          //
+//                 LASERS                   //
+//                                          //
+//////////////////////////////////////////////
+
+/obj/item/projectile/beam/disabler/flock
+	name = "flock disabler"
+	damage = 25
+
+/obj/item/projectile/beam/flock
+	name = "flock laser"
+	damage = 15

@@ -222,6 +222,7 @@
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
 #define TRAIT_MESONS			"mesons"
+#define TRAIT_ENEMY_OF_THE_FLOCK "enemy_of_the_flock"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -333,6 +334,7 @@
 #define HORROR_TRAIT "horror"
 #define HOLDER_TRAIT "holder_trait"
 #define SINFULDEMON_TRAIT "sinfuldemon"
+#define FLOCK_TRAIT "flock_trait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

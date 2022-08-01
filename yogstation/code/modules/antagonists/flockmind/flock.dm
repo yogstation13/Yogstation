@@ -13,3 +13,29 @@ GLOBAL_VAR(flock)
 		GLOB.flock = src
 	else
 		qdel(src)
+
+/proc/ping_flock(message, user, ghosts = TRUE)
+	if(user)
+		log_talk(message, LOG_SAY)
+
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	var/message_a = say_quote(message)
+	var/rendered = span_swarmer("\[Flock Communication\][user ? " [user]" : ""] [message_a]")
+
+	for(var/mob/M in GLOB.mob_list)
+		if(isflockdrone(M) || isflocktrace(M))
+			to_chat(M, rendered)
+		if(isobserver(M) && ghosts)
+			if(user)
+				var/link = FOLLOW_LINK(M, src)
+				to_chat(M, "[link] [rendered]")
+			else
+				to_chat(M, "[rendered]")
+
+/proc/get_flock_team(list/members)
+	if(GLOB.flock)
+		return GLOB.flock
+	else
+		var/datum/team/flock/F = new(members)
+		return F

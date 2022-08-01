@@ -71,3 +71,24 @@
 		return
 	new /obj/structure/flock_barricade (src)
 	drone.change_resources(-25)
+
+/obj/structure/flock_barricade/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	to_chat(drone, span_notice("You begin deconstructing [src]..."))
+	if(!do_after(drone, src, 3 SECONDS))
+		return
+	if(QDELETED(src))
+		return
+	if(!obj_integrity)
+		return
+	to_chat(drone, span_notice("You deconstruct [src]."))
+	drone.change_resources(obj_integrity/2)
+	qdel(src)
+
+/turf/closed/wall/feather/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	to_chat(drone, span_notice("You begin deconstructing [src]..."))
+	if(!do_after(drone, src, 5 SECONDS))
+		return
+	if(QDELETED(src) || istype(/turf/closed/wall/feather, src) || !src)
+		return
+	to_chat(drone, span_notice("You deconstruct [src]."))
+	TerraformTurf(/turf/open/floor/feather)
