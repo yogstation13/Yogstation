@@ -4849,6 +4849,28 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"cye" = (
+/obj/machinery/computer/upload/borg{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window/westleft{
+	dir = 4;
+	layer = 3.1;
+	name = "Cyborg Upload Console Window";
+	req_access_txt = "16"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai_upload)
 "cyn" = (
 /obj/machinery/button/door{
 	id = "Disposal Exit";
@@ -6975,6 +6997,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
+"dAX" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hos)
 "dBz" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -8356,12 +8385,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"enw" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/fitness)
 "eoa" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/engine/engineering";
@@ -8683,6 +8706,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
+"etC" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hos)
 "etE" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -8829,6 +8862,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"ewZ" = (
+/obj/structure/window{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/fitness)
 "exV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -18411,17 +18454,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/central)
-"juF" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/crew_quarters/heads/hos)
 "jvg" = (
 /obj/structure/sign/departments/minsky/medical/chemistry/chemical2{
 	pixel_y = 32
@@ -19022,19 +19054,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"jNk" = (
-/obj/structure/window{
-	dir = 1
-	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/fitness)
 "jNn" = (
 /obj/effect/turf_decal/trimline/white/filled/corner{
 	dir = 4
@@ -20660,31 +20679,6 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/office)
-"kEr" = (
-/obj/machinery/computer/upload/borg{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/window/westleft{
-	dir = 4;
-	layer = 3.1;
-	name = "Cyborg Upload Console Window";
-	req_access_txt = "16"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai_upload)
 "kEF" = (
 /turf/closed/wall,
 /area/medical/chemistry)
@@ -20726,23 +20720,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/engine,
 /area/engine/gravity_generator)
-"kFi" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor{
-	dir = 1;
-	name = "Armory Desk";
-	req_access_txt = "3"
-	},
-/obj/machinery/door/window/southleft{
-	name = "Reception Desk";
-	req_access_txt = "63"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/security/warden)
 "kFm" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -23116,22 +23093,6 @@
 "lID" = (
 /turf/closed/wall,
 /area/science/xenobiology)
-"lIF" = (
-/obj/structure/window{
-	dir = 8
-	},
-/obj/structure/window{
-	dir = 1
-	},
-/obj/machinery/washing_machine,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/fitness)
 "lIQ" = (
 /obj/machinery/chem_master/condimaster,
 /obj/machinery/light/small{
@@ -23182,6 +23143,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
+"lKK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/brigdoor{
+	dir = 1;
+	name = "Armory Desk";
+	req_access_txt = "3"
+	},
+/obj/machinery/door/window/southleft{
+	name = "Reception Desk";
+	req_access_txt = "63"
+	},
+/turf/open/floor/plating,
+/area/security/warden)
 "lKR" = (
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
@@ -23353,6 +23327,17 @@
 /obj/machinery/reagentgrinder,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"lPm" = (
+/obj/machinery/camera{
+	c_tag = "Fitness Room";
+	dir = 1
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/obj/machinery/washing_machine,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/fitness)
 "lPo" = (
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
@@ -25096,20 +25081,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/heads/captain)
-"mJn" = (
-/obj/machinery/camera{
-	c_tag = "Fitness Room";
-	dir = 1
-	},
-/obj/structure/window{
-	dir = 8
-	},
-/obj/machinery/washing_machine,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/fitness)
 "mJM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -35046,6 +35017,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"sak" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/fitness)
 "sar" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -39868,19 +39842,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"uEA" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/heads/hos)
 "uEI" = (
 /obj/machinery/shower{
 	pixel_y = 20
@@ -41030,22 +40991,6 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
-"viN" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/heads/hos)
 "vjd" = (
 /obj/structure/chair{
 	dir = 8
@@ -42385,6 +42330,30 @@
 	dir = 5
 	},
 /area/chapel/main)
+"vOP" = (
+/obj/machinery/computer/upload/ai{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window/westleft{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	layer = 3.1;
+	name = "Upload Console Window";
+	req_access_txt = "16"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai_upload)
 "vPc" = (
 /obj/structure/altar_of_gods,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -42757,33 +42726,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"vYy" = (
-/obj/machinery/computer/upload/ai{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	layer = 3.1;
-	name = "Upload Console Window";
-	req_access_txt = "16"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/ai_upload)
 "vYA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -44876,6 +44818,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"xgb" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hos)
 "xge" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -45257,6 +45206,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"xof" = (
+/obj/structure/window{
+	dir = 8
+	},
+/obj/structure/window{
+	dir = 1
+	},
+/obj/machinery/washing_machine,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/fitness)
 "xol" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -46261,19 +46220,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"xNz" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/crew_quarters/heads/hos)
 "xNI" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/electrolyzer,
@@ -67573,7 +67519,7 @@ pPw
 xGP
 xGP
 xGP
-uEA
+xgb
 xGP
 xGP
 xGP
@@ -67827,7 +67773,7 @@ vry
 vry
 mrF
 qjt
-juF
+dAX
 mhz
 eZf
 iUm
@@ -68856,8 +68802,8 @@ pjL
 dpv
 jyN
 xGP
-xNz
-viN
+dAX
+etC
 xGP
 xGP
 xGP
@@ -69109,7 +69055,7 @@ czT
 nAg
 vUQ
 sYY
-kFi
+lKK
 kvW
 mdj
 xMh
@@ -75007,8 +74953,8 @@ qYs
 dna
 vpV
 eVw
-lIF
-mJn
+xof
+lPm
 efI
 efI
 efI
@@ -75264,7 +75210,7 @@ eRa
 uxL
 fed
 eVw
-enw
+sak
 gaL
 efI
 oIn
@@ -75521,7 +75467,7 @@ cER
 eRa
 nWu
 vMp
-jNk
+ewZ
 rRp
 efI
 qfx
@@ -82760,9 +82706,9 @@ wYP
 jJB
 efX
 unQ
-vYy
+vOP
 vTf
-kEr
+cye
 efX
 aCD
 qIk
