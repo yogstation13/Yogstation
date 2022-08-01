@@ -28,7 +28,7 @@
 	paycheck_department = ACCOUNT_ENG
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
-	minimal_character_age = 25 // Geordi LaForge became CE of the Entreprise when he was 30, for comparison.
+	minimal_character_age = 30 //Combine all the jobs together; that's a lot of physics, mechanical, electrical, and power-based knowledge
 
 /datum/outfit/job/ce
 	name = "Chief Engineer"

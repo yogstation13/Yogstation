@@ -52,12 +52,14 @@ GLOBAL_LIST_EMPTY(ai_projects)
 		if(!canRun())
 			return FALSE
 	running = TRUE
+	dashboard.running_projects += src
 	return TRUE
 
 
 /datum/ai_project/proc/stop()
 	SHOULD_CALL_PARENT(TRUE)
 	running = FALSE
+	dashboard.running_projects -= src
 	return TRUE
 	
 //Important! This isn't for checking processing requirements. That is checked on the AI for ease of references (See ai_dashboard.dm). This is just for special cases (Like uhh, not wanting the program to run while X runs or similar)

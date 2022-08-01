@@ -134,13 +134,15 @@
 		data["active"] = TRUE
 		if(data_corrupted) //yes it goes negative, that's even more funny
 			data["SM_integrity"] = active.get_fake_integrity()
-			data["SM_power"] = active.power + round((rand()-0.5)*12000,1)
+			data["SM_power"] = active.power + round((rand()-0.5)*12000,1) 
+			data["SM_radiation"] = active.last_rads + round((rand()-0.5)*12000,1) 
 			data["SM_ambienttemp"] = air.return_temperature() + round((rand()-0.5)*20000,1)
 			data["SM_ambientpressure"] = air.return_pressure() + round((rand()-0.5)*15000,1)
 			data["SM_moles"] = air.total_moles() + round((rand()-0.5)*1800,1)
 		else
 			data["SM_integrity"] = active.get_integrity()
 			data["SM_power"] = active.power
+			data["SM_radiation"] = active.last_rads
 			data["SM_ambienttemp"] = air.return_temperature()
 			data["SM_ambientpressure"] = air.return_pressure()
 			data["SM_moles"] = air.total_moles()
