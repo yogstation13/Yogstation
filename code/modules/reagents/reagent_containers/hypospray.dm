@@ -2,10 +2,6 @@
 #define HYPO_SPRAY "Spray"
 #define HYPO_DRAW "Draw"
 
-#define HYPOMENU_MAIN "Main"
-#define HYPOMENU_TRANSFER "Transfer Amount"
-#define HYPOMENU_MODE "Mode"
-
 /obj/item/reagent_containers/autoinjector
 	name = "autoinjector"
 	desc = "A sterile, air-needle autoinjector for rapid administration of drugs to patients."
@@ -631,7 +627,3 @@
 #undef HYPO_INJECT
 #undef HYPO_SPRAY
 #undef HYPO_DRAW
-
-#undef HYPOMENU_MAIN
-#undef HYPOMENU_TRANSFER
-#undef HYPOMENU_MODE
