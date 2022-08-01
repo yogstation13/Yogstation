@@ -52,4 +52,4 @@
 /datum/action/cooldown/flock/eject
 	name = "Designate Enemy(Click)"
 	desc = "Alert your Flock that someone is definitely an enemy of your flock. NPC drones will fire lethal lasers at them regardles of conditions."
-	action = 
+	action =  /datum/flock_command/enemy_of_the_flock
