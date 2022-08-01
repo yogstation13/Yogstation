@@ -46,7 +46,7 @@
 /mob/living/simple_animal/hostile/flockdrone/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(!drone)
 		return
-	if(drone.a_intent = INTENT_HARM && drone != src && stat == DEAD)
+	if(drone.a_intent == INTENT_HARM && drone != src && stat == DEAD)
 		to_chat(drone, span_warning("You begin to butcher [src] for it's resources."))  
 		if(!do_mob(drone, src, 4 SECONDS))
 			return
