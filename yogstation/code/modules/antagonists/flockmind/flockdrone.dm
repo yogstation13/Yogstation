@@ -139,7 +139,7 @@
 	if(!resource_gain)
 		to_chat(src, span_warning("You cannot recycle this."))
 		return FALSE
-	resources += resource_gain
+	change_resources(resource_gain)
 	do_attack_animation(target)
 	changeNext_move(CLICK_CD_RAPID)
 	var/obj/effect/temp_visual/swarmer/integrate/I = new /obj/effect/temp_visual/swarmer/integrate(get_turf(target))
@@ -153,6 +153,39 @@
 			return TRUE
 	qdel(target)
 	return TRUE
+
+/mob/living/simple_animal/hostile/flockdrone/toggle_move_intent(mob/user)
+	. = ..()
+	to_chat(user, span_notice("You are now able to move through feather walls."))
+
+/mob/living/simple_animal/hostile/flockdrone/Bump(atom/AM)
+	. = ..()
+	if(istype(AM, /turf/closed/wall/feather) && AM != loc && m_intent == MOVE_INTENT_WALK) 
+		var/atom/movable/stored_pulling = pulling
+		if(stored_pulling)
+			stored_pulling.setDir(get_dir(stored_pulling.loc, loc))
+			stored_pulling.forceMove(loc)
+		forceMove(AM)
+		if(stored_pulling)
+			start_pulling(stored_pulling, supress_message = TRUE) 
+
+/mob/living/simple_animal/hostile/flockdrone/proc/change_resources(var/amount)
+	if(resources >= max_resources)
+		to_chat(src, span_warning("You gain [amount] resources, but your storage is full!"))
+		return
+	resources += amount
+	if(resources > max_resources)
+		to_chat(src, span_warning("You gain [amount] resources, but [resources - max_resources] of them don't fit in your storage!"))
+		resources = max_resources
+	else if(resources < 0)
+		resources = 0
+	else if(amount >= 0)
+		to_chat(src, span_notice("You gain [amount] resources."))
+	else 
+		to_chat(src, span_notice("You spend [amount] resources."))
+	if(owner.current.hud_used && istype(owner.current.hud_used, /datum/hud/living/flock))
+		var/datum/hud/living/flock/flockhud = owner.current.hud_used
+		flockhud.resources.update_counter(resources)
 
 /obj/item/projectile/beam/disabler/flock
 	name = "flock disabler"
