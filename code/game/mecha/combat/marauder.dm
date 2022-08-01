@@ -12,7 +12,6 @@
 	operation_req_access = list(ACCESS_CENT_SPECOPS)
 	internals_req_access = list(ACCESS_CENT_SPECOPS)
 	wreckage = /obj/structure/mecha_wreckage/marauder
-	add_req_access = 0
 	internal_damage_threshold = 25
 	force = 45
 	max_equip = 4

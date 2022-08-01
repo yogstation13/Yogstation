@@ -195,7 +195,7 @@
 		return
 
 	if(W.GetID())
-		if(add_req_access || maint_access)
+		if(maint_access)
 			if(internals_access_allowed(user))
 				var/obj/item/card/id/id_card
 				if(istype(W, /obj/item/card/id))

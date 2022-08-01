@@ -89,7 +89,6 @@
 						<b>Airtank temperature: </b>[internal_tank?"[tank_temperature]&deg;K|[tank_temperature - T0C]&deg;C":"N/A"]<br>
 						<b>Cabin pressure: </b>[internal_tank?"[cabin_pressure>WARNING_HIGH_PRESSURE ? span_danger("[cabin_pressure]"): cabin_pressure]kPa":"N/A"]<br>
 						<b>Cabin temperature: </b> [internal_tank?"[return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C":"N/A"]<br>
-						[dna_lock?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna_lock]</span> \[<a href='?src=[REF(src)];reset_dna=1'>Reset</a>\]<br>":""]<br>
 						[thrusters_action.owner ? "<b>Thrusters: </b> [thrusters_active ? "Enabled" : "Disabled"]<br>" : ""]
 						[defense_action.owner ? "<b>Defence Mode: </b> [defence_mode ? "Enabled" : "Disabled"]<br>" : ""]
 						[overload_action.owner ? "<b>Leg Actuators Overload: </b> [leg_overload_mode ? "Enabled" : "Disabled"]<br>" : ""]
@@ -118,7 +117,6 @@
 						<div class='wr'>
 						<div class='header'>Permissions & Logging</div>
 						<div class='links'>
-						<a href='?src=[REF(src)];toggle_id_upload=1'><span id='t_id_upload'>[add_req_access?"L":"Unl"]ock ID upload panel</span></a><br>
 						<a href='?src=[REF(src)];toggle_maint_access=1'><span id='t_maint_access'>[maint_access?"Forbid":"Permit"] maintenance protocols</span></a><br>
 						[internal_tank?"<a href='?src=[REF(src)];toggle_port_connection=1'><span id='t_port_connection'>[internal_tank.connected_port?"Disconnect from":"Connect to"] gas port</span></a><br>":""]
 						<a href='?src=[REF(src)];dna_lock=1'>DNA-lock</a><br>
@@ -150,38 +148,6 @@
 		. += "<div id='[REF(MT)]'>[MT.get_equip_info()]</div>"
 	. += "</div>"
 
-
-
-
-/obj/mecha/proc/output_access_dialog(obj/item/card/id/id_card, mob/user)
-	if(!id_card || !user)
-		return
-	. = {"<html>
-						<head><meta charset='UTF-8'><style>
-						h1 {font-size:15px;margin-bottom:4px;}
-						body {color: #00ff00; background: #000000; font-family:"Courier New", Courier, monospace; font-size: 12px;}
-						a {color:#0f0;}
-						</style>
-						</head>
-						<body>
-						<h1>Following keycodes are present in this system:</h1>"}
-	for(var/a in operation_req_access)
-		. += "[get_access_desc(a)] - <a href='?src=[REF(src)];del_req_access=[a];user=[REF(user)];id_card=[REF(id_card)]'>Delete</a><br>"
-	. += "<hr><h1>Following keycodes were detected on portable device:</h1>"
-	for(var/a in id_card.access)
-		if(a in operation_req_access)
-			continue
-		var/a_name = get_access_desc(a)
-		if(!a_name)
-			continue //there's some strange access without a name
-		. += "[a_name] - <a href='?src=[REF(src)];add_req_access=[a];user=[REF(user)];id_card=[REF(id_card)]'>Add</a><br>"
-	. += "<hr><a href='?src=[REF(src)];finish_req_access=1;user=[REF(user)]'>Finish</a> "
-	. += span_danger("(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)")
-	. += "</body></html>"
-	user << browse(., "window=exosuit_add_access")
-	onclose(user, "exosuit_add_access")
-
-
 /obj/mecha/proc/output_maintenance_dialog(obj/item/card/id/id_card,mob/user)
 	if(!id_card || !user)
 		return
@@ -194,7 +160,6 @@
 				</style>
 			</head>
 			<body>
-				[add_req_access?"<a href='?src=[REF(src)];req_access=1;id_card=[REF(id_card)];user=[REF(user)]'>Edit operation keycodes</a>":null]
 				[maint_access?"<a href='?src=[REF(src)];maint_access=1;id_card=[REF(id_card)];user=[REF(user)]'>[(state > 0) ? "Terminate" : "Initiate"] maintenance protocol</a>":null]
 				[(state == 3) ?"--------------------</br>":null]
 				[(state == 3) ?"[cell?"<a href='?src=[REF(src)];drop_cell=1;id_card=[REF(id_card)];user=[REF(user)]'>Drop power cell</a>":"No cell installed</br>"]":null]
@@ -228,9 +193,6 @@
 			id_card = locate(href_list["id_card"])
 			if (!istype(id_card))
 				return
-
-		if(href_list["req_access"] && add_req_access && id_card)
-			output_access_dialog(id_card,usr)
 
 		if(href_list["maint_access"] && maint_access && id_card)
 			if(state==0)
@@ -271,22 +233,6 @@
 				internal_tank_valve = new_pressure
 				to_chat(usr, "The internal pressure valve has been set to [internal_tank_valve]kPa.")
 
-		if(href_list["add_req_access"])
-			if(!(add_req_access && id_card))
-				return
-			operation_req_access += text2num(href_list["add_req_access"])
-			output_access_dialog(id_card,usr)
-
-		if(href_list["del_req_access"])
-			if(!(add_req_access && id_card))
-				return
-			operation_req_access -= text2num(href_list["del_req_access"])
-			output_access_dialog(id_card, usr)
-
-		if(href_list["finish_req_access"])
-			add_req_access = 0
-			usr << browse(null,"window=exosuit_add_access")
-
 	if(usr != occupant)
 		return
 
@@ -322,10 +268,6 @@
 			return
 		name = userinput
 
-	if (href_list["toggle_id_upload"])
-		add_req_access = !add_req_access
-		send_byjax(usr,"exosuit.browser","t_id_upload","[add_req_access?"L":"Unl"]ock ID upload panel")
-
 	if(href_list["toggle_maint_access"])
 		if(state)
 			occupant_message(span_danger("Maintenance protocols in effect"))
@@ -351,16 +293,6 @@
 				occupant_message(span_warning("Unable to connect with air system port!"))
 				return
 		send_byjax(occupant,"exosuit.browser","t_port_connection","[internal_tank.connected_port?"Disconnect from":"Connect to"] gas port")
-
-	if(href_list["dna_lock"])
-		if(occupant && !iscarbon(occupant))
-			to_chat(occupant, span_danger(" You do not have any DNA!"))
-			return
-		dna_lock = occupant.dna.unique_enzymes
-		occupant_message("You feel a prick as the needle takes your DNA sample.")
-
-	if(href_list["reset_dna"])
-		dna_lock = null
 
 	if(href_list["repair_int_control_lost"])
 		occupant_message("Recalibrating coordination system...")
