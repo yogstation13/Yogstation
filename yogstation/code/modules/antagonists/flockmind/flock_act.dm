@@ -58,16 +58,16 @@
 		return
 	if(drone.a_intent == INTENT_HELP)
 		if(health >= maxHealth)
-			to_chat(user, span_notice("[drone == src ? "You are" : "[user] is"] already in good conditions."))
+			to_chat(drone, span_notice("[drone == src ? "You are" : "[drone] is"] already in good conditions."))
 			return
 		if(drone.resources < 10)
-			to_chat(user, span_notice("You don't have enough resources to repair [drone == src ? "yourself" : src]."))
+			to_chat(drone, span_notice("You don't have enough resources to repair [drone == src ? "yourself" : src]."))
 			return
 		repair(drone)
 		
 /turf/open/floor/feather/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(drone.resources < 25)
-		to_chat(user, span_notice("You don't have enough resources to build a barricade."))
+		to_chat(drone, span_notice("You don't have enough resources to build a barricade."))
 		return
 	new /obj/structure/flock_barricade (src)
 	drone.change_resources(-25)

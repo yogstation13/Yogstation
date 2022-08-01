@@ -212,7 +212,7 @@
 	if(user.resources < 10)
 		to_chat(user, span_notice("You don't have enough resources to repair [user == src ? "yourself" : src] further."))
 		return
-	if(!do_mob(drone, src, 1 SECONDS))
+	if(!do_mob(user, src, 1 SECONDS))
 		return
 	if(getBruteLoss())
 		adjustBruteLoss(10)
