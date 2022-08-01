@@ -3008,13 +3008,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"awv" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "awz" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -3977,6 +3970,10 @@
 "aDP" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
+"aDS" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/floor/plating/beach/water,
+/area/crew_quarters/bar)
 "aDX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -4049,6 +4046,11 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"aEN" = (
+/turf/open/floor/plating/beach/coastline_b{
+	dir = 8
+	},
+/area/crew_quarters/bar)
 "aEO" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -4236,6 +4238,14 @@
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"aGc" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_y = 15
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "aGk" = (
 /obj/structure/chair/office,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -5721,15 +5731,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"aRH" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/cardhand{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "aRI" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
@@ -7100,6 +7101,10 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"bfJ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "bgi" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical{
@@ -7204,6 +7209,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"bib" = (
+/mob/living/simple_animal/hostile/russian,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/space/has_grav/listeningstation)
 "bii" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -8356,6 +8368,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"bBd" = (
+/obj/structure/sign/poster/contraband/d_day_promo,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "bBn" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -8476,6 +8492,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"bDL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "bDU" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 1
@@ -9038,11 +9059,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/execution/transfer)
-"bQb" = (
-/obj/structure/statue/cheese/cheesus,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "bQk" = (
 /obj/machinery/food_cart,
 /obj/machinery/airalarm{
@@ -10088,13 +10104,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"ckx" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/item/soap/homemade,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "ckP" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder/kitchen{
@@ -10264,9 +10273,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"col" = (
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "coo" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 1
@@ -10287,6 +10293,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/eva)
+"coD" = (
+/obj/item/reagent_containers/food/snacks/meat/slab/gondola,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/space/has_grav/listeningstation)
 "coT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -10336,12 +10346,6 @@
 	name = "Ice Sheet"
 	},
 /area/space/nearstation)
-"cpT" = (
-/obj/structure/bed,
-/obj/item/bedsheet/red,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "cqa" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -10454,9 +10458,6 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/white/side,
 /area/crew_quarters/heads/chief)
-"csI" = (
-/turf/open/floor/grass/snow/safe,
-/area/ruin/unpowered/russianbunker)
 "csR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -10953,10 +10954,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"cBV" = (
-/obj/structure/statue/snow/snowman,
-/turf/open/floor/grass/snow/safe,
-/area/ruin/unpowered/russianbunker)
 "cCg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -11036,11 +11033,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/grass,
 /area/hallway/primary/port)
-"cDV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "cDZ" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/neutral{
@@ -11663,10 +11655,6 @@
 	name = "Ice Sheet"
 	},
 /area/space/nearstation)
-"cQM" = (
-/obj/machinery/computer/arcade,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "cQR" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -12225,11 +12213,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"dcU" = (
-/obj/machinery/jukebox,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "dcV" = (
 /obj/machinery/door/airlock/medical/glass{
 	id_tag = "MedbayFoyer_L";
@@ -12773,14 +12756,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/execution/transfer)
-"dmg" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/safe{
-	dir = 8;
-	icon = 'icons/misc/beach.dmi';
-	icon_state = "sandwater_b"
-	},
-/area/crew_quarters/bar)
 "dmm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -12887,10 +12862,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"dpI" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "dpR" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -13093,6 +13064,15 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
+"dvb" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "dvi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -13767,13 +13747,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/security/prison)
-"dHV" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/russian,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "dHY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -14353,14 +14326,18 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"dSo" = (
-/obj/machinery/vending/boozeomat,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "dSr" = (
 /turf/open/floor/engine/air,
 /area/engine/atmos_distro)
+"dSE" = (
+/obj/structure/statue/snow/snowman,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/space/has_grav/listeningstation)
+"dSQ" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation)
 "dSW" = (
 /obj/effect/turf_decal/bot_red,
 /obj/machinery/rnd/production/techfab/department/armory,
@@ -14633,6 +14610,11 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"dZB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "dZD" = (
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/food/drinks/beer,
@@ -15042,6 +15024,11 @@
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"egF" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "ehf" = (
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
@@ -15486,6 +15473,11 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
+"eoV" = (
+/obj/machinery/jukebox,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "epr" = (
 /obj/machinery/computer/cargo{
 	dir = 1
@@ -15569,6 +15561,14 @@
 /obj/structure/closet/wardrobe/miner,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"erk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "ert" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -15592,6 +15592,12 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+"erI" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "erJ" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -15603,6 +15609,18 @@
 /obj/structure/lattice,
 /turf/closed/mineral/random/low_chance_air,
 /area/space/nearstation)
+"erV" = (
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	name = "Russian Defense Turret MK-II"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit/off,
+/area/ruin/space/has_grav/listeningstation)
 "esc" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -15788,13 +15806,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"evB" = (
-/obj/item/cigbutt/cigarbutt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
-/area/ruin/unpowered/russianbunker)
 "evL" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/turf_decal/siding/wood{
@@ -15830,6 +15841,11 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"exe" = (
+/mob/living/simple_animal/hostile/russian,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "exk" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 9
@@ -15894,6 +15910,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"eyX" = (
+/obj/structure/sign/poster/contraband/communist_state,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "ezv" = (
 /obj/machinery/door/airlock/maintenance/external{
 	welded = 1
@@ -16471,12 +16491,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"eKN" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken5"
-	},
-/area/ruin/unpowered/russianbunker)
 "eKP" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -16982,13 +16996,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"eUs" = (
-/obj/structure/bed,
-/obj/item/bedsheet/red,
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/russian,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "eUA" = (
 /obj/machinery/computer/med_data{
 	dir = 8
@@ -17007,6 +17014,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"eVh" = (
+/obj/item/restraints/handcuffs,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "eVW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -17221,6 +17233,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"eYY" = (
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "eZf" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/light{
@@ -17390,14 +17414,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
-"fcK" = (
-/obj/machinery/door/airlock/external{
-	name = "Russian External Airlock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mine/stun,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "fdg" = (
 /obj/machinery/light{
 	dir = 1
@@ -18054,17 +18070,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"fow" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_y = 15
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/ruin/unpowered/russianbunker)
 "foE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -18115,6 +18120,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"fpL" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/item/soap/homemade,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "fqa" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -18388,12 +18400,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"fwH" = (
-/turf/open/water/safe{
-	icon = 'icons/misc/beach.dmi';
-	icon_state = "water"
-	},
-/area/crew_quarters/bar)
+"fwB" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "fwR" = (
 /obj/machinery/camera{
 	c_tag = "Port Hallway 2";
@@ -18515,11 +18525,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"fzA" = (
-/obj/structure/sign/poster/contraband/eat,
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "fzH" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Command Hallway"
@@ -18945,6 +18950,11 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"fHG" = (
+/obj/machinery/chem_master/condimaster,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "fHV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8;
@@ -19712,18 +19722,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"fZk" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/cardhand{
-	pixel_x = -8;
-	pixel_y = 7
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "fZl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -19745,11 +19743,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"fZO" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/dresser,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "fZQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/northleft{
@@ -20178,6 +20171,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"gip" = (
+/obj/structure/sign/poster/contraband/syndicate_pistol,
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "gjd" = (
 /obj/effect/turf_decal/pool{
 	dir = 4
@@ -20283,11 +20281,6 @@
 	dir = 1
 	},
 /area/chapel/main)
-"gkI" = (
-/obj/item/restraints/handcuffs,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "gkX" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/medspray/synthflesh{
@@ -20477,6 +20470,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"got" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/splatter,
+/mob/living/simple_animal/hostile/russian/ranged/mosin,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "goK" = (
 /obj/structure/grille/broken,
 /obj/item/shard,
@@ -20860,6 +20862,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
+"gwC" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/cardhand{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "gwE" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -21273,12 +21284,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/physician)
-"gEK" = (
-/obj/structure/table/reinforced,
+"gFa" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/toy/cards/cardhand{
+	pixel_x = -9;
+	pixel_y = 6
+	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/storage/backpack/duffelbag/syndie/med,
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "gFm" = (
 /obj/structure/bodycontainer/crematorium{
 	dir = 4;
@@ -21421,6 +21439,16 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"gIL" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "gIW" = (
 /obj/machinery/light{
 	dir = 4
@@ -21903,6 +21931,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"gPG" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "gPP" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt,
@@ -21944,6 +21979,10 @@
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/space/nearstation)
+"gQp" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "gQq" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -23191,6 +23230,9 @@
 	},
 /turf/open/floor/engine,
 /area/hallway/secondary/exit)
+"hpr" = (
+/turf/closed/indestructible/riveted,
+/area/ruin/space/has_grav/listeningstation)
 "hpC" = (
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
@@ -23527,11 +23569,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"hvf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating,
-/area/ruin/unpowered/russianbunker)
 "hvi" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -24367,10 +24404,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"hKE" = (
-/obj/item/reagent_containers/food/snacks/meat/slab/gondola,
-/turf/open/floor/grass/snow/safe,
-/area/ruin/unpowered/russianbunker)
 "hKS" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -24578,9 +24611,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"hOd" = (
-/turf/closed/wall/r_wall/rust,
-/area/ruin/unpowered/russianbunker)
 "hOf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -24810,6 +24840,19 @@
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/starboard/fore)
+"hSs" = (
+/obj/machinery/door/airlock/hatch{
+	welded = 1
+	},
+/obj/effect/mine/stun{
+	icon = 'icons/obj/assemblies.dmi';
+	icon_state = "device"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "hSw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -25675,12 +25718,6 @@
 /obj/item/restraints/handcuffs/cable/zipties,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"ihD" = (
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "ihE" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 8
@@ -25814,15 +25851,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"ijH" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/water/safe{
-	icon = 'icons/misc/beach.dmi';
-	icon_state = "water"
-	},
-/area/crew_quarters/bar)
 "ijM" = (
 /obj/structure/chair/sofa/left{
 	dir = 4
@@ -25962,17 +25990,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"ing" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc/away{
-	dir = 1;
-	pixel_y = 23
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "inw" = (
 /obj/structure/mirror{
 	pixel_x = 28
@@ -26255,6 +26272,15 @@
 /obj/item/stack/cable_coil,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"iuq" = (
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "iux" = (
 /obj/machinery/vending/cola/random,
 /turf/open/floor/carpet/royalblack,
@@ -26263,11 +26289,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"iuW" = (
-/obj/structure/chair/stool/bar,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "iuY" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -26469,6 +26490,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/medical/morgue)
+"iyZ" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "izq" = (
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/turret_protected/ai_upload_foyer";
@@ -26730,22 +26755,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"iFz" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_y = 15
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_x = 5;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_x = -5;
-	pixel_y = 11
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "iFD" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -27459,13 +27468,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"iXf" = (
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/open/water/safe{
-	icon = 'icons/misc/beach.dmi';
-	icon_state = "water"
-	},
-/area/crew_quarters/bar)
 "iXr" = (
 /obj/structure/chair{
 	dir = 4;
@@ -27852,12 +27854,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"jbH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "jcd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -28222,6 +28218,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"jgc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "jgg" = (
 /obj/effect/turf_decal/trimline/neutral/filled/corner{
 	dir = 4
@@ -28288,6 +28289,20 @@
 /obj/machinery/mecha_part_fabricator,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"jha" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/space/has_grav/listeningstation)
+"jhf" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/mine/stun{
+	icon = 'icons/obj/assemblies.dmi';
+	icon_state = "device"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "jhr" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -28298,6 +28313,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"jhw" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 9;
+	pixel_y = 13
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "jhF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
@@ -28625,12 +28658,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"jmZ" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/kitchen/knife/combat/survival,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "jni" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable{
@@ -29370,11 +29397,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"jCt" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/suit_storage_unit/pirate,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "jCB" = (
 /obj/machinery/camera{
 	c_tag = "Arrivals Bay 2";
@@ -29430,6 +29452,18 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"jDi" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/cardhand{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "jDw" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable{
@@ -29606,6 +29640,12 @@
 "jGe" = (
 /turf/template_noop,
 /area/maintenance/starboard)
+"jGV" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/floor/plating/beach/coastline_b{
+	dir = 8
+	},
+/area/crew_quarters/bar)
 "jHg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -29809,12 +29849,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"jKW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/splatter,
-/mob/living/simple_animal/hostile/russian/ranged/mosin,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "jLg" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater{
 	dir = 6
@@ -30262,12 +30296,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"jSA" = (
-/obj/structure/table,
-/obj/item/kitchen/knife/butcher,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "jSY" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -30524,6 +30552,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"jYp" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -1;
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -9;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "jYH" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Prison Wing";
@@ -30869,12 +30922,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/chief)
-"khR" = (
-/obj/structure/bed,
-/obj/item/bedsheet/yellow,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "kim" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -30936,6 +30983,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"kkQ" = (
+/obj/structure/dresser,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "kkS" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/central";
@@ -30957,6 +31009,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"klf" = (
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "klr" = (
 /obj/structure/table/glass,
 /obj/item/clothing/glasses/welding,
@@ -30979,10 +31037,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"kly" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "klB" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -31249,6 +31303,13 @@
 /obj/item/pen,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"kqK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "kqT" = (
 /obj/machinery/keycard_auth{
 	pixel_x = -24
@@ -31267,6 +31328,13 @@
 /obj/item/pen,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
+"kqV" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "krf" = (
 /obj/effect/turf_decal/trimline/green/filled/corner,
 /obj/machinery/vending/wardrobe/viro_wardrobe,
@@ -31409,6 +31477,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"ksJ" = (
+/obj/effect/mine/stun{
+	icon = 'icons/obj/assemblies.dmi';
+	icon_state = "device"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "ksN" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -31470,12 +31545,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"ktc" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
-	},
-/area/ruin/unpowered/russianbunker)
 "ktf" = (
 /obj/machinery/door/airlock{
 	name = "Gift Shop";
@@ -31567,11 +31636,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"kvd" = (
-/obj/machinery/door/airlock/hatch,
-/obj/effect/mine/stun,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "kvo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -31800,12 +31864,6 @@
 /obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/wood,
 /area/space/nearstation)
-"kBH" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
-/area/ruin/unpowered/russianbunker)
 "kBW" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -32291,20 +32349,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"kKL" = (
-/obj/structure/table,
-/obj/item/lighter{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
-"kKU" = (
-/obj/effect/mine/gas/plasma,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "kLd" = (
 /obj/machinery/power/apc/highcap/five_k{
 	areastring = "/area/tcommsat/computer";
@@ -32414,6 +32458,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"kNk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "kNQ" = (
 /obj/machinery/status_display/evac{
 	pixel_y = 32
@@ -32574,12 +32623,6 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"kTG" = (
-/obj/machinery/chem_dispenser/drinks/fullupgrade,
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "kTN" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -33115,22 +33158,6 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"ldh" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/burger/bearger{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/snacks/burger/bearger{
-	pixel_x = 4;
-	pixel_y = -1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "ldt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -33182,6 +33209,11 @@
 /obj/item/pickaxe,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"leD" = (
+/obj/structure/sign/poster/contraband/eat,
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "lfG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -33525,10 +33557,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"lnB" = (
-/obj/structure/sign/poster/contraband/syndicate_recruitment,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "lnE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -33816,6 +33844,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"luy" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/russian,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "luz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -33919,25 +33956,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"lww" = (
-/mob/living/simple_animal/hostile/viscerator{
-	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
-	faction = list("russian");
-	name = "Russ-erator"
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/burger/bearger,
-/obj/item/reagent_containers/food/snacks/burger/bearger{
-	pixel_x = 7;
-	pixel_y = 6
-	},
-/obj/item/reagent_containers/food/snacks/burger/bearger{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "lwx" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/grimy,
@@ -34359,6 +34377,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"lDD" = (
+/obj/machinery/door/airlock/external{
+	name = "Russian External Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "lDF" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -34435,6 +34462,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"lFG" = (
+/obj/item/restraints/handcuffs,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "lGq" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -34500,17 +34532,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
-"lHv" = (
-/obj/machinery/camera{
-	c_tag = "Bar South";
-	dir = 10
-	},
-/turf/open/water/safe{
-	dir = 8;
-	icon = 'icons/misc/beach.dmi';
-	icon_state = "sandwater_b"
-	},
-/area/crew_quarters/bar)
 "lIC" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/gloves/color/latex{
@@ -34866,11 +34887,43 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"lNX" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/bearsteak{
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/food/snacks/bearsteak{
+	pixel_x = -9;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/snacks/bearsteak{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/food/snacks/bearsteak{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "lOa" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"lOi" = (
+/obj/machinery/door/airlock/external{
+	name = "Russian External Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mine/stun{
+	icon = 'icons/obj/assemblies.dmi';
+	icon_state = "device"
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "lOu" = (
 /obj/machinery/computer/slot_machine,
 /turf/open/floor/carpet/royalblack,
@@ -35020,6 +35073,13 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/aft)
+"lQG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "lQK" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -35265,6 +35325,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"lUe" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/space/has_grav/listeningstation)
 "lUp" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -36665,11 +36731,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"muJ" = (
-/obj/item/cigbutt/cigarbutt,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "muS" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/solars/port/aft";
@@ -36919,12 +36980,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"mzF" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "mzH" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
@@ -37110,9 +37165,6 @@
 /mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/maintenance/starboard/fore)
-"mDj" = (
-/turf/closed/indestructible/riveted,
-/area/ruin/unpowered/russianbunker)
 "mDo" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -37303,6 +37355,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
+"mGM" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/yogs/army,
+/obj/item/clothing/suit/armor/heavy/juggernaut,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "mGN" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -37727,12 +37791,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"mNF" = (
-/obj/structure/chair/stool/bar,
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/russian,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "mNK" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/plasteel/dark,
@@ -37817,6 +37875,13 @@
 /obj/item/pen,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
+"mOX" = (
+/obj/structure/table/reinforced,
+/obj/item/toy/figure/syndie,
+/obj/item/toy/nuke,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "mPh" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
@@ -37880,6 +37945,10 @@
 /obj/item/storage/box/firingpins,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"mQO" = (
+/mob/living/simple_animal/hostile/bear/snow,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/space/has_grav/listeningstation)
 "mQX" = (
 /obj/machinery/light{
 	dir = 1
@@ -38576,11 +38645,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"nbz" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "nbD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair{
@@ -38746,15 +38810,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"ndU" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_y = 15
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "ndZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -39159,6 +39214,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"nmr" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "nmW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -39207,6 +39268,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"noq" = (
+/obj/machinery/porta_turret/syndicate/energy/raven{
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
+	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
+	faction = list("russian");
+	name = "Russian Defense Turret MK-II"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/circuit/off,
+/area/ruin/space/has_grav/listeningstation)
 "noR" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -39708,6 +39781,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"nwQ" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/mine/stun{
+	icon = 'icons/obj/assemblies.dmi';
+	icon_state = "device"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "nwZ" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/circuit,
@@ -39796,6 +39880,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tech)
+"nyY" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "nzW" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -39939,10 +40027,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"nCM" = (
-/mob/living/simple_animal/hostile/bear/russian,
-/turf/open/floor/grass/snow/safe,
-/area/ruin/unpowered/russianbunker)
 "nCT" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -40059,6 +40143,15 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/lawoffice)
+"nFj" = (
+/obj/machinery/camera{
+	c_tag = "Bar South";
+	dir = 10
+	},
+/turf/open/floor/plating/beach/coastline_b{
+	dir = 8
+	},
+/area/crew_quarters/bar)
 "nFm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -40135,6 +40228,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"nHc" = (
+/obj/structure/sign/poster/contraband/cc64k_ad,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "nHi" = (
 /obj/machinery/door/window/northleft{
 	dir = 4;
@@ -40339,11 +40436,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"nNq" = (
-/obj/item/kitchen/knife/shank,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "nNs" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/engine,
@@ -40370,6 +40462,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"nOo" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/burger/bearger{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/snacks/burger/bearger{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "nOt" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -40515,10 +40623,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"nRp" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/ruin/unpowered/russianbunker)
 "nRw" = (
 /obj/structure/table/wood,
 /obj/item/toy/crayon/spraycan{
@@ -40622,6 +40726,28 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"nSK" = (
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/secure,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/stack/ore/bananium,
+/obj/item/stack/ore/diamond,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "nTs" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/machinery/camera/motion{
@@ -40676,6 +40802,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/misc_lab)
+"nVd" = (
+/obj/machinery/vending/sovietsoda,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "nVk" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -40747,10 +40878,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"nWc" = (
-/obj/machinery/door/airlock/hatch,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "nXn" = (
 /obj/machinery/light{
 	dir = 8
@@ -40967,15 +41094,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"obi" = (
-/obj/structure/toilet{
-	dir = 1
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "obn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -41094,11 +41212,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"ock" = (
-/obj/machinery/vending/sovietsoda,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "ocv" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -41137,12 +41250,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"odF" = (
-/obj/machinery/door/airlock/hatch,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mine/stun,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "odK" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -41219,12 +41326,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"ofo" = (
-/obj/structure/sink{
-	pixel_y = 20
-	},
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "ofC" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
@@ -41663,11 +41764,23 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"ooh" = (
+"ooD" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck/cas{
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/obj/item/toy/cards/deck/uno{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/toy/cards/deck/cas/black{
+	pixel_x = 6;
+	pixel_y = 11
+	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
+/area/ruin/space/has_grav/listeningstation)
 "ooJ" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 9
@@ -42131,6 +42244,12 @@
 "ozg" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"ozl" = (
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "ozt" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -42370,6 +42489,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"oDh" = (
+/obj/structure/sign/poster/contraband/syndicate_recruitment,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "oDo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -42379,24 +42502,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
-"oDz" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 9;
-	pixel_y = 13
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -6;
-	pixel_y = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "oDK" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -42409,6 +42514,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"oEb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mine/stun{
+	icon = 'icons/obj/assemblies.dmi';
+	icon_state = "device"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "oEw" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -42434,10 +42550,6 @@
 	dir = 4
 	},
 /area/chapel/main)
-"oEY" = (
-/obj/structure/sign/poster/contraband/rebels_unite,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "oEZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair{
@@ -42500,6 +42612,13 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"oGd" = (
+/obj/item/cigbutt/cigarbutt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/space/has_grav/listeningstation)
 "oGf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -42527,6 +42646,12 @@
 "oGi" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/storage/eva)
+"oGI" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "oHl" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -42916,9 +43041,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"oQN" = (
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "oQP" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -43226,10 +43348,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/office)
-"oWF" = (
-/obj/structure/sign/poster/contraband/communist_state,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "oWG" = (
 /obj/structure/closet/crate/freezer/blood,
 /obj/item/storage/lockbox/vialbox/blood,
@@ -43726,15 +43844,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"pgS" = (
-/mob/living/simple_animal/hostile/viscerator{
-	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
-	faction = list("russian");
-	name = "Russ-erator"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "pgV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -43772,13 +43881,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"pho" = (
-/obj/structure/table/reinforced,
-/obj/item/toy/figure/syndie,
-/obj/item/toy/nuke,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "pht" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -44561,6 +44663,22 @@
 	},
 /turf/open/floor/carpet,
 /area/library)
+"pyC" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_x = 5;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_x = -5;
+	pixel_y = 11
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "pyE" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -45099,6 +45217,11 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
+"pIP" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/russian,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "pJh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -45233,6 +45356,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"pLY" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "pMa" = (
 /obj/machinery/light,
 /obj/structure/disposalpipe/segment{
@@ -45478,6 +45605,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"pOK" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "pPh" = (
 /obj/structure/closet/secure_closet/physician,
 /obj/item/clothing/gloves/color/latex,
@@ -45643,6 +45774,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"pSs" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/beach/water,
+/area/crew_quarters/bar)
 "pSt" = (
 /turf/open/floor/engine,
 /area/maintenance/starboard/fore)
@@ -45789,6 +45926,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"pUO" = (
+/obj/machinery/vending/boozeomat,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "pVa" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -45895,6 +46037,25 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"pWI" = (
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/snacks/burger/bearger,
+/obj/item/reagent_containers/food/snacks/burger/bearger{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/burger/bearger{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "pWQ" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -46007,22 +46168,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"pYW" = (
-/obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
-	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
-	faction = list("russian");
-	name = "Russian Defense Turret MK-II"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/circuit/off,
-/area/ruin/unpowered/russianbunker)
 "pYX" = (
 /obj/item/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"pZk" = (
+/turf/closed/wall/r_wall/rust,
+/area/ruin/space/has_grav/listeningstation)
 "pZo" = (
 /turf/closed/wall/rust,
 /area/space/nearstation)
@@ -46182,6 +46334,11 @@
 "qdI" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"qdU" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "qdV" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -46439,14 +46596,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"qjr" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
-	pixel_y = 15
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "qjw" = (
 /turf/template_noop,
 /area/space/nearstation)
@@ -46472,18 +46621,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
-"qkx" = (
-/obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
-	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
-	faction = list("russian");
-	name = "Russian Defense Turret MK-II"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/circuit/off,
-/area/ruin/unpowered/russianbunker)
 "qkS" = (
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -46701,11 +46838,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"qnB" = (
-/obj/machinery/space_heater,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "qnC" = (
 /obj/machinery/button/door{
 	id = "kitchen";
@@ -47428,11 +47560,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"qxU" = (
-/mob/living/simple_animal/hostile/russian,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "qxW" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -47830,6 +47957,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"qEJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "qEP" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -48131,30 +48264,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
-"qLR" = (
-/obj/item/coin/antagtoken,
-/obj/structure/table/wood,
-/obj/item/coin/antagtoken{
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/obj/item/coin/antagtoken{
-	pixel_x = -8
-	},
-/obj/item/coin/uranium{
-	pixel_x = 5
-	},
-/obj/item/coin/uranium{
-	pixel_x = -1;
-	pixel_y = 5
-	},
-/obj/item/coin/uranium{
-	pixel_x = -4;
-	pixel_y = -3
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "qLW" = (
 /obj/machinery/power/smes/engineering{
 	charge = 5e+006;
@@ -48402,6 +48511,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
+"qOT" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kitchen/knife/combat/survival,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "qPc" = (
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
@@ -48483,6 +48598,17 @@
 "qRD" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
+"qRR" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka{
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/space/has_grav/listeningstation)
 "qSf" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Telecomms Maintenance";
@@ -48517,6 +48643,20 @@
 /obj/item/storage/box/matches,
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
+"qSO" = (
+/obj/structure/table/reinforced,
+/obj/item/folder/red,
+/obj/item/stamp/syndiround,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/storage/backpack/duffelbag/syndie/med,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "qSV" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/neck/yogs/stripedscarf/pink,
@@ -48918,6 +49058,12 @@
 /obj/item/crowbar/red,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"qZu" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/space/has_grav/listeningstation)
 "qZA" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -49052,6 +49198,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
+"rbx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/smes/fullycharged,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "rbC" = (
 /obj/machinery/door/airlock/research{
 	name = "Research Division Access";
@@ -49321,6 +49475,12 @@
 	},
 /turf/open/floor/grass,
 /area/maintenance/starboard/aft)
+"rgq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "rgF" = (
 /obj/structure/sign/departments/minsky/supply/janitorial{
 	pixel_y = -32
@@ -50429,12 +50589,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"rBe" = (
-/obj/structure/table/wood,
-/obj/item/lighter,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "rBu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -50618,6 +50772,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"rFg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation)
 "rFi" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 5
@@ -51142,6 +51300,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"rOO" = (
+/obj/structure/bed,
+/obj/item/bedsheet/yellow,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "rOR" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -51565,6 +51729,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"rXJ" = (
+/obj/item/kitchen/knife/shank,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "rXU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -51898,6 +52067,13 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"sei" = (
+/obj/effect/mine/stun{
+	icon = 'icons/obj/assemblies.dmi';
+	icon_state = "device"
+	},
+/turf/closed/mineral/random/low_chance_air,
+/area/space/nearstation)
 "sek" = (
 /obj/machinery/door/window/westright,
 /obj/structure/table/reinforced,
@@ -53024,6 +53200,18 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
+"sDs" = (
+/mob/living/simple_animal/hostile/viscerator{
+	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
+	faction = list("russian");
+	name = "Russ-erator"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "sDO" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
@@ -53048,6 +53236,13 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"sFa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "sFg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -53225,6 +53420,30 @@
 	},
 /turf/open/floor/plating,
 /area/medical/chemistry)
+"sIe" = (
+/obj/item/coin/antagtoken,
+/obj/structure/table/wood,
+/obj/item/coin/antagtoken{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/obj/item/coin/antagtoken{
+	pixel_x = -8
+	},
+/obj/item/coin/uranium{
+	pixel_x = 5
+	},
+/obj/item/coin/uranium{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/item/coin/uranium{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "sIn" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -53369,6 +53588,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
+"sLA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/indestructible/riveted,
+/area/ruin/space/has_grav/listeningstation)
 "sLU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -53925,13 +54148,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"sVt" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "sVB" = (
 /obj/machinery/door/airlock/external{
 	name = "Labor Camp Shuttle Airlock";
@@ -54521,6 +54737,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"teB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "teG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -54959,11 +55185,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"tnZ" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/russian,
-/turf/open/floor/plating,
-/area/ruin/unpowered/russianbunker)
 "toa" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
@@ -55297,13 +55518,6 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
-"tvK" = (
-/obj/machinery/door/airlock/hatch{
-	welded = 1
-	},
-/obj/effect/mine/stun,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "tvN" = (
 /obj/effect/landmark/start/yogs/tourist,
 /turf/open/floor/plasteel/chapel{
@@ -56009,6 +56223,10 @@
 	},
 /turf/open/floor/engine/co2,
 /area/engine/atmos_distro)
+"tKx" = (
+/obj/item/soap/syndie,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "tLi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -56122,13 +56340,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"tOf" = (
-/turf/open/water/safe{
-	dir = 8;
-	icon = 'icons/misc/beach.dmi';
-	icon_state = "sandwater_b"
-	},
-/area/crew_quarters/bar)
 "tOg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -56362,6 +56573,12 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"tQW" = (
+/obj/machinery/chem_dispenser/drinks/beer,
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "tRa" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -56436,6 +56653,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"tSs" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/engine,
+/area/ruin/space/has_grav/listeningstation)
 "tSu" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -56454,6 +56675,21 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"tUl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/power/apc/syndicate{
+	dir = 1;
+	name = "Russian Listening Post APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "tUo" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -56772,19 +57008,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"uaJ" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/deck/syndicate{
-	pixel_x = 8;
-	pixel_y = 4
-	},
-/obj/item/toy/cards/cardhand{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "uaX" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -56963,27 +57186,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"udO" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/bearsteak{
-	pixel_x = -9;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/food/snacks/bearsteak{
-	pixel_x = -9;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/snacks/bearsteak{
-	pixel_x = 6;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/food/snacks/bearsteak{
-	pixel_x = 6;
-	pixel_y = 11
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "uer" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -57177,10 +57379,6 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"ugT" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "uhN" = (
 /obj/machinery/telecomms/receiver/preset_right{
 	name = "subspace receiver B"
@@ -57379,12 +57577,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"ukX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "ula" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/northleft{
@@ -57453,6 +57645,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/asteroid,
 /area/space/nearstation)
+"ulO" = (
+/obj/structure/statue/cheese/cheesus,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation)
 "ulQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57462,12 +57659,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"ulY" = (
-/obj/machinery/chem_dispenser/drinks/beer,
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "umb" = (
 /obj/effect/landmark/start/security_officer,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -57588,10 +57779,6 @@
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"uof" = (
-/obj/structure/sign/poster/contraband/cc64k_ad,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "uom" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57678,6 +57865,9 @@
 /obj/effect/turf_decal/box/corners,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"uqJ" = (
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "uqO" = (
 /mob/living/simple_animal/pet/fox/fennec/Autumn,
 /turf/open/floor/plasteel,
@@ -57925,6 +58115,15 @@
 /obj/structure/closet/secure_closet/medical1,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"uuB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/ruin/space/has_grav/listeningstation)
 "uuN" = (
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
@@ -58180,6 +58379,12 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"uAS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "uBf" = (
 /obj/machinery/light{
 	dir = 8
@@ -58422,6 +58627,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"uGb" = (
+/turf/open/floor/plating/beach/water,
+/area/crew_quarters/bar)
 "uGg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -58634,6 +58842,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"uMt" = (
+/obj/structure/table/wood,
+/obj/item/lighter,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "uNd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2
@@ -58692,6 +58906,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
+"uNY" = (
+/obj/structure/sign/poster/contraband/rebels_unite,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "uOl" = (
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -58938,6 +59156,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"uTP" = (
+/obj/structure/table,
+/obj/item/kitchen/knife/butcher,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "uUG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -59005,19 +59229,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"uVX" = (
-/obj/machinery/door/airlock/external{
-	name = "Russian External Airlock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
-"uWl" = (
-/obj/structure/sign/poster/contraband/d_day_promo,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "uWo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -59070,10 +59281,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"uXy" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "uXV" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -59556,6 +59763,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"vgA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/suit_storage_unit/pirate,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "vgC" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -59574,11 +59786,6 @@
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plasteel,
 /area/storage/tech)
-"vhD" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/russian,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "vhG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -59609,11 +59816,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"vhZ" = (
-/obj/structure/sign/poster/contraband/syndicate_pistol,
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
-/area/ruin/unpowered/russianbunker)
 "vib" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -59758,10 +59960,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"vkl" = (
-/obj/effect/mine/stun,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "vks" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -60000,6 +60198,15 @@
 	},
 /turf/open/floor/plating,
 /area/security/detectives_office)
+"vqS" = (
+/obj/machinery/door/airlock/hatch,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mine/stun{
+	icon = 'icons/obj/assemblies.dmi';
+	icon_state = "device"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "vqV" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
@@ -60024,6 +60231,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"vrA" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/russian,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "vrB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -60545,11 +60761,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"vBw" = (
-/obj/structure/dresser,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "vCt" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -61132,16 +61343,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"vNl" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
-/obj/item/stamp/syndiround,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "vNt" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/checkpoint/auxiliary";
@@ -61407,6 +61608,11 @@
 /obj/structure/closet/secure_closet/bartender,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"vSj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation)
 "vSo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -61463,13 +61669,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"vTf" = (
-/mob/living/simple_animal/hostile/russian,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
-	},
-/area/ruin/unpowered/russianbunker)
 "vTA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -61555,11 +61754,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
-"vUP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "vUU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
@@ -61661,28 +61855,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"vWE" = (
-/mob/living/simple_animal/hostile/viscerator{
-	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
-	faction = list("russian");
-	name = "Russ-erator"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/secure,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/coin/gold,
-/obj/item/stack/ore/bananium,
-/obj/item/stack/ore/diamond,
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "vWJ" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -61912,10 +62084,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/storage)
-"wak" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/indestructible/riveted,
-/area/ruin/unpowered/russianbunker)
 "wat" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -62016,10 +62184,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/tcoms)
-"wcs" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "wcV" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -62321,31 +62485,6 @@
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"wkt" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 6;
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -1;
-	pixel_y = 14
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -9;
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -7;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "wkD" = (
 /obj/machinery/suit_storage_unit/engine,
 /turf/open/floor/plasteel/dark,
@@ -62393,10 +62532,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"wli" = (
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "wln" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -62571,16 +62706,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
-"wnQ" = (
-/obj/structure/toilet{
-	dir = 1
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/russian,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "wnY" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -62923,11 +63048,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"wwo" = (
-/obj/item/restraints/handcuffs,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/rust,
-/area/ruin/unpowered/russianbunker)
 "wwD" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -63322,11 +63442,6 @@
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"wEh" = (
-/obj/machinery/chem_master/condimaster,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "wEl" = (
 /obj/machinery/porta_turret/ai,
 /obj/machinery/light{
@@ -63370,6 +63485,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"wEZ" = (
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "wFm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -64069,6 +64187,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/execution/transfer)
+"wUb" = (
+/obj/structure/table,
+/obj/item/lighter{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "wUw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -64733,6 +64860,10 @@
 /obj/item/flashlight,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"xfT" = (
+/mob/living/simple_animal/hostile/bear/russian,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/space/has_grav/listeningstation)
 "xge" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -64850,10 +64981,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"xit" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "xiC" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
@@ -65219,6 +65346,15 @@
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"xrb" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/listeningstation)
 "xro" = (
 /obj/machinery/shieldwallgen/xenobiologyaccess,
 /obj/machinery/door/window/southleft{
@@ -65442,10 +65578,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"xvg" = (
-/obj/item/soap/syndie,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/unpowered/russianbunker)
 "xvw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -65461,6 +65593,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"xvF" = (
+/obj/item/cigbutt/cigarbutt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "xvQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -65522,6 +65659,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
+"xxg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation)
 "xxr" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -65583,6 +65724,11 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
+"xyh" = (
+/obj/machinery/space_heater,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "xym" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark,
@@ -65953,15 +66099,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"xHR" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 8
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
-/area/ruin/unpowered/russianbunker)
 "xHZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/disposalpipe/segment{
@@ -66291,6 +66428,9 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"xNj" = (
+/turf/open/floor/grass/snow/safe,
+/area/ruin/space/has_grav/listeningstation)
 "xNo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -66547,16 +66687,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"xTm" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "xTT" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -66585,18 +66715,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"xUw" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/gloves/yogs/army,
-/obj/item/clothing/suit/armor/heavy/juggernaut,
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/viscerator{
-	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations. This one appears to be painted in the colors of the russian flag.";
-	faction = list("russian");
-	name = "Russ-erator"
-	},
-/turf/open/floor/engine,
-/area/ruin/unpowered/russianbunker)
 "xUB" = (
 /mob/living/simple_animal/hostile/retaliate/bat{
 	desc = "A fierce companion for any person of power, this spider has been carefully trained by Nanotrasen specialists. Its beady, staring eyes send shivers down your spine.";
@@ -66625,10 +66743,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
-"xUE" = (
-/mob/living/simple_animal/hostile/bear/snow,
-/turf/open/floor/grass/snow/safe,
-/area/ruin/unpowered/russianbunker)
 "xUS" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plating,
@@ -66947,23 +67061,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"xZq" = (
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck/cas{
-	pixel_x = -6;
-	pixel_y = 11
-	},
-/obj/item/toy/cards/deck/uno{
-	pixel_x = -1;
-	pixel_y = 2
-	},
-/obj/item/toy/cards/deck/cas/black{
-	pixel_x = 6;
-	pixel_y = 11
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/unpowered/russianbunker)
 "xZB" = (
 /obj/item/shard,
 /turf/open/floor/plating,
@@ -67154,6 +67251,13 @@
 /obj/machinery/light,
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
+"ydY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/listeningstation)
 "yed" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -79008,20 +79112,20 @@ msb
 msb
 msb
 msb
-col
-col
-col
-col
-col
-col
+wEZ
+wEZ
+wEZ
+wEZ
+wEZ
+wEZ
 msb
 msb
 msb
-col
-col
-col
-col
-col
+wEZ
+wEZ
+wEZ
+wEZ
+wEZ
 msb
 msb
 msb
@@ -79265,22 +79369,22 @@ msb
 msb
 msb
 msb
-col
-hKE
-nCM
-csI
-xUE
-col
+wEZ
+coD
+xfT
+xNj
+mQO
+wEZ
 msb
 msb
 msb
-col
-dHV
-oWF
-ckx
-col
-col
-col
+wEZ
+gPG
+eyX
+fpL
+wEZ
+wEZ
+wEZ
 msb
 msb
 msb
@@ -79521,23 +79625,23 @@ msb
 msb
 msb
 msb
-msb
-col
-xUE
-cBV
-hKE
-csI
-col
-col
-col
-col
-col
-ofo
-mzF
-oQN
-oQN
-wnQ
-col
+sei
+wEZ
+mQO
+dSE
+coD
+xNj
+wEZ
+wEZ
+wEZ
+wEZ
+wEZ
+ozl
+rgq
+uqJ
+uqJ
+gIL
+wEZ
 msb
 msb
 msb
@@ -79779,22 +79883,22 @@ msb
 msb
 msb
 msb
-col
-kly
-kly
-kly
-kly
-oWF
-bQb
-wcs
-wcs
-col
-ofo
-dpI
-oQN
-oQN
-obi
-col
+wEZ
+fwB
+fwB
+fwB
+fwB
+eyX
+ulO
+pOK
+pOK
+wEZ
+ozl
+gQp
+uqJ
+uqJ
+xrb
+wEZ
 msb
 msb
 msb
@@ -80036,22 +80140,22 @@ acb
 msb
 msb
 msb
-oWF
-qnB
-muJ
-vhD
-uXy
-kvd
-nRp
-tnZ
-wcs
-oWF
-xvg
-oQN
-col
-col
-col
-col
+eyX
+xyh
+xvF
+pIP
+bfJ
+jhf
+rFg
+dSQ
+pOK
+eyX
+tKx
+uqJ
+wEZ
+wEZ
+wEZ
+wEZ
 msb
 msb
 msb
@@ -80293,21 +80397,21 @@ msb
 msb
 msb
 msb
-col
-jCt
-ktc
-fow
-uXy
-oWF
-bQb
-hvf
-wcs
-col
-col
-nWc
-col
-pYW
-col
+wEZ
+vgA
+qZu
+qRR
+bfJ
+eyX
+ulO
+vSj
+pOK
+wEZ
+wEZ
+nyY
+wEZ
+erV
+wEZ
 msb
 msb
 msb
@@ -80550,21 +80654,21 @@ msb
 msb
 msb
 msb
-col
-ing
-uXy
-ndU
-vhD
-col
-cQM
-nRp
-tnZ
-wcs
-wwo
-wcs
-oWF
-wli
-col
+wEZ
+tUl
+kqK
+dvb
+pIP
+wEZ
+pLY
+rFg
+dSQ
+pOK
+eVh
+pOK
+eyX
+iyZ
+wEZ
 msb
 msb
 msb
@@ -80807,21 +80911,21 @@ msb
 msb
 msb
 msb
-col
-uXy
-jKW
-ndU
-muJ
-col
-cQM
-wcs
-nRp
-nRp
-nRp
-nRp
-fcK
-vkl
-uVX
+wEZ
+bfJ
+got
+dvb
+xvF
+wEZ
+pLY
+pOK
+rFg
+rFg
+rFg
+rFg
+lOi
+ksJ
+lDD
 lrc
 lrc
 lrc
@@ -81059,26 +81163,26 @@ acb
 msb
 msb
 msb
-col
-col
-col
-col
-col
-oWF
-vhD
-uXy
-uXy
-uXy
-col
-cQM
-wcs
-awv
-tnZ
-hvf
-wcs
-uWl
-wli
-col
+wEZ
+wEZ
+wEZ
+wEZ
+wEZ
+eyX
+pIP
+ydY
+bfJ
+bfJ
+wEZ
+pLY
+pOK
+lQG
+dSQ
+vSj
+pOK
+bBd
+iyZ
+wEZ
 msb
 lrc
 mwY
@@ -81316,26 +81420,26 @@ msb
 msb
 msb
 msb
-col
-mDj
-mDj
-mDj
-mDj
-mDj
-mDj
-kvd
-kvd
-col
-hOd
-hOd
-hOd
-col
-col
-col
-col
-col
-qkx
-col
+wEZ
+hpr
+hpr
+hpr
+hpr
+hpr
+hpr
+nwQ
+jhf
+wEZ
+pZk
+pZk
+pZk
+wEZ
+wEZ
+wEZ
+wEZ
+wEZ
+noq
+wEZ
 msb
 lrc
 lrc
@@ -81573,26 +81677,26 @@ msb
 msb
 msb
 msb
-col
-mDj
-lww
-pho
-xUw
-col
-ock
-uXy
-uXy
-dcU
-uXy
-ldh
-uXy
-wkt
-col
+wEZ
+hpr
+pWI
+mOX
+mGM
+wEZ
+nVd
+ydY
+bfJ
+eoV
+bfJ
+nOo
+bfJ
+jYp
+wEZ
 msb
 msb
-col
-col
-col
+wEZ
+wEZ
+wEZ
 lrc
 mwY
 rlj
@@ -81830,21 +81934,21 @@ acb
 acb
 msb
 msb
-col
-mDj
-iFz
-pgS
-xit
-lnB
-cDV
-vUP
-evB
-eKN
-uXy
-ktc
-eKN
-kKL
-col
+wEZ
+hpr
+pyC
+iuq
+tSs
+oDh
+kNk
+erk
+oGd
+jha
+bfJ
+qZu
+jha
+wUb
+wEZ
 msb
 msb
 msb
@@ -82087,21 +82191,21 @@ msb
 msb
 msb
 msb
-col
-mDj
-vNl
-pgS
-kKU
-tvK
-mNF
-mNF
-mNF
-uXy
-iuW
-rBe
-uXy
-kTG
-col
+wEZ
+hpr
+qSO
+sDs
+oEb
+hSs
+luy
+vrA
+erI
+bfJ
+egF
+uMt
+bfJ
+klf
+wEZ
 msb
 msb
 msb
@@ -82344,21 +82448,21 @@ msb
 msb
 msb
 msb
-col
-mDj
-gEK
-pgS
-xit
-col
-fZk
-uaJ
-aRH
-kBH
-iuW
-udO
-qxU
-ulY
-col
+wEZ
+hpr
+rbx
+eYY
+tSs
+wEZ
+jDi
+gFa
+gwC
+lUe
+egF
+lNX
+exe
+tQW
+wEZ
 msb
 msb
 msb
@@ -82601,21 +82705,21 @@ acb
 msb
 msb
 msb
-col
-mDj
-vWE
-xit
-pgS
-col
-qnB
-vTf
-xZq
-vUP
-iuW
-oDz
-muJ
-wEh
-col
+wEZ
+hpr
+nSK
+tSs
+iuq
+wEZ
+xyh
+bib
+ooD
+bDL
+egF
+jhw
+xvF
+fHG
+wEZ
 msb
 msb
 msb
@@ -82858,21 +82962,21 @@ acb
 msb
 msb
 msb
-col
-mDj
-mDj
-mDj
-mDj
-mDj
-qLR
-uXy
-uXy
-uXy
-uXy
-qjr
-xHR
-dSo
-col
+wEZ
+hpr
+hpr
+hpr
+hpr
+hpr
+sIe
+bfJ
+bfJ
+bfJ
+bfJ
+aGc
+uuB
+pUO
+wEZ
 msb
 msb
 msb
@@ -83115,22 +83219,22 @@ msb
 msb
 msb
 msb
-col
-col
-col
-col
-col
-mDj
-wak
-wak
-ugT
-odF
-vhZ
-fzA
-xTm
-ugT
-col
-col
+wEZ
+wEZ
+wEZ
+wEZ
+wEZ
+hpr
+sLA
+sLA
+xxg
+vqS
+gip
+leD
+teB
+xxg
+wEZ
+wEZ
 msb
 msb
 msb
@@ -83378,16 +83482,16 @@ msb
 msb
 msb
 msb
-col
-eUs
-nNq
-uXy
-khR
-col
-jbH
-jbH
-nbz
-col
+wEZ
+kqV
+rXJ
+bfJ
+rOO
+wEZ
+uAS
+uAS
+qdU
+wEZ
 msb
 msb
 acb
@@ -83635,16 +83739,16 @@ acb
 acb
 msb
 msb
-col
-vBw
-vhD
-gkI
-vBw
-uof
-ukX
-ooh
-jmZ
-col
+wEZ
+kkQ
+pIP
+lFG
+kkQ
+nHc
+qEJ
+jgc
+qOT
+wEZ
 msb
 msb
 msb
@@ -83892,16 +83996,16 @@ acb
 acb
 msb
 msb
-col
-khR
-uXy
-uXy
-eUs
-col
-ihD
-ihD
-jSA
-col
+wEZ
+rOO
+bfJ
+bfJ
+kqV
+wEZ
+nmr
+nmr
+uTP
+wEZ
 msb
 msb
 msb
@@ -84149,16 +84253,16 @@ acb
 msb
 msb
 msb
-col
-fZO
-muJ
-nNq
-vBw
-col
-col
-col
-col
-col
+wEZ
+dZB
+xvF
+rXJ
+kkQ
+wEZ
+wEZ
+wEZ
+wEZ
+wEZ
 msb
 msb
 msb
@@ -84406,12 +84510,12 @@ msb
 msb
 msb
 msb
-col
-cpT
-sVt
-vhD
-khR
-col
+wEZ
+oGI
+sFa
+pIP
+rOO
+wEZ
 msb
 msb
 msb
@@ -84663,12 +84767,12 @@ msb
 msb
 msb
 msb
-col
-col
-oEY
-col
-col
-col
+wEZ
+wEZ
+uNY
+wEZ
+wEZ
+wEZ
 msb
 msb
 msb
@@ -86023,14 +86127,14 @@ aFi
 vfZ
 eKn
 spX
-fwH
-fwH
-fwH
-ijH
-fwH
-iXf
-fwH
-fwH
+uGb
+uGb
+uGb
+pSs
+uGb
+aDS
+uGb
+uGb
 aFi
 tFe
 aZG
@@ -86280,14 +86384,14 @@ aFi
 pBC
 wOE
 jOn
-dmg
-tOf
-tOf
-tOf
-tOf
-tOf
-tOf
-lHv
+jGV
+aEN
+aEN
+aEN
+aEN
+aEN
+aEN
+nFj
 aFi
 izQ
 baZ
