@@ -55,4 +55,12 @@
 		drone.change_resources(resources)
 		change_resources(-resources)
 		qdel(src)
+		return
+	if(drone.a_intent == INTENT_HELP)
+		if(health >= maxHealth)
+			to_chat(user, span_notice("[drone == src ? "You are" : "[user] is"] already in good conditions."))
+			return
+		if(resources < 7)
+			to_chat(user, span_notice("You don't have enough resources to repair [drone == src ? "yourself" : src]."))
+			return
 		

@@ -197,6 +197,27 @@
 	if(.)
 		target.flock_act(src)
 
+/mob/living/simple_animal/hostile/flockdrone/proc/repair(mob/living/simple_animal/hostile/flockdrone/user)
+	if(stat == DEAD)
+		return
+	if(health >= maxHealth)
+		visible_message(span_notice("[user] finishes repairing [user == src ? "itself" : src]!"), \
+				span_notice("[user == src ? "You finish" : "[user] finishes"] repairing [user == src ? "yourself" : src]!"))
+		return
+	if(user.resources < 7)
+		to_chat(user, span_notice("You don't have enough resources to repair [user == src ? "yourself" : src] further."))
+		return
+	if(!do_mob(drone, src, 1 SECONDS))
+		return
+	if(getBruteLoss())
+		adjustBruteLoss(10)
+	else if(getFireLoss())
+		adjustFireLoss(10)
+	visible_message(span_notice("[user] fixes some damage on [user == src ? "itself" : src]!"), \
+			span_notice("[user == src ? "You fix" : "[user] fixes"] some damage on [user == src ? "yourself" : src]!"))
+	change_resources(-7)
+	repair(user)
+
 /obj/item/projectile/beam/disabler/flock
 	name = "flock disabler"
 	damage = 25
