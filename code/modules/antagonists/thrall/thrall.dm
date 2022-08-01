@@ -1,5 +1,8 @@
+/* TODO
 /datum/antagonist/thrall
 	name = "Thrall"
+	roundend_category = "thralls"
+	antagpanel_category = "Psionics"
 	id = MODE_THRALL
 	role_text = "Thrall"
 	role_text_plural = "Thralls"
@@ -28,3 +31,4 @@
 /datum/antagonist/thrall/update_antag_mob(var/datum/mind/player)
 	..()
 	player.current.vampire_make_thrall()
+*/

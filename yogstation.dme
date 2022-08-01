@@ -1619,6 +1619,7 @@
 #include "code\modules\antagonists\slaughter\slaughterevent.dm"
 #include "code\modules\antagonists\space_dragon\space_dragon.dm"
 #include "code\modules\antagonists\swarmer\swarmer.dm"
+#include "code\modules\antagonists\thrall\thrall.dm"
 #include "code\modules\antagonists\traitor\datum_traitor.dm"
 #include "code\modules\antagonists\traitor\syndicate_contract.dm"
 #include "code\modules\antagonists\traitor\brother\traitor_bro.dm"

@@ -58,7 +58,7 @@
 		for(var/faculty_id in psi.ranks)
 			var/datum/psionic_faculty/faculty = SSpsi.get_faculty(faculty_id)
 			if(psi.ranks[faculty.id] > 0)
-				dat += "[use_He_is] assayed at the rank of <b>[psychic_ranks_to_strings[psi.ranks[faculty.id]]]</b> for the <b>[faculty.name] faculty</b>.<br>"
+				dat += "[use_He_is] assayed at the rank of <b>[GLOB.psychic_ranks_to_strings[psi.ranks[faculty.id]]]</b> for the <b>[faculty.name] faculty</b>.<br>"
 			else
 				dat += "[use_He_has] no notable power within the <b>[faculty.name] faculty</b>.<br>"
 		dat += "<hr>"
