@@ -1,10 +1,20 @@
 /datum/action/cooldown/flock
 	var/datum/flock_command/action = null
+	var/messg = "Uhh you will do nothing cry about it"
 
 /datum/action/cooldown/flock/Trigger()
 	if(isflocktrace(owner))
 		var/mob/camera/flocktrace/FT = owner
-		FT.stored_action = new action
+		if(FT.stored_action)
+			if(istype(FT.stored_action, action.type))
+				qdel(FT.stored_action)
+				FT.stored_action = null
+				to_chat(owner, span_warning("You cancell your current action."))
+				return
+			qdel(FT.stored_action)
+			FT.stored_action = null			
+		FT.stored_action = new action(FT)
+		to_chat(owner, span_warning(messg))
 
 /datum/action/cooldown/flock/IsAvailable()
 	return (next_use_time <= world.time) && (isflockdrone(owner) || isflocktrace(owner))
@@ -49,6 +59,7 @@
 	FD.EjectPilot()
 
 /datum/action/cooldown/flock/eject
-	name = "Designate Enemy(Click)"
+	name = "Designate Enemy"
 	desc = "Alert your Flock that someone is definitely an enemy of your flock. NPC drones will fire lethal lasers at them regardles of conditions."
 	action =  /datum/flock_command/enemy_of_the_flock
+	messg = "Next living being you will click will be designated as The Enemy Of The Flock"

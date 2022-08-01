@@ -223,7 +223,7 @@
 	user.change_resources(-10, TRUE)
 	repair(user)
 
-/mob/living/simple_animal/hostile/flockdroneProcess_Spacemove()
+/mob/living/simple_animal/hostile/flockdrone/Process_Spacemove()
 	return TRUE
 
 //////////////////////////////////////////////

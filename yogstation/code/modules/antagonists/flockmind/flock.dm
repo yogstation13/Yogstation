@@ -14,7 +14,7 @@ GLOBAL_VAR(flock)
 	else
 		qdel(src)
 
-/proc/ping_flock(message, user, ghosts = TRUE)
+/proc/ping_flock(message, mob/user, ghosts = TRUE)
 	if(user)
 		user.log_talk(message, LOG_SAY)
 

@@ -2,7 +2,7 @@
 	var/mob/camera/flocktrace/daddy
 	var/atom/dude
 
-/datum/flock_command/perform_action(atom/A)
+/datum/flock_command/proc/perform_action(atom/A)
 	return FALSE
 
 /datum/flock_command/New(mob/camera/flocktrace/ded, atom/A)
