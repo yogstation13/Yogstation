@@ -4,18 +4,23 @@
 /obj/item/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	drone.Eat(src)
 
-/turf/open/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
-	if(drone.resources < 15) //No money?
-		to_chat(drone, span_warning("Not enough resources!"))
+/obj/item/disk/nuclear/flock_act(mob/living/simple_animal/hostile/flockdrone/drone) //We don't eat the disc!
 		return
-	drone.resources -= 20
+
+/turf/open/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(drone && istype(drone))
+		if(drone.resources < 15) //No money?
+			to_chat(drone, span_warning("Not enough resources!"))
+			return
+		drone.resources -= 20
 	TerraformTurf(/turf/open/floor/feather)
 
 /turf/closed/wall/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
-	if(drone.resources < 20)
-		to_chat(drone, span_warning("Not enough resources!"))
-		return
-	drone.resources -= 20
+	if(drone && istype(drone))
+		if(drone.resources < 20)
+			to_chat(drone, span_warning("Not enough resources!"))
+			return
+		drone.resources -= 20
 	TerraformTurf(/turf/closed/wall/feather)
 
 /mob/living/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)

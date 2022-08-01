@@ -40,6 +40,7 @@
 	deathmessage = "explodes with a sharp pop!"
 	light_color = LIGHT_COLOR_CYAN
 	speech_span = SPAN_ROBOT
+	hud_type = /datum/hud/living/swarmer
 	wanted_objects = list(/obj/item)
 	unwanted_objects = list(/obj/item/disk/nuclear) //We don't want to eat dat fukken disk
 	search_objects = 1
@@ -55,6 +56,10 @@
 /mob/living/simple_animal/hostile/flockdrone/OpenFire(atom/A)
 	if(!ismecha(A) && !isliving(A) && !mind)
 		return 
+	if(a_intent = INTENT_HELP)
+		projectiletype = /obj/item/projectile/beam/disabler/flock
+	else 
+		projectiletype = /obj/item/projectile/beam/flock
 	. = ..()
 
 /mob/living/simple_animal/hostile/flockdrone/Shoot(atom/targeted_atom)
@@ -63,12 +68,12 @@
 	if(ishuman(targeted_atom) || ismonkey(targeted_atom))  //If the target is a stunable monke/human, we try to shoot it down with a disabler. If it isn't stunable, we shoot it to death
 		var/mob/living/carbon/C = targeted_atom
 		if(HAS_TRAIT(C, TRAIT_STUNIMMUNE) || HAS_TRAIT(C, TRAIT_STUNRESISTANCE))
-			set_murdering(TRUE)
+			a_intent_change(INTENT_HARM)
 		else
-			set_murdering(FALSE)
+			a_intent_change(INTENT_HELP)
 
 	else if(ismecha(targeted_atom) || isliving(targeted_atom)) //If the target is a mech or a non-human/monke, we KILL IT
-		set_murdering(TRUE)
+		a_intent_change(INTENT_HARM)
 
 	return ..()
 
@@ -83,9 +88,13 @@
 			return
 		else if(ishuman(L) || ismonkey(L))
 			if(HAS_TRAIT(L, TRAIT_STUNIMMUNE) || HAS_TRAIT(L, TRAIT_STUNRESISTANCE))
-				set_murdering(TRUE)
+				a_intent_change(INTENT_HARM)
 			else 
-				set_murdering(FALSE)
+				a_intent_change(INTENT_HELP)
+	if(a_intent = INTENT_HELP)
+		melee_damage_type = STAMINA
+	else 
+		melee_damage_type = initial(melee_damage_type)
 	. = ..()
 	if(. && isliving(target)) //We deal bonus 5 brute damage to living/alive targets. Always.
 		var/mob/living/L = target
@@ -145,15 +154,6 @@
 	qdel(target)
 	return TRUE
 
-/mob/living/simple_animal/hostile/flockdrone/proc/set_murdering(true_or_false = TRUE)
-	murderer = true_or_false
-	if(murderer)
-		melee_damage_type = BRUTE
-		projectiletype = /obj/item/projectile/beam/flock
-	else
-		melee_damage_type = STAMINA
-		projectiletype = /obj/item/projectile/beam/disabler/flock
-
 /obj/item/projectile/beam/disabler/flock
 	name = "flock disabler"
 	damage = 25
@@ -193,7 +193,7 @@
 		Posses(user)
 
 
-/mob/living/simple_animal/hostile/flockdrone/EjectPilot()
+/mob/living/simple_animal/hostile/flockdrone/proc/EjectPilot()
 	if(!pilot)
 		return
 	mind.transfer_to(pilot)
@@ -202,10 +202,12 @@
 		pilot.forceMove(location)
 	else
 		pilot.forceMove(loc)
+	mind.transfer_to(pilot)
 	pilot = null
-	toggle_ai()
+	if(AIStatus == AI_ON)
+		toggle_ai()
 
-/mob/living/simple_animal/hostile/flockdrone/Posses(/mob/camera/flocktrace/user)
+/mob/living/simple_animal/hostile/flockdrone/proc/Posses(mob/user)
 	if(!user)
 		return
 	if(pilot || mind)
@@ -213,7 +215,8 @@
 	user.forceMove(src)
 	user.mind.transfer_to(src)
 	pilot = user
-	toggle_ai()
+	if(AIStatus != AI_ON)
+		toggle_ai()
 	
 /mob/living/simple_animal/hostile/flockdrone/death(gibbed)
 	EjectPilot()
