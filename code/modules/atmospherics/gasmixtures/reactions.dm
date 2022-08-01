@@ -1,30 +1,35 @@
 //All defines used in reactions are located in ..\__DEFINES\reactions.dm
-/*priority so far, check this list to see what are the numbers used. Please use a different priority for each reaction(higher number are done first)
-miaster = -10 (this should always be under all other fires)
-freonfire = -5
-plasmafire = -4
-h2fire = -3
-tritfire = -2
-halon_o2removal = -1
-nitrous_decomp = 0
-water_vapor = 1
-fusion = 2
-nitrylformation = 3
-bzformation = 4
-freonformation = 5
-stimformation = 6
-stim_ball = 7
-zauker_decomp = 8
-healium_formation = 9
-pluonium_formation = 10
-zauker_formation = 11
-halon_formation = 12
-hexane_formation = 13
-pluonium_response = 14 - 16
-metalhydrogen = 17
-nobliumsuppression = 1000
-nobliumformation = 1001
-*/
+//priority so far, check this list to see what are the numbers used.
+//Please use a different priority for each reaction(higher number are done first) 
+//or else auxmos will ignore the reaction
+//NOTE: ONLY INTEGERS ARE ALLOWED, EXPECT WEIRDNESS IF YOU DON'T FOLLOW THIS
+#define MIASTER 				-10
+#define FREONFIRE 				-5
+#define PLASMAFIRE				-4
+#define H2FIRE 					-3
+#define TRITFIRE 				-2
+#define HALONO2REMOVAL 			-1
+#define NITROUSDECOMP 			0
+#define WATERVAPOR 				1
+#define FUSION 					2
+#define COLDFUSION 				3
+#define NITRYLFORMATION 		4
+#define BZFORMATION 			5
+#define FREONFORMATION 			6
+#define STIMFORMATION 			7
+#define STIMBALL 				8
+#define ZAUKERDECOMP 			9
+#define HEALIUMFORMATION 		10
+#define PLUONIUMFORMATION 		11
+#define ZAUKERFORMATION 		12
+#define HALONFORMATION 			13
+#define HEXANEFORMATION 		14
+#define PLUONIUMBZRESPONSE 		15
+#define PLUONIUMTRITRESPONSE 	16
+#define PLUONIUMH2RESPONSE 		17
+#define METALHYDROGEN 			18
+#define NOBLIUMSUPPRESSION	 	1000
+#define NOBLIUMFORMATION 		1001
 
 /proc/init_gas_reactions()
 	. = list()
@@ -35,17 +40,13 @@ nobliumformation = 1001
 			continue
 		reaction = new r
 		. += reaction
-	sortTim(., /proc/cmp_gas_reaction)
-
-/proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
-	return b.priority - a.priority
 
 /datum/gas_reaction
 	//regarding the requirements lists: the minimum or maximum requirements must be non-zero.
 	//when in doubt, use MINIMUM_MOLE_COUNT.
 	var/list/min_requirements
 	var/exclude = FALSE //do it this way to allow for addition/removal of reactions midmatch in the future
-	var/priority = 100 //lower numbers are checked/react later than higher numbers. if two reactions have the same priority they may happen in either order
+	var/priority = -1000 //lower numbers are checked/react later than higher numbers. if two reactions have the same priority they may happen in either order
 	var/name = "reaction"
 	var/id = "r"
 
@@ -68,7 +69,7 @@ nobliumformation = 1001
 	return location
 
 /datum/gas_reaction/nobliumsupression
-	priority = 1000 //ensure all non-HN reactions are lower than this number.
+	priority = NOBLIUMSUPPRESSION //ensure all non-HN reactions are lower than this number.
 	name = "Hyper-Noblium Reaction Suppression"
 	id = "nobstop"
 
@@ -80,7 +81,7 @@ nobliumformation = 1001
 
 //water vapor: puts out fires?
 /datum/gas_reaction/water_vapor
-	priority = 1
+	priority = WATERVAPOR
 	name = "Water Vapor"
 	id = "vapor"
 
@@ -101,7 +102,7 @@ nobliumformation = 1001
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire
-	priority = -2 //fire should ALWAYS be last, but tritium fires happen before plasma fires
+	priority = TRITFIRE //fire should ALWAYS be last, but tritium fires happen before plasma fires
 	name = "Tritium Combustion"
 	id = "tritfire"
 
@@ -159,7 +160,7 @@ nobliumformation = 1001
 
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
-	priority = -4 //fire should ALWAYS be last, but plasma fires happen after tritium fires
+	priority = PLASMAFIRE //fire should ALWAYS be last, but plasma fires happen after tritium fires
 	name = "Plasma Combustion"
 	id = "plasmafire"
 
@@ -233,7 +234,7 @@ nobliumformation = 1001
 	return cached_results["fire"] ? REACTING : NO_REACTION
 
 /datum/gas_reaction/n2odecomp
-	priority = 0
+	priority = NITROUSDECOMP
 	name = "Nitrous Oxide Decomposition"
 	id = "n2odecomp"
 
@@ -266,7 +267,7 @@ nobliumformation = 1001
 
 /datum/gas_reaction/cold_fusion
 	exclude = FALSE
-	priority = 2
+	priority = COLDFUSION
 	name = "Cold Plasmic Fusion"
 	id = "coldfusion"
 
@@ -287,7 +288,7 @@ nobliumformation = 1001
 
 /datum/gas_reaction/fusion
 	exclude = FALSE
-	priority = 2
+	priority = FUSION
 	name = "Plasmic Fusion"
 	id = "fusion"
 
@@ -365,7 +366,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/nitrylformation //The formation of nitryl. Endothermic. Requires N2O as a catalyst.
-	priority = 3
+	priority = NITRYLFORMATION
 	name = "Nitryl formation"
 	id = "nitrylformation"
 
@@ -399,7 +400,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/bzformation //Formation of BZ by combining plasma and tritium at low pressures. Exothermic.
-	priority = 4
+	priority = BZFORMATION
 	name = "BZ Gas formation"
 	id = "bzformation"
 
@@ -437,7 +438,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/stimformation //Stimulum formation follows a strange pattern of how effective it will be at a given temperature, having some multiple peaks and some large dropoffs. Exo and endo thermic.
-	priority = 6
+	priority = STIMFORMATION
 	name = "Stimulum formation"
 	id = "stimformation"
 
@@ -469,7 +470,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/nobliumformation //Hyper-Noblium formation is extrememly endothermic, but requires high temperatures to start. Due to its high mass, hyper-nobelium uses large amounts of nitrogen and tritium. BZ can be used as a catalyst to make it less endothermic.
-	priority = 1001 //Ensure this value is higher than nobstop
+	priority = NOBLIUMFORMATION //Ensure this value is higher than nobstop
 	name = "Hyper-Noblium condensation"
 	id = "nobformation"
 
@@ -499,7 +500,7 @@ nobliumformation = 1001
 
 
 /datum/gas_reaction/miaster	//dry heat sterilization: clears out pathogens in the air
-	priority = -10 //after all the heating from fires etc. is done
+	priority = MIASTER //after all the heating from fires etc. is done
 	name = "Dry Heat Sterilization"
 	id = "sterilization"
 
@@ -525,7 +526,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/stim_ball
-	priority = 7
+	priority = STIMBALL
 	name ="Stimulum Energy Ball"
 	id = "stimball"
 
@@ -569,7 +570,7 @@ nobliumformation = 1001
 
 //freon reaction (is not a fire yet)
 /datum/gas_reaction/freonfire
-	priority = -5
+	priority = FREONFIRE
 	name = "Freon combustion"
 	id = "freonfire"
 
@@ -625,7 +626,7 @@ nobliumformation = 1001
 			air.set_temperature((old_thermal_energy + energy_released) / new_heat_capacity)
 
 /datum/gas_reaction/h2fire
-	priority = -3 //fire should ALWAYS be last, but tritium fires happen before plasma fires
+	priority = H2FIRE //fire should ALWAYS be last, but tritium fires happen before plasma fires
 	name = "Hydrogen Combustion"
 	id = "h2fire"
 
@@ -680,7 +681,7 @@ nobliumformation = 1001
 	
 	
 /datum/gas_reaction/hexane_formation
-	priority = 13
+	priority = HEXANEFORMATION
 	name = "Hexane formation"
 	id = "hexane_formation"
 
@@ -712,7 +713,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/metalhydrogen
-	priority = 17
+	priority = METALHYDROGEN
 	name = "Metal Hydrogen formation"
 	id = "metalhydrogen"
 
@@ -751,7 +752,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/freonformation
-	priority = 5
+	priority = FREONFORMATION
 	name = "Freon formation"
 	id = "freonformation"
 
@@ -785,7 +786,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/halon_formation
-	priority = 12
+	priority = HALONFORMATION
 	name = "Halon formation"
 	id = "halon_formation"
 
@@ -817,7 +818,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/healium_formation
-	priority = 9
+	priority = HEALIUMFORMATION
 	name = "Healium formation"
 	id = "healium_formation"
 
@@ -849,7 +850,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/pluonium_formation
-	priority = 10
+	priority = PLUONIUMFORMATION
 	name = "Pluonium formation"
 	id = "pluonium_formation"
 
@@ -881,7 +882,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/zauker_formation
-	priority = 11
+	priority = ZAUKERFORMATION
 	name = "Zauker formation"
 	id = "zauker_formation"
 
@@ -913,7 +914,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/halon_o2removal
-	priority = -1
+	priority = HALONO2REMOVAL
 	name = "Halon o2 removal"
 	id = "halon_o2removal"
 
@@ -944,7 +945,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/zauker_decomp
-	priority = 8
+	priority = ZAUKERDECOMP
 	name = "Zauker decomposition"
 	id = "zauker_decomp"
 
@@ -975,7 +976,7 @@ nobliumformation = 1001
 	return NO_REACTION
 
 /datum/gas_reaction/pluonium_bz_response
-	priority = 14
+	priority = PLUONIUMBZRESPONSE
 	name = "Pluonium bz response"
 	id = "pluonium_bz_response"
 
@@ -1012,7 +1013,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/pluonium_tritium_response
-	priority = 15
+	priority = PLUONIUMTRITRESPONSE
 	name = "Pluonium tritium response"
 	id = "pluonium_tritium_response"
 
@@ -1047,7 +1048,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/pluonium_hydrogen_response
-	priority = 16
+	priority = PLUONIUMH2RESPONSE
 	name = "Pluonium hydrogen response"
 	id = "pluonium_hydrogen_response"
 
@@ -1073,3 +1074,31 @@ nobliumformation = 1001
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.set_temperature(max((old_thermal_energy - energy_released) / new_heat_capacity, TCMB))
 	return REACTING
+
+#undef MIASTER
+#undef FREONFIRE
+#undef PLASMAFIRE
+#undef H2FIRE
+#undef TRITFIRE
+#undef HALONO2REMOVAL
+#undef NITROUSDECOMP
+#undef WATERVAPOR
+#undef FUSION
+#undef COLDFUSION
+#undef NITRYLFORMATION
+#undef BZFORMATION
+#undef FREONFORMATION
+#undef STIMFORMATION
+#undef STIMBALL
+#undef ZAUKERDECOMP
+#undef HEALIUMFORMATION
+#undef PLUONIUMFORMATION
+#undef ZAUKERFORMATION
+#undef HALONFORMATION
+#undef HEXANEFORMATION
+#undef PLUONIUMBZRESPONSE
+#undef PLUONIUMTRITRESPONSE
+#undef PLUONIUMH2RESPONSE
+#undef METALHYDROGEN
+#undef NOBLIUMSUPPRESSION
+#undef NOBLIUMFORMATION
