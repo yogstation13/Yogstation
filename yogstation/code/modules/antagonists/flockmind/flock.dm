@@ -16,11 +16,11 @@ GLOBAL_VAR(flock)
 
 /proc/ping_flock(message, user, ghosts = TRUE)
 	if(user)
-		log_talk(message, LOG_SAY)
+		user.log_talk(message, LOG_SAY)
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	var/message_a = say_quote(message)
+	var/message_a = user.say_quote(message)
 	var/rendered = span_swarmer("\[Flock Communication\][user ? " [user]" : ""] [message_a]")
 
 	for(var/mob/M in GLOB.mob_list)
@@ -28,7 +28,7 @@ GLOBAL_VAR(flock)
 			to_chat(M, rendered)
 		if(isobserver(M) && ghosts)
 			if(user)
-				var/link = FOLLOW_LINK(M, src)
+				var/link = FOLLOW_LINK(M, user)
 				to_chat(M, "[link] [rendered]")
 			else
 				to_chat(M, "[rendered]")

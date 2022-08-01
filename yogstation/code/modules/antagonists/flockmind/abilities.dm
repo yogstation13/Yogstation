@@ -16,14 +16,13 @@
 	var/msg = input(owner,"Message your Flock","Communication","") as null|text
 	if(!msg)    
 		return
-	ping_flock(message)
+	ping_flock(msg, owner)
 
 /datum/action/cooldown/flock/ping
 	name = "Ping"
 	desc = "Alert all sentient flock members to your location, and order non-sentient flockdrones to move to it."
 
 /datum/action/cooldown/flock/ping/Trigger()
-	if(get)
 	var/message = "[owner] requests presence of members of the Flock to [get_area(owner)]"
 	ping_flock(message)
 	var/turf/T = get_turf(owner)

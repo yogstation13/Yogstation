@@ -69,7 +69,7 @@
 		return ..()
 	if(ishuman(targeted_atom) || ismonkey(targeted_atom))  //If the target is a stunable monke/human, we try to shoot it down with a disabler. If it isn't stunable, we shoot it to death
 		var/mob/living/carbon/C = targeted_atom
-		if(HAS_TRAIT(C, TRAIT_STUNIMMUNE) || HAS_TRAIT(C, TRAIT_STUNRESISTANCE) || HAS_TRAIT(L, TRAIT_ENEMY_OF_THE_FLOCK))
+		if(HAS_TRAIT(C, TRAIT_STUNIMMUNE) || HAS_TRAIT(C, TRAIT_STUNRESISTANCE) || HAS_TRAIT(C, TRAIT_ENEMY_OF_THE_FLOCK))
 			a_intent_change(INTENT_HARM)
 		else
 			a_intent_change(INTENT_HELP)

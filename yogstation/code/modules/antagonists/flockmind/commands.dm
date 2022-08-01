@@ -1,12 +1,15 @@
 /datum/flock_command
-	var/mob/camera/flocktrace/daddy 
+	var/mob/camera/flocktrace/daddy
+	var/atom/dude
 
 /datum/flock_command/perform_action(atom/A)
 	return FALSE
 
-/datum/flock_command/New(mob/camera/flocktrace/ded)
+/datum/flock_command/New(mob/camera/flocktrace/ded, atom/A)
 	. = ..()
 	daddy = ded
+	if(A)
+		dude = A
 
 /datum/flock_command/enemy_of_the_flock
 
