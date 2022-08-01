@@ -159,7 +159,7 @@
 /obj/machinery/atmospherics/miner/hydrogen
 	name = "\improper H2 Gas Miner"
 	overlay_color = "#ff0000"
-	spawn_id = /datum/gas/hydrogen
+	spawn_id = GAS_H2
 
 /obj/machinery/atmospherics/miner/toxins
 	name = "\improper Plasma Gas Miner"
