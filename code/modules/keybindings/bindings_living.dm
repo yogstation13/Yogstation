@@ -6,3 +6,11 @@
 			return
 
 	return ..()
+
+/mob/living/key_down(_key, client/user)
+	switch(_key)
+		if("V")
+			lay_down()
+			return
+
+	return ..()
