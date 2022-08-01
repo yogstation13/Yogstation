@@ -129,7 +129,7 @@
 		convert_random_turf(FALSE)
 	return ..()
 
-/mob/living/simple_animal/hostile/flockdrone/convert_random_turf(var/force = FALSE)
+/mob/living/simple_animal/hostile/flockdrone/proc/convert_random_turf(var/force = FALSE)
 	for(var/tile in spiral_range_turfs(1, src))
 		var/turf/T = tile
 		if(!T || !isturf(loc))
@@ -310,6 +310,7 @@
 			if(confirmation == "No")
 				return
 			Posses(user)
+			return
 	else if(istype(user, /mob/camera/flocktrace/flockmind))
 		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Nearby Tile", "Nothing")
 		switch(order)

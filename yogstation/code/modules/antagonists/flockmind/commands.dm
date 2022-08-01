@@ -12,6 +12,7 @@
 	if(daddy.stored_action && daddy.stored_action != src)
 		qdel(daddy.stored_action)
 		daddy.stored_action = src
+	apply_status_effect(/datum/status_effect/flock_rts)
 	if(A)
 		dude = A
 	if(messg)
@@ -33,6 +34,11 @@
 		ping_flock("[daddy] has designated [A] as The Enemy Of The Flock!",daddy)
 	return TRUE
 
+/datum/flock_command/Destroy()
+	. = ..()
+	if(daddy.has_status_effect(/datum/status_effect/flock_rts))
+		daddy.remove_status_effect(/datum/status_effect/flock_rts)
+
 /datum/flock_command/move
 	messg = "Your next click on an object will order the flockrone to move to it(if it is a valid location)."
 
@@ -41,7 +47,7 @@
 		return TRUE 
 	var/turf/T = isturf(A) ? A : get_turf(A)
 	if(!is_station_level(T.z))
-		to_chat(owner, span_warning("You can't do this if not on the station Z-level!"))
+		to_chat(daddy, span_warning("You can't do this if not on the station Z-level!"))
 		return TRUE
 	var/list/surrounding_turfs = block(locate(T.x - 1, T.y - 1, T.z), locate(T.x + 1, T.y + 1, T.z))
 	if(!surrounding_turfs.len)
@@ -52,4 +58,17 @@
 		H.Goto(pick(surrounding_turfs), H.move_to_delay)
 		return TRUE
 	return FALSE
+
+/datum/status_effect/flock_rts  //Just a funni button that allows you to cancell your curent order if you have one
+	id = "flock_rts_gamin"
+	alert_type = /obj/screen/alert/status_effect/cancel_flock_order
+
+/obj/screen/alert/status_effect/cancel_flock_order
+
+/obj/screen/alert/status_effect/cancel_flock_order/Click()
+	if(isflocktrace(usr))
+		var/mob/camera/flocktrace/FT = usr
+		qdel(FT.stored_action)
+		FT.stored_action = null
+		FT.remove_status_effect(attached_effect)
 	
