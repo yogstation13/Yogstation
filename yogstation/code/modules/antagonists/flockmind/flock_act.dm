@@ -2,10 +2,11 @@
 	return
 
 /obj/item/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
-	drone.Eat(src)
+	if(drone)
+		drone.Eat(src)
 
 /obj/item/disk/nuclear/flock_act(mob/living/simple_animal/hostile/flockdrone/drone) //We don't eat the disc!
-		return
+	return
 
 /turf/open/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(drone && istype(drone))
@@ -24,9 +25,13 @@
 	TerraformTurf(/turf/closed/wall/feather)
 
 /mob/living/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(!drone)
+		return
 	if(stat == DEAD || IsStun() || IsImmobilized() || IsParalyzed() || IsUnconscious() || IsSleeping())
 		to_chat(drone, span_warning("You attempt to disintegrate [src] into resources."))
 		if(!do_mob(drone, src, 4 SECONDS))
+			return
+		if(QDELETED(src))
 			return
 		if(drone.resources >= drone.max_resources)
 			to_chat(drone, span_warning("You disintegrate [src], but your storage is full!"))
@@ -37,3 +42,17 @@
 			dust()
 	else
 		return
+
+/mob/living/simple_animal/hostile/flockdrone/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(!drone)
+		return
+	if(drone.a_intent = INTENT_HARM && drone != src && stat == DEAD)
+		to_chat(drone, span_warning("You begin to butcher [src] for it's resources."))  
+		if(!do_mob(drone, src, 4 SECONDS))
+			return
+		if(QDELETED(src))
+			return
+		drone.change_resources(resources)
+		change_resources(-resources)
+		qdel(src)
+		

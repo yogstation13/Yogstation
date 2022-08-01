@@ -7,6 +7,7 @@
 	mob_biotypes = MOB_ROBOTIC
 	health = 40
 	maxHealth = 40
+	loot = list(/obj/effect/decal/cleanable/robot_debris)
 	status_flags = CANPUSH
 	icon_state = "swarmer"
 	icon_living = "swarmer"
@@ -83,14 +84,18 @@
 		return
 	else if(isliving(target) || !mind)
 		var/mob/living/L = target
-		if(L.stat == DEAD || L.IsStun() || L.IsImmobilized() || L.IsParalyzed() || L.IsUnconscious() || L.IsSleeping())
-			L.flock_act(src) //We place them in a cage or just recycle if a simplemob/silicon
-			return
-		else if(ishuman(L) || ismonkey(L))
-			if(HAS_TRAIT(L, TRAIT_STUNIMMUNE) || HAS_TRAIT(L, TRAIT_STUNRESISTANCE))
-				a_intent_change(INTENT_HARM)
-			else 
-				a_intent_change(INTENT_HELP)
+		if(L.stat == DEAD)
+			if(!mind || isflockdrone(L))
+				L.flock_act()
+		else if(!mind)
+			if(L.IsStun() || L.IsImmobilized() || L.IsParalyzed() || L.IsUnconscious() || L.IsSleeping() || isflockdrone(L))
+				L.flock_act()
+				return
+			else if(ishuman(L) || ismonkey(L))
+				if(HAS_TRAIT(L, TRAIT_STUNIMMUNE) || HAS_TRAIT(L, TRAIT_STUNRESISTANCE))
+					a_intent_change(INTENT_HARM)
+				else 
+					a_intent_change(INTENT_HELP)
 	if(a_intent == INTENT_HELP)
 		melee_damage_type = STAMINA
 	else 
@@ -186,6 +191,11 @@
 	if(hud_used && istype(hud_used, /datum/hud/living/flock))
 		var/datum/hud/living/flock/flockhud = hud_used
 		flockhud.resources.update_counter(resources)
+
+/mob/living/simple_animal/hostile/flockdrone/AltClickOn(atom/target)
+	. = ..()
+	if(.)
+		target.flock_act(src)
 
 /obj/item/projectile/beam/disabler/flock
 	name = "flock disabler"
