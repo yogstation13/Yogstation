@@ -93,7 +93,7 @@
 		daddy.log_talk(msg, LOG_SAY)
 		to_chat(daddy, span_notice("You transmit a message to [L]: [msg]"))
 		return TRUE
-	else if(istype(A, /obj/item/device/radio))
+	else if(istype(A, /obj/item/radio))
 		var/obj/item/device/radio/R = A
 		if(!R.on || !R.listening)
 			to_chat(daddy, span_warning("[R] isn't compatible!"))
@@ -101,10 +101,10 @@
 		var/msg = input(daddy,"What would you like to transmit through [R]?","Narrowbeam Transmission","") as null|text
 		if(!msg)
 			return TRUE
-		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
 		var/name = daddy.name
 		daddy.name = "Unknown"
-		R.talk_into(owner, msg, 0, "Unknown")
+		R.talk_into(daddy, msg, 0, "Unknown")
 		daddy.name = name
 		to_chat(daddy, span_notice("You transmit a message through [R]: [msg]"))
 		return TRUE
