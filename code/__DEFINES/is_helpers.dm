@@ -11,7 +11,7 @@
 #define isnan(x) ( isnum((x)) && ((x) != (x)) )
 
 //Turfs
-//#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake. 
+//#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
 GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 	/turf/open/space,
@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
-#define isspaced(A) (loc.return_air().total_moles() <= 0)
+#define isspaced(A) (A.loc?.return_air()?.total_moles() <= 0)
 
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
