@@ -112,6 +112,9 @@
 	if(scanmod)
 		scanmod.forceMove(M)
 	
+	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+		E.attach(M)
+	
 	M.CheckParts(M.contents)
 
 	qdel(src)

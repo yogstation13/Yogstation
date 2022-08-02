@@ -374,16 +374,16 @@
 			AI = occupant
 			occupant = null
 		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
+		if(capacitor)
+			WR.repair_efficiency = capacitor.rating // Capacitor is destroyed regardless of rating
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
-			if(E.salvageable && prob(30))
+			if(E.salvageable && prob(20*WR.repair_efficiency))
 				E.detach(WR) //detaches from src into WR
 				E.equip_ready = 1
 				WR.equipment += E
 			else
 				E.detach(loc)
 				qdel(E)
-		if(capacitor)
-			WR.repair_efficiency = capacitor.rating // Capacitor is destroyed regardless of rating
 		if(scanmod && WR.repair_efficiency > 2) // Scanning module is retained if capacitor is T3+
 			WR.scanmod = scanmod
 			scanmod.forceMove(WR)
