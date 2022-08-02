@@ -14,6 +14,8 @@
 			qdel(FT.stored_action)
 			FT.stored_action = null			
 		FT.stored_action = new action(FT)
+	else
+		return
 
 /datum/action/cooldown/flock/IsAvailable()
 	return (next_use_time <= world.time) && (isflockdrone(owner) || isflocktrace(owner))
@@ -61,3 +63,40 @@
 	name = "Designate Enemy"
 	desc = "Alert your Flock that someone is definitely an enemy of your flock. NPC drones will fire lethal lasers at them regardles of conditions."
 	action = /datum/flock_command/enemy_of_the_flock
+
+/datum/action/cooldown/flock/flocktrace
+	name = "Partition Mind"
+	desc = "Alert your Flock that someone is definitely an enemy. NPC drones will fire lethal lasers at them regardles of conditions."
+	cooldown_time = 60 SECONDS
+	var/waiting = FALSE
+
+/datum/action/cooldown/flock/flocktrace/Trigger()
+	if(waiting || !isflockmind(owner))
+		return
+	waiting = TRUE
+	to_chat(owner, span_notice("You attempt to summon a Flocktrace..."))
+	var/list/candidates = pollGhostCandidates("Do you want to play as a flocktrace?", ROLE_FLOCKMEMBER)
+	if(!candidates.len)
+		waiting = FALSE
+		to_chat(owner, span_warning("You fail to summon a Flocktrace. Maybe try again later?"))
+		return
+	
+	var/mob/dead/selected = pick(candidates)
+	var/datum/mind/player_mind = new /datum/mind(selected.key)
+	player_mind.active = TRUE
+	var/mob/camera/flocktrace/FT = new ((pick(spawn_locs)))
+	player_mind.transfer_to(FT)
+	player_mind.assigned_role = "Flocktrace"
+	player_mind.special_role = "Flocktrace"
+	var/datum/team/flock/team = get_flock_team(owner)
+	team.add_member(player_mind)
+	message_admins("[ADMIN_LOOKUPFLW(FT)] has been made into a Flocktrace by [ADMIN_LOOKUPFLW(owner)]'s [name] ability.")
+	log_game("[key_name(FT)] was spawned as a Flocktrace by [key_name(owner)]'s [name] ability.")
+	waiting = FALSE
+	StartCooldown()
+
+/datum/action/cooldown/flock/repair_burst
+	name = "Concentrated Repair Burst"
+	desc = "Fully heal a drone through acceleration of its repair processes."
+	action = /datum/flock_command/enemy_of_the_flock
+	cooldown_time = 20 SECONDS

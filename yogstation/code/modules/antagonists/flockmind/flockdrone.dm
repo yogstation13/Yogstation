@@ -311,7 +311,7 @@
 				return
 			Posses(user)
 			return
-	else if(istype(user, /mob/camera/flocktrace/flockmind))
+	else if(isflockmind(user))
 		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Nearby Tile", "Nothing")
 		switch(order)
 			if("Move")
