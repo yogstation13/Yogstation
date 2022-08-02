@@ -193,7 +193,7 @@ export const ExosuitFabricator = (props, context) => {
                   height="100%"
                   width="100%"
                   direction="column">
-                    <Authorization />
+                  <Authorization />
                   <Section
                     height="100%"
                     overflowY="auto"
