@@ -27,13 +27,13 @@
 		if(0)
 			. += span_danger("There was no capacitor to save this poor mecha from its doomed fate!")
 		if(1)
-			. += span_notice("The weak capacitor did what little it could in preventing total destruction of this mecha. It is barely recoverable.")
+			. += span_danger("The weak capacitor did what little it could in preventing total destruction of this mecha. It is barely recoverable.")
 		if(2)
-			. += span_notice("The capacitor barely held the parts together upon its destruction. Repair will be difficult.")
+			. += span_danger("The capacitor barely held the parts together upon its destruction. Repair will be difficult.")
 		if(3)
-			. += span_notice("The capacitor did well in preventing too much damage. Repair will be manageable.")
+			. += span_danger("The capacitor did well in preventing too much damage. Repair will be manageable.")
 		if(4)
-			. += span_notice("The capacitor did such a good job in preserving the chassis that you could almost call it functional. But it isn't. Repair should be easy though.")
+			. += span_danger("The capacitor did such a good job in preserving the chassis that you could almost call it functional. But it isn't. Repair should be easy though.")
 	if(hint)
 		. += hint
 
