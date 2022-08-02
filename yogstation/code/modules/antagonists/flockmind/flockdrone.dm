@@ -5,8 +5,8 @@
 	initial_language_holder = /datum/language_holder/flock
 	bubble_icon = "swarmer"
 	mob_biotypes = MOB_ROBOTIC
-	health = 40
-	maxHealth = 40
+	health = 30
+	maxHealth = 30
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
 	status_flags = CANPUSH
 	icon_state = "swarmer"
@@ -219,10 +219,7 @@
 		return
 	if(!do_mob(user, src, 1 SECONDS))
 		return
-	if(getBruteLoss())
-		adjustBruteLoss(10)
-	else if(getFireLoss())
-		adjustFireLoss(10)
+	heal_ordered_damage(10, list(BRUTE, BURN))
 	visible_message(span_notice("[user] fixes some damage on [user == src ? "itself" : src]!"), \
 			span_notice("[user == src ? "You fix" : "[user] fixes"] some damage on [user == src ? "yourself" : src]!"))
 	user.change_resources(-10, TRUE)

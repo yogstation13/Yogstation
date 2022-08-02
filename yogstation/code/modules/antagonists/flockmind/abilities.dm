@@ -84,7 +84,7 @@
 	var/mob/dead/selected = pick(candidates)
 	var/datum/mind/player_mind = new /datum/mind(selected.key)
 	player_mind.active = TRUE
-	var/mob/camera/flocktrace/FT = new ((pick(spawn_locs)))
+	var/mob/camera/flocktrace/FT = new (get_turf(owner))
 	player_mind.transfer_to(FT)
 	player_mind.assigned_role = "Flocktrace"
 	player_mind.special_role = "Flocktrace"
@@ -98,5 +98,5 @@
 /datum/action/cooldown/flock/repair_burst
 	name = "Concentrated Repair Burst"
 	desc = "Fully heal a drone through acceleration of its repair processes."
-	action = /datum/flock_command/enemy_of_the_flock
+	action = /datum/flock_command/repair
 	cooldown_time = 20 SECONDS

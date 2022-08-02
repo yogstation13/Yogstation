@@ -2,11 +2,12 @@
 	var/mob/camera/flocktrace/daddy
 	var/atom/dude
 	var/messg = "Uhh you will do nothing cry about it"
+	var/datum/action/cooldown/flock/parent_action
 
 /datum/flock_command/proc/perform_action(atom/A)
 	return FALSE //return TRUE if we want the order to be qdeleted, FALSE if we do an normal action but keep the order
 
-/datum/flock_command/New(mob/camera/flocktrace/ded, atom/A)
+/datum/flock_command/New(mob/camera/flocktrace/ded, atom/A, datum/action/cooldown/flock/PA)
 	. = ..()
 	daddy = ded
 	if(daddy.stored_action && daddy.stored_action != src)
@@ -14,6 +15,8 @@
 		daddy.stored_action = src
 	if(A)
 		dude = A
+	if(PA)
+		parent_action = PA
 	if(messg)
 		to_chat(daddy, span_boldnotice(messg))
 
@@ -46,11 +49,27 @@
 	var/list/surrounding_turfs = block(locate(T.x - 1, T.y - 1, T.z), locate(T.x + 1, T.y + 1, T.z))
 	if(!surrounding_turfs.len)
 		return FALSE
-	var/mob/living/simple_animal/hostile/H = A
+	var/mob/living/simple_animal/hostile/H = dude
 	if(isturf(H.loc) && get_dist(H, T) <= 35 && !H.key)
 		H.LoseTarget()
 		H.Goto(pick(surrounding_turfs), H.move_to_delay)
 		return TRUE
 	return FALSE
 
-	
+/datum/flock_command/repair
+	messg = "Your next click on an object will order the flockrone to move to it(if it is a valid location)."
+
+/datum/flock_command/reapir/perform_action(mob/living/simple_animal/hostile/flockdrone/FT)
+	if(!istype(FT))
+		to_chat(daddy, span_warning("Not a valid target!"))
+		return FALSE
+	if(!FT.getFireLoss() && !FT.getBruteLoss())
+		to_chat(daddy, span_warning("[FT] is already fully healed!"))
+		return TRUE
+	if(FT.stat == DEAD)
+		to_chat(daddy, span_warning("[FT] is dead! You can't heal it."))
+		return TRUE
+	var/heal_amount = heal_ordered_damage(30, list(BRUTE, BURN))
+	to_chat(daddy, span_warning("You heal [FT] for [heal_amount] of damage."))
+	parent_action.StartCooldown()
+	return TRUE
