@@ -74,3 +74,40 @@
 	playsound(daddy, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
 	parent_action.StartCooldown()
 	return TRUE
+
+/datum/flock_command/talk
+	messg = "Next living being with a working listening headset will allow you to transmit something to it. Also works on radio devices."
+
+/datum/flock_command/talk/perform_action(atom/A)
+	if(isliving(A))
+		var/mob/living/L = A 
+		var/obj/item/radio/headset/H = L.get_item_by_slot(ITEM_SLOT_EARS)
+		if(!H || !H.on || !H.listening || !istype(H))
+			to_chat(daddy, span_warning("[L] doesn't have a headset or their headset compatible!"))
+			return TRUE
+		var/msg = input(daddy,"What would you like to transmit to [L]?","Narrowbeam Transmission","") as null|text
+		if(!msg)
+			return TRUE
+		to_chat(L, span_swarmer("You hear a crackling voice through your headset: [msg]"))
+		playsound(L, 'yogstation/sound/effects/radio1.ogg', 50, 1)
+		daddy.log_talk(msg, LOG_SAY)
+		to_chat(daddy, span_notice("You transmit a message to [L]: [msg]"))
+		return TRUE
+	else if(istype(A, /obj/item/device/radio))
+		var/obj/item/device/radio/R = A
+		if(!R.on || !R.listening)
+			to_chat(daddy, span_warning("[R] isn't compatible!"))
+			return TRUE		
+		var/msg = input(daddy,"What would you like to transmit through [R]?","Narrowbeam Transmission","") as null|text
+		if(!msg)
+			return TRUE
+		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+		var/name = daddy.name
+		daddy.name = "Unknown"
+		R.talk_into(owner, msg, 0, "Unknown")
+		daddy.name = name
+		to_chat(daddy, span_notice("You transmit a message through [R]: [msg]"))
+		return TRUE
+	else 
+		to_chat(daddy, span_warning("[A] isn't a valid target!"))
+		return FALSE

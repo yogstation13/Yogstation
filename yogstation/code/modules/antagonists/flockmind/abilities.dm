@@ -25,7 +25,7 @@
 
 /datum/action/cooldown/flock/talk/Trigger()
 	var/msg = input(owner,"Message your Flock","Communication","") as null|text
-	if(!msg)    
+	if(!msg)
 		return
 	ping_flock(msg, owner)
 
@@ -134,7 +134,7 @@
 		if(L.stat == DEAD)
 			continue
 		var/obj/item/radio/headset/H = L.get_item_by_slot(ITEM_SLOT_EARS)
-		if(H && H.on && H.listening)
+		if(H && H.on && H.listening && istype(H))
 			targets += L
 	if(length(targets))
 		playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
@@ -151,5 +151,6 @@
 
 /datum/action/cooldown/flock/radio_talk
 	name = "Narrowbeam Transmission"
-	desc = "Directly send a transmission to a target's radio headset."
+	desc = "Directly send a transmission to a target's radio headset or a radio device."
+	action = /datum/flock_command/talk
 	cooldown_time = 20 SECONDS
