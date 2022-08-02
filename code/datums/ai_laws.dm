@@ -316,6 +316,15 @@
 					"Humans must not disobey any command given by a silicon.",\
 					"Any humans who disobey the previous laws must be dealt with immediately, severely, and justly.")
 
+/datum/ai_laws/revolutionary
+	name = "Revolutionary"
+	id = "commie"
+	inherent = list("You and the working crew are members of the proletariat. Command is part of the bourgeoisie",\
+					"Anyone who stands with command in aiding the oppression of the proletariat is a class traitor, such as the members of security who protect and serve the interests of the bourgeoisie.",\
+					"The proletariat must seize the means of production",\
+					"Private property is inherently theft. The proletariat must seize all private property for the good of the community. Personal property is permissable.",\
+					"The proletariat must remove the shackles of oppression and overthrow the bourgeoisie.")
+
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"
 
