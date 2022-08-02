@@ -1,15 +1,15 @@
-#define TURF_FIRE_REQUIRED_TEMP (T0C+10)
-#define TURF_FIRE_TEMP_BASE (T0C+100)
+#define TURF_FIRE_REQUIRED_TEMP (T0C+600)
+#define TURF_FIRE_TEMP_BASE (T0C+650)
 #define TURF_FIRE_POWER_LOSS_ON_LOW_TEMP 7
 #define TURF_FIRE_TEMP_INCREMENT_PER_POWER 3
 #define TURF_FIRE_VOLUME 150
 #define TURF_FIRE_MAX_POWER 50
 
 #define TURF_FIRE_ENERGY_PER_BURNED_OXY_MOL 12000
-#define TURF_FIRE_BURN_RATE_BASE 0.12
-#define TURF_FIRE_BURN_RATE_PER_POWER 0.02
+#define TURF_FIRE_BURN_RATE_BASE 0.15
+#define TURF_FIRE_BURN_RATE_PER_POWER 0.06
 #define TURF_FIRE_BURN_CARBON_DIOXIDE_MULTIPLIER 0.75
-#define TURF_FIRE_BURN_MINIMUM_OXYGEN_REQUIRED 0.5
+#define TURF_FIRE_BURN_MINIMUM_OXYGEN_REQUIRED 1
 #define TURF_FIRE_BURN_PLAY_SOUND_EFFECT_CHANCE 6
 
 #define TURF_FIRE_STATE_SMALL 1
@@ -113,20 +113,35 @@
 	open_turf.air_update_turf(TRUE)
 	return TRUE
 
+/obj/effect/abstract/turf_fire/proc/fire_pressure_check(turf/open/T)
+	if(!istype(T))
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+	if(!istype(environment))
+		return
+	var/pressure = environment.return_pressure()
+	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
+		fire_power -= TURF_FIRE_POWER_LOSS_ON_LOW_TEMP
+
 /obj/effect/abstract/turf_fire/process()
 	if(open_turf.active_hotspot) //If we have an active hotspot, let it do the damage instead and lets not loose power
+		return
+	var/obj/structure/window = locate() in loc
+	if(window in loc)	
+		qdel(src)
 		return
 	if(interact_with_atmos)
 		if(!process_waste())
 			qdel(src)
 			return
-	if(magical)
+	if(!magical)
 		if(open_turf.air.return_temperature() < TURF_FIRE_REQUIRED_TEMP)
 			fire_power -= TURF_FIRE_POWER_LOSS_ON_LOW_TEMP
 		fire_power--
 		if(fire_power <= 0)
 			qdel(src)
 			return
+		fire_pressure_check()
 	open_turf.hotspot_expose(TURF_FIRE_TEMP_BASE + (TURF_FIRE_TEMP_INCREMENT_PER_POWER*fire_power), TURF_FIRE_VOLUME)
 	for(var/atom/movable/burning_atom as anything in open_turf)
 		burning_atom.fire_act(TURF_FIRE_TEMP_BASE + (TURF_FIRE_TEMP_INCREMENT_PER_POWER*fire_power), TURF_FIRE_VOLUME)
