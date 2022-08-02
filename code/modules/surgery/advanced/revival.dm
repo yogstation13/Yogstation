@@ -17,6 +17,7 @@
 	if(!..())
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_NODEFIB))
+		return FALSE
 	if(target.stat != DEAD)
 		return FALSE
 	if(target.suiciding || target.hellbound || HAS_TRAIT(target, TRAIT_HUSK))
