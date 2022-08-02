@@ -57,9 +57,9 @@
 	return FALSE
 
 /datum/flock_command/repair
-	messg = "Your next click on an object will order the flockrone to move to it(if it is a valid location)."
+	messg = "Clicking on a living damaged flockdrone will fully heal it."
 
-/datum/flock_command/reapir/perform_action(mob/living/simple_animal/hostile/flockdrone/FT)
+/datum/flock_command/repair/perform_action(mob/living/simple_animal/hostile/flockdrone/FT)
 	if(!istype(FT))
 		to_chat(daddy, span_warning("Not a valid target!"))
 		return FALSE

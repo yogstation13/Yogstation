@@ -148,3 +148,8 @@
 				playsound(L, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg')), 100, 1)
 	else
 		to_chat(owner, span_warning("There is no valid targets around you."))
+
+/datum/action/cooldown/flock/radio_talk
+	name = "Narrowbeam Transmission"
+	desc = "Directly send a transmission to a target's radio headset."
+	cooldown_time = 20 SECONDS
