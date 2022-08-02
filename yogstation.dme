@@ -3549,6 +3549,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\spacewalking.dm"
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\twin_tendrils.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\_structure.dm"
+#include "yogstation\code\modules\antagonists\flockmind\structures\computer.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\misc_objects.dm"
 #include "yogstation\code\modules\antagonists\flockmind\abilities.dm"
 #include "yogstation\code\modules\antagonists\flockmind\compute.dm"

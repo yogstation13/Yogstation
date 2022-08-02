@@ -25,7 +25,7 @@
 	. = ..()
 	if(isflockdrone(user) || isflocktrace(user))
 		. = span_swarmer("<span class='bold'>###=-</span> Ident confirmed, data packet received.")
-		. += span_swarmer("<span class='bold'>ID:</span> [icon2html(src, user)] [name ? name : "none"]")
+		. += span_swarmer("<span class='bold'>ID:</span> [icon2html(src, user)] [flock_id ? flock_id : name]")
 		. += span_swarmer("<span class='bold'>Information:</span> [flock_desc]%")
 		. += span_swarmer("<span class='bold'>System Integrity:</span> [round((obj_integrity/max_integrity)*100)]%")
 		. += span_swarmer("<span class='bold'>Compute [compute_provided >= 0 ? "Provided" : "Used"]:</span> [abs(compute_provided)]")
