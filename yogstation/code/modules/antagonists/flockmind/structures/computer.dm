@@ -15,10 +15,10 @@
 	connected_to = list()
 	var/distance
 	var/turf/open/floor/feather/floor 
-	for(var/d in cardinal)
+	for(var/d in GLOB.cardinals)
 		distance = 0
 		floor = src.loc
-		while(true)
+		while(TRUE)
 			floor = get_step(floor, d)
 			if(!istype(floor)) 
 				break
