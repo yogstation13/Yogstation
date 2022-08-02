@@ -3550,6 +3550,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\twin_tendrils.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\misc_objects.dm"
 #include "yogstation\code\modules\antagonists\flockmind\abilities.dm"
+#include "yogstation\code\modules\antagonists\flockmind\compute.dm"
 #include "yogstation\code\modules\antagonists\flockmind\commands.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flock_act.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flock.dm"

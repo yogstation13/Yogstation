@@ -14,6 +14,8 @@
 	radio.wires.cut(WIRE_TX) 
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 	grant_skills()
+	if(!isflockmind(src))
+		AddComponent(/datum/component/flock_compute, -100, TRUE) 
 
 /mob/camera/flocktrace/proc/grant_skills()
 	talkin = new

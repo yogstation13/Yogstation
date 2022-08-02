@@ -5,7 +5,7 @@ GLOBAL_VAR(flock)
 	member_name = "flock member"
 	var/stored_resources = 0
 	var/mob/camera/flocktrace/flockmind/overmind 
-	var/compute = 0
+	var/list/computing_datums = list()
 
 /datum/team/flock/New(starting_members)
 	. = ..()
@@ -39,3 +39,25 @@ GLOBAL_VAR(flock)
 	else
 		var/datum/team/flock/F = new(members)
 		return F
+
+/datum/team/flock/proc/add_computing_datum(datum/computer)
+	computing_datums += computer
+
+/datum/team/flock/proc/remove_computing_datum(datum/computer)
+	computing_datums -= computer
+
+/datum/team/flock/proc/get_compute(unused = TRUE) //Gets the number of compute. Set unused to FALSE if you want to get total amount of compute, not only usable.
+	var/total = 0
+	for(var/datum/component/flock_compute/FC in computing_datums)
+		if(!istype(FC))
+			continue
+		if(!unused && FC.compute_amount < 0)
+			continue
+		if(QDELETED(FC) || QDELETED(FC.parent))
+			continue
+		if(ismob(FC.parent))
+			var/mob/M = FC.parent
+			if(M.stat == DEAD && FC.requires_alive == TRUE)
+				continue
+		total += FC.compute_amount
+	return total

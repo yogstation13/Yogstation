@@ -73,10 +73,14 @@
 /datum/action/cooldown/flock/flocktrace/Trigger()
 	if(waiting || !isflockmind(owner))
 		return
+	var/datum/team/flock/team = get_flock_team()
+	if(team.get_compute(TRUE) < 100)
+		to_chat(owner, span_warning("You need 100 compute to be able to summon a flocktrace!"))
+		return
 	waiting = TRUE
 	to_chat(owner, span_notice("You attempt to summon a Flocktrace..."))
 	var/list/candidates = pollGhostCandidates("Do you want to play as a flocktrace?", ROLE_FLOCKMEMBER)
-	if(!candidates.len)
+	if(!candidates.len || team.get_compute(TRUE) < 100) //Check again for the amount of compute, in case if it changed while we were polling for ghosts
 		waiting = FALSE
 		to_chat(owner, span_warning("You fail to summon a Flocktrace. Maybe try again later?"))
 		return
@@ -90,6 +94,7 @@
 	player_mind.special_role = "Flocktrace"
 	var/datum/team/flock/team = get_flock_team(owner)
 	team.add_member(player_mind)
+	to_chat(owner, span_notice("You sucessfully summon a Flocktrace!"))
 	message_admins("[ADMIN_LOOKUPFLW(FT)] has been made into a Flocktrace by [ADMIN_LOOKUPFLW(owner)]'s [name] ability.")
 	log_game("[key_name(FT)] was spawned as a Flocktrace by [key_name(owner)]'s [name] ability.")
 	waiting = FALSE

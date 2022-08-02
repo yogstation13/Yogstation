@@ -50,10 +50,14 @@
 	var/max_resources = 100
 	var/murderer = FALSE
 	var/mob/camera/flocktrace/pilot
+	var/datum/action/cooldown/flock/eject/sus
 
 /mob/living/simple_animal/hostile/flockdrone/Initialize()
 	. = ..()
 	new /obj/item/radio/headset/silicon/ai(src)
+	sus = new
+	sus.Grant(src)
+	AddComponent(/datum/component/flock_compute, 10, TRUE)
 
 /mob/living/simple_animal/hostile/flockdrone/OpenFire(atom/A)
 	if(!ismecha(A) && !isliving(A) && !mind)
