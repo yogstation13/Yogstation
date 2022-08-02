@@ -188,11 +188,14 @@
 	if(resources >= max_resources)
 		if(!silent )
 			to_chat(src, span_warning("You gain [amount] resources, but your storage is full!"))
+			if(amount > 0)
+				new /obj/item/flockcache (loc, amount)
 		return
 	resources += amount
 	if(resources > max_resources)
 		if(!silent )
 			to_chat(src, span_warning("You gain [amount] resources, but [resources - max_resources] of them don't fit in your storage!"))
+		new /obj/item/flockcache (loc, resources - max_resources)
 		resources = max_resources
 	else if(resources < 0)
 		resources = 0
