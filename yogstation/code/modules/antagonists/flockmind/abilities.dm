@@ -92,7 +92,6 @@
 	player_mind.transfer_to(FT)
 	player_mind.assigned_role = "Flocktrace"
 	player_mind.special_role = "Flocktrace"
-	var/datum/team/flock/team = get_flock_team(owner)
 	team.add_member(player_mind)
 	to_chat(owner, span_notice("You sucessfully summon a Flocktrace!"))
 	message_admins("[ADMIN_LOOKUPFLW(FT)] has been made into a Flocktrace by [ADMIN_LOOKUPFLW(owner)]'s [name] ability.")
