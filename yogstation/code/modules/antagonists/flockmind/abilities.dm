@@ -124,27 +124,27 @@
 /datum/action/cooldown/flock/radio_stun
 	name = "Radio Stun Burst"
 	desc = "Overwhelm the radio headsets of everyone nearby. Will not work on broken or non-existent headsets. Ear protection reduce the effect."
-	cooldown = 20 SECONDS
+	cooldown_time = 20 SECONDS
 
 /datum/action/cooldown/flock/radio_stun/Trigger()
 	var/list/targets = list()
-	for(var/mob/living/M in range(10, owner))
-		if(HAS_TRAIT(M, TRAIT_DEAF))
+	for(var/mob/living/L in range(10, owner))
+		if(HAS_TRAIT(L, TRAIT_DEAF))
 			continue
-		if(M.stat == DEAD)
+		if(L.stat == DEAD)
 			continue
-		var/obj/item/radio/headset/H = M.get_item_by_slot(ITEM_SLOT_EARS)
+		var/obj/item/radio/headset/H = L.get_item_by_slot(ITEM_SLOT_EARS)
 		if(H && H.on && H.listening)
-			targets += M
+			targets += L
 	if(length(targets))
 		playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
-		to_chat(L, span_notice("You transmit the worst static you can weave into the headsets around you."))
+		to_chat(owner, span_notice("You transmit the worst static you can weave into the headsets around you."))
 		StartCooldown()
 		for(var/mob/living/L in targets)
 			var/distance = max(0,get_dist(get_turf(owner), get_turf(L)))
 			if(L.soundbang_act(1, 20/max(1,distance), rand(1, 5)))
 				L.Paralyze(max(150/max(1,distance), 60))
 				to_chat(L, span_userdanger("Horrifying static bursts into your headset, disorienting you severely!"))
-				playsound(L, 'sound/effects/radio_sweep[rand(1,5)].ogg', 100, 1)
+				playsound(L, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg')), 100, 1)
 	else
-		to_chat(L, span_warning("There is no valid targets around you."))
+		to_chat(owner, span_warning("There is no valid targets around you."))
