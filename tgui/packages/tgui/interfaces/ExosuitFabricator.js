@@ -199,11 +199,11 @@ export const ExosuitFabricator = (props, context) => {
                     overflowY="auto"
                     title="Categories"
                     buttons={(
-                    <Button
-                      content="R&D Sync"
-                      onClick={() => act("sync_rnd")} />
+                      <Button
+                        content="R&D Sync"
+                        onClick={() => act("sync_rnd")} />
                     )}>
-                  <PartSets />
+                    <PartSets />
                   </Section>
                 </Flex>
               </Flex.Item>
@@ -236,43 +236,37 @@ export const ExosuitFabricator = (props, context) => {
 
 const Authorization = (props, context) => {
   const { data } = useBackend(context);
-  const auth_override = data.authorization
-  const user_clearance = data.user_clearance
-  const alert_level = data.alert_level
-  const combat_parts_allowed = data.combat_parts_allowed
-  const emagged = data.emagged
-  const hex_chars = ['!', '@', '#', '%', '&', '*']
-  var auth_tex = "Authorized User"
+  const auth_override = data.authorization;
+  const user_clearance = data.user_clearance;
+  const alert_level = data.alert_level;
+  const combat_parts_allowed = data.combat_parts_allowed;
+  const emagged = data.emagged;
+  const hex_chars = ['!', '@', '#', '%', '&', '*'];
+  let auth_tex = "Authorized User";
 
   return (
     <Section
       width="250px"
-      style={{'white-space': 'pre-wrap'}}
-      >
-        <b>
-          {"User: "}
-          <span style={!combat_parts_allowed ? "color:#ff0000" : "color:#00ff00"}
-          font-style:bold
-          >
-          {!combat_parts_allowed ? "Unauthorized":
-          !emagged ? "Authorized" :
-          auth_tex.split('').map((v) =>
-          Math.round(Math.random()) ?
-          v = hex_chars[Math.floor(Math.random()*hex_chars.length)]:
-          Math.round(Math.random()) ? v.toUpperCase() : v.toLowerCase()
-          ).join('')}
-          </span>
-          </b>
-        <font size="-2">
-        <br></br>
+      style={{ 'white-space': 'pre-wrap' }}>
+      <b>
+        {"User: "}
+        <span style={!combat_parts_allowed ? "color:#ff0000" : "color:#00ff00"}
+          font-style:bold>
+          {!combat_parts_allowed ? "Unauthorized"
+            :!emagged ? "Authorized"
+              : auth_tex.split('').map(v => { Math.round(Math.random()) ? v = hex_chars[Math.floor(Math.random()*hex_chars.length)] : Math.round(Math.random()) ? v.toUpperCase() : v.toLowerCase(); }).join('')}
+        </span>
+      </b>
+      <font size="-2">
+        <br />
         Combat ready designs {combat_parts_allowed ? "available" : "unavailable"}
-        <br></br>
+        <br />
         {auth_override ? "Authorization overriden by Head Personel\n" : ""}
         {alert_level < 2 ? "" : "Credible threat to the station in effect\n"}
-        </font>
+      </font>
     </Section>
   );
-}
+};
 const EjectMaterial = (props, context) => {
   const { act } = useBackend(context);
 
