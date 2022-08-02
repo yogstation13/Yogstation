@@ -29,3 +29,4 @@
 			distance++
 			connected_to |= floor
 	change_compute_amount(max(0, length(connected_to)*5))
+	addtimer(CALLBACK(src, .proc/update_flocktiles_and_compute), 2 SECONDS)
