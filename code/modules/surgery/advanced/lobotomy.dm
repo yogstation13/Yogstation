@@ -12,7 +12,6 @@
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_HEAD)
-	requires_bodypart_type = 0
 
 /datum/surgery/advanced/lobotomy/can_start(mob/user, mob/living/carbon/target)
 	if(!..())
@@ -76,3 +75,14 @@
 	else
 		user.visible_message("<span class='warning'>[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore.", span_warning("You suddenly notice that the brain you were working on is not there anymore."))
 	return FALSE
+
+
+/datum/surgery/advanced/lobotomy/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/lobotomize,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC

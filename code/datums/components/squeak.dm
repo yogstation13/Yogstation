@@ -79,7 +79,7 @@
 	UnregisterSignal(user, COMSIG_MOVABLE_DISPOSING)
 
 // Disposal pipes related shit
-/datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/source)
+/datum/component/squeak/proc/disposing_react(datum/source, obj/structure/disposalholder/holder, obj/machinery/disposal/disposal_source)
 	//We don't need to worry about unregistering this signal as it will happen for us automaticaly when the holder is qdeleted
 	RegisterSignal(holder, COMSIG_ATOM_DIR_CHANGE, .proc/holder_dir_change)
 
