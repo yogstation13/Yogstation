@@ -242,7 +242,7 @@ const Authorization = (props, context) => {
   const combat_parts_allowed = data.combat_parts_allowed;
   const emagged = data.emagged;
   const hex_chars = ['!', '@', '#', '%', '&', '*'];
-  let auth_tex = "Authorized User";
+  let auth_tex = "Authorized";
 
   return (
     <Section
@@ -254,7 +254,17 @@ const Authorization = (props, context) => {
           font-style:bold>
           {!combat_parts_allowed ? "Unauthorized"
             :!emagged ? "Authorized"
-              : auth_tex.split('').map(v => { Math.round(Math.random()) ? v = hex_chars[Math.floor(Math.random()*hex_chars.length)] : Math.round(Math.random()) ? v.toUpperCase() : v.toLowerCase(); }).join('')}
+              : auth_tex.split('').map(v =>
+              { Math.round(Math.random())
+                ? v=hex_chars[Math.floor(Math.random()*hex_chars.length)]:Math.round(Math.random())
+                  ? v.toUpperCase():v.toLowerCase(); })
+                .join('')}
+          {/* if you're asking yourself what the hell is that? really simply put if it's emagged
+           the authorized text is split into a mix of uppercase, lowercase and ascii characters by
+           mapping the word as an array and iterating through. so the actual logic is 50% chance
+           of a character replacing a letter, then upper/lowercase, if the character isn't chosen,
+           then a coinflip again on whether the letter is uppercase or lowercase. The result of
+           this amalgum is constantly scrambling text that looks like a malfunction in real time*/}
         </span>
       </b>
       <font size="-2">
