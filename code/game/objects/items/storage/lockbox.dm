@@ -76,21 +76,6 @@
 		return
 	togglelock(user)
 
-/obj/item/storage/lockbox/emp_act(severity)
-	switch(severity)
-		if(EMP_HEAVY)
-			emag_act()
-		if(EMP_LIGHT)
-			if(prob(60))
-				var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
-				locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-				if(locked)
-					icon_state = icon_locked
-					SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
-				else
-					icon_state = icon_closed
-
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of mindshield implants"
 	req_access = list(ACCESS_SECURITY)

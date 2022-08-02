@@ -99,11 +99,8 @@
 		. += "The charge meter reads [round(src.percent() )]%."
 
 /obj/item/stock_parts/cell/suicide_act(mob/user)
-	if(!use(500))
-		user.visible_message(span_suicide("[user] is licking the electrodes of [src] but the cell doesnt have enough charge!"))
-		return SHAME
 	user.visible_message(span_suicide("[user] is licking the electrodes of [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return FIRELOSS
+	return (FIRELOSS)
 
 /obj/item/stock_parts/cell/on_reagent_change(changetype)
 	rigged = !isnull(reagents.has_reagent(/datum/reagent/toxin/plasma, 5)) //has_reagent returns the reagent datum

@@ -302,18 +302,7 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, span_notice("<B>Welcome to [station_name()], enjoy your stay!</B>"))
-	
-	var/random_sound = SSstation.announcer.get_rand_welcome_sound()
-	var/default_sound = SSstation.default_announcer.get_rand_welcome_sound()
-	if(istype(SSstation.announcer, /datum/centcom_announcer/default))
-		default_sound = random_sound
-
-	for(var/mob/P in GLOB.player_list)
-		if(P.client && P.client.prefs)
-			if(P.client.prefs.disable_alternative_announcers)
-				SEND_SOUND(P, sound(default_sound))
-				continue
-		SEND_SOUND(P, sound(random_sound))
+	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
 
 	current_state = GAME_STATE_PLAYING
 	webhook_send_roundstatus("ingame") //yogs - webhook support

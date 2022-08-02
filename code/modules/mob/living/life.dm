@@ -35,7 +35,7 @@
 	if(!loc)
 		return
 
-	if(LIFETICK_SKIP(src, times_fired))
+	if(!IS_IN_STASIS(src))
 
 		if(stat != DEAD)
 			//Mutations and radiation

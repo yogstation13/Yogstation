@@ -1,7 +1,6 @@
 /datum/surgery/advanced/bioware/nerve_splicing
 	name = "Nerve Splicing"
 	desc = "A surgical procedure which splices the patient's nerves, making them more resistant to stuns."
-	icon_state = "surgery_chest"
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -15,9 +14,7 @@
 /datum/surgery_step/splice_nerves
 	name = "splice nerves"
 	accept_hand = TRUE
-	time = 15.5 SECONDS
-	preop_sound = 'sound/surgery/organ2.ogg'
-	success_sound = 'sound/surgery/organ1.ogg'
+	time = 155
 
 /datum/surgery_step/splice_nerves/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You start splicing together [target]'s nerves."),

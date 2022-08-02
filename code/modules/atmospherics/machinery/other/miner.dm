@@ -156,14 +156,9 @@
 	overlay_color = "#007FFF"
 	spawn_id = /datum/gas/oxygen
 
-/obj/machinery/atmospherics/miner/hydrogen
-	name = "\improper H2 Gas Miner"
-	overlay_color = "#ff0000"
-	spawn_id = /datum/gas/hydrogen
-
 /obj/machinery/atmospherics/miner/toxins
 	name = "\improper Plasma Gas Miner"
-	overlay_color = "#ff6600"
+	overlay_color = "#FF0000"
 	spawn_id = /datum/gas/plasma
 
 /obj/machinery/atmospherics/miner/carbon_dioxide

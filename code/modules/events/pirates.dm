@@ -30,7 +30,7 @@
 	beacon = new(ship_name)
 
 /datum/round_event/pirates/announce(fake)
-	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", RANDOM_REPORT_SOUND)
+	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", SSstation.announcer.get_rand_report_sound())
 	play_intro_music()
 	if(fake)
 		return

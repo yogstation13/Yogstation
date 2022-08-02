@@ -25,9 +25,5 @@
 
 	var/do_after_speed = 1 //Speed mod for do_after. Lower is better. If temporarily adjusting, please only modify using *= and /=, so you don't interrupt other calculations.
 
-	var/punchdamagehigh_bonus = 0		//Increased maximum punch damage 
-	var/punchdamagelow_bonus = 0		//Increased minimum punch damage
-	var/punchstunthreshold_bonus = 0	//Increased stun threshhold on punches so we don't get knockdown hands
-
 /datum/physiology/New()
 	armor = new

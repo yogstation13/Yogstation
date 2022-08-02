@@ -5,12 +5,11 @@
 	icon_state = "reagents"
 	steps = list(/datum/surgery_step/drill, /datum/surgery_step/insert_pill)
 	possible_locs = list(BODY_ZONE_PRECISE_MOUTH)
-	requires_bodypart_type = 0
 
 /datum/surgery_step/insert_pill
 	name = "insert pill"
 	implements = list(/obj/item/reagent_containers/pill = 100)
-	time = 1.6 SECONDS
+	time = 16
 
 /datum/surgery_step/insert_pill/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to wedge [tool] in [target]'s [parse_zone(target_zone)]..."),
@@ -19,7 +18,7 @@
 
 /datum/surgery_step/insert_pill/success(mob/user, mob/living/carbon/target, target_zone, var/obj/item/reagent_containers/pill/tool, datum/surgery/surgery)
 	if(!istype(tool))
-		return FALSE
+		return 0
 
 	user.transferItemToLoc(tool, target, TRUE)
 
@@ -31,7 +30,7 @@
 	display_results(user, target, span_notice("You wedge [tool] into [target]'s [parse_zone(target_zone)]."),
 			"[user] wedges \the [tool] into [target]'s [parse_zone(target_zone)]!",
 			"[user] wedges something into [target]'s [parse_zone(target_zone)]!")
-	return TRUE
+	return 1
 
 /datum/action/item_action/hands_free/activate_pill
 	name = "Activate Pill"

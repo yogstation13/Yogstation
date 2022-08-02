@@ -5,23 +5,12 @@
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/reshape_face, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_HEAD)
 
-/datum/surgery/plastic_surgery/mechanic
-	steps = list(/datum/surgery_step/mechanic_open,
-				/datum/surgery_step/open_hatch,
-				/datum/surgery_step/reshape_face,
-				/datum/surgery_step/mechanic_close)
-	requires_bodypart_type = BODYPART_ROBOTIC
-	lying_required = FALSE
-	self_operable = TRUE
-
 //reshape_face
 /datum/surgery_step/reshape_face
 	name = "reshape face"
 	implements = list(TOOL_SCALPEL = 100, /obj/item/kitchen/knife = 50, TOOL_WIRECUTTER = 35)
-	time = 6.4 SECONDS
+	time = 64
 	fuckup_damage = 0
-	preop_sound = 'sound/surgery/scalpel1.ogg'
-	success_sound = 'sound/surgery/scalpel2.ogg'
 
 /datum/surgery_step/reshape_face/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] begins to alter [target]'s appearance.", span_notice("You begin to alter [target]'s appearance..."))
@@ -36,8 +25,16 @@
 			"[user] successfully restores [target]'s appearance!",
 			"[user] finishes the operation on [target]'s face.")
 	else
-		var/chosen_name = stripped_input(user, "Choose a new name to assign.", "Plastic Surgery", null, MAX_NAME_LEN)
-		if(!chosen_name || !isnotpretty(chosen_name))
+		var/list/names = list()
+		if(!isabductor(user))
+			for(var/i in 1 to 10)
+				names += target.dna.species.random_name(target.gender, TRUE)
+		else
+			for(var/_i in 1 to 9)
+				names += "Subject [target.gender == MALE ? "i" : "o"]-[pick("a", "b", "c", "d", "e")]-[rand(10000, 99999)]"
+			names += target.dna.species.random_name(target.gender, TRUE) //give one normal name in case they want to do regular plastic surgery
+		var/chosen_name = input(user, "Choose a new name to assign.", "Plastic Surgery") as null|anything in names
+		if(!chosen_name)
 			return
 		var/oldname = target.real_name
 		target.real_name = chosen_name

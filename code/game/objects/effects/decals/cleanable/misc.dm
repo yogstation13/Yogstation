@@ -78,24 +78,9 @@
 	light_power = 1
 	light_range = 2
 	light_color = LIGHT_COLOR_GREEN
-	rad_insulation = RAD_NO_INSULATION
 
 /obj/effect/decal/cleanable/greenglow/ex_act()
 	return
-
-/obj/effect/decal/cleanable/greenglow/Initialize()
-	. = ..()
-	AddComponent(/datum/component/radioactive, 15, src, 0, FALSE)
-	addtimer(CALLBACK(src, .proc/Decay), 24 SECONDS)
-
-/obj/effect/decal/cleanable/greenglow/proc/Decay()
-	var/datum/component/radioactive/R = GetComponent(/datum/component/radioactive)
-	name = "dried goo"
-	light_power = 0
-	light_range = 0
-	update_light()
-	if(R)
-		R.RemoveComponent()
 
 /obj/effect/decal/cleanable/greenglow/filled/Initialize()
 	. = ..()

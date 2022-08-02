@@ -120,7 +120,7 @@ God bless America.
 	else
 		if(user.a_intent != INTENT_HELP)
 			return ..()
-		if((!superfry && !I.fryable) || HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
+		if((!superfry && !istype(I, /obj/item/reagent_containers/food)) || HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
 			to_chat(user, span_warning("Your cooking skills do not allow you to fry [I]..."))
 			return
 		else if(!frying && user.transferItemToLoc(I, src))

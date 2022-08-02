@@ -44,7 +44,6 @@
 				minortransformdone = TRUE
 				user.dna.species.punchdamagelow += 5.0
 				user.dna.species.punchdamagehigh += 5.0 //stronk
-				user.dna.species.punchstunthreshold += 5.0
 				user.dna.species.armor += 30
 				to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral and stronger than before."))
 			else
@@ -59,7 +58,6 @@
 				mediumtransformdone = TRUE
 				user.dna.species.punchdamagelow += 7.5
 				user.dna.species.punchdamagehigh += 7.5 //very stronk
-				user.dna.species.punchstunthreshold += 7.5
 				user.dna.species.armor += 35
 				to_chat(owner, span_notice("You transform into a gorrila-ey beast, you feel stronger!"))
 			else

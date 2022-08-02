@@ -1,27 +1,12 @@
-#define RANDOM_REPORT_SOUND "random_report_sound"
-
 /proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message, sanitize = TRUE)
 	if(!text)
 		return
 
 	var/announcement
-	var/default_sound
-
-
 	if(!sound)
 		sound = SSstation.announcer.get_rand_alert_sound()
-		default_sound = SSstation.default_announcer.get_rand_alert_sound()
 	else if(SSstation.announcer.event_sounds[sound])
 		sound = SSstation.announcer.event_sounds[sound]
-
-	if(SSstation.default_announcer.event_sounds[sound])
-		default_sound = SSstation.default_announcer.event_sounds[sound]
-
-
-	if(sound == RANDOM_REPORT_SOUND)
-		sound = SSstation.announcer.get_rand_report_sound()
-		default_sound = SSstation.default_announcer.get_rand_report_sound()
-
 
 	if(type == "Priority")
 		announcement += "<h1 class='alert'>Priority Announcement</h1>"
@@ -53,9 +38,6 @@
 	announcement += "<br>"
 
 	var/s = sound(sound)
-	var/default_s = s
-	if(!istype(SSstation.announcer, /datum/centcom_announcer/default))
-		default_s = sound(default_sound)
 	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && M.can_hear())
 			if(isliving(M) && M.stat != DEAD)
@@ -65,17 +47,14 @@
 			else
 				to_chat(M, announcement)
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
-				if(M.client.prefs.disable_alternative_announcers)
-					SEND_SOUND(M, default_s)
-				else
-					SEND_SOUND(M, s)
+				SEND_SOUND(M, s)
 
 /proc/print_command_report(text = "", title = null, announce=TRUE)
 	if(!title)
 		title = "Classified [command_name()] Update"
 
 	if(announce)
-		priority_announce("A report has been downloaded and printed out at all communications consoles.", "Incoming Classified Message", RANDOM_REPORT_SOUND, has_important_message = TRUE)
+		priority_announce("A report has been downloaded and printed out at all communications consoles.", "Incoming Classified Message", SSstation.announcer.get_rand_report_sound(), has_important_message = TRUE)
 
 	var/datum/comm_message/M  = new
 	M.title = title

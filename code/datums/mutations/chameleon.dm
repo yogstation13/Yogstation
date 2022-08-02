@@ -8,7 +8,6 @@
 	text_lose_indication = span_notice("You feel oddly exposed.")
 	time_coeff = 5
 	instability = 25
-	conflicts = list(/datum/mutation/human/glow, /datum/mutation/human/glow/anti)
 
 /datum/mutation/human/chameleon/on_acquiring(mob/living/carbon/human/owner)
 	if(..())

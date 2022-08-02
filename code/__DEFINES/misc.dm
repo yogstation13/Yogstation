@@ -269,7 +269,8 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define MAP_MAXZ 6
 
 // Defib stats
-#define DEFIB_TIME_LIMIT 15 MINUTES
+#define DEFIB_TIME_LIMIT 900
+#define DEFIB_TIME_LOSS 60
 
 // Diagonal movement
 #define FIRST_DIAG_STEP 1

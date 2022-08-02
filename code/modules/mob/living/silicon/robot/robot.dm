@@ -13,6 +13,7 @@
 
 	var/custom_name = ""
 	var/braintype = "Cyborg"
+	var/obj/item/robot_suit/robot_suit = null ///Used for deconstruction to remember what the borg was constructed out of..
 	var/obj/item/mmi/mmi = null
 
 	var/throwcooldown = FALSE /// Used to determine cooldown for spin.
@@ -816,18 +817,42 @@
 		new /obj/vehicle/ridden/janicart(T) // Janiborg deconstructs into a janicart. So brave.
 		new /obj/item/key/janitor(T)
 	else
-		new /obj/item/robot_suit(T)
-		new /obj/item/bodypart/l_leg/robot(T)
-		new /obj/item/bodypart/r_leg/robot(T)
-		new /obj/item/stack/cable_coil(T, 1)
-		new /obj/item/bodypart/chest/robot(T)
-		new /obj/item/bodypart/l_arm/robot(T)
-		new /obj/item/bodypart/r_arm/robot(T)
-		new /obj/item/bodypart/head/robot(T)
-		var/b
-		for(b=0, b!=2, b++)
-			var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
-			F.burn_out()
+		if (robot_suit)
+			robot_suit.forceMove(T)
+			robot_suit.l_leg.forceMove(T)
+			robot_suit.l_leg = null
+			robot_suit.r_leg.forceMove(T)
+			robot_suit.r_leg = null
+			new /obj/item/stack/cable_coil(T, robot_suit.chest.wired)
+			robot_suit.chest.forceMove(T)
+			robot_suit.chest.wired = 0
+			robot_suit.chest = null
+			robot_suit.l_arm.forceMove(T)
+			robot_suit.l_arm = null
+			robot_suit.r_arm.forceMove(T)
+			robot_suit.r_arm = null
+			robot_suit.head.forceMove(T)
+			robot_suit.head.flash1.forceMove(T)
+			robot_suit.head.flash1.burn_out()
+			robot_suit.head.flash1 = null
+			robot_suit.head.flash2.forceMove(T)
+			robot_suit.head.flash2.burn_out()
+			robot_suit.head.flash2 = null
+			robot_suit.head = null
+			robot_suit.update_icon()
+		else
+			new /obj/item/robot_suit(T)
+			new /obj/item/bodypart/l_leg/robot(T)
+			new /obj/item/bodypart/r_leg/robot(T)
+			new /obj/item/stack/cable_coil(T, 1)
+			new /obj/item/bodypart/chest/robot(T)
+			new /obj/item/bodypart/l_arm/robot(T)
+			new /obj/item/bodypart/r_arm/robot(T)
+			new /obj/item/bodypart/head/robot(T)
+			var/b
+			for(b=0, b!=2, b++)
+				var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
+				F.burn_out()
 		if (cell) //Sanity check.
 			cell.forceMove(T)
 			cell = null

@@ -838,6 +838,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
+"bJ" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
 "bK" = (
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -854,26 +870,6 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/escape)
-"bL" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -2491,7 +2487,7 @@ be
 be
 bw
 ac
-bL
+bJ
 bR
 bT
 pm

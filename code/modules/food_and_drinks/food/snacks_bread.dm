@@ -245,7 +245,6 @@
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = ""
 	bitesize = 2
-	fryable = FALSE
 
 /obj/item/reagent_containers/food/snacks/deepfryholder/Initialize(mapload, obj/item/fried)
 	. = ..()

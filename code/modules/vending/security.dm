@@ -5,9 +5,7 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access = list(ACCESS_SECURITY)
-	products = list(/obj/item/clothing/head/helmet/plated = 6,
-					/obj/item/clothing/suit/armor/plated = 6,
-					/obj/item/restraints/handcuffs = 8,
+	products = list(/obj/item/restraints/handcuffs = 8,
 					/obj/item/restraints/handcuffs/cable/zipties = 10,
 					/obj/item/grenade/flashbang = 4,
 					/obj/item/assembly/flash/handheld = 5,

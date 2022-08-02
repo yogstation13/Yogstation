@@ -286,7 +286,7 @@
 
 		A.visible_message("<span class = 'danger'><B>[A] [fluff] [D]!</B></span>")
 		playsound(A.loc, "swing_hit", 50, 1)
-		var/bodyslam_damage = A.get_punchdamagehigh() * 1.5 + 5 //base damage of the slam, 20
+		var/bodyslam_damage = A.dna.species.punchdamagehigh * 1.5 + 5 //base damage of the slam, 20
 		if (!D.stat)
 			D.emote("scream")
 			D.Paralyze(40)
@@ -329,7 +329,7 @@
 		addtimer(CALLBACK(src, .proc/CheckStrikeTurf, A, T), 4)
 
 		A.visible_message("<span class = 'danger'><b>[A] headbutts [D]!</b></span>")
-		D.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
+		D.adjustBruteLoss(A.dna.species.punchdamagehigh + rand(0,10))	//10-20 damage
 		playsound(A.loc, "swing_hit", 50, 1)
 		D.Unconscious(20)
 	log_combat(A, D, "headbutted")
@@ -343,7 +343,7 @@
 
 	A.visible_message("<span class = 'danger'><B>[A] roundhouse-kicks [D]!</B></span>")
 	playsound(A.loc, "swing_hit", 50, 1)
-	D.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
+	D.adjustBruteLoss(A.dna.species.punchdamagehigh + rand(0,10))	//10-20 damage
 
 	var/turf/T = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
 	if (T && isturf(T))
@@ -385,7 +385,7 @@
 			A.pixel_y = 0
 			if (falling == 1)
 				A.visible_message("<span class = 'danger'><B>...and dives head-first into the ground, ouch!</b></span>")
-				A.adjustBruteLoss(A.get_punchdamagehigh() + rand(0,10))	//10-20 damage
+				A.adjustBruteLoss(A.dna.species.punchdamagehigh + rand(0,10))	//10-20 damage
 				A.Paralyze(60)
 			to_chat(A, "[D] is too far away!")
 			return 0
@@ -406,7 +406,7 @@
 		A.visible_message("<span class = 'danger'><B>[A] leg-drops [D]!</B></span>")
 		playsound(A.loc, "swing_hit", 50, 1)
 		A.emote("scream")
-		var/legdrop_damage = A.get_punchdamagehigh() * 2 + rand(0,10)	//20-30 damage
+		var/legdrop_damage = A.dna.species.punchdamagehigh * 2 + rand(0,10)	//20-30 damage
 
 		if (falling == 1)
 			if (prob(33) || D.stat)

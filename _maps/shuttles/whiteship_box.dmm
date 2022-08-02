@@ -608,6 +608,52 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/crew)
+"aR" = (
+/obj/structure/closet/crate{
+	name = "food crate"
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = -2
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/glass/beaker/waterbottle/large{
+	pixel_x = 8;
+	pixel_y = -3
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/donkpockets,
+/obj/machinery/light/small/built{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/abandoned/crew)
 "aS" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned/engine)
@@ -2281,53 +2327,6 @@
 	},
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned/engine)
-"LY" = (
-/obj/structure/closet/crate{
-	name = "food crate"
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = -2
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = 1;
-	pixel_y = -3
-	},
-/obj/item/reagent_containers/glass/beaker/waterbottle/large{
-	pixel_x = 8;
-	pixel_y = -3
-	},
-/obj/machinery/light/small/built{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned/crew)
 "Rx" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor{
@@ -2855,7 +2854,7 @@ aa
 aa
 ab
 ac
-LY
+aR
 be
 be
 dv

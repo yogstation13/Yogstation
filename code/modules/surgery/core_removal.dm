@@ -3,8 +3,7 @@
 	desc = "Remove core from slime. Extract core must be repeated for every core if slime has several."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey slime extract"
-	steps = list(/datum/surgery_step/incise, 
-				/datum/surgery_step/extract_core)
+	steps = list(/datum/surgery_step/incise, /datum/surgery_step/extract_core)
 	target_mobtypes = list(/mob/living/simple_animal/slime)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
 	lying_required = FALSE
@@ -12,16 +11,14 @@
 
 /datum/surgery/core_removal/can_start(mob/user, mob/living/target)
 	if(target.stat == DEAD)
-		return TRUE
-	return FALSE
+		return 1
+	return 0
 
 //extract brain
 /datum/surgery_step/extract_core
 	name = "extract core"
 	implements = list(/obj/item/hemostat = 100, TOOL_CROWBAR = 100)
-	time = 1.6 SECONDS
-	preop_sound = 'sound/surgery/scalpel1.ogg'
-	success_sound = 'sound/surgery/scalpel2.ogg'
+	time = 16
 
 /datum/surgery_step/extract_core/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to extract a core from [target]..."),
@@ -40,9 +37,9 @@
 
 		if(slime.cores <= 0)
 			slime.icon_state = "[slime.colour] baby slime dead-nocore"
-			return TRUE
+			return 1
 		else
-			return FALSE
+			return 0
 	else
 		to_chat(user, span_warning("There aren't any cores left in [target]!"))
-		return TRUE
+		return 1

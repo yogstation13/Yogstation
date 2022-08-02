@@ -1,4 +1,4 @@
-/mob/living/carbon/Life(seconds, times_fired)
+/mob/living/carbon/Life()
 	set invisibility = 0
 
 	if(notransform)
@@ -8,7 +8,7 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(LIFETICK_SKIP(src, times_fired))
+	if(!IS_IN_STASIS(src))
 
 		if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 			handle_organs()

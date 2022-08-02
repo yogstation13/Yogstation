@@ -38,11 +38,11 @@
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(A.zone_selected))
 	var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 50)
-	var/slam_staminadamage = A.get_punchdamagehigh() * 1.5 + 10	//25 damage
+	var/slam_staminadamage = A.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(D, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	D.apply_damage(slam_staminadamage, STAMINA, selected_zone, armor_block)														
-	D.apply_damage(A.get_punchdamagehigh() + 5, A.dna.species.attack_type, selected_zone, armor_block)	//15 damage
+	D.apply_damage(A.dna.species.punchdamagehigh + 5, A.dna.species.attack_type, selected_zone, armor_block)	//15 damage
 	D.visible_message(span_danger("[A] slams into [D], knocking them off balance!"), \
 					  span_userdanger("[A] slams into you, knocking you off  balance!"))
 	D.add_movespeed_modifier("tail slap", update=TRUE, priority=101, multiplicative_slowdown=0.9)
@@ -71,10 +71,10 @@
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(A.zone_selected))
 	var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 50)
-	var/slap_staminadamage = A.get_punchdamagehigh() * 1.5 + 10	//25 damage
+	var/slap_staminadamage = A.dna.species.punchdamagehigh * 1.5 + 10	//25 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 	D.apply_damage(slap_staminadamage, STAMINA, selected_zone, armor_block)
-	D.apply_damage(A.get_punchdamagehigh(), A.dna.species.attack_type, selected_zone, armor_block)	//10 damage
+	D.apply_damage(A.dna.species.punchdamagehigh, A.dna.species.attack_type, selected_zone, armor_block)	//10 damage
 	D.Knockdown(5 SECONDS)
 	D.Paralyze(2 SECONDS)
 	D.visible_message(span_danger("[A] tail slaps [D]!"), \
@@ -91,7 +91,7 @@
 		return harm_act(A,D)
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(BODY_ZONE_HEAD))
 	var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 30)
-	var/chomp_damage = A.get_punchdamagehigh() * 2 + 10	//30 damage
+	var/chomp_damage = A.dna.species.punchdamagehigh * 2 + 10	//30 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_BITE)
 	playsound(D, 'sound/weapons/bite.ogg', 50, TRUE, -1)
 	D.apply_damage(chomp_damage, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block, sharpness = SHARP_EDGED)
@@ -117,7 +117,7 @@
 		return
 	var/obj/item/bodypart/affecting = D.get_bodypart(check_zone(BODY_ZONE_HEAD))
 	var/armor_block = D.run_armor_check(affecting, MELEE)
-	var/disarm_damage = A.get_punchdamagehigh() / 2 	//5 damage
+	var/disarm_damage = A.dna.species.punchdamagehigh / 2 	//5 damage
 	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 	playsound(D, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
 	D.apply_damage(disarm_damage, STAMINA, BODY_ZONE_HEAD, armor_block)
@@ -147,7 +147,7 @@
 	var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 10)
 	A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
 	playsound(D, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-	D.apply_damage(A.get_punchdamagehigh() + 2, A.dna.species.attack_type, selected_zone, armor_block, sharpness = SHARP_EDGED) //+2 unarmed damage and sharp
+	D.apply_damage(A.dna.species.punchdamagehigh + 2, A.dna.species.attack_type, selected_zone, armor_block, sharpness = SHARP_EDGED) //+2 unarmed damage and sharp
 	var/atk_verb = pick("rends", "claws", "slices", "tears at")
 	D.visible_message(span_danger("[A] [atk_verb] [D]!"), \
 					  span_userdanger("[A] [atk_verb] you!"))

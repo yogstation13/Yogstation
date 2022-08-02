@@ -301,8 +301,8 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	new/datum/stack_recipe("crude syringe", /obj/item/reagent_containers/syringe/crude, 5, time = 10), \
 	new/datum/stack_recipe("punji sticks trap", /obj/structure/punji_sticks, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
-	new/datum/stack_recipe("bamboo mat piece", /obj/item/stack/tile/bamboo, 1, 4, 20), \
 	new/datum/stack_recipe("bamboo stool", /obj/structure/chair/stool/bamboo, 2, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("bamboo mat piece", /obj/item/stack/tile/bamboo, 1, 4, 20), \
 	null, \
 	new/datum/stack_recipe_list("bamboo benches", list(
 		new /datum/stack_recipe("bamboo bench (middle)", /obj/structure/chair/sofa/bamboo, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE),
@@ -360,11 +360,11 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("blindfold", /obj/item/clothing/glasses/blindfold, 2), \
 	null, \
+	new/datum/stack_recipe("grey beanbag", /obj/structure/chair/stool/beanbag, 5), \
 	new/datum/stack_recipe("black beanbag", /obj/structure/chair/stool/beanbag/black, 5), \
 	new/datum/stack_recipe("blue beanbag", /obj/structure/chair/stool/beanbag/blue, 5), \
 	new/datum/stack_recipe("red beanbag", /obj/structure/chair/stool/beanbag/red, 5), \
 	new/datum/stack_recipe("green beanbag", /obj/structure/chair/stool/beanbag/green, 5), \
-	new/datum/stack_recipe("grey beanbag", /obj/structure/chair/stool/beanbag, 5), \
 	new/datum/stack_recipe("yellow beanbag", /obj/structure/chair/stool/beanbag/yellow, 5), \
 	))
 
@@ -488,12 +488,12 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 	null,																						\
 	//TO-DO: Find a proper way to just change the illustration on the box. Code isn't the issue, input is.
 	new/datum/stack_recipe_list("fancy boxes", list(
-		new /datum/stack_recipe("donk-pockets berry box", /obj/item/storage/box/donkpockets/donkpocketberry),			\
 		new /datum/stack_recipe("donk-pockets box", /obj/item/storage/box/donkpockets),			\
-		new /datum/stack_recipe("donk-pockets honk box", /obj/item/storage/box/donkpockets/donkpockethonk),				\
-		new /datum/stack_recipe("donk-pockets pizza box", /obj/item/storage/box/donkpockets/donkpocketpizza),			\
-		new /datum/stack_recipe("donk-pockets teriyaki box", /obj/item/storage/box/donkpockets/donkpocketteriyaki),		\
 		new /datum/stack_recipe("donk-pockets spicy box", /obj/item/storage/box/donkpockets/donkpocketspicy),			\
+		new /datum/stack_recipe("donk-pockets teriyaki box", /obj/item/storage/box/donkpockets/donkpocketteriyaki),		\
+		new /datum/stack_recipe("donk-pockets pizza box", /obj/item/storage/box/donkpockets/donkpocketpizza),			\
+		new /datum/stack_recipe("donk-pockets berry box", /obj/item/storage/box/donkpockets/donkpocketberry),			\
+		new /datum/stack_recipe("donk-pockets honk box", /obj/item/storage/box/donkpockets/donkpockethonk),				\
 		new /datum/stack_recipe("donut box", /obj/item/storage/box/fancy/donut_box),				\
 		new /datum/stack_recipe("egg box", /obj/item/storage/box/fancy/egg_box),					\
 		new /datum/stack_recipe("monkey cube box", /obj/item/storage/box/monkeycubes),			\
@@ -708,7 +708,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 
 /obj/item/stack/tile/bronze
 	name = "brass"
-	desc = "On closer inspection, what appears to be wholly unsuitable-for-building brass is actually more structurally stable bronze."
+	desc = "On closer inspection, what appears to be wholly-unsuitable-for-building brass is actually more structurally stable bronze."
 	singular_name = "bronze sheet"
 	icon_state = "sheet-brass"
 	item_state = "sheet-brass"
@@ -778,10 +778,10 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/bone
 
 GLOBAL_LIST_INIT(plastic_recipes, list(
-	new /datum/stack_recipe("colo cups", /obj/item/reagent_containers/food/drinks/colocup, 1), \
-	new /datum/stack_recipe("large water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty,3), \
 	new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
 	new /datum/stack_recipe("water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/empty), \
+	new /datum/stack_recipe("large water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty,3), \
+	new /datum/stack_recipe("colo cups", /obj/item/reagent_containers/food/drinks/colocup, 1), \
 	new /datum/stack_recipe("wet floor sign", /obj/item/clothing/suit/caution, 2)))
 
 /obj/item/stack/sheet/plastic
@@ -805,8 +805,8 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	. = ..()
 
 GLOBAL_LIST_INIT(paperframe_recipes, list(
-new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperframe, 3, one_per_turf = TRUE, on_floor = TRUE, time = 10), \
-new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperframe, 2, one_per_turf = TRUE, on_floor = TRUE, time = 10 )))
+new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperframe, 2, one_per_turf = TRUE, on_floor = TRUE, time = 10), \
+new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperframe, 3, one_per_turf = TRUE, on_floor = TRUE, time = 10 )))
 
 /obj/item/stack/sheet/paperframes
 	name = "paper frames"
@@ -875,8 +875,8 @@ GLOBAL_LIST_INIT(cheese_recipes, list (
 	merge_type = /obj/item/stack/sheet/ruinous_metal
 
 GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
-	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40), \
-	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1, time = 40 )))
+	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40 )))
 
 /obj/item/stack/sheet/ruinous_metal/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.ruinous_metal_recipes
@@ -896,8 +896,8 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	merge_type = /obj/item/stack/sheet/ashresin
 
 GLOBAL_LIST_INIT(ashresin_recipes, list (
-	new/datum/stack_recipe("resin candle", /obj/item/candle/resin), \
-	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40 )))
+	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("resin candle", /obj/item/candle/resin )))
 
 /obj/item/stack/sheet/ashresin/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.ashresin_recipes

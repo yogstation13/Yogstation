@@ -477,11 +477,3 @@
 	suffix = "lavaland_surface_shinobigraveyard.dmm"
 	allow_duplicates = FALSE
 	cost = 5
-
-/datum/map_template/ruin/lavaland/lavaland_surface_meteorite
-	name = "Ash Walker Meteorite"
-	id = "meteorite"
-	description = "A village bestowed with immense misfortune."
-	suffix = "lavaland_surface_meteorite.dmm"
-	allow_duplicates = FALSE
-	cost = 20

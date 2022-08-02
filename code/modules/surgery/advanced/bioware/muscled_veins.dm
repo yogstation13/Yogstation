@@ -1,7 +1,6 @@
 /datum/surgery/advanced/bioware/muscled_veins
 	name = "Vein Muscle Membrane"
 	desc = "A surgical procedure which adds a muscled membrane to blood vessels, allowing them to pump blood without a heart."
-	icon_state = "surgery_chest"
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -15,9 +14,7 @@
 /datum/surgery_step/muscled_veins
 	name = "shape vein muscles"
 	accept_hand = TRUE
-	time = 12.5 SECONDS
-	preop_sound = 'sound/surgery/organ2.ogg'
-	success_sound = 'sound/surgery/organ1.ogg'
+	time = 125
 
 /datum/surgery_step/muscled_veins/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You start wrapping muscles around [target]'s circulatory system."),

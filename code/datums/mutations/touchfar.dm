@@ -4,7 +4,6 @@
 	instability = 30
 	text_gain_indication = "<span class='notice'>You feel unlimited power flow through your hands.</span>"
 	power = /obj/effect/proc_holder/spell/targeted/touch/shock/far
-	conflicts = list(/datum/mutation/human/shock, /datum/mutation/human/insulated)
 
 /obj/effect/proc_holder/spell/targeted/touch/shock/far
 	name = "Extended Shock Touch"

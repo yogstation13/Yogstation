@@ -220,7 +220,6 @@
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
-#define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
 #define TRAIT_MESONS			"mesons"
 
 //non-mob traits
@@ -332,7 +331,6 @@
 #define FRENZY_TRAIT "frenzy_trait"
 #define HORROR_TRAIT "horror"
 #define HOLDER_TRAIT "holder_trait"
-#define SINFULDEMON_TRAIT "sinfuldemon"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

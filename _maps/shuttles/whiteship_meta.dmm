@@ -1178,6 +1178,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned/cargo)
+"bM" = (
+/obj/machinery/light/small/built{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/obj/item/storage/box/donkpockets,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/abandoned/bar)
 "bN" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
@@ -3050,27 +3069,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned/cargo)
-"oA" = (
-/obj/machinery/light/small/built{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned/bar)
 "qY" = (
 /obj/effect/turf_decal/box/white/corners{
 	dir = 4
@@ -3478,7 +3476,7 @@ ai
 YT
 ai
 bD
-oA
+bM
 bZ
 cn
 cz

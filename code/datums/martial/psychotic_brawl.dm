@@ -43,7 +43,7 @@
 			D.visible_message(span_danger("[A] [atk_verb] [D]!"), \
 					  span_userdanger("[A] [atk_verb] you!"))
 			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 40, 1, -1)
-			var/headbutt_damage = rand(A.get_punchdamagehigh() - 5, A.get_punchdamagehigh()) //5-10 damage
+			var/headbutt_damage = rand(A.dna.species.punchdamagehigh - 5, A.dna.species.punchdamagehigh) //5-10 damage
 			D.apply_damage(headbutt_damage, A.dna.species.attack_type, BODY_ZONE_HEAD)
 			A.apply_damage(headbutt_damage, A.dna.species.attack_type, BODY_ZONE_HEAD)
 			if(!istype(D.head,/obj/item/clothing/head/helmet/) && !istype(D.head,/obj/item/clothing/head/hardhat))
@@ -53,7 +53,7 @@
 		if(5,6)
 			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 			atk_verb = pick("punches", "kicks", "hits", "slams into")
-			var/punch_damage = rand(A.get_punchdamagehigh() + 5 , 2 * A.get_punchdamagehigh() + 10)	//15-30 damage
+			var/punch_damage = rand(A.dna.species.punchdamagehigh + 5 , 2 * A.dna.species.punchdamagehigh + 10)	//15-30 damage
 			D.visible_message(span_danger("[A] [atk_verb] [D] with inhuman strength, sending [D.p_them()] flying backwards!"), \
 							  span_userdanger("[A] [atk_verb] you with inhuman strength, sending you flying backwards!"))
 			D.apply_damage(punch_damage, A.dna.species.attack_type)

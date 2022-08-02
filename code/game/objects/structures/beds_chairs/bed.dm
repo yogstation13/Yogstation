@@ -22,9 +22,6 @@
 	var/buildstackamount = 2
 	var/bolts = TRUE
 
-/obj/structure/bed/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 0.7)
-
 /obj/structure/bed/examine(mob/user)
 	. = ..()
 	if(bolts)

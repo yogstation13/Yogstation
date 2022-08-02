@@ -107,8 +107,7 @@
 	instability = 30
 	energy_coeff = 1
 	power_coeff = 1
-	conflicts = list(/datum/mutation/human/cryokinesis)
-
+	
 /datum/mutation/human/firebreath/modify()
 	if(power)
 		var/obj/effect/proc_holder/spell/aimed/firebreath/S = power
@@ -118,7 +117,7 @@
 	name = "Fire Breath"
 	desc = "You can breathe fire at a target."
 	school = "evocation"
-	charge_max = 450
+	charge_max = 600
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	range = 20
@@ -145,7 +144,8 @@
 	if(!istype(P, /obj/item/projectile/magic/aoe/fireball))
 		return
 	var/obj/item/projectile/magic/aoe/fireball/F = P
-	F.exp_fire += (strength - 1) * 4	// +0, +2 if empowered
+	F.exp_light = strength-1
+	F.exp_fire += strength
 
 obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	. = ..()
@@ -156,7 +156,7 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	exp_heavy = 0
 	exp_light = 0
 	exp_flash = 0
-	exp_fire= 3
+	exp_fire= 4
 
 /datum/mutation/human/void
 	name = "Void Magnet"

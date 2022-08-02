@@ -8,7 +8,8 @@
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/operating
 	var/mob/living/carbon/human/patient
-	var/list/obj/linked_beds = list()
+	var/obj/structure/table/optable/table
+	var/obj/machinery/stasis/sbed
 	var/list/advanced_surgeries = list()
 	var/datum/techweb/linked_techweb
 	light_color = LIGHT_COLOR_BLUE
@@ -19,10 +20,14 @@
 	find_table()
 
 /obj/machinery/computer/operating/Destroy()
-	for(var/obj/bed in linked_beds)
-		var/datum/component/surgery_bed/SB = bed.GetComponent(/datum/component/surgery_bed)
-		if(SB && SB.computer == src)
-			SB.computer = null
+	for(var/direction in GLOB.alldirs)
+		table = locate(/obj/structure/table/optable) in get_step(src, direction)
+		if(table && table.computer == src)
+			table.computer = null
+		else
+			sbed = locate(/obj/machinery/stasis) in get_step(src, direction)
+			if(sbed && sbed.computer == src)
+				sbed.computer = null
 	. = ..()
 
 /obj/machinery/computer/operating/attackby(obj/item/O, mob/user, params)
@@ -41,16 +46,19 @@
 		var/datum/design/surgery/D = SSresearch.techweb_design_by_id(i)
 		if(!istype(D))
 			continue
-		advanced_surgeries += D.surgery
+		advanced_surgeries |= D.surgery
 
 /obj/machinery/computer/operating/proc/find_table()
 	for(var/direction in GLOB.alldirs)
-		var/obj/table = locate(/obj) in get_step(src, direction)
-		if(!table)
-			continue
-		var/datum/component/surgery_bed/SB = table.GetComponent(/datum/component/surgery_bed)
-		if(SB && SB.link_computer(src))
+		table = locate(/obj/structure/table/optable) in get_step(src, direction)
+		if(table)
+			table.computer = src
 			break
+		else
+			sbed = locate(/obj/machinery/stasis) in get_step(src, direction)
+			if(sbed)
+				sbed.computer = src
+				break
 
 /obj/machinery/computer/operating/ui_state(mob/user)
 	return GLOB.not_incapacitated_state
@@ -72,15 +80,22 @@
 		surgeries += list(surgery)
 	data["surgeries"] = surgeries
 	data["patient"] = null
-	if(linked_beds.len && linked_beds?[1])
-		var/datum/component/surgery_bed/SB = linked_beds[1]
-		data["table"] = SB.parent
-		patient = SB.check_eligible_patient()
-		if(!patient)
+	if(table)
+		data["table"] = table
+		if(!table.check_eligible_patient())
 			return data
 		data["patient"] = list()
+		patient = table.patient
 	else
-		return data
+		if(sbed)
+			data["table"] = sbed
+			if(!ishuman(sbed.occupant) &&  !ismonkey(sbed.occupant))
+				return data
+			data["patient"] = list()
+			patient = sbed.occupant
+		else
+			data["patient"] = null
+			return data
 	switch(patient.stat)
 		if(CONSCIOUS)
 			data["patient"]["stat"] = "Conscious"

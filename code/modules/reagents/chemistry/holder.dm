@@ -59,6 +59,8 @@
 	var/atom/my_atom = null
 	/// Current temp of the holder volume
 	var/chem_temp = 150
+	/// unused
+	var/last_tick = 1
 	/// see [/datum/reagents/proc/metabolize] for usage
 	var/addiction_tick = 1
 	/// currently addicted reagents

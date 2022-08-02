@@ -25,8 +25,7 @@
 			var/type = C.prefs.donor_item
 			if(type)
 				var/obj/item = new type()
-				if(!H.put_in_hands(item))
-					item.forceMove(BP)
+				H.put_in_hands(item)
 
 	switch(C.prefs.donor_pda)
 		if(2)//transparent

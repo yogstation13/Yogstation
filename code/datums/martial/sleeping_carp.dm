@@ -46,7 +46,7 @@
 		playsound(get_turf(A), 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		D.emote("scream")
 		D.dropItemToGround(D.get_active_held_item())
-		D.apply_damage(A.get_punchdamagehigh() / 2, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM), wound_bonus = CANT_WOUND)	//5 damage
+		D.apply_damage(A.dna.species.punchdamagehigh / 2, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM), wound_bonus = CANT_WOUND)	//5 damage
 		D.Stun(60)
 		return TRUE
 
@@ -88,7 +88,7 @@
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.visible_message(span_warning("[A] kicks [D] in the head!"), \
 						  span_userdanger("[A] kicks you in the jaw!"))
-		D.apply_damage(A.get_punchdamagehigh() + 10, A.dna.species.attack_type, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)	//20 damage
+		D.apply_damage(A.dna.species.punchdamagehigh + 10, A.dna.species.attack_type, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)	//20 damage
 		D.drop_all_held_items()
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		D.Stun(80)
@@ -98,7 +98,7 @@
 /datum/martial_art/the_sleeping_carp/proc/elbowDrop(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!(D.mobility_flags & MOBILITY_STAND))
 		log_combat(A, D, "elbow dropped (Sleeping Carp)")
-		var/dunk_damage = A.get_punchdamagehigh() * 3 + 20 //50 damage, get dunked on
+		var/dunk_damage = A.dna.species.punchdamagehigh * 3 + 20 //50 damage, get dunked on
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.visible_message(span_warning("[A] elbow drops [D]!"), \
 							span_userdanger("[A] piledrives you with their elbow!"))
@@ -132,7 +132,7 @@
 		return TRUE
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/atk_verb = pick("punches", "kicks", "chops", "hits", "slams")
-	var/harm_damage = A.get_punchdamagehigh() + rand(0,5)	//10-15 damage
+	var/harm_damage = A.dna.species.punchdamagehigh + rand(0,5)	//10-15 damage
 	D.visible_message(span_danger("[A] [atk_verb] [D]!"), \
 					  span_userdanger("[A] [atk_verb] you!"))
 	D.apply_damage(harm_damage, BRUTE, wound_bonus = CANT_WOUND)

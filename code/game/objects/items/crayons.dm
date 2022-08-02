@@ -76,25 +76,6 @@
 	user.visible_message(span_suicide("[user] is jamming [src] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS|OXYLOSS)
 
-/obj/item/toy/crayon/proc/min_value() // Makes the paint color brighter if it is below quarter bright (V < 64)
-	var/list/read = ReadRGB(paint_color) // Converts the RGB string into a list
-	var/value = max(read) // Reads the V from HSV, essentially the brightness
-
-	if(value >= 64) // Min V is 64, 3 quarters to black from white
-		return
-	
-	if(value > 0) // Div by zero avoidance
-		var/difference = 64/value
-		read[1] *= difference
-		read[2] *= difference
-		read[3] *= difference
-	else
-		read[1] = 64
-		read[2] = 64
-		read[3] = 64
-
-	paint_color = rgb(read[1], read[2], read[3])
-
 /obj/item/toy/crayon/Initialize()
 	. = ..()
 	// Makes crayons identifiable in things like grinders
@@ -253,7 +234,6 @@
 		if("select_colour")
 			if(can_change_colour)
 				paint_color = input(usr,"","Choose Color",paint_color) as color|null
-				min_value()
 				. = TRUE
 		if("enter_text")
 			var/txt = stripped_input(usr,"Choose what to write.",
@@ -485,7 +465,7 @@
 
 /obj/item/toy/crayon/black
 	icon_state = "crayonblack"
-	paint_color = "#404040" //Not completely black because total black looks bad. So Mostly Black.
+	paint_color = "#1C1C1C" //Not completely black because total black looks bad. So Mostly Black.
 	crayon_color = "black"
 	reagent_contents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/colorful_reagent/crayonpowder/black = 1)
 	dye_color = DYE_BLACK
@@ -518,7 +498,6 @@
 
 /obj/item/toy/crayon/rainbow/afterattack(atom/target, mob/user, proximity, params)
 	paint_color = rgb(rand(0,255), rand(0,255), rand(0,255))
-	min_value()
 	. = ..()
 
 /*

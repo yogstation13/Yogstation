@@ -104,7 +104,6 @@
 	user.name = friendlyName
 	user.module.cyborg_base_icon = disguise
 	user.bubble_icon = "robot"
-	user.module.name = "Engineering"
 	active = TRUE
 	user.update_icons()
 	
@@ -124,7 +123,6 @@
 	user.name = savedName
 	user.module.cyborg_base_icon = initial(user.module.cyborg_base_icon)
 	user.bubble_icon = initial(user.bubble_icon)
-	user.module.name = initial(user.module.name)
 	active = FALSE
 	user.update_icons()
 	src.user = user

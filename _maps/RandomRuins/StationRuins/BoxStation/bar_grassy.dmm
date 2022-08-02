@@ -437,14 +437,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
-"lC" = (
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/structure/table/wood,
-/obj/item/seeds/poppy,
-/obj/item/seeds/poppy,
-/obj/item/seeds/poppy,
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "mb" = (
 /obj/item/reagent_containers/glass/mixbowl{
 	pixel_x = 1;
@@ -681,22 +673,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"vA" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -8;
-	pixel_y = -8
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/kitchen)
 "vV" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/grass,
@@ -747,6 +723,18 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"zb" = (
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/structure/table/wood,
+/obj/item/seeds/poppy,
+/obj/item/seeds/poppy,
+/obj/item/seeds/poppy,
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "zc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8;
@@ -1027,6 +1015,15 @@
 /obj/structure/table/wood,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
+"Pu" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "Qi" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -1567,7 +1564,7 @@ bi
 am
 AP
 dU
-lC
+zb
 Ee
 Hv
 Hv
@@ -1629,7 +1626,7 @@ am
 bU
 bl
 am
-vA
+Pu
 fJ
 kW
 kW

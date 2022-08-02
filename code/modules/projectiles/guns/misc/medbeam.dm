@@ -255,32 +255,3 @@
 		return
 
 	gun.uber_act()
-
-//////////////////////////////Arm Version///////////////////////////////
-/obj/item/gun/medbeam/arm
-	name = "medical beamgun arm"
-	desc = "A bulky medical beam gun based on syndicate designs, can only be used when attached to an arm."
-
-/obj/item/gun/medbeam/arm/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-
-/obj/item/gun/medbeam/arm/Destroy()
-	var/obj/item/bodypart/part
-	new /obj/item/medbeam_arm(get_turf(src))
-	if(iscarbon(loc))
-		var/mob/living/carbon/holder = loc
-		var/index = holder.get_held_index_of_item(src)
-		if(index)
-			part = holder.hand_bodyparts[index]
-	. = ..()
-	if(part)
-		part.drop_limb()
-
-/// Just a placeholder until its put on as to not let people use it when its detached
-/obj/item/medbeam_arm
-	name = "medical beamgun arm"
-	desc = "A bulky medical beam gun based on syndicate designs, can only be used when attached to an arm."
-	icon = 'icons/obj/chronos.dmi'
-	icon_state = "chronogun"
-	item_state = "chronogun"

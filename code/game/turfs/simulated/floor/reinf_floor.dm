@@ -126,9 +126,7 @@
 	name = "air floor"
 	initial_gas_mix = ATMOS_TANK_AIRMIX
 
-/turf/open/floor/engine/hydrogen
-	name = "\improper H2 floor"
-	initial_gas_mix = ATMOS_TANK_H2
+
 
 /turf/open/floor/engine/cult
 	name = "engraved floor"

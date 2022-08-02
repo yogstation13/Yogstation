@@ -313,10 +313,7 @@ class ChatRenderer {
           }
         }
         // Linkify text
-        const linkifyNodes = node.querySelectorAll('.linkify');
-        for (let i = 0; i < linkifyNodes.length; ++i) {
-          linkifyNode(linkifyNodes[i]);
-        }
+        linkifyNode(node);
         // Assign an image error handler
         if (now < message.createdAt + IMAGE_RETRY_MESSAGE_AGE) {
           const imgNodes = node.querySelectorAll('img');

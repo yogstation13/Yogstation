@@ -257,20 +257,7 @@
 
 /obj/item/nullrod/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is killing [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to get closer to god!"))
-	playsound(user, 'sound/effects/pray.ogg', 50)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.SetImmobilized(10 SECONDS)
-	animate(user, pixel_y = (32*8), time = 10 SECONDS)
-	addtimer(CALLBACK(src, .proc/suicide, user), 10 SECONDS)
-	return MANUAL_SUICIDE
-
-/obj/item/nullrod/proc/suicide(mob/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.dropItemToGround(src, TRUE, TRUE)
-	qdel(user, TRUE)
-	
+	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/nullrod/attack_self(mob/user)
 	if(user.mind && (user.mind.holy_role) && !reskinned)

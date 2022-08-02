@@ -3,30 +3,16 @@
 	desc = "Fixes all damage done to eyes, though doesnt fix genetic blindness. Failing to fix the eyes will cause brain damage to the patient."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "eyeballs"
-	steps = list(/datum/surgery_step/incise, 
-				/datum/surgery_step/retract_skin, 
-				/datum/surgery_step/clamp_bleeders, 
-				/datum/surgery_step/fix_eyes, 
-				/datum/surgery_step/close)
+	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/fix_eyes, /datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_PRECISE_EYES)
-
-/datum/surgery/eye_surgery/mechanic
-	steps = list(/datum/surgery_step/mechanic_open,
-				/datum/surgery_step/open_hatch,
-				/datum/surgery_step/mechanic_unwrench,
-				/datum/surgery_step/fix_eyes, 
-				/datum/surgery_step/mechanic_wrench,
-				/datum/surgery_step/mechanic_close)
-	requires_bodypart_type = BODYPART_ROBOTIC
-	lying_required = FALSE
-	self_operable = TRUE
+	requires_bodypart_type = 0
 
 //fix eyes
 /datum/surgery_step/fix_eyes
 	name = "fix eyes"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 45, /obj/item/pen = 25)
-	time = 6.4 SECONDS
+	time = 64
 
 /datum/surgery/eye_surgery/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/eyes/E = target.getorganslot(ORGAN_SLOT_EYES)

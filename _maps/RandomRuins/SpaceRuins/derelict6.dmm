@@ -289,6 +289,10 @@
 /mob/living/simple_animal/hostile/retaliate/ghost,
 /turf/open/floor/plasteel/airless/cafeteria,
 /area/ruin/unpowered)
+"bb" = (
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/turf/open/floor/plasteel/airless/cafeteria,
+/area/ruin/unpowered)
 "bc" = (
 /obj/structure/table,
 /obj/item/shard,
@@ -493,13 +497,6 @@
 /mob/living/simple_animal/hostile/retaliate/ghost,
 /turf/open/floor/plasteel/airless,
 /area/ruin/unpowered)
-"LY" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/airless/cafeteria,
-/area/ruin/unpowered)
 
 (1,1,1) = {"
 aa
@@ -698,7 +695,7 @@ aC
 ai
 aI
 aR
-LY
+aW
 aW
 bh
 ap
@@ -768,7 +765,7 @@ ai
 aL
 aR
 aR
-aR
+bb
 aR
 aR
 aR

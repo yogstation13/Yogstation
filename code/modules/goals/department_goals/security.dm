@@ -6,6 +6,7 @@
 /datum/department_goal/sec/nukecore
 	name = "Protect the nuke"
 	desc = "Protect the nuclear core of the station's self-destruct device, by keeping it in the device"
+	reward = 2000 // Corresponds to 50k in 50mins
 	fail_if_failed = TRUE // Set this to false if we ever bother making it so you can stuff the core back into the self-destruct device
 
 /datum/department_goal/sec/nukecore/check_complete()

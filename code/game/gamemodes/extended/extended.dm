@@ -32,4 +32,4 @@
 	. += greenshift_message
 
 	print_command_report(., "Central Command Status Summary", announce = FALSE)
-	priority_announce(greenshift_message, "Security Report", RANDOM_REPORT_SOUND)
+	priority_announce(greenshift_message, "Security Report", SSstation.announcer.get_rand_report_sound())

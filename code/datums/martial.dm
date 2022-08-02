@@ -98,7 +98,7 @@
   */
 /datum/martial_art/proc/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D)
 
-	var/damage = rand(A.get_punchdamagelow(), A.get_punchdamagehigh())
+	var/damage = rand(A.dna.species.punchdamagelow, A.dna.species.punchdamagehigh)
 
 	var/atk_verb = A.dna.species.attack_verb
 	if(!(D.mobility_flags & MOBILITY_STAND))
@@ -133,7 +133,7 @@
 
 	log_combat(A, D, "punched")
 
-	if((D.stat != DEAD) && damage >= A.get_punchstunthreshold())
+	if((D.stat != DEAD) && damage >= A.dna.species.punchstunthreshold)
 		D.visible_message(span_danger("[A] has knocked [D] down!!"), \
 								span_userdanger("[A] has knocked [D] down!"))
 		D.apply_effect(40, EFFECT_KNOCKDOWN, armor_block)

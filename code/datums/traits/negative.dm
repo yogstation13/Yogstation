@@ -708,11 +708,6 @@
 	var/cooldown_time = 1 MINUTES //Cant act again until the first wears off
 	var/cooldown = FALSE
 
-/datum/quirk/allergic/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (TRAIT_MEDICALIGNORE in prefs.pref_species.inherent_traits))
-		return "You don't benefit from the use of medicine as a [prefs.pref_species]."
-	return ..()
-
 /datum/quirk/allergic/on_spawn()
 	reagent_id = pick(allergy_chem_list)
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
@@ -773,11 +768,6 @@
 	gain_text = span_danger("You feel like your blood is thin.")
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
-
-/datum/quirk/hemophilia/check_quirk(datum/preferences/prefs)
-	if(prefs.pref_species && (!(HAS_FLESH in prefs.pref_species.species_traits) || (NOBLOOD in prefs.pref_species.species_traits)))
-		return "You can't bleed as a [prefs.pref_species]."
-	return ..()
 
 /datum/quirk/brain_damage
 	name = "Brain Damage"

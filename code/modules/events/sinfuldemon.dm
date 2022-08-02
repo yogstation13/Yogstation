@@ -2,9 +2,9 @@
 	name = "Create Demon of Sin"
 	typepath = /datum/round_event/ghost_role/sinfuldemon
 	max_occurrences = 2 //misery loves company
-	weight = 5 //50% less likely to happen compared to most events
 	min_players = 15
 	earliest_start = 20 MINUTES
+	weight = 0
 
 /datum/round_event/ghost_role/sinfuldemon
 	var/success_spawn = 0

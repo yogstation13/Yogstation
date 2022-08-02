@@ -155,7 +155,7 @@
 	else if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		if(tod)
 			var/tdelta = round(world.time - timeofdeath)
-			if(tdelta < (DEFIB_TIME_LIMIT))
+			if(tdelta < (DEFIB_TIME_LIMIT * 10))
 				holder.icon_state = "huddefib"
 				return
 		holder.icon_state = "huddead"

@@ -1074,19 +1074,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"NK" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 5;
-	pixel_y = -6
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "PW" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -1137,6 +1124,15 @@
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/toy/figure/chef,
 /turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+"Zs" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "ZD" = (
 /obj/machinery/griddle,
@@ -1440,7 +1436,7 @@ bd
 aj
 bq
 aY
-NK
+Zs
 ZD
 bC
 bC

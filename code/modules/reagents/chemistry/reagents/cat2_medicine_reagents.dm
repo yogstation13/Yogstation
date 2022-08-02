@@ -140,7 +140,6 @@
 
 /datum/reagent/medicine/c2/rhigoxane/overdose_process(mob/living/carbon/M)
 	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT * REM, 50) //chilly chilly
-	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1.5 * REM )
 	..()
 
 

@@ -7,7 +7,6 @@
 		/obj/item/kitchen/knife	= 50,
 		/obj/item				= 10) // 10% success with any sharp item.
 	time = 2.4 SECONDS
-	bloody_chance = FALSE
 	preop_sound = 'sound/items/screwdriver.ogg'
 	success_sound = 'sound/items/screwdriver2.ogg'
 
@@ -34,7 +33,6 @@
 		/obj/item/kitchen/knife	= 50,
 		/obj/item				= 10) // 10% success with any sharp item.
 	time = 2.4 SECONDS
-	bloody_chance = FALSE
 	preop_sound = 'sound/items/screwdriver.ogg'
 	success_sound = 'sound/items/screwdriver2.ogg'
 
@@ -59,7 +57,6 @@
 		TOOL_MULTITOOL = 100,
 		TOOL_HEMOSTAT = 10) // try to reboot internal controllers via short circuit with some conductor
 	time = 2.4 SECONDS
-	bloody_chance = FALSE
 	preop_sound = 'sound/items/tape_flip.ogg'
 	success_sound = 'sound/items/taperecorder_close.ogg'
 	failure_sound = 'sound/machines/defib_zap.ogg'
@@ -76,7 +73,6 @@
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 10)
 	time = 2.4 SECONDS
-	bloody_chance = FALSE
 	preop_sound = 'sound/items/ratchet.ogg'
 
 /datum/surgery_step/mechanic_unwrench/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -97,7 +93,6 @@
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 10)
 	time = 2.4 SECONDS
-	bloody_chance = FALSE
 	preop_sound = 'sound/items/ratchet.ogg'
 
 /datum/surgery_step/mechanic_wrench/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -116,7 +111,6 @@
 	name = "open the hatch"
 	accept_hand = 1
 	time = 1 SECONDS
-	bloody_chance = FALSE
 	preop_sound = 'sound/items/ratchet.ogg'
 	success_sound = 'sound/machines/doorclick.ogg'
 

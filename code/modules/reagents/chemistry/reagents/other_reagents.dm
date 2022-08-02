@@ -1455,7 +1455,7 @@
 /datum/reagent/colorful_reagent/crayonpowder/black
 	name = "Black Crayon Powder"
 	colorname = "black"
-	color = "#404040" // not quite black
+	color = "#1C1C1C" // not quite black
 	random_color_list = list("#404040")
 
 /datum/reagent/colorful_reagent/crayonpowder/white

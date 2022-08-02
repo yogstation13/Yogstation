@@ -57,9 +57,6 @@
 		to_chat(caster, span_warning("You're already shapeshifted!"))
 		return
 
-	if(iscyborg(caster))
-		to_chat(caster, span_warning("You cannot shapeshift as a cyborg"))
-
 	var/mob/living/shape = new shapeshift_type(caster.loc)
 	H = new(shape,src,caster)
 

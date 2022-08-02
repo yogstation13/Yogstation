@@ -137,6 +137,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
 /area/ruin/space/has_grav/powered/spacebar)
+"fg" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "fy" = (
 /obj/structure/chair{
 	dir = 8
@@ -220,14 +226,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/spacebar)
-"hp" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "if" = (
 /obj/structure/urinal{
@@ -1967,7 +1965,7 @@ FB
 go
 rp
 vR
-hp
+fg
 FD
 FB
 sZ

@@ -536,6 +536,14 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"bR" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "bS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -673,6 +681,19 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"cu" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "cv" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/cafeteria,
@@ -781,35 +802,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"eq" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/machinery/light,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -7;
-	pixel_y = -2
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 6;
-	pixel_y = -2
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "hk" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"hJ" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "iI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -1482,7 +1478,7 @@ ce
 cc
 cj
 ce
-eq
+cu
 al
 aa
 "}
@@ -1498,7 +1494,7 @@ ce
 ce
 rk
 cn
-hJ
+bR
 al
 aa
 "}

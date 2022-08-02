@@ -656,7 +656,6 @@
 	icon_state = "capspace"
 	item_state = "capspacehelmet"
 	desc = "A tactical MK.II SWAT helmet boasting better protection and a horrible fashion sense."
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR	//Full helmet
 
 /obj/item/clothing/suit/space/hardsuit/swat/captain
 	name = "captain's SWAT suit"

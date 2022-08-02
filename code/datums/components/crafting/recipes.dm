@@ -489,8 +489,8 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/goliath_drapes
-	name = "Goliath Mat"
-	result = /obj/item/surgical_mat/goliath
+	name = "Goliath Drapes"
+	result = /obj/item/surgical_drapes/goliath
 	time = 8 SECONDS
 	reqs = list(/obj/item/stack/sheet/sinew = 1,
 				 /obj/item/stack/sheet/animalhide/goliath_hide = 1)

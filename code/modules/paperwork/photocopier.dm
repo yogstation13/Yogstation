@@ -318,8 +318,8 @@
 /obj/item/toner/large
 	name = "large toner cartridge"
 	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
-	charges = 75
-	max_charges = 75
+	charges = 50
+	max_charges = 50
 	
 /obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy)
 	var/copy_as_paper = TRUE

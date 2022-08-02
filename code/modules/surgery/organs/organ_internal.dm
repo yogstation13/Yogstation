@@ -17,7 +17,6 @@
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
 	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
 	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
-	var/life_tick	 	= 0
 	var/high_threshold	= STANDARD_ORGAN_THRESHOLD * 0.45		//when severe organ damage occurs
 	var/low_threshold	= STANDARD_ORGAN_THRESHOLD * 0.1		//when minor organ damage occurs
 
@@ -84,8 +83,7 @@
 		var/mob/living/carbon/C = owner
 		if(!C)
 			return
-		life_tick++
-		if(C.stat == DEAD && HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS))
+		if(C.stat == DEAD && !(IS_IN_STASIS(C) || HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS)))
 			if(damage >= maxHealth)
 				organ_flags |= ORGAN_FAILING
 				damage = maxHealth

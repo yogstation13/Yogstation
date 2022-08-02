@@ -125,7 +125,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow
 	name = "wooden crossbow"
-	desc = "A bow with a locking mechanism that more closely resembles a modern gun."
+	desc = "A bow with a locing mechanism that more closly resembles a modern gun."
 	icon_state = "crossbow"
 	spread = 0
 	draw_time = 2 SECONDS
@@ -135,7 +135,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow/magfed
 	name = "wooden magfed crossbow"
-	desc = "A bow with a locking mechanism that more closely resembles a modern gun. This one seems to be outfitted with an automatic loading mechanism."
+	desc = "A bow with a locing mechanism that more closly resembles a modern gun. This one seems to be outfited with a automatic loading mechanism."
 	mag_type = /obj/item/ammo_box/magazine/arrow
 	internal_magazine = FALSE
 
@@ -269,53 +269,9 @@
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 5
-	pin = /obj/item/firing_pin
+	pin = /obj/item/firing_pin/implant/pindicate
 	fire_sound = null
 	draw_sound = null
-	var/folded = FALSE
-	var/stored_ammo ///what was stored in the magazine before being folded?
-
-/obj/item/gun/ballistic/bow/energy/syndicate/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
-	if(!folded)
-		return ..()
-	else
-		to_chat(user, span_notice("You must unfold [src] before firing it!"))
-		return FALSE
-
-/obj/item/gun/ballistic/bow/energy/syndicate/attack_self(mob/living/user)
-	if(!folded)
-		return ..()
-	else
-		to_chat(user, span_notice("You must unfold [src] to chamber a round!"))
-		return FALSE
-
-/obj/item/gun/ballistic/bow/energy/syndicate/AltClick(mob/living/user)
-	if(!folded)
-		return ..()
-	else
-		to_chat(user, span_notice("You must unfold [src] to switch firing modes!"))
-		return FALSE
-
-/obj/item/gun/ballistic/bow/energy/syndicate/CtrlClick(mob/living/user)
-	if(!user.is_holding(src))
-		to_chat(user, span_notice("You need be holding [src] to do that!"))
-		return
-	folded = !folded
-	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
-	if(folded)
-		to_chat(user, span_notice("You fold [src]."))
-		w_class = WEIGHT_CLASS_NORMAL
-		chambered = null
-		icon_state = "bow_syndicate_folded"
-		stored_ammo = magazine.ammo_list()
-		magazine.stored_ammo = null
-		update_icon()
-	else
-		w_class = WEIGHT_CLASS_BULKY
-		to_chat(user, span_notice("You extend [src], allowing it to be fired."))
-		icon_state = "bow_syndicate"
-		magazine.stored_ammo = stored_ammo
-		update_icon()
 
 /obj/item/gun/ballistic/bow/energy/clockwork
 	name = "Brass Bow"

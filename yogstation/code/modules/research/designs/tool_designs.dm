@@ -1,3 +1,12 @@
+/datum/design/surgical_drapes
+	name = "Surgical Drapes"
+	id = "surgical_drapes"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/plastic = 2500)
+	build_path = /obj/item/surgical_drapes
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/tool_switcher
 	name = "Programmable Tool Switcher"
 	desc = "An advanced programmable device capable of quickly swapping to the correct tool for performing repetitive tasks quickly."

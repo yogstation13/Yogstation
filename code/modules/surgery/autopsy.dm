@@ -8,7 +8,7 @@
 				/datum/surgery_step/autopsy)
 	target_mobtypes = list(/mob/living)
 	requires_bodypart_type = 0
-	ignore_clothes = TRUE // just cut through the clothes
+	ignore_clothes = 1 // just cut through the clothes
 	possible_locs = list(BODY_ZONE_CHEST)
 
 /datum/surgery/autopsy/can_start(mob/user, mob/living/carbon/target)
@@ -21,9 +21,7 @@
 /datum/surgery_step/autopsy
 	name = "perform autopsy with a sharp tool"
 	implements = list(TOOL_SCALPEL = 75, /obj/item/kitchen/knife = 30, /obj/item/shard = 15)
-	time = 15 SECONDS
-	preop_sound = 'sound/surgery/scalpel1.ogg'
-	success_sound = 'sound/surgery/scalpel2.ogg'
+	time = 150
 
 /datum/surgery_step/autopsy/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to inspect [target]'s damage..."),

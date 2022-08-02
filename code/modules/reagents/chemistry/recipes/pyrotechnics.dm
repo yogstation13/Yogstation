@@ -51,18 +51,12 @@
 /datum/chemical_reaction/reagent_explosion/potassium_explosion
 	name = "Explosion"
 	id = "potassium_explosion"
-	var/size_cap = 50
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/potassium = 1)
 	strengthdiv = 10
-
-/datum/chemical_reaction/reagent_explosion/potassium_explosion/on_reaction(datum/reagents/holder, created_volume)
-	created_volume = min(created_volume, size_cap)
-	..()
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom
 	name = "Holy Explosion"
 	id = "holyboom"
-	size_cap = 100
 	required_reagents = list(/datum/reagent/water/holywater = 1, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom/on_reaction(datum/reagents/holder, created_volume)

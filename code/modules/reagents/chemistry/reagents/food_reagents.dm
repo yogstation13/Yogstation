@@ -117,11 +117,10 @@
 	var/fry_temperature = 450 //Around ~350 F (117 C) which deep fryers operate around in the real world
 
 /datum/reagent/consumable/cooking_oil/reaction_obj(obj/O, reac_volume)
-	if(holder && holder.chem_temp >= fry_temperature && isitem(O))
-		var/obj/item/I = O
-		if(I.fryable)
-			I.loc.visible_message(span_warning("[I] rapidly fries as it's splashed with hot oil! Somehow."))
-			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(I.drop_location(), O)
+	if(holder && holder.chem_temp >= fry_temperature)
+		if(istype(O, /obj/item/reagent_containers/food) && !istype(O, /obj/item/reagent_containers/food/snacks/deepfryholder))
+			O.loc.visible_message(span_warning("[O] rapidly fries as it's splashed with hot oil! Somehow."))
+			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(O.drop_location(), O)
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
 

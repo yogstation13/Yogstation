@@ -32,7 +32,7 @@
 
 /obj/item/storage/pill_bottle/dice/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return OXYLOSS
+	return (OXYLOSS)
 
 /obj/item/dice //depreciated d6, use /obj/item/dice/d6 if you actually want a d6
 	name = "die"
@@ -56,12 +56,7 @@
 
 /obj/item/dice/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
-	var/rng = rand(1, sides)
-	if(sides/2 < rng)
-		user.visible_message(span_suicide("[user] rolls a [rng] and fails their saving throw!"))
-		return OXYLOSS
-	user.visible_message(span_suicide("[user] rolls a [rng] and succeeds their saving thow."))
-	return MANUAL_SUICIDE_NONLETHAL // Lucky bastard
+	return (OXYLOSS)
 
 /obj/item/dice/d1
 	name = "d1"

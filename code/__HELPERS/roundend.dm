@@ -614,9 +614,9 @@
 	var/count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
 		else
-			objective_parts += "<b>[objective.objective_name] #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
 		count++
 	return objective_parts.Join("<br>")
 

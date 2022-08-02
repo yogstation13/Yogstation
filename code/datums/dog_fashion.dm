@@ -174,12 +174,3 @@
 /datum/dog_fashion/back/deathsquad
 	name = "Trooper REAL_NAME"
 	desc = "That's not red paint. That's real corgi blood."
-
-/datum/dog_fashion/head/fishfear
-	name = "Fisherman REAL_NAME"
-	obj_icon_state = "fishfear"
-	desc = "That corgi really knows how to fish!"
-
-/datum/dog_fashion/head/fishfear/legendary
-	name = "Grandmaster Fisherman REAL_NAME"
-	desc = "Fish truly do fear NAME, and you should too."

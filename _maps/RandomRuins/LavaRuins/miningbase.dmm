@@ -577,15 +577,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/mine/vacant)
-"et" = (
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/item/kitchen/knife,
-/obj/machinery/firealarm{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/mine/break_room)
 "ey" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
@@ -1389,15 +1380,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
-"py" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/ale,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 15;
-	pixel_y = 2
-	},
-/turf/open/floor/wood,
-/area/mine/break_room)
 "pB" = (
 /turf/closed/wall/r_wall,
 /area/mine/maintenance)
@@ -3601,6 +3583,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
+"Wp" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/item/storage/box/donkpockets,
+/obj/item/kitchen/knife,
+/obj/machinery/firealarm{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/mine/break_room)
 "WJ" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -3686,6 +3678,11 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/wood,
+/area/mine/break_room)
+"YL" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/ale,
 /turf/open/floor/wood,
 /area/mine/break_room)
 "YN" = (
@@ -5168,7 +5165,7 @@ Jx
 zW
 Aa
 Oe
-py
+YL
 DS
 Mq
 kD
@@ -5218,7 +5215,7 @@ gm
 AG
 qe
 zW
-et
+Wp
 Oe
 YV
 aZ

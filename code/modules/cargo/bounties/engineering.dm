@@ -73,7 +73,7 @@
 
 /datum/bounty/item/h2metal/metallic_hydrogen_axe
 	name = "Metallic Hydrogen axes"
-	description = "Nanotrasen is requiring new axes to be made. Ship them some metallic hydrogen helmets."
+	description = "Nanotrasen is requiring new axe to be made. Ship them some metallic hydrogen helmets."
 	reward = 7500
 	required_count = 3
 	wanted_types = list(/obj/item/twohanded/fireaxe/metal_h2_axe)

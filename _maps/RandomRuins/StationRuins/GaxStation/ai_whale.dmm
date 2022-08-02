@@ -504,6 +504,19 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"jz" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat_interior)
 "jN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -613,6 +626,16 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"lm" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
 "ln" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
@@ -1379,6 +1402,26 @@
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"BQ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
+"Cm" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat_interior)
 "Co" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1451,21 +1494,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
-"El" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Station Intercom (Telecomms)";
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/tcommsat/server)
 "EH" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -1823,23 +1851,6 @@
 /obj/machinery/bluespace_beacon,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"Np" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat_interior)
 "Ns" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -2170,37 +2181,6 @@
 /obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
-"TA" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/obj/item/storage/box/donkpockets,
-/obj/item/radio/intercom{
-	dir = 1;
-	freerange = 1;
-	name = "Station Intercom (Telecomms)";
-	pixel_x = 28;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
-"TC" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 1
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat_interior)
 "TS" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -3414,7 +3394,7 @@ kL
 tW
 Ou
 bi
-El
+lm
 tW
 Hd
 yl
@@ -3590,7 +3570,7 @@ Qn
 bs
 UG
 GI
-TA
+BQ
 UH
 pF
 Zd
@@ -3939,11 +3919,11 @@ pD
 KY
 Ox
 sM
-TC
+Cm
 yy
 rE
 ZV
-Np
+jz
 ON
 Qi
 jR

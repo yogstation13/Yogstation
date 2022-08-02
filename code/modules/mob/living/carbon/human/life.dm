@@ -18,7 +18,7 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
-/mob/living/carbon/human/Life(seconds, times_fired)
+/mob/living/carbon/human/Life()
 	set invisibility = 0
 	if (notransform)
 		return
@@ -27,7 +27,8 @@
 
 	if (QDELETED(src))
 		return 0
-	if(LIFETICK_SKIP(src, times_fired))
+
+	if(!IS_IN_STASIS(src))
 		if(.) //not dead
 
 			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
