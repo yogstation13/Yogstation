@@ -59,7 +59,7 @@
 	var/mob/living/simple_animal/hostile/flockdrone/FD = owner
 	FD.EjectPilot()
 
-/datum/action/cooldown/flock/eject
+/datum/action/cooldown/flock/enemi
 	name = "Designate Enemy"
 	desc = "Alert your Flock that someone is definitely an enemy of your flock. NPC drones will fire lethal lasers at them regardles of conditions."
 	action = /datum/flock_command/enemy_of_the_flock
@@ -153,4 +153,3 @@
 	name = "Narrowbeam Transmission"
 	desc = "Directly send a transmission to a target's radio headset or a radio device."
 	action = /datum/flock_command/talk
-	cooldown_time = 20 SECONDS

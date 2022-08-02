@@ -94,7 +94,7 @@
 		to_chat(daddy, span_notice("You transmit a message to [L]: [msg]"))
 		return TRUE
 	else if(istype(A, /obj/item/radio))
-		var/obj/item/device/radio/R = A
+		var/obj/item/radio/R = A
 		if(!R.on || !R.listening)
 			to_chat(daddy, span_warning("[R] isn't compatible!"))
 			return TRUE		
