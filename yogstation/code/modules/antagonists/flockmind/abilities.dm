@@ -100,3 +100,23 @@
 	desc = "Fully heal a drone through acceleration of its repair processes."
 	action = /datum/flock_command/repair
 	cooldown_time = 20 SECONDS
+
+/datum/action/cooldown/flock/door_open
+	name = "Gatecrash"
+	desc = "Open any non-bolted and AI controlable airlocks near you."
+	cooldown_time = 10 SECONDS
+
+/datum/action/cooldown/flock/door_open/Trigger()
+	for(var/obj/machinery/door/airlock/A in range(10, get_turf(holder.owner)))
+		if(A.canAIControl())
+			targets += A
+	if(length(targets))
+		playsound(owner, "sound/misc/flockmind/flockmind_cast.ogg", 80, 1)
+		to_chat(owner, span_notice("You force open all the airlocks around you."))
+		StartCooldown()
+		sleep(1.5 SECONDS)
+		for(var/obj/machinery/door/airlock/A in targets)
+			A.open()
+	else
+		to_chat(owner, span_warning("There is no valid airlocks around you."))
+		return

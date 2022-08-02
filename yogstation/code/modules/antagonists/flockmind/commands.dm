@@ -69,7 +69,7 @@
 	if(FT.stat == DEAD)
 		to_chat(daddy, span_warning("[FT] is dead! You can't heal it."))
 		return TRUE
-	var/heal_amount = heal_ordered_damage(30, list(BRUTE, BURN))
+	var/heal_amount = FT.heal_ordered_damage(30, list(BRUTE, BURN))
 	to_chat(daddy, span_warning("You heal [FT] for [heal_amount] of damage."))
 	parent_action.StartCooldown()
 	return TRUE
