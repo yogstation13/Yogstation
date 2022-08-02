@@ -81,3 +81,28 @@
 	desc = "A clown hardsuit. The joke being that it is anything but."
 	icon_state = "hardsuit_clown"
 	item_state = "hardsuit_clown"
+
+/obj/item/clothing/suit/yogs/megumu
+	name = "Megumu's dress"
+	desc = "Tofu!"
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	icon_state = "megumu_dress"
+	item_state = "megumu_dress"
+
+/obj/item/clothing/neck/yogs/megumu
+	name = "Megumu's Cape"
+	desc = "Tofu!"
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/neck/neck.dmi'
+	icon = 'yogstation/icons/obj/clothing/neck.dmi'
+	icon_state = "megumu_cape"
+	item_state = "megumu_cape"
+
+/obj/item/storage/box/megumu
+	name = "Megumu's box"
+	desc = "Contains Tofu"
+
+/obj/item/storage/box/megumu/PopulateContents()
+	. = ..()
+	new /obj/item/clothing/suit/yogs/megumu(src)
+	new /obj/item/clothing/neck/yogs/megumu(src)

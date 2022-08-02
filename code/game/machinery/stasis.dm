@@ -1,4 +1,3 @@
-#define STASIS_TOGGLE_COOLDOWN 50
 /obj/machinery/stasis
 	name = "lifeform stasis unit"
 	desc = "A not so comfortable looking bed with some nozzles at the top and bottom. It will keep someone in stasis."
@@ -15,22 +14,67 @@
 	var/stasis_enabled = TRUE
 	var/last_stasis_sound = FALSE
 	var/stasis_can_toggle = 0
+	var/stasis_cooldown = 5 SECONDS
+
+	// Life tickrate is processed as follows
+	// if (living.life_tickrate && (tick % living.life_tickrate) == 0) is true, life will tick on that tick
+	// Thus,
+	// 0 life_tickrate is 0% organ decay or 100% stasis
+	// 1 life_tickrate is 100% organ decay or 0% stasis
+	// 1.5 life_tickrate is 66% orcan decay or 33% stasis
+	// 2 life_tickrate is 50% organ decay or 50% stasis
+	// 3 life_tickrate is 33% organ decay or 66% stasis
+	// 4 life_tickrate is 25% organ decay or 75% stasis
+	// 5 life_tickrate is 20% organ decay or 80% stasis
+	var/stasis_part = 1 // Tier part for easy reference
+	var/stasis_amount = 1.5 // How much it adds to life tickrate
+	// T1 = 0.5, 33% stasis
+	// T2 = 1, 50% stasis
+	// T3 = 3, 75% stasis
+	// T4 = -1, 100% stasis
+	
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
-	var/mob/living/carbon/human/patient = null
-	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/stasis/Initialize()
-	. = ..()
-	for(var/direction in GLOB.cardinals)
-		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
-		if(computer)
-			computer.sbed = src
-			break
+/obj/machinery/stasis/RefreshParts()
+	stasis_amount = initial(stasis_amount)
+	stasis_cooldown = initial(stasis_cooldown)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		switch(C.rating)
+			if(1)
+				stasis_amount = 0.5 // 33% stasis
+				stasis_part = 1
+			if(2)
+				stasis_amount = 1 // 50% stasis, equivalent to a holobed
+				stasis_part = 2
+			if(3)
+				stasis_amount = 3 // 75% stasis
+				stasis_part = 3
+			if(4)
+				stasis_amount = -1 // 100% stasis
+				stasis_part = 4
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+		stasis_cooldown *= 1/M.rating // 100%, 50%, 33%, 25%
+	if(occupant)
+		thaw_them(occupant)
+		chill_out(occupant)
+	
+
+/obj/machinery/stasis/ComponentInitialize()
+	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
+	if(panel_open)
+		. += span_notice("[src]'s maintenance hatch is open!")
 	. += span_notice("Alt-click to [stasis_enabled ? "turn off" : "turn on"] the machine.")
+	if(in_range(user, src) || isobserver(user))
+		var/stasis_percent = 33
+		if(stasis_part > 1)
+			stasis_percent = 25*stasis_part
+		. += "<span class='notice'>The status display reads: \n"+\
+		"Stasis efficiency at <b>[stasis_percent]%</b>.\n"+\
+		"[stasis_enabled ? "Shutdown" : "Startup"] will take <b>[stasis_cooldown/10]</b> seconds.</span>"
 	if(obj_flags & EMAGGED)
 		. += span_warning("There's a worrying blue mist surrounding it.")
 
@@ -47,7 +91,7 @@
 /obj/machinery/stasis/AltClick(mob/user)
 	if(world.time >= stasis_can_toggle && user.canUseTopic(src, !issilicon(user)))
 		stasis_enabled = !stasis_enabled
-		stasis_can_toggle = world.time + STASIS_TOGGLE_COOLDOWN
+		stasis_can_toggle = world.time + stasis_cooldown
 		playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 		play_power_sound()
 		update_icon()
@@ -55,7 +99,7 @@
 /obj/machinery/stasis/Exited(atom/movable/AM, atom/newloc)
 	if(AM == occupant)
 		var/mob/living/L = AM
-		if(IS_IN_STASIS(L))
+		if(L.has_status_effect(STATUS_EFFECT_STASIS))
 			thaw_them(L)
 	. = ..()
 
@@ -102,7 +146,7 @@
 		return
 	var/freq = rand(24750, 26550)
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 2, frequency = freq)
-	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, stasis_amount)
 	target.ExtinguishMob()
 	use_power = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
@@ -120,23 +164,12 @@
 	if(stasis_running() && check_nap_violations())
 		chill_out(L)
 	update_icon()
-	check_patient()
-
-/obj/machinery/stasis/proc/check_patient()
-	var/mob/living/carbon/human/M = occupant
-	if(M)
-		patient = M
-		return TRUE
-	else
-		patient = null
-		return FALSE
 
 /obj/machinery/stasis/post_unbuckle_mob(mob/living/L)
 	thaw_them(L)
 	if(L == occupant)
 		occupant = null
 	update_icon()
-	check_patient()
 
 /obj/machinery/stasis/process()
 	if( !( occupant && isliving(occupant) && check_nap_violations() ) )
@@ -144,11 +177,11 @@
 		return
 	var/mob/living/L_occupant = occupant
 	if(stasis_running())
-		if(!IS_IN_STASIS(L_occupant))
+		if(!L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 			chill_out(L_occupant)
 		if(obj_flags & EMAGGED && L_occupant.getStaminaLoss() <= 200)
-			L_occupant.adjustStaminaLoss(5)
-	else if(IS_IN_STASIS(L_occupant))
+			L_occupant.adjustStaminaLoss(5*stasis_part)
+	else if(L_occupant.has_status_effect(STATUS_EFFECT_STASIS))
 		thaw_them(L_occupant)
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
@@ -177,5 +210,3 @@
 		return
 	to_chat(user, span_notice("You override the stasis bed's safeties!"))
 	obj_flags |= EMAGGED
-
-#undef STASIS_TOGGLE_COOLDOWN

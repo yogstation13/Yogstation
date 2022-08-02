@@ -190,7 +190,7 @@
 	var/mob/living/carbon/C = occupant
 	if(C)
 		if(stasis && (C.stat == DEAD || C.health < 0))
-			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, -1)
 		else
 			C.remove_status_effect(STATUS_EFFECT_STASIS)
 		if(obj_flags & EMAGGED)

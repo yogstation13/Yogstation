@@ -2,6 +2,7 @@
 	name = "Ligament Hook"
 	desc = "A surgical procedure which reshapes the connections between torso and limbs, making it so limbs can be attached manually if severed. \
 	However this weakens the connection, making them easier to detach as well."
+	icon_state = "surgery_chest"
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -15,7 +16,9 @@
 /datum/surgery_step/reshape_ligaments
 	name = "reshape ligaments"
 	accept_hand = TRUE
-	time = 125
+	time = 12.5 SECONDS
+	preop_sound = 'sound/surgery/bone1.ogg'
+	success_sound = 'sound/surgery/bone3.ogg'
 
 /datum/surgery_step/reshape_ligaments/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You start reshaping [target]'s ligaments into a hook-like shape."),
