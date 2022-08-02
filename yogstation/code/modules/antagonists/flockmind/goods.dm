@@ -24,3 +24,11 @@
 		to_chat(drone, span_notice("You put [src] in your storage."))
 		qdel(src)
 		return
+
+/obj/item/flockcache/examine(mob/user)
+	. = ..()
+	if(isflockdrone(user) || isflocktrace(user))
+		. = span_swarmer("<span class='bold'>###=-</span> Ident confirmed. data packet received.>")
+		. += span_swarmer("<span class='bold'>ID:</span> [icon2html(src, user)] Resource Cache")
+		. += span_swarmer("<span class='bold'>Resources:</span> [resources]")
+		. += span_swarmer("<span class='bold'>###=-</span>")
