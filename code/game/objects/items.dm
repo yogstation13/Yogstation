@@ -70,6 +70,8 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	var/interaction_flags_item = INTERACT_ITEM_ATTACK_HAND_PICKUP
 
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
+	var/body_parts_partial_covered = 0 //same bit flags as above, only applies half armor to these body parts
+
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -137,6 +139,9 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 	/// Should the cryo console preserve this item
 	var/cryo_preserve = FALSE
+
+	/// Is this item fryable without a syndicate frying pan
+	var/fryable = FALSE
 
 /obj/item/Initialize()
 
