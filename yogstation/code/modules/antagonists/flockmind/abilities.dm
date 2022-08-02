@@ -107,11 +107,12 @@
 	cooldown_time = 10 SECONDS
 
 /datum/action/cooldown/flock/door_open/Trigger()
-	for(var/obj/machinery/door/airlock/A in range(10, get_turf(holder.owner)))
+	var/list/targets = list()
+	for(var/obj/machinery/door/airlock/A in range(10, get_turf(owner)))
 		if(A.canAIControl())
 			targets += A
 	if(length(targets))
-		playsound(owner, "sound/misc/flockmind/flockmind_cast.ogg", 80, 1)
+		playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
 		to_chat(owner, span_notice("You force open all the airlocks around you."))
 		StartCooldown()
 		sleep(1.5 SECONDS)
@@ -120,3 +121,30 @@
 	else
 		to_chat(owner, span_warning("There is no valid airlocks around you."))
 		return
+/datum/action/cooldown/flock/radio_stun
+	name = "Radio Stun Burst"
+	desc = "Overwhelm the radio headsets of everyone nearby. Will not work on broken or non-existent headsets. Ear protection reduce the effect."
+	cooldown = 20 SECONDS
+
+/datum/action/cooldown/flock/radio_stun/Trigger()
+	var/list/targets = list()
+	for(var/mob/living/M in range(10, owner))
+		if(HAS_TRAIT(M, TRAIT_DEAF))
+			continue
+		if(M.stat == DEAD)
+			continue
+		var/obj/item/radio/headset/H = M.get_item_by_slot(ITEM_SLOT_EARS)
+		if(H && H.on && H.listening)
+			targets += M
+	if(length(targets))
+		playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
+		to_chat(L, span_notice("You transmit the worst static you can weave into the headsets around you."))
+		StartCooldown()
+		for(var/mob/living/L in targets)
+			var/distance = max(0,get_dist(get_turf(owner), get_turf(L)))
+			if(L.soundbang_act(1, 20/max(1,distance), rand(1, 5)))
+				L.Paralyze(max(150/max(1,distance), 60))
+				to_chat(L, span_userdanger("Horrifying static bursts into your headset, disorienting you severely!"))
+				playsound(L, 'sound/effects/radio_sweep[rand(1,5)].ogg', 100, 1)
+	else
+		to_chat(L, span_warning("There is no valid targets around you."))

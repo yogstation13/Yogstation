@@ -71,5 +71,6 @@
 		return TRUE
 	var/heal_amount = FT.heal_ordered_damage(30, list(BRUTE, BURN))
 	to_chat(daddy, span_warning("You heal [FT] for [heal_amount] of damage."))
+	playsound(daddy, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
 	parent_action.StartCooldown()
 	return TRUE
