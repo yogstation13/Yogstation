@@ -1,5 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - bugfix: "fixes american diner tiles not having a proper sprite"
-  - imageadd: "added a new tile sprite for the fixed diner tiles"
