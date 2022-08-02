@@ -131,7 +131,7 @@
 	if(immobilize)
 		apply_effect(immobilize, EFFECT_IMMOBILIZE, blocked)
 	if(irradiate)
-		apply_effect(irradiate, EFFECT_IRRADIATE, blocked)
+		apply_effect(irradiate, EFFECT_IRRADIATE, src.getarmor(null, RAD))
 	if(slur)
 		apply_effect(slur, EFFECT_SLUR, blocked)
 	if(stutter)
