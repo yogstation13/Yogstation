@@ -33,7 +33,7 @@
 		if(3)
 			. += span_notice("The capacitor did well in preventing too much damage. Repair will be manageable.")
 		if(4)
-			. += span_notice("The capacitor did such a good job in perserving the chassis that you could almost call it functional. But it isn't. Repair should be easy though.")
+			. += span_notice("The capacitor did such a good job in preserving the chassis that you could almost call it functional. But it isn't. Repair should be easy though.")
 	if(hint)
 		. += hint
 
