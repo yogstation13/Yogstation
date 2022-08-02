@@ -1,4 +1,6 @@
-
+#define IGNITE_TURF_CHANCE 30
+#define IGNITE_TURF_LOW_POWER 8
+#define IGNITE_TURF_HIGH_POWER 22
 
 /atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return null
@@ -77,6 +79,9 @@
 	if(bypassing)
 		volume = location.air.reaction_results["fire"]*FIRE_GROWTH_RATE
 		temperature = location.air.return_temperature()
+	if(prob(IGNITE_TURF_CHANCE))
+		var/turf/my_turf = loc
+		my_turf.IgniteTurf(rand(IGNITE_TURF_LOW_POWER,IGNITE_TURF_HIGH_POWER))
 	else
 		var/datum/gas_mixture/affected = location.air.remove_ratio(volume/location.air.return_volume())
 		if(affected) //in case volume is 0
@@ -241,3 +246,6 @@
 	light_range = LIGHT_RANGE_FIRE
 
 #undef INSUFFICIENT
+#undef IGNITE_TURF_CHANCE
+#undef IGNITE_TURF_LOW_POWER
+#undef IGNITE_TURF_HIGH_POWER

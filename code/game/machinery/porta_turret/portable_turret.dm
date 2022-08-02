@@ -18,7 +18,7 @@
 	req_access = list(ACCESS_SEC_DOORS)
 	power_channel = EQUIP	//drains power from the EQUIPMENT channel
 
-	var/base_icon_state = "standard"
+	base_icon_state = "standard"
 	var/scan_range = 7
 	var/atom/base = null //for turrets inside other objects
 

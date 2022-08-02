@@ -3,6 +3,7 @@
 	var/light_power = 1 // Intensity of the light.
 	var/light_range = 0 // Range in tiles of the light.
 	var/light_color     // Hexadecimal RGB string representing the colour of the light.
+	var/light_on = TRUE	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
 
 	var/tmp/datum/light_source/light // Our light source. Don't fuck with this directly unless you have a good reason!
 	var/tmp/list/light_sources       // Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
@@ -133,3 +134,41 @@
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = new (src, _color, _range, _power, _duration)
 	return mob_light_obj
 
+/atom/proc/set_light_range(new_range)
+	if(new_range == light_range)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_RANGE, new_range)
+	. = light_range
+	light_range = new_range
+
+
+/atom/proc/set_light_power(new_power)
+	if(new_power == light_power)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_POWER, new_power)
+	. = light_power
+	light_power = new_power
+
+
+/atom/proc/set_light_color(new_color)
+	if(new_color == light_color)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_COLOR, new_color)
+	. = light_color
+	light_color = new_color
+
+
+/atom/proc/set_light_on(new_value)
+	if(new_value == light_on)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_ON, new_value)
+	. = light_on
+	light_on = new_value
+
+
+/atom/proc/set_light_flags(new_value)
+	if(new_value == light_flags)
+		return
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_FLAGS, new_value)
+	. = light_flags
+	light_flags = new_value

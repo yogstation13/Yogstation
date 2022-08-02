@@ -15,6 +15,8 @@
 	var/barefootstep = null
 	var/clawfootstep = null
 	var/heavyfootstep = null
+	/// Reference to the turf fire on the turf
+	var/obj/effect/abstract/turf_fire/turf_fire
 
 /turf/open/ComponentInitialize()
 	. = ..()
@@ -36,6 +38,14 @@
 //direction is direction of travel of air
 /turf/open/zAirOut(direction, turf/source)
 	return (direction == UP)
+
+/turf/open/IgniteTurf(power, fire_color)
+	if(turf_fire)
+		turf_fire.AddPower(power)
+		return
+	if(isgroundlessturf(src))
+		return
+	new /obj/effect/abstract/turf_fire(src, power, fire_color)
 
 /turf/open/indestructible
 	name = "floor"

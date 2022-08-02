@@ -134,6 +134,9 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	//Performs various reactions such as combustion or fusion (LOL)
 	//Returns: 1 if any reaction took place; 0 otherwise
 
+/datum/gas_mixture/proc/adjust_heat(amt)
+	//Adjusts the thermal energy of the gas mixture, rather than having to do the full calculation.
+	//Returns: null
 
 /datum/gas_mixture/proc/__remove()
 /datum/gas_mixture/remove(amount)

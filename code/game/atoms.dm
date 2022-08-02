@@ -46,6 +46,9 @@
 	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
 	var/list/managed_vis_overlays
 
+	///Bitflags to determine lighting-related atom properties.
+	var/light_flags = NONE
+
 	///Proximity monitor associated with this atom
 	var/datum/proximity_monitor/proximity_monitor
 	///Cooldown tick timer for buckle messages
@@ -77,6 +80,9 @@
 	var/chat_color // Last color calculated for the the chatmessage overlays
 
 	var/chat_color_darkened // A luminescence-shifted value of the last color calculated for chatmessage overlays
+
+	///Used for changing icon states for different base sprites. //ported from shiptest because sanity
+	var/base_icon_state
 
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by

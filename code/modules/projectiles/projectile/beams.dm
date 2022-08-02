@@ -111,6 +111,10 @@
 			SSexplosions.med_mov_atom += target
 		else
 			SSexplosions.medturf += target
+	var/turf/targets_turf = target.loc
+	if(!isopenturf(targets_turf))
+		return
+	targets_turf.IgniteTurf(rand(8,22), "blue")
 
 /obj/item/projectile/beam/pulse/shotgun
 	damage = 40
