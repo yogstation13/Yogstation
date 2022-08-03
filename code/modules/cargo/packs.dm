@@ -2698,11 +2698,11 @@
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/misc/jukebox/disco
-	name = "Disco Crate"
-	desc = "It's a jukebox but more lights!!"
+	name = "Radiant Dance Machine Mark IV Crate"
+	desc = "It's a jukebox with more lights."
 	cost = 6000
 	contains = list(/obj/machinery/jukebox/disco)
-	crate_name = "disco crate"
+	crate_name = "radiant dance machine mark IV crate"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/misc/pda
