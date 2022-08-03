@@ -4,9 +4,9 @@
 	damage = 15
 	damage_type = TOX
 	nodamage = FALSE
-	stamina = 60
 	eyeblur = 10
-	knockdown = 10
+	knockdown = 20
+	jitter = 20
 	slur = 5
 
 /obj/item/projectile/energy/bolt/halloween
@@ -14,4 +14,4 @@
 	icon_state = "candy_corn"
 
 /obj/item/projectile/energy/bolt/large
-	damage = 30 //we already deal 60 stamina damage per hit
+	damage = 30
