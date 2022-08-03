@@ -212,7 +212,6 @@ obj/effect/proc_holder/swipe
 		tool_behaviour = TOOL_MINING
 		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/rocksmash)
 		RegisterSignal(user, COMSIG_MOVABLE_BUMP, .proc/rocksmash)
-		mineral_scan_pulse(src, user)
 	else
 		stopmining(user)
 
