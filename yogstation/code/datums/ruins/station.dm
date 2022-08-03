@@ -1118,6 +1118,12 @@
 	suffix = "10x5_ratburger.dmm"
 	name = "Maint ratburger"
 
+///Author: Vaelophis
+/datum/map_template/ruin/station/maint/tenxfive/tank_heaven
+	id = "tank_heaven"
+	suffix = "10x5_tank_heaven.dmm"
+	name = "Maint tank_heaven"
+
 ///The base for the 10x10 rooms.
 /datum/map_template/ruin/station/maint/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/maint/10x10/"
