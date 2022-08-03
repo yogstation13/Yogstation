@@ -1,0 +1,6 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "added a Podbay to Gax"
+  - tweak: "restructured Gax EVA Maints to fit the podbay and a ruin"
+  - bugfix: "adds firelocks and an intercomm to the gax arrival shuttle"
