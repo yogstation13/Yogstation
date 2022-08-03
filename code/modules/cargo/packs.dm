@@ -2697,6 +2697,14 @@
 	crate_name = "jukebox crate"
 	crate_type = /obj/structure/closet/crate/large
 
+/datum/supply_pack/misc/jukebox/disco
+	name = "Disco Crate"
+	desc = "It's a jukebox but more lights!!"
+	cost = 6000
+	contains = list(/obj/machinery/jukebox/disco)
+	crate_name = "disco crate"
+	crate_type = /obj/structure/closet/crate/large
+
 /datum/supply_pack/misc/pda
 	name = "Modular Personal Digital Assistant Crate"
 	desc = "A create containing five modular PDAs, enough for an entire department."
