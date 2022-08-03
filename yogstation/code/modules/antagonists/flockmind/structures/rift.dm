@@ -31,7 +31,7 @@
 		for(var/S in candidate_turfs)
 			if(istype(S, /turf/open/floor/feather))
 				candidate_turfs -= S
-					continue
+				continue
 			if(prob(25))
 					//WE SPAWN A SENTIENEL HERE
 				var/e = "E"
