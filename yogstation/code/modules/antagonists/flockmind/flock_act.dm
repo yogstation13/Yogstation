@@ -69,6 +69,9 @@
 	if(drone.resources < 25)
 		to_chat(drone, span_notice("You don't have enough resources to build a barricade."))
 		return
+	if(locate(/obj/structure/flock_barricade) in src)
+		to_chat(src, span_warning("There is already a barricade here."))
+		return
 	new /obj/structure/flock_barricade (src)
 	drone.change_resources(-25)
 

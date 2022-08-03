@@ -133,18 +133,12 @@
 		convert_random_turf(FALSE)
 	return ..()
 
-/mob/living/simple_animal/hostile/flockdrone/proc/convert_random_turf(var/force = FALSE)
-	for(var/tile in spiral_range_turfs(1, src))
-		var/turf/T = tile
-		if(!T || !isturf(loc))
-			continue
-		if(isflockturf(T))
-			continue
-		if(get_dist(T, src) <= 1)
-			if(prob(25) || force)
-				flock_act(src)
-				if(prob(50))
-					break
+/mob/living/simple_animal/hostile/flockdrone/proc/convert_random_turf()
+	var/turf/T = get_turf(src)
+	if(!T || !istype(T))
+		return
+	if(isflockturf(T))
+		return
 
 /mob/living/simple_animal/hostile/flockdrone/proc/Eat(obj/item/target)
 	var/resource_gain = target.integrate_amount()
@@ -171,7 +165,14 @@
 
 /mob/living/simple_animal/hostile/flockdrone/toggle_move_intent(mob/user)
 	. = ..()
-	to_chat(user, span_notice("You are now able to move through feather walls."))
+
+/mob/living/simple_animal/hostile/flockdrone/update_move_intent_slowdown()
+	if(m_intent == MOVE_INTENT_WALK)
+		to_chat(user, span_notice("You are now able to move through feather walls."))
+		speed = 2
+	else
+		speed = initial(speed)
+	update_simplemob_varspeed()
 
 /mob/living/simple_animal/hostile/flockdrone/Bump(atom/AM)
 	. = ..()
@@ -316,7 +317,7 @@
 			Posses(user)
 			return
 	else if(isflockmind(user))
-		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Nearby Tile", "Nothing")
+		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Tile", "Nothing")
 		switch(order)
 			if("Move")
 				new /datum/flock_command/move (user, src)
@@ -327,8 +328,8 @@
 			if("Repair Self")
 				flock_act(src)
 				to_chat(user, span_notice("You order [src] to attempt to repair itself."))
-			if("Convert Nearby Tile")
-				convert_random_turf(TRUE)
-				to_chat(user, span_notice("You order [src] to attempt to convert a random turf nearby."))
+			if("Convert Tile")
+				convert_random_turf()
+				to_chat(user, span_notice("You order [src] to convert the tile under it."))
 			if("Nothing")
 				return
