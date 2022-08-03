@@ -231,3 +231,11 @@
 /obj/effect/decal/cleanable/insectguts/Destroy(force)
 	GLOB.vomit_spots -= src
 	. = ..()
+
+/obj/effect/decal/cleanable/flockdrone
+	name = "flockdrone remains"
+	desc = "A remains of a flockdrone."
+	icon_state = "flockdronegib1"
+	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
+	blood_state = BLOOD_STATE_OIL
+	bloodiness = BLOOD_AMOUNT_PER_DECAL

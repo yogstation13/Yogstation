@@ -168,8 +168,8 @@
 
 /mob/living/simple_animal/hostile/flockdrone/update_move_intent_slowdown()
 	if(m_intent == MOVE_INTENT_WALK)
-		to_chat(user, span_notice("You are now able to move through feather walls."))
-		speed = 2
+		to_chat(src, span_notice("You are now able to move through feather walls."))
+		speed = initial(speed) + 2
 	else
 		speed = initial(speed)
 	update_simplemob_varspeed()
@@ -235,6 +235,9 @@
 
 /mob/living/simple_animal/hostile/flockdrone/Process_Spacemove()
 	return TRUE
+
+/mob/living/simple_animal/hostile/flockdrone/spawn_gibs()
+	new /obj/effect/gibspawner/flockdrone (drop_location(), src, get_static_viruses())
 
 //////////////////////////////////////////////
 //                                          //

@@ -9,6 +9,7 @@
 
 /obj/structure/destructible/flock/egg/Initialize()
 	. = ..()
+	when_emerge = world.time + hatchin_time
 	addtimer(CALLBACK(src, .proc/hatch), hatchin_time)
 
 /obj/structure/destructible/flock/egg/get_special_description(mob/user)

@@ -3553,6 +3553,7 @@
 #include "yogstation\code\modules\antagonists\flockmind\structures\computing_node.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\egg.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\misc_objects.dm"
+#include "yogstation\code\modules\antagonists\flockmind\structures\rift.dm"
 #include "yogstation\code\modules\antagonists\flockmind\abilities.dm"
 #include "yogstation\code\modules\antagonists\flockmind\compute.dm"
 #include "yogstation\code\modules\antagonists\flockmind\commands.dm"

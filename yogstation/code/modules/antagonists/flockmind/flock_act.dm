@@ -33,13 +33,9 @@
 			return
 		if(QDELETED(src))
 			return
-		if(drone.resources >= drone.max_resources)
-			to_chat(drone, span_warning("You disintegrate [src], but your storage is full!"))
-			gib()
-		else
-			to_chat(drone, span_warning("You sucessfully transform [src] into your resources."))
-			drone.change_resources(maxHealth/2)
-			dust()
+		to_chat(drone, span_warning("You sucessfully transform [src] into your resources."))
+		drone.change_resources(maxHealth/2)
+		gib()
 	else
 		return
 
@@ -54,7 +50,7 @@
 			return
 		drone.change_resources(resources)
 		change_resources(-resources, TRUE)
-		qdel(src)
+		gib()
 		return
 	if(drone.a_intent == INTENT_HELP)
 		if(health >= maxHealth)
