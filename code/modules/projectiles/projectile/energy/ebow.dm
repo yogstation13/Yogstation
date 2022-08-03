@@ -9,6 +9,11 @@
 	jitter = 20
 	slur = 5
 
+/obj/item/projectile/energy/bolt/on_hit(atom/target, blocked = FALSE)
+	if(iscyborg(target))
+		target.emp_act(EMP_LIGHT)
+	. = ..()
+
 /obj/item/projectile/energy/bolt/halloween
 	name = "candy corn"
 	icon_state = "candy_corn"
