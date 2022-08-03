@@ -107,6 +107,7 @@
 	name = "a sliver of a supermatter crystal. Be sure to use the proper safety equipment when extracting the sliver!"
 	targetitem = /obj/item/nuke_core/supermatter_sliver
 	difficulty = 15
+	excludefromjob = list("Cook","Scientist","Chaplain","Assistant","Curator","Network Admin","Medical Doctor","Chemist","Roboticist","Geneticist","Virologist","Paramedic","Psychiatrist","Mining Medic","Quartermaster","Shaft Miner","Cargo Technician","Bartender","Botanist","Janitor","Lawyer","Clerk","Tourist","Artist")
 
 /datum/objective_item/steal/supermatter/New()
 	special_equipment += /obj/item/storage/box/syndie_kit/supermatter
