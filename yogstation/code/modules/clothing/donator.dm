@@ -98,6 +98,20 @@
 	icon_state = "megumu_cape"
 	item_state = "megumu_cape"
 
+/obj/item/clothing/head/soft/fishfear
+	name = "novelty fishing cap"
+	desc = "It's an extra-tall snap-back hat with a picture of a fish, and text that reads: \"Women fear me. Fish fear me. Men turn their eyes away from me as I walk. No beast dares make a sound in my presence. I am alone on this barren Earth.\""
+	mob_overlay_icon = 'icons/mob/clothing/head/fishfear.dmi'
+	worn_x_dimension = 32
+	worn_y_dimension = 64
+	icon_state = "fishfearsoft"
+	soft_type = "fishfear"
+	dog_fashion = /datum/dog_fashion/head/fishfear
+
+/obj/item/clothing/head/soft/fishfear/Initialize()
+	. = ..()
+	AddComponent(/datum/component/fishingbonus,5)
+
 /obj/item/clothing/head/yogs/froghat
 	name = "frog hat"
 	desc = "A strange hat that looks somewhat like a frog?"
