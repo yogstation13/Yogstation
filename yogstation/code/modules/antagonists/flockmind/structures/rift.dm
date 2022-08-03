@@ -28,7 +28,7 @@
 		candidate_turfs += S
 	var/sentinel_count = 2
 	for(var/i in 1 to 10)
-		for(var/S in candidate_turfs)
+		for(var/atom/S in candidate_turfs)
 			if(istype(S, /turf/open/floor/feather))
 				candidate_turfs -= S
 				continue
@@ -40,7 +40,7 @@
 				S.flock_act(null)
 			candidate_turfs -= S
 			break
-	for(var/atom/A in src)
+	for(var/atom/movable/A in src)
 		A.forceMove(get_turf(src))
 	qdel(src)
 
