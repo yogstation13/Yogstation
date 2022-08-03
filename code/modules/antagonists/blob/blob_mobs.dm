@@ -236,8 +236,8 @@
 	icon_dead = "blobbernaut_dead"
 	health = 200
 	maxHealth = 200
-	damage_coeff = list(BRUTE = 0.5, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
-	melee_damage_lower = 20
+	damage_coeff = list(BRUTE = 0.65, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	melee_damage_lower = 15
 	melee_damage_upper = 20
 	obj_damage = 60
 	attacktext = "slams"
@@ -278,7 +278,7 @@
 					H.color = "#000000"
 		if(damagesources)
 			for(var/i in 1 to damagesources)
-				adjustHealth(maxHealth*0.025) //take 2.5% of max health as damage when not near the blob or if the naut has no factory, 5% if both
+				adjustHealth(maxHealth*0.05) //take 2.5% of max health as damage when not near the blob or if the naut has no factory, 5% if both
 			var/image/I = new('icons/mob/blob.dmi', src, "nautdamage", MOB_LAYER+0.01)
 			I.appearance_flags = RESET_COLOR
 			if(overmind)
