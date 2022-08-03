@@ -1567,9 +1567,15 @@
 
 /datum/supply_pack/service/noslipfloor
 	name = "High-traction Floor Tiles"
-	desc = "Make slipping a thing of the past with thirty industrial-grade anti-slip floortiles!"
+	desc = "Make slipping a thing of the past with three hundred and sixty industrial-grade anti-slip floortiles!"
 	cost = 2000
-	contains = list(/obj/item/stack/tile/noslip/thirty)
+	contains = list(/obj/item/stack/tile/noslip/sixty,
+					/obj/item/stack/tile/noslip/sixty,
+					/obj/item/stack/tile/noslip/sixty,
+					/obj/item/stack/tile/noslip/sixty,
+					/obj/item/stack/tile/noslip/sixty,
+					/obj/item/stack/tile/noslip/sixty,
+					/obj/item/stack/tile/noslip/sixty)
 	crate_name = "high-traction floor tiles crate"
 
 /datum/supply_pack/service/janitor

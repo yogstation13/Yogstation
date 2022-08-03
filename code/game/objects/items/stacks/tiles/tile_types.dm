@@ -317,6 +317,9 @@
 /obj/item/stack/tile/noslip/thirty
 	amount = 30
 
+/obj/item/stack/tile/noslip/sixty
+	amount = 60
+
 //Circuit
 /obj/item/stack/tile/circuit
 	name = "blue circuit tile"
