@@ -188,6 +188,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	
 	for(var/obj/effect/landmark/stationroom/limited_spawn/L in landmarks)
 		L.choose_result = EMPTY_SPAWN
+	
+	return choose_result
 
 /obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale
 	template_names = list("AI Whale")
