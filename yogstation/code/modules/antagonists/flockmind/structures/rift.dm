@@ -4,8 +4,6 @@
 	flock_id = "Entry Rift"
 	flock_desc = "The rift through which your Flock will enter this world."
 	max_integrity = 200
-	light_color = "#7BFFFF"
-	light_range = 3
 	var/when_doing_shit
 	var/doing_shit_time = 10 SECONDS
 
@@ -32,10 +30,9 @@
 			if(istype(S, /turf/open/floor/feather))
 				candidate_turfs -= S
 				continue
-			if(prob(25))
-					//WE SPAWN A SENTIENEL HERE
-				var/e = "E"
-				e = "e"
+			if(prob(25) && sentinel_count > 0)
+				new /obj/structure/destructible/flock/sentinel (get_turf(src))
+				sentinel_count--
 			else
 				S.flock_act(null)
 			candidate_turfs -= S
