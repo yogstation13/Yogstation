@@ -96,7 +96,7 @@
 		if(EFFECT_UNCONSCIOUS)
 			Unconscious(effect * hit_percent)
 		if(EFFECT_IRRADIATE)
-			if(!HAS_TRAIT(src, TRAIT_RADIMMUNE))
+			if(!HAS_TRAIT(src, TRAIT_RADIMMUNE)&&!GODMODE)
 				radiation += max(effect * hit_percent, 0)
 		if(EFFECT_SLUR)
 			slurring = max(slurring,(effect * hit_percent))
