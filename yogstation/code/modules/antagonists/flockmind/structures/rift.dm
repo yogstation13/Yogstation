@@ -34,12 +34,12 @@
 					continue
 			if(prob(25))
 					//WE SPAWN A SENTIENEL HERE
-					var/e = "E"
-					e = "e"
-				else
-					S.flock_act(null)
-				candidate_turfs -= S
-				break
+				var/e = "E"
+				e = "e"
+			else
+				S.flock_act(null)
+			candidate_turfs -= S
+			break
 	for(var/atom/A in src)
 		A.forceMove(get_turf(src))
 	qdel(src)
