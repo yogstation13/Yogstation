@@ -229,7 +229,7 @@
 
 /turf/closed/mineral/random/low_chance_air
 	icon_state = "rock_lowchance"
-	mineralChance = 6
+	mineralChance = 8
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/gold = 2, /turf/closed/mineral/titanium = 1,
 		/turf/closed/mineral/silver = 2, /turf/closed/mineral/plasma = 5, /turf/closed/mineral/iron = 40,
