@@ -102,7 +102,7 @@
 				if(controller.id)
 					id = controller.id
 				else if(!id) // Generate New ID if none exists
-					id = rand(1, 25565) // rare enough that ids should never conflict
+					id = getnewid()
 					to_chat(user, span_notice("No ID found. Generating New ID"))
 
 				P.buffer = id
