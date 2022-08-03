@@ -16,7 +16,7 @@
 <h1>Burn Wound <aside>/<a href="datum.html">datum</a>/<a href="datum/wound.html">wound</a>/<a href="datum/wound/burn.html">burn</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L7">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L7">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 7"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -33,60 +33,60 @@
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L19">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L19">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 19"/></a></h3>
         <p>How much damage to our flesh we currently have. Once both this and infestation reach 0, the wound is considered healed</p><h3 id="var/flesh_healing"><aside class="declaration">var </aside>flesh_healing
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L21">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L21">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 21"/></a></h3>
         <p>Our current counter for how much flesh regeneration we have stacked from regenerative mesh/synthflesh/whatever, decrements each tick and lowers flesh_damage</p><h3 id="var/infestation"><aside class="declaration">var </aside>infestation
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L27">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L27">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 27"/></a></h3>
         <p>Our current level of infection</p><h3 id="var/infestation_rate"><aside class="declaration">var </aside>infestation_rate
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L25">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L25">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 25"/></a></h3>
         <p>How quickly infection breeds on this burn if we don't have disinfectant</p><h3 id="var/sanitization"><aside class="declaration">var </aside>sanitization
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L29">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L29">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 29"/></a></h3>
         <p>Our current level of sanitization/anti-infection, from disinfectants/alcohol/UV lights. While positive, totally pauses and slowly reverses infestation effects each tick</p><h3 id="var/strikes_to_lose_limb"><aside class="declaration">var </aside>strikes_to_lose_limb
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L32">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L32">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 32"/></a></h3>
         <p>Once we reach infestation beyond WOUND_INFESTATION_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)</p><h2 id="proc">Proc Details</h2><h3 id="proc/mesh"><aside class="declaration">proc </aside>mesh<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/<a href="obj/item/stack/medical.html">medical</a>/<a href="obj/item/stack/medical/mesh.html">mesh</a>/I, /<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L209">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L209">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 209"/></a></aside>
         </h3>
         <p>if someone is using mesh on our burns</p><h3 id="proc/ointment"><aside class="declaration">proc </aside>ointment<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/<a href="obj/item/stack/medical.html">medical</a>/ointment/I, /<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L191">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L191">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 191"/></a></aside>
         </h3>
         <p>if someone is using ointment on our burns</p><h3 id="proc/uv"><aside class="declaration">proc </aside>uv<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/flashlight/pen/paramedic.html">flashlight/pen/paramedic</a>/I, /<a href="mob.html">mob</a>/user) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/082002d97f8302b0d3f394d0db09102e8e986bd5/code/datums/wounds/burns.dm#L230">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0f2d344a15cccaf38a76571c2539353136a8f347/code/datums/wounds/burns.dm#L230">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;wounds&#x2F;burns.dm 230"/></a></aside>
         </h3>
         <p>Paramedic UV penlights</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/082002d97f8302b0d3f394d0db09102e8e986bd5">082002d</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/0f2d344a15cccaf38a76571c2539353136a8f347">0f2d344</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
