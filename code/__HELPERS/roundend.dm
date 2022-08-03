@@ -443,6 +443,8 @@
 	for(var/datum/department_goal/dg in SSYogs.department_goals)
 		goals[dg.account] += dg.get_result()
 
+	parts += "<br>Money diverted from non-human paychecks by NT: $[GLOB.stolen_paycheck_money]<br>"
+
 	parts += "<br>[span_header("Engineering department goals:")]<br>"
 	parts += goals[ACCOUNT_ENG]
 

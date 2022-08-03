@@ -59,6 +59,8 @@
 
 /datum/bank_account/proc/payday(amt_of_paychecks, free = FALSE)
 	var/money_to_transfer = account_job.paycheck * payday_modifier * amt_of_paychecks
+	var/stolen_money = (1 - payday_modifier) * account_job.paycheck * amt_of_paychecks
+	GLOB.stolen_paycheck_money += stolen_money
 	if(free)
 		adjust_money(money_to_transfer)
 		return TRUE
