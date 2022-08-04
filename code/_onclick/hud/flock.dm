@@ -17,7 +17,7 @@
 	using.screen_loc = ui_movi
 	static_inventory += using
 
-	resources = new /obj/screen/ling/chems()
+	resources = new /obj/screen/flockdrone_resources()
 	infodisplay += resources
 
 /obj/screen/flockdrone_resources
