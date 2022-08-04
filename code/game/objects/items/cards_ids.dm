@@ -209,18 +209,19 @@
 		registered_account.bank_card_talk(span_warning("ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS."), TRUE)
 		return
 
-	var/isbudget = istype(src, /obj/item/card/id/departmental_budget)
-	
-	var/warning_or_not = "How much do you want to withdraw? [isbudget ? "WARNING: BUDGETS WITHDRAW AT 1/100 EFFICIENCY!" : ""] Current Balance: [registered_account.account_balance]"
+	if(istype(src, /obj/item/card/id/departmental_budget))
+		to_chat(user, span_warning("Budgets cannot be withdrawn from!"))
+		return
 
-	var/amount_to_remove =  FLOOR(input(user, warning_or_not, "Withdraw Funds", 5) as num, 1)
+
+	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
 
 	if(!amount_to_remove || amount_to_remove < 0)
 		to_chat(user, span_warning("You're pretty sure that's not how money works."))
 		return
 	if(!alt_click_can_use_id(user))
 		return
-	if(registered_account.adjust_money(isbudget ? -amount_to_remove*100 : -amount_to_remove))
+	if(registered_account.adjust_money(-amount_to_remove))
 		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
 		user.put_in_hands(holochip)
 		to_chat(user, span_notice("You withdraw [amount_to_remove] credits into a holochip."))
