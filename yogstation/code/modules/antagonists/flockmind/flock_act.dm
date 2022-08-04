@@ -110,8 +110,11 @@
 	if(!drone)
 		return
 	if(HAS_TRAIT(src, TRAIT_HUSK))
-		to_chat(drone, span_notice("Not a valid target."))
+		to_chat(drone, span_notice("[src] is to damaged to extract any resources from them."))
 		return
+	if((getBruteLoss()/3 + getFireLoss()/2 + getCloneLoss()) > 200)
+		to_chat(drone, span_notice("[src] is to damaged to extract any resources from them."))
+		return	
 	if(buckled)
 		return
 	to_chat(drone, span_notice("You attempt to encage [src]..."))

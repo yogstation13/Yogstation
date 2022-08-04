@@ -9,7 +9,6 @@
 	density = FALSE
 	can_be_unanchored = FALSE
 	canSmoothWith = null
-	buildstacktype = null
 	flags_1 = NODECONSTRUCT_1
 	var/processing = FALSE
 	var/resources = 0
@@ -74,6 +73,10 @@
 				continue
 			valid_dudes++
 			C.adjustCloneLoss(2)
+			if(prob(20))
+				C.emote("scream")
+			if(prob(25))
+				to_chat(C, span_warning("You feel your body getting taken apart..."))
 			resources += 4
 			if(resources >= 40)
 				new /obj/item/flockcache (get_turf(src), resources)
