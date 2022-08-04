@@ -1995,6 +1995,41 @@
 	taste_description = "bananas"
 	can_synth = TRUE
 
+/datum/reagent/cow_powder
+	name = "Cow Powder"
+	description = "Just add water!"
+	color = "#fffbf1"
+	taste_description = "milk"
+	can_synth = TRUE
+
+/datum/reagent/chicken_powder
+	name = "Chicken Powder"
+	description = "Just add water!"
+	color = "#ffb94f"
+	taste_description = "eggs"
+	can_synth = TRUE
+
+/datum/reagent/sheep_powder
+	name = "Sheep Powder"
+	description = "Just add water!"
+	color = "#ffffff"
+	taste_description = "wool"
+	can_synth = TRUE
+
+/datum/reagent/goat_powder
+	name = "Goat Powder"
+	description = "Just add water!"
+	color = "#8a8782"
+	taste_description = "rage"
+	can_synth = TRUE
+
+/datum/reagent/mouse_powder
+	name = "Mouse Powder"
+	description = "Just add water!"
+	color = "#8a8782"
+	taste_description = "squeaking"
+	can_synth = TRUE
+
 /datum/reagent/cellulose
 	name = "Cellulose Fibers"
 	description = "A crystalline polydextrose polymer, plants swear by this stuff."

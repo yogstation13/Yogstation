@@ -549,6 +549,35 @@
 	id = /datum/reagent/monkey_powder
 	results = list(/datum/reagent/monkey_powder = 3)
 	required_reagents = list(/datum/reagent/consumable/banana = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/chicken_powder
+	name = /datum/reagent/chicken_powder
+	id = /datum/reagent/chicken_powder
+	results = list(/datum/reagent/chicken_powder = 3)
+	required_reagents = list(/datum/reagent/consumable/eggyolk = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/sheep_powder
+	name = /datum/reagent/sheep_powder
+	id = /datum/reagent/sheep_powder
+	results = list(/datum/reagent/sheep_powder = 3)
+	required_reagents = list(/datum/reagent/carpet = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/cow_powder
+	name = /datum/reagent/cow_powder
+	id = /datum/reagent/cow_powder
+	results = list(/datum/reagent/cow_powder = 3)
+	required_reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/goat_powder
+	name = /datum/reagent/goat_powder
+	id = /datum/reagent/goat_powder
+	results = list(/datum/reagent/goat_powder = 3)
+	required_reagents = list(/datum/reagent/toxin/plantbgone = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
 
 /datum/chemical_reaction/monkey
 	name = "monkey"
@@ -568,6 +597,88 @@
 	var/location = get_turf(holder.my_atom)
 	if (location) new /mob/living/simple_animal/hostile/gorilla(location)
 
+/datum/chemical_reaction/chicken
+	name = "chicken"
+	id = "chicken"
+	required_reagents = list(/datum/reagent/chicken_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/chicken/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/chicken(location)
+
+/datum/chemical_reaction/cow
+	name = "cow"
+	id = "cow"
+	required_reagents = list(/datum/reagent/cow_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/cow/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/cow(location)
+
+/datum/chemical_reaction/sheep
+	name = "sheep"
+	id = "sheep"
+	required_reagents = list(/datum/reagent/sheep_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/sheep/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/sheep(location)
+
+/datum/chemical_reaction/mouse
+	name = "mouse"
+	id = "mouse"
+	required_reagents = list(/datum/reagent/mouse_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/mouse/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/mouse(location)
+
+/datum/chemical_reaction/goat
+	name = "goat"
+	id = "goat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/goat/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/retaliate/goat(location)
+
+/datum/chemical_reaction/goat/clown
+	name = "clowngoat"
+	id = "clowngoat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/consumable/laughter = 5)
+
+/datum/chemical_reaction/goat/clown/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/retaliate/goat/clown(location)
+
+/datum/chemical_reaction/goat/chaos //FOR CHAOS!
+	name = "randomgoat"
+	id = "randomgoat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/medicine/strange_reagent = 1, /datum/reagent/toxin/plasma = 5)
+
+/datum/chemical_reaction/goat/chaos/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location)
+		get_random_goat(location)
+
+/datum/chemical_reaction/goat/huge //very hard to make but definitely not harmless
+	name = "hugegoat"
+	id = "hugegoat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/gorilla_powder = 30, /datum/reagent/water = 2)
+
+/datum/chemical_reaction/goat/huge/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/retaliate/goat/huge(location)
+
+/datum/chemical_reaction/goat/colorful //harmless
+	name = "colorgoat"
+	id = "colorgoat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/colorful_reagent = 5)
+
+/datum/chemical_reaction/goat/colorful/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location)
+		get_random_goat_colorful(location)
 
 /datum/chemical_reaction/hair_dye
 	name = /datum/reagent/hair_dye
