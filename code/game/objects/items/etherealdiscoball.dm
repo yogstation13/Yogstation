@@ -71,3 +71,9 @@
 	var/mutable_appearance/base_overlay = mutable_appearance(icon, "ethdisco_base")
 	base_overlay.appearance_flags = RESET_COLOR
 	add_overlay(base_overlay)
+
+/obj/structure/etherealball/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
+	to_chat(user, span_notice("You undeploy the Ethereal Disco Ball."))
+	new /obj/item/etherealballdeployer(user.loc)
+	qdel(src)
