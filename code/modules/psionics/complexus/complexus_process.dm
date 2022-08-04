@@ -80,14 +80,29 @@
 			update_hud = TRUE
 		return
 
+	var/psi_leech = owner.do_psionics_check()
+	if(psi_leech)
+		if(stamina > 10)
+			stamina = max(0, stamina - rand(15,20))
+			to_chat(owner, span_danger("You feel your psi-power leeched away by [psi_leech]..."))
+		else
+			stamina++
+		return
+
+	else if(stamina < max_stamina)
+		if(owner.stat == CONSCIOUS)
+			stamina = min(max_stamina, stamina + rand(1,3))
+		else if(owner.stat == UNCONSCIOUS)
+			stamina = min(max_stamina, stamina + rand(3,5))
+
 	else if(stamina < max_stamina)
 		if(owner?.stat == CONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(1,3))
 		else if(owner?.stat == UNCONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(3,5))
 
-//	if(!owner.nervous_system_failure() && owner.stat == CONSCIOUS && stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
-//		attempt_regeneration()
+	if(owner.stat == CONSCIOUS && stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
+		attempt_regeneration()
 
 	var/next_aura_size = max(0.1,((stamina/max_stamina)*min(3,rating))/5)
 	var/next_aura_alpha = round(((suppressed ? max(0,rating - 2) : rating)/5)*255)

@@ -2,7 +2,7 @@
 	id = PSI_REDACTION
 	name = "Redaction"
 	associated_intent = INTENT_HELP
-	armour_types = list("bio", "rad")
+	armour_types = list(BIO, RAD)
 
 /datum/psionic_power/redaction
 	faculty = PSI_REDACTION
@@ -26,10 +26,10 @@
 	cooldown =        30
 	use_melee =      TRUE
 	min_rank =        PSI_RANK_OPERANT
-	use_description = "Grab a patient, target the chest, then switch to help intent and use the grab on them to perform a check for wounds and damage."
+	use_description = "Grab a patient, target the chest, then switch to help intent and use the grab on them to perform a health scan."
 
 /datum/psionic_power/redaction/skinsight/invoke(var/mob/living/user, var/mob/living/target)
-	if(istype(target) || user.zone_selected != BODY_ZONE_CHEST || target.pulledby != user)
+	if(!istype(target) || user.zone_selected != BODY_ZONE_CHEST || target.pulledby == user)
 		return FALSE
 	. = ..()
 	if(.)
@@ -46,7 +46,7 @@
 	use_description = "Target a patient while on help intent at melee range to mend a variety of maladies, such as bleeding or broken bones. Higher ranks in this faculty allow you to mend a wider range of problems."
 
 /datum/psionic_power/redaction/mend/invoke(var/mob/living/user, var/mob/living/carbon/human/target)
-	if(!istype(user) || !istype(target) || user.zone_selected != BODY_ZONE_CHEST || target.pulledby == user)
+	if(!istype(user) || !istype(target) || target.pulledby != user || user.grab_state >= GRAB_AGGRESSIVE)
 		return FALSE
 	. = ..()
 	if(.)
@@ -96,7 +96,7 @@
 	use_description = "Target a patient while on help intent at melee range to cleanse radiation and genetic damage from a patient."
 
 /datum/psionic_power/redaction/cleanse/invoke(var/mob/living/user, var/mob/living/carbon/human/target)
-	if(!istype(user) || !istype(target))
+	if(!istype(user) || !istype(target) || target.pulledby != user || user.zone_selected != BODY_ZONE_PRECISE_MOUTH)
 		return FALSE
 	. = ..()
 	if(.)
@@ -130,7 +130,7 @@
 	admin_log = FALSE
 
 /datum/psionic_power/revive/invoke(var/mob/living/user, var/mob/living/target)
-	if(!isliving(target) || !istype(target) || user.zone_selected != BODY_ZONE_HEAD || target.pulledby != user)
+	if(!isliving(target) || !istype(target) || user.zone_selected != BODY_ZONE_PRECISE_EYES || target.pulledby != user || user.grab_state < GRAB_AGGRESSIVE)
 		return FALSE
 	. = ..()
 	if(.)

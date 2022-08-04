@@ -163,7 +163,7 @@
 	use_description = "Grab a patient, target the head, then use the grab on them while on disarm intent, in order to perform a deep coercive-redactive probe of their psionic potential."
 
 /datum/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target)
-	if(!istype(target) || user.zone_selected != BODY_ZONE_HEAD || target.pulledby != user)
+	if(!istype(target) || user.zone_selected != BODY_ZONE_HEAD || target.pulledby != user || user == target)
 		return FALSE
 	. = ..()
 	if(.)
@@ -219,7 +219,7 @@
 	use_description = "Target the mouth and click on a creature on disarm intent to psionically send them a message."
 
 /datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_selected != "mouth")
+	if(user.zone_selected != "mouth" || user == target)
 		return FALSE
 	. = ..()
 	if(.)
