@@ -3,6 +3,7 @@
 	desc = "You can see the person inside being rapidly taken apart by fibrous mechanisms."
 	flock_desc = "Spins living matter into resources. Painfully."
 	flock_id = "matter reprocessor"
+	icon_state = "cage"
 	anchored = TRUE
 	can_buckle = TRUE
 	density = FALSE
@@ -38,8 +39,8 @@
 					span_warning("[M.name] breaks free from the cage!"),\
 					span_notice("You break free from the cage!"))
 
-		unbuckle_mob(M)
-		add_fingerprint(user)
+			unbuckle_mob(M)
+			add_fingerprint(user)
 
 /obj/structure/destructible/flock/cage/post_buckle_mob(mob/living/M)
 	M.faction |= "flock" //So drones don't shoot already buckled dudes

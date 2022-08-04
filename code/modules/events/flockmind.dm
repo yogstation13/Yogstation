@@ -27,10 +27,10 @@
 	player_mind.active = TRUE
 
 	var/mob/camera/flocktrace/flockmind/FM = new (pick(GLOB.blobstart))
-	player_mind.transfer_to(FC)
+	player_mind.transfer_to(FM)
 	player_mind.assigned_role = "Flockmind"
 	player_mind.special_role = "Flockmind"
-	spawned_mobs += FC
-	message_admins("[ADMIN_LOOKUPFLW(FC)] has been made into a flockmind by an event.")
-	log_game("[key_name(FC)] was spawned as a flockmind by an event.")
+	spawned_mobs += FM
+	message_admins("[ADMIN_LOOKUPFLW(FM)] has been made into a flockmind by an event.")
+	log_game("[key_name(FM)] was spawned as a flockmind by an event.")
 	return SUCCESSFUL_SPAWN
