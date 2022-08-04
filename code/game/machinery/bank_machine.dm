@@ -52,7 +52,7 @@
 		if(!siphon_request)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			if(D && D.account_balance >= 1)
-				siphon_request = FLOOR(clamp(ui_siphon_request, 1, D.account_balance/100))
+				siphon_request = FLOOR(clamp(ui_siphon_request, 1, D.account_balance/100), 1)
 			else
 				end_syphon()
 				return
