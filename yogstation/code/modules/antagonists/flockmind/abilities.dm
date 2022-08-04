@@ -177,6 +177,6 @@
 	if(!isflocktrace(owner))
 		return
 	var/mob/camera/flocktrace/FT = owner
-	qdel(FC.stored_action)
-	FC.stored_action = null
+	qdel(FT.stored_action)
+	FT.stored_action = null
 	to_chat(owner, span_notice("You cancell your current command."))

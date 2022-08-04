@@ -238,6 +238,8 @@
 /mob/living/simple_animal/hostile/flockdrone/Life()
 	. = ..()
 	update_drone_icon()
+	if(health/maxHealth*100 < 50 && prob(pilot ? 10 : 4))  //Non-sentient flockdudes bleed much more rare
+		new /obj/effect/decal/cleanable/fluid (loc)
 
 /mob/living/simple_animal/hostile/flockdrone/proc/update_drone_icon()
 	var/percentage = health/maxHealth * 100
