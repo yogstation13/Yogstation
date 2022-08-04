@@ -293,7 +293,6 @@
 	convert_opener = "The kudzu welcomes you with open arms, acolyte.<br>Sacrificing plants will give you favor based on their potency and allow you to ascend."
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
-	desired_items = list(/obj/item/reagent_containers/food/snacks/grown/banana)
 	desired_items = list(/obj/item/reagent_containers/food/snacks/grown)
 	rites_list = list(/datum/religion_rites/plantconversion, /datum/religion_rites/photogeist)
 	altar_icon_state = "convertaltar-green"
@@ -373,6 +372,7 @@
 	convert_opener = "The Honkmother welcomes you to her to the party, prankster.<br>Sacrifice bananas to power our pranks and grant you favor."
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
+	desired_items = list(/obj/item/reagent_containers/food/snacks/grown/banana)
 	rites_list = list(/datum/religion_rites/holypie, /datum/religion_rites/honkabot, /datum/religion_rites/bananablessing)
 	altar_icon_state = "convertaltar-red"
 
