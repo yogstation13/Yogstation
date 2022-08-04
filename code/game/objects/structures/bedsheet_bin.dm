@@ -444,12 +444,12 @@ LINEN BINS
 
 	add_fingerprint(user)
 
-/obj/structure/bedsheetbin/do_simple_ranged_interaction(var/mob/user)
+/obj/structure/bedsheetbin/do_simple_ranged_interaction(mob/user)
 	if(amount >= 1)
 		amount--
 
 		var/obj/item/bedsheet/B
-		if(sheets.len > 0)
+		if(sheets.len)
 			B = sheets[sheets.len]
 			sheets.Remove(B)
 

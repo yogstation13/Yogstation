@@ -28,7 +28,7 @@
 	. = ..()
 	verbs += /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate
 
-/obj/item/clothing/head/helmet/space/psi_amp/attack_self(var/mob/user)
+/obj/item/clothing/head/helmet/space/psi_amp/attack_self(mob/user)
 
 	if(operating)
 		return

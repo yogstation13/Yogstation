@@ -35,8 +35,7 @@ PROCESSING_SUBSYSTEM_DEF(psi)
 		var/datum/psionic_power/power = new ptype
 		if(power.faculty)
 			var/datum/psionic_faculty/faculty = get_faculty(power.faculty)
-			if(faculty)
-				faculty.powers |= power
+			faculty?.powers |= power
 
 /datum/controller/subsystem/processing/psi/proc/report_failure(implant)
 	return // TODO

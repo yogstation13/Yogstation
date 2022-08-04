@@ -988,5 +988,5 @@
 	sleep(0.1 SECONDS)
 	animate(I, alpha = 0, transform = matrix(), time = 0.1 SECONDS)
 
-/atom/movable/proc/do_simple_ranged_interaction(var/mob/user)
+/atom/movable/proc/do_simple_ranged_interaction(mob/user)
 	return FALSE

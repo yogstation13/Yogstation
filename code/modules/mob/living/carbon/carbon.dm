@@ -306,7 +306,7 @@
 		changeNext_move(CLICK_CD_BREAKOUT)
 		last_special = world.time + CLICK_CD_BREAKOUT
 		var/buckle_cd = 1 MINUTES
-		if(psi && psi.can_use())
+		if(psi?.can_use())
 			buckle_cd = max(0, buckle_cd - ((10 SECONDS) * psi.get_rank(PSI_PSYCHOKINESIS)))
 
 		if(handcuffed)
@@ -363,7 +363,7 @@
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.breakouttime
 
-	if(psi && psi.can_use())
+	if(psi?.can_use())
 		var/psi_mod = (1 - (psi.get_rank(PSI_PSYCHOKINESIS)*0.2))
 		breakouttime = max(5, breakouttime * psi_mod)
 

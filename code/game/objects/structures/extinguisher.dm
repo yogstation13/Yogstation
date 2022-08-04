@@ -103,7 +103,7 @@
 	else
 		toggle_cabinet(user)
 
-/obj/structure/extinguisher_cabinet/do_simple_ranged_interaction(var/mob/user)
+/obj/structure/extinguisher_cabinet/do_simple_ranged_interaction(mob/user)
 	if(stored_extinguisher)
 		stored_extinguisher.forceMove(loc)
 		stored_extinguisher = null

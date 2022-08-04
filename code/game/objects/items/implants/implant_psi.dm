@@ -38,7 +38,7 @@
 		to_chat(M, span_notice("You feel the chilly shackles around your psionic faculties fade away."))
 	. = ..()
 
-/obj/item/implant/psi_control/proc/update_functionality(var/silent)
+/obj/item/implant/psi_control/proc/update_functionality(silent)
 	var/mob/living/M = imp_in
 	if(silent || !M || !M.psi)
 		return
@@ -66,7 +66,7 @@
 
 	return psi_mode
 
-/obj/item/implant/psi_control/withstand_psi_stress(var/stress, var/atom/source)
+/obj/item/implant/psi_control/withstand_psi_stress(stress, atom/source)
 
 	var/use_psi_mode = get_psi_mode()
 
@@ -75,12 +75,12 @@
 
 	. = 0
 
-	if(stress > 0)
+	if(stress)
 
 		// If we're disrupting psionic attempts at the moment, we might overload.
 		if(disrupts_psionics())
 			var/overload_amount = FLOOR(stress, 10)
-			if(overload_amount > 0)
+			if(overload_amount)
 				overload += overload_amount
 				if(overload >= 100)
 					if(imp_in)

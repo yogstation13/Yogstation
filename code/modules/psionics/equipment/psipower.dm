@@ -5,8 +5,8 @@
 	var/maintain_cost = 3
 	var/mob/living/owner
 
-/obj/item/psychic_power/New(var/mob/living/_owner)
-	owner = _owner
+/obj/item/psychic_power/New(mob/living/L)
+	owner = L
 	if(!istype(owner))
 		qdel(src)
 		return
@@ -20,7 +20,7 @@
 	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
 
-/obj/item/psychic_power/attack_self(var/mob/user)
+/obj/item/psychic_power/attack_self(mob/user)
 	user.playsound_local(soundin = 'sound/effects/psi/power_fail.ogg')
 	user.dropItemToGround(src)
 

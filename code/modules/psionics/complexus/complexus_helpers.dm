@@ -6,26 +6,25 @@
 			qdel(thing)
 		manifested_items = null
 
-/datum/psi_complexus/proc/stunned(var/amount)
+/datum/psi_complexus/proc/stunned(amount)
 	var/old_stun = stun
 	stun = max(stun, amount)
 	if(amount && !old_stun)
-		to_chat(owner, "<span class='danger'>Your concentration has been shattered! You cannot focus your psi power!</span>")
+		to_chat(owner, span_danger("Your concentration has been shattered! You cannot focus your psi power!"))
 		ui.update_icon()
 	cancel()
 
-/datum/psi_complexus/proc/get_armour(var/armourtype)
+/datum/psi_complexus/proc/get_armour(armourtype)
 	if(can_use_passive())
 		last_armor_check = world.time
 		return round(clamp(clamp(4 * rating, 0, 20) * get_rank(SSpsi.armour_faculty_by_type[armourtype]), 0, 100) * (stamina/max_stamina))
-	else
-		last_armor_check = 0
-		return 0
+	last_armor_check = 0
+	return 0
 
-/datum/psi_complexus/proc/get_rank(var/faculty)
+/datum/psi_complexus/proc/get_rank(faculty)
 	return LAZYACCESS(ranks, faculty)
 
-/datum/psi_complexus/proc/set_rank(var/faculty, var/rank, var/defer_update, var/temporary)
+/datum/psi_complexus/proc/set_rank(faculty, rank, defer_update, temporary)
 	if(get_rank(faculty) != rank)
 		LAZYSET(ranks, faculty, rank)
 		if(!temporary)
@@ -33,7 +32,7 @@
 		if(!defer_update)
 			update()
 
-/datum/psi_complexus/proc/set_cooldown(var/value)
+/datum/psi_complexus/proc/set_cooldown(value)
 	next_power_use = world.time + value
 	ui.update_icon()
 
@@ -43,7 +42,7 @@
 /datum/psi_complexus/proc/can_use(var/incapacitation_flags)
 	return (owner.stat == CONSCIOUS &&  !suppressed && !stun && world.time >= next_power_use)
 
-/datum/psi_complexus/proc/spend_power(var/value = 0, var/check_incapacitated)
+/datum/psi_complexus/proc/spend_power(value = 0, check_incapacitated)
 	. = FALSE
 	if(can_use())
 		value = max(1, CEILING(value * cost_modifier, 1))
@@ -68,14 +67,14 @@
 		for(var/image/I in SSpsi.all_aura_images)
 			owner.client.images |= I
 
-/datum/psi_complexus/proc/backblast(var/value)
+/datum/psi_complexus/proc/backblast(value)
 
 	// Can't backblast if you're controlling your power.
 	if(!owner || suppressed)
 		return FALSE
 
 	SEND_SOUND(owner, sound('sound/effects/psi/power_feedback.ogg'))
-	to_chat(owner, "<span class='danger'><font size=3>Wild energistic feedback blasts across your psyche!</font></span>")
+	to_chat(owner, span_danger("<font size=3>Wild energistic feedback blasts across your psyche!</font>"))
 	stunned(value * 2)
 	set_cooldown(value * 100)
 

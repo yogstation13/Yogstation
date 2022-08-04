@@ -6,7 +6,7 @@
 	if(status_flags & GODMODE)
 		visible_message(span_danger("A strange force protects [src], [p_they()] can't be damaged!"), span_userdanger("A strange force protects you!"))
 		return armor
-	if(psi && psi.use_psi_armour && psi.last_armor_check == world.time)
+	if(psi?.use_psi_armour && psi.last_armor_check == world.time)
 		show_message(span_warning("You block the blow with your mind!"))
 		psi.spend_power(10)
 		return 100
