@@ -668,7 +668,6 @@
 	var/goat = get_random_goat()
 	new goat(location)
 
-
 /datum/chemical_reaction/goat/huge //very hard to make but definitely not harmless
 	name = "hugegoat"
 	id = "hugegoat"
