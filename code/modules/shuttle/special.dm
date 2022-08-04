@@ -211,7 +211,7 @@
 	locked = TRUE
 	use_power = FALSE
 	resistance_flags = INDESTRUCTIBLE
-	var/threshold = 500
+	var/threshold = 50
 	var/static/list/approved_passengers = list()
 	var/static/list/check_times = list()
 	var/list/payees = list()
