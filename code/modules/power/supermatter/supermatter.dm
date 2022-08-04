@@ -871,6 +871,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			else
 				to_chat(user, span_notice("You fail to extract a sliver from \The [src]. \the [W] isn't sharp enough anymore!"))
 			return
+	if(istype(W, /obj/item/hemostat/supermatter))
+		to_chat(user, span_boldwarning("[W]'s tongs produce an unhealthy sizzling sound as they come into contact with [src]; it seems you will need to part a sample from [src] with another tool.")
+		return
 	if(istype(W, /obj/item/supermatter_corruptor))
 		if(corruptor_attached)
 			to_chat(user, "A corruptor is already attached!")
