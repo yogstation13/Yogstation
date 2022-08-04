@@ -7,7 +7,6 @@
 	mob_biotypes = MOB_ROBOTIC
 	health = 30
 	maxHealth = 30
-	loot = list(/obj/effect/decal/cleanable/robot_debris)
 	status_flags = CANPUSH
 	icon_state = "drone"
 	icon_living = "drone"
@@ -194,7 +193,7 @@
 			start_pulling(stored_pulling, supress_message = TRUE) 
 
 /mob/living/simple_animal/hostile/flockdrone/proc/change_resources(var/amount, silent = FALSE)
-	if(resources >= max_resources)
+	if(resources >= max_resources && amount > 0)
 		if(!silent )
 			to_chat(src, span_warning("You gain [amount] resources, but your storage is full!"))
 			if(amount > 0)
