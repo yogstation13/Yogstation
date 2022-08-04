@@ -1,0 +1,12 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "Added Chicken & Mouse cubes"
+  - rscadd: "Added Goat, Chicken, Cow, Sheep, and Mouse Powder"
+  - rscadd: "Added Box of Mouse Cubes Felinid Traitor Item"
+  - tweak: "added chicken, cow, and sheep cubes to the biogenerator"
+  - tweak: "animal cubes now should all be one-bite foods"
+  - tweak: "animal cubes now have varied food types"
+  - rscadd: "added unique reactions for goat powder"
+  - rscadd: "added crafting recipes to all animal powders except carp and gorilla"
+  - tweak: "added chicken cubes to the animal cubes box"
