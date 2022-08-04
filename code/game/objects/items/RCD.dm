@@ -750,7 +750,6 @@ RLD
 /obj/item/construction/rcd/borg
 	no_ammo_message = span_warning("Insufficient charge.")
 	desc = "A device used to rapidly build walls and floors."
-	canRturf = TRUE
 	banned_upgrades = RCD_UPGRADE_SILO_LINK
 	var/energyfactor = 72
 
@@ -784,6 +783,7 @@ RLD
 /obj/item/construction/rcd/borg/syndicate
 	icon_state = "ircd"
 	item_state = "ircd"
+	canRturf = TRUE
 	energyfactor = 66
 
 /obj/item/construction/rcd/loaded
