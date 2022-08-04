@@ -6,6 +6,7 @@ GLOBAL_VAR(flock)
 	var/stored_resources = 0
 	var/mob/camera/flocktrace/flockmind/overmind 
 	var/list/computing_datums = list()
+	var/winner = FALSE
 
 /datum/team/flock/New(starting_members)
 	. = ..()

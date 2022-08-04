@@ -87,6 +87,7 @@
 	remove_radio_all(src) //Just to be sure
 	QDEL_NULL(wires)
 	QDEL_NULL(keyslot)
+	GLOB.radios += src
 	return ..()
 
 /obj/item/radio/Initialize()
@@ -100,6 +101,7 @@
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
+	GLOB.radios += src
 
 /obj/item/radio/ComponentInitialize()
 	. = ..()

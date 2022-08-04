@@ -4,6 +4,7 @@
 	flock_id = "Entry Rift"
 	flock_desc = "The rift through which your Flock will enter this world."
 	max_integrity = 200
+	icon_state = "rift"
 	var/when_doing_shit
 	var/doing_shit_time = 10 SECONDS
 

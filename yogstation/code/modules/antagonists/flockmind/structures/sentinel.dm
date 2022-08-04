@@ -4,6 +4,7 @@
 	flock_id = "Sentinel"
 	flock_desc = "A charged pylon, capable of sending disorienting arcs of electricity at enemies."
 	max_integrity = 80
+	icon_state = "sentinel"
 	var/charge_status = FALSE
 	//Charge percentage
 	var/charge = 0
@@ -16,6 +17,10 @@
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
+/obj/structure/destructible/flock/sentinel/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSfastprocess, src)	
+
 /obj/structure/destructible/flock/sentinel/process()
 	var/datum/team/flock/flock = get_flock_team()
 	if(charge < 100)
@@ -23,9 +28,11 @@
 			return 
 		if(compute_provided != online_compute_cost)
 			change_compute_amount(online_compute_cost)
+			icon_state = "sentinel"
 		charge += charge_per_tick
 		return
 	if(compute_provided != 0)
+		icon_state = "sentinelon"
 		change_compute_amount(0)
 	var/list/targets = acquire_nearby_targets()
 	if(!targets.len)
@@ -38,14 +45,14 @@
 	
 /obj/structure/destructible/flock/sentinel/proc/acquire_nearby_targets()
 	. = list()
-	for(var/mob/living/L in viewers(range, src)) //Doesn't attack the blind
-		if(L.stat || L.IsStun() || L.IsParalyzed()) //yogs: changes mobility flag to IsStun so people have to taze themselves to ignore warden attacks
+	for(var/mob/living/L in viewers(range, src))
+		if(L.stat || L.IsStun() || L.IsParalyzed())
 			continue
 		if(isflockdrone(L))
 			continue 
 		else if(isrevenant(L))
 			var/mob/living/simple_animal/revenant/R = L
-			if(R.stasis) //Don't target any revenants that are respawning
+			if(R.stasis)
 				continue
 		else if(!L.mind)
 			continue
