@@ -9,9 +9,10 @@
 	maxHealth = 30
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
 	status_flags = CANPUSH
-	icon_state = "swarmer"
-	icon_living = "swarmer"
-	icon_dead = "swarmer_unactivated"
+	icon_state = "drone"
+	icon_living = "drone"
+	icon_dead = "drone_dead"
+	icon = 'icons/mob/flock_mobs.dmi'
 	icon_gib = null
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	wander = TRUE
@@ -48,9 +49,9 @@
 	search_objects = 1
 	var/resources = 0
 	var/max_resources = 100
-	var/murderer = FALSE
 	var/mob/camera/flocktrace/pilot
 	var/datum/action/cooldown/flock/eject/sus
+
 
 /mob/living/simple_animal/hostile/flockdrone/Initialize()
 	. = ..()
@@ -231,7 +232,48 @@
 	visible_message(span_notice("[user] fixes some damage on [user == src ? "itself" : src]!"), \
 			span_notice("[user == src ? "You fix" : "[user] fixes"] some damage on [user == src ? "yourself" : src]!"))
 	user.change_resources(-10, TRUE)
+	update_drone_icon()
 	repair(user)
+
+/mob/living/simple_animal/hostile/flockdrone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+	. = ..()
+	if(.)
+		update_drone_icon()
+
+/mob/living/simple_animal/hostile/flockdrone/proc/update_drone_icon()
+	var/percentage = health/maxHealth * 100
+	switch(percentage)
+		if(75 to INFINITY)
+			icon_state = "drone"
+		if(50 to 74)
+			icon_state = "drone-d1"
+		if(0 to 50)
+			icon_state = "drone-d2"
+
+/mob/living/simple_animal/hostile/flockdrone/examine(mob/user)
+	. = ..()
+	if(!isflockdrone(user) && !isflocktrace(user))
+		if(stat != DEAD)
+		var/percentage = health/maxHealth * 100
+			switch(percentage)
+				if(75 to INFINITY)
+					.+= span_alert("It looks lightly [pick("dented", "scratched", "beaten", "wobbly")].")
+				if(50 to 74)
+					.+= span_alert("It looks [pick("quite", "pretty", "rather")] [pick("dented", "busted", "messed up", "haggard")].")
+				if(-INFINITY to 50)
+					.+= span_alert("It looks [pick("really", "totally", "very", "all sorts of", "super")] [pick("mangled", "busted", "messed up", "broken", "haggard", "smashed up", "trashed")].")
+	else
+		. = span_swarmer("<span class='bold'>###=-</span> Ident confirmed, data packet received.")
+		. + = span_swarmer("<span class='bold'>ID:</span> [icon2html(src, user)] [pilot ? pilot.name : name]")
+		. + = span_swarmer("<span class='bold'>System Integrity:</span> [health/maxHealth * 100]")
+		if(stat == DEAD)
+			. + = span_swarmer("<span class='bold'>Status:</span> DEAD")
+		else if(pilot && client)
+			. + = span_swarmer("<span class='bold'>Status:</span> SAPIENT")
+		else
+			. + = span_swarmer("<span class='bold'>Status:</span> TORPID")
+		. + = span_swarmer("<span class='bold'>Combat Mode:</span> [a_intent == INTENT_HARM ? "ON" : "OFF"]")
+		. + = span_swarmer("<span class='bold'>###=-</span>")
 
 /mob/living/simple_animal/hostile/flockdrone/Process_Spacemove()
 	return TRUE
