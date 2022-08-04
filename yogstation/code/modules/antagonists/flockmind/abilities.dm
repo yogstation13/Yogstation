@@ -223,3 +223,29 @@
 	to_chat(owner, span_notice("You create the Rift, opening the way to your Flock to this world!"))
 	var/mob/camera/flocktrace/flockmind/FM = owner
 	FM.actually_grant_skills()
+
+/datum/action/cooldown/flock/build
+	name = "Fabricate Structure"
+	desc = "Create an tealprint, that can be finished by flockrones."
+	button_icon_state = "fabstructure"
+	cooldown_time = 20 SECONDS
+
+/datum/action/cooldown/flock/build/Trigger()
+	var/list/buildings = list()
+	var/list/names = list()
+	for(var/datum/construction_datum/CD in subtypes_of(/datum/construction_datum))
+		CD = new
+		buildings[CD.name] = CD
+		names += CD.name
+	var/order = input(user,"What order do you want to build [src]?") in names 
+	if(!order)
+		return
+	var/datum/construction_datum/construction = buildings[order]
+	var/turf/T = get_turf(owner)
+	if(!construction.can_build(T , owner, FALSE))
+		for(var/i in buildings)
+			qdel(i)
+		names = null
+		return
+	construction.build(T)
+	StartCooldown()

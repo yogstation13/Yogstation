@@ -22,6 +22,7 @@
 	. = ..()
 	SSshuttle.registerHostileEnvironment(src)
 	var/datum/team/flock/flock = GLOB.flock
+	flock.relay_builded = TRUE
 	to_chat(flock.overmind, span_alert("You pull together the collective force of your Flock to transmit the Signal. If the Relay is destroyed, you're dead!"))
 	ping_flock("RELAY CONSTRUCTED! DEFEND THE RELAY!!", ghosts = TRUE)
 	sleep(10 SECONDS)

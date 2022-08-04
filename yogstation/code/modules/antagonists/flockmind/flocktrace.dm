@@ -63,6 +63,7 @@
 	var/datum/action/cooldown/flock/door_open/gatecrash
 	var/datum/action/cooldown/flock/radio_stun/radiostun
 	var/datum/action/cooldown/flock/spawn_egg/rift/rift
+	var/datum/action/cooldown/flock/build/build
 
 /mob/camera/flocktrace/flockmind/New()
 	. = ..()
@@ -89,6 +90,8 @@
 	gatecrash.Grant(src)
 	radiostun = new
 	radiostun.Grant(src)
+	build = new
+	build.Grant(src)
 	narrowbeam = new
 	narrowbeam.Grant(src)
 	var/datum/team/flock/flock = get_flock_team(mind)

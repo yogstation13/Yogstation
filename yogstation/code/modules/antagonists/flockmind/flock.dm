@@ -9,6 +9,7 @@ GLOBAL_VAR(flock)
 	var/winner = FALSE
 	var/acting = FALSE
 	var/dead = FALSE
+	var/relay_builded = FALSE
 
 /datum/team/flock/New(starting_members)
 	. = ..()
