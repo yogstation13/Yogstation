@@ -249,12 +249,13 @@
 			icon_state = "drone-d1"
 		if(0 to 50)
 			icon_state = "drone-d2"
+	update_icons()
 
 /mob/living/simple_animal/hostile/flockdrone/examine(mob/user)
 	. = ..()
 	if(!isflockdrone(user) && !isflocktrace(user))
 		if(stat != DEAD)
-		var/percentage = health/maxHealth * 100
+			var/percentage = health/maxHealth * 100
 			switch(percentage)
 				if(75 to INFINITY)
 					.+= span_alert("It looks lightly [pick("dented", "scratched", "beaten", "wobbly")].")
