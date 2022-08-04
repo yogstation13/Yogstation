@@ -5,8 +5,8 @@
 	var/maintain_cost = 3
 	var/mob/living/owner
 
-/obj/item/psychic_power/New(var/mob/living/_owner)
-	owner = _owner
+/obj/item/psychic_power/New(mob/living/L)
+	owner = L
 	if(!istype(owner))
 		qdel(src)
 		return
@@ -20,7 +20,7 @@
 	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
 
-/obj/item/psychic_power/attack_self(var/mob/user)
+/obj/item/psychic_power/attack_self(mob/user)
 	user.playsound_local(soundin = 'sound/effects/psi/power_fail.ogg')
 	user.dropItemToGround(src)
 
@@ -32,7 +32,7 @@
 	if(istype(owner))
 		owner.psi.spend_power(maintain_cost)
 	if(!owner || loc != owner || !(src in owner.held_items))
-		if(istype(loc,/mob/living))
+		if(isliving(loc))
 			var/mob/living/carbon/human/host = loc
 			host.remove_embedded_object(src)
 			host.dropItemToGround(src)

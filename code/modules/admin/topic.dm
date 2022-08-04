@@ -952,7 +952,7 @@
 
 	else if(href_list["remove_psionics"])
 		var/datum/psi_complexus/psi = locate(href_list["remove_psionics"])
-		if(psi && psi.owner && !QDELETED(psi))
+		if(psi?.owner && !QDELETED(psi))
 			to_chat(psi.owner, span_notice("<b>Your psionic powers vanish abruptly, leaving you cold and empty.</b>"))
 			log_admin("[key_name(usr)] removed all psionics from [key_name(psi.owner)].")
 			message_admins(span_adminnotice("[key_name_admin(usr)] removed all psionics from [key_name(psi.owner)]."))

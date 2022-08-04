@@ -1,4 +1,4 @@
-/datum/psi_complexus/proc/update(var/force)
+/datum/psi_complexus/proc/update(force)
 
 	set waitfor = FALSE
 
@@ -71,13 +71,11 @@
 	var/update_hud
 	if(stun)
 		stun--
-		if(stun)
-			if(!suppressed)
-				suppressed = TRUE
-				update_hud = TRUE
+		if(stun && !suppressed)
+			suppressed = TRUE
 		else
 			to_chat(owner, span_notice("You have recovered your mental composure."))
-			update_hud = TRUE
+		update_hud = TRUE
 		return
 
 	var/psi_leech = owner.do_psionics_check()
@@ -95,7 +93,7 @@
 		else if(owner.stat == UNCONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(3,5))
 
-	else if(stamina < max_stamina)
+	if(stamina < max_stamina)
 		if(owner?.stat == CONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(1,3))
 		else if(owner?.stat == UNCONSCIOUS)

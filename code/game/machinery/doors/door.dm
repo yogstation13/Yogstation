@@ -181,7 +181,7 @@
 		return
 	..()
 
-/obj/machinery/door/do_simple_ranged_interaction(var/mob/user)
+/obj/machinery/door/do_simple_ranged_interaction(mob/user)
 	if(!requiresID() || allowed(null))
 		if(density)
 			open()
