@@ -20,17 +20,17 @@
 		if(resources_we_have >= resource_cost)
 			new s_type (get_turf(src))
 			qdel(src)
-			
+
 /obj/structure/destructible/flock/construction/Initialize()
 	. = ..()
 	if(istype(s_type, /obj/structure/destructible/flock/the_relay))
-		var/datum/team/flock/flock = get_flock_team(user.mind)
-		iflock.relay_builded = TRUE
+		var/datum/team/flock/flock = get_flock_team()
+		flock.relay_builded = TRUE
 
 /obj/structure/destructible/flock/construction/Destroy()
 	. = ..()
 	if(istype(s_type, /obj/structure/destructible/flock/the_relay) && resources_we_have >= resource_cost)
-		var/datum/team/flock/flock = get_flock_team(user.mind)
+		var/datum/team/flock/flock = get_flock_team()
 		flock.relay_builded = FALSE
 
 /obj/structure/destructible/flock/construction/get_special_description(mob/user)
@@ -50,7 +50,7 @@
 	var/total = FALSE
 
 /datum/construction_datum/proc/can_build(var/turf/T, mob/user, silent = FALSE)
-	if(istype(!T) || !T)
+	if(!istype(T) || !T)
 		if(!silent)
 			to_chat(user, span_warning("Not a valid location."))
 		return FALSE
@@ -63,7 +63,7 @@
 		if(!silent)
 			to_chat(user, span_warning("Not enough compute."))
 		return FALSE
-	if(!is_station_level(T.z) || !flock.winer)
+	if(!is_station_level(T.z) || !flock.winner)
 		if(!silent)
 			to_chat(user, span_warning("You are not enough powerfull to build on not station z-levels."))
 		return FALSE

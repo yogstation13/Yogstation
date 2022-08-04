@@ -233,7 +233,7 @@
 /datum/action/cooldown/flock/build/Trigger()
 	var/list/buildings = list()
 	var/list/names = list()
-	for(var/datum/construction_datum/CD in subtypes_of(/datum/construction_datum))
+	for(var/datum/construction_datum/CD in subtypesof(/datum/construction_datum))
 		CD = new
 		buildings[CD.name] = CD
 		names += CD.name
