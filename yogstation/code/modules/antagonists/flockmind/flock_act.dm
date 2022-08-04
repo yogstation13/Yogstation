@@ -105,3 +105,18 @@
 		return
 	to_chat(drone, span_notice("You deconstruct [src]."))
 	TerraformTurf(/turf/open/floor/feather)
+
+/mob/living/carbon/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(!drone)
+		return
+	if(HAS_TRAIT(src, TRAIT_HUSK))
+		to_chat(drone, span_notice("Not a valid target."))
+		return
+	if(buckled)
+		return
+	to_chat(drone, span_notice("You attempt to encage [src]..."))
+	if(!do_mob(drone, src, 4 SECONDS))
+		return
+	var/obj/structure/destructible/flock/cage/C = new /obj/structure/destructible/flock/cage (get_turf(src))
+	C.buckle_mob(src, TRUE)
+	return

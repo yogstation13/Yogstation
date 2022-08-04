@@ -3551,6 +3551,7 @@
 #include "yogstation\code\modules\antagonists\darkspawn\darkspawn_upgrades\twin_tendrils.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\_structure.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\buildin.dm"
+#include "yogstation\code\modules\antagonists\flockmind\structures\cage.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\collector.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\computing_node.dm"
 #include "yogstation\code\modules\antagonists\flockmind\structures\egg.dm"

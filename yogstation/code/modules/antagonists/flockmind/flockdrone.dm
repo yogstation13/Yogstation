@@ -336,7 +336,7 @@
 
 /obj/item/projectile/beam/flock
 	name = "flock laser"
-	damage = 15
+	damage = 17
 
 //////////////////////////////////////////////
 //                                          //
