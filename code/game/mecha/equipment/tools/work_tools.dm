@@ -284,7 +284,7 @@
 					chassis.spark_system.start()
 					W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					playsound(W, 'sound/items/deconstruct.ogg', 50, 1)
-				if(target = /turf/closed/wall/r_wall)
+				if(target == /turf/closed/wall/r_wall)
 					energy_drain = 2000
 			else if(isfloorturf(target))
 				energy_drain = 100
