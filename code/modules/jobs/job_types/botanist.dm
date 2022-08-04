@@ -15,7 +15,7 @@
 
 	added_access = list(ACCESS_BAR, ACCESS_KITCHEN)
 	base_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
-	paycheck = PAYCHECK_EASY
+	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BOTANIST
 	minimal_character_age = 22 //Biological understanding of plants and how to manipulate their DNAs and produces relatively "safely". Not just something that comes to you without education
