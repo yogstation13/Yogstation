@@ -660,7 +660,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "hoverboard_red"
 	item_state = "hoverboard_red"
 	board_item_type = /obj/vehicle/ridden/scooter/skateboard/hoverboard
-	custom_premium_price = 2015
+	custom_premium_price = 215
 
 /obj/item/melee/skateboard/hoverboard/admin
 	name = "\improper Board Of Directors"
