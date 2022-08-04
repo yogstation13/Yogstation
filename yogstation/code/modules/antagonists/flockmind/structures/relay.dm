@@ -15,7 +15,6 @@
 	var/col_r = 0.1
 	var/col_g = 0.7
 	var/col_b = 0.6
-	var/datum/light/light
 	var/brightness = 0.5
 	var/shuttle_departure_delayed = FALSE
 
@@ -51,7 +50,7 @@
 
 		for(var/mob/M in GLOB.player_list)
 			if(prob(20))
-				M.playsound(M, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg'), 50, 1))
+				playsound(M, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg'), 50, 1))
 				if(prob(50))
 					to_chat(M, span_italics("the signal will set you free"))
 	if(world.time >= charge_time_length)
@@ -60,7 +59,7 @@
 /obj/structure/destructible/flock/the_relay/proc/play_sound()
 	last_time_sound_played = world.time
 	for(var/mob/M in GLOB.player_list)
-		M.playsound(M, 'sound/ambience/Flock_Reactor.ogg', 50, 1)
+		playsound(M, 'sound/ambience/Flock_Reactor.ogg', 50, 1)
 		to_chat(M, span_bold("You hear something unworldly coming from the <i>[dir2text(get_dir(M, src))]</i>!"))
 
 /obj/structure/destructible/flock/the_relay/proc/convert_turfs()
@@ -78,10 +77,10 @@
 	ping_flock("!!! TRANSMITTING SIGNAL !!!", ghosts = TRUE)
 	visible_message(span_bold("[src] begins sparking wildly! The air is charged with static!"))
 	for(var/mob/M in GLOB.player_list)
-		M.playsound(M, 'sound/misc/flockmind/flock_broadcast_charge.ogg', 60, 1)
+		playsound(M, 'sound/misc/flockmind/flock_broadcast_charge.ogg', 60, 1)
 	sleep(final_charge_time_length)
 	for(var/mob/M in GLOB.player_list)
-		M.playsound(M, 'sound/misc/flockmind/flock_broadcast_kaboom.ogg', 60, 1)
+		playsound(M, 'sound/misc/flockmind/flock_broadcast_kaboom.ogg', 60, 1)
 		M.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
 		M.clear_fullscreen("flash", 30)
 	set_security_level(SEC_LEVEL_DELTA)
@@ -98,7 +97,7 @@
 		if(!istype(R))
 			continue
 		playsound(R.loc, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg'), 70, 1))
-		var/mob/wearer = radio.loc
+		var/mob/wearer = R.loc
 		if(wearer && istype(wearer))
 			to_chat(wearer, span_userdanger("A final scream of horrific static bursts from your radio, destroying it!"))
 			if(wearer.soundbang_act(1, 20, rand(1, 5)))
