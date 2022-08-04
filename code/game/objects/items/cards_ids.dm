@@ -209,21 +209,17 @@
 		registered_account.bank_card_talk(span_warning("ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS."), TRUE)
 		return
 
-	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
-
-	if(!amount_to_remove || amount_to_remove < 0)
-		to_chat(user, span_warning("You're pretty sure that's not how money works."))
-		return
 	if(!alt_click_can_use_id(user))
 		return
-	if(registered_account.adjust_money(-amount_to_remove))
-		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
+	if(registered_account.adjust_money(-1))
+		var/mob/living/simple_animal/mouse/mous = new (user.drop_location())
+		var/obj/item/clothing/mob_holder/holochip = new(get_turf(mous), mous, mous.held_state, mous.held_icon, mous.held_lh, mous.held_rh, mous.worn_layer, mous.mob_size, mous.worn_slot_flags)
 		user.put_in_hands(holochip)
-		to_chat(user, span_notice("You withdraw [amount_to_remove] credits into a holochip."))
+		to_chat(user, span_notice("You withdraw 1 mou$e into a [mous]."))
 		return
 	else
 		var/difference = amount_to_remove - registered_account.account_balance
-		registered_account.bank_card_talk(span_warning("ERROR: The linked account requires [difference] more credit\s to perform that withdrawal."), TRUE)
+		registered_account.bank_card_talk(span_warning("ERROR: The linked account requires 1 more mou$e to perform that withdrawal."), TRUE)
 
 /obj/item/card/id/examine(mob/user)
 	.=..()
@@ -233,11 +229,11 @@
 		. += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
 
 	if(registered_account)
-		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of $[registered_account.account_balance]."
+		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of mou$e[registered_account.account_balance]."
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
-				. += "The [D.account_holder] reports a balance of $[D.account_balance]."
+				. += "The [D.account_holder] reports a balance of mou$e[D.account_balance]."
 		. += span_info("Alt-Click the ID to pull money from the linked account in the form of holochips.")
 		. += span_info("You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.")
 		if(registered_account.account_holder == user.real_name)
