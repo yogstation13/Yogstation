@@ -1,6 +1,7 @@
 /obj/item/flockcache
 	name = "weird cube"
 	desc = "A weird looking cube. Seems to be raw material"
+	icon = 'icons/obj/flockobjects.dmi'
 	icon_state = "cube"
 	var/resources = 10
 

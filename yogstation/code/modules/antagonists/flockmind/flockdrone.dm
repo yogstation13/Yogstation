@@ -43,7 +43,7 @@
 	deathmessage = "explodes with a sharp pop!"
 	light_color = LIGHT_COLOR_CYAN
 	speech_span = SPAN_ROBOT
-	hud_type = /datum/hud/living/swarmer
+	hud_type = /datum/hud/living/flockdrone
 	wanted_objects = list(/obj/item)
 	unwanted_objects = list(/obj/item/disk/nuclear) //We don't want to eat dat fukken disk
 	search_objects = 1
@@ -214,8 +214,8 @@
 	else 
 		if(!silent )
 			to_chat(src, span_notice("You spend [amount] resources."))
-	if(hud_used && istype(hud_used, /datum/hud/living/flock))
-		var/datum/hud/living/flock/flockhud = hud_used
+	if(hud_used && istype(hud_used, /datum/hud/living/flockdrone))
+		var/datum/hud/living/flockdrone/flockhud = hud_used
 		flockhud.resources.update_counter(resources)
 
 /mob/living/simple_animal/hostile/flockdrone/AltClickOn(atom/target)

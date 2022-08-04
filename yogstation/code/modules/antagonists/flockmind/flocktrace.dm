@@ -3,6 +3,11 @@
 	real_name = "Flocktrace"
 	desc = "Something like a digital pilot, capable of controling flockdrones."
 	initial_language_holder = /datum/language_holder/flock
+	icon = 'icons/mob/flock_mobs.dmi'
+	icon_state = "flocktrace"
+	icon_dead = "flocktrace_death"
+	faction = list("flock")
+	hud_type = /datum/hud/flocktrace
 	var/datum/flock_command/stored_action = null
 	var/datum/action/cooldown/flock/enemi/enemy_designate
 	var/datum/action/cooldown/flock/radio_talk/narrowbeam
@@ -22,6 +27,12 @@
 	talkin.Grant(src)
 	enemy_designate = new
 	enemy_designate.Grant(src)
+
+/mob/camera/flocktrace/get_status_tab_items()
+	. = ..()
+	var/datum/team/flock/flock = get_flock_team(mind)
+	. += "Unused Compute: [flock.get_compute(TRUE)]"
+	. += "Total Compute: [flock.get_compute(FALSE)]"
 
 /mob/camera/flocktrace/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if (!message)
@@ -46,6 +57,8 @@
 	name = "Flockmind"
 	real_name = "Flockmind"
 	desc = "The overmind of the flock."
+	icon_state = "flockmind"
+	icon_dead = "flockmind_death"
 	var/datum/action/cooldown/flock/ping/ping
 	var/datum/action/cooldown/flock/flocktrace/partition
 	var/datum/action/cooldown/flock/repair_burst/repair
@@ -80,3 +93,6 @@
 	radiostun.Grant(src)
 	narrowbeam = new
 	narrowbeam.Grant(src)
+	var/datum/team/flock/flock = get_flock_team(mind)
+	flock.active = TRUE
+	flock.update_flock_status(TRUE)

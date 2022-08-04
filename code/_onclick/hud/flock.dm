@@ -1,7 +1,7 @@
-/datum/hud/living/flock
+/datum/hud/living/flockdrone
 	var/obj/screen/flockdrone_resources/resources
 
-/datum/hud/living/flock/New(mob/owner)
+/datum/hud/living/flockdrone/New(mob/owner)
 	. = ..()
 	var/obj/screen/using
 
@@ -27,3 +27,14 @@
 
 /obj/screen/flockdrone_resources/proc/update_counter(value)
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#00ffff'>[round(value,1)]</font></div>"
+
+/datum/hud/flocktrace
+	var/obj/screen/flockdrone_resources/flocktrace/compute
+
+/datum/hud/flocktrace/New(mob/owner)
+	. = ..()
+	compute = new /obj/screen/flockdrone_resources/flocktrace ()
+	infodisplay += compute
+
+/obj/screen/flockdrone_resources/flocktrace
+	name = "compute"

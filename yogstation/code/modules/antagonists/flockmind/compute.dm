@@ -22,6 +22,8 @@
 		return
 	if(new_amount != compute_amount)
 		compute_amount = new_amount
+	var/datum/team/flock/team = get_flock_team()
+	team.update_flock_status(FALSE)
 
 /datum/component/flock_compute/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_CHANGE_COMPUTE)

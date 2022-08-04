@@ -1,8 +1,8 @@
 /turf/closed/wall/feather
 	name = "feather wall"
 	desc = "A strange glovy wall"
-	icon = 'icons/turf/walls/cult_wall.dmi'
-	icon_state = "cult"
+	icon = 'icons/turf/walls/flockwall.dmi'
+	icon_state = "flockwall"
 	canSmoothWith = null
 	smooth = SMOOTH_MORE
 	sheet_type = null
@@ -22,7 +22,8 @@
 /turf/open/floor/feather
 	name = "feather floor"
 	desc = "A strange glovy floor"
-	icon_state = "plating"
+	icon_state = "flockfloor"
+	icon = 'icons/obj/flockobjects.dmi'
 	baseturfs = /turf/open/floor/feather
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
