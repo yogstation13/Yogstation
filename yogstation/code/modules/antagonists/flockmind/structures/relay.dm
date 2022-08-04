@@ -63,8 +63,10 @@
 		to_chat(M, span_bold("You hear something unworldly coming from the <i>[dir2text(get_dir(M, src))]</i>!"))
 
 /obj/structure/destructible/flock/the_relay/proc/convert_turfs()
-	var/list/turfs = circular_range(get_turf(src), conversion_radius)
+	var/list/turfs = orange(src, conversion_radius)
 	for(var/turf/T as anything in turfs)
+		if(!T || !istype(T))
+			continue
 		if(!isflockturf(T))
 			T.flock_act(null)
 
@@ -97,7 +99,7 @@
 		if(!istype(R))
 			continue
 		playsound(R.loc, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg'), 70, 1))
-		var/mob/wearer = R.loc
+		var/mob/living/wearer = R.loc
 		if(wearer && istype(wearer))
 			to_chat(wearer, span_userdanger("A final scream of horrific static bursts from your radio, destroying it!"))
 			if(wearer.soundbang_act(1, 20, rand(1, 5)))
