@@ -1,6 +1,7 @@
 /datum/action/cooldown/flock
 	var/datum/flock_command/action = null
 	var/messg = "Uhh you will do nothing cry about it"
+	icon_icon = 'icons/mob/actions/actions_flock.dmi'
 
 /datum/action/cooldown/flock/Trigger()
 	if(isflocktrace(owner))
@@ -22,6 +23,7 @@
 
 /datum/action/cooldown/flock/talk
 	name = "Message Flock"
+	button_icon_state = "talk"
 
 /datum/action/cooldown/flock/talk/Trigger()
 	var/msg = input(owner,"Message your Flock","Communication","") as null|text
@@ -32,6 +34,7 @@
 /datum/action/cooldown/flock/ping
 	name = "Ping"
 	desc = "Alert all sentient flock members to your location, and order non-sentient flockdrones to move to it."
+	button_icon_state = "ping"
 
 /datum/action/cooldown/flock/ping/Trigger()
 	var/message = "[owner] requests presence of members of the Flock to [get_area(owner)]"
@@ -51,6 +54,7 @@
 /datum/action/cooldown/flock/eject
 	name = "Eject"
 	desc = "Leave your current vessel."
+	button_icon_state = "eject"
 
 /datum/action/cooldown/flock/eject/Trigger()
 	if(!isflockdrone(owner))
@@ -63,11 +67,13 @@
 	name = "Designate Enemy"
 	desc = "Alert your Flock that someone is definitely an enemy of your flock. NPC drones will fire lethal lasers at them regardles of conditions."
 	action = /datum/flock_command/enemy_of_the_flock
+	button_icon_state = "designate_enemy"
 
 /datum/action/cooldown/flock/flocktrace
 	name = "Partition Mind"
 	desc = "Alert your Flock that someone is definitely an enemy. NPC drones will fire lethal lasers at them regardles of conditions."
 	cooldown_time = 60 SECONDS
+	button_icon_state = "awaken_drone"
 	var/waiting = FALSE
 
 /datum/action/cooldown/flock/flocktrace/Trigger()
@@ -104,11 +110,13 @@
 	desc = "Fully heal a drone through acceleration of its repair processes."
 	action = /datum/flock_command/repair
 	cooldown_time = 20 SECONDS
+	button_icon_state = "heal_drone"
 
 /datum/action/cooldown/flock/door_open
 	name = "Gatecrash"
 	desc = "Open any non-bolted and AI controlable airlocks near you."
 	cooldown_time = 10 SECONDS
+	button_icon_state = "open_door"
 
 /datum/action/cooldown/flock/door_open/Trigger()
 	var/list/targets = list()
@@ -128,6 +136,7 @@
 /datum/action/cooldown/flock/radio_stun
 	name = "Radio Stun Burst"
 	desc = "Overwhelm the radio headsets of everyone nearby. Will not work on broken or non-existent headsets. Ear protection reduce the effect."
+	button_icon_state = "radio_stun"
 	cooldown_time = 20 SECONDS
 
 /datum/action/cooldown/flock/radio_stun/Trigger()
@@ -157,3 +166,4 @@
 	name = "Narrowbeam Transmission"
 	desc = "Directly send a transmission to a target's radio headset or a radio device."
 	action = /datum/flock_command/talk
+	button_icon_state = "talk"

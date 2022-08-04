@@ -267,7 +267,7 @@
 		. += span_swarmer("<span class='bold'>ID:</span> [icon2html(src, user)] [pilot ? pilot.name : name]")
 		. += span_swarmer("<span class='bold'>System Integrity:</span> [health/maxHealth * 100]")
 		if(stat == DEAD)
-			. + = span_swarmer("<span class='bold'>Status:</span> DEAD")
+			. += span_swarmer("<span class='bold'>Status:</span> DEAD")
 		else if(pilot && client)
 			. += span_swarmer("<span class='bold'>Status:</span> SAPIENT")
 		else
