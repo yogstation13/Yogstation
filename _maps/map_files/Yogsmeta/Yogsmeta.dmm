@@ -34038,16 +34038,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"bAC" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
 "bAD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -42599,23 +42589,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
-"ccl" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	dir = 8;
-	pixel_y = -28
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/landmark/event_spawn,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
@@ -66985,6 +66958,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kVQ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "kVS" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -68546,6 +68525,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"mfd" = (
+/obj/item/radio/intercom{
+	dir = 8;
+	pixel_y = -28
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/landmark/event_spawn,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "mfl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -114389,8 +114382,8 @@ bZo
 bZo
 chp
 coc
-bAC
-ccl
+kVQ
+mfd
 bZn
 bDk
 bSM
