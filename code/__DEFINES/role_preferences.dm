@@ -95,7 +95,9 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_FUGITIVE,
 	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
 	ROLE_MONSTERHUNTER,
-	ROLE_SINFULDEMON
+	ROLE_SINFULDEMON,
+	ROLE_FLOCKTRACE,
+	ROLE_FLOCKMIND
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
