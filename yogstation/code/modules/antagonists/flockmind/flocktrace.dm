@@ -7,6 +7,13 @@
 	icon_state = "flocktrace"
 	faction = list("flock")
 	hud_type = /datum/hud/flocktrace
+	mouse_opacity = MOUSE_OPACITY_ICON
+	move_on_shuttle = 1
+	see_in_dark = 8
+	invisibility = INVISIBILITY_OBSERVER
+	layer = FLY_LAYER
+
+	pass_flags = PASSBLOB
 	var/datum/antagonist/d_type = /datum/antagonist/flocktrace
 	var/datum/flock_command/stored_action = null
 	var/datum/action/cooldown/flock/enemi/enemy_designate
