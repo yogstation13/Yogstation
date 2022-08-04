@@ -249,7 +249,6 @@
 			icon_state = "drone-d1"
 		if(0 to 50)
 			icon_state = "drone-d2"
-	update_icons()
 
 /mob/living/simple_animal/hostile/flockdrone/examine(mob/user)
 	. = ..()
@@ -265,16 +264,16 @@
 					.+= span_alert("It looks [pick("really", "totally", "very", "all sorts of", "super")] [pick("mangled", "busted", "messed up", "broken", "haggard", "smashed up", "trashed")].")
 	else
 		. = span_swarmer("<span class='bold'>###=-</span> Ident confirmed, data packet received.")
-		. + = span_swarmer("<span class='bold'>ID:</span> [icon2html(src, user)] [pilot ? pilot.name : name]")
-		. + = span_swarmer("<span class='bold'>System Integrity:</span> [health/maxHealth * 100]")
+		. += span_swarmer("<span class='bold'>ID:</span> [icon2html(src, user)] [pilot ? pilot.name : name]")
+		. += span_swarmer("<span class='bold'>System Integrity:</span> [health/maxHealth * 100]")
 		if(stat == DEAD)
 			. + = span_swarmer("<span class='bold'>Status:</span> DEAD")
 		else if(pilot && client)
-			. + = span_swarmer("<span class='bold'>Status:</span> SAPIENT")
+			. += span_swarmer("<span class='bold'>Status:</span> SAPIENT")
 		else
-			. + = span_swarmer("<span class='bold'>Status:</span> TORPID")
-		. + = span_swarmer("<span class='bold'>Combat Mode:</span> [a_intent == INTENT_HARM ? "ON" : "OFF"]")
-		. + = span_swarmer("<span class='bold'>###=-</span>")
+			. += span_swarmer("<span class='bold'>Status:</span> TORPID")
+		. += span_swarmer("<span class='bold'>Combat Mode:</span> [a_intent == INTENT_HARM ? "ON" : "OFF"]")
+		. += span_swarmer("<span class='bold'>###=-</span>")
 
 /mob/living/simple_animal/hostile/flockdrone/Process_Spacemove()
 	return TRUE

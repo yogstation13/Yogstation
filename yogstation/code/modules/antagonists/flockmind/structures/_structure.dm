@@ -8,6 +8,7 @@
 /obj/structure/destructible/flock/Initialize()
 	. = ..()
 	AddComponent(/datum/component/flock_compute, compute_provided)
+	obj_integrity = max_integrity
 
 /obj/structure/destructible/flock/proc/change_compute_amount(new_amount)
 	compute_provided = new_amount
@@ -31,5 +32,10 @@
 /obj/structure/destructible/flock/proc/get_special_description(mob/user)
 	. = span_swarmer("<span class='bold'>ID:</span> [icon2html(src, user)] [flock_id ? flock_id : name]")
 	. += span_swarmer("<span class='bold'>Information:</span> [flock_desc]%")
-	. += span_swarmer("<span class='bold'>System Integrity:</span> [round((obj_integrity/max_integrity)*100)]%")
+	. += span_swarmer("<span class='bold'>System Integrity:</span> [obj_integrity < 0 ? "INTEGRITY FAILURE" : [round(obj_integrity/max_integrity * 100)]"%"]")
 	. += span_swarmer("<span class='bold'>Compute [compute_provided >= 0 ? "Provided" : "Used"]:</span> [abs(compute_provided)]")
+
+/obj/structure/destructible/flock/CanAllowThrough(atom/movable/O)
+	. = ..()
+	if(isflockdrone(O))
+		return TRUE

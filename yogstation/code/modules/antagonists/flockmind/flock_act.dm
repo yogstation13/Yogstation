@@ -65,13 +65,15 @@
 	if(drone.resources < 25)
 		to_chat(drone, span_notice("You don't have enough resources to build a barricade."))
 		return
-	if(locate(/obj/structure/flock_barricade) in src)
+	if(locate(/obj/structure/grille/flock) in src)
 		to_chat(src, span_warning("There is already a barricade here."))
 		return
-	new /obj/structure/flock_barricade (src)
+	new /obj/structure/grille/flock (src)
 	drone.change_resources(-25)
 
-/obj/structure/flock_barricade/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+/obj/structure/grille/flock/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(broken)
+		to_chat(drone, span_warning("[src] Is to damaged to extract any resources!"))
 	to_chat(drone, span_notice("You begin deconstructing [src]..."))
 	if(!do_after(drone, src, 3 SECONDS))
 		return
@@ -81,6 +83,18 @@
 		return
 	to_chat(drone, span_notice("You deconstruct [src]."))
 	drone.change_resources(obj_integrity/2)
+	qdel(src)
+
+/obj/structure/grille/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(drone && istype(drone))
+		if(drone.resources < broken ? 10 : 5)
+			to_chat(drone, span_warning("Not enough resources!"))
+			return
+		drone.change_resources(broken ? 10 : 5)
+	if(!broken)
+		new /obj/structure/grille/flock (loc)
+	else
+		new /obj/structure/grille/flock/broken (loc)
 	qdel(src)
 
 /turf/closed/wall/feather/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
