@@ -72,7 +72,7 @@
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
 		return
-	if(!can_bluespace)
+	if(istype(otherEmag, /obj/item/card/emag/improvised))
 		return
 	if(prob(10))
 		to_chat(user, span_notice("By some ungodly miracle, the emag gains new functionality instead of being destroyed."))
