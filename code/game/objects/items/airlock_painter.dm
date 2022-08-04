@@ -165,6 +165,8 @@
 	var/dir_list = list(1,2,4,8)
 	var/decal_list = list(list("Warning Line","warningline"),
 			list("Warning Line Corner","warninglinecorner"),
+			list("Warning Line U Corner","warn_end"),
+			list("Warning Line Box","warn_box"),
 			list("Caution Label","caution"),
 			list("Directional Arrows","arrows"),
 			list("Stand Clear Label","stand_clear"),
