@@ -369,7 +369,7 @@
 /datum/religion_sect/honkmother
 	name = "The Honkmother"
 	desc = "A sect dedicated to the Honkmother"
-	convert_opener = "The Honkmother welcomes you to her to the party, prankster.<br>Sacrifice bananas to power our pranks and grant you favor."
+	convert_opener = "The Honkmother welcomes you to the party, prankster.<br>Sacrifice bananas to power our pranks and grant you favor."
 	alignment = ALIGNMENT_NEUT
 	max_favor = 10000
 	desired_items = list(/obj/item/reagent_containers/food/snacks/grown/banana)
@@ -382,7 +382,7 @@
 		return
 	var/mob/living/carbon/human/H = blessed
 	var/datum/mind/M = H.mind
-	if(M.assigned_role == "Clown")
+	if(M.assigned_role != "Clown")
 		return
 	var/heal_amt = 10
 	var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
