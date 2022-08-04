@@ -235,10 +235,9 @@
 	update_drone_icon()
 	repair(user)
 
-/mob/living/simple_animal/hostile/flockdrone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/mob/living/simple_animal/hostile/flockdrone/Life()
 	. = ..()
-	if(.)
-		update_drone_icon()
+	update_drone_icon()
 
 /mob/living/simple_animal/hostile/flockdrone/proc/update_drone_icon()
 	var/percentage = health/maxHealth * 100

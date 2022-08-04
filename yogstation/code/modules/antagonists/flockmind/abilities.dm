@@ -167,3 +167,16 @@
 	desc = "Directly send a transmission to a target's radio headset or a radio device."
 	action = /datum/flock_command/talk
 	button_icon_state = "talk"
+
+/datum/action/cooldown/flock/cancell
+	name = "Cancell Comand"
+	desc = "Cancell your current command."
+	button_icon_state = "x"
+
+/datum/action/cooldown/flock/cancell/Trigger()
+	if(!isflocktrace(owner))
+		return
+	var/mob/camera/flocktrace/FT = owner
+	qdel(FC.stored_action)
+	FC.stored_action = null
+	to_chat(owner, span_notice("You cancell your current command."))
