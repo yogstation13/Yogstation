@@ -579,6 +579,13 @@
 	required_reagents = list(/datum/reagent/toxin/plantbgone = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
 	required_temp = 500
 
+/datum/chemical_reaction/mouse_powder
+	name = /datum/reagent/mouse_powder
+	id = /datum/reagent/mouse_powder
+	results = list(/datum/reagent/mouse_powder = 3)
+	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
 /datum/chemical_reaction/monkey
 	name = "monkey"
 	id = "monkey"
