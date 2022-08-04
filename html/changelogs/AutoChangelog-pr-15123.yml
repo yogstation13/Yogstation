@@ -1,0 +1,6 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "Added new donor hat to the list, and to the gift vendor"
+  - tweak: "Donators can now choose a Novelty Fishing Hat as their donator clothing item"
+  - imageadd: "added new sprite for new donor hat"
