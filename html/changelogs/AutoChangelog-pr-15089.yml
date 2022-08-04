@@ -1,6 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Adds drip to the necropolis chest loot pool"
-  - tweak: "Wearing the drip forces mood on"
-  - imageadd: "adds sprites for the drip that are 100% legal and I didn't read the terms and service"
