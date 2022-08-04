@@ -209,14 +209,18 @@
 		registered_account.bank_card_talk(span_warning("ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS."), TRUE)
 		return
 
-	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
+	var/isbudget = istype(src, /obj/item/card/id/departmental_budget)
+	
+	var/warning_or_not = "How much do you want to withdraw? [isbudget ? "WARNING: BUDGETS WITHDRAW AT 1/100 EFFICIENCY!" : ""] Current Balance: [registered_account.account_balance]"
+
+	var/amount_to_remove =  FLOOR(input(user, warning_or_not, "Withdraw Funds", 5) as num, 1)
 
 	if(!amount_to_remove || amount_to_remove < 0)
 		to_chat(user, span_warning("You're pretty sure that's not how money works."))
 		return
 	if(!alt_click_can_use_id(user))
 		return
-	if(registered_account.adjust_money(-amount_to_remove))
+	if(registered_account.adjust_money(isbudget ? -amount_to_remove*100 : -amount_to_remove))
 		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
 		user.put_in_hands(holochip)
 		to_chat(user, span_notice("You withdraw [amount_to_remove] credits into a holochip."))
@@ -731,7 +735,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/departmental_budget
 	name = "departmental card (FUCK)"
-	desc = "Provides access to the departmental budget."
+	desc = "Provides access to the departmental budget. Direct withdrawals are 99% inefficient."
 	var/department_ID = ACCOUNT_CIV
 	var/department_name = ACCOUNT_CIV_NAME
 	registered_age = null
@@ -744,7 +748,7 @@ update_label("John Doe", "Clowny")
 		if(!B.bank_cards.Find(src))
 			B.bank_cards += src
 		name = "departmental card ([department_name])"
-		desc = "Provides access to the [department_name]."
+		desc = "Provides access to the [department_name]. Direct withdrawals are 99% inefficient."
 	SSeconomy.dep_cards += src
 
 /obj/item/card/id/departmental_budget/Destroy()
