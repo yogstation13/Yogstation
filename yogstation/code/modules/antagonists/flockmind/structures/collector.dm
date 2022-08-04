@@ -4,6 +4,7 @@
 	flock_id = "Collector"
 	flock_desc = "Provides compute power based on the number of Flock floor tiles it is connected to."
 	max_integrity = 60
+	icon_state = "compute"
 	var/list/connected_to = list()
 	var/maxrange = 5
 

@@ -177,6 +177,49 @@
 	if(!isflocktrace(owner))
 		return
 	var/mob/camera/flocktrace/FT = owner
+	if(!FT.stored_action)
+		to_chat(owner, span_warning("You don't have any active action."))
+		return
 	qdel(FT.stored_action)
 	FT.stored_action = null
 	to_chat(owner, span_notice("You cancell your current command."))
+
+/datum/action/cooldown/flock/spawn_egg
+	name = "Spawn Egg"
+	desc = "Create an Egg."
+	button_icon_state = "spawn_egg"
+	cooldown_time = 15 SECONDS
+	var/obj/structure/destructible/flock/egg_type = /obj/structure/destructible/flock/egg
+
+/datum/action/cooldown/flock/spawn_egg/Trigger()
+	if(!isflockdrone(owner))
+		return
+	var/mob/living/simple_animal/hostile/flockdrone/FD = owner
+	if(FD.resources < 100)
+		to_chat(owner, span_warning("You need [100 - resources] more resources to do this."))
+		return
+	FD.change_resources(-100, TRUE)
+	new egg_type (FD.loc)
+	to_chat(owner, span_notice("You create an egg."))
+	StartCooldown()
+
+/datum/action/cooldown/flock/spawn_egg/rift
+	name = "Create a Rift"
+	desc = "Create a Rift, bringing your Flock to this world.."
+	cooldown_time = 30 SECONDS
+	egg_type = /obj/structure/destructible/flock/rift
+
+/datum/action/cooldown/flock/spawn_egg/rift/Trigger()
+	if(!isflockmind(owner))
+		return
+	var/turf/T = get_turf(owner)
+	if(!T || !istype(T))
+		to_chat(owner, span_warning("Not a valid location."))
+		return
+	if(!is_station_level(T.z))
+		to_chat(owner, span_warning("The Rift can be spawned only on the station Z-level."))
+		return
+	new egg_type (T)
+	to_chat(owner, span_notice("You create the Rift, opening the way to your Flock to this world!"))
+	var/mob/camera/flocktrace/flockmind/FM = owner
+	FM.actually_grant_skills()

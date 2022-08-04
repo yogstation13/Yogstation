@@ -51,6 +51,7 @@
 	var/max_resources = 100
 	var/mob/camera/flocktrace/pilot
 	var/datum/action/cooldown/flock/eject/sus
+	var/datum/action/cooldown/flock/spawn_egg/egg
 
 
 /mob/living/simple_animal/hostile/flockdrone/Initialize()
@@ -58,6 +59,8 @@
 	new /obj/item/radio/headset/silicon/ai(src)
 	sus = new
 	sus.Grant(src)
+	egg = new
+	egg.Grant(src)
 	AddComponent(/datum/component/flock_compute, 10, TRUE)
 
 /mob/living/simple_animal/hostile/flockdrone/OpenFire(atom/A)
@@ -130,8 +133,12 @@
 		return TRUE
 
 /mob/living/simple_animal/hostile/flockdrone/handle_automated_action()
-	if(resources > 20) //The drone will try to convert tiles around it if not player-controlled.
+	if(resources > 20 && prob(30)) //The drone will try to convert tiles around it if not player-controlled.
 		convert_random_turf(FALSE)
+	if(resources >= 100 && prob(10))
+		egg.Trigger()
+	if(health != maxHealth && isflockturf(loc) && prob(15))
+		repair(src)
 	return ..()
 
 /mob/living/simple_animal/hostile/flockdrone/proc/convert_random_turf()
@@ -362,8 +369,8 @@
 				return
 			Posses(user)
 			return
-	else if(isflockmind(user))
-		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Tile", "Nothing")
+	else if(isflockmind(user) && !pilot)
+		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Tile", "Spawn Egg", "Move/Run", "Nothing")
 		switch(order)
 			if("Move")
 				new /datum/flock_command/move (user, src)
@@ -377,5 +384,11 @@
 			if("Convert Tile")
 				convert_random_turf()
 				to_chat(user, span_notice("You order [src] to convert the tile under it."))
+			if("Spawn Egg")
+				egg.Trigger()
+				to_chat(user, span_notice("You order [src] to attempt to spawn an egg."))
+			if("Move/Run")
+				toggle_move_intent(src)
+				to_chat(user, span_notice("You order [src] to switch is move intent."))
 			if("Nothing")
 				return

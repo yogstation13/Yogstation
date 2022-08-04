@@ -3,6 +3,7 @@
 	desc = "It looks like an... egg"
 	flock_id = "Second-Stage Assembler"
 	flock_desc = "Will soon hatch into a Flockdrone."
+	icon_state = "egg"
 	max_integrity = 30
 	var/when_emerge //Used for examine
 	var/hatchin_time = 6 SECONDS

@@ -20,8 +20,6 @@
 /mob/camera/flocktrace/proc/grant_skills()
 	talkin = new
 	talkin.Grant(src)
-	narrowbeam = new
-	narrowbeam.Grant(src)
 	enemy_designate = new
 	enemy_designate.Grant(src)
 
@@ -53,6 +51,7 @@
 	var/datum/action/cooldown/flock/repair_burst/repair
 	var/datum/action/cooldown/flock/door_open/gatecrash
 	var/datum/action/cooldown/flock/radio_stun/radiostun
+	var/datum/action/cooldown/flock/spawn_egg/rift/rift
 
 /mob/camera/flocktrace/flockmind/New()
 	. = ..()
@@ -60,7 +59,15 @@
 	team.overmind = src
 
 /mob/camera/flocktrace/flockmind/grant_skills()
-	. = ..()
+	rift = new
+	rift.Grant(src)
+
+/mob/camera/flocktrace/flockmind/proc/actually_grant_skills()
+	qdel(rift)
+	talkin = new
+	talkin.Grant(src)
+	enemy_designate = new
+	enemy_designate.Grant(src)
 	ping = new
 	ping.Grant(src)
 	partition = new
@@ -71,3 +78,5 @@
 	gatecrash.Grant(src)
 	radiostun = new
 	radiostun.Grant(src)
+	narrowbeam = new
+	narrowbeam.Grant(src)

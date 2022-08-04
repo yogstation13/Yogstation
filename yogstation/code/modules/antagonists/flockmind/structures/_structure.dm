@@ -1,6 +1,7 @@
 /obj/structure/destructible/flock
 	name = "BIG CHUNGUS BIG CHUNGUS BIG CHUNGUS BIG CHUNGUS BIG CHUNGUS BIG CHUNGUS BIG CHUNGUS "
 	desc = "You shouldn't see this."
+	icon = 'icons/obj/flockobjects.dmi'
 	var/flock_desc = "You STILL shouldn't see this"
 	var/flock_id = "ERROR"
 	var/compute_provided = 0
