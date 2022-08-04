@@ -90,7 +90,7 @@
 		if(!proximity && prox_check) //left in for badmins
 			return
 		emagging = TRUE
-		if(do_after(user, rand(5, 10) SECONDS, src))
+		if(do_after(user, rand(5, 10) SECONDS, target))
 			charges--
 			if (prob(40))
 				to_chat(user, span_notice("[src] emits a puff of smoke, but nothing happens."))
