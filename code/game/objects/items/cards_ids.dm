@@ -97,7 +97,7 @@
 				emagging = FALSE
 				return
 			if (prob(5))
-				var/mob/living/M = loc
+				var/mob/living/M = user
 				M.adjust_fire_stacks(1)
 				M.IgniteMob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
