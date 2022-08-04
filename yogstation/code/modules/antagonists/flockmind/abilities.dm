@@ -196,7 +196,7 @@
 		return
 	var/mob/living/simple_animal/hostile/flockdrone/FD = owner
 	if(FD.resources < 100)
-		to_chat(owner, span_warning("You need [100 - resources] more resources to do this."))
+		to_chat(owner, span_warning("You need [100 - FD.resources] more resources to do this."))
 		return
 	FD.change_resources(-100, TRUE)
 	new egg_type (FD.loc)

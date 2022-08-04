@@ -4,7 +4,7 @@
 	flock_id = "Collector"
 	flock_desc = "Provides compute power based on the number of Flock floor tiles it is connected to."
 	max_integrity = 60
-	icon_state = "compute"
+	icon_state = "collector"
 	var/list/connected_to = list()
 	var/maxrange = 5
 
@@ -29,5 +29,9 @@
 				break
 			distance++
 			connected_to |= floor
-	change_compute_amount(max(0, length(connected_to)*5))
 	addtimer(CALLBACK(src, .proc/update_flocktiles_and_compute), 2 SECONDS)
+	if(connected_to.len)
+		change_compute_amount(max(0, length(connected_to)*5))
+		icon_state = "collectoron"
+	else
+		icon_state = "collector"
