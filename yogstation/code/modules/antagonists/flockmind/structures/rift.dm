@@ -40,6 +40,8 @@
 			break
 	for(var/atom/movable/A in src)
 		A.forceMove(get_turf(src))
+	var/datum/team/flock/flock = get_flock_team(mind)
+	flock.acting = TRUE
 	qdel(src)
 
 /obj/structure/destructible/flock/rift/get_special_description(mob/user)

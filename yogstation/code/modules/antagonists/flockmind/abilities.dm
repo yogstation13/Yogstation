@@ -85,7 +85,7 @@
 		return
 	waiting = TRUE
 	to_chat(owner, span_notice("You attempt to summon a Flocktrace..."))
-	var/list/candidates = pollGhostCandidates("Do you want to play as a flocktrace?", ROLE_FLOCKMEMBER)
+	var/list/candidates = pollGhostCandidates("Do you want to play as a flocktrace?", ROLE_FLOCKTRACE)
 	if(!candidates.len || team.get_compute(TRUE) < 100) //Check again for the amount of compute, in case if it changed while we were polling for ghosts
 		waiting = FALSE
 		to_chat(owner, span_warning("You fail to summon a Flocktrace. Maybe try again later?"))

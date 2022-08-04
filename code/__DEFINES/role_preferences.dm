@@ -53,7 +53,7 @@
 #define ROLE_MONSTERHUNTER		"Monster Hunter"
 #define ROLE_GOLEM				"Golem"
 #define ROLE_SINFULDEMON		"Demon of Sin"
-#define ROLE_FLOCKMEMBER		"Member of The Flock"
+#define ROLE_FLOCKTRACE	        "Flocktrace"
 #define ROLE_FLOCKMIND		    "Flockmind"
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.

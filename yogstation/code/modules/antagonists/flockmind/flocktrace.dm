@@ -98,5 +98,4 @@
 	narrowbeam = new
 	narrowbeam.Grant(src)
 	var/datum/team/flock/flock = get_flock_team(mind)
-	flock.acting = TRUE
 	flock.update_flock_status(TRUE)

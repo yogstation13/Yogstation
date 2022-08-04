@@ -3,7 +3,7 @@
 	roundend_category = "flock"
 	antagpanel_category = "Flock"
 	show_to_ghosts = TRUE
-	job_rank = ROLE_FLOCKMEMBER
+	job_rank = ROLE_FLOCKTRACE	
 
 /datum/antagonist/flocktrace/on_gain()
 	var/datum/objective/flock_objective/FO = new
@@ -26,6 +26,7 @@
 
 /datum/antagonist/flocktrace/flockmind
 	name = "Flockmind"
+	job_rank = ROLE_FLOCKMIND
 
 /datum/antagonist/flocktrace/flockmind/greet()
 	to_chat(owner.current, span_userdanger("You are the Flockmind!"))
