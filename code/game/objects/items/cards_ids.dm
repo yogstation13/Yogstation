@@ -218,7 +218,6 @@
 		to_chat(user, span_notice("You withdraw 1 mou$e into a [mous]."))
 		return
 	else
-		var/difference = amount_to_remove - registered_account.account_balance
 		registered_account.bank_card_talk(span_warning("ERROR: The linked account requires 1 more mou$e to perform that withdrawal."), TRUE)
 
 /obj/item/card/id/examine(mob/user)
