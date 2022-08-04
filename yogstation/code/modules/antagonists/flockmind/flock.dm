@@ -104,4 +104,3 @@ GLOBAL_VAR(flock)
 	for(var/datum/component/flock_compute/FC in computing_datums)
 		if(isliving(FC.parent))
 			qdel(FC.parent)
-	
