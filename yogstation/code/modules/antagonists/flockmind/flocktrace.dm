@@ -5,7 +5,6 @@
 	initial_language_holder = /datum/language_holder/flock
 	icon = 'icons/mob/flock_mobs.dmi'
 	icon_state = "flocktrace"
-	icon_dead = "flocktrace_death"
 	faction = list("flock")
 	hud_type = /datum/hud/flocktrace
 	var/datum/flock_command/stored_action = null
@@ -58,7 +57,6 @@
 	real_name = "Flockmind"
 	desc = "The overmind of the flock."
 	icon_state = "flockmind"
-	icon_dead = "flockmind_death"
 	var/datum/action/cooldown/flock/ping/ping
 	var/datum/action/cooldown/flock/flocktrace/partition
 	var/datum/action/cooldown/flock/repair_burst/repair
@@ -94,5 +92,5 @@
 	narrowbeam = new
 	narrowbeam.Grant(src)
 	var/datum/team/flock/flock = get_flock_team(mind)
-	flock.active = TRUE
+	flock.acting = TRUE
 	flock.update_flock_status(TRUE)

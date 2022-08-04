@@ -93,7 +93,7 @@ GLOBAL_VAR(flock)
 		addtimer(CALLBACK(src, .proc/update_flock_status), 4 SECONDS)
 
 /datum/team/flock/proc/die(from_relay = FALSE)
-	if(winner || !active || dead)
+	if(winner || !acting || dead)
 		return
 	dead = TRUE
 	ping_flock("[from_relay ? "As the relay is destroyed, your Flock exists no more." : "Your flock doesn't have enough compute to exist further!"]")

@@ -213,7 +213,7 @@
 	if(!isflockmind(owner))
 		return
 	var/turf/T = get_turf(owner)
-	if(!T || !istype(T))
+	if(!T || !istype(T) || !isopenturf(T))
 		to_chat(owner, span_warning("Not a valid location."))
 		return
 	if(!is_station_level(T.z))
