@@ -32,7 +32,7 @@
 	if(istype(owner))
 		owner.psi.spend_power(maintain_cost)
 	if(!owner || loc != owner || !(src in owner.held_items))
-		if(istype(loc,/mob/living))
+		if(ishuman(loc))
 			var/mob/living/carbon/human/host = loc
 			host.remove_embedded_object(src)
 			host.dropItemToGround(src)

@@ -11,19 +11,17 @@
 /datum/psionic_power/psychokinesis/psiblade
 	name =            "Psiblade"
 	cost =            10
-	cooldown =        30
+	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Click on or otherwise activate an empty hand while on harm intent to manifest a psychokinetic cutting blade. The power the blade will vary based on your mastery of the faculty."
 	use_manifest = TRUE
 	admin_log = FALSE
 
 /datum/psionic_power/psychokinesis/psiblade/invoke(var/mob/living/user, var/mob/living/target)
-	message_admins("B")
 	if((target && user != target) || user.a_intent != INTENT_HARM)
 		return FALSE
 	. = ..()
 	if(.)
-		message_admins("C")
 		switch(user.psi.get_rank(faculty))
 			if(PSI_RANK_PARAMOUNT)
 				return new /obj/item/psychic_power/psiblade/master/grand/paramount(user, user)
@@ -53,7 +51,7 @@
 /datum/psionic_power/psychokinesis/telekinesis
 	name =            "Telekinesis"
 	cost =            5
-	cooldown =        10
+	cooldown =        1 SECONDS
 	use_ranged =      TRUE
 	use_manifest =    FALSE
 	min_rank =        PSI_RANK_GRANDMASTER

@@ -99,15 +99,16 @@
 		// If all we're doing is logging the incident then just pass back stress without changing it.
 		if(source && source == imp_in)
 			SSpsi.report_violation(src, stress)
-			if(use_psi_mode == PSI_IMPLANT_LOG)
-				return stress
-			else if(use_psi_mode == PSI_IMPLANT_SHOCK)
-				to_chat(imp_in, span_danger("Your psi dampener punishes you with a violent neural shock!"))
-				imp_in.electrocute_act(5, src)
-				if(isliving(imp_in))
-					var/mob/living/M = imp_in
-					if(M.psi) M.psi.stunned(5)
-			else if(use_psi_mode == PSI_IMPLANT_WARN)
-				to_chat(imp_in, span_warning("Your psi dampener primly informs you it has reported this violation."))
+			switch(use_psi_mode)
+				if(PSI_IMPLANT_LOG)
+					return stress
+				if(PSI_IMPLANT_SHOCK)
+					to_chat(imp_in, span_danger("Your psi dampener punishes you with a violent neural shock!"))
+					imp_in.electrocute_act(5, src)
+					if(isliving(imp_in))
+						var/mob/living/M = imp_in
+						if(M.psi) M.psi.stunned(5)
+				if(PSI_IMPLANT_WARN)
+					to_chat(imp_in, span_warning("Your psi dampener primly informs you it has reported this violation."))
 
 // /obj/item/implant/nullglass

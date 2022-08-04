@@ -45,12 +45,12 @@
 		playsound(source, 'sound/creatures/narsie_rises.ogg', 75) //LOUD AS FUCK BOY
 		to_chat(victim, span_danger("A hauntingly familiar sound hisses from \icon[source] \the [source], and your vision flickers!"))
 		victim.psi.backblast(rand(5,15))
-		victim.Paralyze(5)
-		victim.Jitter(100)
+		victim.Paralyze(0.5 SECONDS)
+		victim.Jitter(10 SECONDS)
 	else
 		victim.visible_message(span_danger("[victim] starts having a seizure!"), span_userdanger("An indescribable, brain-tearing sound hisses from \icon[source] \the [source], and you collapse in a seizure!"))
-		victim.Unconscious(200)
-		victim.Jitter(10)
+		victim.Unconscious(20 SECONDS)
+		victim.Jitter(1 SECONDS)
 		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "minispasm", /datum/mood_event/epilepsy)
 		var/new_latencies = rand(2,4)
 		var/list/faculties = list(PSI_COERCION, PSI_REDACTION, PSI_ENERGISTICS, PSI_PSYCHOKINESIS)
@@ -60,7 +60,7 @@
 			victim.set_psi_rank(pick_n_take(faculties), 1)
 			sleep(30)
 		victim.psi.update()
-	sleep(45)
+	sleep(4.5 SECONDS)
 	victim.psi.check_latency_trigger(100, "a psionic scream", redactive = TRUE)
 
 /datum/round_event/minispasm/end()

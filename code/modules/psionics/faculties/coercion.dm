@@ -42,7 +42,7 @@
 /datum/psionic_power/coercion/mindread
 	name =            "Read Mind"
 	cost =            25
-	cooldown =        250 //It should take a WHILE to be able to use this again.
+	cooldown =        25 SECONDS //It should take a WHILE to be able to use this again.
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Target the head on disarm intent at melee range to attempt to read a victim's surface thoughts."
@@ -78,7 +78,7 @@
 /datum/psionic_power/coercion/agony
 	name =          "Agony"
 	cost =          8
-	cooldown =      50
+	cooldown =      5 SECONDS
 	use_melee =     TRUE
 	min_rank =      PSI_RANK_MASTER
 	use_description = "Target the chest or groin on disarm intent to use a melee attack equivalent to a strike from a stun baton."
@@ -127,7 +127,7 @@
 /datum/psionic_power/coercion/mindslave
 	name =          "Mindslave"
 	cost =          28
-	cooldown =      200
+	cooldown =      20 SECONDS
 	use_melee =      TRUE
 	min_rank =      PSI_RANK_PARAMOUNT
 	use_description = "Grab a victim, target the eyes, then use the grab on them while on disarm intent, in order to convert them into a loyal mind-slave. The process takes some time, and failure is punished harshly."
@@ -146,7 +146,7 @@
 		user.visible_message("<span class='danger'><i>\The [user] seizes the head of \the [target] in both hands...</i></span>")
 		to_chat(user, "<span class='warning'>You plunge your mentality into that of \the [target]...</span>")
 		to_chat(target, "<span class='danger'>Your mind is invaded by the presence of \the [user]! They are trying to make you a slave!</span>")
-		if(!do_after(user, target.stat == CONSCIOUS ? 80 : 40, target, 0, 1))
+		if(!do_after(user, target.stat == CONSCIOUS ? 8 SECONDS : 4 SECONDS, target, FALSE))
 			user.psi.backblast(rand(10,25))
 			return TRUE
 		to_chat(user, "<span class='danger'>You sear through \the [target]'s neurons, reshaping as you see fit and leaving them subservient to your will!</span>")
@@ -157,7 +157,7 @@
 /datum/psionic_power/coercion/assay
 	name =            "Assay"
 	cost =            15
-	cooldown =        100
+	cooldown =        10 SECONDS
 	use_melee =      TRUE
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Grab a patient, target the head, then use the grab on them while on disarm intent, in order to perform a deep coercive-redactive probe of their psionic potential."
@@ -170,7 +170,7 @@
 		user.visible_message(span_warning("\The [user] holds the head of \the [target] in both hands..."))
 		to_chat(user, span_notice("You insinuate your mentality into that of \the [target]..."))
 		to_chat(target, span_warning("Your persona is being probed by the psychic lens of \the [user]."))
-		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, 0, 1))
+		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, FALSE))
 			user.psi.backblast(rand(5,10))
 			return TRUE
 		to_chat(user, span_notice("You retreat from \the [target], holding your new knowledge close."))
@@ -181,7 +181,7 @@
 /datum/psionic_power/coercion/focus
 	name =          "Focus"
 	cost =          10
-	cooldown =      80
+	cooldown =      8 SECONDS
 	use_melee =      TRUE
 	min_rank =      PSI_RANK_MASTER
 	use_description = "Grab a patient, target the mouth, then use the grab on them while on disarm intent, in order to cure ailments of the mind."
@@ -194,7 +194,7 @@
 		user.visible_message(span_warning("\The [user] holds the head of \the [target] in both hands..."))
 		to_chat(user, span_notice("You probe \the [target]'s mind for various ailments.."))
 		to_chat(target, span_warning("Your mind is being cleansed of ailments by \the [user]."))
-		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, 0, 1))
+		if(!do_after(user, (target.stat == CONSCIOUS ? 5 SECONDS : 2.5 SECONDS), target, FALSE))
 			user.psi.backblast(rand(5,10))
 			return TRUE
 		to_chat(user, span_warning("You clear \the [target]'s mind of ailments."))
@@ -212,14 +212,14 @@
 /datum/psionic_power/coercion/commune
 	name =           "Commune"
 	cost =           10
-	cooldown =       80
+	cooldown =       8 SECONDS
 	use_melee =      TRUE
 	use_ranged =     TRUE
 	min_rank =       PSI_RANK_OPERANT
 	use_description = "Target the mouth and click on a creature on disarm intent to psionically send them a message."
 
 /datum/psionic_power/coercion/commune/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_selected != "mouth" || user == target)
+	if(user.zone_selected != BODY_ZONE_PRECISE_MOUTH || user == target)
 		return FALSE
 	. = ..()
 	if(.)
@@ -264,7 +264,7 @@
 /datum/psionic_power/coercion/psiping
 	name =           "Psi-ping"
 	cost =           30
-	cooldown =       250
+	cooldown =       25 SECONDS
 	use_melee =      TRUE
 	min_rank =       PSI_RANK_OPERANT
 	use_description = "Click on yourself with an empty hand on disarm intent to detect nearby psionic signatures."
@@ -275,7 +275,7 @@
 	. = ..()
 	if(.)
 		to_chat(user, "<span class='notice'>You take a moment to tune into the local Nlom...</span>")
-		if(!do_after(user, 3 SECONDS))
+		if(!do_after(user, 3 SECONDS, user))
 			return
 		var/list/dirs = list()
 		for(var/mob/living/L in range(20))

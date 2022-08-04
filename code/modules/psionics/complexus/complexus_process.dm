@@ -22,44 +22,41 @@
 	UNSETEMPTY(latencies)
 	var/rank_count = max(1, LAZYLEN(ranks))
 	if(force || last_rating != CEILING(combined_rank/rank_count, 1))
-		if(highest_rank <= 1)
-			if(highest_rank == 0)
-				qdel(src)
+		if(highest_rank <= 1 && highest_rank == 0)
+			qdel(src)
 			return
+		rebuild_power_cache = TRUE
+		SEND_SOUND(owner, 'sound/effects/psi/power_unlock.ogg')
+		rating = CEILING(combined_rank/rank_count, 1)
+		cost_modifier = 1
+		if(rating > 1)
+			cost_modifier -= min(1, max(0.1, (rating-1) / 10))
+		if(!ui)
+			ui = new(owner)
+			owner.client.screen += ui
 		else
-			rebuild_power_cache = TRUE
-			SEND_SOUND(owner, 'sound/effects/psi/power_unlock.ogg')
-			rating = CEILING(combined_rank/rank_count, 1)
-			cost_modifier = 1
-			if(rating > 1)
-				cost_modifier -= min(1, max(0.1, (rating-1) / 10))
-			if(!ui)
-				ui = new(owner)
-				if(owner.client)
-					owner.client.screen += ui
-			else
-				if(owner.client)
-					owner.client.screen |= ui
-			if(!suppressed && owner.client)
-				for(var/thing in SSpsi.all_aura_images)
-					owner.client.images |= thing
+			owner.client.screen |= ui
+		if(!suppressed && owner.client)
+			for(var/image/I in SSpsi.all_aura_images)
+				owner.client.images |= I
 
-			var/image/aura_image = get_aura_image()
-			if(rating >= PSI_RANK_PARAMOUNT) // spooky boosters
-				aura_color = "#aaffaa"
-				aura_image.blend_mode = BLEND_SUBTRACT
-			else
-				aura_image.blend_mode = BLEND_ADD
-				if(highest_faculty == PSI_COERCION)
+		var/image/aura_image = get_aura_image()
+		if(rating >= PSI_RANK_PARAMOUNT) // spooky boosters
+			aura_color = "#aaffaa"
+			aura_image.blend_mode = BLEND_SUBTRACT
+		else
+			aura_image.blend_mode = BLEND_ADD
+			switch(highest_faculty)
+				if(PSI_COERCION)
 					aura_color = "#cc3333"
-				else if(highest_faculty == PSI_PSYCHOKINESIS)
+				if(PSI_PSYCHOKINESIS)
 					aura_color = "#3333cc"
-				else if(highest_faculty == PSI_REDACTION)
+				if(PSI_REDACTION)
 					aura_color = "#33cc33"
-				else if(highest_faculty == PSI_ENERGISTICS)
+				if(PSI_ENERGISTICS)
 					aura_color = "#cccc33"
 
-	if(!announced && owner && owner.client && !QDELETED(src))
+	if(!announced && owner?.client && !QDELETED(src))
 		announced = TRUE
 		to_chat(owner, "<hr>")
 		to_chat(owner, span_notice("<font size = 3>You are <b>psionic</b>, touched by powers beyond understanding.</font>"))
@@ -128,31 +125,31 @@
 	var/heal_rate =     0
 	var/mend_prob =     0
 
-	var/use_rank = get_rank(PSI_REDACTION)
-	if(use_rank >= PSI_RANK_PARAMOUNT)
-		heal_general = TRUE
-		heal_poison = TRUE
-		heal_internal = TRUE
-//		heal_bleeding = TRUE
-		mend_prob = 50
-		heal_rate = 7
-	else if(use_rank == PSI_RANK_GRANDMASTER)
-		heal_poison = TRUE
-		heal_internal = TRUE
-//		heal_bleeding = TRUE
-		mend_prob = 20
-		heal_rate = 5
-	else if(use_rank == PSI_RANK_MASTER)
-		heal_internal = TRUE
-//		heal_bleeding = TRUE
-		mend_prob = 10
-		heal_rate = 3
-	else if(use_rank == PSI_RANK_OPERANT)
-//		heal_bleeding = TRUE
-		mend_prob = 5
-		heal_rate = 1
-	else
-		return
+	switch(get_rank(PSI_REDACTION))
+		if(PSI_RANK_PARAMOUNT)
+			heal_general = TRUE
+			heal_poison = TRUE
+			heal_internal = TRUE
+	//		heal_bleeding = TRUE
+			mend_prob = 50
+			heal_rate = 7
+		if(PSI_RANK_GRANDMASTER)
+			heal_poison = TRUE
+			heal_internal = TRUE
+	//		heal_bleeding = TRUE
+			mend_prob = 20
+			heal_rate = 5
+		if(PSI_RANK_MASTER)
+			heal_internal = TRUE
+	//		heal_bleeding = TRUE
+			mend_prob = 10
+			heal_rate = 3
+		if(PSI_RANK_OPERANT)
+	//		heal_bleeding = TRUE
+			mend_prob = 5
+			heal_rate = 1
+		else
+			return
 
 	if(!heal_rate || stamina < heal_rate)
 		return // Don't backblast from trying to heal ourselves thanks.

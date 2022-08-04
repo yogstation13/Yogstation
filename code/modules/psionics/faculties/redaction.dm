@@ -23,7 +23,7 @@
 /datum/psionic_power/redaction/skinsight
 	name =            "Skinsight"
 	cost =            3
-	cooldown =        30
+	cooldown =        3 SECONDS
 	use_melee =      TRUE
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Grab a patient, target the chest, then switch to help intent and use the grab on them to perform a health scan."
@@ -40,7 +40,7 @@
 /datum/psionic_power/redaction/mend
 	name =            "Mend"
 	cost =            7
-	cooldown =        50
+	cooldown =        5 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Target a patient while on help intent at melee range to mend a variety of maladies, such as bleeding or broken bones. Higher ranks in this faculty allow you to mend a wider range of problems."
@@ -90,7 +90,7 @@
 /datum/psionic_power/redaction/cleanse
 	name =            "Cleanse"
 	cost =            9
-	cooldown =        60
+	cooldown =        6 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_GRANDMASTER
 	use_description = "Target a patient while on help intent at melee range to cleanse radiation and genetic damage from a patient."
@@ -122,7 +122,7 @@
 /datum/psionic_power/revive
 	name =            "Revive"
 	cost =            25
-	cooldown =        80
+	cooldown =        8 SECONDS
 	use_melee =      TRUE
 	min_rank =        PSI_RANK_PARAMOUNT
 	faculty =         PSI_REDACTION
@@ -145,7 +145,7 @@
 		user.visible_message(span_notice("<i>\The [user] splays out their hands over \the [target]'s body...</i>"))
 		target.notify_ghost_cloning("Your heart is being revived!")
 		target.grab_ghost()
-		if(!do_after(user, 100, target, 0, 1))
+		if(!do_after(user, 10 SECONDS, target, FALSE))
 			user.psi.backblast(rand(10,25))
 			return TRUE
 			

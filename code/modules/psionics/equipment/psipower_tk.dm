@@ -9,14 +9,14 @@
 	. = ..()
 
 /obj/item/psychic_power/telekinesis/process()
-	if(!focus || !istype(focus.loc, /turf) || get_dist(get_turf(focus), get_turf(owner)) > owner.psi.get_rank(PSI_PSYCHOKINESIS))
+	if(!focus || !isturf(focus.loc) || get_dist(get_turf(focus), get_turf(owner)) > owner.psi.get_rank(PSI_PSYCHOKINESIS))
 		owner.dropItemToGround(src)
 		return
 	. = ..()
 
 /obj/item/psychic_power/telekinesis/proc/set_focus(var/atom/movable/_focus)
 
-	if(!istype(_focus.loc, /turf))
+	if(!isturf(_focus.loc))
 		return FALSE
 
 	var/check_paramount
@@ -46,7 +46,7 @@
 	return TRUE
 
 /obj/item/psychic_power/telekinesis/attack_self(var/mob/user)
-	user.visible_message(span_notice("\The [user] makes a strange gesture."))
+	user.visible_message(span_notice("[user] makes a strange gesture."))
 	sparkle()
 	return focus.do_simple_ranged_interaction(user)
 
@@ -66,9 +66,9 @@
 	if(target == focus)
 		attack_self(user)
 	else
-		user.visible_message(span_danger("\The [user] gestures sharply!"))
+		user.visible_message(span_danger("[user] gestures sharply!"))
 		sparkle()
-		if(!istype(target, /turf) && istype(focus,/obj/item) && target.Adjacent(focus))
+		if(!isturf(target) && istype(focus,/obj/item) && target.Adjacent(focus))
 			var/obj/item/I = focus
 			var/resolved = target.attackby(I, user, user.zone_selected)
 			if(!resolved && target && I)

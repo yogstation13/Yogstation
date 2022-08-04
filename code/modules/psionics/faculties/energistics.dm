@@ -10,7 +10,7 @@
 /datum/psionic_power/energistics/disrupt
 	name =            "Disrupt"
 	cost =            10
-	cooldown =        100
+	cooldown =        10 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_MASTER
 	use_description = "Target the head, eyes or mouth while on harm intent to use a melee attack that causes a localized electromagnetic pulse."
@@ -18,7 +18,7 @@
 /datum/psionic_power/energistics/disrupt/invoke(var/mob/living/user, var/mob/living/target)
 	if(user.zone_selected != BODY_ZONE_HEAD && user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_PRECISE_MOUTH)
 		return FALSE
-	if(istype(target, /turf))
+	if(isturf(target))
 		return FALSE
 	. = ..()
 	if(.)
@@ -29,7 +29,7 @@
 /datum/psionic_power/energistics/electrocute
 	name =            "Electrocute"
 	cost =            15
-	cooldown =        25
+	cooldown =        2.5 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_GRANDMASTER
 	use_description = "Target the chest or groin while on harm intent to use a melee attack that electrocutes a victim."
@@ -37,7 +37,7 @@
 /datum/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target)
 	if(user.zone_selected != BODY_ZONE_CHEST && user.zone_selected != BODY_ZONE_PRECISE_GROIN)
 		return FALSE
-	if(istype(target, /turf))
+	if(isturf(target))
 		return FALSE
 	. = ..()
 	if(.)
@@ -54,7 +54,7 @@
 /datum/psionic_power/energistics/zorch
 	name =             "Zorch"
 	cost =             20
-	cooldown =         20
+	cooldown =         2 SECONDS
 	use_ranged =       TRUE
 	min_rank =         PSI_RANK_MASTER
 	use_description = "Use this ranged laser attack while on harm intent. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
@@ -93,7 +93,7 @@
 /datum/psionic_power/energistics/spark
 	name =            "Spark"
 	cost =            1
-	cooldown =        1
+	cooldown =        1 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_OPERANT
 	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."

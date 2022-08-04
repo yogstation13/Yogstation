@@ -9,8 +9,8 @@
 		for(var/faculty in ranks)
 			var/relevant_rank = get_rank(faculty)
 			var/datum/psionic_faculty/faculty_decl = SSpsi.get_faculty(faculty)
-			for(var/thing in faculty_decl.powers)
-				var/datum/psionic_power/power = thing
+			for(var/P in faculty_decl.powers)
+				var/datum/psionic_power/power = P
 				if(relevant_rank >= power.min_rank)
 					LAZYADD(powers_by_faculty[power.faculty], power)
 					if(power.use_ranged)
