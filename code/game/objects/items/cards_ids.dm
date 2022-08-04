@@ -68,12 +68,55 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION | NOBLUDGEON
 	var/prox_check = TRUE //If the emag requires you to be in range
+	var/can_bluespace = TRUE //can this become a bluespace emag?
 
 /obj/item/card/emag/bluespace
 	name = "bluespace cryptographic sequencer"
 	desc = "It's a blue card with a magnetic strip attached to some circuitry. It appears to have some sort of transmitter attached to it."
 	color = rgb(40, 130, 255)
 	prox_check = FALSE
+
+/obj/item/card/emag/improvised
+	name = "improvised cryptographic sequencer"
+	desc = "It's a card with some junk circuitry strapped to it. It doesn't look like it would be reliable or fast due to shoddy construction, and needs to be manually recharged with uranium sheets."
+	icon_state = "emag_shitty"
+	can_bluespace = FALSE //oh god no
+	var/charges = 5 //how many times can we use the emag before needing to reload it?
+	var/max_charges = 5
+	
+/obj/item/card/emag/improvised/afterattack(atom/target, mob/user, proximity)
+	if(charges > 0)
+		if(!proximity && prox_check) //left in for badmins
+			return
+		if(do_after(user, rand(50, 100), src))
+			var/atom/A = target
+			charges--
+			if (prob(40))
+				to_chat(user, span_notice("You fail to use [src] on the [A]!"))
+				return
+			if (prob(5))
+				var/mob/living/M = loc
+				M.adjust_fire_stacks(1)
+				M.IgniteMob()
+				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
+			log_combat(user, A, "attempted to emag")
+			if (!istype(A, /obj/machinery/computer/cargo))
+				A.emag_act(user)
+			else
+				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+
+/obj/item/card/emag/improvised/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if (max_charges > charges)
+		if (istype(W, /obj/item/stack/sheet/mineral/uranium))
+			var/obj/item/stack/sheet/mineral/uranium/T = W
+			T.use(1)
+			charges++
+			to_chat(user, span_notice("You add another charge to the [src]. It now has [charges] uses remaining."))
+
+/obj/item/card/emag/improvised/examine(mob/user)
+	. = ..()
+	. += span_notice("The charge meter indicates that it has [charges] charges remaining out of [max_charges].")
 
 /obj/item/card/emag/attack()
 	return
