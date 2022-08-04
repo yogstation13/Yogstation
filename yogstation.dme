@@ -3561,6 +3561,7 @@
 #include "yogstation\code\modules\antagonists\flockmind\compute.dm"
 #include "yogstation\code\modules\antagonists\flockmind\commands.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flock_act.dm"
+#include "yogstation\code\modules\antagonists\flockmind\flock_antag.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flock.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flockdrone.dm"
 #include "yogstation\code\modules\antagonists\flockmind\flocktrace.dm"

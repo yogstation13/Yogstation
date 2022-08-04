@@ -35,6 +35,9 @@
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 	SSshuttle.clearHostileEnvironment(src)
+	var/datum/team/flock/flock = GLOB.flock
+	if(!flock.winner)
+		flock.die()
 
 /obj/structure/destructible/flock/the_relay/ex_act()
 	return
@@ -77,6 +80,7 @@
 	desc = "Your life is flashing before your eyes. Looks like this is the end."
 	SSvis_overlays.add_vis_overlay(src, icon, "structure-relay-sparks", FLOAT_LAYER, FLOAT_PLANE, dir)
 	var/datum/team/flock/flock = GLOB.flock
+	flock.winner = TRUE
 	ping_flock("!!! TRANSMITTING SIGNAL !!!", ghosts = TRUE)
 	visible_message(span_bold("[src] begins sparking wildly! The air is charged with static!"))
 	for(var/mob/M in GLOB.player_list)
@@ -94,6 +98,7 @@
 	explosion(src, 1, 3, 8, 8)
 	sleep(2 SECONDS)
 	destroy_radios()
+	qdel(src)
 
 /obj/structure/destructible/flock/the_relay/proc/destroy_radios()
 	for(var/obj/item/radio/R in GLOB.radios)  //Yeah it is a global list created only to be used here, cry about it

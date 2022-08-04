@@ -237,7 +237,7 @@
 		CD = new
 		buildings[CD.name] = CD
 		names += CD.name
-	var/order = input(user,"What order do you want to build [src]?") in names 
+	var/order = input(owner,"What order do you want to build [src]?") in names 
 	if(!order)
 		return
 	var/datum/construction_datum/construction = buildings[order]

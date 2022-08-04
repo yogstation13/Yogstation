@@ -7,6 +7,7 @@
 	icon_state = "flocktrace"
 	faction = list("flock")
 	hud_type = /datum/hud/flocktrace
+	var/datum/antagonist/d_type = /datum/antagonist/flocktrace
 	var/datum/flock_command/stored_action = null
 	var/datum/action/cooldown/flock/enemi/enemy_designate
 	var/datum/action/cooldown/flock/radio_talk/narrowbeam
@@ -19,7 +20,8 @@
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 	grant_skills()
 	if(!isflockmind(src))
-		AddComponent(/datum/component/flock_compute, -100, TRUE) 
+		AddComponent(/datum/component/flock_compute, -100, TRUE)
+	mind.add_antag_datum(d_type)
 
 /mob/camera/flocktrace/proc/grant_skills()
 	talkin = new
@@ -57,6 +59,7 @@
 	real_name = "Flockmind"
 	desc = "The overmind of the flock."
 	icon_state = "flockmind"
+	d_type = /datum/antagonist/flocktrace/flockmind
 	var/datum/action/cooldown/flock/ping/ping
 	var/datum/action/cooldown/flock/flocktrace/partition
 	var/datum/action/cooldown/flock/repair_burst/repair
