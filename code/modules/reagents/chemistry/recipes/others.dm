@@ -658,13 +658,14 @@
 
 /datum/chemical_reaction/goat/chaos/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	if (location)
-		get_random_goat(location)
+	var/goat = get_random_goat()
+	new goat(location)
+
 
 /datum/chemical_reaction/goat/huge //very hard to make but definitely not harmless
 	name = "hugegoat"
 	id = "hugegoat"
-	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/gorilla_powder = 30, /datum/reagent/water = 2)
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/gorilla_powder = 30, /datum/reagent/uranium/radium = 2)
 
 /datum/chemical_reaction/goat/huge/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -677,8 +678,8 @@
 
 /datum/chemical_reaction/goat/colorful/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	if (location)
-		get_random_goat_colorful(location)
+	var/goat = get_random_goat_colorful()
+	new goat(location)
 
 /datum/chemical_reaction/hair_dye
 	name = /datum/reagent/hair_dye
