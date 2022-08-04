@@ -1228,7 +1228,7 @@
 /obj/item/storage/box/dishdrive
 	name = "DIY Dish Drive Kit"
 	desc = "Contains everything you need to build your own Dish Drive!"
-	custom_premium_price = 200
+	custom_premium_price = 50
 
 /obj/item/storage/box/dishdrive/PopulateContents()
 	var/static/items_inside = list(

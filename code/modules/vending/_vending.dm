@@ -135,9 +135,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/obj/item/stack/spacecash/bill
 	var/chef_price = 10
 	///Default price of items if not overridden
-	var/default_price = 25
+	var/default_price = 6
 	///Default price of premium items if not overridden
-	var/extra_price = 50
+	var/extra_price = 10
 	///Whether our age check is currently functional
 	var/age_restrictions = TRUE
 	/**
@@ -789,7 +789,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 					return
 				var/datum/bank_account/account = C.registered_account
 				if(account.account_job && account.account_job.paycheck_department == payment_department)
-					price_to_use = 0
+					price_to_use = CEILING(price_to_use * 0.5, 1)
 				if(coin_records.Find(R) || hidden_records.Find(R))
 					price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
 				if(LAZYLEN(R.returned_products))

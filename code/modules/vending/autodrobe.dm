@@ -227,8 +227,8 @@
 		           /obj/item/clothing/head/helmet/justice = 1,
 		           /obj/item/clothing/mask/yogs/richard = 1) //yogs end
 	refill_canister = /obj/item/vending_refill/autodrobe
-	default_price = 50
-	extra_price = 75
+	default_price = 7
+	extra_price = 14
 	payment_department = ACCOUNT_SRV
 
 /obj/machinery/vending/autodrobe/canLoadItem(obj/item/I,mob/user)
@@ -273,6 +273,6 @@
 					/obj/item/clothing/head/beret/captain = 1)
 	premium = list(/obj/item/clothing/head/crown/fancy = 1)
 
-	default_price = 50
-	extra_price = 75
+	default_price = 15
+	extra_price = 25
 	payment_department = ACCOUNT_SEC

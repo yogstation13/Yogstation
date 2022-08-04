@@ -57,8 +57,8 @@
 	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/hydroseeds
-	default_price = 10
-	extra_price = 50
+	default_price = 6
+	extra_price = 15
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/hydroseeds

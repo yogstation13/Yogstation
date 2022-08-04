@@ -26,7 +26,7 @@
 		           /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1)
 	refill_canister = /obj/item/vending_refill/cola
 	default_price = 2
-	extra_price = 30
+	extra_price = 4
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/cola

@@ -85,6 +85,6 @@
 				   /obj/item/clothing/head/soft/fishfear = 4,
 				   /obj/item/pda/clear = 1)
 
-	default_price = 50
-	extra_price = 75
+	default_price = 5
+	extra_price = 8
 	payment_department = ACCOUNT_SRV

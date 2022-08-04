@@ -14,8 +14,8 @@
 					/obj/item/storage/firstaid/regular/empty = 3,
 					/obj/item/reagent_containers/glass/bucket = 3)
 	refill_canister = /obj/item/vending_refill/robotics
-	default_price = 50
-	extra_price = 75
+	default_price = 3
+	extra_price = 6
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/robotics

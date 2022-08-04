@@ -21,6 +21,6 @@
 	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 5)
 	refill_canister = /obj/item/vending_refill/fishing
 
-	default_price = 50
-	extra_price = 75
+	default_price = 5
+	extra_price = 10
 	payment_department = ACCOUNT_SRV

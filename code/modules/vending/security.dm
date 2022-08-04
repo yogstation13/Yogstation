@@ -24,8 +24,8 @@
 				   /obj/item/clothing/head/helmet/blueshirt = 5,
 				   /obj/item/clothing/suit/armor/vest/blueshirt = 5)
 	refill_canister = /obj/item/vending_refill/security
-	default_price = 100
-	extra_price = 150
+	default_price = 10
+	extra_price = 15
 	payment_department = ACCOUNT_SEC
 
 /obj/machinery/vending/security/pre_throw(obj/item/I)

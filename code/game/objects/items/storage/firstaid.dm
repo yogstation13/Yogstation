@@ -235,7 +235,7 @@
 	desc = "An advanced kit to help deal with advanced wounds."
 	icon_state = "radfirstaid"
 	item_state = "firstaid-rad"
-	custom_premium_price = 600
+	custom_premium_price = 50
 
 /obj/item/storage/firstaid/advanced/PopulateContents()
 	if(empty)
@@ -304,7 +304,7 @@
 	desc = "A basic kit containing a hypospray for applying reagents to patients."
 	icon_state = "hypobasic"
 	item_state = "firstaid"
-	custom_premium_price = 100
+	custom_premium_price = 50
 	var/stored_hypo
 
 /obj/item/storage/firstaid/hypospray/ComponentInitialize()
@@ -339,7 +339,7 @@
 	name = "hypospray kit"
 	desc = "A kit containing a hypospray and empty vials for applying reagents to patients."
 	stored_hypo = /obj/item/hypospray
-	custom_premium_price = 200
+	custom_premium_price = 55
 
 /obj/item/storage/firstaid/hypospray/vial/PopulateContents()
 	if(empty)
@@ -353,7 +353,7 @@
 /obj/item/storage/firstaid/hypospray/basic
 	name = "basic hypospray vial kit"
 	desc = "A hypospray vial kit containing vials for most common situations."
-	custom_premium_price = 100
+	custom_premium_price = 50
 
 /obj/item/storage/firstaid/hypospray/basic/PopulateContents()
 	if(empty)
@@ -373,7 +373,7 @@
 	name = "basic hypospray kit"
 	desc = "A hypospray kit containing a hypospray and vials for most common situations."
 	stored_hypo = /obj/item/hypospray
-	custom_premium_price = 300
+	custom_premium_price = 55
 
 /obj/item/storage/firstaid/hypospray/brute
 	name = "brute hypospray vial kit"
@@ -452,7 +452,7 @@
 	desc = "A hypospray kit containing vials for most situations."
 	icon_state = "hyporad"
 	item_state = "firstaid-rad"
-	custom_premium_price = 300
+	custom_premium_price = 25
 
 /obj/item/storage/firstaid/hypospray/advanced/PopulateContents()
 	if(empty)
@@ -472,7 +472,7 @@
 	name = "advanced hypospray kit"
 	desc = "An advanced kit containing a hypospray and vials for most situations."
 	stored_hypo = /obj/item/hypospray
-	custom_premium_price = 500
+	custom_premium_price = 40
 
 /obj/item/storage/firstaid/hypospray/deluxe
 	name = "deluxe hypospray kit"

@@ -20,8 +20,8 @@
 		           /obj/item/storage/box/fancy/cigarettes/cigars/havana = 1,
 		           /obj/item/storage/box/fancy/cigarettes/cigars/cohiba = 1)
 	refill_canister = /obj/item/vending_refill/cigarette
-	default_price = 10
-	extra_price = 50
+	default_price = 8
+	extra_price = 15
 	payment_department = ACCOUNT_SRV
 
 /obj/machinery/vending/cigarette/syndicate

@@ -22,6 +22,6 @@
 		           /obj/item/clothing/gloves/color/yellow = 1)
 	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
-	default_price = 20
-	extra_price = 80
+	default_price = 3
+	extra_price = 8
 	payment_department = ACCOUNT_ENG

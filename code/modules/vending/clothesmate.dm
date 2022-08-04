@@ -205,8 +205,8 @@
 		           /obj/item/clothing/suit/yogs/infsuit = 1,
 		           /obj/item/clothing/under/yogs/persskinsuit = 3) //yogs end
 	refill_canister = /obj/item/vending_refill/clothing
-	default_price = 50
-	extra_price = 75
+	default_price = 6
+	extra_price = 10
 	payment_department = NO_FREEBIES
 
 /obj/machinery/vending/clothing/canLoadItem(obj/item/I,mob/user)
