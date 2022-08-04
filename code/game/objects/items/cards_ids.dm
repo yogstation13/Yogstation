@@ -736,7 +736,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/departmental_budget
 	name = "departmental card (FUCK)"
-	desc = "Provides access to the departmental budget. Direct withdrawals are 99% inefficient."
+	desc = "Provides access to the departmental budget. For use with the supply console."
 	var/department_ID = ACCOUNT_CIV
 	var/department_name = ACCOUNT_CIV_NAME
 	registered_age = null
@@ -749,7 +749,7 @@ update_label("John Doe", "Clowny")
 		if(!B.bank_cards.Find(src))
 			B.bank_cards += src
 		name = "departmental card ([department_name])"
-		desc = "Provides access to the [department_name]. Direct withdrawals are 99% inefficient."
+		desc = "Provides access to the [department_name]. For use with the supply console."
 	SSeconomy.dep_cards += src
 
 /obj/item/card/id/departmental_budget/Destroy()
