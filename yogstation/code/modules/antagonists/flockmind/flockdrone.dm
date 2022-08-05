@@ -43,8 +43,8 @@
 	light_color = LIGHT_COLOR_CYAN
 	speech_span = SPAN_ROBOT
 	hud_type = /datum/hud/living/flockdrone
-	wanted_objects = list(/obj/item)
-	unwanted_objects = list(/obj/item/disk/nuclear) //We don't want to eat dat fukken disk
+	wanted_objects = list(/obj/item, /turf)
+	unwanted_objects = list(/obj/item/disk/nuclear, /turf/closed/wall/feather, /turf/open/floor/feather) //We don't want to eat dat fukken disk and already flock'ed turfs
 	search_objects = 1
 	var/resources = 0
 	var/max_resources = 100
@@ -63,47 +63,28 @@
 	AddComponent(/datum/component/flock_compute, 10, TRUE)
 
 /mob/living/simple_animal/hostile/flockdrone/OpenFire(atom/A)
-	if(!ismecha(A) && !isliving(A) && !mind)
-		return 
+	if(!ckey)
+		handle_AI_intent_change(target)
+	. = ..()
+
+/mob/living/simple_animal/hostile/flockdrone/Shoot(atom/targeted_atom)
 	if(a_intent == INTENT_HELP)
 		projectiletype = /obj/item/projectile/beam/disabler/flock
 	else 
 		projectiletype = /obj/item/projectile/beam/flock
-	. = ..()
-
-/mob/living/simple_animal/hostile/flockdrone/Shoot(atom/targeted_atom)
-	if(mind)
-		return ..()
-	if(ishuman(targeted_atom) || ismonkey(targeted_atom))  //If the target is a stunable monke/human, we try to shoot it down with a disabler. If it isn't stunable, we shoot it to death
-		var/mob/living/carbon/C = targeted_atom
-		if(HAS_TRAIT(C, TRAIT_STUNIMMUNE) || HAS_TRAIT(C, TRAIT_STUNRESISTANCE) || HAS_TRAIT(C, TRAIT_ENEMY_OF_THE_FLOCK))
-			a_intent_change(INTENT_HARM)
-		else
-			a_intent_change(INTENT_HELP)
-
-	else if(ismecha(targeted_atom) || isliving(targeted_atom)) //If the target is a mech or a non-human/monke, we KILL IT
-		a_intent_change(INTENT_HARM)
-
 	return ..()
 
 /mob/living/simple_animal/hostile/flockdrone/AttackingTarget()
-	if(isitem(target))
-		target.flock_act(src)
-		return
-	else if(isliving(target) || !mind)
+	if(!ckey)
+		handle_AI_intent_change(target)
+	if(isliving(target))
 		var/mob/living/L = target
-		if(L.stat == DEAD)
-			if(!mind || isflockdrone(L))
-				L.flock_act()
-		else if(!mind)
-			if(L.IsStun() || L.IsImmobilized() || L.IsParalyzed() || L.IsUnconscious() || L.IsSleeping() || isflockdrone(L))
-				L.flock_act()
-				return
-			else if(ishuman(L) || ismonkey(L))
-				if(HAS_TRAIT(L, TRAIT_STUNIMMUNE) || HAS_TRAIT(L, TRAIT_STUNRESISTANCE) || HAS_TRAIT(L, TRAIT_ENEMY_OF_THE_FLOCK))
-					a_intent_change(INTENT_HARM)
-				else 
-					a_intent_change(INTENT_HELP)
+		if(L.stat == DEAD || L.IsStun() || L.IsImmobilized() || L.IsParalyzed() || L.IsUnconscious() || L.IsSleeping())
+			L.flock_act(src)
+			return
+	else
+		target.flock_act()
+		return
 	if(a_intent == INTENT_HELP)
 		melee_damage_type = STAMINA
 	else 
@@ -118,7 +99,7 @@
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor = run_armor_check(affecting, MELEE, armour_penetration = src.armour_penetration)
-		apply_damage(5, BRUTE, affecting, armor)
+		L.apply_damage(5, BRUTE, affecting, armor)
 
 /mob/living/simple_animal/hostile/flockdrone/get_status_tab_items()
 	. = ..()
@@ -146,32 +127,6 @@
 		return
 	if(isflockturf(T))
 		return
-
-/mob/living/simple_animal/hostile/flockdrone/proc/Eat(obj/item/target)
-	var/resource_gain = target.integrate_amount()
-	if(resources + resource_gain > max_resources)
-		to_chat(src, span_warning("You cannot hold more materials!"))
-		return TRUE
-	if(!resource_gain)
-		to_chat(src, span_warning("You cannot recycle this."))
-		return FALSE
-	change_resources(resource_gain)
-	do_attack_animation(target)
-	changeNext_move(CLICK_CD_RAPID)
-	var/obj/effect/temp_visual/swarmer/integrate/I = new /obj/effect/temp_visual/swarmer/integrate(get_turf(target))
-	I.pixel_x = target.pixel_x
-	I.pixel_y = target.pixel_y
-	I.pixel_z = target.pixel_z
-	if(istype(target, /obj/item/stack))
-		var/obj/item/stack/S = target
-		S.use(1)
-		if(S.amount)
-			return TRUE
-	qdel(target)
-	return TRUE
-
-/mob/living/simple_animal/hostile/flockdrone/toggle_move_intent(mob/user)
-	. = ..()
 
 /mob/living/simple_animal/hostile/flockdrone/update_move_intent_slowdown()
 	if(m_intent == MOVE_INTENT_WALK)
@@ -219,8 +174,7 @@
 
 /mob/living/simple_animal/hostile/flockdrone/AltClickOn(atom/target)
 	. = ..()
-	if(.)
-		target.flock_act(src)
+	target.flock_act(src)
 
 /mob/living/simple_animal/hostile/flockdrone/proc/repair(mob/living/simple_animal/hostile/flockdrone/user)
 	if(stat == DEAD)
@@ -244,18 +198,21 @@
 /mob/living/simple_animal/hostile/flockdrone/Life()
 	. = ..()
 	update_drone_icon()
-	if(health/maxHealth*100 < 50 && prob(pilot ? 10 : 4))  //Non-sentient flockdudes bleed much more rare
+	if(health/maxHealth*100 < 50 && prob(pilot ? 10 : 4) && state != DEAD)  //Non-sentient flockdudes bleed much more rare
 		new /obj/effect/decal/cleanable/fluid (loc)
 
 /mob/living/simple_animal/hostile/flockdrone/proc/update_drone_icon()
-	var/percentage = health/maxHealth * 100
-	switch(percentage)
-		if(75 to INFINITY)
-			icon_state = "drone"
-		if(50 to 74)
-			icon_state = "drone-d1"
-		if(0 to 50)
-			icon_state = "drone-d2"
+	if(state == DEAD)
+		icon_state = icon_dead
+	else
+		var/percentage = health/maxHealth * 100
+		switch(percentage)
+			if(75 to INFINITY)
+				icon_state = "drone"
+			if(50 to 74)
+				icon_state = "drone-d1"
+			if(0 to 50)
+				icon_state = "drone-d2"
 
 /mob/living/simple_animal/hostile/flockdrone/examine(mob/user)
 	. = ..()
@@ -287,6 +244,17 @@
 
 /mob/living/simple_animal/hostile/flockdrone/spawn_gibs()
 	new /obj/effect/gibspawner/flockdrone (drop_location(), src, get_static_viruses())
+
+/mob/living/simple_animal/hostile/flockdrone/proc/handle_AI_intent_change(atom/targeted_atom)
+	if(ishuman(targeted_atom) || ismonkey(targeted_atom))  //If the target is a stunable monke/human, we try to deal with it nonlethaly. If it isn't stunable, we try to kill it.
+		var/mob/living/carbon/C = targeted_atom
+		if(HAS_TRAIT(C, TRAIT_STUNIMMUNE) || HAS_TRAIT(C, TRAIT_STUNRESISTANCE) || HAS_TRAIT(C, TRAIT_ENEMY_OF_THE_FLOCK))
+			a_intent_change(INTENT_HARM)
+		else
+			a_intent_change(INTENT_HELP)
+
+	else if(ismecha(targeted_atom) || isliving(targeted_atom)) //If the target is a mech or a non-human/monke, we KILL IT
+		a_intent_change(INTENT_HARM)
 
 //////////////////////////////////////////////
 //                                          //
@@ -345,9 +313,9 @@
 
 /mob/living/simple_animal/hostile/flockdrone/attack_flocktrace(mob/camera/flocktrace/user, var/list/modifiers)
 	if(!modifiers["middle"])
-		if(!user.client)
+		if(!user.ckey)
 			return
-		if(mind)
+		if(ckey)
 			if(!pilot)
 				return
 			if(!isflockmind(user))
@@ -368,7 +336,7 @@
 				return
 			Posses(user)
 			return
-	else if(isflockmind(user) && !pilot)
+	else if(isflockmind(user) && !ckey)
 		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Tile", "Spawn Egg", "Move/Run", "Nothing")
 		switch(order)
 			if("Move")
