@@ -33,7 +33,7 @@
 /turf/open/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(drone && istype(drone))
 		if(drone.resources < 15) //No money?
-			to_chat(drone, span_warning("Not enough resources!"))
+			drone.balloon_alert(drone, "Not enough resources")
 			return
 		drone.change_resources(-15)
 	TerraformTurf(/turf/open/floor/feather)
@@ -41,7 +41,7 @@
 /turf/closed/wall/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(drone && istype(drone))
 		if(drone.resources < 20)
-			to_chat(drone, span_warning("Not enough resources!"))
+			drone.balloon_alert(drone, "Not enough resources")
 			return
 		drone.change_resources(-20)
 	TerraformTurf(/turf/closed/wall/feather)
@@ -85,7 +85,7 @@
 		
 /turf/open/floor/feather/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(drone.resources < 25)
-		to_chat(drone, span_notice("You don't have enough resources to build a barricade."))
+		drone.balloon_alert(drone, "Not enough resources")
 		return
 	if(locate(/obj/structure/grille/flock) in src)
 		to_chat(src, span_warning("There is already a barricade here."))
@@ -110,7 +110,7 @@
 /obj/structure/grille/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(drone && istype(drone))
 		if(drone.resources < broken ? 10 : 5)
-			to_chat(drone, span_warning("Not enough resources!"))
+			drone.balloon_alert(drone, "Not enough resources")
 			return
 		drone.change_resources(broken ? -10 : -5)
 	if(!broken)
@@ -151,7 +151,7 @@
 /obj/machinery/computer/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(drone)
 		if(drone.resources < 30)
-			to_chat(drone, span_warning("Not enough resources!"))
+			drone.balloon_alert(drone, "Not enough resources")
 			return
 		to_chat(drone, span_notice("You begin re-shapening [src]"))
 		if(!do_after(drone, src, 5 SECONDS))

@@ -27,7 +27,7 @@
 	if(!isliving(A) || isflockdrone(A) || iscameramob(A))
 		return FALSE
 	if(HAS_TRAIT(A, TRAIT_ENEMY_OF_THE_FLOCK))
-		to_chat(daddy , "You order your allies to treat [A] as a normal being.")
+		A.balloon_alert(daddy, "Enemy designated")
 		REMOVE_TRAIT(A, TRAIT_ENEMY_OF_THE_FLOCK, FLOCK_TRAIT)
 		ping_flock("[A] is no longer The Enemy Of The Flock!",daddy)
 	else
@@ -64,13 +64,13 @@
 		to_chat(daddy, span_warning("Not a valid target!"))
 		return FALSE
 	if(!FT.getFireLoss() && !FT.getBruteLoss())
-		to_chat(daddy, span_warning("[FT] is already fully healed!"))
+		A.balloon_alert(daddy, "Already at full health")
 		return TRUE
 	if(FT.stat == DEAD)
-		to_chat(daddy, span_warning("[FT] is dead! You can't heal it."))
+		A.balloon_alert(daddy, "Dead, aborting")
 		return TRUE
-	var/heal_amount = FT.heal_ordered_damage(30, list(BRUTE, BURN))
-	to_chat(daddy, span_warning("You heal [FT] for [heal_amount] of damage."))
+	FT.heal_ordered_damage(30, list(BRUTE, BURN))
+	A.balloon_alert(daddy, "Sucessfully healed")
 	playsound(daddy, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
 	parent_action.StartCooldown()
 	return TRUE

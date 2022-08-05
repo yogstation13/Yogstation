@@ -52,16 +52,16 @@
 /datum/construction_datum/proc/can_build(var/turf/T, mob/user, silent = FALSE)
 	if(!istype(T) || !T)
 		if(!silent)
-			to_chat(user, span_warning("Not a valid location."))
+			user.balloon_alert(user, "Not a valid location")
 		return FALSE
 	if(!isopenturf(T))
 		if(!silent)
-			to_chat(user, span_warning("Not a valid location."))
+			user.balloon_alert(user, "Not a valid location")
 		return FALSE
 	var/datum/team/flock/flock = get_flock_team()
 	if(flock.get_compute(!total) < required_compute && required_compute)
 		if(!silent)
-			to_chat(user, span_warning("Not enough compute."))
+			user.balloon_alert(user, "Not enough compute")
 		return FALSE
 	if(!is_station_level(T.z) || !flock.winner)
 		if(!silent)
