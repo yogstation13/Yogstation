@@ -1,0 +1,6 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Exofabs now check your access to see if combat designs should be made available to you"
+  - tweak: "Combat mech and equipment designs are only available to heads, silicons, heads who override the authorization check, if the security level is red or greater, or the exofab is emagged."
+  - rscadd: "An emagged exofab is very noticeable through the ui, but not from sight"

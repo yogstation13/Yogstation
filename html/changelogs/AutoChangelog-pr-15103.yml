@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "emotes nobody use now work right"

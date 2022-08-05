@@ -255,12 +255,11 @@
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
-		for(var/A in SSeconomy.bank_accounts)
-			var/datum/bank_account/B = A
-			if(B.account_id == H.account_id)
-				C.registered_account = B
-				B.bank_cards += C
-				break
+		var/acc_id = "[H.account_id]"
+		if(acc_id in SSeconomy.bank_accounts)
+			var/datum/bank_account/B = SSeconomy.bank_accounts[acc_id]
+			C.registered_account = B
+			B.bank_cards += C
 		H.sec_hud_set_ID()
 
 	var/obj/item/pda/PDA = new pda_type()

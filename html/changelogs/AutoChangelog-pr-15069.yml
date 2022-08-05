@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Disabler beam does 25 stamina instead of 30"

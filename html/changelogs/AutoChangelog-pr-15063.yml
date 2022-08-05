@@ -1,0 +1,6 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscadd: "you can now pet several more animals. Probably. Like penguins."
+  - bugfix: "you can no longer get your mood permanently stuck by petting animals on the holodeck"
+  - rscdel: "you can also no longer get a mood buff from petting animals on the holodeck, maybe think about this before killing ian. again."

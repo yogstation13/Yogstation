@@ -1,0 +1,7 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - tweak: "Renamed the Survival Capsule and Explorer's Webbing to Explorer's Kit"
+  - rscadd: "Adds lesser mining charges to the Explorer's Kit"
+  - rscdel: "Removed Bag of Lesser Mining Charges and all traces from the vending machine"
+  - tweak: "Buffs lesser mining charge boom radius from 1,1,1 to 1,2,3"

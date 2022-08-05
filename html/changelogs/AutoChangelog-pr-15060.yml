@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Vampires can now drink from IV blood packs"
+  - bugfix: "Fixed bloodsuckers not drinking properly from IV blood packs"

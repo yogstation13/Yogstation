@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - tweak: "Loading a template with a null name generates a non-fatal runtime"
