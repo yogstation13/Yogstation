@@ -51,6 +51,7 @@
 #define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
 #define ROLE_BLOODSUCKERBREAKOUT	"Bloodsucker Breakout"
 #define ROLE_MONSTERHUNTER		"Monster Hunter"
+#define ROLE_SPACE_DRAGON		"Space Dragon"
 #define ROLE_GOLEM				"Golem"
 #define ROLE_SINFULDEMON		"Demon of Sin"
 
@@ -93,6 +94,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_FUGITIVE,
 	ROLE_BLOODSUCKER = /datum/game_mode/bloodsucker,
 	ROLE_MONSTERHUNTER,
+	ROLE_SPACE_DRAGON,
 	ROLE_SINFULDEMON
 ))
 
