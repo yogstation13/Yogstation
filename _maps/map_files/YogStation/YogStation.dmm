@@ -4050,7 +4050,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -7487,7 +7487,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	icon_state = "cognacglass";
-	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac=20);
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -16324,10 +16324,7 @@
 	},
 /area/science/research)
 "bsA" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "bsF" = (
@@ -19859,7 +19856,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -25984,6 +25981,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"drj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/cell_charger{
+	pixel_y = 4
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "dsr" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/med_data/laptop,
@@ -26999,10 +27014,6 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "dRo" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -27014,6 +27025,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/research{
+	name = "RnD Lab";
+	req_access_txt = "7"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
@@ -28135,7 +28150,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -30622,7 +30637,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -32274,6 +32289,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"gFj" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "labdesk";
+	name = "research lab shutters"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "gFy" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -34959,6 +34982,14 @@
 /obj/item/book/manual/wiki/security_space_law{
 	pixel_x = -8;
 	pixel_y = 3
+	},
+/obj/item/folder/red{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/hand_labeler{
 	pixel_x = -10;
@@ -39160,7 +39191,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -40238,9 +40269,19 @@
 /obj/item/disk/tech_disk,
 /obj/item/disk/tech_disk,
 /obj/item/disk/design_disk,
-/obj/item/disk/design_disk,
+/obj/item/disk/design_disk{
+	pixel_x = 1
+	},
 /obj/item/paicard{
-	pixel_x = 4
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/obj/machinery/button/door{
+	id = "labdesk";
+	name = "Research Lab Shutter Control";
+	pixel_x = -23;
+	pixel_y = 1;
+	req_access_txt = "47"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
@@ -47722,14 +47763,6 @@
 /area/crew_quarters/heads/hos)
 "nSi" = (
 /obj/structure/table,
-/obj/item/folder/red{
-	pixel_x = -106;
-	pixel_y = 2
-	},
-/obj/item/pen{
-	pixel_x = -102;
-	pixel_y = -6
-	},
 /obj/machinery/photocopier/faxmachine{
 	department = "Warden";
 	name = "Warden's Fax Machine"
@@ -50218,11 +50251,24 @@
 /area/engine/atmos_distro)
 "pbm" = (
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
+	id = "labdesk";
 	name = "research lab shutters"
 	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/machinery/door/window/southright{
+	dir = 1;
+	name = "Research and Development Desk";
+	req_access_txt = "7"
+	},
+/turf/open/floor/plasteel/white,
 /area/science/lab)
 "pbM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -50254,7 +50300,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -52931,15 +52977,12 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "qzR" = (
+/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
+	id = "labdesk";
 	name = "research lab shutters"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plating,
 /area/science/lab)
 "qAb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -57465,7 +57508,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -57898,7 +57941,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -63463,14 +63506,7 @@
 /obj/machinery/button/door{
 	id = "Biohazard";
 	name = "Biohazard Shutter Control";
-	pixel_x = -5;
-	pixel_y = 8;
-	req_access_txt = "47"
-	},
-/obj/machinery/button/door{
-	id = "rnd2";
-	name = "Research Lab Shutter Control";
-	pixel_x = 5;
+	pixel_x = 6;
 	pixel_y = 8;
 	req_access_txt = "47"
 	},
@@ -117261,7 +117297,7 @@ biU
 bks
 blI
 bnn
-boA
+drj
 kuS
 abd
 bgp
@@ -118291,7 +118327,7 @@ blL
 biW
 bnh
 biW
-pbm
+gFj
 bte
 bmX
 bvK
