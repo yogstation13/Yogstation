@@ -119,6 +119,10 @@
 	ui_x = 192
 	ui_y = -320
 
+/datum/techweb_node/ipc_organs
+        ui_x = -160
+        ui_y = 32
+
 /datum/techweb_node/cyber_implants
 	ui_x = 352
 	ui_y = -32

@@ -498,6 +498,9 @@
 	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
 		return TRUE
 
+	if(!has_mouth())
+		return TRUE
+
 	if(nutrition < 100 && !blood)
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
@@ -539,6 +542,11 @@
 		if (is_blocked_turf(T))
 			break
 	return TRUE
+
+/mob/living/carbon/has_mouth()
+	for(var/obj/item/bodypart/head/head in bodyparts)
+		if(head.mouth)
+			return TRUE 
 
 /mob/living/carbon/proc/spew_organ(power = 5, amt = 1)
 	for(var/i in 1 to amt)
