@@ -1010,7 +1010,7 @@
 //////////////////////////////////////////////
 
 /datum/dynamic_ruleset/roundstart/iaa
-	name = "Traitors"
+	name = "Internal Affairs Agents"
 	persistent = TRUE
 	antag_flag = ROLE_INTERNAL_AFFAIRS
 	antag_datum = /datum/antagonist/traitor/internal_affairs
