@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "Adds Rest keybind \"V\""
