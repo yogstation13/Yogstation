@@ -74,7 +74,7 @@
 		change_resources(-resources, TRUE)
 		gib()
 		return
-	if(drone.a_intent == INTENT_HELP)
+	if(drone.a_intent == INTENT_HELP && stat != DEAD)
 		if(health >= maxHealth)
 			to_chat(drone, span_notice("[drone == src ? "You are" : "[drone] is"] already in good conditions."))
 			return
