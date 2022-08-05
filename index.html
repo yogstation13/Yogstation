@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(450 modules,
-    707/7284 macros, 9.7%)</aside></h3>
+<aside>(452 modules,
+    711/7304 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -77,6 +77,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/robots.html" title="code&#x2F;__DEFINES&#x2F;robots">robots</a></li>
     <li><a href="code/__DEFINES/sound.html" title="code&#x2F;__DEFINES&#x2F;sound">sound</a></li>
     <li><a href="code/__DEFINES/subsystems.html" title="code&#x2F;__DEFINES&#x2F;subsystems">subsystems</a> - Defines for subsystems and overlays</li>
+    <li><a href="code/__DEFINES/text.html" title="code&#x2F;__DEFINES&#x2F;text">text</a></li>
     <li><a href="code/__DEFINES/tgui.html" title="code&#x2F;__DEFINES&#x2F;tgui">tgui</a></li>
     <li><a href="code/__DEFINES/traits.html" title="code&#x2F;__DEFINES&#x2F;traits">traits</a></li>
     <li><a href="code/__DEFINES/wounds.html" title="code&#x2F;__DEFINES&#x2F;wounds">wounds</a></li>
@@ -497,6 +498,7 @@ transformations and other events that cause new languages to become available.</
     </ul></li>
     </ul></li>
     <li><a href="code/modules/mob/living/simple_animal/hostile/regalrat.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;regalrat">regalrat</a></li>
+    <li><a href="code/modules/mob/living/simple_animal/hostile/space_dragon.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;space_dragon">space_dragon</a></li>
     <li><a href="code/modules/mob/living/simple_animal/hostile/syndicate.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;syndicate">syndicate</a></li>
     <li><a href="code/modules/mob/living/simple_animal/hostile/venus_human_trap.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;venus_human_trap">venus_human_trap</a></li>
     </ul></li>
@@ -697,7 +699,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(489 detailed/1127 documented/25316 total, 4.5%)</aside></h3>
+<aside>(492 detailed/1130 documented/25451 total, 4.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1494,6 +1496,7 @@ Stop searching through my antag datums and go to the next guy
 Found one!
 Will yield a &quot;?&quot;</li>
     <li><a href="mob/living/simple_animal/hostile/regalrat.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;regalrat">feral regal rat</a></li>
+    <li><a href="mob/living/simple_animal/hostile/space_dragon.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;space_dragon">Space Dragon</a> - A space-faring leviathan-esque monster which breathes fire and summons carp.  Spawned during its respective midround antagonist event.</li>
     <li class="has-children"><a href="mob/living/simple_animal/hostile/swarmer.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;swarmer">Swarmer</a> - Tiny machines made by an ancient civilization, they seek only to consume materials and replicate.<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;hostile&#x2F;swarmer&#x2F;melee">Swarmer Drone</span> - Melee subtype of swarmers, always AI-controlled under normal circumstances.  Cannot fire projectiles, but does double stamina damage on melee</li>
     </ul></li>
@@ -1506,6 +1509,7 @@ Will yield a &quot;?&quot;</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;imp">imp</span> - The Monster</li>
     <li><a href="mob/living/simple_animal/mouse.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;mouse">mouse</a></li>
+    <li><a href="mob/living/simple_animal/pet.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;pet">pet</a></li>
     <li><a href="mob/living/simple_animal/slaughter.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;slaughter">slaughter demon</a></li>
     <li><a href="mob/living/simple_animal/slime.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;slime">grey baby slime (123)</a></li>
     </ul></li>
@@ -2173,6 +2177,7 @@ Chance to give Bat form, or turn them into a bat.</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;bonfire">bonfire</span> - BONFIRES</li>
     <li><a href="obj/structure/cable.html" title="&#x2F;obj&#x2F;structure&#x2F;cable">power cable</a></li>
+    <li><a href="obj/structure/carp_rift.html" title="&#x2F;obj&#x2F;structure&#x2F;carp_rift">Carp Rift</a> - The portals Space Dragon summons to bring carp onto the station.</li>
     <li class="has-children"><a href="obj/structure/closet.html" title="&#x2F;obj&#x2F;structure&#x2F;closet">closet</a><ul class="index-tree">
     <li class="has-children"><a href="obj/structure/closet/body_bag.html" title="&#x2F;obj&#x2F;structure&#x2F;closet&#x2F;body_bag">body bag</a><ul class="index-tree">
     <li class="has-children"><span title="&#x2F;obj&#x2F;structure&#x2F;closet&#x2F;body_bag&#x2F;environmental">environmental protection bag</span> - Environmental bags<ul class="index-tree">
@@ -2254,7 +2259,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/4fcb06fe8749e9cac2c8fa6e4a8003e402396563">4fcb06f</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/678f211a82df8fedbe779b6033902548f64adbac">678f211</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
