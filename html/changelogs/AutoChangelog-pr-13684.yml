@@ -1,0 +1,5 @@
+author: " Authors: IndieanaJones, ExcessiveUseOfCobblestone, ported by SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Ports Space Dragon rework from tg"
+  - imageadd: "Adds new fancy images for the Space Dragon and for the carp rift."
