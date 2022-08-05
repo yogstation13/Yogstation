@@ -51,7 +51,8 @@
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
 		"https://www.youtube.com/watch?v=VJ817kvh_DM",						// Ben Prunty - FTL - Theme Song
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
-    "https://www.youtube.com/watch?v=mhXuYp0n88")             // FTL Advanced Edition Soundtrack: Lanius (Battle)
+    	"https://www.youtube.com/watch?v=mhXuYp0n88",            // FTL Advanced Edition Soundtrack: Lanius (Battle)
+		"https://www.youtube.com/watch?v=52Gg9CqhbP8")						//Stuck in the Sound - Let's Go
 
 	selected_lobby_music = pick(songs)
 

@@ -570,7 +570,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/senderOverride = input(src, "Please input the sender of the report", "Sender", "[command_name()] Update")
 	switch(confirm)
 		if("Yes")
-			priority_announce(input, null, SSstation.announcer.get_rand_report_sound(), sender_override = senderOverride, sanitize = FALSE)
+			priority_announce(input, null, RANDOM_REPORT_SOUND, sender_override = senderOverride, sanitize = FALSE)
 			announce_command_report = FALSE
 		if("Cancel")
 			return

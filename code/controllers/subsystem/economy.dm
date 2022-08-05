@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(economy)
 		for(var/datum/mind/m in c.employees)
 			dictionary[c] += m.name
 	for(var/A in bank_accounts)
-		var/datum/bank_account/B = A
+		var/datum/bank_account/B = bank_accounts[A]
 		for(var/datum/corporation/c in dictionary)
 			if(B.account_holder in dictionary[c])
 				B.payday(c.paymodifier, TRUE)
