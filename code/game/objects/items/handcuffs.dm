@@ -385,10 +385,17 @@
 
 /obj/item/restraints/legcuffs/bola/energy/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(hit_atom))
-		var/obj/item/restraints/legcuffs/beartrap/B = new /obj/item/restraints/legcuffs/beartrap/energy/cyborg(get_turf(hit_atom))
-		B.Crossed(hit_atom)
-		qdel(src)
+		ensnare(hit_atom)
 	..()
+
+/obj/item/restraints/legcuffs/bola/energy/proc/ensnare(atom/hit_atom)
+	var/obj/item/restraints/legcuffs/beartrap/B = new /obj/item/restraints/legcuffs/beartrap/energy/cyborg(get_turf(hit_atom))
+	B.Crossed(hit_atom)
+	qdel(src)
+
+/obj/item/restraints/legcuffs/bola/energy/emp_act()
+	var/mob/living/M = loc
+	ensnare(M)
 
 /obj/item/restraints/legcuffs/bola/gonbola
 	name = "gonbola"
