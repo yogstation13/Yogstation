@@ -129,6 +129,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_BUILDMODE "Build Mode"
 #define ACTION_STEALTHMIN "Stealthmin"
 #define ACTION_DSAY "Deadchat"
+#define ACTION_DONATORSAY "Donatorsay"
 
 
 GLOBAL_LIST_INIT(keybinding_default, list(
@@ -179,6 +180,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_PLAYERPANEL = "F6",
 	ACTION_BUILDMODE = "F7",
 	ACTION_STEALTHMIN = "F8",
+	ACTION_DONATORSAY = "F9",
 	ACTION_DSAY = "F10",
 ))
 

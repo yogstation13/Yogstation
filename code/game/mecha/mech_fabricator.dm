@@ -57,6 +57,7 @@
 								"Cybernetics",
 								"Implants",
 								"Control Interfaces",
+								"IPC Components",
 								"Misc"
 								)
 

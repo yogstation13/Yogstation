@@ -200,6 +200,7 @@
 /obj/item/reagent_containers/autoinjector/medipen/atropine
 	name = "atropine autoinjector"
 	desc = "A rapid way to save a person from a critical injury state!"
+	icon_state = "atropine"
 	list_reagents = list(/datum/reagent/medicine/atropine = 10)
 
 /obj/item/reagent_containers/autoinjector/medipen/pumpup
@@ -627,3 +628,6 @@
 #undef HYPO_INJECT
 #undef HYPO_SPRAY
 #undef HYPO_DRAW
+#undef HYPOMENU_MAIN
+#undef HYPOMENU_TRANSFER
+#undef HYPOMENU_MODE
