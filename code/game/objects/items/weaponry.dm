@@ -238,6 +238,25 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	block_chance = 30
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 
+/obj/item/claymore/nullglass
+	name = "nullglass claymore"
+	icon_state = "claymore_nullglass"
+	item_state = "claymore_nullglass"
+	force = 20
+	throwforce = 5
+	block_chance = 15
+	var/shatter_chance = 30
+
+/obj/item/claymore/nullglass/disrupts_psionics()
+	return src
+
+/obj/item/claymore/nullglass/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(prob(shatter_chance))
+		var/obj/item/implant/nullglass/imp = new()
+		imp.implant(target)
+		playsound(loc, 'sound/effects/glass_step.ogg', 30, TRUE)
+
 /obj/item/katana
 	name = "katana"
 	desc = "Woefully underpowered in D20."

@@ -12,18 +12,6 @@
 	var/max_boosted_faculties = 3
 	var/boosted_psipower = 120
 
-/obj/item/clothing/head/helmet/space/psi_amp/lesser
-	name = "psionic amplifier"
-	desc = "A crown-of-thorns cerebro-energetic enhancer that interfaces directly with the brain, isolating and strengthening psionic signals. It kind of looks like a tiara having sex with an industrial robot."
-	icon_state = "amp"
-	flags_inv = 0
-	body_parts_covered = 0
-
-	max_boosted_faculties = 1
-	boosted_rank = PSI_RANK_MASTER
-	unboosted_rank = PSI_RANK_OPERANT
-	boosted_psipower = 50
-
 /obj/item/clothing/head/helmet/space/psi_amp/Initialize()
 	. = ..()
 	verbs += /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate
@@ -144,3 +132,16 @@
 	H.update_action_buttons()
 
 	set_light(0.5, 0.1, 3, 2, l_color = "#880000")
+
+/obj/item/clothing/head/helmet/space/psi_amp/lesser
+	max_boosted_faculties = 1
+	boosted_rank = PSI_RANK_MASTER
+	unboosted_rank = PSI_RANK_OPERANT
+	boosted_psipower = 50
+
+/obj/item/clothing/head/helmet/space/psi_amp/lesser/crown
+	name = "psionic amplifier"
+	desc = "A crown-of-thorns cerebro-energetic enhancer that interfaces directly with the brain, isolating and strengthening psionic signals. It kind of looks like a tiara having sex with an industrial robot."
+	icon_state = "amp"
+	flags_inv = 0
+	body_parts_covered = 0

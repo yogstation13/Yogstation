@@ -34,8 +34,7 @@
 				continue
 			M.emote("scream")
 			to_chat(M, span_danger("Your senses are blasted into oblivion by a psionic scream!"))
-			M.eye_blind = max(M.eye_blind,3)
-//			M.ear_deaf = max(M.ear_deaf,6)
+			M.blind_eyes(1 SECONDS)
 			M.confused = rand(3,8)
 		return TRUE
 
@@ -48,7 +47,7 @@
 	use_description = "Target the head on disarm intent at melee range to attempt to read a victim's surface thoughts."
 
 /datum/psionic_power/coercion/mindread/invoke(var/mob/living/user, var/mob/living/target)
-	if(!isliving(target) || !istype(target) || user.zone_selected != BODY_ZONE_HEAD || target.pulledby == user)
+	if(!istype(target) || target == user || user.zone_selected != BODY_ZONE_HEAD || target.pulledby == user)
 		return FALSE
 	. = ..()
 	if(!.)
@@ -146,12 +145,14 @@
 		user.visible_message("<span class='danger'><i>\The [user] seizes the head of \the [target] in both hands...</i></span>")
 		to_chat(user, "<span class='warning'>You plunge your mentality into that of \the [target]...</span>")
 		to_chat(target, "<span class='danger'>Your mind is invaded by the presence of \the [user]! They are trying to make you a slave!</span>")
-		if(!do_after(user, target.stat == CONSCIOUS ? 8 SECONDS : 4 SECONDS, target, FALSE))
+		if(!do_after(user, target.stat == CONSCIOUS ? 2 MINUTES : 1 MINUTES, target, FALSE))
 			user.psi.backblast(rand(10,25))
 			return TRUE
 		to_chat(user, "<span class='danger'>You sear through \the [target]'s neurons, reshaping as you see fit and leaving them subservient to your will!</span>")
 		to_chat(target, "<span class='danger'>Your defenses have eroded away and \the [user] has made you their mindslave.</span>")
-		target.mind.add_antag_datum(ANTAG_DATUM_THRALL)
+		var/datum/antagonist/thrall/T = new()
+		T.master = user.mind
+		target.mind.add_antag_datum(T)
 		return TRUE
 
 /datum/psionic_power/coercion/assay
@@ -282,6 +283,7 @@
 			var/turf/T = get_turf(L)
 			if(!T || L == user || L.stat == DEAD || issilicon(L))
 				continue
+			/*
 			var/image/ping_image = image(icon = 'icons/effects/effects.dmi', icon_state = "sonar_ping", loc = user)
 			ping_image.plane = LIGHTING_LAYER+1
 			ping_image.layer = LIGHTING_LAYER+1
@@ -289,17 +291,18 @@
 			ping_image.pixel_y = (T.y - user.y) * 32
 			user << ping_image
 			addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, ping_image), 8)
+			*/
 			var/direction = num2text(get_dir(user, L))
 			var/dist
 			if(text2num(direction))
-				switch(get_dist(user, L) / user.client.view)
-					if(0 to 0.2)
+				switch(get_dist(user, L))
+					if(0 to 10)
 						dist = "very close"
-					if(0.2 to 0.4)
+					if(10 to 20)
 						dist = "close"
-					if(0.4 to 0.6)
+					if(20 to 30)
 						dist = "a little ways away"
-					if(0.6 to 0.8)
+					if(30 to 40)
 						dist = "farther away"
 					else
 						dist = "far away"

@@ -33,28 +33,29 @@
 			cost_modifier -= min(1, max(0.1, (rating-1) / 10))
 		if(!ui)
 			ui = new(owner)
+		if(owner.client)
+			owner.client.screen += ui.components
 			owner.client.screen += ui
-		else
-			owner.client.screen |= ui
 		if(!suppressed && owner.client)
 			for(var/image/I in SSpsi.all_aura_images)
 				owner.client.images |= I
-
 		var/image/aura_image = get_aura_image()
+		/*
 		if(rating >= PSI_RANK_PARAMOUNT) // spooky boosters
 			aura_color = "#aaffaa"
 			aura_image.blend_mode = BLEND_SUBTRACT
 		else
-			aura_image.blend_mode = BLEND_ADD
-			switch(highest_faculty)
-				if(PSI_COERCION)
-					aura_color = "#cc3333"
-				if(PSI_PSYCHOKINESIS)
-					aura_color = "#3333cc"
-				if(PSI_REDACTION)
-					aura_color = "#33cc33"
-				if(PSI_ENERGISTICS)
-					aura_color = "#cccc33"
+		*/
+		aura_image.blend_mode = BLEND_ADD
+		switch(highest_faculty)
+			if(PSI_COERCION)
+				aura_color = "#cc3333"
+			if(PSI_PSYCHOKINESIS)
+				aura_color = "#3333cc"
+			if(PSI_REDACTION)
+				aura_color = "#33cc33"
+			if(PSI_ENERGISTICS)
+				aura_color = "#cccc33"
 
 	if(!announced && owner?.client && !QDELETED(src))
 		announced = TRUE
@@ -74,7 +75,7 @@
 			to_chat(owner, span_notice("You have recovered your mental composure."))
 		update_hud = TRUE
 		return
-
+/*
 	var/psi_leech = owner.do_psionics_check()
 	if(psi_leech)
 		if(stamina > 10)
@@ -83,7 +84,7 @@
 		else
 			stamina++
 		return
-
+*/
 	else if(stamina < max_stamina)
 		if(owner.stat == CONSCIOUS)
 			stamina = min(max_stamina, stamina + rand(1,3))

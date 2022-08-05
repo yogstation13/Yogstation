@@ -1,34 +1,18 @@
-/* TODO
 /datum/antagonist/thrall
 	name = "Thrall"
-	roundend_category = "thralls"
-	antagpanel_category = "Psionics"
-	id = MODE_THRALL
-	role_text = "Thrall"
-	role_text_plural = "Thralls"
-	bantype = "vampires"
-	feedback_tag = "thrall_objective"
-	restricted_jobs = list("AI", "Cyborg", "Chaplain")
-	protected_jobs = list()
-	restricted_species = list(
-		"Baseline Frame",
-		"Shell Frame",
-		"Hephaestus G1 Industrial Frame",
-		"Hephaestus G2 Industrial Frame",
-		"Xion Industrial Frame",
-		"Zeng-Hu Mobility Frame",
-		"Bishop Accessory Frame"
-	)
-	welcome_text = "You are a psionic operant's thrall: a pawn to be commanded by them at will."
-	flags = 0
-	antaghud_indicator = "hudthrall"
+	roundend_category = "other"
+	antagpanel_category = "Paramount"
+	var/datum/mind/master
 
-/datum/antagonist/thrall/New()
+/datum/antagonist/thrall/on_gain()
+	if(!master)
+		return // Someone is playing with buttons they shouldn't be.
 	..()
+	var/datum/objective/obey = new
+	obey.owner = owner
+	obey.explanation_text = "Obey your master, [master.name], in all things."
+	obey.completed = TRUE
+	objectives |= obey
 
-	thralls = src
-
-/datum/antagonist/thrall/update_antag_mob(var/datum/mind/player)
-	..()
-	player.current.vampire_make_thrall()
-*/
+/datum/antagonist/thrall/greet()
+	to_chat(owner, "<span class='danger'>Your mind is no longer solely your own, your will has been subjugated by that of [master.name]. Obey them in all things.</span>")

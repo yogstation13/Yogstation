@@ -36,9 +36,3 @@ PROCESSING_SUBSYSTEM_DEF(psi)
 		if(power.faculty)
 			var/datum/psionic_faculty/faculty = get_faculty(power.faculty)
 			faculty?.powers |= power
-
-/datum/controller/subsystem/processing/psi/proc/report_failure(implant)
-	return // TODO
-
-/datum/controller/subsystem/processing/psi/proc/report_violation(implant, stress)
-	return // TODO

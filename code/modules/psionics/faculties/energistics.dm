@@ -29,7 +29,7 @@
 /datum/psionic_power/energistics/electrocute
 	name =            "Electrocute"
 	cost =            15
-	cooldown =        2.5 SECONDS
+	cooldown =        7.5 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_GRANDMASTER
 	use_description = "Target the chest or groin while on harm intent to use a melee attack that electrocutes a victim."
@@ -87,7 +87,7 @@
 			pew.original = target
 			pew.starting = get_turf(user)
 			pew.firer = user
-			pew.fire(direct_target = target)
+			pew.fire(Get_Angle(user, target))
 			return TRUE
 
 /datum/psionic_power/energistics/spark

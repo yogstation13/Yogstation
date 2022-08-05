@@ -12,3 +12,9 @@
 	if(owner && owner.client)
 		owner.client.screen -= src
 	. = ..()
+
+/obj/screen/psi/update_icon()
+	if(hidden)
+		invisibility = 101
+	else
+		invisibility = 0

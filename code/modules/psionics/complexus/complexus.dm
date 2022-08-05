@@ -90,6 +90,7 @@
 	if(owner)
 		cancel()
 		if(owner.client)
+			owner.client.screen -= ui.components
 			owner.client.screen -= ui
 			for(var/thing in SSpsi.all_aura_images)
 				owner.client.images -= thing

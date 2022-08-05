@@ -250,7 +250,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	return ..()
 
 GLOBAL_LIST_INIT(nullglass_recipes, list ( \
-	new/datum/stack_recipe("directional window", /obj/structure/window/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("nullglass tile", /obj/item/stack/tile/mineral/nullglass, time = 0), \
 ))
 
 /obj/item/stack/sheet/nullglass

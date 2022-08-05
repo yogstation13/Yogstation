@@ -1,14 +1,19 @@
 /obj/screen/psi/hub
 	name = "Psi"
 	icon_state = "psi_suppressed"
-	screen_loc = "EAST-1:28,CENTER-3:11"
+	screen_loc = "EAST-1:28,CENTER-4:7"
 	hidden = FALSE
 	maptext_x = 6
 	maptext_y = -8
 	var/image/on_cooldown
+	var/list/components
 
 /obj/screen/psi/hub/New(var/mob/living/_owner)
 	on_cooldown = image(icon, "cooldown")
+	components = list(
+		new /obj/screen/psi/armour(_owner),
+		new /obj/screen/psi/toggle_psi_menu(_owner, src)
+		)
 	..()
 	START_PROCESSING(SSprocessing, src)
 
@@ -18,10 +23,22 @@
 		return
 
 	icon_state = owner.psi.suppressed ? "psi_suppressed" : "psi_active"
+	if(world.time < owner.psi.next_power_use)
+		overlays |= on_cooldown
+	else
+		overlays.Cut()
+	var/offset = 1
+	for(var/thing in components)
+		var/obj/screen/psi/component = thing
+		component.update_icon()
+		if(!component.invisibility) component.screen_loc = "EAST-[++offset]:28,CENTER-4:7"
 
 /obj/screen/psi/hub/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	owner = null
+	for(var/thing in components)
+		qdel(thing)
+	components.Cut()
 	. = ..()
 
 /obj/screen/psi/hub/process()
@@ -49,7 +66,6 @@
 		owner.psi.cancel()
 		owner.psi.hide_auras()
 	else
-		owner.playsound_local(owner, 'sound/effects/psi/power_unlock.ogg', 100, FALSE)
-		//sound_to(owner, sound('sound/effects/psi/power_unlock.ogg'))
+		owner.playsound_local(soundin = 'sound/effects/psi/power_unlock.ogg')
 		owner.psi.show_auras()
-	update_icon()
+	update_icon() 

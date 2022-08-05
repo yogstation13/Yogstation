@@ -65,6 +65,7 @@
 
 		var/redaction_rank = user.psi.get_rank(PSI_REDACTION)
 		var/pk_rank = user.psi.get_rank(PSI_PSYCHOKINESIS)
+
 		if(pk_rank >= PSI_RANK_LATENT && redaction_rank >= PSI_RANK_MASTER)
 			var/removal_size = clamp(5-pk_rank, 0, 5)
 			var/valid_objects = list()
@@ -83,6 +84,10 @@
 					to_chat(user, span_notice("You encourage the damaged tissue of \the [O] to repair itself."))
 					O.applyOrganDamage(-rand(redaction_rank, redaction_rank * 2))
 					return TRUE
+		if(E.get_damage(TRUE))
+			E.heal_damage((redaction_rank * 10), (redaction_rank * 10))
+			to_chat(user, span_notice("You patch up some of the damage to [target]'s [E]."))
+			return TRUE
 
 		to_chat(user, span_notice("You can find nothing within \the [target]'s [E.name] to mend."))
 		return FALSE
