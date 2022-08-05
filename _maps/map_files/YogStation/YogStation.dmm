@@ -34589,6 +34589,14 @@
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
+"hNu" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "labdesk";
+	name = "research lab shutters"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "hNI" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -51959,17 +51967,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"qlW" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/research{
-	name = "RnD Lab";
-	req_access_txt = "7"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "qmc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -117673,7 +117670,7 @@ blL
 biW
 bnh
 biW
-qlW
+hNu
 bte
 bmX
 bvK
