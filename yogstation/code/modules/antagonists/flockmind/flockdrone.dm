@@ -39,12 +39,12 @@
 	projectiletype = /obj/item/projectile/beam/disabler/flock
 	ranged_cooldown_time = 15
 	projectilesound = 'sound/weapons/laser.ogg'
-	deathmessage = "explodes with a sharp pop!"
+	deathmessage = "stops moving"
 	light_color = LIGHT_COLOR_CYAN
 	speech_span = SPAN_ROBOT
 	hud_type = /datum/hud/living/flockdrone
-	wanted_objects = list(/obj/item, /turf)
-	unwanted_objects = list(/obj/item/disk/nuclear, /turf/closed/wall/feather, /turf/open/floor/feather) //We don't want to eat dat fukken disk and already flock'ed turfs
+	wanted_objects = list(/obj/item, /turf, /obj/structure/destructible/flock/construction)
+	unwanted_objects = list(/obj/item/disk/nuclear, /turf/closed/wall/feather, /turf/open/floor/feather, /turf/closed/indestructible, /turf/open/indestructible, /turf/open/lava, /turf/open/chasm, /turf/open/space)
 	search_objects = 1
 	var/resources = 0
 	var/max_resources = 100
@@ -77,7 +77,7 @@
 /mob/living/simple_animal/hostile/flockdrone/AttackingTarget()
 	if(!ckey)
 		handle_AI_intent_change(target)
-	if(isliving(target))
+	if(isliving(target) || !isflockdrone(target))
 		var/mob/living/L = target
 		if(L.stat == DEAD || L.IsStun() || L.IsImmobilized() || L.IsParalyzed() || L.IsUnconscious() || L.IsSleeping())
 			L.flock_act(src)
@@ -163,9 +163,6 @@
 		var/datum/hud/living/flockdrone/flockhud = hud_used
 		flockhud.resources.update_counter(resources)
 
-/mob/living/simple_animal/hostile/flockdrone/AltClickOn(atom/target)
-	. = ..()
-	target.flock_act(src)
 
 /mob/living/simple_animal/hostile/flockdrone/proc/repair(mob/living/simple_animal/hostile/flockdrone/user)
 	if(stat == DEAD)
@@ -246,6 +243,24 @@
 
 	else if(ismecha(targeted_atom) || isliving(targeted_atom)) //If the target is a mech or a non-human/monke, we KILL IT
 		a_intent_change(INTENT_HARM)
+
+/mob/living/simple_animal/hostile/flockdrone/CanAttack(atom/the_target)
+	if(isitem(the_target) && resources >= 100)
+		return FALSE
+
+	if(isflockdrone(the_target))
+		var/mob/living/FD = the_target
+		if(FD.stat == DEAD && resources < 100 && FD.resources && health >= maxHealth) //Our funny drones will attempt to butcher dead drones if they don't have max resources and are unharmed
+			return TRUE
+		else
+			return FALSE
+
+	if(istype(the_target, /obj/structure/destructible/flock/construction))
+		if(resources > 10 && health >= maxHealth)
+			return TRUE
+		return FALSE
+
+	return ..()
 
 //////////////////////////////////////////////
 //                                          //

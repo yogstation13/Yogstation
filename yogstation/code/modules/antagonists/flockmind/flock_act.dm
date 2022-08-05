@@ -5,11 +5,11 @@
 	if(!drone)
 		return
 	var/resource_gain = integrate_amount()
-	if(resources + resource_gain > max_resources)
-		to_chat(drone, span_warning("You cannot hold more materials!"))
-		return
 	if(!resource_gain)
 		resource_gain = 4
+	if(drone.resources + resource_gain > drone.max_resources)
+		to_chat(drone, span_warning("You cannot hold more materials!"))
+		return
 	drone.do_attack_animation(src)
 	drone.changeNext_move(CLICK_CD_RAPID)
 	var/obj/effect/temp_visual/swarmer/integrate/I = new /obj/effect/temp_visual/swarmer/integrate(get_turf(src))
