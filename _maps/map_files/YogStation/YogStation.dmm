@@ -27006,6 +27006,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"gVu" = (
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/trimline/green,
+/obj/effect/turf_decal/trimline/neutral,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
 "gVM" = (
 /obj/structure/table,
 /obj/machinery/camera{
@@ -67373,22 +67389,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"xSZ" = (
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/sign/warning/securearea{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/trimline/green,
-/obj/effect/turf_decal/trimline/neutral,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/engine/atmos)
 "xTe" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -99824,7 +99824,7 @@ kCV
 oeJ
 cHp
 jVJ
-xSZ
+gVu
 bWQ
 bWQ
 mva
