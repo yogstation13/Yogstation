@@ -29,7 +29,7 @@
 	attacktext = "shocks"
 	attack_sound = 'sound/effects/empulse.ogg'
 	friendly = "pinches"
-	speed = 0
+	speed = 1
 	faction = list("flock")
 	AIStatus = AI_ON
 	pass_flags = PASSTABLE
@@ -113,20 +113,11 @@
 		return TRUE
 
 /mob/living/simple_animal/hostile/flockdrone/handle_automated_action()
-	if(resources > 20 && prob(30)) //The drone will try to convert tiles around it if not player-controlled.
-		convert_random_turf(FALSE)
 	if(resources >= 100 && prob(10))
 		egg.Trigger()
 	if(health != maxHealth && isflockturf(loc) && prob(15))
 		repair(src)
 	return ..()
-
-/mob/living/simple_animal/hostile/flockdrone/proc/convert_random_turf()
-	var/turf/T = get_turf(src)
-	if(!T || !istype(T))
-		return
-	if(isflockturf(T))
-		return
 
 /mob/living/simple_animal/hostile/flockdrone/update_move_intent_slowdown()
 	if(m_intent == MOVE_INTENT_WALK)
@@ -337,7 +328,7 @@
 			Posses(user)
 			return
 	else if(isflockmind(user) && !ckey)
-		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Convert Tile", "Spawn Egg", "Move/Run", "Nothing")
+		var/order = input(user,"What order do you want to issue to [src]?") in list("Move", "Cancel Order", "Repair Self", "Spawn Egg", "Move/Run", "Nothing")
 		switch(order)
 			if("Move")
 				new /datum/flock_command/move (user, src)
@@ -346,11 +337,8 @@
 				Goto(get_turf(src))
 				to_chat(user, span_notice("You order [src] to cancel it's current order."))
 			if("Repair Self")
-				flock_act(src)
 				to_chat(user, span_notice("You order [src] to attempt to repair itself."))
-			if("Convert Tile")
-				convert_random_turf()
-				to_chat(user, span_notice("You order [src] to convert the tile under it."))
+				flock_act(src)
 			if("Spawn Egg")
 				egg.Trigger()
 				to_chat(user, span_notice("You order [src] to attempt to spawn an egg."))

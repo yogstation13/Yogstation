@@ -6,25 +6,25 @@
 		return
 	var/resource_gain = integrate_amount()
 	if(resources + resource_gain > max_resources)
-		to_chat(src, span_warning("You cannot hold more materials!"))
+		to_chat(drone, span_warning("You cannot hold more materials!"))
 		return
 	if(!resource_gain)
 		resource_gain = 4
-	do_attack_animation(target)
-	changeNext_move(CLICK_CD_RAPID)
-	var/obj/effect/temp_visual/swarmer/integrate/I = new /obj/effect/temp_visual/swarmer/integrate(get_turf(target))
-	I.pixel_x = target.pixel_x
-	I.pixel_y = target.pixel_y
-	I.pixel_z = target.pixel_z
-	if(istype(target, /obj/item/stack))
-		var/obj/item/stack/S = target
+	drone.do_attack_animation(src)
+	drone.changeNext_move(CLICK_CD_RAPID)
+	var/obj/effect/temp_visual/swarmer/integrate/I = new /obj/effect/temp_visual/swarmer/integrate(get_turf(src))
+	I.pixel_x = pixel_x
+	I.pixel_y = pixel_y
+	I.pixel_z = pixel_z
+	if(istype(src, /obj/item/stack))
+		var/obj/item/stack/S = src
 		if(do_after(drone, src, max(1, round(S.amount/20))))
 			resource_gain = S.amount
 			S.use(S.amount)
-			change_resources(resource_gain)
+			drone.change_resources(resource_gain)
 			return
-	change_resources(resource_gain)
-	qdel(target)
+	drone.change_resources(resource_gain)
+	qdel(src)
 	return TRUE
 
 /obj/item/disk/nuclear/flock_act(mob/living/simple_animal/hostile/flockdrone/drone) //We don't eat the disc!
