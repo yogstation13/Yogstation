@@ -438,6 +438,13 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"xD" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "yf" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -686,11 +693,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
-"PA" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/donkpockets,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "Qn" = (
@@ -1088,7 +1090,7 @@ rY
 dp
 or
 ad
-PA
+xD
 dp
 wK
 dp

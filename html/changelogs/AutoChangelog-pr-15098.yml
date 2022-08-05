@@ -1,0 +1,5 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "fixed holoparasite injectors not having a sprite"
+  - bugfix: "fixed experimental dissection not properly being researched"

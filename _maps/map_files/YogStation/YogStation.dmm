@@ -15570,13 +15570,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white/side,
 /area/science/research)
-"boQ" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "boR" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -16321,6 +16314,10 @@
 	dir = 5
 	},
 /area/science/research)
+"bsA" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "bsF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -26942,6 +26939,25 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"dRo" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/research{
+	name = "RnD Lab";
+	req_access_txt = "7"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "dRK" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/fancy/cigarettes{
@@ -31507,14 +31523,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"gsd" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/science/lab)
 "gsx" = (
 /obj/effect/landmark/start/cyborg,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -34584,6 +34592,14 @@
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
 /area/maintenance/starboard/aft)
+"hNu" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "labdesk";
+	name = "research lab shutters"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "hNI" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -34809,6 +34825,26 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
+"hTp" = (
+/obj/structure/table,
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/folder/red{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/item/hand_labeler{
+	pixel_x = -10;
+	pixel_y = -5
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "hTv" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall,
@@ -36443,18 +36479,6 @@
 "iEd" = (
 /turf/closed/wall,
 /area/hallway/primary/starboard)
-"iEf" = (
-/obj/structure/table,
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -8;
-	pixel_y = 3
-	},
-/obj/item/hand_labeler{
-	pixel_x = -10;
-	pixel_y = -5
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "iEt" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
@@ -39739,25 +39763,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"klU" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "klZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -40067,6 +40072,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kuS" = (
+/obj/item/folder/white,
+/obj/structure/table,
+/obj/item/disk/tech_disk,
+/obj/item/disk/tech_disk,
+/obj/item/disk/design_disk,
+/obj/item/disk/design_disk{
+	pixel_x = 1
+	},
+/obj/item/paicard{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/obj/machinery/button/door{
+	id = "labdesk";
+	name = "Research Lab Shutter Control";
+	pixel_x = -23;
+	pixel_y = 1;
+	req_access_txt = "47"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "kvn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 10
@@ -47431,6 +47458,14 @@
 /obj/item/folder/red,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"nSi" = (
+/obj/structure/table,
+/obj/machinery/photocopier/faxmachine{
+	department = "Warden";
+	name = "Warden's Fax Machine"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "nSj" = (
 /obj/structure/table/wood,
 /obj/machinery/light/small{
@@ -49609,18 +49644,6 @@
 /obj/item/stock_parts/subspace/analyzer,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
-"oRC" = (
-/obj/item/folder/white,
-/obj/structure/table,
-/obj/item/disk/tech_disk,
-/obj/item/disk/tech_disk,
-/obj/item/disk/design_disk,
-/obj/item/disk/design_disk,
-/obj/item/paicard{
-	pixel_x = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "oRG" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -49870,6 +49893,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"pbm" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "labdesk";
+	name = "research lab shutters"
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/machinery/door/window/southright{
+	dir = 1;
+	name = "Research and Development Desk";
+	req_access_txt = "7"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "pbM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
@@ -52540,6 +52584,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"qzR" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "labdesk";
+	name = "research lab shutters"
+	},
+/turf/open/floor/plating,
+/area/science/lab)
 "qAb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -61296,6 +61348,24 @@
 /obj/item/stock_parts/micro_laser/high,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
+"uKp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/cell_charger{
+	pixel_y = 4
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "uKz" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -62162,17 +62232,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"vku" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "rnd2";
-	name = "research lab shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "vkJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -62720,22 +62779,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"vBu" = (
-/obj/structure/table,
-/obj/item/folder/red{
-	pixel_x = -106;
-	pixel_y = 2
-	},
-/obj/item/pen{
-	pixel_x = -102;
-	pixel_y = -6
-	},
-/obj/machinery/photocopier/faxmachine{
-	department = "Warden";
-	name = "Warden's Fax Machine"
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "vBA" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/glass,
@@ -62923,6 +62966,17 @@
 /obj/structure/table/wood,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"vGL" = (
+/obj/structure/table,
+/obj/machinery/button/door{
+	id = "Biohazard";
+	name = "Biohazard Shutter Control";
+	pixel_x = 6;
+	pixel_y = 8;
+	req_access_txt = "47"
+	},
+/turf/open/floor/carpet/purple,
+/area/crew_quarters/heads/hor)
 "vHq" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -67410,24 +67464,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
-"yaN" = (
-/obj/structure/table,
-/obj/machinery/button/door{
-	id = "Biohazard";
-	name = "Biohazard Shutter Control";
-	pixel_x = -5;
-	pixel_y = 8;
-	req_access_txt = "47"
-	},
-/obj/machinery/button/door{
-	id = "rnd2";
-	name = "Research Lab Shutter Control";
-	pixel_x = 5;
-	pixel_y = 8;
-	req_access_txt = "47"
-	},
-/turf/open/floor/carpet/purple,
-/area/crew_quarters/heads/hor)
 "ybf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -97280,7 +97316,7 @@ agk
 agF
 xbS
 ahm
-iEf
+hTp
 ewO
 ajc
 lLO
@@ -98051,7 +98087,7 @@ aHt
 czO
 qAF
 ahv
-vBu
+nSi
 ewO
 ajc
 nJQ
@@ -116607,14 +116643,14 @@ biU
 bks
 blI
 bnn
-boA
-oRC
+uKp
+kuS
 abd
 bgp
 bmU
 bvJ
 bCk
-yaN
+vGL
 hTo
 bqb
 bHY
@@ -116865,8 +116901,8 @@ biW
 blK
 bnp
 boA
-boQ
-gsd
+bsA
+pbm
 bro
 bmU
 bvJ
@@ -117123,7 +117159,7 @@ blJ
 bno
 bkt
 biW
-vku
+qzR
 bgp
 bmU
 bvK
@@ -117380,7 +117416,7 @@ bka
 bka
 aCl
 bpo
-klU
+dRo
 brp
 bmW
 bvK
@@ -117637,7 +117673,7 @@ blL
 biW
 bnh
 biW
-gsd
+hNu
 bte
 bmX
 bvK

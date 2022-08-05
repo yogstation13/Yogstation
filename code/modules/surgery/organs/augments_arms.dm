@@ -386,3 +386,9 @@
 /obj/item/organ/cyberimp/arm/syndie_mantis/l
 	zone = BODY_ZONE_L_ARM
 	syndicate_implant = TRUE
+
+/obj/item/organ/cyberimp/arm/power_cord
+	name = "power cord implant"
+	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
+	contents = newlist(/obj/item/apc_powercord)
+	zone = "l_arm" 

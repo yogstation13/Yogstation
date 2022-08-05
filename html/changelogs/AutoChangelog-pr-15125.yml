@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Multitooling a blastdoor board will copy or generate a new ID"
+  - bugfix: "Buttons now inherit device id if it has one"

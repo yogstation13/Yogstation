@@ -684,7 +684,7 @@
 	id = "surgery_exp_dissection"
 	surgery = list(/datum/surgery/experimental_dissection/adv/exp)
 
-/datum/design/surgery/experimental_dissection/exp
+/datum/design/surgery/experimental_dissection/alien
 	name = "Extraterrestrial Dissection"
 	id = "surgery_ext_dissection"
 	surgery = list(/datum/surgery/experimental_dissection/adv/alien)
