@@ -18,3 +18,4 @@
 #define MESSAGE_TYPE_ATTACKLOG "attacklog"
 #define MESSAGE_TYPE_DEBUG "debug"
 #define MESSAGE_TYPE_MENTORPM "mentorpm"
+#define MESSAGE_TYPE_DONATOR "donator"
