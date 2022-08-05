@@ -49,10 +49,10 @@
 /datum/design/blastdoorcontroller
 	name = "Blast Door Controller"
 	id = "blastdoorcontroller"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 20)
 	build_path = /obj/item/assembly/control
-	category = list("initial","T-Comm")
+	category = list("initial","Electronics")
 
 /datum/design/extinguisher
 	name = "Fire Extinguisher"
