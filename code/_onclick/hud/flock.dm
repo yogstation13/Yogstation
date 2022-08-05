@@ -2,7 +2,7 @@
 	var/obj/screen/flockdrone_resources/resources
 
 /datum/hud/living/flockdrone/New(mob/owner)
-	. = ..()
+	..()
 	var/obj/screen/using
 
 	action_intent = new /obj/screen/act_intent()
