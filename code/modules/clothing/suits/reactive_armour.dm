@@ -179,7 +179,7 @@
 		return FALSE
 	if(!damage)
 		return FALSE
-	if(!owner.stat == DEAD)
+	if(owner.stat == DEAD)
 		return FALSE
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
