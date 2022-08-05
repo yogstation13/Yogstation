@@ -53,6 +53,7 @@
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 20)
 	build_path = /obj/item/assembly/control
 	category = list("initial","Electronics")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/extinguisher
 	name = "Fire Extinguisher"
