@@ -12,8 +12,8 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
-	liked_food = VEGETABLES | DAIRY | CLOTH
-	disliked_food = FRUIT | GROSS
+	liked_food = VEGETABLES | SUGAR
+	disliked_food = DAIRY | GROSS
 	toxic_food = MEAT | RAW | SEAFOOD | MICE
 	burnmod = 1.25 //Fluffy and flammable
 	brutemod = 0.9 //Evasive buggers
