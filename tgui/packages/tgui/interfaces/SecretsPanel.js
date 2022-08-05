@@ -19,7 +19,7 @@ export const SecretsPanel = (props, context) => {
       theme={'syndicate'}>
       <Window.Content scrollable>
         <NoticeBox textAlign={"center"}>
-          The first rule of adminbuse is: you don't talk about the adminbuse.
+          The first rule of adminbuse is: you don&apos;t talk about the adminbuse.
         </NoticeBox>
         <Section title={'General Secrets'}>
           <Button content={'Admin Log'} onClick={() => act('admin_log')} disabled={!anyRights} />
