@@ -38038,12 +38038,19 @@
 /area/security/detectives_office)
 "jlz" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/box/fancy/donut_box{
+	pixel_x = 4;
+	pixel_y = -3
+	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -4;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -45816,8 +45823,6 @@
 /area/medical/chemistry)
 "mZh" = (
 /obj/structure/table,
-/obj/machinery/syndicatebomb/training,
-/obj/item/gun/energy/laser/practice,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -45826,6 +45831,10 @@
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
+	},
+/obj/machinery/microwave{
+	pixel_x = -1;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -46058,6 +46067,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/item/stack/packageWrap,
+/obj/item/pen,
 /turf/open/floor/plasteel,
 /area/security/main)
 "nbW" = (
@@ -49078,11 +49089,11 @@
 /area/maintenance/disposal/incinerator)
 "owO" = (
 /obj/structure/table,
-/obj/item/stack/packageWrap,
-/obj/item/pen,
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/machinery/syndicatebomb/training,
+/obj/item/gun/energy/laser/practice,
 /turf/open/floor/plasteel,
 /area/security/main)
 "owY" = (
@@ -56064,6 +56075,10 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "rZT" = (
