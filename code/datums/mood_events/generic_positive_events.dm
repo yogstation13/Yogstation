@@ -170,6 +170,14 @@
 	description = "<span class='nicegreen'>What a peculiar emblem.  It makes me feel hopeful for my future.</span>\n"
 	mood_change = 5
 
+/datum/mood_event/drippy
+	description = "<span class='nicegreen'>My self confidence, unstopping. My style, unbreakable.</span>\n"
+	mood_change = 5
+
+/datum/mood_event/dripjordan
+	description = "<span class='nicegreen'>These shoes make me feel like I could really push myself to victory!</span>\n"
+	mood_change = 5
+
 /datum/mood_event/area
 	description = "" //Fill this out in the area
 	mood_change = 0
