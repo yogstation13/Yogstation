@@ -975,6 +975,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Use item on self", ACTION_USESELF)
 				BUTTON_KEY("Drop", ACTION_DROP)
 				BUTTON_KEY("Equip", ACTION_EQUIP)
+				BUTTON_KEY("Rest", ACTION_REST)
 
 				dat += "</td><td width='300px' height='300px' valign='top'>"
 

@@ -67,6 +67,8 @@
 
 /datum/config_entry/flag/log_vote	// log voting
 
+/datum/config_entry/flag/log_donator // log donator chat
+
 /datum/config_entry/flag/log_whisper	// log client whisper
 
 /datum/config_entry/flag/log_attack	// log attack messages
