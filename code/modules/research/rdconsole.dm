@@ -706,7 +706,7 @@ Nothing else in the console has ID requirements.
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
 /obj/machinery/computer/rdconsole/proc/can_research(mob/user)
-	if(!locked && allowed(user))
+	if(!locked && (allowed(user) || (obj_flags & EMAGGED)))
 		return TRUE
 	return FALSE
 
