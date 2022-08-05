@@ -141,7 +141,8 @@
 	else
 		return ..()
 
-/obj/item/airlock_painter/attack_self(mob/user)
+/obj/item/airlock_painter/AltClick(mob/user, obj/item/W)
+	. = ..()
 	if(ink)
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		ink.forceMove(user.drop_location())
@@ -253,7 +254,7 @@
 	if(use_paint(user))
 		F.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, color, null, null, alpha)
 
-/obj/item/airlock_painter/decal/AltClick(mob/user)
+/obj/item/airlock_painter/decal/attack_self(mob/user)
 	. = ..()
 	ui_interact(user)
 
