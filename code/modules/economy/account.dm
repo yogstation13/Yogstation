@@ -14,16 +14,25 @@
 	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
 
 /datum/bank_account/New(newname, job, modifier = 1)
+	var/limiter = 0
+	while(limiter < 10)
+		account_id = rand(111111,999999)
+		if(!("[account_id]" in SSeconomy.bank_accounts))
+			break
+		limiter += 1
+	
+	if(limiter >= 10)
+		message_admins("Infinite loop prevented in bank account creation, unable to find bank account after [limiter] tries. Something has broken.")
+
 	if(add_to_accounts)
-		SSeconomy.bank_accounts += src
+		SSeconomy.bank_accounts["[account_id]"] = src
 	account_holder = newname
 	account_job = job
-	account_id = rand(111111,999999)
 	payday_modifier = modifier
 
 /datum/bank_account/Destroy()
 	if(add_to_accounts)
-		SSeconomy.bank_accounts -= src
+		SSeconomy.bank_accounts -= "[account_id]"
 	return ..()
 
 /datum/bank_account/proc/dumpeet()
