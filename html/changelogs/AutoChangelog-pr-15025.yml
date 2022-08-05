@@ -1,0 +1,8 @@
+author: " @nmajask"
+delete-after: true 
+changes: 
+  - tweak: "brute/burn kits now have their respective medical sprays in them"
+  - tweak: "medical sprays now hold half the reagents (this does take into account synthflesh sprays in vendors)"
+  - tweak: "brute kits now have salicyclic acid pills"
+  - tweak: "oxygen kits now have two epipens and 4 syrignes of perfluorodecalin"
+  - tweak: "advanced health kits have been completely reworked and now store the same amount as surgical kits"

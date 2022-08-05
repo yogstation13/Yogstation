@@ -35,6 +35,9 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/proc/admin_edit(mob/admin)
 	return
 
+/datum/objective/proc/is_valid_target(possible_target)
+	return TRUE
+
 //Shared by few objective types
 /datum/objective/proc/admin_simple_target_pick(mob/admin)
 	var/list/possible_targets = list("Free objective","Random")
@@ -125,7 +128,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(O.late_joiner)
 			try_target_late_joiners = TRUE
 	for(var/datum/mind/possible_target in get_crewmember_minds())
-		if(!(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
+		if(is_valid_target(possible_target) && !(possible_target in owners) && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && is_unique_objective(possible_target,dupe_search_range))
 			//yogs start -- Quiet Rounds
 			var/mob/living/carbon/human/guy = possible_target.current
 			if(possible_target.antag_datums || !(guy.client && (guy.client.prefs.yogtoggles & QUIET_ROUND)))
@@ -220,7 +223,8 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(target && target.current)
 		if(ishuman(target.current))
 			var/mob/living/carbon/human/H = target.current
-			explanation_text = "Assassinate [target.name], the [lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
+			// This should just check for an uppercase flag
+			explanation_text = "Assassinate [target.name], the [isipc(H) ? H.dna.species.name : lowertext(H.dna.species.name)] [!target_role_type ? target.assigned_role : target.special_role]."
 		else
 			explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 	else
@@ -512,6 +516,18 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!considered_escaped(M))
+			return FALSE
+	return TRUE
+
+/datum/objective/escape/escape_with_identity/is_valid_target(possible_target)
+	var/list/datum/mind/owners = get_owners()
+	for(var/datum/mind/M in owners)
+		if(!M)
+			continue
+		if(!M.has_antag_datum(/datum/antagonist/changeling))
+			continue
+		var/datum/mind/T = possible_target
+		if(!istype(T) || isipc(T.current))
 			return FALSE
 	return TRUE
 
@@ -1093,6 +1109,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/datum/mind/M in SSticker.minds)
 		if(M in lings)
 			continue
+		if(isipc(M.current))
+			continue
 		if(department_head in get_department_heads(M.assigned_role))
 			if(ling_count)
 				ling_count--
@@ -1121,6 +1139,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/heads = SSjob.get_living_heads()
 	for(var/datum/mind/head in heads)
 		if(head in lings) //Looking at you HoP.
+			continue
+		if(isipc(head.current))
 			continue
 		if(needed_heads)
 			department_minds += head
