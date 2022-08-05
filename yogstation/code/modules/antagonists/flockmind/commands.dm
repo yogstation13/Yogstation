@@ -64,13 +64,13 @@
 		to_chat(daddy, span_warning("Not a valid target!"))
 		return FALSE
 	if(!FT.getFireLoss() && !FT.getBruteLoss())
-		A.balloon_alert(daddy, "Already at full health")
+		FT.balloon_alert(daddy, "Already at full health")
 		return TRUE
 	if(FT.stat == DEAD)
-		A.balloon_alert(daddy, "Dead, aborting")
+		FT.balloon_alert(daddy, "Dead, aborting")
 		return TRUE
 	FT.heal_ordered_damage(30, list(BRUTE, BURN))
-	A.balloon_alert(daddy, "Sucessfully healed")
+	FT.balloon_alert(daddy, "Sucessfully healed")
 	playsound(daddy, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
 	parent_action.StartCooldown()
 	return TRUE
