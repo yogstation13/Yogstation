@@ -103,6 +103,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_USESELF "Use Self"
 #define ACTION_DROP "Drop"
 #define ACTION_EQUIP "Equip"
+#define ACTION_REST "Rest"
 
 #define ACTION_TARGETHEAD "Target Head"
 #define ACTION_TARGETRARM "Target RArm"
@@ -155,6 +156,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_USESELF = "Z",
 	ACTION_DROP = "Q",
 	ACTION_EQUIP = "E",
+	ACTION_REST = "V",
 
 	ACTION_TARGETHEAD = "Numpad8",
 	ACTION_TARGETRARM = "Numpad4",
