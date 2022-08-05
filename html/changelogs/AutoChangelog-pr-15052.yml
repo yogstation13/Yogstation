@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - tweak: "comms console no longer scans your face for your identity, instead uses logged in user"
