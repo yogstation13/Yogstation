@@ -14,6 +14,7 @@
 	icon = 'icons/mob/flock_mobs.dmi'
 	icon_gib = null
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
+	see_in_dark = 5
 	wander = TRUE
 	harm_intent_damage = 10
 	minbodytemp = 0
@@ -43,8 +44,8 @@
 	light_color = LIGHT_COLOR_CYAN
 	speech_span = SPAN_ROBOT
 	hud_type = /datum/hud/living/flockdrone
-	wanted_objects = list(/obj/item, /turf, /obj/structure/destructible/flock/construction)
-	unwanted_objects = list(/obj/item/disk/nuclear, /turf/closed/wall/feather, /turf/open/floor/feather, /turf/closed/indestructible, /turf/open/indestructible, /turf/open/lava, /turf/open/chasm, /turf/open/space)
+	wanted_objects = list(/obj/item, /turf, /obj/structure/destructible/flock/construction, /obj/structure/grille, /obj/machinery/computer)
+	unwanted_objects = list(/obj/item/disk/nuclear, /turf/closed/indestructible, /turf/open/indestructible, /turf/open/lava, /turf/open/chasm, /turf/open/space)
 	search_objects = 1
 	var/resources = 0
 	var/max_resources = 100
@@ -245,20 +246,33 @@
 		a_intent_change(INTENT_HARM)
 
 /mob/living/simple_animal/hostile/flockdrone/CanAttack(atom/the_target)
-	if(isitem(the_target) && resources >= 100)
-		return FALSE
-
-	if(isflockdrone(the_target))
-		var/mob/living/FD = the_target
-		if(FD.stat == DEAD && resources < 100 && FD.resources && health >= maxHealth) //Our funny drones will attempt to butcher dead drones if they don't have max resources and are unharmed
-			return TRUE
-		else
+	if(!ckey)
+		if(isitem(the_target) && resources >= 100)
 			return FALSE
 
-	if(istype(the_target, /obj/structure/destructible/flock/construction))
-		if(resources > 10 && health >= maxHealth)
-			return TRUE
-		return FALSE
+		if(!isturf(the_target) && resources < 20)
+			return FALSE
+
+		if(isflockdrone(the_target))
+			var/mob/living/simple_animal/hostile/flockdrone/FD = the_target
+			if(FD.stat == DEAD && resources < 100 && FD.resources && health >= maxHealth)
+				return TRUE
+			else
+				return FALSE
+
+		if(istype(the_target, /obj/structure/destructible/flock/construction))
+			if(resources > 10 && health >= maxHealth)
+				return TRUE
+			return FALSE
+
+		if(istype(the_target, /obj/machinery/computer) && resources < 30)
+			return FALSE
+
+		if(istype(the_target, /obj/structure/grille) && resources < 10)
+			return FALSE
+
+		if(istype(the_target, /turf/closed/wall/feather) || istype(the_target, /turf/open/floor/feather)|| istype(the_target, /obj/structure/grille/flock))
+			return
 
 	return ..()
 

@@ -112,7 +112,7 @@
 		if(drone.resources < broken ? 10 : 5)
 			to_chat(drone, span_warning("Not enough resources!"))
 			return
-		drone.change_resources(broken ? 10 : 5)
+		drone.change_resources(broken ? -10 : -5)
 	if(!broken)
 		new /obj/structure/grille/flock (loc)
 	else
@@ -120,10 +120,12 @@
 	qdel(src)
 
 /turf/closed/wall/feather/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(!drone)
+		return
 	to_chat(drone, span_notice("You begin deconstructing [src]..."))
 	if(!do_after(drone, src, 5 SECONDS))
 		return
-	if(QDELETED(src) || istype(/turf/closed/wall/feather, src) || !src)
+	if(QDELETED(src) || !istype(/turf/closed/wall/feather, src) || !src)
 		return
 	to_chat(drone, span_notice("You deconstruct [src]."))
 	TerraformTurf(/turf/open/floor/feather)
@@ -145,3 +147,17 @@
 	var/obj/structure/destructible/flock/cage/C = new /obj/structure/destructible/flock/cage (get_turf(src))
 	C.buckle_mob(src, TRUE)
 	return
+
+/obj/machinery/computer/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
+	if(drone)
+		if(drone.resources < 30)
+			to_chat(drone, span_warning("Not enough resources!"))
+			return
+		to_chat(drone, span_notice("You begin re-shapening [src]"))
+		if(!do_after(drone, src, 5 SECONDS))
+			return
+		if(QDELETED(src) || istype(/obj/structure/destructible/flock/computer, src) || !src)
+			return
+		drone.change_resources(-30)
+	new /obj/structure/destructible/flock/computer (get_turf(src))
+	qdel(src)
