@@ -58,7 +58,7 @@
 
 /datum/action/cooldown/flock/eject/Trigger()
 	if(!isflockdrone(owner))
-		to_chat(owner, span_warning("You are not in a flockdrone!"))
+		owner.balloon_alert_perform(owner, "not in a flockdrone")
 		return
 	var/mob/living/simple_animal/hostile/flockdrone/FD = owner
 	FD.EjectPilot()
@@ -71,7 +71,7 @@
 
 /datum/action/cooldown/flock/flocktrace
 	name = "Partition Mind"
-	desc = "Alert your Flock that someone is definitely an enemy. NPC drones will fire lethal lasers at them regardles of conditions."
+	desc = "Summon a flocktrace, that will be able to pilot flockdrones. Requires 100 compute."
 	cooldown_time = 60 SECONDS
 	button_icon_state = "awaken_drone"
 	var/waiting = FALSE
@@ -81,14 +81,14 @@
 		return
 	var/datum/team/flock/team = get_flock_team()
 	if(team.get_compute(TRUE) < 100)
-		to_chat(owner, span_warning("You need 100 compute to be able to summon a flocktrace!"))
+		owner.balloon_alert_perform(owner, "not enough compute")
 		return
 	waiting = TRUE
 	to_chat(owner, span_notice("You attempt to summon a Flocktrace..."))
 	var/list/candidates = pollGhostCandidates("Do you want to play as a flocktrace?", ROLE_FLOCKTRACE)
 	if(!candidates.len || team.get_compute(TRUE) < 100) //Check again for the amount of compute, in case if it changed while we were polling for ghosts
 		waiting = FALSE
-		to_chat(owner, span_warning("You fail to summon a Flocktrace. Maybe try again later?"))
+		owner.balloon_alert_perform(owner, "summon failed, try again later.")
 		return
 	
 	var/mob/dead/selected = pick(candidates)
@@ -99,7 +99,7 @@
 	player_mind.assigned_role = "Flocktrace"
 	player_mind.special_role = "Flocktrace"
 	team.add_member(player_mind)
-	to_chat(owner, span_notice("You sucessfully summon a Flocktrace!"))
+	owner.balloon_alert_perform(owner, "summoned sucessfully")
 	message_admins("[ADMIN_LOOKUPFLW(FT)] has been made into a Flocktrace by [ADMIN_LOOKUPFLW(owner)]'s [name] ability.")
 	log_game("[key_name(FT)] was spawned as a Flocktrace by [key_name(owner)]'s [name] ability.")
 	waiting = FALSE
@@ -131,7 +131,7 @@
 		for(var/obj/machinery/door/airlock/A in targets)
 			A.open()
 	else
-		to_chat(owner, span_warning("There is no valid airlocks around you."))
+		owner.balloon_alert_perform(owner, "not valid targets")
 		return
 /datum/action/cooldown/flock/radio_stun
 	name = "Radio Stun Burst"
@@ -160,7 +160,7 @@
 				to_chat(L, span_userdanger("Horrifying static bursts into your headset, disorienting you severely!"))
 				playsound(L, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg')), 100, 1)
 	else
-		to_chat(owner, span_warning("There is no valid targets around you."))
+		owner.balloon_alert_perform(owner, "not valid targets")
 
 /datum/action/cooldown/flock/radio_talk
 	name = "Narrowbeam Transmission"
@@ -178,15 +178,15 @@
 		return
 	var/mob/camera/flocktrace/FT = owner
 	if(!FT.stored_action)
-		to_chat(owner, span_warning("You don't have any active action."))
+		owner.balloon_alert_perform(owner, "no active commands")
 		return
 	qdel(FT.stored_action)
 	FT.stored_action = null
-	to_chat(owner, span_notice("You cancell your current command."))
+	owner.balloon_alert_perform(owner, "command canceled")
 
 /datum/action/cooldown/flock/spawn_egg
 	name = "Spawn Egg"
-	desc = "Create an Egg."
+	desc = "Create an Egg. This will cost 100 resources."
 	button_icon_state = "spawn_egg"
 	cooldown_time = 15 SECONDS
 	var/obj/structure/destructible/flock/egg_type = /obj/structure/destructible/flock/egg
@@ -196,7 +196,7 @@
 		return
 	var/mob/living/simple_animal/hostile/flockdrone/FD = owner
 	if(FD.resources < 100)
-		to_chat(owner, span_warning("You need [100 - FD.resources] more resources to do this."))
+		owner.balloon_alert_perform(owner, "not enough resources")
 		return
 	FD.change_resources(-100, TRUE)
 	new egg_type (FD.loc)
@@ -214,10 +214,10 @@
 		return
 	var/turf/T = get_turf(owner)
 	if(!T || !istype(T) || !isopenturf(T))
-		to_chat(owner, span_warning("Not a valid location."))
+		owner.balloon_alert_perform(owner, "not a valid location")
 		return
 	if(!is_station_level(T.z))
-		to_chat(owner, span_warning("The Rift can be spawned only on the station Z-level."))
+		owner.balloon_alert_perform(owner, "can summon only on station z-level")
 		return
 	new egg_type (T)
 	to_chat(owner, span_notice("You create the Rift, opening the way to your Flock to this world!"))
