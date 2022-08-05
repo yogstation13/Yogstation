@@ -1,0 +1,6 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "Lizardpeople now dislike sugar and vegetables"
+  - tweak: "Lizardpeople now do not dislike grains"
+  - tweak: "Lizardpeople now do not love gross foods (but don't dislike them)"
