@@ -71,7 +71,7 @@
 		return TRUE
 	FT.heal_ordered_damage(30, list(BRUTE, BURN))
 	FT.balloon_alert(daddy, "Sucessfully healed")
-	playsound(daddy, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
+	playsound(daddy, 'sound/misc/flockmind/flockmind_cast.ogg', 80, TRUE)
 	parent_action.StartCooldown()
 	return TRUE
 
@@ -82,7 +82,7 @@
 	if(isliving(A))
 		var/mob/living/L = A 
 		var/obj/item/radio/headset/H = L.get_item_by_slot(ITEM_SLOT_EARS)
-		if(!H || !H.on || !H.listening || !istype(H))
+		if(!H?.on || !H.listening || !istype(H))
 			to_chat(daddy, span_warning("[L] doesn't have a headset or their headset compatible!"))
 			return TRUE
 		var/msg = input(daddy,"What would you like to transmit to [L]?","Narrowbeam Transmission","") as null|text

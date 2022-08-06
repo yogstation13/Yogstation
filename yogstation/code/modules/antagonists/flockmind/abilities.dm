@@ -147,18 +147,18 @@
 		if(L.stat == DEAD)
 			continue
 		var/obj/item/radio/headset/H = L.get_item_by_slot(ITEM_SLOT_EARS)
-		if(H && H.on && H.listening && istype(H))
+		if(H?.on && H.listening && istype(H))
 			targets += L
 	if(length(targets))
 		playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
 		to_chat(owner, span_notice("You transmit the worst static you can weave into the headsets around you."))
 		StartCooldown()
 		for(var/mob/living/L in targets)
-			var/distance = max(0,get_dist(get_turf(owner), get_turf(L)))
+			var/distance = max(0 ,get_dist(get_turf(owner), get_turf(L)))
 			if(L.soundbang_act(1, 20/max(1,distance), rand(1, 5)))
 				L.Paralyze(max(150/max(1,distance), 60))
 				to_chat(L, span_userdanger("Horrifying static bursts into your headset, disorienting you severely!"))
-				playsound(L, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg')), 100, 1)
+				playsound(L, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg')), 100, TRUE)
 	else
 		owner.balloon_alert(owner, "No valid targets")
 
