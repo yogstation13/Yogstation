@@ -626,7 +626,7 @@
 /// Include additional information about antag in this part
 /datum/antagonist/bloodsucker/antag_listing_status()
 	if(owner && !considered_alive(owner))
-		return "<font color=red>Final Death</font>"
+		return "(Final Death)"
 	return ..()
 
 /*

@@ -403,35 +403,18 @@
 	return result.Join()
 
 /datum/team/revolution/antag_listing_entry()
-	var/common_part = ""
-	var/list/parts = list()
-	parts += "<b>[antag_listing_name()]</b><br>"
-	parts += "<table cellspacing=5>"
-
-	var/list/heads = get_team_antags(/datum/antagonist/rev/head,TRUE)
-
-	for(var/datum/antagonist/A in heads | get_team_antags())
-		parts += A.antag_listing_entry()
-
-	parts += "</table>"
-	parts += antag_listing_footer()
-	common_part = parts.Join()
-
-	var/heads_report = "<b>Heads of Staff</b><br>"
-	heads_report += "<table cellspacing=5>"
+	// Team constructor
+	// [0: "TeamName", 1:[AntagConstructor, AntagConstructor], 2:[Name of Tracked, [TRACK_REF, TRACK_REF]]]
+	var/list/team_construct = list(antag_listing_name(), list(), list(FALSE,list()))
+	for(var/datum/antagonist/A in get_team_antags())
+		team_construct[2] += A.antag_listing_entry()
+	
+	team_construct[3][1] = "Heads of Staff"
 	for(var/datum/mind/N in SSjob.get_living_heads())
-		var/mob/M = N.current
-		if(M)
-			heads_report += "<tr><td><a href='?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(No Client)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-			heads_report += "<td><A href='?priv_msg=[M.ckey]'>PM</A></td>"
-			heads_report += "<td><A href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M)]'>FLW</a></td>"
-			var/turf/mob_loc = get_turf(M)
-			heads_report += "<td>[mob_loc.loc]</td></tr>"
-		else
-			heads_report += "<tr><td><a href='?_src_=vars;[HrefToken()];Vars=[REF(N)]'>[N.name]([N.key])</a><i>Head body destroyed!</i></td>"
-			heads_report += "<td><A href='?priv_msg=[N.key]'>PM</A></td></tr>"
-	heads_report += "</table>"
-	return common_part + heads_report
+		if(N.current)
+			team_construct[3][2] += list(list(N.current.real_name, REF(N.current)))
+	
+	return team_construct
 
 /datum/team/revolution/is_gamemode_hero()
 	return SSticker.mode.name == "revolution"
