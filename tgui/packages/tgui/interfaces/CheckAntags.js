@@ -138,7 +138,7 @@ export const CheckAntags = (props, context) => {
               {priority_sections.map((teamdata, index) =>
                 (<Section title={teamdata[0]}>
                   {teamdata[1].map((antagdata, idx) =>
-                    <Box>
+                    (<Box>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
@@ -177,7 +177,7 @@ export const CheckAntags = (props, context) => {
                         onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
-                    </Box>
+                    </Box>)
                   )}
                   {teamdata[2] !== [] ? <Section title={teamdata[2][0]}>
                     {teamdata[2][1].map((flwdata, idx) =>
@@ -197,7 +197,7 @@ export const CheckAntags = (props, context) => {
               {sections.map((teamdata, index) =>
                 (<Section title={teamdata[0]}>
                   {teamdata[1].map((antagdata, idx) =>
-                    <Box>
+                    (<Box>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
@@ -236,7 +236,7 @@ export const CheckAntags = (props, context) => {
                         onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
-                    </Box>
+                    </Box>)
                   )}
                   {teamdata[2] !== [] ? <Section title={teamdata[2][0]}>
                     {teamdata[2][1].map((flwdata, idx) =>
