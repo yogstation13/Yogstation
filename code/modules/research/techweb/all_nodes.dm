@@ -385,6 +385,7 @@
 	id = "ai"
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
+	prereq_ids = list("base")
 	design_ids = list("server_cabinet", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "ai_resource_distribution", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
 	research_costs = list(TECHWEB_POINT_TYPE_AI = 1000)
 	export_price = 5000
