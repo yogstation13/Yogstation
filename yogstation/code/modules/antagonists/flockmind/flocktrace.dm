@@ -13,8 +13,6 @@
 	invisibility = INVISIBILITY_OBSERVER
 	layer = FLY_LAYER
 
-	mobility_flags = FLYING | UNSTOPPABLE 
-
 	pass_flags = PASSBLOB | PASSTABLE | PASSMOB | PASSGRILLE | PASSGLASS | PASSCLOSEDTURF | PASSMACHINES | PASSCOMPUTER
 	var/datum/antagonist/d_type = /datum/antagonist/flocktrace
 	var/datum/flock_command/stored_action = null
