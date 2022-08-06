@@ -235,7 +235,7 @@
 /obj/effect/decal/cleanable/flockdrone
 	name = "flockdrone remains"
 	desc = "A remains of a flockdrone."
-	icon = 'icons/mob/flock_mobs.dmi'
+	icon = 'goon/icons/mob/flock_mobs.dmi'
 	icon_state = "gib1"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5")
 	blood_state = BLOOD_STATE_OIL
@@ -244,7 +244,7 @@
 /obj/effect/decal/cleanable/fluid
 	name = "strange fluid"
 	desc = "A strange fluid."
-	icon = 'icons/mob/flock_mobs.dmi'
+	icon = 'goon/icons/mob/flock_mobs.dmi'
 	icon_state = "fluid1"
 	random_icon_states = list("fluid1", "fluid2", "fluid3")
 	blood_state = BLOOD_STATE_OIL

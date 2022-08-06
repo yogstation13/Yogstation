@@ -1,13 +1,13 @@
 /datum/action/cooldown/flock
 	var/datum/flock_command/action = null
 	var/messg = "Uhh you will do nothing cry about it"
-	icon_icon = 'icons/mob/actions/actions_flock.dmi'
+	icon_icon = 'goon/icons/mob/actions_flock.dmi'
 
 /datum/action/cooldown/flock/Trigger()
 	if(isflocktrace(owner))
 		var/mob/camera/flocktrace/FT = owner
 		if(FT.stored_action)
-			if(istype(FT.stored_action, action.type))
+			if(istype(FT.stored_action, action))
 				qdel(FT.stored_action)
 				FT.stored_action = null
 				to_chat(owner, span_warning("You cancell your current action."))
@@ -15,8 +15,7 @@
 			qdel(FT.stored_action)
 			FT.stored_action = null			
 		FT.stored_action = new action(FT)
-	else
-		return
+	return
 
 /datum/action/cooldown/flock/IsAvailable()
 	return (next_use_time <= world.time) && (isflockdrone(owner) || isflocktrace(owner))
@@ -123,16 +122,16 @@
 	for(var/obj/machinery/door/airlock/A in range(10, get_turf(owner)))
 		if(A.canAIControl())
 			targets += A
-	if(length(targets))
-		playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
-		to_chat(owner, span_notice("You force open all the airlocks around you."))
-		StartCooldown()
-		sleep(1.5 SECONDS)
-		for(var/obj/machinery/door/airlock/A in targets)
-			A.open()
-	else
+	if(!length(targets))
 		owner.balloon_alert(owner, "No valid targets")
 		return
+	playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
+	to_chat(owner, span_notice("You force open all the airlocks around you."))
+	StartCooldown()
+	sleep(1.5 SECONDS)
+	for(var/obj/machinery/door/airlock/A in targets)
+		A.open()
+
 /datum/action/cooldown/flock/radio_stun
 	name = "Radio Stun Burst"
 	desc = "Overwhelm the radio headsets of everyone nearby. Will not work on broken or non-existent headsets. Ear protection reduce the effect."
@@ -149,18 +148,18 @@
 		var/obj/item/radio/headset/H = L.get_item_by_slot(ITEM_SLOT_EARS)
 		if(H?.on && H.listening && istype(H))
 			targets += L
-	if(length(targets))
-		playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
-		to_chat(owner, span_notice("You transmit the worst static you can weave into the headsets around you."))
-		StartCooldown()
-		for(var/mob/living/L in targets)
-			var/distance = max(0 ,get_dist(get_turf(owner), get_turf(L)))
-			if(L.soundbang_act(1, 20/max(1,distance), rand(1, 5)))
-				L.Paralyze(max(150/max(1,distance), 60))
-				to_chat(L, span_userdanger("Horrifying static bursts into your headset, disorienting you severely!"))
-				playsound(L, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg')), 100, TRUE)
-	else
+	if(!length(targets))
 		owner.balloon_alert(owner, "No valid targets")
+		return
+	playsound(owner, 'sound/misc/flockmind/flockmind_cast.ogg', 80, 1)
+	to_chat(owner, span_notice("You transmit the worst static you can weave into the headsets around you."))
+	StartCooldown()
+	for(var/mob/living/L in targets)
+		var/distance = max(0 ,get_dist(get_turf(owner), get_turf(L)))
+		if(L.soundbang_act(1, 20/max(1,distance), rand(1, 5)))
+			L.Paralyze(max(150/max(1,distance), 60))
+			to_chat(L, span_userdanger("Horrifying static bursts into your headset, disorienting you severely!"))
+			playsound(L, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg')), 100, TRUE)
 
 /datum/action/cooldown/flock/radio_talk
 	name = "Narrowbeam Transmission"

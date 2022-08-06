@@ -11,7 +11,7 @@
 	icon_state = "drone"
 	icon_living = "drone"
 	icon_dead = "drone_dead"
-	icon = 'icons/mob/flock_mobs.dmi'
+	icon = 'goon/icons/mob/flock_mobs.dmi'
 	icon_gib = null
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	see_in_dark = 5

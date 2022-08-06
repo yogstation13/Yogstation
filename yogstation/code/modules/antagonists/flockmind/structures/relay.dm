@@ -3,7 +3,7 @@
 	desc = "The sight of the towering geodesic sphere fills you with dread. A thousand voices whisper to you."
 	flock_id = "Signal Relay Broadcast Amplifier"
 	flock_desc = "Your goal and purpose. Defend it until it can broadcast The Signal."
-	icon = 'icons/obj/the_relay.dmi'
+	icon = 'goon/icons/obj/the_relay.dmi'
 	icon_state = "structure-relay"
 	max_integrity = 600
 	var/conversion_radius = 1

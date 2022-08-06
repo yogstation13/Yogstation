@@ -1,7 +1,7 @@
 /turf/closed/wall/feather
 	name = "feather wall"
 	desc = "A strange glovy wall"
-	icon = 'icons/turf/walls/flockwall.dmi'
+	icon = 'goon/icons/turfs/flockwall.dmi'
 	icon_state = "flockwall"
 	canSmoothWith = null
 	smooth = SMOOTH_MORE
@@ -23,7 +23,7 @@
 	name = "feather floor"
 	desc = "A strange glovy floor"
 	icon_state = "flockfloor"
-	icon = 'icons/obj/flockobjects.dmi'
+	icon = 'goon/icons/obj/flockobjects.dmi'
 	baseturfs = /turf/open/floor/feather
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -33,7 +33,7 @@
 /obj/structure/grille/flock
 	name = "barricade"
 	desc = "A glowing mesh of metallic fibres."
-	icon = 'icons/obj/flockobjects.dmi'
+	icon = 'goon/icons/obj/flockobjects.dmi'
 	icon_state = "barricade"
 	obj_integrity = 50
 	max_integrity = 50

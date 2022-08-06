@@ -3,7 +3,7 @@
 	real_name = "Flocktrace"
 	desc = "Something like a digital pilot, capable of controling flockdrones."
 	initial_language_holder = /datum/language_holder/flock
-	icon = 'icons/mob/flock_mobs.dmi'
+	icon = 'goon/icons/mob/flock_mobs.dmi'
 	icon_state = "flocktrace"
 	faction = list("flock")
 	hud_type = /datum/hud/flocktrace
@@ -23,8 +23,7 @@
 /mob/camera/flocktrace/Initialize()
 	. = ..()
 	var/obj/item/radio/headset/silicon/ai/radio = new(src)
-	radio.wires.cut(WIRE_TX) 
-	AddComponent(/datum/component/stationloving, FALSE, TRUE)
+	radio.wires.cut(WIRE_TX)
 	grant_skills()
 	if(!isflockmind(src))
 		AddComponent(/datum/component/flock_compute, -100, TRUE)
