@@ -136,9 +136,9 @@ export const CheckAntags = (props, context) => {
           <Grid.Column size={3}>
             <Section title="Antagonists" fill>
               {priority_sections.map((teamdata, index) =>
-                (<Section title={teamdata[0]}>
+                (<Section title={teamdata[0]} key={teamdata.index}>
                   {teamdata[1].map((antagdata, idx) =>
-                    (<Box>
+                    (<Box key={antagdata.idx}>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
@@ -181,7 +181,7 @@ export const CheckAntags = (props, context) => {
                   )}
                   {teamdata[2] !== [] ? <Section title={teamdata[2][0]}>
                     {teamdata[2][1].map((flwdata, idx) =>
-                      (<Box>
+                      (<Box key={flwdata.idx}>
                         <Box inline>{flwdata[0]+" "}</Box>
                         <Button
                           content="FLW"
@@ -195,9 +195,9 @@ export const CheckAntags = (props, context) => {
               )}
 
               {sections.map((teamdata, index) =>
-                (<Section title={teamdata[0]}>
+                (<Section title={teamdata[0]} key={teamdata.index}>
                   {teamdata[1].map((antagdata, idx) =>
-                    (<Box>
+                    (<Box key={antagdata.idx}>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
@@ -240,7 +240,7 @@ export const CheckAntags = (props, context) => {
                   )}
                   {teamdata[2] !== [] ? <Section title={teamdata[2][0]}>
                     {teamdata[2][1].map((flwdata, idx) =>
-                      (<Box>
+                      (<Box key={flwdata.idx}>
                         <Box inline>{flwdata[0]}</Box>
                         <Button
                           content="FLW"
@@ -255,9 +255,9 @@ export const CheckAntags = (props, context) => {
               )}
 
               {antag_types.map((type, index) =>
-                (<Section title={type+'s'}>
+                (<Section title={type+'s'} key={type.index}>
                   {antags.map((antagdata, idx) => // Antag constructor
-                    (type === antagdata[0] ? <Box>
+                    (type === antagdata[0] ? <Box key={antagdata.idx}>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
