@@ -2,8 +2,8 @@
 
 //Whatever interesting things happened to the antag admins should know about
 //Include additional information about antag in this part
-// Try to keep this under 14 characters please
-/datum/antagonist/proc/antag_listing_status()
+/// Try to keep this under 14 characters please
+/datum/antagonist/proc/antag_listing_status() // Attached after the antag's name, antag's name is cut short if necessary
 	if(!owner)
 		return "(Unassigned)"
 	if(!owner.current)
@@ -14,7 +14,7 @@
 		else if(!owner.current.client && !owner.current.oobe_client) //yogs - oobe_client
 			return "(No client)"
 
-// Antag constructor
+/// Antag constructor
 /datum/antagonist/proc/antag_listing_entry()
 	var/list/antag_construct
 	if(owner.current) // [0:"Traitor", 1:"Joe Schmoe", 2:"(DEAD)", 3:"[0x2100b3a5]", 4:MOB?, 5:CLIENT?, 6:Antag/Datum]
@@ -23,21 +23,23 @@
 		antag_construct = list(list(name, antag_listing_name(), antag_listing_status(), REF(src), FALSE, FALSE, src))
 	return antag_construct
 
+/// Name shown on antag list
 /datum/antagonist/proc/antag_listing_name()
 	if(!owner)
-		return "Unassigned"
+		return "Unassigned" // No mind?
 	if(owner.current)
-		return owner.current.real_name
+		return owner.current.real_name // Get the mob's real unfiltered name
 	else
-		return owner.name
+		return owner.name // If there is no mob, get the mind's name
 
+/// Get all antagonists in this team
 /datum/team/proc/get_team_antags(antag_type,specific = FALSE)
 	. = list()
 	for(var/datum/antagonist/A in GLOB.antagonists)
 		if(A.get_team() == src && (!antag_type || !specific && istype(A,antag_type) || specific && A.type == antag_type))
 			. += A
 
-//Builds section for the team
+/// Team constructor
 /datum/team/proc/antag_listing_entry()
 	//NukeOps:
 	// Jim (Status) FLW PM TP
@@ -52,19 +54,19 @@
 		team_construct[2] += A.antag_listing_entry()
 	return list(team_construct)
 
+/// Name of the team ie Omni-Sun Syndicates
 /datum/team/proc/antag_listing_name()
 	return name
 
-/datum/team/proc/antag_listing_footer()
-	return
-
-//Moves them to the top of the list if TRUE
+/// Return whether this antag should display at the top of the antag list
 /datum/antagonist/proc/is_gamemode_hero()
 	return FALSE
 
+/// Return whether this team should display at the top of the antag list
 /datum/team/proc/is_gamemode_hero()
 	return FALSE
 
+/// Called by /client/proc/check_antagonists(), creates the tgui window
 /datum/admins/proc/check_antagonists()
 	if(!SSticker.HasRoundStarted())
 		alert("The game hasn't started yet!")
@@ -75,9 +77,11 @@
 	var/datum/tgui_check_antags/tgui = new(usr)//create the datum
 	tgui.ui_interact(usr)
 
+/// TGUI Datum for check antags
 /datum/tgui_check_antags
 	var/client/holder //client of whoever is using this datum
 
+/// Only admins may interact with this UI
 /datum/tgui_check_antags/ui_state(mob/user)
 	return GLOB.admin_state
 
@@ -95,6 +99,7 @@
 	if (user) //Prevents runtimes on datums being made without clients
 		setup(user)
 
+/// Sets holder, which is supposed to be the interacting admin. Insecure, but harmless as it is checked with usr later.
 /datum/tgui_check_antags/proc/setup(user) //H can either be a client or a mob
 	if (istype(user,/client))
 		var/client/user_client = user
@@ -103,8 +108,10 @@
 		var/mob/user_mob = user
 		holder = user_mob.client //if its a mob, assign the mob's client to holder
 
+/// Gathers all of the dynamic data to send & update to the TGUI window
 /datum/tgui_check_antags/ui_data(mob/user)
 	var/list/data = list()
+	// Stat vars
 	var/connected_players = GLOB.clients.len
 	var/lobby_players = 0
 	var/observers = 0
@@ -116,6 +123,7 @@
 	var/other_players = 0
 	var/living_skipped = 0
 	var/drones = 0
+	// Set the stat vars
 	for(var/mob/M in GLOB.mob_list)
 		if(M.ckey)
 			if(isnewplayer(M))
@@ -142,10 +150,10 @@
 			else
 				other_players++
 	
+	// Lists of antag constructors
 	var/list/all_antagonists = list()
 	var/list/antagonist_types = list()
-
-	var/list/all_teams = list()
+	var/list/all_teams = list() // Not sent
 	var/list/priority_sections = list()
 	var/list/sections = list()
 
@@ -167,18 +175,23 @@
 		if(!antagonist_types.Find(X[1]))
 			antagonist_types += X[1]
 
+	// Gamemode
 	data["mode"] = SSticker.mode.name
 	data["replacementmode"] = SSticker.mode.replacementmode ? SSticker.mode.replacementmode.name : FALSE
-	data["time"] = DisplayTimeText(world.time - SSticker.round_start_time)
+	// Round time
+	data["time"] = DisplayTimeText(world.time - SSticker.round_start_time) // Composed string: "8 minutes and 23 seconds"
+	// Shuttle data
 	data["shuttlecalled"] = EMERGENCY_IDLE_OR_RECALLED
 	data["shuttletransit"] = SSshuttle.emergency.mode == SHUTTLE_CALL
 	var/timeleft = SSshuttle.emergency.timeLeft()
-	data["shuttletime"] = "[(timeleft / 60) % 60]:[add_leading(num2text(timeleft % 60), 2, "0")]"
+	data["shuttletime"] = "[(timeleft / 60) % 60]:[add_leading(num2text(timeleft % 60), 2, "0")]" // Composed string: "8:23"
+	// Continuous round status
 	data["continue1"] = CONFIG_GET(keyed_list/continuous)[SSticker.mode.config_tag]
 	data["continue2"] = CONFIG_GET(keyed_list/midround_antag)[SSticker.mode.config_tag]
 	data["midround_time_limit"] = CONFIG_GET(number/midround_antag_time_check)
 	data["midround_living_limit"] = CONFIG_GET(number/midround_antag_life_check)
 	data["end_on_death_limits"] = SSticker.mode.round_ends_with_antag_death
+	// Stats
 	data["connected_players"] = connected_players
 	data["lobby_players"] = lobby_players
 	data["observers"] = observers
@@ -187,18 +200,24 @@
 	data["living_players_connected"] = living_players_connected
 	data["living_players_antagonist"] = living_players_antagonist
 	data["brains"] = brains
-	data["other_players"] = other_players
+	data["other_players"] = other_players // Invalid state players
 	data["living_skipped"] = living_skipped
 	data["drones"] = drones
-	data["antags"] = all_antagonists
-	data["antag_types"] = antagonist_types
-	data["priority_sections"] = priority_sections
-	data["sections"] = sections
+	// Lists of antag constructors
+	data["antags"] = all_antagonists // Every solo antag
+	data["antag_types"] = antagonist_types // Every solo antag type
+	data["priority_sections"] = priority_sections // "Gamemode hero" team antags
+	data["sections"] = sections // Every other team antag
 	return data
 
+/// Custom check rights proc that uses check_rights_for()
 /datum/tgui_check_antags/proc/check_rights(rights_required, show_msg=1)
 	var/client/rights = holder
 	var/mob/mob_user = rights.mob
+	if(mob_user != usr) // If the holder has been edited, this will catch it before any badness can be done
+		return
+	if(rights != usr.client)
+		return
 	if(rights && mob_user)
 		if (check_rights_for(rights, rights_required))
 			return 1
@@ -214,7 +233,11 @@
 	var/datum/admins/admindatum = rights.holder
 	var/mob/mob_user = rights.mob
 
-	if(mob_user != usr)
+	if(mob_user != usr) // If the holder has been edited, this will catch it before any badness can be done
+		return
+	if(rights != usr.client)
+		return
+	if(admindatum != usr.client.holder)
 		return
 
 	switch(action)
@@ -232,11 +255,10 @@
 				return
 			if(EMERGENCY_AT_LEAST_DOCKED)
 				return
-			switch(SSshuttle.emergency.mode)
-				if(SHUTTLE_CALL)
-					SSshuttle.emergency.cancel()
-					log_admin("[key_name(mob_user)] sent the Emergency Shuttle back.")
-					message_admins(span_adminnotice("[key_name_admin(mob_user)] sent the Emergency Shuttle back."))
+			if(SSshuttle.emergency.mode == SHUTTLE_CALL)
+				SSshuttle.emergency.cancel()
+				log_admin("[key_name(mob_user)] sent the Emergency Shuttle back.")
+				message_admins(span_adminnotice("[key_name_admin(mob_user)] sent the Emergency Shuttle back."))
 		
 		if("edit_shuttle_time")
 			if(!check_rights(R_SERVER))
