@@ -2,6 +2,7 @@
 
 //Whatever interesting things happened to the antag admins should know about
 //Include additional information about antag in this part
+// Try to keep this under 14 characters please
 /datum/antagonist/proc/antag_listing_status()
 	if(!owner)
 		return "(Unassigned)"
