@@ -136,7 +136,7 @@ export const CheckAntags = (props, context) => {
           <Grid.Column size={3}>
             <Section title="Antagonists" fill>
               {priority_sections.map((teamdata, index) =>
-                <Section title={teamdata[0]}>
+                (<Section title={teamdata[0]}>
                   {teamdata[1].map((antagdata, idx) =>
                     <Box>
                       <Button
@@ -181,21 +181,21 @@ export const CheckAntags = (props, context) => {
                   )}
                   {teamdata[2] !== [] ? <Section title={teamdata[2][0]}>
                     {teamdata[2][1].map((flwdata, idx) =>
-                      <Box>
+                      (<Box>
                         <Box inline>{flwdata[0]+" "}</Box>
                         <Button
                           content="FLW"
                           onClick={() => act("objflw", {
                             objref: flwdata[1],
                           })} />
-                      </Box>
+                      </Box>)
                     )}
                   </Section> : ''}
-                </Section>
+                </Section>)
               )}
 
               {sections.map((teamdata, index) =>
-                <Section title={teamdata[0]}>
+                (<Section title={teamdata[0]}>
                   {teamdata[1].map((antagdata, idx) =>
                     <Box>
                       <Button
@@ -238,9 +238,9 @@ export const CheckAntags = (props, context) => {
                         })} />
                     </Box>
                   )}
-                  {teamdata[2] != [] ? <Section title={teamdata[2][0]}>
+                  {teamdata[2] !== [] ? <Section title={teamdata[2][0]}>
                     {teamdata[2][1].map((flwdata, idx) =>
-                      <Box>
+                      (<Box>
                         <Box inline>{flwdata[0]}</Box>
                         <Button
                           content="FLW"
@@ -248,57 +248,57 @@ export const CheckAntags = (props, context) => {
                             objref: flwdata[1],
                           })} />
                         <br />
-                      </Box>
+                      </Box>)
                     )}
                   </Section> : ''}
-                </Section>
+                </Section>)
               )}
 
               {antag_types.map((type, index) =>
-                <Section title={type+'s'}>
+                (<Section title={type+'s'}>
                   {antags.map((antagdata, idx) => // Antag constructor
                     (type === antagdata[0] ? <Box>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
                         color={antagdata[2] ? 'bad' : 'good'}
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
-                        onClick={() => act('plypp', {
+                        onClick={() => act("plypp", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='VV'
+                        content="VV"
                         disabled={!antagdata[4]} // Requires mob
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
-                        onClick={() => act('plyvv', {
+                        onClick={() => act("plyvv", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='PM'
+                        content="PM"
                         disabled={!antagdata[5]} // Requires client
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[5] ? 'No client!' : ''}
-                        onClick={() => act('plypm', {
+                        onClick={() => act("plypm", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='FLW'
+                        content="FLW"
                         disabled={!antagdata[4]} // Requires mob
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
-                        onClick={() => act('plyflw', {
+                        onClick={() => act("plyflw", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='Show Objectives'
-                        onClick={() => act('plyobj', {
+                        content="Show Objectives"
+                        onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
                     </Box> : '')
                   )}
-                </Section>
+                </Section>)
               )}
             </Section>
           </Grid.Column>
