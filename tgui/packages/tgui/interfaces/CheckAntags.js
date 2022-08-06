@@ -138,7 +138,8 @@ export const CheckAntags = (props, context) => {
               {priority_sections.map((teamdata, index) =>
                 (<Section title={teamdata[0]} key={teamdata.index}>
                   {teamdata[1].map((antagdata, idx) =>
-                    (<Box key={antagdata.idx}>
+                    (
+                    <Box key={antagdata.idx}>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
@@ -177,28 +178,33 @@ export const CheckAntags = (props, context) => {
                         onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
-                     </Box>)
+                    </Box>
+                    )
                   )}
                   {teamdata[2] !== []
                     ? <Section title={teamdata[2][0]}>
                       {teamdata[2][1].map((flwdata, idx) =>
-                        (<Box key={flwdata.idx}>
+                        (
+                        <Box key={flwdata.idx}>
                           <Box inline>{flwdata[0]+" "}</Box>
                           <Button
                             content="FLW"
                             onClick={() => act("objflw", {
                               objref: flwdata[1],
                             })} />
-                         </Box>)
+                        </Box>
+                        )
                       )}
                       </Section> : ''}
                  </Section>)
               )}
 
               {sections.map((teamdata, index) =>
-                (<Section title={teamdata[0]} key={teamdata.index}>
+                (
+                <Section title={teamdata[0]} key={teamdata.index}>
                   {teamdata[1].map((antagdata, idx) =>
-                    (<Box key={antagdata.idx}>
+                    (
+                    <Box key={antagdata.idx}>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
@@ -237,12 +243,14 @@ export const CheckAntags = (props, context) => {
                         onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
-                     </Box>)
+                    </Box>
+                    )
                   )}
                   {teamdata[2] !== []
                     ? <Section title={teamdata[2][0]}>
                       {teamdata[2][1].map((flwdata, idx) =>
-                        (<Box key={flwdata.idx}>
+                        (
+                        <Box key={flwdata.idx}>
                           <Box inline>{flwdata[0]}</Box>
                           <Button
                             content="FLW"
@@ -250,14 +258,16 @@ export const CheckAntags = (props, context) => {
                               objref: flwdata[1],
                             })} />
                           <br />
-                         </Box>)
+                        </Box>
+                        )
                       )}
                       </Section> : ''}
                  </Section>)
               )}
 
               {antag_types.map((type, index) =>
-                (<Section title={type+'s'} key={type.index}>
+                (
+                <Section title={type+'s'} key={type.index}>
                   {antags.map((antagdata, idx) => // Antag constructor
                     (type === antagdata[0]
                       ? <Box key={antagdata.idx}>
@@ -301,7 +311,8 @@ export const CheckAntags = (props, context) => {
                           })} />
                         </Box> : '')
                   )}
-                </Section>)
+                </Section>
+                )
               )}
             </Section>
           </Grid.Column>
