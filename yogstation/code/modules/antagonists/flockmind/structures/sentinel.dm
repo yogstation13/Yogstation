@@ -31,7 +31,7 @@
 			icon_state = "sentinel"
 		charge += charge_per_tick
 		return
-	if(compute_provided != 0)
+	if(compute_provided)
 		icon_state = "sentinelon"
 		change_compute_amount(0)
 	var/list/targets = acquire_nearby_targets()
