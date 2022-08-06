@@ -153,13 +153,10 @@
 			continue
 		if(A.get_team())
 			all_teams |= A.get_team()
+		else
+			all_antagonists += A.antag_listing_entry()
 	
 	for(var/datum/team/T in all_teams)
-		for(var/datum/antagonist/X in GLOB.antagonists)
-			if(!X.owner)
-				continue
-			if(X.get_team() != T)
-				all_antagonists += X.antag_listing_entry()
 		if(T.is_gamemode_hero())
 			priority_sections += T.antag_listing_entry()
 		else
