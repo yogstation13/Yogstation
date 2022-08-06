@@ -48,6 +48,10 @@
 	var/client/rights = holder
 	var/datum/admins/admindatum = rights.holder
 	var/mob/mob_user = rights.mob
+
+	if(mob_user != usr)
+		return
+
 	var/ok = 0
 	switch(action)
 		if("admin_log")
