@@ -212,7 +212,7 @@
 	if(!isflockmind(owner))
 		return
 	var/turf/T = get_turf(owner)
-	if(!T || !istype(T) || !isopenturf(T))
+	if(!isopenturf(T))
 		owner.balloon_alert(owner, "Not a valid location")
 		return
 	if(!is_station_level(T.z))
@@ -235,8 +235,8 @@
 	for(var/datum/construction_datum/CD in subtypesof(/datum/construction_datum))
 		CD = new
 		buildings[CD.name] = CD
-		names += CD.name
-	var/order = input(owner,"What order do you want to build [src]?") in names 
+		names |= CD.name
+	var/order = input(owner,"What order do you want to build [src]?")as null|anything in names 
 	if(!order)
 		return
 	var/datum/construction_datum/construction = buildings[order]
