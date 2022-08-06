@@ -1,3 +1,6 @@
+/* eslint operator-linebreak: 0 */
+// https://github.com/jsx-eslint/eslint-plugin-react/issues/454
+
 import { useBackend } from '../backend';
 import { Box, Button, Divider, Grid, Input, LabeledList, NumberInput, Section } from '../components';
 import { Window } from '../layouts';
@@ -136,67 +139,68 @@ export const CheckAntags = (props, context) => {
           <Grid.Column size={3}>
             <Section title="Antagonists" fill>
               {priority_sections.map((teamdata, index) =>
-                (<Section title={teamdata[0]} key={teamdata.index}>
-                  {teamdata[1].map((antagdata, idx) =>
-                    (
-                      <Box key={antagdata.idx}>
-                        <Button
-                          content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
-                          disabled={!antagdata[4]} // Requires mob
-                          color={antagdata[2] ? 'bad' : 'good'}
-                          tooltipPosition="right"
-                          tooltip={!antagdata[4] ? 'No mob!' : ''}
-                          onClick={() => act("plypp", {
-                            player_objs: antagdata[3],
-                          })} />
-                        <Button
-                          content="VV"
-                          disabled={!antagdata[4]} // Requires mob
-                          tooltipPosition="right"
-                          tooltip={!antagdata[4] ? 'No mob!' : ''}
-                          onClick={() => act("plyvv", {
-                            player_objs: antagdata[3],
-                          })} />
-                        <Button
-                          content="PM"
-                          disabled={!antagdata[5]} // Requires client
-                          tooltipPosition="right"
-                          tooltip={!antagdata[5] ? 'No client!' : ''}
-                          onClick={() => act("plypm", {
-                            player_objs: antagdata[3],
-                          })} />
-                        <Button
-                          content="FLW"
-                          disabled={!antagdata[4]} // Requires mob
-                          tooltipPosition="right"
-                          tooltip={!antagdata[4] ? 'No mob!' : ''}
-                          onClick={() => act("plyflw", {
-                            player_objs: antagdata[3],
-                          })} />
-                        <Button
-                          content="Show Objectives"
-                          onClick={() => act("plyobj", {
-                            player_objs: antagdata[3],
-                          })} />
-                      </Box>
-                    )
-                  )}
-                  {teamdata[2] !== []
-                    ? <Section title={teamdata[2][0]}>
-                      {teamdata[2][1].map((flwdata, idx) =>
-                        (
-                          <Box key={flwdata.idx}>
-                            <Box inline>{flwdata[0]+" "}</Box>
-                            <Button
-                              content="FLW"
-                              onClick={() => act("objflw", {
-                                objref: flwdata[1],
-                              })} />
-                          </Box>
-                        )
-                      )}
+                (
+                  <Section title={teamdata[0]} key={teamdata.index}>
+                    {teamdata[1].map((antagdata, idx) =>
+                      (
+                        <Box key={antagdata.idx}>
+                          <Button
+                            content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
+                            disabled={!antagdata[4]} // Requires mob
+                            color={antagdata[2] ? 'bad' : 'good'}
+                            tooltipPosition="right"
+                            tooltip={!antagdata[4] ? 'No mob!' : ''}
+                            onClick={() => act("plypp", {
+                              player_objs: antagdata[3],
+                            })} />
+                          <Button
+                            content="VV"
+                            disabled={!antagdata[4]} // Requires mob
+                            tooltipPosition="right"
+                            tooltip={!antagdata[4] ? 'No mob!' : ''}
+                            onClick={() => act("plyvv", {
+                              player_objs: antagdata[3],
+                            })} />
+                          <Button
+                            content="PM"
+                            disabled={!antagdata[5]} // Requires client
+                            tooltipPosition="right"
+                            tooltip={!antagdata[5] ? 'No client!' : ''}
+                            onClick={() => act("plypm", {
+                              player_objs: antagdata[3],
+                            })} />
+                          <Button
+                            content="FLW"
+                            disabled={!antagdata[4]} // Requires mob
+                            tooltipPosition="right"
+                            tooltip={!antagdata[4] ? 'No mob!' : ''}
+                            onClick={() => act("plyflw", {
+                              player_objs: antagdata[3],
+                            })} />
+                          <Button
+                            content="Show Objectives"
+                            onClick={() => act("plyobj", {
+                              player_objs: antagdata[3],
+                            })} />
+                        </Box>
+                      )
+                    )}
+                    {teamdata[2] !== [] ?
+                      <Section title={teamdata[2][0]}>
+                        {teamdata[2][1].map((flwdata, idx) =>
+                          (
+                            <Box key={flwdata.idx}>
+                              <Box inline>{flwdata[0]+" "}</Box>
+                              <Button
+                                content="FLW"
+                                onClick={() => act("objflw", {
+                                  objref: flwdata[1],
+                                })} />
+                            </Box>
+                          )
+                        )}
                       </Section> : ''}
-                 </Section>)
+                  </Section>)
               )}
 
               {sections.map((teamdata, index) =>
@@ -246,8 +250,8 @@ export const CheckAntags = (props, context) => {
                         </Box>
                       )
                     )}
-                    {teamdata[2] !== []
-                      ? <Section title={teamdata[2][0]}>
+                    {teamdata[2] !== [] ?
+                      <Section title={teamdata[2][0]}>
                         {teamdata[2][1].map((flwdata, idx) =>
                           (
                             <Box key={flwdata.idx}>
@@ -269,8 +273,8 @@ export const CheckAntags = (props, context) => {
                 (
                   <Section title={type+'s'} key={type.index}>
                     {antags.map((antagdata, idx) => // Antag constructor
-                      (type === antagdata[0]
-                        ? <Box key={antagdata.idx}>
+                      (type === antagdata[0] ?
+                        <Box key={antagdata.idx}>
                           <Button
                             content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                             disabled={!antagdata[4]} // Requires mob
