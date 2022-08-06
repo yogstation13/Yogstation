@@ -250,7 +250,7 @@
 		if(isitem(the_target) && resources >= 100)
 			return FALSE
 
-		if(!isturf(the_target) && resources < 20)
+		if(isturf(the_target) && resources < 20)
 			return FALSE
 
 		if(isflockdrone(the_target))
