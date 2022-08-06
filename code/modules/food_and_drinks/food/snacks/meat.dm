@@ -188,7 +188,7 @@
 /obj/item/food/meat/slab/mothroach
 	name = "mothroach meat"
 	desc = "A light slab of meat."
-	foodtypes = RAW | MEAT | GROSS
+	foodtype = RAW | MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/meat/slab/pug
 	name = "pug meat"
