@@ -996,26 +996,6 @@
 /obj/item/stack/license_plates/empty/fifty,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
-"adK" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/cloth_curtain{
-	color = "#99ccff"
-	},
-/obj/machinery/holosign/surgery{
-	id = "surgery_a"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters_1";
-	name = "Patient Room A Shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/patients_rooms/room_a)
 "adL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm{
@@ -4050,7 +4030,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -7487,7 +7467,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	icon_state = "cognacglass";
-	list_reagents = list(/datum/reagent/consumable/ethanol/cognac=20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 20);
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -19832,7 +19812,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -21470,6 +21450,18 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/clerk)
+"bXH" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/structure/table,
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_x = -32
+	},
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/medical/storage/locker)
 "bXJ" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
@@ -27172,23 +27164,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
-"dXW" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/cloth_curtain{
-	color = "#99ccff"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters_2";
-	name = "Patient Room B Shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/patients_rooms/room_b)
 "dYu" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
@@ -28114,7 +28089,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -28577,6 +28552,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"eIr" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "eII" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -29739,13 +29727,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"fqU" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 6
-	},
-/obj/structure/window/reinforced/tinted,
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "fqV" = (
 /obj/machinery/computer/secure_data,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -30582,7 +30563,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -31089,20 +31070,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"gbc" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "emt_shutters";
-	name = "Paramedic Staging Area Shutters"
-	},
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/medical/paramedic)
 "gbo" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -34441,6 +34408,14 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/aft)
+"hHX" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "emt_shutters";
+	name = "Paramedic Staging Area Shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/paramedic)
 "hIu" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
@@ -37802,6 +37777,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"jiq" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters_1";
+	name = "Patient Room A Shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/patients_rooms/room_a)
 "jiG" = (
 /obj/machinery/light{
 	dir = 1
@@ -39089,7 +39075,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -40432,11 +40418,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"kBh" = (
-/obj/effect/turf_decal/tile/blue/opposingcorners,
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/medical/storage/locker)
 "kBl" = (
 /obj/structure/table/wood,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -41332,26 +41313,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/fore)
-"kXm" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/cloth_curtain{
-	color = "#99ccff"
-	},
-/obj/machinery/holosign/surgery{
-	id = "surgery_b"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters_2";
-	name = "Patient Room B Shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/patients_rooms/room_b)
 "kXy" = (
 /obj/effect/turf_decal/pool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -46612,6 +46573,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"ntf" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/obj/machinery/holosign/surgery{
+	id = "surgery_a"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters_1";
+	name = "Patient Room A Shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/patients_rooms/room_a)
 "ntm" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27;
@@ -47470,18 +47445,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"nOi" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "emt_shutters";
-	name = "Paramedic Staging Area Shutters"
-	},
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/medical/paramedic)
 "nOu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -48915,6 +48878,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"ovE" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters_2";
+	name = "Patient Room B Shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/patients_rooms/room_b)
 "ovG" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
@@ -50198,7 +50172,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -51519,6 +51493,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
+"pQt" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -7;
+	pixel_y = -44
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "pQy" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Escape Podbay"
@@ -52047,14 +52036,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"qfI" = (
-/obj/effect/turf_decal/tile/blue/opposingcorners,
-/obj/structure/table,
-/obj/machinery/modular_computer/telescreen/preset/medical{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/medical/storage/locker)
 "qgG" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -52332,23 +52313,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"qmI" = (
-/obj/effect/spawner/structure/window,
-/obj/structure/cloth_curtain{
-	color = "#99ccff"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "surgery_shutters_1";
-	name = "Patient Room A Shutters"
-	},
-/turf/open/floor/plating,
-/area/medical/patients_rooms/room_a)
 "qmS" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -53342,6 +53306,13 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"qMV" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "qNt" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "QMLoad"
@@ -55633,23 +55604,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"rTQ" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "rTR" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -55799,6 +55753,10 @@
 /obj/structure/weightmachine/weightlifter,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"rWn" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/sleeper)
 "rWs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -57385,7 +57343,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -57406,6 +57364,19 @@
 /obj/effect/turf_decal/trimline/neutral,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"sJr" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners,
+/obj/structure/table,
+/obj/item/toy/cards/deck{
+	pixel_x = -13;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/britcup{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel,
+/area/medical/storage/locker)
 "sJG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -57818,7 +57789,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -58252,14 +58223,6 @@
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_b)
-"tdV" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/medical/sleeper)
 "ten" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
@@ -63228,20 +63191,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"vBT" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "emt_shutters";
-	name = "Paramedic Staging Area Shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/medical/paramedic)
 "vCb" = (
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /obj/structure/disposalpipe/junction/flip,
@@ -64233,21 +64182,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
-"wfd" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/structure/window/reinforced/tinted,
-/obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = -7;
-	pixel_y = -44
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "wfs" = (
 /obj/structure/transit_tube/diagonal{
 	dir = 4
@@ -64668,6 +64602,20 @@
 /obj/item/storage/box/syringes,
 /turf/open/floor/plasteel/dark,
 /area/medical/storage/locker)
+"wrQ" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff"
+	},
+/obj/machinery/holosign/surgery{
+	id = "surgery_b"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "surgery_shutters_2";
+	name = "Patient Room B Shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/patients_rooms/room_b)
 "wsF" = (
 /obj/machinery/camera/motion{
 	c_tag = "Telecomms Maintenance";
@@ -102763,7 +102711,7 @@ bfF
 prd
 pYf
 rZt
-gbc
+hHX
 fEC
 rZt
 dIq
@@ -103029,7 +102977,7 @@ bBB
 hvK
 umW
 bFp
-qfI
+bXH
 bvD
 qRF
 liS
@@ -103286,7 +103234,7 @@ tAu
 aKG
 unl
 bFp
-kBh
+sJr
 frn
 qRF
 wDm
@@ -103790,7 +103738,7 @@ oqv
 oOH
 bof
 sUH
-nOi
+hHX
 mFc
 rNp
 sdZ
@@ -104049,8 +103997,8 @@ xdC
 dys
 rZt
 rZt
-vBT
-vBT
+hHX
+hHX
 rZt
 rZt
 crI
@@ -106369,7 +106317,7 @@ iTB
 tCZ
 bDB
 gfB
-tdV
+rWn
 mzH
 gBy
 rgw
@@ -106626,7 +106574,7 @@ sgE
 lSH
 okT
 rsV
-rTQ
+eIr
 ngi
 jaF
 okT
@@ -106883,7 +106831,7 @@ meF
 tDe
 tVV
 uoW
-tdV
+rWn
 vbD
 vFJ
 ieC
@@ -107132,13 +107080,13 @@ hHy
 pjc
 hLI
 hcZ
-qmI
+jiq
 xOh
-qmI
+jiq
 waN
-dXW
+ovE
 psl
-dXW
+ovE
 jdO
 jdO
 xFh
@@ -107400,7 +107348,7 @@ jdO
 prz
 kJJ
 jhQ
-wfd
+pQt
 wIh
 wYO
 bNd
@@ -108171,7 +108119,7 @@ jdO
 uKT
 tGD
 rZS
-fqU
+qMV
 mon
 lsh
 bNd
@@ -108418,11 +108366,11 @@ kub
 qbJ
 hcZ
 hcZ
-adK
+ntf
 hcZ
 sKs
 sKs
-kXm
+wrQ
 sKs
 jhe
 jhe
