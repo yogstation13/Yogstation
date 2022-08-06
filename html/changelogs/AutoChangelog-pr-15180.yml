@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - bugfix: "hyposprays should now have the correct sprites"
