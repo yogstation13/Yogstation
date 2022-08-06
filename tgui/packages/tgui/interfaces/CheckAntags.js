@@ -174,7 +174,7 @@ export const CheckAntags = (props, context) => {
                         })} />
                       <Button
                         content='Show Objectives'
-                        onClick={() => act('plyobj', {
+                        onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
                     </Box>
@@ -185,7 +185,7 @@ export const CheckAntags = (props, context) => {
                         <Box inline>{flwdata[0]+" "}</Box>
                         <Button
                           content='FLW'
-                          onClick={() => act('objflw', {
+                          onClick={() => act("objflw", {
                             objref: flwdata[1],
                           })} />
                       </Box>
@@ -203,38 +203,38 @@ export const CheckAntags = (props, context) => {
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
                         color={antagdata[2] ? 'bad' : 'good'}
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
-                        onClick={() => act('plypp', {
+                        onClick={() => act("plypp", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
                         content='VV'
                         disabled={!antagdata[4]} // Requires mob
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
-                        onClick={() => act('plyvv', {
+                        onClick={() => act("plyvv", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
                         content='PM'
                         disabled={!antagdata[5]} // Requires client
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[5] ? 'No client!' : ''}
-                        onClick={() => act('plypm', {
+                        onClick={() => act("plypm", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
                         content='FLW'
                         disabled={!antagdata[4]} // Requires mob
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
-                        onClick={() => act('plyflw', {
+                        onClick={() => act("plyflw", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
                         content='Show Objectives'
-                        onClick={() => act('plyobj', {
+                        onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
                     </Box>
@@ -245,7 +245,7 @@ export const CheckAntags = (props, context) => {
                         <Box inline>{flwdata[0]}</Box>
                         <Button
                           content='FLW'
-                          onClick={() => act('objflw', {
+                          onClick={() => act("objflw", {
                             objref: flwdata[1],
                           })} />
                         <br />
