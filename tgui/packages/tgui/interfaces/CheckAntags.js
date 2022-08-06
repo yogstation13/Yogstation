@@ -130,7 +130,7 @@ export const CheckAntags = (props, context) => {
               <Box bold color="red">Dead/Observing Players</Box>
               <Box color="red">{observers_connected} active <br /> {observers - observers_connected} disconnected <br /> {brains} brains</Box>
               <br />
-              { other_players ? {other_players}+"invalid players!" : "" }
+              { other_players ? { other_players }+"invalid players!" : "" }
             </Section>
           </Grid.Column>
           <Grid.Column size={3}>
@@ -143,13 +143,13 @@ export const CheckAntags = (props, context) => {
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
                         color={antagdata[2] ? 'bad' : 'good'}
-                        tooltipPosition='right'
+                        tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
                         onClick={() => act("plypp", {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='VV'
+                        content="VV"
                         disabled={!antagdata[4]} // Requires mob
                         tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
@@ -157,7 +157,7 @@ export const CheckAntags = (props, context) => {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='PM'
+                        content="PM"
                         disabled={!antagdata[5]} // Requires client
                         tooltipPosition="right"
                         tooltip={!antagdata[5] ? 'No client!' : ''}
@@ -165,7 +165,7 @@ export const CheckAntags = (props, context) => {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='FLW'
+                        content="FLW"
                         disabled={!antagdata[4]} // Requires mob
                         tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
@@ -173,18 +173,18 @@ export const CheckAntags = (props, context) => {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='Show Objectives'
+                        content="Show Objectives"
                         onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
                     </Box>
                   )}
-                  {teamdata[2] != [] ? <Section title={teamdata[2][0]}>
+                  {teamdata[2] !== [] ? <Section title={teamdata[2][0]}>
                     {teamdata[2][1].map((flwdata, idx) =>
                       <Box>
                         <Box inline>{flwdata[0]+" "}</Box>
                         <Button
-                          content='FLW'
+                          content="FLW"
                           onClick={() => act("objflw", {
                             objref: flwdata[1],
                           })} />
@@ -194,8 +194,7 @@ export const CheckAntags = (props, context) => {
                 </Section>
               )}
 
-              {sections.map((teamdata, index) => // Team constructor, but less important teams
-              // [0: "TeamName", 1:[AntagConstructor, AntagConstructor], 2:[0:Name of Tracked, 1:[[0:Name, 1:TRACK_REF], [Name, TRACK_REF]]]]
+              {sections.map((teamdata, index) =>
                 <Section title={teamdata[0]}>
                   {teamdata[1].map((antagdata, idx) =>
                     <Box>
@@ -209,7 +208,7 @@ export const CheckAntags = (props, context) => {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='VV'
+                        content="VV"
                         disabled={!antagdata[4]} // Requires mob
                         tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
@@ -217,7 +216,7 @@ export const CheckAntags = (props, context) => {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='PM'
+                        content="PM"
                         disabled={!antagdata[5]} // Requires client
                         tooltipPosition="right"
                         tooltip={!antagdata[5] ? 'No client!' : ''}
@@ -225,7 +224,7 @@ export const CheckAntags = (props, context) => {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='FLW'
+                        content="FLW"
                         disabled={!antagdata[4]} // Requires mob
                         tooltipPosition="right"
                         tooltip={!antagdata[4] ? 'No mob!' : ''}
@@ -233,7 +232,7 @@ export const CheckAntags = (props, context) => {
                           player_objs: antagdata[3],
                         })} />
                       <Button
-                        content='Show Objectives'
+                        content="Show Objectives"
                         onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
@@ -244,7 +243,7 @@ export const CheckAntags = (props, context) => {
                       <Box>
                         <Box inline>{flwdata[0]}</Box>
                         <Button
-                          content='FLW'
+                          content="FLW"
                           onClick={() => act("objflw", {
                             objref: flwdata[1],
                           })} />
@@ -258,8 +257,7 @@ export const CheckAntags = (props, context) => {
               {antag_types.map((type, index) =>
                 <Section title={type+'s'}>
                   {antags.map((antagdata, idx) => // Antag constructor
-                  // [0:"Traitor", 1:"Joe Schmoe", 2:"(DEAD)", 3:"[0x2100b3a5]", 4:MOB?, 5:CLIENT?, 6:Antag/Datum]
-                    (type == antagdata[0] ? <Box>
+                    (type === antagdata[0] ? <Box>
                       <Button
                         content={antagdata[2] ? antagdata[1].substring(0, 20)+' '+antagdata[2] : antagdata[1].substring(0, 34)}
                         disabled={!antagdata[4]} // Requires mob
