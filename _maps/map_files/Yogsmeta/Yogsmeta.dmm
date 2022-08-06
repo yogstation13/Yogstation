@@ -40991,9 +40991,6 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "bWi" = (
-/obj/structure/noticeboard{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
@@ -56717,9 +56714,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "dsh" = (
-/obj/structure/sign/poster/official/random{
-	pixel_y = -32
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -56737,6 +56731,10 @@
 /obj/item/trash/raisins{
 	pixel_x = -3;
 	pixel_y = 15
+	},
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)

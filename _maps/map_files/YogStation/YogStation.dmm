@@ -46325,10 +46325,6 @@
 	pixel_x = 7;
 	pixel_y = -5
 	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "npo" = (
@@ -62878,6 +62874,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/blue/filled/corner,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -30
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "vCX" = (
