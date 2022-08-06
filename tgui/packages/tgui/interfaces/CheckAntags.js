@@ -177,7 +177,7 @@ export const CheckAntags = (props, context) => {
                         onClick={() => act("plyobj", {
                           player_objs: antagdata[3],
                         })} />
-                    </Box>)
+                  </Box>)
                   )}
                   {teamdata[2] !== [] ? <Section title={teamdata[2][0]}>
                     {teamdata[2][1].map((flwdata, idx) =>
