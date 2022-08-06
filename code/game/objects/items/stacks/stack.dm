@@ -182,8 +182,8 @@
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier ||(multiplier <= 0) || isnan(multiplier)) //href protection
-			return
+		if(!multiplier || multiplier < 1 || !isnum(multiplier) || ISNAN(multiplier)) //href exploit protection
+			message_admins("[ADMIN_FULLMONTY(usr)] is attempting to create NAN amount item stacks")
 		if(!building_checks(R, multiplier))
 			return
 		if (R.time)
