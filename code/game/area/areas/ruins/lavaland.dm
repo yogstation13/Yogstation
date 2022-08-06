@@ -75,7 +75,11 @@
 	name = "King Goat Arena"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	noteleport = TRUE
-	icon_state = "dk_yellow" //yogs end
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/hell_bunker
+	name = "Ritual Bunker"
+	noteleport = TRUE
 
 /area/ruin/unpowered/russianbunker
 	name = "Russian Bunker"
