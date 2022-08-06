@@ -272,7 +272,7 @@
 			return FALSE
 
 		if(istype(the_target, /turf/closed/wall/feather) || istype(the_target, /turf/open/floor/feather)|| istype(the_target, /obj/structure/grille/flock))
-			return
+			return FALSE
 
 	return ..()
 
