@@ -1,0 +1,8 @@
+author: " PowerfulBacon, ported by SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Added a brass battlehammer"
+  - rscadd: "Added a brass sword"
+  - tweak: "Nerfed clockwork arrows"
+  - tweak: "Clockwork bow is now obtainable"
+  - tweak: "Clockwork Armaments now can summon more various weapons"
