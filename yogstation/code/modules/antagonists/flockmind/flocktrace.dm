@@ -13,7 +13,9 @@
 	invisibility = INVISIBILITY_OBSERVER
 	layer = FLY_LAYER
 
-	pass_flags = PASSBLOB
+	mobility_flags = FLYING | UNSTOPPABLE | PASSMOB | PASSGRILLE | PASSGLASS | PASSCLOSEDTURF | PASSMACHINES | PASSCOMPUTER
+
+	pass_flags = PASSBLOB | PASSTABLE | 
 	var/datum/antagonist/d_type = /datum/antagonist/flocktrace
 	var/datum/flock_command/stored_action = null
 	var/datum/action/cooldown/flock/enemi/enemy_designate
@@ -78,6 +80,8 @@
 	. = ..()
 	var/datum/team/flock/team = get_flock_team(mind)
 	team.overmind = src
+	ADD_TRAIT(src, TRAIT_XRAY_VISION, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_SIXTHSENSE, INNATE_TRAIT)
 
 /mob/camera/flocktrace/flockmind/grant_skills()
 	rift = new

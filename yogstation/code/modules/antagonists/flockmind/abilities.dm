@@ -130,7 +130,7 @@
 	StartCooldown()
 	sleep(1.5 SECONDS)
 	for(var/obj/machinery/door/airlock/A in targets)
-		A.open()
+		INVOKE_ASYNC(A, /obj/machinery/door/airlock.proc/open)
 
 /datum/action/cooldown/flock/radio_stun
 	name = "Radio Stun Burst"

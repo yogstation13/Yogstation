@@ -40,8 +40,12 @@
 	var/mob/living/L = pick(targets)
 	if(!L)
 		return
-	tesla_zap(L, range, 6000, TESLA_MOB_DAMAGE)
+	INVOKE_ASYNC(A, .proc/tesla_zap, L, range, 10000, TESLA_MOB_DAMAGE)
+	INVOKE_ASYNC(src, /obj/structure/destructible/flock/sentinel.proc/easy_beam, L)
 	charge = 0
+
+/obj/structure/destructible/flock/sentinel/proc/easy_beam(mob/target)
+	Beam(L, icon_state = "lightning[rand(1, 12)]", time = 4 SECONDS, maxdistance = 6)
 	
 /obj/structure/destructible/flock/sentinel/proc/acquire_nearby_targets()
 	. = list()
