@@ -33,6 +33,10 @@
 /datum/tgui_secrets_panel/ui_data(mob/user)
 	var/list/data = list()
 	var/client/rights = holder
+	
+	if(rights.mob != usr)
+		return
+	
 	data["anyRights"] = check_rights_for(rights)
 	data["adminRights"] = check_rights_for(rights, R_ADMIN)
 	data["funRights"] = check_rights_for(rights, R_FUN)
