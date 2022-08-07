@@ -30,8 +30,9 @@
 		M.update_inv_head()
 
 /obj/item/clothing/head/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
 	if(throwingdatum?.thrower.zone_selected != BODY_ZONE_HEAD && throwingdatum?.thrower.a_intent != INTENT_HELP)
-		return ..()
+		return
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom
 		if(prob(33) && H.equip_to_slot_if_possible(src, SLOT_HEAD))
