@@ -262,7 +262,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(holder)
 		control_freak = CONTROL_FREAK_SKIN | CONTROL_FREAK_MACROS
 
-		var/rights = holder.rank.rights
+		var/rights = holder.rights
 		add_verb(src, GLOB.admin_verbs_default)
 		add_verb(src, GLOB.mentor_verbs) // yogs - give admins mentor verbs
 		if(rights & R_BUILDMODE)
@@ -650,7 +650,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Admin.Round Interaction"
-	if (!(holder.rank.rights & R_BUILDMODE))
+	if (!(check_rights(R_BUILDMODE)))
 		return
 	if(src.mob)
 		togglebuildmode(src.mob)

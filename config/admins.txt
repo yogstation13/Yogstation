@@ -11,7 +11,7 @@
 AshCorr	=	Host
 Xantam	=	Host
  
-adamsogm = Council Member
+#adamsogm = Council Member
 baiomu = Council Member
 ajhchenry = Council Member
 

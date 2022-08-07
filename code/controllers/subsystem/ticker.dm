@@ -738,5 +738,3 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
-	save_admin_data()
-	update_everything_flag_in_db()
