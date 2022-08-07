@@ -83,6 +83,9 @@ LOG_GAME
 ## log player votes
 LOG_VOTE
 
+## log donator chat
+LOG_DONATOR
+
 ## log client Whisper
 LOG_WHISPER
 

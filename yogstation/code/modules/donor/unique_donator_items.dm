@@ -153,6 +153,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Transdimensional halo"
 	ckey = "Hisakaki"
 	unlock_path = /obj/item/clothing/head/halo
+	slot = SLOT_HEAD
 
 /datum/donator_gear/skrem
 	name = "Rainbow flower"

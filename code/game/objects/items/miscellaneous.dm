@@ -163,3 +163,37 @@
 	user.gib()
 	playsound(src, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return MANUAL_SUICIDE
+
+/obj/item/ipcrevive // Doesnt do much beside be cosmetic
+	name = "IPC Revival Board"
+	desc = "Used to revive an IPC once fixed."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade1"
+
+/obj/item/ipcrevive/attack(mob/living/M, mob/living/user)
+	if(user.a_intent != INTENT_HELP)
+		return ..()
+	if(!isipc(M))
+		to_chat(user, span_warning("This is not an IPC"))
+		return TRUE
+	var/mob/living/carbon/human/H = M
+	if(H.stat != DEAD)
+		to_chat(user, span_warning("This unit is not dead!"))
+		return TRUE
+	var/obj/item/organ/brain/BR = H.getorgan(/obj/item/organ/brain)
+	if(BR)
+		if(BR.suicided || BR.brainmob?.suiciding)
+			to_chat(user, span_warning("This units personality matrix is gone."))
+			return TRUE
+	if(H.health < 0)
+		to_chat(user, span_warning("You have to repair the IPC before using this module!"))
+		return TRUE
+	to_chat(user, span_warning("You start restarting the IPC's internal circuitry."))
+	if(!do_after(user, 5 SECONDS, H))
+		return TRUE
+	if(H.mind)
+		H.mind.grab_ghost()
+	to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
+	H.revive()
+	qdel(src)
+	return TRUE

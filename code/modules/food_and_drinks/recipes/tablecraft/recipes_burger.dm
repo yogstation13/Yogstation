@@ -323,5 +323,5 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/roburger
 	subcategory = CAT_MISCFOOD
-	always_availible = FALSE
+	always_available = FALSE
 

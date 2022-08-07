@@ -208,7 +208,7 @@
 						var/healed = FALSE
 						var/obj/item/organ/heal_target = C.getorganslot(o)
 						if(heal_target?.damage >= 1)
-							var/organ_healing = C.stat == DEAD ? 0.05 : 0.2
+							var/organ_healing = C.stat == DEAD ? 0.5 : 1
 							heal_target.applyOrganDamage(-organ_healing)
 							healed = TRUE
 						if(healed)

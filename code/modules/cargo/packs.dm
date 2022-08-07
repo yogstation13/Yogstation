@@ -2711,6 +2711,14 @@
 	crate_name = "jukebox crate"
 	crate_type = /obj/structure/closet/crate/large
 
+/datum/supply_pack/misc/jukebox/disco
+	name = "Radiant Dance Machine Mark IV Crate"
+	desc = "It's a jukebox with more lights."
+	cost = 6000
+	contains = list(/obj/machinery/jukebox/disco)
+	crate_name = "radiant dance machine mark IV crate"
+	crate_type = /obj/structure/closet/crate/large
+
 /datum/supply_pack/misc/pda
 	name = "Modular Personal Digital Assistant Crate"
 	desc = "A create containing five modular PDAs, enough for an entire department."
@@ -2764,3 +2772,10 @@
 					/obj/item/wallframe/telescreen/preset,
 					/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
+
+/datum/supply_pack/critter/mothroach
+	name = "Mothroach Crate"
+	desc = "Put the mothroach on your head and find out what true cuteness looks like."
+	cost = 7500
+	contains = list(/mob/living/simple_animal/friendly/mothroach)
+	crate_name = "mothroach crate"
