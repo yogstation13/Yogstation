@@ -60,7 +60,6 @@
 	drone.change_resources(maxHealth/2)
 	gib()
 
-
 /mob/living/simple_animal/hostile/flockdrone/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(!drone)
 		return
