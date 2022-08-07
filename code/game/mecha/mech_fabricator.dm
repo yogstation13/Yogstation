@@ -482,7 +482,7 @@
 
 /obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
 	if(!allowed(user) && !combat_parts_allowed && !isobserver(user))
-		to_chat(user, span_warning("You do not have the proper credentials to operate this device"))
+		to_chat(user, span_warning("You do not have the proper credentials to operate this device!"))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -549,7 +549,7 @@
 
 	data["isProcessingQueue"] = process_queue
 	data["authorization"] = authorization_override
-	data["user_clearance"] = head_or_sillicon(user)
+	data["user_clearance"] = head_or_silicon(user)
 	data["alert_level"] = GLOB.security_level 
 	data["combat_parts_allowed"] = combat_parts_allowed
 	data["emagged"] = (obj_flags & EMAGGED)
@@ -560,17 +560,16 @@
 /// Updates the various authorization checks used to determine if combat parts are available to the current user
 /obj/machinery/mecha_part_fabricator/proc/check_auth_changes(mob/user)
 	red_alert = (GLOB.security_level >= SEC_LEVEL_RED)
-	if(combat_parts_allowed != (authorization_override || red_alert || head_or_sillicon(user)))
-		combat_parts_allowed = (authorization_override || red_alert || head_or_sillicon(user))
+	if(combat_parts_allowed != (authorization_override || red_alert || head_or_silicon(user)))
+		combat_parts_allowed = (authorization_override || red_alert || head_or_silicon(user))
 		update_static_data(user)
 
 /// made as a lazy check to allow silicons full access always
-/obj/machinery/mecha_part_fabricator/proc/head_or_sillicon(mob/user)
-	if(!issilicon(user))
-		id_card = user.get_idcard(hand_first = TRUE)
-		return ACCESS_HEADS in id_card.access
-	return issilicon(user)
-
+/obj/machinery/mecha_part_fabricator/proc/head_or_silicon(mob/user)
+	if(issilicon(user))
+		return TRUE
+	id_card = user.get_idcard(hand_first = TRUE)
+	return ACCESS_HEADS in id_card.access
 
 /obj/machinery/mecha_part_fabricator/ui_act(action, list/params)
 	. = ..()
