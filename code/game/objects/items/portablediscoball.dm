@@ -1,5 +1,5 @@
 /obj/item/discoballdeployer
-	name = "Portable Ethereal Disco Ball"
+	name = "Portable Disco Ball"
 	desc = "Press the button to start the PARTY!!"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "ethdisco"
@@ -11,8 +11,8 @@
 	qdel(src)
 
 /obj/structure/discoball
-	name = "Disco Ball"
-	desc = "A small portable disco ball."
+	name = "Portable Disco Ball"
+	desc = "A small portable disco ball for a small party."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "ethdisco_head_0"
 	anchored = TRUE
