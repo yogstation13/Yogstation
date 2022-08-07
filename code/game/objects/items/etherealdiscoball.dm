@@ -6,9 +6,12 @@
 
 /obj/item/etherealballdeployer/attack_self(mob/living/carbon/user)
 	.=..()
-	to_chat(user, span_notice("You deploy the Ethereal Disco Ball."))
+	to_chat(user, span_notice("You deploy the Disco Ball."))
 	new /obj/structure/etherealball(user.loc)
 	qdel(src)
+
+/obj/item/etherealballdeployer/ordinary
+	name = "Portable Disco Ball"
 
 /obj/structure/etherealball
 	name = "Ethereal Disco Ball"
@@ -22,6 +25,9 @@
 	var/TimerID
 	var/range = 7
 	var/power = 3
+
+/obj/structure/etherealball/ordinary
+	name = "Portable Disco Ball"
 
 /obj/structure/etherealball/Initialize()
 	. = ..()
