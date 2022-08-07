@@ -203,7 +203,7 @@
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "AT" = (
-/obj/structure/etherealball,
+/obj/structure/discoball,
 /turf/open/floor/light,
 /area/shuttle/escape)
 "BD" = (
