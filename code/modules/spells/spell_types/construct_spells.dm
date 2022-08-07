@@ -155,8 +155,20 @@
 	proj_type = /obj/item/projectile/magic/spell/magic_missile/lesser
 
 /obj/item/projectile/magic/spell/magic_missile/lesser
+	name = "lesser magic missile"
 	color = "red" //Looks more culty this way
 	range = 10
+
+/obj/item/projectile/magic/spell/magic_missile/lesser/on_hit(target)
+	if(ismob(target))
+		var/mob/M = target
+		if(iscultist(target))//cultists can't be harmed by their own constructs' spells!
+		to_chat(target, span_danger("[src] harmlessly dissipates into crimson particles upon contacting your body!"))
+			return BULLET_ACT_BLOCK
+		if(M.anti_magic_check())
+			M.visible_message(span_warning("[src] vanishes on contact with [target]!"))
+			return BULLET_ACT_BLOCK
+	. = ..()
 
 /obj/effect/proc_holder/spell/targeted/smoke/disable
 	name = "Paralysing Smoke"
