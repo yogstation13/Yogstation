@@ -96,9 +96,9 @@
 		if(L.stat == DEAD)
 			return
 		var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-		var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
+		var/obj/item/bodypart/affecting = L.get_bodypart(ran_zone(dam_zone))
 		if(!affecting)
-			affecting = get_bodypart(BODY_ZONE_CHEST)
+			affecting = L.get_bodypart(BODY_ZONE_CHEST)
 		var/armor = run_armor_check(affecting, MELEE, armour_penetration = src.armour_penetration)
 		L.apply_damage(5, BRUTE, affecting, armor)
 
