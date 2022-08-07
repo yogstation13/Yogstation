@@ -49,17 +49,17 @@
 /mob/living/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(!drone)
 		return
-	if(stat == DEAD || IsStun() || IsImmobilized() || IsParalyzed() || IsUnconscious() || IsSleeping())
-		to_chat(drone, span_warning("You attempt to disintegrate [src] into resources."))
-		if(!do_mob(drone, src, 4 SECONDS))
-			return
-		if(QDELETED(src))
-			return
-		to_chat(drone, span_warning("You sucessfully transform [src] into your resources."))
-		drone.change_resources(maxHealth/2)
-		gib()
-	else
+	if(stat != DEAD && !IsStun() && !IsImmobilized() && !IsParalyzed() && !IsUnconscious() && !IsSleeping())
 		return
+	to_chat(drone, span_warning("You attempt to disintegrate [src] into resources."))
+	if(!do_mob(drone, src, 4 SECONDS))
+		return
+	if(QDELETED(src))
+		return
+	to_chat(drone, span_warning("You sucessfully transform [src] into your resources."))
+	drone.change_resources(maxHealth/2)
+	gib()
+
 
 /mob/living/simple_animal/hostile/flockdrone/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
 	if(!drone)
