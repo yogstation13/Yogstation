@@ -502,8 +502,9 @@
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
 		if(D.build_type & MECHFAB)
-			if(ispath(D.build_path, /obj/item/mecha_parts/mecha_equipment/weapon) && !combat_parts_allowed)
-				continue
+			if(ispath(D.build_path, /obj/item/mecha_parts/mecha_equipment/weapon) && !combat_parts_allowed) // Yogs -- ID swiping for combat parts
+				if(D.build_path != /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma) // Yogs -- Special snowflake exception for mecha plasma cutters.
+					continue
 			// This is for us.
 			var/list/part = output_part_info(D, TRUE)
 
