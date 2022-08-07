@@ -2772,3 +2772,10 @@
 					/obj/item/wallframe/telescreen/preset,
 					/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
+
+/datum/supply_pack/critter/mothroach
+	name = "Mothroach Crate"
+	desc = "Put the mothroach on your head and find out what true cuteness looks like."
+	cost = 7500
+	contains = list(/mob/living/simple_animal/friendly/mothroach)
+	crate_name = "mothroach crate"
