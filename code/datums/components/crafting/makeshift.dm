@@ -98,7 +98,7 @@
 	result = /obj/item/card/emag/improvised
 	time = 12 SECONDS
 	category = CAT_TOOLS
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/makeshiftid
 	name = "Makeshift ID"
