@@ -46,7 +46,7 @@
 	icon_state = "command"
 	build_path = /obj/machinery/power/bluespace_tap
 	req_components = list(
-							/obj/item/stock_parts/capacitor/quadratic,//Probably okay, right?
+							/obj/item/stock_parts/capacitor/quadratic = 5,//Probably okay, right?
 							/obj/item/stack/ore/bluespace_crystal = 5)
 
 /obj/effect/spawner/lootdrop/bluespace_tap
