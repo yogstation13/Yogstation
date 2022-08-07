@@ -17,9 +17,11 @@
 	var/col_b = 0.6
 	var/brightness = 0.5
 	var/shuttle_departure_delayed = FALSE
+	var/when_created
 
 /obj/structure/destructible/flock/the_relay/Initialize()
 	. = ..()
+	when_created = world.time
 	SSshuttle.registerHostileEnvironment(src)
 	var/datum/team/flock/flock = GLOB.flock
 	flock.relay_builded = TRUE
@@ -48,7 +50,7 @@
 		conversion_radius++
 	if(world.time > last_time_sound_played + sound_length)
 		play_sound()
-	if(world.time >= charge_time_length/2) // halfway point, start doing more
+	if(world.time >= when_created + charge_time_length/2) // halfway point, start doing more
 		if(icon_state == "structure-relay")
 			icon_state = "structure-relay-glow"
 
@@ -57,7 +59,7 @@
 				playsound(M, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg'), 50, 1))
 				if(prob(50))
 					to_chat(M, span_italics("the signal will set you free"))
-	if(world.time >= charge_time_length)
+	if(world.time >= when_created + charge_time_length)
 		unleash_the_signal()
 
 /obj/structure/destructible/flock/the_relay/proc/play_sound()
@@ -102,23 +104,21 @@
 
 /obj/structure/destructible/flock/the_relay/proc/destroy_radios()
 	for(var/obj/item/radio/R in GLOB.radios)  //Yeah it is a global list created only to be used here, cry about it
-		if(!istype(R))
-			continue
 		playsound(R.loc, pick(list('sound/effects/radio_sweep1.ogg','sound/effects/radio_sweep2.ogg','sound/effects/radio_sweep3.ogg','sound/effects/radio_sweep4.ogg','sound/effects/radio_sweep5.ogg'), 70, 1))
 		var/mob/living/wearer = R.loc
 		if(wearer && istype(wearer))
 			to_chat(wearer, span_userdanger("A final scream of horrific static bursts from your radio, destroying it!"))
 			if(wearer.soundbang_act(1, 20, rand(1, 5)))
 				wearer.Paralyze(150)
-			R.on = FALSE
-			R.emp_act(EMP_HEAVY) 
-			R.channels = list()
-			R.secure_radio_connections = null
-			R.keyslot.channels = null
-			R.translate_binary = FALSE
-			R.keyslot.translate_binary = FALSE
-			R.independent = FALSE
-			R.keyslot.independent = FALSE
-			R.syndie = FALSE
-			R.keyslot.syndie = FALSE
-			R.canhear_range = 0
+		R.on = FALSE
+		R.emp_act(EMP_HEAVY) 
+		R.channels = list()
+		R.secure_radio_connections = null
+		R.keyslot.channels = null
+		R.translate_binary = FALSE
+		R.keyslot.translate_binary = FALSE
+		R.independent = FALSE
+		R.keyslot.independent = FALSE
+		R.syndie = FALSE
+		R.keyslot.syndie = FALSE
+		R.canhear_range = 0

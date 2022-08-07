@@ -30,7 +30,7 @@
 	attacktext = "shocks"
 	attack_sound = 'sound/effects/empulse.ogg'
 	friendly = "pinches"
-	speed = 1
+	speed = 0.5
 	faction = list("flock")
 	AIStatus = AI_ON
 	pass_flags = PASSTABLE
@@ -43,7 +43,7 @@
 	deathmessage = "stops moving"
 	light_color = LIGHT_COLOR_CYAN
 	speech_span = SPAN_ROBOT
-	hud_type = /datum/hud/living/flockdrone
+	hud_type = /datum/hud/flockdrone
 	wanted_objects = list(/obj/item, /turf, /obj/structure/destructible/flock/construction, /obj/structure/grille, /obj/machinery/computer)
 	unwanted_objects = list(/obj/item/disk/nuclear, /turf/closed/indestructible, /turf/open/indestructible, /turf/open/lava, /turf/open/chasm, /turf/open/space)
 	search_objects = 1
@@ -264,6 +264,12 @@
 			if(resources > 10 && health >= maxHealth)
 				return TRUE
 			return FALSE
+
+		if(istype(the_target, /mob/living))
+			var/mob/living/L = the_target
+			if(L.buckled && istype(L.buckled, /obj/structure/destructible/flock/cage))
+				return FALSE
+			return ..()
 
 		if(istype(the_target, /obj/machinery/computer) && resources < 30)
 			return FALSE

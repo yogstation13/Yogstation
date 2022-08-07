@@ -1,7 +1,7 @@
-/datum/hud/living/flockdrone
+/datum/hud/flockdrone
 	var/obj/screen/flockdrone_resources/resources
 
-/datum/hud/living/flockdrone/New(mob/owner)
+/datum/hud/flockdrone/New(mob/owner)
 	..()
 	var/obj/screen/using
 
