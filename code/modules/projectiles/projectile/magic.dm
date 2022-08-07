@@ -398,7 +398,7 @@
 	damage_type = BURN
 	nodamage = FALSE
 	armour_penetration = 20
-	flag = MAGIC
+	flag = MAGIC 
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/item/projectile/magic/locker
