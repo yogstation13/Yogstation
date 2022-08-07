@@ -31,7 +31,7 @@
 	return
 
 /turf/open/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
-	if(drone && istype(drone))
+	if(drone)
 		if(drone.resources < 15) //No money?
 			drone.balloon_alert(drone, "Not enough resources")
 			return
@@ -39,7 +39,7 @@
 	TerraformTurf(/turf/open/floor/feather)
 
 /turf/closed/wall/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
-	if(drone && istype(drone))
+	if(drone)
 		if(drone.resources < 20)
 			drone.balloon_alert(drone, "Not enough resources")
 			return
@@ -97,7 +97,7 @@
 	if(broken)
 		to_chat(drone, span_warning("[src] Is to damaged to extract any resources!"))
 	to_chat(drone, span_notice("You begin deconstructing [src]..."))
-	if(!do_after(drone, src, 3 SECONDS))
+	if(!do_after(drone, 3 SECONDS, src))
 		return
 	if(QDELETED(src))
 		return
@@ -108,7 +108,7 @@
 	qdel(src)
 
 /obj/structure/grille/flock_act(mob/living/simple_animal/hostile/flockdrone/drone)
-	if(drone && istype(drone))
+	if(drone)
 		if(drone.resources < broken ? 10 : 5)
 			drone.balloon_alert(drone, "Not enough resources")
 			return
@@ -123,7 +123,7 @@
 	if(!drone)
 		return
 	to_chat(drone, span_notice("You begin deconstructing [src]..."))
-	if(!do_after(drone, src, 5 SECONDS))
+	if(!do_after(drone, 5 SECONDS, src))
 		return
 	if(QDELETED(src) || !istype(/turf/closed/wall/feather, src) || !src)
 		return
