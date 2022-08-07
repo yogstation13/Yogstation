@@ -12,6 +12,9 @@
 
 /obj/item/etherealballdeployer/ordinary
 	name = "Portable Disco Ball"
+	desc = "Press the button to deploy the disco ball."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "ethdisco"
 
 /obj/structure/etherealball
 	name = "Ethereal Disco Ball"
@@ -28,6 +31,8 @@
 
 /obj/structure/etherealball/ordinary
 	name = "Portable Disco Ball"
+	desc = "This one is an old model portable disco ball."
+	icon = 'icons/obj/device.dmi'
 
 /obj/structure/etherealball/Initialize()
 	. = ..()

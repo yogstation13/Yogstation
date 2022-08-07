@@ -1108,5 +1108,5 @@
 	id = "portable_discoball"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100)
-	build_path = /obj/item/discoballdeployer
+	build_path = /obj/item/etherealballdeployer/ordinary
 	category = list("initial","Miscellaneous")
