@@ -161,7 +161,7 @@
 		if(!silent )
 			to_chat(src, span_notice("You spend [amount] resources."))
 	if(hud_used && istype(hud_used, /datum/hud/living/flockdrone))
-		var/datum/hud/living/flockdrone/flockhud = hud_used
+		var/datum/hud/flockdrone/flockhud = hud_used
 		flockhud.resources.update_counter(resources)
 
 
