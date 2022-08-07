@@ -78,13 +78,13 @@
 /mob/living/simple_animal/hostile/flockdrone/AttackingTarget()
 	if(!ckey)
 		handle_AI_intent_change(target)
-	if(isliving(target) || !isflockdrone(target))
+	if(isliving(target) && !isflockdrone(target))
 		var/mob/living/L = target
 		if(L.stat == DEAD || L.IsStun() || L.IsImmobilized() || L.IsParalyzed() || L.IsUnconscious() || L.IsSleeping())
 			L.flock_act(src)
 			return
 	else
-		target.flock_act()
+		target.flock_act(src)
 		return
 	if(a_intent == INTENT_HELP)
 		melee_damage_type = STAMINA
