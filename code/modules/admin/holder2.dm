@@ -343,12 +343,7 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 	
 	. = permissions["admin"]
 	if(.)
-		if(C.ckey in GLOB.admin_datums)
-			var/datum/admins/holder = GLOB.admin_datums[C.ckey]
-			holder.rank_name = permissions["rank"]
-			holder.flags = permissions["flags"]
-		else
-			new /datum/admins(permissions["flags"], permissions["rank"], C.ckey)
+		new /datum/admins(permissions["flags"], permissions["rank"], C.ckey)
 
 /// Queries the backend auth system (forums in this case), and returns if the user should be adminned and with what permissions and rank name
 /proc/query_permissions_for(var/client/C)

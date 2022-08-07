@@ -514,6 +514,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			)
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
+		qdel(holder)
+	if(ckey in GLOB.deadmins)
+		qdel(GLOB.deadmins[ckey])
 
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
