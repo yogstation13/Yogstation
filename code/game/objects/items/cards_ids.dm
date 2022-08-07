@@ -241,13 +241,13 @@
 		if(!new_bank_id || new_bank_id < 111111 || new_bank_id > 999999)
 			to_chat(user, span_warning("The account ID number needs to be between 111111 and 999999."))
 			return
-		for(var/A in SSeconomy.bank_accounts)
-			var/datum/bank_account/B = A
-			if(B.account_id == new_bank_id)
-				B.bank_cards += src
-				registered_account = B
-				to_chat(user, span_notice("The provided account has been linked to this ID card."))
-				return
+		var/bank_id = "[new_bank_id]"
+		if(bank_id in SSeconomy.bank_accounts)
+			var/datum/bank_account/B = SSeconomy.bank_accounts[bank_id]
+			B.bank_cards += src
+			registered_account = B
+			to_chat(user, span_notice("The provided account has been linked to this ID card."))
+			return
 		to_chat(user, span_warning("The account ID number provided is invalid."))
 		return
 
@@ -403,13 +403,12 @@ update_label("John Doe", "Clowny")
 			if (first_use && !registered_account)
 				if(ishuman(user))
 					var/mob/living/carbon/human/accountowner = user
-
-					for(var/bank_account in SSeconomy.bank_accounts)
-						var/datum/bank_account/account = bank_account
-						if(account.account_id == accountowner.account_id)
-							account.bank_cards += src
-							registered_account = account
-							to_chat(user, span_notice("Your account number has been automatically assigned."))
+					var/acc_id = "[accountowner.account_id]"
+					if(acc_id in SSeconomy.bank_accounts)
+						var/datum/bank_account/account = SSeconomy.bank_accounts[acc_id]
+						account.bank_cards += src
+						registered_account = account
+						to_chat(user, span_notice("Your account number has been automatically assigned."))
 			return
 		else if (popup_input == "Forge/Reset" && forged)
 			registered_name = initial(registered_name)
@@ -448,17 +447,16 @@ update_label("John Doe", "Clowny")
 		to_chat(user, span_warning("The account ID was already assigned to this card."))
 		return
 
-	for(var/A in SSeconomy.bank_accounts)
-		var/datum/bank_account/B = A
-		if(B.account_id == new_bank_id)
-			if (old_account)
-				old_account.bank_cards -= src
+	var/acc_id = "[new_bank_id]"
+	if(acc_id in SSeconomy.bank_accounts)
+		var/datum/bank_account/B = SSeconomy.bank_accounts[acc_id]
+		if (old_account)
+			old_account.bank_cards -= src
 
-			B.bank_cards += src
-			registered_account = B
-			to_chat(user, span_notice("The provided account has been linked to this ID card."))
-
-			return TRUE
+		B.bank_cards += src
+		registered_account = B
+		to_chat(user, span_notice("The provided account has been linked to this ID card."))
+		return TRUE
 
 	to_chat(user, span_warning("The account ID number provided is invalid."))
 	return
