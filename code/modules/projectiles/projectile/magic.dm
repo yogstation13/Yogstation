@@ -394,10 +394,10 @@
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
 	icon_state = "arcane_barrage"
-	damage = 20
+	damage = 40
 	damage_type = BURN
 	nodamage = FALSE
-	armour_penetration = 0
+	armour_penetration = 20
 	flag = MAGIC
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
