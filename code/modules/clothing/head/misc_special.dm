@@ -280,6 +280,7 @@
 	item_state = "foilhat"
 	armor = list(MELEE = 0, BULLET = 0, LASER = -5,ENERGY = 0, BOMB = 0, BIO = 0, RAD = -5, FIRE = 0, ACID = 0)
 	equip_delay_other = 140
+	hattable = FALSE
 	var/datum/brain_trauma/mild/phobia/conspiracies/paranoia
 	var/warped = FALSE
 

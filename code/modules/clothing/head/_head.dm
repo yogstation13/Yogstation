@@ -7,6 +7,8 @@
 	slot_flags = ITEM_SLOT_HEAD
 	var/blockTracking = 0 //For AI tracking
 	var/can_toggle = null
+	/// Can land on someones head
+	var/hattable = TRUE
 	dynamic_hair_suffix = "+generic"
 
 /obj/item/clothing/head/Initialize()
@@ -31,6 +33,8 @@
 
 /obj/item/clothing/head/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
+	if(!hattable)
+		return
 	if(throwingdatum?.thrower.zone_selected != BODY_ZONE_HEAD && throwingdatum?.thrower.a_intent != INTENT_HELP)
 		return
 	if(ishuman(hit_atom))
@@ -38,6 +42,5 @@
 		if(prob(33) && H.equip_to_slot_if_possible(src, SLOT_HEAD))
 			H.visible_message("The [src] lands gracefully on [H]'s head")
 			return TRUE
-		else
-			H.visible_message("The [src] hits [H]'s head")
+		H.visible_message("The [src] hits [H]'s head")
 	
