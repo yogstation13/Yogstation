@@ -551,6 +551,87 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 	export_price = 5000
 
+/datum/techweb_node/bclimbs
+	id = "bclimbs"
+	display_name = "Bishop Cyberkinetics Limbs"
+	description = "Designs for the Bishop Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("bshipc_l_leg", "bshipc_r_leg", "bshipc_l_arm", "bshipc_r_arm", "bshipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
+/datum/techweb_node/bclimbs2
+	id = "bclimbs2"
+	display_name = "Bishop Cyberkinetics (2.0) Limbs"
+	description = "Designs for the Bishop 2.0 Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("bs2ipc_l_leg", "bs2ipc_r_leg", "bs2ipc_l_arm", "bs2ipc_r_arm", "bs2ipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
+/datum/techweb_node/hsilimbs
+	id = "hsilimbs"
+	display_name = "Hephaestus Industries Limbs"
+	description = "Designs for the Hephaestus Industries Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("hsiipc_l_leg", "hsiipc_r_leg", "hsiipc_l_arm", "hsiipc_r_arm", "hsiipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
+/datum/techweb_node/hsilimbs2
+	id = "hsilimbs2"
+	display_name = "Hephaestus Industries (2.0) Limbs"
+	description = "Designs for the Hephaestus Industries 2.0 Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("hi2ipc_l_leg", "hi2ipc_r_leg", "hi2ipc_l_arm", "hi2ipc_r_arm", "hi2ipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
+/datum/techweb_node/sgmlimbs
+	id = "sgmlimbs"
+	display_name = "Shellguard Munitions Limbs"
+	description = "Designs for the Shellguard Munitions Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("sgmipc_l_leg", "sgmipc_r_leg", "sgmipc_l_arm", "sgmipc_r_arm", "sgmipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
+/datum/techweb_node/wtmlimbs
+	id = "wtmlimbs"
+	display_name = "Ward-Takahashi Limbs"
+	description = "Designs for the Ward-Takahashi Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("wtmipc_l_leg", "wtmipc_r_leg", "wtmipc_l_arm", "wtmipc_r_arm", "wtmipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
+/datum/techweb_node/xmglimbs
+	id = "xmglimbs"
+	display_name = "Xion Manufacturing Limbs"
+	description = "Designs for the Xion Manufacturing Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("xmgipc_l_leg", "xmgipc_r_leg", "xmgipc_l_arm", "xmgipc_r_arm", "xmgipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
+/datum/techweb_node/xmglimbs2
+	id = "xmglimbs2"
+	display_name = "Xion Manufacturing (2.0) Limbs"
+	description = "Designs for the Xion Manufacturing 2.0 Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("xm2ipc_l_leg", "xm2ipc_r_leg", "xm2ipc_l_arm", "xm2ipc_r_arm", "xm2ipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
+/datum/techweb_node/zhplimbs
+	id = "zhplimbs"
+	display_name = "Zeng-Hu Pharmaceuticals Limbs"
+	description = "Zeng-Hu Pharmaceuticals Limbs."
+	prereq_ids = list("ipc_organs")
+	design_ids = list("zhpipc_l_leg", "zhpipc_r_leg", "zhpipc_l_arm", "zhpipc_r_arm", "zhpipc_head")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
+	export_price = 5000
+
 /datum/techweb_node/cyber_implants
 	id = "cyber_implants"
 	display_name = "Cybernetic Implants"
