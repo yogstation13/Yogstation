@@ -37,9 +37,8 @@
 #define R_SOUNDS		(1<<11)
 #define R_SPAWN			(1<<12)
 #define R_AUTOLOGIN		(1<<13)
-#define R_DBRANKS		(1<<14)
-#define R_DEV			(1<<15) // Stuff NOONE should be touching except for head-dev/maints, I guess council too..
-#define R_EVERYTHING 	(1<<16)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_DEV			(1<<14) // Stuff NOONE should be touching except for head-dev/maints, I guess council too..
+#define R_EVERYTHING 	(1<<15)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define R_DEFAULT R_AUTOLOGIN
 

@@ -68,7 +68,6 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SOUNDS" = R_SOUNDS,
 		"SPAWN" = R_SPAWN,
 		"AUTOLOGIN" = R_AUTOLOGIN,
-		"DBRANKS" = R_DBRANKS,
 		"DEV" = R_DEV
 		),
 	"interaction_flags_atom" = list(

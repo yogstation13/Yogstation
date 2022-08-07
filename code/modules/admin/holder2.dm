@@ -255,8 +255,6 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 			flag = R_SPAWN
 		if("autologin", "autoadmin")
 			flag = R_AUTOLOGIN
-		if("dbranks")
-			flag = R_DBRANKS
 		if("dev")
 			flag = R_DEV
 		if("@","prev")
