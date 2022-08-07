@@ -346,6 +346,8 @@
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/storage/bag/construction,
+		/obj/item/airlock_painter/decal,
 		/obj/item/barrier_taperoll/engineering)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(/obj/item/borg/stun)
