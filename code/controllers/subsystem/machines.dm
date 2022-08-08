@@ -5,6 +5,7 @@ SUBSYSTEM_DEF(machines)
 	var/list/processing = list()
 	var/list/currentrun = list()
 	var/list/powernets = list()
+	var/list/ainets = list()
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()

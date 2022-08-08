@@ -2435,6 +2435,8 @@
 #include "code\modules\mob\living\silicon\ai\robot_control.dm"
 #include "code\modules\mob\living\silicon\ai\say.dm"
 #include "code\modules\mob\living\silicon\ai\vox_sounds.dm"
+#include "code\modules\mob\living\silicon\ai\ai_network\ai_network.dm"
+#include "code\modules\mob\living\silicon\ai\ai_network\ethernet_cable.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\_ai_machinery.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\ai_core_display.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\ai_data_core.dm"

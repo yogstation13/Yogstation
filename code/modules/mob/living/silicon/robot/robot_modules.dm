@@ -346,6 +346,7 @@
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/stack/ethernet_coil/cyborg,
 		/obj/item/barrier_taperoll/engineering)
 	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
 	emag_modules = list(/obj/item/borg/stun)
@@ -683,6 +684,7 @@
 		/obj/item/stack/tile/plasteel/cyborg,
 		/obj/item/destTagger/borg,
 		/obj/item/stack/cable_coil/cyborg,
+		/obj/item/stack/ethernet_coil/cyborg,
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/borg_chameleon,
 		)

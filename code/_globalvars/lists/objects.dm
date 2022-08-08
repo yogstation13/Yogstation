@@ -1,4 +1,5 @@
 GLOBAL_LIST_EMPTY(cable_list)					    //Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_LIST_EMPTY(ethernet_cable_list)				//Index for all ethernet cables, so that ainets don't have to look through the entire world all the time
 GLOBAL_LIST_EMPTY(portals)					        //list of all /obj/effect/portal
 GLOBAL_LIST_EMPTY(airlocks)					        //list of all airlocks
 GLOBAL_LIST_EMPTY(mechas_list)				        //list of all mechs. Used by hostile mobs target tracking.
@@ -8,7 +9,7 @@ GLOBAL_LIST_EMPTY(navigation_computers)				//list of all /obj/machinery/computer
 GLOBAL_LIST_EMPTY(syndicate_shuttle_boards)	        //important to keep track of for managing nukeops war declarations.
 GLOBAL_LIST_EMPTY(navbeacons)					    //list of all bot nagivation beacons, used for patrolling.
 GLOBAL_LIST_EMPTY(teleportbeacons)			        //list of all tracking beacons used by teleporters
-GLOBAL_LIST_EMPTY(deliverybeacons)			        //list of all MULEbot delivery beacons.
+GLOBAL_LIST_EMPTY(deliverybeacons)			        //lisAt of all MULEbot delivery beacons.
 GLOBAL_LIST_EMPTY(deliverybeacontags)			    //list of all tags associated with delivery beacons.
 GLOBAL_LIST_EMPTY(nuke_list)
 GLOBAL_LIST_EMPTY(alarmdisplay)				        //list of all machines or programs that can display station alerts

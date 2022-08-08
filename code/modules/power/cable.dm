@@ -610,6 +610,10 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	else
 		dirn = dirnew
 
+	for(var/obj/structure/ethernet_cable/LC in T)
+		to_chat(user, span_warning("There's already an ethernet cable at that position!"))
+		return
+
 	for(var/obj/structure/cable/LC in T)
 		if(LC.d2 == dirn && LC.d1 == 0)
 			to_chat(user, span_warning("There's already a cable at that position!"))
