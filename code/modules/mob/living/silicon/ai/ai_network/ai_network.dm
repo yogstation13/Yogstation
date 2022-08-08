@@ -24,6 +24,7 @@
 /datum/ai_network/New()
 	SSmachines.ainets += src
 	resources = new()
+	resources.networks += src
 
 /datum/ai_network/Destroy()
 	//Go away references, you suck!
@@ -164,7 +165,7 @@
 
 	net1.resources.networks -= net2
 	net1.update_resources()
-	
+
 
 	return net1
 

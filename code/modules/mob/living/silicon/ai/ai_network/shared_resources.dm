@@ -60,8 +60,9 @@
 	for(var/CU in new_resources.cpu_assigned)
 		cpu_assigned[CU] = (1 - total_cpu_assigned())
 
-	for(var/N in new_resources.networks)
+	for(var/datum/ai_network/N in new_resources.networks)
 		networks |= N
+		N.resources = src
 
 	update_resources()
 	update_allocations()
@@ -90,6 +91,7 @@
 
 	var/datum/ai_shared_resources/NR = new(network_cpu, network_ram, network_cpu_assign, network_ram_assign)
 	split_network.resources = NR
+	split_network.resources.networks += split_network
 
 
 /datum/ai_shared_resources/proc/update_allocations()
@@ -130,3 +132,53 @@
 	ram_assigned = ram_assigned_copy
 	
 	to_chat(affected_AIs, span_warning("You have been deducted memory capacity. Please contact your network administrator if you believe this to be an error."))
+
+
+
+/datum/ai_shared_resources/proc/set_cpu(mob/living/silicon/ai/AI, amount)
+
+	if(!AI)
+		return
+	if(amount > 1 || amount < 0)
+		return
+	if(!istype(AI))
+		return
+	cpu_assigned[AI] = amount
+
+	update_allocations()
+
+
+/datum/ai_shared_resources/proc/add_ram(mob/living/silicon/ai/AI, amount)
+
+	if(!AI || !amount)
+		return
+	if(!istype(AI))
+		return
+	ram_assigned[AI] += amount
+
+	update_allocations()
+
+
+/datum/ai_shared_resources/proc/remove_ram(mob/living/silicon/ai/AI, amount)
+
+	if(!AI || !amount)
+		return
+	if(!istype(AI))
+		return
+	if(ram_assigned[AI] - amount < 0)
+		ram_assigned[AI] = 0
+	else
+		ram_assigned[AI] -= amount
+
+	update_allocations()
+
+
+/datum/ai_shared_resources/proc/clear_ai_resources(mob/living/silicon/ai/AI)
+	if(!AI || !istype(AI))
+		return
+
+	remove_ram(AI, ram_assigned[AI])
+	cpu_assigned[AI] = 0
+
+	update_allocations()
+

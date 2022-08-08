@@ -33,25 +33,22 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	paneloverlay.color = "#599ffa"
 	update_icon(TRUE)
 
-	
-
-/obj/machinery/ai/networking/LateInitialize(mapload)
-	. = ..()
-	if(mapload)
-		for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
-			if(N == src)
-				continue
-			if(roundstart_connection && N.label == roundstart_connection)
-				connect_to_partner(N)
-				break
-			if(!roundstart_connection)
-				connect_to_partner(N)
-				break
-
 /obj/machinery/ai/networking/Destroy(mapload)
 	GLOB.ai_networking_machines -= src
 	disconnect()
 	. = ..()
+/obj/machinery/ai/networking/proc/roundstart_connect(mapload)
+	for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+		if(partner)
+			break
+		if(N == src)
+			continue
+		if(roundstart_connection && N.label == roundstart_connection)
+			connect_to_partner(N)
+			break
+		if(!roundstart_connection)
+			connect_to_partner(N)
+			break
 
 
 /obj/machinery/ai/networking/update_icon(forced = FALSE)

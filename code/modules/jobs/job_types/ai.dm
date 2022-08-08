@@ -29,12 +29,12 @@
 	var/mob/living/silicon/ai/AI = H
 
 	AI.relocate(TRUE, TRUE)
-	/*
-	var/total_available_cpu = 1 - GLOB.ai_os.total_cpu_assigned()
-	var/total_available_ram = GLOB.ai_os.total_ram - GLOB.ai_os.total_ram_assigned()
+	
+	var/total_available_cpu = 1 - AI.ai_network.resources.total_cpu_assigned()
+	var/total_available_ram = AI.ai_network.resources.total_ram() - AI.ai_network.resources.total_ram_assigned()
 
-	GLOB.ai_os.set_cpu(AI, total_available_cpu)
-	GLOB.ai_os.add_ram(AI, total_available_ram) */
+	AI.ai_network.resources.set_cpu(AI, total_available_cpu)
+	AI.ai_network.resources.add_ram(AI, total_available_ram) 
 
 	AI.apply_pref_name("ai", M.client)			//If this runtimes oh well jobcode is fucked.
 	AI.set_core_display_icon(null, M.client)

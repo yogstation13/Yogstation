@@ -35,6 +35,9 @@ SUBSYSTEM_DEF(machines)
 			NewAN.add_cable(EC)
 			propagate_ai_network(EC,EC.network)
 
+	for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+		N.roundstart_connect()
+
 /datum/controller/subsystem/machines/stat_entry(msg)
 	msg = "M:[length(processing)]|PN:[length(powernets)]|AN:[length(ainets)]"
 	return ..()
