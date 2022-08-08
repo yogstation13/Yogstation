@@ -51,6 +51,9 @@
 		
 
 /obj/machinery/ai/networking/proc/connect_to_partner(obj/machinery/ai/networking/target)
+	if(target.partner)
+		return
+
 	partner = target
 	rotation_to_partner = Get_Angle(src, partner)
 	target.partner = src
