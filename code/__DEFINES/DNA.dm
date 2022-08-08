@@ -54,7 +54,7 @@
 #define EXTRASTUN	/datum/mutation/human/extrastun
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
-
+#define CEREBRAL	/datum/mutation/human/cerebral
 
 
 #define UI_CHANGED "ui changed"
@@ -170,6 +170,12 @@
 #define HAS_FLESH	23
 /// if we have bones (can suffer bone wounds)
 #define HAS_BONE	24
+/// Can't be husked.
+#define NOHUSK			25
+/// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
+#define ROBOTIC_LIMBS	26
+/// have no mouth to ingest/eat with
+#define NOMOUTH			27
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

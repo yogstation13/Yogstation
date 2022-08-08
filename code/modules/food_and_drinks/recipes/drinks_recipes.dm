@@ -809,6 +809,12 @@
 	results = list(/datum/reagent/consumable/red_queen = 10)
 	required_reagents = list(/datum/reagent/consumable/tea = 6, /datum/reagent/mercury = 2, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/growthserum = 1)
 
+/datum/chemical_reaction/catsip
+	name = "Catsip"
+	id = /datum/reagent/consumable/ethanol/catsip
+	results = list(/datum/reagent/consumable/ethanol/catsip = 4)
+	required_reagents = list(/datum/reagent/consumable/ethanol/sake = 2, /datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/corn_syrup = 1, /datum/reagent/consumable/grenadine = 1)
+
 /datum/chemical_reaction/flaming_moe
 	name = "Flaming Moe"
 	required_temp = 500

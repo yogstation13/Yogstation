@@ -136,7 +136,7 @@
 		user.update_inv_head() //Color might have been changed by update_icon.
 		var/datum/language_holder/LH = user.get_language_holder()
 		if(!LH.has_language(/datum/language/felinid) || !LH.can_speak_language(/datum/language/felinid))
-			to_chat(user, "Your mind floods with thoughts of hairballs.")
+			to_chat(user, "Your mind is filled with the knowledge of huntspeak... Well thats what felinids want you to believe anyway.")
 			LH.grant_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	..()
 
@@ -144,7 +144,7 @@
 	..()
 	var/datum/language_holder/LH = user.get_language_holder()
 	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
-		to_chat(user, "You rid yourself of degeneracy.")
+		to_chat(user, "You lose the keenness in your ears.")
 		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	
 
@@ -367,3 +367,4 @@
 	desc = "A cute, multicoloured flower. Makes you feel all warm and fuzzy inside."
 	icon_state = "rflower"
 	item_state = "rflower"
+	w_class = WEIGHT_CLASS_TINY

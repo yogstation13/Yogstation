@@ -42,6 +42,9 @@ GLOBAL_LIST_EMPTY(r_wings_list)
 GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(moth_wingsopen_list)
 GLOBAL_LIST_EMPTY(caps_list)
+GLOBAL_LIST_EMPTY(ipc_screens_list)
+GLOBAL_LIST_EMPTY(ipc_antennas_list)
+GLOBAL_LIST_EMPTY(ipc_chassis_list)
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 GLOBAL_LIST_INIT(color_list_ethereal, list(

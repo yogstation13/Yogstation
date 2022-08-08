@@ -224,7 +224,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["flare"], flare)
 	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["show_credits"], show_credits)
-
+	READ_FILE(S["alternative_announcers"] , disable_alternative_announcers)
+	
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
 	READ_FILE(S["donor_hat"], donor_hat)
@@ -282,6 +283,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	map					= sanitize_integer(map, FALSE, TRUE, initial(map))
 	flare				= sanitize_integer(flare, FALSE, TRUE, initial(flare))
 	bar_choice			= sanitize_text(bar_choice, initial(bar_choice))
+	disable_alternative_announcers	= sanitize_integer(disable_alternative_announcers, FALSE, TRUE, initial(disable_alternative_announcers))
 
 	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)
@@ -362,6 +364,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["map"], map)
 	WRITE_FILE(S["flare"], flare)
 	WRITE_FILE(S["bar_choice"], bar_choice)
+	WRITE_FILE(S["alternative_announcers"], disable_alternative_announcers)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)
@@ -452,6 +455,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_ethereal_mark"], features["ethereal_mark"])
 	READ_FILE(S["feature_pod_hair"], features["pod_hair"])
 	READ_FILE(S["feature_pod_flower"], features["pod_flower"])
+	READ_FILE(S["feature_ipc_screen"], features["ipc_screen"])
+	READ_FILE(S["feature_ipc_antenna"], features["ipc_antenna"])
+	READ_FILE(S["feature_ipc_chassis"], features["ipc_chassis"])
 
 	READ_FILE(S["persistent_scars"], persistent_scars)
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
@@ -488,7 +494,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Sanitize
 
-	real_name = reject_bad_name(real_name)
+	real_name = reject_bad_name(real_name, pref_species.allow_numbers_in_name)
 	gender = sanitize_gender(gender)
 	if(!real_name)
 		real_name = random_unique_name(gender)
@@ -555,6 +561,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["ethereal_mark"]	= sanitize_inlist(features["ethereal_mark"], GLOB.ethereal_mark_list)
 	features["pod_hair"]	= sanitize_inlist(features["pod_hair"], GLOB.pod_hair_list)
 	features["pod_flower"]	= sanitize_inlist(features["pod_flower"], GLOB.pod_flower_list)
+	features["ipc_screen"]	= sanitize_inlist(features["ipc_screen"], GLOB.ipc_screens_list)
+	features["ipc_antenna"]	 = sanitize_inlist(features["ipc_antenna"], GLOB.ipc_antennas_list)
+	features["ipc_chassis"]	 = sanitize_inlist(features["ipc_chassis"], GLOB.ipc_chassis_list)
 
 	persistent_scars = sanitize_integer(persistent_scars)
 
@@ -619,6 +628,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_pod_hair"]			, features["pod_hair"])
 	WRITE_FILE(S["feature_pod_flower"]			, features["pod_flower"])
 	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
+	WRITE_FILE(S["feature_ipc_screen"]			, features["ipc_screen"])
+	WRITE_FILE(S["feature_ipc_antenna"]			, features["ipc_antenna"])
+	WRITE_FILE(S["feature_ipc_chassis"]			, features["ipc_chassis"])
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)

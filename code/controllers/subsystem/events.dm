@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(events)
 // REEEEEEEEE
 /client/proc/forceEvent()
 	set name = "Trigger Event"
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 
 	if(!holder ||!check_rights(R_FUN))
 		return

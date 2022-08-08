@@ -63,7 +63,7 @@
 	required_count = 5
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/cheesiehonkers)
 
-/*/datum/bounty/item/assistant/baseball_bat //yogs: we don't even have these
+/*/datum/bounty/item/assistant/baseball_bat //yogs: we don't even have these //we do but not for crew. Sadge.
 	name = "Baseball Bat"
 	description = "Baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream."
 	reward = 2000
@@ -234,7 +234,7 @@
 	name = "Pump-up"
 	description = "We are attempting to make a combat drug to increase the effectiveness of our soldiers, and we would like to examine pump-up's effects for our drug. Ship one of the syringes over for us to look at."
 	reward = 900
-	wanted_types = list(/obj/item/reagent_containers/hypospray/medipen/pumpup)
+	wanted_types = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup)
 
 /datum/bounty/item/assistant/candy
 	name = "Candy Bars"

@@ -36,7 +36,7 @@
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/autoinjector/medipen = 1,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -53,7 +53,7 @@
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/stack/medical/suture/emergency = 1,
 		/obj/item/stack/medical/ointment = 1,
-		/obj/item/reagent_containers/hypospray/medipen/ekit = 2,)
+		/obj/item/reagent_containers/autoinjector/medipen/ekit = 2,)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/medical
@@ -80,7 +80,8 @@
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/extinguisher/mini,
-		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/autoinjector,
+		/obj/item/hypospray,
 		/obj/item/sensor_device,
 		/obj/item/radio,
 		/obj/item/clothing/gloves/,
@@ -89,7 +90,6 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/breath/medical,
-		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
@@ -113,6 +113,7 @@
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
 		/obj/item/holosign_creator/medical,
+		/obj/item/holosign_creator/firstaid,
 		/obj/item/book/manual/wiki/medicine
 		))
 
@@ -123,9 +124,8 @@
 		/obj/item/stack/medical/gauze/twelve = 1,
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/mesh = 2,
-		/obj/item/reagent_containers/hypospray/medipen/ekit = 1,
+		/obj/item/reagent_containers/autoinjector/medipen/ekit = 1,
 		/obj/item/healthanalyzer = 1,
-		/obj/item/surgical_drapes = 1,
 		/obj/item/scalpel = 1,
 		/obj/item/hemostat = 1,
 		/obj/item/cautery = 1,
@@ -163,9 +163,10 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/pill/patch/silver_sulf = 3,
+		/obj/item/reagent_containers/pill/patch/silver_sulf = 2,
 		/obj/item/reagent_containers/pill/oxandrolone = 2,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/medspray/silver_sulf = 1,
+		/obj/item/reagent_containers/autoinjector/medipen = 1,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -206,8 +207,8 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/syringe/perfluorodecalin = 5,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/syringe/perfluorodecalin = 4,
+		/obj/item/reagent_containers/autoinjector/medipen = 2,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -225,7 +226,9 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/pill/patch/styptic = 4,
+		/obj/item/reagent_containers/pill/patch/styptic = 2,
+		/obj/item/reagent_containers/pill/salicyclic = 2,
+		/obj/item/reagent_containers/medspray/styptic = 1,
 		/obj/item/stack/medical/gauze = 2,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
@@ -237,14 +240,23 @@
 	item_state = "firstaid-rad"
 	custom_premium_price = 600
 
+/obj/item/storage/firstaid/advanced/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 12
+	STR.max_combined_w_class = 24
+
 /obj/item/storage/firstaid/advanced/PopulateContents()
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/pill/patch/synthflesh = 3,
-		/obj/item/reagent_containers/hypospray/medipen/atropine = 2,
-		/obj/item/stack/medical/gauze = 1,
-		/obj/item/storage/pill_bottle/penacid = 1)
+		/obj/item/stack/medical/gauze = 2,
+		/obj/item/stack/medical/suture/medicated = 2,
+		/obj/item/stack/medical/mesh/advanced = 2,
+		/obj/item/storage/pill_bottle/penacid = 1,
+		/obj/item/reagent_containers/syringe/calomel = 1,
+		/obj/item/reagent_containers/autoinjector/medipen/atropine = 2,
+		/obj/item/healthanalyzer/advanced = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/tactical
@@ -263,7 +275,7 @@
 		return
 	new /obj/item/stack/medical/gauze(src)
 	new /obj/item/defibrillator/compact/combat/loaded(src)
-	new /obj/item/reagent_containers/hypospray/combat(src)
+	new /obj/item/hypospray/combat(src)
 	new /obj/item/reagent_containers/pill/patch/styptic(src)
 	new /obj/item/reagent_containers/pill/patch/styptic(src)
 	new /obj/item/reagent_containers/pill/patch/silver_sulf(src)
@@ -295,6 +307,265 @@
 	A.firstaid = type
 	qdel(S)
 	qdel(src)
+
+/*
+ * Hypospray Kits
+ */
+/obj/item/storage/firstaid/hypospray
+	name = "hypospray kit"
+	desc = "A basic kit containing a hypospray for applying reagents to patients."
+	icon_state = "hypobasic"
+	item_state = "firstaid"
+	custom_premium_price = 100
+	var/stored_hypo
+
+/obj/item/storage/firstaid/hypospray/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.set_holdable(list(
+		/obj/item/healthanalyzer,
+		/obj/item/dnainjector,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
+		/obj/item/reagent_containers/autoinjector,
+		/obj/item/hypospray,
+		/obj/item/gun/syringe/syndicate,
+		/obj/item/storage/lockbox/vialbox
+		))
+
+/obj/item/storage/firstaid/hypospray/PopulateContents()
+	if(empty || !ispath(stored_hypo))
+		return 
+	new stored_hypo(src)
+
+/obj/item/storage/firstaid/hypospray/hypo
+	stored_hypo = /obj/item/hypospray
+
+/obj/item/storage/firstaid/hypospray/vial
+	name = "hypospray kit"
+	desc = "A kit containing a hypospray and empty vials for applying reagents to patients."
+	stored_hypo = /obj/item/hypospray
+	custom_premium_price = 200
+
+/obj/item/storage/firstaid/hypospray/vial/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial = 6
+		)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray/basic
+	name = "basic hypospray vial kit"
+	desc = "A hypospray vial kit containing vials for most common situations."
+	custom_premium_price = 100
+
+/obj/item/storage/firstaid/hypospray/basic/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial/libital = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/aiuri = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/charcoal = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/perfluorodecalin = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/epi = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray/basic/hypo
+	name = "basic hypospray kit"
+	desc = "A hypospray kit containing a hypospray and vials for most common situations."
+	stored_hypo = /obj/item/hypospray
+	custom_premium_price = 300
+
+/obj/item/storage/firstaid/hypospray/brute
+	name = "brute hypospray vial kit"
+	desc = "A hypospray kit containing hypospray vials to treat most blunt trauma."
+	icon_state = "hypobrute"
+	item_state = "firstaid-brute"
+
+/obj/item/storage/firstaid/hypospray/brute/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial/libital = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/styptic = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/sal_acid = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray/burn
+	name = "burn hypospray vial kit"
+	desc = "A hypospray kit containing hypospray vials to treat most burns."
+	icon_state = "hypoburn"
+	item_state = "firstaid-ointment"
+
+/obj/item/storage/firstaid/hypospray/burn/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial/aiuri = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/silver_sulfadiazine = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/oxandrolone = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray/toxin
+	name = "toxin hypospray vial kit"
+	desc = "A hypospray kit containing hypospray vials to cure toxic damage."
+	icon_state = "hypotoxin"
+	item_state = "firstaid-toxin"
+
+/obj/item/storage/firstaid/hypospray/toxin/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial/charcoal = 4,
+		/obj/item/reagent_containers/glass/bottle/vial/calomel = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray/oxygen
+	name = "oxygen hypospray vial kit"
+	desc = "A hypospray vial kit containing a vials to treat suffication."
+	icon_state = "hypooxygen"
+	item_state = "firstaid-o2"
+
+/obj/item/storage/firstaid/hypospray/oxygen/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial/perfluorodecalin = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/epi = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/salbutamol = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+
+/obj/item/storage/firstaid/hypospray/advanced
+	name = "advanced hypospray vial kit"
+	desc = "A hypospray kit containing vials for most situations."
+	icon_state = "hyporad"
+	item_state = "firstaid-rad"
+	custom_premium_price = 300
+
+/obj/item/storage/firstaid/hypospray/advanced/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial/sal_acid = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/oxandrolone = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/calomel = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/salbutamol = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/epi = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray/advanced/hypo
+	name = "advanced hypospray kit"
+	desc = "An advanced kit containing a hypospray and vials for most situations."
+	stored_hypo = /obj/item/hypospray
+	custom_premium_price = 500
+
+/obj/item/storage/firstaid/hypospray/deluxe
+	name = "deluxe hypospray kit"
+	desc = "An advanced kit containing a deluxe hypospray and large vials for most ailments."
+	icon_state = "hypodeluxe"
+	stored_hypo = /obj/item/hypospray/deluxe
+
+/obj/item/storage/firstaid/hypospray/deluxe/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/storage/lockbox/vialbox/hypo_deluxe = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/firstaid/hypospray/deluxe/cmo
+	name = "\improper CMO's deluxe hypospray kit"
+	desc = "An advanced kit containing a deluxe hypospray and large vials for most ailments. This one contains the CMO's hypospray."
+	icon_state = "hypodeluxe"
+	stored_hypo = /obj/item/hypospray/deluxe/cmo
+
+/obj/item/storage/firstaid/hypospray/qmc
+	name = "\improper QMC hypospray kit"
+	desc = "An advanced kit containing a QMC hypospray and medical supplies for most situations found on lavaland."
+	icon_state = "hypoqmc"
+	stored_hypo = /obj/item/hypospray/qmc
+
+/obj/item/storage/firstaid/hypospray/qmc/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial/libital = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/aiuri = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/lavaland = 1,
+		/obj/item/stack/medical/suture = 1,
+		/obj/item/stack/medical/mesh = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+
+/obj/item/storage/firstaid/hypospray/paramedic
+	name = "first aid autosyringe kit"
+	desc = "A simple first aid kit containing an autosyringe and vials with chemicals used to secure and stabilize serious wounds for later treatment."
+	stored_hypo = /obj/item/hypospray/syringe
+
+/obj/item/storage/firstaid/hypospray/paramedic/PopulateContents()
+	if(empty)
+		return
+	..()
+	var/static/items_inside = list(
+		/obj/item/reagent_containers/glass/bottle/vial/epi = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/coagulant = 1,
+		/obj/item/stack/medical/suture = 1,
+		/obj/item/stack/medical/mesh = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
+
+
+/obj/item/storage/firstaid/hypospray/syndicate
+	name = "combat hypospray kit"
+	desc = "An advanced kit containing a combat hypospray and a wide variety of vials containing \"perfectly legal chemicals\" to treat combatants."
+	icon_state = "hypobezerk"
+	item_state = "firstaid-bezerk"
+
+/obj/item/storage/firstaid/hypospray/syndicate/PopulateContents()
+	if(empty)
+		return
+	var/static/items_inside = list(
+		/obj/item/hypospray/combat = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/large/combat = 2,
+		/obj/item/reagent_containers/glass/bottle/vial/large/omnizine = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/large/morphine = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/large/epi = 1,
+		/obj/item/healthanalyzer = 1
+		)
+	generate_items_inside(items_inside,src)
 
 /*
  * Pill Bottles

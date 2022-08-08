@@ -36,6 +36,7 @@
 
 	var/lip_style = null
 	var/lip_color = "white"
+	var/mouth = TRUE
 
 
 /obj/item/bodypart/head/Destroy()
@@ -94,6 +95,8 @@
 
 
 /obj/item/bodypart/head/can_dismember(obj/item/I)
+	if(owner && isipc(owner))
+		return TRUE
 	if(owner && !((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
 	return ..()
@@ -132,6 +135,10 @@
 		C = source
 	else
 		C = owner
+
+	if(isipc(C))
+		max_damage = 50
+		disabled_wound_penalty = 250 // 200 Makes it possible to delimb so 250 for some better chance
 
 	real_name = C.real_name
 	if(HAS_TRAIT(C, TRAIT_HUSK))
@@ -176,7 +183,10 @@
 			hair_alpha = S.hair_alpha
 		else
 			hair_style = "Bald"
-			hair_color = "000"
+			if(H && H.hair_color)
+				hair_color = H.hair_color
+			else
+				hair_color = "000"
 			hair_alpha = initial(hair_alpha)
 		// lipstick
 		if(H.lip_style && (LIPS in S.species_traits))

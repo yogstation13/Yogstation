@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,23)
+	var/loot = rand(1,26)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(16)
 			new /obj/item/organ/heart/gland/heals(src)
 		if(17)
-			new /obj/item/emberflowers(src)
+			new /obj/item/eflowers(src)
 		if(18)
 			new /obj/item/voodoo(src)
 		if(19)
@@ -68,6 +68,17 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
 		if(23)
 			new /obj/item/rune_scimmy(src)
+		if(24)
+			new /obj/item/dnainjector/dwarf(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
+			new /obj/item/grenade/plastic/miningcharge/mega(src)
+		if(25)
+			new /obj/item/clothing/gloves/gauntlets(src)
+		if(26)
+			new /obj/item/clothing/under/drip(src)
+			new /obj/item/clothing/shoes/drip(src)
+
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
 	name = "KA Mod Disk"
@@ -652,13 +663,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(71 to 80) //magmite is cool and somewhat rare i think?
 			new /obj/item/magmite(spot)
 		if(81 to 90) //i could make it drop foods for healing items like rs dropping fish, but i think the rewards should be a bit more immediate
-			new /obj/item/reagent_containers/hypospray/medipen/survival(spot)
+			new /obj/item/reagent_containers/autoinjector/medipen/survival(spot)
 		if(91 to 95) //5% PET DROP LET'S GO
 			new /mob/living/simple_animal/hostile/mining_drone(spot)
 		if(96 to 99) //4% DHIDE ARMOR
 			new /obj/item/stack/sheet/animalhide/ashdrake(spot)
 		if(100)
-			new /obj/structure/closet/crate/necropolis(spot)
+			new /obj/structure/closet/crate/necropolis/tendril(spot)
 
 //Potion of Flight
 /obj/item/reagent_containers/glass/bottle/potion
@@ -743,27 +754,63 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "jacob's ladder"
 	desc = "An indestructible celestial ladder that violates the laws of physics."
 
-/obj/item/emberflowers
-	name ="emberflower bouqet"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it."
+#define COOLDOWN_SUMMON 1 MINUTES
+/obj/item/eflowers
+	name ="enchanted flowers"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. Megafauna cannot be summoned.<b>Megafauna need to be exposed 35 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "emberflower"
+	icon_state = "eflower"
+	var/next_summon = 0
+	var/list/summons = list()
+	attack_verb = list("thumped", "brushed", "bumped")
 
-/obj/item/emberflowers/attack(mob/living/simple_animal/M, mob/user)
+/obj/item/eflowers/attack_self(mob/user)
+	var/turf/T = get_turf(user)
+	var/area/A = get_area(user)
+	if(next_summon > world.time)
+		to_chat(user, span_warning("You can't do that yet!"))
+		return
+	if(is_station_level(T.z) && !A.outdoors)
+		to_chat(user, span_warning("You feel like calling a bunch of animals indoors is a bad idea."))
+		return
+	user.visible_message(span_warning("[user] holds the bouqet out, summoning their allies!"))
+	for(var/mob/m in summons)
+		m.forceMove(T)
+	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
+	next_summon = world.time + COOLDOWN_SUMMON
+
+/obj/item/eflowers/afterattack(mob/living/simple_animal/M, mob/user, proximity)
+	var/datum/status_effect/taming/G = M.has_status_effect(STATUS_EFFECT_TAMING)
+	. = ..()
+	if(!proximity)
+		return
 	if(M.client)
-		to_chat(user, span_warning("[M] is too intelligent to charm!"))
+		to_chat(user, span_warning("[M] is too intelligent to tame!"))
 		return
 	if(M.stat)
 		to_chat(user, span_warning("[M] is dead!"))
 		return
+	if(M.faction == user.faction)
+		to_chat(user, span_warning("[M] is already on your side!"))
+		return
+	if(M.sentience_type == SENTIENCE_BOSS)
+		if(!G)
+			M.apply_status_effect(STATUS_EFFECT_TAMING, user)
+		else
+			G.add_tame(G.tame_buildup)
+			if(ISMULTIPLE(G.tame_crit-G.tame_amount, 5))
+				to_chat(user, span_notice("[M] has to be exposed [G.tame_crit-G.tame_amount] more times to accept your gift!"))
+		return
 	if(M.sentience_type != SENTIENCE_ORGANIC)
-		to_chat(user, span_warning("[M] cannot be charmed!"))
+		to_chat(user, span_warning("[M] cannot be tamed!"))
 		return
 	if(!do_after(user, 1.5 SECONDS, M))
 		return
-	M.visible_message(span_notice("[M] seems happy with you after exposure to the emberflowers!"))
-	M.add_atom_colour("#fcff57", FIXED_COLOUR_PRIORITY)
+	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouqet!"))
+	M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
+	M.drop_loot()
 	M.faction = user.faction
+	summons |= M
 	
 ///Bosses
 

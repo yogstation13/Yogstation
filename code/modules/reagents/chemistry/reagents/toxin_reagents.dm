@@ -59,6 +59,7 @@
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/plasma/on_mob_life(mob/living/carbon/C)
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
@@ -394,6 +395,7 @@
 	color = "#787878"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/polonium/on_mob_life(mob/living/carbon/M)
 	M.radiation += 40
@@ -743,6 +745,7 @@
 	metabolization_rate = 1.2 * REAGENTS_METABOLISM
 	toxpwr = 0.5
 	taste_description = "spinning"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/rotatium/on_mob_life(mob/living/carbon/M)
 	if(M.hud_used)
@@ -791,6 +794,7 @@
 	var/acidpwr = 10 //the amount of protection removed from the armour
 	taste_description = "acid"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
 	if(!istype(C))

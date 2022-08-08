@@ -277,3 +277,40 @@
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))
 			picture.log_to_file()
+
+/obj/item/camera/tator
+	var/obj/item/assembly/flash/tator/flashy
+	COOLDOWN_DECLARE(flash_cooldown)
+
+/obj/item/camera/tator/Initialize()
+	. = ..()
+	flashy = new (src)
+
+/obj/item/camera/tator/attack(mob/living/carbon/human/M, mob/user)
+	if(is_syndicate(user) && flashy && COOLDOWN_FINISHED(src, flash_cooldown))
+		update_flash()
+		if(flashy.attack(M, user))
+			COOLDOWN_START(src, flash_cooldown, 9 SECONDS)
+		return
+	. = ..()
+
+/obj/item/camera/tator/proc/update_flash()
+	flashy.name = name
+	flashy.icon_state = icon_state
+	flashy.icon_state = item_state
+
+/obj/item/camera/tator/examine(mob/user)
+	. = ..()
+	if(is_syndicate(user)) //helpful to other syndicates
+		. += "This camera has an upgraded lightbulb and is capable of flashing people."
+
+/obj/item/assembly/flash/tator
+	name = "camera"
+	desc = "This flash is morbin'. You shouldn't see it."  //Anyone wouldn't see this so it is ok
+	burnout_resistance = 999999   //No burning out
+	icon = 'icons/obj/artstuff.dmi'
+	icon_state = "camera"
+	item_state = "camera"
+
+/obj/item/assembly/flash/tator/emp_act(severity)
+	return

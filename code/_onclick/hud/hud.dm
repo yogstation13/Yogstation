@@ -207,6 +207,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 			show_hud(hud_version, M)
 	else if (viewmob.hud_used)
 		viewmob.hud_used.plane_masters_update()
+		viewmob.client.screen -= hide_actions_toggle // Hide actions works a bit funny so the observer cant ever use it
 
 	return TRUE
 
