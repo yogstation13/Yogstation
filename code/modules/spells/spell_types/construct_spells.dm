@@ -163,7 +163,7 @@
 	if(ismob(target))
 		var/mob/M = target
 		if(iscultist(target))//cultists can't be harmed by their own constructs' spells!
-		        to_chat(target, span_danger("[src] harmlessly dissipates into crimson particles upon contacting your body!"))
+			to_chat(target, span_danger("[src] harmlessly dissipates into crimson particles upon contacting your body!"))
 			return BULLET_ACT_BLOCK
 		if(M.anti_magic_check())
 			M.visible_message(span_warning("[src] vanishes on contact with [target]!"))
