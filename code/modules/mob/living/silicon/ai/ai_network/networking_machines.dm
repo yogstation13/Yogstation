@@ -10,6 +10,8 @@
 	max_integrity = 150
 	integrity_failure = 0.33
 
+	var/label
+
 	var/mutable_appearance/panelstructure
 	var/mutable_appearance/paneloverlay
 
@@ -18,6 +20,7 @@
 
 /obj/machinery/ai/networking/Initialize(mapload)
 	. = ..()
+	label = num2hex(rand(1,65535), -1)
 	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
 	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
 	paneloverlay.color = "#599ffa"
@@ -60,5 +63,26 @@
 	update_icon()
 	
 
+/obj/machinery/ai/networking/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AiNetworking", name)
+		ui.open()
+
+/obj/machinery/ai/networking/ui_data(mob/living/carbon/human/user)
+	var/list/data = list()
+
+	return data
+
+/obj/machinery/ai/networking/ui_act(action, params)
+	if(..())
+		return
+
+	switch(action)
+		if("log_out")
+			if(one_time_password_used)
+				return
+			authenticated = FALSE
+			. = TRUE
 
 
