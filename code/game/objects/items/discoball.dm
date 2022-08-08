@@ -79,6 +79,11 @@
 	new /obj/item/discoballdeployer(user.loc)
 	qdel(src)
 
+/** 
+ * im literally copying shit from radiant mk IV
+ * :(
+*/
+
 /obj/structure/discoball/proc/dance_setup()
 	var/turf/cen = get_turf(src)
 	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
