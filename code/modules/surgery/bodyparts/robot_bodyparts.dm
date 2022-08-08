@@ -6,6 +6,67 @@
 #define ROBOTIC_MEDIUM_BURN_MSG "charred"
 #define ROBOTIC_HEAVY_BURN_MSG "smoldering"
 
+#define IPCLIMB(_id, lname) \
+	/obj/item/bodypart/l_leg/robot/ipc/_id { \
+		name = lname + " Left Leg"; \
+		icon_state = #_id + "_l_leg"; \
+		species_id = #_id; \
+	}; \
+	/obj/item/bodypart/r_leg/robot/ipc/_id { \
+		name = lname + " Right Leg"; \
+		icon_state = #_id + "_r_leg"; \
+		species_id = #_id; \
+	}; \
+	/obj/item/bodypart/l_arm/robot/ipc/_id { \
+		name = lname + " Left Arm"; \
+		icon_state = #_id + "_l_arm"; \
+		species_id = #_id; \
+	}; \
+	/obj/item/bodypart/r_arm/robot/ipc/_id { \
+		name = lname + " Right Arm"; \
+		icon_state = #_id + "_r_arm"; \
+		species_id = #_id; \
+	}; \
+	/obj/item/bodypart/head/robot/ipc/_id { \
+		name = lname + " Head"; \
+		icon_state = #_id + "_head"; \
+		species_id = #_id; \
+	}; \
+	/datum/techweb_node/_id { \
+		id = #_id; \
+		display_name = lname + " Limbs"; \
+		description = "Designs for the " + lname + "."; \
+		prereq_ids = list("ipc_organs"); \
+		design_ids = list(#_id+"_l_leg", #_id+"_r_leg", #_id+"_l_arm", #_id+"_r_arm", #_id+"_head"); \
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000); \
+		export_price = 5000; \
+	}; \
+	/datum/design/ipclimbs/l_leg/_id { \
+		name = lname + " Left Leg"; \
+		id = #_id + "_l_leg"; \
+		build_path = /obj/item/bodypart/l_leg/robot/ipc/_id; \
+	}; \
+	/datum/design/ipclimbs/r_leg/_id { \
+		name = lname + " Right Leg"; \
+		id = #_id + "_r_leg"; \
+		build_path = /obj/item/bodypart/r_leg/robot/ipc/_id; \
+	}; \
+	/datum/design/ipclimbs/l_arm/_id { \
+		name = lname + " Left Arm"; \
+		id = #_id + "_l_arm"; \
+		build_path = /obj/item/bodypart/l_arm/robot/ipc/_id; \
+	}; \
+	/datum/design/ipclimbs/r_arm/_id { \
+		name = lname + " Right Arm"; \
+		id = #_id + "_r_arm"; \
+		build_path = /obj/item/bodypart/r_arm/robot/ipc/_id; \
+	}; \
+	/datum/design/ipclimbs/head/_id { \
+		name = lname + " Head"; \
+		id = #_id + "_head"; \
+		build_path = /obj/item/bodypart/head/robot/ipc/_id; \
+	}; \
+
 //For ye whom may venture here, split up arm / hand sprites are formatted as "l_hand" & "l_arm".
 //The complete sprite (displayed when the limb is on the ground) should be named "borg_l_arm".
 //Failure to follow this pattern will cause the hand's icons to be missing due to the way get_limb_icon() works to generate the mob's icons using the aux_zone var.
@@ -349,232 +410,15 @@
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
 
-
-
-/obj/item/bodypart/l_leg/robot/ipc/bship
-	name = "Bishop Cyberkinetics Left Leg"
-	icon_state = "bshipc_l_leg"
-	species_id = "bshipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/bship
-	name = "Bishop Cyberkinetics Right Leg"
-	icon_state = "bshipc_r_leg"
-	species_id = "bshipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/bship
-	name = "Bishop Cyberkinetics Left Arm"
-	icon_state = "bshipc_l_arm"
-	species_id = "bshipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/bship
-	name = "Bishop Cyberkinetics Right Arm"
-	icon_state = "bshipc_r_arm"
-	species_id = "bshipc"
-
-/obj/item/bodypart/head/robot/ipc/bship
-	name = "Bishop Cyberkinetics Head"
-	icon_state = "bshipc_head"
-	species_id = "bshipc"
-
-/obj/item/bodypart/l_leg/robot/ipc/bship2
-	name = "Bishop Cyberkinetics (2.0) Left Leg"
-	icon_state = "bs2ipc_l_leg"
-	species_id = "bs2ipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/bship2
-	name = "Bishop Cyberkinetics (2.0) Right Leg"
-	icon_state = "bs2ipc_r_leg"
-	species_id = "bs2ipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/bship2
-	name = "Bishop Cyberkinetics (2.0) Left Arm"
-	icon_state = "bs2ipc_l_arm"
-	species_id = "bs2ipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/bship2
-	name = "Bishop Cyberkinetics (2.0) Right Arm"
-	icon_state = "bs2ipc_r_arm"
-	species_id = "bs2ipc"
-
-/obj/item/bodypart/head/robot/ipc/bship2
-	name = "Bishop Cyberkinetics (2.0) Head"
-	icon_state = "bs2ipc_head"
-	species_id = "bs2ipc"
-
-/obj/item/bodypart/l_leg/robot/ipc/hsi
-	name = "Hephaestus Industries Left Leg"
-	icon_state = "hsiipc_l_leg"
-	species_id = "hsiipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/hsi
-	name = "Hephaestus Industries Right Leg"
-	icon_state = "hsiipc_r_leg"
-	species_id = "hsiipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/hsi
-	name = "Hephaestus Industries Left Arm"
-	icon_state = "hsiipc_l_arm"
-	species_id = "hsiipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/hsi
-	name = "Hephaestus Industries Right Arm"
-	icon_state = "hsiipc_r_arm"
-	species_id = "hsiipc"
-
-/obj/item/bodypart/head/robot/ipc/hsi
-	name = "Hephaestus Industries Head"
-	icon_state = "hsiipc_head"
-	species_id = "hsiipc"
-
-/obj/item/bodypart/l_leg/robot/ipc/hsi2
-	name = "Hephaestus Industries (2.0) Left Leg"
-	icon_state = "hi2ipc_l_leg"
-	species_id = "hi2ipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/hsi2
-	name = "Hephaestus Industries (2.0) Right Leg"
-	icon_state = "hi2ipc_r_leg"
-	species_id = "hi2ipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/hsi2
-	name = "Hephaestus Industries (2.0) Left Arm"
-	icon_state = "hi2ipc_l_arm"
-	species_id = "hi2ipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/hsi2
-	name = "Hephaestus Industries (2.0) Right Arm"
-	icon_state = "hi2ipc_r_arm"
-	species_id = "hi2ipc"
-
-/obj/item/bodypart/head/robot/ipc/hsi2
-	name = "Hephaestus Industries (2.0) Head"
-	icon_state = "hi2ipc_head"
-	species_id = "hi2ipc"
-
-/obj/item/bodypart/l_leg/robot/ipc/sgm
-	name = "Shellguard Munitions Left Leg"
-	icon_state = "sgmipc_l_leg"
-	species_id = "sgmipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/sgm
-	name = "Shellguard Munitions Right Leg"
-	icon_state = "sgmipc_r_leg"
-	species_id = "sgmipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/sgm
-	name = "Shellguard Munitions Left Arm"
-	icon_state = "sgmipc_l_arm"
-	species_id = "sgmipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/sgm
-	name = "Shellguard Munitions Right Arm"
-	icon_state = "sgmipc_r_arm"
-	species_id = "sgmipc"
-
-/obj/item/bodypart/head/robot/ipc/sgm
-	name = "Shellguard Munitions Head"
-	icon_state = "sgmipc_head"
-	species_id = "sgmipc"
-
-/obj/item/bodypart/l_leg/robot/ipc/wtm
-	name = "Ward-Takahashi Left Leg"
-	icon_state = "wtmipc_l_leg"
-	species_id = "wtmipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/wtm
-	name = "Ward-Takahashi Right Leg"
-	icon_state = "wtmipc_r_leg"
-	species_id = "wtmipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/wtm
-	name = "Ward-Takahashi Left Arm"
-	icon_state = "wtmipc_l_arm"
-	species_id = "wtmipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/wtm
-	name = "Ward-Takahashi Right Arm"
-	icon_state = "wtmipc_r_arm"
-	species_id = "wtmipc"
-
-/obj/item/bodypart/head/robot/ipc/wtm
-	name = "Ward-Takahashi Head"
-	icon_state = "wtmipc_head"
-	species_id = "wtmipc"
-
-/obj/item/bodypart/l_leg/robot/ipc/xmg
-	name = "Xion Manufacturing Left Leg"
-	icon_state = "xmgipc_l_leg"
-	species_id = "xmgipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/xmg
-	name = "Xion Manufacturing Right Leg"
-	icon_state = "xmgipc_r_leg"
-	species_id = "xmgipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/xmg
-	name = "Xion Manufacturing Left Arm"
-	icon_state = "xmgipc_l_arm"
-	species_id = "xmgipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/xmg
-	name = "Xion Manufacturing Right Arm"
-	icon_state = "xmgipc_r_arm"
-	species_id = "xmgipc"
-
-/obj/item/bodypart/head/robot/ipc/xmg
-	name = "Xion Manufacturing Head"
-	icon_state = "xmgipc_head"
-	species_id = "xmgipc"
-
-/obj/item/bodypart/l_leg/robot/ipc/xmg2
-	name = "Xion Manufacturing (2.0) Left Leg"
-	icon_state = "xm2ipc_l_leg"
-	species_id = "xm2ipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/xmg2
-	name = "Xion Manufacturing (2.0) Right Leg"
-	icon_state = "xm2ipc_r_leg"
-	species_id = "xm2ipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/xmg2
-	name = "Xion Manufacturing (2.0) Left Arm"
-	icon_state = "xm2ipc_l_arm"
-	species_id = "xm2ipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/xmg2
-	name = "Xion Manufacturing (2.0) Right Arm"
-	icon_state = "xm2ipc_r_arm"
-	species_id = "xm2ipc"
-
-/obj/item/bodypart/head/robot/ipc/xmg2
-	name = "Xion Manufacturing (2.0) Head"
-	icon_state = "xm2ipc_head"
-	species_id = "xm2ipc"
-
-/obj/item/bodypart/l_leg/robot/ipc/zhp
-	name = "Zeng-Hu Pharmaceuticals Left Leg"
-	icon_state = "zhpipc_l_leg"
-	species_id = "zhpipc"
-
-/obj/item/bodypart/r_leg/robot/ipc/zhp
-	name = "Zeng-Hu Pharmaceuticals Right Leg"
-	icon_state = "zhpipc_r_leg"
-	species_id = "zhpipc"
-
-/obj/item/bodypart/l_arm/robot/ipc/zhp
-	name = "Zeng-Hu Pharmaceuticals Left Arm"
-	icon_state = "zhpipc_l_arm"
-	species_id = "zhpipc"
-
-/obj/item/bodypart/r_arm/robot/ipc/zhp
-	name = "Zeng-Hu Pharmaceuticals Right Arm"
-	icon_state = "zhpipc_r_arm"
-	species_id = "zhpipc"
-
-/obj/item/bodypart/head/robot/ipc/zhp
-	name = "Zeng-Hu Pharmaceuticals Head"
-	icon_state = "zhpipc_head"
-	species_id = "zhpipc"
+IPCLIMB(bshipc, "Bishop Cyberkinetics")
+IPCLIMB(bs2ipc, "Bishop Cyberkinetics (2.0)")
+IPCLIMB(hsiipc, "Hephaestus Industries")
+IPCLIMB(hi2ipc, "Hephaestus Industries (2.0)")
+IPCLIMB(sgmipc, "Shellguard Munitions")
+IPCLIMB(wtmipc, "Ward-Takahashi")
+IPCLIMB(xmgipc, "Xion Manufacturing")
+IPCLIMB(xm2ipc, "Xion Manufacturing (2.0)")
+IPCLIMB(zhpipc, "Zeng-Hu Pharmaceuticals")
 
 #undef ROBOTIC_LIGHT_BRUTE_MSG
 #undef ROBOTIC_MEDIUM_BRUTE_MSG
