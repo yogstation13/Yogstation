@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(ai_networking_machines)
+
 /obj/machinery/ai/networking
 	name = "networking machine"
 	desc = "A solar panel. Generates electricity when in contact with sunlight."
@@ -11,6 +13,8 @@
 	integrity_failure = 0.33
 
 	var/label
+	//For mapping, will connect to machine with this label if found
+	var/roundstart_connection
 
 	var/mutable_appearance/panelstructure
 	var/mutable_appearance/paneloverlay
@@ -18,15 +22,29 @@
 	var/obj/machinery/ai/networking/partner
 	var/rotation_to_partner
 
+
 /obj/machinery/ai/networking/Initialize(mapload)
 	. = ..()
 	label = num2hex(rand(1,65535), -1)
+	GLOB.ai_networking_machines += src
 	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
 	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
 	paneloverlay.color = "#599ffa"
 	update_icon(TRUE)
 
+	if(mapload)
+		for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+			if(N == src)
+				continue
+			if(roundstart_connection && N.label == roundstart_connection)
+				connect_to_partner(N)
+				break
+			if(!roundstart_connection)
+				connect_to_partner(N)
+				break
+
 /obj/machinery/ai/networking/Destroy(mapload)
+	GLOB.ai_networking_machines -= src
 	disconnect()
 	. = ..()
 
@@ -53,11 +71,13 @@
 /obj/machinery/ai/networking/proc/connect_to_partner(obj/machinery/ai/networking/target)
 	if(target.partner)
 		return
+	if(target == src)
+		return
 
 	partner = target
 	rotation_to_partner = Get_Angle(src, partner)
 	target.partner = src
-	target.rotation_to_partner = GetAngle(target, src)
+	target.rotation_to_partner = Get_Angle(target, src)
 	target.update_icon()
 
 	partner.network.update_remotes()
@@ -75,6 +95,15 @@
 /obj/machinery/ai/networking/ui_data(mob/living/carbon/human/user)
 	var/list/data = list()
 
+	data["is_connected"] = partner ? TRUE : FALSE
+	data["label"] = label
+
+	data["possible_targets"] = list()
+	for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+		if(N == src)
+			continue
+		data["possible_targets"] += N.label
+
 	return data
 
 /obj/machinery/ai/networking/ui_act(action, params)
@@ -82,10 +111,27 @@
 		return
 
 	switch(action)
-		if("log_out")
-			if(one_time_password_used)
-				return
-			authenticated = FALSE
+		if("switch_label")
+			var/new_label = stripped_input(usr, "Enter new label", "Set label", max_length = 16)
+			if(new_label)
+				for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+					if(N.label == new_label)
+						to_chat(usr, span_warning("A machine with this label already exists!"))
+						return
+				label = new_label
 			. = TRUE
+		if("connect")
+			var/target_label = params["target_label"]
+			if(target_label == label)
+				return
+			for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+				if(N.label == target_label)
+					if(partner)
+						disconnect()
+					connect_to_partner(N)
+					return
+			. = TRUE
+		if("disconnect")
+			disconnect()
 
 

@@ -135,7 +135,7 @@
 		return INITIALIZE_HINT_QDEL //Delete AI.
 
 	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
-		relocate(TRUE)
+		relocate(TRUE, TRUE)
 
 	if(L && istype(L, /datum/ai_laws))
 		laws = L

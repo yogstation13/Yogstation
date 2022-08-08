@@ -1,6 +1,12 @@
-/proc/available_ai_cores()
+/mob/living/silicon/ai/proc/available_ai_cores(forced = FALSE)
 	if(!GLOB.data_cores.len)
 		return FALSE
+	
+	if(!forced)
+		if(!ai_network)
+			return FALSE
+		return ai_network.find_data_core()
+
 	var/obj/machinery/ai/data_core/new_data_core = GLOB.primary_data_core
 	if(!new_data_core || !new_data_core.can_transfer_ai())
 		for(var/obj/machinery/ai/data_core/DC in GLOB.data_cores)
@@ -32,11 +38,7 @@
 
 
 	var/obj/machinery/ai/data_core/new_data_core
-	if(ai_network)
-		new_data_core = ai_network.find_data_core()
-
-	if(!ai_network && forced)
-		new_data_core = available_ai_cores()
+	new_data_core = available_ai_cores(TRUE)
 
 	if(!new_data_core)
 		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)

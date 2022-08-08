@@ -184,7 +184,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		data["intellicard_ai"] = null
 		data["intellicard_ai_health"] = 0
 
-	data["can_upload"] = available_ai_cores()
+	//data["can_upload"] = available_ai_cores()
 
 	if(downloading)
 		data["downloading"] = downloading.real_name
