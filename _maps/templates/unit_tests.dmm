@@ -3,15 +3,15 @@
 /turf/closed/wall,
 /area/misc/testroom)
 "m" = (
-/turf/open/floor/mineral/iron,
+/turf/open/floor/mineral/silver,
 /area/misc/testroom)
 "r" = (
 /obj/effect/landmark/unit_test_top_right,
-/turf/open/floor/mineral/iron,
+/turf/open/floor/mineral/silver,
 /area/misc/testroom)
 "L" = (
 /obj/effect/landmark/unit_test_bottom_left,
-/turf/open/floor/mineral/iron,
+/turf/open/floor/mineral/silver,
 /area/misc/testroom)
 
 (1,1,1) = {"
