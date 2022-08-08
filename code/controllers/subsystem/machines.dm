@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
+	makeainets()
 	fire()
 	return ..()
 
@@ -23,8 +24,19 @@ SUBSYSTEM_DEF(machines)
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
 
+/datum/controller/subsystem/machines/proc/makeainets()
+	for(var/datum/ai_network/AN in ainets)
+		qdel(AN)
+	ainets.Cut()
+
+	for(var/obj/structure/ethernet_cable/EC in GLOB.ethernet_cable_list)
+		if(!EC.network)
+			var/datum/ai_network/NewAN = new()
+			NewAN.add_cable(EC)
+			propagate_ai_network(EC,EC.network)
+
 /datum/controller/subsystem/machines/stat_entry(msg)
-	msg = "M:[length(processing)]|PN:[length(powernets)]"
+	msg = "M:[length(processing)]|PN:[length(powernets)]|AN:[length(ainets)]"
 	return ..()
 
 
@@ -58,6 +70,14 @@ SUBSYSTEM_DEF(machines)
 			var/datum/powernet/NewPN = new(PC.loc.z)
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
+
+/datum/controller/subsystem/machines/proc/setup_template_ainets(list/cables)
+	for(var/A in cables)
+		var/obj/structure/ethernet_cable/PC = A
+		if(!PC.network)
+			var/datum/ai_network/NewPN = new()
+			NewPN.add_cable(PC)
+			propagate_ai_network(PC,PC.network)
 
 /datum/controller/subsystem/machines/Recover()
 	if (istype(SSmachines.processing))
