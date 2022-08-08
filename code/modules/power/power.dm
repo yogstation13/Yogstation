@@ -406,6 +406,14 @@
 			return C
 	return null
 
+/turf/proc/get_ai_cable_node()
+	if(!can_have_cabling())
+		return null
+	for(var/obj/structure/ethernet_cable/C in src)
+		if(C.d1 == 0)
+			return C
+	return null
+
 /area/proc/get_apc()
 	for(var/obj/machinery/power/apc/APC in GLOB.apcs_list)
 		if(APC.area == src)

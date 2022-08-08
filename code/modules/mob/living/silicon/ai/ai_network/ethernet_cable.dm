@@ -421,7 +421,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		return TRUE
 
 /obj/item/stack/ethernet_coil/update_icon()
-	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
+	icon_state = "[initial(icon_state)][amount < 3 ? amount : ""]"
 	name = "ethernet cable [amount < 3 ? "piece" : "coil"]"
 
 /obj/item/stack/ethernet_coil/attack_hand(mob/user)

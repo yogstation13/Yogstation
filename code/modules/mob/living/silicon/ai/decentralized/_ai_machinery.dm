@@ -58,7 +58,7 @@
 	if(!T || !istype(T))
 		return FALSE
 
-	var/obj/structure/ethernet_cable/C = T.get_cable_node() //check if we have a node cable on the machine turf, the first found is picked
+	var/obj/structure/ethernet_cable/C = T.get_ai_cable_node() //check if we have a node cable on the machine turf, the first found is picked
 	if(!C || !C.network)
 		return FALSE
 
