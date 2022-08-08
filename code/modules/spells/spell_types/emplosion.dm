@@ -13,6 +13,8 @@
 	for(var/mob/living/target in targets)
 		if(target.anti_magic_check())
 			continue
+		if(prob(target.armor.magic))
+			continue
 		empulse(target.loc, emp_heavy, emp_light)
 
 	return

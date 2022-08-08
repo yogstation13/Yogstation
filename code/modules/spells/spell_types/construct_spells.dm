@@ -320,5 +320,5 @@
 	new /obj/effect/temp_visual/cult/sac(T)
 	for(var/obj/O in range(src,1))
 		if(O.density && !istype(O, /obj/structure/destructible/cult))
-			O.take_damage(90, BRUTE, MELEE, 0)
+			O.take_damage(90, BRUTE, MAGIC, 0)
 			new /obj/effect/temp_visual/cult/turf/floor(get_turf(O))
