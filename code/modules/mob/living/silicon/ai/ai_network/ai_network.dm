@@ -100,6 +100,10 @@
 		checked_networks += checked_networks
 		. += net.get_all_ais(checked_networks)
 
+/datum/ai_network/proc/update_remotes()
+	for(var/obj/machinery/ai/networking/N in nodes)
+		if(N.partner && N.partner.network && !(N.partner.network in remote_networks))
+			remote_networks += N.partner.network
 
 
 /proc/merge_ainets(datum/ai_network/net1, datum/ai_network/net2)
@@ -193,3 +197,4 @@
 				if(C.d1 == d || C.d2 == d)
 					. += C
 	return .
+

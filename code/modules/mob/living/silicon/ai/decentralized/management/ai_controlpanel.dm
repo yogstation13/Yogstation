@@ -102,7 +102,10 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	if(downloading && download_progress >= 50 && !download_warning)
 		var/turf/T = get_turf(src)
-		to_chat(downloading, span_userdanger("Warning! Download is 50% completed! Download location: [get_area(src)] ([T.x], [T.y], [T.z])!"))
+		if(!downloading.mind && downloading.deployed_shell.mind)
+			to_chat(downloading.deployed_shell, span_userdanger("Warning! Download is 50% completed! Download location: [get_area(src)] ([T.x], [T.y], [T.z])!"))
+		else
+			to_chat(downloading, span_userdanger("Warning! Download is 50% completed! Download location: [get_area(src)] ([T.x], [T.y], [T.z])!"))
 		download_warning = TRUE
 	if(downloading && download_progress >= 100)
 		finish_download()
@@ -362,7 +365,11 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(usr, span_warning("No connection. Try again later."))
 				return
 			downloading = target
-			to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(src)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
+
+			if(!downloading.mind && downloading.deployed_shell.mind)
+				to_chat(downloading.deployed_shell, span_userdanger("Warning! Someone is attempting to download you from [get_area(src)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
+			else
+				to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(src)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
 			user_downloading = usr
 			download_progress = 0
 			. = TRUE

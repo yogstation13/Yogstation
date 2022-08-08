@@ -29,14 +29,13 @@
 		return
 	if(!silent)
 		to_chat(src, span_userdanger("Connection to data core lost. Attempting to reaquire connection..."))
-		
-	network = null
+
 
 	var/obj/machinery/ai/data_core/new_data_core
-	if(network)
-		new_data_core = network.find_data_core()
-		network.ai_list -= src
-	if(!network && forced)
+	if(ai_network)
+		new_data_core = ai_network.find_data_core()
+
+	if(!ai_network && forced)
 		new_data_core = available_ai_cores()
 
 	if(!new_data_core)

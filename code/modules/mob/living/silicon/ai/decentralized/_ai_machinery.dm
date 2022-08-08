@@ -15,6 +15,7 @@
 	. = ..()
 	
 	SSair.atmos_machinery += src 
+	connect_to_network()
 	
 /obj/machinery/ai/Destroy()
 	. = ..()

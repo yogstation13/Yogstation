@@ -125,7 +125,7 @@
 	///Multiplier for amount of points gained when passively using CPU for science
 	var/research_point_booster = 1
 
-	var/datum/ai_network/network
+	var/datum/ai_network/ai_network
 
 
 

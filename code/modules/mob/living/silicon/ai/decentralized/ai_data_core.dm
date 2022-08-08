@@ -169,8 +169,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(AI.eyeobj)
 		AI.eyeobj.forceMove(get_turf(src))
 	
-	if(network)
-		AI.network = network
+	if(network != AI.ai_network)
+		AI.ai_network.ai_list -= AI
+		AI.ai_network = network
 		network.ai_list += AI
 
 /obj/machinery/ai/data_core/update_icon()
