@@ -37,7 +37,7 @@
 		display_name = lname + " Limbs"; \
 		description = "Designs for the " + lname + "."; \
 		prereq_ids = list("ipc_organs"); \
-		design_ids = list(#_id+"_l_leg", #_id+"_r_leg", #_id+"_l_arm", #_id+"_r_arm", #_id+"_head"); \
+		design_ids = list(#_id+"_head", #_id+"_l_leg", #_id+"_r_leg", #_id+"_l_arm", #_id+"_r_arm"); \
 		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000); \
 		export_price = 5000; \
 	}; \
