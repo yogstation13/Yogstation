@@ -89,7 +89,7 @@
 		//Note this value returned is significant, as it will determine
 		//if a stun is applied or not
 		var/mob/living/M = loc
-		if(M && iscyborg(M))
+		if(M && iscyborg(M)) 
 			var/mob/living/silicon/robot/R = loc
 			R.cell.use(chrgdeductamt)
 		else
