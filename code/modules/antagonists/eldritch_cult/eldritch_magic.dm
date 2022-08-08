@@ -44,7 +44,7 @@
 	desc = "A sinister looking aura that distorts the flow of reality around it. Knocks the target down and deals a large amount of stamina damage alongside a small amount of brute. It may gain more interesting capabilities if you continue your research..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
-	color = '#00cc00'
+	color = "#00cc00"
 	catchphrase = "R'CH T'H TR'TH"
 
 /obj/item/melee/touch_attack/mansus_fist/ignition_effect(atom/A, mob/user)
