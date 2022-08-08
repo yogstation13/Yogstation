@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(data_cores)
 GLOBAL_VAR_INIT(primary_data_core, null)
 
 /obj/machinery/ai/data_core
-	name = "AI Data Core"
+	name = "AI data core"
 	desc = "A complicated computer system capable of emulating the neural functions of an organic being at near-instantanous speeds."
 	icon = 'icons/obj/machines/ai_core.dmi'
 	icon_state = "core-offline"

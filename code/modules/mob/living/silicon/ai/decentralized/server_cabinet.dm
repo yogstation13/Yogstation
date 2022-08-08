@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(server_cabinets)
 
 /obj/machinery/ai/server_cabinet
-	name = "Server Cabinet"
+	name = "server cabinet"
 	desc = "A simple cabinet of bPCIe slots for installing server racks."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "expansion_bus"
