@@ -31,6 +31,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
+	pixel_y = 5
+	pixel_x = 5
 	var/d1 = 0   // cable direction 1 (see above)
 	var/d2 = 1   // cable direction 2 (see above)
 	var/datum/ai_network/network
