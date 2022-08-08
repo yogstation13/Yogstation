@@ -137,6 +137,15 @@
 /datum/ai_network/proc/total_ram_assigned()
 	return resources.total_ram_assigned()
 
+/datum/ai_network/proc/rebuild_remote(datum/ai_shared_resources/old_resources)
+	for(var/obj/machinery/ai/networking/N in nodes)
+		if(N.partner)
+			if(N.partner.network.resources == old_resources)
+				old_resources.join_resources(resources)
+				return
+	resources.split_resources(src)
+
+
 
 /proc/merge_ainets(datum/ai_network/net1, datum/ai_network/net2)
 	if(!net1 || !net2) //if one of the network doesn't exist, return

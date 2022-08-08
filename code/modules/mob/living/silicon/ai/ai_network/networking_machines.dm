@@ -26,7 +26,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 /obj/machinery/ai/networking/Initialize(mapload)
 	. = ..()
-	label = num2hex(rand(1,65535), -1)
+	if(!label)
+		label = num2hex(rand(1,65535), -1)
 	GLOB.ai_networking_machines += src
 	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
 	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
