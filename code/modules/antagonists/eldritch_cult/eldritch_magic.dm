@@ -7,6 +7,7 @@
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "ash_shift"
 	action_background_icon_state = "bg_ecult"
+	invocation = "ASH'N P'SSG'"
 	jaunt_in_time = 13
 	jaunt_duration = 10
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
@@ -43,7 +44,8 @@
 	desc = "A sinister looking aura that distorts the flow of reality around it. Knocks the target down and deals a large amount of stamina damage alongside a small amount of brute. It may gain more interesting capabilities if you continue your research..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
-	catchphrase = "FEAR THE BEYOND"
+	color = '#00cc00'
+	catchphrase = "R'CH T'H TR'TH"
 
 /obj/item/melee/touch_attack/mansus_fist/ignition_effect(atom/A, mob/user)
 	. = span_notice("[user] effortlessly snaps [user.p_their()] fingers near [A], igniting it with eldritch energies. Fucking badass!")
@@ -85,7 +87,7 @@
 	school = "transmutation"
 	charge_max = 300 //twice as long as mansus grasp
 	clothes_req = FALSE
-	invocation = "RUST TO RUST"
+	invocation = "A'GRSV SPR'D"
 	invocation_type = "whisper"
 	range = 3
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -113,7 +115,7 @@
 	school = "evocation"
 	charge_max = 150
 	clothes_req = FALSE
-	invocation = "ETERNAL FLAMES"
+	invocation = "FL'MS O'ET'RN'ITY"
 	invocation_type = "whisper"
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "blood_siphon"
@@ -164,7 +166,7 @@
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "rust_wave"
 	action_background_icon_state = "bg_ecult"
-	invocation = "FACE INEVITABILITY"
+	invocation = "SPR'D TH' WO'D"
 	invocation_type = "whisper"
 
 /obj/item/projectile/magic/spell/rust_wave
@@ -211,7 +213,7 @@
 	school = "transmutation"
 	charge_max = 350
 	clothes_req = FALSE
-	invocation = "RIP AND TEAR"
+	invocation = "CL'VE"
 	invocation_type = "whisper"
 	range = 9
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -298,7 +300,7 @@
 	name = "Nightwatcher's Rite"
 	desc = "Fires 5 blasts of fire in angles away from you, dealing heavy damage to anything they hit."
 	school = "transmutation"
-	invocation = "IGNITE"
+	invocation = "F'RE"
 	invocation_type = "whisper"
 	charge_max = 300
 	range = 15
@@ -375,7 +377,7 @@
 
 /obj/effect/proc_holder/spell/targeted/emplosion/eldritch
 	name = "Entropic Pulse"
-	invocation = "ENTROPIC PULSE"
+	invocation = "E'P"
 	invocation_type = "whisper"
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
@@ -391,7 +393,7 @@
 	school = "transmutation"
 	charge_max = 300 //twice as long as mansus grasp
 	clothes_req = FALSE
-	invocation = "CONFLAGRATE"
+	invocation = "C'SC'DE"
 	invocation_type = "shout"
 	range = 4
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -425,7 +427,7 @@
 /obj/effect/proc_holder/spell/targeted/fire_sworn
 	name = "Oath of Fire"
 	desc = "Engulf yourself in a cloak of flames for a minute. The flames are harmless to you, but dangerous to anyone else."
-	invocation = "FUEL FOR THE FIRE"
+	invocation = "FL'MS"
 	invocation_type = "shout"
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
@@ -494,7 +496,7 @@
 /obj/effect/proc_holder/spell/targeted/fiery_rebirth
 	name = "Nightwatcher's Rebirth"
 	desc = "Drains the health of nearby combusting individuals, healing you 10 of each damage type for every victim. If a victim is in critical condition they will be finished off."
-	invocation = "ASHES TO ASHES"
+	invocation = "GL'RY T' TH' N'GHT'W'TCH'ER"
 	invocation_type = "whisper"
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
@@ -529,7 +531,7 @@
 	school = "transmutation"
 	charge_max = 300
 	clothes_req = FALSE
-	invocation = "HEAR MY VOICE"
+	invocation = "PI'RC' TH' M'ND"
 	invocation_type = "whisper"
 	range = 10
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -594,7 +596,7 @@
 
 /obj/effect/proc_holder/spell/pointed/trigger/blind/eldritch
 	range = 10
-	invocation = "SEE NO EVIL"
+	invocation = "E'E'S"
 	action_background_icon_state = "bg_ecult"
 
 /obj/effect/temp_visual/dir_setting/entropic
@@ -632,7 +634,7 @@
 	name = "Entropic Plume"
 	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinds them(increasing with range) and poisons them(decreasing with range), while also spreading rust in the path of the plume."
 	school = "illusion"
-	invocation = "GUST OF RUST"
+	invocation = "'NTR'P'C PL'M'"
 	invocation_type = "whisper"
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
