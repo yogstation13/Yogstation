@@ -88,7 +88,12 @@
 	if(cell)
 		//Note this value returned is significant, as it will determine
 		//if a stun is applied or not
-		. = cell.use(chrgdeductamt)
+		var/mob/living/M = loc
+		if (iscyborg(M))
+			var/mob/living/silicon/robot/R = loc
+			R.cell.use(chrgdeductamt)
+		else
+			. = cell.use(chrgdeductamt)
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE
