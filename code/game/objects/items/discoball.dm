@@ -12,7 +12,7 @@
 
 /obj/structure/discoball
 	name = "Disco Ball"
-	desc = "This is an old model portable disco ball."
+	desc = "This is an old model portable disco ball. Use wrench to undeploy."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "ethdisco_head_0"
 	anchored = TRUE
