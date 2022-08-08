@@ -23,7 +23,7 @@
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 
-	if(do_teleport(L, destination, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
 		L.visible_message(span_warning("[src] refuses to be crushed by [L]! There must be something interfering!"), span_danger("[src] suddenly hardens in your hand! There must be something interfering!"))
 		return
 
