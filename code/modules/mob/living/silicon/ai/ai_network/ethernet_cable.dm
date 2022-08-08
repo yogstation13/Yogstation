@@ -39,7 +39,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	FASTDMM_PROP(\
 		pipe_type = PIPE_TYPE_CABLE,\
 		pipe_interference_group = list("cable"),\
-		pipe_group = "cable-red"\
+		pipe_group = "cable-ethernet"\
 	)
 
 
