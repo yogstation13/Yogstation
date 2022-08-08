@@ -105,8 +105,8 @@
 					/obj/item/toy/plush/flowerbunch,
 					/obj/item/toy/plush/inorixplushie,
 					/obj/item/toy/plush/beeplushie,
-					/obj/item/toy/plush/slimeplushie
-					/obj/item/toy/plush/cplushie)
+					/obj/item/toy/plush/slimeplushie,
+					/obj/item/toy/plush/cdragon)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
