@@ -42,6 +42,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = STANDARD_GRAVITY
 
+/area/misc/testroom
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	name = "Test Room"
+	icon_state = "test_room"
 
 /area/testroom
 	requires_power = FALSE
