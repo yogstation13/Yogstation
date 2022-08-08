@@ -61,3 +61,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 #define MAX_AI_BITCOIN_MINED_PER_TICK 350
 //Self explanatory, see MAX_AI_BITCOIN_MINED_PER_TICK * this = max money 1 AI can contribute per tick. (17,5 credits every 2 seconds, max 63k over 2 hours)
 #define AI_BITCOIN_PRICE 0.05
+
+//How much 1 CPU/RAM counts as for network activity purposes. Used for transmitters/receivers
+#define CPU_NETWORK_ACTIVITY 3
+#define RAM_NETWORK_ACTIVITY 2

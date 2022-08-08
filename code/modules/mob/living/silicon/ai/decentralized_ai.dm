@@ -24,20 +24,25 @@
 
 
 
-/mob/living/silicon/ai/proc/relocate(silent = FALSE)
+/mob/living/silicon/ai/proc/relocate(silent = FALSE, forced = FALSE)
 	if(is_dying)
 		return
 	if(!silent)
 		to_chat(src, span_userdanger("Connection to data core lost. Attempting to reaquire connection..."))
-	
-	if(!GLOB.data_cores.len)
+		
+	network = null
+
+	var/obj/machinery/ai/data_core/new_data_core
+	if(network)
+		new_data_core = network.find_data_core()
+		network.ai_list -= src
+	if(!network && forced)
+		new_data_core = available_ai_cores()
+
+	if(!new_data_core)
 		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)
 		is_dying = TRUE
 		return
-
-
-
-	var/obj/machinery/ai/data_core/new_data_core = available_ai_cores()
 
 	if(!new_data_core || (new_data_core && !new_data_core.can_transfer_ai()))
 		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)

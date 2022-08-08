@@ -168,6 +168,10 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	AI.forceMove(src)
 	if(AI.eyeobj)
 		AI.eyeobj.forceMove(get_turf(src))
+	
+	if(network)
+		AI.network = network
+		network.ai_list += AI
 
 /obj/machinery/ai/data_core/update_icon()
 	cut_overlays()

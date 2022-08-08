@@ -7,6 +7,10 @@
 	var/list/cables = list()	// all cables & junctions
 	var/list/nodes = list()		// all connected machines
 
+	var/list/ai_list = list() 	//List of all AIs in this network
+
+	var/list/remote_networks = list()
+
 	var/total_activity = 0		// How much data is being sent through the network. For transmitters and receivers
 	
 	var/networked_cpu = 0		//How much CPU is in this network
@@ -72,6 +76,29 @@
 	M.network = src
 	nodes[M] = M
 
+/datum/ai_network/proc/find_data_core()
+	for(var/obj/machinery/ai/data_core/core in get_all_nodes())
+		if(core.can_transfer_ai())
+			return core
+
+/datum/ai_network/proc/get_all_nodes(checked_nets = list())
+	. = nodes
+	var/list/checked_networks = checked_nets
+	for(var/datum/ai_network/net in remote_networks)
+		if(net in checked_networks)
+			continue
+		checked_networks += checked_networks
+		. += net.get_all_nodes(checked_networks)
+		
+
+/datum/ai_network/proc/get_all_ais(checked_nets = list())
+	. = ai_list
+	var/list/checked_networks = checked_nets
+	for(var/datum/ai_network/net in remote_networks)
+		if(net in checked_networks)
+			continue
+		checked_networks += checked_networks
+		. += net.get_all_ais(checked_networks)
 
 
 
@@ -88,6 +115,7 @@
 		net1 = net2
 		net2 = temp
 
+
 	//merge net2 into net1
 	for(var/obj/structure/ethernet_cable/Cable in net2.cables) //merge cables
 		net1.add_cable(Cable)
@@ -95,6 +123,20 @@
 	for(var/obj/machinery/ai/Node in net2.nodes) //merge power machines 
 		if(!Node.connect_to_network())
 			Node.disconnect_from_network() //if somehow we can't connect the machine to the new network, disconnect it from the old nonetheless
+
+	var/list/merged_remote_networks = list()
+	for(var/datum/ai_network/net in net2.remote_networks)
+		if(net != net1)
+			merged_remote_networks += net
+
+	for(var/datum/ai_network/net in net1.remote_networks)
+		if(net == net2)
+			net1.remote_networks -= net2
+
+	net1.remote_networks += merged_remote_networks
+
+	net1.ai_list += net2.ai_list //AIs can only be in 1 network at a time
+
 	return net1
 
 

@@ -125,6 +125,8 @@
 	///Multiplier for amount of points gained when passively using CPU for science
 	var/research_point_booster = 1
 
+	var/datum/ai_network/network
+
 
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai, shunted)
