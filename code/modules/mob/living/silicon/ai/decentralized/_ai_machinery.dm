@@ -19,10 +19,12 @@
 	
 /obj/machinery/ai/Destroy()
 	. = ..()
-	
+	disconnect_from_network()
 	SSair.atmos_machinery -= src 
 
 /obj/machinery/ai/proc/valid_holder()
+	if(!network)
+		return FALSE
 	if(stat & (BROKEN|NOPOWER|EMPED))
 		return FALSE
 	
@@ -34,13 +36,15 @@
 	if(istype(T, /turf/open/space) || total_moles < 10)
 		return FALSE
 	
-	if(env.return_temperature() > GLOB.ai_os.get_temp_limit() || !env.heat_capacity())
+	if(env.return_temperature() > network.get_temp_limit() || !env.heat_capacity())
 		return FALSE
 	return TRUE
 
 /obj/machinery/ai/proc/get_holder_status()
 	if(stat & (BROKEN|NOPOWER|EMPED))
 		return FALSE
+	if(!network)
+		return FALSE
 	
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/env = T.return_air()
@@ -50,7 +54,7 @@
 	if(istype(T, /turf/open/space) || total_moles < 10)
 		return AI_MACHINE_NO_MOLES
 	
-	if(env.return_temperature() > GLOB.ai_os.get_temp_limit() || !env.heat_capacity())
+	if(env.return_temperature() > network.get_temp_limit() || !env.heat_capacity())
 		return AI_MACHINE_TOO_HOT
 	
 

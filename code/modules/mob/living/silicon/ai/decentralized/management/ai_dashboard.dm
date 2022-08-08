@@ -57,8 +57,8 @@
 /datum/ai_dashboard/ui_data(mob/user)
 	var/list/data = list()
 
-	data["current_cpu"] = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.cpu_assigned[owner] : 0
-	data["current_ram"] = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	data["current_cpu"] = owner.ai_network.resources.cpu_assigned[owner] ? owner.ai_network.resources.cpu_assigned[owner] : 0
+	data["current_ram"] = owner.ai_network.resources.ram_assigned[owner] ? owner.ai_network.resources.ram_assigned[owner] : 0
 	data["current_ram"] += free_ram
 
 	var/total_cpu_used = 0
@@ -74,8 +74,8 @@
 	data["used_cpu"] = total_cpu_used
 	data["used_ram"] = total_ram_used
 
-	data["max_cpu"] = GLOB.ai_os.total_cpu
-	data["max_ram"] = GLOB.ai_os.total_ram
+	data["max_cpu"] = owner.ai_network.total_cpu()
+	data["max_ram"] = owner.ai_network.total_ram()
 
 	data["categories"] = GLOB.ai_project_categories
 	data["available_projects"] = list()
@@ -210,7 +210,7 @@
 
 
 /datum/ai_dashboard/proc/run_project(datum/ai_project/project)
-	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	var/current_ram = owner.ai_network.resources.ram_assigned[owner] ? owner.ai_network.resources.ram_assigned[owner] : 0
 	current_ram += free_ram
 
 	var/total_ram_used = 0
@@ -268,8 +268,8 @@
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
-	var/current_cpu = GLOB.ai_os.cpu_assigned[owner] ? GLOB.ai_os.total_cpu * GLOB.ai_os.cpu_assigned[owner] : 0
-	var/current_ram = GLOB.ai_os.ram_assigned[owner] ? GLOB.ai_os.ram_assigned[owner] : 0
+	var/current_cpu = owner.ai_network.resources.cpu_assigned[owner] ? owner.ai_network.total_cpu() * owner.ai_network.resources.cpu_assigned[owner] : 0
+	var/current_ram = owner.ai_network.resources.ram_assigned[owner] ? owner.ai_network.resources.ram_assigned[owner] : 0
 	current_ram += free_ram
 
 

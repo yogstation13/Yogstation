@@ -13,7 +13,7 @@
 
 	circuit = /obj/item/circuitboard/computer/ai_resource_distribution
 
-
+/*
 /obj/machinery/computer/ai_resource_distribution/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
@@ -189,3 +189,4 @@
 			human_only = !human_only
 			to_chat(usr, span_notice("This console is now operable by [human_only ? "humans only." : "humans and silicons."]"))
 		
+*/

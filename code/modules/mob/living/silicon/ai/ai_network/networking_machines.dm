@@ -21,6 +21,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 	var/obj/machinery/ai/networking/partner
 	var/rotation_to_partner
+	var/locked = FALSE
 
 
 /obj/machinery/ai/networking/Initialize(mapload)
@@ -32,6 +33,10 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	paneloverlay.color = "#599ffa"
 	update_icon(TRUE)
 
+	
+
+/obj/machinery/ai/networking/LateInitialize(mapload)
+	. = ..()
 	if(mapload)
 		for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
 			if(N == src)
@@ -62,8 +67,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 /obj/machinery/ai/networking/proc/disconnect()
 	if(partner)
-		partner.network.update_remotes()
-		network.update_remotes()
+		network.resources.split_resources(partner.network)
 		partner.partner = null
 		partner = null
 		
@@ -80,8 +84,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	target.rotation_to_partner = Get_Angle(target, src)
 	target.update_icon()
 
-	partner.network.update_remotes()
-	network.update_remotes()
+	network.resources.join_resources(partner.network.resources)
 
 	update_icon()
 	
@@ -98,9 +101,15 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	data["is_connected"] = partner ? TRUE : FALSE
 	data["label"] = label
 
+	data["locked"] = locked
+
 	data["possible_targets"] = list()
 	for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
 		if(N == src)
+			continue
+		if(N.z != src.z)
+			continue
+		if(N.locked)
 			continue
 		data["possible_targets"] += N.label
 
@@ -121,10 +130,14 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 				label = new_label
 			. = TRUE
 		if("connect")
+			if(locked)
+				return
 			var/target_label = params["target_label"]
 			if(target_label == label)
 				return
 			for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+				if(N.z != src.z)
+					return
 				if(N.label == target_label)
 					if(partner)
 						disconnect()
@@ -133,5 +146,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 			. = TRUE
 		if("disconnect")
 			disconnect()
-
+			. = TRUE
+		if("toggle_lock")
+			locked = !locked
+			. = TRUE
 

@@ -15,10 +15,15 @@
 	
 	var/networked_cpu = 0		//How much CPU is in this network
 	var/networked_ram = 0		//How much RAM is in this network
+	var/previous_ram = 0
 
+	var/datum/ai_shared_resources/resources
+
+	var/temp_limit = AI_TEMP_LIMIT
 
 /datum/ai_network/New()
 	SSmachines.ainets += src
+	resources = new()
 
 /datum/ai_network/Destroy()
 	//Go away references, you suck!
@@ -91,6 +96,7 @@
 		. += net.get_all_nodes(checked_networks)
 		
 
+
 /datum/ai_network/proc/get_all_ais(checked_nets = list())
 	. = ai_list
 	var/list/checked_networks = checked_nets
@@ -100,10 +106,35 @@
 		checked_networks += checked_networks
 		. += net.get_all_ais(checked_networks)
 
-/datum/ai_network/proc/update_remotes()
-	for(var/obj/machinery/ai/networking/N in nodes)
-		if(N.partner && N.partner.network && !(N.partner.network in remote_networks))
-			remote_networks += N.partner.network
+/datum/ai_network/proc/remove_ai(mob/living/silicon/ai/AI)
+	resources.cpu_assigned[AI] = 0
+	resources.ram_assigned[AI] = 0
+	ai_list -= AI
+
+
+/datum/ai_network/proc/update_resources()
+	resources.update_resources()
+
+
+/datum/ai_network/proc/total_cpu()
+	. = 0
+	for(var/obj/machinery/ai/server_cabinet/C in nodes)
+		. += C.total_cpu
+
+/datum/ai_network/proc/total_ram()
+	. = 0
+	for(var/obj/machinery/ai/server_cabinet/C in nodes)
+		. += C.total_ram
+
+
+/datum/ai_network/proc/get_temp_limit()
+	return temp_limit
+
+/datum/ai_network/proc/total_cpu_assigned()
+	return resources.total_cpu_assigned()
+
+/datum/ai_network/proc/total_ram_assigned()
+	return resources.total_ram_assigned()
 
 
 /proc/merge_ainets(datum/ai_network/net1, datum/ai_network/net2)
@@ -128,18 +159,12 @@
 		if(!Node.connect_to_network())
 			Node.disconnect_from_network() //if somehow we can't connect the machine to the new network, disconnect it from the old nonetheless
 
-	var/list/merged_remote_networks = list()
-	for(var/datum/ai_network/net in net2.remote_networks)
-		if(net != net1)
-			merged_remote_networks += net
-
-	for(var/datum/ai_network/net in net1.remote_networks)
-		if(net == net2)
-			net1.remote_networks -= net2
-
-	net1.remote_networks += merged_remote_networks
 
 	net1.ai_list += net2.ai_list //AIs can only be in 1 network at a time
+
+	net1.resources.networks -= net2
+	net1.update_resources()
+	
 
 	return net1
 

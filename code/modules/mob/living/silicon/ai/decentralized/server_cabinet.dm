@@ -42,11 +42,10 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	update_icon()
 	RefreshParts()
 
+
 /obj/machinery/ai/server_cabinet/Destroy()
 	installed_racks = list()
 	GLOB.server_cabinets -= src
-	//Recalculate all the CPUs and RAM :)
-	GLOB.ai_os.update_hardware()
 	..()
 
 /obj/machinery/ai/server_cabinet/RefreshParts()
@@ -67,6 +66,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 /obj/machinery/ai/server_cabinet/process_atmos()
 	valid_ticks = clamp(valid_ticks, 0, MAX_AI_EXPANSION_TICKS)
 	if(valid_holder())
+		roundstart = FALSE
 		var/total_usage = (cached_power_usage * power_modifier)
 		use_power(total_usage)
 
@@ -82,8 +82,8 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			update_icon()
 		was_valid_holder = TRUE
 
-		if(!hardware_synced)
-			GLOB.ai_os.update_hardware()
+		if(!hardware_synced && network)
+			network.update_resources()
 			hardware_synced = TRUE
 	else 
 		valid_ticks--
@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			was_valid_holder = FALSE
 			cut_overlays()
 			hardware_synced = FALSE
-			GLOB.ai_os.update_hardware()
+			network?.update_resources()
 
 
 /obj/machinery/ai/server_cabinet/update_icon()
@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		total_cpu += rack.get_cpu()
 		total_ram += rack.get_ram()
 		cached_power_usage += rack.get_power_usage()
-		GLOB.ai_os.update_hardware()
+		network?.update_resources()
 		use_power = ACTIVE_POWER_USE
 		update_icon()
 		return FALSE
@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			total_cpu = 0
 			total_ram = 0
 			cached_power_usage = 0
-			GLOB.ai_os.update_hardware()
+			network?.update_resources()
 			to_chat(user, span_notice("You remove all the racks from [src]"))
 			use_power = IDLE_POWER_USE
 			update_icon()
@@ -179,4 +179,14 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	total_ram += rack.get_ram()
 	cached_power_usage += rack.get_power_usage()
 	installed_racks += rack
-	GLOB.ai_os.update_hardware()
+
+
+/obj/machinery/ai/server_cabinet/connect_to_network()
+	. = ..()
+	if(network)
+		network.update_resources()
+
+/obj/machinery/ai/server_cabinet/disconnect_from_network()
+	var/datum/ai_network/temp = network
+	. = ..()
+	temp.update_resources()

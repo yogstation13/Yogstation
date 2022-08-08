@@ -170,7 +170,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		AI.eyeobj.forceMove(get_turf(src))
 	
 	if(network != AI.ai_network)
-		AI.ai_network.ai_list -= AI
+		if(AI.ai_network)
+			AI.ai_network.remove_ai(AI)
 		AI.ai_network = network
 		network.ai_list += AI
 

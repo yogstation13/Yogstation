@@ -111,7 +111,6 @@
 	//Reduces/Increases download speed by this modifier
 	var/downloadSpeedModifier = 1
 
-	var/login_warned_temp = FALSE
 
 	//Do we have access to camera tracking?
 	var/canCameraMemoryTrack = FALSE
@@ -235,7 +234,7 @@
 	qdel(eyeobj) // No AI, no Eye
 	malfhack = null
 	apc_override = null
-	GLOB.ai_os.remove_ai(src)
+	ai_network.remove_ai(src)
 
 	. = ..()
 

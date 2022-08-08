@@ -38,7 +38,7 @@
 
 
 	var/obj/machinery/ai/data_core/new_data_core
-	new_data_core = available_ai_cores(TRUE)
+	new_data_core = available_ai_cores(forced)
 
 	if(!new_data_core)
 		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)
