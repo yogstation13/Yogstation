@@ -116,6 +116,11 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 				else
 					C.deconstruct()
 					visible_message(span_warning("[src] chews through the [C]."))
+
+			var/obj/structure/ethernet_cable/E = locate() in F
+			if(E && prob(15))
+				E.deconstruct()
+				visible_message(span_warning("[src] chews through the [E]."))
 	for(var/obj/item/reagent_containers/food/snacks/cheesewedge/cheese in range(1, src))
 		if(prob(10))
 			be_fruitful()
