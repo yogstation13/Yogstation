@@ -39,7 +39,6 @@
 		prereq_ids = list("ipc_organs"); \
 		design_ids = list(#_id+"_head", #_id+"_l_leg", #_id+"_r_leg", #_id+"_l_arm", #_id+"_r_arm"); \
 		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000); \
-		export_price = 5000; \
 	}; \
 	/datum/design/ipclimbs/l_leg/_id { \
 		name = lname + " Left Leg"; \
