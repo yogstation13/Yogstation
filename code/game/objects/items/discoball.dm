@@ -228,7 +228,7 @@
 				glow.light_range = glow.range * DISCO_INFENO_RANGE
 				glow.update_light()
 				continue
-		if(prob(10))  // Unique effects for the dance floor that show up randomly to mix things up
+		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
 			INVOKE_ASYNC(src, .proc/hierofunk)
 		sleep(0.5 SECONDS)
 
