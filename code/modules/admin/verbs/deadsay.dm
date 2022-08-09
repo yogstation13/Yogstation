@@ -19,7 +19,7 @@
 
 	if (!msg)
 		return
-	var/rank_name = holder.rank_name
+	var/rank_name = holder.rank_name()
 	var/admin_name = key
 	var/follow_link = ""
 	if(holder.fakekey)

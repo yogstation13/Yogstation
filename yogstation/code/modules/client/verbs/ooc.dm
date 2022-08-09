@@ -1,7 +1,7 @@
 /client/proc/find_admin_rank(client)
 	var/client/C = client
 
-	switch(C.holder.rank_name)
+	switch(C.holder.rank_name())
 
 		if("CouncilMember")
 			return "\[Council\]"
@@ -31,7 +31,7 @@
 			return "\[Retmin-tainer\]"
 
 		else
-			return "\[[C.holder.rank_name]\]"
+			return "\[[C.holder.rank_name()]\]"
 
 /client/verb/give_tip()
 	set name = "Give Random Tip"

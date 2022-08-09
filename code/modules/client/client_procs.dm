@@ -241,7 +241,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	tgui_panel.send_connected()
 
 	GLOB.ahelp_tickets.ClientLogin(src)
-	var/connecting_admin = check_and_grant_admin_for(src) //because de-admined admins connecting should be treated like admins.
+	var/connecting_admin = GLOB.permissions.load_permissions_for(src) //because de-admined admins connecting should be treated like admins.
 
 	// yogs start - mentor stuff
 	if(ckey in GLOB.mentor_datums)
@@ -496,8 +496,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		adminGreet(1)
 		holder.owner = null
-		GLOB.admins -= src
-		if (!GLOB.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
+		GLOB.permissions.admins -= src
+		if (!GLOB.permissions.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
 			var/cheesy_message = pick(
 				"I have no admins online!",\
 				"I'm all alone :(",\
@@ -515,8 +515,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
 		qdel(holder)
-	if(ckey in GLOB.deadmins)
-		qdel(GLOB.deadmins[ckey])
+	if(ckey in GLOB.permissions.deadmins)
+		qdel(GLOB.permissions.deadmins[ckey])
 
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
@@ -565,9 +565,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	qdel(query_get_related_cid)
 	var/admin_rank = "Player"
 	if (src.holder)
-		admin_rank = src.holder.rank_name
+		admin_rank = src.holder.rank_name()
 	else
-		if (!GLOB.deadmins[ckey] && check_randomizer(connectiontopic))
+		if (!GLOB.permissions.deadmins[ckey] && check_randomizer(connectiontopic))
 			return
 	var/new_player
 	var/datum/DBQuery/query_client_in_db = SSdbcore.NewQuery(
@@ -578,7 +578,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		qdel(query_client_in_db)
 		return
 	if(!query_client_in_db.NextRow())
-		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey])
+		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.permissions.deadmins[ckey])
 			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins(span_adminnotice("Failed Login: [key] - New account attempting to connect during panic bunker"))
 			to_chat(src, CONFIG_GET(string/panic_bunker_message))

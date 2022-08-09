@@ -85,7 +85,7 @@
 
 	for(var/T in GLOB.clients)
 		var/client/C = T
-		if(C in GLOB.admins)
+		if(C in GLOB.permissions.admins)
 			if(C in clients_to_hear)
 				to_chat(C, message_admin)
 			else

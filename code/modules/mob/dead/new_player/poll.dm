@@ -373,7 +373,7 @@
 /mob/dead/new_player/proc/poll_rank()
 	. = "Player"
 	if(client.holder)
-		. = client.holder.rank_name
+		. = client.holder.rank_name()
 
 
 /mob/dead/new_player/proc/vote_rig_check()
@@ -423,7 +423,7 @@
 	var/datum/admins/holder = client.holder
 	var/rank = "Player"
 	if (holder)
-		rank = holder.rank_name
+		rank = holder.rank_name()
 	var/ckey = client.ckey
 	var/address = client.address
 
@@ -566,7 +566,7 @@
 	qdel(query_numval_hasvoted)
 	var/adminrank = "Player"
 	if(client.holder)
-		adminrank = client.holder.rank_name
+		adminrank = client.holder.rank_name()
 	if(isnull(rating))
 		rating = "null"
 	var/datum/DBQuery/query_numval_vote = SSdbcore.NewQuery("INSERT INTO [format_table_name("poll_vote")] (datetime ,pollid ,optionid ,ckey ,ip ,adminrank, rating) VALUES (Now(), :pollid, :optionid, :ckey, INET_ATON(:address), :adminrank, :rating", list("pollid" = pollid, "optionid" = optionid, "ckey" = ckey, "address" = client.address, "adminrank" = adminrank, "rating" = rating))
@@ -611,7 +611,7 @@
 		return 2
 	var/adminrank = "Player"
 	if(!QDELETED(client) && client.holder)
-		adminrank = client.holder.rank_name
+		adminrank = client.holder.rank_name()
 	var/datum/DBQuery/query_multi_vote = SSdbcore.NewQuery("INSERT INTO [format_table_name("poll_vote")] (datetime, pollid, optionid, ckey, ip, adminrank) VALUES (Now(), :pollid, :optionid, :ckey, INET_ATON(:address), :adminrank)", list("pollid" = pollid, "optionid" = optionid, "ckey" = ckey, "address" = client.address, "adminrank" = adminrank))
 	if(!query_multi_vote.warn_execute())
 		qdel(query_multi_vote)

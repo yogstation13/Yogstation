@@ -240,14 +240,14 @@
 			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
 		return
 
-	else if(href_list["editrightsbrowser"])
-		edit_admin_permissions(0)
+	// else if(href_list["editrightsbrowser"])
+	// 	edit_admin_permissions(0)
 
-	else if(href_list["editrightsbrowserlog"])
-		edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+	// else if(href_list["editrightsbrowserlog"])
+	// 	edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
 
-	else if(href_list["editrights"])
-		edit_rights_topic(href_list)
+	// else if(href_list["editrights"])
+	// 	edit_rights_topic(href_list)
 
 	else if(href_list["gamemode_panel"])
 		if(!check_rights(R_ADMIN))

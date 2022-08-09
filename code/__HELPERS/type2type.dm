@@ -195,36 +195,36 @@
 //Converts a rights bitfield into a string
 /proc/rights2text(rights, seperator="", prefix = "+")
 	seperator += prefix
-	if(rights & R_BUILDMODE)
-		. += "[seperator]BUILDMODE"
 	if(rights & R_ADMIN)
 		. += "[seperator]ADMIN"
+	if(rights & R_AUTOLOGIN)
+		. += "[seperator]AUTOLOGIN"
 	if(rights & R_BAN)
 		. += "[seperator]BAN"
-	if(rights & R_FUN)
-		. += "[seperator]FUN"
-	if(rights & R_SERVER)
-		. += "[seperator]SERVER"
+	if(rights & R_BUILDMODE)
+		. += "[seperator]BUILDMODE"
 	if(rights & R_DEBUG)
 		. += "[seperator]DEBUG"
-	if(rights & R_POSSESS)
-		. += "[seperator]POSSESS"
+	if(rights & R_DEV)
+		. += "[seperator]DEV"
+	if(rights & R_FUN)
+		. += "[seperator]FUN"
 	if(rights & R_PERMISSIONS)
 		. += "[seperator]PERMISSIONS"
-	if(rights & R_STEALTH)
-		. += "[seperator]STEALTH"
 	if(rights & R_POLL)
 		. += "[seperator]POLL"
-	if(rights & R_VAREDIT)
-		. += "[seperator]VAREDIT"
+	if(rights & R_POSSESS)
+		. += "[seperator]POSSESS"
+	if(rights & R_SERVER)
+		. += "[seperator]SERVER"
 	if(rights & R_SOUNDS)
 		. += "[seperator]SOUND"
 	if(rights & R_SPAWN)
 		. += "[seperator]SPAWN"
-	if(rights & R_AUTOLOGIN)
-		. += "[seperator]AUTOLOGIN"
-	if(rights & R_DEV)
-		. += "[seperator]DEV"
+	if(rights & R_STEALTH)
+		. += "[seperator]STEALTH"
+	if(rights & R_VAREDIT)
+		. += "[seperator]VAREDIT"
 	if(!.)
 		. = "NONE"
 	return .

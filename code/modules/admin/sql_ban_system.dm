@@ -19,7 +19,7 @@
 	else
 		var/values = list(
 			"player_ckey" = player_ckey,
-			"must_apply_to_admins" = !!(GLOB.admin_datums[player_ckey] || GLOB.deadmins[player_ckey]),
+			"must_apply_to_admins" = !!(GLOB.permissions.admin_datums[player_ckey] || GLOB.permissions.deadmins[player_ckey]),
 		)
 		var/sql_roles
 		if(islist(roles))
@@ -113,7 +113,7 @@
 	if(C && istype(C))
 		C.ban_cache = list()
 		var/is_admin = FALSE
-		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
+		if(GLOB.permissions.admin_datums[C.ckey] || GLOB.permissions.deadmins[C.ckey])
 			is_admin = TRUE
 		var/datum/DBQuery/query_build_ban_cache = SSdbcore.NewQuery(
 			"SELECT [format_table_name("ban")].role, applies_to_admins FROM [format_table_name("ban")] WHERE ckey = :ckey AND unbanned_datetime IS NULL AND (expiration_time IS NULL OR expiration_time > NOW())",
@@ -557,7 +557,7 @@
 	if(C)
 		build_ban_cache(C)
 		to_chat(C, "[span_boldannounce("You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]")]<br>[span_danger("This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].")]<br>[span_danger("To appeal this ban go to [appeal_url]")]", confidential=TRUE)
-		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
+		if(GLOB.permissions.admin_datums[C.ckey] || GLOB.permissions.deadmins[C.ckey])
 			is_admin = TRUE
 		if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
 			qdel(C)
@@ -567,7 +567,7 @@
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
 			to_chat(i, "[span_boldannounce("You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]")]<br>[span_danger("This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].")]<br>[span_danger("To appeal this ban go to [appeal_url]")]")
-			if(GLOB.admin_datums[i.ckey] || GLOB.deadmins[i.ckey])
+			if(GLOB.permissions.admin_datums[i.ckey] || GLOB.permissions.deadmins[i.ckey])
 				is_admin = TRUE
 			if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
 				qdel(i)

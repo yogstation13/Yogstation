@@ -38,7 +38,8 @@
 #define R_SPAWN			(1<<12)
 #define R_AUTOLOGIN		(1<<13)
 #define R_DEV			(1<<14) // Stuff NOONE should be touching except for head-dev/maints, I guess council too..
-#define R_EVERYTHING 	(1<<15)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_PERSIST_PERMS (1<<15) // Allow modification of persistent perms
+#define R_EVERYTHING 	(1<<16)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define R_DEFAULT R_AUTOLOGIN
 

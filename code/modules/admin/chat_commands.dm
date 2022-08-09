@@ -116,7 +116,7 @@ GLOBAL_LIST(round_end_notifiees)
 
 /datum/tgs_chat_command/reload_admins/proc/ReloadAsync()
 	set waitfor = FALSE
-	load_admins()
+	GLOB.permissions.start()
 
 /datum/tgs_chat_command/reload_mentors
 	name = "reload_mentors"

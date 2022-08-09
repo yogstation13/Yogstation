@@ -19,10 +19,11 @@ SERVERSQLNAME yogstation
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
 
-## Comment this out if you want to use the SQL based admin system, the legacy system uses admins.txt.
-## You need to set up your database to use the SQL based system.
-## This flag is automatically enabled if SQL_ENABLED isn't
-ADMIN_LEGACY_SYSTEM
+## Determines the backend provider of admin rank data
+# Use 'database' to load from an SQL database, requires SQL_ENABLED
+# Use 'forums' to load from the Xenforo plugin, requires XENFORO_KEY
+# Any other value, or missing the required configuration settings will use the legacy system only
+PERMISSIONS_BACKEND forums
 
 ##Uncomment this to stop any ranks loaded by the legacy system from having their flags edited by the permissions panel
 # PROTECT_LEGACY_RANKS

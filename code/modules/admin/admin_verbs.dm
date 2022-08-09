@@ -262,7 +262,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(holder)
 		control_freak = CONTROL_FREAK_SKIN | CONTROL_FREAK_MACROS
 
-		var/rights = holder.rights
+		var/rights = GLOB.permissions.get_rights_for(src)
 		add_verb(src, GLOB.admin_verbs_default)
 		add_verb(src, GLOB.mentor_verbs) // yogs - give admins mentor verbs
 		if(rights & R_BUILDMODE)
@@ -703,10 +703,10 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set category = "Admin"
 	set desc = "Regain your admin powers."
 
-	var/datum/admins/A = GLOB.deadmins[ckey]
+	var/datum/admins/A = GLOB.permissions.deadmins[ckey]
 
 	if(!A)
-		A = GLOB.admin_datums[ckey]
+		A = GLOB.permissions.admin_datums[ckey]
 		if (!A)
 			var/msg = " is trying to readmin but they have no deadmin entry"
 			message_admins("[key_name_admin(src)][msg]")

@@ -17,7 +17,7 @@
 	if(CONFIG_GET(flag/everyone_is_donator))
 		to_chat(GLOB.clients, msg, confidential=TRUE)
 	else
-		to_chat(GLOB.donators | GLOB.mentors | GLOB.admins | GLOB.deadmins, msg, confidential=TRUE, type=MESSAGE_TYPE_DONATOR)
+		to_chat(GLOB.donators | GLOB.mentors | GLOB.permissions.admins | GLOB.permissions.deadmins, msg, confidential=TRUE, type=MESSAGE_TYPE_DONATOR)
 
 /client/proc/get_donator_say()
 	var/msg = input(src, null, "Donator Chat \"text\"") as text|null
