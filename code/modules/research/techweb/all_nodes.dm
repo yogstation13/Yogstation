@@ -1155,17 +1155,6 @@
 	prereq_ids = list("ai_ram_3", "ai_arch_bluespace")
 	research_costs = list(TECHWEB_POINT_TYPE_AI = 8000)
 
-
-
-//Helpers for debugging/balancing the techweb in its entirety!
-/proc/total_techweb_exports()
-	var/list/datum/techweb_node/processing = list()
-	for(var/i in subtypesof(/datum/techweb_node))
-		processing += new i
-	. = 0
-	for(var/i in processing)
-		var/datum/techweb_node/TN = i
-
 /proc/total_techweb_points()
 	var/list/datum/techweb_node/processing = list()
 	for(var/i in subtypesof(/datum/techweb_node))
