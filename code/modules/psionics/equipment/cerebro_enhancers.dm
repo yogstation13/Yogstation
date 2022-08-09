@@ -11,6 +11,7 @@
 	var/unboosted_rank = PSI_RANK_MASTER
 	var/max_boosted_faculties = 3
 	var/boosted_psipower = 120
+	var/paramount_check = FALSE
 
 /obj/item/clothing/head/helmet/space/psi_amp/Initialize()
 	. = ..()
@@ -25,6 +26,9 @@
 	if(istype(H) && H.head == src)
 		integrate()
 		return
+
+	if(paramount_check && !H?.mind?.has_antag_datum(/datum/antagonist/paramount))
+		to_chat(user, span_notice("You have no clue how to use this!"))
 
 	var/choice = input("Select a brainboard to install or remove.","Psionic Amplifier") as null|anything in SSpsi.faculties_by_name
 	if(!choice)
@@ -46,17 +50,23 @@
 	slots_left = max_boosted_faculties - LAZYLEN(boosted_faculties)
 	to_chat(user, span_notice("You [removed ? "remove" : "install"] the [choice] brainboard [removed ? "from" : "in"] \the [src]. There [slots_left!=1 ? "are" : "is"] [slots_left] slot\s left."))
 
+/obj/item/clothing/head/helmet/space/psi_amp/AltClick(mob/user)
+	. = ..()
+	if(operating)
+		deintegrate()
+	else
+		integrate()
+
 /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate()
-
-	set name = "Remove Psi-Amp"
-	set desc = "Removes your psi-amp."
-	set category = "Abilities"
-	set src in usr
-
 	if(operating)
 		return
 
 	var/mob/living/carbon/human/H = loc
+	if(!istype(H))
+		return
+	if(paramount_check && !H?.mind?.has_antag_datum(/datum/antagonist/paramount))
+		to_chat(H, span_notice("You have no clue how to use this!"))
+
 
 	to_chat(H, span_warning("You feel a strange tugging sensation as \the [src] begins removing the slave-minds from your brain..."))
 	playsound(H, 'sound/weapons/circsawhit.ogg', 50, 1, -1)
@@ -72,10 +82,6 @@
 	REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
 	operating = FALSE
 
-	verbs -= /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate
-	verbs |= /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate
-	H.update_action_buttons()
-
 	set_light(0)
 
 /obj/item/clothing/head/helmet/space/psi_amp/Move()
@@ -90,22 +96,21 @@
 			REMOVE_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
 
 /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate()
-
-	set name = "Integrate Psionic Amplifier"
-	set desc = "Enhance your brainpower."
-	set category = "Abilities"
-	set src in usr
-
 	if(operating)
+		return
+
+	var/mob/living/carbon/human/H = loc
+
+	if(!istype(H) || H.head != src)
+		to_chat(usr, span_warning("\The [src] must be worn on your head in order to be activated."))
+		return
+
+	if(paramount_check && !H?.mind?.has_antag_datum(/datum/antagonist/paramount))
+		to_chat(H, span_notice("You have no clue how to use this!"))
 		return
 
 	if(LAZYLEN(boosted_faculties) < max_boosted_faculties)
 		to_chat(usr, span_notice("You still have [max_boosted_faculties - LAZYLEN(boosted_faculties)] facult[LAZYLEN(boosted_faculties) == 1 ? "y" : "ies"] to select. Use \the [src] in-hand to select them."))
-		return
-
-	var/mob/living/carbon/human/H = loc
-	if(!istype(H) || H.head != src)
-		to_chat(usr, span_warning("\The [src] must be worn on your head in order to be activated."))
 		return
 
 	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
@@ -126,8 +131,6 @@
 		H.psi.update(force = TRUE)
 
 	to_chat(H, span_notice("You experience a brief but powerful wave of deja vu as \the [src] finishes modifying your brain."))
-	verbs |= /obj/item/clothing/head/helmet/space/psi_amp/proc/deintegrate
-	verbs -= /obj/item/clothing/head/helmet/space/psi_amp/proc/integrate
 	operating = FALSE
 	H.update_action_buttons()
 
@@ -145,3 +148,6 @@
 	icon_state = "amp"
 	flags_inv = 0
 	body_parts_covered = 0
+
+/obj/item/clothing/head/helmet/space/psi_amp/paramount
+	paramount_check = TRUE

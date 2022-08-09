@@ -4,6 +4,9 @@
 	antagpanel_category = "Paramount"
 	var/datum/mind/master
 
+/datum/antagonist/thrall/antag_panel_data()
+	return "Master : [master.name]"
+
 /datum/antagonist/thrall/on_gain()
 	if(!master)
 		return // Someone is playing with buttons they shouldn't be.

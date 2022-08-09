@@ -18,7 +18,24 @@
 
 	H.equipOutfit(/datum/outfit/paramount)
 	addObjectives()
+	. = ..()
+/* Somehow trying to add this broke every single vent in the game so ???
+	hud_add()
 
+/datum/antagonist/paramount/on_removal()
+	. = ..()
+	hud_remove()
+
+/datum/antagonist/paramount/proc/hud_add()
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_PARAMOUNT]
+	hud.join_hud(owner.current)
+	set_antag_hud(owner.current, "paramount")
+
+/datum/antagonist/paramount/proc/hud_remove()
+	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_PARAMOUNT]
+	hud.leave_hud(owner.current)
+	set_antag_hud(owner.current, null)
+*/
 /datum/antagonist/paramount/proc/addObjectives()
 	switch(rand(1,100))
 		if(1 to 30)
@@ -77,6 +94,6 @@
 	uniform = /obj/item/clothing/under/color/lightpurple
 	suit = /obj/item/clothing/suit/wizrobe/fake
 	glasses = /obj/item/clothing/glasses/regular
-	head = /obj/item/clothing/head/helmet/space/psi_amp/lesser
+	head = /obj/item/clothing/head/helmet/space/psi_amp/paramount
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	ears = /obj/item/radio/headset

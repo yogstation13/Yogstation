@@ -284,6 +284,8 @@
 		var/coercion_rank = user.psi.get_rank(PSI_COERCION)
 		if(coercion_rank >= PSI_RANK_GRANDMASTER)
 			target.SetParalyzed(0)
+		if(coercion_rank >= PSI_RANK_PARAMOUNT)
+			target.SetParalyzed(0)
 		target.drowsyness = 0
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon/M = target
