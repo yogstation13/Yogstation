@@ -25,7 +25,6 @@
 /datum/permissions_panel/ui_act(action, list/params)
 	if(..())
 		return
-	message_admins("Doing [action] to [params["ckey"]]")
 	switch(action)
 		if("addNewAdmin")
 			GLOB.permissions.add_admin()
@@ -233,6 +232,11 @@
 // 		log_admin(m2)
 
 /datum/permissions_panel/proc/force_readmin(admin_key, datum/admins/D)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(!D || !D.deadmined)
 		return
 	D.activate()
@@ -240,6 +244,11 @@
 	log_admin("[key_name(usr)] forcefully readmined [admin_key]")
 
 /datum/permissions_panel/proc/force_deadmin(admin_key, datum/admins/D)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(!D || D.deadmined)
 		return
 	message_admins("[key_name_admin(usr)] forcefully deadmined [admin_key]")
@@ -247,6 +256,11 @@
 	D.deactivate() //after logs so the deadmined admin can see the message.
 
 /datum/admins/proc/auto_deadmin()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(GLOB.permissions.admins.len < CONFIG_GET(number/auto_deadmin_threshold))
 		log_admin("[owner] auto-deadmin failed due to low admin count.")
 		to_chat(owner, span_userdanger("You have not be auto-deadminned due to lack of admins on the server, you can still deadmin manually."))

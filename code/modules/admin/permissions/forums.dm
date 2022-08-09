@@ -6,6 +6,11 @@
 	var/list/overrides = list()
 
 /datum/permissions_controller/forums/_load_permissions_for(client/C)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(C.ckey in overrides)
 		return ..()
 
@@ -86,6 +91,11 @@
 		.["admins"] |= list(data)
 
 /datum/permissions_controller/forums/should_add_admin(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(!..())
 		return FALSE
 	if(ckey in overrides)
@@ -93,6 +103,11 @@
 	return !query_permissions_for(ckey)
 
 /datum/permissions_controller/forums/edit_rank(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(..())
 		return TRUE
 
@@ -105,6 +120,11 @@
 	return FALSE
 
 /datum/permissions_controller/forums/edit_perms(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(..())
 		return TRUE
 	
@@ -115,6 +135,11 @@
 	return FALSE
 
 /datum/permissions_controller/forums/remove_admin(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(..())
 		return TRUE
 	

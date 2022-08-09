@@ -46,6 +46,12 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 
 /// Clears any existing stored admins and (re) loads the data from the backend
 /datum/permissions_controller/proc/start()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
+	
 	clear_admins()
 	load_admins()
 	for(var/client/C in GLOB.clients)
@@ -53,6 +59,11 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 
 /// Removes all admin status from everyone
 /datum/permissions_controller/proc/clear_admins()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	//clear the datums references
 	admin_datums.Cut()
 	for(var/client/C in GLOB.permissions.admins)
@@ -70,6 +81,11 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 
 /// Pulls in admin data, for if the backend caches the admin data
 /datum/permissions_controller/proc/load_admins()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	var/previous_rights = 0
 	for(var/line in world.file2list("[global.config.directory]/admin_ranks.txt"))
 		if(!line || findtextEx(line,"#",1,2) || line == " ") //YOGS - added our DB support
@@ -108,6 +124,11 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 /// Queries the backend permissions system then creates their datum if they should have one
 /// Returns true if a datum was created
 /datum/permissions_controller/proc/load_permissions_for(var/client/C)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(C.ckey in legacy_admins)
 		new /datum/admins(C.ckey, legacy_ranks[legacy_admins[C.ckey]])
 		return TRUE
@@ -218,6 +239,11 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 /// that ckey shouldn't be added (usually due to already being adminned)
 /// make_admin(ckey) is then called to handle the actual adding
 /datum/permissions_controller/proc/add_admin()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	var/ckey = ckey(input("New admin's key","Admin key") as text|null)
 	if(!ckey)
 		return FALSE
@@ -233,6 +259,11 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 
 /// Returns true if the rank was changed
 /datum/permissions_controller/proc/set_legacy_rank(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	var/list/rank_names = list()
 	var/usr_rights = get_rights_for(usr.client)
 	rank_names += "*New Rank*"
@@ -252,6 +283,10 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 		legacy_ranks[new_rank] = old_rights
 	legacy_admins[ckey] = new_rank
 
+	var/m = "edited the admin rank of [ckey] to [new_rank] temporarily"
+	message_admins("[key_name_admin(usr)] [m]")
+	log_admin("[key_name(usr)] [m]")
+
 	if(ckey in admin_datums)
 		var/datum/admins/holder = admin_datums[ckey]
 		holder.deactivate()
@@ -265,10 +300,20 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 	return TRUE
 
 /datum/permissions_controller/proc/make_admin(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	set_legacy_rank(ckey)
 	return TRUE
 
 /datum/permissions_controller/proc/edit_rank(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(ckey in protected_admins)
 		to_chat(usr, span_warning("Editing this admin blocked by config"), confidential = TRUE)
 		return TRUE // Nothing was changed, but nothing should be changed
@@ -280,6 +325,11 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 	return TRUE
 
 /datum/permissions_controller/proc/edit_perms(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(!(ckey in legacy_admins))
 		return FALSE
 	var/rank = legacy_admins[ckey]
@@ -293,6 +343,10 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 	var/new_flags = input_bitfield(usr, "Permission flags<br>This will affect all admins with rank [rank]", "admin_flags", legacy_ranks[rank], 350, 590)
 	legacy_ranks[rank] = new_flags
 
+	var/m = "edited the admin rank of [rank] temporarily"
+	message_admins("[key_name_admin(usr)] [m]")
+	log_admin("[key_name(usr)] [m]")
+
 	for(var/admin in admin_datums)
 		if((admin in legacy_admins) && legacy_admins[admin] == rank)
 			var/datum/admins/holder = admin_datums[ckey]
@@ -300,6 +354,11 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 			holder.activate()
 
 /datum/permissions_controller/proc/remove_admin(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(!(ckey in legacy_admins))
 		return FALSE
 	if(ckey in protected_admins)
@@ -308,6 +367,11 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 	
 	if(alert("This will remove all admin access for the rest of the round. Are you sure?", "Confirmation", "Yes", "No", "Cancel") != "Yes")
 		return TRUE
+	
+	var/m = "removed [ckey] from the admin list temporarily"
+	message_admins("[key_name_admin(usr)] [m]")
+	log_admin("[key_name(usr)] [m]")
+
 	legacy_admins[ckey] = null
 	if(ckey in admin_datums)
 		qdel(admin_datums[ckey])
