@@ -14,7 +14,7 @@
 	if(C.ckey in overrides)
 		return ..()
 
-	forums_admins -= ckey // In case they have been demoted since last login
+	forums_admins -= C.ckey // In case they have been demoted since last login
 
 	var/permissions = query_permissions_for(C.ckey)
 	
