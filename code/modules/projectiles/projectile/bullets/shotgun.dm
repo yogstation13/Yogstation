@@ -112,6 +112,22 @@
 		var/mob/living/M = target
 		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
 
+/obj/item/projectile/bullet/pellet/nullglass
+	name = "nullglass pellet"
+	damage = 6
+	wound_bonus = 3
+	bare_wound_bonus = 3
+
+/obj/item/projectile/bullet/pellet/nullglass/disrupts_psionics()
+	return src
+
+/obj/item/projectile/bullet/pellet/nullglass/on_hit(atom/target)
+	. = ..()
+	if(prob(10))
+		var/obj/item/implant/nullglass/imp = new()
+		imp.implant(target)
+		playsound(loc, 'sound/effects/glass_step.ogg', 30, TRUE)
+
 /obj/item/projectile/bullet/shotgun_uraniumslug
 	name = "depleted uranium slug"
 	icon_state = "ubullet"

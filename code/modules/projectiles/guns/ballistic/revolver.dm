@@ -64,6 +64,9 @@
 	if (current_skin)
 		. += "It can be spun with <b>alt+click</b>"
 
+/obj/item/gun/ballistic/revolver/nullglass
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/nullglass
+
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
 	desc = "A classic, if not outdated, law enforcement firearm. Uses .38-special rounds."

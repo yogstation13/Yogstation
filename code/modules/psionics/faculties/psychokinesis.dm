@@ -23,21 +23,26 @@
 		return FALSE
 	. = ..()
 	if(.)
+		var/obj/item/psychic_power/psiblade/blade = new /obj/item/psychic_power/psiblade(user, user)
 		switch(user.psi.get_rank(faculty))
 			if(PSI_RANK_PARAMOUNT)
-				return new /obj/item/psychic_power/psiblade/master/grand/paramount(user, user)
+				blade.can_break_wall = TRUE
+				blade.wall_break_time = 3 SECONDS
+				blade.force = 40
 			if(PSI_RANK_GRANDMASTER)
-				return new /obj/item/psychic_power/psiblade/master/grand(user, user)
+				blade.can_break_wall = TRUE
+				blade.force = 30
 			if(PSI_RANK_MASTER)
-				return new /obj/item/psychic_power/psiblade/master(user, user)
+				blade.force = 20
 			else
-				return new /obj/item/psychic_power/psiblade(user, user)
+				blade.force = 10
+		return blade
 
 /datum/psionic_power/psychokinesis/tinker
 	name =            "Tinker"
 	cost =            5
 	cooldown =        10
-	min_rank =        PSI_RANK_MASTER
+	min_rank =        PSI_RANK_OPERANT
 	use_description = "Click on or otherwise activate an empty hand while on help intent to manifest a psychokinetic tool. Use it in-hand to switch between tool types."
 	use_sound = 'sound/effects/psi/power_fabrication.ogg'
 	use_manifest = TRUE
@@ -48,7 +53,21 @@
 		return FALSE
 	. = ..()
 	if(.)
-		return new /obj/item/psychic_power/tinker(user)
+		var/obj/item/psychic_power/tinker/tool = new(user)
+		switch(user.psi.get_rank(faculty))
+			if(PSI_RANK_PARAMOUNT)
+				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_WELDER, TOOL_MULTITOOL, TOOL_SCALPEL, TOOL_SAW, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_DRILL, TOOL_CAUTERY, TOOL_BONESET, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)
+				tool.toolspeed = 0.25
+			if(PSI_RANK_GRANDMASTER)
+				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_SCALPEL, TOOL_SAW, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_DRILL, TOOL_CAUTERY, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)
+				tool.toolspeed = 0.5
+			if(PSI_RANK_MASTER)
+				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_SCALPEL, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)
+				tool.toolspeed = 1
+			if(PSI_RANK_MASTER)
+				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WRENCH, TOOL_MINING)
+				tool.toolspeed = 1.5
+		return tool
 
 /datum/psionic_power/psychokinesis/telekinesis
 	name =            "Telekinesis"

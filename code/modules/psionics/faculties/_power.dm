@@ -7,6 +7,8 @@
 	var/min_rank
 	/// Base psi stamina cost for using this power.
 	var/cost
+	/// Base heat gained for using this power.
+	var/heat
 	/// Deciseconds cooldown after using this power.
 	var/cooldown
 	/// Whether or not using this power prints an admin attack log.
@@ -32,7 +34,7 @@
 		if(user_rank < min_rank)
 			return FALSE
 
-	if(cost && !user.psi.spend_power(cost))
+	if(cost && !user.psi.spend_power(cost, heat))
 		return FALSE
 
 	var/user_psi_leech = user.do_psionics_check(cost, user)

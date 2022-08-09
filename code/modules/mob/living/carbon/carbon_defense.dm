@@ -604,3 +604,23 @@
 	user.visible_message(span_danger("[user] grasps at [user.p_their()] [grasped_part.name], trying to stop the bleeding."), span_notice("You grab hold of your [grasped_part.name] tightly."), vision_distance=COMBAT_MESSAGE_RANGE)
 	playsound(get_turf(src), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return TRUE
+
+/// Exploads the head of the mob
+/mob/living/carbon/proc/explode_head(delete_brain)
+	var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/organ/brain/brain = getorganslot(ORGAN_SLOT_BRAIN)
+	if(!istype(head))
+		return FALSE
+	if(delete_brain && (brain in head.get_organs()))
+		qdel(brain)
+	head.drop_limb()
+	head.drop_organs(src, TRUE)
+	qdel(head)
+	spawn_gibs()
+
+/// Causes the mob to have a seizure
+/mob/living/carbon/proc/seizure(unconscious = 20 SECONDS, jitter = 1 SECONDS)
+	visible_message(span_danger("[src] starts having a seizure!"))
+	Unconscious(unconscious)
+	Jitter(jitter)
+	SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "seizure", /datum/mood_event/epilepsy)

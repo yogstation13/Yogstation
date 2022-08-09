@@ -18,7 +18,7 @@
 		psi.stun--
 		soothed = TRUE
 	else if(psi.stamina < psi.max_stamina)
-		psi.stamina = min(psi.max_stamina, psi.stamina + rand(1,3))
+		psi.adjust_stamina(rand(1,3))
 		soothed = TRUE
 	else if(psi.owner.getOrganLoss(ORGAN_SLOT_BRAIN) > 0)
 		psi.owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1)

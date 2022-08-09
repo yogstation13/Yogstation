@@ -929,6 +929,22 @@
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 
+/obj/item/storage/box/nullglass
+	name = "box of nullglass shells"
+	desc = "A box full of beanbag shells designed for shotguns. The box itself is designed for holding any kind of shotgun shell."
+	icon_state = "rubbershot_box"
+	illustration = null
+
+/obj/item/storage/box/nullglass/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(/obj/item/ammo_casing/shotgun))
+
+/obj/item/storage/box/nullglass/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/ammo_casing/shotgun/nullglass(src)
+
 /obj/item/storage/box/actionfigure
 	name = "box of action figures"
 	desc = "The latest set of collectable action figures."

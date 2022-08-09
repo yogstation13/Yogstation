@@ -5,6 +5,12 @@
 	var/suppressed = TRUE
 	/// Whether or not we should automatically deflect/block incoming damage.
 	var/use_psi_armour = TRUE
+	/// Whether or not we should automatically heal damage damage.
+	var/use_autoredaction = TRUE
+	/// Whether or not zorch uses lethal projectiles.
+	var/zorch_harm = FALSE
+	/// What amount of heat the user wants to stop at.
+	var/limiter = 100
 	/// Whether or not we need to rebuild our cache of psi powers.
 	var/rebuild_power_cache = TRUE
 
@@ -16,10 +22,20 @@
 	var/stun = 0
 	/// world.time minimum before next power use.
 	var/next_power_use = 0
+
+	// Stamina / Heat
 	/// Current psi pool.
 	var/stamina = 50
 	/// Max psi pool.
 	var/max_stamina = 50
+	/// Multiplier for the recharge rate of psi heat.
+	var/stamina_recharge_mult = 1
+	/// Current psi heat.
+	var/heat = 0
+	/// Max psi heat. 100 is safe, 300 has minor consequences, 500 is dangerous, max is death.
+	var/max_heat = 500
+	/// Multiplier for the decay rate of psi heat.
+	var/heat_decay_mult = 1
 
 	/// List of all currently latent faculties.
 	var/list/latencies
@@ -69,14 +85,14 @@
 	aura_image.pixel_y = -64
 	aura_image.mouse_opacity = 0
 	aura_image.appearance_flags = 0
-	for(var/datum/psi_complexus/psychic as anything in SSpsi.processing)
-		if( !psychic.suppressed)
+	for(var/datum/psi_complexus/psychic in SSpsi.processing)
+		if(!psychic.suppressed)
 			psychic?.owner?.client?.images += aura_image
 	SSpsi.all_aura_images[aura_image] = TRUE
 	return aura_image
 
 /proc/destroy_aura_image(image/aura_image)
-	for(var/datum/psi_complexus/psychic as anything in SSpsi.processing)
+	for(var/datum/psi_complexus/psychic in SSpsi.processing)
 		psychic?.owner?.client?.images -= aura_image
 	SSpsi.all_aura_images -= aura_image
 

@@ -59,3 +59,6 @@
 		if(!give_round(new load_type(src)))
 			break
 	update_icon()
+
+/obj/item/ammo_box/magazine/internal/cylinder/nullglass
+	ammo_type = /obj/item/ammo_casing/a357/nullglass

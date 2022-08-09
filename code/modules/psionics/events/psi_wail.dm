@@ -17,8 +17,11 @@
 	if(prob(1))
 		psi.stunned(1)
 		annoyed = TRUE
+	else if(prob(10))
+		psi.adjust_heat(rand(1,3))
+		annoyed = TRUE
 	else if(psi.stamina)
-		psi.stamina = max(0, psi.stamina - rand(1,3))
+		psi.adjust_stamina(-rand(1,3))
 		annoyed = TRUE
 	if(annoyed && prob(1))
 		to_chat(psi.owner, span_notice("<i>[pick(whine_messages)]</i></span>"))

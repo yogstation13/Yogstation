@@ -59,6 +59,12 @@
 		if(spec_return)
 			return spec_return
 
+	if((!P.disrupts_psionics() && psi && psi.handle_block_chance(P) && psi.spend_power(round(P.damage/4), round(P.damage/20))))
+		P.firer = src
+		P.setAngle(rand(0, 360))
+		visible_message(span_danger("[src] deflects [P]!"))
+		return BULLET_ACT_FORCE_PIERCE
+
 	if(mind)
 		if(mind.martial_art && !incapacitated(FALSE, TRUE) && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || ((mind.martial_art.id == "sleeping carp") && in_throw_mode))) //Some martial arts users can deflect projectiles!
 			if(prob(mind.martial_art.deflection_chance) || ((mind.martial_art.id == "sleeping carp") && in_throw_mode)) // special check if sleeping carp is our martial art and throwmode is on, deflect
@@ -124,12 +130,6 @@
 
 /mob/living/carbon/human/proc/check_shields(atom/AM, var/damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0)
 	var/block_chance_modifier = round(damage / -3)
-
-	var/obj/item/projectile/P = AM
-	if(istype(P) && !P.disrupts_psionics() && psi && P.starting && prob(psi.get_armour(P.flag) * 0.5) && psi.spend_power(round(damage/10)))
-		visible_message(span_danger("\The [src] deflects [attack_text]!"))
-		//P.redirect(P.starting.x + rand(-2,2), P.starting.y + rand(-2,2), get_turf(src), src)
-		return TRUE
 	for(var/obj/item/I in held_items)
 		if(!istype(I, /obj/item/clothing))
 			var/final_block_chance = I.block_chance - (clamp((armour_penetration-I.armour_penetration)/2,0,100)) + block_chance_modifier //So armour piercing blades can still be parried by other blades, for example

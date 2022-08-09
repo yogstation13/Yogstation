@@ -189,6 +189,8 @@
 	mask = /obj/item/clothing/mask/gas/sechailer
 	backpack_contents = list(
 		/obj/item/storage/box/engineer=1,
+		/obj/item/gun/ballistic/revolver/nullglass=1,
+		/obj/item/ammo_box/a357/nullglass=1,
 		/obj/item/assembly/flash/handheld=1,
 		/obj/item/grenade/flashbang=1,
 		/obj/item/reagent_containers/spray/pepper=1

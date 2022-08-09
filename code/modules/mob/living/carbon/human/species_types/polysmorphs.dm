@@ -31,6 +31,7 @@
 	mutanttail = /obj/item/organ/tail/polysmorph
 	mutantlungs = /obj/item/organ/lungs/xeno
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	latency_chance = 2
 
 /datum/species/polysmorph/random_name(gender,unique,lastname)
 	if(unique)

@@ -22,8 +22,9 @@
 	UNSETEMPTY(latencies)
 	var/rank_count = max(1, LAZYLEN(ranks))
 	if(force || last_rating != CEILING(combined_rank/rank_count, 1))
-		if(highest_rank <= 1 && highest_rank == 0)
-			qdel(src)
+		if(highest_rank <= 1)
+			if(highest_rank == 0)
+				qdel(src)
 			return
 		rebuild_power_cache = TRUE
 		SEND_SOUND(owner, 'sound/effects/psi/power_unlock.ogg')
@@ -69,35 +70,20 @@
 	var/update_hud
 	if(stun)
 		stun--
-		if(stun && !suppressed)
+		if(stun)
 			suppressed = TRUE
 		else
 			to_chat(owner, span_notice("You have recovered your mental composure."))
 		update_hud = TRUE
 		return
-/*
-	var/psi_leech = owner.do_psionics_check()
-	if(psi_leech)
-		if(stamina > 10)
-			stamina = max(0, stamina - rand(15,20))
-			to_chat(owner, span_danger("You feel your psi-power leeched away by [psi_leech]..."))
-		else
-			stamina++
-		return
-*/
-	else if(stamina < max_stamina)
-		if(owner.stat == CONSCIOUS)
-			stamina = min(max_stamina, stamina + rand(1,3))
-		else if(owner.stat == UNCONSCIOUS)
-			stamina = min(max_stamina, stamina + rand(3,5))
 
 	if(stamina < max_stamina)
-		if(owner?.stat == CONSCIOUS)
-			stamina = min(max_stamina, stamina + rand(1,3))
-		else if(owner?.stat == UNCONSCIOUS)
-			stamina = min(max_stamina, stamina + rand(3,5))
+		adjust_stamina((owner.stat == CONSCIOUS ? rand(1,3) : rand(3,5)) * stamina_recharge_mult)
 
-	if(owner.stat == CONSCIOUS && stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
+	if(heat)
+		adjust_heat(((owner.stat == CONSCIOUS ? -1 : -3)) * heat_decay_mult)
+
+	if(owner.stat == CONSCIOUS && stamina && use_autoredaction && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
 		attempt_regeneration()
 
 	var/next_aura_size = max(0.1,((stamina/max_stamina)*min(3,rating))/5)
@@ -219,7 +205,7 @@
 		if(owner.radiation && spend_power(heal_rate))
 			if(prob(25))
 				to_chat(owner, span_notice("Your autoredactive faculty repairs some of the radiation damage to your body."))
-			owner.radiation = max(0, owner.radiation - heal_rate)
+			owner.radiation = max(0, owner.radiation - (heal_rate * 5))
 			return
 
 		if(owner.getCloneLoss() && spend_power(heal_rate))
@@ -233,5 +219,6 @@
 		owner.adjustBruteLoss(-(heal_rate))
 		owner.adjustFireLoss(-(heal_rate))
 		owner.adjustOxyLoss(-(heal_rate))
+		new /obj/effect/temp_visual/heal(get_turf(owner), "#33cc33")
 		if(prob(25))
 			to_chat(owner, span_notice("Your skin crawls as your autoredactive faculty heals your body."))

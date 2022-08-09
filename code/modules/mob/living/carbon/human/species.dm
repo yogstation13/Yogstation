@@ -159,6 +159,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	//The component to add when swimming
 	var/swimming_component = /datum/component/swimming
+
+	// Psi Stuff
+	/// Prob chance that mobs of this species have latent psionics
+	var/latency_chance = 1
+	/// Prob chance that mobs of this species have latent psionics
+	var/possable_faculties = list(PSI_COERCION, PSI_PSYCHOKINESIS, PSI_REDACTION, PSI_ENERGISTICS)
 	
 ///////////
 // PROCS //
@@ -415,6 +421,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		fly.Grant(C)
 
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
+
+	if(!C.psi && prob(latency_chance))
+		C.set_psi_rank(pick(possable_faculties), PSI_RANK_LATENT)
 
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 

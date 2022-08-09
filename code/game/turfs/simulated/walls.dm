@@ -227,7 +227,22 @@
 	return FALSE
 
 /turf/closed/wall/proc/try_decon(obj/item/I, mob/user, turf/T)
-	if(I.tool_behaviour == TOOL_WELDER)
+	if(istype(I, /obj/item/psychic_power/psiblade))
+		var/obj/item/psychic_power/psiblade/blade = I
+		if(!blade.can_break_wall)
+			return
+		to_chat(user, span_notice("You sink [blade] into [src] and begin trying to rip out the support frame..."))
+		playsound(src, 'sound/items/Welder.ogg', 100, 1)
+
+		if(!do_after(user, blade.wall_break_time, src))
+			return
+
+		to_chat(user, span_notice("You tear through [src]'s support system and plating!"))
+		dismantle_wall(TRUE)
+		user.visible_message(span_warning("[src] was torn open by [user]!"))
+		playsound(src, 'sound/items/Welder.ogg', 100, 1)
+
+	else if(I.tool_behaviour == TOOL_WELDER)
 		if(!I.tool_start_check(user, amount=0))
 			return FALSE
 

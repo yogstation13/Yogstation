@@ -9,7 +9,8 @@
 
 /datum/psionic_power/energistics/disrupt
 	name =            "Disrupt"
-	cost =            10
+	cost =            20
+	heat =            20
 	cooldown =        10 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_MASTER
@@ -28,7 +29,8 @@
 
 /datum/psionic_power/energistics/electrocute
 	name =            "Electrocute"
-	cost =            15
+	cost =            10
+	heat =            30
 	cooldown =        7.5 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_GRANDMASTER
@@ -41,19 +43,23 @@
 		return FALSE
 	. = ..()
 	if(.)
-		user.visible_message("<span class='danger'>\The [user] sends a jolt of electricity arcing into \the [target]!</span>")
 		if(istype(target))
+			user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target]!"))
 			target.electrocute_act(rand(15,45), user, 1, user.zone_selected)
 			return TRUE
-		else if(istype(target, /atom))
+		else if(isatom(target))
 			var/obj/item/stock_parts/cell/charging_cell = target.get_cell()
 			if(istype(charging_cell))
+				user.visible_message(span_danger("\The [user] sends a jolt of electricity arcing into \the [target], charging it!"))
 				charging_cell.give(rand(15,45))
 			return TRUE
+		else
+			return FALSE
 
 /datum/psionic_power/energistics/zorch
 	name =             "Zorch"
-	cost =             20
+	cost =             15
+	heat =             15
 	cooldown =         2 SECONDS
 	use_ranged =       TRUE
 	min_rank =         PSI_RANK_MASTER
@@ -62,23 +68,29 @@
 /datum/psionic_power/energistics/zorch/invoke(var/mob/living/user, var/mob/living/target)
 	. = ..()
 	if(.)
-		user.visible_message("<span class='danger'>\The [user]'s eyes flare with light!</span>")
+		if(HAS_TRAIT(user, TRAIT_PACIFISM) && user.psi.zorch_harm)
+			to_chat(user, span_notice("You manage to stop yourself before firing a harmful laser from your eyes, you don't want to risk harming anyone..."))
 
 		var/user_rank = user.psi.get_rank(faculty)
 		var/obj/item/projectile/pew
 		var/pew_sound
 
+		if(user.psi.zorch_harm)
+			pew = new /obj/item/projectile/beam/laser(get_turf(user))
+		else
+			pew = new /obj/item/projectile/beam/disabler(get_turf(user))
+
 		switch(user_rank)
 			if(PSI_RANK_PARAMOUNT)
-				pew = new /obj/item/projectile/beam/laser/heavylaser(get_turf(user))
+				pew.damage = 30
 				pew.name = "gigawatt mental laser"
 				pew_sound = 'sound/weapons/lasercannonfire.ogg'
 			if(PSI_RANK_GRANDMASTER)
-				pew = new /obj/item/projectile/beam/laser/hellfire(get_turf(user))
+				pew.damage = 20
 				pew.name = "megawatt mental laser"
 				pew_sound = 'sound/weapons/Laser.ogg'
 			if(PSI_RANK_MASTER)
-				pew = new /obj/item/projectile/beam/laser(get_turf(user))
+				pew.damage = 10
 				pew.name = "mental laser"
 				pew_sound = 'sound/weapons/Taser.ogg'
 
@@ -88,6 +100,7 @@
 			pew.starting = get_turf(user)
 			pew.firer = user
 			pew.fire(Get_Angle(user, target))
+			user.visible_message(span_danger("[user]'s eyes flare with light!"))
 			return TRUE
 
 /datum/psionic_power/energistics/spark
@@ -106,6 +119,7 @@
 		if(istype(target,/obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/S = target
 			S.light("[user] snaps \his fingers and \the [S.name] lights up.")
+			user.emote("snap")
 			playsound(S.loc, "sparks", 50, 1)
 		else
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

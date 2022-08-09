@@ -80,6 +80,8 @@
 			target.mind.remove_antag_datum(/datum/antagonist/gang)
 		if(target.mind.has_antag_datum(/datum/antagonist/veil))
 			target.mind.remove_antag_datum(/datum/antagonist/veil)
+		if(target.mind.has_antag_datum(/datum/antagonist/thrall))
+			target.mind.remove_antag_datum(/datum/antagonist/thrall)
 		if(!silent)
 			if(target.mind in SSticker.mode.cult)
 				to_chat(target, span_warning("You feel something interfering with your mental conditioning, but you resist it!"))

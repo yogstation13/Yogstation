@@ -144,6 +144,14 @@
 	pellets = 4
 	variance = 35
 
+/obj/item/ammo_casing/shotgun/nullglass
+	name = "nullglass buckshot shell"
+	desc = "A buckshot shell loaded with shells of nullglass that disrupt psionic."
+	icon_state = "mshell" // Temp
+	projectile_type = /obj/item/projectile/bullet/pellet/nullglass
+	pellets = 6
+	variance = 25
+
 /obj/item/ammo_casing/shotgun/techshell
 	name = "unloaded technological shell"
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."

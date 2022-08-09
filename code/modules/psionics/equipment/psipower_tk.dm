@@ -25,7 +25,7 @@
 		check_paramount = (victim.mob_size >= MOB_SIZE_HUMAN)
 	else if(isitem(_focus))
 		var/obj/item/thing = _focus
-		check_paramount = (thing.w_class >= 5)
+		check_paramount = (thing.w_class >= WEIGHT_CLASS_BULKY)
 	else
 		return FALSE
 
@@ -79,6 +79,7 @@
 				focus.throw_at(target, user_rank*2, user_rank*10, owner)
 			sleep(1)
 			sparkle()
+		owner.dropItemToGround(src)
 
 /obj/item/psychic_power/telekinesis/proc/sparkle()
 	set waitfor = 0

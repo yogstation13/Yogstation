@@ -2,25 +2,15 @@
 	name = "psychokinetic slash"
 	force = 10
 	sharpness = SHARP_EDGED
-	maintain_cost = 1
 	icon_state = "psiblade_short"
+	item_state = "psiblade"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/psisword.ogg'
+	var/can_break_wall = FALSE
+	var/wall_break_time = 6 SECONDS
 
 /obj/item/psychic_power/psiblade/dropped(var/mob/living/user)
 	..()
 	playsound(loc, 'sound/effects/psi/power_fail.ogg', 30, 1)
 	QDEL_IN(src, 1)
-
-/obj/item/psychic_power/psiblade/master
-	force = 20
-	maintain_cost = 2
-
-/obj/item/psychic_power/psiblade/master/grand
-	force = 30
-	maintain_cost = 3
-	icon_state = "psiblade_long"
-
-/obj/item/psychic_power/psiblade/master/grand/paramount // Silly typechecks because rewriting old interaction code is outside of scope.
-	force = 50
-	maintain_cost = 4
-	icon_state = "psiblade_long"

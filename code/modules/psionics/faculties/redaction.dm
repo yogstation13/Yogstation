@@ -23,6 +23,7 @@
 /datum/psionic_power/redaction/skinsight
 	name =            "Skinsight"
 	cost =            3
+	heat =            1
 	cooldown =        3 SECONDS
 	use_melee =      TRUE
 	min_rank =        PSI_RANK_OPERANT
@@ -40,6 +41,7 @@
 /datum/psionic_power/redaction/mend
 	name =            "Mend"
 	cost =            7
+	heat =            10
 	cooldown =        5 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_OPERANT
@@ -87,6 +89,7 @@
 		if(E.get_damage(TRUE))
 			E.heal_damage((redaction_rank * 10), (redaction_rank * 10))
 			to_chat(user, span_notice("You patch up some of the damage to [target]'s [E]."))
+			new /obj/effect/temp_visual/heal(get_turf(target), "#33cc33")
 			return TRUE
 
 		to_chat(user, span_notice("You can find nothing within \the [target]'s [E.name] to mend."))
@@ -95,6 +98,7 @@
 /datum/psionic_power/redaction/cleanse
 	name =            "Cleanse"
 	cost =            9
+	heat =            15
 	cooldown =        6 SECONDS
 	use_melee =       TRUE
 	min_rank =        PSI_RANK_GRANDMASTER
@@ -127,6 +131,7 @@
 /datum/psionic_power/revive
 	name =            "Revive"
 	cost =            25
+	heat =            100
 	cooldown =        8 SECONDS
 	use_melee =      TRUE
 	min_rank =        PSI_RANK_PARAMOUNT

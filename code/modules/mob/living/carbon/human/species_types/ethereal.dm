@@ -34,6 +34,7 @@
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
 	swimming_component = /datum/component/swimming/ethereal
+	possable_faculties = list(PSI_ENERGISTICS)
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
