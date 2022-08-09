@@ -2591,15 +2591,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"atN" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "atP" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable{
@@ -4639,13 +4630,6 @@
 "aJn" = (
 /turf/closed/wall,
 /area/maintenance/department/electrical)
-"aJo" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "aJp" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -6581,13 +6565,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
-"aZE" = (
-/obj/machinery/power/smes/engineering,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "aZG" = (
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -11184,6 +11161,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"cGZ" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/space/basic,
+/area/solar/port/aft)
 "cHa" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -12009,6 +11993,11 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
+"cYe" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/solar/port/aft)
 "cYf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -15352,6 +15341,20 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_a)
+"elI" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/obj/structure/disposalpipe/segment{
+	dir = 2
+	},
+/mob/living/simple_animal/cockroach,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "elO" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -25920,13 +25923,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"idk" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/solar/port/aft)
 "idE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -30741,6 +30737,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"jKJ" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/smes/engineering{
+	charge = 6e+007
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "jLg" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater{
 	dir = 6
@@ -31299,6 +31304,15 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/security/prison)
+"jVU" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/smes/engineering{
+	charge = 6e+007
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "jVW" = (
 /obj/item/beacon,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -37624,6 +37638,16 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"mtc" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/mob/living/simple_animal/cockroach,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "mtn" = (
 /obj/machinery/light{
 	dir = 8
@@ -44000,6 +44024,16 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/tcoms)
+"oIH" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/mob/living/simple_animal/cockroach,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "oJe" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -51391,21 +51425,6 @@
 /obj/item/clothing/glasses/meson,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"rhv" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/mob/living/simple_animal/cockroach{
-	desc = "Virtually unkillable.";
-	name = "Becquerel";
-	sentience_type = 5;
-	status_flags = 16
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "rhT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -53796,6 +53815,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/misc_lab)
+"rVW" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/space/basic,
+/area/solar/port/aft)
 "rVZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -55519,6 +55545,12 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"sEu" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
 "sEL" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel,
@@ -65384,25 +65416,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"wql" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/teleport_anchor,
-/obj/structure/disposalpipe/segment{
-	dir = 2
-	},
-/mob/living/simple_animal/cockroach{
-	desc = "Virtually unkillable.";
-	name = "Becquerel";
-	sentience_type = 5;
-	status_flags = 16
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "wqC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -66174,18 +66187,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
-"wFt" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/mob/living/simple_animal/cockroach{
-	desc = "Virtually unkillable.";
-	name = "Becquerel";
-	sentience_type = 5;
-	status_flags = 16
-	},
-/turf/open/floor/plasteel,
-/area/engine/engine_smes)
 "wFw" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/sand,
@@ -87345,10 +87346,10 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
+aac
+aac
+aac
+aac
 aac
 aac
 aac
@@ -87602,11 +87603,11 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aTi
+acb
+adi
+acb
+adi
 acb
 adi
 acb
@@ -87859,11 +87860,11 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aTi
+acb
+aZO
+awn
+aFG
 acb
 aZO
 awn
@@ -88116,12 +88117,12 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aTi
 ayb
+aZO
+auu
+aFG
+acb
 aZO
 auu
 aFG
@@ -88371,14 +88372,14 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aTi
 acb
+aZO
+auu
+aFG
+adi
 aZO
 auu
 aFG
@@ -88628,14 +88629,14 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 aNg
 acd
 ayb
+aZO
+auu
+aFG
+acb
 aZO
 auu
 aFG
@@ -88885,13 +88886,13 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aNH
+acb
+aZO
+auu
+aFG
 acb
 aZO
 auu
@@ -89139,16 +89140,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 wKR
 acb
 acb
 aJl
 acb
 aNH
+acb
+acb
+atP
+acb
 acb
 acb
 atP
@@ -89399,13 +89400,13 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aNH
+aNg
+aNg
+aCr
+aNg
 aNg
 aNg
 aCr
@@ -89654,15 +89655,15 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
 acb
 aNg
+abV
+aNy
+aHS
+abV
 abV
 aNy
 aHS
@@ -89911,16 +89912,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 aNg
 aJl
 acb
 aNg
 abV
+aNg
+aZb
+aAA
+aAA
 aNg
 aZb
 aAA
@@ -90168,16 +90169,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
 aNg
 aNg
 abV
+acb
+atP
+acb
+acb
 acb
 atP
 acb
@@ -90425,16 +90426,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
 acb
 aNg
 abV
+aZO
+aOc
+aFG
+acb
 aZO
 aOc
 aFG
@@ -90682,16 +90683,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
 aNg
 aNg
 fEW
+aZO
+aOc
+aFG
+acb
 aZO
 aOc
 aFG
@@ -90939,16 +90940,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 aNg
 aNg
 aNg
 acb
 abV
+aZO
+aOc
+aFG
+adi
 aZO
 aOc
 aFG
@@ -91194,10 +91195,6 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
@@ -91206,6 +91203,10 @@ aNg
 acb
 aPG
 fEW
+aZO
+aOc
+aFG
+acb
 aZO
 aOc
 aFG
@@ -91451,10 +91452,6 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 aNg
 adi
@@ -91463,6 +91460,10 @@ adi
 adi
 aJl
 aZb
+aZO
+ayY
+aFG
+acb
 aZO
 ayY
 aFG
@@ -91708,10 +91709,6 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 adi
@@ -91720,6 +91717,10 @@ yfr
 acb
 aJl
 aCr
+acb
+acb
+acb
+acb
 acb
 acb
 acb
@@ -91965,10 +91966,6 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 adi
@@ -91977,6 +91974,10 @@ amK
 abk
 aDd
 abW
+acb
+acb
+acb
+acb
 acb
 acb
 acb
@@ -92222,10 +92223,6 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 adi
@@ -92234,6 +92231,10 @@ yfr
 acb
 aJl
 aCr
+acb
+acb
+acb
+acb
 acb
 acb
 acb
@@ -92356,9 +92357,9 @@ lMJ
 lMJ
 lMJ
 lMJ
-gFr
+cYe
 iJJ
-udZ
+rVW
 xKv
 xKv
 xKv
@@ -92479,10 +92480,6 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 aNg
 adi
@@ -92491,6 +92488,10 @@ adi
 adi
 aJl
 asL
+acb
+acb
+acb
+acb
 acb
 acb
 acb
@@ -92736,10 +92737,6 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 axa
 acb
 aJl
@@ -92748,6 +92745,10 @@ aNg
 acb
 aPG
 abV
+aZO
+awn
+aFG
+acb
 aZO
 awn
 aFG
@@ -92871,7 +92872,7 @@ msb
 aNg
 acb
 acb
-iJJ
+cGZ
 acb
 acb
 aNg
@@ -92995,16 +92996,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 aNg
 aNg
 aNg
 acb
 abV
+aZO
+auu
+aFG
+acb
 aZO
 auu
 aFG
@@ -93128,7 +93129,7 @@ aNg
 aNg
 aNg
 aNg
-idk
+tLb
 aNg
 aNg
 aNg
@@ -93252,16 +93253,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
 aNg
 aNg
 abV
+aZO
+auu
+aFG
+adi
 aZO
 auu
 aFG
@@ -93509,16 +93510,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
 acb
 aNg
 abV
+aZO
+auu
+aFG
+acb
 aZO
 auu
 aFG
@@ -93766,16 +93767,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
 aNg
 aNg
 abV
+aZO
+auu
+aFG
+acb
 aZO
 auu
 aFG
@@ -94023,16 +94024,16 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 aNg
 aJl
 acb
 aJl
 abV
+acb
+rUC
+acb
+acb
 acb
 rUC
 acb
@@ -94277,10 +94278,6 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 wKR
 acb
 acb
@@ -94290,6 +94287,10 @@ aJl
 acb
 aGT
 abV
+abV
+aFJ
+aDd
+aDd
 abV
 aFJ
 aDd
@@ -94539,13 +94540,13 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aJl
+aNg
+aNg
+aCr
+aNg
 aNg
 aNg
 aCr
@@ -94796,13 +94797,13 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aGT
+acb
+acb
+atP
+acb
 acb
 acb
 atP
@@ -95053,13 +95054,13 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aNH
+acb
+aZO
+aOc
+aFG
 acb
 aZO
 aOc
@@ -95310,14 +95311,14 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 aNg
 aNw
 adi
+aZO
+aOc
+aFG
+acb
 aZO
 aOc
 aFG
@@ -95567,14 +95568,14 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aJl
 acb
 aac
 acb
+aZO
+aOc
+aFG
+adi
 aZO
 aOc
 aFG
@@ -95826,12 +95827,12 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aac
 adi
+aZO
+aOc
+aFG
+acb
 aZO
 aOc
 aFG
@@ -96083,11 +96084,11 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aac
+acb
+aZO
+ayY
+aFG
 acb
 aZO
 ayY
@@ -96337,14 +96338,14 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aYp
 acb
 acb
 aac
+acb
+aqY
+acb
+adi
 acb
 aqY
 acb
@@ -96597,12 +96598,12 @@ acb
 acb
 acb
 acb
-acb
-acb
-acb
-acb
 aac
 aac
+aac
+aac
+aac
+acd
 aac
 aac
 aac
@@ -115198,7 +115199,7 @@ eyp
 bDH
 gxt
 dMP
-wql
+elI
 btx
 eyp
 bYq
@@ -116741,7 +116742,7 @@ aaT
 aVm
 hzs
 aXm
-rhv
+oIH
 aAy
 vHx
 szs
@@ -116995,9 +116996,9 @@ fcv
 aYa
 aAy
 aBJ
-aZE
+jKJ
 bDY
-aZE
+jKJ
 aaD
 aAy
 aVM
@@ -117509,9 +117510,9 @@ vrS
 vrS
 aAy
 aCd
-aJo
+jVU
 atj
-aJo
+jVU
 atj
 aAy
 xfS
@@ -117765,8 +117766,8 @@ vrS
 vrS
 vrS
 aAy
-wFt
-atN
+sEu
+mtc
 qLE
 aiu
 ayP
