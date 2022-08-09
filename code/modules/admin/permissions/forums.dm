@@ -14,7 +14,7 @@
 	if(C.ckey in overrides)
 		return ..()
 
-	forums_admins[C.ckey] = null // In case they have been demoted since last login
+	forums_admins -= ckey // In case they have been demoted since last login
 
 	var/permissions = query_permissions_for(C.ckey)
 	
@@ -147,7 +147,7 @@
 		if(alert("Forums permissions cannot be edited from this panel. Would you like to demote for this round?", "Confirmation", "Yes", "No") != "Yes")
 			return TRUE
 		overrides += ckey
-		forums_admins[ckey] = null
+		forums_admins -= ckey
 		if(ckey in admin_datums)
 			qdel(admin_datums[ckey])
 		if(ckey in deadmins)

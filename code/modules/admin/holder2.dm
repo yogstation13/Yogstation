@@ -59,7 +59,7 @@ GLOBAL_PROTECT(href_token)
 	var/client/C = owner
 	deactivate()
 	if(GLOB.permissions.deadmins[target] == src)
-		GLOB.permissions.deadmins[target] = null
+		GLOB.permissions.deadmins -= target
 	if(C)
 		remove_verb(C, /client/proc/readmin)
 	. = ..()
