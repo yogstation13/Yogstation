@@ -5,6 +5,15 @@
 	/// Admins who are overriden for this round
 	var/list/overrides = list()
 
+/datum/permissions_controller/proc/clear_admins()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
+	forums_admins.Cut()
+	overrides.Cut()
+
 /datum/permissions_controller/forums/_load_permissions_for(client/C)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
