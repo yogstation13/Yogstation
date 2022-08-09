@@ -3499,6 +3499,7 @@
 #include "yogstation\code\game\objects\structures\beds_chairs\chair.dm"
 #include "yogstation\code\game\objects\structures\beds_chairs\electric_bed.dm"
 #include "yogstation\code\game\objects\structures\signs\signs_plaques.dm"
+#include "yogstation\code\game\turfs\change_turf.dm"
 #include "yogstation\code\game\turfs\simulated\ballpit.dm"
 #include "yogstation\code\game\turfs\simulated\minerals.dm"
 #include "yogstation\code\game\turfs\simulated\floor\fancy_floor.dm"
