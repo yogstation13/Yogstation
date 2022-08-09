@@ -64,7 +64,7 @@
 			if(PSI_RANK_MASTER)
 				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_SCALPEL, TOOL_RETRACTOR, TOOL_HEMOSTAT, TOOL_MINING, TOOL_SHOVEL, TOOL_HATCHET)
 				tool.toolspeed = 1
-			if(PSI_RANK_MASTER)
+			if(PSI_RANK_OPERANT)
 				tool.possible_tools = list(TOOL_SCREWDRIVER, TOOL_CROWBAR, TOOL_WRENCH, TOOL_MINING)
 				tool.toolspeed = 1.5
 		return tool

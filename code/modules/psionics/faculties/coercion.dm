@@ -134,16 +134,14 @@
 	cost =				28
 	cooldown =			20 SECONDS
 	use_melee =			TRUE
-	min_rank =			PSI_RANK_OPERANT
+	min_rank =			PSI_RANK_GRANDMASTER
 	use_description =	"Grab a victim, target the eyes, then attack them while on disarm intent, in order to manipulate their mind. The process takes some time, and failure is punished harshly."
 
 /datum/psionic_power/coercion/cognitivemanipulation/invoke(var/mob/living/user, var/mob/living/target)
 	if(!istype(target) || user.zone_selected != BODY_ZONE_PRECISE_EYES || target.pulledby != user)
-		message_admins("A")
 		return FALSE
 	. = ..()
 	if(.)
-		message_admins("B")
 		if(target.stat == DEAD || HAS_TRAIT(target, TRAIT_FAKEDEATH))
 			to_chat(user, span_warning("\The [target] is dead!"))
 			return TRUE
@@ -154,24 +152,20 @@
 		if(target.psi)
 			target_coercion_rank = target.psi.get_rank(PSI_COERCION)
 		var/relative_coercion_rank = target_coercion_rank ? coercion_rank - target_coercion_rank : coercion_rank
-		message_admins(relative_coercion_rank)
 
 		var/list/radial_list = list()
 		var/radial_icon = 'icons/mob/screen_psi.dmi'
 
-		if(coercion_rank >= PSI_RANK_OPERANT)
+		if(coercion_rank >= PSI_RANK_GRANDMASTER)
 			var/datum/radial_menu_choice/choice = new
 			choice.image = icon(radial_icon, "hypnotise")
 			choice.info = "Make the target temporarily subject to a hypnosis-like effect, making them easily influenced by spoken words."
 			radial_list[COGMANIP_HYPNOTIZE] = choice
-			message_admins(COGMANIP_HYPNOTIZE)
 
-		if(coercion_rank >= PSI_RANK_GRANDMASTER)
-			var/datum/radial_menu_choice/choice = new
+			choice = new
 			choice.image = icon(radial_icon, "erase")
 			choice.info = "Rewrite the targets mind to remove a specific memory, which can cure them of related ailments."
 			radial_list[COGMANIP_ERASE_MEMORY] = choice
-			message_admins(COGMANIP_ERASE_MEMORY)
 
 		if(coercion_rank >= PSI_RANK_PARAMOUNT)
 			var/datum/radial_menu_choice/choice = new
