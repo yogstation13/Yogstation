@@ -38,24 +38,31 @@
 		TurnOn()
 
 /obj/structure/discoball/proc/TurnOn()
+	var/mob/living/user = usr
+	to_chat(user, span_notice("You turn on the disco ball."))
 	TurnedOn = TRUE //Same
 	DiscoFever()
 	dance_setup()
 	lights_spin()
 
 /obj/structure/discoball/proc/TurnOff()
+	var/mob/living/user = usr
+	to_chat(user, span_notice("You turn off the disco ball."))
 	TurnedOn = FALSE
 	set_light(0)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	update_icon()
 	if(TimerID)
 		deltimer(TimerID)
-	QDEL_LIST(spotlights)
-	QDEL_LIST(sparkles)
+	over()
 
 /obj/structure/discoball/Destroy() //delete lights if destroyed
-	TurnOff()
+	over()
 	return ..()
+
+/obj/structure/discoball/proc/over()
+	QDEL_LIST(spotlights)
+	QDEL_LIST(sparkles)
 
 /obj/structure/discoball/proc/DiscoFever()
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
