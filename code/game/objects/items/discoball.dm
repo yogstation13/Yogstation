@@ -7,12 +7,13 @@
 /obj/item/discoballdeployer/attack_self(mob/living/carbon/user)
 	.=..()
 	to_chat(user, span_notice("You deploy the Disco Ball."))
+	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 	new /obj/structure/discoball(user.loc)
 	qdel(src)
 
 /obj/structure/discoball
 	name = "Disco Ball"
-	desc = "This is an old model portable disco ball. Use wrench to undeploy."
+	desc = "This is an Improved model portable disco ball. Use wrench to undeploy."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "ethdisco_head_0"
 	anchored = TRUE
@@ -29,14 +30,12 @@
 	. = ..()
 	update_icon()
 
-/obj/structure/discoball/AltClick(mob/living/carbon/human/user)
+/obj/structure/discoball/attack_hand(mob/living/carbon/human/user)
 	. = ..()
-	if(anchored)
-		to_chat(user, span_notice("You unlock the disco ball."))
-		anchored = FALSE
-	else
-		to_chat(user, span_notice("You lock the disco ball."))
-		anchored = TRUE
+	if(TurnedOn)
+		TurnOff()
+	else 
+		TurnOn()
 
 /obj/structure/discoball/proc/TurnOn()
 	TurnedOn = TRUE //Same
@@ -75,9 +74,15 @@
 
 /obj/structure/discoball/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user, span_notice("You undeploy the Disco Ball."))
-	new /obj/item/discoballdeployer(user.loc)
-	qdel(src)
+	if(!TurnedOn)	
+		to_chat(user, span_notice("You undeploy the Disco Ball."))
+		playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+		new /obj/item/discoballdeployer(user.loc)
+		qdel(src)
+		return TRUE
+	else
+		to_chat(user, span_notice("Cannot undeploy if active."))
+		return TRUE
 
 /** 
  * im literally copying shit from radiant mk IV
@@ -225,7 +230,7 @@
 				continue
 		if(prob(10))  // Unique effects for the dance floor that show up randomly to mix things up
 			INVOKE_ASYNC(src, .proc/hierofunk)
-		sleep(2 SECONDS)
+		sleep(0.5 SECONDS)
 
 #undef DISCO_INFENO_RANGE
 
