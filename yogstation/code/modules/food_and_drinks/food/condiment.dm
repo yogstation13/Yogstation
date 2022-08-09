@@ -9,6 +9,7 @@
 	to_chat(user, span_notice("You pour [trans] units of the condiment onto [target]."))
 
 /obj/item/reagent_containers/food/condiment/pack/food_transfer(obj/item/reagent_containers/food/snacks/target, mob/user)
+	user.playsound_local(get_turf(src),'sound/effects/rip1.ogg', 18)
 	if(!reagents.total_volume)
 		to_chat(user, span_warning("You tear open [src], but there's nothing in it."))
 		qdel(src)
