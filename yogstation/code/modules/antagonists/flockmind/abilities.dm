@@ -235,11 +235,10 @@
 	for(var/datum/construction_datum/CD in subtypesof(/datum/construction_datum))
 		CD = new
 		buildings[CD.name] = CD
-		names |= CD.name
-	var/order = input(owner,"What order do you want to build [src]?")as null|anything in names 
-	if(!order)
+		names += CD.name
+	var/datum/construction_datum/construction = buildings[input(owner,"What order do you want to build [src]?") as null|anything in names]
+	if(!construction)
 		return
-	var/datum/construction_datum/construction = buildings[order]
 	var/turf/T = get_turf(owner)
 	if(!construction.can_build(T , owner, FALSE))
 		for(var/i in buildings)
@@ -247,4 +246,7 @@
 		names = null
 		return
 	construction.build(T)
+	for(var/i in buildings)
+		qdel(i)
+	names = null
 	StartCooldown()
