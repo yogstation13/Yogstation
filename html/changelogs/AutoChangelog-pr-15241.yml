@@ -1,0 +1,5 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Emagged floorbots have been given slightly stronger robo-arms, and can now actually breach the hull of the space station when turning tiles into lattice, as intended."
+  - bugfix: "Fixed explosions and singularities not always breaching floor tiles when they should."
