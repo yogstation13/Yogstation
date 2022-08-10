@@ -226,7 +226,7 @@ world
 
 // Makes a icon mostly grey
 /icon/proc/Greyify()
-	MapColors(0.45,0.3,0.3, 0.6,0.75,0.6, 0.10,0.10,0.25, 0,0,0)
+	MapColors(0.75,0.3,0.3, 0.6,0.75,0.6, 0.10,0.10,0.50, 0,0,0)
 
 /icon/proc/ColorTone(tone)
 	Greyify()
