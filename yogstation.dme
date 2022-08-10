@@ -983,6 +983,7 @@
 #include "code\game\objects\items\etherealdiscoball.dm"
 #include "code\game\objects\items\extinguisher.dm"
 #include "code\game\objects\items\flamethrower.dm"
+#include "code\game\objects\items\gems.dm"
 #include "code\game\objects\items\gift.dm"
 #include "code\game\objects\items\granters.dm"
 #include "code\game\objects\items\handcuffs.dm"

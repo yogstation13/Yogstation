@@ -914,6 +914,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
+	new /obj/item/gem/bloodstone(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -932,6 +933,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
+	new /obj/item/gem/bloodstone(src)
 
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
@@ -1180,6 +1182,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/gem/bloodstone(src)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
@@ -1354,6 +1357,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	new random_crystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
 	new /obj/item/clothing/glasses/godeye(src)
+	new /obj/item/gem/void(src)
 
 /obj/structure/closet/crate/necropolis/colossus/crusher
 	name = "angelic colossus chest"
