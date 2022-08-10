@@ -240,3 +240,10 @@
 					. += C
 	return .
 
+/proc/debug_ai()
+	var/list/resource_list = list()
+	for(var/datum/ai_network/AN in SSmachines.ainets)
+		message_admins("Network: [REF(AN)] | Resources: [REF(AN.resources)]")
+		resource_list += AN.resources
+	for(var/datum/ai_shared_resources/ASR in resource_list)
+		message_admins("Resource count, CPU: [ASR.total_cpu()] | RAM: [ASR.total_ram()]")
