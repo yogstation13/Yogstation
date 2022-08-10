@@ -138,6 +138,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/disable_alternative_announcers = FALSE
 
+	var/disable_balloon_alerts = FALSE
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -701,6 +703,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Hear alternative station announcers:</b> <a href='?_src_=prefs;preference=alternative_announcers'>[disable_alternative_announcers ? "Disabled" : "Enabled"]</a><br>"
+			dat += "<b>Disable balloon alerts:</b> <a href='?_src_=prefs;preference=balloon_alerts'>[disable_balloon_alerts ? "Disabled" : "Enabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
@@ -1969,6 +1972,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 				if("alternative_announcers")
 					disable_alternative_announcers = !disable_alternative_announcers
+				if("balloon_alerts")
+					disable_balloon_alerts = !disable_balloon_alerts
 			// yogs start - Custom keybindings
 			if(href_list["keybinding"])
 				update_keybindings(user, href_list["keybinding"], href_list["dir"])

@@ -10,6 +10,17 @@
 
 	INVOKE_ASYNC(src, .proc/balloon_alert_perform, viewer, text)
 
+/// Creates a balloon alert, or sends a chat message dependant on client preferences. 
+/// Args: viewer -  mob that gets message/alert, alert - balloon alert text, message - text message that the mob gets if the preference is toggled, equals to alert message if not passed in the proc
+/atom/proc/balloon_or_message(mob/viewer, alert, message)
+	if(!message)
+		message = alert
+
+	if(viewer.client.prefs.disable_balloon_alerts)
+		to_chat(viewer, message)
+	else
+		balloon_alert(viewer, alert)
+
 /// Create balloon alerts (text that floats up) to everything within range.
 /// Will only display to people who can see.
 /atom/proc/balloon_alert_to_viewers(message, self_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs)
