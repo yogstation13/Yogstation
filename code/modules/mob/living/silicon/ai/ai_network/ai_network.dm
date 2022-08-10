@@ -69,7 +69,6 @@
 	if(is_empty())//the network is now empty...
 		qdel(src)///... delete it
 
-
 //add a power machine to the current network
 //Warning : this proc DOESN'T check if the machine exists
 /datum/ai_network/proc/add_machine(obj/machinery/ai/M)
@@ -136,20 +135,80 @@
 /datum/ai_network/proc/total_ram_assigned()
 	return resources.total_ram_assigned()
 
-/datum/ai_network/proc/rebuild_remote(externally_linked = FALSE)
+/*
+/datum/ai_network/proc/rebuild_remote(externally_linked = FALSE, touched_networks = list())
 	if(!resources)
 		return
+	if(src in touched_networks)
+		return
+	touched_networks += src
+	var/list/networks_to_rebuild = list()
 	for(var/obj/machinery/ai/networking/N in nodes)
 		if(N.partner && N.partner.network && N.partner.network.resources)
+			if(N.partner.network in touched_networks)
+				message_admins("[REF(src)] found touched_network!")
+				continue
+			message_admins("[REF(src)] found no mismatched resources!")
 			if(N.partner.network.resources != resources)
 				if(length(N.partner.network.resources.networks) > length(resources.networks)) //We merge into the biggest network
-					N.partner.network.resources.join_resources(resources)
+					N.partner.network.resources.add_resource(resources)
 				else
-					resources.join_resources(N.partner.network.resources)
+					resources.add_resource(N.partner.network.resources)
+				message_admins("[REF(src)] actually rebuilt!")
 				externally_linked = TRUE
-				rebuild_remote(externally_linked)
+
+			networks_to_rebuild += N.partner.network
+			
+
 	if(!externally_linked)
 		resources.split_resources(src)
+
+	for(var/datum/ai_network/AN in networks_to_rebuild)
+		message_admins("Telling network [REF(AN)] to rebuild!")
+		AN.rebuild_remote(TRUE, touched_networks)
+
+*/
+
+/datum/ai_network/proc/rebuild_remote(externally_linked = FALSE, touched_networks = list(), datum/ai_network/originator)
+	if(src in touched_networks)
+		return
+	if(!originator)
+		originator = src
+
+	message_admins("rebuilding")
+	var/list/found_networks = list()
+	for(var/obj/machinery/ai/networking/N in nodes)
+		if(N.partner && N.partner.network && N.partner.network.resources)
+			if(N.partner.network == src)
+				continue
+			message_admins("found partner")
+			externally_linked = TRUE
+			found_networks += N.partner.network
+
+	if(!externally_linked)
+		message_admins("alone")
+		if(resources)
+			resources.split_resources(src)
+		else
+			resources = new(starting_network = src)
+
+	found_networks -= touched_networks
+
+	uniqueList_inplace(found_networks)
+
+	for(var/datum/ai_network/AN in found_networks)
+
+		
+		if(originator.resources != AN.resources)
+			if(length(originator.resources.networks) > length(AN.resources.networks))
+				originator.resources.add_resource(AN.resources)
+			else
+				AN.resources.add_resource(originator.resources)
+		message_admins("Telling network [REF(AN)] to rebuild!")
+		AN.rebuild_remote(TRUE, found_networks + src, originator)
+
+
+
 
 
 /proc/merge_ainets(datum/ai_network/net1, datum/ai_network/net2)
@@ -176,10 +235,11 @@
 
 
 	net1.ai_list += net2.ai_list //AIs can only be in 1 network at a time
-
-	net1.resources.networks -= net2
+	/*
+	net1.rebuild_remote()
+	net2.rebuild_remote() */
+	
 	net1.update_resources()
-
 	net2.update_resources()
 
 
@@ -215,6 +275,8 @@
 		if(!PM.connect_to_network()) //couldn't find a node on its turf...
 			PM.disconnect_from_network() //... so disconnect if already on a network
 
+	AN.rebuild_remote()
+
 
 /proc/ai_list(turf/T, source, d, unmarked = FALSE, cable_only = FALSE)
 	. = list()
@@ -240,10 +302,19 @@
 					. += C
 	return .
 
-/proc/debug_ai()
+/proc/_debug_ai_networks()
+	var/i = 1
 	var/list/resource_list = list()
 	for(var/datum/ai_network/AN in SSmachines.ainets)
+		var/list/interconnections = list()
+		for(var/obj/machinery/ai/networking/N in AN.nodes)
+			if(N.partner && N.partner.network)
+				interconnections += "#[i] Networking[ADMIN_JMP(N)] connected to [ADMIN_JMP(N.partner)]/[REF(N.partner.network)] | Same resources: [N.partner.network.resources == AN.resources ? "<font color='green'>YES</font>" : "<font color='red'>NO</font>"]"
+				i++
 		message_admins("Network: [REF(AN)] | Resources: [REF(AN.resources)]")
-		resource_list += AN.resources
+		for(var/A in interconnections)
+			message_admins(A)
+		resource_list |= AN.resources
+	message_admins("----------------------------")
 	for(var/datum/ai_shared_resources/ASR in resource_list)
-		message_admins("Resource count, CPU: [ASR.total_cpu()] | RAM: [ASR.total_ram()]")
+		message_admins("Resource count [REF(ASR)], CPU: [ASR.total_cpu()] | RAM: [ASR.total_ram()]")

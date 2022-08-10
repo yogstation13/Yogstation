@@ -30,6 +30,10 @@
 	for(var/datum/ai_network/AN in networks)
 		AN.rebuild_remote(TRUE)
 
+/datum/ai_shared_resources/Destroy()
+	message_admins("destroyed resource")
+	. = ..() 
+
 /datum/ai_shared_resources/proc/total_cpu_assigned()
 	var/total = 0
 	for(var/mob/living/silicon/ai/AI in cpu_assigned)
@@ -63,7 +67,7 @@
 		cpu_sources[N] += N.total_cpu()
 	update_allocations()
 
-/datum/ai_shared_resources/proc/join_resources(datum/ai_shared_resources/new_resources)
+/datum/ai_shared_resources/proc/add_resource(datum/ai_shared_resources/new_resources)
 
 	for(var/RU in new_resources.ram_assigned)
 		ram_assigned[RU] = new_resources.ram_assigned[RU]

@@ -182,6 +182,8 @@ By design, d1 is the smallest direction and d2 is the highest
 			else
 				C.network.add_cable(src) //else, we simply connect to the matching cable ai network
 
+	
+
 // merge with the ai networks of power objects in the given direction
 /obj/structure/ethernet_cable/proc/mergeConnectedNetworks(direction)
 
@@ -245,6 +247,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(!PM.connect_to_network())
 			PM.disconnect_from_network() //if we somehow can't connect the machine to the new ai network, remove it from the old nonetheless
 	
+
 //////////////////////////////////////////////
 // ai networks handling helpers
 //////////////////////////////////////////////
@@ -333,7 +336,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	// remove the cut cable from its turf and ai network, so that it doesn't get count in propagate_network worklist
 	if(remove)
 		moveToNullspace()
-	var/datum/ai_network/oldAN = network
+
 	network.remove_cable(src) //remove the cut cable from its ai network
 	
 
@@ -513,7 +516,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 // called when cable_coil is click on an installed obj/cable
 // or click on a turf that already contains a "node" cable
-/obj/item/stack/ethernet_coil/proc/cable_join(obj/structure/cable/C, mob/user, var/showerror = TRUE, forceddir)
+/obj/item/stack/ethernet_coil/proc/cable_join(obj/structure/ethernet_cable/C, mob/user, var/showerror = TRUE, forceddir)
 	var/turf/U = user.loc
 	if(!isturf(U))
 		return
@@ -574,6 +577,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			if(NC.d2 & (NC.d2 - 1))// if the cable is layed diagonally, check the others 2 possible directions
 				NC.mergeDiagonalsNetworks(NC.d2)
 
+
 			use(1)
 
 			return
@@ -620,6 +624,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 		if(C.d2 & (C.d2 - 1))// if the cable is layed diagonally, check the others 2 possible directions
 			C.mergeDiagonalsNetworks(C.d2)
+
 
 		use(1)
 

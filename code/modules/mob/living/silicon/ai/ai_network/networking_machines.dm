@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	target.update_icon()
 
 	if(roundstart) //Resources aren't initialized yet, they'll automatically rebuild the remotes when they are
-		network.resources.join_resources(partner.network.resources)
+		network.resources.add_resource(partner.network.resources)
 
 	update_icon()
 	
