@@ -44,11 +44,13 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 			break
 		if(N == src)
 			continue
+		if(N.partner)
+			continue
 		if(roundstart_connection && N.label == roundstart_connection)
-			connect_to_partner(N)
+			connect_to_partner(N, TRUE)
 			break
 		if(!roundstart_connection)
-			connect_to_partner(N)
+			connect_to_partner(N, TRUE)
 			break
 
 
@@ -70,11 +72,12 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 		partner = null
 		
 
-/obj/machinery/ai/networking/proc/connect_to_partner(obj/machinery/ai/networking/target)
+/obj/machinery/ai/networking/proc/connect_to_partner(obj/machinery/ai/networking/target, roundstart = FALSE)
 	if(target.partner)
 		return
 	if(target == src)
 		return
+	
 
 	partner = target
 	rotation_to_partner = Get_Angle(src, partner)
@@ -82,7 +85,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	target.rotation_to_partner = Get_Angle(target, src)
 	target.update_icon()
 
-	network.resources.join_resources(partner.network.resources)
+	if(roundstart) //Resources aren't initialized yet, they'll automatically rebuild the remotes when they are
+		network.resources.join_resources(partner.network.resources)
 
 	update_icon()
 	

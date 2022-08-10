@@ -23,8 +23,7 @@
 
 /datum/ai_network/New()
 	SSmachines.ainets += src
-	resources = new()
-	resources.networks |= src
+	resources = new(starting_network = src)
 
 /datum/ai_network/Destroy()
 	//Go away references, you suck!
@@ -144,8 +143,10 @@
 	return resources.total_ram_assigned()
 
 /datum/ai_network/proc/rebuild_remote(externally_linked = FALSE)
+	if(!resources)
+		return
 	for(var/obj/machinery/ai/networking/N in nodes)
-		if(N.partner)
+		if(N.partner && N.partner.network && N.partner.network.resources)
 			if(N.partner.network.resources != resources)
 				if(length(N.partner.network.resources.networks) > length(resources.networks)) //We merge into the biggest network
 					N.partner.network.resources.join_resources(resources)
@@ -222,7 +223,6 @@
 		if(!PM.connect_to_network()) //couldn't find a node on its turf...
 			PM.disconnect_from_network() //... so disconnect if already on a network
 
-	AN.rebuild_remote()
 
 /proc/ai_list(turf/T, source, d, unmarked = FALSE, cable_only = FALSE)
 	. = list()

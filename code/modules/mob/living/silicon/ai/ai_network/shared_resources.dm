@@ -12,12 +12,23 @@
 
 	
 
-/datum/ai_shared_resources/New(network_cpu, network_ram, network_assigned_cpu, network_assigned_ram, datum/ai_network/network)
-	if(network_cpu || network_ram || network_assigned_ram || network_assigned_cpu)
-		ram_sources[network] = network_ram
-		cpu_sources[network] = network_cpu
+/datum/ai_shared_resources/New(network_cpu, network_ram, network_assigned_cpu, network_assigned_ram, datum/ai_network/split_network, datum/ai_network/starting_network)
+	if((network_cpu || network_ram || network_assigned_ram || network_assigned_cpu) && split_network)
+		ram_sources[split_network] = network_ram
+		cpu_sources[split_network] = network_cpu
 		ram_assigned = network_assigned_ram
 		cpu_assigned = network_assigned_cpu
+	
+	if(split_network)
+		split_network.resources = src
+		networks |= split_network
+
+	if(starting_network)
+		starting_network.resources = src
+		networks |= starting_network
+	
+	for(var/datum/ai_network/AN in networks)
+		AN.rebuild_remote(TRUE)
 
 /datum/ai_shared_resources/proc/total_cpu_assigned()
 	var/total = 0
@@ -89,9 +100,10 @@
 	networks -= split_network
 	update_resources()
 
-	var/datum/ai_shared_resources/NR = new(network_cpu, network_ram, network_cpu_assign, network_ram_assign, split_network)
-	split_network.resources = NR
-	split_network.resources.networks |= split_network
+	new /datum/ai_shared_resources(network_cpu, network_ram, network_cpu_assign, network_ram_assign, split_network)
+
+	if(!length(networks))
+		qdel(src)
 
 
 /datum/ai_shared_resources/proc/update_allocations()

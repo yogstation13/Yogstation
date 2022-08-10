@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			if(valid_ticks > 0)
 				return
 			was_valid_holder = FALSE
-			cut_overlays()
+			update_icon()
 			hardware_synced = FALSE
 			network?.update_resources()
 
@@ -108,7 +108,9 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
 		add_overlay(on_overlay)
-		if(!valid_ticks)
+		if(!valid_ticks) //If we are running on valid ticks we don't turn off instantly, only when we run out
+			return
+		if(!network) //If we lose network connection we cut out INSTANTLY
 			return
 		if(installed_racks.len > 0)
 			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
