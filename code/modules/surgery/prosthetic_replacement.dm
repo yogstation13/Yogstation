@@ -51,6 +51,9 @@
 		tool = I
 	if(istype(tool, /obj/item/bodypart))
 		var/obj/item/bodypart/BP = tool
+		if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && BP.status != BODYPART_ROBOTIC)
+			to_chat(user, "<span class='warning'>[BP] doesn't match the patient's morphology.</span>")
+			return -1
 		if(ismonkey(target))// monkey patient only accept organic monkey limbs
 			if(BP.status == BODYPART_ROBOTIC || BP.animal_origin != MONKEY_BODYPART)
 				to_chat(user, span_warning("[BP] doesn't match the patient's morphology."))
@@ -89,6 +92,9 @@
 	if(istype(tool, /obj/item/bodypart) && user.temporarilyRemoveItemFromInventory(tool))
 		var/obj/item/bodypart/L = tool
 		L.attach_limb(target)
+		if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits))
+			if(L.status == BODYPART_ROBOTIC)
+				L.render_like_organic = TRUE
 		if(organ_rejection_dam)
 			target.adjustToxLoss(organ_rejection_dam)
 		display_results(user, target, span_notice("You succeed in replacing [target]'s [parse_zone(target_zone)]."),

@@ -322,12 +322,13 @@
 			continue
 		if(!C)
 			C = R.holder.my_atom
+		//If you got this far, that means we can process whatever reagent this iteration is for. Handle things normally from here.
 		if(!R.metabolizing)
 			R.metabolizing = TRUE
 			R.on_mob_metabolize(C)
 
 		if(C && R)
-			if(C.reagent_check(R) != 1)
+			if(C.reagent_check(R) != 1) //Most relevant to Humans, this handles species-specific chem interactions.
 				if(can_overdose)
 					if(R.overdose_threshold)
 						if(R.volume >= R.overdose_threshold && !R.overdosed)
@@ -588,6 +589,22 @@
 		del_reagent(R.type)
 	return 0
 
+/datum/reagents/proc/reaction_check(mob/living/M, datum/reagent/R)
+	var/can_process = FALSE
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		//Check if this mob's species is set and can process this type of reagent
+		if(H.dna && H.dna.species.reagent_tag)
+			if((R.process_flags & SYNTHETIC) && (H.dna.species.reagent_tag & PROCESS_SYNTHETIC))		//SYNTHETIC-oriented reagents require PROCESS_SYNTHETIC
+				can_process = TRUE
+			if((R.process_flags & ORGANIC) && (H.dna.species.reagent_tag & PROCESS_ORGANIC))		//ORGANIC-oriented reagents require PROCESS_ORGANIC
+				can_process = TRUE
+	//We'll assume that non-human mobs lack the ability to process synthetic-oriented reagents (adjust this if we need to change that assumption)
+	else
+		if(R.process_flags != SYNTHETIC)
+			can_process = TRUE
+	return can_process
+
 /**
   * Applies the relevant reaction_ proc for every reagent in this holder
   * * [/datum/reagent/proc/reaction_mob]
@@ -612,6 +629,9 @@
 		var/datum/reagent/R = reagent
 		switch(react_type)
 			if("LIVING")
+				var/check = reaction_check(A, R)
+				if(!check)
+					continue
 				var/touch_protection = 0
 				if(method == VAPOR)
 					var/mob/living/L = A
