@@ -801,8 +801,12 @@
 	var/choice2 = show_radial_menu(usr, src.eyeobj, choices, require_near = FALSE, tooltips = TRUE)
 	if(!choice2)
 		return
-	var/image/img = choices[choice2] // Convert from image to icon
-	holo_icon = getHologramIcon(icon(img.icon, img.icon_state))
+	var/tmp = choices[choice2] // Convert from image to icon
+	if(istype(tmp, /image))
+		var/image/img = tmp
+		holo_icon = getHologramIcon(icon(img.icon, img.icon_state))
+	else
+		holo_icon = getHologramIcon(tmp)
 
 /mob/living/silicon/ai/proc/corereturn()
 	set category = "Malfunction"
