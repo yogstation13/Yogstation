@@ -124,6 +124,37 @@
 	icon_state = "stomach-p"
 	desc = "A strange crystal that is responsible for metabolizing the unseen energy force that feeds plasmamen."
 
+/obj/item/organ/stomach/cell
+	name = "micro-cell"
+	icon_state = "microcell"
+	w_class = WEIGHT_CLASS_NORMAL
+	zone = "chest"
+	slot = "stomach"
+	attack_verb = list("assault and battery'd")
+	desc = "A micro-cell, for IPC use only. Do not swallow."
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
+
+/obj/item/organ/stomach/cell/emp_act(severity)
+	switch(severity)
+		if(1)
+			owner.nutrition = 50
+			to_chat(owner, "<span class='warning'>Alert: Heavy EMP Detected. Rebooting power cell to prevent damage.</span>")
+		if(2)
+			owner.nutrition = 250
+			to_chat(owner, "<span class='warning'>Alert: EMP Detected. Cycling battery.</span>")
+
+/obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
+	. = ..()
+	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
+
+/obj/item/organ/stomach/cell/Remove(mob/living/carbon/M, special)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
+
+/obj/item/organ/stomach/cell/proc/charge(datum/source, amount, repairs)
+	owner.nutrition = clamp(owner.nutrition + (amount/100), 0, NUTRITION_LEVEL_FULL) // no fat ipcs
+
 /obj/item/organ/stomach/ethereal
 	name = "biological battery"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.

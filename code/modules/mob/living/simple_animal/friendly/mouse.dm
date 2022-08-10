@@ -51,6 +51,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/full = FALSE
 	var/eating = FALSE
 	var/cheesed = FALSE
+	var/cheese_time = 0
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
@@ -60,6 +61,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	icon_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
+
+/mob/living/simple_animal/mouse/handle_stomach()
+	if(cheesed && cheese_time < world.time)
+		cheese_down()
 
 /mob/living/simple_animal/mouse/proc/splat()
 	if(key)
@@ -238,6 +243,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /mob/living/simple_animal/mouse/proc/cheese_up()
 	regen_health(15)
 	if(cheesed)
+		cheese_time = cheese_time + 3 MINUTES
 		return
 	cheesed = TRUE
 	resize = 2
@@ -246,7 +252,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	maxHealth = 30
 	health = maxHealth
 	to_chat(src, span_userdanger("You ate cheese! You are now stronger, bigger and faster!"))
-	addtimer(CALLBACK(src, .proc/cheese_down), 3 MINUTES)
+	cheese_time = cheese_time + 3 MINUTES
 
 /mob/living/simple_animal/mouse/proc/cheese_down()
 	cheesed = FALSE
