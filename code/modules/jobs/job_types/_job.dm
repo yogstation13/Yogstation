@@ -264,12 +264,6 @@
 
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		PDA.owner = H.real_name
-		if(H.mind?.role_alt_title)
-			PDA.ownjob = H.mind.role_alt_title
-		else
-			PDA.ownjob = J.title
-
 		if (H.id_in_pda)
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)

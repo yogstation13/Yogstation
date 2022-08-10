@@ -34,7 +34,7 @@
 	name = "Brig Physician"
 	jobtype = /datum/job/brigphysician
 
-	pda_type = /obj/item/pda/physician
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	backpack_contents = list(/obj/item/roller = 1)
 	ears = /obj/item/radio/headset/headset_medsec
