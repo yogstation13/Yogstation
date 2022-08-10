@@ -318,7 +318,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 /datum/component/uplink/proc/setup_unlock_code()
 	unlock_code = generate_code()
 	var/obj/item/P = parent
-	if(istype(parent,/obj/item/pda))
+	if(istype(parent,/obj/item/pda) || istype(parent,/obj/item/modular_computer))
 		unlock_note = "<B>Uplink Passcode:</B> [unlock_code] ([P.name])."
 	else if(istype(parent,/obj/item/radio))
 		unlock_note = "<B>Radio Frequency:</B> [format_frequency(unlock_code)] ([P.name])."

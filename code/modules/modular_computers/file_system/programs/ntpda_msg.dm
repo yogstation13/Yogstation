@@ -11,8 +11,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	program_icon_state = "command"
 	extended_desc = "This program allows for direct messaging with other modular computers"
 	size = 3
-	requires_ntnet = 1
-	requires_ntnet_feature = NTNET_COMMUNICATION
+	// Doesn't require NTNet, because if it did, traitors can't access uplink with NTNet down
 	network_destination = "NTPDA server"
 	ui_header = "ntnrc_idle.gif"
 	available_on_ntnet = 1
