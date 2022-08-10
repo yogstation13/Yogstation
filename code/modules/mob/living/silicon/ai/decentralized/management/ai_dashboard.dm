@@ -74,8 +74,9 @@
 	data["used_cpu"] = total_cpu_used
 	data["used_ram"] = total_ram_used
 
-	data["max_cpu"] = owner.ai_network.total_cpu()
-	data["max_ram"] = owner.ai_network.total_ram()
+	data["total_cpu_used"] = owner.ai_network.resources.total_cpu_assigned()
+	data["max_cpu"] = owner.ai_network.resources.total_cpu()
+	data["max_ram"] = owner.ai_network.resources.total_ram()
 
 	data["categories"] = GLOB.ai_project_categories
 	data["available_projects"] = list()
@@ -167,6 +168,37 @@
 		if("toggle_contribute_cpu")
 			contribute_spare_cpu = !contribute_spare_cpu
 			to_chat(owner, span_notice("You now[contribute_spare_cpu ? "" : " DO NOT"] contribute spare CPU to generating research points."))
+
+		if("clear_ai_resources")
+			owner.ai_network.resources.clear_ai_resources(src)
+			. = TRUE
+
+		if("set_cpu")
+			var/amount = params["amount_cpu"]
+
+			if(amount > 1 || amount < 0)
+				return
+
+			owner.ai_network.resources.set_cpu(owner, amount)
+			. = TRUE
+		if("max_cpu_assign")
+			var/amount = (1 - owner.ai_network.resources.total_cpu_assigned()) + owner.ai_network.resources.cpu_assigned[owner]
+
+			owner.ai_network.resources.set_cpu(owner, amount)
+			. = TRUE
+		if("add_ram")
+			if(owner.ai_network.resources.total_ram_assigned() >= owner.ai_network.resources.total_ram())
+				return
+			owner.ai_network.resources.add_ram(owner, 1)
+			. = TRUE
+
+		if("remove_ram")
+			var/current_ram = owner.ai_network.resources.ram_assigned[owner]
+
+			if(current_ram <= 0)
+				return
+			owner.ai_network.resources.remove_ram(owner, 1)
+			. = TRUE
 			
 /datum/ai_dashboard/proc/get_project_by_name(project_name, only_available = FALSE)
 	for(var/datum/ai_project/AP as anything in available_projects)

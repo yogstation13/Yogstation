@@ -45018,9 +45018,6 @@
 /obj/structure/window/reinforced{
 	layer = 4.1
 	},
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 1
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bOT" = (
@@ -86278,9 +86275,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "nsA" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,

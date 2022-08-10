@@ -29,10 +29,6 @@
 	for(var/datum/ai_network/AN in networks)
 		AN.rebuild_remote()
 
-/datum/ai_shared_resources/Destroy()
-	message_admins("destroyed resource")
-	log_game("destroyed!")
-	. = ..() 
 
 /datum/ai_shared_resources/proc/total_cpu_assigned()
 	var/total = 0
@@ -81,8 +77,6 @@
 
 	update_resources()
 	update_allocations()
-	message_admins("destroying add_resource")
-	log_game("destroying add_resource")
 	qdel(new_resources)
 
 /datum/ai_shared_resources/proc/split_resources(datum/ai_network/split_network)
@@ -106,8 +100,6 @@
 	new /datum/ai_shared_resources(network_cpu_assign, network_ram_assign, split_network)
 
 	if(!length(networks))
-		message_admins("destroying empty")
-		log_game("empty destroy")
 		qdel(src)
 
 

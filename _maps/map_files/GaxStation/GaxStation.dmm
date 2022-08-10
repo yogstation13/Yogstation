@@ -10960,9 +10960,6 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "fvC" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
 "fvG" = (

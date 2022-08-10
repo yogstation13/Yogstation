@@ -1,3 +1,4 @@
+/*
 /obj/machinery/computer/ai_resource_distribution
 	name = "\improper AI system resource distribution"
 	desc = "Used for distributing processing resources across the current artificial intelligences."
@@ -13,7 +14,7 @@
 
 	circuit = /obj/item/circuitboard/computer/ai_resource_distribution
 
-/*
+
 /obj/machinery/computer/ai_resource_distribution/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return

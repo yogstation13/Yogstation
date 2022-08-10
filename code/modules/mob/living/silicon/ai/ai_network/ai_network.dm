@@ -35,11 +35,11 @@
 		M.network = null
 
 	resources.networks -= src
-	/*
+	
 	if(!length(resources.networks))
-		message_admins("empty destroy")
-		log_game("empty destroy")
-		qdel(resources) */
+		qdel(resources)
+
+	resources = null
 
 	SSmachines.ainets -= src
 	return ..()
@@ -183,18 +183,15 @@
 	if(!originator)
 		originator = src
 
-	message_admins("rebuilding")
 	var/list/found_networks = list()
 	for(var/obj/machinery/ai/networking/N in nodes)
 		if(N.partner && N.partner.network && N.partner.network.resources)
 			if(N.partner.network == src)
 				continue
-			message_admins("found partner")
 			externally_linked = TRUE
 			found_networks += N.partner.network
 
 	if(!externally_linked)
-		message_admins("alone")
 		if(resources && length(resources.networks) > 1) //We only split if we are actually connected to an external resource network
 			resources.split_resources(src)
 
@@ -210,10 +207,7 @@
 				originator.resources.add_resource(AN.resources)
 			else
 				AN.resources.add_resource(originator.resources)
-		message_admins("Telling network [REF(AN)] to rebuild!")
 		AN.rebuild_remote(TRUE, found_networks + src, originator)
-
-
 
 
 

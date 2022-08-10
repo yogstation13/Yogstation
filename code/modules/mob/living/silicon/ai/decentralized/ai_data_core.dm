@@ -113,8 +113,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/proc/valid_data_core()
 	if(!is_reebe(z) && !is_station_level(z))
 		return FALSE
-	if(valid_ticks > 0)
+	if(valid_ticks > 0 && network && network.total_cpu() >= AI_CORE_CPU_REQUIREMENT && network.total_ram() >= AI_CORE_RAM_REQUIREMENT)
 		return TRUE
+
 	return FALSE
 
 
@@ -185,6 +186,20 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	else
 		icon_state = "core-offline"
 
+/obj/machinery/ai/data_core/connect_to_network() //If we ever get connected to a network (or a new one gets created) we get the AI to the correct one too
+	. = ..()
+	for(var/mob/living/silicon/ai/AI in contents)
+		if(!AI.ai_network)
+			network.ai_list |= AI
+			AI.ai_network = network
+		if(AI.ai_network != network)
+			if(AI.ai_network)
+				AI.ai_network.remove_ai(AI)
+			AI.ai_network = network
+			network.ai_list |= AI
+
+
+
 /obj/machinery/ai/data_core/proc/partytime()
 	var/current_color = random_color()
 	set_light(7, 3, current_color)
@@ -195,6 +210,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(TimerID)
 		deltimer(TimerID)
 		TimerID = null
+
+
+
 /obj/machinery/ai/data_core/primary
 	name = "primary AI Data Core"
 	desc = "A complicated computer system capable of emulating the neural functions of a human at near-instantanous speeds. This one has a scrawny and faded note saying: 'Primary AI Data Core'"

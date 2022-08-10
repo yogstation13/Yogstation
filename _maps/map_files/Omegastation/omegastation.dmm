@@ -43172,9 +43172,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "tZB" = (
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},

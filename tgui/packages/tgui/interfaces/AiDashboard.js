@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Tabs, ProgressBar, Section, Divider, LabeledControls, NumberInput, Input } from '../components';
+import { Box, Button, Tabs, ProgressBar, Section, Divider, LabeledControls, NumberInput, Input, LabeledList, Flex } from '../components';
 import { Window } from '../layouts';
 
 export const AiDashboard = (props, context) => {
@@ -255,17 +255,35 @@ export const AiDashboard = (props, context) => {
         )}
         {tab === 4 && (
           <Section title="Computing Resources">
-            <Section title="CPU Resources">
-              <ProgressBar
-                value={amount_of_cpu}
-                maxValue={data.max_cpu}>{amount_of_cpu}/{data.max_cpu} THz
-              </ProgressBar>
-            </Section>
-            <Section title="RAM Resources">
-              <ProgressBar
-                value={data.current_ram}
-                maxValue={data.max_ram}>{data.current_ram ? data.current_ram : 0 }/{data.max_ram} TB
-              </ProgressBar>
+            <Section title="Networked Resources"
+              buttons={(
+                <Button icon="trash" onClick={() => act("clear_ai_resources")}>Clear AI Resources</Button>
+              )}>
+              <LabeledList.Item>
+                CPU Capacity:
+                <Flex>
+                  <ProgressBar minValue={0} value={data.current_cpu}
+                    maxValue={1} >{amount_of_cpu} THz
+                  </ProgressBar>
+                  <NumberInput width="60px" unit="%" value={data.current_cpu * 100} minValue={0} maxValue={100} onChange={(e, value) => act('set_cpu', {
+                    amount_cpu: Math.round((value / 100) * 100) / 100,
+                  })} />
+                  <Button height={1.75} icon="arrow-up" onClick={() => act("max_cpu_assign")}>Max
+                  </Button>
+                </Flex>
+
+              </LabeledList.Item>
+              <LabeledList.Item>
+                RAM Capacity:
+                <Flex>
+                  <ProgressBar minValue={0} value={data.current_ram}
+                    maxValue={data.max_ram} >{data.current_ram} TB
+                  </ProgressBar>
+                  <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram")} />
+                  <Button height={1.75} icon="minus" onClick={() => act('remove_ram')} />
+                </Flex>
+
+              </LabeledList.Item>
             </Section>
           </Section>
         )}

@@ -311,10 +311,3 @@
 	category = list("Computer Boards")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/ai_resource_distribution
-	name = "Computer Design (AI Resource Distribution Console)"
-	desc = "Allows for the construction of circuit boards used to build an AI Resource Distribution console."
-	id = "ai_resource_distribution"
-	build_path = /obj/item/circuitboard/computer/ai_resource_distribution
-	category = list("Computer Boards")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
