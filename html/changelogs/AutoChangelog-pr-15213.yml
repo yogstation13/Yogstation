@@ -1,0 +1,4 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Radiation collectors no longer runtime when you turn them on without a tank loaded in."
