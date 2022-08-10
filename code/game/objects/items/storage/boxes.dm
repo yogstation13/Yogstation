@@ -175,6 +175,13 @@
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
+/obj/item/storage/box/plasmaman/miner/PopulateContents() //mining box for plasmemes
+	new /obj/item/clothing/mask/gas/explorer(src)
+	new /obj/item/tank/internals/plasmaman/belt/full(src)
+	new /obj/item/crowbar/red(src)
+	new /obj/item/gps/mining(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains sterile latex gloves."

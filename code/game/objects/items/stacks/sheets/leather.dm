@@ -283,3 +283,11 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	singular_name = "egg shell pieces"
 	icon_state = "sheet-gondola"
 	item_state = "sheet-gondola"
+
+/obj/item/stack/sheet/animalhide/mothroach
+	name = "mothroach hide"
+	desc = "A thin layer of mothroach hide."
+	singular_name = "mothroach hide piece"
+	icon_state = "sheet-mothroach"
+	item_state = "sheet-mothroach"
+	merge_type = /obj/item/stack/sheet/animalhide/mothroach
