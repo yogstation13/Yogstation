@@ -22,6 +22,8 @@
 
 /obj/item/modular_computer/tablet/update_icon()
 	..()
+	if(donor)
+		return
 	if (!isnull(variants))
 		if(!finish_color)
 			finish_color = pick(variants)

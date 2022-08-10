@@ -586,3 +586,6 @@
 	. = ..()
 	if(ismob(loc))
 		to_chat(loc, message)
+
+/obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
+	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE

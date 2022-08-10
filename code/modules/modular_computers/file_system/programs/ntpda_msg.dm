@@ -67,6 +67,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			computer.visible_message(span_danger("Generic error."), null, null, 1)
 		if(TRUE) // success
 			computer.visible_message(span_notice("Message sent!"), null, null, 1)
+			message_history += list(list(username, message, REF(src)))
 			return TRUE
 		if(2)
 			computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
@@ -215,7 +216,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			return TRUE
 		
 		if("PRG_ringtone")
-			if(SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, usr, params["name"]) & COMPONENT_STOP_RINGTONE_CHANGE)
+			if(computer.uplink_check(usr, params["name"]))
 				return TRUE
 			else
 				var/newring = reject_bad_text(params["name"], max_length = 10)
