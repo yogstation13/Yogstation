@@ -1,0 +1,6 @@
+author: "@VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "replaced every quarter-tile square decal with a line decal of the same or similar color station-wide, except where used to recolor a floor tile."
+  - tweak: "replaces individual quarter tile decals being used instead of opposing"
+  - bugfix: "moved the light switch in the window in the garden to somewhere accessible"
