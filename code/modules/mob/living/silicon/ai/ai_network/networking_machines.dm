@@ -47,10 +47,10 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 		if(N.partner)
 			continue
 		if(roundstart_connection && N.label == roundstart_connection)
-			connect_to_partner(N, TRUE)
+			connect_to_partner(N)
 			break
 		if(!roundstart_connection)
-			connect_to_partner(N, TRUE)
+			connect_to_partner(N)
 			break
 
 
@@ -67,12 +67,15 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 /obj/machinery/ai/networking/proc/disconnect()
 	if(partner)
-		network.resources.split_resources(partner.network)
+		var/datum/ai_network/AN = partner.network
+		
 		partner.partner = null
 		partner = null
+		AN.rebuild_remote()
+		network.rebuild_remote()
 		
 
-/obj/machinery/ai/networking/proc/connect_to_partner(obj/machinery/ai/networking/target, roundstart = FALSE)
+/obj/machinery/ai/networking/proc/connect_to_partner(obj/machinery/ai/networking/target)
 	if(target.partner)
 		return
 	if(target == src)
@@ -85,8 +88,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	target.rotation_to_partner = Get_Angle(target, src)
 	target.update_icon()
 
-	if(roundstart) //Resources aren't initialized yet, they'll automatically rebuild the remotes when they are
-		network.resources.add_resource(partner.network.resources)
+	
+	network.rebuild_remote()
 
 	update_icon()
 	
@@ -155,9 +158,11 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 /obj/machinery/ai/networking/connect_to_network()
 	. = ..()
-	network.rebuild_remote()
+	if(partner)
+		network.rebuild_remote()
 	
 /obj/machinery/ai/networking/disconnect_from_network()
 	var/datum/ai_network/temp = network
 	. = ..()
-	temp.rebuild_remote()
+	if(partner)
+		temp.rebuild_remote()

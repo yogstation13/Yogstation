@@ -12,26 +12,26 @@
 
 	
 
-/datum/ai_shared_resources/New(network_cpu, network_ram, network_assigned_cpu, network_assigned_ram, datum/ai_network/split_network, datum/ai_network/starting_network)
-	if((network_cpu || network_ram || network_assigned_ram || network_assigned_cpu) && split_network)
-		ram_sources[split_network] = network_ram
-		cpu_sources[split_network] = network_cpu
+/datum/ai_shared_resources/New(network_assigned_cpu, network_assigned_ram, datum/ai_network/split_network, datum/ai_network/starting_network)
+	if((network_assigned_ram || network_assigned_cpu) && split_network)
 		ram_assigned = network_assigned_ram
 		cpu_assigned = network_assigned_cpu
 	
 	if(split_network)
 		split_network.resources = src
 		networks |= split_network
+		update_resources()
 
 	if(starting_network)
 		starting_network.resources = src
 		networks |= starting_network
 	
 	for(var/datum/ai_network/AN in networks)
-		AN.rebuild_remote(TRUE)
+		AN.rebuild_remote()
 
 /datum/ai_shared_resources/Destroy()
 	message_admins("destroyed resource")
+	log_game("destroyed!")
 	. = ..() 
 
 /datum/ai_shared_resources/proc/total_cpu_assigned()
@@ -81,12 +81,11 @@
 
 	update_resources()
 	update_allocations()
+	message_admins("destroying add_resource")
+	log_game("destroying add_resource")
 	qdel(new_resources)
 
 /datum/ai_shared_resources/proc/split_resources(datum/ai_network/split_network)
-	var/network_ram = split_network.total_ram()
-	var/network_cpu = split_network.total_cpu()
-
 	var/network_ram_assign = list()
 	var/network_cpu_assign = list()
 
@@ -104,9 +103,11 @@
 	networks -= split_network
 	update_resources()
 
-	new /datum/ai_shared_resources(network_cpu, network_ram, network_cpu_assign, network_ram_assign, split_network)
+	new /datum/ai_shared_resources(network_cpu_assign, network_ram_assign, split_network)
 
 	if(!length(networks))
+		message_admins("destroying empty")
+		log_game("empty destroy")
 		qdel(src)
 
 

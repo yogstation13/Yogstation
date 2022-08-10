@@ -34,6 +34,13 @@
 		nodes -= M
 		M.network = null
 
+	resources.networks -= src
+	/*
+	if(!length(resources.networks))
+		message_admins("empty destroy")
+		log_game("empty destroy")
+		qdel(resources) */
+
 	SSmachines.ainets -= src
 	return ..()
 
@@ -172,6 +179,7 @@
 /datum/ai_network/proc/rebuild_remote(externally_linked = FALSE, touched_networks = list(), datum/ai_network/originator)
 	if(src in touched_networks)
 		return
+	
 	if(!originator)
 		originator = src
 
@@ -187,10 +195,8 @@
 
 	if(!externally_linked)
 		message_admins("alone")
-		if(resources)
+		if(resources && length(resources.networks) > 1) //We only split if we are actually connected to an external resource network
 			resources.split_resources(src)
-		else
-			resources = new(starting_network = src)
 
 	found_networks -= touched_networks
 
@@ -274,7 +280,7 @@
 		if(!PM.connect_to_network()) //couldn't find a node on its turf...
 			PM.disconnect_from_network() //... so disconnect if already on a network
 
-	AN.rebuild_remote()
+	//AN.rebuild_remote()
 
 
 /proc/ai_list(turf/T, source, d, unmarked = FALSE, cable_only = FALSE)
