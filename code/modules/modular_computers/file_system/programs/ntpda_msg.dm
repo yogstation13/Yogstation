@@ -260,7 +260,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	data["showing_messages"] = showing_messages
 	data["message_history"] = message_history
 	
-	var/list/pdas
+	var/list/pdas = list()
 	for(var/datum/computer_file/program/pdamessager/P in GLOB.NTPDAs)
 		if(P == src)
 			continue

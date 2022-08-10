@@ -17,9 +17,9 @@ export const NtosPdaMsg = (props, context) => {
     receiving,
     silent,
     authed,
-    message_history,
-    pdas,
-    all_messages,
+    message_history = [],
+    pdas = [],
+    all_messages = [],
     ringtone,
     showing_messages,
   } = data;
