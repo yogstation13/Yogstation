@@ -153,3 +153,11 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 			locked = !locked
 			. = TRUE
 
+/obj/machinery/ai/networking/connect_to_network()
+	. = ..()
+	network.rebuild_remote()
+	
+/obj/machinery/ai/networking/disconnect_from_network()
+	var/datum/ai_network/temp = network
+	. = ..()
+	temp.rebuild_remote()

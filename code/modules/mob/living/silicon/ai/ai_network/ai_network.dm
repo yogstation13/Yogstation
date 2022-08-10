@@ -240,7 +240,6 @@
 	net2.rebuild_remote() */
 	
 	net1.update_resources()
-	net2.update_resources()
 
 
 	return net1

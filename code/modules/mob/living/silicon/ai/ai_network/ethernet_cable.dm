@@ -159,8 +159,10 @@ By design, d1 is the smallest direction and d2 is the highest
 
 			if(network) //if we already have a ai network, then merge the two ai networks
 				merge_ainets(network,C.network)
+				//network.rebuild_remote()
 			else
 				C.network.add_cable(src) //else, we simply connect to the matching cable ai network
+				C.network.rebuild_remote()
 
 	//the same from the second direction component (east/west)
 	T  = get_step(src, direction&12)//go east/west
@@ -179,8 +181,10 @@ By design, d1 is the smallest direction and d2 is the highest
 
 			if(network) //if we already have a ai network, then merge the two ai networks
 				merge_ainets(network,C.network)
+				//network.rebuild_remote()
 			else
 				C.network.add_cable(src) //else, we simply connect to the matching cable ai network
+				C.network.rebuild_remote()
 
 	
 
@@ -209,8 +213,10 @@ By design, d1 is the smallest direction and d2 is the highest
 
 			if(network) //if we already have a ai network, then merge the two ai networks
 				merge_ainets(network,C.network)
+				//network.rebuild_remote()
 			else
 				C.network.add_cable(src) //else, we simply connect to the matching cable ai network
+				C.network.rebuild_remote()
 
 // merge with the ai networks of power objects in the source turf
 /obj/structure/ethernet_cable/proc/mergeConnectedNetworksOnTurf()
@@ -230,8 +236,10 @@ By design, d1 is the smallest direction and d2 is the highest
 					continue
 				if(C.network)
 					merge_ainets(network, C.network)
+					//network.rebuild_remote()
 				else
 					network.add_cable(C) //the cable was ai networkless, let's just add it to our ai network
+					network.rebuild_remote()
 		
 		else if(istype(AM, /obj/machinery/ai)) //other power machines
 			var/obj/machinery/ai/M = AM
