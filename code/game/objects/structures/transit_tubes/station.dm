@@ -141,10 +141,9 @@
 			if (pod.cargo)
 				SleepTime -= 2 //Cargo pods leave the station faster.
 				var/atom/input = get_step(src, turn(boarding_dir, 180))
+				var/atom/output = get_turf(src)
 				if(pod.contents.len)
-					if(!isopenturf(input)) //Check to make sure the loaded crate doesn't load into a wall
-						input = loc
-					pod.empty_pod(input)
+					pod.empty_pod(output)
 					playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
 				else
 					for (var/obj/item/S in input)
