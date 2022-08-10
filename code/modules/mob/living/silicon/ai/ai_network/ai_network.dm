@@ -24,7 +24,7 @@
 /datum/ai_network/New()
 	SSmachines.ainets += src
 	resources = new()
-	resources.networks += src
+	resources.networks |= src
 
 /datum/ai_network/Destroy()
 	//Go away references, you suck!
@@ -49,6 +49,8 @@
 	C.network = null
 	if(is_empty())//the network is now empty...
 		qdel(src)///... delete it
+	else
+		rebuild_remote()
 
 //add a cable to the current network
 //Warning : this proc DON'T check if the cable exists
@@ -60,6 +62,7 @@
 			C.network.remove_cable(C) //..remove it
 	C.network = src
 	cables +=C
+	rebuild_remote()
 
 //remove a power machine from the current network
 //if the network is then empty, delete it
@@ -69,6 +72,8 @@
 	M.network = null
 	if(is_empty())//the network is now empty...
 		qdel(src)///... delete it
+	else
+		rebuild_remote()
 
 
 //add a power machine to the current network
@@ -81,6 +86,7 @@
 			M.disconnect_from_network()//..remove it
 	M.network = src
 	nodes[M] = M
+	rebuild_remote()
 
 /datum/ai_network/proc/find_data_core()
 	for(var/obj/machinery/ai/data_core/core in get_all_nodes())
@@ -137,14 +143,18 @@
 /datum/ai_network/proc/total_ram_assigned()
 	return resources.total_ram_assigned()
 
-/datum/ai_network/proc/rebuild_remote(datum/ai_shared_resources/old_resources)
+/datum/ai_network/proc/rebuild_remote(externally_linked = FALSE)
 	for(var/obj/machinery/ai/networking/N in nodes)
 		if(N.partner)
-			if(N.partner.network.resources == old_resources)
-				old_resources.join_resources(resources)
-				return
-	resources.split_resources(src)
-
+			if(N.partner.network.resources != resources)
+				if(length(N.partner.network.resources.networks) > length(resources.networks)) //We merge into the biggest network
+					N.partner.network.resources.join_resources(resources)
+				else
+					resources.join_resources(N.partner.network.resources)
+				externally_linked = TRUE
+				rebuild_remote(externally_linked)
+	if(!externally_linked)
+		resources.split_resources(src)
 
 
 /proc/merge_ainets(datum/ai_network/net1, datum/ai_network/net2)
@@ -174,6 +184,10 @@
 
 	net1.resources.networks -= net2
 	net1.update_resources()
+	net1.rebuild_remote()
+
+	net2.rebuild_remote()
+	net2.update_resources()
 
 
 	return net1
@@ -207,7 +221,8 @@
 	for(var/obj/machinery/ai/PM in found_machines)
 		if(!PM.connect_to_network()) //couldn't find a node on its turf...
 			PM.disconnect_from_network() //... so disconnect if already on a network
-	
+
+	AN.rebuild_remote()
 
 /proc/ai_list(turf/T, source, d, unmarked = FALSE, cable_only = FALSE)
 	. = list()

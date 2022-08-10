@@ -12,10 +12,10 @@
 
 	
 
-/datum/ai_shared_resources/New(network_cpu, network_ram, network_assigned_cpu, network_assigned_ram)
+/datum/ai_shared_resources/New(network_cpu, network_ram, network_assigned_cpu, network_assigned_ram, datum/ai_network/network)
 	if(network_cpu || network_ram || network_assigned_ram || network_assigned_cpu)
-		ram_sources[src] = network_ram
-		cpu_sources[src] = network_cpu
+		ram_sources[network] = network_ram
+		cpu_sources[network] = network_cpu
 		ram_assigned = network_assigned_ram
 		cpu_assigned = network_assigned_cpu
 
@@ -89,9 +89,9 @@
 	networks -= split_network
 	update_resources()
 
-	var/datum/ai_shared_resources/NR = new(network_cpu, network_ram, network_cpu_assign, network_ram_assign)
+	var/datum/ai_shared_resources/NR = new(network_cpu, network_ram, network_cpu_assign, network_ram_assign, split_network)
 	split_network.resources = NR
-	split_network.resources.networks += split_network
+	split_network.resources.networks |= split_network
 
 
 /datum/ai_shared_resources/proc/update_allocations()

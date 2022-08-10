@@ -24,7 +24,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/ethernet_cable
 	name = "ethernet cable"
-	desc = "A rigid and shielded cat 16a cable used for transferring vast amounts of data over long distances. Primarily used for large scale computing network or advanced neural networks."
+	desc = "A rigid and shielded cat 16a cable used for transferring vast amounts of data over long distances. Primarily used for large scale computing networks or advanced neural networks."
 	icon = 'icons/obj/power_cond/power_local.dmi'
 	icon_state = "0-1"
 	level = 1 //is underfloor
@@ -304,11 +304,8 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/structure/ethernet_cable/proc/auto_propogate_cut_cable(obj/O, )
 	if(O && !QDELETED(O))
 		var/datum/ai_network/newAN = new()// creates a new ai network...
-		var/datum/ai_network/temp = network
 
 		propagate_ai_network(O, newAN)//... and propagates it to the other side of the cable
-		network.rebuild_remote(temp.resources)
-		temp.rebuild_remote(temp.resources)
 
 		
 
@@ -324,7 +321,6 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	P_list += ai_list(loc, src, d1, 0, cable_only = 1)//... and on turf
 
-
 	if(P_list.len == 0)//if nothing in both list, then the cable was a lone cable, just delete it and its ai network
 		network.remove_cable(src)
 
@@ -337,7 +333,9 @@ By design, d1 is the smallest direction and d2 is the highest
 	// remove the cut cable from its turf and ai network, so that it doesn't get count in propagate_network worklist
 	if(remove)
 		moveToNullspace()
+	var/datum/ai_network/oldAN = network
 	network.remove_cable(src) //remove the cut cable from its ai network
+	
 
 	addtimer(CALLBACK(O, .proc/auto_propogate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
@@ -347,6 +345,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			if(!P.connect_to_network()) //can't find a node cable on a the turf to connect to
 				P.disconnect_from_network() //remove from current network
 
+	oldAN.rebuild_remote()
 
 ///////////////////////////////////////////////
 // The cable coil object, used for laying cable
