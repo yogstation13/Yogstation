@@ -11823,22 +11823,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
-"cSU" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Bridge";
-	req_access_txt = "19"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/teleporter)
 "cSV" = (
 /obj/machinery/paystand/register,
 /obj/structure/table/reinforced,
@@ -40417,6 +40401,22 @@
 /obj/item/reagent_containers/food/snacks/grown/cannabis,
 /turf/open/floor/carpet/exoticpurple,
 /area/maintenance/port/aft)
+"njZ" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Bridge";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter)
 "nkd" = (
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
@@ -97196,7 +97196,7 @@ avV
 avV
 avV
 avV
-cSU
+njZ
 aCG
 aCG
 gsA
