@@ -165,28 +165,19 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 	if(!subject || !subject.holder) // Null and deadmins have no rights
 		return FALSE
 	if(rights_required)
-		_check_for_rights(subject, rights_required)
+		return !!(get_rights_for(subject) & rights_required)
 	return TRUE
-
-// DO NOT CALL - use above proc instead
-// subject, subject.holder, and rights required are assumed truthy
-/datum/permissions_controller/proc/_check_for_rights(client/subject, rights_required)
-	PROTECTED_PROC(TRUE)
-
-	var/ckey = subject.ckey
-	if(ckey in legacy_admins)
-		var/rank = legacy_admins[ckey]
-		if(rank in legacy_ranks)
-			return !!(legacy_ranks[rank] & rights_required)
-	return FALSE
 
 /datum/permissions_controller/proc/get_rights_for(client/subject)
 	. = 0
 	if(!subject || !subject.holder)
 		return
-	if(subject.ckey in legacy_admins)
-		if(legacy_admins[subject.ckey] in legacy_ranks)
-			return legacy_ranks[legacy_admins[subject.ckey]]
+	return get_rights_for_ckey(subject.ckey)
+
+/datum/permissions_controller/proc/get_rights_for_ckey(ckey)
+	if(ckey in legacy_admins)
+		if(legacy_admins[ckey] in legacy_ranks)
+			return legacy_ranks[legacy_admins[ckey]]
 	
 /// Returns -1 if fewer, 0 if same, 1 if more
 /datum/permissions_controller/proc/compare_rights(client/A, client/B)
@@ -218,16 +209,19 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 	if(ckey in legacy_admins)
 		return legacy_admins[ckey]
 
-/datum/permissions_controller/proc/pp_data()
+/datum/permissions_controller/proc/pp_data(mob/user)
+	var/user_rights = get_rights_for(user.client)
 	. = list()
 	.["admins"] = list()
 	for(var/legmin in legacy_admins)
 		var/data = list()
 		data["ckey"] = legmin
 		data["rank"] = legacy_admins[legmin]
-		data["rights"] = rights2text(legacy_ranks[data["rank"]], seperator = " ")
-		data["protected_admin"] = (legmin in protected_admins)
-		data["protected_rank"] = (data["rank"] in protected_ranks)
+		var/rights = legacy_ranks[data["rank"]]
+		data["rights"] = rights2text(rights, seperator = " ")
+		var/can_edit = (rights & user_rights) == rights
+		data["protected_admin"] = (legmin in protected_admins) || !can_edit
+		data["protected_rank"] = (data["rank"] in protected_ranks) || !can_edit
 		data["deadminned"] = (legmin in deadmins)
 		.["admins"] |= list(data)
 
@@ -266,6 +260,7 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 		return
 	var/list/rank_names = list()
 	var/usr_rights = get_rights_for(usr.client)
+
 	rank_names += "*New Rank*"
 	for(var/R in legacy_ranks)
 		if((usr_rights & legacy_ranks[R]) == legacy_ranks[R]) // Cannot grant permissions you do not have
@@ -341,6 +336,8 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 		return TRUE
 
 	var/new_flags = input_bitfield(usr, "Permission flags<br>This will affect all admins with rank [rank]", "admin_flags", legacy_ranks[rank], 350, 590)
+	if(isnull(new_flags))
+		return
 	legacy_ranks[rank] = new_flags
 
 	var/m = "edited the admin rank of [rank] temporarily"

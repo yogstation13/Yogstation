@@ -5,7 +5,7 @@
 	/// Admins who are overriden for this round
 	var/list/overrides = list()
 
-/datum/permissions_controller/proc/clear_admins()
+/datum/permissions_controller/forums/clear_admins()
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
@@ -65,20 +65,12 @@
 	else
 		return FALSE
 
-/datum/permissions_controller/forums/_check_for_rights(client/subject, rights_required)
+/datum/permissions_controller/forums/get_rights_for_ckey(ckey)
 	. = ..()
 	if(.)
 		return
-	if(!(subject.ckey in overrides) && (subject.ckey in forums_admins))
-		return !!(forums_admins[subject.ckey]["rights"] & rights_required)
-	return FALSE
-
-/datum/permissions_controller/forums/get_rights_for(client/subject)
-	. = ..()
-	if(.)
-		return
-	if(!(subject.ckey in overrides) && (subject.ckey in forums_admins))
-		return forums_admins[subject.ckey]["rights"]
+	if(!(ckey in overrides) && (ckey in forums_admins))
+		return forums_admins[ckey]["rights"]
 
 /datum/permissions_controller/forums/get_rank_name(client/subject)
 	. = ..()
@@ -87,7 +79,7 @@
 	if(!(subject.ckey in overrides) && (subject.ckey in forums_admins))
 		return forums_admins[subject.ckey]["rank"]
 
-/datum/permissions_controller/forums/pp_data()
+/datum/permissions_controller/forums/pp_data(mob/user)
 	. = ..()
 	for(var/admin in forums_admins)
 		if(admin in overrides)
@@ -97,6 +89,7 @@
 		data["rank"] = forums_admins[admin]["rank"]
 		data["rights"] = rights2text(forums_admins[admin]["rights"], seperator = " ")
 		data["deadminned"] = (admin in deadmins) 
+		data["protected_rank"] = TRUE
 		.["admins"] |= list(data)
 
 /datum/permissions_controller/forums/should_add_admin(ckey)

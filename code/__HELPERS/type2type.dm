@@ -211,6 +211,8 @@
 		. += "[seperator]FUN"
 	if(rights & R_PERMISSIONS)
 		. += "[seperator]PERMISSIONS"
+	if(rights & R_PERSIST_PERMS)
+		. += "[seperator]PERSISTPERMS"
 	if(rights & R_POLL)
 		. += "[seperator]POLL"
 	if(rights & R_POSSESS)

@@ -16,8 +16,8 @@
 		ui = new(user, src, "PermissionsPanel")
 		ui.open()
 
-/datum/permissions_panel/ui_data()
-	. = GLOB.permissions.pp_data()
+/datum/permissions_panel/ui_data(mob/user)
+	. = GLOB.permissions.pp_data(user)
 
 /datum/permissions_panel/ui_state(mob/user)
 	return GLOB.permissions_state
