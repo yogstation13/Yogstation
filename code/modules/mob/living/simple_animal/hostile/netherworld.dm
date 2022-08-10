@@ -61,6 +61,7 @@
 	gold_core_spawnable = NO_SPAWN
 	health = 100
 	maxHealth = 100
+	speed = -0.7
 	attacktext = "punches"
 	deathmessage = "falls apart into a fine dust."
 
