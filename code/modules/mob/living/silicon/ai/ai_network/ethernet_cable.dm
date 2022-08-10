@@ -345,7 +345,6 @@ By design, d1 is the smallest direction and d2 is the highest
 			if(!P.connect_to_network()) //can't find a node cable on a the turf to connect to
 				P.disconnect_from_network() //remove from current network
 
-	oldAN.rebuild_remote()
 
 ///////////////////////////////////////////////
 // The cable coil object, used for laying cable

@@ -48,8 +48,6 @@
 	C.network = null
 	if(is_empty())//the network is now empty...
 		qdel(src)///... delete it
-	else
-		rebuild_remote()
 
 //add a cable to the current network
 //Warning : this proc DON'T check if the cable exists
@@ -61,7 +59,6 @@
 			C.network.remove_cable(C) //..remove it
 	C.network = src
 	cables +=C
-	rebuild_remote()
 
 //remove a power machine from the current network
 //if the network is then empty, delete it
@@ -71,8 +68,6 @@
 	M.network = null
 	if(is_empty())//the network is now empty...
 		qdel(src)///... delete it
-	else
-		rebuild_remote()
 
 
 //add a power machine to the current network
@@ -85,7 +80,6 @@
 			M.disconnect_from_network()//..remove it
 	M.network = src
 	nodes[M] = M
-	rebuild_remote()
 
 /datum/ai_network/proc/find_data_core()
 	for(var/obj/machinery/ai/data_core/core in get_all_nodes())
@@ -185,9 +179,7 @@
 
 	net1.resources.networks -= net2
 	net1.update_resources()
-	net1.rebuild_remote()
 
-	net2.rebuild_remote()
 	net2.update_resources()
 
 
