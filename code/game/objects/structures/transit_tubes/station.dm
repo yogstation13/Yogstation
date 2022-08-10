@@ -147,7 +147,7 @@
 					pod.empty_pod(input)
 					playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
 				else
-					for (var/obj/items/S in input)
+					for (var/obj/item/S in input)
 						S.forceMove(pod)
 						playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
 				pod.update_icon()
