@@ -307,6 +307,10 @@
 #define COMSIG_PDA_CHECK_DETONATE "pda_check_detonate"
 #define COMPONENT_PDA_NO_DETONATE 1
 
+// /obj/item/modular_computer signals
+#define COMSIG_NTOS_CHANGE_RINGTONE "ntos_change_ringtone"
+#define COMPONENT_NTOS_STOP_RINGTONE_CHANGE 1
+
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
 
