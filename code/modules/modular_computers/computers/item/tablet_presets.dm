@@ -3,14 +3,14 @@
 	desc = "A low-end tablet often seen among low ranked station personnel."
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer/micro,
-								/obj/item/computer_hardware/hard_drive/small,
+								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card)
 
 // Alternative version, an average one, for higher ranked positions mostly
 /obj/item/modular_computer/tablet/preset/advanced
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
-								/obj/item/computer_hardware/hard_drive/small,
+								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini)
@@ -18,7 +18,7 @@
 /obj/item/modular_computer/tablet/preset/cargo
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
-								/obj/item/computer_hardware/hard_drive/small,
+								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini)
@@ -26,7 +26,7 @@
 /obj/item/modular_computer/tablet/preset/advanced/atmos //This will be defunct and will be replaced when NtOS PDAs are fully implemented
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
-								/obj/item/computer_hardware/hard_drive/small,
+								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini,
@@ -35,7 +35,7 @@
 /obj/item/modular_computer/tablet/preset/advanced/command
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
-								/obj/item/computer_hardware/hard_drive/small,
+								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/printer/mini,

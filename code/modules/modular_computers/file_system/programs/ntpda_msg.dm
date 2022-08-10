@@ -216,7 +216,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			return TRUE
 		
 		if("PRG_ringtone")
-			if(computer.SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, usr, params["name"]) & COMPONENT_STOP_RINGTONE_CHANGE)
+			if(SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, usr, params["name"]) & COMPONENT_STOP_RINGTONE_CHANGE)
 				return TRUE
 			else
 				var/newring = reject_bad_text(params["name"], max_length = 10)
