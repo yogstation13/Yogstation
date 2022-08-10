@@ -763,70 +763,46 @@
 
 	if(incapacitated())
 		return
-	var/input
-	switch(alert("Would you like to select a hologram based on a crew member, an animal, or switch to a unique avatar?",,"Crew Member","Unique","Animal"))
-		if("Crew Member")
-			var/list/personnel_list = list()
-
+	var/static/list/choicestypes = list(
+		"Crew" = image(icon = 'icons/mob/landmarks.dmi', icon_state = "Quartermaster"),
+		"Unique" = image(icon = 'icons/mob/alien.dmi', icon_state = "alienq"),
+		"Animal" = image(icon = 'icons/mob/animal.dmi', icon_state = "cow"),
+		)
+	var/choice = show_radial_menu(usr, src.eyeobj, choicestypes, require_near = FALSE, tooltips = TRUE)
+	var/choices = list()
+	switch(choice)
+		if("Crew")
 			for(var/datum/data/record/t in GLOB.data_core.locked)//Look in data core locked.
-				personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
-
-			if(personnel_list.len)
-				input = input("Select a crew member:") as null|anything in personnel_list
-				var/icon/character_icon = personnel_list[input]
-				if(character_icon)
-					qdel(holo_icon)//Clear old icon so we're not storing it in memory.
-					holo_icon = getHologramIcon(icon(character_icon))
-			else
-				alert("No suitable records found. Aborting.")
-
+				choices["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]
 		if("Animal")
-			var/list/icon_list = list(
-			"bear" = 'icons/mob/animal.dmi',
-			"carp" = 'icons/mob/animal.dmi',
-			"chicken" = 'icons/mob/animal.dmi',
-			"corgi" = 'icons/mob/pets.dmi',
-			"cow" = 'icons/mob/animal.dmi',
-			"crab" = 'icons/mob/animal.dmi',
-			"fox" = 'icons/mob/pets.dmi',
-			"goat" = 'icons/mob/animal.dmi',
-			"cat" = 'icons/mob/pets.dmi',
-			"cat2" = 'icons/mob/pets.dmi',
-			"poly" = 'icons/mob/animal.dmi',
-			"pug" = 'icons/mob/pets.dmi',
-			"spider" = 'icons/mob/animal.dmi'
+			choices = list(
+				"Bear" = image(icon = 'icons/mob/animal.dmi', icon_state = "bear"),
+				"Carp" = image(icon = 'icons/mob/animal.dmi', icon_state = "carp"),
+				"Chicken" = image(icon = 'icons/mob/animal.dmi', icon_state = "chicken_brown"),
+				"Corgi" = image(icon = 'icons/mob/pets.dmi', icon_state = "corgi"),
+				"Cow" = image(icon = 'icons/mob/animal.dmi', icon_state = "cow"),
+				"Crab" = image(icon = 'icons/mob/animal.dmi', icon_state = "crab"),
+				"Fox" = image(icon = 'icons/mob/pets.dmi', icon_state = "fox"),
+				"Goat" = image(icon = 'icons/mob/animal.dmi', icon_state = "goat"),
+				"Runtime" = image(icon = 'icons/mob/pets.dmi', icon_state = "cat"),
+				"Calico" = image(icon = 'icons/mob/pets.dmi', icon_state = "cat2"),
+				"Poly" = image(icon = 'icons/mob/animal.dmi', icon_state = "parrot_fly"),
+				"Pug" = image(icon = 'icons/mob/pets.dmi', icon_state = "pug"),
+				"Spider" = image(icon = 'icons/mob/animal.dmi', icon_state = "guard")
 			)
-
-			input = input("Please select a hologram:") as null|anything in icon_list
-			if(input)
-				qdel(holo_icon)
-				switch(input)
-					if("poly")
-						holo_icon = getHologramIcon(icon(icon_list[input],"parrot_fly"))
-					if("chicken")
-						holo_icon = getHologramIcon(icon(icon_list[input],"chicken_brown"))
-					if("spider")
-						holo_icon = getHologramIcon(icon(icon_list[input],"guard"))
-					else
-						holo_icon = getHologramIcon(icon(icon_list[input], input))
-		else
-			var/list/icon_list = list(
-				"default" = 'icons/mob/ai.dmi',
-				"floating face" = 'icons/mob/ai.dmi',
-				"xeno queen" = 'icons/mob/alien.dmi',
-				"horror" = 'icons/mob/ai.dmi',
-				"automaton" = 'icons/mob/ai.dmi'
-				)
-
-			input = input("Please select a hologram:") as null|anything in icon_list
-			if(input)
-				qdel(holo_icon)
-				switch(input)
-					if("xeno queen")
-						holo_icon = getHologramIcon(icon(icon_list[input],"alienq"))
-					else
-						holo_icon = getHologramIcon(icon(icon_list[input], input))
-	return
+		if("Unique")
+			choices = list(
+				"AI" = image(icon = 'icons/mob/ai.dmi', icon_state = "default"),
+				"Floating Face" = image(icon = 'icons/mob/ai.dmi', icon_state = "floating face"),
+				"Xeno Queen" = image(icon = 'icons/mob/alien.dmi', icon_state = "alienq"),
+				"Nar'Sie" = image(icon = 'icons/mob/ai.dmi', icon_state = "horror"),
+				"Rat'Var" = image(icon = 'icons/mob/ai.dmi', icon_state = "automaton"),
+			)
+	var/choice2 = show_radial_menu(usr, src.eyeobj, choices, require_near = FALSE, tooltips = TRUE)
+	if(!choice2)
+		return
+	var/image/img = choices[choice2] // Convert from image to icon
+	holo_icon = getHologramIcon(icon(img.icon, img.icon_state))
 
 /mob/living/silicon/ai/proc/corereturn()
 	set category = "Malfunction"
