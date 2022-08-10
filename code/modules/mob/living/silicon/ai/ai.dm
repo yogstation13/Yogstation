@@ -799,7 +799,7 @@
 				"Rat'Var" = image(icon = 'icons/mob/ai.dmi', icon_state = "automaton"),
 			)
 	var/choice2 = show_radial_menu(usr, src.eyeobj, choices, require_near = FALSE, tooltips = TRUE)
-	if(!choice2)
+	if(!choice2 || choice)
 		return
 	var/tmp = choices[choice2] // Convert from image to icon
 	if(istype(tmp, /image))
