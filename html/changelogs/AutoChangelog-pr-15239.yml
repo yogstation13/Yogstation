@@ -1,6 +1,0 @@
-author: " Altoids"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed ketchup packets telling you they are empty every time you use one."
-  - soundadd: "Tearing open hotsauce packs now makes a small noise."
-  - spellcheck: "Fixed missing capitalization, and improved the phrasing of, pouring condiments onto food."
