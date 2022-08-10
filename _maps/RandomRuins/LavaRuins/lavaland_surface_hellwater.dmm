@@ -2,107 +2,26 @@
 "al" = (
 /turf/closed/mineral/random/high_chance,
 /area/lavaland/surface/outdoors)
+"aB" = (
+/obj/machinery/chem_dispenser/drinks/fullupgrade,
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
 "aD" = (
 /turf/template_noop,
 /area/lavaland/surface/outdoors)
-"ci" = (
-/obj/effect/decal/cleanable/blood/footprints,
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"dF" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/cult,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"dI" = (
-/obj/machinery/door/airlock/cult/weak,
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"dQ" = (
-/obj/machinery/gibber/autogibber,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"es" = (
-/obj/machinery/oven,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"fW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/no_lava,
-/obj/structure/fence{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cult,
-/area/lavaland/surface/outdoors)
-"gp" = (
-/obj/effect/decal/cleanable/blood/gibs/up,
-/obj/effect/decal/cleanable/blood/footprints,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"gD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/washing_machine,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"jn" = (
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/light_prism{
-	pixel_y = 9
-	},
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"kd" = (
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"kI" = (
-/obj/machinery/door/airlock/cult/friendly,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/fans/tiny,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"kL" = (
-/obj/item/bedsheet/cult,
-/obj/structure/bed,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"kS" = (
+"bt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/magmite,
+/obj/item/book_of_babel,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"kZ" = (
-/obj/machinery/chem_master,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
+"bM" = (
+/turf/closed/wall/mineral/cult,
 /area/ruin/powered/hell_bunker)
-"lM" = (
-/obj/structure/mirror{
-	pixel_y = 29
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"mN" = (
+"bN" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 4
 	},
@@ -112,57 +31,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"mS" = (
-/obj/structure/table/bronze,
-/obj/structure/light_prism{
-	pixel_y = 9
-	},
+"co" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/item/candle,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"ng" = (
-/obj/machinery/processor,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"pc" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/footprints,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"qO" = (
-/obj/structure/chair/bronze{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/vomit/old,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"qQ" = (
-/obj/machinery/door/airlock/cult/weak,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"rD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/kitchenspike,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"rW" = (
-/obj/machinery/griddle,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"sC" = (
+"ct" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 4
 	},
@@ -173,61 +47,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"sD" = (
+"cW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/dresser,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"tj" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sink/kitchen{
-	dir = 4;
-	pixel_x = -14;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"tR" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/structure/fence/corner,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/lavaland/surface/outdoors)
-"uy" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/chasm/lavaland,
-/area/lavaland/surface/outdoors)
-"wl" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/paper/secretrecipe,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"wJ" = (
-/turf/closed/wall/mineral/cult,
-/area/ruin/powered/hell_bunker)
-"xu" = (
-/obj/machinery/reagentgrinder/kitchen{
-	pixel_y = 9
-	},
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"yN" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/dinnerware,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"yV" = (
-/obj/structure/chair/bronze{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"zf" = (
+"dk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/organ/heart/demon,
 /obj/effect/decal/cleanable/blood/splatter,
@@ -239,34 +64,153 @@
 /mob/living/simple_animal/lesserdemon/gluttony,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"Ar" = (
+"dD" = (
+/obj/machinery/processor,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"eC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/cooking_oil,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"fk" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/mimic,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"gc" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"ho" = (
+/obj/machinery/door/airlock/cult/friendly,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"hV" = (
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"iE" = (
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/light_prism{
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"jn" = (
+/obj/structure/chair/bronze{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"jy" = (
+/obj/item/bedsheet/cult,
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/skeleton/plasmaminer,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"kg" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/mineral/cult,
+/area/ruin/powered/hell_bunker)
+"kn" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/lesserdemon/wrath,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"lB" = (
+/obj/machinery/oven,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"me" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plasteel/cult,
+/area/lavaland/surface/outdoors)
+"mh" = (
+/obj/machinery/hydroponics/soil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"mv" = (
+/obj/machinery/deepfryer,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"oC" = (
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/drinks/flask,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"oF" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"oH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/door/opened,
+/turf/open/floor/plasteel/cult,
+/area/lavaland/surface/outdoors)
+"oS" = (
+/obj/machinery/griddle,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"pb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -14;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"pI" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/chasm/lavaland,
+/area/lavaland/surface/outdoors)
+"pU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/cult,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"qa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/drinks/bottle/holywater/hell,
+/obj/item/coin/adamantine,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"qM" = (
 /obj/structure/table/bronze,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/lootdrop/randomfood,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"AL" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/no_lava,
-/obj/effect/mapping_helpers/teleport_anchor,
-/turf/open/floor/plasteel/cult,
-/area/lavaland/surface/outdoors)
-"AV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/bronze,
-/obj/item/clothing/suit/cultrobes,
-/obj/item/clothing/suit/cultrobes,
-/obj/item/clothing/shoes/cult,
-/obj/item/clothing/shoes/cult,
-/obj/item/clothing/head/kitty/genuine,
-/obj/item/clothing/gloves/color/red,
-/obj/item/clothing/gloves/color/red,
-/obj/item/clothing/under/color/red,
-/obj/item/clothing/under/color/red,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"BL" = (
+"sQ" = (
 /obj/structure/table/bronze,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
@@ -274,248 +218,18 @@
 /obj/effect/mob_spawn/human/corpse/damaged,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"BT" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plasteel/cult,
-/area/lavaland/surface/outdoors)
-"BU" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Cl" = (
-/obj/machinery/deepfryer,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Cm" = (
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/light_prism{
-	pixel_y = 9
-	},
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Cy" = (
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/lighter,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Dv" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"DH" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Eb" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/lesserdemon/wrath,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"FK" = (
-/obj/item/bedsheet/cult,
-/obj/structure/bed,
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/skeleton/plasmaminer,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Hf" = (
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"HL" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/drinks/bottle/holywater/hell,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Id" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/rune/apocalypse,
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Is" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/reagent_dispensers/cooking_oil,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Jc" = (
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/randomdrink,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Lo" = (
-/obj/structure/chair/bronze{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"LH" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/mineral/cult,
-/area/ruin/powered/hell_bunker)
-"MP" = (
-/obj/machinery/hydroponics/soil,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Nq" = (
-/obj/machinery/chem_dispenser/drinks/fullupgrade,
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"NE" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/structure/fence/corner{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/lavaland/surface/outdoors)
-"NG" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/lesserdemon,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"NU" = (
+"td" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"Om" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/carp/eyeball,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Ov" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/bronze,
-/obj/item/clothing/suit/magusred,
-/obj/item/clothing/shoes/cult,
-/obj/item/clothing/head/magus,
-/obj/item/clothing/gloves/bracer,
-/obj/item/nullrod/pitchfork,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"OE" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/bronze,
-/obj/structure/light_prism{
-	pixel_y = 9
-	},
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"OI" = (
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"QM" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Rj" = (
-/obj/effect/decal/cleanable/blood/gibs/body,
-/obj/effect/decal/cleanable/blood/gibs/down,
-/obj/effect/decal/cleanable/blood/footprints,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Sr" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/footprints,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"SM" = (
-/obj/machinery/microwave,
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"TA" = (
-/obj/effect/decal/cleanable/dirt,
+"tX" = (
 /obj/effect/mapping_helpers/no_lava,
-/obj/structure/fence{
-	dir = 8
-	},
+/obj/structure/fence/corner,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cult,
 /area/lavaland/surface/outdoors)
-"Uc" = (
-/obj/structure/table/bronze,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/drinks/flask,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Uh" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/laser_pointer/purple,
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"UL" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/bronze,
-/obj/item/clothing/glasses/sunglasses{
-	pixel_y = 11
-	},
-/obj/item/pen/fourcolor{
-	pixel_x = 7;
-	pixel_y = -1
-	},
-/obj/item/phone{
-	pixel_x = -4;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel/cult,
-/area/ruin/powered/hell_bunker)
-"Vu" = (
+"vq" = (
 /obj/structure/table/bronze,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
@@ -540,48 +254,87 @@
 	},
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"VB" = (
+"vr" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/mimic,
+/obj/effect/mob_spawn/human/corpse/damaged,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"VE" = (
+"xh" = (
+/obj/machinery/gibber/autogibber,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/no_lava,
-/obj/structure/fence/door/opened,
 /turf/open/floor/plasteel/cult,
-/area/lavaland/surface/outdoors)
-"Wi" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 8
-	},
+/area/ruin/powered/hell_bunker)
+"xF" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/footprints,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"WJ" = (
+"xH" = (
+/obj/machinery/chem_master,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"yg" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"yn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"zA" = (
+/obj/machinery/reagentgrinder/kitchen{
+	pixel_y = 9
+	},
 /obj/structure/table/bronze,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"WK" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 4
-	},
+"Br" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
 /obj/effect/decal/cleanable/blood/footprints,
 /obj/effect/decal/cleanable/blood/tracks{
-	dir = 8
+	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"Yv" = (
+"CG" = (
+/obj/machinery/door/airlock/cult/weak,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"ET" = (
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/lighter,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"FJ" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/blood/gibs/torso,
 /obj/effect/decal/cleanable/blood/footprints{
@@ -597,17 +350,270 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"YM" = (
+"FZ" = (
 /obj/machinery/door/airlock/cult,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/trap/fire,
 /turf/open/floor/plasteel/cult,
 /area/ruin/powered/hell_bunker)
-"YY" = (
+"GX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/rune/apocalypse,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"HE" = (
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/light_prism{
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Is" = (
 /obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/carp/eyeball,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"IZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cult,
+/area/lavaland/surface/outdoors)
+"Jl" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/lesserdemon,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Lj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/bronze,
+/obj/structure/light_prism{
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"LO" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"MG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Nf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/bronze,
+/obj/item/clothing/suit/magusred,
+/obj/item/clothing/shoes/cult,
+/obj/item/clothing/head/magus,
+/obj/item/clothing/gloves/bracer,
+/obj/item/nullrod/pitchfork,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"NO" = (
+/obj/machinery/microwave,
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"OA" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"OH" = (
+/obj/machinery/door/airlock/cult/weak,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"OU" = (
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"OW" = (
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/lootdrop/randomdrink,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"PQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cult,
+/area/lavaland/surface/outdoors)
+"QE" = (
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"QY" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/mineral/cult,
 /area/ruin/powered/hell_bunker)
+"Rl" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"RX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/item/paper/secretrecipe,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Su" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"SE" = (
+/obj/structure/chair/bronze{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Tw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/bronze,
+/obj/item/clothing/suit/cultrobes,
+/obj/item/clothing/suit/cultrobes,
+/obj/item/clothing/shoes/cult,
+/obj/item/clothing/shoes/cult,
+/obj/item/clothing/head/kitty/genuine,
+/obj/item/clothing/gloves/color/red,
+/obj/item/clothing/gloves/color/red,
+/obj/item/clothing/under/color/red,
+/obj/item/clothing/under/color/red,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"TC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/no_lava,
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel/cult,
+/area/lavaland/surface/outdoors)
+"Vg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/washing_machine,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Vn" = (
+/obj/item/bedsheet/cult,
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"VI" = (
+/obj/structure/mirror{
+	pixel_y = 29
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Wu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/bronze,
+/obj/item/clothing/glasses/sunglasses{
+	pixel_y = 11
+	},
+/obj/item/pen/fourcolor{
+	pixel_x = 7;
+	pixel_y = -1
+	},
+/obj/item/phone{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Wz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Xg" = (
+/obj/structure/chair/bronze{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"XC" = (
+/obj/structure/table/bronze,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"Yz" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/laser_pointer/purple,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"YP" = (
+/obj/structure/table/bronze,
+/obj/structure/light_prism{
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/ruin/powered/hell_bunker)
+"ZS" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/cult,
+/area/lavaland/surface/outdoors)
 
 (1,1,1) = {"
 aD
@@ -716,25 +722,25 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
@@ -760,28 +766,28 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
@@ -806,32 +812,32 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
@@ -851,19 +857,19 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 al
 al
 al
@@ -872,21 +878,21 @@ al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
-uy
-uy
-uy
+pI
+pI
+pI
 aD
 aD
 aD
@@ -896,19 +902,19 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 al
 al
 al
@@ -919,22 +925,22 @@ al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 "}
@@ -942,14 +948,14 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 al
 al
 al
@@ -968,20 +974,20 @@ al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 "}
@@ -989,31 +995,31 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
 al
 al
 al
 al
 al
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
 al
 al
 al
@@ -1022,13 +1028,13 @@ al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 "}
@@ -1036,9 +1042,9 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
+pI
+pI
+pI
 al
 al
 al
@@ -1046,704 +1052,704 @@ al
 al
 al
 al
-wJ
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-qQ
-QM
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
+bM
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+OH
+MG
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
 al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
 aD
 "}
 (11,1,1) = {"
 aD
 aD
 aD
-uy
-uy
-uy
+pI
+pI
+pI
 al
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-QM
-QM
-QM
-QM
-Eb
-QM
-QM
-QM
-QM
-qQ
-DH
-wJ
-Dv
-tj
-QM
-QM
-QM
-NU
-wJ
-al
-al
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+MG
+MG
+co
+MG
+kn
+MG
+co
+MG
+MG
+OH
+gc
+bM
+Su
+pb
+MG
+MG
+MG
+td
+bM
 al
 al
 al
 al
 al
-uy
-uy
-uy
+al
+al
+pI
+pI
+pI
 "}
 (12,1,1) = {"
 aD
 aD
 aD
-uy
-uy
-uy
+pI
+pI
+pI
 al
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-wJ
-DH
-wJ
-wl
-QM
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+bM
+gc
+bM
+RX
+MG
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
 al
-uy
-uy
-uy
+pI
+pI
+pI
 "}
 (13,1,1) = {"
 aD
 aD
 aD
-uy
-uy
-uy
+pI
+pI
+pI
 al
-wJ
-wJ
-HL
-HL
-kS
-HL
-HL
-wJ
-wJ
-QM
-QM
-Id
-QM
-QM
-QM
-Id
-QM
-QM
-wJ
-QM
-wJ
-kZ
-mN
-Cm
-QM
-QM
-QM
-qQ
-QM
-wJ
-MP
-MP
-mS
-wJ
+bM
+bM
+qa
+qa
+bt
+qa
+qa
+bM
+bM
+co
+MG
+GX
+MG
+co
+MG
+GX
+MG
+co
+bM
+MG
+bM
+xH
+bN
+HE
+MG
+MG
+MG
+OH
+MG
+bM
+mh
+mh
+YP
+bM
 al
-uy
-uy
-uy
+pI
+pI
+pI
 "}
 (14,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-wJ
-QM
-wJ
-OI
-Wi
-Uc
-QM
-qO
-yV
-wJ
-QM
-wJ
-QM
-Om
-MP
-wJ
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+bM
+MG
+bM
+QE
+OA
+oC
+MG
+SE
+jn
+bM
+MG
+bM
+MG
+Is
+mh
+bM
 al
-uy
-uy
+pI
+pI
 aD
 "}
 (15,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-wJ
-wJ
-Eb
-QM
-QM
-QM
-zf
-QM
-QM
-Eb
-QM
-wJ
-DH
-wJ
-Nq
-Wi
-Uc
-QM
-Jc
-WJ
-wJ
-QM
-wJ
-DH
-QM
-MP
-wJ
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+bM
+bM
+kn
+MG
+co
+MG
+dk
+MG
+co
+kn
+MG
+bM
+gc
+bM
+aB
+OA
+oC
+MG
+OW
+OU
+bM
+MG
+bM
+gc
+MG
+mh
+bM
 al
-uy
-uy
+pI
+pI
 aD
 "}
 (16,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-QM
-QM
-Eb
-QM
-QM
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-wJ
-QM
-wJ
-xu
-Wi
-kd
-NG
-Lo
-Lo
-wJ
-DH
-wJ
-qQ
-wJ
-wJ
-wJ
+bM
+bM
+MG
+MG
+kn
+MG
+MG
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+MG
+bM
+MG
+bM
+zA
+OA
+hV
+Jl
+Xg
+Xg
+bM
+gc
+bM
+OH
+bM
+bM
+bM
 al
-NE
-BT
+ZS
+me
 aD
 "}
 (17,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-wJ
-wJ
-QM
-QM
-Id
-QM
-QM
-QM
-Id
-QM
-QM
-wJ
-QM
-wJ
-BL
-Yv
-WJ
-QM
-yV
-yV
-wJ
-QM
-qQ
-QM
-qQ
-QM
-kI
-AL
-TA
-BT
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+bM
+bM
+co
+MG
+GX
+MG
+co
+MG
+GX
+MG
+co
+bM
+MG
+bM
+sQ
+FJ
+OU
+MG
+jn
+jn
+bM
+MG
+OH
+MG
+OH
+MG
+ho
+TC
+IZ
+me
 aD
 "}
 (18,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-QM
-YM
-QM
-QM
-QM
-QM
-Eb
-QM
-QM
-QM
-QM
-wJ
-DH
-wJ
-Cl
-BU
-Hf
-QM
-Cy
-Ar
-wJ
-DH
-wJ
-DH
-wJ
-QM
-wJ
-AL
-VE
-BT
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+MG
+FZ
+MG
+MG
+MG
+MG
+kn
+MG
+MG
+MG
+MG
+bM
+gc
+bM
+mv
+LO
+XC
+MG
+ET
+qM
+bM
+gc
+bM
+gc
+bM
+MG
+bM
+TC
+oH
+me
 aD
 "}
 (19,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-QM
-QM
-QM
-QM
-QM
-QM
-YM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-QM
-wJ
-QM
-wJ
-es
-BU
-Cm
-QM
-Lo
-Lo
-wJ
-QM
-wJ
-QM
-wJ
-QM
-wJ
-AL
-VE
-BT
+bM
+bM
+MG
+MG
+MG
+MG
+MG
+MG
+FZ
+MG
+MG
+co
+MG
+MG
+MG
+co
+MG
+MG
+bM
+MG
+bM
+lB
+LO
+HE
+MG
+Xg
+Xg
+bM
+MG
+bM
+MG
+bM
+MG
+bM
+TC
+oH
+me
 aD
 "}
 (20,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-rD
-QM
-Eb
-QM
-rD
-wJ
-wJ
-LH
-dF
-LH
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-QM
-wJ
-rW
-BU
-wJ
-wJ
-wJ
-wJ
-wJ
-QM
-qQ
-QM
-qQ
-DH
-kI
-AL
-fW
-BT
+bM
+bM
+yn
+MG
+kn
+MG
+yn
+bM
+bM
+QY
+pU
+QY
+bM
+bM
+OH
+bM
+bM
+bM
+bM
+MG
+bM
+oS
+LO
+bM
+bM
+bM
+bM
+bM
+MG
+OH
+MG
+OH
+gc
+ho
+TC
+PQ
+me
 aD
 "}
 (21,1,1) = {"
 aD
 aD
 aD
-uy
-uy
-uy
+pI
+pI
+pI
 al
-wJ
-wJ
-rD
-QM
-QM
-QM
-rD
-wJ
-wJ
-QM
-QM
-QM
-wJ
-sD
-QM
-AV
-AV
-OE
-YY
-QM
-wJ
-ci
-WK
-pc
-pc
-gp
-Rj
-wJ
-DH
-wJ
-qQ
-wJ
-wJ
-wJ
+bM
+bM
+yn
+MG
+MG
+MG
+yn
+bM
+bM
+MG
+MG
+MG
+bM
+cW
+MG
+Tw
+Tw
+Lj
+kg
+MG
+bM
+yg
+Rl
+oF
+oF
+Br
+vr
+bM
+gc
+bM
+OH
+bM
+bM
+bM
 al
-tR
-BT
+tX
+me
 aD
 "}
 (22,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-rD
-QM
-QM
-QM
-rD
-wJ
-wJ
-VB
-VB
-VB
-wJ
-AV
-QM
-QM
-QM
-Ov
-LH
-QM
-wJ
-sC
-Sr
-Vu
-SM
-ng
-dQ
-wJ
-QM
-wJ
-QM
-DH
-Is
-wJ
+bM
+bM
+yn
+MG
+MG
+MG
+yn
+bM
+bM
+fk
+fk
+fk
+bM
+Tw
+MG
+MG
+MG
+Nf
+QY
+MG
+bM
+ct
+xF
+vq
+NO
+dD
+xh
+bM
+MG
+bM
+MG
+gc
+eC
+bM
 al
-uy
-uy
+pI
+pI
 aD
 "}
 (23,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-AV
-QM
-QM
-QM
-UL
-wJ
-QM
-wJ
-dI
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-DH
-wJ
-DH
-Uh
-yN
-wJ
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+Tw
+MG
+MG
+MG
+Wu
+bM
+MG
+bM
+CG
+bM
+bM
+bM
+bM
+bM
+bM
+gc
+bM
+gc
+Yz
+Wz
+bM
 al
-uy
-uy
+pI
+pI
 aD
 "}
 (24,1,1) = {"
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
 al
 al
 al
-wJ
-OE
-QM
-QM
-QM
-jn
-wJ
-QM
-DH
-DH
-QM
-QM
-DH
-DH
-QM
-DH
-QM
-wJ
-gD
-gD
-mS
-wJ
+bM
+Lj
+MG
+MG
+MG
+iE
+bM
+MG
+gc
+gc
+MG
+MG
+gc
+gc
+MG
+gc
+MG
+bM
+Vg
+Vg
+YP
+bM
 al
-uy
-uy
+pI
+pI
 aD
 "}
 (25,1,1) = {"
 aD
 aD
 aD
-uy
-uy
-uy
+pI
+pI
+pI
 al
 al
 al
@@ -1757,31 +1763,31 @@ al
 al
 al
 al
-wJ
-QM
-QM
-QM
-QM
-QM
-wJ
-qQ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
+bM
+MG
+MG
+MG
+MG
+MG
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
 al
-uy
-uy
+pI
+pI
 aD
 "}
 (26,1,1) = {"
@@ -1789,35 +1795,30 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
 al
 al
 al
 al
-uy
-uy
-uy
+pI
+pI
+pI
 al
 al
 al
-wJ
-lM
-QM
-QM
-QM
-QM
-QM
-QM
-wJ
-al
-al
-al
-al
-al
+bM
+VI
+MG
+MG
+MG
+MG
+MG
+MG
+bM
 al
 al
 al
@@ -1827,8 +1828,13 @@ al
 al
 al
 al
-uy
-uy
+al
+al
+al
+al
+al
+pI
+pI
 aD
 "}
 (27,1,1) = {"
@@ -1836,45 +1842,45 @@ aD
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 al
-wJ
-FK
-FK
-FK
-FK
-FK
-kL
-kL
-wJ
-al
-al
-al
+bM
+jy
+jy
+jy
+jy
+jy
+Vn
+Vn
+bM
 al
 al
 al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
-uy
+al
+al
+al
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 "}
@@ -1883,45 +1889,45 @@ aD
 aD
 aD
 aD
-uy
-uy
+pI
+pI
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 al
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-wJ
-al
-al
-al
-al
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
+bM
 al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+al
+al
+al
+al
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 "}
@@ -1931,7 +1937,7 @@ aD
 aD
 aD
 aD
-uy
+pI
 al
 al
 al
@@ -1939,19 +1945,11 @@ al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
-al
-al
-al
-al
-al
-al
-al
-al
+pI
+pI
+pI
+pI
+pI
 al
 al
 al
@@ -1962,11 +1960,19 @@ al
 al
 al
 al
-uy
-uy
-uy
-uy
-uy
+al
+al
+al
+al
+al
+al
+al
+al
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
@@ -1978,40 +1984,40 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
@@ -2026,39 +2032,39 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
@@ -2079,32 +2085,32 @@ aD
 aD
 aD
 aD
-uy
-uy
-uy
+pI
+pI
+pI
 aD
 aD
 aD
 aD
 aD
 aD
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
-uy
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
 aD
 aD
 aD
