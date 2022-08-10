@@ -1,7 +1,7 @@
 /* eslint operator-linebreak: 0 */
 // https://github.com/jsx-eslint/eslint-plugin-react/issues/454
 /* eslint react/jsx-indent: 0 */
-// Abiding by 'react/jsx-indent' on lines 42-49 makes 'indent' unhappy and vice versa.
+// Abiding by 'react/jsx-indent' on lines 43-50 makes 'indent' unhappy and vice versa.
 // This one has only one error while indent has 7 so I'm opting to listen to that one
 
 import { useBackend } from '../backend';
