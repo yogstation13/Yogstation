@@ -1,0 +1,5 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - spellcheck: "The Bluespace Harvester now has an actual, grammatically-correct description."
+  - spellcheck: "Examining the Bluespace Harvester now informs you whether or not you've reached its point goal."
