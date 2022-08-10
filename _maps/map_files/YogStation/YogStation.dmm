@@ -24455,6 +24455,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"cGA" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "cGB" = (
 /obj/effect/turf_decal/bot_white/right,
 /obj/effect/turf_decal/tile/neutral{
@@ -27189,6 +27199,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"eca" = (
+/obj/machinery/ai/networking{
+	label = "offsite";
+	roundstart_connection = "core3"
+	},
+/obj/structure/ethernet_cable,
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/ai_monitored/secondarydatacore)
 "edg" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -39511,14 +39529,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"kgk" = (
-/obj/machinery/ai/networking{
-	label = "core3";
-	roundstart_connection = "offsite"
-	},
-/obj/structure/ethernet_cable,
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/ai_monitored/secondarydatacore)
 "kgs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -40875,12 +40885,6 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
-"kJz" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 4
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "kJK" = (
 /obj/structure/grille,
 /obj/structure/window{
@@ -49885,6 +49889,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"oXV" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "oYW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -50076,6 +50092,19 @@
 /obj/item/camera_film,
 /turf/open/floor/wood,
 /area/library)
+"pgw" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/machinery/ai/networking{
+	label = "offsite2";
+	roundstart_connection = "core4"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "phv" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -56661,13 +56690,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"stC" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible,
-/obj/structure/ethernet_cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "stH" = (
 /obj/machinery/vending/coffee,
 /obj/effect/turf_decal/tile/blue{
@@ -63044,6 +63066,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"vFY" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
+/obj/machinery/ai/networking{
+	label = "core4";
+	roundstart_connection = "offsite2"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "vGx" = (
 /turf/closed/wall/r_wall,
 /area/medical/genetics)
@@ -63594,15 +63629,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"vVx" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 4
-	},
-/obj/structure/ethernet_cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "vWd" = (
 /obj/machinery/camera{
 	c_tag = "Aft Primary Hallway 2";
@@ -110410,7 +110436,7 @@ pes
 rnq
 dMz
 dFJ
-rjo
+vFY
 wer
 cva
 cva
@@ -110667,7 +110693,7 @@ rjo
 jMV
 rTk
 hRe
-vVx
+oXV
 dMz
 cva
 cva
@@ -117827,7 +117853,7 @@ oxg
 uFS
 sLZ
 bUR
-kgk
+eca
 oGM
 oGM
 fXS
@@ -118082,8 +118108,8 @@ oGM
 mQY
 nlV
 gdI
-kJz
-stC
+pgw
+cGA
 wnI
 oGM
 oGM
