@@ -799,14 +799,14 @@
 				"Rat'Var" = image(icon = 'icons/mob/ai.dmi', icon_state = "automaton"),
 			)
 	var/choice2 = show_radial_menu(usr, src.eyeobj, choices, require_near = FALSE, tooltips = TRUE)
-	if(!choice2 || choice)
+	if(!choice2 || !choice)
 		return
 	var/tmp = choices[choice2] // Convert from image to icon
 	if(istype(tmp, /image))
 		var/image/img = tmp
 		holo_icon = getHologramIcon(icon(img.icon, img.icon_state))
 	else
-		holo_icon = getHologramIcon(tmp)
+		holo_icon = getHologramIcon(tmp, safety = FALSE) // We need a new icon otherwise it fucks it up
 
 /mob/living/silicon/ai/proc/corereturn()
 	set category = "Malfunction"
