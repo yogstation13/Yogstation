@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		unlock_note = "<B>Uplink Degrees:</B> [english_list(unlock_code)] ([P.name])."
 
 /datum/component/uplink/proc/generate_code()
-	if(istype(parent,/obj/item/pda))
+	if(istype(parent,/obj/item/pda) || istype(parent,/obj/item/modular_computer))
 		return "[rand(100,999)] [pick(GLOB.phonetic_alphabet)]"
 	else if(istype(parent,/obj/item/radio))
 		return sanitize_frequency(rand(FREQ_COMMON+1, MAX_FREQ))
