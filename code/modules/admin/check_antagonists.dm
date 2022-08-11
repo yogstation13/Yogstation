@@ -239,7 +239,7 @@
 	var/datum/admins/admindatum = rights.holder
 	var/mob/mob_user = rights.mob
 
-	if(mob_user != usr) // If the holder has been edited, this will catch it before any badness can be done
+	if(mob_user != usr) // If the holder has been edited, this will catch it before any badness can be done.
 		return
 	if(rights != usr.client)
 		return
