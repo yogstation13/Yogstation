@@ -1,4 +1,5 @@
 GLOBAL_DATUM(permissions, /datum/permissions_controller)
+GENERAL_PROTECT_DATUM(/datum/permissions_controller)
 
 // Creates permissions controller based on the config
 /proc/init_permissions()
