@@ -385,6 +385,22 @@
 	if(reac_volume >= 1)
 		T.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, min(reac_volume * 2 SECONDS, 120))
 
+/datum/reagent/lube/on_mob_metabolize(mob/living/L)
+	..()
+	if(isipc(L))
+		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.8, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/lube/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
+
+/datum/reagent/lube/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(isipc(M))
+		M.adjustFireLoss(3)
+		if(prob(10))
+			to_chat(M, "You slowly burn up as your internal mechanisms work faster than intended.")
+
 /datum/reagent/spraytan
 	name = "Spray Tan"
 	description = "A substance applied to the skin to darken the skin."
