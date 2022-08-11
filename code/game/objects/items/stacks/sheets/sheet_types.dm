@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		)),
 	null, \
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("crate", /obj/structure/closet/crate, 2, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe_list("filing cabinets", list( \
 		new/datum/stack_recipe("blue filing cabinet", /obj/structure/filingcabinet/colored/blue, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
 		new/datum/stack_recipe("gray filing cabinet", /obj/structure/filingcabinet/filingcabinet, 2, time = 3 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
