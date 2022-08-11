@@ -135,7 +135,7 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 
 /// Queries the backend permissions system then creates their datum if they should have one
 /// Returns true if a datum was created
-/datum/permissions_controller/proc/load_permissions_for(var/client/C)
+/datum/permissions_controller/proc/load_permissions_for(client/C)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
@@ -169,7 +169,7 @@ GLOBAL_DATUM(permissions, /datum/permissions_controller)
 /// Loads after legacy but before autoadmin/localhost
 /// If you woud like your backend to load before legacy, or after autoadmin/localhost
 /// Override the above function instead
-/datum/permissions_controller/proc/_load_permissions_for(var/client/C)
+/datum/permissions_controller/proc/_load_permissions_for(client/C)
 	PROTECTED_PROC(TRUE)
 	return FALSE
 
