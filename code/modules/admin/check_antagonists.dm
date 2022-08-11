@@ -80,6 +80,7 @@
 /// TGUI Datum for check antags
 /datum/tgui_check_antags
 	var/client/holder //client of whoever is using this datum
+	var/loaded = FALSE // Is set to true when panel is successfully opened, if it remains false it will create HTML Check Antags
 
 /// Only admins may interact with this UI
 /datum/tgui_check_antags/ui_state(mob/user)
@@ -107,6 +108,11 @@
 	else
 		var/mob/user_mob = user
 		holder = user_mob.client //if its a mob, assign the mob's client to holder
+	spawn(5 SECONDS)
+		if(!loaded) // If TGUI hasn't correctly loaded, fall back to legacy (HTML) check antags
+			var/datum/admins/admindatum = holder.holder
+			log_admin("[key_name(usr)] failed to load TGUI Check Antagonists and is loading legacy Check Antagonists.")
+			admindatum.legacy_check_antagonists()
 
 /// Gathers all of the dynamic data to send & update to the TGUI window
 /datum/tgui_check_antags/ui_data(mob/user)
@@ -241,6 +247,12 @@
 		return
 
 	switch(action)
+		if("loadsuccess")
+			loaded = TRUE
+
+		if("forcelegacy")
+			admindatum.legacy_check_antagonists()
+
 		if("callshuttle")
 			if(!check_rights(R_ADMIN))
 				return
