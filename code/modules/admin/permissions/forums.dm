@@ -36,11 +36,17 @@
 
 /// Queries forums to find permissions
 /datum/permissions_controller/forums/proc/query_permissions_for(ckey)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
+
 	if(!CONFIG_GET(string/xenforo_key))
 		CRASH("Trying to load forums permisisons without xenforo key")
 
 	var/datum/http_request/req = new()
-	req.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/apiurl)]/linking/byond/[ckey]", "", list("XF-Api-Key" = CONFIG_GET(string/xenforo_key)))
+	req.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/apiurl)]/linking/byond/[ckey(ckey)]", "", list("XF-Api-Key" = CONFIG_GET(string/xenforo_key)))
 	req.begin_async()
 
 	UNTIL(req.is_complete())
