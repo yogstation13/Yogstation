@@ -58,6 +58,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 				stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
 				template_names -= t
 		template_name = choose()
+	if(!template_name)
+		stack_trace("Station room spawner [src] at ([T.x], [T.y], [T.z]) has a null template.")
 	if(!template_name || template_name == EMPTY_SPAWN)
 		GLOB.stationroom_landmarks -= src
 		qdel(src)

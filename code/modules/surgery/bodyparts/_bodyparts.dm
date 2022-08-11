@@ -20,6 +20,7 @@
 	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
+	var/render_like_organic = FALSE // TRUE is for when you want a BODYPART_ROBOTIC to pretend to be a BODYPART_ORGANIC.
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
 
 	///If disabled, limb is as good as missing.
@@ -131,10 +132,16 @@
 		var/mob/living/carbon/human/H = C
 		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT))
 			if(!H.get_bodypart(body_zone) && !animal_origin)
+				if(iscarbon(user))
+					var/mob/living/carbon/target = user
+					if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && src.status != BODYPART_ROBOTIC)
+						if(H == user)
+							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
+						else
+							to_chat(user, "<span class='warning'>You try to force [src] into [H.p_their()] empty socket, but it doesn't fit</span>")
+						return
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
-				if(!attach_limb(C))
-					to_chat(user, span_warning("[H]'s body rejects [src]!"))
-					forceMove(H.loc)
+				attach_limb(C)
 				if(H == user)
 					H.visible_message(span_warning("[H] jams [src] into [H.p_their()] empty socket!"),\
 					span_notice("You force [src] into your empty socket, and it locks into place!"))
@@ -818,7 +825,7 @@
 	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
 		should_draw_gender = FALSE
 
-	if(is_organic_limb())
+	if(status == BODYPART_ORGANIC || (status == BODYPART_ROBOTIC && render_like_organic == TRUE)) // So IPC augments can be colorful without disrupting normal BODYPART_ROBOTIC render code.
 		if(should_draw_greyscale)
 			limb.icon = 'icons/mob/human_parts_greyscale.dmi'
 			if(should_draw_gender)

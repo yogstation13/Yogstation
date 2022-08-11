@@ -83,6 +83,9 @@ LOG_GAME
 ## log player votes
 LOG_VOTE
 
+## log donator chat
+LOG_DONATOR
+
 ## log client Whisper
 LOG_WHISPER
 
@@ -432,7 +435,7 @@ DEFAULT_VIEW_SQUARE 15x15
 #MENTORS_MOBNAME_ONLY
 
 ## Uncomment below to make everyone a donator
-EVERYONE_IS_DONATOR
+#EVERYONE_IS_DONATOR
 
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
 ## More API details can be found here: https://centcom.melonmesa.com
