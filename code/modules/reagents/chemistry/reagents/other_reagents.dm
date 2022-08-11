@@ -397,12 +397,13 @@
 	L.remove_movespeed_modifier(type)
 	..()
 
-/datum/reagent/lube/on_mob_life(mob/living/carbon/M)
+/datum/reagent/lube/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	if(isipc(M))
-		M.adjustFireLoss(3)
-		if(prob(10))
-			to_chat(M, "You slowly burn up as your internal mechanisms work faster than intended.")
+	if(!isipc(C))
+		return
+	C.adjustFireLoss(3)
+	if(prob(10))
+		to_chat(C, span_warning("You slowly burn up as your internal mechanisms work faster than intended."))
 
 /datum/reagent/spraytan
 	name = "Spray Tan"
