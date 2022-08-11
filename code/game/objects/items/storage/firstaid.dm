@@ -163,8 +163,9 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/pill/patch/silver_sulf = 3,
+		/obj/item/reagent_containers/pill/patch/silver_sulf = 2,
 		/obj/item/reagent_containers/pill/oxandrolone = 2,
+		/obj/item/reagent_containers/medspray/silver_sulf = 1,
 		/obj/item/reagent_containers/autoinjector/medipen = 1,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
@@ -206,8 +207,8 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/syringe/perfluorodecalin = 5,
-		/obj/item/reagent_containers/autoinjector/medipen = 1,
+		/obj/item/reagent_containers/syringe/perfluorodecalin = 4,
+		/obj/item/reagent_containers/autoinjector/medipen = 2,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -225,7 +226,9 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/pill/patch/styptic = 4,
+		/obj/item/reagent_containers/pill/patch/styptic = 2,
+		/obj/item/reagent_containers/pill/salicyclic = 2,
+		/obj/item/reagent_containers/medspray/styptic = 1,
 		/obj/item/stack/medical/gauze = 2,
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
@@ -237,14 +240,23 @@
 	item_state = "firstaid-rad"
 	custom_premium_price = 600
 
+/obj/item/storage/firstaid/advanced/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 12
+	STR.max_combined_w_class = 24
+
 /obj/item/storage/firstaid/advanced/PopulateContents()
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/pill/patch/synthflesh = 3,
+		/obj/item/stack/medical/gauze = 2,
+		/obj/item/stack/medical/suture/medicated = 2,
+		/obj/item/stack/medical/mesh/advanced = 2,
+		/obj/item/storage/pill_bottle/penacid = 1,
+		/obj/item/reagent_containers/syringe/calomel = 1,
 		/obj/item/reagent_containers/autoinjector/medipen/atropine = 2,
-		/obj/item/stack/medical/gauze = 1,
-		/obj/item/storage/pill_bottle/penacid = 1)
+		/obj/item/healthanalyzer/advanced = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/tactical

@@ -1511,6 +1511,67 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		)
 	return pick(subtypesof(/obj/item/reagent_containers/food/drinks) - blocked)
 
+/proc/get_random_goat()
+	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
+		/mob/living/simple_animal/hostile/retaliate/goat/clown,
+		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
+		/mob/living/simple_animal/hostile/retaliate/goat/blue,
+		/mob/living/simple_animal/hostile/retaliate/goat/brown,
+		/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
+		/mob/living/simple_animal/hostile/retaliate/goat/rainbow,
+		/mob/living/simple_animal/hostile/retaliate/goat/green,
+		/mob/living/simple_animal/hostile/retaliate/goat/red,
+		/mob/living/simple_animal/hostile/retaliate/goat/black,
+		/mob/living/simple_animal/hostile/retaliate/goat/panda,
+		/mob/living/simple_animal/hostile/retaliate/goat/watercolor,
+		/mob/living/simple_animal/hostile/retaliate/goat/orange,
+		/mob/living/simple_animal/hostile/retaliate/goat/purple,
+		/mob/living/simple_animal/hostile/retaliate/goat/yellow,
+		/mob/living/simple_animal/hostile/retaliate/goat/legitgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/memory,
+		/mob/living/simple_animal/hostile/retaliate/goat/ghost,
+		/mob/living/simple_animal/hostile/retaliate/goat/king,
+		/mob/living/simple_animal/hostile/retaliate/goat/brick,
+		/mob/living/simple_animal/hostile/retaliate/goat/guard
+		)
+	return pick(subtypesof(new /mob/living/simple_animal/hostile/retaliate/goat) - blocked)
+
+/proc/get_random_goat_colorful()
+	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
+		/mob/living/simple_animal/hostile/retaliate/goat/clown,
+		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
+		/mob/living/simple_animal/hostile/retaliate/goat/ras,
+		/mob/living/simple_animal/hostile/retaliate/goat/christmas,
+		/mob/living/simple_animal/hostile/retaliate/goat/confetti,
+		/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy,
+		/mob/living/simple_animal/hostile/retaliate/goat/glowing,
+		/mob/living/simple_animal/hostile/retaliate/goat/goatgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/horror,
+		/mob/living/simple_animal/hostile/retaliate/goat/inverted,
+		/mob/living/simple_animal/hostile/retaliate/goat/mirrored,
+		/mob/living/simple_animal/hostile/retaliate/goat/paper,
+		/mob/living/simple_animal/hostile/retaliate/goat/pixel,
+		/mob/living/simple_animal/hostile/retaliate/goat/cute,
+		/mob/living/simple_animal/hostile/retaliate/goat/legitgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/memory,
+		/mob/living/simple_animal/hostile/retaliate/goat/ghost,
+		/mob/living/simple_animal/hostile/retaliate/goat/king,
+		/mob/living/simple_animal/hostile/retaliate/goat/guard,
+		/mob/living/simple_animal/hostile/retaliate/goat/star,
+		/mob/living/simple_animal/hostile/retaliate/goat/twisted,
+		/mob/living/simple_animal/hostile/retaliate/goat/tiny,
+		/mob/living/simple_animal/hostile/retaliate/goat/brick,
+		/mob/living/simple_animal/hostile/retaliate/goat/skiddo,
+		/mob/living/simple_animal/hostile/retaliate/goat/gogoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/sanic,
+		/mob/living/simple_animal/hostile/retaliate/goat/plunger,
+		/mob/living/simple_animal/hostile/retaliate/goat/suspicious,
+		/mob/living/simple_animal/hostile/retaliate/goat/thrumbo
+		)
+	return pick(subtypesof(new /mob/living/simple_animal/hostile/retaliate/goat) - blocked)
+
 //For these two procs refs MUST be ref = TRUE format like typecaches!
 /proc/weakref_filter_list(list/things, list/refs)
 	if(!islist(things) || !islist(refs))
