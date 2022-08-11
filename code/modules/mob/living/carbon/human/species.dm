@@ -163,8 +163,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	// Psi Stuff
 	/// Prob chance that mobs of this species have latent psionics
 	var/latency_chance = 1
-	/// Prob chance that mobs of this species have latent psionics
+	/// List of faculties that can be chosen for random psionics
 	var/possable_faculties = list(PSI_COERCION, PSI_PSYCHOKINESIS, PSI_REDACTION, PSI_ENERGISTICS)
+	/// What level starting faculties are at
+	var/starting_psi_level = PSI_RANK_LATENT
 	
 ///////////
 // PROCS //
@@ -423,7 +425,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
 
 	if(!C.psi && prob(latency_chance))
-		C.set_psi_rank(pick(possable_faculties), PSI_RANK_LATENT)
+		C.set_psi_rank(pick(possable_faculties), starting_psi_level)
 
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 

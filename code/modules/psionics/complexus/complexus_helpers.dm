@@ -170,6 +170,11 @@
 		if(sponge && pop.getOrganLoss(ORGAN_SLOT_BRAIN) >= sponge.maxHealth)
 			pop.explode_head()
 	
+/datum/psi_complexus/proc/has_rank_above(required_rank)
+	for(var/faculty in ranks)
+		if(required_rank <= get_rank(faculty))
+			return TRUE
+	
 /datum/psi_complexus/proc/reset()
 	aura_color = initial(aura_color)
 	ranks = base_ranks ? base_ranks.Copy() : null

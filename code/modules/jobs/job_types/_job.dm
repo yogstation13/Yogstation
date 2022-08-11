@@ -135,6 +135,11 @@
 
 	H.dna.species.after_equip_job(src, H, visualsOnly)
 
+	if(H.psi && H.psi.has_rank_above(PSI_RANK_OPERANT))
+		var/obj/item/implant/psi_control/I = new(H)
+		if(!I.implant(H, null))
+			qdel(I) // For odd casses like the psych
+
 	if(!visualsOnly && announce)
 		announce(H)
 
