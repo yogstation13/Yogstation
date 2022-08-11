@@ -40,7 +40,7 @@ export const CheckAntags = (props, context) => {
       width={750}
       height={710}
       theme={'ntos'}>
-      {act('loadsuccess') /*Tell BYOND that we loaded successfully and not to load legacy*/}
+      {act('loadsuccess')}
       <Window.Content scrollable>
         <Grid height={15}>
           <Grid.Column>
@@ -136,7 +136,7 @@ export const CheckAntags = (props, context) => {
               { other_players ? { other_players }+"invalid players!" : "" }
               <br />
               <Button
-                content='Legacy Panel'
+                content="Legacy Panel"
                 onClick={() => act("forcelegacy")} />
             </Section>
           </Grid.Column>
