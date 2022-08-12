@@ -236,8 +236,15 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/shoes/magboots/magboot = H.get_item_by_slot(SLOT_SHOES)
+		var/turf/T = get_turf(user)
 		if(magboot && istype(magboot) && magboot.magpulse)
 			return // Dont send you flying
+
+	if(iscyborg(user))
+		var/mob/living/silicon/robot/R = user
+		if(R.module.magpulsing)
+			return // Cyborg has magpulse	
+
 	user.visible_message(span_danger("[user] is sent flying by pressure!"),span_userdanger("The pressure sends you flying!"))
 
 	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir
