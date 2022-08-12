@@ -65,7 +65,7 @@
 /// Ghost attack proc
 /obj/item/reagent_containers/food/snacks/grown/attack_ghost(mob/user)
 	..()
-	var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")].\n"
+	var/msg = "<span class='info'>This is \a [span_name("[src]")].\n"
 	if(seed)
 		msg += seed.get_analyzer_text()
 	var/reag_txt = ""
@@ -77,14 +77,14 @@
 
 	if(reag_txt)
 		msg += reag_txt
-		msg += "<br>[span_info("*---------*")]"
+		msg += "<br>[span_info("")]"
 	to_chat(user, msg)
 
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user, params)
 	..()
 	if (istype(O, /obj/item/plant_analyzer))
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
-		var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")].\n"
+		var/msg = "<span class='info'>This is \a [span_name("[src]")].\n"
 		if(seed)
 			msg += seed.get_analyzer_text()
 		var/reag_txt = ""
@@ -96,7 +96,7 @@
 
 		if(reag_txt)
 			msg += reag_txt
-			msg += "<br>[span_info("*---------*")]"
+			msg += "<br>[span_info("")]"
 		to_chat(user, msg)
 	else
 		if(seed)

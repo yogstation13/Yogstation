@@ -511,7 +511,7 @@ GENE SCANNER
 		else
 			to_chat(user, "<span class='notice ml-1'>No wounds detected in subject.</span>")
 	else
-		to_chat(user, jointext(render_list, ""))
+		to_chat(user, examine_block(jointext(render_list, "")))
 
 /obj/item/healthanalyzer/wound
 	name = "first aid analyzer"

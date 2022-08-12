@@ -34,7 +34,7 @@
 /// Ghost attack proc
 /obj/item/grown/attack_ghost(mob/user)
 	..()
-	var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")]\n"
+	var/msg = "<span class='info'>This is \a [span_name("[src]")]\n"
 	if(seed)
 		msg += seed.get_analyzer_text()
 	msg += "</span>"
@@ -45,7 +45,7 @@
 	..()
 	if (istype(O, /obj/item/plant_analyzer))
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
-		var/msg = "<span class='info'>*---------*\n This is \a [span_name("[src]")]\n"
+		var/msg = "<span class='info'>This is \a [span_name("[src]")]\n"
 		if(seed)
 			msg += seed.get_analyzer_text()
 		msg += "</span>"
