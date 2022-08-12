@@ -49,3 +49,6 @@
 	. += "</span>"
 
 	. += ..()
+
+/mob/living/silicon/robot/get_examine_string(mob/user, thats = FALSE)
+	return null
