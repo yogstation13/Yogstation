@@ -44,6 +44,7 @@
 /mob/living/simple_animal/pet/catslug/RangedAttack(atom/A, params)
 	. = ..()
 	if(weapon)
+		visible_message(span_warning("[src] throws the [weapon] at [A]!"), span_warning("You throw the [weapon] at [A]!"))
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper)
 		armour_penetration = initial(armour_penetration)
