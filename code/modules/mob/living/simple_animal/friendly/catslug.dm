@@ -66,5 +66,7 @@
 
 /mob/living/simple_animal/pet/catslug/death(gibbed)
 	. = ..()
-	weapon = null
+	if(weapon)
+		weapon.forceMove(get_turf(src))
+		weapon = null
 	update_icons()
