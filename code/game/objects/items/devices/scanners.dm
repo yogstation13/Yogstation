@@ -512,9 +512,9 @@ GENE SCANNER
 		if(istype(scanner))
 			// Only emit the cheerful scanner message if this scan came from a scanner
 			playsound(scanner, 'sound/machines/ping.ogg', 50, FALSE)
-			render_list += span_notice("\The [scanner] makes a happy ping and briefly displays a smiley face with several exclamation points! It's really excited to report that [patient] has no wounds!")
+			to_chat(user, span_notice("\The [scanner] makes a happy ping and briefly displays a smiley face with several exclamation points! It's really excited to report that [patient] has no wounds!"))
 		else
-			render_list += "<span class='notice ml-1'>No wounds detected in subject.</span>"
+			to_chat(user, "<span class='notice ml-1'>No wounds detected in subject.</span>")
 	else
 		to_chat(user, examine_block(jointext(render_list, "")))
 
