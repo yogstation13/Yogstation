@@ -124,8 +124,6 @@
 
 #define RUNECHAT_PLANE 20
 
-#define BALLOON_CHAT_PLANE 20.9
-
 //HUD layer defines
 
 #define FULLSCREEN_PLANE 20

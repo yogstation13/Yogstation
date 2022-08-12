@@ -310,7 +310,7 @@
 	SHOULD_BE_PURE(TRUE)
 	if(ismob(A))
 		var/mob/B = A
-		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
+		return B.eye_blind
 	return FALSE
 
 ///Is the mob hallucinating?
