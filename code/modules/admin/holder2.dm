@@ -75,8 +75,6 @@ GLOBAL_PROTECT(href_token)
 	deadmined = FALSE
 	if (GLOB.directory[target])
 		associate(GLOB.directory[target])	//find the client for a ckey if they are connected and associate them with us
-	else
-		stack_trace("Activate called on [src] wihout available client")
 
 
 /datum/admins/proc/deactivate()

@@ -242,6 +242,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 	var/connecting_admin = GLOB.permissions.load_permissions_for(src) //because de-admined admins connecting should be treated like admins.
+	if(connecting_admin && !holder)
+		stack_trace("[src] is an admin but has no holder")
 
 	// yogs start - mentor stuff
 	if(ckey in GLOB.mentor_datums)
