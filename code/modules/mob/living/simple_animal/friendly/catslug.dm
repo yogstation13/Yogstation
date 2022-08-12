@@ -16,3 +16,54 @@
 	response_disarm = "rudely paps"
 	response_harm   = "kicks"
 	gold_core_spawnable = FRIENDLY_SPAWN
+
+	obj_damage = 0
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	attacktext = "stabs"
+	var/obj/item/twohanded/spear/weapon
+
+/mob/living/simple_animal/pet/catslug/UnarmedAttack(atom/A)
+	. = ..()
+	if(!isitem(A))
+		return
+	
+	if(!weapon && istype(A, /obj/item/twohanded/spear))
+		visible_message(span_notice("[src] wields the [A]."), span_notice("You wield the [A]."))
+		weapon = A
+		weapon.forceMove(src)
+		melee_damage_lower = weapon.force + weapon.force_wielded
+		melee_damage_upper = weapon.force + weapon.force_wielded
+		armour_penetration = weapon.armour_penetration
+		melee_damage_type = weapon.damtype
+		sharpness = weapon.sharpness
+		update_icons()
+	else if(!weapon && !istype(A, /obj/item/twohanded/spear))
+		to_chat(src, span_warning("You do not know how to wield the [A]!"))
+
+/mob/living/simple_animal/pet/catslug/RangedAttack(atom/A, params)
+	. = ..()
+	if(weapon)
+		melee_damage_lower = initial(melee_damage_lower)
+		melee_damage_upper = initial(melee_damage_upper)
+		armour_penetration = initial(armour_penetration)
+		melee_damage_type = initial(melee_damage_type)
+		sharpness = initial(sharpness)
+		weapon.forceMove(get_turf(src))
+		weapon.throw_at(A, weapon.throw_range, weapon.throw_speed, src)
+		weapon = null
+		update_icons()
+
+/mob/living/simple_animal/pet/catslug/update_icons()
+	. = ..()
+	if(stat == DEAD || resting)
+		return
+	if(weapon)
+		icon_state = "catslug_spear"
+	else
+		icon_state = "catslug"
+
+/mob/living/simple_animal/pet/catslug/death(gibbed)
+	. = ..()
+	weapon = null
+	update_icons()
