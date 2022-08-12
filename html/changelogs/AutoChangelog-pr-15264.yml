@@ -1,5 +1,0 @@
-author: "Xantam-13"
-delete-after: true 
-changes: 
-  - tweak: "Resized interrogation, same layout and purpose but 1 tile/column smaller"
-  - tweak: "Gave the space from interrogation, to the brig physician which allows more spacing to do surgeries and whatnot, as they so often run out during highpop"
