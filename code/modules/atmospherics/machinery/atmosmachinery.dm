@@ -233,6 +233,13 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		var/datum/gas_mixture/env_air = loc.return_air()
 		pressures = int_air.return_pressure() - env_air.return_pressure()
 
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/obj/item/clothing/shoes/magboots/magboot = H.get_item_by_slot(SLOT_SHOES)
+		if(magboot && istype(magboot) && magboot.magpulse)
+			return // Dont send you flying
+		
+
 	user.visible_message(span_danger("[user] is sent flying by pressure!"),span_userdanger("The pressure sends you flying!"))
 
 	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir
