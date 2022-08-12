@@ -53,7 +53,7 @@
 
 /obj/item/gem/rupee
 	name = "\improper Ruperium Crystal"
-	desc = "An exotic radioactive crystalline compound rarely found in the guts of goldgrubs of lavaland. It looks like you can cut it to obtain usable uranium. Its resonating properties make it highly valued in the creation of niche designer instruments."
+	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. While able to be cut into sheets of uranium, the gem's true value is in its resonating, humming properties, often sought out by ethereal musicians to work into their gem-encrusted instruments. As a result, they fetch a fine price in most exchanges."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "rupee"
 	materials = list(/datum/material/uranium=20000)
@@ -63,7 +63,7 @@
 
 /obj/item/gem/fdiamond
 	name = "\improper Frost Diamond"
-	desc = "A rare form of crystallized carbon created through the sheer cold and physiology of icewing watchers, an exclusive yet useless form of diamond coveted by those who fancy rarity above all. It looks like its able to be cut into smaller, less valued diamonds."
+	desc = "A unique diamond that is produced within icewing watchers. Rarely used in traditional marriage bands, various gemstone companies now try to effect a monopoly on it, to little success. It looks like it can be cut into smaller sheets of diamond ore that are normally found within watchers."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "diamond"
 	materials = list(/datum/material/diamond=30000)
@@ -73,7 +73,7 @@
 
 /obj/item/gem/amber
 	name = "\improper Draconic Amber"
-	desc = "The final decompositional result of a dragon's white-hot blood. Cherished by inner-world gemcutters for its soft warmth and faint glow."
+	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after death. Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "amber"
 	point_value = 1600
@@ -84,7 +84,7 @@
 
 /obj/item/gem/bloodstone
 	name = "\improper Ichorium"
-	desc = "A strange substance, known to coalesce in the presence of otherwordly phenomena. Could probably fetch a good price for this."
+	desc = "A weird, sticky substance, known to coalesce in the presence of otherwordly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "red"
 	point_value = 2000
@@ -95,7 +95,7 @@
 
 /obj/item/gem/phoron
 	name = "\improper Stabilized Phoron"
-	desc = "An incredibly rare form of crystal that's formed through immense pressure. Famed for its exceptional durability and uncommon beauty. It looks like it could be destructively analyzed to extract the materials within."
+	desc = "A soft, glowing crystal only found in the deepest veins of plasma. Famed for its exceptional durability and uncommon beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analyzed to extract the condensed materials within."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "phoron"
 	materials = list(/datum/material/plasma=80000)
@@ -107,18 +107,18 @@
 
 /obj/item/gem/void
 	name = "\improper Null Crystal"
-	desc = "A shard of stellar energy, shaped into crystal. These strange objects occasionally appear spontaneously in the deepest, darkest depths of space. Despite it's incredible value, it seems far lighter than it should be."
+	desc = "A shard of stellar, crystallized energy. These strange objects occasionally appear spontaneously in areas where the bluespace fabric is largely unstable. Its surface gives a light jolt to those who touch it. Despite its size, it's also absurdly light."
 	icon = 'icons/obj/gems.dmi'
 	icon_state ="void"
 	point_value = 1800
 	light_range = 2
 	light_power = 1
 	light_color = "#4785a4"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/gem/dark
 	name = "\improper Dark Cube"
-	desc = "An ominous cube that glows with power theorized to have been an ancient salt lick that the king keeps in his pockets. It appears to repel magic around it."
+	desc = "An ominous cube that glows with an unnerving aura, seeming to hungrily draw in the space around it. Its only known property is that of anti-magic."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "dark"
 	point_value = 3000
