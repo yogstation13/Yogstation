@@ -17,6 +17,7 @@
 	response_harm   = "kicks"
 	gold_core_spawnable = FRIENDLY_SPAWN
 
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	obj_damage = 0
 	melee_damage_lower = 0
 	melee_damage_upper = 0
@@ -37,6 +38,7 @@
 		armour_penetration = weapon.armour_penetration
 		melee_damage_type = weapon.damtype
 		sharpness = weapon.sharpness
+		attack_sound = weapon.hitsound
 		update_icons()
 	else if(!weapon && !istype(A, /obj/item/twohanded/spear))
 		to_chat(src, span_warning("You do not know how to wield the [A]!"))
@@ -50,6 +52,7 @@
 		armour_penetration = initial(armour_penetration)
 		melee_damage_type = initial(melee_damage_type)
 		sharpness = initial(sharpness)
+		attack_sound = initial(attack_sound)
 		weapon.forceMove(get_turf(src))
 		weapon.throw_at(A, weapon.throw_range, weapon.throw_speed, src)
 		weapon = null
