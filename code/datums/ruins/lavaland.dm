@@ -337,6 +337,13 @@
 	cost = 5
 	allow_duplicates = FALSE
 
+/datum/map_template/ruin/lavaland/hellwater
+	name = "Ritual Bunker"
+	id = "hellwater"
+	description = "A terrible hive of scum, villany, and daemonic summonings."
+	suffix = "lavaland_surface_hellwater.dmm"
+	cost = 10
+
 /datum/map_template/ruin/lavaland/legionbarracks
 	name = "Legion Barracks"
 	id = "legionbarracks"
