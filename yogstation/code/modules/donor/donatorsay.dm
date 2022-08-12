@@ -14,7 +14,7 @@
 
 	msg = "<b><font color ='#2e87a1'><span class='prefix donator'>DONATOR CHAT:</span> <EM>[key_name(src, 0, 0)]</EM>: <span class='message donator'>[msg]</span></font></b>"
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(is_donator(C))
 			to_chat(C, msg, confidential=TRUE, type=MESSAGE_TYPE_DONATOR)
 	return
