@@ -62,10 +62,7 @@
 	. = ..()
 	if(stat == DEAD || resting)
 		return
-	if(weapon)
-		icon_state = "catslug_spear"
-	else
-		icon_state = "catslug"
+	icon_state = weapon ? initial(icon_state) + "_spear" : initial(icon_state)
 
 /mob/living/simple_animal/pet/catslug/death(gibbed)
 	. = ..()
