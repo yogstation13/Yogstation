@@ -38,7 +38,7 @@ GLOBAL_VAR(restart_counter)
 
 	init_permissions()
 
-	GLOB.permissions.load_admins()
+	GLOB.permissions.start()
 
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
