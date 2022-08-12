@@ -66,8 +66,8 @@
 	icon_state = weapon ? initial(icon_state) + "_spear" : initial(icon_state)
 
 /mob/living/simple_animal/pet/catslug/death(gibbed)
-	. = ..()
 	if(weapon)
 		weapon.forceMove(get_turf(src))
 		weapon = null
 	update_icons()
+	. = ..()
