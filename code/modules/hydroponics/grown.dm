@@ -78,7 +78,7 @@
 	if(reag_txt)
 		msg += reag_txt
 		msg += "<br>[span_info("")]"
-	to_chat(user, msg)
+	to_chat(user, examine_block(msg))
 
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user, params)
 	..()
@@ -97,7 +97,7 @@
 		if(reag_txt)
 			msg += reag_txt
 			msg += "<br>[span_info("")]"
-		to_chat(user, msg)
+		to_chat(user, examine_block(msg))
 	else
 		if(seed)
 			for(var/datum/plant_gene/trait/T in seed.genes)

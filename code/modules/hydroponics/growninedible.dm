@@ -38,7 +38,7 @@
 	if(seed)
 		msg += seed.get_analyzer_text()
 	msg += "</span>"
-	to_chat(usr, msg)
+	to_chat(usr, examine_block(msg))
 	return
 
 /obj/item/grown/attackby(obj/item/O, mob/user, params)
@@ -49,7 +49,7 @@
 		if(seed)
 			msg += seed.get_analyzer_text()
 		msg += "</span>"
-		to_chat(usr, msg)
+		to_chat(usr, examine_block(msg))
 		return
 
 /obj/item/grown/proc/add_juice()
