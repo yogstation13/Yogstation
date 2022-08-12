@@ -932,7 +932,7 @@
 	if(roundstart_quirks.len)
 		combined_msg += span_notice("You have these quirks: [get_trait_string()].")
 
-	to_chat(src, combined_msg.Join("\n"))
+	to_chat(src, examine_block(combined_msg.Join("\n")))
 
 /mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)

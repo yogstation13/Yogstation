@@ -35,7 +35,7 @@
 	return ..()
 
 /datum/component/mood/proc/print_mood(mob/user)
-	var/msg = "<span class='info'><EM>Your current mood</EM>\n"
+	var/msg = "[span_info("<EM>Your Current Mood:</EM>")]\n"
 	msg += span_notice("My mental status: ") //Long term
 	switch(sanity)
 		if(SANITY_GREAT to INFINITY)
