@@ -54,16 +54,20 @@ export const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-export const healthToAttribute = (oxy, tox, burn, brute, attributeList) => {
-  if (oxy === null) // No damage data -- just show that they're alive
+export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList) => {
+  if (is_alive === null || is_alive)
   {
-    return attributeList[0];
+    if (oxy === null) // No damage data -- just show that they're alive
+    {
+      return attributeList[0];
+    }
+    const healthSum = oxy + tox + burn + brute;
+    const level = Math.min(Math.max(Math.ceil(healthSum / 31), 0), 5);
+    return attributeList[level];
   }
-  const healthSum = oxy + tox + burn + brute;
-  const level = Math.min(Math.max(Math.ceil(healthSum / 31), 0), 5);
-  return attributeList[level];
-  // Yogs end
+  return attributeList[5]; // Dead is dead, son
 };
+// Yogs end
 
 export const HealthStat = props => {
   const { type, value } = props;
