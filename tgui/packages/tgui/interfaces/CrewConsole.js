@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Section, Table, Flex, Icon} from '../components';
+import { Box, Button, Section, Table, Flex, Icon } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
