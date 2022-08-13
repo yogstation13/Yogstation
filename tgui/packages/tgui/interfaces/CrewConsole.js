@@ -149,6 +149,9 @@ export const CrewConsoleContent = (props, context) => {
                   ({!originalTitles ? sensor.assignment_title : sensor.assignment})
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
+                  {sensor.is_robot ? <Icon name="wrench" color="#B7410E" size={1} /> : ""}
+                </Table.Cell>
+                <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
                     <Icon
                       name={healthToAttribute( // yogs -- show death when dead
