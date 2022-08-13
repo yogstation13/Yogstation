@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - bugfix: "Gax AI Ship Access room now on its own APC & Camera"
+  - bugfix: "fixes a bunch of shit by the evac podbay & EVA Maint"

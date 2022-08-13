@@ -398,10 +398,11 @@
 	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/honk)
 	return TRUE
 
-/obj/item/storage/book/bible/ComponentInitialize()
+/datum/religion_sect/honkmother/on_conversion(mob/living/L)
 	. = ..()
-	AddComponent(/datum/component/slippery, 40)
-
+	for(var/obj/item/storage/book/bible/da_bible in L.get_contents())
+		da_bible.AddComponent(/datum/component/slippery, 40)
+		da_bible.desc += " It has an usually slippery texture."
 
 /datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana/offering, mob/living/user)
 	if(!istype(offering))

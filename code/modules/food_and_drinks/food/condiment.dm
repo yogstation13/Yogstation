@@ -80,15 +80,20 @@
 		to_chat(user, span_notice("You fill [src] with [trans] units of the contents of [target]."))
 
 	//Something like a glass or a food item. Player probably wants to transfer TO it.
-	else if(target.is_drainable() || istype(target, /obj/item/reagent_containers/food/snacks))
+	else if(target.is_drainable()) // Yogs -- condiment fix, created food_transfer helper proc
 		if(!reagents.total_volume)
 			to_chat(user, span_warning("[src] is empty!"))
 			return
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, span_warning("you can't add anymore to [target]!"))
+			to_chat(user, span_warning("You can't add anymore to [target]!")) // Yogs -- capitalization fix
 			return
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("You transfer [trans] units of the condiment to [target]."))
+	//yogs start -- condiment fix
+	else if(istype(target, /obj/item/reagent_containers/food/snacks))
+		food_transfer(target,user)
+		return
+	//yogs end
 
 /obj/item/reagent_containers/food/condiment/on_reagent_change(changetype)
 	if(!possible_states.len)
@@ -314,6 +319,8 @@
 /obj/item/reagent_containers/food/condiment/pack/attack(mob/M, mob/user, def_zone) //Can't feed these to people directly.
 	return
 
+//yogs -- commenting this out as part of the condiment fix
+/*
 /obj/item/reagent_containers/food/condiment/pack/afterattack(obj/target, mob/user , proximity)
 	. = ..()
 	if(!proximity)
@@ -333,6 +340,7 @@
 			to_chat(user, span_notice("You tear open [src] above [target] and the condiments drip onto it."))
 			src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 			qdel(src)
+*/
 
 /obj/item/reagent_containers/food/condiment/pack/on_reagent_change(changetype)
 	if(reagents.reagent_list.len > 0)
