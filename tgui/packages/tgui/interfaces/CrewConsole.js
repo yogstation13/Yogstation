@@ -54,7 +54,7 @@ export const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-export const healthToAttribute = (oxy, tox, burn, brute, attributeList) => {// Yogs -- show deadness
+export const healthToAttribute = (oxy, tox, burn, brute, attributeList) => {
   if (oxy === null) // No damage data -- just show that they're alive
   {
     return attributeList[0];
