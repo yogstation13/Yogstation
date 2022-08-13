@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - bugfix: "Metastation AI/Telecomms should not overheat as much now (Added more freezers)"
+  - tweak: "Metastation AI satellite maint adjusted in length to fit new freezers and a second N2 canister"
