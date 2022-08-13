@@ -165,6 +165,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 				if (ispreternis(H) || isipc(H))
 					is_robot = TRUE
+				else
+					is_robot = FALSE
 
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
 					life_status = H.stat < DEAD
