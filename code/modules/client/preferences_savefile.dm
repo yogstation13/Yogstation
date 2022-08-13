@@ -204,6 +204,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["uses_glasses_colour"], uses_glasses_colour)
 	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["parallax"], parallax)
+	READ_FILE(S["itemoutline_pref"], itemoutline_pref)
 	READ_FILE(S["ambientocclusion"], ambientocclusion)
 	READ_FILE(S["auto_fit_viewport"], auto_fit_viewport)
 	READ_FILE(S["widescreenpref"], widescreenpref)
@@ -259,6 +260,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	toggles				= sanitize_integer(toggles, 0, ~0, initial(toggles)) // Yogs -- Fixes toggles not having >16 bits of flagspace
 	clientfps			= sanitize_integer(clientfps, 0, 1000, 0)
 	parallax			= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
+	itemoutline_pref 	= sanitize_integer(itemoutline_pref, FALSE, TRUE, initial(itemoutline_pref))
 	ambientocclusion	= sanitize_integer(ambientocclusion, FALSE, TRUE, initial(ambientocclusion))
 	auto_fit_viewport	= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
 	widescreenpref  	= sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
@@ -345,6 +347,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["uses_glasses_colour"], uses_glasses_colour)
 	WRITE_FILE(S["clientfps"], clientfps)
 	WRITE_FILE(S["parallax"], parallax)
+	WRITE_FILE(S["itemoutline_pref"], itemoutline_pref)
 	WRITE_FILE(S["ambientocclusion"], ambientocclusion)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
 	WRITE_FILE(S["widescreenpref"], widescreenpref)
