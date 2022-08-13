@@ -62,7 +62,7 @@ export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList
       return attributeList[0];
     }
     const healthSum = oxy + tox + burn + brute;
-    const level = Math.min(Math.max(Math.ceil(healthSum / 31), 0), 5);
+    const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
     return attributeList[level];
   }
   return attributeList[5]; // Dead is dead, son
