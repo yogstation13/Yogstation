@@ -955,6 +955,7 @@
 		density = TRUE
 		open = FALSE
 		opacity = TRUE
+		
 
 	else
 		icon_state = "curtain_open"
