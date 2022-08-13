@@ -37843,6 +37843,21 @@
 "lpv" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"lpG" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/turnstile/brig{
+	dir = 1
+	},
+/obj/machinery/door/window/eastleft{
+	dir = 2;
+	name = "brig turnstile";
+	req_access_txt = "1"
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "lpU" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -42867,16 +42882,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"nAp" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/turnstile/brig{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "nAY" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 4
@@ -98367,10 +98372,10 @@ upk
 mLd
 lLO
 ebQ
-nAp
+lpG
 qad
 mqQ
-nAp
+lpG
 oUJ
 hEG
 fkv
