@@ -78,7 +78,7 @@
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/hell_bunker
-	name = "Ritual Bunker"
+	name = "Ritual Bunker" 
 	noteleport = TRUE
 
 /area/ruin/unpowered/russianbunker
