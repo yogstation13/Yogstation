@@ -54,7 +54,7 @@ export const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-export const healthToAttribute = (oxy, tox, burn, brute, attributeList) => { // Yogs -- show deadness
+const healthToAttribute = (oxy, tox, burn, brute, attributeList) => { // Yogs -- show deadness
   const healthSum = oxy + tox + burn + brute;
   const level = Math.min(Math.max(Math.ceil(healthSum / 31), 0), 5);
   return attributeList[level];
