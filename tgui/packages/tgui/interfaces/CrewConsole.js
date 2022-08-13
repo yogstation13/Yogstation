@@ -54,18 +54,14 @@ export const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList) => { // Yogs -- show deadness
-  if (is_alive === null || is_alive)
+export const healthToAttribute = (oxy, tox, burn, brute, attributeList) => { // Yogs -- show deadness
+  if (oxy === null) // No damage data -- just show that they're alive
   {
-    if (oxy === null) // No damage data -- just show that they're alive
-    {
-      return attributeList[0];
-    }
-    const healthSum = oxy + tox + burn + brute;
-    const level = Math.min(Math.max(Math.ceil(healthSum / 31), 0), 5);
-    return attributeList[level];
+    return attributeList[0];
   }
-  return attributeList[5]; // Dead is dead, son
+  const healthSum = oxy + tox + burn + brute;
+  const level = Math.min(Math.max(Math.ceil(healthSum / 31), 0), 5);
+  return attributeList[level];
   // Yogs end
 };
 
@@ -131,10 +127,10 @@ export const CrewConsoleContent = (props, context) => {
               <Table.Cell bold collapsing textAlign="center">
                 Vitals
               </Table.Cell>
-              <Table.Cell bold collapsing textAlign="center">
+              <Table.Cell bold textAlign="center">
                 Position
               </Table.Cell>
-              {(
+              {!!data.link_allowed && (
                 <Table.Cell bold collapsing textAlign="center">
                   Tracking
                 </Table.Cell>
