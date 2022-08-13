@@ -18539,11 +18539,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"jwt" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/space/basic,
-/area/maintenance/department/eva)
 "jww" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -93560,7 +93555,7 @@ iLQ
 dYL
 dYL
 dYL
-jwt
+wUc
 bvm
 xgw
 fnc
