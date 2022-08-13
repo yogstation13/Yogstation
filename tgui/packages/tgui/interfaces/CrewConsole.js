@@ -54,7 +54,7 @@ export const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList) => {
+const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList) => { // Yogs -- show deadness
   if (is_alive === null || is_alive)
   {
     if (oxy === null) // No damage data -- just show that they're alive
@@ -149,9 +149,9 @@ export const CrewConsoleContent = (props, context) => {
                   ({!originalTitles ? sensor.assignment_title : sensor.assignment})
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                {sensor.oxydam !== null ? (
+                {sensor.oxydam !== null ? ( 
                   <Icon
-                    name={healthToAttribute(
+                    name={healthToAttribute( // yogs -- show death when dead
                       sensor.oxydam,
                       sensor.toxdam,
                       sensor.burndam,
