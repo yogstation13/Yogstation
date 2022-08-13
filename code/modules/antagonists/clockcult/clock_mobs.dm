@@ -43,7 +43,7 @@
 /mob/living/simple_animal/hostile/clockwork/examine(mob/user)
 	var/t_He = p_they(TRUE)
 	var/t_s = p_s()
-	var/msg = "<span class='brass'>*---------*\nThis is [icon2html(src, user)] \a <b>[src]</b>!\n"
+	var/msg = "<span class='brass'>This is [icon2html(src, user)] \a <b>[src]</b>!\n"
 	msg += "[desc]\n"
 	if(health < maxHealth)
 		msg += "<span class='warning'>"
@@ -55,7 +55,7 @@
 	var/addendum = examine_info()
 	if(addendum)
 		msg += "[addendum]\n"
-	msg += "*---------*</span>"
+	msg += "</span>"
 
 	return list(msg)
 
