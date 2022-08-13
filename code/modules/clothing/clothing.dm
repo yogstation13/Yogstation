@@ -222,13 +222,6 @@
 	if(damaged_clothes == CLOTHING_SHREDDED)
 		. += span_warning("<b>It is completely shredded and requires mending before it can be worn again!</b>")
 		return
-	switch (max_heat_protection_temperature)
-		if (400 to 1000)
-			. += "[src] offers the wearer limited protection from fire."
-		if (1001 to 1600)
-			. += "[src] offers the wearer some protection from fire."
-		if (1601 to 35000)
-			. += "[src] offers the wearer robust protection from fire."
 	for(var/zone in damage_by_parts)
 		var/pct_damage_part = damage_by_parts[zone] / limb_integrity * 100
 		var/zone_name = parse_zone(zone)
