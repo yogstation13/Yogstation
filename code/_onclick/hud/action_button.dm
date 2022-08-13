@@ -95,6 +95,8 @@
 	if(modifiers["alt"])
 		for(var/V in usr.actions)
 			var/datum/action/A = V
+			if(A.owner != usr)
+				continue // This isnt your button fuck off
 			var/obj/screen/movable/action_button/B = A.button
 			B.moved = FALSE
 			if(B.id && usr.client)
