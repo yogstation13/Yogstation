@@ -122,6 +122,8 @@
 /obj/screen/movable/action_button/hide_toggle/AltClick(mob/user)
 	for(var/V in user.actions)
 		var/datum/action/A = V
+		if(A.owner != user)
+			continue // This isnt your button fuck off
 		var/obj/screen/movable/action_button/B = A.button
 		B.moved = FALSE
 	if(moved)
