@@ -11293,6 +11293,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"boN" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Prison Wing";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/hallway)
 "boR" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -18783,17 +18793,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"cQn" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Prison Wing";
-	req_access_txt = "2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel,
-/area/security/prison/hallway)
 "cQr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -95713,7 +95712,7 @@ bAL
 acd
 kbE
 sJV
-cQn
+boN
 quH
 jDE
 naR
