@@ -171,7 +171,7 @@ export const CrewConsoleContent = (props, context) => {
                       <Icon name="heart" color="#17d568" size={1} />
                     ) : (
                       <Icon name="skull" color="#B7410E" size={1} />
-                  ))}
+                    ))}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
