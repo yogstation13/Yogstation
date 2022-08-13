@@ -1,15 +1,24 @@
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, ColorBox, Section, Table, Flex } from '../components';
+import { Box, Button, Section, Table, Flex, Icon } from '../components';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
 export const HEALTH_COLOR_BY_LEVEL = [
   '#17d568',
-  '#2ecc71',
+  '#c4cf2d',
   '#e67e22',
   '#ed5100',
   '#e74c3c',
-  '#ed2814',
+  '#801308',
+];
+
+const HEALTH_ICON_BY_LEVEL = [
+  'heart',
+  'heart',
+  'heart',
+  'heart',
+  'heartbeat',
+  'skull',
 ];
 
 export const jobIsHead = jobId => jobId % 10 === 0;
@@ -45,20 +54,20 @@ export const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-export const healthToColor = (oxy, tox, burn, brute, is_alive) => { // Yogs -- show deadness
+export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList) => {
   if (is_alive === null || is_alive)
   {
     if (oxy === null) // No damage data -- just show that they're alive
     {
-      return HEALTH_COLOR_BY_LEVEL[0];
+      return attributeList[0];
     }
     const healthSum = oxy + tox + burn + brute;
     const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
-    return HEALTH_COLOR_BY_LEVEL[level];
+    return attributeList[level];
   }
-  return HEALTH_COLOR_BY_LEVEL[5]; // Dead is dead, son
-  // Yogs end
+  return attributeList[5]; // Dead is dead, son
 };
+// Yogs end
 
 export const HealthStat = props => {
   const { type, value } = props;
@@ -122,11 +131,11 @@ export const CrewConsoleContent = (props, context) => {
               <Table.Cell bold collapsing textAlign="center">
                 Vitals
               </Table.Cell>
-              <Table.Cell bold>
+              <Table.Cell bold textAlign="center">
                 Position
               </Table.Cell>
               {!!data.link_allowed && (
-                <Table.Cell bold collapsing>
+                <Table.Cell bold collapsing textAlign="center">
                   Tracking
                 </Table.Cell>
               )}
@@ -140,13 +149,32 @@ export const CrewConsoleContent = (props, context) => {
                   ({!originalTitles ? sensor.assignment_title : sensor.assignment})
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                  <ColorBox
-                    color={healthToColor( // yogs -- show death when dead
-                      sensor.oxydam,
-                      sensor.toxdam,
-                      sensor.burndam,
-                      sensor.brutedam,
-                      sensor.life_status)} />
+                  {sensor.is_robot ? <Icon name="wrench" color="#B7410E" size={1} /> : ""}
+                </Table.Cell>
+                <Table.Cell collapsing textAlign="center">
+                  {sensor.oxydam !== null ? (
+                    <Icon
+                      name={healthToAttribute( // yogs -- show death when dead
+                        sensor.oxydam,
+                        sensor.toxdam,
+                        sensor.burndam,
+                        sensor.brutedam,
+                        sensor.life_status,
+                        HEALTH_ICON_BY_LEVEL)}
+                      color={healthToAttribute(
+                        sensor.oxydam,
+                        sensor.toxdam,
+                        sensor.burndam,
+                        sensor.brutedam,
+                        sensor.life_status,
+                        HEALTH_COLOR_BY_LEVEL)}
+                      size={1} />
+                  ) : (
+                    sensor.life_status ? (
+                      <Icon name="heart" color="#17d568" size={1} />
+                    ) : (
+                      <Icon name="skull" color="#B7410E" size={1} />
+                    ))}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
@@ -164,7 +192,7 @@ export const CrewConsoleContent = (props, context) => {
                   )}
                 </Table.Cell>
                 <Table.Cell>
-                  {sensor.pos_x !== null ? sensor.area : 'N/A'}
+                  {sensor.pos_x !== null ? sensor.area : <Icon name="question" color="#ffffff" size={1} /> }
                 </Table.Cell>
                 {!!data.link_allowed && (
                   <Table.Cell collapsing>

@@ -1,7 +1,8 @@
 //Station goal stuff goes here
+#define BLUESPACE_TAP_POINT_GOAL 45000 // Yogs
 /datum/station_goal/bluespace_tap
 	name = "Bluespace Harvester"
-	var/goal = 45000
+	var/goal = BLUESPACE_TAP_POINT_GOAL // Yogs
 
 /datum/station_goal/bluespace_tap/get_report()
 	return {"<b>Bluespace Harvester Experiment</b><br>
