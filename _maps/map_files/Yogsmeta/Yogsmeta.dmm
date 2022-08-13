@@ -56617,6 +56617,11 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
+"drz" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "drJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/extinguisher_cabinet{
@@ -63730,14 +63735,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"iwM" = (
-/obj/structure/rack,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/gloves/color/black,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "ixs" = (
 /obj/machinery/light{
 	dir = 4
@@ -67494,6 +67491,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"lsI" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/structure/rack,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/gloves/color/black,
+/turf/open/floor/plating,
+/area/ai_monitored/storage/satellite)
 "lsZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -73751,13 +73760,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"qhy" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "qhE" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -76809,13 +76811,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"sBu" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/plating,
-/area/ai_monitored/storage/satellite)
 "sBw" = (
 /obj/structure/closet/secure_closet/medical1,
 /obj/effect/turf_decal/stripes/line{
@@ -141369,8 +141364,8 @@ aNz
 iDk
 aaa
 aRy
-iwM
-qhy
+rlK
+drz
 uGB
 rYE
 aRy
@@ -141629,7 +141624,7 @@ aRy
 xtp
 glh
 vOC
-sBu
+lsI
 aRy
 hxn
 kKf
