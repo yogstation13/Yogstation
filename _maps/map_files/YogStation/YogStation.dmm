@@ -48987,6 +48987,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"qlp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/table,
+/obj/item/taperecorder{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/folder/red{
+	pixel_x = -11;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "qlA" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -50118,19 +50131,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"qKm" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/table,
-/obj/item/taperecorder{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/obj/item/folder/red{
-	pixel_x = -10;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "qKn" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Chemistry Lab";
@@ -93261,7 +93261,7 @@ wCb
 jvl
 otI
 gTA
-qKm
+qlp
 voF
 bQS
 agj
