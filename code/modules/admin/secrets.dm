@@ -63,6 +63,8 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=blackout'>Break all lights</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=whiteout'>Fix all lights</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=floorlava'>The floor is lava! (DANGEROUS: extremely lame)</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=activatecrittermoney'>Activate critter money</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=deactivatecrittermoney'>Deactivate critter money</A><BR>
 			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=flipmovement'>Flip client movement directions</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=randommovement'>Randomize client movement directions</A><BR>
@@ -577,6 +579,22 @@
 			message_admins("[key_name_admin(usr)] has removed everyone from \
 				purrbation.")
 			log_admin("[key_name(usr)] has removed everyone from purrbation.")
+		if("activatecrittermoney")
+			if(!check_rights(R_FUN))
+				return
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				for(var/obj/item/card/id/id in H)
+					id.critter_money = TRUE
+			message_admins("[key_name_admin(usr)] has activated critter money (pets generated on money withdrawl)")
+			log_admin("[key_name(usr)] has activated critter money.")
+		if("deactivatecrittermoney")
+			if(!check_rights(R_FUN))
+				return
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				for(var/obj/item/card/id/id in H)
+					id.critter_money = FALSE
+			message_admins("[key_name_admin(usr)] has deactivated critter money (pets generated on money withdrawl)!")
+			log_admin("[key_name(usr)] has deactivated critter money.")
 		// yogs start - Custom keybindings
 		/*if("flipmovement")
 			if(!check_rights(R_FUN))

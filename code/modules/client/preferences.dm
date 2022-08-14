@@ -976,6 +976,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Drop", ACTION_DROP)
 				BUTTON_KEY("Equip", ACTION_EQUIP)
 				BUTTON_KEY("Rest", ACTION_REST)
+				BUTTON_KEY("Toggle Walk Run", ACTION_TOGGLEWALKRUN)
 
 				dat += "</td><td width='300px' height='300px' valign='top'>"
 

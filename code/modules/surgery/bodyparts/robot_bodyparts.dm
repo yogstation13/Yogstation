@@ -6,6 +6,66 @@
 #define ROBOTIC_MEDIUM_BURN_MSG "charred"
 #define ROBOTIC_HEAVY_BURN_MSG "smoldering"
 
+#define IPCLIMB(_id, lname) \
+	/obj/item/bodypart/l_leg/robot/ipc/_id { \
+		name = lname + " Left Leg"; \
+		icon_state = #_id + "_l_leg"; \
+		species_id = #_id; \
+	}; \
+	/obj/item/bodypart/r_leg/robot/ipc/_id { \
+		name = lname + " Right Leg"; \
+		icon_state = #_id + "_r_leg"; \
+		species_id = #_id; \
+	}; \
+	/obj/item/bodypart/l_arm/robot/ipc/_id { \
+		name = lname + " Left Arm"; \
+		icon_state = #_id + "_l_arm"; \
+		species_id = #_id; \
+	}; \
+	/obj/item/bodypart/r_arm/robot/ipc/_id { \
+		name = lname + " Right Arm"; \
+		icon_state = #_id + "_r_arm"; \
+		species_id = #_id; \
+	}; \
+	/obj/item/bodypart/head/robot/ipc/_id { \
+		name = lname + " Head"; \
+		icon_state = #_id + "_head"; \
+		species_id = #_id; \
+	}; \
+	/datum/techweb_node/_id { \
+		id = #_id; \
+		display_name = lname + " Limbs"; \
+		description = "Designs for the " + lname + "."; \
+		prereq_ids = list("ipc_organs"); \
+		design_ids = list(#_id+"_head", #_id+"_l_leg", #_id+"_r_leg", #_id+"_l_arm", #_id+"_r_arm"); \
+		research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000); \
+	}; \
+	/datum/design/ipclimbs/l_leg/_id { \
+		name = lname + " Left Leg"; \
+		id = #_id + "_l_leg"; \
+		build_path = /obj/item/bodypart/l_leg/robot/ipc/_id; \
+	}; \
+	/datum/design/ipclimbs/r_leg/_id { \
+		name = lname + " Right Leg"; \
+		id = #_id + "_r_leg"; \
+		build_path = /obj/item/bodypart/r_leg/robot/ipc/_id; \
+	}; \
+	/datum/design/ipclimbs/l_arm/_id { \
+		name = lname + " Left Arm"; \
+		id = #_id + "_l_arm"; \
+		build_path = /obj/item/bodypart/l_arm/robot/ipc/_id; \
+	}; \
+	/datum/design/ipclimbs/r_arm/_id { \
+		name = lname + " Right Arm"; \
+		id = #_id + "_r_arm"; \
+		build_path = /obj/item/bodypart/r_arm/robot/ipc/_id; \
+	}; \
+	/datum/design/ipclimbs/head/_id { \
+		name = lname + " Head"; \
+		id = #_id + "_head"; \
+		build_path = /obj/item/bodypart/head/robot/ipc/_id; \
+	}; \
+
 //For ye whom may venture here, split up arm / hand sprites are formatted as "l_hand" & "l_arm".
 //The complete sprite (displayed when the limb is on the ground) should be named "borg_l_arm".
 //Failure to follow this pattern will cause the hand's icons to be missing due to the way get_limb_icon() works to generate the mob's icons using the aux_zone var.
@@ -327,6 +387,37 @@
 	burn_reduction = 0
 	max_damage = 20
 
+
+
+/obj/item/bodypart/l_leg/robot/ipc
+	icon = 'icons/mob/human_parts.dmi'
+	limb_override = TRUE
+
+/obj/item/bodypart/r_leg/robot/ipc
+	icon = 'icons/mob/human_parts.dmi'
+	limb_override = TRUE
+
+/obj/item/bodypart/l_arm/robot/ipc
+	icon = 'icons/mob/human_parts.dmi'
+	limb_override = TRUE
+
+/obj/item/bodypart/r_arm/robot/ipc
+	icon = 'icons/mob/human_parts.dmi'
+	limb_override = TRUE
+
+/obj/item/bodypart/head/robot/ipc
+	icon = 'icons/mob/human_parts.dmi'
+	limb_override = TRUE
+
+IPCLIMB(bshipc, "Bishop Cyberkinetics")
+IPCLIMB(bs2ipc, "Bishop Cyberkinetics (2.0)")
+IPCLIMB(hsiipc, "Hephaestus Industries")
+IPCLIMB(hi2ipc, "Hephaestus Industries (2.0)")
+IPCLIMB(sgmipc, "Shellguard Munitions")
+IPCLIMB(wtmipc, "Ward-Takahashi")
+IPCLIMB(xmgipc, "Xion Manufacturing")
+IPCLIMB(xm2ipc, "Xion Manufacturing (2.0)")
+IPCLIMB(zhpipc, "Zeng-Hu Pharmaceuticals")
 
 #undef ROBOTIC_LIGHT_BRUTE_MSG
 #undef ROBOTIC_MEDIUM_BRUTE_MSG

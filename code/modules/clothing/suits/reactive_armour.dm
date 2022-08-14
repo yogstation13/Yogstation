@@ -178,7 +178,9 @@
 	if(!active)
 		return FALSE
 	if(!damage)
-		return 0
+		return FALSE
+	if(owner.stat == DEAD)
+		return FALSE
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
 			var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread

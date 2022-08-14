@@ -14,10 +14,10 @@
 
 	msg = "<b><font color ='#2e87a1'><span class='prefix donator'>DONATOR CHAT:</span> <EM>[key_name(src, 0, 0)]</EM>: <span class='message donator'>[msg]</span></font></b>"
 
-	if(CONFIG_GET(flag/everyone_is_donator))
-		to_chat(GLOB.clients, msg, confidential=TRUE)
-	else
-		to_chat(GLOB.donators | GLOB.mentors | GLOB.permissions.admins | GLOB.permissions.deadmins, msg, confidential=TRUE, type=MESSAGE_TYPE_DONATOR)
+	for(var/client/C in GLOB.clients)
+		if(is_donator(C))
+			to_chat(C, msg, confidential=TRUE, type=MESSAGE_TYPE_DONATOR)
+	return
 
 /client/proc/get_donator_say()
 	var/msg = input(src, null, "Donator Chat \"text\"") as text|null
