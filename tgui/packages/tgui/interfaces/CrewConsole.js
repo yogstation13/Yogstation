@@ -6,7 +6,7 @@ import { Window } from '../layouts';
 export const HEALTH_COLOR_BY_LEVEL = [
   '#17d568',
   '#c4cf2d',
-  '#f04f0a',
+  '#e89517',
   '#fa301b',
   '#e60505',
   '#c71402',
