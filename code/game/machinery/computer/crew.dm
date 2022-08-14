@@ -122,6 +122,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/ijob
 	var/name
 	var/is_robot
+	var/is_human
 	var/assignment_title
 	var/assignment
 	var/oxydam
@@ -168,6 +169,11 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				else
 					is_robot = FALSE
 
+				if (ishumanbasic(H))
+					is_human = TRUE
+				else
+					is_human = FALSE
+
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
 					life_status = H.stat < DEAD
 				else
@@ -198,7 +204,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if(life_status == FALSE)
 					new_death_list.Add(H)
 
-				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_robot" = is_robot, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_robot" = is_robot, "is_human" = is_human, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
