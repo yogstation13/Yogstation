@@ -1,0 +1,5 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - rscadd: "Revolutionary lawset for AI"
+  - rscadd: "Head revolutionaries can install the revolutionary lawset on an AI by alt-clicking an AI upload console."

@@ -536,6 +536,22 @@
 			message_admins("[key_name_admin(mob_user)] has removed everyone from \
 				purrbation.")
 			log_admin("[key_name(mob_user)] has removed everyone from purrbation.")
+		if("activatecrittermoney")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				for(var/obj/item/card/id/id in H)
+					id.critter_money = TRUE
+			message_admins("[key_name_admin(mob_user)] has activated critter money (pets generated on money withdrawl)")
+			log_admin("[key_name(mob_user)] has activated critter money.")
+		if("deactivatecrittermoney")
+			if(!check_rights_for(rights, R_FUN))
+				return
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				for(var/obj/item/card/id/id in H)
+					id.critter_money = FALSE
+			message_admins("[key_name_admin(mob_user)] has deactivated critter money (pets generated on money withdrawl)!")
+			log_admin("[key_name(mob_user)] has deactivated critter money.")
 
 	if(E)
 		E.processing = FALSE

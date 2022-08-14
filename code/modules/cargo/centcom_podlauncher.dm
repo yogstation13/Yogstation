@@ -182,6 +182,11 @@
 /datum/centcom_podlauncher/ui_act(action, params)
 	if(..())
 		return
+	
+	var/mob/exploit_victim = holder.mob
+	if(exploit_victim != usr)
+		return
+	
 	switch(action)
 		////////////////////////////UTILITIES//////////////////
 		if("gamePanel")

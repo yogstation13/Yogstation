@@ -47,6 +47,7 @@
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
 	var/obj/item/multitool/aiMulti
 	var/mob/living/simple_animal/bot/Bot
+	var/obj/machinery/holopad/pad 
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
 	var/datum/effect_system/spark_spread/spark_system //So they can initialize sparks whenever/N
 
@@ -826,6 +827,8 @@
 						holo_icon = getHologramIcon(icon(icon_list[input],"alienq"))
 					else
 						holo_icon = getHologramIcon(icon(icon_list[input], input))
+	if(pad)
+		pad.refresh_holo(src)
 	return
 
 /mob/living/silicon/ai/proc/corereturn()

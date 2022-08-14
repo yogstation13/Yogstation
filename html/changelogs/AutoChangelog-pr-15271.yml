@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "having magboots equipped and having them on will no longer launch you when unwrenching pipes"
