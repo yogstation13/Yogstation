@@ -11,6 +11,7 @@
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
 		return
+	..()
 	forums_admins.Cut()
 	overrides.Cut()
 
@@ -52,7 +53,11 @@
 	UNTIL(req.is_complete())
 	
 	var/datum/http_response/response = req.into_response()
-	var/list/body = json_decode(response.body)
+	var/list/body
+	try
+		body = json_decode(response.body)
+	catch
+		CRASH("Malformed JSON from forums permssions endpoint. [response.body]")
 	if(!body["success"])
 		return FALSE
 	

@@ -8,6 +8,7 @@
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
 		return
+	..()
 	dbranks.Cut()
 	dbadmins.Cut()
 
