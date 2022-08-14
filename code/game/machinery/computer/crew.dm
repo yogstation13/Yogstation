@@ -161,7 +161,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					name = "Unknown"
 					assignment_title = ""
 					assignment = ""
-					ijob = 80 
+					ijob = 80
 
 				if (ispreternis(H) || isipc(H))
 					is_robot = TRUE
