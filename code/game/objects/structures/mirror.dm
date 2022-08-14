@@ -168,7 +168,7 @@
 	. += list(RACE = list("select a new race", choosable_races))
 	. += list(GENDER = list("Select a new gender", list()))
 	var/datum/species/S = H.dna.species
-	if(!(AGENDER in S.species_traits || FGENDER in S.species_traits || MGENDER in S.species_traits))
+	if(!(AGENDER in S.species_traits) || !(FGENDER in S.species_traits) || !(MGENDER in S.species_traits))
 		.[GENDER][2] = list(MALE, FEMALE)
 	if(!(NOEYESPRITES in S.species_traits))
 		. += list(EYE_COLOR)
