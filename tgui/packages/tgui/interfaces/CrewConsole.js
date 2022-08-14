@@ -55,6 +55,7 @@ export const jobToColor = jobId => {
 };
 
 export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList) => {
+  // Yogs -- show deadness
   if (is_alive === null || is_alive)
   {
     if (oxy === null) // No damage data -- just show that they're alive
