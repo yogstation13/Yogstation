@@ -8,7 +8,7 @@ export const HEALTH_COLOR_BY_LEVEL = [
   '#c4cf2d',
   '#e67e22',
   '#ed5100',
-  '#e74c3c',
+  '#fa301b',
   '#c71402',
 ];
 
