@@ -100,6 +100,13 @@
 
 	. = TRUE
 
+	if(authenticated(usr) && !unlocked && !is_station_level(z) && !IsAdminGhost(usr))
+		if(issilicon(usr))
+			visible_message("An error appears on the screen: Unable to contact authentication servers. Please move closer to the station.")
+			return
+		action = "toggleAuthentication" // We actually want to log out
+		visible_message("An error appears on the screen: Unable to communicate with the station. Logging out.")
+
 	switch (action)
 		if ("answerMessage")
 			if (!authenticated(usr))
@@ -309,7 +316,7 @@
 				authorize_name = null
 				playsound(src, 'sound/machines/terminal_off.ogg', 50, FALSE)
 				return
-			if(!unlocked && !is_station_level(z))
+			if(!unlocked && !is_station_level(z) && !IsAdminGhost(usr))
 				visible_message("An error appears on the screen: Unable to contact authentication servers. Please move closer to the station.")
 				return
 			if (obj_flags & EMAGGED)
