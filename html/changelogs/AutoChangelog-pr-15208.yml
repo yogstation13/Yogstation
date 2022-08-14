@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "You can now throw hats onto people if you target their head and are on help intent"
