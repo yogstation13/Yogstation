@@ -9,7 +9,7 @@ export const HEALTH_COLOR_BY_LEVEL = [
   '#e67e22',
   '#ed5100',
   '#e74c3c',
-  '#801308',
+  '#c71402',
 ];
 
 const HEALTH_ICON_BY_LEVEL = [
@@ -63,7 +63,7 @@ export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList
       return attributeList[0];
     }
     const healthSum = oxy + tox + burn + brute;
-    const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
+    const level = Math.min(Math.max(Math.ceil(healthSum / 48), 0), 5);
     return attributeList[level];
   }
   return attributeList[5]; // Dead is dead, son
@@ -152,7 +152,7 @@ export const CrewConsoleContent = (props, context) => {
                 <Table.Cell collapsing textAlign="center">
                   {sensor.is_robot ? <Icon name="wrench" color="#B7410E" size={1} /> : ""}
                 </Table.Cell>
-                <Table.Cell collapsing textAlign="center">
+                <Table.Cell collapsing textAlign="center">#c71402
                   {sensor.oxydam !== null ? (
                     <Icon
                       name={healthToAttribute( // yogs -- show death when dead
@@ -174,7 +174,7 @@ export const CrewConsoleContent = (props, context) => {
                     sensor.life_status ? (
                       <Icon name="heart" color="#17d568" size={1} />
                     ) : (
-                      <Icon name="skull" color="#B7410E" size={1} />
+                      <Icon name="skull" color="#c71402" size={1} />
                     ))}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
