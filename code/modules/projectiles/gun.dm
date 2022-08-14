@@ -245,16 +245,12 @@
 
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
-	var/loop_counter = 0
 	if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
-		for(var/obj/item/gun/G in H.held_items)
-			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
-				continue
-			else if(G.can_trigger_gun(user))
-				bonus_spread += 24 * G.weapon_weight
-				loop_counter++
-				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread), loop_counter)
+		if(weapon_weight < WEAPON_MEDIUM && istype(H.held_items[H.get_inactive_hand_index()], /obj/item/gun) && can_trigger_gun(user))
+			bonus_spread += 12 * weapon_weight
+			H.changeNext_move(CLICK_CD_RANGE*0.75)
+			H.swap_hand()
 
 	process_fire(target, user, TRUE, params, null, bonus_spread)
 
