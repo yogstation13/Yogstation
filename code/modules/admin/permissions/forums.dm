@@ -53,6 +53,8 @@
 	UNTIL(req.is_complete())
 	
 	var/datum/http_response/response = req.into_response()
+	if(response.errored)
+		CRASH("Errored loading forums rank: [response.error]")
 	var/list/body
 	try
 		body = json_decode(response.body)
