@@ -15,8 +15,7 @@ export const SecretsPanel = (props, context) => {
   return (
     <Window
       width={410}
-      height={700}
-      theme={'syndicate'}>
+      height={700}>
       <Window.Content scrollable>
         <NoticeBox textAlign={"center"}>
           The first rule of adminbuse is: you don&apos;t talk about the adminbuse.
