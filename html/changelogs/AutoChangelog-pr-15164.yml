@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Protolathe can now print blastdoor controller"
+  - tweak: "For autolathe, blastdoor controller is moved from tcomm tab to electronic tab"
