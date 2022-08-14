@@ -42,7 +42,7 @@
 	var/static/last_status_display
 
 	/// The next time the security level can be changed from this console
-	var/next_lvl_change = 0
+	var/next_lvl_change = 0 SECONDS
 
 /obj/machinery/computer/communications/Initialize()
 	. = ..()
