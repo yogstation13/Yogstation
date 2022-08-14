@@ -1000,6 +1000,22 @@
 	build_path = /obj/item/modular_computer/tablet
 	category = list("initial","Miscellaneous")
 
+/datum/design/phone
+	name = "Phone Frame"
+	id = "phone"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 250)
+	build_path = /obj/item/modular_computer/tablet/phone
+	category = list("initial","Miscellaneous")
+
+/datum/design/pda
+	name = "PDA Frame"
+	id = "pda"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 250)
+	build_path = /obj/item/modular_computer/tablet/pda
+	category = list("initial","Miscellaneous")
+
 /datum/design/slime_scanner
 	name = "Slime Scanner"
 	id = "slime_scanner"
