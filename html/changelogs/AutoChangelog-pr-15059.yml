@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "Ability to build PDA and Phone"
-  - tweak: "PDA can access to more programs like phone"

@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "having 3.4 hallucination stacks will no longer give you infinite hallucinations"
