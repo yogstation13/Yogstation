@@ -163,6 +163,7 @@
 	var/datum/bank_account/registered_account
 	var/obj/machinery/paystand/my_store
 	var/registered_age = 21 // default age for ss13 players
+	var/critter_money = FALSE //does exactly what it says
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
@@ -263,9 +264,50 @@
 	if(!alt_click_can_use_id(user))
 		return
 	if(registered_account.adjust_money(-amount_to_remove))
-		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
-		user.put_in_hands(holochip)
-		to_chat(user, span_notice("You withdraw [amount_to_remove] credits into a holochip."))
+		if(!critter_money)
+			var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
+			user.put_in_hands(holochip)
+			to_chat(user, span_notice("You withdraw [amount_to_remove] credits into a holochip."))
+		else
+			var/mob/living/simple_animal/critter
+			switch(amount_to_remove)
+				if(1 to 10)
+					critter = new /mob/living/simple_animal/mouse(get_turf(src))
+				if(10 to 25)
+					if(prob(50))
+						critter = new /mob/living/simple_animal/hostile/lizard(get_turf(src))
+					else
+						critter = new /mob/living/simple_animal/turtle(get_turf(src))
+				if(25 to 50)
+					if(prob(50))
+						critter = new /mob/living/simple_animal/pet/cat(get_turf(src))
+					else
+						critter = new /mob/living/simple_animal/pet/dog/corgi(get_turf(src))
+				if(50 to 100)
+					if(prob(50))
+						critter = new /mob/living/simple_animal/opossum(get_turf(src))
+					else
+						critter = new /mob/living/simple_animal/pet/catslug(get_turf(src))
+				if(100 to 200)
+					if(prob(50))
+						critter = new /mob/living/simple_animal/pet/fox(get_turf(src))
+					else
+						critter = new /mob/living/simple_animal/hostile/retaliate/poison/snake(get_turf(src))
+				if(200 to 250)
+					critter = new /mob/living/simple_animal/pet/gondola(get_turf(src))
+				if(250 to INFINITY)
+					critter = new /mob/living/simple_animal/cheese(get_turf(src))
+					var/list/candidates = pollCandidatesForMob("Do you want to play as cheese?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 5 SECONDS, critter, POLL_IGNORE_SENTIENCE_POTION) // see poll_ignore.dm
+					if(!LAZYLEN(candidates))
+						return
+					var/mob/dead/observer/O = pick(candidates)
+					critter.key = O.key
+					critter.sentience_act()
+					to_chat(critter, span_warning(span_danger("CHEESE!")))
+					return
+			var/obj/item/clothing/mob_holder/holder = new (get_turf(src), critter, critter.held_state, critter.held_icon, critter.held_lh, critter.held_rh, \
+																									critter.worn_layer, critter.mob_size, critter.worn_slot_flags)
+			user.put_in_hands(holder)
 		return
 	else
 		var/difference = amount_to_remove - registered_account.account_balance
