@@ -1,0 +1,6 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - rscadd: "The Concussive Gauntlets defuses gibtonite now"
+  - rscadd: "Adds Concussive Gauntlets to the Artifact list for cargo exports"
+  - tweak: "Buffed mining speed from 0.1 to 0.01"

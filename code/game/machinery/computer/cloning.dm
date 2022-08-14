@@ -611,7 +611,10 @@
 			has_bank_account = I.registered_account
 	if(isbrain(mob_occupant))
 		dna = B.stored_dna
-
+ 
+	if(HAS_TRAIT(mob_occupant, TRAIT_NOCLONE))
+		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
+		return FALSE
 	if(!istype(dna))
 		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
 		return FALSE

@@ -235,10 +235,6 @@
 	else
 		normal_step_energy_drain = 500
 		step_energy_drain = normal_step_energy_drain
-	if(capacitor)
-		armor = armor.modifyRating(energy = (capacitor.rating * 5)) //Each level of capacitor protects the mech against emp by 5%
-	else //because we can still be hit without a cap, even if we can't move
-		armor = armor.setRating(energy = 0)
 
 
 ////////////////////////
@@ -1020,7 +1016,7 @@
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
 		Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
 	else
-		to_chat(brainmob, "<b>Remember, you are still member of the crew act like it</b>")//yogs end
+		to_chat(brainmob, "<b>If you were a member of the crew, you still are! Do not use this new form as an excuse to break rules. Similarly, if you were an antagonist, you still are!</b>")//yogs end
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 	GrantActions(brainmob)

@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Follow Debris will follow a random object on click instead of automagically doing it"

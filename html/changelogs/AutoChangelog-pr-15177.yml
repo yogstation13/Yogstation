@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - tweak: "Beating a corpse no longer makes power"

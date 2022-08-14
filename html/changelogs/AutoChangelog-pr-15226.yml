@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added telecrystal jumping, which teleports you forward 3-6 tiles when you crush one!"

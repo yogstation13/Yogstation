@@ -141,7 +141,8 @@
 	else
 		return ..()
 
-/obj/item/airlock_painter/attack_self(mob/user)
+/obj/item/airlock_painter/AltClick(mob/user, obj/item/W)
+	. = ..()
 	if(ink)
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		ink.forceMove(user.drop_location())
@@ -151,7 +152,7 @@
 
 /obj/item/airlock_painter/decal
 	name = "decal painter"
-	desc = "An airlock painter, reprogramed to use a different style of paint in order to apply decals for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed. Alt-Click to change design."
+	desc = "An airlock painter, reprogramed to use a different style of paint in order to apply decals for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed. Alt-Click to take out toner."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "decal_sprayer"
 	item_state = "decal_sprayer"
@@ -165,6 +166,8 @@
 	var/dir_list = list(1,2,4,8)
 	var/decal_list = list(list("Warning Line","warningline"),
 			list("Warning Line Corner","warninglinecorner"),
+			list("Warning Line U Corner","warn_end"),
+			list("Warning Line Box","warn_box"),
 			list("Caution Label","caution"),
 			list("Directional Arrows","arrows"),
 			list("Stand Clear Label","stand_clear"),
@@ -178,6 +181,16 @@
 			list("NO","no"),
 			list("Radiation Hazard","radiation"),
 			list("Circle Radiation Hazard","radiation_huge"),
+			list("Bio Warning","bio"),
+			list("Shock Warning","shock"),
+			list("Danger Warning","danger"),
+			list("Explosive Warning","explosives"),
+			list("High Explosive Warning","explosives2"),
+			list("Fire Warning","fire"),
+			list("No Smoking","nosmoking2"),
+			list("No Smoking Circle","nosmoking"),
+			list("Safety First","safety"),
+			list("Nanotrasen","nanotrasen"),
 			list("RAVEN1","RAVEN1"),
 			list("RAVEN2","RAVEN2"),
 			list("RAVEN3","RAVEN3"),
@@ -192,10 +205,12 @@
 			list("Blue Circuit","bcircuit"),
 			list("Green Circuit","gcircuit"),
 			list("Red Circuit","rcircuit"),
+			list("Disco Floor","disco"),
 			list("Grimy Floor","grimy"),
 			list("Chapel Floor","chapel"),
 			list("Sepia Floor","sepia"),
 			list("Pink Floor","pinkblack"),
+			list("Blank & White Floor","blackwhite"),
 			list("Yellow Floor","noslip"),
 			list("Pod Floor","podfloor_light"),
 			list("Freezer Floor","freezerfloor"),
@@ -203,6 +218,7 @@
 			list("Recharge Station","recharge_floor"),
 			list("Solar Panel","solarpanel"),
 		    list("Gaming Floor","eighties"),
+			list("Planet Floor","planet"),
 			list("Bamboo Floor","bamboo"),
 			list("Grass Floor","grass2"),
 			list("Sand","sand"),
@@ -225,6 +241,8 @@
 			list("Bluespace Floor","bluespace"),
 			list("Reinforced Floor","engine"),
 			list("Bananium Floor","bananium"),
+			list("Brick Floor","terracotta"),
+			list("Copper Floor","copper"),
 			list("Clockwork Floor","clockwork_floor"),
 			list("Cult Floor","cult"),
 			list("Paper Floor","paperfloor"),
@@ -253,7 +271,7 @@
 	if(use_paint(user))
 		F.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, color, null, null, alpha)
 
-/obj/item/airlock_painter/decal/AltClick(mob/user)
+/obj/item/airlock_painter/decal/attack_self(mob/user)
 	. = ..()
 	ui_interact(user)
 

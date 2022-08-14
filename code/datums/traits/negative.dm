@@ -256,6 +256,11 @@
 	lose_text = span_danger("You're no longer severely affected by alcohol.")
 	medical_record_text = "Patient demonstrates a low tolerance for alcohol. (Wimp)"
 
+/datum/quirk/light_drinker/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant drink
+		return "You don't have the ability to drink!"
+	return FALSE
+
 /datum/quirk/nearsighted //t. errorage
 	name = "Nearsighted"
 	desc = "You are nearsighted without prescription glasses, but spawn with a pair."
@@ -623,6 +628,11 @@
 	reagent_instance = new reagent_type()
 	H.reagents.addiction_list.Add(reagent_instance)
 
+/datum/quirk/junkie/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
+		return "You dont process normal chemicals!"
+	return FALSE
+
 /datum/quirk/junkie/smoker
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
@@ -727,6 +737,11 @@
 		H.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(5,10))
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), cooldown_time)
+
+/datum/quirk/allergic/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (prefs.pref_species.reagent_tag == PROCESS_SYNTHETIC)) //can't lose blood if your species doesn't have any
+		return "You dont process normal chemicals!"
+	return FALSE
 
 /datum/quirk/kleptomaniac
 	name = "Kleptomaniac"

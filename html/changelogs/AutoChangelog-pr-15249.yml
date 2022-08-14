@@ -1,0 +1,6 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - tweak: "The cargo food crate and the chef's vending machine are now both stocked with some cinnamon shakers."
+  - bugfix: "Fixed bug that was preventing players from crafting new cinnamon shakers."
+  - bugfix: "If there was a bug that caused condiment containers to sometimes not change sprite when reagents were added, it's gone now."

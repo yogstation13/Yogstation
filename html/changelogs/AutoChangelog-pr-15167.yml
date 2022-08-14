@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Run and Walk now has toggle keybind (\"J\")"

@@ -62,6 +62,7 @@
 	item_state = "hostrench"
 	flags_inv = 0
 	strip_delay = 80
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "warden's jacket"

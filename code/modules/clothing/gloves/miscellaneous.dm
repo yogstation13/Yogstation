@@ -195,7 +195,7 @@ obj/effect/proc_holder/swipe
 	item_state = "concussive_gauntlets"
 	mob_overlay_icon = 'icons/mob/clothing/hands/hands.dmi'
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	toolspeed = 0.1
+	toolspeed = 0.01
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS
@@ -224,8 +224,8 @@ obj/effect/proc_holder/swipe
 	UnregisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
 	UnregisterSignal(user, COMSIG_MOVABLE_BUMP)
 
-/obj/item/clothing/gloves/gauntlets/proc/rocksmash(mob/living/carbon/human/H, atom/A, proximity)
+/obj/item/clothing/gloves/gauntlets/proc/rocksmash(mob/user, atom/A, proximity)
 	if(!istype(A, /turf/closed/mineral))
 		return
-	A.attackby(src, H)
+	A.attackby(src, user)
 	return COMPONENT_NO_ATTACK_OBJ

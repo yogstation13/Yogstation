@@ -117,7 +117,7 @@
 		if(mattress_on.alpha ? !_running : _running) //check the inverse of _running compared to truthy alpha, to see if they differ
 			var/new_alpha = _running ? 255 : 0
 			var/easing_direction = _running ? EASE_OUT : EASE_IN
-			animate(mattress_on, alpha = new_alpha, time = 5 SECONDS, easing = CUBIC_EASING|easing_direction)
+			animate(mattress_on, alpha = new_alpha, time = stasis_cooldown, easing = CUBIC_EASING|easing_direction)
 
 		overlays_to_remove = managed_vis_overlays - mattress_on
 
