@@ -152,12 +152,12 @@ export const CrewConsoleContent = (props, context) => {
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.is_robot ? (<Icon name="robot" color="#c9ed13" size={1} />
-                ) : (
-                  sensor.is_human ? (
-                    <Icon name="user" color="#2ee81a" size={1} />
                   ) : (
-                    <Icon name="user" color="#f70505" size={1} />
-                  ))}
+                    sensor.is_human ? (
+                      <Icon name="user" color="#2ee81a" size={1} />
+                    ) : (
+                      <Icon name="user" color="#f70505" size={1} />
+                    ))}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
