@@ -798,7 +798,6 @@
 			"mothroach" = 'icons/mob/animal.dmi',
 			"snake" = 'icons/mob/animal.dmi',
 			"goose" = 'icons/mob/animal.dmi',
-			"possum" = 'icons/mob/animal.dmi',
 			"poppypossum" = 'icons/mob/animal.dmi'
 			)
 
