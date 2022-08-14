@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Altclicking decal painter now remove toner"
+  - tweak: "Activating decal painter in hand now switch designs"
