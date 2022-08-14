@@ -6,9 +6,9 @@ import { Window } from '../layouts';
 export const HEALTH_COLOR_BY_LEVEL = [
   '#17d568',
   '#c4cf2d',
-  '#e67e22',
-  '#ed5100',
+  '#f04f0a',
   '#fa301b',
+  '#e60505',
   '#c71402',
 ];
 
@@ -63,7 +63,7 @@ export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList
       return attributeList[0];
     }
     const healthSum = oxy + tox + burn + brute;
-    const level = Math.min(Math.max(Math.ceil(healthSum / 48), 0), 5);
+    const level = Math.min(Math.max(Math.ceil(healthSum / 49), 0), 5);
     return attributeList[level];
   }
   return attributeList[5]; // Dead is dead, son
