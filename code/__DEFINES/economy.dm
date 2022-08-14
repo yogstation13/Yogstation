@@ -1,5 +1,5 @@
 #define STARTING_PAYCHECKS_MIN 50 // Minimum roundstart money
-#define STARTING_PACKCHECK_MAX 250 // Maximum roundstart money
+#define STARTING_PAYCHECKS_MAX 250 // Maximum roundstart money
 
 #define PAYCHECK_ASSISTANT 5
 #define PAYCHECK_MINIMAL 5
