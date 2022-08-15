@@ -136,6 +136,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/is_plasmaman
 	var/is_ethereal
 	var/is_irradiated
+	var/is_wounded
 	var/assignment_title
 	var/assignment
 	var/oxydam
@@ -242,6 +243,13 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				else
 					is_irradiated = FALSE
 
+				for(var/i in H.get_wounded_bodyparts())
+					var/obj/item/bodypart/k = i
+					if (k)
+						is_wounded = TRUE
+					else
+						is_wounded = FALSE
+
 				if (HAS_TRAIT(H, TRAIT_HUSK))
 					is_husked = TRUE
 				else
@@ -282,7 +290,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if(life_status == FALSE)
 					new_death_list.Add(H)
 
-				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_irradiated" = is_irradiated, "is_robot" = is_robot, "is_human" = is_human, "is_slime" = is_slime, "is_skeleton" = is_skeleton, "is_fly" = is_fly, "is_catperson" = is_catperson, "is_lizard" = is_lizard, "is_moth" = is_moth, "is_polysmorph" = is_polysmorph, "is_podperson" = is_podperson, "is_plasmaman" = is_plasmaman, "is_ethereal" = is_ethereal, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_irradiated" = is_irradiated, "is_robot" = is_robot, "is_human" = is_human, "is_slime" = is_slime, "is_skeleton" = is_skeleton, "is_fly" = is_fly, "is_catperson" = is_catperson, "is_lizard" = is_lizard, "is_moth" = is_moth, "is_polysmorph" = is_polysmorph, "is_podperson" = is_podperson, "is_plasmaman" = is_plasmaman, "is_ethereal" = is_ethereal, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
