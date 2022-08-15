@@ -1917,7 +1917,7 @@
 
 /datum/supply_pack/organic/food
 	name = "Food Crate"
-	desc = "Get things cooking with this crate full of useful ingredients! Contains a dozen eggs, three bananas, and some flour, rice, milk, soymilk, salt, pepper, enzyme, sugar, and monkeymeat."
+	desc = "Get things cooking with this crate full of useful ingredients! Contains a dozen eggs, three bananas, and some flour, rice, milk, soymilk, salt, pepper, cinnamon, enzyme, sugar, and monkeymeat." // yogs
 	cost = 1000
 	contains = list(/obj/item/reagent_containers/food/condiment/flour,
 					/obj/item/reagent_containers/food/condiment/rice,
@@ -1925,6 +1925,7 @@
 					/obj/item/reagent_containers/food/condiment/soymilk,
 					/obj/item/reagent_containers/food/condiment/saltshaker,
 					/obj/item/reagent_containers/food/condiment/peppermill,
+					/obj/item/reagent_containers/food/condiment/cinnamon, // Yogs -- Adds cinnamon shakers to this crate
 					/obj/item/storage/box/fancy/egg_box,
 					/obj/item/reagent_containers/food/condiment/enzyme,
 					/obj/item/reagent_containers/food/condiment/sugar,

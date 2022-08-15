@@ -35,7 +35,7 @@
 	return ..()
 
 /datum/component/mood/proc/print_mood(mob/user)
-	var/msg = "<span class='info'>*---------*\n<EM>Your current mood</EM>\n"
+	var/msg = "[span_info("<EM>Your Current Mood:</EM>")]\n"
 	msg += span_notice("My mental status: ") //Long term
 	switch(sanity)
 		if(SANITY_GREAT to INFINITY)
@@ -79,7 +79,7 @@
 			msg += event.description
 	else
 		msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
-	to_chat(user || parent, msg)
+	to_chat(user || parent, examine_block(msg))
 
 /datum/component/mood/proc/update_mood() //Called whenever a mood event is added or removed
 	mood = 0
@@ -231,15 +231,15 @@
 	switch(sanity)
 		if(SANITY_INSANE to SANITY_CRAZY)
 			setInsanityEffect(MAJOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=1.5, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.75, movetypes=(~FLYING))
 			sanity_level = 6
 		if(SANITY_CRAZY to SANITY_UNSTABLE)
 			setInsanityEffect(MINOR_INSANITY_PEN)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=1, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
 			sanity_level = 5
 		if(SANITY_UNSTABLE to SANITY_DISTURBED)
 			setInsanityEffect(0)
-			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.5, movetypes=(~FLYING))
+			master.add_movespeed_modifier(MOVESPEED_ID_SANITY, TRUE, 100, override=TRUE, multiplicative_slowdown=0.25, movetypes=(~FLYING))
 			sanity_level = 4
 		if(SANITY_DISTURBED to SANITY_NEUTRAL)
 			setInsanityEffect(0)

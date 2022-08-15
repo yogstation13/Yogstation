@@ -879,10 +879,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return TRUE
 
 
-/mob/dead/observer/proc/on_observing_z_changed(datum/source, turf/old_turf, turf/new_turf)
+/mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(is_secret_level(new_turf.z) && !client?.holder)
+	if(is_secret_level(newz) && !client?.holder)
 		sight = null //we dont want ghosts to see through walls in secret areas
 	else
 		sight = initial(sight)
