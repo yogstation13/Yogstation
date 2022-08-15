@@ -15,7 +15,7 @@
 			if(ishuman(owner))
 				var/mob/living/carbon/human/H = owner
 				var/obj/item/clothing/head/hat = H.get_item_by_slot(SLOT_HEAD)
-				if(hat && istype(hat) && hat.hattable && prob(25))
+				if(istype(hat) && hat.hattable && prob(25))
 					H.visible_message("[H]'s' [lowertext(hat.name)] falls off.")
 					H.dropItemToGround(hat)
 			owner.update_mobility()
