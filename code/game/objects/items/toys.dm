@@ -260,18 +260,15 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	var/hacked = FALSE
+	var/saber_color = "blue"
 
 /obj/item/toy/sword/attack_self(mob/user)
 	active = !( active )
 	if (active)
 		to_chat(user, span_notice("You extend the plastic blade with a quick flick of your wrist."))
 		playsound(user, 'sound/weapons/saberon.ogg', 20, 1)
-		if(hacked)
-			icon_state = "swordrainbow"
-			item_state = "swordrainbow"
-		else
-			icon_state = "swordblue"
-			item_state = "swordblue"
+		icon_state = "sword[saber_color]"
+		item_state = "sword[saber_color]"
 		w_class = WEIGHT_CLASS_BULKY
 	else
 		to_chat(user, span_notice("You push the plastic blade back down into the handle."))
@@ -292,13 +289,13 @@
 			var/obj/item/twohanded/dualsaber/toy/newSaber = new /obj/item/twohanded/dualsaber/toy(user.loc)
 			if(hacked) // That's right, we'll only check the "original" "sword".
 				newSaber.hacked = TRUE
-				newSaber.item_color = "rainbow"
+				newSaber.saber_color = "rainbow"
 			qdel(W)
 			qdel(src)
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!hacked)
 			hacked = TRUE
-			item_color = "rainbow"
+			saber_color = "rainbow"
 			to_chat(user, span_warning("RNBW_ENGAGE"))
 
 			if(active)

@@ -380,8 +380,8 @@
 /obj/item/clothing/shoes/jackboots,
 /obj/item/clothing/glasses/eyepatch,
 /obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/head/bandana,
-/obj/item/clothing/head/bandana,
+/obj/item/clothing/head/pirate/bandana,
+/obj/item/clothing/head/pirate/bandana,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "bC" = (
@@ -407,8 +407,8 @@
 /obj/item/clothing/shoes/jackboots,
 /obj/item/clothing/glasses/eyepatch,
 /obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/head/bandana,
-/obj/item/clothing/head/bandana,
+/obj/item/clothing/head/pirate/bandana,
+/obj/item/clothing/head/pirate/bandana,
 /obj/item/toy/katana,
 /turf/open/floor/wood,
 /area/ruin/unpowered)

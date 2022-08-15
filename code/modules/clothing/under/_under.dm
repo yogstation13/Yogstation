@@ -20,7 +20,6 @@
 	var/mutable_appearance/accessory_overlay
 	var/mutantrace_variation = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
 	var/freshly_laundered = FALSE
-	var/dodgy_colours = FALSE
 	tearable = TRUE //all jumpsuits can be torn down and used for cloth in an emergency | yogs
 
 /obj/item/clothing/under/worn_overlays(isinhands = FALSE)
@@ -137,10 +136,8 @@
 			if(user && notifyAttach)
 				to_chat(user, span_notice("You attach [I] to [src]."))
 
-			var/accessory_color = attached_accessory.item_color
-			if(!accessory_color)
-				accessory_color = attached_accessory.icon_state
-			accessory_overlay = mutable_appearance('icons/mob/accessories.dmi', "[accessory_color]")
+			var/accessory_color = attached_accessory.icon_state
+			accessory_overlay = mutable_appearance(attached_accessory.mob_overlay_icon, "[accessory_color]")
 			accessory_overlay.alpha = attached_accessory.alpha
 			accessory_overlay.color = attached_accessory.color
 
@@ -178,8 +175,6 @@
 
 /obj/item/clothing/under/examine(mob/user)
 	. = ..()
-	if(dodgy_colours)
-		. += "The colours are a bit dodgy."
 	if(freshly_laundered)
 		. += "It looks fresh and clean."
 	if(can_adjust)
@@ -201,3 +196,6 @@
 				. += "Its vital tracker and tracking beacon appear to be enabled."
 	if(attached_accessory)
 		. += "\A [attached_accessory] is attached to it."
+
+/obj/item/clothing/under/rank
+	dying_key = DYE_REGISTRY_UNDER

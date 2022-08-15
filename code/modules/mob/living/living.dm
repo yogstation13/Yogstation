@@ -279,7 +279,7 @@
 
 		log_combat(src, M, "grabbed", addition="passive grab")
 		if(!supress_message && !(iscarbon(AM) && HAS_TRAIT(src, TRAIT_STRONG_GRABBER)))
-			visible_message(span_warning("[src] has grabbed [M][(zone_selected == "l_arm" || zone_selected == "r_arm")? " by their hands!":" passively!"]"))
+			visible_message(span_warning("[src] has grabbed [M] passively!"))
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
@@ -533,7 +533,8 @@
 			livingdoll.filtered = TRUE
 			var/icon/mob_mask = icon(icon, icon_state)
 			if(mob_mask.Height() > world.icon_size || mob_mask.Width() > world.icon_size)
-				mob_mask = icon('icons/mob/screen_gen.dmi', "megasprite") //swap to something that fits if they wont
+				var/health_doll_icon_state = health_doll_icon ? health_doll_icon : "megasprite"
+				mob_mask = icon('icons/mob/screen_gen.dmi', health_doll_icon_state) //swap to something generic if they have no special doll
 			UNLINT(livingdoll.filters += filter(type="alpha", icon = mob_mask))
 			livingdoll.filters += filter(type="drop_shadow", size = -1)
 	if(severity > 0)
@@ -1435,13 +1436,13 @@
 	. += {"
 		<br><font size='1'><a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=ckey' id='ckey'>[ckey || "No ckey"]</a> / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]</font>
 		<br><font size='1'>
-			BRUTE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
-			FIRE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
-			TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
-			OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
-			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
-			BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
-			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
+			BRUTE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=[BRUTE]' id='brute'>[getBruteLoss()]</a>
+			BURN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=[BURN]' id='burn'>[getFireLoss()]</a>
+			TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=[TOX]' id='toxin'>[getToxLoss()]</a>
+			OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=[OXY]' id='oxygen'>[getOxyLoss()]</a>
+			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=[CLONE]' id='clone'>[getCloneLoss()]</a>
+			BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=[BRAIN]' id='brain'>[getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
+			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=[STAMINA]' id='stamina'>[getStaminaLoss()]</a>
 		</font>
 	"}
 

@@ -64,7 +64,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	force = 40
 	throwforce = 10
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 50
 	sharpness = SHARP_EDGED
@@ -75,10 +75,25 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 40, 105)
+	
+/obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(attack_type == PROJECTILE_ATTACK)
+		final_block_chance = 0 //Don't bring a sword to a gunfight
+	return ..()
 
 /obj/item/claymore/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is falling on [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(BRUTELOSS)
+	
+/obj/item/claymore/ruin
+	name = "ancient sword"
+	desc = "A cracked and blunted sword, clearly weathered over the ages."
+	force = 21
+	block_chance = 30
+	
+/obj/item/claymore/ruin/excalibur
+	name = "Excalibur"
+	desc = "A legendary sword passed down through the ages, though it seems to have lost its magic."
 
 /obj/item/claymore/highlander //ALL COMMENTS MADE REGARDING THIS SWORD MUST BE MADE IN ALL CAPS
 	desc = "<b><i>THERE CAN BE ONLY ONE, AND IT WILL BE YOU!!!</i></b>\nActivate it in your hand to point to the nearest victim."
@@ -205,6 +220,24 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	name = new_name
 	playsound(user, 'sound/items/screwdriver2.ogg', 50, 1)
 
+/obj/item/claymore/bone
+	name = "Bone Sword"
+	desc = "Jagged pieces of bone are tied to what looks like a goliath's femur."
+	icon = 'icons/obj/weapons/swords.dmi'
+	icon_state = "bone_sword"
+	item_state = "bone_sword"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	force = 15
+	throwforce = 10
+	armour_penetration = 15
+	w_class = WEIGHT_CLASS_BULKY
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "ripped", "diced", "cut")
+	block_chance = 30
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
+
 /obj/item/katana
 	name = "katana"
 	desc = "Woefully underpowered in D20."
@@ -226,10 +259,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF
 
-/obj/item/katana/cursed
-	slot_flags = null
-
-/obj/item/katana/cursed/basalt
+/obj/item/katana/basalt
 	name = "basalt katana"
 	desc = "a katana made out of hardened basalt. Particularly damaging to lavaland fauna. (Activate this item in hand to dodge roll in the direction you're facing)"
 	icon_state = "basalt_katana"
@@ -242,7 +272,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	var/next_roll
 	var/roll_dist = 3
 
-/obj/item/katana/cursed/basalt/afterattack(atom/target, mob/user, proximity)
+/obj/item/katana/basalt/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
@@ -252,7 +282,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
 			playsound(L, 'sound/weapons/sear.ogg', 100, 1)
 
-/obj/item/katana/cursed/basalt/attack_self(mob/living/user)
+/obj/item/katana/basalt/attack_self(mob/living/user)
 	if(world.time > next_roll)
 		var/stam_cost = 15
 		var/turf/T = get_turf(user)
@@ -284,6 +314,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/katana/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is slitting [user.p_their()] stomach open with [src]! It looks like [user.p_theyre()] trying to commit seppuku!"))
 	return(BRUTELOSS)
+
+/obj/item/katana/cursed
+	slot_flags = null
 
 /obj/item/wirerod
 	name = "wired rod"
@@ -801,20 +834,3 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, span_warning("[M] is too close to use [src] on."))
 		return
 	M.attack_hand(user)
-
-/obj/item/claymore/bone
-	name = "Bone Sword"
-	desc = "Jagged pieces of bone are tied to what looks like a goliaths femur."
-	icon = 'icons/obj/weapons/swords.dmi'
-	icon_state = "bone_sword"
-	item_state = "bone_sword"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
-	force = 15
-	throwforce = 10
-	armour_penetration = 15
-	w_class = WEIGHT_CLASS_NORMAL
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "ripped", "diced", "cut")
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)

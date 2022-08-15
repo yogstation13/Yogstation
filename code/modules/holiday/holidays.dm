@@ -324,7 +324,6 @@
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
-		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà
 		)
 
 /datum/holiday/france/getStationPrefix()
@@ -414,7 +413,8 @@
 		"https://www.youtube.com/watch?v=bebUeWgNkAM", // Halloween Theme Michael Myers
 		"https://www.youtube.com/watch?v=qaQ6oJL1qQA", // Lucifer My Love - Twin Temple
 		"https://www.youtube.com/watch?v=vCYLUZyWeDs&t", // "Unforgiving Cold"- Godzilla NES Creepypasta OST
-		"https://www.youtube.com/watch?v=OPDDFdyKOgU" // Red Signal - The Bifrost Incident - The Mechanisms
+		"https://www.youtube.com/watch?v=OPDDFdyKOgU", // Red Signal - The Bifrost Incident - The Mechanisms
+		"https://www.youtube.com/watch?v=d1itZiNY5pY" // Todd Rollins - The Boogie Man
 		)
 
 /datum/holiday/halloween/greet()

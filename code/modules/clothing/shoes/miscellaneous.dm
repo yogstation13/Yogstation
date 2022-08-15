@@ -4,7 +4,6 @@
 /obj/item/clothing/shoes/sneakers/mime
 	name = "mime shoes"
 	icon_state = "mime"
-	item_color = "mime"
 
 /obj/item/clothing/shoes/combat //basic syndicate combat boots for nuke ops and mob corpses
 	name = "combat boots"
@@ -78,7 +77,6 @@
 	icon_state = "clown"
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN+1
-	item_color = "clown"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
 	var/datum/component/waddle
 	var/enabled_waddle = TRUE
@@ -132,7 +130,6 @@
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	item_color = "hosred"
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
@@ -195,7 +192,6 @@
 	desc = "A pair of boots worn by the followers of Nar'Sie."
 	icon_state = "cult"
 	item_state = "cult"
-	item_color = "cult"
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
 	heat_protection = FEET
@@ -244,7 +240,6 @@
 	desc = "A specialized pair of combat boots with a built-in propulsion system for rapid foward movement."
 	icon_state = "jetboots"
 	item_state = "jetboots"
-	item_color = "hosred"
 	resistance_flags = FIRE_PROOF
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	actions_types = list(/datum/action/item_action/bhop)
@@ -552,7 +547,6 @@
 	xenoshoe = YES_DIGIT 
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
@@ -609,3 +603,34 @@
 /obj/item/clothing/shoes/airshoes/Destroy()
 	QDEL_NULL(A)
 	. = ..()
+
+/obj/item/clothing/shoes/drip
+	name = "fashionable shoes"
+	desc = "Expensive-looking designer sneakers. Loud, ostentatious, agressively attractive, you detest the idea of taking them off. The elaborate design on the sole could probably give you some decent traction."
+	icon = 'icons/obj/clothing/shoes.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/feet/feet.dmi'
+	icon_state = "dripshoes"
+	item_state = "dripshoes"
+	clothing_flags = NOSLIP_ICE | NOSLIP
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 100, ACID = 100)
+	resistance_flags = FIRE_PROOF | ACID_PROOF | LAVA_PROOF
+	strip_delay = 40
+	resistance_flags = NONE
+	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	slowdown = -0.2
+
+/obj/item/clothing/shoes/drip/equipped(mob/user, slot,) 
+	. = ..()
+	if(slot == SLOT_SHOES)
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripjordan", /datum/mood_event/dripjordan)
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "nojordans", /datum/mood_event/dripjordan)
+		if(user && ishuman(user) && !user.GetComponent(/datum/component/mood))
+			to_chat(user, span_danger("You feel the power of the jordans warm your cold, unfeeling heart...!"))
+			user.AddComponent(/datum/component/mood) //Stole this from the obsessed no you can't turn it off
+
+/obj/item/clothing/shoes/drip/dropped(mob/user)
+	. = ..()
+	SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripjordan")
+	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nojordans", /datum/mood_event/nojordans)
+

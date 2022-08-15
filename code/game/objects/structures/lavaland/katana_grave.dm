@@ -23,5 +23,5 @@
 	qdel(src)
 
 /obj/structure/katana_grave/basalt
-	dropping_item = /obj/item/katana/cursed/basalt
+	dropping_item = /obj/item/katana/basalt
 	icon_state = "grave_katana_basalt"

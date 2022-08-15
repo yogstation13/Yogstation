@@ -8,16 +8,6 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/c38_trac
-	name = "Speed Loader (.38 TRAC)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body."
-	id = "c38_trac"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/silver = 5000, /datum/material/gold = 1000)
-	build_path = /obj/item/ammo_box/c38/trac
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
 /datum/design/c38_hotshot
 	name = "Speed Loader (.38 Hot Shot)"
 	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
@@ -37,6 +27,37 @@
 	build_path = /obj/item/ammo_box/c38/iceblox
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/c38_gutterpunch
+	name = "Speed Loader (.38 Gutterpunch)"
+	desc = "A six-shot speed loader designed for .38 revolvers. \
+			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
+	id = "c38_gutterpunch"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
+	build_path = /obj/item/ammo_box/c38/gutterpunch
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/tracrevolver
+	name = "Caldwell Tracking Revolver"
+	desc = "A modified autorevolver initially designed by colonists on hostile worlds, now utilized by security personnel. Uses .32 TRAC ammo."
+	id = "tracrevolver"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 10000, /datum/material/silver = 3000, /datum/material/titanium = 2000)
+	build_path = /obj/item/gun/ballistic/revolver/tracking
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/tra32
+	name = "Speed Loader (.32 TRAC)"
+	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant."
+	id = "tra32"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/silver = 5000, /datum/material/gold = 1000)
+	build_path = /obj/item/ammo_box/tra32
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/rubbershot/sec
 	id = "sec_rshot"
@@ -294,7 +315,7 @@
 	materials = list(/datum/material/silver = 6000, /datum/material/iron = 8000, /datum/material/uranium = 2000)
 	build_path = /obj/item/gun/energy/ionrifle/carbine
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/wormhole_projector
 	name = "Bluespace Wormhole Projector"
@@ -410,4 +431,4 @@
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
 	build_path = /obj/item/gun/ballistic/bow/energy
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY

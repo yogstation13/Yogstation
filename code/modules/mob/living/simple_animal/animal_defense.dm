@@ -133,25 +133,38 @@
 	..()
 	if(QDELETED(src))
 		return
-	var/bomb_armor = getarmor(null, BOMB)
 	switch (severity)
 		if (EXPLODE_DEVASTATE)
-			if(prob(bomb_armor))
-				adjustBruteLoss(500)
-			else
-				gib()
-				return
+			ex_act_devastate()
 		if (EXPLODE_HEAVY)
-			var/bloss = 60
-			if(prob(bomb_armor))
-				bloss = bloss / 1.5
-			adjustBruteLoss(bloss)
+			ex_act_heavy()
 
 		if (EXPLODE_LIGHT)
-			var/bloss = 30
-			if(prob(bomb_armor))
-				bloss = bloss / 1.5
-			adjustBruteLoss(bloss)
+			ex_act_light()
+
+/// Called when a devastating explosive acts on this mob
+/mob/living/simple_animal/proc/ex_act_devastate()
+	var/bomb_armor = getarmor(null, BOMB)
+	if(prob(bomb_armor))
+		adjustBruteLoss(500)
+	else
+		gib()
+
+/// Called when a heavy explosive acts on this mob
+/mob/living/simple_animal/proc/ex_act_heavy()
+	var/bomb_armor = getarmor(null, BOMB)
+	var/bloss = 60
+	if(prob(bomb_armor))
+		bloss = bloss / 1.5
+	adjustBruteLoss(bloss)
+
+/// Called when a light explosive acts on this mob
+/mob/living/simple_animal/proc/ex_act_light()
+	var/bomb_armor = getarmor(null, BOMB)
+	var/bloss = 30
+	if(prob(bomb_armor))
+		bloss = bloss / 1.5
+	adjustBruteLoss(bloss)
 
 /mob/living/simple_animal/blob_act(obj/structure/blob/B)
 	adjustBruteLoss(20)
@@ -159,7 +172,9 @@
 
 /mob/living/simple_animal/do_attack_animation(atom/A, visual_effect_icon, used_item, no_effect)
 	if(!no_effect && !visual_effect_icon && melee_damage_upper)
-		if(melee_damage_upper < 10)
+		if(attack_vis_effect && !iswallturf(A)) // override the standard visual effect.
+			visual_effect_icon = attack_vis_effect
+		else if(melee_damage_upper < 10)
 			visual_effect_icon = ATTACK_EFFECT_PUNCH
 		else
 			visual_effect_icon = ATTACK_EFFECT_SMASH

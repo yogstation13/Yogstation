@@ -176,7 +176,7 @@
 		            /obj/item/clothing/glasses/sunglasses/cheap = 2,
 		            /obj/item/clothing/glasses/yogs/threed = 2,
 		            /obj/item/clothing/shoes/sneakers/black = 3,
-		            /obj/item/clothing/shoes/yogs/fire_crocs = 1,
+		            /obj/item/clothing/shoes/fire_crocs = 1,
 		            /obj/item/clothing/shoes/winterboots = 2,
 		            /obj/item/clothing/shoes/singery = 1,
 		            /obj/item/clothing/shoes/singerb = 1,

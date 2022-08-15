@@ -58,6 +58,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 				stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
 				template_names -= t
 		template_name = choose()
+	if(!template_name)
+		stack_trace("Station room spawner [src] at ([T.x], [T.y], [T.z]) has a null template.")
 	if(!template_name || template_name == EMPTY_SPAWN)
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
@@ -166,9 +168,33 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
 	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
 
-/obj/effect/landmark/stationroom/gax/ai_whale
-	unique = TRUE
-	template_names = list("AI Whale",EMPTY_SPAWN,EMPTY_SPAWN,EMPTY_SPAWN)
+/// Type of landmark that find all others of the same type, and only spawns count number of ruins at them
+/obj/effect/landmark/stationroom/limited_spawn
+	var/choose_result = ""
+	var/count = 1
+
+/obj/effect/landmark/stationroom/limited_spawn/choose()
+	if(choose_result != "")
+		return choose_result
+	var/list/landmarks = list()
+	for(var/obj/effect/landmark/stationroom/limited_spawn/L in GLOB.stationroom_landmarks)
+		if(L.type == src.type)
+			landmarks |= L
+	
+	for(var/i = 0, i < count, i++)
+		var/obj/effect/landmark/stationroom/limited_spawn/L = pick_n_take(landmarks)
+		L.choose_result = pick(L.template_names)
+		var/turf/T = get_turf(L)
+		message_admins(span_adminnotice("Spawning limited_spawn landmark at [ADMIN_COORDJMP(T)]"))
+		log_game("Spawning limited_spawn landmark at: [AREACOORD(T)]")
+	
+	for(var/obj/effect/landmark/stationroom/limited_spawn/L in landmarks)
+		L.choose_result = EMPTY_SPAWN
+	
+	return choose_result
+
+/obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale
+	template_names = list("AI Whale")
 
 /obj/effect/landmark/start/infiltrator
 	name = "infiltrator"

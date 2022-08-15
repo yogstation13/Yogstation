@@ -56,6 +56,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/deadchat_name
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
+	var/datum/action/unobserve/UO 
+	var/list/temporaryactions = list() // For observers need to keep this referenced
 
 	// Current Viewrange
 	var/view = 0
@@ -806,6 +808,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				remove_verb(src, /mob/dead/observer/verb/possess)
 
 /mob/dead/observer/reset_perspective(atom/A)
+	UO?.Remove(src)
 	if(client)
 		if(ismob(client.eye) && (client.eye != src))
 			cleanup_observe()
@@ -817,13 +820,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/proc/cleanup_observe()
 	var/mob/target = observetarget
-	observetarget = null
 	client?.perspective = initial(client.perspective)
 	sight = initial(sight)
 	UnregisterSignal(target, COMSIG_MOVABLE_Z_CHANGED)
-	if(target.observers)
+	if(target && target.observers)
 		target.observers -= src
 		UNSETEMPTY(target.observers)
+	observetarget = null
+	actions -= temporaryactions
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
@@ -849,18 +853,36 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		client.perspective = EYE_PERSPECTIVE
 		if(is_secret_level(mob_eye.z) && !client?.holder)
 			sight = null //we dont want ghosts to see through walls in secret areas
-		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed)
+		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed, TRUE)
 		if(mob_eye.hud_used)
-			client.screen = list()
+			temporaryactions = mob_eye.actions
+			actions |= temporaryactions
+			update_action_buttons(TRUE)
 			LAZYINITLIST(mob_eye.observers)
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
 			observetarget = mob_eye
+		if(!UO)
+			UO = new // Convinent way to unobserve
+		UO.Grant(src)
 
-/mob/dead/observer/proc/on_observing_z_changed(datum/source, turf/old_turf, turf/new_turf)
+/datum/action/unobserve
+	name = "Stop Observing"
+	desc = "Stops observing the person."
+	icon_icon = 'icons/mob/mob.dmi'
+	button_icon_state = "ghost_nodir"
+
+/datum/action/unobserve/Trigger()
+	owner.reset_perspective(null)
+
+/datum/action/unobserve/IsAvailable()
+	return TRUE
+
+
+/mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(is_secret_level(new_turf.z) && !client?.holder)
+	if(is_secret_level(newz) && !client?.holder)
 		sight = null //we dont want ghosts to see through walls in secret areas
 	else
 		sight = initial(sight)

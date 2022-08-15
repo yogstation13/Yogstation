@@ -19,6 +19,7 @@
 	if(!current_surgery)
 		var/list/all_surgeries = GLOB.surgeries_list.Copy()
 		var/list/available_surgeries = list()
+		var/list/radial_list = list()
 
 		for(var/datum/surgery/S in all_surgeries)
 			if(!S.possible_locs.Find(selected_zone))
@@ -39,12 +40,17 @@
 			for(var/path in S.target_mobtypes)
 				if(istype(M, path))
 					available_surgeries[S.name] = S
+					var/datum/radial_menu_choice/choice = new
+					choice.image = S.get_icon()
+					choice.info = S.desc
+					radial_list[S.name] = choice
 					break
 
 		if(!available_surgeries.len)
+			to_chat(user, span_warning("You can't preform any surgeries on [M]'s [parse_zone(selected_zone)]!"))
 			return
-
-		var/P = input("Begin which procedure?", "Surgery", null, null) as null|anything in available_surgeries
+		
+		var/P = show_radial_menu(user, M, radial_list, radius = 40, require_near = TRUE, tooltips = TRUE)
 		if(P && user && user.Adjacent(M) && (I in user))
 			var/datum/surgery/S = available_surgeries[P]
 
@@ -69,11 +75,12 @@
 
 			if(S.ignore_clothes || get_location_accessible(M, selected_zone))
 				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)
-				user.visible_message("[user] drapes [I] over [M]'s [parse_zone(selected_zone)] to prepare for surgery.", \
-					span_notice("You drape [I] over [M]'s [parse_zone(selected_zone)] to prepare for \an [procedure.name]."))
+				user.visible_message("[user] prepares to operate on [M]'s [parse_zone(selected_zone)].", \
+					span_notice("You prepare to operate on [M]'s [parse_zone(selected_zone)]."))
 				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff = 1)
-
 				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
+				if(S.self_operable || user != M)
+					procedure.next_step(user, user.a_intent)
 			else
 				to_chat(user, span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
 
@@ -84,26 +91,25 @@
 
 /proc/attempt_cancel_surgery(datum/surgery/S, obj/item/I, mob/living/M, mob/user)
 	var/selected_zone = user.zone_selected
+	to_chat(user, span_notice("You begin to cancel \the [S]."))
+	if(!do_mob(user, M, 3 SECONDS))
+		return
 	if(S.status == 1)
 		M.surgeries -= S
-		user.visible_message("[user] removes [I] from [M]'s [parse_zone(selected_zone)].", \
-			span_notice("You remove [I] from [M]'s [parse_zone(selected_zone)]."))
+		user.visible_message("[user] stops the surgery on [M]'s [parse_zone(selected_zone)].", \
+			span_notice("You stop the surgery on [M]'s [parse_zone(selected_zone)]."))
 		qdel(S)
 	else if(S.can_cancel)
-		var/close_tool_type = /obj/item/cautery
-		var/obj/item/close_tool = user.get_inactive_held_item()
-		var/is_robotic = S.requires_bodypart_type == BODYPART_ROBOTIC
-		if(is_robotic)
-			close_tool_type = /obj/item/screwdriver
-		if(istype(close_tool, close_tool_type) || iscyborg(user))
+		var/obj/item/close_tool = user.get_active_held_item()
+		if(close_tool.tool_behaviour == (S.requires_bodypart_type == BODYPART_ROBOTIC ? TOOL_SCREWDRIVER : TOOL_CAUTERY) || iscyborg(user))
 			if(S.operated_bodypart)
 				S.operated_bodypart.generic_bleedstacks -= 10
 			M.surgeries -= S
-			user.visible_message("[user] closes [M]'s [parse_zone(selected_zone)] with [close_tool] and removes [I].", \
-				span_notice("You close [M]'s [parse_zone(selected_zone)] with [close_tool] and remove [I]."))
+			user.visible_message("[user] closes [M]'s [parse_zone(selected_zone)] with [close_tool].", \
+				span_notice("You close [M]'s [parse_zone(selected_zone)] with [close_tool]."))
 			qdel(S)
 		else
-			to_chat(user, span_warning("You need to hold a [is_robotic ? "screwdriver" : "cautery"] in your inactive hand to stop [M]'s surgery!"))
+			to_chat(user, span_warning("You need to hold a [S.requires_bodypart_type == BODYPART_ROBOTIC ? "screwdriver" : "cautery"] in your active hand to stop [M]'s surgery!"))
 
 /proc/get_location_modifier(mob/M)
 	var/turf/T = get_turf(M)

@@ -1,98 +1,83 @@
 /datum/job
-	//The name of the job , used for preferences, bans and more. Make sure you know what you're doing before changing this.
+	/// The name of the job used for preferences, bans, etc.
 	var/title = "NOPE"
-
-	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()		//Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access = list()				//Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
-
-	//Determines who can demote this position
+	/// This job comes with these accesses by default
+	var/list/base_access = list()
+	/// Additional accesses for the job if config.jobs_have_minimal_access is set to false
+	var/list/added_access = list()
+	/// Who is responsible for demoting them
 	var/department_head = list()
-
-	//Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
+	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
-
-	//Bitflags for the job
-	var/department_flag = NONE //Deprecated
+	// Used for something in preferences_savefile.dm
+	var/department_flag = NONE
 	var/flag = NONE //Deprecated
+	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
-
-	//Players will be allowed to spawn in as jobs that are set to "Station"
+	// Players will be allowed to spawn in as jobs that are set to "Station"
 	var/faction = "None"
-
-	//How many players can be this job
+	/// How many max open slots for this job
 	var/total_positions = 0
-
-	//How many players can spawn in as this job
+	/// How many can start the round as this job
 	var/spawn_positions = 0
-
-	//How many players have this job
+	/// How many players have this job
 	var/current_positions = 0
-
-	//Supervisors, who this person answers to directly
+	/// Supervisors, who this person answers to directly
 	var/supervisors = ""
-
-	//Sellection screen color
+	/// Selection Color for job preferences
 	var/selection_color = "#ffffff"
-
-	//List of alternate titles, if any
+	/// Alternate titles for the job
 	var/list/alt_titles
-
-	//If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
+	/// If this is set to TRUE, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify
-
-	//Yogs start
-	//If this is set to 1, a text is printed to the player when jobs are assigned, telling them that space law has been updated.
+	/// If this is set to 1, a text is printed to the player when jobs are assigned, telling them that space law has been updated.
 	var/space_law_notify
-	//Yogs end
-
-	//If you have the use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
+	/// If you have the use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/minimal_player_age = 0
-	var/minimal_character_age = 0 // This is the IC age requirement for the players' *character* in order to be this job.
-
+	/// This is the IC age requirement for the players character in order to be this job.
+	var/minimal_character_age = 0
+	/// Outfit of the job
 	var/outfit = null
-
+	/// How many minutes are required to unlock this job
 	var/exp_requirements = 0
-
+	/// Which type of XP is required see `EXP_TYPE_` in __DEFINES/preferences.dm
 	var/exp_type = ""
+	/// Department XP required
 	var/exp_type_department = ""
-
-	//The amount of good boy points playing this role will earn you towards a higher chance to roll antagonist next round
-	//can be overridden by antag_rep.txt config
+	/// How much antag rep this job gets increase antag chances next round unless its overriden in antag_rep.txt
 	var/antag_rep = 10
-
+	/// Base pay of the job
 	var/paycheck = PAYCHECK_MINIMAL
+	/// Where to pull money to pay people
 	var/paycheck_department = ACCOUNT_CIV
-
-	var/list/mind_traits // Traits added to the mind of the mob assigned this job
-
+	/// Traits assigned from jobs
+	var/list/mind_traits
+	/// Display order of the job
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
+	/// Map Specific changes
+	var/list/changed_maps = list()
+	/*
+		If you want to change a job on a specific map with this system, you will want to go onto that job datum
+		and add said map's name to the changed_maps list, like so:
 
-	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
-
-/*
-	If you want to change a job on a specific map with this system, you will want to go onto that job datum
-	and add said map's name to the changed_maps list, like so:
-
-	changed_maps = list("OmegaStation")
-
-	Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
-	actually making the changes, like so:
-
-	/datum/job/miner/proc/OmegaStationChanges()
-
-	If you want to remove the job from said map, you will return TRUE in the proc, otherwise you can make
-	whatever changes to the job datum you need to make. For example, say we want to make it so 2 wardens spawn
-	on OmegaStation, we'd do the following:
-
-	/datum/job/warden
 		changed_maps = list("OmegaStation")
 
-	/datum/job/warden/proc/OmegaStationChanges()
-		total_positions = 2
-		spawn_positions = 2
-*/
+		Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
+		actually making the changes, like so:
 
+		/datum/job/miner/proc/OmegaStationChanges()
+
+		If you want to remove the job from said map, you will return TRUE in the proc, otherwise you can make
+		whatever changes to the job datum you need to make. For example, say we want to make it so 2 wardens spawn
+		on OmegaStation, we'd do the following:
+
+		/datum/job/warden
+			changed_maps = list("OmegaStation")
+
+		/datum/job/warden/proc/OmegaStationChanges()
+			total_positions = 2
+			spawn_positions = 2
+	*/
 
 /datum/job/New()
 	.=..()
@@ -155,14 +140,12 @@
 
 /datum/job/proc/get_access()
 	if(!config)	//Needed for robots.
-		return src.minimal_access.Copy()
+		return src.base_access.Copy()
 
-	. = list()
+	. = src.base_access.Copy()
 
-	if(CONFIG_GET(flag/jobs_have_minimal_access))
-		. = src.minimal_access.Copy()
-	else
-		. = src.access.Copy()
+	if(!CONFIG_GET(flag/jobs_have_minimal_access)) // If we should give players extra access
+		. |= src.added_access.Copy()
 
 	if(CONFIG_GET(flag/everyone_has_maint_access)) //Config has global maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
@@ -219,13 +202,11 @@
 
 	var/uniform_skirt = null
 
+	/// Which slot the PDA defaults to
 	var/pda_slot = SLOT_BELT
-	var/alt_shoes = /obj/item/clothing/shoes/xeno_wraps // Default digitgrade shoes assignment variable
-	var/alt_shoes_s = /obj/item/clothing/shoes/xeno_wraps/jackboots // Digitigrade shoes for Sec assignment variable
-	var/alt_shoes_c = /obj/item/clothing/shoes/xeno_wraps/command // command footwraps.
-	var/alt_shoes_e = /obj/item/clothing/shoes/xeno_wraps/engineering // Engineering footwraps
-	var/alt_shoes_ca = /obj/item/clothing/shoes/xeno_wraps/cargo // Cargo Footwraps
-	var/alt_shoes_m = /obj/item/clothing/shoes/xeno_wraps/medical // Medical Footwraps
+
+	/// What shoes digitgrade crew should wear
+	var/digitigrade_shoes
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
@@ -249,17 +230,9 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
-	if(DIGITIGRADE in H.dna.species.species_traits)
-		if(IS_COMMAND(H)) // command gets snowflake shoes too.
-			shoes = alt_shoes_c
-		else if(IS_SECURITY(H) || find_job(H) == "Brig Physician") // Special shoes for sec and brig phys, roll first to avoid defaulting
-			shoes = alt_shoes_s
-		else if(IS_ENGINEERING(H)) // Now engineers and miners get their department specific shoes, rather than generic ones.
-			shoes = alt_shoes_e		
-		else if(find_job(H) == "Shaft Miner")
-			shoes = alt_shoes_ca
-		else if(find_job(H) == "Mining Medic")
-			shoes = alt_shoes_m
+
+	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
+		shoes = digitigrade_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -278,19 +251,15 @@
 			C.assignment = H.mind.role_alt_title
 		else
 			C.assignment = J.title
-		if(H.mind?.assigned_role)
-			C.originalassignment = H.mind.assigned_role
-		else
-			C.originalassignment = J.title
+		C.originalassignment = J.title
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
-		for(var/A in SSeconomy.bank_accounts)
-			var/datum/bank_account/B = A
-			if(B.account_id == H.account_id)
-				C.registered_account = B
-				B.bank_cards += C
-				break
+		var/acc_id = "[H.account_id]"
+		if(acc_id in SSeconomy.bank_accounts)
+			var/datum/bank_account/B = SSeconomy.bank_accounts[acc_id]
+			C.registered_account = B
+			B.bank_cards += C
 		H.sec_hud_set_ID()
 
 	var/obj/item/pda/PDA = new pda_type()

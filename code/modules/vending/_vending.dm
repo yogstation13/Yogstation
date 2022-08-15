@@ -34,6 +34,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/custom_premium_price
 	///Whether spessmen with an ID with an age below AGE_MINOR (21 by default) can buy this item
 	var/age_restricted = FALSE
+	///List of items that have been returned to the vending machine.
+	var/list/returned_products
 
 /**
   * # vending machines
@@ -154,6 +156,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	//The type of refill canisters used by this machine.
 	var/obj/item/vending_refill/refill_canister = null
 
+	/// how many items have been inserted in a vendor
+	var/loaded_items = 0
+	
 	/// used for narcing on underages
 	var/obj/item/radio/alertradio
 
@@ -255,6 +260,14 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		found_anything = FALSE
 		for(var/record in shuffle(product_records))
 			var/datum/data/vending_product/R = record
+
+				//first dump any of the items that have been returned, in case they contain the nuke disk or something
+			for(var/obj/returned_obj_to_dump in R.returned_products)
+				LAZYREMOVE(R.returned_products, returned_obj_to_dump)
+				returned_obj_to_dump.forceMove(get_turf(src))
+				step(returned_obj_to_dump, pick(GLOB.alldirs))
+				R.amount--
+
 			if(R.amount <= 0) //Try to use a record that actually has something to dump.
 				continue
 			var/dump_path = R.product_path
@@ -459,9 +472,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/dump_path = R.product_path
 			if(!dump_path)
 				continue
-
+			if(R.amount > LAZYLEN(R.returned_products)) //always give out new stuff that costs before free returned stuff, because of the risk getting gibbed involved
+				new dump_path(get_turf(src))
+			else
+				var/obj/returned_obj_to_dump = LAZYACCESS(R.returned_products, LAZYLEN(R.returned_products)) //first in, last out
+				LAZYREMOVE(R.returned_products, returned_obj_to_dump)
+				returned_obj_to_dump.forceMove(get_turf(src))
 			R.amount--
-			new dump_path(get_turf(src))
 			break
 
 /obj/machinery/vending/proc/tilt(mob/fatty, crit=FALSE)
@@ -568,19 +585,23 @@ GLOBAL_LIST_EMPTY(vending_products)
 		return
 	. = ..()
 
-/obj/machinery/vending/proc/loadingAttempt(obj/item/I,mob/user)
+/obj/machinery/vending/proc/loadingAttempt(obj/item/I, mob/user)
 	. = TRUE
 	if(!user.transferItemToLoc(I, src))
 		return FALSE
-	for(var/datum/data/vending_product/R as anything in product_records)
-		if(R.product_path == I.type)
-			R.amount++
-			to_chat(user, span_notice("You insert [I] into [src]'s input compartment."))
-			qdel(I)
-			break
+	to_chat(user, span_notice("You insert [I] into [src]'s input compartment."))
 
-	return FALSE
+	for(var/datum/data/vending_product/product_datum in product_records + coin_records + hidden_records)
+		if(ispath(I.type, product_datum.product_path))
+			product_datum.amount++
+			LAZYADD(product_datum.returned_products, I)
+			return
 
+	if(vending_machine_input[format_text(I.name)])
+		vending_machine_input[format_text(I.name)]++
+	else
+		vending_machine_input[format_text(I.name)] = 1
+	loaded_items++
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
 	if(!istype(W))
@@ -771,6 +792,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 					price_to_use = 0
 				if(coin_records.Find(R) || hidden_records.Find(R))
 					price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
+				if(LAZYLEN(R.returned_products))
+					price_to_use = 0 //returned items are free
 				if(price_to_use && !account.adjust_money(-price_to_use))
 					say("You do not possess the funds to purchase [R.name].")
 					flick(icon_deny,src)
@@ -787,7 +810,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(icon_vend) //Show the vending animation if needed
 				flick(icon_vend,src)
 			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
-			new R.product_path(get_turf(src))
+			var/obj/item/vended_item
+			if(!LAZYLEN(R.returned_products)) //always give out free returned stuff first, e.g. to avoid walling a traitor objective in a bag behind paid items
+				vended_item = new R.product_path(get_turf(src))
+			else
+				vended_item = LAZYACCESS(R.returned_products, LAZYLEN(R.returned_products)) //first in, last out
+				LAZYREMOVE(R.returned_products, vended_item)
+				vended_item.forceMove(get_turf(src))
 			R.amount--
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 			vend_ready = TRUE
@@ -856,9 +885,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 		var/dump_path = R.product_path
 		if(!dump_path)
 			continue
-
+		if(R.amount > LAZYLEN(R.returned_products)) //always throw new stuff that costs before free returned stuff, because of the hacking effort and time between throws involved
+			throw_item = new dump_path(loc)
+		else
+			throw_item = LAZYACCESS(R.returned_products, LAZYLEN(R.returned_products)) //first in, last out
+			throw_item.forceMove(loc)
+			LAZYREMOVE(R.returned_products, throw_item)
 		R.amount--
-		throw_item = new dump_path(loc)
 		break
 	if(!throw_item)
 		return 0

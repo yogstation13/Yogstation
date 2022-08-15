@@ -51,6 +51,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/full = FALSE
 	var/eating = FALSE
 	var/cheesed = FALSE
+	var/cheese_time = 0
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
@@ -61,15 +62,19 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
 
+/mob/living/simple_animal/mouse/handle_stomach()
+	if(cheesed && cheese_time < world.time)
+		cheese_down()
+
 /mob/living/simple_animal/mouse/proc/splat()
-	if(!key)
-		src.health = 0
-		src.icon_dead = "mouse_[body_color]_splat"
-		death()
-	else
+	if(key)
 		adjustHealth(rand(7,12))
 		if(health <= 0)
 			src.icon_dead = "mouse_[body_color]_splat"
+	else
+		src.health = 0
+		src.icon_dead = "mouse_[body_color]_splat"
+		death()
 
 /mob/living/simple_animal/mouse/death(gibbed, toast)
 	GLOB.mouse_killed++
@@ -92,9 +97,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		if(!stat)
 			var/mob/M = AM
 			to_chat(M, span_notice("[icon2html(src, M)] Squeak!"))
-	if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
-		evolve()
-		qdel(AM)
+	//if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
+	//	evolve()
+	//	qdel(AM)
 	..()
 
 /mob/living/simple_animal/mouse/handle_automated_action()
@@ -116,10 +121,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 			be_fruitful()
 			qdel(cheese)
 			return
-	for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
-		qdel(bigcheese)
-		evolve()
-		return
+	//for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
+	//	qdel(bigcheese)
+	//	evolve()
+	//	return
 
 
 /**
@@ -238,6 +243,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /mob/living/simple_animal/mouse/proc/cheese_up()
 	regen_health(15)
 	if(cheesed)
+		cheese_time = cheese_time + 3 MINUTES
 		return
 	cheesed = TRUE
 	resize = 2
@@ -246,7 +252,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	maxHealth = 30
 	health = maxHealth
 	to_chat(src, span_userdanger("You ate cheese! You are now stronger, bigger and faster!"))
-	addtimer(CALLBACK(src, .proc/cheese_down), 3 MINUTES)
+	cheese_time = cheese_time + 3 MINUTES
 
 /mob/living/simple_animal/mouse/proc/cheese_down()
 	cheesed = FALSE
@@ -261,9 +267,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/list/cheeses = list(/obj/item/reagent_containers/food/snacks/cheesewedge, /obj/item/reagent_containers/food/snacks/cheesewheel,
 							/obj/item/reagent_containers/food/snacks/store/cheesewheel, /obj/item/reagent_containers/food/snacks/customizable/cheesewheel,
 							/obj/item/reagent_containers/food/snacks/cheesiehonkers) //all cheeses - royal
-	if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
-		evolve()
-		return
+	//if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
+	//	evolve()
+	//	return
 	if(istype(F, /obj/item/grown/bananapeel/bluespace))
 		var/obj/item/grown/bananapeel/bluespace/B
 		var/teleport_radius = max(round(B.seed.potency / 10), 1)

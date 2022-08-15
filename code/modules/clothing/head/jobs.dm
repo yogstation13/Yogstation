@@ -116,6 +116,7 @@
 		icon_state = "syndicate_fedora_sharp"
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
 		hitsound = 'sound/weapons/bladeslice.ogg'
+		hattable = FALSE
 	else
 		force = 0
 		throwforce = 0
@@ -123,6 +124,7 @@
 		icon_state = "syndicate_fedora"
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
+		hattable = TRUE
 
 /obj/item/clothing/head/det_hat/evil/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(iscarbon(loc) || !iscarbon(thrownby))
@@ -173,7 +175,6 @@
 	name = "durathread beret"
 	desc =  "A beret made from durathread, its resilient fibres provide some protection to the wearer."
 	icon_state = "beretdurathread"
-	item_color = null
 	armor = list(MELEE = 15, BULLET = 5, LASER = 15, ENERGY = 5, BOMB = 10, BIO = 0, RAD = 0, FIRE = 30, ACID = 5, WOUND = 5)
 
 //Security

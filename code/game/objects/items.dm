@@ -4,13 +4,24 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 // if true, everyone item when created will have its name changed to be
 // more... RPG-like.
 
+GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, ABOVE_LIGHTING_PLANE))
+
 /obj/item
 	name = "item"
 	icon = 'icons/obj/misc.dmi'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	///icon state name for inhand overlays
 	var/item_state = null
+	///Icon file for left hand inhand overlays
 	var/lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	///Icon file for right inhand overlays
 	var/righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+
+	///Icon file for mob worn overlays. 
+	///no var for state because it should *always* be the same as icon_state
+	var/icon/mob_overlay_icon
+	//Forced mob worn layer instead of the standard preferred ssize.
+	var/alternate_worn_layer
 
 	//Dimensions of the icon file used when this item is worn, eg: hats.dmi
 	//eg: 32x32 sprite, 64x64 sprite, etc.
@@ -20,10 +31,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	//Same as above but for inhands, uses the lefthand_ and righthand_ file vars
 	var/inhand_x_dimension = 32
 	var/inhand_y_dimension = 32
-
-	//Not on /clothing because for some reason any /obj/item can technically be "worn" with enough fuckery.
-	var/icon/alternate_worn_icon = null//If this is set, update_icons() will find on mob (WORN, NOT INHANDS) states in this file instead, primary use: badminnery/events
-	var/alternate_worn_layer = null//If this is set, update_icons() will force the on mob state (WORN, NOT INHANDS) onto this layer, instead of it's default
 
 	max_integrity = 200
 
@@ -62,9 +69,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/interaction_flags_item = INTERACT_ITEM_ATTACK_HAND_PICKUP
 
-	var/item_color = null //this needs deprecating, soonish
-
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
+	var/body_parts_partial_covered = 0 //same bit flags as above, only applies half armor to these body parts
+
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -116,12 +123,25 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/trigger_guard = TRIGGER_GUARD_NONE
 
+	///Used as the dye color source in the washing machine only (at the moment). Can be a hex color or a key corresponding to a registry entry, see washing_machine.dm
+	var/dye_color
+	///Whether the item is unaffected by standard dying.
+	var/undyeable = FALSE
+	///What dye registry should be looked at when dying this item; see washing_machine.dm
+	var/dying_key
+
 	//Grinder vars
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
 
 	//Tape vars
 	var/taped = FALSE
+
+	/// Should the cryo console preserve this item
+	var/cryo_preserve = FALSE
+
+	/// Is this item fryable without a syndicate frying pan
+	var/fryable = FALSE
 
 /obj/item/Initialize()
 
@@ -773,14 +793,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks, robo_check)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
 		return
 	delay *= toolspeed
 
-	if(IS_ENGINEERING(user) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
+	if((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
 		delay *= 0.8
 
 	// Play tool sound at the beginning of tool usage.
@@ -878,6 +898,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
+	
 /**
   *	Called when this object is first embedded into a carbon
   */

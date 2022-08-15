@@ -69,5 +69,6 @@
 	rare_loot = list(
 		/obj/item/reagent_containers/food/snacks/fish/rat,
 		/obj/item/reagent_containers/food/snacks/fish/squid,
-		/obj/item/stack/sheet/bluespace_crystal
+		/obj/item/stack/sheet/bluespace_crystal,
+		/obj/item/clothing/head/soft/fishfear/legendary
 	)

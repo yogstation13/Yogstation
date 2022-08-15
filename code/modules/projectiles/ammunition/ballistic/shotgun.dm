@@ -8,6 +8,11 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug
 	materials = list(/datum/material/iron=4000)
 
+/obj/item/ammo_casing/shotgun/syndie
+	name = "syndicate shotgun slug"
+	desc = "An illegal type of ammunition used by the syndicate for their bulldog shotguns. Hopefully you're not the one on the receiving end."
+	projectile_type = /obj/item/projectile/bullet/shotgun_slug/syndie
+
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
@@ -63,6 +68,22 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	pellets = 6
 	variance = 25
+
+/obj/item/ammo_casing/shotgun/hpbuck
+	name = "hollow-point buckshot shell"
+	desc = "A 12 gauge hollow-point buckshot shell."
+	icon_state = "hpbshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_hpbuckshot
+	pellets = 6
+	variance = 25
+
+/obj/item/ammo_casing/shotgun/flechette
+	name = "flechette shell"
+	desc = "A 12 gauge flechette shell."
+	icon_state = "flshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_flechette
+	pellets = 6
+	variance = 15
 
 /obj/item/ammo_casing/shotgun/clownshot
 	name = "buckshot shell..?"

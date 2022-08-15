@@ -31,6 +31,7 @@ Difficulty: Very Hard
 	icon_state = "eva"
 	icon_living = "eva"
 	icon_dead = ""
+	health_doll_icon = "eva"
 	friendly = "stares down"
 	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
 	speak_emote = list("roars")
@@ -125,6 +126,9 @@ Difficulty: Very Hard
 		var/mob/living/carbon/human/H = L
 		if(H.mind)
 			if(H.mind.martial_art && prob(H.mind.martial_art.deflection_chance))
+				. = TRUE
+		if(H.mind)
+			if(H.dna.species == /datum/species/golem/sand)
 				. = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/alternating_dir_shots()

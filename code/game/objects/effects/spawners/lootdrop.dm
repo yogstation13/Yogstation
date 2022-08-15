@@ -87,6 +87,110 @@
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
 			/obj/item/trash/syndi_cakes = 1)
 
+/obj/effect/spawner/lootdrop/donkpockets
+	name = "donk pocket box spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/item/storage/box/donkpockets/donkpocketspicy = 1,
+			/obj/item/storage/box/donkpockets/donkpocketteriyaki = 1,
+			/obj/item/storage/box/donkpockets/donkpocketpizza = 1,
+			/obj/item/storage/box/donkpockets/donkpocketberry = 1,
+			/obj/item/storage/box/donkpockets/donkpockethonk = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks
+	name = "reagent tank spawner"
+	icon_state = "random_tanks"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/lowchance
+	name = "rare reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 50,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/midchance
+	name = "common reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 15,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/highchance
+	name = "frequent reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 5,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/highquality
+	name = "highcap water/foam tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/watertank/high = 5,
+			/obj/structure/reagent_dispensers/foamtank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly
+	name = "guaranteed fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/lowchance
+	name = "rare fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 50,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/midchance
+	name = "common fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 15,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/highchance
+	name = "frequent fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 5,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
 /obj/effect/spawner/lootdrop/three_course_meal
 	name = "three course meal spawner"
 	lootcount = 3
@@ -224,7 +328,7 @@
 	name = "pirate hat or bandana spawner"
 	loot = list(
 		/obj/item/clothing/head/pirate = 1,
-		/obj/item/clothing/head/bandana = 1)
+		/obj/item/clothing/head/pirate/bandana = 1)
 
 /obj/effect/spawner/lootdrop/minor/twentyfive_percent_cyborg_mask
 	name = "25% cyborg mask spawner"

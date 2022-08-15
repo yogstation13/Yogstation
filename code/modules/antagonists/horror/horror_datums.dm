@@ -14,6 +14,15 @@
 		var/mob/living/simple_animal/horror/H = owner.current
 		H.update_horror_hud()
 
+/datum/antagonist/horror/antag_listing_name()
+	. = ..()
+	var/mob/living/simple_animal/horror/H = owner.current
+	if(!istype(H) || !H.victim)
+		return
+	if(H.host_brain)
+		return ..() + ", controlling [H.host_brain.real_name]"
+	return ..() + ", inside [H.victim.real_name]"
+
 /datum/antagonist/horror/proc/give_objectives()
 	if(summoner)
 		var/datum/objective/newobjective = new

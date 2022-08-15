@@ -13,7 +13,7 @@
 		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
 
-	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+	. = list("<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
 	var/vampDesc = ReturnVampExamine(user) // Fulpstation Bloodsuckers edit STARTS
 	var/vassDesc = ReturnVassalExamine(user)
@@ -206,7 +206,15 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-
+				
+	if(surgeries.len)
+		var/surgery_text
+		for(var/datum/surgery/S in surgeries)
+			if(!surgery_text)
+				surgery_text = "[t_He] [t_is] being operated on in \the [S.operated_bodypart]"
+			else
+				surgery_text += ", [S.operated_bodypart]"
+		msg += "[surgery_text].\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
@@ -299,7 +307,10 @@
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
 	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+		if(getorganslot(ORGAN_SLOT_EYES))
+			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+		else
+			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
 
 	if(!appears_dead)
 		if(drunkenness && !skipface) //Drunkenness
@@ -427,7 +438,7 @@
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
-	. += "*---------*</span>"
+	. += "</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
@@ -452,7 +463,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	
-	. = list("<span class='info'>*---------*\nThis is <EM>[name]</EM>!")
+	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
 
@@ -556,4 +567,4 @@
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")
 
-	. += "*---------*</span>"
+	. += "</span>"

@@ -27,12 +27,15 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	var/turns_since_scan = 0
 	var/mob/living/simple_animal/mouse/movement_target
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "cat"
 	can_be_held = TRUE
 	do_footstep = TRUE
+	wuv_happy = "purrs!"
+	wuv_angy = "hisses!"
 
 /mob/living/simple_animal/pet/cat/Initialize()
 	. = ..()
@@ -233,26 +236,6 @@
 			if(movement_target)
 				stop_automated_movement = 1
 				walk_to(src,movement_target,0,3)
-
-/mob/living/simple_animal/pet/cat/attack_hand(mob/living/carbon/human/M)
-	. = ..()
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			wuv(M)
-		if(INTENT_HARM)
-			wuv(M, FALSE)
-
-/mob/living/simple_animal/pet/cat/wuv(mob/M, change = TRUE)
-	if(change)
-		if(M && stat != DEAD)
-			new /obj/effect/temp_visual/heart(loc)
-			emote("me", 1, "purrs!", TRUE)
-			if(flags_1 & HOLOGRAM_1)
-				return
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
-	else
-		if(M && stat != DEAD)
-			emote("me", 1, "hisses!", TRUE)
 
 /mob/living/simple_animal/pet/cat/cak //I told you I'd do it, Remie
 	name = "Keeki"

@@ -312,9 +312,15 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "tonercartridge"
 	grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10)
-	var/charges = 5
-	var/max_charges = 5
+	var/charges = 25
+	var/max_charges = 25
 
+/obj/item/toner/large
+	name = "large toner cartridge"
+	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
+	charges = 75
+	max_charges = 75
+	
 /obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy)
 	var/copy_as_paper = TRUE
 	if(istype(copy, /obj/item/paper/contract/employment))

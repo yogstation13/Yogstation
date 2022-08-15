@@ -121,5 +121,5 @@
 	if(!istype(M) || !M.mineralType) // so we don't end up in the ultimate chain reaction
 		return
 	for(var/turf/closed/mineral/T in orange(1, M))
-		if(istype(T) && M.mineralType == T.mineralType)
+		if(istype(T) && !locate(/obj/effect/temp_visual/resonance) in T && M.mineralType == T.mineralType)
 			new /obj/effect/temp_visual/resonance(T, creator, null, duration)	//yogs end

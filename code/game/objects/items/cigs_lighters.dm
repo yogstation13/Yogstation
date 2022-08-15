@@ -86,6 +86,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			cig.attackby(src, user)
 		else
 			cig.light(span_notice("[user] holds [src] out for [M], and lights [cig]."))
+			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 	else
 		..()
 
@@ -289,6 +290,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			cig.attackby(src, user)
 		else
 			cig.light(span_notice("[user] holds the [name] out for [M], and lights [M.p_their()] [cig.name]."))
+			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 	else
 		return ..()
 
@@ -583,6 +585,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/lighter/ignition_effect(atom/A, mob/user)
 	if(is_hot())
 		. = span_rose("With a single flick of [user.p_their()] wrist, [user] smoothly lights [A] with [src]. Damn [user.p_theyre()] cool.")
+		playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 
 /obj/item/lighter/proc/set_lit(new_lit)
 	lit = new_lit
@@ -610,6 +613,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			set_lit(TRUE)
 			if(fancy)
 				user.visible_message("Without even breaking stride, [user] flips open and lights [src] in one smooth movement.", span_notice("Without even breaking stride, you flip open and light [src] in one smooth movement."))
+				playsound(src, 'sound/items/lighter/strike.ogg', 50, 2)
 			else
 				var/prot = FALSE
 				var/mob/living/carbon/human/H = user
@@ -623,6 +627,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 				if(prot || prob(75))
 					user.visible_message("After a few attempts, [user] manages to light [src].", span_notice("After a few attempts, you manage to light [src]."))
+					playsound(src, 'sound/items/lighter/plastic_strike.ogg', 40, 2)
 				else
 					var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 					user.apply_damage(5, BURN, hitzone)
@@ -633,8 +638,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			set_lit(FALSE)
 			if(fancy)
 				user.visible_message("You hear a quiet click, as [user] shuts off [src] without even looking at what [user.p_theyre()] doing. Wow.", span_notice("You quietly shut off [src] without even looking at what you're doing. Wow."))
+				playsound(src, 'sound/items/lighter/close.ogg', 50, 1)
 			else
 				user.visible_message("[user] quietly shuts off [src].", span_notice("You quietly shut off [src]."))
+				playsound(src, 'sound/items/lighter/plastic_close.ogg', 40, 2)
 	else
 		. = ..()
 
@@ -651,8 +658,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			if(fancy)
 				cig.light(span_rose("[user] whips the [name] out and holds it for [M]. [user.p_their(TRUE)] arm is as steady as the unflickering flame [user.p_they()] light[user.p_s()] \the [cig] with."))
+				playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 			else
 				cig.light(span_notice("[user] holds the [name] out for [M], and lights [M.p_their()] [cig.name]."))
+				playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 	else
 		..()
 
@@ -710,6 +719,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/lighter/greyscale/ignition_effect(atom/A, mob/user)
 	if(is_hot())
 		. = span_notice("After some fiddling, [user] manages to light [A] with [src].")
+		playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 
 
 /obj/item/lighter/slime

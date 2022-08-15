@@ -24,6 +24,7 @@
 	icon_aggro = "pandora"
 	icon_dead = "pandora_dead"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "pandora"
 	maxHealth = 800
 	health = 800
 	melee_damage_lower = 15

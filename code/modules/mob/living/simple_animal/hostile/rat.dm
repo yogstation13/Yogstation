@@ -26,6 +26,9 @@
 	faction = list("rat")
 	var/body_color
 
+/mob/living/simple_animal/hostile/rat/loan
+	faction = list("hostile")
+
 /mob/living/simple_animal/hostile/rat/Initialize()
 	. = ..()
 	if(mind)

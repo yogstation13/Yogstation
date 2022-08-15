@@ -2,15 +2,10 @@
 // stores power
 
 //Cache defines
-#define SMES_CLEVEL_1		1
-#define SMES_CLEVEL_2		2
-#define SMES_CLEVEL_3		3
-#define SMES_CLEVEL_4		4
-#define SMES_CLEVEL_5		5
-#define SMES_OUTPUTTING		6
-#define SMES_NOT_OUTPUTTING 7
-#define SMES_INPUTTING		8
-#define SMES_INPUT_ATTEMPT	9
+#define SMES_OUTPUTTING		7
+#define SMES_NOT_OUTPUTTING 8
+#define SMES_INPUTTING		9
+#define SMES_INPUT_ATTEMPT	10
 
 /obj/machinery/power/smes
 	name = "power storage unit"
@@ -219,15 +214,15 @@
 		return
 
 	if(outputting)
-		add_overlay("smes-op1")
+		add_overlay("smes-out1")
 	else
-		add_overlay("smes-op0")
+		add_overlay("smes-out0")
 
 	if(inputting)
-		add_overlay("smes-oc1")
+		add_overlay("smes-inp1")
 	else
 		if(input_attempt)
-			add_overlay("smes-oc0")
+			add_overlay("smes-inp0")
 
 	var/clevel = chargedisplay()
 	if(clevel>0)
@@ -235,7 +230,7 @@
 
 
 /obj/machinery/power/smes/proc/chargedisplay()
-	return clamp(round(5.5*charge/capacity),0,5)
+	return clamp(round(6.5*charge/capacity),0,6)
 
 /obj/machinery/power/smes/process()
 	if(stat & BROKEN)
@@ -453,12 +448,6 @@
 	log_smes(user)
 	update_icon()
 
-
-#undef SMES_CLEVEL_1
-#undef SMES_CLEVEL_2
-#undef SMES_CLEVEL_3
-#undef SMES_CLEVEL_4
-#undef SMES_CLEVEL_5
 #undef SMES_OUTPUTTING
 #undef SMES_NOT_OUTPUTTING
 #undef SMES_INPUTTING

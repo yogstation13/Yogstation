@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		var/random_frequency = get_rand_frequency()
 
 		for(var/mob/M in GLOB.player_list)
-			if((M.orbiting) && (SSaugury.watchers[M]))
+			if((M.orbiting))
 				continue
 			var/turf/T = get_turf(M)
 			if(!T || T.z != src.z)

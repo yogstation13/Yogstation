@@ -14,6 +14,7 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "stomps"
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	stop_automated_movement = 1
 	friendly = "pinches"
 	ventcrawler = VENTCRAWLER_ALWAYS

@@ -1,4 +1,4 @@
-#define REGAL_RAT_CHANCE 2
+#define REGAL_RAT_CHANCE 0
 #define PLAGUE_RAT_CHANCE 0
 SUBSYSTEM_DEF(minor_mapping)
 	name = "Minor Mapping"

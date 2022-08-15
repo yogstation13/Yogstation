@@ -433,6 +433,39 @@
 			M.reagents.remove_reagent(R.type,1)
 	..()
 
+/datum/reagent/medicine/system_cleaner
+	name = "System Cleaner"
+	description = "Neutralizes harmful chemical compounds inside synthetic systems."
+	reagent_state = LIQUID
+	color = "#F1C40F"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	process_flags = SYNTHETIC
+
+/datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
+	M.adjustToxLoss(-2*REM, 0)
+	. = 1
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		if(R != src)
+			M.reagents.remove_reagent(R.type,1)
+	..()
+
+/datum/reagent/medicine/liquid_solder
+	name = "Liquid Solder"
+	description = "Repairs brain damage in synthetics."
+	color = "#727272"
+	taste_description = "metallic"
+	process_flags = SYNTHETIC
+
+/datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(prob(10) && C.has_trauma_type(BRAIN_TRAUMA_SPECIAL))
+			C.cure_trauma_type(BRAIN_TRAUMA_SPECIAL)
+		else if(prob(10) && C.has_trauma_type(BRAIN_TRAUMA_MILD))
+			C.cure_trauma_type(BRAIN_TRAUMA_MILD)
+	..()
+
 /datum/reagent/medicine/omnizine
 	name = "Omnizine"
 	description = "Slowly heals all damage types. Overdose will cause damage in all types instead."
@@ -441,6 +474,7 @@
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	var/healing = 0.5
 	overdose_threshold = 30
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(-healing*REM, 0)
@@ -1154,12 +1188,12 @@
 	reagent_state = LIQUID
 	color = "#43bf1d"
 	taste_description = "bug intestines"
-	overdose_threshold = 10
+	overdose_threshold = 20
 	can_synth = FALSE
 
 /datum/reagent/medicine/grubjuice/on_mob_life(mob/living/carbon/M)
-	M.heal_bodypart_damage(7,7)
-	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 2*REM)
+	M.heal_bodypart_damage(3,3)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1*REM)
 	..()
 	return TRUE
 

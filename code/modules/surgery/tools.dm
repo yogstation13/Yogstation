@@ -12,6 +12,9 @@
 	tool_behaviour = TOOL_RETRACTOR
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/retractor/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/retractor/augment
 	name = "retractor"
@@ -45,6 +48,9 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "pinched")
 
+/obj/item/hemostat/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/hemostat/augment
 	name = "hemostat"
@@ -79,6 +85,9 @@
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("burnt")
 
+/obj/item/cautery/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/cautery/augment
 	name = "cautery"
@@ -125,6 +134,9 @@
 	SSachievements.unlock_achievement(/datum/achievement/likearecord, user.client)
 	return (MANUAL_SUICIDE)
 
+/obj/item/surgicaldrill/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/surgicaldrill/augment
 	name = "surgical drill"
@@ -166,6 +178,10 @@
 /obj/item/scalpel/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
+
+/obj/item/scalpel/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
 
 /obj/item/scalpel/augment
 	name = "scalpel"
@@ -222,6 +238,10 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
+/obj/item/circular_saw/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
+
 /obj/item/circular_saw/augment
 	name = "circular saw"
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
@@ -258,12 +278,17 @@
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("corrected", "properly set")
 
+/obj/item/bonesetter/attack(mob/living/M, mob/user)
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+		..()
+
 /obj/item/bonesetter/bone
 	name = "bone bonesetter"
 	desc = "A bonesetter made of bones... for setting bones with... bones?"
 	icon_state = "bone setter_bone"
 	toolspeed = 1.25
 
+// Pointless now that tools can initiate surgery
 /obj/item/surgical_drapes
 	name = "surgical drapes"
 	desc = "Nanotrasen brand surgical drapes provide optimal safety and infection control."
@@ -276,7 +301,7 @@
 	attack_verb = list("slapped")
 
 /obj/item/surgical_drapes/attack(mob/living/M, mob/user)
-	if(!attempt_initiate_surgery(src, M, user))
+	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/surgical_drapes/goliath
@@ -443,3 +468,82 @@
 /obj/item/cautery/advanced/examine()
 	. = ..()
 	. += " It's set to [tool_behaviour == TOOL_DRILL ? "drilling" : "mending"] mode."
+
+/obj/structure/bed/surgical_mat
+	name = "surgical mat"
+	desc = "A sanitized mat for preforming simple triage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "opmat"
+	can_buckle = FALSE
+	bolts = FALSE
+	var/obj/picked_up = /obj/item/surgical_mat
+
+/obj/structure/bed/surgical_mat/ComponentInitialize()
+	..()
+	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
+	SB.success_chance = 0.8
+
+/obj/structure/bed/surgical_mat/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	if(over_object == usr && Adjacent(usr))
+		if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+			return FALSE
+		if(has_buckled_mobs())
+			return FALSE
+		usr.visible_message("[usr] rolls up \the [src.name].", span_notice("You roll up \the [src.name]."))
+		var/obj/O = new picked_up(get_turf(src))
+		usr.put_in_hands(O)
+		qdel(src)
+
+/obj/item/surgical_mat
+	name = "surgical mat"
+	desc = "A rolled up, sanitized mat for preforming simple triage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "surgical_drapes"
+	w_class = WEIGHT_CLASS_NORMAL
+	var/obj/placed = /obj/structure/bed/surgical_mat
+
+/obj/item/surgical_mat/attack_self(mob/user)
+	deploy_mat(user, user.loc)
+
+/obj/item/surgical_mat/afterattack(obj/target, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(isopenturf(target))
+		deploy_mat(user, target)
+
+/obj/item/surgical_mat/proc/deploy_mat(mob/user, atom/location)
+	var/obj/structure/bed/surgical_mat/M = new placed(location)
+	M.add_fingerprint(user)
+	qdel(src)
+
+/obj/structure/bed/surgical_mat/syndicate
+	name = "syndicate surgical mat"
+	desc = "A sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
+	icon_state = "opmat"
+	can_buckle = TRUE
+	picked_up = /obj/item/surgical_mat/syndicate
+
+/obj/item/surgical_mat/syndicate
+	name = "syndicate surgical mat"
+	desc = "A rolled up, sanitized mat with buckles for preforming simple \"triage\" on unwanting patients."
+	icon_state = "surgical_drapes"
+	placed = /obj/structure/bed/surgical_mat/syndicate
+
+/obj/structure/bed/surgical_mat/goliath
+	name = "goliath hide surgical mat"
+	desc = "An improvised mat for preforming primative surgery on patients."
+	icon_state = "opmat_goli"
+	picked_up = /obj/item/surgical_mat/goliath
+
+/obj/structure/bed/surgical_mat/goliath/ComponentInitialize()
+	..()
+	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
+	SB.success_chance = 0.85
+
+/obj/item/surgical_mat/goliath
+	name = "goliath hide surgical mat"
+	desc = "A rolled up, improvised mat for preforming primative surgery on patients."
+	icon_state = "surgical_drapes_goli"
+	placed = /obj/structure/bed/surgical_mat/goliath

@@ -197,6 +197,7 @@
 	
 /obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
+	return TRUE
 	
 /obj/item/reagent_containers/syringe/embed_tick(embedde, part)
 	reagents.trans_to(embedde, amount_per_transfer_from_this * 0.2)

@@ -472,7 +472,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(initiator)
 		to_chat(initiator, msg, confidential=TRUE)
-		initiator.mentorhelp(name, 1)
+		initiator.mhelp(name, TRUE)
 
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "MHelp")
 	msg = "Ticket [TicketHref("#[id]")] marked as MHelp by [key_name]"

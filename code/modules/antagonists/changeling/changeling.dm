@@ -6,6 +6,7 @@
 	name = "Changeling"
 	roundend_category  = "changelings"
 	antagpanel_category = "Changeling"
+	show_to_ghosts = TRUE
 	job_rank = ROLE_CHANGELING
 	antag_moodlet = /datum/mood_event/changeling
 
@@ -310,7 +311,6 @@
 			prof.name_list[slot] = I.name
 			prof.appearance_list[slot] = I.appearance
 			prof.flags_cover_list[slot] = I.flags_cover
-			prof.item_color_list[slot] = I.item_color
 			prof.item_state_list[slot] = I.item_state
 			prof.exists_list[slot] = 1
 		else

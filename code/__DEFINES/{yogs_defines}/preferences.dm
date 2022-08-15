@@ -1,4 +1,4 @@
-#define DONOR_CHARACTER_SLOTS 6
+#define DONOR_CHARACTER_SLOTS 3
 
 
 #define CHAT_LOOC	(1<<11)

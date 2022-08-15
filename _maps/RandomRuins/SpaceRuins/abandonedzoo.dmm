@@ -803,7 +803,7 @@
 "Sy" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bottle/mutagen,
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/plasteel/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 

@@ -24,7 +24,7 @@
 	///how much stamina damage we deal per hit, this is combatted by energy armor
 	var/stamina_damage = 70
 	///are we turned on
-	var/status = TRUE
+	var/status = FALSE
 	///the cell used by the baton
 	var/obj/item/stock_parts/cell/cell
 	///how much charge is deducted from the cell when we slap someone while on
@@ -41,8 +41,11 @@
 	return cell
 
 /obj/item/melee/baton/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return (FIRELOSS)
+	if(status)
+		user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
+		return FIRELOSS
+	user.visible_message(span_suicide("[user] is putting the [name] in [user.p_their()] mouth! But forgot to turn the [name] on."))
+	return SHAME
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
@@ -85,7 +88,12 @@
 	if(cell)
 		//Note this value returned is significant, as it will determine
 		//if a stun is applied or not
-		. = cell.use(chrgdeductamt)
+		var/mob/living/M = loc
+		if(M && iscyborg(M)) 
+			var/mob/living/silicon/robot/R = loc
+			R.cell.use(chrgdeductamt)
+		else
+			. = cell.use(chrgdeductamt)
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE
@@ -130,7 +138,6 @@
 			cell = W
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_icon()
-
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
 			cell.update_icon()
@@ -138,8 +145,8 @@
 			cell = null
 			to_chat(user, span_notice("You remove the cell from [src]."))
 			status = FALSE
-			update_icon()
 			STOP_PROCESSING(SSobj, src) // no cell, no charge; stop processing for on because it cant be on
+			update_icon()
 	else
 		return ..()
 
@@ -187,7 +194,6 @@
 		..()
 		return
 
-
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
 		var/datum/martial_art/A = L.check_block()
@@ -232,6 +238,8 @@
 	var/obj/item/bodypart/affecting = L.get_bodypart(user? user.zone_selected : BODY_ZONE_CHEST)
 	var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
 	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
+	
+	
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	var/current_stamina_damage = L.getStaminaLoss()
 
@@ -314,3 +322,9 @@
 	desc = "A cost-effective, mass-produced, tactical stun prod."
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
 	color = "#aeb08c" // super tactical
+
+/obj/item/batonupgrade
+	name = "baton power upgrade"
+	desc = "A new power management circuit which enables stun batons to instantly stun, at the cost of double power usage."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade3"

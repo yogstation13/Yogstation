@@ -59,16 +59,19 @@
 
 /mob/living/carbon/alien/humanoid/update_inv_handcuffed()
 	remove_overlay(HANDCUFF_LAYER)
-	var/cuff_icon = "aliencuff"
-	var/dmi_file = 'icons/mob/alien.dmi'
-
-	if(mob_size == MOB_SIZE_LARGE)
-		cuff_icon = "aliencuff_[caste]"
-		dmi_file = 'icons/mob/alienqueen.dmi'
 
 	if(handcuffed)
-		overlays_standing[HANDCUFF_LAYER] = mutable_appearance(dmi_file, cuff_icon, -HANDCUFF_LAYER)
-		apply_overlay(HANDCUFF_LAYER)
+		var/cuff_icon = handcuffed.item_state
+		var/dmi_file = 'icons/mob/alien.dmi'
+
+		if(mob_size == MOB_SIZE_LARGE)
+			cuff_icon += "_[caste]"
+			dmi_file = 'icons/mob/alienqueen.dmi'
+
+		var/mutable_appearance/cuffs = mutable_appearance(dmi_file, cuff_icon, -HANDCUFF_LAYER)
+		cuffs.color = handcuffed.color
+
+		overlays_standing[HANDCUFF_LAYER] = cuffs
 
 //Royals have bigger sprites, so inhand things must be handled differently.
 /mob/living/carbon/alien/humanoid/royal/update_inv_hands()

@@ -203,9 +203,11 @@
 		else
 			progress_flash_divisor--
 
-/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks)
+/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, robo_check)
 	if(amount)
+		target.add_overlay(GLOB.welding_sparks)
 		. = ..()
+		target.cut_overlay(GLOB.welding_sparks)	
 	else
 		. = ..(amount=1)
 

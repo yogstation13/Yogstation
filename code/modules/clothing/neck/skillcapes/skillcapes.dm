@@ -4,6 +4,7 @@
 	icon = 'icons/obj/clothing/skillcapes.dmi'
 	icon_state = "ghost-skillcape"
 	item_state = "ghost-skillcape"
+	mob_overlay_icon = 'icons/mob/clothing/neck/skillcapes.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESUITSTORAGE

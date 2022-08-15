@@ -21,42 +21,35 @@
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bluetie"
 	item_state = ""	//no inhands
-	item_color = "bluetie"
 	w_class = WEIGHT_CLASS_SMALL
 	custom_price = 15
 
 /obj/item/clothing/neck/tie/blue
 	name = "blue tie"
 	icon_state = "bluetie"
-	item_color = "bluetie"
 
 /obj/item/clothing/neck/tie/red
 	name = "red tie"
 	icon_state = "redtie"
-	item_color = "redtie"
 
 /obj/item/clothing/neck/tie/black
 	name = "black tie"
 	icon_state = "blacktie"
-	item_color = "blacktie"
 
 /obj/item/clothing/neck/tie/horrible
 	name = "horrible tie"
 	desc = "A neosilk clip-on tie. This one is disgusting."
 	icon_state = "horribletie"
-	item_color = "horribletie"
 
 /obj/item/clothing/neck/tie/detective
 	name = "loose tie"
 	desc = "A loosely tied necktie, a perfect accessory for the over-worked detective."
 	icon_state = "detective"
-	item_color = "detective"
 
 /obj/item/clothing/neck/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
 	icon_state = "stethoscope"
-	item_color = "stethoscope"
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] wont hear much!"))
@@ -83,7 +76,7 @@
 					if(!(M.failed_last_breath || M.losebreath))
 						lung_strength = "healthy"
 
-			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT * 10)
+			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT)
 				heart_strength = span_boldannounce("a faint, fluttery")
 
 			var/diagnosis = (body_part == BODY_ZONE_CHEST ? "You hear [heart_strength] pulse and [lung_strength] respiration." : "You faintly hear [heart_strength] pulse.")
@@ -99,61 +92,51 @@
 	name = "white scarf"
 	icon_state = "scarf"
 	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
-	item_color = "white"
 	dog_fashion = /datum/dog_fashion/head
 	custom_price = 10
 
 /obj/item/clothing/neck/scarf/black
 	name = "black scarf"
-	item_color = "black"
 	icon_state = "scarf"
 	color = "#4A4A4B" //Grey but it looks black
 
 /obj/item/clothing/neck/scarf/pink
 	name = "pink scarf"
-	item_color = "pink"
 	icon_state = "scarf"
 	color = "#F699CD" //Pink
 
 /obj/item/clothing/neck/scarf/red
 	name = "red scarf"
-	item_color = "red"
 	icon_state = "scarf"
 	color = "#D91414" //Red
 
 /obj/item/clothing/neck/scarf/green
 	name = "green scarf"
-	item_color = "green"
 	icon_state = "scarf"
 	color = "#5C9E54" //Green
 
 /obj/item/clothing/neck/scarf/darkblue
 	name = "dark blue scarf"
-	item_color = "blue"
 	icon_state = "scarf"
 	color = "#1E85BC" //Blue
 
 /obj/item/clothing/neck/scarf/purple
 	name = "purple scarf"
-	item_color = "purple"
 	icon_state = "scarf"
 	color = "#9557C5" //Purple
 
 /obj/item/clothing/neck/scarf/yellow
 	name = "yellow scarf"
-	item_color = "yellow"
 	icon_state = "scarf"
 	color = "#E0C14F" //Yellow
 
 /obj/item/clothing/neck/scarf/orange
 	name = "orange scarf"
-	item_color = "orange"
 	icon_state = "scarf"
 	color = "#C67A4B" //Orange
 
 /obj/item/clothing/neck/scarf/cyan
 	name = "cyan scarf"
-	item_color = "cyan"
 	icon_state = "scarf"
 	color = "#54A3CE" //Cyan
 
@@ -163,12 +146,10 @@
 /obj/item/clothing/neck/scarf/zebra
 	name = "zebra scarf"
 	icon_state = "zebrascarf"
-	item_color = "zebrascarf"
 
 /obj/item/clothing/neck/scarf/christmas
 	name = "christmas scarf"
 	icon_state = "christmasscarf"
-	item_color = "christmasscarf"
 
 //The three following scarves don't have the scarf subtype
 //This is because Ian can equip anything from that subtype
@@ -176,26 +157,22 @@
 /obj/item/clothing/neck/stripedredscarf
 	name = "striped red scarf"
 	icon_state = "stripedredscarf"
-	item_color = "stripedredscarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/stripedgreenscarf
 	name = "striped green scarf"
 	icon_state = "stripedgreenscarf"
-	item_color = "stripedgreenscarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/stripedbluescarf
 	name = "striped blue scarf"
 	icon_state = "stripedbluescarf"
-	item_color = "stripedbluescarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/petcollar
 	name = "pet collar"
 	desc = "It has a little bell!"
 	icon_state = "petcollar"
-	item_color = "petcollar"
 	var/tagname = null
 
 /obj/item/clothing/neck/petcollar/Initialize()
@@ -204,7 +181,7 @@
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	var/mob/living/carbon/C = M
-	if(C && ishumanbasic(C) && !iscatperson(C))
+	if(C && !ishumanbasic(C))
 		return FALSE
 	return ..()
 
@@ -215,7 +192,6 @@
 /obj/item/clothing/neck/artist
 	name = "post-modern scarf"
 	icon_state = "artist"
-	item_color = "artist"
 	custom_price = 10
 
 //////////////
@@ -227,7 +203,6 @@
 	desc = "Damn, it feels good to be a gangster."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bling"
-	item_color = "bling"
 
 /obj/item/clothing/neck/neckerchief
 	icon = 'icons/obj/clothing/masks.dmi' //In order to reuse the bandana sprite
@@ -237,7 +212,7 @@
 /obj/item/clothing/neck/neckerchief/worn_overlays(isinhands)
 	. = ..()
 	if(!isinhands)
-		var/mutable_appearance/realOverlay = mutable_appearance('icons/mob/mask.dmi', icon_state)
+		var/mutable_appearance/realOverlay = mutable_appearance(mob_overlay_icon, icon_state)
 		realOverlay.pixel_y = -3
 		. += realOverlay
 

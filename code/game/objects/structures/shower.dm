@@ -65,6 +65,10 @@
 	handle_mist()
 	return TRUE
 
+/obj/machinery/shower/examine(mob/user)
+	. = ..()
+	. += span_notice("You can <b>alt-click</b> to change the temperature.")
+
 /obj/machinery/shower/update_icon()
 	. = ..()
 	cut_overlays()

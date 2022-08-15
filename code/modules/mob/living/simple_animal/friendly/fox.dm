@@ -17,9 +17,12 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "kicks"
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	gold_core_spawnable = FRIENDLY_SPAWN
 	can_be_held = TRUE
 	do_footstep = TRUE
+	wuv_happy = "yaps happily!"
+	wuv_angy = "growls!"
 
 //Captain fox
 /mob/living/simple_animal/pet/fox/Renault
@@ -28,11 +31,3 @@
 	gender = FEMALE
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
-
-/mob/living/simple_animal/pet/fox/attack_hand(mob/living/carbon/human/M)
-	. = ..()
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			wuv(M)
-		if(INTENT_HARM)
-			wuv(M, FALSE)

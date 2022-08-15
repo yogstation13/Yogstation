@@ -33,6 +33,10 @@
 	var/has_panel_overlay = TRUE
 	var/macroresolution = 1
 	var/obj/item/reagent_containers/beaker = null
+	//This will display every reagent that it could POSSIBLY dispense if it was fully upgraded (barring emagged chemicals). Ones you can't use will show what tier you need.
+	//If you want to add more to the tiers, it has to be in dispensable_reagents AND the list of what you tier you want it in below.
+	var/list/display_reagents = list() 
+
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
 		/datum/reagent/bromine,
@@ -43,7 +47,6 @@
 		/datum/reagent/fluorine,
 		/datum/reagent/hydrogen,
 		/datum/reagent/iodine,
-		/datum/reagent/iron,
 		/datum/reagent/lithium,
 		/datum/reagent/mercury,
 		/datum/reagent/nitrogen,
@@ -57,17 +60,21 @@
 		/datum/reagent/stable_plasma,
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/sulfur,
-		/datum/reagent/toxin/acid,
+		/datum/reagent/toxin/acid
+	)
+	var/list/t2_upgrade_reagents = list(
+		/datum/reagent/iron,
 		/datum/reagent/water,
 		/datum/reagent/fuel
 	)
-	//these become available once the manipulator has been upgraded to tier 4 (femto)
-	var/list/upgrade_reagents = list(
-		/datum/reagent/acetone,
+	var/list/t3_upgrade_reagents = list(
 		/datum/reagent/ammonia,
 		/datum/reagent/ash,
+		/datum/reagent/oil
+	)
+	var/list/t4_upgrade_reagents = list(
+		/datum/reagent/acetone,
 		/datum/reagent/diethylamine,
-		/datum/reagent/oil,
 		/datum/reagent/saltpetre
 	)
 	var/list/emagged_reagents = list(
@@ -83,10 +90,20 @@
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
+	display_reagents = dispensable_reagents.Copy()
 	if(emagged_reagents)
 		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
-	if(upgrade_reagents)
-		upgrade_reagents = sortList(upgrade_reagents, /proc/cmp_reagents_asc)
+	if(t2_upgrade_reagents)
+		t2_upgrade_reagents = sortList(t2_upgrade_reagents, /proc/cmp_reagents_asc)
+		display_reagents |= t2_upgrade_reagents
+	display_reagents = sortList(display_reagents,/proc/cmp_reagents_asc) //Why is this here you ask? because yogs moved things from t1 to t2 so now it fucks up the ordering. This restores it.
+	if(t3_upgrade_reagents)
+		t3_upgrade_reagents = sortList(t3_upgrade_reagents, /proc/cmp_reagents_asc)
+		display_reagents |= t3_upgrade_reagents
+	if(t4_upgrade_reagents)
+		t4_upgrade_reagents = sortList(t4_upgrade_reagents, /proc/cmp_reagents_asc)
+		display_reagents |= t4_upgrade_reagents
+	//we don't sort display_reagents again after adding these because they will fuck up the order
 	update_icon()
 
 /obj/machinery/chem_dispenser/Destroy()
@@ -101,8 +118,8 @@
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: \n"+\
 		"Recharging <b>[recharge_amount]</b> power units per interval.\n"+\
-		"Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.\n"+\
-		"Macro granularity at <b>[macroresolution]u</b>.</span>"
+		"Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
+		//"Macro granularity at <b>[macroresolution]u</b>.</span>"
 
 /obj/machinery/chem_dispenser/process()
 	if (recharge_counter >= 4)
@@ -143,6 +160,7 @@
 		return
 	to_chat(user, span_notice("You short out [src]'s safeties."))
 	dispensable_reagents |= emagged_reagents//add the emagged reagents to the dispensable ones
+	display_reagents |= emagged_reagents
 	obj_flags |= EMAGGED
 
 /obj/machinery/chem_dispenser/ex_act(severity, target)
@@ -165,6 +183,16 @@
 	if(A == beaker)
 		beaker = null
 		cut_overlays()
+
+/obj/machinery/chem_dispenser/proc/get_tier_for_chemical(datum/reagent/chem)
+	var/tier = 1
+	if(t4_upgrade_reagents?.Find(chem.type))
+		tier = 4
+	if(t3_upgrade_reagents?.Find(chem.type))
+		tier = 3
+	if(t2_upgrade_reagents?.Find(chem.type))
+		tier = 2
+	return tier
 
 /obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -203,13 +231,13 @@
 	var/is_hallucinating = FALSE
 	if(user.hallucinating())
 		is_hallucinating = TRUE
-	for(var/re in dispensable_reagents)
+	for(var/re in display_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
 			var/chemname = temp.name
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name), "locked" = (dispensable_reagents.Find(temp.type) ? FALSE : TRUE), "tier" = get_tier_for_chemical(temp))))
 	for(var/recipe in saved_recipes)
 		recipes.Add(list(recipe))
 	data["chemicals"] = chemicals
@@ -369,10 +397,13 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		recharge_amount *= C.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		if (M.rating > 1)
+		if (M.rating > 1) // T2+
+			dispensable_reagents |= t2_upgrade_reagents
 			macroresolution -= M.rating		//5 for t1, 3 for t2, 2 for t3, 1 for t4
-		if (M.rating > 3)
-			dispensable_reagents |= upgrade_reagents
+		if (M.rating > 2) // T3+
+			dispensable_reagents |= t3_upgrade_reagents
+		if (M.rating > 3) // T4+
+			dispensable_reagents |= t4_upgrade_reagents
 	powerefficiency = round(newpowereff, 0.01)
 
 /obj/machinery/chem_dispenser/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
@@ -488,7 +519,9 @@
 		/datum/reagent/consumable/menthol,
 		/datum/reagent/consumable/berryjuice
 	)
-	upgrade_reagents = null
+	t2_upgrade_reagents = null
+	t3_upgrade_reagents = null
+	t4_upgrade_reagents = null
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/thirteenloko,
 		/datum/reagent/consumable/ethanol/whiskey_cola,
@@ -542,7 +575,9 @@
 		/datum/reagent/consumable/ethanol/applejack,
 		/datum/reagent/consumable/ethanol/amaretto
 	)
-	upgrade_reagents = null
+	t2_upgrade_reagents = null
+	t3_upgrade_reagents = null
+	t4_upgrade_reagents = null
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol,
 		/datum/reagent/iron,
@@ -573,7 +608,9 @@
 	name = "mutagen dispenser"
 	desc = "Creates and dispenses mutagen."
 	dispensable_reagents = list(/datum/reagent/toxin/mutagen)
-	upgrade_reagents = null
+	t2_upgrade_reagents = null
+	t3_upgrade_reagents = null
+	t4_upgrade_reagents = null
 	emagged_reagents = list(/datum/reagent/toxin/plasma)
 
 
@@ -596,7 +633,9 @@
 		/datum/reagent/ammonia,
 		/datum/reagent/ash,
 		/datum/reagent/diethylamine)
-	upgrade_reagents = null
+	t2_upgrade_reagents = null
+	t3_upgrade_reagents = null
+	t4_upgrade_reagents = null
 
 /obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()
 	. = ..()

@@ -97,6 +97,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), SLOT_WEAR_SUIT)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), SLOT_HEAD)
 			H.set_species(/datum/species/shadow/ling) //can't be a shadowling without being a shadowling
+			H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
 			H.mind.RemoveSpell(src)
 			if(!do_mob(H,H,10,1))
 				return

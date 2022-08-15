@@ -107,33 +107,50 @@ Contains:
 
 	//Space pirate outfit
 /obj/item/clothing/head/helmet/space/pirate
-	name = "pirate hat"
-	desc = "Yarr."
+	name = "syndicate pirate hat"
+	desc = "Ahoy! A reinforced hat worn by space privateers who thrill in stealing fine booty."
 	icon_state = "pirate"
 	item_state = "pirate"
-	armor = list(MELEE = 30, BULLET = 50, LASER = 30,ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 60, ACID = 75)
+	armor = list(MELEE = 30, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 30, BIO = 30, RAD = 30, FIRE = 60, ACID = 75)
 	flags_inv = HIDEHAIR
 	strip_delay = 40
 	equip_delay_other = 20
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/head/helmet/space/pirate/bandana
-	name = "pirate bandana"
+	name = "syndicate pirate bandana"
+	desc = "Ahoy! Worn by typical maties who sail out to terrorize ships and stations alike. The bandana is reinforced."
 	icon_state = "bandana"
 	item_state = "bandana"
 
+/obj/item/clothing/head/helmet/space/pirate/captain
+	name = "syndicate pirate captain hat"
+	desc = "Ahoy! The pinnacle of terror of hardened Syndicate captains who lead violent crews to plunder and glory. Reinforced to keep your skull on your skeleton."
+	armor = list(MELEE = 40, BULLET = 60, LASER = 40, ENERGY = 25, BOMB = 50, BIO = 30, RAD = 30, FIRE = 100, ACID = 100, WOUND = 10)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	icon_state = "hgpiratecap"
+	item_state = "hgpiratecap"
+
 /obj/item/clothing/suit/space/pirate
-	name = "pirate coat"
-	desc = "Yarr."
+	name = "syndicate pirate coat"
+	desc = "Arrrgh! The standard armor of freelance forces contracted by the Syndicate to terrorize and disrupt commercial operations."
 	icon_state = "pirate"
 	item_state = "pirate"
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_inv = 0
-	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/melee/transforming/energy/sword/pirate, /obj/item/clothing/glasses/eyepatch, /obj/item/reagent_containers/food/drinks/bottle/rum)
+	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/melee/transforming/energy/sword/pirate, /obj/item/melee/cutlass, /obj/item/reagent_containers/food/drinks/bottle/rum)
 	slowdown = 0
-	armor = list(MELEE = 30, BULLET = 50, LASER = 30,ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 60, ACID = 75)
+	armor = list(MELEE = 30, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 60, ACID = 75)
 	strip_delay = 40
 	equip_delay_other = 20
+
+/obj/item/clothing/suit/space/pirate/captain
+	name = "syndicate pirate captain coat"
+	desc = "Arrrgh! Adorned with immeasurable protection, this coat serves the most fearsome Syndicate pirates in their neverending quest of loot."
+	armor = list(MELEE = 40, BULLET = 60, LASER = 40, ENERGY = 25, BOMB = 50, BIO = 30, RAD = 30, FIRE = 100, ACID = 100, WOUND = 10)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	icon_state = "hgpirate"
+	item_state = "hgpirate"
 
 /obj/item/clothing/suit/space/paramedic
 	name = "medical space suit"

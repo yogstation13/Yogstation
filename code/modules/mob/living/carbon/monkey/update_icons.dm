@@ -43,10 +43,15 @@
 
 /mob/living/carbon/monkey/update_inv_legcuffed()
 	remove_overlay(LEGCUFF_LAYER)
+	clear_alert("legcuffed")
 	if(legcuffed)
-		var/mutable_appearance/legcuff_overlay = mutable_appearance('icons/mob/mob.dmi', "legcuff1", -LEGCUFF_LAYER)
-		legcuff_overlay.pixel_y = 8
-		overlays_standing[LEGCUFF_LAYER] = legcuff_overlay
+		var/mutable_appearance/legcuffs = mutable_appearance('icons/mob/restraints.dmi', legcuffed.item_state, -LEGCUFF_LAYER)
+		legcuffs.color = handcuffed.color
+		legcuffs.pixel_y = 8
+
+		overlays_standing[HANDCUFF_LAYER] = legcuffs
+		apply_overlay(LEGCUFF_LAYER)
+		throw_alert("legcuffed", /obj/screen/alert/restrained/legcuffed, new_master = legcuffed)
 	apply_overlay(LEGCUFF_LAYER)
 
 

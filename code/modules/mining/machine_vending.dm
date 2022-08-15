@@ -62,7 +62,7 @@
 		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,						2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,										2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Environment Proof Bodybag", 	/obj/item/bodybag/environmental, 									1000, VENDING_EQUIPMENT),
-		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/reagent_containers/hypospray/medipen/survival,			500, VENDING_MEDS),
+		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/reagent_containers/autoinjector/medipen/survival,			500, VENDING_MEDS),
 		new /datum/data/mining_equipment("Brute First-Aid Kit",			/obj/item/storage/firstaid/brute,									600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Tracking Implant Kit", 		/obj/item/storage/box/minertracker,									600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Point Transfer Card (500)",	/obj/item/card/mining_point_card,									500, VENDING_MISC),
@@ -188,13 +188,12 @@
 
 /obj/machinery/mineral/equipment_vendor/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
 	var/items = list(
-		"Survival Capsule and Explorer's Webbing" = image(icon = 'icons/obj/clothing/belts.dmi', icon_state = "explorer1"),
+		"Explorer's Kit" = image(icon = 'icons/obj/clothing/belts.dmi', icon_state = "explorer1"),
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
 		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
-		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"),
-		"Bag of Lesser Mining Charges" = image(icon= 'icons/obj/mining.dmi',icon_state = "mining-charge-1")
+		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel")
 		)
 
 	items = sortList(items)
@@ -204,7 +203,7 @@
 
 	var/drop_location = drop_location()
 	switch(selection)
-		if("Survival Capsule and Explorer's Webbing")
+		if("Explorer's Kit")
 			new /obj/item/storage/belt/mining/vendor(drop_location)
 		if("Resonator Kit")
 			new /obj/item/extinguisher/mini(drop_location)
@@ -223,8 +222,6 @@
 			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
 		if("Mining Conscription Kit")
 			new /obj/item/storage/backpack/duffelbag/mining_conscript(drop_location)
-		if("Bag of Lesser Mining Charges")
-			new /obj/item/storage/backpack/duffelbag/miningcharges(drop_location)
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
 	qdel(voucher)
@@ -313,8 +310,8 @@
 		new /datum/data/mining_equipment("GAR Meson Scanners",			/obj/item/clothing/glasses/meson/gar,							500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,					2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,									2000, VENDING_EQUIPMENT),
-		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/reagent_containers/hypospray/medipen/survival,		500, VENDING_MEDS),
-		new /datum/data/mining_equipment("Stimpack",					/obj/item/reagent_containers/hypospray/medipen/stimpack,		50, VENDING_MEDS),
+		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/reagent_containers/autoinjector/medipen/survival,		500, VENDING_MEDS),
+		new /datum/data/mining_equipment("Stimpack",					/obj/item/reagent_containers/autoinjector/medipen/stimpack,		50, VENDING_MEDS),
 		new /datum/data/mining_equipment("Brute First-Aid Kit",			/obj/item/storage/firstaid/brute,								600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Fire First-Aid Kit",			/obj/item/storage/firstaid/fire,								600, VENDING_MEDS),
 		new /datum/data/mining_equipment("Toxin First-Aid Kit",			/obj/item/storage/firstaid/toxin,								600, VENDING_MEDS),
@@ -338,8 +335,7 @@
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
-		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0"),
-		"Bag of Lesser Mining Charges" = image(icon= 'icons/obj/mining.dmi', icon_state = "mining-charge-1")
+		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0")
 		)
 
 	items = sortList(items)
@@ -364,8 +360,6 @@
 			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
 		if("Advanced Scanner")
 			new /obj/item/t_scanner/adv_mining_scanner(drop_location)
-		if("Bag of Lesser Mining Charges")
-			new /obj/item/storage/backpack/duffelbag/miningcharges(drop_location)
 
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
