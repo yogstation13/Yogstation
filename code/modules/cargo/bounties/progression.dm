@@ -23,10 +23,10 @@
 
 /datum/bounty/item/progression/mining_plasma
 	name = "Plasma Extraction"
-	description = "The reason you're here: plasma. Ship us 10 sheets of it and we can certify your mining program as \"profitable\", allowing access to plasma-based mining equipment."
+	description = "The reason you're here: plasma. Ship us 20 sheets of it and we can certify your mining program as \"profitable\", allowing access to plasma-based mining equipment."
 	reward = 4000
 	wanted_types = list(/obj/item/stack/sheet/mineral/plasma)
-	required_count = 10
+	required_count = 20
 	unlocked_crates = list(/datum/supply_pack/clearance/plasmacutter)
 
 /datum/bounty/item/progression/mining_plasma/reward_string()
@@ -36,6 +36,7 @@
 	name = "Strange Material Prospecting"
 	description = "Initial scanning of your mining locale showed anomalous readings in line with that of bluespace crystals. ship us one to confirm their presence and we'll allow you to order a special treat."
 	reward = 15000
+	required_count = 5
 	wanted_types = list(/obj/item/stack/sheet/bluespace_crystal, /obj/item/stack/ore/bluespace_crystal) //we'll let them send artficial crystals since those would require department cooperation or shooting swarmers
 	unlocked_crates = list(/datum/supply_pack/clearance/plasmacutter_advanced)
 
