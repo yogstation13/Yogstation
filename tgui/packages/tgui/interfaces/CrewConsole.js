@@ -155,6 +155,8 @@ export const CrewConsoleContent = (props, context) => {
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.is_irradiated ? <Icon name="radiation" color="#f0e21d" size={1} /> : ""}
+                  {sensor.is_husked ? <Icon name="ribbon" color="#ad1c09" size={1} /> : ""}
+                  {sensor.is_onfire ? <Icon name="fire" color="#f24f0f" size={1} /> : ""}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.is_robot ? (<Icon name="robot" color="#2e46cc" size={1} />
@@ -167,17 +169,23 @@ export const CrewConsoleContent = (props, context) => {
                         ) : (
                           sensor.is_polysmorph ? (<Icon name="certificate" color="#802496" size={1} />
                           ) : (
-                            sensor.is_podperson ? (<Icon name="leaf" color="#05fa46" size={1} />
+                            sensor.is_podperson ? (<Icon name="seedling" color="#05fa46" size={1} />
                             ) : (
                               sensor.is_plasmaman ? (<Icon name="skull" color="#d60b66" size={1} />
                               ) : (
                                 sensor.is_ethereal ? (<Icon name="sun" color="#f52ab4" size={1} />
                                 ) : (
-                                  sensor.is_human ? (
-                                    <Icon name="user" color="#2ee81a" size={1} />
-                                  ) : (
-                                    <Icon name="user" color="#f70505" size={1} />
-                                  )))))))))}
+                                  sensor.is_skeleton ? (<Icon name="skull" color="#fffcfa" size={1} />
+                                    ) : (
+                                      sensor.is_slime ? (<Icon name="cloud" color="#f2505d" size={1} />
+                                      ) : (
+                                        sensor.is_fly ? (<Icon name="bug" color="#039162" size={1} />
+                                        ) : (
+                                          sensor.is_human ? (
+                                            <Icon name="user" color="#2ee81a" size={1} />
+                                          ) : (
+                                            <Icon name="user" color="#f70505" size={1} />
+                                          ))))))))))))}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
