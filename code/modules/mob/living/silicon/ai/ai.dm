@@ -769,11 +769,15 @@
 		"Animal" = image(icon = 'icons/mob/animal.dmi', icon_state = "cow"),
 		)
 	var/choice = show_radial_menu(usr, src.eyeobj, choicestypes, require_near = FALSE, tooltips = TRUE)
-	var/choices = list()
+	var/choice2
+	var/list/choices = list()
 	switch(choice)
 		if("Crew")
 			for(var/datum/data/record/t in GLOB.data_core.locked)//Look in data core locked.
 				choices["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]
+			if(!choices.len)
+				return
+			choice2 = show_radial_menu(usr, src.eyeobj, choices, radius = 64, angle = 22.5, require_near = FALSE, tooltips = TRUE)
 		if("Animal")
 			choices = list(
 				"Bear" = image(icon = 'icons/mob/animal.dmi', icon_state = "bear"),
@@ -790,6 +794,7 @@
 				"Pug" = image(icon = 'icons/mob/pets.dmi', icon_state = "pug"),
 				"Spider" = image(icon = 'icons/mob/animal.dmi', icon_state = "guard")
 			)
+			choice2 = show_radial_menu(usr, src.eyeobj, choices, require_near = FALSE, tooltips = TRUE)
 		if("Unique")
 			choices = list(
 				"AI" = image(icon = 'icons/mob/ai.dmi', icon_state = "default"),
@@ -798,7 +803,8 @@
 				"Nar'Sie" = image(icon = 'icons/mob/ai.dmi', icon_state = "horror"),
 				"Rat'Var" = image(icon = 'icons/mob/ai.dmi', icon_state = "automaton"),
 			)
-	var/choice2 = show_radial_menu(usr, src.eyeobj, choices, require_near = FALSE, tooltips = TRUE)
+			choice2 = show_radial_menu(usr, src.eyeobj, choices, require_near = FALSE, tooltips = TRUE)
+
 	if(!choice2 || !choice)
 		return
 	var/tmp = choices[choice2] // Convert from image to icon
