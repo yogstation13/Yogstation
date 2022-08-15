@@ -139,12 +139,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/disable_alternative_announcers = FALSE
 	var/icon/background = "floor"
 	var/list/background_options = list(
-		"floor" = "Default",
-		"darkfull" = "Dark",
+		"floor" = "Default Tile",
+		"white" = "Default White Tile",
+		"darkfull" = "Default Dark Tile",
 		"wood" = "Wood",
-		"black" = "Black",
-		"rockvault" = "Grey",
-		"purewhite" = "White"
+		"rockvault" = "Rock Vault",
+		"grass4" = "Grass",
+		"black" = "Pure Black",
+		"grey" = "Pure Grey",
+		"pure_white" = "Pure White"
 	)
 
 /datum/preferences/New(client/C)
