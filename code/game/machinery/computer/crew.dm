@@ -243,12 +243,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				else
 					is_irradiated = FALSE
 
-				for(var/i in H.get_wounded_bodyparts())
-					var/obj/item/bodypart/k = i
-					if (k)
-						is_wounded = TRUE
-					else
-						is_wounded = FALSE
+				if(length(H.get_wounded_bodyparts()))
+					is_wounded = TRUE
+				else
+					is_wounded = FALSE				
 
 				if (HAS_TRAIT(H, TRAIT_HUSK))
 					is_husked = TRUE
