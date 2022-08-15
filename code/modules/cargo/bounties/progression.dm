@@ -34,7 +34,7 @@
 
 /datum/bounty/item/progression/mining_advanced
 	name = "Strange Material Prospecting"
-	description = "Initial scanning of your mining locale showed anomalous readings in line with that of bluespace crystals. ship us one to confirm their presence and we'll allow you to order a special treat."
+	description = "Initial scanning of your mining locale showed anomalous readings in line with that of bluespace crystals. ship us five to confirm their presence and we'll allow you to order a special treat."
 	reward = 15000
 	required_count = 5
 	wanted_types = list(/obj/item/stack/sheet/bluespace_crystal, /obj/item/stack/ore/bluespace_crystal) //we'll let them send artficial crystals since those would require department cooperation or shooting swarmers
