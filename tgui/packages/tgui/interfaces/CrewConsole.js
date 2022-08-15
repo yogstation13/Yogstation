@@ -9,6 +9,7 @@ export const HEALTH_COLOR_BY_LEVEL = [
   '#e89517',
   '#fa301b',
   '#e60505',
+  '#e60505',
   '#c71402',
 ];
 
@@ -17,6 +18,7 @@ const HEALTH_ICON_BY_LEVEL = [
   'heart',
   'heart',
   'heart',
+  'heartbeat',
   'heartbeat',
   'skull-crossbones',
 ];
@@ -63,10 +65,10 @@ export const healthToAttribute = (oxy, tox, burn, brute, is_alive, attributeList
       return attributeList[0];
     }
     const healthSum = oxy + tox + burn + brute;
-    const level = Math.min(Math.max(Math.ceil(healthSum / 48), 0), 5);
+    const level = Math.min(Math.max(Math.ceil(healthSum / 40), 0), 5);
     return attributeList[level];
   }
-  return attributeList[5]; // Dead is dead, son
+  return attributeList[6]; // Dead is dead, son
 };
 // Yogs end
 
@@ -152,18 +154,30 @@ export const CrewConsoleContent = (props, context) => {
                   ({!originalTitles ? sensor.assignment_title : sensor.assignment})
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                  {sensor.is_irradiated ? <Icon name="radiation" color="#c9ed13" size={1} /> : ""}
+                  {sensor.is_irradiated ? <Icon name="radiation" color="#f0e21d" size={1} /> : ""}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.is_robot ? (<Icon name="robot" color="#2e46cc" size={1} />
                   ) : (
                     sensor.is_catperson ? (<Icon name="paw" color="#f52ab4" size={1} />
                     ) : (
-                      sensor.is_human ? (
-                        <Icon name="user" color="#2ee81a" size={1} />
+                      sensor.is_moth ? (<Icon name="feather-alt" color="#ffebb8" size={1} />
                       ) : (
-                        <Icon name="user" color="#f70505" size={1} />
-                      )))}
+                        sensor.is_lizard ? (<Icon name="dragon" color="#8bf76a" size={1} />
+                        ) : (
+                          sensor.is_polysmorph ? (<Icon name="certificate" color="#802496" size={1} />
+                          ) : (
+                            sensor.is_podperson ? (<Icon name="leaf" color="#05fa46" size={1} />
+                            ) : (
+                              sensor.is_plasmaman ? (<Icon name="skull" color="#d60b66" size={1} />
+                              ) : (
+                                sensor.is_ethereal ? (<Icon name="sun" color="#f52ab4" size={1} />
+                                ) : (
+                                  sensor.is_human ? (
+                                    <Icon name="user" color="#2ee81a" size={1} />
+                                  ) : (
+                                    <Icon name="user" color="#f70505" size={1} />
+                                  )))))))))}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
