@@ -64,7 +64,7 @@
 
 
 /mob/living/carbon/true_devil/examine(mob/user)
-	. = list("<span class='info'>This is [icon2html(src, user)] <b>[src]</b>!")
+	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] <b>[src]</b>!")
 
 	//Left hand items
 	for(var/obj/item/I in held_items)
@@ -82,7 +82,7 @@
 		. += span_warning("You can see hellfire inside its gaping wounds.")
 	else if(health < (maxHealth/2))
 		. += span_warning("You can see hellfire inside its wounds.")
-	. += "</span>"
+	. += "*---------*</span>"
 
 /mob/living/carbon/true_devil/IsAdvancedToolUser()
 	return 1

@@ -318,7 +318,7 @@
 		all_traits += " [traits.get_name()]"
 	text += "- Plant Traits:[all_traits]\n"
 
-	text += ""
+	text += "*---------*"
 
 	return text
 
@@ -327,7 +327,7 @@
 
 /// Ghost attack proc
 /obj/item/seeds/attack_ghost(mob/user)
-	to_chat(user, span_info("This is \a [span_name("[src]")]."))
+	to_chat(user, span_info("*---------*\n This is \a [span_name("[src]")]."))
 	var/text = get_analyzer_text()
 	if(text)
 		to_chat(user, span_notice("[text]"))
@@ -335,7 +335,7 @@
 /obj/item/seeds/attackby(obj/item/O, mob/user, params)
 	if (istype(O, /obj/item/plant_analyzer))
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
-		to_chat(user, span_info("This is \a [span_name("[src]")]."))
+		to_chat(user, span_info("*---------*\n This is \a [span_name("[src]")]."))
 		var/text = get_analyzer_text()
 		if(text)
 			to_chat(user, span_notice("[text]"))
