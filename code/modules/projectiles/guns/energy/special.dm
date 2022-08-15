@@ -148,7 +148,7 @@
 	icon_state = "plasmacutter_mini"
 	item_state = "plasmacutter_mini"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
-	toolspeed = 0.3
+	toolspeed = 2
 
 /obj/item/gun/energy/plasmacutter/Initialize()
 	. = ..()
