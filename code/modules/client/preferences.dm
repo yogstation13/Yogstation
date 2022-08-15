@@ -137,6 +137,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/persistent_scars = TRUE
 
 	var/disable_alternative_announcers = FALSE
+	var/icon/background = "floor"
+	var/list/background_options = list(
+		"floor" = "Default",
+		"darkfull" = "Dark",
+		"wood" = "Wood",
+		"black" = "Black",
+		"rockvault" = "Grey",
+		"purewhite" = "White"
+	)
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -276,8 +285,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Body</h2>"
 			dat += "<a href='?_src_=prefs;preference=all;task=random'>Random Body</a> "
 			dat += "<a href='?_src_=prefs;preference=all'>Always Random Body: [be_random_body ? "Yes" : "No"]</a>"
-			dat += "<a href='?_src_=prefs;preference=u_all;task=lock'>Unlock all</a><br>"
+			dat += "<a href='?_src_=prefs;preference=u_all;task=lock'>Unlock all</a>"
 			dat += "<a href='?_src_=prefs;preference=l_all;task=lock'>Lock all</a><br>"
+			dat += "<a href='?_src_=prefs;preference=cycle_background;task=input'>Background: [background_options[background]]</a><br><br>"
 
 			dat += "<table width='100%'><tr><td width='24%' valign='top'>"
 
@@ -1541,6 +1551,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
 					if(new_age)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
+
+				if("cycle_background")
+					background = next_list_item(background, background_options)
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
