@@ -41,9 +41,6 @@
 	/// The last lines used for changing the status display
 	var/static/last_status_display
 
-	/// The next time the security level can be changed from this console
-	var/next_lvl_change = 0 SECONDS
-
 /obj/machinery/computer/communications/Initialize()
 	. = ..()
 	GLOB.shuttle_caller_list += src
@@ -128,12 +125,10 @@
 		if ("changeSecurityLevel")
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
-			
-			if(next_lvl_change > world.time)
-				to_chat(usr, span_warning("The security level system is cooling down!"))
+
+			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 				return
-				
-			next_lvl_change = world.time + 10 SECONDS
+
 
 			// Check if they have
 			if (!issilicon(usr))
@@ -165,6 +160,9 @@
 			deadchat_broadcast(" has changed the security level to [params["newSecurityLevel"]] with [src] at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
 
 			alert_level_tick += 1
+
+			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
+
 		if ("deleteMessage")
 			if (!authenticated(usr))
 				return
