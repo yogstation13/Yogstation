@@ -34,7 +34,9 @@
 						/obj/item/rod_of_asclepius,
 						/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced,
 						/obj/item/prisoncube,
-						/obj/item/staff/storm)
+						/obj/item/staff/storm,
+						/obj/item/clothing/under/drip, //Drip is very valuable to many investors in high fashion
+						/obj/item/clothing/shoes/drip)
 
 //Megafauna loot, except for ash drakes and legion
 
