@@ -11,7 +11,7 @@ linked or there aren't any in range), you'll just not have access to that menu. 
 allow a player to attempt to re-sync with nearby consoles. You can also force it to disconnect from a specific console.
 
 The only thing that requires toxins access is locking and unlocking the console on the settings menu.
-Nothing else in the console has ID requirements.
+Nothing else in the console has ID requirements except researching when the console is locked.
 
 */
 /obj/machinery/computer/rdconsole
@@ -33,7 +33,7 @@ Nothing else in the console has ID requirements.
 	//UI VARS
 	var/screen = RDSCREEN_MENU
 	var/back = RDSCREEN_MENU
-	var/locked = FALSE
+	var/locked = TRUE
 	var/tdisk_uple = FALSE
 	var/ddisk_uple = FALSE
 	var/datum/selected_node_id
@@ -260,14 +260,14 @@ Nothing else in the console has ID requirements.
 	l += "<hr><a href='?src=[REF(src)];switch_screen=[RDSCREEN_SETTINGS]'>Settings</a></H2>"
 	return l
 
-/obj/machinery/computer/rdconsole/proc/ui_locked()
-	return list("<h3><a href='?src=[REF(src)];switch_screen=[RDSCREEN_MENU];unlock_console=1'>SYSTEM LOCKED</a></h3></br>")
-
 /obj/machinery/computer/rdconsole/proc/ui_settings()
 	var/list/l = list()
 	l += "<div class='statusDisplay'><h3>R&D Console Settings:</h3>"
 	l += "<A href='?src=[REF(src)];switch_screen=[RDSCREEN_DEVICE_LINKING]'>Device Linkage Menu</A>"
-	l += "<A href='?src=[REF(src)];lock_console=1'>Lock Console</A></div>"
+	if(!locked)
+		l += "<A href='?src=[REF(src)];lock_console=1'>Lock Console</A></div>"
+	else
+		l += "<A href='?src=[REF(src)];unlock_console=1'>Unlock Console</A></div>"
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_device_linking()
@@ -706,7 +706,7 @@ Nothing else in the console has ID requirements.
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
 /obj/machinery/computer/rdconsole/proc/can_research(mob/user)
-	if(!locked && (allowed(user) || (obj_flags & EMAGGED)))
+	if(!locked || (allowed(user) || (obj_flags & EMAGGED)))
 		return TRUE
 	return FALSE
 
@@ -813,50 +813,47 @@ Nothing else in the console has ID requirements.
 /obj/machinery/computer/rdconsole/proc/generate_ui()
 	var/list/ui = list()
 	ui += ui_header()
-	if(locked)
-		ui += ui_locked()
-	else
-		switch(screen)
-			if(RDSCREEN_MENU)
-				ui += ui_main_menu()
-			if(RDSCREEN_TECHWEB)
-				ui += ui_techweb()
-			if(RDSCREEN_TECHWEB_NODEVIEW)
-				ui += ui_techweb_nodeview()
-			if(RDSCREEN_TECHWEB_DESIGNVIEW)
-				ui += ui_techweb_designview()
-			if(RDSCREEN_DESIGNDISK)
-				ui += ui_designdisk()
-			if(RDSCREEN_DESIGNDISK_UPLOAD)
-				ui += ui_designdisk_upload()
-			if(RDSCREEN_TECHDISK)
-				ui += ui_techdisk()
-			if(RDSCREEN_DECONSTRUCT)
-				ui += ui_deconstruct()
-			if(RDSCREEN_PROTOLATHE)
-				ui += ui_protolathe()
-			if(RDSCREEN_PROTOLATHE_CATEGORY_VIEW)
-				ui += ui_protolathe_category_view()
-			if(RDSCREEN_PROTOLATHE_MATERIALS)
-				ui += ui_protolathe_materials()
-			if(RDSCREEN_PROTOLATHE_CHEMICALS)
-				ui += ui_protolathe_chemicals()
-			if(RDSCREEN_PROTOLATHE_SEARCH)
-				ui += ui_protolathe_search()
-			if(RDSCREEN_IMPRINTER)
-				ui += ui_circuit()
-			if(RDSCREEN_IMPRINTER_CATEGORY_VIEW)
-				ui += ui_circuit_category_view()
-			if(RDSCREEN_IMPRINTER_MATERIALS)
-				ui += ui_circuit_materials()
-			if(RDSCREEN_IMPRINTER_CHEMICALS)
-				ui += ui_circuit_chemicals()
-			if(RDSCREEN_IMPRINTER_SEARCH)
-				ui += ui_circuit_search()
-			if(RDSCREEN_SETTINGS)
-				ui += ui_settings()
-			if(RDSCREEN_DEVICE_LINKING)
-				ui += ui_device_linking()
+	switch(screen)
+		if(RDSCREEN_MENU)
+			ui += ui_main_menu()
+		if(RDSCREEN_TECHWEB)
+			ui += ui_techweb()
+		if(RDSCREEN_TECHWEB_NODEVIEW)
+			ui += ui_techweb_nodeview()
+		if(RDSCREEN_TECHWEB_DESIGNVIEW)
+			ui += ui_techweb_designview()
+		if(RDSCREEN_DESIGNDISK)
+			ui += ui_designdisk()
+		if(RDSCREEN_DESIGNDISK_UPLOAD)
+			ui += ui_designdisk_upload()
+		if(RDSCREEN_TECHDISK)
+			ui += ui_techdisk()
+		if(RDSCREEN_DECONSTRUCT)
+			ui += ui_deconstruct()
+		if(RDSCREEN_PROTOLATHE)
+			ui += ui_protolathe()
+		if(RDSCREEN_PROTOLATHE_CATEGORY_VIEW)
+			ui += ui_protolathe_category_view()
+		if(RDSCREEN_PROTOLATHE_MATERIALS)
+			ui += ui_protolathe_materials()
+		if(RDSCREEN_PROTOLATHE_CHEMICALS)
+			ui += ui_protolathe_chemicals()
+		if(RDSCREEN_PROTOLATHE_SEARCH)
+			ui += ui_protolathe_search()
+		if(RDSCREEN_IMPRINTER)
+			ui += ui_circuit()
+		if(RDSCREEN_IMPRINTER_CATEGORY_VIEW)
+			ui += ui_circuit_category_view()
+		if(RDSCREEN_IMPRINTER_MATERIALS)
+			ui += ui_circuit_materials()
+		if(RDSCREEN_IMPRINTER_CHEMICALS)
+			ui += ui_circuit_chemicals()
+		if(RDSCREEN_IMPRINTER_SEARCH)
+			ui += ui_circuit_search()
+		if(RDSCREEN_SETTINGS)
+			ui += ui_settings()
+		if(RDSCREEN_DEVICE_LINKING)
+			ui += ui_device_linking()
 	for(var/i in 1 to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"
