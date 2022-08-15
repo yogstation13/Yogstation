@@ -122,6 +122,21 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/ijob
 	var/name
 	var/is_robot
+	var/is_human
+	var/is_catperson
+	var/is_lizard
+	var/is_moth
+	var/is_polysmorph
+	var/is_slime
+	var/is_fly
+	var/is_skeleton
+	var/is_husked
+	var/is_onfire
+	var/is_podperson
+	var/is_plasmaman
+	var/is_ethereal
+	var/is_irradiated
+	var/is_wounded
 	var/assignment_title
 	var/assignment
 	var/oxydam
@@ -161,13 +176,88 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					name = "Unknown"
 					assignment_title = ""
 					assignment = ""
-					ijob = 80 
+					ijob = 80
 
 				if (ispreternis(H) || isipc(H))
 					is_robot = TRUE
 				else
 					is_robot = FALSE
 
+				if (ishumanbasic(H))
+					is_human = TRUE
+				else
+					is_human = FALSE
+
+				if (iscatperson(H))
+					is_catperson = TRUE
+				else
+					is_catperson = FALSE
+
+				if (islizard(H))
+					is_lizard = TRUE
+				else
+					is_lizard = FALSE
+
+				if (ismoth(H))
+					is_moth = TRUE
+				else
+					is_moth = FALSE
+
+				if (ispolysmorph(H))
+					is_polysmorph = TRUE
+				else
+					is_polysmorph = FALSE
+
+				if (ispodperson(H))
+					is_podperson= TRUE
+				else
+					is_podperson = FALSE
+
+				if (isplasmaman(H))
+					is_plasmaman = TRUE
+				else
+					is_plasmaman = FALSE
+
+				if (isethereal(H))
+					is_ethereal= TRUE
+				else
+					is_ethereal = FALSE
+
+				if (isslimeperson(H) || isjellyperson(H) || isluminescent(H))
+					is_slime = TRUE
+				else
+					is_slime = FALSE
+
+				if (isskeleton(H))
+					is_skeleton = TRUE
+				else
+					is_skeleton = FALSE
+
+				if (isflyperson(H))
+					is_fly = TRUE
+				else
+					is_fly = FALSE
+
+				if (H.radiation > 500) //safe level before sending alert
+					is_irradiated = TRUE
+				else
+					is_irradiated = FALSE
+
+				if(length(H.get_wounded_bodyparts()))
+					is_wounded = TRUE
+				else
+					is_wounded = FALSE				
+
+				if (HAS_TRAIT(H, TRAIT_HUSK))
+					is_husked = TRUE
+				else
+					is_husked = FALSE
+
+				if (H.on_fire == TRUE)
+					is_onfire = TRUE
+				else
+					is_onfire = FALSE
+					
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
 					life_status = H.stat < DEAD
 				else
@@ -198,7 +288,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if(life_status == FALSE)
 					new_death_list.Add(H)
 
-				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_robot" = is_robot, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_irradiated" = is_irradiated, "is_robot" = is_robot, "is_human" = is_human, "is_slime" = is_slime, "is_skeleton" = is_skeleton, "is_fly" = is_fly, "is_catperson" = is_catperson, "is_lizard" = is_lizard, "is_moth" = is_moth, "is_polysmorph" = is_polysmorph, "is_podperson" = is_podperson, "is_plasmaman" = is_plasmaman, "is_ethereal" = is_ethereal, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
