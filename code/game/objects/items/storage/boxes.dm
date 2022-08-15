@@ -46,8 +46,8 @@
 		myhead.forceMove(src)//force your enemies to kill themselves with your head collection box!
 		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
 		return BRUTELOSS
-	user.visible_message(span_suicide("[user] beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return BRUTELOSS
+	user.visible_message(span_suicide("[user] attempts to put [user.p_their()] head into \the [src], but realizes [user.p_their()] has no head!"))
+	return SHAME
 
 /obj/item/storage/box/update_icon()
 	. = ..()
@@ -173,6 +173,13 @@
 /obj/item/storage/box/plasmaman/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
+
+/obj/item/storage/box/plasmaman/miner/PopulateContents() //mining box for plasmemes
+	new /obj/item/clothing/mask/gas/explorer(src)
+	new /obj/item/tank/internals/plasmaman/belt/full(src)
+	new /obj/item/crowbar/red(src)
+	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 /obj/item/storage/box/gloves
@@ -523,6 +530,21 @@
 	desc = "Waffle Co. brand monkey cubes. Just add water and a dash of subterfuge!"
 	cube_type = /obj/item/reagent_containers/food/snacks/monkeycube/syndicate
 
+/obj/item/storage/box/monkeycubes/syndicate/mice
+	name = "mouse cube box"
+	desc = "Waffle Co. brand mouse cubes. Just add water and a dash of subterfuge!"
+	cube_type = /obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate
+
+/obj/item/storage/box/monkeycubes/syndicate/mice/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 24
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
+
+/obj/item/storage/box/monkeycubes/syndicate/mice/PopulateContents()
+	for(var/i in 1 to 24)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate(src)
+
 /obj/item/storage/box/gorillacubes
 	name = "gorilla cube box"
 	desc = "Waffle Co. brand gorilla cubes. Do not taunt."
@@ -552,10 +574,11 @@
 	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
 /obj/item/storage/box/mixedcubes/PopulateContents()
-	for(var/i in 1 to 2)
+	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/chicken(src)
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"

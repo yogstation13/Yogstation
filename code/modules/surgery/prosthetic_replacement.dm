@@ -10,16 +10,16 @@
 
 /datum/surgery/prosthetic_replacement/can_start(mob/user, mob/living/carbon/target)
 	if(!iscarbon(target))
-		return 0
+		return FALSE
 	var/mob/living/carbon/C = target
+	var/obj/item/bodypart/chest = C.get_bodypart(BODY_ZONE_CHEST)
+	if(!chest || !(chest.status == BODYPART_ORGANIC))
+		return FALSE
 	if(!C.get_bodypart(user.zone_selected)) //can only start if limb is missing
-		return 1
+		return TRUE
 
 /datum/surgery/prosthetic_replacement/mechanic_limb
-	name = "Attach mechanical limb"
 	self_operable = TRUE
-	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	target_mobtypes = list(/mob/living/carbon/human)
 	lying_required = FALSE
 	steps = list(
 		/datum/surgery_step/prepare_electronics,
@@ -27,16 +27,16 @@
 		)
 
 /datum/surgery/prosthetic_replacement/mechanic_limb/can_start(mob/user, mob/living/carbon/target)
-	if(!ispreternis(target))
-		return FALSE
-
 	var/mob/living/carbon/C = target
+	var/obj/item/bodypart/chest = C.get_bodypart(BODY_ZONE_CHEST)
+	if(!chest || !(chest.status == BODYPART_ROBOTIC))
+		return FALSE
 	return !C.get_bodypart(user.zone_selected) //can only start if limb is missing
 
 /datum/surgery_step/add_prosthetic
 	name = "add prosthetic"
-	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/twohanded/required/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100)
-	time = 32
+	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/twohanded/required/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100, /obj/item/medbeam_arm = 100)
+	time = 3.2 SECONDS
 	var/organ_rejection_dam = 0
 
 /datum/surgery_step/add_prosthetic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -51,6 +51,9 @@
 		tool = I
 	if(istype(tool, /obj/item/bodypart))
 		var/obj/item/bodypart/BP = tool
+		if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && BP.status != BODYPART_ROBOTIC)
+			to_chat(user, "<span class='warning'>[BP] doesn't match the patient's morphology.</span>")
+			return -1
 		if(ismonkey(target))// monkey patient only accept organic monkey limbs
 			if(BP.status == BODYPART_ROBOTIC || BP.animal_origin != MONKEY_BODYPART)
 				to_chat(user, span_warning("[BP] doesn't match the patient's morphology."))
@@ -89,12 +92,15 @@
 	if(istype(tool, /obj/item/bodypart) && user.temporarilyRemoveItemFromInventory(tool))
 		var/obj/item/bodypart/L = tool
 		L.attach_limb(target)
+		if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits))
+			if(L.status == BODYPART_ROBOTIC)
+				L.render_like_organic = TRUE
 		if(organ_rejection_dam)
 			target.adjustToxLoss(organ_rejection_dam)
 		display_results(user, target, span_notice("You succeed in replacing [target]'s [parse_zone(target_zone)]."),
 			"[user] successfully replaces [target]'s [parse_zone(target_zone)] with [tool]!",
 			"[user] successfully replaces [target]'s [parse_zone(target_zone)]!")
-		return 1
+		return TRUE
 	else
 		var/obj/item/bodypart/L = target.newBodyPart(target_zone, FALSE, FALSE)
 		L.is_pseudopart = TRUE
@@ -107,8 +113,12 @@
 		if(istype(tool, /obj/item/twohanded/required/chainsaw))
 			var/obj/item/mounted_chainsaw/new_arm = new(target)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
-			return 1
+			return TRUE
 		else if(istype(tool, /obj/item/melee/synthetic_arm_blade))
 			var/obj/item/melee/arm_blade/new_arm = new(target,TRUE,TRUE)
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
-			return 1
+			return TRUE
+		else if(istype(tool, /obj/item/medbeam_arm))
+			var/obj/item/gun/medbeam/arm/new_arm = new(target)
+			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
+			return TRUE

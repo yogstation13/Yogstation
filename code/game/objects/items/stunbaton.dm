@@ -41,8 +41,11 @@
 	return cell
 
 /obj/item/melee/baton/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return (FIRELOSS)
+	if(status)
+		user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
+		return FIRELOSS
+	user.visible_message(span_suicide("[user] is putting the [name] in [user.p_their()] mouth! But forgot to turn the [name] on."))
+	return SHAME
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
@@ -85,7 +88,12 @@
 	if(cell)
 		//Note this value returned is significant, as it will determine
 		//if a stun is applied or not
-		. = cell.use(chrgdeductamt)
+		var/mob/living/M = loc
+		if(M && iscyborg(M)) 
+			var/mob/living/silicon/robot/R = loc
+			R.cell.use(chrgdeductamt)
+		else
+			. = cell.use(chrgdeductamt)
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE

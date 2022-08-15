@@ -190,7 +190,7 @@
 	var/mob/living/carbon/C = occupant
 	if(C)
 		if(stasis && (C.stat == DEAD || C.health < 0))
-			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
+			C.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, -1)
 		else
 			C.remove_status_effect(STATUS_EFFECT_STASIS)
 		if(obj_flags & EMAGGED)
@@ -208,7 +208,7 @@
 						var/healed = FALSE
 						var/obj/item/organ/heal_target = C.getorganslot(o)
 						if(heal_target?.damage >= 1)
-							var/organ_healing = C.stat == DEAD ? 0.05 : 0.2
+							var/organ_healing = C.stat == DEAD ? 0.5 : 1
 							heal_target.applyOrganDamage(-organ_healing)
 							healed = TRUE
 						if(healed)

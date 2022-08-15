@@ -2371,10 +2371,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/hotel/bar)
-"fZ" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/freezer,
-/area/ruin/space/has_grav/hotel/bar)
 "ga" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -2622,14 +2618,6 @@
 "gK" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/hotel/workroom)
-"gL" = (
-/obj/structure/table,
-/obj/item/storage/box/donkpockets,
-/obj/structure/sign/warning/nosmoking/circle{
-	pixel_y = 32
-	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/hotel/workroom)
 "gM" = (
@@ -4980,6 +4968,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/pool)
+"xy" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/hotel/bar)
 "xO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/carpet,
@@ -5045,6 +5040,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hotel/bar)
+"LM" = (
+/obj/structure/table,
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_y = 32
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/hotel/workroom)
 "ON" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/freezer,
@@ -6166,7 +6171,7 @@ eK
 eL
 fi
 fQ
-fZ
+xy
 go
 gk
 go
@@ -7848,7 +7853,7 @@ de
 cF
 cF
 di
-gL
+LM
 gG
 gG
 hF

@@ -522,6 +522,36 @@
 	band_color = "#DED7CF"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/coagulant = 3)
 
+/obj/item/reagent_containers/glass/bottle/vial/styptic
+	name = "vial (Styptic Powder)"
+	icon_state = "vial_orange"
+	list_reagents = list(/datum/reagent/medicine/styptic_powder = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/silver_sulfadiazine
+	name = "vial (Silver Sulfadiazine)"
+	icon_state = "vial_red"
+	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/sal_acid
+	name = "vial (Salicyclic Acid)"
+	icon_state = "vial_white"
+	list_reagents = list(/datum/reagent/medicine/sal_acid = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/oxandrolone
+	name = "vial (Oxandrolone)"
+	icon_state = "vial_black"
+	list_reagents = list(/datum/reagent/medicine/oxandrolone = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/calomel
+	name = "vial (Calomel)"
+	icon_state = "vial_black"
+	list_reagents = list(/datum/reagent/medicine/calomel = 15)
+
+/obj/item/reagent_containers/glass/bottle/vial/salbutamol
+	name = "vial (Salbutamol)"
+	icon_state = "vial_white"
+	list_reagents = list(/datum/reagent/medicine/salbutamol = 15)
+
 /obj/item/reagent_containers/glass/bottle/vial/coagulant
 	label_name = "Sanguirite"
 	label_desc = "A proprietary coagulant used to help bleeding wounds clot faster, as well as slow organ decay."

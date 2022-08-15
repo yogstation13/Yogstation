@@ -12,7 +12,7 @@
 	tools = list(TOOL_HATCHET) //to carve the wood into shape
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
@@ -26,7 +26,7 @@
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/knifeboxing
 	name = "Knife-boxing Gloves"
@@ -36,7 +36,7 @@
 	time = 10 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/pipebomb
 	name = "Pipe Bomb"
@@ -50,7 +50,7 @@
 	time = 1.5 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE 	//This was such a bad idea
+	always_available = FALSE 	//This was such a bad idea
 
 /datum/crafting_recipe/flamethrower
 	name = "Flamethrower"
@@ -64,7 +64,7 @@
 	time = 1 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/makeshiftpistol
 	name = "Makeshift Pistol"
@@ -77,7 +77,7 @@
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/makeshiftsuppressor
 	name = "Makeshift Suppressor"
@@ -89,7 +89,7 @@
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-	always_availible = FALSE
+	always_available = FALSE
 
 // Ammo
 
@@ -101,7 +101,7 @@
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/bola_arrow
 	name = "Bola arrow"
@@ -113,7 +113,7 @@
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1, /obj/item/restraints/legcuffs/bola = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
-	always_availible = FALSE
+	always_available = FALSE
 
 /*
 /datum/crafting_recipe/explosive_arrow
@@ -126,7 +126,7 @@
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1, /obj/item/grenade = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
-	always_availible = FALSE
+	always_available = FALSE
 */
 
 /datum/crafting_recipe/flaming_arrow
@@ -139,4 +139,4 @@
 	parts = list(/obj/item/ammo_casing/caseless/arrow = 1)
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
-	always_availible = FALSE
+	always_available = FALSE
