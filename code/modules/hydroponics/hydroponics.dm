@@ -803,8 +803,8 @@
 		var/list/combined_msg = list()
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		if(myseed)
-			combined_msg +="*** <B>[myseed.plantname]</B> ***" 
-			combined_msg +="- Plant Age: [span_notice("[age]")]"
+			combined_msg += "*** <B>[myseed.plantname]</B> ***" 
+			combined_msg += "- Plant Age: [span_notice("[age]")]"
 			var/list/text_string = myseed.get_analyzer_text()
 			if(text_string)
 				combined_msg += "[text_string]"
