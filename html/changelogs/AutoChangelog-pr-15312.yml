@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - imageadd: "tweaked darkspawn's crawling shadows sprite to have two white dots for eyes"
