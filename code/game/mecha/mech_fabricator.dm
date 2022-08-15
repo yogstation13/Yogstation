@@ -481,9 +481,6 @@
 	return ..()
 
 /obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
-	if(!allowed(user) && !combat_parts_allowed && !isobserver(user))
-		to_chat(user, span_warning("You do not have the proper credentials to operate this device!"))
-		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExosuitFabricator")
