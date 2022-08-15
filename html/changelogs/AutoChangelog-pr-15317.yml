@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - spellcheck: "Removes superfluous greater than sign in examine text of human mobs"
