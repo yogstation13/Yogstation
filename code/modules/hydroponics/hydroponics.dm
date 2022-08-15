@@ -817,7 +817,7 @@
 		combined_msg += "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>"
 		combined_msg += ""
 
-		to_chat(user, examine_block(combined_msg))
+		to_chat(user, examine_block(combined_msg.Join("\n")))
 
 	else if(istype(O, /obj/item/cultivator))
 		if(weedlevel > 0)
