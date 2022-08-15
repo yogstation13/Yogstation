@@ -3838,7 +3838,6 @@
 #include "yogstation\code\modules\surgery\organs\heart.dm"
 #include "yogstation\code\modules\surgery\organs\lungs.dm"
 #include "yogstation\code\modules\surgery\organs\shadowling_organs.dm"
-#include "yogstation\code\modules\uplink\uplink_item.dm"
 #include "yogstation\code\modules\vending\fishing.dm"
 #include "yogstation\code\modules\webhook\webhook.dm"
 #include "yogstation\code\modules\xenoarch\loot\gigadrill.dm"

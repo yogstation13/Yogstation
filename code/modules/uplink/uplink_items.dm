@@ -83,27 +83,57 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
  * Items that can be spawned from an uplink. Can be limited by gamemode.
 **/
 /datum/uplink_item
+	/// Name that appears in the uplink
 	var/name = "item name"
+	/// Category its under
 	var/category = "item category"
+	/// Description of what the item does
 	var/desc = "item description"
-	var/item = null // Path to the item to spawn.
-	var/refund_path = null // Alternative path for refunds, in case the item purchased isn't what is actually refunded (ie: holoparasites).
+	/// Path to the item
+	var/item = null
+	/// Alternative path for refunds, in case the item purchased isn't what is actually refunded (ie: holoparasites).
+	var/refund_path = null
+	/// Cost (in TC) of the item
 	var/cost = 0
-	var/refund_amount = 0 // specified refund amount in case there needs to be a TC penalty for refunds.
+	/// Refund amount if specified (UNUSED)
+	var/refund_amount = 0
+	/// Is it refundable
 	var/refundable = FALSE
-	var/surplus = 100 // Chance of being included in the surplus crate.
+	/// Chance of being included in the surplus crate.
+	var/surplus = 100
+	/// Can it be discounted (TRUE means it cant be discounted)
 	var/cant_discount = FALSE
-	var/limited_stock = -1 //Setting this above zero limits how many times this item can be bought by the same traitor in a round, -1 is unlimited
-	var/list/include_modes = list() // Game modes to allow this item in.
-	var/list/exclude_modes = list() // Game modes to disallow this item from.
-	var/list/restricted_roles = list() //If this uplink item is only available to certain roles. Roles are dependent on the frequency chip or stored ID.
-	var/player_minimum //The minimum crew size needed for this item to be added to uplinks.
-	var/purchase_log_vis = TRUE // Visible in the purchase log?
-	var/restricted = FALSE // Adds restrictions for VR/Events
-	var/list/restricted_species //Limits items to a specific species. Hopefully.
-	var/illegal_tech = TRUE // Can this item be deconstructed to unlock certain techweb research nodes?
+	/// Setting this above zero limits how many times this item can be bought by the same traitor in a round, -1 is unlimited
+	var/limited_stock = -1
+	/// Gamemodes that allow this item to be bought
+	var/list/include_modes = list()
+	/// Gamemodes that disallow this item from being bought
+	var/list/exclude_modes = list()
+	/// Items that are restricted to certain roles, uses stored ID or Frequency Chip
+	var/list/restricted_roles = list()
+	/// Minimum amount of crew before it shows up to buy
+	var/player_minimum
+	/// Does it show up in the purchase log (used for TC Crystals)
+	var/purchase_log_vis = TRUE
+	// Adds restrictions for VR/Events
+	var/restricted = FALSE
+	/// Items that are restricted to a certain species
+	var/list/restricted_species
+	/// Does this item unlock illegal tech when deconstructed
+	var/illegal_tech = TRUE
 	/// the manufacturer of the item. Gives up to a 20% discount if you're from that corporation
 	var/datum/corporation/manufacturer
+	/// Objectives that unlock the item
+	var/list/include_objectives = list()
+	/// Objectives that forbid the item
+	var/list/exclude_objectives = list()
+	/// Chance for it to spawn in a surplus nullcrate
+	var/surplus_nullcrates
+
+/datum/uplink_item/New()
+	. = ..()
+	if(isnull(surplus_nullcrates))
+		surplus_nullcrates = surplus
 
 /datum/uplink_item/proc/get_discount()
 	return pick(4;0.75,2;0.5,1;0.25)
@@ -353,6 +383,41 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
+	
+/datum/uplink_item/dangerous/soap_clusterbang
+	name = "Slipocalypse Clusterbang"
+	desc = "A traditional clusterbang grenade with a payload consisting entirely of Syndicate soap. Useful in any scenario!"
+	item = /obj/item/grenade/clusterbuster/soap
+	cost = 3
+	manufacturer = /datum/corporation/traitor/waffleco
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/dangerous/romerol_kit
+	name = "Romerol"
+	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. \
+			On death, these nodules take control of the dead body, causing limited revivification, \
+			along with slurred speech, aggression, and the ability to infect others with this agent."
+	item = /obj/item/storage/box/syndie_kit/romerol
+	cost = 25
+	cant_discount = TRUE
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
+
+/datum/uplink_item/dangerous/martialarts
+	name = "Martial Arts Scroll"
+	desc = "This scroll contains the secrets of an ancient martial arts technique. You will master unarmed combat, \
+			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
+	item = /obj/item/book/granter/martial/carp
+	cost = 14
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/dangerous/cqc
+	name = "CQC Manual"
+	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
+	item = /obj/item/book/granter/martial/cqc
+	cost = 13
+	surplus = 0
 
 /datum/uplink_item/dangerous/bioterror
 	name = "Biohazardous Chemical Sprayer"
@@ -587,12 +652,22 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	surplus = 0
 
-/datum/uplink_item/stealthy_weapons/cqc
-	name = "CQC Manual"
-	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
-	item = /obj/item/book/granter/martial/cqc
-	cost = 13
-	surplus = 0
+/datum/uplink_item/stealthy_weapons/door_charge
+	name = "Explosive Airlock Charge"
+	desc = "A small, easily concealable device. It can be applied to an open airlock panel, booby-trapping it. \
+			The next person to use that airlock will trigger an explosion, knocking them down and destroying \
+			the airlock maintenance panel."
+	item = /obj/item/doorCharge
+	cost = 2
+	surplus = 10
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/stealthy_weapons/camera_flash
+	name = "Camera Flash"
+	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down; avoid burning out altogether."
+	item = /obj/item/camera/tator
+	cost = 4
+	surplus = 15
 
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	name = "Dart Pistol"
@@ -617,15 +692,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/pen/edagger
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
-
-/datum/uplink_item/stealthy_weapons/martialarts
-	name = "Martial Arts Scroll"
-	desc = "This scroll contains the secrets of an ancient martial arts technique. You will master unarmed combat, \
-			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
-	item = /obj/item/book/granter/martial/carp
-	cost = 14
-	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/crossbow
 	name = "Miniature Energy Crossbow"
@@ -657,16 +723,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/chemical
 	cost = 6
 	surplus = 50
-
-/datum/uplink_item/stealthy_weapons/romerol_kit
-	name = "Romerol"
-	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. \
-			On death, these nodules take control of the dead body, causing limited revivification, \
-			along with slurred speech, aggression, and the ability to infect others with this agent."
-	item = /obj/item/storage/box/syndie_kit/romerol
-	cost = 25
-	cant_discount = TRUE
-	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/sleepy_pen
 	name = "Sleepy Pen"
@@ -988,6 +1044,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cant_discount = TRUE
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/explosives/trap_disk
+	name = "Syndicate Trapped Disk"
+	desc = "A bomb disguised as a syndicate disk that triggers on removal or when tampered with. Nanotrasen IT staff will likely be able to identify its true nature at a glance."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/trap
+	cost = 5
+	surplus = 10
+
 /datum/uplink_item/explosives/clown_bomb_clownops
 	name = "Clown Bomb"
 	desc = "The Clown bomb is a hilarious device capable of massive pranks. It has an adjustable timer, \
@@ -1065,14 +1128,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 8
 
-/datum/uplink_item/explosives/soap_clusterbang
-	name = "Slipocalypse Clusterbang"
-	desc = "A traditional clusterbang grenade with a payload consisting entirely of Syndicate soap. Useful in any scenario!"
-	item = /obj/item/grenade/clusterbuster/soap
-	cost = 3
-	manufacturer = /datum/corporation/traitor/waffleco
-	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
-
 /datum/uplink_item/explosives/syndicate_bomb
 	name = "Syndicate Bomb"
 	desc = "The Syndicate bomb is a fearsome device capable of massive destruction. It has an adjustable timer, \
@@ -1106,7 +1161,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "The minibomb is a grenade with a five-second fuse. Upon detonation, it will create a small hull breach \
 			in addition to dealing high amounts of damage to nearby personnel."
 	item = /obj/item/grenade/syndieminibomb
-	cost = 6
+	cost = 4
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/tearstache
@@ -1286,7 +1341,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 30
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
+	
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
 	name = "No-Slip Chameleon Shoes"
@@ -1385,6 +1441,28 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 20
 
+/datum/uplink_item/device_tools/arm
+	name = "Additional Arm"
+	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
+	item = /obj/item/melee/supermatter_sword //doesn't actually spawn a supermatter sword, but it needs an object to show up in the menu :^)
+	cost = 5
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
+	var/limbs = user.held_items.len
+	user.change_number_of_hands(limbs+1)
+	to_chat(user, "You feel more dexterous")
+
+/datum/uplink_item/device_tools/ntnet_dos
+	name = "DoS Traffic Generator Disk"
+	desc = "An advanced script in a portable disk that can perform denial of service attacks against NTNet quantum relays. \
+			The system administrator will probably notice this. \
+			Multiple devices can run this program together against the same relay for increased effect."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/ntnet_dos
+	cost = 2
+	surplus = 10
+
 /datum/uplink_item/device_tools/airshoes
 	name = "Air Shoes"
 	desc = "Popular in underground racing rings, these shoes come with built-in jets, allowing the users to reach high speeds for prolonged durations and short bursts. \
@@ -1462,6 +1540,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 1
+	surplus_nullcrates = 0
 
 /datum/uplink_item/device_tools/frame
 	name = "F.R.A.M.E. PDA Cartridge"
@@ -1517,6 +1596,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/assembly/flash/hypnotic
 	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
+	restricted_roles = list("Psychiatrist")
+	category = "Role-Restricted"
 
 /datum/uplink_item/device_tools/medgun
 	name = "Medbeam Gun"
@@ -1778,6 +1859,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/mindslave
+	name = "Mindslave Implant"
+	desc = "An implant injected into another body, forcing the victim to obey any command by the user."
+	item = /obj/item/storage/box/syndie_kit/imp_mindslave
+	cost = 7
+	manufacturer = /datum/corporation/traitor/cybersun
+	surplus = 20
+	exclude_modes = list(/datum/game_mode/infiltration)
+
+/datum/uplink_item/implants/greytide
+	name = "Greytide Implant"
+	desc = "An implant injected into another body, forcing the victim to greytide."
+	item = /obj/item/storage/box/syndie_kit/imp_greytide
+	cost = 5
+	surplus = 20
+	restricted_roles = list("Assistant")
+
 /datum/uplink_item/implants/uplink
 	name = "Uplink Implant"
 	desc = "An implant injected into the body, and later activated at the user's will. Has no telecrystals and must be charged by the use of physical telecrystals. \
@@ -1880,6 +1978,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
 
+/datum/uplink_item/race_restricted/xeno_organ_kit
+	name = "Xenomorph Organ Kit"
+	desc = "A kit containing some organs that were... \"donated\" by your ancestors. Contains an autosurgeon, a plasma vessel, a resin spinner, and an acid gland."
+	cost = 15
+	item = /obj/item/storage/box/syndie_kit/xeno_organ_kit
+	restricted_species = list("polysmorph")
+
 /datum/uplink_item/race_restricted/syndigenetics
 	name = "Fire Breath implanter"
 	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
@@ -1965,6 +2070,27 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Clown")
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
+
+/datum/uplink_item/role_restricted/gondola_meat
+	name = "Gondola meat"
+	desc = "A slice of gondola meat will turn any hard-working, brainwashed NT employee into a goody-two-shoes gondola in a matter of minutes."
+	item = /obj/item/reagent_containers/food/snacks/meat/slab/gondola
+	cost = 6
+	restricted_roles = list("Cook")
+
+/datum/uplink_item/role_restricted/cluwneburger
+	name = "Cluwne Burger"
+	desc = "A burger infused with the tears of thousands of cluwnes. Infects anyone who takes a bite and pretty much everyone else on the station with a cluwnification virus which will quickly turn them into a cluwne. Can only be cured with Mimanas."
+	item = /obj/item/storage/box/syndie_kit/cluwnification
+	cost = 25
+	restricted_roles = list("Clown", "Cook")
+
+/datum/uplink_item/role_restricted/syndicate_basket
+	name = "Syndicate Frying Basket"
+	desc = "A syndicate basket which allows the deep frying of dead corpses, ejects anything which the corpse is wearing."
+	item = /obj/item/syndicate_basket
+	cost = 7
+	restricted_roles = list("Cook")
 
 /datum/uplink_item/role_restricted/arm_medical_gun
 	name = "Arm Mounted Medical Beamgun"
@@ -2088,6 +2214,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/his_grace
 	cost = 20
 	restricted_roles = list("Chaplain")
+	include_objectives = list(/datum/objective/hijack)
 	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
 
 /datum/uplink_item/role_restricted/horror
@@ -2213,6 +2340,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	cost = 4
+	cant_discount = TRUE
+
+/datum/uplink_item/badass/frying_pan
+	name = "Bananium Plated Frying Pan"
+	desc = "A frying pan imbued with ancient powers."
+	item = /obj/item/melee/fryingpan/bananium
+	cost = 40
 	cant_discount = TRUE
 
 /datum/uplink_item/badass/costumes/centcom_official
