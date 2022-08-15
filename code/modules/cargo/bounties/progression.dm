@@ -12,8 +12,9 @@
 
 /datum/bounty/item/progression/mining_basic
 	name = "Common Mineral Prospecting"
-	description = "Basic materials are worth pocket change, but are integral for station longevity. Ship us a sheet of gold, uranium, or silver to certify your mining program as \"functional\""
+	description = "Basic materials are worth pocket change, but are integral for station longevity. Ship us any 20 sheets of gold, uranium, or silver to certify your mining program as \"functional\""
 	reward = 5000
+	required_count = 20
 	wanted_types = list(/obj/item/stack/sheet/mineral/silver,/obj/item/stack/sheet/mineral/gold,/obj/item/stack/sheet/mineral/uranium)
 	unlocked_crates = list(/datum/supply_pack/clearance/ka_damage,/datum/supply_pack/clearance/ka_cooldown,/datum/supply_pack/clearance/ka_range)
 
