@@ -117,16 +117,18 @@
 		var/atom/movable/AM = A
 		var/turf/Tloc = get_turf(src)
 		var/decon = FALSE
-		for(var/atom/atm in Tloc.contents)
-			if(ismob(atm))
-				continue
-			if(!atm.CanPass(AM))
-				decon = TRUE
-				break
+		if(AM.density)
+			for(var/atom/atm in Tloc.contents)
+				if(ismob(atm))
+					continue
+				if(!atm.CanPass(AM))
+					atm.Bumped(AM) // Used incase getting whacked does something (Mainly for SM)
+					decon = TRUE
+					break
 		AM.forceMove(Tloc)
 		AM.pipe_eject(direction)
 		if(decon && isobj(AM))
-			AM.visible_message("[src] rams into another object instantly breaking itself!")
+			AM.visible_message("[AM] rams into another object instantly breaking itself!")
 			var/obj/O = AM
 			O.deconstruct(FALSE, TRUE)
 			return
