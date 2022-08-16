@@ -118,6 +118,8 @@
 		var/turf/Tloc = get_turf(src)
 		var/decon = FALSE
 		for(var/atom/atm in Tloc.contents)
+			if(ismob(atm))
+				continue
 			if(!atm.CanPass(AM))
 				decon = TRUE
 				break
