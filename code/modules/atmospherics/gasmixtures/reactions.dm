@@ -710,7 +710,7 @@ nobliumformation = 1001
 	var/energy_used = heat_efficency * METAL_HYDROGEN_FORMATION_ENERGY
 
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
-		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.1))	//0.001-0.005 x mols of present hydrogen as BZ consumed, something about it decomposing
+		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.05))	//0.0005-0.0025 x mols of present hydrogen as BZ consumed, something about it decomposing
 		if (prob(20 * increase_factor))
 			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 14))	//14-70% of present hydrogen consumed.
 			if (prob(25 / increase_factor))
