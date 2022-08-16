@@ -69,36 +69,36 @@
 //Gemstones, because they are unstackable
 
 /datum/export/lavaland/gems/rupee
-	cost = 5500
+	cost = 3300
 	unit_name = "Ruperium"
 	export_types = list(/obj/item/gem/rupee)
 
 /datum/export/lavaland/gems/diamond
-	cost = 7500
+	cost = 4500
 	unit_name = "Frost Diamond"
 	export_types = list(/obj/item/gem/fdiamond)
 
 /datum/export/lavaland/gems/plasma
-	cost = 12500
+	cost = 7500
 	unit_name = "Metastable Phoron"
 	export_types = list(/obj/item/gem/phoron)
 
 /datum/export/lavaland/gems/amber
-	cost = 16000
+	cost = 9600
 	unit_name = "Draconic Amber"
 	export_types = list(/obj/item/gem/amber)
 
 /datum/export/lavaland/gems/void
-	cost = 18000
+	cost = 10000
 	unit_name = "Null Crystal"
 	export_types = list(/obj/item/gem/void)
 
 /datum/export/lavaland/gems/blood
-	cost = 20000
+	cost = 12000
 	unit_name = "Ichorium Crystal"
 	export_types = list(/obj/item/gem/bloodstone)
 
 /datum/export/lavaland/gems/dark
-	cost = 30000
+	cost = 12000
 	unit_name = "Dark Cube"
 	export_types = list(/obj/item/gem/dark)
