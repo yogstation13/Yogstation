@@ -2,7 +2,6 @@
 #define ELECTROLYZER_MODE_WORKING	"working"
 
 /obj/machinery/electrolyzer
-	anchored = FALSE
 	density = TRUE
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
 	icon = 'icons/obj/atmos.dmi'
@@ -114,8 +113,6 @@
 
 /obj/machinery/electrolyzer/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
-	if(default_unfasten_wrench(user, I))
-		return
 	if(istype(I, /obj/item/stock_parts/cell))
 		if(!panel_open)
 			to_chat(user, span_warning("The hatch must be open to insert a power cell!"))
