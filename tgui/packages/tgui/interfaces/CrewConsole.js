@@ -157,7 +157,7 @@ export const CrewConsoleContent = (props, context) => {
                   {sensor.is_irradiated ? <Icon name="radiation" color="#f0e21d" size={1} /> : ""}
                   {sensor.is_husked ? <Icon name="ribbon" color="#ad1c09" size={1} /> : ""}
                   {sensor.is_onfire ? <Icon name="fire" color="#f24f0f" size={1} /> : ""}
-                  {sensor.is_wounded ? <Icon name="star-of-life" color="#ff0537" size={1} /> : ""}
+                  {sensor.is_wounded ? <Icon name="star-of-life" color="#f50505" size={1} /> : ""}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.is_robot ? (<Icon name="robot" color="#2e46cc" size={1} />
@@ -210,7 +210,7 @@ export const CrewConsoleContent = (props, context) => {
                     sensor.life_status ? (
                       <Icon name="heart" color="#17d568" size={1} />
                     ) : (
-                      <Icon name="skull" color="#c71402" size={1} />
+                      <Icon name="skull-crossbones" color="#c71402" size={1} />
                     ))}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
