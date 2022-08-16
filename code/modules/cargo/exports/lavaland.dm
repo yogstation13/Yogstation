@@ -80,7 +80,7 @@
 
 /datum/export/lavaland/gems/plasma
 	cost = 7500
-	unit_name = "Metastable Phoron"
+	unit_name = "Stabilized Phoron"
 	export_types = list(/obj/item/gem/phoron)
 
 /datum/export/lavaland/gems/amber

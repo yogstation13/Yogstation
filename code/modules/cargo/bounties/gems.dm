@@ -13,7 +13,7 @@
 	wanted_types = list(/obj/item/gem/fdiamond)
 
 /datum/bounty/item/gems/plasma
-	name = "Metastable Phoron"
+	name = "Stabilized Phoron"
 	description = "Central Command needs a Phoron gem to showcase in their museum. Find one and be rewarded."
 	reward = 15000
 	wanted_types = list(/obj/item/gem/phoron)
