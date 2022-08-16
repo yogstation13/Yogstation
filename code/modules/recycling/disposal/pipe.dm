@@ -115,8 +115,14 @@
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 	for(var/A in H)
 		var/atom/movable/AM = A
-		AM.forceMove(get_turf(src))
+		var/turf/Tloc = get_turf(src)
+		AM.forceMove(Tloc)
 		AM.pipe_eject(direction)
+		if(isobj(AM) && AM.CanAllowThrough(A, Tloc))
+			var/obj/O = AM
+			if(O.deconstruct())
+				AM.visible_message("[src] rams into another object instantly breaking itself!")
+
 		if(target)
 			AM.throw_at(target, eject_range, 1)
 	H.vent_gas(T)
