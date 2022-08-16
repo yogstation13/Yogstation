@@ -119,7 +119,7 @@ export const Vending = (props, context) => {
       resizable>
       <Window.Content scrollable>
         {product_ad && (
-          <Section textAlign='center' textColor='green'>
+          <Section textAlign="center" textColor="green">
             {product_ad}
           </Section>
         )}
