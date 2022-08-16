@@ -47,8 +47,7 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/Destroy()
-	qdel(udder)
-	udder = null
+	QDEL_NULL(udder)
 	return ..()
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/CanAttack(atom/the_target) // Gutlunch-specific version of CanAttack to handle stupid stat_exclusive = true crap so we don't have to do it for literally every single simple_animal/hostile except the two that spawn in lavaland
