@@ -64,6 +64,17 @@
 								span_userdanger("[user] is trying to put [src.name] on [C]!"))
 
 			playsound(loc, cuffsound, 30, 1, -2)
+
+			// Yogs start: Prevents darkspawn from cheesing their bead sleep to cuff and kill
+			if(is_darkspawn_or_veil(user) && C.has_status_effect(STATUS_EFFECT_BROKEN_WILL) && (C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore()))
+				to_chat(user, span_boldannounce("Restraining [C] will wake them up! Are you sure you want to do this?"))
+				C.visible_message(span_warning("[owner] jerks in their sleep as they are restrained!"))
+				to_chat(C, span_boldannounce("Someone handles your arms roughly, pulling you towards wakefulness!"))
+				if(do_mob(user, C, 15, FALSE, FALSE)) // No progress bar
+					C.remove_status_effect(STATUS_EFFECT_BROKEN_WILL)
+					C.SetUnconscious(0)
+			// Yogs end
+
 			if(do_mob(user, C, 30) && (C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore()))
 				if(iscyborg(user))
 					apply_cuffs(C, user, TRUE)
