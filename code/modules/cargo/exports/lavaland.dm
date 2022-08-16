@@ -94,8 +94,8 @@
 	export_types = list(/obj/item/gem/void)
 
 /datum/export/lavaland/gems/blood
-	unit_name = "Ichorium Crystal"
 	cost = 20000
+	unit_name = "Ichorium Crystal"
 	export_types = list(/obj/item/gem/bloodstone)
 
 /datum/export/lavaland/gems/dark

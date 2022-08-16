@@ -29,6 +29,6 @@
 #define ACCOUNT_SEC "SEC"
 #define ACCOUNT_SEC_NAME "Defense Budget"
 
-#define MEGAFAUNA_CASH_SCALE 5
+#define MEGAFAUNA_CASH_SCALE 2
 
 #define NO_FREEBIES "commies go home"
