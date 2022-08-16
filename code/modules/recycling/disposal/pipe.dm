@@ -116,12 +116,18 @@
 	for(var/A in H)
 		var/atom/movable/AM = A
 		var/turf/Tloc = get_turf(src)
+		var/decon = FALSE
+		for(var/atom/atm in Tloc.contents)
+			if(!atm.CanPass(AM))
+				decon = TRUE
+				break
 		AM.forceMove(Tloc)
 		AM.pipe_eject(direction)
-		if(isobj(AM) && AM.CanAllowThrough(A, Tloc))
+		if(decon && isobj(AM))
+			AM.visible_message("[src] rams into another object instantly breaking itself!")
 			var/obj/O = AM
-			if(O.deconstruct())
-				AM.visible_message("[src] rams into another object instantly breaking itself!")
+			O.deconstruct(FALSE, TRUE)
+			return
 
 		if(target)
 			AM.throw_at(target, eject_range, 1)
