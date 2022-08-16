@@ -6,27 +6,28 @@
 	icon_state = "potato"
 	item_flags = NOBLUDGEON
 	force = 0
-	var/icon_off = "potato"
-	var/icon_on = "potato_active"
-	var/detonation_timerid
-	var/activation_time = 0
-	var/timer = 600			//deciseconds
+	/// How long you can hold it before you detontae
+	var/timer = 5 SECONDS
+	/// Show timer to user
 	var/show_timer = FALSE
-	var/reusable = FALSE		//absolute madman
+	/// Is it droppable
 	var/sticky = TRUE
+	/// Will it rip an item out of their hand to put it on?
 	var/forceful_attachment = TRUE
+	/// Will it prevent stuns
 	var/stimulant = TRUE
+	/// Will it explode
 	var/detonate_explosion = TRUE
-	var/detonate_dev_range = 0
-	var/detonate_heavy_range = 0
-	var/detonate_light_range = 2
+	var/detonate_dev_range = 1
+	var/detonate_heavy_range = 2
+	var/detonate_light_range = 3
 	var/detonate_flash_range = 5
 	var/detonate_fire_range = 5
 
+	/// Is it primed
 	var/active = FALSE
 
 	var/color_val = FALSE
-
 	var/datum/weakref/current
 
 /obj/item/hot_potato/Destroy()
@@ -46,19 +47,18 @@
 	color_val = !color_val
 	if(istype(target))
 		current = WEAKREF(target)
-		target.add_atom_colour(color_val? "#ffff00" : "#00ffff", FIXED_COLOUR_PRIORITY)
+		target.add_atom_colour(color_val? "#ff0000" : "#ffff00", FIXED_COLOUR_PRIORITY)
 
 /obj/item/hot_potato/proc/detonate()
 	var/atom/location = loc
 	location.visible_message(span_userdanger("[src] [detonate_explosion? "explodes" : "activates"]!"), span_userdanger("[src] activates! You've ran out of time!"))
 	if(detonate_explosion)
 		explosion(src, detonate_dev_range, detonate_heavy_range, detonate_light_range, detonate_flash_range, flame_range = detonate_fire_range)
-	deactivate()
-	if(!reusable)
-		var/mob/M = loc
-		if(istype(M))
-			M.dropItemToGround(src, TRUE)
 		qdel(src)
+	deactivate()
+	var/mob/M = loc
+	if(istype(M))
+		M.dropItemToGround(src, TRUE)
 
 /obj/item/hot_potato/attack_self(mob/user)
 	if(activate(timer, user))
@@ -68,6 +68,9 @@
 	return ..()
 
 /obj/item/hot_potato/process()
+	if(timer <= 0)
+		detonate() // Bye Bye
+	timer -= 1 // SSfastprocessing
 	if(isliving(loc))
 		var/mob/living/L = loc
 		if(stimulant)
@@ -85,7 +88,7 @@
 	if(active)
 		. += span_warning("[src] is flashing red-hot! You should probably get rid of it!")
 		if(show_timer)
-			. += span_warning("[src]'s timer looks to be at [DisplayTimeText(activation_time - world.time)]!")
+			. += span_warning("[src]'s timer looks to be at [DisplayTimeText(timer)]!")
 
 /obj/item/hot_potato/equipped(mob/user)
 	. = ..()
@@ -99,6 +102,7 @@
 	force_onto(target, user)
 
 /obj/item/hot_potato/proc/force_onto(mob/living/victim, mob/user)
+	timer = initial(timer)
 	if(!istype(victim) || user != loc || victim == user)
 		return FALSE
 	if(!victim.client)
@@ -138,8 +142,6 @@
 	if(sticky)
 		ADD_TRAIT(src, TRAIT_NODROP, HOT_POTATO_TRAIT)
 	name = "primed [name]"
-	activation_time = timer + world.time
-	detonation_timerid = addtimer(CALLBACK(src, .proc/detonate), delay, TIMER_STOPPABLE)
 	START_PROCESSING(SSfastprocess, src)
 	if(user)
 		log_bomber(user, "has primed a", src, "for detonation (Timer:[delay],Explosive:[detonate_explosion],Range:[detonate_dev_range]/[detonate_heavy_range]/[detonate_light_range]/[detonate_fire_range])")
@@ -151,14 +153,15 @@
 	update_icon()
 	name = initial(name)
 	REMOVE_TRAIT(src, TRAIT_NODROP, HOT_POTATO_TRAIT)
-	deltimer(detonation_timerid)
 	STOP_PROCESSING(SSfastprocess, src)
-	detonation_timerid = null
 	colorize(null)
 	active = FALSE
 
 /obj/item/hot_potato/update_icon()
-	icon_state = active? icon_on : icon_off
+	if(active)
+		icon_state = "[initial(icon_state)]_active"
+	else
+		icon_state = initial(icon_state)
 
 /obj/item/hot_potato/syndicate
 	detonate_light_range = 4
@@ -171,5 +174,4 @@
 /obj/item/hot_potato/harmless/toy
 	desc = "A label on the side of this potato reads \"Product of DonkCo Toys and Recreation department.\" <span class='boldnotice'>You can attack anyone with it to put it on them instead, if they have a free hand to take it!</span>"
 	sticky = FALSE
-	reusable = TRUE
 	forceful_attachment = FALSE
