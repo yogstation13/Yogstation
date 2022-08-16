@@ -131,9 +131,8 @@
 			AM.visible_message("[AM] rams into another object instantly breaking itself!")
 			var/obj/O = AM
 			O.deconstruct(FALSE, TRUE)
-			return
 
-		if(target)
+		if(AM && target)
 			AM.throw_at(target, eject_range, 1)
 	H.vent_gas(T)
 	qdel(H)
