@@ -1,16 +1,5 @@
 GLOBAL_DATUM(permissions, /datum/permissions_controller)
-// GENERAL_PROTECT_DATUM(/datum/permissions_controller)
-
-// Allow me to see funny datum, in case things break during test merge
-// Do not merge without removing this and uncommenting the above
-/datum/permissions_controller/can_vv_get(var_name)
-	return usr.ckey == "adamsogm";
-
-/datum/permissions_controller/vv_edit_var(var_name, var_value)
-	return usr.ckey == "adamsogm";
-
-/datum/permissions_controller/CanProcCall(procname)
-	return usr.ckey == "adamsogm";
+GENERAL_PROTECT_DATUM(/datum/permissions_controller)
 
 // Creates permissions controller based on the config
 /proc/init_permissions()
