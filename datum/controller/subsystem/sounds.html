@@ -16,7 +16,7 @@
 <h1>Sounds <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/sounds.html">sounds</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L3">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L3">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 3"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -41,108 +41,108 @@
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L18">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L18">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 18"/></a></h3>
         <p>List of all channels as numbers</p><h3 id="var/channel_random_low"><aside class="declaration">var </aside>channel_random_low
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L22">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L22">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 22"/></a></h3>
         <p>lower iteration position - Incremented and looped to get &quot;random&quot; sound channels for normal sounds. The channel at this index is returned when asking for a random channel.</p><h3 id="var/channel_reserve_high"><aside class="declaration">var </aside>channel_reserve_high
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L26">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L26">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 26"/></a></h3>
         <p>higher reserve position - decremented and incremented to reserve sound channels, anything above this is reserved. The channel at this index is the highest unreserved channel.</p><h3 id="var/random_channels_min"><aside class="declaration">var </aside>random_channels_min
             <aside>&ndash; /static</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L9">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L9">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 9"/></a></h3>
         <p>Amount of channels to reserve for random usage rather than reservations being allowed to reserve all channels. Also a nice safeguard for when someone screws up.</p><h3 id="var/reserved_channels"><aside class="declaration">var </aside>reserved_channels
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L20">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L20">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 20"/></a></h3>
         <p>Associative list of all reserved channels associated to their position. &quot;[channel_number]&quot; = index as number</p><h3 id="var/using_channels"><aside class="declaration">var </aside>using_channels
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L13">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L13">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 13"/></a></h3>
         <p>Assoc list, &quot;[channel]&quot; = either the datum using it or TRUE for an unsafe-reserved (datumless reservation) channel</p><h3 id="var/using_channels_by_datum"><aside class="declaration">var </aside>using_channels_by_datum
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L15">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L15">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 15"/></a></h3>
         <p>Assoc list datum = list(channel1, channel2, ...) for what channels something reserved.</p><h2 id="proc">Proc Details</h2><h3 id="proc/available_channels_left"><aside class="declaration">proc </aside>available_channels_left<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L132">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L132">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 132"/></a></aside>
         </h3>
         <p>How many channels we have left.</p><h3 id="proc/free_channel"><aside class="declaration">proc </aside>free_channel<aside>(number) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L101">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L101">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 101"/></a></aside>
         </h3>
         <p>Frees a channel and updates the datastructure. Private proc.</p><h3 id="proc/free_datum_channels"><aside class="declaration">proc </aside>free_datum_channels<aside>(/<a href="datum.html">datum</a>/D) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L52">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L52">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 52"/></a></aside>
         </h3>
         <p>Frees all the channels a datum is using.</p><h3 id="proc/free_datumless_channels"><aside class="declaration">proc </aside>free_datumless_channels<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L62">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L62">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 62"/></a></aside>
         </h3>
         <p>Frees all datumless channels</p><h3 id="proc/free_sound_channel"><aside class="declaration">proc </aside>free_sound_channel<aside>(channel) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L41">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L41">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 41"/></a></aside>
         </h3>
         <p>Removes a channel from using list.</p><h3 id="proc/random_available_channel"><aside class="declaration">proc </aside>random_available_channel<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L126">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L126">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 126"/></a></aside>
         </h3>
         <p>Random available channel, returns number</p><h3 id="proc/random_available_channel_text"><aside class="declaration">proc </aside>random_available_channel_text<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L120">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L120">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 120"/></a></aside>
         </h3>
         <p>Random available channel, returns text.</p><h3 id="proc/reserve_channel"><aside class="declaration">proc </aside>reserve_channel<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L90">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L90">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 90"/></a></aside>
         </h3>
         <p>Reserves a channel and updates the datastructure. Private proc.</p><h3 id="proc/reserve_sound_channel"><aside class="declaration">proc </aside>reserve_sound_channel<aside>(/<a href="datum.html">datum</a>/D) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L76">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L76">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 76"/></a></aside>
         </h3>
         <p>Reserves a channel for a datum. Automatic cleanup only when the datum is deleted. Returns an integer for channel.</p><h3 id="proc/reserve_sound_channel_datumless"><aside class="declaration">proc </aside>reserve_sound_channel_datumless<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c07b7dcb4b872e5d154deae071b62899c0106942/code/controllers/subsystem/sounds.dm#L66">
+            <a href="https://github.com/yogstation13/Yogstation/blob/557bee2b292c213ad75471feaecbb2ec39a86a12/code/controllers/subsystem/sounds.dm#L66">
         <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;sounds.dm 66"/></a></aside>
         </h3>
         <p>NO AUTOMATIC CLEANUP - If you use this, you better manually free it later! Returns an integer for channel.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/c07b7dcb4b872e5d154deae071b62899c0106942">c07b7dc</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/557bee2b292c213ad75471feaecbb2ec39a86a12">557bee2</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
