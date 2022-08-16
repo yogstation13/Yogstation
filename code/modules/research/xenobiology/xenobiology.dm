@@ -684,6 +684,9 @@
 	var/intel_cooldown = 200 // in deciseconds, the cooldown in between uses
 
 /obj/item/slimepotion/slime/sentience/attack(mob/living/M, mob/user)
+	if(LAZYLEN(SSmobs.slavemobs) >= MAX_SLAVE_MOBS)
+		to_chat(user, span_warning("The max amount of slaved mobs ([MAX_SLAVE_MOBS]) has already been created this round!"))
+		return
 	if(being_used || !ismob(M))
 		return
 	if(!isanimal(M) || M.ckey) //only works on animals that aren't player controlled
@@ -707,6 +710,7 @@
 
 	var/list/candidates = pollCandidatesForMob("Do you want to play as [SM.name]?", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, SM, POLL_IGNORE_SENTIENCE_POTION) // see poll_ignore.dm
 	if(LAZYLEN(candidates))
+		SSmobs.slavemobs += SM
 		var/mob/dead/observer/C = pick(candidates)
 		SM.key = C.key
 		SM.sentience_act()

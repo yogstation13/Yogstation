@@ -183,12 +183,19 @@
 		Serve [creator.real_name], and assist [creator.p_them()] in completing [creator.p_their()] goals at any cost."
 		owner = creator
 
+/obj/effect/mob_spawn/human/golem/attack_ghost(mob/user)
+	if(owner && LAZYLEN(SSmobs.slavemobs) >= MAX_SLAVE_MOBS)
+		to_chat(user, span_warning("The max amount of slaved mobs ([MAX_SLAVE_MOBS]) has already been created this round!"))
+		return
+	. = ..()
+
 /obj/effect/mob_spawn/human/golem/special(mob/living/new_spawn, name)
 	var/datum/species/golem/X = mob_species
 	to_chat(new_spawn, "[initial(X.info_text)]")
 	if(!owner)
 		to_chat(new_spawn, "Build golem shells in the autolathe, and feed refined mineral sheets to the shells to bring them to life! You are generally a peaceful group unless provoked.")
 	else
+		SSmobs.slavemobs += new_spawn
 		new_spawn.mind.store_memory("<b>Serve [owner.real_name], your creator.</b>")
 		new_spawn.mind.enslave_mind_to_creator(owner)
 		log_game("[key_name(new_spawn)] possessed a golem shell enslaved to [key_name(owner)].")

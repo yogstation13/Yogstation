@@ -1,3 +1,5 @@
+#define MAX_SLAVE_MOBS 5
+
 SUBSYSTEM_DEF(mobs)
 	name = "Mobs"
 	priority = FIRE_PRIORITY_MOBS
@@ -9,6 +11,7 @@ SUBSYSTEM_DEF(mobs)
 	var/static/list/dead_players_by_zlevel[][] = list(list()) // Needs to support zlevel 1 here, MaxZChanged only happens when z2 is created and new_players can login before that.
 	var/static/list/cubemonkeys = list()
 	var/static/list/cheeserats = list()
+	var/static/list/slavemobs = list()
 
 /datum/controller/subsystem/mobs/stat_entry(msg)
 	msg = "P:[length(GLOB.mob_living_list)]"
