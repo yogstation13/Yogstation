@@ -13,7 +13,7 @@
 
 /obj/structure/discoball
 	name = "Disco Ball"
-	desc = "This is an improved portable disco ball model. Use wrench to undeploy."
+	desc = "This is an improved portable disco ball model, a copied version of ethereal disco ball with a fake ethereal head. Use wrench to undeploy."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "ethdisco_head_0"
 	anchored = TRUE
