@@ -1,4 +1,4 @@
-#define DARKSPAWN_REFLECT_COOLDOWN = 15 SECONDS
+#define DARKSPAWN_REFLECT_COOLDOWN 15 SECONDS
 
 /datum/species/darkspawn
 	name = "Darkspawn"
