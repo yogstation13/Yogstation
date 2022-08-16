@@ -28,7 +28,7 @@
 		else if(COOLDOWN_FINISHED(src, reflect_cd_3))
 			COOLDOWN_START(src, reflect_cd_3, DARKSPAWN_REFLECT_COOLDOWN)
 		H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
-		playsound(T, "bullet_miss", 75, 1)
+		playsound(H, "bullet_miss", 75, 1)
 		return -1
 	return 0
 
