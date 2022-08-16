@@ -300,10 +300,10 @@
 
 /obj/item/storage/lockbox/vialbox/hypo_deluxe/PopulateContents()
 	new /obj/item/reagent_containers/glass/bottle/vial/large/omnizine(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/brute(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/burn(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/tox(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/oxy(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/libital(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/aiuri(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/charcoal(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/perfluorodecalin(src)
 	new /obj/item/reagent_containers/glass/bottle/vial/large/epi(src)
 
 /obj/item/storage/lockbox/vialbox/virology

@@ -492,25 +492,25 @@
 	log_say(log_message)
 	qdel(src)
 
-/obj/item/reagent_containers/glass/bottle/vial/brute
+/obj/item/reagent_containers/glass/bottle/vial/libital
 	label_name = "Libital"
 	label_desc= "A bruise reliever. Does minor liver damage."
 	band_color = "#FF0033"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 15)
 
-/obj/item/reagent_containers/glass/bottle/vial/burn
+/obj/item/reagent_containers/glass/bottle/vial/aiuri
 	label_name = "Aiuri"
 	label_desc = "Used to treat burns. Does minor eye damage."
 	band_color = "#FF9933"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 15)
 
-/obj/item/reagent_containers/glass/bottle/vial/tox
+/obj/item/reagent_containers/glass/bottle/vial/charcoal
 	label_name = "Charcoal"
 	label_desc = "Heals toxin damage as well as slowly removing any other chemicals the patient has in their bloodstream."
 	band_color = "#339933"
 	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
 
-/obj/item/reagent_containers/glass/bottle/vial/oxy
+/obj/item/reagent_containers/glass/bottle/vial/perfluorodecalin
 	label_name = "Perfluorodecalin"
 	label_desc = "Restores oxygen deprivation while producing a lesser amount of toxic byproducts. Both scale with exposure to the drug and current amount of oxygen deprivation. Overdose causes toxic byproducts regardless of oxygen deprivation."
 	band_color = "#3366FF"
@@ -596,25 +596,25 @@
 	band_color = "#DED7CF"
 	list_reagents = list(/datum/reagent/medicine/omnizine = 30)
 
-/obj/item/reagent_containers/glass/bottle/vial/large/brute
+/obj/item/reagent_containers/glass/bottle/vial/large/libital
 	label_name = "Libital"
-	label_desc= "A bruise reliever. Does minor liver damage."
+	label_desc = "A bruise reliever. Does minor liver damage."
 	band_color = "#FF0033"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 30)
 
-/obj/item/reagent_containers/glass/bottle/vial/large/burn
+/obj/item/reagent_containers/glass/bottle/vial/large/aiuri
 	label_name = "Aiuri"
 	label_desc = "Used to treat burns. Does minor eye damage."
 	band_color = "#FF9933"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 30)
 
-/obj/item/reagent_containers/glass/bottle/vial/large/tox
+/obj/item/reagent_containers/glass/bottle/vial/large/charcoal
 	label_name = "Charcoal"
 	label_desc = "Heals toxin damage as well as slowly removing any other chemicals the patient has in their bloodstream."
 	band_color = "#339933"
 	list_reagents = list(/datum/reagent/medicine/charcoal = 30)
 
-/obj/item/reagent_containers/glass/bottle/vial/large/oxy
+/obj/item/reagent_containers/glass/bottle/vial/large/perfluorodecalin
 	label_name = "Perfluorodecalin"
 	label_desc = "Restores oxygen deprivation while producing a lesser amount of toxic byproducts. Both scale with exposure to the drug and current amount of oxygen deprivation. Overdose causes toxic byproducts regardless of oxygen deprivation."
 	band_color = "#3366FF"
