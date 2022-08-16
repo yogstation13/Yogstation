@@ -74,7 +74,8 @@
 					else
 						visible_message(span_danger("[src] deflects the projectile!"), span_userdanger("You deflect the projectile!"))
 					playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
-					src.adjustStaminaLoss(P.damage / 4)
+					if(P.damage)
+						src.adjustStaminaLoss(P.damage / 4)
 					if(!mind.martial_art.reroute_deflection)
 						return BULLET_ACT_BLOCK
 					else
