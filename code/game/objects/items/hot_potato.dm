@@ -9,7 +9,7 @@
 	/// How long you can hold it before you detontae
 	var/timer = 5 SECONDS
 	/// Show timer to user
-	var/show_timer = FALSE
+	var/show_timer = TRUE
 	/// Is it droppable
 	var/sticky = TRUE
 	/// Will it rip an item out of their hand to put it on?
