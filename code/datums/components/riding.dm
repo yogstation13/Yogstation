@@ -162,7 +162,7 @@
 	var/slowness = 0
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		slowness = max(0, H.dna?.species.movement_delay(H))
+		slowness = max(0, H.dna?.species.movement_delay(H) / 2)
 
 	if(world.time < last_vehicle_move + ((last_move_diagonal? 2 : 1) * (vehicle_move_delay + slowness) * CONFIG_GET(number/movedelay/run_delay))) //yogs - fixed this to work with movespeed
 		return
