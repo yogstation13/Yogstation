@@ -205,7 +205,7 @@
 /obj/machinery/chem_dispenser/ui_data(mob/user)
 	var/data = list()
 	data["amount"] = amount
-	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
+	data["energy"] = FLOOR(cell.charge, 1) ? FLOOR(cell.charge, 1) * powerefficiency : "0" //To prevent NaN in the UI.
 	data["maxEnergy"] = cell.maxcharge * powerefficiency
 	data["isBeakerLoaded"] = beaker ? 1 : 0
 
