@@ -1,4 +1,4 @@
-import { toFixed } from 'common/math';
+import { floor } from 'common/math';
 import { toTitleCase } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
@@ -43,7 +43,7 @@ export const ChemDispenser = (props, context) => {
             <LabeledList.Item label="Energy">
               <ProgressBar
                 value={data.energy / data.maxEnergy}>
-                {toFixed(data.energy) + ' units'}
+                {floor(data.energy) + ' units'}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
