@@ -158,11 +158,16 @@
 	if(user.incapacitated())
 		Unbuckle(user)
 		return
+	
+	var/slowness = 0
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		slowness = H.dna?.species.movement_delay(H)
 
-	if(world.time < last_vehicle_move + ((last_move_diagonal? 2 : 1) * vehicle_move_delay * CONFIG_GET(number/movedelay/run_delay))) //yogs - fixed this to work with movespeed
+	if(world.time < last_vehicle_move + ((last_move_diagonal? 2 : 1) * (vehicle_move_delay + slowness) * CONFIG_GET(number/movedelay/run_delay))) //yogs - fixed this to work with movespeed
 		return
 
-	AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay) * CONFIG_GET(number/movedelay/run_delay))
+	AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay + slowness) * CONFIG_GET(number/movedelay/run_delay))
 	for(var/mob/M in AM.buckled_mobs)
 		ride_check(M)
 		M.set_glide_size(AM.glide_size)
@@ -184,7 +189,7 @@
 			last_move_diagonal = TRUE
 		else
 			last_move_diagonal = FALSE
-		AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay) * CONFIG_GET(number/movedelay/run_delay))
+		AM.set_glide_size((last_move_diagonal? 2 : 1) * DELAY_TO_GLIDE_SIZE(vehicle_move_delay + slowness) * CONFIG_GET(number/movedelay/run_delay))
 		for(var/mob/M in AM.buckled_mobs)
 			ride_check(M)
 			M.set_glide_size(AM.glide_size)
