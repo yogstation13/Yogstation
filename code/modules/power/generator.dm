@@ -119,6 +119,7 @@
 	add_avail(power_output)
 	lastgenlev = power_output
 	lastgen -= power_output
+	lastgen = max(lastgen, 0)
 	..()
 
 /obj/machinery/power/generator/proc/get_menu(include_link = TRUE)
