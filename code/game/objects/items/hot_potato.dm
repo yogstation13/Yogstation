@@ -158,7 +158,7 @@
 	active = FALSE
 
 /obj/item/hot_potato/update_icon()
-	icon_state = "[initial(icon_state)]" + "[active ? "active" : ""]"
+	icon_state = "[initial(icon_state)]" + "[active ? "_active" : ""]"
 
 /obj/item/hot_potato/syndicate
 	detonate_light_range = 4
