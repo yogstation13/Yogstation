@@ -2442,7 +2442,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/nt/ammo/wt
 	name = "4.6x30mm Magazine"
 	desc = "An additional 22-round 4.6x30mm magazine; suitable for use with the WT-550."
-	item = /obj/item/ammo_box/magazine/smgm9mm
+	item = /obj/item/ammo_box/magazine/wt550m9
 	cost = 1
 
 /datum/uplink_item/nt/ammo/wtap

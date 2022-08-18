@@ -31,4 +31,5 @@
 
 /obj/item/ammo_casing/c45/tommy
 /obj/item/ammo_casing/c45/tommy/Initialize()
+	. = ..()
 	variance = rand(-30,30)
