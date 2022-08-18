@@ -2535,6 +2535,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/firstaid/tactical
 	cost = 4
 
+/datum/uplink_item/nt/support/medbeam
+	name = "Medbeam Gun"
+	desc = "A wonder of Nanotrasen engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
+			officers in the fight, even while under fire. Don't cross the streams!"
+	item = /obj/item/gun/medbeam
+	cost = 8
+
 /datum/uplink_item/nt/support/toolbelt
 	name = "Full Toolbelt"
 	desc = "Comes pre-stocked with every engineering tool you'll ever need."
@@ -2584,12 +2591,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "ERT Engineering Hardsuit"
 	desc = "HOW DID YOU DELAMINATE THE SM 5 MINUTES IN?"
 	item = /obj/item/clothing/suit/space/hardsuit/ert/engi
-	cost = 5
-
-/datum/uplink_item/nt/hardsuit/med
-	name = "ERT Medical Hardsuit"
-	desc = "Dying is illegal."
-	item = /obj/item/clothing/suit/space/hardsuit/ert/med
 	cost = 5
 
 /datum/uplink_item/nt/hardsuit/med
