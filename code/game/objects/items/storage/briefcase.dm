@@ -58,7 +58,7 @@
 /obj/item/storage/briefcase/nt_mantis
 	desc = "A sleek briefcase. It has the letters H.E.P.H.A.E.S.T.U.S. on it"
 
-/obj/item/storage/briefcase/syndie_mantis/PopulateContents()
+/obj/item/storage/briefcase/nt_mantis/PopulateContents()
 	..()
 	new /obj/item/autosurgeon/nt_mantis(src)
 	new /obj/item/autosurgeon/nt_mantis/l(src)
