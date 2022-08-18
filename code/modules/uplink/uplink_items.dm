@@ -2335,6 +2335,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A standard energy gun with disable and laser modes equipped."
 	item = /obj/item/gun/energy/e_gun
 	cost = 3
+	limited_stock = 3
 
 /datum/uplink_item/nt/energy_weps/tac_egun
 	name = "Tactical Energy Gun"
@@ -2342,6 +2343,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/energy/e_gun/stun
 	cost = 8
 	limited_stock = 2
+
+/datum/uplink_item/nt/energy_weps/tac_egun
+	name = "Laser Rifle"
+	desc = "An abnormality in energy weaponry. Chambers a laser magazine which can be recharged externally."
+	item = /obj/item/gun/ballistic/automatic/laser
+	cost = 8
+	limited_stock = 1
 
 /datum/uplink_item/nt/energy_weps/m1911
 	name = "Spur"
@@ -2413,6 +2421,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Weapon Recharger"
 	desc = "Standard issue energy weapon recharger. Must be anchored in an APC-powered area."
 	item = /obj/machinery/recharger
+	cost = 5
+
+/datum/uplink_item/nt/ammo/recharger
+	name = "Power Pack"
+	desc = "An additional 20-round laser magazine; suitable for use with the laser rifle."
+	item = /obj/item/ammo_box/magazine/recharge
 	cost = 5
 
 /datum/uplink_item/nt/ammo/carbine
