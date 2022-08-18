@@ -2344,7 +2344,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	limited_stock = 2
 
-/datum/uplink_item/nt/energy_weps/tac_egun
+/datum/uplink_item/nt/energy_weps/laserrifle
 	name = "Laser Rifle"
 	desc = "An abnormality in energy weaponry. Chambers a laser magazine which can be recharged externally."
 	item = /obj/item/gun/ballistic/automatic/laser
