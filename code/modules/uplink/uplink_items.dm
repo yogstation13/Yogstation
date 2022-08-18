@@ -2512,6 +2512,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/shield/energy
 	cost = 16
 
+/datum/uplink_item/nt/cqc/ntmantisblade
+	name = "H.E.P.H.A.E.S.T.U.S. Mantis Blades"
+	desc = "A pair of retractable arm-blade implants. Activating both will let you double-attack."
+	item = /obj/item/storage/briefcase/nt_mantis
+	cost = 10
+
 /datum/uplink_item/nt/cqc/sblade
 	name = "Switchblade"
 	desc = "A less flashy but surprisingly robust pocket knife."
