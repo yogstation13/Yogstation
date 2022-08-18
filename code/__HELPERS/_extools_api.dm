@@ -13,10 +13,8 @@ GLOBAL_LIST_EMPTY(auxtools_initialized)
 	if (!GLOB.auxtools_initialized[LIB]) {\
 		if (fexists(LIB)) {\
 			var/string = call(LIB,"auxtools_init")();\
-			if(findtext(string, "SUCCESS")) {\
-				GLOB.auxtools_initialized[LIB] = TRUE;\
-			} else {\
-				GLOB.auxtools_initialized[LIB] = TRUE;\
+			GLOB.auxtools_initialized[LIB] = TRUE;\
+			if(!findtext(string, "SUCCESS")) {\
 				CRASH(string);\
 			}\
 		} else {\
