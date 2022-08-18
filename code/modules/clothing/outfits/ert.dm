@@ -10,7 +10,8 @@
 	implants = list(/obj/item/implant/mindshield)
 	backpack_contents = list(
 		/obj/item/clothing/mask/gas/sechailer=1,
-		/obj/item/tank/internals/oxygen/tactical=1
+		/obj/item/tank/internals/oxygen/tactical=1,
+		/obj/item/tank/internals/emergency_oxygen/double=1,
 		)
 
 
