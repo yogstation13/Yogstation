@@ -855,9 +855,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			sight = null //we dont want ghosts to see through walls in secret areas
 		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed, TRUE)
 		if(mob_eye.hud_used)
-			temporaryactions = mob_eye.actions
-			actions |= temporaryactions
-			update_action_buttons(TRUE)
+			for(var/datum/action/A in mob_eye.actions)
+				actions += A
+				temporaryactions += A
+			update_action_buttons()
 			LAZYINITLIST(mob_eye.observers)
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
@@ -878,11 +879,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /datum/action/unobserve/IsAvailable()
 	return TRUE
 
-
-/mob/dead/observer/proc/on_observing_z_changed(datum/source, turf/old_turf, turf/new_turf)
+/mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(is_secret_level(new_turf.z) && !client?.holder)
+	if(is_secret_level(newz) && !client?.holder)
 		sight = null //we dont want ghosts to see through walls in secret areas
 	else
 		sight = initial(sight)

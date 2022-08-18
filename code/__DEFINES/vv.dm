@@ -110,6 +110,7 @@
 #define VV_HK_PURRBATION "toggle_purrbation"
 #define VV_HK_COPY_OUTFIT "copy_outfit"
 #define VV_HK_MOD_QUIRKS "mod_quirks"
+#define VV_HK_CRITTERMONEY "critter_money"
 
 // misc
 #define VV_HK_SPACEVINE_PURGE "spacevine_purge"
