@@ -17523,21 +17523,6 @@
 "byf" = (
 /turf/closed/wall/r_wall,
 /area/science/server)
-"byg" = (
-/obj/machinery/camera{
-	c_tag = "AI Chamber - Fore";
-	dir = 4;
-	network = list("aicore")
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/porta_turret/ai,
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "byi" = (
 /turf/closed/wall,
 /area/security/checkpoint/science)
@@ -25919,6 +25904,18 @@
 /obj/structure/window/reinforced/tinted,
 /turf/open/floor/carpet,
 /area/medical/psych)
+"dpp" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
+/obj/machinery/modular_computer/console/preset/netmin{
+	dir = 8
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "dpw" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -28542,6 +28539,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"eHH" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "eHU" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -35488,6 +35494,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ieo" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "ier" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -36015,6 +36027,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"isb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "isI" = (
 /obj/structure/rack,
 /obj/item/sensor_device{
@@ -36979,16 +37004,6 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"iQd" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
-	dir = 1
-	},
-/obj/structure/ethernet_cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "iQm" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -38390,6 +38405,15 @@
 	},
 /turf/closed/wall,
 /area/engine/atmos_distro)
+"juA" = (
+/obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "AI Chamber - Aft";
+	dir = 4;
+	network = list("aicore")
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "jva" = (
 /obj/machinery/light{
 	dir = 8
@@ -40037,13 +40061,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"kqW" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/porta_turret/ai,
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "kra" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -40251,6 +40268,22 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
+"kyK" = (
+/obj/machinery/camera{
+	c_tag = "AI Chamber - Fore";
+	dir = 4;
+	network = list("aicore")
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop/preset/network_admin,
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/turret_protected/ai)
 "kyM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -54694,16 +54727,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
-"rEe" = (
-/obj/machinery/light,
-/obj/machinery/camera{
-	c_tag = "AI Chamber - Aft";
-	dir = 4;
-	network = list("aicore")
-	},
-/obj/machinery/porta_turret/ai,
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "rEg" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -61318,10 +61341,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"uGk" = (
-/obj/machinery/porta_turret/ai,
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/turret_protected/ai)
 "uGm" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Detective Maintenance";
@@ -109910,13 +109929,13 @@ pEf
 cva
 cva
 cva
-byg
+kyK
 xTw
 bRu
 xFg
 xXs
 qrP
-rEe
+juA
 cva
 cva
 pEf
@@ -110424,7 +110443,7 @@ pEf
 cva
 cva
 fgU
-iQd
+isb
 bmg
 pes
 rnq
@@ -110681,7 +110700,7 @@ koy
 cva
 cva
 lHO
-rjo
+eHH
 exo
 rjo
 jMV
@@ -110938,7 +110957,7 @@ pEf
 cva
 cva
 xUW
-rjo
+dpp
 qYj
 jTn
 nVK
@@ -111452,13 +111471,13 @@ pEf
 aFW
 cva
 cva
-kqW
+ieo
 sPc
 axp
 xoQ
 pyn
 pnR
-uGk
+sAu
 cva
 cva
 pEf
