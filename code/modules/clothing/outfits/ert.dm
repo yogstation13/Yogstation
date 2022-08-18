@@ -9,14 +9,15 @@
 	ears = /obj/item/radio/headset/headset_cent/alt
 	implants = list(/obj/item/implant/mindshield)
 	backpack_contents = list(
-		/obj/item/clothing/mask/gas/sechailer=1,
+		/obj/item/clothing/mask/gas/sechailer/swat=1,
 		/obj/item/tank/internals/oxygen/tactical=1,
 		/obj/item/tank/internals/emergency_oxygen/double=1,
 		)
 
 /datum/outfit/ert/commonleader
+	hat = /obj/item/clothing/head/beret/sec
 	backpack_contents = list(
-		/obj/item/clothing/mask/gas/sechailer=1,
+		/obj/item/clothing/mask/gas/sechailer/swat=1,
 		/obj/item/tank/internals/oxygen/tactical=1,
 		/obj/item/tank/internals/emergency_oxygen/double=1,
 		/obj/item/stack/ore/bluespace_crystal/refined/nt/five=1
