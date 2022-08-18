@@ -603,10 +603,8 @@
 				for(var/obj/machinery/door/poddoor/deathsquad/door in GLOB.airlocks)
 					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
 			return TRUE
-		else
-			return FALSE
 
-	return
+	return FALSE
 
 //Abductors
 /datum/admins/proc/makeAbductorTeam()
