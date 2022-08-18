@@ -2676,4 +2676,4 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "CentCom Official Stamp"
 	desc = "To let them know you're the real deal."
 	item = /obj/item/stamp/cent
-	cost = 1
+	cost = 1 
