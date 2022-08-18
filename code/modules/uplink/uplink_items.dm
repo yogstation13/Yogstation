@@ -2584,13 +2584,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Rapid Construction Device"
 	desc = "Standard RCD that can repair or destroy structures very quickly. Holds up to 160 matter units."
 	item = /obj/item/construction/rcd/loaded
-	cost = 3
+	cost = 2
 
 /datum/uplink_item/nt/support/combatrcd
 	name = "Industrial RCD"
 	desc = "Heavy combat RCD that holds up to 500 matter units."
 	item = /obj/item/construction/rcd/combat
-	cost = 5
+	cost = 4
 
 /datum/uplink_item/nt/support/rcdammo
 	name = "Compressed Matter Cartridge"
