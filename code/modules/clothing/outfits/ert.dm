@@ -14,6 +14,13 @@
 		/obj/item/tank/internals/emergency_oxygen/double=1,
 		)
 
+/datum/outfit/ert/commonleader
+	backpack_contents = list(
+		/obj/item/clothing/mask/gas/sechailer=1,
+		/obj/item/tank/internals/oxygen/tactical=1,
+		/obj/item/tank/internals/emergency_oxygen/double=1,
+		/obj/item/stack/ore/bluespace_crystal/refined/nt/five=1
+		)
 
 /datum/outfit/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
