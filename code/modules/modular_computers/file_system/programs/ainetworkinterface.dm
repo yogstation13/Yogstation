@@ -32,7 +32,7 @@
 		return
 
 /datum/computer_file/program/ai_network_interface/proc/get_ainet()
-	if(ismachinery(computer))
+	if(ismachinery(computer.physical))
 		if(attached_cable)
 			return attached_cable.network
 	if(computer.all_components[MC_AI_NETWORK])
