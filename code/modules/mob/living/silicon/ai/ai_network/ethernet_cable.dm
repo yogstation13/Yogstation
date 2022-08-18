@@ -117,6 +117,17 @@ By design, d1 is the smallest direction and d2 is the highest
 			to_chat(user, span_danger("The cable is not powered."))
 		shock(user, 5, 0.2)
 	*/
+	else if(istype(W, /obj/item/modular_computer))
+		var/obj/item/modular_computer/MC = W
+
+		if(MC.all_components[MC_AI_NETWORK])
+			var/obj/item/computer_hardware/ai_interface/ai_interface = computer.all_components[MC_AI_NETWORK]
+			if(ai_interface)
+				ai_interface.connect_cable(src)
+		else
+			to_chat(user, span_warning("[MC] has no AI interface!"))
+
+
 	add_fingerprint(user)
 
 // Items usable on a cable :
