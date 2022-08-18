@@ -6,7 +6,7 @@
 	extended_desc = "This program connects to a local AI network to allow for administrative access"
 	ui_header = "power_norm.gif"
 	transfer_access = ACCESS_NETWORK
-	usage_flags = PROGRAM_CONSOLE 
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET
 	requires_ntnet = FALSE
 	size = 8
 	tgui_id = "NtosAIMonitor"
@@ -17,12 +17,12 @@
 
 /datum/computer_file/program/ai_network_interface/run_program(mob/living/user)
 	. = ..(user)
-	if(ismachinery(computer))
+	if(ismachinery(computer.physical))
 		search()
 
 
 /datum/computer_file/program/ai_network_interface/process_tick()
-	if(ismachinery(computer) && !get_ainet())
+	if(ismachinery(computer.physical) && !get_ainet())
 		search()
 
 /datum/computer_file/program/ai_network_interface/proc/search()

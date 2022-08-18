@@ -574,3 +574,14 @@
 			active_program = program
 			program.alert_pending = FALSE
 			enabled = TRUE
+
+/obj/item/modular_computer/pickup(mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/parent_moved)
+
+/obj/item/modular_computer/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+
+/obj/item/modular_computer/proc/parent_moved()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED)

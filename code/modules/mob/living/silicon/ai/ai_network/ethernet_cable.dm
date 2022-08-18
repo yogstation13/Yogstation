@@ -124,6 +124,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			var/obj/item/computer_hardware/ai_interface/ai_interface = MC.all_components[MC_AI_NETWORK]
 			if(ai_interface)
 				ai_interface.connect_cable(src)
+				to_chat(user, span_notice("You connect to the ethernet cable."))
 		else
 			to_chat(user, span_warning("[MC] has no AI interface!"))
 
