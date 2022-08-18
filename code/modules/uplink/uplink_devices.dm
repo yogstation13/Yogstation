@@ -116,7 +116,7 @@
 
 /obj/item/ntuplink/death
 	name = "deathsquad uplink"
-	wc_start = 300
+	wc_start = 350
 
 /obj/item/ntuplink/debug
 	name = "debug nanotrasen uplink"
