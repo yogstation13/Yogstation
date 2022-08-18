@@ -170,13 +170,6 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon(status_only)
 
-
-/**
-		for(var/mob/dead/observer/O in M.observers)
-			O.actions = M.actions.Copy() // Copy to prevent self referencing
-			O.actions += O.temporaryactions
-*/
-
 //This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen)
 	if(!hud_used || !client)
