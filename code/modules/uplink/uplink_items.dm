@@ -2467,6 +2467,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/melee/transforming/energy/sword/saber
 	cost = 8
 
+/datum/uplink_item/nt/cqc/eshield
+	name = "Energy Shield"
+	desc = "A shield that blocks all energy projectiles but is useless against physical attacks."
+	item = /obj/item/shield/energy
+	cost = 16
+
 /datum/uplink_item/nt/cqc/sblade
 	name = "Switchblade"
 	desc = "A less flashy but surprisingly robust pocket knife."
@@ -2478,6 +2484,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
 	item = /obj/item/book/granter/martial/cqc
 	cost = 13
+
+/datum/uplink_item/nt/cqc/teleshield
+	name = "Telescopic Shield"
+	desc = "A foldable shield that blocks half of all attacks when active but can break."
+	item = /obj/item/shield/riot/tele
+	cost = 3
 
 /datum/uplink_item/nt/cqc/stunbaton
 	name = "Stun Baton"
@@ -2643,6 +2655,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A pair of goggles that provide thermal scanning vision through walls."
 	item = /obj/item/clothing/glasses/thermal
 	cost = 4
+
+/datum/uplink_item/nt/gear/dsmask
+	name = "MK.II SWAT mask"
+	desc = "A strange mask that encrypts your voice so that only others wearing the mask can understand you, \
+			but you won't be able to understand anyone who isn't wearing the mask. \
+			Why would anyone spend this much on a mask?"
+	item = /obj/item/clothing/mask/gas/sechailer/swat/encrypted
+	cost = 10
 
 /datum/uplink_item/nt/gear/ntstamp
 	name = "CentCom Official Stamp"
