@@ -15,7 +15,7 @@
 	name = "Disco Ball"
 	desc = "This is an improved portable disco ball model. Use wrench to undeploy."
 	icon = 'icons/obj/device.dmi'
-	icon_state = "ethdisco_head_0"
+	icon_state = "disco_0"
 	anchored = TRUE
 	density = TRUE
 	var/TurnedOn = FALSE
@@ -74,7 +74,7 @@
 
 /obj/structure/discoball/update_icon()
 	cut_overlays()
-	icon_state = "ethdisco_head_[TurnedOn]"
+	icon_state = "disco_[TurnedOn]"
 	var/mutable_appearance/base_overlay = mutable_appearance(icon, "ethdisco_base")
 	base_overlay.appearance_flags = RESET_COLOR
 	add_overlay(base_overlay)
