@@ -160,9 +160,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Skrem7"
 	unlock_path = /obj/item/clothing/head/rainbow_flower
 
-/datum/donator_gear/makocyktor
+/datum/donator_gear/alvcyktor
 	name = "Shark Hoodie"
-	ckey = "MakoCyktor"
+	ckey = "alvcyktor"
 	unlock_path = /obj/item/clothing/accessory/sharkhoodie
 
 ///Generic donator hats, ckey agnostic.
