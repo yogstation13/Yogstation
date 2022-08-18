@@ -2590,7 +2590,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Industrial RCD"
 	desc = "Heavy combat RCD that holds up to 500 matter units."
 	item = /obj/item/construction/rcd/combat
-	cost = 8
+	cost = 5
 
 /datum/uplink_item/nt/support/rcdammo
 	name = "Compressed Matter Cartridge"
