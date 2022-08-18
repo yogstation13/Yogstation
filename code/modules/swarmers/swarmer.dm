@@ -159,7 +159,7 @@
 		return
 	resources -= fabrication_cost
 	var/atom/fabricated_object = new fabrication_object(drop_location())
-	fabricated_object.balloon_alert(src, "sucessfully fabricated")
+	fabricated_object.balloon_alert(src, "successfully fabricated")
 	return fabricated_object
 
 /**
@@ -376,7 +376,7 @@
 	if(!do_mob(src, src, 10 SECONDS))
 		return
 	adjustHealth(-maxHealth)
-	balloon_alert(src, "sucessfully repaired")
+	balloon_alert(src, "successfully repaired")
 
 /**
   * Called when a swarmer toggles its light
@@ -391,7 +391,7 @@
 		for(var/d in dronelist)
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
 			drone.set_light(3)
-		balloon_alert(src, "toggled light")
+		balloon_alert(src, "light toggled")
 	else
 		set_light(0)
 		if(!mind)
@@ -399,7 +399,7 @@
 		for(var/d in dronelist)
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
 			drone.set_light(0)
-	balloon_alert(src, "toggled light")
+	balloon_alert(src, "light toggled")
 
 /**
   * Proc which is used for swarmer comms
