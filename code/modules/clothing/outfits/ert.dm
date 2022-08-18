@@ -1,11 +1,17 @@
 /datum/outfit/ert
 	name = "ERT Common"
 
+	id = /obj/item/card/id/ert
+	back = /obj/item/storage/backpack
 	uniform = /obj/item/clothing/under/rank/centcom_officer
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
 	implants = list(/obj/item/implant/mindshield)
+	backpack_contents = list(
+		/obj/item/clothing/mask/gas/sechailer=1,
+		/obj/item/tank/internals/oxygen/tactical=1
+		)
 
 
 /datum/outfit/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

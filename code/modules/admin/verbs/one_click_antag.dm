@@ -20,6 +20,7 @@
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=blob'>Make Blob</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=wizard'>Make Wizard (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=nukeops'>Make Nuke Team (Requires Ghosts)</a><br>
+		<a href='?src=[REF(src)];[HrefToken()];makeAntag=centcom_custom'>Make Uplink CentCom Response Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=centcom'>Make CentCom Response Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
@@ -467,6 +468,122 @@
 
 				ERTOperative.mind.add_antag_datum(ert_antag,ert_team)
 				ERTOperative.mind.assigned_role = ert_antag.name
+
+				//Logging and cleanup
+				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant
+				numagents--
+				teamSpawned++
+
+			if (teamSpawned)
+				message_admins("[ertemplate.polldesc] has spawned with the mission: [ertemplate.mission]")
+
+			//Open the Armory doors
+			if(ertemplate.opendoors)
+				for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
+					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+
+			//Open the Mech Bay
+			if(ertemplate.openmech)
+				for(var/obj/machinery/door/poddoor/deathsquad/door in GLOB.airlocks)
+					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
+			return TRUE
+		else
+			return FALSE
+
+	return
+
+// Uplink-equipped Centcom Response Team
+/datum/admins/proc/makeUplinkEmergencyResponseTeam(var/datum/ert/ertemplate = null)
+	if (ertemplate)
+		ertemplate = new ertemplate
+	else
+		ertemplate = new /datum/ert/uplinked
+
+	var/list/settings = list(
+		"preview_callback" = CALLBACK(src, .proc/makeERTPreviewIcon),
+		"mainsettings" = list(
+		"template" = list("desc" = "Template", "type" = "datum", "path" = "/datum/ert/uplinked", "value" = "/datum/ert/uplinked"),
+		"uplink" = list("desc" = "Uplink Type", "type" = "datum", "path" = "/obj/item/ntuplink", "subtypesonly" = TRUE, "value" = ertemplate.uplinktype),
+		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
+		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
+		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
+		"enforce_human" = list("desc" = "Enforce human authority", "type" = "boolean", "value" = "[(CONFIG_GET(flag/enforce_human_authority) ? "Yes" : "No")]"),
+		"open_armory" = list("desc" = "Open armory doors", "type" = "boolean", "value" = "[(ertemplate.opendoors ? "Yes" : "No")]"),
+		"open_mechbay" = list("desc" = "Open Mech Bay", "type" = "boolean", "value" = "[(ertemplate.openmech ? "Yes" : "No")]"),
+		)
+	)
+
+	var/list/prefreturn = presentpreflikepicker(usr,"Customize ERT", "Customize ERT", Button1="Ok", width = 600, StealFocus = 1,Timeout = 0, settings=settings)
+
+	if (isnull(prefreturn))
+		return FALSE
+
+	if (prefreturn["button"] == 1)
+		var/list/prefs = settings["mainsettings"]
+
+		ertemplate.uplinktype = prefs["uplink"]["value"]
+		ertemplate.teamsize = prefs["teamsize"]["value"]
+		ertemplate.mission = prefs["mission"]["value"]
+		ertemplate.polldesc = prefs["polldesc"]["value"]
+		ertemplate.enforce_human = prefs["enforce_human"]["value"] == "Yes" ? TRUE : FALSE
+		ertemplate.opendoors = prefs["open_armory"]["value"] == "Yes" ? TRUE : FALSE
+		ertemplate.openmech = prefs["open_mechbay"]["value"] == "Yes" ? TRUE : FALSE
+
+		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "deathsquad", null)
+		var/teamSpawned = FALSE
+
+		if(candidates.len > 0)
+			//Pick the (un)lucky players
+			var/numagents = min(ertemplate.teamsize,candidates.len)
+
+			//Create team
+			var/datum/team/ert/ert_team = new ertemplate.team
+			if(ertemplate.rename_team)
+				ert_team.name = ertemplate.rename_team
+
+			//Asign team objective
+			var/datum/objective/missionobj = new
+			missionobj.team = ert_team
+			missionobj.explanation_text = ertemplate.mission
+			missionobj.completed = TRUE
+			ert_team.objectives += missionobj
+			ert_team.mission = missionobj
+
+			var/list/spawnpoints = GLOB.emergencyresponseteamspawn
+			while(numagents && candidates.len)
+				if (numagents > spawnpoints.len)
+					numagents--
+					continue // This guy's unlucky, not enough spawn points, we skip him.
+				var/spawnloc = spawnpoints[numagents]
+				var/mob/dead/observer/chosen_candidate = pick(candidates)
+				candidates -= chosen_candidate
+				if(!chosen_candidate.key)
+					continue
+
+				//Spawn the body
+				var/mob/living/carbon/human/ERTOperative = new ertemplate.mobtype(spawnloc)
+				chosen_candidate.client.prefs.copy_to(ERTOperative)
+				ERTOperative.key = chosen_candidate.key
+
+				if(ertemplate.enforce_human || !(ERTOperative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes
+					ERTOperative.set_species(/datum/species/human)
+
+				//Give antag datum
+				var/datum/antagonist/ert/ert_antag
+
+				if(numagents == 1)
+					ert_antag = new ertemplate.leader_role
+				else
+					ert_antag = ertemplate.roles[WRAP(numagents,1,length(ertemplate.roles) + 1)]
+					ert_antag = new ert_antag
+
+				ERTOperative.mind.add_antag_datum(ert_antag,ert_team)
+				ERTOperative.mind.assigned_role = ert_antag.name
+
+				// Equip uplink
+				var/obj/item/upl = new ertemplate.uplinktype
+				if(istype(upl))
+					ERTOperative.equip_to_slot_or_del(upl, SLOT_IN_BACKPACK)
 
 				//Logging and cleanup
 				//log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]") | yogs - redundant

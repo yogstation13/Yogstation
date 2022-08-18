@@ -1,12 +1,14 @@
 GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
-/proc/get_uplink_items(var/datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE)
+/proc/get_uplink_items(var/datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
 	var/list/filtered_uplink_items = list()
 	var/list/sale_items = list()
 
 	for(var/path in GLOB.uplink_items)
 		var/datum/uplink_item/I = new path
 		if(!I.item)
+			continue
+		if(I.include_uplinks.len && !(uplink_type in I.include_uplinks))
 			continue
 		if(I.include_modes.len)
 			if(!gamemode && SSticker.mode && !(SSticker.mode.type in I.include_modes))
@@ -94,6 +96,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/surplus = 100 // Chance of being included in the surplus crate.
 	var/cant_discount = FALSE
 	var/limited_stock = -1 //Setting this above zero limits how many times this item can be bought by the same traitor in a round, -1 is unlimited
+	var/list/include_uplinks = list("Uplink") // Uplink types this is in
 	var/list/include_modes = list() // Game modes to allow this item in.
 	var/list/exclude_modes = list() // Game modes to disallow this item from.
 	var/list/restricted_roles = list() //If this uplink item is only available to certain roles. Roles are dependent on the frequency chip or stored ID.
@@ -2297,3 +2300,333 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/stamp/syndiround
 	cost = 1
 	illegal_tech = FALSE
+
+/// NT Uplink items
+/datum/uplink_item/nt
+	category = "Warpcrystals"
+	surplus = 0 // Chance of being included in the surplus crate.
+	include_uplinks = list("NTUplink")
+	illegal_tech = FALSE
+
+/datum/uplink_item/nt/telecrystal
+	name = "1 Raw Warpcrystal"
+	desc = "A warpcrystal in its rawest and purest form; can be utilized on active uplinks to increase their warpcrystal count."
+	item = /obj/item/stack/ore/bluespace_crystal/refined/nt
+	cost = 1
+	purchase_log_vis = FALSE
+
+/datum/uplink_item/nt/telecrystal/five
+	name = "5 Raw Warpcrystals"
+	desc = "Five warpcrystals in their rawest and purest form; can be utilized on active uplinks to increase their warpcrystal count."
+	item = /obj/item/stack/ore/bluespace_crystal/refined/nt/five
+	cost = 5
+
+/datum/uplink_item/nt/telecrystal/twenty
+	name = "20 Raw Warpcrystals"
+	desc = "Twenty warpcrystals in their rawest and purest form; can be utilized on active uplinks to increase their warpcrystal count."
+	item = /obj/item/stack/ore/bluespace_crystal/refined/nt/twenty
+	cost = 20
+
+/datum/uplink_item/nt/energy_weps
+	category = "Energy Weapons"
+
+/datum/uplink_item/nt/energy_weps/egun
+	name = "Energy Gun"
+	desc = "A standard energy gun with disable and laser modes equipped."
+	item = /obj/item/gun/energy/e_gun
+	cost = 3
+
+/datum/uplink_item/nt/energy_weps/tac_egun
+	name = "Tactical Energy Gun"
+	desc = "A military-grade augmented energy gun, fitted with a tasing mode."
+	item = /obj/item/gun/energy/e_gun/stun
+	cost = 8
+
+/datum/uplink_item/nt/energy_weps/m1911
+	name = "Spur"
+	desc = "A legendary slowly self-charging pistol with massive recoil that deals more damage the more charge it has."
+	item = /obj/item/gun/energy/polarstar/spur
+	cost = 10
+
+/datum/uplink_item/nt/energy_weps/pulsecarbine
+	name = "Pulse Carbine"
+	desc = "A severely lethal energy carbine that fires additionaly fires pulse rounds. Must be recharged instead of reloaded."
+	item = /obj/item/gun/energy/pulse/carbine
+	cost = 45
+
+/datum/uplink_item/nt/energy_weps/pulsepistol
+	name = "Pulse Pistol"
+	desc = "A severely lethal but compact version of the Pulse Carbine design. Holds significantly less charge. \
+			Must be recharged instead of reloaded."
+	item = /obj/item/gun/energy/pulse/pistol
+	cost = 35
+
+/datum/uplink_item/nt/energy_weps/pulsedestroyer
+	name = "Pulse Destroyer"
+	desc = "LOG-ENTRY ERROR. DEATH. DEATH. DEATH. KILL. DESTROY. NONE LEFT ALIVE."
+	item = /obj/item/gun/energy/pulse/destroyer
+	cost = 100
+
+/datum/uplink_item/nt/ball_weps
+	category = "Ballistic Weapons"
+
+/datum/uplink_item/nt/ball_weps/boarder
+	name = "NT-ARG 'Boarder'"
+	desc = "A heavy-damage 3-round burst assault rifle. Chambered in 5.56mm."
+	item = /obj/item/gun/ballistic/automatic/ar
+	cost = 18
+
+/datum/uplink_item/nt/ball_weps/saber
+	name = "NT-SABR 'Saber' SMG"
+	desc = "A low-damage 3-round burst SMG. Chambered in 9mm."
+	item = /obj/item/gun/ballistic/automatic/proto/unrestricted
+	cost = 7
+
+/datum/uplink_item/nt/ball_weps/tommygun
+	name = "WT-550 Automatic Rifle"
+	desc = "A classic 2-round burst rifle with a number of ammo options. Chambered in 4.6x30mm."
+	item = /obj/item/gun/ballistic/automatic/wt550
+	cost = 5
+
+/datum/uplink_item/nt/ball_weps/m1911
+	name = "M1911"
+	desc = "A classic .45 sidearm with a small magazine capacity."
+	item = /obj/item/gun/ballistic/automatic/pistol/m1911
+	cost = 3
+
+/datum/uplink_item/nt/ball_weps/tommygun
+	name = "Thompson SMG"
+	desc = "An archaic but incredibly effective high-capacity 4-round burst SMG. Can't fit in backpacks."
+	item = /obj/item/gun/ballistic/automatic/tommygun
+	cost = 12
+
+/datum/uplink_item/nt/ammo
+	category = "Ammunition"
+
+/datum/uplink_item/nt/ammo/recharger
+	name = "Weapon Recharger"
+	desc = "Standard issue energy weapon recharger. Must be anchored in an APC-powered area."
+	item = /obj/machinery/recharger
+	cost = 5
+
+/datum/uplink_item/nt/ammo/carbine
+	name = "5.56mm Toploader Magazine"
+	desc = "An additional 30-round 5.56mm magazine; suitable for use with the NT-ARG."
+	item = /obj/item/ammo_box/magazine/m556
+	cost = 4
+
+/datum/uplink_item/nt/ammo/tommyammo
+	name = ".45 Drum Magazine"
+	desc = "An additional 50-round .45 drum magazine; suitable for use with the Thompson SMG."
+	item = /obj/item/ammo_box/magazine/tommygunm45
+	cost = 4
+
+/datum/uplink_item/nt/ammo/m45ammo
+	name = ".45 Handgun Magazine"
+	desc = "An additional 21-round 9mm magazine; suitable for use with the M1911."
+	item = /obj/item/ammo_box/magazine/m45
+	cost = 1
+
+/datum/uplink_item/nt/ammo/saberammo
+	name = "9mm Magazine"
+	desc = "An additional 21-round 9mm magazine; suitable for use with the Saber SMG."
+	item = /obj/item/ammo_box/magazine/smgm9mm
+	cost = 1
+
+/datum/uplink_item/nt/ammo/wt
+	name = "4.6x30mm Magazine"
+	desc = "An additional 22-round 4.6x30mm magazine; suitable for use with the WT-550."
+	item = /obj/item/ammo_box/magazine/smgm9mm
+	cost = 1
+
+/datum/uplink_item/nt/ammo/wtap
+	name = "4.6x30mm AP Magazine"
+	desc = "An additional 22-round 4.6x30mm magazine loaded with armor piercing rounds; suitable for use with the WT-550."
+	item = /obj/item/ammo_box/magazine/wt550m9/wtap
+	cost = 2
+
+/datum/uplink_item/nt/ammo/wtic
+	name = "4.6x30mm Incendiary Magazine"
+	desc = "An additional 22-round 4.6x30mm magazine loaded with incendiary rounds; suitable for use with the WT-550."
+	item = /obj/item/ammo_box/magazine/wt550m9/wtic
+	cost = 2
+
+/datum/uplink_item/nt/ammo/wtr
+	name = "4.6x30mm Rubber Shot Magazine"
+	desc = "An additional 22-round 4.6x30mm magazine loaded with less lethal rounds; suitable for use with the WT-550."
+	item = /obj/item/ammo_box/magazine/wt550m9/wtr
+	cost = 1
+
+/datum/uplink_item/nt/cqc
+	category = "Close Quarters Combat"
+
+/datum/uplink_item/nt/cqc/esword
+	name = "Energy Sword"
+	desc = "The energy sword is an edged weapon with a blade of pure energy. The sword is small enough to be \
+			pocketed when inactive."
+	item = /obj/item/melee/transforming/energy/sword/saber
+	cost = 8
+
+/datum/uplink_item/nt/cqc/sblade
+	name = "Switchblade"
+	desc = "A less flashy but surprisingly robust pocket knife."
+	item = /obj/item/switchblade
+	cost = 1
+
+/datum/uplink_item/nt/cqc/cqc
+	name = "CQC Manual"
+	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
+	item = /obj/item/book/granter/martial/cqc
+	cost = 13
+
+/datum/uplink_item/nt/cqc/stunbaton
+	name = "Stun Baton"
+	desc = "A robust charged baton that will swiftly take down most criminals."
+	item = /obj/item/melee/baton/loaded
+	cost = 1
+
+/datum/uplink_item/nt/cqc/telebaton
+	name = "Telescopic Baton"
+	desc = "A foldable baton that doesn't run on charge. Takes more hits to down, but swings faster."
+	item = /obj/item/melee/classic_baton/telescopic
+	cost = 1
+
+/datum/uplink_item/nt/cqc/flash
+	name = "Flash"
+	desc = "A bright flashing device that can disable silicons and blind humans."
+	item = /obj/item/assembly/flash
+	cost = 1
+
+/datum/uplink_item/nt/support
+	category = "Support"
+
+/datum/uplink_item/nt/support/c4
+	name = "Composition C-4"
+	desc = "C-4 is plastic explosive of the common variety Composition C. You can use it to breach walls, disrupt equipment, or connect \
+			an assembly to it in order to alter the way it detonates. It can be attached to almost all objects and has a modifiable timer with a \
+			minimum setting of 10 seconds."
+	item = /obj/item/grenade/plastic/c4
+	cost = 1
+
+/datum/uplink_item/nt/support/medkit
+	name = "Medic Kit"
+	desc = "A station-standard medical kit. Stocked with sutures, regenerative mesh, medical gauze, \
+			a health analyzer, and an epinephrine pen."
+	item = /obj/item/storage/firstaid/regular
+	cost = 1
+
+/datum/uplink_item/nt/support/advmedkit
+	name = "Tactical Combat Medic Kit"
+	desc = "Included is a combat stimulant injector \
+			for rapid healing, a medical night vision HUD for quick identification of injured personnel, \
+			and other supplies helpful for a field medic."
+	item = /obj/item/storage/firstaid/tactical
+	cost = 4
+
+/datum/uplink_item/nt/support/toolbelt
+	name = "Full Toolbelt"
+	desc = "Comes pre-stocked with every engineering tool you'll ever need."
+	item = /obj/item/storage/belt/utility/full/engi
+	cost = 4
+
+/datum/uplink_item/nt/support/rcd
+	name = "Rapid Construction Device"
+	desc = "Standard RCD that can repair or destroy structures very quickly. Holds up to 160 matter units."
+	item = /obj/item/construction/rcd/loaded
+	cost = 3
+
+/datum/uplink_item/nt/support/combatrcd
+	name = "Industrial RCD"
+	desc = "Heavy combat RCD that holds up to 500 matter units."
+	item = /obj/item/construction/rcd/combat
+	cost = 8
+
+/datum/uplink_item/nt/support/rcdammo
+	name = "Compressed Matter Cartridge"
+	desc = "Highly compressed matter that restores 160 matter units on an RCD."
+	item = /obj/item/rcd_ammo
+	cost = 1
+
+/datum/uplink_item/nt/support/foamnades
+	name = "Box of Smart Metal Foam Grenades"
+	desc = "A box of 7 smart metal foam grenades to patch hull breaches with."
+	item = /obj/item/storage/box/smart_metal_foam
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit
+	category = "Hardsuits"
+
+/datum/uplink_item/nt/hardsuit/cmd
+	name = "ERT Commander Hardsuit"
+	desc = "Show them who's boss."
+	item = /obj/item/clothing/suit/space/hardsuit/ert
+	cost = 5
+
+/datum/uplink_item/nt/hardsuit/sec
+	name = "ERT Security Hardsuit"
+	desc = "Make them fear the long arm of law."
+	item = /obj/item/clothing/suit/space/hardsuit/ert/sec
+	cost = 5
+
+/datum/uplink_item/nt/hardsuit/engi
+	name = "ERT Engineering Hardsuit"
+	desc = "HOW DID YOU DELAMINATE THE SM 5 MINUTES IN?"
+	item = /obj/item/clothing/suit/space/hardsuit/ert/engi
+	cost = 5
+
+/datum/uplink_item/nt/hardsuit/med
+	name = "ERT Medical Hardsuit"
+	desc = "Dying is illegal."
+	item = /obj/item/clothing/suit/space/hardsuit/ert/med
+	cost = 5
+
+/datum/uplink_item/nt/gear
+	category = "Other Gear"
+
+/datum/uplink_item/nt/gear/secbelt
+	name = "Stocked Security Belt"
+	desc = "Standard issue security gear, all in a stylish belt."
+	item = /obj/item/storage/belt/security/full
+	cost = 2
+
+/datum/uplink_item/nt/gear/flashbangs
+	name = "Box of Flashbangs"
+	desc = "A box of 7 flashbangs to make the crew hate you."
+	item = /obj/item/storage/box/flashbangs
+	cost = 2
+
+/datum/uplink_item/nt/gear/handcuffs
+	name = "Box of Handcuffs"
+	desc = "A box of 7 pairs of handcuffs to keep prisoners in line."
+	item = /obj/item/storage/box/handcuffs
+	cost = 1
+
+/datum/uplink_item/nt/gear/sechud
+	name = "Security HUDglasses"
+	desc = "A pair of sunglasses fitted with a security HUD."
+	item = /obj/item/clothing/glasses/hud/security/sunglasses 
+	cost = 1
+
+/datum/uplink_item/nt/gear/medhud
+	name = "Medical HUDglasses"
+	desc = "A pair of sunglasses fitted with a medical HUD."
+	item = /obj/item/clothing/glasses/hud/health/sunglasses
+	cost = 1
+
+/datum/uplink_item/nt/gear/mesonhud
+	name = "Meson Sunglasses"
+	desc = "A pair of sunglasses fitted with meson technology."
+	item = /obj/item/clothing/glasses/meson/sunglasses
+	cost = 1
+
+/datum/uplink_item/nt/gear/thermalhud
+	name = "Optical Thermal Scanner"
+	desc = "A pair of goggles that provide thermal scanning vision through walls."
+	item = /obj/item/clothing/glasses/thermal
+	cost = 4
+
+/datum/uplink_item/nt/gear/ntstamp
+	name = "CentCom Official Stamp"
+	desc = "To let them know you're the real deal."
+	item = /obj/item/stamp/cent
+	cost = 1

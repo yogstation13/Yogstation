@@ -11,6 +11,7 @@
 	var/mission = "Assist the station."
 	var/teamsize = 5
 	var/polldesc
+	var/obj/item/uplinktype
 
 /datum/ert/New()
 	if (!polldesc)
@@ -108,6 +109,12 @@
 	roles = list(/datum/antagonist/centcom/grand_admiral)
 	rename_team = "CentCom Grand Admirals"
 	polldesc = "a CentCom Grand Admiral"
+
+/datum/ert/uplinked
+	leader_role = /datum/antagonist/ert/common/leader
+	roles = list(/datum/antagonist/ert/common)
+	rename_team = "Uplinked Emergency Response Team"
+	polldesc = "an Uplink-Equipped ERT"
 
 /datum/ert/inquisition
 	roles = list(/datum/antagonist/ert/chaplain/inquisitor, /datum/antagonist/ert/security/inquisitor, /datum/antagonist/ert/medic/inquisitor)
