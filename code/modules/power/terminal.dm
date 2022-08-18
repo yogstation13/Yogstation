@@ -16,7 +16,7 @@
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(level == 1)
-		hide(T.intact)
+		hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 
 /obj/machinery/power/terminal/Destroy()
 	if(master)

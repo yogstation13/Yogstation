@@ -39,7 +39,7 @@
 
 /obj/machinery/atmospherics/pipe/atmosinit()
 	var/turf/T = loc			// hide if turf is not intact
-	hide(T.intact)
+	hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 	..()
 
 /obj/machinery/atmospherics/pipe/hide(i)

@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 	underlays.Cut()
 
 	var/turf/T = loc
-	if(level == 2 || !T.intact)
+	if(level == 2 || !T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 		showpipe = TRUE
 		plane = GAME_PLANE
 	else

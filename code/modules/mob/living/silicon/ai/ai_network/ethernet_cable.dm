@@ -56,7 +56,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	var/turf/T = get_turf(src)			// hide if turf is not intact
 	if(level==1)
-		hide(T.intact)
+		hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 	GLOB.ethernet_cable_list += src //add it to the global cable list
 
 	update_icon()
@@ -485,7 +485,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(!isturf(user.loc))
 		return
 
-	if(!isturf(T) || T.underfloor_accessibility  || !T.can_have_cabling())
+	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE  || !T.can_have_cabling())
 		to_chat(user, span_warning("You can only lay cables on top of exterior catwalks and plating!"))
 		return
 
@@ -565,7 +565,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			if (showerror)
 				to_chat(user, span_warning("You can only lay cables on catwalks and plating!"))
 			return
-		if(U.underfloor_accessibility )						//can't place a cable if it's a plating with a tile on it
+		if(T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)						//can't place a cable if it's a plating with a tile on it
 			to_chat(user, span_warning("You can't lay cable there unless the floor tiles are removed!"))
 			return
 		else

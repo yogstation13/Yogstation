@@ -260,7 +260,7 @@ All ShuttleMove procs go here
 /obj/machinery/atmospherics/pipe/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	var/turf/T = loc
-	hide(T.intact)
+	hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 
 /obj/machinery/navbeacon/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
@@ -270,7 +270,7 @@ All ShuttleMove procs go here
 /obj/machinery/navbeacon/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	var/turf/T = loc
-	hide(T.intact)
+	hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 	if(codes["patrol"])
 		if(!GLOB.navbeacons["[z]"])
 			GLOB.navbeacons["[z]"] = list()
@@ -283,7 +283,7 @@ All ShuttleMove procs go here
 	. = ..()
 	var/turf/T = src.loc
 	if(level==1)
-		hide(T.intact)
+		hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 
 /************************************Item move procs************************************/
 
@@ -348,7 +348,7 @@ All ShuttleMove procs go here
 	. = ..()
 	var/turf/T = loc
 	if(level==1)
-		hide(T.intact)
+		hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 
 /obj/structure/shuttle/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()

@@ -191,7 +191,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		return ..()
 
 	var/turf/T = get_turf(src)
-	if (level==1 && isturf(T) && T.intact)
+	if (level==1 && isturf(T) && T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)
 		to_chat(user, span_warning("You must remove the plating first!"))
 		return TRUE
 
@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		pipe_color = obj_color
 	setPipingLayer(set_layer)
 	var/turf/T = get_turf(src)
-	level = T.intact ? 2 : 1
+	level = (T.underfloor_accessibility < UNDERFLOOR_VISIBLE) ? 2 : 1
 	atmosinit()
 	var/list/nodes = pipeline_expansion()
 	for(var/obj/machinery/atmospherics/A in nodes)

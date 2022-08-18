@@ -410,19 +410,9 @@
 	singular_name = "catwalk plating tile"
 	desc = "Flooring that shows its contents underneath. Engineers love it!"
 	icon_state = "maint_catwalk"
-	inhand_icon_state = "tile-catwalk"
-	mats_per_unit = list(/datum/material/iron=100)
+	materials = list(/datum/material/iron=100)
 	turf_type = /turf/open/floor/catwalk_floor
 	merge_type = /obj/item/stack/tile/catwalk_tile //Just to be cleaner, these all stack with eachother
-	tile_reskin_types = list(
-		/obj/item/stack/tile/catwalk_tile,
-		/obj/item/stack/tile/catwalk_tile/iron,
-		/obj/item/stack/tile/catwalk_tile/iron_white,
-		/obj/item/stack/tile/catwalk_tile/iron_dark,
-		/obj/item/stack/tile/catwalk_tile/flat_white,
-		/obj/item/stack/tile/catwalk_tile/titanium,
-		/obj/item/stack/tile/catwalk_tile/iron_smooth //this is the original greenish one
-	)
 
 /obj/item/stack/tile/catwalk_tile/sixty
 	amount = 60

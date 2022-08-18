@@ -27,7 +27,7 @@
 	set_codes()
 
 	var/turf/T = loc
-	hide(T.intact)
+	hide(T.underfloor_accessibility < UNDERFLOOR_VISIBLE)
 	if(codes["patrol"])
 		if(!GLOB.navbeacons["[z]"])
 			GLOB.navbeacons["[z]"] = list()

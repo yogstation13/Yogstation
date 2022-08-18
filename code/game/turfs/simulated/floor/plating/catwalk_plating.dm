@@ -27,7 +27,7 @@
 		var/mutable_appearance/plating_underlay = mutable_appearance(icon, "[catwalk_type]_below", TURF_LAYER)
 		catwalk_underlays[catwalk_type] = plating_underlay
 	underlays += catwalk_underlays[catwalk_type]
-	update_appearance()
+	update_icon()
 
 /turf/open/floor/catwalk_floor/examine(mob/user)
 	. = ..()
@@ -53,7 +53,7 @@
 		icon_state = "[catwalk_type]_above"
 	user.balloon_alert(user, "[!covered ? "cover removed" : "cover added"]")
 	tool.play_tool_sound(src)
-	update_appearance()
+	update_icon()
 
 /turf/open/floor/catwalk_floor/crowbar_act(mob/user, obj/item/crowbar)
 	if(covered)
