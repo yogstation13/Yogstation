@@ -173,7 +173,8 @@ GLOBAL_VAR(restart_counter)
 			break
 
 	if((!handler || initial(handler.log)) && config && CONFIG_LOADED && CONFIG_GET(flag/log_world_topic))
-		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
+		var/static/regex/key_regex = regex(@"(&?)key=[^&]+(&?)", "g")
+		log_topic("\"[key_regex.Replace(T, "$1\[COMMS KEY\]$2")]\", from:[addr], master:[master], key:[CONFIG_GET(string/comms_key) == input["key"] ? "" : "in"]correct")
 
 	if(!handler)
 		return
