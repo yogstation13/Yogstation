@@ -2439,6 +2439,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/ammo_box/magazine/smgm9mm
 	cost = 1
 
+/datum/uplink_item/nt/ammo/saberammoap
+	name = "9mm AP Magazine"
+	desc = "An additional 21-round 9mm magazine with armor piercing rounds; suitable for use with the Saber SMG."
+	item = /obj/item/ammo_box/magazine/smgm9mm/ap
+	cost = 2
+
+/datum/uplink_item/nt/ammo/saberammoin
+	name = "9mm Incendiary Magazine"
+	desc = "An additional 21-round 9mm magazine loaded loaded with incendiary rounds; suitable for use with the Saber SMG."
+	item = /obj/item/ammo_box/magazine/smgm9mm/fire
+	cost = 1
+
 /datum/uplink_item/nt/ammo/wt
 	name = "4.6x30mm Magazine"
 	desc = "An additional 22-round 4.6x30mm magazine; suitable for use with the WT-550."
