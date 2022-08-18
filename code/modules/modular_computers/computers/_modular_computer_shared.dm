@@ -68,6 +68,6 @@
 	var/obj/item/computer_hardware/ai_interface/ai_interface = get_modular_computer_part(MC_AI_NETWORK)
 	if(ai_interface)
 		if(ai_interface.connected_cable)
-			. += "It has an AI network interface. It is currently connected to an ethernet cable.
+			. += "It has an AI network interface. It is currently connected to an ethernet cable."
 		else
 			. += "It has an AI network interface."
