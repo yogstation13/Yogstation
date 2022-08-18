@@ -23,10 +23,12 @@
 	if(connected_cable)
 		if(!connected_cable.Adjacent(holder.physical))
 			connected_cable = null
+			if(ismob(computer.loc))
+				to_chat(computer.loc, span_warning("You disconnect [computer] from the cable!"))
 
 /obj/item/computer_hardware/ai_interface/proc/connect_cable(obj/structure/ethernet_cable/EC)
 	connected_cable = EC
-	//TODO: Reset timers and such in here
+
 
 /obj/item/computer_hardware/ai_interface/proc/get_network()
 	if(!connected_cable)
