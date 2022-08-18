@@ -2341,6 +2341,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A military-grade augmented energy gun, fitted with a tasing mode."
 	item = /obj/item/gun/energy/e_gun/stun
 	cost = 8
+	limited_stock = 2
 
 /datum/uplink_item/nt/energy_weps/m1911
 	name = "Spur"
@@ -2353,6 +2354,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A severely lethal energy carbine that fires additionaly fires pulse rounds. Must be recharged instead of reloaded."
 	item = /obj/item/gun/energy/pulse/carbine
 	cost = 45
+	cant_discount = TRUE
 
 /datum/uplink_item/nt/energy_weps/pulsepistol
 	name = "Pulse Pistol"
@@ -2360,12 +2362,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Must be recharged instead of reloaded."
 	item = /obj/item/gun/energy/pulse/pistol
 	cost = 35
+	cant_discount = TRUE
 
 /datum/uplink_item/nt/energy_weps/pulsedestroyer
 	name = "Pulse Destroyer"
 	desc = "LOG-ENTRY ERROR. DEATH. DEATH. DEATH. KILL. DESTROY. NONE LEFT ALIVE."
 	item = /obj/item/gun/energy/pulse/destroyer
 	cost = 100
+	cant_discount = TRUE
 
 /datum/uplink_item/nt/ball_weps
 	category = "Ballistic Weapons"
@@ -2375,6 +2379,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A heavy-damage 3-round burst assault rifle. Chambered in 5.56mm."
 	item = /obj/item/gun/ballistic/automatic/ar
 	cost = 18
+	limited_stock = 1
 
 /datum/uplink_item/nt/ball_weps/saber
 	name = "NT-SABR 'Saber' SMG"
@@ -2399,6 +2404,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An archaic but incredibly effective high-capacity 4-round burst SMG. Can't fit in backpacks."
 	item = /obj/item/gun/ballistic/automatic/tommygun
 	cost = 12
+	limited_stock = 1
 
 /datum/uplink_item/nt/ammo
 	category = "Ammunition"
@@ -2604,13 +2610,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A prototype hardsuit. Incredibly robust."
 	item = /obj/item/clothing/suit/space/hardsuit/deathsquad
 	cost = 100
+	cant_discount = TRUE
 
 /datum/uplink_item/nt/hardsuit/dsshield
 	name = "MK.III Shielded SWAT Suit"
 	desc = "A prototype hardsuit with shielding protection. Incredibly robust."
 	item = /obj/item/clothing/suit/space/hardsuit/shielded/swat
 	cost = 150
-
+	cant_discount = TRUE
 
 /datum/uplink_item/nt/gear
 	category = "Other Gear"
