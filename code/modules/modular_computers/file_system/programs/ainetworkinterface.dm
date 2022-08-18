@@ -17,14 +17,13 @@
 
 /datum/computer_file/program/ai_network_interface/run_program(mob/living/user)
 	. = ..(user)
-	search()
+	if(ismachinery(computer))
+		search()
 
 
 /datum/computer_file/program/ai_network_interface/process_tick()
-	if(!get_ainet())
+	if(ismachinery(computer) && !get_ainet())
 		search()
-	else
-		record()
 
 /datum/computer_file/program/ai_network_interface/proc/search()
 	var/turf/T = get_turf(computer)
@@ -33,11 +32,19 @@
 		return
 
 /datum/computer_file/program/ai_network_interface/proc/get_ainet()
-	if(attached_cable)
-		return attached_cable.ai_network
+	if(ismachinery(computer))
+		if(attached_cable)
+			return attached_cable.network
+	if(computer.all_components[MC_AI_NETWORK])
+		var/obj/item/computer_hardware/ai_interface/ai_interface = computer.all_components[MC_AI_NETWORK]
+		if(ai_interface)
+			return ai_interface.get_network()
 	return FALSE
 
 /datum/computer_file/program/ai_network_interface/ui_data()
 	var/list/data = get_header_data()
+	var/datum/ai_network/net = get_ainet()
+	data["has_ai_net"] = net
+	data["physical_pc"] = ismachinery(computer)
 
 	return data

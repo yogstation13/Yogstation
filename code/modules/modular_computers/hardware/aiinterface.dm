@@ -31,7 +31,7 @@
 /obj/item/computer_hardware/ai_interface/proc/get_network()
 	if(!connected_cable)
 		return FALSE
-	return connected_cable.ai_network
+	return connected_cable.network
 
 
 /obj/item/computer_hardware/ai_interface/can_install(obj/item/modular_computer/M, mob/living/user = null)
