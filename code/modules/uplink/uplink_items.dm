@@ -2387,7 +2387,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/proto/unrestricted
 	cost = 7
 
-/datum/uplink_item/nt/ball_weps/tommygun
+/datum/uplink_item/nt/ball_weps/wtrifle
 	name = "WT-550 Automatic Rifle"
 	desc = "A classic 2-round burst rifle with a number of ammo options. Chambered in 4.6x30mm."
 	item = /obj/item/gun/ballistic/automatic/wt550
