@@ -28,3 +28,6 @@
 	desc = "A .45 bullet casing."
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/bullet/c45
+
+/obj/item/ammo_casing/c45/tommy
+	variance = 30
