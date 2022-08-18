@@ -73,6 +73,8 @@
 			M.client.screen += button
 			button.locked = M.client.prefs.buttons_locked || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
 			button.moved = button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE
+		for(var/mob/dead/observer/O in M.observers)
+			O?.client.screen += button
 		M.update_action_buttons() // Now push the owners buttons back
 	else
 		Remove(owner)
@@ -81,6 +83,8 @@
 	if(M)
 		if(M.client)
 			M.client.screen -= button
+		for(var/mob/dead/observer/O in M.observers)
+			O?.client.screen -= button
 		M.actions -= src
 		M.update_action_buttons()
 	owner = null
