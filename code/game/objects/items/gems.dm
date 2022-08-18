@@ -53,7 +53,7 @@
 
 /obj/item/gem/rupee
 	name = "\improper Ruperium Crystal"
-	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. While able to be cut into sheets of uranium, the gem's true value is in its resonating, humming properties, often sought out by ethereal musicians to work into their gem-encrusted instruments. As a result, they fetch a fine price in most exchanges."
+	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. While able to be cut into sheets of uranium, the mineral's true value is in its resonating, humming properties, often sought out by ethereal musicians to work into their gem-encrusted instruments. As a result, they fetch a fine price in most exchanges."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "rupee"
 	materials = list(/datum/material/uranium=20000)
@@ -63,7 +63,7 @@
 
 /obj/item/gem/fdiamond
 	name = "\improper Frost Diamond"
-	desc = "A unique diamond that is produced within icewing watchers. Rarely used in traditional marriage bands, various gemstone companies now try to effect a monopoly on it, to little success. It looks like it can be cut into smaller sheets of diamond ore that are normally found within watchers."
+	desc = "A unique diamond that is produced within icewing watchers. Rarely used in traditional marriage bands, various gemstone companies now try to effect a monopoly on it, to little success. It looks like it can be cut into smaller sheets of diamond ore."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "diamond"
 	materials = list(/datum/material/diamond=30000)
@@ -107,7 +107,7 @@
 
 /obj/item/gem/void
 	name = "\improper Null Crystal"
-	desc = "A shard of stellar, crystallized energy. These strange objects occasionally appear spontaneously in areas where the bluespace fabric is largely unstable. Its surface gives a light jolt to those who touch it. Despite its size, it's also absurdly light."
+	desc = "A shard of stellar, crystallized energy. These strange objects occasionally appear spontaneously in areas where the bluespace fabric is largely unstable. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
 	icon = 'icons/obj/gems.dmi'
 	icon_state ="void"
 	point_value = 1800

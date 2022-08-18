@@ -1,6 +1,6 @@
 /datum/bounty/item/gems/rupees
 	name = "Ruperium Crystals"
-	description = "Nanotransen has taken an interest in their resonating properties and requests you find three samples. You would be paid handsomely for this effort."
+	description = "Nanotrasen has taken an interest in their resonating properties and requests you find three samples. You would be paid handsomely for this effort."
 	reward = 10000
 	required_count = 3
 	wanted_types = list(/obj/item/gem/rupee)
@@ -20,24 +20,24 @@
 
 /datum/bounty/item/gems/amber
 	name = "Draconic Amber"
-	description = "A son of an official wants to harness the power of the amber. Send one over to earn a quick buck."
+	description = "A son of a CentCom official wants to harness the power of the amber. Send one over to earn a quick buck."
 	reward = 18000
 	wanted_types = list(/obj/item/gem/amber)
 
 /datum/bounty/item/gems/void
 	name = "Null Crystal"
-	description = "Central Command researchers are interested in its strange bluespace properties. Ship one and be rewarded."
+	description = "Central Command researchers are interested in its strange bluespace properties. Ship one for a sizable compensation."
 	reward = 20000
 	wanted_types = list(/obj/item/gem/void)
 
 /datum/bounty/item/gems/blood
 	name = "Ichorium Crystal"
-	description = "Nanotransen wants to experiment on the strange phenomena induced by this gem. Ship one over and be compensated immensely."
+	description = "Nanotrasen wants to experiment on the strange phenomena induced by this gem. Selling it to them would turn a massive profit."
 	reward = 25000
 	wanted_types = list(/obj/item/gem/bloodstone)
 
 /datum/bounty/item/gems/dark
 	name = "Dark Cube"
-	description = "Central Commands Research Director is particularly interested in the anomalous effects of this gem. Ship one over and be paid directly from his paycheck."
+	description = "Central Command's Research Director is particularly interested in the anomalous effects of this gem. Ship one over and he'll pay us directly."
 	reward = 25000
 	wanted_types = list(/obj/item/gem/dark)
