@@ -186,14 +186,14 @@
 				client.screen += A.button
 	else
 		for(var/datum/action/A in actions)
-			var/isowner = (A.owner == src)
+			var/is_owner = (A.owner == src)
 			A.UpdateButtonIcon()
 			var/obj/screen/movable/action_button/B = A.button
 			if(B.ordered)
 				button_number++
-			if(B.moved && isowner)
+			if(B.moved && is_owner)
 				B.screen_loc = B.moved
-			else if(isowner) // Prevent buttons from shifting around to the original owner
+			else if(is_owner) // Prevent buttons from shifting around to the original owner
 				B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
 			if(reload_screen)
 				client.screen += B
