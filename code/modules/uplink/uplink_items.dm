@@ -2423,7 +2423,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/ammo/m45ammo
 	name = ".45 Handgun Magazine"
-	desc = "An additional 21-round 9mm magazine; suitable for use with the M1911."
+	desc = "An additional 8-round .45 magazine; suitable for use with the M1911."
 	item = /obj/item/ammo_box/magazine/m45
 	cost = 1
 
@@ -2579,6 +2579,25 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Dying is illegal."
 	item = /obj/item/clothing/suit/space/hardsuit/ert/med
 	cost = 5
+
+/datum/uplink_item/nt/hardsuit/med
+	name = "ERT Medical Hardsuit"
+	desc = "Dying is illegal."
+	item = /obj/item/clothing/suit/space/hardsuit/ert/med
+	cost = 5
+
+/datum/uplink_item/nt/hardsuit/ds
+	name = "MK.III SWAT Suit"
+	desc = "A prototype hardsuit. Incredibly robust."
+	item = /obj/item/clothing/suit/space/hardsuit/deathsquad
+	cost = 100
+
+/datum/uplink_item/nt/hardsuit/dsshield
+	name = "MK.III Shielded SWAT Suit"
+	desc = "A prototype hardsuit with shielding protection. Incredibly robust."
+	item = /obj/item/clothing/suit/space/hardsuit/shielded/swat
+	cost = 150
+
 
 /datum/uplink_item/nt/gear
 	category = "Other Gear"
