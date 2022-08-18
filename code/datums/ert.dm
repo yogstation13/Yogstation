@@ -11,7 +11,9 @@
 	var/mission = "Assist the station."
 	var/teamsize = 5
 	var/polldesc
-	var/obj/item/uplinktype
+
+	// this can be safely set as default because it doesnt do anything unless specifically making uplinked ERT
+	var/obj/item/uplinktype = /obj/item/ntuplink/official 
 
 /datum/ert/New()
 	if (!polldesc)
