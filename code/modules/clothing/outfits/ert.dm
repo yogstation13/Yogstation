@@ -15,7 +15,7 @@
 		)
 
 /datum/outfit/ert/commonleader
-	hat = /obj/item/clothing/head/beret/sec
+	head = /obj/item/clothing/head/beret/sec
 	backpack_contents = list(
 		/obj/item/clothing/mask/gas/sechailer/swat=1,
 		/obj/item/tank/internals/oxygen/tactical=1,
