@@ -19,4 +19,5 @@
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive,
 								/obj/item/computer_hardware/network_card,
-								/obj/item/computer_hardware/ai_interface)
+								/obj/item/computer_hardware/ai_interface,
+								/obj/item/computer_hardware/ai_slot)

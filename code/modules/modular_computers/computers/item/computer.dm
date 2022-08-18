@@ -125,7 +125,8 @@
 	if(user.canUseTopic(src, BE_CLOSE))
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-		return (card_slot2?.try_eject(user) || card_slot?.try_eject(user)) //Try the secondary one first.
+		var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
+		return (card_slot2?.try_eject(user) || card_slot?.try_eject(user) || ai_slot?.try_eject(user)) //Try the secondary one first.
 
 
 // Gets IDs/access levels from card slot. Would be useful when/if PDAs would become modular PCs.

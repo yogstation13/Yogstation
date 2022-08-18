@@ -2203,7 +2203,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/machinery/computer/ai_control_console{
+{
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,

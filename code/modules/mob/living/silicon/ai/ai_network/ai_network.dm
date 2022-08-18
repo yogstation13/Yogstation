@@ -94,23 +94,19 @@
 
 /datum/ai_network/proc/get_all_nodes(checked_nets = list())
 	. = nodes
-	var/list/checked_networks = checked_nets
-	for(var/datum/ai_network/net in remote_networks)
-		if(net in checked_networks)
+	for(var/datum/ai_network/net in resources.networks)
+		if(net == src)
 			continue
-		checked_networks += checked_networks
-		. += net.get_all_nodes(checked_networks)
+		. += net.nodes
 		
 
 
 /datum/ai_network/proc/get_all_ais(checked_nets = list())
 	. = ai_list
-	var/list/checked_networks = checked_nets
-	for(var/datum/ai_network/net in remote_networks)
-		if(net in checked_networks)
+	for(var/datum/ai_network/net in resources.networks)
+		if(net == src)
 			continue
-		checked_networks += checked_networks
-		. += net.get_all_ais(checked_networks)
+		. += net.ai_list
 
 /datum/ai_network/proc/remove_ai(mob/living/silicon/ai/AI)
 	resources.cpu_assigned[AI] = 0

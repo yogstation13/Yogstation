@@ -21,10 +21,10 @@
 
 /obj/item/computer_hardware/ai_interface/proc/parent_moved()	
 	if(connected_cable)
-		if(!connected_cable.Adjacent(holder.physical))
+		if(!connected_cable.Adjacent(holder.physical.loc))
 			connected_cable = null
-			if(ismob(computer.loc))
-				to_chat(computer.loc, span_warning("You disconnect [computer] from the cable!"))
+			if(ismob(holder.physical.loc))
+				to_chat(holder.physical.loc, span_warning("You disconnect [holder] from the cable!"))
 
 /obj/item/computer_hardware/ai_interface/proc/connect_cable(obj/structure/ethernet_cable/EC)
 	connected_cable = EC

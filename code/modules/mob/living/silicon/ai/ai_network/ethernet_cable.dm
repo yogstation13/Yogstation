@@ -28,11 +28,9 @@ By design, d1 is the smallest direction and d2 is the highest
 	icon = 'icons/obj/power_cond/power_local.dmi'
 	icon_state = "0-1"
 	level = 1 //is underfloor
-	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
+	layer = ETHERNET_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	pixel_y = 5
-	pixel_x = 5
 	var/d1 = 0   // cable direction 1 (see above)
 	var/d2 = 1   // cable direction 2 (see above)
 	var/datum/ai_network/network
@@ -123,8 +121,9 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(MC.all_components[MC_AI_NETWORK])
 			var/obj/item/computer_hardware/ai_interface/ai_interface = MC.all_components[MC_AI_NETWORK]
 			if(ai_interface)
-				ai_interface.connect_cable(src)
-				to_chat(user, span_notice("You connect to the ethernet cable."))
+				if(ai_interface.connected_cable != src)
+					ai_interface.connect_cable(src)
+					to_chat(user, span_notice("You connect to the ethernet cable."))
 		else
 			to_chat(user, span_warning("[MC] has no AI interface!"))
 

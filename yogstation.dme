@@ -2445,7 +2445,6 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\ai_data_core.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\decentralized_os.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\server_cabinet.dm"
-#include "code\modules\mob\living\silicon\ai\decentralized\management\ai_controlpanel.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_dashboard.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_server_overview.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\resource_distribution.dm"

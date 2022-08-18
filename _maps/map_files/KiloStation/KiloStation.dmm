@@ -85994,7 +85994,7 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/table,
 /obj/item/hand_labeler,
-/obj/item/circuitboard/computer/ai_upload_download,
+,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hor)
 "fMR" = (
@@ -92189,7 +92189,7 @@
 	dir = 1
 	},
 /obj/effect/mapping_helpers/teleport_anchor,
-/obj/structure/sign/plaques/ai_password{
+{
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -92212,7 +92212,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/computer/ai_control_console{
+{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,

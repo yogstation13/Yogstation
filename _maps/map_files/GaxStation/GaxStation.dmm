@@ -65,7 +65,7 @@
 /obj/structure/rack,
 /obj/item/aicard,
 /obj/item/disk/holodisk/tutorial/AICore,
-/obj/item/circuitboard/computer/ai_upload_download,
+,
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/hor";
 	dir = 8;
@@ -18622,7 +18622,7 @@
 /obj/machinery/computer/robotics{
 	dir = 8
 	},
-/obj/structure/sign/plaques/ai_password{
+{
 	pixel_x = 32
 	},
 /turf/open/floor/carpet/exoticpurple,

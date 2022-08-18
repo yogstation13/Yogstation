@@ -393,10 +393,6 @@
 	name = "Shuttle Navigation Computer (Computer Board)"
 	build_path = /obj/machinery/computer/camera_advanced/shuttle_docker/custom
 
-/obj/item/circuitboard/computer/ai_upload_download
-	name = "AI Control Console (Computer Board)"
-	icon_state = "science"
-	build_path = /obj/machinery/computer/ai_control_console
 
 /obj/item/circuitboard/computer/ai_server_overview
 	name = "AI Server Overview Console (Computer Board)"

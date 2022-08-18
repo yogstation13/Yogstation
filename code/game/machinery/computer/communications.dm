@@ -344,15 +344,6 @@
 				new /obj/item/card/id/captains_spare/temporary(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", RANDOM_REPORT_SOUND)
-		if("printAIControlCode")
-			if(authenticated_as_non_silicon_head(usr))
-				if(!COOLDOWN_FINISHED(src, important_action_cooldown))
-					return
-				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
-				GLOB.ai_control_code = random_nukecode(6)
-				new /obj/item/paper/ai_control_code(loc)
-				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
-				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", RANDOM_REPORT_SOUND)
 				
 
 /obj/machinery/computer/communications/ui_data(mob/user)

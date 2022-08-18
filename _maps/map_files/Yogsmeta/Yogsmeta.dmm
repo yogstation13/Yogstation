@@ -64826,7 +64826,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/obj/structure/sign/plaques/ai_password{
+{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/white,
@@ -74471,7 +74471,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
 "qDL" = (
-/obj/machinery/computer/ai_control_console{
+{
 	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
@@ -76083,7 +76083,7 @@
 "rTF" = (
 /obj/structure/table,
 /obj/item/aicard,
-/obj/item/circuitboard/computer/ai_upload_download,
+,
 /obj/item/disk/holodisk/tutorial/AICore,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
