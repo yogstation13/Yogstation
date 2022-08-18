@@ -374,17 +374,27 @@
 			AI = occupant
 			occupant = null
 		var/obj/structure/mecha_wreckage/WR = new wreckage(loc, AI)
+		if(capacitor)
+			WR.repair_efficiency = capacitor.rating // Capacitor is destroyed regardless of rating
 		for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
-			if(E.salvageable && prob(30))
-				WR.crowbar_salvage += E
+			if(E.salvageable && prob(20*WR.repair_efficiency))
 				E.detach(WR) //detaches from src into WR
 				E.equip_ready = 1
+				WR.equipment += E
 			else
 				E.detach(loc)
 				qdel(E)
-		if(cell)
-			WR.crowbar_salvage += cell
+		if(scanmod && WR.repair_efficiency > 2) // Scanning module is retained if capacitor is T3+
+			WR.scanmod = scanmod
+			scanmod.forceMove(WR)
+			scanmod = null
+		if(cell && WR.repair_efficiency > 3) // Cell is retained if capacitor is T4
+			WR.cell = cell
 			cell.forceMove(WR)
 			cell.charge = rand(0, cell.charge)
 			cell = null
+		if(WR.repair_efficiency <= 0)
+			WR.can_be_reconstructed = FALSE
+		else
+			WR.hint = span_notice("The parts are scattered apart, but can be <b>welded</b> back together.")
 	. = ..()

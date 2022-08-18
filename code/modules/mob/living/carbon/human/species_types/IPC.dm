@@ -32,6 +32,7 @@
 	reagent_tag = PROCESS_SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
+	screamsound = 'goon/sound/robot_scream.ogg'
 	allow_numbers_in_name = TRUE
 	deathsound = "sound/voice/borg_deathsound.ogg"
 	var/saved_screen //for saving the screen when they die
@@ -148,7 +149,6 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		if(H.nutrition > NUTRITION_LEVEL_MOSTLY_FULL)
 			to_chat(H, "<span class='notice'>You are now fully charged.</span>")
 			break
-		A.charging = 1
 		if(A.cell.charge >= 500)
 			H.nutrition += 50
 			A.cell.charge -= 250

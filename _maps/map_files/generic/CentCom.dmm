@@ -6301,7 +6301,7 @@
 /turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "aon" = (
-/obj/machinery/computer/communications,
+/obj/machinery/computer/communications/unlocked,
 /turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "aoo" = (
@@ -9568,7 +9568,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "aum" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -11387,7 +11387,7 @@
 /turf/open/floor/wood,
 /area/centcom/control)
 "axX" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -12622,7 +12622,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "aAs" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{

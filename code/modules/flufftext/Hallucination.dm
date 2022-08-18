@@ -26,7 +26,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 
 /mob/living/carbon/proc/handle_hallucinations()
-	if(!hallucination)
+	hallucination = max(0, hallucination)
+	if(hallucination <= 0)
 		return
 
 	hallucination--

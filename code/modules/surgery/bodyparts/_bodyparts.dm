@@ -95,6 +95,8 @@
 	var/obj/item/self_grasp/grasped_by
 	///If we have a bandage on (yoggite)
 	var/bandaged = FALSE
+	/// Prevents resetting of the species_id
+	var/limb_override = FALSE
 
 /obj/item/bodypart/Initialize(mapload)
 	. = ..()
@@ -740,8 +742,9 @@
 		should_draw_greyscale = FALSE
 
 		var/datum/species/S = H.dna.species
-		species_id = S.limbs_id
-		species_flags_list = H.dna.species.species_traits
+		if(!limb_override)
+			species_id = S.limbs_id
+		species_flags_list = S.species_traits
 
 		if(S.use_skintones)
 			skin_tone = H.skin_tone
