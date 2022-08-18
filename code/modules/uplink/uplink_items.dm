@@ -2552,7 +2552,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Full Toolbelt"
 	desc = "Comes pre-stocked with every engineering tool you'll ever need."
 	item = /obj/item/storage/belt/utility/full/engi
-	cost = 4
+	cost = 1
 
 /datum/uplink_item/nt/support/rcd
 	name = "Rapid Construction Device"
