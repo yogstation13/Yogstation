@@ -2401,9 +2401,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/ball_weps/tommygun
 	name = "Thompson SMG"
-	desc = "An archaic but incredibly effective high-capacity 4-round burst SMG. Can't fit in backpacks."
+	desc = "An archaic but incredibly effective high-capacity 4-round burst SMG. Wildly inaccurate. Can't fit in backpacks."
 	item = /obj/item/gun/ballistic/automatic/tommygun
-	cost = 12
+	cost = 9
 	limited_stock = 1
 
 /datum/uplink_item/nt/ammo
