@@ -68,7 +68,7 @@
 	outfit = /datum/outfit/ert
 
 /datum/antagonist/ert/common/leader
-	role = "ERT Commander"
+	role = "Commander"
 
 /datum/antagonist/ert/commander
 	role = "Commander"
