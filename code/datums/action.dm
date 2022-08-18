@@ -44,6 +44,7 @@
 
 /datum/action/proc/Grant(mob/M)
 	if(M)
+		M.originalactions += src
 		if(owner)
 			if(owner == M)
 				return
@@ -74,6 +75,7 @@
 			button.locked = M.client.prefs.buttons_locked || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
 			button.moved = button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE
 		for(var/mob/dead/observer/O in M.observers)
+			O.temporaryactions += src
 			O?.client.screen += button
 		M.update_action_buttons() // Now push the owners buttons back
 	else
@@ -84,7 +86,9 @@
 		if(M.client)
 			M.client.screen -= button
 		for(var/mob/dead/observer/O in M.observers)
+			O.temporaryactions -= src
 			O?.client.screen -= button
+		M.originalactions -= src
 		M.actions -= src
 		M.update_action_buttons()
 	owner = null

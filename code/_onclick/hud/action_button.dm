@@ -210,8 +210,8 @@
 		client.screen += hud_used.hide_actions_toggle
 
 	for(var/mob/dead/observer/O in observers) // This is usually always called instead of Grant() or Remove()
-		O.actions = actions.Copy() // Copy to prevent self referencing
-		O.actions += O.temporaryactions
+		O.temporaryactions = actions.Copy()
+		O.actions = O.temporaryactions + O.originalactions
 		O.update_action_buttons()
 
 

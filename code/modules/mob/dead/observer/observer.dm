@@ -859,9 +859,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!UO)
 			UO = new // Convinent way to unobserve
 		UO.Grant(src)
-		temporaryactions = actions.Copy()
+		originalactions = actions.Copy()
 		if(mob_eye.hud_used)
-			actions = mob_eye.actions.Copy() // Copy to prevent self referencing
+			temporaryactions = mob_eye.actions.Copy() // Copy to prevent self referencing
 			actions += temporaryactions
 			LAZYINITLIST(mob_eye.observers)
 			mob_eye.observers |= src
