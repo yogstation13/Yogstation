@@ -2344,6 +2344,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	limited_stock = 2
 
+/datum/uplink_item/nt/energy_weps/mini_egun
+	name = "Miniature Energy Gun"
+	desc = "A smaller model of the standard energy gun that holds much less charge."
+	item = /obj/item/gun/energy/e_gun
+	cost = 1
+	limited_stock = 1
+
 /datum/uplink_item/nt/energy_weps/laserrifle
 	name = "Laser Rifle"
 	desc = "An abnormality in energy weaponry. Chambers a laser magazine which can be recharged externally."
