@@ -5,6 +5,7 @@
 	idle_power_usage = 100
 
 	var/siphoning = FALSE
+	var/unauthorized = FALSE
 	var/next_warning = 0
 	var/obj/item/radio/radio
 	var/radio_channel = RADIO_CHANNEL_COMMON
@@ -44,11 +45,11 @@
 	if(siphoning)
 		if (stat & (BROKEN|NOPOWER))
 			say("Insufficient power. Halting siphon.")
-			end_syphon()
+			end_siphon()
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(!D.has_money(200))
 			say("Cargo budget depleted. Halting siphon.")
-			end_syphon()
+			end_siphon()
 			return
 
 		playsound(src, 'sound/items/poster_being_created.ogg', 100, 1)
@@ -56,7 +57,7 @@
 		D.adjust_money(-200)
 		if(next_warning < world.time && prob(15))
 			var/area/A = get_area(loc)
-			var/message = "Unauthorized credit withdrawal underway in [A.map_name]!!"
+			var/message = "[unauthorized ? "Unauthorized c" : "C"]redit withdrawal underway in [initial(A.name)][unauthorized ? "!!" : "..."]"
 			radio.talk_into(src, message, radio_channel)
 			next_warning = world.time + minimum_time_between_warnings
 
@@ -79,21 +80,30 @@
 
 	return data
 
-/obj/machinery/computer/bank_machine/ui_act(action, params)
+/obj/machinery/computer/bank_machine/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
 
 	switch(action)
 		if("siphon")
 			say("Siphon of station credits has begun!")
-			siphoning = TRUE
+			start_siphon(ui.user)
 			. = TRUE
 		if("halt")
 			say("Station credit withdrawal halted.")
-			end_syphon()
+			end_siphon()
 			. = TRUE
 
-/obj/machinery/computer/bank_machine/proc/end_syphon()
+/obj/machinery/computer/bank_machine/proc/end_siphon()
 	siphoning = FALSE
+	unauthorized = FALSE
 	new /obj/item/holochip(drop_location(), syphoning_credits) //get the loot
 	syphoning_credits = 0
+
+/obj/machinery/computer/bank_machine/proc/start_siphon(mob/living/carbon/user)
+	siphoning = TRUE
+	unauthorized = TRUE
+	var/obj/item/card/id/card = user.get_idcard(hand_first = TRUE)
+	if(istype(card))
+		if(ACCESS_VAULT in card.GetAccess())
+			unauthorized = FALSE
