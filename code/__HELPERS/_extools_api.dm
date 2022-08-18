@@ -16,6 +16,7 @@ GLOBAL_LIST_EMPTY(auxtools_initialized)
 			if(findtext(string, "SUCCESS")) {\
 				GLOB.auxtools_initialized[LIB] = TRUE;\
 			} else {\
+				GLOB.auxtools_initialized[LIB] = TRUE;\
 				CRASH(string);\
 			}\
 		} else {\
