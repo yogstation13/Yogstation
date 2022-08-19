@@ -256,6 +256,21 @@ SUBSYSTEM_DEF(job)
 		return TRUE
 	return FALSE
 
+/datum/controller/subsystem/job/proc/FillNetminPosition()
+	var/datum/job/job = GetJob("Network Admin")
+	if(!job)
+		return
+	for(var/i = job.total_positions, i > 0, i--)
+		if(job.current_positions >= job.total_positions) //If we assign a netmin before this proc is run, (malf rework?)
+			return TRUE
+		for(var/level in level_order)
+			var/list/candidates = list()
+			candidates = FindOccupationCandidates(job, level)
+			if(candidates.len)
+				var/mob/dead/new_player/candidate = pick(candidates)
+				if(AssignRole(candidate, "Network Admin"))
+					break
+
 /// Rolls a number of security based on the roundstart population
 /datum/controller/subsystem/job/proc/FillSecurityPositions()
 	var/coeff = CONFIG_GET(number/min_security_scaling_coeff)
@@ -339,7 +354,8 @@ SUBSYSTEM_DEF(job)
 
 	//Check for an AI
 	JobDebug("DO, Running AI Check")
-	FillAIPosition()
+	if(FillAIPosition())
+		FillNetminPosition()
 	JobDebug("DO, AI Check end")
 
 	//Check for Security
