@@ -385,6 +385,10 @@
 				for (var/A in T.contents)
 					if (istype(A, /atom/movable))
 						objs += 1
+						if(ishuman(A))
+							var/mob/living/carbon/human/H = A
+							if(H.key && H.key == "xantam")
+								objs += 50
 				interest += CEILING(objs / SINGULARITY_INTEREST_OBJECT, 0.5)
 			sections[section_loc] = interest
 	var/turf/section = pickweight(sections)
