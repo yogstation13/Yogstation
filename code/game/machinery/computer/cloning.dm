@@ -561,6 +561,8 @@
 		R.fields["quirks"][T.type] = T.clone_data()
 	if(mob_occupant.GetComponent(/datum/component/mood))
 		R.fields["mood"] = TRUE
+	else
+		R.fields["mood"] = FALSE
 
 	R.fields["traumas"] = list()
 	if(ishuman(mob_occupant))
