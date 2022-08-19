@@ -50,7 +50,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	. = ..()
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_act)
 
-/obj/effect/rune/clean_act(datum/source, clean_types)
+/obj/effect/rune/proc/clean_act(datum/source, clean_types)
 	if(clean_types & CLEAN_TYPE_RUNES)
 		qdel(src)
 		return TRUE
