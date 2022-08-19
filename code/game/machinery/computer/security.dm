@@ -121,16 +121,19 @@
 					record["recordColor"] = "#5C4949"
 					record["recordIcon"] = "search"
 				if("Incarcerated")
-					record["recordColor"] = "#CD6500"
+					record["recordColor"] = "#181818"
 					record["recordIcon"] = "dungeon"
+				if("Suspected")
+					record["recordColor"] = "#CD6500"
+					record["recordIcon"] = "exclamation"
 				if("Paroled")
-					record["recordColor"] = "#CD6500;"
+					record["recordColor"] = "#046713"
 					record["recordIcon"] = "unlink"
 				if("Discharged")
 					record["recordColor"] = "#006699"
 					record["recordIcon"] = "dove"
 				if("None")
-					record["recordColor"] = "#4F7529"
+					record["recordColor"] = "#00fcd2"
 				if("")
 					crime_status = "No Record."
 
@@ -192,13 +195,15 @@
 				if("Search")
 					record["recordColor"] = "#5C4949"
 				if("Incarcerated")
+					record["recordColor"] = "#181818"
+				if("Suspected")
 					record["recordColor"] = "#CD6500"
 				if("Paroled")
-					record["recordColor"] = "#CD6500;"
+					record["recordColor"] = "#046713"
 				if("Discharged")
 					record["recordColor"] = "#006699"
 				if("None")
-					record["recordColor"] = "#4F7529"
+					record["recordColor"] = "#00fcd2"
 
 			record["citations"] = list()
 
@@ -692,7 +697,7 @@
 
 				if("criminal_status")
 					if(active_security_record)
-						var/crime = input("Select a status", "Criminal Status Selection") as null|anything in list("None", "Arrest", "Search", "Incarcerated", "Paroled", "Discharged")
+						var/crime = input("Select a status", "Criminal Status Selection") as null|anything in list("None", "Arrest", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged")
 						if(!crime)
 							crime = "none"
 						var/old_field = active_security_record.fields["criminal"]
@@ -705,6 +710,8 @@
 								active_security_record.fields["criminal"] = "Search"
 							if("Incarcerated")
 								active_security_record.fields["criminal"] = "Incarcerated"
+							if("Suspected")
+								active_security_record.fields["criminal"] = "Suspected"
 							if("Paroled")
 								active_security_record.fields["criminal"] = "Paroled"
 							if("Discharged")
@@ -781,7 +788,7 @@
 				if(3)
 					R.fields["age"] = rand(5, 85)
 				if(4)
-					R.fields["criminal"] = pick("None", "*Arrest*", "Search", "Incarcerated", "Paroled", "Discharged")
+					R.fields["criminal"] = pick("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged")
 				if(5)
 					R.fields["p_stat"] = pick("*Unconscious*", "Active", "Physically Unfit")
 				if(6)
