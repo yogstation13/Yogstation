@@ -25,7 +25,7 @@
 /obj/item/reagent_containers/food/snacks/fish/Initialize(mapload)
 	length = rand(min_length,max_length)
 	weight = rand(min_weight,max_weight)
-	list_reagents = list(/datum/reagent/consumable/nutriment = (3 * slices_num), /datum/reagent/consumable/nutriment/vitamin = (2 * slices_num))
+	list_reagents = list(/datum/reagent/consumable/nutriment = (3 * slices_num ? slices_num : 1), /datum/reagent/consumable/nutriment/vitamin = (2 * slices_num ? slices_num : 1))
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/fish/proc/GetChumValue()

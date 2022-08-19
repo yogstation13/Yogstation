@@ -47,3 +47,27 @@
 	desc = "Are you talking to me?"
 	icon_state = "bait_t"
 	fishing_power = 25
+
+///CHUM
+
+/obj/item/reagent_containers/food/snacks/chum
+	name = "chum"
+	desc = "Don't get chummy with me."
+	icon = 'icons/obj/surgery.dmi' //temp
+	icon_state = "tumor" //temp
+	tastes = list("fish" = 1)
+	foodtype = GROSS
+	var/growth = 0.01 //how much to add to the growth
+	var/evil = FALSE
+
+/obj/item/reagent_containers/food/snacks/chum/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!proximity_flag)
+		return
+	SEND_SIGNAL(target,COMSIG_CHUM_ATTEMPT,user,src)
+
+/obj/item/reagent_containers/food/snacks/chum/syndicate
+	name = "Concentrated Lizard Chum"
+	desc = "Over a million lizards died for this one piece of chum."
+	growth = 0
+	evil = TRUE

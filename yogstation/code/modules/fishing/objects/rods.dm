@@ -21,6 +21,8 @@
 	var/datum/component/fishable/fishing_component
 	var/mob/fisher
 	var/bite = FALSE
+	var/rod_flags = 0
+	var/max_fishing_range = 7
 
 /obj/item/twohanded/fishingrod/examine(mob/user)
 	. = ..()
@@ -34,7 +36,17 @@
 		if(!wielded)
 			to_chat(user, span_warning("You need to wield the rod in both hands before you can cast it!"))
 			return
+		if(get_dist(user,target) > max_fishing_range)
+			to_chat(user, span_warning("You are too far away to fish from [src]!"))
+			return
 		if(!fc.can_fish)
+			return
+		var/valid = TRUE
+		for(var/turf/T in getline(get_turf(user), get_turf(target)))
+			if(is_blocked_turf(T, TRUE))
+				valid = FALSE
+				return
+		if(!valid)
 			return
 		cast(fc,user)
 	else
@@ -86,8 +98,8 @@
 			var/mob/living/carbon/carbonfisher = fisher
 			power = carbonfisher.fishing_power
 		spawn_reward(fishing_power + power)
-		if(bait && prob(max(50 - bait.fishing_power,0))) //50 - bait.fishing_power% chance to lose your bait
-			to_chat(fisher, span_notice("Your [bait] is lost!"))
+		if(bait && prob(5 + bait.fishing_power / 4))
+			to_chat(fisher, span_notice("[bait] is lost!"))
 			cut_overlays()
 			QDEL_NULL(bait)
 			recalculate_power()
@@ -125,6 +137,9 @@
 	if(!picked_reward || picked_reward == FISHING_LOOT_NOTHING) //nothing or something messed up
 		fisher.visible_message(span_notice("[fisher] reels in ... nothing!"), span_notice("You reel in... nothing! Better luck next time!"))
 		return
+	if(picked_reward == FISHING_LOOT_BROKE)
+		fisher.visible_message(span_notice("[fisher]'s line snaps!"),span_notice("Your line snaps! Whatever was on the line got away!"))
+		return
 	var/obj/reward_item = new picked_reward(get_turf(fishing_component.parent))
 	reward_item.alpha = 0
 	reward_item.pixel_y = -12
@@ -136,7 +151,7 @@
 		unwield(fisher,show_message = FALSE)
 		if(fisher.put_in_hands(reward_item))
 			return
-	reward_item.throw_at(get_step(fishing_component,get_dir(fishing_component,fisher)),2,3,fisher) //whip it at them!
+	reward_item.throw_at(fisher,2,3,fisher) //whip it at them!
 		
 
 /obj/item/twohanded/fishingrod/attackby(obj/item/B, mob/user, params)

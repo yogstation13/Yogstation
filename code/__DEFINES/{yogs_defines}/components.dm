@@ -6,3 +6,4 @@
 
 //FISHING COMSIGS
 #define COMSIG_FISHING_INTERRUPT "fishing_interrupt"			//from base of /datum/component/fishable/interrupt
+#define COMSIG_CHUM_ATTEMPT "chum_attempt"

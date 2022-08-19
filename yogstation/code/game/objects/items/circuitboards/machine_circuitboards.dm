@@ -12,3 +12,22 @@
 		set_type(inverse[type])
 
 	return TRUE
+
+/obj/item/circuitboard/machine/fishing
+	name = "Fishing Machine (Machine Board)"
+	icon_state = "service"
+	build_path = /obj/machinery/fishing
+	req_components = list(
+		/obj/item/stack/ore/bluespace_crystal = 3,
+		/obj/item/stock_parts/matter_bin = 1)
+	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
+	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/chummer
+	name = "Chummer (Machine Board)"
+	icon_state = "service"
+	build_path = /obj/machinery/chummer
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/manipulator = 1)
+	needs_anchored = FALSE

@@ -4,27 +4,41 @@
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "machine"
 	density = TRUE
-	var/active = FALSE
+	circuit = /obj/item/circuitboard/machine/fishing
 	active_power_usage = 100
 	idle_power_usage = 50
 	use_power = IDLE_POWER_USE
+
 	var/datum/component/fishable/fishing_component
+	var/active = FALSE
 
 /obj/machinery/fishing/Initialize()
 	. = ..()
-	var/pow = powered(power_channel)
-	fishing_component = AddComponent(/datum/component/fishable,pow)
+	fishing_component = AddComponent(/datum/component/fishable,FALSE)
+	set_biome()
 
 /obj/machinery/fishing/Destroy()
 	fishing_component.interrupt()
 	QDEL_NULL(fishing_component)
 	. = ..()
 
+/obj/machinery/fishing/proc/set_biome()
+	if(obj_flags & EMAGGED)
+		fishing_component.loot = GLOB.fishing_table["syndicate"]
+		return
+	var/area/A = get_area(src)
+	if(istype(A,/area/maintenance/))
+		fishing_component.loot = GLOB.fishing_table["maintenance"]
+		return
+	if(istype(A,/area/lavaland/))
+		fishing_component.loot = GLOB.fishing_table["lavaland"]
+		return
+	fishing_component.loot = GLOB.fishing_table["water"]	
+
 /obj/machinery/fishing/interact(mob/user, special_state)
 	if(panel_open)
 		return ..()
 	toggle_power()
-	
 
 /obj/machinery/fishing/proc/toggle_power()
 	active = !active
@@ -43,6 +57,22 @@
 		update_icon()
 		return
 
+	if(I.tool_behaviour == TOOL_WRENCH)
+		if(active)
+			to_chat(user,span_notice("Turn it off first!"))
+			return
+		to_chat(user, span_notice("You begin to [anchored ? "unwrench" : "wrench"] [src]."))
+		if(I.use_tool(src, user, 20, volume=50))
+			to_chat(user, span_notice("You successfully [anchored ? "unwrench" : "wrench"] [src]."))
+			setAnchored(!anchored)
+	else
+		return ..()
+
+/obj/machinery/fishing/setAnchored(anchorvalue)
+	. = ..()
+	if(anchored)
+		set_biome()
+
 /obj/machinery/fishing/update_icon()
 	. = ..()
 	cut_overlays()
@@ -59,15 +89,3 @@
 	icon_state = "machine_gold"
 	flags_1 = NODECONSTRUCT_1
 	circuit = null
-
-/obj/machinery/fishing/cargo/interact(mob/user, special_state)
-	return
-
-/obj/item/circuitboard/machine/fishing
-	name = "Fishing Machine (Machine Board)"
-	icon_state = "service"
-	build_path = /obj/machinery/fishing
-	req_components = list(
-		/obj/item/stack/ore/bluespace_crystal = 3,
-		/obj/item/stock_parts/matter_bin = 1)
-	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
