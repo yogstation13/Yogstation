@@ -184,7 +184,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	return examine(user)
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, makeup, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty)
+/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, makeup, mood, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty)
 	if(panel_open)
 		return NONE
 	if(mess || attempting)
@@ -246,6 +246,8 @@ GLOBAL_VAR_INIT(clones, 0)
 			H.gender = MALE
 		if((AGENDER in H.dna.species.species_traits) && (H.gender != PLURAL))
 			H.gender = PLURAL
+	if(!H.GetComponent(/datum/component/mood) && mood)
+		H.AddComponent(/datum/component/mood)
 
 	H.silent = 20 //Prevents an extreme edge case where clones could speak if they said something at exactly the right moment.
 	occupant = H
