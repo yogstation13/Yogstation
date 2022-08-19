@@ -2347,7 +2347,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/nt/energy_weps/mini_egun
 	name = "Miniature Energy Gun"
 	desc = "A smaller model of the standard energy gun that holds much less charge."
-	item = /obj/item/gun/energy/e_gun
+	item = /obj/item/gun/energy/e_gun/mini
 	cost = 1
 	limited_stock = 1
 
