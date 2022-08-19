@@ -134,7 +134,7 @@
 		if(W.tool_behaviour == TOOL_WIRECUTTER)
 			if(id != null)
 				to_chat(user, span_notice("You start to unlink the door."))
-				if(do_after(user, 10 SECONDS, src))
+				if(W.use_tool(user, 10 SECONDS, src))
 					to_chat(user, span_notice("You unlink the door."))
 					id = null
 			else
@@ -156,8 +156,8 @@
 		
 		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == CUT_COVER)
 			to_chat(user, span_notice("You start to remove all of the internal components"))
-			if(do_after(user, 15 SECONDS, src))
-				if(QDELETED)
+			if(W.use_tool(user, 15 SECONDS, src))
+				if(QDELETED(src))
 					return
 				if(istype(src, /obj/machinery/door/poddoor/shutters)) // Simplified Code 
 					new /obj/item/stack/sheet/plasteel(loc, 5)
