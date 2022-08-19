@@ -146,6 +146,8 @@
 			to_chat(user, span_notice("You start to remove the outer plasteel cover."))
 			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
 			if(W.use_tool(user, 10 SECONDS, src))
+				if(constructionstate != INTACT)
+					return
 				to_chat(user, span_notice("You remove the outer plasteel cover."))
 				constructionstate = CUT_COVER
 				id = null // Effectivley breaks the door
