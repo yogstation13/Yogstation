@@ -796,48 +796,6 @@
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, transform=rotated_transform, time = 1, easing=BACK_EASING|EASE_IN)
 	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, transform=initial_transform, time = 2, easing=SINE_EASING)
 
-/atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item)
-	var/image/I
-	if(visual_effect_icon)
-		I = image('icons/effects/effects.dmi', A, visual_effect_icon, A.layer + 0.1)
-	else if(used_item)
-		I = image(icon = used_item, loc = A, layer = A.layer + 0.1)
-		I.plane = GAME_PLANE
-
-		// Scale the icon.
-		I.transform *= 0.4
-		// The icon should not rotate.
-		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-
-		// Set the direction of the icon animation.
-		var/direction = get_dir(src, A)
-		if(direction & NORTH)
-			I.pixel_y = -12
-		else if(direction & SOUTH)
-			I.pixel_y = 12
-
-		if(direction & EAST)
-			I.pixel_x = -14
-		else if(direction & WEST)
-			I.pixel_x = 14
-
-		if(!direction) // Attacked self?!
-			I.pixel_z = 16
-
-	if(!I)
-		return
-
-	flick_overlay(I, GLOB.clients, 10)
-
-	// And animate the attack!
-	var/t_color = "#ffffff" //yogs start
-	if(ismob(src) &&  ismob(A) && (!used_item))
-		var/mob/M = src
-		t_color = M.a_intent == INTENT_HARM ? "#ff0000" : "#ffffff"
-	animate(I, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3, color = t_color)
-	animate(time = 1)
-	animate(alpha = 0, time = 3, easing = CIRCULAR_EASING|EASE_OUT) //yogs end
-
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
