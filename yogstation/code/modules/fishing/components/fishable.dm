@@ -21,11 +21,11 @@ GLOBAL_LIST_INIT(fishing_table,init_fishing_table())
 	var/population = 0
 	var/growth = 0
 
-/datum/component/fishable/Initialize(start_fishable = TRUE,datum/fishing_loot/loot_table = /datum/fishing_loot/water)
+/datum/component/fishable/Initialize(start_fishable = TRUE,loot_table = "water")
 	if(!isturf(parent) && !ismachinery(parent))
 		return COMPONENT_INCOMPATIBLE
 	can_fish = start_fishable
-	loot = loot_table
+	loot = GLOB.fishing_table[loot_table]
 	RegisterSignal(src,COMSIG_CHUM_ATTEMPT,.proc/chum)
 	population = loot.start_population
 	growth = loot.start_growth
