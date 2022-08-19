@@ -28,7 +28,11 @@
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/iron = 0.5)
 	rarity = 20
-	var/list/potential_products = typesof(/obj/item/grown/log/steel)
+	var/list/potential_products = list(/obj/item/grown/log/steel)
+
+/obj/item/seeds/tower/steel/Initialize()
+	. = ..()
+	potential_products = typesof(/obj/item/grown/log/steel)
 
 /// Snowflake override that lets you harvest random bits instead of all of the same item
 /obj/item/seeds/tower/steel/harvest(mob/user)
