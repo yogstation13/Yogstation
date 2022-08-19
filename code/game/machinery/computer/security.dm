@@ -121,19 +121,19 @@
 					record["recordColor"] = "#5C4949"
 					record["recordIcon"] = "search"
 				if("Incarcerated")
-					record["recordColor"] = "#CD6500"
+					record["recordColor"] = "#181818"
 					record["recordIcon"] = "dungeon"
 				if("Suspected")
-					record["recordColor"] = "#CD6500;"
+					record["recordColor"] = "#CD6500"
 					record["recordIcon"] = "exclamation"
 				if("Paroled")
-					record["recordColor"] = "#CD6500;"
+					record["recordColor"] = "#046713"
 					record["recordIcon"] = "unlink"
 				if("Discharged")
 					record["recordColor"] = "#006699"
 					record["recordIcon"] = "dove"
 				if("None")
-					record["recordColor"] = "#4F7529"
+					record["recordColor"] = "#00fcd2"
 				if("")
 					crime_status = "No Record."
 
@@ -195,15 +195,15 @@
 				if("Search")
 					record["recordColor"] = "#5C4949"
 				if("Incarcerated")
-					record["recordColor"] = "#CD6500"
+					record["recordColor"] = "#181818"
 				if("Suspected")
-					record["recordColor"] = "#CD6500;"
+					record["recordColor"] = "#CD6500"
 				if("Paroled")
-					record["recordColor"] = "#CD6500;"
+					record["recordColor"] = "#046713"
 				if("Discharged")
 					record["recordColor"] = "#006699"
 				if("None")
-					record["recordColor"] = "#4F7529"
+					record["recordColor"] = "#00fcd2"
 
 			record["citations"] = list()
 
