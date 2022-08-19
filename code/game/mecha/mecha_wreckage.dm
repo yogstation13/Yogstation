@@ -12,7 +12,7 @@
 	opacity = 0
 	var/state = MECHA_WRECK_CUT
 	var/orig_mecha
-	var/can_be_reconstructed = TRUE
+	var/can_be_reconstructed = FALSE
 	var/hint // Examine hint
 	var/list/equipment = list() // Equipment that the mech retains
 	// Total repair will take 80/40/27/20 seconds depending on capacitor tier. Roboticists repair 20% faster, so 64/32/21/16 seconds instead.
@@ -25,7 +25,7 @@
 	. = ..()
 	switch(repair_efficiency)
 		if(0)
-			. += span_danger("There was no capacitor to save this poor mecha from its doomed fate!")
+			. += span_danger("There was no capacitor to save this poor mecha from its doomed fate! It cannot be repaired!")
 		if(1)
 			. += span_danger("The weak capacitor did what little it could in preventing total destruction of this mecha. It is barely recoverable.")
 		if(2)
@@ -58,6 +58,8 @@
 
 /obj/structure/mecha_wreckage/attackby(obj/item/I, mob/user, params)
 	if(!can_be_reconstructed)
+		return ..()
+	if(repair_efficiency <= 0)
 		return ..()
 	
 	switch(state)
