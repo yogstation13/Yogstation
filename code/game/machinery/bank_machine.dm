@@ -87,7 +87,9 @@
 	switch(action)
 		if("siphon")
 			say("Siphon of station credits has begun!")
-			start_siphon(ui.user)
+			if(iscarbon(usr))
+				var/mob/living/carbon/C = usr
+				start_siphon(C)
 			. = TRUE
 		if("halt")
 			say("Station credit withdrawal halted.")
