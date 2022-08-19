@@ -30,15 +30,15 @@
 	'disable' setting in an attempt to bypass the ammo issues."
 
 /obj/item/paper/fluff/ruins/oldstation/protosing
-	name = "Singularity Generator"
-	info = "<b>*Singularity Generator*</b><br><br>Modern power generation typically comes in two forms, a Fusion Generator or a Fission Generator. Fusion provides the best space to power \
+	name = "Tesla Generator"
+	info = "<b>*Tesla Generator*</b><br><br>Modern power generation typically comes in two forms, a Fusion Generator or a Fission Generator. Fusion provides the best space to power \
 	ratio, and is typically seen on military or high security ships and stations, however Fission reactors require the usage of expensive, and rare, materials in its construction.. Fission generators are massive and bulky, and require a large reserve of uranium to power, however they are extremely cheap to operate and oft need little maintenance once \
-	operational.<br><br>The Singularity aims to alter this, a functional Singularity is essentially a controlled Black Hole, a Black Hole that generates far more power than Fusion or Fission \
+	operational.<br><br>The Tesla aims to alter this, a functional Tesla is essentially a controlled Energy Ball, an Energy Ball that generates far more power than Fusion or Fission \
 	generators can ever hope to produce. "
 
 /obj/item/paper/fluff/ruins/oldstation/protoinv
 	name = "Laboratory Inventory"
-	info = "<b>*Inventory*</b><br><br>(1) Prototype Hardsuit<br><br>(1)Health Analyser<br><br>(1)Prototype Energy Gun<br><br>(1)Singularity Generation Disk<br><br><b>DO NOT REMOVE WITHOUT \
+	info = "<b>*Inventory*</b><br><br>(1) Prototype Hardsuit<br><br>(1)Health Analyser<br><br>(1)Prototype Energy Gun<br><br>(1)Tesla Generation Disk<br><br><b>DO NOT REMOVE WITHOUT \
 	THE CAPTAIN AND RESEARCH DIRECTOR'S AUTHORISATION</b>"
 
 /obj/item/paper/fluff/ruins/oldstation/report
