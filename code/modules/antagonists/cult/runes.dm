@@ -46,6 +46,15 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	I.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_runes", I)
 
+/obj/effect/rune/ComponentInitialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_act)
+
+/obj/effect/rune/clean_act(datum/source, clean_types)
+	if(clean_types & CLEAN_TYPE_RUNES)
+		qdel(src)
+		return TRUE
+
 /obj/effect/rune/examine(mob/user)
 	. = ..()
 	if(iscultist(user) || user.stat == DEAD) //If they're a cultist or a ghost, tell them the effects
