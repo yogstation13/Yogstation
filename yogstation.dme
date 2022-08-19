@@ -2453,7 +2453,6 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\ai_huds.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\camera_mobility.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\coolant_manager.dm"
-#include "code\modules\mob\living\silicon\ai\decentralized\projects\cryptominer.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\examine.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\firewall.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\induction.dm"

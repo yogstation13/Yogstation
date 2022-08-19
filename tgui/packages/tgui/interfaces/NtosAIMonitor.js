@@ -35,15 +35,23 @@ export const NtosAIMonitor = (props, context) => {
             <Tabs.Tab
               selected={tab === 1}
               onClick={(() => setTab(1))}>
-              Upload
+              Networking Devices
             </Tabs.Tab>
             <Tabs.Tab
               selected={tab === 2}
               onClick={(() => setTab(2))}>
-              Download
+              AI Upload
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === 3}
+              onClick={(() => setTab(3))}>
+              AI Download
             </Tabs.Tab>
           </Tabs>
           {tab === 1 && (
+            <Section title="poo" />
+          )}
+          {tab === 2 && (
             <Section title="Upload">
               <Box textAlign="center" mb={0.5}>
                 <Button disabled={!data.holding_mmi} color="good" icon="upload" tooltip={!data.holding_mmi ? "You need to be holding an MMI/Posibrain" : ""} onClick={() => act("upload_person")}>Upload from MMI/Posibrain</Button>
@@ -78,7 +86,7 @@ export const NtosAIMonitor = (props, context) => {
               )}
             </Section>
           )}
-          {tab === 2 && (
+          {tab === 3 && (
             <Section title="AIs Available for Download">
               {data.downloading && (
                 <Fragment>

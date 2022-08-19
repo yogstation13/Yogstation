@@ -22,9 +22,7 @@ export const AiDashboard = (props, context) => {
       resizable
       title="Dashboard">
       <Window.Content scrollable>
-        <Section title={"Status"} buttons={(
-          <Button onClick={(e, value) => act('toggle_contribute_cpu')} color={data.contribute_spare_cpu ? "good" : "bad"} icon={data.contribute_spare_cpu ? "toggle-on" : "toggle-off"}>{!data.contribute_spare_cpu ? "NOT " : null}Contributing Spare CPU to Research</Button>
-        )}>
+        <Section title={"Status"}>
           <LabeledControls>
             <LabeledControls.Item>
               <ProgressBar

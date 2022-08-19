@@ -22,6 +22,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	var/obj/machinery/ai/networking/partner
 	var/rotation_to_partner
 	var/locked = FALSE
+	var/mob/remote_control
 
 
 /obj/machinery/ai/networking/Initialize(mapload)
@@ -93,6 +94,11 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 	update_icon()
 	
+
+/obj/machinery/ai/networking/ui_status(mob/user)
+	. = ..()
+	if (!QDELETED(remote_control) && user == remote_control)
+		. = UI_INTERACTIVE
 
 /obj/machinery/ai/networking/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

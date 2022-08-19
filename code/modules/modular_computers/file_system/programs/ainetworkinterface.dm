@@ -13,10 +13,14 @@
 	program_icon = "network-wired"
 
 	var/obj/structure/ethernet_cable/attached_cable
+	var/obj/machinery/ai/networking/active_networking
+	var/mob/networking_operator
 	var/mob/living/silicon/ai/downloading
 	var/mob/user_downloading
 	var/download_progress = 0
 	var/download_warning = FALSE
+
+
 
 
 /datum/computer_file/program/ai_network_interface/run_program(mob/living/user)
@@ -28,6 +32,11 @@
 /datum/computer_file/program/ai_network_interface/process_tick()
 	if(ismachinery(computer.physical) && !get_ainet())
 		search()
+
+	if(networking_operator && (!networking_operator.Adjacent(computer.physical)))
+		if(active_networking)
+			active_networking.remote_control = null
+			networking_operator = null
 
 	if(!get_ainet())
 		stop_download()
@@ -52,6 +61,7 @@
 			return
 		download_progress += AI_DOWNLOAD_PER_PROCESS * downloading.downloadSpeedModifier
 
+
 /datum/computer_file/program/ai_network_interface/proc/search()
 	var/turf/T = get_turf(computer)
 	attached_cable = locate(/obj/structure/ethernet_cable) in T
@@ -75,6 +85,10 @@
 
 	if(!net)
 		return data
+
+	data["networking_devices"] = list()
+	for(var/obj/machinery/ai/networking/N in net.get_local_nodes_oftype(/obj/machinery/ai/networking))
+		data["networking_devices"] += list(list("label" = N.label, "ref" = REF(N)))
 
 	data["ai_list"] = list()
 	for(var/mob/living/silicon/ai/AI in net.get_all_ais())
@@ -118,11 +132,14 @@
 		return
 	var/mob/user = usr
 	var/datum/ai_network/net = get_ainet()
+	if(!net)
+		return
 
 	switch(action)
 		if("apply_object")
 			if(!net)
 				return TRUE
+			var/applied_something = FALSE
 			var/mob/living/silicon/ai/targeted_ai = locate(params["ai_ref"]) in net.get_all_ais()
 			if(!targeted_ai)
 				to_chat(user, span_warning("Unable to locate AI."))
@@ -130,11 +147,15 @@
 			
 			var/obj/item/surveillance_upgrade/upgrade = user.is_holding_item_of_type(/obj/item/surveillance_upgrade)
 			if(upgrade)
+				applied_something = TRUE
 				upgrade.afterattack(targeted_ai, user)
 
 			var/obj/item/malf_upgrade/malf_upgrade = user.is_holding_item_of_type(/obj/item/malf_upgrade)
 			if(malf_upgrade)
+				applied_something = TRUE
 				malf_upgrade.afterattack(targeted_ai, user)
+			if(!applied_something)
+				to_chat(user, span_warning("You don't have any upgrades to upload!"))
 			return TRUE
 		if("upload_person")
 			if(!net)
@@ -264,6 +285,17 @@
 				to_chat(A, span_bolddanger("Unknown device disconnected. Systems confirmed secure."))
 			else
 				to_chat(user, span_notice("You fail to remove the device."))
+		if("control_networking")
+			if(!params["ref"])
+				return
+			var/obj/machinery/ai/networking/N = locate(params["ref"]) in net.get_local_nodes_oftype(/obj/machinery/ai/networking)
+			if(active_networking)
+				active_networking.remote_control = null
+			networking_operator = user
+			active_networking = N
+			active_networking.remote_control = networking_operator
+			active_networking.ui_interact(networking_operator)
+		
 
 
 /datum/computer_file/program/ai_network_interface/proc/finish_download()

@@ -8,22 +8,22 @@ export const AiNetworking = (props, context) => {
   const { act, data } = useBackend(context);
 
 
-  if(data.locked) {
+  if (data.locked) {
     return (
       <Window
-      width={500}
-      height={450}
-      resizable>
-      <Window.Content scrollable>
-        <Section title="Lockscreen">
-          <NoticeBox textAlign="center" danger>Machine locked</NoticeBox>
-          <Box textAlign="center">
-            <Button icon="lock-open" onClick={() => act('toggle_lock')} color="good" tooltip="If not already connected, this will allow foreign devices to connect to this one.">Unlock</Button>
-          </Box>
-        </Section>
-      </Window.Content>
-    </Window>
-    )
+        width={500}
+        height={450}
+        resizable>
+        <Window.Content scrollable>
+          <Section title="Lockscreen">
+            <NoticeBox textAlign="center" danger>Machine locked</NoticeBox>
+            <Box textAlign="center">
+              <Button icon="lock-open" onClick={() => act('toggle_lock')} color="good" tooltip="If not already connected, this will allow foreign devices to connect to this one.">Unlock</Button>
+            </Box>
+          </Section>
+        </Window.Content>
+      </Window>
+    );
   }
 
   return (
@@ -40,8 +40,7 @@ export const AiNetworking = (props, context) => {
         )}>
           <LabeledList>
             {data.possible_targets.map(target => (
-
-              data.is_connected == target ? (
+              data.is_connected === target ? (
                 <Fragment>
                   <LabeledListItem label={target} buttons={(
                     <Button icon="eject" onClick={() => act('disconnect')}

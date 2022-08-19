@@ -18,12 +18,15 @@
 	var/previous_ram = 0
 
 	var/datum/ai_shared_resources/resources
+	//Cash from crypto, can be withdrawn at network console
+	var/stored_cash = 0
 
 	var/temp_limit = AI_TEMP_LIMIT
 
 /datum/ai_network/New()
 	SSmachines.ainets += src
 	resources = new(starting_network = src)
+	START_PROCESSING(SSobj, src)
 
 /datum/ai_network/Destroy()
 	//Go away references, you suck!
@@ -42,7 +45,26 @@
 	resources = null
 
 	SSmachines.ainets -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
+
+/datum/ai_network/process()
+	/*
+	if(remaining_cpu > 0 && contribute_spare_cpu)
+		var/points = max(round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster), 0)
+
+
+		if(crypto_mining)
+			points *= 0.5
+			var/bitcoin_mined = points * (1-0.05*sqrt(points))	
+			bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
+			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+			if(D)
+				D.adjust_money(bitcoin_mined * AI_BITCOIN_PRICE)
+		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
+		*/
+
+
 
 /datum/ai_network/proc/is_empty()
 	return !cables.len && !nodes.len
@@ -99,6 +121,11 @@
 			continue
 		. += net.nodes
 		
+/datum/ai_network/proc/get_local_nodes_oftype(type_to_check)
+	. = list()
+	for(var/A in nodes)
+		if(istype(A, type_to_check))
+			. += A
 
 
 /datum/ai_network/proc/get_all_ais(checked_nets = list())

@@ -11,10 +11,6 @@
 	var/completed_projects
 
 	var/running_projects
-	///Should we be contributing spare CPU to generate research points?
-	var/contribute_spare_cpu = TRUE
-	///Are we using 50% of our spare CPU to mine bitcoin?
-	var/crypto_mining = FALSE
 
 /datum/ai_dashboard/New(mob/living/silicon/ai/new_owner)
 	if(!istype(new_owner))
@@ -69,7 +65,6 @@
 	for(var/I in ram_usage)
 		total_ram_used += ram_usage[I]
 
-	data["contribute_spare_cpu"] = contribute_spare_cpu
 
 	data["used_cpu"] = total_cpu_used
 	data["used_ram"] = total_ram_used
@@ -165,10 +160,6 @@
 			if(!set_project_cpu(project, amount_to_add))
 				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable."))
 			. = TRUE
-		if("toggle_contribute_cpu")
-			contribute_spare_cpu = !contribute_spare_cpu
-			to_chat(owner, span_notice("You now[contribute_spare_cpu ? "" : " DO NOT"] contribute spare CPU to generating research points."))
-
 		if("clear_ai_resources")
 			owner.ai_network.resources.clear_ai_resources(src)
 			. = TRUE
@@ -328,22 +319,7 @@
 	var/remaining_cpu = 1
 	for(var/I in cpu_usage)
 		remaining_cpu -= cpu_usage[I]
-
-	if(remaining_cpu > 0 && contribute_spare_cpu)
-		var/points = max(round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster), 0)
-
-		if(crypto_mining)
-			points *= 0.5
-			var/bitcoin_mined = points * (1-0.05*sqrt(points))	
-			bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money(bitcoin_mined * AI_BITCOIN_PRICE)
-
-		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
 		
-
-
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])
 			continue

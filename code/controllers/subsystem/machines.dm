@@ -87,3 +87,5 @@ SUBSYSTEM_DEF(machines)
 		processing = SSmachines.processing
 	if (istype(SSmachines.powernets))
 		powernets = SSmachines.powernets
+	if (istype(SSmachines.ainets))
+		ainets = SSmachines.ainets
