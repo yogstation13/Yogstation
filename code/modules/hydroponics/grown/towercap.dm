@@ -28,8 +28,36 @@
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/iron = 0.5)
 	rarity = 20
+	var/list/potential_products = typesof(/obj/item/grown/log/steel)
 
+/// Snowflake override that lets you harvest random bits instead of all of the same item
+/obj/item/seeds/tower/steel/harvest(mob/user)
+	var/obj/machinery/hydroponics/parent = loc //for ease of access
+	var/t_amount = 0
+	var/list/result = list()
+	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
+	var/product_name
+	while(t_amount < getYield())
+		var/chosen_product = pick(potential_products)
+		var/obj/item/reagent_containers/food/snacks/grown/t_prod = new chosen_product(output_loc, src)
+		if(parent.myseed.plantname != initial(parent.myseed.plantname))
+			t_prod.name = parent.myseed.plantname
+		if(parent.myseed.plantdesc)
+			t_prod.desc = parent.myseed.plantdesc
+		t_prod.seed.name = parent.myseed.name
+		t_prod.seed.desc = parent.myseed.desc
+		t_prod.seed.plantname = parent.myseed.plantname
+		t_prod.seed.plantdesc = parent.myseed.plantdesc
+		result.Add(t_prod) // User gets a consumable
+		if(!t_prod)
+			return
+		t_amount++
+		product_name = t_prod.seed.plantname
+	if(getYield() >= 1)
+		SSblackbox.record_feedback("tally", "food_harvested", getYield(), product_name)
+	parent.update_tray(user)
 
+	return result
 
 
 /obj/item/grown/log
@@ -94,8 +122,38 @@
 	name = "steel-cap log"
 	desc = "It's made of metal."
 	icon_state = "steellogs"
-	plank_type = /obj/item/stack/rods
-	plank_name = "rods"
+	plank_type = /obj/item/stack/sheet/metal
+	plank_name = "metal"
+
+/obj/item/grown/log/steel/plasteel
+	name = "plasteel-cap log"
+	plank_type = /obj/item/stack/sheet/plasteel
+	plank_name = "plasteel"
+
+/obj/item/grown/log/steel/gold
+	name = "gold-cap log"
+	plank_type = /obj/item/stack/sheet/mineral/gold
+	plank_name = "gold"
+
+/obj/item/grown/log/steel/silver
+	name = "silver-cap log"
+	plank_type = /obj/item/stack/sheet/mineral/silver
+	plank_name = "silver"
+
+/obj/item/grown/log/steel/titanium
+	name = "titanium-cap log"
+	plank_type = /obj/item/stack/sheet/mineral/titanium
+	plank_name = "titanium"
+
+/obj/item/grown/log/steel/plastitanium
+	name = "plastitanium-cap log"
+	plank_type = /obj/item/stack/sheet/mineral/plastitanium
+	plank_name = "plastitanium"
+
+/obj/item/grown/log/steel/diamond
+	name = "diamond-cap log"
+	plank_type = /obj/item/stack/sheet/mineral/diamond
+	plank_name = "diamond"
 
 /obj/item/grown/log/steel/CheckAccepted(obj/item/I)
 	return FALSE
