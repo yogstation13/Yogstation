@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 /obj/machinery/ai/networking/ui_data(mob/living/carbon/human/user)
 	var/list/data = list()
 
-	data["is_connected"] = partner ? TRUE : FALSE
+	data["is_connected"] = partner ? partner.label : FALSE
 	data["label"] = label
 
 	data["locked"] = locked
@@ -126,8 +126,16 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 	switch(action)
 		if("switch_label")
+			if(locked)
+				return
 			var/new_label = stripped_input(usr, "Enter new label", "Set label", max_length = 16)
 			if(new_label)
+				if(isnotpretty(new_label))
+					to_chat(usr, span_notice("The machine rejects the input. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
+					var/log_message = "[key_name(usr)] just tripped a pretty filter: '[new_label]'."
+					message_admins(log_message)
+					log_say(log_message)
+					return
 				for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
 					if(N.label == new_label)
 						to_chat(usr, span_warning("A machine with this label already exists!"))
@@ -144,12 +152,17 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 				if(N.z != src.z)
 					return
 				if(N.label == target_label)
+					if(N.locked)
+						to_chat(usr, span_warning("Unable to connect to '[target_label]'! It seems to be locked."))
+						return
 					if(partner)
 						disconnect()
 					connect_to_partner(N)
 					return
 			. = TRUE
 		if("disconnect")
+			if(locked)
+				return
 			disconnect()
 			. = TRUE
 		if("toggle_lock")
