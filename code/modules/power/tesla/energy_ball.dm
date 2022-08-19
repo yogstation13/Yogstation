@@ -159,6 +159,12 @@
 		C.ghostize(0)
 		qdel(rip_u)
 		C.death()
+		
+/obj/singularity/energy_ball/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/golfclub))
+		var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 2)
+		throw_at(throw_at, 2, 1)
+		user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))
