@@ -3220,8 +3220,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
 "hK" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/rad_collector,
+/obj/machinery/power/tesla_coil,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "hL" = (
@@ -4476,7 +4475,7 @@
 /area/ruin/space/has_grav/ancientstation/proto)
 "kl" = (
 /obj/structure/table/reinforced,
-/obj/machinery/the_singularitygen,
+/obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "km" = (
@@ -8353,14 +8352,6 @@
 "Ll" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/secure/engineering{
-	name = "plasma tank crate";
-	req_access_txt = "204"
-	},
-/obj/item/tank/internals/plasma/full,
-/obj/item/tank/internals/plasma/full,
-/obj/item/tank/internals/plasma/full,
-/obj/item/tank/internals/plasma/full,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "Ln" = (
@@ -8401,6 +8392,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"LT" = (
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "LW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -12852,7 +12847,7 @@ bE
 eZ
 fz
 fz
-dh
+LT
 dh
 dh
 dh
@@ -12901,7 +12896,7 @@ bE
 bE
 fz
 fz
-fz
+LT
 hK
 hK
 hK
