@@ -24,15 +24,15 @@
 				if("Search")
 					background = "background-color:#5C4949;"
 				if("Incarcerated")
-					background = "background-color:#CD6500;"
+					background = "background-color:#181818;"
 				if("Suspected")
 					background = "background-color:#CD6500;"
 				if("Paroled")
-					background = "background-color:#CD6500;"
+					background = "background-color:#046713;"
 				if("Discharged")
 					background = "background-color:#006699;"
 				if("None")
-					background = "background-color:#4F7529;"
+					background = "background-color:#00fcd2;"
 				if("")
 					background = "''" //"'background-color:#FFFFFF;'"
 			dat += "<font size='4'><b>Warrant Data</b></font>"
