@@ -59,7 +59,7 @@
 /obj/structure/mecha_wreckage/attackby(obj/item/I, mob/user, params)
 	if(!can_be_reconstructed)
 		return ..()
-	if(repair_efficiency <= 0)
+	if(!repair_efficiency)
 		return ..()
 	
 	switch(state)
