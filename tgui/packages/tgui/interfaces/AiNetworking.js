@@ -1,15 +1,12 @@
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, Tabs, ProgressBar, Section, Flex, Icon, NoticeBox } from '../components';
+import { useBackend } from '../backend';
+import { Box, Button, LabeledList, Section, NoticeBox, RoundGauge } from '../components';
 import { LabeledListDivider, LabeledListItem } from '../components/LabeledList';
 import { Window } from '../layouts';
 
 export const AiNetworking = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { username, has_access } = data;
-
-  const [tab, setTab] = useLocalState(context, 'tab', 1);
 
   if(data.locked) {
     return (
