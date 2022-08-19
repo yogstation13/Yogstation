@@ -145,7 +145,7 @@
 		if(W.tool_behaviour == TOOL_WELDER && constructionstate == INTACT)
 			to_chat(user, span_notice("You start to remove the outer plasteel cover."))
 			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
-			if(do_after(user, 10 SECONDS, src))
+			if(W.use_tool(user, 10 SECONDS, src))
 				to_chat(user, span_notice("You remove the outer plasteel cover."))
 				constructionstate = CUT_COVER
 				id = null // Effectivley breaks the door
@@ -157,6 +157,8 @@
 		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == CUT_COVER)
 			to_chat(user, span_notice("You start to remove all of the internal components"))
 			if(do_after(user, 15 SECONDS, src))
+				if(QDELETED)
+					return
 				if(istype(src, /obj/machinery/door/poddoor/shutters)) // Simplified Code 
 					new /obj/item/stack/sheet/plasteel(loc, 5)
 					new /obj/item/electronics/airlock(loc)
