@@ -827,7 +827,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		target.observers -= src
 		UNSETEMPTY(target.observers)
 	observetarget = null
-	actions -= temporaryactions
+	actions = temporaryactions
+	actions -= UO
+	update_action_buttons()
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
@@ -854,18 +856,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(is_secret_level(mob_eye.z) && !client?.holder)
 			sight = null //we dont want ghosts to see through walls in secret areas
 		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed, TRUE)
-		if(mob_eye.hud_used)
-			for(var/datum/action/A in mob_eye.actions)
-				actions += A
-				temporaryactions += A
-			update_action_buttons()
-			LAZYINITLIST(mob_eye.observers)
-			mob_eye.observers |= src
-			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
-			observetarget = mob_eye
 		if(!UO)
 			UO = new // Convinent way to unobserve
 		UO.Grant(src)
+		originalactions = actions.Copy()
+		if(mob_eye.hud_used)
+			temporaryactions = mob_eye.actions.Copy() // Copy to prevent self referencing
+			actions += temporaryactions
+			LAZYINITLIST(mob_eye.observers)
+			mob_eye.observers |= src
+			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
+			update_action_buttons()
+			mob_eye.update_action_buttons()
+			observetarget = mob_eye
 
 /datum/action/unobserve
 	name = "Stop Observing"

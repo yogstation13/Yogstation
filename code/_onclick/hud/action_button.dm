@@ -183,7 +183,6 @@
 		return
 
 	var/button_number = 0
-
 	if(hud_used.action_buttons_hidden)
 		for(var/datum/action/A in actions)
 			A.button.screen_loc = null
@@ -191,13 +190,14 @@
 				client.screen += A.button
 	else
 		for(var/datum/action/A in actions)
+			var/is_owner = (A.owner == src)
 			A.UpdateButtonIcon()
 			var/obj/screen/movable/action_button/B = A.button
 			if(B.ordered)
 				button_number++
-			if(B.moved)
+			if(B.moved && is_owner)
 				B.screen_loc = B.moved
-			else
+			else if(is_owner) // Prevent buttons from shifting around to the original owner
 				B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
 			if(reload_screen)
 				client.screen += B
@@ -212,6 +212,11 @@
 		hud_used.hide_actions_toggle.screen_loc = hud_used.hide_actions_toggle.moved
 	if(reload_screen)
 		client.screen += hud_used.hide_actions_toggle
+
+	for(var/mob/dead/observer/O in observers) // This is usually always called instead of Grant() or Remove()
+		O.temporaryactions = actions.Copy()
+		O.actions = O.temporaryactions + O.originalactions
+		O.update_action_buttons()
 
 
 
