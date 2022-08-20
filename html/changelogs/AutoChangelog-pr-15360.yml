@@ -1,0 +1,4 @@
+author: " [jacklecroy](https://github.com/jacklecroy), [Kierany9](https://github.com/Kierany9) ported by warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "Added new stamina hud indicator"
