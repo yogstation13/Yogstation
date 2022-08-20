@@ -1460,10 +1460,11 @@
 
 /datum/supply_pack/medical/vending
 	name = "Medical Vending Crate"
-	desc = "Contains one NanoMed Plus refill and one wall-mounted NanoMed refill."
-	cost = 2000
+	desc = "Contains one NanoMed Plus refill, one wall-mounted NanoMed refill, and one wall-mounted HypoMed refill."
+	cost = 2500 
 	contains = list(/obj/item/vending_refill/medical,
-					/obj/item/vending_refill/wallmed)
+					/obj/item/vending_refill/wallmed,
+					/obj/item/vending_refill/wallhypo)
 	crate_name = "medical vending crate"
 
 //////////////////////////////////////////////////////////////////////////////

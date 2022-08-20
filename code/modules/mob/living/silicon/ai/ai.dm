@@ -793,7 +793,11 @@
 				"Calico" = image(icon = 'icons/mob/pets.dmi', icon_state = "cat2"),
 				"Poly" = image(icon = 'icons/mob/animal.dmi', icon_state = "parrot_fly"),
 				"Pug" = image(icon = 'icons/mob/pets.dmi', icon_state = "pug"),
-				"Spider" = image(icon = 'icons/mob/animal.dmi', icon_state = "guard")
+				"Spider" = image(icon = 'icons/mob/animal.dmi', icon_state = "guard"),
+        "Moth Roach" = image(icon = 'icons/mob/animal.dmi', icon_state = "mothroach"),
+        "Snake" = image(icon = 'icons/mob/animal.dmi', icon_state = "snake"),
+        "Goose" = image(icon = 'icons/mob/animal.dmi', icon_state = "goose"),
+        "Possum" = image(icon = 'icons/mob/animal.dmi', icon_state = "poppypossum"),
 			)
 			choice2 = show_radial_menu(usr, src.eyeobj, choices, require_near = FALSE, tooltips = TRUE)
 		if("Unique")
