@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Darkspawn/veils cuffing someone in darkspawn sleep will wake them up"
