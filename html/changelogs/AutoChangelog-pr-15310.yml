@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Added mini plasma cutter"
+  - tweak: "Mining voucher now has mini plasma cutter kit"
