@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(economy)
 	init_order = INIT_ORDER_ECONOMY
 	runlevels = RUNLEVEL_GAME
 	var/roundstart_paychecks = 5
-	var/budget_pool = 35000
+	var/budget_starting_amt = 500
 	var/list/department_accounts = list(ACCOUNT_CIV = ACCOUNT_CIV_NAME,
 										ACCOUNT_ENG = ACCOUNT_ENG_NAME,
 										ACCOUNT_SCI = ACCOUNT_SCI_NAME,
@@ -18,35 +18,35 @@ SUBSYSTEM_DEF(economy)
 	var/full_ancap = FALSE // Enables extra money charges for things that normally would be free, such as sleepers/cryo/cloning.
 							//Take care when enabling, as players will NOT respond well if the economy is set up for low cash flows.
 	var/datum/station_state/engineering_check = new /datum/station_state()
-	var/alive_humans_bounty = 100
+	var/alive_humans_bounty = 1
 	var/crew_safety_bounty = 1500
-	var/mood_bounty = 100
+	var/mood_bounty = 1
 	var/techweb_bounty = 25 // yogs start - nerf insane rd budget
-	var/slime_bounty = list("grey" = 10,
+	var/slime_bounty = list("grey" = 0,
 							// tier 1
-							"orange" = 75,
-							"metal" = 75,
-							"blue" = 75,
-							"purple" = 75,
+							"orange" = 1,
+							"metal" = 1,
+							"blue" = 1,
+							"purple" = 1,
 							// tier 2
-							"dark purple" = 200,
-							"dark blue" = 200,
-							"green" = 200,
-							"silver" = 200,
-							"gold" = 200,
-							"yellow" = 200,
-							"red" = 200,
-							"pink" = 200,
+							"dark purple" = 2,
+							"dark blue" = 2,
+							"green" = 2,
+							"silver" = 2,
+							"gold" = 2,
+							"yellow" = 2,
+							"red" = 2,
+							"pink" = 2,
 							// tier 3
-							"cerulean" = 350,
-							"sepia" = 350,
-							"bluespace" = 350,
-							"pyrite" = 350,
-							"light pink" = 350,
-							"oil" = 350,
-							"adamantine" = 350, // yogs end
+							"cerulean" = 3,
+							"sepia" = 3,
+							"bluespace" = 3,
+							"pyrite" = 3,
+							"light pink" = 3,
+							"oil" = 3,
+							"adamantine" = 3, // yogs end
 							// tier 4
-							"rainbow" = 1000)
+							"rainbow" = 10)
 	var/list/bank_accounts = list() //List of normal accounts (not department accounts)
 	var/list/dep_cards = list()
 	///ref to moneysink. Only one should exist on the map. Has its payout() proc called every budget cycle
@@ -57,12 +57,16 @@ SUBSYSTEM_DEF(economy)
 	var/pack_price_modifier = 1
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
-	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
 	for(var/A in department_accounts)
-		if(A == ACCOUNT_SEC)
-			new /datum/bank_account/department(A, STARTING_SEC_BUDGET)
-			continue
-		new /datum/bank_account/department(A, budget_to_hand_out)
+		switch(A)
+			if(ACCOUNT_SEC)
+				new /datum/bank_account/department(A, STARTING_SEC_BUDGET)
+				continue
+			if(ACCOUNT_CAR)
+				new /datum/bank_account/department(A, STARTING_CAR_BUDGET)
+				continue
+			else
+				new /datum/bank_account/department(A, budget_starting_amt)
 	return ..()
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
