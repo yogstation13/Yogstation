@@ -1,0 +1,4 @@
+author: "Lovebird-Frungy"
+delete-after: true 
+changes: 
+  - rscadd: "Added a minimum population requirement (25) to the bloodsucker's dynamic rule-sets."
