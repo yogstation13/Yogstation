@@ -2277,6 +2277,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
 
+
+/datum/uplink_item/badass/syndietape
+	name = "Guerrilla Tape"
+	desc = "New from Donk Co! Stick it to the man with this ultra-adhesive roll of tape! Grabs on tight, and holds on tight, using our patented adhesive formula. Ten times stronger than our leading competitors!"
+	item = /obj/item/stack/tape/guerrilla
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+
 /datum/uplink_item/badass/antagcape
 	name = "Red Syndicate Cape"
 	desc = "A cape to show off your small-time thuggery."
