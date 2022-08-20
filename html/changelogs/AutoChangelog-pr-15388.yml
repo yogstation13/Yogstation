@@ -1,0 +1,4 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - bugfix: "Removes a duplicate chest in the Ashwalker Meteorite"
