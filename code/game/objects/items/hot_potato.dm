@@ -7,7 +7,7 @@
 	item_flags = NOBLUDGEON
 	force = 0
 	/// How long you can hold it before you detontae
-	var/timer = 5 SECONDS
+	var/timer = 10 SECONDS
 	/// Show timer to user
 	var/show_timer = TRUE
 	/// Is it droppable
