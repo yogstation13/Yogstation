@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "Machines can no longer stack on top of each other"
