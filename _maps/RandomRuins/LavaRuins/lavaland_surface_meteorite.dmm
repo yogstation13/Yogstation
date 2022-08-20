@@ -1438,18 +1438,6 @@
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"Ar" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/closet/crate/necropolis{
-	anchored = 1
-	},
-/obj/item/survivalcapsule/luxuryelite,
-/obj/item/magmite_parts,
-/turf/open/lava/smooth,
-/area/ruin/unpowered/ash_walkers)
 "AM" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
@@ -2292,6 +2280,18 @@
 /obj/structure/stone_tile/center/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"Pc" = (
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/closet/crate/necropolis{
+	anchored = 1
+	},
+/obj/item/survivalcapsule/luxuryelite,
+/obj/item/magmite_parts,
+/turf/open/lava/smooth,
+/area/ruin/unpowered/ash_walkers)
 "Pi" = (
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -3212,7 +3212,7 @@ ix
 gC
 gD
 WN
-Ar
+Pc
 zR
 WN
 WN
