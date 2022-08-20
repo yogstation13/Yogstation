@@ -479,7 +479,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		icon_state = "coin_[cmineral]_[coinflip]"
 		if(flash)
 			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, unique = TRUE)
-		playsound(loc, 'sound/items/coinflip.ogg', 50, 1)
+		playsound(loc, 'sound/items/coinflip.ogg', 50, TRUE)
 		var/oldloc = loc
 		sleep(1.5 SECONDS)
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
