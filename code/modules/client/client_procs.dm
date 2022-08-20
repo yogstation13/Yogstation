@@ -276,8 +276,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
 			GLOB.mentors += src
 
-	if(is_donator(src))
-		src.add_donator_verbs()
 	// yogs end
 
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
@@ -337,6 +335,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(prefs.yogtoggles & QUIET_ROUND)
 			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
+	
+	if(is_donator(src))
+		src.add_donator_verbs()
+
 	// yogs end
 	. = ..()	//calls mob.Login()
 
