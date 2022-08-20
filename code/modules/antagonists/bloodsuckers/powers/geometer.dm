@@ -16,7 +16,7 @@
 /datum/action/bloodsucker/shape_blood/ActivatePower()
 	. = ..()
 	var/list/guns = list(
-		"Bloodshield" = image(icon = 'icons/obj/vamp_obj.dmi', icon_state = "blood_shield"),
+		"Blood shield" = image(icon = 'icons/obj/vamp_obj.dmi', icon_state = "blood_shield"),
 		)
 	if(level_current >= 2)
 		"[level_current >= 4 ? "" : "Weak "]Bloodbolt" = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
@@ -28,3 +28,9 @@
 	//   if("Weak Bloodbolt")
 	//   if("Bloodbolt")
 	//   if("Bloodblade")
+
+/obj/item/shield/bloodsucker
+	name = "Blood shield"
+	icon = 'icons/obj/vamp_obj.dmi'
+	icon_state = "blood_shield"
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)

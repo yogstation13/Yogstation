@@ -37,7 +37,7 @@
 #define CLAN_GANGREL "Gangrel Clan"
 #define CLAN_LASOMBRA "Lasombra Clan"
 #define CLAN_TZIMISCE "Tzimisce Clan"
-#define CLAN_TZIMISCE "Geometer Clan"
+#define CLAN_GEOMETER "Geometer Clan"
 
 #define TRIPLECHEST_MONSTER "Triple Chest (300 Blood)"
 #define ARMMY_MONSTER "Armmy (100 Blood)"
