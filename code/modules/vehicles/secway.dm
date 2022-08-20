@@ -4,7 +4,7 @@
 	desc = "A brave security cyborg gave its life to help you look like a complete tool."
 	icon_state = "secway"
 	key_type = /obj/item/key/security
-	max_integrity = 40
+	max_integrity = 60
 
 /obj/vehicle/ridden/secway/Initialize()
 	. = ..()
