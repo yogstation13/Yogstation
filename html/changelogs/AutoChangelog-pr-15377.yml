@@ -1,0 +1,4 @@
+author: " [LemonInTheDark](https://github.com/LemonInTheDark) ported by warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "added item pickup drop animations"
