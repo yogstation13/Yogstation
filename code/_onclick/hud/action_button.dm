@@ -215,7 +215,7 @@
 
 	for(var/mob/dead/observer/O in observers) // This is usually always called instead of Grant() or Remove()
 		O.actions = actions + O.originalactions
-		O.update_action_buttons()
+		O.update_action_buttons(TRUE)
 
 
 
