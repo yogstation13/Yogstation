@@ -14,7 +14,6 @@
 	var/obj/blood_weapon = null
 
 /datum/action/bloodsucker/shape_blood/ActivatePower()
-	. = ..()
 	var/list/guns = list(
 		"Blood shield" = image(icon = 'icons/obj/vamp_obj.dmi', icon_state = "blood_shield"),
 		)
@@ -22,20 +21,46 @@
 		"[level_current >= 4 ? "" : "Weak "]Bloodbolt" = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
 	if(level_current >= 5)
 		"Bloodblade" = image(icon = 'icons/obj/changeling.dmi', icon_state = "arm_blade")
-	var/choice = show_radial_menu(src, src, guns, radius = 42)
-	//switch(choice)            //Guns are not coded yet, sorry
-	//	if("Bloodshield")
-	//   if("Weak Bloodbolt")
-	//   if("Bloodbolt")
-	//   if("Bloodblade")
+	var/choice = show_radial_menu(owner, owner, guns, radius = 42)
+	if(!choice)
+		return
+	switch(choice)
+		if("Bloodshield")
+			owner.balloon_alert(owner, "shaped a blood shield")
+			blood_weapon = new /obj/item/shield/bloodsucker (owner)
+			if(!owner.put_in_hands(blood_weapon))
+				qdel(blood_weapon)
+		//   if("Weak Bloodbolt")
+		//   if("Bloodbolt")
+		//   if("Bloodblade")
+	if(blood_weapon || !QDELETED(blood_weapon))
+		RegisterSignal(blood_weapon, COMSIG_PARENT_QDELETING, .proc/on_item_qdeleting)
+		return ..()
+
+/datum/action/bloodsucker/shape_blood/proc/on_item_qdeleting()
+	UnregisterSignal(blood_weapon, COMSIG_PARENT_QDELETING)
+	blood_weapon = null
+	DeactivatePower()
 
 /obj/item/shield/bloodsucker
 	name = "Blood shield"
+	desc = "A shield, made from blood."
 	icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "blood_shield"
-	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
+	armor = list(MELEE = 15, BULLET = 15, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100) //It is made from blood, so it shouldn't be very good against physical attacks
 	force = 13 //Also a weak weapon
 	var/block_cost = 15
+
+/obj/item/shield/bloodsucker/Initialize(mapload,silent,synthetic)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
+	if(ismob(loc) && !silent)
+		loc.visible_message(span_warning("[loc.name] form a strange shield from their blood!"))
+
+/obj/item/shield/bloodsucker/examine(mob/user)
+	. = ..()
+	if(IS_BLOODSUCKER(user))
+		.+= span_notice("It costs 15 blood to block an attack with it.")
 
 /obj/item/shield/bloodsucker/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	var/datum/antagonist/bloodsucker/BS = IS_BLOODSUCKER(owner)
