@@ -21,10 +21,14 @@
 	var/list/guns = list(
 		"Blood shield" = image(icon = 'icons/obj/vamp_obj.dmi', icon_state = "blood_shield"),
 		)
-	if(level_current >= 2)
-		"[level_current >= 4 ? "" : "Weak "]Bloodbolt" = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
-	if(level_current >= 5)
+	if(level_current >= 3)
 		"Bloodblade" = image(icon = 'icons/obj/changeling.dmi', icon_state = "arm_blade")
+	if(level_current >= 4)
+		if(level_current >= 6)
+			"Bloodbolt" = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
+		else
+			"Weak Bloodbolt" = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
+
 	var/choice = show_radial_menu(owner, owner, guns, radius = 42)
 	if(!choice)
 		return
