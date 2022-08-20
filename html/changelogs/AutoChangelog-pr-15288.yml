@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Security alert level now has a 10 second cooldown"

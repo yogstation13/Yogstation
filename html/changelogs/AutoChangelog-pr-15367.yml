@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "fixed a runtime that occured when trying to repair a mecha with no capacitor"
-  - tweak: "added clarification that you cannot repair no-capacitor mechas"

@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - tweak: "Refactors ghost buttons code to prevent ghost button separation"

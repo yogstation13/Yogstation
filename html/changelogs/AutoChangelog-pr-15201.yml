@@ -1,7 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Bluespace harvester now generate more points faster"
-  - tweak: "Product price will not increase when producing"
-  - tweak: "no more weird rng"
-  - tweak: "buffed blankbody melee attack and movement speed"

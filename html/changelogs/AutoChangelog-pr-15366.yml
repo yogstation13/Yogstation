@@ -1,5 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Deconstructing blast doors now use welder fuel"
-  - bugfix: "Welding blastdoors no longer gives you near infinite plasteel"

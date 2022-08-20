@@ -1,8 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Metallic hydrogen production now requires 10x as many mols to start"
-  - tweak: "Metallic hydrogen production BZ consumption multiplied by 100"
-  - tweak: "Metallic hydrogen production hydrogen consumption multiplied by ~160"
-  - tweak: "Metallic hydrogen production bar generation rate quartered"
-  - tweak: "Heat scaling changed to be logarithmic instead of linear"

@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes rad storm double rescinding"

@@ -1,4 +1,0 @@
-author: "TheRyeGuyWhoWillNowDie"
-delete-after: true 
-changes: 
-  - bugfix: "Getting cloned no longer removes mood. There is no escape."

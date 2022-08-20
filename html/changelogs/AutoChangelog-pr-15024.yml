@@ -1,9 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added HypoMed to Box, Gax, and Meta stations, a hypospray vendor filled with hyposprays, upgrades, vials, and kits"
-  - rscadd: "Reduced the prices of some hypospray kits and removed the hypospray from them"
-  - rscadd: "Added hypospray quickload upgrade, purchasable from HypoMed"
-  - rscadd: "Added hypospray piercing upgrade, printable alongside piercing syringes once Advanced Biotechnology is researched"
-  - rscdel: "Removed hypospray equipment from NanoMed Plus"
-  - rscdel: "Removed styptic powder and silver sulfadiazine sprays from NanoMed Plus and NanoMed"
