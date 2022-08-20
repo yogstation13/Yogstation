@@ -41,6 +41,10 @@
 			if(is_mentor(src))
 				get_mentor_say()
 			return
+		if(ACTION_DONATORSAY)
+			if(is_donator(usr))
+				get_donator_say()
+			return
 		if(ACTION_LOOC)
 			get_looc()
 			return

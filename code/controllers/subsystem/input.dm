@@ -83,6 +83,7 @@ SUBSYSTEM_DEF(input)
 		"X" = "X", // switch hands
 		"Y" = "Y", // activate item
 		"Z" = "Z", // activate item
+		"V" = "V", // rest
 		)
 
 	for(var/i in 1 to oldmode_ctrl_override_keys.len)

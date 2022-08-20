@@ -10,7 +10,7 @@
 	var/chem_catalysts[] = list() //like tools but for reagents
 	var/category = CAT_NONE //where it shows up in the crafting UI
 	var/subcategory = CAT_NONE
-	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
+	var/always_available = TRUE //Set to FALSE if it needs to be learned first.
 
 /datum/crafting_recipe/New()
 	if(!(result in reqs))
@@ -607,3 +607,11 @@
 	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_TOOLS
+
+/datum/crafting_recipe/mothplush
+	name = "Moth Plushie"
+	result = /obj/item/toy/plush/mothplushie
+	reqs = list(/obj/item/stack/sheet/animalhide/mothroach = 1,
+				/obj/item/organ/heart = 1,
+				/obj/item/stack/sheet/cloth = 3)
+	category = CAT_MISC

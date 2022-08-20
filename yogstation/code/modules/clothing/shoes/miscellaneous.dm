@@ -46,3 +46,7 @@
 	icon = 'icons/obj/clothing/shoes.dmi'
 	icon_state = "fire_crocs"
 	item_state = "fire_crocs"
+
+/obj/item/clothing/shoes/fire_crocs/Initialize()
+	. = ..()
+	AddComponent(/datum/component/fishingbonus,5)

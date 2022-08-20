@@ -69,6 +69,9 @@
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
+			var/area/A = get_area(loc)
+			var/msg = "Plasma depleted in [A.map_name], replacement tank required."
+			radio.talk_into(src, msg, RADIO_CHANNEL_ENGINEERING)
 			eject()
 
 	for(var/gasID in using)
@@ -108,7 +111,11 @@
 			toggle_power()
 			user.visible_message("[user.name] turns the [src.name] [active? "on":"off"].", \
 			span_notice("You turn the [src.name] [active? "on":"off"]."))
-			var/fuel = loaded_tank.air_contents.get_moles(/datum/gas/plasma)
+			//yogs start -- fixes runtime with empty rad collectors
+			var/fuel = 0
+			if(loaded_tank)
+				fuel = loaded_tank.air_contents.get_moles(/datum/gas/plasma)
+			//yogs end
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [key_name(user)]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SINGULO)
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [key_name(user)]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SUPERMATTER) // yogs - so supermatter investigate is useful
 			return

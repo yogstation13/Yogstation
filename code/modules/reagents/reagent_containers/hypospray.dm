@@ -2,10 +2,6 @@
 #define HYPO_SPRAY "Spray"
 #define HYPO_DRAW "Draw"
 
-#define HYPOMENU_MAIN "Main"
-#define HYPOMENU_TRANSFER "Transfer Amount"
-#define HYPOMENU_MODE "Mode"
-
 /obj/item/reagent_containers/autoinjector
 	name = "autoinjector"
 	desc = "A sterile, air-needle autoinjector for rapid administration of drugs to patients."
@@ -83,7 +79,7 @@
 	name = "combat stimulant autoinjector"
 	desc = "A modified air-needle autoinjector, used by support operatives to quickly heal injuries in combat."
 	amount_per_transfer_from_this = 10
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	volume = 90
 	ignore_flags = 1 // So they can heal their comrades.
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 30, /datum/reagent/medicine/omnizine = 30, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/atropine = 15)
@@ -96,7 +92,7 @@
 /obj/item/reagent_containers/autoinjector/magillitis
 	name = "experimental autoinjector"
 	desc = "A modified air-needle autoinjector with a small single-use reservoir. It contains an experimental serum."
-	icon_state = "combat_hypo"
+	icon_state = "old_combat_hypo"
 	volume = 5
 	reagent_flags = NONE
 	list_reagents = list(/datum/reagent/magillitis = 5)
@@ -204,6 +200,7 @@
 /obj/item/reagent_containers/autoinjector/medipen/atropine
 	name = "atropine autoinjector"
 	desc = "A rapid way to save a person from a critical injury state!"
+	icon_state = "atropine"
 	list_reagents = list(/datum/reagent/medicine/atropine = 10)
 
 /obj/item/reagent_containers/autoinjector/medipen/pumpup
@@ -628,10 +625,61 @@
 			mode = HYPO_DRAW
 			to_chat(user, span_notice("[src] is now set to draw on application."))
 
+/obj/item/hypospray/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/hypospray_upgrade))
+		var/obj/item/hypospray_upgrade/MK = I
+		if(MK.install(src, user))
+			to_chat(user, span_notice("You install the [MK] into the [src]."))
+			playsound(src, 'sound/items/screwdriver.ogg', 100, 1)
+			qdel(MK)
+	else
+		..()
+
+/obj/item/hypospray_upgrade
+	name = "hypospray modification kit"
+	desc = "An upgrade for hyposprays."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "modkit"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/hypospray_upgrade/attackby(obj/item/A, mob/user)
+	if(istype(A, /obj/item/hypospray) && !issilicon(user))
+		if(install(A, user))
+			to_chat(user, span_notice("You install the [src] into the [A]."))
+			playsound(A, 'sound/items/screwdriver.ogg', 100, 1)
+			qdel(src)
+	else
+		..()
+
+/obj/item/hypospray_upgrade/proc/install(var/obj/item/hypospray/hypo, mob/user)
+	to_chat(user, span_notice("The modkit you're trying to install is not meant to exist."))
+	return FALSE
+
+/obj/item/hypospray_upgrade/quickload
+	name = "hypospray quickload upgrade"
+	desc = "An upgrade for hyposprays that installs a quickloading mechanism, allowing tactical reloads by using a container on it."
+
+/obj/item/hypospray_upgrade/quickload/install(var/obj/item/hypospray/hypo, mob/user)
+	if(hypo.quickload)
+		to_chat(user, span_notice("[hypo] already has a quickloading mechanism!"))
+		return FALSE
+	else
+		hypo.quickload = TRUE
+		return TRUE
+
+/obj/item/hypospray_upgrade/piercing
+	name = "hypospray piercing upgrade"
+	desc = "An upgrade for hyposprays that installs a diamond tipped needle, allowing it to pierce thick clothing."
+
+/obj/item/hypospray_upgrade/piercing/install(var/obj/item/hypospray/hypo, mob/user)
+	if(hypo.penetrates)
+		to_chat(user, span_notice("[hypo] already has a piercing mechanism!"))
+		return FALSE
+	else
+		hypo.penetrates = TRUE
+		return TRUE
+
 #undef HYPO_INJECT
 #undef HYPO_SPRAY
 #undef HYPO_DRAW
 
-#undef HYPOMENU_MAIN
-#undef HYPOMENU_TRANSFER
-#undef HYPOMENU_MODE
