@@ -1,3 +1,9 @@
+//////////////////////////////////////////////
+//                                          //
+//               SHAPE BLOOD                //
+//                                          //
+//////////////////////////////////////////////
+
 /datum/action/bloodsucker/shape_blood
 	name = "Shape Blood"
 	desc = "Shape your blood in a form of various weapons."
@@ -22,12 +28,12 @@
 		"Blood shield" = image(icon = 'icons/obj/vamp_obj.dmi', icon_state = "blood_shield"),
 		)
 	if(level_current >= 3)
-		"Bloodblade" = image(icon = 'icons/obj/changeling.dmi', icon_state = "arm_blade")
+		guns["Bloodblade"] = image(icon = 'icons/obj/changeling.dmi', icon_state = "arm_blade")
 	if(level_current >= 4)
 		if(level_current >= 6)
-			"Bloodbolt" = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
+			guns["Bloodbolt"] = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
 		else
-			"Weak Bloodbolt" = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
+			guns["Weak Bloodbolt"] = image(icon = 'icons/obj/projectiles.dmi', icon_state = "bloodbolt")
 
 	var/choice = show_radial_menu(owner, owner, guns, radius = 42)
 	if(!choice)
@@ -135,7 +141,7 @@
 		loc.visible_message(span_warning("[loc.name] form a strange weapon from their blood!"))
 
 /obj/item/bloodhand
-	name = "blood stained hand"
+	name = "bloodhand"
 	desc = "There is blood floating around it."
 	icon = 'icons/obj/wizard.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
