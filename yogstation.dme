@@ -1431,6 +1431,7 @@
 #include "code\modules\antagonists\bloodsuckers\powers\feed.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\fortitude.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\gangrel.dm"
+#include "code\modules\antagonists\bloodsuckers\powers\geometer.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\gohome.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\masquerade.dm"
 #include "code\modules\antagonists\bloodsuckers\powers\recuperate.dm"
