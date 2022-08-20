@@ -526,11 +526,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 
 			playsound(loc, 'sound/weapons/ricochet.ogg', 50, 1)
 			return BULLET_ACT_FORCE_PIERCE
-		else	//we instead flip the coin
-
-			spawn() flip(flash = TRUE) //we don't want to wait for flipping to finish in order to do the impact
-			return BULLET_ACT_TURF
-	else
-		. = ..()
+			
+		//we instead flip the coin
+		INVOKE_ASYNC(src, .proc/flip, null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
+		return BULLET_ACT_TURF
+	. = ..()
 
 #undef ORESTACK_OVERLAYS_MAX
