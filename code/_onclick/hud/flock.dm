@@ -1,4 +1,4 @@
-/datum/hud/flockdrone
+/datum/hud/flockdrone 
 	var/obj/screen/flockdrone_resources/resources
 
 /datum/hud/flockdrone/New(mob/owner)
