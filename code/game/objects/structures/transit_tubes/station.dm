@@ -142,14 +142,17 @@
 				SleepTime -= 2 //Cargo pods leave the station faster.
 				var/atom/input = get_step(src, turn(boarding_dir, 180))
 				var/atom/output = get_turf(src)
-				if(pod.contents.len)
-					pod.empty_pod(output)
-					playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
-				else
-					for (var/obj/item/S in input)
+				for (var/obj/item/S in pod)
+						S.forceMove(output)
+						playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
+				for (var/obj/structure/closet/B in pod)
+						B.forceMove(input)
+						playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
+			else
+				for (var/obj/item/S in input)
 						S.forceMove(pod)
 						playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
-					for (var/obj/structure/closet/B in input)
+				for (var/obj/structure/closet/B in input)
 						B.close()
 						B.forceMove(pod)
 						playsound(src, 'sound/mecha/mechturn.ogg', 25 ,1)
