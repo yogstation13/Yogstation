@@ -1,0 +1,6 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Common Mineral Prospecting now needs 20 sheets"
+  - tweak: "Plasma Extraction needs 20 sheets"
+  - tweak: "Strange Material Prospecting needs 5 BS crystals now"
