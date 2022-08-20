@@ -1,0 +1,6 @@
+author: "SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Added IAA to dynamic"
+  - tweak: "Removes some silicon related code from IAA"
+  - spellcheck: "Renamed IAA gamemode files from double agents to internal affairs"
