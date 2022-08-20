@@ -17,8 +17,6 @@
 	climbable = FALSE
 	CanAtmosPass = ATMOS_PASS_NO
 
-
-
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
 	//Seccies and brig phys may always pass, either way.
