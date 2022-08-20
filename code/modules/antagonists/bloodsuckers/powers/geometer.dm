@@ -34,3 +34,24 @@
 	icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "blood_shield"
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
+	force = 13 //Also a weak weapon
+	var/block_cost = 15
+
+/obj/item/shield/bloodsucker/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+	var/datum/antagonist/bloodsucker/BS = IS_BLOODSUCKER(owner)
+	var/kill_me = FALSE
+	if(!BS)
+		kill_me = TRUE
+	else
+		if(owner.blood_volume <= block_cost)
+			to_chat(owner, span_warning("Your [src] dissolves, as you don't have enough blood to sustain it!"))
+			kill_me = TRUE
+		else
+			BS.AddBloodVolume(-block_cost)
+			kill_me = FALSE
+	if(kill_me)
+		visible_message(span_warning("[src] dissolves in a puddle of blood!"))
+		new /obj/effect/decal/cleanable/blood (owner ? get_turf(owner) : get_turf(src))
+		qdel(src)
+	return ..()
+
