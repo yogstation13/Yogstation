@@ -86,8 +86,13 @@
 
 
 /obj/item/weldingtool/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return (FIRELOSS)
+	if(isOn())
+		user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
+		if(!use_tool(user, 5 SECONDS, user))
+			return MANUAL_SUICIDE_NONLETHAL
+		return FIRELOSS
+	user.visible_message(span_suicide("[user] tries welds [user.p_their()] every orifice closed! But forgot to turn the [src] on."))
+	return SHAME
 
 /obj/item/weldingtool/proc/explode()
 	var/turf/T = get_turf(loc)
@@ -150,7 +155,7 @@
 
 	update_icon()
 
-/obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+/obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
 	target.add_overlay(GLOB.welding_sparks)
 	. = ..()
 	target.cut_overlay(GLOB.welding_sparks)

@@ -32,12 +32,17 @@
 		              /obj/item/reagent_containers/pill/morphine = 4,
 		              /obj/item/reagent_containers/pill/charcoal = 6,
 		              /obj/item/storage/box/hug/medical = 1)
-	premium = list(/obj/item/reagent_containers/medspray/synthflesh = 2,
+	premium = list(/obj/item/reagent_containers/medspray/synthflesh = 4,
 		           /obj/item/storage/pill_bottle/psicodine = 2,
 		           /obj/item/reagent_containers/autoinjector/medipen = 3,
 		           /obj/item/storage/belt/medical = 3,
 		           /obj/item/wrench/medical = 1,
-				   /obj/item/storage/firstaid/hypospray = 3,
+				   /obj/item/storage/firstaid/hypospray/basic/hypo = 3,
+				   /obj/item/storage/firstaid/hypospray/brute = 1,
+				   /obj/item/storage/firstaid/hypospray/burn = 1,
+				   /obj/item/storage/firstaid/hypospray/toxin = 1,
+				   /obj/item/storage/firstaid/hypospray/oxygen = 1,
+				   /obj/item/storage/firstaid/hypospray/advanced/hypo = 3,
 		           /obj/item/storage/firstaid/advanced = 2)
 	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
 	resistance_flags = FIRE_PROOF

@@ -122,6 +122,7 @@
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
+	process_flags = ORGANIC | SYNTHETIC
 
 /*
  *	Water reaction to turf
@@ -331,6 +332,7 @@
 	name = "Hell Water"
 	description = "YOUR FLESH! IT BURNS!"
 	taste_description = "burning"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/M)
 	M.fire_stacks = min(5,M.fire_stacks + 3)
@@ -503,6 +505,7 @@
 	taste_description = "slime"
 	var/datum/species/race = /datum/species/human
 	var/mutationtext = span_danger("The pain subsides. You feel... human.")
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/H)
 	..()
@@ -964,6 +967,7 @@
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	taste_description = "the inside of a reactor"
 	var/irradiation_level = 1
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/uranium/on_mob_life(mob/living/carbon/M)
 	M.apply_effect(irradiation_level/M.metabolism_efficiency,EFFECT_IRRADIATE,0)
@@ -984,6 +988,7 @@
 	color = "#C7C7C7" // rgb: 199,199,199
 	taste_description = "the colour blue and regret"
 	irradiation_level = 2*REM
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/bluespace
 	name = "Bluespace Dust"
@@ -991,6 +996,7 @@
 	reagent_state = SOLID
 	color = "#0000CC"
 	taste_description = "fizzling blue"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/bluespace/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
@@ -1030,6 +1036,7 @@
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of welder fuel"
 	glass_desc = "Unless you're an industrial tool, this is probably not safe for consumption."
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(method == TOUCH || method == VAPOR)
@@ -1455,7 +1462,7 @@
 /datum/reagent/colorful_reagent/crayonpowder/black
 	name = "Black Crayon Powder"
 	colorname = "black"
-	color = "#1C1C1C" // not quite black
+	color = "#404040" // not quite black
 	random_color_list = list("#404040")
 
 /datum/reagent/colorful_reagent/crayonpowder/white
@@ -1529,6 +1536,7 @@
 	color = "#C8A5DC"
 	taste_description = "bitterness"
 	taste_mult = 1.5
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/stable_plasma/on_mob_life(mob/living/carbon/C)
 	C.adjustPlasma(10)
@@ -1993,6 +2001,41 @@
 	description = "Just add water!"
 	color = "#020202"
 	taste_description = "bananas"
+	can_synth = TRUE
+
+/datum/reagent/cow_powder
+	name = "Cow Powder"
+	description = "Just add water!"
+	color = "#fffbf1"
+	taste_description = "milk"
+	can_synth = TRUE
+
+/datum/reagent/chicken_powder
+	name = "Chicken Powder"
+	description = "Just add water!"
+	color = "#ffb94f"
+	taste_description = "eggs"
+	can_synth = TRUE
+
+/datum/reagent/sheep_powder
+	name = "Sheep Powder"
+	description = "Just add water!"
+	color = "#ffffff"
+	taste_description = "wool"
+	can_synth = TRUE
+
+/datum/reagent/goat_powder
+	name = "Goat Powder"
+	description = "Just add water!"
+	color = "#8a8782"
+	taste_description = "rage"
+	can_synth = TRUE
+
+/datum/reagent/mouse_powder
+	name = "Mouse Powder"
+	description = "Just add water!"
+	color = "#8a8782"
+	taste_description = "squeaking"
 	can_synth = TRUE
 
 /datum/reagent/cellulose

@@ -276,6 +276,20 @@
 	results = list(/datum/reagent/medicine/psicodine = 5)
 	required_reagents = list( /datum/reagent/medicine/mannitol = 2, /datum/reagent/water = 2, /datum/reagent/impedrezene = 1)
 
+/datum/chemical_reaction/system_cleaner
+	name = "System Cleaner"
+	id = /datum/reagent/medicine/system_cleaner
+	results = list(/datum/reagent/medicine/system_cleaner = 5)
+	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/chlorine = 1, /datum/reagent/phenol = 2, /datum/reagent/potassium = 1)
+
+/datum/chemical_reaction/liquid_solder
+	name = "Liquid Solder"
+	id = /datum/reagent/medicine/liquid_solder
+	results = list(/datum/reagent/medicine/liquid_solder = 3)
+	required_reagents = list( /datum/reagent/consumable/ethanol = 1, /datum/reagent/copper = 1, /datum/reagent/silver = 1)
+	required_temp = 370
+	mix_message = "The mixture becomes a metallic slurry."
+
 /datum/chemical_reaction/burnmix // Chemistry recipe
 	name = "BurnMix"
 	required_temp = 700
