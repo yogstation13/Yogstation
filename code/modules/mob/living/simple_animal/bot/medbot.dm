@@ -454,10 +454,21 @@
 	if(C.suiciding)
 		return FALSE //Kevorkian school of robotic medical assistants.
 
+	if(istype(C.dna.species, /datum/species/ipc))
+		return FALSE
+
 	if(emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
 		return TRUE
 
 	if(HAS_TRAIT(C,TRAIT_MEDICALIGNORE))
+		return FALSE
+
+	var/can_inject = FALSE
+	for(var/X in C.bodyparts)
+		var/obj/item/bodypart/part = X
+		if(part.status == BODYPART_ORGANIC)
+			can_inject = TRUE
+	if(!can_inject)
 		return FALSE
 
 	if(ishuman(C))

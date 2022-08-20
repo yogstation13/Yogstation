@@ -770,6 +770,20 @@
 					/obj/item/paper/guides/conveyor)
 	crate_name = "conveyor assembly crate"
 
+/datum/supply_pack/engineering/atmos/fire
+	name = "Advanced Atmos Firesuit Crate"
+	desc = "Contains 4 atmos firesuits"
+	cost = 2000
+	contains = list(/obj/item/clothing/suit/fire/atmos,
+					/obj/item/clothing/suit/fire/atmos,
+					/obj/item/clothing/suit/fire/atmos,
+					/obj/item/clothing/suit/fire/atmos,
+					/obj/item/clothing/head/hardhat/atmos,
+					/obj/item/clothing/head/hardhat/atmos,
+					/obj/item/clothing/head/hardhat/atmos,
+					/obj/item/clothing/head/hardhat/atmos)
+	crate_name = "advanced atmos firesuit crate"
+
 /datum/supply_pack/engineering/engiequipment
 	name = "Engineering Gear Crate"
 	desc = "Gear up with three toolbelts, high-visibility vests, welding goggles, hardhats, and two pairs of meson goggles!"
@@ -1043,7 +1057,7 @@
 	desc = "The power of the heavens condensed into a single crystal. Requires CE access to open."
 	cost = 10000
 	access = ACCESS_CE
-	contains = list(/obj/machinery/power/supermatter_crystal/shard)
+	contains = list(/obj/item/choice_beacon/supermatter)
 	crate_name = "supermatter shard crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
@@ -1946,7 +1960,7 @@
 
 /datum/supply_pack/organic/food
 	name = "Food Crate"
-	desc = "Get things cooking with this crate full of useful ingredients! Contains a dozen eggs, three bananas, and some flour, rice, milk, soymilk, salt, pepper, enzyme, sugar, and monkeymeat."
+	desc = "Get things cooking with this crate full of useful ingredients! Contains a dozen eggs, three bananas, and some flour, rice, milk, soymilk, salt, pepper, cinnamon, enzyme, sugar, and monkeymeat." // yogs
 	cost = 1000
 	contains = list(/obj/item/reagent_containers/food/condiment/flour,
 					/obj/item/reagent_containers/food/condiment/rice,
@@ -1954,6 +1968,7 @@
 					/obj/item/reagent_containers/food/condiment/soymilk,
 					/obj/item/reagent_containers/food/condiment/saltshaker,
 					/obj/item/reagent_containers/food/condiment/peppermill,
+					/obj/item/reagent_containers/food/condiment/cinnamon, // Yogs -- Adds cinnamon shakers to this crate
 					/obj/item/storage/box/fancy/egg_box,
 					/obj/item/reagent_containers/food/condiment/enzyme,
 					/obj/item/reagent_containers/food/condiment/sugar,
@@ -2743,6 +2758,14 @@
 	crate_name = "jukebox crate"
 	crate_type = /obj/structure/closet/crate/large
 
+/datum/supply_pack/misc/jukebox/disco
+	name = "Radiant Dance Machine Mark IV Crate"
+	desc = "It's a jukebox with more lights."
+	cost = 6000
+	contains = list(/obj/machinery/jukebox/disco)
+	crate_name = "radiant dance machine mark IV crate"
+	crate_type = /obj/structure/closet/crate/large
+
 /datum/supply_pack/misc/pda
 	name = "Modular Personal Digital Assistant Crate"
 	desc = "A create containing a modular PDA."
@@ -2782,3 +2805,10 @@
 	small_item = TRUE
 	contains = list(/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
+
+/datum/supply_pack/critter/mothroach
+	name = "Mothroach Crate"
+	desc = "Put the mothroach on your head and find out what true cuteness looks like."
+	cost = 7500
+	contains = list(/mob/living/simple_animal/friendly/mothroach)
+	crate_name = "mothroach crate"

@@ -418,6 +418,9 @@
 /obj/machinery/autolathe/proc/process_queue() //Process the queue from the autoqueue list. Will add temp metal and glass later.
 	var/datum/design/D = autoqueue[1][1]
 	var/multiplier = autoqueue[1][2]
+	if(!multiplier || !isnum(multiplier) || isnan(multiplier))
+		message_admins("[ADMIN_FULLMONTY(usr)] is attempting to create NAN stacks of items")
+		return
 	if(!processing_queue)
 		say("Queue processing halted.")
 		return
