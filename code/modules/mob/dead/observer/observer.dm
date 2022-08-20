@@ -57,7 +57,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
 	var/datum/action/unobserve/UO 
-	var/list/temporaryactions = list() // For observers need to keep this referenced
 
 	// Current Viewrange
 	var/view = 0
@@ -827,7 +826,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		target.observers -= src
 		UNSETEMPTY(target.observers)
 	observetarget = null
-	actions = temporaryactions
+	actions = originalactions
 	actions -= UO
 	update_action_buttons()
 
@@ -859,10 +858,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!UO)
 			UO = new // Convinent way to unobserve
 		UO.Grant(src)
-		originalactions = actions.Copy()
 		if(mob_eye.hud_used)
-			temporaryactions = mob_eye.actions.Copy() // Copy to prevent self referencing
-			actions += temporaryactions
 			LAZYINITLIST(mob_eye.observers)
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
