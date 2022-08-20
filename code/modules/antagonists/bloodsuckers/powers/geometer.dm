@@ -42,6 +42,13 @@
 	blood_weapon = null
 	DeactivatePower()
 
+/datum/action/bloodsucker/shape_blood/DeactivatePower()
+	. = ..()
+	if(blood_weapon && !QDELETED(blood_weapon))
+		UnregisterSignal(blood_weapon, COMSIG_PARENT_QDELETING)
+		qdel(blood_weapon)
+	blood_weapon = null
+
 /obj/item/shield/bloodsucker
 	name = "Blood shield"
 	desc = "A shield, made from blood."
@@ -51,7 +58,7 @@
 	force = 13 //Also a weak weapon
 	var/block_cost = 15
 
-/obj/item/shield/bloodsucker/Initialize(mapload,silent,synthetic)
+/obj/item/shield/bloodsucker/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 	if(ismob(loc) && !silent)
