@@ -80,7 +80,7 @@
 /obj/item/shield/bloodsucker/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
-	if(ismob(loc) && !silent)
+	if(ismob(loc))
 		loc.visible_message(span_warning("[loc.name] form a strange shield from their blood!"))
 
 /obj/item/shield/bloodsucker/examine(mob/user)
@@ -154,10 +154,10 @@
 /obj/item/bloodhand/attack()
 	return
 
-/obj/item/bloodhand/afterattack(atom/target, mob/user, proximity)
+/obj/item/bloodhand/afterattack(atom/target, mob/living/carbon/user, proximity)
 	. = ..()
 	var/datum/antagonist/bloodsucker/BS = IS_BLOODSUCKER(user)
-	if(!BS)
+	if(!BS || !iscarbon(user))
 		qdel(src)
 		return
 	if(user.blood_volume <= shoot_cost)
@@ -167,7 +167,7 @@
 	var/obj/item/projectile/magic/geometer/bloodbolt = new projectile_type (user.loc)
 	bloodbolt.firer = user
 	bloodbolt.def_zone = ran_zone(user.zone_selected)
-	bloodbolt.preparePixelProjectile(target_atom, user)
+	bloodbolt.preparePixelProjectile(target, user)
 	INVOKE_ASYNC(bloodbolt, /obj/item/projectile.proc/fire)
 	playsound(user, pick(list('sound/effects/wounds/blood1.ogg','sound/effects/wounds/blood2.ogg','sound/effects/wounds/blood3.ogg')), 60, TRUE)
 	BS.AddBloodVolume(-shoot_cost)
