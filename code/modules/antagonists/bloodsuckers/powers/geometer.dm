@@ -195,4 +195,59 @@
 	shoot_cost = 15
 	projectile_type = /obj/item/projectile/magic/geometer/weak
 
+//////////////////////////////////////////////
+//                                          //
+//               DRAIN LIFE                 //
+//                                          //
+//////////////////////////////////////////////
 
+/datum/action/bloodsucker/targeted/life_drain
+	name = "Drain Blood"
+	desc = "Cleave your targets veins and drain it's blood."
+	button_icon_state = "cleave"
+	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	power_explanation = "<b>Drain Blood</b>:\n\
+		Click any player to instantly drain their blood and make them bleed.\n\
+		If higher then level 3, will additionaly apply a slash wound to your target.\n\
+		If higher then level 5, will additionaly heal you and deal some brute damage to the target.\n\
+		Higher levels will increase the amount of blood stealed."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	cooldown = 35 SECONDS
+	target_range = 6
+	power_activates_immediately = FALSE
+	var/original_life_drain
+
+/datum/action/bloodsucker/targeted/life_drain/CheckValidTarget(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
+	return iscarbon(target_atom) && iscarbon(owner)
+
+/datum/action/bloodsucker/targeted/life_drain/FireTargetedPower(atom/target_atom)
+	. = ..()
+	var/mob/living/carbon/target = target_atom
+	var/mob/living/carbon/user = owner
+
+	var/life_to_drain = 20 + 5 * level_current
+	var/life_drained = target.blood_volume > life_to_drain ? life_to_drain : target.blood_volume
+	target.blood_volume -= life_drained
+	bloodsuckerdatum_power.AddBloodVolume(life_drained)
+	target.bleed(15)
+
+	if(level_current >= 3)
+		var/datum/wound/slash/critical/crit_wound = new
+		crit_wound.apply_wound(pick(target.bodyparts))
+
+	if(level_current >= 5)
+		target.adjustBruteLoss(10)
+		user.adjustBruteLoss(-10)
+
+	to_chat(target, span_userdanger("Your veins sudennly [level_current >= 5 ? "explode" : "torn open"] with pain!"))
+	if(prob(life_to_drain)) //Why not
+		target.emote("scream")
+
+	to_chat(user, span_notice("You cut [target]'s veins open!"))
+
+	PowerActivatedSuccessfully()
