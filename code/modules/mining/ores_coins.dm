@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, unique = TRUE)
 		playsound(loc, 'sound/items/coinflip.ogg', 50, 1)
 		var/oldloc = loc
-		sleep(15)
+		sleep(1.5 SECONDS)
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 		if(loc == oldloc && user && !user.incapacitated())
 			user.visible_message("[user] has flipped [src]. It lands on [coinflip].", \
