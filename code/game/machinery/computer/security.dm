@@ -133,7 +133,7 @@
 					record["recordColor"] = "#006699"
 					record["recordIcon"] = "dove"
 				if("None")
-					record["recordColor"] = "#00fcd2"
+					record["recordColor"] = "#740349"
 				if("")
 					crime_status = "No Record."
 
@@ -203,7 +203,7 @@
 				if("Discharged")
 					record["recordColor"] = "#006699"
 				if("None")
-					record["recordColor"] = "#00fcd2"
+					record["recordColor"] = "#740349"
 
 			record["citations"] = list()
 

@@ -32,7 +32,7 @@
 				if("Discharged")
 					background = "background-color:#006699;"
 				if("None")
-					background = "background-color:#00fcd2;"
+					background = "background-color:#740349;"
 				if("")
 					background = "''" //"'background-color:#FFFFFF;'"
 			dat += "<font size='4'><b>Warrant Data</b></font>"
