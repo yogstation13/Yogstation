@@ -185,6 +185,11 @@
 	tastes = list("meat" = 4, "a fondness for wearing hats" = 1)
 	foodtype = RAW | MEAT | GROSS
 
+/obj/item/reagent_containers/food/snacks/meat/slab/mothroach
+	name = "mothroach meat"
+	desc = "A light slab of meat."
+	foodtype = RAW | MEAT | GROSS
+
 /obj/item/reagent_containers/food/snacks/meat/slab/pug
 	name = "pug meat"
 	desc = "Tastes like... well you know..."

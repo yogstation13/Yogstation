@@ -362,4 +362,52 @@
 	else
 		adjust_favor(75, user)
 	qdel(offering)
+	return 
+	
+/// The Honkmother sect, sacrifice bananas to feed your prank power. 
+
+/datum/religion_sect/honkmother
+	name = "The Honkmother"
+	desc = "A sect dedicated to the Honkmother"
+	convert_opener = "The Honkmother welcomes you to the party, prankster.<br>Sacrifice bananas to power our pranks and grant you favor."
+	alignment = ALIGNMENT_NEUT
+	max_favor = 10000
+	desired_items = list(/obj/item/reagent_containers/food/snacks/grown/banana)
+	rites_list = list(/datum/religion_rites/holypie, /datum/religion_rites/honkabot, /datum/religion_rites/bananablessing)
+	altar_icon_state = "convertaltar-red"
+
+//honkmother bible is supposed to only cure clowns, honk, and be slippery. I don't know how I'll do that
+/datum/religion_sect/honkmother/sect_bless/sect_bless(mob/living/blessed, mob/living/user)
+	if(!ishuman(blessed))
+		return
+	var/mob/living/carbon/human/H = blessed
+	var/datum/mind/M = H.mind
+	if(M.assigned_role != "Clown")
+		return
+	var/heal_amt = 10
+	var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
+
+	if(hurt_limbs.len)
+		for(var/X in hurt_limbs)
+			var/obj/item/bodypart/affecting = X
+			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
+				H.update_damage_overlays()
+	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+	to_chat(H, span_boldnotice("The radiance of [GLOB.deity] heals you!"))
+	playsound(user, "sound/miscitems/bikehorn.ogg", 25, TRUE, -1)
+	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/honk)
 	return TRUE
+
+/datum/religion_sect/honkmother/on_conversion(mob/living/L)
+	. = ..()
+	for(var/obj/item/storage/book/bible/da_bible in L.get_contents())
+		da_bible.AddComponent(/datum/component/slippery, 40)
+		da_bible.desc += " It has an usually slippery texture."
+
+/datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana/offering, mob/living/user)
+	if(!istype(offering))
+		return
+	adjust_favor(10, user)			
+	to_chat(user, span_notice("HONK"))
+	qdel(offering)
+	return

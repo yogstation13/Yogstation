@@ -22,6 +22,8 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	can_be_held = TRUE
 	do_footstep = TRUE
+	wuv_happy = "yaps happily!"
+	wuv_angy = "growls!"
 
 //Corgis and pugs are now under one dog subtype
 
@@ -679,14 +681,6 @@
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					setDir(i)
 					sleep(0.1 SECONDS)
-
-/mob/living/simple_animal/pet/dog/attack_hand(mob/living/carbon/human/M)
-	. = ..()
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			wuv(M)
-		if(INTENT_HARM)
-			wuv(M, FALSE)
 
 /mob/living/simple_animal/pet/dog/bullterrier
 	name = "\improper bull terrier"

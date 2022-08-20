@@ -76,6 +76,21 @@
 		return
 	togglelock(user)
 
+/obj/item/storage/lockbox/emp_act(severity)
+	switch(severity)
+		if(EMP_HEAVY)
+			emag_act()
+		if(EMP_LIGHT)
+			if(prob(60))
+				var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
+				locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+				if(locked)
+					icon_state = icon_locked
+					SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_ALL)
+				else
+					icon_state = icon_closed
+
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of mindshield implants"
 	req_access = list(ACCESS_SECURITY)
@@ -220,7 +235,7 @@
 	name = "vial box"
 	desc = "A small box that can hold up to six vials in a sealed enviroment."
 	icon = 'icons/obj/vial_box.dmi'
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "vialbox"
 	req_access = list(ACCESS_MEDICAL)
 	icon_locked = "vialbox"

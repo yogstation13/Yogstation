@@ -310,7 +310,7 @@
 	SHOULD_BE_PURE(TRUE)
 	if(ismob(A))
 		var/mob/B = A
-		return B.eye_blind
+		return B.eye_blind ? TRUE : HAS_TRAIT(B, TRAIT_BLIND)
 	return FALSE
 
 ///Is the mob hallucinating?
@@ -550,7 +550,7 @@
 		if(LOG_EMOTE)
 			colored_message = "(EMOTE) [colored_message]"
 	
-	var/list/timestamped_message = list("\[[time_stamp()]\] [key_name(src)] [loc_name(src)] (Event #[LAZYLEN(logging[smessage_type])])" = colored_message)
+	var/list/timestamped_message = list("\[[worldtime2text()]\] [key_name(src)] [loc_name(src)] (Event #[LAZYLEN(logging[smessage_type])])" = colored_message)
 
 	logging[smessage_type] += timestamped_message
 
@@ -562,6 +562,9 @@
 ///Can the mob hear
 /mob/proc/can_hear()
 	. = TRUE
+
+/mob/proc/has_mouth()
+	return FALSE 
 
 /**
   * Examine text for traits shared by multiple types.

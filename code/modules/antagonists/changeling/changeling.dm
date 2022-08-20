@@ -6,6 +6,7 @@
 	name = "Changeling"
 	roundend_category  = "changelings"
 	antagpanel_category = "Changeling"
+	show_to_ghosts = TRUE
 	job_rank = ROLE_CHANGELING
 	antag_moodlet = /datum/mood_event/changeling
 
