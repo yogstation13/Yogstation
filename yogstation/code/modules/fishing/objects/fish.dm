@@ -54,10 +54,12 @@ GLOBAL_LIST_INIT(fish_list,init_fish_list())
 	M.visible_message("[M] shows off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!", \
 						 span_notice("You show off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!"))
 	RegisterSignal(M,COMSIG_ATOM_DIR_CHANGE,.proc/stop_overlay,TRUE)
+	RegisterSignal(M,COMSIG_PARENT_PREQDELETED,.proc/stop_overlay,TRUE)
 
 /obj/item/reagent_containers/food/snacks/fish/proc/stop_overlay()
 	if(showoffer && showoff_overlay)
 		UnregisterSignal(showoffer,COMSIG_ATOM_DIR_CHANGE)
+		UnregisterSignal(showoffer,COMSIG_PARENT_PREQDELETED)
 		showoffer.cut_overlay(showoff_overlay)
 		showoffer = null
 		showoff_overlay = null
