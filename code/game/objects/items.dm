@@ -1027,13 +1027,13 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	// This is instant on byond's end, but to our clients this looks like a quick drop
 	animate(src, alpha = old_alpha, pixel_x = old_x, pixel_y = old_y, transform = matrix(), time = 3, easing = CUBIC_EASING)
 
-/atom/movable/proc/do_item_attack_animation(atom/attacked_atom, visual_effect_icon, obj/item/used_item)
+/atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item)
 	var/image/attack_image
 	if(visual_effect_icon)
-		attack_image = image('icons/effects/effects.dmi', attacked_atom, visual_effect_icon, attacked_atom.layer + 0.1)
+		attack_image = image('icons/effects/effects.dmi', A, visual_effect_icon, A.layer + 0.1)
 	else if(used_item)
-		attack_image = image(icon = used_item, loc = attacked_atom, layer = attacked_atom.layer + 0.1)
-		attack_image.plane = attacked_atom.plane
+		attack_image = image(icon = used_item, loc = A, layer = A.layer + 0.1)
+		attack_image.plane = A.plane
 
 		// Scale the icon.
 		attack_image.transform *= 0.4
@@ -1041,7 +1041,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		attack_image.appearance_flags = APPEARANCE_UI
 
 		// Set the direction of the icon animation.
-		var/direction = get_dir(src, attacked_atom)
+		var/direction = get_dir(src, A)
 		if(direction & NORTH)
 			attack_image.pixel_y = -12
 		else if(direction & SOUTH)
@@ -1061,7 +1061,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 	flick_overlay(attack_image, GLOB.clients, 10)
 	var/t_color = "#ffffff" //yogs start
-	if(ismob(src) &&  ismob(attacked_atom) && (!used_item))
+	if(ismob(src) &&  ismob(A) && (!used_item))
 		var/mob/M = src
 		t_color = M.a_intent == INTENT_HARM ? "#ff0000" : "#ffffff"
 	// And animate the attack!
