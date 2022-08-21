@@ -845,7 +845,7 @@
 
 /datum/status_effect/fake_virus
 	id = "fake_virus"
-	duration = 1800//3 minutes
+	duration = 3 MINUTES
 	status_type = STATUS_EFFECT_REPLACE
 	tick_interval = 1
 	alert_type = null
