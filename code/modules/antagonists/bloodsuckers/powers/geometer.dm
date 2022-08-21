@@ -322,7 +322,7 @@
 	for(var/obj/effect/decal/cleanable/target in range(1, get_turf(owner)))
 		constant_bloodcost = 0
 		break
-	if(level_current >= 5 && constant_bloodcost = 0 && !traits_given)
+	if(level_current >= 5 && constant_bloodcost == 0 && !traits_given)
 		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
 		ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, BLOODSUCKER_TRAIT)
 	else if(traits_given)
