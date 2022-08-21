@@ -29,7 +29,7 @@
 	// Brief descriptions in case they don't read the Wiki.
 	to_chat(owner, span_announce("List of all Clans:\n\
 		Gangrel - Prone to Frenzy, strange outcomes from being on frenzy, special power.\n\
-		Lasombra - Life in the shadows, very weak to fire but no brute damage, upgradable abilities through tasks.
+		Lasombra - Life in the shadows, very weak to fire but no brute damage, upgradable abilities through tasks.\n\
 		Geometer - Can't obtain and use standart abilities, but gain four unique abilities instead."))
 
 	var/answer = input("You have Ranked up far enough to remember your clan. Which clan are you part of?", "Our mind feels luxurious...") in options
