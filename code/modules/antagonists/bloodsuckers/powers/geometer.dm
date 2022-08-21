@@ -220,10 +220,18 @@
 	var/original_life_drain
 
 /datum/action/bloodsucker/targeted/life_drain/CheckValidTarget(atom/target_atom)
-	. = ..()
-	if(!.)
+	if(!iscarbon(target_atom))
 		return FALSE
-	return iscarbon(target_atom) && iscarbon(owner)
+	var/mob/living/carbon/targeted_carbon = target_atom
+	if(NOBLOOD in targeted_carbon.dna.species.species_traits)
+		return FALSE
+	return ..()
+
+/datum/action/bloodsucker/targeted/life_drain/CheckCanUse(mob/living/carbon/user)
+	if(!iscarbon(user))
+		to_chat(user, span_warning("You need to be a carbon."))
+		return FALSE
+	return ..()
 
 /datum/action/bloodsucker/targeted/life_drain/FireTargetedPower(atom/target_atom)
 	. = ..()
@@ -241,8 +249,9 @@
 		crit_wound.apply_wound(pick(target.bodyparts))
 
 	if(level_current >= 5)
-		target.adjustBruteLoss(10)
-		user.adjustBruteLoss(-10)
+		var/deal_and_heal = 5 + level_current
+		target.adjustBruteLoss(deal_and_heal)
+		user.adjustBruteLoss(-deal_and_heal)
 
 	to_chat(target, span_userdanger("Your veins sudennly [level_current >= 5 ? "explode" : "torn open"] with pain!"))
 	if(prob(life_to_drain)) //Why not
