@@ -208,8 +208,7 @@
 /datum/action/bloodsucker/targeted/life_drain
 	name = "Drain Blood"
 	desc = "Cleave your targets veins and drain it's blood."
-	button_icon_state = "cleave"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "power_bleed"
 	power_explanation = "<b>Drain Blood</b>:\n\
 		Click any player to instantly drain their blood and make them bleed.\n\
 		If higher then level 3, will additionaly apply a slash wound to your target.\n\
@@ -379,11 +378,11 @@
 	. = ..()
 	var/mob/living/carbon/target = target_atom
 
-	var/list/damtype_list = list(BRUTE, BURN, TOXIN)
+	var/list/damtype_list = list(BRUTE, BURN, TOX)
 	var/heal_amt = 15 + level_current
 	if(level_current >= 3)
 		damtype_list += OXY
-		target.AdjustStaminaLoss(heal_amt*2)
+		target.adjustStaminaLoss(heal_amt*2)
 
 	target.blood_volume += heal_amt
 
