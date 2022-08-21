@@ -19,6 +19,7 @@
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
+	minimal_character_age = 18 //My guy you are literally just a priest
 
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)

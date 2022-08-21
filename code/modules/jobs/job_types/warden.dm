@@ -25,6 +25,7 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_WARDEN
+	minimal_character_age = 20 //You're a sergeant, probably has some experience in the field
 
 	changed_maps = list("YogsPubby", "OmegaStation")
 

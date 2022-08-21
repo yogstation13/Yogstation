@@ -14,6 +14,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	var/list/selectable_traits_by_types = list(STATION_TRAIT_POSITIVE = list(), STATION_TRAIT_NEUTRAL = list(), STATION_TRAIT_NEGATIVE = list())
 	///Currently active announcer. Starts as a type but gets initialized after traits are selected
 	var/datum/centcom_announcer/announcer = /datum/centcom_announcer/default
+	var/datum/centcom_announcer/default_announcer = /datum/centcom_announcer/default
 
 /datum/controller/subsystem/processing/station/Initialize(timeofday)
 
@@ -24,6 +25,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	#endif
 
 	announcer = new announcer() //Initialize the station's announcer datum
+	default_announcer = new default_announcer()
 
 	return ..()
 

@@ -49,10 +49,11 @@
 /datum/design/blastdoorcontroller
 	name = "Blast Door Controller"
 	id = "blastdoorcontroller"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 20)
 	build_path = /obj/item/assembly/control
-	category = list("initial","T-Comm")
+	category = list("initial","Electronics")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/extinguisher
 	name = "Fire Extinguisher"
@@ -565,6 +566,24 @@
 	category = list("initial", "Medical", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/vial
+	name = "Vial"
+	id = "vial"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/glass = 250)
+	build_path = /obj/item/reagent_containers/glass/bottle/vial
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/large_vial
+	name = "Large Vial"
+	id = "large_vial"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/glass = 1250)
+	build_path = /obj/item/reagent_containers/glass/bottle/vial/large
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/healthanalyzer
 	name = "Health Analyzer"
 	id = "healthanalyzer"
@@ -982,6 +1001,22 @@
 	build_path = /obj/item/modular_computer/tablet
 	category = list("initial","Miscellaneous")
 
+/datum/design/phone
+	name = "Phone Frame"
+	id = "phone"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 250)
+	build_path = /obj/item/modular_computer/tablet/phone
+	category = list("initial","Miscellaneous")
+
+/datum/design/pda
+	name = "PDA Frame"
+	id = "pda"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 250)
+	build_path = /obj/item/modular_computer/tablet/pda
+	category = list("initial","Miscellaneous")
+
 /datum/design/slime_scanner
 	name = "Slime Scanner"
 	id = "slime_scanner"
@@ -1084,3 +1119,11 @@
 	build_path = /obj/item/airlock_painter/decal
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/discoball
+	name = "Portable Disco Ball"
+	id = "portable_discoball"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 300, /datum/material/glass = 100)
+	build_path = /obj/item/discoballdeployer
+	category = list("initial", "Miscellaneous")

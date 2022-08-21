@@ -24,6 +24,7 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	minimal_character_age = 18 //Just a few months of boot camp, not a whole year
 
 	changed_maps = list("EclipseStation", "YogsPubby", "OmegaStation")
 

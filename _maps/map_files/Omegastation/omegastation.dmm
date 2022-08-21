@@ -11049,7 +11049,7 @@
 	},
 /obj/item/storage/box/syringes,
 /obj/item/gun/syringe,
-/obj/item/reagent_containers/hypospray/CMO,
+/obj/item/storage/firstaid/hypospray/deluxe/cmo,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /obj/item/clothing/neck/stethoscope,
@@ -20781,7 +20781,7 @@
 "bbr" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/white,
-/obj/item/reagent_containers/hypospray/medipen,
+/obj/item/reagent_containers/autoinjector/medipen,
 /obj/machinery/door/window/westleft{
 	dir = 2;
 	name = "Medbay Desk";

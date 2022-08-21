@@ -228,7 +228,7 @@
 			new /obj/item/ammo_box/magazine/m10mm(src)
 			new /obj/item/ammo_box/magazine/m10mm/fire(src)
 			new /obj/item/reagent_containers/syringe/plasma(src)
-			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill(src)
+			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large/redpill(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
@@ -550,7 +550,7 @@
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade/PopulateContents()
 	new /obj/item/grenade/chem_grenade/tuberculosis(src)
 	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/hypospray/medipen/tuberculosiscure(src)
+		new /obj/item/reagent_containers/autoinjector/medipen/tuberculosiscure(src)
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/tuberculosiscure(src)
 

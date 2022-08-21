@@ -81,3 +81,53 @@
 	desc = "A clown hardsuit. The joke being that it is anything but."
 	icon_state = "hardsuit_clown"
 	item_state = "hardsuit_clown"
+
+/obj/item/clothing/suit/yogs/megumu
+	name = "Megumu's dress"
+	desc = "Tofu!"
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
+	icon = 'yogstation/icons/obj/clothing/suits.dmi'
+	icon_state = "megumu_dress"
+	item_state = "megumu_dress"
+
+/obj/item/clothing/neck/yogs/megumu
+	name = "Megumu's Cape"
+	desc = "Tofu!"
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/neck/neck.dmi'
+	icon = 'yogstation/icons/obj/clothing/neck.dmi'
+	icon_state = "megumu_cape"
+	item_state = "megumu_cape"
+
+/obj/item/clothing/head/soft/fishfear
+	name = "novelty fishing cap"
+	desc = "It's an extra-tall snap-back hat with a picture of a fish, and text that reads: \"Women fear me. Fish fear me. Men turn their eyes away from me as I walk. No beast dares make a sound in my presence. I am alone on this barren Earth.\""
+	mob_overlay_icon = 'icons/mob/clothing/head/fishfear.dmi'
+	worn_x_dimension = 32
+	worn_y_dimension = 64
+	icon_state = "fishfearsoft"
+	soft_type = "fishfear"
+	dog_fashion = /datum/dog_fashion/head/fishfear
+
+/obj/item/clothing/head/soft/fishfear/Initialize()
+	. = ..()
+	AddComponent(/datum/component/fishingbonus,5)
+
+/obj/item/clothing/head/yogs/froghat
+	name = "frog hat"
+	desc = "A strange hat that looks somewhat like a frog?"
+	icon_state = "froghat"
+	item_state = "froghat"
+
+/obj/item/clothing/head/yogs/froghat/Initialize()
+	. = ..()
+	AddComponent(/datum/component/fishingbonus,10)
+
+/obj/item/storage/box/megumu
+	name = "Megumu's box"
+	desc = "Contains Tofu"
+
+/obj/item/storage/box/megumu/PopulateContents()
+	. = ..()
+	new /obj/item/clothing/suit/yogs/megumu(src)
+	new /obj/item/clothing/neck/yogs/megumu(src)
+	new /obj/item/clothing/head/yogs/froghat(src)

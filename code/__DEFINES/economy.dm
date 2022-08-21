@@ -1,4 +1,5 @@
-#define STARTING_PAYCHECKS 5
+#define STARTING_PAYCHECKS_MIN 50 // Minimum roundstart money
+#define STARTING_PAYCHECKS_MAX 250 // Maximum roundstart money
 
 #define PAYCHECK_ASSISTANT 5
 #define PAYCHECK_MINIMAL 5
@@ -7,7 +8,8 @@
 #define PAYCHECK_HARD 40
 #define PAYCHECK_COMMAND 100
 
-#define STARTING_SEC_BUDGET 10000
+#define STARTING_SEC_BUDGET 14000
+#define STARTING_CAR_BUDGET 5000
 
 #define MAX_GRANT_CIV 2500
 #define MAX_GRANT_ENG 3000

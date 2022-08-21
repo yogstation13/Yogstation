@@ -5,19 +5,41 @@
 
 /obj/structure/mecha_wreckage
 	name = "exosuit wreckage"
-	desc = "Remains of some unfortunate mecha. Completely irreparable, but perhaps something can be salvaged."
+	desc = "Remains of some unfortunate mecha. Repairable, given some work."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
 	opacity = 0
-	var/list/welder_salvage = list(/obj/item/stack/sheet/plasteel, /obj/item/stack/sheet/metal, /obj/item/stack/rods)
-	var/list/wirecutters_salvage = list(/obj/item/stack/cable_coil)
-	var/list/crowbar_salvage = list()
-	var/salvage_num = 5
+	var/state = MECHA_WRECK_CUT
+	var/orig_mecha
+	var/can_be_reconstructed = FALSE
+	var/hint // Examine hint
+	var/list/equipment = list() // Equipment that the mech retains
+	// Total repair will take 80/40/27/20 seconds depending on capacitor tier. Roboticists repair 20% faster, so 64/32/21/16 seconds instead.
+	var/repair_efficiency = 0 // Capacitor tier
+	var/obj/item/stock_parts/cell/cell ///Keeps track of the mech's cell
+	var/obj/item/stock_parts/scanning_module/scanmod ///Keeps track of the mech's scanning module
 	var/mob/living/silicon/ai/AI //AIs to be salvaged
+
+/obj/structure/mecha_wreckage/examine(mob/user)
+	. = ..()
+	switch(repair_efficiency)
+		if(0)
+			. += span_danger("There was no capacitor to save this poor mecha from its doomed fate! It cannot be repaired!")
+		if(1)
+			. += span_danger("The weak capacitor did what little it could in preventing total destruction of this mecha. It is barely recoverable.")
+		if(2)
+			. += span_danger("The capacitor barely held the parts together upon its destruction. Repair will be difficult.")
+		if(3)
+			. += span_danger("The capacitor did well in preventing too much damage. Repair will be manageable.")
+		if(4)
+			. += span_danger("The capacitor did such a good job in preserving the chassis that you could almost call it functional. But it isn't. Repair should be easy though.")
+	if(hint)
+		. += hint
 
 /obj/structure/mecha_wreckage/Initialize(mapload, mob/living/silicon/ai/AI_pilot)
 	. = ..()
+	
 	if(!AI_pilot) //Type-checking for this is already done in mecha/Destroy()
 		return
 
@@ -35,50 +57,72 @@
 		. += span_notice("The AI recovery beacon is active.")
 
 /obj/structure/mecha_wreckage/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_WELDER)
-		if(salvage_num <= 0 || !length(welder_salvage))
-			to_chat(user, span_warning("You don't see anything that can be cut with [I]!"))
-			return
+	if(!can_be_reconstructed)
+		return ..()
+	if(!repair_efficiency)
+		return ..()
+	
+	switch(state)
+		if(MECHA_WRECK_CUT)
+			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
+				user.visible_message(span_notice("[user] begins to weld together \the [src]'s broken parts..."),
+										span_notice("You begin welding together \the [src]'s broken parts..."))
+				if(I.use_tool(src, user, 200/repair_efficiency, amount = 5, volume = 100, robo_check = TRUE))
+					state = MECHA_WRECK_DENTED
+					hint = span_notice("The chassis has suffered major damage and will require the dents to be smoothed out with a <b>welder</b>.")
+					to_chat(user, span_notice("The parts are loosely reattached, but are dented wildly out of place."))
+				return
+		if(MECHA_WRECK_DENTED)
+			if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
+				user.visible_message(span_notice("[user] welds out the many, many dents in \the [src]'s chassis..."),
+										span_notice("You weld out the many, many dents in \the [src]'s chassis..."))
+				if(I.use_tool(src, user, 200/repair_efficiency, amount = 5, volume = 100, robo_check = TRUE))
+					state = MECHA_WRECK_LOOSE
+					hint = span_notice("The mecha wouldn't make it two steps before falling apart. The bolts must be tightened with a <b>wrench</b>.")
+					to_chat(user, span_notice("The chassis has been repaired, but the bolts are incredibly loose and need to be tightened."))
+				return
+		if(MECHA_WRECK_LOOSE)
+			if(I.tool_behaviour == TOOL_WRENCH)
+				user.visible_message(span_notice("[user] slowly tightens the bolts of \the [src]..."),
+										span_notice("You slowly tighten the bolts of \the [src]..."))
+				if(I.use_tool(src, user, 180/repair_efficiency, volume = 50, robo_check = TRUE))
+					state = MECHA_WRECK_UNWIRED
+					hint = span_notice("The mech is nearly ready, but the <b>wiring</b> has been fried and needs repair.")
+					to_chat(user, span_notice("The bolts are tightened and the mecha is looking as good as new, but the wiring was fried in the destruction and needs repair."))
+				return
+		if(MECHA_WRECK_UNWIRED)
+			if(istype(I, /obj/item/stack/cable_coil) && I.tool_start_check(user, amount=5))
+				user.visible_message(span_notice("[user] starts repairing the wiring on \the [src]..."),
+										span_notice("You start repairing the wiring on \the [src]..."))
+				if(I.use_tool(src, user, 120/repair_efficiency, amount = 5, volume = 50, robo_check = TRUE))
+					create_mech()
+					to_chat(user, span_notice("The mecha has been fully repaired."))
+				return
+	return ..()
 
-		if(!I.use_tool(src, user, 0, volume=50))
-			return
-
-		var/type = prob(70) ? pick(welder_salvage) : null
-		if(type)
-			var/N = new type(get_turf(user))
-			user.visible_message("[user] cuts [N] from [src].", span_notice("You cut [N] from [src]."))
-			if(istype(N, /obj/item/mecha_parts/part))
-				welder_salvage -= type
-			salvage_num--
-		else
-			to_chat(user, span_warning("You fail to salvage anything valuable from [src]!"))
+/obj/structure/mecha_wreckage/proc/create_mech()
+	if(!orig_mecha)
 		return
+	
+	var/obj/mecha/M = new orig_mecha(loc)
+	QDEL_NULL(M.cell)
+	QDEL_NULL(M.scanmod)
+	QDEL_NULL(M.capacitor)
+	
+	if(cell)
+		cell.forceMove(M)
+	if(scanmod)
+		scanmod.forceMove(M)
+	
+	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+		E.attach(M)
+	
+	M.CheckParts(M.contents)
 
-	else if(I.tool_behaviour == TOOL_WIRECUTTER)
-		if(salvage_num <= 0)
-			to_chat(user, span_warning("You don't see anything that can be cut with [I]!"))
-			return
-		else if(wirecutters_salvage && wirecutters_salvage.len)
-			var/type = prob(70) ? pick(wirecutters_salvage) : null
-			if(type)
-				var/N = new type(get_turf(user))
-				user.visible_message("[user] cuts [N] from [src].", span_notice("You cut [N] from [src]."))
-				wirecutters_salvage -= type
-				salvage_num--
-			else
-				to_chat(user, span_warning("You fail to salvage anything valuable from [src]!"))
-
-	else if(I.tool_behaviour == TOOL_CROWBAR)
-		if(crowbar_salvage && crowbar_salvage.len)
-			var/obj/S = pick(crowbar_salvage)
-			if(S)
-				S.forceMove(user.drop_location())
-				crowbar_salvage -= S
-				user.visible_message("[user] pries [S] from [src].", span_notice("You pry [S] from [src]."))
-			return
-		else
-			to_chat(user, span_warning("You don't see anything that can be pried with [I]!"))
-
+	qdel(src)
+	QDEL_NULL(scanmod)
+	QDEL_NULL(cell)
+	
 
 /obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, mob/living/silicon/ai/ai_unused, obj/item/aicard/card) //ai_unused is unused but having it is better than having  it be null or _ for readability
 	if(!..())
@@ -105,167 +149,73 @@
 /obj/structure/mecha_wreckage/gygax
 	name = "\improper Gygax wreckage"
 	icon_state = "gygax-broken"
-
-/obj/structure/mecha_wreckage/gygax/Initialize()
-	. = ..()
-	var/list/parts = list(/obj/item/mecha_parts/part/gygax_torso,
-								/obj/item/mecha_parts/part/gygax_head,
-								/obj/item/mecha_parts/part/gygax_left_arm,
-								/obj/item/mecha_parts/part/gygax_right_arm,
-								/obj/item/mecha_parts/part/gygax_left_leg,
-								/obj/item/mecha_parts/part/gygax_right_leg)
-	for(var/i = 0; i < 2; i++)
-		if(parts.len && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-
-
+	orig_mecha = /obj/mecha/combat/gygax
 
 /obj/structure/mecha_wreckage/gygax/dark
 	name = "\improper Dark Gygax wreckage"
 	icon_state = "darkgygax-broken"
+	orig_mecha = /obj/mecha/combat/gygax/dark
 
 /obj/structure/mecha_wreckage/marauder
 	name = "\improper Marauder wreckage"
 	icon_state = "marauder-broken"
+	orig_mecha = /obj/mecha/combat/marauder
 
 /obj/structure/mecha_wreckage/mauler
 	name = "\improper Mauler wreckage"
 	icon_state = "mauler-broken"
-	desc = "The syndicate won't be very happy about this..."
+	desc = "The Syndicate won't be very happy about this..."
+	orig_mecha = /obj/mecha/combat/marauder/mauler
 
 /obj/structure/mecha_wreckage/seraph
 	name = "\improper Seraph wreckage"
 	icon_state = "seraph-broken"
+	orig_mecha = /obj/mecha/combat/marauder/seraph
 
 /obj/structure/mecha_wreckage/reticence
 	name = "\improper Reticence wreckage"
 	icon_state = "reticence-broken"
 	color = "#87878715"
 	desc = "..."
+	orig_mecha = /obj/mecha/combat/reticence
 
 /obj/structure/mecha_wreckage/ripley
 	name = "\improper Ripley wreckage"
 	icon_state = "ripley-broken"
-
-/obj/structure/mecha_wreckage/ripley/Initialize()
-	. = ..()
-	var/list/parts = list(/obj/item/mecha_parts/part/ripley_torso,
-								/obj/item/mecha_parts/part/ripley_left_arm,
-								/obj/item/mecha_parts/part/ripley_right_arm,
-								/obj/item/mecha_parts/part/ripley_left_leg,
-								/obj/item/mecha_parts/part/ripley_right_leg)
-	for(var/i = 0; i < 2; i++)
-		if(parts.len && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
+	orig_mecha = /obj/mecha/working/ripley
 
 /obj/structure/mecha_wreckage/ripley/mkii
 	name = "\improper Ripley MK-II wreckage"
 	icon_state = "ripleymkii-broken"
-
-/obj/structure/mecha_wreckage/ripley/mkii/Initialize()
-	. = ..()
-	var/list/parts = list(/obj/item/mecha_parts/part/ripley_torso,
-								/obj/item/mecha_parts/part/ripley_left_arm,
-								/obj/item/mecha_parts/part/ripley_right_arm,
-								/obj/item/mecha_parts/part/ripley_left_leg,
-								/obj/item/mecha_parts/part/ripley_right_leg)
-	for(var/i = 0; i < 2; i++)
-		if(parts.len && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-
+	orig_mecha = /obj/mecha/working/ripley/mkii
 
 /obj/structure/mecha_wreckage/ripley/firefighter
 	name = "\improper Firefighter wreckage"
 	icon_state = "firefighter-broken"
-
-/obj/structure/mecha_wreckage/ripley/firefighter/Initialize()
-	. = ..()
-	var/list/parts = list(/obj/item/mecha_parts/part/ripley_torso,
-								/obj/item/mecha_parts/part/ripley_left_arm,
-								/obj/item/mecha_parts/part/ripley_right_arm,
-								/obj/item/mecha_parts/part/ripley_left_leg,
-								/obj/item/mecha_parts/part/ripley_right_leg,
-								/obj/item/clothing/suit/fire)
-	for(var/i = 0; i < 2; i++)
-		if(parts.len && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-
+	orig_mecha = /obj/mecha/working/ripley/firefighter
 
 /obj/structure/mecha_wreckage/ripley/deathripley
 	name = "\improper Death-Ripley wreckage"
 	icon_state = "deathripley-broken"
-
+	orig_mecha = /obj/mecha/working/ripley/deathripley
 
 /obj/structure/mecha_wreckage/honker
 	name = "\improper H.O.N.K wreckage"
 	icon_state = "honker-broken"
 	desc = "All is right in the universe."
-
-/obj/structure/mecha_wreckage/honker/Initialize()
-	. = ..()
-	var/list/parts = list(
-							/obj/item/mecha_parts/chassis/honker,
-							/obj/item/mecha_parts/part/honker_torso,
-							/obj/item/mecha_parts/part/honker_head,
-							/obj/item/mecha_parts/part/honker_left_arm,
-							/obj/item/mecha_parts/part/honker_right_arm,
-							/obj/item/mecha_parts/part/honker_left_leg,
-							/obj/item/mecha_parts/part/honker_right_leg)
-	for(var/i = 0; i < 2; i++)
-		if(parts.len && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-
+	orig_mecha = /obj/mecha/combat/honker
 
 /obj/structure/mecha_wreckage/durand
 	name = "\improper Durand wreckage"
 	icon_state = "durand-broken"
-
-/obj/structure/mecha_wreckage/durand/Initialize()
-	. = ..()
-	var/list/parts = list(
-								/obj/item/mecha_parts/part/durand_torso,
-								/obj/item/mecha_parts/part/durand_head,
-								/obj/item/mecha_parts/part/durand_left_arm,
-								/obj/item/mecha_parts/part/durand_right_arm,
-								/obj/item/mecha_parts/part/durand_left_leg,
-								/obj/item/mecha_parts/part/durand_right_leg)
-	for(var/i = 0; i < 2; i++)
-		if(parts.len && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-
+	orig_mecha = /obj/mecha/combat/durand
 
 /obj/structure/mecha_wreckage/phazon
 	name = "\improper Phazon wreckage"
 	icon_state = "phazon-broken"
-
+	orig_mecha = /obj/mecha/combat/phazon
 
 /obj/structure/mecha_wreckage/odysseus
 	name = "\improper Odysseus wreckage"
 	icon_state = "odysseus-broken"
-
-/obj/structure/mecha_wreckage/odysseus/Initialize()
-	. = ..()
-	var/list/parts = list(
-								/obj/item/mecha_parts/part/odysseus_torso,
-								/obj/item/mecha_parts/part/odysseus_head,
-								/obj/item/mecha_parts/part/odysseus_left_arm,
-								/obj/item/mecha_parts/part/odysseus_right_arm,
-								/obj/item/mecha_parts/part/odysseus_left_leg,
-								/obj/item/mecha_parts/part/odysseus_right_leg)
-	for(var/i = 0; i < 2; i++)
-		if(parts.len && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
+	orig_mecha = /obj/mecha/medical/odysseus

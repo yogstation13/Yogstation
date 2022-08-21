@@ -58,6 +58,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 				stack_trace("Station room spawner placed at ([T.x], [T.y], [T.z]) has invalid ruin name of \"[t]\" in its list")
 				template_names -= t
 		template_name = choose()
+	if(!template_name)
+		stack_trace("Station room spawner [src] at ([T.x], [T.y], [T.z]) has a null template.")
 	if(!template_name || template_name == EMPTY_SPAWN)
 		GLOB.stationroom_landmarks -= src
 		qdel(src)
@@ -182,9 +184,14 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	for(var/i = 0, i < count, i++)
 		var/obj/effect/landmark/stationroom/limited_spawn/L = pick_n_take(landmarks)
 		L.choose_result = pick(L.template_names)
+		var/turf/T = get_turf(L)
+		message_admins(span_adminnotice("Spawning limited_spawn landmark at [ADMIN_COORDJMP(T)]"))
+		log_game("Spawning limited_spawn landmark at: [AREACOORD(T)]")
 	
 	for(var/obj/effect/landmark/stationroom/limited_spawn/L in landmarks)
 		L.choose_result = EMPTY_SPAWN
+	
+	return choose_result
 
 /obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale
 	template_names = list("AI Whale")
