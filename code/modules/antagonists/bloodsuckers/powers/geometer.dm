@@ -319,7 +319,7 @@
 
 /datum/action/bloodsucker/targeted/bloodcrawl/UsePower(mob/living/user)
 	constant_bloodcost = initial(constant_bloodcost)
-	for(var/obj/effect/decal/cleanable/target in range(1, target_turf))
+	for(var/obj/effect/decal/cleanable/target in range(1, get_turf(owner)))
 		constant_bloodcost = 0
 		break
 	if(level_current >= 5 && constant_bloodcost = 0 && !traits_given)
