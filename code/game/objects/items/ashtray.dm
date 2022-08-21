@@ -25,9 +25,10 @@
 
 		if(istype(W,/obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/cig = W
-			if (cig.lit == TRUE)
-				visible_message(span_notice("[user] crushes [cig] in [src][cig.lit == TRUE ? ", putting it out" : ""]."))
-				W = cig.extinguish()
+			visible_message(span_notice("[user] crushes [cig] in [src][cig.lit == TRUE ? ", putting it out" : ""]."))
+			if(cig.lit == TRUE)
+				new cig.type_butt(src)
+				qdel(cig)
 
 		if(user.transferItemToLoc(W, src))
 			visible_message(span_notice("[user] places [W] in [src]."))
