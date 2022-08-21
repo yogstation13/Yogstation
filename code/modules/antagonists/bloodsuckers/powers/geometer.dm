@@ -340,3 +340,62 @@
 	if(traits_given)
 		REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
 		REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, BLOODSUCKER_TRAIT)
+
+//////////////////////////////////////////////
+//                                          //
+//               TRANSFUSION                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/action/bloodsucker/targeted/transfusion
+	name = "Transfusion"
+	desc = "Use your blood to heal a targeted carbon being."
+	button_icon_state = "bloodpack"
+	icon_icon = 'icons/obj/bloodpack.dmi'
+	power_explanation = "<b>Transfusion</b>:\n\
+		Allows you to heal a targeted carbon being with your blood.\n\
+		If level 3 or more also regenerates stamina and oxyloss.\n\
+		If level 6 or more, also injects the target with synaptizine and omnizine."
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
+	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	cooldown = 3 SECONDS
+	target_range = 6
+	bloodcost = 40
+	power_activates_immediately = FALSE
+	constant_bloodcost = 0.2
+
+/datum/action/bloodsucker/targeted/transfusion/CheckValidTarget(atom/target_atom)
+	if(!iscarbon(target_atom))
+		return FALSE
+	var/mob/living/carbon/targeted_carbon = target_atom
+	if(NOBLOOD in targeted_carbon.dna.species.species_traits)
+		return FALSE
+	if(targeted_carbon.stat == DEAD)
+		return FALSE
+	return ..()
+
+/datum/action/bloodsucker/targeted/transfusion/FireTargetedPower(atom/target_atom)
+	. = ..()
+	var/mob/living/carbon/target = target_atom
+
+	var/list/damtype_list = list(BRUTE, BURN, TOXIN)
+	var/heal_amt = 15 + level_current
+	if(level_current >= 3)
+		damtype_list += OXY
+		target.AdjustStaminaLoss(heal_amt*2)
+
+	target.blood_volume += heal_amt
+
+	target.heal_ordered_damage(heal_amt, damtype_list, BODYPART_ORGANIC)
+
+	if(level_current >= 6 && target.reagents)
+		target.reagents.add_reagent(/datum/reagent/medicine/synaptizine, 5)
+		target.reagents.add_reagent(/datum/reagent/medicine/omnizine, 5)
+
+	to_chat(target, span_notice("You feel new blood entering your veins and healing your wounds..."))
+	to_chat(owner, span_notice("You make a transfusion to [target]"))
+	
+	PowerActivatedSuccessfully()
+	
+
