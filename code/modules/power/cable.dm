@@ -137,7 +137,6 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/proc/handlecable(obj/item/W, mob/user, params)
 	var/turf/T = get_turf(src)
-	var/list/combined_msg = list()
 	if(T.intact)
 		return
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
