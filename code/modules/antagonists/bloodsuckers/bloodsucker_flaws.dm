@@ -22,13 +22,15 @@
 	var/static/list/clans = list(
 		CLAN_GANGREL,
 		CLAN_LASOMBRA,
+		CLAN_GEOMETER,
 	)
 	var/list/options = list()
 	options = clans
 	// Brief descriptions in case they don't read the Wiki.
 	to_chat(owner, span_announce("List of all Clans:\n\
 		Gangrel - Prone to Frenzy, strange outcomes from being on frenzy, special power.\n\
-		Lasombra - Life in the shadows, very weak to fire but no brute damage, upgradable abilities through tasks."))
+		Lasombra - Life in the shadows, very weak to fire but no brute damage, upgradable abilities through tasks.
+		Geometer - Can't obtain and use standart abilities, but gain four unique abilities instead."))
 
 	var/answer = input("You have Ranked up far enough to remember your clan. Which clan are you part of?", "Our mind feels luxurious...") in options
 	if(!answer) 
@@ -76,4 +78,25 @@
 			to_chat(owner, span_notice("You have also learned how to channel the abyss's power into an iron knight's armor that can be build in the structure ta and activated as a trap for your lair."))
 			owner.teach_crafting_recipe(/datum/crafting_recipe/possessedarmor)
 			owner.teach_crafting_recipe(/datum/crafting_recipe/restingplace)
+		if(CLAN_GEOMETER)
+			my_clan = CLAN_GEOMETER
+			to_chat(owner, span_announce("You have Ranked up enough to learn: You are part of the Geometer Clan!\n\
+				* As part of the Geometer Clan, you are a master of manipulation with your own blood and blood of other beings.\n\
+				* While you cannot use any of abilities that normal bloodsuckers can gain, you get four new unique abilitites that only members of your clan can use.\n\
+				* You are able to shape your blood in various weapons, steal blood of other living beings, teleport and heal other people with your blood.\n\
+				"))
+			for(var/datum/action/sucker_spell in powers)
+				if(istype(sucker_spell, /datum/action/bloodsucker/veil))
+					continue
+				if(istype(sucker_spell, /datum/action/bloodsucker/gohome))
+					continue
+				if(istype(sucker_spell, /datum/action/bloodsucker/masquerade))
+					continue
+				if(istype(sucker_spell, /datum/action/bloodsucker/feed))
+					continue
+				RemovePower(sucker_spell)
+			BuyPower(new /datum/action/bloodsucker/shape_blood)
+			BuyPower(new /datum/action/bloodsucker/targeted/life_drain)
+			BuyPower(new /datum/action/bloodsucker/targeted/bloodcrawl)
+			BuyPower(new /datum/action/bloodsucker/targeted/transfusion)
 	owner.announce_objectives()

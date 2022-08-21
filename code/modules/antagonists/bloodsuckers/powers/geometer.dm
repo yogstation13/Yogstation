@@ -14,7 +14,6 @@
 	button_icon_state = "power_thaumaturgy"
 	cooldown = 8 SECONDS
 	bloodcost = 55
-	purchase_flags = BLOODSUCKER_CAN_BUY
 	power_flags = BP_AM_TOGGLE | BP_AM_COSTLESS_UNCONSCIOUS
 	constant_bloodcost = 0
 	var/obj/blood_weapon = null
@@ -216,7 +215,6 @@
 		Higher levels will increase the amount of blood stealed."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	cooldown = 35 SECONDS
 	target_range = 6
 	power_activates_immediately = FALSE
@@ -282,7 +280,6 @@
 		If level 5 or more, makes you additionaly stunimune and pushimune while on blood"
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	cooldown = 3 SECONDS
 	target_range = 6
 	bloodcost = 40
@@ -357,7 +354,6 @@
 		If level 6 or more, also injects the target with synaptizine and omnizine."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	cooldown = 3 SECONDS
 	target_range = 6
 	bloodcost = 40
