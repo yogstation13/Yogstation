@@ -43,12 +43,17 @@ GLOBAL_LIST_INIT(fishing_table,init_fishing_table())
 		population = loot.max_population
 		STOP_PROCESSING(SSprocessing,src)
 		can_fish = TRUE
+		if(istype(parent,/obj/machinery/fishing))
+			var/obj/machinery/fishing/fishing_machine = parent
+			fishing_machine.syndicate_chummed = TRUE
+			fishing_machine.set_biome()
 		return
 	if(growth + C.growth > loot.max_growth) //don't let players chum above max
 		to_chat(user,"Chumming [parent] would do nothing!")
 		return
 	growth += C.growth
 	growth = min(growth,loot.max_growth)
+	playsound(parent, 'sound/effects/splash.ogg', 50, FALSE, -5)
 	qdel(C) //bye
 	to_chat(user,"You throw chum into [parent].")
 

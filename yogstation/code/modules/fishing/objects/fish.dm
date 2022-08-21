@@ -1,3 +1,10 @@
+GLOBAL_LIST_INIT(fish_list,init_fish_list())
+
+/proc/init_fish_list()
+	. = list()
+	for(var/fish in subtypesof(/obj/item/reagent_containers/food/snacks/fish))
+		. += fish
+
 /obj/item/reagent_containers/food/snacks/fish
 	name = "debug fish"
 	desc = "If you see this, get help!"

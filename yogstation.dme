@@ -3643,6 +3643,8 @@
 #include "yogstation\code\modules\fishing\objects\clothing.dm"
 #include "yogstation\code\modules\fishing\objects\fish.dm"
 #include "yogstation\code\modules\fishing\objects\rods.dm"
+#include "yogstation\code\modules\fishing\objects\storage.dm"
+#include "yogstation\code\modules\fishing\objects\tools.dm"
 #include "yogstation\code\modules\fishing\turfs\fishing_turfs.dm"
 #include "yogstation\code\modules\fishing\vending\fishing.dm"
 #include "yogstation\code\modules\food_and_drinks\food\condiment.dm"

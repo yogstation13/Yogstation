@@ -11,6 +11,8 @@
 
 	var/datum/component/fishable/fishing_component
 	var/active = FALSE
+	var/overlay_name = "machine_overlay"
+	var/syndicate_chummed = FALSE
 
 /obj/machinery/fishing/Initialize()
 	. = ..()
@@ -23,8 +25,8 @@
 	. = ..()
 
 /obj/machinery/fishing/proc/set_biome()
-	if(obj_flags & EMAGGED)
-		fishing_component.loot = GLOB.fishing_table["syndicate"]
+	if(syndicate_chummed)
+		overlay_name = "machine_overlay_syndicate"
 		return
 	var/area/A = get_area(src)
 	if(istype(A,/area/maintenance/))
@@ -76,9 +78,9 @@
 /obj/machinery/fishing/update_icon()
 	. = ..()
 	cut_overlays()
-	icon_state = panel_open ? "machine_open" : "machine"
+	icon_state = panel_open ? "[initial(icon_state)]_open" : initial(icon_state)
 	if(active)
-		add_overlay(mutable_appearance(icon,"machine_overlay"))
+		add_overlay(mutable_appearance(icon,overlay_name))
 	
 
 /obj/machinery/fishing/process()
@@ -89,3 +91,4 @@
 	icon_state = "machine_gold"
 	flags_1 = NODECONSTRUCT_1
 	circuit = null
+	anchored = FALSE

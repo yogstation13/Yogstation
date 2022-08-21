@@ -181,3 +181,35 @@
 	. = ..()
 	for(var/i in 1 to 2)
 		new /mob/living/simple_animal/hostile/carp(.)
+
+/datum/supply_pack/misc/fishingmachine
+	name = "Fishing Machine Crate"
+	desc = "A signature, one of a kind, cargo branded machine to keep boredom at bay!"
+	cost = 6000
+	contains = list(/obj/machinery/fishing/cargo)
+	crate_name = "fishing machine crate"
+
+/datum/supply_pack/misc/fishingsupplies
+	name = "Fishing Supplies Crate"
+	desc = "Everthing you need to start fishing today! Includes two fishing rods and three journeyman bait."
+	cost = 3500
+	contains = list(
+		/obj/item/twohanded/fishingrod,
+		/obj/item/twohanded/fishingrod,
+		/obj/item/reagent_containers/food/snacks/bait/journeyman,
+		/obj/item/reagent_containers/food/snacks/bait/journeyman,
+		/obj/item/reagent_containers/food/snacks/bait/journeyman
+	)
+
+/datum/supply_pack/misc/chum
+	name = "Fishing Chum Crate"
+	desc = "Five chum for your fishing needs!"
+	cost = 2000
+	contains = list(
+		/obj/item/reagent_containers/food/snacks/chum,
+		/obj/item/reagent_containers/food/snacks/chum,
+		/obj/item/reagent_containers/food/snacks/chum,
+		/obj/item/reagent_containers/food/snacks/chum,
+		/obj/item/reagent_containers/food/snacks/chum
+		)
+	crate_name = "chum crate"

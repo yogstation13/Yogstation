@@ -43,7 +43,7 @@
 			return
 		var/valid = TRUE
 		for(var/turf/T in getline(get_turf(user), get_turf(target)))
-			if(is_blocked_turf(T, TRUE))
+			if(is_blocked_turf(T, TRUE) && T != get_turf(target))
 				valid = FALSE
 				return
 		if(!valid)
