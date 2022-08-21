@@ -284,18 +284,22 @@
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
-	cooldown = 5 SECONDS
+	cooldown = 3 SECONDS
 	target_range = 6
 	bloodcost = 40
 	power_activates_immediately = FALSE
 	constant_bloodcost = 0.2
 	var/traits_given = FALSE
+	var/last_teleport_time
 
 /datum/action/bloodsucker/targeted/bloodcrawl/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/turf/target_turf = isturf(target_atom) ? target_atom : get_turf(target_atom)
 
 	if(!target_turf)
+		return
+
+	if(last_teleport_time + cooldown > world.time)
 		return
 
 	var/obj/effect/decal/cleanable/blood = null
@@ -308,6 +312,7 @@
 			return
 
 	do_teleport(owner, target_turf, no_effects=TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
+	last_teleport_time = world.time
 
 	if(!blood || level_current < 3)
 		PayCost()
