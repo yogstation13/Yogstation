@@ -137,7 +137,7 @@
 			if(scooldown < world.time)
 				if(M.health >= 0)
 					if(ishuman(M)||ismonkey(M))
-						M.electrocute_act(5, "[user]", safety = 1)
+						electrocute_mob(M, user.cell, src, 1)
 						user.visible_message(span_userdanger("[user] electrocutes [M] with [user.p_their()] touch!"), \
 							span_danger("You electrocute [M] with your touch!"))
 						M.update_mobility()
@@ -150,7 +150,6 @@
 							user.visible_message(span_userdanger("[user] shocks [M]. It does not seem to have an effect"), \
 								span_danger("You shock [M] to no effect."))
 					playsound(loc, 'sound/effects/sparks2.ogg', 50, 1, -1)
-					user.cell.charge -= 500
 					scooldown = world.time + 20
 		if(3)
 			if(ccooldown < world.time)
