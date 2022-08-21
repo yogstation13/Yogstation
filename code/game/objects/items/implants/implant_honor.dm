@@ -19,7 +19,7 @@
 			var/mob/living/L = target
 			REMOVE_TRAIT(L, TRAIT_NOGUNS, "implant")
 		if(target.stat != DEAD && !silent)
-			to_chat(target, span_boldnotice("Your mind suddenly feels like guns are not dishonorable. You can now bear the thought of using guns."))
+			to_chat(target, span_boldnotice("Your mind no longer sees ranged weaponry as dishonorable. You can now bear the thought of pulling the trigger."))
 		return TRUE
 
 /obj/item/implanter/honor

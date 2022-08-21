@@ -60,15 +60,17 @@
 	if(!is_ninja(user)) //stolen directly from the bloody bastard sword
 		if(HAS_TRAIT (user, TRAIT_SHOCKIMMUNE))
 			to_chat(user, span_danger("[src] attempts to shock you"))
+			user.electrocute_act(15,src)
 			return
 		if(user.gloves)
 			if(!user.gloves.siemens_coefficient)
 				to_chat(user, span_danger("[src] attempts to shock you"))
+				user.electrocute_act(15,src)
 				return
 		else
 			to_chat(user, span_userdanger("[src] shocks you."))
 			user.emote("scream")
-			user.apply_damage(30, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			user.electrocute_act(15,src)
 			user.dropItemToGround(src, TRUE)
 			user.Paralyze(50)
 			return
