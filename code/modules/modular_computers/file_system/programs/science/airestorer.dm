@@ -1,7 +1,7 @@
 /datum/computer_file/program/aidiag
 	filename = "aidiag"
 	filedesc = "AI Integrity Restorer"
-	category = PROGRAM_CATEGORY_ROBO
+	category = PROGRAM_CATEGORY_SCI
 	program_icon_state = "generic"
 	extended_desc = "This program is capable of reconstructing damaged AI systems. Requires direct AI connection via intellicard slot."
 	size = 12

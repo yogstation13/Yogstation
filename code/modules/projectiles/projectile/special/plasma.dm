@@ -11,6 +11,15 @@
 	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
 
+/obj/item/projectile/plasma/weak
+	name = "weak plasma blast"
+	icon_state = "plasmacutter_weak"
+	damage_type = BRUTE
+	damage = 3
+	dismemberment = 5
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	mine_range = 0
+
 /obj/item/projectile/plasma/on_hit(atom/target)
 	. = ..()
 	if(ismineralturf(target))
