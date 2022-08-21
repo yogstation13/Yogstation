@@ -112,7 +112,7 @@
 
 /obj/item/shield/bloodsucker/Destroy()
 	visible_message(span_warning("[src] dissolves in a puddle of blood!"))
-	new /obj/effect/decal/cleanable/blood (owner ? get_turf(owner) : get_turf(src))
+	new /obj/effect/decal/cleanable/blood (get_turf(src))
 	. = ..()
 
 /obj/item/melee/blood_blade
@@ -141,7 +141,7 @@
 
 /obj/item/melee/blood_blade/Destroy()
 	visible_message(span_warning("[src] dissolves in a puddle of blood!"))
-	new /obj/effect/decal/cleanable/blood (owner ? get_turf(owner) : get_turf(src))
+	new /obj/effect/decal/cleanable/blood (get_turf(src))
 	. = ..()
 
 /obj/item/bloodhand
