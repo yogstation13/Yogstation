@@ -38,7 +38,7 @@ map kilostation
 endmap
 
 map gaxstation
-	maxplayers 30
+	maxplayers 40
 	votable
 endmap
 

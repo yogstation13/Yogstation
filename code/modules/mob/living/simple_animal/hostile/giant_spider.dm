@@ -37,6 +37,7 @@
 	obj_damage = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 20
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	faction = list("spiders")
 	var/busy = SPIDER_IDLE
 	pass_flags = PASSTABLE

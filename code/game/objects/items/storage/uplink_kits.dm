@@ -1,5 +1,27 @@
 
 /obj/item/storage/box/syndicate
+	name = "suspicious box"
+	var/real_name = "box"
+
+/obj/item/storage/box/syndicate/examine(mob/user)
+	if(is_syndicate(user))
+		name = real_name
+	else
+		name = initial(name)
+	. = ..()
+	name = initial(name)
+
+/obj/item/storage/box/syndie_kit
+	name = "suspicious box"
+	var/real_name = "box"
+
+/obj/item/storage/box/syndie_kit/examine(mob/user)
+	if(is_syndicate(user))
+		name = real_name
+	else
+		name = initial(name)
+	. = ..()
+	name = initial(name)
 
 /obj/item/storage/box/syndicate/bundle_A/PopulateContents()
 	switch (pickweight(list("recon" = 2, "bloodyspai" = 3, "stealth" = 2, "screwed" = 2, "sabotage" = 3, "guns" = 2, "murder" = 2, "implant" = 1, "hacker" = 3, "sniper" = 1, "metaops" = 1)))
@@ -206,7 +228,7 @@
 			new /obj/item/ammo_box/magazine/m10mm(src)
 			new /obj/item/ammo_box/magazine/m10mm/fire(src)
 			new /obj/item/reagent_containers/syringe/plasma(src)
-			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large/redpill(src)
+			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large/redpill(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
@@ -248,13 +270,13 @@
 	. = ..() //sure ok you stole the arrow
 
 /obj/item/storage/box/syndicate/contract_kit
-	name = "Contract Kit"
+	real_name = "Contract Kit"
 	desc = "Supplied to Syndicate contractors."
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
 
 /obj/item/storage/box/syndicate/contractor_loadout
-	name = "Standard Loadout"
+	real_name = "Standard Loadout"
 	desc = "Supplied to Syndicate contractors, providing their specialised space suit and chameleon uniform."
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
@@ -327,19 +349,19 @@
 		/obj/item/pen/edagger,
 		/obj/item/pen/sleepy,
 		/obj/item/flashlight/emp,
-		/obj/item/reagent_containers/syringe/mulligan,
+		/obj/item/book/granter/crafting_recipe/weapons,
 		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
 		/obj/item/storage/firstaid/tactical,
-		/obj/item/encryptionkey/syndicate,
+		/obj/item/clothing/shoes/airshoes,
 		/obj/item/clothing/glasses/thermal/syndi,
-		/obj/item/slimepotion/slime/sentience/nuclear,
+		/obj/item/camera_bug,
 		/obj/item/storage/box/syndie_kit/imp_radio,
 		/obj/item/storage/box/syndie_kit/imp_uplink,
 		/obj/item/clothing/gloves/krav_maga/combatglovesplus,
 		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
 		/obj/item/reagent_containers/syringe/stimulants,
 		/obj/item/storage/box/syndie_kit/imp_freedom,
-		/obj/item/toy/eightball/haunted
+		/obj/item/storage/belt/chameleon/syndicate
 	)
 
 	var/obj/item1 = pick_n_take(item_list)
@@ -356,12 +378,13 @@
 
 /obj/item/storage/box/syndie_kit
 	name = "box"
+	real_name = "box"
 	desc = "A sleek, sturdy box."
 	icon_state = "syndiebox"
 	illustration = "writing_syndie"
 
 /obj/item/storage/box/syndie_kit/origami_bundle
-	name = "origami kit"
+	real_name = "origami kit"
 	desc = "A box full of a number of rather masterfully engineered paper planes and a manual on \"The Art of Origami\"."
 
 /obj/item/storage/box/syndie_kit/origami_bundle/PopulateContents()
@@ -370,68 +393,68 @@
 		new /obj/item/paper(src)
 
 /obj/item/storage/box/syndie_kit/imp_freedom
-	name = "freedom implant box"
+	real_name = "freedom implant box"
 
 /obj/item/storage/box/syndie_kit/imp_freedom/PopulateContents()
 	new /obj/item/implanter/freedom(src)
 
 /obj/item/storage/box/syndie_kit/imp_microbomb
-	name = "microbomb implant box"
+	real_name = "microbomb implant box"
 
 /obj/item/storage/box/syndie_kit/imp_microbomb/PopulateContents()
 	new /obj/item/implanter/explosive(src)
 
 /obj/item/storage/box/syndie_kit/imp_macrobomb
-	name = "macrobomb implant box"
+	real_name = "macrobomb implant box"
 
 /obj/item/storage/box/syndie_kit/imp_macrobomb/PopulateContents()
 	new /obj/item/implanter/explosive_macro(src)
 
 /obj/item/storage/box/syndie_kit/imp_uplink
-	name = "uplink implant box"
+	real_name = "uplink implant box"
 
 /obj/item/storage/box/syndie_kit/imp_uplink/PopulateContents()
 	new /obj/item/implanter/uplink(src)
 
 /obj/item/storage/box/syndie_kit/bioterror
-	name = "bioterror syringe box"
+	real_name = "bioterror syringe box"
 
 /obj/item/storage/box/syndie_kit/bioterror/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/syringe/bioterror(src)
 
 /obj/item/storage/box/syndie_kit/imp_adrenal
-	name = "adrenal implant box"
+	real_name = "adrenal implant box"
 
 /obj/item/storage/box/syndie_kit/imp_adrenal/PopulateContents()
 	new /obj/item/implanter/adrenalin(src)
 
 /obj/item/storage/box/syndie_kit/imp_storage
-	name = "storage implant box"
+	real_name = "storage implant box"
 
 /obj/item/storage/box/syndie_kit/imp_storage/PopulateContents()
 	new /obj/item/implanter/storage(src)
 
 /obj/item/storage/box/syndie_kit/imp_stealth
-	name = "stealth implant box"
+	real_name = "stealth implant box"
 
 /obj/item/storage/box/syndie_kit/imp_stealth/PopulateContents()
 	new /obj/item/implanter/stealth(src)
 
 /obj/item/storage/box/syndie_kit/imp_radio
-	name = "syndicate radio implant box"
+	real_name = "syndicate radio implant box"
 
 /obj/item/storage/box/syndie_kit/imp_radio/PopulateContents()
 	new /obj/item/implanter/radio/syndicate(src)
 	
 /obj/item/storage/box/syndie_kit/imp_mindshield
-	name = "mindshield implant box"
+	real_name = "mindshield implant box"
 
 /obj/item/storage/box/syndie_kit/imp_mindshield/PopulateContents()
 	new /obj/item/implanter/mindshield/tot(src)
 
 /obj/item/storage/box/syndie_kit/space
-	name = "boxed space suit and helmet"
+	real_name = "boxed space suit and helmet"
 
 /obj/item/storage/box/syndie_kit/space/ComponentInitialize()
 	. = ..()
@@ -449,7 +472,7 @@
 		new /obj/item/clothing/suit/space/syndicate(src)
 
 /obj/item/storage/box/syndie_kit/emp
-	name = "EMP kit"
+	real_name = "EMP kit"
 
 /obj/item/storage/box/syndie_kit/emp/PopulateContents()
 	for(var/i in 1 to 5)
@@ -457,7 +480,7 @@
 	new /obj/item/implanter/emp(src)
 
 /obj/item/storage/box/syndie_kit/chemical
-	name = "chemical kit"
+	real_name = "chemical kit"
 
 /obj/item/storage/box/syndie_kit/chemical/ComponentInitialize()
 	. = ..()
@@ -480,8 +503,22 @@
 	new /obj/item/reagent_containers/glass/bottle/amanitin(src)
 	new /obj/item/reagent_containers/syringe(src)
 
+/obj/item/storage/box/syndie_kit/pistolammo
+	name = "10mm magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/magazine/m10mm(src)
+
+/obj/item/storage/box/syndie_kit/pistolsleepyammo
+	name = "10mm soporific magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolsleepyammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/magazine/m10mm/sp(src)
+
 /obj/item/storage/box/syndie_kit/nuke
-	name = "box"
+	real_name = "box"
 
 /obj/item/storage/box/syndie_kit/nuke/PopulateContents()
 	new /obj/item/screwdriver/nuke(src)
@@ -489,7 +526,7 @@
 	new /obj/item/paper/guides/antag/nuke_instructions(src)
 
 /obj/item/storage/box/syndie_kit/supermatter
-	name = "box"
+	real_name = "box"
 
 /obj/item/storage/box/syndie_kit/supermatter/PopulateContents()
 	new /obj/item/scalpel/supermatter(src)
@@ -498,7 +535,7 @@
 	new /obj/item/paper/guides/antag/supermatter_sliver(src)
 	
 /obj/item/storage/box/syndie_kit/supermatter_delaminator
-	name = "box"
+	real_name = "box"
 
 /obj/item/storage/box/syndie_kit/supermatter_delaminator/PopulateContents()
 	new /obj/item/hemostat/antinoblium(src)
@@ -508,17 +545,17 @@
 
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade
-	name = "virus grenade kit"
+	real_name = "virus grenade kit"
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade/PopulateContents()
 	new /obj/item/grenade/chem_grenade/tuberculosis(src)
 	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/hypospray/medipen/tuberculosiscure(src)
+		new /obj/item/reagent_containers/autoinjector/medipen/tuberculosiscure(src)
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/tuberculosiscure(src)
 
 /obj/item/storage/box/syndie_kit/chameleon
-	name = "chameleon kit"
+	real_name = "chameleon kit"
 
 /obj/item/storage/box/syndie_kit/chameleon/PopulateContents()
 	new /obj/item/clothing/under/chameleon/syndicate(src)
@@ -591,7 +628,7 @@
 	// No chameleon laser, they can't randomise for //REASONS//
 
 /obj/item/storage/box/syndie_kit/bee_grenades
-	name = "buzzkill grenade box"
+	real_name = "buzzkill grenade box"
 	desc = "A sleek, sturdy box with a buzzing noise coming from the inside. Uh oh."
 
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()

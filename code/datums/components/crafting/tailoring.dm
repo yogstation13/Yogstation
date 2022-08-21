@@ -155,7 +155,7 @@
 				/obj/item/stack/sheet/leather = 2)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/tribal_wraps
 	name = "Metal Plated Rags"
@@ -165,7 +165,7 @@
 				/obj/item/stack/sheet/leather = 2)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/ash_robe
 	name = "Tribal Robes"
@@ -174,7 +174,7 @@
 	reqs = list(/obj/item/stack/sheet/cloth = 2)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/ash_robe/young
 	name = "Tribal Rags"
@@ -210,7 +210,7 @@
 				/obj/item/stack/sheet/bone = 2)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/tribalmantle
 	name = "Ornate Mantle"
@@ -220,7 +220,7 @@
 				/obj/item/stack/sheet/leather = 2)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/leathercape
 	name = "Brown Leather Cape"
@@ -229,7 +229,7 @@
 	reqs = list(/obj/item/stack/sheet/leather = 5)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
-	always_availible = FALSE
+	always_available = FALSE
 
 /datum/crafting_recipe/hidemantle
 	name = "Hide Mantle"
@@ -239,7 +239,7 @@
 				/obj/item/stack/sheet/leather = 2)
 	category = CAT_APPAREL
 	subcategory = CAT_CLOTHING
-	always_availible = FALSE
+	always_available = FALSE
 
 
 // Armor //
@@ -363,6 +363,18 @@
 	category = CAT_APPAREL
 	subcategory = CAT_ARMOR
 
+/datum/crafting_recipe/hydrogen_hardsuit
+	name = "Metallic Hydrogen Elder Atmosian Hardsuit"
+	result = /obj/item/clothing/suit/space/hardsuit/elder_atmosian
+	time = 10 SECONDS
+	reqs = list(/obj/item/clothing/suit/armor/elder_atmosian = 1,
+	    	/obj/item/clothing/head/helmet/elder_atmosian = 1,
+			/obj/item/clothing/head/hardhat/atmos = 1,
+			/obj/item/clothing/suit/fire/atmos = 1,
+			/obj/item/stack/sheet/mineral/diamond = 5,
+			/obj/item/stack/sheet/mineral/metal_hydrogen = 10)
+	category = CAT_APPAREL
+	subcategory = CAT_ARMOR
 
 // Equipment //
 

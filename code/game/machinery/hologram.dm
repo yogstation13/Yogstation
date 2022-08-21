@@ -411,6 +411,8 @@ obj/machinery/holopad/secure/Initialize()
 		Hologram.set_light(2)	//hologram lighting
 		move_hologram()
 
+		AI.pad = src
+
 		set_holo(user, Hologram)
 		visible_message(span_notice("A holographic image of [user] flickers to life before your eyes!"))
 
@@ -468,6 +470,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	return TRUE
 
 /obj/machinery/holopad/proc/clear_holo(mob/living/user)
+	if(isAI(user))
+		var/mob/living/silicon/ai/AI = user
+		AI.pad = null
 	qdel(masters[user]) // Get rid of user's hologram
 	unset_holo(user)
 	return TRUE
@@ -528,6 +533,15 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			update_holoray(user,new_turf)
 	return TRUE
 
+/obj/machinery/holopad/proc/refresh_holo(mob/living/silicon/ai/AI)
+	if(AI && istype(AI))
+		var/obj/effect/overlay/holo_pad_hologram/Hologram = new(loc)//Spawn a blank effect at the location.
+		Hologram.icon = AI.holo_icon
+		qdel(masters[AI]) // Get rid of previous hologram
+		qdel(holorays[AI])
+		var/turf/T = get_turf(AI.eyeobj)
+		set_holo(AI, Hologram)
+		move_hologram(AI, T) // Now move the new hologram
 
 /obj/machinery/holopad/proc/update_holoray(mob/living/user, turf/new_turf)
 	var/obj/effect/overlay/holo_pad_hologram/holo = masters[user]

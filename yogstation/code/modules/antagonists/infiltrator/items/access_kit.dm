@@ -38,7 +38,7 @@
 	var/obj/item/card/id/id = target
 	id.assignment = job.title
 	id.originalassignment = job.title
-	id.access |= job.minimal_access
+	id.access |= job.base_access
 	id.update_label()
 	to_chat(user, span_notice("You apply [src] to [id], granting it the access of a [job.title]!"))
 	if (is_infiltrator(user))

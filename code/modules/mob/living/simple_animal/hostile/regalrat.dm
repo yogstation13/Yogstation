@@ -17,6 +17,8 @@
 	response_harm = "slashes"
 	melee_damage_lower = 13
 	melee_damage_upper = 15
+	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	ventcrawler = VENTCRAWLER_ALWAYS

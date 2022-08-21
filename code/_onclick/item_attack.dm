@@ -44,9 +44,14 @@
 	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_obj(src, user))
 
 /mob/living/attackby(obj/item/I, mob/living/user, params)
+	for(var/datum/surgery/S in surgeries)
+		if(!(mobility_flags & MOBILITY_STAND) || !S.lying_required)
+			if((S.self_operable || user != src) && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
+				if(S.next_step(user, user.a_intent))
+					return TRUE
+	var/dist = get_dist(src,user)
 	if(..())
 		return TRUE
-	var/dist = get_dist(src,user)
 	user.changeNext_move(CLICK_CD_MELEE * I.weapon_stats[SWING_SPEED] * (I.range_cooldown_mod ? (dist > 0 ? min(dist, I.weapon_stats[REACH]) * I.range_cooldown_mod : I.range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
 	user.weapon_slow(I)
 	if(user.a_intent == INTENT_HARM && stat == DEAD && (butcher_results || guaranteed_butcher_results)) //can we butcher it?
@@ -56,7 +61,7 @@
 			playsound(loc, butchering.butcher_sound, 50, TRUE, -1)
 			if(do_mob(user, src, butchering.speed) && Adjacent(I))
 				butchering.Butcher(user, src)
-			return 1
+			return TRUE
 		else if(I.is_sharp() && !butchering) //give sharp objects butchering functionality, for consistency
 			I.AddComponent(/datum/component/butchering, 80 * I.toolspeed)
 			attackby(I, user, params) //call the attackby again to refresh and do the butchering check again

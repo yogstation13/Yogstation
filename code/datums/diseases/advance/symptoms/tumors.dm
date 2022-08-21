@@ -20,13 +20,13 @@
 	var/helpful = FALSE
 	var/tumor_chance = 0.5
 	var/obj/item/organ/tumor/tumortype = /obj/item/organ/tumor
-	var/datum/disease/advance/ownerdisease //what disease it comes from
+	var/datum/disease/advance/disease //what disease we are owned by
 
 /datum/symptom/tumor/Start(datum/disease/advance/A)
 	. = ..()
 	if(!.)
 		return
-	ownerdisease = A;
+	disease = A
 	if(A.totalTransmittable() >= 7) //visible growths
 		if(ishuman(A.affected_mob))
 			A.affected_mob.visible_tumors = TRUE
@@ -76,7 +76,7 @@
 		T.name = T.name + " (" + parse_zone(insertionZone) + ")"
 		T.helpful = helpful
 		T.regeneration = regeneration
-		T.ownerdisease = ownerdisease
+		T.owner_symptom = src
 		T.Insert(M,FALSE,FALSE,insertionZone)
 		if(from_tumor)
 			to_chat(M, span_warning("[pick("Your insides writhe.", "You feel your insides squirm.")]"))

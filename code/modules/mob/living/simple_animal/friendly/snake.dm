@@ -22,6 +22,8 @@
 	attacktext = "bites"
 	melee_damage_lower = 5
 	melee_damage_upper = 6
+	attack_sound = 'sound/weapons/bite.ogg'
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	response_help  = "pets"
 	response_disarm = "shoos"
 	response_harm   = "steps on"
@@ -57,7 +59,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/AttackingTarget()
 	if(istype(target, /mob/living/simple_animal/mouse))
-		visible_message(span_notice("[name] consumes [target] in a single gulp!"), span_notice("You consume [target] in a single gulp!"))
+		visible_message(span_notice("[src]] consumes [target] in a single gulp!"), span_notice("You consume [target] in a single gulp!"))
 		QDEL_NULL(target)
 		adjustBruteLoss(-2)
 	else

@@ -73,6 +73,16 @@
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/rcd_upgrade/conveyor
+	name = "RCD Conveyor upgrade"
+	desc = "Adds the ability to dispense conveyors and switches using the RCD."
+	id = "rcd_upgrade_conveyor"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500)
+	build_path = /obj/item/rcd_upgrade/conveyor
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/rcd_upgrade/silo_link
 	name = "Advanced RCD silo link upgrade"
 	desc = "Adds the silo direct link to the RCD."

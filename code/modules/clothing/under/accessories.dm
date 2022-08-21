@@ -102,6 +102,14 @@
 	minimize_when_attached = FALSE
 	attachment_slot = null
 
+/obj/item/clothing/accessory/sharkhoodie
+	name = "shark hoodie"
+	desc = "Standard apparel of shark enthusiasts everywhere."
+	icon_state = "shark_hoodie"
+	item_state = "shark_hoodie"
+	minimize_when_attached = FALSE
+	attachment_slot = null
+
 
 //////////
 //Medals//
@@ -214,6 +222,7 @@
 	name = "medal of captaincy"
 	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	cryo_preserve = TRUE
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"

@@ -318,5 +318,5 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	SSair.add_to_active(src)
 
 /turf/proc/ReplaceWithLattice()
-	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+	ScrapeToBottom(flags = CHANGETURF_INHERIT_AIR) // Yogs -- fixes this not actually replacing the turf with a lattice, lmao (ScrapeToBottom defined in yogs file)
 	new /obj/structure/lattice(locate(x, y, z))

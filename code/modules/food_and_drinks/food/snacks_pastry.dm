@@ -65,6 +65,19 @@
 	tastes = list("donut" = 3, "fizzy tutti frutti" = 1,)
 	filling_color = "#803280"
 
+/obj/item/reagent_containers/food/snacks/donut/deadly
+	desc = "Goes great with Doctor's Delight."
+	volume = 1000
+	bitesize = 1000
+	list_reagents = list(/datum/reagent/consumable/nutriment = 950, /datum/reagent/consumable/sugar = 50,)
+	tastes = list("countless donuts" = 2, "sugar" = 2)
+	foodtype = SUGAR | FRIED | GRAIN
+
+/obj/item/reagent_containers/food/snacks/donut/deadly/On_Consume(mob/living/eater)
+	. = ..()
+	to_chat(eater, span_notice("You couldn't stop yourself... It was so delicious..."))
+	eater.set_nutrition(1000)
+
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
 	desc = "You jelly?"
@@ -217,7 +230,7 @@
 	tastes = list("waffle" = 1, "mushrooms" = 1)
 	foodtype = GRAIN | VEGETABLES | TOXIC | SUGAR | BREAKFAST
 
-////////////////////////////////////////////OTHER////////////////////////////////////////////
+////////////////////////////////////////////DONKPOCKETS////////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/cookie
 	name = "cookie"
@@ -238,7 +251,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm
 	filling_color = "#CD853F"
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
-	foodtype = GRAIN
+	foodtype = GRAIN | MEAT
 
 //donk pockets cook quick... try not to burn them for using an unoptimal tool
 /obj/item/reagent_containers/food/snacks/donkpocket/MakeBakeable()
@@ -251,7 +264,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 3)
 	cooked_type = null
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
-	foodtype = GRAIN
+	foodtype = GRAIN | MEAT
 
 ///Override for fast-burning food
 /obj/item/reagent_containers/food/snacks/donkpocket/warm/MakeBakeable()
@@ -265,6 +278,142 @@
 	filling_color = "#00FF00"
 	tastes = list("meat" = 2, "dough" = 2)
 	foodtype = GRAIN | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/donkpocket/spicy
+	name = "spicy donkpocket"
+	desc = "The classic snack food, now with a heat-activated spicy flair."
+	icon_state = "donkpocketspicy"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 2)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/spicy
+	filling_color = "#CD853F"
+	tastes = list("meat" = 2, "dough" = 2, "spice" = 1)
+	foodtype = GRAIN | MEAT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/spicy
+	name = "warm spicy donkpocket"
+	desc = "The classic snack food, now maybe a bit too spicy."
+	icon_state = "donkpocketspicy"
+	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/capsaicin = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/capsaicin = 2)
+	tastes = list("meat" = 2, "dough" = 2, "weird spices" = 2)
+	foodtype = GRAIN | MEAT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/meaty
+	name = "meatpocket"
+	desc = "Can this really be called a donkpocket? You should...probably cook this."
+	icon_state = "donkpocketmeaty"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/meaty
+	filling_color = "#CD853F"
+	tastes = list("raw meat" = 4)
+	foodtype = MICE
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/meaty
+	name = "warm meatpocket"
+	desc = "Can this really be called a donkpocket?"
+	icon_state = "donkpocketcookedmeaty"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/drippings = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/drippings = 2)
+	tastes = list("meat" = 4)
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/teriyaki
+	name = "teriyaki donkpocket"
+	desc = "An east-asian take on the classic stationside snack."
+	icon_state = "donkpocketteriyaki"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/soysauce = 2)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/teriyaki
+	filling_color = "#CD853F"
+	tastes = list("meat" = 2, "dough" = 2, "soy sauce" = 2)
+	foodtype = GRAIN | MEAT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/teriyaki
+	name = "warm teriyaki donkpocket"
+	desc = "An east-asian take on the classic stationside snack, now steamy and warm."
+	icon_state = "donkpocketteriyaki"
+	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/soysauce = 2)
+	tastes = list("meat" = 2, "dough" = 2, "soy sauce" = 2)
+	foodtype = GRAIN | MEAT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/pizza
+	name = "pizza donkpocket"
+	desc = "Delicious, cheesy and surprisingly filling."
+	icon_state = "donkpocketpizza"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 2)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/pizza
+	filling_color = "#CD853F"
+	tastes = list("tomato sauce" = 2, "dough" = 2, "cheese"= 2)
+	foodtype = GRAIN | DAIRY | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/pizza
+	name = "warm pizza donkpocket"
+	desc = "Delicious, cheesy, and even better when hot."
+	icon_state = "donkpocketpizza"
+	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/tomatojuice = 2)
+	tastes = list("tomato sauce" = 2, "dough" = 2, "melty cheese"= 2)
+	foodtype = GRAIN | DAIRY | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/donkpocket/honk
+	name = "honkpocket"
+	desc = "The award-winning donk-pocket that won the hearts of clowns and humans alike."
+	icon_state = "donkpocketbanana"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/honk
+	filling_color = "#ffd51c"
+	tastes = list("banana" = 2, "dough" = 2, "children's antibiotics" = 1)
+	foodtype = GRAIN | FRUIT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/honk
+	name = "warm honkpocket"
+	desc = "The award-winning donk-pocket, now warm and toasty."
+	icon_state = "donkpocketbanana"
+	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/laughter = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/banana = 4, /datum/reagent/consumable/laughter = 3)
+	tastes = list("dough" = 2, "children's antibiotics" = 1)
+	foodtype = GRAIN | FRUIT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/berry
+	name = "berry donkpocket"
+	desc = "A relentlessly sweet donk-pocket first created for use in Operation Dessert Storm."
+	icon_state = "donkpocketberry"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/berryjuice = 3)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/berry
+	filling_color = "#CD853F"
+	tastes = list("dough" = 2, "jam" = 2)
+	foodtype = GRAIN | FRUIT | SUGAR
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/berry
+	name = "warm berry donkpocket"
+	desc = "A relentlessly sweet donk-pocket, now warm and delicious."
+	icon_state = "donkpocketberry"
+	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 1, /datum/reagent/consumable/berryjuice = 3)
+	tastes = list("dough" = 2, "warm jam" = 2)
+	foodtype = GRAIN | FRUIT | SUGAR
+
+/obj/item/reagent_containers/food/snacks/donkpocket/gondola
+	name = "gondola donkpocket"
+	desc = "The choice to use real gondola meat in the recipe is controversial, to say the least." //Only a monster would craft this.
+	icon_state = "donkpocketgondola"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/tranquility = 5)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/gondola
+	filling_color = "#CD853F"
+	tastes = list("meat" = 2, "dough" = 2, "inner peace" = 1)
+	foodtype = GRAIN | MEAT
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/gondola
+	name = "warm gondola donkpocket"
+	desc = "The choice to use real gondola meat in the recipe is controversial, to say the least."
+	icon_state = "donkpocketgondola"
+	bonus_reagents = list(/datum/reagent/medicine/omnizine = 1, /datum/reagent/tranquility = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 1, /datum/reagent/tranquility = 5)
+	tastes = list("meat" = 2, "dough" = 2, "inner peace" = 1)
+	foodtype = GRAIN | MEAT
+
+////////////////////////////////////////////OTHER////////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/cookie/sleepy
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)

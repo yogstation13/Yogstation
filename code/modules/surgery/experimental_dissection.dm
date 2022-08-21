@@ -1,8 +1,11 @@
+#define EXPDIS_BASE_REWARD 500
+
 /datum/surgery/experimental_dissection
-	name = "Experimental Dissection"
-	desc = "A surgical procedure which deeply analyzes the biology of a corpse, and automatically adds new findings to the research database."
-	icon = 'icons/obj/implants.dmi'
+	name = "Dissection"
+	desc = "A surgical procedure which analyzes the biology of a corpse, and gives notes with the points given."
+	icon = 'icons/mob/actions.dmi'
 	icon_state = "scan_mode"
+	tier = "1"
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -10,62 +13,101 @@
 				/datum/surgery_step/dissection,
 				/datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)
-	target_mobtypes = list(/mob/living/carbon) //Feel free to dissect devils but they're magic.
+	target_mobtypes = list(/mob/living) //Feel free to dissect devils but they're magic.
+	replaced_by = /datum/surgery/experimental_dissection/adv
+	requires_tech = FALSE
+	var/value_multiplier = 1
 
 /datum/surgery/experimental_dissection/can_start(mob/user, mob/living/carbon/target)
 	. = ..()
-	if(HAS_TRAIT(target, TRAIT_DISSECTED))
+	if(HAS_TRAIT_FROM(target, TRAIT_DISSECTED, "[name]"))
 		return FALSE
-	if(iscyborg(user))
-		return FALSE //robots cannot be creative
-						//(also this surgery shouldn't be consistently successful, and cyborgs have a 100% success rate on surgery)
 	if(target.stat != DEAD)
 		return FALSE
 
 /datum/surgery_step/dissection
 	name = "dissection"
-	implements = list(TOOL_SCALPEL = 60, /obj/item/kitchen/knife = 30, /obj/item/shard = 15)
-	time = 125
+	implements = list(/obj/item/scalpel/augment = 75, /obj/item/scalpel/advanced = 60, /obj/item/scalpel = 45, /obj/item/kitchen/knife = 20, /obj/item/shard = 10)// special tools not only cut down time but also improve probability
+	time = 12.5 SECONDS
+	silicons_obey_prob = TRUE
+	repeatable = TRUE
+	preop_sound = 'sound/surgery/scalpel1.ogg'
+	success_sound = 'sound/surgery/scalpel2.ogg'
 
-/datum/surgery_step/dissection/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+/datum/surgery_step/dissection/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] starts dissecting [target].", span_notice("You start dissecting [target]."))
 
-/datum/surgery_step/dissection/proc/check_value(mob/living/carbon/target)
+/datum/surgery_step/dissection/proc/check_value(mob/living/target, datum/surgery/experimental_dissection/ED)
+	var/cost = EXPDIS_BASE_REWARD
+	var/multi_surgery_adjust = 0
+
+	//determine bonus applied
 	if(isalienroyal(target))
-		return 10000
+		cost = (EXPDIS_BASE_REWARD * 10)
 	else if(isalienadult(target))
-		return 5000
+		cost = (EXPDIS_BASE_REWARD * 5)
 	else if(ismonkey(target))
-		return 1000
+		cost = (EXPDIS_BASE_REWARD * 0.5)
 	else if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(H.dna && H.dna.species)
+		if(H?.dna?.species)
 			if(isabductor(H))
-				return 8000
-			if(isgolem(H) || iszombie(H))
-				return 4000
-			if(isjellyperson(H) || ispodperson(H))
-				return 3000
-			return 2000
+				cost = (EXPDIS_BASE_REWARD * 4)
+			else if(isgolem(H) || iszombie(H))
+				cost = (EXPDIS_BASE_REWARD * 3)
+			else if(isjellyperson(H) || ispodperson(H))
+				cost = (EXPDIS_BASE_REWARD * 2)
+	else
+		cost = (EXPDIS_BASE_REWARD * 0.6)
 
-/datum/surgery_step/dissection/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] dissects [target]!", span_notice("You dissect [target], and add your discoveries to the research database!"))
-	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = check_value(target)))
-	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_MED)
-	if(D)
-		D.adjust_money(check_value(target))
+
+
+	//now we do math for surgeries already done (no double dipping!).
+	for(var/i in typesof(/datum/surgery/experimental_dissection))
+		var/datum/surgery/experimental_dissection/dissection = i
+		if(HAS_TRAIT_FROM(target, TRAIT_DISSECTED, "[initial(dissection.name)]"))
+			multi_surgery_adjust = max(multi_surgery_adjust, initial(dissection.value_multiplier)) - 1
+
+	multi_surgery_adjust *= cost
+
+	//multiply by multiplier in surgery
+	cost *= ED.value_multiplier
+	return (cost-multi_surgery_adjust)
+
+/datum/surgery_step/dissection/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	var/points_earned = check_value(target, surgery)
+	user.visible_message("[user] dissects [target], discovering [points_earned] point\s of data!", span_notice("You dissect [target], and write down [points_earned] point\s worth of discoveries!"))
+	new /obj/item/research_notes(user.loc, points_earned, TECHWEB_POINT_TYPE_GENERIC, "biology")
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
-	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND)
-	ADD_TRAIT(target, TRAIT_DISSECTED, "surgery")
+	target.apply_damage(80, BRUTE, L)
+	ADD_TRAIT(target, TRAIT_DISSECTED, "[surgery.name]")
+	repeatable = FALSE
 	return TRUE
 
 /datum/surgery_step/dissection/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] dissects [target]!", span_notice("You dissect [target], but do not find anything particularly interesting."))
-	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = (check_value(target) * 0.2)))
-	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_MED)
-	if(D)
-		D.adjust_money(check_value(target))
+	user.visible_message("[user] dissects [target]!", span_notice("<span class='notice'>You dissect [target], but do not find anything particularly interesting."))
+	new /obj/item/research_notes(user.loc, round(check_value(target, surgery)) * 0.01, TECHWEB_POINT_TYPE_GENERIC, "biology")
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
-	target.apply_damage(80, BRUTE, L, wound_bonus=CANT_WOUND)
-	ADD_TRAIT(target, TRAIT_DISSECTED, "surgery")
+	target.apply_damage(80, BRUTE, L)
 	return TRUE
+
+/datum/surgery/experimental_dissection/adv
+	name = "Thorough Dissection"
+	tier = "2"
+	value_multiplier = 2
+	replaced_by = /datum/surgery/experimental_dissection/adv/exp
+	requires_tech = TRUE
+
+/datum/surgery/experimental_dissection/adv/exp
+	name = "Experimental Dissection"
+	tier = "3"
+	value_multiplier = 5
+	replaced_by = /datum/surgery/experimental_dissection/adv/alien
+
+/datum/surgery/experimental_dissection/adv/alien
+	name = "Extraterrestrial Dissection"
+	tier = "4"
+	value_multiplier = 10
+	replaced_by = null
+
+#undef EXPDIS_BASE_REWARD

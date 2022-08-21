@@ -35,17 +35,17 @@
 	var/preload_cell_type
 	///used for passive discharge
 	var/cell_last_used = 0
-	var/makeshift = FALSE
-	var/obj/item/firing_pin/pin = /obj/item/firing_pin
-	var/obj/item/batonupgrade/upgrade
 	var/thrown = FALSE
 
 /obj/item/melee/baton/get_cell()
 	return cell
 
 /obj/item/melee/baton/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return (FIRELOSS)
+	if(status)
+		user.visible_message(span_suicide("[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide!"))
+		return FIRELOSS
+	user.visible_message(span_suicide("[user] is putting the [name] in [user.p_their()] mouth! But forgot to turn the [name] on."))
+	return SHAME
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
@@ -55,24 +55,8 @@
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
-	if(pin)
-		pin = new pin(src)
 	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, .proc/throwbaton)
 	update_icon()
-
-/obj/item/melee/baton/Destroy()
-	. = ..()
-	if(isobj(pin)) //Can still be the initial path, then we skip
-		QDEL_NULL(pin)
-	if(isobj(upgrade)) //Can still be the initial path, then we skip
-		QDEL_NULL(upgrade)
-
-/obj/item/melee/baton/handle_atom_del(atom/A)
-	. = ..()
-	if(A == pin)
-		pin = null
-	if(A == upgrade)
-		upgrade = null
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(..())
@@ -104,7 +88,12 @@
 	if(cell)
 		//Note this value returned is significant, as it will determine
 		//if a stun is applied or not
-		. = cell.use(chrgdeductamt)
+		var/mob/living/M = loc
+		if(M && iscyborg(M)) 
+			var/mob/living/silicon/robot/R = loc
+			R.cell.use(chrgdeductamt)
+		else
+			. = cell.use(chrgdeductamt)
 		if(status && cell.charge < hitcost)
 			//we're below minimum, turn off
 			status = FALSE
@@ -149,45 +138,6 @@
 			cell = W
 			to_chat(user, span_notice("You install a cell in [src]."))
 			update_icon()
-	else if(istype(W, /obj/item/firing_pin))
-		if(makeshift)
-			return
-		if(upgrade)
-			if(W.type != /obj/item/firing_pin)
-				to_chat("You are unable to add a non default firing pin whilst [src] has an upgrade. Remove the upgrade first with a crowbar.")
-				return
-		if(pin)
-			to_chat(user, span_notice("[src] already has a firing pin. You can remove it with crowbar."))
-		else
-			W.forceMove(src)
-			pin = W
-	else if(istype(W, /obj/item/batonupgrade))
-		if(makeshift)
-			return
-		if(pin)
-			if(pin.type != /obj/item/firing_pin)
-				to_chat("You are unable to upgrade the baton whilst it has a non default firing pin.")
-				return
-		if(upgrade)
-			to_chat(user, span_notice("[src] already has an upgrade installed. You can remove it with crowbar"))
-		else
-			to_chat(user, span_notice("You apply the [W.name] to the [src]"))
-			W.forceMove(src)
-			upgrade = W	
-	else if(W.tool_behaviour == TOOL_CROWBAR)
-		if(makeshift)
-			return
-		if(pin)
-			pin.forceMove(get_turf(src))
-			pin = null
-			status = FALSE
-			to_chat(user, span_notice("You remove the firing pin from [src]."))
-		if(upgrade)
-			upgrade.forceMove(get_turf(src))
-			upgrade = null
-			status = FALSE
-			to_chat(user, span_notice("You remove the upgrade from [src]."))
-		update_icon()
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
 			cell.update_icon()
@@ -201,8 +151,6 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
-	if(!handle_pins(user))
-		return FALSE
 	if(dropcheck)
 		to_chat(user, "[src]'s emergency shutoff is still active!")
 		return
@@ -272,13 +220,6 @@
 
 
 /obj/item/melee/baton/proc/baton_stun(mob/living/L, mob/user)
-	if(!handle_pins(user))
-		return FALSE
-	if(upgrade)
-		stamina_damage = initial(stamina_damage)*2
-		hitcost = initial(hitcost)*1.5
-	else
-		stamina_damage = initial(stamina_damage)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
@@ -366,7 +307,6 @@
 	hitcost = 2000
 	throw_hit_chance = 10
 	slot_flags = ITEM_SLOT_BACK
-	makeshift = TRUE
 	var/obj/item/assembly/igniter/sparkler = 0
 
 /obj/item/melee/baton/cattleprod/Initialize()
@@ -382,17 +322,6 @@
 	desc = "A cost-effective, mass-produced, tactical stun prod."
 	preload_cell_type = /obj/item/stock_parts/cell/high/plus // comes with a cell
 	color = "#aeb08c" // super tactical
-
-/obj/item/melee/baton/proc/handle_pins(mob/living/user)
-	if(pin)
-		if(pin.pin_auth(user) || (pin.obj_flags & EMAGGED))
-			return TRUE
-		else
-			pin.auth_fail(user)
-			return FALSE
-	else
-		to_chat(user, span_warning("[src]'s trigger is locked. This weapon doesn't have a firing pin installed!"))
-	return FALSE
 
 /obj/item/batonupgrade
 	name = "baton power upgrade"

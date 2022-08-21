@@ -18,6 +18,7 @@
 	force = 5
 	item_flags = NEEDS_PERMIT
 	attack_verb = list("struck", "hit", "bashed")
+	cryo_preserve = TRUE
 
 	var/fire_sound = "gunshot"
 	var/vary_fire_sound = TRUE
@@ -244,18 +245,18 @@
 
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
-	var/loop_counter = 0
+	var/cd_mod = CLICK_CD_RANGE
+	if(chambered?.click_cooldown_override)
+		cd_mod = chambered.click_cooldown_override
+	
 	if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
-		for(var/obj/item/gun/G in H.held_items)
-			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
-				continue
-			else if(G.can_trigger_gun(user))
-				bonus_spread += 24 * G.weapon_weight
-				loop_counter++
-				addtimer(CALLBACK(G, /obj/item/gun.proc/process_fire, target, user, TRUE, params, null, bonus_spread), loop_counter)
+		if(weapon_weight < WEAPON_MEDIUM && istype(H.held_items[H.get_inactive_hand_index()], /obj/item/gun) && can_trigger_gun(user))
+			bonus_spread += 18 * weapon_weight
+			cd_mod = cd_mod * 0.75
+			H.swap_hand()
 
-	process_fire(target, user, TRUE, params, null, bonus_spread)
+	process_fire(target, user, TRUE, params, null, bonus_spread, cd_mod)
 
 /obj/item/gun/proc/check_botched(mob/living/user, params)
 	if(clumsy_check)
@@ -325,7 +326,8 @@
 	update_icon()
 	return TRUE
 
-/obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+/// cd_override is FALSE or 0 by default (no override), if you want to make a gun have no click cooldown then just make it something small like 0.001
+/obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, cd_override = FALSE)
 	if(user)
 		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, user, target, params, zone_override)
 
@@ -355,7 +357,7 @@
 					return
 			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 			before_firing(target,user)
-			if(!chambered.fire_casing(target, user, params, , suppressed, zone_override, sprd, src))
+			if(!chambered.fire_casing(target, user, params, , suppressed, zone_override, sprd, src, cd_override))
 				shoot_with_empty_chamber(user)
 				return
 			else

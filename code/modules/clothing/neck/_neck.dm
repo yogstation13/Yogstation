@@ -76,7 +76,7 @@
 					if(!(M.failed_last_breath || M.losebreath))
 						lung_strength = "healthy"
 
-			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT * 10)
+			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT)
 				heart_strength = span_boldannounce("a faint, fluttery")
 
 			var/diagnosis = (body_part == BODY_ZONE_CHEST ? "You hear [heart_strength] pulse and [lung_strength] respiration." : "You faintly hear [heart_strength] pulse.")
@@ -181,7 +181,7 @@
 
 /obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	var/mob/living/carbon/C = M
-	if(C && ishumanbasic(C) && !iscatperson(C))
+	if(C && !ishumanbasic(C))
 		return FALSE
 	return ..()
 

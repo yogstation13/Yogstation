@@ -23,12 +23,26 @@
 		return FALSE
 	return ..()
 
+/datum/surgery/stomach_pump/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/stomach_pump,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
+	lying_required = FALSE
+	self_operable = TRUE
+
 //Working the stomach by hand in such a way that you induce vomiting.
 /datum/surgery_step/stomach_pump
 	name = "Pump Stomach"
 	accept_hand = TRUE
 	repeatable = TRUE
 	time = 2 SECONDS
+	bloody_chance = 100
+	success_sound = 'sound/surgery/organ2.ogg'
 
 /datum/surgery_step/stomach_pump/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin pumping [target]'s stomach..."),

@@ -208,10 +208,12 @@
 	glass_name = "glass of cilk"
 	glass_desc = "A mixture of milk and... cola? Who the fuck would do this?"
 
-/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+/datum/reagent/consumable/cilk/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	if(iscatperson(M))
+		quality = DRINK_GOOD
+	else
+		quality = initial(quality) //before you ask "why is this here" I will explain it is to stop people from feeding cilk to a feline just to extract it and give it to other people for the mood buff the same way a mother bird feeds its young I know the mood buff is small but someone would definitely realize they could do it eventually
 	. = ..()
-	if(H.reagents.has_reagent(/datum/reagent/consumable/cilk))
-		H.adjustBruteLoss(-0.2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 /datum/reagent/consumable/milk/goat
 	name = "Goat Milk"

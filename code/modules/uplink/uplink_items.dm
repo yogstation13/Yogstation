@@ -572,7 +572,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/bow/energy/syndicate
 	cost = 12
 	surplus = 25
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
@@ -693,9 +693,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 40
 
 /datum/uplink_item/ammo/pistol
-	name = "10mm Handgun Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol."
-	item = /obj/item/ammo_box/magazine/m10mm
+	name = "Pair of 10mm Handgun Magazines"
+	desc = "A box that contains two additional 8-round 10mm magazines; compatible with the Stechkin Pistol."
+	item = /obj/item/storage/box/syndie_kit/pistolammo
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
@@ -704,7 +704,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are less effective at injuring the target but penetrate protective gear."
 	item = /obj/item/ammo_box/magazine/m10mm/ap
-	cost = 2
+	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistolhp
@@ -712,23 +712,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are more damaging but ineffective against armour."
 	item = /obj/item/ammo_box/magazine/m10mm/hp
-	cost = 3
+	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistolsleepy
-	name = "10mm Soporific Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	name = "Pair of 10mm Soporific Magazines"
+	desc = "A box that contains 2 additional 8-round 10mm magazines; compatible with the Stechkin Pistol. \
 			These rounds will deliver small doses of tranqulizers on hit, knocking the target out after a few successive hits."
-	item = /obj/item/ammo_box/magazine/m10mm/sp
+	item = /obj/item/storage/box/syndie_kit/pistolsleepyammo
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistolfire
 	name = "10mm Incendiary Magazine"
 	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
-			Loaded with incendiary rounds which inflict little damage, but ignite the target."
+			Loaded with incendiary rounds which inflict reduced damage, but ignite the target."
 	item = /obj/item/ammo_box/magazine/m10mm/fire
-	cost = 2
+	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/shotgun
@@ -1593,7 +1593,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Stimpack"
 	desc = "Stimpacks, the tool of many great heroes, make you nearly immune to stuns and knockdowns for about \
 			5 minutes after injection."
-	item = /obj/item/reagent_containers/hypospray/medipen/stimpack/large // Yogs -- Stimpack change
+	item = /obj/item/reagent_containers/autoinjector/medipen/stimpack/large // Yogs -- Stimpack change
 	cost = 8
 	surplus = 90
 
@@ -1606,6 +1606,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/device_tools/hypospray_kit
+	name = "Syndicate Combat Hypospray Kit"
+	desc = "An advanced kit containing a combat hypospray and a wide variety of vials containing \"perfectly legal chemicals\" to treat combatants."
+	item = /obj/item/storage/firstaid/hypospray/syndicate
+	cost = 5
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/device_tools/soap
 	name = "Syndicate Soap"
 	desc = "A sinister-looking surfactant used to clean blood stains to hide murders and prevent DNA analysis. \
@@ -1614,6 +1621,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 50
+	illegal_tech = FALSE
 
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
@@ -1799,11 +1807,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/implants/mantis_kit
-	name = "G.O.R.L.E.X.. Mantis Blades Kit"
-	desc = "Comes with 2 G.O.R.L.E.X. Mantis blades. All packaged with autosurgeons."
-	item = /obj/item/storage/briefcase/syndie_mantis
-	cost = 16
+/datum/uplink_item/implants/mantis
+	name = "G.O.R.L.E.X. Mantis Blade"
+	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing, 2 blades can be used at once."
+	item = /obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	cost = 7
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
@@ -1909,6 +1917,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
 
+/datum/uplink_item/race_restricted/mousecubes
+	name = "Box of Mouse Cubes"
+	desc = "A box with twenty four Waffle Co. brand mouse cubes. Deploy near wiring. \
+			Caution: Product may rehydrate when exposed to water."
+	item = /obj/item/storage/box/monkeycubes/syndicate/mice
+	cost = 1
+	manufacturer = /datum/corporation/traitor/waffleco
+	restricted_species = list("felinid")
+
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
@@ -1994,6 +2011,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
+
+/datum/uplink_item/role_restricted/deadlydonut
+	name = "Box of Singulonuts"
+	desc = "A box with six Waffle Co. brand Singulonuts. Banned in four sectors for their sheer calorie content. \
+			Caution: Product known to the safety board of Nanotrasen to increase risks of stomach cancer and cause instant obesity. \ Disguised as a regular box of regular donuts."
+	item = /obj/item/storage/box/fancy/donut_box/deadly
+	cost = 6
+	manufacturer = /datum/corporation/traitor/waffleco
+	restricted_roles = list("Assistant", "Cook", "Clerk")
+	illegal_tech = FALSE
 
 /datum/uplink_item/role_restricted/clown_bomb
 	name = "Clown Bomb"
@@ -2117,7 +2144,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Magillitis Serum Autoinjector"
 	desc = "A single-use autoinjector which contains an experimental serum that causes rapid muscular growth in Hominidae. \
 			Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
-	item = /obj/item/reagent_containers/hypospray/magillitis
+	item = /obj/item/reagent_containers/autoinjector/magillitis
 	cost = 15
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Geneticist", "Chief Medical Officer")
@@ -2240,6 +2267,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 40
+	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
@@ -2248,6 +2276,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
+
+
+/datum/uplink_item/badass/syndietape
+	name = "Guerrilla Tape"
+	desc = "New from Donk Co! Stick it to the man with this ultra-adhesive roll of tape! Grabs on tight, and holds on tight, using our patented adhesive formula. Ten times stronger than our leading competitors!"
+	item = /obj/item/stack/tape/guerrilla
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
 
 /datum/uplink_item/badass/antagcape
 	name = "Red Syndicate Cape"

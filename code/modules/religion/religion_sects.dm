@@ -185,21 +185,26 @@
 	alignment = ALIGNMENT_EVIL
 	desired_items = list(/obj/item/holochip)
 	max_favor = 100000
+	var/last_dono = 0 // world.time
 	rites_list = list(/datum/religion_rites/toppercent,
 					  /datum/religion_rites/looks)
 
 /datum/religion_sect/capitalists/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
 		return
+	if(world.time < last_dono) // immersion broken
+		user.visible_message(span_notice("You are getting too greedy! You can recieve another donation in [(last_dono - world.time)/10] seconds!"))
+		return
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/id_card = H.get_idcard()
 	var/obj/item/card/id/id_cardu = user.get_idcard()
-	var/money_check = 500
+	var/money_to_donate = round(id_card.registered_account.account_balance * 0.1) // takes 10% of their money and rounds it down
 
-	if(!id_card.registered_account.account_balance > money_check)
+	if(money_to_donate <= 0)
 		user.visible_message(span_notice("[H] is too poor to recieve [GLOB.deity]'s blessing!"))
 	else
-		var/heal_amt = 10
+		last_dono = world.time + 15 SECONDS // healing CD is 15 seconds but your healing strength is 3x stronger
+		var/heal_amt = 30
 		var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
 
 		if(hurt_limbs.len)
@@ -207,26 +212,13 @@
 				var/obj/item/bodypart/affecting = X
 				if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
 					H.update_damage_overlays()
-		id_card.registered_account.adjust_money(-10)
-		id_cardu.registered_account.adjust_money(10)
+		id_card.registered_account.adjust_money(-money_to_donate)
+		id_cardu.registered_account.adjust_money(money_to_donate)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		playsound(user, 'sound/misc/capitialism-short.ogg', 25, TRUE, -1)
 		H.visible_message(span_notice("[user] blesses [H] with the power of capitalism!"))
 		to_chat(H, span_boldnotice("You feel spiritually enriched, and donate to the cause of [GLOB.deity]!"))
-		H.visible_message(span_notice("[H] donated 10 credits!"))
-
-	var/heal_amt = 10
-	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
-
-	if(hurt_limbs.len)
-		for(var/X in hurt_limbs)
-			var/obj/item/bodypart/affecting = X
-			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
-				H.update_damage_overlays()
-		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
-		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
-		playsound(user, "punch", 25, TRUE, -1)
-		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+		H.visible_message(span_notice("[H] donated [money_to_donate] credits!"))
 	return TRUE
 
 /datum/religion_sect/capitalists/on_sacrifice(obj/item/I, mob/living/L)
@@ -370,4 +362,52 @@
 	else
 		adjust_favor(75, user)
 	qdel(offering)
+	return 
+	
+/// The Honkmother sect, sacrifice bananas to feed your prank power. 
+
+/datum/religion_sect/honkmother
+	name = "The Honkmother"
+	desc = "A sect dedicated to the Honkmother"
+	convert_opener = "The Honkmother welcomes you to the party, prankster.<br>Sacrifice bananas to power our pranks and grant you favor."
+	alignment = ALIGNMENT_NEUT
+	max_favor = 10000
+	desired_items = list(/obj/item/reagent_containers/food/snacks/grown/banana)
+	rites_list = list(/datum/religion_rites/holypie, /datum/religion_rites/honkabot, /datum/religion_rites/bananablessing)
+	altar_icon_state = "convertaltar-red"
+
+//honkmother bible is supposed to only cure clowns, honk, and be slippery. I don't know how I'll do that
+/datum/religion_sect/honkmother/sect_bless/sect_bless(mob/living/blessed, mob/living/user)
+	if(!ishuman(blessed))
+		return
+	var/mob/living/carbon/human/H = blessed
+	var/datum/mind/M = H.mind
+	if(M.assigned_role != "Clown")
+		return
+	var/heal_amt = 10
+	var/list/hurt_limbs = H.get_damaged_bodyparts(TRUE, TRUE, null, BODYPART_ORGANIC)
+
+	if(hurt_limbs.len)
+		for(var/X in hurt_limbs)
+			var/obj/item/bodypart/affecting = X
+			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
+				H.update_damage_overlays()
+	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+	to_chat(H, span_boldnotice("The radiance of [GLOB.deity] heals you!"))
+	playsound(user, "sound/miscitems/bikehorn.ogg", 25, TRUE, -1)
+	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/honk)
 	return TRUE
+
+/datum/religion_sect/honkmother/on_conversion(mob/living/L)
+	. = ..()
+	for(var/obj/item/storage/book/bible/da_bible in L.get_contents())
+		da_bible.AddComponent(/datum/component/slippery, 40)
+		da_bible.desc += " It has an usually slippery texture."
+
+/datum/religion_sect/honkmother/on_sacrifice(obj/item/reagent_containers/food/snacks/grown/banana/offering, mob/living/user)
+	if(!istype(offering))
+		return
+	adjust_favor(10, user)			
+	to_chat(user, span_notice("HONK"))
+	qdel(offering)
+	return

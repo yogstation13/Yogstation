@@ -57,7 +57,7 @@
 	cost = 800
 	contains = list(/obj/item/storage/box/cheese)
 	crate_name = "cheese culture crate"
-	
+
 /datum/supply_pack/organic/randomized/cheesewheel
 	name = "Cheese Wheel Crate"
 	desc = "Contains 6 various cheese wheels, for stations that don't have a chef or work ethic."
@@ -105,7 +105,8 @@
 					/obj/item/toy/plush/flowerbunch,
 					/obj/item/toy/plush/inorixplushie,
 					/obj/item/toy/plush/beeplushie,
-					/obj/item/toy/plush/slimeplushie)
+					/obj/item/toy/plush/slimeplushie,
+					/obj/item/toy/plush/cdragon)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
@@ -167,3 +168,16 @@
 	contains = list(/obj/item/clothing/head/milliondollarhat)
 	crate_name = "million dollar hat crate"
 	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/critter/carp
+	name = "Exotic Fish Crate"
+	desc = "°@$#|TIRED OF THOSE BORING SEAFARING FISHES? WANT TO SEE REAL FAUNA FROM SPACE? WELL WE GOT 3 OF ITS FINEST SPECIMENS IN A BOX JUST FOR YOU! WE COULDN'T FIND DECENT FOOD FOR THEM SO THEY MIGHT BE VERY HUNGRY, GET SOME FOOD READY FOR THEM!(@/!&"
+	hidden = TRUE
+	cost = 2000
+	contains = list(/mob/living/simple_animal/hostile/carp)
+	crate name = "fish crate"
+
+/datum/supply_pack/critter/carp/generate()
+	. = ..()
+	for(var/i in 1 to 2)
+		new /mob/living/simple_animal/hostile/carp(.)
