@@ -495,10 +495,12 @@
 	bloodsucker_level_unspent++
 	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
-	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
+	if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin that you have claimed to thicken your blood and become more powerful.</EM>"))
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
+		return
+	SpendRank()
 
 /datum/antagonist/bloodsucker/proc/RankDown()
 	bloodsucker_level_unspent--
