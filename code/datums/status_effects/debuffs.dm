@@ -871,8 +871,7 @@
 					span_warning(pick("Your windpipe feels like a straw.", "Your breathing becomes tremendously difficult.")),
 					span_warning("You feel very [pick("dizzy","woozy","faint")]."),
 					span_warning(pick("You hear a ringing in your ear.", "Your ears pop.")),
-					span_warning("You nod off for a moment.")
-				)
+					span_warning("You nod off for a moment."))
 		else
 			if(prob(3))
 				if(prob(50))// coin flip to throw a message or an emote
