@@ -101,19 +101,21 @@
 		RemoveAfterUse()
 	return TRUE
 
-/datum/action/bloodsucker/proc/CheckCanPayCost()
+/datum/action/bloodsucker/proc/CheckCanPayCost(silent = FALSE)
 	if(!owner || !owner.mind)
 		return FALSE
 	// Cooldown?
 	if(!COOLDOWN_FINISHED(src, bloodsucker_power_cooldown))
-		to_chat(owner, span_warning("[src] on cooldown!"))
+		if(!silent)
+			to_chat(owner, span_warning("[src] on cooldown!"))
 		return FALSE
 	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
 	var/mob/living/user = owner
 	if(bloodsuckerdatum_power?.frenzied)
 		return TRUE
 	if(user.blood_volume < bloodcost)
-		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
+		if(!silent)
+			to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
 		return FALSE
 	return TRUE
 

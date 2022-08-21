@@ -100,21 +100,20 @@
 
 /obj/item/shield/bloodsucker/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	var/datum/antagonist/bloodsucker/BS = IS_BLOODSUCKER(owner)
-	var/kill_me = FALSE
 	if(!BS)
-		kill_me = TRUE
+		qdel(src)
 	else
 		if(owner.blood_volume <= block_cost)
 			to_chat(owner, span_warning("Your [src] dissolves, as you don't have enough blood to sustain it!"))
-			kill_me = TRUE
+			qdel(src)
 		else
 			BS.AddBloodVolume(-block_cost)
-			kill_me = FALSE
-	if(kill_me)
-		visible_message(span_warning("[src] dissolves in a puddle of blood!"))
-		new /obj/effect/decal/cleanable/blood (owner ? get_turf(owner) : get_turf(src))
-		qdel(src)
 	return ..()
+
+/obj/item/shield/bloodsucker/Destroy()
+	visible_message(span_warning("[src] dissolves in a puddle of blood!"))
+	new /obj/effect/decal/cleanable/blood (owner ? get_turf(owner) : get_turf(src))
+	. = ..()
 
 /obj/item/melee/blood_blade
 	name = "blood blade"
@@ -139,6 +138,11 @@
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 	if(ismob(loc))
 		loc.visible_message(span_warning("[loc.name] form a strange weapon from their blood!"))
+
+/obj/item/melee/blood_blade/Destroy()
+	visible_message(span_warning("[src] dissolves in a puddle of blood!"))
+	new /obj/effect/decal/cleanable/blood (owner ? get_turf(owner) : get_turf(src))
+	. = ..()
 
 /obj/item/bloodhand
 	name = "bloodhand"
@@ -217,7 +221,6 @@
 	cooldown = 35 SECONDS
 	target_range = 6
 	power_activates_immediately = FALSE
-	var/original_life_drain
 
 /datum/action/bloodsucker/targeted/life_drain/CheckValidTarget(atom/target_atom)
 	if(!iscarbon(target_atom))
@@ -260,3 +263,75 @@
 	to_chat(user, span_notice("You cut [target]'s veins open!"))
 
 	PowerActivatedSuccessfully()
+
+//////////////////////////////////////////////
+//                                          //
+//               BLOOD CRAWL                //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/action/bloodsucker/targeted/bloodcrawl
+	name = "Blood Crawl"
+	desc = "On use allows you to dash into a position of choice, and gives you an increased movement speed while active."
+	button_icon_state = "cleave"
+	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	power_explanation = "<b>Blood Crawl</b>:\n\
+		On activation grants you increased movement speed, while passively using your blood.\n\
+		On use allows you to teleport to a tile of choice at the cost of your blood.\n\
+		Doesn't cost blood to maintain active if you are staying on a blood puddle.\n\
+		If level 3 or more, teleporting also doesn't cost anything if the targeted tile has blood on it.\n\
+		If level 5 or more, makes you additionaly stunimune and pushimune while on blood"
+	power_flags = BP_AM_TOGGLE
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
+	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	cooldown = 5 SECONDS
+	target_range = 6
+	bloodcost = 40
+	power_activates_immediately = FALSE
+	constant_bloodcost = 0.2
+	var/traits_given = FALSE
+
+/datum/action/bloodsucker/targeted/bloodcrawl/FireTargetedPower(atom/target_atom)
+	. = ..()
+	var/turf/target_turf = isturf(target_atom) ? target_atom : get_turf(target_atom)
+
+	if(!target_turf)
+		return
+
+	var/obj/effect/decal/cleanable/blood = null
+	for(var/obj/effect/decal/cleanable/target in range(1, target_turf))
+		blood = target
+		break
+	if(!blood || level_current < 3)
+		if(!CheckCanPayCost(TRUE))
+			to_chat(owner, span_warning("You don't have enough blood to teleport!"))
+			return
+
+	do_teleport(owner, target_turf, no_effects=TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
+
+	if(!blood || level_current < 3)
+		PayCost()
+
+/datum/action/bloodsucker/targeted/bloodcrawl/UsePower(mob/living/user)
+	constant_bloodcost = initial(constant_bloodcost)
+	for(var/obj/effect/decal/cleanable/target in range(1, target_turf))
+		constant_bloodcost = 0
+		break
+	if(level_current >= 5 && constant_bloodcost = 0 && !traits_given)
+		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
+		ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, BLOODSUCKER_TRAIT)
+	else if(traits_given)
+		REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
+		REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, BLOODSUCKER_TRAIT)
+	. = ..()
+
+/datum/action/bloodsucker/targeted/bloodcrawl/ActivatePower()
+	. = ..()
+	owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/action/bloodsucker/targeted/bloodcrawl/DeactivatePower()
+	. = ..()
+	owner.remove_movespeed_modifier(type)
+	if(traits_given)
+		REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
+		REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, BLOODSUCKER_TRAIT)
