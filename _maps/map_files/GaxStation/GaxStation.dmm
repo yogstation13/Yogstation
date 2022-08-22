@@ -13804,18 +13804,6 @@
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
-"gLe" = (
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/central";
-	dir = 4;
-	name = "Medbay Central Maintenance APC";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/medical/central)
 "gLy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -28610,6 +28598,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"oul" = (
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/department/medical/central";
+	dir = 4;
+	name = "Medbay Central Maintenance APC";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/medical/central)
 "ova" = (
 /obj/machinery/door/airlock{
 	name = "Unisex Restrooms"
@@ -74776,7 +74776,7 @@ jWt
 lUK
 mbY
 nzc
-gLe
+oul
 wbY
 nam
 lCr
