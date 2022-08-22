@@ -1,13 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/template_noop)
-"g" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel,
+"o" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plating,
 /area/template_noop)
 "s" = (
 /obj/machinery/chem_dispenser/mutagensaltpeter,
@@ -16,6 +10,9 @@
 /area/template_noop)
 "C" = (
 /obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel,
+/area/template_noop)
+"D" = (
 /turf/open/floor/plasteel,
 /area/template_noop)
 "Q" = (
@@ -34,23 +31,29 @@
 "V" = (
 /turf/open/floor/plating,
 /area/template_noop)
+"W" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
 
 (1,1,1) = {"
 V
 V
 V
 V
-V
+o
 "}
 (2,1,1) = {"
-b
+D
 C
 s
 Q
-g
+D
 "}
 (3,1,1) = {"
-V
+W
 V
 V
 V
