@@ -46,11 +46,12 @@
 	if(humanity_lost >= 500)
 		to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanity, you are far from Human."))
 		return
-	if(humanity_lost >= TOREADOR_MAX_HUMANITY_LOSS)
-		to_chat(owner.current, span_warning("Your moral prevents you from becoming more ihuman."))
-		SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman2)
-		return
-	SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman)
+	if(my_clan == CLAN_TOREADOR)
+		if(humanity_lost >= TOREADOR_MAX_HUMANITY_LOSS)
+			to_chat(owner.current, span_warning("Your moral prevents you from becoming more ihuman."))
+			SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman2)
+			return
+		SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman)
 	humanity_lost += value
 	to_chat(owner.current, span_warning("You feel as if you lost some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + humanity_lost * 10] Blood."))
 

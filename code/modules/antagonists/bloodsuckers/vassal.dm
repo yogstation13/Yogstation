@@ -138,7 +138,7 @@
 			RegisterSignal(master, COMSIG_BLOODSUCKER_RANKS_SPENT, .proc/toreador_levelup_mesmerize)
 
 /datum/antagonist/vassal/proc/toreador_levelup_mesmerize() //Don't need stupid args
-	for(var/datum/action/bloodsucker/mesmerize/mesmerize_power in powers)
+	for(var/datum/action/bloodsucker/targeted/mesmerize/mesmerize_power in powers)
 		if(!istype(mesmerize_power))
 			continue
 		mesmerize_power.level_current = max(master.bloodsucker_level, 1)
