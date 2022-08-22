@@ -283,6 +283,20 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"fV" = (
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/center/cracked,
+/obj/structure/closet/crate/necropolis/tendril,
+/turf/open/lava/smooth,
+/area/ruin/unpowered/ash_walkers)
 "fY" = (
 /obj/structure/stone_tile/center/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -701,6 +715,20 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"mR" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/table/wood/fancy/red,
+/obj/item/flashlight/lantern{
+	pixel_x = -6;
+	pixel_y = 14
+	},
+/obj/item/nullrod/claymore/glowing{
+	desc = "Don't tell anyone you put any points into dex, though.";
+	force = 10;
+	name = "moonlight greatsword"
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
 "na" = (
 /obj/structure/stone_tile/block/burnt{
 	dir = 4
@@ -794,26 +822,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"ox" = (
-/obj/structure/table/wood,
-/obj/item/cultivator/rake{
-	pixel_x = 3
-	},
-/obj/item/storage/bag/plants/portaseeder{
-	pixel_x = -1;
-	pixel_y = -4
-	},
-/obj/structure/stone_tile/block/burnt,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/item/cultivator/bone{
-	pixel_x = -3;
-	pixel_y = -6
-	},
-/mob/living/simple_animal/hostile/asteroid/gutlunch,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
 "oD" = (
 /obj/structure/stone_tile/center/cracked,
 /obj/structure/stone_tile/surrounding_tile/burnt{
@@ -1135,6 +1143,23 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
+"uy" = (
+/obj/structure/table/wood,
+/obj/item/shovel/spade/bone,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/block,
+/obj/item/pickaxe/bonepickaxe{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/hatchet/bone{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
 "uN" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -1152,6 +1177,27 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"vf" = (
+/obj/structure/table/wood,
+/obj/item/cultivator/rake{
+	pixel_x = 3
+	},
+/obj/item/storage/bag/plants/portaseeder{
+	pixel_x = -1;
+	pixel_y = -4
+	},
+/obj/structure/stone_tile/block/burnt,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/obj/item/cultivator/bone{
+	pixel_x = -3;
+	pixel_y = -6
+	},
+/obj/item/twohanded/fireaxe/boneaxe,
+/mob/living/simple_animal/hostile/asteroid/gutlunch,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
 "vg" = (
 /obj/structure/mineral_door/sandstone,
 /obj/effect/turf_decal/sand,
@@ -1189,6 +1235,24 @@
 	faction = list("mining")
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
+"vD" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/center,
+/obj/structure/stone_tile/surrounding_tile/burnt{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile/cracked{
+	dir = 1
+	},
+/obj/structure/closet/crate/necropolis{
+	anchored = 1
+	},
+/obj/item/clothing/gloves/gauntlets,
+/turf/open/lava/smooth,
 /area/ruin/unpowered/ash_walkers)
 "vP" = (
 /obj/structure/stone_tile/cracked,
@@ -1254,20 +1318,6 @@
 	dir = 4
 	},
 /turf/closed/indestructible/riveted/boss,
-/area/ruin/unpowered/ash_walkers)
-"wR" = (
-/obj/structure/stone_tile/slab,
-/obj/structure/table/wood,
-/obj/item/flashlight/lantern{
-	pixel_x = -6;
-	pixel_y = 14
-	},
-/obj/item/nullrod/claymore/glowing{
-	desc = "Don't tell anyone you put any points into dex, though.";
-	force = 10;
-	name = "moonlight greatsword"
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "xh" = (
 /obj/structure/stone_tile/block/burnt,
@@ -1405,25 +1455,6 @@
 /obj/structure/stone_tile/center/cracked,
 /obj/structure/stone_tile/surrounding,
 /turf/open/indestructible/necropolis,
-/area/ruin/unpowered/ash_walkers)
-"Af" = (
-/obj/structure/stone_tile/surrounding_tile,
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/center,
-/obj/structure/stone_tile/surrounding_tile/burnt{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 1
-	},
-/obj/structure/closet/crate/necropolis{
-	anchored = 1
-	},
-/obj/item/gun/magic/rune/resizement_rune,
-/obj/item/fugu_gland,
-/turf/open/lava/smooth,
 /area/ruin/unpowered/ash_walkers)
 "Ak" = (
 /obj/structure/stone_tile/block/burnt{
@@ -1842,6 +1873,27 @@
 /obj/structure/stone_tile/surrounding_tile/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"He" = (
+/obj/structure/stone_tile/block/cracked,
+/obj/structure/stone_tile/cracked{
+	dir = 1
+	},
+/obj/structure/stone_tile/burnt{
+	dir = 4
+	},
+/obj/structure/closet/crate/necropolis{
+	anchored = 1
+	},
+/obj/item/dragon_egg{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/magmite{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/turf/open/lava/smooth,
+/area/ruin/unpowered/ash_walkers)
 "HK" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/closet/cabinet,
@@ -2185,19 +2237,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
-"NG" = (
-/obj/structure/table/wood,
-/obj/item/shovel/spade/bone,
-/obj/structure/stone_tile/block/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/block,
-/obj/item/pickaxe/bonepickaxe{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/ash_walkers)
 "NI" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -2280,18 +2319,6 @@
 /obj/structure/stone_tile/center/cracked,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"Pc" = (
-/obj/structure/stone_tile/cracked,
-/obj/structure/stone_tile{
-	dir = 8
-	},
-/obj/structure/closet/crate/necropolis{
-	anchored = 1
-	},
-/obj/item/survivalcapsule/luxuryelite,
-/obj/item/magmite_parts,
-/turf/open/lava/smooth,
-/area/ruin/unpowered/ash_walkers)
 "Pi" = (
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -2519,24 +2546,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"Tg" = (
-/obj/structure/stone_tile/block/cracked,
-/obj/structure/stone_tile/cracked{
-	dir = 1
-	},
-/obj/structure/stone_tile/burnt{
-	dir = 4
-	},
-/obj/structure/closet/crate/necropolis{
-	anchored = 1
-	},
-/obj/item/dragon_egg,
-/obj/item/magmite{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/turf/open/lava/smooth,
-/area/ruin/unpowered/ash_walkers)
 "Tq" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -2551,6 +2560,22 @@
 	faction = list("mining")
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered/ash_walkers)
+"TM" = (
+/obj/structure/stone_tile/cracked,
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/closet/crate/necropolis{
+	anchored = 1
+	},
+/obj/item/twohanded/required/gibtonite{
+	quality = 3
+	},
+/obj/item/survivalcapsule/luxuryelite{
+	pixel_x = -6
+	},
+/turf/open/lava/smooth,
 /area/ruin/unpowered/ash_walkers)
 "TO" = (
 /obj/structure/stone_tile/block/burnt{
@@ -2589,24 +2614,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"UY" = (
-/obj/structure/stone_tile/surrounding_tile/cracked{
-	dir = 8
-	},
-/obj/structure/stone_tile/surrounding_tile{
-	dir = 4
-	},
-/obj/structure/stone_tile/surrounding/cracked{
-	dir = 4
-	},
-/obj/structure/stone_tile/center/cracked,
-/obj/structure/closet/crate/necropolis{
-	anchored = 1
-	},
-/obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/head/chameleon/syndicate,
-/turf/open/lava/smooth,
-/area/ruin/unpowered/ash_walkers)
 "Vf" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile/cracked{
@@ -3212,7 +3219,7 @@ ix
 gC
 gD
 WN
-Pc
+TM
 zR
 WN
 WN
@@ -3252,10 +3259,10 @@ Tq
 XD
 jD
 Mq
-Af
+vD
 nQ
 oa
-UY
+fV
 WN
 WN
 Yd
@@ -3284,9 +3291,9 @@ Tq
 Tq
 Tq
 WN
-ox
+vf
 hn
-NG
+uy
 nB
 Tq
 Tq
@@ -3294,7 +3301,7 @@ Nl
 vP
 Yc
 WN
-Tg
+He
 MV
 WN
 WN
@@ -3353,7 +3360,7 @@ dz
 dz
 dz
 oH
-wR
+mR
 Lv
 oH
 jw
