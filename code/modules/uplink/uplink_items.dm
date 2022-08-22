@@ -2633,25 +2633,25 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/clothing/head/helmet
 	cost = 1
 
-/datum/uplink_item/nt/hardsuit/helmet
+/datum/uplink_item/nt/hardsuit/bulletvest
 	name = "Bulletproof Armor Vest"
 	desc = "An armor vest that is extremely robust against ballistics but weak to everything else."
 	item = /obj/item/clothing/suit/armor/bulletproof
 	cost = 1
 
-/datum/uplink_item/nt/hardsuit/helmet
+/datum/uplink_item/nt/hardsuit/bullethelmet
 	name = "Bulletproof Helmet"
 	desc = "A helmet that is extremely robust against ballistics but weak to everything else."
 	item = /obj/item/clothing/head/helmet
 	cost = 1
 
-/datum/uplink_item/nt/hardsuit/helmet
+/datum/uplink_item/nt/hardsuit/riotvest
 	name = "Riot Suit"
 	desc = "A bulky suit that protects you againt melee attacks but not much else."
 	item = /obj/item/clothing/suit/armor/riot
 	cost = 1
 
-/datum/uplink_item/nt/hardsuit/helmet
+/datum/uplink_item/nt/hardsuit/riothelmet
 	name = "Riot Helmet"
 	desc = "A helmet that protects you againt melee attacks but not much else."
 	item = /obj/item/clothing/head/helmet/riot
@@ -2716,7 +2716,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/handcuffs
 	cost = 1
 
-/datum/uplink_item/nt/gear/sechud
+/datum/uplink_item/nt/gear/bowman
 	name = "Bowman Headset"
 	desc = "A headset specially crafted to protect your ears from any damage, including flashbangs."
 	item = /obj/item/radio/headset/headset_cent/bowman
