@@ -13,6 +13,7 @@
 	var/cooldown_define = 6 SECONDS /// How fast you can ignite and examine things
 	// Slower than a forensic scanner
 	var/clockwork = FALSE /// Usable by non-clockies?
+	var/range = 9 /// examine/fire range
 
 /obj/item/magnifying_glass/syndicate
 	name = "suspicious magnifying glass"
@@ -47,6 +48,11 @@
 	if(!target)
 		return
 	
+	if(get_dist(src, target) > range)
+		to_chat(user, span_warning("\The [target] is too far away to inspect!"))
+		return
+
+	
 	if(clockwork && !is_clockcult(user)) // whoops
 		to_chat(user, span_heavy_brass("\The [src] redirects its light into your eyes!"))
 		user.blind_eyes(30)
@@ -67,7 +73,7 @@
 				can_see_space = 1
 				break
 
-	if(can_see_space && COOLDOWN_FINISHED(src, fire_cooldown) && get_dist(src, target) <= 9)
+	if(can_see_space && COOLDOWN_FINISHED(src, fire_cooldown))
 		to_chat(user, span_danger("\The [src] directs starlight at \the [target]!"))
 		if(isliving(target))
 			var/mob/living/L = target
