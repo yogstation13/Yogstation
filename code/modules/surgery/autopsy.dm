@@ -32,7 +32,7 @@
 
 /datum/surgery_step/autopsy/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	// Hold forensic scanner!!! Your eyes are not good at detectiving
-	if(!istype(user.get_inactive_held_item(), /obj/item/detective_scanner) && prob(75)) // Small chance it works anyways though, love you doctors
+	if(!istype(user.get_inactive_held_item(), /obj/item/detective_scanner) && !istype(user.get_inactive_held_item(), /obj/item/magnifying_glass) && prob(75)) // Small chance it works anyways though, love you doctors
 		display_results(user, target, span_warning("You did not find any conclusive evidence regarding [target]'s death. Maybe you should hold a forensic scanner?"),
 			span_warning("[user] did not find anything useful regarding [target]'s death. Maybe they should try again."),
 			span_warning("[user] carves some holes into [target]'s chest."))

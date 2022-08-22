@@ -204,6 +204,7 @@ GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 	/obj/item/ammo_box,
 	/obj/item/ammo_casing,
 	/obj/item/detective_scanner,
+	/obj/item/magnifying_glass,
 	/obj/item/flashlight,
 	/obj/item/taperecorder,
 	/obj/item/gun/ballistic,
