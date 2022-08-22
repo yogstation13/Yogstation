@@ -24,7 +24,7 @@
 	INVOKE_ASYNC(src, .proc/HandleTorpor)
 
 	if(my_clan == CLAN_TOREADOR && owner.current.stat != DEAD)
-		for(var/datum/antagonist/vassal in vassals)
+		for(var/datum/antagonist/vassal/vassal in vassals)
 			if(vassal.master != src)
 				continue
 			if(!vassal.owner.current || vassal.owner.current == DEAD)
