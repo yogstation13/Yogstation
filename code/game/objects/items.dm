@@ -786,7 +786,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
-	if(!(item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && !QDELETED(src))
+	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && !QDELETED(src))
 		var/mob/living/L = usr
 		if(usr.client.prefs.enable_tips)
 			var/timedelay = usr.client.prefs.tip_delay/100
