@@ -48,9 +48,6 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	///Sound uses when dropping the item, or when its thrown.
 	var/drop_sound
 
-	/// item hover FX
-	var/outline_filter
-	
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
@@ -787,7 +784,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && !QDELETED(src))
 		var/mob/living/L = usr
 		if(usr.client.prefs.enable_tips)
-			var/timedelay = usr.client.prefs.tip_delay/100
+			var/timedelay = 8
 			tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, usr), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
 		if(usr.client.prefs.itemoutline_pref)
 			if(istype(L) && L.incapacitated())
@@ -826,16 +823,12 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 				outline_color = COLOR_WHITE
 	if(color)
 		outline_color = COLOR_WHITE //if the item is recolored then the outline will be too, let's make the outline white so it becomes the same color instead of some ugly mix of the theme and the tint
-	if(outline_filter)
-		filters -= outline_filter
-	outline_filter = filter(type="outline", size=1, color=outline_color)
-	filters += outline_filter
+	
+	add_filter("hover_outline", 1, list("type" = "outline", "size" = 1, "color" = outline_color))
 
 /obj/item/proc/remove_outline()
-	if(outline_filter)
-		filters -= outline_filter
-		outline_filter = null
-		
+	remove_filter("hover_outline")
+
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
 /obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks)
