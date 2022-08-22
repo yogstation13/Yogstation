@@ -66,6 +66,12 @@
 	icon_state = "greydet"
 	item_state = "greydet"
 
+/obj/item/clothing/suit/det_suit/tan
+	name = "tan trenchcoat"
+	desc = "For those warmer days in the city. Or nights, if you're a grizzled P.I."
+	icon_state = "detective_tan"
+	item_state = "detective_tan"
+
 /obj/item/clothing/suit/det_suit/noir
 	name = "noir suit coat"
 	desc = "A dapper private investigator's grey suit coat."
