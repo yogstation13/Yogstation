@@ -786,10 +786,10 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
-	if(get(src, /mob) == usr && !QDELETED(src))
+	if(!(item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && !QDELETED(src))
 		var/mob/living/L = usr
 		if(usr.client.prefs.enable_tips)
-			var/timedelay = 8
+			var/timedelay = usr.client.prefs.tip_delay/100
 			tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, usr), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
 		if(usr.client.prefs.itemoutline_pref)
 			if(istype(L) && L.incapacitated())
@@ -807,7 +807,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	remove_filter("hover_outline")
 
 /obj/item/proc/apply_outline(outline_color = null)
-	if(get(src, /mob) != usr || QDELETED(src) || isobserver(usr)) //cancel if the item isn't in an inventory, is being deleted, or if the person hovering is a ghost (so that people spectating you don't randomly make your items glow)
+	if(!(item_flags & IN_INVENTORY || item_flags & IN_STORAGE) || QDELETED(src) || isobserver(usr)) //cancel if the item isn't in an inventory, is being deleted, or if the person hovering is a ghost (so that people spectating you don't randomly make your items glow)
 		return
 	var/theme = lowertext(usr.client.prefs.UI_style)
 	if(!outline_color) //if we weren't provided with a color, take the theme's color
