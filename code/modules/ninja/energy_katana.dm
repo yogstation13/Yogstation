@@ -72,7 +72,7 @@
 			user.emote("scream")
 			user.electrocute_act(15,src)
 			user.dropItemToGround(src, TRUE)
-			user.Paralyze(5 seconds)
+			user.Paralyze(50)
 			return
 	jaunt.Grant(user, src)
 	user.update_icons()
