@@ -2759,3 +2759,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "To let them know you're the real deal."
 	item = /obj/item/stamp/cent
 	cost = 1 
+
+/datum/uplink_item/nt/gear/ntposters
+	name = "Box of Posters"
+	desc = "A box of Nanotrasen-approved posters to boost crew morale."
+	item = /obj/item/storage/box/official_posters
+	cost = 1
