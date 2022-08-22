@@ -585,6 +585,11 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	else
 		return
 
+/obj/item/on_exit_storage(datum/component/storage/concrete/master_storage)
+	. = ..()
+	var/atom/location = master_storage.real_location()
+	do_drop_animation(location)
+
 /obj/item/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(hit_atom && !QDELETED(hit_atom))
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
@@ -781,7 +786,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
-	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && !QDELETED(src))
+	if(get(src, /mob) == usr && !QDELETED(src))
 		var/mob/living/L = usr
 		if(usr.client.prefs.enable_tips)
 			var/timedelay = 8
@@ -794,15 +799,15 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 /obj/item/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
-	remove_outline() //get rid of the hover effect in case the mouse exit isn't called if someone drags and drops an item and somthing goes wrong
+	remove_filter("hover_outline") //get rid of the hover effect in case the mouse exit isn't called if someone drags and drops an item and somthing goes wrong
 
 /obj/item/MouseExited()
 	deltimer(tip_timer) //delete any in-progress timer if the mouse is moved off the item before it finishes
 	closeToolTip(usr)
-	remove_outline()
+	remove_filter("hover_outline")
 
 /obj/item/proc/apply_outline(outline_color = null)
-	if(!(item_flags & IN_INVENTORY || item_flags & IN_STORAGE) || QDELETED(src) || isobserver(usr)) //cancel if the item isn't in an inventory, is being deleted, or if the person hovering is a ghost (so that people spectating you don't randomly make your items glow)
+	if(get(src, /mob) != usr || QDELETED(src) || isobserver(usr)) //cancel if the item isn't in an inventory, is being deleted, or if the person hovering is a ghost (so that people spectating you don't randomly make your items glow)
 		return
 	var/theme = lowertext(usr.client.prefs.UI_style)
 	if(!outline_color) //if we weren't provided with a color, take the theme's color
@@ -831,14 +836,14 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks, robo_check)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
 		return
 	delay *= toolspeed
 
-	if(IS_ENGINEERING(user) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
+	if((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
 		delay *= 0.8
 
 	// Play tool sound at the beginning of tool usage.
@@ -954,3 +959,115 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
   */
 /obj/item/proc/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	return
+
+/obj/item/proc/do_pickup_animation(atom/target)
+	if(!istype(loc, /turf))
+		return
+	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
+	pickup_animation.plane = GAME_PLANE
+	pickup_animation.transform.Scale(0.75)
+	pickup_animation.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+	var/turf/current_turf = get_turf(src)
+	var/direction = get_dir(current_turf, target)
+	var/to_x = target.pixel_x
+	var/to_y = target.pixel_y
+
+	if(direction & NORTH)
+		to_y += 32
+	else if(direction & SOUTH)
+		to_y -= 32
+	if(direction & EAST)
+		to_x += 32
+	else if(direction & WEST)
+		to_x -= 32
+	if(!direction)
+		to_y += 10
+		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
+
+	flick_overlay(pickup_animation, GLOB.clients, 4)
+	var/matrix/animation_matrix = new
+	animation_matrix.Turn(pick(-30, 30))
+	animation_matrix.Scale(0.65)
+
+	animate(pickup_animation, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 3, transform = animation_matrix, easing = CUBIC_EASING)
+	animate(alpha = 0, transform = matrix().Scale(0.7), time = 1)
+
+/obj/item/proc/do_drop_animation(atom/moving_from)
+	if(!istype(loc, /turf))
+		return
+
+	var/turf/current_turf = get_turf(src)
+	var/direction = get_dir(moving_from, current_turf)
+	var/from_x = moving_from.pixel_x
+	var/from_y = moving_from.pixel_y
+
+	if(direction & NORTH)
+		from_y -= 32
+	else if(direction & SOUTH)
+		from_y += 32
+	if(direction & EAST)
+		from_x -= 32
+	else if(direction & WEST)
+		from_x += 32
+	if(!direction)
+		from_y += 10
+		from_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
+
+	//We're moving from these chords to our current ones
+	var/old_x = pixel_x
+	var/old_y = pixel_y
+	var/old_alpha = alpha
+	var/matrix/animation_matrix = new
+	animation_matrix.Turn(pick(-30, 30))
+	animation_matrix.Scale(0.7) // Shrink to start, end up normal sized
+
+	pixel_x = from_x
+	pixel_y = from_y
+	alpha = 0
+	transform = animation_matrix
+
+	// This is instant on byond's end, but to our clients this looks like a quick drop
+	animate(src, alpha = old_alpha, pixel_x = old_x, pixel_y = old_y, transform = matrix(), time = 3, easing = CUBIC_EASING)
+
+/atom/movable/proc/do_item_attack_animation(atom/attacked_atom, visual_effect_icon, obj/item/used_item)
+	var/image/attack_image
+	if(visual_effect_icon)
+		attack_image = image('icons/effects/effects.dmi', attacked_atom, visual_effect_icon, attacked_atom.layer + 0.1)
+	else if(used_item)
+		attack_image = image(icon = used_item, loc = attacked_atom, layer = attacked_atom.layer + 0.1)
+		attack_image.plane = attacked_atom.plane
+
+		// Scale the icon.
+		attack_image.transform *= 0.4
+		// The icon should not rotate.
+		attack_image.appearance_flags = APPEARANCE_UI
+
+		// Set the direction of the icon animation.
+		var/direction = get_dir(src, attacked_atom)
+		if(direction & NORTH)
+			attack_image.pixel_y = -12
+		else if(direction & SOUTH)
+			attack_image.pixel_y = 12
+
+		if(direction & EAST)
+			attack_image.pixel_x = -14
+		else if(direction & WEST)
+			attack_image.pixel_x = 14
+
+		if(!direction) // Attacked self?!
+			attack_image.pixel_y = 12
+			attack_image.pixel_x = 5 * (prob(50) ? 1 : -1)
+
+	if(!attack_image)
+		return
+
+	flick_overlay(attack_image, GLOB.clients, 10)
+	// And animate the attack!
+	var/t_color = "#ffffff" //yogs start
+	if(ismob(src) &&  ismob(attacked_atom) && (!used_item))
+		var/mob/M = src
+		t_color = M.a_intent == INTENT_HARM ? "#ff0000" : "#ffffff"
+	animate(attack_image, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3, color = t_color)
+	animate(time = 1)
+	animate(alpha = 0, time = 3, easing = CIRCULAR_EASING|EASE_OUT) //yogs end

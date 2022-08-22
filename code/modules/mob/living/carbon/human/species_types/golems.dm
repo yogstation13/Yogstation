@@ -1141,6 +1141,7 @@
 	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/monocle (), SLOT_GLASSES)
 	C.revive(full_heal = TRUE)
 	to_chat(C, span_alert("You are now a capitalist golem! Do not harm fellow capitalist golems. Kill communist golems and hit people with your fists to spread the industrializing light of capitalism to others! Hello I like money!")) //yogs memes
+	to_chat(C, span_userdanger("Hit non-golems several times in order to get them fat and on your side!"))
 
 	SEND_SOUND(C, sound('sound/misc/capitialism.ogg'))
 	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
@@ -1210,8 +1211,9 @@
 	. = ..()
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka (), SLOT_HEAD)
 	C.revive(full_heal = TRUE)
-	to_chat(C, span_alert("You are now a soviet golem! Do not harm fellow soviet golems. Kill captalist golems and hit people with your fists to spread the glorious light of communism to others! Cyka Blyat!")) //yogs memes
-
+	to_chat(C, span_alert("You are now a soviet golem! Do not harm fellow soviet golems. Kill captalist golems and hit people with your fists to spread the glorious light of communism to others! Cyka Blyat!"))
+	to_chat(C, span_userdanger("Hit non-golems several times in order to get them starving and on your side!"))
+	
 	SEND_SOUND(C, sound('sound/misc/Russian_Anthem_chorus.ogg'))
 	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
 	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)

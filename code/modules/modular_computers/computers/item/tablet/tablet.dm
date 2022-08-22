@@ -17,7 +17,7 @@
 	comp_light_luminosity = 2.3 //Same as the PDA
 	interact_sounds = list('sound/machines/computers/pda_click.ogg')
 
-	var/list/variants = list("red","blue","brown","green","black")
+	var/list/variants = list("red","green","yellow","blue","black","purple","white","brown","orange")
 	var/finish_color = null
 
 /obj/item/modular_computer/tablet/update_icon()
@@ -45,7 +45,7 @@
 /// Given to Nuke Ops members.
 /obj/item/modular_computer/tablet/nukeops
 	comp_light_luminosity = 6.3
-	finish_color = "red"
+	finish_color = "crimson"
 	device_theme = "syndicate"
 	light_color = COLOR_RED
 

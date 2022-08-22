@@ -57,7 +57,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
 	var/datum/action/unobserve/UO 
-	var/list/temporaryactions = list() // For observers need to keep this referenced
 
 	// Current Viewrange
 	var/view = 0
@@ -827,7 +826,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		target.observers -= src
 		UNSETEMPTY(target.observers)
 	observetarget = null
-	actions -= temporaryactions
+	actions = originalactions
+	actions -= UO
+	update_action_buttons()
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
@@ -854,17 +855,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(is_secret_level(mob_eye.z) && !client?.holder)
 			sight = null //we dont want ghosts to see through walls in secret areas
 		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed, TRUE)
-		if(mob_eye.hud_used)
-			temporaryactions = mob_eye.actions
-			actions |= temporaryactions
-			update_action_buttons(TRUE)
-			LAZYINITLIST(mob_eye.observers)
-			mob_eye.observers |= src
-			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
-			observetarget = mob_eye
 		if(!UO)
 			UO = new // Convinent way to unobserve
 		UO.Grant(src)
+		if(mob_eye.hud_used)
+			actions = mob_eye.actions + originalactions
+			LAZYINITLIST(mob_eye.observers)
+			mob_eye.observers |= src
+			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
+			update_action_buttons()
+			mob_eye.update_action_buttons()
+			observetarget = mob_eye
 
 /datum/action/unobserve
 	name = "Stop Observing"
@@ -878,11 +879,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /datum/action/unobserve/IsAvailable()
 	return TRUE
 
-
-/mob/dead/observer/proc/on_observing_z_changed(datum/source, turf/old_turf, turf/new_turf)
+/mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	if(is_secret_level(new_turf.z) && !client?.holder)
+	if(is_secret_level(newz) && !client?.holder)
 		sight = null //we dont want ghosts to see through walls in secret areas
 	else
 		sight = initial(sight)

@@ -88,6 +88,18 @@
 	category = CAT_TOOLS
 	always_available = FALSE
 
+/datum/crafting_recipe/makeshiftemag
+	name = "Improvised Emag"	
+	reqs = list(/obj/item/stock_parts/subspace/amplifier = 1,
+        			/obj/item/card/id = 1,
+				/obj/item/electronics/firelock = 1,
+				/obj/item/stack/cable_coil = 10)
+	tools = list(TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	result = /obj/item/card/emag/improvised
+	time = 12 SECONDS
+	category = CAT_TOOLS
+	always_available = FALSE
+
 /datum/crafting_recipe/makeshiftid
 	name = "Makeshift ID"
 	result = /obj/item/card/id/makeshift
