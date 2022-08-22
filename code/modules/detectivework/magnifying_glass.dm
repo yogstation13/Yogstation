@@ -67,7 +67,7 @@
 				can_see_space = 1
 				break
 
-	if(can_see_space && COOLDOWN_FINISHED(src, fire_cooldown))
+	if(can_see_space && COOLDOWN_FINISHED(src, fire_cooldown) && get_dist(src, target) <= 9)
 		to_chat(user, span_danger("\The [src] directs starlight at \the [target]!"))
 		if(isliving(target))
 			var/mob/living/L = target
