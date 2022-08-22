@@ -23,6 +23,17 @@
 	INVOKE_ASYNC(src, .proc/HandleStarving)
 	INVOKE_ASYNC(src, .proc/HandleTorpor)
 
+	if(my_clan == CLAN_TOREADOR && owner.current.stat != DEAD)
+		for(var/datum/antagonist/vassal in vassals)
+			if(vassal.master != src)
+				continue
+			if(!vassal.owner.current || vassal.owner.current == DEAD)
+				continue
+			if(get_dist(get_turf(owner.current), get_turf(vassal.owner.current)) > 5)
+				continue
+			SEND_SIGNAL(vassal.owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_vassal)
+			
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //			BLOOD
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +46,11 @@
 	if(humanity_lost >= 500)
 		to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanity, you are far from Human."))
 		return
+	if(humanity_lost >= TOREADOR_MAX_HUMANITY_LOSS)
+		to_chat(owner.current, span_warning("Your moral prevents you from becoming more ihuman."))
+		SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman2)
+		return
+	SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman)
 	humanity_lost += value
 	to_chat(owner.current, span_warning("You feel as if you lost some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + humanity_lost * 10] Blood."))
 
@@ -90,7 +106,7 @@
 /datum/antagonist/bloodsucker/proc/HandleHealing(mult = 1)
 	var/actual_regen = bloodsucker_regen_rate + additional_regen
 	// Don't heal if I'm staked or on Masquerade (+ not in a Coffin). Masqueraded Bloodsuckers in a Coffin however, will heal.
-	if(owner.current.AmStaked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && !HAS_TRAIT(owner.current, TRAIT_NODEATH)))
+	if(owner.current.AmStaked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && my_clan != CLAN_TOREADOR))
 		return FALSE
 	owner.current.adjustCloneLoss(-1 * (actual_regen * 4) * mult, 0)
 	owner.current.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * (actual_regen * 4) * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
@@ -103,7 +119,7 @@
 	/// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
 	if(amInCoffin && HAS_TRAIT(user, TRAIT_NODEATH))
-		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
+		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && my_clan != CLAN_TOREADOR)
 			to_chat(user, span_warning("You will not heal while your Masquerade ability is active."))
 			return
 		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
@@ -480,6 +496,21 @@
 	description = "<span class='boldwarning'>I have been scorched by the unforgiving rays of the sun.</span>\n"
 	mood_change = -6
 	timeout = 6 MINUTES
+
+/datum/mood_event/toreador_inhuman
+	description = "<span class='boldwarning'>I commited inhuman actions. I feel... bad.</span>\n"
+	mood_change = -3
+	timeout = 5 MINUTES
+
+/datum/mood_event/toreador_inhuman2
+	description = "<span class='boldwarning'>I should stop acting like this. What am I turning into?</span>\n"
+	mood_change = -10
+	timeout = 10 MINUTES
+
+/datum/mood_event/toreador_vassal
+	description = "<span class='nicegreen'>My master is near me. I love them.</span>\n"
+	mood_change = 4
+	timeout = 30 SECONDS
 
 ///Candelabrum's mood event to non Bloodsucker/Vassals
 /datum/mood_event/vampcandle
