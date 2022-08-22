@@ -8,11 +8,4 @@
 # and will override any duplicate entries in the database.									  #
 ###############################################################################################
 
-AshCorr	=	Host
-Xantam	=	Host
- 
-adamsogm = Council Member
-baiomu = Council Member
-ajhchenry = Council Member
-
-jamied12	=	Head Developer
+Skrem7 = Game Master
