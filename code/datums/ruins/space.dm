@@ -5,7 +5,7 @@
 	cost = 1
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/space/zoo
+/*/datum/map_template/ruin/space/zoo
 	id = "zoo"
 	suffix = "abandonedzoo.dmm"
 	name = "Biological Storage Facility"
@@ -143,6 +143,7 @@
 	name = "DK Excavator 453"
 	description = "Based on the trace elements we've detected on the gutted asteroids, we suspect that a mining ship using a restricted engine is somewhere in the area. \
 	We'd like to request a patrol vessel to investigate."
+*/
 
 /datum/map_template/ruin/space/spacehotel
 	id = "spacehotel"
@@ -150,7 +151,7 @@
 	unpickable = TRUE
 	name = "The Twin-Nexus Hotel"
 	description = "An interstellar hotel, where the weary spaceman can rest their head and relax, assured that the residental staff will not murder them in their sleep. Probably."
-
+/*
 /datum/map_template/ruin/space/turreted_outpost
 	id = "turreted-outpost"
 	suffix = "turretedoutpost.dmm"
@@ -175,13 +176,14 @@
 	name = "DJ Station"
 	description = "Until very recently this pirate radio station was used to harangue local space stations over a variety of perceived \"ethics violations\". \
 	It seems like someone finally got sick of it, but the equipment still works."
+*/
 
 /datum/map_template/ruin/space/thederelict
 	id = "thederelict"
 	suffix = "thederelict.dmm"
 	name = "Kosmicheskaya Stantsiya 13"
 	description = "The true fate of Kosmicheskaya Stantsiya 13 is an open question to this day. Most corporations deny its existence, for fear of questioning on what became of its crew."
-
+/*
 /datum/map_template/ruin/space/abandonedteleporter
 	id = "abandonedteleporter"
 	suffix = "abandonedteleporter.dmm"
@@ -209,14 +211,14 @@
 	name = "Crashed UFO"
 	description = "Turns out even high-tech ships of abductors happen to crash into stray asteroids. \
 	Who knows what secrets might be unearthed from the wreckage?"
-
+*/
 /datum/map_template/ruin/space/listeningstation
 	id = "listeningstation"
 	suffix = "listeningstation.dmm"
 	name = "Syndicate Listening Station"
 	description = "Listening stations form the backbone of the syndicate's information-gathering operations. \
 	Assignment to these stations is dreaded by most agents, as it entails long and lonely shifts listening to nearby stations chatter incessantly about the most meaningless things."
-
+/*
 /datum/map_template/ruin/space/oldAIsat
 	id = "oldAIsat"
 	suffix = "oldAIsat.dmm"
@@ -263,7 +265,7 @@
 	suffix = "gondolaasteroid.dmm"
 	name = "Gondoland"
 	description = "Just an ordinary rock- wait, what's that thing?"
-
+*/
 /datum/map_template/ruin/space/whiteshipruin_box
 	id = "whiteshipruin_box"
 	suffix = "whiteshipruin_box.dmm"
@@ -276,7 +278,7 @@
 	suffix = "whiteshipdock.dmm"
 	name = "Whiteship Dock"
 	description = "An abandoned but functional vessel parked in deep space, ripe for the taking."
-
+/*
 /datum/map_template/ruin/space/cat_experiments
 	id = "meow"
 	suffix = "mrow_thats_right.dmm"
@@ -314,18 +316,20 @@
 		some doofus with an EVA suit and jetpack can just waltz around \
 		in space and find it..."
 	unpickable = TRUE
+*/
 
 /datum/map_template/ruin/space/spacebar
 	id = "spacebar"
 	suffix = "spacebar.dmm"
 	name = "The Space Bar"
 	description = "Technically a Space Bar & Grill, but do you really care about that? No, just about getting drunk and a good (enough) meal."
-
+/*
 /datum/map_template/ruin/space/goat_transport
 	id = "goatresearch"
 	suffix = "goatresearch.dmm"
 	name= "Exotic Goat Transport Vessel"
 	description = "A ship transporting goats attacked by goats. How ironic..."
+*/
 
 /datum/map_template/ruin/space/king_goat_arena
 	id = "kinggoatarena"
@@ -334,19 +338,20 @@
 	description = "Abandon All Hope Ye Who Enter Here."
 	always_place = TRUE // This is just the space part, king_goat_boss in /code/datums/ruins/lavaland.dm needs to have this set to true aswell for goat king to actually be reachable
 	allow_duplicates = FALSE
-
+/*
 /datum/map_template/ruin/space/drifting_spacepod
 	id = "drifting_spacepod"
 	suffix = "drifting_spacepod.dmm"
 	name = "Drifting Spacepod"
 	description = "An abandoned spacepod, just drifting through space."
+*/
 
 /datum/map_template/ruin/space/gaming
 	id = "gaming"
 	suffix = "gameroom.dmm"
 	name = "Game Room"
 	description = "A room in space in which you can play card games and munch on some snacks."
-
+/*
 /datum/map_template/ruin/space/pubby
 	id = "pubby"
 	suffix = "pubby_monastery.dmm"
@@ -365,3 +370,4 @@
 	name = "Cozy Home"
 	description = "A nice little place for travellers to rest. There is even a mint under the pillow!"
 	
+*/
