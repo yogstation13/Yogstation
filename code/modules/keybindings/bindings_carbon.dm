@@ -6,7 +6,10 @@
 			return
 		if("V")
 			lay_down()
-			return			
+			return	
+		if("J")	
+			toggle_move_intent()
+			return	
 		if("1")
 			a_intent_change(INTENT_HELP)
 			return

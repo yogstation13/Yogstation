@@ -208,6 +208,12 @@ SUBSYSTEM_DEF(shuttle)
 			Good luck.")
 		emergency = backup_shuttle
 
+	if(isnotpretty(call_reason))
+		to_chat(user, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+		var/log_message = "[key_name(user)] just tripped a pretty filter: '[call_reason]'."
+		message_admins(log_message)
+		log_say(log_message)
+		return
 
 	var/can_evac_or_fail_reason = SSshuttle.canEvac(user)
 	if(can_evac_or_fail_reason != TRUE)
