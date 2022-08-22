@@ -2532,7 +2532,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/cqc/teleshield
 	name = "Telescopic Shield"
-	desc = "A foldable shield that blocks half of all attacks when active but can break."
+	desc = "A foldable shield that blocks attacks when active but can break."
 	item = /obj/item/shield/riot/tele
 	cost = 3
 
