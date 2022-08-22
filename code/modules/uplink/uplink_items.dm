@@ -1327,7 +1327,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/armorpolish
 	cost = 2
 
-
+/datum/uplink_item/stealthy_tools/magnifying
+	name = "Magnifying Glass"
+	desc = "This magnifying glass will let you harness the power of the stars to silently ignite anyone \
+			of your choosing in your vicinity, as long as you are standing nearby space. Just make sure \
+			no one sees you holding it! It can also be used to perform some detective work, if that's your thing."
+	item = /obj/item/magnifying_glass/syndicate
+	cost = 2
 
 //Space Suits and Hardsuits
 /datum/uplink_item/suits
