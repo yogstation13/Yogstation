@@ -2717,6 +2717,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 
 /datum/uplink_item/nt/gear/sechud
+	name = "Bowman Headset"
+	desc = "A headset specially crafted to protect your ears from any damage, including flashbangs."
+	item = /obj/item/radio/headset/headset_cent/bowman
+	cost = 1
+
+/datum/uplink_item/nt/gear/sechud
 	name = "Security HUDglasses"
 	desc = "A pair of sunglasses fitted with a security HUD."
 	item = /obj/item/clothing/glasses/hud/security/sunglasses 
