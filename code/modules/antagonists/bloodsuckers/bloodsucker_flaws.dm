@@ -90,8 +90,10 @@
 			if(owner.current && ishuman(owner.current) && !owner.current.GetComponent(/datum/component/mood))
 				owner.current.AddComponent(/datum/component/mood) //You are not a emotionless beast!
 
-			for(var/datum/action/bloodsucker/masquerade in powers)
-				bloodcost = 0
-				constant_bloodcost = 0 //Wow very cool code, good job
+			for(var/datum/action/bloodsucker/masquerade/masquarade_spell in powers)
+				if(!istype(masquarade_spell))
+					continue
+				masquarade_spell.bloodcost = 0
+				masquarade_spell.constant_bloodcost = 0 //Wow very cool code, good job
 
 	owner.announce_objectives()
