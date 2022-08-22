@@ -500,8 +500,8 @@
 
 /datum/mood_event/toreador_inhuman
 	description = "<span class='boldwarning'>I commited inhuman actions. I feel... bad.</span>\n"
-	mood_change = -3
-	timeout = 5 MINUTES
+	mood_change = -4
+	timeout = 6 MINUTES
 
 /datum/mood_event/toreador_inhuman2
 	description = "<span class='boldwarning'>I should stop acting like this. What am I turning into?</span>\n"
