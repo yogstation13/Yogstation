@@ -15,6 +15,14 @@
 	starting_files = list(	new /datum/computer_file/program/secureye)
 	initial_program = /datum/computer_file/program/secureye
 
+// ===== WARDEN CONSOLE =====
+/obj/machinery/modular_computer/console/preset/security
+	name = "brig console"
+	desc = "A stationary computer. This one comes preloaded with security and other brig management programs."
+	starting_files = list(	new /datum/computer_file/program/secureye,
+							new /datum/computer_file/program/budgetorders,
+							new /datum/computer_file/program/crew_monitor)
+
 // ===== ENGINEERING CONSOLE =====
 /obj/machinery/modular_computer/console/preset/engineering
 	console_department = "Engineering"
@@ -55,12 +63,20 @@
 	console_department = "Supply"
 	name = "cargo console"
 	desc = "A stationary computer. This one comes preloaded with programs to keep the station stocked."
-	starting_files = list(	new /datum/computer_file/program/bounty_board)
-	initial_program = /datum/computer_file/program/bounty_board
+	starting_components = list(	/obj/item/computer_hardware/network_card/wired,
+								/obj/item/computer_hardware/recharger/APC,
+								/obj/item/computer_hardware/hard_drive/super,
+								/obj/item/computer_hardware/processor_unit,
+								/obj/item/computer_hardware/card_slot,
+								/obj/item/computer_hardware/printer)
+
+	starting_files = list(	new /datum/computer_file/program/bounty_board,
+							new /datum/computer_file/program/budgetorders,
+							new /datum/computer_file/program/cargobounty)
+	initial_program = /datum/computer_file/program/cargobounty
 
 // ===== QUARTERMASTER CONSOLE =====
 /obj/machinery/modular_computer/console/preset/cargo/qm
-	console_department = "Supply"
 	name = "quartermaster's console"
 	desc = "A stationary computer. This one comes preloaded with programs to keep the station stocked and monitor the lavaland mining opperation."
 	starting_files = list(	new /datum/computer_file/program/bounty_board,
@@ -73,6 +89,13 @@
 	desc = "A stationary computer. This one comes preloaded with programs to monitor the lavaland mining opperation."
 	starting_files = list(	new /datum/computer_file/program/secureye/mining)
 	initial_program = /datum/computer_file/program/secureye/mining
+
+// ===== MINING MEDIC CONSOLE =====
+/obj/machinery/modular_computer/console/preset/mining/medical
+	name = "mining medic console"
+	desc = "A stationary computer. This one comes preloaded with programs to monitor the vitals of the lavaland miners."
+	starting_files = list(	new /datum/computer_file/program/secureye/mining,
+							new /datum/computer_file/program/crew_monitor)
 
 // ===== COMMAND CONSOLE =====
 /obj/machinery/modular_computer/console/preset/command
@@ -88,6 +111,7 @@
 								/obj/item/computer_hardware/card_slot/secondary)
 
 	starting_files = list(	new /datum/computer_file/program/chatclient,
+							new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod)
 
 // ===== HoP =====
@@ -95,10 +119,12 @@
 	name = "head of personnel's console"
 	desc = "A stationary computer. This one comes preloaded with bureaucratic programs."
 	starting_files = list(	new /datum/computer_file/program/chatclient,
+							new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/job_management,
 							new /datum/computer_file/program/crew_manifest,
 							new /datum/computer_file/program/bounty_board,
+							new /datum/computer_file/program/cargobounty,
 							new /datum/computer_file/program/secureye/mining)
 
 // ===== HoS =====
@@ -106,6 +132,7 @@
 	name = "head of security's console"
 	desc = "A stationary computer. This one comes preloaded with security programs."
 	starting_files = list(	new /datum/computer_file/program/chatclient,
+							new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/secureye)
 
@@ -113,7 +140,8 @@
 /obj/machinery/modular_computer/console/preset/command/ce
 	name = "chief engineer's console"
 	desc = "A stationary computer. This one comes preloaded with engineering programs."
-	starting_files = list(new 	/datum/computer_file/program/chatclient,
+	starting_files = list(	new /datum/computer_file/program/chatclient,
+							new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/power_monitor,
 							new /datum/computer_file/program/alarm_monitor,
@@ -134,6 +162,7 @@
 								/obj/item/computer_hardware/ai_slot)
 
 	starting_files = list(	new /datum/computer_file/program/chatclient,
+							new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/ntnetmonitor,
 							new /datum/computer_file/program/aidiag,
@@ -144,6 +173,7 @@
 	name = "chief medical officer's console"
 	desc = "A stationary computer. This one comes preloaded with medical programs."
 	starting_files = list(	new /datum/computer_file/program/chatclient,
+							new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/crew_monitor)
 
@@ -154,6 +184,7 @@
 	name = "civilian console"
 	desc = "A stationary computer. This one comes preloaded with generic programs."
 	starting_files = list(	new /datum/computer_file/program/chatclient,
+							new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/arcade)
 
 // ===== CURATOR =====

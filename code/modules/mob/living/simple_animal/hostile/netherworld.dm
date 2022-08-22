@@ -61,9 +61,8 @@
 	gold_core_spawnable = NO_SPAWN
 	health = 100
 	maxHealth = 100
-	melee_damage_lower = 5
-	melee_damage_upper = 10
-	attacktext = "punches"
+	speed = -0.7
+	attacktext = "slashes"
 	deathmessage = "falls apart into a fine dust."
 
 /obj/structure/spawner/nether

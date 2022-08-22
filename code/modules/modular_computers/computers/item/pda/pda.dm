@@ -11,3 +11,8 @@
 	max_bays = 1
 	steel_sheet_cost = 1
 	slot_flags = ITEM_SLOT_ID | ITEM_SLOT_BELT
+
+/obj/item/modular_computer/tablet/pda/update_icon()
+	if(!isnull(variants) && !finish_color && prob(0.1)) // Very rare chance to get a rare skin for PDAs untill I can make them donor only
+		finish_color = pick(list("pipboy", "glass", "rainbow"))
+	..()

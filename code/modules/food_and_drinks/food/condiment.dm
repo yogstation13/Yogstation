@@ -14,7 +14,7 @@
 	possible_transfer_amounts = list(1, 5, 10, 15, 20, 25, 30, 50)
 	volume = 50
 	//Possible_states has the reagent type as key and a list of, in order, the icon_state, the name and the desc as values. Used in the on_reagent_change(changetype) to change names, descs and sprites.
-	var/list/possible_states = list(
+	var/list/possible_states = list( // YOGS WARNING -- To avoid constant modularity problems, this list is now generated automagically at run-time. Do not amend this list to add your new condiments!
 	 /datum/reagent/consumable/ketchup = list("ketchup", "ketchup bottle", "You feel more American already."),
 	 /datum/reagent/consumable/capsaicin = list("hotsauce", "hotsauce bottle", "You can almost TASTE the stomach ulcers now!"),
 	 /datum/reagent/consumable/enzyme = list("enzyme", "universal enzyme bottle", "Used in cooking various dishes"),
@@ -30,7 +30,8 @@
 
 /obj/item/reagent_containers/food/condiment/Initialize()
 	. = ..()
-	possible_states = typelist("possible_states", possible_states)
+	//possible_states = typelist("possible_states", possible_states) // yogs -- commented out
+	initialize_possible_states() // yogs
 
 /obj/item/reagent_containers/food/condiment/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is trying to eat the entire [src]! It looks like [user.p_they()] forgot how food works!"))

@@ -38,6 +38,12 @@
 		if(!antag_candidates.len)
 			break
 		var/datum/mind/bloodsucker = antag_pick(antag_candidates)
+		//Yogs start -- fixes plasmaman vampires
+		if(bloodsucker?.current?.client.prefs.pref_species && (NOBLOOD in bloodsucker.current.client.prefs.pref_species.species_traits))
+			antag_candidates -= bloodsucker // kinda need to do this to prevent some edge-case infinite loop or whatever
+			i-- // to undo the imminent increment
+			continue
+		//yog end
 		bloodsuckers += bloodsucker
 		bloodsucker.restricted_roles = restricted_jobs
 		log_game("[bloodsucker.key] (ckey) has been selected as a Bloodsucker.")

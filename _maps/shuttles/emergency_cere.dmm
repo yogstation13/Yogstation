@@ -205,7 +205,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "au" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /obj/structure/window/reinforced{

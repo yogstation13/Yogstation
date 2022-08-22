@@ -594,3 +594,39 @@
 /datum/techweb_node/mech_xray
 	ui_x = -640
 	ui_y = -896
+
+/datum/techweb_node/bshipc
+	ui_x = -224
+	ui_y = 32
+
+/datum/techweb_node/bs2ipc
+	ui_x = -288
+	ui_y = 32
+
+/datum/techweb_node/hsiipc
+	ui_x = -224
+	ui_y = 96
+
+/datum/techweb_node/hi2ipc
+	ui_x = -288
+	ui_y = 96
+
+/datum/techweb_node/sgmipc
+	ui_x = -224
+	ui_y = 160
+
+/datum/techweb_node/wtmipc
+	ui_x = -288
+	ui_y = 160
+
+/datum/techweb_node/xmgipc
+	ui_x = -224
+	ui_y = 224
+
+/datum/techweb_node/xm2ipc
+	ui_x = -288
+	ui_y = 224
+
+/datum/techweb_node/zhpipc
+	ui_x = -224
+	ui_y = 288
