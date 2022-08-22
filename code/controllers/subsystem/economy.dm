@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(economy)
 		var/datum/bank_account/B = bank_accounts[A]
 		for(var/datum/corporation/c in dictionary)
 			if(B.account_holder in dictionary[c])
-				B.payday(c.paymodifier, TRUE)
+				B.payday(c.paymodifier)
 		B.payday(1)	
 
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)

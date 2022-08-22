@@ -66,24 +66,12 @@
 		return TRUE
 	return FALSE
 
-/datum/bank_account/proc/payday(amt_of_paychecks, free = FALSE)
+/datum/bank_account/proc/payday(amt_of_paychecks)
 	var/money_to_transfer = account_job.paycheck * payday_modifier * amt_of_paychecks
 	var/stolen_money = (1 - payday_modifier) * account_job.paycheck * amt_of_paychecks
 	GLOB.stolen_paycheck_money += stolen_money
-	if(free)
-		adjust_money(money_to_transfer)
-		return TRUE
-	else
-		var/datum/bank_account/D = SSeconomy.get_dep_account(account_job.paycheck_department)
-		if(D)
-			if(!transfer_money(D, money_to_transfer))
-				bank_card_talk("ERROR: Payday aborted, departmental funds insufficient.")
-				return FALSE
-			else
-				bank_card_talk("Payday processed, account now holds $[account_balance].")
-				return TRUE
-	bank_card_talk("ERROR: Payday aborted, unable to contact departmental account.")
-	return FALSE
+	adjust_money(money_to_transfer)
+	bank_card_talk("Payday processed, account now holds $[account_balance].")
 
 /datum/bank_account/proc/bank_card_talk(message, force)
 	if(!message || !bank_cards.len)
