@@ -175,6 +175,14 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	gpstag = "NT_AUX"
 	desc = "A homing signal from Nanotrasen's mining base."
 
+/obj/item/gps/internal/space_ruins
+	gpstag = "Faint Signal"
+	desc = "A weak homing signal from somewhere out in space?"
+
+/obj/item/gps/internal/space_ruins/distress
+	gpstag = "Distress Signal"
+	desc = "An SOS signal from somewhere out in space?"
+
 /obj/item/gps/visible_debug
 	name = "visible GPS"
 	gpstag = "ADMIN"
