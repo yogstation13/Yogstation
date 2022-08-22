@@ -2619,7 +2619,43 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 
 /datum/uplink_item/nt/hardsuit
-	category = "Hardsuits"
+	category = "Armor & Hardsuits"
+
+/datum/uplink_item/nt/hardsuit/armor
+	name = "Armor Vest"
+	desc = "A standard issue security armor vest."
+	item = /obj/item/clothing/suit/armor/vest
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/helmet
+	name = "Helmet"
+	desc = "A standard issue security helmet. Can have a seclite attached."
+	item = /obj/item/clothing/head/helmet
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/helmet
+	name = "Bulletproof Armor Vest"
+	desc = "An armor vest that is extremely robust against ballistics but weak to everything else."
+	item = /obj/item/clothing/suit/armor/bulletproof
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/helmet
+	name = "Bulletproof Helmet"
+	desc = "A helmet that is extremely robust against ballistics but weak to everything else."
+	item = /obj/item/clothing/head/helmet
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/helmet
+	name = "Riot Suit"
+	desc = "A bulky suit that protects you againt melee attacks but not much else."
+	item = /obj/item/clothing/suit/armor/riot
+	cost = 1
+
+/datum/uplink_item/nt/hardsuit/helmet
+	name = "Riot Helmet"
+	desc = "A helmet that protects you againt melee attacks but not much else."
+	item = /obj/item/clothing/head/helmet/riot
+	cost = 1
 
 /datum/uplink_item/nt/hardsuit/cmd
 	name = "ERT Commander Hardsuit"
