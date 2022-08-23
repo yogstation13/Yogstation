@@ -1952,7 +1952,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Necropolis seed"
 	desc = "A virus our operatives extracted from lavaland use it to cause a symbiotic relationship with a lavaland tendril"
 	item = /obj/item/reagent_containers/glass/bottle/necropolis_seed
-	cost = 2
+	cost = 6
 	restricted_roles = list("Virologist")
 	surplus = 0
 
