@@ -18,7 +18,7 @@ map yogstation
 endmap
 
 map asteroidstation
-	minplayers 35
+	minplayers 25
 	votable
 endmap
 
