@@ -530,6 +530,6 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		//we instead flip the coin
 		INVOKE_ASYNC(src, .proc/flip, null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
 		return BULLET_ACT_TURF
-	. = ..()
+	return ..()
 
 #undef ORESTACK_OVERLAYS_MAX
