@@ -39,3 +39,14 @@
 	var/randname = polysmorph_name()
 
 	return randname
+
+/datum/species/polysmorph/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	.=..()
+	var/mob/living/carbon/human/H = C
+	if(H.physiology)
+		H.physiology.armor.wound += 10	//Pseudo-exoskeleton makes them harder to wound
+
+/datum/species/polysmorph/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	.=..()
+	if(C.physiology)
+		C.physiology.armor.wound -= 10
