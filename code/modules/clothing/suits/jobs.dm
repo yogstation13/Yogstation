@@ -71,6 +71,7 @@
 	desc = "For those warmer days in the city. Or nights, if you're a grizzled P.I."
 	icon_state = "detective_tan"
 	item_state = "detective_tan"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/det_suit/noir
 	name = "noir suit coat"
