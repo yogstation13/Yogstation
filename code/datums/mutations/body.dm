@@ -507,3 +507,37 @@
 		return
 	owner.physiology.stamina_mod /= 0.7
 	owner.physiology.stun_mod /= 0.85
+	
+/datum/mutation/overload
+	name = "Overload"
+	desc = "Allows an Ethereal to overload their skin to cause a bright flash."
+	quality = POSITIVE
+	locked = TRUE
+	text_gain_indication = "<span class='notice'>Your skin feels more crackly.</span>"
+	instability = 30
+	power = /obj/effect/proc_holder/spell/self/overload
+	species_allowed = list(SPECIES_ETHEREAL)
+
+/obj/effect/proc_holder/spell/self/overload
+	name = "Overload"
+	desc = "Concentrate to make your skin energize."
+	clothes_req = FALSE
+	human_req = FALSE
+	charge_max = 400
+	action_icon_state = "blind"
+	var/max_distance = 4
+
+/obj/effect/proc_holder/spell/self/overload/cast(mob/user = usr)
+	if(!isethereal(user))
+		return
+
+	var/list/mob/targets = oviewers(max_distance, get_turf(user))
+	visible_message("<span class='disarm'>[user] emits a blinding light!</span>")
+	for(var/mob/living/carbon/C in targets)
+		if(C.flash_act(1))
+			C.Paralyze(10 + (5*max_distance))
+
+/datum/mutation/overload/modify()
+	if(power)
+		var/obj/effect/proc_holder/spell/self/overload/S = power
+		S.max_distance = 4 * GET_MUTATION_POWER(src)
