@@ -12705,13 +12705,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/fore)
-"byM" = (
-/obj/effect/turf_decal/trimline/purple/filled/warning,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "byP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -18215,6 +18208,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"cGu" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "cGw" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
@@ -19468,6 +19467,17 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"dgo" = (
+/obj/effect/turf_decal/trimline/purple/filled/warning,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -22;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "dgz" = (
 /obj/structure/sign/warning/docking,
 /obj/structure/grille,
@@ -20595,21 +20605,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
-"dJM" = (
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/machinery/light_switch{
-	pixel_x = -10;
-	pixel_y = -25
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "dJQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposaloutlet{
@@ -25512,13 +25507,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"fQz" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "fQE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -28058,6 +28046,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"hdT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_x = 30;
+	pixel_y = 1
+	},
+/obj/machinery/button/door{
+	id = "genedesk";
+	name = "Genetics Desk Shutters Control";
+	pixel_x = 28;
+	pixel_y = -7;
+	req_access_txt = "9"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "hdX" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable,
@@ -34478,6 +34487,15 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"jMM" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/machinery/vending/wardrobe/gene_wardrobe,
+/obj/machinery/light,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "jMV" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -36577,27 +36595,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"kMu" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "genedesk";
-	name = "Genetics Desk Shutters Control";
-	pixel_x = 28;
-	pixel_y = -7;
-	req_access_txt = "9"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_x = 30;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "kMY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -37051,12 +37048,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/fore)
-"kXo" = (
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/machinery/vending/wardrobe/gene_wardrobe,
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "kXy" = (
 /obj/effect/turf_decal/pool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -48238,6 +48229,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"pTk" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "genedesk";
+	name = "genetics lab shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/medical/genetics/cloning)
 "pTL" = (
 /obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = 32
@@ -54001,6 +54000,16 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"svW" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
 "swc" = (
 /obj/structure/chair{
 	dir = 1
@@ -59243,15 +59252,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"uHA" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics/cloning)
 "uHN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -62431,6 +62431,14 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wbm" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "wbG" = (
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
@@ -108792,7 +108800,7 @@ rKV
 vvh
 olY
 rQC
-byM
+dgo
 pAs
 mEw
 nLu
@@ -109049,9 +109057,9 @@ hjF
 wFS
 aiC
 aiC
-dJM
-mNn
-uHA
+wbm
+pTk
+cGu
 mIj
 pEC
 ruc
@@ -109306,9 +109314,9 @@ psJ
 bif
 hPk
 wBd
-kXo
+jMM
 mNn
-fQz
+svW
 uvN
 gxA
 ruc
@@ -109818,7 +109826,7 @@ pBG
 lSJ
 nHZ
 nnp
-kMu
+hdT
 hcW
 hXC
 kYK
