@@ -16,6 +16,7 @@
 	disliked_food = DAIRY | GROSS
 	toxic_food = MEAT | RAW | SEAFOOD | MICE
 	burnmod = 1.25 //Fluffy and flammable
+	inert_mutation = STRONGWINGS
 	brutemod = 0.9 //Evasive buggers
 	punchdamagehigh = 9 //Weird fluffy bug fist
 	punchstunthreshold = 10 //No stun punches
