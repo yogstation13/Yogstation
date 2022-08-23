@@ -601,7 +601,6 @@
 #include "code\datums\mutations\sight.dm"
 #include "code\datums\mutations\space_adaptation.dm"
 #include "code\datums\mutations\speech.dm"
-#include "code\datums\mutations\strongwings.dm"
 #include "code\datums\mutations\telekinesis.dm"
 #include "code\datums\mutations\touch.dm"
 #include "code\datums\mutations\touchfar.dm"
