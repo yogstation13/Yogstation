@@ -101,6 +101,7 @@
 /obj/machinery/autolathe/ui_static_data(mob/user)
 	var/list/data = list()
 	var/list/designs = list()
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
 		var/list/design = list()
