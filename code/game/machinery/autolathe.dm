@@ -70,7 +70,6 @@
 
 /obj/machinery/autolathe/ui_data(mob/user) // All the data the ui will need
 	var/list/data = list()
-	var/list/designs = list()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["total_amount"] = materials.total_amount
 	data["max_amount"] = materials.max_amount
@@ -86,6 +85,22 @@
 	data["isprocessing"] = processing_queue
 	data["queuelength"] = queuelength
 	data["categories"] = categories
+	if(istype(autoqueue) && autoqueue.len)
+		var/list/uidata = list()
+		var/index = 1
+		for(var/list/L in autoqueue)
+			var/datum/design/D = L[1]
+			uidata[++uidata.len] = list("name" = initial(D.name), "multiplier" = L[2], "index" = index)
+			index++
+		data["queue"] = uidata
+	else
+		data["queue"] = list()
+
+	return data
+
+/obj/machinery/autolathe/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/designs = list()
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
 		var/list/design = list()
@@ -113,19 +128,8 @@
 		design["materials_glass"] = get_design_cost_glass(D)
 		designs += list(design)
 	data["designs"] = designs
-	if(istype(autoqueue) && autoqueue.len)
-		var/list/uidata = list()
-		var/index = 1
-		for(var/list/L in autoqueue)
-			var/datum/design/D = L[1]
-			uidata[++uidata.len] = list("name" = initial(D.name), "multiplier" = L[2], "index" = index)
-			index++
-		data["queue"] = uidata
-	else
-		data["queue"] = list()
-
 	return data
-
+	
 /obj/machinery/autolathe/ui_act(action, params)
 	if(..())
 		return
@@ -214,6 +218,7 @@
 			for(var/B in D.blueprints)
 				if(B)
 					stored_research.add_design(B)
+			update_static_data(user)
 		return TRUE
 
 	return ..()
