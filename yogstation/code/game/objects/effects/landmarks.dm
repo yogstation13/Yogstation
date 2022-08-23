@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/maint/tenxten
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
-	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
+	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops", "Maint fakewalls")
 
 /// Type of landmark that find all others of the same type, and only spawns count number of ruins at them
 /obj/effect/landmark/stationroom/limited_spawn
