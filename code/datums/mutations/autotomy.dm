@@ -2,41 +2,38 @@
 	name = "Autotomy"
 	desc = "Allows a creature to voluntary discard a random appendage."
 	quality = POSITIVE
-	text_gain_indication = span_notice("Your joints feel loose.")
+	text_gain_indication = "<span class='notice'>Your joints feel loose.</span>"
 	instability = 30
-	power_path = /datum/action/cooldown/spell/self_amputation
+	power = /obj/effect/proc_holder/spell/self/self_amputation
 
 	energy_coeff = 1
 	synchronizer_coeff = 1
 
-/datum/action/cooldown/spell/self_amputation
+/obj/effect/proc_holder/spell/self/self_amputation
 	name = "Drop a limb"
 	desc = "Concentrate to make a random limb pop right off your body."
-	button_icon_state = "autotomy"
+	clothes_req = FALSE
+	human_req = FALSE
+	charge_max = 100
+	action_icon_state = "autotomy"
 
-	cooldown_time = 10 SECONDS
-	spell_requirements = NONE
+/obj/effect/proc_holder/spell/self/self_amputation/cast(mob/user = usr)
+	if(!iscarbon(user))
+		return
 
-/datum/action/cooldown/spell/self_amputation/is_valid_target(atom/cast_on)
-	return iscarbon(cast_on)
-
-/datum/action/cooldown/spell/self_amputation/cast(mob/living/carbon/cast_on)
-	. = ..()
-	if(HAS_TRAIT(cast_on, TRAIT_NODISMEMBER))
-		to_chat(cast_on, span_notice("You concentrate really hard, but nothing happens."))
+	var/mob/living/carbon/C = user
+	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
 		return
 
 	var/list/parts = list()
-	for(var/obj/item/bodypart/to_remove as anything in cast_on.bodyparts)
-		if(to_remove.body_zone == BODY_ZONE_HEAD || to_remove.body_zone == BODY_ZONE_CHEST)
-			continue
-		if(!to_remove.dismemberable)
-			continue
-		parts += to_remove
-
-	if(!length(parts))
-		to_chat(cast_on, span_notice("You can't shed any more limbs!"))
+	for(var/X in C.bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(BP.body_part != HEAD && BP.body_part != CHEST)
+			if(BP.dismemberable)
+				parts += BP
+	if(!parts.len)
+		to_chat(usr, "<span class='notice'>You can't shed any more limbs!</span>")
 		return
 
-	var/obj/item/bodypart/to_remove = pick(parts)
-	to_remove.dismember()
+	var/obj/item/bodypart/BP = pick(parts)
+	BP.dismember()
