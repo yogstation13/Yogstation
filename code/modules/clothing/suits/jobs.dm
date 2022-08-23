@@ -55,6 +55,7 @@
 	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/det_suit/Initialize()
 	. = ..()
@@ -71,13 +72,13 @@
 	desc = "For those warmer days in the city. Or nights, if you're a grizzled P.I."
 	icon_state = "detective_tan"
 	item_state = "detective_tan"
-	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/det_suit/noir
 	name = "noir suit coat"
 	desc = "A dapper private investigator's grey suit coat."
 	icon_state = "detsuit"
 	item_state = "detsuit"
+	mutantrace_variation = NO_MUTANTRACE_VARIATION //This should be done for any det_suit that isn't an overcoat, as to not require two sprites to deal with weird-ass legs
 
 //Engineering
 /obj/item/clothing/suit/hazardvest

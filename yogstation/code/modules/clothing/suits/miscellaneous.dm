@@ -248,6 +248,7 @@
 	desc = "A detective jacket, in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_item"
+	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
 /obj/item/clothing/suit/yogs/leathercoat
 	name = "black leather coat"
@@ -272,7 +273,7 @@
 	desc = "For those detectives that value fashion over function."
 	icon_state = "detective_coat"
 	item_state = "detective_item"
-
+	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
 /obj/item/clothing/suit/yogs/blacktrenchcoat
 	name = "black trenchcoat"
