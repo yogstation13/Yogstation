@@ -76,14 +76,17 @@
 	var/obj/structure/disposalpipe/last
 	while(active)
 		var/obj/structure/disposalpipe/curr = loc
-		last = curr
-		set_glide_size(DELAY_TO_GLIDE_SIZE(ticks * world.tick_lag))
-		curr = curr.transfer(src)
-		if(!curr && active)
-			last.expel(src, loc, dir)
+		if(istype(curr))
+			last = curr
+			set_glide_size(DELAY_TO_GLIDE_SIZE(ticks * world.tick_lag))
+			curr = curr.transfer(src)
+			if(!curr && active)
+				last.expel(src, loc, dir)
 
-		ticks = stoplag()
-		if(!(count--))
+			ticks = stoplag()
+			if(!(count--))
+				active = FALSE
+		else
 			active = FALSE
 
 // find the turf which should contain the next pipe

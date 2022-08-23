@@ -34,7 +34,7 @@
 /datum/data/bluespace_tap_product
 	var/product_name = "generic"
 	var/product_path = null
-	var/product_cost = 100	//cost in mining points to generate
+	var/product_cost = 0	//cost in mining points to generate
 
 
 /datum/data/bluespace_tap_product/New(name, path, cost)
@@ -84,59 +84,59 @@
 /obj/effect/spawner/lootdrop/bluespace_tap/cultural
 	name = "cultural artifacts"
 	loot = list(
-		/obj/item/grenade/clusterbuster/cleaner = 10,
-		/obj/item/grenade/clusterbuster/soap = 10,
-		/obj/item/toy/katana = 10,
-		/obj/item/stack/sheet/metal/twenty = 15,
-		/obj/item/stack/sheet/glass/fifty = 10,
-	    /obj/item/sord = 20,
-		/obj/item/toy/syndicateballoon = 15,
-		/obj/item/lighter/greyscale = 5,
-		/obj/item/lighter = 5,
-		/obj/item/gun/ballistic/automatic/toy/pistol = 1,
-		/obj/item/gun/ballistic/automatic/c20r/toy = 1,
-		/obj/item/gun/ballistic/automatic/l6_saw/toy = 1,
-		/obj/item/gun/ballistic/shotgun/toy = 1,
-		/obj/item/gun/ballistic/shotgun/toy/crossbow = 1,
-		/obj/item/twohanded/dualsaber/toy = 5,
-		/obj/machinery/smoke_machine = 10,
-		/obj/item/clothing/head/kitty = 5,
-		/obj/item/coin/antagtoken = 5,
-		/obj/item/clothing/suit/cardborg = 10,
-		/obj/item/toy/prize/honk = 10,
-		/obj/item/bedsheet/patriot = 2,
-		/obj/item/bedsheet/rainbow = 2,
-		/obj/item/bedsheet/captain = 2,
-		/obj/item/bedsheet/centcom = 1, //mythic rare rarity
-		/obj/item/bedsheet/syndie = 2,
-		/obj/item/bedsheet/cult = 2,
-		/obj/item/bedsheet/wiz = 2,
-		/obj/item/clothing/gloves/combat = 5
+		/obj/item/grenade/clusterbuster/cleaner,
+		/obj/item/grenade/clusterbuster/soap,
+		/obj/item/toy/katana,
+		/obj/item/stack/sheet/metal/twenty,
+		/obj/item/stack/sheet/glass/fifty,
+	    /obj/item/sord,
+		/obj/item/toy/syndicateballoon,
+		/obj/item/lighter/greyscale,
+		/obj/item/lighter,
+		/obj/item/gun/ballistic/automatic/toy/pistol,
+		/obj/item/gun/ballistic/automatic/c20r/toy,
+		/obj/item/gun/ballistic/automatic/l6_saw/toy,
+		/obj/item/gun/ballistic/shotgun/toy,
+		/obj/item/gun/ballistic/shotgun/toy/crossbow,
+		/obj/item/twohanded/dualsaber/toy,
+		/obj/machinery/smoke_machine,
+		/obj/item/clothing/head/kitty,
+		/obj/item/coin/antagtoken,
+		/obj/item/clothing/suit/cardborg,
+		/obj/item/toy/prize/honk,
+		/obj/item/bedsheet/patriot,
+		/obj/item/bedsheet/rainbow,
+		/obj/item/bedsheet/captain,
+		/obj/item/bedsheet/centcom,
+		/obj/item/bedsheet/syndie,
+		/obj/item/bedsheet/cult,
+		/obj/item/bedsheet/wiz,
+		/obj/item/clothing/gloves/combat,
 	)
 
 /obj/effect/spawner/lootdrop/bluespace_tap/organic
 	name = "organic objects"
 	loot = list(
-		/obj/item/seeds/random = 10,
-		/obj/item/storage/pill_bottle/charcoal = 25,
-		/obj/item/storage/pill_bottle/mannitol = 25,
-		/obj/item/storage/pill_bottle/mutadone = 25,
-		/obj/item/dnainjector/telemut = 5,
-		/obj/item/dnainjector/chameleonmut = 5,
-		/obj/item/dnainjector/dwarf = 5,
-		/mob/living/simple_animal/pet/dog/corgi/ = 5,
-		/mob/living/simple_animal/pet/cat = 5,
-		/mob/living/simple_animal/pet/dog/bullterrier = 5,
-		/mob/living/simple_animal/pet/penguin = 5,
-		/mob/living/simple_animal/parrot = 5,
-		/obj/item/slimepotion/slime/sentience = 5,
-		/obj/item/clothing/mask/cigarette/cigar/havana = 3,
-		/obj/item/stack/sheet/mineral/bananium/five = 10,	//bananas are organic, clearly.
-		/obj/item/storage/box/monkeycubes = 5,
-		/obj/item/stack/tile/carpet/black/fifty = 10,
-		/obj/item/stack/tile/carpet/blue/fifty = 10,
-		/obj/item/stack/tile/carpet/cyan/fifty = 10,
-		/obj/item/soap/deluxe = 5
+		/obj/item/seeds/random,
+		/obj/item/storage/pill_bottle/charcoal,
+		/obj/item/storage/pill_bottle/mannitol,
+		/obj/item/storage/pill_bottle/mutadone,
+		/obj/item/dnainjector/telemut,
+		/obj/item/dnainjector/chameleonmut,
+		/obj/item/dnainjector/dwarf,
+		/mob/living/simple_animal/pet/dog/corgi/,
+		/mob/living/simple_animal/pet/cat,
+		/mob/living/simple_animal/pet/dog/bullterrier,
+		/mob/living/simple_animal/pet/penguin,
+		/mob/living/simple_animal/parrot,
+		/obj/item/slimepotion/slime/sentience,
+		/obj/item/clothing/mask/cigarette/cigar/havana,
+		/obj/item/stack/sheet/mineral/bananium/five,	//bananas are organic, clearly.
+		/obj/item/storage/box/monkeycubes,
+		/obj/item/stack/tile/carpet/black/fifty,
+		/obj/item/stack/tile/carpet/blue/fifty,
+		/obj/item/stack/tile/carpet/cyan/fifty,
+		/obj/item/soap/deluxe,
 	)
 
 /obj/effect/spawner/lootdrop/bluespace_tap/food
@@ -220,7 +220,7 @@
 	/// Max power input level, I don't expect this to be ever reached
 	var/max_level = 20
 	/// Amount of points to give per mining level
-	var/base_points = 4
+	var/base_points = 100
 	/// How high the machine can be run before it starts having a chance for dimension breaches.
 	var/safe_levels = 10
 	var/emagged = FALSE
@@ -377,7 +377,6 @@
 	if(A.product_cost > points)
 		return
 	points -= A.product_cost
-	A.product_cost = round(1.2 * A.product_cost, 1)
 	playsound(src, 'sound/magic/blink.ogg', 50)
 	do_sparks(2, FALSE, src)
 	new A.product_path(get_turf(src))
