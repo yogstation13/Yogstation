@@ -13,31 +13,35 @@
 	circuit = /obj/item/circuitboard/machine/autolathe
 	layer = BELOW_OBJ_LAYER
 
-	var/operating = FALSE
-	var/list/L = list()
-	var/list/LL = list()
+	/// Are hacked designs unlocked
 	var/hacked = FALSE
-	var/disabled = 0
+	/// Is it disabled(Can it print)
+	var/disabled = FALSE
+	/// Will it taze you when you interact with it
 	var/shocked = FALSE
-	var/hack_wire
-	var/disable_wire
-	var/shock_wire
+	/// Resource use multiplier
 	var/prod_coeff = 1
+	/// Internal techweb of designs
 	var/datum/techweb/stored_research
-	var/base_price = 25
-	var/hacked_price = 50
-	var/datum/research/files
+	/// name of the design to search for
 	var/search
-	var/datum/material_container/materials
+	/// Maximum length of the queue
 	var/queue_max_len = 12
+	/// Is it currently printing
 	var/processing_queue = FALSE
-	var/datum/design/item_beingbuilt
+	/// Requested item to be made
 	var/datum/design/request
+	/// Items being built
 	var/list/being_built = list()
+	/// Item queue
 	var/list/autoqueue = list()
+	/// List describing the items for the UI
 	var/processing_line
+	/// Direction its qill output when the item is printed (0 for ontop of itself)
 	var/printdirection = 0
+	/// Length of the queue
 	var/queuelength = 0
+	/// Avaliable categories
 	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Miscellaneous","Dinnerware","Imported", "Search")
 
 /obj/machinery/autolathe/Initialize()
@@ -398,7 +402,6 @@
 					new_item.autolathe_crafted(src)
 					if(picked_materials?.len)
 						new_item.set_custom_materials(picked_materials, 1 / multiplier) //Ensure we get the non multiplied amount
-			item_beingbuilt = null
 			icon_state = "autolathe"
 			desc = initial(desc)
 			return TRUE
