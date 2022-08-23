@@ -1947,6 +1947,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	restricted_roles = list("Assistant")
 	surplus = 0
+	
+/datum/uplink_item/role_restricted/oldtoolboxclean
+	name = "Necropolis seed"
+	desc = "A virus our operatives extracted from lavaland use it to cause a symbiotic relationship with a lavaland tendril"
+	item = /obj/item/reagent_containers/glass/bottle/necropolis_seed
+	cost = 2
+	restricted_roles = list("Virologist")
+	surplus = 0
 
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
