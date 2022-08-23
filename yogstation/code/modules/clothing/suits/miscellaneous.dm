@@ -273,6 +273,7 @@
 	icon_state = "detective_coat"
 	item_state = "detective_item"
 
+
 /obj/item/clothing/suit/yogs/blacktrenchcoat
 	name = "black trenchcoat"
 	desc = "For those assistants that want to look extra cool."
