@@ -1,5 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "gives demon chainsaw a proper \"on\" sprite"
-  - tweak: "changes demon chainsaw description"
