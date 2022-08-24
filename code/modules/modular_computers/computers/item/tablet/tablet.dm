@@ -105,10 +105,10 @@
 /obj/item/modular_computer/tablet/proc/remove_pen()
 	if(inserted_item)
 		if(usr)
-			user.put_in_hands(inserted_item)
+			usr.put_in_hands(inserted_item)
 		else
 			inserted_item.forceMove(drop_location())
-		computer.visible_message(span_notice("Pen ejected!"), null, null, 1)
+		visible_message(span_notice("Pen ejected!"), null, null, 1)
 		inserted_item = null
 	else
-		computer.visible_message(span_warning("No pen detected in slot!"), null, null, 1)
+		visible_message(span_warning("No pen detected in slot!"), null, null, 1)
