@@ -1002,15 +1002,25 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/detomatix
-	name = "Detomatix PDA Cartridge"
-	desc = "When inserted into a personal digital assistant, this cartridge gives you four opportunities to \
-			detonate PDAs of crewmembers who have their message feature enabled. \
-			The concussive effect from the explosion will knock the recipient out for a short period, and deafen them for longer."
-	item = /obj/item/cartridge/virus/syndicate
+	name = "BomberMan Program"
+	desc = "This program gives you four opportunities to detonate PDAs and computers of crewmembers \
+			who have their message feature enabled. The concussive effect from the explosion \
+			will knock the recipient out for a short period, and deafen them for longer."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman
 	cost = 6
 	manufacturer = /datum/corporation/traitor/cybersun
 	restricted = TRUE
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/explosives/detomatix/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	. = ..()
+	var/obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman/bombdisk = .
+	var/datum/computer_file/program/bomberman/program = bombdisk.find_file_by_name("bomberman")
+	var/code = program.bombcode
+
+	to_chat(user, span_warning("Your BomberMan code is : [code]."))
+	if(user.mind)
+		user.mind.store_memory("BomberMan code for [U.parent] : [code]")
 
 /datum/uplink_item/explosives/emp
 	name = "EMP Grenades and Implanter Kit"

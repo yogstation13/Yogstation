@@ -55,3 +55,6 @@
 		return FALSE
 	to_chat(user, "<span class='notice'>You swipe \the [src]. It's screen briefly shows a message reading \"MEMORY CODE INJECTION DETECTED AND SUCCESSFULLY QUARANTINED\".</span>")
 	return FALSE
+
+/obj/item/modular_computer/tablet/proc/pda_no_detonate()
+	return COMPONENT_PDA_NO_DETONATE

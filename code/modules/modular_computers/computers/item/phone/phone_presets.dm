@@ -45,6 +45,10 @@
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
 	finish_color = "yellow"
 
+/obj/item/modular_computer/tablet/phone/preset/advanced/command/cap/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_PDA_CHECK_DETONATE, .proc/pda_no_detonate)
+
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 	starting_files = list(	new /datum/computer_file/program/chatclient,
 							new /datum/computer_file/program/budgetorders,

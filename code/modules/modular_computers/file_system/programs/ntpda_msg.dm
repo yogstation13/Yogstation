@@ -43,7 +43,23 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	GLOB.NTPDAs -= src
 	return ..()
 
-/datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient)
+/datum/computer_file/program/pdamessager/proc/explode() // Why does NT have bombs in their modular tablets?
+	var/atom/source
+	if(computer)
+		source = computer
+	else if(istype(holder.loc, /obj/item/modular_computer))
+		source = holder.loc
+	else
+		source = holder
+
+	if(source)
+		explosion(source, -1, 1, 3, 4)
+	else
+		throw EXCEPTION("No computer or hard drive to detonate!")
+	
+	qdel(src)
+
+/datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient, mob/user)
 	computer.visible_message(span_notice("Sending message to [recipient.username]:"), null, null, 1)
 	computer.visible_message(span_notice("\"[message]\""), null, null, 1) // in case the message fails, they can copy+paste from here
 	if(recipient.blocked_users.Find(src))
