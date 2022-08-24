@@ -343,9 +343,9 @@ export const Autolathe = (props, context) => {
                                     data.metal_amount >= design.iron ? 'white' : 'bad'
                                   )}>
                                   {data.metal_amount >= design.iron ? (
-                                    <div>Metal: {design.iron}</div>
+                                    <div>Metal: {design.iron} cm³</div>
                                   ) : (
-                                    <b>Metal: {design.iron}</b>
+                                    <b>Metal: {design.iron} cm³</b>
                                   )}
                                 </Box>
 
@@ -361,9 +361,9 @@ export const Autolathe = (props, context) => {
                                     data.glass_amount >= design.glass ? 'white' : 'bad'
                                   )}>
                                   {data.glass_amount >= design.glass ? (
-                                    <div>Glass: {design.glass}</div>
+                                    <div>Glass: {design.glass} cm³</div>
                                   ) : (
-                                    <b>Glass: {design.glass}</b>
+                                    <b>Glass: {design.glass} cm³</b>
                                   )}
                                 </Box>
 
