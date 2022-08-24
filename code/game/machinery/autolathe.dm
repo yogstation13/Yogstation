@@ -407,7 +407,8 @@
 		processing_queue = FALSE
 		return
 	remove_from_queue(1)
-	make_item(D,multiplier)
+	if(!make_item(D,multiplier))
+		return
 	if(autoqueue.len)
 		process_queue()
 	else
