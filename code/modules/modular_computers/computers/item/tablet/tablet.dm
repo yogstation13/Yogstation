@@ -20,6 +20,44 @@
 	var/list/variants = list("red","green","yellow","blue","black","purple","white","brown","orange")
 	var/finish_color = null
 
+	var/list/contained_item = list(/obj/item/pen, /obj/item/toy/crayon, /obj/item/lipstick, /obj/item/flashlight/pen, /obj/item/clothing/mask/cigarette)
+	var/obj/item/pen_type = /obj/item/pen
+	var/obj/item/inserted_item
+
+/obj/item/modular_computer/tablet/Initialize()
+	. = ..()
+	inserted_item = new pen_type(src)
+
+/obj/item/modular_computer/tablet/AltClick(mob/user)
+	if(issilicon(user))
+		return
+
+	if(user.canUseTopic(src, BE_CLOSE))
+		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
+		var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+		if(card_slot2?.stored_card || card_slot?.stored_card)
+			return ..()
+		else
+			remove_pen()
+
+/obj/item/modular_computer/tablet/examine(mob/user)
+	. = ..()
+	if(inserted_item && (!isturf(loc)))
+		. += span_notice("Alt-click to remove [inserted_item].")
+
+/obj/item/modular_computer/tablet/attackby(obj/item/C, mob/user, params)
+	if(is_type_in_list(C, contained_item)) //Checks if there is a pen
+		if(inserted_item)
+			to_chat(user, span_warning("There is already \a [inserted_item] in \the [src]!"))
+		else
+			if(!user.transferItemToLoc(C, src))
+				return
+			to_chat(user, span_notice("You slide \the [C] into \the [src]."))
+			inserted_item = C
+			update_icon()
+	else
+		return ..()
+
 /obj/item/modular_computer/tablet/update_icon()
 	..()
 	if (!isnull(variants))
@@ -56,5 +94,21 @@
 	to_chat(user, "<span class='notice'>You swipe \the [src]. It's screen briefly shows a message reading \"MEMORY CODE INJECTION DETECTED AND SUCCESSFULLY QUARANTINED\".</span>")
 	return FALSE
 
+/obj/item/modular_computer/tablet/Destroy()
+	if(inserted_item)
+		QDEL_NULL(inserted_item)
+	return ..()
+
 /obj/item/modular_computer/tablet/proc/pda_no_detonate()
 	return COMPONENT_PDA_NO_DETONATE
+
+/obj/item/modular_computer/tablet/proc/remove_pen()
+	if(inserted_item)
+		if(usr)
+			user.put_in_hands(inserted_item)
+		else
+			inserted_item.forceMove(drop_location())
+		computer.visible_message(span_notice("Pen ejected!"), null, null, 1)
+		inserted_item = null
+	else
+		computer.visible_message(span_warning("No pen detected in slot!"), null, null, 1)

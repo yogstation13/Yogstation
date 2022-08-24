@@ -44,6 +44,7 @@
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
 	finish_color = "yellow"
+	pen_type = /obj/item/pen/fountain/captain
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap/Initialize()
 	. = ..()
@@ -80,6 +81,7 @@
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/robocontrol)
 	finish_color = "purple"
+	pen_type = /obj/item/pen/fountain
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cmo
 	starting_files = list(	new /datum/computer_file/program/chatclient,

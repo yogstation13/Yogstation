@@ -15,10 +15,17 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage)
 
+/obj/item/modular_computer/tablet/pda/preset/basic/mime
+	pen_type = /obj/item/toy/crayon/mime
+
+/obj/item/modular_computer/tablet/pda/preset/basic/fountainpen // QM, Lawyer, Curator, Bartender
+	pen_type = /obj/item/pen/fountain
+
 // Honk
 /obj/item/modular_computer/tablet/pda/preset/basic/clown
 	desc = "A hilarious PDA often given to station pranksters."
 	finish_color = "pink"
+	pen_type = /obj/item/toy/crayon/rainbow
 
 /obj/item/modular_computer/tablet/pda/preset/basic/clown/Initialize()
 	. = ..()
