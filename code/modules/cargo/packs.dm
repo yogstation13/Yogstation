@@ -2036,7 +2036,8 @@
 					/obj/item/pizzabox/mushroom,
 					/obj/item/pizzabox/meat,
 					/obj/item/pizzabox/vegetable,
-					/obj/item/pizzabox/pineapple)
+					/obj/item/pizzabox/pineapple,
+					/obj/item/pizzabox/seafood)
 	crate_name = "pizza crate"
 	var/static/anomalous_box_provided = FALSE
 
