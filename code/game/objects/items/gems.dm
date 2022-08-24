@@ -61,6 +61,19 @@
 	point_value = 300
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/gem/magma
+	name = "\improper Calcified Auric"
+	desc = "A hot, lightly glowing mineral born from the inner workings of magmawing watchers, they are most commonly used as dense smeltable deposits of usable gold. Their real value comes from their powerful, electrically conductive abilities rumored to be a required ingredient in creating immensely draining artificial intelligence."
+	icon = 'icons/obj/gems.dmi'
+	icon_state = "magma"
+	materials = list(/datum/material/gold=50000)
+	sheet_type = /obj/item/stack/sheet/mineral/gold{amount = 25}
+	point_value = 450
+	light_range = 2
+	light_power = 1
+	light_color = "#ff7b00"
+	w_class = WEIGHT_CLASS_SMALL
+
 /obj/item/gem/fdiamond
 	name = "\improper Frost Diamond"
 	desc = "A unique diamond that is produced within icewing watchers. Rarely used in traditional marriage bands, various gemstone companies now try to effect a monopoly on it, to little success. It looks like it can be cut into smaller sheets of diamond ore."
@@ -69,28 +82,6 @@
 	materials = list(/datum/material/diamond=30000)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond{amount = 15}
 	point_value = 750
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/gem/amber
-	name = "\improper Draconic Amber"
-	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after death. Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
-	icon = 'icons/obj/gems.dmi'
-	icon_state = "amber"
-	point_value = 1600
-	light_range = 2
-	light_power = 2
-	light_color = "#FFBF00"
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/gem/bloodstone
-	name = "\improper Ichorium"
-	desc = "A weird, sticky substance, known to coalesce in the presence of otherwordly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
-	icon = 'icons/obj/gems.dmi'
-	icon_state = "red"
-	point_value = 2000
-	light_range = 2
-	light_power = 3
-	light_color = "#800000"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/phoron
@@ -105,6 +96,41 @@
 	light_color = "#62326a"
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/gem/purple
+	name = "\improper Densified Dilithium"
+	desc = "A strange mass of dithilium formed through harmonic, zealous signals. Known to send out a wide readable signal it is sought after for its powerful individual range and unique resonating patterns. It looks like it could be destructively analyzed to extract the condensed materials within."
+	icon = 'icons/obj/gems.dmi'
+	icon_state = "purple"
+	materials = list(/datum/material/dilithium=64000)
+	point_value = 1600
+	light_range = 2
+	light_power = 1
+	light_color = "#b714cc"
+	w_class = WEIGHT_CLASS_SMALL
+
+	var/obj/item/gps/internal //stolen from the world anvil
+
+/obj/item/gem/purple/Initialize()
+	. = ..()
+	internal = new /obj/item/gps/internal/purple(src)
+
+/obj/item/gps/internal/purple
+	icon_state = null
+	gpstag = "Harmonic Signal"
+	desc = "Its ringing."
+	invisibility = 100
+
+/obj/item/gem/amber
+	name = "\improper Draconic Amber"
+	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after death. Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
+	icon = 'icons/obj/gems.dmi'
+	icon_state = "amber"
+	point_value = 1600
+	light_range = 2
+	light_power = 2
+	light_color = "#FFBF00"
+	w_class = WEIGHT_CLASS_SMALL
+
 /obj/item/gem/void
 	name = "\improper Null Crystal"
 	desc = "A shard of stellar, crystallized energy. These strange objects occasionally appear spontaneously in areas where the bluespace fabric is largely unstable. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
@@ -115,6 +141,17 @@
 	light_power = 1
 	light_color = "#4785a4"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/gem/bloodstone
+	name = "\improper Ichorium"
+	desc = "A weird, sticky substance, known to coalesce in the presence of otherwordly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
+	icon = 'icons/obj/gems.dmi'
+	icon_state = "red"
+	point_value = 2000
+	light_range = 2
+	light_power = 3
+	light_color = "#800000"
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/dark
 	name = "\improper Dark Cube"

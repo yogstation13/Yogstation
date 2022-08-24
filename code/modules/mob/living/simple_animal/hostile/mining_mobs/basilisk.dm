@@ -160,5 +160,11 @@
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing/death(gibbed)
 	if(prob(10))
 		new /obj/item/gem/fdiamond(loc)
-		deathmessage = "spits out an enormous diamond as it dies!"
+		deathmessage = "spits out a diamond as it dies!"
+	. = ..()
+
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing/death(gibbed)
+	if(prob(10))
+		new /obj/item/gem/fdiamond(loc)
+		deathmessage = "spits out a golden gem as it dies!"
 	. = ..()

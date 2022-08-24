@@ -5,6 +5,13 @@
 	required_count = 3
 	wanted_types = list(/obj/item/gem/rupee)
 
+/datum/bounty/item/gems/magma
+	name = "Calcified Auric"
+	description = "Nanotransen needs three of these for a secret project. Meet their demands and get paid for your endeavors."
+	reward = 10000
+	required_count = 3
+	wanted_types = list(/obj/item/gem/magma)
+
 /datum/bounty/item/gems/diamonds
 	name = "Frost Diamonds"
 	description = "A CentCom official is being married in the coming months. Get them those wedding rings!"
@@ -16,6 +23,12 @@
 	name = "Stabilized Phoron"
 	description = "Central Command needs a Phoron gem to showcase in their museum. Find one and be rewarded."
 	reward = 15000
+	wanted_types = list(/obj/item/gem/phoron)
+
+/datum/bounty/item/gems/plasma
+	name = "Densified Dilithium"
+	description = "CentCom wants to set up a new network but seems to be missing a signal strong enough to support it. Help solve their problem while getting a sizeable sum."
+	reward = 16000
 	wanted_types = list(/obj/item/gem/phoron)
 
 /datum/bounty/item/gems/amber
@@ -39,5 +52,5 @@
 /datum/bounty/item/gems/dark
 	name = "Dark Cube"
 	description = "Central Command's Research Director is particularly interested in the anomalous effects of this gem. Ship one over and he'll pay us directly."
-	reward = 25000
+	reward = 40000
 	wanted_types = list(/obj/item/gem/dark)
