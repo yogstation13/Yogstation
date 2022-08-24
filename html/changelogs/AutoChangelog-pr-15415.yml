@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "Engineers get paid again"
+  - tweak: "Cargo is no longer a leach on engineering"
