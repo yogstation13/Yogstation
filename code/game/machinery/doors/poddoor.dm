@@ -134,7 +134,7 @@
 		if(W.tool_behaviour == TOOL_WIRECUTTER)
 			if(id != null)
 				to_chat(user, span_notice("You start to unlink the door."))
-				if(W.use_tool(user, 10 SECONDS, src))
+				if(W.use_tool(src, user, 10 SECONDS))
 					to_chat(user, span_notice("You unlink the door."))
 					id = null
 			else
@@ -145,7 +145,7 @@
 		if(W.tool_behaviour == TOOL_WELDER && constructionstate == INTACT)
 			to_chat(user, span_notice("You start to remove the outer plasteel cover."))
 			playsound(src.loc, 'sound/items/welder.ogg', 50, 1)
-			if(W.use_tool(user, 10 SECONDS, src))
+			if(W.use_tool(src, user, 10 SECONDS))
 				if(constructionstate != INTACT)
 					return
 				to_chat(user, span_notice("You remove the outer plasteel cover."))
@@ -158,7 +158,7 @@
 		
 		if(W.tool_behaviour == TOOL_CROWBAR && constructionstate == CUT_COVER)
 			to_chat(user, span_notice("You start to remove all of the internal components"))
-			if(W.use_tool(user, 15 SECONDS, src))
+			if(W.use_tool(src, user, 15 SECONDS))
 				if(QDELETED(src))
 					return
 				if(istype(src, /obj/machinery/door/poddoor/shutters)) // Simplified Code 
