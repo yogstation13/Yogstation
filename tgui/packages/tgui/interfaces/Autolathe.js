@@ -4,25 +4,25 @@ import { Box, Button, Flex, Input, Grid, NumberInput, NoticeBox, Section } from 
 import { Window } from '../layouts';
 
 const MaxMultiplier = (metalamount, glassamount, metalrequired, glassrequired) => {
-  var maxmulti = [];
-  if((metalamount < metalrequired*5) || (glassamount < glassrequired*5)) {
+  let maxmulti = [];
+  if ((metalamount < metalrequired*5) || (glassamount < glassrequired*5)) {
     return maxmulti;
   }
   maxmulti += 5;
-  if((metalamount < metalrequired*10) || (glassamount < glassrequired*10)) {
+  if ((metalamount < metalrequired*10) || (glassamount < glassrequired*10)) {
     return maxmulti;
   }
   maxmulti += 10;
-  if((metalamount < metalrequired*15) || (glassamount < glassrequired*15)) {
+  if ((metalamount < metalrequired*15) || (glassamount < glassrequired*15)) {
     return maxmulti;
   }
   maxmulti += 15;
-  if((metalamount < metalrequired*25) || (glassamount < glassrequired*25)) {
+  if ((metalamount < metalrequired*25) || (glassamount < glassrequired*25)) {
     return maxmulti;
   }
   maxmulti += 25;
   return maxmulti;
-}
+};
 
 export const Autolathe = (props, context) => {
 
@@ -305,7 +305,10 @@ export const Autolathe = (props, context) => {
                                 inline
                                 key={design.name}
                                 content={design.name}
-                                disabled={(data.metal_amount < design.materials_metal) || (data.glass_amount < design.materials_glass)}
+                                disabled={
+                                  (data.metal_amount < design.materials_metal)
+                                  || (data.glass_amount < design.materials_glass)
+                                }
                                 title={design.name}
                                 mr={1}
                                 icon="print"
@@ -313,19 +316,23 @@ export const Autolathe = (props, context) => {
                                   item_id: design.id,
                                   multiplier: 1,
                                 })} />
-
-                              {MaxMultiplier(data.metal_amount, data.glass_amount. design.materials_metal, design.materials_glass).map(max => (
-                                <Button
-                                  inline
-                                  key={max}
-                                  disabled={design.disabled}
-                                  content={max + "x"}
-                                  onClick={() => act('make', {
-                                    item_id: design.id,
-                                    multiplier: max,
-                                  })}
-                                />
-                              ))}
+                              {MaxMultiplier(
+                                data.metal_amount,
+                                data.glass_amount,
+                                design.materials_metal,
+                                design.materials_glass)
+                                .map(max => (
+                                  <Button
+                                    inline
+                                    key={max}
+                                    disabled={design.disabled}
+                                    content={max + "x"}
+                                    onClick={() => act('make', {
+                                      item_id: design.id,
+                                      multiplier: max,
+                                    })}
+                                  />
+                                ))}
                             </Grid.Column>
                             <Grid.Column size={1}>
                               {design.materials_metal === 0 ? (
