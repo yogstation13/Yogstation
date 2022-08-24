@@ -5,22 +5,22 @@ import { Window } from '../layouts';
 
 const MaxMultiplier = (metalamount, glassamount, metalrequired, glassrequired) => {
   let maxmulti = [];
-  if ((metalamount < metalrequired*5) || (glassamount < glassrequired*5)) {
+  if ((metalamount > metalrequired*5) || (glassamount > glassrequired*5)) {
     return maxmulti;
   }
-  maxmulti += 5;
-  if ((metalamount < metalrequired*10) || (glassamount < glassrequired*10)) {
+  maxmulti.push(5);
+  if ((metalamount > metalrequired*10) || (glassamount > glassrequired*10)) {
     return maxmulti;
   }
-  maxmulti += 10;
-  if ((metalamount < metalrequired*15) || (glassamount < glassrequired*15)) {
+  maxmulti.push(10);
+  if ((metalamount > metalrequired*15) || (glassamount > glassrequired*15)) {
     return maxmulti;
   }
-  maxmulti += 15;
-  if ((metalamount < metalrequired*25) || (glassamount < glassrequired*25)) {
+  maxmulti.push(15);
+  if ((metalamount > metalrequired*25) || (glassamount > glassrequired*25)) {
     return maxmulti;
   }
-  maxmulti += 25;
+  maxmulti.push(25);
   return maxmulti;
 };
 
@@ -306,8 +306,8 @@ export const Autolathe = (props, context) => {
                                 key={design.name}
                                 content={design.name}
                                 disabled={
-                                  (data.metal_amount < design.materials_metal)
-                                  || (data.glass_amount < design.materials_glass)
+                                  (data.metal_amount > design.materials_metal)
+                                  || (data.glass_amount > design.materials_glass)
                                 }
                                 title={design.name}
                                 mr={1}
