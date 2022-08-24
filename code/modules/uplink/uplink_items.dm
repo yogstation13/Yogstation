@@ -2428,7 +2428,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Weapon Recharger"
 	desc = "Standard issue energy weapon recharger. Must be anchored in an APC-powered area."
 	item = /obj/machinery/recharger
-	cost = 5
+	cost = 2
 
 /datum/uplink_item/nt/ammo/powerpack
 	name = "Power Pack"
