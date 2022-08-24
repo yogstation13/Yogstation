@@ -77,8 +77,9 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["total_amount"] = materials.total_amount
 	data["max_amount"] = materials.max_amount
-	data["metal_amount"] = materials.get_material_amount(/datum/material/iron)
-	data["glass_amount"] = materials.get_material_amount(/datum/material/glass)
+	data["stored_materials"] = list()
+	data["stored_materials"][getmaterialref(/datum/material/iron)] = materials.get_material_amount(/datum/material/iron)
+	data["stored_materials"][getmaterialref(/datum/material/glass)] = materials.get_material_amount(/datum/material/glass)
 	data["rightwall"] = wallcheck(4) // Wall data for ui
 	data["leftwall"] = wallcheck(8)
 	data["abovewall"] = wallcheck(1)
@@ -113,8 +114,9 @@
 		design["name"] = D.name
 		design["id"] = D.id
 		design["category"] = D.category
+		design["materials"] = list()
 		for(var/i in D.materials)
-			design[i] = D.materials[i] * coeff
+			design["materials"][i] = D.materials[i] * coeff
 		designs += list(design)
 	data["designs"] = designs
 	return data

@@ -3,24 +3,18 @@ import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Flex, Input, Grid, NumberInput, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
-const MaxMultiplier = (metalamount, glassamount, metalrequired, glassrequired) => {
+const MaxMultiplier = (materials, design) => {
   let maxmulti = [];
-  if ((metalamount < metalrequired*5) || (glassamount < glassrequired*5)) {
-    return maxmulti;
+  let currentmult = 5;
+  for (let i = 0; i < 3; i++) {
+    for (const [key, value] of Object.entries(materials)) {
+      if (value < design["materials"][key]*currentmult) {
+        break;
+      }
+    }
+    maxmulti.push(currentmult);
+    currentmult += 10;
   }
-  maxmulti.push(5);
-  if ((metalamount < metalrequired*10) || (glassamount < glassrequired*10)) {
-    return maxmulti;
-  }
-  maxmulti.push(10);
-  if ((metalamount < metalrequired*15) || (glassamount < glassrequired*15)) {
-    return maxmulti;
-  }
-  maxmulti.push(15);
-  if ((metalamount < metalrequired*25) || (glassamount < glassrequired*25)) {
-    return maxmulti;
-  }
-  maxmulti.push(25);
   return maxmulti;
 };
 
@@ -70,18 +64,18 @@ export const Autolathe = (props, context) => {
                   {data.total_amount} / {data.max_amount} cm³
                 </font>
                 <br />
-                <font color={(data.metal_amount > 0 ? '#c9b971' : 'red')}>
+                <font color={(data.stored_materials.iron > 0 ? '#c9b971' : 'red')}>
                   <Box inline mr={1} mb={1} ml={1}>
                     <b>Metal amount: </b>
                   </Box>
-                  {data.metal_amount} cm³
+                  {data.stored_materials.iron} cm³
                 </font>
                 <br />
-                <font color={(data.glass_amount > 0 ? '#c9b971' : 'red')}>
+                <font color={(data.stored_materials.glass > 0 ? '#c9b971' : 'red')}>
                   <Box inline mr={1} ml={1}>
                     <b>Glass amount:</b>
                   </Box>
-                  {data.glass_amount} cm³
+                  {data.stored_materials.glass} cm³
                 </font>
               </div>
             </Grid.Column>
@@ -145,7 +139,7 @@ export const Autolathe = (props, context) => {
                 width="100px"
                 unit="Sheets"
                 minValue={0}
-                maxValue={Math.round((data.metal_amount / 2000) - 0.5)}
+                maxValue={Math.round((data.stored_materials.iron / 2000) - 0.5)}
                 onChange={(e, value) => setMetalSheetCount(value)} />
 
               <Button
@@ -153,7 +147,7 @@ export const Autolathe = (props, context) => {
                 content={"Eject"}
                 ml={1}
                 mr={1}
-                disabled={(data.metal_amount < 2000 ? 1 : 0)}
+                disabled={(data.stored_materials.iron < 2000 ? 1 : 0)}
                 onClick={() => act('eject', {
                   item_id: 'metal',
                   multiplier: sheetnumbermetal,
@@ -169,13 +163,13 @@ export const Autolathe = (props, context) => {
                 width="100px"
                 unit="Sheets"
                 minValue={0}
-                maxValue={Math.round((data.glass_amount / 2000) - 0.5)}
+                maxValue={Math.round((data.stored_materials.glass / 2000) - 0.5)}
                 onChange={(e, value) => setGlassSheetCount(value)} />
               <Button
                 content={"Eject"}
                 ml={1}
                 mr={1}
-                disabled={(data.glass_amount < 2000 ? 1 : 0)}
+                disabled={(data.stored_materials.glass < 2000 ? 1 : 0)}
                 onClick={() => act('eject', {
                   item_id: 'glass',
                   multiplier: sheetnumberglass,
@@ -250,34 +244,34 @@ export const Autolathe = (props, context) => {
 
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {design.iron === 0 ? (
+                              {design.materials.iron === 0 ? (
                                 ''
                               ):(
                                 <Box ml={0} mr={0} inline
                                   color={(
-                                    data.metal_amount > design.iron ? 'white' : 'bad'
+                                    data.stored_materials.iron > design.materials.iron ? 'white' : 'bad'
                                   )}>
-                                  {data.metal_amount > design.iron ? (
-                                    <div>Metal: {design.iron}</div>
+                                  {data.stored_materials.iron > design.materials.iron ? (
+                                    <div>Metal: {design.materials.iron}</div>
                                   ) : (
-                                    <b>Metal: {design.iron}</b>
+                                    <b>Metal: {design.materials.iron}</b>
                                   )}
                                 </Box>
 
                               )}
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {design.glass === 0 ? (
+                              {design.materials.glass === 0 ? (
                                 ""
                               ):(
                                 <Box ml={0} mr={0} inline
                                   color={(
-                                    data.glass_amount >= design.glass ? 'white' : 'bad'
+                                    data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
                                   )}>
-                                  {data.glass_amount >= design.glass ? (
-                                    <div>Glass: {design.glass}</div>
+                                  {data.stored_materials.glass >= design.materials.glass ? (
+                                    <div>Glass: {design.materials.glass}</div>
                                   ) : (
-                                    <b>Glass: {design.iron}</b>
+                                    <b>Glass: {design.materials.iron}</b>
                                   )}
                                 </Box>
 
@@ -306,8 +300,8 @@ export const Autolathe = (props, context) => {
                                 key={design.name}
                                 content={design.name}
                                 disabled={
-                                  (data.metal_amount < design.iron)
-                                  || (data.glass_amount < design.glass)
+                                  (data.stored_materials.iron < design.materials.iron)
+                                  || (data.stored_materials.glass < design.materials.glass)
                                   || data.disabled
                                 }
                                 title={design.name}
@@ -317,11 +311,7 @@ export const Autolathe = (props, context) => {
                                   item_id: design.id,
                                   multiplier: 1,
                                 })} />
-                              {MaxMultiplier(
-                                data.metal_amount,
-                                data.glass_amount,
-                                design.iron,
-                                design.glass)
+                              {MaxMultiplier(data.stored_materials, design)
                                 .map(max => (
                                   <Button
                                     inline
@@ -336,17 +326,17 @@ export const Autolathe = (props, context) => {
                                 ))}
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {design.iron === 0 ? (
+                              {design.materials.iron === 0 ? (
                                 ""
                               ):(
                                 <Box ml={0} mr={0} inline
                                   color={(
-                                    data.metal_amount >= design.iron ? 'white' : 'bad'
+                                    data.stored_materials.iron >= design.materials.iron ? 'white' : 'bad'
                                   )}>
-                                  {data.metal_amount >= design.iron ? (
-                                    <div>Metal: {design.iron} cm³</div>
+                                  {data.stored_materials.iron >= design.materials.iron ? (
+                                    <div>Metal: {design.materials.iron} cm³</div>
                                   ) : (
-                                    <b>Metal: {design.iron} cm³</b>
+                                    <b>Metal: {design.materials.iron} cm³</b>
                                   )}
                                 </Box>
 
@@ -354,17 +344,17 @@ export const Autolathe = (props, context) => {
 
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {!design.glass > 0 ? (
+                              {!design.materials.glass > 0 ? (
                                 ""
                               ):(
                                 <Box ml={0} mr={0} inline
                                   color={(
-                                    data.glass_amount >= design.glass ? 'white' : 'bad'
+                                    data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
                                   )}>
-                                  {data.glass_amount >= design.glass ? (
-                                    <div>Glass: {design.glass} cm³</div>
+                                  {data.stored_materials.glass >= design.materials.glass ? (
+                                    <div>Glass: {design.materials.glass} cm³</div>
                                   ) : (
-                                    <b>Glass: {design.glass} cm³</b>
+                                    <b>Glass: {design.materials.glass} cm³</b>
                                   )}
                                 </Box>
 
