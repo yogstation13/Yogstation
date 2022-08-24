@@ -61,9 +61,6 @@
 	var/sound/shutdown_sound = 'sound/machines/computers/computer_end.ogg'
 	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
 
-	// Donor reskin, prevents respawning false icon
-	var/donor = FALSE
-
 
 /obj/item/modular_computer/Initialize()
 	. = ..()
@@ -236,9 +233,6 @@
 
 /obj/item/modular_computer/update_icon()
 	if(!physical)
-		return
-	
-	if(donor)
 		return
 
 	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)

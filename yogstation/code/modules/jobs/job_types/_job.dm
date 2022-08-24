@@ -30,24 +30,18 @@
 
 	switch(C.prefs.donor_pda)
 		if(2)//transparent
-			var/obj/item/modular_computer/PDA = locate(/obj/item/modular_computer) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
-				PDA.icon = 'yogstation/icons/obj/pda.dmi'
-				PDA.icon_state = "pda-clear"
-				PDA.donor = TRUE
+				PDA.finish_color = "glass"
 		if(3)//pip-boy
-			var/obj/item/modular_computer/PDA = locate(/obj/item/modular_computer) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
-				PDA.icon = 'yogstation/icons/obj/pda.dmi'
-				PDA.icon_state = "pda-pipboy"
+				PDA.finish_color = "pipboy"
 				PDA.slot_flags |= ITEM_SLOT_GLOVES
-				PDA.donor = TRUE
 		if(4)//rainbow
-			var/obj/item/modular_computer/PDA = locate(/obj/item/modular_computer) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
-				PDA.icon = 'yogstation/icons/obj/pda.dmi'
-				PDA.icon_state = "pda-rainbow"
-				PDA.donor = TRUE
+				PDA.finish_color = "rainbow"
 
 /datum/job/proc/give_cape(mob/living/H, mob/M)
 	var/client/C = M.client
