@@ -229,7 +229,7 @@ export const Autolathe = (props, context) => {
                               <Button
                                 key={design.name}
                                 content={design.name}
-                                disabled={design.disabled}
+                                disabled={data.disabled}
                                 title={design.name}
                                 icon="print"
                                 onClick={() => act('make', {
@@ -239,7 +239,7 @@ export const Autolathe = (props, context) => {
                               {design.max_multiplier.map(max => (
                                 <Button
                                   key={max}
-                                  disabled={design.disabled}
+                                  disabled={data.disabled}
                                   content={max + "x"}
                                   onClick={() => act('make', {
                                     item_id: design.id,
@@ -308,6 +308,7 @@ export const Autolathe = (props, context) => {
                                 disabled={
                                   (data.metal_amount < design.iron)
                                   || (data.glass_amount < design.glass)
+                                  || data.disabled
                                 }
                                 title={design.name}
                                 mr={1}
@@ -325,7 +326,7 @@ export const Autolathe = (props, context) => {
                                   <Button
                                     inline
                                     key={max}
-                                    disabled={design.disabled}
+                                    disabled={data.disabled}
                                     content={max + "x"}
                                     onClick={() => act('make', {
                                       item_id: design.id,

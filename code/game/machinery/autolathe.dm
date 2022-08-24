@@ -89,6 +89,7 @@
 	data["isprocessing"] = processing_queue
 	data["queuelength"] = queuelength
 	data["categories"] = categories
+	data["disabled"] = disabled
 	if(istype(autoqueue) && autoqueue.len)
 		var/list/uidata = list()
 		var/index = 1
@@ -111,7 +112,6 @@
 		var/list/design = list()
 		design["name"] = D.name
 		design["id"] = D.id
-		design["disabled"] = disabled
 		design["category"] = D.category
 		for(var/i in D.materials)
 			design[i] = D.materials[i] * coeff
