@@ -430,7 +430,7 @@
 	list_reagents = list(/datum/reagent/monkey_powder = 30)
 	filling_color = "#CD853F"
 	tastes = list("the jungle" = 1, "bananas" = 1)
-	foodtype = MEAT | SUGAR
+	foodtype = MEAT | SUGAR | RAW
 	var/faction
 	var/spawned_mob = /mob/living/carbon/monkey
 
@@ -479,33 +479,62 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/gorilla
 	name = "gorilla cube"
 	desc = "A Waffle Co. brand gorilla cube. Now with extra molecules! Just add water!"
-	bitesize = 20
+	bitesize = 35
 	list_reagents = list(/datum/reagent/gorilla_powder = 30, /datum/reagent/medicine/strange_reagent = 5)
-	tastes = list("the jungle" = 1, "bananas" = 1, "jimmies" = 1)
+	tastes = list("the jungle" = 1, "bananas" = 1, "power" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/gorilla
+	foodtype = MEAT | SUGAR | RAW
 
 /obj/item/reagent_containers/food/snacks/monkeycube/sheep
 	name = "sheep cube"
 	desc = "A Farm Town brand sheep cube. Just add water!"
-	bitesize = 15
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	bitesize = 35
+	list_reagents = list(/datum/reagent/sheep_powder = 30, /datum/reagent/consumable/nutriment = 5)
 	tastes = list("fluff" = 1, "the farm" = 1)
 	spawned_mob = /mob/living/simple_animal/sheep
+	foodtype = MEAT | RAW
 
 /obj/item/reagent_containers/food/snacks/monkeycube/cow
 	name = "cow cube"
 	desc = "A Farm Town brand cow cube. Just add water!"
-	bitesize = 18
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
-	tastes = list("milk" = 1, "the farm" = 1)
+	bitesize = 45
+	list_reagents = list(/datum/reagent/cow_powder = 30, /datum/reagent/consumable/nutriment = 15)
+	tastes = list("milk" = 1, "blood" = 1, "the farm" = 1)
 	spawned_mob = /mob/living/simple_animal/cow
+	foodtype = MEAT | RAW | DAIRY
 
 /obj/item/reagent_containers/food/snacks/monkeycube/goat
 	name = "goat cube"
 	desc = "A Goat Tech Industries goat cube. Just add water!"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "goatcube"
-	bitesize = 20
-	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
+	bitesize = 40
+	list_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/consumable/nutriment = 10)
 	tastes = list("fur" = 1, "blood" = 1, "rage" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/retaliate/goat
+	foodtype = MEAT | RAW
+
+/obj/item/reagent_containers/food/snacks/monkeycube/chicken
+	name = "chicken cube"
+	desc = "A Farm Town brand chicken cube. Just add water!"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "chickencube"
+	bitesize = 40
+	list_reagents = list(/datum/reagent/chicken_powder = 30, /datum/reagent/consumable/nutriment = 10)
+	tastes = list("feathers" = 1, "blood" = 1, "albumin" = 1)
+	spawned_mob = /mob/living/simple_animal/chicken
+	foodtype = MEAT | RAW | EGG
+
+/obj/item/reagent_containers/food/snacks/monkeycube/mouse
+	name = "mouse cube"
+	desc = "A Waffle Co. brand mouse cube. Just add water!"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "mousecube"
+	bitesize = 40
+	list_reagents = list(/datum/reagent/mouse_powder = 30, /datum/reagent/consumable/nutriment = 10)
+	tastes = list("fur" = 1, "blood" = 1, "cheese" = 1)
+	spawned_mob = /mob/living/simple_animal/mouse
+	foodtype = MEAT | MICE | RAW
+
+/obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate
+	faction = list("neutral", ROLE_SYNDICATE)

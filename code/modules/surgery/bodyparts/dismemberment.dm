@@ -361,13 +361,14 @@
 		LAZYADD(C.all_scars, thing)
 
 	update_bodypart_damage_state()
+	if(C.dna && C.dna.species && (ROBOTIC_LIMBS in C.dna.species.species_traits) && src.status == BODYPART_ROBOTIC)
+		src.render_like_organic = TRUE
 
 	C.updatehealth()
 	C.update_body()
 	C.update_hair()
 	C.update_damage_overlays()
 	C.update_mobility()
-
 
 /obj/item/bodypart/head/attach_limb(mob/living/carbon/C, special)
 	//Transfer some head appearance vars over
@@ -437,6 +438,16 @@
 			L.set_burn_dam(0)
 			L.brutestate = 0
 			L.burnstate = 0
+
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if(H.dna && H.dna.species && (ROBOTIC_LIMBS in H.dna.species.species_traits))
+				L.change_bodypart_status(BODYPART_ROBOTIC)
+				L.render_like_organic = TRUE
+			if(limb_zone == "head" && H.dna && H.dna.species && (NOMOUTH in H.dna.species.species_traits))
+				var/obj/item/bodypart/head/head = L
+				if(head)
+					head.mouth = FALSE
 
 		L.attach_limb(src, 1)
 		var/datum/scar/scaries = new

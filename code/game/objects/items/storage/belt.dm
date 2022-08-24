@@ -365,12 +365,17 @@
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
-		/obj/item/restraints/legcuffs/bola/watcher
+		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/stack/sheet/mineral,
+		/obj/item/grenade/plastic/miningcharge
 		))
 
 
 /obj/item/storage/belt/mining/vendor
-	contents = newlist(/obj/item/survivalcapsule)
+	contents = newlist(/obj/item/survivalcapsule,
+	/obj/item/grenade/plastic/miningcharge/lesser,
+	/obj/item/grenade/plastic/miningcharge/lesser,
+	/obj/item/grenade/plastic/miningcharge/lesser,)
 
 /obj/item/storage/belt/mining/alt
 	icon_state = "explorer2"

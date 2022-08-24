@@ -27,6 +27,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/efficiency
 	// the three variables that handle meatcloning
 	var/biomass = 0 //Start with no biomass inserted.
+	var/maxbiomass = 100
 	///List of special meat that gives extra/less biomass
 	var/list/accepted_biomass = list(
 		/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 25, 
@@ -77,10 +78,13 @@ GLOBAL_VAR_INIT(clones, 0)
 /obj/machinery/clonepod/RefreshParts()
 	speed_coeff = 0
 	efficiency = 0
+	maxbiomass = 0
 	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
 		efficiency += S.rating
 	for(var/obj/item/stock_parts/manipulator/P in component_parts)
 		speed_coeff += P.rating
+	for(var/obj/item/reagent_containers/glass/beaker/B in component_parts)
+		maxbiomass += B.reagents.maximum_volume
 	heal_level = (efficiency * 15) + 10
 	if(heal_level < MINIMUM_HEAL_LEVEL)
 		heal_level = MINIMUM_HEAL_LEVEL
@@ -92,7 +96,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	. += span_notice("The <i>linking</i> device can be <i>scanned<i> with a multitool.")
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>"
-		. += "<span class='notice'>The status display reads: Biomass levels at <b>[biomass]%</b><span>" // read out the amount of biomass if you examine
+		. += "<span class='notice'>The status display reads: Biomass levels at <b>[round((biomass/maxbiomass)*100)]%</b><span>" // read out the amount of biomass if you examine
 		if(efficiency > 5)
 			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
 
@@ -124,15 +128,14 @@ GLOBAL_VAR_INIT(clones, 0)
 // Biomass
 
 /obj/machinery/clonepod/proc/handle_biomass(W, tempbiomass, user) // updates the value
-	if(biomass >= 100)
+	if(biomass >= maxbiomass)
 		to_chat(user, "<span class = 'notice'>[src]'s biomass containers are full!.</span>")
 		return // if biomass is already 100 then yell at those stupid idiots
 	else
 		to_chat(user, "<span class = 'notice'>You insert [W] into [src].</span>") // feel free to fill it.
 		biomass = tempbiomass
 		qdel(W)
-		if(biomass > 100) // hidden check to make sure we don't get an end value of like 106 or something.
-			biomass = 100
+		biomass = clamp(biomass, 0, maxbiomass)
 	return
 
 /obj/machinery/clonepod/attackby(obj/item/W, mob/user, params)

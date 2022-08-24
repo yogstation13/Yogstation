@@ -11,11 +11,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR,HAIR,LIPS,HAS_FLESH,HAS_BONE)
+	species_traits = list(EYECOLOR,HAIR,LIPS)
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
+	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
+	disliked_food = GROSS | VEGETABLES
 	brutemod = 1.25 //Have you ever punched a metal plate?
 	burnmod = 1.5 //Computers don't like heat
 	coldmod = 0.8 //Computers like cold, but their lungs may not

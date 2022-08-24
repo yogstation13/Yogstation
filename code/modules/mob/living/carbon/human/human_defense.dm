@@ -32,6 +32,8 @@
 			var/obj/item/clothing/C = bp
 			if(C.body_parts_covered & def_zone.body_part)
 				protection += C.armor.getRating(d_type)
+			else if(C.body_parts_partial_covered & def_zone.body_part)
+				protection += C.armor.getRating(d_type) * 0.5
 	protection += physiology.armor.getRating(d_type)
 	return protection
 
@@ -190,6 +192,12 @@
 			zone_hit_chance += 10
 		affecting = get_bodypart(ran_zone(user.zone_selected, zone_hit_chance))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
+	if(affecting)
+		if(I.force && I.damtype != STAMINA && affecting.status == BODYPART_ROBOTIC) // Bodpart_robotic sparks when hit, but only when it does real damage
+			if(I.force >= 5)
+				do_sparks(1, FALSE, loc)
+				if(prob(25))
+					new /obj/effect/decal/cleanable/oil(loc)
 
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 
@@ -547,6 +555,10 @@
 				if(2)
 					L.receive_damage(0,5)
 					Paralyze(100)
+
+			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
+				if(prob(20))
+					L.dismember(BRUTE)
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()

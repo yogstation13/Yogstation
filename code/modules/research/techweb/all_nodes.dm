@@ -385,9 +385,9 @@
 	id = "ai"
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
-	prereq_ids = list("robotics", "posibrain")
+	prereq_ids = list("base")
 	design_ids = list("server_cabinet", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "ai_resource_distribution", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	research_costs = list(TECHWEB_POINT_TYPE_AI = 1000)
 	export_price = 5000
 
 /////////////////////////EMP tech/////////////////////////
@@ -542,6 +542,15 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 	export_price = 5000
 
+/datum/techweb_node/ipc_organs
+	id = "ipc_organs"
+	display_name = "IPC Parts"
+	description = "We have the technology to replace him."
+	prereq_ids = list("cyber_organs","robotics")
+	design_ids = list("robotic_liver", "robotic_eyes", "robotic_tongue", "robotic_stomach", "robotic_ears", "power_cord", "ipcrevive")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
+	export_price = 5000
+
 /datum/techweb_node/cyber_implants
 	id = "cyber_implants"
 	display_name = "Cybernetic Implants"
@@ -607,7 +616,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000
 	hidden = TRUE
-	boost_item_paths = list(/obj/item/magmite)
+	boost_item_paths = list(/obj/item/magmite,/obj/item/grenade/plastic/miningcharge/mega) //you can get mega mining charges from necropolis chests
 
 /datum/techweb_node/camera_theory
 	id = "cam_theory"

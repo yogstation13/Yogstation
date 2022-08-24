@@ -12,6 +12,7 @@
 	volume = 50	//Sets the default container amount for all food items.
 	reagent_flags = INJECTABLE
 	resistance_flags = FLAMMABLE
+	fryable = TRUE
 	var/foodtype = NONE
 	var/last_check_time
 	///Will this food turn into badrecipe on a grill? Don't use this for everything; preferably mostly for food that is made on a grill to begin with so it burns after some time
