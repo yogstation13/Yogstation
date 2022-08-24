@@ -12,7 +12,7 @@ export const NtosBomberMan = (props, context) => {
     <NtosWindow
       width={400}
       height={480}
-      theme='syndicate'>
+      theme="syndicate">
       <NtosWindow.Content scrollable>
         <Box>
           <Section
@@ -32,7 +32,7 @@ export const NtosBomberMan = (props, context) => {
                 <Button
                   fluid
                   content="Send / Receive: YES"
-                  selected={true} />
+                  selected />
               </Grid.Column>
             </Grid>
             <Grid>
@@ -60,7 +60,7 @@ export const NtosBomberMan = (props, context) => {
                     <Button.Input
                       fluid
                       content={pdadata[0].substring(0, 35)}
-                      disabled={true}
+                      disabled
                       color="primary" />
                   </Grid.Column>
                   <Grid.Column>
