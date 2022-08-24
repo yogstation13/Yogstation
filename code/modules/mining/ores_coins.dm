@@ -497,7 +497,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	transform = initial(transform)
 
 /obj/item/coin/bullet_act(obj/item/projectile/P)
-	if(P.flag != "laser" && P.flag != "energy" && !istype(P, /obj/item/projectile/bullet/c38)) //only energy projectiles get deflected (also det revolver because damn thats cool)
+	if(P.flag != LASER && P.flag != ENERGY && !istype(P, /obj/item/projectile/bullet/c38)) //only energy projectiles get deflected (also det revolver because damn thats cool)
 		return ..()
 		
 	if(cooldown >= world.time)//we ricochet the projectile
