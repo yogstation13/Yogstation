@@ -113,8 +113,8 @@
 		design["id"] = D.id
 		design["disabled"] = disabled
 		design["category"] = D.category
-		design["materials_metal"] = D.materials["iron"] * coeff // its not /datum/material/metal ITS just `iron`!!!
-		design["materials_glass"] = D.materials["glass"] * coeff
+		for(var/i in D.materials)
+			design[i] = D.materials[i] * coeff
 		designs += list(design)
 	data["designs"] = designs
 	return data
