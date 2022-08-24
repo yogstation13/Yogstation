@@ -591,7 +591,6 @@
 #include "code\datums\mutations\actions.dm"
 #include "code\datums\mutations\antenna.dm"
 #include "code\datums\mutations\body.dm"
-#include "code\datums\mutations\catclaws.dm"
 #include "code\datums\mutations\chameleon.dm"
 #include "code\datums\mutations\cold.dm"
 #include "code\datums\mutations\heat_adaptation.dm"
