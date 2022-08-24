@@ -9,8 +9,8 @@
 	flags_1 = CONDUCT_1
 	force = 20
 	armour_penetration = 30
-	wound_bonus = 35
-	bare_wound_bonus = 40
+	wound_bonus = 40
+	bare_wound_bonus = 50
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "lacerated", "ripped", "diced", "cut")
