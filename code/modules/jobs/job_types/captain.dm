@@ -41,7 +41,7 @@
 	jobtype = /datum/job/captain
 
 	id_type = /obj/item/card/id/gold
-	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
 	
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/captain/alt

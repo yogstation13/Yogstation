@@ -42,7 +42,7 @@
 	jobtype = /datum/job/rd
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd
 
 	ears = /obj/item/radio/headset/heads/rd
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses

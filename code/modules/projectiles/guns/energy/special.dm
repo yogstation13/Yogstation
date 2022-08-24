@@ -142,6 +142,14 @@
 	var/light_intensity = 1
 	var/charge_weld = 25 //amount of charge used up to start action (multiplied by amount) and per progress_flash_divisor ticks of welding
 
+/obj/item/gun/energy/plasmacutter/mini
+	name = "mini plasma cutter"
+	desc = "A weak plasma based mining tool."
+	icon_state = "plasmacutter_mini"
+	item_state = "plasmacutter_mini"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
+	toolspeed = 2
+
 /obj/item/gun/energy/plasmacutter/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
@@ -203,7 +211,7 @@
 		else
 			progress_flash_divisor--
 
-/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks)
+/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, robo_check)
 	if(amount)
 		target.add_overlay(GLOB.welding_sparks)
 		. = ..()

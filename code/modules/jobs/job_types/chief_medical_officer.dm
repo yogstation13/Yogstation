@@ -39,7 +39,7 @@
 	jobtype = /datum/job/cmo
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cmo
 
 	belt = /obj/item/storage/belt/medical/chief/full
 	ears = /obj/item/radio/headset/heads/cmo

@@ -1,12 +1,12 @@
 /datum/computer_file/program/borg_monitor
 	filename = "cyborgmonitor"
 	filedesc = "Cyborg Remote Monitoring"
-	category = PROGRAM_CATEGORY_ROBO
+	category = PROGRAM_CATEGORY_SCI
 	ui_header = "borg_mon.gif"
 	program_icon_state = "generic"
 	extended_desc = "This program allows for remote monitoring of station cyborgs."
 	requires_ntnet = TRUE
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_PDA
 	transfer_access = ACCESS_ROBOTICS
 	network_destination = "cyborg remote monitoring"
 	size = 5
@@ -164,7 +164,7 @@
 /datum/computer_file/program/borg_monitor/syndicate
 	filename = "scyborgmonitor"
 	filedesc = "Mission-Specific Cyborg Remote Monitoring"
-	category = PROGRAM_CATEGORY_ROBO
+	category = PROGRAM_CATEGORY_SCI
 	ui_header = "borg_mon.gif"
 	program_icon_state = "generic"
 	extended_desc = "This program allows for remote monitoring of mission-assigned cyborgs."

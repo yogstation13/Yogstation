@@ -43,6 +43,21 @@
 	P = null
 	return TRUE
 
+/obj/item/computer_hardware/printer/proc/print_type(paper_type)
+	if(!stored_paper || !check_functionality() || !ispath(paper_type))
+		return FALSE
+
+	var/obj/item/paper/P = new paper_type(holder.drop_location())
+
+	// Damaged printer causes the resulting paper to be somewhat harder to read.
+	if(damage > damage_malfunction)
+		P.info = stars(P.info, 100-malfunction_probability)
+	P.update_icon()
+	P.reload_fields()
+	stored_paper--
+	P = null
+	return TRUE
+
 /obj/item/computer_hardware/printer/try_insert(obj/item/I, mob/living/user = null)
 	if(istype(I, /obj/item/paper))
 		if(stored_paper >= max_paper)

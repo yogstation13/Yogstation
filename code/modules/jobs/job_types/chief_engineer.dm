@@ -35,7 +35,7 @@
 	jobtype = /datum/job/chief_engineer
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/atmos
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/ce
 
 	belt = /obj/item/storage/belt/utility/chief/full
 	ears = /obj/item/radio/headset/heads/ce

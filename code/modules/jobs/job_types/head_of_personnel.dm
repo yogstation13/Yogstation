@@ -44,7 +44,7 @@
 	jobtype = /datum/job/hop
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 
 	ears = /obj/item/radio/headset/heads/hop
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
@@ -54,5 +54,6 @@
 	head = /obj/item/clothing/head/hopcap
 	backpack_contents = list(/obj/item/storage/box/ids=1,\
 		/obj/item/melee/classic_baton/telescopic=1) //yogs - removes serv budget
+
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/hop)

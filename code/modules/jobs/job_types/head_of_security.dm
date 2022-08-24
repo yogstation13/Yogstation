@@ -41,7 +41,7 @@
 	jobtype = /datum/job/hos
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hos
 
 	belt = /obj/item/storage/belt/security/chief/full
 	ears = /obj/item/radio/headset/heads/hos/alt

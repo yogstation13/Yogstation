@@ -309,6 +309,10 @@
 	healths = new /obj/screen/healths()
 	infodisplay += healths
 
+	stamina = new /obj/screen/stamina()
+	stamina.hud = src
+	infodisplay += stamina
+
 	healthdoll = new /obj/screen/healthdoll()
 	infodisplay += healthdoll
 

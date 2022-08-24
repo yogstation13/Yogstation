@@ -22,6 +22,12 @@
 	starting_files = list(	new /datum/computer_file/program/crew_monitor)
 	initial_program = /datum/computer_file/program/crew_monitor
 
+// ===== CARGO TELESCREEN =====
+/obj/machinery/modular_computer/telescreen/preset/medical
+	
+	starting_files = list(	new /datum/computer_file/program/crew_monitor)
+	initial_program = /datum/computer_file/program/crew_monitor
+
 
 ////////////////
 // Wallframes //

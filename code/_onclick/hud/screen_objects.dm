@@ -792,3 +792,8 @@
 	else
 		cooldown.start_cooldown(time, FALSE)
 	return cooldown
+
+/obj/screen/stamina
+	name = "stamina"
+	icon_state = "stamina0"
+	screen_loc = ui_stamina
