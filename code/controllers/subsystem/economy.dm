@@ -103,7 +103,7 @@ SUBSYSTEM_DEF(economy)
 	engineering_cash *= station_integrity
 	if(moneysink)
 		engineering_cash += moneysink.payout()
-	var/datum/bank_account/D = get_dep_account(ACCOUNT_CAR)
+	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
 	if(D)
 		D.adjust_money(engineering_cash)
 
