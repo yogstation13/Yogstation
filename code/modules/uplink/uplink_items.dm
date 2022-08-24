@@ -2430,7 +2430,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/machinery/recharger
 	cost = 5
 
-/datum/uplink_item/nt/ammo/recharger
+/datum/uplink_item/nt/ammo/powerpack
 	name = "Power Pack"
 	desc = "An additional 20-round laser magazine; suitable for use with the laser rifle."
 	item = /obj/item/ammo_box/magazine/recharge
