@@ -243,12 +243,12 @@
     icon_state = "caretakerhood"
     flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 
-/obj/item/clothing/suit/yogs/golddetective
+/obj/item/clothing/suit/det_suit/golddetective
 	name = "gold detective jacket"
 	desc = "A detective jacket, in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_item"
-	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
+	mutantrace_variation = NO_MUTANTRACE_VARIATION //Check inherits from det_suit
 
 /obj/item/clothing/suit/yogs/leathercoat
 	name = "black leather coat"
@@ -268,12 +268,12 @@
 	icon_state = "janitor_coat"
 	item_state = "janitor_item"
 
-/obj/item/clothing/suit/yogs/detectivecoat
+/obj/item/clothing/suit/det_suit/detectivecoat
 	name = "detective long coat"
 	desc = "For those detectives that value fashion over function."
 	icon_state = "detective_coat"
 	item_state = "detective_item"
-	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
+	mutantrace_variation = NO_MUTANTRACE_VARIATION //Check inherits from det_suit
 
 /obj/item/clothing/suit/yogs/blacktrenchcoat
 	name = "black trenchcoat"
@@ -294,12 +294,12 @@
 	icon_state = "monkrobes"
 	item_state = "monkrobes"
 
-/obj/item/clothing/suit/yogs/bluedetective
+/obj/item/clothing/suit/det_suit/bluedetective
 	name = "blue detective jacket"
 	desc = "A detective jacket that is blue!"
 	icon_state = "blue_detective"
 	item_state = "blue_item"
-	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
+	mutantrace_variation = NO_MUTANTRACE_VARIATION //Check inherits from det_suit
 
 /obj/item/clothing/suit/yogs/bluedetective/Initialize()
 	. = ..()
