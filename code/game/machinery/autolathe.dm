@@ -112,7 +112,7 @@
 		design["name"] = D.name
 		design["id"] = D.id
 		design["disabled"] = disabled
- 		design["category"] = D.category
+		design["category"] = D.category
 		design["materials_metal"] = get_design_cost_metal(D)
 		design["materials_glass"] = get_design_cost_glass(D)
 		designs += list(design)
