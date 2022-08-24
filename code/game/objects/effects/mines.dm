@@ -82,7 +82,9 @@
 	desc = "Better stay away from that thing."
 	density = FALSE
 	anchored = TRUE
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
+	alpha = 40
 	var/triggered = 0
 	var/smartmine = FALSE
 	var/disarm_time = 12 SECONDS
