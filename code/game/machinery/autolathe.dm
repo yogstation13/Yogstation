@@ -107,13 +107,14 @@
 	var/list/designs = list()
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
+		var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
 		var/list/design = list()
 		design["name"] = D.name
 		design["id"] = D.id
 		design["disabled"] = disabled
 		design["category"] = D.category
-		design["materials_metal"] = get_design_cost_metal(D)
-		design["materials_glass"] = get_design_cost_glass(D)
+		design["materials_metal"] = D.materials["iron"] * coeff // its not /datum/material/metal ITS just `iron`!!!
+		design["materials_glass"] = D.materials["glass"] * coeff
 		designs += list(design)
 	data["designs"] = designs
 	return data
@@ -264,24 +265,6 @@
 		say("Output blocked, please remove obstruction.")
 		return FALSE
 	return materials.has_materials(required_materials)
-
-/obj/machinery/autolathe/proc/get_design_cost_metal(datum/design/D)
-	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
-	var/dat
-	if(D.materials[/datum/material/iron])
-		dat = D.materials[/datum/material/iron] * coeff
-	else
-		dat = 0
-	return dat
-
-/obj/machinery/autolathe/proc/get_design_cost_glass(datum/design/D)
-	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
-	var/dat
-	if(D.materials[/datum/material/glass])
-		dat = D.materials[/datum/material/glass] * coeff
-	else
-		dat = 0
-	return dat
 
 /obj/machinery/autolathe/proc/reset(wire)
 	switch(wire)
