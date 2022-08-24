@@ -3,21 +3,25 @@ import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Flex, Input, Grid, NumberInput, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
-MaxMultiplier = (metalamount, glassamount, metalrequired, glassrequired) => {
-  var maxmulti = []
-  if((data.metal_amount < design.metalrequired*5) || (data.glass_amount < design.glassrequired*5))
-    return maxmulti
-  maxmulti += 5
-  if((data.metal_amount < design.metalrequired*10) || (data.glass_amount < design.glassrequired*10))
-    return maxmulti
-  maxmulti += 10
-  if((data.metal_amount < design.metalrequired*15) || (data.glass_amount < design.glassrequired*15))
-    return maxmulti
-  maxmulti += 15
-  if((data.metal_amount < design.metalrequired*25) || (data.glass_amount < design.glassrequired*25))
-    return maxmulti
-  maxmulti += 25
-  return maxmulti
+const MaxMultiplier = (metalamount, glassamount, metalrequired, glassrequired) => {
+  var maxmulti = [];
+  if((metalamount < metalrequired*5) || (glassamount < glassrequired*5)) {
+    return maxmulti;
+  }
+  maxmulti += 5;
+  if((metalamount < metalrequired*10) || (glassamount < glassrequired*10)) {
+    return maxmulti;
+  }
+  maxmulti += 10;
+  if((metalamount < metalrequired*15) || (glassamount < glassrequired*15)) {
+    return maxmulti;
+  }
+  maxmulti += 15;
+  if((metalamount < metalrequired*25) || (glassamount < glassrequired*25)) {
+    return maxmulti;
+  }
+  maxmulti += 25;
+  return maxmulti;
 }
 
 export const Autolathe = (props, context) => {
