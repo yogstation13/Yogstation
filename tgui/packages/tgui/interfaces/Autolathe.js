@@ -3,6 +3,23 @@ import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Flex, Input, Grid, NumberInput, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
+MaxMultiplier = (metalamount, glassamount, metalrequired, glassrequired) => {
+  var maxmulti = []
+  if((data.metal_amount < design.metalrequired*5) || (data.glass_amount < design.glassrequired*5))
+    return maxmulti
+  maxmulti += 5
+  if((data.metal_amount < design.metalrequired*10) || (data.glass_amount < design.glassrequired*10))
+    return maxmulti
+  maxmulti += 10
+  if((data.metal_amount < design.metalrequired*15) || (data.glass_amount < design.glassrequired*15))
+    return maxmulti
+  maxmulti += 15
+  if((data.metal_amount < design.metalrequired*25) || (data.glass_amount < design.glassrequired*25))
+    return maxmulti
+  maxmulti += 25
+  return maxmulti
+}
+
 export const Autolathe = (props, context) => {
 
   const [
@@ -284,7 +301,7 @@ export const Autolathe = (props, context) => {
                                 inline
                                 key={design.name}
                                 content={design.name}
-                                disabled={design.disabled}
+                                disabled={(data.metal_amount < design.materials_metal) || (data.glass_amount < design.materials_glass)}
                                 title={design.name}
                                 mr={1}
                                 icon="print"
@@ -293,7 +310,7 @@ export const Autolathe = (props, context) => {
                                   multiplier: 1,
                                 })} />
 
-                              {design.max_multiplier.map(max => (
+                              {MaxMultiplier(data.metal_amount, data.glass_amount. design.materials_metal, design.materials_glass).map(max => (
                                 <Button
                                   inline
                                   key={max}

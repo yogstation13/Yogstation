@@ -111,24 +111,8 @@
 		var/list/design = list()
 		design["name"] = D.name
 		design["id"] = D.id
-		design["disabled"] = disabled || !can_build(D)
-		design["category"] = D.category
-		var/max_multiplier_list = list()
-		if(ispath(D.build_path, /obj/item/stack))
-			var/max_multiplier
-			for(var/datum/material/mat in D.materials)
-				max_multiplier = min(D.maxstack, round(materials.get_material_amount(mat)/D.materials[mat]))
-			if (max_multiplier > 10 && !disabled)
-				max_multiplier_list += "10"
-			if (max_multiplier > 25 && !disabled)
-				max_multiplier_list += "25"
-			if(max_multiplier > 0 && !disabled)
-				max_multiplier_list += max_multiplier
-		else
-			if(can_build(D))
-				max_multiplier_list += "5"
-				max_multiplier_list += "10"
-		design["max_multiplier"] = max_multiplier_list
+		design["disabled"] = disabled
+ 		design["category"] = D.category
 		design["materials_metal"] = get_design_cost_metal(D)
 		design["materials_glass"] = get_design_cost_glass(D)
 		designs += list(design)
@@ -229,7 +213,6 @@
 	return ..()
 
 /obj/machinery/autolathe/proc/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
-	update_static_data(usr)
 	if(ispath(type_inserted, /obj/item/stack/ore/bluespace_crystal))
 		use_power(MINERAL_MATERIAL_AMOUNT / 10)
 	else
