@@ -543,26 +543,4 @@
 		S.max_distance = 4 * GET_MUTATION_POWER(src)
 	
 
-/datum/mutation/human/catclaws
-	name = "Cat Claws"
-	desc = "Subject's hands grow sharpened claws."
-	quality = POSITIVE
-	difficulty = 12
-	instability = 25
-	species_allowed = list(SPECIES_FELINID)
-	var/added_damage = 6
 
-/datum/mutation/human/catclaws/on_acquiring()
-	if(..())
-		return
-	added_damage = min(17, 6 * GET_MUTATION_POWER(src) + owner.dna.species.punchdamage)
-	owner.dna.species.punchdamage += added_damage
-	to_chat(owner, "<span class='notice'>Claws extend from your fingertips.</span>")
-	owner.dna.species.attack_verb = "slash"
-
-/datum/mutation/human/catclaws/on_losing()
-	if(..())
-		return
-	owner.dna.species.punchdamage -= added_damage
-	to_chat(owner, "<span class='warning'> Your claws retract into your hand.</span>")
-	owner.dna.species.attack_verb = initial(owner.dna.species.attack_verb)
