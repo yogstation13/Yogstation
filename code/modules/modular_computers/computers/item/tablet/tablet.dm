@@ -30,7 +30,7 @@
 
 /obj/item/modular_computer/tablet/AltClick(mob/user)
 	if(issilicon(user))
-		return
+		return ..()
 
 	if(user.canUseTopic(src, BE_CLOSE))
 		var/obj/item/computer_hardware/card_slot/card_slot2 = all_components[MC_CARD2]
@@ -39,6 +39,8 @@
 			return ..()
 		else
 			remove_pen()
+	else
+		return ..()
 
 /obj/item/modular_computer/tablet/examine(mob/user)
 	. = ..()
