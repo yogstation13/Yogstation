@@ -137,6 +137,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/proc/handlecable(obj/item/W, mob/user, params)
 	var/turf/T = get_turf(src)
+	var/list/combined_msg = list()
 	if(T.intact)
 		return
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
@@ -163,10 +164,11 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(powernet && (powernet.avail > 0))		// is it powered?
-			to_chat(user, span_danger("Total power: [DisplayPower(powernet.avail)]\nLoad: [DisplayPower(powernet.load)]\nExcess power: [DisplayPower(surplus())]"))
+			combined_msg += span_danger("Total power: [DisplayPower(powernet.avail)]\nLoad: [DisplayPower(powernet.load)]\nExcess power: [DisplayPower(surplus())]")
 		else
-			to_chat(user, span_danger("The cable is not powered."))
+			combined_msg += span_danger("The cable is not powered.")
 		shock(user, 5, 0.2)
+	to_chat(user, examine_block(combined_msg.Join("\n")))
 
 	add_fingerprint(user)
 
@@ -534,17 +536,22 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 		return ..()
 
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+	if(affecting.burn_dam <= 0)
+		to_chat(user, span_warning("[affecting] is already in good condition!"))
+		return FALSE
 	if(affecting && affecting.status == BODYPART_ROBOTIC)
-		if(user == H)
-			user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.name]."), span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))
-			if(!do_mob(user, H, 50))
-				return
-		if(item_heal_robotic(H, user, 0, 15))
-			use(1)
+		user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.name]."), span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))
+		heal_robo_limb(src, H, user, 0, 15)
+		user.visible_message(span_notice("[user] fixes the wires in [H]'s [affecting.name]."), span_notice("You fix the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))
 		return
 	else
 		return ..()
 
+/obj/item/stack/cable_coil/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal, burn_heal)
+	if(I.use_tool(H, user, 2 SECONDS, amount=1))
+		if(item_heal_robotic(H, user, brute_heal, burn_heal))
+			return heal_robo_limb(I, H, user, brute_heal, burn_heal)
+		return TRUE
 
 /obj/item/stack/cable_coil/update_icon()
 	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"

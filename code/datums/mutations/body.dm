@@ -203,9 +203,9 @@
 	text_gain_indication = span_notice("Your skin begins to glow softly.")
 	instability = 5
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
-	var/glow = 2.5
+	var/glow = 3.5
 	var/range = 2.5
-	var/color 
+	var/color
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
 
@@ -240,7 +240,7 @@
 	name = "Anti-Glow"
 	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
 	text_gain_indication = span_notice("Your light around you seems to disappear.")
-	glow = -3.5 //Slightly stronger, since negating light tends to be harder than making it.
+	glow = -3.5
 	conflicts = list(/datum/mutation/human/glow)
 	locked = TRUE
 
@@ -280,17 +280,20 @@
 	if(..())
 		return
 	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1 //Normally +1, strength chromosome increases it to +2
-	owner.dna.species.punchdamagelow += strength_punchpower
-	owner.dna.species.punchdamagehigh += strength_punchpower
-	owner.dna.species.punchstunthreshold += strength_punchpower //So we dont change the stun chance
+	owner.physiology.punchdamagehigh_bonus += strength_punchpower
+	owner.physiology.punchdamagelow_bonus += strength_punchpower
+	owner.physiology.punchstunthreshold_bonus += strength_punchpower //So we dont change the stun chance
+	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1
-	owner.dna.species.punchdamagelow -= strength_punchpower
-	owner.dna.species.punchdamagehigh -= strength_punchpower
-	owner.dna.species.punchstunthreshold -= strength_punchpower
+	owner.physiology.punchdamagehigh_bonus -= strength_punchpower
+	owner.physiology.punchdamagelow_bonus -= strength_punchpower
+	owner.physiology.punchstunthreshold_bonus -= strength_punchpower
+	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
+
 //Yogs end
 
 /datum/mutation/human/insulated
@@ -301,6 +304,7 @@
 	text_lose_indication = span_notice("Your fingertips regain feeling.")
 	difficulty = 16
 	instability = 25
+	conflicts = list(/datum/mutation/human/shock, /datum/mutation/human/shock/far)
 
 /datum/mutation/human/insulated/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -441,3 +445,65 @@
 			owner.SetStun(owner.AmountStun()*2)
 			owner.visible_message(span_danger("[owner] tries to stand up, but trips!"), span_userdanger("You trip over your own feet!"))
 			stun_cooldown = world.time + 300
+
+/datum/mutation/human/hypermarrow
+	name = "Hyperactive Bone Marrow"
+	desc = "A mutation that stimulates the subject's bone marrow causes it to work three times faster than usual."
+	quality = POSITIVE
+	text_gain_indication = span_notice("You feel your bones ache for a moment.")
+	text_lose_indication = span_notice("You feel something in your bones calm down.")
+	difficulty = 12
+	instability = 20
+	power_coeff = 1
+
+/datum/mutation/human/hypermarrow/on_life()
+	if(owner.blood_volume < BLOOD_VOLUME_NORMAL(owner))
+		owner.blood_volume += GET_MUTATION_POWER(src) * 2 - 1
+		owner.adjust_nutrition((GET_MUTATION_POWER(src) * 2 - 0.8) * HUNGER_FACTOR)
+
+/datum/mutation/human/densebones
+	name = "Bone Densification"
+	desc = "A mutation that gives the subject a rare form of increased bone density, making their entire body slightly more resilient to low kinetic blows."
+	quality = POSITIVE
+	text_gain_indication = span_notice("You feel your bones get denser.")
+	text_lose_indication = span_notice("You feel your bones get lighter.")
+	difficulty = 16
+	instability = 25
+	power_coeff = 1
+
+/datum/mutation/human/densebones/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.physiology.armor.melee += 5
+	owner.physiology.armor.wound += 10
+	if(GET_MUTATION_POWER(src) > 1)
+		ADD_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
+
+/datum/mutation/human/densebones/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.physiology.armor.melee -= 5
+	owner.physiology.armor.wound -= 10
+	if(GET_MUTATION_POWER(src) > 1)
+		REMOVE_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
+
+/datum/mutation/human/cerebral
+	name = "Cerebral Neuroplasticity"
+	desc = "A mutation that reorganizes the subject's brain, giving them more stamina while allowing for a slightly quicker recovery speed if exhausted."
+	quality = POSITIVE
+	locked = TRUE
+	text_gain_indication = span_notice("You feel your brain get sturdier.")
+	text_lose_indication = span_notice("You feel your brain getting weaker. ")
+	instability = 70
+
+/datum/mutation/human/cerebral/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.physiology.stamina_mod *= 0.7
+	owner.physiology.stun_mod *= 0.85
+
+/datum/mutation/human/cerebral/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.physiology.stamina_mod /= 0.7
+	owner.physiology.stun_mod /= 0.85

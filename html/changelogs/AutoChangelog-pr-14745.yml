@@ -1,9 +1,0 @@
-author: " VaelophisNyx, @Coconutwarrior97"
-delete-after: true 
-changes: 
-  - rscadd: "Added several new donk pocket types, and boxes"
-  - rscadd: "Added a Donk Pocket Variety crate, for 2000 credits, which includes one of each new donk pocket box, excluding Gondola donkpocket."
-  - rscadd: "Added a recipe for each new Donkpocket type."
-  - rscadd: "Added the new Donkpocket types to the maint loot table."
-  - rscadd: "Added Donkpocket loot spawner object."
-  - rscadd: "Added craftable Donkpocket boxes."

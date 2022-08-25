@@ -90,6 +90,8 @@
 	tick_interval = 10
 	alert_type = /obj/screen/alert/status_effect/stasis
 	var/last_dead_time
+	/// What is added to the *life_tickrate*, -1 to freeze the ticks
+	var/stasis_mod = -1
 
 /datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
 	if(last_dead_time)
@@ -101,20 +103,25 @@
 	if(owner.stat == DEAD)
 		last_dead_time = world.time
 
-/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove, new_stasis_mod)
 	. = ..()
+	stasis_mod = new_stasis_mod
+	new_owner.life_tickrate += stasis_mod
 	update_time_of_death()
-	owner.reagents?.end_metabolization(owner, FALSE)
+	if(stasis_mod == -1)
+		owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/incapacitating/stasis/tick()
 	update_time_of_death()
 
 /datum/status_effect/incapacitating/stasis/on_remove()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /obj/screen/alert/status_effect/stasis
@@ -1112,3 +1119,50 @@
 /datum/status_effect/knuckled/be_replaced()
     owner.underlays -= bruise 
     ..()
+
+/datum/status_effect/taming
+	id = "taming"
+	duration = -1
+	tick_interval = 6
+	alert_type = null
+	var/tame_amount = 1
+	var/tame_buildup = 1
+	var/tame_crit = 35
+	var/needs_to_tame = FALSE
+	var/mob/living/tamer
+
+/datum/status_effect/taming/on_creation(mob/living/owner, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	tamer = user
+
+/datum/status_effect/taming/on_apply()
+	if(owner.stat == DEAD)
+		return FALSE
+	return ..()
+
+/datum/status_effect/taming/tick()
+	if(owner.stat == DEAD)
+		qdel(src)
+
+/datum/status_effect/taming/proc/add_tame(amount)
+	tame_amount += amount
+	if(tame_amount)
+		if(tame_amount >= tame_crit)
+			needs_to_tame = TRUE
+			qdel(src)
+	else
+		qdel(src)
+
+/datum/status_effect/taming/on_remove()
+	var/mob/living/simple_animal/hostile/M = owner
+	if(needs_to_tame)
+		var/turf/T = get_turf(M)
+		new /obj/effect/temp_visual/love_heart(T)
+		M.drop_loot()
+		M.loot = null
+		M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
+		M.faction = tamer.faction
+		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
+		. = ..()

@@ -4,6 +4,8 @@
 /obj/item/modular_computer
 	name = "modular microcomputer"
 	desc = "A small portable microcomputer."
+	
+	flags_1 = RAD_PROTECT_CONTENTS_1
 
 	var/enabled = FALSE										// Whether the computer is turned on.
 	var/screen_on = TRUE									// Whether the computer is active/opened/it's screen is on.

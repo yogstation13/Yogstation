@@ -20,7 +20,7 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_LAWYER
-	minimal_character_age = 24
+	minimal_character_age = 24 //Law is already absurd, never mind the wacky-ass shit that is space law
 
 	changed_maps = list("OmegaStation")
 

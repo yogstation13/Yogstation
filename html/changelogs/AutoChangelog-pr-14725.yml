@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - rscdel: "Removes cockroach spawns from scrubber event to reduce the lag"

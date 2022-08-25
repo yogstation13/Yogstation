@@ -9,6 +9,11 @@
 #/code/world.dm @GithubNameHere
 #/maps/ @GithubNameHere
 
+# Teams
+# Placed first so specific files can be owned by others
+*.dmi @yogstation13/art
+*.dmm @yogstation13/map
+
 #HeadDev
 
 /.github/ @yogstation13/head-coders
@@ -21,13 +26,7 @@
 /sound/ @yogstation13/head-coders
 /yogstation/sound/ @yogstation13/head-coders
 /yogstation/code/game/world.dm @yogstation13/head-coders
-
-#Teams
-
-/_maps/ @yogstation13/map
-/goon/ @yogstation13/art
-/icons/ @yogstation13/art
-/yogstation/icons/ @yogstation13/art
+/code/controllers/subsystem/ticker.dm @yogstation13/head-coders
 
 #monster860
 

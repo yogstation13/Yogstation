@@ -62,6 +62,10 @@
 	. = ..()
 	if(!target)
 		return
+	if(!caller.getorganslot(ORGAN_SLOT_EYES))
+		to_chat(user, span_warning("You need eyes to glare!"))
+		revert_cast()
+		return
 	if(target.stat)
 		to_chat(usr, span_warning("[target] must be conscious!"))
 		revert_cast()
@@ -285,8 +289,12 @@
 					to_chat(target, span_danger("A terrible red light floods your mind. You collapse as conscious thought is wiped away."))
 					target.Knockdown(120)
 					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-						to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
-						user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
+						if(ispreternis(target))
+							to_chat(user, span_notice("Your servant's mind has been corrupted by other machinery. You begin to shut down the implant preventing your command - this will take some time..."))
+							user.visible_message(span_warning("[user] growls in frustration, then dips their head with determination!"))
+						else
+							to_chat(user, span_notice("They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..."))
+							user.visible_message(span_warning("[user] pauses, then dips their head in concentration!"))
 						to_chat(target, span_boldannounce("You feel your mental protection faltering!"))
 						if(!do_mob(user, target, 650)) //65 seconds to remove a loyalty implant. yikes!
 							to_chat(user, span_warning("The enthralling has been interrupted - your target's mind returns to its previous state."))
@@ -332,7 +340,7 @@
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "commune"
 
-/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(mob/living/user,mob/user = usr)
+/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(list/targets, mob/user = usr)
 	if(!is_shadow(user))
 		to_chat(user, span_warning("You must be a shadowling to do that!"))
 		return
@@ -884,8 +892,12 @@
 
 /obj/effect/proc_holder/spell/targeted/lesser_glare/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
+		if(!user.getorganslot(ORGAN_SLOT_EYES))
+			to_chat(user, span_warning("You need eyes to glare!"))
+			revert_cast()
+			return
 		if(!ishuman(target) || !target)
-			to_chat(user, span_warning("You nay only glare at humans!"))
+			to_chat(user, span_warning("You may only glare at humans!"))
 			revert_cast()
 			return
 		if(target.stat)

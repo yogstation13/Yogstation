@@ -109,6 +109,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 
 ///Ckey locked (special) items. These should come first to separate them out from the rest of the items for whoever's priviledged enough to own one. (Feel free to contact me, Kmc, if you want one made by the way)
 
+/datum/donator_gear/orca
+	name = "Megumus Dress"
+	ckey = "orcacora"
+	unlock_path = /obj/item/storage/box/megumu
+
 /datum/donator_gear/fatal_eyes
 	name = "Green Cosmic Bedsheet (FatalEyes)"
 	ckey = "fataleyes"
@@ -148,11 +153,17 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Transdimensional halo"
 	ckey = "Hisakaki"
 	unlock_path = /obj/item/clothing/head/halo
+	slot = SLOT_HEAD
 
 /datum/donator_gear/skrem
 	name = "Rainbow flower"
 	ckey = "Skrem7"
 	unlock_path = /obj/item/clothing/head/rainbow_flower
+
+/datum/donator_gear/alvcyktor
+	name = "Shark Hoodie"
+	ckey = "alvcyktor"
+	unlock_path = /obj/item/clothing/accessory/sharkhoodie
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
@@ -419,6 +430,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/wizard/marisa
 	name = "Marisa Wizard Hat"
 	unlock_path = /obj/item/clothing/head/wizard/marisa/fake
+	slot = SLOT_HEAD
+
+/datum/donator_gear/skull
+	name = "Skull Helmet (Collectable)"
+	unlock_path = /obj/item/clothing/head/collectable/skull
 	slot = SLOT_HEAD
 
 //End of items

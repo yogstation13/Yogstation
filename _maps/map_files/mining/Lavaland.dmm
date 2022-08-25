@@ -2274,7 +2274,7 @@
 /area/mine/laborcamp)
 "Ac" = (
 /obj/effect/decal/cleanable/ash,
-/obj/item/reagent_containers/hypospray/medipen/survival{
+/obj/item/reagent_containers/autoinjector/medipen/survival{
 	pixel_x = -3;
 	pixel_y = 7
 	},

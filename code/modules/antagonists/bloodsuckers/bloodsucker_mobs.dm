@@ -228,8 +228,9 @@
 				slot = SLOT_EARS
 			if(3)
 				additionalmessage = "You have mutated werewolf claws!"
-				user_species.punchdamagelow += 2.5
-				user_species.punchdamagehigh += 2.5
+				user.physiology.punchdamagehigh_bonus += 2.5
+				user.physiology.punchdamagelow_bonus += 2.5
+				user.physiology.punchstunthreshold_bonus += 2.5
 				mutation = /obj/item/clothing/gloves/wolfclaws
 				slot = SLOT_GLOVES
 			if(4)
