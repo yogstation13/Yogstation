@@ -8,13 +8,14 @@
 	level_max = 2
 	cooldown_min = 25 SECONDS
 	clothes_req = FALSE
-	var/is_disguised = FALSE
+	var/is_disguised = FALSE //Tells us if a disguise is currently up.
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "disguise"
 
 /obj/effect/proc_holder/spell/disguise/can_cast(mob/user = usr)
-	if(!iscarbon(user))
-		to_chat(user, span_danger("You cannot disguise as a non-humanoid!"))
+	if(!ishuman(user))
+		to_chat(user, span_danger("You cannot disguise as a non-humanoid!")) //The mob is not a human, so they can't disguise.
+		//We need to undo the cloak after non-humanoid disguises because when the wizard becomes a non human during the spell, it will mess up their sprite. But since they are non human, we can't actually undo the spell. This leaves our recloaking bugged as hell, and breaks a lot of stuff.
 		return FALSE
 	return TRUE
 
@@ -31,39 +32,37 @@
 		to_chat(C, span_notice("There's nobody to disguise as!"))
 		revert_cast(user)
 		return
-	var/mob/living/carbon/human/man = pick(potentials) //Picks a random subject from the viable targets.
-	cloak(C, man)
-	start_cooldown()
+	var/mob/living/carbon/human/target = pick(potentials) //Picks a random subject from the viable targets.
+	cloak(C, target)
 
 
 
-/obj/effect/proc_holder/spell/disguise/proc/cloak(var/mob/living/carbon/human/C, var/mob/living/carbon/human/man) //Code shortcut to enable the disguise.
+/obj/effect/proc_holder/spell/disguise/proc/cloak(var/mob/living/carbon/human/C, var/mob/living/carbon/human/target) //Code shortcut to enable the disguise.
 	if(is_disguised)
 		message_admins("[ADMIN_LOOKUPFLW(C)] just tried to disguise while disguised! That shouldn't happen!") 
 		return
-	C.name_override = man.name
-	C.SetSpecialVoice(man.name)
-	new /obj/effect/temp_visual/dir_setting/ninja/cloak(get_turf(C), C.dir) //Cloaking disguise.
-	C.icon = man.icon
-	C.icon_state = man.icon_state
+	C.name_override = target.name
+	C.SetSpecialVoice(target.name)
+	new /obj/effect/temp_visual/dir_setting/ninja/cloak(get_turf(C), C.dir) //Disguise animation.
+	C.icon = target.icon
+	C.icon_state = target.icon_state
 	C.cut_overlays()
-	C.add_overlay(man.get_overlays_copy(list(HANDS_LAYER)))
+	C.add_overlay(target.get_overlays_copy(list(HANDS_LAYER)))
 	C.update_inv_hands()
-	log_game("[C.name] has disguised as [man.name]!") 
+	log_game("[C.name] has disguised as [target.name]!") 
 	is_disguised = TRUE
-	addtimer(CALLBACK(src, .proc/undoCloak, C), (15 SECONDS + (spell_level * 3 SECONDS)))
+	addtimer(CALLBACK(src, .proc/undocloak, C), (15 SECONDS + (spell_level * 3 SECONDS)))
 	return
 
-/obj/effect/proc_holder/spell/disguise/proc/undoCloak(var/mob/living/carbon/human/C) //Code shortcut to disable the disguise.
+/obj/effect/proc_holder/spell/disguise/proc/undocloak(var/mob/living/carbon/human/C) //Code shortcut to disable the disguise.
 	if(!is_disguised)
-		message_admins("[ADMIN_LOOKUPFLW(C)] just tried to undo their disguise while not disguised! That shouldn't happen!") 
+		log_game("[C.name] just undid their disguise while not disguised, shouldn't cause harm but it's weird.") 
 		return
 	new /obj/effect/temp_visual/dir_setting/ninja(get_turf(C), C.dir) //Makes an animation for disguising.
 	C.name_override = null
 	C.UnsetSpecialVoice()
 	C.cut_overlays()
 	C.regenerate_icons()
-	log_game("[C.name] has shed their disguise!") 
 	is_disguised = FALSE
 	return
 
