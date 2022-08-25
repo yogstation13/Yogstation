@@ -24,6 +24,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/jungleland_proper_ruins_templates = list()
 	var/list/jungleland_dying_ruins_templates = list()
 	var/list/jungleland_swamp_ruins_templates = list()
+	var/list/jungleland_general_ruins_templates = list()
 	//Yogs end
 
 	var/list/shuttle_templates = list()
@@ -75,8 +76,23 @@ SUBSYSTEM_DEF(mapping)
 	repopulate_sorted_areas()
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
-	run_map_generation()
+
+	//YOGS EDIT
 #ifndef LOWMEMORYMODE
+	//Pregenerate generic jungleland ruins that are biome-nonspecific 
+	var/list/jungle_ruins = levels_by_trait(ZTRAIT_JUNGLE_RUINS)
+	//this is really fuckign hacky, but we need to have a very specific order for these things, and if jungleland isn't even being loaded then i dont fucking care.
+	if(jungle_ruins.len)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/pregen), jungleland_general_ruins_templates)
+		run_map_generation()
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/proper), jungleland_proper_ruins_templates)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/dying_forest), jungleland_dying_ruins_templates)
+		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/toxic_pit), jungleland_swamp_ruins_templates)
+		GLOB.jungleland_daynight_cycle.finish_generation() // I HAVE NO IDEA  WHERE TO PUT THIS, BUT THIS NEEDS TO BE WAY AFTER MAPGEN IS OVER	
+	else
+		run_map_generation()
+	//YOGS END
+	
 	// Create space ruin levels
 	while (space_levels_so_far < config.space_ruin_levels)
 		++space_levels_so_far
@@ -116,14 +132,7 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(ice_ruins_underground, CONFIG_GET(number/icemoon_budget), list(/area/icemoon/underground/unexplored), ice_ruins_underground_templates)
 		for(var/ice_z in ice_ruins_underground)
 			spawn_rivers(ice_z, 4, /turf/open/lava/plasma/ice_moon, /area/icemoon/underground/unexplored)
-	//Yogs edit begin
-	var/list/jungle_ruins = levels_by_trait(ZTRAIT_JUNGLE_RUINS)
-	if (jungle_ruins.len)
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/proper), jungleland_proper_ruins_templates)
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/dying_forest), jungleland_dying_ruins_templates)
-		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/toxic_pit), jungleland_swamp_ruins_templates)
-		GLOB.jungleland_daynight_cycle.finish_generation() // I HAVE NO IDEA  WHERE TO PUT THIS, BUT THIS NEEDS TO BE WAY AFTER MAPGEN IS OVER	
-	//Yogs end
+
 	// Generate deep space ruins
 	var/list/space_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
 	if (space_ruins.len)
@@ -461,6 +470,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			jungleland_dying_ruins_templates[R.name] = R
 		else if(istype(R,/datum/map_template/ruin/jungle/swamp))
 			jungleland_swamp_ruins_templates[R.name] = R
+		else if(istype(R,/datum/map_template/ruin/jungle/all))
+			jungleland_general_ruins_templates[R.name] = R
 		//Yogs end
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")

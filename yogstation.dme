@@ -3675,6 +3675,7 @@
 #include "yogstation\code\modules\jungleland\jungle_megafauna.dm"
 #include "yogstation\code\modules\jungleland\jungle_mobs.dm"
 #include "yogstation\code\modules\jungleland\jungle_projectiles.dm"
+#include "yogstation\code\modules\jungleland\jungle_status_effects.dm"
 #include "yogstation\code\modules\jungleland\jungle_structures.dm"
 #include "yogstation\code\modules\jungleland\jungle_turfs.dm"
 #include "yogstation\code\modules\keybindings\bindings_admin.dm"

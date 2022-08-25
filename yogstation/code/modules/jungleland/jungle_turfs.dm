@@ -23,6 +23,10 @@
 	. = ..()
 	if(outdoors)
 		GLOB.jungleland_daynight_cycle.affected_areas += src
+
+/area/jungleland/explored
+	name = "Explored Jungle"
+
 /area/jungleland/ocean
 	name = "Toxic Ocean"
 
