@@ -39,7 +39,7 @@
 
 /obj/item/projectile/bullet/mm712x82_hp
 	name = "7.12x82mm hollow-point bullet"
-	damage = 50
+	damage = 55
 	armour_penetration = -35		//bulletproof armor almost totally stops these, but you're still getting hit in the chest by a supersonic nugget of lead
 	sharpness = SHARP_EDGED 
 	wound_bonus = -35				//odds are you'll be shooting at someone with armor so you don't have a great chance for wounds
@@ -47,5 +47,5 @@
 
 /obj/item/projectile/bullet/incendiary/mm712x82
 	name = "7.12x82mm incendiary bullet"
-	damage = 20
-	fire_stacks = 3
+	damage = 27
+	fire_stacks = 2
