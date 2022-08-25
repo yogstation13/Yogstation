@@ -496,3 +496,25 @@
 
 /obj/structure/chair/mime/post_unbuckle_mob(mob/living/M)
 	M.pixel_y -= 5
+
+/obj/structure/chair/comfy/plastic
+	icon_state = "plastic_chair"
+	name = "plastic chair"
+	desc = "Sitting in this chair is all you need to get motivated for work."
+	custom_materials = list(/datum/material/plastic = 10000)
+	buildstacktype = /obj/item/stack/sheet/plastic
+	buildstackamount = 5
+	COOLDOWN_DECLARE(scrape)
+
+/obj/structure/chair/comfy/plastic/GetArmrest()
+	return mutable_appearance('icons/obj/chairs.dmi', "plastic_chair_armrest")
+
+/obj/structure/chair/comfy/plastic/AltClick(mob/living/user)
+	. = ..()
+	if(!COOLDOWN_FINISHED(src, scrape))
+		return
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return
+	if(has_buckled_mobs())
+		playsound(src, pick('sound/items/chairscrape1.ogg','sound/items/chairscrape2.ogg'), 50, TRUE)
+		COOLDOWN_START(src, scrape, 1 SECONDS) //prevents spam of a mildly annoying sound
