@@ -505,6 +505,7 @@
 	buildstacktype = /obj/item/stack/sheet/plastic
 	buildstackamount = 5
 	COOLDOWN_DECLARE(scrape)
+	var/music_time = 0
 
 /obj/structure/chair/comfy/plastic/GetArmrest()
 	return mutable_appearance('icons/obj/chairs.dmi', "plastic_chair_armrest")
@@ -518,3 +519,23 @@
 	if(has_buckled_mobs())
 		playsound(src, pick('sound/items/chairscrape1.ogg','sound/items/chairscrape2.ogg'), 50, TRUE)
 		COOLDOWN_START(src, scrape, 1 SECONDS) //prevents spam of a mildly annoying sound
+
+/obj/structure/chair/comfy/plastic/post_buckle_mob(mob/living/M)
+	. = ..()
+	music_time = world.time + 60 SECONDS
+	addtimer(CALLBACK(src, .proc/motivate, M), 10 SECONDS)
+
+/obj/structure/chair/comfy/plastic/post_unbuckle_mob(mob/living/M)
+	. = ..()
+	if(world.time >= music_time)
+		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation) //lets refresh the moodlet
+		M.stop_sound_channel(CHANNEL_AMBIENCE)
+	music_time = 0
+
+/obj/structure/chair/comfy/plastic/proc/motivate(mob/living/M)
+	if(world.time < music_time || music_time == 0)
+		return
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "motivation", /datum/mood_event/motivation)
+	if(M.client && (M.client.prefs.toggles & SOUND_JUKEBOX))
+		M.stop_sound_channel(CHANNEL_AMBIENCE)
+		M.playsound_local(M, 'sound/ambience/burythelight.ogg',60,0, channel = CHANNEL_AMBIENCE)
