@@ -1948,7 +1948,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Assistant")
 	surplus = 0
 	
-/datum/uplink_item/role_restricted/oldtoolboxclean
+/datum/uplink_item/role_restricted/necroseed
 	name = "Necropolis seed"
 	desc = "A virus our operatives extracted from Lavaland. When infected with this virus, you become stronger and hardier, but slower. If the virus is cured, it cripples the body."
 	item = /obj/item/reagent_containers/glass/bottle/necropolis_seed
