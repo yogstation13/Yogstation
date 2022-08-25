@@ -502,7 +502,6 @@
 	stage_speed = 1
 	transmission = 2
 	level = 9
-	severity = 0
 	symptom_delay_min = 1
 	symptom_delay_max = 1
 	prefixes = list("Porphyric ", "Hemo")
@@ -521,9 +520,7 @@
 /datum/symptom/vampirism/severityset(datum/disease/advance/A)
 	. = ..()
 	if(A.transmission >= 4)
-		severity -= 1
 	if((A.stealth >= 2) && (A.transmission >= 6) && A.process_dead)
-		severity -= 1
 		bodies = list("Vampir", "Blood")
 
 /datum/symptom/vampirism/Start(datum/disease/advance/A)
