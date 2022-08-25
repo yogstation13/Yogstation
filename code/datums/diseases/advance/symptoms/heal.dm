@@ -517,11 +517,6 @@
 					<b>Stage Speed 7:</b> The virus grows more aggressive, assimilating blood and healing at a faster rate, but also draining the host's blood quicker<br>\
 					<b>Transmission 6:</b> The virus aggressively assimilates blood, resulting in contiguous blood pools being absorbed by the virus, as well as sucking blood out of open wounds of subjects in physical contact with the host."
 
-/datum/symptom/vampirism/severityset(datum/disease/advance/A)
-	. = ..()
-	if(A.transmission >= 4)
-	if((A.stealth >= 2) && (A.transmission >= 6) && A.process_dead)
-		bodies = list("Vampir", "Blood")
 
 /datum/symptom/vampirism/Start(datum/disease/advance/A)
 	if(!..())
