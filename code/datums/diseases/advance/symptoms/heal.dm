@@ -504,7 +504,6 @@
 	level = 9
 	symptom_delay_min = 1
 	symptom_delay_max = 1
-	prefixes = list("Porphyric ", "Hemo")
 	bodies = list("Blood")
 	var/bloodpoints = 0
 	var/maxbloodpoints = 50
