@@ -710,6 +710,7 @@
 	new /obj/item/clothing/accessory/waistcoat(src)
 	new /obj/item/clothing/suit/det_suit/grey(src)
 	new /obj/item/clothing/suit/det_suit/noir(src)
+	new /obj/item/clothing/suit/det_suit/tan(src)
 	new /obj/item/clothing/head/fedora(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/under/yogs/forensictech(src)
