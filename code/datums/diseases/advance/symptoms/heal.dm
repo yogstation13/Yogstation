@@ -525,9 +525,9 @@
 /datum/symptom/vampirism/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.transmission >= 4)
+	if(A.totalTransmittable() >= 4)
 		bruteheal = TRUE
-	if(A.transmission >= 6)
+	if(A.totalTransmittable() >= 6)
 		aggression = TRUE
 		maxbloodpoints += 50
 	if(A.stage_rate >= 7)
