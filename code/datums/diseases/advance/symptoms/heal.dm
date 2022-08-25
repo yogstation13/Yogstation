@@ -519,11 +519,7 @@
 		"Stage Speed 7" = "The virus grows more aggressive, assimilating blood and healing at a faster rate, but also draining the host's blood quicker",
 	)
 	
-	
-	threshold_descs = list("Transmission 4" "The virus recycles excess absorbed blood into restorative biomass, healing brute damage."
-					"Stage Speed 7" "The virus grows more aggressive, assimilating blood and healing at a faster rate, but also draining the host's blood quicker"
-					"Transmission 6" "The virus aggressively assimilates blood, resulting in contiguous blood pools being absorbed by the virus, as well as sucking blood out of open wounds of subjects in physical contact with the host."
-					)
+
 
 
 /datum/symptom/vampirism/Start(datum/disease/advance/A)
