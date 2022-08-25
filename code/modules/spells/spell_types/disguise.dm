@@ -35,8 +35,6 @@
 	var/mob/living/carbon/human/target = pick(potentials) //Picks a random subject from the viable targets.
 	cloak(C, target)
 
-
-
 /obj/effect/proc_holder/spell/disguise/proc/cloak(var/mob/living/carbon/human/C, var/mob/living/carbon/human/target) //Code shortcut to enable the disguise.
 	if(is_disguised)
 		message_admins("[ADMIN_LOOKUPFLW(C)] just tried to disguise while disguised! That shouldn't happen!") 
@@ -71,7 +69,3 @@
 	spell_type = /obj/effect/proc_holder/spell/disguise
 	category = "Assistance"
 	cost = 1
-
-
-
-
