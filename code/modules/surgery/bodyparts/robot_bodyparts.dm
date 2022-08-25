@@ -79,6 +79,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_l_arm"
 	status = BODYPART_ROBOTIC
+	sub_status = BODYPART_SUBTYPE_ROBOTIC
 	disable_threshold = 1
 
 	brute_reduction = 5
@@ -101,6 +102,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_r_arm"
 	status = BODYPART_ROBOTIC
+	sub_status = BODYPART_SUBTYPE_ROBOTIC
 	disable_threshold = 1
 
 	brute_reduction = 5
@@ -123,6 +125,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_l_leg"
 	status = BODYPART_ROBOTIC
+	sub_status = BODYPART_SUBTYPE_ROBOTIC
 	disable_threshold = 1
 
 	brute_reduction = 5
@@ -145,6 +148,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_r_leg"
 	status = BODYPART_ROBOTIC
+	sub_status = BODYPART_SUBTYPE_ROBOTIC
 	disable_threshold = 1
 
 	brute_reduction = 5
@@ -166,6 +170,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_chest"
 	status = BODYPART_ROBOTIC
+	sub_status = BODYPART_SUBTYPE_ROBOTIC
 
 	brute_reduction = 5
 	burn_reduction = 4
@@ -266,6 +271,7 @@
 	flags_1 = CONDUCT_1
 	icon_state = "borg_head"
 	status = BODYPART_ROBOTIC
+	sub_status = BODYPART_SUBTYPE_ROBOTIC
 
 	brute_reduction = 5
 	burn_reduction = 4
@@ -390,22 +396,27 @@
 
 
 /obj/item/bodypart/l_leg/robot/ipc
+	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
 
 /obj/item/bodypart/r_leg/robot/ipc
+	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
 
 /obj/item/bodypart/l_arm/robot/ipc
+	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
 
 /obj/item/bodypart/r_arm/robot/ipc
+	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
 
 /obj/item/bodypart/head/robot/ipc
+	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
 
