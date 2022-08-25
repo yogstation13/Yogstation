@@ -500,7 +500,7 @@
 	stealth = 1
 	resistance = -2
 	stage_speed = 1
-	transmission = 2
+	transmittable = 2
 	level = 9
 	symptom_delay_min = 1
 	symptom_delay_max = 1
