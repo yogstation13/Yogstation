@@ -337,7 +337,7 @@
 	icon_state = "mortar"
 	spawned_disease = /datum/disease/advance/necropolis
 
-/obj/item/reagent_containers/glass/bottle/tuberculosis
+/obj/item/reagent_containers/glass/bottle/vampirism
 	name = "Hematophagy culture bottle"
 	desc = "A small bottle. Contains a sample of Hematophagy."
 	spawned_disease = /datum/disease/advance/vampirism
