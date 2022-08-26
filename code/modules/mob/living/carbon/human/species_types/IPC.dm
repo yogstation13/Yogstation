@@ -199,3 +199,28 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
+			
+
+	if(H.reagents.has_reagent(/datum/reagent/oil))
+		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+	if(H.reagents.has_reagent(/datum/reagent/fuel))
+		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+
+	if(H.reagents.has_reagent(/datum/reagent/teslium,10)) //10 u otherwise it wont update and they will remain quikk
+		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+		if(H.health < 50 && H.health > 0)
+			H.adjustOxyLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
+			H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+			H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
+		H.AdjustParalyzed(-3)
+		H.AdjustStun(-3)
+		H.AdjustKnockdown(-3)
+		H.adjustStaminaLoss(-5*REAGENTS_EFFECT_MULTIPLIER)
+		charge = clamp(charge - 10 * REAGENTS_METABOLISM,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
+		burnmod = 200
+		tesliumtrip = TRUE
+	else if(tesliumtrip)
+		burnmod = initial(burnmod)
+		tesliumtrip = FALSE
+		H.remove_movespeed_modifier("preternis_teslium")
