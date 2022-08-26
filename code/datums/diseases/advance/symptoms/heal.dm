@@ -547,7 +547,7 @@
 	switch(A.stage)
 		if(1 to 4)
 			if(prob(5))
-				to_chat(M, "<span class='warning'>[pick("You feel cold...", "You feel a bit thirsty", "It dawns upon you that every single human on this station has warm blood pulsing through their veins.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("You feel a craving for iron?", "You feel very thirsty and theres a metallic taste in your mouth", "The thought of biting a neck crosses your mind...")]</span>")
 		if(5)
 			ADD_TRAIT(A.affected_mob, TRAIT_DRINKSBLOOD, DISEASE_TRAIT)
 			var/grabbedblood = succ(M) //before adding sucked blood to bloodpoints, immediately try to heal bloodloss
@@ -580,7 +580,7 @@
 					M.blood_volume = (M.blood_volume - 1)
 
 			if(!bloodpoints && prob(3))
-				to_chat(M, "<span class='warning'>[pick("You feel a pang of thirst.", "No food can sate your hunger", "Blood...")]</span>")
+				to_chat(M, "<span class='warning'>[pick("You need blood!".", "Your throat is dry...", "Your heart flutters alarmingly...")]</span>")
 
 /datum/symptom/vampirism/End(datum/disease/advance/A)
 	. = ..()
