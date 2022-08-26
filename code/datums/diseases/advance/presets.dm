@@ -32,6 +32,14 @@
 	symptoms = list(new/datum/symptom/tumor,new/datum/symptom/sneeze,new/datum/symptom/fever,new/datum/symptom/shivering,new/datum/symptom/itching,new/datum/symptom/cough)
 	..()
 
+/datum/disease/advance/vampirism
+	copy_type = /datum/disease/advance
+
+/datum/disease/advance/necropolis/New()
+	name = "Hematophagy"
+	symptoms = list(/datum/symptom/vampirism)
+	..()
+
 
 //Randomly generated Disease, for virus crates and events
 /datum/disease/advance/random
