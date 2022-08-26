@@ -1940,6 +1940,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Assistant")
 	surplus = 0
 
+/datum/uplink_item/role_restricted/necroseed
+	name = "The Vampire Virus (should this be the name in the uplink)"
+	desc = "PLACEHOLDEr."
+	item = /obj/item/reagent_containers/glass/bottle/vampirism
+	cost = 6
+	restricted_roles = list("Virologist")
+	surplus = 0
+
 /datum/uplink_item/role_restricted/oldtoolboxclean
 	name = "Ancient Toolbox"
 	desc = "An iconic toolbox design notorious with Assistants everywhere, this design was especially made to become more robust the more telecrystals it has inside it! Tools and insulated gloves included."
