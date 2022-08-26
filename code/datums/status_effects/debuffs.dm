@@ -90,6 +90,8 @@
 	tick_interval = 10
 	alert_type = /obj/screen/alert/status_effect/stasis
 	var/last_dead_time
+	/// What is added to the *life_tickrate*, -1 to freeze the ticks
+	var/stasis_mod = -1
 
 /datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
 	if(last_dead_time)
@@ -101,20 +103,25 @@
 	if(owner.stat == DEAD)
 		last_dead_time = world.time
 
-/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove, new_stasis_mod)
 	. = ..()
+	stasis_mod = new_stasis_mod
+	new_owner.life_tickrate += stasis_mod
 	update_time_of_death()
-	owner.reagents?.end_metabolization(owner, FALSE)
+	if(stasis_mod == -1)
+		owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/incapacitating/stasis/tick()
 	update_time_of_death()
 
 /datum/status_effect/incapacitating/stasis/on_remove()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /obj/screen/alert/status_effect/stasis

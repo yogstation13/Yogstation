@@ -125,7 +125,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow
 	name = "wooden crossbow"
-	desc = "A bow with a locing mechanism that more closly resembles a modern gun."
+	desc = "A bow with a locking mechanism that more closely resembles a modern gun."
 	icon_state = "crossbow"
 	spread = 0
 	draw_time = 2 SECONDS
@@ -135,7 +135,7 @@
 	
 /obj/item/gun/ballistic/bow/crossbow/magfed
 	name = "wooden magfed crossbow"
-	desc = "A bow with a locing mechanism that more closly resembles a modern gun. This one seems to be outfited with a automatic loading mechanism."
+	desc = "A bow with a locking mechanism that more closely resembles a modern gun. This one seems to be outfitted with an automatic loading mechanism."
 	mag_type = /obj/item/ammo_box/magazine/arrow
 	internal_magazine = FALSE
 

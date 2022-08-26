@@ -67,6 +67,8 @@
 
 /datum/config_entry/flag/log_vote	// log voting
 
+/datum/config_entry/flag/log_donator // log donator chat
+
 /datum/config_entry/flag/log_whisper	// log client whisper
 
 /datum/config_entry/flag/log_attack	// log attack messages
@@ -219,6 +221,7 @@
 
 /datum/config_entry/string/apiurl
 	config_entry_value = "https://forums.yogstation.net/api"
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/demourl
 	config_entry_value = "https://yogstation13.github.io/demo-viewer/?roundid="

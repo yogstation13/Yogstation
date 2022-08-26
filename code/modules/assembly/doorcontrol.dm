@@ -24,6 +24,16 @@
 			INVOKE_ASYNC(M, openclose ? /obj/machinery/door/poddoor.proc/open : /obj/machinery/door/poddoor.proc/close)
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
 
+/obj/item/assembly/control/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(W.tool_behaviour == TOOL_MULTITOOL)
+		var/obj/item/multitool/P = W
+		if(!id) // Generate New ID if none exists
+			id = getnewid()
+			to_chat(user, span_notice("No ID found. Generating New ID"))
+			return
+		P.buffer = id
+		to_chat(user, span_notice("You link the [src] to the [P]."))
 
 /obj/item/assembly/control/airlock
 	name = "airlock controller"
@@ -160,3 +170,10 @@
 			H.toggle()
 
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 50)
+
+GLOBAL_VAR_INIT(counter, 0)
+
+/// Return a unique ID
+/proc/getnewid()
+	GLOB.counter += 1
+	return GLOB.counter

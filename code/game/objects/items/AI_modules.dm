@@ -664,3 +664,9 @@ AI MODULES
 /obj/item/aiModule/core/full/overlord
 	name = "'Overlord' Core AI Module"
 	law_id = "overlord"
+
+/******************Revolutionary***************/
+
+/obj/item/aiModule/core/full/revolutionary
+	name = "'CommunistOS' Core AI Module"
+	law_id = "commie"

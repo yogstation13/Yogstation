@@ -1807,11 +1807,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/implants/mantis_kit
-	name = "G.O.R.L.E.X.. Mantis Blades Kit"
-	desc = "Comes with 2 G.O.R.L.E.X. Mantis blades. All packaged with autosurgeons."
-	item = /obj/item/storage/briefcase/syndie_mantis
-	cost = 16
+/datum/uplink_item/implants/mantis
+	name = "G.O.R.L.E.X. Mantis Blade"
+	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing, 2 blades can be used at once."
+	item = /obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	cost = 7
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
@@ -1916,6 +1916,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
+
+/datum/uplink_item/race_restricted/mousecubes
+	name = "Box of Mouse Cubes"
+	desc = "A box with twenty four Waffle Co. brand mouse cubes. Deploy near wiring. \
+			Caution: Product may rehydrate when exposed to water."
+	item = /obj/item/storage/box/monkeycubes/syndicate/mice
+	cost = 1
+	manufacturer = /datum/corporation/traitor/waffleco
+	restricted_species = list("felinid")
 
 // Role-specific items
 /datum/uplink_item/role_restricted
@@ -2267,6 +2276,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
+
+
+/datum/uplink_item/badass/syndietape
+	name = "Guerrilla Tape"
+	desc = "New from Donk Co! Stick it to the man with this ultra-adhesive roll of tape! Grabs on tight, and holds on tight, using our patented adhesive formula. Ten times stronger than our leading competitors!"
+	item = /obj/item/stack/tape/guerrilla
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
 
 /datum/uplink_item/badass/antagcape
 	name = "Red Syndicate Cape"

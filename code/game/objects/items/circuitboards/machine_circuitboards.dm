@@ -608,6 +608,7 @@
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",
+		/obj/machinery/vending/wallhypo = "HypoMed",
 		/obj/machinery/vending/assist  = "Vendomat",
 		/obj/machinery/vending/engivend = "Engi-Vend",
 		/obj/machinery/vending/hydronutrients = "NutriMax",
@@ -723,6 +724,7 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/scanning_module = 2,
 		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/reagent_containers/glass/beaker = 2,
 		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/clonepod/experimental

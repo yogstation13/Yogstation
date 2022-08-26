@@ -205,7 +205,7 @@
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
 	var/glow = 3.5
 	var/range = 2.5
-	var/color 
+	var/color
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
 
@@ -283,7 +283,7 @@
 	owner.physiology.punchdamagehigh_bonus += strength_punchpower
 	owner.physiology.punchdamagelow_bonus += strength_punchpower
 	owner.physiology.punchstunthreshold_bonus += strength_punchpower //So we dont change the stun chance
-	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, src)	
+	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -292,7 +292,7 @@
 	owner.physiology.punchdamagehigh_bonus -= strength_punchpower
 	owner.physiology.punchdamagelow_bonus -= strength_punchpower
 	owner.physiology.punchstunthreshold_bonus -= strength_punchpower
-	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)	
+	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
 
 //Yogs end
 
@@ -459,7 +459,7 @@
 /datum/mutation/human/hypermarrow/on_life()
 	if(owner.blood_volume < BLOOD_VOLUME_NORMAL(owner))
 		owner.blood_volume += GET_MUTATION_POWER(src) * 2 - 1
-		owner?.physiology?.hunger_mod *= GET_MUTATION_POWER(src) * 2 - 0.8
+		owner.adjust_nutrition((GET_MUTATION_POWER(src) * 2 - 0.8) * HUNGER_FACTOR)
 
 /datum/mutation/human/densebones
 	name = "Bone Densification"
@@ -472,16 +472,18 @@
 	power_coeff = 1
 
 /datum/mutation/human/densebones/on_acquiring(mob/living/carbon/human/owner)
-	. = ..()
-	owner?.physiology?.armor?.melee += 5
-	owner?.physiology?.armor?.wound += 10
+	if(..())
+		return
+	owner.physiology.armor.melee += 5
+	owner.physiology.armor.wound += 10
 	if(GET_MUTATION_POWER(src) > 1)
 		ADD_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
 
 /datum/mutation/human/densebones/on_losing(mob/living/carbon/human/owner)
-	. = ..()
-	owner?.physiology?.armor?.melee += 5
-	owner?.physiology?.armor?.wound += 10
+	if(..())
+		return
+	owner.physiology.armor.melee -= 5
+	owner.physiology.armor.wound -= 10
 	if(GET_MUTATION_POWER(src) > 1)
 		REMOVE_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
 
@@ -495,11 +497,13 @@
 	instability = 70
 
 /datum/mutation/human/cerebral/on_acquiring(mob/living/carbon/human/owner)
-	. = ..()
-	owner?.physiology?.stamina_mod *= 0.7
-	owner?.physiology?.stun_mod *= 0.85
+	if(..())
+		return
+	owner.physiology.stamina_mod *= 0.7
+	owner.physiology.stun_mod *= 0.85
 
 /datum/mutation/human/cerebral/on_losing(mob/living/carbon/human/owner)
-	. = ..()
-	owner?.physiology?.stamina_mod /= 0.7
-	owner?.physiology?.stun_mod /= 0.85
+	if(..())
+		return
+	owner.physiology.stamina_mod /= 0.7
+	owner.physiology.stun_mod /= 0.85

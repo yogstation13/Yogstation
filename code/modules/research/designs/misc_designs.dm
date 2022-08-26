@@ -453,6 +453,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/holobed
+	name = "First Aid Holobed Projector"
+	desc = "A holographic projector that can create holobed, a sterile mat that slows down metabolism and acts as a clean workplace for surgery."
+	build_type = PROTOLATHE
+	build_path = /obj/item/holosign_creator/firstaid
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 100, /datum/material/plastic = 500)
+	id = "holobed_projector"
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /////////////////////////////////////////
 ////////////////Armor///////////////////
 /////////////////////////////////////////
@@ -502,7 +512,7 @@
 	desc = "Plating fitted for a plated vest or helmet. Turns you into a walking tank."
 	id = "platingmkiv"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 40000, /datum/material/titanium = 30000, /datum/material/gold = 15000, /datum/material/diamond = 15000)
+	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 10000, /datum/material/gold = 7500, /datum/material/diamond = 2000)
 	build_path = /obj/item/kevlar_plating/mkiv
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

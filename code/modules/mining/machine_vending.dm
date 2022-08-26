@@ -24,6 +24,7 @@
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,											1000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,											2000, VENDING_WEAPON),
+		new /datum/data/mining_equipment("Mini Plasma Cutter",			/obj/item/gun/energy/plasmacutter/mini,								2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter Shotgun",		/obj/item/gun/energy/plasmacutter/scatter,							6000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Shotgun Upgrade",		/obj/item/upgrade/plasmacutter/defuser,								1000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("KA Minebot Passthrough",		/obj/item/borg/upgrade/modkit/minebot_passthrough,					100, VENDING_UPGRADE),
@@ -188,14 +189,14 @@
 
 /obj/machinery/mineral/equipment_vendor/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
 	var/items = list(
-		"Survival Capsule and Explorer's Webbing" = image(icon = 'icons/obj/clothing/belts.dmi', icon_state = "explorer1"),
+		"Explorer's Kit" = image(icon = 'icons/obj/clothing/belts.dmi', icon_state = "explorer1"),
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Extraction and Rescue Kit" = image(icon = 'icons/obj/fulton.dmi', icon_state = "extraction_pack"),
 		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
 		"Mining Conscription Kit" = image(icon = 'icons/obj/storage.dmi', icon_state = "duffel"),
-		"Bag of Lesser Mining Charges" = image(icon= 'icons/obj/mining.dmi',icon_state = "mining-charge-1")
-		)
+		"Mini Plasma Cutter Kit" = image(icon = 'icons/obj/guns/energy.dmi', icon_state="plasmacutter_mini")
+	)
 
 	items = sortList(items)
 	var/selection = show_radial_menu(redeemer, src, items, custom_check = CALLBACK(src, .proc/check_menu, voucher, redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
@@ -204,7 +205,7 @@
 
 	var/drop_location = drop_location()
 	switch(selection)
-		if("Survival Capsule and Explorer's Webbing")
+		if("Explorer's Kit")
 			new /obj/item/storage/belt/mining/vendor(drop_location)
 		if("Resonator Kit")
 			new /obj/item/extinguisher/mini(drop_location)
@@ -223,8 +224,8 @@
 			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
 		if("Mining Conscription Kit")
 			new /obj/item/storage/backpack/duffelbag/mining_conscript(drop_location)
-		if("Bag of Lesser Mining Charges")
-			new /obj/item/storage/backpack/duffelbag/miningcharges(drop_location)
+		if("Mini Plasma Cutter Kit")
+			new /obj/item/gun/energy/plasmacutter/mini(drop_location)
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
 	qdel(voucher)
@@ -285,6 +286,7 @@
 		new /datum/data/mining_equipment("Super Resonator",     		/obj/item/resonator/upgraded,									2000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,										750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,										1500, VENDING_WEAPON),
+		new /datum/data/mining_equipment("Mini Plasma Cutter",			/obj/item/gun/energy/plasmacutter/mini,							500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter" ,				/obj/item/gun/energy/plasmacutter,								2500, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Cutter Shotgun",		/obj/item/gun/energy/plasmacutter/scatter,						6000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Plasma Shotgun Upgrade",		/obj/item/upgrade/plasmacutter/defuser,							1000, VENDING_WEAPON),
@@ -338,8 +340,7 @@
 		"Resonator Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "resonator"),
 		"Minebot Kit" = image(icon = 'icons/mob/aibots.dmi', icon_state = "mining_drone"),
 		"Crusher Kit" = image(icon = 'icons/obj/mining.dmi', icon_state = "mining_hammer1"),
-		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0"),
-		"Bag of Lesser Mining Charges" = image(icon= 'icons/obj/mining.dmi', icon_state = "mining-charge-1")
+		"Advanced Scanner" = image(icon = 'icons/obj/device.dmi', icon_state = "adv_mining0")
 		)
 
 	items = sortList(items)
@@ -364,8 +365,6 @@
 			new /obj/item/twohanded/required/kinetic_crusher(drop_location)
 		if("Advanced Scanner")
 			new /obj/item/t_scanner/adv_mining_scanner(drop_location)
-		if("Bag of Lesser Mining Charges")
-			new /obj/item/storage/backpack/duffelbag/miningcharges(drop_location)
 
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
