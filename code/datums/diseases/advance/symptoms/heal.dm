@@ -495,7 +495,7 @@
 	
 
 /datum/symptom/vampirism
-	name = "Hemetophagy"
+	name = "Hematophagy"
 	desc = "The host absorbs blood from external sources, and seemlessly reintegrates it into their own bloodstream, regardless of its bloodtype or how it was ingested. However, the virus also slowly consumes the host's blood"
 	stealth = 1
 	resistance = -2
