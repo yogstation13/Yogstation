@@ -121,6 +121,7 @@
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /obj/screen/alert/status_effect/stasis
