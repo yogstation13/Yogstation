@@ -512,7 +512,7 @@
 	var/aggression = FALSE
 	var/vampire = FALSE
 	var/mob/living/carbon/human/bloodbag
-		threshold_descs = list(
+	threshold_descs = list(
 		"Transmission 4" = "Host appears to die when falling into a coma.",
 		"Transmission 6" = "The virus aggressively assimilates blood, resulting in contiguous blood pools being absorbed by the virus, as well as sucking blood out of open wounds of subjects in physical contact with the host.",
 		"Stage Speed 7" = "The virus grows more aggressive, assimilating blood and healing at a faster rate, but also draining the host's blood quicker",
