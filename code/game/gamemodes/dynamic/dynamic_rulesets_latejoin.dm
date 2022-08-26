@@ -246,6 +246,7 @@
 	weight = 5
 	cost = 10
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
+	minimum_players = 25
 	repeatable = FALSE
 
 /datum/dynamic_ruleset/latejoin/bloodsucker/execute()

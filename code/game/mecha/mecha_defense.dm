@@ -396,5 +396,6 @@
 		if(WR.repair_efficiency <= 0)
 			WR.can_be_reconstructed = FALSE
 		else
+			WR.can_be_reconstructed = TRUE
 			WR.hint = span_notice("The parts are scattered apart, but can be <b>welded</b> back together.")
 	. = ..()
