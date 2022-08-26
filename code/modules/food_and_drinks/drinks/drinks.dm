@@ -36,7 +36,10 @@
 		return 0
 
 	if(M == user)
-		user.visible_message(span_notice("[user] swallows a gulp of [src]."), span_notice("You swallow a gulp of [src]."))
+		if(isipc(M))
+			user.visible_message(span_notice("[user] pours some of [src] into their port."), span_notice("You pour some of [src] down your input port."))
+		else
+			user.visible_message(span_notice("[user] swallows a gulp of [src]."), span_notice("You swallow a gulp of [src]."))
 		if(HAS_TRAIT(M, TRAIT_VORACIOUS))
 			M.changeNext_move(CLICK_CD_MELEE * 0.5) //chug! chug! chug!
 

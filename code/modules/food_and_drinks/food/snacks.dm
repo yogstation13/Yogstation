@@ -100,20 +100,23 @@ All foods are distributed among various categories. Use common sense.
 			fullness += C.nutriment_factor * C.volume / C.metabolization_rate
 
 		if(M == user)								//If you're eating it yourself.
-			if(junkiness && M.satiety < -150 && M.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(user, TRAIT_VORACIOUS))
-				to_chat(M, span_notice("You don't feel like eating any more junk food at the moment."))
-				return FALSE
-			else if(fullness <= 50)
-				user.visible_message(span_notice("[user] hungrily [eatverb]s \the [src], gobbling it down!"), span_notice("You hungrily [eatverb] \the [src], gobbling it down!"))
-			else if(fullness > 50 && fullness < 150)
-				user.visible_message(span_notice("[user] hungrily [eatverb]s \the [src]."), span_notice("You hungrily [eatverb] \the [src]."))
-			else if(fullness > 150 && fullness < 500)
-				user.visible_message(span_notice("[user] [eatverb]s \the [src]."), span_notice("You [eatverb] \the [src]."))
-			else if(fullness > 500 && fullness < 600)
-				user.visible_message(span_notice("[user] unwillingly [eatverb]s a bit of \the [src]."), span_notice("You unwillingly [eatverb] a bit of \the [src]."))
-			else if(fullness > (600 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				user.visible_message(span_warning("[user] cannot force any more of \the [src] to go down [user.p_their()] throat!"), span_warning("You cannot force any more of \the [src] to go down your throat!"))
-				return FALSE
+			if(isipc(M))
+				user.visible_message(span_notice("[user] shoves \the [src] down their port."), span_notice("You shove [src] down your input port."))
+			else
+				if(junkiness && M.satiety < -150 && M.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(user, TRAIT_VORACIOUS))
+					to_chat(M, span_notice("You don't feel like eating any more junk food at the moment."))
+					return FALSE
+				else if(fullness <= 50)
+					user.visible_message(span_notice("[user] hungrily [eatverb]s \the [src], gobbling it down!"), span_notice("You hungrily [eatverb] \the [src], gobbling it down!"))
+				else if(fullness > 50 && fullness < 150)
+					user.visible_message(span_notice("[user] hungrily [eatverb]s \the [src]."), span_notice("You hungrily [eatverb] \the [src]."))
+				else if(fullness > 150 && fullness < 500)
+					user.visible_message(span_notice("[user] [eatverb]s \the [src]."), span_notice("You [eatverb] \the [src]."))
+				else if(fullness > 500 && fullness < 600)
+					user.visible_message(span_notice("[user] unwillingly [eatverb]s a bit of \the [src]."), span_notice("You unwillingly [eatverb] a bit of \the [src]."))
+				else if(fullness > (600 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
+					user.visible_message(span_warning("[user] cannot force any more of \the [src] to go down [user.p_their()] throat!"), span_warning("You cannot force any more of \the [src] to go down your throat!"))
+					return FALSE
 			if(HAS_TRAIT(M, TRAIT_VORACIOUS))
 				M.changeNext_move(CLICK_CD_MELEE * 0.5) //nom nom nom
 		else
