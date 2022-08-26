@@ -139,6 +139,9 @@
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
 
+			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+				return
+
 			// Check if they have
 			if (!issilicon(usr))
 				var/obj/item/held_item = usr.get_active_held_item()
@@ -169,6 +172,7 @@
 			deadchat_broadcast(" has changed the security level to [params["newSecurityLevel"]] with [src] at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
 
 			alert_level_tick += 1
+			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("deleteMessage")
 			if (!authenticated(usr))
 				return
