@@ -531,7 +531,7 @@
 		maxbloodpoints += 50
 	if(A.totalStageSpeed() >= 7)
 		power += 1
-	if((A.totalStealth() >= 2) && (A.transmission >= 6) && A.process_dead) //this is low transmission for 2 reasons: transmission is hard to raise, especially with stealth, and i dont want this to be obligated to be transmittable
+	if((A.totalStealth() >= 2) && (A.totalTransmittable >= 6) && A.process_dead) //this is low transmission for 2 reasons: transmission is hard to raise, especially with stealth, and i dont want this to be obligated to be transmittable
 		vampire = TRUE
 		maxbloodpoints += 50
 		power += 1
