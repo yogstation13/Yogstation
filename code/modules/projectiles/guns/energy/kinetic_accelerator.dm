@@ -202,7 +202,10 @@
 			damage = damage * pressure_decrease
 			pressure_decrease_active = TRUE
 		else if(is_station_level(z))
-			damage *= min(pressure_decrease * 2, 1) //if you have a pressure mod you get to ignore this because uhmmmmmm tc tax
+			pressure_decrease = min(pressure_decrease * 2, 1) //if you have a pressure mod you get to ignore this because uhmmmmmm tc tax
+			name = "destabilized [name]"
+			damage = damage * pressure_decrease
+			pressure_decrease_active = TRUE 
 
 /obj/item/projectile/kinetic/on_range()
 	strike_thing()
