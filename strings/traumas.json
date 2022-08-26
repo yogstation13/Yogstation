@@ -63,7 +63,19 @@
 		"BURN, @pick(god_foe)!",
 		"ALL WILL FALL BEFORE ME!",
 		"ENDLESS SUFFERING AWAITS YOU, @pick(god_foe).",
-		"DEATH TO @pick(god_foe)!"
+		"DEATH TO @pick(god_foe)!",
+		"CRUSH!",
+		"WEAK.",
+		"THY END IS NOW, @pick(god_foe)!",
+		"JUDGEMENT!",
+		"BEHOLD! THE POWER OF A GOD!",
+		"ENOUGH!",
+		"FOOLISHNESS, @pick(god_foe), FOOLISHNESS.",
+		"YOU ARE ONLY MORTAL, @pick(god_foe).",
+		"YOU'RE AN ERROR TO BE CORRECTED, @pick(god_foe)!",
+		"YOU ARE OUTCLASSED, @pick(god_foe)!",
+		"YOUR CRIME IS EXISTENCE, @pick(god_foe).",
+		"YOU NEED. MORE. POWER."
 	],
 	"god_neutral": [
 		"STOP",
