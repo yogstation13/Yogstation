@@ -96,18 +96,7 @@
 	new_transform.Scale(1, 0.8)
 	owner.transform = new_transform.Multiply(owner.transform)
 	passtable_on(owner, GENETIC_MUTATION)
-	owner.visible_message(span_danger("[owner] suddenly shrinks and grows a beard!"), span_notice("Everything around you seems to grow.."))
-	grow_beard(owner)
-
-/datum/mutation/human/dwarfism/proc/grow_beard(mob/living/carbon/human/owner)
-	var/mob/living/carbon/human/H = owner
-	to_chat(H, span_warning("Your chin itches."))
-	H.facial_hair_style = "Beard (Dwarf)"
-	H.update_hair()
-
-/datum/mutation/human/dwarfism/on_life()
-	if(owner.facial_hair_style != "Beard (Dwarf)")
-		grow_beard(owner)
+	owner.visible_message(span_danger("[owner] suddenly shrinks!"), span_notice("Everything around you seems to grow.."))
 
 /datum/mutation/human/dwarfism/on_losing(mob/living/carbon/human/owner)
 	if(..())
