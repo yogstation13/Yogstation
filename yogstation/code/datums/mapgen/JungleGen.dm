@@ -26,7 +26,7 @@
 						HIGH_HUMIDITY = /datum/biome/jungleland/dying_forest),
 
 		BIOME_TOXIC = list(	LOW_HUMIDITY = /datum/biome/jungleland/toxic_pit,
-						MED_HUMIDITY = /datum/biome/jungleland/toxic_pit, //dry swamp is kind of like a beach?
+						MED_HUMIDITY = /datum/biome/jungleland/toxic_pit,
 						HIGH_HUMIDITY = /datum/biome/jungleland/jungle)
 	)
 	///Used to select "zoom" level into the perlin noise, higher numbers result in slower transitions
@@ -203,7 +203,7 @@
 												"[world.maxx]",
 												"1",
 												"2")
-	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","75","[world.maxx]","0.0","1.1")
+	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","75","[world.maxx]","-0.05","1.1")
 	var/list/humid_strings = list()
 	humid_strings[HIGH_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.1","1.1")
 	humid_strings[MED_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.3","-0.1")

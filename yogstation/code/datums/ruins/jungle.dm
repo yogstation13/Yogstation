@@ -60,5 +60,41 @@
 	unpickable = TRUE
 	cost = 0
 
+//TAR TEMPLES
+/datum/map_template/ruin/jungle/all/tar_temple0 //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
+	name = "Temple of Tar"
+	id = "tar_temple"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "tar_temple0.dmm"
+	always_place = TRUE
+	unpickable = TRUE
+	cost = 0
 
+//MEGAFAUNA
+/datum/map_template/ruin/jungle/swamp/miner
+	name = "Blood Drunk Miner"
+	id = "swamp_miner"
+	description = "Miner's hideout"
+	suffix = "jungleland_swamp_miner.dmm"	
+	always_place = TRUE
 
+/datum/map_template/ruin/jungle/dying/colossus
+	name = "Colossus"
+	id = "dying_colossus"
+	description = "Colossus"
+	suffix = "jungleland_dead_colossus.dmm"
+	always_place = TRUE
+
+/datum/map_template/ruin/jungle/dying/bubblegum
+	name = "Bubblegum"
+	id = "dying_bubblegum"
+	description = "Bubblegum"
+	suffix = "jungleland_dead_bubblegum.dmm"
+	always_place = TRUE
+
+/datum/map_template/ruin/jungle/barren/drake
+	name = "Ash Drake"
+	id = "barren_drake"
+	description = "Ash Drake"
+	suffix = "jungleland_barren_drake.dmm"
+	always_place = TRUE
