@@ -378,6 +378,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
+	strict = TRUE
 	is_fabric = TRUE
 	pull_effort = 2 SECONDS
 	loom_result = /obj/item/stack/sheet/silk
@@ -416,7 +417,6 @@ GLOBAL_LIST_INIT(silk_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/cloth/durathread
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
-	merge_type = /obj/item/stack/sheet/cloth/durathread
 
 /obj/item/stack/sheet/cloth/durathread/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
@@ -458,6 +458,7 @@ GLOBAL_LIST_INIT(silk_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cotton
+	strict = TRUE
 	pull_effort = 30
 	loom_result = /obj/item/stack/sheet/cloth
 	grind_results = list(/datum/reagent/cellulose = 20)
