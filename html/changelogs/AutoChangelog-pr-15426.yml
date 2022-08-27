@@ -1,0 +1,6 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - rscadd: "Adds 20% drip spawners"
+  - rscadd: "Adds a chance for the Gas Station to spawn in with Drip individually from each other and a Gold Chain as well"
+  - tweak: "Tweaked the Gas Station to have a pedestal for the Drip removing one of the Display Cases"
