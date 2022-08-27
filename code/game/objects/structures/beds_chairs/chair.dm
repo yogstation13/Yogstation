@@ -523,7 +523,7 @@
 /obj/structure/chair/comfy/plastic/post_buckle_mob(mob/living/M)
 	. = ..()
 	music_time = world.time + 60 SECONDS
-	addtimer(CALLBACK(src, .proc/motivate, M), 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/motivate, M), 60 SECONDS)
 
 /obj/structure/chair/comfy/plastic/post_unbuckle_mob(mob/living/M)
 	. = ..()
