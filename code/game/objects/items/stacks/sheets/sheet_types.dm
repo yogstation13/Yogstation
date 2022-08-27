@@ -416,6 +416,7 @@ GLOBAL_LIST_INIT(silk_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/cloth/durathread
 	drop_sound = 'sound/items/handling/cloth_drop.ogg'
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
+	merge_type = /obj/item/stack/sheet/cloth/durathread
 
 /obj/item/stack/sheet/cloth/durathread/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
