@@ -115,10 +115,10 @@
 
 		if("show_admins")
 			var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>Current admins:</B><HR>"
-			if(GLOB.admin_datums)
-				for(var/ckey in GLOB.admin_datums)
-					var/datum/admins/D = GLOB.admin_datums[ckey]
-					dat += "[ckey] - [D.rank.name]<br>"
+			if(GLOB.permissions.admin_datums)
+				for(var/ckey in GLOB.permissions.admin_datums)
+					var/datum/admins/D = GLOB.permissions.admin_datums[ckey]
+					dat += "[ckey] - [D.rank_name()]<br>"
 				dat += "</BODY></HTML>"
 				usr << browse(dat, "window=showadmins;size=600x500")
 

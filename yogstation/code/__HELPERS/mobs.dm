@@ -40,12 +40,12 @@
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp)
-			return (temp.ckey in GLOB.deadmins)
+			return (temp.ckey in GLOB.permissions.deadmins)
 	
 	if(istype(user, /client))
 		var/client/temp = user
 		if(temp)
-			return (temp.ckey in GLOB.deadmins)
+			return (temp.ckey in GLOB.permissions.deadmins)
 
 	return FALSE
 
