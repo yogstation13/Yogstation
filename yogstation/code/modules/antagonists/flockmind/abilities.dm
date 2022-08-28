@@ -146,8 +146,11 @@
 		if(L.stat == DEAD)
 			continue
 		var/obj/item/radio/headset/H = L.get_item_by_slot(ITEM_SLOT_EARS)
-		if(H?.on && H.listening && istype(H))
-			targets += L
+		if(!istype(H))
+			continue
+		if(!H.on || !H.listening || H.wires.is_cut(WIRE_RX))
+			continue
+		targets += L
 	if(!length(targets))
 		owner.balloon_alert(owner, "No valid targets")
 		return
