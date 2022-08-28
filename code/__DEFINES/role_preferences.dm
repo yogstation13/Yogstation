@@ -98,9 +98,9 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_MONSTERHUNTER,
 	ROLE_SINFULDEMON,
 	ROLE_HOG_CULTIST, // Yogs
-	ROLE_GOD // Yogs
+	ROLE_GOD, // Yogs
 	ROLE_SPACE_DRAGON,
-	ROLE_SINFULDEMON
+	ROLE_SINFULDEMON,
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

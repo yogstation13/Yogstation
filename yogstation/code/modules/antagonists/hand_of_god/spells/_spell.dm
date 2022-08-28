@@ -61,6 +61,8 @@
 	var/description = "Kinda useless thingie it doesn't prepare anything don't do this please it will be just a waste of time and your energy."
 	var/p_time = 3 SECONDS 
 	var/datum/action/innate/hog_cult/spell = /datum/action/innate/hog_cult
+	var/image/icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	var/icon_state = "nothing"
 
 /datum/hog_spell_preparation/proc/confirm(mob/user, datum/antagonist/hog/antag_datum)
 	var/confirm = alert(user, description, "Yes", "No")

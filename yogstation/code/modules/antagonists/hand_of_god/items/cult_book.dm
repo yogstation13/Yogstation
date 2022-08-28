@@ -3,7 +3,7 @@
 	desc = "A strange tome, filled with dark magic."
 	icon_state = "book"
 	original_icon = "book"
-	force = 13
+	force = 11
 	damtype = BURN
 	var/charges = 0
 	var/casting = FALSE
