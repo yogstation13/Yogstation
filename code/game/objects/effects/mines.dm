@@ -84,7 +84,7 @@
 	anchored = TRUE
 	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
-	alpha = 20
+	alpha = 30
 	var/triggered = 0
 	var/smartmine = FALSE
 	var/disarm_time = 12 SECONDS
