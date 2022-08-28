@@ -40,10 +40,10 @@
 				choice.image = spell_icon
 				choice.info = info_text
 
-				spell_choices[initial(strain.name)] = choice
+				spell_choices[initial(spell.name)] = choice
 
 			shown_radial_menu = TRUE
-			var/datum/hog_spell_preparation/spell_to_prepare = show_radial_menu(user, user, build_choices, radius = BLOB_REROLL_RADIUS, tooltips = TRUE)
+			var/datum/hog_spell_preparation/spell_to_prepare = show_radial_menu(user, user, spell_choices, radius = 60, tooltips = TRUE)
 			shown_radial_menu = FALSE
 			if(!spell_to_prepare || !spell_to_prepare.confirm(user, cultie))
 				return
