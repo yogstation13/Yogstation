@@ -233,7 +233,7 @@
 	cooldown_time = 20 SECONDS
 
 /datum/action/cooldown/flock/build/Trigger()
-	build_choices = list()
+	var/list/build_choices = list()
 	for(var/datum/construction_datum/CD in subtypesof(/datum/construction_datum))
 		var/image/building_icon = image(CD.icon_icon, CD.icon_state)
 		var/info_text = "<span class='boldnotice'>[initial(CD.name)]</span>"
@@ -251,5 +251,4 @@
 	if(!construction.can_build(T, owner, FALSE))
 		return
 	construction.build(T)
-	names = null
 	StartCooldown()
