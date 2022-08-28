@@ -242,6 +242,17 @@
 			/obj/effect/mine/gas/n2o = 5,
 		)
 
+/obj/effect/spawner/lootdrop/effects/landmines/funny
+	name = "harmless landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 85,
+			/obj/effect/mine/sound = 10,
+			/obj/effect/mine/sound/bwoink = 5,
+			/obj/effect/mine/gas = 5,
+		)
+
 /obj/effect/spawner/lootdrop/three_course_meal
 	name = "three course meal spawner"
 	lootcount = 3
