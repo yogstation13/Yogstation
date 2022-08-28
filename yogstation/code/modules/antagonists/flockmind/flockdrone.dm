@@ -327,13 +327,13 @@
 	name = "flock disabler"
 	damage = 25
 	icon_state = "stunbolt"
-	icon_icon = 'goon/icons/obj/projectiles.dmi'
+	icon = 'goon/icons/obj/projectiles.dmi'
 
 /obj/item/projectile/beam/flock
 	name = "flock laser"
 	damage = 17
 	icon_state = "stunbolt"
-	icon_icon = 'goon/icons/obj/projectiles.dmi'
+	icon = 'goon/icons/obj/projectiles.dmi'
 	color = "#ff0000"
 
 //////////////////////////////////////////////
