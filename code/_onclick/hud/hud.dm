@@ -65,6 +65,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/obj/screen/healths
 	var/obj/screen/healthdoll
 	var/obj/screen/internals
+	var/obj/screen/stamina
 
 	// subtypes can override this to force a specific UI style
 	var/ui_style
@@ -107,6 +108,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	QDEL_LIST(infodisplay)
 
 	healths = null
+	stamina = null
 	healthdoll = null
 	internals = null
 	lingchemdisplay = null
@@ -211,7 +213,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 			show_hud(hud_version, M)
 	else if (viewmob.hud_used)
 		viewmob.hud_used.plane_masters_update()
-		viewmob.client.screen -= hide_actions_toggle // Hide this from the observer
+		viewmob.client.screen -= hide_actions_toggle // Hide actions works a bit funny so the observer cant ever use it
 
 	return TRUE
 

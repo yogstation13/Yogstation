@@ -5,7 +5,27 @@
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/fishing
-	name = "Biodome Fishing Dock"
+	name = "Biodome Fishing Pier"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/fishing/kitchen
+	name = "Biodome Fishing Kitchen"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/fishing/bedroom
+	name = "Biodome Fishing Bedroom"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/fishing/shop
+	name = "Biodome Fishing Giftshop"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/fishing/hall
+	name = "Biodome Fishing Hallway"
+	icon_state = "dk_yellow"
+
+/area/ruin/powered/fishing/tcom
+	name = "Biodome Fishing Telecomm"
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/clownplanet

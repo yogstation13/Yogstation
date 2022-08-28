@@ -68,18 +68,6 @@
 		mode() // Activate held item
 
 /mob/living/carbon/attackby(obj/item/I, mob/user, params)
-	var/obj/item/bodypart/affecting = get_bodypart(check_zone(user.zone_selected))
-	if(user.a_intent != INTENT_HARM && I.tool_behaviour == TOOL_WELDER && affecting?.status == BODYPART_ROBOTIC)
-		user.changeNext_move(CLICK_CD_MELEE)
-		if(I.use_tool(src, user, 0, volume=50, amount=1))
-			if(user == src)
-				user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.name]."),
-					span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.name]."))
-				if(!do_mob(user, src, 50))
-					return TRUE
-			if(item_heal_robotic(src, user, 15, 0))
-				return TRUE
-
 	// Fun situation, needing surgery code to be at the /mob/living level but needing it to happen before wound code so you can actualy do the wound surgeries
 	for(var/datum/surgery/S in surgeries)
 		if(S.location != user.zone_selected)
@@ -510,6 +498,9 @@
 	if(istype(src.loc, /obj/effect/dummy))  //cannot vomit while phasing/vomitcrawling
 		return TRUE
 
+	if(!has_mouth())
+		return TRUE
+
 	if(nutrition < 100 && !blood)
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
@@ -551,6 +542,11 @@
 		if (is_blocked_turf(T))
 			break
 	return TRUE
+
+/mob/living/carbon/has_mouth()
+	for(var/obj/item/bodypart/head/head in bodyparts)
+		if(head.mouth)
+			return TRUE 
 
 /mob/living/carbon/proc/spew_organ(power = 5, amt = 1)
 	for(var/i in 1 to amt)
@@ -614,7 +610,7 @@
 		stam_paralyzed = FALSE
 	else
 		return
-	update_health_hud()
+	update_stamina_hud()
 
 /mob/living/carbon/update_sight()
 	if(!client)
@@ -673,6 +669,29 @@
 		sight = null
 
 	return ..()
+
+/mob/living/carbon/update_stamina_hud(shown_stamina_amount)
+	if(!client || !hud_used?.stamina)
+		return
+	if(stat == DEAD || IsStun() || IsParalyzed() || IsImmobilized() || IsKnockdown() || IsFrozen())
+		hud_used.stamina.icon_state = "stamina6"
+	else
+		if(shown_stamina_amount == null)
+			shown_stamina_amount = health - getStaminaLoss() - crit_threshold
+		if(shown_stamina_amount >= health)
+			hud_used.stamina.icon_state = "stamina0"
+		else if(shown_stamina_amount > health*0.8)
+			hud_used.stamina.icon_state = "stamina1"
+		else if(shown_stamina_amount > health*0.6)
+			hud_used.stamina.icon_state = "stamina2"
+		else if(shown_stamina_amount > health*0.4)
+			hud_used.stamina.icon_state = "stamina3"
+		else if(shown_stamina_amount > health*0.2)
+			hud_used.stamina.icon_state = "stamina4"
+		else if(shown_stamina_amount > 0)
+			hud_used.stamina.icon_state = "stamina5"
+		else
+			hud_used.stamina.icon_state = "stamina6"
 
 
 //to recalculate and update the mob's total tint from tinted equipment it's wearing.
@@ -864,6 +883,7 @@
 		update_mobility()
 	update_damage_hud()
 	update_health_hud()
+	update_stamina_hud()
 	med_hud_set_status()
 
 //called when we get cuffed/uncuffed

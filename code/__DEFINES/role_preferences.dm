@@ -51,6 +51,7 @@
 #define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
 #define ROLE_BLOODSUCKERBREAKOUT	"Bloodsucker Breakout"
 #define ROLE_MONSTERHUNTER		"Monster Hunter"
+#define ROLE_SPACE_DRAGON		"Space Dragon"
 #define ROLE_GOLEM				"Golem"
 #define ROLE_SINFULDEMON		"Demon of Sin"
 #define ROLE_HOG_CULTIST        "HoG Cultist" // Yogs
@@ -98,6 +99,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SINFULDEMON,
 	ROLE_HOG_CULTIST, // Yogs
 	ROLE_GOD // Yogs
+	ROLE_SPACE_DRAGON,
+	ROLE_SINFULDEMON
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

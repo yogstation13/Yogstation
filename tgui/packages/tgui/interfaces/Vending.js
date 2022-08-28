@@ -91,6 +91,9 @@ const VendingRow = (props, context) => {
 
 export const Vending = (props, context) => {
   const { act, data } = useBackend(context);
+  const {
+    product_ad,
+  } = data;
   let inventory;
   let custom = false;
   if (data.vending_machine_input) {
@@ -115,6 +118,11 @@ export const Vending = (props, context) => {
       height={600}
       resizable>
       <Window.Content scrollable>
+        {product_ad && (
+          <Section textAlign="center" textColor="green">
+            {product_ad}
+          </Section>
+        )}
         {!!data.onstation && (
           <Section title="User">
             {data.user && (

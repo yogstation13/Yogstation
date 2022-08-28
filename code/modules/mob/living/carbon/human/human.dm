@@ -401,7 +401,7 @@
 							R = find_record("name", perpname, GLOB.data_core.security)
 							if(R)
 								if(href_list["status"])
-									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Paroled", "Discharged", "Cancel")
+									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged", "Cancel")
 									if(setcriminal != "Cancel")
 										if(R)
 											if(H.canUseHUD())
@@ -555,6 +555,8 @@
 				if("*Arrest*")
 					threatcount += 5
 				if("Incarcerated")
+					threatcount += 2
+				if("Suspected")
 					threatcount += 2
 				if("Paroled")
 					threatcount += 2
@@ -801,8 +803,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - getStaminaLoss())
-			if(..(health_amount)) //not dead
+			if(..()) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
 						hud_used.healths.icon_state = "health6"
@@ -886,6 +887,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
 	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
 	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
+	VV_DROPDOWN_OPTION(VV_HK_CRITTERMONEY, "Toggle Critter Money")
 
 /mob/living/carbon/human/vv_do_topic(list/href_list)
 	. = ..()
@@ -935,6 +937,10 @@
 					remove_quirk(T)
 				else
 					add_quirk(T,TRUE)
+	if(href_list[VV_HK_CRITTERMONEY] && check_rights(R_SPAWN))
+		for(var/obj/item/card/id/id in src)
+			id.critter_money = !id.critter_money
+			to_chat(usr, "[id.critter_money ? "Added" : "Removed"] critter money from [src]s [id].")
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	if(pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
@@ -1243,6 +1249,9 @@
 
 /mob/living/carbon/human/species/mush
 	race = /datum/species/mush
+
+/mob/living/carbon/human/species/ipc
+	race = /datum/species/ipc
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman

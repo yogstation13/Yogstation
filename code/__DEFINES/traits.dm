@@ -219,6 +219,8 @@
 #define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
+#define TRAIT_NOCLONE			"noclone" // No cloning
+#define TRAIT_NODEFIB			"nodefib" // No defibbing
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
 #define TRAIT_SMIMMUNE 			"sm-immune"
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
