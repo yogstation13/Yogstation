@@ -489,3 +489,19 @@
 				/obj/item/circuitboard/computer/apc_control,
 				/obj/item/circuitboard/computer/robotics
 				)
+
+/obj/effect/spawner/lootdrop/twenty_percent_drip_suit
+	name = "20% incredibly fashionable outfit spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+		/obj/item/clothing/under/drip = 20,
+		"" = 80)
+
+/obj/effect/spawner/lootdrop/twenty_percent_drip_shoes
+	name = "20% fashionable shoes spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+		/obj/item/clothing/shoes/drip = 20,
+		"" = 80)
