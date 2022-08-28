@@ -301,11 +301,6 @@
 	item_state = "blue_item"
 	mutantrace_variation = NO_MUTANTRACE_VARIATION //Check inherits from det_suit
 
-/obj/item/clothing/suit/yogs/bluedetective/Initialize()
-	. = ..()
-	allowed = GLOB.detective_vest_allowed
-
-
 /obj/item/clothing/suit/hooded/spesshoodie
     mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
     icon = 'yogstation/icons/obj/clothing/suits.dmi'
