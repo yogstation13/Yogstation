@@ -48,9 +48,8 @@
 	var/name = "Nothing."
 	var/required_compute = 0
 	var/total = FALSE
-	var/image/icon_icon = 'goon/icons/obj/flockobjects.dmi'
+	var/icon_icon = 'goon/icons/obj/flockobjects.dmi'
 	var/icon_state
-	var/info_text = "Ur mam!!!!!!"
 
 /datum/construction_datum/proc/can_build(var/turf/T, mob/user, silent = FALSE)
 	if(!istype(T) || !T)
