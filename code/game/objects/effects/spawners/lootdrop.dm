@@ -206,15 +206,12 @@
 	lootdoubles = FALSE
 
 	loot = list(
-			"" = 60,
-			/obj/effect/mine/explosive = 5,
-			/obj/effect/mine/stun = 10,
-			/obj/effect/mine/kickmine = 5,
-			/obj/effect/mine/gas = 1,
-			/obj/effect/mine/gas/plasma = 2,
-			/obj/effect/mine/gas/n2o = 2,
-			/obj/effect/mine/sound = 10,
-			/obj/effect/mine/sound/bwoink = 5,
+			"" = 80,
+			/obj/effect/mine/explosive = 2,
+			/obj/effect/mine/stun = 5,
+			/obj/effect/mine/gas/plasma = 4,
+			/obj/effect/mine/sound = 5,
+			/obj/effect/mine/sound/bwoink = 3,
 		)
 
 /obj/effect/spawner/lootdrop/effects/landmines/safe
@@ -222,10 +219,10 @@
 	lootdoubles = FALSE
 
 	loot = list(
-			"" = 70,
-			/obj/effect/mine/stun = 10,
-			/obj/effect/mine/kickmine = 5,
-			/obj/effect/mine/sound = 10,
+			"" = 80,
+			/obj/effect/mine/stun = 5,
+			/obj/effect/mine/gas/n2o = 5,
+			/obj/effect/mine/sound = 5,
 			/obj/effect/mine/sound/bwoink = 5,
 		)
 
@@ -234,10 +231,10 @@
 	lootdoubles = FALSE
 
 	loot = list(
-			"" = 70,
+			"" = 80,
 			/obj/effect/mine/stun/smart = 10,
-			/obj/effect/mine/stun/smart/adv = 10,
-			/obj/effect/mine/stun/smart/heavy = 10,
+			/obj/effect/mine/stun/smart/adv = 5,
+			/obj/effect/mine/stun/smart/heavy = 5,
 		)
 
 /obj/effect/spawner/lootdrop/effects/landmines/unsafe
@@ -245,12 +242,11 @@
 	lootdoubles = FALSE
 
 	loot = list(
-			"" = 65,
+			"" = 75,
 			/obj/effect/mine/explosive = 10,
-			/obj/effect/mine/gas = 5,
 			/obj/effect/mine/gas/plasma = 5,
 			/obj/effect/mine/gas/n2o = 5,
-			/obj/effect/mine/explosive/traitor/bigboom = 10,
+			/obj/effect/mine/explosive/traitor/bigboom = 5,
 		)
 
 /obj/effect/spawner/lootdrop/three_course_meal
