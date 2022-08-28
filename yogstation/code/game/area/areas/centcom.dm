@@ -31,4 +31,22 @@
 	blob_allowed = FALSE
 	has_gravity = TRUE
 	noteleport = TRUE
+	atmos = FALSE
 	flags_1 = NONE
+	requires_power = FALSE
+	ambientsounds = HOLY
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+
+/area/brazil/maints
+	name = "Location Unresolved"
+	icon_state = "execution_room"
+	ambientsounds = list('sound/ambience/ambimaint1.ogg',
+						 'sound/ambience/ambimaint2.ogg',
+						 'sound/ambience/ambimaint3.ogg',
+						 'sound/ambience/ambimaint4.ogg',
+						 'sound/ambience/ambimaint5.ogg',
+						 'sound/voice/lowHiss2.ogg',
+						 'sound/voice/lowHiss3.ogg',
+						 'sound/voice/lowHiss4.ogg',
+						 'yogstation/sound/misc/honk_echo_distant.ogg')
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
