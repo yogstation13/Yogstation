@@ -31,7 +31,6 @@
 	blob_allowed = FALSE
 	has_gravity = TRUE
 	noteleport = TRUE
-	atmos = FALSE
 	flags_1 = NONE
 	requires_power = FALSE
 	ambientsounds = HOLY
