@@ -199,28 +199,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/pirate)
-"au" = (
-/obj/machinery/door/airlock/hatch{
-	id_tag = "piratebridgebolt";
-	name = "Bridge"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/pirate)
 "av" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Starboard Gun Battery"
@@ -553,20 +531,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/pirate)
-"bg" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/gun/energy/laser{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/gun/energy/laser{
-	pixel_y = 3
-	},
-/obj/machinery/recharger,
-/turf/open/floor/pod/light,
-/area/shuttle/pirate)
 "bk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -577,27 +541,6 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/shuttle/pirate)
-"bl" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/airalarm/all_access{
-	pixel_y = 24
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/item/gun/energy/laser{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/gun/energy/laser{
-	pixel_y = 3
-	},
-/turf/open/floor/pod/light,
 /area/shuttle/pirate)
 "bm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -960,6 +903,11 @@
 	},
 /turf/open/floor/pod/light,
 /area/shuttle/pirate)
+"en" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/floor/pod/dark,
+/area/shuttle/pirate)
 "ep" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -1028,6 +976,30 @@
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
+/area/shuttle/pirate)
+"gx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/airalarm/all_access{
+	pixel_y = 24
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/obj/item/ammo_casing/caseless/cannonball,
+/turf/open/floor/pod/light,
 /area/shuttle/pirate)
 "gY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1182,6 +1154,26 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/shuttle/pirate)
+"HC" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/gun/energy/laser{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = 3
+	},
+/obj/item/gun/energy/laser{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/gun/energy/laser{
+	pixel_y = 3
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/pirate)
 "JT" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -1200,6 +1192,33 @@
 	pixel_y = -1
 	},
 /turf/open/floor/pod/light,
+/area/shuttle/pirate)
+"Kh" = (
+/obj/structure/table,
+/obj/item/gun/ballistic/handcannon,
+/turf/open/floor/pod/dark,
+/area/shuttle/pirate)
+"Kn" = (
+/obj/machinery/door/airlock/hatch{
+	id_tag = "piratebridgebolt";
+	name = "Bridge"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/space/basic,
 /area/shuttle/pirate)
 "Oe" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
@@ -1236,6 +1255,9 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/shuttle/pirate)
+"PJ" = (
+/turf/open/floor/pod/dark,
 /area/shuttle/pirate)
 "RY" = (
 /obj/effect/mob_spawn/human/pirate/captain{
@@ -1395,9 +1417,9 @@ aR
 (6,1,1) = {"
 af
 af
-af
 as
 aP
+aj
 aj
 aj
 aj
@@ -1412,13 +1434,13 @@ aJ
 "}
 (7,1,1) = {"
 af
-af
 as
 aE
 aC
 aW
 aj
-bg
+HC
+en
 gY
 JT
 aj
@@ -1430,13 +1452,13 @@ aj
 "}
 (8,1,1) = {"
 af
-af
 at
 ab
 ae
 bf
 aj
-bl
+gx
+PJ
 fY
 ai
 aU
@@ -1448,12 +1470,12 @@ aH
 "}
 (9,1,1) = {"
 af
-af
 at
 ac
 ag
 am
-au
+Kn
+bm
 bm
 by
 bm
@@ -1466,13 +1488,13 @@ aK
 "}
 (10,1,1) = {"
 af
-af
 at
 ad
 ah
 an
 aj
 bt
+PJ
 gY
 bI
 aj
@@ -1484,13 +1506,13 @@ er
 "}
 (11,1,1) = {"
 af
-af
 aA
 aE
 al
 aB
 aj
 ek
+Kh
 bA
 vB
 aj
@@ -1503,9 +1525,9 @@ aj
 (12,1,1) = {"
 af
 af
-af
 aA
 aT
+aj
 aj
 aj
 aj
