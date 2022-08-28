@@ -9,6 +9,7 @@
 	var/casting = FALSE
 	var/stam_damage = 49
 	var/can_rcd = TRUE ///Can it convert objects?
+	var/shown_radial_menu = FALSE
 
 /obj/item/hog_item/book/attack_self(mob/user)
 	var/datum/antagonist/hog/cultie = IS_HOG_CULTIST(user)
@@ -27,23 +28,28 @@
 			if(nullify_spell)
 				qdel(nullify_spell)
 		if("Prepare Spell")
-			var/list/names = list()
-			var/list/actuall_spells
+			if(shown_radial_menu)
+				return
+			var/list/spell_choices = list()
 			for(var/datum/hog_spell_preparation/spell in subtypesof(/datum/hog_spell_preparation))
-				actuall_spells[spell.name] = spell
-				names += spell.name
-			var/datum/hog_spell_preparation/spell_to_prepare = actuall_spells[input(user,"What do you want to prepare?","Spell") in names]
+				var/image/spell_icon = image(spell.icon_icon, spell.icon_state)
+
+				var/info_text = "<span class='boldnotice'>[initial(spell.name)]</span>"
+
+				var/datum/radial_menu_choice/choice = new
+				choice.image = spell_icon
+				choice.info = info_text
+
+				spell_choices[initial(strain.name)] = choice
+
+			shown_radial_menu = TRUE
+			var/datum/hog_spell_preparation/spell_to_prepare = show_radial_menu(user, user, build_choices, radius = BLOB_REROLL_RADIUS, tooltips = TRUE)
+			shown_radial_menu = FALSE
 			if(!spell_to_prepare || !spell_to_prepare.confirm(user, cultie))
-				for(var/datum/hog_spell_preparation/spell in actuall_spells)
-					qdel(spell)
 				return
 			if(!do_after(user, spell_to_prepare.p_time , src))
-				for(var/datum/hog_spell_preparation/spell in actuall_spells)
-					qdel(spell)
 				return
-			spell_to_prepare.on_prepared(user, cultie, src)	
-			for(var/datum/hog_spell_preparation/spell in actuall_spells)
-				qdel(spell)									
+			spell_to_prepare.on_prepared(user, cultie, src)								
 
 /obj/item/hog_item/book/attack(mob/M, mob/living/carbon/human/user)
 	if(!iscarbon(M))
