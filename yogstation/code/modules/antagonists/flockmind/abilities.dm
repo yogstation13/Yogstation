@@ -244,7 +244,7 @@
 
 		build_choices[initial(CD.name)] = choice
 
-	var/datum/construction_datum/construction = show_radial_menu(owner, owner, build_choices, radius = BLOB_REROLL_RADIUS, tooltips = TRUE)
+	var/datum/construction_datum/construction = show_radial_menu(owner, owner, build_choices, radius = 60, tooltips = TRUE)
 	if(!construction)
 		return
 	var/turf/T = get_turf(owner)
