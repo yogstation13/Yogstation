@@ -85,7 +85,7 @@
 
 /datum/export/lavaland/gems/plasma
 	cost = 7500
-	unit_name = "Stabilized Phoron"
+	unit_name = "Stabilized Baroxuldium"
 	export_types = list(/obj/item/gem/phoron)
 
 /datum/export/lavaland/gems/purple
@@ -110,5 +110,5 @@
 
 /datum/export/lavaland/gems/dark
 	cost = 20000
-	unit_name = "Dark Cube"
+	unit_name = "Dark Salt Lick"
 	export_types = list(/obj/item/gem/dark)

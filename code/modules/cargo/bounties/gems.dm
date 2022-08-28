@@ -20,14 +20,14 @@
 	wanted_types = list(/obj/item/gem/fdiamond)
 
 /datum/bounty/item/gems/plasma
-	name = "Stabilized Phoron"
-	description = "Central Command needs a Phoron gem to showcase in their museum. Find one and be rewarded."
+	name = "Stabilized Baroxuldium"
+	description = "Central Command needs a plasma gem to showcase in their museum. Find one and be rewarded."
 	reward = 15000
 	wanted_types = list(/obj/item/gem/phoron)
 
 /datum/bounty/item/gems/plasma
 	name = "Densified Dilithium"
-	description = "CentCom wants to set up a new network but seems to be missing a signal strong enough to support it. Help solve their problem while getting a sizeable sum."
+	description = "CentCom wants to test a new, more compact network infrastructure using dilithium wavelengths. Help solve their problem while getting a sizeable sum."
 	reward = 16000
 	wanted_types = list(/obj/item/gem/phoron)
 
@@ -50,7 +50,7 @@
 	wanted_types = list(/obj/item/gem/bloodstone)
 
 /datum/bounty/item/gems/dark
-	name = "Dark Cube"
+	name = "Dark Salt Lick"
 	description = "Central Command's Research Director is particularly interested in the anomalous effects of this gem. Ship one over and he'll pay us directly."
 	reward = 40000
 	wanted_types = list(/obj/item/gem/dark)

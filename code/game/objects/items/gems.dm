@@ -63,7 +63,7 @@
 
 /obj/item/gem/magma
 	name = "\improper Calcified Auric"
-	desc = "A hot, lightly glowing mineral born from the inner workings of magmawing watchers, they are most commonly used as dense smeltable deposits of usable gold. Their real value comes from their powerful, electrically conductive abilities rumored to be a required ingredient in creating immensely draining artificial intelligence."
+	desc = "A hot, lightly glowing mineral born from the inner workings of magmawing watchers. It is most commonly smelted down into deposits of pure gold. However, it also possesses powerful conductivity, leading some to believe it a major power component utilized by the Vxtvul Empire."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "magma"
 	materials = list(/datum/material/gold=50000)
@@ -85,7 +85,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/phoron
-	name = "\improper Stabilized Phoron"
+	name = "\improper Stabilized Baroxuldium"
 	desc = "A soft, glowing crystal only found in the deepest veins of plasma. Famed for its exceptional durability and uncommon beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analyzed to extract the condensed materials within."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "phoron"
@@ -98,7 +98,7 @@
 
 /obj/item/gem/purple
 	name = "\improper Densified Dilithium"
-	desc = "A strange mass of dithilium formed through harmonic, zealous signals. Known to send out a wide readable signal it is sought after for its powerful individual range and unique resonating patterns. It looks like it could be destructively analyzed to extract the condensed materials within."
+	desc = "A strange mass of dilithium which pulses to a steady rhythm. Its strange surface exudes a unique radio signal detectable by GPS. It looks like it could be destructively analyzed to extract the condensed materials within."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "purple"
 	materials = list(/datum/material/dilithium=64000)
@@ -117,7 +117,7 @@
 /obj/item/gps/internal/purple
 	icon_state = null
 	gpstag = "Harmonic Signal"
-	desc = "Its ringing."
+	desc = "It's ringing."
 	invisibility = 100
 
 /obj/item/gem/amber
@@ -154,8 +154,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/dark
-	name = "\improper Dark Cube"
-	desc = "An ominous cube that glows with an unnerving aura, seeming to hungrily draw in the space around it. Its only known property is that of anti-magic."
+	name = "\improper Dark Salt Lick"
+	desc = "An ominous cylinder that glows with an unnerving aura, seeming to hungrily draw in the space around it. The round edges of the lick are uneven patches of rough texture. Its only known property is that of anti-magic."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "dark"
 	point_value = 3000
