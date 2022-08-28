@@ -395,7 +395,7 @@ SUBSYSTEM_DEF(air)
 
 		//Yogs start -- prettier atmos notices
 		var/msg = "HEY! LISTEN! [(world.timeofday - timer)/10] seconds were wasted processing [starting_ats] turf(s) (connected to [ending_ats] other turfs) with atmos differences at round start."
-		to_chat(GLOB.admins,
+		to_chat(GLOB.permissions.admins,
 		type = MESSAGE_TYPE_DEBUG,
 		html = span_notice(msg),
 		confidential = FALSE) 

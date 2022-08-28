@@ -223,6 +223,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["bar_choice"], bar_choice)
 	READ_FILE(S["show_credits"], show_credits)
 	READ_FILE(S["alternative_announcers"] , disable_alternative_announcers)
+	READ_FILE(S["balloon_alerts"] , disable_balloon_alerts)
 	
 	// yogs start - Donor features
 	READ_FILE(S["donor_pda"], donor_pda)
@@ -282,6 +283,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	flare				= sanitize_integer(flare, FALSE, TRUE, initial(flare))
 	bar_choice			= sanitize_text(bar_choice, initial(bar_choice))
 	disable_alternative_announcers	= sanitize_integer(disable_alternative_announcers, FALSE, TRUE, initial(disable_alternative_announcers))
+	disable_balloon_alerts = sanitize_integer(disable_balloon_alerts, FALSE, TRUE, initial(disable_balloon_alerts))
 
 	var/bar_sanitize = FALSE
 	for(var/A in GLOB.potential_box_bars)
@@ -363,6 +365,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["flare"], flare)
 	WRITE_FILE(S["bar_choice"], bar_choice)
 	WRITE_FILE(S["alternative_announcers"], disable_alternative_announcers)
+	WRITE_FILE(S["balloon_alerts"], disable_balloon_alerts)
 
 	// yogs start - Donor features & Yogstoggle
 	WRITE_FILE(S["yogtoggles"], yogtoggles)

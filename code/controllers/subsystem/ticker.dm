@@ -467,7 +467,7 @@ SUBSYSTEM_DEF(ticker)
 			m = pick(memetips)
 
 	if(m)
-		to_chat(world, span_purple("<b>Tip of the round: </b>[html_encode(m)]"))
+		to_chat(world, span_purple(examine_block("<b>Tip of the round: </b>[html_encode(m)]")))
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	if(!queued_players.len)
@@ -738,5 +738,3 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
-	save_admin_data()
-	update_everything_flag_in_db()

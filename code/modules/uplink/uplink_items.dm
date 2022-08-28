@@ -1807,11 +1807,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/implants/mantis_kit
-	name = "G.O.R.L.E.X.. Mantis Blades Kit"
-	desc = "Comes with 2 G.O.R.L.E.X. Mantis blades. All packaged with autosurgeons."
-	item = /obj/item/storage/briefcase/syndie_mantis
-	cost = 16
+/datum/uplink_item/implants/mantis
+	name = "G.O.R.L.E.X. Mantis Blade"
+	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing, 2 blades can be used at once."
+	item = /obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	cost = 7
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
@@ -2106,7 +2106,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A potato rigged with explosives. On activation, a special mechanism is activated that prevents it from being dropped. \
 			The only way to get rid of it if you are holding it is to attack someone else with it, causing it to latch to that person instead."
 	item = /obj/item/hot_potato/syndicate
-	cost = 4
+	cost = 12
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
 	restricted_roles = list("Cook", "Botanist", "Clown", "Mime")
@@ -2276,6 +2276,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
+
+
+/datum/uplink_item/badass/syndietape
+	name = "Guerrilla Tape"
+	desc = "New from Donk Co! Stick it to the man with this ultra-adhesive roll of tape! Grabs on tight, and holds on tight, using our patented adhesive formula. Ten times stronger than our leading competitors!"
+	item = /obj/item/stack/tape/guerrilla
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
 
 /datum/uplink_item/badass/antagcape
 	name = "Red Syndicate Cape"

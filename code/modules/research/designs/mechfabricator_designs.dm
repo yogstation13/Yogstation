@@ -900,3 +900,9 @@
 	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 5000)
 	construction_time = 120
 	category = list("IPC Components") 
+
+/datum/design/ipclimbs
+	build_type = MECHFAB
+	materials = list(/datum/material/iron = 10000 , /datum/material/glass = 5000)
+	construction_time = 150
+	category = list("IPC Components")

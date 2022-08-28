@@ -11,6 +11,9 @@
 	grind_results = list(/datum/reagent/cellulose = 5)
 	var/maximum_weight_class = WEIGHT_CLASS_SMALL
 	var/static/list/tape_blacklist = typecacheof(/obj/item/grenade) //stuff you can't take that may or may not be max_weight_class
+	var/fall_chance = 10
+	var/removal_time = 0
+	var/removal_pain = 0
 
 /obj/item/stack/tape/attack(mob/living/M, mob/user)
 	. = ..()
@@ -49,5 +52,16 @@
 			return
 	to_chat(user, span_info("You wrap [I] with [src]."))
 	use(1)
-	I.embedding = I.embedding.setRating(100, 10, 0, 0, 0, 0, 0, 0, TRUE)
+	I.embedding = I.embedding.setRating(100, fall_chance, 0, 0, 0, 0, removal_pain, removal_time, TRUE)
 	I.taped = TRUE
+
+/obj/item/stack/tape/guerrilla
+	name = "guerrilla tape"
+	singular_name = "guerrilla tape"
+	desc = "A suspicious looking roll of tape. It seems to be much more adhesive than the standard variety."
+	icon_state = "tape_evil"
+	amount = 5
+	removal_pain = 10
+	removal_time = 2 SECONDS //six seconds
+	fall_chance = 5
+	maximum_weight_class = WEIGHT_CLASS_BULKY
