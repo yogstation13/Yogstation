@@ -201,17 +201,14 @@
 		)
 
 /obj/effect/spawner/lootdrop/effects/landmines
-	name = "random landmine spawner"
+	name = "stun or explosive landmine spawner"
 	icon_state = "landmine_spawner"
 	lootdoubles = FALSE
 
 	loot = list(
-			"" = 80,
-			/obj/effect/mine/explosive = 2,
+			"" = 84,
+			/obj/effect/mine/explosive = 1,
 			/obj/effect/mine/stun = 5,
-			/obj/effect/mine/gas/plasma = 4,
-			/obj/effect/mine/sound = 5,
-			/obj/effect/mine/sound/bwoink = 3,
 		)
 
 /obj/effect/spawner/lootdrop/effects/landmines/safe
@@ -220,10 +217,7 @@
 
 	loot = list(
 			"" = 80,
-			/obj/effect/mine/stun = 5,
-			/obj/effect/mine/gas/n2o = 5,
-			/obj/effect/mine/sound = 5,
-			/obj/effect/mine/sound/bwoink = 5,
+			/obj/effect/mine/stun = 10,
 		)
 
 /obj/effect/spawner/lootdrop/effects/landmines/smart
@@ -242,11 +236,10 @@
 	lootdoubles = FALSE
 
 	loot = list(
-			"" = 75,
+			"" = 85,
 			/obj/effect/mine/explosive = 10,
 			/obj/effect/mine/gas/plasma = 5,
 			/obj/effect/mine/gas/n2o = 5,
-			/obj/effect/mine/explosive/traitor/bigboom = 5,
 		)
 
 /obj/effect/spawner/lootdrop/three_course_meal
