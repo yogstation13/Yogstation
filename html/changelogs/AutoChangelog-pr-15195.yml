@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - tweak: "Moved from db to forums as admin permissions backend."

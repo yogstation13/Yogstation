@@ -1,4 +1,0 @@
-author: "SuperSlayer"
-delete-after: true 
-changes: 
-  - rscadd: "Added disable/enable balloon alerts preference"
