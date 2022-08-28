@@ -48,6 +48,9 @@
 	var/name = "Nothing."
 	var/required_compute = 0
 	var/total = FALSE
+	var/image/icon_icon = 'goon/icons/obj/flockobjects.dmi'
+	var/icon_state
+	var/info_text = "Ur mam!!!!!!"
 
 /datum/construction_datum/proc/can_build(var/turf/T, mob/user, silent = FALSE)
 	if(!istype(T) || !T)
@@ -79,12 +82,14 @@
 	name = "Collector"
 	resource_cost = 200
 	s_type = /obj/structure/destructible/flock/collector
+	icon_state = "collector"
 	
 /datum/construction_datum/sentinel
 	name = "Sentinel"
 	resource_cost = 150
 	required_compute = 20
 	s_type = /obj/structure/destructible/flock/sentinel
+	icon_state = "sentinelon"
 
 /datum/construction_datum/relay
 	name = "The Relay"
@@ -92,6 +97,7 @@
 	required_compute = 20
 	total = TRUE
 	s_type = /obj/structure/destructible/flock/the_relay
+	icon_state = "compute"
 
 /datum/construction_datum/relay/can_build(var/turf/T, mob/user, silent = FALSE)
 	if(user)

@@ -230,23 +230,23 @@
 	cooldown_time = 20 SECONDS
 
 /datum/action/cooldown/flock/build/Trigger()
-	var/list/buildings = list()
-	var/list/names = list()
+	build_choices = list()
 	for(var/datum/construction_datum/CD in subtypesof(/datum/construction_datum))
-		CD = new
-		buildings[CD.name] = CD
-		names += CD.name
-	var/datum/construction_datum/construction = buildings[input(owner,"What order do you want to build [src]?") as null|anything in names]
+		var/image/building_icon = image(CD.icon_icon, CD.icon_state)
+		var/info_text = "<span class='boldnotice'>[initial(CD.name)]</span>"
+
+		var/datum/radial_menu_choice/choice = new
+		choice.image = building_icon
+		choice.info = info_text
+
+		build_choices[initial(CD.name)] = choice
+
+	var/datum/construction_datum/construction = show_radial_menu(owner, owner, build_choices, radius = BLOB_REROLL_RADIUS, tooltips = TRUE)
 	if(!construction)
 		return
 	var/turf/T = get_turf(owner)
-	if(!construction.can_build(T , owner, FALSE))
-		for(var/i in buildings)
-			qdel(i)
-		names = null
+	if(!construction.can_build(T, owner, FALSE))
 		return
 	construction.build(T)
-	for(var/i in buildings)
-		qdel(i)
 	names = null
 	StartCooldown()
