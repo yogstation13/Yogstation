@@ -191,6 +191,68 @@
 			/obj/structure/reagent_dispensers/fueltank = 5,
 		)
 
+/obj/effect/spawner/lootdrop/effects/
+	name = "generic effect spawner"
+	icon_state = "x4"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 100,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines
+	name = "random landmine spawner"
+	icon_state = "landmine_spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 60,
+			/obj/effect/mine/explosive = 5,
+			/obj/effect/mine/stun = 10,
+			/obj/effect/mine/kickmine = 5,
+			/obj/effect/mine/gas = 1,
+			/obj/effect/mine/gas/plasma = 2,
+			/obj/effect/mine/gas/n2o = 2,
+			/obj/effect/mine/sound = 10,
+			/obj/effect/mine/sound/bwoink = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/safe
+	name = "stun landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 70,
+			/obj/effect/mine/stun = 10,
+			/obj/effect/mine/kickmine = 5,
+			/obj/effect/mine/sound = 10,
+			/obj/effect/mine/sound/bwoink = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/smart
+	name = "smart landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 70,
+			/obj/effect/mine/stun/smart = 10,
+			/obj/effect/mine/stun/smart/adv = 10,
+			/obj/effect/mine/stun/smart/heavy = 10,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/unsafe
+	name = "dangerous landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 65,
+			/obj/effect/mine/explosive = 10,
+			/obj/effect/mine/gas = 5,
+			/obj/effect/mine/gas/plasma = 5,
+			/obj/effect/mine/gas/n2o = 5,
+			/obj/effect/mine/explosive/traitor/bigboom = 10,
+		)
+
 /obj/effect/spawner/lootdrop/three_course_meal
 	name = "three course meal spawner"
 	lootcount = 3
