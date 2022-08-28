@@ -4,13 +4,11 @@ import { Window } from '../layouts';
 
 export const FishingEncyclopedia = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    all_fish
-  } = data;
 
-  const fish_map = all_fish.map(fish => {
+  const fish_map = data.f_list.map(fish => {
     return (
-      <Box>{fish}</Box>
+      <Box>{fish.name}{fish.min_weight}</Box>
+
     );
   });
 

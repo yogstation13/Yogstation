@@ -26,7 +26,8 @@ GLOBAL_LIST_INIT(fishing_table,init_fishing_table())
 		return COMPONENT_INCOMPATIBLE
 	can_fish = start_fishable
 	loot = GLOB.fishing_table[loot_table]
-	RegisterSignal(src,COMSIG_CHUM_ATTEMPT,.proc/chum)
+	RegisterSignal(parent,COMSIG_CHUM_ATTEMPT,.proc/chum)
+	RegisterSignal(parent,COMSIG_FISH_FINDER_EXAMINE,.proc/fish_find)
 	population = loot.start_population
 	growth = loot.start_growth
 	if(growth > 0)
@@ -63,6 +64,17 @@ GLOBAL_LIST_INIT(fishing_table,init_fishing_table())
 
 /datum/component/fishable/proc/interrupt()
 	SEND_SIGNAL(src,COMSIG_FISHING_INTERRUPT)
+
+/datum/component/fishable/proc/fish_find(mob/target,mob/user)
+	var/list/combined_message = list()
+	combined_message += "Biome: [loot.id]"
+	combined_message += "Population: [population]"
+	combined_message += "Maximum Population: [loot.max_population]"
+	combined_message += "Growth Rate: [growth / 2] per second."
+	combined_message += "Max Growth Rate: [loot.max_growth / 2] per second."
+	combined_message = combined_message.Join("\n")
+	to_chat(user,examine_block(combined_message))
+	return TRUE
 
 /datum/component/fishable/proc/get_reward(fishing_power = 0, fishing_flags = 0)
 	if(!(fishing_flags & ROD_STRONG_LINE)) //if we don't have a strong line, always a 15% chance of catching nothing
