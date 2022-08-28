@@ -1,0 +1,5 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - rscadd: "adds ricoshots to the game"
+  - imageadd: "coins flash when shot"

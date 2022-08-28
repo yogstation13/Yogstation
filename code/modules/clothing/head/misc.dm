@@ -293,6 +293,7 @@
 	name = "rice hat"
 	desc = "Welcome to the rice fields, motherfucker."
 	icon_state = "rice_hat"
+	hattable = FALSE
 
 /obj/item/clothing/head/lizard
 	name = "lizardskin cloche hat"
