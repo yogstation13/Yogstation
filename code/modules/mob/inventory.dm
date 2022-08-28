@@ -298,6 +298,7 @@
 //for when you want the item to end up on the ground
 //will force move the item to the ground and call the turf's Entered
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE)
+	SEND_SIGNAL(I, COMSIG_ITEM_PREDROPPED, src)
 	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
 
 //for when the item will be immediately placed in a loc other than the ground
