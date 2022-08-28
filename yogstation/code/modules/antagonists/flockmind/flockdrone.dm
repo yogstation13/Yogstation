@@ -326,10 +326,13 @@
 /obj/item/projectile/beam/disabler/flock
 	name = "flock disabler"
 	damage = 25
+	icon_state = "stunbolt"
 
 /obj/item/projectile/beam/flock
 	name = "flock laser"
 	damage = 17
+	icon_state = "stunbolt"
+	color = "#ff0000"
 
 //////////////////////////////////////////////
 //                                          //
