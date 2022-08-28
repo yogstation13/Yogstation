@@ -2750,7 +2750,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -5178,7 +5178,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	icon_state = "cognacglass";
-	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac=20);
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -14247,7 +14247,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -17702,10 +17702,6 @@
 	pixel_x = 7;
 	pixel_y = -5
 	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
@@ -20680,6 +20676,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "dLs" = (
@@ -22291,7 +22291,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -22835,6 +22835,12 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"eIu" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "eIv" = (
 /obj/machinery/camera{
 	c_tag = "Bridge West Entrance";
@@ -24744,18 +24750,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
-"fBz" = (
-/obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/lighter/greyscale{
-	pixel_x = 1;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "fBG" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -25323,7 +25317,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -25505,6 +25499,9 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
+	},
+/obj/machinery/vending/wallhypo{
+	pixel_x = -28
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
@@ -28519,6 +28516,13 @@
 /obj/item/assembly/flash/handheld,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"hlB" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/security/interrogation)
 "hlN" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -30838,7 +30842,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -31646,19 +31650,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"iBS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/table,
-/obj/item/taperecorder{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/item/folder/red{
-	pixel_x = -6;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "iCw" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -32176,14 +32167,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"iNg" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "iNn" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -33605,6 +33588,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"jry" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "jrL" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -34553,6 +34542,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
+"jNQ" = (
+/obj/structure/cloth_curtain{
+	color = "#99ccff";
+	pixel_x = -32
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "jNW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -35381,6 +35380,15 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"kiq" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "kis" = (
 /obj/item/assembly/igniter{
 	pixel_x = -5;
@@ -44820,6 +44828,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"otI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "otV" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -46389,7 +46408,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -48971,6 +48990,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"qlp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/table,
+/obj/item/taperecorder{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/folder/red{
+	pixel_x = -11;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "qlA" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -52841,11 +52873,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/carpet,
 /area/medical/psych)
-"rUY" = (
-/obj/structure/table,
-/obj/item/restraints/handcuffs,
-/turf/open/floor/plasteel/dark,
-/area/security/interrogation)
 "rUZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -54536,7 +54563,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -55066,7 +55093,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plasteel/dark,
@@ -63113,6 +63140,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"wts" = (
+/obj/structure/table,
+/obj/item/storage/box/fancy/cigarettes{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/lighter/greyscale{
+	pixel_x = 1;
+	pixel_y = 4
+	},
+/obj/item/restraints/handcuffs{
+	pixel_x = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/interrogation)
 "wtu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -92450,10 +92493,10 @@ uzO
 uTh
 uTh
 afA
-aaf
-aaa
-aaa
-avs
+qaO
+hlB
+qaO
+ant
 haD
 hKn
 aBz
@@ -92705,11 +92748,11 @@ acd
 czC
 nJM
 jAS
-rUY
-qaO
-qaO
-qaO
-qaO
+kiq
+eIu
+eIu
+jNQ
+bQS
 ant
 fJZ
 xOP
@@ -92962,7 +93005,7 @@ eFR
 nDN
 jGi
 jAS
-bQS
+jry
 sTW
 wEg
 swc
@@ -93219,9 +93262,9 @@ acd
 pwb
 wCb
 jvl
-iNg
+otI
 gTA
-iBS
+qlp
 voF
 bQS
 agj
@@ -93734,7 +93777,7 @@ pLj
 myr
 jAS
 jAS
-fBz
+wts
 oOZ
 ugG
 bQS
