@@ -1,0 +1,6 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Hot potato now costs 12 TC"
+  - tweak: "Hot potato now explodes after 10 seconds if not forced onto someone"
+  - tweak: "Hot potato is now deadly explosive"
