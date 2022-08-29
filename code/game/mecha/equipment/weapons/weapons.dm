@@ -10,7 +10,7 @@
 	var/projectiles_per_shot = 1
 	/// Amount of preditable spread in the shot
 	var/variance = 0
-	/// Amount of unpreditable spread in the shot
+	/// Amount of unpredictable spread in the shot
 	var/randomspread = 0
 	/// Firing delay
 	var/projectile_delay = 0
