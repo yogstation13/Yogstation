@@ -475,7 +475,7 @@
 	remarks = list("Set them on fire...", "Show the punny humans who is here the supreme race...", "Make them burn...", "Explosion are cool!")
 
 /obj/item/book/granter/martial/explosive_fist/already_known(mob/user)
-	if(!ispodperson(user))
+	if(!isplasmaman(user))
 		to_chat(user, span_warning("It says about very dangerous things, that you would prefer not to know."))
 		return TRUE
 	return ..()
