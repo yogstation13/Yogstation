@@ -1,0 +1,8 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "added dchat NTOS PDA messages"
+  - bugfix: "fixed mobspawn corpses starting with active PDA messengers"
+  - bugfix: "fixed NTOS PDAs not respecting language"
+  - bugfix: "fixed reply in message history runtiming"
+  - tweak: "NTOS PDAs now respect tcomms and use signalling"
