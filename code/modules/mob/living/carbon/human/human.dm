@@ -1327,6 +1327,8 @@
 
 /mob/living/carbon/human/fall(forced)
 	. = ..()
+	if(resting)
+		return
 	var/obj/item/clothing/head/hat = get_item_by_slot(SLOT_HEAD)
 	if(istype(hat) && hat.hattable && prob(25))
 		visible_message("[src]'s [lowertext(hat.name)] falls off.")
