@@ -295,8 +295,9 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	data["showing_messages"] = showing_messages
 	var/list/modified_history = list()
 	for(var/M in message_history)
-		if(M[4])
-			modified_history += list(list(M[1], M[4].format_message(user), M[3]))
+		var/datum/signal/subspace/messaging/ntospda/N = M[4]
+		if(N)
+			modified_history += list(list(M[1], N.format_message(user), M[3]))
 		else
 			modified_history += list(list(M[1], M[2], M[3]))
 	data["message_history"] = modified_history
