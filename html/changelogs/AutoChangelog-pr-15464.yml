@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Nitrous oxide chem now only removes 6 units of blood per cycle"
