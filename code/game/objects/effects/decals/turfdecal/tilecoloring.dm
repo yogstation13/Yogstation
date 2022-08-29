@@ -1308,8 +1308,9 @@
 	icon_state = "trimline_warn_lower_flip"
 	alpha = 160
 
-/obj/effect/turf_decal/trimline/atmos/warning/lower
+/obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom
 	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
 
 /obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom/flip
 	icon_state = "trimline_warn_lower_notbottom_flip"
