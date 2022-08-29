@@ -134,11 +134,11 @@ obj/effect/proc_holder/swipe
 	fire(user)
 
 /obj/effect/proc_holder/swipe/fire(mob/living/carbon/user)
-	if(active)
-		remove_ranged_ability(span_notice("You relax your arms."))
 	if(user.handcuffed) 
 		to_chat(user, span_danger("You can't attack while handcuffed!"))
 		return
+	if(active)
+		remove_ranged_ability(span_notice("You relax your arms."))
 	else
 		add_ranged_ability(user, span_notice("You ready your cuffs. <B>Left-click a creature or nearby location to swipe at it!</B>"), TRUE)
 
