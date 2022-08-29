@@ -69,10 +69,7 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/flockdrone/Shoot(atom/targeted_atom)
-	if(a_intent == INTENT_HELP)
-		projectiletype = /obj/item/projectile/beam/disabler/flock
-	else 
-		projectiletype = /obj/item/projectile/beam/flock
+	projectiletype = (a_intent == INTENT_HELP) ? /obj/item/projectile/beam/disabler/flock : /obj/item/projectile/beam/flock
 	return ..()
 
 /mob/living/simple_animal/hostile/flockdrone/AttackingTarget()
