@@ -446,6 +446,16 @@
 /obj/effect/turf_decal/trimline/white/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
 
+/obj/effect/turf_decal/trimline/white/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/white/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/white/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
+
 /// Red trimlines
 
 /obj/effect/turf_decal/trimline/red
@@ -522,6 +532,16 @@
 
 /obj/effect/turf_decal/trimline/red/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
+
+/obj/effect/turf_decal/trimline/red/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/red/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/red/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
 
 /// Green trimlines
 
@@ -600,6 +620,16 @@
 /obj/effect/turf_decal/trimline/green/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
 
+/obj/effect/turf_decal/trimline/green/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/green/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/green/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
+
 /// Blue trimlines
 
 /obj/effect/turf_decal/trimline/blue
@@ -676,6 +706,16 @@
 
 /obj/effect/turf_decal/trimline/blue/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
+
+/obj/effect/turf_decal/trimline/blue/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/blue/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/blue/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
 
 /// Yellow trimlines
 
@@ -754,6 +794,16 @@
 /obj/effect/turf_decal/trimline/yellow/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
 
+/obj/effect/turf_decal/trimline/purple/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/purple/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/purple/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
+
 /// Purple trimlines
 
 /obj/effect/turf_decal/trimline/purple
@@ -830,6 +880,16 @@
 
 /obj/effect/turf_decal/trimline/purple/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
+
+/obj/effect/turf_decal/trimline/purple/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/purple/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/purple/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
 
 /// Brown trimlines
 
@@ -908,6 +968,16 @@
 /obj/effect/turf_decal/trimline/brown/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
 
+/obj/effect/turf_decal/trimline/brown/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/brown/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/brown/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
+
 /// Neutral trimlines
 
 /obj/effect/turf_decal/trimline/neutral
@@ -985,6 +1055,16 @@
 
 /obj/effect/turf_decal/trimline/neutral/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
+
+/obj/effect/turf_decal/trimline/neutral/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/neutral/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/neutral/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
 
 /// DarkBlue trimlines
 /obj/effect/turf_decal/trimline/darkblue
@@ -1068,6 +1148,16 @@
 	icon_state = "trimline_warn_lower_flip"
 	alpha = 150
 
+/obj/effect/turf_decal/trimline/darkblue/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/darkblue/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/darkblue/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
+
 /// Secred trimlines
 
 /obj/effect/turf_decal/trimline/secred
@@ -1148,6 +1238,16 @@
 	icon_state = "trimline_warn_lower_flip"
 	alpha = 160
 
+/obj/effect/turf_decal/trimline/secred/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/secred/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/secred/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
+
 /// engiyellow trimlines
 
 /obj/effect/turf_decal/trimline/engiyellow
@@ -1227,6 +1327,16 @@
 /obj/effect/turf_decal/trimline/engiyellow/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
 	alpha = 160
+
+/obj/effect/turf_decal/trimline/engiyellow/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/engiyellow/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/engiyellow/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
 
 /// atmos trimlines
 
@@ -1314,3 +1424,6 @@
 
 /obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom/flip
 	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/atmos/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
