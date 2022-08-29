@@ -41,7 +41,7 @@
 	jobtype = /datum/job/hos
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/pda/heads/hos
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hos
 
 	belt = /obj/item/storage/belt/security/chief/full
 	ears = /obj/item/radio/headset/heads/hos/alt
@@ -54,7 +54,6 @@
 	head = /obj/item/clothing/head/HoS/beret
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	suit_store = /obj/item/gun/energy/e_gun
-	backpack_contents = list(/obj/item/modular_computer/tablet/phone/preset/advanced/command/hos=1) //yogs - removed departmental budget ID //come here often?
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec
