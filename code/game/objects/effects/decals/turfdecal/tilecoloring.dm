@@ -1147,3 +1147,93 @@
 /obj/effect/turf_decal/trimline/secred/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
 	alpha = 160
+
+/// engiyellow trimlines
+
+/obj/effect/turf_decal/trimline/engiyellow
+	color = "#CCB223"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/engiyellow/line
+	icon_state = "trimline"
+
+/obj/effect/turf_decal/trimline/engiyellow/corner
+	icon_state = "trimline_corner"
+
+/obj/effect/turf_decal/trimline/engiyellow/end
+	icon_state = "trimline_end"
+
+/obj/effect/turf_decal/trimline/engiyellow/arrow_cw
+	icon_state = "trimline_arrow_cw"
+
+/obj/effect/turf_decal/trimline/engiyellow/arrow_ccw
+	icon_state = "trimline_arrow_ccw"
+
+/obj/effect/turf_decal/trimline/engiyellow/warning
+	icon_state = "trimline_warn"
+
+/obj/effect/turf_decal/trimline/engiyellow/mid_joiner
+	icon_state = "trimline_mid"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled
+	icon_state = "trimline_box_fill"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/line
+	icon_state = "trimline_fill"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner
+	icon_state = "trimline_corner_fill"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/end
+	icon_state = "trimline_end_fill"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/arrow_cw
+	icon_state = "trimline_arrow_cw_fill"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/arrow_ccw
+	icon_state = "trimline_arrow_ccw_fill"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/warning
+	icon_state = "trimline_warn_fill"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/mid_joiner
+	icon_state = "trimline_mid_fill"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/shrink_cw
+	icon_state = "trimline_shrink_cw"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/shrink_ccw
+	icon_state = "trimline_shrink_ccw"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/warning/flip
+	icon_state = "trimline_warn_fill_flip"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower
+	icon_state = "trimline_fill_lower"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/shrink_cw/lower
+	icon_state = "trimline_shrink_cw_lower"
+
+/obj/effect/turf_decal/trimline/engiyellow/filled/shrink_ccw/lower
+	icon_state = "trimline_shrink_ccw_lower"
+
+/obj/effect/turf_decal/trimline/engiyellow/corner/lower
+	icon_state = "trimline_corner_lower"
+
+/obj/effect/turf_decal/trimline/engiyellow/warning/lower
+	icon_state = "trimline_warn_lower"
+	alpha = 160
+
+/obj/effect/turf_decal/trimline/engiyellow/warning/lower/flip
+	icon_state = "trimline_warn_lower_flip"
+	alpha = 160
+
+///TESTING
+
+/obj/effect/turf_decal/trimline/atmos/filled/line/lower
+	icon_state = "trimline_fill_lower_gap"
+	color = "#CCB223"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/atmos/filled/mid_joiner_lower_big
+	icon_state = "trimline_mid_fill_lower_big"
