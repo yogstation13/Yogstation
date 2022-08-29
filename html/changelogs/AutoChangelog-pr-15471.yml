@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "IPCs are no longer affected by chems they cant process"
+  - rscadd: "IPCs can now eat and drink"
