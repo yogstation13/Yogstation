@@ -1,0 +1,5 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - bugfix: "Landmines now look for a dmi folder"
+  - tweak: "Landmines are now slightly invisible"
