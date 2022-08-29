@@ -1,0 +1,565 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/closet{
+	name = "wardrobe"
+	},
+/obj/item/clothing/shoes/xeno_wraps/science,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/under/rank/scientist/skirt,
+/obj/item/clothing/under/rank/security/skirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/light,
+/area/ruin/powered)
+"c" = (
+/turf/open/floor/plating,
+/area/ruin/powered)
+"d" = (
+/turf/template_noop,
+/area/template_noop)
+"e" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/powered)
+"f" = (
+/turf/closed/mineral/volcanic/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"g" = (
+/obj/effect/spawner/lootdrop/trashbin,
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"h" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/clothing/gloves/color/black,
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"i" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
+"j" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/ruin/powered)
+"k" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/black,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/pod/light,
+/area/ruin/powered)
+"l" = (
+/obj/item/gps/computer,
+/turf/open/floor/pod/light,
+/area/ruin/powered)
+"m" = (
+/obj/structure/sign/mining/survival,
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/ruin/powered)
+"o" = (
+/obj/effect/decal/remains/human,
+/obj/item/organ/tail/lizard{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/floor/plating/asteroid/basalt,
+/area/lavaland/surface/outdoors)
+"p" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/lavaland/surface/outdoors)
+"q" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
+/area/ruin/powered)
+"u" = (
+/obj/item/pickaxe/silver,
+/turf/open/floor/plating/asteroid/basalt,
+/area/lavaland/surface/outdoors)
+"v" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/ruin/powered)
+"x" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"y" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/asteroid/basalt,
+/area/lavaland/surface/outdoors)
+"z" = (
+/obj/effect/decal/remains/robot,
+/obj/item/borg/upgrade/modkit/minebot_passthrough,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/powered)
+"A" = (
+/obj/structure/sign/mining/survival{
+	dir = 8
+	},
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/ruin/powered)
+"B" = (
+/obj/structure/marker_beacon,
+/turf/open/floor/plating/asteroid/basalt,
+/area/template_noop)
+"C" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"D" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/pod/light,
+/area/ruin/powered)
+"E" = (
+/turf/open/floor/pod/light,
+/area/ruin/powered)
+"F" = (
+/obj/machinery/smartfridge/survival_pod/empty,
+/turf/open/floor/pod/light,
+/area/ruin/powered)
+"H" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/ruin/powered)
+"I" = (
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/ruin/powered)
+"J" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"K" = (
+/obj/structure/window/shuttle/survival_pod/spawner,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"L" = (
+/obj/structure/sign/mining,
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/ruin/powered)
+"M" = (
+/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/ruin/powered)
+"N" = (
+/obj/structure/fans/tiny,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"O" = (
+/obj/structure/table/survival_pod,
+/obj/item/fulton_core{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/fulton_core{
+	pixel_y = 2
+	},
+/obj/item/clothing/head/beret/sci{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"R" = (
+/obj/structure/rack,
+/obj/item/t_scanner/adv_mining_scanner,
+/obj/item/pickaxe/mini,
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"S" = (
+/obj/structure/rack,
+/obj/item/extraction_pack{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/extraction_pack,
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"T" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/template_noop)
+"U" = (
+/obj/structure/window/shuttle/survival_pod/spawner/north,
+/turf/open/floor/plating,
+/area/ruin/powered)
+"W" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/lavaland/surface/outdoors)
+"X" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/obj/effect/spawner/lootdrop/trashbin,
+/obj/effect/spawner/lootdrop/trashbin,
+/turf/open/floor/pod/dark,
+/area/ruin/powered)
+"Y" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/gibs/limb{
+	dir = 8
+	},
+/obj/item/clothing/accessory/armband/science,
+/obj/structure/tubes,
+/turf/open/floor/pod/light,
+/area/ruin/powered)
+"Z" = (
+/obj/structure/sign/mining/survival{
+	dir = 1
+	},
+/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/area/ruin/powered)
+
+(1,1,1) = {"
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+"}
+(2,1,1) = {"
+d
+d
+d
+d
+f
+f
+f
+d
+d
+d
+d
+d
+d
+d
+d
+d
+"}
+(3,1,1) = {"
+d
+d
+d
+f
+f
+f
+f
+f
+f
+d
+d
+B
+d
+d
+d
+d
+"}
+(4,1,1) = {"
+d
+d
+d
+f
+f
+u
+W
+f
+f
+f
+T
+T
+T
+d
+d
+d
+"}
+(5,1,1) = {"
+d
+d
+f
+f
+o
+y
+e
+j
+I
+I
+v
+T
+T
+d
+d
+d
+"}
+(6,1,1) = {"
+d
+d
+f
+f
+p
+H
+C
+i
+O
+X
+I
+T
+T
+T
+d
+d
+"}
+(7,1,1) = {"
+d
+d
+f
+f
+f
+L
+F
+q
+J
+g
+m
+T
+T
+B
+d
+d
+"}
+(8,1,1) = {"
+d
+d
+d
+f
+f
+I
+l
+E
+E
+x
+N
+T
+T
+T
+T
+d
+"}
+(9,1,1) = {"
+d
+d
+d
+d
+f
+Z
+I
+I
+D
+R
+L
+T
+T
+T
+T
+d
+"}
+(10,1,1) = {"
+d
+d
+d
+d
+d
+U
+b
+E
+E
+S
+K
+T
+T
+T
+T
+d
+"}
+(11,1,1) = {"
+d
+d
+d
+d
+d
+I
+k
+Y
+h
+z
+c
+f
+T
+T
+T
+d
+"}
+(12,1,1) = {"
+d
+d
+d
+d
+d
+v
+I
+I
+A
+M
+f
+f
+f
+T
+T
+d
+"}
+(13,1,1) = {"
+d
+d
+d
+d
+d
+f
+f
+f
+f
+f
+f
+f
+f
+B
+T
+d
+"}
+(14,1,1) = {"
+d
+d
+d
+d
+d
+d
+f
+f
+f
+f
+f
+f
+T
+T
+d
+d
+"}
+(15,1,1) = {"
+d
+d
+d
+d
+d
+d
+d
+f
+f
+f
+f
+T
+T
+T
+d
+d
+"}
+(16,1,1) = {"
+d
+d
+d
+d
+d
+d
+d
+d
+d
+T
+B
+T
+T
+d
+d
+d
+"}
+(17,1,1) = {"
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+"}
+(18,1,1) = {"
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+"}
