@@ -82,11 +82,17 @@
 	desc = "Better stay away from that thing."
 	density = FALSE
 	anchored = TRUE
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
+	alpha = 30
 	var/triggered = 0
 	var/smartmine = FALSE
 	var/disarm_time = 12 SECONDS
 	var/disarm_product = /obj/item/deployablemine // ie what drops when the mine is disarmed
+
+/obj/effect/mine/Initialize()
+	. = ..()
+	layer = ABOVE_MOB_LAYER
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
