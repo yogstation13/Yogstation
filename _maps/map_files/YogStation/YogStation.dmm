@@ -33192,20 +33192,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"jjc" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/table/glass,
-/obj/item/storage/box{
-	pixel_x = 9;
-	pixel_y = 4
-	},
-/obj/item/storage/box{
-	pixel_x = -8;
-	pixel_y = 1
-	},
-/obj/item/hand_labeler,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "jjr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -42883,17 +42869,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"nyz" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/structure/cloth_curtain{
-	color = "#99ccff";
-	pixel_x = -31
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "nyM" = (
 /obj/machinery/hydroponics/soil,
 /obj/effect/decal/cleanable/dirt,
@@ -44840,13 +44815,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"osl" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/genetics/cloning)
 "osz" = (
 /obj/structure/table,
 /obj/item/shard{
@@ -52291,6 +52259,26 @@
 	},
 /turf/open/space,
 /area/engine/atmos_distro)
+"rEO" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/structure/cloth_curtain{
+	color = "#99ccff";
+	pixel_x = -31
+	},
+/obj/structure/table/glass,
+/obj/item/storage/box{
+	pixel_x = -8;
+	pixel_y = 1
+	},
+/obj/item/storage/box{
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "rER" = (
 /mob/living/simple_animal/pet/fox/fennec/Autumn,
 /obj/effect/turf_decal/trimline/brown/filled/line{
@@ -108688,7 +108676,7 @@ qts
 uNK
 fZP
 xhP
-nyz
+rEO
 jqn
 vba
 gKl
@@ -109457,11 +109445,11 @@ rrG
 qBq
 bpE
 vrc
-jjc
+oCM
 oCM
 rIK
 kIF
-osl
+jcz
 hsT
 vQD
 aTk
