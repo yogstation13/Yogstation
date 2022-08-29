@@ -1237,3 +1237,15 @@
 
 /obj/effect/turf_decal/trimline/atmos/filled/mid_joiner_lower_big
 	icon_state = "trimline_mid_fill_lower_big"
+	color = "#539085"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/atmos/warning/lower
+	icon_state = "trimline_warn_lower_nooutline"
+	color = "#539085"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/atmos/warning/lower
+	icon_state = "trimline_warn_lower_nooutline"
+	color = "#539085"
+	alpha = 220
