@@ -1185,7 +1185,7 @@
 
 /obj/effect/turf_decal/trimline/darkblue/filled/warning
 	icon_state = "trimline_warn_fill"
-		alpha = 150
+	alpha = 150
 
 /obj/effect/turf_decal/trimline/darkblue/filled/mid_joiner
 	icon_state = "trimline_mid_fill"
