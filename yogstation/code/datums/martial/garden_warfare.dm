@@ -166,6 +166,7 @@
 	button_icon_state = "tentacle"
 	var/mob/living/carbon/human/marked_dude = null
 	var/last_time_marked = 0
+	var/range = 2
 
 /datum/action/vine_snatch/New()
 	. = ..()
@@ -181,10 +182,11 @@
 	if(world.time > last_time_marked + 3 SECONDS)
 		to_chat(owner, span_warning("Your mark has expired, you can't use [name]."))
 		return
-	if(get_dist(get_turf(owner),get_turf(marked_dude)) > 2)
-		to_chat(owner, span_warning("Your target needs to be in a range of two titles, to be able to use [name]."))
+	if(get_dist(get_turf(owner),get_turf(marked_dude)) > range)
+		to_chat(owner, span_warning("Your target needs to be in a range of [range] titles, to be able to use [name]."))
 		return
 	to_chat(owner, span_notice("You throw a vine into [marked_dude]!"))
+	owner.Beam(marked_dude, "vine", time= 10, maxdistance = range)
 	var/obj/item/I = marked_dude.get_active_held_item()
 	if(I && !HAS_TRAIT(I, TRAIT_NODROP))
 		marked_dude.visible_message(span_warning("[owner] hits [marked_dude] with a vine, pulling [I] out of their hands!"), \
