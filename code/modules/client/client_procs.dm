@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		src.mentor_datum = mentor
 		src.add_mentor_verbs()
 		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
-			GLOB.mentors += src
+			GLOB.mentors |= src
 
 	// yogs end
 
