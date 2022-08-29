@@ -42,7 +42,6 @@
 #define ARMMY_MONSTER "Armmy (100 Blood)"
 #define CALCIUM_MONSTER "Calcium (150 Blood)"
 #define HUSK_MONSTER "Husk"
-
 #define TOREADOR_MAX_HUMANITY_LOSS 10
 
 /**
@@ -81,8 +80,6 @@
 /// This Power doesn't cost bloot to run while unconscious
 #define BP_AM_COSTLESS_UNCONSCIOUS (1<<3)
 
-/**
- * Signals
- */
+// Signals
 
 #define COMSIG_BLOODSUCKER_RANKS_SPENT
