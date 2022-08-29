@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "fixed being able to PDA bomb other PDA uplinks and Captains and AIs"
