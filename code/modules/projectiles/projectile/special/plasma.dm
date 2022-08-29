@@ -55,6 +55,19 @@
 // Same as the scatter but with automatic defusing
 /obj/item/projectile/plasma/scatter/adv
 
+// Megafauna loot, possibly best cutter?
+/obj/item/projectile/plasma/stalwart
+	name = "plasma beam"
+	icon_state = "plasmacutter_stalwart"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	tracer_type = /obj/effect/projectile/tracer/laser/blue
+	muzzle_type = /obj/effect/projectile/muzzle/laser/blue
+	impact_type = /obj/effect/projectile/impact/laser/blue
+	damage = 9
+	range = 8
+	mine_range = 5
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+
 //mega plasma shotgun auto defuses
 /obj/item/projectile/plasma/scatter/adv/mega
 	range = 7

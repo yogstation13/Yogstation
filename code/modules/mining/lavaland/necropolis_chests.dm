@@ -1657,20 +1657,65 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	z_level_check = FALSE
 
 //Stalwart
+
+/obj/item/gun/energy/plasmacutter/adv/robocutter
+	name = "ancient focusing crystal"
+	desc = "A humming crystaline weapon, firing blasts of focused energy."
+	fire_delay = 4
+	icon = 'icons/obj/guns/energy.dmi'
+	icon_state = "robocutter"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/stalwart)
+	selfcharge = 1
+
+/obj/item/twohanded/bonespear/stalwartpike
+	icon = 'icons/obj/weapons/spears.dmi'
+	icon_state = "stalwartspear0"
+	name = "ancient control rod"
+	//don't want your rare megafauna loot shattering easily
+	max_integrity = 2000
+	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
+	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	w_class = WEIGHT_CLASS_HUGE
+	force = 8
+	throwforce = 30
+	embedding = list("embedded_impact_pain_multiplier" = 5)
+	sharpness = SHARP_POINTY
+	block_chance = 20
+	var/fauna_damage_bonus = 62
+	var/fauna_damage_type = BRUTE
+
+/obj/item/twohanded/bonespear/stalwartpike/update_icon()
+	icon_state = "stalwartspear[wielded]"
+
+/obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+			playsound(L, 'sound/magic/blind.ogg', 100, 1)
+
+
 /obj/structure/closet/crate/sphere/stalwart
 	name = "silvery capsule"
 	desc = "It feels cold to the touch..."
 
 /obj/structure/closet/crate/sphere/stalwart/PopulateContents()
-	new /obj/item/gun/energy/plasmacutter/adv/robocutter
+	var/loot = rand(1,3)
+	switch(loot)
+		if(1)
+			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
+		if(2)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/stack/ore/dilithium_crystal(src)
+			new /obj/item/stack/ore/dilithium_crystal(src)
+			new /obj/item/stack/ore/dilithium_crystal(src)
+			new /obj/item/stack/ore/dilithium_crystal(src)
+		if(3)
+			new /obj/item/twohanded/bonespear/stalwartpike(src)
 
-/obj/item/gun/energy/plasmacutter/adv/robocutter
-	name = "energized powercutter"
-	desc = "Ripped out of an ancient machine, this self-recharging cutter is unmatched."
-	fire_delay = 4
-	icon = 'icons/obj/guns/energy.dmi'
-	icon_state = "robocutter"
-	selfcharge = 1
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"

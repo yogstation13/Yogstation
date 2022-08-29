@@ -16,6 +16,13 @@
 	delay = 10
 	e_cost = 10
 
+//cool alien plasma beams
+/obj/item/ammo_casing/energy/plasma/stalwart
+	projectile_type = /obj/item/projectile/plasma/stalwart
+	fire_sound = 'sound/weapons/resonator_blast.ogg'
+	delay = 5
+	e_cost = 6
+
 /obj/item/ammo_casing/energy/plasma/adv/mega
 	projectile_type = /obj/item/projectile/plasma/adv/mega
 
