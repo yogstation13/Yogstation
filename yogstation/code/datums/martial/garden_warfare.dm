@@ -11,7 +11,8 @@
 	id = MARTIALART_GARDENWARFARE
 	block_chance = 50
 	help_verb =  /mob/living/carbon/human/proc/gardern_warfare_help
-	var/datum/action/vine_snatch/vine_snatch = new/datum/action/vine_snatch()
+	var/datum/action/vine_snatch/vine_snatch = new /datum/action/vine_snatch()
+	var/current_combo
 
 /datum/martial_art/gardern_warfare/can_use(mob/living/carbon/human/H)
 	return ispodperson(H)
@@ -28,6 +29,8 @@
 /datum/martial_art/gardern_warfare/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
+	if(current_combo && current_combo != SPLINTER_COMBO)
+		streak = ""
 	add_to_streak("H",D)
 	if(check_streak(A,D))
 		return TRUE
@@ -36,6 +39,8 @@
 /datum/martial_art/gardern_warfare/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!(can_use(A)))
 		return FALSE
+	if(current_combo && current_combo !=  VINE_SNATCH_COMBO)
+		streak = ""
 	add_to_streak("D",D)
 	if(check_streak(A,D))
 		return TRUE
@@ -43,23 +48,26 @@
 
 /datum/martial_art/gardern_warfare/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(A.a_intent == INTENT_GRAB && A!=D && (can_use(A))) 
+		if(current_combo && current_combo !=  STRANGLE_COMBO)
+			streak = ""
 		add_to_streak("G",D)
 		if(check_streak(A,D))
 			return TRUE
-		return FALSE
-	else
-		return FALSE
+	return FALSE
 
 /datum/martial_art/gardern_warfare/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
 	if(findtext(streak, VINE_SNATCH_COMBO))
+		current_combo = VINE_SNATCH_COMBO
 		vine_mark(A,D)
 		return FALSE
 	if(findtext(streak, PRE_STRANGLE_COMBO))
+		current_combo = STRANGLE_COMBO
 		strangle(A,D)
 		return FALSE  ///Zamn
 	if(findtext(streak, PRE_SPLINTER_COMBO))
+		current_combo = SPLINTER_COMBO
 		splinter_stab(A,D)
 		return TRUE
 
@@ -74,7 +82,11 @@
 	if(findtext(streak, STRANGLE_COMBO))
 		streak = ""
 		ADD_TRAIT(D, TRAIT_MUTE, "martial")
+		block_chance = 25
 		final_strangle(A,D)
+		block_chance = initial(block_chance)
+		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
+		streak = ""
 	else 
 		D.visible_message(span_danger("[A] wraps a vine around [D]'s throat!"), \
 					span_userdanger("[A] wraps a vine around your throat!"))
@@ -95,7 +107,17 @@
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, 30)
 
-		D.apply_damage(20, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	
+		D.apply_damage(20, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED)
+
+		var/list/arms = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+		var/arm_zone = pick(arms)
+		arms -= arm_zone
+		var/obj/item/bodypart/affecting_arm = A.get_bodypart(ran_zone(arm_zone))
+		if(!affecting_arm)
+			affecting_arm = A.get_bodypart(ran_zone(pick(arms)))
+		var/arm_armor_block = A.run_armor_check(affecting_arm, MELEE, 5)
+
+		A.apply_damage(5, BRUTE, arm_zone, arm_armor_block) 	
 
 		var/obj/item/splinter = new /obj/item/splinter(D)
 		D.embed_object(splinter, affecting, FALSE, FALSE, TRUE)
@@ -114,17 +136,12 @@
 		D.apply_damage(15, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	
 
 /datum/martial_art/gardern_warfare/proc/final_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	block_chance = initial(block_chance)
 	if(!can_strangle(A, D))
-		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
 		return
 	if(!do_mob(A, D, 1 SECONDS))
-		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
 		return
 	if(!can_strangle(A, D))
-		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
 		return
-	block_chance = 25 
 	D.adjustOxyLoss(10)
 	if(prob(35))
 		to_chat(D, span_danger("You can't breath!"))
@@ -161,7 +178,7 @@
 	if(!marked_dude)
 		to_chat(owner, span_warning("You can't use [name] while not having anyone marked."))
 		return
-	if(world.time < last_time_marked + 3 SECONDS)
+	if(world.time > last_time_marked + 3 SECONDS)
 		to_chat(owner, span_warning("Your mark has expired, you can't use [name]."))
 		return
 	if(get_dist(get_turf(owner),get_turf(marked_dude)) > 2)
