@@ -130,7 +130,7 @@
 		return
 	visible_message(span_danger("[victim] sets off [icon2html(src, viewers(src))] [src]!"))
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-	s.set_up(3, 1, src)
+	s.set_up(1, 0, src)
 	s.start()
 	mineEffect(victim)
 	triggered = 1
