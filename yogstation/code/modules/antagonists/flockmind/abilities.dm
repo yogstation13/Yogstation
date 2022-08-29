@@ -234,7 +234,7 @@
 
 /datum/action/cooldown/flock/build/Trigger()
 	var/list/build_choices = list()
-	for(var/datum/construction_datum/CD in subtypesof(/datum/construction_datum))
+	for(var/datum/construction_datum/CD in GLOB.flockmind_structures)
 		var/image/building_icon = image(CD.icon_icon, CD.icon_state)
 		var/info_text = "<span class='boldnotice'>[initial(CD.name)]</span>"
 
@@ -244,7 +244,14 @@
 
 		build_choices[initial(CD.name)] = choice
 
-	var/datum/construction_datum/construction = show_radial_menu(owner, owner, build_choices, radius = 60, tooltips = TRUE)
+	var/choice = show_radial_menu(owner, owner, build_choices, radius = 60, tooltips = TRUE)
+	if(!choice)
+		return
+	var/datum/construction_datum/construction
+	for(var/datum/construction_datum/CD in GLOB.flockmind_structures)
+		if(initial(CD.name) == choice)
+			construction = CD
+			break
 	if(!construction)
 		return
 	var/turf/T = get_turf(owner)

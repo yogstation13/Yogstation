@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(flockmind_structures, subtypesof(/datum/construction_datum))
+
 /obj/structure/destructible/flock/construction
 	name = "Weird building"
 	desc = "It's some weird looking ghost building. Seems like its under construction, You can see faint strands of material floating in it."
