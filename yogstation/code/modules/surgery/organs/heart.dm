@@ -18,6 +18,6 @@
 		SEND_SIGNAL(owner, COMSIG_NANITE_ADJUST_VOLUME, nanite_boost)
 	else
 		if(owner)
-			to_chat(owner, "<span class = 'userdanger'>You feel your heart collapse in on itself!</span>")
+			to_chat(owner, span_userdanger("You feel your heart collapse in on itself!"))
 			Remove(owner) //the heart is made of nanites so without them it just breaks down
 		qdel(src)
