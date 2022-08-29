@@ -574,3 +574,12 @@
 			active_program = program
 			program.alert_pending = FALSE
 			enabled = TRUE
+
+/// Sets visible messages to also send to holder because coders didn't know it didn't do this
+/obj/item/modular_computer/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE)
+	. = ..()
+	if(ismob(loc))
+		to_chat(loc, message)
+
+/obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
+	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE
