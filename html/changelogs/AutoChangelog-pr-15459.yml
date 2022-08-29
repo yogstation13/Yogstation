@@ -1,0 +1,8 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - rscadd: "Re-enables a sniper ammo sprite that was sitting around in code by applying it to penetrator ammo"
+  - tweak: "L6 HP does 5 more points of damage now"
+  - tweak: "L6 Incend does 7 more points of damage but applies one fewer fire stack"
+  - tweak: "Buffs 9mm alternative ammos to do three additional damage each"
+  - imageadd: "Adds alternative L6 ammunition sprites for the in-hand box"

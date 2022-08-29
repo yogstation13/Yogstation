@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "KAs now deal half their normal damage when fired in an optimal environment on the station z-level"

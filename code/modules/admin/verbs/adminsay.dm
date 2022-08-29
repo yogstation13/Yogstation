@@ -15,7 +15,7 @@
 	msg = keywords_lookup(msg)
 	var/custom_asay_color = (CONFIG_GET(flag/allow_admin_asaycolor) && prefs.asaycolor) ? "<font color=[prefs.asaycolor]>" : null // Yogs -- yogs asay
 	msg = "<span class='adminsay'>[span_prefix("ADMIN:")] <EM>[key_name(usr, 1)]</EM> [ADMIN_FLW(mob)]: [custom_asay_color]<span class='message linkify'>[msg]</span></span>[custom_asay_color ? "</font>":null]"
-	to_chat(GLOB.admins,
+	to_chat(GLOB.permissions.admins,
 		type = MESSAGE_TYPE_ADMINCHAT,
 		html = msg,
 		confidential = TRUE)

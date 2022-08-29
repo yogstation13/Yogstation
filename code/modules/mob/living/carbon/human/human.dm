@@ -401,7 +401,7 @@
 							R = find_record("name", perpname, GLOB.data_core.security)
 							if(R)
 								if(href_list["status"])
-									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Paroled", "Discharged", "Cancel")
+									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged", "Cancel")
 									if(setcriminal != "Cancel")
 										if(R)
 											if(H.canUseHUD())
@@ -555,6 +555,8 @@
 				if("*Arrest*")
 					threatcount += 5
 				if("Incarcerated")
+					threatcount += 2
+				if("Suspected")
 					threatcount += 2
 				if("Paroled")
 					threatcount += 2
@@ -1322,3 +1324,12 @@
 	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
 		Bumped(AM)
 		return AM.attack_hulk(src)
+
+/mob/living/carbon/human/fall(forced)
+	. = ..()
+	if(resting)
+		return
+	var/obj/item/clothing/head/hat = get_item_by_slot(SLOT_HEAD)
+	if(istype(hat) && hat.hattable && prob(25))
+		visible_message("[src]'s [lowertext(hat.name)] falls off.")
+		dropItemToGround(hat)
