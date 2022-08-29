@@ -96,11 +96,11 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	))
 	signal.send_to_receivers()
 
-	if(!signal.data["done"])
+	if (!signal.data["done"])
 		computer.visible_message(span_danger("ERROR: Your message could not be processed by a broadcaster."), null, null, 1)
 		return FALSE
 
-	if(!signal.data["logged"])
+	if (!signal.data["logged"])
 		computer.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
 		return FALSE
 	
