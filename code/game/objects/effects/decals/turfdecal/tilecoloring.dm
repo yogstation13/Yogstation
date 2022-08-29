@@ -1312,4 +1312,4 @@
 	icon_state = "trimline_warn_lower_nobottom"
 
 /obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom/flip
-	icon_state = "trimline_warn_lower_nobottom_flip"
+	icon_state = "trimline_warn_lower_notbottom_flip"
