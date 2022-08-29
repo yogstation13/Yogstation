@@ -97,6 +97,7 @@
 	fire_sound_volume = 30
 	lefthand_file = null  ///We don't want it to be visible inhands
 	righthand_file = null
+	mag_type = /obj/item/ammo_box/magazine/m10mm/martial
 	var/mob/gun_owner
 	var/dying = FALSE
 
@@ -119,13 +120,16 @@
 
 /obj/item/gun/ballistic/automatic/pistol/martial/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(!dying)
-		addtimer(CALLBACK(src, .proc/process_burst), 2 SECONDS)  ///I, kinda, don't very understand what gun code does, but it seems to be OK.
+		addtimer(CALLBACK(src, .proc/process_burst), 1 SECONDS)  ///I, kinda, don't very understand what gun code does, but it seems to be OK.
 		dying = TRUE
 	. = ..()
 
 /obj/item/gun/ballistic/automatic/pistol/martial/proc/Die()
 	to_chat(gun_owner, span_warning("You hide [src]."))	
 	qdel(src)	
+
+/obj/item/ammo_box/magazine/m10mm/martial
+	max_ammo = 1
 
 /mob/living/carbon/human/proc/preternis_martial_help()
 	set name = "Refresh Data"

@@ -107,7 +107,8 @@
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, 30)
 
-		D.apply_damage(20, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED)
+		D.apply_damage(20, BRUTE, selected_zone, armor_block, sharpness = SHARP_POINTY)
+		D.Stun(1 SECONDS)
 
 		var/list/arms = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 		var/arm_zone = pick(arms)
@@ -133,7 +134,7 @@
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, 30)
 
-		D.apply_damage(15, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	
+		D.apply_damage(15, BRUTE, selected_zone, armor_block, sharpness = SHARP_POINTY) 	
 
 /datum/martial_art/gardern_warfare/proc/final_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_strangle(A, D))
