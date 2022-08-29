@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - tweak: "Ensure % survival rate doesnt complete until shift end"

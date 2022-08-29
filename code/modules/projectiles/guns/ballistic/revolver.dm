@@ -8,6 +8,7 @@
 	eject_sound = 'sound/weapons/revolverempty.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 90
+	fire_delay = 4
 	dry_fire_sound = 'sound/weapons/revolverdry.ogg'
 	casing_ejector = FALSE
 	internal_magazine = TRUE

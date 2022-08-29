@@ -379,6 +379,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
+	strict = TRUE
 	is_fabric = TRUE
 	pull_effort = 2 SECONDS
 	loom_result = /obj/item/stack/sheet/silk
@@ -458,6 +459,7 @@ GLOBAL_LIST_INIT(silk_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cotton
+	strict = TRUE
 	pull_effort = 30
 	loom_result = /obj/item/stack/sheet/cloth
 	grind_results = list(/datum/reagent/cellulose = 20)
@@ -784,6 +786,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	new /datum/stack_recipe("colo cups", /obj/item/reagent_containers/food/drinks/colocup, 1), \
 	new /datum/stack_recipe("large water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty,3), \
 	new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
+	new /datum/stack_recipe("comfy plastic chair", /obj/structure/chair/comfy/plastic, 5, one_per_turf = TRUE, on_floor = TRUE), \
 	new /datum/stack_recipe("water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/empty), \
 	new /datum/stack_recipe("wet floor sign", /obj/item/clothing/suit/caution, 2)))
 

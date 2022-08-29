@@ -53,6 +53,13 @@
 	..()
 	store_file(new/datum/computer_file/program/ntnet_dos(src))
 
+/obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman/install_default_programs()
+	..()
+	var/datum/computer_file/program/bomberman/B = new /datum/computer_file/program/bomberman(src)
+	var/datum/bombcode/C = new /datum/bombcode
+	B.bombcode = C.code
+	store_file(B)
+
 //////////////
 //Trap Disks//
 //////////////

@@ -534,9 +534,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Syndicate Revolver"
 	desc = "A brutally simple Syndicate revolver that fires .357 Magnum rounds and has 7 chambers."
 	item = /obj/item/gun/ballistic/revolver
-	cost = 13
+	cost = 6
 	surplus = 50
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"
@@ -782,7 +781,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A speed loader that contains seven additional .357 Magnum rounds; usable with the Syndicate revolver. \
 			For when you really need a lot of things dead."
 	item = /obj/item/ammo_box/a357
-	cost = 4
+	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
 
@@ -1002,15 +1001,25 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/detomatix
-	name = "Detomatix PDA Cartridge"
-	desc = "When inserted into a personal digital assistant, this cartridge gives you four opportunities to \
-			detonate PDAs of crewmembers who have their message feature enabled. \
-			The concussive effect from the explosion will knock the recipient out for a short period, and deafen them for longer."
-	item = /obj/item/cartridge/virus/syndicate
+	name = "BomberMan Program"
+	desc = "This program gives you four opportunities to detonate PDAs and computers of crewmembers \
+			who have their message feature enabled. The concussive effect from the explosion \
+			will knock the recipient out for a short period, and deafen them for longer."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman
 	cost = 6
 	manufacturer = /datum/corporation/traitor/cybersun
 	restricted = TRUE
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/explosives/detomatix/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	. = ..()
+	var/obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman/bombdisk = .
+	var/datum/computer_file/program/bomberman/program = bombdisk.find_file_by_name("bomberman")
+	var/code = program.bombcode
+
+	to_chat(user, span_warning("Your BomberMan code is : [code]."))
+	if(user.mind)
+		user.mind.store_memory("BomberMan code for [U.parent] : [code]")
 
 /datum/uplink_item/explosives/emp
 	name = "EMP Grenades and Implanter Kit"
@@ -2176,7 +2185,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Reverse Revolver"
 	desc = "A revolver that always fires at its user. \"Accidentally\" drop your weapon, then watch as the greedy corporate pigs blow their own brains all over the wall. \
 	The revolver itself is actually real. Only clumsy people, and clowns, can fire it normally. Comes in a box of hugs. Honk."
-	cost = 14
+	cost = 8
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/storage/box/hug/reverse_revolver
 	restricted_roles = list("Clown")
