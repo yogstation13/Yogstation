@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;permissions_controller - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/permissions_controller.html#var">Var Details</a> - <a href="datum/permissions_controller.html#proc">Proc Details</a></header>
+<main>
+<h1>/<a href="datum.html">datum</a>/<a href="datum/permissions_controller.html">permissions_controller</a>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 25"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/permissions_controller.html#var/admin_datums">admin_datums</a></th><td>Associated list of ckey -&gt; admin datums</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#var/admins">admins</a></th><td>List of all admin clients</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#var/deadmins">deadmins</a></th><td>List of all deadmins</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#var/legacy_admins">legacy_admins</a></th><td>Admins loaded with the legacy system</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#var/legacy_ranks">legacy_ranks</a></th><td>Ranks loaded with the legacy system</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#var/protected_admins">protected_admins</a></th><td>Admins that should not be allowed to be modified by the permissions panel</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#var/protected_ranks">protected_ranks</a></th><td>Ranks that should not be allowed to be modified by the permissions panel</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/permissions_controller.html#proc/_load_permissions_for">_load_permissions_for</a></th><td>Most backends probably want to override this one
+Loads after legacy but before autoadmin/localhost
+If you woud like your backend to load before legacy, or after autoadmin/localhost
+Override the above function instead</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#proc/add_admin">add_admin</a></th><td>This proc prompts the user for the name that want to add
+Then uses should_add_admin(ckey) to determine if there is a reason
+that ckey shouldn't be added (usually due to already being adminned)
+make_admin(ckey) is then called to handle the actual adding</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#proc/clear_admins">clear_admins</a></th><td>Removes all admin status from everyone</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#proc/compare_rights">compare_rights</a></th><td>Returns -1 if fewer, 0 if same, 1 if more</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#proc/load_admins">load_admins</a></th><td>Pulls in admin data, for if the backend caches the admin data</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#proc/load_permissions_for">load_permissions_for</a></th><td>Queries the backend permissions system then creates their datum if they should have one
+Returns true if a datum was created</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#proc/set_legacy_rank">set_legacy_rank</a></th><td>Returns true if the rank was changed</td></tr>
+            <tr><th><a href="datum/permissions_controller.html#proc/start">start</a></th><td>Clears any existing stored admins and (re) loads the data from the backend</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/admin_datums"><aside class="declaration">var </aside>admin_datums
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 40"/></a></h3>
+        <p>Associated list of ckey -&gt; admin datums</p><h3 id="var/admins"><aside class="declaration">var </aside>admins
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 43"/></a></h3>
+        <p>List of all admin clients</p><h3 id="var/deadmins"><aside class="declaration">var </aside>deadmins
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 46"/></a></h3>
+        <p>List of all deadmins</p><h3 id="var/legacy_admins"><aside class="declaration">var </aside>legacy_admins
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 33"/></a></h3>
+        <p>Admins loaded with the legacy system</p><h3 id="var/legacy_ranks"><aside class="declaration">var </aside>legacy_ranks
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 36"/></a></h3>
+        <p>Ranks loaded with the legacy system</p><h3 id="var/protected_admins"><aside class="declaration">var </aside>protected_admins
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 27"/></a></h3>
+        <p>Admins that should not be allowed to be modified by the permissions panel</p><h3 id="var/protected_ranks"><aside class="declaration">var </aside>protected_ranks
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 30"/></a></h3>
+        <p>Ranks that should not be allowed to be modified by the permissions panel</p><h2 id="proc">Proc Details</h2><h3 id="proc/_load_permissions_for"><aside class="declaration">proc </aside>_load_permissions_for<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 161"/></a></aside>
+        </h3>
+        <p>Most backends probably want to override this one
+Loads after legacy but before autoadmin/localhost
+If you woud like your backend to load before legacy, or after autoadmin/localhost
+Override the above function instead</p><h3 id="proc/add_admin"><aside class="declaration">proc </aside>add_admin<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L236">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 236"/></a></aside>
+        </h3>
+        <p>This proc prompts the user for the name that want to add
+Then uses should_add_admin(ckey) to determine if there is a reason
+that ckey shouldn't be added (usually due to already being adminned)
+make_admin(ckey) is then called to handle the actual adding</p><h3 id="proc/clear_admins"><aside class="declaration">proc </aside>clear_admins<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 62"/></a></aside>
+        </h3>
+        <p>Removes all admin status from everyone</p><h3 id="proc/compare_rights"><aside class="declaration">proc </aside>compare_rights<aside>(/<a href="client.html">client</a>/A, /<a href="client.html">client</a>/B) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 184"/></a></aside>
+        </h3>
+        <p>Returns -1 if fewer, 0 if same, 1 if more</p><h3 id="proc/load_admins"><aside class="declaration">proc </aside>load_admins<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 84"/></a></aside>
+        </h3>
+        <p>Pulls in admin data, for if the backend caches the admin data</p><h3 id="proc/load_permissions_for"><aside class="declaration">proc </aside>load_permissions_for<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 127"/></a></aside>
+        </h3>
+        <p>Queries the backend permissions system then creates their datum if they should have one
+Returns true if a datum was created</p><h3 id="proc/set_legacy_rank"><aside class="declaration">proc </aside>set_legacy_rank<aside>(ckey) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L256">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 256"/></a></aside>
+        </h3>
+        <p>Returns true if the rank was changed</p><h3 id="proc/start"><aside class="declaration">proc </aside>start<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/admin/permissions/permissions.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;permissions&#x2F;permissions.dm 49"/></a></aside>
+        </h3>
+        <p>Clears any existing stored admins and (re) loads the data from the backend</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/ac109396938ee15b092657dedd261b2bbc99da95">ac10939</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
+</body>
+</html>

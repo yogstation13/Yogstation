@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(452 modules,
-    712/7332 macros, 9.7%)</aside></h3>
+<aside>(456 modules,
+    714/7342 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -218,6 +218,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;items">items</span><ul class="index-tree">
     <li><a href="code/game/objects/items/AI_modules.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;AI_modules">AI_modules</a></li>
     <li><a href="code/game/objects/items/RSF.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;RSF">RSF</a></li>
+    <li><a href="code/game/objects/items/bell.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;bell">bell</a></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices">devices</span><ul class="index-tree">
     <li><a href="code/game/objects/items/devices/gps.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;gps">gps</a></li>
     <li><a href="code/game/objects/items/devices/multitool.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;multitool">multitool</a></li>
@@ -330,6 +331,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li class="has-children"><span title="code&#x2F;modules&#x2F;assembly">assembly</span><ul class="index-tree">
     <li><a href="code/modules/assembly/doorcontrol.html" title="code&#x2F;modules&#x2F;assembly&#x2F;doorcontrol">doorcontrol</a></li>
     <li><a href="code/modules/assembly/infrared.html" title="code&#x2F;modules&#x2F;assembly&#x2F;infrared">infrared</a></li>
+    <li><a href="code/modules/assembly/radio.html" title="code&#x2F;modules&#x2F;assembly&#x2F;radio">radio</a></li>
     </ul></li>
     <li class="has-children"><a href="code/modules/asset_cache.html" title="code&#x2F;modules&#x2F;asset_cache">Asset cache system</a><ul class="index-tree">
     <li><a href="code/modules/asset_cache/asset_cache_item.html" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_item">asset_cache_item</a></li>
@@ -354,6 +356,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/modules/awaymissions/mission_code/wildwest.html" title="code&#x2F;modules&#x2F;awaymissions&#x2F;mission_code&#x2F;wildwest">wildwest</a></li>
     </ul></li>
     </ul></li>
+    <li><span class="no-substance">balloon_alert&#x2F;</span><a href="code/modules/balloon_alert/balloon_alert.html" title="code&#x2F;modules&#x2F;balloon_alert&#x2F;balloon_alert">balloon_alert</a></li>
     <li><a href="code/modules/buildmode.html" title="code&#x2F;modules&#x2F;buildmode">Buildmode</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;cargo">cargo</span><ul class="index-tree">
     <li><a href="code/modules/cargo/bounty.html" title="code&#x2F;modules&#x2F;cargo&#x2F;bounty">bounty</a></li>
@@ -520,6 +523,7 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/modular_computers/documentation.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;documentation">Modular computer programs</a> - How module computer programs work</li>
     <li class="has-children"><span class="no-substance">file_system&#x2F;</span><span title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs">programs</span><ul class="index-tree">
     <li><a href="code/modules/modular_computers/file_system/programs/ntdownloader.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;ntdownloader">ntdownloader</a></li>
+    <li><a href="code/modules/modular_computers/file_system/programs/ntpda_msg.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;ntpda_msg">ntpda_msg</a></li>
     <li><a href="code/modules/modular_computers/file_system/programs/portrait_printer.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;portrait_printer">portrait_printer</a></li>
     <li><a href="code/modules/modular_computers/file_system/programs/radar.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;radar">radar</a></li>
     <li><span class="no-substance">security&#x2F;</span><a href="code/modules/modular_computers/file_system/programs/security/secureye.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs&#x2F;security&#x2F;secureye">secureye</a></li>
@@ -701,7 +705,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(501 detailed/1138 documented/25617 total, 4.4%)</aside></h3>
+<aside>(510 detailed/1151 documented/25719 total, 4.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -902,6 +906,9 @@ Refundable items are expected to register COMSIG_ITEM_REFUND themselves.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;ntnetdownload&#x2F;emagged">emagged</span> - A simple pre-emagged version</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;ntnetdownload&#x2F;syndicate">syndicate</span> - This app only lists programs normally found in the emagged section of the normal downloader app</li>
     </ul></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;pdamessager">pdamessager</span> - NTOS recreation of the PDA Messenger from HTML PDAs
+Designed to always be active, even if the computer is off, until the program is either deleted or destroyed
+New features: Easy renaming, blocking, and global message monitoring</li>
     <li><a href="datum/computer_file/program/portrait_printer.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;portrait_printer">portrait_printer</a></li>
     <li class="has-children"><a href="datum/computer_file/program/radar.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;radar">radar</a> - this is a copy of something that is already in the database- it should not be able to be saved.<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;radar&#x2F;fission360">fission360</span> - A program that tracks important items like the nuke disk</li>
@@ -1229,6 +1236,10 @@ this is the way to do it cleanly and properly.<ul class="index-tree">
     <li><a href="datum/outfit/job.html" title="&#x2F;datum&#x2F;outfit&#x2F;job">Standard Gear</a></li>
     </ul></li>
     <li><a href="datum/parsed_map.html" title="&#x2F;datum&#x2F;parsed_map">parsed_map</a></li>
+    <li class="has-children"><a href="datum/permissions_controller.html" title="&#x2F;datum&#x2F;permissions_controller">permissions_controller</a><ul class="index-tree">
+    <li><a href="datum/permissions_controller/db.html" title="&#x2F;datum&#x2F;permissions_controller&#x2F;db">db</a></li>
+    <li><a href="datum/permissions_controller/forums.html" title="&#x2F;datum&#x2F;permissions_controller&#x2F;forums">forums</a></li>
+    </ul></li>
     <li><a href="datum/powernet.html" title="&#x2F;datum&#x2F;powernet">powernet</a></li>
     <li><a href="datum/preferences.html" title="&#x2F;datum&#x2F;preferences">preferences</a></li>
     <li><a href="datum/quirk.html" title="&#x2F;datum&#x2F;quirk">Test Quirk</a></li>
@@ -1676,6 +1687,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;antag_spawner&#x2F;slaughter_demon">vial of blood</span> - SLAUGHTER DEMON</li>
     </ul></li>
+    <li><span class="no-substance">assembly&#x2F;radio&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;radio&#x2F;bell">desk bell announcer</span> - Desk Bells</li>
     <li class="has-children"><a href="obj/item/bodypart.html" title="&#x2F;obj&#x2F;item&#x2F;bodypart">limb</a> - BODYPARTS<ul class="index-tree">
     <li><a href="obj/item/bodypart/l_arm.html" title="&#x2F;obj&#x2F;item&#x2F;bodypart&#x2F;l_arm">left arm</a></li>
     <li><a href="obj/item/bodypart/l_leg.html" title="&#x2F;obj&#x2F;item&#x2F;bodypart&#x2F;l_leg">left leg</a></li>
@@ -1751,13 +1763,17 @@ Puts in old analyzer</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;coin">coin</span> - Coin</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;computer_hardware">computer_hardware</span><ul class="index-tree">
     <li><a href="obj/item/computer_hardware/card_slot.html" title="&#x2F;obj&#x2F;item&#x2F;computer_hardware&#x2F;card_slot">identification card authentication module</a></li>
-    <li><span class="no-substance">hard_drive&#x2F;small&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;computer_hardware&#x2F;hard_drive&#x2F;small&#x2F;nukeops">nukeops</span> - For tablets given to nuke ops</li>
+    <li class="has-children"><span class="no-substance">hard_drive&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;computer_hardware&#x2F;hard_drive&#x2F;small">small</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;computer_hardware&#x2F;hard_drive&#x2F;small&#x2F;nukeops">nukeops</span> - For tablets given to nuke ops</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;computer_hardware&#x2F;hard_drive&#x2F;small&#x2F;pda">pda</span> - For PDAs, comes pre-equipped with PDA messaging &amp; chat client</li>
+    </ul></li>
     <li><span class="no-substance">recharger&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;computer_hardware&#x2F;recharger&#x2F;cyborg">modular interface power harness</span> - This recharger exists only in borg built-in tablets. I would have tied it to the borg's cell but
 the program that displays laws should always be usable, and the exceptions were starting to pile.</li>
     </ul></li>
     <li class="has-children"><a href="obj/item/construction.html" title="&#x2F;obj&#x2F;item&#x2F;construction">not for ingame use</a><ul class="index-tree">
     <li><a href="obj/item/construction/rcd.html" title="&#x2F;obj&#x2F;item&#x2F;construction&#x2F;rcd">rapid-construction-device (RCD)</a></li>
     </ul></li>
+    <li><span class="no-substance">deskbell&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;deskbell&#x2F;button">button</span> - Buttons</li>
     <li><span class="no-substance">disk&#x2F;design_disk&#x2F;</span><a href="obj/item/disk/design_disk/limbs.html" title="&#x2F;obj&#x2F;item&#x2F;disk&#x2F;design_disk&#x2F;limbs">Limb Design Disk</a> - Design disks and designs - for adding limbs and organs to the limbgrower.</li>
     <li><a href="obj/item/dyespray.html" title="&#x2F;obj&#x2F;item&#x2F;dyespray">hair dye spray</a></li>
     <li><a href="obj/item/energy_harvester.html" title="&#x2F;obj&#x2F;item&#x2F;energy_harvester">Energy Harvesting Module</a></li>
@@ -1767,6 +1783,7 @@ the program that displays laws should always be usable, and the exceptions were 
     </ul></li>
     <li><span class="no-substance">flashlight&#x2F;pen&#x2F;</span><a href="obj/item/flashlight/pen/paramedic.html" title="&#x2F;obj&#x2F;item&#x2F;flashlight&#x2F;pen&#x2F;paramedic">paramedic penlight</a></li>
     <li><a href="obj/item/forbidden_book.html" title="&#x2F;obj&#x2F;item&#x2F;forbidden_book">Codex Cicatrix</a></li>
+    <li><a href="obj/item/gem.html" title="&#x2F;obj&#x2F;item&#x2F;gem">Gem</a></li>
     <li><span class="no-substance">gps&#x2F;</span><a href="obj/item/gps/pirate.html" title="&#x2F;obj&#x2F;item&#x2F;gps&#x2F;pirate">Pirate GPS</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;grenade">grenade</span><ul class="index-tree">
     <li><span class="no-substance">chem_grenade&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;chem_grenade&#x2F;metalfoam">metal foam grenade</span> - PREMADE GRENADES</li>
@@ -1800,6 +1817,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><a href="obj/item/gun/syringe.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;syringe">syringe gun</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;hivelordstabilizer">stabilizing serum</span> - Hivelord stabilizer</li>
+    <li><a href="obj/item/hot_potato.html" title="&#x2F;obj&#x2F;item&#x2F;hot_potato">hot potato</a></li>
     <li><a href="obj/item/hypospray.html" title="&#x2F;obj&#x2F;item&#x2F;hypospray">hypospray</a></li>
     <li><span class="no-substance">implant&#x2F;</span><a href="obj/item/implant/uplink.html" title="&#x2F;obj&#x2F;item&#x2F;implant&#x2F;uplink">uplink implant</a></li>
     <li class="has-children"><a href="obj/item/instrument.html" title="&#x2F;obj&#x2F;item&#x2F;instrument">generic instrument</a><ul class="index-tree">
@@ -1810,6 +1828,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;lazarus_injector">lazarus injector</span> - Lazarus Injector</li>
     <li><a href="obj/item/living_heart.html" title="&#x2F;obj&#x2F;item&#x2F;living_heart">Living Heart</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;malf_upgrade">combat software upgrade</span> - AI Upgrades</li>
+    <li><a href="obj/item/mecha_ammo.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_ammo">generic ammo box</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;mecha_parts">mecha part</span> - Mecha Parts<ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis">chassis</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;durand">Durand chassis</span> - Durand</li>
@@ -1822,8 +1841,10 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     </ul></li>
     <li class="has-children"><a href="obj/item/mecha_parts/mecha_equipment.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment">mecha equipment</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;anticcw_armor_booster">armor booster module (Close Combat Weaponry)</span> - ARMOR BOOSTER MODULES</li>
+    <li><a href="obj/item/mecha_parts/mecha_equipment/drill.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;drill">exosuit drill</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;generator">exosuit plasma converter</span> - GENERATOR</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;gravcatapult">mounted gravitational catapult</span> - GRAVITATIONAL CATAPULT</li>
+    <li><a href="obj/item/mecha_parts/mecha_equipment/hydraulic_clamp.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;hydraulic_clamp">hydraulic clamp</a></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;medical">medical</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;medical&#x2F;mechmedbeam">exosuit medical beamgun</span> - Medical Beam</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;medical&#x2F;syringe_gun">exosuit syringe gun</span> - Syringe Gun</li>
@@ -1831,6 +1852,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;repair_droid">exosuit repair droid</span> - REPAIR DROID</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;teleporter">mounted teleporter</span> - TELEPORTER</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;tesla_energy_relay">exosuit energy relay</span> - TESLA ENERGY RELAY</li>
+    <li><a href="obj/item/mecha_parts/mecha_equipment/weapon.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;weapon">mecha weapon</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;wormhole_generator">mounted wormhole generator</span> - WORMHOLE GENERATOR</li>
     </ul></li>
     </ul></li>
@@ -2267,7 +2289,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/b3cfdabad7f168d4ee6d4e1498a6b64a2786ae4e">b3cfdab</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ac109396938ee15b092657dedd261b2bbc99da95">ac10939</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>

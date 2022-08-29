@@ -16,21 +16,98 @@
 <h1>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b3cfdabad7f168d4ee6d4e1498a6b64a2786ae4e/code/game/objects/items/stacks/stack.dm#L11">
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L11">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 11"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
-            <tr><th><a href="obj/item/stack.html#var/matter_amount">matter_amount</a></th><td>Amount of matter for RCD</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/matter_amount"><aside class="declaration">var </aside>matter_amount
+            <tr><th><a href="obj/item/stack.html#var/amount">amount</a></th><td>Amount in the stack</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/cost">cost</a></th><td>How much energy does it cost</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/full_w_class">full_w_class</a></th><td>The weight class the stack should have at amount &gt; 2/3rds max_amount</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/is_cyborg">is_cyborg</a></th><td>If its a module item for a cyborg</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/matter_amount">matter_amount</a></th><td>Amount of matter for RCD</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/max_amount">max_amount</a></th><td>Max amount in the stack | stack recipes initialisation, param &quot;max_res_amount&quot; must be equal to this max_amount</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/merge_type">merge_type</a></th><td>This path and its children should merge with this stack, defaults to src.type</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/novariants">novariants</a></th><td>Determines whether the item should update it's sprites based on amount.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/recipes">recipes</a></th><td>List of recipes</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/singular_name">singular_name</a></th><td>The name without the s</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/source">source</a></th><td>Used for &quot;recharging&quot; of the material</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/strict">strict</a></th><td>Does it merge strictly only with its type</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/amount"><aside class="declaration">var </aside>amount
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/b3cfdabad7f168d4ee6d4e1498a6b64a2786ae4e/code/game/objects/items/stacks/stack.dm#L29">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 29"/></a></h3>
-        <p>Amount of matter for RCD</p></main>
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 20"/></a></h3>
+        <p>Amount in the stack</p><h3 id="var/cost"><aside class="declaration">var </aside>cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 28"/></a></h3>
+        <p>How much energy does it cost</p><h3 id="var/full_w_class"><aside class="declaration">var </aside>full_w_class
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 34"/></a></h3>
+        <p>The weight class the stack should have at amount &gt; 2/3rds max_amount</p><h3 id="var/is_cyborg"><aside class="declaration">var </aside>is_cyborg
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 24"/></a></h3>
+        <p>If its a module item for a cyborg</p><h3 id="var/matter_amount"><aside class="declaration">var </aside>matter_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 41"/></a></h3>
+        <p>Amount of matter for RCD</p><h3 id="var/max_amount"><aside class="declaration">var </aside>max_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 22"/></a></h3>
+        <p>Max amount in the stack | stack recipes initialisation, param &quot;max_res_amount&quot; must be equal to this max_amount</p><h3 id="var/merge_type"><aside class="declaration">var </aside>merge_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 30"/></a></h3>
+        <p>This path and its children should merge with this stack, defaults to src.type</p><h3 id="var/novariants"><aside class="declaration">var </aside>novariants
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 36"/></a></h3>
+        <p>Determines whether the item should update it's sprites based on amount.</p><h3 id="var/recipes"><aside class="declaration">var </aside>recipes
+            <aside>&ndash; /list/datum/stack_recipe</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 16"/></a></h3>
+        <p>List of recipes</p><h3 id="var/singular_name"><aside class="declaration">var </aside>singular_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 18"/></a></h3>
+        <p>The name without the s</p><h3 id="var/source"><aside class="declaration">var </aside>source
+            <aside>&ndash; /<a href="datum.html">datum</a>/robot_energy_storage</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 26"/></a></h3>
+        <p>Used for &quot;recharging&quot; of the material</p><h3 id="var/strict"><aside class="declaration">var </aside>strict
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/game/objects/items/stacks/stack.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 32"/></a></h3>
+        <p>Does it merge strictly only with its type</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/b3cfdabad7f168d4ee6d4e1498a6b64a2786ae4e">b3cfdab</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ac109396938ee15b092657dedd261b2bbc99da95">ac10939</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
