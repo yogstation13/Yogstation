@@ -81,8 +81,14 @@
 #define ORGAN_ORGANIC   1
 #define ORGAN_ROBOTIC   2
 
+// Major type
 #define BODYPART_ORGANIC   1
 #define BODYPART_ROBOTIC   2
+
+// Minor Type
+#define BODYPART_SUBTYPE_ORGANIC 1
+#define BODYPART_SUBTYPE_ROBOTIC 2
+#define BODYPART_SUBTYPE_IPC 3
 
 #define DEFAULT_BODYPART_ICON_ORGANIC 'icons/mob/human_parts_greyscale.dmi'
 #define DEFAULT_BODYPART_ICON_ROBOTIC 'icons/mob/augmentation/augments.dmi'
