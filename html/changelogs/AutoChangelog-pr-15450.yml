@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "command and sec jumpsuits start at max suit sensors"
+  - tweak: "brig physician can start with a skirt now"
