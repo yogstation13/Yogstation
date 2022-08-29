@@ -2269,3 +2269,38 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(islist(screamsound))
 		return pick(screamsound)
 	return screamsound
+
+/datum/species/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
+	if(C == user)
+		if(fullness <= 50)
+			user.visible_message(span_notice("[user] hungrily [eatverb]s \the [O], gobbling it down!"), span_notice("You hungrily [eatverb] \the [O], gobbling it down!"))
+		else if(fullness > 50 && fullness < 150)
+			user.visible_message(span_notice("[user] hungrily [eatverb]s \the [O]."), span_notice("You hungrily [eatverb] \the [O]."))
+		else if(fullness > 150 && fullness < 500)
+			user.visible_message(span_notice("[user] [eatverb]s \the [O]."), span_notice("You [eatverb] \the [O]."))
+		else if(fullness > 500 && fullness < 600)
+			user.visible_message(span_notice("[user] unwillingly [eatverb]s a bit of \the [O]."), span_notice("You unwillingly [eatverb] a bit of \the [O]."))
+		else if(fullness > (600 * (1 + C.overeatduration / 2000)))	// The more you eat - the more you can eat
+			user.visible_message(span_warning("[user] cannot force any more of \the [O] to go down [user.p_their()] throat!"), span_warning("You cannot force any more of \the [O] to go down your throat!"))
+			return FALSE
+	else
+		C.visible_message(span_danger("[user] forces [C] to eat [O]."), \
+									span_userdanger("[user] forces [C] to eat [O]."))
+
+/datum/species/proc/force_eat_text(fullness, obj/O, mob/living/carbon/C, mob/user)
+	if(fullness <= (600 * (1 + C.overeatduration / 1000)))
+		C.visible_message(span_danger("[user] attempts to feed [C] [O]."), \
+							span_userdanger("[user] attempts to feed [C] [O]."))
+	else
+		C.visible_message(span_warning("[user] cannot force any more of [O] down [C]'s throat!"), \
+							span_warning("[user] cannot force any more of [O] down [C]'s throat!"))
+		return FALSE
+
+/datum/species/proc/drink_text(obj/O, mob/living/carbon/C, mob/user)
+	if(C == user)
+		user.visible_message(span_notice("[user] swallows a gulp of [O]."), span_notice("You swallow a gulp of [O]."))
+	else
+		C.visible_message(span_danger("[user] feeds the contents of [O] to [C]."), span_userdanger("[user] feeds the contents of [O] to [C]."))
+
+/datum/species/proc/force_drink_text(obj/O, mob/living/carbon/C, mob/user)
+	C.visible_message(span_danger("[user] attempts to feed the contents of [O] to [C]."), span_userdanger("[user] attempts to feed the contents of [O] to [C]."))

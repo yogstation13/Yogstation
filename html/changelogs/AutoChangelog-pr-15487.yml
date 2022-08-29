@@ -1,0 +1,4 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - bugfix: "fixes being able to use the cuffs ability when you shouldnt"

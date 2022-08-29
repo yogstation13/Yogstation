@@ -1,0 +1,5 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - tweak: "rocket launcher has a pickup sound now"
+  - soundadd: "gave rocket launcher pickup sounds"

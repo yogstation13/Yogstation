@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - bugfix: "Yogsmeta AI no longer cooks to death in 60s"
+  - tweak: "Yogsmeta Telecomms/AI satellite reworked"

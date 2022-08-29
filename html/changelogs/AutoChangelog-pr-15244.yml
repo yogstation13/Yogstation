@@ -1,0 +1,11 @@
+author: " MemedHams, Gravehat"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new Gems to Mining"
+  - rscadd: "Gems are now able to be scanned with a Mining Scanner"
+  - rscadd: "Some gems can be cut down for mineral sheets"
+  - rscadd: "Adds in antimagic gem drop from Goat King"
+  - rscadd: "Adds in gem bounties"
+  - tweak: "Adds gems to mob drops"
+  - tweak: "Gems are classified as lavaland exports"
+  - imageadd: "Adds the gem sprites"

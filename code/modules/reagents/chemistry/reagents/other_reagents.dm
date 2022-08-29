@@ -1019,7 +1019,7 @@
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/bluespace/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == TOUCH || method == VAPOR)
+	if((method == TOUCH || method == VAPOR) && (reac_volume > 5))
 		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
 	..()
 
@@ -1275,7 +1275,7 @@
 	M.drowsyness += 2
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.blood_volume = max(H.blood_volume - 10, 0)
+		H.blood_volume = max(H.blood_volume - 5, 0)
 	if(prob(20))
 		M.losebreath += 2
 		M.confused = min(M.confused + 2, 5)

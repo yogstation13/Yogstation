@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "Hoods no longer try to fall off"

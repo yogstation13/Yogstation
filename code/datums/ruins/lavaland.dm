@@ -214,6 +214,14 @@
 	allow_duplicates = FALSE
 	cost = 10
 
+/datum/map_template/ruin/lavaland/landmines
+	name = "Minefield"
+	id = "landmines"
+	description = "A forgotten minefield, the last remnant of a war long forgotten"
+	suffix = "lavaland_surface_landmines.dmm"
+	allow_duplicates = TRUE
+	cost = 20
+
 /datum/map_template/ruin/lavaland/swarmer_boss
 	name = "Crashed Shuttle"
 	id = "swarmerboss"

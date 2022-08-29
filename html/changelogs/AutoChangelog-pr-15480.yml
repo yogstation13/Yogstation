@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - bugfix: "Durathread can no longer be duped with cloth"
