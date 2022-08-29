@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 				if(targetid) // Adjust difficulty based on target's access
 					difficulty += BitCount(text2num(targetid.access_txt) & (ACCESS_MEDICAL | ACCESS_SECURITY | ACCESS_ENGINE | ACCESS_THEATRE | ACCESS_JANITOR | ACCESS_HEADS))
 				
-				if(SEND_SIGNAL(target, COMSIG_PDA_CHECK_DETONATE) & COMPONENT_PDA_NO_DETONATE || prob(difficulty * 15))
+				if(SEND_SIGNAL(target_computer, COMSIG_PDA_CHECK_DETONATE) & COMPONENT_PDA_NO_DETONATE || prob(difficulty * 15))
 					computer.visible_message(span_notice("Detonation failed. [bomb.uses] charges remaining."), null, null, 1)
 				else
 					log_bomber(usr, "triggered a PDA explosion on", target.username, "[!is_special_character(usr) ? "(TRIGGED BY NON-ANTAG)" : ""]")
