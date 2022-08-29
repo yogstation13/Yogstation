@@ -1245,7 +1245,7 @@
 	color = "#539085"
 	alpha = 220
 
-/obj/effect/turf_decal/trimline/atmos/warning/lower
-	icon_state = "trimline_warn_lower_nooutline"
+/obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nooutline_bottom"
 	color = "#539085"
 	alpha = 220
