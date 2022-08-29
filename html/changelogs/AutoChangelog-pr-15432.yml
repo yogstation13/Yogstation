@@ -1,8 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added syndicate revolver to the traitor uplink"
-  - tweak: "Made revolvers do less damage"
-  - tweak: "Made syndicate revolver 6TC"
-  - tweak: "Made reverse revolver 8TC"
-  - tweak: "Made revolver speedloaders 2TC"

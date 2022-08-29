@@ -1,7 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added NTOS PDA Messenger"
-  - rscadd: "Added pens to tablets"
-  - rscadd: "Added BomberMan, a NTOS replacement for Detomatix, to the uplink for the same price"
-  - tweak: "Replaced PDAs with NTOS PDAs"
