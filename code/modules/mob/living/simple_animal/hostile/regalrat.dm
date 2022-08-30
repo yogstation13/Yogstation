@@ -104,6 +104,7 @@
 		return
 	var/turf/T = owner.loc
 	if(!istype(T))
+		to_chat(owner, "There is no cheese in here!")
 		return
 	var/loot = rand(1,100)
 	switch(loot)
@@ -195,6 +196,7 @@
 /datum/action/cooldown/domain/Trigger()
 	var/turf/T = owner.loc
 	if(!istype(T))
+		to_chat(owner, "Building our domain here is for cowards!")
 		return FALSE
 	T.atmos_spawn_air("miasma=4;TEMP=[T20C]")
 	switch (rand(1,10))
