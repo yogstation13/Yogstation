@@ -914,7 +914,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
-	new /obj/item/gem/bloodstone(src)
+	new /obj/item/gem/amber(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -933,7 +933,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
-	new /obj/item/gem/bloodstone(src)
+	new /obj/item/gem/amber(src)
 
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
@@ -1196,6 +1196,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/demon_claws(src)
+	new /obj/item/gem/bloodstone(src)
 
 /obj/item/mayhem
 	name = "mayhem in a bottle"
@@ -1360,6 +1361,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/colossus/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/blaster_tubes(src)
+	new /obj/item/gem/void(src)
 
 //Hierophant
 /obj/item/hierophant_club
