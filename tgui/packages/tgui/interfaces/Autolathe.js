@@ -6,11 +6,16 @@ import { Window } from '../layouts';
 const MaxMultiplier = (materials, design) => {
   let maxmulti = [];
   let currentmult = 5;
+  let valid = true;
   for (let i = 0; i < 3; i++) {
     for (const [key, value] of Object.entries(materials)) {
       if (value < design["materials"][key]*currentmult) {
+        valid = false;
         break;
       }
+    }
+    if(!valid) {
+      break;
     }
     maxmulti.push(currentmult);
     currentmult += 10;
@@ -326,7 +331,7 @@ export const Autolathe = (props, context) => {
                                 ))}
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {design.materials.iron === 0 ? (
+                              {!design.materials.iron ? (
                                 ""
                               ):(
                                 <Box ml={0} mr={0} inline
@@ -344,7 +349,7 @@ export const Autolathe = (props, context) => {
 
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {!design.materials.glass > 0 ? (
+                              {!design.materials.glass ? (
                                 ""
                               ):(
                                 <Box ml={0} mr={0} inline
