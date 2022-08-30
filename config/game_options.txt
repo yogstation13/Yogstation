@@ -664,6 +664,9 @@ DISABLE_HUMAN_MOOD
 ## A cap on how many monkeys may be created via monkey cubes
 #MONKEYCAP 64
 
+## Cap on how many regal rat minions there can be
+RATCAP 64
+
 ## Enable the capitalist agenda on your server.
 ECONOMY
 
