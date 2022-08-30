@@ -787,7 +787,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/revolver/ironfeather
 	name = ".357 Ironfeather Speed Loader"
 	desc = "A speed loader that contains seven .357 Ironfeather rounds; usable with the Syndicate revolver. \
-			These shells contain six pellets which are less damaging than buckshot but are more tightly clumped."
+			These shells contain six pellets which are less damaging than buckshot but mildly better over range."
 	item = /obj/item/ammo_box/a357/ironfeather
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
