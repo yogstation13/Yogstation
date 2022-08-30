@@ -16,7 +16,7 @@
 <h1>Energy Harvesting Module <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/energy_harvester.html">energy_harvester</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L8">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L8">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 8"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -39,60 +39,60 @@ for when a mapper connects it to the power room roundstart</td></tr>
             <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/powernet.html">powernet</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L27">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L27">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 27"/></a></h3>
         <p>cached powernet, assigned when attached to a wirenet with a powernet</p><h3 id="var/accumulated_power"><aside class="declaration">var </aside>accumulated_power
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L23">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L23">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 23"/></a></h3>
         <p>amount of power consumed by the harvester, incremented every tick and reset every budget cycle</p><h3 id="var/input_energy"><aside class="declaration">var </aside>input_energy
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L33">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L33">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 33"/></a></h3>
         <p>energy inputted into machine</p><h3 id="var/last_accumulated_power"><aside class="declaration">var </aside>last_accumulated_power
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L39">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L39">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 39"/></a></h3>
         <p>last amount of energy transmitted before being reset by budget cycle, so CE can check if his engine modifications are making more power</p><h3 id="var/last_payout"><aside class="declaration">var </aside>last_payout
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L37">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L37">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 37"/></a></h3>
         <p>last payout recieved, so CE can gleefully rub his hands every time the paycheck comes in</p><h3 id="var/last_tick"><aside class="declaration">var </aside>last_tick
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L25">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L25">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 25"/></a></h3>
         <p>stores last REALTIMEOFDAY tick. SSEconomy runs off of that, don't see why this one shouldn't too</p><h3 id="var/manual_power_setting"><aside class="declaration">var </aside>manual_power_setting
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L29">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L29">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 29"/></a></h3>
         <p>manual power setting to limit the maximum draw of the machine</p><h3 id="var/manual_switch"><aside class="declaration">var </aside>manual_switch
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L31">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L31">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 31"/></a></h3>
         <p>manual on/off switch</p><h2 id="proc">Proc Details</h2><h3 id="proc/attackby">attackby<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user, params) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L83">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L83">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 83"/></a></aside>
         </h3>
         <p>Standard checks for connecting a machine to an open cable node</p><h3 id="proc/calculateMoney"><aside class="declaration">proc </aside>calculateMoney<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L128">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L128">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 128"/></a></aside>
         </h3>
         <ul>
@@ -106,7 +106,7 @@ for when a mapper connects it to the power room roundstart</td></tr>
 </ul><h3 id="proc/connect_to_network"><aside class="declaration">proc </aside>connect_to_network<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L52">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L52">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 52"/></a></aside>
         </h3>
         <p>links this to SSeconomy so it can be added to the budget cycle calculations
@@ -120,7 +120,7 @@ for when a mapper connects it to the power room roundstart</p>
 </ul><h3 id="proc/disconnect_from_network"><aside class="declaration">proc </aside>disconnect_from_network<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L68">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L68">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 68"/></a></aside>
         </h3>
         <ul>
@@ -132,7 +132,7 @@ for when a mapper connects it to the power room roundstart</p>
 </ul><h3 id="proc/payout"><aside class="declaration">proc </aside>payout<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L140">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L140">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 140"/></a></aside>
         </h3>
         <ul>
@@ -144,7 +144,7 @@ for when a mapper connects it to the power room roundstart</p>
 </ul><h3 id="proc/process">process<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/ac109396938ee15b092657dedd261b2bbc99da95/code/modules/power/energyharvester.dm#L110">
+            <a href="https://github.com/yogstation13/Yogstation/blob/e9f1c549679e6630a45269e0647fa2738a37ff45/code/modules/power/energyharvester.dm#L110">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;energyharvester.dm 110"/></a></aside>
         </h3>
         <ul>
@@ -157,7 +157,7 @@ for when a mapper connects it to the power room roundstart</p>
 </ul></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/ac109396938ee15b092657dedd261b2bbc99da95">ac10939</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/e9f1c549679e6630a45269e0647fa2738a37ff45">e9f1c54</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
