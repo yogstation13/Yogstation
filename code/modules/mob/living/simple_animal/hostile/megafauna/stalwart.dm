@@ -29,7 +29,6 @@
 	music_path = /datum/music/sourced/battle/stalwart
 	var/charging = FALSE
 	var/revving_charge = FALSE
-	var/telegraph_sound = pick(list('sound/machines/sm/accent/delam/1.ogg', 'sound/machines/sm/accent/delam/2.ogg', 'sound/machines/sm/accent/delam/3.ogg', 'sound/machines/sm/accent/delam/4.ogg', 'sound/machines/sm/accent/delam/5.ogg', 'sound/machines/sm/accent/delam/6.ogg', 'sound/machines/sm/accent/delam/7.ogg', 'sound/machines/sm/accent/delam/8.ogg', 'sound/machines/sm/accent/delam/9.ogg', 'sound/machines/sm/accent/delam/10.ogg', 'sound/machines/sm/accent/delam/11.ogg', 'sound/machines/sm/accent/delam/12.ogg', 'sound/machines/sm/accent/delam/13.ogg', 'sound/machines/sm/accent/delam/14.ogg', 'sound/machines/sm/accent/delam/15.ogg', 'sound/machines/sm/accent/delam/16.ogg', 'sound/machines/sm/accent/delam/17.ogg', 'sound/machines/sm/accent/delam/18.ogg', 'sound/machines/sm/accent/delam/19.ogg', 'sound/machines/sm/accent/delam/20.ogg', 'sound/machines/sm/accent/delam/21.ogg', 'sound/machines/sm/accent/delam/22.ogg', 'sound/machines/sm/accent/delam/23.ogg', 'sound/machines/sm/accent/delam/24.ogg', 'sound/machines/sm/accent/delam/25.ogg', 'sound/machines/sm/accent/delam/26.ogg', 'sound/machines/sm/accent/delam/27.ogg', 'sound/machines/sm/accent/delam/28.ogg', 'sound/machines/sm/accent/delam/29.ogg', 'sound/machines/sm/accent/delam/30.ogg', 'sound/machines/sm/accent/delam/31.ogg', 'sound/machines/sm/accent/delam/32.ogg', 'sound/machines/sm/accent/delam/33.ogg'))
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
 	ranged_cooldown = world.time + 30
@@ -39,16 +38,15 @@
 	else if(prob(20))
 		charge()
 	else
-		if(prob(70))
+		if(prob(50))
 			backup()
 		else
 			energy_pike()
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/telegraph()
 	for(var/mob/M in range(10,src))
-		flash_color(M.client, "#ff0404", 1)
 		shake_camera(M, 4, 3)
-	playsound(src, telegraph_sound, 200, 1)
+	playsound(src, 'sound/machines/sm/accent/delam/14.ogg', 400, 1)
 	
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
@@ -80,7 +78,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
 	visible_message(span_danger("[src] warps in mini mechanoids!"))
-	playsound(src, 'sound/magic/repulse.ogg', 200, 1, 2)
+	playsound(src, 'sound/magic/repulse.ogg', 300, 1, 2)
 	for(var/turf/open/H in range(src, 3))
 		if(prob(25))
 			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone(H.loc)
@@ -96,7 +94,7 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/dir_shots(list/dirs)
 	if(!islist(dirs))
 		dirs = GLOB.alldirs.Copy()
-	playsound(src, 'sound/magic/disable_tech.ogg', 200, 1, 2)
+	playsound(src, 'sound/magic/disable_tech.ogg', 300, 1, 2)
 	for(var/d in dirs)
 		var/turf/E = get_step(src, d)
 		shoot_projectile(E)
@@ -132,6 +130,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/death()
+	. = ..()
 	if(health > 0)
 		return
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -143,11 +142,17 @@
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone
 	name = "mini mechanoid"
 	desc = "A tiny creature made of...some kind of gemstone? It seems angry."
-	icon = "icons/mob/drone.dmi"
+	icon = 'icons/mob/drone.dmi'
+	speed = 5
+	movement_type = GROUND
 	maxHealth = 20
 	health = 20
 	icon_state = "drone_gem"
-	attacktext = "prods"
+	icon_living = "drone_gem"
+	icon_aggro = "drone_gem"
+	attacktext = "rends"
+	melee_damage_lower = 6
+	melee_damage_upper = 10
 	mob_biotypes = list(MOB_INORGANIC, MOB_ROBOTIC)
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attack_sound = 'sound/weapons/pierce_slow.ogg'
@@ -155,10 +160,16 @@
 	faction = list("mining")
 	weather_immunities = list("lava","ash")
 
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/death), 300)
+
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged
 	ranged = 1
 	ranged_message = "blasts"
 	icon_state = "drone_scout"
+	icon_living = "drone_scout"
+	icon_aggro = "drone_scout"
 	ranged_cooldown_time = 30
 	projectiletype = /obj/item/projectile/stalpike/weak
 	projectilesound = 'sound/magic/repulse.ogg'
@@ -174,7 +185,7 @@
 	icon_state = "arcane_barrage_greyscale"
 	damage = 20
 	armour_penetration = 100
-	speed = 8
+	speed = 4
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
@@ -185,18 +196,18 @@
 	icon_state = "arcane_barrage_greyscale"
 	damage = 5
 	armour_penetration = 100
-	speed = 7
+	speed = 6
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	color = "#4851ce"
+	color = "#9a9fdb"
 
 /obj/item/projectile/stalnade
 	name = "volatile orb"
 	icon_state = "wipe"
 	damage = 300
 	armour_penetration = 100
-	speed = 1
+	speed = 6
 	eyeblur = 0
 	damage_type = BRUTE
 	pass_flags = PASSTABLE
