@@ -71,6 +71,8 @@
 	if(!holder || (holder in src))
 		return
 
+	UnregisterSignal(holder, COMSIG_ITEM_PREDROPPED)
+
 	owner.visible_message(span_notice("[owner] retracts [holder] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
 		span_notice("[holder] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
 		span_italics("You hear a short mechanical noise."))
@@ -83,13 +85,17 @@
 	holder = null
 	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
 
+/obj/item/organ/cyberimp/arm/proc/on_drop(datum/source, mob/user)
+	Retract()
+
 /obj/item/organ/cyberimp/arm/proc/Extend(var/obj/item/item)
 	if(!(item in src))
 		return
 
 	holder = item
-
+	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
 	ADD_TRAIT(holder, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+
 	holder.resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	holder.slot_flags = null
 	holder.materials = null

@@ -784,7 +784,7 @@
 		if("Animal")
 			var/list/icon_list = list(
 			"bear" = 'icons/mob/animal.dmi',
-			"carp" = 'icons/mob/animal.dmi',
+			"carp" = 'icons/mob/carp.dmi',
 			"chicken" = 'icons/mob/animal.dmi',
 			"corgi" = 'icons/mob/pets.dmi',
 			"cow" = 'icons/mob/animal.dmi',
@@ -795,7 +795,11 @@
 			"cat2" = 'icons/mob/pets.dmi',
 			"poly" = 'icons/mob/animal.dmi',
 			"pug" = 'icons/mob/pets.dmi',
-			"spider" = 'icons/mob/animal.dmi'
+			"spider" = 'icons/mob/animal.dmi',
+			"mothroach" = 'icons/mob/animal.dmi',
+			"snake" = 'icons/mob/animal.dmi',
+			"goose" = 'icons/mob/animal.dmi',
+			"poppypossum" = 'icons/mob/animal.dmi'
 			)
 
 			input = input("Please select a hologram:") as null|anything in icon_list

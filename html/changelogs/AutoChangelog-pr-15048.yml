@@ -1,9 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "Suit storage units having the ability to remove radiation from mobs"
-  - rscadd: "Radiation closet now have toxin meds"
-  - tweak: "Makes SSU dragable by unwrenching"
-  - tweak: "Keybind for opening changed CtrlClick -> AltclickClick (So you can use CtrlClick to drag it)"
-  - tweak: "Keybind for Locking/Unlocking changed AltclickClick -> CtrlShiftClick"
-  - tweak: "Nerfed SSU damage and cycle time"

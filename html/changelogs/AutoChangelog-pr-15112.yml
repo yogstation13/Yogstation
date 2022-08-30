@@ -1,7 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "makes radioactive contamination less contagious"
-  - tweak: "nuclear particles now cause a small amount of radiation damage and pass through windows, while doing less burn damage"
-  - tweak: "godmode now protects from radiation"
-  - bugfix: "fixes rad protection not protecting against radiation damage from projectiles"

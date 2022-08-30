@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "You can now repair mechs when they are destroyed"
-  - tweak: "Capacitor no longer protects mechs from EMPs, but instead preserves it from total destruction"

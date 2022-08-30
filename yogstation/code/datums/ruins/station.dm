@@ -609,6 +609,12 @@
 	suffix = "3x5_kilomobden.dmm"
 	name = "Maint kilomobden"
 
+//Author: Vaelophis
+/datum/map_template/ruin/station/maint/threexfive/gaxbotany
+	id = "gaxbotany"
+	suffix = "3x5_gaxbotany.dmm"
+	name = "Maint gaxbotany"
+
 /datum/map_template/ruin/station/maint/threexfive/laststand
 	id = "laststand"
 	suffix = "3x5_laststand.dmm"
@@ -1284,3 +1290,8 @@
 	id= "fishinghole"
 	suffix = "10x10_fishinghole.dmm"
 	name = "Maint fishinghole"
+
+/datum/map_template/ruin/station/maint/tenxten/fakewalls
+	id= "fakewalls"
+	suffix = "10x10_fakewalls.dmm"
+	name = "Maint fakewalls"

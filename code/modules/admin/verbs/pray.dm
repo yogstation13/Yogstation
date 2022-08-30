@@ -40,9 +40,9 @@
 			prayer_type = "SPIRITUAL PRAYER"
 
 	var/msg_tmp = msg
-	msg = span_adminnotice("[icon2html(cross, GLOB.admins)]<b><font color=[font_color]>[prayer_type][deity ? " (to [deity])" : ""]: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> [msg]")
+	msg = span_adminnotice("[icon2html(cross, GLOB.permissions.admins)]<b><font color=[font_color]>[prayer_type][deity ? " (to [deity])" : ""]: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> [msg]")
 
-	for(var/client/C in GLOB.admins)
+	for(var/client/C in GLOB.permissions.admins)
 		if(C.prefs.chat_toggles & CHAT_PRAYER)
 			to_chat(C, msg, confidential=TRUE)
 			if(C.prefs.toggles & SOUND_PRAYERS)
@@ -57,7 +57,7 @@
 /proc/message_centcom(text, mob/sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=orange>CENTCOM:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_CENTCOM_REPLY(sender)]:</b> [msg]")
-	to_chat(GLOB.admins, msg, confidential = TRUE)
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
 	for(var/obj/machinery/computer/communications/console in GLOB.machines)
 		console.override_cooldown()
 
@@ -65,7 +65,7 @@
 /proc/message_syndicate(text, mob/sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=crimson>SYNDICATE:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_SYNDICATE_REPLY(sender)]:</b> [msg]")
-	to_chat(GLOB.admins, msg, confidential = TRUE)
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
 	for(var/obj/machinery/computer/communications/console in GLOB.machines)
 		console.override_cooldown()
 
@@ -73,13 +73,13 @@
 /proc/nuke_request(text, mob/sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=orange>NUKE CODE REQUEST:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_CENTCOM_REPLY(sender)] [ADMIN_SET_SD_CODE] [ADMIN_SET_BC_CODE]:</b> [msg]")
-	to_chat(GLOB.admins, msg, confidential = TRUE)
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
 	for(var/obj/machinery/computer/communications/console in GLOB.machines)
 		console.override_cooldown()
 
 /proc/Clown_announce(text , mob/Sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=violet>CLOWN PLANET:</font>[ADMIN_FULLMONTY(Sender)] [ADMIN_SYNDICATE_REPLY(Sender)]:</b> [msg]")
-	to_chat(GLOB.admins, msg, confidential=TRUE)
+	to_chat(GLOB.permissions.admins, msg, confidential=TRUE)
 	for(var/obj/machinery/computer/communications/C in GLOB.machines)
 		C.override_cooldown()

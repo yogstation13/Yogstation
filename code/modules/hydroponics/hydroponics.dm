@@ -803,8 +803,8 @@
 		var/list/combined_msg = list()
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		if(myseed)
-			combined_msg +="*** <B>[myseed.plantname]</B> ***" 
-			combined_msg +="- Plant Age: [span_notice("[age]")]"
+			combined_msg += "*** <B>[myseed.plantname]</B> ***" 
+			combined_msg += "- Plant Age: [span_notice("[age]")]"
 			var/list/text_string = myseed.get_analyzer_text()
 			if(text_string)
 				combined_msg += "[text_string]"
@@ -817,7 +817,7 @@
 		combined_msg += "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>"
 		combined_msg += ""
 
-		to_chat(user, examine_block(combined_msg))
+		to_chat(user, examine_block(combined_msg.Join("\n")))
 
 	else if(istype(O, /obj/item/cultivator))
 		if(weedlevel > 0)

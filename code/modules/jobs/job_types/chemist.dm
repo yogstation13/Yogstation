@@ -37,7 +37,7 @@
 	name = "Chemist"
 	jobtype = /datum/job/chemist
 
-	pda_type = /obj/item/pda/chemist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	glasses = /obj/item/clothing/glasses/science
 	ears = /obj/item/radio/headset/headset_med
