@@ -26,7 +26,7 @@
 	if(istype(tool, /obj/item/organ_storage) && istype(tool.contents[1], /obj/item/bodypart))
 		tool = tool.contents[1]
 	var/obj/item/bodypart/aug = tool
-	if(aug.status != BODYPART_ROBOTIC)
+	if(aug.status != BODYPART_ROBOTIC || aug.sub_status != BODYPART_SUBTYPE_ROBOTIC)
 		to_chat(user, span_warning("That's not an augment, silly!"))
 		return -1
 	if(aug.body_zone != target_zone)

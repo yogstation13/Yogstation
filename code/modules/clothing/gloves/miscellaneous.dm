@@ -134,6 +134,9 @@ obj/effect/proc_holder/swipe
 	fire(user)
 
 /obj/effect/proc_holder/swipe/fire(mob/living/carbon/user)
+	if(user.handcuffed) 
+		to_chat(user, span_danger("You can't attack while handcuffed!"))
+		return
 	if(active)
 		remove_ranged_ability(span_notice("You relax your arms."))
 	else

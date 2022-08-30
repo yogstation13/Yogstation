@@ -1290,3 +1290,8 @@
 	id= "fishinghole"
 	suffix = "10x10_fishinghole.dmm"
 	name = "Maint fishinghole"
+
+/datum/map_template/ruin/station/maint/tenxten/fakewalls
+	id= "fakewalls"
+	suffix = "10x10_fakewalls.dmm"
+	name = "Maint fakewalls"
