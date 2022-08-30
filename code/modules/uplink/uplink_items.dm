@@ -2662,6 +2662,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Show them who's boss."
 	item = /obj/item/clothing/suit/space/hardsuit/ert
 	cost = 5
+	restricted_roles = list("Emergency Response Commander")
 
 /datum/uplink_item/nt/hardsuit/sec
 	name = "ERT Security Hardsuit"
