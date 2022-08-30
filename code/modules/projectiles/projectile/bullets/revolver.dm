@@ -102,17 +102,15 @@
 	damage = 30
 
 /obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
-	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		if(C.electrocute_act(10, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE)) //10 extra burn damage, should NOT stun
 			C.confused += 5 //15% chance for minor, 5% for major randomness per movement
-			return ..()
-	
-	else if(isliving(target)) //So that it works on simple mobs, too
+		return ..()
+	if(isliving(target)) //So that it works on simple mobs, too
 		var/mob/living/L = target
 		L.electrocute_act(10, src, 1, FALSE, FALSE, FALSE, FALSE)
-		return ..()
+	. = ..()
 
 /obj/item/projectile/bullet/a357/heartpiercer
 	name = ".357 Heartpiercer bullet"
