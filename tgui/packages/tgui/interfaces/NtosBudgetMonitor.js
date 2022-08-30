@@ -16,11 +16,11 @@ export const NtosBudgetMonitor = (props, context) => {
         <Section title="Budgets">
           <LabeledList>
             {budgets.map((budget, index) =>
-            (
-              <LabeledList.Item label={budget["name"]} key={index}>
-                {budget["money"] + "cr"}
-              </LabeledList.Item>
-            ))}
+              (
+                <LabeledList.Item label={budget["name"]} key={index}>
+                  {budget["money"] + "cr"}
+                </LabeledList.Item>
+              ))}
           </LabeledList>
         </Section>
       </NtosWindow.Content>
