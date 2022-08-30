@@ -6,25 +6,26 @@
 	if(status_flags & GODMODE)
 		visible_message(span_danger("A strange force protects [src], [p_they()] can't be damaged!"), span_userdanger("A strange force protects you!"))
 		return armor
-	if(armor > 0 && armour_penetration)
-		if(armour_penetration <= -100)
+	if(armor > 0 && armour_penetration)	//WE HAVE ARMOR
+		if(armour_penetration <= -100)	
 			armor = 100
 		else
 			armor = clamp(0, armor/(1 + (armour_penetration/100)), 100)
-		if(penetrated_text)
-			to_chat(src, span_userdanger("[penetrated_text]"))
-		else
-			to_chat(src, span_userdanger("Your armor was penetrated!"))
-	else if(armor >= 100)
+		if(armour_penetration > 0 && armor < 100)	//WE HAVE INEFFECTIVE ARMOR
+			if(penetrated_text)
+				to_chat(src, span_userdanger("[penetrated_text]"))
+			else
+				to_chat(src, span_userdanger("Your armor was penetrated!"))
+		else if(armor > 0)	//WE HAVE EFFECTIVE ARMOR
+			if(soften_text)
+				to_chat(src, span_userdanger("[soften_text]"))
+			else
+				to_chat(src, span_userdanger("Your armor softens the blow!"))
+	if(armor >= 100)	//WE HAVE ALL THE ARMOR
 		if(absorb_text)
 			to_chat(src, span_userdanger("[absorb_text]"))
 		else
 			to_chat(src, span_userdanger("Your armor absorbs the blow!"))
-	else if(armor > 0)
-		if(soften_text)
-			to_chat(src, span_userdanger("[soften_text]"))
-		else
-			to_chat(src, span_userdanger("Your armor softens the blow!"))
 	return armor
 
 
