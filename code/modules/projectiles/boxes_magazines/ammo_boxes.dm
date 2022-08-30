@@ -9,7 +9,7 @@
 /obj/item/ammo_box/a357/ironfeather
 	name = "speed loader (.357 Ironfeather)"
 	desc = "A seven-shot speed loader designed for .357 revolvers. \
-			These shells fire six pellets which are slighty less damaging than buckshot but more accurate."
+			These shells fire six pellets which are less damaging than buckshot but slightly better over range."
 	icon_state = "357feather"
 	ammo_type = /obj/item/ammo_casing/a357/ironfeather
 
