@@ -19,7 +19,6 @@ endmap
 
 map asteroidstation
 	minplayers 25
-	votable
 endmap
 
 map omegastation
