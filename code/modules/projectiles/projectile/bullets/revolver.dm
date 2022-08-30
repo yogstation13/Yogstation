@@ -78,3 +78,45 @@
 	name = ".357 bullet"
 	damage = 40
 	wound_bonus = -70
+
+/obj/item/projectile/bullet/a357/metalshock
+	name = ".357 Metalshock bullet"
+	damage = 30
+
+/obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		if(C.electrocute_act(10, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE)) //10 extra burn damage
+			C.confused += 5
+			return ..()
+	
+	else if(isliving(target)) //So that it works on simple mobs, too
+		var/mob/living/L = target
+		L.electrocute_act(10, src, 1, FALSE, FALSE, FALSE, FALSE)
+		return ..()
+
+/obj/item/projectile/bullet/a357/heartpiercer
+	name = ".357 Heartpiercer bullet"
+	damage = 35
+	armour_penetration = 35
+	var/penetrations = 2 //Number of mobs the bullet will go through
+
+/obj/item/projectile/bullet/a357/heartpiercer/on_hit(atom/target)
+	. = ..()
+	penetrations -= 1
+	if(ismob(target) && penetrations > 0)
+		return BULLET_ACT_FORCE_PIERCE
+
+/obj/item/projectile/bullet/a357/wallstake
+	name = ".357 Wallstake bullet"
+	damage = 25 //Consider that they're also being thrown into the wall
+	wound_bonus = -50 //Minor chance of dislocation from the bullet itself
+	sharpness = SHARP_NONE //Blunt
+
+/obj/item/projectile/bullet/a357/wallstake/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(isliving(target) && ismovable(target)) //Unlike meteorslugs, these are smaller and meant to knock bodies around, not ANYTHING
+		var/atom/movable/M = target
+		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
+		M.safe_throw_at(throw_target, 2, 2) //Extra ten damage if they hit a wall

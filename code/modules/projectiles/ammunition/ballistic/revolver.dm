@@ -6,6 +6,24 @@
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357
 
+/obj/item/ammo_casing/a357/metalshock
+	name = ".357 Metalshock bullet casing"
+	desc = "A .357 Metalshock bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/a357/metalshock
+
+/obj/item/ammo_casing/a357/heartpiercer
+	name = ".357 Heartpiercer bullet casing"
+	desc = "A .357 Heartpiercer bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/a357/heartpiercer
+
+/obj/item/ammo_casing/a357/wallstake
+	name = ".357 Wallstake bullet casing"
+	desc = "A .357 Wallstake bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/a357/wallstake
+
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/item/ammo_casing/n762
