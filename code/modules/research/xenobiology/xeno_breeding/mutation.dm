@@ -74,3 +74,6 @@
 /datum/xeno_mutation/Destroy()
 	Deactivate(remove = TRUE)
 	. = ..()
+
+/datum/xeno_mutation/proc/AttemptChange() ///Attempt to do something, alike mutating into something new or like that
+	return

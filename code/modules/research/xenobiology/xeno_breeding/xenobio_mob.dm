@@ -48,7 +48,7 @@
 	if(mutation_whitelist.len)
 		mutation_whitelist = typecacheof(mutation_whitelist)
 	if(mutation_blacklist.len)
-		mutation_blacklist = mutation_blacklist(wanted_objects)
+		mutation_blacklist = typecacheof(mutation_blacklist)
 
 	if(!born) ///If the mob isn't born, we generate mutations.
 		for(var/datum/xeno_mutation/mutation in possible_mutations)
@@ -58,7 +58,7 @@
 		gender = pick(possible_genders)
 
 /mob/living/simple_animal/hostile/retaliate/xenobio/proc/get_all_muts()
-	var/list/mymuts = current_mutations.Copy() + inert_mutations.Copy()
+	var/list/mymuts = current_mutations + inert_mutations
 	return mymuts
 
 /mob/living/simple_animal/hostile/retaliate/xenobio/proc/AddMut(mutation, inert = FALSE, force = FALSE)

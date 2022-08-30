@@ -21,7 +21,8 @@
 	. = ..()
 	if(create_organs)
 		for(var/numbo in 1 to organ_amount)
-			var/atom/organ = new pick(organ_types) (mymob)
+			var/organ_type = pick(organ_types)
+			var/atom/organ = new organ_type (mymob)
 			organs_created |= organ
 	organ_types = typecacheof(organ_types)
 

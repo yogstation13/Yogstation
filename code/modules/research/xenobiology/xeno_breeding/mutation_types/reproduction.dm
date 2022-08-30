@@ -39,6 +39,16 @@
 		to_chat(mymob, span_warning("You need to have atleast [mymob.max_nutrition*XENO_MOB_REPRODUCTION_COST] in order to reproduce!"))
 		return FALSE
 
+/datum/xeno_mutation/reproduction/proc/AddNewbornMobGenes(mob/living/simple_animal/hostile/retaliate/xenobio/baby)
+	var/list/new_muts = list()
+	var/list/new_inert_muts = list()
+	for(var/datum/xeno_mutation/mut in mymob.get_all_muts())
+		if(!istype(mut))
+			continue
+		if(!mut.CanMutate(baby))
+			continue
+		var/datum/xeno_mutation/new_mut = new mut.type ()
+
 /datum/action/innate/xeno_reproduce
 	var/datum/xeno_mutation/reproduction/linked_mutation
 
