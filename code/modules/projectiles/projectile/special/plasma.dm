@@ -63,9 +63,9 @@
 	tracer_type = /obj/effect/projectile/tracer/laser/blue
 	muzzle_type = /obj/effect/projectile/muzzle/laser/blue
 	impact_type = /obj/effect/projectile/impact/laser/blue
-	damage = 9
-	range = 8
-	mine_range = 5
+	damage = 5
+	range = 4
+	mine_range = 9
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 
 //mega plasma shotgun auto defuses
