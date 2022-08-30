@@ -7,7 +7,10 @@
 		visible_message(span_danger("A strange force protects [src], [p_they()] can't be damaged!"), span_userdanger("A strange force protects you!"))
 		return armor
 	if(armor > 0 && armour_penetration)
-		armor = max(0, armor - armour_penetration)
+		if(armour_penetration <= -100)
+			armor = 100
+		else
+			armor = clamp(0, armor/(1 + (armour_penetration/100)), 100)
 		if(penetrated_text)
 			to_chat(src, span_userdanger("[penetrated_text]"))
 		else
