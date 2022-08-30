@@ -1002,8 +1002,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, span_warning("The round hasn't started yet!"))
 		return FALSE
 
-	if(is_banned_from(key, ROLE_SENTIENCE))
-		to_chat(src, span_warning("You are job banned!"))
+	if(is_banned_from(key, ROLE_MOUSE))
+		to_chat(src, span_warning("You are banned from being a mouse!"))
 		return FALSE
 
 	if(alert("Are you sure you want to become a mouse? (Warning, you can no longer be cloned!)",,"Yes","No") != "Yes")

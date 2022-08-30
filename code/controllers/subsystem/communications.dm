@@ -20,7 +20,8 @@ SUBSYSTEM_DEF(communications)
 /datum/controller/subsystem/communications/proc/make_announcement(mob/living/user, is_silicon, input)
 	if(!can_announce(user, is_silicon))
 		return FALSE
-	if(isnotpretty(input))
+	var/pretty_input = replacetext(input, "\n", " ")
+	if(isnotpretty(pretty_input))
 		to_chat(user, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 		var/log_message = "[key_name(user)] just tripped a pretty filter: '[input]'."
 		message_admins(log_message)

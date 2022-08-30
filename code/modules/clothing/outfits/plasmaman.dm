@@ -3,7 +3,7 @@
 	
 	jobtype = /datum/job/bartender
 
-	pda_type = /obj/item/pda/bar
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -20,7 +20,7 @@
 	
 	jobtype = /datum/job/cook
 
-	pda_type = /obj/item/pda/cook
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -35,7 +35,7 @@
 	
 	jobtype = /datum/job/hydro
 
-	pda_type = /obj/item/pda/botanist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -54,7 +54,7 @@
 	
 	jobtype = /datum/job/curator
 
-	pda_type = /obj/item/pda/curator
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/curator
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -72,7 +72,7 @@
 	
 	jobtype = /datum/job/chaplain
 
-	pda_type = /obj/item/pda/chaplain
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -88,7 +88,7 @@
 	
 	jobtype = /datum/job/janitor
 
-	pda_type = /obj/item/pda/janitor
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -103,7 +103,7 @@
 	
 	jobtype = /datum/job/officer
 
-	pda_type = /obj/item/pda/security
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/security
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -126,7 +126,7 @@
 	
 	jobtype = /datum/job/detective
 
-	pda_type = /obj/item/pda/detective
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -145,7 +145,7 @@
 	
 	jobtype = /datum/job/warden
 
-	pda_type = /obj/item/pda/warden
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/security
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -170,7 +170,7 @@
 	
 	jobtype = /datum/job/cargo_tech
 
-	pda_type = /obj/item/pda/cargo
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -185,7 +185,7 @@
 	
 	jobtype = /datum/job/qm
 
-	pda_type = /obj/item/pda/quartermaster
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -202,7 +202,7 @@
 	
 	jobtype = /datum/job/mining
 
-	pda_type = /obj/item/pda/shaftminer
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -224,7 +224,7 @@
 	
 	jobtype = /datum/job/lawyer
 
-	pda_type = /obj/item/pda/lawyer
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -246,7 +246,7 @@
 	
 	jobtype = /datum/job/doctor
 
-	pda_type = /obj/item/pda/medical
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -266,7 +266,7 @@
 	
 	jobtype = /datum/job/virologist
 
-	pda_type = /obj/item/pda/viro
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/viro
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -286,7 +286,7 @@
 	
 	jobtype = /datum/job/chemist
 
-	pda_type = /obj/item/pda/chemist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -306,7 +306,7 @@
 	
 	jobtype = /datum/job/geneticist
 
-	pda_type = /obj/item/pda/geneticist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -328,7 +328,7 @@
 	
 	jobtype = /datum/job/scientist
 
-	pda_type = /obj/item/pda/toxins
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -346,7 +346,7 @@
 	
 	jobtype = /datum/job/roboticist
 
-	pda_type = /obj/item/pda/roboticist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -366,7 +366,7 @@
 	
 	jobtype = /datum/job/engineer
 
-	pda_type = /obj/item/pda/engineering
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	uniform = /obj/item/clothing/under/plasmaman/engineering
@@ -388,7 +388,7 @@
 	
 	jobtype = /datum/job/atmos
 
-	pda_type = /obj/item/pda/atmos
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/atmos
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	uniform = /obj/item/clothing/under/plasmaman/atmospherics
@@ -409,7 +409,7 @@
 	
 	jobtype = /datum/job/mime
 
-	pda_type = /obj/item/pda/mime
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/mime
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/mime
 	uniform = /obj/item/clothing/under/plasmaman/mime
@@ -427,7 +427,7 @@
 	
 	jobtype = /datum/job/clown
 
-	pda_type = /obj/item/pda/clown
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/clown
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/clown
 	uniform = /obj/item/clothing/under/plasmaman/clown
@@ -446,7 +446,7 @@
 	
 	jobtype = /datum/job/network_admin
 
-	pda_type = /obj/item/pda/network_admin
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -495,7 +495,7 @@
 	
 	jobtype = /datum/job/paramedic
 
-	pda_type = /obj/item/pda/para
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -534,7 +534,7 @@
 	
 	jobtype = /datum/job/brigphysician
 
-	pda_type = /obj/item/pda/physician
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -602,7 +602,7 @@
 	jobtype = /datum/job/artist
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/pda/artist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -621,7 +621,7 @@
 	jobtype = /datum/job/chief_engineer
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/pda/heads/ce
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/ce
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
@@ -642,7 +642,7 @@
 	jobtype = /datum/job/rd
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/pda/heads/rd
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full

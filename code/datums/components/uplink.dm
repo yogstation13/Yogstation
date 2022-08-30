@@ -47,6 +47,9 @@ GLOBAL_LIST_EMPTY(uplinks)
 	else if(istype(parent, /obj/item/pda))
 		RegisterSignal(parent, COMSIG_PDA_CHANGE_RINGTONE, .proc/new_ringtone)
 		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
+	else if(istype(parent, /obj/item/modular_computer))
+		RegisterSignal(parent, COMSIG_NTOS_CHANGE_RINGTONE, .proc/ntos_ringtone)
+		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
 	else if(istype(parent, /obj/item/radio))
 		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, .proc/new_frequency)
 	else if(istype(parent, /obj/item/pen))
@@ -268,6 +271,17 @@ GLOBAL_LIST_EMPTY(uplinks)
 	master.mode = 0
 	return COMPONENT_STOP_RINGTONE_CHANGE
 
+/datum/component/uplink/proc/ntos_ringtone(datum/source, mob/living/user, new_ring_text)
+	if(trim(lowertext(new_ring_text)) != trim(lowertext(unlock_code)))
+		if(trim(lowertext(new_ring_text)) == trim(lowertext(failsafe_code)))
+			failsafe()
+			return COMPONENT_NTOS_STOP_RINGTONE_CHANGE
+		return
+	locked = FALSE
+	interact(null, user)
+	to_chat(user, "The [parent] softly beeps.")
+	return COMPONENT_NTOS_STOP_RINGTONE_CHANGE
+
 /datum/component/uplink/proc/check_detonate()
 	return COMPONENT_PDA_NO_DETONATE
 
@@ -305,7 +319,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 /datum/component/uplink/proc/setup_unlock_code()
 	unlock_code = generate_code()
 	var/obj/item/P = parent
-	if(istype(parent,/obj/item/pda))
+	if(istype(parent,/obj/item/pda) || istype(parent,/obj/item/modular_computer))
 		unlock_note = "<B>Uplink Passcode:</B> [unlock_code] ([P.name])."
 	else if(istype(parent,/obj/item/radio))
 		unlock_note = "<B>Radio Frequency:</B> [format_frequency(unlock_code)] ([P.name])."
@@ -313,7 +327,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		unlock_note = "<B>Uplink Degrees:</B> [english_list(unlock_code)] ([P.name])."
 
 /datum/component/uplink/proc/generate_code()
-	if(istype(parent,/obj/item/pda))
+	if(istype(parent,/obj/item/pda) || istype(parent,/obj/item/modular_computer))
 		return "[rand(100,999)] [pick(GLOB.phonetic_alphabet)]"
 	else if(istype(parent,/obj/item/radio))
 		return sanitize_frequency(rand(FREQ_COMMON+1, MAX_FREQ))

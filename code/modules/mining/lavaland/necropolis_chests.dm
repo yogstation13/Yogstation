@@ -914,6 +914,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
+	new /obj/item/gem/bloodstone(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -932,6 +933,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
+	new /obj/item/gem/bloodstone(src)
 
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
@@ -1180,6 +1182,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
 	new /obj/item/clothing/head/helmet/space/hostile_environment(src)
+	new /obj/item/gem/bloodstone(src)
 	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
@@ -1269,7 +1272,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
 	var/next_reach = 0
-	var/next_grip = 0
 	var/next_splash = 0
 	var/next_knuckle = 0
 	var/splash_range = 9
@@ -1303,7 +1305,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(T)
 			new /obj/effect/decal/cleanable/blood(T)
 		T = get_step(T,user.dir)
-	next_splash = world.time + COOLDOWN
+	next_splash = world.time + COOLDOWN_SPLASH
 
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
 	var/mob/living/U = user
@@ -1324,9 +1326,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			return
 		next_reach = world.time + COOLDOWN
 	else if(istype(action, /datum/action/item_action/visegrip))
-		if(next_grip > world.time)
-			to_chat(U, span_warning("You can't do that yet!"))
-			return
 		var/valid_casting = FALSE
 		for(var/mob/living/L in view(8, U))
 			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
@@ -1335,7 +1334,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(!valid_casting)
 			to_chat(U, span_warning("There's nobody to use this on!"))
 			return
-		next_grip = world.time + COOLDOWN
 		#undef COOLDOWN
 		#undef COOLDOWN_HUMAN
 		#undef COOLDOWN_ANIMAL
@@ -1354,6 +1352,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	new random_crystal(src)
 	new /obj/item/organ/vocal_cords/colossus(src)
 	new /obj/item/clothing/glasses/godeye(src)
+	new /obj/item/gem/void(src)
 
 /obj/structure/closet/crate/necropolis/colossus/crusher
 	name = "angelic colossus chest"
