@@ -161,6 +161,14 @@
 	name = "Blood-Drunk Miner (Hunter)"
 	suffix = "lavaland_surface_blooddrunk3.dmm"
 
+/datum/map_template/ruin/lavaland/icedrunk
+	name = "Frozen Geode"
+	id = "icedrunk"
+	description = "A Monolithic geode with a frosty core, the domain of a feral miner from a long forgotten moon."
+	suffix = "lavaland_surface_icedrunk.dmm"
+	cost = 1 //not EVERY round probably
+	allow_duplicates = FALSE
+
 /datum/map_template/ruin/lavaland/ufo_crash
 	name = "UFO Crash"
 	id = "ufo-crash"
