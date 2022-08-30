@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(xeno_mutations, subtypesof(/datum/xeno_mutation))
+
 /datum/xeno_mutation
 	var/name = "Brain cancer"
 
@@ -75,5 +77,61 @@
 	Deactivate(remove = TRUE)
 	. = ..()
 
-/datum/xeno_mutation/proc/AttemptChange() ///Attempt to do something, alike mutating into something new or like that
-	return
+/datum/xeno_mutation/proc/AttemptChange(can_do_nothing = TRUE) ///Attempt to do something, alike mutating into something new or like that
+	if(can_do_nothing && prob(40))
+		return
+	var/list/things_to_hapen = list("change_inert_state", "die", "meltdown", "mutate_me", "mutate_new")
+	switch(pick(events))
+		if("change_inert_state")
+			if(inert)
+				Activate()
+			else
+				Deactivate(FALSE)
+		if("die")
+			qdel(src)
+		if("meltdown")
+			var/datum/xeno_mutation/newmut
+			if(damaged_mutations.len)
+				newmut = pick(damaged_mutations)
+			else
+				var/list/valid_bad_muts = list()
+				for(var/mut_type in GLOB.xeno_mutations)
+					var/datum/xeno_mutation/possible_mut = new mut_type
+					if(!istype(possible_mut))
+						qdel(possible_mut)
+						continue
+					if(!possible_mut.CanMutate(mymob))
+						qdel(possible_mut)
+						continue
+					if(possible_mut.usefulness = XENO_MUT_NEGATIVE)
+						valid_bad_muts |= possible_mut.type
+					qdel(possible_mut)
+
+				newmut = pick(valid_bad_muts)
+			mymob.AddMut(newmut, inert)
+		if("mutate_me")
+			mutate_new_mutation()
+			qdel(src)
+		if("mutate_new")
+			mutate_new_mutation()
+
+/datum/xeno_mutation/proc/mutate_new_mutation()
+	var/datum/xeno_mutation/newmut
+	if(mutates_into.len)
+		newmut = pick(mutates_into)
+	else
+		var/list/valid_muts = list()
+		for(var/mut_type in GLOB.xeno_mutations)
+			var/datum/xeno_mutation/possible_mut = new mut_type
+			if(!istype(possible_mut))
+				qdel(possible_mut)
+				continue
+			if(!possible_mut.CanMutate(mymob))
+				qdel(possible_mut)
+				continue
+			valid_muts |= possible_mut.type
+			qdel(possible_mut)
+
+		newmut = pick(valid_muts)
+	mymob.AddMut(newmut, inert)
+		
