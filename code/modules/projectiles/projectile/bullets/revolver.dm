@@ -132,7 +132,7 @@
 
 /obj/item/projectile/bullet/a357/wallstake/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(isliving(target) && ismovable(target)) //Unlike meteorslugs, these are smaller and meant to knock bodies around, not ANYTHING
+	if(isliving(target)) //Unlike meteorslugs, these are smaller and meant to knock bodies around, not ANYTHING
 		var/atom/movable/M = target
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 2, 2) //Extra ten damage if they hit a wall, resolves against melee armor
