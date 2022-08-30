@@ -14,6 +14,7 @@
 /datum/department_goal/med/survrate60
 	name = "Ensure at least a 60% survival rate"
 	desc = "When shift ends, 60% of the crew must still be alive"
+	endround = TRUE
 
 /datum/department_goal/med/survrate60/check_complete()
 	var/survivors = 0
@@ -32,6 +33,7 @@
 /datum/department_goal/med/survrate80
 	name = "Ensure at least a 80% survival rate"
 	desc = "When shift ends, 80% of the crew must still be alive"
+	endround = TRUE
 
 /datum/department_goal/med/survrate80/check_complete()
 	var/survivors = 0
