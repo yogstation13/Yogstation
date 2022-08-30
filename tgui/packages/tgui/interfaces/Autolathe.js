@@ -6,16 +6,11 @@ import { Window } from '../layouts';
 const MaxMultiplier = (materials, design) => {
   let maxmulti = [];
   let currentmult = 5;
-  let valid = true;
   for (let i = 0; i < 3; i++) {
     for (const [key, value] of Object.entries(materials)) {
       if (value < design["materials"][key]*currentmult) {
-        valid = false;
-        break;
+        return maxmulti;
       }
-    }
-    if(!valid) {
-      break;
     }
     maxmulti.push(currentmult);
     currentmult += 10;
