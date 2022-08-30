@@ -103,8 +103,8 @@
 	. = ..()
 	if(!.)
 		return
-	var/turf/T = get_turf(owner)
-	if(!T)
+	var/turf/T = owner.loc
+	if(!istype(T))
 		return
 	var/loot = rand(1,100)
 	switch(loot)
