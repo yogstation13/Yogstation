@@ -6,7 +6,7 @@
 	var/mut_type = XENO_MUT_GENERIC
 	
 	///What mob does have this mutation?
-	var/mob/living/simple_animal/hostile/xenobio/mymob
+	var/mob/living/simple_animal/hostile/retaliate/xenobio/mymob
 
 	///Is this mutation active, or no?
 	var/inert = FALSE

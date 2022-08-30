@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/xenobio
+/mob/living/simple_animal/hostile/retaliate/xenobio
 	name = "fucking xenos"
 	desc = "This dude shoudln't exist."
 	faction = list("neutral")
@@ -41,7 +41,7 @@
 	var/list/possible_genders = list(MALE, FEMALE) 
 
 ///If the mob is spawned by map generation or other similar things, it gets it's mutations from possible mutations list. Otherwise it is handeled by the thing that creates the mob.
-/mob/living/simple_animal/hostile/xenobio/New(loc, born = FALSE)
+/mob/living/simple_animal/hostile/retaliate/xenobio/New(loc, born = FALSE)
 	. = ..()
 	if(mutation_whitelist.len)
 		mutation_whitelist = typecacheof(mutation_whitelist)
@@ -55,11 +55,11 @@
 			AddMut(mutation, TRUE, FALSE)
 		gender = pick(possible_genders)
 
-/mob/living/simple_animal/hostile/xenobio/proc/get_all_muts()
+/mob/living/simple_animal/hostile/retaliate/xenobio/proc/get_all_muts()
 	var/list/mymuts = current_mutations.Copy() + inert_mutations.Copy()
 	return mymuts
 
-/mob/living/simple_animal/hostile/xenobio/proc/AddMut(mutation, inert = FALSE, force = FALSE)
+/mob/living/simple_animal/hostile/retaliate/xenobio/proc/AddMut(mutation, inert = FALSE, force = FALSE)
 	if(!mutation)
 		return
 	var/datum/xeno_mutation/new_mut
