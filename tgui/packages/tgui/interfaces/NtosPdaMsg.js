@@ -63,7 +63,11 @@ export const NtosPdaMsg = (props, context) => {
                 (
                   <Box key={'nonadmin'+index}>
                     <Button.Input
-                      content={'From '+msgdata[0]} />
+                      content={'From '+msgdata[0]}
+                      onCommit={(e, value) => act('PRG_sendmsg', {
+                        recipient: msgdata[2],
+                        message: value,
+                      })} />
                     {', "'+msgdata[1]+'"'}
                   </Box>
                 )

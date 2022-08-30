@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "music player volume now defaults to 15% volume instead of 50%"
