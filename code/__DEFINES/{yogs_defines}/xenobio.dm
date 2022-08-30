@@ -8,3 +8,6 @@
 #define XENO_MUT_NEGATIVE "negative"
 #define XENO_MUT_NEUTRAL "neutral"
 #define XENO_MUT_POSITIVE "positive"
+
+#define GENERIC_XENO_MOB_MAX_NUTRITION 100
+#define XENO_MOB_REPRODUCTION_COST 0.75 ///Reproduction cost in percentage from max nutrition. 

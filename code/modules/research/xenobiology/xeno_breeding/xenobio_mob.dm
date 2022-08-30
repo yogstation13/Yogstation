@@ -25,6 +25,8 @@
 	///How many food did we eaten
 	var/nutrition_amount = 0
 
+	var/max_nutrition = GENERIC_XENO_MOB_MAX_NUTRITION
+
 	///How adult the mob is
 	var/stage = 1
 

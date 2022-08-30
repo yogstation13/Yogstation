@@ -26,7 +26,7 @@
 	///Does it do something every owners Life() tick?
 	var/continous = FALSE
 
-/datum/xeno_mutation/proc/AddToMob(/mob/living/simple_animal/hostile/retaliate/xenobio/mutant, is_inert = FALSE, force = FALSE)
+/datum/xeno_mutation/proc/AddToMob(mob/living/simple_animal/hostile/retaliate/xenobio/mutant, is_inert = FALSE, force = FALSE)
 	if(!force && !CanMutate(mutant))
 		return FALSE
 	mymob = mutant
@@ -38,7 +38,7 @@
 		Activate()
 	return TRUE
 
-/datum/xeno_mutation/proc/CanMutate(/mob/living/simple_animal/hostile/retaliate/xenobio/mutant)
+/datum/xeno_mutation/proc/CanMutate(mob/living/simple_animal/hostile/retaliate/xenobio/mutant)
 	for(var/datum/xeno_mutation/mutation in mutant.get_all_muts())
 		if(!istype(mutation))
 			continue
