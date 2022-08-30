@@ -1659,11 +1659,14 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/gun/energy/plasmacutter/adv/robocutter
 	name = "ancient focusing crystal"
-	desc = "A humming crystaline weapon, firing blasts of focused energy."
+	desc = "A humming crystaline weapon, firing scattered blasts of focused energy."
 	fire_delay = 4
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "robocutter"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/stalwart)
+	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
+	usesound = list('sound/weapons/taserhit.ogg')
+	toolspeed = 0.33 //funky bluespace welding effect idk
 	selfcharge = 1
 
 /obj/item/twohanded/bonespear/stalwartpike
@@ -1673,14 +1676,15 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	//don't want your rare megafauna loot shattering easily
 	max_integrity = 2000
 	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
-	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	w_class = WEIGHT_CLASS_HUGE
 	force = 8
 	throwforce = 30
+	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
 	embedding = list("embedded_impact_pain_multiplier" = 5)
 	sharpness = SHARP_POINTY
-	block_chance = 20
-	var/fauna_damage_bonus = 62
+	block_chance = 10
+	var/fauna_damage_bonus = 22
 	var/fauna_damage_type = BRUTE
 
 /obj/item/twohanded/bonespear/stalwartpike/update_icon()
@@ -1696,7 +1700,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
 			playsound(L, 'sound/magic/blind.ogg', 100, 1)
 
-
 /obj/structure/closet/crate/sphere/stalwart
 	name = "silvery capsule"
 	desc = "It feels cold to the touch..."
@@ -1707,13 +1710,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(1)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
 		if(2)
+			new /obj/item/twohanded/bonespear/stalwartpike(src)
+		if(3)
 			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
-		if(3)
-			new /obj/item/twohanded/bonespear/stalwartpike(src)
 
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
