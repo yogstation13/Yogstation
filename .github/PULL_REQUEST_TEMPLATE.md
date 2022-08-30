@@ -6,7 +6,7 @@ You can remove all headers (Document the changes, Spriting and Wiki documentatio
 Remove this text and explain what the purpose of your PR is.
 
 Mention if you have tested your changes. If you changed a map, make sure you used the mapmerge tool.
-If this is an Issue Correction, you can type "Fixes Issue #6" to link the PR to the corresponding Issue number #6.
+If this is an Issue Correction, you can type "Fixes Issue #169420" to link the PR to the corresponding Issue number #6.
 
 Prefix the PR title with [admin] if it involves something admin related. 
 Prefix the PR title with [s] if you are fixing an exploit, so that it is not announced on the Yogstation Discord and the server.
