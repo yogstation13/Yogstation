@@ -28,9 +28,21 @@
 	qdel(action)
 
 /datum/xeno_mutation/reproduction/proc/OnActionActivate()
+	if(!CanReproduce())
+		return FALSE
+
+/datum/xeno_mutation/reproduction/proc/CanReproduce()
+	return
 
 /datum/action/innate/xeno_reproduce
 	var/datum/xeno_mutation/reproduction/linked_mutation
 
 /datum/action/innate/xeno_reproduce/Trigger()
 	linked_mutation.OnActionActivate()
+
+/datum/xeno_mutation/reproduction/segmentation
+	name = "Segmentation Reproduction"
+	action_name = "Split"
+	action_desc = "Split into two copies of yourself."
+	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon_state = "slimesplit"
