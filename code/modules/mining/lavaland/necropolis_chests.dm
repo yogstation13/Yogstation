@@ -1668,6 +1668,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	usesound = list('sound/weapons/taserhit.ogg')
 	toolspeed = 0.33 //funky bluespace welding effect idk
 	selfcharge = 1
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/twohanded/bonespear/stalwartpike
 	icon = 'icons/obj/weapons/spears.dmi'
@@ -1686,6 +1687,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	block_chance = 10
 	var/fauna_damage_bonus = 22
 	var/fauna_damage_type = BRUTE
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/twohanded/bonespear/stalwartpike/update_icon()
 	icon_state = "stalwartspear[wielded]"
