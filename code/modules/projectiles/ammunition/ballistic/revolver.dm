@@ -6,6 +6,20 @@
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357
 
+/obj/item/ammo_casing/a357/ironfeather
+	name = ".357 Ironfeather shell"
+	desc = "A .357 Ironfeather shell that contains six pellets."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/pellet/a357_ironfeather
+	pellets = 6
+	variance = 25 //Same spread and pellets as buckshot
+
+/obj/item/ammo_casing/a357/nutcracker
+	name = ".357 Nutcracker bullet casing"
+	desc = "A .357 Nutcracker bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/a357/nutcracker
+
 /obj/item/ammo_casing/a357/metalshock
 	name = ".357 Metalshock bullet casing"
 	desc = "A .357 Metalshock bullet casing."

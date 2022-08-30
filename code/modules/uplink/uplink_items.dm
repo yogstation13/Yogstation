@@ -784,9 +784,27 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
 
+/datum/uplink_item/ammo/revolver/ironfeather
+	name = ".357 Ironfeather Speed Loader"
+	desc = "A speed loader that contains seven .357 Ironfeather rounds; usable with the Syndicate revolver. \
+			These shells contain six pellets which are less damaging than buckshot but are more tightly clumped."
+	item = /obj/item/ammo_box/a357/ironfeather
+	cost = 1
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/nutcracker
+	name = ".357 Nutcracker Speed Loader"
+	desc = "A speed loader that contains seven .357 Nutcracker rounds; usable with the Syndicate revolver. \
+			These rounds lose moderate stopping power in exchange for being able to rapidly destroy doors and windows."
+	item = /obj/item/ammo_box/a357/nutcracker
+	cost = 2
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	illegal_tech = FALSE
+
 /datum/uplink_item/ammo/revolver/metalshock
 	name = ".357 Metalshock Speed Loader"
-	desc = "A speed loader thant contains seven .357 Metalshock rounds; usable with the Syndicate revolver. \
+	desc = "A speed loader that contains seven .357 Metalshock rounds; usable with the Syndicate revolver. \
 			These rounds convert some lethality into an electric payload, which can burn and confuse targets."
 	item = /obj/item/ammo_box/a357/metalshock
 	cost = 2

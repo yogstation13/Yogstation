@@ -6,6 +6,20 @@
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
+/obj/item/ammo_box/a357/ironfeather
+	name = "speed loader (.357 Ironfeather)"
+	desc = "A seven-shot speed loader designed for .357 revolvers. \
+			These shells fire six pellets which are slighty less damaging than buckshot but more accurate."
+	icon_state = "357feather"
+	ammo_type = /obj/item/ammo_casing/a357/ironfeather
+
+/obj/item/ammo_box/a357/nutcracker
+	name = "speed loader (.357 Nutcracker)"
+	desc = "A seven-shot speed loader designed for .357 revolver. \
+			These rounds lose moderate stopping power but are capable of destroying doors and windows quickly."
+	icon_state = "357cracker"
+	ammo_type = /obj/item/ammo_casing/a357/nutcracker
+
 /obj/item/ammo_box/a357/metalshock
 	name = "speed loader (.357 Metalshock)"
 	desc = "A seven-shot speed loader designed for .357 revolvers. \

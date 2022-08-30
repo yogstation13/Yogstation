@@ -79,6 +79,24 @@
 	damage = 40
 	wound_bonus = -70
 
+/obj/item/projectile/bullet/pellet/a357_ironfeather
+	name = ".357 Ironfeather pellet"
+	damage = 8.5 //Total of 51 damage assuming PBS
+	wound_bonus = 7 //So it might be able to actually wound things
+	bare_wound_bonus = 7
+	tile_dropoff = 0.4 //Loses 0.05 damage less per tile than standard damaging pellets
+	wound_falloff_tile = -1.5 //Still probably won't cause wounds at range
+
+/obj/item/projectile/bullet/a357/nutcracker
+	name = ".357 Nutcracker bullet"
+	damage = 20 //Twice the damage of a breaching slug
+	wound_bonus = -60
+
+/obj/item/projectile/bullet/a357/nutcracker/on_hit(atom/target) //Basically breaching slug with 1.5x damage
+	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
+		damage = 750 //One shot to break a window, two shots for a door, three if reinforced
+	..()
+
 /obj/item/projectile/bullet/a357/metalshock
 	name = ".357 Metalshock bullet"
 	damage = 30
