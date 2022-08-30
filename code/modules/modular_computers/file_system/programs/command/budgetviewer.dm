@@ -16,8 +16,9 @@
 	
 	var/list/budgets = list()
 	for(var/A in SSeconomy.department_accounts)
-		var/name = SSeconomy.get_dep_account(A).account_holder
-		var/money = SSeconomy.get_dep_account(A).account_balance || "0"
+		var/datum/bank_account/acc = SSeconomy.get_dep_account(A)
+		var/name = acc.account_holder
+		var/money = acc.account_balance || "0"
 		budgets += list(list("name" = name, "money" = money))
 	
 	data["budgets"] = budgets
