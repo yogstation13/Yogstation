@@ -30,6 +30,7 @@
 	if(!can_use(A))
 		return FALSE
 	if(current_combo && current_combo != SPLINTER_COMBO)
+		current_combo = null
 		streak = ""
 	add_to_streak("H",D)
 	if(check_streak(A,D))
@@ -40,6 +41,7 @@
 	if(!(can_use(A)))
 		return FALSE
 	if(current_combo && current_combo !=  VINE_SNATCH_COMBO)
+		current_combo = null
 		streak = ""
 	add_to_streak("D",D)
 	if(check_streak(A,D))
@@ -49,6 +51,7 @@
 /datum/martial_art/gardern_warfare/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(A.a_intent == INTENT_GRAB && A!=D && (can_use(A))) 
 		if(current_combo && current_combo !=  STRANGLE_COMBO)
+			current_combo = null
 			streak = ""
 		add_to_streak("G",D)
 		if(check_streak(A,D))
