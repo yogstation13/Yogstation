@@ -20,7 +20,7 @@
 /datum/xeno_mutation/organ/Activate()
 	. = ..()
 	if(create_organs)
-		for (var/numbo in 1 to organ_amount)
+		for(var/numbo in 1 to organ_amount)
 			var/atom/organ = new pick(organ_types) (mymob)
 			organs_created |= organ
 	organ_types = typecacheof(organ_types)

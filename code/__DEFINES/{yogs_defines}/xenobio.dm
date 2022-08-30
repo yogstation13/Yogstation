@@ -3,6 +3,7 @@
 
 #define XENO_MUT_GENERIC "generic"
 #define XENO_MUT_ORGAN "organ"
+#define XENO_MUT_REPRODUCTION "reproduction"
 
 #define XENO_MUT_NEGATIVE "negative"
 #define XENO_MUT_NEUTRAL "neutral"
