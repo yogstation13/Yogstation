@@ -1,3 +1,5 @@
+#define CRYPTO "crypto"
+
 ////////////////////////////////////////////
 // AI NETWORK DATUM
 // each contiguous network of ethernet cables & AI machinery
@@ -10,8 +12,6 @@
 	var/list/ai_list = list() 	//List of all AIs in this network
 
 	var/list/remote_networks = list()
-
-	var/total_activity = 0		// How much data is being sent through the network. For transmitters and receivers
 	
 	var/networked_cpu = 0		//How much CPU is in this network
 	var/networked_ram = 0		//How much RAM is in this network
@@ -23,10 +23,14 @@
 
 	var/temp_limit = AI_TEMP_LIMIT
 
+	var/local_cpu_usage = list() //How we use CPU locally
+
+
+	
+
 /datum/ai_network/New()
 	SSmachines.ainets += src
 	resources = new(starting_network = src)
-	START_PROCESSING(SSobj, src)
 
 /datum/ai_network/Destroy()
 	//Go away references, you suck!
@@ -45,25 +49,26 @@
 	resources = null
 
 	SSmachines.ainets -= src
-	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /datum/ai_network/process()
-	/*
-	if(remaining_cpu > 0 && contribute_spare_cpu)
-		var/points = max(round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu) * owner.research_point_booster), 0)
+	var/total_cpu = resources.total_cpu()
 
+	if(local_cpu_usage[CRYPTO])
+		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[CRYPTO] * total_cpu)), 0)
+		var/bitcoin_mined = points * (1-0.05*sqrt(points))	
+		bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		if(D)
+			D.adjust_money(bitcoin_mined * AI_BITCOIN_PRICE)
 
-		if(crypto_mining)
-			points *= 0.5
-			var/bitcoin_mined = points * (1-0.05*sqrt(points))	
-			bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
-			var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			if(D)
-				D.adjust_money(bitcoin_mined * AI_BITCOIN_PRICE)
-		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
-		*/
-
+	var/locally_used = 0
+	for(var/A in local_cpu_usage)
+		locally_used += local_cpu_usage[A]
+	
+	var/research_points = max(round(AI_RESEARCH_PER_CPU * ((1 - locally_used) * total_cpu)), 0)
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = research_points))
+	
 
 
 /datum/ai_network/proc/is_empty()
@@ -340,3 +345,5 @@
 	message_admins("----------------------------")
 	for(var/datum/ai_shared_resources/ASR in resource_list)
 		message_admins("Resource count [REF(ASR)], CPU: [ASR.total_cpu()] | RAM: [ASR.total_ram()]")
+
+#undef CRYPTO

@@ -125,6 +125,13 @@
 
 	data["can_upload"] = net.find_data_core() ? TRUE : FALSE
 
+	data["available_cpu_resources"] = (1 - net.resources.total_cpu_assigned())
+	data["network_cpu_resources"] = net.resources.cpu_assigned[net]
+
+	data["network_cpu_assignments"] = list(net.local_cpu_usage)
+
+
+
 	return data
 
 /datum/computer_file/program/ai_network_interface/ui_act(action, params, datum/tgui/ui)
@@ -211,7 +218,7 @@
 		if("start_download")
 			if(!get_ai(TRUE) || downloading)
 				return
-			var/mob/living/silicon/ai/target = locate(params["download_target"])
+			var/mob/living/silicon/ai/target = locate(params["download_target"]) in net.get_all_ais()
 			if(!target || !istype(target))
 				return
 			if(!istype(target.loc, /obj/machinery/ai/data_core))
@@ -240,7 +247,7 @@
 				to_chat(user, span_warning("You need to be holding the serial exploitation unit to initiate the hijacking process!"))
 				return
 			var/obj/item/ai_hijack_device/device = user.get_active_held_item()
-			var/mob/living/silicon/ai/target = locate(params["target_ai"])
+			var/mob/living/silicon/ai/target = locate(params["target_ai"]) in net.get_all_ais()
 			if(!target || !isAI(target))
 				return
 			var/mob/living/silicon/ai/A = target
@@ -270,7 +277,7 @@
 				notify_ghosts("[user] has begun to hijack [A]!", source = computer.physical, action = NOTIFY_ORBIT, ghost_sound = 'sound/machines/chime.ogg')
 
 		if("stop_hijack")
-			var/mob/living/silicon/ai/target = locate(params["target_ai"])
+			var/mob/living/silicon/ai/target = locate(params["target_ai"]) in net.get_all_ais()
 			if(!target || !isAI(target))
 				return
 			var/mob/living/silicon/ai/A = target

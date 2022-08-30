@@ -10,7 +10,7 @@
 	. = ..()
 	if(!.)
 		return .
-	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
+	for(var/obj/machinery/ai/data_core/datacores in ai.ai_network.get_all_nodes())
 		datacores.DabAnimation()
 
 	stop()

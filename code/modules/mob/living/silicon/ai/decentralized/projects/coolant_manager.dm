@@ -7,6 +7,8 @@
 	can_be_run = FALSE
 
 /datum/ai_project/coolant_manager/finish()
-	if(ai.ai_network.temp_limit == AI_TEMP_LIMIT) //Limit to only 1 AI doing it.
-		ai.ai_network.temp_limit += 10
+	ai.ai_network.temp_limit += 10
 	
+/datum/ai_project/coolant_manager/switch_network(datum/ai_network/old_net, datum/ai_network/new_net)
+	old_net.temp_limit -= 10
+	new_net.temp_limit += 10

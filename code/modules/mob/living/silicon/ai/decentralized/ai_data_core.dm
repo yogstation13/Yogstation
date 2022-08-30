@@ -173,8 +173,10 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	if(network != AI.ai_network)
 		if(AI.ai_network)
 			AI.ai_network.remove_ai(AI)
+		var/old_net = AI.ai_network
 		AI.ai_network = network
 		network.ai_list += AI
+		AI.switch_ainet(old_net, network)
 
 /obj/machinery/ai/data_core/update_icon()
 	cut_overlays()
@@ -186,17 +188,22 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	else
 		icon_state = "core-offline"
 
-/obj/machinery/ai/data_core/connect_to_network() //If we ever get connected to a network (or a new one gets created) we get the AI to the correct one too
+/obj/machinery/ai/data_core/connect_to_network() //If we ever get connected to a network (or a new one gets created) we get the AIs to the correct one too
 	. = ..()
 	for(var/mob/living/silicon/ai/AI in contents)
 		if(!AI.ai_network)
 			network.ai_list |= AI
+			var/old_net = AI.ai_network
 			AI.ai_network = network
+			AI.switch_ainet(old_net, network)
+
 		if(AI.ai_network != network)
 			if(AI.ai_network)
 				AI.ai_network.remove_ai(AI)
+			var/old_net = AI.ai_network
 			AI.ai_network = network
 			network.ai_list |= AI
+			AI.switch_ainet(old_net, network)
 
 
 

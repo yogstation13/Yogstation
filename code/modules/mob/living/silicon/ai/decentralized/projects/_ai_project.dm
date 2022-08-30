@@ -55,6 +55,8 @@ GLOBAL_LIST_EMPTY(ai_projects)
 	dashboard.running_projects += src
 	return TRUE
 
+/datum/ai_project/proc/switch_network(datum/ai_network/old_net, datum/ai_network/new_net)
+	return TRUE
 
 /datum/ai_project/proc/stop()
 	SHOULD_CALL_PARENT(TRUE)

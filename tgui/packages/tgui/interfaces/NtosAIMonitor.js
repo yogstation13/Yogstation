@@ -32,19 +32,24 @@ export const NtosAIMonitor = (props, context) => {
       <NtosWindow.Content scrollable>
         <Fragment>
           <Tabs>
-            <Tabs.Tab
+          <Tabs.Tab
               selected={tab === 1}
               onClick={(() => setTab(1))}>
-              Networking Devices
+              Cluster Management
             </Tabs.Tab>
             <Tabs.Tab
               selected={tab === 2}
               onClick={(() => setTab(2))}>
-              AI Upload
+              Networking Devices
             </Tabs.Tab>
             <Tabs.Tab
               selected={tab === 3}
               onClick={(() => setTab(3))}>
+              AI Upload
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === 4}
+              onClick={(() => setTab(4))}>
               AI Download
             </Tabs.Tab>
           </Tabs>
@@ -52,6 +57,9 @@ export const NtosAIMonitor = (props, context) => {
             <Section title="poo" />
           )}
           {tab === 2 && (
+            <Section title="poo" />
+          )}
+          {tab === 3 && (
             <Section title="Upload">
               <Box textAlign="center" mb={0.5}>
                 <Button disabled={!data.holding_mmi} color="good" icon="upload" tooltip={!data.holding_mmi ? "You need to be holding an MMI/Posibrain" : ""} onClick={() => act("upload_person")}>Upload from MMI/Posibrain</Button>
@@ -86,7 +94,7 @@ export const NtosAIMonitor = (props, context) => {
               )}
             </Section>
           )}
-          {tab === 3 && (
+          {tab === 4 && (
             <Section title="AIs Available for Download">
               {data.downloading && (
                 <Fragment>

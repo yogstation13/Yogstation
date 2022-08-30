@@ -2457,7 +2457,6 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\firewall.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\induction.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\memory_compressor.dm"
-#include "code\modules\mob\living\silicon\ai\decentralized\projects\research_booster.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\rgb.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\self_defense.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\surveillance.dm"

@@ -121,8 +121,6 @@
 
 	//Did we get the death prompt?
 	var/is_dying = FALSE 
-	///Multiplier for amount of points gained when passively using CPU for science
-	var/research_point_booster = 1
 
 	var/datum/ai_network/ai_network
 
@@ -575,6 +573,10 @@
 		else
 			to_chat(src, "[target] is not on or near any active cameras on the station.")
 
+
+/mob/living/silicon/ai/proc/switch_ainet(datum/ai_network/old_net, datum/ai_network/new_net)
+	for(var/datum/ai_project/project in dashboard.completed_projects)
+		project.switch_network(old_net, new_net)
 
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
