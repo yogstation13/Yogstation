@@ -192,10 +192,10 @@
 	background_icon_state = "bg_clock"
 	button_icon_state = "smoke"
 
-/datum/action/cooldown/domain/proc/domain()
+/datum/action/cooldown/domain/Trigger()
 	var/turf/T = owner.loc
 	if(!istype(T))
-		return
+		return FALSE
 	T.atmos_spawn_air("miasma=4;TEMP=[T20C]")
 	switch (rand(1,10))
 		if (8)
@@ -206,10 +206,6 @@
 			new /obj/effect/decal/cleanable/oil/slippery(T)
 		else
 			new /obj/effect/decal/cleanable/dirt(T)
-	StartCooldown()
-
-/datum/action/cooldown/domain/Trigger()
-	domain()
 	StartCooldown()
 
 #define REGALRAT_INTERACTION "regalrat"
