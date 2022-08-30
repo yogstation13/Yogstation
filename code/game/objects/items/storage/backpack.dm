@@ -718,9 +718,9 @@
 	new /obj/item/clothing/under/yogs/golddetective(src)
 	new /obj/item/clothing/under/yogs/greydetective(src)
 	new /obj/item/clothing/under/yogs/blackdetective(src)
-	new /obj/item/clothing/suit/yogs/golddetective(src)
-	new /obj/item/clothing/suit/yogs/detectivecoat(src)
-	new /obj/item/clothing/suit/yogs/bluedetective(src)
+	new /obj/item/clothing/suit/det_suit/golddetective(src)
+	new /obj/item/clothing/suit/det_suit/detectivecoat(src)
+	new /obj/item/clothing/suit/det_suit/bluedetective(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/sec/warden
 	name = "Warden's clothing duffelbag"
