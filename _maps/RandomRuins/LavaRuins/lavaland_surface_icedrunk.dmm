@@ -19,6 +19,26 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered)
+"f" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"g" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/borg/upgrade/modkit/chassis_mod/orange{
+	pixel_y = -1
+	},
+/obj/item/borg/upgrade/modkit/hardness{
+	pixel_x = -8;
+	pixel_y = -1
+	},
+/obj/item/borg/upgrade/modkit/cooldown{
+	pixel_x = 9;
+	pixel_y = -1
+	},
+/obj/item/gun/energy/kinetic_accelerator,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
 "h" = (
 /obj/effect/mapping_helpers/no_lava,
 /obj/structure/fluff/grave/empty,
@@ -34,6 +54,42 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"k" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/coin/adamantine{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/coin/adamantine{
+	pixel_x = 4;
+	pixel_y = -8
+	},
+/obj/item/coin/adamantine{
+	pixel_x = 10;
+	pixel_y = -8
+	},
+/obj/item/coin/adamantine{
+	pixel_x = -2;
+	pixel_y = -5
+	},
+/obj/item/coin/adamantine{
+	pixel_x = -9;
+	pixel_y = -7
+	},
+/obj/item/coin/adamantine{
+	pixel_x = 8;
+	pixel_y = 3
+	},
+/obj/item/coin/adamantine{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/item/coin/adamantine{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
 "l" = (
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
@@ -42,16 +98,9 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "q" = (
-/obj/effect/decal/cleanable/blood/gibs/up,
-/obj/item/clothing/suit/hooded/explorer,
-/obj/item/flashlight/lantern{
-	on = 1;
-	pixel_x = -11;
-	pixel_y = -11
-	},
-/obj/item/kitchen/knife/combat/survival{
-	pixel_x = 6;
-	pixel_y = -8
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
 	},
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
@@ -60,10 +109,11 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"w" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/closed/indestructible/rock,
-/area/lavaland/surface/outdoors)
+"s" = (
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/item/clothing/suit/hooded/explorer,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
 "y" = (
 /obj/effect/mapping_helpers/no_lava,
 /obj/structure/fans/tiny/invisible,
@@ -77,12 +127,22 @@
 /obj/structure/fluff/fokoff_sign,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered)
+"A" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
 "B" = (
 /obj/effect/mapping_helpers/no_lava,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 5
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"D" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
 "E" = (
 /obj/machinery/power/floodlight,
@@ -94,12 +154,53 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered)
+"G" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/item/clothing/suit/hooded/explorer,
+/obj/item/flashlight/lantern{
+	on = 1;
+	pixel_x = -11;
+	pixel_y = -11
+	},
+/obj/item/kitchen/knife/combat/survival{
+	pixel_x = 6;
+	pixel_y = -8
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"H" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/storage/firstaid/hypospray/advanced/hypo{
+	pixel_x = 4
+	},
+/obj/item/storage/firstaid/hypospray/advanced{
+	pixel_x = -5
+	},
+/obj/item/hypospray_upgrade/quickload{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/hypospray_upgrade/piercing{
+	pixel_x = -5;
+	pixel_y = -1
+	},
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"I" = (
+/obj/item/extraction_pack,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
 "J" = (
 /obj/effect/mapping_helpers/no_lava,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 10
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"K" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
 "L" = (
 /turf/template_noop,
@@ -113,6 +214,47 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered)
+"P" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"Q" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"R" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/item/coin/adamantine{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/hooded/explorer,
+/obj/item/clothing/shoes/winterboots/ice_boots{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"S" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/fugu_gland{
+	pixel_x = -1;
+	pixel_y = -4
+	},
+/obj/item/fugu_gland{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/fugu_gland{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
 "U" = (
 /obj/item/clothing/shoes/winterboots/ice_boots,
 /obj/effect/decal/cleanable/blood/tracks{
@@ -125,6 +267,31 @@
 /obj/structure/fluff/grave,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"W" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/grenade/antigravity{
+	pixel_y = 1
+	},
+/obj/item/grenade/antigravity{
+	pixel_x = 9;
+	pixel_y = 1
+	},
+/obj/item/grenade/antigravity{
+	pixel_x = -9;
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"Y" = (
+/obj/machinery/power/floodlight,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"Z" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/blood/innards,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
 
 (1,1,1) = {"
 L
@@ -472,7 +639,7 @@ l
 l
 l
 l
-l
+k
 l
 l
 l
@@ -557,13 +724,13 @@ N
 N
 N
 l
+f
 l
 l
 l
 l
 l
-l
-l
+f
 l
 l
 l
@@ -602,6 +769,12 @@ N
 N
 N
 l
+A
+l
+l
+l
+l
+f
 l
 l
 l
@@ -612,13 +785,7 @@ l
 l
 l
 l
-l
-l
-l
-l
-l
-l
-l
+g
 N
 N
 d
@@ -646,6 +813,7 @@ d
 d
 N
 N
+S
 l
 l
 l
@@ -659,8 +827,7 @@ l
 l
 l
 l
-l
-l
+Z
 l
 l
 l
@@ -741,20 +908,20 @@ l
 l
 l
 l
+E
+l
+l
+A
+l
+l
+l
+f
 l
 l
 l
 l
 l
-l
-l
-l
-l
-l
-l
-l
-l
-l
+E
 l
 l
 l
@@ -787,7 +954,7 @@ l
 l
 l
 l
-l
+A
 l
 l
 l
@@ -833,21 +1000,21 @@ l
 l
 l
 l
-E
+l
+l
+l
+f
 l
 l
 l
 l
 l
 l
+A
 l
 l
 l
-l
-E
-l
-l
-l
+A
 l
 l
 l
@@ -892,7 +1059,7 @@ l
 l
 l
 l
-l
+f
 l
 l
 l
@@ -926,13 +1093,13 @@ l
 l
 l
 l
+A
 l
 l
 l
+R
 l
-l
-l
-l
+A
 l
 l
 l
@@ -970,6 +1137,7 @@ N
 l
 l
 l
+Z
 l
 l
 l
@@ -980,8 +1148,7 @@ l
 l
 l
 l
-l
-l
+f
 l
 l
 l
@@ -1024,13 +1191,13 @@ l
 l
 l
 l
-b
 l
 l
 l
 l
 l
 l
+A
 l
 l
 l
@@ -1064,6 +1231,13 @@ l
 l
 l
 l
+s
+l
+l
+l
+l
+l
+b
 l
 l
 l
@@ -1074,14 +1248,7 @@ l
 l
 l
 l
-l
-l
-l
-l
-l
-l
-l
-l
+H
 N
 d
 i
@@ -1110,13 +1277,13 @@ l
 l
 l
 l
+I
 l
 l
 l
 l
 l
-l
-l
+D
 l
 l
 l
@@ -1158,11 +1325,11 @@ l
 l
 l
 l
+A
 l
 l
 l
-l
-l
+D
 l
 l
 l
@@ -1200,6 +1367,7 @@ N
 l
 l
 l
+f
 l
 l
 l
@@ -1207,8 +1375,7 @@ l
 l
 l
 l
-l
-l
+D
 l
 l
 l
@@ -1243,12 +1410,7 @@ i
 d
 N
 N
-l
-l
-l
-l
-E
-l
+W
 l
 l
 l
@@ -1258,7 +1420,12 @@ l
 l
 l
 l
-E
+Z
+D
+l
+l
+l
+l
 l
 l
 l
@@ -1300,16 +1467,16 @@ l
 l
 l
 l
+D
 l
 l
 l
 l
 l
+f
 l
 l
-l
-l
-l
+f
 l
 l
 N
@@ -1343,12 +1510,12 @@ l
 l
 l
 l
+q
+K
+K
+P
 l
-l
-l
-l
-l
-l
+f
 l
 l
 l
@@ -1389,12 +1556,12 @@ l
 l
 l
 l
+D
 l
 l
 l
 l
-l
-l
+A
 l
 l
 l
@@ -1431,6 +1598,12 @@ l
 l
 l
 l
+E
+Z
+l
+l
+D
+f
 l
 l
 l
@@ -1438,13 +1611,7 @@ l
 l
 l
 l
-l
-l
-l
-l
-l
-l
-l
+Y
 l
 l
 l
@@ -1476,12 +1643,12 @@ N
 N
 l
 l
+A
 l
 l
 l
 l
-l
-l
+D
 l
 l
 l
@@ -1527,15 +1694,15 @@ l
 l
 l
 l
+D
 l
 l
 l
 l
+Z
 l
 l
-l
-l
-l
+A
 l
 l
 l
@@ -1573,12 +1740,12 @@ l
 l
 l
 l
+D
 l
 l
 l
-l
-l
-l
+A
+f
 l
 l
 l
@@ -1617,9 +1784,9 @@ N
 N
 l
 l
-l
-q
-l
+A
+G
+P
 l
 l
 l
@@ -1666,14 +1833,14 @@ N
 l
 U
 l
+Q
 l
 l
 l
 l
 l
 l
-l
-l
+A
 N
 N
 N
@@ -1901,8 +2068,8 @@ i
 i
 i
 i
-w
-w
+i
+i
 B
 a
 a

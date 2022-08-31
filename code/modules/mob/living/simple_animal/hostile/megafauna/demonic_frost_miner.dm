@@ -118,13 +118,18 @@ Difficulty: Extremely Hard
 
 /obj/item/projectile/snowball
 	name = "machine-gun snowball"
-	icon_state = "nuclear_particle"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "snowball"
 	damage = 5
 	armour_penetration = 100
 	speed = 4
 	damage_type = BRUTE
 
 /obj/item/projectile/snowball/fast
+	speed = 2
+
+/obj/item/projectile/snowball/fast/miner
+	armour_penetration = 10
 	speed = 2
 
 /obj/item/projectile/ice_blast
@@ -245,26 +250,11 @@ Difficulty: Extremely Hard
 		enraging = FALSE
 		adjustHealth(-maxHealth)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/death(gibbed, list/force_grant)
-	if(health > 0)
-		return
-	else
-		var/turf/T = get_turf(src)
-		var/loot = rand(1, 3)
-		switch(loot)
-			if(1)
-				new /obj/item/gun/energy/snowball_machine_gun(T)
-			if(2)
-				new /obj/item/clothing/shoes/winterboots/ice_boots/speedy(T)
-			if(3)
-				new /obj/item/pickaxe/drill/jackhammer/demonic(T)
-		. = ..()
-
 /obj/item/gun/energy/snowball_machine_gun
 	name = "snowball machine gun"
 	desc = "A self-charging poorly-rigged energy gun that fires energy particles that look like snowballs."
 	icon_state = "freezegun"
-	ammo_type = list(/obj/item/ammo_casing/energy/snowball)
+	ammo_type = list(/obj/item/ammo_casing/energy/snowball/fast/miner)
 	selfcharge = TRUE
 	charge_delay = 4
 	burst_size = 3
@@ -280,7 +270,7 @@ Difficulty: Extremely Hard
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy
 	name = "cursed ice hiking boots"
 	desc = "A pair of winter boots contractually made by a devil, they cannot be taken off once put on."
-	slowdown = SHOES_SLOWDOWN - 1
+	slowdown = SHOES_SLOWDOWN - 0.25
 
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy/Initialize()
 	. = ..()
@@ -289,7 +279,7 @@ Difficulty: Extremely Hard
 /obj/item/pickaxe/drill/jackhammer/demonic
 	name = "demonic jackhammer"
 	desc = "Cracks rocks at an inhuman speed, as well as being enhanced for combat purposes."
-	toolspeed = 0
+	toolspeed = 0.1
 
 /obj/item/pickaxe/drill/jackhammer/demonic/Initialize()
 	..()

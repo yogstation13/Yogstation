@@ -1737,3 +1737,17 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		H.blood_volume -= 35
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown
+
+//demonic-frost miner
+/obj/structure/closet/crate/wooden/miner
+	name = "frosty chest"
+
+/obj/structure/closet/crate/wooden/miner/PopulateContents()
+	var/loot = rand(1,3)
+	switch(loot)
+		if(1)
+			new /obj/item/clothing/shoes/winterboots/ice_boots/speedy(src)
+		if(2)
+			new /obj/item/pickaxe/drill/jackhammer/demonic(src)
+		if(3)
+			new /obj/item/gun/energy/snowball_machine_gun(src)
