@@ -49,6 +49,7 @@
 	playsound(src, 'sound/machines/sm/accent/delam/14.ogg', 400, 1)
 	
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
+	playsound(src, 'sound/weapons/ionrifle.ogg', 400, 1)
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)

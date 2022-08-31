@@ -1673,28 +1673,58 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/twohanded/bonespear/stalwartpike
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "stalwartspear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "ancient control rod"
 	//don't want your rare megafauna loot shattering easily
 	max_integrity = 2000
 	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
-	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
-	w_class = WEIGHT_CLASS_HUGE
-	force = 8
-	throwforce = 30
+	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	w_class = WEIGHT_CLASS_SMALL
+	var/w_class_on = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BACK
+	force = 0
+	throwforce = 0
+	throw_speed = 4
 	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
-	embedding = list("embedded_impact_pain_multiplier" = 5)
-	sharpness = SHARP_POINTY
-	block_chance = 10
+	sharpness = SHARP_NONE
+	block_chance = 0
+	var/ranged_cooldown = 0 //shamelessly stolen from hostile mobs
+	var/ranged_cooldown_time = 40
+	var/projectiles_per_fire = 1
 	var/fauna_damage_bonus = 22
 	var/fauna_damage_type = BRUTE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/twohanded/bonespear/stalwartpike/update_icon()
-	icon_state = "stalwartspear[wielded]"
+	. = ..()
+	if(wielded)
+		icon_state = "stalwartspear1"
+	else
+		icon_state = "stalwartspear0"
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
+
+/obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
+	. = ..()
+	if(wielded)
+		playsound(src, 'sound/magic/summonitems_generic.ogg', 100, 1)
+		sharpness = SHARP_POINTY
+		w_class = w_class_on
+		block_chance = 10
+		force = 8
+
+/obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
+	if(wielded)
+		playsound(src, 'sound/magic/teleport_diss.ogg', 100, 1)
+		sharpness = initial(sharpness)
+		w_class = initial(w_class)
+		force = initial(force)
+		block_chance = initial(block_chance)
+	. = ..()
 
 /obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(!proximity)
+	if(!proximity || !wielded)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
@@ -1707,7 +1737,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It feels cold to the touch..."
 
 /obj/structure/closet/crate/sphere/stalwart/PopulateContents()
-	var/loot = rand(1,3)
+	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
@@ -1719,6 +1749,11 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/stack/ore/dilithium_crystal(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
+		if(4)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
