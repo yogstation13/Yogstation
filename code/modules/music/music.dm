@@ -258,7 +258,7 @@
 	does_loop = TRUE
 
 /datum/music/sourced/battle/ash_drake
-	sound_file = 'sound/lavaland/music/adder.ogg'
+	sound_file = 'yogstation/sound/lavaland/music/ash_drake.ogg'
 	priority = 100
 /datum/music/sourced/battle/bubblegum
 	sound_file = 'sound/lavaland/music/blobpaste.ogg'
