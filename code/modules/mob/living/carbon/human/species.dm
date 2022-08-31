@@ -1440,9 +1440,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
 					health_deficiency *= 0.5
 				if(flight)
-					. += (health_deficiency / 75)
+					health_deficiency *= 0.333
+				if(health_deficiency < 100) // https://i.imgur.com/W4nusN8.png
+					. += (health_deficiency / 50) ** 2.58
 				else
-					. += (health_deficiency / 25)
+					. += (health_deficiency / 100) + 5
 		if(CONFIG_GET(flag/disable_human_mood) && !H.mood_enabled) // Yogs -- Mood as preference
 			if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
