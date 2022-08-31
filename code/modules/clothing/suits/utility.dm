@@ -117,7 +117,7 @@
 * Radiation protection
 */
 
-/obj/item/clothing/head/hooded/radiation_hood
+/obj/item/clothing/head/hooded/radiation
 	name = "radiation hood"
 	icon_state = "rad"
 	desc = "A hood with radiation protective properties. The label reads, 'Made with lead. Please do not consume insulation.'"
@@ -149,4 +149,4 @@
 	flags_inv = HIDEJUMPSUIT
 	resistance_flags = NONE
 	flags_1 = RAD_PROTECT_CONTENTS_1
-	hoodtype = /obj/item/clothing/head/hooded/radiation_hood
+	hoodtype = /obj/item/clothing/head/hooded/radiation
