@@ -64,7 +64,7 @@
 		mutation_blacklist = typecacheof(mutation_blacklist)
 
 	if(food.len)
-		food = typecahceof(food)
+		food = typecacheof(food)
 		wanted_objects += food
 		for(var/i in food)
 			if(isobj(i))
@@ -106,9 +106,9 @@
 /mob/living/simple_animal/hostile/retaliate/xenobio/proc/HandleHungerAndGrowth()
 	if(stat == DEAD)
 		return
-	adjust_nutrition(-1)
+	adjust_nutrition_amount(-1)
 	
-/mob/living/simple_animal/hostile/retaliate/xenobio/proc/adjust_nutrition(amount)
+/mob/living/simple_animal/hostile/retaliate/xenobio/proc/adjust_nutrition_amount(amount)
 	if(nutrition > 0)
 		adjust_growth_stage_progress(amount)
 	nutrition += amount
@@ -169,7 +169,7 @@
 		return
 	if (!do_after(src, 2 SECONDS, the_target))
 		return
-	adjust_nutrition(nutrition_from_feeding)
+	adjust_nutrition_amount(nutrition_from_feeding)
 	visible_message(span_danger("[src] devours [the_target]."), span_notice("You devour [the_target]."))
 	the_target.forceMove(src)
 	if(isliving(the_target))
