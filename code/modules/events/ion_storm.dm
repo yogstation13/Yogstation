@@ -26,7 +26,7 @@
 	botEmagChance = 0
 
 /datum/round_event/ion_storm/announce(fake)
-	if(announceEvent == ION_ANNOUNCE || (announceEvent == ION_RANDOM && prob(ionAnnounceChance)) || fake)
+	if(announceEvent == ION_ANNOUNCE || fake)
 		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", ANNOUNCER_IONSTORM)
 
 
