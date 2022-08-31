@@ -28,7 +28,7 @@ Difficulty: Extremely Hard
 	move_to_delay = 20
 	ranged = TRUE
 	crusher_loot = list(/obj/effect/decal/remains/plasma, /obj/item/crusher_trophy/ice_block_talisman)
-	loot = list(/obj/effect/decal/remains/plasma)
+	loot = list(/obj/effect/decal/remains/plasma, /obj/structure/closet/crate/wooden/miner, /obj/item/gem/phoron)
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_GENERIC
@@ -254,14 +254,14 @@ Difficulty: Extremely Hard
 	name = "snowball machine gun"
 	desc = "A self-charging poorly-rigged energy gun that fires energy particles that look like snowballs."
 	icon_state = "freezegun"
-	ammo_type = list(/obj/item/ammo_casing/energy/snowball/fast/miner)
+	ammo_type = list(/obj/item/ammo_casing/energy/snowball/)
 	selfcharge = TRUE
 	charge_delay = 4
 	burst_size = 3
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/ammo_casing/energy/snowball
-	projectile_type = /obj/item/projectile/snowball/fast
+	projectile_type = /obj/item/projectile/snowball/fast/miner
 	select_name = "freeze"
 	e_cost = 20
 	delay = 0.5
