@@ -3,7 +3,7 @@
 	coexisting = XENO_MUT_UNIQUE
 	mut_type = XENO_MUT_REPRODUCTION
 
-	var/datum/action/innate/action
+	var/datum/action/innate/xeno_reproduce/action
 
 	var/action_name = "Become cringe"
 	var/action_desc = "amongus"
@@ -27,7 +27,7 @@
 		action.linked_mutation = src
 		action.UpdateButtonIcon()
 
-/datum/xeno_mutation/reproduction/Deactivate()
+/datum/xeno_mutation/reproduction/Deactivate(remove = FALSE)
 	. = ..()
 	qdel(action)
 
@@ -36,10 +36,10 @@
 		return FALSE
 
 /datum/xeno_mutation/reproduction/proc/CanReproduce()
-	if(stage < max_stage)
+	if(mymob.stage < mymob.max_stage)
 		to_chat(mymob, span_warning("You need to be an adult in order to reproduce!"))
 		return FALSE
-	if(nutrition < XENO_MOB_REPRODUCTION_COST * max_nutrition)
+	if(mymob.nutrition < XENO_MOB_REPRODUCTION_COST * mymob.max_nutrition)
 		to_chat(mymob, span_warning("You need to have atleast [mymob.max_nutrition*XENO_MOB_REPRODUCTION_COST] nutrition in order to reproduce!"))
 		return FALSE
 

@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(xeno_mutations, subtypesof(/datum/xeno_mutation))
+GLOBAL_LIST_INIT(xeno_mutations, (subtypesof(/datum/xeno_mutation) - /datum/xeno_mutation/reproduction - /datum/xeno_mutation/organ))
 
 /datum/xeno_mutation
 	var/name = "Brain cancer"
