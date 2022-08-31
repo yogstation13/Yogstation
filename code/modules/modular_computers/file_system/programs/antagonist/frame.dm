@@ -58,6 +58,10 @@ GLOBAL_LIST_EMPTY(PDAFrameCodes)
 				if(!target_computer)
 					computer.visible_message(span_danger("ERROR. Target computer not found."), null, null, 1)
 					return TRUE
+				
+				if(istype(target_computer, /obj/item/modular_computer/tablet/integrated))
+					computer.visible_message(span_danger("ERROR. Silicon target cannot be FRAMEd."), null, null, 1)
+					return TRUE
 
 				framer.uses--
 
