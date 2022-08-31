@@ -1473,12 +1473,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 1
 
 /datum/uplink_item/device_tools/frame
-	name = "F.R.A.M.E. PDA Cartridge"
-	desc = "When inserted into a personal digital assistant, this cartridge gives you five PDA viruses which \
-			when used cause the targeted PDA to become a new uplink with zero TCs, and immediately become unlocked. \
-			You will receive the unlock code upon activating the virus, and the new uplink may be charged with \
-			telecrystals normally."
-	item = /obj/item/cartridge/virus/frame
+	name = "F.R.A.M.E. Program"
+	desc = "This program allows you to use five viruses which when used cause the targeted \
+			computer to become a new uplink with zero TC, and immediately become unlocked. \
+			You will receive the unlock code upon activating the virus, \
+			and the new uplink may be charged with telecrystals normally."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/frame
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted = TRUE

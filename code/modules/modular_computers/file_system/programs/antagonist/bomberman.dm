@@ -50,8 +50,8 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 			return TRUE
 
 		if("PRG_sendbomb")
-			var/datum/bombcode/bomb
-			for(var/datum/bombcode/B in GLOB.PDABombCodes)
+			var/datum/ntosbombcode/bomb
+			for(var/datum/ntosbombcode/B in GLOB.PDABombCodes)
 				if(bombcode == B.code)
 					bomb = B
 					break
@@ -125,10 +125,10 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 
 	return data
 
-/datum/bombcode
+/datum/ntosbombcode
 	var/code = ""
 	var/uses = 4
 
-/datum/bombcode/New()
+/datum/ntosbombcode/New()
 	code = "[num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)]" // 8 hexadecimal digits
 	GLOB.PDABombCodes += src
