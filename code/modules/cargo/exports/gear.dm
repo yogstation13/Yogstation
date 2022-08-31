@@ -51,16 +51,10 @@
 	unit_name = "Syndicate space suit"
 	export_types = list(/obj/item/clothing/suit/space/syndicate)
 
-
-/datum/export/gear/radhelmet
-	cost = 50
-	unit_name = "radsuit hood"
-	export_types = list(/obj/item/clothing/head/radiation)
-
 /datum/export/gear/radsuit
-	cost = 100
+	cost = 150
 	unit_name = "radsuit"
-	export_types = list(/obj/item/clothing/suit/radiation)
+	export_types = list(/obj/item/clothing/suit/hooded/radiation)
 
 /datum/export/gear/biohood
 	cost = 50

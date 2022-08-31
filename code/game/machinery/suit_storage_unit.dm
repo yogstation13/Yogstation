@@ -112,8 +112,7 @@
 
 /obj/machinery/suit_storage_unit/radsuit
 	name = "radiation suit storage unit"
-	suit_type = /obj/item/clothing/suit/radiation
-	helmet_type = /obj/item/clothing/head/radiation
+	suit_type = /obj/item/clothing/suit/hooded/radiation
 	storage_type = /obj/item/geiger_counter
 
 /obj/machinery/suit_storage_unit/open
