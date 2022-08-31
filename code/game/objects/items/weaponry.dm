@@ -819,6 +819,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 	var/obj/structure/table/the_table = target
 
+	if(!proximity_flag)
+		return
+
 	if(user.a_intent == INTENT_HARM)
 		transform = transform.Scale(5) // BIG slap
 		if(HAS_TRAIT(user, TRAIT_HULK))
