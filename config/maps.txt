@@ -49,7 +49,6 @@ endmap
 
 map icebox
 	minplayers 25
-	disabled 
 endmap
 
 map eclipsestation
