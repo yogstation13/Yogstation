@@ -1483,7 +1483,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted = TRUE
 
-/datum/uplink_item/explosives/frame/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+/datum/uplink_item/device_tools/frame/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	. = ..()
 	var/obj/item/computer_hardware/hard_drive/portable/syndicate/frame/framedisk = .
 	var/datum/computer_file/program/frame/program = framedisk.find_file_by_name("frame")
