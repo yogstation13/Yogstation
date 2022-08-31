@@ -365,10 +365,11 @@
 	if(!caller || !caller.alert_able || caller.alert_silenced || !alerttext) //Yeah, we're checking alert_able. No, you don't get to make alerts that the user can't silence.
 		return
 	play_computer_sound(sound, 50, TRUE)
-	visible_message(span_notice("\The [src] displays a [caller.filedesc] notification: [alerttext]</span>"))
 	var/mob/living/holder = loc
 	if(istype(holder))
 		to_chat(holder, span_notice("\The [src] displays a [caller.filedesc] notification: [alerttext]"))
+	else
+		visible_message(span_notice("\The [src] displays a [caller.filedesc] notification: [alerttext]"))
 
 // Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
 /obj/item/modular_computer/proc/get_header_data()
@@ -576,7 +577,7 @@
 			enabled = TRUE
 
 /// Sets visible messages to also send to holder because coders didn't know it didn't do this
-/obj/item/modular_computer/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE)
+/obj/item/modular_computer/visible_message(message, self_message, blind_message, vision_distance, list/ignored_mobs, visible_message_flags)
 	. = ..()
 	if(ismob(loc))
 		to_chat(loc, message)
