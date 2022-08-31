@@ -277,6 +277,9 @@ Difficulty: Medium
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))
 			break
+		var/obj/effect/hotspot/hot_hot_there_is_already_fire_here_why_would_you_make_more = locate() in T
+		if(hot_hot_there_is_already_fire_here_why_would_you_make_more)
+			continue
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
 		for(var/mob/living/L in T.contents)
