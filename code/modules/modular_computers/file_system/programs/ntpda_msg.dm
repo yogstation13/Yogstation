@@ -124,18 +124,18 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 
 	if(!silent && istype(holder, /obj/item/computer_hardware/hard_drive))
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
-			playsound(holder, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 6, FALSE)
+			playsound(holder, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 10, FALSE)
 		else
-			playsound(holder, 'sound/machines/twobeep_high.ogg', 6, FALSE)
+			playsound(holder, 'sound/machines/twobeep_high.ogg', 10, FALSE)
 		
 		// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
 		if(computer) // I HAVE TO DO THIS OR THEY WON'T RECEIVE MESSAGES UNTIL THEY OPEN THE PDA ONCE (BAD)
 			computer.audible_message("[icon2html(computer, hearers(computer))] *[ringtone]*", null, 3)
-			computer.visible_message(span_notice("Message from [sender.username], \"[message]\""), null, null, 1)
+			computer.visible_message(span_notice("<b>Message from [sender.username], \"[message]\"</b>"), null, null, 1)
 		else if(istype(holder.loc, /obj/item/modular_computer)) // play it from the (unset) computer
 			var/obj/item/modular_computer/tempcomp = holder.loc
 			tempcomp.audible_message("[icon2html(tempcomp, hearers(tempcomp))] *[ringtone]*", null, 3)
-			tempcomp.visible_message(span_notice("Message from [sender.username], \"[message]\""), null, null, 1)
+			tempcomp.visible_message(span_notice("<b>Message from [sender.username], \"[message]\"</b>"), null, null, 1)
 	
 	return TRUE
 
