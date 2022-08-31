@@ -80,7 +80,7 @@
 	if(!.)
 		return
 	mymob.nutrition -= mymob.max_nutrition*XENO_MOB_REPRODUCTION_COST
-	stage = 1
+	mymob.stage = 1
 	var/mob/living/simple_animal/hostile/retaliate/xenobio/baby = new mymob.type (get_turf(mymob))
 	AddNewbornMobMuts(baby)
 	to_chat(mymob, span_notice("You split yourself into two entities."))
