@@ -1441,7 +1441,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 					health_deficiency *= 0.5
 				if(flight)
 					health_deficiency *= 0.333
-				if(health_deficiency < 100) // https://i.imgur.com/W4nusN8.png
+				if(health_deficiency < 100) // https://i.imgur.com/W4nusN8.png https://www.desmos.com/calculator/qsf6iakqgp
 					. += (health_deficiency / 50) ** 2.58
 				else
 					. += (health_deficiency / 100) + 5
