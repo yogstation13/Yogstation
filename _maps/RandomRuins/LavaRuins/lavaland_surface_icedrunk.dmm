@@ -19,24 +19,22 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered)
-"f" = (
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
 "g" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/borg/upgrade/modkit/chassis_mod/orange{
+/obj/item/storage/firstaid/hypospray/advanced/hypo{
+	pixel_x = 4
+	},
+/obj/item/storage/firstaid/hypospray/advanced{
+	pixel_x = -5
+	},
+/obj/item/hypospray_upgrade/quickload{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/hypospray_upgrade/piercing{
+	pixel_x = -5;
 	pixel_y = -1
 	},
-/obj/item/borg/upgrade/modkit/hardness{
-	pixel_x = -8;
-	pixel_y = -1
-	},
-/obj/item/borg/upgrade/modkit/cooldown{
-	pixel_x = 9;
-	pixel_y = -1
-	},
-/obj/item/gun/energy/kinetic_accelerator,
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
 "h" = (
@@ -55,6 +53,118 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "k" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"l" = (
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"m" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/item/coin/adamantine{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/hooded/explorer,
+/obj/item/clothing/shoes/winterboots/ice_boots{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"n" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"o" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/blood/innards,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"p" = (
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/item/clothing/suit/hooded/explorer,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"r" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"v" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/borg/upgrade/modkit/chassis_mod/orange{
+	pixel_y = -1
+	},
+/obj/item/borg/upgrade/modkit/hardness{
+	pixel_x = -8;
+	pixel_y = -1
+	},
+/obj/item/borg/upgrade/modkit/cooldown{
+	pixel_x = 9;
+	pixel_y = -1
+	},
+/obj/item/gun/energy/kinetic_accelerator,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"w" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"y" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fans/tiny/invisible,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"z" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fluff/fokoff_sign,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"A" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/fugu_gland{
+	pixel_x = -1;
+	pixel_y = -4
+	},
+/obj/item/fugu_gland{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/fugu_gland{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"B" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"C" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"E" = (
+/obj/machinery/power/floodlight,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"F" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/ruin/powered)
+"G" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/coin/adamantine{
 	pixel_x = 4;
@@ -90,71 +200,35 @@
 	},
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
-"l" = (
+"J" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered)
+"L" = (
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/obj/item/extraction_pack,
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
-"n" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+"N" = (
+/turf/closed/indestructible/rock/snow/ice,
 /area/lavaland/surface/outdoors)
-"q" = (
-/obj/effect/decal/cleanable/blood/footprints,
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 8
-	},
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"r" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
-"s" = (
-/obj/effect/decal/cleanable/blood/gibs/torso,
-/obj/item/clothing/suit/hooded/explorer,
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"y" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/structure/fans/tiny/invisible,
+"O" = (
 /obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered)
-"z" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/structure/fluff/fokoff_sign,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered)
-"A" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"B" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 5
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered)
-"D" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 8
-	},
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"E" = (
-/obj/machinery/power/floodlight,
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"F" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered)
-"G" = (
+"P" = (
+/obj/effect/decal/cleanable/robot_debris,
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"Q" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /obj/item/clothing/suit/hooded/explorer,
 /obj/item/flashlight/lantern{
@@ -169,89 +243,28 @@
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
-"H" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/storage/firstaid/hypospray/advanced/hypo{
-	pixel_x = 4
-	},
-/obj/item/storage/firstaid/hypospray/advanced{
-	pixel_x = -5
-	},
-/obj/item/hypospray_upgrade/quickload{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/hypospray_upgrade/piercing{
-	pixel_x = -5;
-	pixel_y = -1
-	},
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"I" = (
-/obj/item/extraction_pack,
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"J" = (
-/obj/effect/mapping_helpers/no_lava,
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 10
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered)
-"K" = (
-/obj/effect/decal/cleanable/blood/footprints,
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"L" = (
-/turf/template_noop,
-/area/template_noop)
-"N" = (
-/turf/closed/indestructible/rock/snow/ice,
-/area/lavaland/surface/outdoors)
-"O" = (
-/obj/effect/decal/cleanable/blood/tracks{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/ruin/powered)
-"P" = (
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/footprints,
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
-"Q" = (
-/obj/effect/decal/cleanable/robot_debris,
-/obj/effect/decal/cleanable/oil/streak,
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
 "R" = (
-/obj/effect/decal/cleanable/blood/gibs/down,
-/obj/item/coin/adamantine{
-	pixel_x = 6;
-	pixel_y = -2
+/obj/structure/closet/crate/wooden,
+/obj/item/grenade/antigravity{
+	pixel_y = 1
 	},
-/obj/item/clothing/suit/hooded/explorer,
-/obj/item/clothing/shoes/winterboots/ice_boots{
+/obj/item/grenade/antigravity{
+	pixel_x = 9;
+	pixel_y = 1
+	},
+/obj/item/grenade/antigravity{
 	pixel_x = -9;
-	pixel_y = -6
+	pixel_y = 1
 	},
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
 "S" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/fugu_gland{
-	pixel_x = -1;
-	pixel_y = -4
-	},
-/obj/item/fugu_gland{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/fugu_gland{
-	pixel_x = -8;
-	pixel_y = 3
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/ice/colder,
+/area/ruin/powered)
+"T" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
 	},
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
@@ -267,29 +280,16 @@
 /obj/structure/fluff/grave,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"W" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/grenade/antigravity{
-	pixel_y = 1
-	},
-/obj/item/grenade/antigravity{
-	pixel_x = 9;
-	pixel_y = 1
-	},
-/obj/item/grenade/antigravity{
-	pixel_x = -9;
-	pixel_y = 1
-	},
-/turf/open/floor/plating/ice/colder,
-/area/ruin/powered)
 "Y" = (
-/obj/machinery/power/floodlight,
-/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
 "Z" = (
+/obj/machinery/power/floodlight,
 /obj/effect/decal/cleanable/blood/gibs/core,
-/obj/effect/decal/cleanable/blood/innards,
 /turf/open/floor/plating/ice/colder,
 /area/ruin/powered)
 
@@ -306,30 +306,30 @@ L
 L
 L
 L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
 L
 L
 L
@@ -350,32 +350,32 @@ L
 L
 L
 L
-L
-L
-L
-L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
+n
+n
+n
+n
 i
 i
 i
-L
+n
 i
-L
+n
 i
-L
+n
 i
-L
-L
-L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
+n
+n
+n
 L
 L
 L
@@ -394,11 +394,11 @@ L
 L
 L
 L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
 i
 i
 i
@@ -419,11 +419,11 @@ i
 i
 i
 i
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
 L
 L
 L
@@ -439,12 +439,12 @@ L
 L
 L
 L
-L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
+n
 i
 i
 i
@@ -465,11 +465,11 @@ i
 i
 i
 i
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
 L
 L
 L
@@ -485,8 +485,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -514,9 +514,9 @@ i
 i
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 L
@@ -531,8 +531,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -560,9 +560,9 @@ i
 i
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 L
@@ -576,9 +576,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 i
@@ -607,9 +607,9 @@ i
 i
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 L
@@ -622,8 +622,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -639,7 +639,7 @@ l
 l
 l
 l
-k
+G
 l
 l
 l
@@ -653,10 +653,10 @@ d
 i
 i
 i
-L
-L
-L
-L
+n
+n
+n
+n
 L
 L
 L
@@ -667,9 +667,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 i
@@ -701,8 +701,8 @@ i
 i
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -713,8 +713,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -724,13 +724,13 @@ N
 N
 N
 l
-f
+C
 l
 l
 l
 l
 l
-f
+C
 l
 l
 l
@@ -747,8 +747,8 @@ i
 i
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -759,8 +759,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -769,23 +769,23 @@ N
 N
 N
 l
-A
+S
 l
 l
 l
 l
-f
-l
-l
-l
-l
-l
+C
 l
 l
 l
 l
 l
-g
+l
+l
+l
+l
+l
+v
 N
 N
 d
@@ -793,8 +793,8 @@ d
 i
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -805,14 +805,155 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 d
 d
 N
 N
+A
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+o
+l
+l
+l
+l
+l
+N
+N
+d
+d
+i
+i
+n
+n
+L
+L
+L
+"}
+(13,1,1) = {"
+L
+L
+L
+L
+L
+n
+n
+i
+i
+d
+N
+N
+N
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+l
+N
+N
+d
+i
+i
+n
+n
+L
+L
+L
+"}
+(14,1,1) = {"
+L
+L
+L
+L
+n
+n
+i
+i
+i
+d
+N
+N
+l
+l
+l
+l
+E
+l
+l
+S
+l
+l
+l
+C
+l
+l
+l
+l
+l
+E
+l
+l
+l
+l
+N
+N
+d
+i
+i
+n
+n
+L
+L
+L
+"}
+(15,1,1) = {"
+L
+L
+L
+L
+n
+n
+n
+i
+i
+d
+N
+N
+l
+l
+l
+l
 S
 l
 l
@@ -827,147 +968,6 @@ l
 l
 l
 l
-Z
-l
-l
-l
-l
-l
-N
-N
-d
-d
-i
-i
-L
-L
-L
-L
-L
-"}
-(13,1,1) = {"
-L
-L
-L
-L
-L
-L
-L
-i
-i
-d
-N
-N
-N
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-N
-N
-d
-i
-i
-L
-L
-L
-L
-L
-"}
-(14,1,1) = {"
-L
-L
-L
-L
-L
-L
-i
-i
-i
-d
-N
-N
-l
-l
-l
-l
-E
-l
-l
-A
-l
-l
-l
-f
-l
-l
-l
-l
-l
-E
-l
-l
-l
-l
-N
-N
-d
-i
-i
-L
-L
-L
-L
-L
-"}
-(15,1,1) = {"
-L
-L
-L
-L
-L
-L
-L
-i
-i
-d
-N
-N
-l
-l
-l
-l
-A
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
-l
 l
 l
 l
@@ -977,8 +977,8 @@ N
 d
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -988,9 +988,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 d
@@ -1003,18 +1003,18 @@ l
 l
 l
 l
-f
+C
 l
 l
 l
 l
 l
 l
-A
+S
 l
 l
 l
-A
+S
 l
 l
 l
@@ -1023,9 +1023,9 @@ N
 d
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 "}
@@ -1034,9 +1034,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 d
@@ -1059,7 +1059,7 @@ l
 l
 l
 l
-f
+C
 l
 l
 l
@@ -1070,8 +1070,8 @@ d
 i
 i
 i
-L
-L
+n
+n
 L
 L
 "}
@@ -1080,8 +1080,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -1093,13 +1093,13 @@ l
 l
 l
 l
-A
+S
 l
 l
 l
-R
+m
 l
-A
+S
 l
 l
 l
@@ -1116,8 +1116,8 @@ d
 i
 i
 i
-L
-L
+n
+n
 L
 L
 "}
@@ -1126,8 +1126,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -1137,7 +1137,7 @@ N
 l
 l
 l
-Z
+o
 l
 l
 l
@@ -1148,7 +1148,7 @@ l
 l
 l
 l
-f
+C
 l
 l
 l
@@ -1161,9 +1161,9 @@ N
 d
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 "}
@@ -1172,9 +1172,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 d
@@ -1197,7 +1197,7 @@ l
 l
 l
 l
-A
+S
 l
 l
 l
@@ -1208,8 +1208,8 @@ d
 i
 i
 i
-L
-L
+n
+n
 L
 L
 "}
@@ -1218,8 +1218,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -1231,7 +1231,7 @@ l
 l
 l
 l
-s
+p
 l
 l
 l
@@ -1248,14 +1248,14 @@ l
 l
 l
 l
-H
+g
 N
 d
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 "}
@@ -1264,8 +1264,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -1277,13 +1277,13 @@ l
 l
 l
 l
-I
+M
 l
 l
 l
 l
 l
-D
+T
 l
 l
 l
@@ -1299,9 +1299,9 @@ N
 d
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 "}
@@ -1310,9 +1310,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 d
@@ -1325,11 +1325,11 @@ l
 l
 l
 l
-A
+S
 l
 l
 l
-D
+T
 l
 l
 l
@@ -1346,8 +1346,8 @@ d
 i
 i
 i
-L
-L
+n
+n
 L
 L
 "}
@@ -1356,8 +1356,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -1367,7 +1367,7 @@ N
 l
 l
 l
-f
+C
 l
 l
 l
@@ -1375,7 +1375,7 @@ l
 l
 l
 l
-D
+T
 l
 l
 l
@@ -1392,8 +1392,8 @@ d
 i
 i
 i
-L
-L
+n
+n
 L
 L
 "}
@@ -1402,15 +1402,15 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
 d
 N
 N
-W
+R
 l
 l
 l
@@ -1420,8 +1420,8 @@ l
 l
 l
 l
-Z
-D
+o
+T
 l
 l
 l
@@ -1437,9 +1437,9 @@ N
 d
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 "}
@@ -1448,9 +1448,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 d
@@ -1467,16 +1467,16 @@ l
 l
 l
 l
-D
+T
 l
 l
 l
 l
 l
-f
+C
 l
 l
-f
+C
 l
 l
 N
@@ -1484,8 +1484,8 @@ d
 i
 i
 i
-L
-L
+n
+n
 L
 L
 "}
@@ -1495,8 +1495,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 d
@@ -1510,12 +1510,12 @@ l
 l
 l
 l
-q
-K
-K
-P
+Y
+w
+w
+k
 l
-f
+C
 l
 l
 l
@@ -1529,9 +1529,9 @@ N
 d
 i
 i
-L
-L
-L
+n
+n
+n
 L
 L
 "}
@@ -1541,8 +1541,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 d
@@ -1556,12 +1556,12 @@ l
 l
 l
 l
-D
+T
 l
 l
 l
 l
-A
+S
 l
 l
 l
@@ -1575,8 +1575,8 @@ N
 d
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -1587,8 +1587,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 d
@@ -1599,19 +1599,19 @@ l
 l
 l
 E
+o
+l
+l
+T
+C
+l
+l
+l
+l
+l
+l
+l
 Z
-l
-l
-D
-f
-l
-l
-l
-l
-l
-l
-l
-Y
 l
 l
 l
@@ -1621,8 +1621,8 @@ N
 d
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -1633,8 +1633,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 d
@@ -1643,12 +1643,12 @@ N
 N
 l
 l
-A
+S
 l
 l
 l
 l
-D
+T
 l
 l
 l
@@ -1667,8 +1667,8 @@ N
 d
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -1679,8 +1679,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 d
@@ -1694,15 +1694,15 @@ l
 l
 l
 l
-D
+T
 l
 l
 l
 l
-Z
+o
 l
 l
-A
+S
 l
 l
 l
@@ -1713,8 +1713,8 @@ d
 d
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -1725,8 +1725,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -1740,12 +1740,12 @@ l
 l
 l
 l
-D
+T
 l
 l
 l
-A
-f
+S
+C
 l
 l
 l
@@ -1759,8 +1759,8 @@ d
 i
 i
 i
-L
-L
+n
+n
 L
 L
 L
@@ -1771,8 +1771,8 @@ L
 L
 L
 L
-L
-L
+n
+n
 i
 i
 i
@@ -1784,9 +1784,9 @@ N
 N
 l
 l
-A
-G
-P
+S
+Q
+k
 l
 l
 l
@@ -1806,7 +1806,7 @@ i
 i
 i
 n
-L
+n
 L
 L
 L
@@ -1817,9 +1817,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 i
@@ -1833,14 +1833,14 @@ N
 l
 U
 l
-Q
+P
 l
 l
 l
 l
 l
 l
-A
+S
 N
 N
 N
@@ -1852,7 +1852,7 @@ i
 i
 n
 n
-L
+n
 L
 L
 L
@@ -1864,10 +1864,10 @@ L
 L
 L
 L
-L
-L
-L
-L
+n
+n
+n
+n
 i
 i
 i
@@ -1910,11 +1910,11 @@ L
 L
 L
 L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
 i
 i
 i
@@ -1958,9 +1958,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 i
@@ -2005,9 +2005,9 @@ L
 L
 L
 L
-L
-L
-L
+n
+n
+n
 i
 i
 i
@@ -2052,10 +2052,10 @@ L
 L
 L
 L
-L
-L
-L
-L
+n
+n
+n
+n
 i
 i
 i
@@ -2099,11 +2099,11 @@ L
 L
 L
 L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
 i
 i
 i
@@ -2147,20 +2147,20 @@ L
 L
 L
 L
-L
-L
-L
-L
+n
+n
+n
+n
 i
 i
 i
-L
-L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
+n
+n
 i
 i
 i
@@ -2195,31 +2195,31 @@ L
 L
 L
 L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
-L
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
 L
 L
 L
