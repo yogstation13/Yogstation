@@ -278,23 +278,22 @@ Difficulty: Medium
 		if(istype(T, /turf/closed))
 			break
 		var/obj/effect/hotspot/hot_hot_there_is_already_fire_here_why_would_you_make_more = locate() in T
-		if(hot_hot_there_is_already_fire_here_why_would_you_make_more)
-			continue
-		new /obj/effect/hotspot(T)
-		T.hotspot_expose(700,50,1)
-		for(var/mob/living/L in T.contents)
-			if(L in hit_list || L == source)
-				continue
-			hit_list += L
-			L.adjustFireLoss(30)
-			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
+		if(!hot_hot_there_is_already_fire_here_why_would_you_make_more)
+			new /obj/effect/hotspot(T)
+			T.hotspot_expose(700,50,1)
+			for(var/mob/living/L in T.contents)
+				if(L in hit_list || L == source)
+					continue
+				hit_list += L
+				L.adjustFireLoss(30)
+				to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
 
-		// deals damage to mechs
-		for(var/obj/mecha/M in T.contents)
-			if(M in hit_list)
-				continue
-			hit_list += M
-			M.take_damage(45, BRUTE, MELEE, 1)
+			// deals damage to mechs
+			for(var/obj/mecha/M in T.contents)
+				if(M in hit_list)
+					continue
+				hit_list += M
+				M.take_damage(45, BRUTE, MELEE, 1)
 		sleep(0.15 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/swoop_attack(lava_arena = FALSE, atom/movable/manual_target, var/swoop_cooldown = 30)
