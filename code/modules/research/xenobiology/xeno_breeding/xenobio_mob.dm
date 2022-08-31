@@ -116,7 +116,7 @@
 		nutrition = max_nutrition
 	if(nutrition < 0)
 		nutrition = 0
-	if(nutrition = 0 && prob(XENOBIO_MOB_ANGER_CHANCE))
+	if(nutrition == 0 && prob(XENOBIO_MOB_ANGER_CHANCE))
 		Retaliate()
 
 /mob/living/simple_animal/hostile/retaliate/xenobio/proc/adjust_growth_stage_progress(amount)
