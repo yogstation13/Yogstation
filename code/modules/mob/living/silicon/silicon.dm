@@ -235,7 +235,7 @@
 		var/law = laws.hacked[index]
 		var/num = ionnum()
 		if (length(law) > 0)
-			if (force || hackedcheck[index] == "Yes")
+			if (force)
 				say("[radiomod] [num]. [law]")
 				sleep(1 SECONDS)
 
@@ -243,7 +243,7 @@
 		var/law = laws.ion[index]
 		var/num = ionnum()
 		if (length(law) > 0)
-			if (force || ioncheck[index] == "Yes")
+			if (force)
 				say("[radiomod] [num]. [law]")
 				sleep(1 SECONDS)
 
@@ -281,23 +281,6 @@
 		if (!lawcheck[1])
 			lawcheck[1] = "No" //Given Law 0's usual nature, it defaults to NOT getting reported. --NeoFite
 		list += {"<A href='byond://?src=[REF(src)];lawc=0'>[lawcheck[1]] 0:</A> <font color='#ff0000'><b>[laws.zeroth]</b></font><BR>"}
-
-	for (var/index = 1, index <= laws.hacked.len, index++)
-		var/law = laws.hacked[index]
-		if (length(law) > 0)
-			if (!hackedcheck[index])
-				hackedcheck[index] = "No"
-			list += {"<A href='byond://?src=[REF(src)];lawh=[index]'>[hackedcheck[index]] [ionnum()]:</A> <font color='#660000'>[law]</font><BR>"}
-			hackedcheck.len += 1
-
-	for (var/index = 1, index <= laws.ion.len, index++)
-		var/law = laws.ion[index]
-
-		if (length(law) > 0)
-			if (!ioncheck[index])
-				ioncheck[index] = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawi=[index]'>[ioncheck[index]] [ionnum()]:</A> <font color='#547DFE'>[law]</font><BR>"}
-			ioncheck.len += 1
 
 	var/number = 1
 	for (var/index = 1, index <= laws.inherent.len, index++)
