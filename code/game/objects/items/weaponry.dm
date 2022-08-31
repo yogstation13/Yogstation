@@ -795,7 +795,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("slapped")
 	hitsound = 'sound/effects/snap.ogg'
 	/// How many smaller table smacks we can do before we're out
-	var/table_smacks_left = 3
+	var/table_smacks_left = 6
 
 /obj/item/slapper/attack(mob/living/M, mob/living/carbon/human/user)
 	if(ishuman(M))
