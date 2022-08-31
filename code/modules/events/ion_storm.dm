@@ -15,7 +15,6 @@
 	var/botEmagChance = 10
 	var/announceEvent = ION_RANDOM // -1 means don't announce, 0 means have it randomly announce, 1 means
 	var/ionMessage = null
-	var/ionAnnounceChance = 33
 	announceWhen	= 1
 
 /datum/round_event/ion_storm/add_law_only // special subtype that adds a law only
