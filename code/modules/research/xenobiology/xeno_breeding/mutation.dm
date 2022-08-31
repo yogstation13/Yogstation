@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(xeno_mutations, subtypesof(/datum/xeno_mutation))
 	if(can_do_nothing && prob(40))
 		return
 	var/list/things_to_hapen = list("change_inert_state", "die", "meltdown", "mutate_me", "mutate_new")
-	switch(pick(events))
+	switch(pick(things_to_hapen))
 		if("change_inert_state")
 			if(inert)
 				Activate()
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(xeno_mutations, subtypesof(/datum/xeno_mutation))
 					if(!possible_mut.CanMutate(mymob))
 						qdel(possible_mut)
 						continue
-					if(possible_mut.usefulness = XENO_MUT_NEGATIVE)
+					if(possible_mut.usefulness == XENO_MUT_NEGATIVE)
 						valid_bad_muts |= possible_mut.type
 					qdel(possible_mut)
 
