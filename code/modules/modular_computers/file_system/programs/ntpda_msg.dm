@@ -271,10 +271,24 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			if(computer.uplink_check(usr, params["name"]))
 				return TRUE
 			else
-				var/newring = reject_bad_text(params["name"], max_length = 10)
+				var/unsanitized = params["name"]
+
+				if(isnotpretty(unsanitized))
+					if(usr.client.prefs.muted & MUTE_IC)
+						return
+					usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+					to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+					var/log_message = "[key_name(usr)] just tripped a pretty filter: '[unsanitized]'."
+					message_admins(log_message)
+					log_say(log_message)
+					return
+				
+				var/newring = reject_bad_text(unsanitized, max_length = 10)
+				
 				if(!newring)
 					computer.visible_message(span_danger("Your ringtone is too long/has bad text!"), null, null, 1)
 					return
+				
 				ringtone = newring
 				computer.visible_message(span_notice("Ringtone set to [newring]."), null, null, 1)
 			return TRUE
