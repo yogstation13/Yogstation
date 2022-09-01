@@ -185,12 +185,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered)
-"R" = (
-/obj/structure/rack,
-/obj/item/t_scanner/adv_mining_scanner,
-/obj/item/pickaxe/mini,
-/turf/open/floor/pod/dark,
-/area/ruin/powered)
 "S" = (
 /obj/structure/rack,
 /obj/item/extraction_pack{
@@ -206,6 +200,12 @@
 "U" = (
 /obj/structure/window/shuttle/survival_pod/spawner/north,
 /turf/open/floor/plating,
+/area/ruin/powered)
+"V" = (
+/obj/structure/rack,
+/obj/item/resonator/upgraded,
+/obj/item/pickaxe/mini,
+/turf/open/floor/pod/dark,
 /area/ruin/powered)
 "W" = (
 /obj/effect/decal/cleanable/dirt,
@@ -393,7 +393,7 @@ Z
 I
 I
 D
-R
+V
 L
 T
 T
