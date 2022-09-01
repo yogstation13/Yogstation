@@ -446,7 +446,7 @@
 /area/shuttle/escape)
 "bo" = (
 /obj/structure/table,
-/obj/item/melee/baseball_bat{
+/obj/item/twohanded/required/baseball_bat{
 	pixel_x = -5
 	},
 /obj/item/crowbar/large{

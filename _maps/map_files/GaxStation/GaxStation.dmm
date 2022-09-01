@@ -31976,7 +31976,7 @@
 "qmG" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs,
-/obj/item/melee/baseball_bat{
+/obj/item/twohanded/required/baseball_bat{
 	desc = "A staple of security force interrogations.";
 	icon_state = "baseball_bat_metal";
 	name = "kneecapper"
