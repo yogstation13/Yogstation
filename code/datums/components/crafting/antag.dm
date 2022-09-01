@@ -6,7 +6,7 @@
 // Weapons
 /datum/crafting_recipe/metal_baseball_bat
 	name = "Titanium Baseball Bat"
-	result = /obj/item/melee/baseball_bat/metal_bat
+	result = /obj/item/twohanded/required/baseball_bat/metal_bat
 	reqs = list(/obj/item/stack/sheet/mineral/titanium = 10
 				)
 	tools = list(TOOL_WELDER) //to weld the bat together

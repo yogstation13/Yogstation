@@ -68,7 +68,7 @@
 	description = "Baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream."
 	reward = 3500
 	required_count = 5
-	wanted_types = list(/obj/item/melee/baseball_bat)
+	wanted_types = list(/obj/item/twohanded/required/baseball_bat)
 
 /datum/bounty/item/assistant/extendohand
 	name = "Extendo-Hand"
