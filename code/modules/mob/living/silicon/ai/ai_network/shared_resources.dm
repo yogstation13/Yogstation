@@ -57,7 +57,7 @@
 /datum/ai_shared_resources/proc/total_ram_assigned()
 	var/total = 0
 	for(var/mob/living/silicon/ai/AI in ram_assigned)
-		total += (ram_assigned[AI] - AI.dashboard.free_ram)
+		total += (ram_assigned[AI])
 	return total
 
 /datum/ai_shared_resources/proc/total_cpu()
@@ -162,13 +162,13 @@
 		for(var/A in ram_assigned_copy)
 			if(isAI(A))
 				var/mob/living/silicon/ai/AI = A
-				if((ram_assigned_copy[AI] - AI.dashboard.free_ram) >= needed_amount)
+				if((ram_assigned_copy[AI]) >= needed_amount)
 					ram_assigned_copy[AI] -= needed_amount
 					total_assigned_ram -= needed_amount
 					affected_AIs |= AI
 					break
 				else if(ram_assigned_copy[AI])
-					var/amount = ram_assigned_copy[AI] - AI.dashboard.free_ram
+					var/amount = ram_assigned_copy[AI]
 					ram_assigned_copy[AI] -= amount
 					affected_AIs |= AI
 					needed_amount -= amount
