@@ -1672,7 +1672,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/twohanded/bonespear/stalwartpike
 	icon = 'icons/obj/weapons/spears.dmi'
-	icon_state = "stalwartspear0"
+	icon_state = "stalwart_spear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "ancient control rod"
@@ -1682,7 +1682,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	w_class = WEIGHT_CLASS_SMALL
 	var/w_class_on = WEIGHT_CLASS_HUGE
-	slot_flags = ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BELT
 	force = 0
 	throwforce = 0
 	throw_speed = 4
@@ -1699,9 +1699,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/twohanded/bonespear/stalwartpike/update_icon()
 	. = ..()
 	if(wielded)
-		icon_state = "stalwartspear1"
+		icon_state = "stalwart_spear1"
 	else
-		icon_state = "stalwartspear0"
+		icon_state = "stalwart_spear0"
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
 /obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
@@ -1741,19 +1741,23 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	switch(loot)
 		if(1)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
+			new /obj/item/gem/purple(src)
 		if(2)
 			new /obj/item/twohanded/bonespear/stalwartpike(src)
+			new /obj/item/ai_cpu/stalwart(src)
 		if(3)
 			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
 			new /obj/item/stack/ore/dilithium_crystal(src)
+			new /obj/item/gem/purple(src)
 		if(4)
 			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/ai_cpu/stalwart(src)
 
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle

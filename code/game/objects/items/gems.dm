@@ -168,4 +168,42 @@
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
+/obj/item/ai_cpu/stalwart //very jank code-theft because it's not directly a gem
+	name = "\improper Bluespace Data Crystal"
+	desc = "A large bluespace crystal, etched internally with nano-circuits, it seemingly draws power from nowhere. Once acting as the brain of the Stalwart, perhaps this could be used in an AI server?"
+	icon = 'icons/obj/gems.dmi'
+	icon_state = "cpu"
+	materials = list(/datum/material/bluespace=24000)
+	speed = 5
+	base_power_usage = 0.5 * AI_CPU_BASE_POWER_USAGE
+	minimum_max_power = 0.5
+	maximum_max_power = 1.2
+	minimum_growth = 0.1
+	maximum_growth = 8.0
+	light_range = 2
+	light_power = 6
+	light_color = "#0004ff"
+	///Have we been analysed with a mining scanner?
+	var/analysed = FALSE
+	///How many points we grant to whoever discovers us
+	var/point_value = 2000
 
+/obj/item/ai_cpu/stalwartattackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
+	if(!istype(item, /obj/item/mining_scanner) && !istype(item, /obj/item/t_scanner/adv_mining_scanner))
+		return ..()
+
+	if(analysed)
+		to_chat(user, span_warning("This gem has already been analysed!"))
+		return
+	else
+		to_chat(user, span_notice("You analyse the precious gemstone!"))
+		analysed = TRUE
+
+	if(isliving(user))
+		var/mob/living/living = user
+
+		var/obj/item/card/id/card = living.get_idcard()
+		if(card)
+			to_chat(user, span_notice("[point_value] mining points have been paid out!"))
+			card.mining_points += point_value
+			playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
