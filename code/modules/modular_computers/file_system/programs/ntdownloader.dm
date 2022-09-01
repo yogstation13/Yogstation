@@ -119,15 +119,15 @@
 		if(3)
 			download_netspeed = NTNETSPEED_ETHERNET
 	
-	var/dist = 100
-	// Loop through every ntnet relay, find the closest one and use that
-	for(var/obj/machinery/ntnet_relay/n in SSnetworks.station_network.relays)
-		var/cur_dist = get_dist_euclidian(n, computer)
-		if(n.is_operational() && cur_dist <= dist)
-			dist = cur_dist
-	
-	// At 0 tiles distance, 3x download speed. At 100 tiles distance, 1x download speed.
-	download_netspeed *= max((-dist/50) + 3, 1)
+	if(ntnet_status != 3) // Ethernet unaffected by distance
+		var/dist = 100
+		// Loop through every ntnet relay, find the closest one and use that
+		for(var/obj/machinery/ntnet_relay/n in SSnetworks.station_network.relays)
+			var/cur_dist = get_dist_euclidian(n, computer)
+			if(n.is_operational() && cur_dist <= dist)
+				dist = cur_dist
+		// At 0 tiles distance, 3x download speed. At 100 tiles distance, 1x download speed.
+		download_netspeed *= max((-dist/50) + 3, 1)
 
 	download_completion = min(downloaded_file.size, download_completion + download_netspeed) // Add the progress
 
