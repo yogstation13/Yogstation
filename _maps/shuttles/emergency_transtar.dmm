@@ -805,7 +805,7 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "Wc" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,

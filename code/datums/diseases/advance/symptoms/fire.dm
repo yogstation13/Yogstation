@@ -150,14 +150,15 @@ Bonus
 			to_chat(M, span_userdanger("Your sweat bursts into flames!"))
 			M.emote("scream")
 		if(5)
-			Alkali_fire_stage_5(M, A)
-			M.IgniteMob()
-			to_chat(M, span_userdanger("Your skin erupts into an inferno!"))
-			M.emote("scream")
 			if(M.fire_stacks < 0)
 				M.visible_message(span_warning("[M]'s sweat sizzles and pops on contact with water!"))
 				explosion(get_turf(M),0,0,2 * explosion_power)
 				Alkali_fire_stage_5(M, A)
+			Alkali_fire_stage_5(M, A)
+			M.IgniteMob()
+			to_chat(M, span_userdanger("Your skin erupts into an inferno!"))
+			M.emote("scream")
+			
 
 /datum/symptom/alkali/proc/Alkali_fire_stage_4(mob/living/M, datum/disease/advance/A)
 	var/get_stacks = 6 * power

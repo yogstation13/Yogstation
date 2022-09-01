@@ -57,7 +57,7 @@
 	cost = 800
 	contains = list(/obj/item/storage/box/cheese)
 	crate_name = "cheese culture crate"
-	
+
 /datum/supply_pack/organic/randomized/cheesewheel
 	name = "Cheese Wheel Crate"
 	desc = "Contains 6 various cheese wheels, for stations that don't have a chef or work ethic."
@@ -105,7 +105,8 @@
 					/obj/item/toy/plush/flowerbunch,
 					/obj/item/toy/plush/inorixplushie,
 					/obj/item/toy/plush/beeplushie,
-					/obj/item/toy/plush/slimeplushie)
+					/obj/item/toy/plush/slimeplushie,
+					/obj/item/toy/plush/cdragon)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
 

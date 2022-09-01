@@ -413,7 +413,8 @@
 		"https://www.youtube.com/watch?v=bebUeWgNkAM", // Halloween Theme Michael Myers
 		"https://www.youtube.com/watch?v=qaQ6oJL1qQA", // Lucifer My Love - Twin Temple
 		"https://www.youtube.com/watch?v=vCYLUZyWeDs&t", // "Unforgiving Cold"- Godzilla NES Creepypasta OST
-		"https://www.youtube.com/watch?v=OPDDFdyKOgU" // Red Signal - The Bifrost Incident - The Mechanisms
+		"https://www.youtube.com/watch?v=OPDDFdyKOgU", // Red Signal - The Bifrost Incident - The Mechanisms
+		"https://www.youtube.com/watch?v=d1itZiNY5pY" // Todd Rollins - The Boogie Man
 		)
 
 /datum/holiday/halloween/greet()

@@ -524,6 +524,13 @@ SUBSYSTEM_DEF(job)
 			else
 				M = living_mob
 
+		var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer) in living_mob.GetAllContents()
+		if(istype(RPDA))
+			var/obj/item/computer_hardware/hard_drive/hard_drive = RPDA.all_components[MC_HDD]
+			var/datum/computer_file/program/pdamessager/msgr = locate(/datum/computer_file/program/pdamessager) in hard_drive.stored_files
+			msgr.username = living_mob.real_name
+			msgr.receiving = TRUE
+		
 		SSpersistence.antag_rep_change[M.client.ckey] += job.GetAntagRep()
 
 		if(M.client.holder)

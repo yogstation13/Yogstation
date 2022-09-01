@@ -612,6 +612,7 @@
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "chainsaw_off"
+	var/icon_name = "chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -649,7 +650,7 @@
 	to_chat(user, "As you pull the starting cord dangling from [src], [on ? "it begins to whirr." : "the chain stops moving."]")
 	force = on ? force_on : initial(force)
 	throwforce = on ? force_on : initial(force)
-	icon_state = "chainsaw_[on ? "on" : "off"]"
+	icon_state = "[icon_name]_[on ? "on" : "off"]"
 	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = on
 
@@ -679,21 +680,10 @@
 
 /obj/item/twohanded/required/chainsaw/demon
 	name = "demon chainsaw"
-	desc = "anime reference here"
-	item_state = "demon_off"
+	desc = "Show me your dreams."
 	icon_state = "demon_off"
-	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	force = 13
 	force_on = 30
-
-
-/obj/item/twohanded/required/chainsaw/demon/attack_self(mob/user)
-	on = !on
-	to_chat(user, "As you pull the starting cord dangling from [src], [on ? "it begins to whirr." : "the chain stops moving."]")
-	force = on ? force_on : initial(force)
-	throwforce = on ? force_on : initial(force)
-	icon_state = "demon_[on ? "on" : "off"]"
+	icon_name = "demon"
 
 /obj/item/twohanded/required/chainsaw/demon/Initialize()
 	. = ..()

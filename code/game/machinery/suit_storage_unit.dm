@@ -25,7 +25,7 @@
 
 	var/uv = FALSE
 	var/uv_super = FALSE
-	var/uv_cycles = 6
+	var/uv_cycles = 3
 	var/message_cooldown
 	var/breakout_time = 300
 
@@ -220,17 +220,17 @@
 		add_fingerprint(user)
 
 /obj/machinery/suit_storage_unit/proc/cook()
+	var/mob/living/mob_occupant = occupant
 	if(uv_cycles)
 		uv_cycles--
 		uv = TRUE
 		locked = TRUE
 		update_icon()
 		if(occupant)
-			var/mob/living/mob_occupant = occupant
 			if(uv_super)
 				mob_occupant.adjustFireLoss(rand(20, 36))
 			else
-				mob_occupant.adjustFireLoss(rand(10, 16))
+				mob_occupant.adjustFireLoss(rand(2, 8))
 			mob_occupant.emote("scream")
 		addtimer(CALLBACK(src, .proc/cook), 50)
 	else
@@ -255,6 +255,7 @@
 				visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
 			else
 				visible_message(span_warning("[src]'s door slides open, barraging you with the nauseating smell of charred flesh."))
+				mob_occupant.radiation = 0
 			playsound(src, 'sound/machines/airlockclose.ogg', 25, 1)
 			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
 			if(suit)
@@ -295,6 +296,11 @@
 		return
 	open_machine()
 	dump_contents()
+
+/obj/machinery/suit_storage_unit/attackby(obj/item/W, mob/user)
+	if(default_unfasten_wrench(user, W))
+		return
+	return 
 
 /obj/machinery/suit_storage_unit/container_resist(mob/living/user)
 	if(!locked)
@@ -460,7 +466,7 @@
 			. = TRUE
 	update_icon()
 
-/obj/machinery/suit_storage_unit/CtrlClick(mob/user)
+/obj/machinery/suit_storage_unit/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(state_open)
@@ -470,7 +476,7 @@
 		if(occupant)
 			dump_contents() // Dump out contents if someone is in there.
 
-/obj/machinery/suit_storage_unit/AltClick(mob/user)
+/obj/machinery/suit_storage_unit/CtrlShiftClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
 		return
 	locked = !locked

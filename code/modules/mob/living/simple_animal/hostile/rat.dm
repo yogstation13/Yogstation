@@ -99,8 +99,8 @@
 	if(key)
 		return ..()
 
-	if(is_banned_from(user.key, ROLE_SENTIENCE))
-		to_chat(user, span_warning("You are job banned!"))
+	if(is_banned_from(user.key, ROLE_MOUSE))
+		to_chat(user, span_warning("You are banned from being a mouse!"))
 		return FALSE
 
 	if(alert("Are you sure you want to become a rat? (Warning, you can no longer be cloned!)",,"Yes","No") != "Yes")

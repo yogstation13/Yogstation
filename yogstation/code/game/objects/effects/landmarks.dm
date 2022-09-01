@@ -146,15 +146,15 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Maint 2storage", "Maint 9storage", "Maint airstation", "Maint biohazard", "Maint boxbedroom", "Maint boxchemcloset", "Maint boxclutter2", "Maint boxclutter3", "Maint boxclutter4", "Maint boxclutter5", "Maint boxclutter6", "Maint boxclutter8",
 	"Maint boxwindow", "Maint bubblegumaltar", "Maint deltajanniecloset", "Maint deltaorgantrade", "Maint donutcapgun", "Maint dronehole", "Maint gibs", "Maint hazmat", "Maint hobohut", "Maint hullbreach", "Maint kilolustymaid", "Maint kilomechcharger", "Maint kilotheatre",
 	"Maint medicloset", "Maint memorial", "Maint metaclutter2", "Maint metaclutter4", "Maint metagamergear", "Maint owloffice", "Maint plasma", "Maint pubbyartism", "Maint pubbyclutter1", "Maint pubbyclutter2", "Maint pubbyclutter3", "Maint radspill", "Maint shrine", "Maint singularity",
-	"Maint tanning", "Maint tranquility", "Maint wash", "Maint command", "Maint dummy", "Maint spaceart", "Maint containmentcell", "Maint naughtyroom")
+	"Maint tanning", "Maint tranquility", "Maint wash", "Maint command", "Maint dummy", "Maint spaceart", "Maint containmentcell", "Maint naughtyroom", "Maint vendoraccident")
 
 /obj/effect/landmark/stationroom/maint/threexfive
 	template_names = list("Maint airlockstorage", "Maint boxclutter7", "Maint boxkitchen", "Maint boxmaintfreezers", "Maint canisterroom", "Maint checkpoint", "Maint hank", "Maint junkcloset", "Maint kilomobden", "Maint laststand", "Maint monky", "Maint onioncult", "Maint pubbyclutter5",
-	"Maint pubbyclutter6", "Maint pubbyrobotics", "Maint ripleywreck", "Maint churchroach", "Maint mirror", "Maint chromosomes", "Maint clutter", "Maint dissection", "Maint emergencyoxy", "Maint oreboxes")
+	"Maint pubbyclutter6", "Maint pubbyrobotics", "Maint ripleywreck", "Maint churchroach", "Maint mirror", "Maint chromosomes", "Maint clutter", "Maint dissection", "Maint emergencyoxy", "Maint oreboxes", "Maint gaxbotany")
 
 /obj/effect/landmark/stationroom/maint/fivexthree
 	template_names = list("Maint boxclutter1", "Maint breach", "Maint cloner", "Maint deltaclutter2", "Maint deltaclutter3", "Maint incompletefloor", "Maint kiloclutter1", "Maint metaclutter1", "Maint metaclutter3", "Maint minibreakroom", "Maint nastytrap", "Maint pills", "Maint pubbybedroom",
-	"Maint pubbyclutter4", "Maint pubbyclutter7", "Maint pubbykitchen", "Maint storeroom", "Maint yogsmaintdet", "Maint yogsmaintrpg", "Maint waitingroom", "Maint podmin", "Maint highqualitysurgery", "Maint chestburst", "Maint gloveroom", "Maint magicroom", "Maint spareparts")
+	"Maint pubbyclutter4", "Maint pubbyclutter7", "Maint pubbykitchen", "Maint storeroom", "Maint yogsmaintdet", "Maint yogsmaintrpg", "Maint waitingroom", "Maint podmin", "Maint highqualitysurgery", "Maint chestburst", "Maint gloveroom", "Maint magicroom", "Maint spareparts", "Maint smallfish")
 
 /obj/effect/landmark/stationroom/maint/fivexfour
 	template_names = list("Maint blasted", "Maint boxbar", "Maint boxdinner", "Maint boxsurgery", "Maint comproom", "Maint deltabar", "Maint deltadetective", "Maint deltadressing", "Maint deltaEVA", "Maint deltagamble", "Maint deltalounge", "Maint deltasurgery", "Maint firemanroom", "Maint icicle",
@@ -162,11 +162,11 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/maint/tenxfive
 	template_names = list("Maint barbershop", "Maint deltaarcade", "Maint deltabotnis", "Maint deltacafeteria", "Maint deltaclutter1", "Maint deltarobotics", "Maint factory", "Maint maintmedical", "Maint meetingroom", "Maint phage", "Maint skidrow", "Maint transit", "Maint ballpit", "Maint commie", "Maint firingrange", "Maint clothingstore",
-	"Maint butchersden", "Maint courtroom", "Maint gaschamber", "Maint oldaichamber", "Maint radiationtherapy", "Maint ratburger")
+	"Maint butchersden", "Maint courtroom", "Maint gaschamber", "Maint oldaichamber", "Maint radiationtherapy", "Maint ratburger", "Maint tank_heaven", "Maint bamboo")
 
 /obj/effect/landmark/stationroom/maint/tenxten
 	template_names = list("Maint aquarium", "Maint bigconstruction", "Maint bigtheatre", "Maint deltalibrary", "Maint graffitiroom", "Maint junction", "Maint podrepairbay", "Maint pubbybar", "Maint roosterdome", "Maint sanitarium", "Maint snakefighter", "Maint vault", "Maint ward", "Maint assaultpod", "Maint maze", "Maint maze2", "Maint boxfactory",
-	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops")
+	"Maint sixsectorsdown", "Maint advbotany", "Maint beach", "Maint botany_apiary", "Maint gamercave", "Maint ladytesla_altar", "Maint olddiner", "Maint smallmagician", "Maint fourshops", "Maint fishinghole", "Maint fakewalls")
 
 /// Type of landmark that find all others of the same type, and only spawns count number of ruins at them
 /obj/effect/landmark/stationroom/limited_spawn

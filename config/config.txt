@@ -25,10 +25,6 @@ ROUND_END_COUNTDOWN 90
 ##Uncomment this to stop any admins loaded by the legacy system from having their rank edited by the permissions panel
 PROTECT_LEGACY_ADMINS
 
-##Uncomment this to have admin ranks only loaded from the legacy admin_ranks.txt
-##If enabled, each time admins are loaded ranks the database will be updated with the current ranks and their flags
-#LOAD_LEGACY_RANKS_ONLY
-
 ## Uncomment this entry to have certain jobs require your account to be at least a certain number of days old to select. You can configure the exact age requirement for different jobs by editing
 ## the minimal_player_age variable in the files in folder /code/game/jobs/job/.. for the job you want to edit. Set minimal_player_age to 0 to disable age requirement for that job.
 ## REQUIRES the database set up to work. Keep it hashed if you don't have a database set up.
@@ -111,7 +107,7 @@ LOG_MANIFEST
 LOG_JOB_DEBUG
 
 ## log all world.Topic() calls
-# LOG_WORLD_TOPIC
+LOG_WORLD_TOPIC
 
 ## enables use of the proc twitterize() that lets you take a large list of strings and turn it into a JSON file of tweet sized strings.
 ## As an example of how this could be """useful""" look towards Poly (https://twitter.com/Poly_the_Parrot)
@@ -435,7 +431,7 @@ DEFAULT_VIEW_SQUARE 15x15
 #MENTORS_MOBNAME_ONLY
 
 ## Uncomment below to make everyone a donator
-EVERYONE_IS_DONATOR
+#EVERYONE_IS_DONATOR
 
 ## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
 ## More API details can be found here: https://centcom.melonmesa.com

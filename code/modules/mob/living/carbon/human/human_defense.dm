@@ -557,7 +557,7 @@
 					Paralyze(100)
 
 			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
-				if(prob(20))
+				if(prob(5))
 					L.dismember(BRUTE)
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
@@ -746,8 +746,9 @@
 		return
 	var/list/combined_msg = list()
 
-	visible_message("[src] examines [p_them()]self.", \
-		span_notice("You check yourself for injuries."))
+	visible_message(span_notice("[src] examines [p_them()]self."))
+
+	combined_msg += span_notice("<b>You check yourself for injuries.</b>")
 
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	for(var/X in bodyparts)
@@ -931,7 +932,7 @@
 	if(roundstart_quirks.len)
 		combined_msg += span_notice("You have these quirks: [get_trait_string()].")
 
-	to_chat(src, combined_msg.Join("\n"))
+	to_chat(src, examine_block(combined_msg.Join("\n")))
 
 /mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)
