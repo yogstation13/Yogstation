@@ -98,3 +98,6 @@
 	icon_state = "smoothiron_above"
 	floor_tile = /obj/item/stack/tile/catwalk_tile/iron_smooth
 	catwalk_type = "smoothiron"
+
+/turf/open/floor/catwalk_floor/telecomms
+	initial_gas_mix = TCOMMS_ATMOS
