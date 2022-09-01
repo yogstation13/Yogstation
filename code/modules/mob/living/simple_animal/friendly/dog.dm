@@ -515,6 +515,7 @@
 	playsound(src, 'sound/magic/demon_dies.ogg', 75, TRUE)
 	var/mob/living/simple_animal/pet/dog/corgi/narsie/N = new(loc)
 	N.setDir(dir)
+	N.ckey = ckey
 	gib()
 
 /mob/living/simple_animal/pet/dog/corgi/narsie

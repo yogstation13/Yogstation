@@ -534,9 +534,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Syndicate Revolver"
 	desc = "A brutally simple Syndicate revolver that fires .357 Magnum rounds and has 7 chambers."
 	item = /obj/item/gun/ballistic/revolver
-	cost = 13
+	cost = 6
 	surplus = 50
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"
@@ -782,7 +781,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A speed loader that contains seven additional .357 Magnum rounds; usable with the Syndicate revolver. \
 			For when you really need a lot of things dead."
 	item = /obj/item/ammo_box/a357
-	cost = 4
+	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
 
@@ -1002,15 +1001,25 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/detomatix
-	name = "Detomatix PDA Cartridge"
-	desc = "When inserted into a personal digital assistant, this cartridge gives you four opportunities to \
-			detonate PDAs of crewmembers who have their message feature enabled. \
-			The concussive effect from the explosion will knock the recipient out for a short period, and deafen them for longer."
-	item = /obj/item/cartridge/virus/syndicate
+	name = "BomberMan Program"
+	desc = "This program gives you four opportunities to detonate PDAs and computers of crewmembers \
+			who have their message feature enabled. The concussive effect from the explosion \
+			will knock the recipient out for a short period, and deafen them for longer."
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman
 	cost = 6
 	manufacturer = /datum/corporation/traitor/cybersun
 	restricted = TRUE
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/explosives/detomatix/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	. = ..()
+	var/obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman/bombdisk = .
+	var/datum/computer_file/program/bomberman/program = bombdisk.find_file_by_name("bomberman")
+	var/code = program.bombcode
+
+	to_chat(user, span_warning("Your BomberMan code is : [code]."))
+	if(user.mind)
+		user.mind.store_memory("BomberMan code for [U.parent] : [code]")
 
 /datum/uplink_item/explosives/emp
 	name = "EMP Grenades and Implanter Kit"
@@ -1807,11 +1816,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/implants/mantis_kit
-	name = "G.O.R.L.E.X.. Mantis Blades Kit"
-	desc = "Comes with 2 G.O.R.L.E.X. Mantis blades. All packaged with autosurgeons."
-	item = /obj/item/storage/briefcase/syndie_mantis
-	cost = 16
+/datum/uplink_item/implants/mantis
+	name = "G.O.R.L.E.X. Mantis Blade"
+	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing, 2 blades can be used at once."
+	item = /obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	cost = 7
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
@@ -2106,7 +2115,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A potato rigged with explosives. On activation, a special mechanism is activated that prevents it from being dropped. \
 			The only way to get rid of it if you are holding it is to attack someone else with it, causing it to latch to that person instead."
 	item = /obj/item/hot_potato/syndicate
-	cost = 4
+	cost = 12
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
 	restricted_roles = list("Cook", "Botanist", "Clown", "Mime")
@@ -2176,7 +2185,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Reverse Revolver"
 	desc = "A revolver that always fires at its user. \"Accidentally\" drop your weapon, then watch as the greedy corporate pigs blow their own brains all over the wall. \
 	The revolver itself is actually real. Only clumsy people, and clowns, can fire it normally. Comes in a box of hugs. Honk."
-	cost = 14
+	cost = 8
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/storage/box/hug/reverse_revolver
 	restricted_roles = list("Clown")
@@ -2276,6 +2285,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
+
+
+/datum/uplink_item/badass/syndietape
+	name = "Guerrilla Tape"
+	desc = "New from Donk Co! Stick it to the man with this ultra-adhesive roll of tape! Grabs on tight, and holds on tight, using our patented adhesive formula. Ten times stronger than our leading competitors!"
+	item = /obj/item/stack/tape/guerrilla
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
 
 /datum/uplink_item/badass/antagcape
 	name = "Red Syndicate Cape"
