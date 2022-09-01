@@ -273,6 +273,10 @@
 	var/obj/item/card/id/stored_id = GetID()
 	if(id_rename && stored_id)
 		name = "[stored_id.registered_name]'s [initial(name)] ([stored_id.assignment])"
+		var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
+		var/datum/computer_file/program/pdamessager/msgr = hard_drive.find_file_by_name("pda_client")
+		if(istype(msgr))
+			msgr.username = "[stored_id.registered_name] ([stored_id.assignment])"
 	else
 		name = initial(name)
 

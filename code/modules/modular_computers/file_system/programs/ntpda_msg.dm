@@ -231,10 +231,28 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			return TRUE
 		
 		if("PRG_namechange")
-			var/newname = reject_bad_text(params["name"], max_length = 35)
+
+			if(computer.GetID())
+				computer.visible_message(span_danger("Username is ID-locked!"), null, null, 1)
+				return
+
+			var/unsanitized = params["name"]
+
+			if(isnotpretty(unsanitized))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[unsanitized]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return
+
+			var/newname = reject_bad_text(unsanitized, max_length = 35)
 			if(!newname)
 				computer.visible_message(span_danger("Your username is too long/has bad text!"), null, null, 1)
 				return
+			
 			for(var/datum/computer_file/program/pdamessager/P in GLOB.NTPDAs)
 				if(newname == P.username)
 					computer.visible_message(span_danger("Someone already has the username \"[newname]\"!"), null, null, 1)	
