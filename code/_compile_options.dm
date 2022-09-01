@@ -60,12 +60,12 @@
 
 //If you update these values, update the message in the #error
 #define MAX_BYOND_MAJOR 514
-#define MAX_BYOND_MINOR 1583
+#define MAX_BYOND_MINOR 1585
 
 ///Uncomment to bypass the max version check. Note: This will likely break the game, only use if you know what you're doing
 //#define IGNORE_MAX_BYOND_VERSION
 #if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(IGNORE_MAX_BYOND_VERSION)
-#error Your version of BYOND is too new to compile this project. Download version 514.1569 at www.byond.com/download/build/514/514.1569_byond.exe
+#error Your version of BYOND is too new to compile this project. Download version 514.1585 at www.byond.com/download/build/514/514.1585_byond.exe
 #endif
 
 #ifdef TRAVISBUILDING

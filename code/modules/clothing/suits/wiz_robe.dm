@@ -9,6 +9,7 @@
 	equip_delay_other = 50
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	dog_fashion = /datum/dog_fashion/head/blue_wizard
+	hattable = FALSE
 
 /obj/item/clothing/head/wizard/red
 	name = "red wizard hat"

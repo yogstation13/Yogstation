@@ -1,13 +1,7 @@
-GLOBAL_LIST_EMPTY(admin_datums)
-GLOBAL_PROTECT(admin_datums)
-GLOBAL_LIST_EMPTY(protected_admins)
-GLOBAL_PROTECT(protected_admins)
-
 GLOBAL_VAR_INIT(href_token, GenerateToken())
 GLOBAL_PROTECT(href_token)
 
 /datum/admins
-	var/datum/admin_rank/rank
 
 	var/target
 	var/name = "nobody's admin datum (no rank)" //Makes for better runtimes
@@ -33,7 +27,7 @@ GLOBAL_PROTECT(href_token)
 	var/cid_cache
 
 
-/datum/admins/New(datum/admin_rank/R, ckey, force_active = FALSE, protected)
+/datum/admins/New(ckey, rights, force_active = FALSE)
 	if(IsAdminAdvancedProcCall())
 		var/msg = " has tried to elevate permissions!"
 		message_admins("[key_name_admin(usr)][msg]")
@@ -45,20 +39,13 @@ GLOBAL_PROTECT(href_token)
 	if(!ckey)
 		QDEL_IN(src, 0)
 		CRASH("Admin datum created without a ckey")
-	if(!istype(R))
-		QDEL_IN(src, 0)
-		CRASH("Admin datum created without a rank")
 	target = ckey
-	name = "[ckey]'s admin datum ([R])"
-	rank = R
+	name = "[ckey]'s admin datum"
 	admin_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	href_token = GenerateToken()
-	if(R.rights & R_DEBUG) //grant profile access
+	if(rights & R_DEBUG) //grant profile access
 		world.SetConfig("APP/admin", ckey, "role=admin")
-	//only admins with +ADMIN start admined
-	if(protected)
-		GLOB.protected_admins[target] = src
-	if (force_active || (R.rights & R_AUTOLOGIN))
+	if (force_active || (rights & R_AUTOLOGIN))
 		activate()
 	else
 		deactivate()
@@ -69,6 +56,12 @@ GLOBAL_PROTECT(href_token)
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
 		return QDEL_HINT_LETMELIVE
+	var/client/C = owner
+	deactivate()
+	if(GLOB.permissions.deadmins[target] == src)
+		GLOB.permissions.deadmins -= target
+	if(C)
+		remove_verb(C, /client/proc/readmin)
 	. = ..()
 
 /datum/admins/proc/activate()
@@ -77,8 +70,8 @@ GLOBAL_PROTECT(href_token)
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
 		return
-	GLOB.deadmins -= target
-	GLOB.admin_datums[target] = src
+	GLOB.permissions.deadmins -= target
+	GLOB.permissions.admin_datums[target] = src
 	deadmined = FALSE
 	if (GLOB.directory[target])
 		associate(GLOB.directory[target])	//find the client for a ckey if they are connected and associate them with us
@@ -90,8 +83,8 @@ GLOBAL_PROTECT(href_token)
 		message_admins("[key_name_admin(usr)][msg]")
 		log_admin("[key_name(usr)][msg]")
 		return
-	GLOB.deadmins[target] = src
-	GLOB.admin_datums -= target
+	GLOB.permissions.deadmins[target] = src
+	GLOB.permissions.admin_datums -= target
 	deadmined = TRUE
 	var/client/C
 	if ((C = owner) || (C = GLOB.directory[target]))
@@ -126,7 +119,7 @@ GLOBAL_PROTECT(href_token)
 		owner.add_admin_verbs()	//TODO <--- todo what? the proc clearly exists and works since its the backbone to our entire admin system
 		remove_verb(owner, /client/proc/readmin)
 		owner.init_verbs() //re-initialize the verb list
-		GLOB.admins |= C
+		GLOB.permissions.admins |= C
 		return TRUE
 
 /datum/admins/proc/disassociate()
@@ -136,70 +129,19 @@ GLOBAL_PROTECT(href_token)
 		log_admin("[key_name(usr)][msg]")
 		return
 	if(owner)
-		GLOB.admins -= owner
+		GLOB.permissions.admins -= owner
 		owner.remove_admin_verbs()
 		owner.init_verbs()
 		owner.holder = null
 		owner = null
 
-/datum/admins/proc/check_for_rights(rights_required)
-	if(rights_required && !(rights_required & rank.rights))
-		return 0
-	return 1
-
-
-/datum/admins/proc/check_if_greater_rights_than_holder(datum/admins/other)
-	if(!other)
-		return 1 //they have no rights
-	if(rank.rights == R_EVERYTHING)
-		return 1 //we have all the rights
-	if(src == other)
-		return 1 //you always have more rights than yourself
-	if(rank.rights != other.rank.rights)
-		if( (rank.rights & other.rank.rights) == other.rank.rights )
-			return 1 //we have all the rights they have and more
-	return 0
+/datum/admins/proc/rank_name()
+	if(owner)
+		return GLOB.permissions.get_rank_name(owner)
+	return "Unknown"
 
 /datum/admins/vv_edit_var(var_name, var_value)
 	return FALSE //nice try trialmin
-
-/*
-checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)
-if rights_required == 0, then it simply checks if they are an admin.
-if it doesn't return 1 and show_msg=1 it will prints a message explaining why the check has failed
-generally it would be used like so:
-
-/proc/admin_proc()
-	if(!check_rights(R_ADMIN))
-		return
-	to_chat(world, "you have enough rights!")
-
-NOTE: it checks usr! not src! So if you're checking somebody's rank in a proc which they did not call
-you will have to do something like if(client.rights & R_ADMIN) yourself.
-*/
-/proc/check_rights(rights_required, show_msg=1)
-	if(usr && usr.client)
-		if (check_rights_for(usr.client, rights_required))
-			return 1
-		else
-			if(show_msg)
-				to_chat(usr, "<font color='red'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</font>", confidential=TRUE)
-	return 0
-
-//probably a bit iffy - will hopefully figure out a better solution
-/proc/check_if_greater_rights_than(client/other)
-	if(usr && usr.client)
-		if(usr.client.holder)
-			if(!other || !other.holder)
-				return 1
-			return usr.client.holder.check_if_greater_rights_than_holder(other.holder)
-	return 0
-
-//This proc checks whether subject has at least ONE of the rights specified in rights_required.
-/proc/check_rights_for(client/subject, rights_required)
-	if(subject && subject.holder)
-		return subject.holder.check_for_rights(rights_required)
-	return 0
 
 /proc/GenerateToken()
 	. = ""
