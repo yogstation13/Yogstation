@@ -26,6 +26,7 @@
 	if(!isaicore(owner.loc))
 		to_chat(owner, span_warning("You must be in your core to do this!"))
 		return
-	for(var/obj/machinery/ai/data_core/core in owner.ai_network.get_all_nodes())
+	var/mob/living/silicon/ai/AI = owner
+	for(var/obj/machinery/ai/data_core/core in AI.ai_network.get_all_nodes())
 		tesla_zap(core, 2, 15000, (TESLA_MOB_DAMAGE | TESLA_MOB_STUN))
 		core.use_power(5000)

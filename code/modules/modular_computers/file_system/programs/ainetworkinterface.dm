@@ -86,18 +86,23 @@
 	if(!net)
 		return data
 
+
+	//Networking devices control
 	data["networking_devices"] = list()
 	for(var/obj/machinery/ai/networking/N in net.get_local_nodes_oftype(/obj/machinery/ai/networking))
-		data["networking_devices"] += list(list("label" = N.label, "ref" = REF(N)))
+		data["networking_devices"] += list(list("label" = N.label, "ref" = REF(N), "has_partner" = N.partner ?  N.partner.label : null))
 
+	//Downloading/Uploadingainet
 	data["ai_list"] = list()
 	for(var/mob/living/silicon/ai/AI in net.get_all_ais())
 		var/being_hijacked = AI.hijacking ? TRUE : FALSE
-		data["ai_list"] += list(list("name" = AI.name, "ref" = REF(AI), "can_download" = AI.can_download, "health" = AI.health, "active" = AI.mind ? TRUE : FALSE, "being_hijacked" = being_hijacked, "in_core" = istype(AI.loc, /obj/machinery/ai/data_core)))
+		data["ai_list"] += list(list("name" = AI.name, "ref" = REF(AI), "can_download" = AI.can_download, "health" = AI.health, "active" = AI.mind ? TRUE : FALSE, "being_hijacked" = being_hijacked, "in_core" = istype(AI.loc, /obj/machinery/ai/data_core), 
+		"assigned_cpu" = net.resources.cpu_assigned[AI] ? net.resources.cpu_assigned[AI] : 0, "assigned_ram" = net.resources.ram_assigned[AI] ? net.resources.ram_assigned[AI] : 0))
 
 	data["is_infiltrator"] = is_infiltrator(user)
 
 	data["connection_type"] = ismachinery(computer.physical) ? "wired connection" : "local wire shunt"
+	data["network_name"] = net.label
 
 	data["current_ai_ref"] = null
 	if(isAI(user))
@@ -125,12 +130,21 @@
 
 	data["can_upload"] = net.find_data_core() ? TRUE : FALSE
 
-	data["available_cpu_resources"] = (1 - net.resources.total_cpu_assigned())
-	data["network_cpu_resources"] = net.resources.cpu_assigned[net]
+
+	//Resource allocation
+
+	data["total_cpu"] = net.resources.total_cpu()
+	data["total_ram"] = net.resources.total_ram()
+	
+
+	data["total_assigned_cpu"] = net.resources.total_cpu_assigned()
+	data["total_assigned_ram"] = net.resources.total_ram_assigned()
 
 	data["network_cpu_assignments"] = list(net.local_cpu_usage)
 
-
+	data["network_ref"] = REF(net)
+	data["network_assigned_ram"] = net.resources.ram_assigned[net]
+	data["network_assigned_cpu"] = net.resources.cpu_assigned[net]
 
 	return data
 
@@ -143,6 +157,19 @@
 		return
 
 	switch(action)
+		//General actions
+		if("change_network_name")
+			var/new_label = stripped_input(usr, "Enter new label", "Set label", max_length = 32)
+			if(new_label)
+				if(isnotpretty(new_label))
+					to_chat(usr, span_notice("The machine rejects the input. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>."))
+					var/log_message = "[key_name(usr)] just tripped a pretty filter: '[new_label]'."
+					message_admins(log_message)
+					log_say(log_message)
+					return
+				net.label = new_label
+			. = TRUE
+		//AI interaction, downloading/uploading
 		if("apply_object")
 			if(!net)
 				return TRUE
@@ -292,6 +319,8 @@
 				to_chat(A, span_bolddanger("Unknown device disconnected. Systems confirmed secure."))
 			else
 				to_chat(user, span_notice("You fail to remove the device."))
+
+		//Network control
 		if("control_networking")
 			if(!params["ref"])
 				return
@@ -303,6 +332,53 @@
 			active_networking.remote_control = networking_operator
 			active_networking.ui_interact(networking_operator)
 		
+		//Resource allocation
+		if("clear_ai_resources")
+			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
+			if(!istype(target_ai))
+				return
+
+			net.resources.clear_ai_resources(target_ai)
+			. = TRUE
+
+		if("set_cpu")
+			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
+			if(!istype(target_ai))
+				return
+			var/amount = params["amount_cpu"]
+			if(amount > 1 || amount < 0)
+				return
+			net.resources.set_cpu(target_ai, amount)
+			. = TRUE
+		if("max_cpu")
+			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
+			if(!istype(target_ai))
+				return
+			var/amount = (1 - net.resources.total_cpu_assigned()) + net.resources.cpu_assigned[target_ai]
+
+			net.resources.set_cpu(target_ai, amount)
+			. = TRUE
+		if("add_ram")
+			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
+			if(!istype(target_ai))
+				return
+
+			if(net.resources.total_ram_assigned() >= net.resources.total_ram())
+				return
+			net.resources.add_ram(target_ai, 1)
+			. = TRUE
+
+		if("remove_ram")
+			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
+			if(!istype(target_ai))
+				return
+
+			var/current_ram = net.resources.ram_assigned[target_ai]
+
+			if(current_ram <= 0)
+				return
+			net.resources.remove_ram(target_ai, 1)
+			. = TRUE
 
 
 /datum/computer_file/program/ai_network_interface/proc/finish_download()

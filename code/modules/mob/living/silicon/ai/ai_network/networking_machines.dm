@@ -161,9 +161,11 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 					if(N.locked)
 						to_chat(usr, span_warning("Unable to connect to '[target_label]'! It seems to be locked."))
 						return
-					if(partner)
-						disconnect()
+					if(N.partner)
+						to_chat(usr, span_warning("Unable to connect to '[target_label]'! It seems to already have a connection established."))
+						return
 					connect_to_partner(N)
+					to_chat(usr, span_notice("Connection established to '[target_label]'."))
 					return
 			. = TRUE
 		if("disconnect")

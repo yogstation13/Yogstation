@@ -25,11 +25,14 @@
 
 	var/local_cpu_usage = list() //How we use CPU locally
 
+	var/label
+
 
 	
 
 /datum/ai_network/New()
 	SSmachines.ainets += src
+	label = num2hex(rand(1,65535), -1)
 	resources = new(starting_network = src)
 
 /datum/ai_network/Destroy()
@@ -120,7 +123,7 @@
 			return core
 
 /datum/ai_network/proc/get_all_nodes(checked_nets = list())
-	. = nodes
+	. = nodes.Copy()
 	for(var/datum/ai_network/net in resources.networks)
 		if(net == src)
 			continue
@@ -134,7 +137,7 @@
 
 
 /datum/ai_network/proc/get_all_ais(checked_nets = list())
-	. = ai_list
+	. = ai_list.Copy()
 	for(var/datum/ai_network/net in resources.networks)
 		if(net == src)
 			continue
