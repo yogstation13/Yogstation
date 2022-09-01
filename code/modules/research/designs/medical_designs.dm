@@ -22,7 +22,7 @@
 	construction_time = 75
 	build_path = /obj/item/mmi/posibrain
 	category = list("Control Interfaces", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/bluespacebeaker
 	name = "Bluespace Beaker"
@@ -271,207 +271,6 @@
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/////////////////////////////////////////
-//////////Cybernetic Implants////////////
-/////////////////////////////////////////
-
-/datum/design/cyberimp_welding
-	name = "Welding Shield Eyes"
-	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
-	id = "ci-welding"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 40
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 400)
-	build_path = /obj/item/organ/eyes/robotic/shield
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_gloweyes
-	name = "Luminescent Eyes"
-	desc = "A pair of cybernetic eyes that can emit multicolored light."
-	id = "ci-gloweyes"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 40
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 1000)
-	build_path = /obj/item/organ/eyes/robotic/glow
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_breather
-	name = "Breathing Tube Implant"
-	desc = "This simple implant adds an internals connector to your back, allowing you to use internals without a mask and protecting you from being choked."
-	id = "ci-breather"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 35
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 250)
-	build_path = /obj/item/organ/cyberimp/mouth/breathing_tube
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_surgical
-	name = "Surgical Arm Implant"
-	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
-	id = "ci-surgery"
-	build_type = PROTOLATHE | MECHFAB
-	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1500, /datum/material/silver = 1500)
-	construction_time = 200
-	build_path = /obj/item/organ/cyberimp/arm/toolset/surgery
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_toolset
-	name = "Toolset Arm Implant"
-	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on the subject's arm."
-	id = "ci-toolset"
-	build_type = PROTOLATHE | MECHFAB
-	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1500, /datum/material/silver = 1500)
-	construction_time = 200
-	build_path = /obj/item/organ/cyberimp/arm/toolset
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_medical_hud
-	name = "Medical HUD Implant"
-	desc = "These cybernetic eyes will display a medical HUD over everything you see. Wiggle eyes to control."
-	id = "ci-medhud"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 500, /datum/material/gold = 500, /datum/material/plastic = 150)
-	build_path = /obj/item/organ/cyberimp/eyes/hud/medical
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_security_hud
-	name = "Security HUD Implant"
-	desc = "These cybernetic eyes will display a security HUD over everything you see. Wiggle eyes to control."
-	id = "ci-sechud"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 750, /datum/material/gold = 750, /datum/material/plastic = 150)
-	build_path = /obj/item/organ/cyberimp/eyes/hud/security
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_diagnostic_hud
-	name = "Diagnostic HUD Implant"
-	desc = "These cybernetic eyes will display a diagnostic HUD over everything you see. Wiggle eyes to control."
-	id = "ci-diaghud"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plastic = 150)
-	build_path = /obj/item/organ/cyberimp/eyes/hud/diagnostic
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_science_analyzer
-	name = "Chemical Analyzer Implant"
-	desc = "These cybernetic eye implants will allow rapid identification of reagents. Wiggle eyes to control."
-	id = "ci-scihud"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plastic = 150)
-	build_path = /obj/item/organ/cyberimp/eyes/hud/science
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_meson
-	name = "Meson Eyes"
-	desc = "These cybernetic eyes will give you meson-vision. Looks like it could withstand seeing a supermatter crystal!."
-	id = "ci-meson"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plastic = 1000, /datum/material/uranium = 1000)
-	build_path = /obj/item/organ/eyes/robotic/xray
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_xray
-	name = "X-Ray Eyes"
-	desc = "These cybernetic eyes will give you X-Ray-vision. Blinking is futile."
-	id = "ci-xray"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/uranium = 1000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
-	build_path = /obj/item/organ/eyes/robotic/xray/syndicate
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_thermals
-	name = "Thermal Eyes"
-	desc = "These cybernetic eyes will give you Thermal vision. Vertical slit pupil included."
-	id = "ci-thermals"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/diamond = 2000)
-	build_path = /obj/item/organ/eyes/robotic/thermals
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_antidrop
-	name = "Anti-Drop Implant"
-	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ears to toggle."
-	id = "ci-antidrop"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 400, /datum/material/gold = 400)
-	build_path = /obj/item/organ/cyberimp/brain/anti_drop
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_antistun
-	name = "CNS Rebooter Implant"
-	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
-	id = "ci-antistun"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 500, /datum/material/gold = 1000)
-	build_path = /obj/item/organ/cyberimp/brain/anti_stun
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_nutriment
-	name = "Nutriment Pump Implant"
-	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
-	id = "ci-nutriment"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 40
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/gold = 500)
-	build_path = /obj/item/organ/cyberimp/chest/nutriment
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_nutriment_plus
-	name = "Nutriment Pump Implant PLUS"
-	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
-	id = "ci-nutrimentplus"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/gold = 500, /datum/material/uranium = 750)
-	build_path = /obj/item/organ/cyberimp/chest/nutriment/plus
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_reviver
-	name = "Reviver Implant"
-	desc = "This implant will attempt to revive you if you lose consciousness. For the faint of heart!"
-	id = "ci-reviver"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 800, /datum/material/glass = 800, /datum/material/gold = 300, /datum/material/uranium = 500)
-	build_path = /obj/item/organ/cyberimp/chest/reviver
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cyberimp_thrusters
-	name = "Thrusters Set Implant"
-	desc = "This implant will allow you to use gas from the environment or your internals for propulsion in zero-gravity areas."
-	id = "ci-thrusters"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 80
-	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2000, /datum/material/silver = 1000, /datum/material/diamond = 1000)
-	build_path = /obj/item/organ/cyberimp/chest/thrusters
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////////////////////////
 ////////////Regular Implants/////////////
@@ -540,17 +339,6 @@
 	category = list("Cybernetics", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/cybernetic_liver_u
-	name = "Upgraded Cybernetic Liver"
-	desc = "An upgraded cybernetic liver."
-	id = "cybernetic_liver_u"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver=500, /datum/material/gold=200)
-	build_path = /obj/item/organ/liver/cybernetic/upgraded
-	category = list("Cybernetics", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/cybernetic_heart
 	name = "Cybernetic Heart"
 	desc = "A cybernetic heart."
@@ -562,17 +350,6 @@
 	category = list("Cybernetics", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/cybernetic_heart_u
-	name = "Upgraded Cybernetic Heart"
-	desc = "An upgraded cybernetic heart."
-	id = "cybernetic_heart_u"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver=500, /datum/material/gold=200)
-	build_path = /obj/item/organ/heart/cybernetic/upgraded
-	category = list("Cybernetics", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/cybernetic_lungs
 	name = "Cybernetic Lungs"
 	desc = "A pair of cybernetic lungs."
@@ -581,17 +358,6 @@
 	construction_time = 40
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
 	build_path = /obj/item/organ/lungs/cybernetic
-	category = list("Cybernetics", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cybernetic_lungs_u
-	name = "Upgraded Cybernetic Lungs"
-	desc = "A pair of upgraded cybernetic lungs."
-	id = "cybernetic_lungs_u"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 500, /datum/material/gold=200)
-	build_path = /obj/item/organ/lungs/cybernetic/upgraded
 	category = list("Cybernetics", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -614,17 +380,6 @@
 	construction_time = 40
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
 	build_path = /obj/item/organ/stomach/cybernetic
-	category = list("Cybernetics", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/cybernetic_stomach_u
-	name = "Upgraded Cybernetic Stomach"
-	desc = "An upgraded cybernetic stomach"
-	id = "cybernetic_stomach_u"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 50
-	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 500, /datum/material/gold=200)
-	build_path = /obj/item/organ/stomach/cybernetic/upgraded
 	category = list("Cybernetics", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
