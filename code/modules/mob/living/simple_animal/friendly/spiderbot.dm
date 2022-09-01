@@ -25,7 +25,6 @@
 	speak_emote = list("beeps","clicks","chirps")
 
 	var/obj/item/radio/borg/radio = null
-	var/obj/item/weapon/stock_parts/cell/cell = null
 	var/obj/machinery/camera/camera = null
 	var/obj/item/mmi/mmi = null
 	var/list/req_access = list(ACCESS_ROBOTICS) //Access needed to pop out the brain.
@@ -106,7 +105,7 @@
 			var/obj/item/pda/pda = O
 			id_card = pda.id
 
-		if(access_robotics in id_card.GetAccess())
+		if(ACCESS_ROBOTICS in id_card.GetAccess())
 			to_chat(user, span_notice("You swipe your access card and pop the brain out of [src]."))
 			eject_brain()
 
@@ -128,35 +127,34 @@
 
 /mob/living/simple_animal/spiderbot/emag_act(mob/user)
 	if (emagged)
-		to_chat(user, "<span class='warning'>[src] is already overloaded - better run.</span>")
+		to_chat(user, span_warning("[src] is already overloaded - better run."))
 		return
 	else
 		emagged = 1
-		to_chat(user, "<span class='notice'>You short out the security protocols and overload [src]'s cell, priming it to explode in a short time.</span>")
+		to_chat(user, span_notice("You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."))
 		spawn(100)
-			to_chat(src, "<span class='warning'>Your cell seems to be outputting a lot of power...</span>")
+			to_chat(src, span_warning("Your cell seems to be outputting a lot of power..."))
 		spawn(200)
-			to_chat(src, "<span class='warning'>Internal heat sensors are spiking! Something is badly wrong with your cell!</span>")
+			to_chat(src, span_warning("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
 		spawn(300)
 			explode()
 		return
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
-	visible_message("<span class='warning'>[src] makes an odd warbling noise, fizzles, and explodes.</span>")
+	visible_message(span_warning("[src] makes an odd warbling noise, fizzles, and explodes."))
 	explosion(get_turf(src), -1, 0, 2, 3, 0, flame_range = 2) ///Explodes like a fireball
 	if(!QDELETED(src) && stat != DEAD)
 		death()
 
 /mob/living/simple_animal/spiderbot/update_icon()
-	if(mmi)
+	if(key)
 		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"
 			icon_living = "spiderbot-chassis-posi"
-			return
-		else if(isMMI(mmi))
+		else
 			icon_state = "spiderbot-chassis-mmi"
 			icon_living = "spiderbot-chassis-mmi"
-			return
+		return
 
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
@@ -165,10 +163,12 @@
 	if(mmi)
 		if(mind)	
 			mind.transfer_to(mmi.brainmob)
+		else if(key)
+			mmi.brainmob.key = key
 		mmi = null
 		name = initial(name)
 		mmi.forceMove(loc)
-		update_icon()
+	update_icon()
 
 /mob/living/simple_animal/spiderbot/Destroy()
 	eject_brain()
@@ -178,7 +178,11 @@
 	. = ..()
 	radio = new /obj/item/device/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
-	RegisterSignal(src, COMSIG_MOB_DEATH, .proc/on_death())
+	camera.c_tag = name
+	add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/hide, \
+			  /mob/living/simple_animal/spiderbot/proc/drop_held_item, \
+			  /mob/living/simple_animal/spiderbot/proc/get_item))
+	RegisterSignal(src, COMSIG_MOB_DEATH, .proc/on_death)
 
 /mob/living/simple_animal/spiderbot/proc/on_death()
 	UnregisterSignal(src, COMSIG_MOB_DEATH)
@@ -194,64 +198,62 @@
 	if(held_item)
 		held_item.forceMove(loc)
 		held_item = null
-	if(cell)
-		cell.forceMove(loc)
-		cell = null
 	if(mmi)
 		mmi.forceMove(loc)
 		mmi = null
 	UnregisterSignal(src, COMSIG_MOB_DEATH)
 	. = ..()
 
-//copy paste from alien/larva, if that func is updated please update this one alsoghost
-/mob/living/simple_animal/spiderbot/verb/hide()
+/mob/living/simple_animal/spiderbot/proc/hide()
 	set name = "Hide"
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
 	set category = "Spiderbot"
 
-	if (layer != TURF_LAYER+0.2)
-		layer = TURF_LAYER+0.2
-		to_chat(src, text("<span class='notice'>You are now hiding.</span>"))
+	if(stat != CONSCIOUS)
+		return
+
+	if (layer != ABOVE_NORMAL_TURF_LAYER)
+		layer = ABOVE_NORMAL_TURF_LAYER
+		to_chat(src, span_notice("You are now hiding."))
 	else
 		layer = MOB_LAYER
-		to_chat(src, text("<span class='notice'>You have stopped hiding.</span>"))
+		to_chat(src, span_notice("You have stopped hiding."))
 
-//Cannibalized from the parrot mob. ~Zuhayr
-
-/mob/living/simple_animal/spiderbot/verb/drop_held_item()
+/mob/living/simple_animal/spiderbot/proc/drop_held_item()
 	set name = "Drop held item"
 	set category = "Spiderbot"
 	set desc = "Drop the item you're holding."
 
-	if(incapacitated())
+	if(stat != CONSCIOUS)
 		return
 
 	if(!held_item)
-		to_chat(usr, "<span class='warning'>You have nothing to drop!</span>")
+		to_chat(usr, span_warning(">You have nothing to drop!"))
 		return 0
 
-	visible_message("<span class='notice'>[src] drops \the [held_item]!</span>", "<span class='notice'>You drop \the [held_item]!</span>", "You hear a skittering noise and a soft thump.")
+	visible_message(span_notice("[src] drops \the [held_item]!"), span_notice("You drop \the [held_item]!"), span_hear("You hear a skittering noise and a soft thump."))
 
 	held_item.forceMove(loc)
 	held_item = null
-	return 1
+	return
 
-/mob/living/simple_animal/spiderbot/verb/get_item()
+/mob/living/simple_animal/spiderbot/proc/get_item()
 	set name = "Pick up item"
 	set category = "Spiderbot"
 	set desc = "Allows you to take a nearby small item."
 
-	if(incapacitated())
-		return -1
+	if(stat != CONSCIOUS)
+		return
 
 	if(held_item)
-		to_chat(src, "<span class='warning'>You are already holding \the [held_item]</span>")
-		return 1
+		to_chat(src, span_warning("You are already holding \the [held_item]"))
+		return
 
 	var/list/items = list()
 	for(var/obj/item/I in view(1,src))
-		if(I.loc != src && I.w_class <= SIZE_TINY)
-			items.Add(I)
+		//Make sure we're not already holding it and it's small enough
+		if(I.loc != src && I.w_class <= WEIGHT_CLASS_SMALL)
+			items |= I
 
 	var/obj/selection = input("Select an item.", "Pickup") in items
 
@@ -260,12 +262,12 @@
 			if(selection == I)
 				held_item = selection
 				selection.loc = src
-				visible_message("<span class='notice'>[src] scoops up \the [held_item]!</span>", "<span class='notice'>You grab \the [held_item]!</span>", "You hear a skittering noise and a clink.")
+				visible_message(span_notice("[src] scoops up \the [held_item]!"), span_notice("You grab \the [held_item]!"), span_hear("You hear a skittering noise and a clink."))
 				return held_item
-		to_chat(src, "<span class='warning'>\The [selection] is too far away.</span>")
+		to_chat(src, span_warning("\The [selection] is too far away."))
 		return 0
 
-	to_chat(src, "<span class='warning'>There is nothing of interest to take.</span>")
+	to_chat(src, span_warning("There is nothing of interest to take."))
 	return 0
 
 /mob/living/simple_animal/spiderbot/examine(mob/user)

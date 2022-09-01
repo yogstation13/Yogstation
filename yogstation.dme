@@ -2535,6 +2535,7 @@
 #include "code\modules\mob\living\simple_animal\friendly\sloth.dm"
 #include "code\modules\mob\living\simple_animal\friendly\snail.dm"
 #include "code\modules\mob\living\simple_animal\friendly\snake.dm"
+#include "code\modules\mob\living\simple_animal\friendly\spiderbot.dm"
 #include "code\modules\mob\living\simple_animal\friendly\turtle.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\_drone.dm"
 #include "code\modules\mob\living\simple_animal\friendly\drone\drones_as_items.dm"
