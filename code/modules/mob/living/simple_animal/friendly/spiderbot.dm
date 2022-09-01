@@ -176,7 +176,7 @@
 
 /mob/living/simple_animal/spiderbot/Initialize()
 	. = ..()
-	radio = new /obj/item/device/radio/borg(src)
+	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
 	camera.c_tag = name
 	add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/hide, \
