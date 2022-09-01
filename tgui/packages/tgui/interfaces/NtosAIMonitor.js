@@ -6,7 +6,7 @@ import { Button, Box, Section, Tabs, NoticeBox, Flex, ProgressBar, LabeledList, 
 export const NtosAIMonitor = (props, context) => {
   const { act, data } = useBackend(context);
   const [tab, setTab] = useLocalState(context, 'tab', 1);
-  const [clusterTab, setClusterTab] = useLocalState(context, 'clustertab', 1)
+  const [clusterTab, setClusterTab] = useLocalState(context, 'clustertab', 1);
 
   if (!data.has_ai_net) {
     return (
@@ -60,21 +60,21 @@ export const NtosAIMonitor = (props, context) => {
             </Tabs.Tab>
           </Tabs>
           {tab === 1 && (
-              <Fragment>
-                <Divider />
-                <Tabs>
-                  <Tabs.Tab
-                    selected={clusterTab === 1}
-                    onClick={(() => setClusterTab(1))}>
-                    Dashboard
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={clusterTab === 2}
-                    onClick={(() => setClusterTab(2))}>
-                    Local Computing
-                  </Tabs.Tab>
-                </Tabs>
-              </Fragment>
+            <Fragment>
+              <Divider />
+              <Tabs>
+                <Tabs.Tab
+                  selected={clusterTab === 1}
+                  onClick={(() => setClusterTab(1))}>
+                  Dashboard
+                </Tabs.Tab>
+                <Tabs.Tab
+                  selected={clusterTab === 2}
+                  onClick={(() => setClusterTab(2))}>
+                  Local Computing
+                </Tabs.Tab>
+              </Tabs>
+            </Fragment>
           )}
           {(clusterTab === 1 && tab === 1) && (
             <LocalDashboard />
@@ -371,8 +371,8 @@ const Networking = (props, context) => {
       <LabeledList>
         {data.networking_devices.map((networker, index) => {
           return (
-            <LabeledList.Item label={networker.label} buttons={(<Button icon="wifi" color="good" tooltip="Remotely control this device" tooltipPosition="left" onClick={() => act("control_networking", { ref: networker.ref })}>Control</Button>)}>
-              <Box color={networker.has_partner ? "good" : "bad"}>{networker.has_partner ? "ONLINE - CONNECTED TO " + networker.has_partner  : "DISCONNECTED"}</Box>
+            <LabeledList.Item key={index} label={networker.label} buttons={(<Button icon="wifi" color="good" tooltip="Remotely control this device" tooltipPosition="left" onClick={() => act("control_networking", { ref: networker.ref })}>Control</Button>)}>
+              <Box color={networker.has_partner ? "good" : "bad"}>{networker.has_partner ? "ONLINE - CONNECTED TO " + networker.has_partner : "DISCONNECTED"}</Box>
             </LabeledList.Item>
           );
         })}
