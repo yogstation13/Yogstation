@@ -2443,7 +2443,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\_ai_machinery.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\ai_core_display.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\ai_data_core.dm"
-#include "code\modules\mob\living\silicon\ai\decentralized\decentralized_os.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\computer_science_datum.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\server_cabinet.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_dashboard.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_server_overview.dm"

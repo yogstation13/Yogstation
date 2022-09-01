@@ -16,7 +16,6 @@
 	
 	SSair.atmos_machinery += src 
 	connect_to_network()
-	message_admins("init call")
 	
 /obj/machinery/ai/Destroy()
 	. = ..()

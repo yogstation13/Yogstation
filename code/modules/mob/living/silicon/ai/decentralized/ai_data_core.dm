@@ -190,7 +190,6 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 
 /obj/machinery/ai/data_core/connect_to_network() //If we ever get connected to a network (or a new one gets created) we get the AIs to the correct one too
 	. = ..()
-	message_admins("core")
 	for(var/mob/living/silicon/ai/AI in contents)
 		if(!AI.ai_network)
 			network.ai_list |= AI

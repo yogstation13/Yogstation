@@ -27,7 +27,7 @@ export const NtosAIMonitor = (props, context) => {
 
   return (
     <NtosWindow
-      width={550}
+      width={600}
       height={600}
       resizable>
       <NtosWindow.Content scrollable>
@@ -36,21 +36,26 @@ export const NtosAIMonitor = (props, context) => {
             <Tabs.Tab
               selected={tab === 1}
               onClick={(() => setTab(1))}>
-              Cluster Management
+              Cluster Control
             </Tabs.Tab>
             <Tabs.Tab
               selected={tab === 2}
               onClick={(() => setTab(2))}>
-              Networking Devices
+              Resource Allocation
             </Tabs.Tab>
             <Tabs.Tab
               selected={tab === 3}
               onClick={(() => setTab(3))}>
-              AI Upload
+              Networking
             </Tabs.Tab>
             <Tabs.Tab
               selected={tab === 4}
               onClick={(() => setTab(4))}>
+              AI Upload
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={tab === 5}
+              onClick={(() => setTab(5))}>
               AI Download
             </Tabs.Tab>
           </Tabs>
@@ -61,115 +66,25 @@ export const NtosAIMonitor = (props, context) => {
                   <Tabs.Tab
                     selected={clusterTab === 1}
                     onClick={(() => setClusterTab(1))}>
-                    Resource Allocation
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={clusterTab === 2}
-                    onClick={(() => setClusterTab(2))}>
                     Local Computing
                   </Tabs.Tab>
                 </Tabs>
               </Fragment>
           )}
           {(clusterTab === 1 && tab === 1) && (
-            <ResourceAllocation />
-          )}
-          {(clusterTab === 2&& tab === 1) && (
-            <Section title="poo2"></Section>
+            <LocalCompute />
           )}
           {tab === 2 && (
-            <Section title="Networking Devices">
-              <LabeledList>
-                {data.networking_devices.map((networker, index) => {
-                  return (
-                    <LabeledList.Item label={networker.label} buttons={(<Button icon="wifi" color="good" tooltip="Remotely control this device" tooltipPosition="left" onClick={() => act("control_networking", { ref: networker.ref })}>Control</Button>)}>
-                      <Box color={networker.has_partner ? "good" : "bad"}>{networker.has_partner ? "ONLINE - CONNECTED TO " + networker.has_partner  : "DISCONNECTED"}</Box>
-                    </LabeledList.Item>
-                  );
-                })}
-              </LabeledList>
-            </Section>
+            <ResourceAllocation />
           )}
           {tab === 3 && (
-            <Section title="Upload">
-              <Box textAlign="center" mb={0.5}>
-                <Button disabled={!data.holding_mmi} color="good" icon="upload" tooltip={!data.holding_mmi ? "You need to be holding an MMI/Posibrain" : ""} onClick={() => act("upload_person")}>Upload from MMI/Posibrain</Button>
-              </Box>
-              {!data.intellicard && (
-                <Flex align="center" justify="center">
-                  <Flex.Item>
-                    <NoticeBox>No IntelliCard inserted!</NoticeBox>
-                  </Flex.Item>
-                </Flex>
-              ) || (
-                <Box>
-                  {data.intellicard_ai && (
-                    <Flex align="center" justify="center">
-                      <Flex.Item width="50%">
-                        <Section textAlign="center" title={data.intellicard_ai}>
-                          <ProgressBar ranges={{ good: [75, Infinity], average: [25, 75], bad: [-Infinity, 25] }} mb={0.75} minValue="0" maxValue="100" value={data.intellicard_ai_health} />
-                          <Button color="good" icon="upload" disabled={!data.can_upload} tooltip={!data.can_upload ? "A common cause of upload being unavailable is a lack of any active AI data cores." : null}
-                            onClick={() => act("upload_ai")}>Upload
-                          </Button>
-                        </Section>
-                      </Flex.Item>
-                    </Flex>
-                  ) || (
-                    <Flex align="center" justify="center">
-                      <Flex.Item>
-                        <NoticeBox>Intellicard contains no AI!</NoticeBox>
-                      </Flex.Item>
-                    </Flex>
-                  )}
-                </Box>
-              )}
-            </Section>
+            <Networking />
           )}
           {tab === 4 && (
-            <Section title="AIs Available for Download">
-              {data.downloading && (
-                <Fragment>
-                  <NoticeBox mb={0.1} danger>Currently downloading {data.downloading}</NoticeBox>
-                  <ProgressBar color="bad" minValue="0" value={data.download_progress} maxValue="100" />
-                  <Button mt={0.5} fluid color="bad" icon="stop" tooltip="WARNING" textAlign="center" onClick={() => act("stop_download")}>Cancel Download</Button>
-                  {!!data.current_ai_ref && data.current_ai_ref === data.downloading_ref && (
-                    <Button color="average" icon="download" onClick={() => act("skip_download")}>Instantly finish download</Button>
-                  )}
-                </Fragment>
-
-              )|| (
-                <Box>
-                  {data.ai_list.filter(ai => {
-                    return !!ai.in_core;
-                  }).map((ai, index) => {
-                    return (
-                      <Section key={index} title={(<Box inline color={ai.active ? "good" : "bad"}>{ai.name} | {ai.active ? "Active" : "Inactive"}</Box>)}
-                        buttons={(
-                          <Fragment>
-                            <Button icon="compact-disc" onClick={() => act("apply_object", { ai_ref: ai.ref })}>Apply Upgrade</Button>
-                            <Button color={ai.can_download ? "good" : "bad"} tooltipPosition={"left"} tooltip={!data.intellicard ? ai.can_download ? "Requires IntelliCard" : "&¤!65%" : null} disabled={data.intellicard ? !ai.can_download : true} icon="download" onClick={() => act("start_download", { download_target: ai.ref })}>{ai.can_download ? "Download" : "&gr4&!/"}</Button>
-                            {!!data.is_infiltrator && !ai.being_hijacked && (
-                              <Button color="good" tooltip="Requires serial exploitation unit" icon="download" onClick={() => act("start_hijack", { target_ai: ai.ref })}>Start hijacking</Button>
-                            ) }
-                            {!!ai.being_hijacked && (
-                              <Button color="bad" icon="stop" onClick={() => act("stop_hijack", { target_ai: ai.ref })}>Stop hijacking</Button>
-                            )}
-                          </Fragment>
-                        )}>
-                        <Box bold>Integrity:</Box>
-                        <ProgressBar mt={0.5} minValue={0}
-                          ranges={{
-                            good: [75, Infinity],
-                            average: [25, 75],
-                            bad: [-Infinity, 25],
-                          }}
-                          value={ai.health} maxValue={100} />
-                      </Section>
-                    );
-                  })}
-                </Box>
-              )}
-            </Section>
+            <AIUpload />
+          )}
+          {tab === 5 && (
+            <AIDownload />
           )}
         </Fragment>
       </NtosWindow.Content>
@@ -178,6 +93,39 @@ export const NtosAIMonitor = (props, context) => {
 };
 
 
+
+const LocalCompute = (props, context) => {
+  const { act, data } = useBackend(context);
+  let network_remaining_cpu = (1 - data.remaining_network_cpu) * 100;
+
+  return (
+    <Section title="Networking Devices">
+      <LabeledList>
+        {data.network_cpu_assignments.map((project, index) => {
+          project.tagline = "Use CPU to generate credits!"
+          return (
+            <Section key={index} title={(<Box inline color="lightgreen">{project.name} | {project.tagline}</Box>)} buttons={(
+              <Fragment>
+                <Box inline bold>Assigned CPU:&nbsp;</Box>
+                <NumberInput unit="%" value={project.assigned*100} minValue={0} maxValue={network_remaining_cpu + (project.assigned * 100)} onChange={(e, value) => act('allocate_network_cpu', {
+                  project_name: project.name,
+                  amount: Math.round((value / 100) * 100) / 100,
+                })} />
+                <Button icon="arrow-up" disabled={!network_remaining_cpu} onClick={(e, value) => act('max_network_cpu', {
+                  project_name: project.name,
+                })}>Max
+                </Button>
+
+              </Fragment>
+            )}>
+              {project.description}
+            </Section>
+          );
+        })}
+      </LabeledList>
+    </Section>
+  );
+};
 
 
 const ResourceAllocation = (props, context) => {
@@ -214,15 +162,15 @@ const ResourceAllocation = (props, context) => {
           <LabeledList.Item>
             CPU Capacity:
             <Flex>
-              <ProgressBar minValue={0} value={data.total_cpu * ai.assigned_cpu}
-                maxValue={data.total_cpu} >{data.total_cpu * ai.assigned_cpu} THz
+              <ProgressBar minValue={0} value={data.total_cpu * data.network_assigned_cpu}
+                maxValue={data.total_cpu} >{data.total_cpu * data.network_assigned_cpu} THz
               </ProgressBar>
-              <NumberInput width="60px" unit="%" value={ai.assigned_cpu * 100} minValue={0} maxValue={remaining_cpu + (ai.assigned_cpu * 100)} onChange={(e, value) => act('set_cpu', {
-                target_ai: ai.ref,
+              <NumberInput width="60px" unit="%" value={data.network_assigned_cpu * 100} minValue={0} maxValue={remaining_cpu + (data.network_assigned_cpu * 100)} onChange={(e, value) => act('set_cpu', {
+                target_ai: data.network_ref,
                 amount_cpu: Math.round((value / 100) * 100) / 100,
               })} />
               <Button height={1.75} icon="arrow-up" onClick={() => act("max_cpu", {
-                target_ai: ai.ref,
+                target_ai: data.network_ref,
               })}>Max
               </Button>
             </Flex>
@@ -230,14 +178,14 @@ const ResourceAllocation = (props, context) => {
           <LabeledList.Item>
             RAM Capacity:
             <Flex>
-              <ProgressBar minValue={0} value={ai.assigned_ram}
-                maxValue={data.total_ram} >{ai.assigned_ram} TB
+              <ProgressBar minValue={0} value={data.network_assigned_ram}
+                maxValue={data.total_ram} >{data.network_assigned_ram} TB
               </ProgressBar>
               <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram", {
-                target_ai: ai.ref,
+                target_ai: data.network_ref,
               })} />
               <Button height={1.75} icon="minus" onClick={() => act("remove_ram", {
-                target_ai: ai.ref,
+                target_ai: data.network_ref,
               })} />
             </Flex>
           </LabeledList.Item>
@@ -288,5 +236,115 @@ const ResourceAllocation = (props, context) => {
         </LabeledList>
       </Section>
     </Fragment>
+  );
+};
+
+
+const AIDownload = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  return (
+    <Section title="AIs Available for Download">
+      {data.downloading && (
+        <Fragment>
+          <NoticeBox mb={0.1} danger>Currently downloading {data.downloading}</NoticeBox>
+          <ProgressBar color="bad" minValue="0" value={data.download_progress} maxValue="100" />
+          <Button mt={0.5} fluid color="bad" icon="stop" tooltip="WARNING" textAlign="center" onClick={() => act("stop_download")}>Cancel Download</Button>
+          {!!data.current_ai_ref && data.current_ai_ref === data.downloading_ref && (
+            <Button color="average" icon="download" onClick={() => act("skip_download")}>Instantly finish download</Button>
+          )}
+        </Fragment>
+
+      )|| (
+        <Box>
+          {data.ai_list.filter(ai => {
+            return !!ai.in_core;
+          }).map((ai, index) => {
+            return (
+              <Section key={index} title={(<Box inline color={ai.active ? "good" : "bad"}>{ai.name} | {ai.active ? "Active" : "Inactive"}</Box>)}
+                buttons={(
+                  <Fragment>
+                    <Button icon="compact-disc" onClick={() => act("apply_object", { ai_ref: ai.ref })}>Apply Upgrade</Button>
+                    <Button color={ai.can_download ? "good" : "bad"} tooltipPosition={"left"} tooltip={!data.intellicard ? ai.can_download ? "Requires IntelliCard" : "&¤!65%" : null} disabled={data.intellicard ? !ai.can_download : true} icon="download" onClick={() => act("start_download", { download_target: ai.ref })}>{ai.can_download ? "Download" : "&gr4&!/"}</Button>
+                    {!!data.is_infiltrator && !ai.being_hijacked && (
+                      <Button color="good" tooltip="Requires serial exploitation unit" icon="download" onClick={() => act("start_hijack", { target_ai: ai.ref })}>Start hijacking</Button>
+                    ) }
+                    {!!ai.being_hijacked && (
+                      <Button color="bad" icon="stop" onClick={() => act("stop_hijack", { target_ai: ai.ref })}>Stop hijacking</Button>
+                    )}
+                  </Fragment>
+                )}>
+                <Box bold>Integrity:</Box>
+                <ProgressBar mt={0.5} minValue={0}
+                  ranges={{
+                    good: [75, Infinity],
+                    average: [25, 75],
+                    bad: [-Infinity, 25],
+                  }}
+                  value={ai.health} maxValue={100} />
+              </Section>
+            );
+          })}
+        </Box>
+      )}
+    </Section>
+  );
+};
+
+const AIUpload = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  return (
+    <Section title="Upload">
+      <Box textAlign="center" mb={0.5}>
+        <Button disabled={!data.holding_mmi} color="good" icon="upload" tooltip={!data.holding_mmi ? "You need to be holding an MMI/Posibrain" : ""} onClick={() => act("upload_person")}>Upload from MMI/Posibrain</Button>
+      </Box>
+      {!data.intellicard && (
+        <Flex align="center" justify="center">
+          <Flex.Item>
+            <NoticeBox>No IntelliCard inserted!</NoticeBox>
+          </Flex.Item>
+        </Flex>
+      ) || (
+        <Box>
+          {data.intellicard_ai && (
+            <Flex align="center" justify="center">
+              <Flex.Item width="50%">
+                <Section textAlign="center" title={data.intellicard_ai}>
+                  <ProgressBar ranges={{ good: [75, Infinity], average: [25, 75], bad: [-Infinity, 25] }} mb={0.75} minValue="0" maxValue="100" value={data.intellicard_ai_health} />
+                  <Button color="good" icon="upload" disabled={!data.can_upload} tooltip={!data.can_upload ? "A common cause of upload being unavailable is a lack of any active AI data cores." : null}
+                    onClick={() => act("upload_ai")}>Upload
+                  </Button>
+                </Section>
+              </Flex.Item>
+            </Flex>
+          ) || (
+            <Flex align="center" justify="center">
+              <Flex.Item>
+                <NoticeBox>Intellicard contains no AI!</NoticeBox>
+              </Flex.Item>
+            </Flex>
+          )}
+        </Box>
+      )}
+    </Section>
+  );
+};
+
+const Networking = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  return (
+    <Section title="Networking Devices">
+      <LabeledList>
+        {data.networking_devices.map((networker, index) => {
+          return (
+            <LabeledList.Item label={networker.label} buttons={(<Button icon="wifi" color="good" tooltip="Remotely control this device" tooltipPosition="left" onClick={() => act("control_networking", { ref: networker.ref })}>Control</Button>)}>
+              <Box color={networker.has_partner ? "good" : "bad"}>{networker.has_partner ? "ONLINE - CONNECTED TO " + networker.has_partner  : "DISCONNECTED"}</Box>
+            </LabeledList.Item>
+          );
+        })}
+      </LabeledList>
+    </Section>
   );
 };

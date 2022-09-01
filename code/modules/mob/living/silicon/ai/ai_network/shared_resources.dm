@@ -50,13 +50,13 @@
 
 /datum/ai_shared_resources/proc/total_cpu_assigned()
 	var/total = 0
-	for(var/mob/living/silicon/ai/AI in cpu_assigned)
+	for(var/AI in cpu_assigned)
 		total += cpu_assigned[AI]
 	return total
 
 /datum/ai_shared_resources/proc/total_ram_assigned()
 	var/total = 0
-	for(var/mob/living/silicon/ai/AI in ram_assigned)
+	for(var/AI in ram_assigned)
 		total += (ram_assigned[AI])
 	return total
 

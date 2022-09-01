@@ -1,5 +1,3 @@
-#define CRYPTO "crypto"
-
 ////////////////////////////////////////////
 // AI NETWORK DATUM
 // each contiguous network of ethernet cables & AI machinery
@@ -19,7 +17,7 @@
 
 	var/datum/ai_shared_resources/resources
 	//Cash from crypto, can be withdrawn at network console
-	var/stored_cash = 0
+	var/bitcoin_payout = 0
 
 	var/temp_limit = AI_TEMP_LIMIT
 
@@ -57,13 +55,11 @@
 /datum/ai_network/process()
 	var/total_cpu = resources.total_cpu()
 
-	if(local_cpu_usage[CRYPTO])
-		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[CRYPTO] * total_cpu)), 0)
+	if(local_cpu_usage[AI_CRYPTO])
+		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[AI_CRYPTO] * total_cpu)), 0)
 		var/bitcoin_mined = points * (1-0.05*sqrt(points))	
 		bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
-		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-		if(D)
-			D.adjust_money(bitcoin_mined * AI_BITCOIN_PRICE)
+		bitcoin_payout += bitcoin_mined * AI_BITCOIN_PRICE
 
 	var/locally_used = 0
 	for(var/A in local_cpu_usage)
@@ -349,4 +345,3 @@
 	for(var/datum/ai_shared_resources/ASR in resource_list)
 		message_admins("Resource count [REF(ASR)], CPU: [ASR.total_cpu()] | RAM: [ASR.total_ram()]")
 
-#undef CRYPTO

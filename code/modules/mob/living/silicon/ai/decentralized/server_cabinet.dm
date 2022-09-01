@@ -187,7 +187,6 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	. = ..()
 	if(network)
 		network.update_resources()
-	message_admins("cabinet")
 
 /obj/machinery/ai/server_cabinet/disconnect_from_network()
 	var/datum/ai_network/temp = network

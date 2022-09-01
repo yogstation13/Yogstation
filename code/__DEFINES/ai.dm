@@ -66,3 +66,19 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 //How much RAM and CPU a core needs locally to be functional
 #define AI_CORE_CPU_REQUIREMENT 1
 #define AI_CORE_RAM_REQUIREMENT 1 
+
+//For network based research and tasks. Since each network are going to contribute to a "global" pool of research there's no point in making this more complicated or modular
+//Adding an entry here automatically adds it to the UI and allows CPU to be allocated. Just use your define in the network process() to do stuff
+#define AI_CRYPTO "Cryptocurrency Mining"
+
+GLOBAL_LIST_INIT(possible_ainet_activities, list(
+	"[AI_CRYPTO]"
+))
+
+GLOBAL_LIST_INIT(ainet_activity_tagline, list(
+	"[AI_CRYPTO]" = "Use CPU to generate credits!"
+))
+
+GLOBAL_LIST_INIT(ainet_activity_description, list(
+	"[AI_CRYPTO]" = "Using CPU to mine NTCoin should allow for a meager sum of passive credit income."
+))

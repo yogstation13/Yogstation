@@ -140,11 +140,21 @@
 	data["total_assigned_cpu"] = net.resources.total_cpu_assigned()
 	data["total_assigned_ram"] = net.resources.total_ram_assigned()
 
-	data["network_cpu_assignments"] = list(net.local_cpu_usage)
+	//Local processing
+
+	data["network_cpu_assignments"] = list()
+	var/remaining_net_cpu = 1
+	for(var/project in GLOB.possible_ainet_activities)
+		var/assigned = net.local_cpu_usage[project] ? net.local_cpu_usage[project] : 0
+		data["network_cpu_assignments"] += list(list("name" = project, "assigned" = assigned, "tagline" = GLOB.ainet_activity_tagline[project], "description" = GLOB.ainet_activity_description[project]))
+		remaining_net_cpu -= assigned
 
 	data["network_ref"] = REF(net)
-	data["network_assigned_ram"] = net.resources.ram_assigned[net]
-	data["network_assigned_cpu"] = net.resources.cpu_assigned[net]
+	data["network_assigned_ram"] = net.resources.ram_assigned[net] ? net.resources.ram_assigned[net] : 0
+	data["network_assigned_cpu"] = net.resources.cpu_assigned[net] ? net.resources.cpu_assigned[net] : 0
+	data["bitcoin_amount"] = net.bitcoin_payout
+
+	data["remaining_network_cpu"] = remaining_net_cpu
 
 	return data
 
@@ -334,34 +344,28 @@
 		
 		//Resource allocation
 		if("clear_ai_resources")
-			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
-			if(!istype(target_ai))
-				return
+			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
 
 			net.resources.clear_ai_resources(target_ai)
 			. = TRUE
 
 		if("set_cpu")
-			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
-			if(!istype(target_ai))
-				return
+			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
+
 			var/amount = params["amount_cpu"]
 			if(amount > 1 || amount < 0)
 				return
 			net.resources.set_cpu(target_ai, amount)
 			. = TRUE
 		if("max_cpu")
-			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
-			if(!istype(target_ai))
-				return
+			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
+
 			var/amount = (1 - net.resources.total_cpu_assigned()) + net.resources.cpu_assigned[target_ai]
 
 			net.resources.set_cpu(target_ai, amount)
 			. = TRUE
 		if("add_ram")
-			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
-			if(!istype(target_ai))
-				return
+			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
 
 			if(net.resources.total_ram_assigned() >= net.resources.total_ram())
 				return
@@ -369,9 +373,7 @@
 			. = TRUE
 
 		if("remove_ram")
-			var/mob/living/silicon/ai/target_ai = locate(params["target_ai"]) in net.get_all_ais()
-			if(!istype(target_ai))
-				return
+			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
 
 			var/current_ram = net.resources.ram_assigned[target_ai]
 
@@ -379,6 +381,50 @@
 				return
 			net.resources.remove_ram(target_ai, 1)
 			. = TRUE
+
+		//Local computing
+		if("allocate_network_cpu")
+			var/project_type = params["project_name"]
+			if(!(project_type in GLOB.possible_ainet_activities))
+				return
+			var/amount = text2num(params["amount"])
+			if(amount <= 0)
+				return
+
+			var/total_cpu_used = 0
+			for(var/I in net.local_cpu_usage)
+				if(I == project_type)
+					continue
+				total_cpu_used += net.local_cpu_usage[I]
+
+			if((1 - total_cpu_used) >= amount)
+				net.local_cpu_usage[project_type] = amount
+
+			. = TRUE
+
+		if("max_network_cpu")
+			var/project_type = params["project_name"]
+			if(!(project_type in GLOB.possible_ainet_activities))
+				return
+
+			var/total_cpu_used = 0
+			for(var/I in net.local_cpu_usage)
+				if(I == project_type)
+					continue
+				total_cpu_used += net.local_cpu_usage[I]
+
+			var/amount_to_add = 1 - total_cpu_used
+
+			net.local_cpu_usage[project_type] = amount_to_add
+			. = TRUE
+		if("bitcoin_payout")
+			var/payout_amount = net.bitcoin_payout
+			var/obj/item/holochip/holochip = new (computer.physical.drop_location(), payout_amount)
+			user.put_in_hands(holochip)
+			to_chat(user, span_notice("Payout of [payout_amount]cr confirmed."))
+			net.bitcoin_payout = 0
+
+
 
 
 /datum/computer_file/program/ai_network_interface/proc/finish_download()
