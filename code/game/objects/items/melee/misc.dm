@@ -372,6 +372,9 @@
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
+	force = 6
+	stamina_damage = 40
+
 
 /obj/item/melee/classic_baton/telescopic
 	name = "telescopic baton"
