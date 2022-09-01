@@ -679,17 +679,21 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	force = 10
 	wound_bonus = -10
-	throwforce = 12
+	throwforce = 8
 	attack_verb = list("beat", "smacked")
 	sharpness = SHARP_NONE
 	w_class = WEIGHT_CLASS_HUGE
 	var/homerun_ready = 0
 	var/homerun_able = 0
+	var/flimsy = TRUE //spesswood?
+	var/durability = 100
 
 /obj/item/melee/baseball_bat/homerun
 	name = "home run bat"
 	desc = "This thing looks dangerous... Dangerously good at baseball, that is."
 	homerun_able = 1
+	durability = 400
+
 
 /obj/item/melee/baseball_bat/attack_self(mob/user)
 	if(!homerun_able)
@@ -697,7 +701,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		return
 	if(homerun_ready)
 		to_chat(user, span_notice("You're already ready to do a home run!"))
-		..()
 		return
 	to_chat(user, span_warning("You begin gathering strength..."))
 	playsound(get_turf(src), 'sound/magic/lightning_chargeup.ogg', 65, 1)
@@ -709,10 +712,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/melee/baseball_bat/attack(mob/living/target, mob/living/user)
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(target == ismob)
-		qdel(src)
-		visible_message(span_boldwarning("[user]'s bat explodes into splinters'!"), span_userdanger("Your bat explodes into splinters!"))
-		playsound(get_turf(src), 'yogstation/sound/effects/woodbreak3.ogg', 65, 1) 
+	if(target == user)
+		return
 	if(homerun_ready)
 		user.visible_message(span_userdanger("It's a home run!"))
 		target.throw_at(throw_target, rand(8,10), 14, user)
@@ -724,21 +725,29 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user) // sorry friends, 7 speed batting caused wounds to absolutely delete whoever you knocked your target into (and said target)
 
+/obj/item/melee/baseball_bat/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!flimsy)
+		return
+	if(durability >= 1)
+		durability--
+	else if(durability <= 0)
+		visible_message(span_warning("[user]'s bat explodes into splinters'!"), span_userdanger("Your bat explodes into splinters!"))
+		playsound(get_turf(src), 'yogstation/sound/effects/woodbreak3.ogg', 65, 1)
+		qdel(src)
+		return
+
 /obj/item/melee/baseball_bat/metal_bat
 	name = "titanium baseball bat"
 	desc = "This bat is made of titanium, it feels light yet strong."
 	icon_state = "baseball_bat_metal"
 	item_state = "baseball_bat_metal"
-	hitsound = 'yogstation/sound/bat_hit.ogg'
-	force = 12
-	throwforce = 15
+	hitsound = 'yogstation/sound/weapons/bat_hit.ogg'
+	force = 15
+	throwforce = 12
+	flimsy = FALSE
 	wound_bonus = 5
 	w_class = WEIGHT_CLASS_HUGE
-
-/obj/item/melee/baseball_bat/metal_bat/attack(mob/living/target, mob/living/user)
-	if(target == ismob)
-		return
-	. = ..()
 
 
 /obj/item/melee/flyswatter
