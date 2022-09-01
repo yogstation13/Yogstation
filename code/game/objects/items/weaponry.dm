@@ -686,13 +686,13 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	var/homerun_ready = 0
 	var/homerun_able = 0
 	var/flimsy = TRUE //spesswood?
-	var/durability = 10
+	var/durability = 5
 
 /obj/item/melee/baseball_bat/homerun
 	name = "home run bat"
 	desc = "This thing looks dangerous... Dangerously good at baseball, that is."
 	homerun_able = 1
-	durability = 100
+	durability = 10
 
 
 /obj/item/melee/baseball_bat/attack_self(mob/user)
