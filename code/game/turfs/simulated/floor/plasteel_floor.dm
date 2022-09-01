@@ -48,30 +48,42 @@
 
 /turf/open/floor/plasteel/white
 	icon_state = "white"
+
+/turf/open/floor/plasteel/whitegrad
+	icon_state = "whitegreygrad"
+
 /turf/open/floor/plasteel/white/side
 	icon_state = "whitehall"
+
 /turf/open/floor/plasteel/white/corner
 	icon_state = "whitecorner"
+
 /turf/open/floor/plasteel/airless/white
 	icon_state = "white"
+
 /turf/open/floor/plasteel/airless/white/side
 	icon_state = "whitehall"
+
 /turf/open/floor/plasteel/airless/white/corner
 	icon_state = "whitecorner"
+
 /turf/open/floor/plasteel/white/telecomms
 	initial_gas_mix = TCOMMS_ATMOS
+
 /turf/open/floor/plasteel/white/lavaland
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 
 /turf/open/floor/plasteel/yellowsiding
 	icon_state = "yellowsiding"
+
 /turf/open/floor/plasteel/yellowsiding/corner
 	icon_state = "yellowcornersiding"
 
 
 /turf/open/floor/plasteel/recharge_floor
 	icon_state = "recharge_floor"
+
 /turf/open/floor/plasteel/recharge_floor/asteroid
 	icon_state = "recharge_floor_asteroid"
 
@@ -85,16 +97,15 @@
 
 /turf/open/floor/plasteel/solarpanel
 	icon_state = "solarpanel"
-/turf/open/floor/plasteel/airless/solarpanel
-	icon_state = "solarpanel"
 
+turf/open/floor/plasteel/airless/solarpanel
+	icon_state = "solarpanel"
 
 /turf/open/floor/plasteel/freezer
 	icon_state = "freezerfloor"
 
 /turf/open/floor/plasteel/freezer/airless
 	initial_gas_mix = AIRLESS_ATMOS
-
 
 /turf/open/floor/plasteel/kitchen_coldroom
 	name = "cold room floor"

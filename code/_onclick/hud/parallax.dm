@@ -172,6 +172,8 @@
 
 /datum/hud/proc/update_parallax()
 	var/client/C = mymob.client
+	if(!C)
+		return
 	var/turf/posobj = get_turf_global(C.eye) // yogs - replace get_turf with get_turf_global
 	if(!posobj)
 		return

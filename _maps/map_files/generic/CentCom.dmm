@@ -3006,116 +3006,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ctf)
-"ahr" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"ahs" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"aht" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
 "ahu" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/circuit/green/off,
 /area/ctf)
-"ahv" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"ahw" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"ahx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"ahy" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
 "ahz" = (
 /turf/open/floor/circuit/green/off,
-/area/ctf)
-"ahA" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
 /area/ctf)
 "ahB" = (
 /turf/open/floor/circuit/red,
@@ -3144,73 +3042,9 @@
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"ahI" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"ahJ" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"ahK" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
 "ahL" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/circuit/green/off,
-/area/ctf)
-"ahM" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"ahN" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ctf)
-"ahO" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/ctf)
 "ahP" = (
 /obj/effect/turf_decal/stripes/line{
@@ -6301,7 +6135,7 @@
 /turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "aon" = (
-/obj/machinery/computer/communications,
+/obj/machinery/computer/communications/unlocked,
 /turf/open/floor/carpet/green,
 /area/centcom/ferry)
 "aoo" = (
@@ -9568,7 +9402,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "aum" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -11387,7 +11221,7 @@
 /turf/open/floor/wood,
 /area/centcom/control)
 "axX" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -12622,7 +12456,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "aAs" = (
-/obj/machinery/computer/communications{
+/obj/machinery/computer/communications/unlocked{
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet{
@@ -25986,6 +25820,21 @@
 	icon_state = "info16"
 	},
 /area/centcom/testchamber)
+"bSb" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "cgW" = (
 /turf/open/indestructible/wiki/whitescreen,
 /area/centcom/testchamber)
@@ -26023,6 +25872,14 @@
 	icon_state = "info18"
 	},
 /area/centcom/testchamber)
+"dLa" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "eDa" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title1"
@@ -26109,6 +25966,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
+"hHV" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "ilg" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title11"
@@ -26119,6 +25987,14 @@
 	icon_state = "info19"
 	},
 /area/centcom/testchamber)
+"iSo" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "jqy" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info22"
@@ -26196,6 +26072,19 @@
 	icon_state = "title6"
 	},
 /area/centcom/testchamber)
+"mlj" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "moB" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info12"
@@ -26206,6 +26095,21 @@
 	icon_state = "info17"
 	},
 /area/centcom/testchamber)
+"mIu" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "nbn" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info13"
@@ -26230,6 +26134,19 @@
 /obj/machinery/recharge_station/fullupgrade,
 /turf/open/floor/mineral/plastitanium,
 /area/yogs/infiltrator_base)
+"nuH" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "nIM" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title8"
@@ -26272,6 +26189,29 @@
 	icon_state = "info9"
 	},
 /area/centcom/testchamber)
+"pGS" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
+"pQy" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "qhf" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info11"
@@ -26386,6 +26326,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
+"uXx" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "vci" = (
 /turf/open/indestructible/wiki/bluescreen,
 /area/centcom/testchamber)
@@ -26394,6 +26344,19 @@
 	icon_state = "title10"
 	},
 /area/centcom/testchamber)
+"vsA" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "vMw" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info14"
@@ -26440,6 +26403,18 @@
 	icon_state = "info30"
 	},
 /area/centcom/testchamber)
+"wyM" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "wDa" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/holodeck_effect/mobspawner{
@@ -26454,6 +26429,18 @@
 	icon_state = "96"
 	},
 /area/centcom/testchamber)
+"wPo" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "xjU" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "32"
@@ -26484,6 +26471,19 @@
 	icon_state = "info31"
 	},
 /area/centcom/testchamber)
+"xXR" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ctf)
 "ydX" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info4"
@@ -75131,19 +75131,19 @@ agC
 ahc
 ahi
 ahm
-ahr
-ahy
-ahy
-ahy
-ahy
-ahy
-ahy
-ahy
-ahy
-ahy
-ahy
-ahy
-ahI
+mIu
+wPo
+wPo
+wPo
+wPo
+wPo
+wPo
+wPo
+wPo
+wPo
+wPo
+wPo
+vsA
 agh
 agh
 agB
@@ -75388,7 +75388,7 @@ agY
 ahd
 ahj
 ahn
-ahs
+wyM
 agk
 agk
 agk
@@ -75400,7 +75400,7 @@ agk
 agk
 agk
 agk
-ahJ
+iSo
 afZ
 afZ
 afZ
@@ -75645,7 +75645,7 @@ agX
 ahd
 ahj
 ahn
-ahs
+wyM
 agk
 agl
 agk
@@ -75657,7 +75657,7 @@ afZ
 agk
 agl
 agk
-ahJ
+iSo
 afZ
 afZ
 afZ
@@ -75902,7 +75902,7 @@ agC
 ahd
 ahj
 ahn
-ahs
+wyM
 agk
 agk
 agk
@@ -75914,7 +75914,7 @@ agk
 agk
 agk
 agk
-ahJ
+iSo
 afZ
 afZ
 afZ
@@ -76159,7 +76159,7 @@ agZ
 ahe
 ahk
 aho
-aht
+mlj
 agi
 agi
 agi
@@ -76171,7 +76171,7 @@ agi
 agi
 agi
 agi
-ahK
+hHV
 agh
 agh
 agB
@@ -79757,7 +79757,7 @@ agB
 agB
 agh
 agh
-ahv
+bSb
 agp
 agp
 agp
@@ -79769,7 +79769,7 @@ agp
 agp
 agp
 agp
-ahM
+pQy
 ahP
 ahS
 ahU
@@ -80014,7 +80014,7 @@ afZ
 afZ
 afZ
 afZ
-ahw
+pGS
 ahf
 ahf
 ahf
@@ -80026,7 +80026,7 @@ ahf
 ahf
 ahf
 ahf
-ahN
+dLa
 ahQ
 ahB
 ahV
@@ -80271,7 +80271,7 @@ aha
 agB
 afZ
 afZ
-ahw
+pGS
 ahf
 agq
 ahf
@@ -80283,7 +80283,7 @@ afZ
 ahf
 agq
 ahf
-ahN
+dLa
 ahQ
 ahB
 ahV
@@ -80528,7 +80528,7 @@ afZ
 afZ
 afZ
 afZ
-ahw
+pGS
 ahf
 ahf
 ahf
@@ -80540,7 +80540,7 @@ ahf
 ahf
 ahf
 ahf
-ahN
+dLa
 ahQ
 ahB
 ahV
@@ -80785,19 +80785,19 @@ agB
 agB
 agh
 agh
-ahx
-ahA
-ahA
-ahA
-ahA
-ahA
-ahA
-ahA
-ahA
-ahA
-ahA
-ahA
-ahO
+nuH
+uXx
+uXx
+uXx
+uXx
+uXx
+uXx
+uXx
+uXx
+uXx
+uXx
+uXx
+xXR
 ahR
 ahT
 ahW

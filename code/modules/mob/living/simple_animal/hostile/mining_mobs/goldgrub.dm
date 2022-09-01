@@ -84,3 +84,8 @@
 /mob/living/simple_animal/hostile/asteroid/goldgrub/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	vision_range = 9
 	. = ..()
+
+/mob/living/simple_animal/hostile/asteroid/goldgrub/death(gibbed)
+	if(prob(10))
+		new /obj/item/gem/rupee(loc)
+	. = ..()

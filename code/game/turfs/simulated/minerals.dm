@@ -227,6 +227,16 @@
 		/turf/closed/mineral/gibtonite = 2, /turf/closed/mineral/bscrystal = 1)
 
 
+/turf/closed/mineral/random/low_chance_air
+	icon_state = "rock_lowchance"
+	mineralChance = 8
+	mineralSpawnChanceList = list(
+		/turf/closed/mineral/gold = 2, /turf/closed/mineral/titanium = 1,
+		/turf/closed/mineral/silver = 2, /turf/closed/mineral/plasma = 5, /turf/closed/mineral/iron = 40,
+		/turf/closed/mineral/bscrystal = 1)
+	baseturfs = /turf/open/floor/plating/asteroid
+
+
 /turf/closed/mineral/random/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
@@ -670,6 +680,9 @@
 		defuse(force_perfect = TRUE)
 	if(istype(I, /obj/item/mining_scanner) || istype(I, /obj/item/t_scanner/adv_mining_scanner) && stage == 1)
 		user.visible_message(span_notice("[user] holds [I] to [src]..."), span_notice("You use [I] to locate where to cut off the chain reaction and attempt to stop it..."))
+		defuse(force_perfect = FALSE)
+	if(istype(I, /obj/item/clothing/gloves/gauntlets))
+		user.visible_message(span_notice("[user] punches [src]..."), span_notice("The [I] shatter the chain reaction stopping it instantly..."))
 		defuse(force_perfect = FALSE)
 	..()
 
