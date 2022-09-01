@@ -127,7 +127,7 @@
 			dist = cur_dist
 	
 	// At 0 tiles distance, 3x download speed. At 100 tiles distance, 1x download speed.
-	download_completion *= max((-dist/50) + 3, 1)
+	download_netspeed *= max((-dist/50) + 3, 1)
 	download_completion += download_netspeed
 
 /datum/computer_file/program/ntnetdownload/ui_act(action, params)
