@@ -128,7 +128,8 @@
 	
 	// At 0 tiles distance, 3x download speed. At 100 tiles distance, 1x download speed.
 	download_netspeed *= max((-dist/50) + 3, 1)
-	download_completion += download_netspeed
+
+	download_completion = min(downloaded_file.size, download_completion + download_netspeed) // Add the progress
 
 /datum/computer_file/program/ntnetdownload/ui_act(action, params)
 	if(..())
