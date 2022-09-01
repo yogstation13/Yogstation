@@ -280,7 +280,7 @@
 	tastes = list("grass" = 2, "dough" = 2)
 	foodtype = GRAIN | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/dankpocket/warm
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/dank
 	name = "warm dankpocket"
 	desc = "The food of choice for the seasoned botanist. Smells danker now."
 	icon_state = "dankpocket"
