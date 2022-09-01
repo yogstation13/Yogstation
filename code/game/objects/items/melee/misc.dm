@@ -365,7 +365,7 @@
 
 /obj/item/melee/classic_baton/donkbat
 	name = "donksoft baseball bat"
-	desc = "A plastic baseball bat, embossed with a Donksoft logo. Feels...heavy."
+	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft. Feels...heavy."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "baseballbat_donk"
 	item_state = "baseball_bat_donk"
