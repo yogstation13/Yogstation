@@ -1024,7 +1024,7 @@
 	. = ..()
 	if(!flimsy)
 		return
-	if(durability >= 1)
+	if(durability >= 1 && ismob(target))
 		durability--
 	else if(durability <= 0)
 		visible_message(span_warning("[user]'s bat explodes into splinters'!"), span_userdanger("Your bat explodes into splinters!"))
