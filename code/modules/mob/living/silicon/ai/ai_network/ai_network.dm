@@ -54,9 +54,10 @@
 
 /datum/ai_network/process()
 	var/total_cpu = resources.total_cpu()
+	var/resources_assigned = resources.cpu_assigned[src] ? resources.cpu_assigned[src] : 0
 
 	if(local_cpu_usage[AI_CRYPTO])
-		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[AI_CRYPTO] * total_cpu)), 0)
+		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[AI_CRYPTO] * total_cpu * resources_assigned)), 0)
 		var/bitcoin_mined = points * (1-0.05*sqrt(points))	
 		bitcoin_mined = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
 		bitcoin_payout += bitcoin_mined * AI_BITCOIN_PRICE
@@ -65,7 +66,7 @@
 	for(var/A in local_cpu_usage)
 		locally_used += local_cpu_usage[A]
 	
-	var/research_points = max(round(AI_RESEARCH_PER_CPU * ((1 - locally_used) * total_cpu)), 0)
+	var/research_points = max(round(AI_RESEARCH_PER_CPU * ((1 - locally_used) * total_cpu * resources_assigned)), 0)
 	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = research_points))
 	
 

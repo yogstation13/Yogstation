@@ -152,7 +152,7 @@
 	data["network_ref"] = REF(net)
 	data["network_assigned_ram"] = net.resources.ram_assigned[net] ? net.resources.ram_assigned[net] : 0
 	data["network_assigned_cpu"] = net.resources.cpu_assigned[net] ? net.resources.cpu_assigned[net] : 0
-	data["bitcoin_amount"] = net.bitcoin_payout
+	data["bitcoin_amount"] = round(net.bitcoin_payout, 1)
 
 	data["remaining_network_cpu"] = remaining_net_cpu
 
@@ -418,7 +418,7 @@
 			net.local_cpu_usage[project_type] = amount_to_add
 			. = TRUE
 		if("bitcoin_payout")
-			var/payout_amount = net.bitcoin_payout
+			var/payout_amount = round(net.bitcoin_payout, 1) //Sure you can have your extra 0.5 credits :)
 			var/obj/item/holochip/holochip = new (computer.physical.drop_location(), payout_amount)
 			user.put_in_hands(holochip)
 			to_chat(user, span_notice("Payout of [payout_amount]cr confirmed."))

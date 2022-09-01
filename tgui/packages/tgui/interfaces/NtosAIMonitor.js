@@ -66,12 +66,20 @@ export const NtosAIMonitor = (props, context) => {
                   <Tabs.Tab
                     selected={clusterTab === 1}
                     onClick={(() => setClusterTab(1))}>
+                    Dashboard
+                  </Tabs.Tab>
+                  <Tabs.Tab
+                    selected={clusterTab === 2}
+                    onClick={(() => setClusterTab(2))}>
                     Local Computing
                   </Tabs.Tab>
                 </Tabs>
               </Fragment>
           )}
           {(clusterTab === 1 && tab === 1) && (
+            <LocalDashboard />
+          )}
+          {(clusterTab === 2 && tab === 1) && (
             <LocalCompute />
           )}
           {tab === 2 && (
@@ -93,36 +101,60 @@ export const NtosAIMonitor = (props, context) => {
 };
 
 
+const LocalDashboard = (props, context) => {
+  const { act, data } = useBackend(context);
+  let network_remaining_cpu = data.remaining_network_cpu * 100;
+
+  return (
+    <Section title="Local Dashboard">
+      <LabeledList>
+        <LabeledList.Item label="Mined cryptocurrency" buttons={(<Button icon="money-bill-wave" color="good" disabled={!data.bitcoin_amount} onClick={() => act("bitcoin_payout")}>Withdraw</Button>)}>
+          {data.bitcoin_amount} cr
+        </LabeledList.Item>
+      </LabeledList>
+    </Section>
+  );
+};
 
 const LocalCompute = (props, context) => {
   const { act, data } = useBackend(context);
-  let network_remaining_cpu = (1 - data.remaining_network_cpu) * 100;
+  let network_remaining_cpu = data.remaining_network_cpu * 100;
 
   return (
-    <Section title="Networking Devices">
-      <LabeledList>
-        {data.network_cpu_assignments.map((project, index) => {
-          project.tagline = "Use CPU to generate credits!"
-          return (
-            <Section key={index} title={(<Box inline color="lightgreen">{project.name} | {project.tagline}</Box>)} buttons={(
-              <Fragment>
-                <Box inline bold>Assigned CPU:&nbsp;</Box>
-                <NumberInput unit="%" value={project.assigned*100} minValue={0} maxValue={network_remaining_cpu + (project.assigned * 100)} onChange={(e, value) => act('allocate_network_cpu', {
-                  project_name: project.name,
-                  amount: Math.round((value / 100) * 100) / 100,
-                })} />
-                <Button icon="arrow-up" disabled={!network_remaining_cpu} onClick={(e, value) => act('max_network_cpu', {
-                  project_name: project.name,
-                })}>Max
-                </Button>
+    <Section title="Local Computing">
+      <Box>Local CPU Resources:</Box>
+      <ProgressBar mb={1} minValue={0} value={100 - network_remaining_cpu}
+        maxValue={100} ranges={{
+          good: [60, Infinity],
+          average: [30, 60],
+          bad: [0, 30],
+        }}>{(100 - network_remaining_cpu)}% ({data.total_cpu * data.network_assigned_cpu} THz)
+      </ProgressBar>
+      <Section title="Projects">
+        <LabeledList>
+          {data.network_cpu_assignments.map((project, index) => {
+            return (
+              <Section key={index} title={(<Box inline color="lightgreen">{project.name}</Box>)} buttons={(
+                <Fragment>
+                  <Box inline bold>Assigned CPU:&nbsp;</Box>
+                  <NumberInput unit="%" value={project.assigned*100} minValue={0} maxValue={network_remaining_cpu + (project.assigned * 100)} onChange={(e, value) => act('allocate_network_cpu', {
+                    project_name: project.name,
+                    amount: Math.round((value / 100) * 100) / 100,
+                  })} />
+                  <Button icon="arrow-up" disabled={!network_remaining_cpu} onClick={(e, value) => act('max_network_cpu', {
+                    project_name: project.name,
+                  })}>Max
+                  </Button>
 
-              </Fragment>
-            )}>
-              {project.description}
-            </Section>
-          );
-        })}
-      </LabeledList>
+                </Fragment>
+              )}>
+                <Box italic>{project.tagline}</Box>
+                {project.description}
+              </Section>
+            );
+          })}
+        </LabeledList>
+      </Section>
     </Section>
   );
 };
