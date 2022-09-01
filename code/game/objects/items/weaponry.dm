@@ -671,7 +671,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/melee/baseball_bat
 	name = "baseball bat"
-	desc = "There ain't a skull in the league that can withstand a swatter."
+	desc = "A traditional tool for a game of Baseball. Modern wood isn't very strong, try not to crack the bat!"
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "baseball_bat"
 	item_state = "baseball_bat"
@@ -681,6 +681,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	wound_bonus = -10
 	throwforce = 12
 	attack_verb = list("beat", "smacked")
+	sharpness = SHARP_NONE
 	w_class = WEIGHT_CLASS_HUGE
 	var/homerun_ready = 0
 	var/homerun_able = 0
@@ -708,6 +709,10 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/melee/baseball_bat/attack(mob/living/target, mob/living/user)
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(target == ismob)
+		qdel(src)
+		visible_message(span_boldwarning("[user]'s bat explodes into splinters'!"), span_userdanger("Your bat explodes into splinters!"))
+		playsound(get_turf(src), 'yogstation/sound/effects/woodbreak3.ogg', 65, 1) 
 	if(homerun_ready)
 		user.visible_message(span_userdanger("It's a home run!"))
 		target.throw_at(throw_target, rand(8,10), 14, user)
@@ -719,22 +724,22 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user) // sorry friends, 7 speed batting caused wounds to absolutely delete whoever you knocked your target into (and said target)
 
-/obj/item/melee/baseball_bat/ablative
-	name = "metal baseball bat"
-	desc = "This bat is made of highly reflective, highly armored material."
+/obj/item/melee/baseball_bat/metal_bat
+	name = "titanium baseball bat"
+	desc = "This bat is made of titanium, it feels light yet strong."
 	icon_state = "baseball_bat_metal"
 	item_state = "baseball_bat_metal"
+	hitsound = 'yogstation/sound/bat_hit.ogg'
 	force = 12
 	throwforce = 15
+	wound_bonus = 5
+	w_class = WEIGHT_CLASS_HUGE
 
-/obj/item/melee/baseball_bat/ablative/IsReflect()//some day this will reflect thrown items instead of lasers
-	var/picksound = rand(1,2)
-	var/turf = get_turf(src)
-	if(picksound == 1)
-		playsound(turf, 'sound/weapons/effects/batreflect1.ogg', 50, 1)
-	if(picksound == 2)
-		playsound(turf, 'sound/weapons/effects/batreflect2.ogg', 50, 1)
-	return 1
+/obj/item/melee/baseball_bat/metal_bat/attack(mob/living/target, mob/living/user)
+	if(target == ismob)
+		return
+	. = ..()
+
 
 /obj/item/melee/flyswatter
 	name = "flyswatter"
