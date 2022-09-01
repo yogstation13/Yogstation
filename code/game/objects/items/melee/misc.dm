@@ -364,7 +364,7 @@
 				to_chat(user, wait_desc)
 
 /obj/item/melee/classic_baton/donkbat
-	name = "donksoft baseball bat"
+	name = "toy baseball bat"
 	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft. Feels...heavy."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "baseballbat_donk"
