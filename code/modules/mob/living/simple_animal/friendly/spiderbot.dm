@@ -146,7 +146,7 @@
 	if(!QDELETED(src) && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/spiderbot/update_icon()
+/mob/living/simple_animal/spiderbot/proc/update_icon()
 	if(key)
 		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"
