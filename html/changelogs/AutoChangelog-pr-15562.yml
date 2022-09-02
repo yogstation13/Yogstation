@@ -1,5 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Ports over the missing sprites for the mothroach because we ported it 4 hours after it got merged from tg"
-  - bugfix: "You can now see the mothroach being held in your arms"
