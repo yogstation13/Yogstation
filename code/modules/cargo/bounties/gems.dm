@@ -54,3 +54,9 @@
 	description = "Central Command's Research Director is particularly interested in the anomalous effects of this gem. Ship one over and he'll pay us directly."
 	reward = 40000
 	wanted_types = list(/obj/item/gem/dark)
+
+/datum/bounty/item/gems/stalwart
+	name = "Bluespace Data Crystal"
+	description = "Central Command's Research Director is extatic over the possible uses and internal structure of this gem. Ship one over and he'll pay us directly."
+	reward = 16500
+	wanted_types = list(/obj/item/ai_cpu/stalwart)
