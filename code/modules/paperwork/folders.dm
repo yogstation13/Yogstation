@@ -277,13 +277,16 @@
 	switch(action)
 		if("check_done")
 			if(objective.check_completion())
-				to_chat(usr, span_notice("<b>NOTICE: OBJECTIVE COMPLETE.</b> GOOD WORK AGENT. DISPENSING REWARD."))
+				to_chat(usr, span_notice("<b>NOTICE: OBJECTIVE COMPLETE.</b> GOOD WORK AGENT. DISPENSING REWARD. MAKE SURE THE OBJECTIVE STAYS COMPLETED OR WE WILL HURT YOU."))
 				to_chat(usr, "\The [src] suddenly transforms into [tc] telecrystal[tc == 1 ? "" : "s"]!")
 				usr.playsound_local(loc, 'sound/machines/ping.ogg', 20, 0)
 				var/obj/item/stack/telecrystal/reward = new /obj/item/stack/telecrystal
 				reward.amount = tc
 				dropped(usr, TRUE)
 				usr.put_in_hands(reward)
+				if(usr.mind?.has_antag_datum(/datum/antagonist/traitor))
+					var/datum/antagonist/traitor/T = usr.mind.has_antag_datum(/datum/antagonist/traitor)
+					T.add_objective(objective) // Keep the objective done or you will redtext
 				qdel(src)
 				return TRUE
 			else if(istype(objective, /datum/objective/custom))
