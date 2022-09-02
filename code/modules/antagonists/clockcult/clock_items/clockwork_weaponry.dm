@@ -15,13 +15,13 @@
 		action.weapon = src
 
 /obj/item/clockwork/weapon/attack_self(mob/user)
-	if(!is_cyborg(user))
+	if(!iscyborg(user))
 		return ..()
 	var/mob/living/silicon/robot/robot_user = user
 	for(var/i in 1 to 3) ///shitcode
 		if(robot_user.held_items[i] && robot_user.held_items[i] == src)
 			var/choice = input(user,"What weapon do you want to activate?", "Weapon") as anything in (list("ratvarian spear","brass battle-hammer","brass longsword") - initial(name))
-			if(!choice)
+			if(!choice || QDELETED(src))
 				return
 			var/obj/item/weapon_type
 			switch(choice)
@@ -36,7 +36,8 @@
 			if(!weapon_type)
 				return
 
-			var/obj/item/weapon = new weapon_type (R.module)
+			var/obj/item/weapon = new weapon_type (robot_user.module)
 			robot_user.module.ratvar_modules += weapon
 			robot_user.module.add_module(weapon, FALSE, TRUE)
 			robot_user.activate_module(weapon)
+			qdel(src)
