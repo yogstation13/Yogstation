@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 						"job" = "SYNDICATE",
 						"message" = pick(insults),
 						"language" = /datum/language/common,
-						"targets" = list(recipient),
+						"targets" = list(target),
 						"program" = fakepda,
 						"logged" = TRUE
 					))
