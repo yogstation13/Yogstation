@@ -8,7 +8,7 @@ export const FolderObjective = (props, context) => {
     tc,
     difficulty,
     objective_text,
-    admin_msg
+    admin_msg,
   } = data;
   return (
     <Window
@@ -18,8 +18,8 @@ export const FolderObjective = (props, context) => {
       <Window.Content>
         <Section title="Handheld Objective Device">
           <LabeledList bold>
-            <LabeledList.Item label="DIFFICULTY" buttons={difficulty}/>
-            <LabeledList.Item label="BOUNTY" buttons={tc+"TC"}/>
+            <LabeledList.Item label="DIFFICULTY" buttons={difficulty} />
+            <LabeledList.Item label="BOUNTY" buttons={tc+"TC"} />
             <LabeledList.Item label="OBJECTIVE">{objective_text}</LabeledList.Item>
           </LabeledList>
         </Section>
