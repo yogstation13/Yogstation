@@ -190,6 +190,8 @@ GLOBAL_LIST_EMPTY(objectives)
 					if(!(eq_path in T.contents))
 						new eq_path(T)
 		return
+	if(LAZYLEN(get_owners()) == 0)
+		return
 	var/datum/mind/receiver = pick(get_owners())
 	if(receiver && receiver.current)
 		if(ishuman(receiver.current))
