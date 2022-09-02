@@ -986,7 +986,6 @@
 	name = "home run bat"
 	desc = "This thing looks dangerous... Dangerously good at baseball, that is."
 	homerun_able = 1
-	durability = 10
 
 
 /obj/item/twohanded/required/baseball_bat/attack_self(mob/user)
