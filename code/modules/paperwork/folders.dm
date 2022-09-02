@@ -139,11 +139,12 @@
 	var/admin_msg = FALSE
 	// Steal objectives initialized later
 	var/list/easy_objectives = list(
-		new /datum/objective/assassinate/once, // Kill someone once
 		new /datum/objective/download, // Download research nodes
 		new /datum/objective/minor/pet, // Kill a pet
 	)
-	var/list/med_objectives = list()
+	var/list/med_objectives = list(
+		new /datum/objective/assassinate/once, // Kill someone once
+	)
 	var/list/hard_objectives = list(
 		new /datum/objective/destroy, // Kill AI
 	)

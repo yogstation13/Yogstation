@@ -80,7 +80,7 @@
 /datum/objective_item/steal/reflector
 	name = "a reflective jacket."
 	targetitem = /obj/item/clothing/suit/armor/laserproof
-	difficulty = 3
+	difficulty = 5
 	excludefromjob = list("Head of Security", "Warden")
 
 /datum/objective_item/steal/reactive
