@@ -1526,6 +1526,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
+	message_admins("[key_name_admin(usr)] is forging a custom objective for [ADMIN_LOOKUPFLW(requester)].")
+
 	var/obj_txt = "Kill everyone."
 	obj_txt = stripped_input(usr, "Custom objective:", "Objective", obj_txt)
 	if(!obj_txt)
