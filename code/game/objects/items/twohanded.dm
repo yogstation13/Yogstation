@@ -972,16 +972,15 @@
 	item_state = "baseball_bat"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 10
-	wound_bonus = -10
+	force = 12
+	wound_bonus = -5
 	throwforce = 8
 	attack_verb = list("beat", "smacked")
 	sharpness = SHARP_NONE
 	w_class = WEIGHT_CLASS_HUGE
 	var/homerun_ready = 0
 	var/homerun_able = 0
-	var/flimsy = TRUE //spesswood?
-	var/durability = 5
+	var/flimsy = TRUE //spesswood? only used for knockback check now
 
 /obj/item/twohanded/required/baseball_bat/homerun
 	name = "home run bat"
@@ -1019,18 +1018,6 @@
 	else if(!flimsy && !target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user) // sorry friends, 7 speed batting caused wounds to absolutely delete whoever you knocked your target into (and said target)
-
-/obj/item/twohanded/required/baseball_bat/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!flimsy)
-		return
-	if(durability >= 1 && ismob(target))
-		durability--
-	else if(durability <= 0)
-		visible_message(span_warning("[user]'s bat explodes into splinters'!"), span_userdanger("Your bat explodes into splinters!"))
-		playsound(get_turf(src), 'yogstation/sound/effects/woodbreak3.ogg', 65, 1)
-		qdel(src)
-		return
 
 /obj/item/twohanded/required/baseball_bat/metal_bat
 	name = "titanium baseball bat"
