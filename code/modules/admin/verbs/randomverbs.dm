@@ -1537,14 +1537,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	
 	var/difficulty = 1
-	difficulty = input("1-3", "Set Difficulty Rating (Determines TC)", difficulty) as null|num
-	if(!difficulty || difficulty < 1 || difficulty > 3)
-		objective_uplink_datum.admin_forging = FALSE
-		if(difficulty < 1 || difficulty > 3)
-			to_chat(usr, span_danger("Difficulty must be 1, 2, or 3!"))
-		message_admins("[key_name_admin(usr)] decided not to forge a custom objective.")
-		objective_uplink_datum.cancelled(requester)
-		return
+	if(objective_uplink_datum.difficulty == 0)
+		difficulty = input("1-3", "Set Difficulty Rating (Determines TC)", difficulty) as null|num
+		if(!difficulty || difficulty < 1 || difficulty > 3)
+			objective_uplink_datum.admin_forging = FALSE
+			if(difficulty < 1 || difficulty > 3)
+				to_chat(usr, span_danger("Difficulty must be 1, 2, or 3!"))
+			message_admins("[key_name_admin(usr)] decided not to forge a custom objective.")
+			objective_uplink_datum.cancelled(requester)
+			return
+	else
+		difficulty = objective_uplink_datum.difficulty
 	
 	if(!objective_uplink_datum)
 		objective_uplink_datum.admin_forging = FALSE
