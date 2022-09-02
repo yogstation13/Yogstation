@@ -115,3 +115,8 @@
 	cost = 20000
 	unit_name = "Dark Salt Lick"
 	export_types = list(/obj/item/gem/dark)
+
+/datum/export/lavaland/gems/dark
+	cost = 9800
+	unit_name = "Bluespace Data Crystal"
+	export_types = list(/obj/item/ai_cpu/stalwart)
