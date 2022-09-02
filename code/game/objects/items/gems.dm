@@ -174,10 +174,10 @@
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "cpu"
 	materials = list(/datum/material/bluespace=24000)
-	speed = 5
-	base_power_usage = 0.5 * AI_CPU_BASE_POWER_USAGE
+	speed = 20
+	base_power_usage = 0.5 * AI_CPU_BASE_POWER_USAGE/5
 	minimum_max_power = 0.5
-	maximum_max_power = 1.2
+	maximum_max_power = 10.0
 	minimum_growth = 0.1
 	maximum_growth = 8.0
 	light_range = 2
@@ -188,7 +188,7 @@
 	///How many points we grant to whoever discovers us
 	var/point_value = 2000
 
-/obj/item/ai_cpu/stalwartattackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
+/obj/item/ai_cpu/stalwart/attackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
 	if(!istype(item, /obj/item/mining_scanner) && !istype(item, /obj/item/t_scanner/adv_mining_scanner))
 		return ..()
 
