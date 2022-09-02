@@ -1528,8 +1528,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	message_admins("[key_name_admin(usr)] is forging a custom objective for [ADMIN_LOOKUPFLW(requester)].")
 
+	
 	var/obj_txt = "Kill everyone."
-	obj_txt = stripped_input(usr, "Custom objective:", "Objective", obj_txt)
+	if(objective_uplink_datum.difficulty == 0)
+		obj_txt = stripped_input(usr, "Custom objective:", "Objective", obj_txt)
+	else
+		var/diff_txt = list("EASY", "MEDIUM", "HARD")[objective_uplink_datum.difficulty]
+		obj_txt = stripped_input(usr, "Custom [diff_txt] objective:", "Objective", obj_txt)
 	if(!obj_txt)
 		objective_uplink_datum.admin_forging = FALSE
 		message_admins("[key_name_admin(usr)] decided not to forge a custom objective.")
