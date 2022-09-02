@@ -283,7 +283,7 @@
 				var/obj/item/stack/telecrystal/reward = new /obj/item/stack/telecrystal
 				reward.amount = tc
 				dropped(usr, TRUE)
-				usr.put_in_hands(reward, forced = TRUE)
+				usr.put_in_hands(reward)
 				qdel(src)
 				return TRUE
 			else if(istype(objective, /datum/objective/custom))
