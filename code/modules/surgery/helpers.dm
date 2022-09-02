@@ -86,9 +86,6 @@
 			else
 				to_chat(user, span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
 
-	else if(!current_surgery.step_in_progress)
-		attempt_cancel_surgery(current_surgery, I, M, user)
-
 	return TRUE
 
 /proc/attempt_cancel_surgery(datum/surgery/S, obj/item/I, mob/living/M, mob/user)
