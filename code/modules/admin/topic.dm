@@ -2317,6 +2317,7 @@
 			return
 		FLD.objective.completed = TRUE
 		to_chat(requester, span_notice("The folder lets out a small beep, letting you know that its objective has been marked as complete."))
+		requester.playsound_local(loc, 'sound/machines/ping.ogg', 20, 0)
 		message_admins("[key_name_admin(usr)] has marked the custom objective, <b>[FLD.objective.explanation_text]</b>, as complete.")
 	
 	else if(href_list["uplink_custom_obj_deny"])
@@ -2337,6 +2338,7 @@
 			to_chat(usr, span_danger("Objective is already marked complete by another admin!"))
 			return
 		to_chat(requester, span_danger("The folder lets out a harsh beep, letting you know that its objective has not been completed."))
+		requester.playsound_local(loc, 'sound/machines/buzz-two.ogg', 20, 0)
 		message_admins("[key_name_admin(usr)] has marked the custom objective, <b>[FLD.objective.explanation_text]</b>, as incomplete.")
 
 /client/proc/send_global_fax()
