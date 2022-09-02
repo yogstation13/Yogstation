@@ -293,7 +293,7 @@
 				return TRUE
 			else
 				to_chat(usr, span_danger("ERR: OBJECTIVE NOT COMPLETE"))
-				usr.playsound(loc, 'sound/machines/buzz-two.ogg', 20, 0)
+				usr.playsound_local(loc, 'sound/machines/buzz-two.ogg', 20, 0)
 				return TRUE
 
 			
