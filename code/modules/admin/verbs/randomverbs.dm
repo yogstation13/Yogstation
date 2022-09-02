@@ -1521,3 +1521,55 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		else
 			usr.forceMove(T)
+
+/client/proc/uplink_custom_obj(var/datum/uplink_item/new_objective/objective_uplink_datum, mob/requester)
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/obj_txt = "Kill everyone."
+	obj_txt = stripped_input(usr, "Custom objective:", "Objective", obj_txt)
+	if(!obj_txt)
+		objective_uplink_datum.admin_forging = FALSE
+		message_admins("[key_name_admin(usr)] decided not to forge a custom objective.")
+		objective_uplink_datum.cancelled(requester)
+		return
+	
+	var/difficulty = 1
+	difficulty = input("1-3", "Set Difficulty Rating (Determines TC)", difficulty) as null|num
+	if(!difficulty || difficulty < 1 || difficulty > 3)
+		objective_uplink_datum.admin_forging = FALSE
+		if(difficulty < 1 || difficulty > 3)
+			to_chat(usr, span_danger("Difficulty must be 1, 2, or 3!"))
+		message_admins("[key_name_admin(usr)] decided not to forge a custom objective.")
+		objective_uplink_datum.cancelled(requester)
+		return
+	
+	if(!objective_uplink_datum)
+		objective_uplink_datum.admin_forging = FALSE
+		to_chat(usr, span_danger("Requesting uplink item no longer exists!"))
+		message_admins("[key_name_admin(usr)] decided not to forge a custom objective.")
+		objective_uplink_datum.cancelled(requester)
+		return
+
+	if(!requester)
+		objective_uplink_datum.admin_forging = FALSE
+		to_chat(usr, span_danger("Requesting mob no longer exists!"))
+		message_admins("[key_name_admin(usr)] decided not to forge a custom objective.")
+		objective_uplink_datum.cancelled(requester)
+		return
+
+	var/datum/objective/custom/forged_objective = new /datum/objective/custom
+	forged_objective.explanation_text = obj_txt
+
+	var/obj/item/folder/objective/folder = objective_uplink_datum.spawn_objective(requester, forged_objective, difficulty)
+
+	var/diff_txt = list("RANDOM", "EASY", "MEDIUM", "HARD")[difficulty+1]
+	objective_uplink_datum.admin_forging = FALSE
+	if(folder)
+		deltimer(objective_uplink_datum.timer)
+		message_admins("[key_name_admin(usr)] forged a folder objective for [ADMIN_LOOKUPFLW(requester)] with difficulty rating [diff_txt]: <b>[obj_txt]</b>")
+		log_game("[key_name(usr)] forged a folder objective for [key_name(requester)] with difficulty rating [diff_txt]: <b>[obj_txt]</b>")
+	else
+		to_chat(usr, span_danger("Failed to create objective folder!"))
+		message_admins("[key_name_admin(usr)] attempted to forge a folder objective for [ADMIN_LOOKUPFLW(requester)] with difficulty rating [diff_txt]: <b>[obj_txt]</b>, but it failed to create.")
+		log_game("[key_name(usr)] attempted to forge a folder objective for [key_name(requester)] with difficulty rating [diff_txt]: <b>[obj_txt]</b>, but it failed to create.")

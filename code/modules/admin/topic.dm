@@ -2278,6 +2278,66 @@
 			to_chat(src.owner, span_danger("Unable to locate fax!"))
 			return
 		owner.send_admin_fax(F)
+	
+	else if(href_list["uplink_custom_obj"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/uplink_item/new_objective/UPL = locate(href_list["uplink_custom_obj"])
+		var/mob/requester = locate(href_list["requester"]) in GLOB.mob_list
+		if(!requester)
+			to_chat(usr, span_danger("Requesting mob doesn't exist anymore!"))
+			return
+		if(!UPL)
+			to_chat(usr, span_danger("NewObjective datum doesn't exist anymore!"))
+			return
+		if(UPL.admin_forging)
+			to_chat(usr, span_danger("Another admin is already forging an objective for this request!"))
+			return
+		if(UPL.obj_set)
+			to_chat(usr, span_danger("An objective has already been set for this request!"))
+			return
+		usr.client.uplink_custom_obj(UPL, requester)
+	
+	else if(href_list["uplink_custom_obj_accept"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/obj/item/folder/objective/FLD = locate(href_list["uplink_custom_obj_accept"])
+		var/mob/requester = locate(href_list["requester"]) in GLOB.mob_list
+		if(!FLD)
+			to_chat(usr, span_danger("Objective Folder does not exist!"))
+			return
+		if(!requester)
+			to_chat(usr, span_danger("Requesting mob doesn't exist anymore!"))
+			return
+		if(!FLD.objective)
+			to_chat(usr, span_danger("Objective Folder has no objective!"))
+			return
+		if(!FLD.objective.completed)
+			to_chat(usr, span_danger("Objective is already marked complete by another admin!"))
+			return
+		FLD.objective.completed = TRUE
+		to_chat(requester, span_notice("The folder lets out a small beep, letting you know that its objective has been marked as complete."))
+		message_admins("[key_name_admin(usr)] has marked the custom objective, <b>[FLD.objective.explanation_text]</b>, as complete.")
+	
+	else if(href_list["uplink_custom_obj_deny"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/obj/item/folder/objective/FLD = locate(href_list["uplink_custom_obj_accept"])
+		var/mob/requester = locate(href_list["requester"]) in GLOB.mob_list
+		if(!FLD)
+			to_chat(usr, span_danger("Objective Folder does not exist!"))
+			return
+		if(!requester)
+			to_chat(usr, span_danger("Requesting mob doesn't exist anymore!"))
+			return
+		if(!FLD.objective)
+			to_chat(usr, span_danger("Objective Folder has no objective!"))
+			return
+		if(!FLD.objective.completed)
+			to_chat(usr, span_danger("Objective is already marked complete by another admin!"))
+			return
+		to_chat(requester, span_danger("The folder lets out a harsh beep, letting you know that its objective has not been completed."))
+		message_admins("[key_name_admin(usr)] has marked the custom objective, <b>[FLD.objective.explanation_text]</b>, as incomplete.")
 
 /client/proc/send_global_fax()
 	set category = "Admin.Round Interaction"

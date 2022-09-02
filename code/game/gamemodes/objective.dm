@@ -1005,6 +1005,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/destroy/find_target(dupe_search_range, blacklist)
 	var/list/possible_targets = active_ais(1)
+	if(LAZYLEN(possible_targets) == 0)
+		return
 	var/mob/living/silicon/ai/target_ai = pick(possible_targets)
 	target = target_ai.mind
 	update_explanation_text()
@@ -1282,7 +1284,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   * Kill Pet
   */
 /datum/objective/minor/pet
-	name = "assasinate-pet"
+	name = "assassinate-pet"
 	explanation_text = "Assassinate the HoP's assistant, Ian."
 	/// Pet
 	var/mob/living/pet
@@ -1305,12 +1307,12 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/mob/A = locate(P) in GLOB.mob_living_list
 		if(A && is_station_level(A.z))
 			possible_pets += P
-	if(!possible_pets)
+	if(!possible_pets || LAZYLEN(possible_pets) == 0)
 		return
 	var/chosen_pet = rand(1, possible_pets.len)
 	pet = locate(possible_pets[chosen_pet]) in GLOB.mob_living_list
-	name = "Kill [pet.name]]"
-	explanation_text = "Assasinate the important animal, [pet.name]"
+	name = "Kill [pet.name]"
+	explanation_text = "Assassinate the important animal, [pet.name]"
 	return pet
 
 /datum/objective/minor/pet/admin_edit(mob/admin)
@@ -1329,7 +1331,8 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	update_explanation_text()
 
 /datum/objective/minor/pet/update_explanation_text()
-	explanation_text = "Assassinate the important animal, [pet.name]"
+	if(pet?.name)
+		explanation_text = "Assassinate the important animal, [pet.name]"
 
 /datum/objective/minor/pet/copy_target(datum/objective/minor/pet/old_obj)
 	. = ..()

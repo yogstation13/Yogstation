@@ -22,7 +22,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			continue
 		if (I.restricted && !allow_restricted)
 			continue
-
+		if(istype(I, /datum/uplink_item/new_objective) && prob(50))
+			continue
 		if(!filtered_uplink_items[I.category])
 			filtered_uplink_items[I.category] = list()
 		filtered_uplink_items[I.category][I.name] = I
@@ -2314,3 +2315,66 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/stamp/syndiround
 	cost = 1
 	illegal_tech = FALSE
+
+/datum/uplink_item/new_objective
+	name = "Request Objective (RANDOM)"
+	category = "Request Objectives"
+	desc = "Sends a single-use signal to your employers, where they will determine your new objective \
+			and send down a folder to a random location containing your new instructions. \
+			Upon completion, you will be rewarded depending on the difficulty of the objective."
+	item = /obj/item/folder/red
+	cost = 0
+	surplus = 0
+	limited_stock = 1
+	cant_discount = TRUE
+	var/difficulty = 0 // 0 is random, then 1-3
+	var/timer // Timer to delete if admin forges objective
+	var/admin_forging = FALSE // If an admin is currently forging an objective
+	var/set_on_noforge = FALSE // If the timer expired, but is waiting for an admin to cancel forging
+	var/obj_set = FALSE // If the objective has been set
+
+/datum/uplink_item/new_objective/easy
+	name = "Request Objective (EASY)"
+	difficulty = 1
+	desc = ""
+
+/datum/uplink_item/new_objective/medium
+	name = "Request Objective (MEDIUM)"
+	difficulty = 2
+	desc = ""
+
+/datum/uplink_item/new_objective/hard
+	name = "Request Objective (HARD)"
+	difficulty = 3
+	desc = ""
+
+/datum/uplink_item/new_objective/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	to_chat(user, span_notice("Signal sent to command. Awaiting response (ETA ~1 minute)..."))
+	var/diff_txt = list("RANDOM", "EASY", "MEDIUM", "HARD")[difficulty+1]
+	message_admins("[ADMIN_LOOKUPFLW(user)] has requested an objective ([diff_txt]). (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj=[REF(src)];requester=[REF(user)]'>FORGE CUSTOM OBJECTIVE?</A>) (AUTO SET IN 1 MINUTE)")
+	timer = addtimer(CALLBACK(src, .proc/spawn_objective, user), 1 MINUTES, TIMER_STOPPABLE)
+
+/datum/uplink_item/new_objective/proc/spawn_objective(user, _obj, _diff)
+	if(admin_forging) // If the timer expired while an admin was editing it
+		set_on_noforge = TRUE // Set a random objective if the admin decides not to set one
+		return
+	var/new_diff = _diff ? _diff : difficulty
+	obj_set = TRUE
+	var/turf/open/floor/F
+	var/can_see = TRUE
+	var/see_loops = 0 // infinite loop protection
+
+	while(can_see && see_loops < 15)
+		F = find_safe_turf(dense_atoms = FALSE)
+		for(var/mob/living/M in view(13, F))
+			if(M.client)
+				can_see = TRUE
+				break
+			can_see = FALSE
+		see_loops++
+	
+	return new /obj/item/folder/objective(F, user, _obj, new_diff)
+
+/datum/uplink_item/new_objective/proc/cancelled(user)
+	if(set_on_noforge)
+		spawn_objective(user)

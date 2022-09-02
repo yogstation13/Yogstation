@@ -130,3 +130,170 @@
 	. = ..()
 	new /obj/item/documents/syndicate/mining(src)
 	update_icon()
+
+/// For traitors: New objective
+/obj/item/folder/objective
+	var/datum/objective/objective // Object not typepath
+	var/difficulty = 0
+	var/tc = 0
+	var/admin_msg = FALSE
+	// Steal objectives initialized later
+	var/list/easy_objectives = list(
+		new /datum/objective/assassinate/once, // Kill someone once
+		new /datum/objective/download, // Download research nodes
+		new /datum/objective/minor/pet, // Kill a pet
+	)
+	var/list/med_objectives = list()
+	var/list/hard_objectives = list(
+		new /datum/objective/destroy, // Kill AI
+	)
+
+/obj/item/folder/objective/Initialize(mapload, _user, _obj, _diff)
+	. = ..()
+
+	init_steal_objs()
+
+	difficulty = _diff ? _diff : rand(1,3)
+	tc = clamp(difficulty * 3 + rand(-1,1), 2, 10) // Redundant clamp, but useful if someone wants to adjust the rand
+	forge_objective(_obj)
+
+	var/folder_type = rand(1,5)
+	var/folder_color = "gray"
+	switch(folder_type)
+		if(2)
+			desc = "A blue folder."
+			icon_state = "folder_blue"
+			folder_color = "blue"
+		if(3)
+			desc = "A red folder."
+			icon_state = "folder_red"
+			folder_color = "red"
+		if(4)
+			desc = "A yellow folder."
+			icon_state = "folder_yellow"
+			folder_color = "yellow"
+		if(5)
+			desc = "A white folder."
+			icon_state = "folder_white"
+			folder_color = "white"
+	update_icon()
+	if(_user)
+		to_chat(_user, span_notice("<b>Your objective has been curated.</b> You will find it as a [folder_color] folder in [get_area_name(src, TRUE)]."))
+
+/// Initialize steal objectives based on difficulty
+/obj/item/folder/objective/proc/init_steal_objs()
+	for(var/I in subtypesof(/datum/objective_item/steal))
+		var/datum/objective/steal/newsteal = new /datum/objective/steal
+		var/datum/objective_item/steal/S = new I
+		if(!S.TargetExists())
+			continue
+		if(LAZYLEN(S.special_equipment) > 0) // No special equipment allowed
+			continue
+		newsteal.set_target(S)
+		if(S.difficulty < 5)
+			easy_objectives += newsteal
+		else if(S.difficulty >= 5 && S.difficulty < 10)
+			med_objectives += newsteal
+		else
+			hard_objectives += newsteal
+
+/obj/item/folder/objective/proc/forge_objective(_obj)
+	if(_obj)
+		objective = _obj
+	else
+		var/list/potential_objectives = list(easy_objectives, med_objectives, hard_objectives)[difficulty]
+		var/inf_protection = 0
+		// This will cycle through invalid objectives
+		while(!objective || objective.explanation_text == "Nothing." || objective.explanation_text == "Free Objective")
+			inf_protection++
+			if(inf_protection >= 20)
+				break
+			
+			if(objective)
+				potential_objectives.Remove(objective)
+				qdel(objective)
+			
+			if(LAZYLEN(potential_objectives) <= 0)
+				break
+			
+			objective = pick(potential_objectives)
+			objective.find_target()
+
+			// i hate objective code so much WHO WROTE THIS????
+			if(istype(objective, /datum/objective/download)) 
+				var/datum/objective/download/O = objective
+				O.gen_amount_goal()
+			
+			if(istype(objective, /datum/objective/minor))
+				var/datum/objective/minor/O = objective
+				O.finalize()
+			
+			objective.update_explanation_text()
+
+		if(LAZYLEN(potential_objectives) <= 0 || inf_protection >= 20)
+			qdel(src)
+			CRASH("No valid [list("EASY", "MEDIUM", "HARD")[difficulty]] objective could be chosen! Deleting folder!")
+
+	// Cleanup
+	for(var/datum/objective/O in easy_objectives)
+		easy_objectives.Remove(O)
+		if(O != objective)
+			qdel(O)
+	for(var/datum/objective/O in med_objectives)
+		med_objectives.Remove(O)
+		if(O != objective)
+			qdel(O)
+	for(var/datum/objective/O in hard_objectives)
+		hard_objectives.Remove(O)
+		if(O != objective)
+			qdel(O)
+
+/obj/item/folder/objective/attack_self(mob/user)
+	. = ..()
+	if(is_syndicate(user))
+		ui_interact(user)
+		objective.owner = user.mind
+	
+/obj/item/folder/objective/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		// Open UI
+		admin_msg = FALSE
+		ui = new(user, src, "FolderObjective")
+		ui.open()
+
+/obj/item/folder/objective/ui_static_data(mob/user)
+	. = ..()
+	.["tc"] = tc || "0"
+	.["difficulty"] = list("EASY", "MEDIUM", "HARD")[difficulty]
+	.["objective_text"] = objective?.explanation_text
+	.["admin_msg"] = admin_msg
+
+/obj/item/folder/objective/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("check_done")
+			if(objective.check_completion())
+				to_chat(usr, span_notice("NOTICE: OBJECTIVE COMPLETE. GOOD WORK AGENT. DISPENSING REWARD."))
+				to_chat(usr, "\The [src] suddenly transforms into [tc] telecrystal[tc == 1 ? "" : "s"]!")
+				usr.playsound_local(loc, 'sound/machines/ping.ogg', 20, 0)
+				var/obj/item/stack/telecrystal/reward = new /obj/item/stack/telecrystal
+				reward.amount = tc
+				dropped(usr, TRUE)
+				usr.put_in_hands(reward)
+				qdel(src)
+				return TRUE
+			else if(istype(objective, /datum/objective/custom))
+				admin_msg = TRUE
+				message_admins("[ADMIN_LOOKUPFLW(usr)] has requested an admin objective be checked for completion (<b>[objective.explanation_text]</b>). (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj_accept=[REF(src)];requester=[REF(usr)]'>MARK COMPLETED</A>) (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj_deny=[REF(src)];requester=[REF(usr)]'>MARK INCOMPLETE</A>)")
+				to_chat(usr, span_danger("NOTICE: SENT OBJECTIVE STATUS TO COMMAND FOR REVIEW."))
+				return TRUE
+			else
+				to_chat(usr, span_danger("ERR: OBJECTIVE NOT COMPLETE"))
+				usr.playsound(loc, 'sound/machines/buzz-two.ogg', 20, 0)
+				return TRUE
+
+			
