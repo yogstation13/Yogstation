@@ -206,7 +206,7 @@
 		// This will cycle through invalid objectives
 		while(!objective || objective.explanation_text == "Nothing." || objective.explanation_text == "Free Objective")
 			inf_protection++
-			if(inf_protection >= 20)
+			if(inf_protection >= 30)
 				break
 			
 			if(objective)
@@ -230,7 +230,7 @@
 			
 			objective.update_explanation_text()
 
-		if(LAZYLEN(potential_objectives) <= 0 || inf_protection >= 20)
+		if(LAZYLEN(potential_objectives) <= 0 || inf_protection >= 30)
 			qdel(src)
 			CRASH("No valid [list("EASY", "MEDIUM", "HARD")[difficulty]] objective could be chosen! Deleting folder!")
 
