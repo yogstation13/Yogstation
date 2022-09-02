@@ -2364,7 +2364,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/can_see = TRUE
 	var/see_loops = 0 // infinite loop protection
 
-	while(can_see && see_loops < 15)
+	while(can_see && see_loops < 40)
 		F = find_safe_turf(dense_atoms = FALSE)
 		for(var/mob/living/M in view(13, F))
 			if(M.client)
