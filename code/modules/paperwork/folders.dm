@@ -202,7 +202,7 @@
 		objective = _obj
 	else
 		var/list/potential_objectives = list(easy_objectives, med_objectives, hard_objectives)[difficulty]
-		var/inf_protection = 0
+		var/inf_protection = 0 // Threshold of 30 may have to be raised if more objectives are added
 		// This will cycle through invalid objectives
 		while(!objective || objective.explanation_text == "Nothing." || objective.explanation_text == "Free Objective")
 			inf_protection++
