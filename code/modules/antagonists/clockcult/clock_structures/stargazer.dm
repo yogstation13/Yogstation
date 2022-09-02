@@ -9,7 +9,7 @@
 	power_cost = 600
 	channel_time  = 8 SECONDS
 	invocations = list("A light of Engine shall empower my armaments!")
-	object_path = /obj/structure/destructible/clockwork/gear_base/stargazer
+	object_path = /obj/structure/destructible/clockwork/stargazer
 	one_per_tile = TRUE
 	primary_component = HIEROPHANT_ANSIBLE
 	tier = SCRIPTURE_SCRIPT

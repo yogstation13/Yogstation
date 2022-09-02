@@ -264,6 +264,7 @@
 #define TRAIT_SHIFTY_EYES		"shifty_eyes"
 #define TRAIT_ANXIOUS			"anxious"
 #define TRAIT_SEE_REAGENTS		"see_reagents"
+#define TRAIT_STARGAZED			"stargazed"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
