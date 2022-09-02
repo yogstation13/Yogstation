@@ -1707,7 +1707,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
 	. = ..()
 	if(wielded)
-		playsound(src, 'sound/magic/summonitems_generic.ogg', 100, 1)
+		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
 		sharpness = SHARP_POINTY
 		w_class = w_class_on
 		block_chance = 10
@@ -1715,7 +1715,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
 	if(wielded)
-		playsound(src, 'sound/magic/teleport_diss.ogg', 100, 1)
+		playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
 		sharpness = initial(sharpness)
 		w_class = initial(w_class)
 		force = initial(force)

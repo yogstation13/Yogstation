@@ -178,7 +178,7 @@
 	base_power_usage = 0.5 * AI_CPU_BASE_POWER_USAGE/5
 	minimum_max_power = 0.5
 	maximum_max_power = 10.0
-	minimum_growth = 0.1
+	minimum_growth = 2.0
 	maximum_growth = 8.0
 	light_range = 2
 	light_power = 6
