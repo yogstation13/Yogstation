@@ -5,7 +5,7 @@
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
-	language_holder = /datum/language_holder/universal
+	language_holder = /datum/language_holder/spiderbot
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 500
@@ -20,15 +20,16 @@
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
 	ventcrawler = 2
-	speed = -1                    //Spiderbots gotta go fast.
-	pass_flags = PASSTABLE
+	speed = -1  //Spiderbots gotta go fast.
+	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
+	ventcrawler = VENTCRAWLER_ALWAYS
 	mob_size = MOB_SIZE_TINY
 	speak_emote = list("beeps","clicks","chirps")
 
 	var/obj/item/radio/borg/radio = null
 	var/obj/machinery/camera/camera = null
 	var/obj/item/mmi/mmi = null
-	var/list/req_access = list(ACCESS_ROBOTICS) //Access needed to pop out the brain.
+	var/req_access = ACCESS_ROBOTICS //Access needed to pop out the brain.
 
 	var/emagged = 0
 	var/obj/item/held_item = null //Storage for single item they can hold.
@@ -106,7 +107,7 @@
 			var/obj/item/pda/pda = O
 			id_card = pda.id
 
-		if(ACCESS_ROBOTICS in id_card.GetAccess())
+		if(req_access in id_card.GetAccess())
 			to_chat(user, span_notice("You swipe your access card and pop the brain out of [src]."))
 			eject_brain()
 
