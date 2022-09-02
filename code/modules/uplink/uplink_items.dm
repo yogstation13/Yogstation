@@ -2363,11 +2363,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 	while(can_see && see_loops < 40)
 		F = find_safe_turf(dense_atoms = FALSE)
+		can_see = FALSE
 		for(var/mob/living/M in view(13, F))
 			if(M.client)
 				can_see = TRUE
 				break
-			can_see = FALSE
 		see_loops++
 	
 	return new /obj/item/folder/objective(F, user, _obj, new_diff)
