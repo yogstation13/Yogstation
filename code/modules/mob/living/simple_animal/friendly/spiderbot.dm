@@ -13,6 +13,7 @@
 	health = 10
 	maxHealth = 10
 	attacktext = "shocks"
+	melee_damage_type = BURN
 	melee_damage_lower = 2
 	melee_damage_upper = 2
 	response_help  = "pets"
