@@ -2336,17 +2336,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/new_objective/easy
 	name = "Request Objective (EASY)"
 	difficulty = 1
-	desc = ""
 
 /datum/uplink_item/new_objective/medium
 	name = "Request Objective (MEDIUM)"
 	difficulty = 2
-	desc = ""
 
 /datum/uplink_item/new_objective/hard
 	name = "Request Objective (HARD)"
 	difficulty = 3
-	desc = ""
 
 /datum/uplink_item/new_objective/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	to_chat(user, span_notice("Signal sent to command. Awaiting response (ETA ~1 minute)..."))
