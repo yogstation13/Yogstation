@@ -173,7 +173,7 @@
 					S.fully_replace_character_name(null, "The spirit of [input]")
 			else
 				to_chat(user, "<span class='neovgre'>The [I] stops talking to you...</span>")
-                REMOVE_TRAIT(I, TRAIT_STARGAZED, STARGAZER_TRAIT)
+				REMOVE_TRAIT(I, TRAIT_STARGAZED, STARGAZER_TRAIT)
 			return
 		if(8)
 			to_chat(user, "<span class='neovgre'>[I] goes blunt.</span>")
