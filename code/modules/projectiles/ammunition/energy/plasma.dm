@@ -19,7 +19,7 @@
 //cool alien plasma beams
 /obj/item/ammo_casing/energy/plasma/stalwart
 	projectile_type = /obj/item/projectile/plasma/scatter/adv/stalwart
-	fire_sound = 'sound/weapons/wave.ogg'
+	fire_sound = 'sound/weapons/pulse.ogg'
 	delay = 5
 	e_cost = 50
 	pellets = 4
