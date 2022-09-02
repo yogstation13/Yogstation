@@ -154,7 +154,7 @@
 	init_steal_objs()
 
 	difficulty = _diff ? _diff : rand(1,3)
-	tc = clamp(difficulty * 3 + rand(-1,1), 2, 10) // Redundant clamp, but useful if someone wants to adjust the rand
+	tc = clamp(difficulty * 2 + rand(-1,1), 2, 10)
 	forge_objective(_obj)
 
 	var/folder_type = rand(1,5)
