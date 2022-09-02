@@ -2312,7 +2312,7 @@
 		if(!FLD.objective)
 			to_chat(usr, span_danger("Objective Folder has no objective!"))
 			return
-		if(!FLD.objective.completed)
+		if(FLD.objective.completed)
 			to_chat(usr, span_danger("Objective is already marked complete by another admin!"))
 			return
 		FLD.objective.completed = TRUE
@@ -2322,7 +2322,7 @@
 	else if(href_list["uplink_custom_obj_deny"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/obj/item/folder/objective/FLD = locate(href_list["uplink_custom_obj_accept"])
+		var/obj/item/folder/objective/FLD = locate(href_list["uplink_custom_obj_deny"])
 		var/mob/requester = locate(href_list["requester"]) in GLOB.mob_list
 		if(!FLD)
 			to_chat(usr, span_danger("Objective Folder does not exist!"))
@@ -2333,7 +2333,7 @@
 		if(!FLD.objective)
 			to_chat(usr, span_danger("Objective Folder has no objective!"))
 			return
-		if(!FLD.objective.completed)
+		if(FLD.objective.completed)
 			to_chat(usr, span_danger("Objective is already marked complete by another admin!"))
 			return
 		to_chat(requester, span_danger("The folder lets out a harsh beep, letting you know that its objective has not been completed."))
