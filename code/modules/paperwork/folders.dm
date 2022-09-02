@@ -194,8 +194,10 @@
 			easy_objectives += newsteal
 		else if(S.difficulty >= 5 && S.difficulty < 10) // 5-9 is medium
 			med_objectives += newsteal
-		else // 10+ is hard
+		else if(S.difficulty >= 10) // 10+ is hard
 			hard_objectives += newsteal
+		else
+			CRASH("Invalid difficulty on steal objective! [S?.difficulty]")
 
 /obj/item/folder/objective/proc/forge_objective(_obj)
 	if(_obj)
@@ -217,9 +219,11 @@
 				break
 			
 			objective = pick(potential_objectives)
-			objective.find_target()
-
+			
 			// i hate objective code so much WHO WROTE THIS????
+			if(!istype(objective, /datum/objective/steal)) 
+				objective.find_target()
+			
 			if(istype(objective, /datum/objective/download)) 
 				var/datum/objective/download/O = objective
 				O.gen_amount_goal()
