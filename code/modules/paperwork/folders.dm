@@ -190,11 +190,11 @@
 		if(LAZYLEN(S.special_equipment) > 0) // No special equipment allowed
 			continue
 		newsteal.set_target(S)
-		if(S.difficulty < 5)
+		if(S.difficulty < 5) // 1-4 is easy
 			easy_objectives += newsteal
-		else if(S.difficulty >= 5 && S.difficulty < 10)
+		else if(S.difficulty >= 5 && S.difficulty < 10) // 5-9 is medium
 			med_objectives += newsteal
-		else
+		else // 10+ is hard
 			hard_objectives += newsteal
 
 /obj/item/folder/objective/proc/forge_objective(_obj)
