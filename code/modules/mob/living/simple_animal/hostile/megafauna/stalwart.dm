@@ -173,7 +173,7 @@
 	icon_aggro = "drone_scout"
 	ranged_cooldown_time = 30
 	projectiletype = /obj/item/projectile/stalpike/weak
-	projectilesound = 'sound/magic/repulse.ogg'
+	projectilesound = 'sound/weapons/ionrifle.ogg'
 
 /obj/item/gps/internal/stalwart
 	icon_state = null
