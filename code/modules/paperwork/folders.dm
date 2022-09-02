@@ -277,22 +277,22 @@
 	switch(action)
 		if("check_done")
 			if(objective.check_completion())
-				to_chat(usr, span_notice("NOTICE: OBJECTIVE COMPLETE. GOOD WORK AGENT. DISPENSING REWARD."))
+				to_chat(usr, span_notice("<b>NOTICE: OBJECTIVE COMPLETE.</b> GOOD WORK AGENT. DISPENSING REWARD."))
 				to_chat(usr, "\The [src] suddenly transforms into [tc] telecrystal[tc == 1 ? "" : "s"]!")
 				usr.playsound_local(loc, 'sound/machines/ping.ogg', 20, 0)
 				var/obj/item/stack/telecrystal/reward = new /obj/item/stack/telecrystal
 				reward.amount = tc
 				dropped(usr, TRUE)
-				usr.put_in_hands(reward)
+				usr.put_in_hands(reward, forced = TRUE)
 				qdel(src)
 				return TRUE
 			else if(istype(objective, /datum/objective/custom))
 				admin_msg = TRUE
 				message_admins("[ADMIN_LOOKUPFLW(usr)] has requested an admin objective be checked for completion (<b>[objective.explanation_text]</b>). (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj_accept=[REF(src)];requester=[REF(usr)]'>MARK COMPLETED</A>) (<A HREF='?_src_=holder;[HrefToken()];uplink_custom_obj_deny=[REF(src)];requester=[REF(usr)]'>MARK INCOMPLETE</A>)")
-				to_chat(usr, span_danger("NOTICE: SENT OBJECTIVE STATUS TO COMMAND FOR REVIEW."))
+				to_chat(usr, span_danger("<b>NOTICE: SENT OBJECTIVE STATUS TO COMMAND FOR REVIEW.</b>"))
 				return TRUE
 			else
-				to_chat(usr, span_danger("ERR: OBJECTIVE NOT COMPLETE"))
+				to_chat(usr, span_danger("<b>ERR: OBJECTIVE NOT COMPLETE</b>"))
 				usr.playsound_local(loc, 'sound/machines/buzz-two.ogg', 20, 0)
 				return TRUE
 
