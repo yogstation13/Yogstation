@@ -13,10 +13,11 @@
 	. = ..()
 	if(world.time > emp_cooldown && !is_servant_of_ratvar(target))
 		target.emp_act(EMP_LIGHT)
-		emp_cooldown = world.time + 300
-		addtimer(CALLBACK(src, .proc/send_message, user), 300)
+		emp_cooldown = world.time + 30 SECONDS
+		addtimer(CALLBACK(src, .proc/send_message), 30 SECONDS)
 		to_chat(user, "<span class='brass'>You strike [target] with an electromagnetic pulse!</span>")
+		new /obj/effect/temp_visual/emp/pulse(target.loc)
 		playsound(user, 'sound/magic/lightningshock.ogg', 40)
 
-/obj/item/clockwork/weapon/brass_sword/proc/send_message(mob/living/target)
-	to_chat(target, "<span class='brass'>[src] glows, indicating the next attack will disrupt electronics of the target.</span>")
+/obj/item/clockwork/weapon/brass_sword/proc/send_message()
+	visible_message("<span class='brass'>[src] glows, indicating the next attack will disrupt electronics of the target.</span>")
