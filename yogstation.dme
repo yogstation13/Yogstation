@@ -2681,6 +2681,7 @@
 #include "code\modules\modular_computers\file_system\programs\engineering\energyharvestercontrol.dm"
 #include "code\modules\modular_computers\file_system\programs\engineering\powermonitor.dm"
 #include "code\modules\modular_computers\file_system\programs\engineering\sm_monitor.dm"
+#include "code\modules\modular_computers\file_system\programs\medical\chem_scan.dm"
 #include "code\modules\modular_computers\file_system\programs\medical\crew_monitor.dm"
 #include "code\modules\modular_computers\file_system\programs\science\airestorer.dm"
 #include "code\modules\modular_computers\file_system\programs\science\borg_monitor.dm"
