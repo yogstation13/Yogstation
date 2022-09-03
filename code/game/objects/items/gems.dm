@@ -172,11 +172,11 @@
 	icon_state = "ruby"
 	var/gem_list = list(/obj/item/gem/ruby, /obj/item/gem/sapphire, /obj/item/gem/emerald, /obj/item/gem/topaz)
 
-/obj/item/gem/random/Initialize(loc, quantity)
+/obj/item/gem/random/Initialize(quantity)
 	. = ..()
 	var/q = quantity ? quantity : 1
-	var/obj/item/gem/G = pick(gem_list)
 	for(var/i = 0, i < q, i++)
+		var/obj/item/gem/G = pick(gem_list)
 		new G(loc)
 	qdel(src)
 
