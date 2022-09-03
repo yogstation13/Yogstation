@@ -1,31 +1,32 @@
 import { useBackend } from '../backend';
-import { LabeledList, ProgressBar, Section } from '../components';
+import { Box, LabeledList, ProgressBar, Section } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosChem = (props, context) => {
   const { act, data } = useBackend(context);
   const {
-    out,
-    len,
     chems,
   } = data;
   return (
     <NtosWindow
-      width={300}
+      width={350}
       height={350}
       resizable>
       <NtosWindow.Content scrollable>
         <Section>
-          {len ? (
-            <LabeledList label={out + " (" + { len } + ") Chemicals"}>
-              {chems.map(chem => (
-                <LabeledList.Item key={chem}>
-                  {chem}
-                </LabeledList.Item>
-              ))}
-            </LabeledList>
+          {chems ? (
+            <div>
+              {chems.length} {chems.length === 1 ? "Chemical" : "Chemicals"} Detected
+              <ul>
+                {chems.map(chem => (
+                  <li key={chem}>
+                    {chem}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ) : (
-            <LabeledList >No Chemicals Found</LabeledList>
+            <ul>No Chemicals Found</ul>
           )}
         </Section>
       </NtosWindow.Content>

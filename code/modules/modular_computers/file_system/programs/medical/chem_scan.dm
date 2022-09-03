@@ -27,7 +27,6 @@
 		lastscan["reagents"] = list()
 		if(A.reagents.reagent_list.len > 0)
 			var/reagents_length = A.reagents.reagent_list.len
-			lastscan["reagents"]["len"] = reagents_length
 			to_chat(user, span_notice("[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found."))
 			lastscan["reagents"]["reagentlist"] = list()
 			for (var/datum/reagent/re in A.reagents.reagent_list)
@@ -45,12 +44,9 @@
 /datum/computer_file/program/chemscan/ui_data(mob/user)
 	var/list/data = get_header_data()
 	if(lastscan.len)
-		data["out"] = "Reagents found"
-		data["len"] = lastscan["reagents"]["len"]
 		data["chems"] = lastscan["reagents"]["reagentlist"]
 	else
-		data["out"] = "No chemicals found"
-		data["len"] = 0
+		data["chems"] = lastscan["reagents"]["reagentlist"] = list()
 	return data
 
 /datum/computer_file/program/chemscan/ui_act(action, list/params)
