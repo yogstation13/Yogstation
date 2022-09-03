@@ -33859,16 +33859,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"jxq" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/obj/effect/landmark/start/medical_doctor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage)
 "jyo" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only{
@@ -46112,6 +46102,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"oWe" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/effect/landmark/start/medical_doctor,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "oWm" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
@@ -59463,6 +59460,15 @@
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"uLK" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/vehicle/ridden/wheelchair{
+	name = "Grandpa Koko-Junals Throne"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "uLO" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -103696,7 +103702,7 @@ gtg
 tYp
 ctB
 mnl
-mzH
+oWe
 gFe
 mWy
 jdO
@@ -103954,7 +103960,7 @@ bvj
 tTA
 kHx
 nOB
-jxq
+uLK
 dLr
 jdO
 liS
