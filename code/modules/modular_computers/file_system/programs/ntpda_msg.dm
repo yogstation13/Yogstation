@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	var/showing_messages = FALSE
 	var/username = "ERRORNAME"
 	var/ringtone = "beep"
-	var/receiving = TRUE
+	var/receiving = FALSE
 	var/silent = FALSE
 	var/next_message = 0
 	var/next_keytry = 0
@@ -77,32 +77,50 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		computer.visible_message(span_danger("Recipient is no longer accepting messages."), null, null, 1)
 		return FALSE
 	
-	switch(recipient.receive_message(message, src))
-		if(FALSE)
-			computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-			computer.visible_message(span_danger("Generic error."), null, null, 1)
-		if(TRUE) // success
-			computer.visible_message(span_notice("Message sent!"), null, null, 1)
-			message_history += list(list(username, message, REF(src)))
-			return TRUE
-		if(2)
-			computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-			computer.visible_message(span_danger("Recipient has you blocked."), null, null, 1)
-		if(3)
-			computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-			computer.visible_message(span_danger("Recipient is no longer accepting messages."), null, null, 1)
+	var/fakemob = "ERROR"
+	var/fakejob = "ERROR"
+	var/language = /datum/language/common
+	if(user)
+		fakemob = user
+		fakejob = user.job
+		language = user.get_selected_language()
 
-	return FALSE
+	var/datum/signal/subspace/messaging/ntospda/signal = new(src, list(
+		"name" = "[fakemob]",
+		"job" = "[fakejob]",
+		"message" = message,
+		"language" = language,
+		"targets" = list(recipient),
+		"program" = src,
+		"logged" = FALSE
+	))
+	signal.send_to_receivers()
 
-/datum/computer_file/program/pdamessager/proc/receive_message(message, datum/computer_file/program/pdamessager/sender)
+	if (!signal.data["done"])
+		computer.visible_message(span_danger("ERROR: Your message could not be processed by a broadcaster."), null, null, 1)
+		return FALSE
+
+	if (!signal.data["logged"])
+		computer.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
+		return FALSE
+	
+	// Show ghosts (and admins)
+	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> [recipient.username]): [span_message(message)]", user, user, speaker_key = user.ckey)
+	computer.visible_message(span_notice("Message sent!"), null, null, 1)
+	message_history += list(list(username, message, REF(src), signal))
+	return TRUE
+
+/datum/computer_file/program/pdamessager/proc/receive_message(datum/signal/subspace/messaging/ntospda/signal)
+	var/datum/computer_file/program/pdamessager/sender = signal.data["program"]
+	var/message = signal.data["message"]
+
 	if(blocked_users.Find(sender))
 		return 2
 	
 	if(!receiving)
 		return 3
 
-	message_history += list(list(sender.username, message, REF(sender)))
-	GLOB.NTPDAMessages += list(list(sender.username, username, message))
+	message_history += list(list(sender.username, message, REF(sender), signal))
 
 	if(!silent && istype(holder, /obj/item/computer_hardware/hard_drive))
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
@@ -158,7 +176,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 				return
 
 			next_message = world.time + 1 SECONDS
-			send_message(message, recipient)
+			send_message(message, recipient, usr)
 			var/mob/living/user = usr
 			user.log_talk(message, LOG_CHAT, tag="as [username] to user [recipient.username]")
 			return TRUE
@@ -275,7 +293,14 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	data["authed"] = authed
 	data["ringtone"] = ringtone
 	data["showing_messages"] = showing_messages
-	data["message_history"] = message_history
+	var/list/modified_history = list()
+	for(var/M in message_history)
+		var/datum/signal/subspace/messaging/ntospda/N = M[4]
+		if(N)
+			modified_history += list(list(M[1], N.format_message(user), M[3]))
+		else
+			modified_history += list(list(M[1], M[2], M[3]))
+	data["message_history"] = modified_history
 	
 	var/list/pdas = list()
 	for(var/datum/computer_file/program/pdamessager/P in GLOB.NTPDAs)

@@ -493,3 +493,11 @@
 	suffix = "lavaland_surface_meteorite.dmm"
 	allow_duplicates = FALSE
 	cost = 20
+
+/datum/map_template/ruin/lavaland/researchcapsule
+	name = "Research Capsule Ruins"
+	id = "researchcapsule"
+	description = "A strange weaver appeared one day."
+	suffix = "lavaland_surface_researchpod.dmm"
+	allow_duplicates = FALSE
+	cost = 10
