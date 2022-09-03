@@ -46,11 +46,3 @@
 	new /obj/item/ammo_box/magazine/sniper_rounds/soporific(src)
 	new /obj/item/ammo_box/magazine/sniper_rounds/soporific(src)
 	new /obj/item/suppressor/specialoffer(src)
-
-/obj/item/storage/briefcase/syndie_mantis
-	desc = "A sleek briefcase. It has the letters G.O.R.L.E.X. on it"
-
-/obj/item/storage/briefcase/syndie_mantis/PopulateContents()
-	..()
-	new /obj/item/autosurgeon/organ/syndicate/syndie_mantis(src)
-	new /obj/item/autosurgeon/organ/syndicate/syndie_mantis/l(src)

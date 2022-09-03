@@ -1360,6 +1360,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"ME" = (
+/obj/effect/turf_decal/bot_white,
+/obj/structure/closet/syndicate,
+/obj/item/twohanded/vxtvulhammer,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 "MJ" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 6
@@ -1374,15 +1380,6 @@
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
-"UF" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/closet/syndicate,
-/obj/item/pickaxe/drill/jackhammer,
-/obj/item/pickaxe/drill/jackhammer,
-/obj/item/pickaxe/drill/jackhammer,
-/obj/item/pickaxe/drill/jackhammer,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/airlock)
 
 (1,1,1) = {"
 aa
@@ -1672,7 +1669,7 @@ aB
 tZ
 aX
 bc
-UF
+ME
 bm
 bx
 bG

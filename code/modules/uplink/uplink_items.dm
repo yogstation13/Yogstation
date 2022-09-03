@@ -501,6 +501,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/dangerous/vxtvulhammer
+	name = "Vxtvul Hammer"
+	desc = "The Vxtvul Hammer is a sledgehammer once utilized by the ancient Vxtrin species. \
+			This weapon must be wielded in two hands to be used effectively, but possesses high armor penetration. \
+			In addition, the user can charge the hammer to enable a thunderous blow that will decimate construction in a single hit, \
+			do sizeable damage to mechs, or shatter people off of their feet. The battery is charged by the user's concentration."
+	item = /obj/item/twohanded/vxtvulhammer
+	cost = 13
+	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
+
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"
 	desc = "Ranged fury, Syndicate style. Guaranteed to cause shock and awe or your TC back!"
@@ -1818,7 +1828,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/mantis
 	name = "G.O.R.L.E.X. Mantis Blade"
-	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing, 2 blades can be used at once."
+	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing. Two blades can be used at once. \
+			Implant targets right arm. Tweak setting with a careful touch to change which arm the autosurgeon targets."
 	item = /obj/item/autosurgeon/organ/syndicate/syndie_mantis
 	cost = 7
 	surplus = 0
@@ -1909,6 +1920,17 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 5
 	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	restricted_species = list("human")
+
+/datum/uplink_item/race_restricted/hammerimplant
+	name = "Vxtvul Hammer Implant"
+	desc = "An implant which will fold a Vxtvul hammer into your chassis upon injection. \
+			Implant targets right arm. Tweak setting with a careful touch to change which arm the autosurgeon targets. \
+			This hammer can be retracted and wielded in two hands as an effective armor-piercing weapon. \
+			It can be charged by the user's concentration, which permits a single blow that will decimate construction, \
+			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
+	cost = 16
+	item = /obj/item/autosurgeon/organ/syndicate/syndie_hammer
+	restricted_species = list("preternis")
 
 /datum/uplink_item/race_restricted/killertomatos
 	name = "Killer Tomatoes"
