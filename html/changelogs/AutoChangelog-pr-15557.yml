@@ -1,6 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - bugfix: "GAX Fixes HoS office request console inaccessibility"
-  - bugfix: "GAX fixes labor shuttle dock having duplicate prisoner management consoles"
-  - bugfix: "GAX hopefully fixes the law office carpets not smoothing"
