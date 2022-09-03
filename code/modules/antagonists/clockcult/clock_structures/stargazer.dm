@@ -180,12 +180,11 @@
 			I.force = max(I.force - 4, 0)
 			return
 		if(9)
-			to_chat(user, "<span class='neovgre'>Your scriptures seem to bend around [I], it is protecting you from magic!</span>")
-			I.AddComponent(/datum/component/anti_magic, TRUE, TRUE)
+			to_chat(user, "<span class='neovgre'>You feel bloodlust starting to emanate from [I]!</span>")
+			I.AddComponent(/datum/component/lifesteal, 4)
 			return
 		if(10)
-			to_chat(user, "<span class='neovgre'>[I] suddenly transforms, gaining the magical properties of shungite, it will protect your from all the evil forces!</span>")
+			to_chat(user, "<span class='neovgre'>[I] suddenly transforms, gaining the magical properties of shungite, it will protect your from EMPs!</span>")
 			I.AddComponent(/datum/component/empprotection)
-			I.AddComponent(/datum/component/anti_magic, TRUE, TRUE)
 			I.color = COLOR_ALMOST_BLACK
 			return
