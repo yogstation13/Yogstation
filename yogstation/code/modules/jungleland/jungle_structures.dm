@@ -135,7 +135,7 @@
 /obj/effect/timed_attack/tar_priest/shroud/finish_attack()
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T.contents)
-		if(L.has_status_effect(/datum/status/tar_curse))
+		if(L.has_status_effect(/datum/status_effect/tar_curse))
 			L.set_blindness(20)
 			SEND_SIGNAL(L,COMSIG_JUNGLELAND_TAR_CURSE_PROC)	
 		else 
@@ -147,7 +147,7 @@
 /obj/effect/timed_attack/tar_priest/tendril/finish_attack()
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T.contents)
-		if(L.has_status_effect(/datum/status/tar_curse))
+		if(L.has_status_effect(/datum/status_effect/tar_curse))
 			L.Stun(5 SECONDS)
 			SEND_SIGNAL(L,COMSIG_JUNGLELAND_TAR_CURSE_PROC)	
 		else 

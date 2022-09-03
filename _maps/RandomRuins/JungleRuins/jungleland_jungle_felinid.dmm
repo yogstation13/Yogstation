@@ -15,7 +15,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
 "f" = (
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/wood/lavaland,
 /area/ruin/unpowered)
 "g" = (
@@ -90,7 +90,7 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
 "V" = (
-/obj/item/reagent_containers/hypospray/medipen/survival,
+/obj/item/reagent_containers/autoinjector/medipen/survival,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
 "Y" = (

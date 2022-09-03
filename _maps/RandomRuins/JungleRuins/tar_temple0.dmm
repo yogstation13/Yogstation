@@ -17,7 +17,7 @@
 /area/ruin/unpowered/tar_temple)
 "i" = (
 /obj/structure/stone_tile/slab,
-/mob/living/simple_animal/hostile/netherworld,
+/mob/living/simple_animal/hostile/tar/dryad,
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/tar_temple)
 "j" = (
@@ -71,7 +71,7 @@
 /area/ruin/unpowered/tar_temple)
 "w" = (
 /obj/structure/stone_tile/slab,
-/mob/living/simple_animal/hostile/netherworld/blankbody,
+/mob/living/simple_animal/hostile/tar/shade,
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/tar_temple)
 "x" = (
@@ -89,6 +89,12 @@
 /obj/structure/barricade/wooden/crude,
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/tar_temple)
+"F" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/tar/amalgamation,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
 "I" = (
 /obj/structure/stone_tile/slab/cracked{
 	dir = 4;
@@ -103,10 +109,15 @@
 /obj/structure/stone_tile/slab,
 /turf/open/indestructible/necropolis/air,
 /area/ruin/unpowered/tar_temple)
+"L" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/tar/amalgamation,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
 "M" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/fluff/divine/convertaltar,
-/obj/item/tar_crystal,
+/obj/item/tar_crystal/part_0,
 /turf/open/indestructible/necropolis/air,
 /area/ruin/unpowered/tar_temple)
 "N" = (
@@ -120,6 +131,11 @@
 	},
 /turf/open/indestructible/necropolis/air,
 /area/ruin/unpowered/tar_temple)
+"Q" = (
+/obj/structure/stone_tile/slab/cracked,
+/mob/living/simple_animal/hostile/tar/shade,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
 "S" = (
 /obj/structure/stone_tile/slab,
 /obj/structure/stone_tile/slab,
@@ -127,9 +143,34 @@
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/tar_temple)
 "V" = (
-/obj/structure/stone_tile/slab,
-/obj/structure/stone_tile/slab,
-/mob/living/simple_animal/hostile/netherworld/blankbody,
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/tar/dryad,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"X" = (
+/obj/structure/stone_tile/slab/cracked,
+/mob/living/simple_animal/hostile/tar/dryad,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"Y" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/tar/amalgamation,
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/tar_temple)
 
@@ -183,7 +224,7 @@ f
 a
 f
 b
-b
+w
 b
 b
 b
@@ -194,7 +235,7 @@ x
 b
 b
 f
-i
+b
 b
 b
 b
@@ -210,17 +251,17 @@ x
 b
 o
 n
+b
+b
+f
+b
+b
+Y
+f
+o
 w
-b
-f
-b
-i
-o
-f
-o
-b
 x
-o
+Y
 b
 f
 a
@@ -229,7 +270,7 @@ a
 a
 f
 b
-i
+b
 f
 f
 o
@@ -244,7 +285,7 @@ k
 o
 S
 k
-V
+k
 f
 a
 "}
@@ -259,7 +300,7 @@ b
 x
 b
 f
-x
+X
 o
 z
 f
@@ -279,14 +320,14 @@ b
 b
 x
 k
-k
+F
 b
 f
 b
 u
 o
 f
-w
+b
 b
 x
 b
@@ -299,7 +340,7 @@ a
 f
 b
 b
-o
+V
 b
 x
 b
@@ -324,7 +365,7 @@ b
 x
 b
 b
-x
+Q
 b
 f
 b
@@ -345,7 +386,7 @@ a
 f
 b
 x
-w
+b
 n
 b
 x
@@ -390,7 +431,7 @@ a
 a
 f
 x
-b
+i
 z
 b
 b
@@ -416,7 +457,7 @@ b
 b
 b
 b
-i
+b
 b
 b
 f
@@ -440,16 +481,16 @@ b
 f
 f
 b
-b
+L
 x
 f
-b
-b
 w
+b
+b
 f
-w
-x
 b
+x
+L
 j
 x
 f
@@ -490,13 +531,13 @@ b
 b
 f
 b
-w
+b
 z
 f
 o
 b
 b
-i
+b
 b
 f
 a
@@ -508,12 +549,12 @@ b
 b
 b
 b
-w
+b
 b
 b
 f
 o
-b
+w
 b
 f
 b

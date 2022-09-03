@@ -467,7 +467,7 @@
 
 /obj/effect/mob_spawn/human/corpse/felinid
 	name = "Felinid"
-	mob_species = /datum/species/felinid
+	mob_species = /datum/species/human/felinid
 
 /obj/effect/mob_spawn/human/fishing/alive
 	death = FALSE

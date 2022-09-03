@@ -67,7 +67,6 @@
 	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
 	suffix = "tar_temple0.dmm"
 	always_place = TRUE
-	unpickable = TRUE
 	cost = 0
 
 //MEGAFAUNA
