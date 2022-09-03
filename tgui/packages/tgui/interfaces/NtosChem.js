@@ -23,10 +23,10 @@ export const NtosChem = (props, context) => {
                   {chem}
                 </LabeledList.Item>
               ))}
-              </LabeledList>
-              ) : (
-                <LabeledList >No Chemicals Found</LabeledList>
-              )}
+            </LabeledList>
+          ) : (
+            <LabeledList >No Chemicals Found</LabeledList>
+          )}
         </Section>
       </NtosWindow.Content>
     </NtosWindow>
