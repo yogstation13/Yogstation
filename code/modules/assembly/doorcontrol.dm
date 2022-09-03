@@ -24,6 +24,16 @@
 			INVOKE_ASYNC(M, openclose ? /obj/machinery/door/poddoor.proc/open : /obj/machinery/door/poddoor.proc/close)
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
 
+/obj/item/assembly/control/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(W.tool_behaviour == TOOL_MULTITOOL)
+		var/obj/item/multitool/P = W
+		if(!id) // Generate New ID if none exists
+			id = getnewid()
+			to_chat(user, span_notice("No ID found. Generating New ID"))
+			return
+		P.buffer = id
+		to_chat(user, span_notice("You link the [src] to the [P]."))
 
 /obj/item/assembly/control/airlock
 	name = "airlock controller"
@@ -82,19 +92,19 @@
 		if (M.id == src.id)
 			INVOKE_ASYNC(M, /obj/machinery/door/poddoor.proc/open)
 
-	sleep(10)
+	sleep(1 SECONDS)
 
 	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == src.id)
 			M.drive()
 
-	sleep(60)
+	sleep(6 SECONDS)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if (M.id == src.id)
 			INVOKE_ASYNC(M, /obj/machinery/door/poddoor.proc/close)
 
-	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
+	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 SECONDS)
 
 
 /obj/item/assembly/control/igniter
@@ -145,3 +155,25 @@
 			C.cremate(usr)
 
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 50)
+
+
+/obj/item/assembly/control/holosign
+	name = "holosign controller"
+	desc = "A remote controller for a holosign."
+
+/obj/item/assembly/control/holosign/activate()
+	if(cooldown)
+		return
+	cooldown = TRUE
+	for(var/obj/machinery/holosign/H in GLOB.machines)
+		if(H.id == id)
+			H.toggle()
+
+	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 50)
+
+GLOBAL_VAR_INIT(counter, 0)
+
+/// Return a unique ID
+/proc/getnewid()
+	GLOB.counter += 1
+	return GLOB.counter

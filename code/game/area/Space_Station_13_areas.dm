@@ -850,6 +850,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	minimap_color = "#b12527"
 	airlock_wires = /datum/wires/airlock/security
 
+/area/security/interrogation
+	name = "Interrogation"
+	icon_state = "security"
+
 /area/security/main
 	name = "Security Office"
 	icon_state = "security"
@@ -866,6 +870,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Prison Wing"
 	icon_state = "sec_prison"
 	minimap_color = "#530505"
+
+/area/security/prison/hallway
+	name = "Prison Wing Hallway"
 
 /area/security/processing
 	name = "Labor Shuttle Dock"
@@ -1206,6 +1213,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambientsounds = HIGHSEC
 	minimap_color = "#4f4e3a"
 	airlock_wires = /datum/wires/airlock/ai
+
+/area/ai_monitored/storage/satellite/teleporter
+	name = "AI Satellite Access Teleporter"
+	icon_state = "storage"
+	ambientsounds = HIGHSEC
+	minimap_color = "#4f4e3a"
+	airlock_wires = /datum/wires/airlock/ai
+ 
 /area/ai_monitored/secondarydatacore
 	name = "AI Secondary Datacore Monitoring"
 	icon_state =  "ai"

@@ -362,3 +362,14 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/royalcheese
 	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/chipsandsalsa
+	name = "Chips and Salsa"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/chips = 1, //yogs, no cornchips
+		/obj/item/reagent_containers/food/snacks/grown/chili = 1,
+		/obj/item/reagent_containers/food/snacks/grown/onion = 1,
+		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/chipsandsalsa
+	subcategory = CAT_MISCFOOD

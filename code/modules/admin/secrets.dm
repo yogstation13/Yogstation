@@ -47,22 +47,24 @@
 			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=virus'>Trigger a Virus Outbreak</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=monkey'>Turn all humans into monkeys</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=anime'>Chinese Cartoons</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=anime'>Chinese Cartoons (Everyone is schoolgirls)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=allspecies'>Change the species of all humans</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=power'>Make all areas powered</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=unpower'>Make all areas unpowered</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=quickpower'>Power all SMES</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=tripleAI'>Triple AI mode (needs to be used in the lobby)</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=traitor_all'>Everyone is the traitor</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=traitor_all'>Everyone is the traitor (Can specify objective)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=iaa_all'>Everyone is the IAA (except sec/cap/hop)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=onlyone'>There can only be one!</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=delayed_onlyone'>There can only be one! (40-second delay)</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=retardify'>Make all players retarded</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=eagles'>Egalitarian Station Mode</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=ancap'>Anarcho-Capitalist Station Mode</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=retardify'>Make all players stupid</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=eagles'>Egalitarian Station Mode (All doors are open access)</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=ancap'>Anarcho-Capitalist Station Mode (More things cost money)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=blackout'>Break all lights</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=whiteout'>Fix all lights</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=floorlava'>The floor is lava! (DANGEROUS: extremely lame)</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=activatecrittermoney'>Activate critter money</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=deactivatecrittermoney'>Deactivate critter money</A><BR>
 			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=flipmovement'>Flip client movement directions</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=randommovement'>Randomize client movement directions</A><BR>
@@ -427,7 +429,10 @@
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Chinese Cartoons"))
 			message_admins("[key_name_admin(usr)] made everything kawaii.")
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
-				SEND_SOUND(H, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))
+				if(H.client.prefs && H.client.prefs.disable_alternative_announcers)
+					SEND_SOUND(H, sound(SSstation.default_announcer.event_sounds[ANNOUNCER_ANIMES]))
+				else
+					SEND_SOUND(H, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))
 
 				if(H.dna.features["tail_human"] == "None" || H.dna.features["ears"] == "None")
 					var/obj/item/organ/ears/cat/ears = new
@@ -483,7 +488,7 @@
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
 				to_chat(H, span_boldannounce("You suddenly feel stupid."))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60, 80)
-			message_admins("[key_name_admin(usr)] made everybody retarded")
+			message_admins("[key_name_admin(usr)] made everybody stupid")
 
 		if("eagles")//SCRAW
 			if(!check_rights(R_FUN))
@@ -492,8 +497,8 @@
 			for(var/obj/machinery/door/airlock/W in GLOB.machines)
 				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
 					W.req_access = list()
-			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, SSstation.announcer.get_rand_report_sound())
+			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode (All doors are open access)")
+			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, RANDOM_REPORT_SOUND)
 
 		if("ancap")
 			if(!check_rights(R_FUN))
@@ -502,9 +507,9 @@
 			SSeconomy.full_ancap = !SSeconomy.full_ancap
 			message_admins("[key_name_admin(usr)] toggled Anarcho-capitalist mode")
 			if(SSeconomy.full_ancap)
-				priority_announce("The NAP is now in full effect.", null, SSstation.announcer.get_rand_report_sound())
+				priority_announce("The NAP is now in full effect.", null, RANDOM_REPORT_SOUND)
 			else
-				priority_announce("The NAP has been revoked.", null, SSstation.announcer.get_rand_report_sound())
+				priority_announce("The NAP has been revoked.", null, RANDOM_REPORT_SOUND)
 
 		if("dorf")
 			if(!check_rights(R_FUN))
@@ -574,6 +579,22 @@
 			message_admins("[key_name_admin(usr)] has removed everyone from \
 				purrbation.")
 			log_admin("[key_name(usr)] has removed everyone from purrbation.")
+		if("activatecrittermoney")
+			if(!check_rights(R_FUN))
+				return
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				for(var/obj/item/card/id/id in H)
+					id.critter_money = TRUE
+			message_admins("[key_name_admin(usr)] has activated critter money (pets generated on money withdrawl)")
+			log_admin("[key_name(usr)] has activated critter money.")
+		if("deactivatecrittermoney")
+			if(!check_rights(R_FUN))
+				return
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				for(var/obj/item/card/id/id in H)
+					id.critter_money = FALSE
+			message_admins("[key_name_admin(usr)] has deactivated critter money (pets generated on money withdrawl)!")
+			log_admin("[key_name(usr)] has deactivated critter money.")
 		// yogs start - Custom keybindings
 		/*if("flipmovement")
 			if(!check_rights(R_FUN))

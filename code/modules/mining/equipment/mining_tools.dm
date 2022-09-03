@@ -154,3 +154,9 @@ obj/item/pickaxe/bonepickaxe
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/shovel/spade/bone
+	name = "bone spade"
+	desc = "A bone spade, suitable for digging and moving dirt."
+	icon_state = "spade_bone"
+	toolspeed = 0.75

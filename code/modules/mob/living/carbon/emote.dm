@@ -59,6 +59,13 @@
 	message_mime = "appears to moan!"
 	emote_type = EMOTE_AUDIBLE
 
+/datum/emote/living/carbon/pointdown
+	key = "pointdown"
+	key_third_person = "pointsdown"
+	message = "points down."
+	message_param = "points down towards %t."
+	restraint_check = TRUE
+
 /datum/emote/living/carbon/roll
 	key = "roll"
 	key_third_person = "rolls"

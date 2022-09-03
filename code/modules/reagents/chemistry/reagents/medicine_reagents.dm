@@ -1,6 +1,8 @@
 #define PERF_BASE_DAMAGE		0.5
 /// Required strange reagent for revival.
 #define REQUIRED_STRANGE_REAGENT_FOR_REVIVAL 2
+///maximum volume for touch chemicals to heal with
+#define TOUCH_CHEM_MAX 60
 
 /////////////////////////////////////////////////////////////////////////////////////////
 					// MEDICINE REAGENTS
@@ -225,10 +227,9 @@
 //Goon Chems. Ported mainly from Goonstation. Easily mixable (or not so easily) and provide a variety of effects.
 /datum/reagent/medicine/silver_sulfadiazine
 	name = "Silver Sulfadiazine"
-	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. If ingested through other means or overdosed, deals minor toxin damage."
+	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. The chemical will heal up to 45 points of damage at 45 units applied. If ingested through other means, deals minor toxin damage."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	overdose_threshold = 45
 
 /datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
@@ -237,21 +238,19 @@
 			if(show_message)
 				to_chat(M, span_warning("You don't feel so good..."))
 		else if(M.getFireLoss())
-			M.adjustFireLoss(-reac_volume)
+			var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/silver_sulfadiazine)
+			var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_MAX * 0.75 - S?.volume)
+			M.adjustFireLoss(-heal_amt)
 			if(show_message)
 				to_chat(M, span_danger("You feel your burns healing! It stings like hell!"))
 			M.emote("scream")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+			if(method == TOUCH)
+				M.reagents.add_reagent(/datum/reagent/medicine/silver_sulfadiazine, reac_volume)
 	..()
 
 /datum/reagent/medicine/silver_sulfadiazine/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(-2*REM, 0)
-	..()
-	. = 1
-
-/datum/reagent/medicine/silver_sulfadiazine/overdose_process(mob/living/M)
-	M.adjustFireLoss(2.5*REM, 0)
-	M.adjustToxLoss(0.5, 0)
+	M.adjustFireLoss(-0.5*REM, 0)
 	..()
 	. = 1
 
@@ -279,10 +278,9 @@
 
 /datum/reagent/medicine/styptic_powder
 	name = "Styptic Powder"
-	description = "If used in touch-based applications, immediately restores bruising as well as restoring more over time. If ingested through other means or overdosed, deals minor toxin damage."
+	description = "If used in touch-based applications, immediately restores bruising as well as restoring more over time. The chemical will heal up to 45 points of damage at 45 units applied. If ingested through other means, deals minor toxin damage."
 	reagent_state = LIQUID
 	color = "#FF9696"
-	overdose_threshold = 45
 
 /datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
@@ -291,22 +289,20 @@
 			if(show_message)
 				to_chat(M, span_warning("You don't feel so good..."))
 		else if(M.getBruteLoss())
-			M.adjustBruteLoss(-reac_volume)
+			var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/styptic_powder)
+			var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_MAX * 0.75 - S?.volume)
+			M.adjustBruteLoss(-heal_amt)
 			if(show_message)
 				to_chat(M, span_danger("You feel your bruises healing! It stings like hell!"))
 			M.emote("scream")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+			if(method == TOUCH)
+				M.reagents.add_reagent(/datum/reagent/medicine/styptic_powder, reac_volume)
 	..()
 
 
 /datum/reagent/medicine/styptic_powder/on_mob_life(mob/living/carbon/M)
-	M.adjustBruteLoss(-2*REM, 0)
-	..()
-	. = 1
-
-/datum/reagent/medicine/styptic_powder/overdose_process(mob/living/M)
-	M.adjustBruteLoss(2.5*REM, 0)
-	M.adjustToxLoss(0.5, 0)
+	M.adjustBruteLoss(-0.5*REM, 0)
 	..()
 	. = 1
 
@@ -412,7 +408,7 @@
 				M.adjustBruteLoss(-1.25 * reac_volume)
 				M.adjustFireLoss(-1.25 * reac_volume)
 			else
-				var/heal_amt = clamp(reac_volume, 0, 60 - S?.volume)
+				var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_MAX - S?.volume)
 				M.adjustBruteLoss(-2*heal_amt)
 				M.adjustFireLoss(-2*heal_amt)
 				if(method == TOUCH)
@@ -437,6 +433,39 @@
 			M.reagents.remove_reagent(R.type,1)
 	..()
 
+/datum/reagent/medicine/system_cleaner
+	name = "System Cleaner"
+	description = "Neutralizes harmful chemical compounds inside synthetic systems."
+	reagent_state = LIQUID
+	color = "#F1C40F"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	process_flags = SYNTHETIC
+
+/datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
+	M.adjustToxLoss(-2*REM, 0)
+	. = 1
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		if(R != src)
+			M.reagents.remove_reagent(R.type,1)
+	..()
+
+/datum/reagent/medicine/liquid_solder
+	name = "Liquid Solder"
+	description = "Repairs brain damage in synthetics."
+	color = "#727272"
+	taste_description = "metallic"
+	process_flags = SYNTHETIC
+
+/datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(prob(10) && C.has_trauma_type(BRAIN_TRAUMA_SPECIAL))
+			C.cure_trauma_type(BRAIN_TRAUMA_SPECIAL)
+		else if(prob(10) && C.has_trauma_type(BRAIN_TRAUMA_MILD))
+			C.cure_trauma_type(BRAIN_TRAUMA_MILD)
+	..()
+
 /datum/reagent/medicine/omnizine
 	name = "Omnizine"
 	description = "Slowly heals all damage types. Overdose will cause damage in all types instead."
@@ -445,6 +474,7 @@
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	var/healing = 0.5
 	overdose_threshold = 30
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(-healing*REM, 0)
@@ -874,7 +904,7 @@
 			M.do_jitter_animation(10)
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
 			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
-			sleep(100) //so the ghost has time to re-enter
+			sleep(10 SECONDS) //so the ghost has time to re-enter
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
 				for(var/organ in C.internal_organs)
@@ -1158,12 +1188,12 @@
 	reagent_state = LIQUID
 	color = "#43bf1d"
 	taste_description = "bug intestines"
-	overdose_threshold = 10
+	overdose_threshold = 20
 	can_synth = FALSE
 
 /datum/reagent/medicine/grubjuice/on_mob_life(mob/living/carbon/M)
-	M.heal_bodypart_damage(7,7)
-	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 2*REM)
+	M.heal_bodypart_damage(3,3)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1*REM)
 	..()
 	return TRUE
 

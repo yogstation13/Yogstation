@@ -30,6 +30,7 @@
 #define LIMBGROWER		(1<<6) 	//Uses synthetic flesh
 #define SMELTER			(1<<7) 	//uses various minerals
 #define NANITE_COMPILER  (1<<8) //Prints nanite disks
+#define RACK_CREATOR 	(1<<9) //For AI non-physical AI hardware. (RAM expansions)
 //Note: More than one of these can be added to a design but imprinter and lathe designs are incompatable.
 
 //Modular computer/NTNet defines
@@ -77,9 +78,11 @@
 #define PROGRAM_STATE_BACKGROUND 1
 #define PROGRAM_STATE_ACTIVE 2
 //Program categories
-#define PROGRAM_CATEGORY_CREW "Crew"
+#define PROGRAM_CATEGORY_CMD "Command"
+#define PROGRAM_CATEGORY_SEC "Security"
 #define PROGRAM_CATEGORY_ENGI "Engineering"
-#define PROGRAM_CATEGORY_ROBO "Robotics"
+#define PROGRAM_CATEGORY_SCI "Science"
+#define PROGRAM_CATEGORY_MED "Medical"
 #define PROGRAM_CATEGORY_SUPL "Supply"
 #define PROGRAM_CATEGORY_MISC "Other"
 

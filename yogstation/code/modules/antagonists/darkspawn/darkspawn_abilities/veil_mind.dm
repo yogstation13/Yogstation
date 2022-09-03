@@ -16,7 +16,7 @@
 	owner.visible_message(span_warning("[owner]'s sigils flare as they inhale..."), "<span class='velvet bold'>dawn kqn okjc...</span><br>\
 	[span_notice("You take a deep breath...")]")
 	playsound(owner, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 25)
-	if(!do_after(owner, 1 SECONDS, target = owner))
+	if(!do_after(owner, 1 SECONDS, owner))
 		return
 	owner.visible_message(span_boldwarning("[owner] lets out a chilling cry!"), "<span class='velvet bold'>...wjz oanra</span><br>\
 	[span_notice("You veil the minds of everyone nearby.")]")

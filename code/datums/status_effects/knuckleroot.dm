@@ -18,7 +18,7 @@
 	cube.Scale(size_check.Width(), size_check.Height())
 	owner.add_overlay(cube)
 	owner.remove_status_effect(STATUS_EFFECT_KNUCKLED)
-	if(!ishuman(owner))
+	if(isanimal(owner))
 		duration = 6 SECONDS
 		owner.adjustBruteLoss(50)
 	return ..()

@@ -34,7 +34,7 @@
 	block_chance = 25
 	materials = list(/datum/material/bananium=75)
 	attack_verb = list("BONKED", "panned", "flexes on")
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100) //honkzo bananium frying pan folded over 1000 times, your mime explosives are no match.
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 100, BIO = 0, RAD = 0, FIRE = 100, ACID = 100) //honkzo bananium frying pan folded over 1000 times, your mime explosives are no match.
 
 /obj/item/melee/fryingpan/bananium/Initialize()
 	. = ..()

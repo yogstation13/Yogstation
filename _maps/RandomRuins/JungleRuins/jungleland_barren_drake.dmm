@@ -1,0 +1,148 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"f" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"g" = (
+/obj/structure/stone_tile/block/burnt,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"i" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"j" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"n" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"o" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"r" = (
+/obj/structure/stone_tile/slab,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"s" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 10
+	},
+/obj/structure/stone_tile/slab/cracked{
+	dir = 5
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"x" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"E" = (
+/obj/structure/stone_tile/surrounding/burnt,
+/mob/living/simple_animal/hostile/megafauna/dragon,
+/turf/open/lava,
+/area/space)
+"O" = (
+/obj/structure/stone_tile/slab/burnt,
+/turf/open/lava,
+/area/space)
+"P" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 4;
+	icon_state = "cracked_slab1"
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"R" = (
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"X" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+"Y" = (
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/space)
+
+(1,1,1) = {"
+a
+R
+R
+R
+R
+R
+a
+"}
+(2,1,1) = {"
+R
+R
+o
+x
+f
+R
+R
+"}
+(3,1,1) = {"
+R
+o
+n
+O
+P
+f
+R
+"}
+(4,1,1) = {"
+R
+i
+O
+E
+O
+g
+R
+"}
+(5,1,1) = {"
+R
+j
+r
+O
+s
+Y
+R
+"}
+(6,1,1) = {"
+R
+R
+j
+X
+Y
+R
+R
+"}
+(7,1,1) = {"
+a
+R
+R
+R
+R
+R
+a
+"}

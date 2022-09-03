@@ -20,7 +20,10 @@ export const Button = props => {
     fluid,
     icon,
     iconRotation,
+    iconSize,
     iconSpin,
+    iconColor,
+    iconPosition,
     color,
     disabled,
     selected,
@@ -58,6 +61,7 @@ export const Button = props => {
         ellipsis && 'Button--ellipsis',
         circular && 'Button--circular',
         compact && 'Button--compact',
+        iconPosition && 'Button--iconPosition--' + iconPosition,
         (color && typeof color === 'string')
           ? 'Button--color--' + color
           : 'Button--color--default',
@@ -87,10 +91,12 @@ export const Button = props => {
         }
       }}
       {...rest}>
-      {icon && (
+      {(icon && iconPosition !== 'right') && (
         <Icon
           name={icon}
           rotation={iconRotation}
+          color={iconColor}
+          size={iconSize}
           spin={iconSpin} />
       )}
       {content}

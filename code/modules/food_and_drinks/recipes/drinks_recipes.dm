@@ -864,3 +864,21 @@
     id = /datum/reagent/consumable/ethanol/ambermoon
     results = list(/datum/reagent/consumable/ethanol/ambermoon = 10)
     required_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/consumable/ethanol/whiskey = 5, /datum/reagent/consumable/capsaicin = 1)
+
+/datum/chemical_reaction/irishflip
+	name = "Irish Flip"
+	id = /datum/reagent/consumable/ethanol/beer/stout/irishflip
+	results = list(/datum/reagent/consumable/ethanol/beer/stout/irishflip = 5)
+	required_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/consumable/ethanol/beer/stout = 1,/datum/reagent/consumable/ethanol/irish_cream = 3 )
+
+/datum/chemical_reaction/blackvelvet
+	name = "Black Velvet"
+	id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet 
+	results = list(/datum/reagent/consumable/ethanol/beer/stout/blackvelvet = 2)
+	required_reagents = list(/datum/reagent/consumable/ethanol/champagne = 1, /datum/reagent/consumable/ethanol/beer/stout = 1)
+
+/datum/chemical_reaction/espressomartini
+	name = "Espresso Martini"
+	id = /datum/reagent/consumable/ethanol/beer/stout/espressomartini
+	results = list(/datum/reagent/consumable/ethanol/beer/stout/espressomartini = 3)
+	required_reagents = list(/datum/reagent/consumable/ethanol/irishcoffee = 2, /datum/reagent/consumable/ethanol/beer/stout = 1)

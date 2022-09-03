@@ -1,9 +1,15 @@
 /mob/living/simple_animal/hostile/yog_jungle //yog_jungle and not just jungle because TG has some mobs under /jungle/ that i dont want to fuck with and override (they are unused, but like whats the point..)
 	icon = 'yogstation/icons/mob/jungle.dmi'
 	stat_attack = UNCONSCIOUS
+	weather_immunities = WEATHER_ACID
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	robust_searching = TRUE
 	faction = list("mining")
-	see_in_dark = 8
+	see_in_dark = 3
+	vision_range = 4
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	pressure_resistance = 100
 
 /mob/living/simple_animal/hostile/yog_jungle/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
@@ -154,6 +160,7 @@
 	speak_emote = list("roars", "howls")
 	emote_hear = list("stalks.","listens.","hears.")
 	emote_taunt = list("defies", "roars")
+	faction = list("skin_walkers") //hostile even to the jungle itself
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
@@ -219,6 +226,7 @@
 		lure_encryption_key = headphones.keyslot
 
 	fully_heal()
+	faction = list("mining")
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/reveal_true_form()
 	new /obj/effect/temp_visual/skin_twister_out(get_turf(src))
@@ -232,6 +240,7 @@
 	speak_chance = initial(speak_chance)
 	taunt_chance = initial(taunt_chance)
 	human_lure = FALSE
+	faction = initial(faction)
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/pick_lure()
 	var/mob/living/picked = pick(subtypesof(/mob/living/simple_animal/hostile/yog_jungle))
@@ -309,4 +318,214 @@
 			A.FindTarget(list(target))
 			B.FindTarget(list(target))
 	return ..()
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito
+	name = "Giant Mosquito"
+	desc = "Massively overgrown bug, how did it get so big?"
+	icon_state = "mosquito"
+	icon_living = "mosquito"
+	icon_dead = "mosquito_dead"
+	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
+	speak = list("bzzzzz")
+	speak_emote = list("buzzes")
+	emote_hear = list("buzzes")
+	emote_taunt = list("buzzes")
+	speak_chance = 0
+	taunt_chance = 0
+	turns_per_move = 0
+	butcher_results = list()
+	response_help  = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm   = "hits"
+	maxHealth = 60
+	health = 60
+	spacewalk = TRUE
+
+	melee_damage_lower = 10
+	melee_damage_upper = 40 
+
+	var/can_charge = TRUE
+	var/cooldown = 15 SECONDS
+	var/charge_ramp_up = 2 SECONDS
+	var/charging = FALSE
+
+	var/has_blood = FALSE
+	var/overshoot_dist = 5
+
+	var/awoke = TRUE
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs,COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,.proc/react_to_daynight_change)
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/Aggro()
+	. = ..()
+	prepare_charge()
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/Goto(target, delay, minimum_distance)
+	if (iscarbon(target) && get_dist(src,target) > 4 && get_charge())
+		prepare_charge()
+		return
+
+	if(!charging)
+		return ..()
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	charging = FALSE
+	if(!ishuman(hit_atom))
+		animate(src,color = initial(color),time = charge_ramp_up/2)
+		return 
+	
+	var/mob/living/carbon/human/humie = hit_atom
+	humie.blood_volume -= 100 // ouch!
+	var/malaria_chance = ((humie.wear_suit ? 100 - humie.wear_suit.armor.bio : 100)  +  (humie.head ? 100 - humie.head.armor.bio : 100) )/2
+	if(prob(malaria_chance * 0.25))
+		var/datum/disease/malaria/infection = new() 
+		humie.ForceContractDisease(infection,FALSE,TRUE)
+	has_blood = TRUE 
+	rapid_melee = TRUE
+	melee_damage_lower = 30 
+	melee_damage_upper = 50
+	icon_state = "mosquito_blood"
+	animate(src,color = initial(color),time = charge_ramp_up*2)
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(!awoke && stat != DEAD)
+		toggle_ai(AI_ON) 
+		awoke = TRUE 
+		icon_state = icon_living
+		FindTarget(user)
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/prepare_charge()
+	if(!get_charge())
+		return FALSE 
+
+	var/dir = Get_Angle(src.loc,target.loc)
+	
+	//i actually fucking hate this utility function, for whatever reason Get_Angle returns the angle assuming that [0;-1] is 0 degrees rather than [1;0] like any sane being.
+	var/tx = clamp(0,round(target.loc.x + sin(dir) * overshoot_dist),255)
+	var/ty = clamp(0,round(target.loc.y + cos(dir) * overshoot_dist),255)
+
+	var/turf/found_turf = locate(tx,ty,loc.z)
+
+	if(found_turf == null)
+		return FALSE 
+	
+	var/dist = get_dist(src,found_turf)
+
+	charging = TRUE
+	animate(src,color = rgb(163, 0, 0),time = charge_ramp_up)
+	sleep(charge_ramp_up)
+	if(stat == DEAD)
+		animate(src,color = initial(color),time = charge_ramp_up)
+		return
+
+	throw_at(found_turf,dist + overshoot_dist,4,spin = FALSE)
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/reset_charge()
+	can_charge = TRUE
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/use_charge()
+	can_charge = FALSE 
+	addtimer(CALLBACK(src,.proc/reset_charge),cooldown,TIMER_UNIQUE)
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/get_charge()
+	return can_charge 
+
+/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/react_to_daynight_change(updates,luminosity)
+	if(stat == DEAD)
+		return 
+
+	if(luminosity > 0 && awoke && !target)
+		toggle_ai(AI_OFF)
+		awoke = FALSE 
+		icon_state = "mosquito_sleeping"
+	
+	if(luminosity <= 0 && !awoke)
+		toggle_ai(AI_ON) 
+		awoke = TRUE 
+		icon_state = has_blood ? "mosquito_blood" : icon_living
+
+
+/mob/living/simple_animal/hostile/tar 
+	icon = 'yogstation/icons/mob/jungle.dmi'
+	stat_attack = DEAD
+	weather_immunities = WEATHER_ACID
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	robust_searching = TRUE
+	see_in_dark = 5
+	vision_range = 6
+	minbodytemp = 0
+	maxbodytemp = INFINITY
+	pressure_resistance = 100
+	faction = list("tar")
+
+/mob/living/simple_animal/hostile/tar/amalgamation
+	name = "Tar Amalgamation"
+	desc = "Tar amalgamate, it has blades for hands and crystalline plates cover it's body"
+	icon_state = "tar_faithless"
+	health = 200
+	maxHealth = 200
+	melee_damage_lower = 15
+	melee_damage_upper = 30
+
+/mob/living/simple_animal/hostile/tar/amalgamation/AttackingTarget()
+	if(isliving(target))
+		var/mob/living/L = target 
+		if(L.has_status_effect(/datum/status_effect/tar_curse))
+			melee_damage_lower = initial(melee_damage_lower) * 1.5 
+			melee_damage_upper = initial(melee_damage_upper) * 1.5
+		else 
+			melee_damage_lower = initial(melee_damage_lower)
+			melee_damage_upper = initial(melee_damage_upper)
+	return ..()
+
+/mob/living/simple_animal/hostile/tar/dryad
+	name = "Tar Dryad"
+	desc = "Once a creature of the forest. It now belongs to the dominion of tar."
+	icon_state = "tar_dryad"
+	health = 100
+	maxHealth = 100
+	inverse_faction_check = TRUE
+	ranged = TRUE
+	ranged_cooldown_time = 5 SECONDS
+	projectiletype = /obj/item/projectile/jungle/heal_orb
+
+/mob/living/simple_animal/hostile/tar/dryad/PickTarget(list/Targets)
+	if(!Targets.len)//We didnt find nothin!
+		return
+
+	var/lowest_hp = INFINITY
+	for(var/pos_targ in Targets)
+		if(isliving(pos_targ))
+			var/mob/living/L = pos_targ 
+			if( L.health > lowest_hp)
+				continue
+			. = L
+	
+	if(!.)
+		return pick(Targets)
+
+/mob/living/simple_animal/hostile/tar/shade
+	name = "Tar Priest"
+	desc = "A lingering spirit of a priest, he serves his lord in death as he did in life."
+	icon_state = "tar_shade"
+	health = 150
+	maxHealth = 150
+	minimum_distance = 5
+	retreat_distance = 2
+	ranged = TRUE 
+	ranged_cooldown_time = 5 SECONDS
+
+/mob/living/simple_animal/hostile/tar/shade/Shoot(atom/targeted_atom)
+	if(!isliving(targeted_atom))
+		return
+	animate(src,0.5 SECONDS,color = "#280025")
+	sleep(0.5 SECONDS)
+	animate(src,0.5 SECONDS,color = initial(color))
+	var/turf/loc = get_turf(targeted_atom)
+	var/attack = pick(subtypesof(/obj/effect/timed_attack/tar_priest))
+	new attack(loc)
 	

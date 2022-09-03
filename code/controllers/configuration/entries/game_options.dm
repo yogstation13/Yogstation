@@ -294,6 +294,11 @@
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/number/config_gateway_chance
+	integer = FALSE
+	min_val = 0
+	max_val = 100
+
 /datum/config_entry/flag/ghost_interaction
 
 /datum/config_entry/flag/near_death_experience //If carbons can hear ghosts when unconscious and very close to death
@@ -351,6 +356,12 @@
 	config_entry_value = 16
 	integer = FALSE
 	min_val = 0
+//Yogs edit
+/datum/config_entry/number/jungleland_budget
+	config_entry_value = 20
+	integer = FALSE
+	min_val = 0
+//Yogs end
 
 /datum/config_entry/flag/allow_random_events	// Enables random events mid-round when set
 

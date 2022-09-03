@@ -20,8 +20,8 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
 	exotic_bloodtype = "L"
-	disliked_food = GRAIN | DAIRY
-	liked_food = GROSS | MEAT | GRILLED | SEAFOOD | MICE
+	disliked_food = SUGAR | VEGETABLES
+	liked_food = MEAT | GRILLED | SEAFOOD | MICE
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
@@ -61,6 +61,32 @@
 	if(heat_stun_mult != 1) 		//If they're the same 1.1^0 is 1, so no change, if we go up we divide by 1.1	
 		stunmod *= heat_stun_mult 	//however many times, and if it goes down we multiply by 1.1
 						//This gets us an effective stunmod of 0.91, 1, 1.1, 1.21, 1.33, based on temp
+
+/datum/species/lizard/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	if((H.client && H.client.prefs.mood_tail_wagging) && !is_wagging_tail() && H.mood_enabled)
+		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
+		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
+			return
+		var/chance = 0
+		switch(mood.shown_mood)
+			if(0 to MOOD_LEVEL_SAD4)
+				chance = -0.1
+			if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
+				chance = -0.01
+			if(MOOD_LEVEL_HAPPY2 to MOOD_LEVEL_HAPPY3)
+				chance = 0.001
+			if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_HAPPY4)
+				chance = 0.1
+			if(MOOD_LEVEL_HAPPY4 to INFINITY)
+				chance = 1
+		if(prob(abs(chance)))
+			switch(SIGN(chance))
+				if(1)
+					H.emote("wag")
+				if(-1)
+					stop_wagging_tail(H)
+	
 
 /*
  Lizard subspecies: ASHWALKERS

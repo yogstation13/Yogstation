@@ -393,7 +393,7 @@
 	harvest = 0
 	weedlevel = 0 // Reset
 
-	sleep(5) // Wait a while
+	sleep(0.5 SECONDS) // Wait a while
 	update_icon()
 	visible_message(span_warning("[oldPlantName] suddenly mutates into [myseed.plantname]!"))
 	update_name()
@@ -413,7 +413,7 @@
 		harvest = 0
 		weedlevel = 0 // Reset
 
-		sleep(5) // Wait a while
+		sleep(0.5 SECONDS) // Wait a while
 		update_icon()
 		visible_message(span_warning("The mutated weeds in [src] spawn some [myseed.plantname]!"))
 		update_name()
@@ -800,21 +800,24 @@
 			to_chat(user, span_warning("[src] already has seeds in it!"))
 
 	else if(istype(O, /obj/item/plant_analyzer))
+		var/list/combined_msg = list()
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		if(myseed)
-			to_chat(user, "*** <B>[myseed.plantname]</B> ***" )
-			to_chat(user, "- Plant Age: [span_notice("[age]")]")
+			combined_msg += "*** <B>[myseed.plantname]</B> ***" 
+			combined_msg += "- Plant Age: [span_notice("[age]")]"
 			var/list/text_string = myseed.get_analyzer_text()
 			if(text_string)
-				to_chat(user, text_string)
+				combined_msg += "[text_string]"
 		else
-			to_chat(user, "<B>No plant found.</B>")
-		to_chat(user, "- Weed level: [span_notice("[weedlevel] / 10")]")
-		to_chat(user, "- Pest level: [span_notice("[pestlevel] / 10")]")
-		to_chat(user, "- Toxicity level: [span_notice("[toxic] / 100")]")
-		to_chat(user, "- Water level: [span_notice("[waterlevel] / [maxwater]")]")
-		to_chat(user, "- Nutrition level: [span_notice("[nutrilevel] / [maxnutri]")]")
-		to_chat(user, "")
+			combined_msg += "<B>No plant found.</B>"
+		combined_msg += "- Weed level: <span class='notice'>[weedlevel] / 10</span>"
+		combined_msg += "- Pest level: <span class='notice'>[pestlevel] / 10</span>"
+		combined_msg += "- Toxicity level: <span class='notice'>[toxic] / 100</span>"
+		combined_msg += "- Water level: <span class='notice'>[waterlevel] / [maxwater]</span>"
+		combined_msg += "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>"
+		combined_msg += ""
+
+		to_chat(user, examine_block(combined_msg.Join("\n")))
 
 	else if(istype(O, /obj/item/cultivator))
 		if(weedlevel > 0)

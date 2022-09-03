@@ -9,7 +9,7 @@
 		At level 4, you get the ability to bash airlocks open, as long as they aren't bolted.\n\
 		Higher levels will increase the damage and knockdown when punching someone."
 	power_flags = BP_AM_TOGGLE
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 8
 	cooldown = 9 SECONDS
@@ -45,8 +45,8 @@
 		if(!istype(closet))
 			return FALSE
 		closet.visible_message(
-			span_warning("closet] tears apart as [user] bashes it open from within!"),
-			span_warning("closet] tears apart as you bash it open from within!"),
+			span_warning("[closet] tears apart as [user] bashes it open from within!"),
+			span_warning("[closet] tears apart as you bash it open from within!"),
 		)
 		to_chat(user, span_warning("We bash [closet] wide open!"))
 		addtimer(CALLBACK(src, .proc/break_closet, user, closet), 1)
@@ -66,18 +66,21 @@
 
 	// Remove Straightjackets
 	if(user.wear_suit?.breakouttime && !used)
-		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(SLOT_WEAR_SUIT)
+		if(!istype(straightjacket))
+			return
 		user.visible_message(
-			span_warning("[user] rips straight through the [user.p_their()] [straightjacket]!"),
-			span_warning("We tear through our [straightjacket]!"),
+			span_warning("[user] rips straight through [user.p_their()] [straightjacket.name]!"),
+			span_warning("We tear through our [straightjacket.name]!"),
 		)
 		if(straightjacket && user.wear_suit == straightjacket)
+			new /obj/item/stack/sheet/cloth(user.loc, 3)
 			qdel(straightjacket)
 		used = TRUE
 
 	// Did we end up using our ability? If so, play the sound effect and return TRUE
 	if(used)
-		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, 1, -1)
+		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
 	return used
 
 // This is its own proc because its done twice, to repeat code copypaste.
@@ -93,7 +96,7 @@
 		return FALSE
 	var/mob/pulled_mob = owner.pulledby
 	var/pull_power = pulled_mob.grab_state
-	playsound(get_turf(pulled_mob), 'sound/effects/woodhit.ogg', 75, 1, -1)
+	playsound(get_turf(pulled_mob), 'sound/effects/woodhit.ogg', 75, TRUE, -1)
 	// Knock Down (if Living)
 	if(isliving(pulled_mob))
 		var/mob/living/hit_target = pulled_mob
@@ -130,7 +133,7 @@
 			target.Knockdown(min(5, rand(10, 10 * powerlevel)))
 		// Attack!
 		to_chat(owner, span_warning("You punch [target]!"))
-		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, 1, -1)
+		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, TRUE, -1)
 		user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(target.zone_selected))
 		target.apply_damage(hitStrength, BRUTE, affecting)
@@ -150,11 +153,11 @@
 			return FALSE
 		target_closet.visible_message(span_danger("[target_closet] breaks open as [user] bashes it!"))
 		addtimer(CALLBACK(src, .proc/break_closet, user, target_closet), 1)
-		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, 1, -1)
+		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
 	// Target Type: Door
 	else if(istype(target_atom, /obj/machinery/door) && level_current >= 4)
 		var/obj/machinery/door/target_airlock = target_atom
-		playsound(get_turf(user), 'sound/machines/airlock_alien_prying.ogg', 40, 1, -1)
+		playsound(get_turf(user), 'sound/machines/airlock_alien_prying.ogg', 40, TRUE, -1)
 		to_chat(owner, span_warning("You prepare to tear open [target_airlock]..."))
 		if(!do_mob(user, target_airlock, 2.5 SECONDS))
 			return FALSE
@@ -162,7 +165,7 @@
 			target_airlock.visible_message(span_danger("[target_airlock] breaks open as [user] bashes it!"))
 			user.Stun(10)
 			user.do_attack_animation(target_airlock, ATTACK_EFFECT_SMASH)
-			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, 1, -1)
+			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, TRUE, -1)
 			target_airlock.open(2) // open(2) is like a crowbar or jaws of life.
 
 /datum/action/bloodsucker/targeted/brawn/CheckValidTarget(atom/target_atom)
@@ -184,8 +187,51 @@
 		return TRUE
 	// Target Type: Door
 	else if(istype(target_atom, /obj/machinery/door))
+		if(level_current < 4)
+			to_chat(owner, span_warning("You need [4 - level_current] more levels to be able to break open the [target_atom]!"))
+			return FALSE
 		return TRUE
 	// Target Type: Locker
 	else if(istype(target_atom, /obj/structure/closet))
+		if(level_current < 3)
+			to_chat(owner, span_warning("You need [3 - level_current] more levels to be able to break open the [target_atom]!"))
+			return FALSE
 		return TRUE
 	return FALSE
+
+/datum/action/bloodsucker/targeted/brawn/shadow
+	name = "Obliterate"
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon_state_on = "lasombra_power_on"
+	background_icon_state_off = "lasombra_power_off"
+	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon_state = "power_obliterate"
+	additional_text = "Additionally afflicts the target with a shadow curse while in darkness and disables any lights they may possess."
+	purchase_flags = LASOMBRA_CAN_BUY
+
+/datum/action/bloodsucker/targeted/brawn/shadow/FireTargetedPower(atom/target_atom)
+	var/mob/living/carbon/human/H = target_atom
+	H.apply_status_effect(STATUS_EFFECT_SHADOWAFFLICTED)
+	var/turf/T = get_turf(H)
+	for(var/datum/light_source/LS in T.affecting_lights)
+		var/atom/LO = LS.source_atom
+		if(isitem(LO))
+			var/obj/item/I = LO
+			if(istype(I, /obj/item/clothing/head/helmet/space/hardsuit))
+				var/obj/item/clothing/head/helmet/space/hardsuit/HA = I
+				if(HA.on)
+					HA.on = FALSE
+			if(istype(I, /obj/item/clothing/head/helmet/space/plasmaman))
+				var/obj/item/clothing/head/helmet/space/plasmaman/PA = I
+				if(PA.on)
+					PA.on = FALSE
+			if(istype(I, /obj/item/flashlight))
+				var/obj/item/flashlight/F = I
+				if(F.on)
+					F.on = FALSE
+					F.update_brightness()
+		if(istype(LO, /mob/living/silicon/robot))
+			var/mob/living/silicon/robot/borg = LO
+			if(!borg.lamp_cooldown)
+				borg.smash_headlamp()
+	. = ..()

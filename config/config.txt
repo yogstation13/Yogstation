@@ -83,6 +83,9 @@ LOG_GAME
 ## log player votes
 LOG_VOTE
 
+## log donator chat
+LOG_DONATOR
+
 ## log client Whisper
 LOG_WHISPER
 
@@ -108,7 +111,7 @@ LOG_MANIFEST
 LOG_JOB_DEBUG
 
 ## log all world.Topic() calls
-# LOG_WORLD_TOPIC
+LOG_WORLD_TOPIC
 
 ## enables use of the proc twitterize() that lets you take a large list of strings and turn it into a JSON file of tweet sized strings.
 ## As an example of how this could be """useful""" look towards Poly (https://twitter.com/Poly_the_Parrot)
@@ -399,10 +402,10 @@ BASE_MC_TICK_RATE 1
 HIGH_POP_MC_TICK_RATE 1.1
 
 ##Engage high pop mode if player count raises above this (Player in this context means any connected user. Lobby, ghost or in-game all count)
-HIGH_POP_MC_MODE_AMOUNT 60
+HIGH_POP_MC_MODE_AMOUNT 65
 
 ##Disengage high pop mode if player count drops below this
-DISABLE_HIGH_POP_MC_MODE_AMOUNT 50
+DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
 
 ## Uncomment to prevent the world from sleeping while no players are connected after initializations
 #RESUME_AFTER_INITIALIZATIONS

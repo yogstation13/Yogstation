@@ -19,7 +19,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /mob/living/simple_animal/mouse
 	name = "mouse"
-	desc = "It's a nasty, ugly, evil, disease-ridden rodent."
+	desc = "This cute little guy just loves the taste of uninsulated electrical cables. Isn't he adorable?"
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
@@ -42,6 +42,8 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	can_be_held = TRUE //mouse gaming
+	worn_slot_flags = ITEM_SLOT_HEAD
 	var/body_color //brown, gray and white, leave blank for random
 	gold_core_spawnable = FRIENDLY_SPAWN
 	move_force = MOVE_FORCE_EXTREMELY_WEAK
@@ -49,6 +51,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/full = FALSE
 	var/eating = FALSE
 	var/cheesed = FALSE
+	var/cheese_time = 0
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
@@ -59,15 +62,19 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
 
+/mob/living/simple_animal/mouse/handle_stomach()
+	if(cheesed && cheese_time < world.time)
+		cheese_down()
+
 /mob/living/simple_animal/mouse/proc/splat()
-	if(!key)
-		src.health = 0
-		src.icon_dead = "mouse_[body_color]_splat"
-		death()
-	else
+	if(key)
 		adjustHealth(rand(7,12))
 		if(health <= 0)
 			src.icon_dead = "mouse_[body_color]_splat"
+	else
+		src.health = 0
+		src.icon_dead = "mouse_[body_color]_splat"
+		death()
 
 /mob/living/simple_animal/mouse/death(gibbed, toast)
 	GLOB.mouse_killed++
@@ -90,9 +97,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		if(!stat)
 			var/mob/M = AM
 			to_chat(M, span_notice("[icon2html(src, M)] Squeak!"))
-	if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
-		evolve()
-		qdel(AM)
+	//if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
+	//	evolve()
+	//	qdel(AM)
 	..()
 
 /mob/living/simple_animal/mouse/handle_automated_action()
@@ -102,22 +109,22 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 			var/obj/structure/cable/C = locate() in F
 			if(C && prob(15))
 				if(C.avail())
-					visible_message("<span class='warning'>[src] chews through the [C]. It's toast!</span>")
+					visible_message(span_warning("[src] chews through the [C]. It's toast!"))
 					playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
 					C.deconstruct()
 					death(toast=1)
 				else
 					C.deconstruct()
-					visible_message("<span class='warning'>[src] chews through the [C].</span>")
+					visible_message(span_warning("[src] chews through the [C]."))
 	for(var/obj/item/reagent_containers/food/snacks/cheesewedge/cheese in range(1, src))
 		if(prob(10))
 			be_fruitful()
 			qdel(cheese)
 			return
-	for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
-		qdel(bigcheese)
-		evolve()
-		return
+	//for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
+	//	qdel(bigcheese)
+	//	evolve()
+	//	return
 
 
 /**
@@ -126,18 +133,18 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /mob/living/simple_animal/mouse/proc/be_fruitful()
 	var/cap = CONFIG_GET(number/ratcap)
 	if(LAZYLEN(SSmobs.cheeserats) >= cap)
-		visible_message("<span class='warning'>[src] carefully eats the cheese, hiding it from the [cap] mice on the station!</span>")
+		visible_message(span_warning("[src] carefully eats the cheese, hiding it from the [cap] mice on the station!"))
 		return
 	var/mob/living/newmouse = new /mob/living/simple_animal/mouse(loc)
 	SSmobs.cheeserats += newmouse
-	visible_message("<span class='notice'>[src] nibbles through the cheese, attracting another mouse!</span>")
+	visible_message(span_notice("[src] nibbles through the cheese, attracting another mouse!"))
 
 /**
   *Spawns a new regal rat, says some good jazz, and if sentient, transfers the relivant mind.
   */
 /mob/living/simple_animal/mouse/proc/evolve()
 	var/mob/living/simple_animal/hostile/regalrat = new /mob/living/simple_animal/hostile/regalrat(loc)
-	visible_message("<span class='warning'>[src] devours the cheese! He morphs into something... greater!</span>")
+	visible_message(span_warning("[src] devours the cheese! He morphs into something... greater!"))
 	regalrat.say("RISE, MY SUBJECTS! SCREEEEEEE!")
 	if(mind)
 		mind.transfer_to(regalrat)
@@ -176,6 +183,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		return ..()
 
 /mob/living/simple_animal/mouse/attack_ghost(mob/dead/observer/user)
+	if(client)
+		return ..()
+	if(stat == DEAD)
+		return ..()
 	user.possess_mouse(src)
 
 /mob/living/simple_animal/mouse/start_pulling(atom/movable/AM, state, force, supress_message)
@@ -183,23 +194,24 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /mob/living/simple_animal/mouse/CtrlClickOn(atom/A)
 	face_atom(A)
-	if(!isturf(loc)) return
-	if(next_move > world.time) return
-	if(!A.Adjacent(src)) return
+	if(!isturf(loc))
+		return
+	if(next_move > world.time)
+		return
+	if(!A.Adjacent(src))
+		return
 
 	if(!can_eat(A))
 		return FALSE
 
 	eating = TRUE
 	layer = MOB_LAYER
-	visible_message(span_danger("[src] starts eating away [A]..."),
-						 span_notice("You start eating the [A]..."))
-	if(do_after(src, 3 SECONDS, FALSE, A))
+	visible_message(span_danger("[src] starts eating away [A]..."),span_notice("You start eating the [A]..."))
+	if(do_after(src, 3 SECONDS, A, FALSE))
 		if(QDELETED(A))
 			return
-		visible_message(span_danger("[src] finishes eating up [A]!"),
-						 span_notice("You finish up eating [A]."))
-		A.mouse_eat(src)
+		visible_message(span_danger("[src] finishes eating up [A]!"),span_notice("You finish up eating [A]."))
+		mouse_eat(A)
 		playsound(A.loc,'sound/effects/mousesqueek.ogg', 100) // i have no idea how loud this is, 100 seems to be used for the squeak component
 		GLOB.mouse_food_eaten++
 
@@ -226,11 +238,12 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 	GLOB.mouse_spawned += mice
 	GLOB.food_for_next_mouse = max(GLOB.food_for_next_mouse - FOODPERMOUSE * mice, 0)
-	SSminor_mapping.trigger_migration(mice,TRUE)
+	SSminor_mapping.trigger_migration(mice, TRUE)
 
 /mob/living/simple_animal/mouse/proc/cheese_up()
 	regen_health(15)
 	if(cheesed)
+		cheese_time = cheese_time + 3 MINUTES
 		return
 	cheesed = TRUE
 	resize = 2
@@ -239,7 +252,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	maxHealth = 30
 	health = maxHealth
 	to_chat(src, span_userdanger("You ate cheese! You are now stronger, bigger and faster!"))
-	addtimer(CALLBACK(src, .proc/cheese_down), 3 MINUTES)
+	cheese_time = cheese_time + 3 MINUTES
 
 /mob/living/simple_animal/mouse/proc/cheese_down()
 	cheesed = FALSE
@@ -250,35 +263,22 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	remove_movespeed_modifier(MOVESPEED_ID_MOUSE_CHEESE, TRUE)
 	to_chat(src, span_userdanger("A feeling of sadness comes over you as the effects of the cheese wears off. You. Must. Get. More."))
 
-/atom/proc/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.regen_health()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/cheesewedge/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/cheesewheel/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/store/cheesewheel/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/customizable/cheesewheel/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/reagent_containers/food/snacks/cheesiehonkers/mouse_eat(mob/living/simple_animal/mouse/M)
-	M.cheese_up()
-	qdel(src)
-
-/obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/simple_animal/mouse/M)
-	var/teleport_radius = max(round(seed.potency / 10), 1)
-	var/turf/T = get_turf(M)
-	do_teleport(M, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
-	..()
+/mob/living/simple_animal/mouse/proc/mouse_eat(obj/item/reagent_containers/food/snacks/F)
+	var/list/cheeses = list(/obj/item/reagent_containers/food/snacks/cheesewedge, /obj/item/reagent_containers/food/snacks/cheesewheel,
+							/obj/item/reagent_containers/food/snacks/store/cheesewheel, /obj/item/reagent_containers/food/snacks/customizable/cheesewheel,
+							/obj/item/reagent_containers/food/snacks/cheesiehonkers) //all cheeses - royal
+	//if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
+	//	evolve()
+	//	return
+	if(istype(F, /obj/item/grown/bananapeel/bluespace))
+		var/obj/item/grown/bananapeel/bluespace/B
+		var/teleport_radius = max(round(B.seed.potency / 10), 1)
+		var/turf/T = get_turf(src)
+		do_teleport(src, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
+	if(is_type_in_list(F, cheeses))
+		cheese_up()
+	regen_health()
+	qdel(F)
 
 /*
  * Mouse types

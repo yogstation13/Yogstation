@@ -607,14 +607,10 @@
 	screen_loc = ui_internal
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/screen/healths/blob/naut
-	name = "health"
-	icon = 'icons/mob/blob.dmi'
-	icon_state = "nauthealth"
-
-/obj/screen/healths/blob/naut/core
+/obj/screen/healths/blob/overmind
 	name = "overmind health"
-	screen_loc = ui_health
+	icon = 'icons/mob/blob.dmi'
+	screen_loc = ui_blobbernaut_overmind_health
 	icon_state = "corehealth"
 
 /obj/screen/healths/guardian
@@ -627,7 +623,7 @@
 /obj/screen/healths/clock
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_clock"
-	screen_loc = ui_health
+	screen_loc = ui_living_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/healths/clock/gear
@@ -657,7 +653,7 @@
 /obj/screen/healths/lavaland_elite
 	icon = 'icons/mob/screen_elite.dmi'
 	icon_state = "elite_health0"
-	screen_loc = ui_health
+	screen_loc = ui_living_health
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/healthdoll
@@ -668,6 +664,11 @@
 	if (ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.check_self_for_injuries()
+
+/obj/screen/healthdoll/living
+	icon_state = "fullhealth0"
+	screen_loc = ui_living_healthdoll
+	var/filtered = FALSE //so we don't repeatedly create the mask of the mob every update
 
 /obj/screen/mood
 	name = "mood"
@@ -710,10 +711,10 @@
 	if(QDELETED(src))
 		return
 	if(out)
-		animate(src, alpha = 0, time = 30)
+		animate(src, alpha = 0, time = 3 SECONDS)
 	else
 		alpha = 0
-		animate(src, alpha = 255, time = 30)
+		animate(src, alpha = 255, time = 3 SECONDS)
 	if(qdel_after)
 		QDEL_IN(src, 30)
 
@@ -791,3 +792,8 @@
 	else
 		cooldown.start_cooldown(time, FALSE)
 	return cooldown
+
+/obj/screen/stamina
+	name = "stamina"
+	icon_state = "stamina0"
+	screen_loc = ui_stamina

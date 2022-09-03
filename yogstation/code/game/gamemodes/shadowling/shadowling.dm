@@ -212,7 +212,7 @@ Made by Xhuis
 	if(light_amount > LIGHT_DAM_THRESHOLD)
 		C.remove_movespeed_modifier(id)
 	else
-		C.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+		C.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	
 
 /datum/species/shadow/ling/lesser //Empowered thralls. Obvious, but powerful

@@ -134,6 +134,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
 	var/static/ticket_counter = 0
 	var/static/last_bwoinking = 0
+	var/static/last_unclaimed_notification = 0
 
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
@@ -181,7 +182,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		MessageNoRecipient(msg)
 
 		//send it to irc if nobody is on and tell us how many were on
-		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
+		var/admin_number_present = check_admins_online()
 		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin irc."), confidential=TRUE)
@@ -190,6 +191,38 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.tickets_list += src
 	GLOB.ahelp_tickets.ticketAmount += 1
 
+/datum/admin_help/proc/check_admins_online()
+	var/list/adm = get_admin_counts(R_BAN)
+	var/list/activemins = adm["present"]
+	. = activemins.len
+	if(. > 0)
+		return
+	send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
+	var/list/stealthmins = adm["stealth"]
+	if(stealthmins.len > 0) // If there are stealthmins, do nothing
+		return
+	// There are no admins online, try deadmins
+	var/found_deadmin = FALSE
+	if(GLOB.deadmins.len > 0)
+		for(var/deadmin_ckey in GLOB.deadmins)
+			var/datum/admins/A = GLOB.deadmins[deadmin_ckey]
+			if(!A.check_for_rights(R_BAN))
+				continue
+			var/client/client = GLOB.directory[deadmin_ckey]
+			if(!client)
+				continue
+			if(client.prefs.toggles & SOUND_ADMINHELP)
+				SEND_SOUND(client, sound('sound/effects/adminhelp.ogg'))
+			to_chat(client, span_danger("Ticket opened with no active admins. Ticket will be sent to discord in 30 seconds if not taken."), confidential=TRUE)
+			if(!found_deadmin)
+				found_deadmin = TRUE
+				addtimer(CALLBACK(src, .proc/send_to_discord), 30 SECONDS)
+	if(!found_deadmin)
+		send_to_discord()
+
+/datum/admin_help/proc/send_to_discord()
+	if(state == AHELP_ACTIVE && !handling_admin)
+		webhook_send_ticket_unclaimed(initiator_ckey, name, id)
 
 /datum/admin_help/Destroy()
 	GLOB.ahelp_tickets.tickets_list -= src
@@ -197,7 +230,22 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/check_owner() // Handles unclaimed tickets; returns TRUE if no longer unclaimed
 	if(!handling_admin && state == AHELP_ACTIVE)
-		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font>")
+		var/msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Ticket [TicketHref("#[id]")] Unclaimed!</font></span>")
+		for(var/client/X in GLOB.admins)
+			if(check_rights_for(X,R_BAN))
+				to_chat(X,
+					type = MESSAGE_TYPE_ADMINLOG,
+					html = msg,
+					confidential = TRUE)
+			else
+				if(world.time > last_unclaimed_notification)
+					last_unclaimed_notification = world.time + 1 SECONDS
+					msg = "<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\"><font color='blue'>Unclaimed Tickets!</font></span>"
+					to_chat(X,
+						type = MESSAGE_TYPE_ADMINLOG,
+						html = msg,
+						confidential = TRUE)
+				
 		if(world.time > last_bwoinking)
 			last_bwoinking = world.time + 1 SECONDS
 			for(var/client/X in GLOB.admins)
@@ -424,7 +472,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(initiator)
 		to_chat(initiator, msg, confidential=TRUE)
-		initiator.mentorhelp(name)
+		initiator.mhelp(name, TRUE)
 
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "MHelp")
 	msg = "Ticket [TicketHref("#[id]")] marked as MHelp by [key_name]"

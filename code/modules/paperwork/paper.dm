@@ -5,8 +5,6 @@
  * lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
  */
 
-#define PAPER_FIELD "<span class=\"paper_field\"></span>"
-
 /datum/langtext // A datum to describe a piece of writing that stores a language value with it.
 	var/text = "" // The text that is written.
 	var/datum/language/lang // the language it's written in.
@@ -384,5 +382,3 @@
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"
 
-
-#undef PAPER_FIELD

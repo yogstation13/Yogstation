@@ -90,6 +90,8 @@
 	tick_interval = 10
 	alert_type = /obj/screen/alert/status_effect/stasis
 	var/last_dead_time
+	/// What is added to the *life_tickrate*, -1 to freeze the ticks
+	var/stasis_mod = -1
 
 /datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
 	if(last_dead_time)
@@ -101,20 +103,25 @@
 	if(owner.stat == DEAD)
 		last_dead_time = world.time
 
-/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove, new_stasis_mod)
 	. = ..()
+	stasis_mod = new_stasis_mod
+	new_owner.life_tickrate += stasis_mod
 	update_time_of_death()
-	owner.reagents?.end_metabolization(owner, FALSE)
+	if(stasis_mod == -1)
+		owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/incapacitating/stasis/tick()
 	update_time_of_death()
 
 /datum/status_effect/incapacitating/stasis/on_remove()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /obj/screen/alert/status_effect/stasis
@@ -147,24 +154,11 @@
 /obj/screen/alert/status_effect/strandling/Click(location, control, params)
 	. = ..()
 	to_chat(mob_viewer, span_notice("You attempt to remove the durathread strand from around your neck."))
-	if(do_after(mob_viewer, 3.5 SECONDS, null, mob_viewer))
+	if(do_after(mob_viewer, 3.5 SECONDS, mob_viewer, FALSE))
 		if(isliving(mob_viewer))
 			var/mob/living/L = mob_viewer
 			to_chat(mob_viewer, span_notice("You succesfuly remove the durathread strand."))
 			L.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
-
-
-/datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
-	if(isnum(set_duration))
-		duration = set_duration
-	. = ..()
-
-/datum/status_effect/pacify/on_apply()
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
-	return ..()
-
-/datum/status_effect/pacify/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
 
 //OTHER DEBUFFS
 /datum/status_effect/pacify
@@ -358,6 +352,41 @@
 	if(owner.reagents)
 		owner.reagents.del_reagent(/datum/reagent/water/holywater) //can't be deconverted
 
+/datum/status_effect/the_shadow
+	id = "the_shadow"
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	duration = -1
+	var/mutable_appearance/shadow
+
+/datum/status_effect/the_shadow/on_apply()
+	if(ishuman(owner))
+		shadow = mutable_appearance('icons/effects/effects.dmi', "curse")
+		shadow.pixel_x = -owner.pixel_x
+		shadow.pixel_y = -owner.pixel_y
+		owner.add_overlay(shadow)
+		to_chat(owner, span_boldwarning("The shadows invade your mind, MUST. GET. THEM. OUT"))
+		return TRUE
+	return FALSE
+
+/datum/status_effect/the_shadow/tick()
+	var/turf/T = get_turf(owner)
+	var/light_amount = T.get_lumcount()
+	if(light_amount > 0.2)
+		to_chat(owner, span_notice("As the light reaches the shadows, they dissipate!"))
+		qdel(src)
+	if(owner.stat == DEAD)
+		qdel(src)
+	owner.hallucination += 2
+	owner.confused += 2
+	owner.adjustEarDamage(0, 5)
+
+/datum/status_effect/the_shadow/Destroy()
+	if(owner)
+		owner.cut_overlay(shadow)
+	QDEL_NULL(shadow)
+	return ..()
+
 /datum/status_effect/crusher_mark
 	id = "crusher_mark"
 	duration = 300 //if you leave for 30 seconds you lose the mark, deal with it
@@ -525,7 +554,7 @@
 		wasting_effect.setDir(owner.dir)
 		wasting_effect.transform = owner.transform //if the owner has been stunned the overlay should inherit that position
 		wasting_effect.alpha = 255
-		animate(wasting_effect, alpha = 0, time = 32)
+		animate(wasting_effect, alpha = 0, time = 3.2 SECONDS)
 		playsound(owner, 'sound/effects/curse5.ogg', 20, 1, -1)
 		owner.adjustFireLoss(0.75)
 	if(effect_last_activation <= world.time)
@@ -1090,3 +1119,50 @@
 /datum/status_effect/knuckled/be_replaced()
     owner.underlays -= bruise 
     ..()
+
+/datum/status_effect/taming
+	id = "taming"
+	duration = -1
+	tick_interval = 6
+	alert_type = null
+	var/tame_amount = 1
+	var/tame_buildup = 1
+	var/tame_crit = 35
+	var/needs_to_tame = FALSE
+	var/mob/living/tamer
+
+/datum/status_effect/taming/on_creation(mob/living/owner, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	tamer = user
+
+/datum/status_effect/taming/on_apply()
+	if(owner.stat == DEAD)
+		return FALSE
+	return ..()
+
+/datum/status_effect/taming/tick()
+	if(owner.stat == DEAD)
+		qdel(src)
+
+/datum/status_effect/taming/proc/add_tame(amount)
+	tame_amount += amount
+	if(tame_amount)
+		if(tame_amount >= tame_crit)
+			needs_to_tame = TRUE
+			qdel(src)
+	else
+		qdel(src)
+
+/datum/status_effect/taming/on_remove()
+	var/mob/living/simple_animal/hostile/M = owner
+	if(needs_to_tame)
+		var/turf/T = get_turf(M)
+		new /obj/effect/temp_visual/love_heart(T)
+		M.drop_loot()
+		M.loot = null
+		M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
+		M.faction = tamer.faction
+		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
+		. = ..()

@@ -69,13 +69,13 @@
 /mob/living/simple_animal/hostile/construct/examine(mob/user)
 	var/t_He = p_they(TRUE)
 	var/t_s = p_s()
-	. = list("<span class='cult'>*---------*\nThis is [icon2html(src, user)] \a <b>[src]</b>!\n[desc]")
+	. = list("<span class='cult'>This is [icon2html(src, user)] \a <b>[src]</b>!\n[desc]")
 	if(health < maxHealth)
 		if(health >= maxHealth/2)
 			. += span_warning("[t_He] look[t_s] slightly dented.")
 		else
 			. += span_warning("<b>[t_He] look[t_s] severely dented!</b>")
-	. += "*---------*</span>"
+	. += "</span>"
 
 /mob/living/simple_animal/hostile/construct/attack_animal(mob/living/simple_animal/M)
 	if(isconstruct(M)) //is it a construct?
@@ -196,6 +196,7 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 	health = 65
 	melee_damage_lower = 20
 	melee_damage_upper = 20
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	retreat_distance = 2 //AI wraiths will move in and out of combat
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -341,6 +342,7 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 	sight = SEE_MOBS
 	melee_damage_lower = 15
 	melee_damage_upper = 20
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attacktext = "butchers"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/area_conversion,

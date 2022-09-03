@@ -100,7 +100,7 @@
 	for(var/i=0, i<range, i++)
 		range_left--
 		step_towards(D,A)
-		sleep(2)
+		sleep(0.2 SECONDS)
 
 		for(var/atom/T in get_turf(D))
 			if(T == D || T.invisibility) //we ignore the puff itself and stuff below the floor
@@ -378,3 +378,11 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
 	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
+
+// Rad-B-Gone
+/obj/item/reagent_containers/spray/radbgone
+	name = "Rad-B-Gone"
+	desc = "Warning, do not consume."
+	volume = 100
+	list_reagents = list(/datum/reagent/medicine/radscrub = 100)
+	stream_amount = 5

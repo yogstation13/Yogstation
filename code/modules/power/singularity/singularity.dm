@@ -100,7 +100,7 @@
 		for(var/i in 1 to 3)
 			C.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
 			new /obj/effect/gibspawner/generic(T, C)
-			sleep(1)
+			sleep(0.1 SECONDS)
 		C.ghostize()
 		var/obj/item/bodypart/head/rip_u = C.get_bodypart(BODY_ZONE_HEAD)
 		rip_u.dismember(BURN) //nice try jedi
@@ -385,6 +385,10 @@
 				for (var/A in T.contents)
 					if (istype(A, /atom/movable))
 						objs += 1
+						if(ishuman(A))
+							var/mob/living/carbon/human/H = A
+							if(H.nutrition >= NUTRITION_LEVEL_FAT)
+								objs += 5
 				interest += CEILING(objs / SINGULARITY_INTEREST_OBJECT, 0.5)
 			sections[section_loc] = interest
 	var/turf/section = pickweight(sections)

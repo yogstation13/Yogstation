@@ -12,3 +12,10 @@
 	SA_sleep_min = 5
 	BZ_trip_balls_min = 1
 	gas_stimulation_min = 0.002
+
+/obj/item/organ/lungs/ashwalker/ivymen
+	desc = "These lungs appear to be covered in a symbiotic fungus that allows ivymen to breath n2o as well as handle higher temperatures."
+	heat_level_1_threshold = 550
+	heat_level_2_threshold = 600
+	heat_level_3_threshold = 1100
+

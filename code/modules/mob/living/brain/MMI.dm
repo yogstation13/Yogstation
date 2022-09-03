@@ -1,9 +1,10 @@
 /obj/item/mmi
 	name = "\improper Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
+	desc = "The bland acronym- 'MMI', cloaks the true nature of this infernal machine. Nonetheless, its presense has worked its way into many Nanotrasen stations."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
+	cryo_preserve = TRUE
 	var/braintype = "Cyborg"
 	var/obj/item/radio/radio = null //Let's give it a radio.
 	var/mob/living/brain/brainmob = null //The current occupant.
@@ -19,6 +20,9 @@
 	var/rebooting = FALSE /// If the MMI is rebooting after being deconstructed
 	var/remove_window = 10 SECONDS /// The window in which someone has to remove the brain to lose memory of being killed as a borg
 	var/reboot_timer = null
+	var/welcome_message = "<b>You are a brain within a Man-Machine Interface.\n\
+	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
+	Being placed in a mech does not slave you to any laws.</b>"
 
 /obj/item/mmi/update_icon()
 	if(!brain)
@@ -85,7 +89,10 @@
 
 	else if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O
-		M.install(laws, user)
+		if(can_update_laws)
+			M.install(laws, user)
+		else
+			to_chat(user, span_warning("[src]'s indicator light flashes red: it does not allow law changes."))
 	else if(brainmob)
 		O.attack(brainmob, user) //Oh noooeeeee
 	else
@@ -99,7 +106,7 @@
 	else
 		user.visible_message(span_notice("[user] begins to remove the brain from [src]"), span_danger("You begin to pry the brain out of [src], ripping out the wires and probes"))
 		to_chat(brainmob, span_userdanger("You feel your mind failing as you are slowly ripped from the [src]"))
-		if(do_after(user, remove_time, target = src))
+		if(do_after(user, remove_time, src))
 			if(!brainmob) return
 			to_chat(brainmob, span_userdanger("Due to the traumatic danger of your removal, all memories of the events leading to your brain being removed are lost[rebooting ? ", along with all memories of the events leading to your death as a cyborg" : ""]"))
 			eject_brain(user)
@@ -151,6 +158,7 @@
 		brain.name = "[L.real_name]'s brain"
 
 	name = "[initial(name)]: [brainmob.real_name]"
+	to_chat(brainmob, welcome_message)
 	update_icon()
 	return
 
@@ -224,9 +232,9 @@
 
 		else
 			. += span_notice("The MMI indicates the brain is active.")
-	. += span_notice("It has a port for reading AI law modules. Any AI uploaded using this MMI will use these uploded laws.")
+	. += span_notice("It has a port for reading AI law modules.")
 	if(laws)
-		. += "<b>The following laws are loaded into [src]: </b>"
+		. += span_notice("Any AI created using this MMI will use these uploaded laws:")
 		for(var/law in laws.get_law_list())
 			. += law
 

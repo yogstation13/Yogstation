@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/open/space,
-/area/space)
+/turf/template_noop,
+/area/template_noop)
 "ab" = (
 /obj/machinery/door/airlock/shuttle{
 	name = "cargo bay";
@@ -92,6 +92,9 @@
 "al" = (
 /obj/structure/closet/emcloset,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/pen,
+/obj/item/pen,
+/obj/item/pen,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "am" = (
@@ -309,7 +312,9 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "aN" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner,
+/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship/miner{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "aO" = (
@@ -548,17 +553,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
-"cq" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/item/storage/box/donkpockets,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/mineral/titanium/white,
-/area/shuttle/abandoned)
 "cw" = (
 /obj/structure/sink{
 	dir = 4;
@@ -676,9 +670,28 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
+"fr" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/abandoned)
 "fw" = (
 /obj/structure/table,
 /obj/item/storage/photo_album,
+/obj/item/paper/crumpled{
+	inertia_dir = 0;
+	info = "It was bugging me that we didn't have pens, so I looted a ruin for some more. They're in the emergency closet. -E";
+	pixel_x = 1;
+	pixel_y = 6
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "gv" = (
@@ -905,7 +918,9 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "pP" = (
-/obj/machinery/computer/shuttle/white_ship/miner,
+/obj/machinery/computer/shuttle/white_ship/miner{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "qA" = (
@@ -1055,6 +1070,7 @@
 	pixel_x = -1;
 	pixel_y = 2
 	},
+/obj/item/pen/fountain,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/abandoned)
 "Fj" = (
@@ -1431,7 +1447,7 @@ JR
 JR
 JR
 bk
-cq
+fr
 eH
 ry
 bk

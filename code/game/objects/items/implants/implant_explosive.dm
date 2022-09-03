@@ -7,7 +7,7 @@
 	var/weak = 2
 	var/medium = 0.8
 	var/heavy = 0.4
-	var/delay = 7
+	var/delay = 0.7 SECONDS
 	var/popup = FALSE // is the DOUWANNABLOWUP window open?
 	var/active = FALSE
 
@@ -90,7 +90,7 @@
 	weak = 16
 	medium = 8
 	heavy = 4
-	delay = 70
+	delay = 7 SECONDS
 
 /obj/item/implant/explosive/macro/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	for(var/X in target.implants)

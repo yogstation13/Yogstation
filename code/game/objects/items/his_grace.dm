@@ -150,10 +150,10 @@
 		M4.Translate(0, -1)
 		transforms = list(M1, M2, M3, M4)
 
-	animate(src, transform=transforms[1], time=0.2, loop=-1)
-	animate(transform=transforms[2], time=0.1)
-	animate(transform=transforms[3], time=0.2)
-	animate(transform=transforms[4], time=0.3)
+	animate(src, transform=transforms[1], time=0.02 SECONDS, loop=-1)
+	animate(transform=transforms[2], time=0.01 SECONDS)
+	animate(transform=transforms[3], time=0.02 SECONDS)
+	animate(transform=transforms[4], time=0.03 SECONDS)
 
 /obj/item/his_grace/proc/drowse() //Good night, Mr. Grace.
 	if(!awakened || ascended)

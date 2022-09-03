@@ -37,7 +37,7 @@
 	if(istype(I, /obj/item/stack/sheet/plasteel))
 		to_chat(user, span_notice("You start repairing the guillotine with the plasteel."))
 		if(blade_sharpness<10)
-			if(do_after(user, 10 SECONDS, target=user))
+			if(do_after(user, 10 SECONDS, user))
 				blade_sharpness = min(10,blade_sharpness+3)
 				I.use(1)
 				to_chat(user, span_notice("You repair the guillotine with the plasteel."))
@@ -88,7 +88,7 @@
 						                 span_warning("You begin to the pull the lever."))
 					current_action = GUILLOTINE_ACTION_INUSE
 
-					if (do_after(user, GUILLOTINE_ACTIVATE_DELAY, target = src) && blade_status == GUILLOTINE_BLADE_RAISED)
+					if (do_after(user, GUILLOTINE_ACTIVATE_DELAY, src) && blade_status == GUILLOTINE_BLADE_RAISED)
 						current_action = 0
 						blade_status = GUILLOTINE_BLADE_MOVING
 						icon_state = "guillotine_drop"
@@ -170,7 +170,7 @@
 		if (blade_status == GUILLOTINE_BLADE_RAISED)
 			if (blade_sharpness < GUILLOTINE_BLADE_MAX_SHARP)
 				blade_status = GUILLOTINE_BLADE_SHARPENING
-				if(do_after(user, 0.7 SECONDS, target = src))
+				if(do_after(user, 0.7 SECONDS, src))
 					blade_status = GUILLOTINE_BLADE_RAISED
 					user.visible_message(span_notice("[user] sharpens the large blade of the guillotine."),
 						                 span_notice("You sharpen the large blade of the guillotine."))
@@ -251,7 +251,7 @@
 
 	current_action = GUILLOTINE_ACTION_WRENCH
 
-	if (do_after(user, GUILLOTINE_WRENCH_DELAY, target = src))
+	if (do_after(user, GUILLOTINE_WRENCH_DELAY, src))
 		current_action = 0
 		default_unfasten_wrench(user, I, 0)
 		setDir(SOUTH)

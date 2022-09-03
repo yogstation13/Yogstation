@@ -144,7 +144,7 @@
 		while(recording && used < max)
 			mytape.used_capacity++
 			used++
-			sleep(10)
+			sleep(1 SECONDS)
 		recording = 0
 		update_icon()
 	else
@@ -189,7 +189,7 @@
 	to_chat(usr, span_notice("Playing started."))
 	var/used = mytape.used_capacity	//to stop runtimes when you eject the tape
 	var/max = mytape.max_capacity
-	for(var/i = 1, used < max, sleep(10 * playsleepseconds))
+	for(var/i = 1, used < max, sleep(1 SECONDS * playsleepseconds))
 		if(!mytape)
 			break
 		if(playing == 0)
@@ -199,12 +199,12 @@
 		say(mytape.storedinfo[i])
 		if(mytape.storedinfo.len < i + 1)
 			playsleepseconds = 1
-			sleep(10)
+			sleep(1 SECONDS)
 			say("End of recording.")
 		else
 			playsleepseconds = mytape.timestamp[i + 1] - mytape.timestamp[i]
 		if(playsleepseconds > 14)
-			sleep(10)
+			sleep(1 SECONDS)
 			say("Skipping [playsleepseconds] seconds of silence")
 			playsleepseconds = 1
 		i++
@@ -265,7 +265,7 @@
 	P.name = "paper- 'Transcript'"
 	usr.put_in_hands(P)
 	canprint = 0
-	sleep(300)
+	sleep(30 SECONDS)
 	canprint = 1
 
 

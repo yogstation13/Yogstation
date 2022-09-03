@@ -41,11 +41,13 @@ Difficulty: Medium
 	icon_state = "dragon"
 	icon_living = "dragon"
 	icon_dead = "dragon_dead"
+	health_doll_icon = "dragon"
 	friendly = "stares down"
 	speak_emote = list("roars")
 	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	speed = 5
 	move_to_delay = 5
 	ranged = TRUE
@@ -111,7 +113,7 @@ Difficulty: Medium
 			if(2)
 				fire_cone()
 			if(3)
-				mass_fire()
+				mass_fire(12, 15, 3)
 			if(4)
 				lava_swoop()
 		return
@@ -164,7 +166,7 @@ Difficulty: Medium
 		fire_cone()
 	SetRecoveryTime(40)
 
-/mob/living/simple_animal/hostile/megafauna/dragon/proc/mass_fire(var/spiral_count = 12, var/range = 15, var/times = 3)
+/mob/living/simple_animal/hostile/megafauna/dragon/proc/mass_fire(var/spiral_count = 12, var/range = 15, var/times = 6)
 	SLEEP_CHECK_DEATH(0)
 	for(var/i = 1 to times)
 		SetRecoveryTime(50)
@@ -230,7 +232,7 @@ Difficulty: Medium
 	move_to_delay = move_to_delay / 2
 	light_range = 10
 	SLEEP_CHECK_DEATH(10) // run.
-	mass_fire(20, 15, 3)
+	mass_fire(20, 15, 6)
 	move_to_delay = initial(move_to_delay)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	light_range = initial(light_range)
@@ -242,11 +244,15 @@ Difficulty: Medium
 		INVOKE_ASYNC(src, .proc/fire_rain)
 	var/range = 15
 	var/list/turfs = list()
-	turfs = line_target(-40, range, at)
+	turfs = line_target(-50, range, at)
+	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	turfs = line_target(-25, range, at)
 	INVOKE_ASYNC(src, .proc/fire_line, turfs)
 	turfs = line_target(0, range, at)
 	INVOKE_ASYNC(src, .proc/fire_line, turfs)
-	turfs = line_target(40, range, at)
+	turfs = line_target(25, range, at)
+	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	turfs = line_target(50, range, at)
 	INVOKE_ASYNC(src, .proc/fire_line, turfs)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/line_target(var/offset, var/range, var/atom/at = target)
@@ -277,7 +283,7 @@ Difficulty: Medium
 			if(L in hit_list || L == source)
 				continue
 			hit_list += L
-			L.adjustFireLoss(20)
+			L.adjustFireLoss(30)
 			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
 
 		// deals damage to mechs
@@ -285,8 +291,8 @@ Difficulty: Medium
 			if(M in hit_list)
 				continue
 			hit_list += M
-			M.take_damage(45, BRUTE, "melee", 1)
-		sleep(1.5)
+			M.take_damage(45, BRUTE, MELEE, 1)
+		sleep(0.15 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/swoop_attack(lava_arena = FALSE, atom/movable/manual_target, var/swoop_cooldown = 30)
 	if(stat || swooping)
@@ -315,16 +321,16 @@ Difficulty: Medium
 
 	var/oldtransform = transform
 	alpha = 255
-	animate(src, alpha = 204, transform = matrix()*0.9, time = 3, easing = BOUNCE_EASING)
+	animate(src, alpha = 204, transform = matrix()*0.9, time = 0.3 SECONDS, easing = BOUNCE_EASING)
 	for(var/i in 1 to 3)
-		sleep(1)
+		sleep(0.1 SECONDS)
 		if(QDELETED(src) || stat == DEAD) //we got hit and died, rip us
 			qdel(F)
 			if(stat == DEAD)
 				swooping &= ~SWOOP_DAMAGEABLE
-				animate(src, alpha = 255, transform = oldtransform, time = 0, flags = ANIMATION_END_NOW) //reset immediately
+				animate(src, alpha = 255, transform = oldtransform, time = 0 SECONDS, flags = ANIMATION_END_NOW) //reset immediately
 			return
-	animate(src, alpha = 100, transform = matrix()*0.7, time = 7)
+	animate(src, alpha = 100, transform = matrix()*0.7, time = 0.7 SECONDS)
 	swooping |= SWOOP_INVULNERABLE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	SLEEP_CHECK_DEATH(7)
@@ -334,7 +340,7 @@ Difficulty: Medium
 		SLEEP_CHECK_DEATH(0.5)
 
 	// Ash drake flies onto its target and rains fire down upon them
-	var/descentTime = 10
+	var/descentTime = 1 SECONDS
 	var/lava_success = TRUE
 	if(lava_arena)
 		lava_success = lava_arena()
@@ -369,7 +375,7 @@ Difficulty: Medium
 				L.throw_at(throwtarget, 3)
 				visible_message(span_warning("[L] is thrown clear of [src]!"))
 	for(var/obj/mecha/M in orange(1, src))
-		M.take_damage(75, BRUTE, "melee", 1)
+		M.take_damage(75, BRUTE, MELEE, 1)
 
 	for(var/mob/M in range(7, src))
 		shake_camera(M, 15, 1)
@@ -429,12 +435,12 @@ Difficulty: Medium
 	icon_state = "lavastaff_warn"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
-	duration = 13
+	duration = 1.3 SECONDS
 
 /obj/effect/temp_visual/lava_warning/ex_act()
 	return
 
-/obj/effect/temp_visual/lava_warning/Initialize(mapload, var/reset_time = 10)
+/obj/effect/temp_visual/lava_warning/Initialize(mapload, var/reset_time = 1 SECONDS)
 	. = ..()
 	INVOKE_ASYNC(src, .proc/fall, reset_time)
 	src.alpha = 63.75
@@ -454,7 +460,7 @@ Difficulty: Medium
 
 	// deals damage to mechs
 	for(var/obj/mecha/M in T.contents)
-		M.take_damage(45, BRUTE, "melee", 1)
+		M.take_damage(45, BRUTE, MELEE, 1)
 
 	// changes turf to lava temporarily
 	if(!istype(T, /turf/closed) && !istype(T, /turf/open/lava))
@@ -473,7 +479,7 @@ Difficulty: Medium
 	opacity = 0
 	density = TRUE
 	CanAtmosPass = ATMOS_PASS_DENSITY
-	duration = 82
+	duration = 8.2 SECONDS
 	color = COLOR_DARK_ORANGE
 
 /obj/effect/temp_visual/lava_safe
@@ -481,7 +487,7 @@ Difficulty: Medium
 	icon_state = "trap-earth"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
-	duration = 13
+	duration = 1.3 SECONDS
 
 /obj/effect/temp_visual/dragon_swoop
 	name = "certain death"
@@ -492,14 +498,14 @@ Difficulty: Medium
 	pixel_x = -32
 	pixel_y = -32
 	color = "#FF0000"
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/dragon_flight
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	icon_state = "dragon"
 	layer = ABOVE_ALL_MOB_LAYER
 	pixel_x = -16
-	duration = 10
+	duration = 1 SECONDS
 	randomdir = FALSE
 
 /obj/effect/temp_visual/dragon_flight/Initialize(mapload, negative)
@@ -508,36 +514,36 @@ Difficulty: Medium
 
 /obj/effect/temp_visual/dragon_flight/proc/flight(negative)
 	if(negative)
-		animate(src, pixel_x = -DRAKE_SWOOP_HEIGHT*0.1, pixel_z = DRAKE_SWOOP_HEIGHT*0.15, time = 3, easing = BOUNCE_EASING)
+		animate(src, pixel_x = -DRAKE_SWOOP_HEIGHT*0.1, pixel_z = DRAKE_SWOOP_HEIGHT*0.15, time = 0.3 SECONDS, easing = BOUNCE_EASING)
 	else
-		animate(src, pixel_x = DRAKE_SWOOP_HEIGHT*0.1, pixel_z = DRAKE_SWOOP_HEIGHT*0.15, time = 3, easing = BOUNCE_EASING)
-	sleep(3)
+		animate(src, pixel_x = DRAKE_SWOOP_HEIGHT*0.1, pixel_z = DRAKE_SWOOP_HEIGHT*0.15, time = 0.3 SECONDS, easing = BOUNCE_EASING)
+	sleep(0.3 SECONDS)
 	icon_state = "swoop"
 	if(negative)
-		animate(src, pixel_x = -DRAKE_SWOOP_HEIGHT, pixel_z = DRAKE_SWOOP_HEIGHT, time = 7)
+		animate(src, pixel_x = -DRAKE_SWOOP_HEIGHT, pixel_z = DRAKE_SWOOP_HEIGHT, time = 0.7 SECONDS)
 	else
-		animate(src, pixel_x = DRAKE_SWOOP_HEIGHT, pixel_z = DRAKE_SWOOP_HEIGHT, time = 7)
+		animate(src, pixel_x = DRAKE_SWOOP_HEIGHT, pixel_z = DRAKE_SWOOP_HEIGHT, time = 0.7 SECONDS)
 
 /obj/effect/temp_visual/dragon_flight/end
 	pixel_x = DRAKE_SWOOP_HEIGHT
 	pixel_z = DRAKE_SWOOP_HEIGHT
-	duration = 10
+	duration = 1 SECONDS
 
 /obj/effect/temp_visual/dragon_flight/end/flight(negative)
 	if(negative)
 		pixel_x = -DRAKE_SWOOP_HEIGHT
-		animate(src, pixel_x = -16, pixel_z = 0, time = 5)
+		animate(src, pixel_x = -16, pixel_z = 0, time = 0.5 SECONDS)
 	else
-		animate(src, pixel_x = -16, pixel_z = 0, time = 5)
+		animate(src, pixel_x = -16, pixel_z = 0, time = 0.5 SECONDS)
 
-obj/effect/temp_visual/fireball
+/obj/effect/temp_visual/fireball
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "fireball"
 	name = "fireball"
 	desc = "Get out of the way!"
 	layer = FLY_LAYER
 	randomdir = FALSE
-	duration = 9
+	duration = 0.9 SECONDS
 	pixel_z = 270
 
 /obj/effect/temp_visual/fireball/Initialize()
@@ -549,7 +555,7 @@ obj/effect/temp_visual/fireball
 	icon_state = "sniper_zoom"
 	layer = BELOW_MOB_LAYER
 	light_range = 2
-	duration = 9
+	duration = 0.9 SECONDS
 
 /obj/effect/temp_visual/target/ex_act()
 	return
@@ -605,76 +611,3 @@ obj/effect/temp_visual/fireball
 	lava_pools(10, 2) // less pools but longer delay before spawns
 	player_cooldown = world.time + 200 // needs seperate cooldown or cant use fire attacks
 
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon
-	name = "space dragon"
-	maxHealth = 250
-	health = 250
-	faction = list("neutral")
-	desc = "A space carp turned dragon by vile magic.  Has the same ferocity of a space carp, but also a much more enabling body."
-	icon = 'icons/mob/spacedragon.dmi'
-	icon_state = "spacedragon"
-	icon_living = "spacedragon"
-	icon_dead = "spacedragon_dead"
-	obj_damage = 80
-	melee_damage_upper = 35
-	melee_damage_lower = 35
-	speed = 0
-	mouse_opacity = MOUSE_OPACITY_ICON
-	loot = list()
-	crusher_loot = list()
-	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
-	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/carpdragon = 10)
-	move_force = MOVE_FORCE_NORMAL
-	move_resist = MOVE_FORCE_NORMAL
-	pull_force = MOVE_FORCE_NORMAL
-	environment_smash = ENVIRONMENT_SMASH_WALLS
-	deathmessage = "screeches as its wings turn to dust and it collapses on the floor, life estinguished."
-	attack_action_types = list()
-	small_sprite_type = /datum/action/small_sprite/megafauna/spacedragon
-	music_component = null
-
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/Initialize()
-	var/obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon/repulse_action = new /obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon(src)
-	repulse_action.action.Grant(src)
-	mob_spell_list += repulse_action
-	. = ..()
-
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/proc/fire_stream(var/atom/at = target)
-	playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
-	SLEEP_CHECK_DEATH(0)
-	var/range = 20
-	var/list/turfs = list()
-	turfs = line_target(0, range, at)
-	INVOKE_ASYNC(src, .proc/fire_line, turfs)
-
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/OpenFire()
-	if(swooping)
-		return
-	ranged_cooldown = world.time + ranged_cooldown_time
-	fire_stream()
-
-/obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon
-	name = "Tail Sweep"
-	desc = "Throw back attackers with a sweep of your tail."
-	sound = 'sound/magic/tail_swing.ogg'
-	charge_max = 200
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
-	range = 1
-	cooldown_min = 200
-	invocation_type = "none"
-	sparkle_path = /obj/effect/temp_visual/dir_setting/tailsweep
-	action_icon = 'icons/mob/actions/actions_xeno.dmi'
-	action_icon_state = "tailsweep"
-	action_background_icon_state = "bg_alien"
-	anti_magic_check = FALSE
-
-/obj/effect/proc_holder/spell/aoe_turf/repulse/spacedragon/cast(list/targets,mob/user = usr)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		playsound(C.loc,'sound/effects/hit_punch.ogg', 80, 1, 1)
-		C.spin(6,1)
-	..(targets, user, 60)
-
-/mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/AltClickOn(atom/movable/A)
-	return

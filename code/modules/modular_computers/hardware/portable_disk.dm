@@ -65,7 +65,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/syndicate/trap/examine(user)
 	. = ..()
-	if(IS_JOB(user, "Signal Technician"))
+	if(IS_JOB(user, "Network Admin"))
 		. += span_notice("It appears to be rigged with explosives!")
 
 /obj/item/computer_hardware/hard_drive/portable/syndicate/trap/diagnostics(var/mob/user)

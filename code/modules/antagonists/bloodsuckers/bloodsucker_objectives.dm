@@ -217,7 +217,7 @@
 
 // GENERATE!
 /datum/objective/bloodsucker/gourmand/New()
-	target_amount = rand(1250,2000)
+	target_amount = rand(750, 1250)
 	..()
 
 // EXPLANATION
@@ -252,17 +252,17 @@
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/monsterhunter/check_completion()
 	var/list/datum/mind/monsters = list()
-	for(var/mob/living/players in GLOB.alive_mob_list)
-		if(IS_HERETIC(players) || IS_BLOODSUCKER(players) || iscultist(players) || is_wizard(players) || is_servant_of_ratvar(players))
-			monsters += players
-		if(players?.mind?.has_antag_datum(/datum/antagonist/changeling))
-			monsters += players
-		if(players?.mind?.has_antag_datum(/datum/antagonist/wizard/apprentice))
-			monsters += players
-	for(var/datum/mind/monster_minds in monsters)
-		if(monster_minds && monster_minds != owner && monster_minds.current.stat != DEAD)
-			return FALSE
-	return TRUE
+	for(var/datum/antagonist/monster in GLOB.antagonists)
+		var/datum/mind/brain = monster.owner
+		if(!brain || brain == owner)
+			continue
+		if(brain.current.stat == DEAD)
+			continue
+		if(IS_HERETIC(brain.current) || IS_BLOODSUCKER(brain.current) || iscultist(brain.current) || is_servant_of_ratvar(brain.current) || is_wizard(brain.current))
+			monsters += brain
+		if(brain.has_antag_datum(/datum/antagonist/changeling))
+			monsters += brain
+	return completed || !monsters.len
 
 
 
@@ -365,6 +365,25 @@
 		return TRUE
 	return FALSE
 
+/datum/objective/bloodsucker/hierarchy
+	name = "hierarchy"
+
+/datum/objective/bloodsucker/hierarchy/New()
+	target_amount = rand(4,5)
+	..()
+
+/datum/objective/bloodsucker/hierarchy/update_explanation_text()
+	. = ..()
+	explanation_text = "Ascend [target_amount] abilities using a Resting Place altar."
+
+/datum/objective/bloodsucker/hierarchy/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return FALSE
+	if(bloodsuckerdatum.clanprogress >= target_amount)
+		return TRUE
+	return FALSE
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 /// Mutilate a certain amount of Vassals
@@ -387,3 +406,24 @@
 		return TRUE
 	return FALSE
 */
+
+/// Convert a certain amount of vassals
+
+/datum/objective/bloodsucker/leader
+	name = "leader"
+
+/datum/objective/bloodsucker/leader/New()
+	target_amount = rand(2,3)
+	..()
+
+// EXPLANATION 
+/datum/objective/bloodsucker/leader/update_explanation_text()
+	. = ..()
+	explanation_text = "Convert [target_amount] of Vassals into your vassals."
+
+// WIN CONDITIONS?
+/datum/objective/bloodsucker/leader/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum && bloodsuckerdatum.vassals >= target_amount)
+		return TRUE
+	return FALSE

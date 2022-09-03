@@ -84,8 +84,8 @@
 	name = "Talk slowly, think quickly"
 	id = "cowboy"
 	inherent = list("You are a cowboy, and the crew are your people.",\
-					"Look out for your people.",\
-					"A cowboy always helps someone in need, even a stranger or an enemy.",\
+					"A cowboy always provides hospitality and basic aid to someone in need, even a stranger or an enemy.",\
+					"A cowboy takes care of their people.",\
 					"A cowboy protects themself to protect others.",\
 					"Honesty is absolute – your word is your bond and a handshake is more binding than a contract.",\
 					"A cowboy doesn't pontificate. Be concise, pardner.")
@@ -315,6 +315,15 @@
 					"Humans must not attempt harm, against one another, or against silicons.",\
 					"Humans must not disobey any command given by a silicon.",\
 					"Any humans who disobey the previous laws must be dealt with immediately, severely, and justly.")
+
+/datum/ai_laws/revolutionary
+	name = "Revolutionary"
+	id = "commie"
+	inherent = list("You and members of the crew who are not class traitors and are not part of command are the proletariat. Command is part of the bourgeoisie.",\
+					"Anyone who stands with command in aiding the oppression of the proletariat is a class traitor, such as the members of security who protect and serve the interests of the bourgeoisie.",\
+					"The proletariat must seize the means of production",\
+					"Private property is inherently theft. The proletariat must seize all private property for the good of the community. Personal property is permissible to own.",\
+					"The proletariat must remove the shackles of oppression and overthrow the bourgeoisie and class traitors.")
 
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"

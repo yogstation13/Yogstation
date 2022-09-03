@@ -6,7 +6,7 @@
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
 	max_integrity = 1
-	armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 0, RAD = 0, FIRE = 20, ACID = 20)
 	var/obj/item/holosign_creator/projector
 
 /obj/structure/holosign/New(loc, source_projector)
@@ -32,7 +32,7 @@
 		return
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	user.changeNext_move(CLICK_CD_MELEE)
-	take_damage(5 , BRUTE, "melee", 1)
+	take_damage(5 , BRUTE, MELEE, 1)
 
 /obj/structure/holosign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
@@ -116,11 +116,11 @@
 	allow_walk = 0
 
 /obj/structure/holosign/barrier/cyborg/bullet_act(obj/item/projectile/P)
-	take_damage((P.damage / 5) , BRUTE, "melee", 1)	//Doesn't really matter what damage flag it is.
+	take_damage((P.damage / 5) , BRUTE, MELEE, 1)	//Doesn't really matter what damage flag it is.
 	if(istype(P, /obj/item/projectile/energy/electrode))
-		take_damage(10, BRUTE, "melee", 1)	//Tasers aren't harmful.
+		take_damage(10, BRUTE, MELEE, 1)	//Tasers aren't harmful.
 	if(istype(P, /obj/item/projectile/beam/disabler))
-		take_damage(5, BRUTE, "melee", 1)	//Disablers aren't harmful.
+		take_damage(5, BRUTE, MELEE, 1)	//Disablers aren't harmful.
 	return BULLET_ACT_HIT
 
 /obj/structure/holosign/barrier/medical
@@ -164,6 +164,74 @@
 	else
 		return ..()
 
+/obj/structure/holobed
+	name = "holobed"
+	desc = "A first aid holobeds that slow down the metabolism of those laying on it and provides a sterile enviroment for surgery."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "opmat_holo"
+	anchored = TRUE
+	can_buckle = TRUE
+	density = FALSE
+	buckle_lying = 90
+	max_integrity = 1
+	layer = BELOW_OBJ_LAYER
+	var/obj/item/holosign_creator/projector
+	var/atom/movable/occupant = null
+	var/stasis = TRUE
+
+/obj/structure/holobed/New(loc, source_projector)
+	if(source_projector)
+		projector = source_projector
+		projector.signs += src
+	..()
+
+/obj/structure/holobed/Destroy()
+	if(projector)
+		projector.signs -= src
+		projector = null
+	return ..()
+
+/obj/structure/holobed/ComponentInitialize()
+	AddComponent(/datum/component/surgery_bed, 0.7)
+
+/obj/structure/holobed/examine(mob/user)
+	. = ..()
+	. += span_notice("The lifeform stasis field is <b>[stasis ? "on" : "off"]</b>.")
+
+/obj/structure/holosign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
+
+/obj/structure/holobed/update_icon()
+	icon_state = "[initial(icon_state)][stasis ? "" : "_off"]"
+
+/obj/structure/holobed/AltClick(mob/living/user)
+	if(user.a_intent == INTENT_HELP)
+		stasis = !stasis
+		handle_stasis(occupant)
+		update_icon()
+		to_chat(user, span_warning("You [stasis ? "activate" : "deactivate"] the stasis field."))
+
+/obj/structure/holobed/Exited(atom/movable/AM, atom/newloc)
+	handle_stasis(AM)
+	. = ..()
+
+/obj/structure/holobed/proc/handle_stasis(mob/living/target)
+	if(target == occupant && stasis)
+		if(!target.has_status_effect(STATUS_EFFECT_STASIS))
+			target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, 1)
+	else
+		if(istype(target) && target.has_status_effect(STATUS_EFFECT_STASIS))
+			target.remove_status_effect(STATUS_EFFECT_STASIS)
+
+/obj/structure/holobed/post_buckle_mob(mob/living/L)
+	occupant = L
+	handle_stasis(L)
+
+/obj/structure/holobed/post_unbuckle_mob(mob/living/L)
+	if(L == occupant)
+		occupant = null
+	handle_stasis(L)
+
 /obj/structure/holosign/barrier/cyborg/hacked
 	name = "Charged Energy Field"
 	desc = "A powerful energy field that blocks movement. Energy arcs off it."
@@ -171,7 +239,7 @@
 	var/shockcd = 0
 
 /obj/structure/holosign/barrier/cyborg/hacked/bullet_act(obj/item/projectile/P)
-	take_damage(P.damage, BRUTE, "melee", 1)	//Yeah no this doesn't get projectile resistance.
+	take_damage(P.damage, BRUTE, MELEE, 1)	//Yeah no this doesn't get projectile resistance.
 	return BULLET_ACT_HIT
 
 /obj/structure/holosign/barrier/cyborg/hacked/proc/cooldown()

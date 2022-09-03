@@ -3,6 +3,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
 	integrity_failure = 80
+	fryable = TRUE
 	var/damaged_clothes = CLOTHING_PRISTINE //similar to machine's BROKEN stat and structure's broken var
 	var/flash_protect = 0		//What level of bright light protection item has. 1 = Flashers, Flashes, & Flashbangs | 2 = Welding | -1 = OH GOD WELDING BURNT OUT MY RETINAS
 	var/tint = 0				//Sets the item's level of visual impairment tint, normally set to the same as flash_protect
@@ -99,7 +100,7 @@
 					to_chat(user, span_warning("You require 3 [S.name] to repair [src]."))
 					return
 				to_chat(user, span_notice("You begin fixing the damage to [src] with [S]..."))
-				if(do_after(user, 6 SECONDS, TRUE, src))
+				if(do_after(user, 6 SECONDS, src))
 					if(S.use(3))
 						repair(user, params)
 		return 1
@@ -173,7 +174,7 @@
 		body_parts_covered &= ~i
 
 	if(body_parts_covered == NONE) // if there are no more parts to break then the whole thing is kaput
-		obj_destruction((damage_type == BRUTE ? "melee" : "laser")) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
+		obj_destruction((damage_type == BRUTE ? MELEE : LASER)) // melee/laser is good enough since this only procs from direct attacks anyway and not from fire/bombs
 		return
 
 	damaged_clothes = CLOTHING_DAMAGED
@@ -293,13 +294,13 @@ BLIND     // can't see anything
 
 /proc/generate_female_clothing(index,t_color,icon,type) //In a shellnut, blends the uniform sprite with a pre-made sprite in uniform.dmi that's mostly white pixels with a few empty ones to trim off the pixels in the empty spots
 	var/icon/female_clothing_icon	= icon(icon, t_color) // and make the uniform the "female" shape. female_s is either the top-only one (for jumpskirts and the like) or the full one (for jumpsuits)
-	var/icon/female_s				= icon('icons/mob/uniform.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
+	var/icon/female_s				= icon('icons/effects/clothing.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "female_full" : "female_top"]")
 	female_clothing_icon.Blend(female_s, ICON_MULTIPLY)
 	GLOB.female_clothing_icons[index] = fcopy_rsc(female_clothing_icon) //Then it saves the icon in a global list so it doesn't have to make it again
 
 /proc/generate_skinny_clothing(index,t_color,icon,type) //Works the exact same as above but for skinny people
 	var/icon/skinny_clothing_icon	= icon(icon, t_color)
-	var/icon/skinny_s				= icon('icons/mob/uniform.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "skinny_full" : "skinny_top"]") //Hooks into same check to see if it's eligible
+	var/icon/skinny_s				= icon('icons/effects/clothing.dmi', "[(type == FEMALE_UNIFORM_FULL) ? "skinny_full" : "skinny_top"]") //Hooks into same check to see if it's eligible
 	skinny_clothing_icon.Blend(skinny_s, ICON_MULTIPLY)
 	GLOB.skinny_clothing_icons[index] = fcopy_rsc(skinny_clothing_icon)
 
@@ -450,13 +451,13 @@ BLIND     // can't see anything
 
 
 /obj/item/clothing/obj_destruction(damage_flag)
-	if(damage_flag == "bomb")
+	if(damage_flag == BOMB)
 		var/turf/T = get_turf(src)
 		spawn(1) //so the shred survives potential turf change from the explosion.
 			var/obj/effect/decal/cleanable/shreds/Shreds = new(T)
 			Shreds.desc = "The sad remains of what used to be [name]."
 		deconstruct(FALSE)
-	else if(!(damage_flag in list("acid", "fire")))
+	else if(!(damage_flag in list(ACID, FIRE)))
 		damaged_clothes = CLOTHING_SHREDDED
 		body_parts_covered = NONE
 		name = "shredded [initial(name)]"

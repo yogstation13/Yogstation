@@ -9,7 +9,6 @@
 						/obj/item/gun/magic/hook,
 						/obj/item/wisp_lantern,
 						/obj/item/reagent_containers/glass/bottle/potion/flight,
-						/obj/item/katana/cursed,
 						/obj/item/clothing/glasses/godeye,
 						/obj/item/melee/ghost_sword,
 						/obj/item/clothing/suit/space/hardsuit/cult,
@@ -26,16 +25,19 @@
 						/obj/item/kitchen/knife/envy,
 						/obj/item/gun/ballistic/revolver/russian/soul,
 						/obj/item/veilrender/vealrender,
-						/obj/item/keycard/necropolis)
+						/obj/item/keycard/necropolis,
+						/obj/item/clothing/gloves/gauntlets)
 
 /datum/export/lavaland/major //valuable chest/ruin loot and staff of storms
 	cost = 20000
 	unit_name = "lava planet artifact"
 	export_types = list(/obj/item/guardiancreator,
 						/obj/item/rod_of_asclepius,
-						/obj/item/clothing/suit/space/hardsuit/ert/paranormal,
+						/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced,
 						/obj/item/prisoncube,
-						/obj/item/staff/storm)
+						/obj/item/staff/storm,
+						/obj/item/clothing/under/drip, //Drip is very valuable to many investors in high fashion
+						/obj/item/clothing/shoes/drip)
 
 //Megafauna loot, except for ash drakes and legion
 

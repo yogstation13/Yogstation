@@ -119,6 +119,12 @@ Nothing else in the console has ID requirements.
 	return ..()
 
 /obj/machinery/computer/rdconsole/attackby(obj/item/D, mob/user, params)
+	if(istype(D, /obj/item/research_notes))
+		var/obj/item/research_notes/R = D
+		SSresearch.science_tech.add_point_list(R.points)
+		playsound(src, 'sound/items/pshred.ogg', 25, 1)
+		qdel(R)
+		return TRUE
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
 		if(istype(D, /obj/item/disk/tech_disk))
@@ -699,6 +705,11 @@ Nothing else in the console has ID requirements.
 /obj/machinery/computer/rdconsole/proc/machine_icon(atom/item)
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
+/obj/machinery/computer/rdconsole/proc/can_research(mob/user)
+	if(!locked && (allowed(user) || (obj_flags & EMAGGED)))
+		return TRUE
+	return FALSE
+
 /obj/machinery/computer/rdconsole/proc/ui_techweb_single_node(datum/techweb_node/node, selflink=TRUE, minimal=FALSE)
 	var/list/l = list()
 	if (stored_research.hidden_nodes[node.id])
@@ -974,6 +985,9 @@ Nothing else in the console has ID requirements.
 	if(ls["disk_slot"])
 		disk_slot_selected = text2num(ls["disk_slot"])
 	if(ls["research_node"])
+		if(!can_research(usr))
+			to_chat(usr, "ACCESS DENIED")
+			return
 		if(!research_control)
 			return				//honestly should call them out for href exploiting :^)
 		if(!SSresearch.science_tech.available_nodes[ls["research_node"]])

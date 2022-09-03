@@ -116,7 +116,6 @@
 	new /obj/item/wirecutters(src)
 	new /obj/item/multitool(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,pick("red","yellow","orange"))
-	new /obj/item/barrier_taperoll/engineering(src)
 
 /obj/item/storage/belt/utility/full/engi/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -175,7 +174,8 @@
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/extinguisher/mini,
-		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/autoinjector,
+		/obj/item/hypospray,
 		/obj/item/sensor_device,
 		/obj/item/radio,
 		/obj/item/clothing/gloves/,
@@ -184,7 +184,6 @@
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/breath/medical,
-		/obj/item/surgical_drapes, //for true paramedics
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
@@ -206,7 +205,8 @@
 		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
 		/obj/item/stack/medical/bone_gel,
-		/obj/item/holosign_creator/medical
+		/obj/item/holosign_creator/medical,
+		/obj/item/holosign_creator/firstaid
 		))
 
 /obj/item/storage/belt/medical/chief
@@ -216,7 +216,6 @@
 	item_state = "medical_cmo"
 
 /obj/item/storage/belt/medical/chief/full/PopulateContents()
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/scalpel/advanced(src)
 	new /obj/item/retractor/advanced(src)
 	new /obj/item/cautery/advanced(src)
@@ -229,13 +228,14 @@
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "securitybelt"
 	item_state = "security"//Could likely use a better one.
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	content_overlays = TRUE
 
 /obj/item/storage/belt/security/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
+	STR.max_combined_w_class = 18
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.set_holdable(list(
 		/obj/item/melee/baton,
@@ -247,14 +247,21 @@
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_box,
+		/obj/item/storage/box/rubbershot,
+		/obj/item/storage/box/lethalshot,
+		/obj/item/storage/box/breacherslug,
+		/obj/item/storage/box/beanbag,
 		/obj/item/reagent_containers/food/snacks/donut,
 		/obj/item/kitchen/knife/combat,
 		/obj/item/flashlight/seclite,
 		/obj/item/melee/classic_baton/telescopic,
 		/obj/item/radio,
+		/obj/item/pinpointer/tracker,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
+		/obj/item/gun/ballistic/revolver/tracking,
 		/obj/item/holosign_creator/security,
+		/obj/item/shield/riot/tele,
 		/obj/item/barrier_taperoll/police
 		))
 
@@ -267,19 +274,41 @@
 	new /obj/item/barrier_taperoll/police(src)
 	update_icon()
 
+/obj/item/storage/belt/security/chief
+	name = "\improper Head of Security's toolbelt"
+	desc = "Holds tools, looks snazzy."
+	icon_state = "securitybelt_hos"
+	item_state = "security_hos"
+
+/obj/item/storage/belt/security/chief/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.max_combined_w_class = 21
+
+/obj/item/storage/belt/security/chief/full/PopulateContents()
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/restraints/handcuffs(src)
+	new /obj/item/grenade/flashbang(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/melee/baton/loaded(src)
+	new /obj/item/barrier_taperoll/police(src)
+	new /obj/item/shield/riot/tele(src)
+	update_icon()
+
 /obj/item/storage/belt/security/webbing
 	name = "security webbing"
 	desc = "Unique and versatile chest rig, can hold security gear."
 	icon_state = "securitywebbing"
 	item_state = "securitywebbing"
 	w_class = WEIGHT_CLASS_BULKY
-	content_overlays = FALSE
-	custom_premium_price = 800
+	custom_premium_price = 200
 
 /obj/item/storage/belt/security/webbing/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
+	STR.max_items = 7
+	STR.max_combined_w_class = 21
 
 /obj/item/storage/belt/mining
 	name = "explorer's webbing"
@@ -290,9 +319,9 @@
 /obj/item/storage/belt/mining/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
+	STR.max_items = 8
 	STR.max_w_class = WEIGHT_CLASS_BULKY
-	STR.max_combined_w_class = 20
+	STR.max_combined_w_class = 24
 	STR.set_holdable(list(
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
@@ -318,13 +347,15 @@
 		/obj/item/reagent_containers/food/drinks/bottle,
 		/obj/item/stack/medical,
 		/obj/item/kitchen/knife,
-		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/autoinjector,
+		/obj/item/lazarus_injector,
 		/obj/item/gps,
 		/obj/item/storage/bag/ore,
 		/obj/item/survivalcapsule,
 		/obj/item/t_scanner/adv_mining_scanner,
 		/obj/item/reagent_containers/pill,
 		/obj/item/storage/pill_bottle,
+		/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 		/obj/item/stack/ore,
 		/obj/item/reagent_containers/food/drinks,
 		/obj/item/hivelordstabilizer,
@@ -333,12 +364,18 @@
 		/obj/item/storage/bag/plants,
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
-		/obj/item/jawsoflife
+		/obj/item/jawsoflife,
+		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/stack/sheet/mineral,
+		/obj/item/grenade/plastic/miningcharge
 		))
 
 
 /obj/item/storage/belt/mining/vendor
-	contents = newlist(/obj/item/survivalcapsule)
+	contents = newlist(/obj/item/survivalcapsule,
+	/obj/item/grenade/plastic/miningcharge/lesser,
+	/obj/item/grenade/plastic/miningcharge/lesser,
+	/obj/item/grenade/plastic/miningcharge/lesser,)
 
 /obj/item/storage/belt/mining/alt
 	icon_state = "explorer2"
@@ -353,7 +390,7 @@
 /obj/item/storage/belt/mining/primitive/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 5
+	STR.max_items = 6
 
 /obj/item/storage/belt/soulstone
 	name = "soul stone belt"
@@ -457,8 +494,9 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "belt"
 	item_state = "security"
+	content_overlays = TRUE
 
-/obj/item/storage/belt/military/abductor/full/PopulateContents()
+/obj/item/storage/belt/military/abductor/agent/PopulateContents()
 	new /obj/item/screwdriver/abductor(src)
 	new /obj/item/wrench/abductor(src)
 	new /obj/item/weldingtool/abductor(src)
@@ -466,6 +504,54 @@
 	new /obj/item/wirecutters/abductor(src)
 	new /obj/item/multitool/abductor(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"white")
+
+/obj/item/storage/belt/military/abductor/scientist/PopulateContents()
+	new /obj/item/scalpel/alien(src)
+	new /obj/item/hemostat/alien(src)
+	new /obj/item/retractor/alien(src)
+	new /obj/item/circular_saw/alien(src)
+	new /obj/item/surgicaldrill/alien(src)
+	new /obj/item/cautery/alien(src)
+
+/obj/item/storage/belt/admin
+	name = "badmin belt"
+	desc = "A belt used by admins to debug."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "belt"
+	item_state = "security"
+	content_overlays = TRUE // This won't end well
+
+/obj/item/storage/belt/military/snack/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 1000
+	STR.max_combined_w_class = 1000
+	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
+
+/obj/item/storage/belt/admin/full/PopulateContents()
+	new /obj/item/construction/rcd/combat/admin(src)
+	new /obj/item/pipe_dispenser(src)
+	new /obj/item/shuttle_creator/admin(src)
+	new /obj/item/handdrill(src)
+	new /obj/item/jawsoflife(src)
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/multitool/tricorder(src)
+	new /obj/item/storage/bag/construction/admin/full(src)
+	new /obj/item/extinguisher/mini(src)
+	new /obj/item/holosign_creator/multi/CE(src)
+	new /obj/item/restraints/handcuffs/alien(src)
+	new /obj/item/grenade/flashbang(src)
+	new /obj/item/assembly/flash/handheld(src)
+	new /obj/item/melee/baton/loaded(src)
+	new /obj/item/scalpel/alien(src)
+	new /obj/item/hemostat/alien(src)
+	new /obj/item/retractor/alien(src)
+	new /obj/item/circular_saw/alien(src)
+	new /obj/item/surgicaldrill/alien(src)
+	new /obj/item/cautery/alien(src)
+	new /obj/item/pinpointer/crew(src)
+	new /obj/item/sensor_device(src)
+	new /obj/item/healthanalyzer/advanced(src)
 
 /obj/item/storage/belt/military/army
 	name = "army belt"
@@ -478,11 +564,6 @@
 	desc = "A tactical assault belt."
 	icon_state = "assaultbelt"
 	item_state = "security"
-
-/obj/item/storage/belt/military/assault/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 6
 
 /obj/item/storage/belt/grenade
 	name = "grenadier belt"
@@ -591,7 +672,8 @@
 /obj/item/storage/belt/bandolier/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 18
+	STR.max_items = 24
+	STR.max_combined_w_class = 24
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
 		/obj/item/ammo_casing/shotgun
@@ -602,6 +684,7 @@
 	desc = "A holster to carry a handgun and ammo. WARNING: Badasses only."
 	icon_state = "holster"
 	item_state = "holster"
+	w_class = WEIGHT_CLASS_NORMAL
 	alternate_worn_layer = UNDER_SUIT_LAYER
 
 /obj/item/storage/belt/holster/ComponentInitialize()
@@ -620,14 +703,51 @@
 	var/static/items_inside = list(
 		/obj/item/gun/ballistic/revolver/detective = 1,
 		/obj/item/ammo_box/c38 = 2)
-	generate_items_inside(items_inside,src)
+	generate_items_inside(items_inside, src)
+
+/obj/item/storage/belt/quiver
+	name = "leather quiver"
+	desc = "A quiver made from the hide of some animal. Used to hold arrows."
+	icon_state = "quiver"
+	item_state = "quiver"
+
+/obj/item/storage/belt/quiver/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 15
+	STR.display_numerical_stacking = TRUE
+	STR.set_holdable(list(
+		/obj/item/ammo_casing/caseless/arrow,
+		/obj/item/stand_arrow,
+		/obj/item/throwing_star/magspear
+		))
+
+/obj/item/storage/belt/quiver/ashwalker/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/ammo_casing/caseless/arrow/bone(src)
+
+/obj/item/storage/belt/quiver/admin
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/storage/belt/quiver/admin/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 100
+	STR.max_items = 100
+
+/obj/item/storage/belt/quiver/admin/full/PopulateContents()
+	for(var/arrow in typesof(/obj/item/ammo_casing/caseless/arrow))
+		if(istype(arrow, /obj/item/ammo_casing/caseless/arrow/energy))
+			continue
+		for(var/i in 1 to 10)
+			new arrow(src)
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"
 	desc = "A dorky fannypack for keeping small items in."
 	icon_state = "fannypack_leather"
 	item_state = "fannypack_leather"
-	item_color = "fannypackleather"
+	dying_key = DYE_REGISTRY_FANNYPACK
 	custom_price = 15
 
 /obj/item/storage/belt/fannypack/ComponentInitialize()
@@ -640,61 +760,51 @@
 	name = "black fannypack"
 	icon_state = "fannypack_black"
 	item_state = "fannypack_black"
-	item_color = "black"
 
 /obj/item/storage/belt/fannypack/red
 	name = "red fannypack"
 	icon_state = "fannypack_red"
 	item_state = "fannypack_red"
-	item_color = "red"
 
 /obj/item/storage/belt/fannypack/purple
 	name = "purple fannypack"
 	icon_state = "fannypack_purple"
 	item_state = "fannypack_purple"
-	item_color = "purple"
 
 /obj/item/storage/belt/fannypack/blue
 	name = "blue fannypack"
 	icon_state = "fannypack_blue"
 	item_state = "fannypack_blue"
-	item_color = "blue"
 
 /obj/item/storage/belt/fannypack/orange
 	name = "orange fannypack"
 	icon_state = "fannypack_orange"
 	item_state = "fannypack_orange"
-	item_color = "orange"
 
 /obj/item/storage/belt/fannypack/white
 	name = "white fannypack"
 	icon_state = "fannypack_white"
 	item_state = "fannypack_white"
-	item_color = "white"
 
 /obj/item/storage/belt/fannypack/green
 	name = "green fannypack"
 	icon_state = "fannypack_green"
 	item_state = "fannypack_green"
-	item_color = "green"
 
 /obj/item/storage/belt/fannypack/pink
 	name = "pink fannypack"
 	icon_state = "fannypack_pink"
 	item_state = "fannypack_pink"
-	item_color = "pink"
 
 /obj/item/storage/belt/fannypack/cyan
 	name = "cyan fannypack"
 	icon_state = "fannypack_cyan"
 	item_state = "fannypack_cyan"
-	item_color = "cyan"
 
 /obj/item/storage/belt/fannypack/yellow
 	name = "yellow fannypack"
 	icon_state = "fannypack_yellow"
 	item_state = "fannypack_yellow"
-	item_color = "yellow"
 
 /obj/item/storage/belt/sabre
 	name = "sabre sheath"

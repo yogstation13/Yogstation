@@ -382,6 +382,10 @@
 				H = M.current
 			return M.current.stat != DEAD && !issilicon(M.current) && !isbrain(M.current) && (!H || H.dna.species.id != "memezombies")
 		else if(isliving(M.current))
+			if(isAI(M.current))
+				var/mob/living/silicon/ai/AI = M.current
+				if(AI.is_dying)
+					return FALSE
 			return M.current.stat != DEAD
 	return FALSE
 
@@ -396,6 +400,10 @@
 	O.maptext_width = maptext_width
 	O.screen_loc = screen_loc
 	return O
+
+/// Removes an image from a client's `.images`. Useful as a callback.
+/proc/remove_image_from_client(image/image, client/remove_from)
+	remove_from?.images -= image
 
 /proc/remove_images_from_clients(image/I, list/show_to)
 	for(var/client/C in show_to)
@@ -691,6 +699,10 @@
 	var/pressure = environment.return_pressure()
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
+	//YOGS EDIT
+	if(pressure >= JUNGLELAND_EQUIPMENT_EFFECT_PRESSURE)
+		. = TRUE
+	//YOGS END
 
 /proc/ispipewire(item)
 	var/static/list/pire_wire = list(
@@ -725,11 +737,22 @@
 	return pick(possible_loc)
 
 /proc/power_fail(duration_min, duration_max)
+	var/list/data_core_areas = list()
+	for(var/obj/machinery/ai/data_core/core as anything in GLOB.data_cores)
+		if(!core.valid_data_core())
+			continue
+		if(!isarea(core.loc))
+			continue
+		var/area/A = core.loc
+		data_core_areas[A.type] = TRUE
+
 	for(var/P in GLOB.apcs_list)
 		var/obj/machinery/power/apc/C = P
 		if(C.cell && SSmapping.level_trait(C.z, ZTRAIT_STATION))
 			var/area/A = C.area
 			if(GLOB.typecache_powerfailure_safe_areas[A.type])
+				continue
+			if(data_core_areas[A.type])
 				continue
 
 			C.energy_fail(rand(duration_min,duration_max))

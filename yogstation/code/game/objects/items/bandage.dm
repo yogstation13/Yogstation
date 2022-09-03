@@ -74,7 +74,7 @@
 			else
 				user.visible_message(span_notice("[user] begins winding [src] about [tar]'s [lt.name].."), span_notice("You begin winding [src] around [tar]'s [lt.name].."))
 
-			if (do_after(user, 5 SECONDS, target = tar))
+			if (do_after(user, 5 SECONDS, tar))
 				if(!user.canUnEquip(src))
 					return FALSE
 				healing_limb = lt

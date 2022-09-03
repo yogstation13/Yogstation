@@ -16,6 +16,7 @@
 	obj_damage = 0
 	melee_damage_lower = 1
 	melee_damage_upper = 1
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attack_same = 2
 	attacktext = "chomps"
 	attack_sound = 'sound/weapons/bite.ogg'

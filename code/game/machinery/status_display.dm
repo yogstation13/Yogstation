@@ -155,7 +155,7 @@
 		var/width = 4 * marqee_length
 		var/time = (width + 32) * SCROLL_RATE
 		animate(src, maptext_x = -width, time = time, loop = -1)
-		animate(maptext_x = 32, time = 0)
+		animate(maptext_x = 32, time = 0 SECONDS)
 	else
 		// Centered text
 		maptext = generate_text(line, center = TRUE)

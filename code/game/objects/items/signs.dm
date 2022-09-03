@@ -44,17 +44,17 @@
 		user.manual_emote("waves around a blank sign.")
 	var/direction = prob(50) ? -1 : 1
 	if(NSCOMPONENT(user.dir)) //So signs are waved horizontally relative to what way the player waving it is facing.
-		animate(user, pixel_x = user.pixel_x + (1 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_x = user.pixel_x - (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_x = user.pixel_x + (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_x = user.pixel_x - (2 * direction), time = 1, easing = SINE_EASING)
+		animate(user, pixel_x = user.pixel_x + (1 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
+		animate(pixel_x = user.pixel_x - (2 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
+		animate(pixel_x = user.pixel_x + (2 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
+		animate(pixel_x = user.pixel_x - (2 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
 		animate(pixel_x = user.pixel_x + (1 * direction), time = 1, easing = SINE_EASING)
 	else
-		animate(user, pixel_y = user.pixel_y + (1 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_y = user.pixel_y - (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_y = user.pixel_y + (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_y = user.pixel_y - (2 * direction), time = 1, easing = SINE_EASING)
-		animate(pixel_y = user.pixel_y + (1 * direction), time = 1, easing = SINE_EASING)
+		animate(user, pixel_y = user.pixel_y + (1 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
+		animate(pixel_y = user.pixel_y - (2 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
+		animate(pixel_y = user.pixel_y + (2 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
+		animate(pixel_y = user.pixel_y - (2 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
+		animate(pixel_y = user.pixel_y + (1 * direction), time = 0.1 SECONDS, easing = SINE_EASING)
 	user.changeNext_move(CLICK_CD_MELEE)
 
 /datum/crafting_recipe/picket_sign

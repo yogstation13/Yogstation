@@ -464,9 +464,38 @@
 		return
 	H.dna.add_mutation(STONER)
 
+
 /obj/effect/mob_spawn/human/corpse/felinid
 	name = "Felinid"
 	mob_species = /datum/species/felinid
+
+/obj/effect/mob_spawn/human/fishing/alive
+	death = FALSE
+	roundstart = FALSE
+	random = TRUE
+	mob_name = "Fisherman"
+	name = "fisherman sleeper"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	short_desc = "You're a fisherman!"
+	flavour_text = "You've been fishing in these dang waters your whole life...you're pretty sure, at least...ain't no one gonna stop you now!"
+	important_info = "Do not abandon your dome under for any situation other than dire emergencies!"
+	id_job = "Fisherman"
+	assignedrole = "Fisherman"
+	outfit = /datum/outfit/fishing
+
+/datum/outfit/fishing
+	name = "Fisherman"
+	head = /obj/item/clothing/head/fishing
+	gloves = /obj/item/clothing/gloves/fishing
+	glasses = /obj/item/clothing/glasses/sunglasses/cheap
+	r_pocket = /obj/item/storage/wallet/random
+	l_pocket = /obj/item/reagent_containers/food/snacks/bait/master
+	uniform = /obj/item/clothing/under/pants/jeans
+	suit = /obj/item/clothing/suit/fishing
+	shoes = /obj/item/clothing/shoes/fishing
+	id = /obj/item/card/id
+
 
 /////////////////Officers+Nanotrasen Security//////////////////////
 

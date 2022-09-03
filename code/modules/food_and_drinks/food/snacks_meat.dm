@@ -124,6 +124,52 @@
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtype = SEAFOOD | TOXIC
 
+/obj/item/reagent_containers/food/snacks/fishtaco
+	name = "fish taco"
+	desc = "A taco with fish, cheese, and cabbage."
+	icon_state = "fishtaco"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("taco" = 4, "fish" = 2, "cheese" = 2, "cabbage" = 1)
+	foodtype = SEAFOOD | DAIRY | GRAIN | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/vegetariansushiroll
+	name = "vegetarian sushi roll"
+	desc = "A roll of simple vegetarian sushi, made with rice, carrots, and potatoes. Able to be sliced into pieces!"
+	icon_state = "vegetariansushiroll"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("boiled rice" = 4, "carrots" = 2, "potato" = 2)
+	foodtype = VEGETABLES
+	slice_path = /obj/item/reagent_containers/food/snacks/vegetariansushislice
+	slices_num = 4
+
+/obj/item/reagent_containers/food/snacks/vegetariansushislice
+	name = "vegetarian sushi slice"
+	desc = "A slice of simple vegetarian sushi, made with rice, carrots, and potatoes."
+	icon_state = "vegetariansushislice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("boiled rice" = 4, "carrots" = 2, "potato" = 2)
+	foodtype = VEGETABLES
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/reagent_containers/food/snacks/spicyfiletsushiroll
+	name = "spicy filet sushi roll"
+	desc = "A roll of tasty, spicy sushi, made with fish and vegetables. Able to be sliced into pieces!"
+	icon_state = "spicyfiletroll"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/capsaicin = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("boiled rice" = 4, "fish" = 2, "spicyness" = 2)
+	foodtype = VEGETABLES | SEAFOOD
+	slice_path = /obj/item/reagent_containers/food/snacks/spicyfiletsushislice
+	slices_num = 4
+
+/obj/item/reagent_containers/food/snacks/spicyfiletsushislice
+	name = "spicy filet sushi slice"
+	desc = "A slice of tasty, spicy sushi, made with fish and vegetables. Don't eat it too fast!"
+	icon_state = "spicyfiletslice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("boiled rice" = 4, "fish" = 2, "spicyness" = 2)
+	foodtype = VEGETABLES | SEAFOOD
+	w_class = WEIGHT_CLASS_SMALL
+
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
 /obj/item/reagent_containers/food/snacks/tofu
@@ -188,7 +234,7 @@
 /obj/item/reagent_containers/food/snacks/raw_meatball/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/rollingpin))
 		if(isturf(loc))
-			if(!do_after(user,1 SECONDS,target = src)) {
+			if(!do_after(user, 1 SECONDS, src)) {
 				return
 			}
 			new patty_type(loc)
@@ -281,7 +327,7 @@
 
 /obj/item/reagent_containers/food/snacks/raw_patty/xeno
 	name = "raw xenomorph patty"
-	tastes = list("meat" = 1, "acid" = 1)
+	tastes = list("meat" = 1,"acid" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/xeno
 
 /obj/item/reagent_containers/food/snacks/raw_patty/chicken
@@ -355,7 +401,7 @@
 
 /obj/item/reagent_containers/food/snacks/sausage/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife))
-		if(!do_after(user,1 SECONDS, target = src)) {
+		if(!do_after(user, 1 SECONDS, src)) {
 			return
 		}
 		new /obj/item/reagent_containers/food/snacks/sausage/american(loc)
@@ -401,6 +447,14 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/capsaicin = 6)
 	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
 	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/chipsandsalsa
+	name = "chips and salsa"
+	desc = "A handful of tortilla chips, paired with a cup of zesty salsa. Highly addictive!"
+	icon_state = "chipsandsalsa"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("peppers" = 1, "salsa" = 3, "tortilla chips" = 1, "onion" = 1)
+	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/stewedsoymeat
 	name = "stewed soymeat"
@@ -493,7 +547,7 @@
 	list_reagents = list(/datum/reagent/monkey_powder = 30)
 	filling_color = "#CD853F"
 	tastes = list("the jungle" = 1, "bananas" = 1)
-	foodtype = MEAT | SUGAR
+	foodtype = MEAT | SUGAR | RAW
 	var/faction
 	var/spawned_mob = /mob/living/carbon/monkey
 
@@ -511,7 +565,7 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/suicide_act(mob/living/M)
 	M.visible_message(span_suicide("[M] is putting [src] in [M.p_their()] mouth! It looks like [M.p_theyre()] trying to commit suicide!"))
-	var/eating_success = do_after(M, 1 SECONDS, TRUE, src, TRUE)
+	var/eating_success = do_after(M, 1 SECONDS, src)
 	if(QDELETED(M)) //qdeletion: the nuclear option of self-harm
 		return SHAME
 	if(!eating_success || QDELETED(src)) //checks if src is gone or if they failed to wait for a second
@@ -542,33 +596,62 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/gorilla
 	name = "gorilla cube"
 	desc = "A Waffle Co. brand gorilla cube. Now with extra molecules! Just add water!"
-	bitesize = 20
+	bitesize = 35
 	list_reagents = list(/datum/reagent/gorilla_powder = 30, /datum/reagent/medicine/strange_reagent = 5)
-	tastes = list("the jungle" = 1, "bananas" = 1, "jimmies" = 1)
+	tastes = list("the jungle" = 1, "bananas" = 1, "power" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/gorilla
+	foodtype = MEAT | SUGAR | RAW
 
 /obj/item/reagent_containers/food/snacks/monkeycube/sheep
 	name = "sheep cube"
 	desc = "A Farm Town brand sheep cube. Just add water!"
-	bitesize = 15
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	bitesize = 35
+	list_reagents = list(/datum/reagent/sheep_powder = 30, /datum/reagent/consumable/nutriment = 5)
 	tastes = list("fluff" = 1, "the farm" = 1)
 	spawned_mob = /mob/living/simple_animal/sheep
+	foodtype = MEAT | RAW
 
 /obj/item/reagent_containers/food/snacks/monkeycube/cow
 	name = "cow cube"
 	desc = "A Farm Town brand cow cube. Just add water!"
-	bitesize = 18
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
-	tastes = list("milk" = 1, "the farm" = 1)
+	bitesize = 45
+	list_reagents = list(/datum/reagent/cow_powder = 30, /datum/reagent/consumable/nutriment = 15)
+	tastes = list("milk" = 1, "blood" = 1, "the farm" = 1)
 	spawned_mob = /mob/living/simple_animal/cow
+	foodtype = MEAT | RAW | DAIRY
 
 /obj/item/reagent_containers/food/snacks/monkeycube/goat
 	name = "goat cube"
 	desc = "A Goat Tech Industries goat cube. Just add water!"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "goatcube"
-	bitesize = 20
-	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
+	bitesize = 40
+	list_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/consumable/nutriment = 10)
 	tastes = list("fur" = 1, "blood" = 1, "rage" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/retaliate/goat
+	foodtype = MEAT | RAW
+
+/obj/item/reagent_containers/food/snacks/monkeycube/chicken
+	name = "chicken cube"
+	desc = "A Farm Town brand chicken cube. Just add water!"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "chickencube"
+	bitesize = 40
+	list_reagents = list(/datum/reagent/chicken_powder = 30, /datum/reagent/consumable/nutriment = 10)
+	tastes = list("feathers" = 1, "blood" = 1, "albumin" = 1)
+	spawned_mob = /mob/living/simple_animal/chicken
+	foodtype = MEAT | RAW | EGG
+
+/obj/item/reagent_containers/food/snacks/monkeycube/mouse
+	name = "mouse cube"
+	desc = "A Waffle Co. brand mouse cube. Just add water!"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "mousecube"
+	bitesize = 40
+	list_reagents = list(/datum/reagent/mouse_powder = 30, /datum/reagent/consumable/nutriment = 10)
+	tastes = list("fur" = 1, "blood" = 1, "cheese" = 1)
+	spawned_mob = /mob/living/simple_animal/mouse
+	foodtype = MEAT | MICE | RAW
+
+/obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate
+	faction = list("neutral", ROLE_SYNDICATE)

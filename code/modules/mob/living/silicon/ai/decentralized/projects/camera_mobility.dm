@@ -1,7 +1,7 @@
 /datum/ai_project/camera_speed
 	name = "Optimised Camera Acceleration"
 	description = "Using advanced deep learning algorithms you could boost your camera traverse speed."
-	research_cost = 500
+	research_cost = 250
 	ram_required = 1
 	research_requirements_text = "None"
 	category = AI_PROJECT_CAMERAS

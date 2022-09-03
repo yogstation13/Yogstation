@@ -3,6 +3,9 @@
 	name = "Felinid Human"
 	id = "felinid"
 	limbs_id = "human"
+	attack_verb = "slash"
+	attack_sound = 'sound/weapons/slash.ogg'
+	miss_sound = 'sound/weapons/slashmiss.ogg'
 
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "FFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")
@@ -102,6 +105,16 @@
 		purrbation_remove(H, silent)
 		. = FALSE
 
+/proc/purrbation_toggle_onlyhumans(mob/living/carbon/human/H, silent = FALSE) //same as above but doesn't work on nonhumans - used by donor purrbation to reduce *accidental* double-cursed double-mutants
+	if(!ishumanbasic(H))
+		return
+	if(!iscatperson(H))
+		purrbation_apply(H, silent)
+		. = TRUE
+	else
+		purrbation_remove(H, silent)
+		. = FALSE
+
 ///turns our poor spaceman into a CATGIRL. Point and laugh.
 /proc/purrbation_apply(mob/living/carbon/human/H, silent = FALSE)
 	if(iscatperson(H))
@@ -134,6 +147,10 @@
 		qdel(old_part) //do this here since they potentially don't normally have a tail
 		if(decattification)
 			decattification = new decattification
+			if(istype(decattification, /obj/item/organ/tail/lizard))
+				var/obj/item/organ/tail/lizard/nyaamrrow = decattification
+				nyaamrrow.tail_type = H.dna.features["tail_lizard"]
+				nyaamrrow.spines = H.dna.features["spines"]
 			decattification.Insert(H)
 		decattification = H.dna?.species.mutantears
 		old_part = H.getorganslot(ORGAN_SLOT_EARS)
@@ -145,10 +162,30 @@
 
 	H.set_species(/datum/species/human)
 
-/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
-	if(H.reagents.has_reagent(/datum/reagent/consumable/ethanol/catsip))
-		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
-
 /datum/species/human/felinid/get_scream_sound(mob/living/carbon/human/H)
 	return pick(screamsound)
+
+/datum/species/human/felinid/spec_life(mob/living/carbon/human/H)
+	. = ..()
+	if((H.client && H.client.prefs.mood_tail_wagging) && !is_wagging_tail() && H.mood_enabled)
+		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
+		if(!istype(mood) || !(mood.shown_mood >= MOOD_LEVEL_HAPPY2)) 
+			return
+		var/chance = 0
+		switch(mood.shown_mood)
+			if(0 to MOOD_LEVEL_SAD4)
+				chance = -0.1
+			if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
+				chance = -0.01
+			if(MOOD_LEVEL_HAPPY2 to MOOD_LEVEL_HAPPY3)
+				chance = 0.001
+			if(MOOD_LEVEL_HAPPY3 to MOOD_LEVEL_HAPPY4)
+				chance = 0.1
+			if(MOOD_LEVEL_HAPPY4 to INFINITY)
+				chance = 1
+		if(prob(abs(chance)))
+			switch(SIGN(chance))
+				if(1)
+					H.emote("wag")
+				if(-1)
+					stop_wagging_tail(H)

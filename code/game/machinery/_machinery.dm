@@ -133,7 +133,7 @@ Class Procs:
 
 /obj/machinery/Initialize()
 	if(!armor)
-		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
+		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
 	GLOB.machines += src
 
@@ -258,6 +258,8 @@ Class Procs:
 		
 		if(is_species(user, /datum/species/lizard/ashwalker))
 			return FALSE
+		if(is_species(user, /datum/species/pod/ivymen)) // yogs - jungleland
+			return FALSE
 		var/mob/living/carbon/H = user
 		if(istype(H) && H.has_dna() && H.dna.check_mutation(ACTIVE_HULK))
 			to_chat(H, span_warning("HULK NOT NERD. HULK SMASH!!!"))
@@ -327,7 +329,7 @@ Class Procs:
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		user.visible_message(span_danger("[user.name] smashes against \the [src.name] with its paws."), null, null, COMBAT_MESSAGE_RANGE)
-		take_damage(4, BRUTE, "melee", 1)
+		take_damage(4, BRUTE, MELEE, 1)
 
 /obj/machinery/attack_robot(mob/user)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
@@ -367,11 +369,12 @@ Class Procs:
 		I.play_tool_sound(src, 50)
 		deconstruct(TRUE)
 
-/obj/machinery/deconstruct(disassembled = TRUE)
+/obj/machinery/deconstruct(disassembled = TRUE, force = FALSE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		on_deconstruction()
 		if(component_parts && component_parts.len)
-			spawn_frame(disassembled)
+			if(!force)
+				spawn_frame(disassembled)
 			for(var/obj/item/I in component_parts)
 				I.forceMove(loc)
 			component_parts.Cut()
@@ -556,7 +559,7 @@ Class Procs:
 		else if (prob(50))
 			explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	if(tesla_flags & TESLA_OBJ_DAMAGE)
-		take_damage(power/2000, BURN, "energy")
+		take_damage(power/2000, BURN, ENERGY)
 		if(prob(40))
 			emp_act(EMP_LIGHT)
 
@@ -587,7 +590,7 @@ Class Procs:
 	START_PROCESSING(subsystem, src)
 
 /obj/machinery/rust_heretic_act()
-	take_damage(500, BRUTE, "melee", 1)
+	take_damage(500, BRUTE, MELEE, 1)
 
 /obj/machinery/MouseDrop_T(atom/movable/O, mob/user)
 	. = ..()

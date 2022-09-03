@@ -529,6 +529,10 @@
 
 	var/list/turfs = get_area_turfs(areacheck)
 	var/original_len = turfs.len
+	//YOGS EDIT
+	if(!original_len)
+		return INITIALIZE_HINT_QDEL // we clearly havent loaded lavaland, and there is no pretty way to do this with jungleland, temporary fix for now at least
+	//YOGS END
 	while(turfs.len)
 		var/turf/T = pick(turfs)
 		if(T.x<edge_distance || T.y<edge_distance || (world.maxx+1-T.x)<edge_distance || (world.maxy+1-T.y)<edge_distance)

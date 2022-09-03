@@ -1,0 +1,572 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"f" = (
+/turf/closed/indestructible/riveted/boss,
+/area/ruin/unpowered/tar_temple)
+"h" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 6
+	},
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"i" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/netherworld,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"j" = (
+/obj/structure/stone_tile/slab,
+/obj/effect/gibspawner/human,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"k" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"n" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/bonfire/prelit,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"o" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"s" = (
+/obj/structure/stone_tile/slab/cracked,
+/obj/structure/bonfire/prelit,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"u" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/bonfire/prelit,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"v" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"w" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/netherworld/blankbody,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"x" = (
+/obj/structure/stone_tile/slab/cracked,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"z" = (
+/obj/structure/stone_tile/slab/cracked,
+/obj/effect/gibspawner/human,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"D" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/mineral_door/wood,
+/obj/structure/barricade/wooden/crude,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"I" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 4;
+	icon_state = "cracked_slab1"
+	},
+/obj/structure/stone_tile/slab/cracked{
+	dir = 8
+	},
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"J" = (
+/obj/structure/stone_tile/slab,
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"M" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/fluff/divine/convertaltar,
+/obj/item/tar_crystal,
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"N" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/mineral_door/wood,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"P" = (
+/obj/structure/stone_tile/slab/cracked{
+	dir = 5
+	},
+/turf/open/indestructible/necropolis/air,
+/area/ruin/unpowered/tar_temple)
+"S" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/stone_tile/slab,
+/obj/structure/bonfire/prelit,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+"V" = (
+/obj/structure/stone_tile/slab,
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/netherworld/blankbody,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
+
+(1,1,1) = {"
+f
+f
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+f
+f
+"}
+(2,1,1) = {"
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+"}
+(3,1,1) = {"
+a
+f
+b
+b
+b
+b
+b
+b
+b
+f
+x
+b
+b
+f
+i
+b
+b
+b
+x
+f
+a
+"}
+(4,1,1) = {"
+a
+f
+b
+x
+b
+o
+n
+w
+b
+f
+b
+i
+o
+f
+o
+b
+x
+o
+b
+f
+a
+"}
+(5,1,1) = {"
+a
+f
+b
+i
+f
+f
+o
+j
+b
+N
+o
+o
+k
+N
+k
+o
+S
+k
+V
+f
+a
+"}
+(6,1,1) = {"
+a
+f
+b
+b
+f
+f
+b
+x
+b
+f
+x
+o
+z
+f
+b
+z
+o
+x
+b
+f
+a
+"}
+(7,1,1) = {"
+a
+f
+b
+b
+b
+x
+k
+k
+b
+f
+b
+u
+o
+f
+w
+b
+x
+b
+b
+f
+a
+"}
+(8,1,1) = {"
+a
+f
+b
+b
+o
+b
+x
+b
+f
+f
+f
+f
+f
+f
+f
+f
+D
+N
+f
+f
+a
+"}
+(9,1,1) = {"
+a
+f
+b
+x
+b
+b
+x
+b
+f
+b
+o
+I
+J
+P
+f
+b
+x
+x
+b
+f
+a
+"}
+(10,1,1) = {"
+a
+f
+b
+x
+w
+n
+b
+x
+D
+x
+b
+J
+M
+v
+f
+b
+k
+k
+b
+D
+a
+"}
+(11,1,1) = {"
+a
+f
+b
+b
+b
+b
+o
+b
+f
+b
+x
+v
+h
+J
+f
+b
+b
+k
+x
+f
+a
+"}
+(12,1,1) = {"
+a
+f
+x
+b
+z
+b
+b
+b
+f
+f
+f
+f
+f
+f
+f
+f
+D
+D
+f
+f
+a
+"}
+(13,1,1) = {"
+a
+f
+b
+b
+b
+b
+i
+b
+b
+f
+x
+n
+b
+f
+b
+b
+o
+o
+b
+f
+a
+"}
+(14,1,1) = {"
+a
+f
+b
+b
+f
+f
+b
+b
+x
+f
+b
+b
+w
+f
+w
+x
+b
+j
+x
+f
+a
+"}
+(15,1,1) = {"
+a
+f
+b
+w
+f
+f
+b
+o
+b
+N
+b
+x
+o
+N
+b
+b
+s
+b
+o
+f
+a
+"}
+(16,1,1) = {"
+a
+f
+o
+o
+b
+b
+s
+b
+b
+f
+b
+w
+z
+f
+o
+b
+b
+i
+b
+f
+a
+"}
+(17,1,1) = {"
+a
+f
+b
+b
+b
+b
+w
+b
+b
+f
+o
+b
+b
+f
+b
+b
+x
+b
+b
+f
+a
+"}
+(18,1,1) = {"
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+"}
+(19,1,1) = {"
+f
+f
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+f
+f
+"}

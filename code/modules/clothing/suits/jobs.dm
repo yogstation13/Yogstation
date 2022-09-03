@@ -52,9 +52,10 @@
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/det_suit/Initialize()
 	. = ..()
@@ -66,11 +67,18 @@
 	icon_state = "greydet"
 	item_state = "greydet"
 
+/obj/item/clothing/suit/det_suit/tan
+	name = "tan trenchcoat"
+	desc = "For those warmer days in the city. Or nights, if you're a grizzled P.I."
+	icon_state = "detective_tan"
+	item_state = "detective_tan"
+
 /obj/item/clothing/suit/det_suit/noir
 	name = "noir suit coat"
 	desc = "A dapper private investigator's grey suit coat."
 	icon_state = "detsuit"
 	item_state = "detsuit"
+	mutantrace_variation = NO_MUTANTRACE_VARIATION //This should be done for any det_suit that isn't an overcoat, as to not require two sprites to deal with weird-ass legs
 
 //Engineering
 /obj/item/clothing/suit/hazardvest
@@ -151,7 +159,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|ARMS
 	allowed = list(/obj/item/tank/internals, /obj/item/melee/curator_whip)
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 45)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 	cold_protection = CHEST|ARMS
 	heat_protection = CHEST|ARMS
 

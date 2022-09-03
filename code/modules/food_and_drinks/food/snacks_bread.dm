@@ -58,7 +58,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("bread" = 10, "acid" = 10)
+	tastes = list("bread" = 10, ACID = 10)
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
@@ -218,12 +218,25 @@
 	AddComponent(/datum/component/slippery, 80)
 
 /obj/item/reagent_containers/food/snacks/frenchtoast
-	name = "french toast"
-	desc = "This toast looks like it'll surrender at any moment!"
-	icon = 'yogstation/icons/obj/food/burgerbread.dmi'
+	name = "French toast"
+	desc = "A slice of bread soaked in an egg mixture and grilled until golden-brown. Drizzled with syrup!"
+	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "frenchtoast"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
-	tastes = list("cinnamon" = 1, "toast" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cinnamon = 2, /datum/reagent/consumable/sugar = 2) //yogs, values differ from tg
+	tastes = list("french toast" = 1, "syrup" = 1, "golden deliciousness" = 1)
+	foodtype = GRAIN | BREAKFAST
+	burns_on_grill = TRUE
+
+/obj/item/reagent_containers/food/snacks/frenchtoast/raw
+	name = "raw French toast"
+	desc = "A slice of bread soaked in a beaten egg mixture. Put it on a griddle to start cooking!"
+	icon_state = "raw_frenchtoast"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cinnamon = 2, /datum/reagent/consumable/sugar = 2)  //yogs, values differ from tg
+	tastes = list("raw egg" = 2, "soaked bread" = 1)
+	foodtype = GRAIN | RAW | BREAKFAST
+
+/obj/item/reagent_containers/food/snacks/frenctoast/raw/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/frenchtoast, rand(20 SECONDS, 30 SECONDS), TRUE)
 
 //DEEP FRYER
 /obj/item/reagent_containers/food/snacks/deepfryholder
@@ -232,6 +245,7 @@
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = ""
 	bitesize = 2
+	fryable = FALSE
 
 /obj/item/reagent_containers/food/snacks/deepfryholder/Initialize(mapload, obj/item/fried)
 	. = ..()

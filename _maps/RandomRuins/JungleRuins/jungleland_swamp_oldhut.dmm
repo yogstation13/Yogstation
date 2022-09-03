@@ -1,0 +1,213 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/item/storage/bag/medpouch,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"h" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/leather,
+/obj/item/stack/medical/aloe,
+/obj/item/stack/medical/aloe,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"l" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"q" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"t" = (
+/mob/living/simple_animal/pet/cat,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"u" = (
+/obj/effect/decal/remains/human,
+/obj/item/clothing/head/witchwig,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"w" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/mortar,
+/obj/item/pestle,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"x" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle{
+	name = "potion"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"y" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/unpowered)
+"D" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/ruin/unpowered)
+"F" = (
+/obj/structure/table/wood,
+/obj/item/stack/medical/poultice,
+/obj/item/stack/medical/poultice,
+/obj/item/stack/medical/poultice,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"H" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bowl/mushroom_bowl,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"M" = (
+/turf/template_noop,
+/area/template_noop)
+"P" = (
+/obj/item/reagent_containers/glass/bowl/mushroom_bowl,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"V" = (
+/obj/item/storage/bag/ore/holding,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"Z" = (
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+"}
+(2,1,1) = {"
+M
+y
+M
+M
+M
+M
+M
+M
+y
+M
+"}
+(3,1,1) = {"
+M
+M
+y
+y
+y
+y
+y
+y
+M
+M
+"}
+(4,1,1) = {"
+M
+M
+y
+w
+V
+Z
+x
+y
+M
+M
+"}
+(5,1,1) = {"
+M
+M
+y
+q
+Z
+u
+P
+y
+M
+M
+"}
+(6,1,1) = {"
+M
+M
+y
+l
+t
+Z
+b
+D
+M
+M
+"}
+(7,1,1) = {"
+M
+M
+y
+h
+Z
+P
+Z
+y
+M
+M
+"}
+(8,1,1) = {"
+M
+M
+y
+H
+Z
+Z
+F
+y
+M
+M
+"}
+(9,1,1) = {"
+M
+M
+y
+y
+y
+y
+y
+y
+M
+M
+"}
+(10,1,1) = {"
+M
+y
+M
+M
+M
+M
+M
+M
+y
+M
+"}
+(11,1,1) = {"
+M
+M
+M
+M
+M
+M
+M
+M
+M
+M
+"}

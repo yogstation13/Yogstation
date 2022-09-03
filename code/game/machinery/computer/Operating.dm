@@ -8,8 +8,7 @@
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/operating
 	var/mob/living/carbon/human/patient
-	var/obj/structure/table/optable/table
-	var/obj/machinery/stasis/sbed
+	var/list/obj/linked_beds = list()
 	var/list/advanced_surgeries = list()
 	var/datum/techweb/linked_techweb
 	light_color = LIGHT_COLOR_BLUE
@@ -20,14 +19,10 @@
 	find_table()
 
 /obj/machinery/computer/operating/Destroy()
-	for(var/direction in GLOB.alldirs)
-		table = locate(/obj/structure/table/optable) in get_step(src, direction)
-		if(table && table.computer == src)
-			table.computer = null
-		else
-			sbed = locate(/obj/machinery/stasis) in get_step(src, direction)
-			if(sbed && sbed.computer == src)
-				sbed.computer = null
+	for(var/obj/bed in linked_beds)
+		var/datum/component/surgery_bed/SB = bed.GetComponent(/datum/component/surgery_bed)
+		if(SB && SB.computer == src)
+			SB.computer = null
 	. = ..()
 
 /obj/machinery/computer/operating/attackby(obj/item/O, mob/user, params)
@@ -36,7 +31,7 @@
 			"You begin to load a surgery protocol from \the [O]...",
 			"You hear the chatter of a floppy drive.")
 		var/obj/item/disk/surgery/D = O
-		if(do_after(user, 1 SECONDS, target = src))
+		if(do_after(user, 1 SECONDS, src))
 			advanced_surgeries |= D.surgeries
 		return TRUE
 	return ..()
@@ -46,19 +41,16 @@
 		var/datum/design/surgery/D = SSresearch.techweb_design_by_id(i)
 		if(!istype(D))
 			continue
-		advanced_surgeries |= D.surgery
+		advanced_surgeries += D.surgery
 
 /obj/machinery/computer/operating/proc/find_table()
 	for(var/direction in GLOB.alldirs)
-		table = locate(/obj/structure/table/optable) in get_step(src, direction)
-		if(table)
-			table.computer = src
+		var/obj/table = locate(/obj) in get_step(src, direction)
+		if(!table)
+			continue
+		var/datum/component/surgery_bed/SB = table.GetComponent(/datum/component/surgery_bed)
+		if(SB && SB.link_computer(src))
 			break
-		else
-			sbed = locate(/obj/machinery/stasis) in get_step(src, direction)
-			if(sbed)
-				sbed.computer = src
-				break
 
 /obj/machinery/computer/operating/ui_state(mob/user)
 	return GLOB.not_incapacitated_state
@@ -80,22 +72,15 @@
 		surgeries += list(surgery)
 	data["surgeries"] = surgeries
 	data["patient"] = null
-	if(table)
-		data["table"] = table
-		if(!table.check_eligible_patient())
+	if(linked_beds.len && linked_beds?[1])
+		var/datum/component/surgery_bed/SB = linked_beds[1]
+		data["table"] = SB.parent
+		patient = SB.check_eligible_patient()
+		if(!patient)
 			return data
 		data["patient"] = list()
-		patient = table.patient
 	else
-		if(sbed)
-			data["table"] = sbed
-			if(!ishuman(sbed.occupant) &&  !ismonkey(sbed.occupant))
-				return data
-			data["patient"] = list()
-			patient = sbed.occupant
-		else
-			data["patient"] = null
-			return data
+		return data
 	switch(patient.stat)
 		if(CONSCIOUS)
 			data["patient"]["stat"] = "Conscious"

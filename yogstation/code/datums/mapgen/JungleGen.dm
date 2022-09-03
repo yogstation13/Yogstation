@@ -26,7 +26,7 @@
 						HIGH_HUMIDITY = /datum/biome/jungleland/dying_forest),
 
 		BIOME_TOXIC = list(	LOW_HUMIDITY = /datum/biome/jungleland/toxic_pit,
-						MED_HUMIDITY = /datum/biome/jungleland/toxic_pit, //dry swamp is kind of like a beach?
+						MED_HUMIDITY = /datum/biome/jungleland/toxic_pit,
 						HIGH_HUMIDITY = /datum/biome/jungleland/jungle)
 	)
 	///Used to select "zoom" level into the perlin noise, higher numbers result in slower transitions
@@ -203,10 +203,10 @@
 												"[world.maxx]",
 												"1",
 												"2")
-	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","65","[world.maxx]","-0.2","1.1")
+	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","75","[world.maxx]","-0.05","1.1")
 	var/list/humid_strings = list()
-	humid_strings[HIGH_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","65","[world.maxx]","0.0","1.1")
-	humid_strings[MED_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","65","[world.maxx]","-0.2","0.0")
+	humid_strings[HIGH_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.1","1.1")
+	humid_strings[MED_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.3","-0.1")
 
 	for(var/t in turfs) //Go through all the turfs and generate them
 		var/turf/gen_turf = t
@@ -214,14 +214,23 @@
 
 		var/humid_pick = text2num(humid_strings[HIGH_HUMIDITY][world.maxx * (gen_turf.y - 1) + gen_turf.x]) ? HIGH_HUMIDITY : text2num(humid_strings[MED_HUMIDITY][world.maxx * (gen_turf.y - 1) + gen_turf.x]) ? MED_HUMIDITY : LOW_HUMIDITY
 
-		var/datum/biome/selected_biome = possible_biomes[toxic_pick][humid_pick]
+		var/datum/biome/jungleland/selected_biome = possible_biomes[toxic_pick][humid_pick]
 
 		selected_biome = SSmapping.biomes[selected_biome] //Get the instance of this biome from SSmapping
-		var/GT = selected_biome.generate_turf(gen_turf,density_strings)
+		var/turf/GT = selected_biome.generate_turf(gen_turf,density_strings)
 		if(istype(GT,/turf/open/floor/plating/dirt/jungleland))
 			var/turf/open/floor/plating/dirt/jungleland/J = GT
 			J.ore_present = ore_map[world.maxx * (gen_turf.y - 1) + gen_turf.x]
+		var/area/jungleland/jungle_area = selected_biome.this_area 
+		var/area/old_area = GT.loc
+		old_area.contents -= GT 
+		jungle_area.contents += GT
+		GT.change_area(old_area,jungle_area)
 		CHECK_TICK
+
+	for(var/biome in subtypesof(/datum/biome/jungleland))
+		var/datum/biome/jungleland/selected_biome = SSmapping.biomes[biome] 
+		selected_biome.this_area.reg_in_areas_in_z()
 
 	var/message = "Jungle land finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, "<span class='boldannounce'>[message]</span>")

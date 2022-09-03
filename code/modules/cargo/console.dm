@@ -3,14 +3,19 @@
 	desc = "Used to order supplies, approve requests, and control the shuttle."
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
+	light_color = "#E2853D"//orange
+	///Can the supply console send the shuttle back and forth? Used in the UI backend.
+	var/can_send = TRUE
+	///Can this console only send requests?
 	var/requestonly = FALSE
+	///Can you approve requests placed for cargo? Works differently between the app and the computer.
+	var/can_approve_requests = TRUE
 	var/contraband = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
 		cannot transport live organisms, human remains, classified nuclear weaponry \
 		or homing beacons. Additionally, remove any privately ordered crates from the shuttle."
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
-
-	light_color = "#E2853D"//orange
+	var/self_paid = FALSE
 
 /obj/machinery/computer/cargo/request
 	name = "supply request console"
@@ -18,6 +23,8 @@
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/computer/cargo/request
 	requestonly = TRUE
+	can_send = FALSE
+	can_approve_requests = FALSE
 
 /obj/machinery/computer/cargo/Initialize()
 	. = ..()
@@ -63,10 +70,11 @@
 	if(D)
 		data["points"] = D.account_balance
 	data["away"] = SSshuttle.supply.getDockedId() == "supply_away"
-	//data["self_paid"] = self_paid //This is present on TG, but not here, we'll see if it's necessary.
+	data["self_paid"] = self_paid
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
+	data["can_send"] = can_send
 	var/message = "Remember to stamp and send back the supply manifests."
 	if(SSshuttle.centcom_message)
 		message = SSshuttle.centcom_message
@@ -228,6 +236,9 @@
 					break
 		if("denyall")
 			SSshuttle.requestlist.Cut()
+			. = TRUE
+		if("toggleprivate")
+			self_paid = !self_paid
 			. = TRUE
 	if(.)
 		post_signal("supply")

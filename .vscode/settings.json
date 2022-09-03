@@ -7,9 +7,8 @@
 		"tgui/.yarn": true,
 		"tgui/.pnp.*": true
 	},
-	"workbench.editorAssociations": {
-		"*.dmi": "imagePreview.previewEditor"
-	},
 	"files.eol": "\n",
-	"gitlens.advanced.blame.customArguments": ["-w"]
+	"gitlens.advanced.blame.customArguments": [
+		"-w"
+	]
 }

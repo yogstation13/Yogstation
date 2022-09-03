@@ -18,7 +18,7 @@
 	"Chief Medical Officer" = list("medical","silver"),
 	"Station Engineer" = list("engineering","yellow"),
 	"Atmospheric Technician" = list("engineering","white"),
-	"Signal Technician" = list("engineering","green"),
+	"Network Admin" = list("engineering","green"),
 	"Medical Doctor" = list("medical","blue"),
 	"Geneticist" = list("medical","purple"),
 	"Virologist" = list("medical","green"),
@@ -71,6 +71,8 @@
 /obj/item/card/emag/emag_act(mob/user)
 	var/otherEmag = user.get_active_held_item()
 	if(!otherEmag)
+		return
+	if(istype(otherEmag, /obj/item/card/emag/improvised))
 		return
 	if(prob(10))
 		to_chat(user, span_notice("By some ungodly miracle, the emag gains new functionality instead of being destroyed."))

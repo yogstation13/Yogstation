@@ -16,21 +16,6 @@
 		return
 	. = ..()
 
-/// Prevents Bloodsuckers from naturally regenerating Blood - Even while on masquerade
-/mob/living/carbon/human/handle_blood(delta_time, times_fired)
-	if(mind && IS_BLOODSUCKER(src))
-		return
-	/// For Vassals -- Bloodsuckers get this removed while on Masquerade, so we don't want to remove the check above.
-	if(HAS_TRAIT(src, TRAIT_NOPULSE))
-		return
-	. = ..()
-
-/mob/living/carbon/human/natural_bodytemperature_stabilization(datum/gas_mixture/environment, delta_time, times_fired)
-	// Return 0 as your natural temperature. Species proc handle_environment() will adjust your temperature based on this.
-	if(HAS_TRAIT(src, TRAIT_COLDBLOODED))
-		return 0
-	. = ..()
-
 // Overwrites mob/living/life.dm instead of doing handle_changeling
 /mob/living/carbon/human/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()
@@ -52,8 +37,11 @@
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 		if(bloodsuckerdatum)
 			. += ""
+			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER + bloodsuckerdatum.humanity_lost * 10]"
+			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT + bloodsuckerdatum.humanity_lost * 10]"
 			. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
-
+			if(bloodsuckerdatum.current_task)
+				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
 
 // INTEGRATION: Adding Procs and Datums to existing "classes" //
 

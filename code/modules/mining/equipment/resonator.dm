@@ -54,7 +54,7 @@
 	desc = "A resonating field that significantly damages anything inside of it when the field eventually ruptures. More damaging in low pressure environments."
 	icon_state = "shield1"
 	layer = ABOVE_ALL_MOB_LAYER
-	duration = 50
+	duration = 5 SECONDS
 	var/resonance_damage = 20
 	var/damage_multiplier = 1
 	var/creator
@@ -110,16 +110,16 @@
 /obj/effect/temp_visual/resonance_crush
 	icon_state = "shield1"
 	layer = ABOVE_ALL_MOB_LAYER
-	duration = 4
+	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/resonance_crush/Initialize()
 	. = ..()
 	transform = matrix()*1.5
-	animate(src, transform = matrix()*0.1, alpha = 50, time = 4)
+	animate(src, transform = matrix()*0.1, alpha = 50, time = 0.4 SECONDS)
 
 /obj/effect/temp_visual/resonance/proc/replicate(turf/closed/mineral/M)	//yogs start: adds replication to resonator fields
 	if(!istype(M) || !M.mineralType) // so we don't end up in the ultimate chain reaction
 		return
 	for(var/turf/closed/mineral/T in orange(1, M))
-		if(istype(T) && M.mineralType == T.mineralType)
+		if(istype(T) && !locate(/obj/effect/temp_visual/resonance) in T && M.mineralType == T.mineralType)
 			new /obj/effect/temp_visual/resonance(T, creator, null, duration)	//yogs end

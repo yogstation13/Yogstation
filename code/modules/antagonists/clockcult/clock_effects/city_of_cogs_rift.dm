@@ -47,7 +47,7 @@
 			if(L.client && !L.incapacitated())
 				L.visible_message(span_notice("[L] starts climbing through [src]..."), \
 				span_notice("You begin climbing through [src]..."))
-				if(!do_after(L, 30, target = L))
+				if(!do_after(L, 3 SECONDS, L))
 					return
 		if(!istype(AM, /obj/effect/))
 			beckon(AM)

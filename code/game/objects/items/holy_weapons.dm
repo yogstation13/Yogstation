@@ -10,7 +10,7 @@
 	heat_protection = null
 	max_heat_protection_temperature = null
 	clothing_flags = null
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 5, ENERGY = 0, BOMB = 5, BIO = 0, FIRE = 80, ACID = 80)
 	slowdown = 0.5
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
@@ -24,7 +24,7 @@
 	heat_protection = null
 	max_heat_protection_temperature = null
 	clothing_flags = null
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 5, "energy" = 0, "bomb" = 5, "bio" = 0, "fire" = 80, "acid" = 80)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 5, ENERGY = 0, BOMB = 5, BIO = 0, FIRE = 80, ACID = 80)
 	slowdown = 0.33
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplarfollower
 
@@ -33,7 +33,7 @@
 	desc = "A custom-made Black Templar helmet, it's abnormally light. The words 'Purge Heresy' are written on the side."
 	icon_state = "darktemplar-follower1"
 	item_state = "darktemplar-follower1"
-	armor = list("melee" = 20, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	cold_protection = null
 	min_cold_protection_temperature = null
 	heat_protection = null
@@ -47,7 +47,7 @@
 	desc = "A custom-made Black Templar chaplain battle-helmet, it's abnormally light. The words 'Purge Heresy' are written on the side."
 	icon_state = "darktemplar-chaplain1"
 	item_state = "darktemplar-chaplain1"
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 55, "acid" = 55)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 15, BIO = 0, RAD = 0, FIRE = 55, ACID = 55)
 	cold_protection = null
 	min_cold_protection_temperature = null
 	heat_protection = null
@@ -61,7 +61,7 @@
 	desc = "Deus Vult."
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 40, BULLET = 10, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	strip_delay = 80
@@ -72,7 +72,7 @@
 	desc = "God wills it!"
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 50)
+	armor = list(MELEE = 40, BULLET = 10, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 50)
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/box/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	slowdown = 0
 	blocks_shove_knockdown = FALSE
@@ -134,7 +134,7 @@
 /obj/item/clothing/head/helmet/chaplain/cage
 	name = "cage"
 	desc = "A cage that restrains the will of the self, allowing one to see the profane world for what it is."
-	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "cage"
 	item_state = "cage"
 	worn_x_dimension = 64
@@ -212,14 +212,14 @@
 	desc = "Now you're ready for some 50 dollar bling water."
 	icon_state = "chaplain_hoodie_leader"
 	item_state = "chaplain_hoodie_leader"
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
+	armor = list(MELEE = 15, BULLET = 5, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 25)
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood/leader
 
 /obj/item/clothing/head/hooded/chaplain_hood/leader
 	name = "leader hood"
 	desc = "I mean, you don't /have/ to seek bling water. I just think you should."
 	icon_state = "chaplain_hood_leader"
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 0, "acid" = 25)
+	armor = list(MELEE = 15, BULLET = 5, LASER = 5,ENERGY = 5, BOMB = 5, BIO = 2, RAD = 0, FIRE = 0, ACID = 25)
 
 /obj/item/storage/box/holy/darktemplar
 	name = "Founder Kit of the Black Templars"
@@ -247,6 +247,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = UNIQUE_RENAME
 	wound_bonus = -10
+	cryo_preserve = TRUE
 	var/reskinned = FALSE
 	var/chaplain_spawnable = TRUE
 
@@ -256,7 +257,20 @@
 
 /obj/item/nullrod/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is killing [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to get closer to god!"))
-	return (BRUTELOSS|FIRELOSS)
+	playsound(user, 'sound/effects/pray.ogg', 50)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.SetImmobilized(10 SECONDS)
+	animate(user, pixel_y = (32*8), time = 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/suicide, user), 10 SECONDS)
+	return MANUAL_SUICIDE
+
+/obj/item/nullrod/proc/suicide(mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.dropItemToGround(src, TRUE, TRUE)
+	qdel(user, TRUE)
+	
 
 /obj/item/nullrod/attack_self(mob/user)
 	if(user.mind && (user.mind.holy_role) && !reskinned)

@@ -105,8 +105,8 @@
 		return
 	clashing = TRUE
 	GLOB.cult_narsie.clashing = TRUE
-	to_chat(world, "<span class='bold brass'><font size=5>\"YOU.\"</font></span>")
-	to_chat(world, "<span class='bold cult'><font size=5>\"Ratvar?!\"</font></span>")
+	send_to_playing_players("<span class='bold brass'><font size=5>\"YOU.\"</font></span>")
+	send_to_playing_players("<span class='bold cult'><font size=5>\"Ratvar?!\"</font></span>")
 	clash_of_the_titans(GLOB.cult_narsie) // >:(
 	return TRUE
 
@@ -116,7 +116,7 @@
 	var/base_victory_chance = 1
 	while(src && narsie)
 		sound_to_playing_players('sound/magic/clockwork/ratvar_attack.ogg')
-		sleep(5.2)
+		sleep(0.52 SECONDS)
 		for(var/mob/M in GLOB.mob_list)
 			if(!isnewplayer(M))
 				flash_color(M, flash_color="#966400", flash_time=1)
@@ -128,9 +128,9 @@
 		if(ratvar_chance > narsie_chance)
 			winner = "Ratvar"
 			break
-		sleep(rand(2,5))
+		sleep(rand(0.2 SECONDS, 0.5 SECONDS))
 		sound_to_playing_players('sound/magic/clockwork/narsie_attack.ogg')
-		sleep(7.4)
+		sleep(0.74 SECONDS)
 		for(var/mob/M in GLOB.mob_list)
 			if(!isnewplayer(M))
 				flash_color(M, flash_color="#C80000", flash_time=1)

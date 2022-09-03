@@ -232,6 +232,8 @@
 	var/total_volume = 0
 
 	for(var/i in GL)
+		if(!i)
+			continue
 		var/datum/gas_mixture/G = i
 		total_gas_mixture.merge(G)
 		total_volume += G.return_volume()
@@ -239,6 +241,8 @@
 	if(total_volume > 0)
 		//Update individual gas_mixtures by volume ratio
 		for(var/i in GL)
+			if(!i)
+				continue
 			var/datum/gas_mixture/G = i
 			G.copy_from(total_gas_mixture)
 			G.multiply(G.return_volume()/total_volume)

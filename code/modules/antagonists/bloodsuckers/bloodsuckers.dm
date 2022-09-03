@@ -24,8 +24,6 @@
 	var/humanity_lost = 0
 	///Have we been broken the Masquerade?
 	var/broke_masquerade = FALSE
-	///Blood required to enter Frenzy
-	var/frenzy_threshold = FRENZY_THRESHOLD_ENTER
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
@@ -41,6 +39,10 @@
 	var/datum/martial_art/frenzygrab/frenzygrab = new
 	///You get assigned a Clan once you Rank up enough
 	var/my_clan = NONE
+	///How many clan points you have -> Used in clans in order to assert certain limits // Upgrades and stuff
+	var/clanpoints = 0
+	///How much progress have you done on your clan
+	var/clanprogress = 0
 
 	///Vassals under my control. Periodically remove the dead ones.
 	var/list/datum/antagonist/vassal/vassals = list()
@@ -106,7 +108,6 @@
 
 /// These handles the application of antag huds/special abilities
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
-	. = ..()
 	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/LifeTick)
 	if((owner.assigned_role == "Clown"))
 		var/mob/living/carbon/H = owner.current
@@ -116,7 +117,6 @@
 				to_chat(owner, "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
-	. = ..()
 	UnregisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE)
 	if(owner.assigned_role == "Clown")
 		var/mob/living/carbon/human/H = owner.current
@@ -161,6 +161,50 @@
 	ClearAllPowersAndStats()
 	return ..()
 
+/datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	. = ..()
+	if(istype(new_body, /mob/living/simple_animal/hostile/bloodsucker) || istype(old_body, /mob/living/simple_animal/hostile/bloodsucker))
+		return
+	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+		all_powers.Remove(old_body)
+		all_powers.Grant(new_body)
+	var/old_punchdamagelow
+	var/old_punchdamagehigh
+	var/old_punchstunthreshold
+	var/old_species_punchdamagelow
+	var/old_species_punchdamagehigh
+	var/old_species_punchstunthreshold
+	if(ishuman(old_body))
+		var/mob/living/carbon/human/old_user = old_body
+		var/datum/species/old_species = old_user.dna.species
+		old_species.species_traits -= DRINKSBLOOD
+		//Keep track of what they were
+		old_punchdamagelow = old_species.punchdamagelow
+		old_punchdamagehigh = old_species.punchdamagehigh
+		old_punchstunthreshold = old_species.punchstunthreshold
+		//Then reset them
+		old_species.punchdamagelow = initial(old_species.punchdamagelow)
+		old_species.punchdamagehigh = initial(old_species.punchdamagehigh)
+		old_species.punchstunthreshold = initial(old_species.punchstunthreshold)
+		//Then save the new, old, original species values so we can use them in the next part. This is starting to get convoluted.
+		old_species_punchdamagelow = old_species.punchdamagelow
+		old_species_punchdamagehigh = old_species.punchdamagehigh
+		old_species_punchstunthreshold = old_species.punchstunthreshold
+	if(ishuman(new_body))
+		var/mob/living/carbon/human/new_user = new_body
+		var/datum/species/new_species = new_user.dna.species
+		new_species.species_traits += DRINKSBLOOD
+		//Adjust new species punch damage
+		new_species.punchdamagelow += (old_punchdamagelow - old_species_punchdamagelow)			//Takes whatever DIFFERENCE you had between your punch damage and that of the baseline species
+		new_species.punchdamagehigh += (old_punchdamagehigh - old_species_punchdamagehigh)		//and adds it to your new species, thus preserving whatever bonuses you got
+		new_species.punchstunthreshold += (old_punchstunthreshold - old_species_punchstunthreshold)
+
+	//Give Bloodsucker Traits
+	for(var/all_traits in bloodsucker_traits)
+		REMOVE_TRAIT(old_body, all_traits, BLOODSUCKER_TRAIT)
+		ADD_TRAIT(new_body, all_traits, BLOODSUCKER_TRAIT)
+
+
 /datum/antagonist/bloodsucker/greet()
 	. = ..()
 	var/fullname = ReturnFullName(TRUE)
@@ -186,7 +230,7 @@
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
 	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", bloodsucker_level_unspent) as null | num
 	var/msg = " made [key_name_admin(new_owner)] into \a [name]"
-	if(!isnull(levels))
+	if(levels > 1)
 		bloodsucker_level_unspent = levels
 		msg += " with [levels] extra unspent Ranks."
 	message_admins("[key_name_admin(usr)][msg]")
@@ -250,9 +294,14 @@
 
 	// Default Report
 	var/objectives_complete = TRUE
+	var/optional_objectives_complete = TRUE
 	if(objectives.len)
 		report += printobjectives(objectives)
 		for(var/datum/objective/objective in objectives)
+			if(objective.objective_name == "Optional Objective")
+				if(!objective.check_completion())
+					optional_objectives_complete = FALSE
+				continue
 			if(!objective.check_completion())
 				objectives_complete = FALSE
 				break
@@ -265,12 +314,78 @@
 				var/jobname = all_vassals.owner.assigned_role ? "the [all_vassals.owner.assigned_role]" : ""
 				report += "<b>[all_vassals.owner.name]</b> [jobname][all_vassals.favorite_vassal == TRUE ? " and was the <b>Favorite Vassal</b>" : ""]"
 
-	if(objectives.len == 0 || objectives_complete)
-		report += "<span class='greentext big'>The [name] was successful!</span>"
-	else
-		report += "<span class='redtext big'>The [name] has failed!</span>"
-
+	if(objectives.len == 0 || objectives_complete && optional_objectives_complete)
+		report += span_greentext(span_big("The [name] was successful!"))
+	else if(objectives_complete && !optional_objectives_complete)
+		report += span_marooned("The [name] survived, but has not made a name for [owner.current.p_them()]self...")
+	else		
+		report += span_redtext(span_big("The [name] has failed!"))
+	report += get_flavor(objectives_complete, optional_objectives_complete)
 	return report
+
+/// Evaluates the conditions of the bloodsucker at the end of each round to pick a flavor message to add
+/datum/antagonist/bloodsucker/proc/get_flavor(objectives_complete, optional_objectives_complete)
+	var/list/flavor = list()
+	var/flavor_message
+	var/escaped = (owner.current.onCentCom() || owner.current.onSyndieBase())
+	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
+	var/message_color = "#ef2f3c"
+	//i used pick() in case anyone wants to add more messages as time goes on
+	if(objectives_complete && optional_objectives_complete && broke_masquerade && escaped)
+		//finish all objectives, break masquerade, evac
+		flavor_message += pick(list(
+			"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
+		))
+		message_color = "#008000"
+	else if(objectives_complete && optional_objectives_complete && broke_masquerade && !escaped)
+		//finish all objectives, break masquerade, don't evac
+		flavor_message += pick(list(
+			"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. Let the Camarilla and the witchers come. You will be waiting."
+		))
+		message_color = "#008000"
+	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && escaped)
+		//finish all objectives, don't break masquerade, escape
+		flavor_message += pick(list(
+			"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. High society awaits: a delicacy you have earned."
+		))
+		message_color = "#008000"
+	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && !escaped)
+		//finish all objectives, don't break masquerade, don't escape
+		flavor_message += pick(list(
+			"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. Who knows? If they prove to elevate your power enough, perhaps a new clan might be founded here."
+		))
+		message_color = "#008000"
+	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && escaped)
+		//finish primary objectives only, break masquerade, escape
+		flavor_message += pick(list(
+			"Your mission accomplished, you step off the spacecraft, feeling the mark of exile on your neck. Your allies gone, your veins thrum with a singular purpose: survival."
+		))
+		message_color = "#517fff"
+	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && !escaped)
+		//finish primary objectives only, break masquerade, don't escape
+		flavor_message += pick(list(
+			"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
+		))
+		message_color = "#ef2f3c"
+	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && escaped)
+		//finish primary objectives only, don't break masquerade, escape
+		flavor_message += pick(list(
+			"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
+		))
+		message_color = "#517fff"
+	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && !escaped)
+		//finish primary objectives only, don't break masquerade, don't escape
+		flavor_message += pick(list(
+			"You completed your mission and kept your identity free of heresy, though your mark here is not strong enough to lay a claim. Best stow away when the next shuttle comes around."
+		))
+		message_color = "#517fff"
+	else
+		//perish or just fuck up and fail your primary objectives
+		flavor_message += pick(list(
+			"Thus ends the story of [ReturnFullName(TRUE)]. No doubt future generations will look back on your legacy and reflect on the lessons of the past. If they remember you at all."
+		))
+	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
+	return "<div>[flavor.Join("<br>")]</div>"
 
 /**
  *	# Assigning Sol
@@ -322,6 +437,7 @@
 		user.dna?.remove_all_mutations()
 		user_species.punchdamagelow += 1 //lowest possible punch damage - 0
 		user_species.punchdamagehigh += 1 //highest possible punch damage - 9
+		user_species.punchstunthreshold += 1	//To not change rng knockdowns
 	/// Give Bloodsucker Traits
 	for(var/all_traits in bloodsucker_traits)
 		ADD_TRAIT(owner.current, all_traits, BLOODSUCKER_TRAIT)
@@ -376,7 +492,7 @@
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(owner.current)
 	if(!owner || !owner.current || vassaldatum)
 		return
-	bloodsucker_level_unspent++ //same thing as below
+	bloodsucker_level_unspent++
 	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
 	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
@@ -428,6 +544,10 @@
 		if(!choice || !options[choice])
 			to_chat(owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
 			return
+		if((locate(options[choice]) in powers))
+			to_chat(owner.current, span_notice("You prevent your blood from thickening just yet, but you may try again later."))
+			return
+		// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
 		if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 			to_chat(owner.current, span_warning("You must be in your Coffin to purchase Powers."))
 			return
@@ -449,13 +569,14 @@
 		user_species.punchdamagelow += 0.5
 		// This affects the hitting power of Brawn.
 		user_species.punchdamagehigh += 0.5
+		user_species.punchstunthreshold += 0.5
 
 	// We're almost done - Spend your Rank now.
 	bloodsucker_level++
 	if(spend_rank)
 		bloodsucker_level_unspent--
 	// Ranked up enough? Let them join a Clan.
-	if(bloodsucker_level == 3)
+	if(bloodsucker_level == 3 && my_clan == NONE) //updated for tzimisce
 		AssignClanAndBane()
 
 	// Ranked up enough to get your true Reputation?
@@ -485,21 +606,17 @@
 	// Objective 1: Vassalize a Head/Command, or a specific target
 	var/list/rolled_objectives = list()
 	switch(rand(1, 3))
-		if(1) // Protege and Drink Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/gourmand)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
-		if(2) // Heart Thief and Protege Objective
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
-		if(3) // All of them
-			rolled_objectives = list(new /datum/objective/bloodsucker/protege, new /datum/objective/bloodsucker/heartthief, new /datum/objective/bloodsucker/gourmand)
-			for(var/datum/objective/bloodsucker/objective in rolled_objectives)
-				objective.owner = owner
-				objectives += objective
+		if(1) //Drink Objective
+			rolled_objectives = list(new /datum/objective/bloodsucker/gourmand)
+		if(2) //Protege Objective
+			rolled_objectives = list(new /datum/objective/bloodsucker/protege)
+		if(3) //Heart Thief
+			rolled_objectives = list(new /datum/objective/bloodsucker/heartthief)
+
+	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
+		objective.owner = owner
+		objective.objective_name = "Optional Objective"
+		objectives += objective
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()
@@ -715,7 +832,7 @@
  *	Also deals with Vassalization status.
  */
 
-/datum/mind/proc/can_make_bloodsucker(datum/mind/convertee, datum/mind/converter)
+/datum/mind/proc/prepare_bloodsucker(datum/mind/convertee, datum/mind/converter)
 	// Species Must have a HEART (Sorry Plasmamen)
 	var/mob/living/carbon/human/user = convertee.current
 	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
@@ -728,8 +845,9 @@
 	return TRUE
 
 /datum/mind/proc/make_bloodsucker(datum/mind/bloodsucker)
-	if(!can_make_bloodsucker(bloodsucker))
-		return FALSE
+	var/mob/living/carbon/human/user = bloodsucker.current
+	if(!(user.dna?.species) || !(user.mob_biotypes & MOB_ORGANIC))
+		prepare_bloodsucker(bloodsucker)
 	add_antag_datum(/datum/antagonist/bloodsucker)
 	return TRUE
 

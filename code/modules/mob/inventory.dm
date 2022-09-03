@@ -131,7 +131,12 @@
 		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
 			best_item = I
 			best_quality = I.toolspeed
-
+//yogs start -- fucking stupid but modular holotool patch
+	if(quality == TOOL_MULTITOOL)
+		if(istype(best_item,/obj/item/holotool))
+			var/obj/item/holotool/H = best_item
+			return H.internal_multitool
+//yogs end
 	return best_item
 
 
@@ -294,10 +299,12 @@
 //will force move the item to the ground and call the turf's Entered
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE)
 	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
+	I.do_drop_animation(src)
 
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE)
-	return doUnEquip(I, force, newloc, FALSE, silent = silent)
+	. = doUnEquip(I, force, newloc, FALSE, silent = silent)
+	I.do_drop_animation(src)
 
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D

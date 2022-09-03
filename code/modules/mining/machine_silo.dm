@@ -60,8 +60,18 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	return TRUE
 
 /obj/machinery/ore_silo/attackby(obj/item/W, mob/user, params)
+	if(user.a_intent == INTENT_HARM) //so we can hit the machine
+		return ..()
+	
+	if(default_deconstruction_screwdriver(user, "icon_state", "icon_state", W))
+		return TRUE
+
+	if(default_deconstruction_crowbar(W))
+		return TRUE
+
 	if (istype(W, /obj/item/stack))
 		return remote_attackby(src, user, W)
+
 	return ..()
 
 /obj/machinery/ore_silo/ui_interact(mob/user)
@@ -185,6 +195,10 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 /obj/machinery/ore_silo/examine(mob/user)
 	. = ..()
 	. += span_notice("[src] can be linked to techfabs, circuit printers and protolathes with a multitool.")
+
+/obj/machinery/ore_silo/swarmer_act(mob/living/simple_animal/hostile/swarmer/actor)
+	actor.dismantle_machine(src, TRUE)
+	return TRUE
 
 /datum/ore_silo_log
 	var/name  // for VV

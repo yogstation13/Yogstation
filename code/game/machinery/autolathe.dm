@@ -210,7 +210,7 @@
 			"You begin to load a design from \the [O]...",
 			"You hear the chatter of a floppy drive.")
 		var/obj/item/disk/design_disk/D = O
-		if(do_after(user, 1.5 SECONDS, target = src))
+		if(do_after(user, 1.5 SECONDS, src))
 			for(var/B in D.blueprints)
 				if(B)
 					stored_research.add_design(B)
@@ -418,6 +418,9 @@
 /obj/machinery/autolathe/proc/process_queue() //Process the queue from the autoqueue list. Will add temp metal and glass later.
 	var/datum/design/D = autoqueue[1][1]
 	var/multiplier = autoqueue[1][2]
+	if(!multiplier || !isnum(multiplier) || isnan(multiplier))
+		message_admins("[ADMIN_FULLMONTY(usr)] is attempting to create NAN stacks of items")
+		return
 	if(!processing_queue)
 		say("Queue processing halted.")
 		return

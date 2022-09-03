@@ -1,9 +1,11 @@
 name: Compile changelogs
 
 on:
+  workflow_dispatch:
   schedule:
-  - cron: "0 2 * * *"
+  - cron: "0 6 * * *"
   - cron: "0 14 * * *"
+  - cron: "0 22 * * *"
 
 jobs:
   compile:

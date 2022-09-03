@@ -37,6 +37,7 @@
 	obj_damage = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 20
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	faction = list("spiders")
 	var/busy = SPIDER_IDLE
 	pass_flags = PASSTABLE
@@ -321,7 +322,7 @@
 		visible_message(span_notice("[src] begins to secrete a sticky substance around [cocoon_target]."),span_notice("You begin wrapping [cocoon_target] into a cocoon."))
 		stop_automated_movement = TRUE
 		walk(src,0)
-		if(do_after(src, 5 SECONDS, target = cocoon_target))
+		if(do_after(src, 5 SECONDS, cocoon_target))
 			if(busy == SPINNING_COCOON)
 				log_admin("[src] spun a cocoon around [cocoon_target]")
 				var/obj/structure/spider/cocoon/C = new(cocoon_target.loc)
@@ -371,7 +372,7 @@
 		S.busy = SPINNING_WEB
 		S.visible_message(span_notice("[S] begins to secrete a sticky substance."),span_notice("You begin to lay a web."))
 		S.stop_automated_movement = TRUE
-		if(do_after(S, 40, target = T))
+		if(do_after(S, 4 SECONDS, T))
 			if(S.busy == SPINNING_WEB && S.loc == T)
 				new /obj/structure/spider/stickyweb(T)
 		S.busy = SPIDER_IDLE
@@ -465,7 +466,7 @@
 		S.busy = LAYING_EGGS
 		S.visible_message(span_notice("[S] begins to lay a cluster of eggs."),span_notice("You begin to lay a cluster of eggs."))
 		S.stop_automated_movement = TRUE
-		if(do_after(S, 50, target = get_turf(S)))
+		if(do_after(S, 5 SECONDS, get_turf(S)))
 			if(S.busy == LAYING_EGGS)
 				E = locate() in get_turf(S)
 				if(!E || !isturf(S.loc))

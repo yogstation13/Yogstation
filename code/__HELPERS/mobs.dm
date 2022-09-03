@@ -84,6 +84,12 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair, GLOB.pod_hair_list)
 	if(!GLOB.pod_flower_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_flower, GLOB.pod_flower_list)
+	if(!GLOB.ipc_screens_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
+	if(!GLOB.ipc_antennas_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
+	if(!GLOB.ipc_chassis_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
 
 	//For now we will always return none for tail_human and ears.		this shit was unreadable if you do somethign like this make it at least readable
 	return(list(
@@ -108,7 +114,10 @@
 		"dome" = pick(GLOB.dome_list),
 		"dorsal_tubes" = pick(GLOB.dorsal_tubes_list),
 		"ethereal_mark" = pick(GLOB.ethereal_mark_list),
-		"pod_hair" = pick(GLOB.pod_hair_list)
+		"pod_hair" = pick(GLOB.pod_hair_list),
+		"ipc_screen" = pick(GLOB.ipc_screens_list),
+		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
+		"ipc_chassis" = pick(GLOB.ipc_chassis_list)
 	))
 
 /proc/random_hair_style(gender)
@@ -176,6 +185,13 @@
 /proc/random_unique_polysmorph_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(pick(GLOB.polysmorph_names))
+
+		if(!findname(.))
+			break
+
+/proc/random_unique_ipc_name(attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = capitalize(ipc_name())
 
 		if(!findname(.))
 			break
@@ -282,28 +298,28 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, stayStill = TRUE)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, datum/callback/extra_checks = null, stayStill = TRUE)
 	if(!user)
-		return 0
-	var/atom/Tloc = null
+		return FALSE
+	var/atom/target_loc = null
 	if(target && !isturf(target))
-		Tloc = target.loc
+		target_loc = target.loc
 
 	if(target)
 		LAZYADD(user.do_afters, target)
 		LAZYADD(target.targeted_by, user)
 
-	var/atom/Uloc = user.loc
+	var/atom/user_loc = user.loc
 
-	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
+	var/drifting = FALSE
+	if(!user.Process_Spacemove() && user.inertia_dir)
+		drifting = TRUE
 
 	var/holding = user.get_active_held_item()
 
-	var/holdingnull = 1 //User's hand started out empty, check for an empty hand
+	var/holdingnull = TRUE //User's hand started out empty, check for an empty hand
 	if(holding)
-		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
+		holdingnull = FALSE //Users hand started holding something, check to see if it's still holding that
 
 	delay = ((delay + user.action_speed_adjust) * user.action_speed_modifier * user.do_after_coefficent()) //yogs: darkspawn
 
@@ -313,33 +329,33 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 
 		if(drifting && !user.inertia_dir)
-			drifting = 0
-			Uloc = user.loc
+			drifting = FALSE
+			user_loc = user.loc
 
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc && stayStill) || (extra_checks && !extra_checks.Invoke()))
-			. = 0
+		if(QDELETED(user) || user.stat || (!drifting && user.loc != user_loc && stayStill) || (extra_checks && !extra_checks.Invoke()))
+			. = FALSE
 			break
 
 		if(isliving(user))
 			var/mob/living/L = user
 			if(L.IsStun() || L.IsParalyzed())
-				. = 0
+				. = FALSE
 				break
 
-		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((Uloc != Tloc || Tloc != user) && !drifting && stayStill)
-				. = 0
+		if(!QDELETED(target_loc) && (QDELETED(target) || target_loc != target.loc))
+			if((user_loc != target_loc || target_loc != user) && !drifting && stayStill)
+				. = FALSE
 				break
 
 		if(target && !(target in user.do_afters))
-			. = 0
+			. = FALSE
 			break
 
 		if(needhand)
@@ -347,10 +363,10 @@ GLOBAL_LIST_EMPTY(species_list)
 			//i.e the hand is used to pull some item/tool out of the construction
 			if(!holdingnull)
 				if(!holding)
-					. = 0
+					. = FALSE
 					break
 			if(user.get_active_held_item() != holding)
-				. = 0
+				. = FALSE
 				break
 	if (progress)
 		qdel(progbar)
@@ -471,10 +487,10 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	return spawned_mobs
 
-// Displays a message in deadchat, sent by source. Source is not linkified, message is, to avoid stuff like character names to be linkified.
+// Displays a message in deadchat, sent by source.
 // Automatically gives the class deadsay to the whole message (message + source)
 /proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
-	message = span_deadsay("[source][span_linkify("[message]")]")
+	message = span_deadsay("[source][message]")
 	for(var/mob/M in GLOB.player_list)
 		var/datum/preferences/prefs
 		if(M.client && M.client.prefs)
@@ -565,7 +581,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			return
 		AM.setDir(i)
 		callperrotate?.Invoke()
-		sleep(1)
+		sleep(0.1 SECONDS)
 	if(set_original_dir)
 		AM.setDir(originaldir)
 

@@ -14,7 +14,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 40
 	var/active = 0
-	var/det_time = 50
+	var/det_time = 5 SECONDS
 	var/display_timer = 1
 	var/clumsy_check = GRENADE_CLUMSY_FUMBLE
 
@@ -105,18 +105,18 @@
 	if(time != null)
 		if(time < 3)
 			time = 3
-		det_time = round(clamp(time * 10, 0, 50))
+		det_time = round(clamp(time * 1 SECONDS, 0, 5 SECONDS))
 	else
 		var/previous_time = det_time
 		switch(det_time)
-			if (0)
-				det_time = 30
-			if (30)
-				det_time = 50
-			if (50)
-				det_time = 0
+			if (0 SECONDS)
+				det_time = 3 SECONDS
+			if (3 SECONDS)
+				det_time = 5 SECONDS
+			if (5 SECONDS)
+				det_time = 0 SECONDS
 		if(det_time == previous_time)
-			det_time = 50
+			det_time = 5 SECONDS
 
 /obj/item/grenade/attack_paw(mob/user)
 	return attack_hand(user)

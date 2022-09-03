@@ -9,6 +9,7 @@
 	obj_damage = 100
 	melee_damage_lower = 25
 	melee_damage_upper = 50
+	attack_vis_effect = ATTACK_EFFECT_SLASH // I always thought they bit. Guess I was wrong.
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	faction = list("creature")
@@ -17,6 +18,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	faction = list("nether")
+
 
 /mob/living/simple_animal/hostile/netherworld/migo
 	name = "mi-go"
@@ -59,9 +61,8 @@
 	gold_core_spawnable = NO_SPAWN
 	health = 100
 	maxHealth = 100
-	melee_damage_lower = 5
-	melee_damage_upper = 10
-	attacktext = "punches"
+	speed = -0.7
+	attacktext = "slashes"
 	deathmessage = "falls apart into a fine dust."
 
 /obj/structure/spawner/nether

@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		if(vent_found_parent && (vent_found_parent.members.len || vent_found_parent.other_atmosmch))
 			visible_message(span_notice("[src] begins climbing into the ventilation system...") ,span_notice("You begin climbing into the ventilation system..."))
 
-			if(!do_after(src, 2.5 SECONDS, target = vent_found))
+			if(!do_after(src, 2.5 SECONDS, vent_found))
 				return
 
 			if(!client)
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 					return
 
 			visible_message(span_notice("[src] scrambles into the ventilation ducts!"),span_notice("You climb into the ventilation ducts."))
-			forceMove(vent_found)
+			move_into_vent(vent_found)
 	else
 		to_chat(src, span_warning("This ventilation duct is not connected to anything!"))
 
@@ -77,6 +77,17 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		to_chat(src, "<i>I can't vent crawl while feeding...</i>")
 		return
 	..()
+
+/**
+ * Moves living mob directly into the vent as a ventcrawler
+ *
+ * Arguments:
+ * * ventcrawl_target - The vent into which we are moving the mob
+ */
+/mob/living/proc/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)
+	forceMove(ventcrawl_target)
+	update_pipe_vision()
+
 
 
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)

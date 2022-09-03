@@ -10,10 +10,12 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 10
-	cooldown = 8 SECONDS
+	cooldown = 7 SECONDS
 	prefire_message = "Select a destination."
 	//target_range = 2
 	var/turf/target_turf // We need to decide where we're going based on where we clicked. It's not actually the tile we clicked.
+	var/wallbound = TRUE
+	var/soliddelay = 0.1 SECONDS
 
 /datum/action/bloodsucker/targeted/trespass/CheckCanUse(mob/living/carbon/user)
 	. = ..()
@@ -50,9 +52,13 @@
 		from_turf = get_step(from_turf, this_dir)
 		// ERROR! Wall!
 		if(iswallturf(from_turf))
-			var/wallwarning = (i == 1) ? "in the way" : "at your destination"
-			to_chat(owner, "There is a wall [wallwarning].")
-			return FALSE
+			if(wallbound)
+				var/wallwarning = (i == 1) ? "in the way" : "at your destination"
+				to_chat(owner, span_warning("There is a wall [wallwarning]."))
+				return FALSE
+			if(!wallbound)
+				to_chat(owner, span_notice("You begin passing through the wall, this will take a while and take more energy."))
+				soliddelay = 2
 	// Done
 	target_turf = from_turf
 
@@ -65,19 +71,21 @@
 	var/mob/living/carbon/user = owner
 	var/turf/my_turf = get_turf(owner)
 
+	user.uncuff()
 	user.visible_message(
 		span_warning("[user]'s form dissipates into a cloud of mist!"),
-		span_notice("You disspiate into formless mist."),
+		span_notice("You dissipate into formless mist."),
 	)
 	// Effect Origin
 	var/sound_strength = max(60, 70 - level_current * 10)
-	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', sound_strength, 1)
+	var/sound_dist = max(-6, -level_current) // world.view is 7, so 7-6 = hearing distance of 1
+	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', sound_strength, 1, sound_dist)
 	var/datum/effect_system/steam_spread/puff = new /datum/effect_system/steam_spread/()
 	puff.effect_type = /obj/effect/particle_effect/smoke/vampsmoke
 	puff.set_up(3, 0, my_turf)
 	puff.start()
 
-	var/mist_delay = max(5, 20 - level_current * 2.5) // Level up and do this faster.
+	var/mist_delay = max(5, 20 * soliddelay - level_current * 2.5) // Level up and do this faster.
 
 	// Freeze Me
 	user.Stun(mist_delay, ignore_canstun = TRUE)
@@ -100,8 +108,19 @@
 	user.density = 1
 	user.invisibility = invis_was
 	// Effect Destination
-	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', 60, 1)
+	playsound(get_turf(owner), 'sound/magic/summon_karp.ogg', sound_strength, 1, sound_dist)
 	puff = new /datum/effect_system/steam_spread/()
 	puff.effect_type = /obj/effect/particle_effect/smoke/vampsmoke
 	puff.set_up(3, 0, target_turf)
 	puff.start()
+
+/datum/action/bloodsucker/targeted/trespass/shadow
+	name = "Manifest"
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon_state_on = "lasombra_power_on"
+	background_icon_state_off = "lasombra_power_off"
+	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon_state = "power_manifest"
+	additional_text = "Additionally allows you pass through walls, albeit at a slower rate."
+	purchase_flags = LASOMBRA_CAN_BUY
+	wallbound = FALSE

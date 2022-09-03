@@ -48,8 +48,13 @@
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						// Dungeons of Dredmor - Diggle Hell
 		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
 		"https://www.youtube.com/watch?v=uiPJQgw6M_g",						// Ribbiks - Chasing Suns
-		"https://www.youtube.com/watch?v=7F_xOzLWy5U")						// Ataraxia - Deja Vuzz
-
+		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
+		"https://www.youtube.com/watch?v=VJ817kvh_DM",						// Ben Prunty - FTL - Theme Song
+		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
+    	"https://www.youtube.com/watch?v=mhXuYp0n88",           // FTL Advanced Edition Soundtrack: Lanius (Battle)
+		"https://www.youtube.com/watch?v=hZb_6_WfquU",            // Steam Powered Giraffe - Fire Fire
+		"https://www.youtube.com/watch?v=52Gg9CqhbP8",  					//Stuck in the Sound - Let's G
+		"https://www.youtube.com/watch?v=8GW6sLrK40k")						//HOME - Resonance
 	selected_lobby_music = pick(songs)
 
 	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!

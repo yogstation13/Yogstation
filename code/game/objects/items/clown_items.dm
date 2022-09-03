@@ -104,7 +104,7 @@
 		to_chat(user, span_warning("You need to take that [target.name] off before cleaning it!"))
 	else if(istype(target, /obj/effect/decal/cleanable))
 		user.visible_message("[user] begins to scrub \the [target.name] out with [src].", span_warning("You begin to scrub \the [target.name] out with [src]..."))
-		if(do_after(user, src.cleanspeed, target = target))
+		if(do_after(user, src.cleanspeed, target))
 			to_chat(user, span_notice("You scrub \the [target.name] out."))
 			qdel(target)
 			decreaseUses(user)
@@ -118,14 +118,14 @@
 		return
 	else if(istype(target, /obj/structure/window))
 		user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))
-		if(do_after(user, src.cleanspeed, target = target))
+		if(do_after(user, src.cleanspeed, target))
 			to_chat(user, span_notice("You clean \the [target.name]."))
 			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 			target.set_opacity(initial(target.opacity))
 			decreaseUses(user)
 	else
 		user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))
-		if(do_after(user, src.cleanspeed, target = target))
+		if(do_after(user, src.cleanspeed, target))
 			to_chat(user, span_notice("You clean \the [target.name]."))
 			target.wash(CLEAN_SCRUB)
 			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
@@ -153,6 +153,7 @@
 	throw_speed = 3
 	throw_range = 7
 	attack_verb = list("HONKED")
+	fryable = TRUE
 
 /obj/item/bikehorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

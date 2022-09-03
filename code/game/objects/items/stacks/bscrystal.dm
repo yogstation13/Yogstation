@@ -4,8 +4,8 @@
 	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "bluespace_crystal"
-	item_color = "cosmos"
 	singular_name = "bluespace crystal"
+	dye_color = DYE_COSMIC
 	w_class = WEIGHT_CLASS_TINY
 	materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT)
 	points = 75
@@ -31,6 +31,10 @@
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 	blink_mob(user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		C.adjust_disgust(30)	//Won't immediately make you vomit, just dont use more than one or two at a time
+		C.confused += 7
 	use(1)
 
 /obj/item/stack/ore/bluespace_crystal/proc/blink_mob(mob/living/L)

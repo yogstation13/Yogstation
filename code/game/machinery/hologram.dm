@@ -39,7 +39,7 @@ Possible to do for anyone motivated enough:
 	idle_power_usage = 5
 	active_power_usage = 100
 	max_integrity = 300
-	armor = list("melee" = 50, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0)
+	armor = list(MELEE = 50, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	circuit = /obj/item/circuitboard/machine/holopad
 	/// List of living mobs that use the holopad
 	var/list/masters
@@ -411,6 +411,8 @@ obj/machinery/holopad/secure/Initialize()
 		Hologram.set_light(2)	//hologram lighting
 		move_hologram()
 
+		AI.pad = src
+
 		set_holo(user, Hologram)
 		visible_message(span_notice("A holographic image of [user] flickers to life before your eyes!"))
 
@@ -468,6 +470,9 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	return TRUE
 
 /obj/machinery/holopad/proc/clear_holo(mob/living/user)
+	if(isAI(user))
+		var/mob/living/silicon/ai/AI = user
+		AI.pad = null
 	qdel(masters[user]) // Get rid of user's hologram
 	unset_holo(user)
 	return TRUE
@@ -528,6 +533,15 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			update_holoray(user,new_turf)
 	return TRUE
 
+/obj/machinery/holopad/proc/refresh_holo(mob/living/silicon/ai/AI)
+	if(AI && istype(AI))
+		var/obj/effect/overlay/holo_pad_hologram/Hologram = new(loc)//Spawn a blank effect at the location.
+		Hologram.icon = AI.holo_icon
+		qdel(masters[AI]) // Get rid of previous hologram
+		qdel(holorays[AI])
+		var/turf/T = get_turf(AI.eyeobj)
+		set_holo(AI, Hologram)
+		move_hologram(AI, T) // Now move the new hologram
 
 /obj/machinery/holopad/proc/update_holoray(mob/living/user, turf/new_turf)
 	var/obj/effect/overlay/holo_pad_hologram/holo = masters[user]
@@ -548,7 +562,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			newangle += 360
 	var/matrix/M = matrix()
 	if (get_dist(get_turf(holo),new_turf) <= 1)
-		animate(ray, transform = turn(M.Scale(1,sqrt(distx*distx+disty*disty)),newangle),time = 1)
+		animate(ray, transform = turn(M.Scale(1,sqrt(distx*distx+disty*disty)),newangle),time = 0.1 SECONDS)
 	else
 		ray.transform = turn(M.Scale(1,sqrt(distx*distx+disty*disty)),newangle)
 

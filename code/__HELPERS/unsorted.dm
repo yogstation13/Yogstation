@@ -482,6 +482,16 @@ Turf and target are separate in case you want to teleport some distance from a t
 			processing += A.contents
 			. += A
 
+/atom/proc/get_all_contents_type(type)
+	var/list/processing_list = list(src)
+	. = list()
+	while(length(processing_list))
+		var/atom/checked_atom = processing_list[1]
+		processing_list.Cut(1, 2)
+		processing_list += checked_atom.contents
+		if(istype(checked_atom, type))
+			. += checked_atom
+
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
@@ -760,6 +770,8 @@ GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
 	if(is_type_in_typecache(W, GLOB.can_embed_types))
 		return TRUE
 
+	if(W.taped)
+		return TRUE
 
 /*
 Checks if that loc and dir has an item on the wall
@@ -1211,7 +1223,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 #undef DELTA_CALC
 
-/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=20)
+/proc/flash_color(mob_or_client, flash_color="#960000", flash_time=2 SECONDS)
 	var/client/C
 	if(ismob(mob_or_client))
 		var/mob/M = mob_or_client
@@ -1243,7 +1255,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/initialpixely = pixel_y
 	var/shiftx = rand(-pixelshiftx,pixelshiftx)
 	var/shifty = rand(-pixelshifty,pixelshifty)
-	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.2, loop = duration)
+	animate(src, pixel_x = pixel_x + shiftx, pixel_y = pixel_y + shifty, time = 0.02 SECONDS, loop = duration)
 	pixel_x = initialpixelx
 	pixel_y = initialpixely
 
@@ -1495,6 +1507,67 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/drinks/bottle
 		)
 	return pick(subtypesof(/obj/item/reagent_containers/food/drinks) - blocked)
+
+/proc/get_random_goat()
+	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
+		/mob/living/simple_animal/hostile/retaliate/goat/clown,
+		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
+		/mob/living/simple_animal/hostile/retaliate/goat/blue,
+		/mob/living/simple_animal/hostile/retaliate/goat/brown,
+		/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
+		/mob/living/simple_animal/hostile/retaliate/goat/rainbow,
+		/mob/living/simple_animal/hostile/retaliate/goat/green,
+		/mob/living/simple_animal/hostile/retaliate/goat/red,
+		/mob/living/simple_animal/hostile/retaliate/goat/black,
+		/mob/living/simple_animal/hostile/retaliate/goat/panda,
+		/mob/living/simple_animal/hostile/retaliate/goat/watercolor,
+		/mob/living/simple_animal/hostile/retaliate/goat/orange,
+		/mob/living/simple_animal/hostile/retaliate/goat/purple,
+		/mob/living/simple_animal/hostile/retaliate/goat/yellow,
+		/mob/living/simple_animal/hostile/retaliate/goat/legitgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/memory,
+		/mob/living/simple_animal/hostile/retaliate/goat/ghost,
+		/mob/living/simple_animal/hostile/retaliate/goat/king,
+		/mob/living/simple_animal/hostile/retaliate/goat/brick,
+		/mob/living/simple_animal/hostile/retaliate/goat/guard
+		)
+	return pick(subtypesof(new /mob/living/simple_animal/hostile/retaliate/goat) - blocked)
+
+/proc/get_random_goat_colorful()
+	var/list/blocked = list(/mob/living/simple_animal/hostile/retaliate/goat/huge,
+		/mob/living/simple_animal/hostile/retaliate/goat/clown,
+		/mob/living/simple_animal/hostile/retaliate/goat/stack,
+		/mob/living/simple_animal/hostile/retaliate/goat/radioactive,
+		/mob/living/simple_animal/hostile/retaliate/goat/ras,
+		/mob/living/simple_animal/hostile/retaliate/goat/christmas,
+		/mob/living/simple_animal/hostile/retaliate/goat/confetti,
+		/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy,
+		/mob/living/simple_animal/hostile/retaliate/goat/glowing,
+		/mob/living/simple_animal/hostile/retaliate/goat/goatgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/horror,
+		/mob/living/simple_animal/hostile/retaliate/goat/inverted,
+		/mob/living/simple_animal/hostile/retaliate/goat/mirrored,
+		/mob/living/simple_animal/hostile/retaliate/goat/paper,
+		/mob/living/simple_animal/hostile/retaliate/goat/pixel,
+		/mob/living/simple_animal/hostile/retaliate/goat/cute,
+		/mob/living/simple_animal/hostile/retaliate/goat/legitgoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/memory,
+		/mob/living/simple_animal/hostile/retaliate/goat/ghost,
+		/mob/living/simple_animal/hostile/retaliate/goat/king,
+		/mob/living/simple_animal/hostile/retaliate/goat/guard,
+		/mob/living/simple_animal/hostile/retaliate/goat/star,
+		/mob/living/simple_animal/hostile/retaliate/goat/twisted,
+		/mob/living/simple_animal/hostile/retaliate/goat/tiny,
+		/mob/living/simple_animal/hostile/retaliate/goat/brick,
+		/mob/living/simple_animal/hostile/retaliate/goat/skiddo,
+		/mob/living/simple_animal/hostile/retaliate/goat/gogoat,
+		/mob/living/simple_animal/hostile/retaliate/goat/sanic,
+		/mob/living/simple_animal/hostile/retaliate/goat/plunger,
+		/mob/living/simple_animal/hostile/retaliate/goat/suspicious,
+		/mob/living/simple_animal/hostile/retaliate/goat/thrumbo
+		)
+	return pick(subtypesof(new /mob/living/simple_animal/hostile/retaliate/goat) - blocked)
 
 //For these two procs refs MUST be ref = TRUE format like typecaches!
 /proc/weakref_filter_list(list/things, list/refs)

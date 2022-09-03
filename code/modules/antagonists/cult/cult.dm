@@ -13,6 +13,7 @@
 	var/give_equipment = FALSE
 	var/datum/team/cult/cult_team
 	var/original_eye_color = "000" //this will store the eye color of the cultist so it can be returned if they get deconverted
+	show_to_ghosts = TRUE
 
 
 /datum/antagonist/cult/get_team()
@@ -432,6 +433,12 @@
 /datum/objective/sacrifice
 	var/sacced = FALSE
 	var/sac_image
+
+/datum/objective/sacrifice/is_valid_target(possible_target)
+	. = ..()
+	var/datum/mind/M = possible_target
+	if(istype(M) && isipc(M.current))
+		return FALSE
 
 /datum/objective/sacrifice/check_completion()
 	return sacced || completed

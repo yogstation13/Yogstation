@@ -18,3 +18,7 @@ GLOBAL_LIST_INIT(jungle_ores, list( \
 		ORE_TITANIUM = new /datum/ore_patch/titanium(), 
 		ORE_URANIUM = new /datum/ore_patch/uranium() 
 ))
+
+GLOBAL_DATUM_INIT(jungleland_daynight_cycle, /datum/daynight_cycle,new)
+
+GLOBAL_LIST_EMPTY(tar_pits)

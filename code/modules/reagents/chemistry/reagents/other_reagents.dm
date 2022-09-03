@@ -122,6 +122,7 @@
 	glass_name = "glass of water"
 	glass_desc = "The father of all refreshments."
 	shot_glass_icon_state = "shotglassclear"
+	process_flags = ORGANIC | SYNTHETIC
 
 /*
  *	Water reaction to turf
@@ -283,8 +284,8 @@
 			if(13 to INFINITY)
 				M.visible_message("<span class='danger'>[M] suddenly ignites in a brilliant flash of white!<span>", span_userdanger("You suddenly ignite in a holy fire!"))
 				M.adjust_fire_stacks(3)
-				M.IgniteMob()           
-				M.adjustFireLoss(4)        
+				M.IgniteMob()
+				M.adjustFireLoss(4)
 	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
 
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
@@ -331,6 +332,7 @@
 	name = "Hell Water"
 	description = "YOUR FLESH! IT BURNS!"
 	taste_description = "burning"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/M)
 	M.fire_stacks = min(5,M.fire_stacks + 3)
@@ -376,12 +378,32 @@
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
+	process_flags = PROCESS_ORGANIC | PROCESS_SYNTHETIC
+	metabolization_rate = 2 * REAGENTS_METABOLISM // Double speed
+	
 
 /datum/reagent/lube/reaction_turf(turf/open/T, reac_volume)
 	if (!istype(T))
 		return
 	if(reac_volume >= 1)
 		T.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, min(reac_volume * 2 SECONDS, 120))
+
+/datum/reagent/lube/on_mob_metabolize(mob/living/L)
+	..()
+	if(isipc(L))
+		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.8, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/lube/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
+
+/datum/reagent/lube/on_mob_life(mob/living/carbon/C)
+	. = ..()
+	if(!isipc(C))
+		return
+	C.adjustFireLoss(3)
+	if(prob(10))
+		to_chat(C, span_warning("You slowly burn up as your internal mechanisms work faster than intended."))
 
 /datum/reagent/spraytan
 	name = "Spray Tan"
@@ -503,6 +525,7 @@
 	taste_description = "slime"
 	var/datum/species/race = /datum/species/human
 	var/mutationtext = span_danger("The pain subsides. You feel... human.")
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/H)
 	..()
@@ -964,6 +987,7 @@
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	taste_description = "the inside of a reactor"
 	var/irradiation_level = 1
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/uranium/on_mob_life(mob/living/carbon/M)
 	M.apply_effect(irradiation_level/M.metabolism_efficiency,EFFECT_IRRADIATE,0)
@@ -984,6 +1008,7 @@
 	color = "#C7C7C7" // rgb: 199,199,199
 	taste_description = "the colour blue and regret"
 	irradiation_level = 2*REM
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/bluespace
 	name = "Bluespace Dust"
@@ -991,6 +1016,7 @@
 	reagent_state = SOLID
 	color = "#0000CC"
 	taste_description = "fizzling blue"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/bluespace/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
@@ -1030,6 +1056,7 @@
 	glass_icon_state = "dr_gibb_glass"
 	glass_name = "glass of welder fuel"
 	glass_desc = "Unless you're an industrial tool, this is probably not safe for consumption."
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(method == TOUCH || method == VAPOR)
@@ -1455,7 +1482,7 @@
 /datum/reagent/colorful_reagent/crayonpowder/black
 	name = "Black Crayon Powder"
 	colorname = "black"
-	color = "#1C1C1C" // not quite black
+	color = "#404040" // not quite black
 	random_color_list = list("#404040")
 
 /datum/reagent/colorful_reagent/crayonpowder/white
@@ -1529,6 +1556,7 @@
 	color = "#C8A5DC"
 	taste_description = "bitterness"
 	taste_mult = 1.5
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/stable_plasma/on_mob_life(mob/living/carbon/C)
 	C.adjustPlasma(10)
@@ -1995,6 +2023,41 @@
 	taste_description = "bananas"
 	can_synth = TRUE
 
+/datum/reagent/cow_powder
+	name = "Cow Powder"
+	description = "Just add water!"
+	color = "#fffbf1"
+	taste_description = "milk"
+	can_synth = TRUE
+
+/datum/reagent/chicken_powder
+	name = "Chicken Powder"
+	description = "Just add water!"
+	color = "#ffb94f"
+	taste_description = "eggs"
+	can_synth = TRUE
+
+/datum/reagent/sheep_powder
+	name = "Sheep Powder"
+	description = "Just add water!"
+	color = "#ffffff"
+	taste_description = "wool"
+	can_synth = TRUE
+
+/datum/reagent/goat_powder
+	name = "Goat Powder"
+	description = "Just add water!"
+	color = "#8a8782"
+	taste_description = "rage"
+	can_synth = TRUE
+
+/datum/reagent/mouse_powder
+	name = "Mouse Powder"
+	description = "Just add water!"
+	color = "#8a8782"
+	taste_description = "squeaking"
+	can_synth = TRUE
+
 /datum/reagent/cellulose
 	name = "Cellulose Fibers"
 	description = "A crystalline polydextrose polymer, plants swear by this stuff."
@@ -2043,3 +2106,15 @@
 			wounded_part.heal_damage(0.25, 0.25)
 		M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
 	..()
+
+
+/datum/reagent/plaguebacteria
+	name = "Yersinia pestis"
+	description = "A horrible plague, in a container. It is a TERRIBLE idea to drink this."
+	color = "#7CFC00"
+	taste_description = "death"
+	can_synth = FALSE
+
+/datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
+	if(method == INGEST || method == TOUCH || method == INJECT)
+		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)

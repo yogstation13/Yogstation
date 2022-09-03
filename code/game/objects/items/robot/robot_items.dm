@@ -28,7 +28,7 @@
 	var/trait_check = HAS_TRAIT(M, TRAIT_STUNRESISTANCE)
 
 	var/obj/item/bodypart/affecting = M.get_bodypart(user.zone_selected)
-	var/armor_block = M.run_armor_check(affecting, "energy")
+	var/armor_block = M.run_armor_check(affecting, ENERGY)
 	M.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
 	SEND_SIGNAL(M, COMSIG_LIVING_MINOR_SHOCK)
 	var/current_stamina_damage = M.getStaminaLoss()
@@ -207,7 +207,7 @@
 				return
 
 			to_chat(user, span_notice("You connect to [M]'s power line..."))
-			while(do_after(user, 1.5 SECONDS, target = M, progress = 0))
+			while(do_after(user, 1.5 SECONDS, M, progress = FALSE))
 				if(!user || !user.cell || mode != "draw")
 					return
 
@@ -241,7 +241,7 @@
 
 			to_chat(user, span_notice("You connect to [target]'s power port..."))
 
-			while(do_after(user, 1.5 SECONDS, target = target, progress = 0))
+			while(do_after(user, 1.5 SECONDS, target, progress = FALSE))
 				if(!user || !user.cell || mode != "draw")
 					return
 
@@ -279,7 +279,7 @@
 
 		to_chat(user, span_notice("You connect to [target]'s power port..."))
 
-		while(do_after(user, 1.5 SECONDS, target = target, progress = 0))
+		while(do_after(user, 1.5 SECONDS, target, progress = FALSE))
 			if(!user || !user.cell || mode != "charge")
 				return
 

@@ -21,6 +21,8 @@
 		return
 	if(istype(loccheck.loc, /area/fabric_of_reality))
 		to_chat(user, span_danger("You can't do that here!"))
+	if(user.has_status_effect(STATUS_EFFECT_VOIDED))
+		user.remove_status_effect(STATUS_EFFECT_VOIDED)
 	to_chat(user, span_danger("The Bluespace interfaces of the two devices catastrophically malfunction!"))
 	qdel(W)
 	playsound(loccheck,'sound/effects/supermatter.ogg', 200, 1)

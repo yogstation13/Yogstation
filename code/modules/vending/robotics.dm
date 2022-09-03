@@ -5,20 +5,14 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	req_access = list(ACCESS_ROBOTICS)
-	products = list(/obj/item/clothing/suit/toggle/labcoat = 4,
-					/obj/item/clothing/under/rank/roboticist = 4,
-					/obj/item/stack/cable_coil = 4,
-					/obj/item/assembly/flash/handheld = 4,
-					/obj/item/stock_parts/cell/high = 12,
-					/obj/item/assembly/prox_sensor = 3,
+	products = list(/obj/item/stack/cable_coil = 4,
+					/obj/item/assembly/flash/handheld = 6,
+					/obj/item/stock_parts/cell/high = 2,
+					/obj/item/assembly/prox_sensor = 6,
 					/obj/item/assembly/signaler = 3,
 					/obj/item/healthanalyzer = 3,
-					/obj/item/scalpel = 2,
-					/obj/item/circular_saw = 2,
-					/obj/item/tank/internals/anesthetic = 2,
-					/obj/item/clothing/mask/breath/medical = 5,
-					/obj/item/screwdriver = 5,
-					/obj/item/crowbar = 5)
+					/obj/item/storage/firstaid/regular/empty = 3,
+					/obj/item/reagent_containers/glass/bucket = 3)
 	refill_canister = /obj/item/vending_refill/robotics
 	default_price = 50
 	extra_price = 75

@@ -1,5 +1,7 @@
 /datum/surgery/organ_manipulation
 	name = "Organ manipulation"
+	icon_state = "organ_manipulation"
+	desc = "This surgery covers operations to remove/insert internal organs, tails, and cyber implants."
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 	requires_real_bodypart = 1
@@ -65,10 +67,12 @@
 		)
 
 /datum/surgery_step/manipulate_organs
-	time = 64
+	time = 6.4 SECONDS
 	name = "manipulate organs"
 	repeatable = 1
 	implements = list(/obj/item/organ = 100, /obj/item/reagent_containers/food/snacks/organ = 0, /obj/item/organ_storage = 100)
+	preop_sound = 'sound/surgery/organ2.ogg'
+	success_sound = 'sound/surgery/organ1.ogg'
 	var/implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 55)
 	var/current_type
 	var/obj/item/organ/I = null
@@ -80,6 +84,8 @@
 /datum/surgery_step/manipulate_organs/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	I = null
 	if(istype(tool, /obj/item/organ_storage))
+		preop_sound = initial(preop_sound)
+		success_sound = initial(success_sound)
 		if(!tool.contents.len)
 			to_chat(user, span_notice("There is nothing inside [tool]!"))
 			return -1
@@ -88,8 +94,29 @@
 			to_chat(user, span_notice("You cannot put [I] into [target]'s [parse_zone(target_zone)]!"))
 			return -1
 		tool = I
+
+	if(isipc(target))
+		if(istype(tool, /obj/item/organ/brain/positron))
+			var/obj/item/bodypart/affected = target.get_bodypart(check_zone(target_zone))
+			if(!affected)
+				return -1
+			if(affected.status != ORGAN_ROBOTIC)
+				to_chat(user, "<span class='notice'>You can't put [tool] into a meat enclosure!</span>")
+				return -1
+			if(target_zone != BODY_ZONE_CHEST)
+				to_chat(user, "<span class='notice'>You have to install [tool] in [target]'s chest!</span>")
+				return -1
+			if(target.getorganslot(ORGAN_SLOT_BRAIN))
+				to_chat(user, "<span class='notice'>[target] already has a brain! You'd rather not find out what would happen with two in there.</span>")
+				return -1
+		else if(istype(tool, /obj/item/organ/brain))
+			to_chat(user, "<span class='notice'>[target] does not have the proper connectors to interface with [tool].</span>")
+			return -1
+
 	if(isorgan(tool))
 		current_type = "insert"
+		preop_sound = initial(preop_sound)
+		success_sound = initial(success_sound)
 		I = tool
 		if(target_zone != I.zone || target.getorganslot(I.slot))
 			to_chat(user, span_notice("There is no room for [I] in [target]'s [parse_zone(target_zone)]!"))
@@ -101,26 +128,24 @@
 
 	else if(implement_type in implements_extract)
 		current_type = "extract"
+		preop_sound = 'sound/surgery/hemostat1.ogg'
+		success_sound = 'sound/surgery/organ2.ogg'
 		var/list/organs = target.getorganszone(target_zone)
 		var/mob/living/simple_animal/horror/H = target.has_horror_inside()
 		if(H)
 			user.visible_message("[user] begins to extract [H] from [target]'s [parse_zone(target_zone)].",
-					"<span class='notice'>You begin to extract [H] from [target]'s [parse_zone(target_zone)]...</span>")
+					span_notice("You begin to extract [H] from [target]'s [parse_zone(target_zone)]..."))
 			return TRUE
 		if(!organs.len)
 			to_chat(user, span_notice("There are no removable organs in [target]'s [parse_zone(target_zone)]!"))
 			return -1
 		else
+			var/list/radial_menu = list()
 			for(var/obj/item/organ/O in organs)
 				O.on_find(user)
-				organs -= O
-				organs[O.name] = O
-
-			I = input("Remove which organ?", "Surgery", null, null) as null|anything in organs
+				radial_menu[O] = image(O)
+			I = show_radial_menu(user, target, radial_menu, tooltips = TRUE)
 			if(I && user && target && user.Adjacent(target) && user.get_active_held_item() == tool)
-				I = organs[I]
-				if(!I)
-					return -1
 				display_results(user, target, span_notice("You begin to extract [I] from [target]'s [parse_zone(target_zone)]..."),
 					"[user] begins to extract [I] from [target]'s [parse_zone(target_zone)].",
 					"[user] begins to extract something from [target]'s [parse_zone(target_zone)].")

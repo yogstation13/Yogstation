@@ -454,10 +454,21 @@
 	if(C.suiciding)
 		return FALSE //Kevorkian school of robotic medical assistants.
 
+	if(istype(C.dna.species, /datum/species/ipc))
+		return FALSE
+
 	if(emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
 		return TRUE
 
 	if(HAS_TRAIT(C,TRAIT_MEDICALIGNORE))
+		return FALSE
+
+	var/can_inject = FALSE
+	for(var/X in C.bodyparts)
+		var/obj/item/bodypart/part = X
+		if(part.status == BODYPART_ORGANIC)
+			can_inject = TRUE
+	if(!can_inject)
 		return FALSE
 
 	if(ishuman(C))
@@ -513,12 +524,12 @@
 			speak(message)
 			playsound(src, messagevoice[message], 70, FALSE)
 
-		if(do_after(H, 3 SECONDS, target=src))
+		if(do_after(H, 3 SECONDS, src))
 			tip_over(H)
 
 	else if(H.a_intent == INTENT_HELP && mode == BOT_TIPPED)
 		H.visible_message(span_notice("[H] begins righting [src]."), span_notice("You begin righting [src]..."))
-		if(do_after(H, 3 SECONDS, target=src))
+		if(do_after(H, 3 SECONDS, src))
 			set_right(H)
 	else
 		..()

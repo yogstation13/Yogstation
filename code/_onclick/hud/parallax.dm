@@ -167,11 +167,13 @@
 
 		L.transform = newtransform
 
-		animate(L, transform = L.transform, time = 0, loop = -1, flags = ANIMATION_END_NOW)
+		animate(L, transform = L.transform, time = 0 SECONDS, loop = -1, flags = ANIMATION_END_NOW)
 		animate(transform = matrix(), time = T)
 
 /datum/hud/proc/update_parallax()
 	var/client/C = mymob.client
+	if(!C)
+		return
 	var/turf/posobj = get_turf_global(C.eye) // yogs - replace get_turf with get_turf_global
 	if(!posobj)
 		return

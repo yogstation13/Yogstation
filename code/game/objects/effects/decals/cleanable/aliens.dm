@@ -30,7 +30,7 @@
 	var/direction = pick(directions)
 	for(var/i = 0, i < pick(1, 200; 2, 150; 3, 50), i++)
 		if (!mapload)
-			sleep(2)
+			sleep(0.2 SECONDS)
 		if(i > 0)
 			new /obj/effect/decal/cleanable/xenoblood/xsplatter(loc)
 		if(!step_to(src, get_step(src, direction), 0))

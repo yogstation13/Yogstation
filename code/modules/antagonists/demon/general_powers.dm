@@ -1,7 +1,8 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift/demon //emergency get out of jail card.
 	name = "Lesser Demon Form"
-	desc = "Take on your true demon form. This form is strong but very obvious, and especially weak to holy influence. \
-	Also, note that damage taken in this form can transform into your normal body. Heal by attacking living creatures before transforming back if gravely wounded!"
+	desc = "Take on your true demon form. This form is strong but very obvious. It's full demonic nature in this realm is taxing on you \
+	and you will slowly lose life while in this form, while also being especially weak to holy influences. \
+	Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them!"
 	invocation = "COWER, MORTALS!!"
 	shapeshift_type = /mob/living/simple_animal/lesserdemon
 	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
@@ -21,7 +22,7 @@
 	icon_state = "lesserdaemon"
 	icon_living = "lesserdaemon"
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-	speed = 0.33
+	speed = 0.25
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
@@ -33,17 +34,17 @@
 	maxbodytemp = INFINITY
 	faction = list("hell")
 	attacktext = "wildly tears into"
-	maxHealth = 200
-	health = 200
+	maxHealth = 160
+	health = 160
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 40
-	melee_damage_lower = 24
-	melee_damage_upper = 24
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 	wound_bonus = -15
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	loot = (/obj/effect/decal/cleanable/blood)
-	del_on_death = 1
+	del_on_death = TRUE
 
 /mob/living/simple_animal/lesserdemon/attackby(obj/item/W, mob/living/user, params)
 	. = ..()
@@ -52,7 +53,7 @@
 						span_cult("As \the [W] hits you, you feel holy power blast through your form, tearing it apart!"))
 		adjustBruteLoss(22) //22 extra damage from the nullrod while in your true form. On average this means 40 damage is taken now.
 
-/mob/living/simple_animal/lesserdemon/UnarmedAttack(mob/living/L, proximity)//10 hp healed from landing a hit.
+/mob/living/simple_animal/lesserdemon/UnarmedAttack(mob/living/L, proximity)//8 hp healed from landing a hit.
 	if(isliving(L))
 		if(L.stat != DEAD && !L.anti_magic_check(TRUE, TRUE)) //demons do not gain succor from the dead or holy 
 			adjustHealth(-maxHealth * 0.05)
@@ -66,3 +67,6 @@
 		if(src.stat != DEAD) //being dead, however, will save you
 			src.visible_message(span_warning("[src] begins to melt apart!"), span_danger("Your very soul melts from the holy room!"), "You hear sizzling.")
 			adjustHealth(20) //20 damage every ~2 seconds. About 20 seconds for a full HP demon to melt apart in the chapel.
+	else
+		if(src.stat != DEAD) //You passively lose 2 health every 2 seconds (technically 1 a second), don't stay in demon form for too long.
+			adjustHealth(2)

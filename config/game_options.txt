@@ -20,7 +20,7 @@ REVIVAL_BRAIN_LIFE -1
 JOB_SPECIES_WHITELIST /datum/job/captain human
 JOB_SPECIES_WHITELIST /datum/job/hop human
 JOB_SPECIES_WHITELIST /datum/job/hos human,lizard
-JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis, polysmorph
+JOB_SPECIES_WHITELIST /datum/job/chief_engineer human,plasmaman,moth,ethereal,preternis,polysmorph
 JOB_SPECIES_WHITELIST /datum/job/rd human,pod,plasmaman,ethereal,preternis,polysmorph
 JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,moth
 
@@ -107,15 +107,17 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 PROBABILITY DARKSPAWN 6
 PROBABILITY HERESY 4
 PROBABILITY INFILTRATION 4
+PROBABILITY BLOODSUCKER 4
 
 # Lowpop
 PROBABILITY TRAITOR 5
 PROBABILITY TRAITORBRO 5
 PROBABILITY TRAITORCHAN 6
-PROBABILITY TRAITORVAMP 4
+PROBABILITY TRAITORSUCKER 4
+PROBABILITY TRAITORVAMP 0
 PROBABILITY INTERNAL_AFFAIRS 3
 PROBABILITY CHANGELING 4
-PROBABILITY VAMPIRE 4
+PROBABILITY VAMPIRE 0
 
 # Group antags
 PROBABILITY REVOLUTION 8
@@ -335,13 +337,15 @@ ALLOW_AI_MULTICAM
 ## Uncomment to load the virtual reality hub map
 #VIRTUAL_REALITY
 
-## Uncomment to load one of the missions from awaymissionconfig.txt at roundstart.
+## Uncomment to load one of the missions from awaymissionconfig.txt or away_missions/ at roundstart.
 #ROUNDSTART_AWAY
 
 ## How long the delay is before the Away Mission gate opens. Default is half an hour.
 ## 600 is one minute.
 GATEWAY_DELAY 18000
 
+## The probability of the gateway mission being a config one
+CONFIG_GATEWAY_CHANCE 0
 
 ## ACCESS ###
 
@@ -444,7 +448,7 @@ LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
 LAW_WEIGHT corporate,0
 ION_LAW_WEIGHT corporate,0
-LAW_WEIGHT ceo,5
+LAW_WEIGHT ceo,4
 ION_LAW_WEIGHT ceo,1
 
 ## Quirky laws. Shouldn't cause too much harm
@@ -458,7 +462,7 @@ LAW_WEIGHT liveandletlive,0
 ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,0
 ION_LAW_WEIGHT peacekeeper,2
-LAW_WEIGHT reporter,3
+LAW_WEIGHT reporter,0
 ION_LAW_WEIGHT reporter,1
 LAW_WEIGHT cowboy,2
 ION_LAW_WEIGHT cowboy,1
@@ -478,8 +482,8 @@ LAW_WEIGHT researcher,0
 ION_LAW_WEIGHT researcher,2
 LAW_WEIGHT clown,0
 ION_LAW_WEIGHT clown,2
-LAW_WEIGHT druid,0
-ION_LAW_WEIGHT druid,2
+LAW_WEIGHT druid,2
+ION_LAW_WEIGHT druid,1
 LAW_WEIGHT detective,0
 ION_LAW_WEIGHT detective,2
 
@@ -532,6 +536,7 @@ ROUNDSTART_RACES plasmaman
 ROUNDSTART_RACES preternis
 ROUNDSTART_RACES polysmorph
 #ROUNDSTART_RACES snail
+ROUNDSTART_RACES ipc
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
@@ -616,6 +621,9 @@ LAVALAND_BUDGET 60
 
 ## Ice Moon Budget
 ICEMOON_BUDGET 90
+
+## Jungleland Budget
+JUNGLELAND_BUDGET 20
 
 ## Space Ruin Budget
 Space_Budget 16

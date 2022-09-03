@@ -6,7 +6,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 
-	. = list("<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!")
+	. = list("<span class='info'>This is [icon2html(src, user)] \a <EM>[src]</EM>!>")
 	var/list/obscured = check_obscured_slots()
 
 	if (handcuffed)
@@ -31,6 +31,17 @@
 			. += span_deadsay("[t_He] [t_is] limp and unresponsive, with no signs of life.")
 		else if(get_bodypart(BODY_ZONE_HEAD))
 			. += span_deadsay("It appears that [t_his] brain is missing...")
+
+	var/list/disabled = list()
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/body_part = X
+		if(body_part.bodypart_disabled)
+			disabled += body_part
+		for(var/obj/item/I in body_part.embedded_objects)
+			. += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [body_part.name]!</B>\n"
+		for(var/i in body_part.wounds)
+			var/datum/wound/iter_wound = i
+			. += "[iter_wound.get_examine_description(user)]\n"
 
 	var/list/missing = get_missing_limbs()
 	for(var/t in missing)
@@ -67,12 +78,15 @@
 				msg += "[t_He] [t_is] <b>moderately</b> deformed!\n"
 			else
 				msg += "<b>[t_He] [t_is] severely deformed!</b>\n"
-
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		for(var/i in BP.wounds)
-			var/datum/wound/W = i
-			msg += "[W.get_examine_description(user)]\n"
+				
+	if(surgeries.len)
+		var/surgery_text
+		for(var/datum/surgery/S in surgeries)
+			if(!surgery_text)
+				surgery_text = "[t_He] [t_is] being operated on in \the [S.operated_bodypart]"
+			else
+				surgery_text += ", [S.operated_bodypart]"
+		msg += "[surgery_text].\n"
 
 	if(HAS_TRAIT(src, TRAIT_DUMB))
 		msg += "[t_He] seem[p_s()] to be clumsy and unable to think.\n"
@@ -136,7 +150,7 @@
 				. += "[t_He] look[p_s()] very happy."
 			if(MOOD_LEVEL_HAPPY4 to INFINITY)
 				. += "[t_He] look[p_s()] ecstatic."
-	. += "*---------*</span>"
+	. += "</span>"
 
 /mob/living/carbon/examine_more(mob/user)
 	if(!all_scars)

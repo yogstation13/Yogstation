@@ -372,7 +372,7 @@
 		to_chat(user, "[span_sevtug_small("The [target.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...")]")
 		warp_time = 300
 	warping = new(T, user, warp_time)
-	if(!do_after(user, warp_time, target = warping, extra_checks = CALLBACK(src, .proc/is_canceled)))
+	if(!do_after(user, warp_time, warping, extra_checks = CALLBACK(src, .proc/is_canceled)))
 		to_chat(user, "<span class='bold sevtug_small'>Warp interrupted.</span>")
 		QDEL_NULL(warping)
 		button_icon_state = "warp_down"

@@ -313,4 +313,15 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotdog
 	subcategory = CAT_BURGER
-	
+
+/datum/crafting_recipe/food/roburger
+	name = "Roburger"
+	reqs = list(
+		/obj/item/bodypart/head/robot = 1,
+		/obj/item/reagent_containers/food/snacks/bun = 1,
+		/obj/item/stack/cable_coil = 10,
+	)
+	result = /obj/item/reagent_containers/food/snacks/burger/roburger
+	subcategory = CAT_MISCFOOD
+	always_available = FALSE
+

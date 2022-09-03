@@ -426,19 +426,19 @@
 		return SHAME
 	if(!is_drainable())
 		open_soda()
-		sleep(10)
+		sleep(1 SECONDS)
 	H.visible_message(span_suicide("[H] takes a big sip from [src]! It looks like [H.p_theyre()] trying to commit suicide!"))
 	playsound(H,'sound/items/drink.ogg', 80, 1)
 	reagents.trans_to(H, src.reagents.total_volume, transfered_by = H) //a big sip
-	sleep(5)
+	sleep(0.5 SECONDS)
 	H.say(pick("Now, Outbomb Cuban Pete, THAT was a game.", "All these new fangled arcade games are too slow. I prefer the classics.", "They don't make 'em like Orion Trail anymore.", "You know what they say. Worst day of spess carp fishing is better than the best day at work.", "They don't make 'em like good old fashioned singularity engines anymore."))
 	if(H.age >= 30)
-		H.Stun(50)
-		sleep(50)
+		H.Stun(5 SECONDS)
+		sleep(5 SECONDS)
 		playsound(H,'sound/items/drink.ogg', 80, 1)
 		H.say(pick("Another day, another dollar.", "I wonder if I should hold?", "Diversifying is for young'ns.", "Yeap, times were good back then."))
 		return MANUAL_SUICIDE_NONLETHAL
-	sleep(20) //dramatic pause
+	sleep(2 SECONDS) //dramatic pause
 	return TOXLOSS
 
 /obj/item/reagent_containers/food/drinks/soda_cans/attack(mob/M, mob/user)
@@ -468,6 +468,18 @@
 	icon_state = "cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 30)
 	foodtype = SUGAR
+
+/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer
+	name = "Root Beer"
+	desc = "A soft drink made from roots. Non-Alcoholic."
+	custom_price = 10
+	icon_state = "Rootbeer_Mug"
+	list_reagents = list(/datum/reagent/consumable/rootbeer = 30)
+	foodtype = SUGAR
+
+/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer/Initialize()
+	icon_state = pick("Rootbeer_Mug","Rootbeer_AW","Rootbeer_Barq")
+	. = ..()
 
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic
 	name = "T-Borg's tonic water"

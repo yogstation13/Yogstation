@@ -9,7 +9,7 @@
 		return
 
 	if(C.prefs.purrbation)
-		purrbation_toggle(H)
+		purrbation_toggle_onlyhumans(H)
 
 	if(C.prefs.donor_hat)
 		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
@@ -25,7 +25,8 @@
 			var/type = C.prefs.donor_item
 			if(type)
 				var/obj/item = new type()
-				H.put_in_hands(item)
+				if(!H.put_in_hands(item))
+					item.forceMove(BP)
 
 	switch(C.prefs.donor_pda)
 		if(2)//transparent

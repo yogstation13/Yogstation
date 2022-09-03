@@ -20,6 +20,7 @@
 	var/use_digitigrade = NOT_DIGITIGRADE //Used for alternate legs, useless elsewhere
 	var/list/embedded_objects = list()
 	var/held_index = 0 //are we a hand? if so, which one!
+	var/render_like_organic = FALSE // TRUE is for when you want a BODYPART_ROBOTIC to pretend to be a BODYPART_ORGANIC.
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
 
 	///If disabled, limb is as good as missing.
@@ -94,6 +95,8 @@
 	var/obj/item/self_grasp/grasped_by
 	///If we have a bandage on (yoggite)
 	var/bandaged = FALSE
+	/// Prevents resetting of the species_id
+	var/limb_override = FALSE
 
 /obj/item/bodypart/Initialize(mapload)
 	. = ..()
@@ -131,10 +134,16 @@
 		var/mob/living/carbon/human/H = C
 		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT))
 			if(!H.get_bodypart(body_zone) && !animal_origin)
+				if(iscarbon(user))
+					var/mob/living/carbon/target = user
+					if(target.dna && target.dna.species && (ROBOTIC_LIMBS in target.dna.species.species_traits) && src.status != BODYPART_ROBOTIC)
+						if(H == user)
+							to_chat(H, "<span class='warning'>You try to force [src] into your empty socket, but it doesn't fit</span>")
+						else
+							to_chat(user, "<span class='warning'>You try to force [src] into [H.p_their()] empty socket, but it doesn't fit</span>")
+						return
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
-				if(!attach_limb(C))
-					to_chat(user, span_warning("[H]'s body rejects [src]!"))
-					forceMove(H.loc)
+				attach_limb(C)
 				if(H == user)
 					H.visible_message(span_warning("[H] jams [src] into [H.p_their()] empty socket!"),\
 					span_notice("You force [src] into your empty socket, and it locks into place!"))
@@ -147,13 +156,13 @@
 /obj/item/bodypart/attackby(obj/item/W, mob/user, params)
 	if(W.get_sharpness())
 		add_fingerprint(user)
-		if(!contents.len)
+		if(!contents.len && !embedded_objects.len)
 			to_chat(user, span_warning("There is nothing left inside [src]!"))
 			return
 		playsound(loc, 'sound/weapons/slice.ogg', 50, TRUE, -1)
 		user.visible_message(span_warning("[user] begins to cut open [src]."),\
 			span_notice("You begin to cut open [src]..."))
-		if(do_after(user, 5.4 SECONDS, target = src))
+		if(do_after(user, 5.4 SECONDS, src))
 			drop_organs(user, TRUE)
 	else
 		return ..()
@@ -174,7 +183,7 @@
 		QDEL_NULL(current_gauze)
 	for(var/obj/item/organ/drop_organ in get_organs())
 		drop_organ.transfer_to_limb(src, owner)
-	for(var/obj/item/I in src)
+	for(var/obj/item/I in embedded_objects)
 		I.forceMove(T)
 
 ///since organs aren't actually stored in the bodypart themselves while attached to a person, we have to query the owner for what we should have
@@ -390,7 +399,7 @@
 		for(var/i in clothing)
 			var/obj/item/clothing/clothes_check = i
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
-			if(clothes_check.armor.getRating("wound"))
+			if(clothes_check.armor.getRating(WOUND))
 				bare_wound_bonus = 0
 				break
 
@@ -450,7 +459,7 @@
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
-			armor_ablation += C.armor.getRating("wound")
+			armor_ablation += C.armor.getRating(WOUND)
 			if(wounding_type == WOUND_SLASH)
 				C.take_damage_zone(body_zone, damage, BRUTE)
 			else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
@@ -715,6 +724,10 @@
 			no_update = FALSE
 
 	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
+		if(ishuman(C))
+			var/mob/living/carbon/human/S = C
+			if(isszlachta(S))
+				return
 		species_id = "husk" //overrides species_id
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
@@ -729,8 +742,9 @@
 		should_draw_greyscale = FALSE
 
 		var/datum/species/S = H.dna.species
-		species_id = S.limbs_id
-		species_flags_list = H.dna.species.species_traits
+		if(!limb_override)
+			species_id = S.limbs_id
+		species_flags_list = S.species_traits
 
 		if(S.use_skintones)
 			skin_tone = H.skin_tone
@@ -814,7 +828,7 @@
 	if((body_zone != BODY_ZONE_HEAD && body_zone != BODY_ZONE_CHEST))
 		should_draw_gender = FALSE
 
-	if(is_organic_limb())
+	if(status == BODYPART_ORGANIC || (status == BODYPART_ROBOTIC && render_like_organic == TRUE)) // So IPC augments can be colorful without disrupting normal BODYPART_ROBOTIC render code.
 		if(should_draw_greyscale)
 			limb.icon = 'icons/mob/human_parts_greyscale.dmi'
 			if(should_draw_gender)
@@ -907,7 +921,8 @@
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)
 	for(var/obj/item/embeddies in embedded_objects)
-		bleed_rate += 0.5
+		if(!embeddies.taped)
+			bleed_rate += 0.5
 
 	for(var/thing in wounds)
 		var/datum/wound/W = thing

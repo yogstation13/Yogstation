@@ -4,6 +4,8 @@
 /obj/item/modular_computer
 	name = "modular microcomputer"
 	desc = "A small portable microcomputer."
+	
+	flags_1 = RAD_PROTECT_CONTENTS_1
 
 	var/enabled = FALSE										// Whether the computer is turned on.
 	var/screen_on = TRUE									// Whether the computer is active/opened/it's screen is on.
@@ -35,7 +37,7 @@
 
 	integrity_failure = 50
 	max_integrity = 100
-	armor = list("melee" = 0, "bullet" = 20, "laser" = 20, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 0, ACID = 0)
 
 	/// List of "connection ports" in this computer and the components with which they are plugged
 	var/list/all_components = list()
@@ -92,6 +94,13 @@
 		return 
 	return ..()
 
+/**
+ * Plays a sound through the computer's speakers.
+ */
+/obj/item/modular_computer/proc/play_computer_sound(soundin, vol, vary)
+	if(isobserver(usr))
+		return
+	playsound(loc, soundin, vol, vary, -1)
 
 /**
  * Plays a ping sound.
@@ -99,13 +108,13 @@
  * Timers runtime if you try to make them call playsound. Yep.
  */
 /obj/item/modular_computer/proc/play_ping()
-	playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), FALSE, -1)
+	play_computer_sound('sound/machines/ping.ogg', get_clamped_volume(), FALSE)
 
 // Plays a random interaction sound, which is by default a bunch of keboard clacking
 /obj/item/modular_computer/proc/play_interact_sound()
 	if(isobserver(usr))
 		return
-	playsound(loc, pick(interact_sounds), get_clamped_volume(), FALSE, -1)
+	play_computer_sound(pick(interact_sounds), get_clamped_volume(), FALSE, -1)
 
 
 /obj/item/modular_computer/AltClick(mob/user)
@@ -295,7 +304,7 @@
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
 		update_icon()
-		playsound(loc, startup_sound, get_clamped_volume(), FALSE, -1)
+		play_computer_sound(startup_sound, get_clamped_volume(), FALSE)
 		ui_interact(user)
 	else // Unpowered
 		if(issynth)
@@ -355,11 +364,11 @@
 /obj/item/modular_computer/proc/alert_call(datum/computer_file/program/caller, alerttext, sound = 'sound/machines/twobeep_high.ogg')
 	if(!caller || !caller.alert_able || caller.alert_silenced || !alerttext) //Yeah, we're checking alert_able. No, you don't get to make alerts that the user can't silence.
 		return
-	playsound(src, sound, 50, TRUE)
-	visible_message("<span class='notice'>The [src] displays a [caller.filedesc] notification: [alerttext]</span>")
+	play_computer_sound(sound, 50, TRUE)
+	visible_message(span_notice("\The [src] displays a [caller.filedesc] notification: [alerttext]</span>"))
 	var/mob/living/holder = loc
 	if(istype(holder))
-		to_chat(holder, "[icon2html(src)] <span class='notice'>The [src] displays a [caller.filedesc] notification: [alerttext]</span>")
+		to_chat(holder, span_notice("\The [src] displays a [caller.filedesc] notification: [alerttext]"))
 
 // Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
 /obj/item/modular_computer/proc/get_header_data()
@@ -454,7 +463,7 @@
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
 	update_icon()
-	playsound(loc, shutdown_sound, get_clamped_volume(), FALSE, -1)
+	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
 
 /obj/item/modular_computer/screwdriver_act(mob/user, obj/item/tool)
 	if(!all_components.len)

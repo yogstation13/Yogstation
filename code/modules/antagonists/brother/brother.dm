@@ -23,8 +23,14 @@
 	owner.special_role = special_role
 	if(owner.current)
 		give_pinpointer()
+		equip_brother()
 	finalize_brother()
 	return ..()
+
+/datum/antagonist/brother/proc/equip_brother()
+	var/obj/item/book/granter/crafting_recipe/weapons/W = new
+	W.on_reading_finished(owner.current)
+	qdel(W)
 
 /datum/antagonist/brother/on_removal()
 	SSticker.mode.brothers -= owner

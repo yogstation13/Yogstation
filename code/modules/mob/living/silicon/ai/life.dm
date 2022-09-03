@@ -126,7 +126,7 @@
 /mob/living/silicon/ai/proc/start_RestorePowerRoutine()
 	to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
 	end_multicam()
-	sleep(50)
+	sleep(5 SECONDS)
 	var/turf/T = get_turf(loc)
 	var/area/AIarea = get_area(loc)
 	if(AIarea && AIarea.power_equip)
@@ -134,16 +134,16 @@
 			ai_restore_power()
 			return
 	to_chat(src, "Fault confirmed: missing external power. Shutting down main control system to save power.")
-	sleep(20)
+	sleep(2 SECONDS)
 	to_chat(src, "Emergency control system online. Verifying connection to power network.")
-	sleep(50)
+	sleep(5 SECONDS)
 	T = get_turf(loc)
 	if(isspaceturf(T))
 		to_chat(src, "Unable to verify! No power connection detected!")
 		aiRestorePowerRoutine = POWER_RESTORATION_SEARCH_APC
 		return
 	to_chat(src, "Connection verified. Searching for APC in power network.")
-	sleep(50)
+	sleep(5 SECONDS)
 	var/obj/machinery/power/apc/theAPC = null
 
 	var/PRP //like ERP with the code, at least this stuff is no more 4x sametext
@@ -176,24 +176,27 @@
 				to_chat(src, "Power port upload access confirmed. Loading control program into APC power port software.")
 			if (4)
 				to_chat(src, "Transfer complete. Forcing APC to execute program.")
-				sleep(50)
+				sleep(5 SECONDS)
 				to_chat(src, "Receiving control information from APC.")
-				sleep(2)
-				apc_override = 1
-				theAPC.ui_interact(src)
-				apc_override = 0
+				sleep(0.2 SECONDS)
+				to_chat(src, "<A HREF=?src=[REF(src)];emergencyAPC=[TRUE]>APC ready for connection.</A>")
+				apc_override = theAPC
+				apc_override.ui_interact(src)
 				aiRestorePowerRoutine = POWER_RESTORATION_APC_FOUND
-		sleep(50)
+		sleep(5 SECONDS)
 		theAPC = null
 
 /mob/living/silicon/ai/proc/ai_restore_power()
 	if(aiRestorePowerRoutine)
 		if(aiRestorePowerRoutine == POWER_RESTORATION_APC_FOUND)
 			to_chat(src, "Alert cancelled. Power has been restored.")
+			if(apc_override)
+				to_chat(src, "<span class='notice'>APC backdoor has been closed.</span>") //Fluff for why we have to hack every time.
 		else
 			to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 		aiRestorePowerRoutine = POWER_RESTORATION_OFF
 		set_blindness(0)
+		apc_override = null
 		update_sight()
 
 /mob/living/silicon/ai/proc/ai_lose_power()

@@ -103,7 +103,13 @@
 #define ui_healthdoll "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
 #define ui_internal "EAST-1:28,CENTER:17"
-#define ui_mood "EAST-1:28,CENTER-3:10"
+#define ui_mood "EAST-1:28,CENTER-4:10"
+#define ui_stamina "EAST-1:28,CENTER-3:10"
+
+//living
+#define ui_living_pull "EAST-1:28,CENTER-3:15"
+#define ui_living_health "EAST-1:28,CENTER:15"
+#define ui_living_healthdoll "EAST-1:28,CENTER-1:15"
 
 //borgs
 #define ui_borg_health "EAST-1:28,CENTER-1:15"		//borgs have the health display where humans have the pressure damage indicator.
@@ -115,10 +121,13 @@
 
 //constructs
 #define ui_construct_pull "EAST,CENTER-2:15"
-#define ui_construct_health "EAST,CENTER:15"  //same as borgs and humans
+#define ui_construct_health "EAST,CENTER:15"  //same as humans and slimes
 
 //slimes
-#define ui_slime_health "EAST,CENTER:15"  //same as borgs, constructs and humans
+#define ui_slime_health "EAST,CENTER:15"  //same as humans and constructs
+
+//Blobbernauts
+#define ui_blobbernaut_overmind_health "EAST-1:28,CENTER+0:19"
 
 // AI
 

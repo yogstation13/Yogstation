@@ -182,13 +182,14 @@
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier ||(multiplier <= 0) || isnan(multiplier)) //href protection
+		if(!multiplier || multiplier < 1 || !isnum(multiplier) || isnan(multiplier)) //href exploit protection
+			message_admins("[ADMIN_FULLMONTY(usr)] is attempting to create NAN amount item stacks")
 			return
 		if(!building_checks(R, multiplier))
 			return
 		if (R.time)
 			usr.visible_message(span_notice("[usr] starts building \a [R.title]."), span_notice("You start building \a [R.title]..."))
-			if (!do_after(usr, R.time, target = usr))
+			if (!do_after(usr, R.time, usr))
 				return
 			if(!building_checks(R, multiplier))
 				return
@@ -218,7 +219,7 @@
 
 		else if(istype(O, /obj/item/restraints/handcuffs/cable))
 			var/obj/item/cuffs = O
-			cuffs.item_color = item_color
+			cuffs.color = color
 			cuffs.update_icon()
 
 		if (QDELETED(O))

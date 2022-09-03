@@ -81,7 +81,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	var/atom/movable/AM = dropping
 	var/datum/component/swimming/S = dropping.GetComponent(/datum/component/swimming)
 	if(S)
-		if(do_after(user, 1 SECONDS, target=src))
+		if(do_after(user, 1 SECONDS, src))
 			S.RemoveComponent()
 			visible_message("<span class='notice'>[dropping] climbs out of the pool.</span>")
 			AM.forceMove(src)
@@ -100,7 +100,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		 "<span class='notice'>You start to lower [dropping] down into [src].</span>")
 	else
 		to_chat(user, "<span class='notice'>You start climbing down into [src]...")
-	if(do_after(user, 4 SECONDS, target=src))
+	if(do_after(user, 4 SECONDS, src))
 		splash(dropping)
 
 /datum/mood_event/poolparty
@@ -307,7 +307,7 @@ GLOBAL_LIST_EMPTY(pool_filters)
 	var/datum/component/swimming/S = user.GetComponent(/datum/component/swimming)
 	if(S)
 		to_chat(user, "<span class='notice'>You start to climb out of the pool...</span>")
-		if(do_after(user, 1 SECONDS, target=src))
+		if(do_after(user, 1 SECONDS, src))
 			S.RemoveComponent()
 			visible_message("<span class='notice'>[user] climbs out of the pool.</span>")
 			if(!reversed)
@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(pool_filters)
 	else
 		to_chat(user, "<span class='notice'>You start to climb into the pool...</span>")
 		var/turf/T = get_turf(src)
-		if(do_after(user, 1 SECONDS, target=src))
+		if(do_after(user, 1 SECONDS, src))
 			if(!istype(T, /turf/open/indestructible/sound/pool)) //Ugh, fine. Whatever.
 				user.forceMove(get_turf(src))
 			else

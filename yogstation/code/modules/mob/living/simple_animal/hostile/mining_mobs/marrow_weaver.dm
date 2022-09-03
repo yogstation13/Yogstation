@@ -7,7 +7,7 @@
 	icon_aggro = "weaver"
 	icon_dead = "weaver_dead"
 	throw_message = "bounces harmlessly off the"
-	butcher_results = list(/obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
+	butcher_results = list(/obj/item/stack/ore/uranium = 2, /obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
 	loot = list()
 	attacktext = "bites"
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -82,7 +82,7 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/CanAttack(atom/A)
 	if(..())
 		return TRUE
-	if((health < maxHealth) && ishuman(A))
+	if((health < maxHealth) && ishuman(A) && !faction_check_mob(A))
 		var/mob/living/carbon/human/H = A
 		for(var/obj/item/organ/O in H.internal_organs)
 			if(O.zone == "chest")

@@ -1,0 +1,391 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"c" = (
+/turf/closed/mineral/ash_rock/jungle,
+/area/ruin/unpowered)
+"d" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"f" = (
+/obj/item/ectoplasm,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"h" = (
+/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad{
+	startDead = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"m" = (
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"o" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"p" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/soulstone,
+/obj/item/clothing/suit/cultrobes,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"u" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"y" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/bone,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"z" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"B" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"D" = (
+/obj/item/flashlight/flare/torch,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"E" = (
+/obj/structure/table/wood,
+/obj/item/clothing/suit/cultrobes,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"F" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/runed_metal,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"I" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife/ritual,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"J" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/runed_metal,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"L" = (
+/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"O" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"Q" = (
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"U" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"V" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"Z" = (
+/obj/item/ectoplasm,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+
+(1,1,1) = {"
+m
+o
+m
+u
+m
+m
+a
+a
+a
+m
+m
+m
+o
+m
+m
+m
+"}
+(2,1,1) = {"
+m
+o
+m
+m
+m
+o
+c
+c
+c
+c
+c
+c
+m
+m
+m
+o
+"}
+(3,1,1) = {"
+o
+m
+u
+m
+m
+u
+c
+y
+z
+F
+z
+c
+m
+m
+m
+a
+"}
+(4,1,1) = {"
+o
+a
+c
+c
+c
+c
+c
+d
+Q
+Q
+d
+c
+m
+o
+a
+m
+"}
+(5,1,1) = {"
+m
+c
+c
+O
+d
+d
+O
+d
+Q
+Q
+d
+c
+m
+u
+m
+m
+"}
+(6,1,1) = {"
+a
+c
+d
+d
+d
+d
+d
+d
+Q
+Q
+d
+c
+c
+m
+o
+a
+"}
+(7,1,1) = {"
+o
+c
+Q
+Q
+Q
+d
+L
+D
+Q
+Z
+d
+d
+c
+m
+m
+m
+"}
+(8,1,1) = {"
+m
+c
+p
+F
+Q
+Q
+Q
+Q
+Q
+Q
+B
+Q
+V
+m
+m
+o
+"}
+(9,1,1) = {"
+o
+c
+Q
+I
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+V
+m
+a
+m
+"}
+(10,1,1) = {"
+m
+c
+Q
+Q
+Q
+d
+L
+D
+Q
+Q
+d
+d
+c
+a
+m
+u
+"}
+(11,1,1) = {"
+m
+c
+d
+d
+d
+d
+d
+U
+Q
+Q
+d
+c
+c
+m
+m
+m
+"}
+(12,1,1) = {"
+a
+c
+c
+J
+d
+d
+E
+f
+Q
+Q
+h
+c
+u
+m
+a
+m
+"}
+(13,1,1) = {"
+o
+m
+c
+c
+c
+c
+c
+d
+Q
+Q
+d
+c
+a
+m
+m
+o
+"}
+(14,1,1) = {"
+u
+m
+a
+m
+m
+m
+c
+z
+y
+z
+y
+c
+m
+m
+m
+m
+"}
+(15,1,1) = {"
+m
+a
+m
+m
+m
+o
+c
+c
+c
+c
+c
+c
+m
+m
+o
+m
+"}
+(16,1,1) = {"
+m
+o
+m
+m
+m
+m
+m
+m
+m
+o
+m
+m
+m
+m
+m
+m
+"}

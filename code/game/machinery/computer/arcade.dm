@@ -76,7 +76,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							/obj/item/circuitboard/computer/arcade/amputation = 2)
 		var/thegame = pickweight(gameodds)
 		var/obj/item/circuitboard/CB = new thegame()
-		new CB.build_path(loc, CB)
+		var/atom/newgame = new CB.build_path(loc, CB)
+		newgame.dir = dir
+		
 		return INITIALIZE_HINT_QDEL
 	Reset()
 
@@ -208,7 +210,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			if(turtle > 0)
 				turtle--
 
-			sleep(10)
+			sleep(1 SECONDS)
 			enemy_hp -= attackamt
 			arcade_action(usr)
 
@@ -221,7 +223,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			updateUsrDialog()
 			turtle++
 
-			sleep(10)
+			sleep(1 SECONDS)
 			player_mp -= pointamt
 			player_hp += healamt
 			blocked = TRUE
@@ -238,7 +240,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				turtle--
 
 			updateUsrDialog()
-			sleep(10)
+			sleep(1 SECONDS)
 			arcade_action(usr)
 
 	if (href_list["close"])
@@ -296,7 +298,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 		if (player_mp <= 0)
 			gameover = TRUE
-			sleep(10)
+			sleep(1 SECONDS)
 			temp = "You have been drained! GAME OVER"
 			playsound(loc, 'sound/arcade/lose.ogg', 50, 1, extrarange = -3, falloff = 10)
 			if(obj_flags & EMAGGED)
@@ -561,7 +563,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 						if(severity >= 3) //you didn't pray hard enough
 							to_chat(M, span_warning("An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
 							M.Stun(100)
-							sleep(30)
+							sleep(3 SECONDS)
 							M.vomit(10, distance = 5)
 					if(ORION_TRAIL_FLUX)
 						if(prob(75))
@@ -579,7 +581,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 								F.ScrapeAway()
 							say("Something slams into the floor around [src], exposing it to space!")
 							if(hull)
-								sleep(10)
+								sleep(1 SECONDS)
 								say("A new floor suddenly appears around [src]. What the hell?")
 								playsound(loc, 'sound/weapons/genhit.ogg', 100, 1)
 								var/turf/open/space/T
@@ -596,7 +598,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 						food = rand(10,80) / rand(1,2)
 						fuel = rand(10,60) / rand(1,2)
 						if(electronics)
-							sleep(10)
+							sleep(1 SECONDS)
 							if(oldfuel > fuel && oldfood > food)
 								audible_message(span_danger("[src] lets out a somehow reassuring chime."))
 							else if(oldfuel < fuel || oldfood < food)
@@ -1127,13 +1129,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	visible_message(span_notice("[src] softly beeps and whirs to life!"))
 	playsound(loc, 'sound/machines/defib_SaftyOn.ogg', 25, 1)
 	say("This is ship ID #[rand(1,1000)] to Orion Port Authority. We're coming in for landing, over.")
-	sleep(20)
+	sleep(2 SECONDS)
 	visible_message(span_warning("[src] begins to vibrate..."))
 	say("Uh, Port? Having some issues with our reactor, could you check it out? Over.")
-	sleep(30)
+	sleep(3 SECONDS)
 	say("Oh, God! Code Eight! CODE EIGHT! IT'S GONNA BL-")
 	playsound(loc, 'sound/machines/buzz-sigh.ogg', 25, 1)
-	sleep(3.6)
+	sleep(0.36 SECONDS)
 	visible_message(span_userdanger("[src] explodes!"))
 	explosion(loc, 2,4,8, flame_range = 16)
 	qdel(src)
@@ -1153,7 +1155,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	if(!c_user.get_bodypart(BODY_ZONE_L_ARM) && !c_user.get_bodypart(BODY_ZONE_R_ARM))
 		return
 	to_chat(c_user, span_warning("You move your hand towards the machine, and begin to hesitate as a bloodied guillotine emerges from inside of it..."))
-	if(do_after(c_user, 5 SECONDS, target = src))
+	if(do_after(c_user, 5 SECONDS, src))
 		to_chat(c_user, span_userdanger("The guillotine drops on your arm, and the machine sucks it in!"))
 		playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		var/which_hand = BODY_ZONE_L_ARM

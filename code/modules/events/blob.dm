@@ -13,7 +13,7 @@
 	fakeable = TRUE
 	var/pointmodifier = 1
 
-/datum/round_event/ghost_role/blob/New(pointrate)
+/datum/round_event/ghost_role/blob/New(pointrate = 1)
 	. = ..()
 	pointmodifier = pointrate
 	

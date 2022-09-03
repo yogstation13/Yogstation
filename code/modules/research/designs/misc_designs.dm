@@ -136,6 +136,16 @@
 	build_path = /obj/item/bikehorn/airhorn
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//HONK!
+	
+/datum/design/clownshot
+	name = "Clownshot Shell"
+	desc = "A tactical round used by the clown planet's finest soldiers."
+	id = "clownshot"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/bananium = 1000)
+	build_path = /obj/item/ammo_casing/shotgun/clownshot
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/mesons
 	name = "Optical Meson Scanners"
@@ -443,6 +453,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/holobed
+	name = "First Aid Holobed Projector"
+	desc = "A holographic projector that can create holobed, a sterile mat that slows down metabolism and acts as a clean workplace for surgery."
+	build_type = PROTOLATHE
+	build_path = /obj/item/holosign_creator/firstaid
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 100, /datum/material/plastic = 500)
+	id = "holobed_projector"
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /////////////////////////////////////////
 ////////////////Armor///////////////////
 /////////////////////////////////////////
@@ -456,6 +476,46 @@
 	build_path = /obj/item/reactive_armor_shell
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/platingmki
+	name = "MK.I bluespace plating"
+	desc = "Plating fitted for a plated vest or helmet. Makes you faster, but gives less armor."
+	id = "platingmki"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 10000, /datum/material/silver = 5000, /datum/material/plastic = 5000, /datum/material/bluespace = 1500)
+	build_path = /obj/item/kevlar_plating/mki
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkii
+	name = "MK.II ceramic plating"
+	desc = "Plating fitted for a plated vest or helmet. Better than what you get at the start of the shift."
+	id = "platingmkii"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 15000, /datum/material/silver = 5000, /datum/material/plasma = 7500)
+	build_path = /obj/item/kevlar_plating/mkii
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkiii
+	name = "MK.III plasteel plating"
+	desc = "Plating fitted for a plated vest or helmet. Makes you slower, but gives more armor."
+	id = "platingmkiii"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 7500, /datum/material/gold = 5000, /datum/material/uranium = 2500, /datum/material/plasma = 7500)
+	build_path = /obj/item/kevlar_plating/mkiii
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/platingmkiv
+	name = "MK.IV titanium plating"
+	desc = "Plating fitted for a plated vest or helmet. Turns you into a walking tank."
+	id = "platingmkiv"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000, /datum/material/titanium = 10000, /datum/material/gold = 7500, /datum/material/diamond = 2000)
+	build_path = /obj/item/kevlar_plating/mkiv
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /////////////////////////////////////////
 /////////////Security////////////////////
@@ -488,6 +548,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/titanium = 5000, /datum/material/glass = 1000, /datum/material/gold = 2500, /datum/material/silver = 3000) // made of titanium instead of metal + extra silver
 	build_path = /obj/item/detective_scanner/advanced
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/pinpointer_tracker
+	name = "Tracking Pinpointer"
+	desc = "Allows tracking of creatures with active tracking implants."
+	id = "pinpointer_tracker"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/gold = 200)
+	build_path = /obj/item/pinpointer/tracker
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 

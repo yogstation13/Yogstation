@@ -30,7 +30,7 @@
 	icon = 'icons/obj/money_machine.dmi'
 	icon_state = "bogdanoff"
 	layer = TABLE_LAYER //So that the crate inside doesn't appear underneath
-	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
+	armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 100, BIO = 0, RAD = 0, FIRE = 100, ACID = 80)
 	density = TRUE
 	pixel_z = -8
 	layer = LARGE_MOB_LAYER
@@ -62,7 +62,7 @@
 		if(!card.registered_account.being_dumped)
 			to_chat(user, span_warning("It appears that your funds are safe from draining!"))
 			return
-		if(do_after(user, 4 SECONDS, target = src))
+		if(do_after(user, 4 SECONDS, src))
 			if(!card.registered_account.being_dumped)
 				return
 			to_chat(user, span_warning("You quickly cash out your funds to a more secure banking location. Funds are safu."))
@@ -85,17 +85,17 @@
 
 /obj/structure/checkoutmachine/proc/startUp() //very VERY snowflake code that adds a neat animation when the pod lands.
 	start_dumping() //The machine doesnt move during this time, giving people close by a small window to grab their funds before it starts running around
-	sleep(10)
+	sleep(1 SECONDS)
 	if(QDELETED(src))
 		return
 	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
 	cut_overlay("flaps")
-	sleep(10)
+	sleep(1 SECONDS)
 	if(QDELETED(src))
 		return
 	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
 	cut_overlay("hatch")
-	sleep(30)
+	sleep(3 SECONDS)
 	if(QDELETED(src))
 		return
 	playsound(src,'sound/machines/twobeep.ogg',50,0)
@@ -108,31 +108,31 @@
 	add_overlay("legs_extending")
 	cut_overlay("legs_retracted")
 	pixel_z += 4
-	sleep(5)
+	sleep(0.5 SECONDS)
 	if(QDELETED(src))
 		return
 	add_overlay("legs_extended")
 	cut_overlay("legs_extending")
 	pixel_z += 4
-	sleep(20)
+	sleep(2 SECONDS)
 	if(QDELETED(src))
 		return
 	add_overlay("screen_lines")
-	sleep(5)
+	sleep(0.5 SECONDS)
 	if(QDELETED(src))
 		return
 	cut_overlay("screen_lines")
-	sleep(5)
+	sleep(0.5 SECONDS)
 	if(QDELETED(src))
 		return
 	add_overlay("screen_lines")
 	add_overlay("screen")
-	sleep(5)
+	sleep(0.5 SECONDS)
 	if(QDELETED(src))
 		return
 	playsound(src,'sound/machines/triple_beep.ogg',50,0)
 	add_overlay("text")
-	sleep(10)
+	sleep(1 SECONDS)
 	if(QDELETED(src))
 		return
 	add_overlay("legs")
@@ -156,9 +156,9 @@
 /obj/structure/checkoutmachine/proc/start_dumping()
 	accounts_to_rob = SSeconomy.bank_accounts.Copy()
 	if(bogdanoff)
-		accounts_to_rob -= bogdanoff.get_bank_account()
+		accounts_to_rob -= "[bogdanoff.get_bank_account().account_id]"
 	for(var/i in accounts_to_rob)
-		var/datum/bank_account/B = i
+		var/datum/bank_account/B = accounts_to_rob[i]
 		B.dumpeet()
 	dump()
 
@@ -220,7 +220,7 @@
 	DF = new /obj/effect/dumpeetFall(drop_location())
 	dump = new /obj/structure/checkoutmachine(null, bogdanoff)
 	priority_announce("The spacecoin bubble has popped! Get to the credit deposit machine at [get_area(src)] and cash out before you lose all of your funds!", sender_override = "CRAB-17 Protocol")
-	animate(DF, pixel_z = -8, time = 5, , easing = LINEAR_EASING)
+	animate(DF, pixel_z = -8, time = 0.5 SECONDS, , easing = LINEAR_EASING)
 	playsound(src,  'sound/weapons/mortar_whistle.ogg', 70, 1, 6)
 	addtimer(CALLBACK(src, .proc/endLaunch), 5, TIMER_CLIENT_TIME) //Go onto the last step after a very short falling animation
 

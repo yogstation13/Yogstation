@@ -103,7 +103,7 @@
 	light_color = "#FAE48C"
 	stat_affected = UNCONSCIOUS
 	resist_string = "glows faintly yellow"
-	var/convert_time = 80
+	var/convert_time = 8 SECONDS
 	var/delete_on_finish = TRUE
 	sigil_name = "Sigil of Submission"
 	var/glow_type = /obj/effect/temp_visual/ratvar/sigil/submission
@@ -133,7 +133,7 @@
 	if(get_turf(L) != get_turf(src))
 		if(glow)
 			qdel(glow)
-		animate(src, color = oldcolor, time = 20, flags = ANIMATION_END_NOW)
+		animate(src, color = oldcolor, time = 2 SECONDS, flags = ANIMATION_END_NOW)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 20)
 		visible_message(span_warning("[src] slowly stops glowing!"))
 		return
@@ -161,7 +161,7 @@
 				to_chat(M, "[span_heavy_brass("[message] you!")]")
 			else
 				to_chat(M, "[span_heavy_brass("[message] [L.real_name]!")]")
-	animate(src, color = oldcolor, time = 20, flags = ANIMATION_END_NOW)
+	animate(src, color = oldcolor, time = 2 SECONDS, flags = ANIMATION_END_NOW)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 20)
 	visible_message(span_warning("[src] slowly stops glowing!"))
 
@@ -212,7 +212,7 @@
 	if(!cyborg_checks(cyborg))
 		return
 	to_chat(cyborg, span_brass("You start to charge from the [sigil_name]..."))
-	if(!do_after(cyborg, 50, target = src, extra_checks = CALLBACK(src, .proc/cyborg_checks, cyborg, TRUE)))
+	if(!do_after(cyborg, 5 SECONDS, src, extra_checks = CALLBACK(src, .proc/cyborg_checks, cyborg, TRUE)))
 		return
 	var/giving_power = min(FLOOR(cyborg.cell.maxcharge - cyborg.cell.charge, MIN_CLOCKCULT_POWER), get_clockwork_power()) //give the borg either all our power or their missing power floored to MIN_CLOCKCULT_POWER
 	if(adjust_clockwork_power(-giving_power))
@@ -220,8 +220,8 @@
 		var/previous_color = cyborg.color
 		cyborg.color = list("#EC8A2D", "#EC8A2D", "#EC8A2D", rgb(0,0,0))
 		cyborg.apply_status_effect(STATUS_EFFECT_POWERREGEN, giving_power * 0.1) //ten ticks, restoring 10% each
-		animate(cyborg, color = previous_color, time = 100)
-		addtimer(CALLBACK(cyborg, /atom/proc/update_atom_colour), 100)
+		animate(cyborg, color = previous_color, time = 10 SECONDS)
+		addtimer(CALLBACK(cyborg, /atom/proc/update_atom_colour), 10 SECONDS)
 
 /obj/effect/clockwork/sigil/transmission/proc/cyborg_checks(mob/living/silicon/robot/cyborg, silent)
 	if(!cyborg.cell)
@@ -285,8 +285,8 @@
 /obj/effect/clockwork/sigil/vitality/sigil_effects(mob/living/L)
 	if((is_servant_of_ratvar(L) && L.suiciding) || sigil_active)
 		return
-	animate(src, alpha = 255, time = 10, flags = ANIMATION_END_NOW) //we may have a previous animation going. finish it first, then do this one without delay.
-	sleep(10)
+	animate(src, alpha = 255, time = 1 SECONDS, flags = ANIMATION_END_NOW) //we may have a previous animation going. finish it first, then do this one without delay.
+	sleep(1 SECONDS)
 //as long as they're still on the sigil and are either not a servant or they're a servant AND it has remaining vitality
 	var/consumed_vitality
 	while(L && (!is_servant_of_ratvar(L) || (is_servant_of_ratvar(L) && (GLOB.ratvar_awakens || GLOB.clockwork_vitality))) && get_turf(L) == get_turf(src) && !L.buckled)
@@ -301,7 +301,7 @@
 				consumed_vitality = TRUE //Prevent the target from being consumed multiple times
 				vitality_drained = L.maxHealth
 				var/obj/effect/temp_visual/ratvar/sigil/vitality/V = new /obj/effect/temp_visual/ratvar/sigil/vitality(get_turf(src))
-				animate(V, alpha = 0, transform = matrix()*2, time = 8)
+				animate(V, alpha = 0, transform = matrix()*2, time = 0.8 SECONDS)
 				playsound(L, 'sound/magic/wandodeath.ogg', 50, 1)
 				L.visible_message(span_warning("[L] collapses in on [L.p_them()]self as [src] flares bright blue!"))
 				to_chat(L, "[span_inathneq_large("\"[text2ratvar("Your life will not be wasted.")]\"")]")
@@ -335,7 +335,7 @@
 							ghost.reenter_corpse()
 						L.revive(1, 1)
 						var/obj/effect/temp_visual/ratvar/sigil/vitality/V = new /obj/effect/temp_visual/ratvar/sigil/vitality(get_turf(src))
-						animate(V, alpha = 0, transform = matrix()*2, time = 8)
+						animate(V, alpha = 0, transform = matrix()*2, time = 0.8 SECONDS)
 						playsound(L, 'sound/magic/staff_healing.ogg', 50, 1)
 						to_chat(L, span_inathneq("\"[text2ratvar("You will be okay, child.")]\""))
 						L.apply_status_effect(STATUS_EFFECT_ICHORIAL_STAIN)
@@ -351,7 +351,7 @@
 					L.ghostize(0)
 					L.key = C.key
 					var/obj/effect/temp_visual/ratvar/sigil/vitality/V = new /obj/effect/temp_visual/ratvar/sigil/vitality(get_turf(src))
-					animate(V, alpha = 0, transform = matrix()*2, time = 8)
+					animate(V, alpha = 0, transform = matrix()*2, time = 0.8 SECONDS)
 					playsound(L, 'sound/magic/staff_healing.ogg', 50, 1)
 					L.visible_message(span_warning("[L]'s eyes suddenly open wide, gleaming with renewed vigor for the cause!"), span_inathneq("\"[text2ratvar("Awaken!")]\""))
 					break
@@ -368,9 +368,9 @@
 			if(!GLOB.ratvar_awakens)
 				GLOB.clockwork_vitality -= vitality_used
 
-		sleep(2)
+		sleep(0.2 SECONDS)
 
 	if(sigil_active)
 		animation_number = initial(animation_number)
 		sigil_active = FALSE
-	animate(src, alpha = initial(alpha), time = 10, flags = ANIMATION_END_NOW)
+	animate(src, alpha = initial(alpha), time = 1 SECONDS, flags = ANIMATION_END_NOW)

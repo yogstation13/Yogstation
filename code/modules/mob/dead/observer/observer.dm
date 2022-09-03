@@ -56,6 +56,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/deadchat_name
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
+	var/datum/action/unobserve/UO 
 
 	// Current Viewrange
 	var/view = 0
@@ -111,7 +112,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	update_icon()
 
-	if(!T)
+	if(!T || is_secret_level(T.z))
 		var/list/turfs = get_area_turfs(/area/shuttle/arrival)
 		if(turfs.len)
 			T = pick(turfs)
@@ -128,7 +129,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		remove_verb(src, /mob/dead/observer/verb/boo)
 		remove_verb(src, /mob/dead/observer/verb/possess)
 
-	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
 
 	add_to_dead_mob_list()
 
@@ -151,13 +152,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/narsie_act()
 	var/old_color = color
 	color = "#960000"
-	animate(src, color = old_color, time = 10, flags = ANIMATION_PARALLEL)
+	animate(src, color = old_color, time = 1 SECONDS, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 10)
 
 /mob/dead/observer/ratvar_act()
 	var/old_color = color
 	color = "#FAE48C"
-	animate(src, color = old_color, time = 10, flags = ANIMATION_PARALLEL)
+	animate(src, color = old_color, time = 1 SECONDS, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 10)
 
 /mob/dead/observer/Destroy()
@@ -444,7 +445,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 // This is the ghost's follow verb with an argument
 /mob/dead/observer/proc/ManualFollow(atom/movable/target)
-	if (!istype(target))
+	if (!istype(target) || (is_secret_level(target.z) && !client?.holder))
 		return
 
 	var/icon/I = icon(target.icon,target.icon_state,target.dir)
@@ -476,7 +477,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	. = ..()
 	//restart our floating animation after orbit is done.
 	pixel_y = 0
-	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
 
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -806,17 +807,28 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				remove_verb(src, /mob/dead/observer/verb/possess)
 
 /mob/dead/observer/reset_perspective(atom/A)
+	UO?.Remove(src)
 	if(client)
 		if(ismob(client.eye) && (client.eye != src))
-			var/mob/target = client.eye
-			observetarget = null
-			if(target.observers)
-				target.observers -= src
-				UNSETEMPTY(target.observers)
+			cleanup_observe()
 	if(..())
 		if(hud_used)
 			client.screen = list()
 			hud_used.show_hud(hud_used.hud_version)
+
+
+/mob/dead/observer/proc/cleanup_observe()
+	var/mob/target = observetarget
+	client?.perspective = initial(client.perspective)
+	sight = initial(sight)
+	UnregisterSignal(target, COMSIG_MOVABLE_Z_CHANGED)
+	if(target && target.observers)
+		target.observers -= src
+		UNSETEMPTY(target.observers)
+	observetarget = null
+	actions = originalactions
+	actions -= UO
+	update_action_buttons()
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
@@ -839,12 +851,41 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	//Istype so we filter out points of interest that are not mobs
 	if(client && mob_eye && istype(mob_eye))
 		client.eye = mob_eye
+		client.perspective = EYE_PERSPECTIVE
+		if(is_secret_level(mob_eye.z) && !client?.holder)
+			sight = null //we dont want ghosts to see through walls in secret areas
+		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed, TRUE)
+		if(!UO)
+			UO = new // Convinent way to unobserve
+		UO.Grant(src)
 		if(mob_eye.hud_used)
-			client.screen = list()
+			actions = mob_eye.actions + originalactions
 			LAZYINITLIST(mob_eye.observers)
 			mob_eye.observers |= src
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
+			update_action_buttons()
+			mob_eye.update_action_buttons()
 			observetarget = mob_eye
+
+/datum/action/unobserve
+	name = "Stop Observing"
+	desc = "Stops observing the person."
+	icon_icon = 'icons/mob/mob.dmi'
+	button_icon_state = "ghost_nodir"
+
+/datum/action/unobserve/Trigger()
+	owner.reset_perspective(null)
+
+/datum/action/unobserve/IsAvailable()
+	return TRUE
+
+/mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)
+	SHOULD_NOT_SLEEP(TRUE)
+
+	if(is_secret_level(newz) && !client?.holder)
+		sight = null //we dont want ghosts to see through walls in secret areas
+	else
+		sight = initial(sight)
 
 /mob/dead/observer/verb/register_pai_candidate()
 	set category = "Ghost"

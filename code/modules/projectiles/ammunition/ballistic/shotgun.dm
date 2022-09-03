@@ -8,6 +8,11 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_slug
 	materials = list(/datum/material/iron=4000)
 
+/obj/item/ammo_casing/shotgun/syndie
+	name = "syndicate shotgun slug"
+	desc = "An illegal type of ammunition used by the syndicate for their bulldog shotguns. Hopefully you're not the one on the receiving end."
+	projectile_type = /obj/item/projectile/bullet/shotgun_slug/syndie
+
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
@@ -64,6 +69,30 @@
 	pellets = 6
 	variance = 25
 
+/obj/item/ammo_casing/shotgun/hpbuck
+	name = "hollow-point buckshot shell"
+	desc = "A 12 gauge hollow-point buckshot shell."
+	icon_state = "hpbshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_hpbuckshot
+	pellets = 6
+	variance = 25
+
+/obj/item/ammo_casing/shotgun/flechette
+	name = "flechette shell"
+	desc = "A 12 gauge flechette shell."
+	icon_state = "flshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_flechette
+	pellets = 6
+	variance = 15
+
+/obj/item/ammo_casing/shotgun/clownshot
+	name = "buckshot shell..?"
+	desc = "This feels a little light for a buckshot shell."
+	icon_state = "gshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_clownshot
+	pellets = 20
+	variance = 40
+
 /obj/item/ammo_casing/shotgun/rubbershot
 	name = "rubber shot"
 	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
@@ -91,28 +120,64 @@
 	pellets = 4
 	variance = 35
 
-/obj/item/ammo_casing/shotgun/laserslug
-	name = "laser slug"
-	desc = "An advanced shotgun shell that uses a micro laser to replicate the effects of a laser weapon in a ballistic package."
+/obj/item/ammo_casing/shotgun/laserbuckshot
+	name = "laser buckshot"
+	desc = "An advanced shotgun shell that uses  micro lasers to replicate the effects of a laser weapon in a ballistic package."
 	icon_state = "lshell"
-	projectile_type = /obj/item/projectile/beam/laser
+	projectile_type = /obj/item/projectile/beam/laser/buckshot
+	pellets = 5
+	variance = 35
+
+/obj/item/ammo_casing/shotgun/uraniumpenetrator
+	name = "depleted uranium slug"
+	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing \
+	very impressive armor penetration capabilities."
+	icon_state = "dushell" 
+	projectile_type = /obj/item/projectile/bullet/shotgun_uraniumslug
+
+/obj/item/ammo_casing/shotgun/cryoshot
+	name = "cryoshot shell"
+	desc = "A state-of-the-art shell which uses the cooling power of Rhigoxane to snap freeze a target, without causing \
+	them much harm."
+	icon_state = "fshell" 
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_cryoshot
+	pellets = 4
+	variance = 35
 
 /obj/item/ammo_casing/shotgun/techshell
 	name = "unloaded technological shell"
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
 	icon_state = "cshell"
 	projectile_type = null
-
+	
 /obj/item/ammo_casing/shotgun/dart
 	name = "shotgun dart"
 	desc = "A dart for use in shotguns. Can be injected with up to 30 units of any chemical."
 	icon_state = "cshell"
-	projectile_type = /obj/item/projectile/bullet/dart
+	projectile_type = /obj/item/projectile/bullet/reusable/dart
 	var/reagent_amount = 30
+	var/no_react = FALSE
 
 /obj/item/ammo_casing/shotgun/dart/Initialize()
 	. = ..()
 	create_reagents(reagent_amount, OPENCONTAINER)
+	if(no_react)
+		ENABLE_BITFIELD(reagents.flags, NO_REACT)
+
+/obj/item/ammo_casing/shotgun/dart/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
+	if(!BB)
+		return
+	if(reagents.total_volume < 0)
+		return
+	var/obj/item/projectile/bullet/reusable/dart/D = BB
+	var/obj/item/reagent_containers/syringe/dart/temp/new_dart = new(D)
+
+	new_dart.volume = reagents.total_volume
+	if(no_react)
+		new_dart.reagent_flags |= NO_REACT
+	reagents.trans_to(new_dart, reagents.total_volume, transfered_by = user)
+	D.add_dart(new_dart)
+	..()
 
 /obj/item/ammo_casing/shotgun/dart/attackby()
 	return
@@ -122,10 +187,7 @@
 	desc = "A dart for use in shotguns, using similar technology as cryostatis beakers to keep internal reagents from reacting. Can be injected with up to 10 units of any chemical."
 	icon_state = "cnrshell"
 	reagent_amount = 10
-
-/obj/item/ammo_casing/shotgun/dart/noreact/Initialize()
-	. = ..()
-	ENABLE_BITFIELD(reagents.flags, NO_REACT)
+	no_react = TRUE
 
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	desc = "A shotgun dart filled with deadly toxins."
@@ -145,3 +207,12 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
+
+
+/obj/item/ammo_casing/shotgun/thundershot
+	name = "thunder slug"
+	desc = "An advanced shotgun shell that uses stored electrical energy to discharge a massive shock on impact, arcing to nearby targets."
+	icon_state = "Thshell"
+	pellets = 3
+	variance = 30
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot

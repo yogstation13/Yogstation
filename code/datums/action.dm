@@ -20,6 +20,7 @@
 	var/button_icon_state = "default" //And this is the state for the action icon
 	var/mob/owner
 	var/syndicate = FALSE // are these buttons only for syndicates?
+	var/obj/screen/cooldown_overlay/cooldown_overlay
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -43,6 +44,7 @@
 
 /datum/action/proc/Grant(mob/M)
 	if(M)
+		M.originalactions += src
 		if(owner)
 			if(owner == M)
 				return
@@ -72,7 +74,9 @@
 			M.client.screen += button
 			button.locked = M.client.prefs.buttons_locked || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
 			button.moved = button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE
-		M.update_action_buttons()
+		for(var/mob/dead/observer/O in M.observers)
+			O?.client.screen += button
+		M.update_action_buttons() // Now push the owners buttons back
 	else
 		Remove(owner)
 
@@ -80,6 +84,9 @@
 	if(M)
 		if(M.client)
 			M.client.screen -= button
+		for(var/mob/dead/observer/O in M.observers)
+			O?.client.screen -= button
+		M.originalactions -= src
 		M.actions -= src
 		M.update_action_buttons()
 	owner = null
@@ -533,7 +540,7 @@
 
 /datum/action/item_action/visegrip
 	name = "Vise Grip"
-	desc = "Remotely detonate marked targets. People become rooted for 1 second. Nonhumanoids become rooted for 6 seconds and take hefty damage."
+	desc = "Remotely detonate marked targets. People become rooted for 1 second. Animals become rooted for 6 seconds and take hefty damage."
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "leghold"
 	

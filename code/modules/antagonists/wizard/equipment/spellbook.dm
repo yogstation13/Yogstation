@@ -123,6 +123,10 @@
 	name = "Disintegrate"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
 
+/datum/spellbook_entry/pacify
+	name = "Pacify"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/pacify
+
 /datum/spellbook_entry/disabletech
 	name = "Disable Tech"
 	spell_type = /obj/effect/proc_holder/spell/targeted/emplosion/disable_tech
@@ -205,6 +209,7 @@
 	name = "Bind Soul"
 	spell_type = /obj/effect/proc_holder/spell/targeted/lichdom
 	category = "Defensive"
+	cost = 4
 
 /datum/spellbook_entry/teslablast
 	name = "Tesla Blast"
@@ -327,12 +332,6 @@
 	item_path = /obj/item/gun/magic/staff/locker
 	category = "Defensive"
 
-/datum/spellbook_entry/item/scryingorb
-	name = "Scrying Orb"
-	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
-	item_path = /obj/item/scrying
-	category = "Defensive"
-
 /datum/spellbook_entry/item/soulstones
 	name = "Six Soul Stone Shards and the spell Artificer"
 	desc = "Soul Stone Shards are ancient tools capable of capturing and harnessing the spirits of the dead and dying. The spell Artificer allows you to create arcane machines for the captured souls to pilot."
@@ -433,6 +432,11 @@
 	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact."
 	item_path = /obj/item/twohanded/singularityhammer
 
+/datum/spellbook_entry/item/demon_chainsaw
+	name = "Demonic Chainsaw"
+	desc = "A demon that has taken the form of a chainsaw! This demon will grant you eternal life, so long as you feed it blood!"
+	item_path = /obj/item/twohanded/required/chainsaw/demon
+	cost = 3
 /datum/spellbook_entry/item/battlemage
 	name = "Battlemage Armour"
 	desc = "An ensorceled suit of armour, protected by a powerful shield. The shield can completely negate sixteen attacks before being permanently depleted. It is not protected against the void of space."

@@ -1,7 +1,7 @@
-/// 1 minute
-#define TIME_BLOODSUCKER_DAY 60
-/// 10 minutes
-#define TIME_BLOODSUCKER_NIGHT 600
+/// 45 seconds
+#define TIME_BLOODSUCKER_DAY 45
+/// 15 minutes
+#define TIME_BLOODSUCKER_NIGHT 900
 /// 1.5 minutes
 #define TIME_BLOODSUCKER_DAY_WARN 90
 /// 30 seconds
@@ -88,17 +88,15 @@
 					var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
 					if(!istype(bloodsuckerdatum))
 						continue
-					if(bloodsuckerdatum.my_clan == CLAN_GANGREL)
+					if(bloodsuckerdatum.my_clan == CLAN_GANGREL)	
 						give_transform_power()
-					if(!iscarbon(bloodsucker_minds.current))
-						qdel(bloodsucker_minds.current)
 					if(bloodsuckerdatum.altar_uses > 0)
 						to_chat(bloodsuckerdatum, span_notice("Your Altar uses have been reset!"))
 						bloodsuckerdatum.altar_uses = 0
-				warn_daylight(4, span_userdanger("Solar flares bombard the station with deadly UV light!<br><span class = ''>Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"), \
+				warn_daylight(4, span_userdanger("Solar flares bombard the station with deadly UV light!<br><span class = ''>Stay in cover for the next [TIME_BLOODSUCKER_DAY] seconds or risk Final Death!"), \
 					span_userdanger("Solar flares bombard the station with UV light!"), \
 					span_userdanger("The sunlight is visible throughout the station, the Bloodsuckers must be asleep by now!"))
-				message_admins("BLOODSUCKER NOTICE: Daylight Beginning (Lasts for [TIME_BLOODSUCKER_DAY / 60] minutes.)")
+				message_admins("BLOODSUCKER NOTICE: Daylight Beginning (Lasts for [TIME_BLOODSUCKER_DAY] seconds.)")
 
 /obj/effect/sunlight/proc/warn_daylight(danger_level = 0, vampwarn = "", vassalwarn = "", hunteralert = "")
 	for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))
@@ -108,15 +106,15 @@
 		if(bloodsucker_minds.current)
 			switch(danger_level)
 				if(1)
-					bloodsucker_minds.current.playsound_local(null, 'sound/effects/griffin_3.ogg', 50 + danger_level, 1)
+					bloodsucker_minds.current.playsound_local(null, 'sound/effects/griffin_3.ogg', 50 + danger_level, TRUE)
 				if(2)
-					bloodsucker_minds.current.playsound_local(null, 'sound/effects/griffin_5.ogg', 50 + danger_level, 1)
+					bloodsucker_minds.current.playsound_local(null, 'sound/effects/griffin_5.ogg', 50 + danger_level, TRUE)
 				if(3)
-					bloodsucker_minds.current.playsound_local(null, 'sound/effects/alert.ogg', 75, 1)
+					bloodsucker_minds.current.playsound_local(null, 'sound/effects/alert.ogg', 75, TRUE)
 				if(4)
-					bloodsucker_minds.current.playsound_local(null, 'sound/ambience/ambimystery.ogg', 100, 1)
+					bloodsucker_minds.current.playsound_local(null, 'sound/ambience/ambimystery.ogg', 100, TRUE)
 				if(5)
-					bloodsucker_minds.current.playsound_local(null, 'sound/spookoween/ghosty_wind.ogg', 90, 1)
+					bloodsucker_minds.current.playsound_local(null, 'sound/spookoween/ghosty_wind.ogg', 90, TRUE)
 	if(vassalwarn != "")
 		for(var/datum/mind/vassal_minds as anything in get_antag_minds(/datum/antagonist/vassal))
 			if(!istype(vassal_minds))
@@ -138,7 +136,7 @@
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
 		if(!istype(bloodsuckerdatum))
 			continue
-		if(istype(bloodsucker_minds.current.loc, /obj/structure))
+		if(isstructure(bloodsucker_minds.current.loc))
 			if(istype(bloodsucker_minds.current.loc, /obj/structure/closet/crate/coffin)) // Coffins offer the BEST protection
 				SEND_SIGNAL(bloodsucker_minds.current, COMSIG_ADD_MOOD_EVENT, "vampsleep", /datum/mood_event/coffinsleep)
 				continue
@@ -181,13 +179,14 @@
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
 		for(var/datum/action/bloodsucker/power in bloodsuckerdatum.powers)
 			if(istype(power, /datum/action/bloodsucker/gohome))
-				bloodsuckerdatum.powers -= power
-				power.Remove(bloodsucker_minds.current)
+				bloodsuckerdatum.RemovePower(power)
 
 /obj/effect/sunlight/proc/give_transform_power()
 	for(var/datum/mind/bloodsucker_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))
 		if(!istype(bloodsucker_minds) || !istype(bloodsucker_minds.current))
 			continue
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = bloodsucker_minds.has_antag_datum(/datum/antagonist/bloodsucker)
+		if(bloodsuckerdatum.my_clan != CLAN_GANGREL)
+			continue
 		if(!(locate(/datum/action/bloodsucker/gangrel/transform) in bloodsuckerdatum.powers))
 			bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/gangrel/transform)

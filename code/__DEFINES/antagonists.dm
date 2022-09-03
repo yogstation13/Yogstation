@@ -1,5 +1,5 @@
 ///An unreadied player counts for this much compared to a readied one
-#define UNREADIED_PLAYER_MULTIPLIER 0.5
+#define UNREADIED_PLAYER_MULTIPLIER 0.75
 
 #define NUKE_RESULT_FLUKE 0
 #define NUKE_RESULT_NUKE_WIN 1
@@ -32,10 +32,27 @@
 /// blob gets a free reroll every X time
 #define BLOB_REROLL_TIME 2400
 #define BLOB_SPREAD_COST 4
+#define OVERMIND_STARTING_AUTO_PLACE_TIME 6 MINUTES
 /// blob refunds this much if it attacks and doesn't spread
 #define BLOB_ATTACK_REFUND 2
 #define BLOB_REFLECTOR_COST 15
 
+/// Forces the blob to place the core where they currently are, ignoring any checks.
+#define BLOB_FORCE_PLACEMENT -1
+/// Normal blob placement, does the regular checks to make sure the blob isn't placing itself in an invalid location
+#define BLOB_NORMAL_PLACEMENT 0
+/// Selects a random location for the blob to be placed.
+#define BLOB_RANDOM_PLACEMENT 1
+
+
+/// How many telecrystals a normal traitor starts with
+#define TELECRYSTALS_DEFAULT 20
+/// How many telecrystals mapper/admin only "precharged" uplink implant
+#define TELECRYSTALS_PRELOADED_IMPLANT 10
+/// The normal cost of an uplink implant; used for calcuating how many
+/// TC to charge someone if they get a free implant through choice or
+/// because they have nothing else that supports an implant.
+#define UPLINK_IMPLANT_TELECRYSTAL_COST 4
 
 //ERT Types
 #define ERT_BLUE "Blue"

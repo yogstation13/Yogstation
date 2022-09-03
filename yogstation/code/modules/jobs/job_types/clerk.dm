@@ -8,13 +8,14 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(ACCESS_MANUFACTURING)
-	minimal_access = list(ACCESS_MANUFACTURING)
+	added_access = list()
+	base_access = list(ACCESS_MANUFACTURING)
 	alt_titles = list("Salesman", "Gift Shop Attendent", "Retail Worker")
 	outfit = /datum/outfit/job/clerk
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_CLERK
+	minimal_character_age = 18 //Capitalism doesn't care about age
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
@@ -31,6 +32,7 @@
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/yogs/rank/clerk
+	uniform_skirt = /obj/item/clothing/under/yogs/rank/clerk/skirt
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	head = /obj/item/clothing/head/yogs/clerkcap
 	backpack_contents = list(/obj/item/circuitboard/machine/paystand = 1)

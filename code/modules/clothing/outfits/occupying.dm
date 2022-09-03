@@ -14,7 +14,7 @@
 	color = "#55ff9b"
 
 /obj/item/clothing/suit/armor/riot/occupying
-	armor = list("melee" = 40, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
+	armor = list(MELEE = 40, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 40)
 	name = "peacekeeping force riot suit"
 	desc = "A mass produced semi-flexible polycarbonate body armor with decent padding to protect against melee attacks. Not as strong as riot suits typically issued to NT stations."
 	color = "#55ff9b"
@@ -30,7 +30,7 @@
 	. = ..()
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
@@ -41,7 +41,7 @@
 	. = ..()
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/megaphone(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
@@ -56,7 +56,7 @@
 	new /obj/item/restraints/legcuffs/bola/energy(src)
 	new /obj/item/restraints/handcuffs(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/jawsoflife/jimmy(src)
 

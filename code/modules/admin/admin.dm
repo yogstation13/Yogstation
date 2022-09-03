@@ -1,14 +1,14 @@
 
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span>")
+	msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
 /proc/relay_msg_admins(msg)
-	msg = span_admin("<span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span>")
+	msg = span_admin("<span class=\"prefix\">RELAY:</span> <span class=\"message\">[msg]</span>")
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
@@ -159,7 +159,8 @@
 
 			//AI / Cyborg
 			if(isAI(M))
-				body += "<B>Is an AI</B> "
+				body += "<B>Is an AI | </B> "
+				body += "<A href='?_src_=holder;[HrefToken()];checkAIDash=[REF(M)]'>Access AI Dashboard | </A>"
 			else if(ishuman(M))
 				body += "<A href='?_src_=holder;[HrefToken()];makeai=[REF(M)]'>Make AI</A> | "
 				body += "<A href='?_src_=holder;[HrefToken()];makerobot=[REF(M)]'>Make Robot</A> | "

@@ -258,14 +258,14 @@
 		return
 	var/new_damtype
 	switch(chassis.damtype)
-		if("tox")
-			new_damtype = "brute"
+		if(TOX)
+			new_damtype = BRUTE
 			chassis.occupant_message("Your exosuit's hands form into fists.")
-		if("brute")
-			new_damtype = "fire"
+		if(BRUTE)
+			new_damtype = BURN
 			chassis.occupant_message("A torch tip extends from your exosuit's hand, glowing red.")
-		if("fire")
-			new_damtype = "tox"
+		if(BURN)
+			new_damtype = TOX
 			chassis.occupant_message("A bone-chillingly thick plasteel needle protracts from the exosuit's palm.")
 	chassis.damtype = new_damtype
 	button_icon_state = "mech_damtype_[new_damtype]"

@@ -236,6 +236,34 @@ nobliumformation = 1001
 
 	return cached_results["fire"] ? REACTING : NO_REACTION
 
+/datum/gas_reaction/n2odecomp
+	priority = 0
+	name = "Nitrous Oxide Decomposition"
+	id = "n2odecomp"
+
+/datum/gas_reaction/n2odecomp/init_reqs()
+	min_requirements = list(
+		"TEMP" = N2O_DECOMPOSITION_MIN_HEAT,
+		/datum/gas/nitrous_oxide = MINIMUM_MOLE_COUNT*2
+	)
+
+/datum/gas_reaction/n2odecomp/react(datum/gas_mixture/air, datum/holder)
+	var/old_heat_capacity = air.heat_capacity()
+	var/temperature = air.return_temperature()
+	var/nitrous = air.get_moles(/datum/gas/nitrous_oxide)
+
+	var/burned_fuel = min(N2O_DECOMPOSITION_RATE*nitrous*temperature*(temperature-N2O_DECOMPOSITION_MAX_HEAT)/((-1/4)*(N2O_DECOMPOSITION_MAX_HEAT**2)), nitrous)
+	if(burned_fuel>0)
+		air.set_moles(/datum/gas/nitrous_oxide, QUANTIZE(nitrous - burned_fuel))
+		air.set_moles(/datum/gas/nitrogen, QUANTIZE(air.get_moles(/datum/gas/nitrogen) + burned_fuel))
+		air.set_moles(/datum/gas/oxygen, QUANTIZE(air.get_moles(/datum/gas/oxygen) + burned_fuel/2))
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature((temperature*old_heat_capacity + burned_fuel*N2O_DECOMPOSITION_ENERGY)/new_heat_capacity)
+		return REACTING
+
+	return NO_REACTION
+
 //fusion: a terrible idea that was fun but broken. Now reworked to be less broken and more interesting. Again (and again, and again). Again!
 //Fusion Rework Counter: Please increment this if you make a major overhaul to this system again.
 //6 reworks
@@ -663,8 +691,8 @@ nobliumformation = 1001
 
 /datum/gas_reaction/metalhydrogen/init_reqs()
 	min_requirements = list(
-		/datum/gas/hydrogen = 100,
-		/datum/gas/bz		= 5,
+		/datum/gas/hydrogen = 1000,
+		/datum/gas/bz		= 50,
 		"TEMP" = METAL_HYDROGEN_MINIMUM_HEAT
 		)
 
@@ -674,18 +702,18 @@ nobliumformation = 1001
 	if(!isturf(holder))
 		return NO_REACTION
 	var/turf/open/location = holder
-	///the more heat you use the higher is this factor
-	var/increase_factor = min((temperature / METAL_HYDROGEN_MINIMUM_HEAT), 5)
+	///More heat means higher chance to react but less efficiency, i.e. higher speed lower yield
+	var/increase_factor = min(log(10 , (temperature / METAL_HYDROGEN_MINIMUM_HEAT)), 5)	//e7-e12 range
 	///the more moles you use and the higher the heat, the higher is the efficiency
-	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor
+	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor	//This variable name is dumb but I can't be assed to change it
 	var/pressure = air.return_pressure()
 	var/energy_used = heat_efficency * METAL_HYDROGEN_FORMATION_ENERGY
 
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
-		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.01))
+		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.05))	//0.0005-0.0025 x mols of present hydrogen as BZ consumed, something about it decomposing
 		if (prob(20 * increase_factor))
-			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 3.5))
-			if (prob(100 / increase_factor))
+			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 14))	//14-70% of present hydrogen consumed.
+			if (prob(25 / increase_factor))
 				new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
 				SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
 

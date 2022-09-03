@@ -1,0 +1,804 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"c" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"d" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/jungle,
+/area/ruin/unpowered)
+"g" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"h" = (
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"i" = (
+/obj/structure/table,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"j" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"l" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/ruin/unpowered)
+"n" = (
+/obj/structure/table,
+/obj/item/flashlight,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"o" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"p" = (
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"r" = (
+/turf/closed/wall/mineral/titanium,
+/area/ruin/unpowered)
+"s" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"t" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"u" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"v" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"w" = (
+/obj/structure/flora/tree/dead/jungle,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"x" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"y" = (
+/obj/machinery/computer{
+	dir = 8
+	},
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"B" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/directional{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"C" = (
+/turf/open/floor/plasteel/jungle,
+/area/template_noop)
+"D" = (
+/turf/template_noop,
+/area/template_noop)
+"F" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"G" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"I" = (
+/turf/open/floor/plasteel/jungle,
+/area/ruin/unpowered)
+"K" = (
+/obj/structure/table_frame,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+"L" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 1
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"N" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/ruin/unpowered)
+"O" = (
+/turf/open/floor/plating/lavaland_baseturf,
+/area/template_noop)
+"P" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/jungle,
+/area/ruin/unpowered)
+"R" = (
+/obj/machinery/door/airlock/titanium,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/unpowered)
+"S" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"V" = (
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/ruin/unpowered)
+"W" = (
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"X" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"Y" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/template_noop)
+"Z" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/template_noop)
+
+(1,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+"}
+(2,1,1) = {"
+D
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+D
+D
+"}
+(3,1,1) = {"
+D
+h
+h
+G
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+D
+D
+"}
+(4,1,1) = {"
+D
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+D
+D
+"}
+(5,1,1) = {"
+D
+G
+h
+h
+h
+G
+X
+h
+X
+h
+h
+h
+h
+h
+h
+h
+h
+h
+D
+D
+"}
+(6,1,1) = {"
+D
+h
+h
+h
+h
+h
+b
+g
+g
+h
+o
+h
+h
+h
+h
+S
+h
+h
+D
+D
+"}
+(7,1,1) = {"
+D
+h
+h
+W
+G
+W
+r
+r
+r
+V
+r
+r
+r
+h
+h
+h
+h
+h
+D
+D
+"}
+(8,1,1) = {"
+D
+h
+h
+W
+p
+p
+r
+P
+d
+V
+l
+r
+h
+h
+h
+x
+h
+h
+D
+D
+"}
+(9,1,1) = {"
+D
+h
+h
+W
+p
+p
+r
+I
+V
+N
+V
+r
+G
+G
+h
+h
+h
+h
+D
+D
+"}
+(10,1,1) = {"
+D
+h
+h
+W
+p
+G
+r
+V
+V
+V
+V
+V
+p
+G
+W
+h
+h
+h
+D
+D
+"}
+(11,1,1) = {"
+D
+h
+h
+h
+G
+p
+r
+r
+R
+r
+r
+r
+G
+p
+W
+h
+h
+h
+D
+D
+"}
+(12,1,1) = {"
+D
+h
+w
+h
+G
+G
+p
+p
+p
+p
+p
+p
+p
+Z
+W
+h
+h
+h
+D
+D
+"}
+(13,1,1) = {"
+D
+h
+h
+h
+Y
+p
+G
+G
+Z
+p
+C
+p
+p
+G
+W
+h
+h
+h
+D
+D
+"}
+(14,1,1) = {"
+D
+h
+h
+h
+h
+p
+G
+G
+F
+h
+s
+W
+G
+G
+h
+h
+h
+h
+D
+D
+"}
+(15,1,1) = {"
+D
+h
+h
+h
+G
+G
+W
+G
+G
+h
+p
+W
+p
+v
+W
+h
+h
+h
+D
+D
+"}
+(16,1,1) = {"
+D
+h
+h
+G
+v
+G
+h
+p
+p
+h
+h
+p
+p
+p
+W
+h
+h
+Y
+D
+D
+"}
+(17,1,1) = {"
+D
+h
+h
+W
+p
+G
+W
+K
+n
+i
+p
+p
+p
+p
+W
+h
+h
+h
+D
+D
+"}
+(18,1,1) = {"
+D
+h
+h
+W
+F
+p
+W
+W
+W
+W
+W
+p
+G
+p
+G
+h
+h
+h
+D
+D
+"}
+(19,1,1) = {"
+D
+h
+h
+W
+p
+Z
+p
+p
+F
+G
+F
+G
+p
+p
+W
+h
+h
+h
+D
+D
+"}
+(20,1,1) = {"
+D
+h
+h
+W
+G
+G
+p
+c
+O
+p
+C
+u
+p
+G
+W
+h
+h
+h
+D
+D
+"}
+(21,1,1) = {"
+D
+h
+h
+W
+p
+G
+G
+G
+G
+C
+p
+p
+G
+G
+W
+h
+h
+h
+D
+D
+"}
+(22,1,1) = {"
+D
+h
+h
+W
+p
+j
+G
+G
+F
+p
+p
+p
+G
+G
+W
+h
+h
+h
+D
+D
+"}
+(23,1,1) = {"
+D
+h
+h
+W
+p
+W
+p
+s
+t
+Z
+C
+C
+W
+G
+W
+h
+h
+h
+D
+D
+"}
+(24,1,1) = {"
+D
+h
+h
+h
+h
+W
+W
+p
+p
+p
+F
+W
+W
+h
+h
+h
+h
+h
+D
+D
+"}
+(25,1,1) = {"
+D
+h
+h
+h
+h
+h
+W
+C
+F
+y
+p
+W
+h
+h
+h
+w
+h
+h
+D
+D
+"}
+(26,1,1) = {"
+D
+h
+h
+h
+h
+h
+W
+W
+L
+B
+W
+W
+h
+h
+h
+h
+h
+h
+D
+D
+"}
+(27,1,1) = {"
+D
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+h
+D
+D
+"}
+(28,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+"}
+(29,1,1) = {"
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+D
+"}

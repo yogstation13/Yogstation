@@ -30,7 +30,7 @@
 	d_hud = DATA_HUD_DIAGNOSTIC_BASIC
 	mob_size = MOB_SIZE_LARGE
 
-	invisibility = INVISIBILITY_OBSERVER 
+	invisibility = INVISIBILITY_MAXIMUM  
 
 	var/battery = 200 //emergency power if the AI's APC is off
 	var/list/network = list("ss13")
@@ -47,6 +47,7 @@
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
 	var/obj/item/multitool/aiMulti
 	var/mob/living/simple_animal/bot/Bot
+	var/obj/machinery/holopad/pad 
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
 	var/datum/effect_system/spark_spread/spark_system //So they can initialize sparks whenever/N
 
@@ -75,7 +76,7 @@
 	var/turf/waypoint //Holds the turf of the currently selected waypoint.
 	var/waypoint_mode = FALSE		//Waypoint mode is for selecting a turf via clicking.
 	var/call_bot_cooldown = 0		//time of next call bot command
-	var/apc_override = FALSE		//hack for letting the AI use its APC even when visionless
+	var/obj/machinery/power/apc/apc_override		//Ref of the AI's APC, used when the AI has no power in order to access their APC.
 	var/nuking = FALSE
 	var/obj/machinery/doomsday_device/doomsday_device
 
@@ -122,6 +123,8 @@
 
 	//Did we get the death prompt?
 	var/is_dying = FALSE 
+	///Multiplier for amount of points gained when passively using CPU for science
+	var/research_point_booster = 1
 
 
 
@@ -230,7 +233,7 @@
 	SSshuttle.autoEvac()
 	qdel(eyeobj) // No AI, no Eye
 	malfhack = null
-
+	apc_override = null
 	GLOB.ai_os.remove_ai(src)
 
 	. = ..()
@@ -263,7 +266,7 @@
 		var/obj/machinery/ai/data_core/core = loc
 		forceMove(get_turf(loc))
 		view_core()
-		sleep(1)
+		sleep(0.1 SECONDS)
 		forceMove(core)
 
 /mob/living/silicon/ai/verb/pick_icon()
@@ -449,9 +452,20 @@
 	. = 0
 
 /mob/living/silicon/ai/Topic(href, href_list)
-	if(usr != src || incapacitated())
-		return
 	..()
+	if(usr != src)
+		return
+	
+	if(href_list["emergencyAPC"]) //This check comes before incapacitated() because the only time it would be useful is when we have no power.
+		if(!apc_override)
+			to_chat(src, "<span class='notice'>APC backdoor is no longer available.</span>")
+			return
+		apc_override.ui_interact(src)
+		return
+
+	if(incapacitated())
+		return	
+	
 	if (href_list["mach_close"])
 		if (href_list["mach_close"] == "aialerts")
 			viewalerts = 0
@@ -770,7 +784,7 @@
 		if("Animal")
 			var/list/icon_list = list(
 			"bear" = 'icons/mob/animal.dmi',
-			"carp" = 'icons/mob/animal.dmi',
+			"carp" = 'icons/mob/carp.dmi',
 			"chicken" = 'icons/mob/animal.dmi',
 			"corgi" = 'icons/mob/pets.dmi',
 			"cow" = 'icons/mob/animal.dmi',
@@ -781,7 +795,11 @@
 			"cat2" = 'icons/mob/pets.dmi',
 			"poly" = 'icons/mob/animal.dmi',
 			"pug" = 'icons/mob/pets.dmi',
-			"spider" = 'icons/mob/animal.dmi'
+			"spider" = 'icons/mob/animal.dmi',
+			"mothroach" = 'icons/mob/animal.dmi',
+			"snake" = 'icons/mob/animal.dmi',
+			"goose" = 'icons/mob/animal.dmi',
+			"poppypossum" = 'icons/mob/animal.dmi'
 			)
 
 			input = input("Please select a hologram:") as null|anything in icon_list
@@ -813,6 +831,8 @@
 						holo_icon = getHologramIcon(icon(icon_list[input],"alienq"))
 					else
 						holo_icon = getHologramIcon(icon(icon_list[input], input))
+	if(pad)
+		pad.refresh_holo(src)
 	return
 
 /mob/living/silicon/ai/proc/corereturn()
@@ -931,7 +951,7 @@
 	if(isturf(loc) || istype(loc, /obj/machinery/ai/data_core)) //AI in core, check if on cameras
 		//get_turf_pixel() is because APCs in maint aren't actually in view of the inner camera
 		//apc_override is needed here because AIs use their own APC when depowered
-		return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(get_turf_pixel(A))) || apc_override
+		return ((GLOB.cameranet && GLOB.cameranet.checkTurfVis(get_turf_pixel(A))) || (A == apc_override))
 	//AI is carded/shunted
 	//view(src) returns nothing for carded/shunted AIs and they have X-ray vision so just use get_dist
 	var/list/viewscale = getviewsize(client.view)

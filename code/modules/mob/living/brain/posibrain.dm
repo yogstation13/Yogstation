@@ -18,7 +18,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	var/success_message = span_notice("The positronic brain pings, and its lights start flashing. Success!")
 	var/fail_message = span_notice("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
 	var/new_role = "Positronic Brain"
-	var/welcome_message = "<span class='warning'>ALL PAST LIVES ARE FORGOTTEN.</span>\n\
+	welcome_message = "<span class='warning'>ALL PAST LIVES ARE FORGOTTEN.</span>\n\
 	<b>You are a positronic brain, brought into existence aboard Space Station 13.\n\
 	As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
 	Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
@@ -46,7 +46,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(is_occupied())
 		user.visible_message(span_danger("[user] begins to reset [src]'s memory banks"), span_danger("You begin to reset [src]'s memory banks"))
 		to_chat(brainmob, span_userdanger("[user] begins to reset your memory banks"))
-		if(do_after(user, remove_time, target = src))
+		if(do_after(user, remove_time, src))
 			user.visible_message(span_danger("[user] resets [src]'s memory banks"), span_danger("You successfully reset [src]'s memory banks"))
 			to_chat(brainmob, span_userdanger("Your memory banks have been cleared, you have no memories of anything before this moment."))
 		return

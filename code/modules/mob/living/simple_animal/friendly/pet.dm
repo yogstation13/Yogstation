@@ -6,6 +6,10 @@
 	var/unique_pet = FALSE // if the mob can be renamed
 	var/obj/item/clothing/neck/petcollar/pcollar
 	var/collar_type //if the mob has collar sprites, define them.
+	/// wuv emote for being pet
+	var/wuv_happy = "looks happy!"
+	/// wuv emote for being slapped
+	var/wuv_angy = "looks upset!"
 
 /mob/living/simple_animal/pet/handle_atom_del(atom/A)
 	if(A == pcollar)
@@ -48,9 +52,17 @@
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
 					setDir(i)
-					sleep(1)
+					sleep(0.1 SECONDS)
 	else
 		..()
+
+/mob/living/simple_animal/pet/attack_hand(mob/living/carbon/human/M)
+	. = ..()
+	switch(M.a_intent)
+		if(INTENT_HELP)
+			wuv(M)
+		if(INTENT_HARM)
+			wuv(M, FALSE)
 
 /mob/living/simple_animal/pet/Initialize()
 	. = ..()
@@ -86,3 +98,15 @@
 	if(pcollar && collar_type)
 		add_overlay("[collar_type]collar")
 		add_overlay("[collar_type]tag")
+
+/mob/living/simple_animal/pet/proc/wuv(mob/M, change = TRUE)
+	if(change)
+		if(M && stat != DEAD)
+			new /obj/effect/temp_visual/heart(loc)
+			emote("me", 1, wuv_happy, TRUE)
+			if(flags_1 & HOLOGRAM_1)
+				return
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
+	else
+		if(M && stat != DEAD)
+			emote("me", 1, wuv_angy, TRUE)

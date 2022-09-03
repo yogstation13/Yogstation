@@ -99,6 +99,17 @@
 /datum/emote/living/carbon/meow/get_sound(mob/living/user)
 	return pick('sound/voice/feline/meow1.ogg', 'sound/voice/feline/meow2.ogg', 'sound/voice/feline/meow3.ogg', 'sound/voice/feline/meow4.ogg', 'sound/effects/meow1.ogg')
 
+/datum/emote/living/carbon/human/rattle
+	key = "rattle"
+	key_third_person = "rattles"
+	message = "rattles their bones!"
+	message_param = "rattles %t bones!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/voice/rattled.ogg'
+
+/datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
+	return isskeleton(user)
+	
 /datum/emote/living/carbon/human/pale
 	key = "pale"
 	message = "goes pale for a second."
@@ -207,4 +218,75 @@
 		var/turf/T = loc
 		T.Entered(src)
 
-//Ayy lmao
+/datum/emote/living/carbon/human/robot_tongue/can_run_emote(mob/user, status_check = TRUE , intentional)
+	if(!..())
+		return FALSE
+	var/obj/item/organ/tongue/T = user.getorganslot("tongue")
+	if(T.status == ORGAN_ROBOTIC)
+		return TRUE
+
+/datum/emote/living/carbon/human/robot_tongue/beep
+	key = "beep"
+	key_third_person = "beeps"
+	message = "beeps."
+	message_param = "beeps at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/beep/get_sound(mob/living/user)
+	return 'sound/machines/twobeep.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/buzz
+	key = "buzz"
+	key_third_person = "buzzes"
+	message = "buzzes."
+	message_param = "buzzes at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/buzz/get_sound(mob/living/user)
+	return 'sound/machines/buzz-sigh.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/buzz2
+	key = "buzz2"
+	message = "buzzes twice."
+
+/datum/emote/living/carbon/human/robot_tongue/buzz2/get_sound(mob/living/user)
+	return 'sound/machines/buzz-two.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/chime
+	key = "chime"
+	key_third_person = "chimes"
+	message = "chimes."
+
+/datum/emote/living/carbon/human/robot_tongue/chime/get_sound(mob/living/user)
+	return 'sound/machines/chime.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/ping
+	key = "ping"
+	key_third_person = "pings"
+	message = "pings."
+	message_param = "pings at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/ping/get_sound(mob/living/user)
+	return 'sound/machines/ping.ogg'
+
+ // Clown Robotic Tongue ONLY. Henk.
+
+/datum/emote/living/carbon/human/robot_tongue/clown/can_run_emote(mob/user, status_check = TRUE , intentional)
+	if(!..())
+		return FALSE
+	if(user.mind.assigned_role == "Clown")
+		return TRUE
+
+/datum/emote/living/carbon/human/robot_tongue/clown/honk
+	key = "honk"
+	key_third_person = "honks"
+	message = "honks."
+
+/datum/emote/living/carbon/human/robot_tongue/clown/honk/get_sound(mob/living/user)
+	return 'sound/items/bikehorn.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/clown/sad
+	key = "sad"
+	key_third_person = "plays a sad trombone..."
+	message = "plays a sad trombone..."
+
+/datum/emote/living/carbon/human/robot_tongue/clown/sad/run_emote(mob/living/user)
+	return 'sound/misc/sadtrombone.ogg'

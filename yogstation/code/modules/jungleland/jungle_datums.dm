@@ -107,102 +107,6 @@
 	animate(cached_screen_floor, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
 	animate(cached_screen_game, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
 
-/datum/status_effect/toxic_buildup
-	id = "toxic_buildup"
-	duration = -1 // we handle this ourselves
-	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /obj/screen/alert/status_effect/toxic_buildup
-	var/stack = 0
-	var/max_stack = 4
-	var/stack_decay_time = 1 MINUTES
-	var/current_stack_decay = 0
-
-/datum/status_effect/toxic_buildup/on_creation(mob/living/new_owner, ...)
-	. = ..()
-	update_stack(1)
-
-/datum/status_effect/toxic_buildup/tick()
-	current_stack_decay += initial(tick_interval)
-	if(current_stack_decay >= stack_decay_time)
-		current_stack_decay = 0
-		on_stack_decay()
-		update_stack(-1)
-		if(stack <= 0)
-			qdel(src)
-			return
-
-	if(!ishuman(owner))
-		return 
-	var/mob/living/carbon/human/human_owner = owner	
-
-	if(prob(10))
-		to_chat(human_owner,span_alert("The toxins run a course through your veins, you feel sick."))	
-		human_owner.adjust_disgust(5)
-
-	switch(stack)
-		if(1)
-			human_owner.adjustToxLoss(0.1)
-		if(2)
-			human_owner.adjustToxLoss(0.25)
-			if(prob(1))
-				human_owner.vomit()
-				current_stack_decay += 5 SECONDS
-		if(3)
-			human_owner.adjustToxLoss(0.5)
-			if(prob(2))
-				human_owner.vomit()
-				current_stack_decay += 5 SECONDS
-		if(4)
-			human_owner.adjustToxLoss(1)
-			if(prob(5))
-				human_owner.vomit()
-				current_stack_decay += 5 SECONDS
-
-
-/datum/status_effect/toxic_buildup/proc/on_stack_decay()
-	if(!ishuman(owner))
-		return 
-	var/mob/living/carbon/human/human_owner = owner	
-
-	switch(stack)
-		if(1)
-			human_owner.adjustStaminaLoss(75)
-			human_owner.adjustOrganLoss(ORGAN_SLOT_LIVER,10)
-		if(2)
-			human_owner.Jitter(1)
-			human_owner.adjustStaminaLoss(150)
-			human_owner.adjustOrganLoss(ORGAN_SLOT_LIVER,10)
-		if(3)
-			human_owner.Jitter(1)
-			human_owner.Dizzy(1)
-			human_owner.adjustStaminaLoss(300)
-			human_owner.Paralyze(3 SECONDS)
-			human_owner.adjustOrganLoss(ORGAN_SLOT_LIVER,10)
-		if(4)
-			human_owner.adjust_blurriness(0.5)
-			human_owner.Dizzy(1)
-			human_owner.Jitter(1)
-			human_owner.adjustStaminaLoss(450)
-			human_owner.Sleeping(5 SECONDS)
-			human_owner.adjustOrganLoss(ORGAN_SLOT_LIVER,20)
-
-/datum/status_effect/toxic_buildup/proc/cure()
-	to_chat(owner,span_alert("The toxins are washed away from your body, you feel better."))
-	qdel(src)
-
-/datum/status_effect/toxic_buildup/proc/update_stack(amt)
-	stack = min(stack + amt,max_stack)
-	linked_alert = owner.throw_alert(id,alert_type,stack)
-
-/datum/status_effect/toxic_buildup/refresh()
-	update_stack(1)
-	current_stack_decay = 0
-
-/obj/screen/alert/status_effect/toxic_buildup
-	name = "Toxic buildup"
-	desc = "Toxins have built up in your system, they cause sustained toxin damage, and once they leave your system cause additional harm as your bodies adjustments to the toxicity backfire."
-	icon = 'yogstation/icons/mob/screen_alert.dmi'
-	icon_state = "toxic_buildup"
 
 /datum/ore_patch
 	var/ore_type 
@@ -262,3 +166,216 @@
 	ore_quantity_upper = 2
 	ore_quantity_lower = 1
 	ore_color = "#506bc7"
+
+/datum/reagent/quinine 
+	name = "Quinine"
+	description = "Dark brown liquid used to treat exotic diseases."
+	color =  "#5e3807" 
+	taste_description = "bitter and sour"
+
+//i tried to base it off of actual malaria
+/datum/disease/malaria 
+	name = "Malaria Exotica"
+	agent = "Plasmodium Exotica"
+	max_stages = 8 // yes 8 fucking stages 
+	severity = DISEASE_SEVERITY_HARMFUL
+	disease_flags = CURABLE
+	visibility_flags = HIDDEN_SCANNER 
+	spread_flags = DISEASE_SPREAD_BLOOD
+	needs_all_cures = FALSE	
+	cures = list(/datum/reagent/quinine, /datum/reagent/medicine/synaptizine)
+	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	
+	var/next_stage_time = 0
+	var/time_per_stage = 2 MINUTES //around 16 minutes till this reaches lethality
+
+/datum/disease/malaria/infect(mob/living/infectee, make_copy)
+	next_stage_time = world.time + time_per_stage 
+	return ..()
+
+/datum/disease/malaria/stage_act()
+	//we handle curing and stuff ourselves
+	var/cure = has_cure()
+
+	if(cure)
+		if(prob(20))
+			update_stage(stage - 1)
+		if(stage == 0)
+			cure()		
+		return
+
+	if( world.time >= next_stage_time)
+		update_stage(clamp(stage + 1,0,max_stages))
+		next_stage_time = world.time + time_per_stage + rand(-(time_per_stage * 0.25), time_per_stage * 0.25)
+
+	switch(stage)
+		if(1) //asymptomatic for some time
+			return
+		if(2)
+			visibility_flags = NONE 
+			affected_mob.adjust_bodytemperature(30, 0, BODYTEMP_HEAT_DAMAGE_LIMIT - 1) //slowly rising fever that is no lethal *yet*
+			if(prob(10))
+				to_chat(affected_mob, span_warning("[pick("You feel hot.", "You feel like you're burning.")]"))
+
+			if(prob(40))
+				to_chat(affected_mob, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
+			return
+		if(3)
+			affected_mob.blood_volume -= 0.5
+			affected_mob.adjust_bodytemperature(50, 0, BODYTEMP_HEAT_DAMAGE_LIMIT - 1) //fast rising not deadly fever
+			if(prob(20))
+				to_chat(affected_mob, span_warning("[pick("You feel hot.", "You feel like you're burning.")]"))
+
+			if(prob(40))
+				if(prob(50))
+					to_chat(affected_mob, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
+				else 
+					to_chat(affected_mob, span_userdanger("A wave of dizziness washes over you!"))
+					affected_mob.Dizzy(5)
+
+			if(prob(10))
+				affected_mob.Jitter(5)
+				if(prob(30))
+					to_chat(affected_mob, span_warning("[pick("Your head hurts.", "Your head pounds.")]"))
+	
+			if(prob(30))
+				affected_mob.emote("cough")
+
+			return
+		if(4) //another period of asymptomaticity before shit really hits the fan
+			affected_mob.blood_volume -= 0.25
+			return
+
+		if(5) // a few more minutes before disease really becomes deadly
+			severity = DISEASE_SEVERITY_DANGEROUS
+			affected_mob.blood_volume -= 0.75
+			affected_mob.adjust_bodytemperature(30) //slowly rising fever that can become deadly
+			if(prob(30))
+				to_chat(affected_mob, span_warning("[pick("You feel hot.", "You feel like you're burning.")]"))
+
+			if(prob(60))
+				if(prob(40))
+					to_chat(affected_mob, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
+				else 
+					to_chat(affected_mob, span_userdanger("A wave of dizziness washes over you!"))
+					affected_mob.Dizzy(5)
+
+			if(prob(15))
+				affected_mob.Jitter(5)
+				if(prob(30))
+					if(prob(50))
+						to_chat(affected_mob, span_warning("[pick("Your head hurts.", "Your head pounds.")]"))
+					else 
+						to_chat(affected_mob, span_warning("[pick("Your head hurts a lot.", "Your head pounds incessantly.")]"))
+						affected_mob.adjustStaminaLoss(25)
+
+			if(prob(40))
+				affected_mob.emote("cough")
+
+			return
+
+		if(6) //another period of lower deadliness
+			affected_mob.blood_volume -= 0.25
+			if(prob(40))
+				affected_mob.emote("cough")
+			return
+		if(7)
+			affected_mob.blood_volume -= 1
+			affected_mob.adjust_bodytemperature(35)
+			if(prob(30))
+				to_chat(affected_mob, span_warning("[pick("You feel hot.", "You feel like you're burning.")]"))
+
+
+			if(prob(40))
+				affected_mob.emote("cough")
+
+			if(prob(15))
+				affected_mob.Jitter(5)
+				if(prob(60))
+					if(prob(30))
+						to_chat(affected_mob, span_warning("[pick("Your head hurts.", "Your head pounds.")]"))
+					else 
+						to_chat(affected_mob, span_warning("[pick("Your head hurts a lot.", "Your head pounds incessantly.")]"))
+						affected_mob.adjustStaminaLoss(25)
+			
+			if(prob(10))
+				affected_mob.adjustStaminaLoss(20)
+				to_chat(affected_mob, span_warning("[pick("You feel weak.", "Your body feel numb.")]"))
+			return
+		if(8)
+			affected_mob.blood_volume -= 2
+			affected_mob.adjust_bodytemperature(75) //a deadly fever
+			if(prob(40))
+				to_chat(affected_mob, span_warning("[pick("You feel hot.", "You feel like you're burning.")]"))
+
+			if(prob(70))
+				if(prob(30))
+					to_chat(affected_mob, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
+				else 
+					to_chat(affected_mob, span_userdanger("A wave of dizziness washes over you!"))
+					affected_mob.Dizzy(5)
+
+			if(prob(50))
+				affected_mob.emote("cough")
+
+			if(prob(20))
+				affected_mob.Jitter(5)
+				if(prob(50))
+					to_chat(affected_mob, span_warning("[pick("Your head hurts a lot.", "Your head pounds incessantly.")]"))
+					affected_mob.adjustStaminaLoss(25)
+				else 
+					to_chat(affected_mob, span_userdanger("[pick("Your head hurts!", "You feel a burning knife inside your brain!", "A wave of pain fills your head!")]"))						
+					affected_mob.Stun(35)
+
+			if(prob(25))
+				affected_mob.adjustStaminaLoss(50)
+				to_chat(affected_mob, span_warning("[pick("You feel very weak.", "Your body feel completely numb.")]"))
+			return
+		else
+			return
+
+	//instead of it being chance based, malaria is based on time
+#define NOON_DIVISOR 1.6 
+#define LIGHTING_GRANULARITY 3.4
+#define UPDATES_IN_QUARTER_DAY 5
+
+/datum/daynight_cycle 
+	var/daynight_cycle = TRUE
+	var/update_interval = 60 SECONDS
+	var/updates = 0 
+	var/cached_luminosity = 0
+	var/list/affected_areas = list()
+
+/datum/daynight_cycle/proc/finish_generation()
+	INVOKE_ASYNC(src,.proc/daynight_cycle)
+
+/datum/daynight_cycle/proc/daynight_cycle()
+	set waitfor = FALSE
+	updates += 1
+	//whew that's quite a bit of math! it's quite simple once you get it tho, think of (current_inteval/update_interval) as x, sin(x * arcsin(1)) turns sin()'s period from 2*PI to 4,
+	//working with integers is nicer, all the other stuff is mostly fluff to make it so it takes 10 update_interval to go from day to night and back.
+	var/new_luminosity = CEILING( (LIGHTING_GRANULARITY  *sin( ( updates * arcsin(1) ) / UPDATES_IN_QUARTER_DAY) ) ,1 )/NOON_DIVISOR
+	
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,updates,new_luminosity)
+
+	var/counter = 0	
+	for(var/area/A as anything in affected_areas)
+		for(var/turf/open/T in A)
+			for(var/mob/living/L in T)
+				if(!L.client)
+					continue
+				if(new_luminosity != cached_luminosity)
+					if(new_luminosity > 0 && cached_luminosity < 0)
+						to_chat(L,span_alertwarning("The dawn lights the whole jungle in new glorious light... a new day begins!"))
+					if(new_luminosity < 0 && cached_luminosity > 0)
+						to_chat(L,span_alertwarning("You can see the stars high in the sky... the night begins!"))
+
+			T.set_light(1,new_luminosity) // we do not use dynamic light, because they are so insanely slow, it's just.. not worth it.
+			if(counter == 255)
+				CHECK_TICK
+				counter = 0
+			counter++
+	cached_luminosity = new_luminosity
+
+	addtimer(CALLBACK(src,.proc/daynight_cycle), update_interval, TIMER_UNIQUE | TIMER_OVERRIDE)
+
