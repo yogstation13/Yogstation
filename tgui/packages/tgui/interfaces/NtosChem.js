@@ -12,22 +12,21 @@ export const NtosChem = (props, context) => {
   return (
     <NtosWindow
       width={300}
-      height={350}z
+      height={350}
       resizable>
       <NtosWindow.Content scrollable>
         <Section>
           {len ? (
-            <LabeledList label={out + " (" + {len} + ") Chemicals"}>
+            <LabeledList label={out + " (" + { len } + ") Chemicals"}>
               {chems.map(chem => (
-                <LabeledList.Item>
+                <LabeledList.Item key={chem}>
                   {chem}
                 </LabeledList.Item>
-                ))}
-                </LabeledList>
-                ) : (
-                  <LabeledList >No Chemicals Found</LabeledList>
-                )
-            }
+              ))}
+              </LabeledList>
+              ) : (
+                <LabeledList >No Chemicals Found</LabeledList>
+              )}
         </Section>
       </NtosWindow.Content>
     </NtosWindow>
