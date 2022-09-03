@@ -108,3 +108,9 @@
 	alert_type = /obj/screen/alert/status_effect/tar_curse
 
 
+/datum/status_effect/tar_curse/on_apply()
+	. = ..()
+	RegisterSignal(owner,COMSIG_JUNGLELAND_TAR_CURSE_PROC,.proc/curse_used)
+
+/datum/status_effect/tar_curse/proc/curse_used()
+	qdel(src)

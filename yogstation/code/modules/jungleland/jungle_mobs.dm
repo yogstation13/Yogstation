@@ -455,8 +455,8 @@
 	weather_immunities = WEATHER_ACID
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	robust_searching = TRUE
-	see_in_dark = 3
-	vision_range = 4
+	see_in_dark = 5
+	vision_range = 6
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	pressure_resistance = 100
@@ -470,6 +470,17 @@
 	maxHealth = 200
 	melee_damage_lower = 15
 	melee_damage_upper = 30
+
+/mob/living/simple_animal/hostile/tar/amalgamation/AttackingTarget()
+	if(isliving(target))
+		var/mob/living/L = target 
+		if(L.has_status_effect(/datum/status_effect/tar_curse))
+			melee_damage_lower = initial(melee_damage_lower) * 1.5 
+			melee_damage_upper = initial(melee_damage_upper) * 1.5
+		else 
+			melee_damage_lower = initial(melee_damage_lower)
+			melee_damage_upper = initial(melee_damage_upper)
+	return ..()
 
 /mob/living/simple_animal/hostile/tar/dryad
 	name = "Tar Dryad"
@@ -503,6 +514,18 @@
 	icon_state = "tar_shade"
 	health = 150
 	maxHealth = 150
-
+	minimum_distance = 5
+	retreat_distance = 2
 	ranged = TRUE 
-	ranged_cooldown_time = 15 SECONDS
+	ranged_cooldown_time = 5 SECONDS
+
+/mob/living/simple_animal/hostile/tar/shade/Shoot(atom/targeted_atom)
+	if(!isliving(targeted_atom))
+		return
+	animate(src,0.5 SECONDS,color = "#280025")
+	sleep(0.5 SECONDS)
+	animate(src,0.5 SECONDS,color = initial(color))
+	var/turf/loc = get_turf(targeted_atom)
+	var/attack = pick(subtypesof(/obj/effect/timed_attack/tar_priest))
+	new attack(loc)
+	

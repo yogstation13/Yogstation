@@ -5,3 +5,5 @@
 #define COMSIG_STORAGE_REMOVED "storage_removed"				//from base of /datum/component/storage/remove_from_storage(): (atom/movable/AM, atom/new_location)
 
 #define COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE "glob_jungleland_daynight_next_phase"
+
+#define COMSIG_JUNGLELAND_TAR_CURSE_PROC "jungleland_tar_curse_proc"

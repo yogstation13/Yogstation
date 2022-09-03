@@ -132,5 +132,25 @@
 /obj/effect/timed_attack/tar_priest/shroud
 	replace_icon_state = "tar_shade_shroud"
 
+/obj/effect/timed_attack/tar_priest/shroud/finish_attack()
+	var/turf/T = get_turf(src)
+	for(var/mob/living/L in T.contents)
+		if(L.has_status_effect(/datum/status/tar_curse))
+			L.set_blindness(20)
+			SEND_SIGNAL(L,COMSIG_JUNGLELAND_TAR_CURSE_PROC)	
+		else 
+			L.set_blurriness(20)
+	return ..()
 /obj/effect/timed_attack/tar_priest/tendril 
 	replace_icon_state = "tar_shade_tendril"
+
+/obj/effect/timed_attack/tar_priest/tendril/finish_attack()
+	var/turf/T = get_turf(src)
+	for(var/mob/living/L in T.contents)
+		if(L.has_status_effect(/datum/status/tar_curse))
+			L.Stun(5 SECONDS)
+			SEND_SIGNAL(L,COMSIG_JUNGLELAND_TAR_CURSE_PROC)	
+		else 
+			L.adjustStaminaLoss(60)
+	return ..()
+	 
