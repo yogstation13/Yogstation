@@ -155,7 +155,7 @@
 	for(var/obj/item/I in user.contents)
 		if(istype(I, /obj/item/organ/cyberimp/arm/toolset))
 			var/obj/item/organ/cyberimp/arm/toolset/T = I
-			if(I.owner == user)
+			if(T.owner == user)
 				for(var/obj/item/implant_item in I.contents)
 				possible_tools += implant_item.type
 				if(implant_item.tool_behaviour)
