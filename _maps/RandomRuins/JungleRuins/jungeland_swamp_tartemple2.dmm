@@ -2,6 +2,10 @@
 "a" = (
 /turf/open/water/toxic_pit,
 /area/ruin/unpowered/tar_temple)
+"b" = (
+/mob/living/simple_animal/hostile/tar/amalgamation,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/ruin/unpowered/tar_temple)
 "c" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
@@ -53,6 +57,11 @@
 "r" = (
 /obj/structure/stone_tile/slab,
 /mob/living/simple_animal/hostile/tar/dryad,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"t" = (
+/obj/structure/stone_tile/slab,
+/mob/living/simple_animal/hostile/tar/shade,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "v" = (
@@ -345,7 +354,7 @@ a
 V
 p
 p
-p
+b
 p
 p
 V
@@ -624,7 +633,7 @@ x
 N
 N
 K
-x
+t
 N
 a
 g
@@ -1062,7 +1071,7 @@ p
 p
 V
 p
-p
+b
 p
 p
 p
