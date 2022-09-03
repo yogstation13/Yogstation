@@ -239,7 +239,6 @@ const CargoRequests = (props, context) => {
       {requests.length === 0 && (
         <Box color="good">
           No Requests
-          {can_approve_requests} 55
         </Box>
       )}
       {requests.length > 0 && (
