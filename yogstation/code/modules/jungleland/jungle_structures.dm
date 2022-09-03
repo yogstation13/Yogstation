@@ -157,7 +157,7 @@
 /obj/structure/fluff/tarstatue
 	name = "Tar Statue"
 	desc = "A lifelike recreation of some...one? It seems damaged from years of neglect."
-	icon = 'icons/obj/statue.dmi'
+	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "damaged_tarstatue"
 	deconstructible = FALSE
 
