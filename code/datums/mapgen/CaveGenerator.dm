@@ -4,7 +4,8 @@
 	var/open_turf_types = list(/turf/open/floor/plating/asteroid/airless = 1)
 	///Weighted list of the types that spawns if the turf is closed
 	var/closed_turf_types = list(/turf/closed/mineral/random = 1)
-
+	///If this is set to TRUE then it will only change turfs that are /turf/open/genturf, for more flexability in design
+	var/gen_gurf_only = TRUE
 
 	///Weighted list of mobs that can spawn in the area.
 	var/list/mob_spawn_list
@@ -53,7 +54,7 @@
 	for(var/i in turfs) //Go through all the turfs and generate them
 		var/turf/gen_turf = i
 
-		if(!istype(gen_turf,/turf/open/genturf))
+		if(gen_gurf_only && !istype(gen_turf,/turf/open/genturf))
 			continue
 
 		if(istype(gen_turf,/turf/closed/mineral))
