@@ -95,6 +95,19 @@
 /mob/living/simple_animal/hostile/tar/amalgamation,
 /turf/open/indestructible/boss/air,
 /area/ruin/unpowered/tar_temple)
+"G" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/fluff/tarstatue,
+/turf/open/indestructible/boss/air,
+/area/ruin/unpowered/tar_temple)
 "I" = (
 /obj/structure/stone_tile/slab/cracked{
 	dir = 4;
@@ -364,7 +377,7 @@ f
 b
 x
 b
-b
+u
 Q
 b
 f
@@ -387,7 +400,7 @@ f
 b
 x
 b
-n
+G
 b
 x
 D
@@ -410,7 +423,7 @@ f
 b
 b
 b
-b
+u
 o
 b
 f
