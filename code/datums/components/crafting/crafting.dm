@@ -153,6 +153,13 @@
 	var/list/present_qualities = list()
 	present_qualities |= contents["tool_behaviour"]
 	for(var/obj/item/I in user.contents)
+		if(istype(I, /obj/item/organ/cyberimp/arm/toolset))
+			var/obj/item/organ/cyberimp/arm/toolset/T = I
+			if(I.owner == user)
+				for(var/obj/item/implant_item in I.contents)
+				possible_tools += implant_item.type
+				if(implant_item.tool_behaviour)
+					present_qualities.Add(implant_item.tool_behaviour)
 		if(istype(I, /obj/item/storage))
 			for(var/obj/item/SI in I.contents)
 				possible_tools += SI.type
