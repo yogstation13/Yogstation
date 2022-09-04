@@ -24,10 +24,10 @@
 	var/basalt_death_limit = 3
 	var/basalt_turf = /turf/closed/mineral/random/volcanic/hard
 
-	var/initial_granite_chance = 25
-	var/granite_smoothing_interations = 50
-	var/granite_birth_limit = 6
-	var/granite_death_limit = 5
+	var/initial_granite_chance = 35
+	var/granite_smoothing_interations = 100
+	var/granite_birth_limit = 4
+	var/granite_death_limit = 3
 	var/granite_turf = /turf/closed/mineral/random/volcanic/hard/harder
 
 	var/big_node_min = 25
