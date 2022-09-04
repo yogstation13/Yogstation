@@ -63,7 +63,7 @@
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/stack/cable_coil = 15,
 				/obj/item/stack/sheet/cloth = 2)
-	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_WIRECUTTER)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/storage/belt/utility/makeshift
 	time = 20 SECONDS
 	category = CAT_EQUIPMENT
