@@ -173,6 +173,7 @@ export const Orbit = (props, context) => {
                 source={antags}
                 searchText={searchText}
                 color="bad"
+                level={2}
               />
             ))}
           </Section>
