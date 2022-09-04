@@ -37,9 +37,11 @@
 						/obj/item/prisoncube,
 						/obj/item/staff/storm,
 						/obj/item/clothing/under/drip, //Drip is very valuable to many investors in high fashion
-						/obj/item/clothing/shoes/drip)
+						/obj/item/clothing/shoes/drip,
+						/obj/item/gun/energy/plasmacutter/adv/robocutter,
+						/obj/item/twohanded/bonespear/stalwartpike)
 
-//Megafauna loot, except for ash drakes and legion
+//Megafauna loot, except for stalwart, ash drakes, and legion
 
 /datum/export/lavaland/megafauna
 	cost = 40000
@@ -113,3 +115,8 @@
 	cost = 20000
 	unit_name = "Dark Salt Lick"
 	export_types = list(/obj/item/gem/dark)
+
+/datum/export/lavaland/gems/stalwart
+	cost = 9800
+	unit_name = "Bluespace Data Crystal"
+	export_types = list(/obj/item/ai_cpu/stalwart)
