@@ -35,7 +35,7 @@ const compareNumberedText = (a, b) => {
 
 const BasicSection = (props, context) => {
   const { act } = useBackend(context);
-  const { searchText, source, title } = props;
+  const { searchText, source, title, color } = props;
   const things = source.filter(searchFor(searchText));
   things.sort(compareNumberedText);
   return source.length > 0 && (
@@ -44,6 +44,7 @@ const BasicSection = (props, context) => {
         <Button
           key={thing.name}
           content={thing.name}
+          color={color}
           onClick={() => act("orbit", {
             ref: thing.ref,
           })} />
@@ -167,45 +168,29 @@ export const Orbit = (props, context) => {
         {antagonists.length > 0 && (
           <Section title="Ghost-Visible Antagonists">
             {sortedAntagonists.map(([name, antags]) => (
-              <Section key={name} title={name} level={2}>
-                {antags
-                  .filter(searchFor(searchText))
-                  .sort(compareNumberedText)
-                  .map(antag => (
-                    <OrbitedButton
-                      key={antag.name}
-                      color="bad"
-                      thing={antag}
-                    />
-                  ))}
-              </Section>
+              <BasicSection
+                title={name}
+                source={antags}
+                searchText={searchText}
+                color="bad"
+              />
             ))}
           </Section>
         )}
 
-        <Section title={`Alive - (${alive.length})`}>
-          {alive
-            .filter(searchFor(searchText))
-            .sort(compareNumberedText)
-            .map(thing => (
-              <OrbitedButton
-                key={thing.name}
-                color="good"
-                thing={thing} />
-            ))}
-        </Section>
+        <BasicSection
+          title="Alive"
+          source={alive}
+          searchText={searchText}
+          color="good"
+        />
 
-        <Section title={`Ghosts - (${ghosts.length})`}>
-          {ghosts
-            .filter(searchFor(searchText))
-            .sort(compareNumberedText)
-            .map(thing => (
-              <OrbitedButton
-                key={thing.name}
-                color="grey"
-                thing={thing} />
-            ))}
-        </Section>
+        <BasicSection
+          title="Ghosts"
+          source={ghosts}
+          searchText={searchText}
+          color="grey"
+        />
 
         <BasicSection
           title="Dead"
