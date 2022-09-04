@@ -1,7 +1,7 @@
 
 #define GLOWSHROOM_SPREAD_BASE_DIMINISH_FACTOR 10
 #define GLOWSHROOM_SPREAD_DIMINISH_FACTOR_PER_GLOWSHROOM 0.2
-#define GLOWSHROOM_BASE_INTEGRITY 60
+#define GLOWSHROOM_BASE_INTEGRITY 150
 
 GLOBAL_VAR_INIT(glowshrooms, 0)
 
@@ -78,7 +78,7 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	else
 		myseed = new myseed(src)
 
-	modify_max_integrity(GLOWSHROOM_BASE_INTEGRITY + ((100 - GLOWSHROOM_BASE_INTEGRITY) / 100 * myseed.endurance)) //goes up to 100 with peak endurance
+	modify_max_integrity(GLOWSHROOM_BASE_INTEGRITY + ((100 - GLOWSHROOM_BASE_INTEGRITY) / 100 * myseed.endurance))
 
 	var/datum/plant_gene/trait/glow/G = myseed.get_gene(/datum/plant_gene/trait/glow)
 	if(ispath(G)) // Seeds were ported to initialize so their genes are still typepaths here, luckily their initializer is smart enough to handle us doing this
