@@ -3461,7 +3461,6 @@
 #include "yogstation\code\game\objects\items\plushes.dm"
 #include "yogstation\code\game\objects\items\premadepapers.dm"
 #include "yogstation\code\game\objects\items\sharpener.dm"
-#include "yogstation\code\game\objects\items\shields.dm"
 #include "yogstation\code\game\objects\items\tool_switcher.dm"
 #include "yogstation\code\game\objects\items\tools.dm"
 #include "yogstation\code\game\objects\items\toys.dm"
