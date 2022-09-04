@@ -1,0 +1,4 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - bugfix: "META Fixes Primary AI Core APC Area Flag, AI core machines should stay powered now"
