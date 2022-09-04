@@ -402,6 +402,14 @@
 /obj/item/organ/cyberimp/arm/syndie_hammer/l
 	zone = BODY_ZONE_L_ARM
 	syndicate_implant = TRUE //Just to be safe, everything tells me it's not needed but I don't trust implant code
+	
+/obj/item/organ/cyberimp/arm/nt_mantis
+	name = "H.E.P.H.A.E.S.T.U.S. mantis blade implants"
+	desc = "Retractable arm-blade implants to get you out of a pinch. Wielding two will let you double-attack."
+	contents = newlist(/obj/item/mantis/blade/NT)
+
+/obj/item/organ/cyberimp/arm/nt_mantis/l
+	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/power_cord
 	name = "power cord implant"
