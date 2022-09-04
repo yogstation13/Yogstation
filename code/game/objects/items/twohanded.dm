@@ -972,9 +972,11 @@
 	item_state = "baseball_bat"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 12
-	wound_bonus = -5
-	throwforce = 8
+	force = 16
+	wound_bonus = 5
+	armour_penetration = -30
+	bare_wound_bonus = 40
+	throwforce = 0
 	attack_verb = list("beat", "smacked")
 	sharpness = SHARP_NONE
 	w_class = WEIGHT_CLASS_HUGE
@@ -1015,7 +1017,7 @@
 		homerun_ready = 0
 		return
 	else if(!flimsy && !target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
+		var/whack_speed = (prob(50) ? 1 : 6)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user) // sorry friends, 7 speed batting caused wounds to absolutely delete whoever you knocked your target into (and said target)
 
 /obj/item/twohanded/required/baseball_bat/metal_bat
@@ -1024,8 +1026,18 @@
 	icon_state = "baseball_bat_metal"
 	item_state = "baseball_bat_metal"
 	hitsound = 'yogstation/sound/weapons/bat_hit.ogg'
-	force = 15
-	throwforce = 12
+	force = 18
+	throwforce = 0
 	flimsy = FALSE
-	wound_bonus = 5
+	wound_bonus = 15
+	armour_penetration = -25
+	bare_wound_bonus = 50
 	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/twohanded/required/baseball_bat/metal_bat/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(user.zone_selected == BODY_ZONE_HEAD && get_location_accessible(target, BODY_ZONE_HEAD))
+		if(prob(30))
+			target.Paralyze(40)
+		else
+			return TRUE
