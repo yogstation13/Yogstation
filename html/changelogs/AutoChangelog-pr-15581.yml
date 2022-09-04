@@ -1,0 +1,4 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - bugfix: "syringes fired from a syringe gun now respect thick clothing"
