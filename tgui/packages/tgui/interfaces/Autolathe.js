@@ -51,7 +51,7 @@ export const Autolathe = (props, context) => {
     searchText,
     setSearchText,
   ] = useLocalState(context, 'searchText', '');
-  const cornflake = searchDesigns(data.designs, searchText)
+  const searchdesign = searchDesigns(data.designs, searchText)
   return (
     <Window width={1116} height={703} resizable>
       <Window.Content scrollable>
@@ -222,7 +222,7 @@ export const Autolathe = (props, context) => {
                 <Section fluid title="Search Results" width={50}>
                   <div>
                     <Flex.Item>
-                      {cornflake.map(design => (
+                      {searchdesign.map(design => (
                         <div key={data.designs}>
                         <Grid>
                           <Grid.Column size={2.5}>
