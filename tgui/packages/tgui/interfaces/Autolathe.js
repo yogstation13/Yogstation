@@ -51,7 +51,7 @@ export const Autolathe = (props, context) => {
     searchText,
     setSearchText,
   ] = useLocalState(context, 'searchText', '');
-  const searchdesign = searchDesigns(data.designs, searchText)
+  const searchdesign = searchDesigns(data.designs, searchText);
   return (
     <Window width={1116} height={703} resizable>
       <Window.Content scrollable>
@@ -201,7 +201,7 @@ export const Autolathe = (props, context) => {
                     fluid
                     mr={2}
                     selected={
-                      (searchterms.length > 1 ? (
+                      (searchText.length > 1 ? (
                         (categoryName === 'Search' ? 1 : 0)
                       ):(
                         setcategory === categoryName
@@ -224,54 +224,54 @@ export const Autolathe = (props, context) => {
                     <Flex.Item>
                       {searchdesign.map(design => (
                         <div key={data.designs}>
-                        <Grid>
-                          <Grid.Column size={2.5}>
-                            <Button
-                              inline
-                              key={design.name}
-                              content={design.name}
-                              disabled={
-                                (data.stored_materials.iron < design.materials.iron)
+                          <Grid>
+                            <Grid.Column size={2.5}>
+                              <Button
+                                inline
+                                key={design.name}
+                                content={design.name}
+                                disabled={
+                                  (data.stored_materials.iron < design.materials.iron)
                                 || (data.stored_materials.glass < design.materials.glass)
                                 || data.disabled
-                              }
-                              title={design.name}
-                              mr={1}
-                              icon="print"
-                              onClick={() => act('make', {
-                                item_id: design.id,
-                                multiplier: 1,
-                              })} />
-                            {MaxMultiplier(data.stored_materials, design)
-                              .map(max => (
-                                <Button
-                                  inline
-                                  key={max}
-                                  disabled={data.disabled}
-                                  content={max + "x"}
-                                  onClick={() => act('make', {
-                                    item_id: design.id,
-                                    multiplier: max,
-                                  })}
-                                />
-                              ))}
-                          </Grid.Column>
-                          <Grid.Column size={1}>
-                            {!design.materials.glass ? (
-                              ""
-                            ):(
-                              <Box ml={0} mr={0} inline
-                                color={(
-                                  data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
-                                )}>
-                                {data.stored_materials.glass >= design.materials.glass ? (
-                                  <div>Glass: {design.materials.glass} cm³</div>
-                                ) : (
-                                  <b>Glass: {design.materials.glass} cm³</b>
-                                )}
-                              </Box>
+                                }
+                                title={design.name}
+                                mr={1}
+                                icon="print"
+                                onClick={() => act('make', {
+                                  item_id: design.id,
+                                  multiplier: 1,
+                                })} />
+                              {MaxMultiplier(data.stored_materials, design)
+                                .map(max => (
+                                  <Button
+                                    inline
+                                    key={max}
+                                    disabled={data.disabled}
+                                    content={max + "x"}
+                                    onClick={() => act('make', {
+                                      item_id: design.id,
+                                      multiplier: max,
+                                    })}
+                                  />
+                                ))}
+                            </Grid.Column>
+                            <Grid.Column size={1}>
+                              {!design.materials.glass ? (
+                                ""
+                              ):(
+                                <Box ml={0} mr={0} inline
+                                  color={(
+                                    data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
+                                  )}>
+                                  {data.stored_materials.glass >= design.materials.glass ? (
+                                    <div>Glass: {design.materials.glass} cm³</div>
+                                  ) : (
+                                    <b>Glass: {design.materials.glass} cm³</b>
+                                  )}
+                                </Box>
 
-                            )}
+                              )}
                             </Grid.Column>
                             <Grid.Column size={1}>
                               {design.materials.glass === 0 ? (
