@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Phytosians now take a net 0.5 damage per tick from romerol tumors instead of 0"
