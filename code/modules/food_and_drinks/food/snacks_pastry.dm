@@ -311,6 +311,7 @@
 	name = "meatpocket"
 	desc = "Can this really be called a donkpocket? You should...probably cook this."
 	icon_state = "donkpocketmeaty"
+	bitesize = 4
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/meaty
@@ -322,6 +323,7 @@
 	name = "warm meatpocket"
 	desc = "Can this really be called a donkpocket?"
 	icon_state = "donkpocketcookedmeaty"
+	bitesize = 5
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/drippings = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/drippings = 2)
 	tastes = list("meat" = 4)
