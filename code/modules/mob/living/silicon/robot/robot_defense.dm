@@ -161,9 +161,10 @@
 		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Spider Clan members.")
 		laws.associate(src)
 	if(user.mind?.has_antag_datum(/datum/antagonist/rev) || user.mind?.has_antag_datum(/datum/antagonist/rev/head))
+		if(src.mind)
+			src.mind.add_antag_datum(/datum/antagonist/rev)
 		laws = new /datum/ai_laws/revolutionary
 		laws.associate(src)
-		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Revolutionaries.")
 	else
 		laws = new /datum/ai_laws/syndicate_override
 		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Syndicate Agents.")
