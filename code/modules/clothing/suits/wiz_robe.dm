@@ -166,7 +166,7 @@
 	if(!isliving(usr))
 		return
 	if(!robe_charge)
-		to_chat(usr, span_warning("\The robe's internal magic supply is still recharging!"))
+		to_chat(usr, span_warning("The robe's internal magic supply is still recharging!"))
 		return
 
 	usr.say("Rise, my creation! Off your page into this realm!", forced = "stickman summoning")
@@ -177,7 +177,7 @@
 	src.robe_charge = FALSE
 	sleep(3 SECONDS)
 	src.robe_charge = TRUE
-	to_chat(usr, span_notice("\The robe hums, its internal magic supply restored."))
+	to_chat(usr, span_notice("The robe hums, its internal magic supply restored."))
 
 
 //Shielded Armour

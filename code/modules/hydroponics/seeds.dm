@@ -355,13 +355,13 @@
 			plantname = input
 
 		if(penchoice == "Plant Description")
-			var/input = stripped_input(user,"What do you want to change the description of \the plant to?", ,"", MAX_NAME_LEN)
+			var/input = stripped_input(user,"What do you want to change the description of the plant to?", ,"", MAX_NAME_LEN)
 			if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 				return
 			plantdesc = input
 
 		if(penchoice == "Seed Description")
-			var/input = stripped_input(user,"What do you want to change the description of \the seeds to?", ,"", MAX_NAME_LEN)
+			var/input = stripped_input(user,"What do you want to change the description of the seeds to?", ,"", MAX_NAME_LEN)
 			if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 				return
 			desc = input

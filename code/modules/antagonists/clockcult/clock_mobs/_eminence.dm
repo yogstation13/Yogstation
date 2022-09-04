@@ -4,8 +4,8 @@
 
 //The Eminence is a unique mob that functions like the leader of the cult. It's incorporeal but can interact with the world in several ways.
 /mob/camera/eminence
-	name = "\the Emininence"
-	real_name = "\the Eminence"
+	name = "Emininence"
+	real_name = "Eminence"
 	desc = "The leader-elect of the servants of Ratvar."
 	icon = 'icons/effects/clockwork_effects.dmi'
 	icon_state = "eminence"
