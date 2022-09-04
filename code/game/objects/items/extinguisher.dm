@@ -15,7 +15,7 @@
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	dog_fashion = /datum/dog_fashion/back
 	resistance_flags = FIRE_PROOF
-	var/max_water = 50
+	var/max_water = 100
 	var/last_use = 1
 	var/chem = /datum/reagent/water
 	var/safety = TRUE
@@ -54,6 +54,7 @@
 	desc = "Used to stop thermonuclear fires from spreading inside your engine."
 	icon_state = "foam_extinguisher0"
 	//item_state = "foam_extinguisher" needs sprite
+	max_water = 150
 	w_class = WEIGHT_CLASS_NORMAL
 	dog_fashion = null
 	chem = /datum/reagent/firefighting_foam
