@@ -781,10 +781,54 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/ammo/revolver
 	name = ".357 Speed Loader"
-	desc = "A speed loader that contains seven additional .357 Magnum rounds; usable with the Syndicate revolver. \
-			For when you really need a lot of things dead."
+	desc = "A speed loader that contains seven additional .357 rounds; usable with the Syndicate revolver."
 	item = /obj/item/ammo_box/a357
+	cost = 1
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/ironfeather
+	name = ".357 Ironfeather Speed Loader"
+	desc = "A speed loader that contains seven .357 Ironfeather rounds; usable with the Syndicate revolver. \
+			These shells contain six pellets which are less damaging than buckshot but mildly better over range."
+	item = /obj/item/ammo_box/a357/ironfeather
+	cost = 1
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/nutcracker
+	name = ".357 Nutcracker Speed Loader"
+	desc = "A speed loader that contains seven .357 Nutcracker rounds; usable with the Syndicate revolver. \
+			These rounds lose moderate stopping power in exchange for being able to rapidly destroy doors and windows."
+	item = /obj/item/ammo_box/a357/nutcracker
 	cost = 2
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/metalshock
+	name = ".357 Metalshock Speed Loader"
+	desc = "A speed loader that contains seven .357 Metalshock rounds; usable with the Syndicate revolver. \
+			These rounds convert some lethality into an electric payload, which can burn and confuse targets."
+	item = /obj/item/ammo_box/a357/metalshock
+	cost = 2
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/heartpiercer
+	name = ".357 Heartpiercer Speed Loader"
+	desc = "A speed loader that contains seven .357 Heartpiercer rounds; usable with the Syndicate revolver. \
+			These rounds are less damaging, but penetrate through armor and up to two bodies at once."
+	item = /obj/item/ammo_box/a357/heartpiercer
+	cost = 3
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	illegal_tech = FALSE
+
+/datum/uplink_item/ammo/revolver/wallstake
+	name = ".357 Wallstake Speed Loader"
+	desc = "A speed loader that contains seven .357 Wallstake rounds; usable with the Syndicate revolver. \
+			These blunt rounds are less damaging but can knock people against walls."
+	item = /obj/item/ammo_box/a357/wallstake
+	cost = 4
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
 
