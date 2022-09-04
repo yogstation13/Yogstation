@@ -7,7 +7,6 @@
 
 /obj/item/modular_computer/laptop/preset/civillian
 	desc = "A low-end laptop often used for personal recreation."
-	starting_files = list(new /datum/computer_file/program/chatclient)
 
 /obj/item/modular_computer/laptop/preset/brig_physician
 	desc = "A low-end laptop often used by brig physicians."

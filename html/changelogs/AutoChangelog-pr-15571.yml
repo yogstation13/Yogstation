@@ -1,0 +1,6 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "Added Chicken Meat"
+  - tweak: "Chickens now drop chicken meat"
+  - tweak: "Penguin related meats now taste of chicken, not beef"
