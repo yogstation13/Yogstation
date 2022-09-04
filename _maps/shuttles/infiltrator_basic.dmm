@@ -1281,6 +1281,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"rO" = (
+/obj/effect/turf_decal/bot_white,
+/obj/structure/closet/syndicate,
+/obj/item/twohanded/vxtvulhammer,
+/obj/item/pickaxe/drill/jackhammer,
+/obj/item/pickaxe/drill/jackhammer,
+/obj/item/pickaxe/drill/jackhammer,
+/obj/item/pickaxe/drill/jackhammer,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 "sI" = (
 /obj/machinery/recharge_station/fullupgrade,
 /turf/open/floor/circuit/red,
@@ -1358,12 +1368,6 @@
 	pixel_x = -41;
 	pixel_y = 8
 	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/airlock)
-"ME" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/closet/syndicate,
-/obj/item/twohanded/vxtvulhammer,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 "MJ" = (
@@ -1669,7 +1673,7 @@ aB
 tZ
 aX
 bc
-ME
+rO
 bm
 bx
 bG
