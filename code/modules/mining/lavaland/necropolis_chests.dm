@@ -1068,6 +1068,27 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
+/obj/item/dragons_blood/syndicate
+	name = "bottle of refined dragons blood"
+	desc = "You're totally going to drink this, aren't you?"
+
+/obj/item/dragons_blood/syndicate/attack_self(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+
+	if(!islizard(H))	//Something about it being refined to only work on lizards or whatever
+		to_chat(user, span_danger("You're about to take a sip, but the acrid fumes from whatever's in this bottle make you reconsider."))
+		return
+	else
+		to_chat(user, span_danger("You feel the warmth spread through you, scales hardening and claws growing sharper. You feel... strong!"))
+		H.set_species(/datum/species/lizard/draconid)
+
+		playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
+	qdel(src)
+
+
 /datum/disease/transformation/dragon
 	name = "dragon transformation"
 	cure_text = "nothing"

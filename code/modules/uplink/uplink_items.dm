@@ -1897,13 +1897,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
 	cost = 6
 	item = /obj/item/dnainjector/firebreath
-	restricted_species = list("lizard")
+	restricted_species = list("lizard", "draconid")
 
 /datum/uplink_item/race_restricted/flyingfang
 	name = "Flying Fang Tablet"
 	desc = "This tablet contains a set of old lizard fighting techniques, increasing your melee combat effectiveness but preventing you from using armor, most common stun weapons, or guns."
 	cost = 14
 	item = /obj/item/book/granter/martial/flyingfang
+	restricted_species = list("lizard", "draconid")
+
+/datum/uplink_item/race_restricted/dragonjuice
+	name = "Refined Dragons Blood"
+	desc = "This bottle of blood, painstakingly extracted from the corpse of a slain ash drake and refined down to just its pure essence, should awaken the more draconic side of any ordinary, weak little lizard!"
+	cost = 7
+	item = /obj/item/dragons_blood/syndicate
 	restricted_species = list("lizard")
 
 /datum/uplink_item/race_restricted/angelcoolboy
