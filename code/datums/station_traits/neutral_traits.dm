@@ -59,3 +59,14 @@
 /datum/station_trait/announcement_medbot/New()
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/medbot
+
+/datum/station_trait/tripleai
+	name = "Triple AI"
+	report_message = "Centcom has enabled a triple AI prototype. Note that all AI personalitys might not be active."
+	show_in_report = TRUE
+	trait_type = STATION_TRAIT_NEUTRAL
+	weight = 2
+
+/datum/station_trait/tripleai/New()
+	. = ..()
+	SSticker.triai = TRUE
