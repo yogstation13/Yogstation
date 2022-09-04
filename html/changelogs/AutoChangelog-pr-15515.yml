@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds Nagant revolver and ammo for it as potential things to get from the Russian Surplus Crate"
-  - tweak: "Russian Surplus now gives more stuff but is more expensive"
-  - tweak: "Fixes a typo in the descriptions for the WT magazine crates"

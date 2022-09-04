@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added F.R.A.M.E. program to Uplink & NTOS to replace PDA version"
-  - bugfix: "Fixed uplinks overlapping with NTOS UI"

@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added a Send To Everyone functionality in NTOS PDAs for those with lawyer access"
-  - bugfix: "Fixed duplicate NTOS PDA messages"

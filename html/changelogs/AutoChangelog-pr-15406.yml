@@ -1,6 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the Honor Implant/Implanter/ImplantCase an implant that gives you the trait NOGUNS"
-  - tweak: "Ninja now spawns in with the honor implant"
-  - tweak: "All Energy Katanas now check if you are a ninja then shocks you if you aren't"

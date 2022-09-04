@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Adjusted receiving pda message beep volume to 10"
-  - tweak: "Bolded receiving pda message"

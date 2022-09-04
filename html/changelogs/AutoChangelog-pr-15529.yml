@@ -1,7 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Eating as a regal rat no longer tells you that your eating yourself"
-  - bugfix: "Examinning yourself as a regal rat no longer calls you a foolish king"
-  - bugfix: "You now cant use ability in nonturfs as a regal rat"
-  - rscadd: "Regal rats reenabled"
