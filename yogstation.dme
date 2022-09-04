@@ -2673,6 +2673,7 @@
 #include "code\modules\modular_computers\file_system\programs\antagonist\bomberman.dm"
 #include "code\modules\modular_computers\file_system\programs\antagonist\contract_uplink.dm"
 #include "code\modules\modular_computers\file_system\programs\antagonist\dos.dm"
+#include "code\modules\modular_computers\file_system\programs\antagonist\frame.dm"
 #include "code\modules\modular_computers\file_system\programs\antagonist\revelation.dm"
 #include "code\modules\modular_computers\file_system\programs\command\budgetviewer.dm"
 #include "code\modules\modular_computers\file_system\programs\command\card.dm"
