@@ -8,6 +8,10 @@
 	max_capacity = 16
 	device_type = MC_SDD
 
+/obj/item/computer_hardware/hard_drive/portable/Initialize()
+	. = ..()
+	desc += " Insert this disk into a modular computer and open the File Manager program to interact with it."
+
 /obj/item/computer_hardware/hard_drive/portable/on_remove(obj/item/modular_computer/MC, mob/user)
 	return //this is a floppy disk, let's not shut the computer down when it gets pulled out.
 
