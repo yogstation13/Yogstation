@@ -33,26 +33,6 @@ const compareNumberedText = (a, b) => {
   return compareString(aName, bName);
 };
 
-const BasicSection = (props, context) => {
-  const { act } = useBackend(context);
-  const { searchText, source, title, color } = props;
-  const things = source.filter(searchFor(searchText));
-  things.sort(compareNumberedText);
-  return source.length > 0 && (
-    <Section title={`${title} - (${source.length})`}>
-      {things.map(thing => (
-        <Button
-          key={thing.name}
-          content={thing.name}
-          color={color}
-          onClick={() => act("orbit", {
-            ref: thing.ref,
-          })} />
-      ))}
-    </Section>
-  );
-};
-
 const OrbitedButton = (props, context) => {
   const { act } = useBackend(context);
   const { color, thing } = props;
@@ -75,6 +55,24 @@ const OrbitedButton = (props, context) => {
         </Box>
       )}
     </Button>
+  );
+};
+
+const BasicSection = (props, context) => {
+  const { act } = useBackend(context);
+  const { searchText, source, title, color } = props;
+  const things = source.filter(searchFor(searchText));
+  things.sort(compareNumberedText);
+  return source.length > 0 && (
+    <Section title={`${title} - (${source.length})`}>
+      {things.map(thing => (
+        <OrbitedButton
+          key={thing.name}
+          thing={thing}
+          color={color}
+        />
+      ))}
+    </Section>
   );
 };
 
@@ -169,6 +167,7 @@ export const Orbit = (props, context) => {
           <Section title="Ghost-Visible Antagonists">
             {sortedAntagonists.map(([name, antags]) => (
               <BasicSection
+                key={name}
                 title={name}
                 source={antags}
                 searchText={searchText}
