@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "rice now properly shows the rice icon when growing, this has been a bug for probably as long as rice has existed simply because it's rice"

@@ -1,0 +1,6 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Autolathe is no longer a laggy piece of shit"
+  - bugfix: "Autolathe shows resource requirements again"
+  - bugfix: "Autolathe will stop processing if it cant make an item"

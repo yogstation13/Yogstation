@@ -1,0 +1,7 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "red fire extinguishers are now bulky"
+  - tweak: "puts 1 pocket fire extinguisher in every survival box"
+  - tweak: "pocket fire extinguishers can now be bought in the mining vendor (and golem/free-miner vendors) for 50 points"
+  - tweak: "normal and advanced extinguishers are 100u and 150u volume respectively"

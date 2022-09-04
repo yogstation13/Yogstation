@@ -1,0 +1,4 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - bugfix: "Each chest should spawn in the correct gem now"

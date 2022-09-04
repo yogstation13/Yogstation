@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Monk staff null rod variant now does stamina damage!"
+  - tweak: "Monk staff null rod variant force and AP buffed in light if its new nonlethal qualities"

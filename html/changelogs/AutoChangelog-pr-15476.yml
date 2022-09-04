@@ -1,0 +1,8 @@
+author: " VaelophisNyx, @KillerOrcaCora, @Hey-Holokin, @cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new loot to Stalwart"
+  - bugfix: "Stalwart can spawn again"
+  - imageadd: "adds new sprites for stalwart's new loot, and old loot"
+  - imageadd: "adds new sprites for purple muzzle-flashes (system unused/bugged?)"
+  - soundadd: "adds new music for Stalwart"

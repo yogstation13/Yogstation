@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Made NTOS Robo Control free access"
+  - tweak: "Made NTOS Robo Control only allow control to bots you have access to"

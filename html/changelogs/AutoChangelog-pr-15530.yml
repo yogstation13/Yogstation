@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "admin spawned xeno queens should no longer cause massive uhoh stinky bullshit to the shuttle"
