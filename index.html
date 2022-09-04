@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(456 modules,
-    714/7342 macros, 9.7%)</aside></h3>
+    714/7344 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -705,7 +705,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(510 detailed/1155 documented/25951 total, 4.5%)</aside></h3>
+<aside>(512 detailed/1159 documented/26067 total, 4.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -892,7 +892,9 @@ Refundable items are expected to register COMSIG_ITEM_REFUND themselves.</li>
     <li><a href="datum/component/religious_tool.html" title="&#x2F;datum&#x2F;component&#x2F;religious_tool">religious_tool</a> - Allows the parent to act similarly to the Altar of Gods with modularity. Invoke and Sect Selection is done via attacking with a bible. This means you cannot sacrifice Bibles (you shouldn't want to do this anyways although now that I mentioned it you probably will want to).</li>
     <li><span class="no-substance">riding&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;riding&#x2F;human">human</span> - Yes, I said humans. No, this won't end well...</li>
     <li><a href="datum/component/surgery_bed.html" title="&#x2F;datum&#x2F;component&#x2F;surgery_bed">surgery_bed</a> - A component for surgery beds and those that act like them, handles patient information, success chance, and available surgeries</li>
-    <li><a href="datum/component/uplink.html" title="&#x2F;datum&#x2F;component&#x2F;uplink">syndicate uplink</a> - Uplinks</li>
+    <li class="has-children"><a href="datum/component/uplink.html" title="&#x2F;datum&#x2F;component&#x2F;uplink">syndicate uplink</a> - Uplinks<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;uplink&#x2F;nanotrasen">nanotrasen uplink</span> - NT Uplink</li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span class="no-substance">computer_file&#x2F;</span><a href="datum/computer_file/program.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program">program</a><ul class="index-tree">
     <li><a href="datum/computer_file/program/aidiag.html" title="&#x2F;datum&#x2F;computer_file&#x2F;program&#x2F;aidiag">aidiag</a></li>
@@ -1429,6 +1431,7 @@ SPDX-License-Identifier: MIT</li>
     <li><span class="no-substance">unit_test&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;dynamic_roundstart_ruleset_sanity">dynamic_roundstart_ruleset_sanity</span> - Verifies that roundstart dynamic rulesets are setup properly without external configuration.</li>
     <li class="has-children"><a href="datum/uplink_item.html" title="&#x2F;datum&#x2F;uplink_item">item name</a> - Uplink Items<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;dangerous">dangerous</span> - Item re-balancing</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;nt">nt</span> - NT Uplink items</li>
     <li><span class="no-substance">role_restricted&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;role_restricted&#x2F;blastcannon">Blast Cannon</span> - why? Becuase its funny that a person in charge of your mental wellbeing has a cat granade..&lt;---(he cant spell)</li>
     <li><span class="no-substance">stealthy_weapons&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;stealthy_weapons&#x2F;door_charge">Explosive Airlock Charge</span> - New Items</li>
     </ul></li>
@@ -1679,6 +1682,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;toyAI">toy AI</span> - Ion Module</li>
     <li><span class="no-substance">zeroth&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;zeroth&#x2F;oneHuman">&#x27;OneHuman&#x27; AI Module</span> - OneHuman</li>
     </ul></li>
+    <li><span class="no-substance">ai_cpu&#x2F;</span><a href="obj/item/ai_cpu/stalwart.html" title="&#x2F;obj&#x2F;item&#x2F;ai_cpu&#x2F;stalwart">Bluespace Data Crystal</a></li>
     <li><a href="obj/item/airlock_painter.html" title="&#x2F;obj&#x2F;item&#x2F;airlock_painter">airlock painter</a></li>
     <li class="has-children"><a href="obj/item/ammo_box.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_box">ammo box (null_reference_exception)</a><ul class="index-tree">
     <li><a href="obj/item/ammo_box/magazine.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_box&#x2F;magazine">magazine</a></li>
@@ -2080,6 +2084,7 @@ Given to Nuke Ops members.</li>
     <li><span class="no-substance">unary&#x2F;</span><a href="obj/machinery/atmospherics/components/unary/cryo_cell.html" title="&#x2F;obj&#x2F;machinery&#x2F;atmospherics&#x2F;components&#x2F;unary&#x2F;cryo_cell">cryo cell</a></li>
     </ul></li>
     </ul></li>
+    <li><a href="obj/machinery/autolathe.html" title="&#x2F;obj&#x2F;machinery&#x2F;autolathe">autolathe</a></li>
     <li><a href="obj/machinery/biogenerator.html" title="&#x2F;obj&#x2F;machinery&#x2F;biogenerator">biogenerator</a></li>
     <li><a href="obj/machinery/bounty_board.html" title="&#x2F;obj&#x2F;machinery&#x2F;bounty_board">bounty board</a> - A machine that acts basically like a quest board.
 Enables crew to create requests, crew can sign up to perform the request, and the requester can chose who to pay-out.</li>
@@ -2293,7 +2298,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/2d546bb84399bacc72e4a180fdbf13c40f3f31d8">2d546bb</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/55733c4325eeb7e962354ea99936ab394a5d5904">55733c4</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
