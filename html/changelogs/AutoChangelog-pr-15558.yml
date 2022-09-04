@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "NTOS Download speed now increases the closer you are to a NTNet Relay"
+  - bugfix: "fixed downloading more GQ than the file had"
