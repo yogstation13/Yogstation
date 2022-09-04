@@ -8,7 +8,6 @@ import { Window } from '../layouts';
 import { useDebug } from '../debug';
 
 export const searchDesigns = (designs, searchText = '') => {
-  console.log(designs.length);
   const testSearch = createSearch(searchText, design => design.name);
   return flow([
     // Optional search term
