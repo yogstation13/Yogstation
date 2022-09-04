@@ -1,0 +1,4 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - bugfix: "wooden and teleshields are now blacklisted from making strobe shields"

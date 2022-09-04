@@ -22,13 +22,15 @@
 	var/static/list/clans = list(
 		CLAN_GANGREL,
 		CLAN_LASOMBRA,
+		CLAN_TOREADOR,
 	)
 	var/list/options = list()
 	options = clans
 	// Brief descriptions in case they don't read the Wiki.
 	to_chat(owner, span_announce("List of all Clans:\n\
 		Gangrel - Prone to Frenzy, strange outcomes from being on frenzy, special power.\n\
-		Lasombra - Life in the shadows, very weak to fire but no brute damage, upgradable abilities through tasks."))
+		Lasombra - Life in the shadows, very weak to fire but no brute damage, upgradable abilities through tasks.\n\
+		Toreador - More human then other bloodsucker, easily disguise among crew, but bound with moral."))
 
 	var/answer = input("You have Ranked up far enough to remember your clan. Which clan are you part of?", "Our mind feels luxurious...") in options
 	if(!answer) 
@@ -76,4 +78,22 @@
 			to_chat(owner, span_notice("You have also learned how to channel the abyss's power into an iron knight's armor that can be build in the structure ta and activated as a trap for your lair."))
 			owner.teach_crafting_recipe(/datum/crafting_recipe/possessedarmor)
 			owner.teach_crafting_recipe(/datum/crafting_recipe/restingplace)
+		if(CLAN_TOREADOR)
+			my_clan = CLAN_TOREADOR
+			to_chat(owner, span_announce("You have Ranked up enough to learn: You are part of the Toreador Clan!\n\
+				* As part of the Toreador, you can't ignore your own emotions and disrespect inhuman actions.\n\
+				* Being in Masquarade doesn't spend your blood, as well as having any negative effects on your immortal powers.\n\
+				* You passively rise morale of your living vassals around you.\n\
+				* Also you get really sad when comitting inhumane actions, but your humanity loss can't go above a certain treashold.\n\
+				* Remember, that those bloodsuckers who dare to act inhuman or break the Masquarade shouldn't be forgiven, and deserve only <span class='red'>death</span>.\n\
+				* Finally, your Favorite Vassal will gain the Mesmerise ability to help you in non-lethaly dealing with enemies or vassalising people."))
+			if(owner.current && ishuman(owner.current) && !owner.current.GetComponent(/datum/component/mood))
+				owner.current.AddComponent(/datum/component/mood) //You are not a emotionless beast!
+
+			for(var/datum/action/bloodsucker/masquerade/masquarade_spell in powers)
+				if(!istype(masquarade_spell))
+					continue
+				masquarade_spell.bloodcost = 0
+				masquarade_spell.constant_bloodcost = 0 //Wow very cool code, good job
+
 	owner.announce_objectives()

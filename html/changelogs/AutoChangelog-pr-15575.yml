@@ -1,0 +1,5 @@
+author: "SuperSlayer"
+delete-after: true 
+changes: 
+  - tweak: "Removed negative armor penetration from brass battlehammer and increased its throwforce from 10 to 15"
+  - tweak: "Increased brass bow damage from 16 to 18"

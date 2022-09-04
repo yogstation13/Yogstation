@@ -1,0 +1,4 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - bugfix: "singularity will no longer stun you if you have meson eyes"

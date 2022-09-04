@@ -62,12 +62,18 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 /datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient, mob/user)
 	computer.visible_message(span_notice("Sending message to [recipient.username]:"), null, null, 1)
 	computer.visible_message(span_notice("\"[message]\""), null, null, 1) // in case the message fails, they can copy+paste from here
-	if(recipient.blocked_users.Find(src))
+	
+	if(src == recipient)
+		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		computer.visible_message(span_danger("You are the recipient!"), null, null, 1)
+		return FALSE
+
+	if(src in recipient.blocked_users)
 		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 		computer.visible_message(span_danger("Recipient has you blocked."), null, null, 1)
 		return FALSE
 	
-	if(blocked_users.Find(recipient))
+	if(recipient in blocked_users)
 		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 		computer.visible_message(span_danger("You have recipient blocked."), null, null, 1)
 		return FALSE
@@ -110,6 +116,64 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	message_history += list(list(username, message, REF(src), signal))
 	return TRUE
 
+/datum/computer_file/program/pdamessager/proc/send_message_everyone(message, mob/user)
+	computer.visible_message(span_notice("Sending message to everyone:"), null, null, 1)
+	computer.visible_message(span_notice("\"[message]\""), null, null, 1)
+
+	var/list/targets = list()
+	for(var/datum/computer_file/program/pdamessager/P in GLOB.NTPDAs)
+		if(src == P)
+			continue
+
+		if(src in P.blocked_users)
+			continue
+		
+		if(P in blocked_users)
+			continue
+		
+		if(!P.receiving)
+			continue
+		
+		targets += P
+	
+	if(targets.len <= 0)
+		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		computer.visible_message(span_danger("There were no valid recipients to deliver the message to."), null, null, 1)
+		return FALSE
+	
+	var/fakemob = "ERROR"
+	var/fakejob = "ERROR"
+	var/language = /datum/language/common
+	if(user)
+		fakemob = user
+		fakejob = user.job
+		language = user.get_selected_language()
+
+	var/datum/signal/subspace/messaging/ntospda/signal = new(src, list(
+		"name" = "[fakemob]",
+		"job" = "[fakejob]",
+		"message" = message,
+		"language" = language,
+		"targets" = targets,
+		"program" = src,
+		"logged" = FALSE
+	))
+	signal.send_to_receivers()
+
+	if (!signal.data["done"])
+		computer.visible_message(span_danger("ERROR: Your message could not be processed by a broadcaster."), null, null, 1)
+		return FALSE
+
+	if (!signal.data["logged"])
+		computer.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
+		return FALSE
+	
+	// Show ghosts (and admins)
+	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> <b>Everyone</b>): [span_message(message)]", user, user, speaker_key = user.ckey)
+	computer.visible_message(span_notice("Message sent!"), null, null, 1)
+	message_history += list(list(username, message, REF(src), signal))
+	return TRUE
+
 /datum/computer_file/program/pdamessager/proc/receive_message(datum/signal/subspace/messaging/ntospda/signal)
 	var/datum/computer_file/program/pdamessager/sender = signal.data["program"]
 	var/message = signal.data["message"]
@@ -124,18 +188,18 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 
 	if(!silent && istype(holder, /obj/item/computer_hardware/hard_drive))
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
-			playsound(holder, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 6, FALSE)
+			playsound(holder, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 50, FALSE)
 		else
-			playsound(holder, 'sound/machines/twobeep_high.ogg', 6, FALSE)
+			playsound(holder, 'sound/machines/twobeep_high.ogg', 50, FALSE)
 		
 		// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
 		if(computer) // I HAVE TO DO THIS OR THEY WON'T RECEIVE MESSAGES UNTIL THEY OPEN THE PDA ONCE (BAD)
 			computer.audible_message("[icon2html(computer, hearers(computer))] *[ringtone]*", null, 3)
-			computer.visible_message(span_notice("Message from [sender.username], \"[message]\""), null, null, 1)
+			computer.visible_message(span_notice("<b>Message from [sender.username], \"[message]\"</b>"), null, null, 1)
 		else if(istype(holder.loc, /obj/item/modular_computer)) // play it from the (unset) computer
 			var/obj/item/modular_computer/tempcomp = holder.loc
 			tempcomp.audible_message("[icon2html(tempcomp, hearers(tempcomp))] *[ringtone]*", null, 3)
-			tempcomp.visible_message(span_notice("Message from [sender.username], \"[message]\""), null, null, 1)
+			tempcomp.visible_message(span_notice("<b>Message from [sender.username], \"[message]\"</b>"), null, null, 1)
 	
 	return TRUE
 
@@ -169,17 +233,27 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 				computer.visible_message(span_danger("Your message is too long/has bad text!"), null, null, 1)
 				return
 			
-			var/datum/computer_file/program/pdamessager/recipient = locate(params["recipient"]) in GLOB.NTPDAs
-			if(!istype(recipient))
-				computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-				computer.visible_message(span_danger("Recipient does not exist!"), null, null, 1)
-				return
+			if(params["recipient"] != "EVERYONE")
+				var/datum/computer_file/program/pdamessager/recipient = locate(params["recipient"]) in GLOB.NTPDAs
+				if(!istype(recipient))
+					computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+					computer.visible_message(span_danger("Recipient does not exist!"), null, null, 1)
+					return
 
-			next_message = world.time + 1 SECONDS
-			send_message(message, recipient, usr)
-			var/mob/living/user = usr
-			user.log_talk(message, LOG_CHAT, tag="as [username] to user [recipient.username]")
-			return TRUE
+				next_message = world.time + 1 SECONDS
+				send_message(message, recipient, usr)
+				var/mob/living/user = usr
+				user.log_talk(message, LOG_CHAT, tag="as [username] to user [recipient.username]")
+				return TRUE
+			else // @everyone
+				if(!(ACCESS_LAWYER in computer.GetAccess()))
+					return
+				next_message = world.time + 10 SECONDS
+				send_message_everyone(message, usr)
+				var/mob/living/user = usr
+				user.log_talk(message, LOG_CHAT, tag="as [username] to everyone")
+				return TRUE
+
 		
 		if("PRG_keytry")
 			if(next_keytry > world.time)
@@ -293,6 +367,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	data["authed"] = authed
 	data["ringtone"] = ringtone
 	data["showing_messages"] = showing_messages
+	data["can_at_everyone"] = (ACCESS_LAWYER in computer.GetAccess())
 	var/list/modified_history = list()
 	for(var/M in message_history)
 		var/datum/signal/subspace/messaging/ntospda/N = M[4]

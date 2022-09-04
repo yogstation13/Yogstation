@@ -634,3 +634,11 @@
 /obj/item/storage/box/syndie_kit/bee_grenades/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/grenade/spawnergrenade/buzzkill(src)
+
+/obj/item/storage/box/official_posters
+	name = "poster box"
+	desc = "A box filled with posters."
+
+/obj/item/storage/box/official_posters/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/poster/random_official(src)
