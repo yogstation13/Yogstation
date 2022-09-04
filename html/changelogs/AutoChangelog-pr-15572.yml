@@ -1,0 +1,5 @@
+author: "PowerfulBacon, SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Added clockwork stargazers that can enchant items with random effects"
+  - imageadd: "Added icons for clockwork stargazers"
