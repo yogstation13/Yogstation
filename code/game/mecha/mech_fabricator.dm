@@ -117,8 +117,8 @@
 		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
 
 /obj/machinery/mecha_part_fabricator/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/card/id))
-		var/obj/item/card/id/C = I
+	if(I.GetID())
+		var/obj/item/card/id/C = I.GetID()
 		if(obj_flags & EMAGGED)
 			to_chat(user, span_warning("The authentification slot spits sparks at you and the display reads scrambled text!"))
 			do_sparks(1, FALSE, src)
