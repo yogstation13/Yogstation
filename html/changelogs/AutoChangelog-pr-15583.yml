@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Adds gen_turf_only to map_generators and turns it on"
