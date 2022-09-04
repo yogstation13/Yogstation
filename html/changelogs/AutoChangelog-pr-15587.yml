@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Reactive tele armor now respects teleport flags"
-  - tweak: "Reactive tele armor now teleports further if you are wearing a BoH"

@@ -1,5 +1,0 @@
-author: " @VaelophisNyx, GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Adds new sprite states for secure briefcase"
-  - bugfix: "Secure Storage containers now properly indicate there on off state"
