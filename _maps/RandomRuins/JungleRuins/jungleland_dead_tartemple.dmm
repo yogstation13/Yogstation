@@ -3,7 +3,7 @@
 /obj/effect/decal/remains/human,
 /obj/item/twohanded/bonespear,
 /obj/item/clothing/head/helmet/shaman,
-/obj/item/tar_crystal/part_2,
+/obj/item/tar_crystal,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/ruin/unpowered/tar_temple)
 "c" = (

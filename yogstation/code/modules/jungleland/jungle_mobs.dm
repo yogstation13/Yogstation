@@ -171,9 +171,6 @@
 	maxHealth = 320
 	health = 320
 	spacewalk = TRUE
-
-	faction = list() //he will attack literally anything!
-
 	melee_damage_lower = 30
 	melee_damage_upper = 55 // ouch
 	rapid_melee = 2
@@ -184,7 +181,8 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/AttackingTarget()
 	. = ..()
-	reveal_true_form()
+	if(victim_ref)
+		reveal_true_form()
 	if(isliving(target))
 		var/mob/living/living_target = target
 		
@@ -240,7 +238,7 @@
 	speak_chance = initial(speak_chance)
 	taunt_chance = initial(taunt_chance)
 	human_lure = FALSE
-	faction = initial(faction)
+	faction = list("skin_walkers")
 
 /mob/living/simple_animal/hostile/yog_jungle/skin_twister/proc/pick_lure()
 	var/mob/living/picked = pick(subtypesof(/mob/living/simple_animal/hostile/yog_jungle))

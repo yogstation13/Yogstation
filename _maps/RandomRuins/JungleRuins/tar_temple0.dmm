@@ -130,7 +130,7 @@
 "M" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/fluff/divine/convertaltar,
-/obj/item/tar_crystal/part_0,
+/obj/item/tar_crystal,
 /turf/open/indestructible/necropolis/air,
 /area/ruin/unpowered/tar_temple)
 "N" = (

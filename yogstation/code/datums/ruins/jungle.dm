@@ -12,43 +12,55 @@
 /datum/map_template/ruin/jungle/dying/testing_facility
 	name = "Testing-facility"
 	id = "jungle-testing-facility"
-	description = "Old abandoned ship"
+	description = "Old testing facility"
 	suffix = "jungleland_dead_testingfacility.dmm"
 
 /datum/map_template/ruin/jungle/proper/ivymen_nest
 	name = "Ivymen Nest"
 	id = "jungle-ivymen-next"
-	description = "Old abandoned ship"
+	description = "Ancient ivymen next"
 	suffix = "jungleland_jungle_ivymen_next.dmm"
 
 /datum/map_template/ruin/jungle/proper/old_temple
 	name = "Ancient Temple"
 	id = "jungle-old-temple"
-	description = "Old abandoned ship"
+	description = "Old abandoned temple"
 	suffix = "jungleland_jungle_oldtemple.dmm"	
 
-/datum/map_template/ruin/jungle/properxenos
+/datum/map_template/ruin/jungle/proper/xenos
 	name = "Xeno Nest"
 	id = "jungle-xenos"
-	description = "Old abandoned ship"
+	description = "Alient nest"
 	suffix = "jungleland_jungle_xenos.dmm"	
+
+/datum/map_template/ruin/jungle/proper/geode
+	name = "Geode"
+	id = "jungle-geode"
+	description = "Geode"
+	suffix = "jungleland_jungle_geode.dmm"	
+
+/datum/map_template/ruin/jungle/proper/felinid
+	name = "Felinid Party"
+	id = "jungle-felinid"
+	description = "Felinid party"
+	suffix = "jungleland_jungle_felinid.dmm"	
 
 /datum/map_template/ruin/jungle/swamp/burial_grounds
 	name = "Drowned Burial Grounds"
 	id = "jungle-burial-grounds"
-	description = "Old abandoned ship"
+	description = "Burial Grounds"
 	suffix = "jungleland_swamp_drownedburialgrounds.dmm"	
 
 /datum/map_template/ruin/jungle/swamp/farm 
 	name = "Abandoned Farm"
 	id = "jungle-farm"
-	description = "Old abandoned ship"
+	description = "Abandoned farm"
 	suffix = "jungleland_swamp_farm.dmm"	
 
 /datum/map_template/ruin/jungle/swamp/hut
 	name = "Old Hut"
 	id = "jungle-hut"
-	description = "Old abandoned ship"
+	description = "Old hut"
 	suffix = "jungleland_swamp_oldhut.dmm"	
 	
 /datum/map_template/ruin/jungle/all/miningbase //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
@@ -61,11 +73,43 @@
 	cost = 0
 
 //TAR TEMPLES
-/datum/map_template/ruin/jungle/all/tar_temple0 //THIS IS THE MINING BASE. DO NOT FUCK WITH THIS UNLESS YOU ARE 100% CERTAIN YOU KNOW WHAT YOU'RE DOING, OR THE MINING BASE WILL DISAPPEAR
-	name = "Temple of Tar"
+/datum/map_template/ruin/jungle/all/tar_temple0
+	name = "Tar Temple 0"
 	id = "tar_temple"
 	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
 	suffix = "tar_temple0.dmm"
+	always_place = TRUE
+	cost = 0
+
+/datum/map_template/ruin/jungle/all/tar_altar
+	name = "Tar altar"
+	id = "tar_altar"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "tar_altar.dmm"
+	always_place = TRUE
+	allow_duplicates = TRUE
+	cost = 5
+/datum/map_template/ruin/jungle/all/tar_temple
+	name = "Tar temple 1"
+	id = "jungle-dying-tar-temple"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "jungleland_dead_tartemple.dmm"
+	always_place = TRUE
+	cost = 0	
+
+/datum/map_template/ruin/jungle/all/tar_temple
+	name = "Tar temple 2"
+	id = "jungle-swamp-tar-temple"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "jungleland_swamp_tartemple.dmm"	
+	always_place = TRUE
+	cost = 0
+
+/datum/map_template/ruin/jungle/all/tar_temple
+	name = "Tar temple 3"
+	id = "jungle-proper-tar-temple"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "jungleland_jungle_tartemple.dmm"	
 	always_place = TRUE
 	cost = 0
 
@@ -97,3 +141,5 @@
 	description = "Ash Drake"
 	suffix = "jungleland_barren_drake.dmm"
 	always_place = TRUE
+	allow_duplicates = TRUE
+	cost = 10

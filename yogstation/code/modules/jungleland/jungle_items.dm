@@ -26,17 +26,15 @@
 	name = "Broken Crystal"
 	desc = "A broken crystal, it has an ominous dark glow around it."
 	icon = 'yogstation/icons/obj/jungle.dmi'
-/obj/item/tar_crystal/part_0
-	icon_state = "tar_crystal_part0"
 
-/obj/item/tar_crystal/part_1
-	icon_state = "tar_crystal_part1"
-
-/obj/item/tar_crystal/part_2
-	icon_state = "tar_crystal_part2"
+/obj/item/tar_crystal/Initialize()
+	. = ..()
+	icon_state = "tar_crystal_part[pick(0,1,2)]"
 
 /obj/item/full_tar_crystal
 	name = "Ominous Crystal"
 	desc = "a crystal that has been repaired from 3 parts, it emantes dark energy."
 	icon = 'yogstation/icons/obj/jungle.dmi'
-	icon_state = "tar_cystal"
+	icon_state = "tar_crystal"
+
+

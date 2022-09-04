@@ -138,7 +138,6 @@
 	var/list/possible_moves = list(SLASH_ATTACK,IMPALE_ATTACK,RUNE_ATTACK,TELEPORT_ATTACK,TAR_ATTACK)
 	for(var/i = 0 ; i < 3; i++)
 		combo += pick_n_take(possible_moves)
-	message_admins("Forged combo!")
 	return combo
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/slash_attack_chain()
@@ -227,18 +226,20 @@
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/teleport_attack_chain()
 	new /obj/effect/tar_king/orb_in(get_turf(src),src,dir)
 	var/obj/closest
+	var/cached_dist = INFINITY
 
 	if(GLOB.tar_pits.len > 1) 
-		var/cached_dist = INFINITY
 		for(var/obj/structure/tar_pit/TP as anything in GLOB.tar_pits)
 			var/dist = get_dist(target,TP) 
 			if(dist < cached_dist)
 				cached_dist = dist 
 				closest = TP
 	else 
+		if(!GLOB.tar_pits.len)
+			return
 		closest = GLOB.tar_pits[0]
 	
-	if(!closest || closest > 7)
+	if(!closest || cached_dist > 7)
 		return
 
 	visible_message(span_colossus("Ishakt-Tarim!"))			

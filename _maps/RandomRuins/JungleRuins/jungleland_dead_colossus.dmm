@@ -1,11 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
-/area/space)
+/area/template_noop)
 "b" = (
 /obj/structure/stone_tile/slab,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "c" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
@@ -13,21 +13,21 @@
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/center,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "g" = (
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
 /obj/structure/stone_tile,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "h" = (
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "l" = (
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "m" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -36,7 +36,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "o" = (
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/surrounding_tile{
@@ -44,14 +44,14 @@
 	},
 /obj/structure/stone_tile/center,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "p" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "q" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -60,32 +60,32 @@
 	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "u" = (
 /obj/structure/stone_tile{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/molten_object/large,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "v" = (
 /obj/structure/stone_tile{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "w" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "x" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "y" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 8
@@ -95,13 +95,13 @@
 	},
 /obj/structure/stone_tile/center,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "A" = (
 /obj/structure/stone_tile{
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "D" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
@@ -111,14 +111,14 @@
 	},
 /obj/structure/stone_tile/center,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "E" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile{
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "H" = (
 /obj/structure/stone_tile/block{
 	dir = 8
@@ -127,7 +127,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "I" = (
 /obj/structure/stone_tile/block{
 	dir = 1
@@ -136,31 +136,31 @@
 	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "K" = (
 /obj/structure/stone_tile/surrounding,
 /obj/structure/stone_tile/center,
 /mob/living/simple_animal/hostile/megafauna/colossus,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "L" = (
 /obj/structure/stone_tile/block,
 /obj/structure/stone_tile/block{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "M" = (
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "N" = (
 /obj/structure/stone_tile/surrounding_tile,
 /obj/effect/decal/cleanable/ash,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "P" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -169,44 +169,44 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "R" = (
 /obj/structure/stone_tile,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "S" = (
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "T" = (
 /obj/structure/stone_tile/block,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "W" = (
 /obj/structure/stone_tile/block{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "X" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "Y" = (
 /obj/structure/stone_tile/block{
 	dir = 1
 	},
 /obj/structure/stone_tile,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "Z" = (
 /obj/effect/decal/cleanable/molten_object/large,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 
 (1,1,1) = {"
 a

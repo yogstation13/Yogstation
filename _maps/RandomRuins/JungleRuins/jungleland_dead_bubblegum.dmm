@@ -1,40 +1,40 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
-/area/space)
+/area/template_noop)
 "c" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "d" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "g" = (
 /obj/structure/stone_tile/block{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "i" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/surrounding/cracked,
 /obj/structure/stone_tile/surrounding_tile,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "k" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "m" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/effect/decal/cleanable/blood/bubblegum,
@@ -45,13 +45,13 @@
 /obj/structure/stone_tile/surrounding/cracked,
 /obj/structure/stone_tile/center/cracked,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "p" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/center/cracked,
 /obj/structure/stone_tile/surrounding/cracked,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "r" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/cracked,
@@ -65,11 +65,11 @@
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "s" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "v" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/block/cracked,
@@ -77,79 +77,79 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "z" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/slab/cracked,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "D" = (
 /mob/living/simple_animal/hostile/megafauna/bubblegum,
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/surrounding,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "G" = (
 /obj/structure/stone_tile/slab,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "H" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/slab,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "I" = (
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "L" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "N" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "Q" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "R" = (
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "S" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/slab/cracked,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "T" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "X" = (
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 "Y" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
 /obj/structure/stone_tile/slab,
 /turf/open/floor/plating/dirt/jungleland/dying_forest,
-/area/space)
+/area/template_noop)
 
 (1,1,1) = {"
 a

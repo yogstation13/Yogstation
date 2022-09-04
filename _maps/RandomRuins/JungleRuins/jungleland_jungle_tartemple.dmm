@@ -181,7 +181,7 @@
 "X" = (
 /obj/structure/fluff/divine/convertaltar,
 /obj/structure/stone_tile/surrounding,
-/obj/item/tar_crystal/part_0,
+/obj/item/tar_crystal,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "Z" = (

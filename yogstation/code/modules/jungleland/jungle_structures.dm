@@ -160,6 +160,63 @@
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "damaged_tarstatue"
 	deconstructible = FALSE
+	density = TRUE
 
-
+/obj/structure/tar_altar
+	name = "Forgotten Altar"
+	desc = "A might pillar of ivory, untouched by time and corrosion. There is a large hole on the top, it's missing a key ingridient..."
+	icon = 'yogstation/icons/obj/jungle32x48.dmi'
+	icon_state = "tar_altar"
+	layer = ABOVE_ALL_MOB_LAYER
+	resistance_flags = INDESTRUCTIBLE
+	anchored = TRUE 
+	density = TRUE
  
+/obj/structure/tar_altar/attacked_by(obj/item/I, mob/living/user)
+	if(!istype(I,/obj/item/full_tar_crystal))
+		return ..()
+	
+	add_overlay(image(icon = src.icon, icon_state = "tar_altar_crystal"))
+	INVOKE_ASYNC(src,.proc/summon)
+
+/obj/structure/tar_altar/proc/summon()
+	for(var/mob/living/L in range(7,src))
+		shake_camera(L,1 SECONDS, 4)
+	
+	animate(src,time = 15 SECONDS, color = "#1f0010")
+	sleep(20 SECONDS)
+	visible_message(span_colossus("WHO DARES?"))
+	
+	for(var/mob/living/L in range(7,src))
+		shake_camera(L,2 SECONDS, 2)
+	sleep(2 SECONDS)	
+
+	playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 100, 1, -1)	
+	new /mob/living/simple_animal/hostile/megafauna/tar_king(get_turf(src))
+
+/obj/structure/herb
+	icon = 'yogstation/icons/obj/jungle.dmi'
+
+	var/picked_result
+	var/picked_amt
+
+/obj/structure/explosive_shrooms
+	name = "Explosive Mushroom"
+	desc = "Highly volatile mushrooms, they contain a high amount of volatile alkalines that will explode after a short delay if stepped on."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "explosive_shrooms"
+	anchored = TRUE
+	density = FALSE
+
+/obj/structure/explosive_shrooms/Cross(atom/movable/AM)
+	. = ..()
+	if(!isliving(AM))
+		return 
+	
+	animate(src,time=2.49 SECONDS, color = "#e05a5a")
+	addtimer(CALLBACK(src,.proc/explode),2.5 SECONDS)
+
+/obj/structure/explosive_shrooms/proc/explode()
+	dyn_explosion(get_turf(src),4)
+	if(src && !QDELETED(src))
+		qdel(src)

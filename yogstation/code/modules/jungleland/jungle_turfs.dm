@@ -68,7 +68,7 @@
 	ore.spawn_at(src)
 
 /turf/open/floor/plating/dirt/jungleland/tool_act(mob/living/user, obj/item/I, tool_type)
-	if(tool_type != TOOL_MINING)
+	if(tool_type != TOOL_MINING && tool_type != TOOL_SHOVEL)
 		return ..()
 	
 	if(ore_present == ORE_EMPTY)
@@ -78,7 +78,7 @@
 		return ..()
 
 	I.play_tool_sound(user)	
-	if(!do_after(user,10 SECONDS * I.toolspeed,FALSE, src))
+	if(!do_after(user,10 SECONDS * I.toolspeed,src))
 		return ..()
 
 	spawn_rock()
