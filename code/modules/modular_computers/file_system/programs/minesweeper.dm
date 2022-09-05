@@ -154,7 +154,7 @@
 			if(cin < 5 || cin > 17)
 				cin = clamp(cin, 5, 17)
 			custom_height = cin
-			custom_mines = min(custom_mines, FLOOR(custom_width*custom_height/4,1))
+			custom_mines = min(custom_mines, FLOOR(custom_width*custom_height/2,1))
 			difficulty = MINESWEEPER_CUSTOM
 			return TRUE
 		
@@ -166,7 +166,7 @@
 			if(cin < 5 || cin > 30)
 				cin = clamp(cin, 5, 30)
 			custom_width = cin
-			custom_mines = min(custom_mines, FLOOR(custom_width*custom_height/4,1))
+			custom_mines = min(custom_mines, FLOOR(custom_width*custom_height/2,1))
 			difficulty = MINESWEEPER_CUSTOM
 			return TRUE
 		
@@ -175,8 +175,8 @@
 			if(!cin)
 				return
 			cin = text2num(cin)
-			if(cin < 5 || cin > FLOOR(custom_width*custom_height/4,1))
-				cin = clamp(cin, 5, FLOOR(custom_width*custom_height/4,1))
+			if(cin < 5 || cin > FLOOR(custom_width*custom_height/2,1))
+				cin = clamp(cin, 5, FLOOR(custom_width*custom_height/2,1))
 			custom_mines = cin
 			difficulty = MINESWEEPER_CUSTOM
 			return TRUE
@@ -225,7 +225,7 @@
 	
 	tiles_left = width * height
 
-	mines = min(FLOOR(tiles_left/4,1), mines) // Crash protection
+	mines = min(FLOOR(tiles_left/2,1), mines) // Crash protection
 	
 	for(var/i=1, i<mines+1, i++) // Set up mines
 		var/mine_spot = list(rand(0,height-1),rand(0,width-1))

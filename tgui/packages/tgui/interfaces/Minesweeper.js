@@ -151,7 +151,7 @@ export const MinesweeperContent = (props, context) => {
             color="bad"
             unit=" Mines"
             minValue="5"
-            maxValue="125"
+            maxValue="250"
             stepPixelSize="2"
             value={custom_mines}
             onDrag={(e, value) => act('PRG_mines', {
