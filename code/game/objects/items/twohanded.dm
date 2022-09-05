@@ -1110,7 +1110,7 @@
 			var/obj/mecha/M = target
 			M.take_damage(M.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
 			user.visible_message(span_danger("The hammer thunders as it massively dents the plating of the [target.name]!"))
-		if(iisliving(target))
+		if(isliving(target))
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			var/mob/living/M = target
 			M.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
@@ -1126,4 +1126,4 @@
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 
 /obj/item/twohanded/vxtvulhammer/pirate/update_icon()
-	icon_state = "vxtvul_hammer_pirate[wielded]-[is_supercharged]"
+	icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged ? 1 : 0]"
