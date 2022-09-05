@@ -1188,6 +1188,16 @@
 "dl" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/engi)
+"dn" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/sec)
 "do" = (
 /obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/plasteel/white,
@@ -4633,6 +4643,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"nz" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/kitchen)
 "nA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/trinary/mixer/airmix{
@@ -6502,14 +6516,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
-"uz" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/effect/spawner/structure/window/hollow/reinforced,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/sec)
 "uA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -6713,6 +6719,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
+"xR" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/hydroponics)
 "xT" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -7106,6 +7116,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"DK" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/kitchen)
 "DT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -7242,14 +7258,6 @@
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/rnd)
-"FX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/ruin/space/has_grav/ancientstation/engi)
 "FY" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel/white,
@@ -7669,13 +7677,6 @@
 /obj/structure/closet/emcloset/anchored,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
-"KR" = (
-/obj/effect/spawner/structure/window/hollow/reinforced,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/engi)
 "KT" = (
 /obj/machinery/door/airlock/science/glass{
 	name = "Chemistry"
@@ -7796,6 +7797,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"Mh" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/kitchen)
 "Mi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -7846,16 +7853,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/engi)
-"ME" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/closed/wall,
 /area/ruin/space/has_grav/ancientstation/engi)
 "MQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8088,6 +8085,15 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+"PH" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/engi)
 "PK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -8148,6 +8154,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
+"Qn" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/middle{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/hydroponics)
 "Qp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/window/westright,
@@ -8642,19 +8654,17 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
-"WN" = (
-/obj/effect/spawner/structure/window/hollow/reinforced,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/engi)
-"WO" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/ruin/space/has_grav/ancientstation/hydroponics)
 "WR" = (
 /obj/machinery/chem_dispenser,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation/rnd)
+"WS" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/engi)
 "WT" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -8672,6 +8682,12 @@
 	},
 /turf/open/floor/engine/n2,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"Xd" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/sec)
 "Xe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -8891,6 +8907,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+"ZU" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/end{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/hydroponics)
 "ZV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -8905,6 +8927,10 @@
 /obj/item/stack/rods,
 /turf/template_noop,
 /area/template_noop)
+"ZX" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/middle,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/sec)
 "ZZ" = (
 /obj/structure/table,
 /obj/item/assembly/flash,
@@ -10305,7 +10331,7 @@ gU
 iy
 dl
 eI
-ME
+eI
 vp
 ze
 ze
@@ -10313,7 +10339,7 @@ KV
 ze
 ju
 JY
-FX
+eI
 dl
 eI
 eI
@@ -10354,7 +10380,7 @@ gU
 eg
 qZ
 Xw
-WN
+fB
 NJ
 ju
 ju
@@ -10362,7 +10388,7 @@ Xx
 SZ
 SZ
 ep
-KR
+PH
 AL
 RW
 eI
@@ -10403,7 +10429,7 @@ gx
 eg
 ay
 em
-WN
+WS
 VF
 ze
 fF
@@ -10411,7 +10437,7 @@ ze
 ju
 ze
 Hd
-WN
+WS
 Rp
 rn
 eI
@@ -10647,9 +10673,9 @@ fY
 cn
 cQ
 ey
-dP
-dP
-dP
+ZU
+Qn
+xR
 cQ
 ey
 kV
@@ -10855,7 +10881,7 @@ MR
 LK
 ur
 ro
-iZ
+ja
 cn
 wz
 jT
@@ -10896,14 +10922,14 @@ dR
 YA
 RS
 zR
-WO
+ey
 HJ
-ud
-ud
+gI
+gI
 sr
-hR
-hR
-hR
+Mh
+DK
+nz
 gY
 jm
 jI
@@ -10953,7 +10979,7 @@ MR
 ly
 ht
 iK
-iZ
+iY
 cn
 cq
 jS
@@ -11438,7 +11464,7 @@ Vp
 HC
 NT
 Ty
-wO
+Xd
 eu
 WL
 eJ
@@ -11487,7 +11513,7 @@ IM
 Dw
 BS
 ZR
-wO
+ZX
 kc
 HM
 eJ
@@ -11536,7 +11562,7 @@ PG
 Zp
 Ep
 Kn
-uz
+dn
 xq
 Dy
 eJ
