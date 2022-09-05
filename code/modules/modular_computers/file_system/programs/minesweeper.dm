@@ -123,10 +123,10 @@
 						else
 							value = 1
 					if(0.29999 to 1)
-						if(height >= 10 && width >= 10)
+						if(height >= 13 && width >= 13)
 							value = 4
 						else
-							value = 1
+							value = 2
 					else
 						value = 0
 			else
