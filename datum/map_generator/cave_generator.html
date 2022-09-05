@@ -16,7 +16,7 @@
 <h1>Cave Generator <aside>/<a href="datum.html">datum</a>/<a href="datum/map_generator.html">map_generator</a>/<a href="datum/map_generator/cave_generator.html">cave_generator</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L1">
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L1">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 1"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -27,6 +27,7 @@
             <tr><th><a href="datum/map_generator/cave_generator.html#var/feature_spawn_list">feature_spawn_list</a></th><td>Weighted list of extra features that can spawn in the area, such as geysers.</td></tr>
             <tr><th><a href="datum/map_generator/cave_generator.html#var/flora_spawn_chance">flora_spawn_chance</a></th><td>Base chance of spawning flora</td></tr>
             <tr><th><a href="datum/map_generator/cave_generator.html#var/flora_spawn_list">flora_spawn_list</a></th><td>Weighted list of flora that can spawn in the area.</td></tr>
+            <tr><th><a href="datum/map_generator/cave_generator.html#var/gen_gurf_only">gen_gurf_only</a></th><td>If this is set to TRUE then it will only change turfs that are /turf/open/genturf, for more flexability in design</td></tr>
             <tr><th><a href="datum/map_generator/cave_generator.html#var/initial_closed_chance">initial_closed_chance</a></th><td>Chance of cells starting closed</td></tr>
             <tr><th><a href="datum/map_generator/cave_generator.html#var/mob_spawn_chance">mob_spawn_chance</a></th><td>Base chance of spawning a mob</td></tr>
             <tr><th><a href="datum/map_generator/cave_generator.html#var/mob_spawn_list">mob_spawn_list</a></th><td>Weighted list of mobs that can spawn in the area.</td></tr>
@@ -37,84 +38,90 @@
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L33">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 33"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 34"/></a></h3>
         <p>How much neighbours does a dead cell need to become alive</p><h3 id="var/closed_turf_types"><aside class="declaration">var </aside>closed_turf_types
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L6">
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L6">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 6"/></a></h3>
         <p>Weighted list of the types that spawns if the turf is closed</p><h3 id="var/death_limit"><aside class="declaration">var </aside>death_limit
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L35">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 35"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 36"/></a></h3>
         <p>How little neighbours does a alive cell need to die</p><h3 id="var/feature_spawn_chance"><aside class="declaration">var </aside>feature_spawn_chance
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L24">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 24"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 25"/></a></h3>
         <p>Base chance of spawning features</p><h3 id="var/feature_spawn_list"><aside class="declaration">var </aside>feature_spawn_list
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L16">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 16"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 17"/></a></h3>
         <p>Weighted list of extra features that can spawn in the area, such as geysers.</p><h3 id="var/flora_spawn_chance"><aside class="declaration">var </aside>flora_spawn_chance
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L22">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 22"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 23"/></a></h3>
         <p>Base chance of spawning flora</p><h3 id="var/flora_spawn_list"><aside class="declaration">var </aside>flora_spawn_list
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L14">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 14"/></a></h3>
-        <p>Weighted list of flora that can spawn in the area.</p><h3 id="var/initial_closed_chance"><aside class="declaration">var </aside>initial_closed_chance
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 15"/></a></h3>
+        <p>Weighted list of flora that can spawn in the area.</p><h3 id="var/gen_gurf_only"><aside class="declaration">var </aside>gen_gurf_only
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L29">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 29"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 8"/></a></h3>
+        <p>If this is set to TRUE then it will only change turfs that are /turf/open/genturf, for more flexability in design</p><h3 id="var/initial_closed_chance"><aside class="declaration">var </aside>initial_closed_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 30"/></a></h3>
         <p>Chance of cells starting closed</p><h3 id="var/mob_spawn_chance"><aside class="declaration">var </aside>mob_spawn_chance
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L20">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 20"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 21"/></a></h3>
         <p>Base chance of spawning a mob</p><h3 id="var/mob_spawn_list"><aside class="declaration">var </aside>mob_spawn_list
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L10">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 10"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 11"/></a></h3>
         <p>Weighted list of mobs that can spawn in the area.</p><h3 id="var/open_turf_types"><aside class="declaration">var </aside>open_turf_types
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L4">
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L4">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 4"/></a></h3>
         <p>Weighted list of the types that spawns if the turf is open</p><h3 id="var/smoothing_iterations"><aside class="declaration">var </aside>smoothing_iterations
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L31">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 31"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 32"/></a></h3>
         <p>Amount of smoothing iterations</p><h3 id="var/string_gen"><aside class="declaration">var </aside>string_gen
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/55733c4325eeb7e962354ea99936ab394a5d5904/code/datums/mapgen/CaveGenerator.dm#L26">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 26"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/81d641ecd22504de57ba04399ada50fed42f3343/code/datums/mapgen/CaveGenerator.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;mapgen&#x2F;CaveGenerator.dm 27"/></a></h3>
         <p>Unique ID for this spawner</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/55733c4325eeb7e962354ea99936ab394a5d5904">55733c4</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/81d641ecd22504de57ba04399ada50fed42f3343">81d641e</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
