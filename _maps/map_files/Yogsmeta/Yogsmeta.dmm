@@ -53563,17 +53563,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"ecT" = (
-/obj/structure/table/wood,
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = -6;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "edk" = (
 /obj/machinery/door/airlock/external{
 	name = "Transport Airlock"
@@ -56897,6 +56886,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"gfX" = (
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "ggu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -72606,6 +72599,17 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"qfU" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_x = -32;
+	pixel_y = -29
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "qgv" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -77868,6 +77872,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"tFM" = (
+/obj/machinery/light/small,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "tFP" = (
 /obj/machinery/button/door{
 	id = "Disposal Exit";
@@ -83377,11 +83393,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"xsG" = (
-/obj/machinery/light/small,
-/obj/machinery/vending/wardrobe/sig_wardrobe,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "xsR" = (
 /obj/effect/landmark/start/medical_doctor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -83766,16 +83777,6 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/aisat)
-"xEu" = (
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Telecomms Admin";
-	departmentType = 5;
-	name = "Telecomms RC";
-	pixel_y = -30
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "xFu" = (
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -138574,7 +138575,7 @@ btL
 xnA
 nzX
 agH
-ecT
+bRN
 bCD
 bEf
 dLu
@@ -138831,7 +138832,7 @@ btL
 pea
 bfH
 wXx
-bRN
+qfU
 bCE
 bGd
 bGd
@@ -139088,7 +139089,7 @@ btL
 uHr
 bxq
 pHt
-xsG
+tFM
 bCD
 rIV
 tMB
@@ -139345,7 +139346,7 @@ btL
 nPX
 bxq
 fmK
-xEu
+gfX
 bCD
 bCE
 bCD
