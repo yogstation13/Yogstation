@@ -57407,7 +57407,7 @@
 	},
 /obj/machinery/advanced_airlock_controller{
 	dir = 4;
-	pixel_x = -26
+	pixel_x = -24
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
@@ -63107,7 +63107,7 @@
 "kpw" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 8;
-	pixel_x = 25
+	pixel_x = 24
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -66583,12 +66583,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"mFK" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/maintenance/starboard/fore)
 "mGy" = (
 /obj/machinery/light{
 	dir = 1
@@ -119806,7 +119800,7 @@ aUM
 aqU
 dnh
 dnh
-mFK
+dnh
 bfN
 bfN
 aSE
