@@ -795,7 +795,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	attack_verb = list("slapped")
 	hitsound = 'sound/effects/snap.ogg'
 
-/obj/item/slapper/attack(mob/living/M, mob/living/carbon/human/user)
+/obj/item/slapper/attack(mob/living/living/M, mob/living/carbon/human/user)
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
 		if(L && L.dna && L.dna.species)
