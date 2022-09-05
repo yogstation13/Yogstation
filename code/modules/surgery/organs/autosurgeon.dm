@@ -108,8 +108,7 @@
 	var/atom/drop_loc = user.drop_location()
 	if(!storedorgan)
 		return
-	for(var/J in src)
-		var/atom/movable/AM = J
+	for(var/atom/movable/AM in src)
 		AM.forceMove(drop_loc)
 	if(!istype(I, /obj/item/organ/cyberimp/arm/syndie_mantis/l))
 		for(var/obj/item/organ/cyberimp/arm/syndie_mantis/R in drop_loc)
@@ -117,14 +116,12 @@
 		var/obj/item/organ/O = new /obj/item/organ/cyberimp/arm/syndie_mantis/l(src)
 		insert_organ(O)
 		to_chat(user, span_notice("You change the autosurgeon to target the left arm."))
-		return
-	if(istype(I, /obj/item/organ/cyberimp/arm/syndie_mantis/l))
+	else
 		for(var/obj/item/organ/cyberimp/arm/syndie_mantis/l/L in drop_loc)
 			L.Destroy()
 		var/obj/item/organ/O = new /obj/item/organ/cyberimp/arm/syndie_mantis(src)
 		insert_organ(O)
 		to_chat(user, span_notice("You change the autosurgeon to target the right arm."))
-		return
 
 /obj/item/autosurgeon/organ/syndicate/syndie_hammer
 	uses = 1
@@ -141,8 +138,7 @@
 	var/atom/drop_loc = user.drop_location()
 	if(!storedorgan)
 		return
-	for(var/J in src)
-		var/atom/movable/AM = J
+	for(var/atom/movable/AM in src)
 		AM.forceMove(drop_loc)
 	if(!istype(I, /obj/item/organ/cyberimp/arm/syndie_hammer/l))
 		for(var/obj/item/organ/cyberimp/arm/syndie_hammer/R in drop_loc)
@@ -150,14 +146,12 @@
 		var/obj/item/organ/O = new /obj/item/organ/cyberimp/arm/syndie_hammer/l(src)
 		insert_organ(O)
 		to_chat(user, span_notice("You change the autosurgeon to target the left arm."))
-		return
-	if(istype(I, /obj/item/organ/cyberimp/arm/syndie_hammer/l))
+	else
 		for(var/obj/item/organ/cyberimp/arm/syndie_hammer/l/L in drop_loc)
 			L.Destroy()
 		var/obj/item/organ/O = new /obj/item/organ/cyberimp/arm/syndie_hammer(src)
 		insert_organ(O)
 		to_chat(user, span_notice("You change the autosurgeon to target the right arm."))
-		return
 
 /obj/item/autosurgeon/nt_mantis
 	uses = 1
