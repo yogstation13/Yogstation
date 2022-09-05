@@ -113,11 +113,20 @@
 					if(0.1 to 0.14999)
 						value = 1
 					if(0.14999 to 0.19999)
-						value = 2
+						if(height >= 10 && width >= 10)
+							value = 2
+						else
+							value = 1
 					if(0.19999 to 0.29999)
-						value = 3
+						if(height >= 10 && width >= 10)
+							value = 3
+						else
+							value = 1
 					if(0.29999 to 1)
-						value = 4
+						if(height >= 10 && width >= 10)
+							value = 4
+						else
+							value = 1
 					else
 						value = 0
 			else
