@@ -6,6 +6,7 @@
  *		Spears
  *		CHAINSAWS
  *		Bone Axe and Spear
+  *		Vxtvul Hammer
  */
 
 /*##################################################################
@@ -962,3 +963,169 @@
 
 /obj/item/twohanded/bamboospear/update_icon()
 	icon_state = "bamboo_spear[wielded]"
+
+/*
+ * Vxtvul Hammer
+ */
+
+/obj/item/twohanded/vxtvulhammer
+	icon = 'icons/obj/weapons/misc.dmi'
+	icon_state = "vxtvul_hammer0-0"
+	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
+	name = "Vxtvul Hammer"
+	desc = "A relict sledgehammer with charge packs wired to two blast pads on its head. \
+			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
+	force = 4 //It's heavy as hell
+	force_wielded = 24 
+	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
+	throwforce = 18
+	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
+	sharpness = SHARP_NONE //Blunt, breaks bones
+	wound_bonus = -10
+	bare_wound_bonus = 15
+	max_integrity = 200
+	resistance_flags = ACID_PROOF | FIRE_PROOF
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BACK
+	actions_types = list(/datum/action/item_action/charge_hammer)
+	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
+	var/is_charging = 0
+	var/is_supercharged = 0
+
+/obj/item/twohanded/vxtvulhammer/Initialize() //For the sparks when you begin to charge it
+	. = ..()
+	spark_system = new
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+
+/obj/item/twohanded/vxtvulhammer/Destroy() //Even though the hammer won't probably be destroyed, Ever™
+	qdel(spark_system)
+	spark_system = null
+	return ..()
+
+/obj/item/twohanded/vxtvulhammer/update_icon()
+	icon_state = "vxtvul_hammer[wielded]-[is_supercharged]"
+
+/obj/item/twohanded/vxtvulhammer/examine(mob/living/carbon/user)
+	. = ..()
+	if(is_supercharged == 1)
+		. += "<b>Electric sparks</b> are bursting from the blast pads!"
+
+/obj/item/twohanded/vxtvulhammer/unwield(mob/living/carbon/user)
+	..()
+	if(is_supercharged == 1) //So you can't one-hand the charged hit
+		to_chat(user, span_notice("Your hammer loses its power as you adjust your grip."))
+		user.visible_message(span_warning("The sparks from [user]'s hammer suddenly stop!"))
+		supercharge(user)
+	if(is_charging == 1) //So you can't one-hand while charging
+		to_chat(user, span_notice("You flip the switch off as you adjust your grip."))
+		user.visible_message(span_warning("[user] flicks the hammer off!"))
+		is_charging = 0
+
+/obj/item/twohanded/vxtvulhammer/attack(atom/target, mob/living/carbon/user) //This doesn't consider objects, only people
+	if (is_charging == 1) //So you can't attack while charging
+		to_chat(user, span_notice("You flip the switch off before your attack."))
+		user.visible_message(span_warning("[user] flicks the hammer off and raises it!"))
+		is_charging = 0
+	..()
+
+/obj/item/twohanded/vxtvulhammer/AltClick(mob/living/carbon/user)
+	charge_hammer(user)
+
+/obj/item/twohanded/vxtvulhammer/proc/supercharge(mob/living/carbon/user) //Proc to handle when it's charged for light + sprite
+	if(is_supercharged == 0)
+		is_supercharged = 1
+		set_light(2) //Glows when charged
+	else
+		is_supercharged = 0
+		set_light(0)
+	update_icon()
+
+/obj/item/twohanded/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)
+	if(wielded == FALSE)
+		to_chat(user, span_warning("The hammer must be wielded in two hands in order to charge it!"))
+		return
+	if(is_supercharged == 1)
+		to_chat(user, span_warning("The hammer is already supercharged!"))
+	else
+		is_charging = 1
+		to_chat(user, span_notice("You begin charging the weapon, concentration flowing into it..."))
+		user.visible_message(span_warning("[user] flicks the hammer on, tilting their head down as if in thought."))
+		spark_system.start() //Generates sparks when you charge
+		if(!do_mob(user, user, 60)) //Should be six seconds
+			if(is_charging == 0) //So no duplicate messages
+				return
+			to_chat(user, span_notice("You flip the switch off as you lose your focus."))
+			user.visible_message(span_warning("[user]'s concentration breaks!"))
+			is_charging = 0
+		if(is_charging == 0) //No charging for you if you cheat
+			return
+		to_chat(user, span_notice("You complete charging the weapon."))
+		user.visible_message(span_warning("[user] looks up as their hammer begins to crackle and hum!"))
+		playsound(loc, 'sound/magic/lightningshock.ogg', 60, 1) //Mainly electric crack
+		playsound(loc, 'sound/effects/magic.ogg', 40, 1) //Reverb undertone
+		supercharge(user)
+		is_charging = 0
+
+/obj/item/twohanded/vxtvulhammer/afterattack(atom/target, mob/living/carbon/user, proximity) //Afterattack to properly be able to smack walls
+	. = ..()
+	if(!proximity)
+		return
+	if(is_charging == 1) //Needs a special snowflake check if you hit something that isn't a mob
+		if(istype(target, /obj/machinery) || istype(target, /obj/structure) || istype(target, /obj/mecha))
+			to_chat(user, span_notice("You flip the switch off after your blow."))
+			user.visible_message(span_warning("[user] flicks the hammer off after striking [target]!"))
+			is_charging = 0
+	if(is_supercharged == 1)
+		var/turf/target_turf = get_turf(target) //Does the nice effects first so whatever happens to what's about to get clapped doesn't affect it
+		var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
+		K.color = color
+		playsound(loc, 'sound/effects/gravhit.ogg', 80, 1) //Mainly this sound
+		playsound(loc, 'sound/effects/explosion3.ogg', 20, 1) //Bit of a reverb
+		supercharge(user) //At start so it doesn't give an unintentional message if you hit yourself
+		if(istype(target, /obj/machinery))
+			var/obj/machinery/M = target
+			M.take_damage(M.max_integrity*2) //Should destroy machines in one hit
+			if(istype(target, /obj/machinery/door))
+				for(var/obj/structure/door_assembly/D in target_turf) //Will destroy airlock assembly left behind, but drop the parts
+					D.take_damage(D.max_integrity*2)
+			else
+				for(var/obj/structure/frame/F in target_turf) //Will destroy machine or computer frame left behind, but drop the parts
+					F.take_damage(F.max_integrity*2)
+				for(var/obj/structure/light_construct/L in target_turf) //Also light frames because why not
+					L.take_damage(L.max_integrity*2)
+			user.visible_message(span_danger("The hammer thunders against the [target.name], demolishing it!"))
+		if(istype(target, /obj/structure))
+			var/obj/structure/S = target
+			S.take_damage(S.max_integrity*2) //Destroy structures in one hit too
+			if(istype(target, /obj/structure/table))
+				for(var/obj/structure/table_frame/T in target_turf)
+					T.take_damage(T.max_integrity*2) //Destroys table frames left behind
+			user.visible_message(span_danger("The hammer thunders against the [target.name], destroying it!"))
+		if(istype(target, /turf/closed/wall))
+			var/turf/closed/wall/W = target
+			W.dismantle_wall(1) //Deletes the wall but drop the materials, just like destroying a machine above
+			user.visible_message(span_danger("The hammer thunders against the [target.name], shattering it!"))
+			playsound(loc, 'sound/effects/meteorimpact.ogg', 50, 1) //Otherwise there's no sound for hitting the wall, since it's just dismantled
+		if(istype(target, /obj/mecha))
+			var/obj/mecha/M = target
+			M.take_damage(M.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
+			user.visible_message(span_danger("The hammer thunders as it massively dents the plating of the [target.name]!"))
+		if(istype(target, /mob/living))
+			var/atom/throw_target = get_edge_target_turf(target, user.dir)
+			var/mob/living/M = target
+			M.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
+			M.Paralyze(20) //Two second stun
+			user.visible_message(span_danger("The hammer thunders as it viscerally strikes [target.name]!"))
+			to_chat(M, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
+			M.emote("scream")
+
+/obj/item/twohanded/vxtvulhammer/pirate //Exact same but different text and sprites
+	icon_state = "vxtvul_hammer_pirate0-0"
+	name = "pirate Vxtvul Hammer"
+	desc = "A relict sledgehammer with charge packs wired to two blast pads on its head. This one has been defaced by Syndicate pirates. \
+			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
+
+/obj/item/twohanded/vxtvulhammer/pirate/update_icon()
+	icon_state = "vxtvul_hammer_pirate[wielded]-[is_supercharged]"
