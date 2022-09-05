@@ -39,7 +39,10 @@ export const MinesweeperContent = (props, context) => {
       textAlign="center">
       <b>DIFFICULTY: </b>{current_difficulty}
       <br />
-      <b>{emagged ? "Explode in the game, explode in real life!" : "Tickets: "}</b>{emagged ? "" : tickets}
+      <b>{emagged ? "Explode in the game, explode in real life!" : "Tickets: "}</b>
+      {emagged ? "" : tickets}
+      <b>{emagged ? "" : " Mines left: "}</b>
+      {emagged ? "" : current_mines-flags}
       <br />
       <br />
       <Box>

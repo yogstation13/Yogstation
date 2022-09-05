@@ -122,6 +122,7 @@
 				move_bombs(x,y) // The first selected tile will always be a blank one.
 			
 			current_mines = mines
+			flags = 0
 			
 			if(difficulty == MINESWEEPER_CUSTOM)
 				switch(mines/(height*width))
@@ -186,6 +187,8 @@
 			playsound(loc, 'yogstation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
 			generate_new_board(difficulty)
 			current_difficulty = diff_text(difficulty)
+			current_mines = mines
+			flags = 0
 			return TRUE
 		
 		if("PRG_difficulty")

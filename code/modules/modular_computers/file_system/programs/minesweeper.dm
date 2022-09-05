@@ -107,6 +107,7 @@
 				move_bombs(x,y) // The first selected tile will always be a blank one.
 
 			current_mines = mines
+			flags = 0
 
 			if(difficulty == MINESWEEPER_CUSTOM)
 				switch(mines/(height*width))
@@ -147,6 +148,7 @@
 			generate_new_board(difficulty)
 			current_difficulty = diff_text(difficulty)
 			current_mines = mines
+			flags = 0
 			return TRUE
 		
 		if("PRG_difficulty")
