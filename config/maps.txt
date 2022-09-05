@@ -28,7 +28,7 @@ endmap
 
 map yogsmeta
 	minplayers 25
-	votable
+	disabled
 endmap
 
 map yogsdelta
