@@ -1712,10 +1712,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
 	sharpness = SHARP_NONE
 	block_chance = 0
-	var/ranged_cooldown = 0 //shamelessly stolen from hostile mobs
-	var/ranged_cooldown_time = 40
-	var/projectiles_per_fire = 1
-	var/fauna_damage_bonus = 22
+	var/fauna_damage_bonus = 0
 	var/fauna_damage_type = BRUTE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
@@ -1733,8 +1730,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
 		sharpness = SHARP_POINTY
 		w_class = w_class_on
-		block_chance = 10
+		block_chance = 25
 		force = 8
+		fauna_damage_bonus = 52
 
 /obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
 	if(wielded)
