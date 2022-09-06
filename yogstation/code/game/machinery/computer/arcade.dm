@@ -143,17 +143,17 @@
 						value = 1
 					if(0.14999 to 0.19999)
 						if(height >= 13 && width >= 13)
-							value = 3
+							value = 4
 						else
 							value = 1
 					if(0.19999 to 0.29999)
 						if(height >= 13 && width >= 13)
-							value = 6
+							value = 20
 						else
 							value = 1
 					if(0.29999 to 1)
 						if(height >= 13 && width >= 13)
-							value = 7
+							value = 25
 						else
 							value = 2
 					else
@@ -163,9 +163,9 @@
 					if(MINESWEEPER_BEGINNER)
 						value = 1
 					if(MINESWEEPER_INTERMEDIATE)
-						value = 3
+						value = 4
 					if(MINESWEEPER_EXPERT)
-						value = 6
+						value = 20
 
 			var/result = select_square(x,y)
 			game_status = result
