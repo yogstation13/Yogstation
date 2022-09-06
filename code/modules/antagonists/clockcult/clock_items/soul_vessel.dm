@@ -58,7 +58,7 @@
 		to_chat(user, span_warning("[src] doesn't have a soul in it!"))
 		return
 	to_chat(user, span_brass("You begin shaping a form for the soul from [src]..."))
-	if(!do_after(user, 4 SECONDS, src, extra_checks))
+	if(!do_after(user, 4 SECONDS, src))
 		return
 	if(QDELETED(brainmob) || QDELETED(src) || !brainmob.key)
 		return
