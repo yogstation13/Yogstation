@@ -111,27 +111,13 @@
 	if(modifiers["shift"])
 		A.examine(src)
 		return
-	if(modifiers["alt"] && istype(A, /turf/closed/wall/clockwork))
-		superheat_wall(A)
-		return
-	if(modifiers["middle"] || modifiers["ctrl"])
+	if(modifiers["ctrl"])
 		issue_command(A)
 		return
-	if(GLOB.ark_of_the_clockwork_justiciar == A)
-		var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar
-		if(G.recalling)
-			return
-		if(!G.recalls_remaining)
-			to_chat(src, span_warning("The Ark can no longer recall!"))
-			return
-		if(alert(src, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(src) || QDELETED(G) || !G.obj_integrity)
-			return
-		G.initiate_mass_recall() //wHOOPS LOOKS LIKE A HULK GOT THROUGH
-	else if(istype(A, /obj/structure/destructible/clockwork/trap/trigger))
-		var/obj/structure/destructible/clockwork/trap/trigger/T = A
-		T.visible_message(span_danger("[T] clunks as it's activated remotely."))
-		to_chat(src, span_brass("You activate [T]."))
-		T.activate()
+	A.attack_eminence(src, params)
+
+/atom/proc/attack_eminence(mob/camera/eminence/user, params)
+	return
 
 /mob/camera/eminence/ratvar_act()
 	name = "\improper Radiance"
