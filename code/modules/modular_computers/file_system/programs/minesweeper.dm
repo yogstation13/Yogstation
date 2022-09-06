@@ -27,6 +27,9 @@
 	var/value = MINESWEEPER_BEGINNER
 	var/current_difficulty = "Beginner"
 
+	var/starting_time = 0
+	var/time_frozen = 0
+
 	var/custom_height = 10
 	var/custom_width = 10
 	var/custom_mines = 10
@@ -61,6 +64,8 @@
 	data["custom_height"] = custom_height
 	data["custom_width"] = custom_width
 	data["custom_mines"] = custom_mines
+	var/display_time = (time_frozen ? time_frozen : REALTIMEOFDAY - starting_time) / 10
+	data["time_string"] = starting_time ? "[add_leading(num2text(FLOOR(display_time / 60,1)), 2, "0")]:[add_leading(num2text(display_time % 60), 2, "0")]" : "00:00"
 
 	return data
 
@@ -105,11 +110,14 @@
 				current_difficulty = diff_text(difficulty)
 				current_mines = mines
 				flags = 0
+				time_frozen = 0
 
 			if(width * height == tiles_left)
 				current_mines = mines
 				if(!is_blank_tile_start(x,y))
 					move_bombs(x,y) // The first selected tile will always be a blank one.
+				time_frozen = 0
+				starting_time = REALTIMEOFDAY
 
 			if(difficulty == MINESWEEPER_CUSTOM)
 				switch(mines/(height*width))
@@ -140,6 +148,9 @@
 			if(result == MINESWEEPER_VICTORY)
 				computer.play_computer_sound('yogstation/sound/arcade/minesweeper_win.ogg', 50, 0)
 				ticket_count += value
+			
+			if(result)
+				time_frozen = REALTIMEOFDAY - starting_time
 
 			return TRUE
 		
@@ -149,6 +160,7 @@
 			current_difficulty = diff_text(difficulty)
 			current_mines = mines
 			flags = 0
+			starting_time = 0
 			return TRUE
 		
 		if("PRG_difficulty")
@@ -202,10 +214,10 @@
 		if("PRG_tickets")
 			computer.play_computer_sound('yogstation/sound/arcade/minesweeper_boardpress.ogg', 50, 0)
 			if(!printer)
-				to_chat(user, span_notice("Hardware error: A printer is required to redeem tickets."))
+				computer.visible_message(span_notice("Hardware error: A printer is required to redeem tickets."))
 				return
 			if(printer.stored_paper <= 0)
-				to_chat(user, span_notice("Hardware error: Printer is out of paper."))
+				computer.visible_message(span_notice("Hardware error: Printer is out of paper."))
 				return
 			else
 				computer.visible_message(span_notice("\The [computer] prints out paper."))
@@ -235,15 +247,19 @@
 			width = 30
 			height = 16
 			mines = 99
+		if(MINESWEEPER_CUSTOM)
+			width = custom_width
+			height = custom_height
+			mines = custom_mines
 	
 	tiles_left = width * height
 
 	mines = min(FLOOR(tiles_left/2,1), mines) // Crash protection
 	
 	for(var/i=1, i<mines+1, i++) // Set up mines
-		var/mine_spot = list(rand(0,height-1),rand(0,width-1))
+		var/mine_spot = list(rand(0,width-1),rand(0,height-1))
 		while(find_in_mines(mine_spot)) // There's already a mine here! Choose another spot
-			mine_spot = list(rand(0,height-1),rand(0,width-1))
+			mine_spot = list(rand(0,width-1),rand(0,height-1))
 		mine_spots += list(mine_spot)
 	
 	for(var/y=1, y<height+1, y++) // Set all squares to be hidden
@@ -277,7 +293,7 @@
 				continue
 			if(scanx == 0 && scany == 0) // We know we aren't a mine
 				continue
-			if(board_data[scanx+x][scany+y] != "minesweeper_hidden.png")
+			if(board_data[scanx+x][scany+y] != "minesweeper_hidden.png" && board_data[scanx+x][scany+y] != "minesweeper_flag.png")
 				continue
 			if(find_in_mines(list(scanx+x-1,scany+y-1)))
 				mine_count++

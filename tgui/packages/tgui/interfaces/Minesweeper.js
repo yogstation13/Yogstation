@@ -31,6 +31,7 @@ export const MinesweeperContent = (props, context) => {
     custom_mines,
     flags,
     current_mines,
+    time_string,
   } = data;
   return (
     <Section
@@ -43,6 +44,8 @@ export const MinesweeperContent = (props, context) => {
       {emagged ? "" : tickets}
       <b>{emagged ? "" : " Mines left: "}</b>
       {emagged ? "" : current_mines-flags}
+      <b>{emagged ? "" : " Time: "}</b>
+      {emagged ? "" : time_string}
       <br />
       <br />
       <Box>

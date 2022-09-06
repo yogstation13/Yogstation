@@ -22,6 +22,9 @@
 	var/value = MINESWEEPER_BEGINNER
 	var/current_difficulty = "Beginner"
 
+	var/starting_time = 0
+	var/time_frozen = 0
+
 	var/custom_height = 10
 	var/custom_width = 10
 	var/custom_mines = 10
@@ -79,6 +82,8 @@
 	data["custom_height"] = custom_height
 	data["custom_width"] = custom_width
 	data["custom_mines"] = custom_mines
+	var/display_time = (time_frozen ? time_frozen : REALTIMEOFDAY - starting_time) / 10
+	data["time_string"] = starting_time ? "[add_leading(num2text(FLOOR(display_time / 60,1)), 2, "0")]:[add_leading(num2text(display_time % 60), 2, "0")]" : "00:00"
 	
 	return data
 
@@ -120,11 +125,14 @@
 				current_difficulty = diff_text(difficulty)
 				current_mines = mines
 				flags = 0
+				time_frozen = 0
 
 			if(width * height == tiles_left)
 				current_mines = mines
 				if(!is_blank_tile_start(x,y))
 					move_bombs(x,y) // The first selected tile will always be a blank one.
+				time_frozen = 0
+				starting_time = REALTIMEOFDAY
 			
 			if(difficulty == MINESWEEPER_CUSTOM)
 				switch(mines/(height*width))
@@ -180,6 +188,9 @@
 				// One crossed wire, one wayward pinch of potassium chlorate, ONE ERRANT TWITCH
 				// AND
 				KABLOOEY()
+			
+			if(result)
+				time_frozen = REALTIMEOFDAY - starting_time
 
 			return TRUE
 		
@@ -189,6 +200,7 @@
 			current_difficulty = diff_text(difficulty)
 			current_mines = mines
 			flags = 0
+			starting_time = 0
 			return TRUE
 		
 		if("PRG_difficulty")
