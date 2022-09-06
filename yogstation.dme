@@ -1515,6 +1515,7 @@
 #include "code\modules\antagonists\clockcult\clock_items\clock_weapons\longsword.dm"
 #include "code\modules\antagonists\clockcult\clock_items\clock_weapons\ratvarian_spear.dm"
 #include "code\modules\antagonists\clockcult\clock_mobs\_eminence.dm"
+#include "code\modules\antagonists\clockcult\clock_mobs\anima_fragment.dm"
 #include "code\modules\antagonists\clockcult\clock_mobs\clockwork_marauder.dm"
 #include "code\modules\antagonists\clockcult\clock_scriptures\scripture_applications.dm"
 #include "code\modules\antagonists\clockcult\clock_scriptures\scripture_cyborg.dm"

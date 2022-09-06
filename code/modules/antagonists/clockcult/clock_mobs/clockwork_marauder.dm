@@ -15,6 +15,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	attacktext = "slashes"
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	weather_immunities = list("lava")
 	movement_type = FLYING

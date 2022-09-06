@@ -31,7 +31,7 @@
 	..()
 	add_servant_of_ratvar(src, TRUE)
 	to_chat(src, playstyle_string)
-	if(GLOB.ratvar_approaches)
+	if(GLOB.ratvar_approaches && empower_string)
 		to_chat(src, empower_string)
 
 /mob/living/simple_animal/hostile/clockwork/ratvar_act()

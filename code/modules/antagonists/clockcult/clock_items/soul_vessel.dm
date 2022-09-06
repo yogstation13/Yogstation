@@ -52,12 +52,30 @@
 	if(!is_servant_of_ratvar(user))
 		to_chat(user, span_warning("You fiddle around with [src], to no avail."))
 		return FALSE
-	..()
+	if(QDELETED(brainmob))
+		return
+	if(!brainmob.key)
+		to_chat(user, span_warning("[src] doesn't have a soul in it!"))
+		return
+	to_chat(user, span_brass("You begin shaping a form for the soul from [src]..."))
+	if(!do_after(user, 4 SECONDS, src, extra_checks))
+		return
+	if(QDELETED(brainmob) || QDELETED(src) || !brainmob.key)
+		return
+	var/mob/living/simple_animal/hostile/clockwork/anima_fragment/body = new /mob/living/simple_animal/hostile/clockwork/anima_fragment (get_turf(src))
+	if(!body)
+		return
+	if(brainmob.mind)
+		brainmob.mind.transfer_to(body)
+	else
+		body.key = brainmob.key
+	body.visible_message(span_warning("[body] suddenly emerges from [src]!"), \
+	span_brass("You emerge from [src], in a new body."))
+	qdel(src)
 
 /obj/item/mmi/posibrain/soul_vessel/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!is_servant_of_ratvar(user) || !ishuman(target))
-		..()
-		return
+		return ..()
 	if(QDELETED(brainmob))
 		return
 	if(brainmob.key)
