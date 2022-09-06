@@ -348,6 +348,19 @@
 		return
 	if(default_deconstruction_crowbar(I))
 		return
+	if(panel_open && user.a_intent != INTENT_HARM)
+		if(HAS_TRAIT(I, TRAIT_NODROP)
+			to_chat(user, span_notice("[I] is stuck to your hand!"))
+			return
+		I.forceMove(src) // Force it out of our hands so we can put the old cell in it
+		if(istype(I, /obj/item/stock_parts/cell))
+			if(!user.put_in_hands(cell))
+				cell.forceMove(get_turf(src))
+			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
+			I.moveToNullspace() // Now get out of contents
+			cell = I // Set the cell
+			component_parts += I // Add new cell
+		return
 	if(istype(I, /obj/item/reagent_containers) && !(I.item_flags & ABSTRACT) && I.is_open_container())
 		var/obj/item/reagent_containers/B = I
 		. = TRUE //no afterattack
