@@ -153,7 +153,7 @@
 					soul_vessel.brainmob = new (soul_vessel)
 				L.mind.transfer_to(soul_vessel.brainmob)
 		for(var/obj/item/I in L) //drops all items
-				L.unequip_everything(I)
+			L.unequip_everything(I)
 		L.visible_message(span_brass("In a bright flash of light, [L]'s mortal body is turned to dust!"), \
 				span_brass("In a bright flash of light, [L]'s mortal body is turned to dust!"))
 		L.dust()
