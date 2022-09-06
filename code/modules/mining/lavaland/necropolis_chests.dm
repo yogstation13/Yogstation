@@ -1741,6 +1741,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		w_class = initial(w_class)
 		force = initial(force)
 		block_chance = initial(block_chance)
+		fauna_damage_bonus = initial(fauna_damage_bonus)
 	. = ..()
 
 /obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
