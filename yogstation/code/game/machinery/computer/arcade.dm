@@ -117,12 +117,14 @@
 
 			if(current_difficulty != diff_text(difficulty))
 				generate_new_board(difficulty)
+				current_difficulty = diff_text(difficulty)
+				current_mines = mines
+				flags = 0
 
-			if(width * height == tiles_left && !is_blank_tile_start(x,y))
-				move_bombs(x,y) // The first selected tile will always be a blank one.
-			
-			current_mines = mines
-			flags = 0
+			if(width * height == tiles_left)
+				current_mines = mines
+				if(!is_blank_tile_start(x,y))
+					move_bombs(x,y) // The first selected tile will always be a blank one.
 			
 			if(difficulty == MINESWEEPER_CUSTOM)
 				switch(mines/(height*width))
@@ -147,8 +149,6 @@
 						value = 0
 			else
 				value = difficulty
-
-			current_difficulty = diff_text(difficulty)
 
 			var/result = select_square(x,y)
 			game_status = result
