@@ -349,7 +349,7 @@
 	if(default_deconstruction_crowbar(I))
 		return
 	if(panel_open && user.a_intent != INTENT_HARM)
-		if(HAS_TRAIT(I, TRAIT_NODROP)
+		if(HAS_TRAIT(I, TRAIT_NODROP))
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
 		I.forceMove(src) // Force it out of our hands so we can put the old cell in it
