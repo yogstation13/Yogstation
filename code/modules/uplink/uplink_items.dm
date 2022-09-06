@@ -1885,9 +1885,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/mantis
 	name = "G.O.R.L.E.X. Mantis Blade"
-	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing. Two blades can be used at once. \
-			Implant targets right arm. Tweak setting with a careful touch to change which arm the autosurgeon targets."
-	item = /obj/item/autosurgeon/organ/syndicate/syndie_mantis
+	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing. Two blades can be used at once."
+	item = /obj/item/autosurgeon/arm/syndicate/syndie_mantis
 	cost = 7
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
@@ -1988,12 +1987,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/race_restricted/hammerimplant
 	name = "Vxtvul Hammer Implant"
 	desc = "An implant which will fold a Vxtvul hammer into your chassis upon injection. \
-			Implant targets right arm. Tweak setting with a careful touch to change which arm the autosurgeon targets. \
 			This hammer can be retracted and wielded in two hands as an effective armor-piercing weapon. \
 			It can be charged by the user's concentration, which permits a single blow that will decimate construction, \
 			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
 	cost = 16
-	item = /obj/item/autosurgeon/organ/syndicate/syndie_hammer
+	item = /obj/item/autosurgeon/arm/syndicate/syndie_hammer
 	restricted_species = list("preternis")
 
 /datum/uplink_item/race_restricted/killertomatos

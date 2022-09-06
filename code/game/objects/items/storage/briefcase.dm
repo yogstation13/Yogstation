@@ -53,4 +53,4 @@
 /obj/item/storage/briefcase/nt_mantis/PopulateContents()
 	..()
 	new /obj/item/autosurgeon/nt_mantis(src)
-	new /obj/item/autosurgeon/nt_mantis/l(src)
+	new /obj/item/autosurgeon/nt_mantis/left(src)

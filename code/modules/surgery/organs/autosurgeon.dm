@@ -99,67 +99,47 @@
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
 
-/obj/item/autosurgeon/organ/syndicate/syndie_mantis
+/obj/item/autosurgeon/arm
+	organ_type = /obj/item/organ/cyberimp/arm //Technically means they can be meta'd by trying to put a normal organ in them and having it return no special text
+
+/obj/item/autosurgeon/arm/examine(mob/user)
+	. = ..()
+	if(storedorgan) //So the extra text that distinguishes it from a normal autosurgeon doesn't appear if it's used up
+		. += "This autosurgeon can switch which arm it will install the implant into with ALT + CLICK."
+
+/obj/item/autosurgeon/arm/AltClick(mob/user) //Basically runs screwdriver_act on the implant inside
+	if(storedorgan)
+		var/obj/item/organ/cyberimp/arm/implant = storedorgan
+		if(implant.zone == BODY_ZONE_R_ARM)
+			implant.zone = BODY_ZONE_L_ARM
+			to_chat(user, span_notice("You change the autosurgeon to target the left arm."))
+		else
+			implant.zone = BODY_ZONE_R_ARM
+			to_chat(user, span_notice("You change the autosurgeon to target the right arm."))
+		implant.SetSlotFromZone()
+		implant.update_icon() //If for whatever reason, the implant is removed from the autosurgeon after it's switched
+
+/obj/item/autosurgeon/arm/syndicate/syndie_mantis
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis
 
-/obj/item/autosurgeon/organ/syndicate/syndie_mantis/AltClick(mob/living/user) //Basically this combines screwdriver with an insert_organ proc because I can't be assed
-	var/obj/item/I = storedorgan
-	var/atom/drop_loc = user.drop_location()
-	if(!storedorgan)
-		return
-	for(var/atom/movable/AM in src)
-		AM.forceMove(drop_loc)
-	if(!istype(I, /obj/item/organ/cyberimp/arm/syndie_mantis/l))
-		for(var/obj/item/organ/cyberimp/arm/syndie_mantis/R in drop_loc)
-			R.Destroy()
-		var/obj/item/organ/O = new /obj/item/organ/cyberimp/arm/syndie_mantis/l(src)
-		insert_organ(O)
-		to_chat(user, span_notice("You change the autosurgeon to target the left arm."))
-	else
-		for(var/obj/item/organ/cyberimp/arm/syndie_mantis/l/L in drop_loc)
-			L.Destroy()
-		var/obj/item/organ/O = new /obj/item/organ/cyberimp/arm/syndie_mantis(src)
-		insert_organ(O)
-		to_chat(user, span_notice("You change the autosurgeon to target the right arm."))
-
-/obj/item/autosurgeon/organ/syndicate/syndie_hammer
+/obj/item/autosurgeon/arm/syndicate/syndie_hammer
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/syndie_hammer
 
-/obj/item/autosurgeon/organ/syndicate/syndie_hammer/attack_self(mob/user) //Preternis-only implant (if you don't manually remove the implant)
+/obj/item/autosurgeon/arm/syndicate/syndie_hammer/attack_self(mob/user) //Preternis-only implant (if you don't manually remove the implant)
 	if(!ispreternis(user))
 		to_chat(user, span_warning("The autosurgeon rejects your body!"))
 		return
 	..()
 
-/obj/item/autosurgeon/organ/syndicate/syndie_hammer/AltClick(mob/living/user) //See mantis code
-	var/obj/item/I = storedorgan
-	var/atom/drop_loc = user.drop_location()
-	if(!storedorgan)
-		return
-	for(var/atom/movable/AM in src)
-		AM.forceMove(drop_loc)
-	if(!istype(I, /obj/item/organ/cyberimp/arm/syndie_hammer/l))
-		for(var/obj/item/organ/cyberimp/arm/syndie_hammer/R in drop_loc)
-			R.Destroy()
-		var/obj/item/organ/O = new /obj/item/organ/cyberimp/arm/syndie_hammer/l(src)
-		insert_organ(O)
-		to_chat(user, span_notice("You change the autosurgeon to target the left arm."))
-	else
-		for(var/obj/item/organ/cyberimp/arm/syndie_hammer/l/L in drop_loc)
-			L.Destroy()
-		var/obj/item/organ/O = new /obj/item/organ/cyberimp/arm/syndie_hammer(src)
-		insert_organ(O)
-		to_chat(user, span_notice("You change the autosurgeon to target the right arm."))
-
 /obj/item/autosurgeon/nt_mantis
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis
 
-/obj/item/autosurgeon/nt_mantis/l
+/obj/item/autosurgeon/nt_mantis/left
 	uses = 1
-	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis/l
+	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis/left
 
 /obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	uses = 3

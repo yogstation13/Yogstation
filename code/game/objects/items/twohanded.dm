@@ -1004,7 +1004,7 @@
 	return ..()
 
 /obj/item/twohanded/vxtvulhammer/update_icon()
-	icon_state = "vxtvul_hammer[wielded]-[supercharged ? 1 : 0]"
+	icon_state = "vxtvul_hammer[wielded]-[supercharged]"
 
 /obj/item/twohanded/vxtvulhammer/examine(mob/living/carbon/user)
 	. = ..()
@@ -1027,7 +1027,7 @@
 		to_chat(user, span_notice("You flip the switch off before your attack."))
 		user.visible_message(span_warning("[user] flicks the hammer off and raises it!"))
 		charging = FALSE
-	..()
+	return ..()
 
 /obj/item/twohanded/vxtvulhammer/AltClick(mob/living/carbon/user)
 	charge_hammer(user)
@@ -1041,7 +1041,7 @@
 	update_icon()
 
 /obj/item/twohanded/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)
-	if(wielded == FALSE)
+	if(!wielded)
 		to_chat(user, span_warning("The hammer must be wielded in two hands in order to charge it!"))
 		return
 	if(supercharged)
@@ -1070,6 +1070,8 @@
 	. = ..()
 	if(!proximity)
 		return
+	if(isfloorturf(target)) //So you don't just lose your supercharge if you miss and wack the floor. No I will NOT let people space with this thing
+		return
 	if(charging) //Needs a special snowflake check if you hit something that isn't a mob
 		if(ismachinery(target) || isstructure(target) || ismecha(target))
 			to_chat(user, span_notice("You flip the switch off after your blow."))
@@ -1083,41 +1085,41 @@
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
 		if(ismachinery(target))
-			var/obj/machinery/M = target
-			M.take_damage(M.max_integrity * 2) //Should destroy machines in one hit
+			var/obj/machinery/machine = target
+			machine.take_damage(machine.max_integrity * 2) //Should destroy machines in one hit
 			if(istype(target, /obj/machinery/door))
-				for(var/obj/structure/door_assembly/D in target_turf) //Will destroy airlock assembly left behind, but drop the parts
-					D.take_damage(D.max_integrity * 2)
+				for(var/obj/structure/door_assembly/door in target_turf) //Will destroy airlock assembly left behind, but drop the parts
+					door.take_damage(door.max_integrity * 2)
 			else
-				for(var/obj/structure/frame/F in target_turf) //Will destroy machine or computer frame left behind, but drop the parts
-					F.take_damage(F.max_integrity * 2)
-				for(var/obj/structure/light_construct/L in target_turf) //Also light frames because why not
-					L.take_damage(L.max_integrity * 2)
+				for(var/obj/structure/frame/base in target_turf) //Will destroy machine or computer frame left behind, but drop the parts
+					base.take_damage(base.max_integrity * 2)
+				for(var/obj/structure/light_construct/light in target_turf) //Also light frames because why not
+					light.take_damage(light.max_integrity * 2)
 			user.visible_message(span_danger("The hammer thunders against the [target.name], demolishing it!"))
 		if(isstructure(target))
-			var/obj/structure/S = target
-			S.take_damage(S.max_integrity * 2) //Destroy structures in one hit too
+			var/obj/structure/struct = target
+			struct.take_damage(struct.max_integrity * 2) //Destroy structures in one hit too
 			if(istype(target, /obj/structure/table))
-				for(var/obj/structure/table_frame/T in target_turf)
-					T.take_damage(T.max_integrity * 2) //Destroys table frames left behind
+				for(var/obj/structure/table_frame/platform in target_turf)
+					platform.take_damage(platform.max_integrity * 2) //Destroys table frames left behind
 			user.visible_message(span_danger("The hammer thunders against the [target.name], destroying it!"))
 		if(iswallturf(target))
-			var/turf/closed/wall/W = target
-			W.dismantle_wall(1) //Deletes the wall but drop the materials, just like destroying a machine above
+			var/turf/closed/wall/fort = target
+			fort.dismantle_wall(1) //Deletes the wall but drop the materials, just like destroying a machine above
 			user.visible_message(span_danger("The hammer thunders against the [target.name], shattering it!"))
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 50, TRUE) //Otherwise there's no sound for hitting the wall, since it's just dismantled
 		if(ismecha(target))
-			var/obj/mecha/M = target
-			M.take_damage(M.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
+			var/obj/mecha/mech = target
+			mech.take_damage(mech.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
 			user.visible_message(span_danger("The hammer thunders as it massively dents the plating of the [target.name]!"))
 		if(isliving(target))
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
-			var/mob/living/M = target
-			M.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
-			M.Paralyze(2 SECONDS)
+			var/mob/living/victim = target
+			victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
+			victim.Paralyze(2 SECONDS)
 			user.visible_message(span_danger("The hammer thunders as it viscerally strikes [target.name]!"))
-			to_chat(M, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
-			M.emote("scream")
+			to_chat(victim, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
+			victim.emote("scream")
 
 /obj/item/twohanded/vxtvulhammer/pirate //Exact same but different text and sprites
 	icon_state = "vxtvul_hammer_pirate0-0"
@@ -1126,4 +1128,4 @@
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 
 /obj/item/twohanded/vxtvulhammer/pirate/update_icon()
-	icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged ? 1 : 0]"
+	icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
