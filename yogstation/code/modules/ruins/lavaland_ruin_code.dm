@@ -69,7 +69,7 @@
 /obj/effect/mob_spawn/human/gasstation_clerk
 	name = "Gas Station Clerk"
 	short_desc = "You are a gas station clerk."
-	flavour_text = "While working a standard shift on some backwater colony, you felt a sudden splurge of nausea as the alarm for a bluespace translocation cut off abruptly. Calling corporate, they instruct you to continue business with any locals or passerbys. While they permit you to explore the planet, you are not to leave the planet unless the gas station is destroyed. If a hostile individual attempts to destroy the store or steal its goods, you have been given clearance to stop them any means necessary."
+	flavour_text = "While working a standard shift on some backwater colony, you felt a sudden splurge of nausea as the alarm for a bluespace translocation cut off abruptly. Calling corporate, they instruct you to continue business with any locals or passerbys. While they permit you to explore the planet, you are not to leave the planet unless the gas station is destroyed. If a hostile individual attempts to destroy the store or steal its goods, you have been given clearance to stop them by any means necessary."
 	roundstart = FALSE
 	death = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
