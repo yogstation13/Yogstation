@@ -55,8 +55,25 @@
 		playsound(user, 'sound/weapons/blade1.ogg', 50, 1)
 		target.emag_act(user)
 
-/obj/item/energy_katana/pickup(mob/living/user)
+/obj/item/energy_katana/pickup(mob/living/carbon/human/user)
 	. = ..()
+	if(!is_ninja(user)) //stolen directly from the bloody bastard sword
+		if(HAS_TRAIT (user, TRAIT_SHOCKIMMUNE))
+			to_chat(user, span_warning("[src] attempts to shock you."))
+			user.electrocute_act(15,src)
+			return
+		if(user.gloves)
+			if(!user.gloves.siemens_coefficient)
+				to_chat(user, span_warning("[src] attempts to shock you."))
+				user.electrocute_act(15,src)
+				return
+		else
+			to_chat(user, span_userdanger("[src] shocks you!"))
+			user.emote("scream")
+			user.electrocute_act(15,src)
+			user.dropItemToGround(src, TRUE)
+			user.Paralyze(50)
+			return
 	jaunt.Grant(user, src)
 	user.update_icons()
 	playsound(src, 'sound/items/unsheath.ogg', 25, 1)

@@ -35,7 +35,7 @@
 	return ..()
 
 /obj/machinery/computer/cargo/express/attackby(obj/item/W, mob/living/user, params)
-	if((istype(W, /obj/item/card/id) || istype(W, /obj/item/pda)) && allowed(user))
+	if(W.GetID() && allowed(user))
 		locked = !locked
 		to_chat(user, span_notice("You [locked ? "lock" : "unlock"] the interface."))
 		return
