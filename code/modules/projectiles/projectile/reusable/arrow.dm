@@ -143,10 +143,10 @@
 		M.adjust_fire_stacks(1)
 		M.IgniteMob()
 
-/obj/item/projectile/energy/arrow //Hardlight projectile. Slightly more robust than a standard laser. Capable of hardening in target's flesh
+/obj/item/projectile/energy/arrow //Hardlight projectile. Significantly more robust than a standard laser. Capable of hardening in target's flesh
 	name = "energy bolt"
 	icon_state = "arrow_energy"
-	damage = 25
+	damage = 32
 	damage_type = BURN
 	var/embed_chance = 0.4
 	var/obj/item/embed_type = /obj/item/ammo_casing/caseless/arrow/energy
@@ -159,20 +159,20 @@
 		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)))
 			embede.embed_object(new embed_type(), part, FALSE)
 
-/obj/item/projectile/energy/arrow/disabler //Hardlight projectile. Forceful impact makes the impact more draining than a standard disabler. Needs to be competitive in DPS
+/obj/item/projectile/energy/arrow/disabler //Hardlight projectile. Much more draining than a standard disabler. Needs to be competitive in DPS
 	name = "disabler bolt"
 	icon_state = "arrow_disable"
 	light_color = LIGHT_COLOR_BLUE
-	damage = 40
+	damage = 48
 	damage_type = STAMINA
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/disabler
 
-/obj/item/projectile/energy/arrow/xray //Slightly weakened arrow capable of passing through material; also irradiates targets moderately
+/obj/item/projectile/energy/arrow/xray //Hardlight projectile. Weakened arrow capable of passing through material. Massive irradiation on hit.
 	name = "X-ray bolt"
 	icon_state = "arrow_xray"
 	light_color = LIGHT_COLOR_GREEN
-	damage = 15
-	irradiate = 300
+	damage = 25
+	irradiate = 500
 	range = 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/xray
