@@ -349,7 +349,7 @@
 	if(default_deconstruction_crowbar(I))
 		return
 	if(panel_open && user.a_intent != INTENT_HARM)
-		if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 			return // Feedback in proc
 		if(HAS_TRAIT(I, TRAIT_NODROP))
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
