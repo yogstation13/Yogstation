@@ -132,12 +132,12 @@
 						else
 							value = 1
 					if(0.19999 to 0.29999)
-						if(height >= 13 && width >= 13)
+						if(height >= 13 && width >= 25)
 							value = 20
 						else
 							value = 1
 					if(0.29999 to 1)
-						if(height >= 13 && width >= 13)
+						if(height >= 13 && width >= 25)
 							value = 25
 						else
 							value = 2
