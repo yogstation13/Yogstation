@@ -22,7 +22,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	burnmod = 0.8 //Made of a reflective material with a high melting point (plasteel)
 	coldmod = 0.8 //Computers like cold, but fleshy bits (and your lungs) don't
 	heatmod = 1.75 //Plasteel's a bad insulator, wear something to protect your insides
-	speedmod = 0.5 //Plasteel is heavy, but slowdown is brutal - here's a compromise
+	speedmod = 0.3 //Plasteel is heavy, but slowdown is brutal - here's a compromise, slightly faster than plants
 	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist
 	siemens_coeff = 0.6 //They are built for shocks, they touch high-voltage electrical equipment to survive
 	payday_modifier = 0.8 //Very useful engineers, but they come from mysterious ancient bug-aliens
