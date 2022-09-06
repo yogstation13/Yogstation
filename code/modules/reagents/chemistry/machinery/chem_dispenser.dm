@@ -358,6 +358,7 @@
 				cell.forceMove(get_turf(src))
 			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
 			I.moveToNullspace() // Now get out of contents
+			to_chat(user, span_notice("You replace [cell] with [I]."))
 			cell = I // Set the cell
 			component_parts += I // Add new cell
 		return
