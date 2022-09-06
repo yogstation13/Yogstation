@@ -47320,10 +47320,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
-"czU" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/maintenance/starboard/secondary)
 "czX" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -80430,6 +80426,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"vlN" = (
+/obj/structure/falsewall,
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "vmx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -122926,7 +122926,7 @@ xLF
 dvg
 dvg
 dvg
-lvi
+vlN
 mjJ
 lvi
 aaa
@@ -123184,7 +123184,7 @@ dvg
 dvg
 dvg
 lvi
-czU
+czT
 lvi
 aaa
 aaa
