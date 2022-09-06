@@ -250,7 +250,7 @@
 		/turf/closed/mineral/uranium/volcanic = 5, /turf/closed/mineral/diamond/volcanic = 1, /turf/closed/mineral/gold/volcanic = 10, /turf/closed/mineral/titanium/volcanic = 11,
 		/turf/closed/mineral/silver/volcanic = 12, /turf/closed/mineral/plasma/volcanic = 20, /turf/closed/mineral/iron/volcanic = 40,
 		/turf/closed/mineral/dilithium/volcanic = 2, // Yogs -- Adds Dilthium, for Cold Fusion 'n shit
-		/turf/closed/mineral/gibtonite/volcanic = 4, /turf/closed/mineral/bscrystal/volcanic = 1, /turf/closed/mineral/gem/volcanic = 1, /turf/closed/mineral/bananium/volcanic/ = 0.01))
+		/turf/closed/mineral/gibtonite/volcanic = 4, /turf/closed/mineral/bscrystal/volcanic = 1, /turf/closed/mineral/gem/volcanic = 1, /turf/closed/mineral/bananium/volcanic/ = 0.01)
 
 /turf/closed/mineral/random/volcanic/hard
 	name = "hardened basalt"
