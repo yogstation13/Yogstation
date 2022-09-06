@@ -190,7 +190,7 @@
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	var/equipper = null //who's wearing the gloves?
-	var/equipped = FALSE //does the user currently have the martial art?
+	var/equipped = FALSE //does the user currently have the martial art? 
 	var/list/enabled_areas = list(/area/security, 
 					/area/ai_monitored/security,
 					/area/mine/laborcamp,
