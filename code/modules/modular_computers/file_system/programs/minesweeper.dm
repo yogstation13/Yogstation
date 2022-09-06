@@ -1,4 +1,5 @@
-// If you make any changes to this file, make sure to reflect them in yogstation/code/game/machinery/computer/arcade.dm
+// If you make any changes to this file and want them on the arcade cabinet version aswell,
+// make sure to reflect them in yogstation/code/game/machinery/computer/arcade.dm
 #define MINESWEEPER_BEGINNER 1
 #define MINESWEEPER_INTERMEDIATE 2
 #define MINESWEEPER_EXPERT 3

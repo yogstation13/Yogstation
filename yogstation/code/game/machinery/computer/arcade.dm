@@ -1,4 +1,5 @@
-// If you make any changes to this file, make sure to reflect them in code/modules/modular_computers/file_system/programs/minesweeper.dm
+// If you make any changes to this file and want them on the ntos version aswell, 
+// make sure to reflect them in code/modules/modular_computers/file_system/programs/minesweeper.dm
 #define MINESWEEPER_BEGINNER 1
 #define MINESWEEPER_INTERMEDIATE 2
 #define MINESWEEPER_EXPERT 3
