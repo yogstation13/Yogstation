@@ -108,16 +108,15 @@
 
 /mob/camera/eminence/ClickOn(atom/A, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"])
-		A.examine(src)
-		return
-	if(modifiers["ctrl"])
-		issue_command(A)
-		return
 	A.attack_eminence(src, params)
 
 /atom/proc/attack_eminence(mob/camera/eminence/user, params)
-	return
+	if(modifiers["shift"])
+		examine(user)
+		return
+	if(modifiers["ctrl"])
+		user.issue_command(A)
+		return
 
 /mob/camera/eminence/ratvar_act()
 	name = "\improper Radiance"
