@@ -24046,7 +24046,7 @@
 "aWC" = (
 /obj/structure/table/wood,
 /obj/item/clothing/gloves/rapid,
-/obj/item/clothing/gloves/krav_maga/sec,
+/obj/item/clothing/gloves/sec_maga,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
 "aWD" = (
