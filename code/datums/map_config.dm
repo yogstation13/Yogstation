@@ -28,12 +28,12 @@
 	var/shuttles = list(
 		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
-		"whiteship" = "whiteship_box",
+		"whiteship" = "whiteship1",
 		"emergency" = "emergency_box")
 
 /proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
-	var/whiteship = pick("whiteship1", "whiteship2", "whiteship3", "whiteship4", "whiteship5")
+	var/whiteship = pick("whiteship_1", "whiteship_2", "whiteship_3", "whiteship_4", "whiteship_5")
 	config.shuttles["whiteship"] = whiteship
 	if (default_to_box)
 		return config
