@@ -33,6 +33,9 @@
 
 /obj/structure/ghostbeacon/attack_ghost(mob/user)
 	. = ..()
+	if(is_banned_from(user.key, ROLE_GHOSTBEACON))
+		to_chat(user, "You are banned from materializing")
+		return
 	var/response = alert("Materialize? (You will not be revivable)", "Beacon", "Yes", "No")
 	if(response == "No")
 		return
