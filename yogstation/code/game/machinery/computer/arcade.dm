@@ -1,3 +1,4 @@
+// If you make any changes to this file, make sure to reflect them in code/modules/modular_computers/file_system/programs/minesweeper.dm
 #define MINESWEEPER_BEGINNER 1
 #define MINESWEEPER_INTERMEDIATE 2
 #define MINESWEEPER_EXPERT 3
@@ -122,6 +123,8 @@
 
 			if(current_difficulty != diff_text(difficulty))
 				generate_new_board(difficulty)
+				x = min(x,width)
+				y = min(y,height)
 				current_difficulty = diff_text(difficulty)
 				current_mines = mines
 				flags = 0
@@ -139,24 +142,30 @@
 					if(0.1 to 0.14999)
 						value = 1
 					if(0.14999 to 0.19999)
-						if(height >= 10 && width >= 10)
-							value = 2
+						if(height >= 13 && width >= 13)
+							value = 3
 						else
 							value = 1
 					if(0.19999 to 0.29999)
-						if(height >= 10 && width >= 10)
-							value = 3
+						if(height >= 13 && width >= 13)
+							value = 6
 						else
 							value = 1
 					if(0.29999 to 1)
 						if(height >= 13 && width >= 13)
-							value = 4
+							value = 7
 						else
 							value = 2
 					else
 						value = 0
 			else
-				value = difficulty
+				switch(difficulty)
+					if(MINESWEEPER_BEGINNER)
+						value = 1
+					if(MINESWEEPER_INTERMEDIATE)
+						value = 3
+					if(MINESWEEPER_EXPERT)
+						value = 6
 
 			var/result = select_square(x,y)
 			game_status = result
