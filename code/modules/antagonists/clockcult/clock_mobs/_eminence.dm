@@ -107,10 +107,10 @@
 	to_chat(src, "<i>[speaker] says something, but you can't understand any of it...</i>")
 
 /mob/camera/eminence/ClickOn(atom/A, params)
-	var/list/modifiers = params2list(params)
 	A.attack_eminence(src, params)
 
 /atom/proc/attack_eminence(mob/camera/eminence/user, params)
+	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
 		examine(user)
 		return
