@@ -2229,17 +2229,27 @@
 	crate_name = "cow crate"
 
 /datum/supply_pack/critter/crab
+	name = "Crab Single-Pack"
+	desc = "Look sir, free crabs!"
+	cost = 0
+	contains = list(/mob/living/simple_animal/crab)
+	crate_name = "crab crate"
+	small_item = TRUE
+
+/datum/supply_pack/critter/crab/rocket
 	name = "Crab Rocket"
 	desc = "CRAAAAAAB ROCKET. CRAB ROCKET. CRAB ROCKET. CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB ROCKET. CRAFT. ROCKET. BUY. CRAFT ROCKET. CRAB ROOOCKET. CRAB ROOOOCKET. CRAB CRAB CRAB CRAB CRAB CRAB CRAB CRAB ROOOOOOOOOOOOOOOOOOOOOOCK EEEEEEEEEEEEEEEEEEEEEEEEE EEEETTTTTTTTTTTTAAAAAAAAA AAAHHHHHHHHHHHHH. CRAB ROCKET. CRAAAB ROCKEEEEEEEEEGGGGHHHHTT CRAB CRAB CRAABROCKET CRAB ROCKEEEET."//fun fact: i actually spent like 10 minutes and transcribed the entire video.
-	cost = 0
+	cost = 50
 	contains = list(/mob/living/simple_animal/crab)
 	crate_name = "look sir free crabs"
 	DropPodOnly = TRUE
+	small_item = FALSE
 
-/datum/supply_pack/critter/crab/generate()
+/datum/supply_pack/critter/crab/rocket/generate()
 	. = ..()
 	for(var/i in 1 to 49)
 		new /mob/living/simple_animal/crab(.)
+
 
 /datum/supply_pack/critter/corgis/exotic
 	name = "Exotic Corgi Crate"
