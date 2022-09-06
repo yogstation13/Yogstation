@@ -115,7 +115,7 @@
 		examine(user)
 		return
 	if(modifiers["ctrl"])
-		user.issue_command(A)
+		user.issue_command(src)
 		return
 
 /mob/camera/eminence/ratvar_act()
