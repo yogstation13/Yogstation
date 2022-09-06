@@ -289,11 +289,6 @@ SUBSYSTEM_DEF(job)
 	//Setup new player list and get the jobs list
 	JobDebug("Running DO")
 
-	//Holder for Triumvirate is stored in the SSticker, this just processes it
-	if(SSticker.triai)
-		for(var/datum/job/ai/A in occupations)
-			A.spawn_positions = 3
-
 	//Get the players who are ready
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.ready == PLAYER_READY_TO_PLAY && player.check_preferences() && player.mind && !player.mind.assigned_role)

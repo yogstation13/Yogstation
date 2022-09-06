@@ -70,3 +70,8 @@
 /datum/station_trait/tripleai/New()
 	. = ..()
 	SSticker.triai = TRUE
+	var/datum/job/job = SSjob.GetJob("AI")
+	if(!job)
+		return
+	job.total_positions = 3
+	job.spawn_positions = 3
