@@ -406,9 +406,9 @@
 	unpickable = TRUE //council-vote
 
 /datum/map_template/ruin/lavaland/medical
-	name = "Orion Medical Outpost"
+	name = "SIC Medical Outpost"
 	id = "medical"
-	description = "One of the Orion Medical Outposts was teleported after a bluespace anomaly"
+	description = "One of the SIC Medical Outposts was teleported after a bluespace anomaly"
 	suffix = "lavaland_surface_medical.dmm"
 	allow_duplicates = FALSE
 	cost = 15
