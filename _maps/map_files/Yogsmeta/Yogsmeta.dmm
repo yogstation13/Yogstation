@@ -54185,10 +54185,6 @@
 /obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"exY" = (
-/obj/structure/falsewall,
-/turf/closed/wall/r_wall,
-/area/ai_monitored/secondarydatacore)
 "eyz" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/checkpoint/engineering";
@@ -122417,7 +122413,7 @@ dvg
 dvg
 wPs
 pru
-exY
+pru
 pru
 pru
 pru
