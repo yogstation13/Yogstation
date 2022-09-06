@@ -1,6 +1,0 @@
-author: " ToasterBiome, GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "adds minor gems ruby, sapphire, emerald, and topaz"
-  - rscadd: "adds gem bags to hold gems"
-  - tweak: "gems now glow if they're not scanned"
