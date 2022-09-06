@@ -198,11 +198,13 @@
 					/area/crew_quarters/heads/hos) //where can we use krav maga?
 
 /obj/item/clothing/gloves/krav_maga/sec/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_GLOVES)
 		equipper = user
 		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/krav_maga/sec/dropped(mob/user, slot)
+	. = ..()
 	var/mob/living/carbon/human/H = user
 	if(H.get_item_by_slot(SLOT_GLOVES) == src)
 		STOP_PROCESSING(SSobj, src)
