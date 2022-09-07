@@ -13367,6 +13367,16 @@
 /obj/item/camera,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
+"gyl" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/machinery/vending/robotics{
+	products = list(/obj/item/stack/cable_coil = 4, /obj/item/assembly/flash/handheld = 6, /obj/item/stock_parts/cell/high = 2, /obj/item/assembly/prox_sensor = 6, /obj/item/assembly/signaler = 3, /obj/item/healthanalyzer = 3, /obj/item/storage/firstaid/regular/empty = 3, /obj/item/reagent_containers/glass/bucket = 3, /obj/item/ipcrevive = 1)
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "gyJ" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -19492,23 +19502,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"jTu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/machinery/posialert{
-	pixel_x = 32
-	},
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/ipcrevive,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "jTz" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -25906,6 +25899,22 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
+"ncv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/posialert{
+	pixel_x = 32
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "ncC" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Central Access"
@@ -31798,14 +31807,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
-"qhs" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/machinery/vending/robotics,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "qhL" = (
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
@@ -88793,9 +88794,9 @@ bBB
 kym
 dwL
 bcb
-jTu
+ncv
 dTo
-qhs
+gyl
 sux
 xjV
 oYc
