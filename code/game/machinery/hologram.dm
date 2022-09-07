@@ -173,6 +173,7 @@ obj/machinery/holopad/secure/Initialize()
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Current projection range: <b>[holo_range]</b> units.")
+		. += span_notice("The status display reads: Holopad name: [get_area(src)]")
 
 /obj/machinery/holopad/attackby(obj/item/P, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "holopad_open", "holopad0", P))
@@ -411,7 +412,8 @@ obj/machinery/holopad/secure/Initialize()
 		Hologram.set_light(2)	//hologram lighting
 		move_hologram()
 
-		AI.pad = src
+		if(AI)
+			AI.pad = src
 
 		set_holo(user, Hologram)
 		visible_message(span_notice("A holographic image of [user] flickers to life before your eyes!"))
