@@ -329,8 +329,8 @@
 /obj/item/projectile/stalnade
 	name = "volatile orb"
 	icon_state = "wipe"
-	damage = 300
-	armour_penetration = 100
+	damage = 100
+	armour_penetration = 90
 	speed = 10
 	eyeblur = 0
 	damage_type = BRUTE
