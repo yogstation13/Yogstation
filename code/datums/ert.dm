@@ -12,6 +12,9 @@
 	var/teamsize = 5
 	var/polldesc
 
+	// this can be safely set as default because it doesnt do anything unless specifically making uplinked ERT
+	var/obj/item/uplinktype = /obj/item/ntuplink/official 
+
 /datum/ert/New()
 	if (!polldesc)
 		polldesc = "a Code [code] Nanotrasen Emergency Response Team"
@@ -108,6 +111,12 @@
 	roles = list(/datum/antagonist/centcom/grand_admiral)
 	rename_team = "CentCom Grand Admirals"
 	polldesc = "a CentCom Grand Admiral"
+
+/datum/ert/uplinked
+	leader_role = /datum/antagonist/ert/common/leader
+	roles = list(/datum/antagonist/ert/common)
+	rename_team = "Uplinked Emergency Response Team"
+	polldesc = "an Uplink-Equipped ERT"
 
 /datum/ert/inquisition
 	roles = list(/datum/antagonist/ert/chaplain/inquisitor, /datum/antagonist/ert/security/inquisitor, /datum/antagonist/ert/medic/inquisitor)

@@ -238,7 +238,6 @@
 	var/active_coma = FALSE //to prevent multiple coma procs
 	threshold_descs = list(
 		"Stealth 2" = "Host appears to die when falling into a coma.",
-		"Resistance 4" = "The virus also stabilizes the host while they are in critical condition.",
 		"Stage Speed 7" = "Increases healing speed.",
 	)
 

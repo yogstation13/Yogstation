@@ -2,8 +2,10 @@
 
 /obj/item/gem
 	name = "\improper Gem"
+	desc = "Oooh! Shiny!"
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "rupee"
+	w_class = WEIGHT_CLASS_SMALL
 
 	///Have we been analysed with a mining scanner?
 	var/analysed = FALSE
@@ -11,10 +13,19 @@
 	var/point_value = 100
 	///what's our real name that will show upon discovery? null to do nothing
 	var/true_name
-	///the message given when you discover this geyser.
+	///the message given when you discover this gem.
 	var/analysed_message = null
 	///the thing that spawns in the item.
 	var/sheet_type = null
+
+	var/image/shine_overlay //shows this overlay when not scanned
+
+/obj/item/gem/Initialize()
+	. = ..()
+	shine_overlay = image(icon = 'icons/obj/gems.dmi',icon_state = "shine")
+	add_overlay(shine_overlay)
+	pixel_x = rand(-8,8)
+	pixel_y = rand(-8,8)
 
 /obj/item/gem/attackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
 	if(!istype(item, /obj/item/mining_scanner) && !istype(item, /obj/item/t_scanner/adv_mining_scanner))
@@ -31,6 +42,10 @@
 	analysed = TRUE
 	if(true_name)
 		name = true_name
+
+	if(shine_overlay)
+		cut_overlay(shine_overlay)
+		qdel(shine_overlay)
 
 	if(isliving(user))
 		var/mob/living/living = user
@@ -54,17 +69,14 @@
 /obj/item/gem/rupee
 	name = "\improper Ruperium Crystal"
 	desc = "A radioactive, crystalline compound rarely found in the goldgrubs. While able to be cut into sheets of uranium, the mineral's true value is in its resonating, humming properties, often sought out by ethereal musicians to work into their gem-encrusted instruments. As a result, they fetch a fine price in most exchanges."
-	icon = 'icons/obj/gems.dmi'
 	icon_state = "rupee"
 	materials = list(/datum/material/uranium=20000)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium{amount = 10}
 	point_value = 300
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/magma
 	name = "\improper Calcified Auric"
 	desc = "A hot, lightly glowing mineral born from the inner workings of magmawing watchers. It is most commonly smelted down into deposits of pure gold. However, it also possesses powerful conductivity, leading some to believe it a major power component utilized by the Vxtvul Empire."
-	icon = 'icons/obj/gems.dmi'
 	icon_state = "magma"
 	materials = list(/datum/material/gold=50000)
 	sheet_type = /obj/item/stack/sheet/mineral/gold{amount = 25}
@@ -72,41 +84,34 @@
 	light_range = 2
 	light_power = 1
 	light_color = "#ff7b00"
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/fdiamond
 	name = "\improper Frost Diamond"
 	desc = "A unique diamond that is produced within icewing watchers. Rarely used in traditional marriage bands, various gemstone companies now try to effect a monopoly on it, to little success. It looks like it can be cut into smaller sheets of diamond ore."
-	icon = 'icons/obj/gems.dmi'
 	icon_state = "diamond"
 	materials = list(/datum/material/diamond=30000)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond{amount = 15}
 	point_value = 750
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/phoron
 	name = "\improper Stabilized Baroxuldium"
 	desc = "A soft, glowing crystal only found in the deepest veins of plasma. Famed for its exceptional durability and uncommon beauty: widely considered to be a jackpot by mining crews. It looks like it could be destructively analyzed to extract the condensed materials within."
-	icon = 'icons/obj/gems.dmi'
 	icon_state = "phoron"
 	materials = list(/datum/material/plasma=80000)
 	point_value = 1200
 	light_range = 2
 	light_power = 2
 	light_color = "#62326a"
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/purple
 	name = "\improper Densified Dilithium"
 	desc = "A strange mass of dilithium which pulses to a steady rhythm. Its strange surface exudes a unique radio signal detectable by GPS. It looks like it could be destructively analyzed to extract the condensed materials within."
-	icon = 'icons/obj/gems.dmi'
 	icon_state = "purple"
 	materials = list(/datum/material/dilithium=64000)
 	point_value = 1600
 	light_range = 2
 	light_power = 1
 	light_color = "#b714cc"
-	w_class = WEIGHT_CLASS_SMALL
 
 	var/obj/item/gps/internal //stolen from the world anvil
 
@@ -122,19 +127,16 @@
 
 /obj/item/gem/amber
 	name = "\improper Draconic Amber"
-	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after . Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
-	icon = 'icons/obj/gems.dmi'
+	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after death. Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
 	icon_state = "amber"
 	point_value = 1600
 	light_range = 2
 	light_power = 2
 	light_color = "#FFBF00"
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/void
 	name = "\improper Null Crystal"
 	desc = "A shard of stellar, crystallized energy. These strange objects occasionally appear spontaneously in areas where the bluespace fabric is largely unstable. Its surface gives a light jolt to those who touch it. Despite its size, it's absurdly light."
-	icon = 'icons/obj/gems.dmi'
 	icon_state ="void"
 	point_value = 1800
 	light_range = 2
@@ -145,18 +147,15 @@
 /obj/item/gem/bloodstone
 	name = "\improper Ichorium"
 	desc = "A weird, sticky substance, known to coalesce in the presence of otherwordly phenomena. While shunned by most spiritual groups, this gemstone has unique ties to the occult which find it handsomely valued by mysterious patrons."
-	icon = 'icons/obj/gems.dmi'
 	icon_state = "red"
 	point_value = 2000
 	light_range = 2
 	light_power = 3
 	light_color = "#800000"
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/gem/dark
 	name = "\improper Dark Salt Lick"
 	desc = "An ominous cylinder that glows with an unnerving aura, seeming to hungrily draw in the space around it. The round edges of the lick are uneven patches of rough texture. Its only known property is that of anti-magic."
-	icon = 'icons/obj/gems.dmi'
 	icon_state = "dark"
 	point_value = 3000
 	light_range = 3
@@ -168,4 +167,75 @@
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
+/obj/item/gem/random
+	name = "Random Gem"
+	icon_state = "ruby"
+	var/gem_list = list(/obj/item/gem/ruby, /obj/item/gem/sapphire, /obj/item/gem/emerald, /obj/item/gem/topaz)
 
+/obj/item/gem/random/Initialize(quantity)
+	. = ..()
+	var/q = quantity ? quantity : 1
+	for(var/i = 0, i < q, i++)
+		var/obj/item/gem/G = pick(gem_list)
+		new G(loc)
+	qdel(src)
+
+/obj/item/gem/ruby
+	name = "\improper Ruby"
+	icon_state = "ruby"
+	point_value = 200
+
+/obj/item/gem/sapphire
+	name = "\improper Sapphire"
+	icon_state = "sapphire"
+	point_value = 200
+	
+/obj/item/gem/emerald
+	name = "\improper Emerald"
+	icon_state = "emerald"
+	point_value = 200
+
+/obj/item/gem/topaz
+	name = "\improper Topaz"
+	icon_state = "topaz"
+	point_value = 150
+
+/obj/item/ai_cpu/stalwart //very jank code-theft because it's not directly a gem
+	name = "\improper Bluespace Data Crystal"
+	desc = "A large bluespace crystal, etched internally with nano-circuits, it seemingly draws power from nowhere. Once acting as the brain of the Stalwart, perhaps this could be used in an AI server?"
+	icon = 'icons/obj/gems.dmi'
+	icon_state = "cpu"
+	materials = list(/datum/material/bluespace=24000)
+	speed = 20
+	base_power_usage = 0.5 * AI_CPU_BASE_POWER_USAGE/5
+	minimum_max_power = 0.5
+	maximum_max_power = 10.0
+	minimum_growth = 2.0
+	maximum_growth = 8.0
+	light_range = 2
+	light_power = 6
+	light_color = "#0004ff"
+	///Have we been analysed with a mining scanner?
+	var/analysed = FALSE
+	///How many points we grant to whoever discovers us
+	var/point_value = 2000
+
+/obj/item/ai_cpu/stalwart/attackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
+	if(!istype(item, /obj/item/mining_scanner) && !istype(item, /obj/item/t_scanner/adv_mining_scanner))
+		return ..()
+
+	if(analysed)
+		to_chat(user, span_warning("This gem has already been analysed!"))
+		return
+	else
+		to_chat(user, span_notice("You analyse the precious gemstone!"))
+		analysed = TRUE
+
+	if(isliving(user))
+		var/mob/living/living = user
+
+		var/obj/item/card/id/card = living.get_idcard()
+		if(card)
+			to_chat(user, span_notice("[point_value] mining points have been paid out!"))
+			card.mining_points += point_value
+			playsound(src, 'sound/machines/ping.ogg', 15, TRUE)

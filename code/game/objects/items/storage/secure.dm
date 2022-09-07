@@ -29,6 +29,8 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_combined_w_class = 14
+	cut_overlays()
+	add_overlay(icon_opened)
 
 /obj/item/storage/secure/examine(mob/user)
 	. = ..()
@@ -48,6 +50,8 @@
 				to_chat(user, span_danger("Now attempting to reset internal memory, please hold."))
 				l_hacking = 1
 				if (W.use_tool(src, user, 400))
+					cut_overlays()
+					add_overlay(icon_sparking)
 					to_chat(user, span_danger("Internal memory reset - lock has been disengaged."))
 					l_set = 0
 					l_hacking = 0

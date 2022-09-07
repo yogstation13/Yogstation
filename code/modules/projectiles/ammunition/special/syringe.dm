@@ -16,7 +16,7 @@
 		var/obj/item/reagent_containers/syringe/S = SG.syringes[1]
 
 		S.reagents.trans_to(BB, S.reagents.total_volume, transfered_by = user)
-		D.add_dart(S)
+		D.add_dart(S, S.proj_piercing)
 		SG.syringes.Remove(S)
 	..()
 

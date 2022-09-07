@@ -25,15 +25,15 @@
 ///Orion Medical Outpost Staff
 
 /obj/effect/mob_spawn/human/orion_doctor
-	name = "Orion Outpost Doctor"
+	name = "SIC Outpost Doctor"
 	uniform = /obj/item/clothing/under/rank/medical
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	gloves = /obj/item/clothing/gloves/color/white
 	back = /obj/item/storage/backpack/medic
 	belt = /obj/item/storage/belt/medical
 	glasses = /obj/item/clothing/glasses/hud/health
-	short_desc = "You are an Orion medical doctor."
-	flavour_text = "You were working on a medical outpost on Orion when a bluespace translocation was reported in the vicinity, it seems to have moved the outpost to some strange ashen wasteland, regardless of the situation the medical supplies are low and medical scanners report you aren't the first here."
+	short_desc = "You are an SIC medical doctor."
+	flavour_text = "You were working on a medical outpost on a SIC space station when a bluespace translocation was reported in the vicinity, it seems to have moved the outpost to some strange ashen wasteland, regardless of the situation the medical supplies are low and medical scanners report you aren't the first here."
 	important_info = "Time to put your expertise to use and see if there's anyone out there who needs help."
 	id_job = "Medical Doctor"
 	id = /obj/item/card/id
@@ -43,7 +43,7 @@
 	icon_state = "sleeper"
 
 /obj/effect/mob_spawn/human/orion_security
-	name = "Orion Outpost Security Officer"
+	name = "SIC Outpost Security Officer"
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
 	suit = /obj/item/clothing/suit/armor/vest
@@ -53,8 +53,8 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	head = /obj/item/clothing/head/helmet/swat
 	mask = /obj/item/clothing/mask/gas
-	flavour_text = "You are an Orion Spaceport officer, the outpost you were assigned to was moved due to a bluespace anomaly, you are to ensure that no harm comes to the outpost or its staff. You do not follow Space Law. You are the Law."
-	short_desc = "You are an Orion security officer."
+	flavour_text = "You are an SIC Spaceport officer, the outpost you were assigned to was moved due to a bluespace anomaly, you are to ensure that no harm comes to the outpost or its staff. You do not follow Space Law. You are the Law."
+	short_desc = "You are an SIC security officer."
 	id_job = "Security Officer"
 	id_access = "Security Officer"
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double

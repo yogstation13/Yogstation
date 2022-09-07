@@ -270,13 +270,22 @@
 /obj/item/reagent_containers/food/snacks/donkpocket/warm/MakeBakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(10 SECONDS, 15 SECONDS), FALSE)
 
-/obj/item/reagent_containers/food/snacks/dankpocket
+/obj/item/reagent_containers/food/snacks/donkpocket/dank
 	name = "dankpocket"
 	desc = "The food of choice for the seasoned botanist."
 	icon_state = "dankpocket"
-	list_reagents = list(/datum/reagent/toxin/lipolicide = 3, /datum/reagent/drug/space_drugs = 3, /datum/reagent/consumable/nutriment = 4)
+	list_reagents = list(/datum/reagent/drug/space_drugs = 1, /datum/reagent/consumable/nutriment = 1)
+	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/dank
 	filling_color = "#00FF00"
-	tastes = list("meat" = 2, "dough" = 2)
+	tastes = list("grass" = 2, "dough" = 2)
+	foodtype = GRAIN | VEGETABLES
+
+/obj/item/reagent_containers/food/snacks/donkpocket/warm/dank
+	name = "warm dankpocket"
+	desc = "The food of choice for the seasoned botanist. Smells danker now."
+	icon_state = "dankpocket"
+	list_reagents = list(/datum/reagent/toxin/lipolicide = 3, /datum/reagent/drug/space_drugs = 3, /datum/reagent/consumable/nutriment = 4)
+	tastes = list("grass" = 2, "dough" = 2, "drugs" = 2)
 	foodtype = GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/donkpocket/spicy
@@ -302,6 +311,7 @@
 	name = "meatpocket"
 	desc = "Can this really be called a donkpocket? You should...probably cook this."
 	icon_state = "donkpocketmeaty"
+	bitesize = 4
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 3)
 	cooked_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/meaty
@@ -313,6 +323,7 @@
 	name = "warm meatpocket"
 	desc = "Can this really be called a donkpocket?"
 	icon_state = "donkpocketcookedmeaty"
+	bitesize = 5
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/drippings = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/drippings = 2)
 	tastes = list("meat" = 4)
