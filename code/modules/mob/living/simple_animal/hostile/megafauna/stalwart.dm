@@ -330,7 +330,7 @@
 	name = "volatile orb"
 	icon_state = "wipe"
 	damage = 100
-	armour_penetration = 90
+	armour_penetration = 60
 	speed = 10
 	eyeblur = 0
 	damage_type = BRUTE
