@@ -51631,6 +51631,32 @@
 /obj/item/storage/box/matches,
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
+"qSN" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/glasses/welding,
+/obj/item/multitool{
+	pixel_x = 3
+	},
+/obj/machinery/camera{
+	c_tag = "Robotics Lab - South";
+	dir = 1;
+	network = list("ss13","rd")
+	},
+/obj/item/crowbar,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/ipcrevive,
+/turf/open/floor/plasteel/white,
+/area/science/robotics/lab)
 "qSO" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/red,
@@ -62390,31 +62416,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"uAx" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/item/clothing/glasses/welding,
-/obj/item/multitool{
-	pixel_x = 3
-	},
-/obj/machinery/camera{
-	c_tag = "Robotics Lab - South";
-	dir = 1;
-	network = list("ss13","rd")
-	},
-/obj/item/crowbar,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/science/robotics/lab)
 "uAy" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -103996,7 +103997,7 @@ jvi
 veX
 oAk
 nSp
-uAx
+qSN
 adX
 vgm
 kZf

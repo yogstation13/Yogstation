@@ -19492,6 +19492,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"jTu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/machinery/posialert{
+	pixel_x = 32
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/ipcrevive,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "jTz" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -25236,22 +25253,6 @@
 "mHW" = (
 /turf/closed/wall/r_wall,
 /area/science/nanite)
-"mIr" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/machinery/posialert{
-	pixel_x = 32
-	},
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "mIS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -88792,7 +88793,7 @@ bBB
 kym
 dwL
 bcb
-mIr
+jTu
 dTo
 qhs
 sux

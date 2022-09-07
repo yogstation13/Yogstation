@@ -49733,19 +49733,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"cIN" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/box/bodybags{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/borg/upgrade/rename,
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "cIO" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -67535,6 +67522,23 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"mnF" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/storage/box/bodybags{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/borg/upgrade/rename,
+/obj/effect/turf_decal/delivery,
+/obj/item/ipcrevive{
+	pixel_x = 2;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "mod" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -113591,7 +113595,7 @@ cFh
 csX
 cFf
 cHR
-cIN
+mnF
 cJM
 cCq
 kXu
