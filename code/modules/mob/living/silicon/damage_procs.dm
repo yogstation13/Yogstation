@@ -56,20 +56,9 @@
 
 	return ..()
 
-/mob/living/silicon/setFireLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(istype(src, /mob/living/silicon/ai)) //ditto
-		return FALSE
-
-	return ..()
-
 /mob/living/silicon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE) //immune to oxygen damage
 	if(istype(src, /mob/living/silicon/ai)) //ais are snowflakes and use oxyloss for being in AI cards and having no battery
 		return FALSE
 
 	return ..()
 
-/mob/living/silicon/setBruteLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(istype(src, /mob/living/silicon/ai)) //ditto
-		return FALSE
-
-	return ..()
