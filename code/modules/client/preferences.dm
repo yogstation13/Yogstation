@@ -716,7 +716,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Hear alternative station announcers:</b> <a href='?_src_=prefs;task=input;preference=alternative_announcers'>[disable_alternative_announcers ? "Disabled" : "Enabled"]</a><br>"
-			dat += "<b>Ballon Alerts:</b> <a href='?_src_=prefs;task=input;preference=balloon_alerts'>[disable_balloon_alerts ? "Disabled" : "Enabled"]</a><br>"
+			dat += "<b>Balloon Alerts:</b> <a href='?_src_=prefs;task=input;preference=balloon_alerts'>[disable_balloon_alerts ? "Disabled" : "Enabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
