@@ -726,7 +726,7 @@
 
 	return fullname
 
-///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed, and Malkavian Bloodsuckers get alerted.
+///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed.
 /datum/antagonist/bloodsucker/proc/break_masquerade()
 	if(broke_masquerade)
 		return
@@ -745,11 +745,11 @@
 		if(bloodsuckerdatum.my_clan == CLAN_TOREADOR)
 			var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
 			masquerade_objective.target = owner.current
-			masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, is Final Death'ed."
+			masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, suffers Final Death."
 			bloodsuckerdatum.objectives += masquerade_objective
 			clan_minds.announce_objectives()
 
-///This is admin-only of reverting a broken masquerade, sadly it doesn't remove the Malkavian objectives yet.
+///This is admin-only of reverting a broken masquerade.
 /datum/antagonist/bloodsucker/proc/fix_masquerade()
 	if(!broke_masquerade)
 		return
