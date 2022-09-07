@@ -171,8 +171,8 @@
 	name = "X-ray bolt"
 	icon_state = "arrow_xray"
 	light_color = LIGHT_COLOR_GREEN
-	damage = 25
-	irradiate = 500
+	damage = 21
+	irradiate = 400
 	range = 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/xray
