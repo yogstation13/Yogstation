@@ -7,10 +7,12 @@
 		visible_message(span_danger("A strange force protects [src], [p_they()] can't be damaged!"), span_userdanger("A strange force protects you!"))
 		return armor
 	if(armor > 0 && armour_penetration)	//WE HAVE ARMOR
-		if(armour_penetration <= -100)	
+		if(armour_penetration <= -100)	// < -100 AP, no penetration on anything
 			armor = 100
-		else
+		else if((-100 < armour_penetration) && (armour_penetration < 0))	// -100 to 0 AP, reduced penetration, nonlinear scaling
 			armor = clamp(0, armor/(1 + (armour_penetration/100)), 100)
+		else
+			armor = max(0, armor - armour_penetration)						//Positive AP, actual armor penetration
 		if(armour_penetration > 0 && armor < 100)	//WE HAVE INEFFECTIVE ARMOR
 			if(penetrated_text)
 				to_chat(src, span_userdanger("[penetrated_text]"))
