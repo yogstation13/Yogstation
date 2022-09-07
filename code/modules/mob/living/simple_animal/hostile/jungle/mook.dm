@@ -26,7 +26,7 @@
 	robust_searching = TRUE
 	stat_attack = UNCONSCIOUS
 	attack_sound = 'sound/weapons/rapierhit.ogg'
-	deathsound = 'sound/voice/mook_death.ogg'
+	sound = 'sound/voice/mook_.ogg'
 	aggro_vision_range = 15 //A little more aggressive once in combat to balance out their really low HP
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	var/attack_state = MOOK_ATTACK_NEUTRAL
@@ -41,7 +41,7 @@
 		if(M.attack_state == MOOK_ATTACK_ACTIVE && M.throwing)
 			return TRUE
 
-/mob/living/simple_animal/hostile/jungle/mook/death()
+/mob/living/simple_animal/hostile/jungle/mook/()
 	desc = "A deceased primitive. Upon closer inspection, it was suffering from severe cellular degeneration and its garments are machine made..."//Can you guess the twist
 	return ..()
 

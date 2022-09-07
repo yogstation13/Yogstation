@@ -2,7 +2,7 @@
 	name = "Tank"
 	desc = "Gives you a moderate armor boost for a few seconds. Heals 60% of your brute and fire damage."
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "fake_death"
+	action_icon_state = "fake_"
 	cooldown_time = 2.5 MINUTES
 	var/duration = 30 SECONDS
 	var/armor_boost = 12.5

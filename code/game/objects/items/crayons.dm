@@ -754,9 +754,9 @@
 /obj/item/toy/crayon/spraycan/hellcan
 	name = "hellcan"
 	desc = "This spraycan doesn't seem to be filled with paint..."
-	icon_state = "deathcan2_cap"
-	icon_capped = "deathcan2_cap"
-	icon_uncapped = "deathcan2"
+	icon_state = "can2_cap"
+	icon_capped = "can2_cap"
+	icon_uncapped = "can2"
 	use_overlays = FALSE
 
 	volume_multiplier = 25

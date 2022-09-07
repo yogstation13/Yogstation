@@ -36,7 +36,7 @@
 				for(var/objective_ in objectives)
 					remove_objective(objective_)
 
-				if(prob(50)) //50/50 split between glorious death and hijack, so IAA can't just go "hurr, I can kill everyone since I'll get hijack later"
+				if(prob(50)) //50/50 split between glorious  and hijack, so IAA can't just go "hurr, I can kill everyone since I'll get hijack later"
 					var/datum/objective/martyr/martyr_objective = new
 					martyr_objective.owner = owner
 					add_objective(martyr_objective)
@@ -74,7 +74,7 @@
 		kill_objective.update_explanation_text()
 		add_objective(kill_objective)
 	else
-		if(prob(50)) //50/50 split between glorious death and hijack, so IAA can't just go "hurr, I can kill everyone since I'll get hijack later"
+		if(prob(50)) //50/50 split between glorious  and hijack, so IAA can't just go "hurr, I can kill everyone since I'll get hijack later"
 			var/datum/objective/martyr/martyr_objective = new
 			martyr_objective.owner = owner
 			add_objective(martyr_objective)

@@ -93,12 +93,12 @@
 	/// What is added to the *life_tickrate*, -1 to freeze the ticks
 	var/stasis_mod = -1
 
-/datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
+/datum/status_effect/incapacitating/stasis/proc/update_time_of_()
 	if(last_dead_time)
 		var/delta = world.time - last_dead_time
-		var/new_timeofdeath = owner.timeofdeath + delta
-		owner.timeofdeath = new_timeofdeath
-		owner.tod = station_time_timestamp(wtime=new_timeofdeath)
+		var/new_timeof = owner.timeof + delta
+		owner.timeof = new_timeof
+		owner.tod = station_time_timestamp(wtime=new_timeof)
 		last_dead_time = null
 	if(owner.stat == DEAD)
 		last_dead_time = world.time
@@ -107,20 +107,20 @@
 	. = ..()
 	stasis_mod = new_stasis_mod
 	new_owner.life_tickrate += stasis_mod
-	update_time_of_death()
+	update_time_of_()
 	if(stasis_mod == -1)
 		owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/incapacitating/stasis/tick()
-	update_time_of_death()
+	update_time_of_()
 
 /datum/status_effect/incapacitating/stasis/on_remove()
-	update_time_of_death()
+	update_time_of_()
 	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
-	update_time_of_death()
+	update_time_of_()
 	owner.life_tickrate -= stasis_mod
 	return ..()
 
@@ -896,7 +896,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
 	duration = 300
-	examine_text = span_deadsay("SUBJECTPRONOUN is in a deep, deathlike sleep, with no signs of awareness to anything around them.")
+	examine_text = span_deadsay("SUBJECTPRONOUN is in a deep, like sleep, with no signs of awareness to anything around them.")
 	alert_type = /obj/screen/alert/status_effect/broken_will
 	var/old_health
 

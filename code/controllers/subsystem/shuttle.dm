@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/total = GLOB.joined_player_list.len
 
 	if(alive / total <= threshold)
-		var/msg = "Automatically dispatching shuttle due to crew death."
+		var/msg = "Automatically dispatching shuttle due to crew ."
 		message_admins(msg)
 		log_game("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
 		emergencyNoRecall = TRUE

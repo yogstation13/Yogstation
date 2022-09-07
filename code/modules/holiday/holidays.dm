@@ -523,7 +523,7 @@
 	return mm == JULY && (ww == 4 || (ww == 5 && ddd == SUNDAY))
 
 /datum/holiday/moth/getStationPrefix()
-	return pick("Mothball","Lepidopteran","Lightbulb","Moth","Giant Atlas","Twin-spotted Sphynx","Madagascan Sunset","Luna","Death's Head","Emperor Gum","Polyphenus","Oleander Hawk","Io","Rosy Maple","Cecropia","Noctuidae","Giant Leopard","Dysphania Militaris","Garden Tiger")
+	return pick("Mothball","Lepidopteran","Lightbulb","Moth","Giant Atlas","Twin-spotted Sphynx","Madagascan Sunset","Luna","'s Head","Emperor Gum","Polyphenus","Oleander Hawk","Io","Rosy Maple","Cecropia","Noctuidae","Giant Leopard","Dysphania Militaris","Garden Tiger")
 
 /datum/holiday/ramadan
 	name = "Start of Ramadan"
@@ -630,7 +630,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return (dd == 13 && ddd == FRIDAY)
 
 /datum/holiday/friday_thirteenth/getStationPrefix()
-	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby","Voorhees","Jason","Mother","Krueger","Telephone","Slasher","Flick","Hockey","Chevron")
+	return pick("Mike","Friday","Evil","Myers","Murder","ly","Stabby","Voorhees","Jason","Mother","Krueger","Telephone","Slasher","Flick","Hockey","Chevron")
 
 /datum/holiday/easter
 	name = EASTER

@@ -100,10 +100,10 @@
 	attacktext = "hits"
 	attack_sound = 'sound/weapons/genhit1.ogg'
 	movement_type = FLYING
-	del_on_death = TRUE
-	deathmessage = "explodes into a cloud of gas!"
+	del_on_ = TRUE
+	message = "explodes into a cloud of gas!"
 	gold_core_spawnable = HOSTILE_SPAWN
-	var/death_cloud_size = 1 //size of cloud produced from a dying spore
+	var/_cloud_size = 1 //size of cloud produced from a dying spore
 	var/mob/living/carbon/human/oldguy
 	var/is_zombie = FALSE
 
@@ -122,7 +122,7 @@
 				Zombify(H)
 				break
 	if(factory && z != factory.z)
-		death()
+		()
 	..()
 
 /mob/living/simple_animal/hostile/blob/blobspore/attack_ghost(mob/user)
@@ -158,7 +158,7 @@
 	melee_damage_lower += 8
 	melee_damage_upper += 11
 	movement_type = GROUND
-	death_cloud_size = 0
+	_cloud_size = 0
 	icon = H.icon
 	icon_state = "zombie"
 	H.hair_style = null
@@ -170,8 +170,8 @@
 	if(!key)
 		notify_ghosts("\A [src] has been created in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Blob Zombie Created")
 
-/mob/living/simple_animal/hostile/blob/blobspore/death(gibbed)
-	// On death, create a small smoke of harmful gas (s-Acid)
+/mob/living/simple_animal/hostile/blob/blobspore/(gibbed)
+	// On , create a small smoke of harmful gas (s-Acid)
 	var/datum/effect_system/smoke_spread/chem/S = new
 	var/turf/location = get_turf(src)
 
@@ -181,13 +181,13 @@
 
 
 	if(overmind && overmind.blobstrain)
-		overmind.blobstrain.on_sporedeath(src)
+		overmind.blobstrain.on_spore(src)
 	else
 		reagents.add_reagent(/datum/reagent/toxin/spore, 10)
 
 	// Attach the smoke spreader and setup/start it.
 	S.attach(location)
-	S.set_up(reagents, death_cloud_size, location, silent = TRUE)
+	S.set_up(reagents, _cloud_size, location, silent = TRUE)
 	S.start()
 	if(factory)
 		factory.spore_delay = world.time + factory.spore_cooldown //put the factory on cooldown
@@ -222,7 +222,7 @@
 	maxHealth = 15
 	melee_damage_lower = 1
 	melee_damage_upper = 2
-	death_cloud_size = 0
+	_cloud_size = 0
 
 /////////////////
 // BLOBBERNAUT //
@@ -301,14 +301,14 @@
 		melee_damage_upper = initial(melee_damage_upper)
 		attacktext = initial(attacktext)
 
-/mob/living/simple_animal/hostile/blob/blobbernaut/death(gibbed)
+/mob/living/simple_animal/hostile/blob/blobbernaut/(gibbed)
 	..(gibbed)
 	if(factory)
 		factory.naut = null //remove this naut from its factory
 		factory.max_integrity = initial(factory.max_integrity)
 	if(overmind)
 		to_chat(overmind, "<font color=\"#EE4000\">[src] has died in [get_area(src)]!</font>")
-	flick("blobbernaut_death", src)
+	flick("blobbernaut_", src)
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/independent
 	independent = TRUE

@@ -11,7 +11,7 @@
 			continue
 		if(iscarbon(M) && stat != DEAD)
 			if(M.stat == DEAD)
-				M.death(1)
+				M.(1)
 				stomach_contents.Remove(M)
 				qdel(M)
 				continue

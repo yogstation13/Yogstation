@@ -67,7 +67,7 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
+/mob/living/simple_animal/hostile/megafauna/(gibbed, var/list/force_grant)
 	if(health > 0)
 		return
 	else

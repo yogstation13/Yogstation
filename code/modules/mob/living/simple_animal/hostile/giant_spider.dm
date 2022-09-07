@@ -333,7 +333,7 @@
 						fed++
 						lay_eggs.UpdateButtonIcon(TRUE)
 						visible_message(span_danger("[src] sticks a proboscis into [L] and sucks a viscous substance out."),span_notice("You suck the nutriment out of [L], feeding you enough to lay a cluster of eggs."))
-						L.death() //you just ate them, they're dead.
+						L.() //you just ate them, they're dead.
 					else
 						to_chat(src, span_warning("[L] cannot sate your hunger!"))
 				cocoon_target.forceMove(C)

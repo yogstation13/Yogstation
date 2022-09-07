@@ -81,17 +81,17 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Ghost/chatterbox, toggle_ghost_pda)()
 /datum/verbs/menu/Settings/Ghost/chatterbox/Events
 	name = "Events"
 
-//please be aware that the following two verbs have inverted stat output, so that "Toggle Deathrattle|1" still means you activated it
-TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Ghost/chatterbox/Events, toggle_deathrattle)()
-	set name = "Toggle Deathrattle"
+//please be aware that the following two verbs have inverted stat output, so that "Toggle rattle|1" still means you activated it
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Ghost/chatterbox/Events, toggle_rattle)()
+	set name = "Toggle rattle"
 	set category = "Preferences"
-	set desc = "Death"
-	usr.client.prefs.toggles ^= DISABLE_DEATHRATTLE
+	set desc = ""
+	usr.client.prefs.toggles ^= DISABLE_RATTLE
 	usr.client.prefs.save_preferences()
-	to_chat(usr, "You will [(usr.client.prefs.toggles & DISABLE_DEATHRATTLE) ? "no longer" : "now"] get messages when a sentient mob dies.")
-	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Deathrattle", "[!(usr.client.prefs.toggles & DISABLE_DEATHRATTLE) ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, maybe you should spend some time reading the comments.
-/datum/verbs/menu/Settings/Ghost/chatterbox/Events/toggle_deathrattle/Get_checked(client/C)
-	return !(C.prefs.toggles & DISABLE_DEATHRATTLE)
+	to_chat(usr, "You will [(usr.client.prefs.toggles & DISABLE_RATTLE) ? "no longer" : "now"] get messages when a sentient mob dies.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle rattle", "[!(usr.client.prefs.toggles & DISABLE_RATTLE) ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, maybe you should spend some time reading the comments.
+/datum/verbs/menu/Settings/Ghost/chatterbox/Events/toggle_rattle/Get_checked(client/C)
+	return !(C.prefs.toggles & DISABLE_RATTLE)
 
 TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Ghost/chatterbox/Events, toggle_arrivalrattle)()
 	set name = "Toggle Arrivalrattle"

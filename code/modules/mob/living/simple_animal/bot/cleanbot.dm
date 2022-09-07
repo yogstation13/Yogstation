@@ -230,7 +230,7 @@
 		var/mob/living/simple_animal/M = target
 		if(!M.stat)
 			visible_message(span_danger("[src] smashes [target] with its mop!"))
-			M.death()
+			M.()
 		target = null
 
 	else if(emagged == 2) //Emag functions

@@ -95,7 +95,7 @@
 
 
 
-//This is pretty much just for the death-ripley
+//This is pretty much just for the -ripley
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill
 	name = "\improper KILL CLAMP"
 	desc = "They won't know what clamped them!"

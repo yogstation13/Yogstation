@@ -338,12 +338,12 @@
 					myhead.drop_limb()
 				sleep(0.3 SECONDS)
 			else
-				user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+				user.visible_message(span_suicide("[user] panics and starts choking to !"))
 				return OXYLOSS
 
 
 	else
-		user.visible_message(span_suicide("[user] begins beating [user.p_them()]self to death with \the [src]'s handle! It probably would've been cooler if [user.p_they()] turned it on first!"))
+		user.visible_message(span_suicide("[user] begins beating [user.p_them()]self to  with \the [src]'s handle! It probably would've been cooler if [user.p_they()] turned it on first!"))
 	return BRUTELOSS
 
 /obj/item/twohanded/dualsaber/Initialize()

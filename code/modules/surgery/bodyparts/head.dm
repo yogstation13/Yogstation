@@ -72,7 +72,7 @@
 			. += span_info("The brain has been removed from [src].")
 		else if(brain.suicided || brainmob?.suiciding)
 			. += span_info("There's a pretty dumb expression on [real_name]'s face; they must have really hated life. There is no hope of recovery.")
-		else if(brain.brain_death || brainmob?.health <= HEALTH_THRESHOLD_DEAD)
+		else if(brain.brain_ || brainmob?.health <= HEALTH_THRESHOLD_DEAD)
 			. += span_info("It seems to be leaking some kind of... clear fluid? The brain inside must be in pretty bad shape... There is no coming back from that.")
 		else if(brainmob)
 			if(brainmob.get_ghost(FALSE, TRUE))

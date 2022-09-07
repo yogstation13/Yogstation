@@ -120,7 +120,7 @@
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.is_sharp())
-		user.visible_message(span_notice("[user] stabs [src] to shreds!"), span_notice("[src]'s death has attracted the attention of the king goat plushie guards!"))
+		user.visible_message(span_notice("[user] stabs [src] to shreds!"), span_notice("[src]'s  has attracted the attention of the king goat plushie guards!"))
 		I.play_tool_sound(src)
 		qdel(src)
 		var/turf/location = get_turf(user)

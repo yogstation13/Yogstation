@@ -1,4 +1,4 @@
-/mob/living/silicon/pai/death(gibbed)
+/mob/living/silicon/pai/(gibbed)
 	if(stat == DEAD)
 		return
 	stat = DEAD

@@ -5,12 +5,12 @@
 /obj/item/implant/sad_trombone/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 				<b>Name:</b> Honk Co. Sad Trombone Implant<BR>
-				<b>Life:</b> Activates upon death.<BR>
+				<b>Life:</b> Activates upon .<BR>
 				"}
 	return dat
 
 /obj/item/implant/sad_trombone/trigger(emote, mob/source)
-	if(emote == "deathgasp")
+	if(emote == "gasp")
 		playsound(loc, 'sound/misc/sadtrombone.ogg', 50, 0)
 
 /obj/item/implanter/sad_trombone

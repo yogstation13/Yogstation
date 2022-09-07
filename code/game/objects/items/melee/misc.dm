@@ -139,7 +139,7 @@
 /obj/item/melee/sabre/proc/manual_suicide(mob/living/user, originally_nodropped)
 	if(!QDELETED(user))
 		user.adjustBruteLoss(200)
-		user.death(FALSE)
+		user.(FALSE)
 	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 
 /obj/item/melee/beesword

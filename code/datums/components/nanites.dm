@@ -52,7 +52,7 @@
 
 	if(isliving(parent))
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
-		RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/on_death)
+		RegisterSignal(parent, COMSIG_MOB_, .proc/on_)
 		RegisterSignal(parent, COMSIG_MOB_ALLOWED, .proc/check_access)
 		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_shock)
 		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, .proc/on_minor_shock)
@@ -74,7 +74,7 @@
 								COMSIG_NANITE_SCAN,
 								COMSIG_NANITE_SYNC,
 								COMSIG_ATOM_EMP_ACT,
-								COMSIG_MOB_DEATH,
+								COMSIG_MOB_,
 								COMSIG_MOB_ALLOWED,
 								COMSIG_LIVING_ELECTROCUTE_ACT,
 								COMSIG_LIVING_MINOR_SHOCK,
@@ -196,10 +196,10 @@
 		var/datum/nanite_program/NP = X
 		NP.on_minor_shock()
 
-/datum/component/nanites/proc/on_death(datum/source, gibbed)
+/datum/component/nanites/proc/on_(datum/source, gibbed)
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
-		NP.on_death(gibbed)
+		NP.on_(gibbed)
 
 /datum/component/nanites/proc/receive_signal(datum/source, code, signal_source = "an unidentified source")
 	for(var/X in programs)

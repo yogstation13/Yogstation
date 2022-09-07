@@ -9,7 +9,7 @@
 	icon_state = "terrarium"
 	density = TRUE
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	mob_species = /datum/species/pod
 	short_desc = "You are a sentient ecosystem, an example of the mastery over life that your creators possessed."
 	flavour_text = "Your masters, benevolent as they were, created uncounted \
@@ -41,7 +41,7 @@
 	mob_species = /datum/species/lizard/ashwalker
 	outfit = /datum/outfit/ashwalker
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	anchored = FALSE
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
@@ -123,7 +123,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	mob_species = /datum/species/shadow
 	short_desc = "You are cursed."
 	flavour_text = "Years ago, you sacrificed the lives of your trusted friends and the humanity of yourself to reach the Wish Granter. Though you \
@@ -156,7 +156,7 @@
 	icon_state = "construct"
 	mob_species = /datum/species/golem
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	anchored = FALSE
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
@@ -225,7 +225,7 @@
 		user.visible_message(span_notice("A faint light leaves [user], moving to [src] and animating it!"),span_notice("You leave your old body behind, and transfer into [src]!"))
 		show_flavour = FALSE
 		create(ckey = user.ckey,name = user.real_name)
-		user.death()
+		user.()
 		return
 
 /obj/effect/mob_spawn/human/golem/servant
@@ -250,7 +250,7 @@
 	icon_state = "cryostasis_sleeper"
 	outfit = /datum/outfit/hermit
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
 	short_desc = "You've been stranded in this godless prison of a planet for longer than you can remember."
@@ -322,7 +322,7 @@
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/lavalandprisoner
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	short_desc = "You're a prisoner, sentenced to hard work in one of Nanotrasen's labor camps."
 	flavour_text = "Good. It seems as though your ship crashed. It seems as \
 	though fate has other plans for you. You remember that you were convicted of "
@@ -358,7 +358,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	//objectives = "Cater to visiting guests with your fellow staff. Do not leave your assigned hotel and always remember: The customer is always right!" //yogs - removed hotel staff objectives
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	random = TRUE
 	outfit = /datum/outfit/hotelstaff
@@ -404,7 +404,7 @@
 	icon = 'icons/obj/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 	outfit = /datum/outfit/demonic_friend
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	random = TRUE
 	id_job = "SuperFriend"
@@ -417,7 +417,7 @@
 	. = ..()
 	owner = owner_mind
 	flavour_text = "You have been given a reprieve from your eternity of torment, to be [owner.name]'s friend for [owner.p_their()] short mortal coil."
-	important_info = "Be aware that if you do not live up to [owner.name]'s expectations, they can send you back to hell with a single thought. [owner.name]'s death will also return you to hell."
+	important_info = "Be aware that if you do not live up to [owner.name]'s expectations, they can send you back to hell with a single thought. [owner.name]'s  will also return you to hell."
 	var/area/A = get_area(src)
 	if(!mapload && A)
 		notify_ghosts("\A friendship shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE)
@@ -453,7 +453,7 @@
 /obj/effect/mob_spawn/human/syndicate
 	name = "Syndicate Operative"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/syndicate_empty
@@ -530,7 +530,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
 	short_desc = "You are a security officer working for Nanotrasen, stationed onboard a state of the art research station."
@@ -556,7 +556,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
 	short_desc = "You are an engineer working for Nanotrasen, stationed onboard a state of the art research station."
@@ -582,7 +582,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
 	short_desc = "You are a scientist working for Nanotrasen, stationed onboard a state of the art research station."
@@ -610,7 +610,7 @@
 	mob_species = /datum/species/skeleton
 	outfit = /datum/outfit/pirate/space
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	anchored = TRUE
 	density = FALSE
 	show_flavour = FALSE //Flavour only exists for spawners menu
@@ -651,7 +651,7 @@
 	id_access_list = list(ACCESS_BAR,ACCESS_KITCHEN,ACCESS_HYDROPONICS)
 	random = TRUE
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	short_desc = "You're a simpleman on a desolate ice land, with the goal of running your inn."
 	flavour_text = "The electricity bill isn't going to pay itself. Try to get some customers and earn some money at your inn."
 	assignedrole = "Innkeeper"

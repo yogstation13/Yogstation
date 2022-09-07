@@ -223,7 +223,7 @@
 	alert_type = /obj/screen/alert/status_effect/wish_granters_gift
 
 /datum/status_effect/wish_granters_gift/on_apply()
-	to_chat(owner, span_notice("Death is not your end! The Wish Granter's energy suffuses you, and you begin to rise..."))
+	to_chat(owner, span_notice(" is not your end! The Wish Granter's energy suffuses you, and you begin to rise..."))
 	return ..()
 
 /datum/status_effect/wish_granters_gift/on_remove()
@@ -243,7 +243,7 @@
 	on_remove_on_mob_delete = TRUE
 	var/alive = TRUE
 
-/datum/status_effect/cult_master/proc/deathrattle()
+/datum/status_effect/cult_master/proc/rattle()
 	if(!QDELETED(GLOB.cult_narsie))
 		return //if nar-sie is alive, don't even worry about it
 	var/area/A = get_area(owner)
@@ -259,10 +259,10 @@
 		return
 	if(owner.stat == DEAD && alive)
 		alive = FALSE
-		deathrattle()
+		rattle()
 
 /datum/status_effect/cult_master/on_remove()
-	deathrattle()
+	rattle()
 	. = ..()
 
 /datum/status_effect/blooddrunk
@@ -390,7 +390,7 @@
 	examine_text = span_notice("They seem to have an aura of healing and helpfulness about them.")
 	alert_type = null
 	var/hand
-	var/deathTick = 0
+	var/Tick = 0
 
 /datum/status_effect/hippocraticOath/on_apply()
 	//Makes the user passive, it's in their oath not to harm!
@@ -406,8 +406,8 @@
 
 /datum/status_effect/hippocraticOath/tick()
 	if(owner.stat == DEAD)
-		if(deathTick < 4)
-			deathTick += 1
+		if(Tick < 4)
+			Tick += 1
 		else
 			owner.visible_message("[owner]'s soul is absorbed into the rod, relieving the previous snake of its duty.")
 			var/mob/living/simple_animal/hostile/retaliate/poison/snake/healSnake = new(owner.loc)

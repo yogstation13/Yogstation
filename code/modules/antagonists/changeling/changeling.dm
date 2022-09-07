@@ -1,4 +1,4 @@
-#define LING_FAKEDEATH_TIME					400 //40 seconds
+#define LING_FAKE_TIME					400 //40 seconds
 #define LING_DEAD_GENETICDAMAGE_HEAL_CAP	50	//The lowest value of geneticdamage handle_changeling() can take it to while dead.
 #define LING_ABSORB_RECENT_SPEECH			8	//The amount of recent spoken lines to gain on absorbing a mob
 
@@ -198,7 +198,7 @@
 		to_chat(owner.current, "We have reached our capacity for abilities.")
 		return
 
-	if(HAS_TRAIT(owner.current, TRAIT_DEATHCOMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
+	if(HAS_TRAIT(owner.current, TRAIT_COMA))//To avoid potential exploits by buying new powers while in stasis, which clears your verblist.
 		to_chat(owner.current, "We lack the energy to evolve new abilities right now.")
 		return
 

@@ -60,9 +60,9 @@
 	spawned_mobs += L
 	if(faction != null)
 		L.faction = faction
-	RegisterSignal(L, COMSIG_MOB_DEATH, .proc/on_spawned_death) // so we can remove them from the list, etc (for mobs with corpses)
+	RegisterSignal(L, COMSIG_MOB_, .proc/on_spawned_) // so we can remove them from the list, etc (for mobs with corpses)
 	playsound(spawn_location,spawn_sound, 50, 1)
 	spawn_location.visible_message(span_danger("[L] [spawn_text]."))
 
-/datum/component/summoning/proc/on_spawned_death(mob/killed, gibbed)
+/datum/component/summoning/proc/on_spawned_(mob/killed, gibbed)
 	spawned_mobs -= killed

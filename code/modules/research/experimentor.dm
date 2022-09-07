@@ -434,7 +434,7 @@
 			autoexperiment = 0
 			visible_message(span_warning("[src]'s emergency coolant system gives off a small ding!"))
 			var/obj/item/reagent_containers/food/drinks/coffee/C = new /obj/item/reagent_containers/food/drinks/coffee(get_turf(pick(oview(1,src))))
-			playsound(src, 'sound/machines/ding.ogg', 50, 1) //Ding! Your death coffee is ready!
+			playsound(src, 'sound/machines/ding.ogg', 50, 1) //Ding! Your  coffee is ready!
 			chosenchem = pick(/datum/reagent/uranium,/datum/reagent/consumable/frostoil,/datum/reagent/medicine/ephedrine)
 			C.reagents.remove_any(25)
 			C.reagents.add_reagent(chosenchem , 50)

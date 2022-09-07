@@ -39,7 +39,7 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD)
 		return
-	if(IS_BLOODSUCKER(H) && HAS_TRAIT(H, TRAIT_NODEATH))
+	if(IS_BLOODSUCKER(H) && HAS_TRAIT(H, TRAIT_NO))
 		return
 	var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 	if(isturf(H.loc)) //else, there's considered to be no light

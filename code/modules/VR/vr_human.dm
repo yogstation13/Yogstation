@@ -13,7 +13,7 @@
 	. = ..()
 	check_area()
 
-/mob/living/carbon/human/virtual_reality/death()
+/mob/living/carbon/human/virtual_reality/()
 	revert_to_reality()
 	. = ..()
 
@@ -45,7 +45,7 @@
 	if(!check || !istype(check, /area/awaymission/vr))
 		return
 	var/area/awaymission/vr/A = check
-	if(A.death)
+	if(A.)
 		to_chat(src, span_userdanger("It is unwise to attempt to break Virtual Reality."))
 		playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 		dust()
@@ -57,15 +57,15 @@
 		REMOVE_TRAIT(src, TRAIT_PACIFISM, VR_ZONE_TRAIT)
 		to_chat(src, span_notice("You feel that your ability to fight is no longer being suppressed."))
 
-/mob/living/carbon/human/virtual_reality/proc/revert_to_reality(deathchecks = TRUE)
+/mob/living/carbon/human/virtual_reality/proc/revert_to_reality(checks = TRUE)
 	if(real_mind && mind)
 		real_mind.current.ckey = ckey
 		real_mind.current.stop_sound_channel(CHANNEL_HEARTBEAT)
-		if(deathchecks && vr_sleeper)
+		if(checks && vr_sleeper)
 			if(vr_sleeper.you_die_in_the_game_you_die_for_real)
 				to_chat(real_mind, span_warning("You feel everything fading away..."))
-				real_mind.current.death(0)
-	if(deathchecks && vr_sleeper)
+				real_mind.current.(0)
+	if(checks && vr_sleeper)
 		vr_sleeper.vr_human = null
 		vr_sleeper = null
 	if(!real_mind && !vr_sleeper)

@@ -5,7 +5,7 @@
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = 2.5 * STANDARD_ORGAN_DECAY		//designed to fail about 6 minutes after death
+	decay_factor = 2.5 * STANDARD_ORGAN_DECAY		//designed to fail about 6 minutes after 
 
 	low_threshold_passed = span_info("Prickles of pain appear then die out from within your chest...")
 	high_threshold_passed = span_warning("Something inside your chest hurts, and the pain isn't subsiding. You notice yourself breathing far faster than before.")
@@ -94,7 +94,7 @@
 				if(owner.stat == CONSCIOUS)
 					owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
 				owner.set_heartattack(TRUE) //yogs end
-	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
+	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating,  imminent
 		if(owner.stat == CONSCIOUS)
 			owner.visible_message(span_userdanger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"))
 		owner.set_heartattack(TRUE)
@@ -249,7 +249,7 @@
 
 /obj/item/organ/heart/cybernetic/upgraded/emp_act()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/Restart), 8 SECONDS) //Can restart itself after an EMP so it isnt an insta death
+	addtimer(CALLBACK(src, .proc/Restart), 8 SECONDS) //Can restart itself after an EMP so it isnt an insta 
 
 /obj/item/organ/heart/cybernetic/ipc
 	desc = "An electronic device that appears to mimic the functions of an organic heart."

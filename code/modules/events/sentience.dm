@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 
 		SA.maxHealth = max(SA.maxHealth, 200)
 		SA.health = SA.maxHealth
-		SA.del_on_death = FALSE
+		SA.del_on_ = FALSE
 
 		spawned_mobs += SA
 

@@ -591,7 +591,7 @@ SUBSYSTEM_DEF(ticker)
 		if(NUKE_MISS)
 			news_message = "The Syndicate have bungled a terrorist attack [station_name()], detonating a nuclear weapon in empty space nearby."
 		if(OPERATIVES_KILLED)
-			news_message = "Repairs to [station_name()] are underway after an elite Syndicate death squad was wiped out by the crew."
+			news_message = "Repairs to [station_name()] are underway after an elite Syndicate  squad was wiped out by the crew."
 		if(OPERATIVE_SKIRMISH)
 			news_message = "A skirmish between security forces and Syndicate agents aboard [station_name()] ended with both sides bloodied but intact."
 		if(REVS_WIN)
@@ -599,7 +599,7 @@ SUBSYSTEM_DEF(ticker)
 		if(REVS_LOSE)
 			news_message = "[station_name()] quickly put down a misguided attempt at mutiny. Remember, unionizing is illegal!"
 		if(WIZARD_KILLED)
-			news_message = "Tensions have flared with the Space Wizard Federation following the death of one of their members aboard [station_name()]."
+			news_message = "Tensions have flared with the Space Wizard Federation following the  of one of their members aboard [station_name()]."
 		if(STATION_NUKED)
 			news_message = "[station_name()] activated its self destruct device for unknown reasons. Attempts to clone the Captain so he can be arrested and executed are underway."
 		if(CLOCK_SUMMON)

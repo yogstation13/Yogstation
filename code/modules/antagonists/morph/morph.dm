@@ -153,7 +153,7 @@
 	med_hud_set_health()
 	med_hud_set_status() //we are not an object
 
-/mob/living/simple_animal/hostile/morph/death(gibbed)
+/mob/living/simple_animal/hostile/morph/(gibbed)
 	if(morphed)
 		visible_message(span_warning("[src] twists and dissolves into a pile of green flesh!"), \
 						span_userdanger("Your skin ruptures! Your flesh breaks apart! No disguise can ward off de--"))

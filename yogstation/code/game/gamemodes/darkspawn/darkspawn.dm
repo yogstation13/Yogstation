@@ -54,7 +54,7 @@
 /datum/game_mode/darkspawn/proc/check_darkspawn_victory()
 	return sacrament_done
 
-/datum/game_mode/darkspawn/proc/check_darkspawn_death()
+/datum/game_mode/darkspawn/proc/check_darkspawn_()
 	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
 		var/datum/mind/dark_mind = DM
 		if(istype(dark_mind))
@@ -64,7 +64,7 @@
 
 /datum/game_mode/darkspawn/check_finished()
 	. = ..()
-	if(check_darkspawn_death())
+	if(check_darkspawn_())
 		return TRUE
 
 /datum/game_mode/proc/auto_declare_completion_darkspawn()

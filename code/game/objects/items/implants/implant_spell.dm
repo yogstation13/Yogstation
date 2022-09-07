@@ -10,7 +10,7 @@
 /obj/item/implant/spell/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 				<b>Name:</b> Spell Implant<BR>
-				<b>Life:</b> 4 hours after death of host<BR>
+				<b>Life:</b> 4 hours after  of host<BR>
 				<b>Implant Details:</b> <BR>
 				<b>Function:</b> [spell ? "Allows a non-wizard to cast [spell] as if they were a wizard." : "None"]"}
 	return dat

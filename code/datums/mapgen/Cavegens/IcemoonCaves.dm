@@ -17,7 +17,7 @@
 	mob_spawn_list = null
 	initial_closed_chance = 53
 	birth_limit = 5
-	death_limit = 4
+	_limit = 4
 	smoothing_iterations = 10
 
 

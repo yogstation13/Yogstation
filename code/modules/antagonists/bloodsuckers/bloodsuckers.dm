@@ -213,7 +213,7 @@
 	if(bloodsucker_level_unspent >= 2)
 		to_chat(owner, span_announce("As a latejoiner, you have [bloodsucker_level_unspent] bonus Ranks, entering your claimed coffin allows you to spend a Rank."))
 	owner.current.playsound_local(null, 'sound/ambience/antag/bloodsuckeralert.ogg', 100, FALSE, pressure_affected = FALSE)
-	antag_memory += "Although you were born a mortal, in undeath you earned the name <b>[fullname]</b>.<br>"
+	antag_memory += "Although you were born a mortal, in un you earned the name <b>[fullname]</b>.<br>"
 
 /datum/antagonist/bloodsucker/farewell()
 	to_chat(owner.current, span_userdanger("<FONT size = 3>With a snap, your curse has ended. You are no longer a Bloodsucker. You live once more!</FONT>"))
@@ -364,13 +364,13 @@
 	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && !escaped)
 		//finish primary objectives only, break masquerade, don't escape
 		flavor_message += pick(list(
-			"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
+			"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt  in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
 		))
 		message_color = "#ef2f3c"
 	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && escaped)
 		//finish primary objectives only, don't break masquerade, escape
 		flavor_message += pick(list(
-			"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
+			"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though  is a less kind alternative. On to the next station."
 		))
 		message_color = "#517fff"
 	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && !escaped)
@@ -517,7 +517,7 @@
 ///Disables all powers, accounting for torpor
 /datum/antagonist/bloodsucker/proc/DisableAllPowers()
 	for(var/datum/action/bloodsucker/power as anything in powers)
-		if((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(owner.current, TRAIT_NODEATH))
+		if((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(owner.current, TRAIT_NO))
 			if(power.active)
 				power.DeactivatePower()
 
@@ -626,7 +626,7 @@
 /// Include additional information about antag in this part
 /datum/antagonist/bloodsucker/antag_listing_status()
 	if(owner && !considered_alive(owner))
-		return "<font color=red>Final Death</font>"
+		return "<font color=red>Final </font>"
 	return ..()
 
 /*
@@ -744,7 +744,7 @@
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = clan_minds.has_antag_datum(/datum/antagonist/bloodsucker)
 		var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
 		masquerade_objective.target = owner.current
-		masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, is Final Death'ed."
+		masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, is Final 'ed."
 		bloodsuckerdatum.objectives += masquerade_objective
 		clan_minds.announce_objectives()
 

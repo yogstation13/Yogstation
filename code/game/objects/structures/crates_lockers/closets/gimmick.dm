@@ -45,8 +45,8 @@
 	new /obj/item/clothing/mask/gas/sechailer/swat/encrypted(src)
 	new /obj/item/clothing/shoes/combat/swat(src)
 	new /obj/item/clothing/shoes/combat/swat(src)
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad(src)
-	new /obj/item/clothing/suit/space/hardsuit/deathsquad(src)
+	new /obj/item/clothing/suit/space/hardsuit/squad(src)
+	new /obj/item/clothing/suit/space/hardsuit/squad(src)
 	new /obj/item/clothing/under/syndicate/tacticool(src)
 	new /obj/item/clothing/under/syndicate/tacticool(src)
 

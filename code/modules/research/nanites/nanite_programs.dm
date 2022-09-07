@@ -209,7 +209,7 @@
 		if(prob(10))
 			software_error()
 
-/datum/nanite_program/proc/on_death()
+/datum/nanite_program/proc/on_()
 	return
 
 /datum/nanite_program/proc/software_error(type)

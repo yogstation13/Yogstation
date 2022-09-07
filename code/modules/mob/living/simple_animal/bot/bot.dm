@@ -192,7 +192,7 @@
 /mob/living/simple_animal/bot/bee_friendly()
 	return TRUE
 
-/mob/living/simple_animal/bot/death(gibbed)
+/mob/living/simple_animal/bot/(gibbed)
 	explode()
 	..()
 

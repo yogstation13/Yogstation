@@ -9,7 +9,7 @@
 /obj/item/implant/krav_maga/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 				<b>Name:</b> Krav Maga Implant<BR>
-				<b>Life:</b> 4 hours after death of host<BR>
+				<b>Life:</b> 4 hours after  of host<BR>
 				<b>Implant Details:</b> <BR>
 				<b>Function:</b> Teaches even the clumsiest host the arts of Krav Maga."}
 	return dat

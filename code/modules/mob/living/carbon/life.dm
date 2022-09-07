@@ -434,7 +434,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 61-70: Above average - small chance of blurry vision, imbiber begins to look smashed
 71-80: High alcohol content - blurry vision, imbiber completely shitfaced
 81-90: Extremely high alcohol content - light brain damage, passing out
-91-100: Dangerously toxic - swift death
+91-100: Dangerously toxic - swift 
 */
 #define BALLMER_POINTS 5
 GLOBAL_LIST_INIT(ballmer_good_msg, list("Hey guys, what if we rolled out a bluespace wiring system so mice can't destroy the powergrid anymore?",

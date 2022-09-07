@@ -1,7 +1,7 @@
 /*
 procs:
 
-handle_charge - called in spec_life(),handles the alert indicators,the power loss death and decreasing the charge level
+handle_charge - called in spec_life(),handles the alert indicators,the power loss  and decreasing the charge level
 adjust_charge - take a positive or negative value to adjust the charge level
 */
 
@@ -160,7 +160,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	charge = clamp(charge - power_drain,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 	if(charge == PRETERNIS_LEVEL_NONE)
 		to_chat(H,span_danger("Warning! System power criti-$#@$"))
-		H.death()
+		H.()
 	else if(charge < PRETERNIS_LEVEL_STARVING)
 		H.throw_alert("preternis_charge", /obj/screen/alert/preternis_charge, 3)
 	else if(charge < PRETERNIS_LEVEL_HUNGRY)

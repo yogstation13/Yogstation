@@ -66,7 +66,7 @@
 		return FALSE
 	// Dead/Unconscious
 	if(current_target.stat > CONSCIOUS)
-		to_chat(owner, "[current_target] is not [(current_target.stat == DEAD || HAS_TRAIT(current_target, TRAIT_FAKEDEATH)) ? "alive" : "conscious"].")
+		to_chat(owner, "[current_target] is not [(current_target.stat == DEAD || HAS_TRAIT(current_target, TRAIT_FAKE)) ? "alive" : "conscious"].")
 		return FALSE
 	// Target has eyes?
 	if(!current_target.getorganslot(ORGAN_SLOT_EYES))

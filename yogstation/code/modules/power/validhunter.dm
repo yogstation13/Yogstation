@@ -134,7 +134,7 @@
 		skin = new typeofskin
 	
 	log_combat(user, occupant, "gibbed")
-	L.death(1)
+	L.(1)
 	L.ghostize()
 	qdel(L)
 	addtimer(CALLBACK(src, .proc/gib_antag, skin, allmeat, meat_produced, gibtype, diseases), gibtime)

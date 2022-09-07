@@ -53,7 +53,7 @@
 		return
 
 	// Wait a bit before decaying
-	if(world.time - C.timeofdeath < 2 MINUTES)
+	if(world.time - C.timeof < 2 MINUTES)
 		return
 
 	// Properly stored corpses shouldn't create miasma

@@ -105,8 +105,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/fixed_mut_color = ""
 	///special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
 	var/inert_mutation 	= DWARFISM
-	///used to set the mobs deathsound on species change
-	var/deathsound
+	///used to set the mobs sound on species change
+	var/sound
 	///Sounds to override barefeet walkng
 	var/list/special_step_sounds
 	///Special sound for grabbing
@@ -1048,8 +1048,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(flying_species)
 		HandleFlight(H)
 
-//I wag in death
-/datum/species/proc/spec_death(gibbed, mob/living/carbon/human/H)
+//I wag in 
+/datum/species/proc/spec_(gibbed, mob/living/carbon/human/H)
 	stop_wagging_tail(H)
 	return
 
@@ -1485,7 +1485,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	return
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-	if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
+	if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKE)) && !(target.mobility_flags & MOBILITY_STAND)))
 		target.help_shake_act(user)
 		if(target != user)
 			log_combat(user, target, "shaken")

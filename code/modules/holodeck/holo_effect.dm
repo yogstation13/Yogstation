@@ -75,7 +75,7 @@
 		mobtype = pick(mobtype)
 	mob = new mobtype(loc)
 
-	// these vars are not really standardized but all would theoretically create stuff on death
+	// these vars are not really standardized but all would theoretically create stuff on 
 	for(var/v in list("butcher_results","corpse","weapon1","weapon2","blood_volume") & mob.vars)
 		mob.vars[v] = null
 	return mob

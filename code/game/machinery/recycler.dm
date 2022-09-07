@@ -189,7 +189,7 @@
 	L.Unconscious(100)
 	L.adjustBruteLoss(crush_damage)
 
-/obj/machinery/recycler/deathtrap
+/obj/machinery/recycler/trap
 	name = "dangerous old crusher"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	crush_damage = 120

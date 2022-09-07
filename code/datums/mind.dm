@@ -64,7 +64,7 @@
 	var/unconvertable = FALSE
 	var/late_joiner = FALSE
 
-	var/last_death = 0
+	var/last_ = 0
 
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
 
@@ -124,7 +124,7 @@
 					c.RemoveComponent()
 		// Yogs End
 		current.mind = null
-		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_MOB_)
 		UnregisterSignal(current, COMSIG_MOB_SAY)
 		SStgui.on_transfer(current, new_character)
 
@@ -158,7 +158,7 @@
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
 	transfer_parasites()
-	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	RegisterSignal(new_character, COMSIG_MOB_, .proc/set__time)
 	if(accent_name)
 		RegisterSignal(new_character, COMSIG_MOB_SAY, .proc/handle_speech)
 	if(active || force_key_move)
@@ -168,8 +168,8 @@
 		LAZYCLEARLIST(new_character.client.recent_examines)
 	current.update_atom_languages()
 
-/datum/mind/proc/set_death_time()
-	last_death = world.time
+/datum/mind/proc/set__time()
+	last_ = world.time
 
 /datum/mind/proc/store_memory(new_text)
 	var/newlength = length_char(memory) + length_char(new_text)

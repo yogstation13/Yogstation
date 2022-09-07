@@ -32,7 +32,7 @@
 	///How much neighbours does a dead cell need to become alive
 	var/birth_limit = 4
 	///How little neighbours does a alive cell need to die
-	var/death_limit = 3
+	var/_limit = 3
 
 /datum/map_generator/cave_generator/New()
 	. = ..()
@@ -48,7 +48,7 @@
 /datum/map_generator/cave_generator/generate_terrain(list/turfs)
 	. = ..()
 	var/start_time = REALTIMEOFDAY
-	string_gen = rustg_cnoise_generate("[initial_closed_chance]", "[smoothing_iterations]", "[birth_limit]", "[death_limit]", "[world.maxx]", "[world.maxy]") //Generate the raw CA data
+	string_gen = rustg_cnoise_generate("[initial_closed_chance]", "[smoothing_iterations]", "[birth_limit]", "[_limit]", "[world.maxx]", "[world.maxy]") //Generate the raw CA data
 
 	for(var/i in turfs) //Go through all the turfs and generate them
 		var/turf/gen_turf = i

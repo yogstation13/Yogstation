@@ -214,9 +214,9 @@
 		cooldown = world.time
 		cooldown_special = world.time
 
-/obj/item/clothing/mask/gas/sechailer/on_mob_death()
+/obj/item/clothing/mask/gas/sechailer/on_mob_()
 	. = ..()
-	playsound(loc, pick('sound/voice/cpdeath/die1.ogg', 'sound/voice/cpdeath/die2.ogg', 'sound/voice/cpdeath/die3.ogg', 'sound/voice/cpdeath/die4.ogg'), 50, 0) //lost biosignal for protection team unit 4, remaining units contain 
+	playsound(loc, pick('sound/voice/cp/die1.ogg', 'sound/voice/cp/die2.ogg', 'sound/voice/cp/die3.ogg', 'sound/voice/cp/die4.ogg'), 50, 0) //lost biosignal for protection team unit 4, remaining units contain 
 
 /obj/item/clothing/mask/gas/sechailer/verb/toggle()
 	set name = "Toggle voice modulator"

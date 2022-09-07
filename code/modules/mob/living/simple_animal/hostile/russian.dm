@@ -27,7 +27,7 @@
 	unsuitable_atmos_damage = 15
 	faction = list("russian")
 	status_flags = CANPUSH
-	del_on_death = 1
+	del_on_ = 1
 
 	do_footstep = TRUE
 

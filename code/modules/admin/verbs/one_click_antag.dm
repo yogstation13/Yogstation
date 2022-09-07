@@ -304,9 +304,9 @@
 	new /datum/round_event/ghost_role/ninja()
 	return 1
 
-// DEATH SQUADS
-/datum/admins/proc/makeDeathsquad()
-	return makeEmergencyresponseteam(/datum/ert/deathsquad)
+//  SQUADS
+/datum/admins/proc/makesquad()
+	return makeEmergencyresponseteam(/datum/ert/squad)
 
 // CENTCOM RESPONSE TEAM
 
@@ -417,7 +417,7 @@
 		ertemplate.opendoors = prefs["open_armory"]["value"] == "Yes" ? TRUE : FALSE
 		ertemplate.openmech = prefs["open_mechbay"]["value"] == "Yes" ? TRUE : FALSE
 
-		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "deathsquad", null)
+		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for [ertemplate.polldesc] ?", "squad", null)
 		var/teamSpawned = FALSE
 
 		if(candidates.len > 0)
@@ -483,7 +483,7 @@
 
 			//Open the Mech Bay
 			if(ertemplate.openmech)
-				for(var/obj/machinery/door/poddoor/deathsquad/door in GLOB.airlocks)
+				for(var/obj/machinery/door/poddoor/squad/door in GLOB.airlocks)
 					INVOKE_ASYNC(door, /obj/machinery/door/poddoor.proc/open)
 			return TRUE
 		else

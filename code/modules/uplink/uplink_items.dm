@@ -660,7 +660,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	name = "Romerol"
 	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. \
-			On death, these nodules take control of the dead body, causing limited revivification, \
+			On , these nodules take control of the dead body, causing limited revivification, \
 			along with slurred speech, aggression, and the ability to infect others with this agent."
 	item = /obj/item/storage/box/syndie_kit/romerol
 	cost = 25
@@ -1731,7 +1731,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/microbomb
 	name = "Microbomb Implant"
-	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \
+	desc = "An implant injected into the body, and later activated either manually or automatically upon . \
 			The more implants inside of you, the higher the explosive power. \
 			This will permanently destroy your body, however."
 	item = /obj/item/storage/box/syndie_kit/imp_microbomb
@@ -1740,8 +1740,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/macrobomb
 	name = "Macrobomb Implant"
-	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \
-			Upon death, releases a massive explosion that will wipe out everything nearby."
+	desc = "An implant injected into the body, and later activated either manually or automatically upon . \
+			Upon , releases a massive explosion that will wipe out everything nearby."
 	item = /obj/item/storage/box/syndie_kit/imp_macrobomb
 	cost = 20
 	include_modes = list(/datum/game_mode/nuclear)

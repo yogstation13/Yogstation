@@ -34,7 +34,7 @@
 						  /obj/item/stack/ore/bananium, /obj/item/stack/ore/titanium)
 	healable = 0
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
-	del_on_death = TRUE
+	del_on_ = TRUE
 	var/mode = MINEDRONE_COLLECT
 	var/light_on = 0
 	var/obj/item/gun/energy/kinetic_accelerator/minebot/stored_gun
@@ -110,12 +110,12 @@
 		return
 	..()
 
-/mob/living/simple_animal/hostile/mining_drone/death()
+/mob/living/simple_animal/hostile/mining_drone/()
 	DropOre(0)
 	if(stored_gun)
 		for(var/obj/item/borg/upgrade/modkit/M in stored_gun.modkits)
 			M.uninstall(stored_gun)
-	deathmessage = "blows apart!"
+	message = "blows apart!"
 	..()
 
 /mob/living/simple_animal/hostile/mining_drone/attack_hand(mob/living/carbon/human/M)

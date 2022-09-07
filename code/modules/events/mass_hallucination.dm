@@ -31,7 +31,7 @@
 												/datum/hallucination/battle,
 												/datum/hallucination/fire,
 												/datum/hallucination/self_delusion,
-												/datum/hallucination/death,
+												/datum/hallucination/,
 												/datum/hallucination/delusion,
 												/datum/hallucination/oh_yeah)
 			for(var/mob/living/carbon/C in GLOB.alive_mob_list)

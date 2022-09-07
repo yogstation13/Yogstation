@@ -141,12 +141,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				if(!summoner.dropItemToGround(W))
 					qdel(W)
 			summoner.dust()
-			death(TRUE)
+			(TRUE)
 			qdel(src)
 	else
 		to_chat(src, span_danger("Your summoner has died!"))
 		visible_message(span_danger("<B>[src] dies along with its user!</B>"))
-		death(TRUE)
+		(TRUE)
 		qdel(src)
 	snapback()
 
@@ -193,12 +193,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	else
 		return ..()
 
-/mob/living/simple_animal/hostile/guardian/death()
+/mob/living/simple_animal/hostile/guardian/()
 	drop_all_held_items()
 	..()
 	if(summoner)
 		to_chat(summoner, "<span class='danger'><B>Your [name] died somehow!</span></B>")
-		summoner.death()
+		summoner.()
 
 /mob/living/simple_animal/hostile/guardian/update_health_hud()
 	if(summoner && hud_used && hud_used.healths)

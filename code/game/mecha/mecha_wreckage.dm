@@ -45,7 +45,7 @@
 
 	AI = AI_pilot
 	AI.apply_damage(150, BURN) //Give the AI a bit of damage from the "shock" of being suddenly shut down
-	AI.death() //The damage is not enough to kill the AI, but to be 'corrupted files' in need of repair.
+	AI.() //The damage is not enough to kill the AI, but to be 'corrupted files' in need of repair.
 	AI.forceMove(src) //Put the dead AI inside the wreckage for recovery
 	add_overlay(mutable_appearance('icons/obj/projectiles.dmi', "green_laser")) //Overlay for the recovery beacon
 	AI.controlled_mech = null
@@ -194,10 +194,10 @@
 	icon_state = "firefighter-broken"
 	orig_mecha = /obj/mecha/working/ripley/firefighter
 
-/obj/structure/mecha_wreckage/ripley/deathripley
-	name = "\improper Death-Ripley wreckage"
-	icon_state = "deathripley-broken"
-	orig_mecha = /obj/mecha/working/ripley/deathripley
+/obj/structure/mecha_wreckage/ripley/ripley
+	name = "\improper -Ripley wreckage"
+	icon_state = "ripley-broken"
+	orig_mecha = /obj/mecha/working/ripley/ripley
 
 /obj/structure/mecha_wreckage/honker
 	name = "\improper H.O.N.K wreckage"

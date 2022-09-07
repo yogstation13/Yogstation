@@ -43,7 +43,7 @@ Difficulty: Medium
 	crusher_loot = list(/obj/item/melee/transforming/cleaving_saw, /obj/item/gun/energy/kinetic_accelerator, /obj/item/crusher_trophy/miner_eye, /obj/item/gem/phoron)
 	loot = list(/obj/item/melee/transforming/cleaving_saw, /obj/item/gun/energy/kinetic_accelerator, /obj/item/gem/phoron)
 	wander = FALSE
-	del_on_death = TRUE
+	del_on_ = TRUE
 	blood_volume = BLOOD_VOLUME_GENERIC
 	internal_type = /obj/item/gps/internal/miner
 	var/obj/item/melee/transforming/cleaving_saw/miner/miner_saw
@@ -52,8 +52,8 @@ Difficulty: Medium
 	var/dash_cooldown = 15
 	var/guidance = FALSE
 	var/transform_stop_attack = FALSE // stops the blood drunk miner from attacking after transforming his weapon until the next attack chain
-	deathmessage = "falls to the ground, decaying into glowing particles."
-	deathsound = "bodyfall"
+	message = "falls to the ground, decaying into glowing particles."
+	sound = "bodyfall"
 	do_footstep = TRUE
 	attack_action_types = list(/datum/action/innate/megafauna_attack/dash,
 							   /datum/action/innate/megafauna_attack/kinetic_accelerator,
@@ -123,13 +123,13 @@ Difficulty: Medium
 		changeNext_move(adjustment_amount) //attacking it interrupts it attacking, but only briefly
 	. = ..()
 
-/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/death()
+/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
 	. = ..()
 	if(.)
-		new /obj/effect/temp_visual/dir_setting/miner_death(loc, dir)
+		new /obj/effect/temp_visual/dir_setting/miner_(loc, dir)
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/Move(atom/newloc)
 	if(dashing || (newloc && newloc.z == z && (islava(newloc) || ischasm(newloc)))) //we're not stupid!
@@ -236,11 +236,11 @@ Difficulty: Medium
 	dashing = TRUE
 	alpha = 0
 	animate(src, alpha = 255, time = 0.5 SECONDS)
-	SLEEP_CHECK_DEATH(2)
+	SLEEP_CHECK_(2)
 	D.forceMove(step_forward_turf)
 	forceMove(target_turf)
 	playsound(target_turf, 'sound/weapons/punchmiss.ogg', 40, 1, -1)
-	SLEEP_CHECK_DEATH(1)
+	SLEEP_CHECK_(1)
 	dashing = FALSE
 	return TRUE
 
@@ -257,15 +257,15 @@ Difficulty: Medium
 		icon_living = "miner[miner_saw.active ? "_transformed":""]"
 		time_until_next_transform = world.time + rand(50, 100)
 
-/obj/effect/temp_visual/dir_setting/miner_death
-	icon_state = "miner_death"
+/obj/effect/temp_visual/dir_setting/miner_
+	icon_state = "miner_"
 	duration = 15
 
-/obj/effect/temp_visual/dir_setting/miner_death/Initialize(mapload, set_dir)
+/obj/effect/temp_visual/dir_setting/miner_/Initialize(mapload, set_dir)
 	. = ..()
 	INVOKE_ASYNC(src, .proc/fade_out)
 
-/obj/effect/temp_visual/dir_setting/miner_death/proc/fade_out()
+/obj/effect/temp_visual/dir_setting/miner_/proc/fade_out()
 	var/matrix/M = new
 	M.Turn(pick(90, 270))
 	var/final_dir = dir

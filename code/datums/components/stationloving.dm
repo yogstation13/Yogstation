@@ -2,9 +2,9 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	var/inform_admins = FALSE
 	var/disallow_soul_imbue = TRUE
-	var/allow_death = FALSE
+	var/allow_ = FALSE
 
-/datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
+/datum/component/stationloving/Initialize(inform_admins = FALSE, allow_ = FALSE)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_MOVABLE_Z_CHANGED), .proc/check_in_bounds)
@@ -12,14 +12,14 @@
 	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED), .proc/check_deletion)
 	RegisterSignal(parent, list(COMSIG_ITEM_IMBUE_SOUL), .proc/check_soul_imbue)
 	src.inform_admins = inform_admins
-	src.allow_death = allow_death
+	src.allow_ = allow_
 	check_in_bounds() // Just in case something is being created outside of station/centcom
 
 /datum/component/stationloving/InheritComponent(datum/component/stationloving/newc, original, list/arguments)
 	if (original)
 		if (istype(newc))
 			inform_admins = newc.inform_admins
-			allow_death = newc.allow_death
+			allow_ = newc.allow_
 		else if (LAZYLEN(arguments))
 			inform_admins = arguments[1]
 
@@ -77,7 +77,7 @@
 		message_admins("[parent] has been !!force deleted!! in [ADMIN_VERBOSEJMP(T)].")
 		log_game("[parent] has been !!force deleted!! in [loc_name(T)].")
 
-	if(!force && !allow_death)
+	if(!force && !allow_)
 		var/turf/targetturf = relocate()
 		log_game("[parent] has been destroyed in [loc_name(T)]. Moving it to [loc_name(targetturf)].")
 		if(inform_admins)

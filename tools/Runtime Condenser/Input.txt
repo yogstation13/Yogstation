@@ -4360,8 +4360,8 @@ runtime error: Cannot read null.slot_flags
 proc name: db click (/mob/living/carbon/human/db_click)
   source file: inventory.dm,1142
 runtime error: Cannot modify null.status.
-proc name: death (/mob/living/silicon/robot/death)
-  source file: death.dm,51
+proc name:  (/mob/living/silicon/robot/)
+  source file: .dm,51
 runtime error: Cannot create objects of type null.
 proc name: Topic (/obj/machinery/computer/rdconsole/Topic)
   source file: rdconsole.dm,381

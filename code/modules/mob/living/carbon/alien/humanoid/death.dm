@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/humanoid/death(gibbed)
+/mob/living/carbon/alien/humanoid/(gibbed)
 	if(stat == DEAD)
 		return
 
@@ -12,7 +12,7 @@
 			to_chat(S, span_alien("You sense through your hivemind that [src] has died."))
 
 //When the alien queen dies, all others must pay the price for letting her die.
-/mob/living/carbon/alien/humanoid/royal/queen/death(gibbed)
+/mob/living/carbon/alien/humanoid/royal/queen/(gibbed)
 	if(stat == DEAD)
 		return
 
@@ -21,6 +21,6 @@
 			continue
 		var/obj/item/organ/alien/hivenode/node = C.getorgan(/obj/item/organ/alien/hivenode)
 		if(istype(node)) // just in case someone would ever add a diffirent node to hivenode slot
-			node.queen_death()
+			node.queen_()
 
 	return ..()

@@ -49,14 +49,14 @@
 	var/datum/antagonist/heretic/master = user.mind.has_antag_datum(/datum/antagonist/heretic)
 	heretic_monster.set_owner(master)
 	atoms -= humie
-	RegisterSignal(humie,COMSIG_MOB_DEATH,.proc/remove_ghoul)
+	RegisterSignal(humie,COMSIG_MOB_,.proc/remove_ghoul)
 	ghouls += humie
 
 /datum/eldritch_transmutation/voiceless_dead/proc/remove_ghoul(datum/source)
 	var/mob/living/carbon/human/humie = source
 	ghouls -= humie
 	humie.mind.remove_antag_datum(/datum/antagonist/heretic_monster)
-	UnregisterSignal(source,COMSIG_MOB_DEATH)
+	UnregisterSignal(source,COMSIG_MOB_)
 
 /datum/eldritch_transmutation/summon/raw_prophet
 	name = "Summon Raw Prophet"

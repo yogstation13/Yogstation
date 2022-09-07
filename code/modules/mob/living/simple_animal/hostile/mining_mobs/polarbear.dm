@@ -48,7 +48,7 @@
 		adjustHealth(-maxHealth*0.025)
 		aggressive_message_said = FALSE
 
-/mob/living/simple_animal/hostile/asteroid/polarbear/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/polarbear/(gibbed)
 	move_force = MOVE_FORCE_DEFAULT
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT

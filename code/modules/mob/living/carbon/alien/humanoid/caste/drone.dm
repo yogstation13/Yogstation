@@ -27,7 +27,7 @@
 	if(!node) //Players are Murphy's Law. We may not expect there to ever be a living xeno with no hivenode, but they _WILL_ make it happen.
 		to_chat(user, span_danger("Without the hivemind, you can't possibly hold the responsibility of leadership!"))
 		return 0
-	if(node.recent_queen_death)
+	if(node.recent_queen_)
 		to_chat(user, span_danger("Your thoughts are still too scattered to take up the position of leadership."))
 		return 0
 	if(user.movement_type & (VENTCRAWLING))

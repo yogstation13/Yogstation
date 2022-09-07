@@ -83,7 +83,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			destroy_item(innerthing, TRUE)
 	reclaim_materials_from(thing)
 	for(var/mob/M in thing)
-		M.death()
+		M.()
 	if(istype(thing, /obj/item/stack/sheet))
 		var/obj/item/stack/sheet/S = thing
 		if(S.amount > 1 && !innermode)

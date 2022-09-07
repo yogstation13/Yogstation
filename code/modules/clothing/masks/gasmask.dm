@@ -165,15 +165,15 @@
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 
-/obj/item/clothing/mask/gas/death_commando
-	name = "Death Commando Mask"
-	icon_state = "death_commando_mask"
-	item_state = "death_commando_mask"
+/obj/item/clothing/mask/gas/_commando
+	name = " Commando Mask"
+	icon_state = "_commando_mask"
+	item_state = "_commando_mask"
 
 /obj/item/clothing/mask/gas/cyborg
 	name = "cyborg visor"
 	desc = "Beep boop."
-	icon_state = "death"
+	icon_state = ""
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/owl_mask

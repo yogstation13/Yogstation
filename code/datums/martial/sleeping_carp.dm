@@ -103,7 +103,7 @@
 		D.visible_message(span_warning("[A] elbow drops [D]!"), \
 							span_userdanger("[A] piledrives you with their elbow!"))
 		if(D.stat)
-			D.death() //FINISH HIM!
+			D.() //FINISH HIM!
 		D.apply_damage(dunk_damage, A.dna.species.attack_type, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
 		return TRUE

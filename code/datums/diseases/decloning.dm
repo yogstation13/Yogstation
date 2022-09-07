@@ -3,7 +3,7 @@
 	name = "Cellular Degeneration"
 	max_stages = 5
 	stage_prob = 1
-	cure_text = "Rezadone or death."
+	cure_text = "Rezadone or ."
 	agent = "Severe Genetic Damage"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "If left untreated the subject will 'REDACTED'!" // yogsfixed this description cause it was causing issues

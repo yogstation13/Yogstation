@@ -19,7 +19,7 @@
 	var/report_type = "invalid" //gamemodes with the same report type will not show up in the command report together.
 	var/station_was_nuked = 0 //see nuclearbomb.dm and malfunction.dm
 	var/nuke_off_station = 0 //Used for tracking where the nuke hit
-	var/round_ends_with_antag_death = 0 //flags the "one verse the station" antags as such
+	var/round_ends_with_antag_ = 0 //flags the "one verse the station" antags as such
 	var/list/datum/mind/antag_candidates = list()	// List of possible starting antags goes here
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
 	var/list/protected_jobs = list()	// Jobs that can't be traitors because
@@ -274,7 +274,7 @@
 		else
 			round_converted = convert_roundtype()
 			if(!round_converted)
-				if(round_ends_with_antag_death)
+				if(round_ends_with_antag_)
 					return TRUE
 				else
 					midround_antag[config_tag] = 0

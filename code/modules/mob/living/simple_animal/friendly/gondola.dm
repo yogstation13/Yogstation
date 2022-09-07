@@ -24,7 +24,7 @@
 	maxbodytemp = 1500
 	maxHealth = 200
 	health = 200
-	del_on_death = TRUE
+	del_on_ = TRUE
 
 	//Gondolas don't make footstep sounds
 

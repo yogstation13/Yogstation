@@ -69,9 +69,9 @@
 	message = "dances around happily."
 	restraint_check = TRUE
 
-/datum/emote/living/deathgasp
-	key = "deathgasp"
-	key_third_person = "deathgasps"
+/datum/emote/living/gasp
+	key = "gasp"
+	key_third_person = "gasps"
 	message = "seizes up and falls limp, their eyes dead and lifeless..."
 	message_robot = "shudders violently for a moment before falling still, its eyes slowly darkening."
 	message_AI = "lets out a flurry of sparks, its screen flickering as its systems slowly halt."
@@ -83,18 +83,18 @@
 	stat_allowed = UNCONSCIOUS
 	cooldown = 3.4 SECONDS
 
-/datum/emote/living/deathgasp/run_emote(mob/user, params, type_override, intentional)
+/datum/emote/living/gasp/run_emote(mob/user, params, type_override, intentional)
 	var/mob/living/simple_animal/S = user
-	if(istype(S) && S.deathmessage)
-		message_simple = S.deathmessage
+	if(istype(S) && S.message)
+		message_simple = S.message
 	. = ..()
 	message_simple = initial(message_simple)
-	if(. && user.deathsound)
+	if(. && user.sound)
 		if(isliving(user))
 			var/mob/living/L = user
 			if(!L.can_speak_vocal() || L.oxyloss >= 50)
 				return //stop the sound if oxyloss too high/cant speak
-		playsound(user, user.deathsound, 200, TRUE, TRUE)
+		playsound(user, user.sound, 200, TRUE, TRUE)
 
 /datum/emote/living/drool
 	key = "drool"

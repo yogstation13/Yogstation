@@ -176,7 +176,7 @@
 			return
 	if(last_man_standing)
 		if(syndicate)
-			to_chat(owner.current,span_userdanger(" All the loyalist agents are dead, and no more is required of you. Die a glorious death, agent. "))
+			to_chat(owner.current,span_userdanger(" All the loyalist agents are dead, and no more is required of you. Die a glorious , agent. "))
 		else
 			to_chat(owner.current,span_userdanger(" All the other agents are dead, and you're the last loose end. Stage a Syndicate terrorist attack to cover up for today's events. You no longer have any limits on collateral damage."))
 		replace_escape_objective(owner)

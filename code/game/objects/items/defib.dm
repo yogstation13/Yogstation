@@ -1,5 +1,5 @@
 //backpack item
-#define HALFWAYCRITDEATH ((HEALTH_THRESHOLD_CRIT + HEALTH_THRESHOLD_DEAD) * 0.5)
+#define HALFWAYCRIT ((HEALTH_THRESHOLD_CRIT + HEALTH_THRESHOLD_DEAD) * 0.5)
 
 /obj/item/defibrillator
 	name = "defibrillator"
@@ -552,7 +552,7 @@
 		playsound(src, 'sound/machines/defib_charge.ogg', 75, 0)
 		var/total_burn	= 0
 		var/total_brute	= 0
-		var/tplus = world.time - H.timeofdeath	//length of time spent dead
+		var/tplus = world.time - H.timeof	//length of time spent dead
 		var/obj/item/organ/heart = H.getorgan(/obj/item/organ/heart)
 		if(do_after(user, 1.5 SECONDS, H))
 			if(user.job == "Medical Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
@@ -598,7 +598,7 @@
 					if(BR)
 						if(BR.organ_flags & ORGAN_FAILING)
 							failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's brain tissue is damaged making recovery of patient impossible via defibrillator. Brain repair may result in successful defibrillation.")
-						if(BR.brain_death)
+						if(BR.brain_)
 							failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's brain damaged beyond point of no return. Brain repair may result in successful defibrillation.")
 						if(BR.suicided || BR.brainmob?.suiciding)
 							failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - No intelligence pattern can be detected in patient's brain. Further attempts futile.")
@@ -610,15 +610,15 @@
 					playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 				else
 					//If the body has been fixed so that they would not be in crit when defibbed, give them oxyloss to put them back into crit
-					if (H.health > HALFWAYCRITDEATH)
-						H.adjustOxyLoss(H.health - HALFWAYCRITDEATH, 0)
+					if (H.health > HALFWAYCRIT)
+						H.adjustOxyLoss(H.health - HALFWAYCRIT, 0)
 					else
 						var/overall_damage = total_brute + total_burn + H.getToxLoss() + H.getOxyLoss()
 						var/mobhealth = H.health
-						H.adjustOxyLoss((mobhealth - HALFWAYCRITDEATH) * (H.getOxyLoss() / overall_damage), 0)
-						H.adjustToxLoss((mobhealth - HALFWAYCRITDEATH) * (H.getToxLoss() / overall_damage), 0)
-						H.adjustFireLoss((mobhealth - HALFWAYCRITDEATH) * (total_burn / overall_damage), 0, required_status = BODYPART_ANY)
-						H.adjustBruteLoss((mobhealth - HALFWAYCRITDEATH) * (total_brute / overall_damage), 0, required_status = BODYPART_ANY)
+						H.adjustOxyLoss((mobhealth - HALFWAYCRIT) * (H.getOxyLoss() / overall_damage), 0)
+						H.adjustToxLoss((mobhealth - HALFWAYCRIT) * (H.getToxLoss() / overall_damage), 0)
+						H.adjustFireLoss((mobhealth - HALFWAYCRIT) * (total_burn / overall_damage), 0, required_status = BODYPART_ANY)
+						H.adjustBruteLoss((mobhealth - HALFWAYCRIT) * (total_brute / overall_damage), 0, required_status = BODYPART_ANY)
 					H.updatehealth() // Previous "adjust" procs don't update health, so we do it manually.
 					user.visible_message(span_notice("[req_defib ? "[defib]" : "[src]"] pings: Resuscitation successful."))
 					SSachievements.unlock_achievement(/datum/achievement/defib, user.client)
@@ -681,4 +681,4 @@
 	item_state = "defibpaddles0"
 	req_defib = FALSE
 
-#undef HALFWAYCRITDEATH
+#undef HALFWAYCRIT

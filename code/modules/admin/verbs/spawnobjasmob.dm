@@ -24,7 +24,7 @@
 			"googlyeyes" = list("desc" = "Googly eyes", "type" = "boolean", "value" = "No"),
 			"disableai" = list("desc" = "Disable AI", "type" = "boolean", "value" = "Yes"),
 			"idledamage" = list("desc" = "Damaged while idle", "type" = "boolean", "value" = "No"),
-			"dropitem" = list("desc" = "Drop obj on death", "type" = "boolean", "value" = "Yes"),
+			"dropitem" = list("desc" = "Drop obj on ", "type" = "boolean", "value" = "Yes"),
 			"mobtype" = list("desc" = "Base mob type", "type" = "datum", "path" = "/mob/living/simple_animal/hostile/mimic/copy", "value" = "/mob/living/simple_animal/hostile/mimic/copy"),
 			"ckey" = list("desc" = "ckey", "type" = "ckey", "value" = "none"),
     )

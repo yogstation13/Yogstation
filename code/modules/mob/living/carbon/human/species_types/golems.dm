@@ -376,7 +376,7 @@
 	if(COOLDOWN_FINISHED(src, radiation_emission_cooldown))
 		radiation_emission(H)
 
-//Immune to physical bullets and resistant to brute, but very vulnerable to burn damage. Dusts on death.
+//Immune to physical bullets and resistant to brute, but very vulnerable to burn damage. Dusts on .
 /datum/species/golem/sand
 	name = "Sand Golem"
 	id = "sand golem"
@@ -390,7 +390,7 @@
 	prefix = "Sand"
 	special_names = list("Castle", "Bag", "Dune", "Worm", "Storm")
 
-/datum/species/golem/sand/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/sand/spec_(gibbed, mob/living/carbon/human/H)
 	H.visible_message(span_danger("[H] turns into a pile of sand!"))
 	for(var/obj/item/W in H)
 		H.dropItemToGround(W)
@@ -407,7 +407,7 @@
 			return BULLET_ACT_BLOCK
 	return BULLET_ACT_HIT
 
-//Reflects lasers and resistant to burn damage, but very vulnerable to brute damage. Shatters on death.
+//Reflects lasers and resistant to burn damage, but very vulnerable to brute damage. Shatters on .
 /datum/species/golem/glass
 	name = "Glass Golem"
 	id = "glass golem"
@@ -417,12 +417,12 @@
 	armor = 0
 	brutemod = 3 //very fragile
 	burnmod = 0.25
-	info_text = "As a <span class='danger'>Glass Golem</span>, you reflect lasers and energy weapons, and are very resistant to burn damage. However, you are extremely vulnerable to brute damage. On death, you'll shatter beyond any hope of recovery."
+	info_text = "As a <span class='danger'>Glass Golem</span>, you reflect lasers and energy weapons, and are very resistant to burn damage. However, you are extremely vulnerable to brute damage. On , you'll shatter beyond any hope of recovery."
 	attack_sound = 'sound/effects/glassbr2.ogg'
 	prefix = "Glass"
 	special_names = list("Lens", "Prism", "Fiber", "Bead")
 
-/datum/species/golem/glass/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/glass/spec_(gibbed, mob/living/carbon/human/H)
 	playsound(H, "shatter", 70, 1)
 	H.visible_message(span_danger("[H] shatters!"))
 	for(var/obj/item/W in H)
@@ -615,7 +615,7 @@
 			active = null
 	..()
 
-/datum/species/golem/bananium/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/bananium/spec_(gibbed, mob/living/carbon/human/H)
 	playsound(get_turf(H), 'sound/misc/sadtrombone.ogg', 70, 0)
 
 /datum/species/golem/bananium/proc/handle_speech(datum/source, list/speech_args)
@@ -637,7 +637,7 @@
 
 /datum/species/golem/runic/random_name(gender,unique,lastname)
 	var/edgy_first_name = pick("Razor","Blood","Dark","Evil","Cold","Pale","Black","Silent","Chaos","Deadly","Coldsteel")
-	var/edgy_last_name = pick("Edge","Night","Death","Razor","Blade","Steel","Calamity","Twilight","Shadow","Nightmare") //dammit Razor Razor
+	var/edgy_last_name = pick("Edge","Night","","Razor","Blade","Steel","Calamity","Twilight","Shadow","Nightmare") //dammit Razor Razor
 	var/golem_name = "[edgy_first_name] [edgy_last_name]"
 	return golem_name
 
@@ -683,7 +683,7 @@
 	id = "clockwork golem"
 	say_mod = "clicks"
 	limbs_id = "clockgolem"
-	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem</span><span class='bold alloy'>, you are faster than other types of golems. On death, you will break down into scrap.</span>"
+	info_text = "<span class='bold alloy'>As a </span><span class='bold brass'>Clockwork Golem</span><span class='bold alloy'>, you are faster than other types of golems. On , you will break down into scrap.</span>"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	armor = 20 //Reinforced, but much less so to allow for fast movement
@@ -712,19 +712,19 @@
 /datum/species/golem/clockwork/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT //beep
 
-/datum/species/golem/clockwork/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/clockwork/spec_(gibbed, mob/living/carbon/human/H)
 	gibbed = !has_corpse ? FALSE : gibbed
 	. = ..()
 	if(!has_corpse)
 		var/turf/T = get_turf(H)
 		H.visible_message(span_warning("[H]'s exoskeleton shatters, collapsing into a heap of scrap!"))
-		playsound(H, 'sound/magic/clockwork/anima_fragment_death.ogg', 62, TRUE)
+		playsound(H, 'sound/magic/clockwork/anima_fragment_.ogg', 62, TRUE)
 		for(var/i in 1 to rand(3, 5))
 			new/obj/item/clockwork/alloy_shards/small(T)
 		new/obj/item/clockwork/alloy_shards/clockgolem_remains(T)
 		qdel(H)
 
-/datum/species/golem/clockwork/no_scrap //These golems are created through the herald's beacon and leave normal corpses on death.
+/datum/species/golem/clockwork/no_scrap //These golems are created through the herald's beacon and leave normal corpses on .
 	id = "clockwork golem servant"
 	armor = 15 //Balance reasons make this armor weak
 	no_equip = list()
@@ -738,7 +738,7 @@
 	id = "cloth golem"
 	limbs_id = "clothgolem"
 	sexes = FALSE
-	info_text = "As a <span class='danger'>Cloth Golem</span>, you are able to reform yourself after death, provided your remains aren't burned or destroyed. You are, of course, very flammable. \
+	info_text = "As a <span class='danger'>Cloth Golem</span>, you are able to reform yourself after , provided your remains aren't burned or destroyed. You are, of course, very flammable. \
 	Being made of cloth, your body is magic resistant and faster than that of other golems, but weaker and less resilient."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR) //no mutcolors, and can burn
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOGUNS)
@@ -776,7 +776,7 @@
 		H.adjust_fire_stacks(1) //always prone to burning
 	..()
 
-/datum/species/golem/cloth/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/cloth/spec_(gibbed, mob/living/carbon/human/H)
 	if(gibbed)
 		return
 	if(H.on_fire)
@@ -948,7 +948,7 @@
 	var/obj/effect/proc_holder/spell/targeted/conjure_item/snowball/ball
 	var/obj/effect/proc_holder/spell/aimed/cryo/cryo
 
-/datum/species/golem/snow/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/snow/spec_(gibbed, mob/living/carbon/human/H)
 	H.visible_message(span_danger("[H] turns into a pile of snow!"))
 	for(var/obj/item/W in H)
 		H.dropItemToGround(W)
@@ -1071,7 +1071,7 @@
 	mutanttongue = /obj/item/organ/tongue/bone
 	sexes = FALSE
 	fixed_mut_color = null
-	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_FAKEDEATH,TRAIT_CALCIUM_HEALER)
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_FAKE,TRAIT_CALCIUM_HEALER)
 	info_text = "As a <span class='danger'>Bone Golem</span>, You have a powerful spell that lets you chill your enemies with fear, and milk heals you! Just make sure to watch our for bone-hurting juice."
 	var/datum/action/innate/bonechill/bonechill
 
@@ -1400,7 +1400,7 @@
 	limbs_id = "waxgolem"
 	sexes = FALSE
 	info_text = "As a <span class='danger'>Wax Golem</span>, you are made of very resilient wax and wick. \
-	While you can burn, you take much less burn damage than other golems. You also have the ability to revive after death if you died while on fire."
+	While you can burn, you take much less burn damage than other golems. You also have the ability to revive after  if you died while on fire."
 	species_traits = list(NOBLOOD,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING, NOEYESPRITES) //no mutcolors or eyesprites
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOGUNS) //no resistheat or nofire
 	armor = 10 // made of wax, tough wax but still wax
@@ -1417,7 +1417,7 @@
 		H.adjust_fire_stacks(1) //always prone to burning
 	..()
 
-/datum/species/golem/wax/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/wax/spec_(gibbed, mob/living/carbon/human/H)
 	if(gibbed)
 		return
 	if(H.on_fire)
@@ -1478,7 +1478,7 @@
 	inherent_traits = list(TRAIT_NOHARDCRIT,TRAIT_NOSOFTCRIT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
 	changesource_flags = MIRROR_BADMIN 
 	random_eligible = FALSE // Hell no
-	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on death."
+	info_text = "As a <span class='danger'>Supermatter Golem</span>, you dust almost any physical objects that interact with you. However, you take half more brute damage, three more burn damage and explode on ."
 	attack_verb = "dusting punch"
 	attack_sound = 'sound/effects/supermatter.ogg'
 	fixed_mut_color = "ff0"
@@ -1526,7 +1526,7 @@
 		explosion(get_turf(C), 1 ,3, 6)
 		qdel(C)
 
-/datum/species/golem/supermatter/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/golem/supermatter/spec_(gibbed, mob/living/carbon/human/H)
 	if(gibbed)
 		return
 	if(randexplode) //No double explosions

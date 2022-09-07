@@ -24,7 +24,7 @@
 		// person. Give it a bit of a buffer.
 		if(hallucination > 50 && prob(25))
 			text_output = pick("spiders","dreams","nightmares","the future","the past","victory",\
-			"defeat","pain","bliss","revenge","poison","time","space","death","life","truth","lies","justice","memory",\
+			"defeat","pain","bliss","revenge","poison","time","space","","life","truth","lies","justice","memory",\
 			"regrets","your soul","suffering","music","noise","blood","hunger","the american way")
 		if((text_output != last_taste_text || last_taste_time + 100 < world.time) && (taste_sensitivity != NO_TASTE_SENSITIVITY))
 			to_chat(src, span_notice("You can taste [text_output]."))

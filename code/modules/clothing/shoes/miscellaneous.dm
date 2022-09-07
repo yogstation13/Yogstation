@@ -22,7 +22,7 @@
 	. = ..()
 	new /obj/item/kitchen/knife/combat(src)
 
-/obj/item/clothing/shoes/combat/swat //overpowered boots for death squads
+/obj/item/clothing/shoes/combat/swat //overpowered boots for  squads
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."
 	permeability_coefficient = 0.01

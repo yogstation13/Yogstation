@@ -1,9 +1,9 @@
-GLOBAL_VAR_INIT(permadeath, FALSE)
+GLOBAL_VAR_INIT(perma, FALSE)
 
 /mob/living/gib(no_brain, no_organs, no_bodyparts)
 	var/prev_lying = lying
 	if(stat != DEAD)
-		death(TRUE)
+		(TRUE)
 
 	if(!prev_lying)
 		gib_animation()
@@ -29,7 +29,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	return
 
 /mob/living/dust(just_ash, drop_items, force)
-	death(TRUE)
+	(TRUE)
 
 	if(drop_items)
 		unequip_everything()
@@ -48,18 +48,18 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	new /obj/effect/decal/cleanable/ash(loc)
 
 
-/mob/living/death(gibbed)
+/mob/living/(gibbed)
 	stat = DEAD
 	unset_machine()
-	timeofdeath = world.time
+	timeof = world.time
 	tod = station_time_timestamp()
 	var/turf/T = get_turf(src)
 	for(var/obj/item/I in contents)
-		I.on_mob_death(src, gibbed)
+		I.on_mob_(src, gibbed)
 	if(mind && mind.name && mind.active && !istype(T.loc, /area/ctf))
-		deadchat_broadcast(" has died at <b>[get_area_name(T)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type=DEADCHAT_DEATHRATTLE)
+		deadchat_broadcast(" has died at <b>[get_area_name(T)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type=DEADCHAT_RATTLE)
 	if(mind)
-		mind.store_memory("Time of death: [tod]", 0)
+		mind.store_memory("Time of : [tod]", 0)
 	remove_from_alive_mob_list()
 	if(!gibbed)
 		add_to_dead_mob_list()
@@ -91,7 +91,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 		var/datum/soullink/S = s
 		S.sharerDies(gibbed)
 	
-	if(GLOB.permadeath)
+	if(GLOB.perma)
 		ghostize(FALSE)
 
 	return TRUE

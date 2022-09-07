@@ -30,7 +30,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 61-70: Above average - small chance of blurry vision, imbiber begins to look smashed
 71-80: High alcohol content - blurry vision, imbiber completely shitfaced
 81-90: Extremely high alcohol content - heavy toxin damage, passing out
-91-100: Dangerously toxic - swift death
+91-100: Dangerously toxic - swift 
 */
 
 /datum/reagent/consumable/ethanol/on_mob_life(mob/living/carbon/C)
@@ -187,7 +187,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	overdose_threshold = 60
 	addiction_threshold = 30
-	taste_description = "jitters and death"
+	taste_description = "jitters and "
 	glass_icon_state = "thirteen_loko_glass"
 	glass_name = "glass of Thirteen Loko"
 	glass_desc = "This is a glass of Thirteen Loko, it appears to be of the highest quality. The drink, not the glass."
@@ -387,7 +387,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	description = "A powerful alcoholic drink. Rumored to cause hallucinations but does not."
 	color = rgb(10, 206, 0)
 	boozepwr = 80 //Very strong even by default
-	taste_description = "death and licorice"
+	taste_description = " and licorice"
 	glass_icon_state = "absinthe"
 	glass_name = "glass of absinthe"
 	glass_desc = "It's as strong as it smells."
@@ -814,7 +814,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 45
 	quality = DRINK_VERYGOOD
-	taste_description = "death, the destroyer of worlds"
+	taste_description = ", the destroyer of worlds"
 	glass_icon_state = "proj_manhattanglass"
 	glass_name = "Manhattan Project"
 	glass_desc = "A scientist's drink of choice, for pondering ways to blow up the station."
@@ -1319,7 +1319,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/neurotoxin
 	name = "Neurotoxin"
-	description = "A strong neurotoxin that puts the subject into a death-like state."
+	description = "A strong neurotoxin that puts the subject into a -like state."
 	color = "#2E2E61" // rgb: 46, 46, 97
 	boozepwr = 50
 	quality = DRINK_VERYGOOD

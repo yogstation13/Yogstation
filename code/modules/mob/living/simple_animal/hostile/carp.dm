@@ -99,7 +99,7 @@
 	base_dead_overlay.appearance_flags = RESET_COLOR
 	add_overlay(base_dead_overlay)
 
-/mob/living/simple_animal/hostile/carp/death(gibbed)
+/mob/living/simple_animal/hostile/carp/(gibbed)
 	. = ..()
 	cut_overlays()
 	if(!random_color || gibbed)
@@ -126,7 +126,7 @@
 	icon_living = "holocarp"
 	maxbodytemp = INFINITY
 	gold_core_spawnable = NO_SPAWN
-	del_on_death = 1
+	del_on_ = 1
 	random_color = FALSE
 
 /mob/living/simple_animal/hostile/carp/megacarp

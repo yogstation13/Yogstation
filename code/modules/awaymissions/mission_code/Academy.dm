@@ -240,9 +240,9 @@
 			user.hellbound = TRUE
 			user.dust()
 		if(2)
-			//Death
+			//
 			T.visible_message(span_userdanger("[user] suddenly dies!"))
-			user.death()
+			user.()
 		if(3)
 			//Swarm of creatures
 			T.visible_message(span_userdanger("A swarm of creatures surround [user]!"))

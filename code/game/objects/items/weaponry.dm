@@ -608,7 +608,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/tailclub
 	name = "tail club"
-	desc = "For the beating to death of lizards with their own tails."
+	desc = "For the beating to  of lizards with their own tails."
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "tailclub"
 	force = 14
@@ -770,7 +770,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 			to_chat(user, span_warning("You easily splat the [target]."))
 			if(istype(target, /mob/living/))
 				var/mob/living/bug = target
-				bug.death(1)
+				bug.(1)
 			else
 				qdel(target)
 

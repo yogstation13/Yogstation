@@ -164,30 +164,30 @@
 	REMOVE_TRAIT(owner, TRAIT_SURGERY_PREPARED, TRAUMA_TRAIT)
 	..()
 
-/datum/brain_trauma/special/death_whispers
+/datum/brain_trauma/special/_whispers
 	name = "Functional Cerebral Necrosis"
-	desc = "Patient's brain is stuck in a functional near-death state, causing occasional moments of lucid hallucinations, which are often interpreted as the voices of the dead."
+	desc = "Patient's brain is stuck in a functional near- state, causing occasional moments of lucid hallucinations, which are often interpreted as the voices of the dead."
 	scan_desc = "chronic functional necrosis"
 	gain_text = span_warning("You feel dead inside.")
 	lose_text = span_notice("You feel alive again.")
 	var/active = FALSE
 
-/datum/brain_trauma/special/death_whispers/on_life()
+/datum/brain_trauma/special/_whispers/on_life()
 	..()
 	if(!active && prob(2))
 		whispering()
 
-/datum/brain_trauma/special/death_whispers/on_lose()
+/datum/brain_trauma/special/_whispers/on_lose()
 	if(active)
 		cease_whispering()
 	..()
 
-/datum/brain_trauma/special/death_whispers/proc/whispering()
+/datum/brain_trauma/special/_whispers/proc/whispering()
 	ADD_TRAIT(owner, TRAIT_SIXTHSENSE, TRAUMA_TRAIT)
 	active = TRUE
 	addtimer(CALLBACK(src, .proc/cease_whispering), rand(50, 300))
 
-/datum/brain_trauma/special/death_whispers/proc/cease_whispering()
+/datum/brain_trauma/special/_whispers/proc/cease_whispering()
 	REMOVE_TRAIT(owner, TRAIT_SIXTHSENSE, TRAUMA_TRAIT)
 	active = FALSE
 

@@ -84,15 +84,15 @@
 		affected_mob.ghostize(0)
 		affected_mob.key = C.key
 	else
-		to_chat(new_mob, "Your mob has been claimed by death! Appeal your job ban if you want to avoid this in the future!")
-		new_mob.death()
+		to_chat(new_mob, "Your mob has been claimed by ! Appeal your job ban if you want to avoid this in the future!")
+		new_mob.()
 		if (!QDELETED(new_mob))
 			new_mob.ghostize(can_reenter_corpse = FALSE)
 			new_mob.key = null
 
 /datum/disease/transformation/jungle_fever
 	name = "Jungle Fever"
-	cure_text = "Death."
+	cure_text = "."
 	cures = list(/datum/reagent/medicine/adminordrazine)
 	spread_text = "Monkey Bites"
 	spread_flags = DISEASE_SPREAD_SPECIAL
@@ -247,7 +247,7 @@
 
 /datum/disease/transformation/corgi
 	name = "The Barkening"
-	cure_text = "Death"
+	cure_text = ""
 	cures = list(/datum/reagent/medicine/adminordrazine)
 	agent = "Fell Doge Majicks"
 	desc = "This disease transforms the victim into a corgi."

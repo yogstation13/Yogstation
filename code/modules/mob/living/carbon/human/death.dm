@@ -36,7 +36,7 @@
 			if("robotic")
 				new /obj/effect/decal/remains/robot(loc)
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/(gibbed)
 	if(stat == DEAD)
 		return
 	stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -54,10 +54,10 @@
 		if(M.occupant == src)
 			M.go_out()
 
-	dna.species.spec_death(gibbed, src)
+	dna.species.spec_(gibbed, src)
 
 	if(SSticker.HasRoundStarted())
-		SSblackbox.ReportDeath(src)
+		SSblackbox.Report(src)
 		log_game("[key_name(src)] has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()]) ([AREACOORD(src)])")
 	if(is_devil(src))
 		INVOKE_ASYNC(is_devil(src), /datum/antagonist/devil.proc/beginResurrectionCheck, src)
@@ -68,7 +68,7 @@
 		hive.destroy_hive()
 
 	if(client)
-		SSachievements.unlock_achievement(/datum/achievement/death, client)
+		SSachievements.unlock_achievement(/datum/achievement/, client)
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)

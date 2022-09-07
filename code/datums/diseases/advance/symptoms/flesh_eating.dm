@@ -67,7 +67,7 @@ Bonus
 
 /*
 //////////////////////////////////////
-Autophagocytosis (AKA Programmed mass cell death)
+Autophagocytosis (AKA Programmed mass cell )
 	Very noticable.
 	Lowers resistance.
 	Fast stage speed.
@@ -78,7 +78,7 @@ Bonus
 //////////////////////////////////////
 */
 
-/datum/symptom/flesh_death
+/datum/symptom/flesh_
 
 	name = "Autophagocytosis Necrosis"
 	desc = "The virus rapidly consumes infected cells, leading to heavy and widespread damage."
@@ -98,11 +98,11 @@ Bonus
 		"Stealth 5" = "The symptom remains hidden until active.",
 	)
 
-/datum/symptom/flesh_death/zombie
+/datum/symptom/flesh_/zombie
 	zombie = TRUE
 	naturally_occuring = FALSE
 
-/datum/symptom/flesh_death/Start(datum/disease/advance/A)
+/datum/symptom/flesh_/Start(datum/disease/advance/A)
 	. = ..()
 	if(!.)
 		return
@@ -111,7 +111,7 @@ Bonus
 	if(A.totalStageSpeed() >= 7) //bleeding and hunger
 		chems = TRUE
 
-/datum/symptom/flesh_death/Activate(datum/disease/advance/A)
+/datum/symptom/flesh_/Activate(datum/disease/advance/A)
 	. = ..()
 	if(!.)
 		return
@@ -123,9 +123,9 @@ Bonus
 		if(4,5)
 			if(prob(base_message_chance / 2)) //reduce spam
 				to_chat(M, span_userdanger("[pick("You feel your muscles weakening.", "Some of your skin detaches itself.", "You feel sandy.")]"))
-			Flesh_death(M, A)
+			Flesh_(M, A)
 
-/datum/symptom/flesh_death/proc/Flesh_death(mob/living/M, datum/disease/advance/A)
+/datum/symptom/flesh_/proc/Flesh_(mob/living/M, datum/disease/advance/A)
 	var/get_damage = rand(6,10)
 	M.take_overall_damage(brute = get_damage, required_status = BODYPART_ORGANIC)
 	if(chems)

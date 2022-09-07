@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/death(gibbed)
+/mob/living/silicon/ai/(gibbed)
 	. = ..()
 	if (hijacking)
 		hijacking.forceMove(get_turf(src))

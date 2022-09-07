@@ -16,12 +16,12 @@
 	initial_closed_chance = 45
 	smoothing_iterations = 50
 	birth_limit = 4
-	death_limit = 3
+	_limit = 3
 
 	var/initial_basalt_chance = 40
 	var/basalt_smoothing_interations = 100
 	var/basalt_birth_limit = 4
-	var/basalt_death_limit = 3
+	var/basalt__limit = 3
 	var/basalt_turf = /turf/closed/mineral/random/volcanic/hard
 
 	var/big_node_min = 25
@@ -45,7 +45,7 @@
 		var/size_y = rand(big_node_min,big_node_max)
 
 		//time for noise
-		var/node_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[size_x + 1]", "[size_y + 1]")
+		var/node_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt__limit]", "[size_x + 1]", "[size_y + 1]")
 		var/list/changing_turfs = block(locate(picked_turf.x - round(size_x/2),picked_turf.y - round(size_y/2),picked_turf.z),locate(picked_turf.x + round(size_x/2),picked_turf.y + round(size_y/2),picked_turf.z))
 		for(var/turf/T in changing_turfs) //shitcode
 			if(!ismineralturf(T))

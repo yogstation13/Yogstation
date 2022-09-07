@@ -74,14 +74,14 @@
 				if(damagetype & OXYLOSS)
 					adjustOxyLoss(200/damage_mod)
 
-				if(damagetype & MANUAL_SUICIDE)	//Assume the object will handle the death.
+				if(damagetype & MANUAL_SUICIDE)	//Assume the object will handle the .
 					return
 
 				//If something went wrong, just do normal oxyloss
 				if(!(damagetype & (BRUTELOSS | FIRELOSS | TOXLOSS | OXYLOSS) ))
 					adjustOxyLoss(max(200 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 
-				death(FALSE)
+				(FALSE)
 
 				return
 
@@ -96,8 +96,8 @@
 									"[src] is aggressively grabbing [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide.", \
 									"[src] is pulling [p_their()] eyes out of their sockets! It looks like [p_theyre()] trying to commit suicide.")
 		if(a_intent == INTENT_HELP)
-			suicide_message = pick("[src] is hugging [p_them()]self to death! It looks like [p_theyre()] trying to commit suicide.", \
-									"[src] is high-fiving [p_them()]self to death! It looks like [p_theyre()] trying to commit suicide.", \
+			suicide_message = pick("[src] is hugging [p_them()]self to ! It looks like [p_theyre()] trying to commit suicide.", \
+									"[src] is high-fiving [p_them()]self to ! It looks like [p_theyre()] trying to commit suicide.", \
 									"[src] is getting too high on life! It looks like [p_theyre()] trying to commit suicide.")
 		else
 			suicide_message = pick("[src] is attempting to bite [p_their()] tongue off! It looks like [p_theyre()] trying to commit suicide.", \
@@ -110,7 +110,7 @@
 		suicide_log()
 
 		adjustOxyLoss(max(200 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		death(FALSE)
+		(FALSE)
 
 /mob/living/brain/verb/suicide()
 	set hidden = TRUE
@@ -126,7 +126,7 @@
 
 		suicide_log()
 
-		death(FALSE)
+		(FALSE)
 
 /mob/living/carbon/monkey/verb/suicide()
 	set hidden = TRUE
@@ -143,7 +143,7 @@
 		suicide_log()
 
 		adjustOxyLoss(max(200- getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		death(FALSE)
+		(FALSE)
 
 /mob/living/silicon/ai/verb/suicide()
 	set hidden = TRUE
@@ -161,7 +161,7 @@
 
 		//put em at -175
 		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		death(FALSE)
+		(FALSE)
 
 /mob/living/silicon/robot/verb/suicide()
 	set hidden = TRUE
@@ -179,7 +179,7 @@
 
 		//put em at -175
 		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		death(FALSE)
+		(FALSE)
 
 /mob/living/silicon/pai/verb/suicide()
 	set hidden = TRUE
@@ -191,7 +191,7 @@
 
 		suicide_log()
 
-		death(FALSE)
+		(FALSE)
 	else
 		to_chat(src, "Aborting suicide attempt.")
 
@@ -212,7 +212,7 @@
 
 		//put em at -175
 		adjustOxyLoss(max(200 - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		death(FALSE)
+		(FALSE)
 
 /mob/living/simple_animal/verb/suicide()
 	set hidden = TRUE
@@ -228,7 +228,7 @@
 
 		suicide_log()
 
-		death(FALSE)
+		(FALSE)
 
 /mob/living/proc/suicide_log()
 	last_damage = "self-inflicted"

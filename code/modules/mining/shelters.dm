@@ -76,7 +76,7 @@
 		along with two vending machines, tables, and a restroom that \
 		also has a sink. This isn't a survival capsule and so you can \
 		expect that this won't save you if you're bleeding out to \
-		death."
+		."
 	mappath = "_maps/templates/shelter_3.dmm"
 
 /datum/map_template/shelter/charlie/New()

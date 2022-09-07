@@ -34,7 +34,7 @@ Difficulty: Medium
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	speed = 5
 	ranged = TRUE
-	del_on_death = TRUE
+	del_on_ = TRUE
 	retreat_distance = 5
 	minimum_distance = 5
 	ranged_cooldown_time = 20
@@ -126,7 +126,7 @@ Difficulty: Medium
 	set_varspeed(2)
 	charging = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/legion/death()
+/mob/living/simple_animal/hostile/megafauna/legion/()
 	if(health > 0)
 		return
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)

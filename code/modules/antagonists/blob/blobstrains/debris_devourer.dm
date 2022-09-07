@@ -17,7 +17,7 @@
 	for (var/obj/structure/blob/blob in nearby_blobs)
 		debris_attack(L, blob)
 
-/datum/blobstrain/debris_devourer/on_sporedeath(mob/living/spore)
+/datum/blobstrain/debris_devourer/on_spore(mob/living/spore)
 	for(var/i in 1 to 3)
 		var/obj/item/I = locate() in overmind.blob_core
 		if (I && !QDELETED(I))

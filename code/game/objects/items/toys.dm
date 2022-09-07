@@ -480,10 +480,10 @@
 	desc = "Mini-Mecha action figure! Collect them all! 2/12."
 	icon_state = "fireripleytoy"
 
-/obj/item/toy/prize/deathripley
-	name = "toy deathsquad Ripley"
+/obj/item/toy/prize/ripley
+	name = "toy squad Ripley"
 	desc = "Mini-Mecha action figure! Collect them all! 3/12."
-	icon_state = "deathripleytoy"
+	icon_state = "ripleytoy"
 
 /obj/item/toy/prize/gygax
 	name = "toy Gygax"
@@ -1453,7 +1453,7 @@ obj/item/toy/turn_tracker
 	toysay = "This airlock has grey jumpsuit and insulated glove fibers on it."
 
 /obj/item/toy/figure/dsquad
-	name = "Death Squad Officer action figure"
+	name = " Squad Officer action figure"
 	icon_state = "dsquad"
 	toysay = "Kill em all!"
 

@@ -190,7 +190,7 @@
 	user.revive(full_heal = 1)
 
 	victim.adjustBruteLoss(1000)
-	victim.death()
+	victim.()
 	swallow(victim)
 
 /datum/component/crawl/blood/proc/swallow(mob/living/victim, mob/living/user)

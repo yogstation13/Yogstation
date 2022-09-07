@@ -124,7 +124,7 @@
 	if(!isliving(user))
 		return FALSE
 	// Torpor?
-	if((check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(user, TRAIT_NODEATH))
+	if((check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(user, TRAIT_NO))
 		to_chat(user, span_warning("Not while you're in Torpor."))
 		return FALSE
 	// Frenzy?

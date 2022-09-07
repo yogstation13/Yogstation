@@ -216,15 +216,15 @@
 /obj/item/projectile/hallucination/change/hal_apply_effect()
 	new /datum/hallucination/self_delusion(hal_target, TRUE, wabbajack = FALSE)
 
-/obj/item/projectile/hallucination/death
-	name = "bolt of death"
+/obj/item/projectile/hallucination/
+	name = "bolt of "
 	damage_type = BURN
 	hal_icon_state = "pulse1_bl"
-	hal_fire_sound = 'sound/magic/wandodeath.ogg'
+	hal_fire_sound = 'sound/magic/wando.ogg'
 	hal_hitsound = null
 	hal_hitsound_wall = null
 	hal_impact_effect = null
 	hal_impact_effect_wall = null
 
-/obj/item/projectile/hallucination/death/hal_apply_effect()
-	new /datum/hallucination/death(hal_target, TRUE)
+/obj/item/projectile/hallucination//hal_apply_effect()
+	new /datum/hallucination/(hal_target, TRUE)

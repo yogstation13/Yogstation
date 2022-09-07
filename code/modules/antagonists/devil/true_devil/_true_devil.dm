@@ -56,7 +56,7 @@
 	devilinfo.greet()
 	mind.announce_objectives()
 
-/mob/living/carbon/true_devil/death(gibbed)
+/mob/living/carbon/true_devil/(gibbed)
 	stat = DEAD
 	..(gibbed)
 	drop_all_held_items()

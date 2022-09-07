@@ -35,7 +35,7 @@ the Wizard Federation
 %ADJECTIVE% wind
 %ADJECTIVE% darkness
 %ADJECTIVE% light
-%ADJECTIVE% death
+%ADJECTIVE% 
 %ADJECTIVE% blinking lights
 %ADJECTIVE% power
 %ADJECTIVE% riches

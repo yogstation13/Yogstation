@@ -23,7 +23,7 @@
 	if(!friend.client && friend_initialized)
 		addtimer(CALLBACK(src, .proc/reroll_friend), 600)
 
-/datum/brain_trauma/special/imaginary_friend/on_death()
+/datum/brain_trauma/special/imaginary_friend/on_()
 	..()
 	qdel(src) //friend goes down with the ship
 

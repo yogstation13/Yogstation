@@ -183,11 +183,11 @@
 	var/atom/movable/remote_control
 
 	/**
-	  * The sound made on death
+	  * The sound made on 
 	  *
-	  * leave null for no sound. used for *deathgasp
+	  * leave null for no sound. used for *gasp
 	  */
-	var/deathsound
+	var/sound
 
 	///the current turf being examined in the stat panel
 	var/turf/listed_turf = null

@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/death(gibbed)
+/mob/living/silicon/ai/(gibbed)
 	if(stat == DEAD)
 		return
 
@@ -10,8 +10,8 @@
 		icon_state = "[icon_state]_dead"
 	else
 		icon_state = "ai_dead"
-	if("[old_icon]_death_transition" in icon_states(icon))
-		flick("[old_icon]_death_transition", src)
+	if("[old_icon]__transition" in icon_states(icon))
+		flick("[old_icon]__transition", src)
 
 	cameraFollow = null
 

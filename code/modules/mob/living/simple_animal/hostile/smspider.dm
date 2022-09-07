@@ -24,7 +24,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	ventcrawler = VENTCRAWLER_ALWAYS
-	deathmessage = "falls to the ground, its shard dulling to a miserable grey!"
+	message = "falls to the ground, its shard dulling to a miserable grey!"
 	var/overcharged = FALSE // if true, spider will not die if it dusts a limb
 
 /mob/living/simple_animal/hostile/smspider/AttackingTarget()
@@ -35,13 +35,13 @@
 		var/mob/living/victim = target
 		victim.dust()
 		if(!overcharged)
-			death()
+			()
 	else if(!isturf(target))
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
 		visible_message(span_danger("[src] knocks into [target], turning it to dust in a brilliant flash of light!"))
 		qdel(target)
 		if(!overcharged)
-			death()
+			()
 	return FALSE
 
 /mob/living/simple_animal/hostile/smspider/Initialize(mapload)

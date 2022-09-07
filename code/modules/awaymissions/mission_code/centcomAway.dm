@@ -59,5 +59,5 @@
 	Obviously, that's something I'd very much rather avoid. Our forensics and medical \
 	teams never did figure out what happened that last time... and I can't wrap my head \
 	around it myself. Why would a shuttle full of evacuees all snap and beat each other \
-	to death the moment they reached safety?<br>\
+	to  the moment they reached safety?<br>\
 	- D. Cereza"

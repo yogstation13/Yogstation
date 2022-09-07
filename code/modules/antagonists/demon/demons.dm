@@ -117,7 +117,7 @@
 	to_chat(owner.current, span_warning("<b>However, your infernal form is not without weaknesses.</b>"))
 	to_chat(owner.current, "You are incredibly vulnerable to holy artifacts and influence.")
 	to_chat(owner.current, "While blessed with the unholy ability to transform into your true form, this form is extremely obvious and vulnerable to holy weapons.")
-	to_chat(owner.current, "[span_warning("Do your best to complete your objectives without unnessecary death, unless you are a wrathful demon.")]<br>")
+	to_chat(owner.current, "[span_warning("Do your best to complete your objectives without unnessecary , unless you are a wrathful demon.")]<br>")
 	owner.announce_objectives()
 	SEND_SOUND(owner.current, sound('sound/magic/ethereal_exit.ogg'))
 	.=..()

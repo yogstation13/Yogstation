@@ -1,7 +1,7 @@
 Station
 Frontier
 Suffix
-Death-trap
+-trap
 Space-hulk
 Lab
 Hazard

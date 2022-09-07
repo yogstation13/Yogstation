@@ -396,13 +396,13 @@
 				if(PENANCE_LIFE)
 					to_chat(owner, span_cultsmall("You feel the strange sensation of all your blood exiting your body."))
 					owner.blood_volume = 0
-					owner.death()
+					owner.()
 			penance_sources[P] --
 			sleep(0.2 SECONDS)
 
 /datum/status_effect/brazil_penance/on_remove()
 	. = ..()
-	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of your death prior to entering that strange place.</span>")
+	to_chat(owner, "<span class='revenbignotice'>You suddenly snap back to something familiar, with no recollection of your  prior to entering that strange place.</span>")
 	owner.Unconscious(2 SECONDS, ignore_canstun = TRUE)
 	var/turf/safe_turf = get_safe_random_station_turf(typesof(/area/hallway) - typesof(/area/hallway/secondary)) //teleport back into a main hallway, secondary hallways include botany's techfab room which could trap someone
 	if(safe_turf)

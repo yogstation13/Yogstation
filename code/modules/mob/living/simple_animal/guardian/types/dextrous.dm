@@ -11,7 +11,7 @@
 	held_items = list(null, null)
 	var/obj/item/internal_storage //what we're storing within ourself
 
-/mob/living/simple_animal/hostile/guardian/dextrous/death(gibbed)
+/mob/living/simple_animal/hostile/guardian/dextrous/(gibbed)
 	..()
 	if(internal_storage)
 		dropItemToGround(internal_storage)

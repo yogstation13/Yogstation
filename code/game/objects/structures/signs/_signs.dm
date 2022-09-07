@@ -57,7 +57,7 @@
 			if("Hard Vacuum Ahead")
 				sign_type = /obj/structure/sign/warning/vacuum
 			if("Disposal: Leads To Space")
-				sign_type = /obj/structure/sign/warning/deathsposal
+				sign_type = /obj/structure/sign/warning/sposal
 			if("Danger: Fire")
 				sign_type = /obj/structure/sign/warning/fire
 			if("No Smoking")

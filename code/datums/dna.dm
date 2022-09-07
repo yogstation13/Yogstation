@@ -311,7 +311,7 @@
 			new_race = mrace
 		else
 			return
-		deathsound = new_race.deathsound
+		sound = new_race.sound
 		dna.species.on_species_loss(src, new_race, pref_load)
 		var/datum/species/old_species = dna.species
 		dna.species = new_race
@@ -594,7 +594,7 @@
 	dna.remove_all_mutations()
 	dna.stability = 100
 	if(prob(max(70-instability,0)))
-		switch(rand(0,10)) //not complete and utter death
+		switch(rand(0,10)) //not complete and utter 
 			if(0)
 				monkeyize()
 			if(1)
@@ -639,7 +639,7 @@
 				dust()
 
 			if(2)
-				death()
+				()
 				petrify(INFINITY)
 			if(3)
 				if(prob(95))
@@ -655,7 +655,7 @@
 				spawn_gibs()
 				set_species(/datum/species/skeleton)
 				if(prob(90))
-					addtimer(CALLBACK(src, .proc/death), 30)
+					addtimer(CALLBACK(src, .proc/), 30)
 					if(mind)
 						mind.hasSoul = FALSE
 			if(5)

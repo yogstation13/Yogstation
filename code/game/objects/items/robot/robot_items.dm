@@ -662,7 +662,7 @@
 	. = ..()
 	host = loc
 
-/obj/item/borg/projectile_dampen/on_mob_death()
+/obj/item/borg/projectile_dampen/on_mob_()
 	deactivate_field()
 	. = ..()
 

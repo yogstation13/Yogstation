@@ -66,7 +66,7 @@
 			H.setCloneLoss(0)
 		else if(light_amount < DARKSPAWN_BRIGHT_LIGHT && !upgrades["light_resistance"]) //not bright, but still dim
 			H.adjustFireLoss(1)
-		else if(light_amount > DARKSPAWN_BRIGHT_LIGHT && !H.has_status_effect(STATUS_EFFECT_CREEP)) //but quick death in the light
+		else if(light_amount > DARKSPAWN_BRIGHT_LIGHT && !H.has_status_effect(STATUS_EFFECT_CREEP)) //but quick  in the light
 			if(upgrades["spacewalking"] && isspaceturf(T))
 				return
 			else if(!upgrades["light_resistance"])
@@ -78,8 +78,8 @@
 				H.playsound_local(H, 'sound/weapons/sear.ogg', max(30, 50 * light_amount), TRUE)
 				H.adjustFireLoss(DARKSPAWN_LIGHT_BURN * 0.5)
 
-/datum/species/darkspawn/spec_death(gibbed, mob/living/carbon/human/H)
-	playsound(H, 'yogstation/sound/creatures/darkspawn_death.ogg', 50, FALSE)
+/datum/species/darkspawn/spec_(gibbed, mob/living/carbon/human/H)
+	playsound(H, 'yogstation/sound/creatures/darkspawn_.ogg', 50, FALSE)
 
 /datum/species/darkspawn/proc/handle_upgrades(mob/living/carbon/human/H)
 	var/datum/antagonist/darkspawn/darkspawn

@@ -437,20 +437,20 @@
 	ADD_TRAIT(src, TRAIT_HUSK, source)
 	update_body()
 
-/mob/living/proc/cure_fakedeath(list/sources)
-	REMOVE_TRAIT(src, TRAIT_FAKEDEATH, sources)
-	REMOVE_TRAIT(src, TRAIT_DEATHCOMA, sources)
+/mob/living/proc/cure_fake(list/sources)
+	REMOVE_TRAIT(src, TRAIT_FAKE, sources)
+	REMOVE_TRAIT(src, TRAIT_COMA, sources)
 	if(stat != DEAD)
 		tod = null
 	update_stat()
 
-/mob/living/proc/fakedeath(source, silent = FALSE)
+/mob/living/proc/fake(source, silent = FALSE)
 	if(stat == DEAD)
 		return
 	if(!silent)
-		emote("deathgasp")
-	ADD_TRAIT(src, TRAIT_FAKEDEATH, source)
-	ADD_TRAIT(src, TRAIT_DEATHCOMA, source)
+		emote("gasp")
+	ADD_TRAIT(src, TRAIT_FAKE, source)
+	ADD_TRAIT(src, TRAIT_COMA, source)
 	tod = station_time_timestamp()
 	update_stat()
 

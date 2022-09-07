@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(blackbox)
 	init_order = INIT_ORDER_BLACKBOX
 
 	var/list/feedback = list()	//list of datum/feedback_variable
-	var/list/first_death = list() //the first death of this round, assoc. vars keep track of different things
+	var/list/first_ = list() //the first  of this round, assoc. vars keep track of different things
 	var/triggertime = 0
 	var/sealed = FALSE	//time to stop tracking stats?
 	var/list/versions = list("antagonists" = 3,
@@ -291,23 +291,23 @@ Versioning
 	key = new_key
 	key_type = new_key_type
 
-/datum/controller/subsystem/blackbox/proc/ReportDeath(mob/living/L)
+/datum/controller/subsystem/blackbox/proc/Report(mob/living/L)
 	set waitfor = FALSE
 	if(sealed)
 		return
 	if(!L || !L.key || !L.mind)
 		return
-	if(!L.suiciding && !first_death.len)
-		first_death["name"] = "[(L.real_name == L.name) ? L.real_name : "[L.real_name] as [L.name]"]"
-		first_death["role"] = null
+	if(!L.suiciding && !first_.len)
+		first_["name"] = "[(L.real_name == L.name) ? L.real_name : "[L.real_name] as [L.name]"]"
+		first_["role"] = null
 		if(L.mind.assigned_role)
-			first_death["role"] = L.mind.assigned_role
-		first_death["area"] = "[AREACOORD(L)]"
-		first_death["damage"] = "<font color='#FF5555'>[L.getBruteLoss()]</font>/<font color='orange'>[L.getFireLoss()]</font>/<font color='lightgreen'>[L.getToxLoss()]</font>/<font color='lightblue'>[L.getOxyLoss()]</font>/<font color='pink'>[L.getCloneLoss()]</font>"
-		first_death["last_words"] = L.last_words
+			first_["role"] = L.mind.assigned_role
+		first_["area"] = "[AREACOORD(L)]"
+		first_["damage"] = "<font color='#FF5555'>[L.getBruteLoss()]</font>/<font color='orange'>[L.getFireLoss()]</font>/<font color='lightgreen'>[L.getToxLoss()]</font>/<font color='lightblue'>[L.getOxyLoss()]</font>/<font color='pink'>[L.getCloneLoss()]</font>"
+		first_["last_words"] = L.last_words
 
-	var/datum/DBQuery/query_report_death = SSdbcore.NewQuery({"
-		INSERT INTO [format_table_name("death")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide)
+	var/datum/DBQuery/query_report_ = SSdbcore.NewQuery({"
+		INSERT INTO [format_table_name("")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide)
 		VALUES (:pod, :x_coord, :y_coord, :z_coord, :map, INET_ATON(:internet_address), :port, :round_id, :time, :job, :special, :name, :key, :laname, :lakey, :brute, :fire, :brain, :oxy, :tox, :clone, :stamina, :last_words, :suicide)
 	"}, list(
 		"name" = L.real_name,
@@ -319,7 +319,7 @@ Versioning
 		"lakey" = L.lastattackerckey,
 		"brute" = L.getBruteLoss(),
 		"fire" = L.getFireLoss(),
-		"brain" = L.getOrganLoss(ORGAN_SLOT_BRAIN) || BRAIN_DAMAGE_DEATH, //getOrganLoss returns null without a brain but a value is required for this column
+		"brain" = L.getOrganLoss(ORGAN_SLOT_BRAIN) || BRAIN_DAMAGE_, //getOrganLoss returns null without a brain but a value is required for this column
 		"oxy" = L.getOxyLoss(),
 		"tox" = L.getToxLoss(),
 		"clone" = L.getCloneLoss(),
@@ -335,6 +335,6 @@ Versioning
 		"round_id" = GLOB.round_id,
 		"time" = SQLtime(),
 	))
-	if(query_report_death)
-		query_report_death.Execute(async = TRUE)
-		qdel(query_report_death)
+	if(query_report_)
+		query_report_.Execute(async = TRUE)
+		qdel(query_report_)

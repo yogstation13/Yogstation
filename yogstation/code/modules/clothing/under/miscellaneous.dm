@@ -306,7 +306,7 @@
 
 /obj/item/clothing/under/yogs/casualcaptain
 	name = "casual captain uniform"
-	desc = "Even the captain has to let loose on this metal death trap every now and then."
+	desc = "Even the captain has to let loose on this metal  trap every now and then."
 	icon_state = "casual_captain"
 	item_state = "casual_captain"
 	can_adjust = FALSE

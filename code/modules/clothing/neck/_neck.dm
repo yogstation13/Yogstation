@@ -66,7 +66,7 @@
 			var/obj/item/organ/heart/heart = M.getorganslot(ORGAN_SLOT_HEART)
 			var/obj/item/organ/lungs/lungs = M.getorganslot(ORGAN_SLOT_LUNGS)
 
-			if(!(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH))))
+			if(!(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKE))))
 				if(heart && istype(heart))
 					heart_strength = heart.HeartStrengthMessage()
 					if(heart.beating)
@@ -76,7 +76,7 @@
 					if(!(M.failed_last_breath || M.losebreath))
 						lung_strength = "healthy"
 
-			if(M.stat == DEAD && heart && world.time - M.timeofdeath < DEFIB_TIME_LIMIT)
+			if(M.stat == DEAD && heart && world.time - M.timeof < DEFIB_TIME_LIMIT)
 				heart_strength = span_boldannounce("a faint, fluttery")
 
 			var/diagnosis = (body_part == BODY_ZONE_CHEST ? "You hear [heart_strength] pulse and [lung_strength] respiration." : "You faintly hear [heart_strength] pulse.")

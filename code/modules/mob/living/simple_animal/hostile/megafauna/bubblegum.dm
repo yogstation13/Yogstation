@@ -51,7 +51,7 @@ Difficulty: Hard
 	melee_queue_distance = 20 // as far as possible really, need this because of blood warp
 	ranged = TRUE
 	pixel_x = -32
-	del_on_death = TRUE
+	del_on_ = TRUE
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/bubblegum/crusher)
 	loot = list(/obj/structure/closet/crate/necropolis/bubblegum)
 	blood_volume = BLOOD_VOLUME_GENERIC * 3.6 //BLEED FOR ME
@@ -60,8 +60,8 @@ Difficulty: Hard
 	var/enrage_time = 70
 	var/revving_charge = FALSE
 	internal_type = /obj/item/gps/internal/bubblegum
-	deathmessage = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
-	deathsound = 'sound/magic/enter_blood.ogg'
+	message = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
+	sound = 'sound/magic/enter_blood.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/triple_charge,
 							   /datum/action/innate/megafauna_attack/hallucination_charge,
 							   /datum/action/innate/megafauna_attack/hallucination_surround,
@@ -105,7 +105,7 @@ Difficulty: Hard
 	chosen_message = span_colossus("You are now warping to blood around your clicked position.")
 	chosen_attack_num = 4
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/death(gibbed, var/list/force_grant)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/(gibbed, var/list/force_grant)
 	.=..()
 	if(true_spawn && !(flags_1 & ADMIN_SPAWNED_1))
 		GLOB.bubblegum_dead = TRUE
@@ -170,7 +170,7 @@ Difficulty: Hard
 		if(ismob(target))
 			charge(delay = 6)
 		else
-			SLEEP_CHECK_DEATH(6)
+			SLEEP_CHECK_(6)
 	SetRecoveryTime(20)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/charge(var/atom/chargeat = target, var/delay = 3, var/chargepast = 2)
@@ -191,11 +191,11 @@ Difficulty: Hard
 	setDir(dir)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc,src)
 	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
-	SLEEP_CHECK_DEATH(delay)
+	SLEEP_CHECK_(delay)
 	revving_charge = FALSE
 	var/movespeed = 0.7
 	walk_towards(src, T, movespeed)
-	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
+	SLEEP_CHECK_(get_dist(src, T) * movespeed)
 	walk(src, 0) // cancel the movement
 	try_bloodattack()
 	charging = FALSE
@@ -252,14 +252,14 @@ Difficulty: Hard
 		new /obj/effect/temp_visual/bubblegum_hands/rightsmack(T)
 	else
 		new /obj/effect/temp_visual/bubblegum_hands/leftsmack(T)
-	SLEEP_CHECK_DEATH(4)
+	SLEEP_CHECK_(4)
 	for(var/mob/living/L in T)
 		if(!faction_check_mob(L))
 			to_chat(L, span_userdanger("[src] rends you!"))
 			playsound(T, attack_sound, 100, 1, -1)
 			var/limb_to_hit = L.get_bodypart(pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
 			L.apply_damage(10, BRUTE, limb_to_hit, L.run_armor_check(limb_to_hit, MELEE, null, null, armour_penetration), wound_bonus = CANT_WOUND)
-	SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_(3)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/bloodgrab(turf/T, handedness)
 	if(handedness)
@@ -268,7 +268,7 @@ Difficulty: Hard
 	else
 		new /obj/effect/temp_visual/bubblegum_hands/leftpaw(T)
 		new /obj/effect/temp_visual/bubblegum_hands/leftthumb(T)
-	SLEEP_CHECK_DEATH(6)
+	SLEEP_CHECK_(6)
 	for(var/mob/living/L in T)
 		if(!faction_check_mob(L))
 			if(L.stat != CONSCIOUS)
@@ -278,7 +278,7 @@ Difficulty: Hard
 				L.forceMove(targetturf)
 				playsound(targetturf, 'sound/magic/exit_blood.ogg', 100, 1, -1)
 				addtimer(CALLBACK(src, .proc/devour, L), 2)
-	SLEEP_CHECK_DEATH(1)
+	SLEEP_CHECK_(1)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/blood_warp()
 	if(Adjacent(target))
@@ -298,7 +298,7 @@ Difficulty: Hard
 	var/oldtransform = DA.transform
 	DA.transform = matrix()*2
 	animate(DA, alpha = 255, color = initial(DA.color), transform = oldtransform, time = 0.3 SECONDS)
-	SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_(3)
 	qdel(DA)
 
 	var/obj/effect/decal/cleanable/blood/found_bloodpool
@@ -525,8 +525,8 @@ Difficulty: Hard
 	alpha = 127.5
 	crusher_loot = null
 	loot = null
-	deathmessage = "explodes into a pool of blood!"
-	deathsound = 'sound/effects/splat.ogg'
+	message = "explodes into a pool of blood!"
+	sound = 'sound/effects/splat.ogg'
 	true_spawn = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/Initialize()

@@ -234,7 +234,7 @@
 	playsound(src, 'sound/effects/meteorimpact.ogg', 200, 1)
 	for(var/mob/living/L in orange(1, src))
 		L.adjustBruteLoss(35)
-		if(!QDELETED(L)) // Some mobs are deleted on death
+		if(!QDELETED(L)) // Some mobs are deleted on 
 			var/throw_dir = get_dir(src, L)
 			if(L.loc == loc)
 				throw_dir = pick(GLOB.alldirs)

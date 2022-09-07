@@ -115,13 +115,13 @@
 	desc = "The undisputed king of style."
 
 /datum/gang_item/clothing/mask
-	name = "Golden Death Mask"
+	name = "Golden  Mask"
 	id = "mask"
 	cost = 18
 	item_path = /obj/item/clothing/mask/gskull
 
 /obj/item/clothing/mask/gskull
-	name = "golden death mask"
+	name = "golden  mask"
 	icon_state = "gskull"
 	desc = "Strike terror, and envy, into the hearts of your enemies."
 

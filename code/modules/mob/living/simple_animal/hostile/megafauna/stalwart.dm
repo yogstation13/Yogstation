@@ -17,12 +17,12 @@
 	speed = 5
 	move_to_delay = 5
 	ranged = TRUE
-	del_on_death = TRUE
+	del_on_ = TRUE
 	pixel_x = -16
 	internal_type = /obj/item/gps/internal/stalwart
 	loot = list(/obj/structure/closet/crate/sphere/stalwart)
-	deathmessage = "erupts into blue flame, and screeches before violently shattering."
-	deathsound = 'sound/voice/borg_deathsound.ogg'
+	message = "erupts into blue flame, and screeches before violently shattering."
+	sound = 'sound/voice/borg_sound.ogg'
 	internal_type = /obj/item/gps/internal/stalwart
 	var/charging = FALSE
 	var/revving_charge = FALSE
@@ -44,7 +44,7 @@
 	for(var/mob/M in range(10,src))
 		flash_color(M.client, "#6CA4E3", 1)
 		shake_camera(M, 4, 3)
-	playsound(src, 'sound/voice/borg_deathsound.ogg', 200, 1)
+	playsound(src, 'sound/voice/borg_sound.ogg', 200, 1)
 	
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
@@ -83,7 +83,7 @@
 	ranged_cooldown = world.time + 40
 	dir_shots(GLOB.diagonals)
 	dir_shots(GLOB.cardinals)
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_(10)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/dir_shots(list/dirs)
 	if(!islist(dirs))
@@ -108,11 +108,11 @@
 	telegraph(src)
 	walk(src, 0)
 	setDir(dir)
-	SLEEP_CHECK_DEATH(delay)
+	SLEEP_CHECK_(delay)
 	revving_charge = FALSE
 	var/movespeed = 1
 	walk_towards(src, T, movespeed)
-	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
+	SLEEP_CHECK_(get_dist(src, T) * movespeed)
 	walk(src, 0) // cancel the movement
 	charging = FALSE
 

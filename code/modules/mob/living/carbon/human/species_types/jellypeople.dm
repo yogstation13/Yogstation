@@ -108,7 +108,7 @@
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
-//Slime people are able to split like slimes, retaining a single mind that can swap between bodies at will, even after death.
+//Slime people are able to split like slimes, retaining a single mind that can swap between bodies at will, even after .
 
 /datum/species/jelly/slime
 	name = "Slimeperson"
@@ -147,7 +147,7 @@
 		else
 			bodies |= C
 
-/datum/species/jelly/slime/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/jelly/slime/spec_(gibbed, mob/living/carbon/human/H)
 	if(slime_split)
 		if(!H.mind || !H.mind.active)
 			return
@@ -582,7 +582,7 @@
 	if(link_minds)
 		link_minds.Remove(C)
 
-/datum/species/jelly/stargazer/spec_death(gibbed, mob/living/carbon/human/H)
+/datum/species/jelly/stargazer/spec_(gibbed, mob/living/carbon/human/H)
 	..()
 	for(var/M in linked_mobs)
 		unlink_mob(M)

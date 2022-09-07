@@ -11,12 +11,12 @@
 	attack_verb = list("attacked", "slapped", "whacked")
 	///The brain's organ variables are significantly more different than the other organs, with half the decay rate for balance reasons, and twice the maxHealth
 	decay_factor = STANDARD_ORGAN_DECAY	* 0.5			//30 minutes of decaying to result in a fully damaged brain, since a fast decay rate would be unfun gameplay-wise
-	maxHealth = BRAIN_DAMAGE_DEATH
+	maxHealth = BRAIN_DAMAGE_
 	low_threshold = 45
 	high_threshold = 120
 	var/suicided = FALSE
 	var/mob/living/brain/brainmob = null
-	var/brain_death = FALSE //if the brainmob was intentionally killed by attacking the brain after removal, or by severe braindamage
+	var/brain_ = FALSE //if the brainmob was intentionally killed by attacking the brain after removal, or by severe braindamage
 	var/decoy_override = FALSE	//if it's a fake brain with no brainmob assigned. Feedback messages will be faked as if it does have a brainmob. See changelings & dullahans.
 	//two variables necessary for calculating whether we get a brain trauma or not
 	var/damage_delta = 0
@@ -29,7 +29,7 @@
 	name = initial(name)
 
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling) && !no_id_transfer)	//congrats, you're trapped in a body you don't control
-		if(brainmob && !(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_DEATHCOMA))))
+		if(brainmob && !(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_COMA))))
 			to_chat(brainmob, "<span class = danger>You can't feel your body! You're still just a brain!</span>")
 		forceMove(C)
 		C.update_hair()
@@ -63,8 +63,8 @@
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
 		var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
 		for(var/d in bruh.purchasedpowers)
-			if(istype(d, /datum/action/changeling/fakedeath))
-				var/datum/action/changeling/fakedeath/ack = d
+			if(istype(d, /datum/action/changeling/fake))
+				var/datum/action/changeling/fake/ack = d
 				ack.sting_action(C)
 
 	for(var/X in traumas)
@@ -89,7 +89,7 @@
 	brainmob = new(src)
 	brainmob.name = L.real_name
 	brainmob.real_name = L.real_name
-	brainmob.timeofhostdeath = L.timeofdeath
+	brainmob.timeofhost = L.timeof
 	brainmob.suiciding = suicided
 	if(L.has_dna())
 		var/mob/living/carbon/C = L
@@ -113,7 +113,7 @@
 
 	if((organ_flags & ORGAN_FAILING) && O.is_drainable() && O.reagents.has_reagent(/datum/reagent/medicine/mannitol)) //attempt to heal the brain
 		. = TRUE //don't do attack animation.
-		if(brain_death || brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
+		if(brain_ || brainmob?.health <= HEALTH_THRESHOLD_DEAD) //if the brain is fucked anyway, do nothing
 			to_chat(user, span_warning("[src] is far too damaged, there's nothing else we can do for it!"))
 			return
 
@@ -145,7 +145,7 @@
 		. += span_info("It's started turning slightly grey. They must not have been able to handle the stress of it all.")
 	else if(brainmob)
 		if(brainmob.get_ghost(FALSE, TRUE))
-			if(brain_death || brainmob.health <= HEALTH_THRESHOLD_DEAD)
+			if(brain_ || brainmob.health <= HEALTH_THRESHOLD_DEAD)
 				. += span_info("It's lifeless and severely damaged.")
 			else if(organ_flags & ORGAN_FAILING)
 				. += span_info("It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>.")
@@ -208,12 +208,12 @@
 	return ..()
 
 /obj/item/organ/brain/on_life()
-	if(damage >= BRAIN_DAMAGE_DEATH) //rip
+	if(damage >= BRAIN_DAMAGE_) //rip
 		to_chat(owner, span_userdanger("The last spark of life in your brain fizzles out..."))
-		owner.death()
-		brain_death = TRUE
+		owner.()
+		brain_ = TRUE
 
-/obj/item/organ/brain/process()	//needs to run in life AND death
+/obj/item/organ/brain/process()	//needs to run in life AND 
 	..()
 	//if we're not more injured than before, return without gambling for a trauma
 	if(damage <= prev_damage)
@@ -236,7 +236,7 @@
 				to_chat(owner, span_warning("You feel lightheaded."))
 			else if(prev_damage < BRAIN_DAMAGE_SEVERE && damage >= BRAIN_DAMAGE_SEVERE)
 				to_chat(owner, span_danger("You feel less in control of your thoughts."))
-			else if(prev_damage < (BRAIN_DAMAGE_DEATH - 20) && damage >= (BRAIN_DAMAGE_DEATH - 20))
+			else if(prev_damage < (BRAIN_DAMAGE_ - 20) && damage >= (BRAIN_DAMAGE_ - 20))
 				to_chat(owner, span_userdanger("You can feel your mind flickering on and off..."))
 	//update our previous damage holder after we've checked our boundaries
 	prev_damage = damage

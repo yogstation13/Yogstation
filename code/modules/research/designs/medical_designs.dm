@@ -509,7 +509,7 @@
 
 /datum/design/implant_sadtrombone
 	name = "Sad Trombone Implant Case"
-	desc = "Makes death amusing."
+	desc = "Makes  amusing."
 	id = "implant_trombone"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 500, /datum/material/bananium = 500)
@@ -755,7 +755,7 @@
 
 /datum/design/surgery/revival
 	name = "Revival"
-	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
+	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after . The body must still be able to sustain life."
 	id = "surgery_revival"
 	surgery = list(/datum/surgery/advanced/revival, /datum/surgery/advanced/revival/mechanic)
 	research_icon_state = "revival"

@@ -145,8 +145,8 @@ CREATE TABLE IF NOT EXISTS `SS13_connection_log` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4192042 DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `SS13_death`;
-CREATE TABLE IF NOT EXISTS `SS13_death` (
+DROP TABLE IF EXISTS `SS13_`;
+CREATE TABLE IF NOT EXISTS `SS13_` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pod` varchar(50) NOT NULL,
   `x_coord` smallint(5) unsigned NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `SS13_death` (
   `server_ip` int(10) unsigned NOT NULL,
   `server_port` smallint(5) unsigned NOT NULL,
   `round_id` int(11) NOT NULL,
-  `tod` datetime NOT NULL COMMENT 'Time of death',
+  `tod` datetime NOT NULL COMMENT 'Time of ',
   `job` varchar(32) NOT NULL,
   `special` varchar(32) DEFAULT NULL,
   `name` varchar(96) NOT NULL,

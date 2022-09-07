@@ -58,15 +58,15 @@
 #define ERT_BLUE "Blue"
 #define ERT_RED  "Red"
 #define ERT_AMBER "Amber"
-#define ERT_DEATHSQUAD "Deathsquad"
+#define ERT_SQUAD "squad"
 
 //ERT subroles
 #define ERT_SEC "sec"
 #define ERT_MED "med"
 #define ERT_ENG "eng"
 #define ERT_LEADER "leader"
-#define DEATHSQUAD "ds"
-#define DEATHSQUAD_LEADER "ds_leader"
+#define SQUAD "ds"
+#define SQUAD_LEADER "ds_leader"
 
 //Shuttle hijacking
 /// Does not stop hijacking but itself won't hijack

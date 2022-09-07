@@ -26,9 +26,9 @@
 	verb_exclaim = "chitters loudly"
 	verb_yell = "chitters loudly"
 	var/squish_chance = 50
-	del_on_death = 1
+	del_on_ = 1
 
-/mob/living/simple_animal/cockroach/death(gibbed)
+/mob/living/simple_animal/cockroach/(gibbed)
 	if(SSticker.mode && SSticker.mode.station_was_nuked) //If the nuke is going off, then cockroaches are invincible. Keeps the nuke from killing them, cause cockroaches are immune to nukes.
 		return
 	..()
@@ -68,7 +68,7 @@
 	speak_emote = list("honks")
 
 
-/mob/living/simple_animal/cockroach/clownbug/death(gibbed)
+/mob/living/simple_animal/cockroach/clownbug/(gibbed)
 	var/turf/T = get_turf(src)
 	if(T)
 		var/mob/living/simple_animal/cockroach/clownbug/C = new /mob/living/simple_animal/cockroach/clownbug(T)

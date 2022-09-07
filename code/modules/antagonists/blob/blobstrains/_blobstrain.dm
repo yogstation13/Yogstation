@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 
 /datum/blobstrain/proc/on_lose()
 
-/datum/blobstrain/proc/on_sporedeath(mob/living/spore)
+/datum/blobstrain/proc/on_spore(mob/living/spore)
 
 /datum/blobstrain/proc/send_message(mob/living/M)
 	var/totalmessage = message
@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 /datum/blobstrain/proc/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag, coefficient = 1) //when the blob takes damage, do this
 	return coefficient*damage
 
-/datum/blobstrain/proc/death_reaction(obj/structure/blob/B, damage_flag, coefficient = 1) //when a blob dies, do this
+/datum/blobstrain/proc/_reaction(obj/structure/blob/B, damage_flag, coefficient = 1) //when a blob dies, do this
 	return
 
 /datum/blobstrain/proc/expand_reaction(obj/structure/blob/B, obj/structure/blob/newB, turf/T, mob/camera/blob/O, coefficient = 1) //when the blob expands, do this

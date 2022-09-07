@@ -1038,40 +1038,40 @@
 	hardsuit_type = "syndi"
 	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 35, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
 
-///Deathsquad version
+///squad version
 
-/obj/item/clothing/head/helmet/space/hardsuit/deathsquad
+/obj/item/clothing/head/helmet/space/hardsuit/squad
 	name = "MK.III SWAT Helmet"
 	desc = "An advanced tactical space helmet."
-	icon_state = "deathsquad"
-	item_state = "deathsquad"
+	icon_state = "squad"
+	item_state = "squad"
 	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	actions_types = list()
 
-/obj/item/clothing/head/helmet/space/hardsuit/deathsquad/attack_self(mob/user)
+/obj/item/clothing/head/helmet/space/hardsuit/squad/attack_self(mob/user)
 	return
 
-/obj/item/clothing/suit/space/hardsuit/deathsquad
+/obj/item/clothing/suit/space/hardsuit/squad
 	name = "MK.III SWAT Suit"
 	desc = "A prototype designed to replace the ageing MK.II SWAT suit. Based on the streamlined MK.II model, the traditional ceramic and graphene plate construction was replaced with plasteel, allowing superior armor against most threats. There's room for some kind of energy projection device on the back."
-	icon_state = "deathsquad"
+	icon_state = "squad"
 	item_state = "swat_suit"
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/kitchen/knife/combat)
 	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/deathsquad
-	dog_fashion = /datum/dog_fashion/back/deathsquad
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/squad
+	dog_fashion = /datum/dog_fashion/back/squad
 
 
 /obj/item/clothing/suit/space/hardsuit/shielded/swat
-	name = "death commando hardsuit"
+	name = " commando hardsuit"
 	desc = "An advanced hardsuit favored by commandos for use in special operations."
-	icon_state = "deathsquad"
+	icon_state = "squad"
 	item_state = "swat_suit"
 	hardsuit_type = "syndi"
 	max_charges = 4
@@ -1081,13 +1081,13 @@
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
-	dog_fashion = /datum/dog_fashion/back/deathsquad
+	dog_fashion = /datum/dog_fashion/back/squad
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
-	name = "death commando hardsuit helmet"
+	name = " commando hardsuit helmet"
 	desc = "A tactical helmet with built in energy shielding."
-	icon_state = "deathsquad"
-	item_state = "deathsquad"
+	icon_state = "squad"
+	item_state = "squad"
 	hardsuit_type = "syndi"
 	armor = list(MELEE = 80, BULLET = 80, LASER = 50, ENERGY = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	strip_delay = 130

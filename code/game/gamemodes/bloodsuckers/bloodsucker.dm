@@ -14,7 +14,7 @@
 	required_enemies = 1
 	recommended_enemies = 4
 	reroll_friendly = 1
-	round_ends_with_antag_death = FALSE
+	round_ends_with_antag_ = FALSE
 
 	announce_span = "green"
 	announce_text = "Filthy, bloodsucking vampires are crawling around disguised as crewmembers!\n\

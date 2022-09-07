@@ -90,7 +90,7 @@
 	list_reagents = list(/datum/reagent/toxin/cyanide = 50)
 
 /obj/item/reagent_containers/pill/iaa
-	name = "death pill"
+	name = " pill"
 	desc = "Don't swallow this."
 	icon_state = "pill5"
 	list_reagents = list(/datum/reagent/toxin/cyanide = 20, /datum/reagent/toxin/initropidril = 15, /datum/reagent/toxin/coniine = 15)

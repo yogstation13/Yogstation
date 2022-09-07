@@ -929,7 +929,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	if(QDELETED(familiar))
 		familiar = new linked.mob_type(get_turf(owner.loc))
 		familiar.name = linked.mob_name
-		familiar.del_on_death = TRUE
+		familiar.del_on_ = TRUE
 		familiar.copy_languages(owner, LANGUAGE_MASTER)
 		if(linked.saved_mind)
 			linked.saved_mind.transfer_to(familiar)

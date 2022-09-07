@@ -230,7 +230,7 @@
 
 /obj/item/wallframe/painting
 	name = "painting frame"
-	desc = "The perfect showcase for your favorite deathtrap memories."
+	desc = "The perfect showcase for your favorite trap memories."
 	icon = 'icons/obj/decals.dmi'
 	flags_1 = 0
 	icon_state = "frame-empty"

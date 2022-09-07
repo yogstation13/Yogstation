@@ -196,12 +196,12 @@
 		spent = FALSE
 		return FALSE
 
-/datum/nanite_program/sensor/death
-	name = "Death Sensor"
+/datum/nanite_program/sensor/
+	name = " Sensor"
 	desc = "The nanites receive a signal when they detect the host is dead."
 	var/spent = FALSE
 
-/datum/nanite_program/sensor/death/on_death()
+/datum/nanite_program/sensor//on_()
 	send_code()
 
 /datum/nanite_program/sensor/nanite_volume

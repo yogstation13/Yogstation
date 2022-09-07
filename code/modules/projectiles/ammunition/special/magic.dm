@@ -18,8 +18,8 @@
 	projectile_type = /obj/item/projectile/magic/resurrection
 	harmful = FALSE
 
-/obj/item/ammo_casing/magic/death
-	projectile_type = /obj/item/projectile/magic/death
+/obj/item/ammo_casing/magic/
+	projectile_type = /obj/item/projectile/magic/
 
 /obj/item/ammo_casing/magic/teleport
 	projectile_type = /obj/item/projectile/magic/teleport
@@ -98,8 +98,8 @@
 /obj/item/ammo_casing/magic/runic_toxin
 	projectile_type = /obj/item/projectile/magic/runic_toxin
 
-/obj/item/ammo_casing/magic/runic_death
-	projectile_type = /obj/item/projectile/magic/runic_death
+/obj/item/ammo_casing/magic/runic_
+	projectile_type = /obj/item/projectile/magic/runic_
 
 /obj/item/ammo_casing/magic/runic_bullet
 	projectile_type = /obj/item/projectile/magic/shotgun_slug //is bullet but actually no

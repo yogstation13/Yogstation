@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/larva/death(gibbed)
+/mob/living/carbon/alien/larva/(gibbed)
 	if(stat == DEAD)
 		return
 

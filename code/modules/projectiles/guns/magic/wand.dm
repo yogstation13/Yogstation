@@ -54,18 +54,18 @@
 
 
 /////////////////////////////////////
-//WAND OF DEATH
+//WAND OF 
 /////////////////////////////////////
 
-/obj/item/gun/magic/wand/death
-	name = "wand of death"
+/obj/item/gun/magic/wand/
+	name = "wand of "
 	desc = "This deadly wand overwhelms the victim's body with pure energy, slaying them without fail."
-	fire_sound = 'sound/magic/wandodeath.ogg'
-	ammo_type = /obj/item/ammo_casing/magic/death
-	icon_state = "deathwand"
+	fire_sound = 'sound/magic/wando.ogg'
+	ammo_type = /obj/item/ammo_casing/magic/
+	icon_state = "wand"
 	max_charges = 3 //3, 2, 2, 1
 
-/obj/item/gun/magic/wand/death/zap_self(mob/living/user)
+/obj/item/gun/magic/wand//zap_self(mob/living/user)
 	..()
 	to_chat(user, "<span class='warning'>You irradiate yourself with pure energy! \
 	[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You Die...","Do you want your possessions identified?")]\
@@ -73,7 +73,7 @@
 	user.adjustOxyLoss(500)
 	charges--
 
-/obj/item/gun/magic/wand/death/debug
+/obj/item/gun/magic/wand//debug
 	desc = "In some obscure circles, this is known as the 'cloning tester's friend'."
 	max_charges = 500
 	variable_charges = FALSE

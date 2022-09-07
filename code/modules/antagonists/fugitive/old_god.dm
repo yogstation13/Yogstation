@@ -97,7 +97,7 @@
 			return
 	//otherwise, eat shit and commit qdel()
 	to_chat(src, span_userdanger("All of your followers are gone. That means you cease to exist."))
-	playsound_local(get_turf(src), 'sound/machines/clockcult/ark_deathrattle.ogg', 100, FALSE, pressure_affected = FALSE)
+	playsound_local(get_turf(src), 'sound/machines/clockcult/ark_rattle.ogg', 100, FALSE, pressure_affected = FALSE)
 	qdel(src)
 //yogs end
 

@@ -10,7 +10,7 @@
 	var/icon_living = ""
 	var/icon_dead = "" //icon when the animal is dead. Don't use animated icons for this.
 	var/icon_gib = null	//We only try to show a gibbing animation if this exists.
-	var/flip_on_death = FALSE //Flip the sprite upside down on death. Mostly here for things lacking custom dead sprites.
+	var/flip_on_ = FALSE //Flip the sprite upside down on . Mostly here for things lacking custom dead sprites.
 
 	var/list/speak = list()
 	var/list/speak_emote = list()//	Emotes while speaking IE: Ian [emote], [text] -- Ian barks, "WOOF!". Spoken text is generated from the speak variable.
@@ -74,8 +74,8 @@
 	var/sentience_type = SENTIENCE_ORGANIC // Sentience type, for slime potions
 
 	var/list/loot = list() //list of things spawned at mob's loc when it dies
-	var/del_on_death = 0 //causes mob to be deleted on death, useful for mobs that spawn lootable corpses
-	var/deathmessage = ""
+	var/del_on_ = 0 //causes mob to be deleted on , useful for mobs that spawn lootable corpses
+	var/message = ""
 
 	var/allow_movement_on_non_turfs = FALSE
 
@@ -154,7 +154,7 @@
 		return
 	if(stat != DEAD)
 		if(health <= 0)
-			death()
+			()
 		else
 			stat = CONSCIOUS
 	med_hud_set_status()
@@ -324,7 +324,7 @@
 		for(var/i in loot)
 			new i(loc)
 
-/mob/living/simple_animal/death(gibbed)
+/mob/living/simple_animal/(gibbed)
 	movement_type &= ~FLYING
 	if(nest)
 		nest.spawned_mobs -= src
@@ -333,18 +333,18 @@
 	if(dextrous)
 		drop_all_held_items()
 	if(!gibbed)
-		if(deathsound || deathmessage || !del_on_death)
-			emote("deathgasp")
-	if(del_on_death)
+		if(sound || message || !del_on_)
+			emote("gasp")
+	if(del_on_)
 		..()
 		//Prevent infinite loops if the mob Destroy() is overridden in such
-		//a manner as to cause a call to death() again
-		del_on_death = FALSE
+		//a manner as to cause a call to () again
+		del_on_ = FALSE
 		qdel(src)
 	else
 		health = 0
 		icon_state = icon_dead
-		if(flip_on_death)
+		if(flip_on_)
 			transform = transform.Turn(180)
 		density = FALSE
 		..()
@@ -382,7 +382,7 @@
 	return
 
 /mob/living/simple_animal/revive(full_heal = 0, admin_revive = 0)
-	if(..()) //successfully ressuscitated from death
+	if(..()) //successfully ressuscitated from 
 		icon = initial(icon)
 		icon_state = icon_living
 		density = initial(density)

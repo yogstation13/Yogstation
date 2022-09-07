@@ -152,7 +152,7 @@ GENE SCANNER
 	var/brute_loss = M.getBruteLoss()
 	var/mob_status = (M.stat == DEAD ? span_alert("<b>Deceased</b>") : "<b>[round(M.health/M.maxHealth,0.01)*100] % healthy</b>")
 
-	if(HAS_TRAIT(M, TRAIT_FAKEDEATH) && !advanced)
+	if(HAS_TRAIT(M, TRAIT_FAKE) && !advanced)
 		mob_status = span_alert("<b>Deceased</b>")
 		oxy_loss = max(rand(1, 40), oxy_loss, (300 - (tox_loss + fire_loss + brute_loss))) // Random oxygen loss
 
@@ -386,10 +386,10 @@ GENE SCANNER
 	
 	combined_msg += "<span_class = '[temp_span]'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>"
 
-	// Time of death
-	if(M.tod && (M.stat == DEAD || ((HAS_TRAIT(M, TRAIT_FAKEDEATH)) && !advanced)))
-		combined_msg += "[span_info("Time of Death:")] [M.tod]"
-		var/tdelta = round(world.time - M.timeofdeath)
+	// Time of 
+	if(M.tod && (M.stat == DEAD || ((HAS_TRAIT(M, TRAIT_FAKE)) && !advanced)))
+		combined_msg += "[span_info("Time of :")] [M.tod]"
+		var/tdelta = round(world.time - M.timeof)
 		if(tdelta < (DEFIB_TIME_LIMIT))
 			combined_msg += span_danger("Subject died [DisplayTimeText(tdelta)] ago, defibrillation may be possible!")
 

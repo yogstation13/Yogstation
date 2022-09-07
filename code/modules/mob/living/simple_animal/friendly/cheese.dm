@@ -16,8 +16,8 @@
 	wander = 0
 	response_harm = "takes a bite out of"
 	attacked_sound = 'sound/items/eatfood.ogg'
-	deathmessage = "dies from the pain of existence!"
-	deathsound = "bodyfall"
+	message = "dies from the pain of existence!"
+	sound = "bodyfall"
 	speed = 5
 	can_be_held = TRUE
 	density = FALSE
@@ -60,7 +60,7 @@
 		var/obj/item/clothing/mob_holder/cheese/P = new(get_turf(src), src, null, null, null, ITEM_SLOT_HEAD, mob_size, null)
 		L.put_in_hands(P)
 
-/mob/living/simple_animal/cheese/death(gibbed)
+/mob/living/simple_animal/cheese/(gibbed)
 	for(var/i = 0; i < 4; i++)
 		new /obj/item/reagent_containers/food/snacks/cheesewedge/parmesan(loc)
 	if(stored_mob)

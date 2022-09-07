@@ -39,7 +39,7 @@
 	move_to_delay = 5
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	mouse_opacity = MOUSE_OPACITY_ICON
-	deathmessage = "explodes into gore!"
+	message = "explodes into gore!"
 	loot_drop = /obj/item/crusher_trophy/broodmother_tongue
 
 	attack_action_types = list(/datum/action/innate/elite_attack/tentacle_patch,
@@ -179,7 +179,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	butcher_results = list()
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide = 1)
-	deathmessage = "falls to the ground."
+	message = "falls to the ground."
 	status_flags = CANPUSH
 	var/mob/living/simple_animal/hostile/asteroid/elite/broodmother/mother = null
 
@@ -192,7 +192,7 @@
 		visible_message(span_warning("[src] digs one of its tentacles under [target]!"))
 		new /obj/effect/temp_visual/goliath_tentacle/broodmother(tturf, src)
 
-/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/death()
+/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/()
 	. = ..()
 	if(mother != null)
 		mother.children_list -= src

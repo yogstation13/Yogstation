@@ -9,7 +9,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0) //Robotic
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	healable = FALSE
-	del_on_death = TRUE
+	del_on_ = TRUE
 	speak_emote = list("clanks", "clinks", "clunks", "clangs")
 	verb_ask = "requests"
 	verb_exclaim = "proclaims"
@@ -18,7 +18,7 @@
 	initial_language_holder = /datum/language_holder/clockmob
 	bubble_icon = "clock"
 	light_color = "#E42742"
-	deathsound = 'sound/magic/clockwork/anima_fragment_death.ogg'
+	sound = 'sound/magic/clockwork/anima_fragment_.ogg'
 	speech_span = SPAN_ROBOT
 	var/playstyle_string = span_heavy_brass("You are a bug, yell at whoever spawned you!")
 	var/empower_string = span_heavy_brass("You have nothing to empower, yell at the coders!") //Shown to the mob when the herald beacon activates

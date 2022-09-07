@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	L.status_flags |= GODMODE
 	ADD_TRAIT(L, TRAIT_NOHARDCRIT, GUARDIAN_TRAIT)
 	ADD_TRAIT(L, TRAIT_NOSOFTCRIT, GUARDIAN_TRAIT)
-	ADD_TRAIT(L, TRAIT_NODEATH, GUARDIAN_TRAIT)
+	ADD_TRAIT(L, TRAIT_NO, GUARDIAN_TRAIT)
 	if (!isguardian(L))
 		RegisterSignal(L, COMSIG_MOVABLE_MOVED, .proc/check_if_teleport)
 	for (var/mob/living/simple_animal/hostile/guardian/G in L.hasparasites())
@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	L.status_flags &= ~GODMODE
 	REMOVE_TRAIT(L, TRAIT_NOHARDCRIT, GUARDIAN_TRAIT)
 	REMOVE_TRAIT(L, TRAIT_NOSOFTCRIT, GUARDIAN_TRAIT)
-	REMOVE_TRAIT(L, TRAIT_NODEATH, GUARDIAN_TRAIT)
+	REMOVE_TRAIT(L, TRAIT_NO, GUARDIAN_TRAIT)
 	UnregisterSignal(L, COMSIG_MOVABLE_MOVED)
 	for (var/mob/living/simple_animal/hostile/guardian/G in L.hasparasites())
 		G.status_flags &= ~GODMODE

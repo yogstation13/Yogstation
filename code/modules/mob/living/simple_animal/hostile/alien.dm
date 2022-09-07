@@ -35,8 +35,8 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	unique_name = 1
 	gold_core_spawnable = NO_SPAWN
-	deathsound = 'sound/voice/hiss6.ogg'
-	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
+	sound = 'sound/voice/hiss6.ogg'
+	message = "lets out a waning guttural screech, green blood bubbling from its maw..."
 
 	do_footstep = TRUE
 

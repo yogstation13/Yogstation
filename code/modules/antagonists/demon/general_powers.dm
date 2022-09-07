@@ -27,8 +27,8 @@
 	stop_automated_movement = 1
 	status_flags = CANPUSH
 	attack_sound = 'sound/magic/demon_attack1.ogg'
-	deathsound = 'sound/magic/demon_dies.ogg'
-	deathmessage = "wails in anger and fear as it collapses in defeat!"
+	sound = 'sound/magic/demon_dies.ogg'
+	message = "wails in anger and fear as it collapses in defeat!"
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 250 //Weak to cold
 	maxbodytemp = INFINITY
@@ -44,7 +44,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	loot = (/obj/effect/decal/cleanable/blood)
-	del_on_death = TRUE
+	del_on_ = TRUE
 
 /mob/living/simple_animal/lesserdemon/attackby(obj/item/W, mob/living/user, params)
 	. = ..()

@@ -27,7 +27,7 @@
 	overlays += shieldoverlay
 
 
-/mob/living/simple_animal/hostile/wizard/cloaked/death()
+/mob/living/simple_animal/hostile/wizard/cloaked/()
 	..()
 	overlays -= shieldoverlay
 	shieldoverlay = null

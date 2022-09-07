@@ -82,7 +82,7 @@
 	id = 11
 
 /datum/achievement/anticpr
-	name = "Breath of Death"
+	name = "Breath of "
 	desc = "... with incompatible lungs"
 	id = 12
 	hidden = TRUE
@@ -97,7 +97,7 @@
 	desc = "As a shadowling, ascend successfully"
 	id = 14
 
-/datum/achievement/death
+/datum/achievement/
 	name = "Flatlined"
 	desc = "You died"
 	id = 15

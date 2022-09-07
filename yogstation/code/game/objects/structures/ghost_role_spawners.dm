@@ -14,7 +14,7 @@
 		var/mob/living/carbon/human/H = new_spawn
 		H.grant_all_languages() // Is this powercreep?
 		to_chat(H, span_notice("You are familiar with these human's language. Use this to your advantage to communicate with those authentic with it."))
-	to_chat(new_spawn, span_notice("When you are close to death you will enter a chrysalis state where you will slowly regenerate. During this state you are very vunerable."))
+	to_chat(new_spawn, span_notice("When you are close to  you will enter a chrysalis state where you will slowly regenerate. During this state you are very vunerable."))
 
 // Rebirth egg that ashwalkers regenerate in when they reach under 0 health. Takes time to regenerate.
 /obj/effect/cyrogenicbubble
@@ -110,7 +110,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
 	flavour_text = "<span class='big bold'>You are a crew member working for Nanotrasen,</span><b> stationed onboard a state of the art research ship. It has been quite a while \
@@ -140,7 +140,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
 	flavour_text = "<span class='big bold'>You are a security officer working for Nanotrasen,</span><b> stationed onboard a state of the art research ship. It has been quite a while \
@@ -177,7 +177,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	mob_species = /datum/species/human
 	flavour_text = "<span class='big bold'>You are a captain controlling a Nanotrasen,</span><b> state of the art research ship. It has been quite a while \
@@ -239,7 +239,7 @@
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "egg"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	mob_type = /mob/living/carbon/alien/larva
 	flavour_text = "<span class='big bold'>You are an alien.</span><b> You awoke on this metal bird. You have been in stasis \

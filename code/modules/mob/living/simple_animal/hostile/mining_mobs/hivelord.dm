@@ -50,7 +50,7 @@
 /mob/living/simple_animal/hostile/asteroid/hivelord/spawn_crusher_loot()
 	loot += crusher_loot //we don't butcher
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/hivelord/(gibbed)
 	mouse_opacity = MOUSE_OPACITY_ICON
 	..(gibbed)
 
@@ -83,11 +83,11 @@
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	pass_flags = PASSTABLE
-	del_on_death = 1
+	del_on_ = 1
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), 100)
+	addtimer(CALLBACK(src, .proc/), 100)
 
 //Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion
@@ -113,7 +113,7 @@
 	crusher_drop_mod = 10
 	loot = list(/obj/item/organ/regenerative_core/legion)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
-	del_on_death = 1
+	del_on_ = 1
 	stat_attack = UNCONSCIOUS
 	pass_flags = null
 	robust_searching = 1
@@ -138,7 +138,7 @@
 	speed = 2 //faster!
 	dwarf_mob = TRUE
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/(gibbed)
 	visible_message(span_warning("The skulls on [src] wail in anger as they flee from their dying host!"))
 	var/turf/T = get_turf(src)
 	if(T)
@@ -178,7 +178,7 @@
 	attack_sound = 'sound/weapons/pierce.ogg'
 	throw_message = "is shrugged off by"
 	pass_flags = PASSTABLE
-	del_on_death = TRUE
+	del_on_ = TRUE
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
 	var/can_infest_dead = FALSE
@@ -221,7 +221,7 @@
 	else
 		L = new(H.loc)
 	visible_message(span_warning("[L] staggers to [L.p_their()] feet!"))
-	H.death()
+	H.()
 	H.adjustBruteLoss(1000)
 	L.stored_mob = H
 	H.forceMove(L)
@@ -261,7 +261,7 @@
 	wander = TRUE
 	maxbodytemp = INFINITY
 	layer = MOB_LAYER
-	del_on_death = TRUE
+	del_on_ = TRUE
 	sentience_type = SENTIENCE_BOSS
 	loot = list(/obj/item/organ/regenerative_core/legion = 3, /obj/effect/mob_spawn/human/corpse/damaged/legioninfested = 5)
 	move_to_delay = 14
@@ -418,7 +418,7 @@
 	GLOB.bloodmen_list += src
 	return
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/death()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/()
 	. = ..()
 	GLOB.bloodmen_list -= src
 	return

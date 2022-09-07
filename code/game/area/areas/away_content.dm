@@ -31,7 +31,7 @@ Unused icons for new areas are "awaycontent1" ~ "awaycontent30"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	var/pacifist = TRUE // if when you enter this zone, you become a pacifist or not
-	var/death = FALSE // if when you enter this zone, you die
+	var/ = FALSE // if when you enter this zone, you die
 
 /area/awaymission/secret
 	noteleport = TRUE

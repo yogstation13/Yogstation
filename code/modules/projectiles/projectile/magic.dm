@@ -20,15 +20,15 @@
 			qdel(src)
 			return FALSE
 
-/obj/item/projectile/magic/death
-	name = "bolt of death"
+/obj/item/projectile/magic/
+	name = "bolt of "
 	icon_state = "pulse1_bl"
 
-/obj/item/projectile/magic/death/on_hit(target)
+/obj/item/projectile/magic//on_hit(target)
 	. = ..()
 	if(ismob(target))
 		var/mob/M = target
-		M.death(0)
+		M.(0)
 
 /obj/item/projectile/magic/resurrection
 	name = "bolt of resurrection"
@@ -331,7 +331,7 @@
 		else
 			L.key = C.key
 		C.transfer_observers_to(L)
-		C.death()
+		C.()
 
 /obj/item/projectile/magic/animate
 	name = "bolt of animation"
@@ -825,13 +825,13 @@
 						X.reagents.add_reagent(/datum/reagent/toxin/plasma, 10)
 
 
-/obj/item/projectile/magic/runic_death
-	name = "Runic Death"
+/obj/item/projectile/magic/runic_
+	name = "Runic "
 	icon_state = "antimagic"
 	flag = MAGIC
 	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
 
-/obj/item/projectile/magic/runic_death/on_hit(mob/living/target)
+/obj/item/projectile/magic/runic_/on_hit(mob/living/target)
 	. = ..()
 	if(iszombie(target))
 		target.gib()

@@ -37,8 +37,8 @@
 	speed = 0
 	move_to_delay = 3
 	mouse_opacity = MOUSE_OPACITY_ICON
-	deathsound = 'sound/magic/curse.ogg'
-	deathmessage = "'s arms reach out before it falls apart onto the floor, lifeless."
+	sound = 'sound/magic/curse.ogg'
+	message = "'s arms reach out before it falls apart onto the floor, lifeless."
 	loot_drop = /obj/item/crusher_trophy/legionnaire_spine
 
 	attack_action_types = list(/datum/action/innate/elite_attack/legionnaire_charge,
@@ -160,7 +160,7 @@
 			myhead.melee_damage_lower = 20
 			myhead.melee_damage_upper = 20
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/onHeadDeath()
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/onHead()
 	myhead = null
 	addtimer(CALLBACK(src, .proc/regain_head), 50)
 
@@ -233,16 +233,16 @@
 	throw_message = "simply misses"
 	speed = 0
 	move_to_delay = 2
-	del_on_death = 1
-	deathmessage = "crumbles away!"
+	del_on_ = 1
+	message = "crumbles away!"
 	faction = list()
 	ranged = FALSE
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/body = null
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/death()
+/mob/living/simple_animal/hostile/asteroid/elite/legionnairehead/()
 	. = ..()
 	if(body)
-		body.onHeadDeath()
+		body.onHead()
 
 //The legionnaire's bonfire, which can be swapped positions with.  Also sets flammable living beings on fire when they walk over it.
 /obj/structure/legionnaire_bonfire

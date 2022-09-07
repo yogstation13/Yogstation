@@ -1046,7 +1046,7 @@
 		return
 	if(stat != DEAD)
 		if(health <= -maxHealth) //die only once
-			death()
+			()
 			toggle_headlamp(TRUE)
 			return
 		if(IsUnconscious() || IsStun() || IsKnockdown() || IsParalyzed() || getOxyLoss() > maxHealth*0.5)
@@ -1065,7 +1065,7 @@
 	update_health_hud()
 
 /mob/living/silicon/robot/revive(full_heal = 0, admin_revive = 0)
-	if(..()) //successfully ressuscitated from death
+	if(..()) //successfully ressuscitated from 
 		if(!QDELETED(builtInCamera) && !wires.is_cut(WIRE_CAMERA))
 			builtInCamera.toggle_cam(src,0)
 		toggle_headlamp(TRUE)

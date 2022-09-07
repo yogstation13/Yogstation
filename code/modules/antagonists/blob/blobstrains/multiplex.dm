@@ -17,9 +17,9 @@
 	for (var/datum/blobstrain/bt in blobstrains)
 		. += bt.damage_reaction(B, damage, damage_type, damage_flag, coefficient*typeshare)
 
-/datum/blobstrain/multiplex/death_reaction(obj/structure/blob/B, damage_flag, coefficient = 1) //when a blob dies, do this
+/datum/blobstrain/multiplex/_reaction(obj/structure/blob/B, damage_flag, coefficient = 1) //when a blob dies, do this
 	for (var/datum/blobstrain/bt in blobstrains)
-		. += bt.death_reaction(B, damage_flag, coefficient*typeshare)
+		. += bt._reaction(B, damage_flag, coefficient*typeshare)
 
 /datum/blobstrain/multiplex/expand_reaction(obj/structure/blob/B, obj/structure/blob/newB, turf/T, mob/camera/blob/O, coefficient = 1) //when the blob expands, do this
 	for (var/datum/blobstrain/bt in blobstrains)

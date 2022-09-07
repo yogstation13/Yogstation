@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	var/mob/living/M = mob_override || owner.current
 	for(var/obj/item/implant/explosive/E in M.implants)
 		if(E)
-			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
+			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, .proc/on_)
 	update_ninja_icons_added(M)
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)
@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 		equip_space_ninja(owner.current)
 	. = ..()
 
-/datum/antagonist/ninja/proc/on_death()
+/datum/antagonist/ninja/proc/on_()
 	for(var/mob/L in GLOB.ninja_capture)
 		if(get_area(L) == GLOB.areas_by_type[/area/centcom/holding])
 			if(!L)

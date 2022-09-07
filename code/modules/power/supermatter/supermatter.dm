@@ -375,7 +375,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	else
 		if(antinoblium_attached)
 			explosion_power = explosion_power * 2
-			//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING DEATH
+			//trying to cheat by spacing the crystal? YOU FOOL THERE ARE NO LOOPHOLES TO ESCAPE YOUR UPCOMING 
 			if(istype(T, /turf/open/space) || combined_gas < MOLE_SPACE_THRESHOLD)
 				message_admins("[src] has exploded in empty space.")
 				investigate_log("has exploded in empty space.", INVESTIGATE_SUPERMATTER)

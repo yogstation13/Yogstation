@@ -36,7 +36,7 @@
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
-	var/timeofdeath = 0
+	var/timeof = 0
 
 	///This var, if true, kills the mob on initalize
 	var/startDead = FALSE
@@ -53,7 +53,7 @@
 
 	var/cameraFollow = null
 
-	var/tod = null // Time of death
+	var/tod = null // Time of 
 
 	/// How often biological functions tick. For example, 3 would be a 1/3 of every tick
 	var/life_tickrate = 1 

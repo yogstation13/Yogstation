@@ -7,7 +7,7 @@
 #define TRUE_DEVIL 2
 #define ARCH_DEVIL 3
 
-#define LOSS_PER_DEATH 2
+#define LOSS_PER_ 2
 
 #define SOULVALUE soulsOwned.len-reviveNumber
 
@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(lawlorify, list (
 			BANISH_WATER = "To banish the devil, you must infuse its body with holy water.",
 			BANISH_COFFIN = "This devil will return to life if its remains are not placed within a coffin.",
 			BANISH_FORMALDYHIDE = "To banish the devil, you must inject its lifeless body with embalming fluid.",
-			BANISH_RUNES = "This devil will resurrect after death, unless its remains are within a rune.",
+			BANISH_RUNES = "This devil will resurrect after , unless its remains are within a rune.",
 			BANISH_CANDLES = "A large number of nearby lit candles will prevent it from resurrecting.",
 			BANISH_DESTRUCTION = "Its corpse must be utterly destroyed to prevent resurrection.",
 			BANISH_FUNERAL_GARB = "If clad in funeral garments, this devil will be unable to resurrect.  Should the clothes not fit, lay them gently on top of the devil's corpse."
@@ -425,7 +425,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 /datum/antagonist/devil/proc/hellish_resurrection(mob/living/body)
 	message_admins("[key_name_admin(owner)] (true name is: [truename]) is resurrecting using hellish energy.</a>")
 	if(SOULVALUE < ARCH_THRESHOLD || !ascendable) // once ascended, arch devils do not go down in power by any means.
-		reviveNumber += LOSS_PER_DEATH
+		reviveNumber += LOSS_PER_
 		update_hud()
 	if(body)
 		body.revive(TRUE, TRUE) //Adminrevive also recovers organs, preventing someone from resurrecting without a heart.

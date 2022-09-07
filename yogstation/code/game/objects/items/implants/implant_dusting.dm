@@ -1,6 +1,6 @@
 /obj/item/implant/dusting
 	name = "duster implant"
-	desc = "An alarm which monitors host vital signs, transmitting a radio message and dusting the corpse on death."
+	desc = "An alarm which monitors host vital signs, transmitting a radio message and dusting the corpse on ."
 	actions_types = list(/datum/action/item_action/dusting_implant)
 	var/popup = FALSE // is the DOUWANNABLOWUP window open?
 	var/active = FALSE
@@ -8,11 +8,11 @@
 /obj/item/implant/dusting/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 				<b>Name:</b> Ultraviolet Corp XX-13 Security Implant<BR>
-				<b>Life:</b> Activates upon death.<BR>
+				<b>Life:</b> Activates upon .<BR>
 				<b>Important Notes:</b> Vaporizes organic matter<BR>
 				<HR>
 				<b>Implant Details:</b><BR>
-				<b>Function:</b> Contains a compact, electrically activated heat source that turns its host to ash upon activation, or their death. <BR>
+				<b>Function:</b> Contains a compact, electrically activated heat source that turns its host to ash upon activation, or their . <BR>
 				<b>Special Features:</b> Vaporizes<BR>
 				"}
 	return dat
@@ -37,8 +37,8 @@
 		 qdel(I)
 	imp_in.dust()
 
-/obj/item/implant/dusting/on_mob_death(mob/living/L, gibbed)
-	activate("death")
+/obj/item/implant/dusting/on_mob_(mob/living/L, gibbed)
+	activate("")
 	
 /obj/item/implant/dusting/emp_act()
 	return

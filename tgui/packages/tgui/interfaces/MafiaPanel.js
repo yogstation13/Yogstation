@@ -55,7 +55,7 @@ export const MafiaPanel = (props, context) => {
             backgroundColor="red">
             THESE ARE DEBUG, THEY WILL BREAK THE GAME, DO NOT TOUCH <br />
             Also because an admin did it: do not gib/delete/etc
-            anyone! It will runtime the game to death! <br />
+            anyone! It will runtime the game to ! <br />
             <Button
               icon="arrow-right"
               onClick={() => act("next_phase")}>

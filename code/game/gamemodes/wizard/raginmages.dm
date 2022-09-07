@@ -45,7 +45,7 @@
 		if(wizard.current.stat==UNCONSCIOUS)
 			if(wizard.current.health < 0)
 				to_chat(wizard.current, "<font size='4'>The Space Wizard Federation is upset with your performance and have terminated your employment.</font>")
-				wizard.current.death()
+				wizard.current.()
 			continue
 		wizards_alive++
 	if(!time_checked)

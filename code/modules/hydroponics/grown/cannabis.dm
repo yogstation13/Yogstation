@@ -14,7 +14,7 @@
 	icon_dead = "cannabis-dead" // Same for the dead icon
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/cannabis/rainbow,
-						/obj/item/seeds/cannabis/death,
+						/obj/item/seeds/cannabis/,
 						/obj/item/seeds/cannabis/white,
 						/obj/item/seeds/cannabis/ultimate)
 	reagents_add = list(/datum/reagent/drug/space_drugs = 0.15, /datum/reagent/toxin/lipolicide = 0.35) // gives u the munchies
@@ -31,13 +31,13 @@
 	reagents_add = list(/datum/reagent/toxin/mindbreaker = 0.15, /datum/reagent/toxin/lipolicide = 0.35)
 	rarity = 40
 
-/obj/item/seeds/cannabis/death
-	name = "pack of deathweed seeds"
-	desc = "These seeds grow into deathweed. Not groovy."
+/obj/item/seeds/cannabis/
+	name = "pack of weed seeds"
+	desc = "These seeds grow into weed. Not groovy."
 	icon_state = "seed-blackcannabis"
 	species = "blackcannabis"
-	plantname = "Deathweed"
-	product = /obj/item/reagent_containers/food/snacks/grown/cannabis/death
+	plantname = "weed"
+	product = /obj/item/reagent_containers/food/snacks/grown/cannabis/
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/toxin/cyanide = 0.35, /datum/reagent/drug/space_drugs = 0.15, /datum/reagent/toxin/lipolicide = 0.15)
 	rarity = 40
@@ -102,9 +102,9 @@
 	icon_state = "megacannabis"
 	wine_power = 60
 
-/obj/item/reagent_containers/food/snacks/grown/cannabis/death
-	seed = /obj/item/seeds/cannabis/death
-	name = "death cannabis leaf"
+/obj/item/reagent_containers/food/snacks/grown/cannabis/
+	seed = /obj/item/seeds/cannabis/
+	name = " cannabis leaf"
 	desc = "Looks a bit dark. Oh well."
 	icon_state = "blackcannabis"
 	wine_power = 40

@@ -23,7 +23,7 @@
 	a_intent = INTENT_HELP
 	speak_emote = list("screeches")
 	throw_message = "sinks in slowly, before being pushed out of "
-	deathmessage = "spits up the contents of its stomach before dying!"
+	message = "spits up the contents of its stomach before dying!"
 	guaranteed_butcher_results = list(/obj/item/goldgrubguts = 1)
 	status_flags = CANPUSH
 	search_objects = 1
@@ -85,7 +85,7 @@
 	vision_range = 9
 	. = ..()
 
-/mob/living/simple_animal/hostile/asteroid/goldgrub/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/(gibbed)
 	if(prob(10))
 		new /obj/item/gem/rupee(loc)
 	. = ..()

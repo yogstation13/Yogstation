@@ -69,8 +69,8 @@
 	var/emagged = FALSE
 	minbodytemp = 0
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
-	del_on_death = TRUE
-	deathmessage = "blows apart!"
+	del_on_ = TRUE
+	message = "blows apart!"
 	animal_species = /mob/living/simple_animal/pet/dog/corgi/borgi
 	nofur = TRUE
 
@@ -83,7 +83,7 @@
 /mob/living/simple_animal/pet/dog/corgi/borgi/proc/explode()
 	visible_message(span_warning("[src] makes an odd whining noise."))
 	explosion(get_turf(src), 0, 1, 4, 7)
-	death()
+	()
 
 /mob/living/simple_animal/pet/dog/corgi/borgi/Life(seconds, times_fired)
 	..()
@@ -91,7 +91,7 @@
 	if(prob(5))
 		do_sparks(3, 1, src)
 
-/mob/living/simple_animal/pet/dog/corgi/borgi/death(gibbed)
+/mob/living/simple_animal/pet/dog/corgi/borgi/(gibbed)
 	// Only execute the below if we successfully died
 	. = ..(gibbed)
 	if(!.)
@@ -136,7 +136,7 @@
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 
-/mob/living/simple_animal/pet/dog/corgi/death(gibbed)
+/mob/living/simple_animal/pet/dog/corgi/(gibbed)
 	..(gibbed)
 	regenerate_icons()
 
@@ -407,7 +407,7 @@
 		memory_saved = TRUE
 	..()
 
-/mob/living/simple_animal/pet/dog/corgi/Ian/death()
+/mob/living/simple_animal/pet/dog/corgi/Ian/()
 	if(!memory_saved)
 		Write_Memory(TRUE)
 	..()

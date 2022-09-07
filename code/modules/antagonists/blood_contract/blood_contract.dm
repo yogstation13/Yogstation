@@ -17,7 +17,7 @@
 
 /datum/antagonist/blood_contract/greet()
 	. = ..()
-	to_chat(owner, span_userdanger("You've been marked for death! Don't let the demons get you! KILL THEM ALL!"))
+	to_chat(owner, span_userdanger("You've been marked for ! Don't let the demons get you! KILL THEM ALL!"))
 
 /datum/antagonist/blood_contract/proc/start_the_hunt()
 	var/mob/living/carbon/human/H = owner.current

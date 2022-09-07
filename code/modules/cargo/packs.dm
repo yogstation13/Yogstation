@@ -975,7 +975,7 @@
 
 /datum/supply_pack/engine/field_gen
 	name = "Field Generator Crate"
-	desc = "Typically the only thing standing between the station and a messy death. Powered by emitters. Contains two field generators."
+	desc = "Typically the only thing standing between the station and a messy . Powered by emitters. Contains two field generators."
 	cost = 1500
 	contains = list(/obj/machinery/field/generator,
 					/obj/machinery/field/generator)
@@ -1672,7 +1672,7 @@
 
 /datum/supply_pack/service/party
 	name = "Party Equipment"
-	desc = "Celebrate both life and death on the station with Nanotrasen's Party Essentials(tm)! Contains seven colored glowsticks, four beers, two ales, and a bottle of patron, goldschlager, and shaker!"
+	desc = "Celebrate both life and  on the station with Nanotrasen's Party Essentials(tm)! Contains seven colored glowsticks, four beers, two ales, and a bottle of patron, goldschlager, and shaker!"
 	cost = 2000
 	contains = list(/obj/item/storage/box/drinkingglasses,
 					/obj/item/reagent_containers/food/drinks/shaker,
@@ -2700,7 +2700,7 @@
 
 /datum/supply_pack/misc/fountainpens
 	name = "Calligraphy Crate"
-	desc = "Sign death warrants in style with these seven executive fountain pens."
+	desc = "Sign  warrants in style with these seven executive fountain pens."
 	cost = 700
 	contains = list(/obj/item/storage/box/fountainpens)
 	crate_type = /obj/structure/closet/crate/wooden

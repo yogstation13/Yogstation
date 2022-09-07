@@ -145,7 +145,7 @@
 	if(selected_vassal)
 		remove_antag_datum(/datum/antagonist/vassal)
 
-/// When a Bloodsucker gets FinalDeath, all Vassals are freed - This is a Bloodsucker proc, not a Vassal one.
+/// When a Bloodsucker gets Final, all Vassals are freed - This is a Bloodsucker proc, not a Vassal one.
 /datum/antagonist/bloodsucker/proc/FreeAllVassals()
 	for(var/datum/antagonist/vassal/all_vassals in vassals)
 		// Skip over any Bloodsucker Vassals, they're too far gone to have all their stuff taken away from them

@@ -45,7 +45,7 @@
 
 // INTEGRATION: Adding Procs and Datums to existing "classes" //
 
-/mob/living/proc/HaveBloodsuckerBodyparts(displaymessage = "") // displaymessage can be something such as "rising from death" for Torpid Sleep. givewarningto is the person receiving messages.
+/mob/living/proc/HaveBloodsuckerBodyparts(displaymessage = "") // displaymessage can be something such as "rising from " for Torpid Sleep. givewarningto is the person receiving messages.
 	if(!getorganslot(ORGAN_SLOT_HEART))
 		if(displaymessage != "")
 			to_chat(src, span_warning("Without a heart, you are incapable of [displaymessage]."))
@@ -134,13 +134,13 @@
 	// Blood level too low to be hidden?
 	if(blood_volume <= BLOOD_VOLUME_BAD(user) || bloodsuckerdatum.frenzied)
 		return BLOODSUCKER_HIDE_BLOOD
-	// Special check: Nosferatu will always be Pale Death
+	// Special check: Nosferatu will always be Pale 
 	if(HAS_TRAIT(src, TRAIT_MASQUERADE))
 		return BLOODSUCKER_HIDE_BLOOD
 	switch(blood_volume)
 		if(BLOOD_VOLUME_OKAY(user) to BLOOD_VOLUME_SAFE(user))
 			return "[p_they(TRUE)] [p_have()] pale skin.\n"
 		if(BLOOD_VOLUME_BAD(user) to BLOOD_VOLUME_OKAY(user))
-			return "<b>[p_they(TRUE)] look[p_s()] like pale death.</b>\n"
+			return "<b>[p_they(TRUE)] look[p_s()] like pale .</b>\n"
 	// If a Bloodsucker is malnourished, AND if his temperature matches his surroundings (aka he hasn't fed recently and looks COLD)
 //	return blood_volume < BLOOD_VOLUME_OKAY // && !(bodytemperature <= get_temperature() + 2)

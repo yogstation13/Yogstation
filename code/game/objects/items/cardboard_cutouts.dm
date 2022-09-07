@@ -27,7 +27,7 @@
 		"Xenomorph Maid" = image(icon = src.icon, icon_state = "cutout_lusty"),
 		"Swarmer" = image(icon = src.icon, icon_state = "cutout_swarmer"),
 		"Ash Walker" = image(icon = src.icon, icon_state = "cutout_free_antag"),
-		"Deathsquad Officer" = image(icon = src.icon, icon_state = "cutout_deathsquad"),
+		"squad Officer" = image(icon = src.icon, icon_state = "cutout_squad"),
 		"Ian" = image(icon = src.icon, icon_state = "cutout_ian"),
 		"Slaughter Demon" = image(icon = 'icons/mob/mob.dmi', icon_state = "daemon"),
 		"Laughter Demon" = image(icon = 'icons/mob/mob.dmi', icon_state = "bowmon"),
@@ -174,10 +174,10 @@
 			name = lizard_name(pick(MALE, FEMALE))
 			desc = "A cardboard cutout of an ash walker."
 			icon_state = "cutout_free_antag"
-		if("Deathsquad Officer")
+		if("squad Officer")
 			name = pick(GLOB.commando_names)
-			desc = "A cardboard cutout of a death commando."
-			icon_state = "cutout_deathsquad"
+			desc = "A cardboard cutout of a  commando."
+			icon_state = "cutout_squad"
 		if("Ian")
 			name = "Ian"
 			desc = "A cardboard cutout of the HoP's beloved corgi."

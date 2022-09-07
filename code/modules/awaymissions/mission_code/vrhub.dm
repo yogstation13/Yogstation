@@ -1,6 +1,6 @@
 /area/awaymission/vr/general
 	name = "Virtual Reality Forbidden Zone"
-	death = TRUE
+	 = TRUE
 
 /area/awaymission/vr/hub
 	name = "Virtual Reality Hub Area"
@@ -86,7 +86,7 @@
 	icon_state = "qpad-idle"
 	density = FALSE
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	uses = -1 // infinite
 	random = TRUE
 	mob_type = /mob/living/carbon/human/virtual_reality
@@ -99,7 +99,7 @@
 /obj/effect/portal/permanent/one_way/recall/murderdome
 	name = "Murderdome Portal"
 	desc = "Active, but only occasionally. Leads to an endless battle arena."
-	equipment = /datum/outfit/death_commando
+	equipment = /datum/outfit/_commando
 	recall_equipment = /datum/outfit/vr
 	id = "vr murderdome"
 	light_color = LIGHT_COLOR_FIRE

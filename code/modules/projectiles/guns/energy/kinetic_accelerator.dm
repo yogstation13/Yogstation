@@ -495,7 +495,7 @@
 		new /obj/effect/temp_visual/resonance(target_turf, K.firer, null, 30)
 
 /obj/item/borg/upgrade/modkit/bounty
-	name = "death syphon"
+	name = " syphon"
 	desc = "Killing or assisting in killing a creature permanently increases your damage against that type of creature."
 	denied_type = /obj/item/borg/upgrade/modkit/bounty
 	modifier = 5

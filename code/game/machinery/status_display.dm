@@ -15,7 +15,7 @@
 #define SD_PICTURE 3  // 3 = alert picture
 
 #define SD_AI_EMOTE 1  // 1 = AI emoticon
-#define SD_AI_BSOD 2  // 2 = Blue screen of death
+#define SD_AI_BSOD 2  // 2 = Blue screen of 
 
 /// Status display which can show images and scrolling text.
 /obj/machinery/status_display

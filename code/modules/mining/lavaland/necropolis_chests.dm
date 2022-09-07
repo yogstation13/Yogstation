@@ -103,7 +103,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	modkit_design = /datum/design/unique_modkit/resonator_blast
 
 /obj/item/disk/design_disk/modkit_disc/bounty
-	name = "Death Syphon Mod Disk"
+	name = " Syphon Mod Disk"
 	modkit_design = /datum/design/unique_modkit/bounty
 
 /datum/design/unique_modkit
@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	build_path = /obj/item/borg/upgrade/modkit/resonator_blasts
 
 /datum/design/unique_modkit/bounty
-	name = "Kinetic Accelerator Death Syphon Mod"
+	name = "Kinetic Accelerator  Syphon Mod"
 	desc = "A device which causes kinetic accelerators to permanently gain damage against creature types killed with it."
 	id = "bountymod"
 	materials = list(/datum/material/iron = 4000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 4000)
@@ -201,7 +201,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 //Memento Mori
 /obj/item/clothing/neck/necklace/memento_mori
 	name = "Memento Mori"
-	desc = "A mysterious pendant. An inscription on it says: \"Certain death tomorrow means certain life today.\""
+	desc = "A mysterious pendant. An inscription on it says: \"Certain  tomorrow means certain life today.\""
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "memento_mori"
 	actions_types = list(/datum/action/item_action/hands_free/memento_mori)
@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	to_chat(user, span_warning("You feel your life being drained by the pendant..."))
 	if(do_after(user, 4 SECONDS, user))
 		to_chat(user, span_notice("Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die."))
-		ADD_TRAIT(user, TRAIT_NODEATH, "memento_mori")
+		ADD_TRAIT(user, TRAIT_NO, "memento_mori")
 		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "memento_mori")
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
@@ -612,13 +612,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		var/mob/living/L = target
 		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_MOB_DEATH,.proc/roll_loot, TRUE)
+				RegisterSignal(target,COMSIG_MOB_,.proc/roll_loot, TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
 ///This proc handles rolling the loot on the loot table and "drops" the loot where the hostile fauna died
 /obj/item/rune_scimmy/proc/roll_loot(mob/living/target)
-	UnregisterSignal(target, COMSIG_MOB_DEATH)
+	UnregisterSignal(target, COMSIG_MOB_)
 	if(mobs_grinded<max_grind)
 		mobs_grinded++
 	var/spot = get_turf(target)
@@ -1218,7 +1218,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
 	color = "#FF0000"
-	desc = "Mark your target for death."
+	desc = "Mark your target for ."
 	var/used = FALSE
 
 /obj/item/blood_contract/attack_self(mob/user)
@@ -1243,13 +1243,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		used = FALSE
 		return
 	if(choice == user)
-		to_chat(user, "You feel like writing your own name into a cursed death warrant would be unwise.")
+		to_chat(user, "You feel like writing your own name into a cursed  warrant would be unwise.")
 		used = FALSE
 		return
 
 	var/mob/living/L = choice
 
-	message_admins(span_adminnotice("[ADMIN_LOOKUPFLW(L)] has been marked for death by [ADMIN_LOOKUPFLW(user)]!"))
+	message_admins(span_adminnotice("[ADMIN_LOOKUPFLW(L)] has been marked for  by [ADMIN_LOOKUPFLW(user)]!"))
 
 	var/datum/antagonist/blood_contract/A = new
 	L.mind.add_antag_datum(A)

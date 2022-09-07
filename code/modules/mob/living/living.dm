@@ -11,7 +11,7 @@
 	GLOB.mob_living_list += src
 	initialize_footstep()
 	if(startDead)
-		death(FALSE)
+		(FALSE)
 
 /mob/living/proc/initialize_footstep()
 	AddComponent(/datum/component/footstep)
@@ -370,7 +370,7 @@
 /mob/living/pointed(atom/A as mob|obj|turf in view())
 	if(incapacitated())
 		return FALSE
-	if(HAS_TRAIT(src, TRAIT_DEATHCOMA))
+	if(HAS_TRAIT(src, TRAIT_COMA))
 		return FALSE
 	if(!..())
 		return FALSE
@@ -380,12 +380,12 @@
 /mob/living/verb/succumb(whispered as null)
 	set hidden = TRUE
 	if (InCritical())
-		log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] while in [InFullCritical() ? "hard":"soft"] critical with [round(health, 0.1)] points of health!", LOG_ATTACK)
+		log_message("Has [whispered ? "whispered his final words" : "succumbed to "] while in [InFullCritical() ? "hard":"soft"] critical with [round(health, 0.1)] points of health!", LOG_ATTACK)
 		adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
 		updatehealth()
 		if(!whispered)
-			to_chat(src, span_notice("You have given up life and succumbed to death."))
-		death()
+			to_chat(src, span_notice("You have given up life and succumbed to ."))
+		()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
 	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IS_IN_STASIS(src)))
@@ -552,7 +552,7 @@
 		set_suicide(FALSE)
 		stat = UNCONSCIOUS //the mob starts unconscious,
 		blind_eyes(1)
-		losebreath = 0 //losebreath stacks were persisting beyond death, immediately killing again after revival until they ran out natureally from time
+		losebreath = 0 //losebreath stacks were persisting beyond , immediately killing again after revival until they ran out natureally from time
 		updatehealth() //then we check if the mob should wake up.
 		update_mobility()
 		update_sight()
@@ -611,7 +611,7 @@
 	update_mobility()
 	stop_sound_channel(CHANNEL_HEARTBEAT)
 	if(admin_revive)
-		cure_fakedeath()
+		cure_fake()
 
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()
@@ -1207,7 +1207,7 @@
 /mob/living/proc/update_mobility()
 	var/stat_softcrit = stat == SOFT_CRIT
 	var/stat_conscious = (stat == CONSCIOUS) || stat_softcrit
-	var/conscious = !IsUnconscious() && stat_conscious && !HAS_TRAIT(src, TRAIT_DEATHCOMA)
+	var/conscious = !IsUnconscious() && stat_conscious && !HAS_TRAIT(src, TRAIT_COMA)
 	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
 	var/restrained = restrained()
 	var/has_legs = get_num_legs()

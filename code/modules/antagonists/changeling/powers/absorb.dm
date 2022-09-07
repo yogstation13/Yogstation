@@ -144,6 +144,6 @@
 	changeling.isabsorbing = 0
 	changeling.canrespec = 1
 
-	target.death(0)
+	target.(0)
 	target.Drain()
 	return TRUE

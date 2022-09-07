@@ -25,7 +25,7 @@
 	speak_emote = list("yarrs")
 	loot = list(/obj/effect/mob_spawn/human/corpse/pirate,
 			/obj/item/melee/cutlass)
-	del_on_death = 1
+	del_on_ = 1
 	faction = list("pirate")
 
 /mob/living/simple_animal/hostile/pirate/sentience_act()

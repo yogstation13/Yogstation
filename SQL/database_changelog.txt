@@ -359,9 +359,9 @@ ALTER TABLE `player` ADD COLUMN `firstseen_round_id` INT(11) UNSIGNED NOT NULL A
 
 Version 3.2, 18 August 2017, by Cyberboss and nfreader
 
-Modified table 'death', adding the columns `last_words` and 'suicide'.
+Modified table '', adding the columns `last_words` and 'suicide'.
 
-ALTER TABLE `death`
+ALTER TABLE ``
 ADD COLUMN `last_words` varchar(255) DEFAULT NULL AFTER `staminaloss`,
 ADD COLUMN `suicide` tinyint(0) NOT NULL DEFAULT '0' AFTER `last_words`;
 
@@ -422,14 +422,14 @@ Remember to add a prefix to the table name if you use them.
 
 8 June 2017, by Jordie0608
 
-Modified table 'death', adding column 'round_id', removing column 'gender' and replacing column 'coord' with the columns 'x_coord', 'y_coord' and 'z_coord'.
+Modified table '', adding column 'round_id', removing column 'gender' and replacing column 'coord' with the columns 'x_coord', 'y_coord' and 'z_coord'.
 
 START TRANSACTION;
-ALTER TABLE `death` DROP COLUMN `gender`, ADD COLUMN `x_coord` SMALLINT(5) UNSIGNED NOT NULL AFTER `coord`, ADD COLUMN `y_coord` SMALLINT(5) UNSIGNED NOT NULL AFTER `x_coord`, ADD COLUMN `z_coord` SMALLINT(5) UNSIGNED NOT NULL AFTER `y_coord`, ADD COLUMN `round_id` INT(11) NOT NULL AFTER `server_port`;
+ALTER TABLE `` DROP COLUMN `gender`, ADD COLUMN `x_coord` SMALLINT(5) UNSIGNED NOT NULL AFTER `coord`, ADD COLUMN `y_coord` SMALLINT(5) UNSIGNED NOT NULL AFTER `x_coord`, ADD COLUMN `z_coord` SMALLINT(5) UNSIGNED NOT NULL AFTER `y_coord`, ADD COLUMN `round_id` INT(11) NOT NULL AFTER `server_port`;
 SET SQL_SAFE_UPDATES = 0;
-UPDATE `death` SET `x_coord` = SUBSTRING_INDEX(`coord`, ',', 1), `y_coord` = SUBSTRING_INDEX(SUBSTRING_INDEX(`coord`, ',', 2), ',', -1), `z_coord` = SUBSTRING_INDEX(`coord`, ',', -1);
+UPDATE `` SET `x_coord` = SUBSTRING_INDEX(`coord`, ',', 1), `y_coord` = SUBSTRING_INDEX(SUBSTRING_INDEX(`coord`, ',', 2), ',', -1), `z_coord` = SUBSTRING_INDEX(`coord`, ',', -1);
 SET SQL_SAFE_UPDATES = 1;
-ALTER TABLE `death` DROP COLUMN `coord`;
+ALTER TABLE `` DROP COLUMN `coord`;
 COMMIT;
 
 Remember to add a prefix to the table name if you use them.
@@ -438,9 +438,9 @@ Remember to add a prefix to the table name if you use them.
 
 30 May 2017, by MrStonedOne
 
-Z levels changed, this query allows you to convert old ss13 death records:
+Z levels changed, this query allows you to convert old ss13  records:
 
-UPDATE death SET coord = CONCAT(SUBSTRING_INDEX(coord, ',', 2), ', ', CASE TRIM(SUBSTRING_INDEX(coord, ',', -1)) WHEN 1 THEN 2 WHEN 2 THEN 1 ELSE TRIMSUBSTRING_INDEX(coord, ',', -1) END)
+UPDATE  SET coord = CONCAT(SUBSTRING_INDEX(coord, ',', 2), ', ', CASE TRIM(SUBSTRING_INDEX(coord, ',', -1)) WHEN 1 THEN 2 WHEN 2 THEN 1 ELSE TRIMSUBSTRING_INDEX(coord, ',', -1) END)
 
 ---------------------------------------------------
 
@@ -487,9 +487,9 @@ Remember to add a prefix to the table name if you use them.
 ----------------------------------------------------
 10 March 2017, by Jordie0608
 
-Modified table 'death', adding the columns 'toxloss', 'cloneloss', and 'staminaloss' and table 'legacy_population', adding the columns 'server_ip' and 'server_port'.
+Modified table '', adding the columns 'toxloss', 'cloneloss', and 'staminaloss' and table 'legacy_population', adding the columns 'server_ip' and 'server_port'.
 
-ALTER TABLE `death` ADD COLUMN `toxloss` SMALLINT(5) UNSIGNED NOT NULL AFTER `oxyloss`, ADD COLUMN `cloneloss` SMALLINT(5) UNSIGNED NOT NULL AFTER `toxloss`, ADD COLUMN `staminaloss` SMALLINT(5) UNSIGNED NOT NULL AFTER `cloneloss`;
+ALTER TABLE `` ADD COLUMN `toxloss` SMALLINT(5) UNSIGNED NOT NULL AFTER `oxyloss`, ADD COLUMN `cloneloss` SMALLINT(5) UNSIGNED NOT NULL AFTER `toxloss`, ADD COLUMN `staminaloss` SMALLINT(5) UNSIGNED NOT NULL AFTER `cloneloss`;
 
 ALTER TABLE `legacy_population` ADD COLUMN `server_ip` INT(10) UNSIGNED NOT NULL AFTER `time`, ADD COLUMN `server_port` SMALLINT(5) UNSIGNED NOT NULL AFTER `server_ip`;
 
@@ -509,9 +509,9 @@ Remember to add a prefix to the table name if you use them
 
 30 January 2017, by Lzimann
 
-Modified table 'death', adding the columns 'mapname' and 'server'.
+Modified table '', adding the columns 'mapname' and 'server'.
 
-ALTER TABLE `death` ADD COLUMN `mapname` TEXT NOT NULL AFTER `coord`, ADD COLUMN `server` TEXT NOT NULL AFTER `mapname`
+ALTER TABLE `` ADD COLUMN `mapname` TEXT NOT NULL AFTER `coord`, ADD COLUMN `server` TEXT NOT NULL AFTER `mapname`
 
 Remember to add a prefix to the table name if you use them
 

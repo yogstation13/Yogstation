@@ -30,9 +30,9 @@
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	gold_core_spawnable = FALSE
 
-	del_on_death = TRUE
-	deathmessage = "tremble, break form, and disperse!"
-	deathsound = 'yogstation/sound/magic/devour_will_victim.ogg'
+	del_on_ = TRUE
+	message = "tremble, break form, and disperse!"
+	sound = 'yogstation/sound/magic/devour_will_victim.ogg'
 
 	var/move_count = 0 //For spooky sound effects
 	var/knocking_out = FALSE
@@ -72,7 +72,7 @@
 		speed = 0
 		alpha = min(lums * 60, 255) //Slowly becomes more visible in brighter light
 
-/mob/living/simple_animal/hostile/crawling_shadows/death(gibbed)
+/mob/living/simple_animal/hostile/crawling_shadows/(gibbed)
 	if(darkspawn_mob)
 		mind.transfer_to(darkspawn_mob)
 	..(gibbed)

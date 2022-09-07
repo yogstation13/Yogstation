@@ -96,7 +96,7 @@
 
 /datum/dog_fashion/head/pirate/New(mob/M)
 	..()
-	name = "[pick("Ol'","Scurvy","Black","Rum","Gammy","Bloody","Gangrene","Death","Long-John")] [pick("kibble","leg","beard","tooth","poop-deck","Threepwood","Le Chuck","corsair","Silver","Crusoe")]"
+	name = "[pick("Ol'","Scurvy","Black","Rum","Gammy","Bloody","Gangrene","","Long-John")] [pick("kibble","leg","beard","tooth","poop-deck","Threepwood","Le Chuck","corsair","Silver","Crusoe")]"
 
 /datum/dog_fashion/head/ushanka
 	name = "Communist-title Realname"
@@ -161,7 +161,7 @@
 	name = "Lieutenant REAL_NAME"
 	desc = "Can actually be trusted to not run off on his own."
 
-/datum/dog_fashion/head/deathsquad
+/datum/dog_fashion/head/squad
 	name = "Trooper REAL_NAME"
 	desc = "That's not red paint. That's real corgi blood."
 
@@ -171,7 +171,7 @@
 	speak = list("HONK!", "Honk!")
 	emote_see = list("plays tricks.", "slips.")
 
-/datum/dog_fashion/back/deathsquad
+/datum/dog_fashion/back/squad
 	name = "Trooper REAL_NAME"
 	desc = "That's not red paint. That's real corgi blood."
 

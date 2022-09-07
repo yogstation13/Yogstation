@@ -10,16 +10,16 @@
 	yield = 4
 	growthstages = 5
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy)
-	mutatelist = list(/obj/item/seeds/nettle/death)
+	mutatelist = list(/obj/item/seeds/nettle/)
 	reagents_add = list(/datum/reagent/toxin/acid = 0.5)
 
-/obj/item/seeds/nettle/death
-	name = "pack of death-nettle seeds"
-	desc = "These seeds grow into death-nettles."
-	icon_state = "seed-deathnettle"
-	species = "deathnettle"
-	plantname = "Death Nettles"
-	product = /obj/item/reagent_containers/food/snacks/grown/nettle/death
+/obj/item/seeds/nettle/
+	name = "pack of -nettle seeds"
+	desc = "These seeds grow into -nettles."
+	icon_state = "seed-nettle"
+	species = "nettle"
+	plantname = " Nettles"
+	product = /obj/item/reagent_containers/food/snacks/grown/nettle/
 	endurance = 25
 	maturation = 8
 	yield = 2
@@ -72,7 +72,7 @@
 	if(!proximity)
 		return
 	if(force > 0)
-		if(istype(src, /obj/item/reagent_containers/food/snacks/grown/nettle/death)) // istype instead of new proc because . = ..() is scary
+		if(istype(src, /obj/item/reagent_containers/food/snacks/grown/nettle/)) // istype instead of new proc because . = ..() is scary
 			force -= rand(1, (force / 10) + 1) // rand of 1 to (10% + 1) as opposed to (33% + 1)
 		else
 			force -= rand(1, (force / 3) + 1) // When you whack someone with it, leaves fall off
@@ -87,25 +87,25 @@
 	..()
 	force = round((5 + seed.potency / 5), 1)
 
-/obj/item/reagent_containers/food/snacks/grown/nettle/death
-	seed = /obj/item/seeds/nettle/death
-	name = "deathnettle"
+/obj/item/reagent_containers/food/snacks/grown/nettle/
+	seed = /obj/item/seeds/nettle/
+	name = "nettle"
 	desc = "The <span class='danger'>glowing</span> nettle incites <span class='boldannounce'>rage</span> in you just from looking at it!"
-	icon_state = "deathnettle"
+	icon_state = "nettle"
 	force = 30
 	throwforce = 15
 
-/obj/item/reagent_containers/food/snacks/grown/nettle/death/add_juice()
+/obj/item/reagent_containers/food/snacks/grown/nettle//add_juice()
 	..()
 	force = round((5 + seed.potency / 4), 1) // Max 30 dmg, esword level, with max potency and buffed force reduction, should down unarmored in 3-4 hits
 
-/obj/item/reagent_containers/food/snacks/grown/nettle/death/pickup(mob/living/carbon/user)
+/obj/item/reagent_containers/food/snacks/grown/nettle//pickup(mob/living/carbon/user)
 	if(..())
 		if(prob(50))
 			user.Paralyze(100)
-			to_chat(user, span_userdanger("You are stunned by the Deathnettle as you try picking it up!"))
+			to_chat(user, span_userdanger("You are stunned by the nettle as you try picking it up!"))
 
-/obj/item/reagent_containers/food/snacks/grown/nettle/death/attack(mob/living/carbon/M, mob/user)
+/obj/item/reagent_containers/food/snacks/grown/nettle//attack(mob/living/carbon/M, mob/user)
 	if(..())
 		return
 	if(user.a_intent != INTENT_HARM)

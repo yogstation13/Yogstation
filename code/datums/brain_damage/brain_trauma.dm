@@ -33,8 +33,8 @@
 /datum/brain_trauma/proc/on_life()
 	return
 
-//Called on death
-/datum/brain_trauma/proc/on_death()
+//Called on 
+/datum/brain_trauma/proc/on_()
 	return
 
 //Called when given to a mob

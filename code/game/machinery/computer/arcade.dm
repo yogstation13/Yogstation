@@ -11,7 +11,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/spinningtoy = 2,
 		/obj/item/toy/prize/ripley = 1,
 		/obj/item/toy/prize/fireripley = 1,
-		/obj/item/toy/prize/deathripley = 1,
+		/obj/item/toy/prize/ripley = 1,
 		/obj/item/toy/prize/gygax = 1,
 		/obj/item/toy/prize/durand = 1,
 		/obj/item/toy/prize/honk = 1,
@@ -480,7 +480,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 		if(obj_flags & EMAGGED)
 			to_chat(user, span_userdanger("You're never going to make it to Orion..."))
-			user.death()
+			user.()
 			obj_flags &= ~EMAGGED //removes the emagged status after you lose
 			gameStatus = ORION_STATUS_START
 			name = "The Orion Trail"
@@ -668,7 +668,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			else
 				event = null
 				turns += 1
-	else if(href_list["holedeath"])
+	else if(href_list["hole"])
 		if(event == ORION_TRAIL_BLACKHOLE)
 			gameStatus = ORION_STATUS_GAMEOVER
 			event = null
@@ -684,14 +684,14 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			if(settlers.len == 0 || alive == 0)
 				say("The last crewmember [sheriff], shot themselves, GAME OVER!")
 				if(obj_flags & EMAGGED)
-					usr.death(0)
+					usr.(0)
 					obj_flags &= EMAGGED
 				gameStatus = ORION_STATUS_GAMEOVER
 				event = null
 			else if(obj_flags & EMAGGED)
 				if(usr.name == sheriff)
 					say("The crew of the ship chose to kill [usr.name]!")
-					usr.death(0)
+					usr.(0)
 
 			if(event == ORION_TRAIL_LING) //only ends the ORION_TRAIL_LING event, since you can do this action in multiple places
 				event = null
@@ -871,7 +871,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 		if(ORION_TRAIL_BLACKHOLE)
 			eventdat += "You were swept away into the black hole."
-			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];holedeath=1'>Oh...</a></P>"
+			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];hole=1'>Oh...</a></P>"
 			eventdat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
 			settlers = list()
 
@@ -1099,7 +1099,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	desc = "Premier corporate security forces for all spaceports found along the Orion Trail."
 	faction = list("orion")
 	loot = list()
-	del_on_death = TRUE
+	del_on_ = TRUE
 
 /obj/item/orion_ship
 	name = "model settler ship"

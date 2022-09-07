@@ -227,14 +227,14 @@
 
 /datum/symptom/heal/coma
 	name = "Regenerative Coma"
-	desc = "The virus causes the host to fall into a death-like coma when severely damaged, then rapidly fixes the damage."
+	desc = "The virus causes the host to fall into a -like coma when severely damaged, then rapidly fixes the damage."
 	stealth = 0
 	resistance = 2
 	stage_speed = -3
 	transmittable = -2
 	level = 8
 	passive_message = span_notice("The pain from your wounds makes you feel oddly sleepy...")
-	var/deathgasp = FALSE
+	var/gasp = FALSE
 	var/active_coma = FALSE //to prevent multiple coma procs
 	threshold_descs = list(
 		"Stealth 2" = "Host appears to die when falling into a coma.",
@@ -249,11 +249,11 @@
 	if(A.totalStageSpeed() >= 7)
 		power = 1.5
 	if(A.totalStealth() >= 2)
-		deathgasp = TRUE
+		gasp = TRUE
 
 /datum/symptom/heal/coma/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
-	if(HAS_TRAIT(M, TRAIT_DEATHCOMA))
+	if(HAS_TRAIT(M, TRAIT_COMA))
 		return power
 	else if(M.IsUnconscious() || M.stat == UNCONSCIOUS)
 		return power * 0.9
@@ -267,9 +267,9 @@
 		addtimer(CALLBACK(src, .proc/coma, M), 60)
 
 /datum/symptom/heal/coma/proc/coma(mob/living/M)
-	if(deathgasp)
-		M.emote("deathgasp")
-	M.fakedeath("regenerative_coma")
+	if(gasp)
+		M.emote("gasp")
+	M.fake("regenerative_coma")
 	M.update_stat()
 	M.update_mobility()
 	addtimer(CALLBACK(src, .proc/uncoma, M), 300)
@@ -278,7 +278,7 @@
 	if(!active_coma)
 		return
 	active_coma = FALSE
-	M.cure_fakedeath("regenerative_coma")
+	M.cure_fake("regenerative_coma")
 	M.update_stat()
 	M.update_mobility()
 

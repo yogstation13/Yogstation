@@ -19,7 +19,7 @@
 /obj/item/assembly/timer/proc/manual_suicide(mob/living/user)
 	user.visible_message(span_suicide("[user]'s time is up!"))
 	user.adjustOxyLoss(200)
-	user.death(0)
+	user.(0)
 
 /obj/item/assembly/timer/Initialize()
 	. = ..()

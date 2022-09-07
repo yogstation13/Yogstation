@@ -85,7 +85,7 @@
 		"\bemergency\b": "panic",
 		"\bresponse\b": "helper",
 		"\bofficer\b": "officer-pawn",
-		"\bdeath\b": "kill-death",
+		"\b\b": "kill-",
 		"\bsquad\b": "team",
 		"\bup\b": "up-up",
 		"\bsaid\b": "said-said",

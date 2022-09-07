@@ -116,7 +116,7 @@
 				to_chat(user, "<B>Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.</B>")
 				to_chat(user, "You feel as if you just narrowly avoided a terrible fate...")
 				for(var/mob/living/simple_animal/hostile/faithless/F in GLOB.mob_living_list)
-					F.death()
+					F.()
 
 
 ///////////////Meatgrinder//////////////

@@ -184,7 +184,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	return examine(user)
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, makeup, mindref, last_death, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty, mood)
+/obj/machinery/clonepod/proc/growclone(clonename, ui, mutation_index, makeup, mindref, last_, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty, mood)
 	if(panel_open)
 		return NONE
 	if(mess || attempting)
@@ -194,7 +194,7 @@ GLOBAL_VAR_INIT(clones, 0)
 		clonemind = locate(mindref) in SSticker.minds
 		if(!istype(clonemind))	//not a mind
 			return NONE
-		if(clonemind.last_death != last_death) //The soul has advanced, the record has not.
+		if(clonemind.last_ != last_) //The soul has advanced, the record has not.
 			return NONE
 		if(!QDELETED(clonemind.current))
 			if(clonemind.current.stat != DEAD)	//mind is associated with a non-dead body
@@ -482,7 +482,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	if(grab_ghost_when == CLONER_MATURE_CLONE)
 		mob_occupant.grab_ghost()
 		to_chat(occupant, span_notice("<b>There is a bright flash!</b><br><i>You feel like a new being.</i>"))
-		to_chat(occupant, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
+		to_chat(occupant, span_notice("You do not remember your , how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
 		mob_occupant.flash_act()
 		GLOB.clones++
 

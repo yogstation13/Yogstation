@@ -604,7 +604,7 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/martyr
 	name = "martyr"
-	explanation_text = "Die a glorious death."
+	explanation_text = "Die a glorious ."
 
 /datum/objective/martyr/check_completion()
 	if(..())

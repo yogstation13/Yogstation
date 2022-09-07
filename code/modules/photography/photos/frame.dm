@@ -2,7 +2,7 @@
 
 /obj/item/wallframe/picture
 	name = "picture frame"
-	desc = "The perfect showcase for your favorite deathtrap memories."
+	desc = "The perfect showcase for your favorite trap memories."
 	icon = 'icons/obj/decals.dmi'
 	materials = list()
 	flags_1 = 0

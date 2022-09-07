@@ -29,7 +29,7 @@
 	faction = list("mimic")
 	move_to_delay = 9
 	gold_core_spawnable = HOSTILE_SPAWN
-	del_on_death = 1
+	del_on_ = 1
 
 // Aggro when you try to open them. Will also pickup loot when spawns and drop it when dies.
 /mob/living/simple_animal/hostile/mimic/crate
@@ -86,7 +86,7 @@
 	..()
 	icon_state = initial(icon_state)
 
-/mob/living/simple_animal/hostile/mimic/crate/death()
+/mob/living/simple_animal/hostile/mimic/crate/()
 	var/obj/structure/closet/crate/C = new(get_turf(src))
 	// Put loot in crate
 	for(var/obj/O in src)
@@ -117,9 +117,9 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 	if(idledamage && !target && !ckey) //Objects eventually revert to normal if no one is around to terrorize
 		adjustBruteLoss(1)
 	for(var/mob/living/M in contents) //a fix for animated statues from the flesh to stone spell
-		death()
+		()
 
-/mob/living/simple_animal/hostile/mimic/copy/death()
+/mob/living/simple_animal/hostile/mimic/copy/()
 	for(var/atom/movable/M in src)
 		M.forceMove(get_turf(src))
 	..()

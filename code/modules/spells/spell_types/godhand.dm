@@ -112,7 +112,7 @@
 	name = "\improper flagellating touch"
 	desc = "I'd like to see them greytide me now."
 	catchphrase = "RETRIBUTION!!"
-	on_use_sound = 'sound/magic/wandodeath.ogg'
+	on_use_sound = 'sound/magic/wando.ogg'
 	icon_state = "flagellation"
 	item_state = "hivehand"
 
@@ -142,7 +142,7 @@
 /obj/item/melee/touch_attack/raisehand
 	name = "\improper raise bloodman"
 	desc = "Prepare to raise a bloodman for about 5% of your blood or 5 brain damage if you're a bloodless race."
-	on_use_sound = 'sound/magic/wandodeath.ogg'
+	on_use_sound = 'sound/magic/wando.ogg'
 	icon_state = "flagellation"
 	item_state = "hivehand"
 	color = "#FF0000"
@@ -171,7 +171,7 @@
     name = "\improper pacifism touch"
     desc = "Yes"
     catchphrase = "PAC'FY"
-    on_use_sound = 'sound/magic/wandodeath.ogg'
+    on_use_sound = 'sound/magic/wando.ogg'
     icon_state = "flagellation"
     item_state = "hivehand"
     color = "#FF0000"

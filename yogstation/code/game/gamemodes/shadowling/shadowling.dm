@@ -97,7 +97,7 @@ Made by Xhuis
 /datum/game_mode/shadowling/proc/check_shadow_victory()
 	return shadowling_ascended
 
-/datum/game_mode/shadowling/proc/check_shadow_death()
+/datum/game_mode/shadowling/proc/check_shadow_()
 	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
 		var/datum/mind/shadow_mind = SM
 		if(istype(shadow_mind))
@@ -108,7 +108,7 @@ Made by Xhuis
 
 /datum/game_mode/shadowling/check_finished()
 	. = ..()
-	if(check_shadow_death())
+	if(check_shadow_())
 		return TRUE
 
 /datum/game_mode/proc/auto_declare_completion_shadowling()

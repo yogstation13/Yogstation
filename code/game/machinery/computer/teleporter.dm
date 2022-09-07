@@ -129,7 +129,7 @@
 			else
 				var/mob/living/M = I.loc
 				if(M.stat == DEAD)
-					if(M.timeofdeath + I.lifespan_postmortem < world.time)
+					if(M.timeof + I.lifespan_postmortem < world.time)
 						continue
 				if(is_eligible(I))
 					L[avoid_assoc_duplicate_keys("[M.real_name] ([get_area(M)])", areaindex)] = I

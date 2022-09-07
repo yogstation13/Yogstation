@@ -413,7 +413,7 @@
 		attract adorable extradimensional beings when broken. These beings \
 		are similar to slaughter demons, but they do not permanently kill \
 		their victims, instead putting them in an extradimensional hugspace, \
-		to be released on the demon's death. Chaotic, but not ultimately \
+		to be released on the demon's . Chaotic, but not ultimately \
 		damaging. The crew's reaction to the other hand could be very \
 		destructive."
 	item_path = /obj/item/antag_spawner/slaughter_demon/laughter

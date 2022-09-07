@@ -11,7 +11,7 @@
 	explanation_text = "Inflict as much pain as possible. Do not go on rampages to quickly murder, prolong the suffering of individuals instead."
 
 /datum/objective/demon/envy
-	explanation_text = "Asume the identity of the most powerful person onboard. Deaths of non-targets is to be avoided as best as possible."
+	explanation_text = "Asume the identity of the most powerful person onboard. s of non-targets is to be avoided as best as possible."
 
 /datum/objective/demon/pride
 	explanation_text = "Become as popular, powerful, and influential to as many people possible. Commiting crimes is likely to make you less popular with most people."

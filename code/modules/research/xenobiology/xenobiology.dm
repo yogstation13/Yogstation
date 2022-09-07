@@ -782,7 +782,7 @@
 	user.mind.transfer_to(SM)
 	SM.faction = user.faction.Copy()
 	SM.sentience_act() //Same deal here as with sentience
-	user.death()
+	user.()
 	to_chat(SM, span_notice("In a quick flash, you feel your consciousness flow into [SM]!"))
 	to_chat(SM, span_warning("You are now [SM]. Your allegiances, alliances, and role is still the same as it was prior to consciousness transfer!"))
 	SM.name = "[user.real_name]"

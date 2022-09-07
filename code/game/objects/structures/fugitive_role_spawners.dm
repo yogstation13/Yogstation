@@ -2,7 +2,7 @@
 	assignedrole = "Fugitive Hunter"
 	flavour_text = "" //the flavor text will be the backstory argument called on the antagonist's greet, see hunter.dm for details
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	random = TRUE
 	show_flavour = FALSE
 	density = TRUE

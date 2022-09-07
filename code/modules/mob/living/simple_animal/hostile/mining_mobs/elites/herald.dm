@@ -36,8 +36,8 @@
 	speed = 4
 	move_to_delay = 10
 	mouse_opacity = MOUSE_OPACITY_ICON
-	deathsound = 'sound/magic/demon_dies.ogg'
-	deathmessage = "begins to shudder as it becomes transparent..."
+	sound = 'sound/magic/demon_dies.ogg'
+	message = "begins to shudder as it becomes transparent..."
 	loot_drop = /obj/item/clothing/neck/cloak/herald_cloak
 
 	can_talk = 1
@@ -50,7 +50,7 @@
 	var/mob/living/simple_animal/hostile/asteroid/elite/herald/mirror/my_mirror = null
 	var/is_mirror = FALSE
 
-/mob/living/simple_animal/hostile/asteroid/elite/herald/death()
+/mob/living/simple_animal/hostile/asteroid/elite/herald/()
 	. = ..()
 	if(!is_mirror)
 		addtimer(CALLBACK(src, .proc/become_ghost), 8)
@@ -195,10 +195,10 @@
 	health = 60
 	maxHealth = 60
 	icon_state = "herald_mirror"
-	deathmessage = "shatters violently!"
-	deathsound = 'sound/effects/glassbr1.ogg'
+	message = "shatters violently!"
+	sound = 'sound/effects/glassbr1.ogg'
 	movement_type = FLYING
-	del_on_death = TRUE
+	del_on_ = TRUE
 	is_mirror = TRUE
 	var/mob/living/simple_animal/hostile/asteroid/elite/herald/my_master = null
 
@@ -212,7 +212,7 @@
 	. = ..()
 
 /obj/item/projectile/herald
-	name ="death bolt"
+	name =" bolt"
 	icon_state= "chronobolt"
 	damage = 15
 	armour_penetration = 60

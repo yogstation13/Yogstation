@@ -32,8 +32,8 @@
 	attacktext = "lacerates"
 	speed = -0.5
 	var/static/list/migo_sounds
-	deathmessage = "wails as its form turns into a pulpy mush."
-	deathsound = 'sound/voice/hiss6.ogg'
+	message = "wails as its form turns into a pulpy mush."
+	sound = 'sound/voice/hiss6.ogg'
 
 /mob/living/simple_animal/hostile/netherworld/migo/Initialize()
 	. = ..()
@@ -65,7 +65,7 @@
 	maxHealth = 100
 	speed = -0.7
 	attacktext = "slashes"
-	deathmessage = "falls apart into a fine dust."
+	message = "falls apart into a fine dust."
 
 /obj/structure/spawner/nether
 	name = "netherworld link"

@@ -35,9 +35,9 @@
 	casingtype = /obj/item/ammo_casing/glockroach
 	ranged = 1
 	var/squish_chance = 50
-	del_on_death = 1
+	del_on_ = 1
 
-/mob/living/simple_animal/hostile/glockroach/death(gibbed)
+/mob/living/simple_animal/hostile/glockroach/(gibbed)
 	if(SSticker.mode && SSticker.mode.station_was_nuked) //If the nuke is going off, then cockroaches are invincible. Keeps the nuke from killing them, cause cockroaches are immune to nukes.
 		return
 	..()

@@ -17,7 +17,7 @@
 		extinguisharea(B, damage)
 	return ..()
 
-/datum/blobstrain/reagent/pressurized_slime/death_reaction(obj/structure/blob/B, damage_flag)
+/datum/blobstrain/reagent/pressurized_slime/_reaction(obj/structure/blob/B, damage_flag)
 	if(damage_flag == MELEE || damage_flag == BULLET || damage_flag == LASER)
 		B.visible_message(span_boldwarning("The blob ruptures, spraying the area with liquid!"))
 		extinguisharea(B, 50)

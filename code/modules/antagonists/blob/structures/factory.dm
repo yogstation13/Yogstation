@@ -11,7 +11,7 @@
 	var/mob/living/simple_animal/hostile/blob/blobbernaut/naut = null
 	var/max_spores = 3
 	var/spore_delay = 0
-	var/spore_cooldown = 80 //8 seconds between spores and after spore death
+	var/spore_cooldown = 80 //8 seconds between spores and after spore 
 
 
 /obj/structure/blob/factory/scannerreport()

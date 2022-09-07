@@ -13,7 +13,7 @@
   * Space Dragon has the following abilities to assist him with his objective:
   * - Can shoot fire in straight line, dealing 30 burn damage and setting those suseptible on fire.
   * - Can use his wings to temporarily stun and knock back any nearby mobs.  This attack has no cooldown, but instead has endlag after the attack where Space Dragon cannot act.  This endlag's time decreases over time, but is added to every time he uses the move.
-  * - Can swallow mob corpses to heal for half their max health.  Any corpses swallowed are stored within him, and will be regurgitated on death.
+  * - Can swallow mob corpses to heal for half their max health.  Any corpses swallowed are stored within him, and will be regurgitated on .
   * - Can tear through any type of wall.  This takes 4 seconds for most walls, and 12 seconds for reinforced walls.
   */
 /mob/living/simple_animal/hostile/space_dragon
@@ -26,7 +26,7 @@
 	speed = 0
 	attacktext = "chomps"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
-	deathsound = 'sound/magic/demon_dies.ogg'
+	sound = 'sound/magic/demon_dies.ogg'
 	icon = 'icons/mob/spacedragon.dmi'
 	icon_state = "spacedragon"
 	icon_living = "spacedragon"
@@ -45,7 +45,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/sinew = 5, /obj/item/stack/sheet/bone = 30)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/carpdragon = 10)
-	deathmessage = "screeches as its wings turn to dust and it collapses on the floor, life estinguished."
+	message = "screeches as its wings turn to dust and it collapses on the floor, life estinguished."
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500
@@ -150,7 +150,7 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 	fire_stream()
 
-/mob/living/simple_animal/hostile/space_dragon/death(gibbed)
+/mob/living/simple_animal/hostile/space_dragon/(gibbed)
 	empty_contents()
 	if(!objective_complete)
 		destroy_rifts()

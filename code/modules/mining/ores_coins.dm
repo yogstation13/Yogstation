@@ -337,7 +337,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if (index==2)//tails
 		user.visible_message(span_suicide("\the [src] lands on [coinflip]! [user] promptly falls over, dead!"))
 		user.adjustOxyLoss(200)
-		user.death(0)
+		user.(0)
 		user.set_suicide(TRUE)
 		user.suicide_log()
 	else

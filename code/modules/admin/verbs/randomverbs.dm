@@ -962,7 +962,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin.Round Interaction"
 	set name = "Mass Zombie Infection"
 	set desc = "Infects all humans with a latent organ that will zombify \
-		them on death."
+		them on ."
 
 	if(!check_rights(R_ADMIN))
 		return

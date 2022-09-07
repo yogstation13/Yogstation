@@ -89,7 +89,7 @@
 						visible_message(span_warning("[src] chews through the [C]. It's toast!"))
 						playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
 						C.deconstruct()
-						death()
+						()
 				else if(C && C.avail())
 					visible_message(span_warning("[src] chews through the [C]. It looks unharmed!"))
 					playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)

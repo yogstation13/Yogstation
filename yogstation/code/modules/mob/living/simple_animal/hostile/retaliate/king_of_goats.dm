@@ -278,13 +278,13 @@ Difficulty: Insanely Hard
 		visible_message(span_cult("The energy surrounding \the [src]'s horns dissipates."))
 		melee_damage_type = BRUTE
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/proc/OnDeath()
+/mob/living/simple_animal/hostile/retaliate/goat/king/proc/On()
 	visible_message(span_cult("\The [src] lets loose a terrific wail as its wounds close shut with a flash of light, and its eyes glow even brighter than before!"))
 	var/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/nextgoat = new(src.loc)
 	nextgoat.enemies |= enemies
 	qdel(src);
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/OnDeath()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/On()
 	if(phase3)
 		visible_message(span_cult("\The [src] shrieks as the seal on his power breaks and he starts to break apart!"))
 		new /obj/structure/ladder/unbreakable/goat(loc)
@@ -292,9 +292,9 @@ Difficulty: Insanely Hard
 		new /obj/item/t_scanner/adv_mining_scanner/goat_scanner(loc)
 		new /obj/item/gem/dark(loc)
 		
-/mob/living/simple_animal/hostile/retaliate/goat/king/death()
+/mob/living/simple_animal/hostile/retaliate/goat/king/()
 	..()
-	OnDeath()
+	On()
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/AttackingTarget()
 	. = ..()

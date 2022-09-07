@@ -11,17 +11,17 @@
 	var/popup = FALSE // is the DOUWANNABLOWUP window open?
 	var/active = FALSE
 
-/obj/item/implant/explosive/on_mob_death(mob/living/L, gibbed)
-	activate("death")
+/obj/item/implant/explosive/on_mob_(mob/living/L, gibbed)
+	activate("")
 
 /obj/item/implant/explosive/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 				<b>Name:</b> Robust Corp RX-78 Employee Management Implant<BR>
-				<b>Life:</b> Activates upon death.<BR>
+				<b>Life:</b> Activates upon .<BR>
 				<b>Important Notes:</b> Explodes<BR>
 				<HR>
 				<b>Implant Details:</b><BR>
-				<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
+				<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host .<BR>
 				<b>Special Features:</b> Explodes<BR>
 				"}
 	return dat

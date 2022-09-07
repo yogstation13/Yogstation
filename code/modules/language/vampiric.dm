@@ -1,6 +1,6 @@
 /datum/language/vampiric
 	name = "Blah-Sucker"
-	desc = "The native language of the Bloodsucker elders, learned intuitively by Fledglings as they pass from death into immortality."
+	desc = "The native language of the Bloodsucker elders, learned intuitively by Fledglings as they pass from  into immortality."
 	key = "l"
 	space_chance = 40
 	default_priority = 90

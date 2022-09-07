@@ -28,7 +28,7 @@
 	
 	retreat_distance = 3 //out of fireball range
 	minimum_distance = 3
-	del_on_death = 1
+	del_on_ = 1
 	loot = list(/obj/effect/mob_spawn/human/corpse/wizard,
 				/obj/item/staff)
 
@@ -112,7 +112,7 @@
 	projectiletype = /obj/item/projectile/magic/arcane_barrage
 	projectilesound = 'sound/weapons/emitter.ogg'
 	loot = list(/obj/effect/mob_spawn/human/corpse/wizard, /obj/item/staff)
-	del_on_death = 1
+	del_on_ = 1
 
 
 /mob/living/simple_animal/hostile/academywizard/soldier //tougher than students, and their bullets go through anti-magic, but still can't use any real spells.

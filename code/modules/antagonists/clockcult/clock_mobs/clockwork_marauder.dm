@@ -63,7 +63,7 @@
 		obj_damage = 50
 		max_shield_health = 4
 
-/mob/living/simple_animal/hostile/clockwork/marauder/death(gibbed)
+/mob/living/simple_animal/hostile/clockwork/marauder/(gibbed)
 	visible_message(span_danger("[src]'s equipment clatters lifelessly to the ground as the red flames within dissipate."), \
 	span_userdanger("Dented and scratched, your armor falls away, and your fragile form breaks apart without its protection."))
 	. = ..()

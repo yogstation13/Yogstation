@@ -434,7 +434,7 @@
 		To convert into a Vassal, repeatedly click on the persuasion rack while NOT on help intent. The time required scales with the tool in your off hand. This costs Blood to do.\n\
 		Once you have Vassals ready, you are able to select a Favorite Vassal;\n\
 		Click the Rack as a Vassal is buckled onto it to turn them into your Favorite. This can only be done once, so choose carefully!\n\
-		This process costs 150 Blood to do, and will make your Vassal unable to be deconverted, outside of you reaching Final Death."
+		This process costs 150 Blood to do, and will make your Vassal unable to be deconverted, outside of you reaching Final ."
 	Vassal_desc = "This is the vassal rack, which allows your master to thrall crewmembers into their minions.\n\
 		Aid your master in bringing their victims here and keeping them secure.\n\
 		You can secure victims to the vassal rack by click dragging the victim onto the rack while it is secured."

@@ -222,7 +222,7 @@
 	var/static/regex/hallucinate_words = regex("see the truth|hallucinate")
 	var/static/regex/wakeup_words = regex("wake up|awaken")
 	var/static/regex/heal_words = regex("live|heal|survive|mend|life|heroes never die")
-	var/static/regex/hurt_words = regex("die|suffer|hurt|pain|death")
+	var/static/regex/hurt_words = regex("die|suffer|hurt|pain|")
 	var/static/regex/bleed_words = regex("bleed|there will be blood")
 	var/static/regex/burn_words = regex("burn|ignite")
 	var/static/regex/hot_words = regex("heat|hot|hell")
@@ -252,7 +252,7 @@
 	var/static/regex/dance_words = regex("dance")
 	var/static/regex/jump_words = regex("jump")
 	var/static/regex/salute_words = regex("salute")
-	var/static/regex/deathgasp_words = regex("play dead")
+	var/static/regex/gasp_words = regex("play dead")
 	var/static/regex/clap_words = regex("clap|applaud")
 	var/static/regex/honk_words = regex("ho+nk") //hooooooonk
 	var/static/regex/multispin_words = regex("like a record baby|right round")
@@ -531,11 +531,11 @@
 			i++
 
 	//PLAY DEAD
-	else if((findtext(message, deathgasp_words)))
+	else if((findtext(message, gasp_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/L = V
-			addtimer(CALLBACK(L, /mob/living/.proc/emote, "deathgasp"), 5 * i)
+			addtimer(CALLBACK(L, /mob/living/.proc/emote, "gasp"), 5 * i)
 			i++
 
 	//PLEASE CLAP

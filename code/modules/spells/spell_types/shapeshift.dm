@@ -11,7 +11,7 @@
 	invocation_type = "shout"
 	action_icon_state = "shapeshift"
 
-	var/revert_on_death = TRUE
+	var/revert_on_ = TRUE
 	var/die_with_shapeshifted_form = TRUE
 	var/convert_damage = TRUE //If you want to convert the caster's health to the shift, and vice versa.
 	var/convert_damage_type = BRUTE //Since simplemobs don't have advanced damagetypes, what to convert damage back into.
@@ -132,30 +132,30 @@
 	if(AM == stored && !restoring)
 		restore()
 
-/obj/shapeshift_holder/proc/casterDeath()
+/obj/shapeshift_holder/proc/caster()
 	//Something kills the stored caster through direct damage.
-	if(source.revert_on_death)
-		restore(death=TRUE)
+	if(source.revert_on_)
+		restore(=TRUE)
 	else
-		shape.death()
+		shape.()
 
-/obj/shapeshift_holder/proc/shapeDeath()
+/obj/shapeshift_holder/proc/shape()
 	//Shape dies.
 	if(source.die_with_shapeshifted_form)
-		if(source.revert_on_death)
-			restore(death=TRUE)
+		if(source.revert_on_)
+			restore(=TRUE)
 	else
 		restore()
 
-/obj/shapeshift_holder/proc/restore(death=FALSE)
+/obj/shapeshift_holder/proc/restore(=FALSE)
 	restoring = TRUE
 	qdel(slink)
 	stored.forceMove(get_turf(src))
 	stored.notransform = FALSE
 	if(shape.mind)
 		shape.mind.transfer_to(stored)
-	if(death)
-		stored.death()
+	if()
+		stored.()
 	else if(source.convert_damage)
 		stored.revive(full_heal = TRUE)
 		var/damapply = (shape.maxHealth - 2*shape.health) //Since we halved incoming damage, double outgoing.
@@ -168,8 +168,8 @@
 
 /datum/soullink/shapeshift/ownerDies(gibbed, mob/living/owner)
 	if(source)
-		source.casterDeath(gibbed)
+		source.caster(gibbed)
 
 /datum/soullink/shapeshift/sharerDies(gibbed, mob/living/sharer)
 	if(source)
-		source.shapeDeath(gibbed)
+		source.shape(gibbed)

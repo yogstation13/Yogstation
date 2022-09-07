@@ -746,7 +746,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if(istype(M) && M.dirty < 100)
 		M.dirty++
 
-/obj/item/proc/on_mob_death(mob/living/L, gibbed)
+/obj/item/proc/on_mob_(mob/living/L, gibbed)
 
 /obj/item/proc/on_mob_say(mob/living/L, message, message_range)
 

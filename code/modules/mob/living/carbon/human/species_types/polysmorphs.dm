@@ -14,7 +14,7 @@
 	burnmod = 1.25
 	payday_modifier = 0.6 //Negatively viewed by NT
 	damage_overlay_type = "polysmorph"
-	deathsound = 'sound/voice/hiss6.ogg'
+	sound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'
 	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)

@@ -283,7 +283,7 @@
 /obj/effect/sliding_puzzle/prison/Destroy()
 	if(prisoner)
 		to_chat(prisoner,span_userdanger("With the cube broken by force, you can feel your body falling apart."))
-		prisoner.death()
+		prisoner.()
 		qdel(prisoner)
 	. = ..()
 

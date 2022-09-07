@@ -140,7 +140,7 @@
 		return
 	C.vomit(0, TRUE, TRUE, 3, TRUE)
 	C.spew_organ(3, 2)
-	C.death()
+	C.()
 
 /obj/singularity/wizard/mapped/admin_investigate_setup()
 	return

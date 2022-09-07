@@ -184,7 +184,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     mappath = '_maps/templates/hilbertshotelempty.dmm'
 
 /datum/map_template/hilbertshotel/lore
-    name = "Doctor Hilbert's Deathbed"
+    name = "Doctor Hilbert's bed"
     mappath = '_maps/templates/hilbertshotellore.dmm'
 
 /datum/map_template/hilbertshotelstorage
@@ -506,12 +506,12 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	<br>
 	<i>Robert P.</i>"}
 
-/obj/item/paper/crumpled/bloody/docsdeathnote
+/obj/item/paper/crumpled/bloody/docsnote
     name = "note"
     info = {"This is it isn't it?<br>
     No one's coming to help, that much has become clear.<br>
     Sure, it's lonely, but do I have much choice? At least I brought the analyzer with me, they shouldn't be able to find me without it.<br>
-    Who knows who's waiting for me out there. Its either die out there in their hands, or die a slower, slightly more comfortable death in here.<br>
+    Who knows who's waiting for me out there. Its either die out there in their hands, or die a slower, slightly more comfortable  in here.<br>
     Everyday I can feel myself slipping away more and more, both physically and mentally. Who knows what happens now...<br>
     Heh, so it's true then, this must be the inescapable path of all great minds... so be it then.<br>
     <br>

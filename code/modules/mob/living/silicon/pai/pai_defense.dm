@@ -11,7 +11,7 @@
 	silent = max(30/severity, silent)
 	if(holoform)
 		fold_in(force = TRUE)
-	//Need more effects that aren't instadeath or permanent law corruption.
+	//Need more effects that aren't insta or permanent law corruption.
 	//Ask and you shall receive
 	switch(rand(1, 3))
 		if(1)

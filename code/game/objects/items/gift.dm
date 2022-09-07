@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	contains_type = get_gift_type()
 
 /obj/item/a_gift/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] peeks inside [src] and cries [user.p_them()]self to death! It looks like [user.p_they()] [user.p_were()] on the naughty list..."))
+	user.visible_message(span_suicide("[user] peeks inside [src] and cries [user.p_them()]self to ! It looks like [user.p_they()] [user.p_were()] on the naughty list..."))
 	return (BRUTELOSS)
 
 /obj/item/a_gift/examine(mob/M)

@@ -24,7 +24,7 @@
 	ventcrawler = 2
 	pass_flags = PASSTABLE
 	attack_sound = 'sound/weapons/bite.ogg'
-	deathmessage = "rolls over, frothing at the mouth before stilling."
+	message = "rolls over, frothing at the mouth before stilling."
 	var/poison_type = /datum/reagent/toxin
 	var/poison_per_bite = 5
 	var/buttmad = 0
@@ -100,7 +100,7 @@
 	throw_message = "bounces harmlessly off the"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat)
 	attacktext = "bites"
-	del_on_death = TRUE
+	del_on_ = TRUE
 	gold_core_spawnable = HOSTILE_SPAWN
 	health = 250
 	maxHealth = 250
@@ -117,7 +117,7 @@
 	throw_message = "bounces harmlessly off the"
 	loot = list(/obj/item/clothing/mask/yogs/cluwne/happy_cluwne)
 	attacktext = "bites"
-	del_on_death = TRUE
+	del_on_ = TRUE
 	gold_core_spawnable = NO_SPAWN
 	health = 450
 	maxHealth = 450

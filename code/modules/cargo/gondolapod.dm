@@ -20,7 +20,7 @@
 	maxbodytemp = 1500
 	maxHealth = 200
 	health = 200
-	del_on_death = TRUE
+	del_on_ = TRUE
 	var/opened = FALSE
 	var/obj/structure/closet/supplypod/centcompod/linked_pod
 
@@ -67,7 +67,7 @@
 	opened = FALSE
 	update_icon()
 
-/mob/living/simple_animal/pet/gondola/gondolapod/death()
-	qdel(linked_pod) //Will cause the open() proc for the linked supplypod to be called with the "broken" parameter set to true, meaning that it will dump its contents on death
+/mob/living/simple_animal/pet/gondola/gondolapod/()
+	qdel(linked_pod) //Will cause the open() proc for the linked supplypod to be called with the "broken" parameter set to true, meaning that it will dump its contents on 
 	qdel(src)
 	..()

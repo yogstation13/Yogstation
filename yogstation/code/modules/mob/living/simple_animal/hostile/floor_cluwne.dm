@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	speed = -1
 	attacktext = "attacks"
 	attack_sound = 'sound/items/bikehorn.ogg'
-	del_on_death = TRUE
+	del_on_ = TRUE
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB | LETPASSTHROW | PASSGLASS | PASSBLOB | PASSMACHINES //it's practically a ghost when unmanifested (under the floor)
 	sentience_type = SENTIENCE_BOSS
 	loot = list(/obj/item/clothing/mask/yogs/cluwne)

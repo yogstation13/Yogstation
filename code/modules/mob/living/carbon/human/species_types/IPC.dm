@@ -34,7 +34,7 @@
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'
 	allow_numbers_in_name = TRUE
-	deathsound = "sound/voice/borg_deathsound.ogg"
+	sound = "sound/voice/borg_sound.ogg"
 	var/saved_screen //for saving the screen when they die
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 
@@ -78,16 +78,16 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 /datum/species/ipc/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/machine)
 
-/datum/species/ipc/spec_death(gibbed, mob/living/carbon/C)
+/datum/species/ipc/spec_(gibbed, mob/living/carbon/C)
 	saved_screen = C.dna.features["ipc_screen"]
 	C.dna.features["ipc_screen"] = "BSOD"
 	C.update_body()
-	addtimer(CALLBACK(src, .proc/post_death, C), 5 SECONDS)
+	addtimer(CALLBACK(src, .proc/post_, C), 5 SECONDS)
 
-/datum/species/ipc/proc/post_death(mob/living/carbon/C)
+/datum/species/ipc/proc/post_(mob/living/carbon/C)
 	if(C.stat < DEAD)
 		return
-	C.dna.features["ipc_screen"] = null //Turns off screen on death
+	C.dna.features["ipc_screen"] = null //Turns off screen on 
 	C.update_body()
 
 /datum/action/innate/change_screen
@@ -174,7 +174,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
 		return ..()
-	to_chat(H, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>."))
+	to_chat(H, span_notice("You do not remember your , how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>."))
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()

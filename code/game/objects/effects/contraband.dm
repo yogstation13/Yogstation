@@ -624,8 +624,8 @@
 	icon_state = "poster28_legit"
 
 /obj/structure/sign/poster/official/enlist
-	name = "Enlist" // but I thought deathsquad was never acknowledged
-	desc = "Enlist in the Nanotrasen Deathsquadron reserves today!"
+	name = "Enlist" // but I thought squad was never acknowledged
+	desc = "Enlist in the Nanotrasen squadron reserves today!"
 	icon_state = "poster29_legit"
 
 /obj/structure/sign/poster/official/nanomichi_ad

@@ -160,7 +160,7 @@
 
 /obj/item/reagent_containers/food/snacks/spidereggsham
 	name = "green eggs and ham"
-	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
+	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate trap floating through space?"
 	icon_state = "spidereggsham"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)

@@ -4,7 +4,7 @@
 		"\bDoctor\b": "doc",
 		"\bLawyer\b": "mouthpiece",
 		"\bOfficial\b": "Big Bug",
-		"\bDeath\b": "big jump",
+		"\b\b": "big jump",
 		"\bmany\b": "heap",
 		"\bgo\b": "gitty-up",
 		"\bwater\b": "Adam's Ale",
@@ -56,7 +56,7 @@
 		"\bgun\b": "Equalizer",
 		"\bdead\b": "buzzard food",
 		"\bthrow\b": "chuck",
-		"\bdeath\b": "big jump",
+		"\b\b": "big jump",
 		"\bfavor\b": "Adds"
 	}
 }

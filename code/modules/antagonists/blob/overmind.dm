@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/manualplace_min_time = 600 //in deciseconds //a minute, to get bearings
 	var/autoplace_max_time = 3600 //six minutes, as long as should be needed
 	var/list/blobs_legit = list()
-	var/max_count = 0 //The biggest it got before death
+	var/max_count = 0 //The biggest it got before 
 	var/blobwincount = 400
 	var/victory_in_progress = FALSE
 	var/rerolling = FALSE
@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 		if(!(ROLE_BLOB in L.faction))
 			playsound(L, 'sound/effects/splat.ogg', 50, 1)
-			L.death()
+			L.()
 			new/mob/living/simple_animal/hostile/blob/blobspore(T)
 		else
 			L.fully_heal()

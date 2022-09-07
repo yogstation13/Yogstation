@@ -42,7 +42,7 @@
 	name = "Free Miner"
 	id_job = "Free Miner"
 	roundstart = FALSE
-	death = FALSE
+	 = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	flavour_text = "You are a free miner, making a living mining the asteroids that were left behind when Nanotrasen moved from asteroid mining to lavaland. Try to make a profit and show those corporates who the real miners are!"

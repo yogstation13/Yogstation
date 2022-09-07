@@ -124,7 +124,7 @@
 	if(stat)
 		. += pick("This parrot is no more.", "This is a late parrot.", "This is an ex-parrot.")
 
-/mob/living/simple_animal/parrot/death(gibbed)
+/mob/living/simple_animal/parrot/(gibbed)
 	if(held_item)
 		held_item.forceMove(drop_location())
 		held_item = null
@@ -869,7 +869,7 @@
 	var/memory_saved = FALSE
 	var/rounds_survived = 0
 	var/longest_survival = 0
-	var/longest_deathstreak = 0
+	var/longest_streak = 0
 
 /mob/living/simple_animal/parrot/Poly/Initialize()
 	ears = new /obj/item/radio/headset/headset_eng(src)
@@ -880,7 +880,7 @@
 		desc += " Old as sin, and just as loud. Claimed to be [rounds_survived]."
 		speak_chance = 20 //His hubris has made him more annoying/easier to justify killing
 		add_atom_colour("#EEEE22", FIXED_COLOUR_PRIORITY)
-	else if(rounds_survived == longest_deathstreak)
+	else if(rounds_survived == longest_streak)
 		speak += pick("What are you waiting for!", "Violence breeds violence!", "Blood! Blood!", "Strike me down if you dare!")
 		desc += " The squawks of [-rounds_survived] dead parrots ring out in your ears..."
 		add_atom_colour("#BB7777", FIXED_COLOUR_PRIORITY)
@@ -898,10 +898,10 @@
 		memory_saved = TRUE
 	..()
 
-/mob/living/simple_animal/parrot/Poly/death(gibbed)
+/mob/living/simple_animal/parrot/Poly/(gibbed)
 	if(!memory_saved)
 		Write_Memory(TRUE)
-	if(rounds_survived == longest_survival || rounds_survived == longest_deathstreak || prob(0.666))
+	if(rounds_survived == longest_survival || rounds_survived == longest_streak || prob(0.666))
 		var/mob/living/simple_animal/parrot/Poly/ghost/G = new(loc)
 		if(mind)
 			mind.transfer_to(G)
@@ -915,7 +915,7 @@
 		S["phrases"] 			>> speech_buffer
 		S["roundssurvived"]		>> rounds_survived
 		S["longestsurvival"]	>> longest_survival
-		S["longestdeathstreak"] >> longest_deathstreak
+		S["longeststreak"] >> longest_streak
 		fdel("data/npc_saves/Poly.sav")
 	else
 		var/json_file = file("data/npc_saves/Poly.json")
@@ -925,7 +925,7 @@
 		speech_buffer = json["phrases"]
 		rounds_survived = json["roundssurvived"]
 		longest_survival = json["longestsurvival"]
-		longest_deathstreak = json["longestdeathstreak"]
+		longest_streak = json["longeststreak"]
 	if(!islist(speech_buffer))
 		speech_buffer = list()
 
@@ -937,17 +937,17 @@
 	if(dead)
 		file_data["roundssurvived"] = min(rounds_survived - 1, 0)
 		file_data["longestsurvival"] = longest_survival
-		if(rounds_survived - 1 < longest_deathstreak)
-			file_data["longestdeathstreak"] = rounds_survived - 1
+		if(rounds_survived - 1 < longest_streak)
+			file_data["longeststreak"] = rounds_survived - 1
 		else
-			file_data["longestdeathstreak"] = longest_deathstreak
+			file_data["longeststreak"] = longest_streak
 	else
 		file_data["roundssurvived"] = rounds_survived + 1
 		if(rounds_survived + 1 > longest_survival)
 			file_data["longestsurvival"] = rounds_survived + 1
 		else
 			file_data["longestsurvival"] = longest_survival
-		file_data["longestdeathstreak"] = longest_deathstreak
+		file_data["longeststreak"] = longest_streak
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 
@@ -1009,8 +1009,8 @@
 	emote_see = list("flutters its metal wings.")
 	faction = list("ratvar")
 	gold_core_spawnable = NO_SPAWN
-	del_on_death = TRUE
-	deathsound = 'sound/magic/clockwork/anima_fragment_death.ogg'
+	del_on_ = TRUE
+	sound = 'sound/magic/clockwork/anima_fragment_.ogg'
 
 /mob/living/simple_animal/parrot/clock_hawk/ratvar_act()
 	return

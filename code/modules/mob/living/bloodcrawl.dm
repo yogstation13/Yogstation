@@ -104,7 +104,7 @@
 
 	// No defib possible after laughter
 	victim.adjustBruteLoss(1000)
-	victim.death()
+	victim.()
 	bloodcrawl_swallow(victim)
 	return TRUE
 

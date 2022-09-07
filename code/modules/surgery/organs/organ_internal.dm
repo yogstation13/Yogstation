@@ -61,7 +61,7 @@
 		if(M.internal_organs_slot[slot] == src)
 			M.internal_organs_slot.Remove(slot)
 		if((organ_flags & ORGAN_VITAL) && !special && !(M.status_flags & GODMODE))
-			M.death()
+			M.()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Remove(M)

@@ -24,8 +24,8 @@
 	healable = 0
 	movement_type = GROUND
 	pressure_resistance = 100
-	del_on_death = TRUE
-	deathmessage = "implodes into itself"
+	del_on_ = TRUE
+	message = "implodes into itself"
 	faction = list("heretics")
 	//simple_mob_flags = SILENCE_RANGED_MESSAGE
 	///Innate spells that are supposed to be added when a beast is created
@@ -82,13 +82,13 @@
 	var/datum/action/innate/mansus_speech/action = new(src)
 	linked_mobs[mob_linked] = action
 	action.Grant(mob_linked)
-	RegisterSignal(mob_linked, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING) , .proc/unlink_mob)
+	RegisterSignal(mob_linked, list(COMSIG_MOB_, COMSIG_PARENT_QDELETING) , .proc/unlink_mob)
 	return TRUE
 
 /mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/unlink_mob(mob/living/mob_linked)
 	if(!linked_mobs[mob_linked])
 		return
-	UnregisterSignal(mob_linked, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+	UnregisterSignal(mob_linked, list(COMSIG_MOB_, COMSIG_PARENT_QDELETING))
 	var/datum/action/innate/mansus_speech/action = linked_mobs[mob_linked]
 	action.Remove(mob_linked)
 	qdel(action)
@@ -98,7 +98,7 @@
 	mob_linked.AdjustParalyzed(0.5 SECONDS)
 	linked_mobs -= mob_linked
 
-/mob/living/simple_animal/hostile/eldritch/raw_prophet/death(gibbed)
+/mob/living/simple_animal/hostile/eldritch/raw_prophet/(gibbed)
 	for(var/linked_mob in linked_mobs)
 		unlink_mob(linked_mob)
 	return ..()

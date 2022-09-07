@@ -360,7 +360,7 @@
 
 //////////////END HOSTILE MOB TARGETTING AND AGGRESSION////////////
 
-/mob/living/simple_animal/hostile/death(gibbed)
+/mob/living/simple_animal/hostile/(gibbed)
 	LoseTarget()
 	..(gibbed)
 

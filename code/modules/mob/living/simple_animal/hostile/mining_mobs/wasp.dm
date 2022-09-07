@@ -25,7 +25,7 @@
 	melee_damage_upper = 12
 	attacktext = "stings"
 	attack_sound = 'sound/voice/moth/scream_moth.ogg'
-	deathmessage = "rolls over, falling to the ground."
+	message = "rolls over, falling to the ground."
 	gold_core_spawnable = HOSTILE_SPAWN
 	butcher_results = list(/obj/item/stack/sheet/bone = 1, /obj/item/stack/sheet/sinew = 3, /obj/item/stack/sheet/animalhide/weaver_chitin = 2)
 	loot = list()
@@ -69,11 +69,11 @@
 	do_alert_animation(src)
 	walk(src, 0)
 	setDir(dir)
-	SLEEP_CHECK_DEATH(delay)
+	SLEEP_CHECK_(delay)
 	revving_charge = FALSE
 	var/movespeed = 1
 	walk_towards(src, T, movespeed)
-	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
+	SLEEP_CHECK_(get_dist(src, T) * movespeed)
 	walk(src, 0) // cancel the movement
 	charging = FALSE
 

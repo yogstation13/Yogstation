@@ -266,7 +266,7 @@
 				to_chat(user, span_warning("The MMI indicates that their mind is currently inactive; it might change!"))
 				return
 
-			if(BM.stat == DEAD || BM.suiciding || (M.brain && (M.brain.brain_death || M.brain.suicided)))
+			if(BM.stat == DEAD || BM.suiciding || (M.brain && (M.brain.brain_ || M.brain.suicided)))
 				to_chat(user, span_warning("Sticking a dead brain into the frame would sort of defeat the purpose!"))
 				return
 

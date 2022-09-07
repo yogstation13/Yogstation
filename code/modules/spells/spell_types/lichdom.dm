@@ -2,7 +2,7 @@
 	name = "Bind Soul"
 	desc = "A dark necromantic pact that can forever bind your soul to an \
 	item of your choosing. So long as both your body and the item remain \
-	intact and on the same plane you can revive from death, though the time \
+	intact and on the same plane you can revive from , though the time \
 	between reincarnations grows steadily with use, along with the weakness \
 	that the new skeleton body will experience upon 'birth'. Note that \
 	becoming a lich destroys all internal organs except the brain."
@@ -98,15 +98,15 @@
 	GLOB.poi_list |= src
 	START_PROCESSING(SSobj, src)
 	set_light(lon_range)
-	if(initial(SSticker.mode.round_ends_with_antag_death))
-		SSticker.mode.round_ends_with_antag_death = FALSE
+	if(initial(SSticker.mode.round_ends_with_antag_))
+		SSticker.mode.round_ends_with_antag_ = FALSE
 
 /obj/item/phylactery/Destroy(force=FALSE)
 	STOP_PROCESSING(SSobj, src)
 	active_phylacteries--
 	GLOB.poi_list -= src
 	if(!active_phylacteries)
-		SSticker.mode.round_ends_with_antag_death = initial(SSticker.mode.round_ends_with_antag_death)
+		SSticker.mode.round_ends_with_antag_ = initial(SSticker.mode.round_ends_with_antag_)
 	. = ..()
 
 /obj/item/phylactery/process()

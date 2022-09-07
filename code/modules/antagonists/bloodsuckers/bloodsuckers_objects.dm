@@ -93,7 +93,7 @@
 		return TRUE
 	if(blood_volume <= 0)
 		return TRUE
-	if(HAS_TRAIT(src, TRAIT_NODEATH))
+	if(HAS_TRAIT(src, TRAIT_NO))
 		return TRUE
 	return FALSE
 
@@ -161,9 +161,9 @@
 	if(bloodsuckerdatum)
 		// If DEAD or TORPID... Kill Bloodsucker!
 		if(target.StakeCanKillMe())
-			bloodsuckerdatum.FinalDeath()
+			bloodsuckerdatum.Final()
 		else
-			to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
+			to_chat(target, span_userdanger("You have been staked! Your powers are useless, your  forever, while it remains in place."))
 			to_chat(target, span_userdanger("You have been staked!"))
 
 /// Created by welding and acid-treating a simple stake.

@@ -45,10 +45,10 @@
 	roles = list(/datum/antagonist/ert/security/red, /datum/antagonist/ert/medic/red, /datum/antagonist/ert/engineer/red)
 	code = "Red"
 
-/datum/ert/deathsquad
-	roles = list(/datum/antagonist/ert/deathsquad)
-	leader_role = /datum/antagonist/ert/deathsquad/leader
-	rename_team = "Deathsquad"
+/datum/ert/squad
+	roles = list(/datum/antagonist/ert/squad)
+	leader_role = /datum/antagonist/ert/squad/leader
+	rename_team = "squad"
 	openmech = TRUE
 	code = "Delta"
 	mission = "Leave no witnesses."

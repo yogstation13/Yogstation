@@ -10,9 +10,9 @@
 	harm_intent_damage = 10
 	response_harm = "takes a bite out of"
 	attacked_sound = 'sound/items/eatfood.ogg'
-	deathmessage = "loses its false life and collapses back into a egg!"
-	deathsound = "bodyfall"
-	del_on_death = TRUE
+	message = "loses its false life and collapses back into a egg!"
+	sound = "bodyfall"
+	del_on_ = TRUE
 	loot = list(/obj/item/reagent_containers/food/snacks/egg)
 
 /mob/living/simple_animal/pet/dog/eggdog/CheckParts(list/parts)

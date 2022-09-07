@@ -1815,7 +1815,7 @@
 	// the REAL zombie powder
 	description = "Romerol is a highly experimental bioterror agent \
 		which causes dormant nodules to be etched into the grey matter of \
-		the subject. These nodules only become active upon death of the \
+		the subject. These nodules only become active upon  of the \
 		host, upon which, the secondary structures activate and take control \
 		of the host body."
 	color = "#123524" // RGB (18, 53, 36)
@@ -1824,7 +1824,7 @@
 	taste_description = "brains"
 
 /datum/reagent/romerol/reaction_mob(mob/living/carbon/human/H, method=TOUCH, reac_volume)
-	// Silently add the zombie infection organ to be activated upon death
+	// Silently add the zombie infection organ to be activated upon 
 	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
 		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
 		ZI.Insert(H)
@@ -2112,7 +2112,7 @@
 	name = "Yersinia pestis"
 	description = "A horrible plague, in a container. It is a TERRIBLE idea to drink this."
 	color = "#7CFC00"
-	taste_description = "death"
+	taste_description = ""
 	can_synth = FALSE
 
 /datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)

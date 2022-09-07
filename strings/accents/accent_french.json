@@ -58,7 +58,7 @@
 		"\bObsessed\b": "obsezed",
 		"\bRole\b": "rule",
 		"\bEmergency\b": "emairjency",
-		"\bDeath\b": "déath",
+		"\b\b": "déath",
 		"\bthe\b": "thé",
 		"\bhe\b": "'e",
 		"\bfor\b": "fair",

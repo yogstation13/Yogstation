@@ -23,7 +23,7 @@
 	disliked_food = SUGAR | VEGETABLES
 	liked_food = MEAT | GRILLED | SEAFOOD | MICE
 	inert_mutation = FIREBREATH
-	deathsound = 'sound/voice/lizard/deathsound.ogg'
+	sound = 'sound/voice/lizard/sound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
 	wings_icon = "Dragon"
 	species_language_holder = /datum/language_holder/lizard

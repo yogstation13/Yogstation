@@ -84,9 +84,9 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 	. = ..()
 	if(. > 0 && world.time > call_help_cooldown)
 		call_help_cooldown = world.time + call_help_cooldown_amt
-		summon_backup(25) //long range, only called max once per 15 seconds, so it's not deathlag
+		summon_backup(25) //long range, only called max once per 15 seconds, so it's not lag
 
-/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/death()
+/mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon/()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)

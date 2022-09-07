@@ -302,7 +302,7 @@
 				vitality_drained = L.maxHealth
 				var/obj/effect/temp_visual/ratvar/sigil/vitality/V = new /obj/effect/temp_visual/ratvar/sigil/vitality(get_turf(src))
 				animate(V, alpha = 0, transform = matrix()*2, time = 0.8 SECONDS)
-				playsound(L, 'sound/magic/wandodeath.ogg', 50, 1)
+				playsound(L, 'sound/magic/wando.ogg', 50, 1)
 				L.visible_message(span_warning("[L] collapses in on [L.p_them()]self as [src] flares bright blue!"))
 				to_chat(L, "[span_inathneq_large("\"[text2ratvar("Your life will not be wasted.")]\"")]")
 				for(var/obj/item/W in L)

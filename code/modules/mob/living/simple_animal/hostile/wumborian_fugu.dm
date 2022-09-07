@@ -114,7 +114,7 @@
 		mob_size = MOB_SIZE_SMALL
 		speed = 0
 
-/mob/living/simple_animal/hostile/asteroid/fugu/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/fugu/(gibbed)
 	Deflate()
 	..(gibbed)
 

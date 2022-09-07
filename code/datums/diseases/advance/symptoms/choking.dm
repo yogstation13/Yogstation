@@ -134,7 +134,7 @@ Bonus
 			M.emote("gasp")
 			if(M.getOxyLoss() >= 120)
 				M.visible_message(span_warning("[M] stops breathing, as if their lungs have totally collapsed!"))
-				Asphyxiate_death(M, A)
+				Asphyxiate_(M, A)
 	return
 
 /datum/symptom/asphyxiation/proc/Asphyxiate_stage_3_4(mob/living/M, datum/disease/advance/A)
@@ -149,7 +149,7 @@ Bonus
 		M.reagents.add_reagent_list(list(/datum/reagent/toxin/pancuronium = 3, /datum/reagent/toxin/sodium_thiopental = 3))
 	return 1
 
-/datum/symptom/asphyxiation/proc/Asphyxiate_death(mob/living/M, datum/disease/advance/A)
+/datum/symptom/asphyxiation/proc/Asphyxiate_(mob/living/M, datum/disease/advance/A)
 	var/get_damage = rand(11,18) * power
 	M.adjustOxyLoss(get_damage)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, get_damage/3)

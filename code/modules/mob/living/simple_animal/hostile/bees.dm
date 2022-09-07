@@ -46,7 +46,7 @@
 	//Spaceborn beings don't get hurt by space
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
-	del_on_death = 1
+	del_on_ = 1
 
 	var/datum/reagent/beegent = null //hehe, beegent
 	var/obj/structure/beebox/beehome = null
@@ -75,7 +75,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/hostile/poison/bees/death(gibbed)
+/mob/living/simple_animal/hostile/poison/bees/(gibbed)
 	if(beehome)
 		beehome.bees -= src
 		beehome = null
@@ -319,4 +319,4 @@
 
 /mob/living/simple_animal/hostile/poison/bees/short/Initialize(mapload, timetolive=50 SECONDS)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), timetolive)
+	addtimer(CALLBACK(src, .proc/), timetolive)

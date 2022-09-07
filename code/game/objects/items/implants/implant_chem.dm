@@ -7,7 +7,7 @@
 /obj/item/implant/chem/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 				<b>Name:</b> Robust Corp MJ-420 Prisoner Management Implant<BR>
-				<b>Life:</b> Deactivates upon death but remains within the body.<BR>
+				<b>Life:</b> Deactivates upon  but remains within the body.<BR>
 				<b>Important Notes: Due to the system functioning off of nutrients in the implanted subject's body, the subject<BR>
 				will suffer from an increased appetite.</B><BR>
 				<HR>
@@ -29,8 +29,8 @@
 	GLOB.tracked_chem_implants -= src
 	return ..()
 
-/obj/item/implant/chem/on_mob_death(mob/living/L, gibbed)
-	activate("death")
+/obj/item/implant/chem/on_mob_(mob/living/L, gibbed)
+	activate("")
 
 /obj/item/implant/chem/activate(cause)
 	. = ..()
@@ -38,7 +38,7 @@
 		return 0
 	var/mob/living/carbon/R = imp_in
 	var/injectamount = null
-	if (cause == "action_button" || cause == "death")
+	if (cause == "action_button" || cause == "")
 		injectamount = reagents.total_volume
 	else
 		injectamount = cause

@@ -14,7 +14,7 @@
 	var/req_human = 0 //if you need to be human to use this ability
 	var/req_absorbs = 0 //similar to req_dna, but only gained from absorbing, not DNA sting
 	var/req_stat = CONSCIOUS // CONSCIOUS, UNCONSCIOUS or DEAD
-	var/ignores_fakedeath = FALSE // usable with the FAKEDEATH flag
+	var/ignores_fake = FALSE // usable with the FAKE flag
 	var/active = FALSE //used by a few powers that toggle
 	var/xenoling_available = TRUE // Avaliable to xenolings
 
@@ -71,7 +71,7 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 	if(req_stat < user.stat)
 		to_chat(user, span_warning("We are incapacitated."))
 		return 0
-	if((HAS_TRAIT(user, TRAIT_DEATHCOMA)) && (!ignores_fakedeath))
+	if((HAS_TRAIT(user, TRAIT_COMA)) && (!ignores_fake))
 		to_chat(user, span_warning("We are incapacitated."))
 		return 0
 	return 1

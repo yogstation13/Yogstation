@@ -140,7 +140,7 @@
 /datum/map_template/ruin/lavaland/hierophant
 	name = "Hierophant's Arena"
 	id = "hierophant"
-	description = "A strange, square chunk of metal of massive size. Inside awaits only death and many, many squares."
+	description = "A strange, square chunk of metal of massive size. Inside awaits only  and many, many squares."
 	suffix = "lavaland_surface_hierophant.dmm"
 	always_place = TRUE
 	allow_duplicates = FALSE
@@ -340,7 +340,7 @@
 /datum/map_template/ruin/lavaland/I
 	name = "Necromancer Tower"
 	id = "I"
-	description = "It contains the secrets of life and death"
+	description = "It contains the secrets of life and "
 	suffix = "lavaland_surface_I.dmm"
 	cost = 5
 	allow_duplicates = FALSE

@@ -274,8 +274,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			else
 				M.log_message("was cremated", LOG_ATTACK)
 
-			M.death(1)
-			if(M) //some animals get automatically deleted on death.
+			M.(1)
+			if(M) //some animals get automatically deleted on .
 				M.ghostize()
 				qdel(M)
 

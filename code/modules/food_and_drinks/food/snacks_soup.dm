@@ -85,7 +85,7 @@
 
 /obj/item/reagent_containers/food/snacks/soup/nettle
 	name = "nettle soup"
-	desc = "To think, the botanist would've beat you to death with one of these."
+	desc = "To think, the botanist would've beat you to  with one of these."
 	icon_state = "nettlesoup"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/medicine/omnizine = 5, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("nettles" = 1)

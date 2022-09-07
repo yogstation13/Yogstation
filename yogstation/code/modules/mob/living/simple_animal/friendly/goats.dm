@@ -286,7 +286,7 @@
 	icon = 'yogstation/icons/mob/goats/stack_goat.dmi'
 	icon_state = "goatstack"
 	icon_living = "goatstack"
-	del_on_death = TRUE
+	del_on_ = TRUE
 	loot = list(/mob/living/simple_animal/hostile/retaliate/goat,/mob/living/simple_animal/hostile/retaliate/goat/panda,/mob/living/simple_animal/hostile/retaliate/goat/brown)
 	health = 100
 	maxHealth = 100

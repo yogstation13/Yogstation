@@ -30,13 +30,13 @@ Difficulty: Extremely Hard
 	crusher_loot = list(/obj/effect/decal/remains/plasma, /obj/item/crusher_trophy/ice_block_talisman)
 	loot = list(/obj/effect/decal/remains/plasma)
 	wander = FALSE
-	del_on_death = TRUE
+	del_on_ = TRUE
 	blood_volume = BLOOD_VOLUME_GENERIC
 	var/projectile_speed_multiplier = 1
 	var/enraged = FALSE
 	var/enraging = FALSE
-	deathmessage = "falls to the ground, decaying into plasma particles."
-	deathsound = "bodyfall"
+	message = "falls to the ground, decaying into plasma particles."
+	sound = "bodyfall"
 	attack_action_types = list(/datum/action/innate/megafauna_attack/frost_orbs,
 							   /datum/action/innate/megafauna_attack/snowball_machine_gun,
 							   /datum/action/innate/megafauna_attack/ice_shotgun)
@@ -171,7 +171,7 @@ Difficulty: Extremely Hard
 		P.set_homing_target(target)
 		P.fire(rand(0, 360))
 		addtimer(CALLBACK(P, /obj/item/projectile/frost_orb/proc/orb_explosion, projectile_speed_multiplier), 20) // make the orbs home in after a second
-		SLEEP_CHECK_DEATH(added_delay)
+		SLEEP_CHECK_(added_delay)
 	SetRecoveryTime(40, 60)
 
 /obj/item/projectile/frost_orb/proc/orb_explosion(projectile_speed_multiplier)
@@ -203,7 +203,7 @@ Difficulty: Extremely Hard
 		if(target)
 			P.original = target
 		P.fire()
-		SLEEP_CHECK_DEATH(1)
+		SLEEP_CHECK_(1)
 	SetRecoveryTime(15, 15)
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/ice_shotgun(shots = 5, list/patterns = list(list(-40, -20, 0, 20, 40), list(-30, -10, 10, 30)))
@@ -221,7 +221,7 @@ Difficulty: Extremely Hard
 			if(target)
 				P.original = target
 			P.fire()
-		SLEEP_CHECK_DEATH(8)
+		SLEEP_CHECK_(8)
 	SetRecoveryTime(1.5 SECONDS, 2 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/proc/check_enraged()
@@ -232,12 +232,12 @@ Difficulty: Extremely Hard
 		enraging = TRUE
 		animate(src, pixel_y = pixel_y + 96, time = 10 SECONDS, easing = ELASTIC_EASING)
 		spin(10 SECONDS, 1 SECONDS)
-		SLEEP_CHECK_DEATH(6 SECONDS)
+		SLEEP_CHECK_(6 SECONDS)
 		playsound(src, 'sound/effects/explosion3.ogg', 100, TRUE)
 		overlays += mutable_appearance('icons/effects/effects.dmi', "curse")
 		animate(src, pixel_y = pixel_y - 96, time = 0.8 SECONDS, flags = ANIMATION_END_NOW)
 		spin(0.8 SECONDS, 0.2 SECONDS)
-		SLEEP_CHECK_DEATH(0.8 SECONDS)
+		SLEEP_CHECK_(0.8 SECONDS)
 		for(var/mob/living/L in viewers(src))
 			shake_camera(L, 3, 2)
 		playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
@@ -245,7 +245,7 @@ Difficulty: Extremely Hard
 		enraging = FALSE
 		adjustHealth(-maxHealth)
 
-/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/death(gibbed, list/force_grant)
+/mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/(gibbed, list/force_grant)
 	if(health > 0)
 		return
 	else

@@ -7,7 +7,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	playstyle_string = span_holoparasite("As a <b>support</b> type, you may toggle your basic attacks to a healing mode. In addition, Alt-Clicking on an adjacent object or mob will warp them to your bluespace beacon after a short delay.")
-	magic_fluff_string = span_holoparasite("..And draw the CMO, a potent force of life... and death.")
+	magic_fluff_string = span_holoparasite("..And draw the CMO, a potent force of life... and .")
 	carp_fluff_string = span_holoparasite("CARP CARP CARP! You caught a support carp. It's a kleptocarp!")
 	tech_fluff_string = span_holoparasite("Boot sequence complete. Support modules active. Holoparasite swarm online.")
 	toggle_button_type = /obj/screen/guardian/ToggleMode

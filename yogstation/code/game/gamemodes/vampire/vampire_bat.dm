@@ -43,7 +43,7 @@
 	if(isliving(the_target) && is_vampire(the_target))
 		return FALSE
 
-/mob/living/simple_animal/hostile/vampire_bat/death()
+/mob/living/simple_animal/hostile/vampire_bat/()
 	if(isliving(controller))
 		controller.forceMove(loc)
 		mind.transfer_to(controller)

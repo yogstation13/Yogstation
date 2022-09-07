@@ -32,7 +32,7 @@
 	bubble_icon = "machine"
 	speech_span = SPAN_ROBOT
 	gold_core_spawnable = HOSTILE_SPAWN
-	del_on_death = 1
+	del_on_ = 1
 	loot = list(/obj/effect/decal/cleanable/robot_debris)
 	var/alert_light
 
@@ -40,7 +40,7 @@
 
 /mob/living/simple_animal/hostile/hivebot/Initialize()
 	. = ..()
-	deathmessage = "[src] blows apart!"
+	message = "[src] blows apart!"
 
 /mob/living/simple_animal/hostile/hivebot/Aggro()
 	. = ..()
@@ -93,6 +93,6 @@
 	maxHealth = 80
 	ranged = 1
 
-/mob/living/simple_animal/hostile/hivebot/death(gibbed)
+/mob/living/simple_animal/hostile/hivebot/(gibbed)
 	do_sparks(3, TRUE, src)
 	..(1)

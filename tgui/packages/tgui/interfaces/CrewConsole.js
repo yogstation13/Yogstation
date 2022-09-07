@@ -141,7 +141,7 @@ export const CrewConsoleContent = (props, context) => {
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   <ColorBox
-                    color={healthToColor( // yogs -- show death when dead
+                    color={healthToColor( // yogs -- show  when dead
                       sensor.oxydam,
                       sensor.toxdam,
                       sensor.burndam,

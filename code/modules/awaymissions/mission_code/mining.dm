@@ -284,7 +284,7 @@
 /mob/living/simple_animal/hostile/megafauna/dragon/virtual
 	name = "ash drake hologram"
 	desc = "A holographic dragon, once weak, now fierce."
-	del_on_death = 1 // goodbye corpse
+	del_on_ = 1 // goodbye corpse
 	crusher_loot = list()
 	loot = list()
 	true_spawn = 0

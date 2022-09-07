@@ -143,7 +143,7 @@
 
 /obj/item/gun/magic/staff/necropotence
 	name = "staff of necropotence"
-	desc = "An artefact that spits bolts of death magic that can repurpose the soul."
+	desc = "An artefact that spits bolts of  magic that can repurpose the soul."
 	fire_sound = 'sound/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/necropotence
 	icon_state = "staffofnecropotence"

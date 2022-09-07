@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define SECOND_DIAG_STEP 2
 
 #define DEADCHAT_ARRIVALRATTLE "arrivalrattle"
-#define DEADCHAT_DEATHRATTLE "deathrattle"
+#define DEADCHAT_RATTLE "rattle"
 #define DEADCHAT_REGULAR "regular-deadchat"
 #define DEADCHAT_ANNOUNCEMENT "announcement"
 

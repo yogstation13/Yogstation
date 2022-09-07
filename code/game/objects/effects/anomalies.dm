@@ -12,7 +12,7 @@
 	var/area/impact_area
 
 	var/lifespan = 990
-	var/death_time
+	var/_time
 
 	var/countdown_colour
 	var/obj/effect/countdown/anomaly/countdown
@@ -35,7 +35,7 @@
 
 	if(new_lifespan)
 		lifespan = new_lifespan
-	death_time = world.time + lifespan
+	_time = world.time + lifespan
 	countdown = new(src)
 	if(countdown_colour)
 		countdown.color = countdown_colour
@@ -43,7 +43,7 @@
 
 /obj/effect/anomaly/process()
 	anomalyEffect()
-	if(death_time < world.time)
+	if(_time < world.time)
 		if(loc)
 			detonate()
 		qdel(src)

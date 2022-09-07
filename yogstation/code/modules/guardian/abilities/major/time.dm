@@ -71,7 +71,7 @@
 
 /obj/effect/proc_holder/spell/self/erase_time/proc/reappear(mob/living/target, mob/living/fake, obj/effect/dummy/phased_mob/king_crimson/jaunt)
 	if (fake)
-		fake.death()
+		fake.()
 	SEND_SOUND(target, sound('yogstation/sound/effects/kingcrimson_end.ogg'))
 	target.status_flags &= ~GODMODE
 	REMOVE_TRAIT(target, TRAIT_PACIFISM, GUARDIAN_TRAIT)
@@ -153,7 +153,7 @@
 	obj_damage = 0
 	vision_range = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	deathmessage = null
+	message = null
 
 /datum/atom_hud/alternate_appearance/basic/king_crimson
 	var/list/seers

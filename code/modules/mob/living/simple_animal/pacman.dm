@@ -21,8 +21,8 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	stop_automated_movement = 1
 	status_flags = 0
-	del_on_death = TRUE
-	deathsound = 'sound/effects/pacman_death.ogg'
+	del_on_ = TRUE
+	sound = 'sound/effects/pacman_.ogg'
 	attack_sound = 'sound/effects/pacman_chomp.ogg'
 
 /mob/living/simple_animal/pacman/Bump(atom/movable/M)

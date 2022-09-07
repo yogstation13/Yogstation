@@ -26,7 +26,7 @@
 	mutant_bodyparts = list("ethereal_mark")
 	default_features = list("ethereal_mark" = "Eyes")
 	species_language_holder = /datum/language_holder/ethereal
-	deathsound = 'yogstation/sound/voice/ethereal/deathsound.ogg'
+	sound = 'yogstation/sound/voice/ethereal/sound.ogg'
 	screamsound = list('sound/voice/ethereal/ethereal_scream_1.ogg', 'sound/voice/ethereal/ethereal_scream_2.ogg', 'sound/voice/ethereal/ethereal_scream_3.ogg')
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE

@@ -29,11 +29,11 @@
 	status_flags = CANPUSH
 	movement_type = FLYING
 	loot = list(/obj/item/ectoplasm)
-	del_on_death = TRUE
+	del_on_ = TRUE
 	initial_language_holder = /datum/language_holder/construct
 
-/mob/living/simple_animal/shade/death()
-	deathmessage = "lets out a contented sigh as [p_their()] form unwinds."
+/mob/living/simple_animal/shade/()
+	message = "lets out a contented sigh as [p_their()] form unwinds."
 	..()
 
 /mob/living/simple_animal/shade/canSuicide()

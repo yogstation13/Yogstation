@@ -57,7 +57,7 @@
 
 /datum/objective/survive/bloodsucker
 	name = "bloodsuckersurvive"
-	explanation_text = "Survive the entire shift without succumbing to Final Death."
+	explanation_text = "Survive the entire shift without succumbing to Final ."
 
 // WIN CONDITIONS?
 // Handled by parent
@@ -355,7 +355,7 @@
 
 /datum/objective/bloodsucker/frenzy/update_explanation_text()
 	. = ..()
-	explanation_text = "Enter Frenzy [target_amount] of times without succumbing to Final Death."
+	explanation_text = "Enter Frenzy [target_amount] of times without succumbing to Final ."
 
 /datum/objective/bloodsucker/frenzy/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)

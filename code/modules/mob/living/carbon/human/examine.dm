@@ -114,7 +114,7 @@
 			. += span_warning("[t_He] [t_is] twitching ever so slightly.")
 
 	var/appears_dead = 0
-	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKE)))
 		appears_dead = 1
 		if(suiciding)
 			. += span_warning("[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.")
@@ -254,7 +254,7 @@
 		if(BLOOD_OKAY)
 			msg += "[t_He] [t_has] pale skin.\n"
 		if(BLOOD_BAD)
-			msg += "<b>[t_He] look[p_s()] like pale death.</b>\n"
+			msg += "<b>[t_He] look[p_s()] like pale .</b>\n"
 		if(BLOOD_DEAD to BLOOD_SURVIVE)
 			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
 

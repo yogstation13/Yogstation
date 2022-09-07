@@ -7,12 +7,12 @@ The colossus has a degree of sentience, proving this in speech during its attack
 
 It acts as a melee creature, chasing down and attacking its target while also using different attacks to augment its power that increase as it takes damage.
 
-The colossus' true danger lies in its ranged capabilities. It fires immensely damaging death bolts that penetrate all armor in a variety of ways:
- 1. The colossus fires death bolts in alternating patterns: the cardinal directions and the diagonal directions.
- 2. The colossus fires death bolts in a shotgun-like pattern, instantly downing anything unfortunate enough to be hit by all of them.
- 3. The colossus fires a spiral of death bolts.
+The colossus' true danger lies in its ranged capabilities. It fires immensely damaging  bolts that penetrate all armor in a variety of ways:
+ 1. The colossus fires  bolts in alternating patterns: the cardinal directions and the diagonal directions.
+ 2. The colossus fires  bolts in a shotgun-like pattern, instantly downing anything unfortunate enough to be hit by all of them.
+ 3. The colossus fires a spiral of  bolts.
 At 33% health, the colossus gains an additional attack:
- 4. The colossus fires two spirals of death bolts, spinning in opposite directions.
+ 4. The colossus fires two spirals of  bolts, spinning in opposite directions.
 
 When a colossus dies, it leaves behind a chunk of glowing crystal known as a black box. Anything placed inside will carry over into future rounds.
 For instance, you could place a bag of holding into the black box, and then kill another colossus next round and retrieve the bag of holding from inside.
@@ -42,12 +42,12 @@ Difficulty: Very Hard
 	move_to_delay = 10
 	ranged = TRUE
 	pixel_x = -32
-	del_on_death = TRUE
+	del_on_ = TRUE
 	internal_type = /obj/item/gps/internal/colossus
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/colossus/crusher)
 	loot = list(/obj/structure/closet/crate/necropolis/colossus)
-	deathmessage = "disintegrates, leaving a glowing core in its wake."
-	deathsound = 'sound/magic/demon_dies.ogg'
+	message = "disintegrates, leaving a glowing core in its wake."
+	sound = 'sound/magic/demon_dies.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/spiral_attack,
 							   /datum/action/innate/megafauna_attack/aoe_attack,
 							   /datum/action/innate/megafauna_attack/shotgun,
@@ -134,11 +134,11 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/alternating_dir_shots()
 	ranged_cooldown = world.time + 40
 	dir_shots(GLOB.diagonals)
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_(10)
 	dir_shots(GLOB.cardinals)
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_(10)
 	dir_shots(GLOB.diagonals)
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_(10)
 	dir_shots(GLOB.cardinals)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/select_spiral_attack()
@@ -151,7 +151,7 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/double_spiral()
 	visible_message(span_colossus("\"<b>Die.</b>\""))
 
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_(10)
 	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
 	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
 
@@ -169,7 +169,7 @@ Difficulty: Very Hard
 			counter = 16
 		shoot_projectile(start_turf, counter * 22.5)
 		playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, 1)
-		SLEEP_CHECK_DEATH(1)
+		SLEEP_CHECK_(1)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/shoot_projectile(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
@@ -217,7 +217,7 @@ Difficulty: Very Hard
 			shake_camera(M, 4, 3)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, 1)
 
-/mob/living/simple_animal/hostile/megafauna/colossus/death()
+/mob/living/simple_animal/hostile/megafauna/colossus/()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
@@ -253,7 +253,7 @@ Difficulty: Very Hard
 	return ..()
 
 /obj/item/projectile/colossus
-	name ="death bolt"
+	name =" bolt"
 	icon_state= "chronobolt"
 	damage = 25
 	armour_penetration = 100
@@ -674,7 +674,7 @@ Difficulty: Very Hard
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	light_range = 4
 	faction = list("neutral")
-	del_on_death = TRUE
+	del_on_ = TRUE
 	unsuitable_atmos_damage = 0
 	movement_type = FLYING
 	minbodytemp = 0
@@ -757,7 +757,7 @@ Difficulty: Very Hard
 
 	mob_type = /mob/living/simple_animal/hostile/lightgeist/photogeist
 	mob_name = "photogeist"
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
 	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor."
@@ -771,7 +771,7 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/lightgeist/ghostize()
 	. = ..()
 	if(.)
-		death()
+		()
 
 /mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
@@ -864,7 +864,7 @@ Difficulty: Very Hard
 			holder_animal.mind.transfer_to(L)
 			L.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/exit_possession)
 		if(kill || !isanimal(loc))
-			L.death(0)
+			L.(0)
 	..()
 
 /obj/structure/closet/stasis/emp_act()

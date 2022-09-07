@@ -101,13 +101,13 @@
 		brainmob.set_suicide(FALSE)
 	playsound(H, 'sound/misc/splort.ogg', 60, 1, -1)
 	playsound(H, 'sound/magic/clockwork/anima_fragment_attack.ogg', 40, 1, -1)
-	H.fakedeath("soul_vessel") //we want to make sure they don't deathgasp and maybe possibly explode
-	H.death()
-	H.cure_fakedeath("soul_vessel")
+	H.fake("soul_vessel") //we want to make sure they don't gasp and maybe possibly explode
+	H.()
+	H.cure_fake("soul_vessel")
 	H.apply_status_effect(STATUS_EFFECT_SIGILMARK) //let them be affected by vitality matrices
 	picked_name = "Slave"
 	braintype = picked_name
-	brainmob.timeofhostdeath = H.timeofdeath
+	brainmob.timeofhost = H.timeof
 	user.visible_message(span_warning("[user] presses [src] to [H]'s head, ripping through the skull and carefully extracting the brain!"), \
 	span_brass("You extract [H]'s consciousness from [H.p_their()] body, trapping it in the soul vessel."))
 	transfer_personality(H)

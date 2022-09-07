@@ -167,22 +167,22 @@
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
-	description = "A strong neurotoxin that puts the subject into a death-like state."
+	description = "A strong neurotoxin that puts the subject into a -like state."
 	silent_toxin = TRUE
 	reagent_state = SOLID
 	color = "#669900" // rgb: 102, 153, 0
 	toxpwr = 0.5
-	taste_description = "death"
-	var/fakedeath_active = FALSE
+	taste_description = ""
+	var/fake_active = FALSE
 
 /datum/reagent/toxin/zombiepowder/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
-	if(fakedeath_active)
-		L.fakedeath(type)
+	ADD_TRAIT(L, TRAIT_FAKE, type)
+	if(fake_active)
+		L.fake(type)
 
 /datum/reagent/toxin/zombiepowder/on_mob_end_metabolize(mob/living/L)
-	L.cure_fakedeath(type)
+	L.cure_fake(type)
 	..()
 
 /datum/reagent/toxin/zombiepowder/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
@@ -190,11 +190,11 @@
 	if(method == INGEST)
 		var/datum/reagent/toxin/zombiepowder/Z = L.reagents.has_reagent(/datum/reagent/toxin/zombiepowder)
 		if(istype(Z))
-			Z.fakedeath_active = TRUE
+			Z.fake_active = TRUE
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/M)
 	..()
-	if(fakedeath_active)
+	if(fake_active)
 		return TRUE
 	switch(current_cycle)
 		if(1 to 5)
@@ -204,22 +204,22 @@
 		if(5 to 8)
 			M.adjustStaminaLoss(40, 0)
 		if(9 to INFINITY)
-			fakedeath_active = TRUE
-			M.fakedeath(type)
+			fake_active = TRUE
+			M.fake(type)
 /datum/reagent/toxin/ghoulpowder
 	name = "Ghoul Powder"
-	description = "A strong neurotoxin that slows metabolism to a death-like state, while keeping the patient fully active. Causes toxin buildup if used too long."
+	description = "A strong neurotoxin that slows metabolism to a -like state, while keeping the patient fully active. Causes toxin buildup if used too long."
 	reagent_state = SOLID
 	color = "#664700" // rgb: 102, 71, 0
 	toxpwr = 0.8
-	taste_description = "death"
+	taste_description = ""
 
 /datum/reagent/toxin/ghoulpowder/on_mob_metabolize(mob/living/L)
 	..()
-	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
+	ADD_TRAIT(L, TRAIT_FAKE, type)
 
 /datum/reagent/toxin/ghoulpowder/on_mob_end_metabolize(mob/living/L)
-	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, type)
+	REMOVE_TRAIT(L, TRAIT_FAKE, type)
 	..()
 
 /datum/reagent/toxin/ghoulpowder/on_mob_life(mob/living/carbon/M)

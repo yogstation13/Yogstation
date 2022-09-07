@@ -293,7 +293,7 @@
 
 /obj/structure/blob/obj_destruction(damage_flag)
 	if(overmind)
-		overmind.blobstrain.death_reaction(src, damage_flag)
+		overmind.blobstrain._reaction(src, damage_flag)
 	..()
 
 /obj/structure/blob/proc/change_to(type, controller)

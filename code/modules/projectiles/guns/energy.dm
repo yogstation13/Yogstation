@@ -179,7 +179,7 @@
 			update_icon()
 			return(FIRELOSS)
 		else
-			user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+			user.visible_message(span_suicide("[user] panics and starts choking to !"))
 			return(OXYLOSS)
 	else
 		user.visible_message(span_suicide("[user] is pretending to melt [user.p_their()] face off with [src]! It looks like [user.p_theyre()] trying to commit suicide!</b>"))

@@ -59,7 +59,7 @@
 	to_chat(owner, "<b>You require [SSticker.mode.required_thralls || 15] thralls to ascend.</b><br>")
 	SEND_SOUND(owner.current, sound('yogstation/sound/ambience/antag/sling.ogg'))
 
-/datum/antagonist/shadowling/proc/check_shadow_death()
+/datum/antagonist/shadowling/proc/check_shadow_()
 	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
 		var/datum/mind/shadow_mind = SM
 		if(istype(shadow_mind))
@@ -74,7 +74,7 @@
 /datum/antagonist/shadowling/roundend_report_header()
 	if(SSticker.mode.shadowling_ascended) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
 		return "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span><br>"
-	else if(!SSticker.mode.shadowling_ascended && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
+	else if(!SSticker.mode.shadowling_ascended && check_shadow_()) //If the shadowlings have ascended, they can not lose the round
 		return "<span class='redtext big'>The shadowlings have been killed by the crew!</span><br>"
 	else if(!SSticker.mode.shadowling_ascended && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
 		return "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span><br>"

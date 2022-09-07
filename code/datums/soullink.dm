@@ -21,7 +21,7 @@
 
 //Keeps track of a Mob->Mob (potentially Player->Player) connection
 //Can be used to trigger actions on one party when events happen to another
-//Eg: shared deaths
+//Eg: shared s
 //Can be used to form a linked list of mob-hopping
 //Does NOT transfer with minds
 /datum/soullink
@@ -55,11 +55,11 @@
 	LAZYADD(sharer.sharedSoullinks, src)
 	return TRUE
 
-//Runs after /living death()
+//Runs after /living ()
 //Override this for content
 /datum/soullink/proc/ownerDies(gibbed, mob/living/owner)
 
-//Runs after /living death()
+//Runs after /living ()
 //Override this for content
 /datum/soullink/proc/sharerDies(gibbed, mob/living/owner)
 
@@ -102,11 +102,11 @@
 
 /datum/soullink/sharedfate/ownerDies(gibbed, mob/living/owner)
 	if(soulsharer)
-		soulsharer.death(gibbed)
+		soulsharer.(gibbed)
 
 /datum/soullink/sharedfate/sharerDies(gibbed, mob/living/sharer)
 	if(soulowner)
-		soulowner.death(gibbed)
+		soulowner.(gibbed)
 
 /////////////////
 // Demon Bind  //
@@ -130,7 +130,7 @@
 	if(soulowner && soulsharer)
 		if(soulsharer.mind)
 			soulsharer.mind.transfer_to(soulowner)
-		soulsharer.death(gibbed)
+		soulsharer.(gibbed)
 
 /datum/soullink/sharedbody/sharerDies(gibbed, mob/living/sharer)
 	if(soulowner && soulsharer && soulsharer.mind)
@@ -153,7 +153,7 @@
 			if(L.stat != DEAD && L.mind)
 				L.mind.transfer_to(soulowner)
 				soulowner.revive(TRUE, TRUE)
-				L.death(FALSE)
+				L.(FALSE)
 
 //Lose your claim to the throne!
 /datum/soullink/multisharer/replacementpool/sharerDies(gibbed, mob/living/sharer)

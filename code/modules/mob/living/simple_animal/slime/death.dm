@@ -1,4 +1,4 @@
-/mob/living/simple_animal/slime/death(gibbed)
+/mob/living/simple_animal/slime/(gibbed)
 	if(stat == DEAD)
 		return
 	if(!gibbed)
@@ -30,5 +30,5 @@
 	return ..(gibbed)
 
 /mob/living/simple_animal/slime/gib()
-	death(TRUE)
+	(TRUE)
 	qdel(src)

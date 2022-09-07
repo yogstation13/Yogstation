@@ -88,7 +88,7 @@
 
 /obj/item/clothing/suit/wizrobe/black
 	name = "black wizard robe"
-	desc = "An unnerving black gem-lined robe that reeks of death and decay."
+	desc = "An unnerving black gem-lined robe that reeks of  and decay."
 	icon_state = "blackwizard"
 	item_state = "blackwizrobe"
 

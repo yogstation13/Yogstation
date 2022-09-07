@@ -20,7 +20,7 @@
 
 	// If the respawned person is given a specific outfit
 	var/datum/outfit/outfit
-	// How long until we respawn them after their death.
+	// How long until we respawn them after their .
 	var/respawn_time = 50
 	var/respawn_sound = 'sound/magic/staff_animation.ogg'
 

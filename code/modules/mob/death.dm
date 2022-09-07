@@ -9,6 +9,6 @@
 /mob/proc/dust(just_ash, drop_items, force)
 	return
 
-/mob/proc/death(gibbed)
-	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbed)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src , gibbed)
+/mob/proc/(gibbed)
+	SEND_SIGNAL(src, COMSIG_MOB_, gibbed)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_, src , gibbed)

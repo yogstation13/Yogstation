@@ -11,14 +11,14 @@
 			return
 		if(rebirth)
 			return
-		if(H.stat == DEAD) // we only heal when they're close to death. not actually dead.
+		if(H.stat == DEAD) // we only heal when they're close to . not actually dead.
 			return
 		rebirth = TRUE
 		rebirthcount++
 		to_chat(H, span_notice("Your body is entering cryogenic rebirth. You will soon be restored to your physical form. Once this happens your soul will be dragged back into your body."))
 		if(rebirthcount >= 3)
 			to_chat(H, span_notice("You notice that your body isn't regenerating as fast as it used to. It seems like the abductor's effects are wearing off. This is your last rebirth cycle.."))
-		H.death()
+		H.()
 		H.ghostize()
 		for(var/obj/item/I in H)
 			H.unequip_everything(I)

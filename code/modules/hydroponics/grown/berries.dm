@@ -38,7 +38,7 @@
 	species = "poisonberry"
 	plantname = "Poison-Berry Bush"
 	product = /obj/item/reagent_containers/food/snacks/grown/berries/poison
-	mutatelist = list(/obj/item/seeds/berry/death)
+	mutatelist = list(/obj/item/seeds/berry/)
 	reagents_add = list(/datum/reagent/toxin/cyanide = 0.15, /datum/reagent/toxin/staminatoxin = 0.2, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 10 // Mildly poisonous berries are common in reality
 
@@ -54,28 +54,28 @@
 	distill_reagent = null
 	wine_power = 35
 
-// Death Berries
-/obj/item/seeds/berry/death
-	name = "pack of death-berry seeds"
-	desc = "These seeds grow into death berries."
-	icon_state = "seed-deathberry"
-	species = "deathberry"
-	plantname = "Death Berry Bush"
-	product = /obj/item/reagent_containers/food/snacks/grown/berries/death
+//  Berries
+/obj/item/seeds/berry/
+	name = "pack of -berry seeds"
+	desc = "These seeds grow into  berries."
+	icon_state = "seed-berry"
+	species = "berry"
+	plantname = " Berry Bush"
+	product = /obj/item/reagent_containers/food/snacks/grown/berries/
 	lifespan = 30
 	potency = 50
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/toxin/coniine = 0.08, /datum/reagent/toxin/staminatoxin = 0.1, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 30
 
-/obj/item/reagent_containers/food/snacks/grown/berries/death
-	seed = /obj/item/seeds/berry/death
-	name = "bunch of death-berries"
+/obj/item/reagent_containers/food/snacks/grown/berries/
+	seed = /obj/item/seeds/berry/
+	name = "bunch of -berries"
 	desc = "Taste so good, you will die!"
-	icon_state = "deathberrypile"
+	icon_state = "berrypile"
 	filling_color = "#708090"
 	foodtype = FRUIT | TOXIC
-	tastes = list("death-berry" = 1)
+	tastes = list("-berry" = 1)
 	distill_reagent = null
 	wine_power = 50
 

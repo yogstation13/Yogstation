@@ -101,7 +101,7 @@
 		return
 	if(stat != DEAD)
 		if(health <= HEALTH_THRESHOLD_DEAD)
-			death()
+			()
 			return
 		else if(stat == UNCONSCIOUS)
 			stat = CONSCIOUS

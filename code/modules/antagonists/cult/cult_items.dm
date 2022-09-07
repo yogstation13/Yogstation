@@ -539,10 +539,10 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 50, 1)
 		qdel(src)
 		sleep(2 SECONDS)
-		var/curses = list("A fuel technician just slit his own throat and begged for death.",
+		var/curses = list("A fuel technician just slit his own throat and begged for .",
 			"The shuttle's navigation programming was replaced by a file containing just two words: IT COMES.",
 			"The shuttle's custodian was found washing the windows with their own blood.",
-			"A shuttle engineer began screaming 'DEATH IS NOT THE END' and ripped out wires until an arc flash seared off her flesh.",
+			"A shuttle engineer began screaming ' IS NOT THE END' and ripped out wires until an arc flash seared off her flesh.",
 			"A shuttle inspector started laughing madly over the radio and then threw herself into an engine turbine.",
 			"The shuttle dispatcher was found dead with bloody symbols carved into their flesh.",
 			"The shuttle's transponder is emitting the encoded message 'FEAR THE OLD BLOOD' in lieu of its assigned identification signal.")

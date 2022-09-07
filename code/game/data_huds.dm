@@ -105,7 +105,7 @@
 
 //helper for getting the appropriate health status
 /proc/RoundHealth(mob/living/M)
-	if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKEDEATH)))
+	if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_FAKE)))
 		return "health-100" //what's our health? it doesn't matter, we're dead, or faking
 
 	var/maxi_health = M.maxHealth
@@ -113,7 +113,7 @@
 		maxi_health = 100 //so crit shows up right for aliens and other high-health carbon mobs; noncarbons don't have crit.
 	var/resulthealth = (M.health / maxi_health) * 100
 
-	//rounds the health to the nearest multiple of 6.25, the minimum is -93.75 to prevent showing as dead when you are 2 hitpoints away from death
+	//rounds the health to the nearest multiple of 6.25, the minimum is -93.75 to prevent showing as dead when you are 2 hitpoints away from 
 	var/roundedhealth = clamp(round(resulthealth / 6.25)*6.25, -93.75, 100);
 	return "health[roundedhealth]"
 
@@ -140,7 +140,7 @@
 	var/image/holder = hud_list[STATUS_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
-	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+	if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKE)))
 		holder.icon_state = "huddead"
 	else
 		holder.icon_state = "hudhealthy"
@@ -152,9 +152,9 @@
 	holder.pixel_y = I.Height() - world.icon_size
 	if(HAS_TRAIT(src, TRAIT_XENO_HOST))
 		holder.icon_state = "hudxeno"
-	else if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+	else if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKE)))
 		if(tod)
-			var/tdelta = round(world.time - timeofdeath)
+			var/tdelta = round(world.time - timeof)
 			if(tdelta < (DEFIB_TIME_LIMIT))
 				holder.icon_state = "huddefib"
 				return

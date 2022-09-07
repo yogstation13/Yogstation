@@ -217,7 +217,7 @@
 
 //icon update function
 // if NOPOWER, display blank
-// if BROKEN, display blue screen of death icon AI uses
+// if BROKEN, display blue screen of  icon AI uses
 // if timing=true, run update display function
 /obj/machinery/door_timer/update_icon()
 	if(stat & (NOPOWER))

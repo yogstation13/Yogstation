@@ -3,7 +3,7 @@ ALTER TABLE erro_admin_log RENAME TO SS13_admin_log;
 ALTER TABLE erro_admin_ranks RENAME TO SS13_admin_ranks;
 ALTER TABLE erro_ban RENAME TO SS13_ban;
 ALTER TABLE erro_connection_log RENAME TO SS13_connection_log;
-ALTER TABLE erro_death RENAME TO SS13_death;
+ALTER TABLE erro_ RENAME TO SS13_;
 ALTER TABLE erro_feedback RENAME TO SS13_feedback;
 ALTER TABLE erro_legacy_population RENAME TO SS13_legacy_population;
 ALTER TABLE erro_library RENAME TO SS13_library;

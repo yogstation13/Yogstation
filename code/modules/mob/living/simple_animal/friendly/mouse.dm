@@ -74,9 +74,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	else
 		src.health = 0
 		src.icon_dead = "mouse_[body_color]_splat"
-		death()
+		()
 
-/mob/living/simple_animal/mouse/death(gibbed, toast)
+/mob/living/simple_animal/mouse/(gibbed, toast)
 	GLOB.mouse_killed++
 	if(!ckey)
 		..(1)
@@ -112,7 +112,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 					visible_message(span_warning("[src] chews through the [C]. It's toast!"))
 					playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
 					C.deconstruct()
-					death(toast=1)
+					(toast=1)
 				else
 					C.deconstruct()
 					visible_message(span_warning("[src] chews through the [C]."))

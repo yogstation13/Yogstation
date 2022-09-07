@@ -60,8 +60,8 @@ Difficulty: Hard
 	crusher_loot = list(/obj/item/hierophant_club, /obj/item/crusher_trophy/vortex_talisman, /obj/item/gem/purple)
 	wander = FALSE
 	internal_type = /obj/item/gps/internal/hierophant
-	del_on_death = TRUE
-	deathsound = 'sound/magic/repulse.ogg'
+	del_on_ = TRUE
+	sound = 'sound/magic/repulse.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/blink,
 							   /datum/action/innate/megafauna_attack/chaser_swarm,
 							   /datum/action/innate/megafauna_attack/cross_blasts,
@@ -79,7 +79,7 @@ Difficulty: Hard
 	var/did_reset = TRUE //if we timed out, returned to our beacon, and healed some
 	var/list/kill_phrases = list("Wsyvgi sj irivkc xettih. Vitemvmrk...", "Irivkc wsyvgi jsyrh. Vitemvmrk...", "Jyip jsyrh. Egxmzexmrk vitemv gcgpiw...", "Kix fiex. Liepmrk...")
 	var/list/target_phrases = list("Xevkix psgexih.", "Iriqc jsyrh.", "Eguymvih xevkix.")
-	var/list/stored_nearby = list() // stores people nearby the hierophant when it enters the death animation
+	var/list/stored_nearby = list() // stores people nearby the hierophant when it enters the  animation
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/hierophant
 
@@ -201,7 +201,7 @@ Difficulty: Hard
 		visible_message(span_hierophant("\"Mx ampp rsx iwgeti.\""))
 		var/oldcolor = color
 		animate(src, color = "#660099", time = 0.6 SECONDS)
-		SLEEP_CHECK_DEATH(0.6 SECONDS)
+		SLEEP_CHECK_(0.6 SECONDS)
 		while(!QDELETED(target) && blink_counter)
 			if(loc == target.loc || loc == target) //we're on the same tile as them after about a second we can stop now
 				break
@@ -209,10 +209,10 @@ Difficulty: Hard
 			blinking = FALSE
 			blink(target)
 			blinking = TRUE
-			SLEEP_CHECK_DEATH(0.4 SECONDS + target_slowness)
+			SLEEP_CHECK_(0.4 SECONDS + target_slowness)
 		animate(src, color = oldcolor, time = 0.8 SECONDS)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
-		SLEEP_CHECK_DEATH(0.8 SECONDS)
+		SLEEP_CHECK_(0.8 SECONDS)
 		blinking = FALSE
 	else
 		blink(target)
@@ -223,17 +223,17 @@ Difficulty: Hard
 	blinking = TRUE
 	var/oldcolor = color
 	animate(src, color = "#660099", time = 0.6 SECONDS)
-	SLEEP_CHECK_DEATH(0.6 SECONDS)
+	SLEEP_CHECK_(0.6 SECONDS)
 	while(!QDELETED(target) && cross_counter)
 		cross_counter--
 		if(prob(60))
 			INVOKE_ASYNC(src, .proc/blasts, target, GLOB.cardinals)
 		else
 			INVOKE_ASYNC(src, .proc/blasts, target, GLOB.diagonals)
-		SLEEP_CHECK_DEATH(6 + target_slowness)
+		SLEEP_CHECK_(6 + target_slowness)
 	animate(src, color = oldcolor, time = 0.8 SECONDS)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
-	SLEEP_CHECK_DEATH(0.8 SECONDS)
+	SLEEP_CHECK_(0.8 SECONDS)
 	blinking = FALSE
 
 
@@ -243,7 +243,7 @@ Difficulty: Hard
 	blinking = TRUE
 	var/oldcolor = color
 	animate(src, color = "#660099", time = 0.6 SECONDS)
-	SLEEP_CHECK_DEATH(0.6 SECONDS)
+	SLEEP_CHECK_(0.6 SECONDS)
 	var/list/targets = ListTargets()
 	var/list/cardinal_copy = GLOB.cardinals.Copy()
 	while(targets.len && cardinal_copy.len)
@@ -257,11 +257,11 @@ Difficulty: Hard
 		var/obj/effect/temp_visual/hierophant/chaser/C = new(loc, src, pickedtarget, chaser_speed, FALSE)
 		C.moving = 3
 		C.moving_dir = pick_n_take(cardinal_copy)
-		SLEEP_CHECK_DEATH(0.8 SECONDS + target_slowness)
+		SLEEP_CHECK_(0.8 SECONDS + target_slowness)
 	chaser_cooldown = world.time + initial(chaser_cooldown)
 	animate(src, color = oldcolor, time = 0.8 SECONDS)
 	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
-	SLEEP_CHECK_DEATH(0.8 SECONDS)
+	SLEEP_CHECK_(0.8 SECONDS)
 	blinking = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/blasts(mob/victim, var/list/directions = GLOB.cardinals) //fires cross blasts with a delay
@@ -275,7 +275,7 @@ Difficulty: Hard
 	else
 		new /obj/effect/temp_visual/hierophant/telegraph(T, src)
 	playsound(T,'sound/effects/bin_close.ogg', 200, 1)
-	SLEEP_CHECK_DEATH(2)
+	SLEEP_CHECK_(2)
 	new /obj/effect/temp_visual/hierophant/blast(T, src, FALSE)
 	for(var/d in directions)
 		INVOKE_ASYNC(src, .proc/blast_wall, T, d)
@@ -313,7 +313,7 @@ Difficulty: Hard
 		HS.setDir(set_dir)
 		previousturf = J
 		J = get_step(previousturf, set_dir)
-		SLEEP_CHECK_DEATH(0.5)
+		SLEEP_CHECK_(0.5)
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/blink(mob/victim) //blink to a target
 	if(blinking || !victim)
@@ -325,7 +325,7 @@ Difficulty: Hard
 	playsound(T,'sound/magic/wand_teleport.ogg', 200, 1)
 	playsound(source,'sound/machines/airlockopen.ogg', 200, 1)
 	blinking = TRUE
-	SLEEP_CHECK_DEATH(0.2 SECONDS) //short delay before we start...
+	SLEEP_CHECK_(0.2 SECONDS) //short delay before we start...
 	new /obj/effect/temp_visual/hierophant/telegraph/teleport(T, src)
 	new /obj/effect/temp_visual/hierophant/telegraph/teleport(source, src)
 	for(var/t in RANGE_TURFS(1, T))
@@ -335,17 +335,17 @@ Difficulty: Hard
 		var/obj/effect/temp_visual/hierophant/blast/B = new(t, src, FALSE)
 		B.damage = 30
 	animate(src, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
-	SLEEP_CHECK_DEATH(0.1 SECONDS)
+	SLEEP_CHECK_(0.1 SECONDS)
 	visible_message("[span_hierophant_warning("[src] fades out!")]")
 	density = FALSE
-	SLEEP_CHECK_DEATH(0.2 SECONDS)
+	SLEEP_CHECK_(0.2 SECONDS)
 	forceMove(T)
-	SLEEP_CHECK_DEATH(0.1 SECONDS)
+	SLEEP_CHECK_(0.1 SECONDS)
 	animate(src, alpha = 255, time = 0.2 SECONDS, easing = EASE_IN) //fade IN
-	SLEEP_CHECK_DEATH(0.1 SECONDS)
+	SLEEP_CHECK_(0.1 SECONDS)
 	density = TRUE
 	visible_message("[span_hierophant_warning("[src] fades in!")]")
-	SLEEP_CHECK_DEATH(0.1 SECONDS) //at this point the blasts we made detonate
+	SLEEP_CHECK_(0.1 SECONDS) //at this point the blasts we made detonate
 	blinking = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/melee_blast(mob/victim) //make a 3x3 blast around a target
@@ -356,7 +356,7 @@ Difficulty: Hard
 		return
 	new /obj/effect/temp_visual/hierophant/telegraph(T, src)
 	playsound(T,'sound/effects/bin_close.ogg', 200, 1)
-	SLEEP_CHECK_DEATH(2)
+	SLEEP_CHECK_(2)
 	for(var/t in RANGE_TURFS(1, T))
 		new /obj/effect/temp_visual/hierophant/blast(t, src, FALSE)
 
@@ -395,7 +395,7 @@ Difficulty: Hard
 			else
 				visible_message(span_hierophant("\"Vitemvw gsqtpixi. Stivexmsrep ijjmgmirgc gsqtvsqmwih.\""))
 
-/mob/living/simple_animal/hostile/megafauna/hierophant/death()
+/mob/living/simple_animal/hostile/megafauna/hierophant/()
 	if(health > 0 || stat == DEAD)
 		return
 	else
@@ -409,7 +409,7 @@ Difficulty: Hard
 		for(var/mob/living/L in view(7,src))
 			stored_nearby += L // store the people to grant the achievements to once we die
 		hierophant_burst(null, get_turf(src), 10)
-		stat = CONSCIOUS // deathgasp wont run if dead, stupid
+		stat = CONSCIOUS // gasp wont run if dead, stupid
 		..(force_grant = stored_nearby)
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/Destroy()

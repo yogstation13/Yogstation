@@ -59,7 +59,7 @@
 			priority_announce("Xenomorph infestation detected: Emergency shuttle will be sent to recover any survivors, if this is in error feel free to recall.")
 			SSshuttle.emergency.request(null, set_coefficient=0.5)
 
-/mob/living/carbon/alien/humanoid/royal/queen/death()//yogs start: dead queen doesnt stop shuttle
+/mob/living/carbon/alien/humanoid/royal/queen/()//yogs start: dead queen doesnt stop shuttle
 	SSshuttle.clearHostileEnvironment(src)
 	..()
 

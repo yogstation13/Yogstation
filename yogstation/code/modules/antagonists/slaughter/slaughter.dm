@@ -17,7 +17,7 @@
 	status_flags = CANPUSH
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	var/feast_sound = 'sound/magic/demon_consume.ogg'
-	deathsound = 'sound/magic/demon_dies.ogg'
+	sound = 'sound/magic/demon_dies.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = INFINITY
@@ -45,8 +45,8 @@
 	loot = list(/obj/effect/decal/cleanable/blood, \
 				/obj/effect/decal/cleanable/blood/innards, \
 				/obj/item/organ/heart/demon)
-	del_on_death = 1
-	deathmessage = "screams in anger as it collapses into a puddle of viscera!"
+	del_on_ = 1
+	message = "screams in anger as it collapses into a puddle of viscera!"
 	/// How long it takes for the alt-click slam attack to come off cooldown
 	var/slam_cooldown_time = 45 SECONDS
 	/// The actual instance var for the cooldown
@@ -154,11 +154,11 @@
 
 	attack_sound = 'sound/items/bikehorn.ogg'
 	feast_sound = 'sound/spookoween/scary_horn2.ogg'
-	deathsound = 'sound/misc/sadtrombone.ogg'
+	sound = 'sound/misc/sadtrombone.ogg'
 
 	icon_state = "bowmon"
 	icon_living = "bowmon"
-	deathmessage = "fades out, as all of its friends are released from its \
+	message = "fades out, as all of its friends are released from its \
 		prison of hugs."
 	loot = list(/mob/living/simple_animal/pet/cat/kitten{name = "Laughter"})
 
@@ -194,7 +194,7 @@
 /mob/living/simple_animal/slaughter/laughter/ex_act(severity)
 	switch(severity)
 		if(1)
-			death()
+			()
 		if(2)
 			adjustBruteLoss(60)
 		if(3)

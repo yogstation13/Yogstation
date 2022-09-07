@@ -100,7 +100,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/hostile/drakeling/death(gibbed)
+/mob/living/simple_animal/hostile/drakeling/(gibbed)
 	. = ..()
 	for(var/mob/living/N in buckled_mobs)
 		unbuckle_mob(N)

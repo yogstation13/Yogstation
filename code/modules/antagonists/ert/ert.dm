@@ -31,7 +31,7 @@
 /datum/antagonist/ert/proc/update_name()
 	owner.current.fully_replace_character_name(owner.current.real_name,"[role] [pick(name_source)]")
 
-/datum/antagonist/ert/deathsquad/New()
+/datum/antagonist/ert/squad/New()
 	. = ..()
 	name_source = GLOB.commando_names
 	
@@ -39,11 +39,11 @@
 	. = ..()
 	name_source = GLOB.clown_names
 
-/datum/antagonist/ert/deathsquad/apply_innate_effects(mob/living/mob_override)
-	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
+/datum/antagonist/ert/squad/apply_innate_effects(mob/living/mob_override)
+	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, SQUAD_TRAIT)
 
-/datum/antagonist/ert/deathsquad/remove_innate_effects(mob/living/mob_override)
-	REMOVE_TRAIT(owner, TRAIT_DISK_VERIFIER, DEATHSQUAD_TRAIT)
+/datum/antagonist/ert/squad/remove_innate_effects(mob/living/mob_override)
+	REMOVE_TRAIT(owner, TRAIT_DISK_VERIFIER, SQUAD_TRAIT)
 
 /datum/antagonist/ert/security // kinda handled by the base template but here for completion
 
@@ -71,9 +71,9 @@
 /datum/antagonist/ert/commander/red
 	outfit = /datum/outfit/ert/commander/alert
 
-/datum/antagonist/ert/deathsquad
-	name = "Deathsquad Trooper"
-	outfit = /datum/outfit/death_commando
+/datum/antagonist/ert/squad
+	name = "squad Trooper"
+	outfit = /datum/outfit/_commando
 	role = "Trooper"
 
 /datum/antagonist/ert/medic/inquisitor
@@ -116,9 +116,9 @@
 	role = "Heavy Duty Janitor"
 	outfit = /datum/outfit/ert/janitor/heavy
 
-/datum/antagonist/ert/deathsquad/leader
-	name = "Deathsquad Officer"
-	outfit = /datum/outfit/death_commando
+/datum/antagonist/ert/squad/leader
+	name = "squad Officer"
+	outfit = /datum/outfit/_commando
 	role = "Officer"
 
 /datum/antagonist/ert/amber
@@ -196,7 +196,7 @@
 	. = ..()
 	to_chat(owner,"You also have a combat knife inside your boots.")
 
-/datum/antagonist/ert/deathsquad/greet()
+/datum/antagonist/ert/squad/greet()
 	if(!ert_team)
 		return
 

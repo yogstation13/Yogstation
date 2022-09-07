@@ -25,7 +25,7 @@
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
 
-	if(NOBLOOD in dna.species.species_traits || bleedsuppress || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+	if(NOBLOOD in dna.species.species_traits || bleedsuppress || (HAS_TRAIT(src, TRAIT_FAKE)))
 		return
 
 	if(mind && IS_BLOODSUCKER(src)) // Prevents Bloodsuckers from naturally regenerating Blood - Even while on masquerade
@@ -76,8 +76,8 @@
 					Unconscious(rand(20,60))
 					to_chat(src, span_warning("You feel extremely [word]."))
 			if(BLOOD_DEAD) // This little bit of code here is pretty much the only reason why BLOOD_DEAD exists at all
-				if(!HAS_TRAIT(src, TRAIT_NODEATH))
-					death()
+				if(!HAS_TRAIT(src, TRAIT_NO))
+					()
 
 		var/temp_bleed = 0
 		//Bleeding out

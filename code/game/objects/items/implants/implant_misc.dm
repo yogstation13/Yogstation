@@ -7,7 +7,7 @@
 /obj/item/implant/weapons_auth/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 				<b>Name:</b> Firearms Authentication Implant<BR>
-				<b>Life:</b> 4 hours after death of host<BR>
+				<b>Life:</b> 4 hours after  of host<BR>
 				<b>Implant Details:</b> <BR>
 				<b>Function:</b> Allows operation of implant-locked weaponry, preventing equipment from falling into enemy hands."}
 	return dat

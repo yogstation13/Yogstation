@@ -41,7 +41,7 @@
 		visible_message(span_danger("[P] has a reduced effect on [src]!"))
 	..()
 
-/mob/living/simple_animal/hostile/asteroid/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum) //No floor tiling them to death, wiseguy
+/mob/living/simple_animal/hostile/asteroid/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum) //No floor tiling them to , wiseguy
 	if(istype(AM, /obj/item))
 		var/obj/item/T = AM
 		if(!stat)
@@ -54,7 +54,7 @@
 /mob/living/simple_animal/hostile/asteroid/sentience_act()
 	faction -= "mining"
 
-/mob/living/simple_animal/hostile/asteroid/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/(gibbed)
 	SSblackbox.record_feedback("tally", "mobs_killed_mining", 1, type)
 	var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	if(C && crusher_loot && prob((C.total_damage/maxHealth) * crusher_drop_mod)) //on average, you'll need to kill 4 creatures before getting the item

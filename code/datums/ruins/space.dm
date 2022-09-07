@@ -155,7 +155,7 @@
 	id = "turreted-outpost"
 	suffix = "turretedoutpost.dmm"
 	name = "Unnamed Turreted Outpost"
-	description = "We'd ask them to stop blaring that ruskiepop music, but none of us are brave enough to go near those death turrets they have."
+	description = "We'd ask them to stop blaring that ruskiepop music, but none of us are brave enough to go near those  turrets they have."
 
 /datum/map_template/ruin/space/oldshuttle
 	id = "spaceman-origins"

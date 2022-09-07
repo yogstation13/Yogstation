@@ -31,10 +31,10 @@
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'."
 	layer = MOB_LAYER
 
-/obj/structure/sign/warning/deathsposal
+/obj/structure/sign/warning/sposal
 	name = "\improper DISPOSAL: LEADS TO SPACE"
 	desc = "A warning sign which reads 'DISPOSAL: LEADS TO SPACE'."
-	icon_state = "deathsposal"
+	icon_state = "sposal"
 
 /obj/structure/sign/warning/pods
 	name = "\improper ESCAPE PODS"

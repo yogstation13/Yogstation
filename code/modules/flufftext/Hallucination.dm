@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/self_delusion = 2,
 	/datum/hallucination/delusion = 2,
 	/datum/hallucination/shock = 1,
-	/datum/hallucination/death = 1,
+	/datum/hallucination/ = 1,
 	/datum/hallucination/oh_yeah = 1
 	))
 
@@ -888,7 +888,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			else
 				SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_OUTBREAK5])
 		if("ratvar")
-			target.playsound_local(target, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, FALSE, pressure_affected = FALSE)
+			target.playsound_local(target, 'sound/machines/clockcult/ark_rattle.ogg', 50, FALSE, pressure_affected = FALSE)
 			target.playsound_local(target, 'sound/effects/clockcult_gateway_disrupted.ogg', 50, FALSE, pressure_affected = FALSE)
 			sleep(2.7 SECONDS)
 			target.playsound_local(target, 'sound/effects/explosion_distant.ogg', 50, FALSE, pressure_affected = FALSE)
@@ -1149,9 +1149,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(AM == target)
 		new /datum/hallucination/shock(target)
 
-/datum/hallucination/death
+/datum/hallucination/
 
-/datum/hallucination/death/New(mob/living/carbon/C, forced = TRUE)
+/datum/hallucination//New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
 	..()
 	target.set_screwyhud(SCREWYHUD_DEAD)

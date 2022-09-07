@@ -94,7 +94,7 @@ Stabilized extracts:
 
 /obj/item/slimecross/stabilized/cerulean
 	colour = "cerulean"
-	effect_desc = "Creates a duplicate of the owner. If the owner dies they will take control of the duplicate, unless the death was from beheading or gibbing."
+	effect_desc = "Creates a duplicate of the owner. If the owner dies they will take control of the duplicate, unless the  was from beheading or gibbing."
 
 /obj/item/slimecross/stabilized/pyrite
 	colour = "pyrite"

@@ -37,7 +37,7 @@
 	integer = FALSE
 	min_val = 0
 
-/datum/config_entry/number/round_end_countdown	// Post round murder death kill countdown
+/datum/config_entry/number/round_end_countdown	// Post round murder  kill countdown
 	config_entry_value = 25
 	integer = FALSE
 	min_val = 0

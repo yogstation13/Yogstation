@@ -28,7 +28,7 @@
 	desc = "A heavy duty blast door that only opens for dire emergencies."
 	special = TRUE
 	
-/obj/machinery/door/poddoor/deathsquad
+/obj/machinery/door/poddoor/squad
 	name = "ERT Mech Bay door"
 	desc = "A heavy duty blast door that only opens for extreme emergencies."
 	special = TRUE

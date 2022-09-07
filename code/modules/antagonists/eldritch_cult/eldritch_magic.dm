@@ -511,9 +511,9 @@
 	for(var/mob/living/carbon/target in view(7,user))
 		if(target.stat == DEAD || !target.on_fire)
 			continue
-		//This is essentially a death mark, use this to finish your opponent quicker.
+		//This is essentially a  mark, use this to finish your opponent quicker.
 		if(target.InCritical())
-			target.death()
+			target.()
 		target.adjustFireLoss(20)
 		new /obj/effect/temp_visual/eldritch_smoke(target.drop_location())
 		human_user.ExtinguishMob()

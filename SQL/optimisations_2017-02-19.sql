@@ -5,7 +5,7 @@ Backup your database before starting; Breaking errors may occur when old data is
 i.e. A field that is null or empty due to rows existing before the column was added, data corruption or incorrect inputs will prevent altering the column to be NOT NULL.
 To account where this is likely to occur, these queries check if fields have valid data and if not will replace invalid data with 0.
 Some fields may be out of range for new column lengths, this will also cause a breaking error.
-For instance `death`.`bruteloss` is now SMALLINT and won't accept any values over 65535.
+For instance ``.`bruteloss` is now SMALLINT and won't accept any values over 65535.
 Data in this table can thus be truncated using a query such as:
 UPDATE `[database]`.`[table]` SET `[column]` = LEAST(`[column]`, [max column size])
 To truncate a text field you would have to use SUBSTRING(), however I don't suggest you truncate any text fields.
@@ -87,12 +87,12 @@ COMMIT;
 
 START TRANSACTION;
 SET SQL_SAFE_UPDATES = 0;
-UPDATE `death`
+UPDATE ``
  SET `bruteloss` = LEAST(`bruteloss`, 65535)
 , `brainloss` = LEAST(`brainloss`, 65535)
 , `fireloss` = LEAST(`fireloss`, 65535)
 , `oxyloss` = LEAST(`oxyloss`, 65535);
-ALTER TABLE `death`
+ALTER TABLE ``
  CHANGE COLUMN `pod` `pod` VARCHAR(50) NOT NULL
 , CHANGE COLUMN `coord` `coord` VARCHAR(32) NOT NULL
 , CHANGE COLUMN `mapname` `mapname` VARCHAR(32) NOT NULL
@@ -109,11 +109,11 @@ ALTER TABLE `death`
 , CHANGE COLUMN `oxyloss` `oxyloss` SMALLINT UNSIGNED NOT NULL
 , ADD COLUMN `server_ip` INT UNSIGNED NOT NULL AFTER `server`
 , ADD COLUMN `server_port` SMALLINT UNSIGNED NOT NULL AFTER `server_ip`;
-UPDATE `death`
+UPDATE ``
  SET `server_ip` = INET_ATON(SUBSTRING_INDEX(IF(`server` = '', '0', IF(SUBSTRING_INDEX(`server`, ':', 1) LIKE '%_._%', `server`, '0')), ':', 1))
 , `server_port` = IF(`server` LIKE '%:_%', CAST(SUBSTRING_INDEX(`server`, ':', -1) AS UNSIGNED), '0');
 SET SQL_SAFE_UPDATES = 1;
-ALTER TABLE `death`
+ALTER TABLE ``
  DROP COLUMN `server`;
 COMMIT;
 

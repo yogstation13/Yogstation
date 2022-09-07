@@ -2390,13 +2390,13 @@
 	name = "Firewatch"
 	icon_state = "firewatch"
 
-/datum/sprite_accessory/moth_wings/deathhead
-	name = "Deathshead"
-	icon_state = "deathhead"
+/datum/sprite_accessory/moth_wings/head
+	name = "shead"
+	icon_state = "head"
 
-/datum/sprite_accessory/moth_wingsopen/deathhead
-	name = "Deathshead"
-	icon_state = "deathhead"
+/datum/sprite_accessory/moth_wingsopen/head
+	name = "shead"
+	icon_state = "head"
 
 /datum/sprite_accessory/moth_wings/poison
 	name = "Poison"

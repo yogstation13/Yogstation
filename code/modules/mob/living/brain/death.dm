@@ -1,4 +1,4 @@
-/mob/living/brain/death(gibbed)
+/mob/living/brain/(gibbed)
 	if(stat == DEAD)
 		return
 	stat = DEAD

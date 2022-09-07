@@ -211,7 +211,7 @@
 		if(blood_percent <= 80)
 			blood_warning = " Patient has low blood levels. Seek a large meal, or iron supplements."
 		if(blood_percent <= 60)
-			blood_warning = " Patient has DANGEROUSLY low blood levels. Seek a blood transfusion, iron supplements, or saline glucose immedietly. Ignoring treatment may lead to death!"
+			blood_warning = " Patient has DANGEROUSLY low blood levels. Seek a blood transfusion, iron supplements, or saline glucose immedietly. Ignoring treatment may lead to !"
 		blood_status = "Patient blood levels are currently reading [blood_percent]%. Patient has [ blood_type] type blood. [blood_warning]"
 
 	var/rad_sickness_value = altPatient.radiation
@@ -255,7 +255,7 @@
 	if (altPatient.hallucinating())
 		hallucination_status = "Subject appears to be hallucinating. Suggested treatments: bedrest, mannitol or psicodine."
 
-	if(altPatient.stat == DEAD || HAS_TRAIT(altPatient, TRAIT_FAKEDEATH) || ((brute_loss+fire_loss+tox_loss+oxy_loss+clone_loss) >= 200))  //Patient status checks.
+	if(altPatient.stat == DEAD || HAS_TRAIT(altPatient, TRAIT_FAKE) || ((brute_loss+fire_loss+tox_loss+oxy_loss+clone_loss) >= 200))  //Patient status checks.
 		patient_status = "Dead."
 	if((brute_loss+fire_loss+tox_loss+oxy_loss+clone_loss) >= 80)
 		patient_status = "Gravely Injured"

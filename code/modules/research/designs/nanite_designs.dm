@@ -397,11 +397,11 @@
 	program_type = /datum/nanite_program/paralyzing
 	category = list("Suppression Nanites")
 
-/datum/design/nanites/fake_death
-	name = "Death Simulation"
-	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
-	id = "fakedeath_nanites"
-	program_type = /datum/nanite_program/fake_death
+/datum/design/nanites/fake_
+	name = " Simulation"
+	desc = "The nanites induce a -like coma into the host, able to fool most medical scans."
+	id = "fake_nanites"
+	program_type = /datum/nanite_program/fake_
 	category = list("Suppression Nanites")
 
 /datum/design/nanites/pacifying
@@ -469,11 +469,11 @@
 	program_type = /datum/nanite_program/sensor/crit
 	category = list("Sensor Nanites")
 
-/datum/design/nanites/sensor_death
-	name = "Death Sensor"
+/datum/design/nanites/sensor_
+	name = " Sensor"
 	desc = "The nanites receive a signal when they detect the host is dead."
-	id = "sensor_death_nanites"
-	program_type = /datum/nanite_program/sensor/death
+	id = "sensor__nanites"
+	program_type = /datum/nanite_program/sensor/
 	category = list("Sensor Nanites")
 
 /datum/design/nanites/sensor_voice

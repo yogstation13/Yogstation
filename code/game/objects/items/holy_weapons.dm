@@ -840,7 +840,7 @@
 		H.remove_hud_from(user)
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
-	desc = "Even in death, i still serve"
+	desc = "Even in , i still serve"
 	icon = 'icons/obj/clothing/neck.dmi'
 	slot_flags = ITEM_SLOT_NECK
 	icon_state = "servoskull"

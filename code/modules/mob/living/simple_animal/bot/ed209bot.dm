@@ -67,9 +67,9 @@
 			bot_core.req_access = list(ACCESS_MAINT_TUNNELS, ACCESS_THEATRE)
 			arrest_type = 1
 			if((lasercolor == "b") && (name == "\improper ED-209 Security Robot"))//Picks a name if there isn't already a custome one
-				name = pick("BLUE BALLER","SANIC","BLUE KILLDEATH MURDERBOT")
+				name = pick("BLUE BALLER","SANIC","BLUE KILL MURDERBOT")
 			if((lasercolor == "r") && (name == "\improper ED-209 Security Robot"))
-				name = pick("RED RAMPAGE","RED ROVER","RED KILLDEATH MURDERBOT")
+				name = pick("RED RAMPAGE","RED ROVER","RED KILL MURDERBOT")
 
 	//SECHUD
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]

@@ -122,7 +122,7 @@
 
 /obj/item/gem/amber
 	name = "\improper Draconic Amber"
-	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after death. Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
+	desc = "A brittle, strange mineral that forms when an ash drake's blood hardens after . Cherished by gemcutters for its faint glow and unique, soft warmth. Poacher tales whisper of the dragon's strength being bestowed to one that wears a necklace of this amber, though such rumors are fictitious."
 	icon = 'icons/obj/gems.dmi'
 	icon_state = "amber"
 	point_value = 1600

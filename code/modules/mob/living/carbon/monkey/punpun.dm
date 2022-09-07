@@ -39,7 +39,7 @@
 		memory_saved = TRUE
 	..()
 
-/mob/living/carbon/monkey/punpun/death(gibbed)
+/mob/living/carbon/monkey/punpun/(gibbed)
 	if(!memory_saved)
 		Write_Memory(TRUE, gibbed)
 	..()

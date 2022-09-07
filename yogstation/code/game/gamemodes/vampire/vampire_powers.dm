@@ -293,7 +293,7 @@
 
 /obj/effect/proc_holder/spell/self/revive
 	name = "Revive"
-	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
+	gain_desc = "You have gained the ability to revive after ... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
 	desc = "Revives you, provided you are not in the chapel!"
 	blood_used = 0
 	stat_allowed = TRUE
@@ -324,7 +324,7 @@
 
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
 	user.revive(full_heal = TRUE)
-	user.visible_message(span_warning("[user] reanimates from death!"), span_notice("We get back up."))
+	user.visible_message(span_warning("[user] reanimates from !"), span_notice("We get back up."))
 	var/list/missing = user.get_missing_limbs()
 	if(missing.len)
 		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
@@ -535,5 +535,5 @@
 		bat.controller.forceMove(bat.loc)
 		bat.controller.status_flags &= ~GODMODE
 		bat.mind.transfer_to(bat.controller)
-		bat.controller = null //just so we don't accidently trigger the death() thing
+		bat.controller = null //just so we don't accidently trigger the () thing
 		qdel(bat)

@@ -56,8 +56,8 @@
 	ranged_cooldown_time = 20
 	projectilesound = 'sound/weapons/taser2.ogg'
 	loot = list(/obj/effect/decal/cleanable/robot_debris, /obj/item/stack/ore/bluespace_crystal)
-	del_on_death = 1
-	deathmessage = "explodes with a sharp pop!"
+	del_on_ = 1
+	message = "explodes with a sharp pop!"
 	light_color = LIGHT_COLOR_CYAN
 	hud_type = /datum/hud/living/swarmer
 	speech_span = SPAN_ROBOT
@@ -99,7 +99,7 @@
 	if(health > 1)
 		adjustHealth(health-1)
 	else
-		death()
+		()
 
 /mob/living/simple_animal/hostile/swarmer/CanAllowThrough(atom/movable/O)
 	. = ..()

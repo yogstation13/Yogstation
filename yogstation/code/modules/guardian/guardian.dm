@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 				for (var/obj/item/W in summoner.current)
 					if (!summoner.current.dropItemToGround(W))
 						qdel(W)
-				death(TRUE)
+				(TRUE)
 				summoner.current.dust()
 	else
 		if (transforming)
@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		else
 			to_chat(src, span_userdanger("Your summoner has died!"))
 			visible_message(span_bolddanger("[src] dies along with its user!"))
-			death(TRUE)
+			(TRUE)
 	snapback()
 
 /mob/living/simple_animal/hostile/guardian/proc/OnMoved()
@@ -407,11 +407,11 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		if (stats.ability)
 			stats.ability.AfterAttack(target)
 
-/mob/living/simple_animal/hostile/guardian/death()
+/mob/living/simple_animal/hostile/guardian/()
 	. = ..()
 	if (summoner?.current && summoner.current.stat != DEAD)
 		to_chat(summoner, span_bolddanger("Your [name] died somehow!"))
-		summoner.current.death()
+		summoner.current.()
 	ghostize(FALSE)
 	nullspace() // move ourself into nullspace for the time being
 
@@ -470,7 +470,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 			. += span_holoparasite("<b>MINOR ABILITY:</b> [M.name] - [M.desc]")
 
 /mob/living/simple_animal/hostile/guardian/gib()
-	death()
+	()
 	if (summoner?.current)
 		to_chat(summoner.current, "<span class='danger'><B>Your [src] was blown up!</span></B>")
 		summoner.current.gib()

@@ -350,11 +350,11 @@
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	shoes = /obj/item/clothing/shoes/sneakers/black
 
-/datum/outfit/death_commando
-	name = "Death Commando"
+/datum/outfit/_commando
+	name = " Commando"
 
 	uniform = /obj/item/clothing/under/rank/centcom_commander
-	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad
+	suit = /obj/item/clothing/suit/space/hardsuit/squad
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	mask = /obj/item/clothing/mask/gas/sechailer/swat/encrypted
@@ -376,7 +376,7 @@
 		/obj/item/flashlight=1,\
 		/obj/item/grenade/plastic/x4=1)
 
-/datum/outfit/death_commando/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/_commando/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
@@ -387,14 +387,14 @@
 	var/obj/item/card/id/W = H.wear_id
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()//They get full station access.
-	W.access += get_centcom_access("Death Commando")//Let's add their alloted CentCom access.
-	W.assignment = "Death Commando"
-	W.originalassignment = "Death Commando"
-	W.registered_name = splittext(H.tag, "_")[2] // 412's ID Card (Death Commando); deathsquad are so edgy they are just numbers
+	W.access += get_centcom_access(" Commando")//Let's add their alloted CentCom access.
+	W.assignment = " Commando"
+	W.originalassignment = " Commando"
+	W.registered_name = splittext(H.tag, "_")[2] // 412's ID Card ( Commando); squad are so edgy they are just numbers
 	W.update_label(W.registered_name, W.assignment)
 
-/datum/outfit/death_commando/officer
-	name = "Death Commando Officer"
+/datum/outfit/_commando/officer
+	name = " Commando Officer"
 	head = /obj/item/clothing/head/helmet/space/beret
 
 

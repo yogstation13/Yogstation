@@ -149,7 +149,7 @@
 	if(!picked)
 		pickVisualAppearence()
 
-/mob/living/simple_animal/drone/death(gibbed)
+/mob/living/simple_animal/drone/(gibbed)
 	..(gibbed)
 	if(internal_storage)
 		dropItemToGround(internal_storage)

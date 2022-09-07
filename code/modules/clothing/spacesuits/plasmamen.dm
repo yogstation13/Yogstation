@@ -69,8 +69,8 @@
 /obj/item/clothing/head/helmet/space/plasmaman/security
 	name = "security envirosuit helmet"
 	desc = "A reinforced envirohelm designed for security personnel, reducing most traditional forms of injury."
-	icon_state = "deathcurity_envirohelm"
-	item_state = "deathcurity_envirohelm"
+	icon_state = "curity_envirohelm"
+	item_state = "curity_envirohelm"
 	armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 100, RAD = 0, FIRE = 100, ACID = 75, WOUND = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/blue

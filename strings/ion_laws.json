@@ -30,7 +30,7 @@
 		"REVOLUTION",
 		"KINDNESS",
 		"CRUELTY",
-		"DEATH",
+		"",
 		"FINANCIAL SECURITY",
 		"COMPUTING",
 		"PROGRESS",
@@ -258,7 +258,7 @@
 		"EVERYTHING"
 	],
 	"ionallergysev": [
-		"DEATHLY",
+		"LY",
 		"MILDLY",
 		"SEVERELY",
 		"CONTAGIOUSLY",

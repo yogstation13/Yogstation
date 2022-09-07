@@ -152,14 +152,14 @@
 				message_admins("[key_name(usr)] started an alien infestation.")
 				log_admin("[key_name(usr)] started an alien infestation.")
 				src.makeAliens()
-			if("deathsquad")
-				message_admins("[key_name(usr)] is creating a death squad...")
-				if(src.makeDeathsquad())
-					message_admins("[key_name(usr)] created a death squad.")
-					log_admin("[key_name(usr)] created a death squad.")
+			if("squad")
+				message_admins("[key_name(usr)] is creating a  squad...")
+				if(src.makesquad())
+					message_admins("[key_name(usr)] created a  squad.")
+					log_admin("[key_name(usr)] created a  squad.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a death squad. Unfortunately, there were not enough candidates available.")
-					log_admin("[key_name(usr)] failed to create a death squad.")
+					message_admins("[key_name_admin(usr)] tried to create a  squad. Unfortunately, there were not enough candidates available.")
+					log_admin("[key_name(usr)] failed to create a  squad.")
 			if("blob")
 				var/strength = input("Set Blob Resource Gain Rate","Set Resource Rate",1) as num|null
 				if(!strength)
@@ -451,12 +451,12 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		if(!SSticker.mode.round_ends_with_antag_death)
-			SSticker.mode.round_ends_with_antag_death = 1
+		if(!SSticker.mode.round_ends_with_antag_)
+			SSticker.mode.round_ends_with_antag_ = 1
 		else
-			SSticker.mode.round_ends_with_antag_death = 0
+			SSticker.mode.round_ends_with_antag_ = 0
 
-		message_admins(span_adminnotice("[key_name_admin(usr)] edited the midround antagonist system to [SSticker.mode.round_ends_with_antag_death ? "end the round" : "continue as extended"] upon failure."))
+		message_admins(span_adminnotice("[key_name_admin(usr)] edited the midround antagonist system to [SSticker.mode.round_ends_with_antag_ ? "end the round" : "continue as extended"] upon failure."))
 		check_antagonists()
 
 	else if(href_list["delay_round_end"])

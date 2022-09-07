@@ -16,9 +16,9 @@
 		return
 	if(stat != DEAD)
 		if(health<= -maxHealth || !getorgan(/obj/item/organ/brain))
-			death()
+			()
 			return
-		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || health <= crit_threshold)
+		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_COMA)) || health <= crit_threshold)
 			if(stat == CONSCIOUS)
 				stat = UNCONSCIOUS
 				blind_eyes(1)

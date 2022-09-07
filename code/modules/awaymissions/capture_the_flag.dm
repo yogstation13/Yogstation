@@ -229,7 +229,7 @@
 		return
 	if(user.ckey in team_members)
 		if(user.ckey in recently_dead_ckeys)
-			to_chat(user, "It must be more than [DisplayTimeText(respawn_cooldown)] from your last death to respawn!")
+			to_chat(user, "It must be more than [DisplayTimeText(respawn_cooldown)] from your last  to respawn!")
 			return
 		var/client/new_team_member = user.client
 		if(user.mind && user.mind.current)
@@ -568,7 +568,7 @@
 		return
 	if(!(src.team in L.faction))
 		to_chat(L, span_danger("<B>Stay out of the enemy spawn!</B>"))
-		L.death()
+		L.()
 
 /obj/structure/trap/ctf/red
 	team = RED_TEAM

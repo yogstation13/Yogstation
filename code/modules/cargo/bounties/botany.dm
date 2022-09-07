@@ -44,9 +44,9 @@
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/koibeans)
 	multiplier = 2
 
-/datum/bounty/item/botany/berries_death
-	name = "Death Berries"
-	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/berries/death)
+/datum/bounty/item/botany/berries_
+	name = " Berries"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/berries/)
 	multiplier = 2
 	bonus_desc = "He insists that \"he knows what he's doing\"."
 	foodtype = "sorbet"
@@ -60,7 +60,7 @@
 /datum/bounty/item/botany/cannabis
 	name = "Cannabis Leaves"
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/cannabis)
-	exclude_types = list(/obj/item/reagent_containers/food/snacks/grown/cannabis/white, /obj/item/reagent_containers/food/snacks/grown/cannabis/death, /obj/item/reagent_containers/food/snacks/grown/cannabis/ultimate)
+	exclude_types = list(/obj/item/reagent_containers/food/snacks/grown/cannabis/white, /obj/item/reagent_containers/food/snacks/grown/cannabis/, /obj/item/reagent_containers/food/snacks/grown/cannabis/ultimate)
 	multiplier = 4 //hush money
 	bonus_desc = "Do not mention this shipment to security."
 	foodtype = "batch of \"muffins\""
@@ -72,9 +72,9 @@
 	bonus_desc = "Do not mention this shipment to security."
 	foodtype = "\"meal\""
 
-/datum/bounty/item/botany/cannabis_death
-	name = "Deathweed Leaves"
-	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/cannabis/death)
+/datum/bounty/item/botany/cannabis_
+	name = "weed Leaves"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/cannabis/)
 	multiplier = 6
 	bonus_desc = "Do not mention this shipment to security."
 	foodtype = "\"meal\""
@@ -177,9 +177,9 @@
 	multiplier = 8
 	foodtype = "stroganoff"
 
-/datum/bounty/item/botany/nettles_death
-	name = "Death Nettles"
-	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/nettle/death) //multiplier removed because botanists will have this by the 8 minute mark most often.
+/datum/bounty/item/botany/nettles_
+	name = " Nettles"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/nettle/) //multiplier removed because botanists will have this by the 8 minute mark most often.
 	bonus_desc = "Wear protection when handling them."
 	foodtype = "cheese"
 

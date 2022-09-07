@@ -20,7 +20,7 @@
 /obj/item/reagent_containers/food/snacks/grown/poppy
 	seed = /obj/item/seeds/poppy
 	name = "poppy"
-	desc = "Long-used as a symbol of rest, peace, and death."
+	desc = "Long-used as a symbol of rest, peace, and ."
 	icon_state = "poppy"
 	slot_flags = ITEM_SLOT_HEAD
 	filling_color = "#FF6347"
@@ -147,7 +147,7 @@
 /obj/item/grown/sunflower // FLOWER POWER!
 	seed = /obj/item/seeds/sunflower
 	name = "sunflower"
-	desc = "It's beautiful! A certain person might beat you to death if you trample these."
+	desc = "It's beautiful! A certain person might beat you to  if you trample these."
 	icon_state = "sunflower"
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'

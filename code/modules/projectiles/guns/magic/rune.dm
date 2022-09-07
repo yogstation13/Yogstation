@@ -81,7 +81,7 @@
 	recharge_rate = 1.11
 
 	//Please update the var below with more projectiles if they get added
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_tentacle, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_death, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
+	var/allowed_projectile_types = list(/obj/item/projectile/magic/runic_honk, /obj/item/projectile/magic/runic_fire, /obj/item/projectile/magic/runic_tentacle, /obj/item/projectile/magic/runic_bomb, /obj/item/projectile/magic/runic_heal, /obj/item/projectile/temp/runic_icycle, /obj/item/projectile/magic/runic_toxin, /obj/item/projectile/magic/runic_, /obj/item/projectile/magic/runic_mutation, /obj/item/projectile/magic/runic_resizement)
 
 //shamelessly stolen from chaos staff honk
 /obj/item/gun/magic/rune/chaos_rune/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
@@ -115,13 +115,13 @@
 
 //I am retard
 
-/obj/item/gun/magic/rune/death_rune
-	name = "Death To The Dead Rune"
+/obj/item/gun/magic/rune/_rune
+	name = " To The Dead Rune"
 	desc = "This rune has the ability to put to grave some things that shouldn't rise from their grave. May it be useful for you."
 	fire_sound = "sound/magic/staff_animation.ogg"
-	item_state = "death-rune"
-	icon_state = "death-rune"
-	ammo_type = /obj/item/ammo_casing/magic/runic_death
+	item_state = "-rune"
+	icon_state = "-rune"
+	ammo_type = /obj/item/ammo_casing/magic/runic_
 	max_charges = 1
 	charges = 1
 	recharge_rate = 3

@@ -10,7 +10,7 @@
 	var/mob_name = ""
 	var/prompt_name = null
 	var/mob_gender = null
-	var/death = TRUE //Kill the mob
+	var/ = TRUE //Kill the mob
 	var/roundstart = TRUE //fires on initialize
 	var/instant = FALSE	//fires on New
 	var/short_desc = "A coder forgot to set this!"
@@ -91,8 +91,8 @@
 		M.faction = list(faction)
 	if(disease)
 		M.ForceContractDisease(new disease)
-	if(death)
-		M.death(1) //Kills the new mob
+	if()
+		M.(1) //Kills the new mob
 
 	M.adjustOxyLoss(oxy_damage)
 	M.adjustBruteLoss(brute_damage)
@@ -248,7 +248,7 @@
 /obj/effect/mob_spawn/human/alive
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE //you could use these for alive fake humans on roundstart but this is more common scenario
 
 /obj/effect/mob_spawn/human/corpse/delayed
@@ -265,7 +265,7 @@
 	M.name = src.name
 	M.real_name = src.name
 	M.aiPDA.toff = TRUE //turns the AI's PDA messenger off, stopping it showing up on player PDAs
-	M.death() //call the AI's death proc
+	M.() //call the AI's  proc
 	qdel(src)
 
 /obj/effect/mob_spawn/slime
@@ -280,13 +280,13 @@
 /obj/effect/mob_spawn/facehugger/create(ckey) //Creates a squashed facehugger
 	var/obj/item/clothing/mask/facehugger/O = new(src.loc) //variable O is a new facehugger at the location of the landmark
 	O.name = src.name
-	O.Die() //call the facehugger's death proc
+	O.Die() //call the facehugger's  proc
 	qdel(src)
 
 /obj/effect/mob_spawn/mouse
 	name = "sleeper"
 	mob_type = 	/mob/living/simple_animal/mouse
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
@@ -294,7 +294,7 @@
 /obj/effect/mob_spawn/cow
 	name = "sleeper"
 	mob_type = 	/mob/living/simple_animal/cow
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	mob_gender = FEMALE
 	icon = 'icons/obj/machines/sleeper.dmi'
@@ -335,7 +335,7 @@
 
 
 /obj/effect/mob_spawn/human/doctor/alive
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	random = TRUE
 	name = "sleeper"
@@ -390,7 +390,7 @@
 	outfit = /datum/outfit/spacebartender
 
 /obj/effect/mob_spawn/human/bartender/alive
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	random = TRUE
 	name = "bartender sleeper"
@@ -431,7 +431,7 @@
 	outfit = /datum/outfit/beachbum
 
 /obj/effect/mob_spawn/human/beach/alive
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	random = TRUE
 	mob_name = "Beach Bum"
@@ -465,7 +465,7 @@
 	H.dna.add_mutation(STONER)
 
 /obj/effect/mob_spawn/human/fishing/alive
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	random = TRUE
 	mob_name = "Fisherman"
@@ -548,7 +548,7 @@
 
 
 /obj/effect/mob_spawn/human/commander/alive
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	mob_name = "Nanotrasen Commander"
 	name = "sleeper"
@@ -557,7 +557,7 @@
 	short_desc = "You are a Nanotrasen Commander!"
 
 /obj/effect/mob_spawn/human/nanotrasensoldier/alive
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	mob_name = "Private Security Officer"
 	name = "sleeper"
@@ -576,7 +576,7 @@
 	mob_gender = NEUTER
 
 /obj/effect/mob_spawn/human/skeleton/alive
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remains"
@@ -591,7 +591,7 @@
 	assignedrole = "Zombie"
 
 /obj/effect/mob_spawn/human/zombie/alive
-	death = FALSE
+	 = FALSE
 	roundstart = FALSE
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remains"

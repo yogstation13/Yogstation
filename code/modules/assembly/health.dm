@@ -11,7 +11,7 @@
 
 /obj/item/assembly/health/examine(mob/user)
 	. = ..()
-	. += "Use it in hand to turn it off/on and Alt-click to swap between \"detect death\" mode and \"detect critical state\" mode."
+	. += "Use it in hand to turn it off/on and Alt-click to swap between \"detect \" mode and \"detect critical state\" mode."
 	. += "[src.scanning ? "The sensor is on and you can see [health_scan] displayed on the screen" : "The sensor is off"]."
 
 /obj/item/assembly/health/activate()
@@ -33,7 +33,7 @@
 /obj/item/assembly/health/AltClick(mob/living/user)
 	if(alarm_health == HEALTH_THRESHOLD_CRIT)
 		alarm_health = HEALTH_THRESHOLD_DEAD
-		to_chat(user, span_notice("You toggle [src] to \"detect death\" mode."))
+		to_chat(user, span_notice("You toggle [src] to \"detect \" mode."))
 	else
 		alarm_health = HEALTH_THRESHOLD_CRIT
 		to_chat(user, span_notice("You toggle [src] to \"detect critical state\" mode."))

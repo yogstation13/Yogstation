@@ -421,7 +421,7 @@
 
 /obj/structure/destructible/cult/bloodstone/Destroy()
 	for(var/mob/M in range(7, loc))
-		M.playsound_local(M, 'sound/creatures/legion_death.ogg', 75, FALSE) //make it suitably loud
+		M.playsound_local(M, 'sound/creatures/legion_.ogg', 75, FALSE) //make it suitably loud
 	SSticker.mode.bloodstone_list.Remove(src)
 	SSshuttle.clearHostileEnvironment(src)
 	for(var/datum/mind/B in SSticker.mode.cult)

@@ -440,7 +440,7 @@
 	For this reason, total shift point production will be calculated and announced at shift end. High totals may result in bonus payments to members of the Engineering department. <p>\
 	<p>NT Science Directorate, Extradimensional Exploitation Research Group</p> \
 	<p><small>Device highly experimental. Not for sale. Do not operate near small children or vital NT assets. Do not tamper with machine. In case of existential dread, stop machine immediately. \
-	Please document any and all extradimensional incursions. In case of imminent death, please leave said documentation in plain sight for clean-up teams to recover.</small></p>"
+	Please document any and all extradimensional incursions. In case of imminent , please leave said documentation in plain sight for clean-up teams to recover.</small></p>"
 
 #undef kW
 #undef MW

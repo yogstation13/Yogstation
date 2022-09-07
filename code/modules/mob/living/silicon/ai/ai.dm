@@ -121,7 +121,7 @@
 	//We only check every X ticks
 	var/cameraMemoryTickCount = 0
 
-	//Did we get the death prompt?
+	//Did we get the  prompt?
 	var/is_dying = FALSE 
 	///Multiplier for amount of points gained when passively using CPU for science
 	var/research_point_booster = 1
@@ -1037,7 +1037,7 @@
 
 /mob/living/silicon/ai/revive(full_heal = 0, admin_revive = 0)
 	. = ..()
-	if(.) //successfully ressuscitated from death
+	if(.) //successfully ressuscitated from 
 		set_core_display_icon(display_icon_override)
 		set_eyeobj_visible(TRUE)
 

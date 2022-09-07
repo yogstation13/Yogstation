@@ -47,7 +47,7 @@
 /datum/spacevine_mutation/proc/on_grow(obj/structure/spacevine/holder)
 	return
 
-/datum/spacevine_mutation/proc/on_death(obj/structure/spacevine/holder)
+/datum/spacevine_mutation/proc/on_(obj/structure/spacevine/holder)
 	return
 
 /datum/spacevine_mutation/proc/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/I, expected_damage)
@@ -112,7 +112,7 @@
 		. = 1
 		QDEL_IN(holder, 5)
 
-/datum/spacevine_mutation/explosive/on_death(obj/structure/spacevine/holder, mob/hitter, obj/item/I)
+/datum/spacevine_mutation/explosive/on_(obj/structure/spacevine/holder, mob/hitter, obj/item/I)
 	explosion(holder.loc, 0, 0, severity, 0, 0)
 
 /datum/spacevine_mutation/fire_proof
@@ -299,7 +299,7 @@
 
 /obj/structure/spacevine/Destroy()
 	for(var/datum/spacevine_mutation/SM in mutations)
-		SM.on_death(src)
+		SM.on_(src)
 	if(master)
 		master.VineDestroyed(src)
 	mutations = list()

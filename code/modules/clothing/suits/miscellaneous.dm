@@ -66,8 +66,8 @@
 /obj/item/clothing/suit/cyborg_suit
 	name = "cyborg suit"
 	desc = "A suit for a cyborg costume."
-	icon_state = "death"
-	item_state = "death"
+	icon_state = ""
+	item_state = ""
 	flags_1 = CONDUCT_1
 	fire_resist = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT

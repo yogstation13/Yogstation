@@ -33,7 +33,7 @@
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	speak_emote = list("gnashes")
-	del_on_death = TRUE
+	del_on_ = TRUE
 	var/satiation = 0
 
 /mob/living/simple_animal/hostile/bloodsucker/giantbat
@@ -151,7 +151,7 @@
 			STOP_PROCESSING(SSprocessing, src)
 		return ..()
 
-/mob/living/simple_animal/hostile/bloodsucker/death()
+/mob/living/simple_animal/hostile/bloodsucker/()
 	. = ..()
 	if(bloodsucker && mind)
 		mind.transfer_to(bloodsucker)
@@ -251,7 +251,7 @@
 ///      Armor       ///
 ////////////////////////
 
-/mob/living/simple_animal/hostile/bloodsucker/possessedarmor/death()
+/mob/living/simple_animal/hostile/bloodsucker/possessedarmor/()
 	. = ..()
 	if(upgraded)
 		new /obj/structure/bloodsucker/possessedarmor/upgraded(src.loc)

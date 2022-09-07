@@ -513,8 +513,8 @@ GLOBAL_LIST_EMPTY(species_list)
 			continue
 
 		switch(message_type)
-			if(DEADCHAT_DEATHRATTLE)
-				if(prefs.toggles & DISABLE_DEATHRATTLE)
+			if(DEADCHAT_RATTLE)
+				if(prefs.toggles & DISABLE_RATTLE)
 					continue
 			if(DEADCHAT_ARRIVALRATTLE)
 				if(prefs.toggles & DISABLE_ARRIVALRATTLE)

@@ -16,7 +16,7 @@
 
 /mob/living/simple_animal/hostile/syndicate
 	name = "Syndicate Operative"
-	desc = "Death to Nanotrasen."
+	desc = " to Nanotrasen."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "syndicate"
 	icon_living = "syndicate"
@@ -45,7 +45,7 @@
 	faction = list(ROLE_SYNDICATE)
 	check_friendly_fire = 1
 	status_flags = CANPUSH
-	del_on_death = 1
+	del_on_ = 1
 	dodging = TRUE
 	rapid_melee = 2
 
@@ -315,8 +315,8 @@
 	speak_emote = list("states")
 	bubble_icon = "syndibot"
 	gold_core_spawnable = HOSTILE_SPAWN
-	del_on_death = 1
-	deathmessage = "is smashed into pieces!"
+	del_on_ = 1
+	message = "is smashed into pieces!"
 
 /mob/living/simple_animal/hostile/viscerator/Initialize()
 	. = ..()

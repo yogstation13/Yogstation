@@ -13,7 +13,7 @@
 /mob/living/silicon/robot/dust_animation()
 	new /obj/effect/temp_visual/dust_animation(loc, "dust-r")
 
-/mob/living/silicon/robot/death(gibbed)
+/mob/living/silicon/robot/(gibbed)
 	if(stat == DEAD)
 		return
 
@@ -38,4 +38,4 @@
 
 	unbuckle_all_mobs(TRUE)
 
-	SSblackbox.ReportDeath(src)
+	SSblackbox.Report(src)

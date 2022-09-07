@@ -16,7 +16,7 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/gorilla
 	exotic_bloodtype = "G"
 	liked_food = VEGETABLES | FRUIT | GRAIN // Gorillas are mainly vegetarians
-	deathsound = 'yogstation/sound/voice/gorilla/deathsound.ogg'
+	sound = 'yogstation/sound/voice/gorilla/sound.ogg'
 
 /datum/species/gorilla/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.grant_language(/datum/language/monkey)

@@ -98,7 +98,7 @@
 	to_chat(src, "<b>You are not dead, not alive, but somewhere in between. You are capable of limited interaction with both worlds.</b>")
 	to_chat(src, "<b>You are invincible and invisible to everyone but other ghosts. Most abilities will reveal you, rendering you vulnerable.</b>")
 	to_chat(src, "<b>To function, you are to drain the life essence from humans. This essence is a resource, as well as your health, and will power all of your abilities.</b>")
-	to_chat(src, "<b><i>You do not remember anything of your past lives, nor will you remember anything about this one after your death.</i></b>")
+	to_chat(src, "<b><i>You do not remember anything of your past lives, nor will you remember anything about this one after your .</i></b>")
 	to_chat(src, "<b>Be sure to read <a href=\"https://wiki.yogstation.net/wiki/Revenant\">the wiki page</a> to learn more.</b>")
 	if(!generated_objectives_and_spells)
 		generated_objectives_and_spells = TRUE
@@ -112,7 +112,7 @@
 	if(stasis)
 		return
 	if(revealed && essence <= 0)
-		death()
+		()
 	if(unreveal_time && world.time >= unreveal_time)
 		unreveal_time = 0
 		revealed = FALSE
@@ -214,15 +214,15 @@
 	if(updating_health)
 		update_health_hud()
 	if(!essence)
-		death()
+		()
 
 /mob/living/simple_animal/revenant/dust(just_ash, drop_items, force)
-	death()
+	()
 
 /mob/living/simple_animal/revenant/gib()
-	death()
+	()
 
-/mob/living/simple_animal/revenant/death()
+/mob/living/simple_animal/revenant/()
 	if(!revealed || stasis) //Revenants cannot die if they aren't revealed //or are already dead
 		return 0
 	stasis = TRUE
@@ -337,7 +337,7 @@
 			to_chat(src, span_revenminor("Lost [essence_amt]E[source ? " from [source]":""]."))
 	return 1
 
-/mob/living/simple_animal/revenant/proc/death_reset()
+/mob/living/simple_animal/revenant/proc/_reset()
 	revealed = FALSE
 	unreveal_time = 0
 	notransform = 0
@@ -439,7 +439,7 @@
 
 	revenant.essence = essence
 	revenant.essence_regen_cap = essence
-	revenant.death_reset()
+	revenant._reset()
 	revenant.key = key_of_revenant
 	revenant = null
 	qdel(src)

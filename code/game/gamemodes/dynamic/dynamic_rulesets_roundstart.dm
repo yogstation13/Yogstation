@@ -816,7 +816,7 @@
 		log_game("[key_name(M)] has been selected as a Shadowling")
 	return TRUE
 
-/datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_death()
+/datum/dynamic_ruleset/roundstart/shadowling/proc/check_shadow_()
 	return FALSE
 
 //Xoxeyos Here, I've added this Shadowling shit in, I have no idea what I'm doing, if there were mistakes made

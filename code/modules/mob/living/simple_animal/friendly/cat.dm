@@ -130,7 +130,7 @@
 		children += baby
 		return baby
 
-/mob/living/simple_animal/pet/cat/Runtime/death()
+/mob/living/simple_animal/pet/cat/Runtime/()
 	if(!memory_saved)
 		Write_Memory(TRUE)
 	..()
@@ -251,8 +251,8 @@
 	/obj/item/reagent_containers/food/snacks/meat/slab = 2)
 	response_harm = "takes a bite out of"
 	attacked_sound = 'sound/items/eatfood.ogg'
-	deathmessage = "loses its false life and collapses!"
-	deathsound = "bodyfall"
+	message = "loses its false life and collapses!"
+	sound = "bodyfall"
 
 /mob/living/simple_animal/pet/cat/cak/CheckParts(list/parts)
 	..()

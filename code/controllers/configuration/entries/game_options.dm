@@ -200,13 +200,13 @@
 	config_entry_value = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
 
 /datum/config_entry/string/alert_gamma
-	config_entry_value = "Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location. Violating orders is punishable by death."
+	config_entry_value = "Central Command has ordered the Gamma security level on the station. Security is to have weapons equipped at all times, and all civilians are to immediately seek their nearest head for transportation to a secure location. Violating orders is punishable by ."
 
 /datum/config_entry/string/alert_epsilon
 	config_entry_value = "Central Command has ordered the Epsilon security level on the station. Consider all contracts terminated."
 
 /datum/config_entry/string/alert_delta
-	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by . This is not a drill."
 
 /datum/config_entry/flag/revival_pod_plants
 
@@ -301,7 +301,7 @@
 
 /datum/config_entry/flag/ghost_interaction
 
-/datum/config_entry/flag/near_death_experience //If carbons can hear ghosts when unconscious and very close to death
+/datum/config_entry/flag/near__experience //If carbons can hear ghosts when unconscious and very close to 
 
 /datum/config_entry/flag/silent_ai
 /datum/config_entry/flag/silent_borg

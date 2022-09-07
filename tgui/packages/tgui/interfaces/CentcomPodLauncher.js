@@ -198,7 +198,7 @@ const STYLES = [
     title: 'Syndicate',
   },
   {
-    title: 'Deathsquad',
+    title: 'squad',
   },
   {
     title: 'Cultist',

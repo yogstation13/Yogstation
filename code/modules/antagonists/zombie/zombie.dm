@@ -211,7 +211,7 @@
 
 	if(H.mind)
 		H.mind.zombified = TRUE
-	H.death()
+	H.()
 	Z.zombify.Remove(H)
 	Z.zombified = TRUE
 	Z.uncuff.Grant(H)

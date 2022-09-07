@@ -41,7 +41,7 @@
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [user.real_name]")
 	//we change it to true only after we know they passed all the checks
 	. = TRUE
-	RegisterSignal(human_target,COMSIG_MOB_DEATH,.proc/remove_ghoul)
+	RegisterSignal(human_target,COMSIG_MOB_,.proc/remove_ghoul)
 	human_target.revive(full_heal = TRUE, admin_revive = TRUE)
 	human_target.setMaxHealth(25)
 	human_target.health = 25
@@ -56,7 +56,7 @@
 	var/mob/living/carbon/human/humie = source
 	spooky_scaries -= humie
 	humie.mind.remove_antag_datum(/datum/antagonist/heretic_monster)
-	UnregisterSignal(source, COMSIG_MOB_DEATH)
+	UnregisterSignal(source, COMSIG_MOB_)
 
 /datum/eldritch_knowledge/base_flesh/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()

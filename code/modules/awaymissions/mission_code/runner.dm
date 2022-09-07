@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 
 /obj/effect/portal/permanent/one_way/recall/pit_faller
 	name = "Runner Portal"
-	desc = "A game of eternal running, where one misstep means certain death."
+	desc = "A game of eternal running, where one misstep means certain ."
 	equipment = /datum/outfit/vr/runner
 	recall_equipment = /datum/outfit/vr
 	id = "vr runner"

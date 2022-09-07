@@ -158,7 +158,7 @@
 		var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in C.internal_organs
 		C.ghostize(0)
 		qdel(rip_u)
-		C.death()
+		C.()
 		
 /obj/singularity/energy_ball/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/golfclub))

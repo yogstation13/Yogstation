@@ -30,7 +30,7 @@
 	if(!node) //Just in case this particular Praetorian gets violated and kept by the RD as a replacement for Lamarr.
 		to_chat(user, span_danger("Without the hivemind, you would be unfit to rule as queen!"))
 		return 0
-	if(node.recent_queen_death)
+	if(node.recent_queen_)
 		to_chat(user, span_danger("You are still too burdened with guilt to evolve into a queen."))
 		return 0
 	if(!get_alien_type(/mob/living/carbon/alien/humanoid/royal/queen))

@@ -106,32 +106,32 @@
 	opacity = TRUE
 
 
-/obj/mecha/working/ripley/deathripley
-	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
-	name = "\improper DEATH-RIPLEY"
-	icon_state = "deathripley"
+/obj/mecha/working/ripley/ripley
+	desc = "OH SHIT IT'S THE SQUAD WE'RE ALL GONNA DIE"
+	name = "\improper -RIPLEY"
+	icon_state = "ripley"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
 	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
 	step_in = 4
 	slow_pressure_step_in = 3
 	opacity=0
 	lights_power = 7
-	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
+	wreckage = /obj/structure/mecha_wreckage/ripley/ripley
 	step_energy_drain = 0
 	enclosed = TRUE
 	enter_delay = 40
 	silicon_icon_state = null
 	opacity = TRUE
 
-/obj/mecha/working/ripley/deathripley/Initialize()
+/obj/mecha/working/ripley/ripley/Initialize()
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill
 	ME.attach(src)
 
-/obj/mecha/working/ripley/deathripley/real
-	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE. FOR REAL"
+/obj/mecha/working/ripley/ripley/real
+	desc = "OH SHIT IT'S THE SQUAD WE'RE ALL GONNA DIE. FOR REAL"
 
-/obj/mecha/working/ripley/deathripley/real/Initialize()
+/obj/mecha/working/ripley/ripley/real/Initialize()
 	. = ..()
 	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 		E.detach()

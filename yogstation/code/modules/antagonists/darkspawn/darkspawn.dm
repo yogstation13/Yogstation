@@ -73,7 +73,7 @@
 	owner.current.remove_language(/datum/language/darkspawn)
 
 //Round end stuff
-/datum/antagonist/darkspawn/proc/check_darkspawn_death()
+/datum/antagonist/darkspawn/proc/check_darkspawn_()
 	for(var/DM in get_antag_minds(/datum/antagonist/darkspawn))
 		var/datum/mind/dark_mind = DM
 		if(istype(dark_mind))
@@ -87,7 +87,7 @@
 /datum/antagonist/darkspawn/roundend_report_header()
 	if(SSticker.mode.sacrament_done)
 		return "<span class='greentext big'>The darkspawn have completed the Sacrament!</span><br>"
-	else if(!SSticker.mode.sacrament_done && check_darkspawn_death())
+	else if(!SSticker.mode.sacrament_done && check_darkspawn_())
 		return "<span class='redtext big'>The darkspawn have been killed by the crew!</span><br>"
 	else if(!SSticker.mode.sacrament_done && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
 		return "<span class='redtext big'>The crew escaped the station before the darkspawn could complete the Sacrament!</span><br>"
