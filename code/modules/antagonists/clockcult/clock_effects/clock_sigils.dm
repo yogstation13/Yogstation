@@ -142,24 +142,6 @@
 		if(!GLOB.application_scripture_unlocked)
 			GLOB.application_scripture_unlocked = TRUE
 			hierophant_message("<span class='large_brass bold'>With the conversion of a new servant the Ark's power grows. Application scriptures are now available.</span>")
-	else
-		var/obj/item/mmi/posibrain/soul_vessel/soul_vessel = new /obj/item/mmi/posibrain/soul_vessel (get_turf(src))
-		if(L.mind)
-			if(is_banned_from(L.ckey, ROLE_SERVANT_OF_RATVAR))
-				L.ghostize(FALSE)
-				L.key = null
-			else
-				if(!soul_vessel.brainmob)
-					soul_vessel.brainmob = new (soul_vessel)
-				L.mind.transfer_to(soul_vessel.brainmob)
-		for(var/obj/item/I in L) //drops all items
-			L.unequip_everything(I)
-		L.visible_message(span_brass("In a bright flash of light, [L]'s mortal body is turned to dust!"), \
-				span_brass("In a bright flash of light, [L]'s mortal body is turned to dust!"))
-		L.dust()
-		animate(src, color = oldcolor, time = 2 SECONDS, flags = ANIMATION_END_NOW)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 20)
-		visible_message(span_warning("[src] slowly stops glowing!"))
 	if(add_servant_of_ratvar(L))
 		L.log_message("conversion was done with a [sigil_name]", LOG_ATTACK, color="BE8700")
 		if(iscarbon(L))

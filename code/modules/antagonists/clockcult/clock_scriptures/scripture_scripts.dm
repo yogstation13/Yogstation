@@ -272,3 +272,20 @@
 		duration = max(duration, 100)
 	return slab.procure_gateway(invoker, duration, portal_uses)
 
+//Soul Vessel: A clockwork posibrain, can also work as a soulstone
+/datum/clockwork_scripture/create_object/soul_vessel
+	descname = "Clockwork Positronic Brain"
+	name = "Soul Vessel"
+	desc = "Forms a soul vessel - a positronic brain completely loyal to Ratvar."
+	invocations = list("Grant me a vessel...", "...to hold their souls.")
+	channel_time = 4 SECONDS
+	power_cost = 750
+	whispered = TRUE
+	object_path = /obj/item/mmi/posibrain/soul_vessel
+	creator_message = span_brass("You form a soul vessel.")
+	usage_tip = "Soul Vessel can be used to complete cyborg shells, capture souls of unconsinous non-servants and can be used inhand to form an anigma fragment."
+	tier = SCRIPTURE_SCRIPT
+	space_allowed = TRUE
+	primary_component = HIEROPHANT_ANSIBLE
+	quickbind = TRUE
+	quickbind_desc = "Creates a Soul Vessel, which is a positronic brain that serves only Ratvar."
