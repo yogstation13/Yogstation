@@ -54,3 +54,16 @@
 	description = "Central Command's Research Director is particularly interested in the anomalous effects of this gem. Ship one over and he'll pay us directly."
 	reward = 40000
 	wanted_types = list(/obj/item/gem/dark)
+
+/datum/bounty/item/gems/minor
+	name = "Minor Lavaland Gems"
+	description = "The jewerly business is booming and Nanotrasen needs to cover its bills. Send some rare gemstones so Nanotrasen can contribute to fast space fashion."
+	reward = 12000
+	required_count = 5
+	wanted_types = list(/obj/item/gem/ruby,/obj/item/gem/sapphire,/obj/item/gem/emerald,/obj/item/gem/topaz)
+
+/datum/bounty/item/gems/stalwart
+	name = "Bluespace Data Crystal"
+	description = "Central Command's Research Director is extatic over the possible uses and internal structure of this gem. Ship one over and he'll pay us directly."
+	reward = 16500
+	wanted_types = list(/obj/item/ai_cpu/stalwart)
