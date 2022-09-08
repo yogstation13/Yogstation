@@ -8,7 +8,7 @@
 	eject_sound = 'sound/weapons/revolverempty.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 90
-	fire_delay = 4
+	fire_delay = 8 //Needs to be slower
 	dry_fire_sound = 'sound/weapons/revolverdry.ogg'
 	casing_ejector = FALSE
 	internal_magazine = TRUE
@@ -70,6 +70,7 @@
 	desc = "A classic, if not outdated, law enforcement firearm. Uses .38-special rounds."
 	fire_sound = 'sound/weapons/revolver38shot.ogg'
 	icon_state = "detective"
+	fire_delay = 0
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = list("Default" = "detective",
@@ -83,16 +84,6 @@
 						"Black Panther" = "detective_panther",
 						"Deckards Special" = "detective_bladerunner"
 						)
-
-/obj/item/gun/ballistic/revolver/detective/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	if(magazine.caliber != initial(magazine.caliber))
-		if(prob(70 - (magazine.ammo_count() * 10)))	//minimum probability of 10, maximum of 60
-			playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
-			to_chat(user, span_userdanger("[src] blows up in your face!"))
-			user.take_bodypart_damage(0,20)
-			user.dropItemToGround(src)
-			return 0
-	..()
 
 /obj/item/gun/ballistic/revolver/detective/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
@@ -108,6 +99,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return TRUE
 			magazine.caliber = "357"
+			fire_delay = 12 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder
 			fire_sound = 'sound/weapons/revolver357shot.ogg'
 			desc = "The barrel and chamber assembly seems to have been modified."
 			to_chat(user, span_notice("You reinforce the barrel of [src]. Now it will fire .357 rounds."))
@@ -122,6 +114,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return
 			magazine.caliber = "38"
+			fire_delay = 0 //Fixed again
 			fire_sound = 'sound/weapons/revolver38shot.ogg'
 			desc = initial(desc)
 			to_chat(user, span_notice("You remove the modifications on [src]. Now it will fire .38 rounds."))
@@ -131,6 +124,7 @@
 	name = "\improper Caldwell Tracking Revolver"
 	desc = "A modified autorevolver initially designed by colonists on hostile worlds, now utilized by security personnel. Uses .32 TRAC ammo."
 	icon_state = "tracrevolver"
+	fire_delay = 12 //Needle round rotate slowly, pace your shots
 	suppressed = TRUE
 	can_unsuppress = FALSE
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra32
@@ -145,11 +139,13 @@
 	name = "\improper Unica 6 auto-revolver"
 	desc = "A retro high-powered autorevolver typically used by officers of the New Russia military. Uses .357 ammo."
 	icon_state = "mateba"
+	fire_delay = 0 //Admin-only therefore massive L
 
 /obj/item/gun/ballistic/revolver/golden
 	name = "\improper Golden revolver"
 	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 ammo."
 	icon_state = "goldrevolver"
+	fire_delay = 0 //Yee-haw
 	fire_sound = 'sound/weapons/resonator_blast.ogg'
 	recoil = 8
 	pin = /obj/item/firing_pin
@@ -158,6 +154,7 @@
 	name = "\improper Nagant revolver"
 	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
 	icon_state = "nagant"
+	fire_delay = 4 //Mild trigger pull, the gun was known for it
 	can_suppress = TRUE
 
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762

@@ -8,7 +8,7 @@
 /obj/item/implant/tracking/tra32
 	name = "TRAC implant"
 	desc = "A smaller tracking implant that supplies power for only a few minutes."
-	var/lifespan = 15 MINUTES //how long does the implant last?
+	var/lifespan = 3 MINUTES //how long does the implant last?
 	allow_teleport = FALSE
 
 /obj/item/implant/tracking/tra32/Initialize()
@@ -22,6 +22,10 @@
 /obj/item/implant/tracking/Destroy()
 	. = ..()
 	GLOB.tracked_implants -= src
+
+/obj/item/implant/tracking/emp_act(severity) //Demands to call the severity and I do not care to oppose it
+	. = ..()
+	Destroy()
 
 /obj/item/implanter/tracking
 	imp_type = /obj/item/implant/tracking

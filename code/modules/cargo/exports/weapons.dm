@@ -38,7 +38,7 @@
 
 /datum/export/weapon/wt550
 	cost = 300
-	unit_name = "WT-550 automatic rifle"
+	unit_name = "WT-550 automatic carbine"
 	export_types = list(/obj/item/gun/ballistic/automatic/wt550)
 
 /datum/export/weapon/shotgun

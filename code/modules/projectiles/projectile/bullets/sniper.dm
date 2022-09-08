@@ -1,7 +1,7 @@
-// .50 (Sniper)
+// .50 (Sniper Rifle)
 
 /obj/item/projectile/bullet/p50
-	name =".50 bullet"
+	name = ".50 bullet"
 	speed = 0.4
 	damage = 70
 	paralyze = 100
@@ -16,7 +16,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/p50/soporific
-	name =".50 soporific bullet"
+	name = ".50 soporific bullet"
 	armour_penetration = 0
 	damage = 0
 	dismemberment = 0
@@ -30,9 +30,8 @@
 	return ..()
 
 /obj/item/projectile/bullet/p50/penetrator
-	name =".50 penetrator bullet"
+	name = ".50 penetrator bullet"
 	icon_state = "gauss"
-	name = "penetrator round"
 	damage = 60
 	movement_type = FLYING | UNSTOPPABLE
 	dismemberment = 0 //It goes through you cleanly.

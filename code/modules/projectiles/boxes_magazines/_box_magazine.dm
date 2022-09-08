@@ -31,6 +31,8 @@
 	var/list/bullet_cost
 	///cost of the materials in the magazine/box itself
 	var/list/base_cost
+	//Whether the magazine should utilize a unique sprite or not if the magazine has multi-stage sprites
+	var/sprite_designation
 
 /obj/item/ammo_box/Initialize()
 	. = ..()

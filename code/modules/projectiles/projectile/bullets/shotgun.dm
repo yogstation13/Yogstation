@@ -57,12 +57,11 @@
 /obj/item/projectile/bullet/shotgun_frag12
 	name ="frag12 slug"
 	damage = 25
-	paralyze = 50
 	wound_bonus = 0
 
 /obj/item/projectile/bullet/shotgun_frag12/on_hit(atom/target, blocked = FALSE)
 	..()
-	explosion(target, -1, 0, 1)
+	explosion(target, -1, 0, 2)
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/pellet
@@ -71,23 +70,26 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	name = "buckshot pellet"
-	damage = 11
+	damage = 12
 	wound_bonus = 5
 	bare_wound_bonus = 5
 	wound_falloff_tile = -2.5 // low damage + additional dropoff will already curb wounding potential anything past point blank
+	
+/obj/item/projectile/bullet/pellet/shotgun_buckshot/syndie
+	name = "syndicate buckshot pellet"
+	damage = 18
+	wound_bonus = 2
+	bare_wound_bonus = 2
+	wound_falloff_tile = -2.5
 
 /obj/item/projectile/bullet/pellet/shotgun_flechette
 	name = "flechette pellet"
 	damage = 15
-	wound_bonus = -5
-	bare_wound_bonus = -15
+	wound_bonus = 4
+	bare_wound_bonus = 4
 	armour_penetration = 40
-
-/obj/item/projectile/bullet/pellet/shotgun_hpbuckshot
-	name = "hollow-point pellet"
-	damage = 25
-	bare_wound_bonus = 5
-	armour_penetration = -40
+	tile_dropoff = 0.35 //Ranged pellet because I guess?
+	wound_falloff_tile = -1
 
 /obj/item/projectile/bullet/pellet/shotgun_clownshot
 	name = "clownshot pellet"
@@ -97,7 +99,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubbershot pellet"
 	damage = 3
-	stamina = 13
+	stamina = 14.5
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/shotgun_cryoshot
@@ -110,20 +112,19 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/M = target
-		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
+		M.adjust_bodytemperature((temperature - M.bodytemperature))
 
 /obj/item/projectile/bullet/shotgun_uraniumslug
 	name = "depleted uranium slug"
 	icon_state = "ubullet"
-	damage = 30
+	damage = 26
 	armour_penetration = 60 // he he funny round go through armor
-	wound_bonus = -45
+	wound_bonus = -40
 
 /obj/item/projectile/bullet/shotgun_uraniumslug/on_hit(atom/target)
 	. = ..()
 	if(ismob(target))
 		return BULLET_ACT_FORCE_PIERCE
-
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()
@@ -135,10 +136,11 @@
 		qdel(src)
 
 /obj/item/projectile/bullet/pellet/shotgun_improvised
-	tile_dropoff = 0.35		//Come on it does 6 damage don't be like that.
+	name = "improvised pellet"
 	damage = 6
 	wound_bonus = 0
 	bare_wound_bonus = 7.5
+	tile_dropoff = 0.35	//Will likely disappear anyway befoer this really matters
 
 /obj/item/projectile/bullet/pellet/shotgun_improvised/Initialize()
 	. = ..()

@@ -19,6 +19,7 @@
 		/obj/item/gun/energy,
 		/obj/item/melee/baton,
 		/obj/item/ammo_box/magazine/recharge,
+		/obj/item/ammo_box/magazine/m308/laser,
 		/obj/item/modular_computer))
 
 /obj/machinery/recharger/RefreshParts()
@@ -136,7 +137,16 @@
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
 			if(R.stored_ammo.len < R.max_ammo)
-				R.stored_ammo += new R.ammo_type(R)
+				for(var/i in 1 to recharge_coeff) //So it actually gives more ammo when upgraded
+					R.stored_ammo += new R.ammo_type(R)
+				use_power(200 * recharge_coeff)
+			update_icon()
+			return
+		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
+			var/obj/item/ammo_box/magazine/m308/laser/R = charging
+			if(R.stored_ammo.len < R.max_ammo)
+				for(var/i in 1 to recharge_coeff) //See above
+					R.stored_ammo += new R.ammo_type(R)
 				use_power(200 * recharge_coeff)
 			update_icon()
 			return
@@ -168,6 +178,9 @@
 			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(C.charge/C.maxcharge, 0.01))
 		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
 			var/obj/item/ammo_box/magazine/recharge/R = charging
+			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(R.stored_ammo.len/R.max_ammo, 0.01))
+		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
+			var/obj/item/ammo_box/magazine/m308/laser/R = charging
 			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), round(R.stored_ammo.len/R.max_ammo, 0.01))
 		add_overlay(scan)
 

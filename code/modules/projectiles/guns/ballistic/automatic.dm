@@ -82,8 +82,8 @@
 	update_icon()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "security auto rifle"
-	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle. Has a two-round burst or a semi-automatic firing mode."
+	name = "security auto carbine"
+	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Carbine. Has a two-round burst or a semi-automatic firing mode."
 	icon_state = "wt550"
 	item_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
@@ -98,9 +98,7 @@
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 
-/obj/item/gun/ballistic/automatic/wt550/occupying
-	name = "surplus security auto rifle"
-	desc = "Crude surplus variant of the WT-550 Automatic Rifle meant for mass deployment. Does not come with the benefits of a two round burst, but has a single fire burst mode for all the advantages that it has over semi automatic mode (i.e none)."
+/obj/item/gun/ballistic/automatic/wt550/armory
 	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
@@ -114,8 +112,8 @@
 	rack_sound = "sound/weapons/pistollock.ogg"
 
 /obj/item/gun/ballistic/automatic/m90
-	name = "\improper M-90gl Carbine"
-	desc = "A three-round burst 5.56 toploading carbine, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
+	name = "\improper M-90gl Rifle"
+	desc = "A three-round burst 5.56 toploading rifle, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
 	icon_state = "m90"
 	item_state = "m90"
 	mag_type = /obj/item/ammo_box/magazine/m556
@@ -202,7 +200,7 @@
 	bolt_type = BOLT_TYPE_OPEN
 
 /obj/item/gun/ballistic/automatic/ar
-	name = "\improper NT-ARG 'Boarder'"
+	name = "\improper NT-ARG 'Boarder' Rifle"
 	desc = "A robust assault rifle used by Nanotrasen fighting forces."
 	icon_state = "arg"
 	item_state = "arg"
@@ -290,6 +288,28 @@
 
 
 
+// LWT-650 DMR //
+
+/obj/item/gun/ballistic/automatic/lwt650
+	name = "LWT-650 DMR"
+	desc = "A long-barreled designated marksman rifle vaguely based on the WT platform. Slowly fires powerful .308 rounds."
+	icon_state = "lwt650"
+	item_state = "lwt650"
+	fire_sound = "sound/weapons/dmrshot.ogg"
+	vary_fire_sound = FALSE //Pure DMR bliss my beloved
+	load_sound = "sound/weapons/rifleload.ogg"
+	rack_sound = "sound/weapons/riflerack.ogg"
+	eject_sound = "sound/weapons/rifleunload.ogg"
+	mag_type = /obj/item/ammo_box/magazine/m308
+	fire_delay = 8
+	burst_size = 1
+	can_suppress = FALSE
+	can_bayonet = TRUE
+	knife_x_offset = 27
+	knife_y_offset = 12
+	mag_display = TRUE
+	weapon_weight = WEAPON_HEAVY
+
 // SNIPER //
 
 /obj/item/gun/ballistic/automatic/sniper_rifle
@@ -325,11 +345,11 @@
 /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure
 	pin = /obj/item/firing_pin/fucked
 
-// Old Semi-Auto Rifle //
+// Old Semi-Auto Carbine //
 
 /obj/item/gun/ballistic/automatic/surplus
-	name = "Surplus Rifle"
-	desc = "One of countless obsolete ballistic rifles that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
+	name = "Surplus Carbine"
+	desc = "One of several antique carbines that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
 	icon_state = "surplus"
 	item_state = "moistnugget"
 	weapon_weight = WEAPON_HEAVY
