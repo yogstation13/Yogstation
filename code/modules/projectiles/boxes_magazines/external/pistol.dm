@@ -84,8 +84,15 @@
 /obj/item/ammo_box/magazine/m50
 	name = "handgun magazine (.50ae)"
 	desc = "A 7-round .50ae magazine designed for the Desert Eagle."
-	icon_state = "50ae"
+	icon_state = "50ae-7"
 	ammo_type = /obj/item/ammo_casing/a50AE
 	caliber = ".50"
 	max_ammo = 7
-	multiple_sprites = AMMO_BOX_PER_BULLET
+
+/obj/item/ammo_box/magazine/m50/update_icon()
+	. = ..()
+	if (ammo_count() >= 7)
+		icon_state = "50ae-7"
+	else
+		icon_state = "50ae-[ammo_count()]"
+
