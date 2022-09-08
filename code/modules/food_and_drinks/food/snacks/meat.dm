@@ -323,10 +323,23 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/penguin
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin
 	filling_color = "#B22222"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("chicken" = 1, "cod fish" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/slab/penguin/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/penguin, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
+
+/obj/item/reagent_containers/food/snacks/meat/slab/chicken
+	name = "chicken meat"
+	icon_state = "birdmeat"
+	desc = "A slab of chicken meat. Tastes like ch....wait..."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 2) //low fat high nutrition
+	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
+	filling_color = "#B22222"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/slab/penguin/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/chicken, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
 
 /obj/item/reagent_containers/food/snacks/meat/slab/blessed
 	name = "blessed meat"
@@ -423,7 +436,13 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin
 	name = "penguin steak"
 	icon_state = "birdsteak"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("chicken" = 1, "cod fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/steak/chicken
+	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
+	name = "chicken steak"
+	icon_state = "birdsteak"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/steak/plain/human/lizard
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
@@ -523,10 +542,17 @@
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin
 	name = "raw penguin cutlet"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("chicken" = 1, "cod fish" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
+	name = "raw chicken cutlet"
+	tastes = list("chicken" = 1, "antibiotics" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/raw_cutlet/penguin/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
 //Cooked cutlets
 
@@ -572,4 +598,8 @@
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin
 	name = "penguin cutlet"
-	tastes = list("beef" = 1, "cod fish" = 1)
+	tastes = list("chicken" = 1, "cod fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
+	name = "chicken cutlet"
+	tastes = list("chicken" = 1, "antibiotics" = 1)

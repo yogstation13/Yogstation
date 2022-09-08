@@ -1,19 +1,20 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart
 	name = "stalwart"
-	desc = "A graceful, floating automaton. It emits a soft hum."
-	health = 3000
+	desc = "A graceful, floating construct. It emits a soft hum."
+	health = 3000 //thicc boi
 	maxHealth = 3000
 	attacktext = "zaps"
-	attack_sound = 'sound/effects/empulse.ogg'
+	attack_sound = 'sound/weapons/resonator_blast.ogg'
 	icon_state = "stalwart"
 	icon_living = "stalwart"
 	icon_dead = ""
 	friendly = "scans"
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	speak_emote = list("screeches")
+	mob_biotypes = list(MOB_INORGANIC, MOB_ROBOTIC, MOB_EPIC)
 	armour_penetration = 40
-	melee_damage_lower = 40
-	melee_damage_upper = 40
+	melee_damage_lower = 35
+	melee_damage_upper = 35
 	speed = 5
 	move_to_delay = 5
 	ranged = TRUE
@@ -22,31 +23,33 @@
 	internal_type = /obj/item/gps/internal/stalwart
 	loot = list(/obj/structure/closet/crate/sphere/stalwart)
 	deathmessage = "erupts into blue flame, and screeches before violently shattering."
-	deathsound = 'sound/voice/borg_deathsound.ogg'
+	deathsound = 'sound/magic/castsummon.ogg'
 	internal_type = /obj/item/gps/internal/stalwart
+	music_component = /datum/component/music_player/battle
+	music_path = /datum/music/sourced/battle/stalwart
 	var/charging = FALSE
 	var/revving_charge = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/OpenFire()
-	ranged_cooldown = world.time + 50
+	ranged_cooldown = world.time + 30
 	anger_modifier = clamp(((maxHealth - health)/50),0,20)
 	if(prob(20+anger_modifier)) //Major attack
 		stalnade()
 	else if(prob(20))
 		charge()
 	else
-		if(prob(70))
+		if(prob(50))
 			backup()
 		else
 			energy_pike()
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/telegraph()
 	for(var/mob/M in range(10,src))
-		flash_color(M.client, "#6CA4E3", 1)
 		shake_camera(M, 4, 3)
-	playsound(src, 'sound/voice/borg_deathsound.ogg', 200, 1)
+	playsound(src, 'sound/machines/sm/accent/delam/14.ogg', 400, 1)
 	
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/shoot_projectile(turf/marker, set_angle)
+	playsound(src, 'sound/weapons/ionrifle.ogg', 400, 1)
 	if(!isnum(set_angle) && (!marker || marker == loc))
 		return
 	var/turf/startloc = get_turf(src)
@@ -71,16 +74,20 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/stalnade(turf/marker)
 	for(var/d in dir)
 		var/turf/E = get_step(src, d)
+		telegraph()
 		bombsaway(E)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/backup()
-	visible_message(span_danger("[src] constructs a flock of mini mechanoid!"))
-	for(var/turf/open/H in range(src, 2))
+	visible_message(span_danger("[src] warps in mini mechanoids!"))
+	playsound(src, 'sound/magic/repulse.ogg', 300, 1, 2)
+	for(var/turf/open/H in range(src, 3))
 		if(prob(25))
 			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone(H.loc)
+		if(prob(10))
+			new /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged(H.loc)
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/energy_pike()
-	ranged_cooldown = world.time + 40
+	ranged_cooldown = world.time + 20
 	dir_shots(GLOB.diagonals)
 	dir_shots(GLOB.cardinals)
 	SLEEP_CHECK_DEATH(10)
@@ -88,7 +95,7 @@
 /mob/living/simple_animal/hostile/megafauna/stalwart/proc/dir_shots(list/dirs)
 	if(!islist(dirs))
 		dirs = GLOB.alldirs.Copy()
-	playsound(src, 'sound/effects/pop_expl.ogg', 200, 1, 2)
+	playsound(src, 'sound/magic/disable_tech.ogg', 300, 1, 2)
 	for(var/d in dirs)
 		var/turf/E = get_step(src, d)
 		shoot_projectile(E)
@@ -122,15 +129,51 @@
 	if(charging)
 		DestroySurroundings() // code stolen from chester stolen from bubblegum i am the ultimate shitcoder
 	..()
-	
+
+/mob/living/simple_animal/hostile/megafauna/stalwart/death()
+	. = ..()
+	if(health > 0)
+		return
+	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+	if(D)
+		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
+
 //Projectiles and such
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone
 	name = "mini mechanoid"
-	desc = "It's staring at you intently. Do not taunt."
+	desc = "A tiny creature made of...some kind of gemstone? It seems angry."
+	icon = 'icons/mob/drone.dmi'
+	speed = 5
+	movement_type = GROUND
+	maxHealth = 20
+	health = 20
 	icon_state = "drone_gem"
+	icon_living = "drone_gem"
+	icon_aggro = "drone_gem"
+	attacktext = "rends"
+	melee_damage_lower = 6
+	melee_damage_upper = 10
+	mob_biotypes = list(MOB_INORGANIC, MOB_ROBOTIC)
+	attack_vis_effect = ATTACK_EFFECT_SLASH
+	attack_sound = 'sound/weapons/pierce_slow.ogg'
+	speak_emote = list("buzzes")
 	faction = list("mining")
 	weather_immunities = list("lava","ash")
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/death), 300)
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged
+	ranged = 1
+	ranged_message = "blasts"
+	icon_state = "drone_scout"
+	icon_living = "drone_scout"
+	icon_aggro = "drone_scout"
+	ranged_cooldown_time = 30
+	projectiletype = /obj/item/projectile/stalpike/weak
+	projectilesound = 'sound/weapons/ionrifle.ogg'
 
 /obj/item/gps/internal/stalwart
 	icon_state = null
@@ -140,22 +183,34 @@
 
 /obj/item/projectile/stalpike
 	name = "energy pike"
-	icon_state = "arcane_barrage"
+	icon_state = "arcane_barrage_greyscale"
 	damage = 20
 	armour_penetration = 100
-	speed = 5
+	speed = 4
 	eyeblur = 0
-	damage_type = BURN
-	pass_flags = PASSTABLE
-	color = "#6CA4E3"
+	damage_type = BRUTE
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	color = "#4851ce"
+
+/obj/item/projectile/stalpike/weak
+	name = "lesser energy pike"
+	icon_state = "arcane_barrage_greyscale"
+	damage = 5
+	armour_penetration = 100
+	speed = 6
+	eyeblur = 0
+	damage_type = BRUTE
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	color = "#9a9fdb"
 
 /obj/item/projectile/stalnade
 	name = "volatile orb"
 	icon_state = "wipe"
 	damage = 300
 	armour_penetration = 100
-	speed = 1
+	speed = 6
 	eyeblur = 0
+	damage_type = BRUTE
 	pass_flags = PASSTABLE
 
 /obj/item/projectile/stalnade/Move()
@@ -166,12 +221,11 @@
 
 /obj/effect/temp_visual/hierophant/wall/stalwart
 	name = "azure barrier"
-	icon = 'icons/effects/fire.dmi'
-	icon_state = "3"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield2"
 	duration = 100
 	smooth = SMOOTH_FALSE
-	color = "#6CA4E3"
 
 /mob/living/simple_animal/hostile/megafauna/stalwart/devour(mob/living/L)
-	visible_message(span_danger("[src] melts [L]!"))
+	visible_message(span_danger("[src] atomizes [L]!"))
 	L.dust()
