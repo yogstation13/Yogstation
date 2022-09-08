@@ -491,6 +491,7 @@
 	safe_nitro_min = 20
 	safe_toxins_max = 0
 	safe_oxygen_min = 0
+	safe_co2_max = 0
 	organ_flags = ORGAN_SYNTHETIC
 	status = ORGAN_ROBOTIC
 	COOLDOWN_DECLARE(last_message)
