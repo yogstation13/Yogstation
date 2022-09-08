@@ -173,7 +173,6 @@ obj/machinery/holopad/secure/Initialize()
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Current projection range: <b>[holo_range]</b> units.")
-		. += span_notice("The status display reads: Holopad name: [get_area(src)]")
 
 /obj/machinery/holopad/attackby(obj/item/P, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "holopad_open", "holopad0", P))
