@@ -181,6 +181,63 @@
 	STR.max_combined_w_class = INFINITY
 	STR.max_combined_stack_amount = INFINITY
 
+/obj/item/storage/bag/gem
+	name = "gem satchel"
+	desc = "You thought it would be more like what those cartoon robbers wear."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "gem_satchel"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKET
+	w_class = WEIGHT_CLASS_NORMAL
+	component_type = /datum/component/storage/concrete
+	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
+	var/mob/listeningTo
+
+/obj/item/storage/bag/gem/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/concrete/STR = GetComponent(/datum/component/storage/concrete)
+	STR.allow_quick_empty = TRUE
+	STR.set_holdable(list(/obj/item/gem))
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 16
+	STR.max_items = 16 
+
+/obj/item/storage/bag/gem/equipped(mob/user)
+	. = ..()
+	if(listeningTo == user)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/pickup_gems)
+	listeningTo = user
+
+/obj/item/storage/bag/gem/dropped()
+	. = ..()
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+		listeningTo = null
+
+/obj/item/storage/bag/gem/proc/pickup_gems(mob/living/user)
+	var/show_message = FALSE
+	var/turf/tile = user.loc
+	if (!isturf(tile))
+		return
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	if(STR)
+		for(var/A in tile)
+			if (!is_type_in_typecache(A, STR.can_hold))
+				continue
+			else if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
+				show_message = TRUE
+			else
+				if(!spam_protection)
+					to_chat(user, span_warning("Your [name] is full and can't hold any more!"))
+					spam_protection = TRUE
+					continue
+	if(show_message)
+		playsound(user, "rustle", 50, TRUE)
+		user.visible_message(span_notice("[user] scoops up the gems beneath [user.p_them()]."), \
+		span_notice("You scoop up the gems beneath you with your [name]."))
+	spam_protection = FALSE
 // -----------------------------
 //          Plant bag
 // -----------------------------
