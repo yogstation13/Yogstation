@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(holopads)
 	var/offset = FALSE
 	/// Does it show on the holopad list
 	var/on_network = TRUE
-	/// For pads in secure areas; do not allow forced connecting
+	/// For pads in secure areas; do not allow forced connecting unless they are a head
 	var/secure = FALSE
 	/// If we are currently calling another holopad
 	var/calling = FALSE
@@ -388,9 +388,11 @@ obj/machinery/holopad/secure/Initialize()
 			if(force_answer_call && world.time > (HC.call_start_time + (HOLOPAD_MAX_DIAL_TIME / 2)))
 				HC.Answer(src)
 				break
-			if(HC.head_call && !secure)
+			if(HC.head_call && secure)
 				HC.Answer(src)
 				break
+			if(!secure)
+				HC.Answer(src)
 			if(outgoing_call)
 				HC.Disconnect(src)//can't answer calls while calling
 			else
