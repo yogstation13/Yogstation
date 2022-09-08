@@ -246,7 +246,7 @@
 	set category = "Garden Warfare"
 	to_chat(usr, "<b><i>You try to remember some basic actions from the garden warfare art.</i></b>")
 
-	to_chat(usr, "[span_notice("Vine snatch")]: Disarm Disarm. Finishning this combo will mark the victim with a vine mark, allowing you to drag them or an item in their active hand by using ["Vine Snatch"] ability. The mark lasts only 3 seconds.")
+	to_chat(usr, "[span_notice("Vine snatch")]: Disarm Disarm. Finishing this combo will mark the victim with a vine mark, allowing you to drag them or an item in their active hand by using ["Vine Snatch"] ability. The mark lasts only 3 seconds.")
 	to_chat(usr, "[span_notice("Strangle")]: Grab Grab Grab. The second grab will deal 10 oxyloss damage to the target, and finishing the combo will upgrade your grab, making it mute the target and deal 10 oxyloss damage per second.")
 	to_chat(usr, "[span_notice("Splinter stab")]: Harm harm Harm. The second attack will deal increased damage with 30 armor penetration, and finishing the combo will deal 20 damage with 30 armor penetration, while also embedding a splinter into the targets limb.")
 
