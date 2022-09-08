@@ -719,8 +719,8 @@
 
 /datum/gas_reaction/metalhydrogen/init_reqs()
 	min_requirements = list(
-		GAS_H2 = 100,
-		GAS_BZ = 5,
+		GAS_H2 = 1000,
+		GAS_BZ = 50,
 		"TEMP" = METAL_HYDROGEN_MINIMUM_HEAT
 		)
 
@@ -731,17 +731,17 @@
 	var/temperature = air.return_temperature()
 	var/old_thermal_energy = air.thermal_energy()
 	///the more heat you use the higher is this factor
-	var/increase_factor = min((temperature / METAL_HYDROGEN_MINIMUM_HEAT), 5)
+	var/increase_factor = min(log(10, (temperature / METAL_HYDROGEN_MINIMUM_HEAT)), 5)
 	///the more moles you use and the higher the heat, the higher is the efficiency
 	var/heat_efficency = air.get_moles(GAS_H2)* 0.01 * increase_factor
 	var/pressure = air.return_pressure()
 	var/energy_used = heat_efficency * METAL_HYDROGEN_FORMATION_ENERGY
 
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
-		air.adjust_moles(GAS_BZ, -(heat_efficency * 0.01))
+		air.adjust_moles(GAS_BZ, -(heat_efficency * 0.05))
 		if (prob(20 * increase_factor))
-			air.adjust_moles(GAS_H2, -(heat_efficency * 3.5))
-			if (prob(100 / increase_factor))
+			air.adjust_moles(GAS_H2, -(heat_efficency * 14))
+			if (prob(25 / increase_factor))
 				new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
 				SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
 

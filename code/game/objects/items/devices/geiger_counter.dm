@@ -145,18 +145,20 @@
 
 /obj/item/geiger_counter/proc/scan(atom/A, mob/user)
 	var/rad_strength = get_rad_contamination(A)
+	var/list/combined_msg = list()
 
 	if(isliving(A))
 		var/mob/living/M = A
 		if(!M.radiation)
-			to_chat(user, span_notice("[icon2html(src, user)] Radiation levels within normal boundaries."))
+			combined_msg += span_notice("[icon2html(src, user)] Radiation levels within normal boundaries.")
 		else
-			to_chat(user, span_boldannounce("[icon2html(src, user)] Subject is irradiated. Radiation levels: [M.radiation]."))
+			combined_msg += span_boldannounce("[icon2html(src, user)] Subject is irradiated. Radiation levels: [M.radiation].")
 
 	if(rad_strength)
-		to_chat(user, span_boldannounce("[icon2html(src, user)] Target contains radioactive contamination. Radioactive strength: [rad_strength]"))
+		combined_msg += span_boldannounce("[icon2html(src, user)] Target contains radioactive contamination. Radioactive strength: [rad_strength]")
 	else
-		to_chat(user, span_notice("[icon2html(src, user)] Target is free of radioactive contamination."))
+		combined_msg += span_notice("[icon2html(src, user)] Target is free of radioactive contamination.")
+	to_chat(user, examine_block(combined_msg.Join("\n")))
 
 /obj/item/geiger_counter/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER && (obj_flags & EMAGGED))

@@ -135,6 +135,14 @@
 		var/datum/data_pda_msg/M = new(PDAsignal.format_target(), "[PDAsignal.data["name"]] ([PDAsignal.data["job"]])", PDAsignal.data["message"], PDAsignal.data["photo"])
 		pda_msgs += M
 		signal.logged = M
+	else if(istype(signal, /datum/signal/subspace/messaging/ntospda))
+		var/datum/computer_file/program/pdamessager/recipient = signal.data["targets"][1]
+		GLOB.NTPDAMessages += list(list(signal.data["name"], recipient.username, signal.data["message"]))
+		signal.logged = TRUE
+		var/datum/signal/subspace/current = signal
+		while (current) // Recursively mark logged so we know in the caller proc that it is logged and sent proper
+			current.data["logged"] = TRUE
+			current = current.original
 	else if(istype(signal, /datum/signal/subspace/messaging/rc))
 		var/datum/data_rc_msg/M = new(signal.data["rec_dpt"], signal.data["send_dpt"], signal.data["message"], signal.data["stamped"], signal.data["verified"], signal.data["priority"])
 		signal.logged = M
@@ -159,7 +167,7 @@
 /datum/signal/subspace/messaging
 	frequency = FREQ_COMMON
 	server_type = /obj/machinery/telecomms/message_server
-	var/datum/logged
+	var/logged = FALSE
 
 /datum/signal/subspace/messaging/New(init_source, init_data)
 	source = init_source
@@ -206,6 +214,28 @@
 	for (var/obj/item/pda/P in GLOB.PDAs)
 		if ("[P.owner] ([P.ownjob])" in data["targets"])
 			P.receive_message(src)
+
+// NTOS PDA signal datum
+/datum/signal/subspace/messaging/ntospda
+	var/datum/language/lang // Stores what language the message was written in.
+	var/datum/computer_file/program/pdamessager/program
+
+/datum/signal/subspace/messaging/ntospda/New(init_source,init_data)
+	..()
+	lang = data["language"] || /datum/language/common
+
+/datum/signal/subspace/messaging/ntospda/proc/format_message(mob/living/listener)
+	var/msg = data["message"]
+	if(istype(listener) && !listener.has_language(lang))
+		var/datum/language/langue = GLOB.language_datum_instances[lang]
+		msg = langue.scramble(msg)
+	return msg
+
+/datum/signal/subspace/messaging/ntospda/broadcast()
+	if (!logged)  // Can only go through if a message server logs it
+		return
+	for(var/datum/computer_file/program/pdamessager/P in data["targets"])
+		P.receive_message(src)
 
 // Request Console signal datum
 /datum/signal/subspace/messaging/rc/broadcast()

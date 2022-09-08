@@ -36,7 +36,7 @@
 	name = "Cook"
 	jobtype = /datum/job/cook
 
-	pda_type = /obj/item/pda/cook
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chef
