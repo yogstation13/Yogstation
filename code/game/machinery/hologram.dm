@@ -27,6 +27,8 @@ Possible to do for anyone motivated enough:
 #define HOLOPAD_PASSIVE_POWER_USAGE 1
 #define HOLOGRAM_POWER_USAGE 2
 
+GLOBAL_LIST_EMPTY(holopads)
+
 /obj/machinery/holopad
 	name = "holopad"
 	desc = "It's a floor-mounted device for projecting holographic images."
@@ -69,15 +71,19 @@ Possible to do for anyone motivated enough:
 	var/obj/effect/overlay/holo_pad_hologram/replay_holo
 	/// Calls will be automatically answered after a couple rings, here for debugging
 	var/static/force_answer_call = FALSE
-	var/static/list/holopads = list()
 	var/obj/effect/overlay/holoray/ray
+	/// Is it ringing
 	var/ringing = FALSE
+	/// Used to push the holopad replay off the pad (1-4) for direction
 	var/offset = FALSE
+	/// Does it show on the holopad list
 	var/on_network = TRUE
 	/// For pads in secure areas; do not allow forced connecting
 	var/secure = FALSE
 	/// If we are currently calling another holopad
 	var/calling = FALSE
+	/// Name of the holopad
+	var/padname = null
 
 /obj/machinery/holopad/secure
 	name = "secure holopad"
@@ -124,8 +130,11 @@ obj/machinery/holopad/secure/Initialize()
 
 /obj/machinery/holopad/Initialize()
 	. = ..()
+	if(!padname)
+		var/area/A = get_area(src)
+		padname = A.name
 	if(on_network)
-		holopads += src
+		GLOB.holopads += src
 
 /obj/machinery/holopad/Destroy()
 	if(outgoing_call)
@@ -145,7 +154,7 @@ obj/machinery/holopad/secure/Initialize()
 
 	QDEL_NULL(disk)
 
-	holopads -= src
+	GLOB.holopads -= src
 	return ..()
 
 /obj/machinery/holopad/power_change()
@@ -171,6 +180,7 @@ obj/machinery/holopad/secure/Initialize()
 
 /obj/machinery/holopad/examine(mob/user)
 	. = ..()
+	. += span_notice("Its pad name is [padname]")
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Current projection range: <b>[holo_range]</b> units.")
 
@@ -195,6 +205,14 @@ obj/machinery/holopad/secure/Initialize()
 			return
 		to_chat(user,span_notice("You insert [P] into [src]."))
 		disk = P
+		return
+
+	if(istype(P, /obj/item/pen))
+		var/name = input(user, "New holopad name:", "Rename Holopad") as null|text
+		if(!name)
+			return
+		padname = name
+		to_chat(user, span_notice("You change the pad name to [name]"))
 		return
 
 	return ..()
@@ -258,12 +276,11 @@ obj/machinery/holopad/secure/Initialize()
 				return
 			if(usr.loc == loc)
 				var/list/callnames = list()
-				for(var/I in holopads)
-					var/area/A = get_area(I)
-					if(A)
-						LAZYADD(callnames[A], I)
-				callnames -= get_area(src)
-				var/result = input(usr, "Choose an area to call", "Holocall") as null|anything in sortNames(callnames)
+				for(var/obj/machinery/holopad/pad in GLOB.holopads)
+					if(pad.padname)
+						LAZYADD(callnames[pad.padname], pad)
+				callnames -= padname
+				var/result = input(usr, "Choose an area to call", "Holocall") as null|anything in sortList(callnames)
 				if(QDELETED(usr) || !result || outgoing_call)
 					return
 				if(usr.loc == loc)
@@ -492,8 +509,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	var/obj/effect/overlay/holo_pad_hologram/h = masters[holo_owner]
 	if(!h || h.HC) //Holocalls can't change source.
 		return FALSE
-	for(var/pad in holopads)
-		var/obj/machinery/holopad/another = pad
+	for(var/obj/machinery/holopad/another in GLOB.holopads)
 		if(another == src)
 			continue
 		if(another.validate_location(T))
