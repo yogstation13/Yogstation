@@ -88,7 +88,10 @@
 		else if(safe_co2_min)
 			H.throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
 		else if(safe_nitro_min)
-			H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
+			if(isipc(H))
+				H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro/ipc)
+			else
+				H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
 		return FALSE
 
 	var/gas_breathed = 0
@@ -146,13 +149,16 @@
 	if(safe_nitro_min)
 		if(N2_pp < safe_nitro_min)
 			gas_breathed = handle_too_little_breath(H, N2_pp, safe_nitro_min, breath.get_moles(/datum/gas/nitrogen))
-			H.throw_alert("nitro", /obj/screen/alert/not_enough_nitro)
+			if(isipc(H))
+				H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro/ipc)
+			else
+				H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
 				H.adjustOxyLoss(-5 * eff)
 			gas_breathed = breath.get_moles(/datum/gas/nitrogen)
-			H.clear_alert("nitro")
+			H.clear_alert("not_enough_nitro")
 
 	//Exhale
 	breath.adjust_moles(/datum/gas/nitrogen, -gas_breathed)
@@ -477,6 +483,35 @@
 	var/obj/S = ..()
 	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
 	return S
+
+/obj/item/organ/lungs/ipc
+	name = "Cooling radiator"
+	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
+	icon_state = "lungs-c"
+	safe_nitro_min = 20
+	safe_toxins_max = 0
+	safe_oxygen_min = 0
+	organ_flags = ORGAN_SYNTHETIC
+	status = ORGAN_ROBOTIC
+	COOLDOWN_DECLARE(last_message)
+
+/obj/item/organ/lungs/ipc/handle_too_little_breath(mob/living/carbon/human/H, breath_pp, safe_breath_min, true_pp)
+	. = 0
+	if(!H || !safe_breath_min) //the other args are either: Ok being 0 or Specifically handled.
+		return FALSE
+
+	if(COOLDOWN_FINISHED(src, last_message))
+		to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+		COOLDOWN_START(src, last_message, 30 SECONDS)
+
+	if(breath_pp > 0)
+		var/ratio = safe_breath_min/breath_pp
+		H.adjust_bodytemperature(15, max_temp = 500)
+		H.failed_last_breath = TRUE
+		. = true_pp*ratio/6
+	else
+		H.adjust_bodytemperature(30, max_temp = 500)
+		H.failed_last_breath = TRUE
 
 /obj/item/organ/lungs/plasmaman
 	name = "plasma filter"

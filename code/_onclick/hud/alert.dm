@@ -125,6 +125,10 @@
 	desc = "You're not getting enough nitrogen. Find some good air before you pass out!"
 	icon_state = "not_enough_nitro"
 
+/obj/screen/alert/not_enough_nitro/ipc
+	name = "Overheating (No N2)"
+	desc = "You're not getting enough nitrogen. Find some before you burn up!"
+
 /obj/screen/alert/too_much_nitro
 	name = "Choking (N2)"
 	desc = "There's too much nitrogen in the air, and you're breathing it in! Find some good air before you pass out!"
