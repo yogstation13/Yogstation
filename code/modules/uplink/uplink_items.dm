@@ -802,7 +802,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/revolver/metalshock
 	name = ".357 Metalshock Speed Loader"
 	desc = "A speed loader that contains seven .357 Metalshock rounds; usable with the Syndicate revolver. \
-			These rounds convert some lethality into an electric payload, which can burn and confuse targets."
+			These rounds convert some lethality into an electric payload, which can bounce between targets."
 	item = /obj/item/ammo_box/a357/metalshock
 	cost = 2
 
