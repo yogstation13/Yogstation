@@ -8,7 +8,7 @@
 /obj/item/projectile/bullet/a556/ap
 	name = "5.56mm armor-piercing bullet"
 	damage = 31
-	armour_penetration = 40
+	armour_penetration = 50
 
 /obj/item/projectile/bullet/incendiary/a556
 	name = "5.56mm incendiary bullet"
@@ -18,7 +18,7 @@
 /obj/item/projectile/bullet/a556/rubber
 	name = "5.56mm rubber bullet"
 	damage = 10
-	stamina = 45
+	stamina = 47
 
 // .308 (LWT-650 DMR)
 
