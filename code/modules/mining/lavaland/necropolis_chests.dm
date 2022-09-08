@@ -1740,8 +1740,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown
 
-#define DUELIST_SWORD_ACTIVATION_DURATION 0.75 SECONDS
-#define DUELIST_SWORD_COOLDOWN_DURATION 1.25 SECONDS
+#define DUELIST_SWORD_ACTIVATION_DURATION 0.5 SECONDS
+#define DUELIST_SWORD_COOLDOWN_DURATION 1 SECONDS
 
 /obj/item/duelist_sword
 	name = "duelist's sword"
