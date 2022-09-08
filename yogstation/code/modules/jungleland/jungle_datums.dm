@@ -102,10 +102,13 @@
 /datum/reagent/jungle/polybycin/proc/update_filters(mob/living/L)
 	if(!L.client)
 		return
-	
-	animate(cached_screen, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
-	animate(cached_screen_floor, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
-	animate(cached_screen_game, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
+
+	if(cached_screen)	
+		animate(cached_screen, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
+	if(cached_screen_floor)
+		animate(cached_screen_floor, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
+	if(cached_screen_game)
+		animate(cached_screen_game, alpha = min(min(current_cycle,volume)/25,1)*255, time = 2 SECONDS)
 
 
 /datum/ore_patch

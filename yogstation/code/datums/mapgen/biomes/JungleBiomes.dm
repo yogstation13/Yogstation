@@ -52,7 +52,7 @@
 	turf_type = /turf/open/floor/plating/dirt/jungleland/dry_swamp
 	closed_turf = /turf/open/floor/plating/dirt/jungleland/dry_swamp1
 	dense_flora = list(/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 1,/obj/structure/flora/rock/pile = 2)
-	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1)
+	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/herb/cinchona = 0.1)
 	dense_flora_density = 10
 	loose_flora_density = 10
 	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast = 39,/mob/living/simple_animal/hostile/asteroid/goldgrub = 34,/mob/living/simple_animal/hostile/yog_jungle/meduracha = 10,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 16)
@@ -63,9 +63,9 @@
 /datum/biome/jungleland/toxic_pit
 	turf_type = /turf/open/floor/plating/dirt/jungleland/toxic_pit
 	closed_turf = /turf/open/water/toxic_pit
-	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/explosive_shrooms = 0.25)
+	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/herb/explosive_shrooms = 0.2,/obj/structure/herb/cinchona = 0.2,/obj/structure/herb/liberal_hats = 0.2)
 	dense_flora = list(/obj/structure/flora/ausbushes/stalkybush = 1)
-	loose_flora_density = 10
+	loose_flora_density = 15
 	dense_flora_density = 10
 	fauna_types = list(/mob/living/simple_animal/hostile/yog_jungle/blobby = 20,/mob/living/simple_animal/hostile/yog_jungle/meduracha = 50,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 2,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 48)
 	fauna_density = 1.5
@@ -75,7 +75,7 @@
 /datum/biome/jungleland/dying_forest
 	turf_type = /turf/open/floor/plating/dirt/jungleland/dying_forest
 	closed_turf = /turf/open/floor/plating/dirt/jungleland/dying_forest
-	dense_flora = list(/obj/structure/flora/stump=1,/obj/structure/flora/tree/dead/jungle = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/tree/jungle/small = 1)
+	dense_flora = list(/obj/structure/flora/stump=1,/obj/structure/flora/tree/dead/jungle = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/tree/jungle/small = 1,/obj/structure/herb/cinchona = 0.1)
 	dense_flora_density = 70
 	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing = 39,/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad = 55,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 5)
 	fauna_density = 1.3
@@ -86,7 +86,7 @@
 	closed_turf = /turf/open/floor/plating/dirt/jungleland/jungle
 	cellular_noise_map_id = HIGH_DENSITY
 	dense_flora = list(/obj/structure/flora/tree/jungle/small = 2,/obj/structure/flora/tree/jungle = 2, /obj/structure/flora/rock/jungle = 1, /obj/structure/flora/junglebush = 1, /obj/structure/flora/junglebush/b = 1, /obj/structure/flora/junglebush/c = 1, /obj/structure/flora/junglebush/large = 1, /obj/structure/flora/rock/pile/largejungle = 1)
-	loose_flora = list(/obj/structure/flora/grass/jungle = 2,/obj/structure/flora/grass/jungle/b = 2,/obj/structure/flora/grass/brown = 1,/obj/structure/flora/bush = 1,/obj/structure/flora/ausbushes = 1,/obj/structure/flora/ausbushes/leafybush = 1,/obj/structure/flora/ausbushes/sparsegrass = 1,/obj/structure/flora/ausbushes/fullgrass = 1,/obj/structure/explosive_shrooms = 0.1)
+	loose_flora = list(/obj/structure/flora/grass/jungle = 2,/obj/structure/flora/grass/jungle/b = 2,/obj/structure/flora/grass/brown = 1,/obj/structure/flora/bush = 1,/obj/structure/flora/ausbushes = 1,/obj/structure/flora/ausbushes/leafybush = 1,/obj/structure/flora/ausbushes/sparsegrass = 1,/obj/structure/flora/ausbushes/fullgrass = 1,/obj/structure/herb/explosive_shrooms = 0.1,/obj/structure/herb/cinchona = 0.1,/obj/structure/herb/liberal_hats = 0.1)
 	loose_flora_density = 60
 	fauna_types = list(/mob/living/simple_animal/hostile/yog_jungle/blobby = 10 ,/mob/living/simple_animal/hostile/yog_jungle/dryad = 69 ,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 20)
 	fauna_density = 1.4

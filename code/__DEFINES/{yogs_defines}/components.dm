@@ -7,3 +7,4 @@
 #define COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE "glob_jungleland_daynight_next_phase"
 
 #define COMSIG_JUNGLELAND_TAR_CURSE_PROC "jungleland_tar_curse_proc"
+#define COMSIG_REGEN_CORE_HEALED "regen_core_healed"

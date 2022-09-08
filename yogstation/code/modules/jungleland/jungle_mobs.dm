@@ -38,7 +38,7 @@
 	health = 60
 	spacewalk = TRUE
 	ranged = TRUE
-
+	loot = list(/obj/item/organ/regenerative_core/dryad)
 	ranged_cooldown_time = 4 SECONDS
 	retreat_distance = 1
 	minimum_distance = 3

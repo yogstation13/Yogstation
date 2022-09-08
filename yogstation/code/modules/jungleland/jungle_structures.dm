@@ -196,19 +196,31 @@
 
 /obj/structure/herb
 	icon = 'yogstation/icons/obj/jungle.dmi'
+	anchored = TRUE 
+	density = FALSE
 
 	var/picked_result
 	var/picked_amt
 
-/obj/structure/explosive_shrooms
+/obj/structure/herb/attack_hand(mob/user)
+	. = ..()
+	if(!do_after(user,10 SECONDS,src))
+		return
+
+	for(var/i in 1 to picked_amt)
+		new picked_result(get_turf(src))
+	
+	qdel(src)
+
+/obj/structure/herb/explosive_shrooms
 	name = "Explosive Mushroom"
 	desc = "Highly volatile mushrooms, they contain a high amount of volatile alkalines that will explode after a short delay if stepped on."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "explosive_shrooms"
-	anchored = TRUE
-	density = FALSE
+	picked_amt = 1
+	picked_result = /obj/item/explosive_shroom
 
-/obj/structure/explosive_shrooms/Cross(atom/movable/AM)
+/obj/structure/herb/explosive_shrooms/Cross(atom/movable/AM)
 	. = ..()
 	if(!isliving(AM))
 		return 
@@ -216,7 +228,25 @@
 	animate(src,time=2.49 SECONDS, color = "#e05a5a")
 	addtimer(CALLBACK(src,.proc/explode),2.5 SECONDS)
 
-/obj/structure/explosive_shrooms/proc/explode()
+/obj/structure/herb/explosive_shrooms/proc/explode()
 	dyn_explosion(get_turf(src),4)
 	if(src && !QDELETED(src))
 		qdel(src)
+
+//haha you get the jokes, the shrooms that make you trip balls are called "liberal hats", pun being that there are shrooms that do that that are called "liberty caps" haha
+/obj/structure/herb/liberal_hats
+	name = "Liberal Hats"
+	desc = "Liberate yourself from the chains of your flesh, consume and witness the world in new colors."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "liberal_hats"
+	picked_amt = 3
+	picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/liberal_hat
+
+/obj/structure/herb/cinchona
+	name = "Cinchona Exotica"
+	desc = "A small shrubby tree with a very peculiar bark..."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "herb_5"
+	picked_amt = 3
+	picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/cinchona_bark
+

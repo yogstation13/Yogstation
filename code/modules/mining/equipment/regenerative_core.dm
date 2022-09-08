@@ -59,6 +59,7 @@
 		to_chat(owner, span_notice("[src] breaks down as it tries to activate."))
 	else
 		owner.revive(full_heal = 1)
+		SEND_SIGNAL(owner,COMSIG_REGEN_CORE_HEALED) //yogs edit
 	qdel(src)
 
 /obj/item/organ/regenerative_core/on_life()
@@ -77,6 +78,7 @@
 	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
 	H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
 	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman)
+	SEND_SIGNAL(H,COMSIG_REGEN_CORE_HEALED) //yogs edit
 	qdel(src)
 	
 /obj/item/organ/regenerative_core/afterattack(atom/target, mob/user, proximity_flag)
@@ -98,6 +100,7 @@
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
 			H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman) //Now THIS is a miner buff (fixed - nerf)
+			SEND_SIGNAL(H,COMSIG_REGEN_CORE_HEALED) //yogs edit
 			qdel(src)
 
 /obj/item/organ/regenerative_core/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)

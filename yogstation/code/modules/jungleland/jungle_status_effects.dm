@@ -10,6 +10,7 @@
 
 /datum/status_effect/toxic_buildup/on_creation(mob/living/new_owner, ...)
 	. = ..()
+	RegisterSignal(new_owner,COMSIG_REGEN_CORE_HEALED,.proc/cure)
 	update_stack(1)
 
 /datum/status_effect/toxic_buildup/tick()
