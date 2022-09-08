@@ -205,7 +205,7 @@
 	icon_state = "arg"
 	item_state = "arg"
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/m556
+	mag_type = /obj/item/ammo_box/magazine/r556
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	burst_size = 3
