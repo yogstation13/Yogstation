@@ -740,13 +740,14 @@
 			continue
 		if(!isliving(clan_minds.current))
 			continue
-		to_chat(clan_minds, span_userdanger("[owner.current] has broken the Masquerade! Ensure they are eliminated at all costs!"))
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = clan_minds.has_antag_datum(/datum/antagonist/bloodsucker)
-		var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
-		masquerade_objective.target = owner.current
-		masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, is Final Death'ed."
-		bloodsuckerdatum.objectives += masquerade_objective
-		clan_minds.announce_objectives()
+		to_chat(clan_minds, span_userdanger("[owner.current] has broken the Masquerade![bloodsuckerdatum.my_clan == CLAN_TOREADOR ? "Ensure they are eliminated at all costs!" : ""]"))
+		if(bloodsuckerdatum.my_clan == CLAN_TOREADOR)
+			var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
+			masquerade_objective.target = owner.current
+			masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, is Final Death'ed."
+			bloodsuckerdatum.objectives += masquerade_objective
+			clan_minds.announce_objectives()
 
 ///This is admin-only of reverting a broken masquerade, sadly it doesn't remove the Malkavian objectives yet.
 /datum/antagonist/bloodsucker/proc/fix_masquerade()
