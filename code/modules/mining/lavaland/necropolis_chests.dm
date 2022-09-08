@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,26)
+	var/loot = rand(1,27)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -78,6 +78,8 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(26)
 			new /obj/item/clothing/under/drip(src)
 			new /obj/item/clothing/shoes/drip(src)
+		if(27)
+			new /obj/item/duelist_sword(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -1737,3 +1739,52 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		H.blood_volume -= 35
 	spawn_atom_to_turf(/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling, owner, 3, TRUE) //think 1 in 4 is a good chance of not being targeted by fauna
 	next_expulsion = world.time + cooldown
+
+#define DUELIST_SWORD_ACTIVATION_DURATION 0.75 SECONDS
+#define DUELIST_SWORD_COOLDOWN_DURATION 1.25 SECONDS
+
+/obj/item/duelist_sword
+	name = "duelist's sword"
+	desc = "A sharp blade, that probably belong to an ancient warrior."
+	icon = 'icons/obj/weapons/swords.dmi'
+	icon_state = "claymore"
+	item_state = "claymore"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	flags_1 = CONDUCT_1
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
+	force = 16
+	throwforce = 25
+	w_class = WEIGHT_CLASS_HUGE
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	block_chance = 0
+	sharpness = SHARP_EDGED
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
+	resistance_flags = FIRE_PROOF
+	var/last_time_activated = 0
+
+/obj/item/duelist_sword/attack_self(mob/user)
+	if(!ishuman(user))
+		return
+	if(last_time_activated + DUELIST_SWORD_COOLDOWN_DURATION < world.time)
+		return
+	to_chat(user, span_notice("You concentrate, preparing to block any incoming projectiles."))
+	last_time_activated = world.time
+
+/obj/item/duelist_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(!last_time_activated || last_time_activated + DUELIST_SWORD_ACTIVATION_DURATION < world.time)
+		return FALSE
+	if(attack_type != PROJECTILE_ATTACK && attack_type != THROWN_PROJECTILE_ATTACK)
+		return FALSE
+	playsound(get_turf(owner ? owner : src), 'sound/weapons/parry.ogg', 100, TRUE)
+	owner.visible_message(span_danger("[owner] blocks [attack_text] with [src]!"))
+	return TRUE
+
+/obj/item/duelist_sword/examine(mob/user)
+	. = ..()
+	if(ishuman(user))
+		.+= span_notice("Use it inhand to make it block any incoming projectiles for a very short time.")
+
+#undef DUELIST_SWORD_ACTIVATION_DURATION
+#undef DUELIST_SWORD_COOLDOWN_DURATION
