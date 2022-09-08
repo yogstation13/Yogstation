@@ -235,7 +235,7 @@
 					holder.icon_state = "hudincarcerated"
 					return
 				if("Suspected")
-					holder.icon_state = "hudsuspected"
+					holder.icon_state = SSevents.holidays[HALLOWEEN] ? "hudsussybaka" : "hudsuspected"
 					return
 				if("Paroled")
 					holder.icon_state = "hudparolled"
