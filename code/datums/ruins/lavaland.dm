@@ -406,9 +406,9 @@
 	unpickable = TRUE //council-vote
 
 /datum/map_template/ruin/lavaland/medical
-	name = "Orion Medical Outpost"
+	name = "SIC Medical Outpost"
 	id = "medical"
-	description = "One of the Orion Medical Outposts was teleported after a bluespace anomaly"
+	description = "One of the SIC Medical Outposts was teleported after a bluespace anomaly"
 	suffix = "lavaland_surface_medical.dmm"
 	allow_duplicates = FALSE
 	cost = 15
@@ -493,3 +493,11 @@
 	suffix = "lavaland_surface_meteorite.dmm"
 	allow_duplicates = FALSE
 	cost = 20
+
+/datum/map_template/ruin/lavaland/researchcapsule
+	name = "Research Capsule Ruins"
+	id = "researchcapsule"
+	description = "A strange weaver appeared one day."
+	suffix = "lavaland_surface_researchpod.dmm"
+	allow_duplicates = FALSE
+	cost = 10

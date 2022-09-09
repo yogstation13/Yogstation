@@ -357,7 +357,16 @@
 				var/datum/action/innate/horror/H = has_ability(/datum/action/innate/horror/chameleon)
 				H.Activate()
 			Update_Invisibility_Button()
+			var/removeBonus = FALSE
+			if(iscyborg(A))
+				if(has_upgrade("dmg_up"))
+					removeBonus = TRUE
+					melee_damage_lower += 5
+					melee_damage_upper += 10
 			..()
+			if(removeBonus)
+				melee_damage_lower -= 5
+				melee_damage_upper -= 10
 
 /mob/living/simple_animal/horror/ex_act()
 	if(victim)

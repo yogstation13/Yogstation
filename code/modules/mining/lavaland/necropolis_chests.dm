@@ -914,7 +914,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "dragon chest"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
-	new /obj/item/gem/bloodstone(src)
+	new /obj/item/gem/amber(src)
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
@@ -933,7 +933,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/dragon/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/tail_spike(src)
-	new /obj/item/gem/bloodstone(src)
+	new /obj/item/gem/amber(src)
 
 /obj/item/melee/ghost_sword
 	name = "\improper spectral blade"
@@ -1068,6 +1068,27 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
+/obj/item/dragons_blood/syndicate
+	name = "bottle of refined dragons blood"
+	desc = "You're totally going to drink this, aren't you?"
+
+/obj/item/dragons_blood/syndicate/attack_self(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+
+	if(!islizard(H))	//Something about it being refined to only work on lizards or whatever
+		to_chat(user, span_danger("You're about to take a sip, but the acrid fumes from whatever's in this bottle make you reconsider."))
+		return
+	else
+		to_chat(user, span_danger("You feel the warmth spread through you, scales hardening and claws growing sharper. You feel... strong!"))
+		H.set_species(/datum/species/lizard/draconid)
+
+		playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
+	qdel(src)
+
+
 /datum/disease/transformation/dragon
 	name = "dragon transformation"
 	cure_text = "nothing"
@@ -1196,6 +1217,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/bubblegum/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/demon_claws(src)
+	new /obj/item/gem/bloodstone(src)
 
 /obj/item/mayhem
 	name = "mayhem in a bottle"
@@ -1360,6 +1382,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/structure/closet/crate/necropolis/colossus/crusher/PopulateContents()
 	..()
 	new /obj/item/crusher_trophy/blaster_tubes(src)
+	new /obj/item/gem/void(src)
 
 //Hierophant
 /obj/item/hierophant_club
@@ -1656,20 +1679,109 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	z_level_check = FALSE
 
 //Stalwart
+
+/obj/item/gun/energy/plasmacutter/adv/robocutter
+	name = "ancient focusing crystal"
+	desc = "A humming crystaline weapon, firing scattered blasts of focused energy."
+	fire_delay = 4
+	icon = 'icons/obj/guns/energy.dmi'
+	icon_state = "robocutter"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/stalwart)
+	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
+	usesound = list('sound/weapons/taserhit.ogg')
+	toolspeed = 0.33 //funky bluespace welding effect idk
+	selfcharge = 1
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+
+/obj/item/twohanded/bonespear/stalwartpike
+	icon = 'icons/obj/weapons/spears.dmi'
+	icon_state = "stalwart_spear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "ancient control rod"
+	//don't want your rare megafauna loot shattering easily
+	max_integrity = 2000
+	desc = "A mysterious crystaline rod of exceptional length, humming with ancient power. Too unweildy for use in one hand."
+	wielded_stats = list(SWING_SPEED = 0.8, ENCUMBRANCE = 0.2, ENCUMBRANCE_TIME = 2, REACH = 3, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
+	w_class = WEIGHT_CLASS_SMALL
+	var/w_class_on = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BELT
+	force = 0
+	throwforce = 0
+	throw_speed = 4
+	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
+	sharpness = SHARP_NONE
+	block_chance = 0
+	var/ranged_cooldown = 0 //shamelessly stolen from hostile mobs
+	var/ranged_cooldown_time = 40
+	var/projectiles_per_fire = 1
+	var/fauna_damage_bonus = 22
+	var/fauna_damage_type = BRUTE
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+
+/obj/item/twohanded/bonespear/stalwartpike/update_icon()
+	. = ..()
+	if(wielded)
+		icon_state = "stalwart_spear1"
+	else
+		icon_state = "stalwart_spear0"
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
+
+/obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
+	. = ..()
+	if(wielded)
+		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
+		sharpness = SHARP_POINTY
+		w_class = w_class_on
+		block_chance = 10
+		force = 8
+
+/obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
+	if(wielded)
+		playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
+		sharpness = initial(sharpness)
+		w_class = initial(w_class)
+		force = initial(force)
+		block_chance = initial(block_chance)
+	. = ..()
+
+/obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!proximity || !wielded)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+			L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+			playsound(L, 'sound/magic/blind.ogg', 100, 1)
+
 /obj/structure/closet/crate/sphere/stalwart
 	name = "silvery capsule"
 	desc = "It feels cold to the touch..."
 
 /obj/structure/closet/crate/sphere/stalwart/PopulateContents()
-	new /obj/item/gun/energy/plasmacutter/adv/robocutter
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
+			new /obj/item/gem/purple(src)
+		if(2)
+			new /obj/item/twohanded/bonespear/stalwartpike(src)
+			new /obj/item/ai_cpu/stalwart(src)
+		if(3)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/stack/ore/dilithium_crystal(src)
+			new /obj/item/stack/ore/dilithium_crystal(src)
+			new /obj/item/stack/ore/dilithium_crystal(src)
+			new /obj/item/stack/ore/dilithium_crystal(src)
+			new /obj/item/gem/purple(src)
+		if(4)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
+			new /obj/item/ai_cpu/stalwart(src)
 
-/obj/item/gun/energy/plasmacutter/adv/robocutter
-	name = "energized powercutter"
-	desc = "Ripped out of an ancient machine, this self-recharging cutter is unmatched."
-	fire_delay = 4
-	icon = 'icons/obj/guns/energy.dmi'
-	icon_state = "robocutter"
-	selfcharge = 1
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
 	name = "puzzling chest"

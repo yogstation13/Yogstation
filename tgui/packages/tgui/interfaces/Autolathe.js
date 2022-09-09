@@ -1,14 +1,38 @@
 import { Fragment } from 'inferno';
+import { createSearch } from 'common/string';
+import { flow } from 'common/fp';
+import { filter, sortBy } from 'common/collections';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Flex, Input, Grid, NumberInput, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
+import { useDebug } from '../debug';
+
+export const searchDesigns = (designs, searchText = '') => {
+  const testSearch = createSearch(searchText, design => design.name);
+  return flow([
+    // Optional search term
+    searchText && filter(testSearch),
+    // Slightly expensive, but way better than sorting in BYOND
+    sortBy(design => design.name),
+  ])(designs);
+};
+
+const MaxMultiplier = (materials, design) => {
+  let maxmulti = [];
+  let currentmult = 5;
+  for (let i = 0; i < 3; i++) {
+    for (const [key, value] of Object.entries(materials)) {
+      if (value < design["materials"][key]*currentmult) {
+        return maxmulti;
+      }
+    }
+    maxmulti.push(currentmult);
+    currentmult += 10;
+  }
+  return maxmulti;
+};
 
 export const Autolathe = (props, context) => {
-
-  const [
-    searchterms,
-    setSearchText,
-  ] = useLocalState(context, 'searchterms', '');
   const [
     sheetnumberglass,
     setGlassSheetCount,
@@ -23,6 +47,11 @@ export const Autolathe = (props, context) => {
   ] = useLocalState(context, 'setcategory', 'Tools');
 
   const { act, data } = useBackend(context);
+  const [
+    searchText,
+    setSearchText,
+  ] = useLocalState(context, 'searchText', '');
+  const searchdesign = searchDesigns(data.designs, searchText);
   return (
     <Window width={1116} height={703} resizable>
       <Window.Content scrollable>
@@ -32,7 +61,7 @@ export const Autolathe = (props, context) => {
             <Box inline ml={80}>
               Search:
               <Input
-                value={searchterms}
+                value={searchText}
                 width="250px"
                 onInput={(e, value) => setSearchText(value)}
                 ml={2}
@@ -49,18 +78,18 @@ export const Autolathe = (props, context) => {
                   {data.total_amount} / {data.max_amount} cm³
                 </font>
                 <br />
-                <font color={(data.metal_amount > 0 ? '#c9b971' : 'red')}>
+                <font color={(data.stored_materials.iron > 0 ? '#c9b971' : 'red')}>
                   <Box inline mr={1} mb={1} ml={1}>
                     <b>Metal amount: </b>
                   </Box>
-                  {data.metal_amount} cm³
+                  {data.stored_materials.iron} cm³
                 </font>
                 <br />
-                <font color={(data.glass_amount > 0 ? '#c9b971' : 'red')}>
+                <font color={(data.stored_materials.glass > 0 ? '#c9b971' : 'red')}>
                   <Box inline mr={1} ml={1}>
                     <b>Glass amount:</b>
                   </Box>
-                  {data.glass_amount} cm³
+                  {data.stored_materials.glass} cm³
                 </font>
               </div>
             </Grid.Column>
@@ -124,7 +153,7 @@ export const Autolathe = (props, context) => {
                 width="100px"
                 unit="Sheets"
                 minValue={0}
-                maxValue={Math.round((data.metal_amount / 2000) - 0.5)}
+                maxValue={Math.round((data.stored_materials.iron / 2000) - 0.5)}
                 onChange={(e, value) => setMetalSheetCount(value)} />
 
               <Button
@@ -132,7 +161,7 @@ export const Autolathe = (props, context) => {
                 content={"Eject"}
                 ml={1}
                 mr={1}
-                disabled={(data.metal_amount < 2000 ? 1 : 0)}
+                disabled={(data.stored_materials.iron < 2000 ? 1 : 0)}
                 onClick={() => act('eject', {
                   item_id: 'metal',
                   multiplier: sheetnumbermetal,
@@ -148,13 +177,13 @@ export const Autolathe = (props, context) => {
                 width="100px"
                 unit="Sheets"
                 minValue={0}
-                maxValue={Math.round((data.glass_amount / 2000) - 0.5)}
+                maxValue={Math.round((data.stored_materials.glass / 2000) - 0.5)}
                 onChange={(e, value) => setGlassSheetCount(value)} />
               <Button
                 content={"Eject"}
                 ml={1}
                 mr={1}
-                disabled={(data.glass_amount < 2000 ? 1 : 0)}
+                disabled={(data.stored_materials.glass < 2000 ? 1 : 0)}
                 onClick={() => act('eject', {
                   item_id: 'glass',
                   multiplier: sheetnumberglass,
@@ -172,7 +201,7 @@ export const Autolathe = (props, context) => {
                     fluid
                     mr={2}
                     selected={
-                      (searchterms.length > 1 ? (
+                      (searchText.length > 1 ? (
                         (categoryName === 'Search' ? 1 : 0)
                       ):(
                         setcategory === categoryName
@@ -180,7 +209,7 @@ export const Autolathe = (props, context) => {
                     }
                     color="transparent"
                     content={categoryName}
-                    onClick={(!searchterms ? (
+                    onClick={(!searchText ? (
                       () => setCategory(categoryName)
                     ):(
                       () => setSearchText("")))}
@@ -189,74 +218,73 @@ export const Autolathe = (props, context) => {
               </Section>
             </Flex.Item>
             <Flex.Item>
-              {searchterms.length > 1 ? (
+              {searchText.length > 2 ? (
                 <Section fluid title="Search Results" width={50}>
                   <div>
                     <Flex.Item>
-                      {data.designs.filter(design => {
-                        const searchTerm = searchterms.toLowerCase();
-                        const searchableString = String(design.name).toLowerCase();
-                        return (searchterms.length < 2 ? (
-                          null
-                        ) : (
-                          (searchableString.match(new RegExp(searchterms, "i")))
-                        ));
-                      }).map(design => (
+                      {searchdesign.map(design => (
                         <div key={data.designs}>
                           <Grid>
                             <Grid.Column size={2.5}>
                               <Button
+                                inline
                                 key={design.name}
                                 content={design.name}
-                                disabled={design.disabled}
+                                disabled={
+                                  (data.stored_materials.iron < design.materials.iron)
+                                || (data.stored_materials.glass < design.materials.glass)
+                                || data.disabled
+                                }
                                 title={design.name}
+                                mr={1}
                                 icon="print"
                                 onClick={() => act('make', {
                                   item_id: design.id,
                                   multiplier: 1,
                                 })} />
-                              {design.max_multiplier.map(max => (
-                                <Button
-                                  key={max}
-                                  disabled={design.disabled}
-                                  content={max + "x"}
-                                  onClick={() => act('make', {
-                                    item_id: design.id,
-                                    multiplier: max,
-                                  })}
-                                />
-                              ))}
-
+                              {MaxMultiplier(data.stored_materials, design)
+                                .map(max => (
+                                  <Button
+                                    inline
+                                    key={max}
+                                    disabled={data.disabled}
+                                    content={max + "x"}
+                                    onClick={() => act('make', {
+                                      item_id: design.id,
+                                      multiplier: max,
+                                    })}
+                                  />
+                                ))}
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {design.materials_metal === 0 ? (
-                                ''
+                              {!design.materials.glass ? (
+                                ""
                               ):(
                                 <Box ml={0} mr={0} inline
                                   color={(
-                                    data.metal_amount > design.materials_metal ? 'white' : 'bad'
+                                    data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
                                   )}>
-                                  {data.metal_amount > design.materials_metal ? (
-                                    <div>Metal: {design.materials_metal}</div>
+                                  {data.stored_materials.glass >= design.materials.glass ? (
+                                    <div>Glass: {design.materials.glass} cm³</div>
                                   ) : (
-                                    <b>Metal: {design.materials_metal}</b>
+                                    <b>Glass: {design.materials.glass} cm³</b>
                                   )}
                                 </Box>
 
                               )}
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {design.materials_glass === 0 ? (
+                              {design.materials.glass === 0 ? (
                                 ""
                               ):(
                                 <Box ml={0} mr={0} inline
                                   color={(
-                                    data.glass_amount >= design.materials_glass ? 'white' : 'bad'
+                                    data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
                                   )}>
-                                  {data.glass_amount >= design.materials_glass ? (
-                                    <div>Glass: {design.materials_glass}</div>
+                                  {data.stored_materials.glass >= design.materials.glass ? (
+                                    <div>Glass: {design.materials.glass}</div>
                                   ) : (
-                                    <b>Glass: {design.materials_metal}</b>
+                                    <b>Glass: {design.materials.iron}</b>
                                   )}
                                 </Box>
 
@@ -284,7 +312,11 @@ export const Autolathe = (props, context) => {
                                 inline
                                 key={design.name}
                                 content={design.name}
-                                disabled={design.disabled}
+                                disabled={
+                                  (data.stored_materials.iron < design.materials.iron)
+                                  || (data.stored_materials.glass < design.materials.glass)
+                                  || data.disabled
+                                }
                                 title={design.name}
                                 mr={1}
                                 icon="print"
@@ -292,32 +324,32 @@ export const Autolathe = (props, context) => {
                                   item_id: design.id,
                                   multiplier: 1,
                                 })} />
-
-                              {design.max_multiplier.map(max => (
-                                <Button
-                                  inline
-                                  key={max}
-                                  disabled={design.disabled}
-                                  content={max + "x"}
-                                  onClick={() => act('make', {
-                                    item_id: design.id,
-                                    multiplier: max,
-                                  })}
-                                />
-                              ))}
+                              {MaxMultiplier(data.stored_materials, design)
+                                .map(max => (
+                                  <Button
+                                    inline
+                                    key={max}
+                                    disabled={data.disabled}
+                                    content={max + "x"}
+                                    onClick={() => act('make', {
+                                      item_id: design.id,
+                                      multiplier: max,
+                                    })}
+                                  />
+                                ))}
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {design.materials_metal === 0 ? (
+                              {!design.materials.iron ? (
                                 ""
                               ):(
                                 <Box ml={0} mr={0} inline
                                   color={(
-                                    data.metal_amount >= design.materials_metal ? 'white' : 'bad'
+                                    data.stored_materials.iron >= design.materials.iron ? 'white' : 'bad'
                                   )}>
-                                  {data.metal_amount >= design.materials_metal ? (
-                                    <div>Metal: {design.materials_metal}</div>
+                                  {data.stored_materials.iron >= design.materials.iron ? (
+                                    <div>Metal: {design.materials.iron} cm³</div>
                                   ) : (
-                                    <b>Metal: {design.materials_metal}</b>
+                                    <b>Metal: {design.materials.iron} cm³</b>
                                   )}
                                 </Box>
 
@@ -325,17 +357,17 @@ export const Autolathe = (props, context) => {
 
                             </Grid.Column>
                             <Grid.Column size={1}>
-                              {!design.materials_glass > 0 ? (
+                              {!design.materials.glass ? (
                                 ""
                               ):(
                                 <Box ml={0} mr={0} inline
                                   color={(
-                                    data.glass_amount >= design.materials_glass ? 'white' : 'bad'
+                                    data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
                                   )}>
-                                  {data.glass_amount >= design.materials_glass ? (
-                                    <div>Glass: {design.materials_glass}</div>
+                                  {data.stored_materials.glass >= design.materials.glass ? (
+                                    <div>Glass: {design.materials.glass} cm³</div>
                                   ) : (
-                                    <b>Glass: {design.materials_glass}</b>
+                                    <b>Glass: {design.materials.glass} cm³</b>
                                   )}
                                 </Box>
 
