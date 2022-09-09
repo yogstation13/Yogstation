@@ -331,7 +331,7 @@
 			user.ExtinguishMob()
 			user.adjust_fire_stacks(-20)
 			user.reagents.add_reagent(/datum/reagent/consumable/frostoil,4)
-			user.reagents.add_reagent(/datum/reagent/medicine/cryoxadone,5)
+			user.reagents.add_reagent(/datum/reagent/medicine/cryoxadone/hugbox,5)
 			return 100
 
 		if(SLIME_ACTIVATE_MAJOR)

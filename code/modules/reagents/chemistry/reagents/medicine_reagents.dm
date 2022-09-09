@@ -130,13 +130,13 @@
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
-	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the patient's body temperature must be under 270K for it to metabolise correctly."
+	description = "A chemical mixture with almost magical healing powers. Its main limitations are that the patient's body temperature must be under 270K for it to metabolise correctly, and the patient must be unconscious."
 	color = "#0000C8"
 	taste_description = "sludge"
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/carbon/M)
 	var/power = -0.00006 * (M.bodytemperature ** 2) + 6
-	if(M.bodytemperature < T0C)
+	if(M.bodytemperature < T0C && (M.IsUnconscious() || istype(src, /datum/reagent/medicine/cryoxadone/hugbox)))
 		M.adjustOxyLoss(-3 * power, 0)
 		M.adjustBruteLoss(-power, 0)
 		M.adjustFireLoss(-power, 0)
@@ -149,6 +149,10 @@
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
 	..()
+
+/datum/reagent/medicine/cryoxadone/hugbox //hugbox is to keep parity with stuff thats main purpose is to give you cryodoxone eg xenobio bullshit
+	name = "Advanced Cryoxadone"
+	description = "A strange form of Cryoxadone that induces micro-sleep in the patient, allowing them to heal even while awake."
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
