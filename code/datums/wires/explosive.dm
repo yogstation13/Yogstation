@@ -17,10 +17,20 @@
 	return
 
 /datum/wires/explosive/chem_grenade
-	duds_number = 1
+	duds_number = 2
 	holder_type = /obj/item/grenade/chem_grenade
 	randomize = TRUE
 	var/fingerprint
+
+/datum/wires/explosive/chem_grenade/New(atom/holder)
+	wires = list(
+		WIRE_BOOM //two duds and the explosion wire.
+	)
+	..()
+
+/datum/wires/explosive/chem_grenade/on_pulse(wire)
+	if(wire == WIRE_BOOM)
+		explode()
 
 /datum/wires/explosive/chem_grenade/interactable(mob/user)
 	var/obj/item/grenade/chem_grenade/G = holder

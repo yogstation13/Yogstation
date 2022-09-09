@@ -1334,9 +1334,10 @@
 	// Heart attack code will not do damage if corazone is present
 	// because it's SPACE MAGIC ASPIRIN
 	name = "Corazone"
-	description = "A medication used to treat pain, fever, and inflammation, along with heart attacks."
+	description = "A medication used to treat pain, fever, and inflammation, along with heart attacks. Causes rapid organ failure when overdosed."
 	color = "#F5F5F5"
 	self_consuming = TRUE
+	overdose_threshold = 30
 
 /datum/reagent/medicine/corazone/on_mob_metabolize(mob/living/M)
 	..()
@@ -1346,6 +1347,12 @@
 /datum/reagent/medicine/corazone/on_mob_end_metabolize(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_STABLEHEART, type)
 	REMOVE_TRAIT(M, TRAIT_STABLELIVER, type)
+	..()
+
+/datum/reagent/medicine/corazone/overdose_process(mob/living/M)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1.5 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1 * REM)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.8 * REM)
 	..()
 
 /datum/reagent/medicine/muscle_stimulant
