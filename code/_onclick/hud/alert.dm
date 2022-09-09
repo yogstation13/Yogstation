@@ -115,6 +115,11 @@
 	desc = "You're not getting enough oxygen. Find some good air before you pass out! The box in your backpack has an oxygen tank and breath mask in it."
 	icon_state = "not_enough_oxy"
 
+/obj/screen/alert/not_enough_oxy/ipc
+	name = "Overheating"
+	desc = "You're not getting enough air. Find some before you burn up!"
+	icon_state = "overheating"
+
 /obj/screen/alert/too_much_oxy
 	name = "Choking (O2)"
 	desc = "There's too much oxygen in the air, and you're breathing it in! Find some good air before you pass out!"
@@ -124,10 +129,6 @@
 	name = "Choking (No N2)"
 	desc = "You're not getting enough nitrogen. Find some good air before you pass out!"
 	icon_state = "not_enough_nitro"
-
-/obj/screen/alert/not_enough_nitro/ipc
-	name = "Overheating (No N2)"
-	desc = "You're not getting enough nitrogen. Find some before you burn up!"
 
 /obj/screen/alert/too_much_nitro
 	name = "Choking (N2)"

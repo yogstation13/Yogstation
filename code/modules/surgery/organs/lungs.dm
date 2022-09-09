@@ -82,16 +82,16 @@
 
 		H.failed_last_breath = TRUE
 		if(safe_oxygen_min)
-			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
+			if(isipc(H))
+				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+			else
+				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
 		else if(safe_toxins_min)
 			H.throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
 		else if(safe_co2_min)
 			H.throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
 		else if(safe_nitro_min)
-			if(isipc(H))
-				H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro/ipc)
-			else
-				H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
+			H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
 		return FALSE
 
 	var/gas_breathed = 0
@@ -121,7 +121,10 @@
 	if(safe_oxygen_min)
 		if(O2_pp < safe_oxygen_min)
 			gas_breathed = handle_too_little_breath(H, O2_pp, safe_oxygen_min, breath.get_moles(/datum/gas/oxygen))
-			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
+			if(isipc(H))
+				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+			else
+				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
@@ -149,10 +152,7 @@
 	if(safe_nitro_min)
 		if(N2_pp < safe_nitro_min)
 			gas_breathed = handle_too_little_breath(H, N2_pp, safe_nitro_min, breath.get_moles(/datum/gas/nitrogen))
-			if(isipc(H))
-				H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro/ipc)
-			else
-				H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
+			H.throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
@@ -488,9 +488,13 @@
 	name = "Cooling radiator"
 	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
 	icon_state = "lungs-c"
-	safe_nitro_min = 20
 	safe_toxins_max = 0
-	safe_oxygen_min = 0
+	safe_oxygen_min = 80
+	oxygen_substitutes = list(
+		/datum/gas/nitrogen = 4, // 20 Mol
+		/datum/gas/plasma = 8, // 10 Mol
+		/datum/gas/carbon_dioxide // 160 Mol
+		)
 	safe_co2_max = 0
 	organ_flags = ORGAN_SYNTHETIC
 	status = ORGAN_ROBOTIC
