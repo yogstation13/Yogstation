@@ -1,5 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Added a new medical-themed 10x5 maint ruin"
-  - bugfix: "Adds Maint donut to landmarks.dm"
