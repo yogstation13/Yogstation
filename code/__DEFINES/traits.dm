@@ -165,7 +165,6 @@
 #define TRAIT_TOXINLOVER		"toxinlover"
 #define TRAIT_TOXIMMUNE         "toxin_immune"
 #define TRAIT_NOBREATH			"no_breath"
-#define TRAIT_NOBREATHDAMAGE	"no_breath_damage"
 #define TRAIT_ANTIMAGIC			"anti_magic"
 #define TRAIT_HOLY				"holy"
 #define TRAIT_DEPRESSION		"depression"

@@ -75,11 +75,10 @@
 	if(!breath || (breath.total_moles() == 0))
 		if(H.reagents.has_reagent(crit_stabilizing_reagent, needs_metabolizing = TRUE))
 			return
-		if(!HAS_TRAIT(H, TRAIT_NOBREATHDAMAGE)) // Aka the lungs specially handle it
-			if(H.health >= H.crit_threshold)
-				H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
-			else if(!HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
-				H.adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
+		if(H.health >= H.crit_threshold)
+			H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
+		else if(!HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
+			H.adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
 		H.failed_last_breath = TRUE
 		if(safe_oxygen_min)
@@ -122,10 +121,7 @@
 	if(safe_oxygen_min)
 		if(O2_pp < safe_oxygen_min)
 			gas_breathed = handle_too_little_breath(H, O2_pp, safe_oxygen_min, breath.get_moles(/datum/gas/oxygen))
-			if(isipc(H))
-				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
-			else
-				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
+			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
 		else
 			H.failed_last_breath = FALSE
 			if(H.health >= H.crit_threshold)
@@ -489,34 +485,53 @@
 	name = "Cooling radiator"
 	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
 	icon_state = "lungs-c"
-	safe_toxins_max = 0
-	safe_oxygen_min = 80
-	oxygen_substitutes = list(
-		/datum/gas/nitrogen = 4, // 20 Mol
-		/datum/gas/plasma = 8, // 10 Mol
-		/datum/gas/carbon_dioxide // 160 Mol
-		)
-	safe_co2_max = 0
 	organ_flags = ORGAN_SYNTHETIC
 	status = ORGAN_ROBOTIC
 	COOLDOWN_DECLARE(last_message)
 
-/obj/item/organ/lungs/ipc/handle_too_little_breath(mob/living/carbon/human/H, breath_pp, safe_breath_min, true_pp)
-	. = 0
-	if(!H || !safe_breath_min) //the other args are either: Ok being 0 or Specifically handled.
-		return FALSE
+/obj/item/organ/lungs/ipc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
+	if(H.status_flags & GODMODE)
+		return
+	if(HAS_TRAIT(H, TRAIT_NOBREATH))
+		return
 
-	if(COOLDOWN_FINISHED(src, last_message))
-		to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
-		COOLDOWN_START(src, last_message, 30 SECONDS)
-
-	if(breath_pp > 0)
-		var/ratio = safe_breath_min/breath_pp
-		H.adjust_bodytemperature(45, max_temp = 500)
+	var/total_heat_capacity = 0
+	if(!breath || (breath.total_moles() == 0)) // Space
+		H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+		if(COOLDOWN_FINISHED(src, last_message))
+			to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+			COOLDOWN_START(src, last_message, 30 SECONDS)
+		H.adjust_bodytemperature(65, max_temp = 500)
 		H.failed_last_breath = TRUE
-		. = true_pp*ratio/6
-	else
-		H.adjust_bodytemperature(45, max_temp = 500)
+		return FALSE
+	var/temperature = breath.return_temperature()
+	for(var/id in breath.get_gases())
+		var/moles = breath.get_moles(id)
+		total_heat_capacity += GLOB.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles
+	// Normal atmos is 0.416
+	// 20C -> 293K
+	// At about 50C overheating will begin
+	// At 70C burn damage will start happening
+	breath.remove(breath.total_moles()) // Remove as exhaust or whatever
+	if(total_heat_capacity > 0)
+		var/heat_generation = (temperature + 100)/total_heat_capacity
+		if(heat_generation > 1000) // not dispelling enough heat
+			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+			if(COOLDOWN_FINISHED(src, last_message))
+				to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+				COOLDOWN_START(src, last_message, 30 SECONDS)
+
+			// Every 2C is an extra temperature
+			H.adjust_bodytemperature((heat_generation-1000)/2, max_temp = 500)
+			H.failed_last_breath = TRUE
+		else
+			H.failed_last_breath = FALSE
+			H.clear_alert("not_enough_oxy")
+	else // backup but should be impossible to ever run
+		if(COOLDOWN_FINISHED(src, last_message))
+			to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+			COOLDOWN_START(src, last_message, 30 SECONDS)
+		H.adjust_bodytemperature(65, max_temp = 500)
 		H.failed_last_breath = TRUE
 
 /obj/item/organ/lungs/plasmaman

@@ -103,28 +103,29 @@
 	var/L = getorganslot(ORGAN_SLOT_LUNGS)
 
 	if(!L)
-		if(health >= crit_threshold)
-			adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
-		else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
-			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
+		if(isipc(src))
+			throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+			adjust_bodytemperature(65, max_temp = 500)
+		else
+			if(health >= crit_threshold)
+				adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)
+			else if(!HAS_TRAIT(src, TRAIT_NOCRITDAMAGE))
+				adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
-		failed_last_breath = 1
+			failed_last_breath = 1
 
-		var/datum/species/S = dna.species
+			var/datum/species/S = dna.species
 
-		if(S.breathid == "o2")
-			if(isipc(src))
-				throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
-			else
+			if(S.breathid == "o2")
 				throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
-		else if(S.breathid == "tox")
-			throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
-		else if(S.breathid == "co2")
-			throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
-		else if(S.breathid == "n2")
-			throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
+			else if(S.breathid == "tox")
+				throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
+			else if(S.breathid == "co2")
+				throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
+			else if(S.breathid == "n2")
+				throw_alert("not_enough_nitro", /obj/screen/alert/not_enough_nitro)
 
-		return FALSE
+			return FALSE
 	else
 		if(istype(L, /obj/item/organ/lungs))
 			var/obj/item/organ/lungs/lun = L

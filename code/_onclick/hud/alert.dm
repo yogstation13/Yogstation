@@ -117,7 +117,7 @@
 
 /obj/screen/alert/not_enough_oxy/ipc
 	name = "Overheating"
-	desc = "You're not getting enough air. Find some before you burn up!"
+	desc = "You're not able to disperse heat. Find some gas to cool back down!"
 	icon_state = "overheating"
 
 /obj/screen/alert/too_much_oxy
