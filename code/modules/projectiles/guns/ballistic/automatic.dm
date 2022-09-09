@@ -298,15 +298,18 @@
 	fire_sound = "sound/weapons/dmrshot.ogg"
 	vary_fire_sound = FALSE //Pure DMR bliss my beloved
 	load_sound = "sound/weapons/rifleload.ogg"
+	load_empty_sound = "sound/weapons/rifleload.ogg"
 	rack_sound = "sound/weapons/riflerack.ogg"
 	eject_sound = "sound/weapons/rifleunload.ogg"
+	eject_empty_sound = "sound/weapons/rifleunload.ogg"
 	mag_type = /obj/item/ammo_box/magazine/m308
-	fire_delay = 8
+	fire_delay = 6
 	burst_size = 1
 	can_suppress = FALSE
 	can_bayonet = TRUE
 	knife_x_offset = 27
 	knife_y_offset = 12
+	actions_types = list() //So you can't avoid the fire_delay
 	mag_display = TRUE
 	weapon_weight = WEAPON_HEAVY
 

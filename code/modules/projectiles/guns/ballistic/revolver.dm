@@ -8,7 +8,7 @@
 	eject_sound = 'sound/weapons/revolverempty.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 90
-	fire_delay = 8 //Needs to be slower
+	fire_delay = 6 //Needs to be slower
 	dry_fire_sound = 'sound/weapons/revolverdry.ogg'
 	casing_ejector = FALSE
 	internal_magazine = TRUE
@@ -99,7 +99,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return TRUE
 			magazine.caliber = "357"
-			fire_delay = 12 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder
+			fire_delay = 8 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder
 			fire_sound = 'sound/weapons/revolver357shot.ogg'
 			desc = "The barrel and chamber assembly seems to have been modified."
 			to_chat(user, span_notice("You reinforce the barrel of [src]. Now it will fire .357 rounds."))
@@ -124,7 +124,7 @@
 	name = "\improper Caldwell Tracking Revolver"
 	desc = "A modified autorevolver initially designed by colonists on hostile worlds, now utilized by security personnel. Uses .32 TRAC ammo."
 	icon_state = "tracrevolver"
-	fire_delay = 12 //Needle round rotate slowly, pace your shots
+	fire_delay = 10 //Needle round rotate slowly, pace your shots
 	suppressed = TRUE
 	can_unsuppress = FALSE
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra32
@@ -154,7 +154,7 @@
 	name = "\improper Nagant revolver"
 	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
 	icon_state = "nagant"
-	fire_delay = 4 //Mild trigger pull, the gun was known for it
+	fire_delay = 5 //Mild trigger pull, the gun was known for it
 	can_suppress = TRUE
 
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762

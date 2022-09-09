@@ -30,8 +30,8 @@
 
 /obj/item/projectile/bullet/m308/pen
 	name = ".308 penetrator bullet"
-	damage = 38
-	armour_penetration = 30
+	damage = 35
+	armour_penetration = 35
 
 /obj/item/projectile/bullet/m308/pen/on_hit(atom/target)
 	. = ..()

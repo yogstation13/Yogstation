@@ -12,7 +12,10 @@
 
 /obj/item/ammo_box/magazine/m12g/update_icon()
 	..()
-	icon_state = "m12[sprite_designation]-[CEILING(ammo_count(FALSE)/8, 1)*8]"
+	if(ammo_count())
+		icon_state = "m12g[sprite_designation]-8"
+	else
+		icon_state = "m12g[sprite_designation]-0"
 
 /obj/item/ammo_box/magazine/m12g/stun
 	name = "shotgun magazine (12g taser slugs)"
