@@ -29,7 +29,11 @@
 	wine_power = 30
 
 /obj/item/reagent_containers/food/snacks/grown/onion/slice(accuracy, obj/item/W, mob/user)
-	if(user && !user.is_eyes_covered())
+	if(isliving(user))
+		var/mob/living/L = user
+		if(!user.is_eyes_covered())
+			user.emote("cry")
+		. = ..()
 		user.emote("cry")
 	. = ..()
 
