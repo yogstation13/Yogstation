@@ -4,8 +4,9 @@
 	caliber = "357"
 	max_ammo = 7
 
-/obj/item/ammo_box/magazine/internal/cylinder/get_round(keep = 0)
-	rotate()
+/obj/item/ammo_box/magazine/internal/cylinder/get_round(keep = FALSE, rotate = TRUE)
+	if(rotate)
+		rotate()
 
 	var/b = stored_ammo[1]
 	if(!keep)

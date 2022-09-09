@@ -91,7 +91,7 @@
 	var/can_be_sawn_off  = FALSE
 	var/reload_say = null
 
-	// stores all types of feedback. Name of feedback + the amount of frames in the animation (must be more than 0) . Add to this list as more feedback is added. 
+	// stores all types of feedback. Name of feedback + the amount of frames in the animation (must be more than 0) . Add to this list as more feedback is added.
 	var/list/feedback_types = list(
 		"fire" = 0,
 		"slide_open" = 0,
@@ -176,7 +176,7 @@
 			magazine = new starting_mag_type(src)
 	chamber_round()
 	update_icon()
-	
+
 
 /obj/item/gun/ballistic/update_icon()
 	if (QDELETED(src))
@@ -355,7 +355,8 @@
 				if(can_reload_say)
 					user.say(reload_say, forced = "reloading")
 				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
-					chamber_round()
+					var/revolver = istype(src, /obj/item/gun/ballistic/revolver) //these STUPID FUCKS reload backwards if given the opportunity here
+					chamber_round(!revolver)
 				A.update_icon()
 				update_icon()
 			return

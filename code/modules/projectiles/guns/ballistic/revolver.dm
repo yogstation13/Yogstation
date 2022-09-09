@@ -163,6 +163,102 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
 
 
+/obj/item/gun/ballistic/revolver/single_action
+	name = ".44 Magnum single action revolver"
+	desc = "A single action fixed cylinder revolver. Ineffective in the hands of an inexperienced user due to the lack of automation found in more recently designed weapons, though its robust construction allows it to chamber powerful ammunition. Uses .44 Magnum ammo."
+	///whether we are shooting or reloading
+	var/reload_mode = FALSE
+	///if the hammer is in firing position
+	var/hammer_set = FALSE
+
+/obj/item/gun/ballistic/revolver/single_action/examine(mob/user)
+	. = ..()
+	. += "Use in hand to switch between reloading and firing. Currently [reload_mode ? "reloading" : "firing"]."
+	if(reload_mode)
+		var/obj/item/ammo_casing/casing = magazine.get_round(TRUE, FALSE)
+		. += "The currently accessible chamber is [casing ? casing.BB ? "loaded" : "spent" : "empty"]."
+
+	. += "While firing, attempting to shoot will first pull the hammer back. If the hammer is pulled back, shooting will shoot."
+	. += "While reloading, attempting to shoot will rotate the cylinder and eject spent casings, Alt-Click to eject any bullet in the accessible cylinder, spent or not."
+
+/obj/item/gun/ballistic/revolver/single_action/afterattack(atom/target, mob/living/user, flag, params)
+	if(reload_mode)
+		var/obj/item/ammo_casing/casing = magazine.get_round(TRUE, FALSE)
+		var/obj/item/ammo_box/magazine/internal/cylinder/cylinder = magazine
+		user.changeNext_move(CLICK_CD_RANGE)
+		if(casing && !casing.BB)
+			casing.forceMove(drop_location())
+			magazine.get_round(FALSE, FALSE) //this removes the round from our cylinder
+			to_chat(user, span_warning("You push [casing] out of [src]."))
+			return
+		to_chat(user, span_warning("You rotate [src]'s cylinder."))
+		cylinder.rotate()
+		casing = magazine.get_round(TRUE, FALSE)
+		balloon_alert(user, casing ? casing.BB ? "Chamber loaded" : "Chamber spent" : "Chamber empty")
+		return
+	if(hammer_set || (ismob(target) && user.a_intent == INTENT_GRAB)) //able to shoot or attempting a holdup
+		return ..()
+	to_chat(user, span_warning("You pull back [src]'s hammer."))
+	playsound(src, dry_fire_sound, 30, TRUE)
+	user.changeNext_move(CLICK_CD_RANGE)
+	hammer_set = TRUE
+
+/obj/item/gun/ballistic/revolver/single_action/attack_self(mob/user)
+	if(reload_mode)
+		balloon_alert(user, "Now aiming.")
+		to_chat(user, span_warning("You pull [src]'s hammer the rest of the way back and prepare to fire."))
+		user.changeNext_move(CLICK_CD_RANGE)
+		reload_mode = FALSE
+		playsound(src, dry_fire_sound, 30, TRUE)
+		hammer_set = TRUE
+		chamber_round(FALSE)
+	else
+		balloon_alert(user, "Now reloading.")
+		to_chat(user, span_warning("You pull [src]'s hammer halfway back and begin reloading."))
+		reload_mode = TRUE
+		chambered = null
+		hammer_set = FALSE //no you CANNOT hold someone up then shoot them WHILE reloading
+
+/obj/item/gun/ballistic/revolver/single_action/AltClick(mob/user) //dump whatever casing we currently have since automatic dumping safely ignores unspent bullets
+	if(reload_mode)
+		var/obj/item/ammo_casing/casing = magazine.get_round(TRUE, FALSE)
+		if(casing)
+			casing.forceMove(drop_location())
+			magazine.get_round(FALSE, FALSE)
+			to_chat(user, span_warning("You push [casing] out of [src]"))
+			balloon_alert(user, "Casing removed!")
+			return
+		to_chat(user, span_warning("You push... nothing... out of [src]."))
+
+/obj/item/gun/ballistic/revolver/single_action/attackby(obj/item/A, mob/user, params)
+	if(!reload_mode && istype(A, /obj/item/ammo_casing))
+		to_chat(user, span_warning("[src]'s loading gate is not open, use it in hand to start reloading!"))
+		balloon_alert(user, "Loading gate closed!")
+		return
+	if(istype(A, /obj/item/ammo_casing) && magazine.stored_ammo[1])
+		to_chat(user, span_warning("The current chamber is full, left click to rotate the cylinder!"))
+		balloon_alert(user, "Chamber full!")
+		return
+	if(istype(A, /obj/item/ammo_box))
+		to_chat(user, span_warning("[src] only accepts single rounds!"))
+		return
+	. = ..()
+
+/obj/item/gun/ballistic/revolver/single_action/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, cd_override = FALSE)
+	if(!hammer_set)
+		return FALSE
+	. = ..()
+	hammer_set = FALSE //BANG
+
+/obj/item/gun/ballistic/revolver/single_action/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	..()
+	hammer_set = FALSE //CLICK
+
+/obj/item/gun/ballistic/revolver/single_action/do_spin()
+	if(!reload_mode)
+		return
+	. = ..()
+
 // A gun to play Russian Roulette!
 // You can spin the chamber to randomize the position of the bullet.
 
