@@ -75,10 +75,11 @@
 	if(!breath || (breath.total_moles() == 0))
 		if(H.reagents.has_reagent(crit_stabilizing_reagent, needs_metabolizing = TRUE))
 			return
-		if(H.health >= H.crit_threshold)
-			H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
-		else if(!HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
-			H.adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
+		if(!HAS_TRAIT(H, TRAIT_NOBREATHDAMAGE)) // Aka the lungs specially handle it
+			if(H.health >= H.crit_threshold)
+				H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
+			else if(!HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
+				H.adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
 		H.failed_last_breath = TRUE
 		if(safe_oxygen_min)
@@ -510,12 +511,11 @@
 		COOLDOWN_START(src, last_message, 30 SECONDS)
 
 	if(breath_pp > 0)
-		var/ratio = safe_breath_min/breath_pp
-		H.adjust_bodytemperature(15, max_temp = 500)
+		H.adjust_bodytemperature(45, max_temp = 500)
 		H.failed_last_breath = TRUE
 		. = true_pp*ratio/6
 	else
-		H.adjust_bodytemperature(30, max_temp = 500)
+		H.adjust_bodytemperature(45, max_temp = 500)
 		H.failed_last_breath = TRUE
 
 /obj/item/organ/lungs/plasmaman
