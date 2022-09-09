@@ -115,3 +115,47 @@
 
 /datum/status_effect/tar_curse/proc/curse_used()
 	qdel(src)
+
+
+/obj/screen/alert/status_effect/dryad
+	name = "Blessing of the forest"
+	desc = "The heart of the dryad fuels you, it's tendrils engulfed you temporarily increasing your capabilities"
+	icon = 'yogstation/icons/mob/screen_alert.dmi'
+	icon_state = "dryad_heart"
+
+/datum/status_effect/regenerative_core/dryad
+	alert_type = /obj/screen/alert/status_effect/dryad
+
+/datum/status_effect/corrupted_dryad
+	id = "corrupted_dryad"
+	duration = 120 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /obj/screen/alert/status_effect/corrupted_dryad
+	var/health_multiplier = 2
+	var/initial_health = 100
+
+/datum/status_effect/corrupted_dryad/on_apply()
+	. = ..()
+	initial_health = owner.maxHealth
+	owner.setMaxHealth(initial_health * health_multiplier)
+	owner.fully_heal()
+	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "corruption", /datum/mood_event/corrupted_dryad)
+
+/datum/status_effect/corrupted_dryad/on_remove()
+	owner.setMaxHealth(initial_health)
+	if(iscarbon(owner))
+		var/mob/living/carbon/C = owner
+		C.vomit(10, TRUE, TRUE, 3)
+	owner.Dizzy(30 SECONDS)
+	owner.Jitter(30 SECONDS)
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
+	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "corruption", /datum/mood_event/corrupted_dryad_bad)
+	return ..()
+
+/obj/screen/alert/status_effect/corrupted_dryad
+	name = "Corruption of the forest"
+	desc = "Your heart beats unnaturally strongs, you feel empowered, but nothing is bound to last..."
+	icon = 'yogstation/icons/mob/screen_alert.dmi'
+	icon_state = "rage"
+

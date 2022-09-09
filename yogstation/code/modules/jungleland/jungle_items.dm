@@ -110,6 +110,7 @@
 	desc = "Heart of a dryad. It can be used to heal completely, but it will rapidly decay into uselessness."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "dryad_heart"
+	status_effect = /datum/status_effect/regenerative_core/dryad
 
 /obj/item/organ/regenerative_core/dryad/Initialize()
 	. = ..()
@@ -129,6 +130,33 @@
 	..()
 	desc = "[src] has been stabilized. It is preserved, allowing you to use it to heal completely without danger of decay."
 
-/obj/item/organ/regenerative_core/dryad/attack_self(mob/user)
-	return ..()
-	
+/obj/item/organ/regenerative_core/dryad
+	name = "Dryad heart"
+	desc = "Heart of a dryad. It can be used to heal completely, but it will rapidly decay into uselessness."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "dryad_heart"
+	status_effect = /datum/status_effect/regenerative_core/dryad
+
+/obj/item/organ/regenerative_core/dryad/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/organ/regenerative_core/dryad/update_icon()
+	icon_state = inert ? "dryad_heart_decay" : "dryad_heart"
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.UpdateButtonIcon()
+
+/obj/item/organ/regenerative_core/dryad/go_inert()
+	..()
+	desc = "[src] has become inert. It has decayed, and is completely useless."
+
+/obj/item/organ/regenerative_core/dryad/preserved(implanted = 0)
+	..()
+	desc = "[src] has been stabilized. It is preserved, allowing you to use it to heal completely without danger of decay."
+
+/obj/item/organ/regenerative_core/dryad/corrupted
+	name = "Corrupted dryad heart"
+	desc = "Heart of a corrupted dryad, for now it still lives, and i may use some of it's strength to help me live aswell."
+	icon_state = "corrupted_heart"
+	status_effect = /datum/status_effect/corrupted_dryad

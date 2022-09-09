@@ -28,6 +28,7 @@
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/inert = 0
 	var/preserved = 0
+	var/status_effect = STATUS_EFFECT_REGENERATIVE_CORE //yogs edit
 
 /obj/item/organ/regenerative_core/Initialize()
 	. = ..()
@@ -76,7 +77,7 @@
 		return
 	to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
 	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
-	H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
+	H.apply_status_effect(status_effect) //yogs_edit
 	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman)
 	SEND_SIGNAL(H,COMSIG_REGEN_CORE_HEALED) //yogs edit
 	qdel(src)
@@ -98,7 +99,7 @@
 			else
 				to_chat(user, span_notice("You start to smear [src] on yourself. Disgusting tendrils hold you together and allow you to keep moving, but for how long?"))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
-			H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
+			H.apply_status_effect(status_effect) //yogs edit
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman) //Now THIS is a miner buff (fixed - nerf)
 			SEND_SIGNAL(H,COMSIG_REGEN_CORE_HEALED) //yogs edit
 			qdel(src)
