@@ -24,7 +24,7 @@
 
 /obj/structure/ghostbeacon/process()
 	for(var/mob/living/M in ghosts)
-		if(M.InCritical() || M.stat == DEAD)
+		if(M.InCritical() || M.stat == DEAD || !key)
 			ghosts -= M
 			M.visible_message(span_notice("[M] gets forcefully ripped from this plane"), span_notice("You feel your body forcefully get ripped back into the astral planes."))
 			qdel(M)
