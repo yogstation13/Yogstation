@@ -33,8 +33,11 @@
 
 /obj/structure/ghostbeacon/attack_ghost(mob/user)
 	. = ..()
+	if(!SSticker.HasRoundStarted())
+		to_chat(usr, span_warning("The round hasn't started yet!"))
+		return FALSE
 	if(is_banned_from(user.key, ROLE_GHOSTBEACON))
-		to_chat(user, "You are banned from materializing")
+		to_chat(user, span_warning("You are banned from materializing"))
 		return
 	var/response = alert("Materialize? (You will not be revivable)", "Beacon", "Yes", "No")
 	if(response == "No")
