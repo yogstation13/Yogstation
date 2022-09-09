@@ -34,7 +34,7 @@
 /datum/martial_art/hunterfu/proc/body_slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(D.mobility_flags & MOBILITY_STAND)
 		D.visible_message(
-			span_danger("[A] slams both themself and [D] into the ground!"),
+			span_danger("[A] slams both [A.p_them()]self and [D] into the ground!"),
 			span_userdanger("You're slammed into the ground by [A]!"),
 			span_hear("You hear a sickening sound of flesh hitting flesh!"),
 		)
