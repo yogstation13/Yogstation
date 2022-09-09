@@ -114,9 +114,9 @@
 
 		if(S.breathid == "o2")
 			if(isipc(src))
-				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+				throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
 			else
-				H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
+				throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
 		else if(S.breathid == "tox")
 			throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
 		else if(S.breathid == "co2")
