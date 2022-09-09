@@ -5,6 +5,8 @@
 	var/mob/living/carbon/C
 	var/obj/item/bodypart/affecting
 	var/selected_zone = user.zone_selected
+	if(user.a_intent == INTENT_HARM)
+		return FALSE
 
 	if(iscarbon(M))
 		C = M
@@ -48,7 +50,7 @@
 
 		if(!available_surgeries.len)
 			to_chat(user, span_warning("You can't preform any surgeries on [M]'s [parse_zone(selected_zone)]!"))
-			return
+			return TRUE
 		
 		var/P = show_radial_menu(user, M, radial_list, radius = 40, require_near = TRUE, tooltips = TRUE)
 		if(P && user && user.Adjacent(M) && (I in user))
@@ -56,22 +58,22 @@
 
 			for(var/datum/surgery/other in M.surgeries)
 				if(other.location == selected_zone)
-					return //during the input() another surgery was started at the same location.
+					return TRUE //during the input() another surgery was started at the same location.
 
 			//we check that the surgery is still doable after the input() wait.
 			if(C)
 				affecting = C.get_bodypart(check_zone(selected_zone))
 			if(affecting)
 				if(!S.requires_bodypart)
-					return
+					return TRUE
 				if(S.requires_bodypart_type && affecting.status != S.requires_bodypart_type)
-					return
+					return TRUE
 			else if(C && S.requires_bodypart)
-				return
+				return TRUE
 			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
-				return
+				return TRUE
 			if(!S.can_start(user, M))
-				return
+				return TRUE
 
 			if(S.ignore_clothes || get_location_accessible(M, selected_zone))
 				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)
@@ -83,9 +85,6 @@
 					procedure.next_step(user, user.a_intent)
 			else
 				to_chat(user, span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
-
-	else if(!current_surgery.step_in_progress)
-		attempt_cancel_surgery(current_surgery, I, M, user)
 
 	return TRUE
 

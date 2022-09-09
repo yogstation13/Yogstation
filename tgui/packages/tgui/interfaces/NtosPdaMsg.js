@@ -5,7 +5,7 @@
 // This one has only one error while indent has 7 so I'm opting to listen to that one
 
 import { useBackend } from '../backend';
-import { Box, Button, Section, Grid } from '../components';
+import { Box, Button, Section, Grid, LabeledList } from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosPdaMsg = (props, context) => {
@@ -22,6 +22,7 @@ export const NtosPdaMsg = (props, context) => {
     all_messages = [],
     ringtone,
     showing_messages,
+    can_at_everyone,
   } = data;
   return (
     <NtosWindow
@@ -149,6 +150,22 @@ export const NtosPdaMsg = (props, context) => {
                 )
               )}
             </Section>
+            {can_at_everyone ?
+              <LabeledList>
+                <LabeledList.Item
+                  buttons={(
+                    <Button.Input
+                      fluid
+                      content="Send To Everyone"
+                      disabled={!can_message || !receiving}
+                      color={can_message && receiving ? 'blue' : 'primary'}
+                      onCommit={(e, value) => act('PRG_sendmsg', {
+                        recipient: "EVERYONE",
+                        message: value,
+                      })} />
+                  )} />
+              </LabeledList>
+              : ""}
           </Box>}
       </NtosWindow.Content>
     </NtosWindow>

@@ -393,6 +393,14 @@
 	zone = BODY_ZONE_L_ARM
 	syndicate_implant = TRUE
 
+/obj/item/organ/cyberimp/arm/nt_mantis
+	name = "H.E.P.H.A.E.S.T.U.S. mantis blade implants"
+	desc = "Retractable arm-blade implants to get you out of a pinch. Wielding two will let you double-attack."
+	contents = newlist(/obj/item/mantis/blade/NT)
+
+/obj/item/organ/cyberimp/arm/nt_mantis/l
+	zone = BODY_ZONE_L_ARM
+
 /obj/item/organ/cyberimp/arm/power_cord
 	name = "power cord implant"
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
