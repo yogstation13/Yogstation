@@ -100,6 +100,7 @@
 				return TRUE
 			magazine.caliber = "357"
 			fire_delay = 8 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder
+			spread = 25
 			fire_sound = 'sound/weapons/revolver357shot.ogg'
 			desc = "The barrel and chamber assembly seems to have been modified."
 			to_chat(user, span_notice("You reinforce the barrel of [src]. Now it will fire .357 rounds."))
@@ -115,6 +116,7 @@
 				return
 			magazine.caliber = "38"
 			fire_delay = 0 //Fixed again
+			spread = 0
 			fire_sound = 'sound/weapons/revolver38shot.ogg'
 			desc = initial(desc)
 			to_chat(user, span_notice("You remove the modifications on [src]. Now it will fire .38 rounds."))

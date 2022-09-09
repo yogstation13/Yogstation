@@ -30,8 +30,8 @@
 	damage = 45
 	armour_penetration = -45
 	sharpness = SHARP_EDGED
-	wound_bonus = -10
-	bare_wound_bonus = 10
+	wound_bonus = -15
+	bare_wound_bonus = 5
 
 /obj/item/projectile/bullet/c10mm/sp
 	name = "10mm soporific bullet"
@@ -57,4 +57,4 @@
 
 /obj/item/projectile/bullet/c10mm/emp/on_hit(atom/target, blocked = FALSE)
 	..()
-	empulse(target, 0, 0) //Only EMPs whatever's hit
+	empulse(target, -1, 0) //Only EMPs whatever's hit

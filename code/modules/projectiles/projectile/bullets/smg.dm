@@ -26,7 +26,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/victim = target
-		victim.reagents.add_reagent(/datum/reagent/toxin/venom, 5)
+		victim.reagents.add_reagent(/datum/reagent/toxin/venom, 4)
 
 // 4.6x30mm (WT-550 Autocarbine)
 
