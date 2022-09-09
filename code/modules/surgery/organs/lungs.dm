@@ -511,6 +511,7 @@
 		COOLDOWN_START(src, last_message, 30 SECONDS)
 
 	if(breath_pp > 0)
+		var/ratio = safe_breath_min/breath_pp
 		H.adjust_bodytemperature(45, max_temp = 500)
 		H.failed_last_breath = TRUE
 		. = true_pp*ratio/6
