@@ -176,7 +176,7 @@
 	taste_description = "spicy jelly"
 
 /datum/reagent/medicine/pyroxadone/on_mob_life(mob/living/carbon/M)
-	if(M.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
+	if(M.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && M.IsUnconscious())
 		var/power = 0
 		switch(M.bodytemperature)
 			if(BODYTEMP_HEAT_DAMAGE_LIMIT to 400)
