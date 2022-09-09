@@ -184,7 +184,7 @@
 /obj/effect/temp_visual/goliath_tentacle/original/Initialize(mapload, new_spawner)
 	. = ..()
 	for(var/turf/T in orange(2, src)) // 24 tiles
-		if(prob(70)) // Remove about 17 tiles
+		if(prob(85)) // Remove about 20 tiles
 			continue
 		new /obj/effect/temp_visual/goliath_tentacle(T, spawner)
 
