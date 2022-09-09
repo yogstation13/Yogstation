@@ -33,8 +33,6 @@
 		var/mob/living/L = user
 		if(!user.is_eyes_covered())
 			user.emote("cry")
-		. = ..()
-		user.emote("cry")
 	. = ..()
 
 /obj/item/seeds/onion/red
