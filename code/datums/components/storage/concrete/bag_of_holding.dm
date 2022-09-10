@@ -33,7 +33,7 @@
 
 	message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(loccheck)].")
 	log_game("[key_name(user)] detonated a bag of holding at [loc_name(loccheck)].")
-	log_bomber(keyname(user), "detonated a bag of holding at", src, null, notify_admins)
+	log_bomber(key_name(user), "detonated a bag of holding at", src, null, FALSE)
 
 	for(var/turf/T in range(2,loccheck))
 		if(istype(T, /turf/open/space/transit))
