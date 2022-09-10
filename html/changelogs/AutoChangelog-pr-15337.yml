@@ -1,0 +1,4 @@
+author: "nmajask"
+delete-after: true 
+changes: 
+  - tweak: "surgeries now display a balloon alert when you fail/succeed a surgery step or when you start a surgery with a body part covered"

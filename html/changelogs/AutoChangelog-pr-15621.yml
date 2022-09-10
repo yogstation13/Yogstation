@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "fake plasmafloods no longer prevent clicking anything on their tile. Probably. I think."

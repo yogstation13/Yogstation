@@ -1,0 +1,5 @@
+author: " @TheRyeGuyWhoWillNowDie, VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "HeadRevs now get makeshift weapon crafting"
+  - tweak: "Revs emagging borgs now make revolutionary borgs not syndicate borgs"

@@ -1,0 +1,5 @@
+author: "SuperSlayer"
+delete-after: true 
+changes: 
+  - tweak: "Bloodsuckers get the spend rank panel if ranked up while in a coffin"
+  - bugfix: "Bloodsuckers no longer get a message about sleeping in a coffin while already being in a coffin"

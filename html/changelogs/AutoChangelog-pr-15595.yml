@@ -1,0 +1,5 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Chemist PDAs now get sensor package"
+  - rscadd: "Added Chemical Scan Program (4QC)"
