@@ -1,0 +1,4 @@
+author: "JamieD1"
+delete-after: true 
+changes: 
+  - rscadd: "Adds more logging to BoH Bombs"
