@@ -15,8 +15,8 @@
 	damage = 45
 	armour_penetration = -45
 	sharpness = SHARP_EDGED
-	wound_bonus = -20
-	bare_wound_bonus = 10
+	wound_bonus = -5 //Basically L6 HP treatment on these values because it's, well, nukies
+	bare_wound_bonus = 5
 
 /obj/item/projectile/bullet/c45/venom
 	name = ".45 venom bullet"

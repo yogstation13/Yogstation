@@ -82,7 +82,7 @@
 	update_icon()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "security auto carbine"
+	name = "\improper security auto carbine"
 	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Carbine. Has a two-round burst or a semi-automatic firing mode."
 	icon_state = "wt550"
 	item_state = "arg"
@@ -291,7 +291,7 @@
 // LWT-650 DMR //
 
 /obj/item/gun/ballistic/automatic/lwt650
-	name = "LWT-650 DMR"
+	name = "\improper LWT-650 DMR"
 	desc = "A long-barreled designated marksman rifle vaguely based on the WT platform. Slowly fires powerful .308 rounds."
 	icon_state = "lwt650"
 	item_state = "lwt650"
@@ -312,11 +312,12 @@
 	actions_types = list() //So you can't avoid the fire_delay
 	mag_display = TRUE
 	weapon_weight = WEAPON_HEAVY
+	w_class = WEIGHT_CLASS_BULKY
 
 // SNIPER //
 
 /obj/item/gun/ballistic/automatic/sniper_rifle
-	name = "sniper rifle"
+	name = "\improper sniper rifle"
 	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
 	icon_state = "sniper"
 	item_state = "sniper"
@@ -339,7 +340,7 @@
 	mag_display = TRUE
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
-	name = "syndicate sniper rifle"
+	name = "\improper syndicate sniper rifle"
 	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
 	can_suppress = TRUE
 	can_unsuppress = TRUE
@@ -351,13 +352,13 @@
 // Old Semi-Auto Carbine //
 
 /obj/item/gun/ballistic/automatic/surplus
-	name = "Surplus Carbine"
+	name = "\improper surplus carbine"
 	desc = "One of several antique carbines that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
 	icon_state = "surplus"
 	item_state = "moistnugget"
 	weapon_weight = WEAPON_HEAVY
 	mag_type = /obj/item/ammo_box/magazine/m10mm/rifle
-	fire_delay = 30
+	fire_delay = 12
 	burst_size = 1
 	can_unsuppress = TRUE
 	can_suppress = TRUE
@@ -369,7 +370,7 @@
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
-	name = "laser rifle"
+	name = "\improper laser rifle"
 	desc = "Though sometimes mocked for the relatively weak firepower of their energy weapons, the logistic miracle of rechargeable ammunition has given Nanotrasen a decisive edge over many a foe."
 	icon_state = "oldrifle"
 	item_state = "arg"

@@ -30,7 +30,7 @@
 	damage = 45
 	armour_penetration = -45
 	sharpness = SHARP_EDGED
-	wound_bonus = -15
+	wound_bonus = -25 //Do you WANT a gun that can decapitate in 4 shots for traitors?
 	bare_wound_bonus = 5
 
 /obj/item/projectile/bullet/c10mm/sp
