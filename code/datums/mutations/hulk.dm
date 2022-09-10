@@ -74,7 +74,6 @@
 	text_gain_indication = span_notice("Your muscles hurt!")
 	health_req = 1
 	var/health_based = 0
-	power = /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
 
 /datum/mutation/human/active_hulk/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -98,6 +97,8 @@
 	owner.say("PUNY HUMANS!!")
 	owner.physiology.stamina_mod = 0.3
 	owner.update_body()
+	if(iswizard(owner))
+		owner.mind.AddSpell(/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk) //Restricted to Wizards. Mistakes were made.
 
 /datum/mutation/human/active_hulk/on_attack_hand(atom/target, proximity)
 	if(proximity) //no telekinetic hulk attack
@@ -123,6 +124,7 @@
 	owner.physiology.stamina_mod = initial(owner.physiology.stamina_mod)
 	owner.update_body_parts()
 	owner.dna.species.handle_mutant_bodyparts(owner)
+	owner.mind.spell_list.Remove(/obj/effect/proc_holder/spell/aoe_turf/repulse/hulk)
 
 /datum/mutation/human/active_hulk/proc/handle_speech(original_message, wrapped_message)
 	var/message = wrapped_message[1]

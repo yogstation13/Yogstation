@@ -218,7 +218,7 @@
 		var/message = "[user] has [hulk_verb]ed [src]!"
 		visible_message(span_danger("[message]"), \
 								span_userdanger("[message]"))
-		apply_damage(15, BRUTE, wound_bonus=10)
+		apply_damage(15, BRUTE, BODY_ZONE_CHEST, run_armor_check(BODY_ZONE_CHEST, MELEE), wound_bonus=10)
 		return 1
 
 /mob/living/carbon/human/attack_hand(mob/user)

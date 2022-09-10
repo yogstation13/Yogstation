@@ -13,6 +13,10 @@
 
 /* RECIPES */
 
+/datum/generecipe/hulk
+	required = "/datum/mutation/human/strong; /datum/mutation/human/radioactive"
+	result = GENETICS_HULK
+
 /datum/generecipe/mindread
 	required = "/datum/mutation/human/antenna; /datum/mutation/human/paranoia"
 	result = MINDREAD
