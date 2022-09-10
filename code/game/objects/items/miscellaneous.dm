@@ -194,6 +194,7 @@
 	if(H.mind)
 		H.mind.grab_ghost()
 	to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
+	H.setOrganLoss(ORGAN_SLOT_BRAIN, 0)
 	H.revive()
 	qdel(src)
 	return TRUE
