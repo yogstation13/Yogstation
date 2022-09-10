@@ -153,6 +153,7 @@
 	desc = "Some shavings from a tall mushroom. With enough, might serve as a bowl."
 	icon = 'icons/obj/lavaland/ash_flora.dmi'
 	icon_state = "mushroom_shavings"
+	grind_results = list(/datum/reagent/toxin/mushroom_powder = 5)
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
@@ -341,3 +342,10 @@
 	regrowth_time_low = 3000
 	regrowth_time_high = 5400
 	number_of_variants = 2
+
+/obj/item/food/grown/ash_flora/seraka
+	name = "seraka cap"
+	desc = "Small, deeply flavourful mushrooms originally native to Tizira."
+	icon_state = "seraka_cap"
+	seed = /obj/item/seeds/lavaland/seraka
+	wine_power = 40
