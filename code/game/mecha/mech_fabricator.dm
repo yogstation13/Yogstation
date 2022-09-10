@@ -505,7 +505,7 @@
 		if(D.build_type & MECHFAB)
 			if(ispath(D.build_path, /obj/item/mecha_parts/mecha_equipment/weapon) && !combat_parts_allowed) // Yogs -- ID swiping for combat parts
 				var/obj/item/mecha_parts/mecha_equipment/weapon/check = new D.build_path(src)
-				if(check.restricted)
+				if(initial(D.restricted))
 					qdel(check)
 					continue
 				qdel(check)
