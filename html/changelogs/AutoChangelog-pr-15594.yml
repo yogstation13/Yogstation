@@ -1,8 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Ethereals can now overcharge and shock people alongside moodlets"
-  - rscadd: "Ethereals now have an charge level indicator on their stat panel"
-  - tweak: "Replaced ethereal charge defines"
-  - tweak: "Rearranged screen_alert.dmi so the order doesn't look horrendus if left unchanged"
-  - imageadd: "Adds in Overcharge sprites"

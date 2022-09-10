@@ -1,5 +1,0 @@
-author: "Skrem_7, @KillerOrcaCora for the non-mob sprite."
-delete-after: true 
-changes: 
-  - rscadd: "Adds a crappy makeshift belt if you don't have access to leather"
-  - imageadd: "New wire-metal belt sprites?"

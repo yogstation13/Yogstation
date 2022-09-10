@@ -1,6 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - rscadd: "You can now rename holopads with pens"
-  - tweak: "Holopad shows its name on examine"
-  - tweak: "Most holopads will autoaccept calls now unless its a secure pad and you're not a head"

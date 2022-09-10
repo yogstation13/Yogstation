@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - tweak: "Getting revived as a IPC will no longer warn you about naming"

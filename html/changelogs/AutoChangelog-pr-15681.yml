@@ -1,4 +1,0 @@
-author: "TheRyeGuyWhoWillNowDie"
-delete-after: true 
-changes: 
-  - bugfix: "examining fish (and other food items) will no longer imply that you can squeeze the juices from them into a beaker with your bare hands"

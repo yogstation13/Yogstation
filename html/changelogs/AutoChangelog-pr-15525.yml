@@ -1,6 +1,0 @@
-author: "00ze-cyclone"
-delete-after: true 
-changes: 
-  - rscadd: "Added 2 stechkin AP mags, 2 stechkin soporific mags and 1 stechkin incendiary mag to the neo bundle"
-  - rscdel: "Removed an outdated red pill question about lizards being the only ones with their own language"
-  - tweak: "the red pill injector now actually inject red pills"

@@ -1,7 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - bugfix: "Chameleon Mutation now disables while in crit"
-  - tweak: "Chameleon Mutation costs 5 less stability"
-  - tweak: "Chameleon Mutation now has a minimum transparency, so you can't be 100% invisible, just VERY hard to see"
-  - tweak: "Chameleon Mutation no longer makes you partially transparent always"

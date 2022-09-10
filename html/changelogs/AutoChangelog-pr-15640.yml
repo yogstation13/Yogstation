@@ -1,6 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - tweak: "Cleaned up some code for modular programs"
-  - tweak: "made the NTNet Downloader smaller since you are FORCED to have it"
-  - tweak: "Download Software, Implant Tracker and Lifeline programs work without NTNet connection"
