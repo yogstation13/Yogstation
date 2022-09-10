@@ -2022,8 +2022,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 
 /datum/uplink_item/role_restricted/theincrediblebulk
-	name = "A Hulk Injector"
-	desc = "A Very Powerful Mutation Discovered in a ancient vault on mars, causes rapid musclegrowth."
+	name = "Hulk Injector"
+	desc = "A very powerful mutation discovered in a ancient vault on mars, When applied the mutation causes rapid muscle growth turning the user in to a hulk."
 	item = /obj/item/dnainjector/hulkmut/genetics_hulk
 	cost = 6
 	restricted_roles = list("Geneticist")
