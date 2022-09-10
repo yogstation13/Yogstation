@@ -82,8 +82,8 @@
 				if(S.self_operable || user != M)
 					procedure.next_step(user, user.a_intent)
 			else
-				to_chat(user, span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
-				M.balloon_alert(user, "You need to expose [M]'s [parse_zone(selected_zone)] first!")
+				M.balloon_or_message(user, "need to expose the [parse_zone(selected_zone)]", \
+					span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
 
 	else if(!current_surgery.step_in_progress)
 		attempt_cancel_surgery(current_surgery, I, M, user)
