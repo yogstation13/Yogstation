@@ -2234,6 +2234,7 @@
 	cost = 0
 	contains = list(/mob/living/simple_animal/crab)
 	crate_name = "crab crate"
+	crate_type = /obj/structure/closet/crate/nosell
 	small_item = TRUE
 
 /datum/supply_pack/critter/crab/rocket
@@ -2242,6 +2243,7 @@
 	cost = 50
 	contains = list(/mob/living/simple_animal/crab)
 	crate_name = "look sir free crabs"
+	crate_type = /obj/structure/closet/crate/nosell
 	DropPodOnly = TRUE
 	small_item = FALSE
 

@@ -79,6 +79,10 @@
 	name = "internals crate"
 	icon_state = "o2crate"
 
+/obj/structure/closet/crate/nosell
+	desc = "A dusty crate."
+	name = "dusty crate"
+
 /obj/structure/closet/crate/trashcart
 	desc = "A heavy, metal trashcart with wheels."
 	name = "trash cart"
