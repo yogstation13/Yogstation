@@ -1,3 +1,5 @@
+#define CONCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
+
 /datum/species/ipc // im fucking lazy mk2 and cant get sprites to normally work
 	name = "IPC" //inherited from the real species, for health scanners and things
 	id = "ipc"
@@ -181,14 +183,16 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
 	return
 
-/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
-	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
+/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)	
+	CONCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
 	sleep(3 SECONDS)
-	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")
+	CONCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
 	sleep(3 SECONDS)
-	H.say("Finalizing setup...")
+	CONCIOUSAY(H.say("Finalizing setup..."))
 	sleep(3 SECONDS)
-	H.say("Unit [H.real_name] is fully functional. Have a nice day.")
+	CONCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
+	if(H.stat == DEAD)
+		return
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
 
@@ -224,4 +228,5 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = TRUE
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
-	
+
+#undef CONCIOUSAY
