@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "the syndicate pocket syringe gun thingy no longer says it can be unsuppressed when it can't"
