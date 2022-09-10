@@ -411,7 +411,8 @@ obj/machinery/holopad/secure/Initialize()
 		Hologram.set_light(2)	//hologram lighting
 		move_hologram()
 
-		AI.pad = src
+		if(AI)
+			AI.pad = src
 
 		set_holo(user, Hologram)
 		visible_message(span_notice("A holographic image of [user] flickers to life before your eyes!"))
