@@ -2118,3 +2118,17 @@
 /datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
 	if(method == INGEST || method == TOUCH || method == INJECT)
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
+
+/datum/reagent/adrenaline
+	name = "Adrenaline"
+	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
+	color = "#d1cd9a"
+	can_synth = FALSE
+
+/datum/reagent/adrenaline/on_mob_add(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	
+/datum/reagent/adrenaline/on_mob_delete(mob/living/L)
+	. = ..()
+	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
