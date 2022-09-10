@@ -324,3 +324,20 @@
 				A.initialize_custom_food(src, S, user)
 	else
 		. = ..()
+
+/obj/structure/flora/ash/seraka
+	icon_state = "seraka_mushroom"
+	name = "seraka mushrooms"
+	desc = "A small cluster of seraka mushrooms. These must have come with the ashlizards."
+	needs_sharp_harvest = FALSE
+	harvested_name = "harvested seraka mushrooms"
+	harvested_desc = "A couple of small seraka mushrooms, with the larger ones clearly having been recently removed. They'll grow back... eventually."
+	harvest = /obj/item/food/grown/ash_flora/seraka
+	harvest_amount_high = 6
+	harvest_time = 25
+	harvest_message_low = "You pluck a few choice tasty mushrooms."
+	harvest_message_med = "You grab a good haul of mushrooms."
+	harvest_message_high = "You hit the mushroom motherlode and make off with a bunch of tasty mushrooms."
+	regrowth_time_low = 3000
+	regrowth_time_high = 5400
+	number_of_variants = 2
