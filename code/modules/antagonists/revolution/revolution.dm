@@ -85,9 +85,6 @@
 /datum/antagonist/rev/proc/promote()
 	var/old_team = rev_team
 	var/datum/mind/old_owner = owner
-	var/obj/item/book/granter/crafting_recipe/weapons/W = new
-	W.on_reading_finished(owner.current)
-	qdel(W)
 	silent = TRUE
 	owner.remove_antag_datum(/datum/antagonist/rev)
 	var/datum/antagonist/rev/head/new_revhead = new()
