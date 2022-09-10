@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "made arcane barrage actually do more damage than lesser summon guns but cost 3"
