@@ -194,12 +194,11 @@ export class ButtonInput extends Component {
     if (this.inputRef) {
       const input = this.inputRef.current;
       if (inInput) {
-        input.value = this.props.currentValue || "";
+        input.value = this.props.currentValue || '';
         try {
           input.focus();
           input.select();
-        }
-        catch {}
+        } catch {}
       }
     }
   }
@@ -207,7 +206,7 @@ export class ButtonInput extends Component {
   commitResult(e) {
     if (this.inputRef) {
       const input = this.inputRef.current;
-      const hasValue = (input.value !== "");
+      const hasValue = input.value !== '';
       if (hasValue) {
         this.props.onCommit(e, input.value);
         return;
@@ -258,14 +257,14 @@ export class ButtonInput extends Component {
             'display': !this.state.inInput ? 'none' : undefined,
             'text-align': 'left',
           }}
-          onBlur={e => {
+          onBlur={(e) => {
             if (!this.state.inInput) {
               return;
             }
             this.setInInput(false);
             this.commitResult(e);
           }}
-          onKeyDown={e => {
+          onKeyDown={(e) => {
             if (e.keyCode === KEY_ENTER) {
               this.setInInput(false);
               this.commitResult(e);
