@@ -1,12 +1,13 @@
 GLOBAL_VAR_INIT(stolen_paycheck_money, 0)
 
+
 SUBSYSTEM_DEF(economy)
 	name = "Economy"
 	wait = 5 MINUTES
 	init_order = INIT_ORDER_ECONOMY
 	runlevels = RUNLEVEL_GAME
 	var/roundstart_paychecks = 5
-	var/budget_starting_amt = 500
+	var/budget_starting_amt = 1000
 	var/list/department_accounts = list(ACCOUNT_CIV = ACCOUNT_CIV_NAME,
 										ACCOUNT_ENG = ACCOUNT_ENG_NAME,
 										ACCOUNT_SCI = ACCOUNT_SCI_NAME,
@@ -55,6 +56,18 @@ SUBSYSTEM_DEF(economy)
 	var/bounty_modifier = 1
 	///The modifier multiplied to the value of cargo pack prices.
 	var/pack_price_modifier = 1
+	//only re-tally jobs when this changes. based on race conditions means this isn't 100% accurate, but oh well
+	var/last_player_count
+
+	var/department_count = list(
+		ACCOUNT_CIV = 0,
+		ACCOUNT_ENG = 0,
+		ACCOUNT_SCI = 0,
+		ACCOUNT_MED = 0,
+		ACCOUNT_SRV = 0,
+		ACCOUNT_CAR = 0,
+		ACCOUNT_SEC = 0,
+	)
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	for(var/A in department_accounts)
@@ -70,6 +83,8 @@ SUBSYSTEM_DEF(economy)
 	return ..()
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
+	tally_departments() //see how many staff in each department
+	department_subsidy() //Give 95% of what we need to pay the department
 	eng_payout() // Payout based on station integrity. Also adds money from excess power sold via energy harvester.
 	sci_payout() // Payout based on slimes.
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
@@ -91,6 +106,32 @@ SUBSYSTEM_DEF(economy)
 	for(var/datum/bank_account/department/D in generated_accounts)
 		if(D.department_id == dep_id)
 			return D
+
+/datum/controller/subsystem/economy/proc/tally_departments()
+	var/player_count = SSticker.mode.current_players[CURRENT_LIVING_PLAYERS].len
+	if(last_player_count >= player_count)
+		return
+	last_player_count = player_count
+	department_count = list(
+		ACCOUNT_CIV = 0,
+		ACCOUNT_ENG = 0,
+		ACCOUNT_SCI = 0,
+		ACCOUNT_MED = 0,
+		ACCOUNT_SRV = 0,
+		ACCOUNT_CAR = 0,
+		ACCOUNT_SEC = 0,
+	)
+	for(var/datum/job/J in SSjob.occupations)
+		if(!(J.paycheck && J.paycheck_department))
+			continue
+		department_count[J.paycheck_department] += J.paycheck
+
+/datum/controller/subsystem/economy/proc/department_subsidy()
+	for(var/D in department_count)
+		var/datum/bank_account/ACC = get_dep_account(D)
+		if(ACC)
+			ACC.adjust_money(department_count[D])
+
 
 /** Payout for engineering every cycle. Uses a base of 3000 then multiplies it by station integrity. Afterwards, calls the payout proc from
   * the energy harvester and adds the cash from that to the budget.
