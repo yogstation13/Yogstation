@@ -508,7 +508,6 @@
 				if(initial(D.restricted))
 					qdel(check)
 					continue
-				qdel(check)
 			// This is for us.
 			var/list/part = output_part_info(D, TRUE)
 
