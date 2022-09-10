@@ -78,7 +78,7 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 	else
 		myseed = new myseed(src)
 
-	modify_max_integrity(GLOWSHROOM_BASE_INTEGRITY + ((100 - GLOWSHROOM_BASE_INTEGRITY) / 100 * myseed.endurance))
+	modify_max_integrity(GLOWSHROOM_BASE_INTEGRITY + ((250 - GLOWSHROOM_BASE_INTEGRITY) / 100 * myseed.endurance))
 
 	var/datum/plant_gene/trait/glow/G = myseed.get_gene(/datum/plant_gene/trait/glow)
 	if(ispath(G)) // Seeds were ported to initialize so their genes are still typepaths here, luckily their initializer is smart enough to handle us doing this
