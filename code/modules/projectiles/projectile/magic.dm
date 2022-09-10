@@ -841,13 +841,13 @@
 		target.adjustBruteLoss(40)
 
 
-/obj/item/projectile/magic/shotgun_slug
+/obj/item/projectile/magic/shotgun/slug
 	name = "Shotgun slug"
 	icon_state = "bullet"
 	damage = 10
 	flag = MAGIC
 
-/obj/item/projectile/magic/shotgun_slug/on_hit(target)
+/obj/item/projectile/magic/shotgun/slug/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target

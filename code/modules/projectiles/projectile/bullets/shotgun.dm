@@ -1,14 +1,15 @@
-/obj/item/projectile/bullet/shotgun_slug
+/obj/item/projectile/bullet/shotgun/slug
 	name = "12g shotgun slug"
+	speed = 0.5 //Shotgun = slower
 	damage = 46
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
 
-/obj/item/projectile/bullet/shotgun_slug/syndie
+/obj/item/projectile/bullet/shotgun/slug/syndie
 	name = "12g syndicate shotgun slug"
 	damage = 60
 
-/obj/item/projectile/bullet/shotgun_beanbag
+/obj/item/projectile/bullet/shotgun/slug/beanbag
 	name = "beanbag slug"
 	damage = 5
 	stamina = 55
@@ -23,7 +24,7 @@
 	name = "dragonsbreath pellet"
 	damage = 5
 
-/obj/item/projectile/bullet/shotgun_stunslug
+/obj/item/projectile/bullet/shotgun/slug/stun
 	name = "stunslug"
 	damage = 5
 	paralyze = 100
@@ -33,7 +34,7 @@
 	icon_state = "spark"
 	color = "#FFFF00"
 
-/obj/item/projectile/bullet/shotgun_meteorslug
+/obj/item/projectile/bullet/shotgun/slug/meteor
 	name = "meteorslug"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "dust"
@@ -43,28 +44,29 @@
 	sharpness = SHARP_NONE
 	hitsound = 'sound/effects/meteorimpact.ogg'
 
-/obj/item/projectile/bullet/shotgun_meteorslug/on_hit(atom/target, blocked = FALSE)
+/obj/item/projectile/bullet/shotgun/slug/meteor/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	if(ismovable(target))
 		var/atom/movable/M = target
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 3, 2)
 
-/obj/item/projectile/bullet/shotgun_meteorslug/Initialize()
+/obj/item/projectile/bullet/shotgun/slug/meteor/Initialize()
 	. = ..()
 	SpinAnimation()
 
-/obj/item/projectile/bullet/shotgun_frag12
+/obj/item/projectile/bullet/shotgun/slug/frag12
 	name ="frag12 slug"
 	damage = 25
 	wound_bonus = 0
 
-/obj/item/projectile/bullet/shotgun_frag12/on_hit(atom/target, blocked = FALSE)
+/obj/item/projectile/bullet/shotgun/slug/frag12/on_hit(atom/target, blocked = FALSE)
 	..()
 	explosion(target, -1, 0, 2)
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/pellet
+	speed = 0.5 //Shotgun = slower
 	var/tile_dropoff = 0.45
 	var/tile_dropoff_s = 0.35
 
@@ -84,6 +86,7 @@
 
 /obj/item/projectile/bullet/pellet/shotgun_flechette
 	name = "flechette pellet"
+	speed = 0.4 //You're special
 	damage = 15
 	wound_bonus = 4
 	bare_wound_bonus = 4
@@ -114,14 +117,14 @@
 		var/mob/living/M = target
 		M.adjust_bodytemperature((temperature - M.bodytemperature))
 
-/obj/item/projectile/bullet/shotgun_uraniumslug
+/obj/item/projectile/bullet/shotgun/slug/uranium
 	name = "depleted uranium slug"
 	icon_state = "ubullet"
 	damage = 26
 	armour_penetration = 60 // he he funny round go through armor
 	wound_bonus = -40
 
-/obj/item/projectile/bullet/shotgun_uraniumslug/on_hit(atom/target)
+/obj/item/projectile/bullet/shotgun/slug/uranium/on_hit(atom/target)
 	. = ..()
 	if(ismob(target))
 		return BULLET_ACT_FORCE_PIERCE
@@ -157,13 +160,13 @@
 
 //Breaching Ammo
 
-/obj/item/projectile/bullet/shotgun_breaching
+/obj/item/projectile/bullet/shotgun/slug/breaching
 	name = "12g breaching round"
 	desc = "A breaching round designed to destroy airlocks and windows with only a few shots, but is ineffective against other targets."
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
 	damage = 10 //does shit damage to everything except doors and windows
 
-/obj/item/projectile/bullet/shotgun_breaching/on_hit(atom/target)
+/obj/item/projectile/bullet/shotgun/slug/breaching/on_hit(atom/target)
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()

@@ -24,6 +24,7 @@
 
 /obj/item/projectile/bullet/m308
 	name = ".308 bullet"
+	speed = 0.3
 	damage = 42
 	wound_bonus = -40
 	wound_falloff_tile = 0
@@ -42,6 +43,7 @@
 
 /obj/item/projectile/bullet/a762
 	name = "7.62 bullet"
+	speed = 0.3
 	damage = 60
 	wound_bonus = -35
 	wound_falloff_tile = 0

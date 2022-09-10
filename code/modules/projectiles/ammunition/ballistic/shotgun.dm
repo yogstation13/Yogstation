@@ -5,20 +5,20 @@
 	desc = "A 12-gauge lead slug."
 	icon_state = "blshell"
 	caliber = "shotgun"
-	projectile_type = /obj/item/projectile/bullet/shotgun_slug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug
 	materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/syndie
 	name = "syndicate shotgun slug"
 	desc = "An illegal 12-gauge slug produced by the Syndicate."
 	icon_state = "sblshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_slug/syndie
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/syndie
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag slug"
 	desc = "A weak beanbag slug for riot control."
 	icon_state = "bshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_beanbag
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/beanbag
 	materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/incendiary
@@ -39,14 +39,14 @@
 	name = "taser slug"
 	desc = "A stunning taser slug."
 	icon_state = "stunshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_stunslug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/stun
 	materials = list(/datum/material/iron=250)
 
 /obj/item/ammo_casing/shotgun/meteorslug
 	name = "meteorslug shell"
 	desc = "A shotgun shell rigged with CMC technology, which launches a massive slug when fired."
 	icon_state = "mshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_meteorslug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/meteor
 
 /obj/item/ammo_casing/shotgun/pulseslug
 	name = "pulse slug"
@@ -60,7 +60,7 @@
 	name = "FRAG-12 slug"
 	desc = "A high-explosive breaching round for a 12 gauge shotgun."
 	icon_state = "heshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun_frag12
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/frag12
 
 /obj/item/ammo_casing/shotgun/buckshot
 	name = "buckshot shell"
@@ -132,7 +132,7 @@
 	desc = "A relatively low-tech shell, utilizing the unique properties of Uranium, and possessing \
 	very impressive armor penetration capabilities."
 	icon_state = "dushell" 
-	projectile_type = /obj/item/projectile/bullet/shotgun_uraniumslug
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/uranium
 
 /obj/item/ammo_casing/shotgun/cryoshot
 	name = "cryoshot shell"
@@ -203,7 +203,7 @@
 	name = "breaching slug"
 	desc = "A 12-gauge anti-material slug. Great for breaching airlocks and windows with minimal shots. Only fits in tactical breaching shotguns."
 	icon_state = "breacher"
-	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
+	projectile_type = /obj/item/projectile/bullet/shotgun/slug/breaching
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
 

@@ -138,7 +138,7 @@
 	charges = 5
 	recharge_rate = 2.66
 	spread = 1
-	var/allowed_projectile_types = list(/obj/item/projectile/magic/shotgun_slug, /obj/item/projectile/magic/incediary_slug)
+	var/allowed_projectile_types = list(/obj/item/projectile/magic/shotgun/slug, /obj/item/projectile/magic/incediary_slug)
 
 
 /obj/item/gun/magic/rune/bullet_rune/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
