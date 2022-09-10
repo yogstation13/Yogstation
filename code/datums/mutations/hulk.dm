@@ -50,7 +50,7 @@
 	name = "Hulk"
 	desc = "A seemingly dormant genome, but reacts violently to aggitation."
 	difficulty = 16
-	instability = 50
+	instability = 70
 	class = MUT_OTHER
 	locked = TRUE
 	quality = POSITIVE
