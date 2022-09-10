@@ -1,0 +1,8 @@
+author: " Altoids"
+delete-after: true 
+changes: 
+  - bugfix: "Speedbikes should now display their overlay icon thing correctly."
+  - bugfix: "There is no longer a secret evil twin of the carp fish crate lurking within the cargo supply packs."
+  - spellcheck: "Fixed missing \"the\"s and \"a\"s in several places."
+  - spellcheck: "The Eminence is no longer called the Emininence in some contexts."
+  - spellcheck: "The paper mache robe is now spelt as Frenchily as it wanted to be."
