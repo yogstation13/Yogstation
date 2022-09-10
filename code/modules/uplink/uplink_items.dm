@@ -2021,6 +2021,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Assistant")
 	surplus = 0
 
+/datum/uplink_item/role_restricted/theincrediblebulk
+	name = "A Hulk Injector"
+	desc = "A Very Powerful Mutation Discovered in a ancient vault on mars, causes rapid musclegrowth."
+	item = /obj/item/dnainjector/hulkmut/genetics_hulk
+	cost = 6
+	restricted_roles = list("Geneticist")
+	surplus = 0
+
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
