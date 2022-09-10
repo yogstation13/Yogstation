@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes female_top and skinny_top clothing masks not existing"
