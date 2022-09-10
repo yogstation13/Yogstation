@@ -255,6 +255,7 @@
 	var/duration = 0
 
 /obj/effect/mine/pickup/Initialize()
+	. = ..()
 	animate(src, pixel_y = 4, time = 2 SECONDS, loop = -1)
 
 /obj/effect/mine/pickup/triggermine(mob/victim)
