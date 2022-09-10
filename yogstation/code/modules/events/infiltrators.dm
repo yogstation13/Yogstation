@@ -2,7 +2,7 @@
 	name = "Infiltrators"
 	typepath = /datum/round_event/ghost_role/infiltrators
 
-	weight = 8
+	weight = 0
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
 
