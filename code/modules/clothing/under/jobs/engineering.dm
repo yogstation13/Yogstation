@@ -6,6 +6,8 @@
 	item_state = "gy_suit"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 10, FIRE = 80, ACID = 40)
 	resistance_flags = NONE
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/chief_engineer/skirt

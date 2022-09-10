@@ -99,8 +99,8 @@
 	if(key)
 		return ..()
 
-	if(is_banned_from(user.key, ROLE_SENTIENCE))
-		to_chat(user, span_warning("You are job banned!"))
+	if(is_banned_from(user.key, ROLE_MOUSE))
+		to_chat(user, span_warning("You are banned from being a mouse!"))
 		return FALSE
 
 	if(alert("Are you sure you want to become a rat? (Warning, you can no longer be cloned!)",,"Yes","No") != "Yes")
@@ -180,7 +180,7 @@
 			src.visible_message(span_warning("[src] starts biting into [C]!"),span_notice("You start eating [C]..."))
 			if(!do_after(src, 3 SECONDS, FALSE, target))
 				return
-			to_chat(src, span_notice ("You finish eating [C]."))
+			to_chat(src, span_notice("You finish eating [C]."))
 			heal_bodypart_damage(5)
 			C.adjustBruteLoss(15)
 

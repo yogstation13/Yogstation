@@ -202,6 +202,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	/// How much powerloss to reduce. Scale of 1-0
 	var/powerloss_inhibitor = 1
 
+	/// How much is the SM surging?
+	var/surging = 0
+
 
 /obj/machinery/power/supermatter_crystal/Initialize()
 	. = ..()
@@ -390,6 +393,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			E.energy = power
 		qdel(src)
 
+/obj/machinery/power/supermatter_crystal/proc/surge(amount)
+	surging = amount
+	addtimer(CALLBACK(src, .proc/stopsurging), rand(30 SECONDS, 2 MINUTES))
+
+/obj/machinery/power/supermatter_crystal/proc/stopsurging()
+	surging = 0
+
 /obj/machinery/power/supermatter_crystal/process_atmos()
 	var/turf/T = loc
 
@@ -497,6 +507,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			var/removed_matter = max(matter_power/MATTER_POWER_CONVERSION, 40)
 			power = max(power + removed_matter, 0)
 			matter_power = max(matter_power - removed_matter, 0)
+
+		if(surging)
+			power += surging
 
 		if(gasmix_power_ratio > 0.8)
 			// with a perfect gas mix, make the power less based on heat

@@ -23,6 +23,10 @@
 	ui_x = -448
 	ui_y = 0
 
+/datum/techweb_node/clarke
+	ui_x = -458
+	ui_y = -10
+
 /datum/techweb_node/mech_tools
 	ui_x = -448
 	ui_y = -64

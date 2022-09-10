@@ -714,7 +714,7 @@
 			var/species_type = pick(subtypesof(/datum/species/jelly))
 			H.set_species(species_type)
 			H.reagents.del_reagent(type)
-			to_chat(H, span_warning("You've become \a jellyperson!"))
+			to_chat(H, span_warning("You have become a jellyperson!")) // Yogs -- text macro fix
 
 /datum/reagent/mulligan
 	name = "Mulligan Toxin"
@@ -1026,7 +1026,7 @@
 	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/bluespace/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == TOUCH || method == VAPOR)
+	if((method == TOUCH || method == VAPOR) && (reac_volume > 5))
 		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //4 tiles per crystal
 	..()
 
@@ -1282,7 +1282,7 @@
 	M.drowsyness += 2
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.blood_volume = max(H.blood_volume - 10, 0)
+		H.blood_volume = max(H.blood_volume - 5, 0)
 	if(prob(20))
 		M.losebreath += 2
 		M.confused = min(M.confused + 2, 5)
@@ -2125,3 +2125,17 @@
 /datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
 	if(method == INGEST || method == TOUCH || method == INJECT)
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
+
+/datum/reagent/adrenaline
+	name = "Adrenaline"
+	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
+	color = "#d1cd9a"
+	can_synth = FALSE
+
+/datum/reagent/adrenaline/on_mob_add(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	
+/datum/reagent/adrenaline/on_mob_delete(mob/living/L)
+	. = ..()
+	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)

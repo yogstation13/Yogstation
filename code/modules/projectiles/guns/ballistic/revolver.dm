@@ -8,6 +8,7 @@
 	eject_sound = 'sound/weapons/revolverempty.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 90
+	fire_delay = 4
 	dry_fire_sound = 'sound/weapons/revolverdry.ogg'
 	casing_ejector = FALSE
 	internal_magazine = TRUE
@@ -133,12 +134,6 @@
 	suppressed = TRUE
 	can_unsuppress = FALSE
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra32
-
-/obj/item/gun/ballistic/revolver/tracking/examine(mob/user) //So the suppressor doesn't have a weird detach text
-	. = ..()
-	if (suppressed)
-		. -= "It has a [suppressed] attached that can be removed with <b>alt+click</b>."
-		. += "It has a <b>suppressor</b> built into the barrel."
 
 /obj/item/gun/ballistic/revolver/mateba
 	name = "\improper Unica 6 auto-revolver"

@@ -1,0 +1,4 @@
+author: "SuperSlayer"
+delete-after: true 
+changes: 
+  - tweak: "Swarmer balloon alerts now respect balloon alert preference"

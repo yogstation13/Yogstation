@@ -70,7 +70,8 @@
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
-			/obj/item/trash/syndi_cakes = 1)
+			/obj/item/trash/syndi_cakes = 1,
+			/obj/item/broken_bottle = 1)
 
 /obj/effect/spawner/lootdrop/trashbin
 	name = "trash spawner"
@@ -85,7 +86,8 @@
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
-			/obj/item/trash/syndi_cakes = 1)
+			/obj/item/trash/syndi_cakes = 1,
+			/obj/item/broken_bottle = 1)
 
 /obj/effect/spawner/lootdrop/donkpockets
 	name = "donk pocket box spawner"
@@ -189,6 +191,68 @@
 	loot = list(
 			"" = 5,
 			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/
+	name = "generic effect spawner"
+	icon_state = "x4"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 100,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines
+	name = "stun or explosive landmine spawner"
+	icon_state = "landmine_spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 84,
+			/obj/effect/mine/explosive = 1,
+			/obj/effect/mine/stun = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/safe
+	name = "stun landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 80,
+			/obj/effect/mine/stun = 10,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/smart
+	name = "smart landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 80,
+			/obj/effect/mine/stun/smart = 10,
+			/obj/effect/mine/stun/smart/adv = 5,
+			/obj/effect/mine/stun/smart/heavy = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/unsafe
+	name = "dangerous landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 85,
+			/obj/effect/mine/explosive = 10,
+			/obj/effect/mine/gas/plasma = 5,
+			/obj/effect/mine/gas/n2o = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/funny
+	name = "harmless landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 85,
+			/obj/effect/mine/sound = 10,
+			/obj/effect/mine/sound/bwoink = 5,
+			/obj/effect/mine/gas = 5,
 		)
 
 /obj/effect/spawner/lootdrop/three_course_meal

@@ -134,6 +134,9 @@ obj/effect/proc_holder/swipe
 	fire(user)
 
 /obj/effect/proc_holder/swipe/fire(mob/living/carbon/user)
+	if(user.handcuffed) 
+		to_chat(user, span_danger("You can't attack while handcuffed!"))
+		return
 	if(active)
 		remove_ranged_ability(span_notice("You relax your arms."))
 	else
@@ -164,11 +167,13 @@ obj/effect/proc_holder/swipe
 	for(L in range(0,T))
 		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
 		if(isanimal(L))
-			L.adjustBruteLoss(60)
 			if(L.stat != DEAD)
+				L.adjustBruteLoss(60)
 				caller.adjustBruteLoss(-13)
 				caller.adjustFireLoss(-13)
 				caller.adjustToxLoss(-13)
+				if(L.stat == DEAD)
+					to_chat(caller, span_notice("You kill [L], healing yourself more!"))
 			if(L.stat == DEAD)
 				L.gib()
 				to_chat(caller, span_notice("You're able to consume the body entirely!"))

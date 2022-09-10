@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Getting significantly hurt will remove slowdown for a few seconds"

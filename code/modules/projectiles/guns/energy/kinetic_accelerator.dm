@@ -186,6 +186,9 @@
 	var/pressure_decrease = 0.25
 	var/obj/item/gun/energy/kinetic_accelerator/kinetic_gun
 
+/obj/item/projectile/kinetic/mech
+	range = 5
+
 /obj/item/projectile/kinetic/Destroy()
 	kinetic_gun = null
 	return ..()
@@ -201,6 +204,11 @@
 			name = "weakened [name]"
 			damage = damage * pressure_decrease
 			pressure_decrease_active = TRUE
+		else if(is_station_level(z))
+			pressure_decrease = min(pressure_decrease * 2, 1) //if you have a pressure mod you get to ignore this because uhmmmmmm tc tax
+			name = "destabilized [name]"
+			damage = damage * pressure_decrease
+			pressure_decrease_active = TRUE 
 
 /obj/item/projectile/kinetic/on_range()
 	strike_thing()

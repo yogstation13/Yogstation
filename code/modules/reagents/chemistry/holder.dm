@@ -320,6 +320,8 @@
 			continue
 		if(liverless && !R.self_consuming) //need to be metabolized
 			continue
+		if(C.reagent_check(R))
+			continue
 		if(!C)
 			C = R.holder.my_atom
 		//If you got this far, that means we can process whatever reagent this iteration is for. Handle things normally from here.

@@ -669,6 +669,7 @@
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
 	var/datum/team/abductor_team/new_team
+	minimum_players = 25
 
 /datum/dynamic_ruleset/midround/from_ghosts/abductors/ready(forced = FALSE)
 	if (required_candidates > (dead_players.len + list_observers.len))

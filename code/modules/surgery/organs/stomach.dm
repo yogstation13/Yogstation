@@ -93,6 +93,7 @@
 	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	disgust_metabolism = 1.2	//Slightly more efficient at stabilizing itself
 
 /obj/item/organ/stomach/cybernetic/upgraded
 	name = "upgraded cybernetic stomach"
@@ -100,6 +101,7 @@
 	icon_state = "stomach-c-u"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	var/nutriment_stashed = 0
+	disgust_metabolism = 2		//Twice as efficient as stabilizing itself
 
 /obj/item/organ/stomach/cybernetic/upgraded/on_life()
 	if(owner.nutrition >= NUTRITION_LEVEL_FULL && nutriment_stashed < NUTRI_STASH_MAX)
@@ -185,7 +187,7 @@
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
 
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)
-	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_FULL)
+	crystal_charge = clamp(crystal_charge + amount, ETHEREAL_CHARGE_NONE, ETHEREAL_CHARGE_DANGEROUS)
 
 /obj/item/organ/stomach/cursed
 	name = "cursed stomach"

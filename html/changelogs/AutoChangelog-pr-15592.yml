@@ -1,0 +1,8 @@
+author: "SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Added a visual effect to brass longsword EMP's"
+  - tweak: "Brass longsword code now uses time defines"
+  - tweak: "Brass longsword message about that that it is charged is now uses visible_message proc instead of to_chat"
+  - tweak: "Brass longsword now makes heavy EMPs against mechs"
+  - tweak: "Brass longsword EMO cooldown reduced to 20 seconds from 30 seconds."
