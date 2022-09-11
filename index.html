@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(457 modules,
-    714/7348 macros, 9.7%)</aside></h3>
+<aside>(459 modules,
+    716/7361 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -205,6 +205,7 @@ These materials call on_applied() on whatever item they are applied to, common e
     <li><a href="code/game/mecha/mecha_construction_paths.html" title="code&#x2F;game&#x2F;mecha&#x2F;mecha_construction_paths">mecha_construction_paths</a></li>
     <li><a href="code/game/mecha/mecha_parts.html" title="code&#x2F;game&#x2F;mecha&#x2F;mecha_parts">mecha_parts</a></li>
     <li><a href="code/game/mecha/mecha_wreckage.html" title="code&#x2F;game&#x2F;mecha&#x2F;mecha_wreckage">mecha_wreckage</a></li>
+    <li><span class="no-substance">working&#x2F;</span><a href="code/game/mecha/working/clarke.html" title="code&#x2F;game&#x2F;mecha&#x2F;working&#x2F;clarke">clarke</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects">objects</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;effects">effects</span><ul class="index-tree">
@@ -484,9 +485,12 @@ transformations and other events that cause new languages to become available.</
     <li class="has-children"><span title="code&#x2F;modules&#x2F;mob&#x2F;living">living</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon">carbon</span><ul class="index-tree">
     <li><a href="code/modules/mob/living/carbon/carbon_defense.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defense">carbon_defense</a></li>
-    <li class="has-children"><span class="no-substance">human&#x2F;</span><span title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species_types">species_types</span><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human">human</span><ul class="index-tree">
+    <li><a href="code/modules/mob/living/carbon/human/emote.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;emote">emote</a></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species_types">species_types</span><ul class="index-tree">
     <li><a href="code/modules/mob/living/carbon/human/species_types/felinid.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species_types&#x2F;felinid">felinid</a></li>
     <li><a href="code/modules/mob/living/carbon/human/species_types/jellypeople.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;species_types&#x2F;jellypeople">jellypeople</a></li>
+    </ul></li>
     </ul></li>
     </ul></li>
     <li><span class="no-substance">silicon&#x2F;ai&#x2F;decentralized&#x2F;</span><a href="code/modules/mob/living/silicon/ai/decentralized/ai_core_display.html" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;decentralized&#x2F;ai_core_display">ai_core_display</a></li>
@@ -706,7 +710,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(512 detailed/1161 documented/26113 total, 4.4%)</aside></h3>
+<aside>(516 detailed/1166 documented/26145 total, 4.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1842,6 +1846,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><a href="obj/item/mecha_ammo.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_ammo">generic ammo box</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;mecha_parts">mecha part</span> - Mecha Parts<ul class="index-tree">
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis">chassis</span><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;clarke">Clarke chassis</span> - Clarke</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;durand">Durand chassis</span> - Durand</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;firefighter">Firefighter chassis</span> - Firefighter</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;chassis&#x2F;gygax">Gygax chassis</span> - Gygax</li>
@@ -1860,6 +1865,7 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;medical&#x2F;mechmedbeam">exosuit medical beamgun</span> - Medical Beam</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;medical&#x2F;syringe_gun">exosuit syringe gun</span> - Syringe Gun</li>
     </ul></li>
+    <li><a href="obj/item/mecha_parts/mecha_equipment/orebox_manager.html" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;orebox_manager">ore storage module</a> - Special equipment for the Clarke mech, handles moving ore without giving the mech a hydraulic clamp and cargo compartment.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;repair_droid">exosuit repair droid</span> - REPAIR DROID</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;teleporter">mounted teleporter</span> - TELEPORTER</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;tesla_energy_relay">exosuit energy relay</span> - TESLA ENERGY RELAY</li>
@@ -1893,7 +1899,9 @@ Given to Nuke Ops members.</li>
     <li><span class="no-substance">body_egg&#x2F;</span><a href="obj/item/organ/body_egg/alien_embryo.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;body_egg&#x2F;alien_embryo">alien embryo</a></li>
     <li><a href="obj/item/organ/brain.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;brain">brain</a></li>
     <li><span class="no-substance">cyberimp&#x2F;arm&#x2F;</span><a href="obj/item/organ/cyberimp/arm/toolset.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;cyberimp&#x2F;arm&#x2F;toolset">integrated toolset implant</a></li>
-    <li><span class="no-substance">eyes&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes&#x2F;robotic">robotic eyes</span> - Robotic</li>
+    <li class="has-children"><a href="obj/item/organ/eyes.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes">eyes</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;eyes&#x2F;robotic">robotic eyes</span> - Robotic</li>
+    </ul></li>
     <li class="has-children"><a href="obj/item/organ/heart.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;heart">heart</a><ul class="index-tree">
     <li><a href="obj/item/organ/heart/vampheart.html" title="&#x2F;obj&#x2F;item&#x2F;organ&#x2F;heart&#x2F;vampheart">vampheart</a></li>
     </ul></li>
@@ -2180,7 +2188,11 @@ then shoots (and detonates) them at Lavaland Z-level GPS coordinates provided.</
     </ul></li>
     <li><a href="obj/machinery/vending.html" title="&#x2F;obj&#x2F;machinery&#x2F;vending">vending machines</a> - Captalism in the year 2525, everything in a vending machine, even love</li>
     </ul></li>
-    <li><a href="obj/mecha.html" title="&#x2F;obj&#x2F;mecha">mecha</a></li>
+    <li class="has-children"><a href="obj/mecha.html" title="&#x2F;obj&#x2F;mecha">mecha</a><ul class="index-tree">
+    <li class="has-children"><a href="obj/mecha/working.html" title="&#x2F;obj&#x2F;mecha&#x2F;working">working</a><ul class="index-tree">
+    <li><a href="obj/mecha/working/clarke.html" title="&#x2F;obj&#x2F;mecha&#x2F;working&#x2F;clarke">Clarke</a> - Lavaproof, fireproof, fast mech with low armor and higher energy consumption, cannot strafe and has an internal ore box.</li>
+    </ul></li>
+    </ul></li>
     <li class="has-children"><a href="obj/screen.html" title="&#x2F;obj&#x2F;screen">screen</a><ul class="index-tree">
     <li class="has-children"><span class="no-substance">alert&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;alert&#x2F;status_effect">status_effect</span><ul class="index-tree">
     <li><span class="no-substance">agent_pinpointer&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;screen&#x2F;alert&#x2F;status_effect&#x2F;agent_pinpointer&#x2F;vassal_edition">Vassal Pinpointer</span> - Pinpointer that points to their Master's location at all times.
@@ -2301,7 +2313,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/748eee33fb9350aeb6aa65a94797169db4b3c5c6">748eee3</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/7787199f8cb91364dcf0ebead78b16642912051a">7787199</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
