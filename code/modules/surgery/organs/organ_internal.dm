@@ -85,7 +85,7 @@
 		if(!C)
 			return
 		life_tick++
-		if(C.stat == DEAD && HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS))
+		if(C.stat == DEAD && !HAS_TRAIT(C, TRAIT_PRESERVED_ORGANS))
 			if(damage >= maxHealth)
 				organ_flags |= ORGAN_FAILING
 				damage = maxHealth
