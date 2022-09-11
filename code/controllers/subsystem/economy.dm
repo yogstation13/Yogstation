@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(economy)
 	for(var/D in department_count)
 		var/datum/bank_account/ACC = get_dep_account(D)
 		if(ACC)
-			ACC.adjust_money(department_count[D])
+			ACC.adjust_money(round(department_count[D] * 0.95))
 
 
 /** Payout for engineering every cycle. Uses a base of 3000 then multiplies it by station integrity. Afterwards, calls the payout proc from
