@@ -3370,6 +3370,7 @@
 #include "yogstation\code\datums\looping_sounds\darkspawn.dm"
 #include "yogstation\code\datums\mapgen\JungleGen.dm"
 #include "yogstation\code\datums\mapgen\biomes\JungleBiomes.dm"
+#include "yogstation\code\datums\mood_events\generic_negative_events.dm"
 #include "yogstation\code\datums\mood_events\generic_positive_events.dm"
 #include "yogstation\code\datums\mutations\alcohol.dm"
 #include "yogstation\code\datums\mutations\extendoarm.dm"

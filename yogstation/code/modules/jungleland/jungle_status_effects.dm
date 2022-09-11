@@ -128,7 +128,7 @@
 
 /datum/status_effect/corrupted_dryad
 	id = "corrupted_dryad"
-	duration = 120 SECONDS
+	duration = 180 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /obj/screen/alert/status_effect/corrupted_dryad
 	var/health_multiplier = 2
