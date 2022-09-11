@@ -50,15 +50,10 @@
 
 	return FALSE
 
-/mob/living/silicon/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE) //immune to oxygen damage
-	if(istype(src, /mob/living/silicon/ai)) //ais are snowflakes and use oxyloss for being in AI cards and having no battery
-		return FALSE
+//Special snowflake AI damage nos
+/mob/living/silicon/ai/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE) //immune to oxygen damage
+	return FALSE
 
-	return ..()
-
-/mob/living/silicon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE) //immune to oxygen damage
-	if(istype(src, /mob/living/silicon/ai)) //ais are snowflakes and use oxyloss for being in AI cards and having no battery
-		return FALSE
-
-	return ..()
+/mob/living/silicon/ai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE) //immune to oxygen damage
+	return FALSE
 
