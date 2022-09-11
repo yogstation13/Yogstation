@@ -16,6 +16,12 @@
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
 
+/proc/cmp_username_asc(datum/computer_file/program/pdamessager/a, datum/computer_file/program/pdamessager/b)
+	return sorttext(b.username, a.username)
+
+/proc/cmp_username_dsc(datum/computer_file/program/pdamessager/a, datum/computer_file/program/pdamessager/b)
+	return sorttext(a.username, b.username)
+
 GLOBAL_VAR_INIT(cmp_field, "name")
 /proc/cmp_records_asc(datum/data/record/a, datum/data/record/b)
 	return sorttext(b.fields[GLOB.cmp_field], a.fields[GLOB.cmp_field])

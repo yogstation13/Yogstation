@@ -408,7 +408,7 @@
 /datum/map_template/ruin/lavaland/medical
 	name = "SIC Medical Outpost"
 	id = "medical"
-	description = "One of the SIC Medical Outposts was teleported after a bluespace anomaly"
+	description = "A Sol Interplanetary Coalition Medical Outpost was spontaneously transported to Lavaland due to bluespace instabilities."
 	suffix = "lavaland_surface_medical.dmm"
 	allow_duplicates = FALSE
 	cost = 15

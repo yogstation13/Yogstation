@@ -93,6 +93,7 @@
 	new_revhead.silent = FALSE
 	to_chat(old_owner, span_userdanger("You have proved your devotion to revolution! You are a head revolutionary now!"))
 
+
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
 	.["Promote"] = CALLBACK(src,.proc/admin_promote)
@@ -164,6 +165,16 @@
 
 /datum/antagonist/rev/head/antag_listing_name()
 	return ..() + "(Leader)"
+
+/datum/antagonist/rev/head/on_gain(mob/living/carbon/human)
+	if(owner.current)
+		equip_head()
+	return ..()
+
+/datum/antagonist/rev/head/proc/equip_head()
+	var/obj/item/book/granter/crafting_recipe/weapons/W = new
+	W.on_reading_finished(owner.current)
+	qdel(W)
 
 /datum/antagonist/rev/proc/update_rev_icons_added(mob/living/M)
 	var/datum/atom_hud/antag/revhud = GLOB.huds[ANTAG_HUD_REV]

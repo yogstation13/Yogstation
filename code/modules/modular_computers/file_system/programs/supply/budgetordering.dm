@@ -6,7 +6,7 @@
 	extended_desc = "Nanotrasen Internal Requisition Network interface for supply purchasing using a department budget account."
 	requires_ntnet = TRUE
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_PDA
-	size = 20
+	size = 12
 	tgui_id = "NtosCargo"
 	program_icon = "store"
 	///Are you actually placing orders with it?
@@ -69,7 +69,7 @@
 	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
 	var/obj/item/card/id/id_card = card_slot?.GetID()
 	if(id_card?.registered_account)
-		if((ACCESS_HEADS in id_card.access) || (ACCESS_QM in id_card.access))
+		if((ACCESS_HEADS in id_card.access) || (ACCESS_QM in id_card.access) || (ACCESS_CARGO in id_card.access))
 			requestonly = FALSE
 			if(id_card?.registered_account?.account_job?.paycheck_department)
 				buyer = SSeconomy.get_dep_account(id_card.registered_account.account_job.paycheck_department)

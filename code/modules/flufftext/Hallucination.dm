@@ -171,6 +171,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/image/plasma_image = image(image_icon,center,image_state,FLY_LAYER)
 	plasma_image.alpha = 50
 	plasma_image.plane = GAME_PLANE
+	plasma_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	flood_images += plasma_image
 	flood_turfs += center
 	if(target.client)

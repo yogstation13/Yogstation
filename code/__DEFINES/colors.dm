@@ -21,6 +21,7 @@
 #define COLOR_LIME             "#32CD32"
 #define COLOR_GREEN            "#008000"
 #define COLOR_CYAN             "#00FFFF"
+#define COLOR_DARK_CYAN        "#00A2FF"
 #define COLOR_TEAL             "#008080"
 #define COLOR_BLUE             "#0000FF"
 #define COLOR_BLUE_LIGHT       "#33CCFF"

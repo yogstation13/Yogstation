@@ -34,6 +34,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	. = ..()
 	username = "NewUser[rand(100, 999)]"
 	GLOB.NTPDAs += src
+	GLOB.NTPDAs = sortUsernames(GLOB.NTPDAs)
 	for (var/obj/machinery/telecomms/message_server/preset/server in GLOB.telecomms_list)
 		if (server.decryptkey)
 			authkey = server.decryptkey
@@ -315,6 +316,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 					return
 
 			username = newname
+			GLOB.NTPDAs = sortUsernames(GLOB.NTPDAs)
 			computer.visible_message(span_notice("Username set to [newname]."), null, null, 1)
 			return TRUE
 
