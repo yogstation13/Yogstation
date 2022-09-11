@@ -1684,7 +1684,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pref_species = new newtype()
 						//Now that we changed our species, we must verify that the mutant colour is still allowed.
 						var/temp_hsv = RGBtoHSV(features["mcolor"])
-						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
+						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#3a3a3a")[3]))
 							features["mcolor"] = pref_species.default_color
 						var/CQ
 						for(var/Q in all_quirks)
@@ -1703,7 +1703,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
 						if(new_mutantcolor == "#000000")
 							features["mcolor"] = pref_species.default_color
-						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright, but only if they affect the skin
 							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						else
 							to_chat(user, span_danger("Invalid color. Your color is not bright enough."))
@@ -1822,7 +1822,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(new_hair == "#000000")
 							hair_color = pref_species.default_color
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright, but only if they affect the skin
 							hair_color = sanitize_hexcolor(new_hair)
 						else
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
@@ -1833,7 +1833,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(new_facial == "#000000")
 							facial_hair_color = pref_species.default_color
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright, but only if they affect the skin
 							facial_hair_color = sanitize_hexcolor(new_facial)
 						else
 							to_chat(user, span_danger("Invalid head flower color. Your color is not bright enough."))
