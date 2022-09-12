@@ -57,6 +57,19 @@
 	..()
 
 
+/obj/item/paper/attack_hand(mob/living/carbon/human/user) //Basically repurposed light tube code
+	..()
+	if(prob(1))
+		var/mob/living/carbon/human/butterfingers = user
+		if(butterfingers.gloves)
+			to_chat(user, span_notice("The paper slides uncomfortably across your gloved palm."))
+		else
+			to_chat(user, span_warning("You cut yourself on the paper!"))
+			var/obj/item/bodypart/affecting = butterfingers.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+			if(affecting && affecting.receive_damage(1)) //One brute damage
+				butterfingers.update_damage_overlays()
+
+
 /obj/item/paper/Initialize()
 	. = ..()
 	pixel_y = rand(-8, 8)
