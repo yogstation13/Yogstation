@@ -355,7 +355,7 @@
 	name = /datum/reagent/phlogiston
 	id = /datum/reagent/phlogiston
 	results = list(/datum/reagent/phlogiston = 3)
-	required_reagents = list(/datum/reagent/phosphorus = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/stable_plasma = 1)
+	required_reagents = list(/datum/reagent/phosphorus = 1, /datum/reagent/hellwater = 1, /datum/reagent/stable_plasma = 1)
 
 /datum/chemical_reaction/phlogiston/on_reaction(datum/reagents/holder, created_volume)
 	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
