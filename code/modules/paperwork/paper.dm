@@ -65,7 +65,7 @@
 			to_chat(user, span_notice("The paper slides uncomfortably across your gloved palm."))
 		else
 			to_chat(user, span_warning("You cut yourself on the paper!"))
-			var/obj/item/bodypart/affecting = butterfingers.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+			var/obj/item/bodypart/affecting = butterfingers.get_active_hand()
 			if(affecting && affecting.receive_damage(1)) //One brute damage
 				butterfingers.update_damage_overlays()
 
