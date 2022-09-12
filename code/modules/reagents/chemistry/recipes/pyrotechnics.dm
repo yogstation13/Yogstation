@@ -372,6 +372,18 @@
 	results = list(/datum/reagent/napalm = 3)
 	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/fuel = 1, /datum/reagent/consumable/ethanol = 1 )
 
+/datum/chemical_reaction/hellwater
+	name = "Hell Water"
+	id = /datum/reagent/hellwater
+	results = list(/datum/reagent/hellwater = 1)
+	required_reagents = list(/datum/reagent/water/holywater = 10, /datum/reagent/liquidgibs = 10, /datum/reagent/consumable/ethanol = 10, /datum/reagent/drug/space_drugs = 10)
+
+/datum/chemical_reaction/hellwater_cult
+	name = "Hell Water"
+	id = /datum/reagent/hellwater
+	results = list(/datum/reagent/hellwater = 2)
+	required_reagents = list(/datum/reagent/water/holywater = 1, /datum/reagent/fuel/unholywater = 1)
+
 /datum/chemical_reaction/cryostylane
 	name = /datum/reagent/cryostylane
 	id = /datum/reagent/cryostylane
