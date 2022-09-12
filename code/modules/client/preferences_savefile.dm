@@ -214,6 +214,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tip_delay"], tip_delay)
 	READ_FILE(S["pda_style"], pda_style)
 	READ_FILE(S["pda_color"], pda_color)
+	READ_FILE(S["pda_theme"], pda_theme)
 	READ_FILE(S["id_in_pda"], id_in_pda)
 
 	READ_FILE(S["skillcape"], skillcape)
@@ -273,6 +274,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	be_special			= SANITIZE_LIST(be_special)
 	pda_style			= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color			= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
+	pda_theme			= sanitize_inlist(pda_theme, GLOB.pda_themes, initial(pda_theme))
 	skillcape       	= sanitize_integer(skillcape, 1, 82, initial(skillcape))
 	skillcape_id		= sanitize_text(skillcape_id, initial(skillcape_id))
 
@@ -357,6 +359,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
 	WRITE_FILE(S["pda_color"], pda_color)
+	WRITE_FILE(S["pda_theme"], pda_theme)
 	WRITE_FILE(S["id_in_pda"], id_in_pda)
 	WRITE_FILE(S["skillcape"], skillcape)
 	WRITE_FILE(S["skillcape_id"], skillcape_id)

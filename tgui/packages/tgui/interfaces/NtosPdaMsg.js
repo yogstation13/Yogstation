@@ -11,6 +11,7 @@ import { NtosWindow } from '../layouts';
 export const NtosPdaMsg = (props, context) => {
   const { act, data } = useBackend(context);
   const {
+    PC_device_theme,
     can_message,
     can_keytry,
     username,
@@ -26,6 +27,7 @@ export const NtosPdaMsg = (props, context) => {
   } = data;
   return (
     <NtosWindow
+      theme={PC_device_theme}
       width={400}
       height={480}>
       <NtosWindow.Content scrollable>
