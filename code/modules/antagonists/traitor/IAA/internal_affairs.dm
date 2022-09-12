@@ -3,7 +3,7 @@
 #define PINPOINTER_PING_TIME 40
 #define PROB_ACTUAL_TRAITOR 20
 #define TRAITOR_AGENT_ROLE "Gorlex Marauders Exile"
-#define TRAITOR_AGENT_SROLE "gorlex marauder exile"
+#define TRAITOR_AGENT_SROLE "gorlex marauders exile"
 
 /datum/antagonist/traitor/internal_affairs
 	name = "Syndicate Internal Affairs Agent"
