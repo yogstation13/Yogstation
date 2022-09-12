@@ -116,15 +116,20 @@
 			continue
 		remove_objective(objective_)
 
-	var/datum/objective/martyr/martyr_objective = new
-	martyr_objective.owner = owner
-	add_objective(martyr_objective)
+	if(!marauder)
+		var/datum/objective/martyr/martyr_objective = new
+		martyr_objective.owner = owner
+		add_objective(martyr_objective)
+	else
+		var/datum/objective/hijack/hijack_objective = new
+		hijack_objective.owner = owner
+		add_objective(hijack_objective)
 
 /datum/antagonist/traitor/proc/reinstate_escape_objective()
 	if(!owner||!objectives.len)
 		return
 	for (var/objective_ in objectives)
-		if(!istype(objective_, /datum/objective/martyr))
+		if(!istype(objective_, /datum/objective/martyr) || !istype(objective_, /datum/objective/hijack))
 			continue
 		remove_objective(objective_)
 
