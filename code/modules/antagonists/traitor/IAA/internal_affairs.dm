@@ -225,13 +225,13 @@
 			kill_objective.update_explanation_text()
 			add_objective(kill_objective)
 
-		//Optional traitor objective
-		if(prob(PROB_ACTUAL_TRAITOR))
+		//Lower chance of someone needing to do an additional objective, but getting hijack instead of DaGD
+		if(prob(PROB_ACTUAL_TRAITOR)) //20%
 			company = /datum/corporation/gorlex //Should not double wammy the corporate introduction, I hope
 			owner.special_role = TRAITOR_AGENT_ROLE
 			special_role = TRAITOR_AGENT_SROLE
 			marauder = TRUE
-			forge_single_objective() //Weird flex but okay
+			forge_single_objective()
 			greentext_achieve = /datum/achievement/greentext/external
 
 /datum/antagonist/traitor/internal_affairs/forge_traitor_objectives()
