@@ -28,7 +28,7 @@
 	var/shuttles = list(
 		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
-		"whiteship" = "whiteship1",
+		"whiteship" = "whiteship_1",
 		"emergency" = "emergency_box")
 
 /proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
