@@ -81,7 +81,9 @@
 	owner.bodyparts -= src
 
 	if(held_index)
-		owner.dropItemToGround(owner.get_item_for_held_index(held_index), 1)
+		var/obj/item/I = owner.get_item_for_held_index(held_index)
+		if(I)
+			owner.dropItemToGround(I, TRUE)
 		owner.hand_bodyparts[held_index] = null
 
 	for(var/thing in wounds)
