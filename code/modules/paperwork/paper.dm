@@ -66,7 +66,7 @@
 		else
 			to_chat(user, span_warning("You cut yourself on the paper!"))
 			var/obj/item/bodypart/affecting = butterfingers.get_active_hand()
-			if(affecting && affecting.receive_damage(1)) //One brute damage
+			affecting?.receive_damage(1)
 
 
 /obj/item/paper/Initialize()
