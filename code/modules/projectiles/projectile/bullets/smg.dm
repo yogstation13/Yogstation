@@ -46,8 +46,9 @@
 	name = "4.6x30mm incendiary bullet"
 	damage = 9
 	fire_stacks = 1
+	armour_penetration = 20 //Doesn't inherit it normally
 
 /obj/item/projectile/bullet/c46x30mm/rubber
 	name = "4.6x30mm rubber bullet"
 	damage = 5
-	stamina = 22 //slightly more effective than the detective's revolver when fired in bursts
+	stamina = 22 //slightly more effective than the detective's revolver when fired in bursts, plus AP
