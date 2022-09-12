@@ -117,7 +117,9 @@
 			if(owner.stat < UNCONSCIOUS)
 				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 			if(held_index)
-				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
+				var/obj/item/I = owner.get_item_for_held_index(held_index)
+				if(I)
+					owner.dropItemToGround(I)
 
 	if(owner.hud_used)
 		var/obj/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
@@ -211,7 +213,9 @@
 			if(owner.stat < UNCONSCIOUS)
 				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 			if(held_index)
-				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
+				var/obj/item/I = owner.get_item_for_held_index(held_index)
+				if(I)
+					owner.dropItemToGround(I)
 	if(owner.hud_used)
 		var/obj/screen/inventory/hand/R = owner.hud_used.hand_slots["[held_index]"]
 		if(R)
