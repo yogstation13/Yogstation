@@ -108,22 +108,29 @@
 /proc/is_internal_objective(datum/objective/O)
 	return (istype(O, /datum/objective/assassinate/internal)||istype(O, /datum/objective/destroy/internal))
 
-/datum/antagonist/traitor/proc/replace_escape_objective()
+/datum/antagonist/traitor/proc/replace_escape_objective_martyr()
 	if(!owner || !objectives.len)
 		return
 	for (var/objective_ in objectives)
-		if(!(istype(objective_, /datum/objective/escape)||istype(objective_, /datum/objective/survive)))
+		if(!(istype(objective_, /datum/objective/escape)||istype(objective_, /datum/objective/survive)||istype(objective_, /datum/objective/hijack)))
 			continue
 		remove_objective(objective_)
 
-	if(!marauder)
-		var/datum/objective/martyr/martyr_objective = new
-		martyr_objective.owner = owner
-		add_objective(martyr_objective)
-	else
-		var/datum/objective/hijack/hijack_objective = new
-		hijack_objective.owner = owner
-		add_objective(hijack_objective)
+	var/datum/objective/martyr/martyr_objective = new
+	martyr_objective.owner = owner
+	add_objective(martyr_objective)
+
+/datum/antagonist/traitor/proc/replace_escape_objective_hijack() //Should work?
+	if(!owner || !objectives.len)
+		return
+	for (var/objective_ in objectives)
+		if(!(istype(objective_, /datum/objective/escape)||istype(objective_, /datum/objective/survive)||istype(objective_, /datum/objective/martyr)))
+			continue
+		remove_objective(objective_)
+	
+	var/datum/objective/hijack/hijack_objective = new
+	hijack_objective.owner = owner
+	add_objective(hijack_objective)
 
 /datum/antagonist/traitor/proc/reinstate_escape_objective()
 	if(!owner||!objectives.len)
@@ -182,9 +189,10 @@
 	if(last_man_standing)
 		if(!marauder)
 			to_chat(owner.current,span_userdanger("Every agent confirmed turncoat has been eliminated. However, given that the entire cell was compromised, your loyalty is being called into question. Die a glorious death, and prove your unending allegiance to the Syndicate."))
+			replace_escape_objective_martyr(owner)
 		else
 			to_chat(owner.current,span_userdanger("Each of the others lies dead at your feet. Your final obstacle of this trial is to hijack the shuttle. Leave none standing and no survivors in your wake. Your brothers await you with open arms, Marauder."))
-		replace_escape_objective(owner)
+			replace_escape_objective_hijack(owner)
 
 /datum/antagonist/traitor/internal_affairs/proc/iaa_process()
 	if(owner&&owner.current&&owner.current.stat!=DEAD)
