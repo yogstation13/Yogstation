@@ -23,6 +23,7 @@
 	throw_range = 1
 	throw_speed = 1
 	pressure_resistance = 0
+	sharpness = SHARP_EDGED //Paper cuts
 	slot_flags = ITEM_SLOT_HEAD
 	body_parts_covered = HEAD
 	resistance_flags = FLAMMABLE
