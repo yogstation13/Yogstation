@@ -376,7 +376,7 @@
 	name = "Hell Water"
 	id = /datum/reagent/hellwater
 	results = list(/datum/reagent/hellwater = 1)
-	required_reagents = list(/datum/reagent/water/holywater = 10, /datum/reagent/liquidgibs = 10, /datum/reagent/consumable/ethanol = 10, /datum/reagent/drug/space_drugs = 10)
+	required_reagents = list(/datum/reagent/water/holywater = 2, /datum/reagent/liquidgibs = 2, /datum/reagent/consumable/ethanol = 2, /datum/reagent/drug/space_drugs = 2)
 
 /datum/chemical_reaction/hellwater_cult
 	name = "Hell Water"
