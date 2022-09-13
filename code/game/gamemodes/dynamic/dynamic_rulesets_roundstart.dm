@@ -984,6 +984,12 @@
 	antag_cap = list("denominator" = 24)
 	minimum_players = 25
 
+/datum/dynamic_ruleset/roundstart/bloodsucker/trim_candidates()
+	. = ..()
+	for(var/mob/living/player in candidates)
+		if(player?.client?.prefs.pref_species && (NOBLOOD in player.client.prefs.pref_species.species_traits))
+			candidates.Remove(player)
+
 /datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
 	. = ..()
 	var/num_bloodsuckers = get_antag_cap(population) * (scaled_times + 1)

@@ -716,6 +716,11 @@
 /datum/dynamic_ruleset/midround/bloodsucker/trim_candidates()
 	. = ..()
 	for(var/mob/living/player in living_players)
+		if(iscarbon(player))
+			var/mob/living/carbon/C = player
+			if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))
+				living_players -= player
+				continue
 		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
 			living_players -= player
 		else if(is_centcom_level(player.z))
