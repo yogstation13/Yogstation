@@ -986,7 +986,7 @@
 
 /datum/dynamic_ruleset/roundstart/bloodsucker/trim_candidates()
 	. = ..()
-	for(var/mob/living/player in candidates)
+	for(var/mob/player in candidates)
 		if(player?.client?.prefs.pref_species && (NOBLOOD in player.client.prefs.pref_species.species_traits))
 			candidates.Remove(player)
 
