@@ -57,24 +57,12 @@
        radial-gradient( rgba(0, 97, 0, 0.75), black 120%);
     background-size: 100%, 100%;
     background-position: center, center;
-    // background: repeating-linear-gradient(
-    //   0deg,
-    //   rgba(black, 0.15),
-    //   rgba(black, 0.15) 1px,
-    //   transparent 1px,
-    //   transparent 2px
-    // );
   }
 
   .Button {
-    font: 1.3rem Inconsolata;
+    font:  Inconsolata;
     color:#24e87e;
     text-shadow: 0 0 2px #24e87e;
-    //background-color: rgba(0,0,0,0);
-    // border-width: base.em(2px);
-    // border-style: outset;
-    // border-color: #00AA00;
-    //outline: base.em(1px) solid rgb(0, 122, 0);
   }
   .Button:hover {
     background-color:rgba(36, 232, 127, 0.25);
@@ -84,39 +72,20 @@
   color: #24e87e;
 }
 
-  // .candystripe:nth-child(odd) {
-  //   background-color: rgba(0, 100, 0, 0.50);
-  // }
 
   body {
     //background-color: black;
     color: white;
-    font-family: Times;
+    font: 1.3rem Inconsolata;
     text-shadow: 0 0 2px #24e87e;
 
     //font: bold 12px Arial, 'Helvetica Neue', Helvetica, sans-serif;
   }
-  // body::after {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   width: 100vw;
-  //   height: 100vh;
-  //   background: repeating-linear-gradient(
-  //     0deg,
-  //     rgba(black, 0.15),
-  //     rgba(black, 0.15) 1px,
-  //     transparent 1px,
-  //     transparent 2px
-  //   );
-  // }
   .Section {
     color:rgb(36, 232, 126)
   }
   .Tab {
     color: #24e87e;
-    //background-image: linear-gradient(to right, rgba(255, 153, 0, 0.4), rgba(194, 0, 219, 0.75));
   }
   .Tab--selected {
     color: #24e87e;

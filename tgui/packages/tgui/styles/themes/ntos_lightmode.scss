@@ -22,7 +22,6 @@ $nanotrasen: #ffffff;
   // Components
   @include meta.load-css('../components/Button.scss', $with: (
     'color-default': $nanotrasen,
-    //'color-transparent-text': rgba(0, 0, 0, 0.75),
   ));
   @include meta.load-css('../components/ProgressBar.scss', $with: (
     'color-default-fill': $nanotrasen,
@@ -43,9 +42,6 @@ $nanotrasen: #ffffff;
   ));
   .Button {
     color: #161613;
-    //background-color: #c2c2c2;
-    //border: base.em(2px) outset #E8E4C9;
-    //outline: base.em(2px) outset #c3c3c3;
   }
   .Button:hover {
     background-color:#777777;
@@ -54,8 +50,6 @@ $nanotrasen: #ffffff;
 
   .Section {
     color: black;
-    //background-color: rgba(119, 119, 119, 0.4);
-    //outline: base.em(2px) outset #c3c3c3;
   }
   .Tab {
     color: black;

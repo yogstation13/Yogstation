@@ -71,8 +71,8 @@ $scrollbar-color-multiplier: 0.5;
   .Button {
     color: rgb(255, 132, 153);
     background-color: rgb(255, 255, 255);
-    //outline: base.em(2px) outset $pink;
   }
+
   .ProgressBar {
     color: black;
   }
@@ -80,7 +80,6 @@ $scrollbar-color-multiplier: 0.5;
   .Layout__content {
     background-image:  url('../../assets/bg-cat.svg');
     background-size: 100%;
-    //background-position: top;
     background-repeat: no-repeat;
   }
   .Layout,

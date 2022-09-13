@@ -19,7 +19,6 @@
   // Atomic classes
   @include meta.load-css(
     '../atomic/color.scss',
-    //$with: ('bg-map': $updated-bg-map)
   );
 
   // Components
@@ -31,7 +30,6 @@
       'color-selected': #610a0a,
       'color-caution': #1416a3,
       'color-danger': #5c1e80,
-      //'bg-map': $updated-bg-map
     )
   );
   @include meta.load-css(
