@@ -38,7 +38,7 @@
 	if(usr)
 		if (usr.client)
 			if(usr.client.holder)
-				to_chat(M, "<i>You hear a voice in your head... <b>[msg]</i></b>")
+				to_chat(M, span_big("<i>You hear a voice in your head... <b>[msg]</i></b>"))
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
 	msg = "SubtleMessage: [key_name(usr)] -> [key_name(M)] : [msg]" // yogs - Yog Tickets
