@@ -1950,7 +1950,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
 				if("pda_theme")
-					var/pickedPDATheme = input(user, "Choose your PDA Interface theme.", "Character Preference",pda_theme) as null|anything in GLOB.pda_themes
+					var/pickedPDATheme = input(user, "Choose your PDA Interface theme.", "Character Preference", pda_theme) as null|anything in GLOB.pda_themes
 					if(pickedPDATheme)
 						pda_theme = pickedPDATheme
 				if("id_in_pda")
