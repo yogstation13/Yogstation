@@ -115,6 +115,12 @@
 		return 
 	return ..()
 
+/obj/item/modular_computer/pre_attack(atom/A, mob/living/user, params)
+	if(active_program?.clickon(A, user, params))
+		playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
+		return 
+	return ..()
+	 
 /**
  * Plays a sound through the computer's speakers.
  */

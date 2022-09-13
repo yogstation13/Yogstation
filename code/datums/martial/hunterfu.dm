@@ -34,7 +34,7 @@
 /datum/martial_art/hunterfu/proc/body_slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(D.mobility_flags & MOBILITY_STAND)
 		D.visible_message(
-			span_danger("[A] slams both them and [D] into the ground!"),
+			span_danger("[A] slams both [A.p_them()]self and [D] into the ground!"),
 			span_userdanger("You're slammed into the ground by [A]!"),
 			span_hear("You hear a sickening sound of flesh hitting flesh!"),
 		)
@@ -76,11 +76,11 @@
 		D.apply_damage(stake_damagehigh, BRUTE, BODY_ZONE_CHEST)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/sinfuldemon))
-		to_chat(D, span_danger("Their arm tears through our demonic form!"))
+		to_chat(D, span_danger("Their arm tears through your demonic form!"))
 		D.apply_damage(stake_damagehigh, BRUTE, BODY_ZONE_CHEST)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/bloodsucker))
-		to_chat(D, span_cultlarge("Their arm stakes straight into our undead flesh!"))
+		to_chat(D, span_cultlarge("Their arm stakes straight into your undead flesh!"))
 		D.apply_damage(A.get_punchdamagehigh() + 10, BURN)				//20 damage
 		D.apply_damage(A.get_punchdamagehigh(), BRUTE, BODY_ZONE_CHEST)	//10 damage
 		return TRUE
@@ -112,10 +112,10 @@
 			D.SetSleeping(40)
 			return TRUE
 		if(D.mind.has_antag_datum(/datum/antagonist/bloodsucker))
-			to_chat(D, span_warning("Our undead form protects us from being put to sleep!"))
+			to_chat(D, span_warning("Your undead form protects you from being put to sleep!"))
 			return TRUE
 		if(D.mind.has_antag_datum(/datum/antagonist/sinfuldemon))
-			to_chat(D, span_warning("Our demonic form protects us from being put to sleep!"))
+			to_chat(D, span_warning("Your demonic form protects you from being put to sleep!"))
 			return TRUE
 		else
 			D.SetSleeping(30)
@@ -137,7 +137,7 @@
 		D.Paralyze(20)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/heretic))
-		to_chat(D, span_cultlarge("The holy water burns our flesh!"))
+		to_chat(D, span_cultlarge("The holy water burns your flesh!"))
 		D.apply_damage(holykick_hereticburn, BURN)
 		D.apply_damage(holykick_staminadamage, STAMINA)
 		D.Paralyze(20)
@@ -147,20 +147,20 @@
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/cult))
 		for(var/datum/action/innate/cult/blood_magic/BD in D.actions)
-			to_chat(D, span_cultlarge("Our blood rites falter as the holy water drips onto our body!"))
+			to_chat(D, span_cultlarge("Your blood rites falter as the holy water drips onto your body!"))
 			for(var/datum/action/innate/cult/blood_spell/BS in BD.spells)
 				qdel(BS)
 		D.apply_damage(holykick_staminadamage, STAMINA)
 		D.Paralyze(20)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/sinfuldemon))
-		to_chat(D, span_cultlarge("The holy water burns deep inside us!"))
+		to_chat(D, span_cultlarge("The holy water burns deep inside you!"))
 		D.apply_damage(holykick_hereticburn, BURN)
 		D.apply_damage(holykick_staminadamage, STAMINA)
 		D.Paralyze(40)
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/wizard) || (/datum/antagonist/wizard/apprentice))
-		to_chat(D, span_danger("The holy water seems to be muting us somehow!"))
+		to_chat(D, span_danger("The holy water seems to be muting you somehow!"))
 		if(D.silent <= 10)
 			D.silent = clamp(D.silent + 10, 0, 10)
 		D.apply_damage(holykick_staminadamage, STAMINA)
