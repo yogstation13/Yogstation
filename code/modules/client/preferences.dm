@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_map = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
+	var/pda_theme = PDA_THEME_NTOS
 	var/id_in_pda = FALSE
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
@@ -723,6 +724,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
+			dat += "<b>PDA Theme:</b> <a href='?_src_=prefs;task=input;preference=pda_theme'>[pda_theme]</a><br>"
 			dat += "<b>PDA Starts in ID Slot:</b> <a href='?_src_=prefs;task=input;preference=id_in_pda'>[id_in_pda ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape_id != "None") ? "[GLOB.skillcapes[skillcape_id]]" : "None"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
@@ -1947,6 +1949,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
+				if("pda_theme")
+					var/pickedPDATheme = input(user, "Choose your PDA Interface theme.", "Character Preference",pda_theme) as null|anything in GLOB.pda_themes
+					if(pickedPDATheme)
+						pda_theme = pickedPDATheme
 				if("id_in_pda")
 					id_in_pda = !id_in_pda
 				if("skillcape")

@@ -16,7 +16,7 @@ $nanotrasen: #2c2c2c;
   $color-bg: color.scale($nanotrasen, $lightness: -45%),
 );
 
-.theme-ntosdarkmode {
+.theme-ntos_darkmode {
   // Components
   @include meta.load-css('../components/Button.scss', $with: (
     'color-default': $nanotrasen,

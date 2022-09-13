@@ -16,7 +16,7 @@ $nanotrasen: #ffffff;
   $color-bg: white,
 );
 
-.theme-ntoslightmode {
+.theme-ntos_lightmode {
   @include meta.load-css('../atomic/color.scss', $with: (
     ));
   // Components
