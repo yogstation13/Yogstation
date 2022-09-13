@@ -1,4 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"au" = (
+/obj/structure/girder,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered)
 "aI" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
@@ -12,6 +17,10 @@
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"bf" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/wood/lavaland,
 /area/ruin/powered)
 "bk" = (
 /obj/effect/decal/cleanable/glass,
@@ -41,6 +50,11 @@
 "cr" = (
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors/unexplored)
+"cJ" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/unexplored)
 "do" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/lootdrop/randomfood{
@@ -57,23 +71,14 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
-"eo" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/lavaland{
-	icon_state = "cafeteria"
-	},
-/area/ruin/powered)
 "eA" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
-"eY" = (
-/obj/effect/decal/cleanable/glass,
-/obj/item/shard,
-/obj/item/shard{
-	pixel_x = 5;
-	pixel_y = -4
+"fc" = (
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plasteel/lavaland{
+	icon_state = "cafeteria"
 	},
-/turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered)
 "fr" = (
 /obj/structure/window/reinforced,
@@ -120,6 +125,12 @@
 	icon_state = "cafeteria"
 	},
 /area/ruin/powered)
+"gZ" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/item/stack/sheet/metal,
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/unexplored)
 "hn" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/rag,
@@ -134,10 +145,12 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
-"hr" = (
-/obj/machinery/processor,
-/turf/open/floor/plasteel/lavaland{
-	icon_state = "cafeteria"
+"hV" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken4"
 	},
 /area/ruin/powered)
 "ia" = (
@@ -171,16 +184,18 @@
 	},
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
-"jX" = (
-/obj/machinery/light{
-	dir = 8
+"jL" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/grille,
+/obj/item/shard{
+	pixel_x = -4;
+	pixel_y = -7
 	},
-/obj/item/reagent_containers/glass/mixbowl{
-	pixel_y = 5
+/obj/item/shard{
+	pixel_x = 7;
+	pixel_y = -3
 	},
-/turf/open/floor/plasteel/lavaland{
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered)
 "kb" = (
 /obj/item/twohanded/required/kirbyplants/random,
@@ -188,15 +203,21 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
-"kq" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_x = 2;
-	pixel_y = 4
+"kk" = (
+/obj/machinery/light{
+	dir = 8
 	},
+/obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel/lavaland{
 	icon_state = "cafeteria"
 	},
+/area/ruin/powered)
+"kD" = (
+/obj/item/twohanded/required/kirbyplants/dead,
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "ly" = (
 /obj/effect/spawner/lootdrop/trashbin,
@@ -204,6 +225,13 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
+"mr" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fluff/broken_flooring{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors/unexplored)
 "ms" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
@@ -222,6 +250,12 @@
 	},
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"nY" = (
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/structure/table_frame/wood,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "ou" = (
@@ -247,11 +281,39 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plasteel,
 /area/ruin/powered)
+"pq" = (
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/effect/decal/cleanable/glass,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"ps" = (
+/obj/item/stack/sheet/metal,
+/obj/structure/fluff/broken_flooring{
+	dir = 1
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered)
 "pA" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"pH" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fluff/broken_flooring{
+	dir = 8
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors/unexplored)
+"ra" = (
+/obj/machinery/processor,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/lavaland{
+	icon_state = "cafeteria"
+	},
 /area/ruin/powered)
 "rd" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
@@ -259,6 +321,13 @@
 /turf/open/floor/plasteel/lavaland{
 	icon_state = "cafeteria"
 	},
+/area/ruin/powered)
+"rg" = (
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "rk" = (
 /obj/machinery/light{
@@ -308,8 +377,33 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
+"sk" = (
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/powered)
+"sY" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/spawner/lootdrop/trashbin,
+/obj/item/shard,
+/obj/item/shard{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/structure/grille/broken,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered)
 "ta" = (
 /obj/structure/girder,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered)
+"tk" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/powered)
+"tw" = (
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered)
 "tK" = (
@@ -341,6 +435,27 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
+"uJ" = (
+/obj/structure/fluff/broken_flooring{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered)
+"uO" = (
+/obj/structure/window/reinforced,
+/obj/structure/table_frame/wood,
+/turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"uY" = (
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"vb" = (
+/obj/effect/decal/fakelattice,
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors/unexplored)
 "vg" = (
 /obj/item/kitchen/rollingpin{
 	pixel_x = 5;
@@ -350,6 +465,24 @@
 	icon_state = "cafeteria"
 	},
 /area/ruin/powered)
+"vG" = (
+/obj/structure/table_frame,
+/turf/open/floor/plasteel/lavaland{
+	icon_state = "cafeteria"
+	},
+/area/ruin/powered)
+"vU" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken6"
+	},
+/area/ruin/powered)
+"wi" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/girder/displaced,
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/unexplored)
 "wu" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/lootdrop/randomfood{
@@ -365,14 +498,6 @@
 	pixel_y = -6
 	},
 /turf/open/floor/plasteel/cafeteria,
-/area/ruin/powered)
-"wC" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/lavaland{
-	icon_state = "cafeteria"
-	},
 /area/ruin/powered)
 "wH" = (
 /obj/structure/table,
@@ -421,16 +546,6 @@
 	icon_state = "cafeteria"
 	},
 /area/ruin/powered)
-"yh" = (
-/obj/effect/decal/cleanable/glass,
-/obj/effect/spawner/lootdrop/trashbin,
-/obj/item/shard,
-/obj/item/shard{
-	pixel_x = -1;
-	pixel_y = 5
-	},
-/turf/open/floor/plating/lavaland_baseturf,
-/area/ruin/powered)
 "yw" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/lootdrop/randomfood{
@@ -455,23 +570,22 @@
 	},
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
-"yZ" = (
-/obj/item/clothing/accessory/sharkhoodie,
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/item/paper/secretrecipe{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel/lavaland{
-	icon_state = "cafeteria"
-	},
-/area/ruin/powered)
 "zg" = (
 /obj/effect/spawner/lootdrop/trashbin,
 /obj/item/chair/stool,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"zq" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fluff/broken_flooring,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors/unexplored)
+"zz" = (
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "Aa" = (
@@ -500,6 +614,27 @@
 	},
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
+"Br" = (
+/obj/item/reagent_containers/glass/mixbowl{
+	pixel_y = 5
+	},
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/lavaland{
+	icon_state = "cafeteria"
+	},
+/area/ruin/powered)
+"BE" = (
+/obj/structure/fluff/broken_flooring{
+	dir = 8
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered)
+"BM" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors/unexplored)
 "Ch" = (
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
@@ -526,6 +661,13 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
+"EF" = (
+/obj/item/chair,
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
 "EG" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
@@ -538,6 +680,12 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
+"ET" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/girder/displaced,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/unexplored)
 "Fm" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/lootdrop/randomfood{
@@ -568,16 +716,24 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
-"FO" = (
-/obj/item/twohanded/required/kirbyplants/dead,
-/obj/effect/turf_decal/tile/dark/opposingcorners,
-/obj/effect/turf_decal/tile/red/opposingcorners,
-/turf/open/floor/plasteel/lavaland,
-/area/ruin/powered)
 "Gt" = (
 /obj/structure/table/wood/poker,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"Gy" = (
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/closet,
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/item/storage/firstaid/ancient{
+	pixel_x = 2;
+	pixel_y = -2
+	},
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "GH" = (
@@ -593,11 +749,53 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/unexplored)
-"HI" = (
-/obj/item/chair/stool/bar,
+"Hh" = (
+/obj/effect/decal/cleanable/oil,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/effect/decal/remains/robot,
 /turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"Hx" = (
+/obj/structure/fluff/broken_flooring,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered)
+"Hy" = (
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors/unexplored)
+"HD" = (
+/obj/item/clothing/accessory/sharkhoodie,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/paper/secretrecipe{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = -6;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = -4;
+	pixel_y = -1
+	},
+/obj/effect/decal/cleanable/shreds,
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/shreds,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plasteel/lavaland{
+	icon_state = "cafeteria"
+	},
 /area/ruin/powered)
 "HO" = (
 /obj/machinery/door/airlock/public/glass,
@@ -608,16 +806,6 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},
-/obj/effect/turf_decal/tile/dark/opposingcorners,
-/obj/effect/turf_decal/tile/red/opposingcorners,
-/turf/open/floor/plasteel/lavaland,
-/area/ruin/powered)
-"Jg" = (
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/effect/decal/cleanable/cobweb,
-/obj/structure/closet,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
@@ -696,13 +884,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered)
-"My" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/wood,
-/obj/item/instrument/violin,
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/wood/lavaland,
-/area/ruin/powered)
 "NB" = (
 /obj/effect/decal/cleanable/glass,
 /obj/item/shard,
@@ -720,6 +901,10 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random,
 /turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"NX" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered)
 "OG" = (
 /obj/machinery/oven,
@@ -743,6 +928,16 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
+"Py" = (
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/structure/table_frame,
+/turf/open/floor/plasteel/lavaland{
+	icon_state = "cafeteria"
+	},
+/area/ruin/powered)
 "PF" = (
 /obj/effect/decal/cleanable/glass,
 /obj/item/shard,
@@ -752,6 +947,13 @@
 	},
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
+"PH" = (
+/obj/item/chair/stool/bar,
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
 "Qb" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
@@ -759,6 +961,17 @@
 	},
 /turf/open/floor/plasteel/lavaland{
 	icon_state = "cafeteria"
+	},
+/area/ruin/powered)
+"Qu" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken"
+	},
+/area/ruin/powered)
+"Qx" = (
+/turf/open/floor/wood/lavaland{
+	icon_state = "wood-broken2"
 	},
 /area/ruin/powered)
 "QF" = (
@@ -785,11 +998,27 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
+"Ra" = (
+/obj/effect/decal/cleanable/glass,
+/obj/item/shard,
+/obj/item/shard{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/structure/grille/broken,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered)
 "Rc" = (
 /obj/machinery/computer/slot_machine,
 /obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"Rp" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/lavaland{
+	icon_state = "cafeteria"
+	},
 /area/ruin/powered)
 "RP" = (
 /obj/effect/decal/cleanable/glass,
@@ -801,9 +1030,12 @@
 	},
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
-"So" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating/lavaland_baseturf,
+"Sq" = (
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/item/stack/sheet/metal,
+/obj/effect/decal/cleanable/vomit/old,
+/turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
 "SW" = (
 /obj/structure/chair/stool,
@@ -818,15 +1050,6 @@
 	pixel_x = -1;
 	pixel_y = 6
 	},
-/turf/open/floor/plasteel/lavaland{
-	icon_state = "cafeteria"
-	},
-/area/ruin/powered)
-"Tw" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random,
 /turf/open/floor/plasteel/lavaland{
 	icon_state = "cafeteria"
 	},
@@ -846,6 +1069,25 @@
 "Uc" = (
 /turf/closed/wall,
 /area/ruin/powered)
+"Ul" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/powered)
+"Vh" = (
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/random,
+/obj/item/stack/sheet/metal,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/lavaland{
+	icon_state = "cafeteria"
+	},
+/area/ruin/powered)
+"Vl" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/unexplored)
 "VQ" = (
 /obj/machinery/food_cart,
 /obj/effect/decal/cleanable/cobweb,
@@ -879,12 +1121,31 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/powered)
+"Zg" = (
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
+"Zh" = (
+/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/lavaland,
+/area/ruin/powered)
 "ZL" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
 /turf/open/floor/wood/lavaland,
 /area/ruin/powered)
+"ZQ" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/unexplored)
 
 (1,1,1) = {"
 Af
@@ -1146,7 +1407,7 @@ GW
 GW
 GW
 GW
-GW
+Vl
 GW
 GW
 cr
@@ -1164,19 +1425,19 @@ cr
 cr
 cr
 GW
-GW
-GW
-GW
-GW
-GW
-GW
-GW
-GW
-GW
-GW
-GW
-GW
-GW
+Vl
+BM
+BM
+BM
+BM
+BM
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
 GW
 GW
 GW
@@ -1199,14 +1460,14 @@ Uc
 Uc
 Uc
 Uc
-eY
+Ra
 Uc
-yh
+sY
 Uc
-So
+jL
 ta
 ta
-GW
+cJ
 GW
 GW
 cr
@@ -1222,22 +1483,22 @@ Af
 cr
 cr
 cr
-cr
+vb
 Uc
 mx
 jv
-My
+uO
 fG
-gq
+Zh
 YE
 ou
 bk
 gq
-ou
+pq
 TL
 ta
-GW
-GW
+cJ
+cJ
 GW
 cr
 cr
@@ -1251,14 +1512,14 @@ Af
 cr
 cr
 cr
-cr
+Hy
 Uc
 Uc
 ZL
-Ch
+Qx
 RP
 ou
-ou
+Hx
 ou
 ly
 ou
@@ -1266,8 +1527,8 @@ pA
 ou
 ms
 ta
-GW
-GW
+cJ
+cJ
 GW
 GW
 cr
@@ -1281,7 +1542,7 @@ Af
 cr
 cr
 cr
-cr
+Hy
 Uc
 yD
 Ch
@@ -1294,11 +1555,11 @@ mz
 TV
 Gt
 SW
-FO
+kD
 ta
-GW
-GW
-GW
+cJ
+cJ
+Vl
 GW
 GW
 cr
@@ -1311,10 +1572,10 @@ Af
 cr
 cr
 cr
-cr
-ta
+Hy
+au
 Ch
-Ch
+Qu
 Ch
 NB
 ou
@@ -1326,11 +1587,11 @@ pA
 ou
 oD
 Uc
+BM
+BM
+ZQ
 GW
-GW
-GW
-GW
-GW
+ZQ
 cr
 cr
 cr
@@ -1341,22 +1602,22 @@ Af
 cr
 cr
 cr
-cr
+vb
 ta
-Ch
+vU
 Ch
 Ch
 xF
 TV
 ou
+zz
 ou
-ou
-EG
+rg
 ou
 ou
 EH
 pg
-GW
+BM
 GW
 GW
 GW
@@ -1371,24 +1632,24 @@ Af
 cr
 cr
 cr
-cr
+vb
 ta
 Ch
-Ch
-Ch
-xF
+bf
+sk
+tk
 ou
-ou
+Zg
 SW
-ou
+zz
 ly
 bU
 EH
-EH
-ta
-GW
-GW
-GW
+Hh
+au
+BM
+pH
+ZQ
 GW
 GW
 GW
@@ -1401,23 +1662,23 @@ Af
 cr
 cr
 cr
-cr
+vb
 Uc
-JL
+hV
 JL
 PF
 fr
 ou
 TV
-Gt
+nY
 TV
 Pk
 wH
-bU
+EF
 ly
 HO
-GW
-GW
+cJ
+cJ
 GW
 GW
 GW
@@ -1437,20 +1698,20 @@ kb
 ou
 EG
 ly
-ou
+Sq
 ou
 zg
 ou
 ou
 bU
 ou
-oD
+uY
 Uc
+cJ
+cJ
+Vl
 GW
-GW
-GW
-GW
-GW
+ET
 GW
 Af
 Af
@@ -1461,23 +1722,23 @@ cr
 cr
 cr
 cr
-cr
+Hy
 Uc
-ou
+uJ
 pA
 SW
 TV
 ou
 ou
 ou
-ou
+BE
 ou
 ly
-HI
+PH
 EG
 ta
-GW
-GW
+cJ
+cJ
 GW
 GW
 GW
@@ -1491,7 +1752,7 @@ Af
 cr
 cr
 cr
-cr
+Hy
 Uc
 ou
 Rc
@@ -1501,13 +1762,13 @@ ou
 ox
 aM
 ou
-ou
+zz
 ou
 ly
 ou
 ta
-GW
-GW
+zq
+BM
 GW
 GW
 GW
@@ -1521,7 +1782,7 @@ Af
 cr
 cr
 cr
-cr
+Hy
 Uc
 Uc
 Uc
@@ -1536,9 +1797,9 @@ fU
 bE
 Ia
 Uc
-GW
-GW
-GW
+BM
+BM
+ZQ
 GW
 GW
 GW
@@ -1551,24 +1812,24 @@ Af
 cr
 cr
 cr
-cr
-cr
-cr
-cr
-cr
+Hy
+vb
+vb
+Hy
+Hy
 Uc
-Jg
+Gy
 ou
-ou
+Zg
 ou
 ou
 hn
 aM
 ou
 ta
-GW
-GW
-GW
+BM
+BM
+Vl
 GW
 GW
 GW
@@ -1582,10 +1843,10 @@ cr
 cr
 cr
 cr
-cr
-cr
-cr
-cr
+Hy
+vb
+vb
+vb
 Uc
 ou
 ou
@@ -1596,8 +1857,8 @@ Dj
 ou
 tK
 Uc
-GW
-GW
+wi
+cJ
 GW
 GW
 GW
@@ -1614,8 +1875,8 @@ cr
 cr
 cr
 cr
-cr
-cr
+Hy
+Hy
 Uc
 Pm
 GH
@@ -1624,10 +1885,10 @@ jd
 ou
 ur
 ou
-ou
+Zg
 ta
-GW
-GW
+cJ
+gZ
 GW
 GW
 GW
@@ -1644,8 +1905,8 @@ cr
 cr
 cr
 cr
-cr
-cr
+vb
+Hy
 Uc
 Uc
 Uc
@@ -1657,7 +1918,7 @@ Eo
 Uc
 ta
 ta
-GW
+BM
 GW
 GW
 GW
@@ -1675,19 +1936,19 @@ cr
 cr
 cr
 cr
-cr
-cr
+vb
+Hy
 Uc
 VQ
 AJ
-jX
+Br
 AJ
 AJ
 AJ
-wC
-eA
+kk
+Ul
 wu
-GW
+cJ
 GW
 GW
 GW
@@ -1705,21 +1966,21 @@ cr
 cr
 cr
 cr
-cr
-cr
+vb
+vb
 Uc
 yf
 Ef
 AJ
+uJ
 AJ
-AJ
-yZ
+HD
 AJ
 eA
 do
-GW
-GW
-GW
+mr
+cJ
+cJ
 GW
 Af
 Af
@@ -1735,21 +1996,21 @@ cr
 cr
 cr
 cr
-cr
-cr
+Hy
+Hy
 Uc
 Qb
 AJ
-eo
+vG
 bW
 AJ
-AJ
+tw
 Wv
 eA
 La
-GW
-GW
-GW
+BM
+cJ
+cJ
 Af
 Af
 Af
@@ -1765,21 +2026,21 @@ cr
 cr
 cr
 cr
-cr
-cr
+Hy
+Hy
 Uc
 rk
 AJ
 QF
 OG
 AJ
-AJ
-eA
+NX
+NX
 eA
 xL
-GW
-GW
-GW
+BM
+Vl
+cJ
 Af
 Af
 Af
@@ -1795,21 +2056,21 @@ cr
 cr
 cr
 cr
-cr
-cr
+Hy
+Hy
 Uc
-kq
+Py
 AJ
-eo
+vG
 xQ
 AJ
-AJ
-eA
+NX
+NX
 eA
 Mx
-GW
-GW
-GW
+BM
+cJ
+cJ
 GW
 Af
 Af
@@ -1825,20 +2086,20 @@ cr
 cr
 cr
 cr
-cr
-cr
+Hy
+Hy
 Uc
 SZ
 AJ
 aI
 xQ
 AJ
-AJ
+fc
 sb
 eA
 yw
-GW
-GW
+BM
+cJ
 GW
 GW
 Af
@@ -1856,19 +2117,19 @@ cr
 cr
 cr
 cr
-cr
+Hy
 Uc
 Mi
+ps
 AJ
+Rp
 AJ
-AJ
-AJ
-AJ
+Hx
 Uc
 Ka
 Fm
-GW
-GW
+BM
+cJ
 GW
 GW
 Af
@@ -1885,20 +2146,20 @@ cr
 cr
 cr
 cr
-cr
-cr
+Hy
+Hy
 Uc
 rd
 vg
-Tw
+Vh
 AJ
-hr
+ra
 gz
 Uc
-GW
-GW
-GW
-GW
+BM
+BM
+BM
+cJ
 GW
 GW
 GW
@@ -1915,8 +2176,8 @@ Af
 cr
 cr
 cr
-cr
-cr
+Hy
+vb
 Uc
 Uc
 ta
@@ -1925,9 +2186,9 @@ ta
 ta
 Uc
 Uc
-GW
-GW
-GW
+BM
+BM
+cJ
 GW
 GW
 Af
@@ -1945,18 +2206,18 @@ Af
 cr
 cr
 cr
+Hy
+Hy
+vb
+Hy
+vb
+vb
+Hy
+Hy
 cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
+cJ
 GW
-GW
-GW
+cJ
 GW
 GW
 cr
