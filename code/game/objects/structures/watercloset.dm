@@ -196,7 +196,7 @@
 /obj/item/reagent_containers/food/snacks/urinalcake
 	name = "urinal cake"
 	desc = "The noble urinal cake, protecting the station's pipes from the station's pee. Do not eat."
-	icon = 'icons/obj/watercloset.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "urinalcake"
 	item_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
@@ -205,7 +205,7 @@
 
 /obj/item/reagent_containers/food/snacks/urinalcake/attack_self(mob/living/user)
 	user.visible_message(span_notice("[user] squishes [src]!"), span_notice("You squish [src]."), "<i>You hear a squish.</i>")
-	icon = 'icons/obj/watercloset.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "urinalcake_squish"
 	addtimer(VARSET_CALLBACK(src, icon_state, "urinalcake"), 8)
 
