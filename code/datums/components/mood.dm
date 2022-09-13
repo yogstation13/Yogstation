@@ -314,6 +314,8 @@
 	if(!screen_obj)
 		return
 	var/mob/living/owner = parent
+	if(!owner)
+		return
 	var/datum/hud/hud = owner.hud_used
 	if(hud && hud.infodisplay)
 		hud.infodisplay -= screen_obj

@@ -61,7 +61,7 @@
 /datum/component/Destroy(force=FALSE, silent=FALSE)
 	if(!force && parent)
 		_RemoveFromParent()
-	if(!silent)
+	if(!silent && parent)
 		SEND_SIGNAL(parent, COMSIG_COMPONENT_REMOVING, src)
 	parent = null
 	return ..()
