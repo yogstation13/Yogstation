@@ -477,7 +477,7 @@
 		injury_mod += W.threshold_penalty
 
 	var/part_mod = -wound_resistance
-	if(get_damage(TRUE) >= max_damage)
+	if(get_damage(stamina=TRUE) >= max_damage)
 		part_mod += disabled_wound_penalty
 
 	injury_mod += part_mod
@@ -534,9 +534,13 @@
 		needs_processing = FALSE
 
 //Returns total damage.
-/obj/item/bodypart/proc/get_damage(include_stamina = FALSE)
-	var/total = brute_dam + burn_dam
-	if(include_stamina)
+/obj/item/bodypart/proc/get_damage(brute = TRUE, burn = TRUE, stamina = FALSE)
+	var/total = 0
+	if(brute)
+		total += brute_dam
+	if(burn)
+		total += burn_dam
+	if(stamina)
 		total = max(total, stamina_dam)
 	return total
 

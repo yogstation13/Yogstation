@@ -454,7 +454,7 @@
 	if(C.suiciding)
 		return FALSE //Kevorkian school of robotic medical assistants.
 
-	if(istype(C.dna.species, /datum/species/ipc))
+	if(isipc(C))
 		return FALSE
 
 	if(emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
@@ -489,14 +489,20 @@
 			if(!C.reagents.has_reagent(R.type))
 				return TRUE
 
+	var/robotic_brute = 0 // brute damage to robotic limbs
+	var/robotic_burn = 0 // burn damage to robotic limbs
+	for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
+		robotic_brute += limb.get_damage(TRUE, FALSE, FALSE)
+		robotic_burn += limb.get_damage(FALSE, TRUE, FALSE)
+
 	//They're injured enough for it!
-	if((!C.reagents.has_reagent(treatment_brute_avoid)) && (C.getBruteLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_brute)))
+	if((!C.reagents.has_reagent(treatment_brute_avoid)) && ((C.getBruteLoss()-robotic_brute) >= heal_threshold) && (!C.reagents.has_reagent(treatment_brute)))
 		return TRUE //If they're already medicated don't bother!
 
 	if((!C.reagents.has_reagent(treatment_oxy_avoid)) && (C.getOxyLoss() >= (15 + heal_threshold)) && (!C.reagents.has_reagent(treatment_oxy)))
 		return TRUE
 
-	if((!C.reagents.has_reagent(treatment_fire_avoid)) && (C.getFireLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_fire)))
+	if((!C.reagents.has_reagent(treatment_fire_avoid)) && ((C.getFireLoss()-robotic_burn) >= heal_threshold) && (!C.reagents.has_reagent(treatment_fire)))
 		return TRUE
 
 	if((!C.reagents.has_reagent(treatment_tox_avoid)) && (C.getToxLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_tox)))
