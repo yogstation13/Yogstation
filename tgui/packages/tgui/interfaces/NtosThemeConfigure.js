@@ -31,7 +31,7 @@ export const NtosThemeConfigure = (props, context) => {
                 width="75%"
                 lineHeight="50px"
                 content={theme}
-                onClick={() => act('change_theme', {
+                onClick={() => act('PRG_change_theme', {
                   theme: theme,
                 })} />
             </Flex.Item>

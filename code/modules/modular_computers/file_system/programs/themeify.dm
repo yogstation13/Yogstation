@@ -24,5 +24,5 @@
 	if(..())
 		return
 	switch(action)
-		if("change_theme")
+		if("PRG_change_theme")
 			computer.device_theme = params["theme"]

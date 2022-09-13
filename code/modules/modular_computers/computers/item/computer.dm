@@ -18,7 +18,7 @@
 	// A flag that describes this device type
 	var/hardware_flag = 0
 	var/last_power_usage = 0
-	// Used for deciding if battery percentage has chandged
+	// Used for deciding if battery percentage has changed
 	var/last_battery_percent = 0
 	var/last_world_time = "00:00"
 	var/list/last_header_icons
