@@ -454,14 +454,11 @@
 	if(C.suiciding)
 		return FALSE //Kevorkian school of robotic medical assistants.
 
-	if(isipc(C))
+	if(HAS_TRAIT(C,TRAIT_MEDICALIGNORE))
 		return FALSE
 
 	if(emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
 		return TRUE
-
-	if(HAS_TRAIT(C,TRAIT_MEDICALIGNORE))
-		return FALSE
 
 	var/can_inject = FALSE
 	for(var/X in C.bodyparts)
