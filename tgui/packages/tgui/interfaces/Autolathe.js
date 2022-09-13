@@ -56,7 +56,7 @@ export const Autolathe = (props, context) => {
   const GetMapArr = (searchlen, designs) => {
     if (searchlen > 1) {
       return searchdesign;
-    }
+    };
     return designs.filter(design => {
       return (design.category.includes(setcategory));
     });
