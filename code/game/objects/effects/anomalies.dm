@@ -372,5 +372,6 @@
 	radiation_pulse(src, 100, 2)
 
 /obj/effect/anomaly/radiation/detonate()
-	fire_nuclear_particle_wimpy()
-	sleep(1)
+	for(var/i = 1 to 72)
+		fire_nuclear_particle_wimpy()
+		sleep(1)
