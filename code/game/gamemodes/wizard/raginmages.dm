@@ -3,7 +3,7 @@
 	config_tag = "raginmages"
 	var/antag_datum = /datum/antagonist/wizard/
 	antag_flag = ROLE_RAGINMAGES
-	required_players = 40
+	required_players = 150
 	announce_span = "userdanger"
 	announce_text = "There are many, many wizards attacking the station!\n\
 	<span class='danger'>Wizards</span>: Accomplish your objectives and cause utter catastrophe!\n\
@@ -115,7 +115,7 @@
 	config_tag = "veryraginbullshitmages"
 	antag_datum = /datum/antagonist/wizard/
 	antag_flag = ROLE_BULLSHITMAGES
-	required_players = 40
+	required_players = 200
 	bullshit_mode = TRUE
 	time_check = 250
 	spawn_delay_min = 50

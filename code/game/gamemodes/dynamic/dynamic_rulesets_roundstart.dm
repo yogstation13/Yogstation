@@ -870,7 +870,9 @@
 //////////////////////////////////////////////
 
 // Dynamic is a wonderful thing that adds wizards to every round and then adds even more wizards during the round.
-/datum/dynamic_ruleset/roundstart/wizard/ragin
+//
+/*
+datum/dynamic_ruleset/roundstart/wizard/ragin
 	name = "Ragin' Mages"
 	antag_flag = ROLE_RAGINMAGES
 	antag_datum = /datum/antagonist/wizard/
@@ -925,6 +927,7 @@
 		log_admin("Shit is about to get wild. -Bullshit Wizards")
 
 		return TRUE
+*/ //NO. TO BOTH.
 
 //////////////////////////////////////////////
 //                                          //
