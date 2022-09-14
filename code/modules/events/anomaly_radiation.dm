@@ -2,9 +2,8 @@
 	name = "Anomaly: Radioactive"
 	typepath = /datum/round_event/anomaly/anomaly_radiation
 
-	max_occurrences = 5
+	max_occurrences = 7
 	weight = 20
-	gamemode_blacklist = list("dynamic")
 
 /datum/round_event/anomaly/anomaly_radiation
 	startWhen = 3
