@@ -122,7 +122,7 @@
 		to_chat(usr, span_warning("You can't recursively fold bluespace body bags!"))
 		return
 	if(the_folder in src)
-		to_chat(usr, span_warning("You can't a bluespace body bag from the inside!"))
+		to_chat(usr, span_warning("You can't fold a bluespace body bag from the inside!"))
 		return
 	return TRUE
 
