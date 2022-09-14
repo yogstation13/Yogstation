@@ -5,13 +5,13 @@
 #define COOLANT_OUTPUT_GATE airs[3]
 
 #define RBMK_TEMPERATURE_OPERATING 640 //Celsius
-#define RBMK_TEMPERATURE_CRITICAL 800 //At this point the entire ship is alerted to a meltdown. This may need altering
-#define RBMK_TEMPERATURE_MELTDOWN 900
+#define RBMK_TEMPERATURE_CRITICAL 1000 //At this point the entire ship is alerted to a meltdown. This may need altering
+#define RBMK_TEMPERATURE_MELTDOWN 1200
 
 #define RBMK_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
 
-#define RBMK_PRESSURE_OPERATING 1000 //PSI
-#define RBMK_PRESSURE_CRITICAL 1469.59 //PSI
+#define RBMK_PRESSURE_OPERATING 1500 //PSI
+#define RBMK_PRESSURE_CRITICAL 2000 //PSI
 
 #define RBMK_MAX_CRITICALITY 3 //No more criticality than N for now.
 
@@ -220,15 +220,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		L.adjust_bodytemperature(clamp(temperature, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/process()
-	update_parents() //Update the pipenet to register new gas mixes
-	if(next_slowprocess < world.time)
-		slowprocess()
-		next_slowprocess = world.time + 1 SECONDS //Set to wait for another second before processing again, we don't need to process more than once a second
-
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/has_fuel()
-	return length(fuel_rods)
-
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/slowprocess()
 	//Let's get our gasses sorted out.
 	var/datum/gas_mixture/coolant_input = COOLANT_INPUT_GATE
 	var/datum/gas_mixture/moderator_input = MODERATOR_INPUT_GATE
@@ -368,6 +359,10 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 					if(!(grilled_item.foodtype & FRIED))
 						grilled_item.foodtype |= FRIED
 
+
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/has_fuel()
+	return length(fuel_rods)
+
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(var/sound, var/message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
@@ -441,9 +436,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			return
 		if(world.time < next_warning)
 			return
-		next_warning = world.time + 30 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
+		next_warning = world.time + 60 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
 		warning = TRUE //Start warning the crew of the imminent danger.
-		relay('sound/effects/reactor/alarm.ogg', null, loop=TRUE, channel = CHANNEL_REACTOR_ALERT)
+		relay('sound/effects/reactor/alarm.ogg', null, channel = CHANNEL_REACTOR_ALERT)
 		set_light(0)
 		light_color = LIGHT_COLOR_RED
 		set_light(10)
@@ -541,19 +536,95 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 /obj/machinery/computer/reactor
 	name = "Reactor control console"
-	desc = "Scream"
+	desc = "A computer which monitors and controls a reactor"
 	light_color = "#55BA55"
 	light_power = 1
 	light_range = 3
 	icon_state = "oldcomp"
-	icon_screen = "library"
+	icon_screen = "oldcomp_broken"
 	icon_keyboard = null
 	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactor = null
 	var/id = "default_reactor_for_lazy_mappers"
+	var/next_stat_interval = 0
+	var/list/psiData = list()
+	var/list/powerData = list()
+	var/list/tempInputData = list()
+	var/list/tempOutputdata = list()
 
 /obj/machinery/computer/reactor/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/link_to_reactor), 10 SECONDS)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/computer/reactor/LateInitialize()
+	. = ..()
+	link_to_reactor()
+
+/obj/machinery/computer/reactor/process()
+	psiData += (reactor) ? reactor.pressure : 0
+	if(psiData.len > 100) //Only lets you track over a certain timeframe.
+		psiData.Cut(1, 2)
+	powerData += (reactor) ? reactor.power*10 : 0 //We scale up the figure for a consistent:tm: scale
+	if(powerData.len > 100) //Only lets you track over a certain timeframe.
+		powerData.Cut(1, 2)
+	tempInputData += (reactor) ? reactor.last_coolant_temperature : 0 //We scale up the figure for a consistent:tm: scale
+	if(tempInputData.len > 100) //Only lets you track over a certain timeframe.
+		tempInputData.Cut(1, 2)
+	tempOutputdata += (reactor) ? reactor.last_output_temperature : 0 //We scale up the figure for a consistent:tm: scale
+	if(tempOutputdata.len > 100) //Only lets you track over a certain timeframe.
+		tempOutputdata.Cut(1, 2)
+
+/obj/machinery/computer/reactor/attack_hand(mob/living/user)
+	. = ..()
+	ui_interact(user)
+
+/obj/machinery/computer/reactor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RbmkComputer")
+		ui.open()
+		ui.set_autoupdate(TRUE)
+
+/obj/machinery/computer/reactor/ui_act(action, params)
+	if(..())
+		return
+	if(!reactor)
+		return
+	switch(action)
+		if("input")
+			var/input = text2num(params["target"])
+			reactor.last_user = usr
+			reactor.desired_k = clamp(input, 0, 3)
+		if("eject")
+			var/obj/item/fuel_rod/rod = locate(params["rodRef"])
+			if(!rod)
+				return
+			playsound(src, pick('sound/effects/reactor/switch.ogg','sound/effects/reactor/switch2.ogg','sound/effects/reactor/switch3.ogg'), 100, FALSE)
+			playsound(reactor, 'sound/effects/reactor/crane_1.wav', 100, FALSE)
+			rod.forceMove(get_turf(reactor))
+			reactor.fuel_rods -= rod
+
+/obj/machinery/computer/reactor/ui_data(mob/user)
+	var/list/data = list()
+	data["control_rods"] = 0
+	data["k"] = 0
+	data["desiredK"] = 0
+	if(reactor)
+		data["k"] = reactor.K
+		data["desiredK"] = reactor.desired_k
+		data["control_rods"] = 100 - (reactor.desired_k / 3 * 100) //Rod insertion is extrapolated as a function of the percentage of K
+		data["powerData"] = powerData
+	data["psiData"] = psiData
+	data["tempInputData"] = tempInputData
+	data["tempOutputdata"] = tempOutputdata
+	data["coolantInput"] = reactor ? reactor.last_coolant_temperature : 0
+	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
+	data["power"] = reactor ? reactor.power : 0
+	data["psi"] = reactor ? reactor.pressure : 0
+	data["rods"] = list()
+	if(reactor)
+		for(var/obj/item/fuel_rod/rod in reactor.fuel_rods)
+			data["rods"][REF(rod)] = list("name" = rod.name, "depletion" = rod.depletion)
+	return data
 
 /obj/machinery/computer/reactor/wrench_act(mob/living/user, obj/item/I)
 	to_chat(user, "<span class='notice'>You start [anchored ? "un" : ""]securing [name]...</span>")
@@ -571,116 +642,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	return FALSE
 
 #define FREQ_RBMK_CONTROL 1439.69
-
-/obj/machinery/computer/reactor/control_rods
-	name = "Control rod management computer"
-	desc = "A computer which can remotely raise / lower the control rods of a reactor."
-	icon_screen = "rbmk_rods"
-
-/obj/machinery/computer/reactor/control_rods/attack_hand(mob/living/user)
-	. = ..()
-	ui_interact(user)
-
-/obj/machinery/computer/reactor/control_rods/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "RbmkControlRods")
-		ui.open()
-		ui.set_autoupdate(TRUE)
-
-/obj/machinery/computer/reactor/control_rods/ui_act(action, params)
-	if(..())
-		return
-	if(!reactor)
-		return
-	switch(action)
-		if("input")
-			var/input = text2num(params["target"])
-			reactor.last_user = usr
-			reactor.desired_k = clamp(input, 0, 3)
-
-/obj/machinery/computer/reactor/control_rods/ui_data(mob/user)
-	var/list/data = list()
-	data["control_rods"] = 0
-	data["k"] = 0
-	data["desiredK"] = 0
-	if(reactor)
-		data["k"] = reactor.K
-		data["desiredK"] = reactor.desired_k
-		data["control_rods"] = 100 - (reactor.desired_k / 3 * 100) //Rod insertion is extrapolated as a function of the percentage of K
-	return data
-
-/obj/machinery/computer/reactor/stats
-	name = "Reactor Statistics Console"
-	desc = "A console for monitoring the statistics of a nuclear reactor."
-	icon_screen = "rbmk_stats"
-	var/next_stat_interval = 0
-	var/list/psiData = list()
-	var/list/powerData = list()
-	var/list/tempInputData = list()
-	var/list/tempOutputdata = list()
-
-/obj/machinery/computer/reactor/stats/attack_hand(mob/living/user)
-	. = ..()
-	ui_interact(user)
-
-/obj/machinery/computer/reactor/stats/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "RbmkStats")
-		ui.open()
-		ui.set_autoupdate(TRUE)
-
-/obj/machinery/computer/reactor/stats/process()
-	if(world.time >= next_stat_interval)
-		next_stat_interval = world.time + 1 SECONDS //You only get a slow tick.
-		psiData += (reactor) ? reactor.pressure : 0
-		if(psiData.len > 100) //Only lets you track over a certain timeframe.
-			psiData.Cut(1, 2)
-		powerData += (reactor) ? reactor.power*10 : 0 //We scale up the figure for a consistent:tm: scale
-		if(powerData.len > 100) //Only lets you track over a certain timeframe.
-			powerData.Cut(1, 2)
-		tempInputData += (reactor) ? reactor.last_coolant_temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempInputData.len > 100) //Only lets you track over a certain timeframe.
-			tempInputData.Cut(1, 2)
-		tempOutputdata += (reactor) ? reactor.last_output_temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempOutputdata.len > 100) //Only lets you track over a certain timeframe.
-			tempOutputdata.Cut(1, 2)
-
-/obj/machinery/computer/reactor/stats/ui_data(mob/user)
-	var/list/data = list()
-	data["powerData"] = powerData
-	data["psiData"] = psiData
-	data["tempInputData"] = tempInputData
-	data["tempOutputdata"] = tempOutputdata
-	data["coolantInput"] = reactor ? reactor.last_coolant_temperature : 0
-	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
-	data["power"] = reactor ? reactor.power : 0
-	data ["psi"] = reactor ? reactor.pressure : 0
-	return data
-
-/obj/machinery/computer/reactor/fuel_rods
-	name = "Reactor Fuel Management Console"
-	desc = "A console which can remotely raise fuel rods out of nuclear reactors."
-	icon_screen = "rbmk_fuel"
-
-/obj/machinery/computer/reactor/fuel_rods/attack_hand(mob/living/user)
-	. = ..()
-	if(!reactor)
-		return FALSE
-	if(reactor.power > 20)
-		to_chat(user, "<span class='warning'>You cannot remove fuel from [reactor] when it is above 20% power.</span>")
-		return FALSE
-	if(!reactor.fuel_rods.len)
-		to_chat(user, "<span class='warning'>[reactor] does not have any fuel rods loaded.</span>")
-		return FALSE
-	var/atom/movable/fuel_rod = input(usr, "Select a fuel rod to remove", "[src]", null) as null|anything in reactor.fuel_rods
-	if(!fuel_rod)
-		return
-	playsound(src, pick('sound/effects/reactor/switch.ogg','sound/effects/reactor/switch2.ogg','sound/effects/reactor/switch3.ogg'), 100, FALSE)
-	playsound(reactor, 'sound/effects/reactor/crane_1.wav', 100, FALSE)
-	fuel_rod.forceMove(get_turf(reactor))
-	reactor.fuel_rods -= fuel_rod
 
 //Preset pumps for mappers. You can also set the id tags yourself.
 /obj/machinery/atmospherics/components/binary/pump/rbmk_input

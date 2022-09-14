@@ -68,6 +68,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cA" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "dH" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -88,9 +97,7 @@
 	name = "RBMK Compartment Flush";
 	pixel_x = 27
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 10
-	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ez" = (
@@ -407,6 +414,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 10
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "pZ" = (
@@ -457,11 +467,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "rd" = (
@@ -634,6 +644,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"vP" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "wg" = (
 /obj/structure/closet/radiation,
 /obj/item/clothing/glasses/meson/engine,
@@ -673,19 +690,12 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "xm" = (
-/obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "xA" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
@@ -703,7 +713,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/computer/reactor/stats,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "yw" = (
@@ -732,11 +741,8 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Az" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -908,8 +914,12 @@
 /turf/open/floor/carpet/royalblack,
 /area/engine/engineering)
 "Hd" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/brown/visible,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Hi" = (
@@ -944,12 +954,8 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "HQ" = (
-/obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -1023,9 +1029,6 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "JW" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
 /obj/machinery/atmospherics/components/trinary/filter{
 	name = "Filter to Waste"
 	},
@@ -1033,6 +1036,9 @@
 /area/engine/engineering)
 "Kt" = (
 /obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8
 	},
 /turf/open/floor/engine,
@@ -1085,9 +1091,6 @@
 /turf/open/floor/engine/o2,
 /area/engine/engineering)
 "ME" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 6
 	},
@@ -1159,6 +1162,9 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 5
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "OM" = (
@@ -1222,11 +1228,18 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "QR" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 9
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Rd" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/binary/valve/digital/on{
+	dir = 4;
+	name = "Cooling Loop Bypass"
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1250,7 +1263,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/computer/reactor/control_rods,
+/obj/machinery/computer/reactor,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "Sb" = (
@@ -1297,12 +1310,7 @@
 /turf/open/floor/engine/o2,
 /area/engine/engineering)
 "Uc" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Ue" = (
@@ -1311,6 +1319,23 @@
 "Um" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 10
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Uv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+"Uz" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -1401,6 +1426,7 @@
 /area/engine/engineering)
 "YD" = (
 /obj/machinery/atmospherics/pipe/manifold4w/brown/visible,
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "YG" = (
@@ -1419,14 +1445,6 @@
 	name = "Cooling Loop to Reactor"
 	},
 /turf/open/floor/engine,
-/area/engine/engineering)
-"ZB" = (
-/obj/structure/table,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/computer/reactor/fuel_rods,
-/turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "ZI" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
@@ -1934,14 +1952,14 @@ ZT
 "}
 (18,1,1) = {"
 ws
-ZB
+yt
 bZ
 wV
 tc
 Ah
 Ng
 vm
-pk
+Hd
 Az
 Om
 le
@@ -1971,9 +1989,9 @@ Xk
 wo
 Um
 HQ
-eT
 Im
 eT
+Kt
 JW
 ez
 Ck
@@ -1997,11 +2015,11 @@ ws
 Xk
 Xk
 wo
-Xk
+Uz
 xm
-Xk
 pk
 Xk
+Rd
 ME
 Zm
 Ck
@@ -2025,11 +2043,11 @@ ws
 Bu
 Qt
 YD
-Hd
 Fl
 oz
 rW
 Xk
+cA
 Uc
 sb
 dH
@@ -2053,12 +2071,12 @@ dH
 Xk
 Xk
 wo
-Xk
 FM
 Xk
 Wm
 Xk
-Uc
+Uv
+Wm
 Xk
 fE
 zY
@@ -2082,10 +2100,10 @@ Xk
 IH
 uK
 OI
-Kt
 CT
 ZS
 np
+vP
 QR
 Xk
 fE

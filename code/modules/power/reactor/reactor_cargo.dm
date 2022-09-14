@@ -18,7 +18,7 @@
 
 // Cargo varients can be wrenched down and don't start linked to the default RMBK reactor
 
-/obj/machinery/computer/reactor/control_rods/cargo
+/obj/machinery/computer/reactor/cargo
 	anchored = FALSE
 	id = null
 
