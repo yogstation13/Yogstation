@@ -45,6 +45,7 @@
 		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												400, VENDING_TOOL),
 		new /datum/data/mining_equipment("Jaunter",						/obj/item/wormhole_jaunter,											750, VENDING_TOOL),
 		new /datum/data/mining_equipment("Stabilizing Serum",			/obj/item/hivelordstabilizer,										400, VENDING_TOOL),
+		new /datum/data/mining_equipment("Super-Stabilizing Serum",		/obj/item/hivelordstabilizer_super,									650, VENDING_TOOL),
 		new /datum/data/mining_equipment("Lazarus Injector",			/obj/item/lazarus_injector,											1000, VENDING_TOOL),
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10, VENDING_TOOL),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100, VENDING_TOOL),
