@@ -5,11 +5,11 @@
 	filedesc = "Themeify"
 	extended_desc = "This program allows configuration of your device's theme."
 	program_icon_state = "generic"
-	unsendable = 1
-	undeletable = 0
+	unsendable = TRUE
+	undeletable = FALSE
 	size = 2
-	available_on_ntnet = 1
-	requires_ntnet = 0
+	available_on_ntnet = TRUE
+	requires_ntnet = FALSE
 	tgui_id = "NtosThemeConfigure"
 	program_icon="paint-roller"
 
@@ -25,4 +25,4 @@
 		return
 	switch(action)
 		if("PRG_change_theme")
-			computer.device_theme = params["theme"]
+			computer.device_theme = sanitize_inlist(params["theme"], GLOB.pda_themes, PDA_THEME_NTOS)
