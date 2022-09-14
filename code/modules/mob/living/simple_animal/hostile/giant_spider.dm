@@ -6,7 +6,7 @@
 
 /mob/living/simple_animal/hostile/poison
 	var/poison_per_bite = 5
-	var/poison_type = /datum/reagent/toxin
+	var/poison_type = /datum/reagent/toxin/heparin
 
 /mob/living/simple_animal/hostile/poison/AttackingTarget()
 	. = ..()
@@ -109,6 +109,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 10
 	poison_per_bite = 3
+	poison_type = /datum/reagent/toxin/sodium_thiopental
 	var/atom/movable/cocoon_target
 	var/fed = 0
 	var/obj/effect/proc_holder/wrap/wrap
@@ -166,9 +167,9 @@
 	poison_per_bite = 5
 	move_to_delay = 5
 
-//vipers are the rare variant of the hunter, no IMMEDIATE damage but so much poison medical care will be needed fast.
+//recluses are the rare variant of the hunter, no IMMEDIATE damage but so much poison medical care will be needed fast.
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter/viper
-	name = "viper"
+	name = "void recluse"
 	desc = "Furry and black, it makes you shudder to look at it. This one has effervescent purple eyes."
 	icon_state = "viper"
 	icon_living = "viper"
