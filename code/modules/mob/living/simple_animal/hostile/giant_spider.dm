@@ -6,7 +6,7 @@
 
 /mob/living/simple_animal/hostile/poison
 	var/poison_per_bite = 5
-	var/poison_type = /datum/reagent/toxin/heparin
+	var/poison_type = /datum/reagent/toxin/acid
 
 /mob/living/simple_animal/hostile/poison/AttackingTarget()
 	. = ..()
