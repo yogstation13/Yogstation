@@ -61,27 +61,33 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	qdel(src)
 
 /datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient, mob/user)
-	computer.visible_message(span_notice("Sending message to [recipient.username]:"), null, null, 1)
-	computer.visible_message(span_notice("\"[message]\""), null, null, 1) // in case the message fails, they can copy+paste from here
+	// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
+	var/obj/item/modular_computer/comp
+	if(computer) // I HAVE TO DO THIS OR THEY WON'T RECEIVE MESSAGES UNTIL THEY OPEN THE PDA ONCE (BAD)
+		comp = computer
+	else if(istype(holder.loc, /obj/item/modular_computer)) // play it from the (unset) computer
+		comp = holder.loc
+	comp.visible_message(span_notice("Sending message to [recipient.username]:"), null, null, 1)
+	comp.visible_message(span_notice("\"[message]\""), null, null, 1) // in case the message fails, they can copy+paste from here
 	
 	if(src == recipient)
-		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-		computer.visible_message(span_danger("You are the recipient!"), null, null, 1)
+		comp.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		comp.visible_message(span_danger("You are the recipient!"), null, null, 1)
 		return FALSE
 
 	if(src in recipient.blocked_users)
-		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-		computer.visible_message(span_danger("Recipient has you blocked."), null, null, 1)
+		comp.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		comp.visible_message(span_danger("Recipient has you blocked."), null, null, 1)
 		return FALSE
 	
 	if(recipient in blocked_users)
-		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-		computer.visible_message(span_danger("You have recipient blocked."), null, null, 1)
+		comp.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		comp.visible_message(span_danger("You have recipient blocked."), null, null, 1)
 		return FALSE
 	
 	if(!recipient.receiving)
-		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-		computer.visible_message(span_danger("Recipient is no longer accepting messages."), null, null, 1)
+		comp.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		comp.visible_message(span_danger("Recipient is no longer accepting messages."), null, null, 1)
 		return FALSE
 	
 	var/fakemob = "ERROR"
@@ -104,16 +110,16 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	signal.send_to_receivers()
 
 	if (!signal.data["done"])
-		computer.visible_message(span_danger("ERROR: Your message could not be processed by a broadcaster."), null, null, 1)
+		comp.visible_message(span_danger("ERROR: Your message could not be processed by a broadcaster."), null, null, 1)
 		return FALSE
 
 	if (!signal.data["logged"])
-		computer.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
+		comp.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
 		return FALSE
 	
 	// Show ghosts (and admins)
 	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> [recipient.username]): [span_message(message)]", user, user, speaker_key = user.ckey)
-	computer.visible_message(span_notice("Message sent!"), null, null, 1)
+	comp.visible_message(span_notice("Message sent!"), null, null, 1)
 	message_history += list(list(username, message, REF(src), signal))
 	return TRUE
 
@@ -194,15 +200,56 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			playsound(holder, 'sound/machines/twobeep_high.ogg', 50, FALSE)
 		
 		// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
+		var/obj/item/modular_computer/comp
 		if(computer) // I HAVE TO DO THIS OR THEY WON'T RECEIVE MESSAGES UNTIL THEY OPEN THE PDA ONCE (BAD)
-			computer.audible_message("[icon2html(computer, hearers(computer))] *[ringtone]*", null, 3)
-			computer.visible_message(span_notice("<b>Message from [sender.username], \"[message]\"</b>"), null, null, 1)
+			comp = computer
 		else if(istype(holder.loc, /obj/item/modular_computer)) // play it from the (unset) computer
-			var/obj/item/modular_computer/tempcomp = holder.loc
-			tempcomp.audible_message("[icon2html(tempcomp, hearers(tempcomp))] *[ringtone]*", null, 3)
-			tempcomp.visible_message(span_notice("<b>Message from [sender.username], \"[message]\"</b>"), null, null, 1)
+			comp = holder.loc
+
+		comp.audible_message("[icon2html(comp, hearers(comp))] *[ringtone]*", null, 3)
+		var/msg = "<b>Message from [sender.username], \"[message]\"</b>"
+		if(istype(comp, /obj/item/modular_computer/tablet))
+			var/mob/living/carbon/C = comp.loc
+			if(istype(C))
+				msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
+		comp.visible_message(span_notice(msg), null, null, 1)
 	
 	return TRUE
+
+/datum/computer_file/program/pdamessager/Topic(href, list/href_list)
+	. = ..()
+	var/msg = input("Send a message?") as null|text
+	msg = sanitizeinput(msg, computer)
+	if(msg)
+		var/datum/computer_file/program/pdamessager/recipient = locate(href_list["target"]) in GLOB.NTPDAs
+		if(istype(recipient))
+			send_message(msg, recipient, usr)
+		else
+			computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+			computer.visible_message(span_danger("Recipient does not exist!"), null, null, 1)
+
+/datum/computer_file/program/pdamessager/proc/sanitizeinput(unsanitized, obj/item/modular_computer/computer)
+	if(!unsanitized)
+		return
+	
+	if(isnotpretty(unsanitized))
+		if(usr.client.prefs.muted & MUTE_IC)
+			return
+		usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
+		to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+		var/log_message = "[key_name(usr)] just tripped a pretty filter: '[unsanitized]'."
+		message_admins(log_message)
+		log_say(log_message)
+		return
+
+	unsanitized = reject_bad_text(unsanitized, max_length = 280)
+	if(!unsanitized)
+		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
+		computer.visible_message(span_danger("Your message is too long/has bad text!"), null, null, 1)
+		return
+	return unsanitized
+		
+	
 
 /datum/computer_file/program/pdamessager/ui_act(action, params)
 	if(..())
@@ -215,25 +262,10 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 				return
 			
 			var/unsanitized = params["message"]
-			if(!unsanitized)
-				return
-			
-			if(isnotpretty(unsanitized))
-				if(usr.client.prefs.muted & MUTE_IC)
-					return
-				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
-				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
-				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[unsanitized]'."
-				message_admins(log_message)
-				log_say(log_message)
+			var/message = sanitizeinput(unsanitized, computer)
+			if(!message)
 				return
 
-			var/message = reject_bad_text(unsanitized, max_length = 280)
-			if(!message)
-				computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
-				computer.visible_message(span_danger("Your message is too long/has bad text!"), null, null, 1)
-				return
-			
 			if(params["recipient"] != "EVERYONE")
 				var/datum/computer_file/program/pdamessager/recipient = locate(params["recipient"]) in GLOB.NTPDAs
 				if(!istype(recipient))
