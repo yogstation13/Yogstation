@@ -31,4 +31,4 @@
 
 /obj/item/projectile/energy/nuclear_particle/on_hit(obj/o)
 	if(isstructure(o) || ismachinery(o))
-		damage = 0
+		return ..()
