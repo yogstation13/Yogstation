@@ -28,3 +28,7 @@
 /atom/proc/fire_nuclear_particle(angle = rand(0,360)) //used by fusion to fire random nuclear particles. Fires one particle in a random direction.
 	var/obj/item/projectile/energy/nuclear_particle/P = new /obj/item/projectile/energy/nuclear_particle(src)
 	P.fire(angle)
+
+/obj/item/projectile/energy/nuclear_particle/on_hit(obj/o)
+	if(isstructure(o) || ismachinery(o))
+		damage = 0
