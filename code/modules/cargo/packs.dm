@@ -2289,12 +2289,22 @@
 
 /datum/supply_pack/critter/snake
 	name = "Snake Crate"
-	desc = "Tired of these MOTHER FUCKING snakes on this MOTHER FUCKING space station? Then this isn't the crate for you. Contains three poisonous snakes."
+	desc = "Tired of these MOTHER FUCKING snakes on this MOTHER FUCKING space station? Then this isn't the crate for you. Contains three non-venomous snakes."
 	cost = 3000
+	contains = list(/mob/living/simple_animal/hostile/retaliate/poison/snake/novenom,
+					/mob/living/simple_animal/hostile/retaliate/poison/snake/novenom,
+					/mob/living/simple_animal/hostile/retaliate/poison/snake/novenom)
+	crate_name = "snake crate"
+
+/datum/supply_pack/critter/snake/venomous
+	name = "Viper Crate"
+	desc = "A crate of three Vipers. Handle carefully."
+	cost = 5000
 	contains = list(/mob/living/simple_animal/hostile/retaliate/poison/snake,
 					/mob/living/simple_animal/hostile/retaliate/poison/snake,
 					/mob/living/simple_animal/hostile/retaliate/poison/snake)
-	crate_name = "snake crate"
+	crate_name = "viper crate"
+	contraband = TRUE
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Costumes & Toys /////////////////////////////////

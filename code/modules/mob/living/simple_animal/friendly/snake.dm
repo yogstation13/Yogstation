@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/poison
 	var/poison_per_bite = 0
-	var/poison_type = /datum/reagent/toxin
+	var/poison_type = /datum/reagent/toxin/venom
 
 /mob/living/simple_animal/hostile/retaliate/poison/AttackingTarget()
 	. = ..()
@@ -11,8 +11,8 @@
 	return .
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake
-	name = "snake"
-	desc = "A slithery snake. These legless reptiles are the bane of mice and adventurers alike."
+	name = "viper"
+	desc = "A type of snake, infamous for their venomous bites."
 	icon_state = "snake"
 	icon_living = "snake"
 	icon_dead = "snake_dead"
@@ -33,12 +33,12 @@
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST, MOB_REPTILE)
-	gold_core_spawnable = FRIENDLY_SPAWN
+	gold_core_spawnable = HOSTILE_SPAWN
 	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_NECK
 	obj_damage = 0
+	poison_per_bite = 1
 	environment_smash = ENVIRONMENT_SMASH_NONE
-
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)
 	. = oview(vision_range, targets_from) //get list of things in vision range
@@ -64,3 +64,9 @@
 		adjustBruteLoss(-2)
 	else
 		return ..()
+
+/mob/living/simple_animal/hostile/retaliate/poison/snake/novenom
+	name = "snake"
+	desc = "A slithery snake. These legless reptiles are the bane of mice and unattended toes."
+	poison_per_bite = 0
+	gold_core_spawnable = FRIENDLY_SPAWN

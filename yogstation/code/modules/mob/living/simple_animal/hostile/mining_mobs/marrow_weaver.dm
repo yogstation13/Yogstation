@@ -25,7 +25,7 @@
 	pass_flags = PASSTABLE
 	attack_sound = 'sound/weapons/bite.ogg'
 	deathmessage = "rolls over, frothing at the mouth before stilling."
-	var/poison_type = /datum/reagent/toxin
+	var/poison_type = /datum/reagent/toxin/spore
 	var/poison_per_bite = 5
 	var/buttmad = 0
 	var/melee_damage_lower_angery0 = 13
@@ -42,8 +42,8 @@
 			melee_damage_upper = melee_damage_upper_angery1
 			move_to_delay = 8
 			speed = 3
-			poison_type = /datum/reagent/toxin/spore
-			poison_per_bite = 5
+			poison_type = /datum/reagent/toxin/venom
+			poison_per_bite = 1
 	else if(buttmad == 1)
 		if(health > maxHealth/2)
 			buttmad = 0
@@ -122,7 +122,7 @@
 	health = 450
 	maxHealth = 450
 	poison_type = /datum/reagent/cluwnification
-
+	
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/ice
 	name = "Frostbite Spider"
 	desc = "A big, angry, venomous ice spider. It likes to snack on bone marrow. Its preferred food source is you."
@@ -133,3 +133,4 @@
 	melee_damage_lower = 10 //stronger venom, but weaker attack.
 	melee_damage_upper = 13
 	poison_type = /datum/reagent/consumable/frostoil
+	poison_per_bite = 5
