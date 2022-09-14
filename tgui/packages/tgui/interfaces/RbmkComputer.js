@@ -118,42 +118,42 @@ export const RbmkControlRodControl = (props, context) => {
   const desiredK = data.desiredK;
   return (
     <Section title="Control Rod Management:" height="100%">
-    Control Rod Insertion:
-    <ProgressBar
-      value={(control_rods / 100 * 100) * 0.01}
-      ranges={{
-        good: [0.7, Infinity],
-        average: [0.4, 0.7],
-        bad: [-Infinity, 0.4],
-      }} />
-    <br />
-    Neutrons per generation (K):
-    <br />
-    <ProgressBar
-      value={(k / 3 * 100) * 0.01}
-      ranges={{
-        good: [-Infinity, 0.4],
-        average: [0.4, 0.6],
-        bad: [0.6, Infinity],
-      }}>
-      {k}
-    </ProgressBar>
-    <br />
-    Target criticality:
-    <br />
-    <Slider
-      value={Math.round(desiredK*10)/10}
-      fillValue={Math.round(k*10)/10}
-      minValue={0}
-      maxValue={3}
-      step={0.1}
-      stepPixelSize={5}
-      onDrag={(e, value) => act('input', {
-        target: value,
-      })} />
-  </Section>
+      Control Rod Insertion:
+      <ProgressBar
+        value={(control_rods / 100 * 100) * 0.01}
+        ranges={{
+          good: [0.7, Infinity],
+          average: [0.4, 0.7],
+          bad: [-Infinity, 0.4],
+        }} />
+      <br />
+      Neutrons per generation (K):
+      <br />
+      <ProgressBar
+        value={(k / 3 * 100) * 0.01}
+        ranges={{
+          good: [-Infinity, 0.4],
+          average: [0.4, 0.6],
+          bad: [0.6, Infinity],
+        }}>
+        {k}
+      </ProgressBar>
+      <br />
+      Target criticality:
+      <br />
+      <Slider
+        value={Math.round(desiredK*10)/10}
+        fillValue={Math.round(k*10)/10}
+        minValue={0}
+        maxValue={3}
+        step={0.1}
+        stepPixelSize={5}
+        onDrag={(e, value) => act('input', {
+          target: value,
+        })} />
+    </Section>
   );
-}
+};
 
 export const RbmkFuelControl = (props, context) => {
   const { act, data } = useBackend(context);
@@ -163,18 +163,18 @@ export const RbmkFuelControl = (props, context) => {
         <Box>
           <Flex direction="column">
             {Object.keys(data.rods).map(rod => (
-              <FlexItem>
+              <FlexItem key={rod}>
                 <Box inline mr={"3rem"} my={"0.5rem"}>
                   {data.rods[rod].name}
                 </Box>
                 <Button
-                    inline
-                    icon={'times'}
-                    content={'Eject'}
-                    disabled={data.power >= 20}
-                    onClick={() => act('eject', {
-                      rodRef: rod
-                    })} />
+                  inline
+                  icon={'times'}
+                  content={'Eject'}
+                  disabled={data.power >= 20}
+                  onClick={() => act('eject', {
+                    rodRef: rod,
+                  })} />
                 <ProgressBar
                   value={100-data.rods[rod].depletion}
                   minValue={0}
@@ -190,5 +190,5 @@ export const RbmkFuelControl = (props, context) => {
         </Box>
       )}
     </Section>
-  )
-}
+  );
+};
