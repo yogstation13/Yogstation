@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_map"
 	name = "conveyor belt"
-	desc = "A conveyor belt."
+	desc = "A conveyor belt. You can rotate it with a wrench, and reverse it with a screwdriver, or detach it with a crowbar."
 	layer = BELOW_OPEN_DOOR_LAYER
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch
 	name = "conveyor switch"
-	desc = "A conveyor control switch."
+	desc = "A conveyor control switch. You can switch it to one-way with a wrench, or detach it with a crowbar."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
 	speed_process = TRUE
@@ -349,7 +349,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/oneway
 	icon_state = "conveyor_switch_oneway"
-	desc = "A conveyor control switch. It appears to only go in one direction."
+	desc = "A conveyor control switch. It appears to only go in one direction. you can switch it to two way with a wrench, or detach it with a crowbar."
 	oneway = TRUE
 
 /obj/machinery/conveyor_switch/oneway/Initialize()
@@ -362,7 +362,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	desc = "A conveyor control switch assembly."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_SMALL
+	materials = list(/datum/material/iron = 50)
 	var/id = "" //inherited by the switch
 
 /obj/item/conveyor_switch_construct/Initialize()
@@ -395,10 +396,10 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	desc = "A conveyor belt assembly."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_construct"
-	max_amount = 30
+	max_amount = 100
 	singular_name = "conveyor belt"
-	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/iron = 3000)
+	w_class = WEIGHT_CLASS_NORMAL
+	materials = list(/datum/material/iron = 500)
 	///id for linking
 	var/id = ""
 
@@ -434,6 +435,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/stack/conveyor/thirty
 	amount = 30
 
+/obj/item/stack/conveyor/onehundred //I am so tired of having incomplete stacks from auotlathes making 5 less than the max stack.
+	amount = 100
 
 /obj/item/paper/guides/conveyor
 	name = "paper- 'Nano-it-up U-build series, #9: Build your very own conveyor belt, in SPACE'"
