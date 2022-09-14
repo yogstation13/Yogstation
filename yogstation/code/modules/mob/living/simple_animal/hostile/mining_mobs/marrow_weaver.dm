@@ -43,7 +43,7 @@
 			move_to_delay = 8
 			speed = 3
 			poison_type = /datum/reagent/toxin/venom
-			poison_per_bite = 1
+			poison_per_bite = 6
 	else if(buttmad == 1)
 		if(health > maxHealth/2)
 			buttmad = 0

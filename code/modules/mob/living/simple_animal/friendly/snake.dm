@@ -37,7 +37,7 @@
 	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_NECK
 	obj_damage = 0
-	poison_per_bite = 1
+	poison_per_bite = 10
 	environment_smash = ENVIRONMENT_SMASH_NONE
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake/ListTargets(atom/the_target)

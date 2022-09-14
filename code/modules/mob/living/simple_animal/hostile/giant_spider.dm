@@ -108,8 +108,8 @@
 	health = 40
 	melee_damage_lower = 5
 	melee_damage_upper = 10
-	poison_per_bite = 3
-	poison_type = /datum/reagent/toxin/sodium_thiopental
+	poison_per_bite = 4
+	poison_type = /datum/reagent/toxin/staminatoxin
 	var/atom/movable/cocoon_target
 	var/fed = 0
 	var/obj/effect/proc_holder/wrap/wrap
@@ -164,7 +164,7 @@
 	health = 120
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	poison_per_bite = 5
+	poison_per_bite = 10
 	move_to_delay = 5
 
 //recluses are the rare variant of the hunter, no IMMEDIATE damage but so much poison medical care will be needed fast.
