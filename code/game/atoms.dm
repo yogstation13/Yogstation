@@ -693,6 +693,8 @@
   * Default behaviour is to send COMSIG_ATOM_RAD_ACT and return
   */
 /atom/proc/rad_act(strength)
+	if(istype(get_turf(src), /turf/open/indestructible/sound/pool)) //Nsv13 - Pools protect you from rads.
+		strength *= 0.25
 	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength)
 
 /**
