@@ -595,7 +595,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_anomaly_gen(src, GRAVITATIONAL_ANOMALY, rand(5, 10))
 		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD)
 			supermatter_anomaly_gen(src, PYRO_ANOMALY, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD)
+		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(4) || prob(2) && power > POWER_PENALTY_THRESHOLD)
 			supermatter_anomaly_gen(src, RADIATION_ANOMALY, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
