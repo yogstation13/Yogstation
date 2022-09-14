@@ -362,7 +362,7 @@
 /obj/effect/anomaly/radiation
 	name = "radiation anomaly"
 	icon = 'icons/obj/projectiles.dmi'
-	icon_state = "bluespace"
+	icon_state = "sapping"
 	density = TRUE
 
 /obj/effect/anomaly/radiation/anomalyEffect()
