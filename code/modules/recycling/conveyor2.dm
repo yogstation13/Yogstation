@@ -185,6 +185,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			verted = verted * -1
 			update_move_direction()
 			to_chat(user, span_notice("You reverse [src]'s direction."))
+			update_icon()
 
 	else if(user.a_intent != INTENT_HARM)
 		user.transferItemToLoc(I, drop_location())
