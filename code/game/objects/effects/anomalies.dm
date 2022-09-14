@@ -374,4 +374,4 @@
 /obj/effect/anomaly/radiation/detonate()
 	for(var/i = 1 to 72)
 		fire_nuclear_particle_wimpy()
-		sleep(1)
+		sleep(10)
