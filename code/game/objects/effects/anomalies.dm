@@ -356,3 +356,21 @@
 				SSexplosions.medturf += T
 			if(EXPLODE_LIGHT)
 				SSexplosions.lowturf += T
+
+ /////////////////////////
+
+/obj/effect/anomaly/radiation
+	name = "radiation anomaly"
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "bluespace"
+	density = TRUE
+
+/obj/effect/anomaly/radiation/anomalyEffect()
+	..()
+	for(var/i = 1 to 2)
+		fire_nuclear_particle_wimpy()
+	radiation_pulse(src, 100, 2)
+
+/obj/effect/anomaly/radiation/detonate()
+	fire_nuclear_particle_wimpy()
+	sleep(1)

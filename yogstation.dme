@@ -1918,6 +1918,7 @@
 #include "code\modules\events\anomaly_flux.dm"
 #include "code\modules\events\anomaly_grav.dm"
 #include "code\modules\events\anomaly_pyro.dm"
+#include "code\modules\events\anomaly_radiation.dm"
 #include "code\modules\events\anomaly_vortex.dm"
 #include "code\modules\events\aurora_caelus.dm"
 #include "code\modules\events\blob.dm"

@@ -28,3 +28,10 @@
 /atom/proc/fire_nuclear_particle(angle = rand(0,360)) //used by fusion to fire random nuclear particles. Fires one particle in a random direction.
 	var/obj/item/projectile/energy/nuclear_particle/P = new /obj/item/projectile/energy/nuclear_particle(src)
 	P.fire(angle)
+
+/obj/item/projectile/energy/nuclear_particle/wimpy
+	irradiate = 100
+
+/atom/proc/fire_nuclear_particle_wimpy(angle = rand(0,360))
+	var/obj/item/projectile/energy/nuclear_particle/wimpy/P = new /obj/item/projectile/energy/nuclear_particle/wimpy(src)
+	P.fire(angle)

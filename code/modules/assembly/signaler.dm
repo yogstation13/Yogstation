@@ -223,3 +223,9 @@
 	return
 /obj/item/assembly/signaler/cyborg/screwdriver_act(mob/living/user, obj/item/I)
 	return
+
+/obj/item/assembly/signaler/anomaly/radiation
+	name = "\improper radiation anomaly core"
+	desc = "The neutralized core of a radiation anomaly. It keeps pulsing an ominous green. It'd probably be valuable for research."
+	icon_state = "anomaly core"
+	anomaly_type = /obj/effect/anomaly/radiation
