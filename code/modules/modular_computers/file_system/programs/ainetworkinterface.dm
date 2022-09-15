@@ -388,7 +388,7 @@
 			if(!(project_type in GLOB.possible_ainet_activities))
 				return
 			var/amount = text2num(params["amount"])
-			if(amount <= 0)
+			if(amount < 0 || amount > 1)
 				return
 
 			var/total_cpu_used = 0
@@ -396,9 +396,11 @@
 				if(I == project_type)
 					continue
 				total_cpu_used += net.local_cpu_usage[I]
-
+			
 			if((1 - total_cpu_used) >= amount)
 				net.local_cpu_usage[project_type] = amount
+			else
+				net.local_cpu_usage[project_type] = (1 - total_cpu_used)
 
 			. = TRUE
 

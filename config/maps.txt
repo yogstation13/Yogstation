@@ -19,6 +19,7 @@ endmap
 
 map asteroidstation
 	minplayers 25
+	disabled
 endmap
 
 map omegastation
@@ -29,6 +30,7 @@ endmap
 map yogsmeta
 	minplayers 25
 	votable
+	disabled
 endmap
 
 map yogsdelta
@@ -44,6 +46,7 @@ endmap
 map gaxstation
 	maxplayers 40
 	votable
+	disabled
 endmap
 
 map icebox
