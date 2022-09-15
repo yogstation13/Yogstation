@@ -11,8 +11,6 @@
 
 	var/list/remote_networks = list()
 	
-	var/networked_cpu = 0		//How much CPU is in this network
-	var/networked_ram = 0		//How much RAM is in this network
 	var/previous_ram = 0
 
 	var/datum/ai_shared_resources/resources
