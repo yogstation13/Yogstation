@@ -11,8 +11,8 @@
 	impact_type = /obj/effect/projectile/impact/xray
 	var/static/list/particle_colors = list(
 		"red" = "#FF0000",
-		"blue" = "#00FF00",
-		"green" = "#0000FF",
+		"green" = "#00FF00",
+		"blue" = "#0000FF",
 		"yellow" = "#FFFF00",
 		"cyan" = "#00FFFF",
 		"purple" = "#FF00FF"
