@@ -499,7 +499,8 @@
 /datum/status_effect/regenerative_core/on_apply()
 	if(is_station_level(get_turf(owner))
 		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
-	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
+	else
+		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
 	owner.adjustBruteLoss(-25)
 	owner.adjustFireLoss(-25)
 	owner.remove_CC()
