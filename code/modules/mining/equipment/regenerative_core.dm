@@ -89,10 +89,10 @@
 					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
 					balloon_alert(user, "Applying core...")
 					if(!do_mob(user, H, 2 SECONDS)) //come on teamwork bonus?
-						to_chat(user, span_warning("You are interrupted, [src]'s tendrils retreating back into its form."))
+						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
 						return
 					balloon_alert(user, "Core applied!")
-					H.visible_message(span_notice("[src] explodes into a flurry of tendrils, rapidly covering and reinforcing [H]'s body.))
+					H.visible_message(span_notice("[src] explodes into a flurry of tendrils, rapidly covering and reinforcing [H]'s body."))
 			
 				H.visible_message(span_notice("[user] forces [H] to apply [src]... Black tendrils entangle and reinforce [H.p_them()]!"))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
@@ -104,7 +104,7 @@
 					to_chat(user, span_notice("You hold [src] against your body, coaxing the regenerating tendrils from [src]..."))
 					balloon_alert(user, "Applying core...")
 					if(!do_after(user, 4 SECONDS, src))
-						to_chat(user, span_warning("You are interrupted, [src]'s tendrils retreating back into its form."))
+						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
 						return
 					balloon_alert(user, "Core applied!")
 					to_chat(user, span_notice("[src] explodes into a flurry of tendrils, rapidly spreading across your body. They will hold you together and allow you to keep moving, but for how long?"))
