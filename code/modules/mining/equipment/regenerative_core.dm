@@ -87,7 +87,7 @@
 					H.visible_message(span_notice("[user] crushes [src] against [H]'s body, causing black tendrils to encover and reinforce [H.p_them()]!"))
 				else
 					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
-					balloon_alert(user, "Applying core..."")
+					balloon_alert(user, "Applying core...")
 					if(!do_mob(user, H, 2 SECONDS)) //come on teamwork bonus?
 						to_chat(user, span_warning("You are interrupted, [src]'s tendrils retreating back into its form."))
 						return
