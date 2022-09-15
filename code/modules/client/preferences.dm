@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_map = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
-	var/pda_theme = PDA_THEME_NTOS
+	var/pda_theme = PDA_THEME_TITLE_NTOS
 	var/id_in_pda = FALSE
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0

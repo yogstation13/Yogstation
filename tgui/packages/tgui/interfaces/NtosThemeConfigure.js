@@ -6,7 +6,7 @@ export const NtosThemeConfigure = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     PC_device_theme,
-    themes = [],
+    theme_collection = [],
   } = data;
   return (
     <NtosWindow
@@ -21,18 +21,18 @@ export const NtosThemeConfigure = (props, context) => {
           direction="column"
           textAlign="center"
           align-items="center">
-          {themes.map(theme => (
+          {theme_collection.map(theme => (
             <Flex.Item
               key={theme}
               width="100%"
               grow={1}>
               <Button.Checkbox
-                checked={theme===PC_device_theme}
+                checked={theme.theme_file===PC_device_theme}
                 width="75%"
                 lineHeight="50px"
-                content={theme}
+                content={theme.theme_name}
                 onClick={() => act('PRG_change_theme', {
-                  theme: theme,
+                  theme_title: theme.theme_name,
                 })} />
             </Flex.Item>
           ))}

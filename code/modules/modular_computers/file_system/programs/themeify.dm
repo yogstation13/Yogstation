@@ -16,8 +16,11 @@
 
 /datum/computer_file/program/themeify/ui_data(mob/user)
 	var/list/data = get_header_data()
-	data["themes"] = GLOB.pda_themes
-
+	var/list/theme_collection = list()
+	for(var/theme_key in GLOB.pda_themes)
+		theme_collection += list(list("theme_name" = theme_key, "theme_file" = GLOB.pda_themes[theme_key]))
+	data["global_pda_themes_list"] = list(GLOB.pda_themes)
+	data["theme_collection"] = theme_collection
 	return data
 
 /datum/computer_file/program/themeify/ui_act(action,params)
@@ -25,4 +28,4 @@
 		return
 	switch(action)
 		if("PRG_change_theme")
-			computer.device_theme = sanitize_inlist(params["theme"], GLOB.pda_themes, PDA_THEME_NTOS)
+			computer.device_theme = GLOB.pda_themes[sanitize_inlist(params["theme_title"], GLOB.pda_themes, PDA_THEME_TITLE_NTOS)]
