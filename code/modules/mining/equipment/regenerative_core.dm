@@ -130,7 +130,7 @@
 
 /*************************Legion core********************/
 /obj/item/organ/regenerative_core/legion
-	desc = "A strange rock that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects.""
+	desc = "A strange rock that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
 	icon_state = "legion_soul"
 
 /obj/item/organ/regenerative_core/legion/Initialize()
