@@ -942,5 +942,9 @@
 
 /obj/item/clothing/under/drip/dropped(mob/user)
 	. = ..()
-	SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "drippy")
-	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripless", /datum/mood_event/dripless)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_W_UNIFORM) == src)
+		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "drippy")
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripless", /datum/mood_event/dripless)
