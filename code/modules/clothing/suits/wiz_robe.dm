@@ -147,7 +147,7 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/suit/wizrobe/paper
-	name = "papier-mache robe" // no non-latin characters!
+	name = "papier-mâché robe" // yogs -- we live in the future
 	desc = "A robe held together by various bits of clear-tape and paste."
 	icon_state = "wizard-paper"
 	item_state = "wizard-paper"
@@ -166,7 +166,7 @@
 	if(!isliving(usr))
 		return
 	if(!robe_charge)
-		to_chat(usr, span_warning("\The robe's internal magic supply is still recharging!"))
+		to_chat(usr, span_warning("\The [src]'s internal magic supply is still recharging!")) // Yogs -- text macro fix
 		return
 
 	usr.say("Rise, my creation! Off your page into this realm!", forced = "stickman summoning")
@@ -177,7 +177,7 @@
 	src.robe_charge = FALSE
 	sleep(3 SECONDS)
 	src.robe_charge = TRUE
-	to_chat(usr, span_notice("\The robe hums, its internal magic supply restored."))
+	to_chat(usr, span_notice("\The [src] hums, \his internal magic supply restored.")) // Yogs -- text macro fix
 
 
 //Shielded Armour

@@ -446,23 +446,23 @@
 	description = "Standard issue CentCom Ferry for Kilo pattern stations. Includes additional equipment and rechargers."
 
 /datum/map_template/shuttle/whiteship/box
-	suffix = "box"
+	suffix = "1"
 	name = "Hospital Ship"
 
 /datum/map_template/shuttle/whiteship/meta
-	suffix = "meta"
+	suffix = "2"
 	name = "Salvage Ship"
 
 /datum/map_template/shuttle/whiteship/pubby
-	suffix = "pubby"
+	suffix = "3"
 	name = "NT White UFO"
 
 /datum/map_template/shuttle/whiteship/cere
-	suffix = "cere"
+	suffix = "4"
 	name = "NT Construction Vessel"
 
 /datum/map_template/shuttle/whiteship/delta
-	suffix = "delta"
+	suffix = "5"
 	name = "NT Frigate"
 
 /datum/map_template/shuttle/whiteship/pod

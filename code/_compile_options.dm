@@ -60,7 +60,7 @@
 
 //If you update these values, update the message in the #error
 #define MAX_BYOND_MAJOR 514
-#define MAX_BYOND_MINOR 1585
+#define MAX_BYOND_MINOR 1583
 
 ///Uncomment to bypass the max version check. Note: This will likely break the game, only use if you know what you're doing
 //#define IGNORE_MAX_BYOND_VERSION

@@ -197,7 +197,12 @@
 	linkedhandler = new
 	linkedhandler.linkedarm = src
 	ADD_TRAIT(linkedhandler, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	RegisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
 
+/obj/item/organ/cyberimp/arm/toolset/Destroy()
+	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
+	. = ..()
+	
 /obj/item/organ/cyberimp/arm/toolset/emag_act()
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))
@@ -392,6 +397,14 @@
 /obj/item/organ/cyberimp/arm/syndie_mantis/l
 	zone = BODY_ZONE_L_ARM
 	syndicate_implant = TRUE
+
+/obj/item/organ/cyberimp/arm/nt_mantis
+	name = "H.E.P.H.A.E.S.T.U.S. mantis blade implants"
+	desc = "Retractable arm-blade implants to get you out of a pinch. Wielding two will let you double-attack."
+	contents = newlist(/obj/item/mantis/blade/NT)
+
+/obj/item/organ/cyberimp/arm/nt_mantis/l
+	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/power_cord
 	name = "power cord implant"
