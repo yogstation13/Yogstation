@@ -369,7 +369,7 @@
 	..()
 	for(var/i = 1 to 10)
 		fire_nuclear_particle_wimpy()
-		radiation_pulse(src, 500, 2)
+		radiation_pulse(src, 100, 2)
 
 /obj/effect/anomaly/radiation/detonate()
 	for(var/i = 1 to 72)
