@@ -19,7 +19,6 @@
 	var/list/theme_collection = list()
 	for(var/theme_key in GLOB.pda_themes)
 		theme_collection += list(list("theme_name" = theme_key, "theme_file" = GLOB.pda_themes[theme_key]))
-	data["global_pda_themes_list"] = list(GLOB.pda_themes)
 	data["theme_collection"] = theme_collection
 	return data
 
