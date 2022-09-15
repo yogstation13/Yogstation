@@ -284,7 +284,7 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 
-	var/capacity = 300; //the number of sheets it can carry.
+	var/capacity = 2000; //the number of sheets it can carry.
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
 
@@ -293,7 +293,7 @@
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/stack/sheet), list(/obj/item/stack/sheet/mineral/sandstone, /obj/item/stack/sheet/mineral/wood))
-	STR.max_combined_stack_amount = 300
+	STR.max_combined_stack_amount = 2000
 
 // -----------------------------
 //    Sheet Snatcher (Cyborg)
@@ -302,12 +302,12 @@
 /obj/item/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
 	desc = ""
-	capacity = 500//Borgs get more because >specialization
+	capacity = 10000//Borgs get more because >specialization
 
 /obj/item/storage/bag/sheetsnatcher/borg/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
-	STR.max_combined_stack_amount = 500
+	STR.max_combined_stack_amount = 10000
 
 // -----------------------------
 //           Book bag
