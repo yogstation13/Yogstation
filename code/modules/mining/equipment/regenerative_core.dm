@@ -83,7 +83,7 @@
 				return
 			if(H != user)
 			
-				if(!is_station_level(get_turf(user))
+				if(!is_station_level(get_turf(user) || is_reserved_level(get_turf(user)))
 					H.visible_message(span_notice("[user] crushes [src] against [H]'s body, causing black tendrils to encover and reinforce [H.p_them()]!"))
 				else
 					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
@@ -98,7 +98,7 @@
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 			else
 			
-				if(!is_station_level(get_turf(user))
+				if(!is_station_level(get_turf(user) || is_reserved_level(get_turf(user)))
 					to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
 				else
 					to_chat(user, span_notice("You hold [src] against your body, coaxing the regenerating tendrils from [src]..."))
