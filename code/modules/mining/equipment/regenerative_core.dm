@@ -93,8 +93,6 @@
 						return
 					balloon_alert(user, "Core applied!")
 					H.visible_message(span_notice("[src] explodes into a flurry of tendrils, rapidly covering and reinforcing [H]'s body."))
-			
-				H.visible_message(span_notice("[user] forces [H] to apply [src]... Black tendrils entangle and reinforce [H.p_them()]!"))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 			else
 			
