@@ -2296,6 +2296,16 @@
 					/mob/living/simple_animal/hostile/retaliate/poison/snake)
 	crate_name = "snake crate"
 
+/datum/supply_pack/critter/gator
+	name = "Gator Crate"
+	desc = "Sewage not included..."
+	hidden = TRUE
+	cost = 3000
+	contains = list(/mob/living/simple_animal/hostile/retaliate/gator,
+					/mob/living/simple_animal/hostile/retaliate/gator,
+					/mob/living/simple_animal/hostile/retaliate/gator)
+	crate_name = "gator crate"
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Costumes & Toys /////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
