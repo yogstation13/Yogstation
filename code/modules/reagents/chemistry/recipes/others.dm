@@ -783,3 +783,9 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/ashresin(location)
+
+/datum/chemical_reaction/bleach
+	name = "Bleach"
+	id = /datum/reagent/space_cleaner/bleach
+	results = list(/datum/reagent/space_cleaner/bleach = 4)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/water = 2, /datum/reagent/oxygen = 1)

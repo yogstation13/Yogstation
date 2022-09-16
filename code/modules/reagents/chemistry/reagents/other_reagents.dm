@@ -940,6 +940,34 @@
 			// +20% success propability on each step, useful while operating in less-than-perfect conditions
 	..()
 
+/datum/reagent/space_cleaner/bleach
+	name = "Bleach"
+	description = "A harsh chemical sterilizer. Do Not Ingest."
+	color = "#fbfdd6"
+	taste_description = "burning"
+	toxpwr = 2
+
+/datum/reagent/space_cleaner/bleach/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
+	if(method == TOUCH || method == VAPOR)
+		M.wash(clean_types)
+	if(method in list(TOUCH, VAPOR))
+		for(var/s in C.surgeries)
+			var/datum/surgery/S = s
+			S.success_multiplier = max(0.1, S.success_multiplier)
+			// +10% success propability on each step, useful while operating in less-than-perfect conditions
+	..()
+
+/datum/reagent/space_cleaner/bleach/on_mob_life(mob/living/carbon/M) //stronger cyanide, basically
+	if(prob(15))
+		M.losebreath += 1
+		M.adjustOrganLoss(ORGAN_SLOT_STOMACH, -3 * REM)
+	if(prob(10))
+		to_chat(M, "You feel horrendously weak!")
+		M.Stun(40, 0)
+		M.adjustToxLoss(2*REM, 0)
+		C.vomit(0, TRUE, TRUE, 4)
+	return ..()
+
 /datum/reagent/iron
 	name = "Iron"
 	description = "Pure iron is a metal."
