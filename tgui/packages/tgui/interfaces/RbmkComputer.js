@@ -78,13 +78,13 @@ export const RbmkStatsSection = (props, context) => {
         </ProgressBar>
         Neutrons per generation (K):
         <ProgressBar
-        value={(data.k / 3 * 100) * 0.01}
-        ranges={{
-          good: [-Infinity, 0.4],
-          average: [0.4, 0.6],
-          bad: [0.6, Infinity],
-        }}>
-        {data.k}
+          value={(data.k / 3 * 100) * 0.01}
+          ranges={{
+            good: [-Infinity, 0.4],
+            average: [0.4, 0.6],
+            bad: [0.6, Infinity],
+          }}>
+          {data.k}
         </ProgressBar>
       </Section>
       <Section fill title="Reactor Statistics:" height="200px">
