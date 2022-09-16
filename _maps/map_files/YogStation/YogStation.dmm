@@ -18057,28 +18057,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
-"cIf" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular{
-	empty = 1;
-	name = "First-Aid (empty)"
-	},
-/obj/item/storage/firstaid/regular{
-	empty = 1;
-	name = "First-Aid (empty)"
-	},
-/obj/item/storage/firstaid/regular{
-	empty = 1;
-	name = "First-Aid (empty)"
-	},
-/obj/item/healthanalyzer,
-/obj/item/healthanalyzer,
-/obj/item/healthanalyzer,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "cIg" = (
 /obj/machinery/door/window/eastright{
 	name = "Hydroponics Delivery";
@@ -20148,6 +20126,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"dEI" = (
+/obj/structure/table,
+/obj/item/storage/belt/utility,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/obj/machinery/camera{
+	c_tag = "Robotics Lab - South";
+	dir = 1;
+	network = list("ss13","rd")
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "dET" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=EVA2";
@@ -20791,6 +20788,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"dSZ" = (
+/obj/machinery/vending/robotics,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "dTb" = (
 /obj/machinery/holopad,
 /obj/structure/cable/yellow{
@@ -26459,26 +26460,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"gsV" = (
-/obj/structure/table,
-/obj/item/storage/belt/utility,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -30
-	},
-/obj/machinery/camera{
-	c_tag = "Robotics Lab - South";
-	dir = 1;
-	network = list("ss13","rd")
-	},
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/cable_coil,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "gtg" = (
 /obj/structure/closet/secure_closet/personal/patient,
 /obj/effect/turf_decal/trimline/blue/filled/line,
@@ -28395,44 +28376,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"hlz" = (
-/obj/structure/table,
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/toy/figure/roboticist,
-/obj/item/crowbar,
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "hlB" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -57861,6 +57804,15 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"uaw" = (
+/obj/structure/table,
+/obj/item/crowbar,
+/obj/item/toy/figure/roboticist{
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "uaL" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -112167,7 +112119,7 @@ blA
 iEY
 cHX
 cId
-cIf
+dSZ
 box
 smH
 uUY
@@ -112424,7 +112376,7 @@ blA
 vja
 jna
 cIb
-hlz
+uaw
 lEQ
 eMB
 pEU
@@ -113195,7 +113147,7 @@ tHZ
 bkr
 jna
 cIb
-gsV
+dEI
 box
 wTW
 bMu
