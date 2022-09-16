@@ -3,9 +3,9 @@
 	name = "alligator"
 	desc = "Sharp teeth, stronger bite force."
 	icon = 'icons/mob/pets.dmi'
-	icon_state = "steppy"
-	icon_living = "steppy"
-	icon_dead ="steppy_dead"
+	icon_state = "gator"
+	icon_living = "gator"
+	icon_dead ="gator_dead"
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	speak_emote = list("snaps")
@@ -47,7 +47,9 @@
 /mob/living/simple_animal/hostile/retaliate/gator/steppy
 	name = "Steppy"
 	desc = "Cargo's pet gator. Is he being detained!?"
-	icon = 'icons/mob/pets.dmi'
+	icon_state = "steppy"
+	icon_living = "steppy"
+	icon_dead ="steppy_dead"
 	speak_emote = list("snaps")
 	emote_hear = list("snaps.","hisses.")
 	emote_see = list("waits apprehensively.", "shuffles.")
@@ -81,4 +83,5 @@
 	emote_hear = list("snaps.","hisses.", "sneezes.")
 	emote_see = list("waits apprehensively.", "shuffles.")
 	attacktext = "whipped"
+	attack_sound = 'sound/weapons/slap.ogg'
 	attack_vis_effect = ATTACK_EFFECT_KICK
