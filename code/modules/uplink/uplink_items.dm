@@ -989,6 +989,22 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 35
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/explosives/chemgrenade
+	name = "Chem Grenade Casings"
+	desc = "A box of ten pre-made empty grenade casings. \
+			Manufactured by GORLEX for your explosive pleasure."
+	item = /obj/item/storage/box/grenadecasings
+	cost = 4
+	surplus = 35
+
+/datum/uplink_item/explosives/chemgrenade/large
+	name = "Large Chem Grenade Casings"
+	desc = "A box of four pre-made empty large grenade casings. \
+			Manufactured by GORLEX for your explosive pleasure."
+	item = /obj/item/storage/box/grenadecasings/large
+	cost = 7
+	surplus = 35
+
 /datum/uplink_item/explosives/bombanana
 	name = "Bombanana"
 	desc = "A banana with an explosive taste! Discard the peel quickly, as it will explode with the force of a Syndicate minibomb \

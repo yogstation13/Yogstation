@@ -360,7 +360,7 @@
 	small_item = TRUE
 	crate_name = "chem grenade crate"
 
-/datum/supply_pack/security/grenades
+/datum/supply_pack/security/grenades/large
 	name = "Large Chem Grenades"
 	desc = "Four empty large chem grenade casings. Requires Security Access to open"
 	cost = 12000

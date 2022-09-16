@@ -836,8 +836,6 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/grenadecasings/PopulateContents()
-	if(empty)
-		return
 	var/static/items_inside = list(
 		/obj/item/grenade/chem_grenade = 10,
 		/obj/item/book/manual/wiki/grenades = 1)
@@ -849,8 +847,6 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/grenadecasings/large/PopulateContents()
-	if(empty)
-		return
 	var/static/items_inside = list(
 		/obj/item/grenade/chem_grenade/large = 4,
 		/obj/item/book/manual/wiki/grenades = 1)
