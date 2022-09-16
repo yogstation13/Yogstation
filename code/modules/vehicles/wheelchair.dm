@@ -138,9 +138,9 @@
 			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
 			return FALSE
 		if(user.has_quirk(/datum/quirk/paraplegic))
-			movedelay = 1.4
+			movedelay = 1.3
 		else
-			movedelay = 3.3
+			movedelay = 2.3
 		set_move_delay(user)
 	return ..()
 

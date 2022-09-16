@@ -330,9 +330,12 @@
 		quirk_holder.buckled.unbuckle_mob(quirk_holder)
 
 	var/turf/T = get_turf(quirk_holder)
+	var/obj/vehicle/ridden/wheelchair/wheels
+	if(quirk_holder.mind.assigned_role =="Captain")
+		wheels = new /obj/vehicle/ridden/wheelchair/golden(T)
+	else
+		wheels = new (T)
 	var/obj/structure/chair/spawn_chair = locate() in T
-
-	var/obj/vehicle/ridden/wheelchair/wheels = new(T)
 	if(spawn_chair) // Makes spawning on the arrivals shuttle more consistent looking
 		wheels.setDir(spawn_chair.dir)
 
