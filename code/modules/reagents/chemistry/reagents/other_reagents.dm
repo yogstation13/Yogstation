@@ -950,8 +950,7 @@
 /datum/reagent/space_cleaner/bleach/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
 	. = ..()
 	if(method in list(TOUCH, VAPOR))
-		for(var/s in C.surgeries)
-			var/datum/surgery/S = s
+		for(var/datum/surgery/S as anything in C.surgeries)
 			S.success_multiplier = max(0.1, S.success_multiplier)
 			// +10% success propability on each step, useful while operating in less-than-perfect conditions
 	..()
