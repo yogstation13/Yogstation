@@ -70,7 +70,8 @@
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
-			/obj/item/trash/syndi_cakes = 1)
+			/obj/item/trash/syndi_cakes = 1,
+			/obj/item/broken_bottle = 1)
 
 /obj/effect/spawner/lootdrop/trashbin
 	name = "trash spawner"
@@ -85,7 +86,8 @@
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
-			/obj/item/trash/syndi_cakes = 1)
+			/obj/item/trash/syndi_cakes = 1,
+			/obj/item/broken_bottle = 1)
 
 /obj/effect/spawner/lootdrop/donkpockets
 	name = "donk pocket box spawner"

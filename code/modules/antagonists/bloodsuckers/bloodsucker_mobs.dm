@@ -87,7 +87,7 @@
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce
 
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest
-	name = "gigantous monstrosity"
+	name = "gigantic monstrosity"
 	desc = "You wouldn't think a being so messed up like this would be able to even breathe."
 	icon_state = "triplechest"
 	icon_living = "triplechest"

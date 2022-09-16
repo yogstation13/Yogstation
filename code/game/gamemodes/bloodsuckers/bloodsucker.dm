@@ -60,7 +60,7 @@
 	..()
 
 /datum/game_mode/bloodsucker/generate_report()
-	return "There's been a report of the undead roaming around the sector, especially those that display Vampiric abilities.\
+	return "There's been a report of the undead roaming around the sector, especially those that display vampiric abilities.\
 			 They've displayed the ability to disguise themselves as anyone and brainwash the minds of people they capture alive.\
 			 Please take care of the crew and their health, as it is impossible to tell if one is lurking in the darkness behind."
 

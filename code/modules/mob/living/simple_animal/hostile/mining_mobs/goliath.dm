@@ -183,12 +183,10 @@
 
 /obj/effect/temp_visual/goliath_tentacle/original/Initialize(mapload, new_spawner)
 	. = ..()
-	var/list/directions = GLOB.cardinals.Copy()
-	for(var/i in 1 to 3)
-		var/spawndir = pick_n_take(directions)
-		var/turf/T = get_step(src, spawndir)
-		if(T)
-			new /obj/effect/temp_visual/goliath_tentacle(T, spawner)
+	for(var/turf/T in orange(2, src)) // 24 tiles
+		if(prob(85)) // Remove about 20 tiles
+			continue
+		new /obj/effect/temp_visual/goliath_tentacle(T, spawner)
 
 /obj/effect/temp_visual/goliath_tentacle/proc/tripanim()
 	icon_state = "Goliath_tentacle_wiggle"

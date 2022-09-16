@@ -711,20 +711,23 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				lip_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
 			standing += lip_overlay
 
+#define OFFSET_X 1
+#define OFFSET_Y 2
 		// eyes
 		if(!(NOEYESPRITES in species_traits))
-			var/obj/item/organ/eyes/E = H.getorganslot(ORGAN_SLOT_EYES)
+			var/obj/item/organ/eyes/parent_eyes = H.getorganslot(ORGAN_SLOT_EYES)
 			var/mutable_appearance/eye_overlay
-			if(!E)
-				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
+			if(parent_eyes)
+				eye_overlay += parent_eyes.generate_body_overlay(H)
 			else
-				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', E.eye_icon_state, -BODY_LAYER)
-			if((EYECOLOR in species_traits) && E)
-				eye_overlay.color = "#" + H.eye_color
-			if(OFFSET_FACE in H.dna.species.offset_features)
-				eye_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
-				eye_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
+				var/mutable_appearance/missing_eyes = mutable_appearance('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
+				if(OFFSET_FACE in offset_features)
+					missing_eyes.pixel_x += offset_features[OFFSET_FACE][1]
+					missing_eyes.pixel_y += offset_features[OFFSET_FACE][2]
+				eye_overlay += missing_eyes
 			standing += eye_overlay
+#undef OFFSET_X
+#undef OFFSET_Y
 
 	//Underwear, Undershirts & Socks
 	if(!(NO_UNDERWEAR in species_traits))
@@ -831,7 +834,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			bodyparts_to_add -= "wings_open"
 		else if ("wings" in mutant_bodyparts)
 			bodyparts_to_add -= "wings_open"
-	
+
 	if("ipc_screen" in mutant_bodyparts)
 		if(!H.dna.features["ipc_screen"] || H.dna.features["ipc_screen"] == "None" || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD)
 			bodyparts_to_add -= "ipc_screen"
@@ -2271,6 +2274,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	return screamsound
 
 /datum/species/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	if(C == user)
 		if(fullness <= 50)
 			user.visible_message(span_notice("[user] hungrily [eatverb]s \the [O], gobbling it down!"), span_notice("You hungrily [eatverb] \the [O], gobbling it down!"))
@@ -2288,6 +2292,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 									span_userdanger("[user] forces [C] to eat [O]."))
 
 /datum/species/proc/force_eat_text(fullness, obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	if(fullness <= (600 * (1 + C.overeatduration / 1000)))
 		C.visible_message(span_danger("[user] attempts to feed [C] [O]."), \
 							span_userdanger("[user] attempts to feed [C] [O]."))
@@ -2297,10 +2302,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		return FALSE
 
 /datum/species/proc/drink_text(obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	if(C == user)
 		user.visible_message(span_notice("[user] swallows a gulp of [O]."), span_notice("You swallow a gulp of [O]."))
 	else
 		C.visible_message(span_danger("[user] feeds the contents of [O] to [C]."), span_userdanger("[user] feeds the contents of [O] to [C]."))
 
 /datum/species/proc/force_drink_text(obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	C.visible_message(span_danger("[user] attempts to feed the contents of [O] to [C]."), span_userdanger("[user] attempts to feed the contents of [O] to [C]."))
