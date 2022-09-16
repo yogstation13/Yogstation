@@ -351,6 +351,24 @@
 					/obj/item/grenade/barrier)
 	crate_name = "security barriers crate"
 
+/datum/supply_pack/security/grenades
+	name = "Chem Grenades"
+	desc = "Ten empty chem grenade casings. Requires Security Access to open"
+	cost = 4000
+	access_view = ACCESS_BRIG
+	contains = list(/obj/item/storage/box/grenadecasings)
+	small_item = TRUE
+	crate_name = "chem grenade crate"
+
+/datum/supply_pack/security/grenades
+	name = "Large Chem Grenades"
+	desc = "Four empty large chem grenade casings. Requires Security Access to open"
+	cost = 12000
+	access_view = ACCESS_BRIG
+	contains = list(/obj/item/storage/box/grenadecasings/large)
+	small_item = TRUE
+	crate_name = "large chem grenade crate"
+
 /datum/supply_pack/security/securityclothes
 	name = "Security Clothing Crate"
 	desc = "Contains appropriate outfits for the station's private security force. Contains outfits for the Warden, Head of Security, and two Security Officers. Each outfit comes with a rank-appropriate jumpsuit, suit, and beret. Requires Security access to open."

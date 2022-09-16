@@ -14,6 +14,16 @@
 	subcategory = CAT_WEAPON
 	always_available = FALSE
 
+/datum/crafting_recipe/chemgrenade
+	name = "Chem Grenade"
+	result = /obj/item/grenade/chem_grenade
+	reqs = list(/obj/item/stack/sheet/metal = 2
+				)
+	tools = list(TOOL_WELDER)
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_available = FALSE
+
 /datum/crafting_recipe/lance
 	name = "Explosive Lance (Grenade)"
 	result = /obj/item/twohanded/spear

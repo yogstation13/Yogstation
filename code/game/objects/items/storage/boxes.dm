@@ -830,6 +830,24 @@
 	for(var/i in 1 to 7)
 		new/obj/item/grenade/chem_grenade/smart_metal_foam(src)
 
+/obj/item/storage/box/grenadecasings
+	name = "box of chem grenades"
+	desc = "For chemistry to make pyrotechnics with."
+	illustration = "flashbang"
+
+/obj/item/storage/box/grenadecasings/PopulateContents()
+	for(var/i in 1 to 10)
+		new /obj/item/grenade/chem_grenade(src)
+
+/obj/item/storage/box/grenadecasings/large
+	name = "box of large chem grenades"
+	desc = "For chemistry to make BIG pyrotechnics with."
+	illustration = "flashbang"
+
+/obj/item/storage/box/grenadecasings/large/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/grenade/chem_grenade/large(src)
+
 /obj/item/storage/box/hug
 	name = "box of hugs"
 	desc = "A special box for sensitive people."

@@ -257,6 +257,16 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/normal_grenade
+	name = "Grenade"
+	desc = "A grenade."
+	id = "normal_Grenade"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000)
+	build_path = /obj/item/grenade/chem_grenade
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
 /datum/design/large_grenade
 	name = "Large Grenade"
 	desc = "A grenade that affects a larger area and uses larger containers."
@@ -265,37 +275,37 @@
 	materials = list(/datum/material/iron = 3000)
 	build_path = /obj/item/grenade/chem_grenade/large
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/pyro_grenade
 	name = "Pyro Grenade"
 	desc = "An advanced grenade that is able to self ignite its mixture."
 	id = "pyro_Grenade"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/plasma = 500)
+	materials = list(/datum/material/iron = 2000, /datum/material/plasma = 500, /datum/material/plastic = 500)
 	build_path = /obj/item/grenade/chem_grenade/pyro
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/cryo_grenade
 	name = "Cryo Grenade"
 	desc = "An advanced grenade that rapidly cools its contents upon detonation."
 	id = "cryo_Grenade"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/silver = 500)
+	materials = list(/datum/material/iron = 2000, /datum/material/silver = 500, /datum/material/plastic = 500)
 	build_path = /obj/item/grenade/chem_grenade/cryo
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/adv_grenade
 	name = "Advanced Release Grenade"
 	desc = "An advanced grenade that can be detonated several times, best used with a repeating igniter."
 	id = "adv_Grenade"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 3000, /datum/material/glass = 500)
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 500, /datum/material/plastic = 500)
 	build_path = /obj/item/grenade/chem_grenade/adv_release
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/xray
 	name = "X-ray Laser Gun"
