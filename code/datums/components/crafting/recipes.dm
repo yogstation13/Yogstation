@@ -152,7 +152,8 @@
 	name = "Gilded Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair/golden
 	reqs = list(/obj/item/wheelchair = 1,
-				/obj/item/stack/mineral/gold = 10)
+				/obj/item/stack/mineral/gold = 10,
+				/datum/reagent/lube = 50)
 	time = 30 SECONDS
 	category = CAT_MISC
 
