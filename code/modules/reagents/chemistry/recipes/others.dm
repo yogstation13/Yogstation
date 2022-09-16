@@ -789,3 +789,4 @@
 	id = /datum/reagent/space_cleaner/bleach
 	results = list(/datum/reagent/space_cleaner/bleach = 4)
 	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/water = 2, /datum/reagent/oxygen = 1)
+	required_temp = 188
