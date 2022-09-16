@@ -957,6 +957,7 @@
 	..()
 
 /datum/reagent/space_cleaner/bleach/on_mob_life(mob/living/carbon/M) //stronger cyanide, basically
+	var/datum/disease/D
 	if(prob(15))
 		M.losebreath += 1
 		if(prob(33))
@@ -970,6 +971,8 @@
 		M.Stun(40, 0)
 		M.adjustToxLoss(1.25*REM, 0)
 		M.vomit(0, TRUE, TRUE, 4)
+	if(prob(1))
+		D.cure
 	return ..()
 
 /datum/reagent/iron
