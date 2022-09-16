@@ -147,7 +147,15 @@
 				/obj/item/stack/rods = 6)
 	time = 10 SECONDS
 	category = CAT_MISC
-	
+
+/datum/crafting_recipe/goldwheelchair
+	name = "Gilded Wheelchair"
+	result = /obj/vehicle/ridden/wheelchair/golden
+	reqs = list(/obj/item/wheelchair = 1,
+				/obj/item/stack/mineral/gold = 10)
+	time = 30 SECONDS
+	category = CAT_MISC
+
 /datum/crafting_recipe/motorized_wheelchair
 	name = "Motorized Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair/motorized
