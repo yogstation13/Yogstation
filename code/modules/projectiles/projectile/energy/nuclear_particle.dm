@@ -31,6 +31,7 @@
 
 /obj/item/projectile/energy/nuclear_particle/wimpy
 	irradiate = 100
+	damage = 3
 
 /atom/proc/fire_nuclear_particle_wimpy(angle = rand(0,360))
 	var/obj/item/projectile/energy/nuclear_particle/wimpy/P = new /obj/item/projectile/energy/nuclear_particle/wimpy(src)
