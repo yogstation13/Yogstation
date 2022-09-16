@@ -124,6 +124,31 @@
 		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * 6.7) / user.get_num_arms()
 	return ..()
 
+/obj/vehicle/ridden/wheelchair/golden
+	name = "gilded wheelchair"
+	desc = "A chair with big wheels. It looks like you can move in this on your own. This one is extremely fancy, and even feels a little higher quality!"
+	icon_state = "gold_wheelchair"
+	armor = list(MELEE = 8, BULLET = 8, LASER = 8, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)	//it's made of gold
+
+/obj/vehicle/ridden/wheelchair/golden/driver_move(mob/living/user, direction)
+	if(istype(user))
+		if(canmove && (user.get_num_arms() < arms_required))
+			to_chat(user, span_warning("You don't have enough arms to operate the wheels!"))
+			canmove = FALSE
+			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
+			return FALSE
+		if(user.has_quirk(/datum/quirk/paraplegic))
+			movedelay = 1.4
+		else
+			movedelay = 3.3
+		set_move_delay(user)
+	return ..()
+
+/obj/vehicle/ridden/wheelchair/golden/handle_rotation_overlayed()
+	cut_overlays()
+	var/image/V = image(icon = icon, icon_state = "gold_wheelchair_overlay", layer = FLY_LAYER, dir = src.dir)
+	add_overlay(V)
+
 /obj/item/wheelchair
 	name = "wheelchair"
 	icon = 'icons/obj/vehicles.dmi'
@@ -165,3 +190,25 @@
 /obj/item/wheelchair/Destroy()
 	wheelchair = null
 	. = ..()
+
+/obj/item/wheelchair/golden
+	name = "gilded wheelchair"
+	icon_state = "wheelchair_folded_gold"
+	custom_materials = list(/datum/material/gold = 20000)
+	var/obj/vehicle/ridden/wheelchair/golden/wheelchair2
+
+/obj/vehicle/ridden/wheelchair/golden/MouseDrop(over_object, src_location, over_location) //cant just use the original because the chair needs to fold into the right version
+	if(over_object != usr || !Adjacent(usr))
+		return FALSE
+	if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE))
+		return FALSE
+	if(has_buckled_mobs())
+		to_chat(usr, span_warning("You need to unbuckle the passenger from [src] first!"))
+		return FALSE
+	usr.visible_message(span_notice("[usr] collapses [src]."), span_notice("You collapse [src]."))
+	var/obj/item/wheelchair/wheelchair_folded = new /obj/item/wheelchair/golden(get_turf(src))
+	forceMove(wheelchair_folded)
+	wheelchair_folded.desc = "A collapsed [name] that can be carried around." 
+	wheelchair_folded.name = name
+	wheelchair_folded.wheelchair = src
+	usr.put_in_hands(wheelchair_folded)
