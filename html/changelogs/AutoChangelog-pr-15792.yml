@@ -1,0 +1,4 @@
+author: "cuackles"
+delete-after: true 
+changes: 
+  - imageadd: "reverts the hand tele sprite for its orginal"
