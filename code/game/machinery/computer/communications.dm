@@ -51,6 +51,9 @@
 	. = ..()
 	GLOB.shuttle_caller_list += src
 
+/obj/machinery/computer/communications/proc/autologout
+		action = "toggleAuthentication" // We actually want to log out
+
 /// Are we NOT a silicon, AND we're logged in as the captain?
 /obj/machinery/computer/communications/proc/authenticated_as_non_silicon_captain(mob/user)
 	if (issilicon(user))
@@ -71,6 +74,7 @@
 
 /// Are we a silicon, OR logged in?
 /obj/machinery/computer/communications/proc/authenticated(mob/user)
+	addtimer(CALLBACK(src, .proc/autologout), 3 MINUTES)
 	if (issilicon(user))
 		return TRUE
 	return authenticated
