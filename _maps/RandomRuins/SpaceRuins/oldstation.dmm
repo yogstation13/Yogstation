@@ -1276,6 +1276,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
+"eB" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Backup Generator Room"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/engi)
 "eD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1907,15 +1925,6 @@
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
-"hy" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/ancientstation/kitchen)
 "hz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -2183,10 +2192,6 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
-"jj" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/engi)
 "jp" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engineering"
@@ -2832,6 +2837,22 @@
 "ll" = (
 /turf/closed/mineral/uranium,
 /area/ruin/unpowered)
+"lm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Charlie Station Kitchen APC";
+	pixel_y = 23;
+	start_charge = 0
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/ancientstation/kitchen)
 "lo" = (
 /turf/closed/mineral/silver,
 /area/ruin/unpowered)
@@ -4288,21 +4309,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/atmo)
-"pU" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Backup Generator Room"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/engi)
 "pV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -4908,25 +4914,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
-"sW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Charlie Station Kitchen APC";
-	pixel_y = 23;
-	start_charge = 0
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/ruin/space/has_grav/ancientstation/kitchen)
 "sX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -5264,6 +5251,13 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
+"vZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/engi)
 "wh" = (
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
@@ -6432,19 +6426,6 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
-"FF" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	name = "Charlie Station Garden APC ";
-	pixel_y = -23;
-	start_charge = 0
-	},
-/obj/machinery/vending/hydronutrients,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/ancientstation/hydroponics)
 "FG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/seed_extractor,
@@ -6755,6 +6736,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/sec)
+"HT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/hydroponics)
 "HZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -8308,6 +8297,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/engi)
+"VN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/ancientstation/kitchen)
 "VP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -10240,7 +10241,7 @@ yF
 Hj
 eI
 iW
-jj
+vZ
 ie
 eI
 gK
@@ -10289,7 +10290,7 @@ dl
 eI
 eI
 iX
-pU
+eB
 eI
 aG
 aT
@@ -10772,7 +10773,7 @@ Al
 Kg
 jq
 gY
-sW
+lm
 MR
 ly
 tY
@@ -10866,11 +10867,11 @@ Dh
 dR
 dR
 dR
-FF
+HT
 ey
 oQ
 gY
-hy
+VN
 ly
 ly
 UM
@@ -11157,7 +11158,7 @@ dY
 pr
 aT
 gK
-eJ
+dv
 Ev
 pI
 Jk
@@ -11167,7 +11168,7 @@ kc
 mz
 YH
 tW
-eJ
+dv
 Nm
 aY
 TA
@@ -11206,7 +11207,7 @@ ED
 pr
 aT
 gK
-eJ
+dv
 VZ
 yG
 tI
@@ -11216,7 +11217,7 @@ Fj
 Xd
 kc
 WL
-eJ
+dv
 aT
 RR
 ps
@@ -11265,7 +11266,7 @@ ZR
 ZX
 kc
 HM
-eJ
+dv
 gK
 gK
 pw
@@ -11789,7 +11790,7 @@ aa
 aa
 aa
 gK
-bE
+bD
 de
 lw
 lw
@@ -11838,7 +11839,7 @@ aa
 aa
 aa
 gK
-bE
+bD
 ea
 Qx
 sQ
@@ -12642,7 +12643,7 @@ bE
 Ve
 dh
 dh
-bE
+bD
 gK
 aa
 aa
@@ -12671,7 +12672,7 @@ cO
 ac
 gK
 gK
-bE
+bD
 fW
 os
 jf
@@ -12691,7 +12692,7 @@ bE
 jg
 jz
 yx
-bE
+bD
 dF
 dF
 dF
@@ -12722,9 +12723,9 @@ gK
 gK
 bE
 bE
-bE
-bE
-bE
+bD
+bD
+bD
 bY
 bE
 bE
@@ -12779,9 +12780,9 @@ gK
 bE
 bE
 bE
-bE
-bE
-bE
+bD
+bD
+bD
 bE
 bE
 bE
