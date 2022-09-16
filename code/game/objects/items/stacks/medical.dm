@@ -227,14 +227,23 @@
 	repeating = TRUE
 	heal_brute = 10
 	stop_bleeding = 0.6
-	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
+	grind_results = list(/datum/reagent/medicine/sterilizine = 2)
 
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"
 	desc = "A value pack of cheap sutures, not very good at repairing damage, but still decent at stopping bleeding."
+	icon_state = "suture_green"
 	heal_brute = 5
 	amount = 5
 	max_amount = 5
+
+/obj/item/stack/medical/suture/emergency/makeshift
+	name = "makeshift suture"
+	desc = "A makeshift suture, gnarly looking, but it...should work."
+	heal_brute = 4
+	stop_bleeding = 0.44
+	amount = 6
+	max_amount = 6
 
 /obj/item/stack/medical/suture/medicated
 	name = "medicated suture"
@@ -269,7 +278,7 @@
 	to_chat(user, span_warning("You can't heal [M] with \the [src]!"))
 
 /obj/item/stack/medical/ointment
-	name = "ointment"
+	name = "burn ointment"
 	desc = "Basic burn ointment, rated effective for second degree burns with proper bandaging, though it's still an effective stabilizer for worse burns. Not terribly good at outright healing burns though."
 	gender = PLURAL
 	singular_name = "ointment"
@@ -298,6 +307,16 @@
 	user.visible_message(span_suicide("[user] is squeezing \the [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?"))
 	return TOXLOSS
 
+/obj/item/stack/medical/ointment/antiseptic
+	name = "antiseptic ointment"
+	desc = "A specialized ointment, designed with preventing infections in mind."
+	icon_state = "aointment"
+	amount = 15
+	max_amount = 15
+	heal_burn = 6
+	sanitization = 1.0 // its main purpose is to disinfect
+	grind_results = list(/datum/reagent/medicine/sterilizine = 10)
+
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
 	desc = "A bacteriostatic mesh used to dress burns."
@@ -314,7 +333,7 @@
 	flesh_regeneration = 3
 
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
-	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
+	grind_results = list(/datum/reagent/medicine/sterilizine = 2)
 
 /obj/item/stack/medical/mesh/Initialize()
 	. = ..()
@@ -366,7 +385,7 @@
 
 /obj/item/stack/medical/mesh/advanced
 	name = "advanced regenerative mesh"
-	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
+	desc = "An advanced mesh made with sterilizing chemicals, used to treat burns."
 	gender = PLURAL
 	singular_name = "advanced regenerative mesh"
 	icon_state = "aloe_mesh"
