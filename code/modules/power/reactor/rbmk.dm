@@ -5,17 +5,17 @@
 #define COOLANT_OUTPUT_GATE airs[3]
 
 #define RBMK_TEMPERATURE_OPERATING 640 //Celsius
-#define RBMK_TEMPERATURE_CRITICAL 1000 //At this point the entire ship is alerted to a meltdown. This may need altering
-#define RBMK_TEMPERATURE_MELTDOWN 1200
+#define RBMK_TEMPERATURE_CRITICAL 800 //At this point the entire ship is alerted to a meltdown. This may need altering
+#define RBMK_TEMPERATURE_MELTDOWN 1000
 
 #define RBMK_NO_COOLANT_TOLERANCE 5 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
 
-#define RBMK_PRESSURE_OPERATING 1500 //PSI
-#define RBMK_PRESSURE_CRITICAL 2000 //PSI
+#define RBMK_PRESSURE_OPERATING 1000 //PSI
+#define RBMK_PRESSURE_CRITICAL 1500 //PSI
 
 #define RBMK_MAX_CRITICALITY 3 //No more criticality than N for now.
 
-#define RBMK_POWER_FLAVOURISER 8000 //To turn those KWs into something usable
+#define RBMK_POWER_FLAVOURISER 50000 //To turn those KWs into something usable
 
 //Math. Lame.
 #define KPA_TO_PSI(A) (A/6.895)
@@ -75,6 +75,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	light_color = LIGHT_COLOR_CYAN
 	dir = 8 //Less headache inducing :))
+	startingvolume = 600 // 3x base
 	var/id = null //Change me mappers
 	//Variables essential to operation
 	var/temperature = 0 //Lose control of this -> Meltdown
@@ -87,7 +88,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/power_modifier = 1 //Upgrade me with parts, science! Flat out increase to physical power output when loaded with plasma.
 	var/list/fuel_rods = list()
 	//Secondary variables.
-	var/next_slowprocess = 0
 	var/gas_absorption_effectiveness = 0.5
 	var/gas_absorption_constant = 0.5 //We refer to this one as it's set on init, randomized.
 	var/minimum_coolant_level = 5
@@ -114,27 +114,29 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/examine(mob/user)
 	. = ..()
-	if(Adjacent(src, user))
-		if(do_after(user, 1 SECONDS, target=src))
-			var/percent = vessel_integrity / initial(vessel_integrity) * 100
-			var/msg = "<span class='warning'>The reactor looks operational.</span>"
-			switch(percent)
-				if(0 to 10)
-					msg = "<span class='boldwarning'>[src]'s seals are dangerously warped and you can see cracks all over the reactor vessel! </span>"
-				if(10 to 40)
-					msg = "<span class='boldwarning'>[src]'s seals are heavily warped and cracked! </span>"
-				if(40 to 60)
-					msg = "<span class='warning'>[src]'s seals are holding, but barely. You can see some micro-fractures forming in the reactor vessel.</span>"
-				if(60 to 80)
-					msg = "<span class='warning'>[src]'s seals are in-tact, but slightly worn. There are no visible cracks in the reactor vessel.</span>"
-				if(80 to 90)
-					msg = "<span class='notice'>[src]'s seals are in good shape, and there are no visible cracks in the reactor vessel.</span>"
-				if(95 to 100)
-					msg = "<span class='notice'>[src]'s seals look factory new, and the reactor's in excellent shape.</span>"
-			. += msg
+	if(Adjacent(src, user) || isobserver(user))
+		var/percent = vessel_integrity / initial(vessel_integrity) * 100
+		var/msg = "<span class='warning'>The reactor looks operational.</span>"
+		switch(percent)
+			if(0 to 10)
+				msg = "<span class='boldwarning'>[src]'s seals are dangerously warped and you can see cracks all over the reactor vessel! </span>"
+			if(10 to 40)
+				msg = "<span class='boldwarning'>[src]'s seals are heavily warped and cracked! </span>"
+			if(40 to 60)
+				msg = "<span class='warning'>[src]'s seals are holding, but barely. You can see some micro-fractures forming in the reactor vessel.</span>"
+			if(60 to 80)
+				msg = "<span class='warning'>[src]'s seals are in-tact, but slightly worn. There are no visible cracks in the reactor vessel.</span>"
+			if(80 to 90)
+				msg = "<span class='notice'>[src]'s seals are in good shape, and there are no visible cracks in the reactor vessel.</span>"
+			if(95 to 100)
+				msg = "<span class='notice'>[src]'s seals look factory new, and the reactor's in excellent shape.</span>"
+		. += msg
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/fuel_rod))
+		if(slagged)
+			to_chat(user, span_notice("The reactor has been critically damaged"))
+			return FALSE
 		if(power >= 20)
 			to_chat(user, "<span class='notice'>You cannot insert fuel into [src] when it has been raised above 20% power.</span>")
 			return FALSE
@@ -154,6 +156,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			investigate_log("Rod added to reactor by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_SINGULO)
 		return TRUE
 	if(istype(W, /obj/item/sealant))
+		if(slagged)
+			to_chat(user, span_notice("The reactor has been critically damaged"))
+			return FALSE
 		if(power >= 20)
 			to_chat(user, "<span class='notice'>You cannot repair [src] while it is running at above 20% power.</span>")
 			return FALSE
@@ -175,6 +180,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	return ..()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/welder_act(mob/living/user, obj/item/I)
+	if(slagged)
+		to_chat(user, span_notice("The reactor has been critically damaged"))
+		return FALSE
 	if(power >= 20)
 		to_chat(user, "<span class='notice'>You can't repair [src] while it is running at above 20% power.</span>")
 		return FALSE
@@ -595,7 +603,11 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			reactor.last_user = usr
 			reactor.desired_k = clamp(input, 0, 3)
 		if("eject")
-			var/obj/item/fuel_rod/rod = locate(params["rodRef"])
+			if(reactor?.power > 20)
+				return
+			if(slagged)
+				return
+			var/obj/item/fuel_rod/rod = locate(params["rodRef"]) in reactor
 			if(!rod)
 				return
 			playsound(src, pick('sound/effects/reactor/switch.ogg','sound/effects/reactor/switch2.ogg','sound/effects/reactor/switch3.ogg'), 100, FALSE)

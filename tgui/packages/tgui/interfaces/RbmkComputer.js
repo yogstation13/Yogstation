@@ -76,6 +76,16 @@ export const RbmkStatsSection = (props, context) => {
           color="bad">
           {data.coolantOutput} °C
         </ProgressBar>
+        Neutrons per generation (K):
+        <ProgressBar
+        value={(data.k / 3 * 100) * 0.01}
+        ranges={{
+          good: [-Infinity, 0.4],
+          average: [0.4, 0.6],
+          bad: [0.6, Infinity],
+        }}>
+        {data.k}
+        </ProgressBar>
       </Section>
       <Section fill title="Reactor Statistics:" height="200px">
         <Chart.Line
@@ -159,7 +169,7 @@ export const RbmkFuelControl = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <Section title="Fuel Rod Management" height="100%">
-      {data.rods.length ? (
+      {!data.rods.length ? (
         <Box>
           <Flex direction="column">
             {Object.keys(data.rods).map(rod => (
@@ -179,6 +189,11 @@ export const RbmkFuelControl = (props, context) => {
                   value={100-data.rods[rod].depletion}
                   minValue={0}
                   maxValue={100}
+                  ranges={{
+                    good: [75, Infinity],
+                    average: [40, 75],
+                    bad: [-Infinity, 40],
+                  }}
                 />
               </FlexItem>
             ))}
