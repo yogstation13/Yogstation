@@ -972,8 +972,7 @@
 		M.adjustToxLoss(3.25*REM, 0)
 		M.vomit(0, FALSE, FALSE, 3)
 	if(prob(1))
-		for(var/thing in M.diseases)
-			var/datum/disease/D = thing
+		for(var/datum/disease/D as anything in M.diseases)
 			D.cure(FALSE)
 	return ..()
 
