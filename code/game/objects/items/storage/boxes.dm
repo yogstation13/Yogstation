@@ -836,8 +836,12 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/grenadecasings/PopulateContents()
-	for(var/i in 1 to 10)
-		new /obj/item/grenade/chem_grenade(src)
+	if(empty)
+		return
+	var/static/items_inside = list(
+		/obj/item/grenade/chem_grenade = 10,
+		/obj/item/book/manual/wiki/grenades = 1)
+	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/grenadecasings/large
 	name = "box of large chem grenades"
@@ -845,8 +849,12 @@
 	illustration = "flashbang"
 
 /obj/item/storage/box/grenadecasings/large/PopulateContents()
-	for(var/i in 1 to 4)
-		new /obj/item/grenade/chem_grenade/large(src)
+	if(empty)
+		return
+	var/static/items_inside = list(
+		/obj/item/grenade/chem_grenade/large = 4,
+		/obj/item/book/manual/wiki/grenades = 1)
+	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/hug
 	name = "box of hugs"

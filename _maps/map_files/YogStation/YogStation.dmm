@@ -24788,6 +24788,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
+"fET" = (
+/obj/structure/table/glass,
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_x = -28
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8
+	},
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/machinery/reagentgrinder{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "fFy" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
@@ -35570,6 +35587,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/tcoms)
+"kmF" = (
+/obj/structure/table/glass,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "kmT" = (
 /obj/machinery/button/door{
 	id = "kanyewest";
@@ -37398,34 +37433,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"ljb" = (
-/obj/structure/table/glass,
-/obj/item/radio/intercom{
-	dir = 8;
-	name = "Station Intercom (General)";
-	pixel_x = -28
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "ljc" = (
 /obj/machinery/photocopier,
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -56948,6 +56955,27 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"tJx" = (
+/obj/structure/table/glass,
+/obj/machinery/requests_console{
+	department = "Chemistry";
+	departmentType = 2;
+	pixel_x = -30;
+	receive_ore_updates = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "tJC" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -59959,47 +59987,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"uWX" = (
-/obj/structure/table/glass,
-/obj/machinery/requests_console{
-	department = "Chemistry";
-	departmentType = 2;
-	pixel_x = -30;
-	receive_ore_updates = 1
-	},
-/obj/item/book/manual/wiki/grenades,
-/obj/item/grenade/chem_grenade{
-	pixel_x = -6;
-	pixel_y = 13
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_y = 10
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = -9;
-	pixel_y = 7
-	},
-/obj/item/stack/cable_coil/random{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/obj/item/stack/cable_coil/random{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/screwdriver{
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "uXo" = (
 /obj/machinery/power/apc{
 	areastring = "/area/medical/paramedic";
@@ -66696,19 +66683,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
-"ybd" = (
-/obj/structure/table/glass,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/plasma,
-/obj/item/stack/sheet/mineral/plasma,
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "ybf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -101880,9 +101854,9 @@ vNd
 rlf
 bfF
 cJl
-ljb
-ybd
-uWX
+fET
+kmF
+tJx
 vZq
 oDR
 klD

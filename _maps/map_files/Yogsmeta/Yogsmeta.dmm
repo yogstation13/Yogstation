@@ -55266,6 +55266,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"dCi" = (
+/obj/machinery/reagentgrinder{
+	pixel_y = 7
+	},
+/obj/machinery/requests_console{
+	department = "Chemistry";
+	departmentType = 2;
+	pixel_x = -30;
+	receive_ore_updates = 1
+	},
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "dCk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -59060,6 +59073,31 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
+"fZm" = (
+/obj/item/radio/intercom{
+	dir = 8;
+	pixel_x = -28
+	},
+/obj/structure/table/glass,
+/obj/machinery/camera{
+	c_tag = "Chemistry";
+	dir = 4;
+	network = list("ss13","medbay")
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/book/manual/wiki/chemistry{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/clothing/glasses/science,
+/obj/item/clothing/glasses/science,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "fZZ" = (
 /mob/living/simple_animal/bot/cleanbot/medical{
 	on = 0
@@ -63699,42 +63737,6 @@
 /obj/machinery/portable_atmospherics/canister/water_vapor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jAI" = (
-/obj/item/assembly/timer{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/assembly/timer{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/obj/item/assembly/timer{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/assembly/timer{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "jAO" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -64147,6 +64149,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"jPl" = (
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "jPG" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel/dark,
@@ -75564,6 +75570,24 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"rNp" = (
+/obj/structure/table/glass,
+/obj/item/folder/white{
+	pixel_y = 2
+	},
+/obj/item/radio/headset/headset_med,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "rNv" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
@@ -81433,32 +81457,6 @@
 	},
 /turf/open/space,
 /area/space/nearstation)
-"wgU" = (
-/obj/structure/table/glass,
-/obj/item/folder/white{
-	pixel_y = 2
-	},
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
-/obj/item/screwdriver{
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/obj/item/radio/headset/headset_med,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 24
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "wje" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/disposalpipe/segment,
@@ -83696,34 +83694,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos_distro)
-"xWj" = (
-/obj/item/radio/intercom{
-	dir = 8;
-	pixel_x = -28
-	},
-/obj/structure/table/glass,
-/obj/machinery/camera{
-	c_tag = "Chemistry";
-	dir = 4;
-	network = list("ss13","medbay")
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/book/manual/wiki/chemistry{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/book/manual/wiki/grenades,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/clothing/glasses/science,
-/obj/item/clothing/glasses/science,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "xWt" = (
 /obj/structure/table/wood,
 /obj/machinery/photocopier/faxmachine{
@@ -83915,17 +83885,6 @@
 	},
 /turf/open/floor/engine/co2,
 /area/engine/atmos_distro)
-"yfO" = (
-/obj/machinery/reagentgrinder,
-/obj/machinery/requests_console{
-	department = "Chemistry";
-	departmentType = 2;
-	pixel_x = -30;
-	receive_ore_updates = 1
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "ygi" = (
 /obj/machinery/door/airlock/external{
 	name = "MiniSat Space Access Airlock";
@@ -109714,8 +109673,8 @@ rZx
 cVF
 mjZ
 fBP
-yfO
-xWj
+dCi
+fZm
 coT
 xmT
 cga
@@ -110740,8 +110699,8 @@ pRg
 cfX
 vKs
 qvD
-jAI
-wgU
+jPl
+rNp
 cga
 cnL
 coX

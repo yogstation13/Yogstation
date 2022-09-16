@@ -801,41 +801,6 @@
 "agn" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/starboard/aft)
-"ags" = (
-/obj/structure/table/glass,
-/obj/item/book/manual/wiki/grenades,
-/obj/item/grenade/chem_grenade{
-	pixel_x = -6;
-	pixel_y = 13
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_y = 10
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = -9;
-	pixel_y = 7
-	},
-/obj/item/stack/cable_coil/random{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/obj/item/stack/cable_coil/random{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/screwdriver{
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "agt" = (
 /obj/machinery/photocopier,
 /obj/effect/turf_decal/siding/wood{
@@ -8981,35 +8946,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"bRP" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/syringes{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
-	},
-/obj/item/radio/intercom{
-	frequency = 1485;
-	name = "Station Intercom (Medbay)";
-	pixel_x = 1;
-	pixel_y = 25
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "bRV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -20126,6 +20062,21 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
+"fTo" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "fTy" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -67293,6 +67244,27 @@
 /obj/structure/chair/sofa,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
+"wmj" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/syringes{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	frequency = 1485;
+	name = "Station Intercom (Medbay)";
+	pixel_x = 1;
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "wms" = (
 /obj/machinery/vending/wardrobe/sec_wardrobe,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -101964,7 +101936,7 @@ nBT
 fsJ
 wAz
 aHs
-bRP
+wmj
 ahA
 ahA
 ahA
@@ -102223,7 +102195,7 @@ iKj
 aHs
 xJf
 aoP
-ags
+fTo
 afg
 tUA
 aNm

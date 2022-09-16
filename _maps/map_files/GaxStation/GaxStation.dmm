@@ -2699,6 +2699,28 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"boS" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line,
+/obj/structure/table/glass,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/machinery/camera{
+	c_tag = "Chemistry";
+	dir = 1;
+	network = list("ss13","medbay")
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "bpn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -6615,6 +6637,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"dnK" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 9
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/machinery/requests_console{
+	department = "Chemistry";
+	departmentType = 2;
+	pixel_x = -32;
+	receive_ore_updates = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "dog" = (
 /turf/closed/wall,
 /area/crew_quarters/heads/cmo)
@@ -7358,6 +7401,14 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"dJU" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 9
+	},
+/obj/structure/table/glass,
+/obj/item/stack/sheet/mineral/plasma,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "dKt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment{
@@ -7867,35 +7918,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"eaT" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 9
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/machinery/requests_console{
-	department = "Chemistry";
-	departmentType = 2;
-	pixel_x = -32;
-	receive_ore_updates = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "eaW" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -23440,32 +23462,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/security/execution/transfer)
-"lPi" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 8
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/medical/chemistry";
-	dir = 8;
-	name = "Chemistry APC";
-	pixel_x = -25
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/table/glass,
-/obj/machinery/reagentgrinder,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "lPm" = (
 /obj/machinery/camera{
 	c_tag = "Fitness Room";
@@ -23748,47 +23744,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"lUz" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line,
-/obj/structure/table/glass,
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/machinery/camera{
-	c_tag = "Chemistry";
-	dir = 1;
-	network = list("ss13","medbay")
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = -9;
-	pixel_y = 7
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = -6;
-	pixel_y = 13
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_y = 10
-	},
-/obj/item/grenade/chem_grenade{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/stack/cable_coil/random{
-	pixel_x = -3;
-	pixel_y = 1
-	},
-/obj/item/stack/cable_coil/random{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/screwdriver{
-	pixel_x = -2;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "lUK" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/structure/table,
@@ -31782,6 +31737,34 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"qhc" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/medical/chemistry";
+	dir = 8;
+	name = "Chemistry APC";
+	pixel_x = -25
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/table/glass,
+/obj/machinery/reagentgrinder{
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "qhj" = (
 /obj/effect/turf_decal/trimline/neutral/filled/corner{
 	dir = 8
@@ -43460,15 +43443,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
-"wlE" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 9
-	},
-/obj/structure/closet/secure_closet/chemical,
-/obj/item/book/manual/wiki/grenades,
-/obj/item/stack/sheet/mineral/plasma,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "wlG" = (
 /obj/structure/chair{
 	dir = 8
@@ -75935,8 +75909,8 @@ ewv
 yjm
 twa
 yjm
-wlE
-lPi
+dJU
+qhc
 uJG
 dTU
 kEF
@@ -76190,7 +76164,7 @@ edn
 xVn
 hyf
 onS
-eaT
+dnK
 arL
 kgR
 jcI
@@ -76451,7 +76425,7 @@ xTY
 knb
 xRo
 xsV
-lUz
+boS
 kEF
 kEF
 jvg
