@@ -63,9 +63,6 @@
 	if(!id_card)
 		return
 
-	if(istype(id_card, /obj/item/card/id/captains_spare/temporary))
-		to_chat(user, span_warning("ERROR: [id_card] is not compatable with this program"))
-		return
 	region_access = list()
 	if(!target_dept && (ACCESS_CHANGE_IDS in id_card.access))
 		minor = FALSE
