@@ -621,7 +621,7 @@
 	result = /obj/item/stack/medical/suture
 	reqs = list(/obj/item/stack/sheet/cloth = 1,
 				/obj/item/stack/sheet/metal = 1,
-				/datum/reagent/medicine/sterilizine = 4)
+				/datum/reagent/space_cleaner/sterilizine = 4)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/makeshiftsuture
@@ -637,7 +637,7 @@
 	result = /obj/item/stack/medical/suture/medicated
 	reqs = list(/obj/item/stack/sheet/plastic = 2,
 				/obj/item/stack/sheet/metal = 1,
-				/datum/reagent/medicine/sterilizine = 6,
+				/datum/reagent/space_cleaner/sterilizine = 6,
 				/datum/reagent/medicine/morphine = 5)
 	category = CAT_MEDICAL
 
@@ -646,7 +646,7 @@
 	result = /obj/item/stack/medical/mesh
 	reqs = list(/obj/item/stack/sheet/glass = 1,
 				/obj/item/stack/medical/gauze/improvised = 2,
-				/datum/reagent/medicine/sterilizine = 7,
+				/datum/reagent/space_cleaner/sterilizine = 7,
 				/datum/reagent/medicine/morphine = 3)
 	category = CAT_MEDICAL
 
@@ -663,7 +663,7 @@
 	result = /obj/item/stack/medical/ointment/antiseptic
 	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
 				/datum/reagent/ash = 10,
-				/datum/reagent/medicine/sterilizine = 15)
+				/datum/reagent/space_cleaner/sterilizine = 15)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/advancedmesh
@@ -671,7 +671,7 @@
 	result = /obj/item/stack/medical/mesh/advanced
 	reqs = list(/obj/item/stack/sheet/glass = 1,
 				/obj/item/stack/medical/gauze/improvised = 2,
-				/datum/reagent/medicine/sterilizine = 10,
+				/datum/reagent/space_cleaner/sterilizine = 10,
 				/datum/reagent/medicine/silver_sulfadiazine = 10,
 				/datum/reagent/medicine/morphine = 3)
 	category = CAT_MEDICAL

@@ -227,7 +227,7 @@
 	repeating = TRUE
 	heal_brute = 10
 	stop_bleeding = 0.6
-	grind_results = list(/datum/reagent/medicine/sterilizine = 2)
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 2)
 
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"
@@ -236,14 +236,16 @@
 	heal_brute = 5
 	amount = 5
 	max_amount = 5
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 1)
 
 /obj/item/stack/medical/suture/emergency/makeshift
 	name = "makeshift suture"
 	desc = "A makeshift suture, gnarly looking, but it...should work."
 	heal_brute = 4
 	stop_bleeding = 0.44
-	amount = 6
-	max_amount = 6
+	amount = 5
+	max_amount = 5
+	grind_results = null
 
 /obj/item/stack/medical/suture/medicated
 	name = "medicated suture"
@@ -313,9 +315,9 @@
 	icon_state = "aointment"
 	amount = 15
 	max_amount = 15
-	heal_burn = 6
+	heal_burn = 3
 	sanitization = 1.0 // its main purpose is to disinfect
-	grind_results = list(/datum/reagent/medicine/sterilizine = 10)
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 10)
 
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
@@ -333,7 +335,7 @@
 	flesh_regeneration = 3
 
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
-	grind_results = list(/datum/reagent/medicine/sterilizine = 2)
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 2)
 
 /obj/item/stack/medical/mesh/Initialize()
 	. = ..()
