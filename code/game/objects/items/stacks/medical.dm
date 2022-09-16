@@ -292,6 +292,7 @@
 	max_amount = 8
 	self_delay = 40
 	other_delay = 20
+	repeating = TRUE
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.25
