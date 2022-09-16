@@ -51,8 +51,13 @@
 	. = ..()
 	GLOB.shuttle_caller_list += src
 
-/obj/machinery/computer/communications/proc/autologout
-		action = "toggleAuthentication" // We actually want to log out
+/obj/machinery/computer/communications/proc/autologout(action)
+	if(authenticated)
+		authenticated = FALSE
+		authorize_access = null
+		authorize_name = null
+		playsound(src, 'sound/machines/terminal_off.ogg', 50, FALSE)
+		return
 
 /// Are we NOT a silicon, AND we're logged in as the captain?
 /obj/machinery/computer/communications/proc/authenticated_as_non_silicon_captain(mob/user)
