@@ -957,22 +957,24 @@
 	..()
 
 /datum/reagent/space_cleaner/bleach/on_mob_life(mob/living/carbon/M) //stronger cyanide, basically
-	var/datum/disease/D
+
 	if(prob(15))
-		M.losebreath += 1
+		M.losebreath += 2
 		if(prob(33))
-			M.adjustOrganLoss(ORGAN_SLOT_STOMACH, -1 * REM)
+			M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 1 * REM)
 		if(prob(33))
-			M.adjustOrganLoss(ORGAN_SLOT_LUNGS, -1 * REM)
+			M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 1 * REM)
 		if(prob(33))
-			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * REM)
+			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1 * REM)
 	if(prob(10))
 		to_chat(M, "You feel horrendously weak!")
-		M.Stun(40, 0)
-		M.adjustToxLoss(1.25*REM, 0)
-		M.vomit(0, TRUE, TRUE, 4)
+		M.adjustStaminaLoss(4*REM, 0)
+		M.adjustToxLoss(3.25*REM, 0)
+		M.vomit(0, FALSE, FALSE, 3)
 	if(prob(1))
-		D.cure
+		for(var/thing in M.diseases)
+			var/datum/disease/D = thing
+			D.cure(FALSE)
 	return ..()
 
 /datum/reagent/iron
