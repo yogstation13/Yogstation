@@ -92,28 +92,28 @@ export const RbmkStatsSection = (props, context) => {
           fillPositionedParent
           data={powerData}
           rangeX={[0, powerData.length - 1]}
-          rangeY={[0, 1500]}
+          rangeY={[0, 1700]}
           strokeColor="rgba(255, 215,0, 1)"
           fillColor="rgba(255, 215, 0, 0.1)" />
         <Chart.Line
           fillPositionedParent
           data={psiData}
           rangeX={[0, psiData.length - 1]}
-          rangeY={[0, 1500]}
+          rangeY={[0, 1700]}
           strokeColor="rgba(255,250,250, 1)"
           fillColor="rgba(255,250,250, 0.1)" />
         <Chart.Line
           fillPositionedParent
           data={tempInputData}
           rangeX={[0, tempInputData.length - 1]}
-          rangeY={[-273.15, 1227]}
+          rangeY={[-273.15, 1700]}
           strokeColor="rgba(127, 179, 255 , 1)"
           fillColor="rgba(127, 179, 255 , 0.1)" />
         <Chart.Line
           fillPositionedParent
           data={tempOutputdata}
           rangeX={[0, tempOutputdata.length - 1]}
-          rangeY={[-273.15, 1227]}
+          rangeY={[-273.15, 1700]}
           strokeColor="rgba(255, 0, 0 , 1)"
           fillColor="rgba(255, 0, 0 , 0.1)" />
       </Section>

@@ -132,7 +132,9 @@
 		grown_amount = initial_amount * multiplier
 
 /obj/item/fuel_rod/material/attackby(obj/item/W, mob/user, params)
-	var/obj/item/stack/M = W
+	var/obj/item/stack/sheet/M = W
+	if(!material_type && istype(M))
+		material_type = M.type
 	if(istype(M, material_type))
 		if(!check_material_input(user))
 			return
@@ -179,15 +181,18 @@
 
 /obj/item/fuel_rod/material/examine(mob/user)
 	. = ..()
-	if(expended)
-		. += "<span class='warning'>The material slots have been slagged by the extreme heat, you can't grow [material_name] in this rod again...</span>"
-		return
-	else if(depleted_final)
-		. += "<span class='warning'>This fuel rod's [material_name] are now fully grown, and it currently bears [grown_amount] harvestable [material_name_singular]\s.</span>"
-		return
-	if(depletion)
-		. += "<span class='danger'>The sample is [min(depletion/depletion_threshold*100,100)]% fissiled.</span>"
-	. += "<span class='disarm'>[initial_amount]/[max_initial_amount] of the slots for [material_name] are full.</span>"
+	if(material_type)
+		if(expended)
+			. += "<span class='warning'>The material slots have been slagged by the extreme heat, you can't grow [material_name] in this rod again...</span>"
+			return
+		else if(depleted_final)
+			. += "<span class='warning'>This fuel rod's [material_name] are now fully grown, and it currently bears [grown_amount] harvestable [material_name_singular]\s.</span>"
+			return
+		if(depletion)
+			. += "<span class='danger'>The sample is [min(depletion/depletion_threshold*100,100)]% fissiled.</span>"
+		. += "<span class='disarm'>[initial_amount]/[max_initial_amount] of the slots for [material_name] are full.</span>"
+	else
+		. += "<span class='disarm'>This rod is ready for material breeding</span>"
 
 /obj/item/fuel_rod/material/telecrystal
 	name = "Telecrystal Fuel Rod"
@@ -236,6 +241,6 @@
 		return
 	fuel_power = 0.3 // Be warned
 	name = "Fully Grown Bananium Fuel Rod"
-	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than it cowardly counterparts. Its greatly grimacing grwoth stage is now over, and bananium outgrowth hums as if it's blatantly honking bike horns."
+	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than it cowardly counterparts. Its greatly grimacing growth stage is now over, and bananium outgrowth hums as if it's blatantly honking bike horns."
 	icon_state = "bananium_used"
 	AddComponent(/datum/component/radioactive, 1250, src)

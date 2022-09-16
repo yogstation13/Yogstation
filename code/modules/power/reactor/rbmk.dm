@@ -15,7 +15,7 @@
 
 #define RBMK_MAX_CRITICALITY 3 //No more criticality than N for now.
 
-#define RBMK_POWER_FLAVOURISER 50000 //To turn those KWs into something usable
+#define RBMK_POWER_FLAVOURISER 50 //To turn those KWs into something usable
 
 //Math. Lame.
 #define KPA_TO_PSI(A) (A/6.895)
@@ -116,20 +116,24 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	. = ..()
 	if(Adjacent(src, user) || isobserver(user))
 		var/percent = vessel_integrity / initial(vessel_integrity) * 100
-		var/msg = "<span class='warning'>The reactor looks operational.</span>"
+		var/msg
+		if(slagged)
+			msg = span_boldwarning("The reactor is destroyed. Its core lies exposed!")
+		else
+			msg = span_warning("The reactor looks operational.")
 		switch(percent)
 			if(0 to 10)
-				msg = "<span class='boldwarning'>[src]'s seals are dangerously warped and you can see cracks all over the reactor vessel! </span>"
+				msg = span_boldwarning("[src]'s seals are dangerously warped and you can see cracks all over the reactor vessel!")
 			if(10 to 40)
-				msg = "<span class='boldwarning'>[src]'s seals are heavily warped and cracked! </span>"
+				msg = span_boldwarning("[src]'s seals are heavily warped and cracked!")
 			if(40 to 60)
-				msg = "<span class='warning'>[src]'s seals are holding, but barely. You can see some micro-fractures forming in the reactor vessel.</span>"
+				msg = span_warning("[src]'s seals are holding, but barely. You can see some micro-fractures forming in the reactor vessel.")
 			if(60 to 80)
-				msg = "<span class='warning'>[src]'s seals are in-tact, but slightly worn. There are no visible cracks in the reactor vessel.</span>"
+				msg = span_warning("[src]'s seals are in-tact, but slightly worn. There are no visible cracks in the reactor vessel.")
 			if(80 to 90)
-				msg = "<span class='notice'>[src]'s seals are in good shape, and there are no visible cracks in the reactor vessel.</span>"
+				msg = span_notice("[src]'s seals are in good shape, and there are no visible cracks in the reactor vessel.")
 			if(95 to 100)
-				msg = "<span class='notice'>[src]'s seals look factory new, and the reactor's in excellent shape.</span>"
+				msg = span_notice("[src]'s seals look factory new, and the reactor's in excellent shape.")
 		. += msg
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/attackby(obj/item/W, mob/user, params)
@@ -138,12 +142,12 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			to_chat(user, span_notice("The reactor has been critically damaged"))
 			return FALSE
 		if(power >= 20)
-			to_chat(user, "<span class='notice'>You cannot insert fuel into [src] when it has been raised above 20% power.</span>")
+			to_chat(user, span_notice("You cannot insert fuel into [src] when it has been raised above 20% power."))
 			return FALSE
 		if(fuel_rods.len >= 5)
-			to_chat(user, "<span class='warning'>[src] is already at maximum fuel load.</span>")
+			to_chat(user, span_warning("[src] is already at maximum fuel load."))
 			return FALSE
-		to_chat(user, "<span class='notice'>You start to insert [W] into [src]...</span>")
+		to_chat(user, span_notice("You start to insert [W] into [src]..."))
 		radiation_pulse(src, temperature)
 		if(do_after(user, 5 SECONDS, target=src))
 			if(!fuel_rods.len)
@@ -160,20 +164,20 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			to_chat(user, span_notice("The reactor has been critically damaged"))
 			return FALSE
 		if(power >= 20)
-			to_chat(user, "<span class='notice'>You cannot repair [src] while it is running at above 20% power.</span>")
+			to_chat(user, span_notice("You cannot repair [src] while it is running at above 20% power."))
 			return FALSE
 		if(vessel_integrity >= 350)
-			to_chat(user, "<span class='notice'>[src]'s seals are already in-tact, repairing them further would require a new set of seals.</span>")
+			to_chat(user, span_notice("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
 			return FALSE
 		if(vessel_integrity <= 0.5 * initial(vessel_integrity)) //Heavily damaged.
-			to_chat(user, "<span class='notice'>[src]'s reactor vessel is cracked and worn, you need to repair the cracks with a welder before you can repair the seals.</span>")
+			to_chat(user, span_notice("[src]'s reactor vessel is cracked and worn, you need to repair the cracks with a welder before you can repair the seals."))
 			return FALSE
 		if(do_after(user, 5 SECONDS, target=src))
 			if(vessel_integrity >= 350)	//They might've stacked doafters
-				to_chat(user, "<span class='notice'>[src]'s seals are already in-tact, repairing them further would require a new set of seals.</span>")
+				to_chat(user, span_notice("[src]'s seals are already in-tact, repairing them further would require a new set of seals."))
 				return FALSE
 			playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
-			user.visible_message("<span class='warning'>[user] applies sealant to some of [src]'s worn out seals.</span>", "<span class='notice'>You apply sealant to some of [src]'s worn out seals.</span>")
+			user.visible_message(span_warning("[user] applies sealant to some of [src]'s worn out seals."), span_notice("You apply sealant to some of [src]'s worn out seals."))
 			vessel_integrity += 10
 			vessel_integrity = clamp(vessel_integrity, 0, initial(vessel_integrity))
 		return TRUE
@@ -184,17 +188,17 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		to_chat(user, span_notice("The reactor has been critically damaged"))
 		return FALSE
 	if(power >= 20)
-		to_chat(user, "<span class='notice'>You can't repair [src] while it is running at above 20% power.</span>")
+		to_chat(user, span_notice("You can't repair [src] while it is running at above 20% power."))
 		return FALSE
 	if(vessel_integrity > 0.5 * initial(vessel_integrity))
-		to_chat(user, "<span class='notice'>[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant.</span>")
+		to_chat(user, span_notice("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
 		return FALSE
 	if(I.use_tool(src, user, 0, volume=40))
 		if(vessel_integrity > 0.5 * initial(vessel_integrity))
-			to_chat(user, "<span class='notice'>[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant.</span>")
+			to_chat(user, span_notice("[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant."))
 			return FALSE
 		vessel_integrity += 20
-		to_chat(user, "<span class='notice'>You weld together some of [src]'s cracks. This'll do for now.</span>")
+		to_chat(user, span_notice("You weld together some of [src]'s cracks. This'll do for now."))
 	return TRUE
 
 //Admin procs to mess with the reaction environment.
@@ -310,7 +314,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	//Then, hit as much of that goal with our cooling per tick as we possibly can.
 	difference = clamp(difference, 0, control_rod_effectiveness) //And we can't instantly zap the K to what we want, so let's zap as much of it as we can manage....
 	if(difference > fuel_power && desired_k > K)
-		investigate_log("Reactor has not enough fuel to get [difference]. We have fuel [fuel_power]", INVESTIGATE_SINGULO)
+		investigate_log("Reactor does not enough fuel to get [difference]. We have fuel [fuel_power]", INVESTIGATE_SINGULO)
 		difference = fuel_power //Again, to stop you being able to run off of 1 fuel rod.
 	if(K != desired_k)
 		if(desired_k > K)
@@ -446,7 +450,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			return
 		next_warning = world.time + 60 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
 		warning = TRUE //Start warning the crew of the imminent danger.
-		relay('sound/effects/reactor/alarm.ogg', null, channel = CHANNEL_REACTOR_ALERT)
+		relay('sound/effects/reactor/alarm.ogg', null, TRUE, channel = CHANNEL_REACTOR_ALERT)
 		set_light(0)
 		light_color = LIGHT_COLOR_RED
 		set_light(10)
@@ -522,10 +526,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/startup_sound = pick('sound/effects/reactor/startup.ogg', 'sound/effects/reactor/startup2.ogg')
 	playsound(loc, startup_sound, 100)
 	if(!powernet)
-		message_admins("No powernet for the Nuclear Reactor! Trying to add.")
 		connect_to_network()
-		if(!powernet)
-			message_admins("Powernet add fail. This reactor will never produce power.")
 
 //Shuts off the fuel rods, ambience, etc. Keep in mind that your temperature may still go up!
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shut_down()
@@ -639,9 +640,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	return data
 
 /obj/machinery/computer/reactor/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>You start [anchored ? "un" : ""]securing [name]...</span>")
+	to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [name]..."))
 	if(I.use_tool(src, user, 40, volume=75))
-		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secure [name].</span>")
+		to_chat(user, span_notice("You [anchored ? "un" : ""]secure [name]."))
 		setAnchored(!anchored)
 		return TRUE
 	return FALSE
@@ -697,7 +698,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(!is_operational())
 		return FALSE
 	playsound(loc, pick('sound/effects/reactor/switch.ogg','sound/effects/reactor/switch2.ogg','sound/effects/reactor/switch3.ogg'), 100, FALSE)
-	visible_message("<span class='notice'>[src]'s switch flips [on ? "off" : "on"].</span>")
+	visible_message(span_notice("[src]'s switch flips [on ? "off" : "on"]."))
 	on = !on
 	signal(on)
 
@@ -849,7 +850,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	icon = 'icons/obj/machines/reactor_parts.dmi'
 	icon_state = "nuclearwaste"
 	alpha = 150
-	light_color = LIGHT_COLOR_CYAN
+	light_color = LIGHT_COLOR_GREEN
 	color = "#ff9eff"
 
 /obj/effect/decal/nuclear_waste/Initialize()
@@ -857,7 +858,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	for(var/obj/A in get_turf(src))
 		if(istype(A, /obj/structure))
 			qdel(src) //It is more processing efficient to do this here rather than when searching for available turfs.
-	set_light(3)
+	set_light(1)
 	AddComponent(/datum/component/radioactive, 1000, src, 0)
 
 /obj/effect/decal/nuclear_waste/epicenter //The one that actually does the irradiating. This is to avoid every bit of sludge PROCESSING
@@ -891,9 +892,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/effect/decal/nuclear_waste/attackby(obj/item/tool, mob/user)
 	if(tool.tool_behaviour == TOOL_SHOVEL)
 		radiation_pulse(src, 1000, 5) //MORE RADS
-		to_chat(user, "<span class='notice'>You start to clear [src]...</span>")
+		to_chat(user, span_notice("You start to clear [src]..."))
 		if(tool.use_tool(src, user, 50, volume=100))
-			to_chat(user, "<span class='notice'>You clear [src]. </span>")
+			to_chat(user, span_notice("You clear [src]. "))
 			qdel(src)
 			return
 	. = ..()
