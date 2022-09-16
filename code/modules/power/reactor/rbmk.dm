@@ -605,7 +605,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if("eject")
 			if(reactor?.power > 20)
 				return
-			if(slagged)
+			if(reactor?.slagged)
 				return
 			var/obj/item/fuel_rod/rod = locate(params["rodRef"]) in reactor
 			if(!rod)
