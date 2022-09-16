@@ -5,7 +5,7 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	var/chained = 0
 
-	body_parts_covered = FEET
+	body_parts_covered = FEET | LEGS
 	slot_flags = ITEM_SLOT_FEET
 
 	permeability_coefficient = 0.5
