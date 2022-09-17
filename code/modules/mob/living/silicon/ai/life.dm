@@ -16,8 +16,6 @@
 		if(dashboard)
 			dashboard.tick(seconds)
 
-		process_hijack() // yogs
-
 
 		if(malfhack && malfhack.aidisabled)
 			deltimer(malfhacking)

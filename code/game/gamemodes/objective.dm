@@ -183,13 +183,6 @@ GLOBAL_LIST_EMPTY(objectives)
 		explanation_text = team_explanation_text
 
 /datum/objective/proc/give_special_equipment(special_equipment)
-	if(istype(team, /datum/team/infiltrator))
-		for(var/eq_path in special_equipment)
-			if(eq_path)
-				for(var/turf/T in GLOB.infiltrator_objective_items)
-					if(!(eq_path in T.contents))
-						new eq_path(T)
-		return
 	var/datum/mind/receiver = pick(get_owners())
 	if(receiver && receiver.current)
 		if(ishuman(receiver.current))
@@ -719,21 +712,6 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
 				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
 					return TRUE
-	if (istype(team, /datum/team/infiltrator))
-		for (var/area/A in world)
-			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/I in A.GetAllContents()) //Check for items
-					if (istype(I, steal_target))
-						if (!targetinfo)
-							return TRUE
-						else if (targetinfo.check_special_completion(I))
-							return TRUE
-					if (targetinfo && (I.type in targetinfo.altitems))
-						if (targetinfo.check_special_completion(I))
-							return TRUE
-					CHECK_TICK
-			CHECK_TICK
-		CHECK_TICK
 	return FALSE
 
 GLOBAL_LIST_EMPTY(possible_items_special)
@@ -814,14 +792,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			var/list/otherwise = M.GetAllContents()
 			for(var/obj/item/disk/tech_disk/TD in otherwise)
 				TD.stored_research.copy_research_to(checking)
-	if (istype(team, /datum/team/infiltrator))
-		for (var/area/A in world)
-			if (is_type_in_typecache(A, GLOB.infiltrator_objective_areas))
-				for (var/obj/item/disk/tech_disk/TD in A.GetAllContents()) //Check for items
-					TD.stored_research.copy_research_to(checking)
-				CHECK_TICK
-			CHECK_TICK
-		CHECK_TICK
 	return checking.researched_nodes.len >= target_amount
 
 /datum/objective/download/admin_edit(mob/admin)

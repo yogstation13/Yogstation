@@ -127,7 +127,6 @@
 	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 20
-	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/implants/greytide
 	name = "Greytide Implant"

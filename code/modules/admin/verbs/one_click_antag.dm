@@ -26,7 +26,6 @@
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=shadowling'>Make Shadowling</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=vampire'>Make Vampire</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=infiltrator'>Make Infiltration Team (Requires Ghosts)</a>
 		"}
 
 	var/datum/browser/popup = new(usr, "oneclickantag", "Quick-Create Antagonist", 400, 400)
