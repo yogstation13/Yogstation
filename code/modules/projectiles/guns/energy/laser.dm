@@ -184,3 +184,13 @@
 
 /obj/item/projectile/beam/laser/buckshot
 	damage = 10
+
+/obj/item/gun/energy/laser/aer9
+	name = "AER9 laser rifle"
+	desc = "A sturdy and advanced military grade service laser rifle"
+	icon_state = "laser"
+	item_state = "laser-rifle9"
+	fire_delay = 5
+	ammo_type = list(/obj/item/projectile/beam/laser/heavylaser)
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_HEAVY
