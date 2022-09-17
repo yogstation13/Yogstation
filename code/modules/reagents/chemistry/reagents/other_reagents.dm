@@ -959,19 +959,19 @@
 /datum/reagent/space_cleaner/bleach/on_mob_life(mob/living/carbon/C)
 	switch(rand(1,3))
 		if(1)
-			C.losebreath += 2
+			C.losebreath += 1
 			switch(rand(1,3))
 				if(1)
-					C.adjustOrganLoss(ORGAN_SLOT_STOMACH, 2 * REM)
+					C.adjustOrganLoss(ORGAN_SLOT_STOMACH, 1 * REM)
 				if(2)
-					C.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2 * REM)
+					C.adjustOrganLoss(ORGAN_SLOT_LUNGS, 1 * REM)
 				if(3)
-					C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2 * REM)
+					C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1 * REM)
 		if(2)
 			to_chat(C, "You feel very short of breath!")
-			C.losebreath += 4
-			C.adjustStaminaLoss(4*REM, 0)
-			C.adjustToxLoss(3.25*REM, 0)
+			C.losebreath += 2
+			C.adjustStaminaLoss(2*REM, 0)
+			C.adjustToxLoss(1.25*REM, 0)
 			C.vomit(0, FALSE, FALSE, 3)
 		if(3)
 			if(prob(3))
@@ -980,14 +980,14 @@
 	return ..()
 
 /datum/reagent/space_cleaner/bleach/overdose_process(mob/living/carbon/C)
-	C.losebreath += 4
+	C.losebreath += 2
 	to_chat(C, "Your stomach feels like it's melting!")
-	C.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5 * REM)
+	C.adjustOrganLoss(ORGAN_SLOT_STOMACH, 3 * REM)
 	if(prob(20))
 		to_chat(C, "You feel like you're melting from the inside out!")
-		C.losebreath += 6
-		C.adjustToxLoss(10*REM, 0)
-		C.adjustFireLoss(2*REM, 0)
+		C.losebreath += 4
+		C.adjustToxLoss(5*REM, 0)
+		C.adjustFireLoss(1*REM, 0)
 		C.vomit(0, TRUE, TRUE, 4)
 
 /datum/reagent/iron
