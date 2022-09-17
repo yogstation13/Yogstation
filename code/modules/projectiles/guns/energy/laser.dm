@@ -186,10 +186,10 @@
 	damage = 10
 
 /obj/item/gun/energy/laser/aer9
-	name = "AER9 laser rifle"
+	name = "AER14 laser rifle"
 	desc = "A sturdy and advanced military grade service laser rifle"
 	icon_state = "laser"
-	item_state = "laser-rifle9"
+	item_state = "aer14"
 	fire_delay = 5
 	ammo_type = list(/obj/item/projectile/beam/laser/heavylaser)
 	w_class = WEIGHT_CLASS_BULKY
