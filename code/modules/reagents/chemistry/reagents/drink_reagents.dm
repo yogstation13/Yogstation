@@ -199,6 +199,12 @@
 	glass_name = "glass of milk"
 	glass_desc = "White and nutritious goodness!"
 
+/datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/M)
+	if(M.getBruteLoss() && prob(5))
+		M.heal_bodypart_damage(0.5)
+		. = 1
+	return ..() || .
+
 /datum/reagent/consumable/cilk
 	name = "Cilk"
 	description = "A mixture of milk and.... cola? Who the fuck would do this?"
