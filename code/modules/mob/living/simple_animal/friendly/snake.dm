@@ -88,4 +88,4 @@
 
 /obj/item/udder/snake
 	name = "snake venom gland"
-	milktype = /datum/reagent/toxin/snakevenom,/datum/reagent/toxin
+	milktype = /datum/reagent/toxin/snakevenom, /datum/reagent/toxin
