@@ -2406,10 +2406,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of kortara"
 	glass_desc = "The fermented nectar of the Korta nut, as enjoyed by lizards galaxywide."
 
-/datum/reagent/consumable/ethanol/kortara/on_mob_life(mob/living/carbon/drinker, delta_time, times_fired)
-	if(drinker.getBruteLoss() && DT_PROB(10, delta_time))
-		drinker.heal_bodypart_damage(brute = 1)
-		. = TRUE
+/datum/reagent/consumable/ethanol/kortara(mob/living/carbon/M)
+	if(M.getBruteLoss() && prob(10))
+		M.heal_bodypart_damage(1)
+		. = 1
 	return ..() || .
 	
 /datum/reagent/consumable/ethanol/sea_breeze
