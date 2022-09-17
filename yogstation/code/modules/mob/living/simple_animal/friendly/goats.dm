@@ -5,8 +5,33 @@
 	icon_state = "clowngoat"
 	icon_living = "clowngoat"
 	icon_dead = "clowngoat_dead"
+	var/obj/item/udder/clowngoat
 	gold_core_spawnable = NO_SPAWN
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3, /obj/item/clothing/mask/gas/clown_hat = 1, /obj/item/clothing/head/yogs/goatpelt = 1)
+
+/mob/living/simple_animal/hostile/retaliate/goat/clown/Initialize()
+	udder = new()
+	. = ..()
+
+/mob/living/simple_animal/hostile/retaliate/goat/clown/Destroy()
+	qdel(udder)
+	return ..()
+
+/mob/living/simple_animal/hostile/retaliate/goat/clown/attackby(obj/item/O, mob/user, params)
+	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
+		udder.milkAnimal(O, user)
+		return 1
+	else
+		return ..()
+
+/mob/living/simple_animal/hostile/retaliate/goat/clown/Life()
+	. = ..()
+	if(stat == CONSCIOUS)
+		udder.generateMilk()
+
+/obj/item/udder/clowngoat
+	name = "Laughing Udder"
+	milktype = /datum/reagent/drug/happiness
 
 /mob/living/simple_animal/hostile/retaliate/goat/ras
 	name = "Ralsei Goat"
