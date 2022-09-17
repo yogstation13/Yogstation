@@ -169,6 +169,16 @@
 	maxstack = MAXCOIL
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/cable_coil
+	name = "Ethernet Coil"
+	id = "ethernet_coil"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 10, /datum/material/glass = 5)
+	build_path = /obj/item/stack/ethernet_coil
+	category = list("initial","Tools","Tool Designs")
+	maxstack = MAXCOIL
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/toolbox
 	name = "Toolbox"
 	id = "tool_box"

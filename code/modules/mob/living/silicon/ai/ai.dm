@@ -132,9 +132,6 @@
 	if(!target_ai) //If there is no player/brain inside.
 		return INITIALIZE_HINT_QDEL //Delete AI.
 
-	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
-		relocate(TRUE, TRUE)
-
 	if(L && istype(L, /datum/ai_laws))
 		laws = L
 		laws.associate(src)
@@ -191,6 +188,9 @@
 
 	dashboard = new(src)
 
+	if(!istype(loc, /obj/machinery/ai/data_core) && !shunted)
+		relocate(TRUE, TRUE)
+
 	if(isvalidAIloc(loc))
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
@@ -205,6 +205,8 @@
 	builtInCamera.c_tag = real_name
 	builtInCamera.network = list("ss13")
 	builtInCamera.built_in = src
+
+	
 
 /mob/living/silicon/ai/key_down(_key, client/user)
 	if(findtext(_key, "numpad")) //if it's a numpad number, we can convert it to just the number
@@ -565,6 +567,13 @@
 			return
 		if(C.downloading == src)
 			C.finish_download()
+	if(href_list["emergency_disconnect"])
+		if(alert("Are you sure you want to disconnect all remote networks and lock all networking devices? This means you'll be unable to switch cores unless they're physically connected!", "No", "Yes") != "Yes")
+			return
+		for(var/obj/machinery/ai/networking/N in ai_network.get_local_nodes_oftype())
+			N.disconnect()
+			N.locked = TRUE
+
 	if(href_list["go_to_machine"])
 		var/atom/target = locate(href_list["go_to_machine"])
 		if(!target)

@@ -319,6 +319,10 @@
 	var/remaining_cpu = 1
 	for(var/I in cpu_usage)
 		remaining_cpu -= cpu_usage[I]
+
+	if(remaining_cpu > 0)
+		var/points = max(round(AI_RESEARCH_PER_CPU * (remaining_cpu * current_cpu)), 0)
+		SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_AI = points))
 		
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])

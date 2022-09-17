@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 /obj/machinery/ai/networking
 	name = "networking machine"
-	desc = "A solar panel. Generates electricity when in contact with sunlight."
+	desc = "A high powered combined transmitter and receiver. Capable of connecting remote AI networks with near-zero delay."
 	icon = 'goon/icons/obj/power.dmi'
 	icon_state = "sp_base"
 	density = TRUE
@@ -69,7 +69,6 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 /obj/machinery/ai/networking/proc/disconnect()
 	if(partner)
 		var/datum/ai_network/AN = partner.network
-		
 		partner.partner = null
 		partner = null
 		AN.rebuild_remote()
