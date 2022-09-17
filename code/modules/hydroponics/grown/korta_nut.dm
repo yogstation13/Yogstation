@@ -5,7 +5,7 @@
 	icon_state = "seed-korta"
 	species = "kortanut"
 	plantname = "Korta Nut Bush"
-	product = /obj/item/food/grown/korta_nut
+	product = /obj/item/reagent_containers/food/snacks/grown/korta_nut
 	lifespan = 55
 	endurance = 35
 	yield = 5
