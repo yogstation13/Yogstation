@@ -362,7 +362,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	desc = "A conveyor control switch assembly."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/iron = 50)
 	var/id = "" //inherited by the switch
 
