@@ -952,5 +952,3 @@
 	color = "#67423A" // rgb: 127, 132, 0
 	toxpwr = 0.1
 	taste_description = "mushrooms"
-	ph = 8.0
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
