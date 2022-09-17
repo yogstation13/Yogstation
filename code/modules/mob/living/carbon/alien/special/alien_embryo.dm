@@ -59,6 +59,11 @@
 
 /// Controls Xenomorph Embryo growth. If embryo is fully grown (or overgrown), stop the proc. If not, increase the stage by one and if it's not fully grown (stage 6), add a timer to do this proc again after however long the growth time variable is.
 /obj/item/organ/body_egg/alien_embryo/proc/advance_embryo_stage()
+	if(owner.stat == DEAD) // Shitcode that gets rid of aliens from dead hosts.
+		new /obj/item/organ/body_egg/alien_embryo(owner.loc)
+		owner.visible_message(span_danger("[src] weakly wriggles out of [owner]!"))
+		owner.adjustBruteLoss(40)
+		qdel(src)
 	if(stage >= 6)
 		return
 	if(++stage < 6)
