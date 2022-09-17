@@ -725,6 +725,15 @@
 	var/obj/item/light/L = drop_light_tube()
 	L.attack_tk(user)
 
+/obj/machinery/light/attack_eminence(mob/camera/eminence/user, params)
+	if(status == LIGHT_EMPTY || status == LIGHT_BROKEN)
+		return
+		
+	to_chat(user, span_brass("You concentrate your power, trying to break [src]..."))
+	if(!do_after(user, 2 SECONDS, src))
+		return
+	to_chat(user, span_brass("You sucessfully break [src]!"))
+	break_light_tube(0)
 
 // break the light and make sparks if was on
 

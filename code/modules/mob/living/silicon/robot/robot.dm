@@ -432,7 +432,7 @@
 			if(!W.use_tool(src, user, 50))
 				return
 			if(health > 0)
-				return //safety check to prevent spam clciking and queing
+				return //safety check to prevent spam clicking and queing
 
 		adjustBruteLoss(-30)
 		updatehealth()

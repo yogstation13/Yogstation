@@ -1,0 +1,4 @@
+author: "boodaliboo"
+delete-after: true 
+changes: 
+  - rscadd: "removes the gibbing from vending machine without removing all the other thingies"

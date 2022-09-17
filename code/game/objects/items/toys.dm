@@ -321,6 +321,24 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
+/obj/item/toy/foamblade/baseball
+	name = "toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle reads Donksoft."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "baseballbat_donk"
+	item_state = "baseball_bat_donk"
+	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
+	attack_verb = list("beat", "smacked")
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FLAMMABLE
+
+/obj/item/toy/foamblade/baseball/nerf
+	name = "antique toy baseball bat"
+	desc = "A colorful foam baseball bat. The label on the handle is almost rubbed off...\"nerf or nothing\"? what does that mean"
+	icon_state = "baseballbat"
+	item_state = "baseball_bat_plastic"
+
 /obj/item/toy/windupToolbox
 	name = "windup toolbox"
 	desc = "A replica toolbox that rumbles when you turn the key."

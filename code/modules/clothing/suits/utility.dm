@@ -57,6 +57,8 @@
 	name = "bomb hood"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
 	clothing_flags = THICKMATERIAL
 	armor = list(MELEE = 20, BULLET = 0, LASER = 20,ENERGY = 10, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 	flags_inv = HIDEFACE|HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
@@ -98,12 +100,15 @@
 /obj/item/clothing/head/bomb_hood/security
 	icon_state = "bombsuit_sec"
 	item_state = "bombsuit_sec"
+	armor = list(MELEE = 50, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)	//Much better armor, lots of padding against low-power kinetic blows!
 
 /obj/item/clothing/suit/bomb_suit/security
+	desc = "A slightly more advanced bomb suit for use by NT security forces. Comes with a holster for your favorite assistant-beating tools!"
 	icon_state = "bombsuit_sec"
 	item_state = "bombsuit_sec"
 	allowed = list(/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/restraints/handcuffs)
-
+	slowdown = 1.5	//Meant for more stressful situations than JUST disarming a bomb, whatever that might be.
+	armor = list(MELEE = 50, BULLET = 10, LASER = 30,ENERGY = 20, BOMB = 100, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
 
 /obj/item/clothing/head/bomb_hood/white
 	icon_state = "bombsuit_white"

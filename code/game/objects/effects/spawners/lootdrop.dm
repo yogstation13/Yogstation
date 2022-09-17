@@ -569,3 +569,29 @@
 	loot = list(
 		/obj/item/clothing/shoes/drip = 20,
 		"" = 80)
+
+//Mob spawners
+/obj/effect/spawner/lootdrop/mob
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
+
+/obj/effect/spawner/lootdrop/mob/kitchen_animal
+	name = "kitchen animal"
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,
+			/mob/living/simple_animal/cow/betsy = 1,
+			/mob/living/simple_animal/sheep = 1,
+			/mob/living/simple_animal/sheep/shawn = 1)
+
+/obj/effect/spawner/lootdrop/mob/marrow_weaver
+	name = "40% marrow weaver spawner"
+	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "weaver"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/asteroid/marrowweaver = 35,
+			/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 5,
+			"" = 60)

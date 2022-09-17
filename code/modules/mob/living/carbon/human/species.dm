@@ -1443,9 +1443,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 				if(HAS_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN))
 					health_deficiency *= 0.5
 				if(flight)
-					. += (health_deficiency / 75)
+					health_deficiency *= 0.333
+				if(health_deficiency < 100) // https://i.imgur.com/W4nusN8.png https://www.desmos.com/calculator/qsf6iakqgp
+					. += (health_deficiency / 50) ** 2.58
 				else
-					. += (health_deficiency / 25)
+					. += (health_deficiency / 100) + 5
 		if(CONFIG_GET(flag/disable_human_mood) && !H.mood_enabled) // Yogs -- Mood as preference
 			if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
 				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
@@ -1574,10 +1576,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			target.dismembering_strike(user, affecting.body_zone)
 
 		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
-			target.apply_damage(damage*1.5, attack_type, affecting, armor_block)
+			target.apply_damage(damage*1.5, user.dna.species.attack_type, affecting, armor_block)
 			log_combat(user, target, "kicked")
 		else//other attacks deal full raw damage + 1.5x in stamina damage
-			target.apply_damage(damage, attack_type, affecting, armor_block)
+			target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block)
 			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
 			log_combat(user, target, "punched")
 

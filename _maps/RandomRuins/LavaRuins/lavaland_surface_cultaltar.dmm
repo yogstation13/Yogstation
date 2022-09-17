@@ -55,29 +55,6 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/ruin/unpowered)
-"o" = (
-/obj/effect/rune/narsie{
-	color = "#ff0000";
-	used = 1
-	},
-/obj/item/cult_shift,
-/obj/effect/decal/remains/human,
-/obj/item/melee/cultblade/dagger,
-/obj/effect/step_trigger/sound_effect{
-	happens_once = 1;
-	name = "a grave mistake";
-	sound = 'sound/hallucinations/i_see_you1.ogg';
-	triggerer_only = 1
-	},
-/obj/effect/step_trigger/message{
-	message = "<span class='cult italic'><b><span class='big'>You've made a grave mistake, haven't you?</span></b></span>";
-	name = "ohfuck"
-	},
-/obj/item/reagent_containers/food/drinks/bottle/holywater/hell,
-/turf/open/floor/engine/cult{
-	initial_gas_mix = "o2=14;n2=23;TEMP=300"
-	},
-/area/ruin/unpowered)
 "q" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/shoes/cult,
@@ -89,6 +66,30 @@
 /area/ruin/unpowered)
 "s" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/unpowered)
+"u" = (
+/obj/effect/rune/narsie{
+	color = "#ff0000";
+	used = 1
+	},
+/obj/effect/decal/remains/human,
+/obj/item/clothing/suit/space/hardsuit/cult,
+/obj/item/melee/cultblade/dagger,
+/obj/item/cult_shift,
+/obj/item/reagent_containers/food/drinks/bottle/holywater/hell,
+/obj/effect/step_trigger/sound_effect{
+	happens_once = 1;
+	name = "a grave mistake";
+	sound = 'sound/hallucinations/i_see_you1.ogg';
+	triggerer_only = 1
+	},
+/obj/effect/step_trigger/message{
+	message = "<span class='cult italic'><b><span class='big'>You've made a grave mistake, haven't you?</span></b></span>";
+	name = "ohfuck"
+	},
+/turf/open/floor/engine/cult{
+	initial_gas_mix = "o2=14;n2=23;TEMP=300"
+	},
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -218,7 +219,7 @@ b
 b
 d
 b
-o
+u
 b
 d
 b

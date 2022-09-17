@@ -970,10 +970,10 @@
 /datum/design/conveyor_belt
 	name = "Conveyor Belt"
 	id = "conveyor_belt"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | MECHFAB
 	materials = list(/datum/material/iron = 3000)
 	build_path = /obj/item/stack/conveyor
-	category = list("initial", "Construction")
+	category = list("initial", "Construction", "Misc")
 	maxstack = 30
 
 
@@ -983,7 +983,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 450, /datum/material/glass = 190)
 	build_path = /obj/item/conveyor_switch_construct
-	category = list("initial", "Construction")
+	category = list("initial", "Construction", "Misc")
 
 /datum/design/laptop
 	name = "Laptop Frame"

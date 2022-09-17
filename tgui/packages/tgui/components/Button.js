@@ -258,13 +258,6 @@ export class ButtonInput extends Component {
             'display': !this.state.inInput ? 'none' : undefined,
             'text-align': 'left',
           }}
-          onBlur={e => {
-            if (!this.state.inInput) {
-              return;
-            }
-            this.setInInput(false);
-            this.commitResult(e);
-          }}
           onKeyDown={e => {
             if (e.keyCode === KEY_ENTER) {
               this.setInInput(false);

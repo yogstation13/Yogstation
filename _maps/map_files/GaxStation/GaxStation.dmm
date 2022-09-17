@@ -7212,10 +7212,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"dFW" = (
-/obj/machinery/power/smes,
-/turf/open/floor/plating,
-/area/maintenance/solars/port/aft)
 "dFX" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 1
@@ -13225,6 +13221,13 @@
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/department/eva)
+"guH" = (
+/obj/machinery/power/smes,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/port/aft)
 "guP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -32007,7 +32010,7 @@
 "qmG" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs,
-/obj/item/melee/baseball_bat{
+/obj/item/twohanded/required/baseball_bat{
 	desc = "A staple of security force interrogations.";
 	icon_state = "baseball_bat_metal";
 	name = "kneecapper"
@@ -68243,7 +68246,7 @@ uPN
 nDR
 moO
 bzX
-dFW
+guH
 fxk
 gDx
 vRP
