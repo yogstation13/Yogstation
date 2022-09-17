@@ -166,6 +166,7 @@
 /obj/item/gun/ballistic/revolver/single_action
 	name = ".44 Magnum single action revolver"
 	desc = "A single action fixed cylinder revolver. Ineffective in the hands of an inexperienced user due to the lack of automation found in more recently designed weapons, though its robust construction allows it to chamber powerful ammunition. Uses .44 Magnum ammo."
+	icon_state = "single-action"
 	///whether we are shooting or reloading
 	var/reload_mode = FALSE
 	///if the hammer is in firing position
