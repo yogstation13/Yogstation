@@ -341,7 +341,6 @@
 	harvest_message_high = "You hit the mushroom motherlode and make off with a bunch of tasty mushrooms."
 	regrowth_time_low = 3000
 	regrowth_time_high = 5400
-	number_of_variants = 2
 
 /obj/item/food/grown/ash_flora/seraka
 	name = "seraka cap"
