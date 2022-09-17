@@ -398,7 +398,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon_state = "conveyor_construct"
 	max_amount = 30
 	singular_name = "conveyor belt"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/iron = 500)
 	///id for linking
 	var/id = ""
