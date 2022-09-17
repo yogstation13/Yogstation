@@ -24,6 +24,7 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	unique_name = TRUE
 	faction = list("rat")
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	var/datum/action/cooldown/coffer
 	var/datum/action/cooldown/riot
 	var/datum/action/cooldown/domain
