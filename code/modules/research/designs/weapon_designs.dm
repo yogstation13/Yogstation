@@ -265,7 +265,7 @@
 	materials = list(/datum/material/iron = 1000)
 	build_path = /obj/item/grenade/chem_grenade
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/large_grenade
 	name = "Large Grenade"
@@ -275,7 +275,7 @@
 	materials = list(/datum/material/iron = 3000)
 	build_path = /obj/item/grenade/chem_grenade/large
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/pyro_grenade
 	name = "Pyro Grenade"
@@ -285,7 +285,7 @@
 	materials = list(/datum/material/iron = 2000, /datum/material/plasma = 500, /datum/material/plastic = 500)
 	build_path = /obj/item/grenade/chem_grenade/pyro
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cryo_grenade
 	name = "Cryo Grenade"
@@ -295,7 +295,7 @@
 	materials = list(/datum/material/iron = 2000, /datum/material/silver = 500, /datum/material/plastic = 500)
 	build_path = /obj/item/grenade/chem_grenade/cryo
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/adv_grenade
 	name = "Advanced Release Grenade"
@@ -305,7 +305,7 @@
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 500, /datum/material/plastic = 500)
 	build_path = /obj/item/grenade/chem_grenade/adv_release
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/xray
 	name = "X-ray Laser Gun"
