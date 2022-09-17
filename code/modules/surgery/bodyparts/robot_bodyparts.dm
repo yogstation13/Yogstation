@@ -332,6 +332,12 @@
 				flash1 = F
 			to_chat(user, span_notice("You insert the flash into the eye socket."))
 			return
+	else if(istype(W, /obj/item/stock_parts/manipulator))
+		to_chat(user, "You install the manipulator and modify the head, creating a functional spider-bot!")
+		new /mob/living/simple_animal/spiderbot (get_turf(src))
+		qdel(W)
+		qdel(src)
+		return
 	return ..()
 
 /obj/item/bodypart/head/robot/crowbar_act(mob/living/user, obj/item/I)
