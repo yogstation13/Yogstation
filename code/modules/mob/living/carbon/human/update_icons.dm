@@ -428,16 +428,17 @@ There are several things that need to be remembered:
 
 	if(wear_mask)
 		update_hud_wear_mask(wear_mask)
-		overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask/mask.dmi')
-		var/mutable_appearance/mask_overlay = overlays_standing[FACEMASK_LAYER]
-		if(mask_overlay)
-			remove_overlay(FACEMASK_LAYER)
-			if(OFFSET_FACEMASK in dna.species.offset_features)
-				mask_overlay.pixel_x += dna.species.offset_features[OFFSET_FACEMASK][1]
-				mask_overlay.pixel_y += dna.species.offset_features[OFFSET_FACEMASK][2]
-				overlays_standing[FACEMASK_LAYER] = mask_overlay
-		apply_overlay(FACEMASK_LAYER)
-	update_mutant_bodyparts() //e.g. upgate needed because mask now hides lizard snout
+		if(!(head && (head.flags_inv & HIDEMASK)))
+			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask/mask.dmi')
+			var/mutable_appearance/mask_overlay = overlays_standing[FACEMASK_LAYER]
+			if(mask_overlay)
+				remove_overlay(FACEMASK_LAYER)
+				if(OFFSET_FACEMASK in dna.species.offset_features)
+					mask_overlay.pixel_x += dna.species.offset_features[OFFSET_FACEMASK][1]
+					mask_overlay.pixel_y += dna.species.offset_features[OFFSET_FACEMASK][2]
+					overlays_standing[FACEMASK_LAYER] = mask_overlay
+			apply_overlay(FACEMASK_LAYER)
+		update_mutant_bodyparts() //e.g. upgate needed because mask now hides lizard snout
 
 /mob/living/carbon/human/update_inv_back()
 	remove_overlay(BACK_LAYER)
