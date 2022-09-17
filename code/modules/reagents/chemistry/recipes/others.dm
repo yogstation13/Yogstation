@@ -788,5 +788,11 @@
 	name = "Bleach"
 	id = /datum/reagent/space_cleaner/bleach
 	results = list(/datum/reagent/space_cleaner/bleach = 4)
-	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/water = 2, /datum/reagent/oxygen = 1)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/water = 2, /datum/reagent/space_cleaner/sterilizine = 1)
 	required_temp = 188
+
+/datum/chemical_reaction/bleach2 //ghetto chem bleach
+	name = "Bleach2"
+	id = /datum/reagent/space_cleaner/bleach
+	results = list(/datum/reagent/space_cleaner/bleach = 4)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/toxin/plasma = 2, /datum/reagent/liquidgibs = 1, /datum/reagent/consumable/ice = 3) //cooled with ice

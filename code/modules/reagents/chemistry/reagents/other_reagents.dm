@@ -942,38 +942,53 @@
 
 /datum/reagent/space_cleaner/bleach
 	name = "Bleach"
-	description = "A harsh chemical sterilizer. Do Not Ingest."
+	description = "A harsh chemical sterilizer. Keep away from unstable individuals and children."
 	color = "#fbfdd6"
 	taste_description = "burning"
 	toxpwr = 0 //all the damage comes from the life process
+	overdose_threshold = 30
 
 /datum/reagent/space_cleaner/bleach/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
 	. = ..()
-	if(method in list(TOUCH, VAPOR))
+	if(method in list(TOUCH, PATCH))
 		for(var/datum/surgery/S as anything in C.surgeries)
-			S.success_multiplier = max(0.1, S.success_multiplier)
-			// +10% success propability on each step, useful while operating in less-than-perfect conditions
+			S.success_multiplier = max(0.3, S.success_multiplier)
+			// +30% success propability on each step, useful while operating in less-than-perfect conditions
 	..()
 
-/datum/reagent/space_cleaner/bleach/on_mob_life(mob/living/carbon/M) //stronger cyanide, basically
-
-	if(prob(15))
-		M.losebreath += 2
-		if(prob(33))
-			M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 1 * REM)
-		if(prob(33))
-			M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 1 * REM)
-		if(prob(33))
-			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1 * REM)
-	if(prob(10))
-		to_chat(M, "You feel horrendously weak!")
-		M.adjustStaminaLoss(4*REM, 0)
-		M.adjustToxLoss(3.25*REM, 0)
-		M.vomit(0, FALSE, FALSE, 3)
-	if(prob(1))
-		for(var/datum/disease/D as anything in M.diseases)
-			D.cure(FALSE)
+/datum/reagent/space_cleaner/bleach/on_mob_life(mob/living/carbon/C)
+	switch(rand(1,3))
+		if(1)
+			M.losebreath += 2
+			switch(rand(1,3))
+				if(1)
+					C.adjustOrganLoss(ORGAN_SLOT_STOMACH, 2 * REM)
+				if(2)
+					C.adjustOrganLoss(ORGAN_SLOT_LUNGS, 2 * REM)
+				if(3)
+					C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2 * REM)
+		if(2)
+			to_chat(C, "You feel very short of breath!")
+			C.losebreath += 4
+			C.adjustStaminaLoss(4*REM, 0)
+			C.adjustToxLoss(3.25*REM, 0)
+			C.vomit(0, FALSE, FALSE, 3)
+		if(3)
+			if(prob(3))
+				for(var/datum/disease/D as anything in M.diseases)
+					D.cure(FALSE)
 	return ..()
+
+/datum/reagent/space_cleaner/bleach/overdose_process(mob/living/carbon/C)
+	C.losebreath += 4
+	to_chat(C, "Your stomach feels like it's melting!")
+	C.adjustOrganLoss(ORGAN_SLOT_STOMACH, 5 * REM)
+	if(prob(20))
+		to_chat(C, "You feel like you're melting from the inside out!")
+		C.losebreath += 6
+		C.adjustToxLoss(10*REM, 0)
+		C.adjustFireLoss(2*REM, 0)
+		C.vomit(0, TRUE, TRUE, 4)
 
 /datum/reagent/iron
 	name = "Iron"
