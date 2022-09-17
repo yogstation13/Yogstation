@@ -182,6 +182,14 @@
 	amount_per_transfer_from_this = 57
 	list_reagents = list(/datum/reagent/medicine/salbutamol = 10, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/tricordrazine = 15, /datum/reagent/medicine/epinephrine = 10, /datum/reagent/medicine/lavaland_extract = 2, /datum/reagent/medicine/omnizine = 5)
 
+/obj/item/reagent_containers/autoinjector/medipen/survival/stimpak
+	name = "Healing Stimpak"
+	desc = "A Stimpak Used for rapid healing"
+	icon_state = "stimpakpen"
+	volume = 57
+	amount_per_transfer_from_this = 57
+	list_reagents = list(/datum/reagent/medicine/salbutamol = 10, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/tricordrazine = 15, /datum/reagent/medicine/epinephrine = 10, /datum/reagent/medicine/lavaland_extract = 2, /datum/reagent/medicine/omnizine = 5)
+
 /obj/item/reagent_containers/autoinjector/medipen/species_mutator
 	name = "species mutator medipen"
 	desc = "Embark on a whirlwind tour of racial insensitivity by \
