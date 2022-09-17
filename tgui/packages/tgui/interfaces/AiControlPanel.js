@@ -125,12 +125,6 @@ export const AiControlPanel = (props, context) => {
                           buttons={(
                             <Fragment>
                               <Button color={ai.can_download ? "good" : "bad"} tooltip={!data.intellicard ? ai.can_download ? "Requires IntelliCard" : "&¤!65%" : null} disabled={data.intellicard ? !ai.can_download : true} icon="download" onClick={() => act("start_download", { download_target: ai.ref })}>{ai.can_download ? "Download" : "&gr4&!/"}</Button>
-                              {!ai.being_hijacked && (
-                                <Button color="good" tooltip="Requires serial exploitation unit" icon="download" onClick={() => act("start_hijack", { target_ai: ai.ref })}>Start hijacking</Button>
-                              ) }
-                              {!!ai.being_hijacked && (
-                                <Button color="bad" icon="stop" onClick={() => act("stop_hijack", { target_ai: ai.ref })}>Stop hijacking</Button>
-                              )}
                             </Fragment>
                           )}>
                           <Box bold>Integrity:</Box>
