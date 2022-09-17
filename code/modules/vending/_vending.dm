@@ -460,8 +460,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 					freebie(user, 1)
 				if(76 to 90)
 					tilt(user)
-				if(91 to 100)
-					tilt(user, crit=TRUE)
 				else
 					return
 
