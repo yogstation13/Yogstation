@@ -129,9 +129,6 @@
 /datum/map_template/shuttle/arrival
 	port_id = "arrival"
 
-/datum/map_template/shuttle/infiltrator
-	port_id = "infiltrator"
-
 /datum/map_template/shuttle/aux_base
 	port_id = "aux_base"
 
@@ -528,10 +525,6 @@
 /datum/map_template/shuttle/labour/gax
 	suffix = "gax"
 	name = "labour shuttle (Gax)"
-
-/datum/map_template/shuttle/infiltrator/basic
-	suffix = "basic"
-	name = "basic syndicate infiltrator"
 
 /datum/map_template/shuttle/cargo/delta
 	suffix = "delta"

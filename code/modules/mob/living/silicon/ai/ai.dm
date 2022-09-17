@@ -269,6 +269,15 @@
 		sleep(0.1 SECONDS)
 		forceMove(core)
 
+/mob/living/silicon/ai/proc/set_core_display_icon_yogs(input) //moved because original file gone
+	var/datum/ai_skin/S = input
+
+	for (var/each in GLOB.ai_core_displays) //change status of displays
+		var/obj/machinery/status_display/ai_core/M = each
+		M.set_ai(S.icon_state, S.icon)
+		M.update()
+
+
 /mob/living/silicon/ai/verb/pick_icon()
 	set category = "AI Commands"
 	set name = "Set AI Core Display"

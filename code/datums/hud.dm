@@ -38,7 +38,6 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_HERETIC = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_MINDSLAVE = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_ZOMBIE = new/datum/atom_hud/antag(),
-	ANTAG_HUD_INFILTRATOR = new/datum/atom_hud/antag(), // Yogs
 	ANTAG_HUD_BLOODSUCKER = new/datum/atom_hud/antag(),
 	ANTAG_HUD_MHUNTER = new/datum/atom_hud/antag/hidden()
 	))

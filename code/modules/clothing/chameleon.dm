@@ -224,15 +224,6 @@
 			var/obj/item/clothing/CL = I
 			var/obj/item/clothing/PCL = picked_item
 			CL.flags_cover = initial(PCL.flags_cover)
-	if(istype(target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
-		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
-		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
-		var/obj/item/clothing/head/helmet/helmet = initial(HS.helmettype)
-		I.head_piece.initial_state = initial(helmet.icon_state)
-		update_item(helmet, I.head_piece)
-		I.head_piece.update_icon()
-		qdel(helmet)
-		//YOGS END
 	target.icon = initial(picked_item.icon)
 	target.on_chameleon_change()
 

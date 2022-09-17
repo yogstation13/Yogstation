@@ -42,25 +42,3 @@ GLOBAL_VAR_INIT(powersink_transmitted, 0)
 					power_drained += 50
 					if(A.charging == 2) // If the cell was full
 						A.charging = 1 // It's no longer full
-
-/obj/item/powersink/infiltrator
-	var/target
-	var/target_reached = FALSE
-	var/obj/item/radio/alert_radio
-
-/obj/item/powersink/infiltrator/Initialize()
-	. = ..()
-	alert_radio = new(src)
-	alert_radio.make_syndie()
-	alert_radio.listening = FALSE
-	alert_radio.canhear_range = 0
-
-/obj/item/powersink/infiltrator/on_drain(drained)
-	GLOB.powersink_transmitted += drained
-	if(GLOB.powersink_transmitted >= target && !target_reached)
-		alert_radio.talk_into(src, "Power objective reached.", "Syndicate")
-		visible_message("<span class='notice'>[src] beeps.</span>")
-		playsound('sound/machines/ping.ogg', 50, 1)
-		target_reached = TRUE
-		set_mode(CLAMPED_OFF)
-	return ..()
