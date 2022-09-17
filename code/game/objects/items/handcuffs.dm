@@ -158,6 +158,18 @@
 /obj/item/restraints/handcuffs/alien
 	icon_state = "handcuffAlien"
 
+/obj/item/restraints/handcuffs/alien/beno
+	name = "resin handcuffs"
+	desc = "Extremely weak cuffs made to restrict movement."
+	icon_state = "cuff" // Needs sprite
+	breakouttime = 10 //Deciseconds = 1s
+	break_strength = 1
+	item_flags = DROPDEL
+
+/obj/item/restraints/handcuffs/alien/beno/dropped(mob/user)	
+	user.visible_message(span_danger("[user]'s [name] falls apart"))
+	. = ..()
+
 /obj/item/restraints/handcuffs/fake
 	name = "fake handcuffs"
 	desc = "Fake handcuffs meant for gag purposes."
