@@ -200,6 +200,8 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	return data
 
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
+		data["ais"] += list(list("name" = A.name, "ref" = REF(A), "can_download" = A.can_download, "health" = A.health, "active" = A.mind ? TRUE : FALSE, "in_core" = istype(A.loc, /obj/machinery/ai/data_core)))
+	return data
 
 /obj/machinery/computer/ai_control_console/proc/finish_download()
 	if(!is_station_level(z))
