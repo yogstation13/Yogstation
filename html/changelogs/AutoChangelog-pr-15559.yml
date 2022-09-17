@@ -1,0 +1,5 @@
+author: " SuperSlayer, MistakeNot4892"
+delete-after: true 
+changes: 
+  - rscadd: "Added spider bots - small bots buildable through robotics"
+  - spellcheck: "Fixed a typo in borg code"
