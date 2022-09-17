@@ -1,0 +1,10 @@
+author: "Skrem_7, @grimm-hollowknight  for the sprites"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the Vxtvul Hammer, a relict hammer once used by the Vxtrin long ago. Now you can use it to obliterate any obstacle you can think of."
+  - rscadd: "Adds one hammer to the nukie ship and another to the pirate ship. Nukies can buy additional hammers for 13 TC each"
+  - rscadd: "Preterni traitors are able to buy a Vxtvul Hammer implant for 16 TC."
+  - rscdel: "Deletes the mantis implant briefcase."
+  - tweak: "You can now ALT+CLICK autosurgeons designed for arm implants to change the region they target (except ERT mantis blades)."
+  - imageadd: "Adds all related sprites for the hammer."
+  - wip: "Pirate hammer still needs different sprites. Supercharged state supports but lacks mob sprites."
