@@ -333,7 +333,7 @@
 	needs_sharp_harvest = FALSE
 	harvested_name = "harvested seraka mushrooms"
 	harvested_desc = "A couple of small seraka mushrooms, with the larger ones clearly having been recently removed. They'll grow back... eventually."
-	harvest = /obj/item/food/grown/ash_flora/seraka
+	harvest = /obj/item/reagent_containers/food/snacks/grown/ash_flora/seraka
 	harvest_amount_high = 6
 	harvest_time = 25
 	harvest_message_low = "You pluck a few choice tasty mushrooms."
