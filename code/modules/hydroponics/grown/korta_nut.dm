@@ -25,7 +25,7 @@
 	grind_results = list(/datum/reagent/consumable/korta_flour = 0)
 	juice_results = list(/datum/reagent/consumable/korta_milk = 0)
 	tastes = list("peppery heat" = 1)
-	distill_reagent = /datum/reagent/consumable/ethanol/kortara
+	distill_reagent = /datum/reagent/consumable/ethanol/bilk/kortara
 
 //Sweet Korta Nut
 /obj/item/seeds/korta_nut/sweet
@@ -49,4 +49,4 @@
 	grind_results = list(/datum/reagent/consumable/korta_flour = 0)
 	juice_results = list(/datum/reagent/consumable/korta_milk = 0, /datum/reagent/consumable/korta_nectar = 0)
 	tastes = list("peppery sweet" = 1)
-	distill_reagent = /datum/reagent/consumable/ethanol/kortara
+	distill_reagent = /datum/reagent/consumable/ethanol/bilk/kortara
