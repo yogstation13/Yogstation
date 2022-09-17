@@ -299,6 +299,44 @@
 		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
 	..()
 
+/datum/reagent/consumable/cilk/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(1.5,0, 0)
+		. = 1
+	else
+		if(M.getBruteLoss() && prob(20))
+			M.heal_bodypart_damage(1,0, 0)
+			. = 1
+	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
+		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
+	..()
+
+/datum/reagent/consumable/soymilk/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(1.5,0, 0)
+		. = 1
+	else
+		if(M.getBruteLoss() && prob(20))
+			M.heal_bodypart_damage(1,0, 0)
+			. = 1
+	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
+		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
+	..()
+
+/datum/reagent/consumable/cream/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(1.5,0, 0)
+		. = 1
+	else
+		if(M.getBruteLoss() && prob(20))
+			M.heal_bodypart_damage(1,0, 0)
+			. = 1
+	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
+		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
+	..()
+
+
+
 /datum/reagent/consumable/soymilk
 	name = "Soy Milk"
 	description = "An opaque white liquid made from soybeans."
