@@ -2498,5 +2498,5 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/triumphal_arch/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(islizard(M))
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "triumph", /datum/mood_event/memories_of_home, name)
+		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "triumph", name)
 	return ..()
