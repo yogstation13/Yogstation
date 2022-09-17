@@ -226,9 +226,9 @@
 			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
 			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
 			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
-			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak
-			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak
-			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak
+			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak(src)
+			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak(src)
+			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak(src)
 			new /obj/item/gun/energy/laser/aer9(src)
 
 		if("neo")
