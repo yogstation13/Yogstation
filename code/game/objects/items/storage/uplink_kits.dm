@@ -224,6 +224,11 @@
 			new /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b(src)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_t45b(src)
 			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
+			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
+			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
+			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak
+			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak
+			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak
 			new /obj/item/gun/energy/laser/aer9(src)
 
 		if("neo")
