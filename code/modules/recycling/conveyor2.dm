@@ -396,7 +396,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	desc = "A conveyor belt assembly."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_construct"
-	max_amount = 100
+	max_amount = 30
 	singular_name = "conveyor belt"
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/iron = 500)
