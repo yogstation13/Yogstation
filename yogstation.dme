@@ -3456,6 +3456,7 @@
 #include "yogstation\code\game\objects\effects\decals\turfdecal\tilecoloring.dm"
 #include "yogstation\code\game\objects\effects\spawner\structure.dm"
 #include "yogstation\code\game\objects\items\airlock_scanner.dm"
+#include "yogstation\code\game\objects\items\balloon.dm"
 #include "yogstation\code\game\objects\items\bandage.dm"
 #include "yogstation\code\game\objects\items\brace.dm"
 #include "yogstation\code\game\objects\items\cards_ids.dm"
