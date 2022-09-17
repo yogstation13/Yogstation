@@ -212,5 +212,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		H.clear_alert("preternis_charge")
 
+/mob/living/carbon/human/do_after_coefficent() //speeds up action speed
+	. = ..()
+	. *= 0.75
+
+
 /datum/species/preternis/has_toes()
 	return FALSE
