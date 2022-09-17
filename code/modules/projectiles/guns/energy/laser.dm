@@ -200,6 +200,5 @@
 	item_state = "plasma"
 	icon_state = "plasma"
 	desc = "A energy weapon that fires heated plasma clots. Due to the high accuracy and range is a good tool to eliminate the enemy."
-	origin_tech = "combat=3;magnets=3"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
 	cell_type = /obj/item/weapon/stock_parts/cell/ammo/mfc
