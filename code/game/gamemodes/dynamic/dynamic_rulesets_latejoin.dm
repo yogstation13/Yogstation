@@ -249,6 +249,13 @@
 	minimum_players = 25
 	repeatable = FALSE
 
+/datum/dynamic_ruleset/latejoin/trim_candidates()
+	. = ..()
+	for(var/mob/living/carbon/C in candidates)
+		if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))
+			candidates -= C
+			continue
+
 /datum/dynamic_ruleset/latejoin/bloodsucker/execute()
 	var/mob/latejoiner = pick(candidates) // This should contain a single player, but in case.
 	assigned += latejoiner.mind
