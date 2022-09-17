@@ -1,0 +1,7 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - rscadd: "Added weaver spawner"
+  - tweak: "Moved mob spawners to lootdrop.dm"
+  - tweak: "Replaces mob spawner icon to use the kitchen animal icon"
+  - tweak: "Reworked Weaver Nest"
