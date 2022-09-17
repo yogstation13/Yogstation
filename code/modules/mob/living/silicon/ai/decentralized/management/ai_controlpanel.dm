@@ -199,6 +199,8 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 	data["can_log_out"] = !one_time_password_used
 	return data
 
+	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
+
 /obj/machinery/computer/ai_control_console/proc/finish_download()
 	if(!is_station_level(z))
 		return
