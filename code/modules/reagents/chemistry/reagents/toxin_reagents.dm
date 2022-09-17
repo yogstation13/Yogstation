@@ -25,7 +25,7 @@
 
 /datum/reagent/toxin/snakevenom
 	name = "Snake Venom"
-	description = "A powerful poison gotten from milking a snakes venom."
+	description = "A potent poison gotten from milking a snakes venom."
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 2.5
 	taste_description = "bitter"
