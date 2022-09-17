@@ -2405,7 +2405,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "kortara_glass"
 	glass_name = "glass of kortara"
 	glass_desc = "The fermented nectar of the Korta nut, as enjoyed by lizards galaxywide."
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/kortara/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(M.getBruteLoss() && DT_PROB(10, delta_time))
@@ -2422,7 +2421,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "sea_breeze"
 	glass_name = "Sea Breeze"
 	glass_desc = "Minty, chocolatey, and creamy. It's like drinkable mint chocolate chip!"
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/sea_breeze/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	M.apply_status_effect(/datum/status_effect/throat_soothed)
@@ -2438,7 +2436,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "white_tiziran"
 	glass_name = "White Tiziran"
 	glass_desc = "I had a rough night and I hate the fucking humans, man."
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/drunken_espatier
 	name = "Drunken Espatier"
@@ -2450,8 +2447,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "drunken_espatier"
 	glass_name = "Drunken Espatier"
 	glass_desc = "A drink to make facing death easier."
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-
+	
 /datum/reagent/consumable/ethanol/drunken_espatier/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
 	C.hal_screwyhud = SCREWYHUD_HEALTHY //almost makes you forget how much it hurts
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "numb", /datum/mood_event/narcotic_medium, name) //comfortably numb
@@ -2468,7 +2464,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Protein Blend"
 	glass_desc = "Vile, even by lizard standards."
 	nutriment_factor = 3 * REAGENTS_METABOLISM
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/protein_blend/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(!islizard(M))
@@ -2488,7 +2483,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "glass_orange"
 	glass_name = "glass of mushi kombucha"
 	glass_desc = "A glass of (slightly alcoholic) fermented sweetened mushroom tea. Refreshing, if a little strange."
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/triumphal_arch
 	name = "Triumphal Arch"
@@ -2500,7 +2494,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "triumphal_arch"
 	glass_name = "Triumphal Arch"
 	glass_desc = "A toast to the Empire, long may it stand."
-	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/ethanol/triumphal_arch/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(islizard(M))
