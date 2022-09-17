@@ -226,6 +226,14 @@
 /datum/action/item_action/startchainsaw
 	name = "Pull The Starting Cord"
 
+/datum/action/item_action/charge_hammer
+	name = "Charge the Blast Pads"
+
+/datum/action/item_action/charge_hammer/Trigger()
+	var/obj/item/twohanded/vxtvulhammer/V = target
+	if(istype(V))
+		V.charge_hammer(owner)
+
 /datum/action/item_action/toggle_gunlight
 	name = "Toggle Gunlight"
 

@@ -389,13 +389,15 @@
 		F.I = src
 
 /obj/item/organ/cyberimp/arm/syndie_mantis
-	name = "G.O.R.L.E.X. mantis blade implants"
+	name = "G.O.R.L.E.X. mantis blade implant"
 	desc = "Modernized mantis blades designed and coined by Tiger operatives. Energy actuators makes the blade a much deadlier weapon."
 	contents = newlist(/obj/item/mantis/blade/syndicate)
 	syndicate_implant = TRUE
 
-/obj/item/organ/cyberimp/arm/syndie_mantis/l
-	zone = BODY_ZONE_L_ARM
+/obj/item/organ/cyberimp/arm/syndie_hammer
+	name = "Vxtvul Hammer implant"
+	desc = "A folded Vxtvul Hammer designed to be incorporated into preterni chassis. Surgery can permit it to fit in other organic bodies."
+	contents = newlist(/obj/item/twohanded/vxtvulhammer)
 	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/nt_mantis
@@ -403,7 +405,7 @@
 	desc = "Retractable arm-blade implants to get you out of a pinch. Wielding two will let you double-attack."
 	contents = newlist(/obj/item/mantis/blade/NT)
 
-/obj/item/organ/cyberimp/arm/nt_mantis/l
+/obj/item/organ/cyberimp/arm/nt_mantis/left
 	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/power_cord
