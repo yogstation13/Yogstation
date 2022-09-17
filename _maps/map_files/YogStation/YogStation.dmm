@@ -23570,6 +23570,22 @@
 /obj/item/circuitboard/computer/ai_upload_download,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
+"fdW" = (
+/obj/structure/closet/secure_closet{
+	name = "psychiatrist locker";
+	req_access_txt = "5"
+	},
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/psicodine,
+/obj/item/storage/pill_bottle/lsd{
+	name = "very happy pills bottle"
+	},
+/obj/item/storage/pill_bottle/happy{
+	name = "happy pills bottle"
+	},
+/obj/item/storage/pill_bottle/happiness,
+/turf/open/floor/wood,
+/area/medical/psych)
 "fen" = (
 /obj/machinery/computer/upload/ai{
 	dir = 1
@@ -26966,6 +26982,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"gFM" = (
+/obj/structure/table,
+/obj/item/assembly/signaler,
+/obj/item/clothing/suit/straight_jacket{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/storage/box/prisoner{
+	pixel_x = -5
+	},
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/item/clothing/mask/muzzle,
+/turf/open/floor/plasteel,
+/area/security/prison/hallway)
 "gFN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -28493,6 +28523,19 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
+"hmt" = (
+/obj/machinery/keycard_auth{
+	pixel_x = 24
+	},
+/obj/structure/closet/secure_closet/CMO,
+/obj/item/sensor_device,
+/obj/effect/turf_decal/tile/blue/opposingcorners{
+	dir = 1
+	},
+/obj/item/clothing/mask/muzzle,
+/obj/item/clothing/suit/straight_jacket,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "hmx" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -28804,17 +28847,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
-"hsE" = (
-/obj/machinery/keycard_auth{
-	pixel_x = 24
-	},
-/obj/structure/closet/secure_closet/CMO,
-/obj/item/sensor_device,
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/cmo)
 "hsK" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -37689,19 +37721,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
-"lnA" = (
-/obj/structure/table,
-/obj/item/assembly/signaler,
-/obj/item/clothing/suit/straight_jacket{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/item/storage/box/prisoner{
-	pixel_x = -5
-	},
-/obj/effect/turf_decal/trimline/red/filled/line,
-/turf/open/floor/plasteel,
-/area/security/prison/hallway)
 "lnS" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -52923,23 +52942,6 @@
 "rVs" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"rVt" = (
-/obj/machinery/camera{
-	c_tag = "Medbay Recovery Room";
-	dir = 4;
-	network = list("ss13","medbay")
-	},
-/obj/structure/bedsheetbin{
-	pixel_x = 2
-	},
-/obj/structure/table,
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/mask/muzzle,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
 "rVv" = (
 /obj/machinery/vending/snack/random,
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -53897,6 +53899,21 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
+"sto" = (
+/obj/machinery/camera{
+	c_tag = "Medbay Recovery Room";
+	dir = 4;
+	network = list("ss13","medbay")
+	},
+/obj/structure/bedsheetbin{
+	pixel_x = 2
+	},
+/obj/structure/table,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "stu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -64011,24 +64028,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/research)
-"wKO" = (
-/obj/structure/closet/secure_closet{
-	name = "psychiatrist locker";
-	req_access_txt = "5"
-	},
-/obj/item/storage/pill_bottle/dice,
-/obj/item/storage/pill_bottle/psicodine,
-/obj/item/storage/pill_bottle/lsd{
-	name = "very happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/happy{
-	name = "happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/happiness,
-/obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/mask/muzzle,
-/turf/open/floor/wood,
-/area/medical/psych)
 "wKP" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -92095,7 +92094,7 @@ hYb
 ydS
 uBk
 sHf
-wKO
+fdW
 aDR
 yiu
 cSb
@@ -94375,7 +94374,7 @@ gkk
 acd
 atJ
 fsi
-lnA
+gFM
 agj
 tVz
 ngy
@@ -106264,7 +106263,7 @@ vvK
 sKs
 qxl
 adK
-rVt
+sto
 fHF
 mNS
 bKQ
@@ -108049,7 +108048,7 @@ pnN
 kiy
 ims
 rzA
-hsE
+hmt
 bTF
 obO
 kiy
