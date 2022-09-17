@@ -206,7 +206,7 @@
 	if(iscarbon(mob_occupant))
 		C = mob_occupant
 		for(var/obj/item/bodypart/limb in C.get_damaged_bodyparts(TRUE, TRUE, FALSE, BODYPART_ROBOTIC))
-			robotic_limb_damage += limb.get_damage(FALSE)
+			robotic_limb_damage += limb.get_damage(stamina=FALSE)
 	
 	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
 		if(C)
