@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes species punch damage causing you to TAKE that kind of damage from punches rather than deal it"

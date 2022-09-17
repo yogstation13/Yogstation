@@ -1,6 +1,0 @@
-author: "SuperSlayer"
-delete-after: true 
-changes: 
-  - rscadd: "Eminence can break lights"
-  - experiment: "Eminence can interact with cogged APCs"
-  - tweak: "Slightly refactored eminence code"
