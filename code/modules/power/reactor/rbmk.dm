@@ -13,9 +13,9 @@
 #define RBMK_PRESSURE_OPERATING 1000 //PSI
 #define RBMK_PRESSURE_CRITICAL 1500 //PSI
 
-#define RBMK_MAX_CRITICALITY 3 //No more criticality than N for now.
+#define RBMK_MAX_CRITICALITY 5 //No more criticality than N for now.
 
-#define RBMK_POWER_FLAVOURISER 50 //To turn those KWs into something usable
+#define RBMK_POWER_FLAVOURISER 500 //To turn those KWs into something usable
 
 //Math. Lame.
 #define KPA_TO_PSI(A) (A/6.895)
@@ -242,7 +242,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(input_moles >= minimum_coolant_level)
 		last_coolant_temperature = KELVIN_TO_CELSIUS(coolant_input.return_temperature())
 		//Important thing to remember, once you slot in the fuel rods, this thing will not stop making heat, at least, not unless you can live to be thousands of years old which is when the spent fuel finally depletes fully.
-		var/heat_delta = (KELVIN_TO_CELSIUS(coolant_input.return_temperature()) / 100) * gas_absorption_effectiveness //Take in the gas as a cooled input, cool the reactor a bit. The optimum, 100% balanced reaction sits at K=1, coolant input temp of 200K / -73 celsius.
+		var/heat_delta = KELVIN_TO_CELSIUS(coolant_input.return_temperature()) * gas_absorption_effectiveness //Take in the gas as a cooled input, cool the reactor a bit. The optimum, 100% balanced reaction sits at K=1, coolant input temp of 200K / -73 celsius.
+		heat_delta /= coolant_input.total_moles()
 		last_heat_delta = heat_delta
 		temperature += heat_delta
 		coolant_output.merge(coolant_input) //And now, shove the input into the output.
@@ -602,7 +603,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if("input")
 			var/input = text2num(params["target"])
 			reactor.last_user = usr
-			reactor.desired_k = clamp(input, 0, 3)
+			reactor.desired_k = clamp(input, 0, RBMK_MAX_CRITICALITY)
 		if("eject")
 			if(reactor?.power > 20)
 				return
@@ -624,7 +625,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(reactor)
 		data["k"] = reactor.K
 		data["desiredK"] = reactor.desired_k
-		data["control_rods"] = 100 - (reactor.desired_k / 3 * 100) //Rod insertion is extrapolated as a function of the percentage of K
+		data["control_rods"] = 100 - (reactor.desired_k / RBMK_MAX_CRITICALITY * 100) //Rod insertion is extrapolated as a function of the percentage of K
 		data["powerData"] = powerData
 	data["psiData"] = psiData
 	data["tempInputData"] = tempInputData

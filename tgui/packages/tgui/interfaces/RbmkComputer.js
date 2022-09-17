@@ -10,7 +10,7 @@ export const RbmkComputer = (props, context) => {
       resizable
       width={350}
       height={500}>
-      <Window.Content>
+      <Window.Content fitted>
         <Tabs>
           <Tabs.Tab
             selected={tabIndex === 1}
@@ -78,7 +78,7 @@ export const RbmkStatsSection = (props, context) => {
         </ProgressBar>
         Neutrons per generation (K):
         <ProgressBar
-          value={(data.k / 3 * 100) * 0.01}
+          value={(data.k / 5 * 100) * 0.01}
           ranges={{
             good: [-Infinity, 0.4],
             average: [0.4, 0.6],
@@ -140,7 +140,7 @@ export const RbmkControlRodControl = (props, context) => {
       Neutrons per generation (K):
       <br />
       <ProgressBar
-        value={(k / 3 * 100) * 0.01}
+        value={(k / 5 * 100) * 0.01}
         ranges={{
           good: [-Infinity, 0.4],
           average: [0.4, 0.6],
@@ -155,7 +155,7 @@ export const RbmkControlRodControl = (props, context) => {
         value={Math.round(desiredK*10)/10}
         fillValue={Math.round(k*10)/10}
         minValue={0}
-        maxValue={3}
+        maxValue={5}
         step={0.1}
         stepPixelSize={5}
         onDrag={(e, value) => act('input', {
