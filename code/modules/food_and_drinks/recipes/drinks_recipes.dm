@@ -907,7 +907,7 @@
 
 /datum/chemical_reaction/drink/protein_blend
 	results = list(/datum/reagent/consumable/ethanol/protein_blend = 5)
-	required_reagents = list(/datum/reagent/yuck = 1, /datum/reagent/consumable/korta_flour = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/ethanol = 2)
+	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/consumable/korta_flour = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/ethanol = 2)
 
 /datum/chemical_reaction/drink/triumphal_arch
 	results = list(/datum/reagent/consumable/ethanol/triumphal_arch = 10)
