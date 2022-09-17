@@ -3509,6 +3509,7 @@
 #include "yogstation\code\game\objects\structures\bedsheet_bin.dm"
 #include "yogstation\code\game\objects\structures\fireaxe.dm"
 #include "yogstation\code\game\objects\structures\ghost_role_spawners.dm"
+#include "yogstation\code\game\objects\structures\ghostbeacon.dm"
 #include "yogstation\code\game\objects\structures\ladders.dm"
 #include "yogstation\code\game\objects\structures\table_frames.dm"
 #include "yogstation\code\game\objects\structures\tables_racks.dm"
