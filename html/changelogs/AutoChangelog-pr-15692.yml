@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Bomb armor is now 33% more effective against explosion damage"
+  - tweak: "Light explosion knockdown and heavy explosion unconsciousness are easier to avoid with enough armor"
