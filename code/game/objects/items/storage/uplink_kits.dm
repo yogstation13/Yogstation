@@ -223,9 +223,9 @@
 		if("brother") //brotherhood of steel
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
 			new /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced(src)
-			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
-			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
-			new /obj/item/reagent_containers/hypospray/medipen/stimpack/large(src)
+			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large(src)
+			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large(src)
+			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large(src)
 			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak(src)
 			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak(src)
 			new /obj/item/reagent_containers/autoinjector/medipen/survival/stimpak(src)
