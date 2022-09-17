@@ -435,8 +435,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/stack/conveyor/thirty
 	amount = 30
 
-/obj/item/stack/conveyor/onehundred //I am so tired of having incomplete stacks from auotlathes making 5 less than the max stack.
-	amount = 100
 
 /obj/item/paper/guides/conveyor
 	name = "paper- 'Nano-it-up U-build series, #9: Build your very own conveyor belt, in SPACE'"
