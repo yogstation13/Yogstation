@@ -6,3 +6,8 @@
 	name = "Low power"
 	desc = "Find a power cell to recharge from or you may lose power."
 	icon_state = "lowcell"
+
+/obj/screen/alert/preternis_wet
+	name = "Wet"
+	desc = "Your circuits are shorting from all the extra moisture"
+	icon_state = "drunk"

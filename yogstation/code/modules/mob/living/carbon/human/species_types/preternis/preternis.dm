@@ -11,7 +11,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR,HAIR,LIPS)
+	species_traits = list(EYECOLOR, HAIR, LIPS, DIGITIGRADE)
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
@@ -22,7 +22,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	burnmod = 1.5 //Computers don't like heat
 	coldmod = 0.8 //Computers like cold, but their lungs may not
 	heatmod = 1.75 //Again, computers don't like heat
-	speedmod = 0.1 //Metal legs are heavy and slow
+	speedmod = 0 //Metal legs are heavy and slow
 	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist.
 	siemens_coeff = 1.75 //Computers REALLY don't like being shorted out
 	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
@@ -37,6 +37,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/power_drain = 0.5 //probably going to have to tweak this shit
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
+	var/soggy = FALSE
 	screamsound = 'goon/sound/robot_scream.ogg'
 	wings_icon = "Robotic"
 	species_language_holder = /datum/language_holder/preternis
@@ -51,6 +52,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
 			continue
 		BP.max_damage = 35
+		
+	C.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+
+	var/matrix/new_transform = matrix()//tall and skinny, bug like, just like skrem envisioned
+	new_transform.Scale(0.95, 1/0.95)
+	C.transform = new_transform.Multiply(C.transform)
+	C.update_transform()
 
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
@@ -59,27 +67,18 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
+		
+	C.GetComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS).RemoveComponent()//remove emp proof if they stop being a preternis
+
+	var/matrix/new_transform = matrix()//returns them to normal shape if they swap to a different species
+	new_transform.Scale(1/0.95, 0.95)
+	C.transform = new_transform.Multiply(C.transform)
+	C.update_transform()
+
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_teslium")
-
-/datum/species/preternis/spec_emp_act(mob/living/carbon/human/H, severity)
-	. = ..()
-	switch(severity)
-		if(EMP_HEAVY)
-			H.adjustBruteLoss(20)
-			H.adjustFireLoss(20)
-			H.Paralyze(50)
-			charge *= 0.4
-			H.visible_message(span_danger("Electricity ripples over [H]'s subdermal implants, smoking profusely."), \
-							span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
-		if(EMP_LIGHT)
-			H.adjustBruteLoss(10)
-			H.adjustFireLoss(10)
-			H.Paralyze(20)
-			charge *= 0.6
-			H.visible_message(span_danger("A faint fizzling emanates from [H]."), \
-							span_userdanger("A fit of twitching overtakes you as your subdermal implants convulse violently from the electromagnetic disruption. Your sustenance reserves have been partially depleted from the blast."))
+	C.remove_movespeed_modifier("preternis_water")
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user)
 	. = ..()
@@ -152,6 +151,22 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
+
+	if(H.fire_stacks <= -1 && H.calculate_affecting_pressure(300) == 300)
+		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 5, blacklisted_movetypes=(FLYING|FLOATING))
+		H.adjustStaminaLoss(9)
+		H.adjustFireLoss(4)
+		if(!soggy)
+			H.emote("scream")
+			to_chat(H, span_userdanger("Your entire being screams in agony as being wet causes your wires to short!"))
+		soggy = TRUE
+		H.throw_alert("preternis_wet", /obj/screen/alert/preternis_wet)
+	else if(soggy)
+		H.remove_movespeed_modifier("preternis_water")
+		to_chat(H, "You breathe a sigh of relief as you dry off.")
+		soggy = FALSE
+		H.clear_alert("preternis_wet")
+
 	if(H.stat == DEAD)
 		return
 	handle_charge(H)
@@ -169,3 +184,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.throw_alert("preternis_charge", /obj/screen/alert/preternis_charge, 1)
 	else
 		H.clear_alert("preternis_charge")
+
+/datum/species/preternis/has_toes()
+	return FALSE
