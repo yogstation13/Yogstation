@@ -128,7 +128,6 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	new /obj/item/extinguisher/mini(src)
 	
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
@@ -143,7 +142,6 @@
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/gps/mining(src)
-	new /obj/item/extinguisher/mini(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 
 // Engineer survival box
@@ -151,7 +149,6 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	new /obj/item/extinguisher/mini(src)
 
 /obj/item/storage/box/engineer/radio/PopulateContents()
 	..() // we want the regular items too.
@@ -168,7 +165,6 @@
 	new /obj/item/clothing/mask/gas/sechailer(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	new /obj/item/extinguisher/mini(src)
 
 /obj/item/storage/box/security/radio/PopulateContents()
 	..() // we want the regular stuff too
@@ -179,7 +175,6 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	new /obj/item/extinguisher/mini(src)
 
 /obj/item/storage/box/plasmaman/miner/PopulateContents() //mining box for plasmemes
 	new /obj/item/clothing/mask/gas/explorer(src)
@@ -187,7 +182,6 @@
 	new /obj/item/crowbar/red(src)
 	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	new /obj/item/extinguisher/mini(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
