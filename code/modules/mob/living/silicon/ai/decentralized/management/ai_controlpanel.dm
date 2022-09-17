@@ -197,7 +197,6 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		data["current_ai_ref"] = REF(user)
 
 	data["can_log_out"] = !one_time_password_used
-	return data
 
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
 		data["ais"] += list(list("name" = A.name, "ref" = REF(A), "can_download" = A.can_download, "health" = A.health, "active" = A.mind ? TRUE : FALSE, "in_core" = istype(A.loc, /obj/machinery/ai/data_core)))
