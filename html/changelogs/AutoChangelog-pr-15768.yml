@@ -1,0 +1,6 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "legion cores now have a 4 second channel for being applied on station, 2 seconds if applying to another person"
+  - tweak: "legion cores now provide damage slowdown reduction rather than immunity when applied on station"
+  - rscadd: "legion cores that have been preserved after decaying will no longer be called \"decayed regenerative core\" because preserving cores now renames them to \"preserved regenerative core\""
