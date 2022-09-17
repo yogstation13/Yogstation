@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixes medbots trying to heal IPCs"
+  - tweak: "medbots ignore damage to robotic limbs"
