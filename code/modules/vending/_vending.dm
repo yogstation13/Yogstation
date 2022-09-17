@@ -495,7 +495,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	var/crit_case
 	if(crit)
-		crit_case = rand(1,5)
+		crit_case = rand(1,4)
 
 	if(forcecrit)
 		crit_case = forcecrit
