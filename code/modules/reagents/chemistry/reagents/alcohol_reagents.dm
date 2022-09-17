@@ -2395,7 +2395,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A strange cocktail with a cracked egg believed to treat hangovers."
 	shot_glass_icon_state = "ambermoonshotglass"
 
-/datum/reagent/consumable/ethanol/kortara
+/datum/reagent/consumable/ethanol/bilk/kortara
 	name = "Kortara"
 	description = "A sweet, milky nut-based drink enjoyed on Tizira. Frequently mixed with fruit juices and cocoa for extra refreshment."
 	boozepwr = 25
@@ -2406,11 +2406,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of kortara"
 	glass_desc = "The fermented nectar of the Korta nut, as enjoyed by lizards galaxywide."
 
-/datum/reagent/consumable/ethanol/kortara(mob/living/carbon/M)
-	if(M.getBruteLoss() && prob(10))
-		M.heal_bodypart_damage(1)
-		. = 1
-	return ..() || .
 	
 /datum/reagent/consumable/ethanol/sea_breeze
 	name = "Sea Breeze"
