@@ -1,0 +1,7 @@
+author: "SuperSlayer"
+delete-after: true 
+changes: 
+  - rscadd: "Added infiltrators as a roundstart dynamic ruleset"
+  - rscadd: "Added infiltrators as a midround dynamic ruleset"
+  - tweak: "Enabled infiltrator event"
+  - rscdel: "Infiltrators gamemode is removed from rotation"
