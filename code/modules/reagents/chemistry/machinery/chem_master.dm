@@ -260,7 +260,7 @@
 		var/vol_each_text = params["volume"]
 		var/vol_each_max = reagents.total_volume / amount
 		if (item_type == "pill")
-			vol_each_max = min(50, vol_each_max)
+			vol_each_max = min(10, vol_each_max)
 		else if (item_type == "patch")
 			vol_each_max = min(40, vol_each_max)
 		else if (item_type == "bottle")
@@ -306,6 +306,9 @@
 				if(STRB)
 					drop_threshold = STRB.max_items - bottle.contents.len
 			for(var/i = 0; i < amount; i++)
+				if(vol_each < 1)
+					playsound(src, 'sound/machines/buzz-sigh.ogg', 100, 0)
+					return FALSE
 				if(i < drop_threshold)
 					P = new/obj/item/reagent_containers/pill(target_loc)
 				else
@@ -321,6 +324,9 @@
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
 		if(item_type == "patch")
+			if(vol_each < 1)
+				playsound(src, 'sound/machines/buzz-sigh.ogg', 100, 0)
+				return FALSE
 			var/obj/item/reagent_containers/pill/patch/P
 			for(var/i = 0; i < amount; i++)
 				P = new/obj/item/reagent_containers/pill/patch(drop_location())
@@ -329,6 +335,9 @@
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
 		if(item_type == "bottle")
+			if(vol_each < 1)
+				playsound(src, 'sound/machines/buzz-sigh.ogg', 100, 0)
+				return FALSE
 			var/obj/item/reagent_containers/glass/bottle/P
 			for(var/i = 0; i < amount; i++)
 				P = new/obj/item/reagent_containers/glass/bottle(drop_location())
@@ -337,6 +346,9 @@
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
 		if(item_type == "condimentPack")
+			if(vol_each < 1)
+				playsound(src, 'sound/machines/buzz-sigh.ogg', 100, 0)
+				return FALSE
 			var/obj/item/reagent_containers/food/condiment/pack/P
 			for(var/i = 0; i < amount; i++)
 				P = new/obj/item/reagent_containers/food/condiment/pack(drop_location())
@@ -346,6 +358,9 @@
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
 		if(item_type == "condimentBottle")
+			if(vol_each < 1)
+				playsound(src, 'sound/machines/buzz-sigh.ogg', 100, 0)
+				return FALSE
 			var/obj/item/reagent_containers/food/condiment/P
 			for(var/i = 0; i < amount; i++)
 				P = new/obj/item/reagent_containers/food/condiment(drop_location())
