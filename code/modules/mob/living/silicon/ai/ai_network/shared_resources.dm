@@ -115,14 +115,16 @@
 
 	//Normalize CPU so 100% is used in the new network if 100% was used in total before
 	var/total_usage = total_cpu_assigned() //We normalise around this value, so the split network CPU usage will (approximately) end up at this too
-	for(var/A in network_cpu_assign)
-		var/split_usage = network_cpu_assign[A] / split_network_cpu
-		network_cpu_assign[A] = 1 * round(split_usage, 0.01)
+	if(split_network_cpu)
+		for(var/A in network_cpu_assign)
+			var/split_usage = network_cpu_assign[A] / split_network_cpu
+			network_cpu_assign[A] = 1 * round(split_usage, 0.01)
 
 	//We do the same for the network we leave behid
-	for(var/A in cpu_assigned)
-		var/split_usage = cpu_assigned[A] / total_usage
-		cpu_assigned[A] = 1 * round(split_usage, 0.01)
+	if(total_usage)
+		for(var/A in cpu_assigned)
+			var/split_usage = cpu_assigned[A] / total_usage
+			cpu_assigned[A] = 1 * round(split_usage, 0.01)
 
 			
 	//Not needed for RAM since it's not a percentage

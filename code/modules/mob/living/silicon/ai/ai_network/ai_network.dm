@@ -226,8 +226,6 @@
 	uniqueList_inplace(found_networks)
 
 	for(var/datum/ai_network/AN in found_networks)
-
-		
 		if(originator.resources != AN.resources)
 			if(length(originator.resources.networks) > length(AN.resources.networks))
 				originator.resources.add_resource(AN.resources)

@@ -34,6 +34,7 @@
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
+	r_hand = /obj/item/modular_computer/laptop/preset/network_admin
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_network
 	uniform = /obj/item/clothing/under/yogs/rank/network_admin
@@ -41,7 +42,6 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/workboots
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/engineering
-	backpack_contents = list(/obj/item/modular_computer/laptop/preset/network_admin=1)
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng

@@ -166,7 +166,7 @@ const ResourceAllocation = (props, context) => {
 
   return (
     <Fragment>
-      <Section title="Network CPU Resources">
+      <Section title="Networked CPU Resources">
         <ProgressBar
           value={data.total_assigned_cpu}
           ranges={{
@@ -178,7 +178,7 @@ const ResourceAllocation = (props, context) => {
           ({data.total_assigned_cpu * 100}%)
         </ProgressBar>
       </Section>
-      <Section title="Network RAM Resources">
+      <Section title="Networked RAM Resources">
         <ProgressBar
           ranges={{
             good: [data.total_ram * 0.8, Infinity],
@@ -189,7 +189,7 @@ const ResourceAllocation = (props, context) => {
           maxValue={data.total_ram}>{data.total_assigned_ram}/{data.total_ram} TB
         </ProgressBar>
       </Section>
-      <Section title="Network Resource Allocation">
+      <Section title="Local Network Resource Allocation">
         <LabeledList>
           <LabeledList.Item>
             CPU Capacity:

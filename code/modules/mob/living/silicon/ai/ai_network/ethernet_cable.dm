@@ -542,7 +542,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	var/turf/T = C.loc
 
-	if(!isturf(T) || T.underfloor_accessibility )		// sanity checks, also stop use interacting with T-scanner revealed cable
+	if(!isturf(T) || T.underfloor_accessibility < UNDERFLOOR_INTERACTABLE)		// sanity checks, also stop use interacting with T-scanner revealed cable
 		return
 
 	if(get_dist(C, user) > 1)		// make sure it's close enough
