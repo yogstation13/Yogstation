@@ -959,7 +959,7 @@
 /datum/reagent/space_cleaner/bleach/on_mob_life(mob/living/carbon/C)
 	switch(rand(1,3))
 		if(1)
-			M.losebreath += 2
+			C.losebreath += 2
 			switch(rand(1,3))
 				if(1)
 					C.adjustOrganLoss(ORGAN_SLOT_STOMACH, 2 * REM)
@@ -975,7 +975,7 @@
 			C.vomit(0, FALSE, FALSE, 3)
 		if(3)
 			if(prob(3))
-				for(var/datum/disease/D as anything in M.diseases)
+				for(var/datum/disease/D as anything in C.diseases)
 					D.cure(FALSE)
 	return ..()
 
