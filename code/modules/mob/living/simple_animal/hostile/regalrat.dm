@@ -39,11 +39,6 @@
 	coffer.Grant(src)
 	riot.Grant(src)
 	domain.Grant(src)
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be his crown?", ROLE_MOUSE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
-	if(LAZYLEN(candidates) && !mind)
-		var/mob/dead/observer/C = pick(candidates)
-		key = C.key
-		notify_ghosts("All rise for the rat king, ascendant to the throne in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Rat Created")
 	var/kingdom = pick("Plague","Miasma","Maintenance","Trash","Garbage","Rat","Vermin","Cheese")
 	var/title = pick("King","Lord","Prince","Emperor","Supreme","Overlord","Master","Shogun","Bojar","Tsar","Hetman")
 	name = "[kingdom] [title]"
@@ -315,8 +310,8 @@
 	. = ..()
 	INVOKE_ASYNC(src, .proc/get_player)
 
-/mob/living/simple_animal/hostile/regalrat/proc/get_player()
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be their crown?", ROLE_MOUSE, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
+/mob/living/simple_animal/hostile/regalrat/controlled/proc/get_player()
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be their crown?", ROLE_MOUSE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
 	if(LAZYLEN(candidates) && !mind)
 		var/mob/dead/observer/C = pick(candidates)
 		key = C.key
