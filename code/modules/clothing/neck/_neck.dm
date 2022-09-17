@@ -179,12 +179,6 @@
 	.= ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
-/obj/item/clothing/neck/petcollar/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
-	var/mob/living/carbon/C = M
-	if(C && !ishumanbasic(C))
-		return FALSE
-	return ..()
-
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
 	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot", MAX_NAME_LEN)
 	name = "[initial(name)] - [tagname]"
