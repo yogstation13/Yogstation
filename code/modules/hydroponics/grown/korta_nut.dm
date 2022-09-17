@@ -16,7 +16,7 @@
 	mutatelist = list(/obj/item/seeds/korta_nut/sweet)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
-/obj/item/food/grown/korta_nut
+/obj/item/reagent_containers/food/snacks/grown/korta_nut
 	seed = /obj/item/seeds/korta_nut
 	name = "korta nut"
 	desc = "A little nut of great importance. Has a peppery shell which can be ground into flour and a soft, pulpy interior that produces a milky fluid when juiced. Or you can eat them whole, as a quick snack."
@@ -34,14 +34,14 @@
 	icon_state = "seed-sweetkorta"
 	species = "kortanut"
 	plantname = "Sweet Korta Nut Bush"
-	product = /obj/item/food/grown/korta_nut/sweet
+	product = /obj/item/reagent_containers/food/snacks/grown/korta_nut/sweet
 	maturation = 10
 	production = 10
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/korta_nectar = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
 
-/obj/item/food/grown/korta_nut/sweet
+/obj/item/reagent_containers/food/snacks/grown/korta_nut/sweet
 	seed = /obj/item/seeds/korta_nut/sweet
 	name = "sweet korta nut"
 	desc = "A sweet treat lizards love to eat."
