@@ -59,6 +59,14 @@
 
 	//After then, it reacts to the surrounding atmosphere based on your thermal protection
 	if(!on_fire) // If you're on fire, ignore local air temperature
+		if(loc_temp < bodytemperature)
+			//Place is colder than we are
+			var/thermal_protection = heat_protection //This returns a 0 - 1 value, which corresponds to the percentage of heat protection.			
+			if(thermal_protection > 1)
+				adjust_bodytemperature((1+thermal_protection) / ((loc_temp + bodytemperature) * BODYTEMP_HEAT_DIVISOR) / heat_capacity_factor)
+		else
+			adjust_bodytemperature(heat_capacity_factor / ((loc_temp + bodytemperature) * BODYTEMP_HEAT_DIVISOR))
+
 		if(loc_temp > bodytemperature)
 			//Place is hotter than we are
 			var/thermal_protection = heat_protection //This returns a 0 - 1 value, which corresponds to the percentage of heat protection.
