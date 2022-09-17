@@ -14,7 +14,7 @@
  &mdash; <a href="code/__DEFINES/subsystems.html#define">Define Details</a></header>
 <main>
 <h1>code/__DEFINES/subsystems.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -45,84 +45,84 @@ when editing this file</p>
         <tr><th><a href="code/__DEFINES/subsystems.html#define/COMPILE_OVERLAYS">COMPILE_OVERLAYS</a></th><td>Compile all the overlays for an atom from the cache lists</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/COMPILE_OVERLAYS"><aside class="declaration">#define </aside>COMPILE_OVERLAYS
             <aside>(A)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L193">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L193">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 193"/></a>
     </h3>
     <p>Compile all the overlays for an atom from the cache lists</p><h3 id="define/DB_MAJOR_VERSION"><aside class="declaration">#define </aside>DB_MAJOR_VERSION
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L14">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L14">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 14"/></a>
     </h3>
     <p>DB major schema version</p>
 <p>Update this whenever the db schema changes</p>
 <p>make sure you add an update to the schema_version stable in the db changelog</p><h3 id="define/DB_MINOR_VERSION"><aside class="declaration">#define </aside>DB_MINOR_VERSION
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L24">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L24">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 24"/></a>
     </h3>
     <p>DB minor schema version</p>
 <p>Update this whenever the db schema changes</p>
 <p>make sure you add an update to the schema_version stable in the db changelog</p><h3 id="define/INITIALIZATION_INNEW_MAPLOAD"><aside class="declaration">#define </aside>INITIALIZATION_INNEW_MAPLOAD
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L68">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L68">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 68"/></a>
     </h3>
     <p>New should call Initialize(TRUE)</p><h3 id="define/INITIALIZATION_INNEW_REGULAR"><aside class="declaration">#define </aside>INITIALIZATION_INNEW_REGULAR
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L70">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L70">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 70"/></a>
     </h3>
     <p>New should call Initialize(FALSE)</p><h3 id="define/INITIALIZATION_INSSATOMS"><aside class="declaration">#define </aside>INITIALIZATION_INSSATOMS
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L66">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L66">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 66"/></a>
     </h3>
     <p>New should not call Initialize</p><h3 id="define/INITIALIZE_HINT_LATELOAD"><aside class="declaration">#define </aside>INITIALIZE_HINT_LATELOAD
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L83">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L83">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 83"/></a>
     </h3>
     <p>call LateInitialize at the end of all atom Initalization</p>
 <p>The item will be added to the late_loaders list, this is iterated over after
 initalization of subsystems is complete and calls LateInitalize on the atom
 see <a href="atom.html#proc/LateInitialize">this file for the LateIntialize proc</a></p><h3 id="define/INITIALIZE_HINT_NORMAL"><aside class="declaration">#define </aside>INITIALIZE_HINT_NORMAL
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L75">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L75">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 75"/></a>
     </h3>
     <p>Nothing happens</p><h3 id="define/INITIALIZE_HINT_QDEL"><aside class="declaration">#define </aside>INITIALIZE_HINT_QDEL
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L86">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L86">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 86"/></a>
     </h3>
     <p>Call qdel on the atom after intialization</p><h3 id="define/INITIALIZE_IMMEDIATE"><aside class="declaration">#define </aside>INITIALIZE_IMMEDIATE
             <aside>(X)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L89">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L89">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 89"/></a>
     </h3>
     <p>type and all subtypes should always immediately call Initialize in New()</p><h3 id="define/TIMER_CLIENT_TIME"><aside class="declaration">#define </aside>TIMER_CLIENT_TIME
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L45">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L45">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 45"/></a>
     </h3>
     <p>Timing should be based on how timing progresses on clients, not the server.</p>
 <p>Tracking this is more expensive,
 should only be used in conjuction with things that have to progress client side, such as
 animate() or sound()</p><h3 id="define/TIMER_ID_NULL"><aside class="declaration">#define </aside>TIMER_ID_NULL
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L61">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L61">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 61"/></a>
     </h3>
     <p>Empty ID define</p><h3 id="define/TIMER_LOOP"><aside class="declaration">#define </aside>TIMER_LOOP
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L58">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L58">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 58"/></a>
     </h3>
     <p>Loops the timer repeatedly until qdeleted</p>
 <p>In most cases you want a subsystem instead, so don't use this unless you have a good reason</p><h3 id="define/TIMER_NO_HASH_WAIT"><aside class="declaration">#define </aside>TIMER_NO_HASH_WAIT
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L53">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L53">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 53"/></a>
     </h3>
     <p>prevents distinguishing identical timers with the wait variable</p>
 <p>To be used with TIMER_UNIQUE</p><h3 id="define/TIMER_OVERRIDE"><aside class="declaration">#define </aside>TIMER_OVERRIDE
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L36">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L36">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 36"/></a>
     </h3>
     <p>For unique timers: Replace the old timer rather then not start this one</p><h3 id="define/TIMER_STOPPABLE"><aside class="declaration">#define </aside>TIMER_STOPPABLE
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L48">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L48">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 48"/></a>
     </h3>
     <p>Timer can be stopped using deltimer()</p><h3 id="define/TIMER_UNIQUE"><aside class="declaration">#define </aside>TIMER_UNIQUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/5022cc4e951ef21ffda9e3193cbe1b3dc827075f/code/__DEFINES/subsystems.dm#L33">
+            <a href="https://github.com/yogstation13/Yogstation/blob/119ad8aa152ec8390ece5f014bda2ac617fa48dc/code/__DEFINES/subsystems.dm#L33">
         <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;subsystems.dm 33"/></a>
     </h3>
     <p>Don't run if there is an identical unique timer active</p>
@@ -130,7 +130,7 @@ animate() or sound()</p><h3 id="define/TIMER_ID_NULL"><aside class="declaration"
 and returns the id of the existing timer</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/5022cc4e951ef21ffda9e3193cbe1b3dc827075f">5022cc4</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/119ad8aa152ec8390ece5f014bda2ac617fa48dc">119ad8a</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>

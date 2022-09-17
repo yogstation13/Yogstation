@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(459 modules,
-    716/7361 macros, 9.7%)</aside></h3>
+    716/7364 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -710,7 +710,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(516 detailed/1166 documented/26144 total, 4.5%)</aside></h3>
+<aside>(519 detailed/1169 documented/26183 total, 4.5%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -963,7 +963,6 @@ The total amount of loading points among all subsystems. Should be defined by MC
     <li><a href="datum/corporation/nanotrasen.html" title="&#x2F;datum&#x2F;corporation&#x2F;nanotrasen">Nanotrasen</a></li>
     </ul></li>
     <li class="has-children"><a href="datum/crafting_recipe.html" title="&#x2F;datum&#x2F;crafting_recipe">crafting_recipe</a><ul class="index-tree">
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;baseball_bat">Baseball Bat</span> - Antag recipes</li>
     <li><a href="datum/crafting_recipe/blackcoffin.html" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;blackcoffin">Black Coffin</a> - From recipes.dm</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;bloodaltar">Blood Altar</span> - Structures</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food">food</span><ul class="index-tree">
@@ -991,6 +990,7 @@ DONKPOCCKETS</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;sashimi">Carp Sashimi</span> - FISH</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;kong">Kong</span> - Booze &amp; Bottles</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;metal_baseball_bat">Titanium Baseball Bat</span> - Antag recipes</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;stake">Stake</span> - Stakes</li>
     </ul></li>
     <li><span class="no-substance">data&#x2F;</span><a href="datum/data/vending_product.html" title="&#x2F;datum&#x2F;data&#x2F;vending_product">vending record datum</a> - A datum that represents a product that is vendable</li>
@@ -1115,7 +1115,9 @@ the more moles you use and the higher the heat, the higher is the efficiency</li
     <li><a href="datum/instrument_key.html" title="&#x2F;datum&#x2F;instrument_key">instrument_key</a> - Instrument key datums contain everything needed to know how to play a specific
 note of an instrument.*</li>
     <li><a href="datum/job.html" title="&#x2F;datum&#x2F;job">job</a></li>
-    <li><a href="datum/language_holder.html" title="&#x2F;datum&#x2F;language_holder">language_holder</a></li>
+    <li class="has-children"><a href="datum/language_holder.html" title="&#x2F;datum&#x2F;language_holder">language_holder</a><ul class="index-tree">
+    <li><a href="datum/language_holder/spiderbot.html" title="&#x2F;datum&#x2F;language_holder&#x2F;spiderbot">spiderbot</a></li>
+    </ul></li>
     <li class="has-children"><a href="datum/map_generator.html" title="&#x2F;datum&#x2F;map_generator">map_generator</a> - This type is responsible for any map generation behavior that is done in areas, override this to allow for area-specific map generation. This generation is ran by areas in initialize.<ul class="index-tree">
     <li class="has-children"><a href="datum/map_generator/cave_generator.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator">Cave Generator</a><ul class="index-tree">
     <li><a href="datum/map_generator/cave_generator/icemoon.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator&#x2F;icemoon">icemoon</a> - Spawning isn't done in procs to save on overhead on the 60k turfs we're going through.</li>
@@ -1535,6 +1537,7 @@ Will yield a &quot;?&quot;</li>
     <li><a href="mob/living/simple_animal/pet.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;pet">pet</a></li>
     <li><a href="mob/living/simple_animal/slaughter.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;slaughter">slaughter demon</a></li>
     <li><a href="mob/living/simple_animal/slime.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;slime">grey baby slime (123)</a></li>
+    <li><a href="mob/living/simple_animal/spiderbot.html" title="&#x2F;mob&#x2F;living&#x2F;simple_animal&#x2F;spiderbot">Spider bot</a></li>
     </ul></li>
     </ul></li>
     </ul></li>
@@ -2158,6 +2161,7 @@ See [limbgrower_designs.dm] for everything we can make.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;portable_atmospherics&#x2F;canister&#x2F;stimball_test">Stimball Test Canister</span> - A canister that is 1 Kelvin away from doing the stimball reaction.</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;machinery&#x2F;power">power</span><ul class="index-tree">
+    <li><a href="obj/machinery/power/apc.html" title="&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;apc">area power controller</a></li>
     <li><a href="obj/machinery/power/bluespace_tap.html" title="&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;bluespace_tap">Bluespace Harvester</a> - A station goal that consumes enormous amounts of power to generate (mostly fluff) rewards</li>
     <li><a href="obj/machinery/power/emitter.html" title="&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;emitter">emitter</a></li>
     <li><a href="obj/machinery/power/rad_collector.html" title="&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;rad_collector">Radiation Collector Array</a></li>
@@ -2313,7 +2317,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/5022cc4e951ef21ffda9e3193cbe1b3dc827075f">5022cc4</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/119ad8aa152ec8390ece5f014bda2ac617fa48dc">119ad8a</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
