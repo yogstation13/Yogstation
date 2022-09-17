@@ -5,9 +5,30 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
+"b" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
+"c" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/corner{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
 "d" = (
 /turf/template_noop,
 /area/template_noop)
+"e" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/door/opened{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
 "g" = (
 /obj/structure/sign/warning/explosives{
 	desc = "A warning sign which reads...something in a language you've never seen. The sign itself seems to indicate some kind of explosive danger?";
@@ -26,9 +47,20 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
+"k" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
 "m" = (
 /obj/structure/mecha_wreckage/durand,
 /obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
+"o" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
 "p" = (
@@ -47,9 +79,23 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
+"s" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/corner{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
 "u" = (
 /obj/structure/mecha_wreckage/phazon,
 /obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
+"w" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/cut/large{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
 "y" = (
@@ -58,15 +104,47 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
+"A" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/cut/medium{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
 "C" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/spawner/lootdrop/effects/landmines,
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
+"D" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/cut/large{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
+"E" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
+"F" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
 "G" = (
 /obj/structure/flora/rock,
 /obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
+"J" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/corner{
+	dir = 6
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
 "K" = (
@@ -98,6 +176,13 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
+"O" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
 "P" = (
 /obj/structure/glowshroom/glowcap,
 /obj/effect/spawner/lootdrop/effects/landmines,
@@ -122,6 +207,20 @@
 	},
 /obj/effect/mapping_helpers/no_lava,
 /turf/closed/indestructible/riveted/boss,
+/area/lavaland/surface)
+"W" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/door/opened{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface)
+"Z" = (
+/obj/effect/mapping_helpers/no_lava,
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface)
 
 (1,1,1) = {"
@@ -258,24 +357,24 @@ d
 d
 d
 d
-h
-a
-h
-h
+b
+E
+E
+Z
 d
 d
 d
 d
-h
-h
-h
-h
+s
+E
+E
+E
 g
-h
-h
-h
-h
-h
+e
+W
+E
+E
+Z
 d
 d
 d
@@ -290,18 +389,15 @@ d
 d
 d
 d
+O
 h
 h
-h
-h
-h
-S
-h
-C
-h
-h
-h
-h
+c
+E
+E
+E
+F
+J
 h
 h
 h
@@ -310,7 +406,10 @@ h
 h
 h
 h
-h
+c
+E
+E
+Z
 d
 d
 d
@@ -321,8 +420,8 @@ d
 d
 d
 d
-h
-h
+s
+J
 h
 h
 h
@@ -342,8 +441,8 @@ h
 h
 j
 h
-h
-h
+c
+Z
 d
 d
 d
@@ -352,8 +451,8 @@ d
 d
 d
 d
-h
-h
+s
+J
 h
 h
 h
@@ -375,8 +474,8 @@ C
 h
 h
 h
-h
-h
+c
+Z
 d
 d
 "}
@@ -384,7 +483,7 @@ d
 d
 d
 d
-h
+O
 h
 h
 h
@@ -408,15 +507,15 @@ h
 h
 h
 h
-h
+o
 d
 d
 "}
 (10,1,1) = {"
 d
 d
-h
-h
+s
+J
 h
 h
 h
@@ -440,14 +539,14 @@ h
 h
 S
 h
-h
+o
 d
 d
 "}
 (11,1,1) = {"
 d
 d
-h
+O
 S
 h
 h
@@ -472,14 +571,14 @@ G
 h
 h
 h
-h
-h
+D
+k
 d
 "}
 (12,1,1) = {"
 d
 d
-h
+D
 h
 h
 h
@@ -504,14 +603,14 @@ h
 m
 h
 h
-h
-h
+w
+k
 d
 "}
 (13,1,1) = {"
 d
 d
-h
+A
 h
 h
 S
@@ -536,7 +635,7 @@ h
 h
 h
 h
-h
+o
 d
 d
 "}
@@ -568,14 +667,14 @@ h
 h
 h
 h
-h
+o
 d
 d
 "}
 (15,1,1) = {"
 d
 d
-h
+O
 h
 G
 h
@@ -607,7 +706,7 @@ d
 (16,1,1) = {"
 d
 d
-h
+O
 h
 u
 h
@@ -632,15 +731,15 @@ h
 h
 h
 h
-h
+O
 d
 d
 "}
 (17,1,1) = {"
 d
 d
-h
-h
+c
+Z
 h
 h
 h
@@ -663,8 +762,8 @@ h
 h
 h
 h
-h
-h
+s
+J
 d
 d
 "}
@@ -672,7 +771,7 @@ d
 d
 d
 d
-h
+O
 h
 h
 h
@@ -695,7 +794,7 @@ h
 h
 P
 h
-h
+O
 d
 d
 d
@@ -704,8 +803,8 @@ d
 d
 d
 d
-h
-P
+c
+Z
 j
 h
 h
@@ -727,7 +826,7 @@ h
 h
 h
 h
-h
+O
 d
 d
 d
@@ -737,7 +836,7 @@ d
 d
 d
 d
-h
+O
 h
 h
 h
@@ -759,7 +858,7 @@ h
 h
 a
 h
-h
+O
 d
 d
 d
@@ -769,6 +868,7 @@ d
 d
 d
 d
+O
 h
 h
 h
@@ -790,8 +890,7 @@ h
 h
 h
 h
-h
-S
+O
 d
 d
 d
@@ -801,7 +900,7 @@ d
 d
 d
 d
-h
+O
 h
 h
 G
@@ -823,7 +922,7 @@ h
 h
 h
 h
-h
+O
 d
 d
 d
@@ -833,7 +932,7 @@ d
 d
 d
 d
-h
+O
 h
 h
 h
@@ -854,8 +953,8 @@ h
 u
 h
 h
-h
-h
+s
+J
 d
 d
 d
@@ -865,8 +964,8 @@ d
 d
 d
 d
-h
-h
+c
+Z
 h
 h
 h
@@ -886,7 +985,7 @@ h
 h
 h
 h
-h
+O
 d
 d
 d
@@ -898,7 +997,7 @@ d
 d
 d
 d
-h
+O
 h
 h
 h
@@ -917,8 +1016,8 @@ j
 C
 h
 h
-h
-h
+s
+J
 d
 d
 d
@@ -930,7 +1029,7 @@ d
 d
 d
 d
-h
+O
 h
 h
 h
@@ -944,12 +1043,12 @@ h
 h
 h
 h
-h
-h
-h
-h
-h
-h
+s
+E
+E
+E
+E
+J
 d
 d
 d
@@ -962,21 +1061,21 @@ d
 d
 d
 d
+c
+Z
 h
 h
 h
 h
 h
-h
-h
-h
-h
-h
-h
+s
+E
+e
+W
 T
-h
-h
-h
+E
+E
+J
 d
 d
 d
@@ -995,13 +1094,13 @@ d
 d
 d
 d
-h
-h
-h
-a
-h
-h
-h
+c
+E
+E
+E
+E
+E
+J
 d
 d
 d
