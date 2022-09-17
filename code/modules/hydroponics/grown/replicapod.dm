@@ -120,7 +120,7 @@
 		podman.set_cloned_appearance()
 		podman.dna.species.exotic_blood = max(reagents_add) || /datum/reagent/water
 		log_cloning("[key_name(mind)] cloned as a podman via [src] in [parent] at [AREACOORD(parent)].")
-		to_chat(podman, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
+		to_chat(podman, span_boldwarning("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
 
 	else //else, one packet of seeds. maybe two
 		var/seed_count = 1
