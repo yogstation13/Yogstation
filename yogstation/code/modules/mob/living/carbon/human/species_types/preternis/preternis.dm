@@ -11,7 +11,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR, HAIR, LIPS, DIGITIGRADE)
+	species_traits = list(EYECOLOR, HAIR, LIPS, DIGITIGRADE, AGENDER)
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
@@ -19,18 +19,19 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
 	disliked_food = GROSS | VEGETABLES
 	brutemod = 1.25 //Have you ever punched a metal plate?
-	burnmod = 1.5 //Computers don't like heat
-	coldmod = 0.8 //Computers like cold, but their lungs may not
-	heatmod = 1.75 //Again, computers don't like heat
-	speedmod = 0 //Metal legs are heavy and slow
+	burnmod = 1.5 //Circuits don't like heat
+	coldmod = 0.8 //Circuits like cold, but their lungs may not
+	heatmod = 1.75 //Again, circuits don't like heat
+	speedmod = 0 //Sleek efficient metal legs, despite the weight
 	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist.
-	siemens_coeff = 1.75 //Computers REALLY don't like being shorted out
+	siemens_coeff = 1.75 //Circuits REALLY don't like being shorted out
 	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
+	var/datum/action/innate/maglock/maglock
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
@@ -79,6 +80,32 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_teslium")
 	C.remove_movespeed_modifier("preternis_water")
+
+// /datum/action/innate/maglock
+// 	var/maglocking = FALSE
+// 	name = "Maglock"
+// 	check_flags = AB_CHECK_CONSCIOUS
+// 	button_icon_state = "slimeheal"
+// 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+// 	background_icon_state = "bg_alien"
+
+// /datum/action/innate/maglock/IsAvailable()
+// 	. = ..()
+
+// /datum/action/innate/maglock/Activate()
+// 	var/mob/living/carbon/human/H = usr
+// 	if(maglocking)
+// 		ADD_TRAIT(owner, TRAIT_NOSLIPALL, "preternis_maglock")
+// 		H.add_movespeed_modifier("preternis_maglock", update=TRUE, priority=103, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+// 	else
+// 		REMOVE_TRAIT(owner, TRAIT_NOSLIPALL, "preternis_maglock")
+// 		H.remove_movespeed_modifier("preternis_maglock")
+// 	maglocking = !maglocking
+// 	to_chat(H, span_notice("You [maglocking ? "enable" : "disable"] your mag-pulse traction system."))
+// 	H.update_gravity(H.has_gravity())
+// 	for(var/X in actions)
+// 	 	var/datum/action/A = X
+// 	 	A.UpdateButtonIcon()
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user)
 	. = ..()
@@ -152,13 +179,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
 
-	if(H.fire_stacks <= -1 && H.calculate_affecting_pressure(300) == 300)
+	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 5, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustStaminaLoss(9)
 		H.adjustFireLoss(4)
 		if(!soggy)
 			H.emote("scream")
-			to_chat(H, span_userdanger("Your entire being screams in agony as being wet causes your wires to short!"))
+			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
 		soggy = TRUE
 		H.throw_alert("preternis_wet", /obj/screen/alert/preternis_wet)
 	else if(soggy)
