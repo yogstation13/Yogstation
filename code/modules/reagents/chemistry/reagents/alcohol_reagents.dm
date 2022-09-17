@@ -2468,7 +2468,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/protein_blend/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(!islizard(M)
-	M.adjust_nutrition(2 * REM * delta_time)
+	M.adjust_nutrition(2 * REM * delta_time))
 		M.adjust_disgust(5 * REM * delta_time)
 	else
 		M.adjust_disgust(2 * REM * delta_time)
