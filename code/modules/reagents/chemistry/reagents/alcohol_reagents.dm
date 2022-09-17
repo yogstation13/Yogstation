@@ -2451,7 +2451,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	
 /datum/reagent/consumable/ethanol/drunken_espatier/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
 	C.hal_screwyhud = SCREWYHUD_HEALTHY //almost makes you forget how much it hurts
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "numb", /datum/mood_event/narcotic_medium, name) //comfortably numb
+	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "numb", name) //comfortably numb
 	..()
 
 /datum/reagent/consumable/ethanol/protein_blend
