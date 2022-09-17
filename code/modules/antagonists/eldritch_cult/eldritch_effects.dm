@@ -364,7 +364,7 @@
 			switch(P)
 				if(PENANCE_SOUL)
 					owner.hellbound = TRUE
-					to_chat(owner, span_velvet("You feel a peculular emptiness..."))
+					to_chat(owner, span_velvet("You feel a peculiar emptiness..."))
 				if(PENANCE_LIMB)
 					var/obj/item/bodypart/BP
 					while(!BP)

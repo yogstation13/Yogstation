@@ -175,7 +175,7 @@
 	hidden = TRUE
 	cost = 2000
 	contains = list(/mob/living/simple_animal/hostile/carp)
-	crate name = "fish crate"
+	crate_name = "fish crate"
 
 /datum/supply_pack/critter/carp/generate()
 	. = ..()

@@ -8,7 +8,7 @@
 
 	min_players = 23
 
-	gamemode_blacklist = list("nuclear","wizard","revolution","abduction","infiltration","gang","cult","clockcult","darkspawn")
+	gamemode_blacklist = list("nuclear","wizard","revolution","abduction","infiltration","gang","cult","clockcult","darkspawn","dynamic")
 
 /datum/round_event_control/infiltrators/canSpawnEvent(var/players_amt, var/gamemode)
 	. = ..()

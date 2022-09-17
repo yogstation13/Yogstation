@@ -1,0 +1,4 @@
+author: " tmtmtl30, Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Negative AP scaling has been rescaled and is no longer linear"

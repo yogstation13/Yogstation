@@ -1,3 +1,5 @@
+#define CONCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
+
 /datum/species/ipc // im fucking lazy mk2 and cant get sprites to normally work
 	name = "IPC" //inherited from the real species, for health scanners and things
 	id = "ipc"
@@ -174,21 +176,23 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
 		return ..()
-	to_chat(H, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>."))
+	to_chat(H, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
 	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
 	return
 
-/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
-	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
+/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)	
+	CONCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
 	sleep(3 SECONDS)
-	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")
+	CONCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
 	sleep(3 SECONDS)
-	H.say("Finalizing setup...")
+	CONCIOUSAY(H.say("Finalizing setup..."))
 	sleep(3 SECONDS)
-	H.say("Unit [H.real_name] is fully functional. Have a nice day.")
+	CONCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
+	if(H.stat == DEAD)
+		return
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
 
@@ -201,6 +205,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	if(C == user)
 		user.visible_message(span_notice("[user] shoves \the [O] down their port."), span_notice("You shove [O] down your input port."))
 	else
@@ -208,16 +213,20 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 									span_userdanger("[user] forces [O] down [C]'s port!"))
 
 /datum/species/ipc/force_eat_text(fullness, obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	C.visible_message(span_danger("[user] attempts to shove [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to shove [O] down [C]'s port!"))
 	
 /datum/species/ipc/drink_text(obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	if(C == user)
 		user.visible_message(span_notice("[user] pours some of [O] into their port."), span_notice("You pour some of [O] down your input port."))
 	else
 		C.visible_message(span_danger("[user] pours some of [O] into [C]'s port."), span_userdanger("[user] pours some of [O]'s into [C]'s port."))
 	
 /datum/species/ipc/force_drink_text(obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
-	
+
+#undef CONCIOUSAY

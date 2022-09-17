@@ -550,6 +550,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	surplus = 50
 
+/datum/uplink_item/dangerous/donkbat
+	name = "Toy Baseball Bat"
+	desc = "A weighted solid plastic baseball bat, perfect for knocking the wind out of people."
+	item = /obj/item/melee/classic_baton/donkbat
+	cost = 6
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"
 	desc = "A fully-loaded Donksoft bullpup submachine gun that fires riot grade darts with a 20-round magazine."
@@ -1074,7 +1083,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/datum/computer_file/program/bomberman/program = bombdisk.find_file_by_name("bomberman")
 	var/code = program.bombcode
 
-	to_chat(user, span_warning("Your BomberMan code is : [code]."))
+	to_chat(user, span_warning("Insert the disk into a modular computer and interact with it with the File Manager to download the program. Your BomberMan code is : [code]."))
 	if(user.mind)
 		user.mind.store_memory("BomberMan code for [U.parent] : [code]")
 
@@ -1546,7 +1555,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/datum/computer_file/program/frame/program = framedisk.find_file_by_name("frame")
 	var/code = program.framecode
 
-	to_chat(user, span_warning("Your F.R.A.M.E. code is : [code]."))
+	to_chat(user, span_warning("Insert the disk into a modular computer and interact with it with the File Manager to download the program. Your F.R.A.M.E. code is : [code]."))
 	if(user.mind)
 		user.mind.store_memory("F.R.A.M.E. code for [U.parent] : [code]")
 

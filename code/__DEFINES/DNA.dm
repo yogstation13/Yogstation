@@ -60,7 +60,9 @@
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
 
-#define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 204
+#define CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY 255
+#define CHAMELEON_MUTATION_MINIMUM_TRANSPARENCY 30
+
 
 // String identifiers for associative list lookup
 
