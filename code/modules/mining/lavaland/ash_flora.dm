@@ -348,4 +348,3 @@
 	desc = "Small, deeply flavourful mushrooms originally native to Tizira."
 	icon_state = "seraka_cap"
 	seed = /obj/item/seeds/lavaland/seraka
-	wine_power = 40
