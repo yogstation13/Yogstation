@@ -348,3 +348,14 @@
 	desc = "Small, deeply flavourful mushrooms originally native to Tizira."
 	icon_state = "seraka_cap"
 	seed = /obj/item/seeds/lavaland/seraka
+
+/obj/item/seeds/lavaland/seraka
+	name = "pack of seraka mycelium"
+	desc = "This mycelium grows into seraka mushrooms, a species of savoury mushrooms originally native to Tizira used in food and traditional medicine."
+	icon_state = "mycelium-seraka"
+	species = "seraka"
+	plantname = "Seraka Mushrooms"
+	product = /obj/item/food/grown/ash_flora/seraka
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
+	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	reagents_add = list(/datum/reagent/toxin/mushroom_powder = 0.1, /datum/reagent/medicine/coagulant/seraka_extract = 0.02)
