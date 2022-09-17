@@ -58,7 +58,7 @@
 	add_armor(new armor_type(src))
 	cell = new /obj/item/stock_parts/cell/high/empty(src)
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
-	velocity_x = rand(-15, 15)
-	velocity_y = rand(-15, 15)
+	velocity_x = rand(-3, 3)
+	velocity_y = rand(-3, 3)
 	obj_integrity = rand(100, max_integrity)
 	brakes = FALSE
