@@ -30,12 +30,10 @@
 	var/obj/machinery/camera/camera = null
 	var/obj/item/mmi/mmi = null
 	var/req_access = ACCESS_ROBOTICS //Access needed to pop out the brain.
-
 	var/emagged = 0
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
 /mob/living/simple_animal/spiderbot/attackby(obj/item/O, mob/user)
-
 	if(istype(O, /obj/item/mmi))
 		var/obj/item/mmi/M = O
 		if(mmi) //There's already a brain in it.
@@ -64,11 +62,8 @@
 
 		if(!user.temporarilyRemoveItemFromInventory(M))
 			return
-
 		to_chat(user, span_notice("You install [M] in [src]!"))
-
 		transfer_personality(M)
-
 		update_icon()
 		return 1
 
@@ -100,7 +95,6 @@
 			return 0
 
 		var/obj/item/card/id/id_card
-
 		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
@@ -110,16 +104,13 @@
 		if(req_access in id_card.GetAccess())
 			to_chat(user, span_notice("You swipe your access card and pop the brain out of [src]."))
 			eject_brain()
-
 			if(held_item)
 				held_item.loc = src.loc
 				held_item = null
-
 			return 1
 		else
 			to_chat(user, span_warning("You swipe your card, with no effect."))
 			return 0
-
 	return ..()
 
 /mob/living/simple_animal/spiderbot/proc/transfer_personality(obj/item/mmi/M)
@@ -157,7 +148,6 @@
 			icon_state = "spiderbot-chassis-mmi"
 			icon_living = "spiderbot-chassis-mmi"
 		return
-
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
 
@@ -225,16 +215,13 @@
 	set name = "Drop held item"
 	set category = "Spiderbot"
 	set desc = "Drop the item you're holding."
-
 	if(stat != CONSCIOUS)
 		return
-
 	if(!held_item)
 		to_chat(usr, span_warning(">You have nothing to drop!"))
 		return 0
 
 	visible_message(span_notice("[src] drops \the [held_item]!"), span_notice("You drop \the [held_item]!"), span_hear("You hear a skittering noise and a soft thump."))
-
 	held_item.forceMove(loc)
 	held_item = null
 	return
@@ -246,7 +233,6 @@
 
 	if(stat != CONSCIOUS)
 		return
-
 	if(held_item)
 		to_chat(src, span_warning("You are already holding \the [held_item]"))
 		return
@@ -256,7 +242,6 @@
 		//Make sure we're not already holding it and it's small enough
 		if(I.loc != src && I.w_class <= WEIGHT_CLASS_SMALL)
 			items |= I
-
 	var/obj/selection = input("Select an item.", "Pickup") in items
 
 	if(selection)
