@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "Changelings now requires a population of 25 or higher."
+  - tweak: "changelings now requires a minimum antag count of 2"
