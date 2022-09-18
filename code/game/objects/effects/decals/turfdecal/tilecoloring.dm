@@ -1239,6 +1239,108 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/end/lower
 	icon_state = "trimline_end_fill_lower"
 
+/// chemorange trimlines
+/obj/effect/turf_decal/trimline/chemorange
+	color = "#F29A4D"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/chemorange/line
+	icon_state = "trimline"
+
+/obj/effect/turf_decal/trimline/chemorange/corner
+	icon_state = "trimline_corner"
+
+/obj/effect/turf_decal/trimline/chemorange/end
+	icon_state = "trimline_end"
+
+/obj/effect/turf_decal/trimline/chemorange/arrow_cw
+	icon_state = "trimline_arrow_cw"
+
+/obj/effect/turf_decal/trimline/chemorange/arrow_ccw
+	icon_state = "trimline_arrow_ccw"
+
+/obj/effect/turf_decal/trimline/chemorange/warning
+	icon_state = "trimline_warn"
+	alpha = 150
+
+/obj/effect/turf_decal/trimline/chemorange/mid_joiner
+	icon_state = "trimline_mid"
+
+/obj/effect/turf_decal/trimline/chemorange/filled
+	icon_state = "trimline_box_fill"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/line
+	icon_state = "trimline_fill"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/corner
+	icon_state = "trimline_corner_fill"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/end
+	icon_state = "trimline_end_fill"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/arrow_cw
+	icon_state = "trimline_arrow_cw_fill"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/arrow_ccw
+	icon_state = "trimline_arrow_ccw_fill"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/warning
+	icon_state = "trimline_warn_fill"
+	alpha = 150
+
+/obj/effect/turf_decal/trimline/chemorange/filled/mid_joiner
+	icon_state = "trimline_mid_fill"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/shrink_cw
+	icon_state = "trimline_shrink_cw"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/shrink_ccw
+	icon_state = "trimline_shrink_ccw"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/warning/flip
+	icon_state = "trimline_warn_fill_flip"
+	alpha = 150
+
+/obj/effect/turf_decal/trimline/chemorange/filled/line/lower
+	icon_state = "trimline_fill_lower"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/shrink_cw/lower
+	icon_state = "trimline_shrink_cw_lower"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/shrink_ccw/lower
+	icon_state = "trimline_shrink_ccw_lower"
+
+/obj/effect/turf_decal/trimline/chemorange/corner/lower
+	icon_state = "trimline_corner_lower"
+
+/obj/effect/turf_decal/trimline/chemorange/warning/lower
+	icon_state = "trimline_warn_lower"
+	alpha = 150
+
+/obj/effect/turf_decal/trimline/chemorange/warning/lower/flip
+	icon_state = "trimline_warn_lower_flip"
+	alpha = 150
+
+/obj/effect/turf_decal/trimline/chemorange/warning/lower/nobottom
+	icon_state = "trimline_warn_lower_nobottom"
+	alpha = 220
+
+/obj/effect/turf_decal/trimline/chemorange/warning/lower/nobottom/flip
+	icon_state = "trimline_warn_lower_notbottom_flip"
+
+/obj/effect/turf_decal/trimline/chemorange/warning/lower/corner
+	icon_state = "trimline_corner_lower_warn"
+
+/obj/effect/turf_decal/trimline/chemorange/warning/lower/corner/flip
+	icon_state = "trimline_corner_lower_warn_flip"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/lower
+	icon_state = "trimline_box_fill_lower"
+
+/obj/effect/turf_decal/trimline/chemorange/filled/end/lower
+	icon_state = "trimline_end_fill_lower"
+
+
 /// Secred trimlines
 
 /obj/effect/turf_decal/trimline/secred
