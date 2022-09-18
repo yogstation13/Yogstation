@@ -1499,6 +1499,7 @@
 
 /obj/effect/turf_decal/trimline/atmos/filled/warning/end
 	icon_state = "trimline_warn_fill_end_fill_lower"
+
 /obj/effect/turf_decal/trimline/atmos/filled/line/lower
 	icon_state = "trimline_fill_lower"
 
