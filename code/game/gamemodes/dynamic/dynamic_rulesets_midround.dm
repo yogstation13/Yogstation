@@ -350,6 +350,47 @@
 
 //////////////////////////////////////////////
 //                                          //
+//          INFILTRATORS (MIDROUND)         //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/from_ghosts/infiltration
+	name = "Infiltration"
+	antag_flag = ROLE_INFILTRATOR
+	antag_datum = ANTAG_DATUM_INFILTRATOR
+	enemy_roles = list("AI", "Cyborg", "Security Officer", "Warden","Detective","Head of Security", "Captain")
+	required_enemies = list(3,3,3,3,2,2,1,1,0,0)
+	required_candidates = 5
+	weight = 3
+	cost = 22
+	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	var/list/agents_cap = list(2,2,3,3,4,5,5,5,5,5)
+	var/datum/team/infiltrator/sit_team
+	flags = HIGH_IMPACT_RULESET
+	minimum_players = 35
+
+/datum/dynamic_ruleset/midround/from_ghosts/infiltration/acceptable(population=0, threat=0)
+	if (locate(/datum/dynamic_ruleset/roundstart/infiltration) in mode.executed_rules)
+		return FALSE 
+	indice_pop = min(agents_cap.len, round(living_players.len/5)+1)
+	required_candidates = agents_cap[indice_pop]
+	return ..()
+
+/datum/dynamic_ruleset/midround/from_ghosts/infiltration/ready(forced = FALSE)
+	if (required_candidates > (dead_players.len + list_observers.len))
+		return FALSE
+	return ..()
+
+/datum/dynamic_ruleset/midround/from_ghosts/infiltration/finish_setup(mob/new_character, index)
+	new_character.mind.special_role = "Syndicate Infiltrator"
+	new_character.mind.assigned_role = "Syndicate Infiltrator"
+	if(!sit_team)
+		sit_team = new /datum/team/infiltrator
+	new_character.mind.add_antag_datum(ANTAG_DATUM_INFILTRATOR, sit_team)
+	sit_team.update_objectives()
+
+//////////////////////////////////////////////
+//                                          //
 //              BLOB (GHOST)                //
 //                                          //
 //////////////////////////////////////////////
@@ -716,6 +757,11 @@
 /datum/dynamic_ruleset/midround/bloodsucker/trim_candidates()
 	. = ..()
 	for(var/mob/living/player in living_players)
+		if(iscarbon(player))
+			var/mob/living/carbon/C = player
+			if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))
+				living_players -= player
+				continue
 		if(issilicon(player)) // Your assigned role doesn't change when you are turned into a silicon.
 			living_players -= player
 		else if(is_centcom_level(player.z))

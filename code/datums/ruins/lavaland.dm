@@ -406,9 +406,9 @@
 	unpickable = TRUE //council-vote
 
 /datum/map_template/ruin/lavaland/medical
-	name = "Orion Medical Outpost"
+	name = "SIC Medical Outpost"
 	id = "medical"
-	description = "One of the Orion Medical Outposts was teleported after a bluespace anomaly"
+	description = "A Sol Interplanetary Coalition Medical Outpost was spontaneously transported to Lavaland due to bluespace instabilities."
 	suffix = "lavaland_surface_medical.dmm"
 	allow_duplicates = FALSE
 	cost = 15
@@ -501,3 +501,11 @@
 	suffix = "lavaland_surface_researchpod.dmm"
 	allow_duplicates = FALSE
 	cost = 10
+
+/datum/map_template/ruin/lavaland/forgottenkitchen
+	name = "Displaced Kitchen And Bar"
+	id = "forgottenkitchen"
+	description = "A Bar and Kitchen setup, lost to a large scale bluespace shift."
+	suffix = "lavaland_surface_forgottenkitchen.dmm"
+	allow_duplicates = FALSE
+	cost = 6

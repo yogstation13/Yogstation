@@ -9,7 +9,7 @@
 	maxHealth = 50
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	see_in_dark = 5
+	see_in_dark = 8
 	stop_automated_movement = TRUE
 	attacktext = "bites"
 	speak_emote = list("gurgles")

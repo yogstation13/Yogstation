@@ -7,27 +7,27 @@
 #define ROBOTIC_HEAVY_BURN_MSG "smoldering"
 
 #define IPCLIMB(_id, lname) \
-	/obj/item/bodypart/l_leg/robot/ipc/_id { \
+	/obj/item/bodypart/l_leg/ipc/_id { \
 		name = lname + " Left Leg"; \
 		icon_state = #_id + "_l_leg"; \
 		species_id = #_id; \
 	}; \
-	/obj/item/bodypart/r_leg/robot/ipc/_id { \
+	/obj/item/bodypart/r_leg/ipc/_id { \
 		name = lname + " Right Leg"; \
 		icon_state = #_id + "_r_leg"; \
 		species_id = #_id; \
 	}; \
-	/obj/item/bodypart/l_arm/robot/ipc/_id { \
+	/obj/item/bodypart/l_arm/ipc/_id { \
 		name = lname + " Left Arm"; \
 		icon_state = #_id + "_l_arm"; \
 		species_id = #_id; \
 	}; \
-	/obj/item/bodypart/r_arm/robot/ipc/_id { \
+	/obj/item/bodypart/r_arm/ipc/_id { \
 		name = lname + " Right Arm"; \
 		icon_state = #_id + "_r_arm"; \
 		species_id = #_id; \
 	}; \
-	/obj/item/bodypart/head/robot/ipc/_id { \
+	/obj/item/bodypart/head/ipc/_id { \
 		name = lname + " Head"; \
 		icon_state = #_id + "_head"; \
 		species_id = #_id; \
@@ -43,27 +43,27 @@
 	/datum/design/ipclimbs/l_leg/_id { \
 		name = lname + " Left Leg"; \
 		id = #_id + "_l_leg"; \
-		build_path = /obj/item/bodypart/l_leg/robot/ipc/_id; \
+		build_path = /obj/item/bodypart/l_leg/ipc/_id; \
 	}; \
 	/datum/design/ipclimbs/r_leg/_id { \
 		name = lname + " Right Leg"; \
 		id = #_id + "_r_leg"; \
-		build_path = /obj/item/bodypart/r_leg/robot/ipc/_id; \
+		build_path = /obj/item/bodypart/r_leg/ipc/_id; \
 	}; \
 	/datum/design/ipclimbs/l_arm/_id { \
 		name = lname + " Left Arm"; \
 		id = #_id + "_l_arm"; \
-		build_path = /obj/item/bodypart/l_arm/robot/ipc/_id; \
+		build_path = /obj/item/bodypart/l_arm/ipc/_id; \
 	}; \
 	/datum/design/ipclimbs/r_arm/_id { \
 		name = lname + " Right Arm"; \
 		id = #_id + "_r_arm"; \
-		build_path = /obj/item/bodypart/r_arm/robot/ipc/_id; \
+		build_path = /obj/item/bodypart/r_arm/ipc/_id; \
 	}; \
 	/datum/design/ipclimbs/head/_id { \
 		name = lname + " Head"; \
 		id = #_id + "_head"; \
-		build_path = /obj/item/bodypart/head/robot/ipc/_id; \
+		build_path = /obj/item/bodypart/head/ipc/_id; \
 	}; \
 
 //For ye whom may venture here, split up arm / hand sprites are formatted as "l_hand" & "l_arm".
@@ -332,6 +332,12 @@
 				flash1 = F
 			to_chat(user, span_notice("You insert the flash into the eye socket."))
 			return
+	else if(istype(W, /obj/item/stock_parts/manipulator))
+		to_chat(user, "You install the manipulator and modify the head, creating a functional spider-bot!")
+		new /mob/living/simple_animal/spiderbot (get_turf(src))
+		qdel(W)
+		qdel(src)
+		return
 	return ..()
 
 /obj/item/bodypart/head/robot/crowbar_act(mob/living/user, obj/item/I)
@@ -395,30 +401,70 @@
 
 
 
-/obj/item/bodypart/l_leg/robot/ipc
+/obj/item/bodypart/l_leg/ipc
+	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
+	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
+	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
+	heavy_brute_msg = ROBOTIC_HEAVY_BRUTE_MSG
 
-/obj/item/bodypart/r_leg/robot/ipc
-	sub_status = BODYPART_SUBTYPE_IPC
-	icon = 'icons/mob/human_parts.dmi'
-	limb_override = TRUE
+	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
+	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
+	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
-/obj/item/bodypart/l_arm/robot/ipc
+/obj/item/bodypart/r_leg/ipc
+	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
+	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
+	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
+	heavy_brute_msg = ROBOTIC_HEAVY_BRUTE_MSG
 
-/obj/item/bodypart/r_arm/robot/ipc
-	sub_status = BODYPART_SUBTYPE_IPC
-	icon = 'icons/mob/human_parts.dmi'
-	limb_override = TRUE
+	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
+	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
+	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
-/obj/item/bodypart/head/robot/ipc
+/obj/item/bodypart/l_arm/ipc
+	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'icons/mob/human_parts.dmi'
 	limb_override = TRUE
+	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
+	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
+	heavy_brute_msg = ROBOTIC_HEAVY_BRUTE_MSG
+
+	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
+	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
+	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
+
+/obj/item/bodypart/r_arm/ipc
+	status = BODYPART_ROBOTIC
+	sub_status = BODYPART_SUBTYPE_IPC
+	icon = 'icons/mob/human_parts.dmi'
+	limb_override = TRUE
+	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
+	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
+	heavy_brute_msg = ROBOTIC_HEAVY_BRUTE_MSG
+
+	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
+	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
+	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
+
+/obj/item/bodypart/head/ipc
+	status = BODYPART_ROBOTIC
+	sub_status = BODYPART_SUBTYPE_IPC
+	icon = 'icons/mob/human_parts.dmi'
+	limb_override = TRUE
+	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
+	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
+	heavy_brute_msg = ROBOTIC_HEAVY_BRUTE_MSG
+
+	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
+	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
+	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
 IPCLIMB(bshipc, "Bishop Cyberkinetics")
 IPCLIMB(bs2ipc, "Bishop Cyberkinetics (2.0)")

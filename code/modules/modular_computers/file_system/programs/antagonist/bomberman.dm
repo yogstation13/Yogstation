@@ -92,7 +92,16 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 				else
 					log_bomber(usr, "triggered a PDA explosion on", target.username, "[!is_special_character(usr) ? "(TRIGGED BY NON-ANTAG)" : ""]")
 					computer.visible_message(span_notice("Detonation success. [bomb.uses] charges remaining."), null, null, 1)
-					target.receive_message(pick(insults), fakepda)
+					var/datum/signal/subspace/messaging/ntospda/signal = new(src, list(
+						"name" = fakepda.username,
+						"job" = "SYNDICATE",
+						"message" = pick(insults),
+						"language" = /datum/language/common,
+						"targets" = list(target),
+						"program" = fakepda,
+						"logged" = TRUE
+					))
+					target.receive_message(signal)
 					spawn(0.3 SECONDS) // comedic timing but not fast enough to react
 						target.explode()
 			else

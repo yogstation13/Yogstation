@@ -495,10 +495,12 @@
 	bloodsucker_level_unspent++
 	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
 	// Spend Rank Immediately?
-	if(istype(owner.current.loc, /obj/structure/closet/crate/coffin))
+	if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
 		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin that you have claimed to thicken your blood and become more powerful.</EM>"))
 		if(bloodsucker_level_unspent >= 2)
 			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
+		return
+	SpendRank()
 
 /datum/antagonist/bloodsucker/proc/RankDown()
 	bloodsucker_level_unspent--
@@ -726,7 +728,7 @@
 
 	return fullname
 
-///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed, and Malkavian Bloodsuckers get alerted.
+///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed.
 /datum/antagonist/bloodsucker/proc/break_masquerade()
 	if(broke_masquerade)
 		return
@@ -745,11 +747,11 @@
 		if(bloodsuckerdatum.my_clan == CLAN_TOREADOR)
 			var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
 			masquerade_objective.target = owner.current
-			masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, is Final Death'ed."
+			masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, suffers Final Death."
 			bloodsuckerdatum.objectives += masquerade_objective
 			clan_minds.announce_objectives()
 
-///This is admin-only of reverting a broken masquerade, sadly it doesn't remove the Malkavian objectives yet.
+///This is admin-only of reverting a broken masquerade.
 /datum/antagonist/bloodsucker/proc/fix_masquerade()
 	if(!broke_masquerade)
 		return

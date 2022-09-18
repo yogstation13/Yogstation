@@ -1,7 +1,21 @@
 import { Fragment } from 'inferno';
+import { createSearch } from 'common/string';
+import { flow } from 'common/fp';
+import { filter, sortBy } from 'common/collections';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Flex, Input, Grid, NumberInput, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
+import { useDebug } from '../debug';
+
+export const searchDesigns = (designs, searchText = '') => {
+  const testSearch = createSearch(searchText, design => design.name);
+  return flow([
+    // Optional search term
+    searchText && filter(testSearch),
+    // Slightly expensive, but way better than sorting in BYOND
+    sortBy(design => design.name),
+  ])(designs);
+};
 
 const MaxMultiplier = (materials, design) => {
   let maxmulti = [];
@@ -19,11 +33,6 @@ const MaxMultiplier = (materials, design) => {
 };
 
 export const Autolathe = (props, context) => {
-
-  const [
-    searchterms,
-    setSearchText,
-  ] = useLocalState(context, 'searchterms', '');
   const [
     sheetnumberglass,
     setGlassSheetCount,
@@ -38,6 +47,21 @@ export const Autolathe = (props, context) => {
   ] = useLocalState(context, 'setcategory', 'Tools');
 
   const { act, data } = useBackend(context);
+  const [
+    searchText,
+    setSearchText,
+  ] = useLocalState(context, 'searchText', '');
+  const searchdesign = searchDesigns(data.designs, searchText);
+
+  const GetMapArr = (searchlen, designs) => {
+    if (searchlen > 1) {
+      return searchdesign;
+    }
+    return designs.filter(design => {
+      return (design.category.includes(setcategory));
+    });
+  };
+
   return (
     <Window width={1116} height={703} resizable>
       <Window.Content scrollable>
@@ -47,7 +71,7 @@ export const Autolathe = (props, context) => {
             <Box inline ml={80}>
               Search:
               <Input
-                value={searchterms}
+                value={searchText}
                 width="250px"
                 onInput={(e, value) => setSearchText(value)}
                 ml={2}
@@ -187,7 +211,7 @@ export const Autolathe = (props, context) => {
                     fluid
                     mr={2}
                     selected={
-                      (searchterms.length > 1 ? (
+                      (searchText.length > 1 ? (
                         (categoryName === 'Search' ? 1 : 0)
                       ):(
                         setcategory === categoryName
@@ -195,7 +219,7 @@ export const Autolathe = (props, context) => {
                     }
                     color="transparent"
                     content={categoryName}
-                    onClick={(!searchterms ? (
+                    onClick={(!searchText ? (
                       () => setCategory(categoryName)
                     ):(
                       () => setSearchText("")))}
@@ -204,34 +228,33 @@ export const Autolathe = (props, context) => {
               </Section>
             </Flex.Item>
             <Flex.Item>
-              {searchterms.length > 1 ? (
-                <Section fluid title="Search Results" width={50}>
-                  <div>
-                    <Flex.Item>
-                      {data.designs.filter(design => {
-                        const searchTerm = searchterms.toLowerCase();
-                        const searchableString = String(design.name).toLowerCase();
-                        return (searchterms.length < 2 ? (
-                          null
-                        ) : (
-                          (searchableString.match(new RegExp(searchterms, "i")))
-                        ));
-                      }).map(design => (
-                        <div key={data.designs}>
-                          <Grid>
-                            <Grid.Column size={2.5}>
-                              <Button
-                                key={design.name}
-                                content={design.name}
-                                disabled={data.disabled}
-                                title={design.name}
-                                icon="print"
-                                onClick={() => act('make', {
-                                  item_id: design.id,
-                                  multiplier: 1,
-                                })} />
-                              {design.max_multiplier.map(max => (
+              <Section fluid title={searchText.length > 1 ? "Search Designs" : "Known Designs"} width={50}>
+                <div>
+                  <Flex.Item>
+                    {GetMapArr(searchText.length, data.designs).map(design => (
+                      <div key={data.designs}>
+                        <Grid>
+                          <Grid.Column size={2.5}>
+                            <Button
+                              inline
+                              key={design.name}
+                              content={design.name}
+                              disabled={
+                                (data.stored_materials.iron < design.materials.iron)
+                                  || (data.stored_materials.glass < design.materials.glass)
+                                  || data.disabled
+                              }
+                              title={design.name}
+                              mr={1}
+                              icon="print"
+                              onClick={() => act('make', {
+                                item_id: design.id,
+                                multiplier: 1,
+                              })} />
+                            {MaxMultiplier(data.stored_materials, design)
+                              .map(max => (
                                 <Button
+                                  inline
                                   key={max}
                                   disabled={data.disabled}
                                   content={max + "x"}
@@ -241,134 +264,49 @@ export const Autolathe = (props, context) => {
                                   })}
                                 />
                               ))}
+                          </Grid.Column>
+                          <Grid.Column size={1}>
+                            {!design.materials.iron ? (
+                              ""
+                            ):(
+                              <Box ml={0} mr={0} inline
+                                color={(
+                                  data.stored_materials.iron >= design.materials.iron ? 'white' : 'bad'
+                                )}>
+                                {data.stored_materials.iron >= design.materials.iron ? (
+                                  <div>Metal: {design.materials.iron} cm³</div>
+                                ) : (
+                                  <b>Metal: {design.materials.iron} cm³</b>
+                                )}
+                              </Box>
 
-                            </Grid.Column>
-                            <Grid.Column size={1}>
-                              {design.materials.iron === 0 ? (
-                                ''
-                              ):(
-                                <Box ml={0} mr={0} inline
-                                  color={(
-                                    data.stored_materials.iron > design.materials.iron ? 'white' : 'bad'
-                                  )}>
-                                  {data.stored_materials.iron > design.materials.iron ? (
-                                    <div>Metal: {design.materials.iron}</div>
-                                  ) : (
-                                    <b>Metal: {design.materials.iron}</b>
-                                  )}
-                                </Box>
+                            )}
 
-                              )}
-                            </Grid.Column>
-                            <Grid.Column size={1}>
-                              {design.materials.glass === 0 ? (
-                                ""
-                              ):(
-                                <Box ml={0} mr={0} inline
-                                  color={(
-                                    data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
-                                  )}>
-                                  {data.stored_materials.glass >= design.materials.glass ? (
-                                    <div>Glass: {design.materials.glass}</div>
-                                  ) : (
-                                    <b>Glass: {design.materials.iron}</b>
-                                  )}
-                                </Box>
+                          </Grid.Column>
+                          <Grid.Column size={1}>
+                            {!design.materials.glass ? (
+                              ""
+                            ):(
+                              <Box ml={0} mr={0} inline
+                                color={(
+                                  data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
+                                )}>
+                                {data.stored_materials.glass >= design.materials.glass ? (
+                                  <div>Glass: {design.materials.glass} cm³</div>
+                                ) : (
+                                  <b>Glass: {design.materials.glass} cm³</b>
+                                )}
+                              </Box>
 
-                              )}
+                            )}
+                          </Grid.Column>
+                        </Grid>
+                      </div>
+                    ))}
+                  </Flex.Item>
+                </div>
 
-                            </Grid.Column>
-                          </Grid>
-                        </div>
-                      ))}
-
-                    </Flex.Item>
-                  </div>
-                </Section>
-              ) : (
-                <Section fluid title="Known Designs" width={50}>
-                  <div>
-                    <Flex.Item>
-                      {data.designs.filter(design => {
-                        return (design.category.includes(setcategory));
-                      }).map(design => (
-                        <div key={data.designs}>
-                          <Grid>
-                            <Grid.Column size={2.5}>
-                              <Button
-                                inline
-                                key={design.name}
-                                content={design.name}
-                                disabled={
-                                  (data.stored_materials.iron < design.materials.iron)
-                                  || (data.stored_materials.glass < design.materials.glass)
-                                  || data.disabled
-                                }
-                                title={design.name}
-                                mr={1}
-                                icon="print"
-                                onClick={() => act('make', {
-                                  item_id: design.id,
-                                  multiplier: 1,
-                                })} />
-                              {MaxMultiplier(data.stored_materials, design)
-                                .map(max => (
-                                  <Button
-                                    inline
-                                    key={max}
-                                    disabled={data.disabled}
-                                    content={max + "x"}
-                                    onClick={() => act('make', {
-                                      item_id: design.id,
-                                      multiplier: max,
-                                    })}
-                                  />
-                                ))}
-                            </Grid.Column>
-                            <Grid.Column size={1}>
-                              {!design.materials.iron ? (
-                                ""
-                              ):(
-                                <Box ml={0} mr={0} inline
-                                  color={(
-                                    data.stored_materials.iron >= design.materials.iron ? 'white' : 'bad'
-                                  )}>
-                                  {data.stored_materials.iron >= design.materials.iron ? (
-                                    <div>Metal: {design.materials.iron} cm³</div>
-                                  ) : (
-                                    <b>Metal: {design.materials.iron} cm³</b>
-                                  )}
-                                </Box>
-
-                              )}
-
-                            </Grid.Column>
-                            <Grid.Column size={1}>
-                              {!design.materials.glass ? (
-                                ""
-                              ):(
-                                <Box ml={0} mr={0} inline
-                                  color={(
-                                    data.stored_materials.glass >= design.materials.glass ? 'white' : 'bad'
-                                  )}>
-                                  {data.stored_materials.glass >= design.materials.glass ? (
-                                    <div>Glass: {design.materials.glass} cm³</div>
-                                  ) : (
-                                    <b>Glass: {design.materials.glass} cm³</b>
-                                  )}
-                                </Box>
-
-                              )}
-                            </Grid.Column>
-                          </Grid>
-                        </div>
-                      ))}
-                    </Flex.Item>
-                  </div>
-
-                </Section>
-
-              )}
+              </Section>
             </Flex.Item>
             <Flex.Item>
               <Section title="Autolathe Queue" width="100vw">

@@ -42,14 +42,16 @@
 				M.changeNext_move(CLICK_CD_MELEE * 0.5) //chug! chug! chug!
 
 		else
-			C.force_drink_text(src, C, user)
+			if(!C.force_drink_text(src, C, user))
+				return
 			if(!do_mob(user, M))
 				return
 			if(!reagents || !reagents.total_volume)
 				return // The drink might be empty after the delay, such as by spam-feeding
 			log_combat(user, M, "fed", reagents.log_list())
 
-		C.drink_text(src, C, user)
+		if(!C.drink_text(src, C, user))
+			return
 
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
 	checkLiked(fraction, M)

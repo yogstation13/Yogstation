@@ -63596,6 +63596,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"juK" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/highcap{
+	area = null;
+	areastring = "/area/ai_monitored/turret_protected/ai";
+	name = "AI Chamber APC";
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "jvQ" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -69361,14 +69371,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
-"nCJ" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/apc/highcap{
-	name = "AI Chamber APC";
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel/dark/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "nDD" = (
 /obj/machinery/status_display/evac{
 	pixel_y = 32
@@ -139485,7 +139487,7 @@ pwg
 rNh
 wxs
 qkA
-nCJ
+juK
 aTV
 aTV
 nIu

@@ -497,11 +497,9 @@
 		if(M.stat == CONSCIOUS)
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(istype(H.glasses, /obj/item/clothing/glasses/meson))
-					var/obj/item/clothing/glasses/meson/MS = H.glasses
-					if(MS.vision_flags == SEE_TURFS)
-						to_chat(H, span_notice("You look directly into the [src.name], good thing you had your protective eyewear on!"))
-						return
+				if(HAS_TRAIT(H, TRAIT_MESONS))
+					to_chat(H, span_notice("You look directly into the [src.name], good thing you were protected!"))
+					return
 
 		M.apply_effect(60, EFFECT_STUN)
 		M.visible_message(span_danger("[M] stares blankly at the [src.name]!"), \
