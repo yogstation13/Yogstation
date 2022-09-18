@@ -42,7 +42,7 @@
 	var/response = alert("Materialize? (You will not be revivable)", "Beacon", "Yes", "No")
 	if(response == "No")
 		return
-	var/mob/living/carbon/human/H = user.change_mob_type(/mob/living/carbon/human, null, null, TRUE)
+	var/mob/living/carbon/human/H = user.change_mob_type(/mob/living/carbon/human, get_turf(src), null, TRUE)
 	var/outfit = /datum/outfit/ghost
 	if(isplasmaman(H))
 		outfit = /datum/outfit/ghost/plasmaman
