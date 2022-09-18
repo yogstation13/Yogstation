@@ -31,13 +31,7 @@
 	flags_1 = NODECONSTRUCT_1
 
 /obj/machinery/jukebox/disco/bar
-	name = "radiant dance machine mark IV"
-	desc = "The first three prototypes were discontinued after mass casualty incidents."
-	icon_state = "disco"
-	anchored = FALSE
 	req_access = list(ACCESS_BAR)
-	var/list/spotlights = list()
-	var/list/sparkles = list()
 
 /datum/track
 	var/song_name = "generic"
