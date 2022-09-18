@@ -439,8 +439,8 @@
 	name = "Hyperactive Bone Marrow"
 	desc = "A mutation that stimulates the subject's bone marrow causes it to work three times faster than usual."
 	quality = POSITIVE
-	text_gain_indication = span_notice("You feel your bones ache for a moment.")
-	text_lose_indication = span_notice("You feel something in your bones calm down.")
+	text_gain_indication = span_notice("You feel your spine ache for a moment.")
+	text_lose_indication = span_notice("The aching in your spine seems to have calmed down.")
 	difficulty = 12
 	instability = 20
 	power_coeff = 1
