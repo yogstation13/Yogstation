@@ -99,21 +99,47 @@
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
 
-/obj/item/autosurgeon/organ/syndicate/syndie_mantis
+/obj/item/autosurgeon/arm
+	organ_type = /obj/item/organ/cyberimp/arm //Technically means they can be meta'd by trying to put a normal organ in them and having it return no special text
+
+/obj/item/autosurgeon/arm/examine(mob/user)
+	. = ..()
+	if(storedorgan) //So the extra text that distinguishes it from a normal autosurgeon doesn't appear if it's used up
+		. += "This autosurgeon can switch which arm it will install the implant into with ALT + CLICK."
+
+/obj/item/autosurgeon/arm/AltClick(mob/user) //Basically runs screwdriver_act on the implant inside
+	if(storedorgan)
+		var/obj/item/organ/cyberimp/arm/implant = storedorgan
+		if(implant.zone == BODY_ZONE_R_ARM)
+			implant.zone = BODY_ZONE_L_ARM
+			to_chat(user, span_notice("You change the autosurgeon to target the left arm."))
+		else
+			implant.zone = BODY_ZONE_R_ARM
+			to_chat(user, span_notice("You change the autosurgeon to target the right arm."))
+		implant.SetSlotFromZone()
+		implant.update_icon() //If for whatever reason, the implant is removed from the autosurgeon after it's switched
+
+/obj/item/autosurgeon/arm/syndicate/syndie_mantis
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis
 
-/obj/item/autosurgeon/organ/syndicate/syndie_mantis/l
+/obj/item/autosurgeon/arm/syndicate/syndie_hammer
 	uses = 1
-	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis/l
+	starting_organ = /obj/item/organ/cyberimp/arm/syndie_hammer
+
+/obj/item/autosurgeon/arm/syndicate/syndie_hammer/attack_self(mob/user) //Preternis-only implant (if you don't manually remove the implant)
+	if(!ispreternis(user))
+		to_chat(user, span_warning("The autosurgeon rejects your body!"))
+		return
+	..()
 
 /obj/item/autosurgeon/nt_mantis
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis
 
-/obj/item/autosurgeon/nt_mantis/l
+/obj/item/autosurgeon/nt_mantis/left
 	uses = 1
-	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis/l
+	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis/left
 
 /obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	uses = 3
