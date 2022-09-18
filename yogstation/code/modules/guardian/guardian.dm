@@ -45,6 +45,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	melee_damage_upper = 15
 	AIStatus = AI_OFF
 	hud_type = /datum/hud/guardian
+	see_in_dark = 8
 	var/list/barrier_images = list()
 	var/custom_name = FALSE
 	var/atk_cooldown = 10
