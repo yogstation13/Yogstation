@@ -13,7 +13,6 @@
 
 /obj/item/balloon/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-	to_chat(world, "attk")
 	if(I.sharpness == SHARP_POINTY)
 		user.visible_message("[user] pops the balloon!", "You pop the balloon")
 		new /obj/effect/decal/cleanable/generic(get_turf(src))
