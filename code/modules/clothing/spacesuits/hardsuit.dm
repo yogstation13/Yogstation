@@ -1155,6 +1155,7 @@
 	equip_delay_other = 180
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
+	
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/Initialize()
 	. = ..()
@@ -1163,6 +1164,12 @@
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced/Initialize()
 	. = ..()
 	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9, WOUND = 0.1))
+	
+/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/syndi
+	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 80, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
+
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced/syndi
+	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 15, BOMB = 80, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/debug // reused code so I dont have to make new procs
 	name = "debug hardsuit helmet"
