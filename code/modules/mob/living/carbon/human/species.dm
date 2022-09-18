@@ -99,6 +99,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/punchstunthreshold = 10
 	///base electrocution coefficient
 	var/siemens_coeff = 1
+	///base action speed coefficient
+	var/action_speed_coefficient = 1
 	///what kind of damage overlays (if any) appear on our species when wounded?
 	var/damage_overlay_type = "human"
 	///to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]

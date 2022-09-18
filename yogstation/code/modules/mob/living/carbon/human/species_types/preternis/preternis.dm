@@ -10,8 +10,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	id = "preternis"
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR, HAIR, LIPS, DIGITIGRADE, AGENDER)
+	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_POOR_AIM) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
+	species_traits = list(EYECOLOR, HAIR, LIPS, AGENDER)
+	no_equip = list(SLOT_SHOES)
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
@@ -31,7 +32,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
+	action_speed_coefficient = 0.9 //worker drone do the fast
 	var/datum/action/innate/maglock/maglock
+	var/lockdown = FALSE
 	var/charge = PRETERNIS_LEVEL_FULL
 	var/eating_msg_cooldown = FALSE
 	var/emag_lvl = 0
@@ -53,6 +56,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
 			continue
 		BP.max_damage = 35
+
+	if(ishuman(C))
+		maglock = new
+		maglock.Grant(C)
+		lockdown = FALSE
 		
 	C.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
 
@@ -81,31 +89,50 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	C.remove_movespeed_modifier("preternis_teslium")
 	C.remove_movespeed_modifier("preternis_water")
 
-// /datum/action/innate/maglock
-// 	var/maglocking = FALSE
-// 	name = "Maglock"
-// 	check_flags = AB_CHECK_CONSCIOUS
-// 	button_icon_state = "slimeheal"
-// 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
-// 	background_icon_state = "bg_alien"
+	if(maglock)
+		maglock.Remove(C)
+	if(lockdown)
+		REMOVE_TRAIT(C, TRAIT_NOSLIPALL, "preternis_maglock")
+		C.remove_movespeed_modifier("preternis_maglock")
 
-// /datum/action/innate/maglock/IsAvailable()
-// 	. = ..()
+/datum/action/innate/maglock
+	var/datum/species/preternis/owner_species
+	var/lockdown = FALSE
+	name = "Maglock"
+	check_flags = AB_CHECK_CONSCIOUS
+	button_icon_state = "slimeheal"
+	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	background_icon_state = "bg_alien"
 
-// /datum/action/innate/maglock/Activate()
-// 	var/mob/living/carbon/human/H = usr
-// 	if(maglocking)
-// 		ADD_TRAIT(owner, TRAIT_NOSLIPALL, "preternis_maglock")
-// 		H.add_movespeed_modifier("preternis_maglock", update=TRUE, priority=103, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
-// 	else
-// 		REMOVE_TRAIT(owner, TRAIT_NOSLIPALL, "preternis_maglock")
-// 		H.remove_movespeed_modifier("preternis_maglock")
-// 	maglocking = !maglocking
-// 	to_chat(H, span_notice("You [maglocking ? "enable" : "disable"] your mag-pulse traction system."))
-// 	H.update_gravity(H.has_gravity())
-// 	for(var/X in actions)
-// 	 	var/datum/action/A = X
-// 	 	A.UpdateButtonIcon()
+/datum/action/innate/maglock/Grant(mob/M)
+	if(!ispreternis(M))
+		return
+	var/mob/living/carbon/human/H = M 
+	owner_species = H.dna.species
+	. = ..()
+
+/datum/action/innate/maglock/Trigger()
+	var/mob/living/carbon/human/H = usr
+	if(!lockdown)
+		ADD_TRAIT(H, TRAIT_NOSLIPALL, "preternis_maglock")
+		H.add_movespeed_modifier("preternis_maglock", update=TRUE, priority=103, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+	else
+		REMOVE_TRAIT(H, TRAIT_NOSLIPALL, "preternis_maglock")
+		H.remove_movespeed_modifier("preternis_maglock")
+	lockdown = !lockdown
+	owner_species.lockdown = !owner_species.lockdown
+	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
+	H.update_gravity(H.has_gravity())
+
+/datum/species/preternis/negates_gravity(mob/living/carbon/human/H)
+	return (..() || lockdown)
+
+/mob/living/carbon/human/experience_pressure_difference(pressure_difference, direction)
+	if(ispreternis(src))
+		var/datum/species/preternis/species = dna.species
+		if(!species.lockdown)
+			to_chat(world, span_notice("[species.lockdown ? "enable" : "disable"] pressure"))
+			return ..()
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user)
 	. = ..()
@@ -163,7 +190,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(chem.current_cycle >= 20)
 		H.reagents.del_reagent(chem.type)
 
-
 	return FALSE
 
 /datum/species/preternis/spec_fully_heal(mob/living/carbon/human/H)
@@ -212,10 +238,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		H.clear_alert("preternis_charge")
 
-/mob/living/carbon/human/do_after_coefficent() //speeds up action speed
-	. = ..()
-	. *= 0.75
 
+// /datum/species/preternis/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+// 	. = ..()
+// 	if(!attacker_style?.nonlethal)
+// 		next_move_modifier *= 1.2
 
-/datum/species/preternis/has_toes()
+/datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
