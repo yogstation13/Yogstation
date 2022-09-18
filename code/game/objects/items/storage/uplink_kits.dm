@@ -221,8 +221,8 @@
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) //see see it fits the theme bc its blue and ice is blue
 		
 		if("brother") //brotherhood of steel
-			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
-			new /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced(src)
+			new /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced/syndi(src)
+			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/syndi(src)
 			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large(src)
 			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large(src)
 			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large(src)
