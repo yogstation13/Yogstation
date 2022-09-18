@@ -16,7 +16,6 @@
 
 /mob/living/update_sight()
 	. = ..()
-	for(var/para in hasparasites())
-		var/mob/living/simple_animal/hostile/guardian/G = para
-		G.lighting_alpha = lighting_alpha
-		G.update_sight()
+	for(var/mob/living/simple_animal/hostile/guardian/holopara as anything in hasparasites())
+		holopara.lighting_alpha = lighting_alpha
+		holopara.update_sight()
