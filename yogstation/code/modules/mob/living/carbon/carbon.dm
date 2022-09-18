@@ -42,3 +42,4 @@
 		C.forceMove(src)
 		stomach_contents.Add(C)
 		log_combat(src, C, "devoured")
+
