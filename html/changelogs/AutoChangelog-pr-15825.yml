@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Stops balloons from spamming EVERYONE ON THE SERVER"
