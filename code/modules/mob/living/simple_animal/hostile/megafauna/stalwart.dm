@@ -67,7 +67,7 @@
 
 	if(enrage(target))
 		if(move_to_delay == initial(move_to_delay))
-			visible_message(span_boldwarning("the [src] engages overdrive!"))
+			visible_message(span_boldwarning("[src] engages overdrive!"))
 			backup2()
 		move_to_delay = 3
 		return
