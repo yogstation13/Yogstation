@@ -1497,6 +1497,8 @@
 /obj/effect/turf_decal/trimline/atmos/filled/warning/flip
 	icon_state = "trimline_warn_fill_flip"
 
+/obj/effect/turf_decal/trimline/atmos/filled/warning/end
+	icon_state = "trimline_warn_fill_end_fill_lower"
 /obj/effect/turf_decal/trimline/atmos/filled/line/lower
 	icon_state = "trimline_fill_lower"
 
@@ -1511,11 +1513,11 @@
 
 /obj/effect/turf_decal/trimline/atmos/warning/lower
 	icon_state = "trimline_warn_lower"
-	alpha = 160
+	alpha = 220
 
 /obj/effect/turf_decal/trimline/atmos/warning/lower/flip
 	icon_state = "trimline_warn_lower_flip"
-	alpha = 160
+	alpha = 220
 
 /obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom
 	icon_state = "trimline_warn_lower_nobottom"
