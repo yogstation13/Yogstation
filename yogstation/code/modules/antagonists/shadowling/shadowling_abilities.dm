@@ -180,17 +180,17 @@
 		if(istype(LO, /obj/structure/light_prism))
 			qdel(LO)
 
-	for(var/obj/structure/glowshroom/G in orange(7, user)) //High radius because glowshroom spam wrecks shadowlings
+	for(var/obj/structure/glowshroom/G in orange(5, user))
 		if(G.light_power > 0)
 			var/obj/structure/glowshroom/shadowshroom/S = new /obj/structure/glowshroom/shadowshroom(G.loc) //I CAN FEEL THE WARP OVERTAKING ME! IT IS A GOOD PAIN!
 			S.generation = G.generation
 			G.visible_message(span_warning("[G] suddenly turns dark!"))
 			qdel(G)
-	for(var/turf/open/floor/grass/fairy/F in view(7, user))
+	for(var/turf/open/floor/grass/fairy/F in view(5, user))
 		if(F.light_power > 0)
 			F.visible_message(span_warning("[F] suddenly turns dark!"))
 			F.ChangeTurf(/turf/open/floor/grass/fairy/dark, flags = CHANGETURF_INHERIT_AIR)
-	for(var/obj/structure/marker_beacon/M in view(7, user))
+	for(var/obj/structure/marker_beacon/M in view(5, user))
 		M.deconstruct()
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
@@ -743,7 +743,7 @@
 	name = "Void Jaunt"
 	desc = "Move through the void for a time, avoiding mortal eyes and lights."
 	panel = "Shadowling Abilities"
-	charge_max = 800
+	charge_max = 700
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	phase_allowed = TRUE
