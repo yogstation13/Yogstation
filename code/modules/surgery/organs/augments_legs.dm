@@ -89,7 +89,7 @@
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "Antislip_implant")
 
-/obj/item/organ/cyberimp/leg/galosh/Remove()
+/obj/item/organ/cyberimp/leg/galosh/Remove(mob/living/carbon/M, special = FALSE)
 	REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "Antislip_implant")
 	. = ..()
 
@@ -105,6 +105,6 @@
 	. = ..()
 	ADD_TRAIT(owner, TRAIT_NOSLIPALL, "Noslip_implant")
 
-/obj/item/organ/cyberimp/leg/noslip/Remove()
+/obj/item/organ/cyberimp/leg/noslip/Remove(mob/living/carbon/M, special = FALSE)
 	REMOVE_TRAIT(owner, TRAIT_NOSLIPALL, "Noslip_implant")
 	. = ..()
