@@ -48,7 +48,6 @@
 	construction_state = SPACEPOD_ARMOR_WELDED
 
 /obj/spacepod/random/Initialize()
-	..()
 	var/armor_type = pick(/obj/item/pod_parts/armor,
 		/obj/item/pod_parts/armor/syndicate,
 		/obj/item/pod_parts/armor/black,
@@ -62,3 +61,4 @@
 	velocity_y = rand(-3, 3)
 	obj_integrity = rand(100, max_integrity)
 	brakes = FALSE
+	return ..()
