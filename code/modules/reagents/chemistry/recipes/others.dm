@@ -789,6 +789,7 @@
 	id = /datum/reagent/sulfur_trioxide
 	results = list(/datum/reagent/sulfur_trioxide = 2)
 	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/oxygen = 3)
+	required_catalysts = list(/datum/reagent/hydrogen = 1)
 
 /datum/chemical_reaction/sulfuric_acid
 	name = /datum/reagent/toxin/acid
@@ -800,7 +801,7 @@
 	name = /datum/reagent/consumable/sugar
 	id = /datum/reagent/consumable/sugar
 	results = list(/datum/reagent/consumable/sugar = 1)
-	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 1)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/fuel = 1)
 
 /datum/chemical_reaction/welding_fuel
 	name = /datum/reagent/fuel
@@ -828,8 +829,8 @@
 /datum/chemical_reaction/ice
 	name = /datum/reagent/consumable/ice
 	id = /datum/reagent/consumable/ice
-	results = list(/datum/reagent/consumable/ice = 1)
-	required_reagents = list(/datum/reagent/water = 1)
+	results = list(/datum/reagent/consumable/ice = 2)
+	required_reagents = list(/datum/reagent/water = 2, /datum/reagent/consumable/ethanol = 1)
 	required_temp = 200
 	is_cold_recipe = TRUE
 
