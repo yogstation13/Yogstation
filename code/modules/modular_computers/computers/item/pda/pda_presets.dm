@@ -1,11 +1,13 @@
-// This is literally the worst possible cheap tablet
-/obj/item/modular_computer/tablet/pda/preset/basic
-	desc = "A standard issue PDA often given to station personnel."
+/obj/item/modular_computer/tablet/pda/preset
 	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
 								/obj/item/stock_parts/cell/computer/micro,
 								/obj/item/computer_hardware/hard_drive/small/pda,
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot)
+
+// This is literally the worst possible cheap tablet
+/obj/item/modular_computer/tablet/pda/preset/basic
+	desc = "A standard issue PDA often given to station personnel."
 
 /obj/item/modular_computer/tablet/pda/preset/chem
 	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
@@ -15,6 +17,27 @@
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage
 								)
+/obj/item/modular_computer/tablet/pda/preset/chem/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/chemscan
+	)	
+	. = ..()
+
+/obj/item/modular_computer/tablet/pda/preset/medical
+/obj/item/modular_computer/tablet/pda/preset/medical/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/crew_monitor
+	)	
+	. = ..()
+
+/obj/item/modular_computer/tablet/pda/preset/cargo
+/obj/item/modular_computer/tablet/pda/preset/cargo/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/bounty_board,
+		new /datum/computer_file/program/budgetorders,
+		new /datum/computer_file/program/cargobounty
+	)	
+	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/basic/atmos
 	starting_components = list( /obj/item/computer_hardware/processor_unit/pda,
@@ -23,6 +46,13 @@
 								/obj/item/computer_hardware/network_card,
 								/obj/item/computer_hardware/card_slot,
 								/obj/item/computer_hardware/sensorpackage)
+
+/obj/item/modular_computer/tablet/pda/preset/basic/atmos/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/atmosscan,
+		new /datum/computer_file/program/alarm_monitor
+	)	
+	. = ..()
 
 /obj/item/modular_computer/tablet/pda/preset/basic/mime
 	pen_type = /obj/item/toy/crayon/mime
