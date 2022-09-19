@@ -30,6 +30,22 @@
 	)	
 	. = ..()
 
+/obj/item/modular_computer/tablet/pda/preset/engineering
+/obj/item/modular_computer/tablet/pda/preset/engineering/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/alarm_monitor,
+		new /datum/computer_file/program/supermatter_monitor,
+		new /datum/computer_file/program/energy_harvester_control
+	)	
+	. = ..()
+
+/obj/item/modular_computer/tablet/pda/preset/warden
+/obj/item/modular_computer/tablet/pda/preset/warden/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/secureye,
+	)	
+	. = ..()
+
 /obj/item/modular_computer/tablet/pda/preset/cargo
 /obj/item/modular_computer/tablet/pda/preset/cargo/Initialize()
 	starting_files |= list(
