@@ -51,11 +51,14 @@
 	var/atom/movable/pulled
 
 /datum/component/walk/shadow/can_walk(mob/living/user, turf/destination)
+	if(user.pulling && isclosedturf(destination))
+		to_chat(user, span_warning("You can't pass through while pulling!"))
+		return MOVE_NOT_ALLOWED
 	return (destination.get_lumcount() <= SHADOWWALK_THRESHOLD ? MOVE_ALLOWED : DEFER_MOVE)
 
 /datum/component/walk/shadow/preprocess_move(mob/living/user, turf/destination)
 	if(user.pulling)
-		if(user.pulling.anchored || (user.pulling == user.loc && user.pulling.density))
+		if(user.pulling.anchored || (user.pulling == user.loc && user.pulling.density) || (user.pulling && isclosedturf(user.loc)))
 			user.stop_pulling()
 			return
 		if(isliving(user.pulling))
