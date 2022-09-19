@@ -14,6 +14,8 @@
 			heart_attack_contestants[H] = 3
 		else
 			heart_attack_contestants[H] = 1
+		if(is_species(H, /datum/species/human/felinid))
+			heart_attack_contestants[H] = heart_attack_contestants[H] * 5 //Did you know those with a family history of heart disease are 5 times more likely to suffer a heart attack than their peers?
 
 	if(LAZYLEN(heart_attack_contestants))
 		var/mob/living/carbon/human/winner = pickweight(heart_attack_contestants)
