@@ -783,3 +783,59 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/ashresin(location)
+
+// formerly un-creatable chems:
+
+/datum/chemical_reaction/surfur_trioxide
+	name = "sulfur trioxide"
+	id = "sulfur trioxide"
+	results = list(/datum/reagent/sulfur_trioxide = 2)
+	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/oxygen = 3)
+
+/datum/chemical_reaction/surfuric_acid
+	name = "sulfuric acid"
+	id = "sulfuric acid"
+	results = list(/datum/reagent/toxin/acid = 1)
+	required_reagents = list(/datum/reagent/sulfur_trioxide = 1, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/sugar
+	name = "sugar"
+	id = "sugar"
+	results = list(/datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 1)
+
+/datum/chemical_reaction/welding_fuel
+	name = "welding fuel"
+	id = "welding fuel"
+	results = list(/datum/reagent/fuel = 1)
+	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/toxin/acid = 3)
+	required_temp = 400
+
+/datum/chemical_reaction/stableplasma
+	name = "stable plasma"
+	id = "stable plasma"
+	results = list(/datum/reagent/stable_plasma = 5)
+	required_reagents = list(/datum/reagent/toxin/plasma = 3, /datum/reagent/hydrogen = 3)
+	required_catalysts =  list(/datum/reagent/consumable/ethanol = 5)
+	required_temp = 100
+
+/datum/chemical_reaction/waterformation
+	name = "water formation"
+	id = "water formation"
+	results = list(/datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 2)
+	required_temp = 380
+
+/datum/chemical_reaction/ice
+	name = "freezing water"
+	id = "freezing water"
+	results = list(/datum/reagent/consumable/ice = 1)
+	required_reagents = list(/datum/reagent/water = 1)
+	required_temp = 273
+
+/datum/chemical_reaction/water2
+	name = "melting ice"
+	id = "meling ice"
+	results = list(/datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/consumable/ice = 1)
+	required_temp = 300

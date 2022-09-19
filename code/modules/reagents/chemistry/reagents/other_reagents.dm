@@ -2132,3 +2132,11 @@
 /datum/reagent/adrenaline/on_mob_delete(mob/living/L)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+
+
+/datum/reagent/sulfur_trioxide
+	name = "Sulfur Trioxide"
+	description = "A super-oxygenated sulfur compound."
+	color = "#ebf0ff"
+	taste_description = "metallic rotten eggs"
+	reagent_state = SOLID

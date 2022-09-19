@@ -53,36 +53,39 @@
 		/datum/reagent/oxygen,
 		/datum/reagent/phosphorus,
 		/datum/reagent/potassium,
-		/datum/reagent/uranium/radium,
 		/datum/reagent/silicon,
 		/datum/reagent/silver,
 		/datum/reagent/sodium,
-		/datum/reagent/stable_plasma,
-		/datum/reagent/consumable/sugar,
-		/datum/reagent/sulfur,
-		/datum/reagent/toxin/acid
-	)
-	var/list/t2_upgrade_reagents = list(
 		/datum/reagent/iron,
 		/datum/reagent/water,
-		/datum/reagent/fuel
+		/datum/reagent/oil,
+		/datum/reagent/sulfur
+	)
+	var/list/t2_upgrade_reagents = list(
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/ash,
+		/datum/reagent/fuel,
+		/datum/reagent/toxin/acid
 	)
 	var/list/t3_upgrade_reagents = list(
-		/datum/reagent/ammonia,
-		/datum/reagent/ash,
-		/datum/reagent/oil
-	)
-	var/list/t4_upgrade_reagents = list(
 		/datum/reagent/acetone,
+		/datum/reagent/ammonia,
 		/datum/reagent/diethylamine,
 		/datum/reagent/saltpetre
+	)
+	var/list/t4_upgrade_reagents = list(
+		/datum/reagent/uranium/radium,
+		/datum/reagent/stable_plasma,
+		/datum/reagent/toxin,
+		/datum/reagent/medicine/charcoal
 	)
 	var/list/emagged_reagents = list(
 		/datum/reagent/toxin/carpotoxin,
 		/datum/reagent/medicine/mine_salve,
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
-		/datum/reagent/toxin
+		/datum/reagent/toxin/venom,
+		/datum/reagent/uranium
 	)
 
 	var/list/saved_recipes = list()
