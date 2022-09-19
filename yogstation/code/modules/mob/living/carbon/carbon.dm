@@ -1,4 +1,3 @@
-
 /mob/living/carbon/update_sight()
 	. = ..()
 	if(mind)
