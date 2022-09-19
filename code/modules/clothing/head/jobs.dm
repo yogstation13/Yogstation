@@ -171,6 +171,16 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 
+/obj/item/clothing/head/beret/emt
+	name = "EMT beret"
+	desc = "A beret with a dark turquoise color and a reflective cross on the top."
+	icon_state = "emtberet"
+
+/obj/item/clothing/head/beret/emt/green
+	name = "green EMT beret"
+	desc = "A beret with a green color and a reflective cross on the top."
+	icon_state = "emtgrberet"
+
 /obj/item/clothing/head/beret/durathread
 	name = "durathread beret"
 	desc =  "A beret made from durathread, its resilient fibres provide some protection to the wearer."

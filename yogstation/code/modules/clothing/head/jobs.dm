@@ -9,6 +9,12 @@
 /obj/item/clothing/head/soft/emt/mining
 	name = "Mining Medic's cap"
 	desc = "It's a baseball hat with a dark turquoise color and a reflective cross on the top. Has MM embossed into it."
+	armor = list(melee = 10, bullet = 10, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0, fire = 50, acid = 50)
+
+/obj/item/clothing/head/beret/emt/mining
+	name = "Mining Medic's beret"
+	desc = "A beret with a dark turquoise color and a reflective cross on the top. Has MM embossed into it."
+	armor = list(melee = 10, bullet = 10, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0, fire = 50, acid = 50)
 
 //Brig Physician
 /obj/item/clothing/head/soft/emt/phys
