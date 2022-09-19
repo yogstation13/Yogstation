@@ -30,6 +30,14 @@
 	)	
 	. = ..()
 
+/obj/item/modular_computer/tablet/pda/preset/paramed
+/obj/item/modular_computer/tablet/pda/preset/paramed/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/crew_monitor,
+		new /datum/computer_file/program/radar/lifeline
+	)	
+	. = ..()
+
 /obj/item/modular_computer/tablet/pda/preset/engineering
 /obj/item/modular_computer/tablet/pda/preset/engineering/Initialize()
 	starting_files |= list(
