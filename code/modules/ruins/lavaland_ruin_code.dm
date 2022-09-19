@@ -78,8 +78,6 @@
 		/obj/item/stack/sheet/cloth/durathread		= /datum/species/golem/durathread,
 		/obj/item/stack/sheet/cotton/durathread		= /datum/species/golem/durathread,
 		/obj/item/stack/sheet/mineral/snow			= /datum/species/golem/snow,
-		/obj/item/stack/sheet/capitalisium			= /datum/species/golem/capitalist,
-		/obj/item/stack/sheet/stalinium				= /datum/species/golem/soviet,
 		/obj/item/stack/sheet/cheese				= /datum/species/golem/cheese,
 		/obj/item/stack/telecrystal					= /datum/species/golem/telecrystal,
 		/obj/item/stack/telecrystal/five			= /datum/species/golem/telecrystal,

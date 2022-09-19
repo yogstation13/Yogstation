@@ -836,18 +836,6 @@ new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperfram
 /obj/item/stack/sheet/paperframes/fifty
 	amount = 50
 
-/obj/item/stack/sheet/capitalisium
-	name = "capitalisium sheet"
-	desc = "A source of raw capitalism, capable of bringing forth the prophesized Capitalist Golem."
-	icon_state = "sheet-capitalisium"
-	merge_type = /obj/item/stack/sheet/capitalisium
-
-/obj/item/stack/sheet/stalinium
-	name = "stalinium sheet"
-	desc = "A source of raw socialism, capable of bringing forth the prophesized Soviet Golem."
-	icon_state = "sheet-stalinium"
-	merge_type = /obj/item/stack/sheet/stalinium
-
 /obj/item/stack/sheet/cheese
 	name = "reinforced cheese"
 	desc = "A stack of cheese that seems sturdier than regular cheese."
