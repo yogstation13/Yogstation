@@ -11,20 +11,21 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR, HAIR, LIPS, AGENDER)
-	no_equip = list(SLOT_SHOES)
+	species_traits = list(EYECOLOR, HAIR, LIPS, AGENDER, DIGITIGRADE)
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
 	disliked_food = GROSS | VEGETABLES
-	brutemod = 1.25 //Have you ever punched a metal plate?
-	burnmod = 1.5 //Circuits don't like heat
-	coldmod = 0.8 //Circuits like cold, but their lungs may not
-	heatmod = 1.75 //Again, circuits don't like heat
+	brutemod = 1 //Have you ever punched a metal plate?
+	burnmod = 1.3 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the other side
+	coldmod = 2 //The plasteel around them saps their body heat quickly if it gets cold
+	heatmod = 0.7 //The plasteel has a really high heat capacity, and these circuits are built specifically to endure heat
 	speedmod = 0 //Sleek efficient metal legs, despite the weight
-	punchstunthreshold = 9 //Stun range 9-10 on punch, you are being slugged in the brain by a metal robot fist.
+	action_speed_coefficient = 0.9 //worker drone do the fast
+	punchdamagehigh = 8 //not built for large high speed acts like punches
+	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
 	siemens_coeff = 1.75 //Circuits REALLY don't like being shorted out
 	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
 	yogs_draw_robot_hair = TRUE
@@ -32,7 +33,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
-	action_speed_coefficient = 0.9 //worker drone do the fast
 	var/datum/action/innate/maglock/maglock
 	var/lockdown = FALSE
 	var/charge = PRETERNIS_LEVEL_FULL
@@ -92,7 +92,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(maglock)
 		maglock.Remove(C)
 	if(lockdown)
-		REMOVE_TRAIT(C, TRAIT_NOSLIPALL, "preternis_maglock")
+		REMOVE_TRAIT(C, TRAIT_NOSLIPWATER, "preternis_maglock")
 		C.remove_movespeed_modifier("preternis_maglock")
 
 /datum/action/innate/maglock
@@ -114,10 +114,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/action/innate/maglock/Trigger()
 	var/mob/living/carbon/human/H = usr
 	if(!lockdown)
-		ADD_TRAIT(H, TRAIT_NOSLIPALL, "preternis_maglock")
+		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		H.add_movespeed_modifier("preternis_maglock", update=TRUE, priority=103, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
 	else
-		REMOVE_TRAIT(H, TRAIT_NOSLIPALL, "preternis_maglock")
+		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		H.remove_movespeed_modifier("preternis_maglock")
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
@@ -240,11 +240,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		H.clear_alert("preternis_charge")
 
-
-// /datum/species/preternis/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
-// 	. = ..()
-// 	if(!attacker_style?.nonlethal)
-// 		next_move_modifier *= 1.2
+/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
+	. = ..()
+	if(ispreternis(user) && !attacker_style?.nonlethal)
+		user.next_move += 2 //adds 0.2 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
