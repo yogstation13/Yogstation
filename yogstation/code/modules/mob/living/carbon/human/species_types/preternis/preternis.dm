@@ -10,7 +10,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	id = "preternis"
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
-	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_POOR_AIM) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
+	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(EYECOLOR, HAIR, LIPS, AGENDER)
 	no_equip = list(SLOT_SHOES)
 	say_mod = "intones"
@@ -100,9 +100,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/lockdown = FALSE
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "slimeheal"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
-	background_icon_state = "bg_alien"
+	button_icon_state = "magboots1"
+	icon_icon = 'icons/obj/clothing/shoes.dmi'
+	background_icon_state = "bg_default"
 
 /datum/action/innate/maglock/Grant(mob/M)
 	if(!ispreternis(M))
@@ -131,7 +131,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(ispreternis(src))
 		var/datum/species/preternis/species = dna.species
 		if(!species.lockdown)
-			to_chat(world, span_notice("[species.lockdown ? "enable" : "disable"] pressure"))
 			return ..()
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user)
@@ -209,6 +208,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 5, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustStaminaLoss(9)
 		H.adjustFireLoss(4)
+		H.Jitter(100)
+		H.stuttering = 1
 		if(!soggy)
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
@@ -219,6 +220,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
 		soggy = FALSE
 		H.clear_alert("preternis_wet")
+		H.jitteriness -= 100
 
 	if(H.stat == DEAD)
 		return
@@ -239,7 +241,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.clear_alert("preternis_charge")
 
 
-// /datum/species/preternis/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+// /datum/species/preternis/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
 // 	. = ..()
 // 	if(!attacker_style?.nonlethal)
 // 		next_move_modifier *= 1.2

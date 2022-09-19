@@ -218,8 +218,12 @@
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
+	if(fire_stacks < 0 && fire_stacks > -1)
+		msg += "[t_He] look[p_s()] a little damp.\n"
+	if(fire_stacks <= -1 && fire_stacks > -5)
 		msg += "[t_He] look[p_s()] a little soaked.\n"
+	if(fire_stacks <= -5)
+		msg += "[t_He] look[p_s()] drenched.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
