@@ -52,5 +52,5 @@
 	if(!istype(M, /obj/item/modular_computer/tablet))
 		to_chat(user, span_warning("\The [M] does not support BRISC V architectures!"))
 		return FALSE
-	. = ..()
+	return ..()
 	
