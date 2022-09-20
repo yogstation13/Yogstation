@@ -438,7 +438,7 @@ There are several things that need to be remembered:
 					mask_overlay.pixel_y += dna.species.offset_features[OFFSET_FACEMASK][2]
 					overlays_standing[FACEMASK_LAYER] = mask_overlay
 			apply_overlay(FACEMASK_LAYER)
-		update_mutant_bodyparts() //e.g. upgate needed because mask now hides lizard snout
+	update_mutant_bodyparts() //e.g. upgate needed because mask now hides lizard snout
 
 /mob/living/carbon/human/update_inv_back()
 	remove_overlay(BACK_LAYER)
