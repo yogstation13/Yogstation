@@ -1,4 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - bugfix: "fixes lizard/ipc heads being weird with masks"
