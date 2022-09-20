@@ -88,6 +88,9 @@
 // 		REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock_implant")
 // 		owner.remove_movespeed_modifier("maglock_implant")
 
+// /obj/item/organ/cyberimp/leg/maglock/negates_gravity()
+// 	return active
+
 /obj/item/organ/cyberimp/leg/galosh
 	name = "antislip implant"
 	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
