@@ -790,6 +790,7 @@
 	results = list(/datum/reagent/space_cleaner/bleach = 4)
 	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/water = 2, /datum/reagent/space_cleaner/sterilizine = 1)
 	required_temp = 188
+	is_cold_recipe = TRUE
 
 /datum/chemical_reaction/bleach2 //ghetto chem bleach
 	name = "Bleach2"
