@@ -1041,6 +1041,12 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			return "FRONT"
 
 /datum/species/proc/spec_life(mob/living/carbon/human/H)
+	//check for magboots other than shoes
+	if(HAS_TRAIT(H, TRAIT_MAGBOOT) && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
+		H.add_movespeed_modifier("magboot_trait", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+	else if(H.has_movespeed_modifier("magboot_trait"))
+		H.remove_movespeed_modifier("magboot_trait")
+
 	if(HAS_TRAIT(H, TRAIT_NOBREATH))
 		H.setOxyLoss(0)
 		H.losebreath = 0
@@ -1424,9 +1430,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 
 	if(!HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && gravity)
 
-		//check for magboots other than shoes
-		if(HAS_TRAIT(H, TRAIT_MAGBOOT))
-			H.add_movespeed_modifier("magboot_trait", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
 
 		// Clothing slowdown
 		if(H.wear_suit)
@@ -1473,8 +1476,6 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			. += (1.5 - flight)
 		if(H.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 			. += (BODYTEMP_COLD_DAMAGE_LIMIT - H.bodytemperature) / COLD_SLOWDOWN_FACTOR
-	if( (!HAS_TRAIT(H, TRAIT_MAGBOOT) || !gravity) && H.has_movespeed_modifier("magboot_trait"))
-		H.remove_movespeed_modifier("magboot_trait")
 	return .
 
 //////////////////
