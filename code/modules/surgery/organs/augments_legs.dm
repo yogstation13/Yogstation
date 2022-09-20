@@ -67,16 +67,26 @@
 // /obj/item/organ/cyberimp/leg/maglock
 // 	name = "integrated maglock implant"
 // 	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on subject's arm. Contains all necessary tools."
+// 	var/active = FALSE
 // 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 
 // /obj/item/organ/cyberimp/leg/maglock/l
 // 	zone = BODY_ZONE_L_LEG
 
-// /obj/item/organ/cyberimp/leg/maglock/Initialize()
-// 	. = ..()
-
 // /obj/item/organ/cyberimp/leg/maglock/Destroy()
-// 	. = ..()
+// 	if(active)
+// 		ui_action_click()
+// 	..()
+
+// /obj/item/organ/cyberimp/leg/maglock/ui_action_click()
+// 	active = !active
+// 	to_chat(owner, span_notice("You [active ? "enable" : "disable"] your mag-pulse traction system implant."))
+// 	if(active)
+// 		ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock_implant")
+// 		owner.add_movespeed_modifier("maglock_implant", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+// 	else
+// 		REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock_implant")
+// 		owner.remove_movespeed_modifier("maglock_implant")
 
 /obj/item/organ/cyberimp/leg/galosh
 	name = "antislip implant"
