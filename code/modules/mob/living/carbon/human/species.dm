@@ -1423,6 +1423,11 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	gravity = H.has_gravity()
 
 	if(!HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && gravity)
+
+		//check for magboots other than shoes
+		if(HAS_TRAIT(H, TRAIT_MAGBOOT))
+			H.add_movespeed_modifier("magboot_trait", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+
 		// Clothing slowdown
 		if(H.wear_suit)
 			. += H.wear_suit.slowdown
@@ -1468,6 +1473,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			. += (1.5 - flight)
 		if(H.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 			. += (BODYTEMP_COLD_DAMAGE_LIMIT - H.bodytemperature) / COLD_SLOWDOWN_FACTOR
+	if(H.has_movespeed_modifier("magboot_trait") && (!HAS_TRAIT(H, TRAIT_MAGBOOT) || !gravity))
+		H.remove_movespeed_modifier("magboot_trait")
 	return .
 
 //////////////////

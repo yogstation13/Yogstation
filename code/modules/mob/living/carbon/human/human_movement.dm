@@ -38,6 +38,8 @@
 		var/obj/item/clothing/S = shoes
 		if((S.clothing_flags & NOSLIP))
 			return 0
+	if(HAS_TRAIT(src, TRAIT_MAGBOOT))
+		return 0
 	return ..()
 
 /mob/living/carbon/human/mob_has_gravity()
@@ -47,10 +49,10 @@
 			. = 1
 
 /mob/living/carbon/human/mob_negates_gravity()
-	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)))
+	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)) || HAS_TRAIT(src, TRAIT_MAGBOOT))
 
 /mob/living/carbon/human/mob_has_heavy_gravity()
-	return (shoes && shoes.negates_gravity())
+	return ((shoes && shoes.negates_gravity()) || HAS_TRAIT(src, TRAIT_MAGBOOT))
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
