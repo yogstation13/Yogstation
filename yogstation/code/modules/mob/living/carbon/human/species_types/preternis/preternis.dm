@@ -15,10 +15,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	say_mod = "intones"
 	attack_verb = "assault"
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
+	exotic_blood = /datum/reagent/stable_plasma //helps with heat regulation
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
 	disliked_food = GROSS | VEGETABLES
-	brutemod = 1 //Have you ever punched a metal plate?
+	brutemod = 1 //Have you ever punched a metal plate? should be below 1, but for balancing reasons i'd rather not
 	burnmod = 1.3 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the other side
 	coldmod = 2 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 0.7 //The plasteel has a really high heat capacity, and these circuits are built specifically to endure heat
