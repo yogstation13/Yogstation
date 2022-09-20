@@ -43,8 +43,8 @@
 
 	// If flashed and banged
 	if(flashed && banged)
-		M.Knockdown(max(150/max(1,distance), 60))
+		M.Knockdown(max(15 / max(1, distance), 6) SECONDS)
 	// If banged only
 	else if (banged)
-		M.Knockdown(max(50/max(1, distance), 30))
+		M.Knockdown(max(5 / max(1, distance), 3) SECONDS)
 	//flashed only is handled by flash_act
