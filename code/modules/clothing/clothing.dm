@@ -203,6 +203,7 @@
 				if(user.vars[variable] == user_vars_to_edit[variable]) //Is it still what we set it to? (if not we best not change it)
 					user.vars[variable] = user_vars_remembered[variable]
 		user_vars_remembered = initial(user_vars_remembered) // Effectively this sets it to null.
+	update_icon()
 
 /obj/item/clothing/equipped(mob/user, slot)
 	..()
