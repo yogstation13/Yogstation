@@ -830,7 +830,7 @@
 	name = /datum/reagent/consumable/ice
 	id = /datum/reagent/consumable/ice
 	results = list(/datum/reagent/consumable/ice = 2)
-	required_reagents = list(/datum/reagent/water = 2, /datum/reagent/stable_plasma = 1)
+	required_reagents = list(/datum/reagent/water = 2, /datum/reagent/lye = 1)
 	required_temp = 200
 	is_cold_recipe = TRUE
 
