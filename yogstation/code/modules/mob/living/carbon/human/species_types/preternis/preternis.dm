@@ -20,8 +20,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
 	disliked_food = GROSS | VEGETABLES
-	brutemod = 0.95 //Have you ever punched a metal plate? should be even lower, but seems like that would be bad balancing. can only justify 0.95 by how they attack slower
-	burnmod = 1.4 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
+	brutemod = 0.85 //Have you ever punched a metal plate?
+	burnmod = 1.5 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 2 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 0.5 //The plasteel has a really high heat capacity, and these circuits are built specifically to endure heat
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
