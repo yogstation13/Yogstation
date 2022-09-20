@@ -1473,7 +1473,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 			. += (1.5 - flight)
 		if(H.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(H, TRAIT_RESISTCOLD))
 			. += (BODYTEMP_COLD_DAMAGE_LIMIT - H.bodytemperature) / COLD_SLOWDOWN_FACTOR
-	if(H.has_movespeed_modifier("magboot_trait") && (!HAS_TRAIT(H, TRAIT_MAGBOOT) || !gravity))
+	if( (!HAS_TRAIT(H, TRAIT_MAGBOOT) || !gravity) && H.has_movespeed_modifier("magboot_trait"))
 		H.remove_movespeed_modifier("magboot_trait")
 	return .
 

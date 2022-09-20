@@ -118,3 +118,17 @@
 /obj/item/organ/cyberimp/leg/noslip/Remove(mob/living/carbon/M, special = FALSE)
 	REMOVE_TRAIT(owner, TRAIT_NOSLIPALL, "Noslip_implant")
 	. = ..()
+
+// /obj/item/organ/cyberimp/leg/clown
+// 	name = "advanced antislip implant"
+// 	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+// 	syndicate_implant = TRUE
+
+// /obj/item/organ/cyberimp/leg/clown/l
+// 	zone = BODY_ZONE_L_LEG
+
+// /obj/item/organ/cyberimp/leg/clown/Insert()
+// 	. = ..()
+// 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)
+
+
