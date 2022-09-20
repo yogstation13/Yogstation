@@ -65,8 +65,8 @@
 		// give the owner an idea about why his implant is glitching
 
 /obj/item/organ/cyberimp/leg/maglock
-	name = "integrated maglock implant"
-	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on subject's arm. Contains all necessary tools."
+	name = "Integrated Maglock Implant"
+	desc = "A sophisticated maglock system meant to be implanted in your leg."
 	var/active = FALSE
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 
@@ -82,14 +82,12 @@
 	active = !active
 	to_chat(owner, span_notice("You [active ? "enable" : "disable"] your mag-pulse traction system implant."))
 	if(active)
-		ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock_implant")
 		ADD_TRAIT(owner, TRAIT_MAGBOOT, "maglock_implant")
 	else
-		REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "maglock_implant")
 		REMOVE_TRAIT(owner, TRAIT_MAGBOOT, "maglock_implant")
 
 /obj/item/organ/cyberimp/leg/galosh
-	name = "antislip implant"
+	name = "Antislip Implant"
 	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
 
 /obj/item/organ/cyberimp/leg/galosh/l
@@ -104,7 +102,7 @@
 	. = ..()
 
 /obj/item/organ/cyberimp/leg/noslip
-	name = "advanced antislip implant"
+	name = "Advanced Antislip Implant"
 	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
 	syndicate_implant = TRUE
 
