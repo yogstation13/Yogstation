@@ -26,7 +26,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	action_speed_coefficient = 0.9 //worker drone do the fast
 	punchdamagehigh = 8 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
-	siemens_coeff = 1.75 //Circuits REALLY don't like being shorted out
+	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
 	payday_modifier = 0.8 //Useful to NT for engineering + very close to Human
 	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
@@ -111,14 +111,16 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	owner_species = H.dna.species
 	. = ..()
 
-/datum/action/innate/maglock/Trigger()
+/datum/action/innate/maglock/Trigger()//makes the maglock have you use more power
 	var/mob/living/carbon/human/H = usr
 	if(!lockdown)
 		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		H.add_movespeed_modifier("preternis_maglock", update=TRUE, priority=103, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+		H.power_drain *= 1.25
 	else
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		H.remove_movespeed_modifier("preternis_maglock")
+		H.power_drain *= 0.8
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))

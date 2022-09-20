@@ -21,7 +21,7 @@
 
 	draining = TRUE
 
-	var/siemens_coefficient = 1
+	var/siemens_coefficient = H.dna.species.siemens_coeff //makes power drain speed scale with preternis stats
 
 	if(H.reagents.has_reagent("teslium"))
 		siemens_coefficient *= 1.5
