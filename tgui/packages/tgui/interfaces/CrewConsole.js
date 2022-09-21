@@ -77,13 +77,13 @@ const speciesmap = {
     "color": "#186310",
   },
   "Snail": {
-    "icon": "squarespace",
+    "icon": "scrubber",
     "color": "#08ccb8",
   },
   "Alien": {
-    "icon": "user-alien",
+    "icon": "ufo",
     "color": "#d40db9",
-  },
+  }
 };
 
 export const jobIsHead = jobId => jobId % 10 === 0;
