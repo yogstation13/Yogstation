@@ -121,11 +121,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/turf/pos
 	var/ijob
 	var/name
-	var/species
-	var/is_irradiated = FALSE
-	var/is_wounded = FALSE
-	var/is_husked = FALSE
-	var/is_onfire = FALSE
 	var/assignment_title
 	var/assignment
 	var/oxydam
@@ -155,6 +150,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					continue
 
 				I = H.wear_id ? H.wear_id.GetID() : null
+
+				var/species
+				var/is_irradiated = FALSE
+				var/is_wounded = FALSE
+				var/is_husked = FALSE
+				var/is_onfire = FALSE
 
 				if (I)
 					name = I.registered_name
@@ -196,16 +197,16 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if (issnail(H))
 					species = "Snail"
 
-				if (length(H.radiation > RAD_MOB_SAFE)) //safe level before sending alert
+				if (H.radiation > RAD_MOB_SAFE) //safe level before sending alert
 					is_irradiated = TRUE
 
 				if(length(H.get_wounded_bodyparts()))
 					is_wounded = TRUE			
 
-				if (length(HAS_TRAIT(H, TRAIT_HUSK)))
+				if (HAS_TRAIT(H, TRAIT_HUSK))
 					is_husked = TRUE
 
-				if (length(H.on_fire == TRUE))
+				if (H.on_fire == TRUE)
 					is_onfire = TRUE
 					
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
