@@ -169,29 +169,29 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				
 				if(H.dna?.species?.id == "human")
 					species = "Human"
-				if(H.dna?.species?.id == "ipc")
+				else if(H.dna?.species?.id == "ipc")
 					species = "Robot"
-				if(H.dna?.species?.id == "preternis")
+				else if(H.dna?.species?.id == "preternis")
 					species = "Robot"
-				if(H.dna?.species?.id == "pod")
+				else if(H.dna?.species?.id == "pod")
 					species = "Podperson"
-				if(H.dna?.species?.id == "lizard")
+				else if(H.dna?.species?.id == "lizard")
 					species = "Lizard"
-				if(H.dna?.species?.id == "plasmaman")
+				else if(H.dna?.species?.id == "plasmaman")
 					species = "Plasmaman"
-				if(H.dna?.species?.id == "polysmorph")
+				else if(H.dna?.species?.id == "polysmorph")
 					species = "Polysmorph"
-				if(H.dna?.species?.id == "moth")
+				else if(H.dna?.species?.id == "moth")
 					species = "Moth"
-				if(H.dna?.species?.id == "fly")
+				else if(H.dna?.species?.id == "fly")
 					species = "Fly"
-				if(H.dna?.species?.id == "felinid")
+				else if(H.dna?.species?.id == "felinid")
 					species = "Felinid"
-				if(H.dna?.species?.id == "skeleton")
+				else if(H.dna?.species?.id == "skeleton")
 					species = "Skeleton"
-				if(H.dna?.species?.id == "jelly")
+				else if(H.dna?.species?.id == "jelly")
 					species = "Slime"
-				if(H.dna?.species?.id == "ethereal")
+				else if(H.dna?.species?.id == "ethereal")
 					species = "Ethereal"
 
 				if (H.radiation > 500) //safe level before sending alert
