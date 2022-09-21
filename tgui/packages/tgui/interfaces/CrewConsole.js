@@ -74,10 +74,10 @@ const speciesmap = {
   },
   "Zombie": {
     "icon": "skull",
-    "color": "#133b0f",
+    "color": "#186310",
   },
   "Snail": {
-    "icon": "superpowers",
+    "icon": "record-vinyl",
     "color": "#08ccb8",
   },
 };
