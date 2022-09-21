@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 				continue
 			targets[N.label] = N
 		var/attempt_connect = input(user, "Select the machine you wish to attempt connecting to.") as null|anything in targets
-		if(!attempt_conncet)
+		if(!attempt_connect)
 			return TRUE
 		var/obj/machinery/ai/networking/remote_target = locate(targets[attempt_connect]) in GLOB.ai_networking_machines
 		if(!remote_target)
