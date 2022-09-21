@@ -25,60 +25,60 @@ const HEALTH_ICON_BY_LEVEL = [
 
 const speciesmap = {
   "Robot": {
-    "icon" : "robot",
-    "color" : "#2e46cc"
+    "icon": "robot",
+    "color": "#2e46cc",
   },
   "Felinid": {
-    "icon" : "paw",
-    "color" : "#f52ab4"
+    "icon": "paw",
+    "color": "#f52ab4",
   },
   "Moth": {
-    "icon" : "feather-alt",
-    "color" : "#ffebb8"
+    "icon": "feather-alt",
+    "color": "#ffebb8",
   },
   "Lizard": {
-    "icon" : "dragon",
-    "color" : "#8bf76a"
+    "icon": "dragon",
+    "color": "#8bf76a",
   },
   "Polysmorph": {
-    "icon" : "certificate",
-    "color" : "#802496"
+    "icon": "certificate",
+    "color": "#802496",
   },
   "Podperson": {
-    "icon" : "seedling",
-    "color" : "#05fa46"
+    "icon": "seedling",
+    "color": "#05fa46",
   },
   "Plasaman": {
-    "icon" : "skull",
-    "color" : "#d60b66"
+    "icon": "skull",
+    "color": "#d60b66",
   },
   "Ethereal": {
-    "icon" : "sun",
-    "color" : "#f0ff66"
+    "icon": "sun",
+    "color": "#f0ff66",
   },
   "Skeleton": {
-    "icon" : "skull",
-    "color" : "#fffcfa"
+    "icon": "skull",
+    "color": "#fffcfa",
   },
   "Slime": {
-    "icon" : "cloud",
-    "color" : "#f2505d"
+    "icon": "cloud",
+    "color": "#f2505d",
   },
   "Fly": {
-    "icon" : "bug",
-    "color" : "#039162"
+    "icon": "bug",
+    "color": "#039162",
   },
   "Human": {
-    "icon" : "user",
-    "color" : "#2ee81a"
+    "icon": "user",
+    "color": "#2ee81a",
   },
   "Zombie": {
-    "icon" : "skull",
-    "color" : "#133b0f"
+    "icon": "skull",
+    "color": "#133b0f",
   },
   "Snail": {
-    "icon" : "eercast",
-    "color" : "#08ccb8"
+    "icon": "eercast",
+    "color": "#08ccb8",
   },
 };
 
@@ -219,7 +219,7 @@ export const CrewConsoleContent = (props, context) => {
                   {sensor.is_wounded ? <Icon name="star-of-life" color="#f50505" size={1} /> : ""}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                  {speciesmap[sensor.species] ?  <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="user" color="#f70505" size={1} />}
+                  {speciesmap[sensor.species] ? <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="user" color="#f70505" size={1} />}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
