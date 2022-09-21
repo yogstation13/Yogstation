@@ -196,16 +196,16 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if (issnail(H))
 					species = "Snail"
 
-				if (H.radiation > RAD_MOB_SAFE) //safe level before sending alert
+				if (length(H.radiation > RAD_MOB_SAFE)) //safe level before sending alert
 					is_irradiated = TRUE
 
 				if(length(H.get_wounded_bodyparts()))
 					is_wounded = TRUE			
 
-				if (HAS_TRAIT(H, TRAIT_HUSK))
+				if (length(HAS_TRAIT(H, TRAIT_HUSK)))
 					is_husked = TRUE
 
-				if (H.on_fire == TRUE)
+				if (length(H.on_fire == TRUE))
 					is_onfire = TRUE
 					
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
