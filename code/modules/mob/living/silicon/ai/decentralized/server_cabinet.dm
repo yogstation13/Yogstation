@@ -46,6 +46,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 /obj/machinery/ai/server_cabinet/Destroy()
 	installed_racks = list()
 	GLOB.server_cabinets -= src
+	QDEL_NULL(particles)
 	..()
 
 /obj/machinery/ai/server_cabinet/RefreshParts()
@@ -77,17 +78,23 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
 		
+		valid_ticks++
 		if(!was_valid_holder)
+			QDEL_NULL(particles)
 			update_icon()
 		was_valid_holder = TRUE
+
+		
 
 		if(!hardware_synced && network)
 			network.update_resources()
 			hardware_synced = TRUE
 	else 
+		valid_ticks--
 		if(was_valid_holder)
 			if(valid_ticks > 0)
 				return
+			particles = new /particles/smoke()
 			was_valid_holder = FALSE
 			update_icon()
 			hardware_synced = FALSE

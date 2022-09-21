@@ -75,6 +75,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		else
 			to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 		
+	QDEL_NULL(particles)
 	..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
@@ -126,10 +127,14 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		valid_ticks++
 		if(valid_ticks == 1)
 			update_icon()
+		if(particles)
+			QDEL_NULL(particles)
 		use_power = ACTIVE_POWER_USE
 		warning_sent = FALSE
 	else
 		valid_ticks--
+		if(!particles)
+			particles = new /particles/smoke()
 		if(valid_ticks <= 0)
 			use_power = IDLE_POWER_USE
 			update_icon()
