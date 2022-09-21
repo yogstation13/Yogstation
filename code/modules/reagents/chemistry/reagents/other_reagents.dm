@@ -2132,3 +2132,20 @@
 /datum/reagent/adrenaline/on_mob_delete(mob/living/L)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+
+/datum/reagent/microplastics
+	name = "Microplastics"
+	description = "Finely ground plastics, reduced to microscopic scale. Nearly unable to metabolize in a body, and potentially harmful in the long term."
+	color = "#ffffff"
+	metabolization_rate = 0.05
+	taste_description = "nothing"
+
+/datum/reagent/microplastics/on_mob_life(mob/living/carbon/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.55*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_APPENDIX, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_EARS, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_EYES, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
+	..()
