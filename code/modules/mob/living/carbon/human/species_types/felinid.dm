@@ -3,6 +3,9 @@
 	name = "Felinid Human"
 	id = "felinid"
 	limbs_id = "human"
+	attack_verb = "slash"
+	attack_sound = 'sound/weapons/slash.ogg'
+	miss_sound = 'sound/weapons/slashmiss.ogg'
 
 	mutant_bodyparts = list("ears", "tail_human")
 	default_features = list("mcolor" = "FFF", "tail_human" = "Cat", "ears" = "Cat", "wings" = "None")

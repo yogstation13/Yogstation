@@ -13,7 +13,7 @@
 		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
 
-	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+	. = list("<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
 	var/vampDesc = ReturnVampExamine(user) // Fulpstation Bloodsuckers edit STARTS
 	var/vassDesc = ReturnVassalExamine(user)
@@ -151,7 +151,7 @@
 		var/damage_text
 		if(HAS_TRAIT(body_part, TRAIT_DISABLED_BY_WOUND))
 			continue // skip if it's disabled by a wound (cuz we'll be able to see the bone sticking out!)
-		if(!(body_part.get_damage(include_stamina = FALSE) >= body_part.max_damage)) //we don't care if it's stamcritted
+		if(!(body_part.get_damage(stamina = FALSE) >= body_part.max_damage)) //we don't care if it's stamcritted
 			damage_text = "limp and lifeless"
 		else
 			damage_text = (body_part.brute_dam >= body_part.burn_dam) ? body_part.heavy_brute_msg : body_part.heavy_burn_msg
@@ -438,7 +438,7 @@
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
-	. += "*---------*</span>"
+	. += "</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
@@ -463,7 +463,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	
-	. = list("<span class='info'>*---------*\nThis is <EM>[name]</EM>!")
+	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
 
@@ -567,4 +567,4 @@
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")
 
-	. += "*---------*</span>"
+	. += "</span>"

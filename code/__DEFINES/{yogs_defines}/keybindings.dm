@@ -116,6 +116,7 @@ GLOBAL_LIST_INIT(keybinding_validkeys, list(
 #define ACTION_GIVE "Give"
 #define ACTION_RESIST "Resist"
 
+#define ACTION_TOGGLEWALKRUN "Toggle Walk Run"
 #define ACTION_TOGGLETHROW "Toggle Throw"
 #define ACTION_INTENTHELP "Intent Help"
 #define ACTION_INTENTDISARM "Intent Disarm"
@@ -169,6 +170,7 @@ GLOBAL_LIST_INIT(keybinding_default, list(
 	ACTION_GIVE = "C",
 	ACTION_RESIST = "B",
 
+	ACTION_TOGGLEWALKRUN = "J",
 	ACTION_TOGGLETHROW = "R",
 	ACTION_INTENTHELP = "1",
 	ACTION_INTENTDISARM = "2",

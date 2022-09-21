@@ -179,5 +179,5 @@
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
-	damage = 16
+	damage = 18
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/clockbolt

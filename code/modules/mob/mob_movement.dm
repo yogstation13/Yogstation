@@ -336,6 +336,12 @@
 /mob/proc/mob_negates_gravity()
 	return FALSE
 
+/**
+ * used for determining if a mob should be flung
+ */
+/mob/proc/mob_has_heavy_gravity()
+	return FALSE
+
 /// Called when this mob slips over, override as needed
 /mob/proc/slip(knockdown_amount, obj/O, lube, stun, force_drop)
 	return

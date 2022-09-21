@@ -67,22 +67,23 @@
 
 /obj/structure/railing/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(get_dir(loc, target) & dir)
-		return !density
-	return TRUE
+	var/attempted_dir = get_dir(loc, target)
+	if(attempted_dir == dir)
+		return
+	if(attempted_dir != dir)
+		return TRUE
 
 /obj/structure/railing/corner/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	return TRUE
 
 /obj/structure/railing/CheckExit(atom/movable/O, turf/target)
-	..()
-	if(get_dir(loc, target) & dir)
-		return 0
-	return 1
+	if(get_dir(O.loc, target) == dir)
+		return FALSE
+	return TRUE
 
 /obj/structure/railing/corner/CheckExit()
-	return 1
+	return TRUE
 
 /obj/structure/railing/proc/can_be_rotated(mob/user,rotation_type)
 	if(anchored)

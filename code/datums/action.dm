@@ -44,6 +44,7 @@
 
 /datum/action/proc/Grant(mob/M)
 	if(M)
+		M.originalactions += src
 		if(owner)
 			if(owner == M)
 				return
@@ -74,10 +75,8 @@
 			button.locked = M.client.prefs.buttons_locked || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
 			button.moved = button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE
 		for(var/mob/dead/observer/O in M.observers)
-			O.temporaryactions += src
-			O.actions += src
-			O.update_action_buttons(TRUE)
-		M.update_action_buttons()
+			O?.client.screen += button
+		M.update_action_buttons() // Now push the owners buttons back
 	else
 		Remove(owner)
 
@@ -85,12 +84,11 @@
 	if(M)
 		if(M.client)
 			M.client.screen -= button
+		for(var/mob/dead/observer/O in M.observers)
+			O?.client.screen -= button
+		M.originalactions -= src
 		M.actions -= src
 		M.update_action_buttons()
-		for(var/mob/dead/observer/O in M.observers)
-			O.temporaryactions -= src
-			O.actions -= src
-			O.update_action_buttons(TRUE)
 	owner = null
 	button.moved = FALSE //so the button appears in its normal position when given to another owner.
 	button.locked = FALSE
@@ -227,6 +225,14 @@
 
 /datum/action/item_action/startchainsaw
 	name = "Pull The Starting Cord"
+
+/datum/action/item_action/charge_hammer
+	name = "Charge the Blast Pads"
+
+/datum/action/item_action/charge_hammer/Trigger()
+	var/obj/item/twohanded/vxtvulhammer/V = target
+	if(istype(V))
+		V.charge_hammer(owner)
 
 /datum/action/item_action/toggle_gunlight
 	name = "Toggle Gunlight"

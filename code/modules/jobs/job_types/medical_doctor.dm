@@ -40,7 +40,7 @@
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor
 
-	pda_type= /obj/item/pda/medical
+	pda_type= /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical

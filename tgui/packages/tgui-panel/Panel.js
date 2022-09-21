@@ -96,14 +96,14 @@ export const Panel = (props, context) => {
                     </Button>
                   )}>
                   You are either AFK, experiencing lag or the connection
-                  has closed. If the server has been nuked, you..
+                  has closed. If the server has been nuked, you
                   are just lagging, you should be fine in a moment.
                 </Notifications.Item>
               )}
               {game.reconnectTimer > 0 && (
                 <Notifications.Item>
                   The connection has been closed because the server is
-                  restarting. Please wait while you automatically reconnected
+                  restarting. Please wait while you are automatically reconnected
                   in {game.reconnectTimer} Seconds.
                 </Notifications.Item>
               )}

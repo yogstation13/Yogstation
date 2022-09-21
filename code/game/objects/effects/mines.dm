@@ -82,11 +82,17 @@
 	desc = "Better stay away from that thing."
 	density = FALSE
 	anchored = TRUE
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
+	alpha = 30
 	var/triggered = 0
 	var/smartmine = FALSE
 	var/disarm_time = 12 SECONDS
 	var/disarm_product = /obj/item/deployablemine // ie what drops when the mine is disarmed
+
+/obj/effect/mine/Initialize()
+	. = ..()
+	layer = ABOVE_MOB_LAYER
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
@@ -124,7 +130,7 @@
 		return
 	visible_message(span_danger("[victim] sets off [icon2html(src, viewers(src))] [src]!"))
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-	s.set_up(3, 1, src)
+	s.set_up(1, 0, src)
 	s.start()
 	mineEffect(victim)
 	triggered = 1
@@ -245,6 +251,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 	density = FALSE
+	alpha = 255
 	var/duration = 0
 
 /obj/effect/mine/pickup/Initialize()

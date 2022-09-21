@@ -23,7 +23,7 @@
 	name = "Artist"
 	jobtype = /datum/job/artist
 
-	pda_type = /obj/item/pda/artist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	
 	head = /obj/item/clothing/head/frenchberet
 	ears = /obj/item/radio/headset/headset_srv

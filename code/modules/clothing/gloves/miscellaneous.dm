@@ -134,6 +134,9 @@ obj/effect/proc_holder/swipe
 	fire(user)
 
 /obj/effect/proc_holder/swipe/fire(mob/living/carbon/user)
+	if(user.handcuffed) 
+		to_chat(user, span_danger("You can't attack while handcuffed!"))
+		return
 	if(active)
 		remove_ranged_ability(span_notice("You relax your arms."))
 	else
@@ -164,11 +167,13 @@ obj/effect/proc_holder/swipe
 	for(L in range(0,T))
 		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
 		if(isanimal(L))
-			L.adjustBruteLoss(60)
 			if(L.stat != DEAD)
+				L.adjustBruteLoss(60)
 				caller.adjustBruteLoss(-13)
 				caller.adjustFireLoss(-13)
 				caller.adjustToxLoss(-13)
+				if(L.stat == DEAD)
+					to_chat(caller, span_notice("You kill [L], healing yourself more!"))
 			if(L.stat == DEAD)
 				L.gib()
 				to_chat(caller, span_notice("You're able to consume the body entirely!"))
@@ -195,7 +200,7 @@ obj/effect/proc_holder/swipe
 	item_state = "concussive_gauntlets"
 	mob_overlay_icon = 'icons/mob/clothing/hands/hands.dmi'
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	toolspeed = 0.1
+	toolspeed = 0.01
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS
@@ -224,8 +229,8 @@ obj/effect/proc_holder/swipe
 	UnregisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
 	UnregisterSignal(user, COMSIG_MOVABLE_BUMP)
 
-/obj/item/clothing/gloves/gauntlets/proc/rocksmash(mob/living/carbon/human/H, atom/A, proximity)
+/obj/item/clothing/gloves/gauntlets/proc/rocksmash(mob/user, atom/A, proximity)
 	if(!istype(A, /turf/closed/mineral))
 		return
-	A.attackby(src, H)
+	A.attackby(src, user)
 	return COMPONENT_NO_ATTACK_OBJ

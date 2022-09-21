@@ -994,16 +994,24 @@
 			if(!loud)
 				to_chat(user, span_danger("\The [src] has eee disabled!"))
 			return FALSE
+	if(iseminence(user))
+		if(!integration_cog || !aidisabled)
+			return FALSE
 	return TRUE
 
 /obj/machinery/power/apc/can_interact(mob/user)
 	. = ..()
 	if (!. && !QDELETED(remote_control))
 		. = remote_control.can_interact(user)
+	if(!(stat & (NOPOWER|BROKEN)) || (interaction_flags_machine & (INTERACT_MACHINE_OFFLINE)))
+		if(iseminence(user) && integration_cog)
+			. = TRUE
 
 /obj/machinery/power/apc/ui_status(mob/user)
 	. = ..()
 	if (!QDELETED(remote_control) && user == remote_control.operator)
+		. = UI_INTERACTIVE
+	if(!QDELETED(src) && iseminence(user) && integration_cog)
 		. = UI_INTERACTIVE
 
 /obj/machinery/power/apc/ui_act(action, params)
@@ -1072,6 +1080,13 @@
 					INVOKE_ASYNC(L, /obj/machinery/light/.proc/update, FALSE)
 				CHECK_TICK
 	return 1
+
+/obj/machinery/power/apc/attack_eminence(mob/camera/eminence/user, params)
+	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))  ///Cutting AI wire should prevent from eminence interactions
+		return FALSE
+	if(!integration_cog)
+		return FALSE
+	_try_interact(user)
 
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)
 	if(!is_operational() || failure_timer)

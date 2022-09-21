@@ -38,6 +38,12 @@
 		if(!antag_candidates.len)
 			break
 		var/datum/mind/bloodsucker = antag_pick(antag_candidates)
+		//Yogs start -- fixes plasmaman vampires
+		if(bloodsucker?.current?.client.prefs.pref_species && (NOBLOOD in bloodsucker.current.client.prefs.pref_species.species_traits))
+			antag_candidates -= bloodsucker // kinda need to do this to prevent some edge-case infinite loop or whatever
+			i-- // to undo the imminent increment
+			continue
+		//yog end
 		bloodsuckers += bloodsucker
 		bloodsucker.restricted_roles = restricted_jobs
 		log_game("[bloodsucker.key] (ckey) has been selected as a Bloodsucker.")
@@ -54,7 +60,7 @@
 	..()
 
 /datum/game_mode/bloodsucker/generate_report()
-	return "There's been a report of the undead roaming around the sector, especially those that display Vampiric abilities.\
+	return "There's been a report of the undead roaming around the sector, especially those that display vampiric abilities.\
 			 They've displayed the ability to disguise themselves as anyone and brainwash the minds of people they capture alive.\
 			 Please take care of the crew and their health, as it is impossible to tell if one is lurking in the darkness behind."
 

@@ -278,3 +278,6 @@
 /datum/music/sourced/battle/legion
 	sound_file = 'sound/lavaland/music/pants.ogg'
 	priority = 130
+/datum/music/sourced/battle/stalwart
+	sound_file = 'yogstation/sound/lavaland/music/stalwart.ogg'
+	priority = 100

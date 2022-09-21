@@ -543,6 +543,16 @@
 "GX" = (
 /turf/open/floor/plasteel,
 /area/ruin/powered/gasstation)
+"HB" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/table/wood/fancy/royalblack,
+/obj/effect/spawner/lootdrop/twenty_percent_drip_shoes,
+/obj/effect/spawner/lootdrop/twenty_percent_drip_suit,
+/obj/item/clothing/neck/necklace/dope,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/gasstation)
 "HU" = (
 /obj/structure/table,
 /obj/structure/window{
@@ -1279,7 +1289,7 @@ cV
 cV
 qf
 JS
-KZ
+HB
 OI
 rQ
 cV
