@@ -121,7 +121,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/turf/pos
 	var/ijob
 	var/name
-	var/datum/species/species
+	var/species
 	var/is_irradiated
 	var/is_wounded
 	var/is_husked
@@ -167,32 +167,34 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					assignment = ""
 					ijob = 80
 				
-				if(H.dna?.species?.id == "human")
+				if (ishumanbasic(H))
 					species = "Human"
-				else if(H.dna?.species?.id == "ipc")
+				if (isipc(H) || ispreternis(H))
 					species = "Robot"
-				else if(H.dna?.species?.id == "preternis")
-					species = "Robot"
-				else if(H.dna?.species?.id == "pod")
+				if (ispodperson(H))
 					species = "Podperson"
-				else if(H.dna?.species?.id == "lizard")
+				if (islizard(H))
 					species = "Lizard"
-				else if(H.dna?.species?.id == "plasmaman")
+				if (isplasmaman(H))
 					species = "Plasmaman"
-				else if(H.dna?.species?.id == "polysmorph")
+				if (ispolysmorph(H))
 					species = "Polysmorph"
-				else if(H.dna?.species?.id == "moth")
+				if (ismoth(H))
 					species = "Moth"
-				else if(H.dna?.species?.id == "fly")
+				if (isflyperson(H))
 					species = "Fly"
-				else if(H.dna?.species?.id == "felinid")
+				if (iscatperson(H))
 					species = "Felinid"
-				else if(H.dna?.species?.id == "skeleton")
+				if (isskeleton(H))
 					species = "Skeleton"
-				else if(H.dna?.species?.id == "jelly")
+				if (isjellyperson(H))
 					species = "Slime"
-				else if(H.dna?.species?.id == "ethereal")
+				if (isethereal(H))
 					species = "Ethereal"
+				if (iszombie(H))
+					species = "Zombie"
+				if (issnail(H))
+					species = "Snail"
 
 				if (H.radiation > 500) //safe level before sending alert
 					is_irradiated = TRUE
