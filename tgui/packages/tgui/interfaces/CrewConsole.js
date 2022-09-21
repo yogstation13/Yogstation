@@ -77,7 +77,7 @@ const speciesmap = {
     "color": "#133b0f",
   },
   "Snail": {
-    "icon": "eercast",
+    "icon": "superpowers",
     "color": "#08ccb8",
   },
 };
