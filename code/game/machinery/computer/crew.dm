@@ -170,8 +170,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				
 				if (ishumanbasic(H))
 					species = "Human"
-				if (isipc(H) || ispreternis(H))
+				if (ispreternis(H))
 					species = "Robot"
+				if (isipc(H))
+					species = "IPC"
 				if (ispodperson(H))
 					species = "Podperson"
 				if (islizard(H))

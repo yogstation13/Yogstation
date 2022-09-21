@@ -28,6 +28,10 @@ const speciesmap = {
     "icon": "robot",
     "color": "#2e46cc",
   },
+  "IPC": {
+    "icon": "gear",
+    "color": "#edee1b",
+  },
   "Felinid": {
     "icon": "paw",
     "color": "#f52ab4",
@@ -83,7 +87,7 @@ const speciesmap = {
   "Alien": {
     "icon": "ufo",
     "color": "#d40db9",
-  }
+  },
 };
 
 export const jobIsHead = jobId => jobId % 10 === 0;
