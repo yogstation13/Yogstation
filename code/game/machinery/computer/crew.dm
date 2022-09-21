@@ -196,7 +196,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if (issnail(H))
 					species = "Snail"
 
-				if (H.radiation > 500) //safe level before sending alert
+				if (H.radiation > RAD_MOB_SAFE) //safe level before sending alert
 					is_irradiated = TRUE
 				else
 					is_irradiated = FALSE
