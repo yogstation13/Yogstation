@@ -707,7 +707,7 @@
 			var/species_type = pick(subtypesof(/datum/species/jelly))
 			H.set_species(species_type)
 			H.reagents.del_reagent(type)
-			to_chat(H, span_warning("You've become \a jellyperson!"))
+			to_chat(H, span_warning("You have become a jellyperson!")) // Yogs -- text macro fix
 
 /datum/reagent/mulligan
 	name = "Mulligan Toxin"
@@ -2118,3 +2118,17 @@
 /datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
 	if(method == INGEST || method == TOUCH || method == INJECT)
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
+
+/datum/reagent/adrenaline
+	name = "Adrenaline"
+	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
+	color = "#d1cd9a"
+	can_synth = FALSE
+
+/datum/reagent/adrenaline/on_mob_add(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	
+/datum/reagent/adrenaline/on_mob_delete(mob/living/L)
+	. = ..()
+	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)

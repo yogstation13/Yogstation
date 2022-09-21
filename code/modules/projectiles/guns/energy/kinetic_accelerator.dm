@@ -186,6 +186,9 @@
 	var/pressure_decrease = 0.25
 	var/obj/item/gun/energy/kinetic_accelerator/kinetic_gun
 
+/obj/item/projectile/kinetic/mech
+	range = 5
+
 /obj/item/projectile/kinetic/Destroy()
 	kinetic_gun = null
 	return ..()

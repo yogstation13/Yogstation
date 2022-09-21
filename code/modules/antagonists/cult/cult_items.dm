@@ -788,6 +788,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	nondirectional_sprite = TRUE
 	damage_type = BRUTE
 	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
+	damage = 20
+	armour_penetration = 0
 
 /obj/item/projectile/magic/arcane_barrage/blood/Bump(atom/target)
 	var/turf/T = get_turf(target)

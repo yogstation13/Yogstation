@@ -84,7 +84,8 @@
 				if(S.self_operable || user != M)
 					procedure.next_step(user, user.a_intent)
 			else
-				to_chat(user, span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
+				M.balloon_or_message(user, "need to expose the [parse_zone(selected_zone)]", \
+					span_warning("You need to expose [M]'s [parse_zone(selected_zone)] first!"))
 
 	return TRUE
 
