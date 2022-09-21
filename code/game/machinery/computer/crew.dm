@@ -122,10 +122,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/ijob
 	var/name
 	var/species
-	var/is_irradiated
-	var/is_wounded
-	var/is_husked
-	var/is_onfire
+	var/is_irradiated = FALSE
+	var/is_wounded = FALSE
+	var/is_husked = FALSE
+	var/is_onfire = FALSE
 	var/assignment_title
 	var/assignment
 	var/oxydam
@@ -198,23 +198,15 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 				if (H.radiation > RAD_MOB_SAFE) //safe level before sending alert
 					is_irradiated = TRUE
-				else
-					is_irradiated = FALSE
 
 				if(length(H.get_wounded_bodyparts()))
-					is_wounded = TRUE
-				else
-					is_wounded = FALSE				
+					is_wounded = TRUE			
 
 				if (HAS_TRAIT(H, TRAIT_HUSK))
 					is_husked = TRUE
-				else
-					is_husked = FALSE
 
 				if (H.on_fire == TRUE)
 					is_onfire = TRUE
-				else
-					is_onfire = FALSE
 					
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
 					life_status = H.stat < DEAD
