@@ -121,22 +121,11 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/turf/pos
 	var/ijob
 	var/name
-	var/is_robot
-	var/is_human
-	var/is_catperson
-	var/is_lizard
-	var/is_moth
-	var/is_polysmorph
-	var/is_slime
-	var/is_fly
-	var/is_skeleton
-	var/is_husked
-	var/is_onfire
-	var/is_podperson
-	var/is_plasmaman
-	var/is_ethereal
+	var/datum/species/species
 	var/is_irradiated
 	var/is_wounded
+	var/is_husked
+	var/is_onfire
 	var/assignment_title
 	var/assignment
 	var/oxydam
@@ -177,42 +166,33 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					assignment_title = ""
 					assignment = ""
 					ijob = 80
-
-				if (ispreternis(H) || isipc(H))
-					is_robot = "Robot"
-
-				if (ishumanbasic(H))
-					is_human = "Human"
-
-				if (iscatperson(H))
-					is_catperson = "Felinid"
-
-				if (islizard(H))
-					is_lizard = "Lizard"
-
-				if (ismoth(H))
-					is_moth = "Moth"
-
-				if (ispolysmorph(H))
-					is_polysmorph = "Polysmorph"
-
-				if (ispodperson(H))
-					is_podperson = "Podperson"
-
-				if (isplasmaman(H))
-					is_plasmaman = "Plasaman"
-
-				if (isethereal(H))
-					is_ethereal= "Ethereal"
-
-				if (isslimeperson(H) || isjellyperson(H) || isluminescent(H))
-					is_slime = "Slime"
-
-				if (isskeleton(H))
-					is_skeleton = "Skeleton"
-
-				if (isflyperson(H))
-					is_fly = "Fly"
+				
+				if(H.dna?.species?.id == "human")
+					species = "Human"
+				if(H.dna?.species?.id == "ipc")
+					species = "Robot"
+				if(H.dna?.species?.id == "preternis")
+					species = "Robot"
+				if(H.dna?.species?.id == "pod")
+					species = "Podperson"
+				if(H.dna?.species?.id == "lizard")
+					species = "Lizard"
+				if(H.dna?.species?.id == "plasmaman")
+					species = "Plasmaman"
+				if(H.dna?.species?.id == "polysmorph")
+					species = "Polysmorph"
+				if(H.dna?.species?.id == "moth")
+					species = "Moth"
+				if(H.dna?.species?.id == "fly")
+					species = "Fly"
+				if(H.dna?.species?.id == "felinid")
+					species = "Felinid"
+				if(H.dna?.species?.id == "skeleton")
+					species = "Skeleton"
+				if(H.dna?.species?.id == "jelly")
+					species = "Slime"
+				if(H.dna?.species?.id == "ethereal")
+					species = "Ethereal"
 
 				if (H.radiation > 500) //safe level before sending alert
 					is_irradiated = TRUE
@@ -264,7 +244,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if(life_status == FALSE)
 					new_death_list.Add(H)
 
-				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_irradiated" = is_irradiated, "is_robot" = is_robot, "is_human" = is_human, "is_slime" = is_slime, "is_skeleton" = is_skeleton, "is_fly" = is_fly, "is_catperson" = is_catperson, "is_lizard" = is_lizard, "is_moth" = is_moth, "is_polysmorph" = is_polysmorph, "is_podperson" = is_podperson, "is_plasmaman" = is_plasmaman, "is_ethereal" = is_ethereal, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_irradiated" = is_irradiated, "species" = species, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
