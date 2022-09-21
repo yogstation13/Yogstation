@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	var/obj/machinery/ai/networking/partner
 	var/rotation_to_partner = 0
 	var/locked = FALSE
-	var//obj/machinery/ai/networking/remote_connection_attempt
+	var/obj/machinery/ai/networking/remote_connection_attempt
 	var/mob/remote_control
 
 

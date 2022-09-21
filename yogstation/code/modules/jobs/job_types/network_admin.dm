@@ -34,7 +34,7 @@
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
-	r_hand = /obj/item/modular_computer/laptop/preset/network_admin
+	l_hand = /obj/item/modular_computer/laptop/preset/network_admin
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_network
 	uniform = /obj/item/clothing/under/yogs/rank/network_admin
