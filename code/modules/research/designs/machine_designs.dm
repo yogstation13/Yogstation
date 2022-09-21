@@ -707,6 +707,14 @@
 	category = list("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/board/networking_machine
+	name = "Machine Design (Networking Machine)"
+	desc = "The circuit board for a dual-purpose networking machine."
+	id = "networking_machine"
+	build_path = /obj/item/circuitboard/machine/networking_machine
+	category = list("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/board/ai_data_core
 	name = "Machine Design (AI Data Core Board)"
 	desc = "The circuit board for an AI data core."

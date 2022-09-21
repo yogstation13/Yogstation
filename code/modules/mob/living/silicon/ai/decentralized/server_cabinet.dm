@@ -77,7 +77,6 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			env.set_temperature(env.return_temperature() + temperature_increase * AI_TEMPERATURE_MULTIPLIER) //assume all input power is dissipated
 			T.air_update_turf()
 		
-		valid_ticks++
 		if(!was_valid_holder)
 			update_icon()
 		was_valid_holder = TRUE
@@ -86,7 +85,6 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			network.update_resources()
 			hardware_synced = TRUE
 	else 
-		valid_ticks--
 		if(was_valid_holder)
 			if(valid_ticks > 0)
 				return

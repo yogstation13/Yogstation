@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 
 /obj/machinery/ai/networking
 	name = "networking machine"
-	desc = "A high powered combined transmitter and receiver. Capable of connecting remote AI networks with near-zero delay."
+	desc = "A high powered combined transmitter and receiver. Capable of connecting remote AI networks with near-zero delay. It is possible to manually connect other machines using a multitool."
 	icon = 'goon/icons/obj/power.dmi'
 	icon_state = "sp_base"
 	density = TRUE
@@ -10,7 +10,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	idle_power_usage = 0
 	active_power_usage = 0
 	max_integrity = 150
-	integrity_failure = 0.33
+
+	circuit = /obj/item/circuitboard/machine/networking_machine
 
 	var/label
 	//For mapping, will connect to machine with this label if found
@@ -20,9 +21,12 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	var/mutable_appearance/paneloverlay
 
 	var/obj/machinery/ai/networking/partner
-	var/rotation_to_partner
+	var/rotation_to_partner = 0
 	var/locked = FALSE
+	var//obj/machinery/ai/networking/remote_connection_attempt
 	var/mob/remote_control
+
+
 
 
 /obj/machinery/ai/networking/Initialize(mapload)
@@ -33,12 +37,85 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
 	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
 	paneloverlay.color = "#599ffa"
-	update_icon(TRUE)
+	update_icon()
 
 /obj/machinery/ai/networking/Destroy(mapload)
 	GLOB.ai_networking_machines -= src
 	disconnect()
 	. = ..()
+
+/obj/machinery/ai/networking/attackby(obj/item/W, mob/living/user, params)
+	if(W.tool_behaviour == TOOL_MULTITOOL)
+		if(partner)
+			to_chat(user, span_warning("This machine is already connected to a different machine! Disconnect it using the controls or a wirecutter first!"))
+			return TRUE
+		remote_connection_attempt = null
+		var/targets = list()
+		for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
+			if(N == src)
+				continue
+			if(N.z != src.z)
+				continue
+			if(N.partner)
+				continue
+			targets[N.label] = N
+		var/attempt_connect = input(user, "Select the machine you wish to attempt connecting to.") as null|anything in targets
+		if(!attempt_conncet)
+			return TRUE
+		var/obj/machinery/ai/networking/remote_target = locate(targets[attempt_connect]) in GLOB.ai_networking_machines
+		if(!remote_target)
+			return TRUE
+		remote_connection_attempt = remote_target
+		to_chat(user, span_notice("The machine is ready to establish connection. You must now rotate it so it faces the other machine! Rotation is done using a wrench, and the connection can then be finalized with a screwdriver when aligned."))
+		return TRUE
+	
+	if(W.tool_behaviour == TOOL_WRENCH)
+		if(partner)
+			to_chat(user, span_warning("This machine is already connected to a different machine!"))
+			return TRUE
+		var/new_rotation = input(user, "Set rotation (0-360): ") as null|num
+		if(isnull(new_rotation))
+			rotation_to_partner = 0
+		else
+			new_rotation = clamp(new_rotation, 0, 360)
+			rotation_to_partner = new_rotation
+		
+		update_icon()
+		return TRUE
+
+	if(W.tool_behaviour == TOOL_SCREWDRIVER)
+		if(partner)
+			to_chat(user, span_warning("This machine is already connected to a different machine!"))
+			return TRUE
+		if(!remote_connection_attempt)
+			to_chat(user, span_warning("You need to initialize a manual override using a wrench to connect to something!"))
+			return TRUE
+		var/actual_angle = Get_Angle(src, remote_connection_attempt)
+		if(rotation_to_partner < actual_angle + 20 && rotation_to_partner > actual_angle - 20)
+			connect_to_partner(remote_connection_attempt)
+			to_chat(user, span_notice("You successfully connect to [remote_connection_attempt.label]!"))
+			return TRUE
+		to_chat(user, span_warning("Unable to establish connection!"))
+		return TRUE
+
+
+	if(W.tool_behaviour == TOOL_WIRECUTTER)
+		if(partner)
+			to_chat(user, span_notice("You disconnect the remote connection."))
+			disconnect()
+			return TRUE
+		to_chat(user, span_warning("The machien isn't connected!"))
+		return TRUE
+
+	if(W.tool_behaviour == TOOL_CROWBAR)
+		if(default_deconstruction_crowbar(W, TRUE))
+			return TRUE
+
+	if(default_deconstruction_screwdriver(user, "expansion_bus_o", "expansion_bus", W))
+		return TRUE
+
+	return ..()
+
 /obj/machinery/ai/networking/proc/roundstart_connect(mapload)
 	for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
 		if(partner)
@@ -55,10 +132,8 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 			break
 
 
-/obj/machinery/ai/networking/update_icon(forced = FALSE)
+/obj/machinery/ai/networking/update_icon()
 	..()
-	if(!rotation_to_partner && !forced)
-		return
 	cut_overlays()
 	var/matrix/turner = matrix()
 	turner.Turn(rotation_to_partner)
@@ -69,18 +144,25 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 /obj/machinery/ai/networking/proc/disconnect()
 	if(partner)
 		var/datum/ai_network/AN = partner.network
+		partner.rotation_to_partner = 0
+		partner.update_icon()
 		partner.partner = null
 		partner = null
 		AN.rebuild_remote()
 		network.rebuild_remote()
+		rotation_to_partner = 0
+		update_icon()
+
 		
 
-/obj/machinery/ai/networking/proc/connect_to_partner(obj/machinery/ai/networking/target)
+/obj/machinery/ai/networking/proc/connect_to_partner(obj/machinery/ai/networking/target, forced = FALSE)
+	remote_connection_attempt = null
 	if(target.partner)
 		return
 	if(target == src)
 		return
-	
+	if(target.locked && !forced)
+		return
 
 	partner = target
 	rotation_to_partner = Get_Angle(src, partner)

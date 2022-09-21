@@ -6,7 +6,7 @@
 	var/list/cpu_assigned = list()
 	var/list/ram_assigned = list()
 
-	var/networks = list()
+	var/list/networks = list()
 
 	var/previous_ram = 0
 

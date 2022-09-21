@@ -169,7 +169,7 @@
 	maxstack = MAXCOIL
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/cable_coil
+/datum/design/ethernet_coil
 	name = "Ethernet Coil"
 	id = "ethernet_coil"
 	build_type = AUTOLATHE

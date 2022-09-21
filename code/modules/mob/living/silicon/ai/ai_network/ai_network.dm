@@ -56,7 +56,7 @@
 
 	if(local_cpu_usage[AI_CRYPTO])
 		var/points = max(round(AI_RESEARCH_PER_CPU * (local_cpu_usage[AI_CRYPTO] * total_cpu * resources_assigned)), 0)
-		points = clamp(bitcoin_mined, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
+		points = clamp(points, 0, MAX_AI_BITCOIN_MINED_PER_TICK)
 		bitcoin_payout += points * AI_BITCOIN_PRICE
 
 	var/locally_used = 0

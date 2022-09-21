@@ -106,15 +106,14 @@ By design, d1 is the smallest direction and d2 is the highest
 			to_chat(user, span_warning("Not enough cable!"))
 			return
 		coil.cable_join(src, user)
-	/*
-	else if(W.tool_behaviour == TOOL_MULTITOOL) //FIX NETWORK STATS
 	
-		if(ai network && (ai network.avail > 0))		// is it powered?
-			to_chat(user, span_danger("Total power: [DisplayPower(ai network.avail)]\nLoad: [DisplayPower(ai network.load)]\nExcess power: [DisplayPower(surplus())]"))
-		else
-			to_chat(user, span_danger("The cable is not powered."))
-		shock(user, 5, 0.2)
-	*/
+	else if(W.tool_behaviour == TOOL_MULTITOOL)
+		if(!network)
+			return
+		to_chat(user, span_danger("Connected CPU: [network.resources.total_cpu()]THz\nConnected RAM: [network.resources.total_ram()]TB\nHosted AIs: [network.ai_list.len]\nNetwork Count: [network.resources.networks.len]"))
+		
+			
+	
 	else if(istype(W, /obj/item/modular_computer))
 		var/obj/item/modular_computer/MC = W
 

@@ -170,6 +170,10 @@
 			if(amount > 1 || amount < 0)
 				return
 
+			var/used_cpu = owner.ai_network.resources.total_cpu_assigned() - owner.ai_network.resources.cpu_assigned[owner]
+			if(amount > (1 - used_cpu))
+				amount = (1 - used_cpu)
+
 			owner.ai_network.resources.set_cpu(owner, amount)
 			. = TRUE
 		if("max_cpu_assign")
