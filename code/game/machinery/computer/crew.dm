@@ -179,64 +179,40 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					ijob = 80
 
 				if (ispreternis(H) || isipc(H))
-					is_robot = TRUE
-				else
-					is_robot = FALSE
+					is_robot = "Robot"
 
 				if (ishumanbasic(H))
-					is_human = TRUE
-				else
-					is_human = FALSE
+					is_human = "Human"
 
 				if (iscatperson(H))
-					is_catperson = TRUE
-				else
-					is_catperson = FALSE
+					is_catperson = "Felinid"
 
 				if (islizard(H))
-					is_lizard = TRUE
-				else
-					is_lizard = FALSE
+					is_lizard = "Lizard"
 
 				if (ismoth(H))
-					is_moth = TRUE
-				else
-					is_moth = FALSE
+					is_moth = "Moth"
 
 				if (ispolysmorph(H))
-					is_polysmorph = TRUE
-				else
-					is_polysmorph = FALSE
+					is_polysmorph = "Polysmorph"
 
 				if (ispodperson(H))
-					is_podperson= TRUE
-				else
-					is_podperson = FALSE
+					is_podperson = "Podperson"
 
 				if (isplasmaman(H))
-					is_plasmaman = TRUE
-				else
-					is_plasmaman = FALSE
+					is_plasmaman = "Plasaman"
 
 				if (isethereal(H))
-					is_ethereal= TRUE
-				else
-					is_ethereal = FALSE
+					is_ethereal= "Ethereal"
 
 				if (isslimeperson(H) || isjellyperson(H) || isluminescent(H))
-					is_slime = TRUE
-				else
-					is_slime = FALSE
+					is_slime = "Slime"
 
 				if (isskeleton(H))
-					is_skeleton = TRUE
-				else
-					is_skeleton = FALSE
+					is_skeleton = "Skeleton"
 
 				if (isflyperson(H))
-					is_fly = TRUE
-				else
-					is_fly = FALSE
+					is_fly = "Fly"
 
 				if (H.radiation > 500) //safe level before sending alert
 					is_irradiated = TRUE

@@ -23,6 +23,57 @@ const HEALTH_ICON_BY_LEVEL = [
   'skull-crossbones',
 ];
 
+const speciesmap = {
+  "Robot": {
+    "icon" : "robot",
+    "color" : "#2e46cc"
+  },
+  "Felinid": {
+    "icon" : "paw",
+    "color" : "#f52ab4"
+  },
+  "Moth": {
+    "icon" : "feather-alt",
+    "color" : "#ffebb8"
+  },
+  "Lizard": {
+    "icon" : "dragon",
+    "color" : "#8bf76a"
+  },
+  "Polysmorph": {
+    "icon" : "certificate",
+    "color" : "#802496"
+  },
+  "Podperson": {
+    "icon" : "seedling",
+    "color" : "#05fa46"
+  },
+  "Plasaman": {
+    "icon" : "skull",
+    "color" : "#d60b66"
+  },
+  "Ethereal": {
+    "icon" : "sun",
+    "color" : "#f0ff66"
+  },
+  "Skeleton": {
+    "icon" : "skull",
+    "color" : "#fffcfa"
+  },
+  "Slime": {
+    "icon" : "cloud",
+    "color" : "#f2505d"
+  },
+  "Fly": {
+    "icon" : "bug",
+    "color" : "#039162"
+  },
+  "Human": {
+    "icon" : "user",
+    "color" : "#2ee81a"
+  },
+};
+
 export const jobIsHead = jobId => jobId % 10 === 0;
 
 export const jobToColor = jobId => {
@@ -160,33 +211,7 @@ export const CrewConsoleContent = (props, context) => {
                   {sensor.is_wounded ? <Icon name="star-of-life" color="#f50505" size={1} /> : ""}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                  {sensor.is_robot ? (<Icon name="robot" color="#2e46cc" size={1} />
-                  ) : (
-                    sensor.is_catperson ? (<Icon name="paw" color="#f52ab4" size={1} />
-                    ) : (
-                      sensor.is_moth ? (<Icon name="feather-alt" color="#ffebb8" size={1} />
-                      ) : (
-                        sensor.is_lizard ? (<Icon name="dragon" color="#8bf76a" size={1} />
-                        ) : (
-                          sensor.is_polysmorph ? (<Icon name="certificate" color="#802496" size={1} />
-                          ) : (
-                            sensor.is_podperson ? (<Icon name="seedling" color="#05fa46" size={1} />
-                            ) : (
-                              sensor.is_plasmaman ? (<Icon name="skull" color="#d60b66" size={1} />
-                              ) : (
-                                sensor.is_ethereal ? (<Icon name="sun" color="#f0ff66" size={1} />
-                                ) : (
-                                  sensor.is_skeleton ? (<Icon name="skull" color="#fffcfa" size={1} />
-                                  ) : (
-                                    sensor.is_slime ? (<Icon name="cloud" color="#f2505d" size={1} />
-                                    ) : (
-                                      sensor.is_fly ? (<Icon name="bug" color="#039162" size={1} />
-                                      ) : (
-                                        sensor.is_human ? (
-                                          <Icon name="user" color="#2ee81a" size={1} />
-                                        ) : (
-                                          <Icon name="user" color="#f70505" size={1} />
-                                        ))))))))))))}
+                  {speciesmap[sensor.species] ?  <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="user" color="#f70505" size={1} />}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
