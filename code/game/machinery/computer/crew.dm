@@ -196,6 +196,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					species = "Zombie"
 				if (issnail(H))
 					species = "Snail"
+				if (isabductor(H))
+					species = "Alien"
 
 				if (H.radiation > RAD_MOB_SAFE) //safe level before sending alert
 					is_irradiated = TRUE

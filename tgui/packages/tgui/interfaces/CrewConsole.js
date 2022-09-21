@@ -77,8 +77,12 @@ const speciesmap = {
     "color": "#186310",
   },
   "Snail": {
-    "icon": "record-vinyl",
+    "icon": "slack",
     "color": "#08ccb8",
+  },
+  "Alien": {
+    "icon": "alien",
+    "color": "#d40db9",
   },
 };
 
