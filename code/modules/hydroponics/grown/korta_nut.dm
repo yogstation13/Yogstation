@@ -1,7 +1,7 @@
 //Korta Nut
 /obj/item/seeds/korta_nut
 	name = "pack of korta nut seeds"
-	desc = "These seeds grow into korta nut bushes, native to Tizira."
+	desc = "These seeds grow into korta nut bushes, native to Sangris."
 	icon_state = "seed-korta"
 	species = "kortanut"
 	plantname = "Korta Nut Bush"
