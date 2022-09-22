@@ -85,7 +85,7 @@
 		/datum/reagent/medicine/morphine,
 		/datum/reagent/drug/space_drugs,
 		/datum/reagent/toxin,
-		/datum/reagent/uranium,
+		/datum/reagent/uranium
 	)
 
 	var/list/saved_recipes = list()
