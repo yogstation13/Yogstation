@@ -1832,7 +1832,7 @@
 	color = "#00767C"
 	taste_description = "intensely savoury bitterness"
 	glass_name = "glass of seraka extract"
-	glass_desc = "Deeply savoury, bitter, and makes your blood clot up in your veins. A great drink, all things considered."
+	glass_desc = "Deeply savoury and bitter. Slows your blood flow. Dangerous in moderate quantities."
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	clot_rate = 0.4 //slightly better than regular coagulant
 	passive_bleed_modifier = 0.5
