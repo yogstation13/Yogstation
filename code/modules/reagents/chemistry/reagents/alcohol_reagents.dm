@@ -2489,7 +2489,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "victory"
 	glass_icon_state = "triumphal_arch"
 	glass_name = "Triumphal Arch"
-	glass_desc = "A toast to the Empire, long may it stand."
+	glass_desc = "A toast to Sangris, the jewel of the vuulen."
 
 /datum/reagent/consumable/ethanol/triumphal_arch/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(islizard(M))
