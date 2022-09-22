@@ -66,7 +66,7 @@
 	var/list/t2_upgrade_reagents = list(
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/fuel,
-		/datum/reagent/toxin/acid,
+		/datum/reagent/toxin/acid
 	)
 	var/list/t3_upgrade_reagents = list(
 		/datum/reagent/acetone,
