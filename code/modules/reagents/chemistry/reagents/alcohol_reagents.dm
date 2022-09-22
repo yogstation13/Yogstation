@@ -2482,7 +2482,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/triumphal_arch
 	name = "Triumphal Arch"
-	description = "A drink celebrating the Lizard Empire and its military victories. It's popular at bars on Unification Day."
+	description = "A drink celebrating the Opsillian Republic and its rapid growth. A popular tool of integration efforts."
 	boozepwr = 60
 	color = "#FFD700"
 	quality = DRINK_FANTASTIC
