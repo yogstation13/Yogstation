@@ -19,7 +19,7 @@
 /obj/item/reagent_containers/food/snacks/grown/korta_nut
 	seed = /obj/item/seeds/korta_nut
 	name = "korta nut"
-	desc = "A little nut of great importance. Has a peppery shell which can be ground into flour and a soft, pulpy interior that produces a milky fluid when juiced. Or you can eat them whole, as a quick snack."
+	desc = "A small nut. Has a peppery shell that can be ground into flour. Inside is a soft, pulpy interior that produces a milky fluid when juiced. Or you can eat them whole, as a quick snack."
 	icon_state = "korta_nut"
 	grind_results = list(/datum/reagent/consumable/korta_flour = 0)
 	juice_results = list(/datum/reagent/consumable/korta_milk = 0)
