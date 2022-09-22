@@ -210,8 +210,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 5, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(9)
-		H.adjustFireLoss(4)
+		H.adjustStaminaLoss(2 * -H.fire_stacks)
+		H.adjustFireLoss(0.5 * -H.fire_stacks)
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)
