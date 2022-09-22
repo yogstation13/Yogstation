@@ -329,7 +329,7 @@
 /obj/structure/flora/ash/seraka
 	icon_state = "seraka_mushroom"
 	name = "seraka mushrooms"
-	desc = "A small cluster of seraka mushrooms. These must have come with the ashlizards."
+	desc = "A small cluster of seraka mushrooms, normally found on Sangris. Strange that they're here..."
 	needs_sharp_harvest = FALSE
 	harvested_name = "harvested seraka mushrooms"
 	harvested_desc = "A couple of small seraka mushrooms, with the larger ones clearly having been recently removed. They'll grow back... eventually."
