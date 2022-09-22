@@ -28,6 +28,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	//Power modifier, power modified by this. Be aware this indirectly changes heat since power => heat
 	var/power_modifier = 1
 
+	var/obj/ai_smoke/smoke
+
 
 /obj/machinery/ai/data_core/Initialize()
 	. = ..()
@@ -74,8 +76,9 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			to_chat(AI.deployed_shell, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 		else
 			to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
-		
-	QDEL_NULL(particles)
+	
+	vis_contents -= smoke
+	QDEL_NULL(smoke)
 	..()
 
 /obj/machinery/ai/data_core/attackby(obj/item/O, mob/user, params)
@@ -127,14 +130,16 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		valid_ticks++
 		if(valid_ticks == 1)
 			update_icon()
-		if(particles)
-			QDEL_NULL(particles)
+		if(smoke)
+			vis_contents -= smoke
+			QDEL_NULL(smoke)
 		use_power = ACTIVE_POWER_USE
 		warning_sent = FALSE
 	else
 		valid_ticks--
-		if(!particles)
-			particles = new /particles/smoke()
+		if(!smoke)
+			smoke = new()
+			vis_contents += smoke
 		if(valid_ticks <= 0)
 			use_power = IDLE_POWER_USE
 			update_icon()

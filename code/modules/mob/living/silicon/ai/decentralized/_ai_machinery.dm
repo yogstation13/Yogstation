@@ -90,3 +90,21 @@
 		coil.place_turf(T, user)
 	else
 		return ..()
+
+/obj/ai_smoke
+	name = "smoke"
+	desc = "Very hot!"
+
+/obj/ai_smoke/Initialize()
+	. = ..()
+	particles = new /particles/smoke/ai()
+
+/obj/ai_smoke/Destroy(force)
+	QDEL_NULL(particles)
+	. = ..()
+
+/particles/smoke/ai
+	grow = 0.1
+	height = 75
+	lifespan = 1.25 SECONDS
+	position = list(0, 0, 0)

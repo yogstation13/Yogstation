@@ -5,6 +5,8 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	desc = "A simple cabinet of bPCIe slots for installing server racks."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "expansion_bus"
+
+	appearance_flags = KEEP_TOGETHER
 	
 	circuit = /obj/item/circuitboard/machine/server_cabinet
 
@@ -33,6 +35,10 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	///Power modifier, power modified by this. Be aware this indirectly changes heat since power => heat
 	var/power_modifier = 1
 
+	var/obj/ai_smoke/smoke
+
+
+
 
 /obj/machinery/ai/server_cabinet/Initialize(mapload)
 	..()
@@ -46,7 +52,8 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 /obj/machinery/ai/server_cabinet/Destroy()
 	installed_racks = list()
 	GLOB.server_cabinets -= src
-	QDEL_NULL(particles)
+	vis_contents -= smoke
+	QDEL_NULL(smoke)
 	..()
 
 /obj/machinery/ai/server_cabinet/RefreshParts()
@@ -79,8 +86,10 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			T.air_update_turf()
 		
 		valid_ticks++
+		if(smoke)
+			vis_contents -= smoke
+			QDEL_NULL(smoke)
 		if(!was_valid_holder)
-			QDEL_NULL(particles)
 			update_icon()
 		was_valid_holder = TRUE
 
@@ -91,10 +100,13 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			hardware_synced = TRUE
 	else 
 		valid_ticks--
+		if(!smoke)
+			smoke = new()
+			vis_contents += smoke
 		if(was_valid_holder)
 			if(valid_ticks > 0)
 				return
-			particles = new /particles/smoke()
+			
 			was_valid_holder = FALSE
 			update_icon()
 			hardware_synced = FALSE
