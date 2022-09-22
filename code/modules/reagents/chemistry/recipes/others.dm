@@ -787,33 +787,33 @@
 /datum/chemical_reaction/sulfur_trioxide
 	name = /datum/reagent/sulfur_trioxide
 	id = /datum/reagent/sulfur_trioxide
-	results = list(/datum/reagent/sulfur_trioxide = 2)
+	results = list(/datum/reagent/sulfur_trioxide = 4)
 	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/oxygen = 3)
 	required_catalysts = list(/datum/reagent/hydrogen = 1)
 
 /datum/chemical_reaction/sulfuric_acid
 	name = /datum/reagent/toxin/acid
 	id = /datum/reagent/toxin/acid
-	results = list(/datum/reagent/toxin/acid = 1)
+	results = list(/datum/reagent/toxin/acid = 2)
 	required_reagents = list(/datum/reagent/sulfur_trioxide = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/sugar
 	name = /datum/reagent/consumable/sugar
 	id = /datum/reagent/consumable/sugar
-	results = list(/datum/reagent/consumable/sugar = 1)
+	results = list(/datum/reagent/consumable/sugar = 3)
 	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/fuel = 1)
 
 /datum/chemical_reaction/welding_fuel
 	name = /datum/reagent/fuel
 	id = /datum/reagent/fuel
-	results = list(/datum/reagent/fuel = 1)
+	results = list(/datum/reagent/fuel = 4)
 	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/toxin/acid = 3)
 	required_temp = 400
 
 /datum/chemical_reaction/stableplasma
 	name = /datum/reagent/stable_plasma
 	id = /datum/reagent/stable_plasma
-	results = list(/datum/reagent/stable_plasma = 5)
+	results = list(/datum/reagent/stable_plasma = 6)
 	required_reagents = list(/datum/reagent/toxin/plasma = 3, /datum/reagent/hydrogen = 3)
 	required_catalysts =  list(/datum/reagent/consumable/ethanol = 5)
 	required_temp = 100
@@ -822,7 +822,7 @@
 /datum/chemical_reaction/waterformation
 	name = /datum/reagent/water
 	id = /datum/reagent/water
-	results = list(/datum/reagent/water = 1)
+	results = list(/datum/reagent/water = 3)
 	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 2)
 	required_temp = 380
 
