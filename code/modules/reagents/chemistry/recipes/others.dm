@@ -829,7 +829,7 @@
 /datum/chemical_reaction/ice
 	name = /datum/reagent/consumable/ice
 	id = /datum/reagent/consumable/ice
-	results = list(/datum/reagent/consumable/ice = 2)
+	results = list(/datum/reagent/consumable/ice = 3)
 	required_reagents = list(/datum/reagent/water = 2, /datum/reagent/lye = 1)
 	required_temp = 200
 	is_cold_recipe = TRUE
