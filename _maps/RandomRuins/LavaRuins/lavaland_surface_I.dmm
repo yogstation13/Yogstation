@@ -135,6 +135,10 @@
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"va" = (
+/obj/item/coin/plasma,
+/turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
 "vp" = (
 /obj/structure/closet/crate/coffin,
 /obj/effect/mob_spawn/human/skeleton,
@@ -193,12 +197,6 @@
 	icon_state = "panelscorched"
 	},
 /area/ruin/unpowered)
-"GV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/slimecross/industrial/silver,
-/obj/item/slimecross/industrial/silver,
-/turf/open/floor/plasteel/dark/lavaland,
-/area/ruin/unpowered)
 "He" = (
 /obj/item/twohanded/spear,
 /turf/open/floor/plating/lavaland_baseturf{
@@ -223,6 +221,12 @@
 /obj/effect/mob_spawn/human/skeleton,
 /obj/item/twohanded/spear,
 /turf/open/floor/plasteel/dark/lavaland,
+/area/ruin/unpowered)
+"OF" = (
+/obj/item/coin/adamantine,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
 /area/ruin/unpowered)
 "Pa" = (
 /obj/structure/closet/crate/coffin,
@@ -251,6 +255,12 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
+"UR" = (
+/obj/item/coin/diamond,
+/turf/open/floor/plating/lavaland_baseturf{
+	icon_state = "panelscorched"
+	},
+/area/ruin/unpowered)
 "Vw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
@@ -262,11 +272,9 @@
 /obj/item/stack/sheet/mineral/diamond,
 /turf/open/floor/mineral/diamond,
 /area/ruin/unpowered)
-"Xa" = (
-/obj/item/slimecross/industrial/silver,
-/turf/open/floor/plating/lavaland_baseturf{
-	icon_state = "panelscorched"
-	},
+"WC" = (
+/obj/item/coin/uranium,
+/turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 "Xo" = (
 /obj/structure/closet/crate/coffin,
@@ -278,8 +286,8 @@
 /obj/item/coin/gold,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
-"Zf" = (
-/obj/item/slimecross/industrial/silver,
+"YC" = (
+/obj/item/coin/diamond,
 /turf/open/floor/plasteel/dark/lavaland,
 /area/ruin/unpowered)
 
@@ -449,7 +457,7 @@ lL
 hN
 Ic
 BF
-aU
+WC
 lL
 ab
 ab
@@ -475,7 +483,7 @@ ab
 ab
 ab
 aU
-Zf
+aU
 AP
 ab
 lA
@@ -505,7 +513,7 @@ aU
 Xo
 ab
 Hm
-aU
+YC
 aU
 aU
 SY
@@ -534,8 +542,8 @@ TE
 aU
 ab
 ab
-Zf
-GV
+aU
+lL
 yj
 kz
 bm
@@ -564,9 +572,9 @@ oF
 lL
 Pa
 ab
+va
 aU
-aU
-Xa
+OF
 cZ
 bm
 bm
@@ -629,7 +637,7 @@ zg
 rp
 bm
 ab
-Xa
+UR
 BF
 ab
 ab
