@@ -332,7 +332,7 @@
 	desc = "A small cluster of seraka mushrooms, normally found on Sangris. Strange that they're here..."
 	needs_sharp_harvest = FALSE
 	harvested_name = "harvested seraka mushrooms"
-	harvested_desc = "A couple of small seraka mushrooms, with the larger ones clearly having been recently removed. They'll grow back... eventually."
+	harvested_desc = "What remains of a harvested patch of seraka mushrooms. They are capable of regrowing quickly."
 	harvest = /obj/item/reagent_containers/food/snacks/grown/ash_flora/seraka
 	harvest_amount_high = 6
 	harvest_time = 25
