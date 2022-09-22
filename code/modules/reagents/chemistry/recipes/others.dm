@@ -738,10 +738,18 @@
 /datum/chemical_reaction/plastic_polymers
 	name = "plastic polymers"
 	id = /datum/reagent/plastic_polymers
+	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/oil = 5, /datum/reagent/toxin/acid = 2, /datum/reagent/ash = 3)
-	required_temp = 374 //lazily consistent with soap & other crafted objects generically created with heat.
+	required_temp = 374
 
-/datum/chemical_reaction/plastic_polymers/on_reaction(datum/reagents/holder, created_volume)
+/datum/chemical_reaction/plastic_solidification
+	name = "plastic solidification"
+	id = "plastic_solidification"
+	required_reagents = list(/datum/reagent/plastic_polymers = 10)
+	required_temp = 200
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/plastic_solidification/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/plastic(location)
@@ -783,3 +791,11 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/ashresin(location)
+
+/datum/chemical_reaction/meltedplastic
+	name = "microplastic liquification"
+	id = "melted_plastic"
+	mix_message = "The microplastics turn back into liquid, with a strong unpleasent odor..."
+	results = list(/datum/reagent/plastic_polymers = 10)
+	required_reagents = list(/datum/reagent/microplastics = 10)
+	required_temp = 600

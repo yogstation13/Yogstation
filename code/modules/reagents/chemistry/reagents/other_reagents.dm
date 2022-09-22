@@ -1879,9 +1879,9 @@
 	M.update_transform()
 	..()
 
-/datum/reagent/plastic_polymers
+/datum/reagent/plastic_polymers //not harmful because it's too big as a polymer chain, where microplastics are small enough to get into your veins
 	name = "plastic polymers"
-	description = "the petroleum based components of plastic."
+	description = "the liquid components of plastic."
 	color = "#f7eded"
 	taste_description = "plastic"
 
