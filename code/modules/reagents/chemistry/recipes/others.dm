@@ -808,7 +808,8 @@
 	id = /datum/reagent/fuel
 	results = list(/datum/reagent/fuel = 4)
 	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/toxin/acid = 3)
-	required_temp = 400
+	required_temp = 180
+	is_cold_recipe = TRUE
 
 /datum/chemical_reaction/stableplasma
 	name = /datum/reagent/stable_plasma
