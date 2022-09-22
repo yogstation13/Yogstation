@@ -61,7 +61,7 @@
 		/datum/reagent/oil,
 		/datum/reagent/uranium/radium,
 		/datum/reagent/stable_plasma,
-		/datum/reagent/sulfur,
+		/datum/reagent/sulfur
 	)
 	var/list/t2_upgrade_reagents = list(
 		/datum/reagent/consumable/sugar,
