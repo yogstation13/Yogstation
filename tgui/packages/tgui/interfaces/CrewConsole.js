@@ -85,7 +85,7 @@ const speciesmap = {
     "color": "#08ccb8",
   },
   "Alien": {
-    "icon": "user",
+    "icon": "question-circle",
     "color": "#d40db9",
   },
 };
@@ -227,7 +227,7 @@ export const CrewConsoleContent = (props, context) => {
                   {sensor.is_wounded ? <Icon name="star-of-life" color="#f50505" size={1} /> : ""}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                  {speciesmap[sensor.species] ? <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="user" color="#f70505" size={1} />}
+                  {speciesmap[sensor.species] ? <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="question" color="#f70505" size={1} />}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
