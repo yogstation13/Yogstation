@@ -1828,7 +1828,7 @@
 
 /datum/reagent/medicine/coagulant/seraka_extract
 	name = "Seraka Extract"
-	description = "A deeply coloured oil present in small amounts in Seraka Mushrooms. Acts as an effective blood clotting agent, but has a low overdose threshold."
+	description = "A deeply coloured oil present in small amounts in seraka mushrooms. Acts as an effective blood clotting agent, but has a low overdose threshold."
 	color = "#00767C"
 	taste_description = "intensely savoury bitterness"
 	glass_name = "glass of seraka extract"
