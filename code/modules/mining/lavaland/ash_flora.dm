@@ -344,7 +344,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/seraka
 	name = "seraka cap"
-	desc = desc = "Small, deeply flavourful mushrooms originally native to Sangris. These ones are flaked in ash and soot."
+	desc = "Small, deeply flavourful mushrooms originally native to Sangris. These ones are flaked in ash and soot."
 	icon_state = "seraka_cap"
 	seed = /obj/item/seeds/lavaland/seraka
 
