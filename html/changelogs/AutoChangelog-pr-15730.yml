@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixes some runtimes in _component.dm, mood.dm, and inventory.dm"

@@ -1,0 +1,9 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "Added Viper Crate Contraband Cargo Pack"
+  - rscadd: "Added Vipers, snakes that inject Venom into you on bite"
+  - tweak: "Weavers now inject Spore Toxin by default, and Venom when enraged"
+  - tweak: "Giant Spiders now inject Acid on bite"
+  - tweak: "Nurse Spiders/Broodmothers inject Tirizine on bite"
+  - spellcheck: "Viper Spiders have been Renamed Void Recluses"
