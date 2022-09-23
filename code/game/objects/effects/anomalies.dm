@@ -369,10 +369,11 @@
 	..()
 	for(var/i = 1 to 10)
 		fire_nuclear_particle_wimpy()
-		radiation_pulse(src, 100, 2)
+	radiation_pulse(src, 100, 2)
 
 /obj/effect/anomaly/radiation/detonate()
-	for(var/i = 1 to 72)
-		var/angle = i * 10
-		fire_nuclear_particle_wimpy(angle)
-		sleep(1)
+    var/turf/T = get_turf(src)
+    for(var/i = 1 to 72)
+        var/angle = i * 10
+        T.fire_nuclear_particle_wimpy(angle)
+        sleep(1)
