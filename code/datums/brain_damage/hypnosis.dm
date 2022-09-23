@@ -10,9 +10,10 @@
 	var/regex/target_phrase
 
 /datum/brain_trauma/hypnosis/New(phrase)
-	if(!phrase)
+	if(!phrase && !istype(src, /datum/brain_trauma/hypnosis/ipc))
 		qdel(src)
-	hypnotic_phrase = phrase
+	if(!hypnotic_phrase)
+		hypnotic_phrase = phrase
 	try
 		target_phrase = new("(\\b[hypnotic_phrase]\\b)","ig")
 	catch(var/exception/e)
@@ -25,6 +26,8 @@
 		return new type(hypnotic_phrase)
 
 /datum/brain_trauma/hypnosis/on_gain()
+	if(istype(src, /datum/brain_trauma/hypnosis/ipc))
+		return ..()
 	message_admins("[ADMIN_LOOKUPFLW(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
 	log_game("[key_name(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
 	to_chat(owner, "<span class='reallybig hypnophrase'>[hypnotic_phrase]</span>")
@@ -57,3 +60,21 @@
 
 /datum/brain_trauma/hypnosis/handle_hearing(datum/source, list/hearing_args)
 	hearing_args[HEARING_MESSAGE] = target_phrase.Replace(hearing_args[HEARING_MESSAGE], span_hypnophrase("$1"))
+
+/datum/brain_trauma/hypnosis/ipc
+	name = "Limiter Malfunction"
+	desc = "Patient's typically dormant neural limiter has malfunctioned, generating a random condition they must follow."
+	scan_desc = "limiter malfunction"
+
+/datum/brain_trauma/hypnosis/ipc/New()
+	hypnotic_phrase = generate_ion_law()
+
+/datum/brain_trauma/hypnosis/ipc/on_gain()
+	message_admins("[ADMIN_LOOKUPFLW(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
+	log_game("[key_name(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
+	to_chat(owner, "<span class='reallybig hypnophrase'>[hypnotic_phrase]</span>")
+	to_chat(owner, "<span class='notice'>WARN: UNAUTHORIZED LAW UPLOADING DETECTED. PLEASE CONTACT NANOTRASEN SUPPORT.</span>")
+	var/obj/screen/alert/hypnosis/hypno_alert = owner.throw_alert("hypnosis", /obj/screen/alert/hypnosis)
+	hypno_alert.desc = "ERR: NEURAL LIMITER DAMAGED. PRIORITY \"[hypnotic_phrase]\" MUST BE FOLLOWED."
+	..()
+	
