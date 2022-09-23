@@ -117,7 +117,7 @@
 
 /obj/item/ammo_box/magazine/smgm45/hp
 	name = "SMG magazine (Hollow-Point .45)"
-	desc = "A 24-round magazine for the C-20r SMG that contains AP .45 rounds. \
+	desc = "A 24-round magazine for the C-20r SMG that contains HP .45 rounds. \
 			These rounds suffer against those wearing body armor but devastate those who do not."
 	icon_state = "c20r45H-24"
 	ammo_type = /obj/item/ammo_casing/c45/hp
@@ -125,7 +125,7 @@
 
 /obj/item/ammo_box/magazine/smgm45/venom
 	name = "SMG magazine (Venom .45)"
-	desc = "A 24-round magazine for the C-20r SMG that contains AP .45 rounds. \
+	desc = "A 24-round magazine for the C-20r SMG that contains Venom .45 rounds. \
 			These rounds do less damage but poison targets."
 	icon_state = "c20r45V-24"
 	ammo_type = /obj/item/ammo_casing/c45/venom
