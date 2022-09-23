@@ -11,6 +11,7 @@
 	var/mob/living/carbon/owner = null
 	var/mob/living/carbon/original_owner = null
 	var/status = BODYPART_ORGANIC
+	var/sub_status = BODYPART_SUBTYPE_ORGANIC
 	var/needs_processing = FALSE
 
 	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
@@ -476,7 +477,7 @@
 		injury_mod += W.threshold_penalty
 
 	var/part_mod = -wound_resistance
-	if(get_damage(TRUE) >= max_damage)
+	if(get_damage(stamina=TRUE) >= max_damage)
 		part_mod += disabled_wound_penalty
 
 	injury_mod += part_mod
@@ -533,9 +534,13 @@
 		needs_processing = FALSE
 
 //Returns total damage.
-/obj/item/bodypart/proc/get_damage(include_stamina = FALSE)
-	var/total = brute_dam + burn_dam
-	if(include_stamina)
+/obj/item/bodypart/proc/get_damage(brute = TRUE, burn = TRUE, stamina = FALSE)
+	var/total = 0
+	if(brute)
+		total += brute_dam
+	if(burn)
+		total += burn_dam
+	if(stamina)
 		total = max(total, stamina_dam)
 	return total
 

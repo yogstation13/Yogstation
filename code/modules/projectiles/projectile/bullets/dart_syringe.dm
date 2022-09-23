@@ -11,15 +11,13 @@
 /obj/item/projectile/bullet/reusable/dart/on_hit(atom/target, blocked = FALSE)
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		if(blocked != 100) // not completely blocked
-			if(C.embed_object(container, def_zone, FALSE))
-				dropped = TRUE
-				..()
-				return BULLET_ACT_HIT
-			else
-				blocked = 100
-				target.visible_message(span_danger("\The [container] was deflected!"), \
-									   span_userdanger("You were protected against \the [container]!"))
+		if(C.can_inject(null, FALSE, def_zone, piercing) && C.embed_object(container, def_zone, FALSE))
+			dropped = TRUE
+			..()
+			return BULLET_ACT_HIT
+		else
+			target.visible_message(span_danger("\The [container] was deflected!"), \
+		span_userdanger("You were protected against \the [container]!"))
 
 	..(target, blocked)
 	return BULLET_ACT_HIT
@@ -29,13 +27,11 @@
 		container.forceMove(get_turf(src))
 		dropped = TRUE
 
-/obj/item/projectile/bullet/reusable/dart/proc/add_dart(obj/item/reagent_containers/new_dart)
+/obj/item/projectile/bullet/reusable/dart/proc/add_dart(obj/item/reagent_containers/new_dart, syrpierce)
+	piercing = syrpierce
 	container = new_dart
 	new_dart.forceMove(src)
 	name = new_dart.name
-	if(istype(new_dart, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/syringe
-		piercing = syringe.proj_piercing
 
 /obj/item/projectile/bullet/reusable/dart/syringe
 	name = "syringe"

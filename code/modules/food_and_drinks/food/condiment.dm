@@ -47,7 +47,7 @@
 		return 0
 
 	if(M == user)
-		user.visible_message(span_notice("[user] swallows some of contents of \the [src]."), span_notice("You swallow some of contents of \the [src]."))
+		user.visible_message(span_notice("[user] swallows some of contents of \the [src]."), span_notice("You swallow some of the contents of \the [src]."))
 	else
 		user.visible_message(span_warning("[user] attempts to feed [M] from [src]."))
 		if(!do_mob(user, M))

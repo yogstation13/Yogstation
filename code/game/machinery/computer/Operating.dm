@@ -41,7 +41,7 @@
 		var/datum/design/surgery/D = SSresearch.techweb_design_by_id(i)
 		if(!istype(D))
 			continue
-		advanced_surgeries += D.surgery
+		advanced_surgeries |= D.surgery
 
 /obj/machinery/computer/operating/proc/find_table()
 	for(var/direction in GLOB.alldirs)
