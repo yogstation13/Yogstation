@@ -39,6 +39,7 @@
 	deathsound = "sound/voice/borg_deathsound.ogg"
 	var/saved_screen //for saving the screen when they die
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	var/emagged = FALSE
 
 	var/datum/action/innate/change_screen/change_screen
 
@@ -230,7 +231,10 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
 /datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
+	if(emagged)
+		return
 	H.SetUnconscious(10 SECONDS)
 	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_ABSOLUTE)
+	emagged = TRUE
 
 #undef CONCIOUSAY
