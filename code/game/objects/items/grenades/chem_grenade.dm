@@ -16,6 +16,10 @@
 	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition." // Appears when examining empty casings.
 	var/obj/item/assembly/prox_sensor/landminemode = null
 
+/obj/item/grenade/chem_grenade/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+
 /obj/item/grenade/chem_grenade/Initialize()
 	. = ..()
 	create_reagents(1000)
@@ -134,6 +138,11 @@
 		name = initial(name)
 		desc = initial(desc)
 		icon_state = "[initial(icon_state)]_locked"
+
+/obj/item/grenade/chem_grenade/emp_act(severity)
+	..()
+	if(prob(40/severity)
+		prime()
 
 /obj/item/grenade/chem_grenade/on_found(mob/finder)
 	var/obj/item/assembly/A = wires.get_attached(wires.get_wire(1))
