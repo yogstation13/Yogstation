@@ -360,7 +360,7 @@
  /////////////////////////
 
 /obj/effect/anomaly/radiation
-	name = "radiation anomaly"
+	name = "radioactive anomaly"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "radiation_anomaly"
 	density = TRUE
