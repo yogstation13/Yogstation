@@ -76,5 +76,7 @@
 	to_chat(owner, "<span class='notice'>WARN: UNAUTHORIZED LAW UPLOADING DETECTED. PLEASE CONTACT NANOTRASEN SUPPORT.</span>")
 	var/obj/screen/alert/hypnosis/hypno_alert = owner.throw_alert("hypnosis", /obj/screen/alert/hypnosis)
 	hypno_alert.desc = "ERR: NEURAL LIMITER DAMAGED. PRIORITY \"[hypnotic_phrase]\" MUST BE FOLLOWED."
+	to_chat(owner, "<span class='boldwarning'>You've been hypnotized by this sentence. You must follow these words. If it isn't a clear order, you can freely interpret how to do so,\
+										as long as you act like the words are your highest priority.</span>")
 	..()
 	
