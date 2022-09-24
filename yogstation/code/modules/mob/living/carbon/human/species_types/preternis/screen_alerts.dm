@@ -9,5 +9,5 @@
 
 /obj/screen/alert/preternis_wet
 	name = "Wet"
-	desc = "Your circuits are shorting from all the extra moisture!"
+	desc = "Your circuits are shorting from all the water!"
 	icon_state = "wet"
