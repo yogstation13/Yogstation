@@ -282,4 +282,5 @@
 #undef STATUS_MESSAGE_COOLDOWN
 
 /datum/species/pod/syndicate
-changesource_flags = MIRROR_BADMIN
+	changesource_flags = MIRROR_BADMIN
+	speedmod = 0
