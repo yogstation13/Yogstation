@@ -63878,18 +63878,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/storage/backroom)
-"jGn" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "13"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/maintenance/port/aft)
 "jGv" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -76867,6 +76855,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
+"sPt" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "13"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "sPG" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -99686,7 +99686,7 @@ dux
 dux
 dux
 dux
-jGn
+sPt
 dux
 dux
 bMA
