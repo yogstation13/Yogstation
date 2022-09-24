@@ -737,4 +737,4 @@
 	desc = "A magical dice capable of many outcomes some gruesome others amazing, try your luck"
 	item_path = /obj/item/dice/d20/fate/one_use
 	cost = 1
-	category = "Defensive"
+	category = "Assistance"
