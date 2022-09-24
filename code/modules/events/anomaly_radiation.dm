@@ -1,5 +1,5 @@
 /datum/round_event_control/anomaly/anomaly_radiation
-	name = "Anomaly: Radioactive"
+	name = "Anomaly: Radiation"
 	typepath = /datum/round_event/anomaly/anomaly_radiation
 
 	max_occurrences = 7
