@@ -678,7 +678,7 @@
 
 /obj/item/reagent_containers/autoinjector/phytosiansyndicateshit
 	name = "experimental phytosian autoinjector"
-	desc = "A modified air-needle autoinjector with a small single-use reservoir. It contains an experimental serum that combats phytosians natural slowness."
+	desc = "A modified air-needle autoinjector with a small single-use reservoir. It contains an experimental serum that acts on phytosians genetics to make them faster."
 	icon_state = "hypo_syndie"
 	volume = 5
 	reagent_flags = NONE
