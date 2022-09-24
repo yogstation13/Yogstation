@@ -229,6 +229,12 @@
 	result = /obj/item/toy/sword
 	category = CAT_MISC
 
+/datum/crafting_recipe/toybat
+	name = "Toy Baseball Bat"
+	reqs = list(/obj/item/stack/sheet/plastic = 6, )
+	result = /obj/item/toy/foamblade/baseball
+	category = CAT_MISC
+
 /datum/crafting_recipe/blackcarpet
 	name = "Black Carpet"
 	reqs = list(/obj/item/stack/tile/carpet = 50, /obj/item/toy/crayon/black = 1)

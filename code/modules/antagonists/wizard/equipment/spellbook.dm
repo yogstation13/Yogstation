@@ -159,11 +159,6 @@
 	spell_type = /obj/effect/proc_holder/spell/pointed/trigger/blind
 	cost = 1
 
-/datum/spellbook_entry/mindswap
-	name = "Mindswap"
-	spell_type = /obj/effect/proc_holder/spell/targeted/mind_transfer
-	category = "Mobility"
-
 /datum/spellbook_entry/forcewall
 	name = "Force Wall"
 	spell_type = /obj/effect/proc_holder/spell/targeted/forcewall
@@ -232,7 +227,7 @@
 /datum/spellbook_entry/arcane_barrage
 	name = "Arcane Barrage"
 	spell_type = /obj/effect/proc_holder/spell/targeted/infinite_guns/arcane_barrage
-	cost = 2
+	cost = 3
 	no_coexistance_typecache = /obj/effect/proc_holder/spell/targeted/infinite_guns/gun
 
 /datum/spellbook_entry/barnyard

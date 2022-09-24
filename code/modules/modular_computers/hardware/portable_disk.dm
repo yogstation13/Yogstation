@@ -8,6 +8,10 @@
 	max_capacity = 16
 	device_type = MC_SDD
 
+/obj/item/computer_hardware/hard_drive/portable/examine(mob/user)
+	. = ..()
+	. += span_notice("Insert this disk into a modular computer and open the File Manager program to interact with it.")
+
 /obj/item/computer_hardware/hard_drive/portable/on_remove(obj/item/modular_computer/MC, mob/user)
 	return //this is a floppy disk, let's not shut the computer down when it gets pulled out.
 
@@ -56,9 +60,16 @@
 /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman/install_default_programs()
 	..()
 	var/datum/computer_file/program/bomberman/B = new /datum/computer_file/program/bomberman(src)
-	var/datum/bombcode/C = new /datum/bombcode
+	var/datum/ntosbombcode/C = new /datum/ntosbombcode
 	B.bombcode = C.code
 	store_file(B)
+
+/obj/item/computer_hardware/hard_drive/portable/syndicate/frame/install_default_programs()
+	..()
+	var/datum/computer_file/program/frame/F = new /datum/computer_file/program/frame(src)
+	var/datum/ntosframecode/C = new /datum/ntosframecode
+	F.framecode = C.code
+	store_file(F)
 
 //////////////
 //Trap Disks//

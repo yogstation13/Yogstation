@@ -126,7 +126,7 @@
 		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with a [det_time] second fuse")
 
 		if(notify_ghosts)
-			notify_ghosts("[user] has planted \a [src] on [target] with a [det_time] second fuse!", source = src, action = NOTIFY_ORBIT, header = "Bomb Planted" )
+			notify_ghosts("[user] has planted \a [src] on [target] with a [det_time] second fuse!", source = target, action = NOTIFY_JUMP, header = "Bomb Planted" )
 
 		moveToNullspace()	//Yep
 

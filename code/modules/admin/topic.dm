@@ -175,6 +175,14 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a CentCom response team. Unfortunately, there were not enough candidates available.")
 					log_admin("[key_name(usr)] failed to create a CentCom response team.")
+			if("centcom_custom")
+				message_admins("[key_name(usr)] is creating a Uplinked CentCom response team...")
+				if(src.makeUplinkEmergencyResponseTeam())
+					message_admins("[key_name(usr)] created a Uplinked CentCom response team.")
+					log_admin("[key_name(usr)] created a Uplinked CentCom response team.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create a Uplinked CentCom response team. Unfortunately, there were not enough candidates available.")
+					log_admin("[key_name(usr)] failed to create a Uplinked CentCom response team.")
 			if("abductors")
 				message_admins("[key_name(usr)] is creating an abductor team...")
 				if(src.makeAbductorTeam())

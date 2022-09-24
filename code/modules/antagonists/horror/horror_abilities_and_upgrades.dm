@@ -312,11 +312,11 @@
 
 /datum/action/innate/horror/lube_spill
 	name = "Lube spill"
-	desc = "Makes you spin around and flail slippery lube around you. Costs 30 chemicals to activate."
+	desc = "Makes you spin around and flail slippery lube around you. Costs 50 chemicals to activate."
 	button_icon_state = "lube_spill"
-	chemical_cost = 30
+	chemical_cost = 50
 	category = list("horror")
-	soul_price = 1
+	soul_price = 2
 	var/cooldown = 0
 
 /datum/action/innate/horror/lube_spill/IsAvailable()
@@ -325,23 +325,16 @@
 	return ..()
 
 /datum/action/innate/horror/lube_spill/Activate()
-	B.use_chemicals(30)
+	B.use_chemicals(chemical_cost)
 	cooldown = world.time + 10 SECONDS
 	UpdateButtonIcon()
 	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
-	B.visible_message(span_warning("[B] starts spinning and throwing some sort of substance!"), span_notice("Your start to spin and flail oily substance everywhere!"))
-	var/spins_remaining = 10
-	B.icon_state = "horror_spin"
-	while(spins_remaining > 0)
-		playsound(B, 'sound/effects/blobattack.ogg', rand(20, 30), rand(0.5, 2))
-		for(var/turf/open/t in range(1, B))
-			if(prob(60) && B.Adjacent(t))
-				t.MakeSlippery(TURF_WET_LUBE, 100)
-		sleep(0.5 SECONDS)
-		spins_remaining--
-		if(!B.can_use_ability())
-			return TRUE
-	B.icon_state = "horror"
+	B.visible_message(span_warning("[B] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
+	flick("horror_spin", B)
+	playsound(B, 'sound/effects/blobattack.ogg', 25, 1)
+	for(var/turf/open/t in range(1, B))
+		if(prob(60) && B.Adjacent(t))
+			t.MakeSlippery(TURF_WET_LUBE, 50)
 	return TRUE
 
 //UPGRADES
@@ -416,18 +409,18 @@
 	B.health = round(min(B.maxHealth,B.health * 2))
 	B.maxHealth = round(B.maxHealth * 2)
 
-//Increases melee damage to 20
+//Increases melee damage to 15 with increased effect on cyborgs
 /datum/horror_upgrade/dmg_up
-	name = "Sharpened teeth"
+	name = "Serrated teeth"
 	id = "dmg_up"
-	desc = "Your teeth become sharp blades, this mutation increases your melee damage."
+	desc = "Your teeth become serrated, inflicting additional damage. Effect increased against cyborgs."
 	soul_price = 2
 
 /datum/horror_upgrade/dmg_up/apply_effects()
 	B.attacktext = "crushes"
 	B.attack_sound = 'sound/weapons/pierce_slow.ogg' //chunky
-	B.melee_damage_lower += 10
-	B.melee_damage_upper += 10
+	B.melee_damage_lower += 5
+	B.melee_damage_upper += 5
 
 //Expands the reagent selection horror can make
 /datum/horror_upgrade/upgraded_chems

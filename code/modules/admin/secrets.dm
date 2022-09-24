@@ -386,7 +386,9 @@
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Chinese Cartoons"))
 			message_admins("[key_name_admin(mob_user)] made everything kawaii.")
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
-				if(H.client.prefs && H.client.prefs.disable_alternative_announcers)
+				if(!get_turf(H))
+					continue
+				if(H.client?.prefs?.disable_alternative_announcers)
 					SEND_SOUND(H, sound(SSstation.default_announcer.event_sounds[ANNOUNCER_ANIMES]))
 				else
 					SEND_SOUND(H, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))
