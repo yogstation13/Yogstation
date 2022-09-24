@@ -280,3 +280,6 @@
 			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 
 #undef STATUS_MESSAGE_COOLDOWN
+
+/datum/species/pod/syndicate
+changesource_flags = MIRROR_BADMIN
