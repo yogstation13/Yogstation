@@ -2011,6 +2011,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/seeds/tomato/killer
 	restricted_species = list("pod")
 
+/datum/uplink_item/race_restricted/podevolver
+	name = "Phytosian Evolver"
+	desc = "The Syndicates Geneticist have cooked up a mutation toxin that eliminates phytosians natural slowness."
+	cost = 3
+	manufacturer = /datum/corporation/traitor/donkco
+	item = /obj/item/reagent_containers/autoinjector/phytosiansyndicateshit
+	restricted_species = list("pod")
+
+
 /datum/uplink_item/race_restricted/radiationbomb
 	name = "Radiation grenade"
 	desc = "A radiation bomb guaranteed to irradiate the fuck out of non-gaseous lifeforms."
