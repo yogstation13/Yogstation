@@ -675,6 +675,14 @@
 	if(hypo.penetrates)
 		to_chat(user, span_notice("[hypo] already has a piercing mechanism!"))
 		return FALSE
+
+/obj/item/reagent_containers/autoinjector/magillitis
+	name = "experimental phytosian autoinjector"
+	desc = "A modified air-needle autoinjector with a small single-use reservoir. It contains an experimental serum that combats phytosians natural slowness."
+	icon_state = "hypo_syndie"
+	volume = 5
+	reagent_flags = NONE
+	list_reagents = list(/datum/reagent/mutationtoxin/pod/syndicate = 5)
 	else
 		hypo.penetrates = TRUE
 		return TRUE
