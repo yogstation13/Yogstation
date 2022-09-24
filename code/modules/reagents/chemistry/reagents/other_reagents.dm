@@ -563,6 +563,12 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/human/felinid
 	mutationtext = span_danger("The pain subsides. You feel... like a degenerate.")
+	
+/datum/reagent/mutationtoxin/pod/syndicate
+	name = "Advanced Phytosian Mutation Toxin"
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/pod/syndicate
+	mutationtext = span_danger("The pain subsides. You feel Faster.")
 
 /datum/reagent/mutationtoxin/lizard
 	name = "Lizard Mutation Toxin"
