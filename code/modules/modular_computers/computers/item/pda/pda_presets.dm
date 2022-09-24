@@ -54,6 +54,13 @@
 	)	
 	. = ..()
 
+/obj/item/modular_computer/tablet/pda/preset/robo
+/obj/item/modular_computer/tablet/pda/preset/robo/Initialize()
+	starting_files |= list(
+		new /datum/computer_file/program/robocontrol,
+	)	
+	. = ..()
+
 /obj/item/modular_computer/tablet/pda/preset/cargo
 /obj/item/modular_computer/tablet/pda/preset/cargo/Initialize()
 	starting_files |= list(
