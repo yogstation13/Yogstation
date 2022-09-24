@@ -75,6 +75,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/coldmod = 1
 	/// multiplier for heat damage
 	var/heatmod = 1
+	/// multiplier for temperature adjustment
+	var/tempmod = 1
 	/// multiplier for acid damage // yogs - Old Plant People
 	var/acidmod = 1
 	/// multiplier for stun duration

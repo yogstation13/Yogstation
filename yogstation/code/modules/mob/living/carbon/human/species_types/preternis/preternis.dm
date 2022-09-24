@@ -20,10 +20,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
 	disliked_food = GROSS | VEGETABLES
-	brutemod = 0.85 //Have you ever punched a metal plate?
-	burnmod = 1.5 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
-	coldmod = 2 //The plasteel around them saps their body heat quickly if it gets cold
-	heatmod = 0.5 //The plasteel has a really high heat capacity, and these circuits are built specifically to endure heat
+	brutemod = 0.9 //Have you ever punched a metal plate?
+	burnmod = 1.2 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
+	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
+	heatmod = 3 //The once the heat gets through it's gonna BURN
+	tempmod = 0.2 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	speedmod = 0 //Sleek efficient metal legs, despite the weight
 	action_speed_coefficient = 0.9 //worker drone do the fast
