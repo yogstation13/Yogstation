@@ -731,3 +731,10 @@
 			tab = sanitize(href_list["page"])
 	attack_self(H)
 	return
+
+/datum/spellbook_entry/item/die
+	name = "Die of fate"
+	desc = "A magical dice capable of many outcomes some gruesome others amazing, try your luck"
+	item_path = /obj/item/dice/d20/fate/one_use
+	cost = 1
+	category = "Defensive"
