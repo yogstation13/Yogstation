@@ -665,8 +665,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 100)
 	build_path = /obj/item/assembly/mousetrap
-	category = list("initial", "Miscellaneous")
-	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+	category = list("initial", "Miscellaneous", "Service")
 
 /datum/design/radio_headset
 	name = "Radio Headset"
@@ -994,7 +993,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 450, /datum/material/glass = 190)
 	build_path = /obj/item/conveyor_switch_construct
-	category = list("initial", "Construction", "Misc", "Assemblies")
+	category = list("initial", "Construction", "Assemblies")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/laptop
@@ -1143,7 +1142,7 @@
 /datum/design/discoball
 	name = "Portable Disco Ball"
 	id = "portable_discoball"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100)
 	build_path = /obj/item/discoballdeployer
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous", "Service")
