@@ -2416,7 +2416,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "mint choc chip"
 	glass_icon_state = "sea_breeze"
 	glass_name = "Sea Breeze"
-	glass_desc = "A mint-chocolate, creamy shake."
+	glass_desc = "A creamy mint-chocolate shake."
 
 /datum/reagent/consumable/ethanol/sea_breeze/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	M.apply_status_effect(/datum/status_effect/throat_soothed)
@@ -2458,7 +2458,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "regret"
 	glass_icon_state = "protein_blend"
 	glass_name = "Protein Blend"
-	glass_desc = "A vile-looking drink that's hard to stomach, even if nutritious."
+	glass_desc = "A vile yet nutritious drink that's hard to stomach."
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/ethanol/protein_blend/on_mob_life(mob/living/carbon/M, delta_time, times_fired)

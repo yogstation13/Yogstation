@@ -338,7 +338,7 @@
 	harvest_time = 25
 	harvest_message_low = "You pluck a few choice tasty mushrooms."
 	harvest_message_med = "You grab a good haul of mushrooms."
-	harvest_message_high = "You hit the mushroom motherlode and harvest several from the batch."
+	harvest_message_high = "You hit the mushroom motherlode, your harvest containing several sizeable mushrooms."
 	regrowth_time_low = 3000
 	regrowth_time_high = 5400
 
