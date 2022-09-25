@@ -2423,25 +2423,25 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/white_tiziran
-	name = "White Tiziran"
+	name = "Kriiya"
 	description = "A mix of vodka and kortara, often utilized during vuulek celebrations."
 	boozepwr = 65
 	color = "#A68340"
 	quality = DRINK_GOOD
 	taste_description = "strikes and gutters"
 	glass_icon_state = "white_tiziran"
-	glass_name = "White Tiziran"
+	glass_name = "Kriiya"
 	glass_desc = "A sweet mint vodka with a hint of cocoa."
 
 /datum/reagent/consumable/ethanol/drunken_espatier
-	name = "Drunken Espatier"
+	name = "M'thalu"
 	description = "A drink concocted by vuulek warriors for traditional duels. Strong and numbing."
 	boozepwr = 65
 	color = "#A68340"
 	quality = DRINK_GOOD
 	taste_description = "sorrow"
 	glass_icon_state = "drunken_espatier"
-	glass_name = "Drunken Espatier"
+	glass_name = "M'thalu"
 	glass_desc = "A drink that numbs the body, making it difficult to be aware of injury."
 	
 /datum/reagent/consumable/ethanol/drunken_espatier/on_mob_life(mob/living/carbon/C, delta_time, times_fired)
