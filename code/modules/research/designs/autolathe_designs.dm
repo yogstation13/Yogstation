@@ -83,20 +83,20 @@
 /datum/design/analyzer
 	name = "Analyzer"
 	id = "analyzer"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 30, /datum/material/glass = 20)
 	build_path = /obj/item/analyzer
 	category = list("initial","Tools","Tool Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/tscanner
 	name = "T-Ray Scanner"
 	id = "tscanner"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 150)
 	build_path = /obj/item/t_scanner
 	category = list("initial","Tools","Tool Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/weldingtool
 	name = "Welding Tool"
@@ -162,7 +162,7 @@
 /datum/design/cable_coil
 	name = "Cable Coil"
 	id = "cable_coil"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 10, /datum/material/glass = 5)
 	build_path = /obj/item/stack/cable_coil/random
 	category = list("initial","Tools","Tool Designs")
@@ -653,10 +653,11 @@
 /datum/design/signaler
 	name = "Remote Signaling Device"
 	id = "signaler"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 400, /datum/material/glass = 120)
 	build_path = /obj/item/assembly/signaler
-	category = list("initial", "T-Comm")
+	category = list("initial", "T-Comm", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/mousetrap
 	name = "Mousetrap"
@@ -678,50 +679,56 @@
 /datum/design/bounced_radio
 	name = "Station Bounced Radio"
 	id = "bounced_radio"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 75, /datum/material/glass = 25)
 	build_path = /obj/item/radio/off
-	category = list("initial", "T-Comm")
+	category = list("initial", "T-Comm", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/intercom_frame
 	name = "Intercom Frame"
 	id = "intercom_frame"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 75, /datum/material/glass = 25)
 	build_path = /obj/item/wallframe/intercom
-	category = list("initial", "T-Comm")
+	category = list("initial", "T-Comm", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/infrared_emitter
 	name = "Infrared Emitter"
 	id = "infrared_emitter"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
 	build_path = /obj/item/assembly/infra
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/health_sensor
 	name = "Health Sensor"
 	id = "health_sensor"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 800, /datum/material/glass = 200)
 	build_path = /obj/item/assembly/health
-	category = list("initial", "Medical")
+	category = list("initial", "Medical", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/timer
 	name = "Timer"
 	id = "timer"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 50)
 	build_path = /obj/item/assembly/timer
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/voice_analyser
 	name = "Voice Analyser"
 	id = "voice_analyser"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 50)
 	build_path = /obj/item/assembly/voice
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/light_tube
 	name = "Light Tube"
@@ -742,18 +749,20 @@
 /datum/design/camera_assembly
 	name = "Camera Assembly"
 	id = "camera_assembly"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 400, /datum/material/glass = 250)
 	build_path = /obj/item/wallframe/camera
-	category = list("initial", "Construction")
+	category = list("initial", "Construction", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/newscaster_frame
 	name = "Newscaster Frame"
 	id = "newscaster_frame"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 14000, /datum/material/glass = 8000)
 	build_path = /obj/item/wallframe/newscaster
-	category = list("initial", "Construction")
+	category = list("initial", "Construction", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/bounty_board_frame
 	name = "Bounty Board Frame"
@@ -784,10 +793,11 @@
 /datum/design/prox_sensor
 	name = "Proximity Sensor"
 	id = "prox_sensor"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 800, /datum/material/glass = 200)
 	build_path = /obj/item/assembly/prox_sensor
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/foam_dart
 	name = "Box of Foam Darts"
@@ -802,10 +812,10 @@
 /datum/design/rpd
 	name = "Rapid Pipe Dispenser (RPD)"
 	id = "rpd"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 45000, /datum/material/glass = 37500)
 	build_path = /obj/item/pipe_dispenser
-	category = list("hacked", "Construction")
+	category = list("hacked", "Construction", "Tool Designs")
 
 /datum/design/electropack
 	name = "Electropack"
@@ -970,20 +980,22 @@
 /datum/design/conveyor_belt
 	name = "Conveyor Belt"
 	id = "conveyor_belt"
-	build_type = AUTOLATHE | MECHFAB
+	build_type = AUTOLATHE | MECHFAB | PROTOLATHE
 	materials = list(/datum/material/iron = 3000)
 	build_path = /obj/item/stack/conveyor
-	category = list("initial", "Construction", "Misc")
+	category = list("initial", "Construction", "Misc", "Assemblies")
 	maxstack = 30
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 
 /datum/design/conveyor_switch
 	name = "Conveyor Belt Switch"
 	id = "conveyor_switch"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 450, /datum/material/glass = 190)
 	build_path = /obj/item/conveyor_switch_construct
-	category = list("initial", "Construction", "Misc")
+	category = list("initial", "Construction", "Misc", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/laptop
 	name = "Laptop Frame"
