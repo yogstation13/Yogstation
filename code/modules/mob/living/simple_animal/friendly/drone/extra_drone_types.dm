@@ -36,6 +36,7 @@
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = internal_storage.GetComponent(/datum/component/uplink)
 	hidden_uplink.telecrystals = 10
+	radio = new /obj/item/radio/headset/syndicate(src)
 
 /mob/living/simple_animal/drone/syndrone/Login()
 	..()
@@ -58,6 +59,7 @@
 
 /mob/living/simple_animal/drone/snowflake/Initialize()
 	. = ..()
+	radio = new /obj/item/radio/headset/(src)
 	desc += " This drone appears to have a complex holoprojector built on its 'head'."
 
 /obj/item/drone_shell/syndrone
@@ -84,6 +86,7 @@
 
 /mob/living/simple_animal/drone/polymorphed/Initialize()
 	. = ..()
+	radio = new /obj/item/radio/headset/(src)
 	liberate()
 	visualAppearence = pick(MAINTDRONE, REPAIRDRONE, SCOUTDRONE)
 	if(visualAppearence == MAINTDRONE)
@@ -103,6 +106,10 @@
 /mob/living/simple_animal/drone/derelict
 	name = "derelict drone"
 	default_hatmask = /obj/item/clothing/head/ushanka
+
+/mob/living/simple_animal/drone/derelict/Initialize()
+	. = ..()
+	radio = null
 
 /mob/living/simple_animal/drone/cogscarab
 	name = "cogscarab"
@@ -145,6 +152,7 @@
 
 /mob/living/simple_animal/drone/cogscarab/Initialize()
 	. = ..()
+	radio = null
 	set_light(2, 0.5)
 	qdel(access_card) //we don't have free access
 	access_card = null

@@ -58,6 +58,7 @@
 	var/list/staticChoices = list("static", "blank", "letter", "animal")
 	var/picked = FALSE //Have we picked our visual appearence (+ colour if applicable)
 	var/colour = "grey"	//Stored drone color, so we can go back when unhacked.
+	var/obj/item/radio/ = null
 	var/list/drone_overlays[DRONE_TOTAL_LAYERS]
 	var/laws = {"\
 1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another Drone.
@@ -95,6 +96,7 @@
 	access_card = new /obj/item/card/id(src)
 	var/datum/job/captain/C = new /datum/job/captain
 	access_card.access = C.get_access()
+	radio = new /obj/item/radio/headset/silicon/ai(src)
 	
 	var/turf/A = get_area(src)
 	
