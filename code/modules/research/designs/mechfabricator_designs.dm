@@ -881,7 +881,7 @@
 	materials = list(/datum/material/iron = 750, /datum/material/glass = 750)
 	construction_time = 100
 	build_path = /obj/item/assembly/flash/handheld
-	category = list("Misc")
+	category = list("Misc", "Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY
 
 // IPC Replacement Parts
