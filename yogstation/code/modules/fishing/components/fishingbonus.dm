@@ -9,6 +9,7 @@
 	src.fishing_bonus = fishing_bonus
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/OnEquip)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/OnUnequip)
+	RegisterSignal(parent, COMSIG_FISH_FINDER_EXAMINE, .proc/OnFishFind)
 
 /datum/component/fishingbonus/proc/OnEquip(datum/source, mob/living/carbon/equipper, slot)
 	var/obj/item/parent_item = parent
@@ -22,3 +23,9 @@
 	if(wearer)
 		equipper.fishing_power -= fishing_bonus
 		wearer = null
+
+/datum/component/fishingbonus/proc/OnFishFind(mob/target,mob/user)
+	var/obj/item/clothing/C = parent
+	if(C)
+		to_chat(user,examine_block("[C.name]: [fishing_bonus] fishing bonus"))
+	return TRUE

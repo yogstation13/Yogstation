@@ -39,20 +39,22 @@
 
 /obj/item/fishingbook/ui_data(mob/user)
 	var/list/data = list()
-	return data
-
-/obj/item/fishingbook/ui_static_data(mob/user)
-	var/list/data = list()
 	var/list/f_list = list()
-	for(var/obj/item/reagent_containers/food/snacks/fish/f in GLOB.fish_list)
+	for(var/fish in GLOB.fish_list)
+		var/obj/item/reagent_containers/food/snacks/fish/F = fish
 		var/list/details = list()
-		details["name"] = initial(f.name)
-		details["min_length"] = initial(f.min_length)
-		details["max_length"] = initial(f.max_length)
-		details["min_weight"] = initial(f.min_weight)
-		details["max_weight"] = initial(f.max_weight)
-		f_list += details
+		details["name"] = initial(F.name)
+		details["min_length"] = initial(F.min_length)
+		details["max_length"] = initial(F.max_length)
+		details["min_weight"] = initial(F.min_weight)
+		details["max_weight"] = initial(F.max_weight)
+		f_list += list(details)
 	data["f_list"] = f_list
 	return data
 
-	
+/*
+/obj/item/fishingbook/ui_static_data(mob/user)
+	var/list/data = list()
+
+	return data
+*/
