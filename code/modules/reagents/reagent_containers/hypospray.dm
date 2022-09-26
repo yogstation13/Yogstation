@@ -419,7 +419,7 @@
 		return
 
 	var/mob/living/carbon/C = target
-	if(istype(C) && C.can_inject(user, 1))
+	if(istype(C) && C.can_inject(user, 1, user.zone_selected, penetrates))
 		if(ishuman(C))
 			var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
 			if(!affecting)

@@ -137,7 +137,6 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/proc/handlecable(obj/item/W, mob/user, params)
 	var/turf/T = get_turf(src)
-	var/list/combined_msg = list()
 	if(T.intact)
 		return
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
@@ -163,12 +162,13 @@ By design, d1 is the smallest direction and d2 is the highest
 			R.is_empty(user)
 
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
+		var/list/combined_msg = list()
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			combined_msg += span_danger("Total power: [DisplayPower(powernet.avail)]\nLoad: [DisplayPower(powernet.load)]\nExcess power: [DisplayPower(surplus())]")
 		else
 			combined_msg += span_danger("The cable is not powered.")
 		shock(user, 5, 0.2)
-	to_chat(user, examine_block(combined_msg.Join("\n")))
+		to_chat(user, examine_block(combined_msg.Join("\n")))
 
 	add_fingerprint(user)
 

@@ -8,6 +8,7 @@
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 10
+	/// How much damage does it apply when used
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
 	harmful = TRUE

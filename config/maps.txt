@@ -17,6 +17,10 @@ map yogstation
 	votable
 endmap
 
+map asteroidstation
+	minplayers 25
+endmap
+
 map omegastation
 	maxplayers 35
 	disabled

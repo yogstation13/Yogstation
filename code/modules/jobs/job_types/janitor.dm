@@ -36,7 +36,7 @@
 	name = "Janitor"
 	jobtype = /datum/job/janitor
 
-	pda_type = /obj/item/pda/janitor
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/janitor

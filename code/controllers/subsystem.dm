@@ -172,7 +172,7 @@
 	SEND_SIGNAL(src, COMSIG_SUBSYSTEM_POST_INITIALIZE, start_timeofday)
 	var/time = (REALTIMEOFDAY - start_timeofday)/10
 	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!" // Yogs -- quieter subsystem initialization
-	to_chat(GLOB.admins,
+	to_chat(GLOB.permissions.admins,
 		type = MESSAGE_TYPE_DEBUG,
 		html = span_notice(msg),
 		confidential = FALSE) 

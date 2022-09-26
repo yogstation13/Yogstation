@@ -37,9 +37,11 @@
 						/obj/item/prisoncube,
 						/obj/item/staff/storm,
 						/obj/item/clothing/under/drip, //Drip is very valuable to many investors in high fashion
-						/obj/item/clothing/shoes/drip)
+						/obj/item/clothing/shoes/drip,
+						/obj/item/gun/energy/plasmacutter/adv/robocutter,
+						/obj/item/twohanded/bonespear/stalwartpike)
 
-//Megafauna loot, except for ash drakes and legion
+//Megafauna loot, except for stalwart, ash drakes, and legion
 
 /datum/export/lavaland/megafauna
 	cost = 40000
@@ -66,3 +68,60 @@
 	cost = 10000
 	unit_name = "H.E.C.K. helmet"
 	export_types = list(/obj/item/clothing/head/helmet/space/hostile_environment)
+
+//Gemstones, because they are unstackable
+
+/datum/export/lavaland/gems/rupee
+	cost = 3300
+	unit_name = "Ruperium"
+	export_types = list(/obj/item/gem/rupee)
+
+/datum/export/lavaland/gems/magma
+	cost = 4500
+	unit_name = "Calcified Auric"
+	export_types = list(/obj/item/gem/magma)
+
+/datum/export/lavaland/gems/diamond
+	cost = 4500
+	unit_name = "Frost Diamond"
+	export_types = list(/obj/item/gem/fdiamond)
+
+/datum/export/lavaland/gems/plasma
+	cost = 7500
+	unit_name = "Stabilized Baroxuldium"
+	export_types = list(/obj/item/gem/phoron)
+
+/datum/export/lavaland/gems/purple
+	cost = 8400
+	unit_name = "Densified Dilithium"
+	export_types = list(/obj/item/gem/purple)
+
+/datum/export/lavaland/gems/amber
+	cost = 9600
+	unit_name = "Draconic Amber"
+	export_types = list(/obj/item/gem/amber)
+
+/datum/export/lavaland/gems/void
+	cost = 10000
+	unit_name = "Null Crystal"
+	export_types = list(/obj/item/gem/void)
+
+/datum/export/lavaland/gems/blood
+	cost = 12000
+	unit_name = "Ichorium Crystal"
+	export_types = list(/obj/item/gem/bloodstone)
+
+/datum/export/lavaland/gems/dark
+	cost = 20000
+	unit_name = "Dark Salt Lick"
+	export_types = list(/obj/item/gem/dark)
+
+/datum/export/lavaland/gems/minor
+	cost = 1000
+	unit_name = "Minor Lavaland Gems"
+	export_types = list(/obj/item/gem/ruby,/obj/item/gem/sapphire,/obj/item/gem/emerald,/obj/item/gem/topaz)
+
+/datum/export/lavaland/gems/stalwart
+	cost = 9800
+	unit_name = "Bluespace Data Crystal"
+	export_types = list(/obj/item/ai_cpu/stalwart)

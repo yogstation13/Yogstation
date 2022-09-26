@@ -197,6 +197,7 @@
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	burst_size = 4
+	spread = 30
 	fire_delay = 1
 	bolt_type = BOLT_TYPE_OPEN
 

@@ -80,6 +80,18 @@
 		/obj/item/barrier_taperoll/engineering
 		))
 
+/obj/item/storage/belt/utility/makeshift
+	name = "makeshift toolbelt"
+	desc = "A shoddy holder of tools."
+	icon_state = "makeshiftbelt"
+	item_state = "makeshiftutility"
+
+/obj/item/storage/belt/utility/makeshift/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7 //It's a very crappy belt
+	STR.max_combined_w_class = 16
+
 /obj/item/storage/belt/utility/chief
 	name = "\improper Chief Engineer's toolbelt" //"the Chief Engineer's toolbelt", because "Chief Engineer's toolbelt" is not a proper noun
 	desc = "Holds tools, looks snazzy."

@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	name = "Station Engineer"
 	jobtype = /datum/job/engineer
 
-	pda_type = /obj/item/pda/engineering
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_eng
@@ -106,7 +106,6 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	satchel = /obj/item/storage/backpack/satchel/eng
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
-	backpack_contents = list(/obj/item/modular_computer/tablet/pda/preset/basic=1)
 
 	pda_slot = SLOT_L_STORE
 
