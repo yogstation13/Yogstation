@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	use_power(6)
 	//get the first 30 items in contents
 	var/turf/locturf = loc
-	var/list/items = locturf.contents - src
+	var/list/items = locturf.contents - src - locturf.lighting_object
 	if(!LAZYLEN(items))//Dont do anything at all if theres nothing there but the conveyor
 		return
 	var/list/affecting
