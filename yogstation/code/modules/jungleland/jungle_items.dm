@@ -160,3 +160,118 @@
 	desc = "Heart of a corrupted dryad, for now it still lives, and i may use some of it's strength to help me live aswell."
 	icon_state = "corrupted_heart"
 	status_effect = /datum/status_effect/corrupted_dryad
+
+/obj/item/clothing/neck/yogs/skin_twister
+	name = "skin-twister cloak"
+	desc = "Cloak made out of skin of the elusive skin-twister, when worn over head it makes you invisible to the smaller fauna of the jungle."
+	icon_state = "skin_twister_cloak_0"
+	item_state = "skin_twister_cloak_0"
+
+	var/active = FALSE
+	var/list/cached_faction_list
+
+/obj/item/clothing/neck/yogs/skin_twister/equipped(mob/user, slot)
+	. = ..()
+	active = FALSE
+	if(slot != SLOT_NECK)
+		return
+	active = TRUE
+	cached_faction_list = user.faction.Copy() // we dont keep the reference to it 
+	user.faction += "mining"
+	user.faction += "skin_walkers"
+
+/obj/item/clothing/neck/yogs/skin_twister/dropped(mob/user)
+	if(active)
+		active = FALSE 
+		user.faction = cached_faction_list	
+	return ..()
+
+/obj/item/stack/sheet/skin_twister
+	name = "skin twister hide"
+	desc = "Hide of a skin twister"
+	singular_name = "skintwister hide piece"
+	icon_state = "sheet-skintwister_hide"
+
+/obj/item/stack/sheet/slime
+	name = "slime granule"
+	desc = "densely compacted granulate of organic slime"
+	singular_name = "slime granulate"
+	icon_state = "sheet-slime"
+
+/obj/item/stack/sheet/meduracha 
+	name = "meduracha tentacles"
+	desc = "a stinger of a giant exotic mosquito, quite sharp"
+	singular_name = "meduracha tentacle"
+	icon_state = "sheet-meduracha"
+
+/obj/item/stinger 
+	name = "giant mosquito stinger"
+	desc = "a stinger of a giant exotic mosquito, quite sharp"
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "stinger"
+
+/obj/item/melee/stinger_sword
+	name = "stinger sword"
+	desc = "a sword made out of giant mosquito stinger crudely glued to a metal rod"
+	force = 15
+	armour_penetration = 75
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	icon_state = "stinger_sword"
+	item_state = "stinger_sword"
+
+/obj/item/melee/stinger_sword/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!iscarbon(target))
+		return 
+	var/mob/living/carbon/C = target 
+	C.blood_volume -= force
+
+/obj/item/slime_sling 
+	name = "slime sling"
+	desc = "a sling made out of organic slime... why are you aiming at me?"
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "slime_sling_0"
+
+	var/state = 0
+
+/obj/item/slime_sling/attack_self(mob/user)
+	. = ..()
+	RegisterSignal(user,COMSIG_MOB_CLICKON, .proc/sling)
+	for(var/i in 1 to 3)
+		if(do_after(user,2.5 SECONDS, user))
+			state++
+			icon_state = "slime_sling_[state]" 
+		else 
+			cancel(user)
+			return
+	RegisterSignal(user,COMSIG_MOVABLE_MOVED, .proc/cancel)
+
+/obj/item/slime_sling/proc/cancel(mob/user)
+	UnregisterSignal(user,COMSIG_MOB_CLICKON)
+	UnregisterSignal(user,COMSIG_MOVABLE_MOVED)
+	state = 0
+	icon_state = "slime_sling_0"
+
+/obj/item/slime_sling/proc/sling(mob/user,atom/A, params)
+	UnregisterSignal(user,COMSIG_MOB_CLICKON)
+	UnregisterSignal(user,COMSIG_MOVABLE_MOVED)	
+	if(!state)
+		return
+	var/turf/T = get_turf(A)
+
+	var/dir = Get_Angle(user.loc,T)
+	
+	//i actually fucking hate this utility function, for whatever reason Get_Angle returns the angle assuming that [0;-1] is 0 degrees rather than [1;0] like any sane being.
+	var/tx = clamp(0,round(T.x + sin(dir) * state * 5),255)
+	var/ty = clamp(0,round(T.y + cos(dir) * state * 5),255)
+	user.throw_at(locate(tx,ty,T.z),state * 5,state * 5)
+	state = 0
+	icon_state = "slime_sling_0"
+
+/obj/item/clothing/head/yogs/tar_king_crown
+	name = "Crown of the Tar King"
+	desc = "And old and withered crown made out of bone of unknown origin, there is a vibrant pinkish crystal embedded in it, it is warm to the touch..."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "tar_king_crown"

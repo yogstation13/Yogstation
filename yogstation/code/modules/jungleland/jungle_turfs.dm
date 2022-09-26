@@ -65,7 +65,8 @@
 	can_spawn_ore = FALSE
 	add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
 	var/datum/ore_patch/ore = GLOB.jungle_ores[ ore_present ]
-	ore.spawn_at(src)
+	if(ore)
+		ore.spawn_at(src)
 
 /turf/open/floor/plating/dirt/jungleland/tool_act(mob/living/user, obj/item/I, tool_type)
 	if(tool_type != TOOL_MINING && tool_type != TOOL_SHOVEL)

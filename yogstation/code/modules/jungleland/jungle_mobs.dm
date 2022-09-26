@@ -69,7 +69,6 @@
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
-	butcher_results = list()
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
@@ -77,7 +76,7 @@
 	health = 120
 	spacewalk = TRUE
 	ranged = TRUE
-
+	loot = list (/obj/item/organ/regenerative_core/dryad/corrupted)
 	ranged_cooldown_time = 2 SECONDS
 	retreat_distance = 1
 	minimum_distance = 3
@@ -97,7 +96,7 @@
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
-	butcher_results = list()
+	butcher_results = list(/obj/item/stack/sheet/meduracha = 1)
 	response_help  = "gently pokes"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
@@ -164,7 +163,6 @@
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
-	butcher_results = list()
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
@@ -174,7 +172,7 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 55 // ouch
 	rapid_melee = 2
-
+	butcher_results = list(/obj/item/stack/sheet/skin_twister = 2)
 	var/human_lure = FALSE
 	var/obj/item/encryptionkey/lure_encryption_key
 	var/victim_ref
@@ -278,14 +276,13 @@
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
-	butcher_results = list()
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
 	maxHealth = 320
 	health = 320
 	spacewalk = TRUE
-
+	butcher_results  = list(/obj/item/stack/sheet/slime = 1)
 	melee_damage_lower = 4
 	melee_damage_upper = 6
 	var/current_size = 4
@@ -331,14 +328,13 @@
 	speak_chance = 0
 	taunt_chance = 0
 	turns_per_move = 0
-	butcher_results = list()
+	butcher_results = list(/obj/item/stinger = 1)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
 	maxHealth = 60
 	health = 60
 	spacewalk = TRUE
-
 	melee_damage_lower = 10
 	melee_damage_upper = 40 
 

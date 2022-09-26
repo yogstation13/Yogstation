@@ -34,6 +34,7 @@
 	do_footstep = TRUE
 	ranged_cooldown_time = 10 SECONDS
 	dodge_prob = 0
+	loot = list(/obj/item/clothing/head/yogs/tar_king_crown)
 	var/list/attack_adjustments = list()
 	var/last_done_attack = 0
 	var/currently_attacking = FALSE

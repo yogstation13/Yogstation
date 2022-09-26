@@ -381,4 +381,3 @@
 	cached_luminosity = new_luminosity
 
 	addtimer(CALLBACK(src,.proc/daynight_cycle), update_interval, TIMER_UNIQUE | TIMER_OVERRIDE)
-
