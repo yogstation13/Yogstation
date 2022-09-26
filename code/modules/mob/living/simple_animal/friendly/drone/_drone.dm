@@ -137,6 +137,10 @@
 		holder.icon_state = "hudstat"
 
 /mob/living/simple_animal/drone/Destroy()
+	var/atom/T = drop_location()
+	if(T && istype(radio) && istype(radio.keyslot))
+		radio.keyslot.forceMove(T)
+		radio.keyslot = null
 	GLOB.drones_list -= src
 	qdel(access_card) //Otherwise it ends up on the floor!
 	return ..()
