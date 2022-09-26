@@ -1,5 +1,5 @@
 /datum/emote/brain
-	mob_type_allowed_typecache = list(/mob/living/brain)
+	mob_type_allowed_typecache = list(/mob/living/brain, /mob/living/simple_animal/drone)
 	mob_type_blacklist_typecache = list()
 
 /datum/emote/brain/can_run_emote(mob/user, status_check = TRUE, intentional)
