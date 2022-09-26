@@ -803,7 +803,7 @@
 	name = "Rapid Pipe Dispenser (RPD)"
 	id = "rpd"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 45000, /datum/material/glass = 37500)
+	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5500)
 	build_path = /obj/item/pipe_dispenser
 	category = list("hacked", "Construction")
 
