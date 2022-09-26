@@ -15,7 +15,8 @@
 					/obj/item/clothing/head/fishing = 3,
 					/obj/item/clothing/suit/fishing = 3,
 					/obj/item/clothing/gloves/fishing = 3,
-					/obj/item/clothing/shoes/fishing = 3
+					/obj/item/clothing/shoes/fishing = 3,
+					/obj/item/storage/tacklebox = 1
 					)
 	contraband = list(/obj/item/reagent_containers/food/snacks/bait/type = 3)
 	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 5)
