@@ -844,7 +844,7 @@
 	materials = list(/datum/material/iron = 500)
 	build_path = /obj/item/restraints/handcuffs
 	category = list("hacked", "Security", "Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/receiver
 	name = "Modular Receiver"
@@ -852,8 +852,8 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 15000)
 	build_path = /obj/item/weaponcrafting/receiver
-	category = list("hacked", "Security", "Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	category = list("hacked", "Security", "Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/shotgun_slug
 	name = "Shotgun Slug"
