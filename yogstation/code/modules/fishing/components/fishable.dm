@@ -59,7 +59,8 @@ GLOBAL_LIST_INIT(fishing_table,init_fishing_table())
 	to_chat(user,"You throw chum into [parent].")
 
 /datum/component/fishable/process(delta)
-	population += growth
+	if(can_fish)
+		population += growth
 	population = min(population,loot.max_population)
 
 /datum/component/fishable/proc/interrupt()
