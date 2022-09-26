@@ -158,6 +158,7 @@
 /obj/item/storage/box/syndie/PopulateContents()
 	new /obj/item/clothing/mask/gas/syndicate(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
+	new /obj/item/extinguisher/mini(src)
 
 // Security survival box
 /obj/item/storage/box/security/PopulateContents()

@@ -1,3 +1,5 @@
+#define DARKSPAWN_REFLECT_COOLDOWN 15 SECONDS
+
 /datum/species/darkspawn
 	name = "Darkspawn"
 	id = "darkspawn"
@@ -13,6 +15,22 @@
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien
 	var/list/upgrades = list()
+	COOLDOWN_DECLARE(reflect_cd_1)
+	COOLDOWN_DECLARE(reflect_cd_2)
+	COOLDOWN_DECLARE(reflect_cd_3)
+
+/datum/species/darkspawn/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
+	if(prob(50) && (COOLDOWN_FINISHED(src, reflect_cd_1) || COOLDOWN_FINISHED(src, reflect_cd_2) || COOLDOWN_FINISHED(src, reflect_cd_3)))
+		if(COOLDOWN_FINISHED(src, reflect_cd_1))
+			COOLDOWN_START(src, reflect_cd_1, DARKSPAWN_REFLECT_COOLDOWN)
+		else if(COOLDOWN_FINISHED(src, reflect_cd_2))
+			COOLDOWN_START(src, reflect_cd_2, DARKSPAWN_REFLECT_COOLDOWN)
+		else if(COOLDOWN_FINISHED(src, reflect_cd_3))
+			COOLDOWN_START(src, reflect_cd_3, DARKSPAWN_REFLECT_COOLDOWN)
+		H.visible_message(span_danger("The shadows around [H] ripple as they absorb \the [P]!"))
+		playsound(H, "bullet_miss", 75, 1)
+		return -1
+	return 0
 
 /datum/species/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

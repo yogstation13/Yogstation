@@ -6,12 +6,12 @@
 
 /obj/item/projectile/bullet/c9mm_ap
 	name = "9mm armor-piercing bullet"
-	damage = 15
+	damage = 18
 	armour_penetration = 40
 
 /obj/item/projectile/bullet/incendiary/c9mm
 	name = "9mm incendiary bullet"
-	damage = 10
+	damage = 13
 	fire_stacks = 1
 
 // 10mm (Stechkin)

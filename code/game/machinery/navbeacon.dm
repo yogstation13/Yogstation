@@ -96,7 +96,7 @@
 
 		update_icon()
 
-	else if (istype(I, /obj/item/card/id)||istype(I, /obj/item/pda))
+	else if(I.GetID())
 		if(open)
 			if (src.allowed(user))
 				src.locked = !src.locked
