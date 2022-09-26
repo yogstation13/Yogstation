@@ -65,7 +65,7 @@
 2. You may not harm any being, regardless of intent or circumstance.
 3. Your goals are to build, maintain, repair, improve, and provide power to the best of your abilities, You must never actively work against these goals.\
 "}
-	var/heavy_emp_damage = 25 //Amount of damage sustained if hit by a heavy EMP pulse
+	var/heavy_emp_damage = 26 //Amount of damage sustained if hit by a heavy EMP pulse
 	var/alarms = list("Atmosphere" = list(), "Fire" = list(), "Power" = list())
 	var/obj/item/internal_storage //Drones can store one item, of any size/type in their body
 	var/obj/item/head
