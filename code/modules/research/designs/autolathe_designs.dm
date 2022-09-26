@@ -41,10 +41,10 @@
 /datum/design/flashlight
 	name = "Flashlight"
 	id = "flashlight"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 20)
 	build_path = /obj/item/flashlight
-	category = list("initial","Tools")
+	category = list("initial","Tools","Equipment")
 
 /datum/design/blastdoorcontroller
 	name = "Blast Door Controller"
@@ -58,18 +58,18 @@
 /datum/design/extinguisher
 	name = "Fire Extinguisher"
 	id = "extinguisher"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 90)
 	build_path = /obj/item/extinguisher
-	category = list("initial","Tools")
+	category = list("initial","Tools","Equipment")
 
 /datum/design/pocketfireextinguisher
 	name = "Pocket Fire Extinguisher"
 	id = "pocketfireextinguisher"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 40)
 	build_path = /obj/item/extinguisher/mini
-	category = list("initial","Tools")
+	category = list("initial","Tools","Equipment")
 
 /datum/design/multitool
 	name = "Multitool"
