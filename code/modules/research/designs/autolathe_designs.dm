@@ -66,7 +66,7 @@
 /datum/design/pocketfireextinguisher
 	name = "Pocket Fire Extinguisher"
 	id = "pocketfireextinguisher"
-	build_type = AUTOLATHE | PROTOLATHR
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 40)
 	build_path = /obj/item/extinguisher/mini
 	category = list("initial","Tools","Equipment")
