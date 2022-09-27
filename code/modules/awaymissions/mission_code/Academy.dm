@@ -209,28 +209,6 @@
 /obj/item/dice/d20/fate/blessed/stealth/one_use
 	reusable = FALSE
 
-/obj/item/dice/d20/fate/diceroll(mob/user)
-	. = ..()
-	if(!used)
-		if(!ishuman(user) || !user.mind || (user.mind in SSticker.mode.wizards))
-			to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary humans!"))
-			return
-
-		if(!reusable)
-			used = TRUE
-
-		var/turf/T = get_turf(src)
-		T.visible_message(span_userdanger("[src] flares briefly."))
-
-		addtimer(CALLBACK(src, .proc/effect, user, .), 1 SECONDS)
-
-/obj/item/dice/d20/fate/equipped(mob/user, slot)
-	. = ..()
-	if(!ishuman(user) || !user.mind || (user.mind in SSticker.mode.wizards))
-		to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary humans! You should leave it alone."))
-		user.dropItemToGround(src)
-
-
 /obj/item/dice/d20/fate/proc/effect(var/mob/living/carbon/human/user,roll)
 	var/turf/T = get_turf(src)
 	switch(roll)
