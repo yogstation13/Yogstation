@@ -121,9 +121,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(!lockdown)
 		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		H.add_movespeed_modifier("preternis_maglock", update=TRUE, priority=103, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+		H.power_drain *= 1/0.95
 	else
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		H.remove_movespeed_modifier("preternis_maglock")
+		H.power_drain *= 0.95
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
@@ -209,6 +211,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
 
+	if(H.stat == DEAD)
+		return
+
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 5, blacklisted_movetypes=(FLYING|FLOATING))
 		H.adjustStaminaLoss(2 * -H.fire_stacks)
@@ -227,8 +232,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.clear_alert("preternis_wet")
 		H.jitteriness -= 100
 
-	if(H.stat == DEAD)
-		return
 	handle_charge(H)
 
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
