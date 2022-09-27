@@ -235,7 +235,7 @@
 	qdel(eyeobj) // No AI, no Eye
 	malfhack = null
 	apc_override = null
-	ai_network.remove_ai(src)
+	ai_network?.remove_ai(src)
 
 	. = ..()
 

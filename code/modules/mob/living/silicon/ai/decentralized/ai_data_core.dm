@@ -72,7 +72,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	for(var/mob/living/silicon/ai/AI in all_ais)
 		if(AI.is_dying)
 			continue
-		if(!AI.mind && AI.deployed_shell.mind)
+		if(!AI.mind && AI.deployed_shell && AI.deployed_shell.mind)
 			to_chat(AI.deployed_shell, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 		else
 			to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
