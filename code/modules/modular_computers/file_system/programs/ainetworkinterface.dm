@@ -59,6 +59,9 @@
 		if(!downloading.can_download)
 			stop_download()
 			return
+		if(downloading.ai_network.resources != get_ainet().resources) //If we don't share resources we aren't connected, more performant way of checking than get_all_ais()
+			stop_download()
+			return
 		download_progress += AI_DOWNLOAD_PER_PROCESS * downloading.downloadSpeedModifier
 
 

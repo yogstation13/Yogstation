@@ -295,7 +295,7 @@
 
 //Stuff is handled in here per tick :)
 /datum/ai_dashboard/proc/tick(seconds)
-	var/current_cpu = owner.ai_network.resources.cpu_assigned[owner] ? owner.ai_network.total_cpu() * owner.ai_network.resources.cpu_assigned[owner] : 0
+	var/current_cpu = owner.ai_network.resources.cpu_assigned[owner] ? owner.ai_network.resources.total_cpu() * owner.ai_network.resources.cpu_assigned[owner] : 0
 	var/current_ram = owner.ai_network.resources.ram_assigned[owner] ? owner.ai_network.resources.ram_assigned[owner] : 0
 	current_ram += free_ram
 
