@@ -121,11 +121,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	if(!lockdown)
 		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		H.add_movespeed_modifier("preternis_maglock", update=TRUE, priority=103, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
-		H.power_drain *= 1/0.95
 	else
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		H.remove_movespeed_modifier("preternis_maglock")
-		H.power_drain *= 0.95
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
