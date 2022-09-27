@@ -2421,18 +2421,21 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/stack/ore/bluespace_crystal/refined/nt
 	cost = 1
 	purchase_log_vis = FALSE
+	cant_discount = TRUE
 
 /datum/uplink_item/nt/telecrystal/five
 	name = "5 Raw Warpcrystals"
 	desc = "Five warpcrystals in their rawest and purest form; can be utilized on active uplinks to increase their warpcrystal count."
 	item = /obj/item/stack/ore/bluespace_crystal/refined/nt/five
 	cost = 5
+	cant_discount = TRUE
 
 /datum/uplink_item/nt/telecrystal/twenty
 	name = "20 Raw Warpcrystals"
 	desc = "Twenty warpcrystals in their rawest and purest form; can be utilized on active uplinks to increase their warpcrystal count."
 	item = /obj/item/stack/ore/bluespace_crystal/refined/nt/twenty
 	cost = 20
+	cant_discount = TRUE
 
 /datum/uplink_item/nt/energy_weps
 	category = "Energy Weapons"
