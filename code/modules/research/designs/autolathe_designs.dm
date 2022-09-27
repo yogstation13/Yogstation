@@ -1127,11 +1127,3 @@
 	build_path = /obj/item/airlock_painter/decal
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
-
-/datum/design/discoball
-	name = "Portable Disco Ball"
-	id = "portable_discoball"
-	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 300, /datum/material/glass = 100)
-	build_path = /obj/item/discoballdeployer
-	category = list("initial", "Miscellaneous")
