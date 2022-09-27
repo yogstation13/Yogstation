@@ -115,6 +115,10 @@
 			S.cost = 1
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/wire)
 
+		else if(istype(S, /obj/item/stack/ethernet_coil))
+			S.cost = 1
+			S.source = get_or_create_estorage(/datum/robot_energy_storage/ethernet)
+
 		else if(istype(S, /obj/item/stack/marker_beacon))
 			S.cost = 1
 			S.source = get_or_create_estorage(/datum/robot_energy_storage/beacon)
@@ -734,6 +738,11 @@
 	max_energy = 50
 	recharge_rate = 2
 	name = "Wire Synthesizer"
+
+/datum/robot_energy_storage/ethernet
+	max_energy = 50
+	recharge_rate = 2
+	name = "Ethernet Cable Synthesizer"
 
 /datum/robot_energy_storage/medical
 	max_energy = 2500
