@@ -178,7 +178,7 @@ Made by Xhuis
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD) //Can survive in very small light levels. Also doesn't take damage while incorporeal, for shadow walk purposes
-			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN)
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN)
 			if(H.stat != DEAD)
 				to_chat(H, span_userdanger("The light burns you!")) //Message spam to say "GET THE FUCK OUT"
 				H.playsound_local(get_turf(H), 'sound/weapons/sear.ogg', 150, 1, pressure_affected = FALSE)
@@ -231,7 +231,7 @@ Made by Xhuis
 		var/turf/T = H.loc
 		var/light_amount = T.get_lumcount()
 		if(light_amount > LIGHT_DAM_THRESHOLD && !H.incorporeal_move)
-			H.take_overall_damage(0, LIGHT_DAMAGE_TAKEN/2)
+			H.adjustCloneLoss(LIGHT_DAMAGE_TAKEN/2)
 		else if (light_amount < LIGHT_HEAL_THRESHOLD)
 			H.heal_overall_damage(4,4)
 			H.adjustToxLoss(-5)
