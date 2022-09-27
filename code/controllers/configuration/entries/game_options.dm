@@ -358,7 +358,7 @@
 	min_val = 0
 //Yogs edit
 /datum/config_entry/number/jungleland_budget
-	config_entry_value = 20
+	config_entry_value = 40
 	integer = FALSE
 	min_val = 0
 //Yogs end

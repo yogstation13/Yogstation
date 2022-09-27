@@ -16,7 +16,18 @@ GLOBAL_LIST_INIT(jungle_ores, list( \
 		ORE_PLASMA = new /datum/ore_patch/plasma(), 
 		ORE_DIAMOND = new /datum/ore_patch/diamond(), 
 		ORE_TITANIUM = new /datum/ore_patch/titanium(), 
-		ORE_URANIUM = new /datum/ore_patch/uranium() 
+		ORE_URANIUM = new /datum/ore_patch/uranium(),
+		ORE_BLUESAPCE = new /datum/ore_patch/bluespace()
+))
+
+GLOBAL_LIST_INIT(quarry_ores, list( \
+		ORE_IRON = new /datum/ore_patch/iron(), 
+		ORE_GOLD = new /datum/ore_patch/gold(), 
+		ORE_SILVER = new /datum/ore_patch/silver(), 
+		ORE_PLASMA = new /datum/ore_patch/plasma(), 
+		ORE_DIAMOND = new /datum/ore_patch/diamond(), 
+		ORE_TITANIUM = new /datum/ore_patch/titanium(), 
+		ORE_URANIUM = new /datum/ore_patch/uranium(),
 ))
 
 GLOBAL_DATUM_INIT(jungleland_daynight_cycle, /datum/daynight_cycle,new)

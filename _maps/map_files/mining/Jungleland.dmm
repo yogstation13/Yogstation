@@ -327,6 +327,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"jP" = (
+/obj/structure/herb/liberal_hats,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "jR" = (
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
@@ -488,6 +492,9 @@
 /obj/structure/closet/secure_closet/brig,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"oq" = (
+/turf/open/floor/plating/dirt/jungleland/quarry,
+/area/jungleland/explored)
 "pb" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Showers"
@@ -628,6 +635,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/mine/laborcamp/security)
+"ul" = (
+/obj/item/pickaxe,
+/turf/open/floor/plating/dirt/jungleland/quarry,
+/area/jungleland/explored)
 "uG" = (
 /obj/machinery/door/airlock/public/glass{
 	id_tag = "gulag3";
@@ -712,6 +723,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"xE" = (
+/obj/structure/fence,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "xO" = (
 /obj/structure/table,
 /obj/item/instrument/harmonica,
@@ -811,11 +826,22 @@
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
+"Au" = (
+/obj/structure/flora/junglebush/large,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "Aw" = (
 /obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
+"Az" = (
+/obj/structure/fence/corner{
+	dir = 9
+	},
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "Bh" = (
 /obj/structure/flora/tree/jungle/small,
 /obj/structure/flora/junglebush,
@@ -848,6 +874,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"BM" = (
+/obj/structure/fence/end,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "Cl" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel,
@@ -859,6 +889,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
+"CS" = (
+/obj/structure/flora/junglebush,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "Dd" = (
 /turf/open/floor/plating/dirt/jungleland/dry_swamp1,
 /area/jungleland/explored)
@@ -992,6 +1027,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"Hx" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/area/jungleland/explored)
+"HK" = (
+/obj/structure/fence{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "HS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -1069,6 +1115,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/laborcamp)
+"KD" = (
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/area/jungleland/explored)
 "KY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -1179,6 +1231,12 @@
 /obj/machinery/biogenerator,
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
+"PB" = (
+/obj/structure/fence/corner{
+	dir = 5
+	},
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "Qt" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -1228,6 +1286,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
+"RG" = (
+/obj/structure/fence/end{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
+/area/jungleland/explored)
 "St" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -1277,6 +1341,11 @@
 "UW" = (
 /turf/open/water/toxic_pit,
 /area/jungleland/ocean)
+"UX" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/flora/junglebush,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/area/jungleland/explored)
 "Vt" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer,
@@ -1292,6 +1361,10 @@
 	width = 9
 	},
 /turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/area/jungleland/explored)
+"VB" = (
+/obj/structure/flora/junglebush/large,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp1,
 /area/jungleland/explored)
 "VI" = (
 /obj/machinery/door/airlock/public/glass{
@@ -1382,6 +1455,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
+"YX" = (
+/obj/structure/flora/junglebush,
+/obj/structure/herb/liberal_hats,
+/turf/open/floor/plating/dirt/jungleland/dry_swamp,
+/area/jungleland/explored)
 "ZB" = (
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
@@ -3666,7 +3744,7 @@ UW
 Dd
 be
 be
-be
+mx
 be
 be
 be
@@ -3922,7 +4000,7 @@ UW
 Dd
 Dd
 be
-be
+Hx
 be
 be
 be
@@ -4177,7 +4255,7 @@ UW
 UW
 UW
 Dd
-Dd
+zg
 be
 be
 be
@@ -4192,7 +4270,7 @@ Dd
 be
 be
 be
-pA
+be
 be
 NM
 be
@@ -4433,23 +4511,23 @@ UW
 UW
 UW
 UW
-Dd
-Dd
-be
-be
-be
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+vR
 Dd
 be
+UX
 be
-pA
+Dd
+Dd
+Az
+xE
+xE
+xE
+xE
+xE
+xE
+KD
+be
+be
 be
 pA
 cV
@@ -4690,21 +4768,21 @@ UW
 UW
 UW
 Dd
-Dd
-Dd
+VB
+jP
 be
+Lv
 be
-be
 Dd
 Dd
+HK
 Dd
 Dd
+oq
 Dd
+oq
 Dd
-Dd
-Dd
-Dd
-Dd
+HK
 be
 be
 be
@@ -4948,23 +5026,23 @@ UW
 UW
 Dd
 Dd
-Dd
-Dd
-be
-be
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+VB
 Dd
 be
 NM
-Lv
+Dd
+Dd
+HK
+oq
+oq
+oq
+oq
+oq
+Dd
+HK
+be
+NM
+YX
 cV
 cV
 Nv
@@ -5205,20 +5283,20 @@ UW
 UW
 Dd
 Dd
+vR
+vR
 Dd
 Dd
 Dd
 Dd
+HK
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+oq
+oq
+oq
+oq
+oq
+HK
 Dd
 be
 mx
@@ -5462,20 +5540,20 @@ UW
 UW
 Dd
 Dd
+NV
 Dd
 Dd
+vR
 Dd
 Dd
+HK
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+oq
+oq
+oq
+oq
+oq
+HK
 Dd
 be
 be
@@ -5720,19 +5798,19 @@ UW
 UW
 Dd
 Dd
+vR
+zg
 Dd
 Dd
 Dd
+HK
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+oq
+oq
+oq
+ul
+oq
+RG
 Dd
 be
 be
@@ -5976,18 +6054,18 @@ UW
 UW
 UW
 Dd
+zg
+Au
 Dd
 Dd
 Dd
 Dd
+HK
 Dd
 Dd
+oq
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+oq
 Dd
 Dd
 be
@@ -6233,18 +6311,18 @@ UW
 UW
 UW
 Dd
+vR
 Dd
 Dd
+NV
 Dd
 Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
-Dd
+PB
+xE
+xE
+xE
+xE
+BM
 Dd
 Dd
 be
@@ -6491,7 +6569,7 @@ UW
 Dd
 Dd
 Dd
-Dd
+CS
 Dd
 Dd
 Dd
@@ -6747,8 +6825,8 @@ UW
 UW
 Dd
 Dd
-Dd
-Dd
+OJ
+jP
 Dd
 Dd
 Dd
@@ -7006,7 +7084,7 @@ UW
 Dd
 Dd
 Dd
-Dd
+vR
 Dd
 Dd
 Dd

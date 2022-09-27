@@ -19,7 +19,7 @@
 	name = "Ivymen Nest"
 	id = "jungle-ivymen-next"
 	description = "Ancient ivymen next"
-	suffix = "jungleland_jungle_ivymen_next.dmm"
+	suffix = "jungleland_jungle_ivymen_nest.dmm"
 
 /datum/map_template/ruin/jungle/proper/old_temple
 	name = "Ancient Temple"
@@ -142,4 +142,40 @@
 	suffix = "jungleland_barren_drake.dmm"
 	always_place = TRUE
 	allow_duplicates = TRUE
-	cost = 10
+	cost = 20
+
+//NESTS
+/datum/map_template/ruin/jungle/dying/dead_nest
+	name = "Dying Forest Nest"
+	id = "jungle-dying-nest"
+	description = "a nest"
+	suffix = "jungleland_dead_nest.dmm"	
+	allow_duplicates = TRUE
+	always_place = TRUE
+	cost = 2
+
+/datum/map_template/ruin/jungle/proper/jungle_nest
+	name = "Jungle Nest"
+	id = "jungle-proper-nest"
+	description = "a nest"
+	suffix = "jungleland_jungle_nest.dmm"	
+	allow_duplicates = TRUE 
+	always_place = TRUE
+	cost = 2
+	
+/datum/map_template/ruin/jungle/swamp/swamp_nest
+	name = "Swamp Nest"
+	id = "jungle-swamp-nest"
+	description = "a nest"
+	suffix = "jungleland_swamp_nest.dmm"	
+	allow_duplicates = TRUE 
+	always_place = TRUE
+	cost = 2
+
+/datum/map_template/ruin/jungle/barren/barren_nest
+	name = "Barren Nest"
+	id = "jungle-barren-nest"
+	description = "a nest"
+	suffix = "jungleland_barren_nest.dmm"	
+	allow_duplicates = TRUE 
+	always_place = TRUE

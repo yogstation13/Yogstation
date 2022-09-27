@@ -250,3 +250,70 @@
 	picked_amt = 3
 	picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/cinchona_bark
 
+/obj/structure/tar_shrine
+	name = "Tar shrine"
+	desc = "Strangely translucent pool of tar"
+	icon = 'yogstation/icons/obj/jungle32x48.dmi'
+	icon_state = "shrine"
+	resistance_flags = INDESTRUCTIBLE
+	anchored = TRUE
+
+/obj/structure/spawner/nest
+	name = "Fauna nest"
+	desc = "Breeding grounds for the fauna of the jungle"
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "nest"
+	faction = list("mining")
+	max_mobs = 3
+	max_integrity = 250
+	move_resist = INFINITY
+	anchored = TRUE
+	density = FALSE 
+	var/list/possible_mob_types = list()
+
+GLOBAL_LIST_INIT(nests, list())
+/obj/structure/spawner/nest/Initialize()
+	for(var/obj/structure/flora/tree/T in orange(3,src))
+		qdel(T)
+	GLOB.nests += src
+	mob_types = list(pick(possible_mob_types))
+	return ..()
+
+/obj/structure/spawner/nest/deconstruct(disassembled, force)
+	new /obj/structure/closet/crate/necropolis/tendril(loc)
+	visible_message(span_boldannounce("You've awakened a sleeping monster from within the nest! Get back!"))
+	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, 1, 1)
+	spawn_mother_monster()
+	return ..()
+
+/obj/structure/spawner/nest/proc/spawn_mother_monster()
+	var/type = pick(mob_types)
+	var/mob/living/simple_animal/hostile/yog_jungle/monster = new type(loc)
+	monster.setMaxHealth(monster.maxHealth * 1.5)
+	monster.health = monster.maxHealth * 1.5
+	monster.move_to_delay = max(monster.move_to_delay / 2, 1)
+	monster.melee_damage_lower *= 1.5 
+	monster.melee_damage_upper *= 1.5
+	var/matrix/M = matrix()
+	M.Scale(1.5,1.5)
+	monster.transform = M
+	monster.color = "#c30505"
+
+/obj/structure/spawner/nest/jungle
+	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/blobby,/mob/living/simple_animal/hostile/yog_jungle/dryad)
+
+/obj/structure/spawner/nest/swamp
+	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/mosquito,/mob/living/simple_animal/hostile/yog_jungle/meduracha)
+
+/obj/structure/spawner/nest/dying
+	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,/mob/living/simple_animal/hostile/yog_jungle/skin_twister)
+
+/obj/effect/spawner/tendril_spawner
+
+/obj/effect/spawner/tendril_spawner/Initialize()
+	. = ..()
+	var/type = pick(typesof(/obj/structure/spawner/lavaland))
+	new type(loc)
+	qdel(src)
+	
+	 

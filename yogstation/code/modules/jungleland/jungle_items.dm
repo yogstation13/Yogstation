@@ -275,3 +275,17 @@
 	desc = "And old and withered crown made out of bone of unknown origin, there is a vibrant pinkish crystal embedded in it, it is warm to the touch..."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "tar_king_crown"
+	actions_types = list(/datum/action/cooldown/tar_crown_spawn_altar,/datum/action/cooldown/tar_crown_teleport)
+	var/max_tar_shrines = 3
+	var/list/current_tar_shrines = list()
+	var/next_spawn = 0
+	var/next_teleport = 0
+	
+/obj/item/clothing/head/yogs/tar_king_crown/Destroy()
+	QDEL_LIST_ASSOC_VAL(current_tar_shrines)
+	return ..()
+
+/obj/item/clothing/head/yogs/tar_king_crown/item_action_slot_check(slot, mob/user)
+	if(slot == SLOT_HEAD)
+		return TRUE
+	return FALSE

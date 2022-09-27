@@ -31,7 +31,7 @@
 	name = "Toxic Ocean"
 
 /area/jungleland/proper 
-	name = "Deep Jungle"
+	name = "Jungle"
 
 /area/jungleland/toxic_pit 
 	name = "Toxic Pit"
@@ -58,12 +58,14 @@
 	icon_plating = "jungle"
 	var/can_spawn_ore = TRUE
 	var/ore_present = ORE_EMPTY
+	var/spawn_overlay = TRUE
 
 /turf/open/floor/plating/dirt/jungleland/proc/spawn_rock()
 	if(ore_present == ORE_EMPTY || !can_spawn_ore)
 		return
 	can_spawn_ore = FALSE
-	add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
+	if(spawn_overlay)
+		add_overlay(image(icon='yogstation/icons/obj/jungle.dmi',icon_state="dug_spot",layer=BELOW_OBJ_LAYER))
 	var/datum/ore_patch/ore = GLOB.jungle_ores[ ore_present ]
 	if(ore)
 		ore.spawn_at(src)
@@ -121,6 +123,21 @@
 	icon_state = "jungle"
 	icon_plating = "jungle"
 	icon_state_regular_floor = "jungle" 
+
+/turf/open/floor/plating/dirt/jungleland/quarry
+	icon_state = "quarry"
+	icon_plating = "quarry"
+	icon_state_regular_floor = "quarry"
+	spawn_overlay = FALSE
+
+/turf/open/floor/plating/dirt/jungleland/quarry/Initialize()
+	. = ..()
+	ore_present = pick(GLOB.quarry_ores)
+
+/turf/open/floor/plating/dirt/jungleland/quarry/spawn_rock()
+	. = ..()
+	ore_present = pick(GLOB.quarry_ores)
+	can_spawn_ore = TRUE
 
 /turf/open/water/toxic_pit
 	name = "sulphuric pit"
