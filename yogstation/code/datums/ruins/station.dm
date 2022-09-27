@@ -1303,6 +1303,6 @@
 	name = "Maint fakewalls"
 
 /datum/map_template/ruin/station/maint/tenxten/wizard
-	id= "wizard"
+	id = "wizard"
 	suffix = "10x10_wizard.dmm"
 	name = "Maint wizard"
