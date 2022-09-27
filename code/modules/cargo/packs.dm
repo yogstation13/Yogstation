@@ -2783,7 +2783,9 @@
 	name = "Portable Radiant Dance Machine Crate"
 	desc = "It's a jukebox with more lights. Tiny, even..and with no sound. Three of them."
 	cost = 4500
-	contains = list(/obj/item/discoballdeployer)
+	contains = list(/obj/item/discoballdeployer,
+					/obj/item/discoballdeployer,
+					/obj/item/discoballdeployer)
 	crate_name = "portable radiant dance machine crate"
 
 /datum/supply_pack/misc/pda
