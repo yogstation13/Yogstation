@@ -262,7 +262,7 @@ const CargoRequests = (props, context) => {
               <Table.Cell collapsing textAlign="right">
                 {formatMoney(request.cost)} cr
               </Table.Cell>
-              {(!requestonly || can_send)&& can_approve_requests &&(
+              {(!requestonly || can_send) && can_approve_requests ? (
                 <Table.Cell collapsing>
                   <Button
                     icon="check"
@@ -277,7 +277,7 @@ const CargoRequests = (props, context) => {
                       id: request.id,
                     })} />
                 </Table.Cell>
-              )}
+              ) : ("")}
             </Table.Row>
           ))}
         </Table>

@@ -1,0 +1,343 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"b" = (
+/turf/closed/wall,
+/area/template_noop)
+"d" = (
+/obj/structure/dresser,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"g" = (
+/obj/structure/closet/crate/secure/hydroponics,
+/obj/item/honey_frame,
+/obj/item/melee/flyswatter,
+/obj/item/honey_frame,
+/obj/item/queen_bee/bought,
+/obj/item/clothing/suit/beekeeper_suit,
+/obj/item/honey_frame,
+/obj/structure/beebox,
+/obj/item/clothing/head/beekeeper_head,
+/turf/open/floor/plating,
+/area/template_noop)
+"h" = (
+/turf/open/floor/plasteel,
+/area/template_noop)
+"i" = (
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"l" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"o" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"p" = (
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_x = 32
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/template_noop)
+"t" = (
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"u" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"v" = (
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -11
+	},
+/obj/machinery/light/small/broken,
+/turf/open/floor/plating,
+/area/template_noop)
+"w" = (
+/obj/structure/closet/crate,
+/obj/item/coin/gold,
+/obj/item/coin/gold{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/coin/gold{
+	pixel_x = 8
+	},
+/obj/item/coin/gold{
+	pixel_x = 5;
+	pixel_y = -6
+	},
+/obj/item/coin/gold{
+	pixel_x = -2;
+	pixel_y = -6
+	},
+/obj/item/coin/gold{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"y" = (
+/obj/machinery/mineral/mint{
+	input_dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"z" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"A" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"F" = (
+/obj/machinery/light/broken,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"H" = (
+/obj/structure/closet/crate,
+/obj/item/fakeartefact,
+/obj/item/medical/bandage,
+/obj/item/poster/random_contraband,
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/area/template_noop)
+"I" = (
+/obj/item/laser_pointer/blue,
+/obj/item/lighter/greyscale,
+/obj/structure/closet/crate,
+/obj/item/paicard,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/glasses/yogs/eyepatch,
+/turf/open/floor/plating,
+/area/template_noop)
+"J" = (
+/obj/structure/falsewall,
+/turf/open/floor/plating,
+/area/template_noop)
+"L" = (
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/turf/open/floor/plating,
+/area/template_noop)
+"N" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/lipstick/random{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/lipstick/random{
+	pixel_x = -3;
+	pixel_y = -8
+	},
+/obj/item/lipstick/random{
+	pixel_x = 4;
+	pixel_y = -8
+	},
+/obj/item/lipstick/random{
+	pixel_x = 7;
+	pixel_y = -7
+	},
+/obj/item/lipstick/random{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/item/dyespray{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/obj/item/dyespray{
+	pixel_x = -2;
+	pixel_y = -5
+	},
+/obj/item/razor,
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"O" = (
+/obj/structure/closet/crate,
+/obj/item/flashlight/flashdark,
+/obj/item/multitool,
+/obj/item/poster/random_contraband,
+/obj/item/poster/random_contraband,
+/turf/open/floor/plating,
+/area/template_noop)
+"P" = (
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"Q" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/template_noop)
+"U" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/template_noop)
+"V" = (
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/template_noop)
+"W" = (
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/turf/open/floor/carpet/green,
+/area/template_noop)
+"Y" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/template_noop)
+
+(1,1,1) = {"
+h
+h
+w
+b
+t
+b
+g
+l
+l
+l
+"}
+(2,1,1) = {"
+y
+h
+h
+L
+u
+b
+A
+l
+Q
+O
+"}
+(3,1,1) = {"
+o
+U
+h
+J
+Y
+b
+l
+l
+l
+H
+"}
+(4,1,1) = {"
+b
+b
+J
+b
+Q
+b
+b
+J
+b
+b
+"}
+(5,1,1) = {"
+l
+l
+l
+l
+Y
+J
+Q
+p
+b
+l
+"}
+(6,1,1) = {"
+b
+b
+b
+b
+J
+b
+J
+b
+b
+z
+"}
+(7,1,1) = {"
+l
+a
+Y
+V
+l
+J
+l
+Y
+l
+Q
+"}
+(8,1,1) = {"
+b
+L
+b
+b
+Y
+b
+L
+L
+L
+J
+"}
+(9,1,1) = {"
+I
+Y
+v
+b
+F
+b
+d
+P
+N
+P
+"}
+(10,1,1) = {"
+l
+l
+Q
+J
+Y
+b
+i
+W
+P
+P
+"}

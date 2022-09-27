@@ -1269,3 +1269,15 @@
   */
 /mob/living/carbon/proc/get_biological_state()
 	return BIO_FLESH_BONE
+
+/mob/living/carbon/proc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
+	return dna?.species.eat_text(fullness, eatverb, O, C, user)
+
+/mob/living/carbon/proc/force_eat_text(fullness, obj/O, mob/living/carbon/C, mob/user)
+	return dna?.species.force_eat_text(fullness, O, C, user)
+
+/mob/living/carbon/proc/drink_text(obj/O, mob/living/carbon/C, mob/user)
+	return dna?.species.drink_text(O, C, user)
+
+/mob/living/carbon/proc/force_drink_text(obj/O, mob/living/carbon/C, mob/user)
+	return dna?.species.force_drink_text(O, C, user)

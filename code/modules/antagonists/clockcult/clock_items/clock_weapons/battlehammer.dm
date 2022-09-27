@@ -3,8 +3,7 @@
 	desc = "A brass hammer glowing with energy."
 	icon_state = "ratvarian_hammer"
 	force = 15
-	throwforce = 10
-	armour_penetration = -15
+	throwforce = 15
 	sharpness = SHARP_NONE
 	attack_verb = list("bashed", "smitted", "hammered", "attacked")
 	clockwork_desc = "A powerful hammer of Ratvarian making. Enemies hit with it would be flung back."

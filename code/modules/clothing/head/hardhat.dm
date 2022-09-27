@@ -13,6 +13,7 @@
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	resistance_flags = FIRE_PROOF
 	dynamic_hair_suffix = "+generic"
+	hattable = FALSE
 
 	dog_fashion = /datum/dog_fashion/head
 

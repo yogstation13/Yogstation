@@ -21,7 +21,7 @@
 /client/proc/mfa_check_cache()
 	CHECK_MFA_ENABLED
 
-	var/datum/admins/tmp_holder = GLOB.admin_datums[ckey] || GLOB.deadmins[ckey]
+	var/datum/admins/tmp_holder = GLOB.permissions.admin_datums[ckey] || GLOB.permissions.deadmins[ckey]
 	if(tmp_holder && tmp_holder.cid_cache == computer_id && tmp_holder.ip_cache == address)
 		return TRUE
 
@@ -282,7 +282,7 @@
 
 		qdel(mfa_addverify)
 
-	var/datum/admins/tmp_holder = GLOB.admin_datums[ckey] || GLOB.deadmins[ckey]
+	var/datum/admins/tmp_holder = GLOB.permissions.admin_datums[ckey] || GLOB.permissions.deadmins[ckey]
 	if(tmp_holder)
 		// These values are cached even if the user says not to remember the session, but are only used if the DB is down during admin loading
 		tmp_holder.cid_cache = computer_id

@@ -18,12 +18,13 @@
 	acidmod = 2
 	speedmod = 0.33
 	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
-	punchdamagehigh = 8 //I am being attacked by a dandelion
-	punchstunthreshold = 9 //TF2 no-crits special
+	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
+	punchstunthreshold = 9 
 	payday_modifier = 0.7 //Neutrally viewed by NT
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
-	disliked_food = MEAT | DAIRY | MICE
-	liked_food = VEGETABLES | FRUIT | GRAIN
+	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH
+	toxic_food = ALCOHOL
+	liked_food = SUGAR
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/pod
 
