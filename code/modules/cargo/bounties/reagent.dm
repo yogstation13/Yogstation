@@ -147,7 +147,6 @@
 		/datum/reagent/medicine/atropine,\
 		/datum/reagent/drug/aranesp,\
 		/datum/reagent/drug/krokodil,\
-		/datum/reagent/drug/methamphetamine,\
 		/datum/reagent/teslium,\
 		/datum/reagent/toxin/anacea,\
 		/datum/reagent/pax)

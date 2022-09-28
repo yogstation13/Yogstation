@@ -195,3 +195,15 @@
 		/obj/item/balloonbox,
 		/obj/item/balloonbox
 	)
+
+/datum/supply_pack/medical/pseudo
+	name = "Sudafed Crate"
+	desc = "Contains two bottles of Sudafed, a potent decongestant."
+	cost = 750
+	contains = list(/obj/item/reagent_containers/glass/bottle/pseudo,
+					/obj/item/reagent_containers/glass/bottle/pseudo)
+	crate_name = "sudafed storage"
+	crate_type = /obj/structure/closet/crate/medical
+
+
+

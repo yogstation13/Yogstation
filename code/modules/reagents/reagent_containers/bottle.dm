@@ -234,6 +234,13 @@
 	desc = "A small bottle of atropine."
 	list_reagents = list(/datum/reagent/medicine/atropine = 30)
 
+/obj/item/reagent_containers/glass/bottle/pseudo
+	name = "Sudafed bottle"
+	desc = "A small bottle of Sudafed."
+	icon = 'icons/obj/traitor.dmi'
+	icon_state = "pseudo"
+	list_reagents = list(/datum/reagent/medicine/ephedrine = 10)
+
 /obj/item/reagent_containers/glass/bottle/romerol
 	name = "romerol bottle"
 	desc = "A small bottle of romerol. The REAL zombie powder."

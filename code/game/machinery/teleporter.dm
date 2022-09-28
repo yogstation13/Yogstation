@@ -72,6 +72,15 @@
 		com.target = null
 		visible_message(span_alert("Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
 		return
+	if (istype(M, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/container = M
+		if(container.reagents && container.reagents.has_reagent(/datum/reagent/drug/methamphetamine))
+			var/volume = container.reagents.get_reagent_amount(/datum/reagent/drug/methamphetamine)
+			if(volume)
+				new /obj/item/holochip(drop_location(com), METH_PRICE * volume)
+				qdel(M)
+				return
+		
 	if (ismovable(M))
 		if(do_teleport(M, com.target, channel = TELEPORT_CHANNEL_BLUESPACE))
 			use_power(5000)

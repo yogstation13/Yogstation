@@ -21,11 +21,13 @@
 	mix_message = "The mixture dries into a pale blue powder."
 	required_temp = 380
 
+#define METH_PRICE 25
+
 /datum/chemical_reaction/methamphetamine
 	name = /datum/reagent/drug/methamphetamine
 	id = /datum/reagent/drug/methamphetamine
-	results = list(/datum/reagent/drug/methamphetamine = 4)
-	required_reagents = list(/datum/reagent/medicine/ephedrine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/hydrogen = 1, /datum/reagent/toxin/acid/fluacid = 1)
+	results = list(/datum/reagent/drug/methamphetamine = 2)
+	required_reagents = list(/datum/reagent/medicine/ephedrine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/hydrogen = 1)
 	required_temp = 374
 
 /datum/chemical_reaction/methamphetamine/on_reaction(datum/reagents/holder)
