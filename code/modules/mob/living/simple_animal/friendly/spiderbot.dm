@@ -1,6 +1,6 @@
 /mob/living/simple_animal/spiderbot
 	name = "Spider bot"
-	desc = "A skittering robotic friend!"
+	desc = "Unlike drones, spiderbots are actually smart and make good friends!"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
@@ -19,7 +19,7 @@
 	response_help  = "pets"
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
-	ventcrawler = 2
+	density = FALSE
 	speed = -1  //Spiderbots gotta go fast.
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -178,7 +178,7 @@
 
 /mob/living/simple_animal/spiderbot/proc/on_death()
 	UnregisterSignal(src, COMSIG_MOB_DEATH)
-	gib()
+	dust()
 
 /mob/living/simple_animal/spiderbot/Destroy()
 	if(radio)
@@ -258,6 +258,8 @@
 	return 0
 
 /mob/living/simple_animal/spiderbot/examine(mob/user)
-	..()
+	. = ..()
+	if(health < maxHealth)
+		. += "This [src] looks a bit dented"
 	if(src.held_item)
 		to_chat(user, "It is carrying \a [src.held_item] [icon2html(src.held_item, src)].")
