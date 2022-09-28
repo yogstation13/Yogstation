@@ -108,9 +108,9 @@
 	pixel_x = initial(pixel_x) //return to its spot after shaking
 	update_icon()
 	var/turf/T = get_turf(src)
-		for(var/obj/item/I in contents)
-			new/obj/item/reagent_containers/food/snacks/chum(T)
-			qdel(I)
+	for(var/obj/item/I in contents)
+		new /obj/item/reagent_containers/food/snacks/chum(T)
+		qdel(I)
 
 
 

@@ -34,27 +34,28 @@
 /obj/item/fishingbook/ui_act(action,list/params)
 	if(..())
 		return
-	//switch(action)
 
-
-/obj/item/fishingbook/ui_data(mob/user)
-	var/list/data = list()
-	var/list/f_list = list()
-	for(var/fish in GLOB.fish_list)
-		var/obj/item/reagent_containers/food/snacks/fish/F = fish
-		var/list/details = list()
-		details["name"] = initial(F.name)
-		details["min_length"] = initial(F.min_length)
-		details["max_length"] = initial(F.max_length)
-		details["min_weight"] = initial(F.min_weight)
-		details["max_weight"] = initial(F.max_weight)
-		f_list += list(details)
-	data["f_list"] = f_list
-	return data
-
-/*
 /obj/item/fishingbook/ui_static_data(mob/user)
 	var/list/data = list()
+	var/list/fish_list = list()
+	for(var/fish in GLOB.fish_list)
+		var/obj/item/reagent_containers/food/snacks/fish/F = new fish
+		var/list/details = list()
+		details["name"] = F.name
+		details["min_length"] = F.min_length
+		details["max_length"] = F.max_length
+		details["min_weight"] = F.min_weight
+		details["max_weight"] = F.max_weight
+		var/icon/fish_icon = getFlatIcon(F)
+		var/md5 = md5(fcopy_rsc(fish_icon))
+		if(!SSassets.cache["photo_[md5]_[F.name]_icon.png"])
+			SSassets.transport.register_asset("photo_[md5]_[F.name]_icon.png", fish_icon)
+		SSassets.transport.send_assets(user, list("photo_[md5]_[F.name]_icon.png" = fish_icon))
+		details["fish_icon"] = SSassets.transport.get_asset_url("photo_[md5]_[F.name]_icon.png")
+		fish_list += list(details)
+		qdel(F)
+
+	data["fish_list"] = fish_list
 
 	return data
-*/
+

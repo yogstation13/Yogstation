@@ -17,6 +17,8 @@ import './styles/themes/retro.scss';
 import './styles/themes/syndicate.scss';
 import './styles/themes/admintickets.scss';
 
+import './styles/themes/fish_book.scss';
+
 import { perf } from 'common/perf';
 import { setupHotReloading } from 'tgui-dev-server/link/client';
 import { setupHotKeys } from './hotkeys';
