@@ -54,7 +54,7 @@
 	if(..())
 		return
 
-	var/authed = IsAdminGhost(user)
+	var/authed = IsAdminGhost(usr)
 	var/mob/user = usr
 	var/obj/item/card/id/user_id = user.get_idcard()
 	computer.play_interact_sound()
