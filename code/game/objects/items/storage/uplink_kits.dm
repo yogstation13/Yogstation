@@ -142,7 +142,7 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list( "bond" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
 		if("bond")
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/suppressor(src)
@@ -152,6 +152,15 @@
 			new /obj/item/card/id/syndicate(src)
 			new /obj/item/reagent_containers/syringe/stimulants(src)
 			new /obj/item/reagent_containers/glass/rag(src)
+
+		if("oddjob") //Total TC value of 29-32 TC
+			new /obj/item/clothing/head/det_hat/evil(src) //6 TC
+			new /obj/item/clothing/under/syndicate/sniper(src) //Variant of tactical turtleneck that looks like a suit, provides 10 melee armor, has no sensors. Would say it's free
+			new /obj/item/clothing/suit/det_suit/grey/evil(src) //Grey det trenchcoat with hos coat values, 2ish TC
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //2 TC
+			new /obj/item/clothing/gloves/krav_maga/combatglovesplus(src) //5 TC, nukies only, dress to kill
+			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC
+			new /obj/item/autosurgeon/anti_stun(src) //12 TC
 
 		if("ninja")
 			new /obj/item/katana(src) // Unique , hard to tell how much tc this is worth. 8 tc?

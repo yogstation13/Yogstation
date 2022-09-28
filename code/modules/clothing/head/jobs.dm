@@ -99,7 +99,7 @@
 	name = "suspicious fedora"
 	icon_state = "syndicate_fedora"
 	desc = "A suspicious black fedora with a red band."
-	w_class = 4
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 	throw_speed = 4
 	sharpness = SHARP_NONE
 	hitsound = 'sound/weapons/genhit.ogg'
@@ -113,14 +113,16 @@
 		force = 15
 		throwforce = 40
 		sharpness = SHARP_EDGED
+		w_class = WEIGHT_CLASS_BULKY //Kinda hard to put a razorblade hat in your bag innit
 		icon_state = "syndicate_fedora_sharp"
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
 		hitsound = 'sound/weapons/bladeslice.ogg'
-		hattable = FALSE
+		hattable = FALSE //So you don't accidentally throw it onto somebody's head instead of decapitating them
 	else
 		force = 0
 		throwforce = 0
 		sharpness = SHARP_NONE
+		w_class = WEIGHT_CLASS_NORMAL
 		icon_state = "syndicate_fedora"
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
