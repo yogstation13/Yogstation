@@ -64,6 +64,8 @@
 		return
 	return ..()
 
+#define METH_PRICE 25
+
 /obj/machinery/teleport/hub/proc/teleport(atom/movable/M as mob|obj, turf/T)
 	var/obj/machinery/computer/teleporter/com = power_station.teleporter_console
 	if (QDELETED(com))
