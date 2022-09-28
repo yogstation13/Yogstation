@@ -719,7 +719,6 @@
 	overdose_threshold = 30
 	addiction_threshold = 25
 
-
 /datum/reagent/medicine/morphine/on_mob_metabolize(mob/living/L)
 	..()
 	L.ignore_slowdown(type)
