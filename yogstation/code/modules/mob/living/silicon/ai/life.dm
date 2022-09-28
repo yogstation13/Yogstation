@@ -16,6 +16,7 @@
 		return
 	if(world.time >= hijack_start+HIJACK_TIME && mind)
 		add_servant_of_ratvar(src)
+		can_download = FALSE //rat'var protects us against the cucking console
 		QDEL_NULL(cogging)
 
 #undef HIJACK_TIME 
