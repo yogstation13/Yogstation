@@ -104,6 +104,7 @@
 	sharpness = SHARP_NONE
 	hitsound = 'sound/weapons/genhit.ogg'
 	attack_verb = list("poked", "tipped")
+	embedding = embedding.setRating(0) //Zero percent chance to embed
 	var/extended = 0
 
 /obj/item/clothing/head/det_hat/evil/attack_self(mob/user)
@@ -111,7 +112,10 @@
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 	if(extended)
 		force = 15
+		armour_penetration = 15
 		throwforce = 40
+		wound_bonus = -10
+		bare_wound_bonus = 10
 		sharpness = SHARP_EDGED
 		w_class = WEIGHT_CLASS_BULKY //Kinda hard to put a razorblade hat in your bag innit
 		icon_state = "syndicate_fedora_sharp"
