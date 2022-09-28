@@ -686,6 +686,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			along with slurred speech, aggression, and the ability to infect others with this agent."
 	item = /obj/item/storage/box/syndie_kit/romerol
 	cost = 25
+	surplus = 0 //Hijack-only, don't let this exist in surplus
 	cant_discount = TRUE
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
