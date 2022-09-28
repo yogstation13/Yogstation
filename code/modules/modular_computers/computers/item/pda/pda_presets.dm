@@ -43,7 +43,7 @@
 	starting_files |= list(
 		new /datum/computer_file/program/alarm_monitor,
 		new /datum/computer_file/program/supermatter_monitor,
-		new /datum/computer_file/program/energy_harvester_control
+		new /datum/computer_file/program/power_monitor
 	)	
 	. = ..()
 
