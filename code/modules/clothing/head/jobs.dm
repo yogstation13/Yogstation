@@ -104,7 +104,7 @@
 	sharpness = SHARP_NONE
 	hitsound = 'sound/weapons/genhit.ogg'
 	attack_verb = list("poked", "tipped")
-	embedding = embedding.setRating(0) //Zero percent chance to embed
+	embedding = list("embed_chance" = 0) //Zero percent chance to embed
 	var/extended = 0
 
 /obj/item/clothing/head/det_hat/evil/attack_self(mob/user)
