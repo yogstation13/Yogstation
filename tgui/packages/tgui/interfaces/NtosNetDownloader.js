@@ -105,9 +105,8 @@ export const NtosNetDownloader = (props, context) => {
           <Flex.Item grow={1} basis={0} height="100%">
             <Section fill scrollable>
               {items?.map(program => (
-                <Box>
+                <Box key={program.filename}>
                   <Program
-                    key={program.filename}
                     program={program} />
                   <Divider />
                 </Box>
