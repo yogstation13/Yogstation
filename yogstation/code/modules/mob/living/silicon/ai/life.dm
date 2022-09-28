@@ -11,4 +11,11 @@
 			QDEL_NULL(hijacking)
 			update_icons()
 
+/mob/living/silicon/ai/proc/process_integrate()
+	if(!cogging)
+		return
+	if(world.time >= hijack_start+HIJACK_TIME && mind)
+		add_servant_of_ratvar(src)
+		QDEL_NULL(cogging)
+
 #undef HIJACK_TIME 
