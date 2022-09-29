@@ -136,7 +136,7 @@
 	..()
 	var/datum/component/crawl/blood/B = M.GetComponent(/datum/component/crawl/blood)
 	if(B)
-		B.RemoveComponent()
+		B.ClearFromParent()
 
 /obj/item/organ/heart/demon/Stop()
 	return 0 // Always beating.
@@ -182,7 +182,7 @@
 	..()
 	var/datum/component/crawl/blood/demonic/scary = GetComponent(/datum/component/crawl/blood/demonic)
 	if(scary)
-		scary.RemoveComponent(del_holder=FALSE)
+		scary.ClearFromParent(del_holder=FALSE)
 	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic/hilarious)
 	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
 		bloodcrawl.holder = loc

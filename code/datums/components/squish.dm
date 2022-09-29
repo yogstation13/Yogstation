@@ -10,11 +10,11 @@
 
 	var/mob/living/carbon/C = target
 	var/was_lying = (C.lying != 0)
-	addtimer(CALLBACK(src, .proc/RemoveComponent, C, was_lying), duration)
+	addtimer(CALLBACK(src, .proc/ClearFromParent, C, was_lying), duration)
 
 	C.transform = C.transform.Scale(TALL, SHORT)
 
-/datum/component/squish/RemoveComponent(mob/living/carbon/C, was_lying)
+/datum/component/squish/ClearFromParent(mob/living/carbon/C, was_lying)
 	. = ..()
 	if(istype(C))
 		var/is_lying = (C.lying != 0)

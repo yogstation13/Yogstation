@@ -8,7 +8,7 @@
 	if (.)
 		SEND_SIGNAL(parent, COMSIG_STORAGE_REMOVED, AM, new_location)
 
-/datum/component/storage/RemoveComponent() // hey TG you dropped this
+/datum/component/storage/ClearFromParent() // hey TG you dropped this
 	UnregisterSignal(parent, COMSIG_CONTAINS_STORAGE)
 	UnregisterSignal(parent, COMSIG_IS_STORAGE_LOCKED)
 	UnregisterSignal(parent, COMSIG_TRY_STORAGE_SHOW)
@@ -45,7 +45,7 @@
 	UnregisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO)
 	. = ..()
 
-/datum/component/storage/concrete/RemoveComponent()
+/datum/component/storage/concrete/ClearFromParent()
 	UnregisterSignal(parent, COMSIG_ATOM_CONTENTS_DEL)
 	UnregisterSignal(parent, COMSIG_OBJ_DECONSTRUCT)
 	. = ..()

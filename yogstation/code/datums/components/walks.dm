@@ -14,7 +14,7 @@
 	if(footsteps)
 		footsteps.signal_enabled = FALSE
 
-/datum/component/walk/RemoveComponent()
+/datum/component/walk/ClearFromParent()
 	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
 	if(footsteps)
 		footsteps.signal_enabled = TRUE

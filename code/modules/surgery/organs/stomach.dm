@@ -232,4 +232,4 @@
 	..()
 	var/datum/component/crawl/vomit/B = M.GetComponent(/datum/component/crawl/vomit)
 	if(B)
-		B.RemoveComponent()
+		B.ClearFromParent()
