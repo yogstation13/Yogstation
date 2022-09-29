@@ -167,6 +167,8 @@
 #define COMSIG_MOVABLE_BUMP "movable_bump"						//from base of atom/movable/Bump(): (/atom)
 #define COMSIG_MOVABLE_IMPACT "movable_impact"					//from base of atom/movable/throw_impact(): (/atom/hit_atom, /datum/thrownthing/throwingdatum)
 #define COMSIG_MOVABLE_IMPACT_ZONE "item_impact_zone"			//from base of mob/living/hitby(): (mob/living/target, hit_zone)
+#define COMSIG_MOVABLE_PREBUCKLE "prebuckle" //from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, buckle_mob_flags)
+	#define COMPONENT_BLOCK_BUCKLE	(1<<0) // this is the last chance to interrupt and block a buckle before it finishes
 #define COMSIG_MOVABLE_BUCKLE "buckle"							//from base of atom/movable/buckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_UNBUCKLE "unbuckle"						//from base of atom/movable/unbuckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_PRE_DROPTHROW "movable_pre_dropthrow"	//from base of atom/movable/throw_at(): Triggers when throwing, before the item is dropped and before COMSIG_MOVABLE_PRE_THROW 
