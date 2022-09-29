@@ -135,6 +135,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 				to_chat(H,span_info("NOTICE: Digestive subroutines are inefficient. Seek sustenance via power-cell C.O.N.S.U.M.E. technology induction."))
 
 	if(chem.current_cycle >= 20)
+		chem.on_mob_end_metabolize()
 		H.reagents.del_reagent(chem.type)
 
 
