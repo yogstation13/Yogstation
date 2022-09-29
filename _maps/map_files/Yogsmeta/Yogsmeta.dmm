@@ -46359,11 +46359,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"cwC" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/space/basic,
-/area/maintenance/starboard/aft)
 "cwD" = (
 /obj/machinery/camera{
 	c_tag = "Chapel Office - Backroom";
@@ -70739,11 +70734,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"oOW" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/space/basic,
-/area/maintenance/port/aft)
 "oOZ" = (
 /obj/machinery/light,
 /obj/machinery/newscaster/security_unit{
@@ -97919,7 +97909,7 @@ dux
 cQh
 bXE
 bXE
-oOW
+dLi
 bMA
 bMA
 bMA
@@ -100234,7 +100224,7 @@ fzk
 fxq
 dux
 dux
-oOW
+dLi
 dux
 dux
 eHP
@@ -121852,7 +121842,7 @@ guN
 dvY
 dvY
 dvY
-cwC
+jdB
 dvY
 dvY
 dvY
