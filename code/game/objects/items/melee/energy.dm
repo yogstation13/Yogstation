@@ -203,6 +203,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	icon_state_on = "cutlass1"
+	saber_color = null
 	light_color = "#ff0000"
 
 /obj/item/melee/transforming/energy/blade
