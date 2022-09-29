@@ -1097,16 +1097,19 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 	var/mob/living/carbon/human/ascendant = user 
 	to_chat(user, span_userdanger("Warmth surges, bubbles in your body. Your exterior form sloughs off as your new power becomes apparent, old skin disintegrating. You feel divine."))
+	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 
-	ascendant.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-	ascendant.set_species(/datum/species/lizard/draconid)
-	ascendant.eye_color = "fee5a3"
+	if(islizard(ascendant)) //So they can keep their special snowflake horns and everything otherwise
+		ascendant.set_species(/datum/species/lizard/draconid)
+	else //Otherwise made the generic red lizard
+		ascendant.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+		ascendant.set_species(/datum/species/lizard/draconid)
+	ascendant.eye_color = "fee5a3" //Needs to be separate since the species auto-changes color and digitgrade on lizards but not eye color
 	ascendant.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-	ascendant.updateappearance() //Makes them the red lizard
+	ascendant.updateappearance()
 
 	ascendant.dna.species.GiveSpeciesFlight(ascendant) //Yes it gives wings too
 	ADD_TRAIT(ascendant, TRAIT_HOLY, SPECIES_TRAIT) //A sprinkle of holiness too because why not
-	playsound(ascendant.loc, 'sound/items/poster_ripped.ogg', 50, TRUE, -1)
 
 	ascendant.dna.add_mutation(FIREBREATH) //And fire breath
 
