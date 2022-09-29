@@ -156,6 +156,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				var/is_wounded = FALSE
 				var/is_husked = FALSE
 				var/is_onfire = FALSE
+				var/is_bonecrack = FALSE
 
 				if (I)
 					name = I.registered_name
@@ -200,17 +201,20 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					species = "Snail"
 				if (isabductor(H))
 					species = "Alien"
-
+							
+				if(locate(/datum/wound/blunt) in H.all_wounds) //check if has bone wounds
+					is_bonecrack = TRUE
+								
 				if (H.radiation > RAD_MOB_SAFE) //safe level before sending alert
 					is_irradiated = TRUE
 
-				if(length(H.get_wounded_bodyparts()))
+				if(length(H.get_wounded_bodyparts())) //check if wounded
 					is_wounded = TRUE			
 
-				if (HAS_TRAIT(H, TRAIT_HUSK))
+				if (HAS_TRAIT(H, TRAIT_HUSK)) //check if husked
 					is_husked = TRUE
 
-				if (H.on_fire == TRUE)
+				if (H.on_fire == TRUE) //check if on fire
 					is_onfire = TRUE
 					
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
@@ -243,7 +247,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if(life_status == FALSE)
 					new_death_list.Add(H)
 
-				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_irradiated" = is_irradiated, "species" = species, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_bonecrack" = is_bonecrack, "is_irradiated" = is_irradiated, "species" = species, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
