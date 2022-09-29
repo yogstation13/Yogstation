@@ -16,11 +16,7 @@
 	bolt_drop_sound = "sound/weapons/pistolslidedrop.ogg"
 	bolt_wording = "slide"
 	feedback_types = list(
-		"fire" = 2,
-		"slide_open" = 3,
-		"slide_close" = 3,
-		"mag_in" = 3,
-		"mag_out" = 3
+		"fire" = 2
 	)
 
 /obj/item/gun/ballistic/automatic/pistol/no_mag
