@@ -44,6 +44,12 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		var/sold = FALSE
 		if(QDELETED(thing))
 			continue
+		if(istype(thing, /obj/structure/closet/crate))
+			var/obj/structure/closet/crate/C = thing
+			if(C.manifest)
+				var/obj/item/paper/manifest = C.manifest
+				if(!manifest.stamped) // Unstamped papers on crates // Futureproofing
+					continue
 		for(var/datum/export/E in GLOB.exports_list)
 			if(!E)
 				continue
