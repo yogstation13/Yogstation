@@ -63,32 +63,24 @@
 		if(!user.temporarilyRemoveItemFromInventory(M))
 			return
 		to_chat(user, span_notice("You install [M] in [src]!"))
+		mmi = M
 		transfer_personality(M)
 		update_icon()
 		return 1
 
-	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src)) ///STOLEN FROM CYRORG CODE
+	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src)) ///Removed needless self repair part
 		user.changeNext_move(CLICK_CD_MELEE)
 		if (!getBruteLoss())
 			to_chat(user, span_warning("[src] is already in good condition!"))
 			return
 		if (!O.tool_start_check(user, amount=0))
 			return
-		if(src == user)
-			if(health > 0)
-				to_chat(user, span_warning("You have repaired what you could! Get some help to repair the remaining damage."))
-				return
-			to_chat(user, span_notice("You start fixing yourself..."))
-			if(!O.use_tool(src, user, 50))
-				return
-			if(health > 0)
-				return
-
 		adjustBruteLoss(-10)
 		updatehealth()
 		add_fingerprint(user)
 		visible_message(span_notice("[user] has fixed some of the dents on [src]."))
 		return
+
 	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/pda))
 		if (!mmi)
 			to_chat(user, span_warning("There's no reason to swipe your ID - the spiderbot has no brain to remove."))
@@ -140,7 +132,7 @@
 		death()
 
 /mob/living/simple_animal/spiderbot/proc/update_icon()
-	if(key)
+	if(mmi)
 		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"
 			icon_living = "spiderbot-chassis-posi"
@@ -157,10 +149,16 @@
 			mind.transfer_to(mmi.brainmob)
 		else if(key)
 			mmi.brainmob.key = key
+		mmi.forceMove(loc)
 		mmi = null
 		name = initial(name)
-		mmi.forceMove(loc)
+		mmi.update_icon()
 	update_icon()
+
+/mob/living/simple_animal/spiderbot/gib()
+	eject_brain()
+	new /obj/effect/decal/remains/robot(loc)
+	qdel(src)
 
 /mob/living/simple_animal/spiderbot/Destroy()
 	eject_brain()
@@ -178,7 +176,7 @@
 
 /mob/living/simple_animal/spiderbot/proc/on_death()
 	UnregisterSignal(src, COMSIG_MOB_DEATH)
-	dust()
+	gib()
 
 /mob/living/simple_animal/spiderbot/Destroy()
 	if(radio)
