@@ -459,10 +459,6 @@
 	ui_x = -320
 	ui_y = -672
 
-/datum/techweb_node/advanced_bluespace
-	ui_x = -384
-	ui_y = -160
-
 /datum/techweb_node/mech_teleporter
 	ui_x = -416
 	ui_y = -256
