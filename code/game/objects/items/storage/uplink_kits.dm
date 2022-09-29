@@ -142,7 +142,7 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list( "bond" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "half_dragon" = 1)))
 		if("bond")
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/suppressor(src)
@@ -247,6 +247,10 @@
 			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
+
+		if("half_dragon") //I am fire, I am Death. Combined cost of 32 TC
+			new /obj/item/dragons_blood/syndicate/true(src) //Combines draconid, angel potion, and fire breath injector, works for any species. Total of 18 TC worth
+			new /obj/item/book/granter/martial/flyingfang(src) //Flying fang. 14 TC
 
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."

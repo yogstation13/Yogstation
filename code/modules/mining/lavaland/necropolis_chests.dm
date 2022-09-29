@@ -1068,7 +1068,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	qdel(src)
 
 /obj/item/dragons_blood/syndicate
-	name = "bottle of refined dragons blood"
+	name = "bottle of refined dragon's blood"
 	desc = "You're totally going to drink this, aren't you?"
 
 /obj/item/dragons_blood/syndicate/attack_self(mob/living/carbon/human/user)
@@ -1087,6 +1087,30 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
+/obj/item/dragons_blood/syndicate/true
+	name = "bottle of pure dragon's blood"
+	desc = "An alchemical wonder; we are blessed by the blood."
+
+/obj/item/dragons_blood/syndicate/true/attack_self(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+
+	var/mob/living/carbon/human/ascendant = user 
+	to_chat(user, span_userdanger("Warmth surges, bubbles in your body. Your exterior form sloughs off as your new power becomes apparent, old skin disintegrating. You feel divine."))
+
+	ascendant.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+	ascendant.set_species(/datum/species/lizard/draconid)
+	ascendant.eye_color = "fee5a3"
+	ascendant.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+	ascendant.updateappearance() //Makes them the red lizard
+
+	ascendant.dna.species.GiveSpeciesFlight(ascendant) //Yes it gives wings too
+	ADD_TRAIT(ascendant, TRAIT_HOLY, SPECIES_TRAIT) //A sprinkle of holiness too because why not
+	playsound(ascendant.loc, 'sound/items/poster_ripped.ogg', 50, TRUE, -1)
+
+	ascendant.dna.add_mutation(FIREBREATH) //And fire breath
+
+	qdel(src)
 
 /datum/disease/transformation/dragon
 	name = "dragon transformation"
