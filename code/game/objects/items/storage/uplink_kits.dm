@@ -151,7 +151,8 @@
 			new /obj/item/storage/belt/military(src) //Can't be concealed, basically just 7-slot belt, no normal items allowed. Free
 			new /obj/item/book/granter/martial/cqc(src) //13 TC, ABSOLUTELY mandatory
 			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
-			new /obj/item/storage/box/syndie_kit/imp_stealth(src) //Just a box. 8 TC.
+			new /obj/item/kitchen/knife/combat/survival(src) //Simple miner knife, in flavor. Maybe-maybe 1 TC, but basically free
+			new /obj/item/implanter/stealth(src) //Just a box. 8 TC
 
 		if("ninja")
 			new /obj/item/katana(src) // Unique , hard to tell how much tc this is worth. 8 tc?
