@@ -142,16 +142,16 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
-		if("bond")
-			new /obj/item/gun/ballistic/automatic/pistol(src)
-			new /obj/item/suppressor(src)
-			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/clothing/under/chameleon/syndicate(src)
-			new /obj/item/card/id/syndicate(src)
-			new /obj/item/reagent_containers/syringe/stimulants(src)
-			new /obj/item/reagent_containers/glass/rag(src)
+	switch (pickweight(list( "v" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+		if("v") //Big Boss. Total of ~28 TC.
+			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
+			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
+			new /obj/item/clothing/shoes/combat(src) //Drip is essential. Free
+			new /obj/item/clothing/gloves/fingerless/bigboss(src) //Like a much lighter version of the Gloves of the North Star, but also helps with carrying bodies. Worth maybe 4 TC
+			new /obj/item/storage/belt/military(src) //Can't be concealed, basically just 7-slot belt, no normal items allowed. Free
+			new /obj/item/book/granter/martial/cqc(src) //13 TC, ABSOLUTELY mandatory
+			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
+			new /obj/item/storage/box/syndie_kit/imp_stealth(src) //Just a box. 8 TC.
 
 		if("ninja")
 			new /obj/item/katana(src) // Unique , hard to tell how much tc this is worth. 8 tc?
