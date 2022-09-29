@@ -63,6 +63,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			for(var/a in T.GetAllContents())
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
+			for(var/obj/item/paper/fluff/jobs/cargo/manifest/manifest in T)
+				if(manifest.stamped == "ok-stamp" || manifest.stamped == "deny-stamp")
+					return TRUE
+				else if(manifest.stamped == null)
+					return FALSE
 	return TRUE
 
 /obj/docking_port/mobile/supply/request(obj/docking_port/stationary/S)
