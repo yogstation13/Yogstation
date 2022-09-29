@@ -373,6 +373,14 @@
 /proc/sortUsernames(list/L, order=1)
 	return sortTim(L, order >= 0 ? /proc/cmp_username_asc : /proc/cmp_username_dsc)
 
+///sort any value in a list
+/proc/sort_list(list/list_to_sort, cmp=/proc/cmp_text_asc)
+	return sortTim(list_to_sort.Copy(), cmp)
+
+///uses sort_list() but uses the var's name specifically. This should probably be using mergeAtom() instead
+/proc/sort_names(list/list_to_sort, order=1)
+	return sortTim(list_to_sort.Copy(), order >= 0 ? /proc/cmp_name_asc : /proc/cmp_name_dsc)
+
 /// Converts a bitfield to a list of numbers (or words if a wordlist is provided)
 /proc/bitfield2list(bitfield = 0, list/wordlist)
 	var/list/r = list()

@@ -30,6 +30,8 @@
 	VV_DROPDOWN_OPTION(VV_HK_MARK, "Mark Object")
 	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Delete")
 	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
+	VV_DROPDOWN_OPTION(VV_HK_ADDCOMPONENT, "Add Component/Element")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRAITS, "Modify Traits")
 
 /datum/proc/on_reagent_change(changetype)
 	return
@@ -40,6 +42,10 @@
 /datum/proc/vv_do_topic(list/href_list)
 	if(!usr || !usr.client || !usr.client.holder || !check_rights(NONE))
 		return FALSE //This is VV, not to be called by anything else.
+	if(SEND_SIGNAL(src, COMSIG_VV_TOPIC, usr, href_list) & COMPONENT_VV_HANDLED)
+		return FALSE
+	if(href_list[VV_HK_MODIFY_TRAITS])
+		usr.client.holder.modify_traits(src)
 	return TRUE
 
 /datum/proc/vv_get_header()
