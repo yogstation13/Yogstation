@@ -2,7 +2,6 @@
 	var/order_cost = 0
 	var/order_id = 0
 	var/errors = 0
-	var/stamp = FALSE
 
 /obj/item/paper/fluff/jobs/cargo/manifest/New(atom/A, id, cost)
 	..()
@@ -17,11 +16,9 @@
 		errors |= MANIFEST_ERROR_ITEM
 
 /obj/item/paper/fluff/jobs/cargo/manifest/proc/is_approved()
-	stamp = TRUE
 	return stamped && stamped.len && !is_denied()
 
 /obj/item/paper/fluff/jobs/cargo/manifest/proc/is_denied()
-	stamp = TRUE
 	return stamped && ("stamp-deny" in stamped)
 
 /datum/supply_order
