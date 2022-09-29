@@ -21,7 +21,7 @@
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
 
-// Used when analyzing a Bloodsucker, Masquerade will hide brain traumas (Unless you're a Beefman)
+// Used when analyzing a Bloodsucker, Masquerade will hide brain traumas
 /mob/living/carbon/get_traumas()
 	if(!mind)
 		return ..()

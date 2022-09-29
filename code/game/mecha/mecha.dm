@@ -52,6 +52,7 @@
 	var/lights_power = 6
 	var/last_user_hud = 1 // used to show/hide the mecha hud while preserving previous preference
 	var/completely_disabled = FALSE //stops the mech from doing anything
+	var/omnidirectional_attacks = FALSE //lets mech shoot anywhere, not just in front of it
 
 	var/bumpsmash = 0 //Whether or not the mech destroys walls by running into it.
 	//inner atmos
@@ -123,7 +124,7 @@
 	var/phasing_energy_drain = 200
 	var/phase_state = "" //icon_state when phasing
 	var/strafe = FALSE //If we are strafing
-
+	var/canstrafe = TRUE
 	var/nextsmash = 0
 	var/smashcooldown = 3	//deciseconds
 
@@ -498,7 +499,7 @@
 	if(src == target)
 		return
 	var/dir_to_target = get_dir(src,target)
-	if(dir_to_target && !(dir_to_target & dir))//wrong direction
+	if(!omnidirectional_attacks && dir_to_target && !(dir_to_target & dir))//wrong direction
 		return
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = safepick(view(3,target))
@@ -1034,7 +1035,7 @@
 
 /obj/mecha/Exited(atom/movable/M, atom/newloc)
 	if(occupant && occupant == M) // The occupant exited the mech without calling go_out()
-		go_out(TRUE, newloc)
+		go_out(FALSE, newloc) // Voice of god breaks things (such as gibbing AI)
 
 	if(cell && cell == M)
 		cell = null
