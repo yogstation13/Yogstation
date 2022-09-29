@@ -64,7 +64,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
 			for(var/obj/item/paper/fluff/jobs/cargo/manifest/manifest in T)
-				if(manifest.check_stamp == FALSE)
+				if(!manifest.is_approved() || !manifest.is_denied())
 					return FALSE
 	return TRUE
 

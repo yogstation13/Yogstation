@@ -45,7 +45,6 @@
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
 	var/next_write_time = 0 // prevent crash exploit
-	var/check_stamp = FALSE // check if stamped
 
 
 /obj/item/paper/pickup(user)
@@ -310,7 +309,6 @@
 		var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_[P.icon_state]")
 		stampoverlay.pixel_x = rand(-2, 2)
 		stampoverlay.pixel_y = rand(-3, 2)
-		check_stamp = TRUE
 
 		LAZYADD(stamped, P.icon_state)
 		add_overlay(stampoverlay)
