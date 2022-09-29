@@ -198,7 +198,7 @@
 /obj/item/gem/topaz
 	name = "\improper Topaz"
 	icon_state = "topaz"
-	point_value = 150
+	point_value = 200
 
 /obj/item/ai_cpu/stalwart //very jank code-theft because it's not directly a gem
 	name = "\improper Bluespace Data Crystal"
