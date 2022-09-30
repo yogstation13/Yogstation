@@ -574,6 +574,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(QDELETED(L))
 		message_admins(span_boldnotice("([L.ckey])[L] has been deleted before they could rename themselves!"))
+		log_game("[L.ckey] was Qdeleted before they could complete a rename.")
 		return
 	if(unforced_answer == "Decline")
 		message_admins(span_boldnotice("([L.ckey])[L] has declined the rename."))
