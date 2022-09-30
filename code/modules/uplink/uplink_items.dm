@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			These items are collectively worth more than 20 telecrystals, but you do not know which specialization \
 			you will receive. May contain discontinued and/or exotic items."
 	item = /obj/item/storage/box/syndicate/bundle_A
-	cost = 20
+	cost = 16
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/bundle_B
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
 			In Syndi-kit Special, you will receive items used by famous syndicate agents of the past. Collectively worth more than 20 telecrystals, the syndicate loves a good throwback."
 	item = /obj/item/storage/box/syndicate/bundle_B
-	cost = 20
+	cost = 16
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/surplus
