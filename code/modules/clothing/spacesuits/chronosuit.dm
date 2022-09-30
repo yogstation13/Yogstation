@@ -320,7 +320,7 @@
 	if(user)
 		vis_contents += user
 	else
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	return ..()
 
 /datum/action/innate/chrono_teleport

@@ -1,0 +1,12 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "You can now craft sutures/mesh/gauze/ointment"
+  - rscadd: "added antiseptic ointment, made for quickly tending infections from burns"
+  - rscadd: "added makeshift sutures, made from torn cloth and glass with some water"
+  - tweak: "Nanomeds no longer contain Sutures, but do have 4 antiseptic ointment"
+  - tweak: "Added a new Medical crafting tab and moved the autoinjector recipes there"
+  - tweak: "some stacked medical items now grind for sterilizine instead of spaceacillin"
+  - tweak: "burn kits now contain antiseptic ointment"
+  - tweak: "ointment is now a repeating-use item"
+  - imageadd: "added green suture sprites, and a yellow ointment bottle"

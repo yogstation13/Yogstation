@@ -1,0 +1,8 @@
+author: " [Zergspower](https://github.com/Zergspower), [Deek-Za](https://github.com/Deek-Za) ported by warface1234455 (Also added a few things)"
+delete-after: true 
+changes: 
+  - rscadd: "suit sensor now check your race and if you have wound, husk, on fire and irradiation"
+  - imageadd: "replaced old color box icons with new health status icons for crew monitor"
+  - imageadd: "added some health check icons for wound, husk, on fire and irradiation"
+  - imageadd: "added some race icons"
+  - rscadd: "Added issnail for is_helpers"

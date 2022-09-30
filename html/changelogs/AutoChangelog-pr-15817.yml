@@ -1,0 +1,4 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - rscadd: "There's a new subtype of the RnD console, it will soon reach old stations. This subtype doesn't have a lock."

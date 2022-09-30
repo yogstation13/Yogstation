@@ -1,0 +1,5 @@
+author: " jjpark-kb(Lumos station), warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "Radiation Anomaly"
+  - tweak: "SM now also spawn radiation anomaly"

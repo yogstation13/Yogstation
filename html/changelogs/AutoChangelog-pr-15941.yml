@@ -1,0 +1,5 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - bugfix: "fixed being unable to close job slots"
+  - bugfix: "fixed admin ghosts being unable to use the job manager"

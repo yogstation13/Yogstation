@@ -1,0 +1,4 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - tweak: "preternis no longer have a move speed penalty"
