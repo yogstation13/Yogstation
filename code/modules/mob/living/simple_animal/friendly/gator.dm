@@ -50,21 +50,8 @@
 	icon_state = "steppy"
 	icon_living = "steppy"
 	icon_dead ="steppy_dead"
-	speak_emote = list("snaps")
-	emote_hear = list("snaps.","hisses.")
-	emote_see = list("waits apprehensively.", "shuffles.")
-	speak_chance = 1
-	turns_per_move = 5
-	response_help = "pets"
-	response_disarm = "rolls over"
-	response_harm = "kicks"
 	gold_core_spawnable = NO_SPAWN
 	faction = list("neutral")
-	melee_damage_lower = 20
-	melee_damage_upper = 24
-	health = 125
-	maxHealth = 125
-	speed = 8
 
 /mob/living/simple_animal/hostile/retaliate/gator/steppy/iguana
 	name = "Izzy"
@@ -73,11 +60,6 @@
 	icon_state = "iguana"
 	icon_living = "iguana"
 	icon_dead ="iguana_dead"
-	speak_chance = 1
-	turns_per_move = 5
-	response_help = "pets"
-	response_disarm = "rolls over"
-	response_harm = "kicks"
 	gold_core_spawnable = NO_SPAWN
 	speak_emote = list("sneezes")
 	emote_hear = list("snaps.","hisses.", "sneezes.")
