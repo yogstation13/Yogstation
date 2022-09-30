@@ -30,6 +30,7 @@
 	brutemod = 1
 	toxmod = 0
 	clonemod = 0
+	oxymod = 0
 	staminamod = 0.8
 	siemens_coeff = 1.75
 	reagent_tag = PROCESS_SYNTHETIC
