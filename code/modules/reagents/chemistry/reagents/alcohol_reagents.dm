@@ -1258,7 +1258,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Bacchus' Blessing"
 	glass_desc = "You didn't think it was possible for a liquid to be so utterly revolting. Are you sure about this...?"
 
-
+/datum/reagent/consumable/ethanol/bacchus_blessing/on_mob_life(mob/living/carbon/C)
+	. = ..()
+	if(HAS_TRAIT(C, TRAIT_ALCOHOL_TOLERANCE))
+		var/obj/item/organ/liver/L = C.getorganslot(ORGAN_SLOT_LIVER)
+		if(istype(L)) // Bacchus is proud
+			L.damage = min(L.damage - 1, 0)
 
 /datum/reagent/consumable/ethanol/atomicbomb
 	name = "Atomic Bomb"
@@ -2154,6 +2159,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/planet_cracker/on_mob_life(mob/living/carbon/M)
 	if(islizard(M) && prob(15))
 		M.emote("scream")
+	else if(ishumanbasic(M))
+		M.heal_overall_damage(0.25, 0.25)
 	return ..()
 
 /datum/reagent/consumable/ethanol/cactuscooler
@@ -2304,7 +2311,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/ratvarnac/on_mob_life(mob/living/carbon/M)
 	M.emote("spin")
-	..()
+	if(is_servant_of_ratvar(M))
+		M.heal_overall_damage(0.5, 0.5)
+	return ..()
 
 /datum/reagent/consumable/ethanol/amaretto
 	name = "Amaretto"
