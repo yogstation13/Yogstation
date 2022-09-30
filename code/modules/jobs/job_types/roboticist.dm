@@ -31,7 +31,7 @@
 	name = "Roboticist"
 	jobtype = /datum/job/roboticist
 
-	pda_type = /obj/item/pda/roboticist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/headset_sci

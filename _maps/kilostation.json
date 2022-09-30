@@ -5,7 +5,6 @@
     "shuttles": {
 	    "emergency": "emergency_kilo",
 	    "ferry": "ferry_kilo",
-	    "cargo": "cargo_kilo",
-	    "whiteship": "whiteship_meta"
+	    "cargo": "cargo_kilo"
     }
 }

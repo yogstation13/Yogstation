@@ -159,7 +159,7 @@
 	name = "Chaplain"
 	jobtype = /datum/job/chaplain
 
-	pda_type = /obj/item/pda/chaplain
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chaplain

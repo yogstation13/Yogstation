@@ -31,7 +31,7 @@
 	name = "Mining Medic"
 	jobtype = /datum/job/miningmedic
 	
-	pda_type = /obj/item/pda/miningmed
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	backpack_contents = list(/obj/item/roller = 1,\
 		/obj/item/kitchen/knife/combat/survival = 1)

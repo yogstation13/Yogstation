@@ -175,7 +175,7 @@
 		A.UpdateButtonIcon(status_only)
 
 //This is the proc used to update all the action buttons.
-/mob/proc/update_action_buttons(reload_screen)
+/mob/proc/update_action_buttons(reload_screen, skip_observers=FALSE)
 	if(!hud_used || !client)
 		return
 
@@ -213,9 +213,10 @@
 	if(reload_screen)
 		client.screen += hud_used.hide_actions_toggle
 
-	for(var/mob/dead/observer/O in observers) // This is usually always called instead of Grant() or Remove()
-		O.actions = actions + O.originalactions
-		O.update_action_buttons()
+	if(!skip_observers)
+		for(var/mob/dead/observer/O in observers) // This is usually always called instead of Grant() or Remove()
+			O.actions = actions + O.originalactions
+			O.update_action_buttons(skip_observers=TRUE)
 
 
 

@@ -28,6 +28,7 @@
 	reqs = list(/obj/item/wallframe/flasher = 1,
 				/obj/item/assembly/flash/handheld = 1,
 				/obj/item/shield/riot = 1)
+	blacklist = list(/obj/item/shield/riot/buckler, /obj/item/shield/riot/tele)
 	time = 4 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

@@ -7,14 +7,23 @@
 	icon_state = "mecha_equip"
 	force = 5
 	max_integrity = 300
-	var/equip_cooldown = 0 // cooldown after use
-	var/equip_ready = 1 //whether the equipment is ready for use. (or deactivated/activated for static stuff)
+	/// Cooldown after use
+	var/equip_cooldown = 0
+	/// is the module ready for use
+	var/equip_ready = TRUE
+	/// How much energy it drains when used or while in use
 	var/energy_drain = 0
+	/// Linked Mech/Chassis
 	var/obj/mecha/chassis = null
-	var/range = MECHA_MELEE //bitFflags
-	var/salvageable = 1
-	var/selectable = 1	// Set to 0 for passive equipment such as mining scanner or armor plates
-	var/harmful = FALSE //Controls if equipment can be used to attack by a pacifist.
+	/// Bitflag: MECHA_MELEE|MECHA_RANGED what ranges it operates at
+	var/range = MECHA_MELEE
+	/// Can the module be salvaged
+	var/salvageable = TRUE
+	/// Is it a passive module(FALSE) or a selectable module(TRUE)
+	var/selectable = TRUE
+	/// Used for pacifism checks
+	var/harmful = FALSE
+	/// Sound when this module is destroyed
 	var/destroy_sound = 'sound/mecha/critdestr.ogg'
 	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
 	var/mech_flags = NONE

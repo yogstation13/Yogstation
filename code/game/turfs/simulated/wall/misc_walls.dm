@@ -111,6 +111,12 @@
 		to_chat(M.occupant, span_userdanger("The wall's intense heat completely reflects your [M.name]'s attack!"))
 		M.take_damage(20, BURN)
 
+/turf/closed/wall/clockwork/attack_eminence(mob/camera/eminence/user, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers["alt"] && istype(user))
+		user.superheat_wall(src)
+		return
+
 /turf/closed/wall/clockwork/proc/turn_up_the_heat()
 	if(!heated)
 		name = "superheated [name]"
