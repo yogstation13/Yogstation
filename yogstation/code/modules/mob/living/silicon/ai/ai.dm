@@ -48,3 +48,8 @@
 		hijacking = null
 		hijack_start = 0
 		to_chat(src, span_bolddanger("Unknown device disconnected. Systems confirmed secure."))
+
+/mob/living/silicon/ai/proc/changeaccent()
+	set category = "AI Commands"
+	set name = "Change Accent"
+	return accentchange()
