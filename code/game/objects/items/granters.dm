@@ -299,6 +299,30 @@
 	to_chat(user,span_warning("[src] suddenly vanishes!"))
 	qdel(src)
 
+/obj/item/book/granter/spell/teslablast
+	spell = /obj/effect/proc_holder/spell/targeted/tesla
+	spellname = "tesla blast"
+	desc = "A book that crackles with power."
+	remarks = list("ZAP!", "I feel some tingling in my fingers...", "Swirl your hands to charge...?", "Let loose a bolt of pure electricity? Shocking...", "FEEL THE THUNDER!")
+
+/obj/item/book/granter/spell/teslablast/recoil(mob/user)
+	..()
+	to_chat(user, span_warning("The book twists into lightning and leaps at you!"))
+	tesla_zap(user, 8, 20000, TESLA_MOB_DAMAGE) //Will chain at a range of 8, but shouldn't straight up crit
+	qdel(src)
+
+/obj/item/book/granter/spell/repulse
+	spell = /obj/effect/proc_holder/spell/aoe_turf/repulse
+	spellname = "repulse"
+	desc = "A book that pushes against your touch."
+	remarks = list("The words seem to push away from me...", "Flick a hand and flick everything around me? Awesome", "My mind feels a little percussive.", "Just a little shove...", "Book almost flew out of my hands...")
+
+/obj/item/book/granter/spell/repulse/recoil(mob/user)
+	..()
+	to_chat(user, span_warning("The book bursts into a gale of force!"))
+	user.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)), 8, 10) //Random 8 tile throw with 10 force; will break bones
+	qdel(src)
+
 /obj/item/book/granter/spell/random
 	icon_state = "random_book"
 
