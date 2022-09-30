@@ -216,10 +216,15 @@
 				surgery_text += ", [S.operated_bodypart]"
 		msg += "[surgery_text].\n"
 
-	if(fire_stacks > 0)
-		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
-		msg += "[t_He] look[p_s()] a little soaked.\n"
+	switch(fire_stacks)
+		if(1 to INFINITY)
+			msg += "[t_He] [t_is] covered in something flammable.\n"
+		if(-1)
+			msg += "[t_He] look[p_s()] a little damp.\n"
+		if(-2 to -4)
+			msg += "[t_He] look[p_s()] a little soaked.\n"
+		if(-5 to -INFINITY)
+			msg += "[t_He] look[p_s()] drenched.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
