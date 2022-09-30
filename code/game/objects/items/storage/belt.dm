@@ -723,6 +723,7 @@
 
 /obj/item/storage/belt/holster/syndicate/ComponentInitialize()
 	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4
 
 /obj/item/storage/belt/quiver
