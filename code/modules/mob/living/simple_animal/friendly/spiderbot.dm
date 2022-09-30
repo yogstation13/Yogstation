@@ -150,9 +150,9 @@
 		else if(key)
 			mmi.brainmob.key = key
 		mmi.forceMove(loc)
+		mmi.update_icon()
 		mmi = null
 		name = initial(name)
-		mmi.update_icon()
 	update_icon()
 
 /mob/living/simple_animal/spiderbot/gib()
