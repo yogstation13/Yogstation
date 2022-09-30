@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "pinpointers now sorted alphabetically"
+  - tweak: "suit sensor monitor no longer requires ntnet connection"
