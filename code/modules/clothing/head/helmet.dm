@@ -451,18 +451,12 @@
 	strip_delay = 60
 	flags_cover = HEADCOVERSEYES
 
-/obj/item/clothing/head/helmet/stormtrooper/equipped(mob/living/user, S)
-	if(ishuman(user) && S == SLOT_HANDS)
-		var/mob/living/carbon/human/H = user
-		H.dna.species.aiminginaccuracy += 25
-		to_chat(world, H.dna.species.aiminginaccuracy)
+/obj/item/clothing/head/helmet/stormtrooper/equipped(mob/living/user)
+	ADD_TRAIT(user, TRAIT_POOR_AIM, CLOTHING_TRAIT)
 	..()
 
 /obj/item/clothing/head/helmet/stormtrooper/dropped(mob/living/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.dna.species.aiminginaccuracy -= 25
-		to_chat(world, H.dna.species.aiminginaccuracy)
+	REMOVE_TRAIT(user, TRAIT_POOR_AIM, CLOTHING_TRAIT)
 	..()
 
 /obj/item/clothing/head/helmet/shaman
