@@ -582,7 +582,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		newname = sanitize_name(reject_bad_text(stripped_input(L, "Who are we again?", "Name change", L.real_name, MAX_NAME_LEN)))
 	if(isnotpretty(newname))
 		to_chat(L, span_warning("your chosen name was not accepted! Please ahelp if you would like a second chance."))
-		message_admins(span_notice("([L.ckey])[L]'s new name [newname] was not pretty and was rejected!"))
+		message_admins(span_notice("([L.ckey])[L]'s new name [newname] was filtered, and was rejected!"))
 		if(forced_rename == "No")
 			return
 		else
