@@ -1,0 +1,4 @@
+author: "Firewolf34"
+delete-after: true 
+changes: 
+  - rscadd: "The station now activates anti-ion magneto-fields during Delta Alerts!"

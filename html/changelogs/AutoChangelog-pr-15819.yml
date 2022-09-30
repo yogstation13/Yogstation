@@ -1,0 +1,5 @@
+author: " @Chubbygummibear, VaelophisNyx"
+delete-after: true 
+changes: 
+  - bugfix: "Explosions cannot be passed a negative number anymore to prevent runtimes"
+  - bugfix: "Teslium Destabilization Reaction Now Works In Chem Grenades"

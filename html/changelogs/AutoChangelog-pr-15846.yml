@@ -1,0 +1,4 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "Embedded syringes now inject their full normal transfer amount per tick instead of 20% of that."
