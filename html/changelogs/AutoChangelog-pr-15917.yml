@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - bugfix: "horror revive no longer makes runtimes and works properly"
