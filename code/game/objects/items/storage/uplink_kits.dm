@@ -153,14 +153,15 @@
 			new /obj/item/reagent_containers/syringe/stimulants(src)
 			new /obj/item/reagent_containers/glass/rag(src)
 
-		if("oddjob") //Total TC value of 29-32 TC
-			new /obj/item/clothing/head/det_hat/evil(src) //6 TC
+		if("oddjob") //Total TC value of 27ish TC
+			new /obj/item/clothing/head/det_hat/evil(src) //6 TC. Absolutely necessary
 			new /obj/item/clothing/under/syndicate/sniper(src) //Variant of tactical turtleneck that looks like a suit, provides 10 melee armor, has no sensors. Would say it's free
 			new /obj/item/clothing/suit/det_suit/grey/evil(src) //Grey det trenchcoat with hos coat values, 2ish TC
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //2 TC
-			new /obj/item/clothing/gloves/krav_maga/combatglovesplus(src) //5 TC, nukies only, dress to kill
-			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC
-			new /obj/item/autosurgeon/anti_stun(src) //12 TC
+			new /obj/item/clothing/shoes/laceup(src) //Fancy shoes. Free
+			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun); you only get 7 shots. Realistically only like 7 TC just because you can't reload it; still highballing it
+			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
+			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
+			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
 
 		if("ninja")
 			new /obj/item/katana(src) // Unique , hard to tell how much tc this is worth. 8 tc?
