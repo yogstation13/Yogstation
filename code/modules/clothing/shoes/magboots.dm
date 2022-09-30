@@ -54,10 +54,9 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/magboots/advance/attack_self(mob/user)
+	. = ..()
 	if(magpulse)
 		clothing_flags &= ~NOSLIP | ~NOSLIP_ICE
-		slowdown = SHOES_SLOWDOWN
-	. = ..()
 
 /obj/item/clothing/shoes/magboots/syndie
 	desc = "Reverse-engineered magnetic boots that have a heavy magnetic pull. Property of Gorlex Marauders."
@@ -66,10 +65,9 @@
 	magboot_state = "syndiemag"
 
 /obj/item/clothing/shoes/magboots/syndie/attack_self(mob/user)
-	if(magpulse)
-		clothing_flags &= ~NOSLIP | NOSLIP_ICE
-		slowdown = SHOES_SLOWDOWN
 	. = ..()
+	if(magpulse)
+		clothing_flags &= ~NOSLIP | ~NOSLIP_ICE
 
 /obj/item/clothing/shoes/magboots/security
 	name = "combat magboots"
