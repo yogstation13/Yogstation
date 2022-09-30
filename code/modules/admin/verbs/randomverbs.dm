@@ -596,7 +596,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			newname = random_unique_name(L.gender)
 	if(!newname || newname == "" || newname == L.real_name)
 		message_admins(span_boldnotice("[L.ckey]'s new name was blank or unchanged! Defaulting to random!"))
-		log_game("([L.ckey])[L]'s entered a blank or null new name, and was defaulted to random.")
+		log_game("([L.ckey])[L]'s entered an identical, blank, or null new name, and was defaulted to random.")
 		newname = random_unique_name(L.gender)
 	message_admins(span_boldnotice("([L.ckey])[L.real_name] has been admin renamed to [newname]."))
 	log_game("([L.ckey])[L.real_name] has been renamed to [newname].")
