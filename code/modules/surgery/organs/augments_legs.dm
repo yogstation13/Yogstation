@@ -43,7 +43,7 @@
 /obj/item/organ/cyberimp/leg/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(.)
-		return TRUE
+		return .
 	I.play_tool_sound(src)
 	if(zone == BODY_ZONE_R_LEG)
 		zone = BODY_ZONE_L_LEG
@@ -52,9 +52,6 @@
 	SetSlotFromZone()
 	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_LEG ? "right" : "left"] leg."))
 	update_icon()
-
-/obj/item/organ/cyberimp/leg/Remove(mob/living/carbon/M, special = 0)
-	..()
 
 /obj/item/organ/cyberimp/leg/emp_act(severity)
 	. = ..()
@@ -76,7 +73,7 @@
 /obj/item/organ/cyberimp/leg/maglock/Destroy()
 	if(active)
 		ui_action_click()
-	..()
+	. = ..()
 
 /obj/item/organ/cyberimp/leg/maglock/ui_action_click()
 	active = !active
@@ -116,17 +113,3 @@
 /obj/item/organ/cyberimp/leg/noslip/Remove(mob/living/carbon/M, special = FALSE)
 	REMOVE_TRAIT(owner, TRAIT_NOSLIPALL, "Noslip_implant")
 	. = ..()
-
-// /obj/item/organ/cyberimp/leg/clown
-// 	name = "advanced antislip implant"
-// 	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
-// 	syndicate_implant = TRUE
-
-// /obj/item/organ/cyberimp/leg/clown/l
-// 	zone = BODY_ZONE_L_LEG
-
-// /obj/item/organ/cyberimp/leg/clown/Insert()
-// 	. = ..()
-// 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)
-
-

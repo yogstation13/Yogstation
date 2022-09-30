@@ -39,7 +39,7 @@
 		if((S.clothing_flags & NOSLIP))
 			return 0
 	if(HAS_TRAIT(src, TRAIT_MAGBOOT))
-		return 0
+		return FALSE
 	return ..()
 
 /mob/living/carbon/human/mob_has_gravity()
