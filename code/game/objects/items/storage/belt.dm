@@ -717,6 +717,14 @@
 		/obj/item/ammo_box/c38 = 2)
 	generate_items_inside(items_inside, src)
 
+/obj/item/storage/belt/holster/syndicate
+	name = "syndicate shoulder holster"
+	desc = "A modified holster that can carry more than enough firepower."
+
+/obj/item/storage/belt/holster/syndicate/ComponentInitialize()
+	. = ..()
+	STR.max_items = 4
+
 /obj/item/storage/belt/quiver
 	name = "leather quiver"
 	desc = "A quiver made from the hide of some animal. Used to hold arrows."
