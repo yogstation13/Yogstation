@@ -7,7 +7,7 @@
 	maxHealth = 10
 	health = 10
 	attacktext = "nibbles" //their teeth are just for gripping food, not used for self defense nor even chewing
-	butcher_results = list(/obj/item/food/nugget = 1)
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/nugget = 1)
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "splats"
