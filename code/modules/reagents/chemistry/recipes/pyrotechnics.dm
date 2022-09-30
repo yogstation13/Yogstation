@@ -464,14 +464,6 @@
 	required_temp = 474
 	required_reagents = list(/datum/reagent/teslium = 1)
 
-/datum/chemical_reaction/reagent_explosion/nitrous_oxide
-	name = "N2O explosion"
-	id = "n2o_explosion"
-	required_reagents = list(/datum/reagent/nitrous_oxide = 1)
-	strengthdiv = 7
-	required_temp = 575
-	modifier = 1
-
 /datum/chemical_reaction/firefighting_foam
 	name = "Firefighting Foam"
 	id = /datum/reagent/firefighting_foam
