@@ -2127,8 +2127,8 @@
 
 /datum/reagent/adrenaline/on_mob_add(mob/living/L)
 	. = ..()
-	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	ADD_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	
 /datum/reagent/adrenaline/on_mob_delete(mob/living/L)
 	. = ..()
-	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
