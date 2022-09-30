@@ -4,7 +4,6 @@
 	icon_state = "protolathe"
 	circuit = /obj/item/circuitboard/machine/protolathe/department
 	requires_console = FALSE
-	consoleless_interface = TRUE
 
 /obj/machinery/rnd/production/protolathe/department/engineering
 	name = "department protolathe (Engineering)"
