@@ -12,12 +12,14 @@
 	var/max_drivers = 1
 	var/movedelay = 2
 	var/lastmove = 0
+		/**
+	  * If the driver needs a certain item in hand (or inserted, for vehicles) to drive this. For vehicles, this must be duplicated on their riding component subtype
+	  * [/datum/component/riding/var/keytype] variable because only a few specific checks are handled here with this var, and the majority of it is on the riding component
+	  * Eventually the remaining checks should be moved to the component and this var removed.
+	  */
 	var/key_type
 	var/obj/item/key/inserted_key
-	var/key_type_exact = TRUE		//can subtypes work
 	var/canmove = TRUE //If this is false the vehicle cant drive. (thanks for making this actually functional kevinz :^) )
-	var/emulate_door_bumps = TRUE	//when bumping a door try to make occupants bump them to open them.
-	var/default_driver_move = TRUE	//handle driver movement instead of letting something else do it like riding datums.
 	var/list/autogrant_actions_passenger	//plain list of typepaths
 	var/list/autogrant_actions_controller	//assoc list "[bitflag]" = list(typepaths)
 	var/list/mob/occupant_actions			//assoc list mob = list(type = action datum assigned to mob)
@@ -46,7 +48,7 @@
 			. += span_warning("It's falling apart!")
 
 /obj/vehicle/proc/is_key(obj/item/I)
-	return I? (key_type_exact? (I.type == key_type) : istype(I, key_type)) : FALSE
+	return istype(I, key_type)
 
 /obj/vehicle/proc/return_occupants()
 	return occupants
@@ -108,8 +110,10 @@
 /obj/vehicle/proc/after_remove_occupant(mob/M)
 
 /obj/vehicle/relaymove(mob/user, direction)
+	if(!canmove)
+		return FALSE
 	if(is_driver(user))
-		return driver_move(user, direction)
+		return relaydrive(user, direction)
 	return FALSE
 
 /obj/vehicle/proc/driver_move(mob/user, direction)
@@ -157,13 +161,6 @@
 		if(flags & i)
 			remove_controller_actions_by_flag(controller, i)
 	return TRUE
-
-/obj/vehicle/Bump(atom/A)
-	. = ..()
-	if(emulate_door_bumps)
-		if(istype(A, /obj/machinery/door))
-			for(var/m in occupants)
-				A.Bumped(m)
 
 /obj/vehicle/Move(newloc, dir)
 	. = ..()

@@ -873,6 +873,7 @@
 /obj/item/slimepotion/speed/afterattack(obj/C, mob/user)
 	. = ..()
 	if(!istype(C))
+		// applying this to vehicles is handled in the ridable element, see [/datum/element/ridable/proc/check_potion]
 		to_chat(user, span_warning("The potion can only be used on items or vehicles!"))
 		return
 	if(isitem(C))
@@ -883,17 +884,6 @@
 			return ..()
 		I.slowdown--
 		// yogs end
-
-	if(istype(C, /obj/vehicle))
-		var/obj/vehicle/V = C
-		var/datum/component/riding/R = V.GetComponent(/datum/component/riding)
-		if(R)
-			// yogs start - change speed potion
-			if(R.vehicle_move_delay <= 2 )
-				to_chat(user, span_warning("The [C] can't be made any faster!"))
-				return ..()
-			R.vehicle_move_delay--
-			// yogs end
 
 	to_chat(user, span_notice("You slather the red gunk over the [C], making it faster."))
 	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)

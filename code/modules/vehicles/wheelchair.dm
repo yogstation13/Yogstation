@@ -13,12 +13,7 @@
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
-	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
-	D.vehicle_move_delay = 0
-	D.set_vehicle_dir_layer(SOUTH, OBJ_LAYER)
-	D.set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
-	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
-	D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
+	make_ridable()
 
 /obj/vehicle/ridden/wheelchair/ComponentInitialize()	//Since it's technically a chair I want it to have chair properties
 	. = ..()
@@ -37,7 +32,7 @@
 
 /obj/vehicle/ridden/wheelchair/driver_move(mob/living/user, direction)
 	if(istype(user))
-		if(canmove && (user.get_num_arms() < arms_required))
+		if(canmove && (user.get_num_arms() < 1))
 			to_chat(user, span_warning("You don't have enough arms to operate the wheels!"))
 			canmove = FALSE
 			addtimer(VARSET_CALLBACK(src, canmove, TRUE), 2 SECONDS)
@@ -49,6 +44,9 @@
 			movedelay = 4
 		set_move_delay(user)
 	return ..()
+
+/obj/vehicle/ridden/wheelchair/proc/make_ridable()
+	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/wheelchair/hand)
 
 /obj/vehicle/ridden/wheelchair/proc/set_move_delay(mob/living/user)
 	var/datum/component/riding/D = GetComponent(/datum/component/riding)

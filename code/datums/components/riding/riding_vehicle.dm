@@ -349,6 +349,19 @@
 	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0), TEXT_SOUTH = list(0), TEXT_EAST = list(0), TEXT_WEST = list(0)))
 
 
+/datum/component/riding/vehicle/scooter/airshoes
+
+	vehicle_move_delay = 0.25
+
+
+
+
+/datum/component/riding/vehicle/scooter/airshoes/handle_specials()
+
+	. = ..()
+
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0), TEXT_SOUTH = list(0), TEXT_EAST = list(0), TEXT_WEST = list(0)))
+
 
 
 /datum/component/riding/vehicle/scooter/skateboard/wheelys/rollerskates

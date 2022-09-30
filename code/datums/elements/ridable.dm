@@ -52,7 +52,7 @@
 			"<span class='warning'>You can't get a grip on [target_movable] because your hands are full!</span>")
 		return COMPONENT_BLOCK_BUCKLE
 
-	if((ride_check_flags & RIDER_NEEDS_LEGS) && HAS_TRAIT(potential_rider, TRAIT_FLOORED))
+	if((ride_check_flags & RIDER_NEEDS_LEGS))
 		potential_rider.visible_message("<span class='warning'>[potential_rider] can't get [potential_rider.p_their()] footing on [target_movable]!</span>",
 			"<span class='warning'>You can't get your footing on [target_movable]!</span>")
 		return COMPONENT_BLOCK_BUCKLE
