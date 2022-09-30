@@ -55,7 +55,7 @@
 
 /obj/item/clothing/shoes/magboots/advance/attack_self(mob/user)
 	if(magpulse)
-		clothing_flags &= ~NOSLIP | NOSLIP_ICE
+		clothing_flags &= ~NOSLIP | ~NOSLIP_ICE
 		slowdown = SHOES_SLOWDOWN
 	. = ..()
 
