@@ -200,7 +200,7 @@
 	return TRUE
 	
 /obj/item/reagent_containers/syringe/embed_tick(embedde, part)
-	reagents.trans_to(embedde, amount_per_transfer_from_this * 0.2)
+	reagents.trans_to(embedde, amount_per_transfer_from_this)
 
 /obj/item/reagent_containers/syringe/epinephrine
 	name = "syringe (epinephrine)"
