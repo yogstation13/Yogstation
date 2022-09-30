@@ -113,8 +113,8 @@
 		if("sabotage") //Maybe 29 TC?
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
-			new /obj/item/doorCharge(src) //These were removed from the uplink but... 2 TC? Explosion doesn't seem good
-			new /obj/item/doorCharge(src) //See above
+			new /obj/item/doorCharge(src) //2 TC
+			new /obj/item/doorCharge(src) //2 TC
 			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/sbeacondrop/powersink(src) //8 TC
 			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src) //6 TC
