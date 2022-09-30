@@ -25,7 +25,7 @@
 	alert_type = /obj/screen/alert/status_effect/dodging/stalwart
 
 /datum/status_effect/dodging/stalwart/on_apply()
-	owner.visible_message(span_boldwarning("The [src] is absorbed by the shield!"))
+	owner.visible_message(span_boldwarning("The hit is absorbed by the shield!"))
 	owner.status_flags |= GODMODE
 	return ..()
 
