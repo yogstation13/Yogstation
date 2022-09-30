@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Protolathe can print some items in autolathe"
-  - tweak: "moved electronics boards from industrial engi to base node"

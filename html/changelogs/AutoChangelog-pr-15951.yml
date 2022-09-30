@@ -1,8 +1,0 @@
-author: "Majkl-J"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed the lack of spiderbot examine text"
-  - bugfix: "Spiderbots now have working mmi's"
-  - bugfix: "Fixed spiderbots dying in a bloody mess"
-  - tweak: "Tweaked spiderbot language"
-  - tweak: "Made spiderbots pass-through"

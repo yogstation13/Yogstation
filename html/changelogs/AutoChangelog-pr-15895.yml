@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - rscdel: "Removes cryo syringes and cryo darts because they have no gameplay value"
