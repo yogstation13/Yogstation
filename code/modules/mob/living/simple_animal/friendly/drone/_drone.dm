@@ -118,6 +118,12 @@
 		ADD_TRAIT(src, TRAIT_PACIFISM, JOB_TRAIT)
 		ADD_TRAIT(src, TRAIT_NOGUNS, JOB_TRAIT) //love drones t. Altoids <3
 
+/mob/living/simple_animal/drone/Destroy()
+	. = ..()
+	var/atom/T = drop_location()
+	if(T && istype(radio) && istype(radio.keyslot))
+		radio.keyslot.forceMove(T)
+		radio.keyslot = null
 
 /mob/living/simple_animal/drone/med_hud_set_health()
 	var/image/holder = hud_list[DIAG_HUD]
