@@ -6443,14 +6443,6 @@
 "aZe" = (
 /turf/closed/wall/r_wall,
 /area/science/lab)
-"aZg" = (
-/obj/machinery/door/airlock/external{
-	name = "Supply Dock Airlock";
-	req_access_txt = "31"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "aZm" = (
 /obj/machinery/mineral/stacking_machine{
 	input_dir = 1;
@@ -17821,6 +17813,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"fbE" = (
+/obj/machinery/door/airlock/external{
+	name = "Supply Dock Airlock";
+	req_access_txt = "31"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "fbQ" = (
 /obj/effect/turf_decal/trimline/green/filled/corner,
 /obj/structure/disposalpipe/segment{
@@ -52955,16 +52961,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"rkp" = (
-/obj/machinery/door/airlock/external{
-	name = "Supply Dock Airlock";
-	req_access_txt = "31"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "rkD" = (
 /obj/structure/displaycase/cmo,
 /turf/open/floor/carpet/royalblue,
@@ -57037,6 +57033,18 @@
 	icon_state = "platingdmg3"
 	},
 /area/ruin/powered)
+"sDK" = (
+/obj/machinery/door/airlock/external{
+	name = "Supply Dock Airlock";
+	req_access_txt = "31"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "sDO" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
@@ -59183,16 +59191,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"top" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	name = "Supply Dock Airlock";
-	req_access_txt = "31"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "tow" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -70713,6 +70711,20 @@
 /obj/item/aiModule/reset,
 /turf/open/floor/plasteel,
 /area/storage/tech)
+"xtt" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Supply Dock Airlock";
+	req_access_txt = "31"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "xtO" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -90241,9 +90253,9 @@ joU
 jeC
 xLR
 aDO
-aZg
+sDK
 aTn
-top
+xtt
 acb
 acb
 acb
@@ -90755,9 +90767,9 @@ wVu
 aDO
 aDO
 aDO
-aZg
+sDK
 aTn
-rkp
+fbE
 aDM
 acb
 acb
