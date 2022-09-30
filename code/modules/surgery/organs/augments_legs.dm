@@ -2,7 +2,7 @@
 	name = "leg implant"
 	desc = "You shouldn't see this! Adminhelp and report this as an issue on github!"
 	zone = BODY_ZONE_R_LEG
-	icon_state = "implant-toolkit"
+	icon_state = "implant-leg"
 	w_class = WEIGHT_CLASS_NORMAL
 
 	var/list/items_list = list()
