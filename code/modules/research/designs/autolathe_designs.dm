@@ -1111,6 +1111,14 @@
 	build_path = /obj/item/ammo_box/a762
 	category = list("hacked", "Security")
 
+/datum/design/n762box
+	name = "Ammo Box (7.62mmR)"
+	id = "n762"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 15000)
+	build_path = /obj/item/ammo_box/n762
+	category = list("hacked", "Security")
+
 /datum/design/decal_painter
 	name = "Decal Painter"
 	id = "decal_painter"

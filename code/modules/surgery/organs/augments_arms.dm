@@ -197,7 +197,12 @@
 	linkedhandler = new
 	linkedhandler.linkedarm = src
 	ADD_TRAIT(linkedhandler, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	RegisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
 
+/obj/item/organ/cyberimp/arm/toolset/Destroy()
+	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
+	. = ..()
+	
 /obj/item/organ/cyberimp/arm/toolset/emag_act()
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))

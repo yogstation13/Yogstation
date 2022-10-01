@@ -19,6 +19,7 @@
 	/// Will this push the mech back when used in no gravity
 	var/kickback = TRUE
 	mech_flags = EXOSUIT_MODULE_COMBAT
+	var/restricted = TRUE //for our special hugbox exofabs
 
 /obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/M)
 	if(!..())
@@ -161,8 +162,28 @@
 	projectile = /obj/item/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
 	harmful = TRUE
+	restricted = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
+	if(..()) //combat mech
+		return 1
+	else if(M.equipment.len < M.max_equip && istype(M))
+		return 1
+	return 0
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
+	equip_cooldown = 10
+	name = "Exosuit Proto-kinetic Accelerator"
+	desc = "An exosuit-mounted mining tool that does increased damage in low pressure. Drawing from an onboard power source allows it to project further than the handheld version."
+	icon_state = "mecha_kineticgun"
+	energy_drain = 30
+	projectile = /obj/item/projectile/kinetic/mech
+	fire_sound = 'sound/weapons/kenetic_accel.ogg'
+	harmful = TRUE
+	restricted = FALSE
+
+//attachable to all mechas, like the plasma cutter
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun/can_attach(obj/mecha/M)
 	if(..()) //combat mech
 		return 1
 	else if(M.equipment.len < M.max_equip && istype(M))

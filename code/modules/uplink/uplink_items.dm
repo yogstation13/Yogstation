@@ -1064,7 +1064,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/datum/computer_file/program/bomberman/program = bombdisk.find_file_by_name("bomberman")
 	var/code = program.bombcode
 
-	to_chat(user, span_warning("Your BomberMan code is : [code]."))
+	to_chat(user, span_warning("Insert the disk into a modular computer and interact with it with the File Manager to download the program. Your BomberMan code is : [code]."))
 	if(user.mind)
 		user.mind.store_memory("BomberMan code for [U.parent] : [code]")
 
@@ -1536,7 +1536,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/datum/computer_file/program/frame/program = framedisk.find_file_by_name("frame")
 	var/code = program.framecode
 
-	to_chat(user, span_warning("Your F.R.A.M.E. code is : [code]."))
+	to_chat(user, span_warning("Insert the disk into a modular computer and interact with it with the File Manager to download the program. Your F.R.A.M.E. code is : [code]."))
 	if(user.mind)
 		user.mind.store_memory("F.R.A.M.E. code for [U.parent] : [code]")
 

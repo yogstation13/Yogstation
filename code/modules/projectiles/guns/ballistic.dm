@@ -478,7 +478,11 @@
 	if (bolt_locked)
 		. += "The [bolt_wording] is locked back and needs to be released before firing."
 	if (suppressed)
-		. += "It has a [suppressed] attached that can be removed with <b>alt+click</b>."
+		if(can_unsuppress)
+			. += "It has a [suppressed] attached that can be removed with <b>alt+click</b>."
+		else
+			. += "It has a <b>suppressor</b> built into the barrel."
+			
 
 /obj/item/gun/ballistic/verb/set_reload()
 	set name = "Set Reload Speech"

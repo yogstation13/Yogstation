@@ -221,9 +221,11 @@
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
 #define TRAIT_NOCLONE			"noclone" // No cloning
 #define TRAIT_NODEFIB			"nodefib" // No defibbing
-#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp 
+#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
 #define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
 #define TRAIT_MESONS			"mesons"
+/// This person is crying
+#define TRAIT_CRYING "crying"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.

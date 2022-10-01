@@ -577,7 +577,7 @@ generate/load female uniform sprites matching all previously decided variables
 			standing = wear_female_version(t_state, file2use, layer2use, femaleuniform)
 	if(!standing)
 		standing = mutable_appearance(file2use, t_state, -layer2use)
-	
+
 	//Get the overlays for this item when it's being worn
 	//eg: ammo counters, primed grenade flashes, etc.
 	var/list/worn_overlays = worn_overlays(isinhands, file2use)
@@ -703,18 +703,15 @@ generate/load female uniform sprites matching all previously decided variables
 
 		// eyes
 		if(!(NOEYESPRITES in dna.species.species_traits))
-			var/obj/item/organ/eyes/E = getorganslot(ORGAN_SLOT_EYES)
-			var/mutable_appearance/eye_overlay
-			if(!E)
-				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
+			var/obj/item/organ/eyes/parent_eyes = getorganslot(ORGAN_SLOT_EYES)
+			if(parent_eyes)
+				add_overlay(parent_eyes.generate_body_overlay(src))
 			else
-				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', E.eye_icon_state, -BODY_LAYER)
-			if((EYECOLOR in dna.species.species_traits) && E)
-				eye_overlay.color = "#" + eye_color
-			if(OFFSET_FACE in dna.species.offset_features)
-				eye_overlay.pixel_x += dna.species.offset_features[OFFSET_FACE][1]
-				eye_overlay.pixel_y += dna.species.offset_features[OFFSET_FACE][2]
-			add_overlay(eye_overlay)
+				var/mutable_appearance/missing_eyes = mutable_appearance('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
+				if(OFFSET_FACE in dna.species.offset_features)
+					missing_eyes.pixel_x += dna.species.offset_features[OFFSET_FACE][1]
+					missing_eyes.pixel_y += dna.species.offset_features[OFFSET_FACE][2]
+				add_overlay(missing_eyes)
 
 	dna.species.handle_hair(src)
 

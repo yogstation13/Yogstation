@@ -146,7 +146,7 @@
 	if(!do_after(user, time_taken, needhand = 1, target = src) && !(choice in body_part.embedded_objects))
 		return
 	var/damage_amount = choice.embedding.embedded_unsafe_removal_pain_multiplier * choice.w_class
-	body_part.receive_damage(damage_amount > 0, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
+	body_part.receive_damage(damage_amount, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
 	if(remove_embedded_object(choice, get_turf(src), damage_amount))
 		user.put_in_hands(choice)
 		user.visible_message("[user] successfully rips [choice] out of [user == src? p_their() : "[src]'s"] [body_part.name]!", span_notice("You successfully remove [choice] from your [body_part.name]."))

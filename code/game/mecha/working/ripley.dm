@@ -4,8 +4,6 @@
 	icon_state = "ripley"
 	silicon_icon_state = "ripley-empty"
 	step_in = 1.5 //Move speed, lower is faster.
-	var/fast_pressure_step_in = 1.5 //step_in while in low pressure conditions
-	var/slow_pressure_step_in = 2.0 //step_in while in normal pressure conditions
 	max_temperature = 20000
 	max_integrity = 200
 	lights_power = 7
@@ -24,17 +22,7 @@
 
 /obj/mecha/working/ripley/Move()
 	. = ..()
-	if(.)
-		collect_ore()
 	update_pressure()
-
-/obj/mecha/working/ripley/proc/collect_ore()
-	if(locate(/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp) in equipment)
-		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in cargo
-		if(ore_box)
-			for(var/obj/item/stack/ore/ore in range(1, src))
-				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
-					ore.forceMove(ore_box)
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in cargo)
@@ -208,18 +196,6 @@
 		output += "Nothing"
 	output += "</div>"
 	return output
-
-/obj/mecha/working/ripley/proc/update_pressure()
-	var/turf/T = get_turf(loc)
-
-	if(lavaland_equipment_pressure_check(T))
-		step_in = fast_pressure_step_in
-		for(var/obj/item/mecha_parts/mecha_equipment/drill/drill in equipment)
-			drill.equip_cooldown = initial(drill.equip_cooldown)/2
-	else
-		step_in = slow_pressure_step_in
-		for(var/obj/item/mecha_parts/mecha_equipment/drill/drill in equipment)
-			drill.equip_cooldown = initial(drill.equip_cooldown)
 
 /obj/mecha/working/ripley/relay_container_resist(mob/living/user, obj/O)
 	to_chat(user, span_notice("You lean on the back of [O] and start pushing so it falls out of [src]."))
