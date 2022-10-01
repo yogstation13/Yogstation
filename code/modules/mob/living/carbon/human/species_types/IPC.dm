@@ -1,10 +1,12 @@
+#define CONCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
+
 /datum/species/ipc // im fucking lazy mk2 and cant get sprites to normally work
 	name = "IPC" //inherited from the real species, for health scanners and things
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	mutant_brain = /obj/item/organ/brain/positron
 	mutant_heart = /obj/item/organ/heart/cybernetic/ipc
@@ -13,7 +15,8 @@
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
 	mutantstomach = /obj/item/organ/stomach/cell
 	mutantears = /obj/item/organ/ears/robot
-	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
+	mutantlungs = /obj/item/organ/lungs/ipc
+	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord, /obj/item/organ/cyberimp/mouth/breathing_tube)
 	mutant_bodyparts = list("ipc_screen", "ipc_antenna", "ipc_chassis")
 	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)")
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
@@ -34,9 +37,12 @@
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'
 	allow_numbers_in_name = TRUE
-	deathsound = "sound/voice/borg_deathsound.ogg"
+	deathsound = 'sound/voice/borg_deathsound.ogg'
+	wings_icon = "Robotic"
 	var/saved_screen //for saving the screen when they die
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	// Hats need to be 1 up
+	offset_features = list(OFFSET_HEAD = list(0,1))
 
 	var/datum/action/innate/change_screen/change_screen
 
@@ -50,10 +56,6 @@
 	if(A)
 		A.Remove(C)
 		QDEL_NULL(A)
-	var/obj/item/organ/lungs/L = C.getorganslot(ORGAN_SLOT_LUNGS)
-	if(L)
-		L.Remove(C)
-		QDEL_NULL(L)
 	if(ishuman(C) && !change_screen)
 		change_screen = new
 		change_screen.Grant(C)
@@ -174,21 +176,23 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
 		return ..()
-	to_chat(H, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/index.php?pages/rules/'>See rule 1.7</a>."))
+	to_chat(H, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
 	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
 	return
 
-/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
-	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
+/datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)	
+	CONCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
 	sleep(3 SECONDS)
-	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")
+	CONCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
 	sleep(3 SECONDS)
-	H.say("Finalizing setup...")
+	CONCIOUSAY(H.say("Finalizing setup..."))
 	sleep(3 SECONDS)
-	H.say("Unit [H.real_name] is fully functional. Have a nice day.")
+	CONCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
+	if(H.stat == DEAD)
+		return
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
 
@@ -201,6 +205,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	if(C == user)
 		user.visible_message(span_notice("[user] shoves \the [O] down their port."), span_notice("You shove [O] down your input port."))
 	else
@@ -208,16 +213,20 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 									span_userdanger("[user] forces [O] down [C]'s port!"))
 
 /datum/species/ipc/force_eat_text(fullness, obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	C.visible_message(span_danger("[user] attempts to shove [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to shove [O] down [C]'s port!"))
 	
 /datum/species/ipc/drink_text(obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	if(C == user)
 		user.visible_message(span_notice("[user] pours some of [O] into their port."), span_notice("You pour some of [O] down your input port."))
 	else
 		C.visible_message(span_danger("[user] pours some of [O] into [C]'s port."), span_userdanger("[user] pours some of [O]'s into [C]'s port."))
 	
 /datum/species/ipc/force_drink_text(obj/O, mob/living/carbon/C, mob/user)
+	. = TRUE
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
-	
+
+#undef CONCIOUSAY

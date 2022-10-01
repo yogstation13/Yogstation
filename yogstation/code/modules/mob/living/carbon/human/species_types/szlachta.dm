@@ -19,7 +19,7 @@
 
 /datum/species/szlachta/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.real_name = "towering monstrocity"
+	C.real_name = "towering monstrosity"
 	C.name = C.real_name
 	if(C.mind)
 		C.mind.name = C.real_name

@@ -84,6 +84,15 @@
 			. += ""
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
+		
+		//WS Begin - Display Ethereal Charge
+		if(istype(src))
+			var/datum/species/ethereal/eth_species = src.dna?.species
+			if(istype(eth_species))
+				var/obj/item/organ/stomach/ethereal/stomach = src.getorganslot(ORGAN_SLOT_STOMACH)
+				if(istype(stomach))
+					. += "Crystal Charge: [round((stomach.crystal_charge / ETHEREAL_CHARGE_SCALING_MULTIPLIER), 0.1)]%"
+
 		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
 		if(zombie)
 			if((zombie.evolutionTime - world.time) > 0)
