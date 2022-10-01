@@ -16,10 +16,13 @@
 		pcollar = null
 	return ..()
 
-/mob/living/simple_animal/pet/proc/add_collar(obj/item/clothing/neck/petcollar/P, mob/user)
+/mob/living/simple_animal/pet/proc/add_collar(obj/item/clothing/neck/petcollar/P, mob/user, mob/living/pet)
 	if(QDELETED(P) || pcollar)
 		return
 	if(!user.transferItemToLoc(P, src))
+		return
+	if(istype(pet, /mob/living/simple_animal/pet/axolotl))
+		to_chat(user, span_notice("The [P] is too big for [src]'s neck."))
 		return
 	pcollar = P
 	regenerate_icons()

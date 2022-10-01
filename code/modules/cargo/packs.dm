@@ -2847,7 +2847,10 @@
 
 /datum/supply_pack/critter/axolotl
 	name = "Axolotl Crate"
-	desc = "Put the axolotl on your head and find out what true cuteness looks like."
+	desc = "Contains 4 axolotls to pet"
 	cost = 4000
-	contains = list(/mob/living/simple_animal/friendly/axolotl)
+	contains = list(/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl)
 	crate_name = "axolotl crate"

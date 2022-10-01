@@ -1,4 +1,4 @@
-/mob/living/simple_animal/friendly/axolotl
+/mob/living/simple_animal/pet/axolotl
 	name = "axolotl"
 	desc = "Quite the colorful amphibian!"
 	icon_state = "axolotl"
@@ -19,3 +19,6 @@
 	mob_size = MOB_SIZE_TINY
 	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
+	wuv_happy = "looks happy"
+	wuv_angy = "makes a noise"
+
