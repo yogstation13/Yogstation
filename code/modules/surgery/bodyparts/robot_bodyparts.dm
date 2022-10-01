@@ -404,7 +404,7 @@
 /obj/item/bodypart/l_leg/ipc
 	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
-	icon = 'icons/mob/human_parts.dmi'
+	icon = 'yogstation/icons/mob/human_parts.dmi'
 	limb_override = TRUE
 	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
 	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
@@ -417,7 +417,7 @@
 /obj/item/bodypart/r_leg/ipc
 	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
-	icon = 'icons/mob/human_parts.dmi'
+	icon = 'yogstation/icons/mob/human_parts.dmi'
 	limb_override = TRUE
 	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
 	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
@@ -430,7 +430,7 @@
 /obj/item/bodypart/l_arm/ipc
 	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
-	icon = 'icons/mob/human_parts.dmi'
+	icon = 'yogstation/icons/mob/human_parts.dmi'
 	limb_override = TRUE
 	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
 	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
@@ -443,7 +443,7 @@
 /obj/item/bodypart/r_arm/ipc
 	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
-	icon = 'icons/mob/human_parts.dmi'
+	icon = 'yogstation/icons/mob/human_parts.dmi'
 	limb_override = TRUE
 	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
 	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG
@@ -456,7 +456,7 @@
 /obj/item/bodypart/head/ipc
 	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
-	icon = 'icons/mob/human_parts.dmi'
+	icon = 'yogstation/icons/mob/human_parts.dmi'
 	limb_override = TRUE
 	light_brute_msg = ROBOTIC_LIGHT_BRUTE_MSG
 	medium_brute_msg = ROBOTIC_MEDIUM_BRUTE_MSG

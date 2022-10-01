@@ -176,6 +176,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/atom/movable/AM in shuttle_area)
 			if(iscameramob(AM))
 				continue
+			if(istype(AM, /obj/structure/closet/crate))
+				var/obj/structure/closet/crate/C = AM
+				if(C.manifest)
+					var/obj/item/paper/manifest = C.manifest
+					if(!manifest.stamped) // Unstamped papers on crates // Futureproofing
+						continue
 			if(bounty_ship_item_and_contents(AM, dry_run = FALSE))
 				matched_bounty = TRUE
 			if(!AM.anchored || istype(AM, /obj/mecha))
