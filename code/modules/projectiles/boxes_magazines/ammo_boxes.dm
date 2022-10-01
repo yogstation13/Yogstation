@@ -23,7 +23,7 @@
 /obj/item/ammo_box/a357/metalshock
 	name = "speed loader (.357 Metalshock)"
 	desc = "A seven-shot speed loader designed for .357 revolvers. \
-			These rounds convert some lethality into an electric charge which burns and confuses targets."
+			These rounds convert some lethality into an electric charge which bounces between targets."
 	icon_state = "357shock"
 	ammo_type = /obj/item/ammo_casing/a357/metalshock
 

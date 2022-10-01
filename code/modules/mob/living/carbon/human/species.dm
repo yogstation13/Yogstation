@@ -99,6 +99,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/punchdamagehigh = 10
 	///damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
 	var/punchstunthreshold = 10
+	///values of inaccuracy that adds to the spread of any ranged weapon
+	var/aiminginaccuracy = 0
 	///base electrocution coefficient
 	var/siemens_coeff = 1
 	///base action speed coefficient
