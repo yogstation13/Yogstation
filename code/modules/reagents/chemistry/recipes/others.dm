@@ -89,6 +89,14 @@
 	required_temp = 374
 	mob_react = FALSE
 
+/datum/chemical_reaction/soapification2
+	name = "Soapification2"
+	id = "soapification2"
+	results = list(/datum/reagent/liquidsoap = 12)
+	required_reagents = list(/datum/reagent/consumable/cooking_oil = 10, /datum/reagent/lye  = 2)
+	required_temp = 374
+	mob_react = FALSE
+
 /datum/chemical_reaction/candlefication
 	name = "Candlefication"
 	id = "candlefication"
@@ -97,6 +105,18 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/candlefication/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/candle(location)
+
+/datum/chemical_reaction/candlefication2
+	name = "Candlefication2"
+	id = "candlefication2"
+	required_reagents = list(/datum/reagent/consumable/cooking_oil = 5, /datum/reagent/hydrogen  = 5)
+	required_temp = 374
+	mob_react = FALSE
+
+/datum/chemical_reaction/candlefication2/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/candle(location)
