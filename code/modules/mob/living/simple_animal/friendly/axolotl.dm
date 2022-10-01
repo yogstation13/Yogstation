@@ -23,6 +23,20 @@
 	wuv_happy = "looks happy"
 	wuv_angy = "makes a noise"
 
+/mob/living/simple_animal/pet/axolotl/attack_hand(mob/living/carbon/human/user, list/modifiers)
+	. = ..()
+	if(src.stat == DEAD)
+		return
+	else
+		playsound(loc, 'sound/effects/huuu.ogg', 50, TRUE)
+
+/mob/living/simple_animal/pet/axolotl/attackby(obj/item/attacking_item, mob/living/user, params)
+	. = ..()
+	if(src.stat == DEAD)
+		return
+	else
+		playsound(loc, 'sound/effects/huuu.ogg', 50, TRUE)
+
 /mob/living/simple_animal/pet/axolotl/Life()
 	. = ..()
 	if(!stat && !buckled && !client)
