@@ -2132,3 +2132,9 @@
 /datum/reagent/adrenaline/on_mob_delete(mob/living/L)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+
+/datum/reagent/liquidsoap
+	name = "Liquid soap"
+	color = "#ddb772"
+	description = "Not much use in this form..."
+	taste_description = "soap"
