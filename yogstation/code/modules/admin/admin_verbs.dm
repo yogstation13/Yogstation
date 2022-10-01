@@ -110,4 +110,4 @@
 		return
 	message_admins("[src] the next minetype was picked.")
 	log_admin("[src] picked the next minetype.")
-	SSpersistence.SaveMinetype(answer)
+	SSpersistence.SaveMinetype(l[answer])

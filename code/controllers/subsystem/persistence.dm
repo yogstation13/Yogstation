@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/obj/structure/sign/painting/painting_frames = list()
 	var/list/paintings = list()
 
-	var/next_minetype = NEXT_MINETYPE_EITHER //yogs
+	var/next_minetype //yogs
 
 /datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
@@ -372,6 +372,8 @@ SUBSYSTEM_DEF(persistence)
 	var/json_file = file("data/next_minetype.json")
 	if(fexists(json_file))
 		next_minetype = json_decode(file2text(json_file))
+	else 
+		next_minetype = NEXT_MINETYPE_EITHER
 	SaveMinetype()
 
 /datum/controller/subsystem/persistence/proc/SaveMinetype(minetype = NEXT_MINETYPE_EITHER)
