@@ -689,14 +689,6 @@
 				/obj/item/stack/medical/suture = 1) //for reinforcement, so its not just...cloth.
 	category = CAT_MEDICAL
 
-/datum/crafting_recipe/ointment/tribal
-	name = "Soothing Cream"
-	result = /obj/item/stack/medical/ointment/tribal
-	reqs = list(/obj/item/reagent_containers/glass/bowl/mushroom_bowl = 1,
-				/datum/reagent/ash = 10,
-				/datum/reagent/consumable/aloejuice = 15)
-	category = CAT_PRIMAL
-
 /datum/crafting_recipe/makeshiftsuture/tribal
 	name = "Sinew Suture"
 	result = /obj/item/stack/medical/suture/emergency/makeshift/tribal

@@ -320,16 +320,6 @@
 	user.visible_message(span_suicide("[user] is squeezing \the [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?"))
 	return TOXLOSS
 
-/obj/item/stack/medical/ointment/tribal
-	name = "soothing cream"
-	desc = "A rudamentary ointment with light cooling and sterilizing properties. Useful for preventing a burn from getting too badly infected, and helping it heal."
-	icon_state = "tointment"
-	amount = 7
-	max_amount = 7
-	heal_burn = 4
-	sanitization = 0.2
-	grind_results = list(/datum/reagent/consumable/aloejuice = 2)
-
 /obj/item/stack/medical/ointment/antiseptic
 	name = "antiseptic ointment"
 	desc = "A specialized ointment, designed with preventing infections in mind."
