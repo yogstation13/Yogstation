@@ -97,9 +97,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		if(!stat)
 			var/mob/M = AM
 			to_chat(M, span_notice("[icon2html(src, M)] Squeak!"))
-	//if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
-	//	evolve()
-	//	qdel(AM)
+	if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
+		evolve()
+		qdel(AM)
 	..()
 
 /mob/living/simple_animal/mouse/handle_automated_action()
@@ -121,10 +121,10 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 			be_fruitful()
 			qdel(cheese)
 			return
-	//for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
-	//	qdel(bigcheese)
-	//	evolve()
-	//	return
+	for(var/obj/item/reagent_containers/food/snacks/royalcheese/bigcheese in range(1, src))
+		qdel(bigcheese)
+		evolve()
+		return
 
 
 /**
@@ -267,9 +267,9 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/list/cheeses = list(/obj/item/reagent_containers/food/snacks/cheesewedge, /obj/item/reagent_containers/food/snacks/cheesewheel,
 							/obj/item/reagent_containers/food/snacks/store/cheesewheel, /obj/item/reagent_containers/food/snacks/customizable/cheesewheel,
 							/obj/item/reagent_containers/food/snacks/cheesiehonkers) //all cheeses - royal
-	//if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
-	//	evolve()
-	//	return
+	if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
+		evolve()
+		return
 	if(istype(F, /obj/item/grown/bananapeel/bluespace))
 		var/obj/item/grown/bananapeel/bluespace/B
 		var/teleport_radius = max(round(B.seed.potency / 10), 1)

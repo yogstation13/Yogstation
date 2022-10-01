@@ -385,7 +385,7 @@
 	name = "basic hypospray kit"
 	desc = "A hypospray kit containing a hypospray and vials for most common situations."
 	stored_hypo = /obj/item/hypospray
-	custom_premium_price = 300
+	custom_premium_price = 150
 
 /obj/item/storage/firstaid/hypospray/brute
 	name = "brute hypospray vial kit"
@@ -464,7 +464,7 @@
 	desc = "A hypospray kit containing vials for most situations."
 	icon_state = "hyporad"
 	item_state = "firstaid-rad"
-	custom_premium_price = 300
+	custom_premium_price = 200
 
 /obj/item/storage/firstaid/hypospray/advanced/PopulateContents()
 	if(empty)
@@ -484,7 +484,7 @@
 	name = "advanced hypospray kit"
 	desc = "An advanced kit containing a hypospray and vials for most situations."
 	stored_hypo = /obj/item/hypospray
-	custom_premium_price = 500
+	custom_premium_price = 250
 
 /obj/item/storage/firstaid/hypospray/deluxe
 	name = "deluxe hypospray kit"

@@ -31,6 +31,12 @@
 #define RWINDOW_BOLTS_HEATED 7
 #define RWINDOW_SECURE 8
 
+//mecha wreckage repair states
+#define MECHA_WRECK_CUT 0
+#define MECHA_WRECK_DENTED 1
+#define MECHA_WRECK_LOOSE 2
+#define MECHA_WRECK_UNWIRED 3
+
 //airlock assembly construction states
 #define AIRLOCK_ASSEMBLY_NEEDS_WIRES 0
 #define AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS 1

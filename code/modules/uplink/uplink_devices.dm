@@ -74,3 +74,50 @@
 /obj/item/pen/uplink/Initialize(mapload, owner, tc_amount = 20)
 	. = ..()
 	AddComponent(/datum/component/uplink, owner, TRUE, FALSE, null, tc_amount)
+
+// NT Uplink
+/obj/item/ntuplink
+	name = "\improper nanotrasen uplink"
+	icon = 'icons/obj/radio.dmi'
+	icon_state = "radio"
+	item_state = "walkietalkie"
+	desc = "A specialized uplink for authorized Nanotrasen use only."
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	dog_fashion = /datum/dog_fashion/back
+
+	flags_1 = CONDUCT_1
+	slot_flags = ITEM_SLOT_BELT
+	throw_speed = 3
+	throw_range = 7
+	w_class = WEIGHT_CLASS_SMALL
+
+	var/wc_start = 20 // Starting warpcrystal amount
+
+/obj/item/ntuplink/Initialize(mapload, owner)
+	. = ..()
+	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start)
+
+/obj/item/ntuplink/official
+	name = "centcom official uplink"
+	wc_start = 5
+
+/obj/item/ntuplink/amber
+	name = "amber ERT uplink"
+	wc_start = 10
+
+/obj/item/ntuplink/blue
+	name = "blue ERT uplink"
+	wc_start = 20
+
+/obj/item/ntuplink/red
+	name = "red ERT uplink"
+	wc_start = 30
+
+/obj/item/ntuplink/death
+	name = "deathsquad uplink"
+	wc_start = 350
+
+/obj/item/ntuplink/debug
+	name = "debug nanotrasen uplink"
+	wc_start = 9000

@@ -17,3 +17,12 @@
 	name = "enchanted 7.62 bullet"
 	damage = 20
 	stamina = 80
+
+/obj/item/projectile/bullet/a762_enchanted/prehit(atom/target)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(L.anti_magic_check())
+			L.visible_message(span_warning("[src] vanishes on contact with [target]!"))
+			qdel(src)
+			return FALSE

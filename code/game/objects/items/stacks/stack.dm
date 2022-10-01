@@ -12,16 +12,28 @@
 	icon = 'yogstation/icons/obj/stack_objects.dmi' // yogs -- use yog icons instead of tg
 	gender = PLURAL
 	max_integrity = 100
+	/// List of recipes
 	var/list/datum/stack_recipe/recipes
+	/// The name without the s
 	var/singular_name
+	/// Amount in the stack
 	var/amount = 1
-	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
-	var/is_cyborg = 0 // It's 1 if module is used by a cyborg, and uses its storage
+	/// Max amount in the stack | stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
+	var/max_amount = 50
+	/// If its a module item for a cyborg
+	var/is_cyborg = 0
+	/// Used for "recharging" of the material
 	var/datum/robot_energy_storage/source
-	var/cost = 1 // How much energy from storage it costs
-	var/merge_type = null // This path and its children should merge with this stack, defaults to src.type
-	var/full_w_class = WEIGHT_CLASS_NORMAL //The weight class the stack should have at amount > 2/3rds max_amount
-	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
+	/// How much energy does it cost
+	var/cost = 1
+	/// This path and its children should merge with this stack, defaults to src.type
+	var/merge_type = null
+	/// Does it merge strictly only with its type
+	var/strict = FALSE
+	/// The weight class the stack should have at amount > 2/3rds max_amount
+	var/full_w_class = WEIGHT_CLASS_NORMAL
+	/// Determines whether the item should update it's sprites based on amount.
+	var/novariants = TRUE
 	//NOTE: When adding grind_results, the amounts should be for an INDIVIDUAL ITEM - these amounts will be multiplied by the stack size in on_grind()
 	var/obj/structure/table/tableVariant // we tables now (stores table variant to be built from this stack)
 	var/mats_per_stack = 0
@@ -342,12 +354,16 @@
 	return transfer
 
 /obj/item/stack/Crossed(atom/movable/AM)
-	if(istype(AM, merge_type) && !AM.throwing)
+	if(strict && AM.type == merge_type)
+		merge(AM)
+	else if(!strict && istype(AM, merge_type) && !AM.throwing)
 		merge(AM)
 	. = ..()
 
 /obj/item/stack/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-	if(istype(AM, merge_type))
+	if(strict && AM.type == merge_type)
+		merge(AM)
+	else if(!strict && istype(AM, merge_type) && !AM.throwing)
 		merge(AM)
 	. = ..()
 
@@ -396,7 +412,11 @@
 	zero_amount()
 
 /obj/item/stack/attackby(obj/item/W, mob/user, params)
-	if(istype(W, merge_type))
+	if(strict && W.type == merge_type)
+		var/obj/item/stack/S = W
+		if(merge(S))
+			to_chat(user, span_notice("Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s."))
+	else if(!strict && istype(W, merge_type))
 		var/obj/item/stack/S = W
 		if(merge(S))
 			to_chat(user, span_notice("Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s."))

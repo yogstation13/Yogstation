@@ -98,6 +98,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/product_slogans = ""
 	///String of small ad messages in the vending screen - random chance
 	var/product_ads = ""
+	var/current_ad = ""
+	var/product_cd = 10 SECONDS
+	COOLDOWN_DECLARE(product_ad_cooldown)
 
 	var/list/product_records = list()
 	var/list/hidden_records = list()
@@ -190,6 +193,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		build_inventory(premium, coin_records)
 
 	slogan_list = splittext(product_slogans, ";")
+	small_ads = splittext(product_ads, ";")
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,
 	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
@@ -697,6 +701,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
+
+	.["product_ad"] = current_ad
+
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
 
@@ -827,6 +834,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!active)
 		return
 
+	if(COOLDOWN_FINISHED(src, product_ad_cooldown) && LAZYLEN(small_ads) > 0)
+		COOLDOWN_START(src, product_ad_cooldown, product_cd)
+		current_ad = pick(small_ads)
+	
 	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
 		seconds_electrified--
 

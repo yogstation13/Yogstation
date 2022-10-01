@@ -271,6 +271,16 @@
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/hypospraypierceupg
+	name = "Hypospray Piercing Upgrade"
+	desc = "An upgrade for hyposprays that installs a diamond tipped needle, allowing it to pierce thick clothing."
+	id = "hypospraypierceupg"
+	build_path = /obj/item/hypospray_upgrade/piercing
+	build_type = PROTOLATHE
+	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /////////////////////////////////////////
 //////////Cybernetic Implants////////////
 /////////////////////////////////////////

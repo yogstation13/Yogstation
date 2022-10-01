@@ -107,6 +107,14 @@
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/syndie_mantis/l
 
+/obj/item/autosurgeon/nt_mantis
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis
+
+/obj/item/autosurgeon/nt_mantis/l
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis/l
+
 /obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	uses = 3
 	starting_organ = /obj/item/organ/alien/plasmavessel //Yogs End

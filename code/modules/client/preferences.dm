@@ -137,6 +137,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/persistent_scars = TRUE
 
 	var/disable_alternative_announcers = FALSE
+	var/icon/background = "floor"
+	var/list/background_options = list(
+		"floor" = "Default Tile",
+		"white" = "Default White Tile",
+		"darkfull" = "Default Dark Tile",
+		"wood" = "Wood",
+		"rockvault" = "Rock Vault",
+		"grass4" = "Grass",
+		"black" = "Pure Black",
+		"grey" = "Pure Grey",
+		"pure_white" = "Pure White"
+	)
+
+	var/disable_balloon_alerts = FALSE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -276,8 +290,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>Body</h2>"
 			dat += "<a href='?_src_=prefs;preference=all;task=random'>Random Body</a> "
 			dat += "<a href='?_src_=prefs;preference=all'>Always Random Body: [be_random_body ? "Yes" : "No"]</a>"
-			dat += "<a href='?_src_=prefs;preference=u_all;task=lock'>Unlock all</a><br>"
+			dat += "<a href='?_src_=prefs;preference=u_all;task=lock'>Unlock all</a>"
 			dat += "<a href='?_src_=prefs;preference=l_all;task=lock'>Lock all</a><br>"
+			dat += "<a href='?_src_=prefs;preference=cycle_background;task=input'>Background: [background_options[background]]</a><br><br>"
 
 			dat += "<table width='100%'><tr><td width='24%' valign='top'>"
 
@@ -701,6 +716,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Hear alternative station announcers:</b> <a href='?_src_=prefs;preference=alternative_announcers'>[disable_alternative_announcers ? "Disabled" : "Enabled"]</a><br>"
+			dat += "<b>Disable balloon alerts:</b> <a href='?_src_=prefs;preference=balloon_alerts'>[disable_balloon_alerts ? "Disabled" : "Enabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
@@ -976,6 +992,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				BUTTON_KEY("Drop", ACTION_DROP)
 				BUTTON_KEY("Equip", ACTION_EQUIP)
 				BUTTON_KEY("Rest", ACTION_REST)
+				BUTTON_KEY("Toggle Walk Run", ACTION_TOGGLEWALKRUN)
 
 				dat += "</td><td width='300px' height='300px' valign='top'>"
 
@@ -1341,7 +1358,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(href_list["bancheck"])
 		var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, href_list["bancheck"])
 		var/admin = FALSE
-		if(GLOB.admin_datums[user.ckey] || GLOB.deadmins[user.ckey])
+		if(GLOB.permissions.admin_datums[user.ckey] || GLOB.permissions.deadmins[user.ckey])
 			admin = TRUE
 		for(var/i in ban_details)
 			if(admin && !text2num(i["applies_to_admins"]))
@@ -1540,6 +1557,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
 					if(new_age)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
+
+				if("cycle_background")
+					background = next_list_item(background, background_options)
 
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
@@ -1969,6 +1989,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 				if("alternative_announcers")
 					disable_alternative_announcers = !disable_alternative_announcers
+				if("balloon_alerts")
+					disable_balloon_alerts = !disable_balloon_alerts
 			// yogs start - Custom keybindings
 			if(href_list["keybinding"])
 				update_keybindings(user, href_list["keybinding"], href_list["dir"])

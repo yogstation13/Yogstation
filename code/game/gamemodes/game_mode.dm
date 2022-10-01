@@ -610,7 +610,7 @@
 						continue //Ghosted while alive
 
 
-	for (var/C in GLOB.admins)
+	for (var/C in GLOB.permissions.admins)
 		to_chat(C, msg.Join())
 		log_admin(msg.Join())
 

@@ -19,7 +19,7 @@
 	else
 		var/values = list(
 			"player_ckey" = player_ckey,
-			"must_apply_to_admins" = !!(GLOB.admin_datums[player_ckey] || GLOB.deadmins[player_ckey]),
+			"must_apply_to_admins" = !!(GLOB.permissions.admin_datums[player_ckey] || GLOB.permissions.deadmins[player_ckey]),
 		)
 		var/sql_roles
 		if(islist(roles))
@@ -113,7 +113,7 @@
 	if(C && istype(C))
 		C.ban_cache = list()
 		var/is_admin = FALSE
-		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
+		if(GLOB.permissions.admin_datums[C.ckey] || GLOB.permissions.deadmins[C.ckey])
 			is_admin = TRUE
 		var/datum/DBQuery/query_build_ban_cache = SSdbcore.NewQuery(
 			"SELECT [format_table_name("ban")].role, applies_to_admins FROM [format_table_name("ban")] WHERE ckey = :ckey AND unbanned_datetime IS NULL AND (expiration_time IS NULL OR expiration_time > NOW())",
@@ -291,7 +291,7 @@
 				break_counter++
 			output += "</div></div>"
 		var/list/long_job_lists = list("Civilian" = GLOB.original_civilian_positions,
-									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_HORROR, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE, ROLE_GOLEM),
+									"Ghost and Other Roles" = list(ROLE_BRAINWASHED, ROLE_DEATHSQUAD, ROLE_DRONE, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_HORROR, ROLE_LAVALAND, ROLE_MIND_TRANSFER, ROLE_POSIBRAIN, ROLE_SENTIENCE, ROLE_MOUSE, ROLE_GOLEM),
 									"Antagonist Positions" = list(ROLE_ABDUCTOR, ROLE_ALIEN, ROLE_BLOB,
 									ROLE_BLOODSUCKER, ROLE_BROTHER, ROLE_CHANGELING, ROLE_CULTIST,
 									ROLE_DEVIL, ROLE_FUGITIVE, ROLE_HOLOPARASITE, ROLE_INTERNAL_AFFAIRS, ROLE_MALF,
@@ -487,7 +487,7 @@
 		if(query_check_adminban_count.NextRow())
 			var/adminban_count = text2num(query_check_adminban_count.item[1])
 			var/max_adminbans = MAX_ADMINBANS_PER_ADMIN
-			if(R_EVERYTHING && !(R_EVERYTHING & rank.can_edit_rights)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
+			if(check_rights(R_PERMISSIONS, FALSE)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 				max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 			if(adminban_count >= max_adminbans)
 				to_chat(usr, span_danger("You've already logged [max_adminbans] admin ban(s) or more. Do not abuse this function!"), confidential=TRUE)
@@ -557,7 +557,7 @@
 	if(C)
 		build_ban_cache(C)
 		to_chat(C, "[span_boldannounce("You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]")]<br>[span_danger("This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].")]<br>[span_danger("To appeal this ban go to [appeal_url]")]", confidential=TRUE)
-		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
+		if(GLOB.permissions.admin_datums[C.ckey] || GLOB.permissions.deadmins[C.ckey])
 			is_admin = TRUE
 		if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
 			qdel(C)
@@ -567,7 +567,7 @@
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
 			to_chat(i, "[span_boldannounce("You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]")]<br>[span_danger("This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].")]<br>[span_danger("To appeal this ban go to [appeal_url]")]")
-			if(GLOB.admin_datums[i.ckey] || GLOB.deadmins[i.ckey])
+			if(GLOB.permissions.admin_datums[i.ckey] || GLOB.permissions.deadmins[i.ckey])
 				is_admin = TRUE
 			if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
 				qdel(i)
@@ -805,7 +805,7 @@
 		if(query_check_adminban_count.NextRow())
 			var/adminban_count = text2num(query_check_adminban_count.item[1])
 			var/max_adminbans = MAX_ADMINBANS_PER_ADMIN
-			if(R_EVERYTHING && !(R_EVERYTHING & rank.can_edit_rights)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
+			if(check_rights(R_PERMISSIONS, FALSE)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 				max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 			if(adminban_count >= max_adminbans)
 				to_chat(usr, span_danger("You've already logged [max_adminbans] admin ban(s) or more. Do not abuse this function!"), confidential=TRUE)

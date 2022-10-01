@@ -19,7 +19,7 @@
 	name = "Dank Pizza"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/flatdough = 1,
-		/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris = 3,
+		/obj/item/reagent_containers/food/snacks/grown/cannabis = 3,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
 		/obj/item/reagent_containers/food/snacks/grown/tomato = 1
 	)

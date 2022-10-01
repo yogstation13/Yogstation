@@ -108,11 +108,21 @@
 
 /obj/item/ammo_box/magazine/smgm9mm/ap
 	name = "SMG magazine (Armour Piercing 9mm)"
+	icon_state = "smg9mmA-42"
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
+
+/obj/item/ammo_box/magazine/smgm9mm/ap/update_icon()
+	..()
+	icon_state = "smg9mmA-[ammo_count() ? "42" : "0"]"
 
 /obj/item/ammo_box/magazine/smgm9mm/fire
 	name = "SMG Magazine (Incendiary 9mm)"
+	icon_state = "smg9mmI-42"
 	ammo_type = /obj/item/ammo_casing/c9mm/inc
+
+/obj/item/ammo_box/magazine/smgm9mm/fire/update_icon()
+	..()
+	icon_state = "smg9mmI-[ammo_count() ? "42" : "0"]"
 
 /obj/item/ammo_box/magazine/smgm45
 	name = "SMG magazine (.45)"

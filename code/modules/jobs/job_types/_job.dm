@@ -124,7 +124,7 @@
 
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
-		bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		bank_account.adjust_money(rand(STARTING_PAYCHECKS_MIN, STARTING_PAYCHECKS_MAX), TRUE)
 		H.account_id = bank_account.account_id
 
 	//Equip the rest of the gear
@@ -195,7 +195,7 @@
 	box = /obj/item/storage/box/survival
 
 	var/obj/item/id_type = /obj/item/card/id
-	var/obj/item/pda_type = /obj/item/pda
+	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
@@ -262,14 +262,8 @@
 			B.bank_cards += C
 		H.sec_hud_set_ID()
 
-	var/obj/item/pda/PDA = new pda_type()
+	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		PDA.owner = H.real_name
-		if(H.mind?.role_alt_title)
-			PDA.ownjob = H.mind.role_alt_title
-		else
-			PDA.ownjob = J.title
-
 		if (H.id_in_pda)
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
