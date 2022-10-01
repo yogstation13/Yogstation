@@ -194,7 +194,7 @@
 			D.add_movespeed_modifier(MOVESPEED_ID_SHOVE, multiplicative_slowdown = SHOVE_SLOWDOWN_STRENGTH)
 			addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), 4 SECONDS)
 
-		ADD_TRAIT(D, TRAIT_POOR_AIM, "martial")
+		D.dna.species.aiminginaccuracy += 25
 		addtimer(CALLBACK(src, .proc/remove_stagger, D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
@@ -303,7 +303,7 @@
 	return TRUE
 
 /datum/martial_art/explosive_fist/proc/remove_stagger(mob/living/carbon/human/D)
-	REMOVE_TRAIT(D, TRAIT_POOR_AIM, "martial")
+	D.dna.species.aiminginaccuracy -= 25
 
 /mob/living/carbon/human/proc/explosive_fist_help()
 	set name = "Remember the basics"
