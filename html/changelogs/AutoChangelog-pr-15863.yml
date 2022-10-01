@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "adds EMT and mining medic berets"
+  - tweak: "gives mining medic hat the same protections as their jacket"
+  - tweak: "fixes some typos"
