@@ -3360,6 +3360,7 @@
 #include "yogstation\code\_onclick\adjacent.dm"
 #include "yogstation\code\_onclick\click.dm"
 #include "yogstation\code\_onclick\hud\darkspawn.dm"
+#include "yogstation\code\_onclick\hud\plane_masters.dm"
 #include "yogstation\code\_onclick\hud\vampire.dm"
 #include "yogstation\code\controllers\configuration\entries\general.dm"
 #include "yogstation\code\controllers\configuration\entries\yogstation_config.dm"
