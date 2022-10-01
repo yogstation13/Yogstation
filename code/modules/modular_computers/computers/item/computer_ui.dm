@@ -5,6 +5,8 @@
 /obj/item/modular_computer/proc/can_show_ui(mob/user)
 	if(!enabled)
 		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT) // Open uplink TGUI instead of our TGUI
+		return FALSE
 	if(!use_power())
 		return FALSE
 	// Robots don't really need to see the screen, their wireless connection works as long as computer is on.

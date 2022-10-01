@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(lighting)
 		MC_SPLIT_TICK
 
 	for (i in 1 to GLOB.lighting_update_objects.len)
-		var/atom/movable/lighting_object/O = GLOB.lighting_update_objects[i]
+		var/datum/lighting_object/O = GLOB.lighting_update_objects[i]
 
 		if (QDELETED(O))
 			continue

@@ -13,31 +13,35 @@
 	circuit = /obj/item/circuitboard/machine/autolathe
 	layer = BELOW_OBJ_LAYER
 
-	var/operating = FALSE
-	var/list/L = list()
-	var/list/LL = list()
+	/// Are hacked designs unlocked
 	var/hacked = FALSE
-	var/disabled = 0
+	/// Is it disabled(Can it print)
+	var/disabled = FALSE
+	/// Will it taze you when you interact with it
 	var/shocked = FALSE
-	var/hack_wire
-	var/disable_wire
-	var/shock_wire
+	/// Resource use multiplier
 	var/prod_coeff = 1
+	/// Internal techweb of designs
 	var/datum/techweb/stored_research
-	var/base_price = 25
-	var/hacked_price = 50
-	var/datum/research/files
+	/// name of the design to search for
 	var/search
-	var/datum/material_container/materials
+	/// Maximum length of the queue
 	var/queue_max_len = 12
+	/// Is it currently printing
 	var/processing_queue = FALSE
-	var/datum/design/item_beingbuilt
+	/// Requested item to be made
 	var/datum/design/request
+	/// Items being built
 	var/list/being_built = list()
+	/// Item queue
 	var/list/autoqueue = list()
+	/// List describing the items for the UI
 	var/processing_line
+	/// Direction its qill output when the item is printed (0 for ontop of itself)
 	var/printdirection = 0
+	/// Length of the queue
 	var/queuelength = 0
+	/// Avaliable categories
 	var/list/categories = list("Tools","Electronics","Construction","T-Comm","Security","Machinery","Medical","Miscellaneous","Dinnerware","Imported", "Search")
 
 /obj/machinery/autolathe/Initialize()
@@ -70,12 +74,12 @@
 
 /obj/machinery/autolathe/ui_data(mob/user) // All the data the ui will need
 	var/list/data = list()
-	var/list/designs = list()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["total_amount"] = materials.total_amount
 	data["max_amount"] = materials.max_amount
-	data["metal_amount"] = materials.get_material_amount(/datum/material/iron)
-	data["glass_amount"] = materials.get_material_amount(/datum/material/glass)
+	data["stored_materials"] = list()
+	data["stored_materials"][getmaterialref(/datum/material/iron)] = materials.get_material_amount(/datum/material/iron)
+	data["stored_materials"][getmaterialref(/datum/material/glass)] = materials.get_material_amount(/datum/material/glass)
 	data["rightwall"] = wallcheck(4) // Wall data for ui
 	data["leftwall"] = wallcheck(8)
 	data["abovewall"] = wallcheck(1)
@@ -86,33 +90,7 @@
 	data["isprocessing"] = processing_queue
 	data["queuelength"] = queuelength
 	data["categories"] = categories
-	for(var/v in stored_research.researched_designs)
-		var/datum/design/D = SSresearch.techweb_design_by_id(v)
-		var/list/design = list()
-		design["name"] = D.name
-		design["id"] = D.id
-		design["disabled"] = disabled || !can_build(D)
-		design["category"] = D.category
-		var/max_multiplier_list = list()
-		if(ispath(D.build_path, /obj/item/stack))
-			var/max_multiplier
-			for(var/datum/material/mat in D.materials)
-				max_multiplier = min(D.maxstack, round(materials.get_material_amount(mat)/D.materials[mat]))
-			if (max_multiplier > 10 && !disabled)
-				max_multiplier_list += "10"
-			if (max_multiplier > 25 && !disabled)
-				max_multiplier_list += "25"
-			if(max_multiplier > 0 && !disabled)
-				max_multiplier_list += max_multiplier
-		else
-			if(can_build(D))
-				max_multiplier_list += "5"
-				max_multiplier_list += "10"
-		design["max_multiplier"] = max_multiplier_list
-		design["materials_metal"] = get_design_cost_metal(D)
-		design["materials_glass"] = get_design_cost_glass(D)
-		designs += list(design)
-	data["designs"] = designs
+	data["disabled"] = disabled
 	if(istype(autoqueue) && autoqueue.len)
 		var/list/uidata = list()
 		var/index = 1
@@ -126,6 +104,23 @@
 
 	return data
 
+/obj/machinery/autolathe/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/designs = list()
+	for(var/v in stored_research.researched_designs)
+		var/datum/design/D = SSresearch.techweb_design_by_id(v)
+		var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
+		var/list/design = list()
+		design["name"] = D.name
+		design["id"] = D.id
+		design["category"] = D.category
+		design["materials"] = list()
+		for(var/i in D.materials)
+			design["materials"][i] = D.materials[i] * coeff
+		designs += list(design)
+	data["designs"] = designs
+	return data
+	
 /obj/machinery/autolathe/ui_act(action, params)
 	if(..())
 		return
@@ -214,6 +209,7 @@
 			for(var/B in D.blueprints)
 				if(B)
 					stored_research.add_design(B)
+			update_static_data(user)
 		return TRUE
 
 	return ..()
@@ -271,24 +267,6 @@
 		say("Output blocked, please remove obstruction.")
 		return FALSE
 	return materials.has_materials(required_materials)
-
-/obj/machinery/autolathe/proc/get_design_cost_metal(datum/design/D)
-	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
-	var/dat
-	if(D.materials[/datum/material/iron])
-		dat = D.materials[/datum/material/iron] * coeff
-	else
-		dat = 0
-	return dat
-
-/obj/machinery/autolathe/proc/get_design_cost_glass(datum/design/D)
-	var/coeff = (ispath(D.build_path, /obj/item/stack) ? 1 : prod_coeff)
-	var/dat
-	if(D.materials[/datum/material/glass])
-		dat = D.materials[/datum/material/glass] * coeff
-	else
-		dat = 0
-	return dat
 
 /obj/machinery/autolathe/proc/reset(wire)
 	switch(wire)
@@ -392,7 +370,6 @@
 					new_item.autolathe_crafted(src)
 					if(picked_materials?.len)
 						new_item.set_custom_materials(picked_materials, 1 / multiplier) //Ensure we get the non multiplied amount
-			item_beingbuilt = null
 			icon_state = "autolathe"
 			desc = initial(desc)
 			return TRUE
@@ -432,7 +409,8 @@
 		processing_queue = FALSE
 		return
 	remove_from_queue(1)
-	make_item(D,multiplier)
+	if(!make_item(D,multiplier))
+		return
 	if(autoqueue.len)
 		process_queue()
 	else

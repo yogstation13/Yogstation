@@ -31,7 +31,8 @@
 
 /obj/item/reagent_containers/examine(mob/user)
 	. = ..()
-	. += "It is transferring [amount_per_transfer_from_this] units at a time."
+	if(islist(possible_transfer_amounts) && possible_transfer_amounts.len)
+		. += "It is transferring [amount_per_transfer_from_this] units at a time."
 
 /obj/item/reagent_containers/attack_self(mob/user)
 	if(possible_transfer_amounts.len)

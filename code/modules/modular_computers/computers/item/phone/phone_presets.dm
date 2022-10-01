@@ -32,8 +32,7 @@
 								/obj/item/computer_hardware/sensorpackage)
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command
-	starting_files = list(	new /datum/computer_file/program/chatclient,
-							new /datum/computer_file/program/budgetorders,
+	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod)
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
@@ -51,8 +50,7 @@
 	RegisterSignal(src, COMSIG_PDA_CHECK_DETONATE, .proc/pda_no_detonate)
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
-	starting_files = list(	new /datum/computer_file/program/chatclient,
-							new /datum/computer_file/program/budgetorders,
+	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/cargobounty)
 	finish_color = "brown"
@@ -69,23 +67,20 @@
 								/obj/item/computer_hardware/card_slot/secondary,
 								/obj/item/computer_hardware/sensorpackage)
 
-	starting_files = list(	new /datum/computer_file/program/chatclient,
-							new /datum/computer_file/program/budgetorders,
+	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/alarm_monitor)
 	finish_color = "orange"
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd
-	starting_files = list(	new /datum/computer_file/program/chatclient,
-							new /datum/computer_file/program/budgetorders,
+	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/robocontrol)
 	finish_color = "purple"
 	pen_type = /obj/item/pen/fountain
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cmo
-	starting_files = list(	new /datum/computer_file/program/chatclient,
-							new /datum/computer_file/program/budgetorders,
+	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/card_mod,
 							new /datum/computer_file/program/crew_monitor)
 	finish_color = "white"

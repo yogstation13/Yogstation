@@ -13,7 +13,6 @@
 	var/capacity = 4
 
 /obj/structure/guncase/Initialize(mapload)
-	..()
 	if(mapload)
 		for(var/obj/item/I in loc.contents)
 			if(istype(I, gun_category))
@@ -21,6 +20,7 @@
 			if(contents.len >= capacity)
 				break
 	update_icon()
+	return ..()
 
 /obj/structure/guncase/update_icon()
 	cut_overlays()
