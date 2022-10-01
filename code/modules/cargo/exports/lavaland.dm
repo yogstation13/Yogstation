@@ -118,7 +118,7 @@
 
 /datum/export/lavaland/gems/minor
 	cost = 1000
-	unit_name = "Minor Lavaland Gems"
+	unit_name = "Minor Lavaland Gem"
 	export_types = list(/obj/item/gem/ruby,/obj/item/gem/sapphire,/obj/item/gem/emerald,/obj/item/gem/topaz)
 
 /datum/export/lavaland/gems/stalwart

@@ -1168,3 +1168,10 @@ Nothing else in the console has ID requirements.
 
 /obj/machinery/computer/rdconsole/experiment
 	name = "E.X.P.E.R.I-MENTOR R&D Console"
+
+/obj/machinery/computer/rdconsole/nolock
+	name = "R&D Console"
+	desc = "A console used to interface with R&D tools. This one seems to not have an access requirement."
+
+	req_access = list()	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
+

@@ -112,6 +112,7 @@
 #define CAT_DRINK   "Drinks"
 #define CAT_BAIT   "Fishing Bait"
 #define CAT_SEAFOOD   "Seafood"
+#define CAT_MEDICAL   "Medical"
 
 #define RCD_FLOORWALL (1<<0)
 #define RCD_AIRLOCK (1<<1)

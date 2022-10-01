@@ -432,7 +432,7 @@
 			if(!W.use_tool(src, user, 50))
 				return
 			if(health > 0)
-				return //safety check to prevent spam clciking and queing
+				return //safety check to prevent spam clicking and queing
 
 		adjustBruteLoss(-30)
 		updatehealth()
@@ -753,6 +753,14 @@
 	if(usr.stat == DEAD)
 		return //won't work if dead
 	checklaws()
+
+/mob/living/silicon/robot/verb/changeaccent()
+	set category = "Robot Commands"
+	set name = "Change Accent"
+
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	accentchange()
 
 /mob/living/silicon/robot/verb/set_automatic_say_channel() //Borg version of setting the radio for autosay messages.
 	set name = "Set Auto Announce Mode"
