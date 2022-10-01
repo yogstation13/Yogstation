@@ -102,6 +102,46 @@
 	var/mob/dead/observer/G = usr
 	G.register_pai()
 
+/obj/screen/ghost/med_scan
+	name = "Toggle Medical Scan"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "med_scan"
+	screen_loc = ui_ghost_med
+
+/obj/screen/ghost/med_scan/Click()
+	var/mob/dead/observer/G = usr
+	G.toggle_health_scan()
+
+/obj/screen/ghost/chem_scan
+	name = "Toggle Chemical Scan"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "chem_scan"
+	screen_loc = ui_ghost_chem
+
+/obj/screen/ghost/chem_scan/Click()
+	var/mob/dead/observer/G = usr
+	G.toggle_chemical_scan()
+
+/obj/screen/ghost/nanite_scan
+	name = "Toggle Nanite Scan"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "nanite_scan"
+	screen_loc = ui_ghost_nanite
+
+/obj/screen/ghost/nanite_scan/Click()
+	var/mob/dead/observer/G = usr
+	G.toggle_nanite_scan()
+
+/obj/screen/ghost/wound_scan
+	name = "Toggle Wound Scan"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "wound_scan"
+	screen_loc = ui_ghost_wound
+
+/obj/screen/ghost/wound_scan/Click()
+	var/mob/dead/observer/G = usr
+	G.toggle_wound_scan()
+
 /obj/screen/language_menu/ghost
 	screen_loc = ui_ghost_language_menu
 
