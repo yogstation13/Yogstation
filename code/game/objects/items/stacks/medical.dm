@@ -250,7 +250,7 @@
 /obj/item/stack/medical/suture/emergency/makeshift/tribal
 	name = "sinew suture"
 	desc = "A suture created from well processed sinew, with a bone needle"
-	icon_state = "suture_green"
+	icon_state = "suture_tribal"
 	heal_brute = 6
 	stop_bleeding = 0.55
 	amount = 10
