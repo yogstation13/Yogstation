@@ -1451,8 +1451,37 @@
 					/obj/item/vending_refill/medical)
 	crate_name = "medical supplies crate"
 
-/datum/supply_pack/medical/supplies/fill(obj/structure/closet/crate/C)
-	for(var/i in 1 to 10)
+/datum/supply_pack/medical/gummies
+	name = "Gummy Bear Bottle Crate"
+	desc = "Contains several assorted bottles of gummy bears."
+	cost = 4000
+	contains = list(/obj/item/storage/pill_bottle/gummy/vitamin,
+					/obj/item/storage/pill_bottle/gummy/melatonin,
+					/obj/item/storage/pill_bottle/gummy/nitro,
+					/obj/item/storage/pill_bottle/gummy/mime)
+	crate_name = "gummy bear crate"
+	small_item = TRUE
+
+/datum/supply_pack/medical/gummies/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
+		var/item = pick(contains)
+		new item(C)
+
+/datum/supply_pack/medical/gummies/illegal
+	name = "Illegal Gummy Bear Bottle Crate"
+	desc = "Contains several assorted bottles of less-than-legal gummy bears."
+	cost = 5000
+	contains = list(/obj/item/storage/pill_bottle/gummy/meth,
+					/obj/item/storage/pill_bottle/gummy/drugs,
+					/obj/item/storage/pill_bottle/gummy/floorbear,
+					/obj/item/storage/pill_bottle/gummy/mindbreaker,
+					/obj/item/storage/pill_bottle/gummy/omnizine)
+	crate_name = "illegal gummy bear crate"
+	contraband = TRUE
+	small_item = TRUE
+
+/datum/supply_pack/medical/gummies/illegal/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
 		var/item = pick(contains)
 		new item(C)
 

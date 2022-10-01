@@ -762,3 +762,102 @@
 /obj/item/storage/pill_bottle/aiur/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/aiur(src)
+
+/obj/item/storage/pill_bottle/gummies
+	name = "gummie bottle"
+	desc = "It's an airtight container for storing gummy bears."
+	icon_state = "pill_canister_large"
+	icon = 'icons/obj/chemical.dmi'
+	item_state = "contsolid"
+	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/storage/pill_bottle/gummies/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.allow_quick_gather = TRUE
+	STR.click_gather = TRUE
+	STR.set_holdable(list(/obj/item/reagent_containers/gummy, /obj/item/dice))
+	STR.max_items = 12
+
+/obj/item/storage/pill_bottle/gummies/vitamin
+	name = "bottle of vitamin gummies"
+	desc = "Contains colorful gummy bears to treat vitamin deficiencies."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		var/list/blocked = list(/obj/item/reagent_containers/gummy/vitamin) //no debug vitamin gummy
+		pick(subtypesof(new /obj/item/reagent_containers/gummy/vitamin(src)) - blocked)
+
+/obj/item/storage/pill_bottle/gummies/mindbreaker
+	name = "bottle of mindbreaker gummies"
+	desc = "Contains gummy bears to treat RDS."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/mindbreaker(src)
+
+/obj/item/storage/pill_bottle/gummies/floorbear
+	name = "bottle of mystery gummies"
+	desc = "Contains mystery gummy bears. Eat with caution!"
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/floorbear(src)
+
+/obj/item/storage/pill_bottle/gummies/omnizine
+	name = "bottle of medicine gummies"
+	desc = "Contains medicinal grape gummy bears. Used to treat all manners of injury. Keep out of reach of children."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/omnizine(src)
+
+/obj/item/storage/pill_bottle/gummies/melatonin
+	name = "bottle of melatonin gummies"
+	desc = "Contains melatonin gummy bears. Used to aid in getting to sleep."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/melatonin(src)
+
+/obj/item/storage/pill_bottle/gummies/mime
+	name = "bottle of nothing gummies"
+	desc = "Contains \"Mime\" gummy bears."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/mime(src)
+
+/obj/item/storage/pill_bottle/gummies/nitro
+	name = "bottle of nitrous oxide gummies"
+	desc = "Contains nitrous oxide gummy bears. Used to put patients to sleep quickly."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/nitro(src)
+
+/obj/item/storage/pill_bottle/gummies/meth
+	name = "bottle of meth gummies"
+	desc = "Contains meth gummy bears. Used to treat ADHD...and as a performance enhancer."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/meth(src)
+
+/obj/item/storage/pill_bottle/gummies/drugs
+	name = "bottle of suspicious gummies"
+	desc = "Contains dubiously legal gummy bears."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/drugs(src)
+
+/obj/item/storage/pill_bottle/gummies/sleepy
+	name = "bottle of knock-out gummies"
+	desc = "Contains fast-acting knock-out gummy bears."
+
+/obj/item/storage/pill_bottle/gummies/PopulateContents()
+	for(var/i in 1 to 12)
+		new /obj/item/reagent_containers/gummy/sleepy(src)
