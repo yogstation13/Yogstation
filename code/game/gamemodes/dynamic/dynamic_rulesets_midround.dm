@@ -430,7 +430,7 @@
 	requirements = list(100,100,100,70,50,40,30,25,20,10)
 	repeatable = FALSE
 	var/list/vents = list()
-	minimum_players = 40
+	minimum_players = 35
 
 /datum/dynamic_ruleset/midround/from_ghosts/xenomorph/execute()
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
