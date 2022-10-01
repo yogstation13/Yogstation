@@ -59,7 +59,8 @@
 		/obj/item/reagent_containers/food/snacks/fish/goldfish/giant,
 		/obj/item/reagent_containers/food/snacks/fish/shrimp,
 		/obj/item/reagent_containers/food/snacks/fish/puffer,
-		/obj/item/reagent_containers/food/snacks/fish/tuna
+		/obj/item/reagent_containers/food/snacks/fish/tuna,
+		/mob/living/simple_animal/friendly/axolotl
 	)
 	rare_loot = list(
 		/obj/item/reagent_containers/food/snacks/fish/squid,
