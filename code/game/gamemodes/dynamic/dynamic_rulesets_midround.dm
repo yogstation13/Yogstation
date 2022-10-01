@@ -599,7 +599,7 @@
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
 	weight = 5
-	cost = 25
+	cost = 15
 	requirements = list(80,70,60,50,50,45,30,30,25,25)
 	minimum_players = 25
 
