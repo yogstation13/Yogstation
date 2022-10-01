@@ -2837,3 +2837,13 @@
 	cost = 7500
 	contains = list(/mob/living/simple_animal/friendly/mothroach)
 	crate_name = "mothroach crate"
+
+/datum/supply_pack/critter/axolotl
+	name = "Axolotl Crate"
+	desc = "Contains 4 axolotls to pet."
+	cost = 4000
+	contains = list(/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl)
+	crate_name = "axolotl crate"
