@@ -1,5 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - tweak: "Shadowlings and their empowered thralls take Clone damage instead of Burn damage from light"
-  - tweak: "Shadowlings heal 5x faster from clone damage, making the prior change not effect their ability to recover from walking in lights"

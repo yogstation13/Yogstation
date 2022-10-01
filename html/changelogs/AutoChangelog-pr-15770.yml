@@ -1,9 +1,0 @@
-author: " Gravehat, @swifterjack, @KillerOrcaCora for gator sprite"
-delete-after: true 
-changes: 
-  - rscadd: "Adds in an Iguana pet named Izzy, and a lesser gator pet named Steppy, no there is no general Iguana variant"
-  - rscadd: "Adds alligators to the game"
-  - rscadd: "Adds alligators to the fishing loot pool as a rare drop"
-  - rscadd: "Adds in an alligator crate as a hidden crate"
-  - tweak: "Alligators behave like goats and drop loot on butcher, can be spawned through gold slimes"
-  - imageadd: "Adds gator sprites"

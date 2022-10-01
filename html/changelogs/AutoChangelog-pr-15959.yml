@@ -1,5 +1,0 @@
-author: "Sniblet"
-delete-after: true 
-changes: 
-  - bugfix: "cleanbots no longer get permanently stuck on remains"
-  - tweak: "relatedly, cleanbots no longer see remains"
