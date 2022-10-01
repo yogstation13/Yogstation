@@ -100,15 +100,19 @@
 			new /obj/item/implanter/explosive(src) //2 TC, nukies only
 			new /obj/item/implanter/storage(src) //8 TC
 
-		if("hacker") //31 TC cost
+		if("hacker") //28 TC cost
 			new /obj/item/aiModule/syndicate(src) //4 TC
-			new /obj/item/card/emag/bluespace(src) //We're going to lowball this at 20 TC
+			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
 			new /obj/item/aiModule/toyAI(src) //Um, free...?
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/storage/toolbox/syndicate(src) //1 TC
 			new /obj/item/camera_bug(src) //1 TC
 			new /obj/item/card/id/syndicate(src) //2 TC
+			new /obj/item/flashlight/emp(src) //2 TC
+			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src) //6 TC
+			new /obj/item/clothing/glasses/hud/diagnostic/sunglasses(src) //RD glasses. 1 TC, if that
+			new /obj/item/pen/edagger(src) //2 TC
 
 		if("sabotage") //Maybe 29 TC?
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
