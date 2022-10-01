@@ -187,6 +187,7 @@
 /obj/item/computer_hardware/hard_drive/small/pda
 /obj/item/computer_hardware/hard_drive/small/pda/install_default_programs()
 	..()
+	store_file(new/datum/computer_file/program/themeify(src))
 	store_file(new/datum/computer_file/program/pdamessager(src))
 	store_file(new/datum/computer_file/program/chatclient(src))
 

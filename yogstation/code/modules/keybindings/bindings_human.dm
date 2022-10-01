@@ -2,6 +2,8 @@
 	if(user.prefs.bindings.isheld_key("Shift"))
 		switch(I.action)
 			if(ACTION_EQUIP) // Put held thing in belt or take out most recent thing from belt
+				if(incapacitated())
+					return
 				var/obj/item/thing = get_active_held_item()
 				var/obj/item/equipped_belt = get_item_by_slot(SLOT_BELT)
 				if(!equipped_belt) // We also let you equip a belt like this
@@ -31,6 +33,8 @@
 				return
 
 			if(ACTION_RESIST) // Put held thing in backpack or take out most recent thing from backpack
+				if(incapacitated())
+					return
 				var/obj/item/thing = get_active_held_item()
 				var/obj/item/equipped_back = get_item_by_slot(SLOT_BACK)
 				if(!equipped_back) // We also let you equip a backpack like this

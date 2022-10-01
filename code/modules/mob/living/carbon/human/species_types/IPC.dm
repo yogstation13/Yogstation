@@ -37,10 +37,12 @@
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'
 	allow_numbers_in_name = TRUE
-	deathsound = "sound/voice/borg_deathsound.ogg"
+	deathsound = 'sound/voice/borg_deathsound.ogg'
 	wings_icon = "Robotic"
 	var/saved_screen //for saving the screen when they die
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	// Hats need to be 1 up
+	offset_features = list(OFFSET_HEAD = list(0,1))
 
 	var/datum/action/innate/change_screen/change_screen
 
@@ -196,6 +198,9 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
+	if(H.oxyloss)
+		H.setOxyLoss(0)
+		H.losebreath = 0
 	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD) // So they die eventually instead of being stuck in crit limbo.
 		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
 		if(prob(5))
