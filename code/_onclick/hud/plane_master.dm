@@ -32,6 +32,7 @@
 
 /obj/screen/plane_master/openspace/backdrop(mob/mymob)
 	filters = list()
+	filters += filter(type="alpha", render_source = LIGHTING_RENDER_TARGET, flags = MASK_INVERSE)
 	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -10)
 	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -15)
 	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -20)
@@ -172,14 +173,6 @@
 	/*filters = list()
 	if(istype(mymob) && mymob.client?.prefs?.ambientocclusion)
 		filters += AMBIENT_OCCLUSION
-	*/
-
-	if(istype(mymob) && mymob.client?.prefs?.ambientocclusion)
-		add_filter("backdrop_ambient_occlusion",1,YOGS_AMBIENT_OCCLUSION)
-
-	//YOGS EDIT END
-
-
 //YOGS EDIT
 /obj/screen/plane_master/above_lighting
 	name = "above lighting plane master"

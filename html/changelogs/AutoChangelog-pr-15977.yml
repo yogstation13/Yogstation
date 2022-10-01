@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Golaiths shouldn't be able to roll a 2.1841E-30 chance to fuck you over now"

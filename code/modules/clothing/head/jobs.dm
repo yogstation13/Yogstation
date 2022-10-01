@@ -99,11 +99,12 @@
 	name = "suspicious fedora"
 	icon_state = "syndicate_fedora"
 	desc = "A suspicious black fedora with a red band."
-	w_class = 4
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 	throw_speed = 4
 	sharpness = SHARP_NONE
 	hitsound = 'sound/weapons/genhit.ogg'
 	attack_verb = list("poked", "tipped")
+	embedding = list("embed_chance" = 0) //Zero percent chance to embed
 	var/extended = 0
 
 /obj/item/clothing/head/det_hat/evil/attack_self(mob/user)
@@ -111,16 +112,21 @@
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 	if(extended)
 		force = 15
+		armour_penetration = 15
 		throwforce = 40
+		wound_bonus = -10
+		bare_wound_bonus = 10
 		sharpness = SHARP_EDGED
+		w_class = WEIGHT_CLASS_BULKY //Kinda hard to put a razorblade hat in your bag innit
 		icon_state = "syndicate_fedora_sharp"
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "tipped")
 		hitsound = 'sound/weapons/bladeslice.ogg'
-		hattable = FALSE
+		hattable = FALSE //So you don't accidentally throw it onto somebody's head instead of decapitating them
 	else
 		force = 0
 		throwforce = 0
 		sharpness = SHARP_NONE
+		w_class = WEIGHT_CLASS_NORMAL
 		icon_state = "syndicate_fedora"
 		attack_verb = list("poked", "tipped")
 		hitsound = 'sound/weapons/genhit.ogg'
@@ -170,6 +176,16 @@
 /obj/item/clothing/head/beret/highlander/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
+
+/obj/item/clothing/head/beret/emt
+	name = "EMT beret"
+	desc = "A beret with a dark turquoise color and a reflective cross on the top."
+	icon_state = "emtberet"
+
+/obj/item/clothing/head/beret/emt/green
+	name = "green EMT beret"
+	desc = "A beret with a green color and a reflective cross on the top."
+	icon_state = "emtgrberet"
 
 /obj/item/clothing/head/beret/durathread
 	name = "durathread beret"

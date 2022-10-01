@@ -1,0 +1,6 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - rscadd: "Added nanite and wound scan for ghosts"
+  - rscadd: "Added health/chem/nanite/wound scan toggles as UI elements"
+  - bugfix: "pai setup button doesnt disappear changing themes now"

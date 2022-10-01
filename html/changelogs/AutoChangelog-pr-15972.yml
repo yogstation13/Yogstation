@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Unstamped manifest will now prevent cargo shuttle from leaving unless approved or denied (You can remove the manifest from the shuttle to send it off again otherwise no)"
