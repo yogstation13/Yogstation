@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(459 modules,
-    716/7365 macros, 9.7%)</aside></h3>
+<aside>(461 modules,
+    719/7418 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -521,9 +521,12 @@ transformations and other events that cause new languages to become available.</
     <li><a href="code/modules/mob/say_readme.html" title="code&#x2F;modules&#x2F;mob&#x2F;say_readme">Say code basics</a> - This document is a little dated but I believe it's accurate mostly (oranges 2019)</li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;modular_computers">modular_computers</span><ul class="index-tree">
-    <li class="has-children"><span class="no-substance">computers&#x2F;item&#x2F;</span><span title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;item&#x2F;tablet">tablet</span><ul class="index-tree">
+    <li class="has-children"><span class="no-substance">computers&#x2F;</span><span title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;item">item</span><ul class="index-tree">
+    <li><a href="code/modules/modular_computers/computers/item/computer.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;item&#x2F;computer">computer</a></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;item&#x2F;tablet">tablet</span><ul class="index-tree">
     <li><a href="code/modules/modular_computers/computers/item/tablet/tablet.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;item&#x2F;tablet&#x2F;tablet">tablet</a></li>
     <li><a href="code/modules/modular_computers/computers/item/tablet/tablet_presets.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;item&#x2F;tablet&#x2F;tablet_presets">tablet_presets</a></li>
+    </ul></li>
     </ul></li>
     <li><a href="code/modules/modular_computers/documentation.html" title="code&#x2F;modules&#x2F;modular_computers&#x2F;documentation">Modular computer programs</a> - How module computer programs work</li>
     <li class="has-children"><span class="no-substance">file_system&#x2F;</span><span title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;programs">programs</span><ul class="index-tree">
@@ -678,6 +681,7 @@ transformations and other events that cause new languages to become available.</
     <li class="has-children"><span title="yogstation&#x2F;code">code</span><ul class="index-tree">
     <li class="has-children"><span title="yogstation&#x2F;code&#x2F;datums">datums</span><ul class="index-tree">
     <li><span class="no-substance">components&#x2F;</span><a href="yogstation/code/datums/components/crawl.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;components&#x2F;crawl">crawl</a></li>
+    <li><span class="no-substance">martial&#x2F;</span><a href="yogstation/code/datums/martial/stealth.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;martial&#x2F;stealth">stealth</a></li>
     <li><span class="no-substance">ruins&#x2F;</span><a href="yogstation/code/datums/ruins/station.html" title="yogstation&#x2F;code&#x2F;datums&#x2F;ruins&#x2F;station">station</a></li>
     </ul></li>
     <li class="has-children"><span title="yogstation&#x2F;code&#x2F;game">game</span><ul class="index-tree">
@@ -710,7 +714,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(519 detailed/1170 documented/26251 total, 4.5%)</aside></h3>
+<aside>(525 detailed/1176 documented/26457 total, 4.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -731,7 +735,6 @@ Syndicate infiltrator</li>
     <li class="has-children"><a href="atom.html" title="&#x2F;atom">atom</a> - The base type for nearly all physical objects in SS13<ul class="index-tree">
     <li class="has-children"><a href="atom/movable.html" title="&#x2F;atom&#x2F;movable">movable</a><ul class="index-tree">
     <li><a href="atom/movable/emissive_blocker.html" title="&#x2F;atom&#x2F;movable&#x2F;emissive_blocker">emissive_blocker</a> - Internal atom that copies an appearance on to the blocker plane</li>
-    <li><a href="atom/movable/lighting_object.html" title="&#x2F;atom&#x2F;movable&#x2F;lighting_object">lighting_object</a></li>
     </ul></li>
     </ul></li>
     <li><a href="client.html" title="&#x2F;client">client</a></li>
@@ -1118,6 +1121,7 @@ note of an instrument.*</li>
     <li class="has-children"><a href="datum/language_holder.html" title="&#x2F;datum&#x2F;language_holder">language_holder</a><ul class="index-tree">
     <li><a href="datum/language_holder/spiderbot.html" title="&#x2F;datum&#x2F;language_holder&#x2F;spiderbot">spiderbot</a></li>
     </ul></li>
+    <li><a href="datum/lighting_object.html" title="&#x2F;datum&#x2F;lighting_object">lighting_object</a></li>
     <li class="has-children"><a href="datum/map_generator.html" title="&#x2F;datum&#x2F;map_generator">map_generator</a> - This type is responsible for any map generation behavior that is done in areas, override this to allow for area-specific map generation. This generation is ran by areas in initialize.<ul class="index-tree">
     <li class="has-children"><a href="datum/map_generator/cave_generator.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator">Cave Generator</a><ul class="index-tree">
     <li><a href="datum/map_generator/cave_generator/icemoon.html" title="&#x2F;datum&#x2F;map_generator&#x2F;cave_generator&#x2F;icemoon">icemoon</a> - Spawning isn't done in procs to save on overhead on the 60k turfs we're going through.</li>
@@ -1188,9 +1192,12 @@ note of an instrument.*</li>
     </ul></li>
     <li class="has-children"><a href="datum/martial_art.html" title="&#x2F;datum&#x2F;martial_art">Martial Art</a> - Martial Arts<ul class="index-tree">
     <li><a href="datum/martial_art/cqc.html" title="&#x2F;datum&#x2F;martial_art&#x2F;cqc">CQC</a></li>
+    <li><a href="datum/martial_art/explosive_fist.html" title="&#x2F;datum&#x2F;martial_art&#x2F;explosive_fist">Explosive Fist</a></li>
     <li><a href="datum/martial_art/flyingfang.html" title="&#x2F;datum&#x2F;martial_art&#x2F;flyingfang">Flying Fang</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;martial_art&#x2F;frenzygrab">FrenzyGrab</span> - The martial art given to Bloodsuckers so they can instantly aggressively grab people.</li>
+    <li><a href="datum/martial_art/gardern_warfare.html" title="&#x2F;datum&#x2F;martial_art&#x2F;gardern_warfare">Garden Warfare</a></li>
     <li><a href="datum/martial_art/hunterfu.html" title="&#x2F;datum&#x2F;martial_art&#x2F;hunterfu">Hunter-Fu</a></li>
+    <li><a href="datum/martial_art/stealth.html" title="&#x2F;datum&#x2F;martial_art&#x2F;stealth">Stealth</a></li>
     </ul></li>
     <li class="has-children"><a href="datum/material.html" title="&#x2F;datum&#x2F;material">material</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;material&#x2F;bananium">bananium</span> - Honks and slips</li>
@@ -1715,10 +1722,12 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;bombcore">bomb payload</span> - Bomb Cores<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;bombcore&#x2F;training">dummy payload</span> - Bomb Core Subtypes</li>
     </ul></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;book">book</span><ul class="index-tree">
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;granter">granter</span> - books that teach things (intrinsic actions like bar flinging, spells like fireball or smoke, or martial arts)<ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;book">book</span><ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;granter">granter</span> - books that teach things (intrinsic actions like bar flinging, spells like fireball or smoke, or martial arts)<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;granter&#x2F;action">action</span> - ACTION BUTTONS</li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;granter&#x2F;martial">martial</span> - MARTIAL ARTS</li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;granter&#x2F;martial">martial</span> - MARTIAL ARTS<ul class="index-tree">
+    <li><a href="obj/item/book/granter/martial/garden_warfare.html" title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;granter&#x2F;martial&#x2F;garden_warfare">mysterious scroll</a></li>
+    </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;granter&#x2F;spell">spell</span> - SPELLS</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;book&#x2F;manual">manual</span> - MANUALS (BOOKS)</li>
@@ -1818,6 +1827,7 @@ the program that displays laws should always be usable, and the exceptions were 
     <li class="has-children"><a href="obj/item/gun.html" title="&#x2F;obj&#x2F;item&#x2F;gun">gun</a><ul class="index-tree">
     <li class="has-children"><a href="obj/item/gun/ballistic.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic">projectile gun</a> - Subtype for any kind of ballistic gun
 This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy<ul class="index-tree">
+    <li><span class="no-substance">automatic&#x2F;pistol&#x2F;</span><a href="obj/item/gun/ballistic/automatic/pistol/martial.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;automatic&#x2F;pistol&#x2F;martial">martial</a> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
     <li><span class="no-substance">bow&#x2F;energy&#x2F;</span><a href="obj/item/gun/ballistic/bow/energy/syndicate.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;bow&#x2F;energy&#x2F;syndicate">Syndicate Hardlight Bow</a></li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy">energy</span><ul class="index-tree">
@@ -2173,6 +2183,7 @@ See [limbgrower_designs.dm] for everything we can make.</li>
     <li><a href="obj/machinery/power/tracker.html" title="&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;tracker">solar tracker</a></li>
     </ul></li>
     <li><a href="obj/machinery/recharger.html" title="&#x2F;obj&#x2F;machinery&#x2F;recharger">recharger</a></li>
+    <li><span class="no-substance">rnd&#x2F;</span><a href="obj/machinery/rnd/production.html" title="&#x2F;obj&#x2F;machinery&#x2F;rnd&#x2F;production">technology fabricator</a></li>
     <li><a href="obj/machinery/sci_bombardment.html" title="&#x2F;obj&#x2F;machinery&#x2F;sci_bombardment">Lavaland Artillery Mainframe</a> - A machine used for Toxins scientists. Accepts tank transfer valves (TTVs),
 then shoots (and detonates) them at Lavaland Z-level GPS coordinates provided.</li>
     <li><a href="obj/machinery/seed_extractor.html" title="&#x2F;obj&#x2F;machinery&#x2F;seed_extractor">seed extractor</a></li>
@@ -2318,7 +2329,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/0d6b0c3e386dd12dc096c8dad39961f09e21a18a">0d6b0c3</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/69d79bc53ce58aa76cc1fd9160dcb749d49709c8">69d79bc</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
