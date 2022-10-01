@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - rscdel: "His Grace can no longer occur in null crates."
+  - rscdel: "Romerol bottle can no longer occur in null crates."
