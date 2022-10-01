@@ -91,10 +91,15 @@
 	if(HAS_TRAIT(src, TRAIT_DUMB))
 		msg += "[t_He] seem[p_s()] to be clumsy and unable to think.\n"
 
-	if(fire_stacks > 0)
-		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
-		msg += "[t_He] look[p_s()] a little soaked.\n"
+	switch(fire_stacks)
+		if(1 to INFINITY)
+			msg += "[t_He] [t_is] covered in something flammable.\n"
+		if(-1)
+			msg += "[t_He] look[p_s()] a little damp.\n"
+		if(-2 to -4)
+			msg += "[t_He] look[p_s()] a little soaked.\n"
+		if(-5 to -INFINITY)
+			msg += "[t_He] look[p_s()] drenched.\n"
 
 	if(visible_tumors)
 		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"

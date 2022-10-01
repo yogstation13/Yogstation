@@ -759,6 +759,9 @@
 /datum/action/small_sprite/megafauna/colossus
 	small_icon_state = "Basilisk"
 
+/datum/action/small_sprite/megafauna/stalwart
+	small_icon_state = "Basilisk"
+
 /datum/action/small_sprite/megafauna/bubblegum
 	small_icon_state = "goliath2"
 
