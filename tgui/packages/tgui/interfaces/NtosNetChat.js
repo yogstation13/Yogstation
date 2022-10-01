@@ -6,6 +6,7 @@ import { NtosWindow } from '../layouts';
 export const NtosNetChat = (props, context) => {
   const { act, data } = useBackend(context);
   const {
+    PC_device_theme,
     can_admin,
     adminmode,
     authed,
@@ -20,6 +21,7 @@ export const NtosNetChat = (props, context) => {
   const authorized = (authed || adminmode);
   return (
     <NtosWindow
+      theme={PC_device_theme}
       width={900}
       height={675}>
       <NtosWindow.Content>
