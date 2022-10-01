@@ -815,7 +815,7 @@
 	name = "Rapid Pipe Dispenser (RPD)"
 	id = "rpd"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(/datum/material/iron = 15000, /datum/material/glass = 12500)
+	materials = list(/datum/material/iron = 22000, /datum/material/glass = 18000)
 	build_path = /obj/item/pipe_dispenser
 	category = list("hacked", "Construction", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
