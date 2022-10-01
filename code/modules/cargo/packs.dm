@@ -2847,7 +2847,7 @@
 
 /datum/supply_pack/critter/axolotl
 	name = "Axolotl Crate"
-	desc = "Contains 4 axolotls to pet"
+	desc = "Contains 4 axolotls to pet."
 	cost = 4000
 	contains = list(/mob/living/simple_animal/pet/axolotl,
 					/mob/living/simple_animal/pet/axolotl,
