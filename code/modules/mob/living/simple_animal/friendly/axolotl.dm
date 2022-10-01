@@ -5,6 +5,7 @@
 	icon_living = "axolotl"
 	icon_dead = "axolotl_dead"
 	held_state = "axolotl"
+	held_icon = "axolotl"
 	maxHealth = 10
 	health = 10
 	attacktext = "nibbles" //their teeth are just for gripping food, not used for self defense nor even chewing
