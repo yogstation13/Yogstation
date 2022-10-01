@@ -1,0 +1,5 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - rscdel: "removes gangs from rotation"
+  - tweak: "removes gangs from rotation"
