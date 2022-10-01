@@ -247,6 +247,16 @@
 	max_amount = 5
 	grind_results = null
 
+/obj/item/stack/medical/suture/emergency/makeshift/tribal
+	name = "sinew suture"
+	desc = "A suture created from well processed sinew, with a bone needle"
+	icon_state = "suture_green"
+	heal_brute = 6
+	stop_bleeding = 0.55
+	amount = 10
+	max_amount = 10
+	grind_results = list(/datum/reagent/liquidgibs = 2)
+
 /obj/item/stack/medical/suture/medicated
 	name = "medicated suture"
 	icon_state = "suture_purp"
@@ -309,6 +319,16 @@
 /obj/item/stack/medical/ointment/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is squeezing \the [src] into [user.p_their()] mouth! [user.p_do(TRUE)]n't [user.p_they()] know that stuff is toxic?"))
 	return TOXLOSS
+
+/obj/item/stack/medical/ointment/tribal
+	name = "soothing cream"
+	desc = "A rudamentary ointment with light cooling and sterilizing properties. Useful for preventing a burn from getting too badly infected, and helping it heal."
+	icon_state = "tointment"
+	amount = 7
+	max_amount = 7
+	heal_burn = 4
+	sanitization = 0.2
+	grind_results = list(/datum/reagent/consumable/aloejuice = 2)
 
 /obj/item/stack/medical/ointment/antiseptic
 	name = "antiseptic ointment"
