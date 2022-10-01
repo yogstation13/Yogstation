@@ -1,0 +1,4 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "NT IRN can send the cargo shuttle away from the station if you're a head, QM, or cargo tech"
