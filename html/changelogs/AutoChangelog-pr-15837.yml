@@ -1,5 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - rscadd: "added subtype broken & burned floors for mapping purposes"
-  - bugfix: "cold wood tiles now start with kitchen cold room atmos"

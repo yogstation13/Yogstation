@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - imageadd: "\"removed\" the old icon \"added\" the new one"
-  - imagedel: "why is there no imagetweak tag?"

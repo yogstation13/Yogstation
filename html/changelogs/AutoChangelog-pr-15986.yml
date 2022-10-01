@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - bugfix: "watchersnnow have their death message reset after they drop gems becausw that changes it to account for the gem"
-  - bugfix: "magmawing watchers dont drop frost diamonds because they arent icewing watchers"

@@ -1,5 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the Oddjob Syndikit Special bundle, which turns a Syndicate agent into a small, scampering, well-dressed fedora-thrower that possesses a vague Goldeneye loadout"
-  - tweak: "Syndicate fedora now has 15 AP, -10 wound bonus, 10 bare wound bonus. Only bulky when extended now, and can no longer embed"

@@ -1,5 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - tweak: "mech RCDs use differing amounts of charge depending on what they do now"
-  - bugfix: "non-syndicate borg RCDs do not deconstruct Reinforced Walls again"

@@ -1,7 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - tweak: "Adds 2x IPC Revive Boards to Robotech vendor stocks"
-  - tweak: "Adds one Robotech Vendor to Meta, Box, and Asteroid robotics"
-  - tweak: "Removes the extra health analyzers, buckets, first aid kits, flashes, cables, and prox-sensors since they're in the vendor"
-  - tweak: "removed one now-empty-table on Box to fit the vendor"

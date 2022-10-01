@@ -1,6 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - rscdel: "Revenants cannot hear dead chat anymore, as participants IN a round"
-  - tweak: "Defile cannot damage non-standard windows (reinforced/plasma/etc)"
-  - tweak: "Revenants cannot use abilities in space"
