@@ -195,14 +195,14 @@
 	owner.Beam(marked_dude, "vine", time= 10, maxdistance = range)
 	var/obj/item/I = marked_dude.get_active_held_item()
 	if(I && !HAS_TRAIT(I, TRAIT_NODROP))
-		marked_dude.visible_message(span_warning("[owner] hits [marked_dude] with a vine, pulling [I] out of their hands!"), \
-							span_userdanger("[owner] hits you with a vine, pulling [I] out of your hands!"))     
+		marked_dude.visible_message(span_warning("[owner] grabs at [marked_dude] with a vine, pulling [I] out of their hands!"), \
+							span_userdanger("[owner] grabs at you with a vine, pulling [I] out of your hands!"))     
 		if(I && marked_dude.temporarilyRemoveItemFromInventory(I))
 			I.forceMove(get_turf(owner))
 	else
 		marked_dude.throw_at(get_step_towards(owner, marked_dude), 7, 2) 
-		marked_dude.visible_message(span_warning("[owner] hits [marked_dude] with a vine, knocking them down and pulling them to themselfes!"), \
-							span_userdanger("[owner] hits you with a vine, pulling you to themselfs!"))  
+		marked_dude.visible_message(span_warning("[owner] grabs [marked_dude] with a vine, knocking them down and pulling them closer!"), \
+							span_userdanger("[owner] grabs you with a vine, pulling you to themselfs!"))  
 		marked_dude.Knockdown(3 SECONDS)
 	marked_dude = null
 				
