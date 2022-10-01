@@ -7,7 +7,7 @@
 	filling_color = "#CD853F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 1)
 	tastes = list("fish" = 4, "batter" = 1, "hot peppers" = 1)
-	foodtype = SEAFOOD
+	foodtype = SEAFOOD | GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/carpmeat
 	name = "carp fillet"
@@ -113,6 +113,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/vegetariansushislice
 	slices_num = 4
 
+
 /obj/item/reagent_containers/food/snacks/vegetariansushislice
 	name = "vegetarian sushi slice"
 	desc = "A slice of simple vegetarian sushi, made with rice, carrots, and potatoes."
@@ -149,6 +150,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("milk" = 1, "old cardboard" = 1)
+	foodtype = SEAFOOD | GRAIN
 
 /obj/item/reagent_containers/food/snacks/dolphinandchips
 	name = "dolphin and chips"
@@ -158,6 +160,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("dolphin meat" = 1, "fries" = 1)
+	foodtype = SEAFOOD | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/fishdumpling
 	name = "fish dumpling"
@@ -178,6 +181,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("dolphin meat" = 1, "regret" = 1)
+	foodtype = SEAFOOD | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/seaweedsheet
 	name = "seaweed sheet"
