@@ -230,6 +230,8 @@
 		return
 	next_scan = world.time + (2 SECONDS)
 	objects = list()
+	var/list/names = list()
+	var/list/humanoids = list()
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/carbon/human/humanoid = i
 		if(!istype(humanoid))
@@ -241,9 +243,12 @@
 			var/obj/item/card/id/ID = humanoid.wear_id.GetID()
 			if(ID && ID.registered_name)
 				crewmember_name = ID.registered_name
+		names += crewmember_name
+		humanoids[crewmember_name] = i
+	for(var/N in sortList(names))
 		var/list/crewinfo = list(
-			ref = REF(humanoid),
-			name = crewmember_name,
+			ref = REF(humanoids[N]),
+			name = N
 			)
 		objects += list(crewinfo)
 

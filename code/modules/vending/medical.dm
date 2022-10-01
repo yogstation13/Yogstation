@@ -24,7 +24,7 @@
 					/obj/item/pinpointer/crew = 2,
 					/obj/item/healthanalyzer/wound = 4,
 					/obj/item/stack/medical/ointment = 2,
-					/obj/item/stack/medical/suture = 2,
+					/obj/item/stack/medical/ointment/antiseptic = 4,
 					/obj/item/stack/medical/bone_gel = 4)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,
 		              /obj/item/reagent_containers/pill/morphine = 4,

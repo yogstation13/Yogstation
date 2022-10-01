@@ -99,7 +99,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	var/list/weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 	/// multiplier to increase/decrease effects of range on attack cooldown, 0 to ignore range
 	var/range_cooldown_mod = 1
-	var/break_message = "%SRC crumbles into scraps under hard use"
+	var/break_message = "%SRC crumbles into scraps under hard use."
 	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
 	var/sharpness = SHARP_NONE
 

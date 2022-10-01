@@ -8,7 +8,7 @@
 	var/mob/living/mimicking
 
 /obj/effect/simulacrum/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 	QDEL_IN(src, 100)
 

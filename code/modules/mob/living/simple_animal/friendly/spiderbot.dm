@@ -1,6 +1,6 @@
 /mob/living/simple_animal/spiderbot
 	name = "Spider bot"
-	desc = "A skittering robotic friend!"
+	desc = "Unlike drones, spiderbots are actually smart and make good friends!"
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
@@ -19,7 +19,7 @@
 	response_help  = "pets"
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
-	ventcrawler = 2
+	density = FALSE
 	speed = -1  //Spiderbots gotta go fast.
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -63,32 +63,24 @@
 		if(!user.temporarilyRemoveItemFromInventory(M))
 			return
 		to_chat(user, span_notice("You install [M] in [src]!"))
+		mmi = M
 		transfer_personality(M)
 		update_icon()
 		return 1
 
-	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src)) ///STOLEN FROM CYRORG CODE
+	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src)) ///Removed needless self repair part
 		user.changeNext_move(CLICK_CD_MELEE)
 		if (!getBruteLoss())
 			to_chat(user, span_warning("[src] is already in good condition!"))
 			return
 		if (!O.tool_start_check(user, amount=0))
 			return
-		if(src == user)
-			if(health > 0)
-				to_chat(user, span_warning("You have repaired what you could! Get some help to repair the remaining damage."))
-				return
-			to_chat(user, span_notice("You start fixing yourself..."))
-			if(!O.use_tool(src, user, 50))
-				return
-			if(health > 0)
-				return
-
 		adjustBruteLoss(-10)
 		updatehealth()
 		add_fingerprint(user)
 		visible_message(span_notice("[user] has fixed some of the dents on [src]."))
 		return
+
 	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/pda))
 		if (!mmi)
 			to_chat(user, span_warning("There's no reason to swipe your ID - the spiderbot has no brain to remove."))
@@ -140,7 +132,7 @@
 		death()
 
 /mob/living/simple_animal/spiderbot/proc/update_icon()
-	if(key)
+	if(mmi)
 		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"
 			icon_living = "spiderbot-chassis-posi"
@@ -157,10 +149,16 @@
 			mind.transfer_to(mmi.brainmob)
 		else if(key)
 			mmi.brainmob.key = key
+		mmi.forceMove(loc)
+		mmi.update_icon()
 		mmi = null
 		name = initial(name)
-		mmi.forceMove(loc)
 	update_icon()
+
+/mob/living/simple_animal/spiderbot/gib()
+	eject_brain()
+	new /obj/effect/decal/remains/robot(loc)
+	qdel(src)
 
 /mob/living/simple_animal/spiderbot/Destroy()
 	eject_brain()
@@ -258,6 +256,8 @@
 	return 0
 
 /mob/living/simple_animal/spiderbot/examine(mob/user)
-	..()
+	. = ..()
+	if(health < maxHealth)
+		. += "This [src] looks a bit dented"
 	if(src.held_item)
 		to_chat(user, "It is carrying \a [src.held_item] [icon2html(src.held_item, src)].")
