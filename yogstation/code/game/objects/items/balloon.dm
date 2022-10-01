@@ -15,6 +15,7 @@
 	. = ..()
 	if(I.sharpness == SHARP_POINTY)
 		user.visible_message("[user] pops the balloon!", "You pop the balloon")
+		playsound(src, 'sound/weapons/gunshot.ogg', 100, 1)
 		new /obj/effect/decal/cleanable/generic(get_turf(src))
 		qdel(src)
 

@@ -2299,6 +2299,16 @@
 	crate_name = "viper crate"
 	contraband = TRUE
 
+/datum/supply_pack/critter/gator
+	name = "Gator Crate"
+	desc = "Sewage not included..."
+	hidden = TRUE
+	cost = 3000
+	contains = list(/mob/living/simple_animal/hostile/retaliate/gator,
+					/mob/living/simple_animal/hostile/retaliate/gator,
+					/mob/living/simple_animal/hostile/retaliate/gator)
+	crate_name = "gator crate"
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Costumes & Toys /////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -2771,6 +2781,15 @@
 	contains = list(/obj/machinery/jukebox/disco)
 	crate_name = "radiant dance machine mark IV crate"
 	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/misc/jukebox/disco/portable
+	name = "Portable Radiant Dance Machine Crate"
+	desc = "It's a jukebox with more lights. Tiny, even..and with no sound. Three of them."
+	cost = 4500
+	contains = list(/obj/item/discoballdeployer,
+					/obj/item/discoballdeployer,
+					/obj/item/discoballdeployer)
+	crate_name = "portable radiant dance machine crate"
 
 /datum/supply_pack/misc/pda
 	name = "Modular Personal Digital Assistant Crate"
