@@ -30,7 +30,6 @@
 	brutemod = 1
 	toxmod = 0
 	clonemod = 0
-	oxymod = 0
 	staminamod = 0.8
 	siemens_coeff = 1.75
 	reagent_tag = PROCESS_SYNTHETIC
@@ -199,6 +198,8 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /datum/species/ipc/spec_life(mob/living/carbon/human/H)
 	. = ..()
+	H.setOxyLoss(0)
+	H.losebreath = 0
 	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD) // So they die eventually instead of being stuck in crit limbo.
 		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
 		if(prob(5))
