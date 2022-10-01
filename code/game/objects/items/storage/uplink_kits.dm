@@ -142,7 +142,7 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "v" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
 		if("v") //Big Boss. Total of ~28 TC.
 			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
 			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
@@ -156,6 +156,16 @@
 			new /obj/item/storage/box/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
 			new /obj/item/lighter(src) //Need to light the cigar
 
+		if("oddjob") //Total TC value of 27ish TC
+			new /obj/item/clothing/head/det_hat/evil(src) //6 TC. Absolutely necessary
+			new /obj/item/clothing/under/syndicate/sniper(src) //Variant of tactical turtleneck that looks like a suit, provides 10 melee armor, has no sensors. Would say it's free
+			new /obj/item/clothing/suit/det_suit/grey/evil(src) //Grey det trenchcoat with hos coat values, 2ish TC
+			new /obj/item/clothing/shoes/laceup(src) //Fancy shoes. Free
+			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun); you only get 7 shots. Realistically only like 7 TC just because you can't reload it; still highballing it
+			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
+			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
+			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
+
 		if("ninja")
 			new /obj/item/katana(src) // Unique , hard to tell how much tc this is worth. 8 tc?
 			new /obj/item/implanter/adrenalin(src) // 8 tc
@@ -165,13 +175,15 @@
 			new /obj/item/card/id/syndicate(src) // 2 tc
 			new /obj/item/chameleon(src) // 7 tc
 
-		if("darklord")
-			new /obj/item/twohanded/dualsaber(src)
-			new /obj/item/dnainjector/telemut/darkbundle(src)
-			new /obj/item/clothing/suit/hooded/chaplain_hoodie(src)
-			new /obj/item/card/id/syndicate(src)
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //because slipping while being a dark lord sucks
-			new /obj/item/book/granter/spell/summonitem(src)
+		if("darklord") //This is now basically just a wizard instead of just desword: the kit. Hard to quantify the TC cost of spells, but taking SP * 4 would yield a theoretical TC of 31-ish
+			new /obj/item/melee/transforming/energy/sword/saber/red(src) //8 TC. A red lightsaber. Enough said
+			new /obj/item/clothing/mask/chameleon/syndicate(src) //Not even 1 TC, the real value of the chameleon kit is the jumpsuit. However this is absolutely necessary for your Sithsona
+			new /obj/item/card/id/syndicate(src) //2 TC, so you can give yourself a proper name
+			new /obj/item/clothing/suit/wizrobe/black(src) //Dark robes for the dark lord. Free
+			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
+			new /obj/item/book/granter/spell/teslablast(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that requires robes
+			new /obj/item/book/granter/spell/repulse(src) //"Force Push". 2 SP cost spell that requires robes
+			new /obj/item/book/granter/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else
 			new /obj/item/pneumatic_cannon/speargun(src)

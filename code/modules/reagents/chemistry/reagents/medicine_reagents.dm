@@ -723,6 +723,7 @@
 	..()
 	L.ignore_slowdown(type)
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "[type]_high", /datum/mood_event/high)
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.unignore_slowdown(type)
