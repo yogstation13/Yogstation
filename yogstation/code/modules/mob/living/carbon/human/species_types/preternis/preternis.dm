@@ -120,10 +120,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/mob/living/carbon/human/H = usr
 	if(!lockdown)
 		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
-		H.add_movespeed_modifier("preternis_maglock", update=TRUE, priority=103, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
 	else
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
-		H.remove_movespeed_modifier("preternis_maglock")
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
@@ -132,11 +130,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/negates_gravity(mob/living/carbon/human/H)
 	return (..() || lockdown)
 
-/mob/living/carbon/human/experience_pressure_difference(pressure_difference, direction)
-	if(ispreternis(src))
-		var/datum/species/preternis/species = dna.species
-		if(!species.lockdown)
-			return ..()
+/datum/species/preternis/has_heavy_gravity()
+	return (..() || lockdown)
 
 /datum/species/preternis/spec_emag_act(mob/living/carbon/human/H, mob/user)
 	. = ..()
@@ -205,6 +200,15 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	burnmod = initial(burnmod)
 	tesliumtrip = FALSE
 	H.remove_movespeed_modifier("preternis_teslium") //full heal removes chems so it wont update the teslium speed up until they eat something
+
+/datum/species/preternis/movement_delay(mob/living/carbon/human/H)
+	. = ..()
+
+	if(lockdown && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
+		H.add_movespeed_modifier("magboot_trait", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+	else if(H.has_movespeed_modifier("magboot_trait"))
+		H.remove_movespeed_modifier("magboot_trait")
+	
 
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()

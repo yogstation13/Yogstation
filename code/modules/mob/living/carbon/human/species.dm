@@ -2122,6 +2122,9 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(H.movement_type & FLYING)
 		return TRUE
 	return FALSE
+	
+/datum/species/proc/has_heavy_gravity(mob/living/carbon/human/H)
+	return FALSE
 
 ////////////////
 //Tail Wagging//
