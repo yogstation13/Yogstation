@@ -6,12 +6,6 @@
 	var/show_alpha = 255
 	var/hide_alpha = 0
 
-//YOGS EDIT
-/obj/screen/plane_master/proc/get_render_target()
-	render_target = "[name]_TARGET"
-	return render_target
-//END YOGS EDIT
-
 /obj/screen/plane_master/proc/Show(override)
 	alpha = override || show_alpha
 
@@ -66,24 +60,12 @@
 	blend_mode = BLEND_OVERLAY
 
 /obj/screen/plane_master/game_world/backdrop(mob/mymob)
-	//YOGS EDIT 
-
-	//OG TG CODE <--- this is absolutely fucking stupid, why manually destroy all filters? for what??? all i know is that this causes add_filter to break when trying to add filters the proper way.
-	//tldr dont add filters directly for the love of god, use add_filter instead.
-
-	/*filters = list()
+	filters = list()
 	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
 		filters += AMBIENT_OCCLUSION
 	if(istype(mymob) && mymob.eye_blurry)
 		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
-	*/
 
-	if(istype(mymob) && mymob?.client?.prefs?.ambientocclusion)
-		add_filter("backdrop_ambient_occlusion",1,YOGS_AMBIENT_OCCLUSION)
-	if(istype(mymob) && mymob.eye_blurry)
-		add_filter("backdrop_gaussian_blur",1,YOGS_GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3)))
-
-	//YOGS EDIT END
 
 ///Contains all lighting objects
 /obj/screen/plane_master/lighting
@@ -165,20 +147,14 @@
 	blend_mode = BLEND_OVERLAY
 
 /obj/screen/plane_master/runechat/backdrop(mob/mymob)
-	//YOGS EDIT 
-
-	//same reasoning as above in game_plane
-
-	//OG TG CODE
-	/*filters = list()
+	filters = list()
 	if(istype(mymob) && mymob.client?.prefs?.ambientocclusion)
 		filters += AMBIENT_OCCLUSION
+
 //YOGS EDIT
 /obj/screen/plane_master/above_lighting
 	name = "above lighting plane master"
 	plane = ABOVE_LIGHTING_PLANE
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
-
-
 //YOGS EDIT END
