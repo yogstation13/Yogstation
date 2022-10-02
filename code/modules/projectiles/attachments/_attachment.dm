@@ -67,13 +67,13 @@
 
 /// Called when the attachment is detached from a weapon
 /obj/item/attachment/proc/on_detach(obj/item/gun/G, mob/living/user = null)
-	for(var/act in actions_list)
-		for(var/S in G.attachment_actions)
-			if(istype(S, act))
-				G.attachment_actions -= S
-				var/datum/action/A = S
-				A.Remove(user)
-				QDEL_NULL(S)
+	for(var/act_type in actions_list)
+		for(var/stored_attachment in G.attachment_actions)
+			if(istype(stored_attachment, act_type))
+				var/datum/action/typed_attachment = stored_attachment
+				typed_attachment.Remove(user)
+				G.attachment_actions -= stored_attachment
+				QDEL_NULL(stored_attachment)
 				break
 	
 	attached_gun = null
