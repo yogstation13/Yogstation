@@ -213,8 +213,8 @@
 /datum/action/item_action/toggle_laser_sight/Trigger()
 	if(!att)
 		if(istype(target, /obj/item/gun))
-			var/obj/item/gun/H = target
-			for(var/obj/item/attachment/A in H.current_attachments)
+			var/obj/item/gun/parent_gun = target
+			for(var/obj/item/attachment/A in parent_gun.current_attachments)
 				if(istype(A, /obj/item/attachment/laser_sight))
 					att = A
 					break
