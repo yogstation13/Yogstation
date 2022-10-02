@@ -33,7 +33,7 @@
 
 	/// List of actions to add to the gun when attached.
 	/// See code/modules/projectiles/attachments/laser_sight.dm for example.
-	var/actions_list = list()
+	var/list/actions_list = list()
 
 /obj/item/attachment/update_icon()
 	if(is_on)
