@@ -764,8 +764,8 @@
 		new /obj/item/reagent_containers/pill/aiur(src)
 
 /obj/item/storage/pill_bottle/gummies
-	name = "gummie bottle"
-	desc = "It's an airtight container for storing gummy bears."
+	name = "large medicine bottle"
+	desc = "It's an airtight container for storing gummy bears." //until pills are 10u this is all they're for
 	icon_state = "pill_canister_large"
 	w_class = WEIGHT_CLASS_SMALL
 
