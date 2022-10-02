@@ -168,22 +168,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					assignment_title = ""
 					assignment = ""
 					ijob = 80
-							
-				if(locate(/datum/wound/blunt) in H.all_wounds) //check if has bone wounds
-					is_bonecrack = TRUE
-								
-				if (H.radiation > RAD_MOB_SAFE) //safe level before sending alert
-					is_irradiated = TRUE
-
-				if(length(H.get_wounded_bodyparts())) //check if wounded
-					is_wounded = TRUE			
-
-				if (HAS_TRAIT(H, TRAIT_HUSK)) //check if husked
-					is_husked = TRUE
-					species = null //suit sensors won't recognize anymore
-
-				if (H.on_fire == TRUE) //check if on fire
-					is_onfire = TRUE
 					
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
 					life_status = H.stat < DEAD
@@ -233,6 +217,22 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					burndam = null
 					brutedam = null
 					species = null
+
+				if(locate(/datum/wound/blunt) in H.all_wounds) //check if has bone wounds
+					is_bonecrack = TRUE
+								
+				if (H.radiation > RAD_MOB_SAFE) //safe level before sending alert
+					is_irradiated = TRUE
+
+				if(length(H.get_wounded_bodyparts())) //check if wounded
+					is_wounded = TRUE			
+
+				if (HAS_TRAIT(H, TRAIT_HUSK)) //check if husked
+					is_husked = TRUE
+					species = null //suit sensors won't recognize anymore
+
+				if (H.on_fire == TRUE) //check if on fire
+					is_onfire = TRUE
 
 				if (nanite_sensors || U.sensor_mode >= SENSOR_COORDS)
 					if (!pos)
