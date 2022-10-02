@@ -723,6 +723,7 @@
 	..()
 	L.ignore_slowdown(type)
 	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, type)
+	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "[type]_high", /datum/mood_event/high)
 
 /datum/reagent/medicine/morphine/on_mob_end_metabolize(mob/living/L)
 	L.unignore_slowdown(type)
@@ -1832,3 +1833,15 @@
 
 #undef PERF_BASE_DAMAGE
 #undef REQUIRED_STRANGE_REAGENT_FOR_REVIVAL
+
+/datum/reagent/medicine/coagulant/seraka_extract
+	name = "Seraka Extract"
+	description = "A deeply coloured oil present in small amounts in seraka mushrooms. Acts as an effective blood clotting agent, but has a low overdose threshold."
+	color = "#00767C"
+	taste_description = "intensely savoury bitterness"
+	glass_name = "glass of seraka extract"
+	glass_desc = "Deeply savoury and bitter. Slows your blood flow. Dangerous in moderate quantities."
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
+	clot_rate = 0.4 //slightly better than regular coagulant
+	passive_bleed_modifier = 0.5
+	overdose_threshold = 10 //but easier to overdose on

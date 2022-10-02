@@ -255,6 +255,17 @@
 			/obj/effect/mine/gas = 5,
 		)
 
+/obj/effect/spawner/lootdrop/effects/landmines/ancient
+	name = "stun or ancient explosive landmine spawner"
+	icon_state = "landmine_spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 84,
+			/obj/effect/mine/explosive/ancient = 1,
+			/obj/effect/mine/stun = 5,
+		)
+
 /obj/effect/spawner/lootdrop/three_course_meal
 	name = "three course meal spawner"
 	lootcount = 3
