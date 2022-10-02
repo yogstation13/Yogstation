@@ -135,6 +135,5 @@
 	set_user(null)
 	listeningTo = null
 	STOP_PROCESSING(SSfastprocess, src)
-	if(attached_gun)
-		QDEL_LIST(attached_gun.current_tracers)
+	QDEL_LIST(attached_gun?.current_tracers)
 	return ..()
