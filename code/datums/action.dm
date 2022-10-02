@@ -204,6 +204,61 @@
 /datum/action/item_action/toggle_light
 	name = "Toggle Light"
 
+/datum/action/item_action/toggle_laser_sight
+	name = "Toggle Laser Sight"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "laser_sight"
+	var/obj/item/attachment/laser_sight/att
+
+/datum/action/item_action/toggle_laser_sight/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/H = target
+			for(var/obj/item/attachment/A in H.current_attachments)
+				if(istype(A, /obj/item/attachment/laser_sight))
+					att = A
+					break
+	if(att)
+		att.toggle_on()
+	UpdateButtonIcon()
+
+/datum/action/item_action/toggle_laser_sight/UpdateButtonIcon(status_only = FALSE, force)
+	if(att)
+		if(att.is_on)
+			button_icon_state = "laser_sight_on"
+		else
+			button_icon_state = "laser_sight"
+	..()
+
+/datum/action/item_action/change_laser_sight_color
+	name = "Change Laser Sight Color"
+	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "laser_sight"
+	var/obj/item/attachment/laser_sight/att
+
+/datum/action/item_action/change_laser_sight_color/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/H = target
+			for(var/obj/item/attachment/A in H.current_attachments)
+				if(istype(A, /obj/item/attachment/laser_sight))
+					att = A
+					break
+	if(att && owner)
+		var/C = input(owner, "Select Laser Color", "Select laser color", att.laser_color) as null|color
+		if(!C || QDELETED(att))
+			return
+		att.laser_color = C
+	UpdateButtonIcon()
+
+/datum/action/item_action/change_laser_sight_color/UpdateButtonIcon(status_only = FALSE, force)
+	if(att)
+		if(att.is_on)
+			button_icon_state = "laser_sight_on"
+		else
+			button_icon_state = "laser_sight"
+	..()
+
 /datum/action/item_action/toggle_hood
 	name = "Toggle Hood"
 
