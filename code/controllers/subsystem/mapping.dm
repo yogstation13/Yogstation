@@ -322,7 +322,7 @@ SUBSYSTEM_DEF(mapping)
 	else if(config.minetype == "jungle_and_lavaland")
 		SSpersistence.LoadMinetype()
 		var/determinant = SSpersistence.next_minetype
-		if(determinant != 2 || determinant != 1 || determinant != 0)
+		if(determinant != 2 && determinant != 1 && determinant != 0)
 			determinant = 2
 		switch(determinant)
 			if(2)
