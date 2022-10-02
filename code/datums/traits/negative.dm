@@ -432,6 +432,7 @@
 	//no mob trait because it's handled uniquely
 	gain_text = null //handled by trauma
 	lose_text = null
+	var/where
 	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
 
 /datum/quirk/insanity/add()
