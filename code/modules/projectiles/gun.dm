@@ -622,8 +622,7 @@
 		att_position += 1
 
 	update_icon(TRUE)
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.UpdateButtonIcon()
 
 /obj/item/gun/pickup(mob/user)
