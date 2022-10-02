@@ -1475,8 +1475,7 @@
 					/obj/item/storage/pill_bottle/gummies/drugs,
 					/obj/item/storage/pill_bottle/gummies/floorbear,
 					/obj/item/storage/pill_bottle/gummies/mindbreaker,
-					/obj/item/storage/pill_bottle/gummies/omnizine,
-					/obj/item/storage/pill_bottle/gummies/sleepy)
+					/obj/item/storage/pill_bottle/gummies/omnizine)
 	crate_name = "illegal gummy bear crate"
 	contraband = TRUE
 	small_item = TRUE
@@ -2403,6 +2402,7 @@
 					/obj/item/storage/pill_bottle/lsd,
 					/obj/item/storage/pill_bottle/aranesp,
 					/obj/item/storage/pill_bottle/stimulant,
+					/obj/item/storage/pill_bottle/gummies/omnizine,
 					/obj/item/toy/cards/deck/syndicate,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,

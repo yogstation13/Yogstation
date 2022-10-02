@@ -2406,6 +2406,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 0 //not because its too strong, but rather because it shouldn't be polluting the pool for other items
 	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndiebears/sleepy
@@ -2414,6 +2415,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/pill_bottle/gummies/sleepy
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 1 //rare. I feel sorry for the poor bastard that gets scammed by these
 	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndietape
