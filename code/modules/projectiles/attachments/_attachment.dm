@@ -36,13 +36,9 @@
 	var/list/actions_list = list()
 
 /obj/item/attachment/update_icon()
-	if(is_on)
-		icon_state = "[initial(icon_state)]_on"
-	else
-		icon_state = initial(icon_state)
+	icon_state = initial(icon_state) + is_on ? "_on" : ""
 	. = ..()
-	if(attached_gun)
-		attached_gun.update_attachments()
+	attached_gun?.update_attachments()
 
 /obj/item/attachment/Destroy()
 	if(attached_gun)
