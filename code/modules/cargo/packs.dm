@@ -1475,7 +1475,8 @@
 					/obj/item/storage/pill_bottle/gummies/drugs,
 					/obj/item/storage/pill_bottle/gummies/floorbear,
 					/obj/item/storage/pill_bottle/gummies/mindbreaker,
-					/obj/item/storage/pill_bottle/gummies/omnizine)
+					/obj/item/storage/pill_bottle/gummies/omnizine,
+					/obj/item/storage/pill_bottle/gummies/sleepy)
 	crate_name = "illegal gummy bear crate"
 	contraband = TRUE
 	small_item = TRUE

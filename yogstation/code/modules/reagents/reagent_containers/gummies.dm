@@ -23,15 +23,12 @@
 /obj/item/reagent_containers/gummy/on_reagent_change(changetype)
 	. = ..()
 	if(color == null) //only change the color IF there is no color already
-		message_admins("my color is [color]")
 		if(!reagents)
 			color = "#a8a8a8"
-			message_admins("my color is now [color]")
 			message_admins("[src] at [(src.loc)] was created with no reagents inside it! Please report this to a coder!")
 			log_game("[src] at [src.loc] was created with no reagents inside it! Please report this to a coder!")
 		if(color == null && reagents)
 			color = mix_color_from_reagents(reagents.reagent_list)
-			message_admins("my color is now [color]")
 
 /obj/item/reagent_containers/gummy/attack_self(mob/user)
 	return
