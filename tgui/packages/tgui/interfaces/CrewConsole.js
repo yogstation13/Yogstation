@@ -198,12 +198,14 @@ export const CrewConsoleContent = (props, context) => {
                 Name
               </Table.Cell>
               <Table.Cell bold collapsing textAlign="center">
-                Status
+                Warnings
               </Table.Cell>
               <Table.Cell bold collapsing textAlign="center">
                 Species
               </Table.Cell>
-              <Table.Cell bold collapsing />
+              <Table.Cell bold collapsing textAlign="center">
+                Status
+              </Table.Cell>
               <Table.Cell bold collapsing textAlign="center">
                 Vitals
               </Table.Cell>
