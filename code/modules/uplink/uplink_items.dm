@@ -773,7 +773,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/ammo/shotgun/frag
 	name = "12g Frag-12 Drum"
-	desc = "An alternative 8-round frag-12 magazine for us in the Bulldog shotgun. \
+	desc = "An alternative 8-round frag-12 magazine for use in the Bulldog shotgun. \
 			'Collateral is my favorite kind of damage!'"
 	cost = 3
 	item = /obj/item/ammo_box/magazine/m12g/frag
