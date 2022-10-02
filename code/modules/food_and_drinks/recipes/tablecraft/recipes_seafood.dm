@@ -7,6 +7,16 @@
 	result = /obj/item/reagent_containers/food/snacks/carpmeat/fish/battered
 	subcategory = CAT_SEAFOOD
 
+/datum/crafting_recipe/food/battered_shrimp
+	name = "Battered Shrimp"
+	reqs = list(
+		/datum/reagent/consumable/batter = 2,
+		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/fish/shrimp/battered
+	subcategory = CAT_SEAFOOD
+
+
 /datum/crafting_recipe/food/sashimi
 	name = "Carp Sashimi"
 	reqs = list(
@@ -89,7 +99,7 @@
 	subcategory = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/fishtaco
-	name ="Fish taco"
+	name ="Fish Taco"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/tortilla = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
@@ -99,13 +109,13 @@
 	result = /obj/item/reagent_containers/food/snacks/fishtaco
 	subcategory = CAT_SEAFOOD
 
-/datum/crafting_recipe/food/fishalfredo
+/datum/crafting_recipe/food/shrimpalfredo
 	name = "Seafood Alfredo"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/spaghetti/falfredo = 1,
 		/obj/item/reagent_containers/food/snacks/fish/shrimp = 3
 	)
-	result = /obj/item/reagent_containers/food/snacks/spaghetti/falfredo
+	result = /obj/item/reagent_containers/food/snacks/spaghetti/shrimpalfredo
 	subcategory = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/squidpasta

@@ -163,6 +163,7 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
+		/obj/item/stack/medical/ointment/antiseptic = 2,
 		/obj/item/reagent_containers/pill/patch/silver_sulf = 2,
 		/obj/item/reagent_containers/pill/oxandrolone = 2,
 		/obj/item/reagent_containers/medspray/silver_sulf = 1,

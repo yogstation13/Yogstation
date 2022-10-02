@@ -110,6 +110,19 @@
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
 
+/datum/supply_pack/costumes_toys/balloons
+	name = "Balloon Crate"
+	desc = "A crate filled with 6 fun filled balloon boxes!"
+	cost = 2000
+	contains = list(
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox
+	)
+
 /datum/supply_pack/security/prisonclothes
 	name = "Prison Jumpsuit Crate"
 	desc = "A crate containing a five cheap looking orange jumpsuits."

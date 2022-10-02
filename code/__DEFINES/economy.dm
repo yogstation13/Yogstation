@@ -1,3 +1,4 @@
+#define STARTING_PAYCHECKS 3 // Amount of paychecks
 #define STARTING_PAYCHECKS_MIN 50 // Minimum roundstart money
 #define STARTING_PAYCHECKS_MAX 250 // Maximum roundstart money
 

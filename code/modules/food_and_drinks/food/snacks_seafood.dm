@@ -7,7 +7,7 @@
 	filling_color = "#CD853F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 1)
 	tastes = list("fish" = 4, "batter" = 1, "hot peppers" = 1)
-	foodtype = SEAFOOD
+	foodtype = SEAFOOD | GRAIN | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/carpmeat
 	name = "carp fillet"
@@ -53,7 +53,14 @@
 	desc = "A fillet of spess fish meat. Coated in crunchy fried beer batter."
 	icon_state = "fishfillet_battered"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cooking_oil = 1) //spontaniously fries because battering code doesn't actually exist yet.
-	foodtype = SEAFOOD
+	foodtype = SEAFOOD | GRAIN
+
+/obj/item/reagent_containers/food/snacks/fish/shrimp/battered //change whenever batter-frying code exists pls
+	name = "tempura shrimp"
+	desc = "A shrimp coated in crunchy fried beer batter."
+	icon_state = "shrimp_tempura"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/cooking_oil = 1)
+	foodtype = SEAFOOD | GRAIN
 
 /obj/item/reagent_containers/food/snacks/fishfingers
 	name = "fish fingers"
@@ -113,6 +120,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/vegetariansushislice
 	slices_num = 4
 
+
 /obj/item/reagent_containers/food/snacks/vegetariansushislice
 	name = "vegetarian sushi slice"
 	desc = "A slice of simple vegetarian sushi, made with rice, carrots, and potatoes."
@@ -149,6 +157,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("milk" = 1, "old cardboard" = 1)
+	foodtype = SEAFOOD | GRAIN
 
 /obj/item/reagent_containers/food/snacks/dolphinandchips
 	name = "dolphin and chips"
@@ -158,10 +167,11 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("dolphin meat" = 1, "fries" = 1)
+	foodtype = SEAFOOD | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/fishdumpling
-	name = "fish dumplings"
-	desc = "powerful little pockets of flavor."
+	name = "fish dumpling"
+	desc = "a powerful little pocket of flavor."
 	icon_state = "fishdumpling"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 15) //delicious onion and garlic and fish
@@ -178,6 +188,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 100, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("dolphin meat" = 1, "regret" = 1)
+	foodtype = SEAFOOD | VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/seaweedsheet
 	name = "seaweed sheet"
@@ -199,8 +210,8 @@
 	foodtype = VEGETABLES | FRUIT | SEAFOOD
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/reagent_containers/food/snacks/spaghetti/fishalfredo
-	name = "seafood alfredo"
+/obj/item/reagent_containers/food/snacks/spaghetti/shrimpalfredo
+	name = "shrimp alfredo"
 	desc = "A dish of fresh fettuccine tossed with creamy butter and parmesan cheese. The proportions are huge. Also has some shrimp tossed in it!"
 	icon_state = "fishalfredo"
 	bitesize = 10
