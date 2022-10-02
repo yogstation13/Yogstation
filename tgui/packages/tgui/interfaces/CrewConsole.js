@@ -50,7 +50,7 @@ const speciesmap = {
   },
   "Podperson": {
     "icon": "seedling",
-    "color": "#05fa46",
+    "color": "#07f58a",
   },
   "Plasmaman": {
     "icon": "skull",
