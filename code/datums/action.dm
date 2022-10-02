@@ -218,8 +218,7 @@
 				if(istype(A, /obj/item/attachment/laser_sight))
 					att = A
 					break
-	if(att)
-		att.toggle_on()
+	att?.toggle_on()
 	UpdateButtonIcon()
 
 /datum/action/item_action/toggle_laser_sight/UpdateButtonIcon(status_only = FALSE, force)
