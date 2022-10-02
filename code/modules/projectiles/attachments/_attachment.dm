@@ -53,7 +53,7 @@
 		var/datum/action/attachment_action = new act(G)
 		G.attachment_actions += attachment_action
 		if(user && G.loc == user)
-			L.Grant(user)
+			attachment_action.Grant(user)
 	
 	if(G.loc == user)
 		set_user(user)
