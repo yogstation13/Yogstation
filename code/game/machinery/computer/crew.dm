@@ -213,8 +213,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					if (isabductor(H))
 						species = "Alien"
 
-					for(var/obj/item/bodypart/part in H)
+					for(var/obj/item/bodypart/part in H.bodyparts)
 						if(part.bodypart_disabled == TRUE)
+							is_disabled = TRUE
+						if(length(H.get_missing_limbs()))
 							is_disabled = TRUE
 					
 					if(locate(/datum/wound/slash) in H.all_wounds)
