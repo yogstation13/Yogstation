@@ -50,8 +50,8 @@
 	attached_gun = G
 
 	for(var/act in actions_list)
-		var/datum/action/L = new act(G)
-		G.attachment_actions += L
+		var/datum/action/attachment_action = new act(G)
+		G.attachment_actions += attachment_action
 		if(user && G.loc == user)
 			L.Grant(user)
 	
