@@ -1,4 +1,4 @@
-#define SENSORS_UPDATE_PERIOD 100 //How often the sensor data updates.
+#define SENSORS_UPDATE_PERIOD 10 //How often the sensor data updates.
 
 /obj/machinery/computer/crew
 	name = "crew monitoring console"
@@ -168,39 +168,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					assignment_title = ""
 					assignment = ""
 					ijob = 80
-				
-				if (ishumanbasic(H))
-					species = "Human"
-				if (ispreternis(H))
-					species = "Robot"
-				if (isipc(H))
-					species = "IPC"
-				if (ispodperson(H))
-					species = "Podperson"
-				if (islizard(H))
-					species = "Lizard"
-				if (isplasmaman(H))
-					species = "Plasmaman"
-				if (ispolysmorph(H))
-					species = "Polysmorph"
-				if (ismoth(H))
-					species = "Moth"
-				if (isflyperson(H))
-					species = "Fly"
-				if (iscatperson(H))
-					species = "Felinid"
-				if (isskeleton(H))
-					species = "Skeleton"
-				if (isjellyperson(H))
-					species = "Slime"
-				if (isethereal(H))
-					species = "Ethereal"
-				if (iszombie(H))
-					species = "Zombie"
-				if (issnail(H))
-					species = "Snail"
-				if (isabductor(H))
-					species = "Alien"
 							
 				if(locate(/datum/wound/blunt) in H.all_wounds) //check if has bone wounds
 					is_bonecrack = TRUE
@@ -228,11 +195,44 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					toxdam = round(H.getToxLoss(),1)
 					burndam = round(H.getFireLoss(),1)
 					brutedam = round(H.getBruteLoss(),1)
+					if (ishumanbasic(H))
+						species = "Human"
+					if (ispreternis(H))
+						species = "Robot"
+					if (isipc(H))
+						species = "IPC"
+					if (ispodperson(H))
+						species = "Podperson"
+					if (islizard(H))
+						species = "Lizard"
+					if (isplasmaman(H))
+						species = "Plasmaman"
+					if (ispolysmorph(H))
+						species = "Polysmorph"
+					if (ismoth(H))
+						species = "Moth"
+					if (isflyperson(H))
+						species = "Fly"
+					if (iscatperson(H))
+						species = "Felinid"
+					if (isskeleton(H))
+						species = "Skeleton"
+					if (isjellyperson(H))
+						species = "Slime"
+					if (isethereal(H))
+						species = "Ethereal"
+					if (iszombie(H))
+						species = "Zombie"
+					if (issnail(H))
+						species = "Snail"
+					if (isabductor(H))
+						species = "Alien"
 				else
 					oxydam = null
 					toxdam = null
 					burndam = null
 					brutedam = null
+					species = null
 
 				if (nanite_sensors || U.sensor_mode >= SENSOR_COORDS)
 					if (!pos)
