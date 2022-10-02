@@ -69,7 +69,8 @@
 	icon_state = "bait_t"
 	fishing_power = 25
 
-/obj/item/reagent_containers/food/snacks/bait/type/wild
+/obj/item/reagent_containers/food/snacks/bait/wild
 	name = "wild bait"
 	desc = "A hand crafted bait that is attractive to most fish"
 	icon_state = "bait_wild"
+	fishing_power = 25

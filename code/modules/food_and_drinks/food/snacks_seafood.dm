@@ -203,8 +203,8 @@
 	foodtype = VEGETABLES | FRUIT | SEAFOOD
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/reagent_containers/food/snacks/spaghetti/fishalfredo
-	name = "seafood alfredo"
+/obj/item/reagent_containers/food/snacks/spaghetti/shrimpalfredo
+	name = "shrimp alfredo"
 	desc = "A dish of fresh fettuccine tossed with creamy butter and parmesan cheese. The proportions are huge. Also has some shrimp tossed in it!"
 	icon_state = "fishalfredo"
 	bitesize = 10
