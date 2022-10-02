@@ -137,7 +137,7 @@
 
 /obj/item/reagent_containers/gummy/vitamin/honey
 	desc = "A sweet chewable gummy bear! This one smells strongly of Honey!"
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/honey = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/honey = 5, /datum/reagent/water = 6)
 	color = "#d3a308"
 
 /obj/item/reagent_containers/gummy/vitamin/grape

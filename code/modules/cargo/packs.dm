@@ -1451,6 +1451,11 @@
 					/obj/item/vending_refill/medical)
 	crate_name = "medical supplies crate"
 
+/datum/supply_pack/medical/supplies/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 10)
+		var/item = pick(contains)
+		new item(C)
+
 /datum/supply_pack/medical/gummies
 	name = "Gummy Bear Bottle Crate"
 	desc = "Contains several assorted bottles of gummy bears."
