@@ -131,6 +131,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/pos_x
 	var/pos_y
 	var/life_status
+	var/list/wound = list(/datum/wound/burn, /datum/wound/slash, /datum/wound/pierce, /datum/wound/loss)
 
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 		var/nanite_sensors = FALSE
@@ -216,7 +217,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					if(HAS_TRAIT(H, TRAIT_DISABLED_BY_WOUND) || HAS_TRAIT(H, TRAIT_PARALYSIS)) //has disabled limp
 						is_disabled = TRUE
 
-					if(locate(list(/datum/wound/burn, /datum/wound/slash, /datum/wound/pierce, /datum/wound/loss)) in H.all_wounds) //check if wounded
+					if(is_type_in_list(H.all_wounds, wound))
 						is_wounded = TRUE
 
 					if(locate(/datum/wound/blunt) in H.all_wounds) //check if has bone wounds
