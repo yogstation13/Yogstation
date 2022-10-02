@@ -35,6 +35,6 @@
 		/obj/item/reagent_containers/food/snacks/bait/worm = 1,
 		/obj/item/stack/medical/gauze/improvised = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/bait/type/wild
+	result = /obj/item/reagent_containers/food/snacks/bait/wild
 	subcategory = CAT_BAIT
 
