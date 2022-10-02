@@ -279,8 +279,8 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
-	maxHealth = 320
-	health = 320
+	maxHealth = 200
+	health = 200
 	spacewalk = TRUE
 	butcher_results  = list(/obj/item/stack/sheet/slime = 1)
 	melee_damage_lower = 4
