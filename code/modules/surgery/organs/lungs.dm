@@ -514,7 +514,7 @@
 	// At 70C burn damage will start happening
 	breath.remove(breath.total_moles()) // Remove as exhaust or whatever
 	if(total_heat_capacity > 0)
-		var/heat_generation = (temperature + 100)/total_heat_capacity
+		var/heat_generation = (temperature + 35)/total_heat_capacity
 		if(heat_generation > 1000) // not dispelling enough heat
 			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
 			if(COOLDOWN_FINISHED(src, last_message))

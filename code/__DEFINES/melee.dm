@@ -12,6 +12,9 @@
 #define MARTIALART_FLYINGFANG "flying fang"
 #define MARTIALART_HUNTERFU "hunterfu"
 #define MARTIALART_FRENZYGRAB "frenzy grabbing"
+#define MARTIALART_PRETERNISSTEALTH "preternis stealth"
+#define MARTIALART_EXPLOSIVEFIST "explosive fist"
+#define MARTIALART_GARDENWARFARE "garden warfare"
 
 
 //Weapon stat defines
