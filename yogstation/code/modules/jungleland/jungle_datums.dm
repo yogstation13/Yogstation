@@ -374,7 +374,7 @@
 						to_chat(L,span_alertwarning("You can see the stars high in the sky... the night begins!"))
 
 			T.set_light(1,new_luminosity) // we do not use dynamic light, because they are so insanely slow, it's just.. not worth it.
-			if(counter == 255)
+			if(counter == 64)
 				CHECK_TICK
 				counter = 0
 			counter++
