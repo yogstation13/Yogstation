@@ -7,6 +7,16 @@
 	result = /obj/item/reagent_containers/food/snacks/carpmeat/fish/battered
 	subcategory = CAT_SEAFOOD
 
+/datum/crafting_recipe/food/battered_shrimp
+	name = "Battered Shrimp"
+	reqs = list(
+		/datum/reagent/consumable/batter = 2,
+		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/fish/shrimp/battered
+	subcategory = CAT_SEAFOOD
+
+
 /datum/crafting_recipe/food/sashimi
 	name = "Carp Sashimi"
 	reqs = list(

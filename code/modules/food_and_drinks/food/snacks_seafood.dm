@@ -53,7 +53,14 @@
 	desc = "A fillet of spess fish meat. Coated in crunchy fried beer batter."
 	icon_state = "fishfillet_battered"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cooking_oil = 1) //spontaniously fries because battering code doesn't actually exist yet.
-	foodtype = SEAFOOD
+	foodtype = SEAFOOD | GRAIN
+
+/obj/item/reagent_containers/food/snacks/fish/shrimp/battered //change whenever batter-frying code exists pls
+	name = "tempura shrimp"
+	desc = "A shrimp coated in crunchy fried beer batter."
+	icon_state = "shrimp_tempura"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/cooking_oil = 1)
+	foodtype = SEAFOOD | GRAIN
 
 /obj/item/reagent_containers/food/snacks/fishfingers
 	name = "fish fingers"
