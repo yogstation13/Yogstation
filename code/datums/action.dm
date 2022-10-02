@@ -252,11 +252,7 @@
 	UpdateButtonIcon()
 
 /datum/action/item_action/change_laser_sight_color/UpdateButtonIcon(status_only = FALSE, force)
-	if(att)
-		if(att.is_on)
-			button_icon_state = "laser_sight_on"
-		else
-			button_icon_state = "laser_sight"
+	button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
 	..()
 
 /datum/action/item_action/toggle_hood
