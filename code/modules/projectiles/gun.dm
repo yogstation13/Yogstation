@@ -456,7 +456,7 @@
 
 		var/obj/item/attachment/A = I
 
-		if(A.attachment_type != 0 && (attachment_flags &= A.attachment_type == A.attachment_type))
+		if(A.attachment_type != 0 && ((attachment_flags &= A.attachment_type) != 0))
 			to_chat(user, span_warning("\The [src] does not have any available places to attach \the [I] onto!"))
 			return ..()
 
