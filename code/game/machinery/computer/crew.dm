@@ -213,6 +213,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 				if (HAS_TRAIT(H, TRAIT_HUSK)) //check if husked
 					is_husked = TRUE
+					species = null //suit sensors won't recognize anymore
 
 				if (H.on_fire == TRUE) //check if on fire
 					is_onfire = TRUE
