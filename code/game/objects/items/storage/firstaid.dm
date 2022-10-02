@@ -767,10 +767,6 @@
 	name = "gummie bottle"
 	desc = "It's an airtight container for storing gummy bears."
 	icon_state = "pill_canister_large"
-	icon = 'icons/obj/chemical.dmi'
-	item_state = "contsolid"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/pill_bottle/gummies/ComponentInitialize()
@@ -784,17 +780,27 @@
 /obj/item/storage/pill_bottle/gummies/vitamin
 	name = "bottle of vitamin gummies"
 	desc = "Contains colorful gummy bears to treat vitamin deficiencies."
+	var/contains = list(/obj/item/reagent_containers/gummy/vitamin/berry,
+					/obj/item/reagent_containers/gummy/vitamin/orange,
+					/obj/item/reagent_containers/gummy/vitamin/lime,
+					/obj/item/reagent_containers/gummy/vitamin/lemon,
+					/obj/item/reagent_containers/gummy/vitamin/honey,
+					/obj/item/reagent_containers/gummy/vitamin/apple,
+					/obj/item/reagent_containers/gummy/vitamin/watermelon,
+					/obj/item/reagent_containers/gummy/vitamin/banana,
+					/obj/item/reagent_containers/gummy/vitamin/grape
+	)
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/vitamin/PopulateContents()
 	for(var/i in 1 to 12)
-		var/list/blocked = list(/obj/item/reagent_containers/gummy/vitamin) //no debug vitamin gummy
-		pick(subtypesof(new /obj/item/reagent_containers/gummy/vitamin(src)) - blocked)
+		var/item = pick(contains)
+		new item(src)
 
 /obj/item/storage/pill_bottle/gummies/mindbreaker
 	name = "bottle of mindbreaker gummies"
 	desc = "Contains gummy bears to treat RDS."
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/mindbreaker/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/mindbreaker(src)
 
@@ -802,7 +808,11 @@
 	name = "bottle of mystery gummies"
 	desc = "Contains mystery gummy bears. Eat with caution!"
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/floorbear/PopulateContents()
+	for(var/i in 1 to rand(1,12))
+		new /obj/item/reagent_containers/gummy/floorbear(src)
+
+/obj/item/storage/pill_bottle/gummies/floorbear/full/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/floorbear(src)
 
@@ -810,7 +820,7 @@
 	name = "bottle of medicine gummies"
 	desc = "Contains medicinal grape gummy bears. Used to treat all manners of injury. Keep out of reach of children."
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/omnizine/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/omnizine(src)
 
@@ -818,7 +828,7 @@
 	name = "bottle of melatonin gummies"
 	desc = "Contains melatonin gummy bears. Used to aid in getting to sleep."
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/melatonin/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/melatonin(src)
 
@@ -826,7 +836,7 @@
 	name = "bottle of nothing gummies"
 	desc = "Contains \"Mime\" gummy bears."
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/mime/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/mime(src)
 
@@ -834,7 +844,7 @@
 	name = "bottle of nitrous oxide gummies"
 	desc = "Contains nitrous oxide gummy bears. Used to put patients to sleep quickly."
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/nitro/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/nitro(src)
 
@@ -842,7 +852,7 @@
 	name = "bottle of meth gummies"
 	desc = "Contains meth gummy bears. Used to treat ADHD...and as a performance enhancer."
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/meth/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/meth(src)
 
@@ -850,7 +860,7 @@
 	name = "bottle of suspicious gummies"
 	desc = "Contains dubiously legal gummy bears."
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/drugs/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/drugs(src)
 
@@ -858,6 +868,6 @@
 	name = "bottle of knock-out gummies"
 	desc = "Contains fast-acting knock-out gummy bears."
 
-/obj/item/storage/pill_bottle/gummies/PopulateContents()
+/obj/item/storage/pill_bottle/gummies/sleepy/PopulateContents()
 	for(var/i in 1 to 12)
 		new /obj/item/reagent_containers/gummy/sleepy(src)

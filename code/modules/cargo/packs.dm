@@ -1455,10 +1455,10 @@
 	name = "Gummy Bear Bottle Crate"
 	desc = "Contains several assorted bottles of gummy bears."
 	cost = 4000
-	contains = list(/obj/item/storage/pill_bottle/gummy/vitamin,
-					/obj/item/storage/pill_bottle/gummy/melatonin,
-					/obj/item/storage/pill_bottle/gummy/nitro,
-					/obj/item/storage/pill_bottle/gummy/mime)
+	contains = list(/obj/item/storage/pill_bottle/gummies/vitamin,
+					/obj/item/storage/pill_bottle/gummies/melatonin,
+					/obj/item/storage/pill_bottle/gummies/nitro,
+					/obj/item/storage/pill_bottle/gummies/mime)
 	crate_name = "gummy bear crate"
 	small_item = TRUE
 
@@ -1471,11 +1471,11 @@
 	name = "Illegal Gummy Bear Bottle Crate"
 	desc = "Contains several assorted bottles of less-than-legal gummy bears."
 	cost = 5000
-	contains = list(/obj/item/storage/pill_bottle/gummy/meth,
-					/obj/item/storage/pill_bottle/gummy/drugs,
-					/obj/item/storage/pill_bottle/gummy/floorbear,
-					/obj/item/storage/pill_bottle/gummy/mindbreaker,
-					/obj/item/storage/pill_bottle/gummy/omnizine)
+	contains = list(/obj/item/storage/pill_bottle/gummies/meth,
+					/obj/item/storage/pill_bottle/gummies/drugs,
+					/obj/item/storage/pill_bottle/gummies/floorbear,
+					/obj/item/storage/pill_bottle/gummies/mindbreaker,
+					/obj/item/storage/pill_bottle/gummies/omnizine)
 	crate_name = "illegal gummy bear crate"
 	contraband = TRUE
 	small_item = TRUE

@@ -8,9 +8,8 @@
 	volume = 15
 	grind_results = list()
 	color = null
-	alpha = 200
 	var/apply_type = INGEST
-	var/apply_method = "swallow"
+	var/apply_method = "chew"
 	var/rename_with_volume = FALSE
 	var/self_delay = 1.5 SECONDS
 	var/dissolvable = TRUE
@@ -18,9 +17,9 @@
 /obj/item/reagent_containers/gummy/Initialize()
 	. = ..()
 	if(!color) //only change the color IF there is no color already
-		if(!reagents.color)
+		if(!reagents.total_volume || color == null)
 			color = "#a8a8a8"
-		if(reagents.color)
+		if(reagents.total_volume && color == null)
 			color = mix_color_from_reagents(reagents.reagent_list)
 	if(prob(1))
 		name = "chubby gummi bear" //le player reference
@@ -71,7 +70,7 @@
 
 	user.visible_message(span_warning("[user] slips something into [target]!"), span_notice("You dissolve [src] in [target]."), null, 2)
 	reagents.trans_to(target, reagents.total_volume, transfered_by = user)
-	qdel(src)/obj/item/reagent_containers/gummy
+	qdel(src)
 
 /obj/item/reagent_containers/gummy/sleepy
 	desc = "A sweet chewable gummy bear! This one tingles to hold a little."
@@ -84,7 +83,7 @@
 
 /obj/item/reagent_containers/gummy/meth
 	desc =  "A sweet chewable gummy bear! Could this one be lemon flavor?"
-	list_reagents = list(/datum/reagent/drug/methamphetamine = 2, /datum/reagent/consumable/banana = 11, /datum/reagent/consumable/sugar = 2)
+	list_reagents = list(/datum/reagent/drug/methamphetamine = 2, /datum/reagent/consumable/banana = 13)
 	color = "#ffdf4e"
 
 /obj/item/reagent_containers/gummy/nitro
@@ -98,52 +97,52 @@
 
 /obj/item/reagent_containers/gummy/vitamin
 	desc = "You shouldn't see this! tell a coder if you do!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 15)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 15)
 	color = null
 
 /obj/item/reagent_containers/gummy/vitamin/berry
 	desc = "A sweet chewable gummy bear!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/berryjuice = 6, /datum/reagent/consumable/sugar = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/berryjuice = 6, /datum/reagent/consumable/sugar = 5)
 	color = "#770b0b"
 
 /obj/item/reagent_containers/gummy/vitamin/orange
 	desc = "A sweet chewable gummy bear!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/orangejuice = 6, /datum/reagent/consumable/sugar = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/orangejuice = 6, /datum/reagent/consumable/sugar = 5)
 	color = "#E78108"
 
 /obj/item/reagent_containers/gummy/vitamin/lime
 	desc = "A sweet chewable gummy bear!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/limejuice = 6, /datum/reagent/consumable/sugar = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/limejuice = 6, /datum/reagent/consumable/sugar = 5)
 	color = "#22ff00"
 
 /obj/item/reagent_containers/gummy/vitamin/lemon
-	desc = "A sweet chewable gummy bear!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/lemonjuice = 6, /datum/reagent/consumable/sugar = 5)
+	desc = "A sweet chewable gummy bear! Is it lemon, or banana?..."
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/lemonjuice = 6, /datum/reagent/consumable/sugar = 5)
 	color = "#ECFF56"
 
 /obj/item/reagent_containers/gummy/vitamin/banana
-	desc = "A sweet chewable gummy bear!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/banana = 6, /datum/reagent/consumable/sugar = 5)
+	desc = "A sweet chewable gummy bear! Is it lemon, or banana?..."
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/banana = 11)
 	color = "#fdff98"
 
 /obj/item/reagent_containers/gummy/vitamin/apple
 	desc = "A sweet chewable gummy bear!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/applejuice = 6, /datum/reagent/consumable/sugar = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/applejuice = 6, /datum/reagent/consumable/sugar = 5)
 	color = "#20a000"
 
 /obj/item/reagent_containers/gummy/vitamin/honey
 	desc = "A sweet chewable gummy bear! This one smells strongly of Honey!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/honey = 11)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/honey = 11)
 	color = "#d3a308"
 
 /obj/item/reagent_containers/gummy/vitamin/grape
 	desc = "A sweet chewable gummy bear!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/grapejuice = 6, /datum/reagent/consumable/sugar = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/grapejuice = 6, /datum/reagent/consumable/sugar = 5)
 	color = "#700070"
 
 /obj/item/reagent_containers/gummy/vitamin/watermelon
 	desc = "A sweet chewable gummy bear!"
-	list_reagents = list(/datum/reagent/consumable/vitamin = 4, /datum/reagent/consumable/watermelonjuice = 6, /datum/reagent/consumable/sugar = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/watermelonjuice = 6, /datum/reagent/consumable/sugar = 5)
 	color = "#ff3561"
 
 /obj/item/reagent_containers/gummy/melatonin
@@ -162,10 +161,11 @@
 	var/static/list/names2 = list("maintenance bear","floorbear","mystery bear","suspicious bear","strange bear")
 	var/static/list/descs2 = list("Your feeling is telling you no, but...","Drugs are expensive, you can't afford not to eat any gummy bear that you find."\
 	, "Surely, there's no way this could go bad.")
+	color = null
 
 /obj/item/reagent_containers/gummy/floorbear/Initialize()
-	list_reagents = list(get_random_reagent_id() = rand(10,50))
 	. = ..()
+	list_reagents = list(get_random_reagent_id() = 15)
 	name = pick(names2)
 	if(prob(20))
 		desc = pick(descs2)
