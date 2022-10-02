@@ -226,6 +226,7 @@ export const CrewConsoleContent = (props, context) => {
                   {sensor.is_onfire ? <Icon name="fire" color="#f24f0f" size={1} /> : ""}
                   {sensor.is_wounded ? <Icon name="star-of-life" color="#d412ff" size={1} /> : ""}
                   {sensor.is_bonecrack ? <Icon name="bone" color="#f50505" size={1} /> : ""}
+                  {sensor.is_disabled ? <Icon name="crutch" color="#fafcfb" size={1} /> : ""}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {speciesmap[sensor.species] ? <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="question" color="#f70505" size={1} />}
