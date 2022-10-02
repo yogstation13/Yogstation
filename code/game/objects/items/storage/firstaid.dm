@@ -787,6 +787,8 @@
 					/obj/item/reagent_containers/gummy/vitamin/honey,
 					/obj/item/reagent_containers/gummy/vitamin/apple,
 					/obj/item/reagent_containers/gummy/vitamin/watermelon,
+					/obj/item/reagent_containers/gummy/vitamin/peach,
+					/obj/item/reagent_containers/gummy/vitamin/pineapple,
 					/obj/item/reagent_containers/gummy/vitamin/banana,
 					/obj/item/reagent_containers/gummy/vitamin/grape
 	)

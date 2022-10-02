@@ -253,11 +253,6 @@
 		"pill21" = 'icons/UI_Icons/Pills/pill21.png',
 		"pill22" = 'icons/UI_Icons/Pills/pill22.png',
 	)
-/datum/asset/spritesheet/simple/bears
-	name ="gummybears"
-	assets = list(
-		"pill23" = 'icons/UI_Icons/Pills/pill23.png',
-	)
 
 /datum/asset/simple/safe
 	assets = list(

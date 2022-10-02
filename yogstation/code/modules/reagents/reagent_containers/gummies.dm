@@ -16,14 +16,22 @@
 
 /obj/item/reagent_containers/gummy/Initialize()
 	. = ..()
-	if(!color) //only change the color IF there is no color already
-		if(!reagents.total_volume || color == null)
-			color = "#a8a8a8"
-		if(reagents.total_volume && color == null)
-			color = mix_color_from_reagents(reagents.reagent_list)
 	if(prob(1))
 		name = "chubby gummi bear" //le player reference
 		desc = "A sweet chewable gummy bear! This one isn't such a little guy!"
+
+/obj/item/reagent_containers/gummy/on_reagent_change(changetype)
+	. = ..()
+	if(color == null) //only change the color IF there is no color already
+		message_admins("my color is [color]")
+		if(!reagents)
+			color = "#a8a8a8"
+			message_admins("my color is now [color]")
+			message_admins("[src] at [(src.loc)] was created with no reagents inside it! Please report this to a coder!")
+			log_game("[src] at [src.loc] was created with no reagents inside it! Please report this to a coder!")
+		if(color == null && reagents)
+			color = mix_color_from_reagents(reagents.reagent_list)
+			message_admins("my color is now [color]")
 
 /obj/item/reagent_containers/gummy/attack_self(mob/user)
 	return
@@ -144,6 +152,16 @@
 	desc = "A sweet chewable gummy bear!"
 	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/watermelonjuice = 6, /datum/reagent/consumable/sugar = 5)
 	color = "#ff3561"
+
+/obj/item/reagent_containers/gummy/vitamin/peach
+	desc = "A sweet chewable gummy bear!"
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/peachjuice = 6, /datum/reagent/consumable/sugar = 5)
+	color = "#E78108"
+
+/obj/item/reagent_containers/gummy/vitamin/pineapple
+	desc = "A sweet chewable gummy bear!"
+	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/pineapplejuice = 6, /datum/reagent/consumable/sugar = 5)
+	color = "#F7D435"
 
 /obj/item/reagent_containers/gummy/melatonin
 	desc = "A sweet chewable gummy bear!"
