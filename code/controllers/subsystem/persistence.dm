@@ -34,7 +34,6 @@ SUBSYSTEM_DEF(persistence)
 		LoadAntagReputation()
 	LoadRandomizedRecipes()
 	LoadPaintings()
-	LoadMinetype()
 	return ..()
 
 /datum/controller/subsystem/persistence/proc/LoadPoly()

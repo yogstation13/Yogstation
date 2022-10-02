@@ -320,7 +320,10 @@ SUBSYSTEM_DEF(mapping)
 	else if(config.minetype == "jungleland")
 		LoadGroup(FailedZs, "Jungleland", "map_files/mining", "Jungleland.dmm", default_traits = ZTRAITS_JUNGLELAND)
 	else if(config.minetype == "jungle_and_lavaland")
+		SSpersistence.LoadMinetype()
 		var/determinant = SSpersistence.next_minetype
+		if(determinant != 2 || determinant != 1 || determinant != 0)
+			determinant = 2
 		switch(determinant)
 			if(2)
 				if(prob(50))
