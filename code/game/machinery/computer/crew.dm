@@ -180,6 +180,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					toxdam = round(H.getToxLoss(),1)
 					burndam = round(H.getFireLoss(),1)
 					brutedam = round(H.getBruteLoss(),1)
+
+					//species check
 					if (ishumanbasic(H))
 						species = "Human"
 					if (ispreternis(H))
@@ -213,12 +215,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					if (isabductor(H))
 						species = "Alien"
 
+					//check if has disabled limbs
 					for(var/obj/item/bodypart/part in H.bodyparts)
 						if(part.bodypart_disabled == TRUE)
 							is_disabled = TRUE
-						if(length(H.get_missing_limbs()))
-							is_disabled = TRUE
+					if(length(H.get_missing_limbs()))
+						is_disabled = TRUE
 					
+					//check if has generic wounds except for bone one
 					if(locate(/datum/wound/slash) in H.all_wounds)
 						is_wounded = TRUE
 					if(locate(/datum/wound/pierce) in H.all_wounds)
