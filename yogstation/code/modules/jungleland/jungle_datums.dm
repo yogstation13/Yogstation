@@ -344,7 +344,7 @@
 
 /datum/daynight_cycle 
 	var/daynight_cycle = TRUE
-	var/update_interval = 60 SECONDS
+	var/update_interval = 120 SECONDS
 	var/updates = 0 
 	var/cached_luminosity = 0
 	var/list/affected_areas = list()
@@ -374,7 +374,7 @@
 						to_chat(L,span_alertwarning("You can see the stars high in the sky... the night begins!"))
 
 			T.set_light(1,new_luminosity) // we do not use dynamic light, because they are so insanely slow, it's just.. not worth it.
-			if(counter == 64)
+			if(counter == 16)
 				CHECK_TICK
 				counter = 0
 			counter++
