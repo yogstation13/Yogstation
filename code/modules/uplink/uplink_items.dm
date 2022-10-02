@@ -2604,7 +2604,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/ammo/lwt/penetrator
 	name = ".308 Penetrator Magazine"
-	desc = "An alterantive 15-round .308 penetrator magazine; suitable for use with the LWT-650. \
+	desc = "An alternative 15-round .308 penetrator magazine; suitable for use with the LWT-650. \
 			These rounds do less damage but puncture bodies and body armor alike."
 	item = /obj/item/ammo_box/magazine/m308/pen
 	cost = 4
