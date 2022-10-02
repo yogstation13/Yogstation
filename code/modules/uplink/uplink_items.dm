@@ -2401,10 +2401,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndiebears
-	name = "Syndicate Gummy Bears"
+	name = "Omnizine Gummy Bears"
 	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
 	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/syndiebears/sleepy
+	name = "Sleepy Gummy Bears"
+	desc = "Sodium Thiopental infused gummy bears. Berry flavor."
+	item = /obj/item/storage/pill_bottle/gummies/sleepy
+	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
 
