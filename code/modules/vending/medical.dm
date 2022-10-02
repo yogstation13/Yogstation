@@ -29,7 +29,7 @@
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,
 					/obj/item/reagent_containers/pill/morphine = 4,
 					/obj/item/reagent_containers/pill/charcoal = 6,
-					/obj/item/storage/pill_bottle/gummies/mindbreaker
+					/obj/item/storage/pill_bottle/gummies/mindbreaker = 2,
 					/obj/item/storage/box/hug/medical = 1)
 	premium = list(/obj/item/reagent_containers/medspray/synthflesh = 4,
 				/obj/item/storage/pill_bottle/psicodine = 2,
