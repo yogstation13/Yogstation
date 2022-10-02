@@ -213,8 +213,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					if (isabductor(H))
 						species = "Alien"
 
-					if(HAS_TRAIT(H, TRAIT_DISABLED_BY_WOUND)) //has disabled limp
-						is_disabled = TRUE
+					for(var/obj/item/bodypart/part in H)
+						if(part.bodypart_disabled == TRUE)
+							is_disabled = TRUE
 					
 					if(locate(/datum/wound/slash) in H.all_wounds)
 						is_wounded = TRUE
