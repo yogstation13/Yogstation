@@ -592,7 +592,7 @@
 		to_chat(src, span_warning("You need 250 chemicals to use this!"))
 		return
 
-	if(HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
+	if(HAS_TRAIT_FROM(victim, TRAIT_BADDNA, CHANGELING_DRAIN))
 		to_chat(src, span_warning("Their DNA is completely destroyed! You can't revive them"))
 		return
 

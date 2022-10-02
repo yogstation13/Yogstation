@@ -59,7 +59,7 @@
 	var/wound_bonus_hitstreak_max = 12
 
 /mob/living/simple_animal/slaughter/Initialize()
-	..()
+	. = ..()
 	var/datum/component/crawl/blood/demonic/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic)
 	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
 		bloodcrawl.holder = loc
@@ -179,7 +179,7 @@
 	sibling!</B>"
 
 /mob/living/simple_animal/slaughter/laughter/Initialize()
-	..()
+	. = ..()
 	var/datum/component/crawl/blood/demonic/scary = GetComponent(/datum/component/crawl/blood/demonic)
 	if(scary)
 		scary.RemoveComponent(del_holder=FALSE)

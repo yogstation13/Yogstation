@@ -33,7 +33,6 @@
 		"https://www.youtube.com/watch?v=jJDAV9vSmYc",						// Chris Remo - The Wizard
 		"https://www.youtube.com/watch?v=nRjLv1L0WF8",						// Blue Oyster Cult - Sole Survivor
 		"https://www.youtube.com/watch?v=51Uw-9lNl08",						// fIREHOSE - Brave Captain
-		"https://www.youtube.com/watch?v=RnQofA9CNww",						// minomus of DOMU - Winds of Fjords
 		"https://www.youtube.com/watch?v=xhlH91k-86E",						// J.G. Thirlwell - In a Spaceage Mood
 		"https://www.youtube.com/watch?v=Ld6TfpgJg7g",						// Tom Kane - Freeway Jazz
 		"https://www.youtube.com/watch?v=ZhhQrFfzFM4",						// Carpenter Brut - Escape from Midwich Valley
@@ -44,14 +43,12 @@
 		"https://www.youtube.com/watch?v=cklpO4kYZKs",						// The Kinks - Apeman
 		"https://www.youtube.com/watch?v=MPPCNM85eRY",						// The Kinks - Super Sonic Ship
 		"https://www.youtube.com/watch?v=tRcPA7Fzebw",						// David Bowie - Starman
-		"https://www.youtube.com/watch?v=FH2EgYq_NCY",						// Lou Reed - Satellite of Love
 		"https://www.youtube.com/watch?v=zquJ6AqvVNw",						// Dungeons of Dredmor - Diggle Hell
 		"https://www.youtube.com/watch?v=cYUGOSjRs3Q",  					// Blake Robinson - Traitor's Motif
 		"https://www.youtube.com/watch?v=uiPJQgw6M_g",						// Ribbiks - Chasing Suns
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
 		"https://www.youtube.com/watch?v=VJ817kvh_DM",						// Ben Prunty - FTL - Theme Song
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
-    	"https://www.youtube.com/watch?v=mhXuYp0n88",           // FTL Advanced Edition Soundtrack: Lanius (Battle)
 		"https://www.youtube.com/watch?v=hZb_6_WfquU",            // Steam Powered Giraffe - Fire Fire
 		"https://www.youtube.com/watch?v=52Gg9CqhbP8",  					//Stuck in the Sound - Let's G
 		"https://www.youtube.com/watch?v=8GW6sLrK40k",						//HOME - Resonance

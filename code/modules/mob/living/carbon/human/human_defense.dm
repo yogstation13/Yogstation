@@ -450,22 +450,23 @@
 			brute_loss = 60
 			burn_loss = 60
 			if(bomb_armor)
-				brute_loss = 30*(2 - round(bomb_armor*0.01, 0.05))
-				burn_loss = brute_loss					//damage gets reduced from 120 to up to 60 combined brute+burn
+				brute_loss = 30*(2 - round(bomb_armor/75, 0.05))	//0-66% damage reduction
+				burn_loss = brute_loss					//40-120 total combined brute + burn
 			damage_clothes(200 - bomb_armor, BRUTE, BOMB)
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(30, 120)
-			Unconscious(20)							//short amount of time so bombs are still op *dab
+			if(bomb_armor < 60)
+				Unconscious(20)						//Sufficient protection will stop you from being knocked out
 			Knockdown(200 - (bomb_armor * 1.6)) 	//between ~4 and ~20 seconds of knockdown depending on bomb armor
 
 		if (EXPLODE_LIGHT)
 			brute_loss = 24
 			if(bomb_armor)
-				brute_loss = 12*(2 - round(bomb_armor*0.01, 0.05))
+				brute_loss = 12*(2 - round(bomb_armor/75, 0.05))	//8-24 damage total depending on bomb armor
 			damage_clothes(max(40 - bomb_armor, 0), BRUTE, BOMB)
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			Knockdown(120 - (bomb_armor * 1.2))	//100 bomb armor prevents knockdown entirely
+			Knockdown(max(120 - (bomb_armor * 2),0))	//60 bomb armor prevents knockdown entirely
 
 	take_overall_damage(brute_loss,burn_loss)
 
