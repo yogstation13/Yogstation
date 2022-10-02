@@ -179,8 +179,8 @@
 	color = null
 
 /obj/item/reagent_containers/gummy/floorbear/Initialize()
-	. = ..()
 	list_reagents = list(get_random_reagent_id() = 15)
+	. = ..()
 	name = pick(names2)
 	if(prob(20))
 		desc = pick(descs2)
