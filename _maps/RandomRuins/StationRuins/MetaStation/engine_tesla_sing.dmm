@@ -201,6 +201,15 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering)
+"it" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/rack,
+/obj/item/extinguisher,
+/obj/item/pipe_dispenser,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "iV" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
@@ -272,6 +281,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"lS" = (
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "my" = (
 /obj/structure/grille,
 /obj/structure/cable/orange{
@@ -330,14 +346,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"pc" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/rack,
-/obj/item/extinguisher,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "pN" = (
@@ -828,6 +836,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Lt" = (
+/obj/structure/rack,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/book/manual/wiki/engineering_singulo_tesla,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "Lv" = (
 /obj/effect/turf_decal/stripes{
 	dir = 1
@@ -850,11 +864,6 @@
 	},
 /obj/machinery/power/rad_collector,
 /turf/open/floor/plating,
-/area/engine/engineering)
-"Mt" = (
-/obj/structure/rack,
-/obj/item/clothing/gloves/color/yellow,
-/turf/open/floor/plasteel,
 /area/engine/engineering)
 "MO" = (
 /obj/structure/cable/orange{
@@ -1192,7 +1201,7 @@ Gp
 Xa
 Uj
 pN
-gD
+lS
 vP
 Ka
 "}
@@ -1202,7 +1211,7 @@ Lp
 Xa
 BD
 MO
-pc
+it
 vP
 cR
 oj
@@ -1210,7 +1219,7 @@ Ks
 oj
 cR
 vP
-Mt
+Lt
 Xa
 Uj
 pN
