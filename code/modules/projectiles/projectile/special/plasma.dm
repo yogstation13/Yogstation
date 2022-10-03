@@ -18,7 +18,14 @@
 	dismemberment = 5
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	mine_range = 0
+//yogs begin
+/obj/item/projectile/plasma/Move(atom/newloc, dir)
+	. = ..()
+	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland)
+		var/turf/open/floor/plating/dirt/jungleland/JG = newloc
+		JG.spawn_rock()
 
+//yogs end
 /obj/item/projectile/plasma/on_hit(atom/target)
 	. = ..()
 	if(ismineralturf(target))

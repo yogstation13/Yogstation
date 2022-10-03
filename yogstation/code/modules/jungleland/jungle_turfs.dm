@@ -60,6 +60,11 @@
 	var/ore_present = ORE_EMPTY
 	var/spawn_overlay = TRUE
 
+/turf/open/floor/plating/dirt/jungleland/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
+	if(drill.do_after_mecha(src, 10 / drill.drill_level))
+		spawn_rock()
+		drill.move_ores()
+
 /turf/open/floor/plating/dirt/jungleland/proc/spawn_rock()
 	if(ore_present == ORE_EMPTY || !can_spawn_ore)
 		return
