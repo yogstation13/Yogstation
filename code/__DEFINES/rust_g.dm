@@ -139,7 +139,7 @@
 #define rustg_hash_string(algorithm, text) call(RUST_G, "hash_string")(algorithm, text)
 #define rustg_hash_file(algorithm, fname) call(RUST_G, "hash_file")(algorithm, fname)
 #define rustg_hash_generate_totp(seed) call(RUST_G, "generate_totp")(seed)
-#define rustg_hash_generate_totp_tolerance(seed, tolerance) call(RUST_G, "generate_totp_tolerance")(seed, "[tolerance]")
+#define rustg_hash_generate_totp_tolerance(seed, tolerance) call(RUST_G, "generate_totp_tolerance")(seed, tolerance)
 
 #define RUSTG_HASH_MD5 "md5"
 #define RUSTG_HASH_SHA1 "sha1"
