@@ -25,12 +25,16 @@ const HEALTH_ICON_BY_LEVEL = [
 
 const speciesmap = {
   "IPC": {
-    "icon": "robot",
+    "icon": "tv",
     "color": "#2e46cc",
   },
   "Robot": {
-    "icon": "cog",
+    "icon": "robot",
     "color": "#edee1b",
+  },
+  "Android": {
+    "icon": "cog",
+    "color": "#06b4cf",
   },
   "Felinid": {
     "icon": "paw",
