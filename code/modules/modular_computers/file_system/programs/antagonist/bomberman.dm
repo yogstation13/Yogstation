@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(PDABombCodes)
 	size = 5
 	requires_ntnet = FALSE
 	available_on_ntnet = FALSE
-	available_on_syndinet = TRUE
+	available_on_syndinet = FALSE
 	tgui_id = "NtosBomberMan"
 	program_icon = "comment-alt"
 
