@@ -287,7 +287,8 @@
 	// They are adapted to the region, don't mind meat, and move faster than normal podpeople.
 	// However, they can't use guns or machines.
 	name = "Ivymen"
-	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTHEAT)
+	id = "ivymen"
+	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE)
 	speedmod = 0
 	mutantlungs = /obj/item/organ/lungs/ashwalker/ivymen
 	breathid = "n2"
