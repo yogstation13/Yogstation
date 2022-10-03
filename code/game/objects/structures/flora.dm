@@ -396,7 +396,7 @@
 /obj/structure/flora/rock/pile
 	icon_state = "lavarocks"
 	desc = "A pile of rocks."
-
+	density = FALSE //yogs
 //Jungle grass
 
 /obj/structure/flora/grass/jungle
