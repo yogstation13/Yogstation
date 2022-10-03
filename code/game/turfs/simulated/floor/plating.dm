@@ -119,6 +119,20 @@
 /turf/open/floor/plating/make_plating()
 	return
 
+/turf/open/floor/plating/broken
+	icon_state = "platingdmg1"
+	broken = TRUE
+
+/turf/open/floor/plating/broken/two
+	icon_state = "platingdmg2"
+
+/turf/open/floor/plating/broken/three
+	icon_state = "platingdmg3"
+
+/turf/open/floor/plating/burnt
+	icon_state = "panelscorched"
+	burnt = TRUE
+
 /turf/open/floor/plating/foam
 	name = "metal foam plating"
 	desc = "Thin, fragile flooring created with metal foam."

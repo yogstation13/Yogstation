@@ -556,7 +556,7 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 4
-	cost = 10
+	cost = 15
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
@@ -599,7 +599,7 @@
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 1
 	weight = 5
-	cost = 25
+	cost = 15
 	requirements = list(80,70,60,50,50,45,30,30,25,25)
 	minimum_players = 25
 
