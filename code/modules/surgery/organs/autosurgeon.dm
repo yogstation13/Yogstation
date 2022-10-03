@@ -140,6 +140,12 @@
 /obj/item/autosurgeon/nt_mantis/left
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis/left
+	
+/obj/item/autosurgeon/reviver
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/chest/reviver
+
+
 
 /obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	uses = 3
