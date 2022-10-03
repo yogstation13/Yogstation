@@ -92,6 +92,7 @@
 			new /obj/item/implanter/adrenalin(src)
 			new /obj/item/implanter/explosive(src)
 			new /obj/item/implanter/storage(src)
+			new /obj/item/autosurgeon/reviver(src)
 
 		if("hacker")
 			new /obj/item/aiModule/syndicate(src)
