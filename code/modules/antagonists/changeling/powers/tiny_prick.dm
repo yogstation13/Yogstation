@@ -68,7 +68,7 @@
 /datum/action/changeling/sting/transformation
 	name = "Transformation Sting"
 	desc = "We silently sting a human, injecting a retrovirus that forces them to transform for a short time. Costs 20 chemicals."
-	helptext = "The victim will transform much like a changeling would. Does not provide a warning to others. Mutations will not be transferred, and monkeys will become human."
+	helptext = "The victim will transform much like a changeling would. Does not provide a warning to others. Mutations will not be transferred, and monkeys will become human. Stings on already transformed targets won't last as long."
 	button_icon_state = "sting_transform"
 	sting_icon = "sting_transform"
 	chemical_cost = 20
@@ -108,11 +108,15 @@
 	. = TRUE
 	if(istype(C))
 
-		//block that stores the old identity for use in reverting
-		var/mob/living/carbon/human/OldDNA = new /mob/living/carbon/human()
-		OldDNA.real_name = C.real_name
-		C.dna.transfer_identity(OldDNA)
-		addtimer(CALLBACK(src, .proc/revert, C, OldDNA), 10 MINUTES, TIMER_UNIQUE|TIMER_OVERRIDE)
+		if(!HAS_TRAIT(C, CHANGESTING_TRAIT))
+			//block that stores the old identity for use in reverting
+			var/mob/living/carbon/human/OldDNA = new /mob/living/carbon/human()
+			OldDNA.real_name = C.real_name
+			C.dna.transfer_identity(OldDNA)
+			addtimer(CALLBACK(src, .proc/revert, C, OldDNA), 10 MINUTES, TIMER_UNIQUE)
+			ADD_TRAIT(C, CHANGESTING_TRAIT, "recentsting")
+		else
+			to_chat(user, span_notice("We notice that [target.name]'s DNA is already in turmoil from the previous sting."))
 
 		C.real_name = NewDNA.real_name
 		NewDNA.transfer_identity(C)
@@ -121,6 +125,7 @@
 		C.updateappearance(mutcolor_update=1)
 
 /datum/action/changeling/sting/transformation/proc/revert(mob/living/carbon/target, mob/living/carbon/original)
+	REMOVE_TRAIT(target, CHANGESTING_TRAIT, "recentsting")
 	target.real_name = original.real_name
 	original.dna.transfer_identity(target)
 	qdel(original)
