@@ -67767,18 +67767,6 @@
 /obj/structure/frame/machine,
 /turf/open/floor/engine,
 /area/engine/atmos_distro)
-"nTf" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/visible/layer4,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "nTn" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -80694,6 +80682,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"wJe" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "wJi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -123792,7 +123792,7 @@ awV
 ceW
 awV
 ceY
-nTf
+wJe
 cfO
 cfB
 cfM
