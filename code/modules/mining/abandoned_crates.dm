@@ -9,6 +9,7 @@
 	var/lastattempt = null
 	var/attempts = 10
 	var/codelen = 4
+	var/autofill = TRUE
 	tamperproof = 90
 
 /obj/structure/closet/crate/secure/loot/Initialize()
@@ -19,6 +20,9 @@
 		var/dig = pick(digits)
 		code += dig
 		digits -= dig  //there are never matching digits in the answer
+
+	if(!autofill)
+		return
 
 	var/loot = rand(1,100) //100 different crates with varying chances of spawning
 	switch(loot)

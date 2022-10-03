@@ -156,9 +156,18 @@
 	hidden = TRUE
 	cost = 20000
 	contains = list()
-	crate_name = "emergency crate"
-	crate_type = /obj/structure/closet/crate/internals
+	crate_name = "abandoned crate"
+	crate_type = /obj/structure/closet/crate/secure/loot
 	dangerous = TRUE
+
+/datum/supply_pack/emergency/syndicate/generate(atom/A, datum/bank_account/paying_account)
+	var/obj/structure/closet/crate/C
+	C = new crate_type(A)
+	C.name = crate_name
+	C.autofill = FALSE // Disables normal abandoned crate loot generation
+
+	fill(C)
+	return C
 
 /datum/supply_pack/emergency/syndicate/fill(obj/structure/closet/crate/C)
 	var/crate_value = 30
