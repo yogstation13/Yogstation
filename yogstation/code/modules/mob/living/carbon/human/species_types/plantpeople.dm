@@ -288,6 +288,7 @@
 	// However, they can't use guns or machines.
 	name = "Ivymen"
 	id = "ivymen"
+	limbs_id = "pod"
 	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE)
 	speedmod = 0
 	mutantlungs = /obj/item/organ/lungs/ashwalker/ivymen
