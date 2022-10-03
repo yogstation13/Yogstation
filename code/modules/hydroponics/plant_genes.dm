@@ -419,6 +419,18 @@
 	if(!(G.resistance_flags & FIRE_PROOF))
 		G.resistance_flags |= FIRE_PROOF
 
+/datum/plant_gene/trait/noreact
+	// Makes plant reagents not react until squashed.
+	name = "Separated Chemicals"
+
+/datum/plant_gene/trait/noreact/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
+	..()
+	ENABLE_BITFIELD(G.reagents.reagents_holder_flags, NO_REACT)
+
+/datum/plant_gene/trait/noreact/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
+	DISABLE_BITFIELD(G.reagents.reagents_holder_flags, NO_REACT)
+	G.reagents.handle_reactions()
+
 /datum/plant_gene/trait/plant_type // Parent type
 	name = "you shouldn't see this"
 	trait_id = "plant_type"
