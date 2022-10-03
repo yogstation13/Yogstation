@@ -105,8 +105,8 @@
 	health = 100
 	spacewalk = TRUE
 
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 
 	rapid_melee = 3
 
