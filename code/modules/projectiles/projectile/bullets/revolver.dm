@@ -99,18 +99,12 @@
 
 /obj/item/projectile/bullet/a357/metalshock
 	name = ".357 Metalshock bullet"
-	damage = 30
+	damage = 10
 
 /obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		if(C.electrocute_act(10, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE)) //10 extra burn damage, should NOT stun
-			C.confused += 5 //15% chance for minor, 5% for major randomness per movement
-		return ..()
-	if(isliving(target)) //So that it works on simple mobs, too
-		var/mob/living/L = target
-		L.electrocute_act(10, src, 1, FALSE, FALSE, FALSE, FALSE)
-	. = ..()
+	..()
+	tesla_zap(target, 4, 17500, TESLA_MOB_DAMAGE)
+	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a357/heartpiercer
 	name = ".357 Heartpiercer bullet"

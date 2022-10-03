@@ -10,14 +10,14 @@
 /obj/item/ammo_casing/mm712x82/ap
 	name = "7.12x82mm armor-piercing bullet casing"
 	desc = "A 7.12x82mm bullet casing designed with a hardened-tipped core to help penetrate armored targets."
-	projectile_type = /obj/item/projectile/bullet/mm712x82_ap
+	projectile_type = /obj/item/projectile/bullet/mm712x82/ap
 
 /obj/item/ammo_casing/mm712x82/hollow
 	name = "7.12x82mm hollow-point bullet casing"
 	desc = "A 7.12x82mm bullet casing designed to cause more damage to unarmored targets."
-	projectile_type = /obj/item/projectile/bullet/mm712x82_hp
+	projectile_type = /obj/item/projectile/bullet/mm712x82/hp
 
-/obj/item/ammo_casing/mm712x82/incen
+/obj/item/ammo_casing/mm712x82/inc
 	name = "7.12x82mm incendiary bullet casing"
 	desc = "A 7.12x82mm bullet casing designed with a chemical-filled capsule on the tip that when bursted, reacts with the atmosphere to produce a fireball, engulfing the target in flames."
 	projectile_type = /obj/item/projectile/bullet/incendiary/mm712x82

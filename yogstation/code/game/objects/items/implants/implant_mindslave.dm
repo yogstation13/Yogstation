@@ -60,7 +60,4 @@
 
 /obj/item/implanter/mindslave
 	name = "implanter (mindslave)"
-
-/obj/item/implanter/mindslave/Initialize()
-	imp = new /obj/item/implant/mindslave(src)
-	..()
+	imp_type = /obj/item/implant/mindslave
