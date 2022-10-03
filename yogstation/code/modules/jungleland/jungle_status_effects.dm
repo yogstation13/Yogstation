@@ -33,19 +33,19 @@
 
 	switch(stack)
 		if(1)
-			human_owner.adjustToxLoss(0.1)
+			human_owner.adjustToxLoss(0.5)
 		if(2)
-			human_owner.adjustToxLoss(0.25)
+			human_owner.adjustToxLoss(1)
 			if(prob(1))
 				human_owner.vomit()
 				current_stack_decay += 5 SECONDS
 		if(3)
-			human_owner.adjustToxLoss(0.5)
+			human_owner.adjustToxLoss(2)
 			if(prob(2))
 				human_owner.vomit()
 				current_stack_decay += 5 SECONDS
 		if(4)
-			human_owner.adjustToxLoss(1)
+			human_owner.adjustToxLoss(3)
 			if(prob(5))
 				human_owner.vomit()
 				current_stack_decay += 5 SECONDS
