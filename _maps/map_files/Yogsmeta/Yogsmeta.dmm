@@ -52687,6 +52687,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/wood,
 /area/library)
+"dDm" = (
+/obj/structure/lattice,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "dDp" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/white,
@@ -129686,7 +129690,7 @@ aaf
 aaf
 aaf
 ack
-aaf
+dDm
 cCs
 cCs
 cCs
@@ -129943,7 +129947,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+axY
 cCs
 cCs
 cCs
