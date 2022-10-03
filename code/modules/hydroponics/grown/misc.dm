@@ -237,7 +237,6 @@
 	growing_icon = 'icons/obj/hydroponics/growing.dmi'
 	icon_dead = "coconut-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	forbiddengenes = list(/datum/plant_gene/trait/squash, /datum/plant_gene/trait/stinging)
 	reagents_add = list("coconutmilk" = 0.3)
 
 /obj/item/reagent_containers/food/snacks/grown/coconut
