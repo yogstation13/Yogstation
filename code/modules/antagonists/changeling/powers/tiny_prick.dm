@@ -72,7 +72,7 @@
 	button_icon_state = "sting_transform"
 	sting_icon = "sting_transform"
 	chemical_cost = 20
-	dna_cost = 2
+	dna_cost = 1
 	var/datum/changelingprofile/selected_dna = null
 
 /datum/action/changeling/sting/transformation/Trigger()
@@ -112,7 +112,7 @@
 		var/mob/living/carbon/human/OldDNA = new /mob/living/carbon/human()
 		OldDNA.real_name = C.real_name
 		C.dna.transfer_identity(OldDNA)
-		addtimer(CALLBACK(src, .proc/revert, C, OldDNA), 5 MINUTES, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, .proc/revert, C, OldDNA), 10 MINUTES, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 		C.real_name = NewDNA.real_name
 		NewDNA.transfer_identity(C)
