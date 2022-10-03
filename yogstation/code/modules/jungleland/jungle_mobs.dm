@@ -4,7 +4,7 @@
 	weather_immunities = WEATHER_ACID
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	robust_searching = TRUE
-	faction = list("mining")
+	faction = list("mining", "skintwister_cloak")
 	see_in_dark = 3
 	vision_range = 4
 	minbodytemp = 0
@@ -432,12 +432,12 @@
 	if(stat == DEAD)
 		return 
 
-	if(luminosity > 0 && awoke && !target)
+	if(luminosity > 0.6 && awoke && !target)
 		toggle_ai(AI_OFF)
 		awoke = FALSE 
 		icon_state = "mosquito_sleeping"
 	
-	if(luminosity <= 0 && !awoke)
+	if(luminosity <= 0.6 && !awoke)
 		toggle_ai(AI_ON) 
 		awoke = TRUE 
 		icon_state = has_blood ? "mosquito_blood" : icon_living

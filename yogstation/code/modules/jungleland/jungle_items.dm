@@ -177,8 +177,7 @@
 		return
 	active = TRUE
 	cached_faction_list = user.faction.Copy() // we dont keep the reference to it 
-	user.faction += "mining"
-	user.faction += "skin_walkers"
+	user.faction += "skintwister_cloak"
 
 /obj/item/clothing/neck/yogs/skin_twister/dropped(mob/user)
 	if(active)

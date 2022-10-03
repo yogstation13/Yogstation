@@ -147,8 +147,8 @@
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
 		C.vomit(10, TRUE, TRUE, 3)
-	owner.Dizzy(30 SECONDS)
-	owner.Jitter(30 SECONDS)
+	owner.Dizzy(30)
+	owner.Jitter(30)
 	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "corruption", /datum/mood_event/corrupted_dryad_bad)
 	return ..()

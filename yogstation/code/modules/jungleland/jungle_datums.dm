@@ -4,6 +4,12 @@
 	layer = TRIP_LAYER
 	alpha = 0 //we animate it ourselves
 
+/obj/screen/fullscreen/night
+	icon_state = "Night"
+	layer = NIGHT_LAYER
+	plane = FULLSCREEN_PLANE
+
+
 //floor trip
 /obj/screen/fullscreen/ftrip
 	icon_state = "ftrip"
@@ -338,16 +344,17 @@
 			return
 
 	//instead of it being chance based, malaria is based on time
-#define NOON_DIVISOR 1.6 
+#define NOON_DIVISOR 5 
 #define LIGHTING_GRANULARITY 3.4
 #define UPDATES_IN_QUARTER_DAY 5
 
 /datum/daynight_cycle 
 	var/daynight_cycle = TRUE
-	var/update_interval = 120 SECONDS
+	var/update_interval = 60 SECONDS
 	var/updates = 0 
 	var/cached_luminosity = 0
 	var/list/affected_areas = list()
+	var/list/affected_mobs = list()
 
 /datum/daynight_cycle/proc/finish_generation()
 	INVOKE_ASYNC(src,.proc/daynight_cycle)
@@ -357,30 +364,33 @@
 	updates += 1
 	//whew that's quite a bit of math! it's quite simple once you get it tho, think of (current_inteval/update_interval) as x, sin(x * arcsin(1)) turns sin()'s period from 2*PI to 4,
 	//working with integers is nicer, all the other stuff is mostly fluff to make it so it takes 10 update_interval to go from day to night and back.
-	var/new_luminosity = CEILING( (LIGHTING_GRANULARITY  *sin( ( updates * arcsin(1) ) / UPDATES_IN_QUARTER_DAY) ) ,1 )/NOON_DIVISOR
+	var/new_luminosity = 0.3 + (CEILING(LIGHTING_GRANULARITY * sin(updates * arcsin(1)/5),1) + 3)/10
 	
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,updates,new_luminosity)
-
-	var/counter = 0	
-	for(var/area/A as anything in affected_areas)
-		for(var/turf/open/T in A)
-			for(var/mob/living/L in T)
-				if(!L.client)
-					continue
-				if(new_luminosity != cached_luminosity)
-					if(new_luminosity > 0 && cached_luminosity < 0)
-						to_chat(L,span_alertwarning("The dawn lights the whole jungle in new glorious light... a new day begins!"))
-					if(new_luminosity < 0 && cached_luminosity > 0)
-						to_chat(L,span_alertwarning("You can see the stars high in the sky... the night begins!"))
-
-			T.set_light(1,new_luminosity) // we do not use dynamic light, because they are so insanely slow, it's just.. not worth it.
-			if(counter == 16)
-				CHECK_TICK
-				counter = 0
-			counter++
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		if(!L.client)
+			continue
+		var/area/A = get_area(L)
+		if(!(A in affected_areas))
+			continue
+		if(!(L.real_name in affected_mobs))
+			affected_mobs += L.real_name
+			RegisterSignal(L,COMSIG_MOVABLE_MOVED,.proc/check_on_move)
+		if(new_luminosity <= 0.6)
+			L.overlay_fullscreen("night_overlay",/obj/screen/fullscreen/night,((1 - new_luminosity) - 0.4)*10)
+		else 
+			L.clear_fullscreen("night_overlay",TRUE)
 	cached_luminosity = new_luminosity
 
 	addtimer(CALLBACK(src,.proc/daynight_cycle), update_interval, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/datum/daynight_cycle/proc/check_on_move(mob/living/L, atom/OldLoc, Dir, Forced)
+	var/area/A = get_area(L)
+	if(!(A in affected_areas))
+		L.clear_fullscreen("night_overlay",TRUE)
+		UnregisterSignal(L,COMSIG_MOVABLE_MOVED)
+		affected_mobs -= L.real_name
 
 /datum/action/cooldown/tar_crown_spawn_altar
 	name = "Summon tar altar"

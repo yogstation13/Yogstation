@@ -8,7 +8,7 @@
 	has_gravity = TRUE
 /area/jungleland
 	name = "Jungleland"
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	outdoors = TRUE
 	has_gravity = TRUE
 	always_unpowered = TRUE
