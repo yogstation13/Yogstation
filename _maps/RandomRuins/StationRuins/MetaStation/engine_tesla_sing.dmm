@@ -1,577 +1,1017 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"S" = (
+"aS" = (
 /turf/open/space/basic,
+/area/space)
+"bp" = (
+/obj/machinery/field/generator{
+	anchored = 1;
+	state = 2
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"bN" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"cO" = (
+/obj/machinery/power/emitter/anchored{
+	state = 2
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"de" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space)
+"eJ" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"fd" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"hA" = (
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access_txt = "10;13"
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"ia" = (
+/turf/open/floor/plasteel,
+/area/space)
+"iV" = (
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=4";
+	dir = 4;
+	freq = 1400;
+	location = "Engineering"
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"kz" = (
+/obj/machinery/vending/tool,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+"lM" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	sortType = 4
+	},
+/obj/effect/landmark/start/station_engineer,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"nt" = (
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/effect/turf_decal/delivery,
+/obj/structure/table,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"qT" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"rp" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space)
+"rr" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"rC" = (
+/turf/open/floor/plating/airless,
+/area/space)
+"se" = (
+/obj/structure/rack,
+/obj/item/lightreplacer{
+	pixel_y = 7
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 5
+	},
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+"tL" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"uh" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"uR" = (
+/turf/open/floor/plating,
+/area/space)
+"uT" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/starboard)
+"vO" = (
+/obj/structure/table,
+/obj/effect/turf_decal/delivery,
+/obj/item/clothing/glasses/meson/engine,
+/obj/item/clothing/glasses/meson/engine,
+/obj/item/clothing/glasses/meson/engine,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"vP" = (
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
+"ws" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/machinery/modular_computer/console/preset/civilian,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+"wS" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/turf/closed/wall/r_wall,
+/area/space)
+"xu" = (
+/turf/closed/wall/r_wall,
+/area/space)
+"xx" = (
+/obj/machinery/the_singularitygen,
+/turf/open/floor/plating/airless,
+/area/space)
+"ya" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"zf" = (
+/turf/closed/wall/r_wall,
+/area/engine/storage_shared)
+"zJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Aw" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"Ay" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Bg" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/starboard/fore)
+"Cy" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"CS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Do" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/space)
+"Dq" = (
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"GS" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"GV" = (
+/obj/structure/table,
+/obj/effect/turf_decal/delivery,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/glasses/meson,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Ij" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space)
+"JH" = (
+/turf/open/floor/engine,
+/area/space)
+"Ka" = (
+/obj/structure/closet/toolcloset,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+"KP" = (
+/obj/item/radio/intercom{
+	pixel_y = 21
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering - Fore"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"KT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"MF" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"NT" = (
+/obj/machinery/power/emitter/anchored{
+	dir = 1;
+	state = 2
+	},
+/turf/open/floor/plating/airless,
+/area/space)
+"OZ" = (
+/turf/closed/wall,
+/area/engine/engineering)
+"Pb" = (
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/maintenance/starboard/fore)
+"Py" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"QC" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"QO" = (
+/obj/machinery/door/window/southright{
+	dir = 4;
+	name = "Engineering Deliveries";
+	req_access_txt = "10"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"SN" = (
+/turf/closed/wall,
+/area/engine/storage_shared)
+"Us" = (
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/space)
+"WV" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"XC" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"XW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Yz" = (
+/obj/machinery/the_singularitygen/tesla,
+/turf/open/floor/plating/airless,
 /area/space)
 
 (1,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+iV
+vP
+KP
+fd
+CS
+tL
+KT
+CS
+nt
+vO
+CS
+Ay
+CS
+eJ
+GV
+CS
+zJ
+XC
+Cy
+OZ
 "}
 (2,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+QO
+qT
+Py
+MF
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+xu
+zf
 "}
 (3,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+GS
+bN
+QC
+MF
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+xu
+kz
 "}
 (4,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+WV
+lM
+rr
+ya
+ia
+ia
+xu
+xu
+xu
+uR
+xu
+xu
+xu
+ia
+ia
+ia
+ia
+ia
+xu
+Ka
 "}
 (5,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+uh
+XW
+CS
+ia
+ia
+ia
+xu
+JH
+JH
+JH
+JH
+JH
+xu
+ia
+ia
+ia
+ia
+ia
+xu
+ws
 "}
 (6,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+ia
+ia
+ia
+ia
+ia
+ia
+uR
+JH
+JH
+JH
+JH
+JH
+uR
+ia
+ia
+ia
+ia
+ia
+xu
+se
 "}
 (7,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+ia
+ia
+ia
+ia
+ia
+ia
+xu
+JH
+JH
+JH
+JH
+JH
+xu
+ia
+ia
+ia
+ia
+ia
+xu
+SN
 "}
 (8,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+ia
+ia
+ia
+ia
+ia
+ia
+xu
+JH
+JH
+JH
+JH
+JH
+xu
+ia
+ia
+ia
+ia
+ia
+wS
+Aw
 "}
 (9,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+ia
+ia
+ia
+ia
+ia
+ia
+Do
+JH
+JH
+JH
+JH
+JH
+Do
+ia
+ia
+ia
+ia
+ia
+uR
+Dq
 "}
 (10,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+xu
+rC
+xu
+Do
+Do
+Do
+Do
+JH
+JH
+JH
+JH
+JH
+Do
+Do
+Do
+Do
+xu
+rC
+xu
+uT
 "}
 (11,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Us
+rC
+Ij
+rp
+aS
+Do
+Do
+Do
+Do
+Do
+Do
+Do
+Do
+Do
+aS
+rp
+Ij
+rC
+Us
+xu
 "}
 (12,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Us
+rC
+rC
+rp
+aS
+Ij
+Ij
+Ij
+Ij
+Ij
+aS
+aS
+Ij
+Ij
+aS
+rp
+rC
+rC
+Us
+xu
 "}
 (13,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Us
+cO
+rC
+rp
+Ij
+bp
+aS
+aS
+bp
+aS
+aS
+aS
+aS
+bp
+Ij
+rp
+rC
+NT
+Us
+xu
 "}
 (14,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Pb
+rC
+rC
+rp
+rC
+aS
+aS
+aS
+Ij
+aS
+aS
+aS
+aS
+aS
+rC
+rp
+rC
+rC
+Us
+xu
 "}
 (15,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Pb
+rC
+rp
+rp
+rC
+aS
+aS
+aS
+Ij
+aS
+aS
+aS
+aS
+aS
+rC
+rp
+rp
+rC
+Us
+xu
 "}
 (16,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Bg
+rC
+rp
+rp
+aS
+aS
+aS
+aS
+rC
+rC
+rC
+Ij
+Ij
+bp
+Ij
+rp
+rp
+rC
+xu
+xu
 "}
 (17,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+xu
+rC
+rp
+rp
+rC
+aS
+aS
+aS
+xx
+rC
+Yz
+aS
+aS
+aS
+rC
+rp
+rp
+rC
+xu
+xu
 "}
 (18,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+xu
+rC
+rp
+rp
+Ij
+bp
+Ij
+Ij
+rC
+rC
+rC
+aS
+aS
+aS
+aS
+rp
+rp
+rC
+xu
+xu
 "}
 (19,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Us
+rC
+rp
+rp
+rC
+aS
+aS
+aS
+aS
+aS
+Ij
+aS
+aS
+aS
+rC
+rp
+rp
+rC
+Us
+xu
 "}
 (20,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Us
+rC
+rC
+rp
+rC
+aS
+aS
+aS
+aS
+aS
+Ij
+aS
+aS
+aS
+rC
+rp
+rC
+rC
+Us
+xu
 "}
 (21,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Us
+cO
+rC
+Ij
+Ij
+bp
+aS
+aS
+aS
+aS
+bp
+aS
+aS
+bp
+Ij
+Ij
+rC
+NT
+Us
+xu
 "}
 (22,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Us
+rC
+rC
+aS
+aS
+Ij
+aS
+aS
+aS
+aS
+Ij
+aS
+aS
+Ij
+aS
+aS
+rC
+rC
+Us
+xu
 "}
 (23,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+Us
+rC
+rC
+rC
+Ij
+Ij
+aS
+aS
+aS
+Ij
+de
+Ij
+aS
+Ij
+Ij
+rC
+rC
+rC
+Us
+xu
 "}
 (24,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+xu
+hA
+xu
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+rC
+xu
+hA
+xu
+xu
 "}
 (25,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+aS
+rC
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+xu
+rC
+aS
+aS
 "}
 (26,1,1) = {"
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
-S
+aS
+aS
+Us
+Us
+Us
+xu
+Us
+Us
+Us
+Us
+Us
+Us
+Us
+xu
+Us
+Us
+Us
+aS
+aS
+aS
 "}
