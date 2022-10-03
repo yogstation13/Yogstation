@@ -20,7 +20,7 @@
 /************************Hivelord core*******************/
 /obj/item/organ/regenerative_core
 	name = "regenerative core"
-	desc = "All that remains of a hivelord. It can be used to heal completely, but it will rapidly decay into uselessness."
+	desc = "All that remains of a hivelord. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
 	icon_state = "roro core 2"
 	item_flags = NOBLUDGEON
 	slot = "hivecore"
@@ -41,6 +41,7 @@
 	inert = FALSE
 	preserved = TRUE
 	update_icon()
+	name = "preserved regenerative core"
 	desc = "All that remains of a hivelord. It is preserved, allowing you to use it to heal completely without danger of decay."
 	if(implanted)
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "implanted"))
@@ -67,17 +68,7 @@
 		ui_action_click()
 		
 /obj/item/organ/regenerative_core/attack_self(mob/user)
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	if(inert)
-		to_chat(user, span_notice("[src] has decayed and can no longer be used to heal."))
-		return
-	to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
-	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
-	H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
-	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman)
-	qdel(src)
+	afterattack(user, user, TRUE)
 	
 /obj/item/organ/regenerative_core/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
@@ -91,10 +82,30 @@
 				to_chat(user, span_notice("[src] are useless on the dead."))
 				return
 			if(H != user)
-				H.visible_message("[user] forces [H] to apply [src]... Black tendrils entangle and reinforce [H.p_them()]!")
+			
+				if(!is_station_level(get_turf(user)) || is_reserved_level(get_turf(user)))
+					H.visible_message(span_notice("[user] crushes [src] against [H]'s body, causing black tendrils to encover and reinforce [H.p_them()]!"))
+				else
+					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
+					balloon_alert(user, "Applying core...")
+					if(!do_mob(user, H, 2 SECONDS)) //come on teamwork bonus?
+						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
+						return
+					balloon_alert(user, "Core applied!")
+					H.visible_message(span_notice("[src] explodes into a flurry of tendrils, rapidly covering and reinforcing [H]'s body."))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 			else
-				to_chat(user, span_notice("You start to smear [src] on yourself. Disgusting tendrils hold you together and allow you to keep moving, but for how long?"))
+			
+				if(!is_station_level(get_turf(user)) || is_reserved_level(get_turf(user)))
+					to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
+				else
+					to_chat(user, span_notice("You hold [src] against your body, coaxing the regenerating tendrils from [src]..."))
+					balloon_alert(user, "Applying core...")
+					if(!do_after(user, 4 SECONDS, src))
+						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
+						return
+					balloon_alert(user, "Core applied!")
+					to_chat(user, span_notice("[src] explodes into a flurry of tendrils, rapidly spreading across your body. They will hold you together and allow you to keep moving, but for how long?"))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
 			H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman) //Now THIS is a miner buff (fixed - nerf)
@@ -117,7 +128,7 @@
 
 /*************************Legion core********************/
 /obj/item/organ/regenerative_core/legion
-	desc = "A strange rock that crackles with power. It can be used to heal completely, but it will rapidly decay into uselessness."
+	desc = "A strange rock that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
 	icon_state = "legion_soul"
 
 /obj/item/organ/regenerative_core/legion/Initialize()

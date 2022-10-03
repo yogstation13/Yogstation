@@ -457,6 +457,59 @@
 	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
 	return S
 
+/obj/item/organ/lungs/ipc
+	name = "Cooling radiator"
+	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
+	icon_state = "lungs-c"
+	organ_flags = ORGAN_SYNTHETIC
+	status = ORGAN_ROBOTIC
+	COOLDOWN_DECLARE(last_message)
+
+/obj/item/organ/lungs/ipc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
+	if(H.status_flags & GODMODE)
+		return
+	if(HAS_TRAIT(H, TRAIT_NOBREATH))
+		return
+
+	var/total_heat_capacity = 0
+	if(!breath || (breath.total_moles() == 0)) // Space
+		H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+		if(COOLDOWN_FINISHED(src, last_message))
+			to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+			COOLDOWN_START(src, last_message, 30 SECONDS)
+		H.adjust_bodytemperature(65, max_temp = 500)
+		H.failed_last_breath = TRUE
+		return FALSE
+	var/temperature = breath.return_temperature()
+	for(var/id in breath.get_gases())
+		var/moles = breath.get_moles(id)
+		total_heat_capacity += GLOB.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles
+	// Normal atmos is 0.416
+	// 20C -> 293K
+	// At about 50C overheating will begin
+	// At 70C burn damage will start happening
+	breath.remove(breath.total_moles()) // Remove as exhaust or whatever
+	if(total_heat_capacity > 0)
+		var/heat_generation = (temperature + 35)/total_heat_capacity
+		if(heat_generation > 1000) // not dispelling enough heat
+			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
+			if(COOLDOWN_FINISHED(src, last_message))
+				to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+				COOLDOWN_START(src, last_message, 30 SECONDS)
+
+			// Every 2C is an extra temperature
+			H.adjust_bodytemperature((heat_generation-1000)/2, max_temp = 500)
+			H.failed_last_breath = TRUE
+		else
+			H.failed_last_breath = FALSE
+			H.clear_alert("not_enough_oxy")
+	else // backup but should be impossible to ever run
+		if(COOLDOWN_FINISHED(src, last_message))
+			to_chat(H, span_boldwarning("Warning: Cooling subsystem offline!"))
+			COOLDOWN_START(src, last_message, 30 SECONDS)
+		H.adjust_bodytemperature(65, max_temp = 500)
+		H.failed_last_breath = TRUE
+
 /obj/item/organ/lungs/plasmaman
 	name = "plasma filter"
 	desc = "A spongy rib-shaped mass for filtering plasma from the air."

@@ -474,7 +474,7 @@
 /obj/item/reagent_containers/glass/bottle/vial/Initialize()
 	if(icon_state in striped_vial_skins)
 		filling_icon_state = "[base_icon_state]stripe"
-	..()
+	return ..()
 
 /obj/item/reagent_containers/glass/bottle/vial/attackby(obj/P, mob/user, params)
 	add_fingerprint(user)

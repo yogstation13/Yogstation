@@ -9,7 +9,7 @@
 	maxHealth = 50
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	see_in_dark = 5
+	see_in_dark = 8
 	stop_automated_movement = TRUE
 	attacktext = "bites"
 	speak_emote = list("gurgles")
@@ -592,7 +592,7 @@
 		to_chat(src, span_warning("You need 250 chemicals to use this!"))
 		return
 
-	if(HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
+	if(HAS_TRAIT_FROM(victim, TRAIT_BADDNA, CHANGELING_DRAIN))
 		to_chat(src, span_warning("Their DNA is completely destroyed! You can't revive them"))
 		return
 

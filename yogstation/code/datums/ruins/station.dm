@@ -1136,6 +1136,12 @@
 	suffix = "10x5_bamboo.dmm"
 	name = "Maint bamboo"
 
+///Author: Gravehat
+/datum/map_template/ruin/station/maint/tenxfive/medicalmaint
+	id = "medicalmaint"
+	suffix = "10x5_medicalmaint.dmm"
+	name = "Maint medicalmaint"
+
 ///The base for the 10x10 rooms.
 /datum/map_template/ruin/station/maint/tenxten
 	prefix = "_maps/RandomRuins/StationRuins/maint/10x10/"
@@ -1295,3 +1301,8 @@
 	id= "fakewalls"
 	suffix = "10x10_fakewalls.dmm"
 	name = "Maint fakewalls"
+
+/datum/map_template/ruin/station/maint/tenxten/wizard
+	id = "wizard"
+	suffix = "10x10_wizard.dmm"
+	name = "Maint wizard"

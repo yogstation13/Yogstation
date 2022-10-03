@@ -58,6 +58,14 @@
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)
 	requires_real_bodypart = TRUE
 
+/datum/surgery/augmentation/can_start(mob/user, mob/living/carbon/target)
+	if(isgolem(target) || isipc(target) || ispreternis(target))
+		to_chat(user, span_warning("You can only augment organics!"))
+		return FALSE
+	else
+		return TRUE
+
+/*
 /datum/surgery/augmentation/mechanic
 	steps = list(/datum/surgery_step/mechanic_open,
 				/datum/surgery_step/open_hatch,
@@ -65,6 +73,7 @@
 				/datum/surgery_step/prepare_electronics,
 				/datum/surgery_step/replace_limb)
 	requires_bodypart_type = BODYPART_ROBOTIC
+*/ //no you cannot augment already mechanical beings.
 
 //SURGERY STEP SUCCESSES
 

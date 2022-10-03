@@ -163,7 +163,7 @@
 		if(target.StakeCanKillMe())
 			bloodsuckerdatum.FinalDeath()
 		else
-			to_chat(target, span_userdanger("You have been staked! Your powers are useless, your death forever, while it remains in place."))
+			to_chat(target, span_userdanger("You have been staked! Your powers are useless while it remains in place, and death would be permanent!"))
 			to_chat(target, span_userdanger("You have been staked!"))
 
 /// Created by welding and acid-treating a simple stake.
@@ -388,6 +388,6 @@
 			<b>Strength</b>: They are able to slowly advance their abilities.<br> \
 			<b>Weakness</b>: Immensely weak to burn damage."
 		if(CLAN_TZIMISCE)
-			dat += "The page is covered in blood. It seems like it will need time to vanish..."
+			dat += "The page is covered in blood..."
 
 	reader << browse("<meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")

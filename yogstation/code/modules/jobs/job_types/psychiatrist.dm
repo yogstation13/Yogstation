@@ -9,6 +9,7 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#d4ebf2"
 	alt_titles = list("Counsellor", "Therapist", "Mentalist")
+	minimal_player_age = 5 //stop griefing
 
 	outfit = /datum/outfit/job/psych
 

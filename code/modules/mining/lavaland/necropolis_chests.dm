@@ -13,12 +13,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,26)
+	var/loot = rand(1,25)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
 		if(2)
-			new /obj/item/clothing/suit/space/hardsuit/cult(src)
+			new /obj/item/clothing/under/drip(src)
+			new /obj/item/clothing/shoes/drip(src)
 		if(3)
 			new /obj/item/soulstone/anybody(src)
 		if(4)
@@ -75,9 +76,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 		if(25)
 			new /obj/item/clothing/gloves/gauntlets(src)
-		if(26)
-			new /obj/item/clothing/under/drip(src)
-			new /obj/item/clothing/shoes/drip(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -696,13 +694,14 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "Flight Potion"
 	description = "Strange mutagenic compound of unknown origins."
 	reagent_state = LIQUID
+	process_flags = ORGANIC | SYNTHETIC
 	color = "#FFEBEB"
 
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C)) || (reac_volume < 5)) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
+		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || (reac_volume < 5))) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
 			if(method == INGEST && show_message)
 				to_chat(C, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 			return ..()
@@ -721,7 +720,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(isskeleton(C))
 			to_chat(C, span_notice("Your ribcage feels... bigger?"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
-		if(ispreternis(C))
+		if(ispreternis(C) || isipc(C))
 			to_chat(C, span_notice("The servos in your back feel... different?"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		playsound(C.loc, 'sound/items/poster_ripped.ogg', 50, TRUE, -1)
@@ -1712,10 +1711,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	materials = list(/datum/material/bluespace = 8000, /datum/material/diamond = 2000, /datum/material/dilithium = 2000)
 	sharpness = SHARP_NONE
 	block_chance = 0
-	var/ranged_cooldown = 0 //shamelessly stolen from hostile mobs
-	var/ranged_cooldown_time = 40
-	var/projectiles_per_fire = 1
-	var/fauna_damage_bonus = 22
+	var/fauna_damage_bonus = 0
 	var/fauna_damage_type = BRUTE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
@@ -1733,8 +1729,9 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
 		sharpness = SHARP_POINTY
 		w_class = w_class_on
-		block_chance = 10
+		block_chance = 25
 		force = 8
+		fauna_damage_bonus = 52
 
 /obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
 	if(wielded)
@@ -1743,6 +1740,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		w_class = initial(w_class)
 		force = initial(force)
 		block_chance = initial(block_chance)
+		fauna_damage_bonus = initial(fauna_damage_bonus)
 	. = ..()
 
 /obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
@@ -1760,26 +1758,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It feels cold to the touch..."
 
 /obj/structure/closet/crate/sphere/stalwart/PopulateContents()
-	var/loot = rand(1,4)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
 			new /obj/item/gem/purple(src)
 		if(2)
 			new /obj/item/twohanded/bonespear/stalwartpike(src)
-			new /obj/item/ai_cpu/stalwart(src)
-		if(3)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/gem/purple(src)
-		if(4)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 			new /obj/item/ai_cpu/stalwart(src)
 
 //Just some minor stuff
