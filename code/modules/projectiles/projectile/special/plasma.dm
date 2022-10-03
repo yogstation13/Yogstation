@@ -21,9 +21,10 @@
 //yogs begin
 /obj/item/projectile/plasma/Move(atom/newloc, dir)
 	. = ..()
-	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland))
+	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland) && mine_range > 0)
 		var/turf/open/floor/plating/dirt/jungleland/JG = newloc
 		JG.spawn_rock()
+		mine_range--
 
 //yogs end
 /obj/item/projectile/plasma/on_hit(atom/target)
