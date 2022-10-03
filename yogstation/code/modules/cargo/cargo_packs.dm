@@ -161,7 +161,7 @@
 	dangerous = TRUE
 
 /datum/supply_pack/emergency/syndicate/generate(atom/A, datum/bank_account/paying_account)
-	var/obj/structure/closet/crate/C
+	var/obj/structure/closet/crate/secure/loot/C
 	C = new crate_type(A)
 	C.name = crate_name
 	C.autofill = FALSE // Disables normal abandoned crate loot generation
