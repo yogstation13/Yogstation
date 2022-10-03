@@ -1489,6 +1489,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"Pp" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "Pz" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -1997,7 +2001,7 @@ vU
 EO
 iW
 Jp
-eg
+Pp
 "}
 (10,1,1) = {"
 Gr

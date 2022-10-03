@@ -24,6 +24,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space)
+"db" = (
+/obj/structure/particle_accelerator/particle_emitter/right{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
 "de" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -53,6 +59,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"gO" = (
+/obj/structure/particle_accelerator/particle_emitter/center{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
 "hA" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -154,15 +166,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
-"tL" = (
-/obj/structure/cable/white{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "uh" = (
 /obj/machinery/shower{
 	dir = 8;
@@ -202,6 +205,10 @@
 "vP" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"wk" = (
+/obj/machinery/particle_accelerator/control_box,
+/turf/open/floor/engine,
+/area/space)
 "ws" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -212,16 +219,18 @@
 /obj/machinery/modular_computer/console/preset/civilian,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
-"wS" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/closed/wall/r_wall,
-/area/space)
 "xu" = (
 /turf/closed/wall/r_wall,
 /area/space)
 "xx" = (
 /obj/machinery/the_singularitygen,
 /turf/open/floor/plating/airless,
+/area/space)
+"xZ" = (
+/obj/structure/particle_accelerator/end_cap{
+	dir = 4
+	},
+/turf/open/floor/engine,
 /area/space)
 "ya" = (
 /obj/structure/cable/yellow{
@@ -251,10 +260,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Aw" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/open/floor/plating,
-/area/maintenance/starboard)
+"Au" = (
+/obj/structure/particle_accelerator/fuel_chamber{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
 "Ay" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -362,6 +373,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"MI" = (
+/obj/structure/particle_accelerator/power_box{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/space)
 "NT" = (
 /obj/machinery/power/emitter/anchored{
 	dir = 1;
@@ -369,6 +386,15 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space)
+"NZ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "OZ" = (
 /turf/closed/wall,
 /area/engine/engineering)
@@ -404,6 +430,12 @@
 "Us" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
+/area/space)
+"VR" = (
+/obj/structure/particle_accelerator/particle_emitter/left{
+	dir = 4
+	},
+/turf/open/floor/engine,
 /area/space)
 "WV" = (
 /obj/structure/disposalpipe/segment,
@@ -449,12 +481,12 @@ vP
 KP
 fd
 CS
-tL
+NZ
 KT
 CS
 nt
 vO
-CS
+NZ
 Ay
 CS
 eJ
@@ -563,7 +595,7 @@ ia
 uR
 JH
 JH
-JH
+xZ
 JH
 JH
 uR
@@ -585,8 +617,8 @@ ia
 xu
 JH
 JH
-JH
-JH
+Au
+wk
 JH
 xu
 ia
@@ -607,7 +639,7 @@ ia
 xu
 JH
 JH
-JH
+MI
 JH
 JH
 xu
@@ -616,8 +648,8 @@ ia
 ia
 ia
 ia
-wS
-Aw
+xu
+Dq
 "}
 (9,1,1) = {"
 ia
@@ -628,9 +660,9 @@ ia
 ia
 Do
 JH
-JH
-JH
-JH
+db
+gO
+VR
 JH
 Do
 ia
