@@ -25,7 +25,7 @@
 					span_binarysay("\
 						Robotic Talk, \
 						<a href='?src=[REF(M)];track=[html_encode(name)]'>[span_name("[name] ([designation])")]</a> \
-						<span class='message'>[quoted_message]</span>\
+						[span_message("[quoted_message]")]\
 					")
 				)
 			else
@@ -33,7 +33,7 @@
 					M,
 					span_binarysay("\
 						Robotic Talk, \
-						[span_name("[name]")] <span class='message'>[quoted_message]</span>\
+						[span_name("[name]")] [span_message("[quoted_message]")]\
 					")
 				)
 
@@ -54,7 +54,7 @@
 				span_binarysay("\
 					[follow_link] \
 					Robotic Talk, \
-					[span_name("[name]")] <span class='message'>[quoted_message]</span>\
+					[span_name("[name]")] [span_message("[quoted_message]")]\
 				")
 			)
 
