@@ -56957,6 +56957,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"gpl" = (
+/obj/effect/landmark/stationroom/meta/engine,
+/turf/template_noop,
+/area/template_noop)
 "gpy" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/that,
@@ -124048,7 +124052,7 @@ cCs
 cCs
 cCs
 cCs
-cCs
+gpl
 xGn
 aLp
 aNb
