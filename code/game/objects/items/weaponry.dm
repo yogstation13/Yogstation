@@ -707,10 +707,31 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		if(L && L.dna && L.dna.species)
 			L.dna.species.stop_wagging_tail(M)
 	user.do_attack_animation(M)
-	playsound(M, 'sound/weapons/slap.ogg', 50, 1, -1)
-	user.visible_message(span_danger("[user] slaps [M]!"),
-	span_notice("You slap [M]!"),\
-	"You hear a slap.")
+	if(user.zone_selected == BODY_ZONE_PRECISE_GROIN)
+		if(user == M)
+			user.visible_message(
+				span_notice("[user] slaps their own ass, looking pretty fruity."),
+				span_notice("You slap your ass."),
+				span_hear("You hear a slap."),
+			)
+		else
+			if(M.IsSleeping() || M.IsUnconscious())
+				user.visible_message(
+					span_notice("[user] slaps [M] square on the ass! That's pretty weird..."),
+					span_notice("You slap [M] on the ass!"),
+					span_hear("You hear an unusually unsettling slap.")
+				)
+			else
+				user.visible_message(
+					span_danger("[user] slaps [M] on the ass!"),
+					span_notice("You slap [M] on the ass!"),
+					span_hear("You hear a slap."),
+				)
+	else
+		user.visible_message("<span class='danger'>[user] slaps [M]!</span>",
+			"<span class='notice'>You slap [M]!</span>",
+			"<span class='hear'>You hear a slap.</span>")
+	playsound(M, 'sound/weapons/slap.ogg', slap_volume, TRUE, -1)
 	return
 /obj/item/proc/can_trigger_gun(mob/living/user)
 	if(!user.can_use_guns(src))
