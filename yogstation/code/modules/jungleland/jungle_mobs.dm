@@ -10,6 +10,7 @@
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	pressure_resistance = 100
+	mob_size = MOB_SIZE_LARGE
 
 /mob/living/simple_animal/hostile/yog_jungle/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
