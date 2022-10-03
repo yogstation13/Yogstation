@@ -671,6 +671,21 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Fx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 24
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
 "Gp" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
@@ -1282,7 +1297,7 @@ RZ
 RZ
 tD
 vP
-dq
+Fx
 vP
 uT
 "}
