@@ -819,6 +819,22 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"NG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/advanced_airlock_controller{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
 "NH" = (
 /obj/machinery/the_singularitygen/tesla,
 /turf/open/floor/plating/airless,
@@ -1281,7 +1297,7 @@ RZ
 RZ
 tD
 vP
-OS
+NG
 vP
 uT
 "}
