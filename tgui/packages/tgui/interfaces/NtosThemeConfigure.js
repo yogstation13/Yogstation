@@ -37,7 +37,7 @@ export const NtosThemeConfigure = (props, context) => {
                 })} />
             </Flex.Item>
           ))}
-          {(PC_emagged && (
+          {!!PC_emagged && (
             <Flex.Item
               width="100%"
               grow={1}>
@@ -48,7 +48,7 @@ export const NtosThemeConfigure = (props, context) => {
                 content={"Syndicate"}
                 onClick={() => act('PRG_change_theme_syndicate')} />
             </Flex.Item>
-          ))}
+          )}
         </Flex>
       </NtosWindow.Content>
     </NtosWindow>
