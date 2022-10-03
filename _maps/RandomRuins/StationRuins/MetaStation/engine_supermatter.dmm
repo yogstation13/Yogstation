@@ -1,4 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ag" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "aj" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -299,6 +308,10 @@
 "jp" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"jS" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "jZ" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
@@ -930,9 +943,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"yS" = (
-/turf/template_noop,
-/area/template_noop)
 "zf" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -1003,6 +1013,18 @@
 "Ay" = (
 /turf/closed/wall/r_wall,
 /area/engine/storage_shared)
+"AB" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "Bf" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -1118,6 +1140,33 @@
 "Dy" = (
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
+/area/engine/engineering)
+"Ea" = (
+/obj/machinery/door/window/southright{
+	dir = 4;
+	name = "Engineering Deliveries";
+	req_access_txt = "10"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Ef" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"Er" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "Et" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1277,6 +1326,17 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"HJ" = (
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=4";
+	dir = 4;
+	freq = 1400;
+	location = "Engineering"
+	},
+/obj/structure/plasticflaps/opaque,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "HU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1294,6 +1354,18 @@
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"Ii" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "Ip" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1414,6 +1486,16 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"MY" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/effect/mapping_helpers/teleport_anchor,
+/obj/effect/turf_decal/stripes{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "Ne" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Supermatter Engine";
@@ -1489,10 +1571,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"Pp" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/open/floor/plating,
-/area/maintenance/starboard)
 "Pz" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -1661,6 +1739,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"TS" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/sorting/mail{
+	sortType = 4
+	},
+/obj/effect/landmark/start/station_engineer,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "TU" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -1806,8 +1900,8 @@
 /area/engine/engineering)
 
 (1,1,1) = {"
-yS
-yS
+HJ
+jp
 rr
 zF
 QH
@@ -1828,8 +1922,8 @@ bV
 vn
 "}
 (2,1,1) = {"
-yS
-yS
+Ea
+AB
 hX
 IG
 jp
@@ -1850,8 +1944,8 @@ jp
 Ay
 "}
 (3,1,1) = {"
-yS
-yS
+MY
+Ef
 xn
 IG
 jp
@@ -1872,8 +1966,8 @@ jp
 Df
 "}
 (4,1,1) = {"
-yS
-yS
+Ii
+TS
 BZ
 Bf
 SM
@@ -1894,8 +1988,8 @@ jp
 xU
 "}
 (5,1,1) = {"
-yS
-yS
+ag
+Er
 QH
 cq
 SM
@@ -2001,7 +2095,7 @@ vU
 EO
 iW
 Jp
-Pp
+jS
 "}
 (10,1,1) = {"
 Gr
