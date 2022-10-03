@@ -265,12 +265,12 @@
 
 /datum/map_template/ruin/station/meta/supermatter
 	id = "meta_supermatter"
-	suffix = "engine_supermatter"
+	suffix = "engine_supermatter.dmm"
 	name = "Meta Supermatter"
 
 /datum/map_template/ruin/station/meta/tesla_singulo
 	id = "meta_tesla_singulo"
-	suffix = "engine_tesla_sing"
+	suffix = "engine_tesla_sing.dmm"
 	name = "Meta Tesla and Singulo"
 
 /datum/map_template/ruin/station/eclipse
