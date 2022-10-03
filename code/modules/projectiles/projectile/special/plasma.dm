@@ -21,7 +21,7 @@
 //yogs begin
 /obj/item/projectile/plasma/Move(atom/newloc, dir)
 	. = ..()
-	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland)
+	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland))
 		var/turf/open/floor/plating/dirt/jungleland/JG = newloc
 		JG.spawn_rock()
 
