@@ -9,6 +9,7 @@ export const NtosNetDownloader = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     PC_device_theme,
+    theme_collection = [],
     disk_size,
     disk_used,
     downloadcompletion,
@@ -16,7 +17,7 @@ export const NtosNetDownloader = (props, context) => {
     downloadname,
     downloadsize,
     error,
-    emagged,
+    PC_emagged,
     categories,
     programs,
   } = data;
@@ -33,7 +34,7 @@ export const NtosNetDownloader = (props, context) => {
     selectedCategory !== all_categories[0]
     && filter(program => program.category === selectedCategory),
     // This filters the list to only contain verified programs
-    (!emagged && PC_device_theme === "ntos")
+    (!PC_emagged && theme_collection.some(theme => theme.theme_file === PC_device_theme))
     && filter(program => program.verifiedsource === 1),
     // This sorts all programs in the lists by name and compatibility
     sortBy(

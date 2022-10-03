@@ -107,3 +107,4 @@
 /obj/item/modular_computer/tablet/integrated/syndicate/Initialize()
 	. = ..()
 	borgo.lamp_color = COLOR_RED //Syndicate likes it red
+	obj_flags |= EMAGGED
