@@ -1811,6 +1811,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 8
 	player_minimum = 25
 
+/datum/uplink_item/implants/reviver
+	name = "Reviver Impant"
+	desc = "This implant will attempt to revive and heal you if you lose consciousness. For the faint of heart!."
+	item = /obj/item/autosurgeon/reviver
+	cost = 3
+
 /datum/uplink_item/implants/antistun
 	name = "CNS Rebooter Implant"
 	desc = "This implant will help you get back up on your feet faster after being stunned. Comes with an autosurgeon."
