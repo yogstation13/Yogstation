@@ -159,11 +159,6 @@
 	spell_type = /obj/effect/proc_holder/spell/pointed/trigger/blind
 	cost = 1
 
-/datum/spellbook_entry/mindswap
-	name = "Mindswap"
-	spell_type = /obj/effect/proc_holder/spell/targeted/mind_transfer
-	category = "Mobility"
-
 /datum/spellbook_entry/forcewall
 	name = "Force Wall"
 	spell_type = /obj/effect/proc_holder/spell/targeted/forcewall

@@ -171,6 +171,16 @@
 	playsound(loc, sound, 100, 1)
 	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
 
+/obj/effect/mine/explosive/ancient
+	name = "rusty mine"
+	range_heavy = 0
+	range_light = 1
+	range_flash = 2
+	disarm_product = null
+
+/obj/effect/mine/explosive/ancient/mineEffect(mob/victim)
+	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
+
 /obj/effect/mine/stun
 	name = "stun mine"
 	var/stun_time = 80

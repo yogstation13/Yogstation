@@ -92,15 +92,12 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 		SSmobs.cheeserats -= src
 		..(gibbed)
 
-/mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
-	if( ishuman(AM) )
+/mob/living/simple_animal/mouse/Crossed(atom/movable/AM)
+	if(ishuman(AM))
 		if(!stat)
 			var/mob/M = AM
 			to_chat(M, span_notice("[icon2html(src, M)] Squeak!"))
-	if(istype(AM, /obj/item/reagent_containers/food/snacks/royalcheese))
-		evolve()
-		qdel(AM)
-	..()
+	return ..()
 
 /mob/living/simple_animal/mouse/handle_automated_action()
 	if(prob(chew_probability))
@@ -143,12 +140,12 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
   *Spawns a new regal rat, says some good jazz, and if sentient, transfers the relivant mind.
   */
 /mob/living/simple_animal/mouse/proc/evolve()
-	var/mob/living/simple_animal/hostile/regalrat = new /mob/living/simple_animal/hostile/regalrat(loc)
-	visible_message(span_warning("[src] devours the cheese! He morphs into something... greater!"))
-	regalrat.say("RISE, MY SUBJECTS! SCREEEEEEE!")
+	var/mob/living/simple_animal/hostile/regalrat/rat = new(get_turf(src))
 	if(mind)
-		mind.transfer_to(regalrat)
+		mind.transfer_to(rat)
 	qdel(src)
+	visible_message(span_warning("[src] devours the cheese! He morphs into something... greater!"))
+	rat.say("RISE, MY SUBJECTS! SCREEEEEEE!")
 
 /mob/living/simple_animal/mouse/Move()
 	. = ..()
@@ -269,7 +266,6 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 							/obj/item/reagent_containers/food/snacks/cheesiehonkers) //all cheeses - royal
 	if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
 		evolve()
-		return
 	if(istype(F, /obj/item/grown/bananapeel/bluespace))
 		var/obj/item/grown/bananapeel/bluespace/B
 		var/teleport_radius = max(round(B.seed.potency / 10), 1)
