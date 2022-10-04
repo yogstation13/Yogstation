@@ -1,3 +1,8 @@
+#define SCAN_CHEM 	(1<<0)
+#define SCAN_HEALTH (1<<1)
+#define SCAN_NANITE	(1<<2)
+#define SCAN_WOUND	(1<<3)
+
 /mob/dead/observer/DblClickOn(atom/A, params)
 	if(check_click_intercept(params, A))
 		return	
@@ -58,10 +63,17 @@
 	return FALSE
 
 /mob/living/attack_ghost(mob/dead/observer/user)
-	if(user.client && user.health_scan)
-		healthscan(user, src, 1, TRUE)
-	if(user.client && user.chem_scan)
-		chemscan(user, src)
+	if(user?.client)
+		if(user.scanmode & SCAN_HEALTH)
+			healthscan(user, src, TRUE)
+		if(user.scanmode & SCAN_CHEM)
+			chemscan(user, src)
+		if(user.scanmode & SCAN_NANITE)
+			var/response = SEND_SIGNAL(src, COMSIG_NANITE_SCAN, user, TRUE)
+			if(!response)
+				to_chat(user, span_info("No nanites detected in the subject."))
+		if(user.scanmode & SCAN_WOUND)
+			woundscan(user, src)
 	return ..()
 
 // ---------------------------------------
