@@ -89,7 +89,7 @@
 	always_place = TRUE
 	allow_duplicates = TRUE
 	cost = 5
-/datum/map_template/ruin/jungle/all/tar_temple
+/datum/map_template/ruin/jungle/all/tar_temple1
 	name = "Tar temple 1"
 	id = "jungle-dying-tar-temple"
 	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
@@ -97,7 +97,7 @@
 	always_place = TRUE
 	cost = 0	
 
-/datum/map_template/ruin/jungle/all/tar_temple
+/datum/map_template/ruin/jungle/all/tar_temple2
 	name = "Tar temple 2"
 	id = "jungle-swamp-tar-temple"
 	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
@@ -105,7 +105,7 @@
 	always_place = TRUE
 	cost = 0
 
-/datum/map_template/ruin/jungle/all/tar_temple
+/datum/map_template/ruin/jungle/all/tar_temple3
 	name = "Tar temple 3"
 	id = "jungle-proper-tar-temple"
 	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
