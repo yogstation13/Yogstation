@@ -12,7 +12,7 @@ GLOBAL_REAL_VAR(list/__auxtools_initialized)
 
 #define AUXTOOLS_CHECK(LIB)\
 	if (!islist(__auxtools_initialized)) {\
-		__auxtools_initialized = list()\
+		__auxtools_initialized = list();\
 	}\
 	if (!__auxtools_initialized[LIB]) {\
 		if (fexists(LIB)) {\
