@@ -23,11 +23,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aW" = (
-/obj/structure/lattice,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/engine/engineering)
 "ba" = (
 /obj/machinery/power/grounding_rod,
 /turf/open/floor/plating,
@@ -179,6 +174,19 @@
 	},
 /turf/open/space/basic,
 /area/engine/engineering)
+"iM" = (
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/obj/structure/sign/warning/vacuum{
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "jm" = (
 /obj/machinery/particle_accelerator/control_box,
 /turf/open/floor/engine,
@@ -284,6 +292,16 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"pY" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/space/basic,
 /area/engine/engineering)
 "qP" = (
 /obj/machinery/light{
@@ -466,16 +484,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"yU" = (
-/obj/effect/turf_decal/stripes{
-	dir = 5
-	},
-/obj/structure/sign/warning/vacuum{
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "zl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -638,12 +646,6 @@
 "JE" = (
 /obj/machinery/the_singularitygen,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
-"JI" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "JJ" = (
 /obj/structure/cable{
@@ -1091,7 +1093,7 @@ SN
 SN
 "}
 (7,1,1) = {"
-yU
+iM
 sm
 zF
 PS
@@ -1210,7 +1212,7 @@ RZ
 RZ
 RZ
 Su
-JI
+pY
 vP
 PQ
 vP
@@ -1470,7 +1472,7 @@ Su
 Su
 tg
 yi
-aW
+uj
 Uh
 bk
 bs
