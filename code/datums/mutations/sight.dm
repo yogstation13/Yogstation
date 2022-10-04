@@ -80,3 +80,13 @@
 /datum/mutation/human/laser_eyes/on_ranged_attack(atom/target, mouseparams)
 	if(owner.a_intent == INTENT_HARM)
 		owner.LaserEyes(target, mouseparams)
+
+/datum/mutation/human/thermal/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	ADD_TRAIT(owner, CULT_EYES, GENETIC_MUTATION)
+
+/datum/mutation/human/thermal/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	REMOVE_TRAIT(owner, CULT_EYES, GENETIC_MUTATION)
