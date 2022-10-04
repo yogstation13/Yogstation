@@ -193,3 +193,7 @@
 #define ui_ghost_spawners "SOUTH: 6, CENTER+1:24"
 #define ui_ghost_language_menu "SOUTH: 22,CENTER+2:8"
 #define ui_ghost_pai "SOUTH: 6,CENTER+2:8"
+#define ui_ghost_med "SOUTH: 6,CENTER+3:-8"
+#define ui_ghost_chem "SOUTH: 22,CENTER+3:-8"
+#define ui_ghost_nanite "SOUTH: 6,CENTER+3:8"
+#define ui_ghost_wound "SOUTH: 22,CENTER+3:8"
