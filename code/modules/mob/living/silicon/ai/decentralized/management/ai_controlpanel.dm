@@ -464,7 +464,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				user.dropItemToGround(device)
 				device.forceMove(A)
 				A.cogging = device
-				A.hijack_start = world.time
+				A.cog_start = world.time
 				A.update_icons()
 				to_chat(A, span_danger("Warning! Anomaly detected in primary systems!"))
 				to_chat(A, span_heavy_brass(text2ratvar("You belong to me now.")))
@@ -486,7 +486,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if (do_after(user, 10 SECONDS, src))
 				A.cogging.forceMove(get_turf(src))
 				A.cogging = null
-				A.hijack_start = 0
+				A.cog_start = 0
 				A.update_icons()
 				to_chat(A, span_bolddanger("Anomaly cleared. System is now safe to resume operation."))
 			else

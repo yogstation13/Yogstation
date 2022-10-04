@@ -1,4 +1,5 @@
 #define HIJACK_TIME 2400
+#define COG_TIME 2400
 
 /mob/living/silicon/ai/proc/process_hijack()
 	if(hijacking)
@@ -14,9 +15,10 @@
 /mob/living/silicon/ai/proc/process_integrate()
 	if(!cogging)
 		return
-	if(world.time >= hijack_start+HIJACK_TIME && mind)
+	if(world.time >= cog_start+COG_TIME && mind)
 		add_servant_of_ratvar(src)
 		can_download = FALSE //rat'var protects us against the cucking console
 		QDEL_NULL(cogging)
 
 #undef HIJACK_TIME 
+#undef COG_TIME
