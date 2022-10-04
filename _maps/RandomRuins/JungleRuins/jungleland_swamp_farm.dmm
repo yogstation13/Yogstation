@@ -75,6 +75,16 @@
 	icon_state = "wood-broken"
 	},
 /area/ruin/unpowered)
+"v" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/item/clothing/accessory/resinband{
+	desc = "A weird armband, doesn't look like it'd be from around here."
+	},
+/obj/item/clothing/suit/yogs/monkrobes,
+/obj/item/kitchen/knife/combat,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
 "w" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -157,14 +167,6 @@
 /area/ruin/unpowered)
 "X" = (
 /turf/closed/wall/mineral/wood,
-/area/ruin/unpowered)
-"Y" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/item/clothing/accessory/resinband{
-	desc = "A weird armband, doesn't look like it'd be from around here."
-	},
-/turf/open/floor/wood,
 /area/ruin/unpowered)
 "Z" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -697,7 +699,7 @@ I
 G
 G
 X
-Y
+v
 l
 o
 P

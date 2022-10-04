@@ -67,9 +67,10 @@
 /mob/living/simple_animal/hostile/skeleton/templar,
 /turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
-"V" = (
+"T" = (
 /obj/structure/closet/crate/coffin/blackcoffin,
 /obj/item/wisp_lantern,
+/obj/item/gem/fdiamond,
 /turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
 "Z" = (
@@ -313,7 +314,7 @@ g
 Z
 Z
 Z
-V
+T
 P
 Z
 Z

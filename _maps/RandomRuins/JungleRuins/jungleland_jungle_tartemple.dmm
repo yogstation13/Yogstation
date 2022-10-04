@@ -111,10 +111,6 @@
 /obj/item/stack/sheet/mineral/gold,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
-"F" = (
-/obj/structure/table/wood,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
 "G" = (
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -128,6 +124,11 @@
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"J" = (
+/obj/structure/table/wood,
+/obj/item/stack/medical/poultice,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "K" = (
@@ -396,7 +397,7 @@ z
 c
 c
 z
-F
+J
 c
 c
 M
@@ -1004,7 +1005,7 @@ z
 c
 c
 z
-F
+J
 c
 c
 c
