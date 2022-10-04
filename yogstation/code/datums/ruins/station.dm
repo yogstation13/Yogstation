@@ -264,15 +264,20 @@
 	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
 
 /datum/map_template/ruin/station/meta/supermatter
-	id = "meta_supermatter"
+	id = "engine_sm"
 	suffix = "engine_sm.dmm"
-	name = "Meta Supermatter"
+	name = "Engine SM"
 
 /datum/map_template/ruin/station/meta/tesla_singulo
-	id = "meta_tesla_singulo"
+	id = "engine_singulo_tesla"
 	suffix = "engine_singulo_tesla.dmm"
-	name = "Meta Tesla and Singulo"
+	name = "Engine Singulo And Tesla"
 
+/datum/map_template/ruin/station/meta/teg
+	id = "engine_teg"
+	suffix = "engine_teg.dmm"
+	name = "Engine TEG"
+	
 /datum/map_template/ruin/station/eclipse
     prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"
 
