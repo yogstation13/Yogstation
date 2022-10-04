@@ -80583,9 +80583,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plating,
 /area/engine/atmos_distro)
-"wDB" = (
-/turf/closed/wall/r_wall,
-/area/space)
 "wEj" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -126433,7 +126430,7 @@ cCs
 cCs
 cCs
 cCs
-wDB
+axY
 atm
 aKD
 aKD

@@ -98,12 +98,6 @@
 /obj/structure/cable/orange,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"dj" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "dU" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -283,13 +277,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"jk" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "jp" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -407,6 +394,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"mJ" = (
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "mK" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -857,10 +848,31 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"xu" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/space/basic,
+/area/space/nearstation)
+"xC" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
 "xN" = (
 /obj/structure/cable/orange,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"xO" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "ya" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Gas to Filter"
@@ -873,13 +885,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"ym" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "yv" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/machinery/light{
@@ -899,6 +904,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"ze" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "zf" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -1039,13 +1051,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"Cy" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "CD" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
@@ -1080,10 +1085,6 @@
 /obj/machinery/bounty_board,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"DG" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "Et" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1362,6 +1363,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"MA" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
 "MT" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
@@ -1437,13 +1445,6 @@
 "OD" = (
 /turf/template_noop,
 /area/template_noop)
-"OF" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space/basic,
-/area/space/nearstation)
 "OR" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Supermatter Engine";
@@ -1541,6 +1542,12 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"QS" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "Rg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1668,13 +1675,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"Vk" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "Vz" = (
 /obj/machinery/power/emitter/anchored{
 	dir = 1;
@@ -2073,9 +2073,9 @@ li
 aK
 mS
 NS
-dj
-Vk
-DG
+QS
+xC
+mJ
 OD
 "}
 (13,1,1) = {"
@@ -2101,11 +2101,11 @@ Hi
 NU
 NU
 NU
-ym
+MA
 OD
 "}
 (14,1,1) = {"
-OD
+mn
 Ye
 aj
 aj
@@ -2125,13 +2125,13 @@ vl
 SM
 jp
 SY
-Cy
+xO
 SY
-jk
+ze
 OD
 "}
 (15,1,1) = {"
-OD
+mn
 Ye
 Ye
 Ye
@@ -2151,13 +2151,13 @@ Zz
 KF
 jp
 SY
-Cy
+xO
 SY
-ym
+MA
 OD
 "}
 (16,1,1) = {"
-OD
+mn
 mn
 mn
 mn
@@ -2179,7 +2179,7 @@ jp
 NU
 NU
 NU
-jk
+ze
 OD
 "}
 (17,1,1) = {"
@@ -2203,9 +2203,9 @@ jZ
 wb
 jp
 SY
-Cy
+xO
 SY
-ym
+MA
 OD
 "}
 (18,1,1) = {"
@@ -2231,7 +2231,7 @@ jp
 SY
 SY
 SY
-jk
+ze
 OD
 "}
 (19,1,1) = {"
@@ -2255,9 +2255,9 @@ jp
 jp
 jp
 Cc
-OF
+xu
 Cc
-ym
+MA
 OD
 "}
 (20,1,1) = {"
@@ -2281,9 +2281,9 @@ Ye
 Ye
 aj
 oY
-jk
+ze
 oY
-jk
+ze
 OD
 "}
 (21,1,1) = {"
