@@ -179,6 +179,13 @@ const RobotInfo = (props, context) => {
             <Fragment>
               <Button
                 fluid
+                content={robot.enabled ? "Enabled" : "Disabled"}
+                color={robot.enabled ? "good" : "bad"}
+                onClick={() => act('toggle', {
+                  robot: robot.bot_ref,
+                })} />
+              <Button
+                fluid
                 content="Stop Patrol"
                 onClick={() => act('patroloff', {
                   robot: robot.bot_ref,

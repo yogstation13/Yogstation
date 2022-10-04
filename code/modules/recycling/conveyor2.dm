@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_map"
 	name = "conveyor belt"
-	desc = "A conveyor belt."
+	desc = "A conveyor belt. You can rotate it with a wrench, and reverse it with a screwdriver, or detach it with a crowbar."
 	layer = BELOW_OPEN_DOOR_LAYER
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
@@ -185,6 +185,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			verted = verted * -1
 			update_move_direction()
 			to_chat(user, span_notice("You reverse [src]'s direction."))
+			update_icon()
 
 	else if(user.a_intent != INTENT_HARM)
 		user.transferItemToLoc(I, drop_location())
@@ -236,7 +237,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch
 	name = "conveyor switch"
-	desc = "A conveyor control switch."
+	desc = "A conveyor control switch. You can switch it to one-way with a wrench, or detach it with a crowbar."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
 	speed_process = TRUE
@@ -348,7 +349,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/oneway
 	icon_state = "conveyor_switch_oneway"
-	desc = "A conveyor control switch. It appears to only go in one direction."
+	desc = "A conveyor control switch. It appears to only go in one direction. you can switch it to two way with a wrench, or detach it with a crowbar."
 	oneway = TRUE
 
 /obj/machinery/conveyor_switch/oneway/Initialize()
@@ -362,6 +363,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
 	w_class = WEIGHT_CLASS_BULKY
+	materials = list(/datum/material/iron = 50)
 	var/id = "" //inherited by the switch
 
 /obj/item/conveyor_switch_construct/Initialize()
@@ -397,7 +399,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	max_amount = 30
 	singular_name = "conveyor belt"
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(/datum/material/iron = 3000)
+	materials = list(/datum/material/iron = 1000)
 	///id for linking
 	var/id = ""
 
