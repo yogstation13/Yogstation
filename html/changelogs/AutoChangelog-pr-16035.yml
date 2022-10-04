@@ -1,0 +1,4 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - bugfix: "fixed revenants still being able to damage reinforced/plasma/etc windows"
