@@ -7,13 +7,14 @@
 /proc/auxtools_stack_trace(msg)
 	CRASH(msg)
 
-GLOBAL_LIST_EMPTY(auxtools_initialized)
+//this exists because gases may be created when the MC doesn't exist yet
+GLOBAL_REAL_VAR(/list/__auxtools_initialized)
 
 #define AUXTOOLS_CHECK(LIB)\
-	if (!GLOB.auxtools_initialized[LIB]) {\
+	if (!__auxtools_initialized[LIB]) {\
 		if (fexists(LIB)) {\
 			var/string = call(LIB,"auxtools_init")();\
-			GLOB.auxtools_initialized[LIB] = TRUE;\
+			__auxtools_initialized[LIB] = TRUE;\
 			if(!findtext(string, "SUCCESS")) {\
 				CRASH(string);\
 			}\
@@ -23,7 +24,7 @@ GLOBAL_LIST_EMPTY(auxtools_initialized)
 	}\
 
 #define AUXTOOLS_SHUTDOWN(LIB)\
-	if (GLOB.auxtools_initialized[LIB] && fexists(LIB)){\
+	if (__auxtools_initialized[LIB] && fexists(LIB)){\
 		call(LIB,"auxtools_shutdown")();\
-		GLOB.auxtools_initialized[LIB] = FALSE;\
+		__auxtools_initialized[LIB] = FALSE;\
 	}\
