@@ -48,8 +48,8 @@
 					old_other_storage.RemoveComponent()
 					var/datum/component/storage/this_storage = GetComponent(/datum/component/storage)
 					var/datum/component/storage/twin_storage = twin.AddComponent(/datum/component/storage/bluespace/bag_of_holding, this_storage.master()) // add a slave storage component
-					twin_storage.allow_big_nesting = TRUE
-					twin_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
+					twin_storage.allow_big_nesting = FALSE
+					twin_storage.max_w_class = WEIGHT_CLASS_NORMAL
 					twin_storage.max_combined_w_class = 35
 					twin_storage.max_items = 21
 					twin.cut = FALSE
@@ -88,8 +88,8 @@
 			if(m_storage)
 				m_storage.RemoveComponent()
 			m_storage = m_obj.AddComponent(m_obj.component_type)
-			m_storage.allow_big_nesting = TRUE
-			m_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
+			m_storage.allow_big_nesting = FALSE
+			m_storage.max_w_class = WEIGHT_CLASS_NORMAL
 			m_storage.max_combined_w_class = 35
 			m_storage.max_items = 21
 			for(var/datum/component/storage/slave in new_slaves)
