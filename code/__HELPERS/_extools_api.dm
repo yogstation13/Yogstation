@@ -8,9 +8,12 @@
 	CRASH(msg)
 
 //this exists because gases may be created when the MC doesn't exist yet
-GLOBAL_REAL_VAR(/list/__auxtools_initialized) = list()
+GLOBAL_REAL_VAR(/list/__auxtools_initialized)
 
 #define AUXTOOLS_CHECK(LIB)\
+	if (!islist(__auxtools_initialized)) {\
+		__auxtools_initialized = list()\
+	}\
 	if (!__auxtools_initialized[LIB]) {\
 		if (fexists(LIB)) {\
 			var/string = call(LIB,"auxtools_init")();\
