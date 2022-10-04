@@ -435,7 +435,7 @@
 		to_chat(user, span_warning("[M] is dead! You can not help [M.p_them()]."))
 		return FALSE
 	if(iscarbon(M))
-		M.adjustFireLoss(heal, TRUE) //there's other, infinitely better ways to heal brute damage.
+		M.adjustFireLoss(-heal, TRUE) //there's other, infinitely better ways to heal brute damage.
 		return
 	if(isanimal(M))
 		var/mob/living/simple_animal/critter = M
