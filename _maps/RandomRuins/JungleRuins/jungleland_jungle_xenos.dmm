@@ -21,12 +21,14 @@
 /obj/structure/fence,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
-"f" = (
-/mob/living/simple_animal/hostile/alien,
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
 "g" = (
 /obj/structure/fence/corner,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"h" = (
+/mob/living/simple_animal/hostile/alien/sentinel{
+	maxbodytemp = 550
+	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "i" = (
@@ -109,16 +111,6 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
-"C" = (
-/obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien/queen/large{
-	desc = "A gigantic alien who is in charge of the hive and all of its loyal servants.";
-	name = "alien queen";
-	pixel_x = -16;
-	plants_off = 1
-	},
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/ruin/unpowered)
 "D" = (
 /obj/structure/punching_bag,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -186,6 +178,12 @@
 /obj/effect/decal/cleanable/xenoblood/xgibs/core,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
+"R" = (
+/mob/living/simple_animal/hostile/alien{
+	maxbodytemp = 550
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
 "S" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -214,9 +212,16 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "Z" = (
-/mob/living/simple_animal/hostile/alien/sentinel,
+/obj/structure/alien/weeds,
+/mob/living/simple_animal/hostile/alien/queen/large{
+	desc = "A gigantic alien who is in charge of the hive and all of its loyal servants.";
+	maxbodytemp = 550;
+	name = "alien queen";
+	pixel_x = -16;
+	plants_off = 1
+	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 l
@@ -321,7 +326,7 @@ P
 V
 w
 w
-C
+Z
 w
 O
 V
@@ -379,7 +384,7 @@ P
 P
 G
 P
-Z
+h
 P
 P
 W
@@ -470,7 +475,7 @@ P
 P
 P
 P
-f
+R
 W
 i
 P
@@ -496,7 +501,7 @@ P
 P
 P
 P
-f
+R
 P
 K
 K
