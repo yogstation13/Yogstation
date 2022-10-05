@@ -127,6 +127,21 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"eb" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Southwest";
+	dir = 1;
+	network = list("ss13","engine")
+	},
+/turf/open/space/basic,
+/area/engine/engineering)
 "ee" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/lattice/catwalk,
@@ -292,16 +307,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"pY" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/space/basic,
 /area/engine/engineering)
 "qP" = (
 /obj/machinery/light{
@@ -691,6 +696,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Ls" = (
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Northeast";
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
 "Lv" = (
 /obj/effect/turf_decal/stripes{
 	dir = 1
@@ -847,6 +859,17 @@
 "SN" = (
 /turf/template_noop,
 /area/template_noop)
+"Ts" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Northwest";
+	network = list("ss13","engine")
+	},
+/turf/open/space/basic,
+/area/engine/engineering)
 "Uh" = (
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
@@ -855,6 +878,14 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"UD" = (
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Southeast";
+	dir = 1;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "UG" = (
 /obj/structure/particle_accelerator/particle_emitter/center{
@@ -1200,7 +1231,7 @@ SN
 vP
 PQ
 vP
-Oj
+Ts
 Su
 RZ
 RZ
@@ -1212,7 +1243,7 @@ RZ
 RZ
 RZ
 Su
-pY
+eb
 vP
 PQ
 vP
@@ -1538,11 +1569,7 @@ SN
 vP
 xa
 vP
-Uh
-Uh
-qP
-Uh
-Uh
+Ls
 Uh
 qP
 Uh
@@ -1551,6 +1578,10 @@ Uh
 qP
 Uh
 Uh
+Uh
+qP
+Uh
+UD
 vP
 xa
 vP

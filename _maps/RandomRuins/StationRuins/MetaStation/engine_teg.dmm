@@ -80,13 +80,6 @@
 /obj/machinery/atmospherics/components/binary/valve/digital,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"eu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/machinery/portable_atmospherics/scrubber,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "ex" = (
 /obj/machinery/atmospherics/pipe/manifold/dark/visible,
 /obj/machinery/meter,
@@ -203,6 +196,17 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"hi" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Fore";
+	network = list("ss13","engine");
+	pixel_x = 23
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ho" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 9
@@ -256,13 +260,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
-"ip" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/structure/closet/firecloset,
-/turf/open/floor/engine,
 /area/engine/engineering)
 "iq" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -593,6 +590,15 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"vx" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Starboard";
+	dir = 8;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "vN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -828,6 +834,25 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/space/nearstation)
+"Es" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Aft";
+	dir = 1;
+	network = list("ss13","engine");
+	pixel_x = 23
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Eu" = (
 /obj/machinery/atmospherics/components/trinary/filter/critical,
 /obj/effect/turf_decal/stripes/line{
@@ -860,6 +885,18 @@
 	id_tag = "teghot_out"
 	},
 /turf/open/floor/engine/airless,
+/area/engine/engineering)
+"Gm" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/portable_atmospherics/scrubber,
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Port";
+	dir = 4;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Gp" = (
 /obj/structure/window/plasma/reinforced{
@@ -1067,22 +1104,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"OL" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 9
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "OQ" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
@@ -1161,6 +1182,27 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
+/area/engine/engineering)
+"QQ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Starboard";
+	dir = 8;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "Rv" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
@@ -1333,6 +1375,18 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Wt" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/closet/firecloset,
+/obj/machinery/camera{
+	c_tag = "Engineering TEG Port";
+	dir = 4;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Wu" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
@@ -1489,7 +1543,7 @@ xR
 xR
 tJ
 Tl
-eu
+Gm
 xp
 sv
 St
@@ -1501,7 +1555,7 @@ BH
 zW
 sv
 Bm
-ip
+Wt
 xR
 xR
 xR
@@ -1645,7 +1699,7 @@ iV
 iV
 ma
 Tl
-Lt
+hi
 ap
 ed
 Is
@@ -1683,7 +1737,7 @@ je
 kK
 Vz
 bN
-Yz
+Es
 Tl
 xR
 xR
@@ -1801,7 +1855,7 @@ cl
 OQ
 am
 Tl
-Ar
+vx
 Vs
 SL
 BU
@@ -1813,7 +1867,7 @@ ky
 gZ
 td
 AW
-OL
+QQ
 Tl
 xR
 xR
