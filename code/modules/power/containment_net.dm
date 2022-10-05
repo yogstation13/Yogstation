@@ -38,10 +38,12 @@
 
 /obj/item/containment_net/examine(mob/user)
 	. = ..()
-	if(mode == CNMODE_EMPTY && open)
+	if(mode == CNMODE_EMPTY && !open)
 		. += span_info("It must be <b>opened</b> to capture exotic energy.")
-	else if(incomplete_mode && loc == user)
-		. += span_dangers("Don't let go of it.")
+	if(mode == CNMODE_EMPTY && open)
+		. += span_info("It is open and can be <b>closed</b> to prevent capture of exotic energy.")
+	if(incomplete_mode && loc == user)
+		. += span_danger("Don't let go of it.")
 
 /obj/item/containment_net/attack_self(mob/user)
 	. = ..()
@@ -69,9 +71,9 @@
 
 /obj/item/containment_net/proc/warn_user(mob/user)
 	if(istype(user))
-		to_chat(user, span_userdanger("The net now contains dangerous material and will violently explode if dropped or set down!"))
+		to_chat(user, span_userdanger("\The [src] now contains dangerous material and will violently explode if dropped or set down!"))
 	else
-		visible_message(span_userdanger("The net now contains dangerous material and will violently explode if dropped or set down!"))
+		visible_message(span_userdanger("\The [src] now contains dangerous material and will violently explode if dropped or set down!"))
 
 /obj/item/containment_net/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/hemostat/supermatter))
@@ -82,8 +84,8 @@
 			to_chat(user, span_danger("There's already something in \the [src]."))
 			return
 		if(open)
-			open = FALSE
 			mode = CNMODE_SUPERMATTER
+			incomplete_mode = CNMODE_SUPERMATTER
 			amount = 1
 			required_amount = 1
 			name = "[initial(name)] with a supermatter shard inside"
@@ -144,11 +146,11 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/containment_net/process()
-	if(mode)
+	if(incomplete_mode)
 		charge += amount
 		if(charge >= 10)
 			discharge()
-	else
+	if(!mode)
 		try_capture()
 		charge = 0
 
@@ -165,7 +167,12 @@
 		mode = incomplete_mode
 
 /obj/item/containment_net/proc/get_singularity()
-	for(var/obj/singularity/S in oview(3, src))
+	var/list/viewloop
+	if(ismob(loc))
+		viewloop = oview(3, loc)
+	else
+		viewloop = oview(3, src)
+	for(var/obj/singularity/S in viewloop)
 		incomplete_mode = CNMODE_SINGULARITY
 		required_amount = 2
 		amount++
@@ -179,7 +186,12 @@
 	return FALSE
 
 /obj/item/containment_net/proc/get_tesla()
-	for(var/obj/singularity/energy_ball/E in oview(3, src))
+	var/list/viewloop
+	if(ismob(loc))
+		viewloop = oview(3, loc)
+	else
+		viewloop = oview(3, src)
+	for(var/obj/singularity/energy_ball/E in viewloop)
 		incomplete_mode = CNMODE_TESLA
 		required_amount = 4
 		amount++
