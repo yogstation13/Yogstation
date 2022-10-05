@@ -176,7 +176,7 @@ class ChatRenderer {
       this.highlightColor = null;
       return;
     }
-    const allowedRegex = /^[a-z0-9_-\s]+$/ig;
+    //const allowedRegex = /^[a-z0-9_-\s]+$/ig;
     const lines = String(text)
       .split(',')
       // eslint-disable-next-line no-useless-escape
