@@ -78,6 +78,9 @@
 		var/obj/item/hemostat/supermatter/tongs = I
 		if(!tongs.sliver)
 			return ..()
+		if(incomplete_mode)
+			to_chat(user, span_danger("There's already something in \the [src]."))
+			return
 		if(open)
 			open = FALSE
 			mode = CNMODE_SUPERMATTER
@@ -162,7 +165,7 @@
 		mode = incomplete_mode
 
 /obj/item/containment_net/proc/get_singularity()
-	for(var/obj/singularity/S in oview(6, src))
+	for(var/obj/singularity/S in oview(3, src))
 		incomplete_mode = CNMODE_SINGULARITY
 		required_amount = 2
 		amount++
@@ -176,7 +179,7 @@
 	return FALSE
 
 /obj/item/containment_net/proc/get_tesla()
-	for(var/obj/singularity/energy_ball/E in oview(6, src))
+	for(var/obj/singularity/energy_ball/E in oview(3, src))
 		incomplete_mode = CNMODE_TESLA
 		required_amount = 4
 		amount++
