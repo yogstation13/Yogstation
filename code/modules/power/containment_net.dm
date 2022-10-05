@@ -180,7 +180,7 @@
 		incomplete_mode = CNMODE_TESLA
 		required_amount = 4
 		amount++
-		S.energy -= 50
+		E.energy -= 50
 		visible_message(span_notice("\The [src] catches an energy ball."))
 		icon_state = "net_[amount-1]"
 		if(amount == 1)
