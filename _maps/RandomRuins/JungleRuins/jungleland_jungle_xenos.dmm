@@ -21,14 +21,17 @@
 /obj/structure/fence,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
-"f" = (
-/mob/living/simple_animal/hostile/alien,
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
 "g" = (
 /obj/structure/fence/corner,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
+"h" = (
+/obj/structure/alien/weeds,
+/obj/structure/bed/nest,
+/obj/effect/decal/cleanable/blood,
+/obj/item/mining_voucher,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
 "i" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -110,15 +113,11 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
 "C" = (
-/obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien/queen/large{
-	desc = "A gigantic alien who is in charge of the hive and all of its loyal servants.";
-	name = "alien queen";
-	pixel_x = -16;
-	plants_off = 1
+/mob/living/simple_animal/hostile/alien/sentinel{
+	maxbodytemp = 550
 	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/ruin/unpowered)
+/area/template_noop)
 "D" = (
 /obj/structure/punching_bag,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -143,8 +142,9 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "I" = (
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/blood/tracks,
+/mob/living/simple_animal/hostile/alien{
+	maxbodytemp = 550
+	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "J" = (
@@ -173,12 +173,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
-"O" = (
-/obj/structure/alien/weeds,
-/obj/structure/bed/nest,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/ruin/unpowered)
 "P" = (
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
@@ -186,6 +180,17 @@
 /obj/effect/decal/cleanable/xenoblood/xgibs/core,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
+"R" = (
+/obj/structure/alien/weeds,
+/mob/living/simple_animal/hostile/alien/queen/large{
+	desc = "A gigantic alien who is in charge of the hive and all of its loyal servants.";
+	maxbodytemp = 550;
+	name = "alien queen";
+	pixel_x = -16;
+	plants_off = 1
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
 "S" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -214,7 +219,9 @@
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "Z" = (
-/mob/living/simple_animal/hostile/alien/sentinel,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/item/clothing/suit/armor/vest,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 
@@ -321,9 +328,9 @@ P
 V
 w
 w
-C
+R
 w
-O
+h
 V
 P
 H
@@ -379,7 +386,7 @@ P
 P
 G
 P
-Z
+C
 P
 P
 W
@@ -444,7 +451,7 @@ P
 P
 y
 b
-I
+Z
 d
 s
 s
@@ -470,7 +477,7 @@ P
 P
 P
 P
-f
+I
 W
 i
 P
@@ -496,7 +503,7 @@ P
 P
 P
 P
-f
+I
 P
 K
 K

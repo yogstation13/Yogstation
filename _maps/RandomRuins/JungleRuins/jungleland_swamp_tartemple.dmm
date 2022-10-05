@@ -137,6 +137,11 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
+"S" = (
+/obj/structure/table/wood,
+/obj/item/hivelordstabilizer,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
 "T" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/water/toxic_pit,
@@ -530,7 +535,7 @@ E
 N
 D
 v
-E
+S
 E
 g
 g
@@ -899,7 +904,7 @@ g
 g
 g
 g
-E
+S
 E
 N
 D

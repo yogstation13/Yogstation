@@ -65,6 +65,13 @@
 /obj/item/stack/sheet/runed_metal,
 /turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
+"G" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/sinew{
+	amount = 3
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
 "I" = (
 /obj/structure/table/wood,
 /obj/item/kitchen/knife/ritual,
@@ -180,7 +187,7 @@ c
 O
 d
 d
-O
+G
 d
 Q
 Q
