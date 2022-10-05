@@ -94,6 +94,7 @@
 	desc = "Powerful healing herb that can help with curing many exotic diseases"
 	icon_state = "cinchona_bark"
 	seed = /obj/item/seeds/jungleland/cinchona
+	distill_reagent = /datum/reagent/space_cleaner/sterilizine/primal
 
 /obj/item/seeds/jungleland/cinchona
 	name = "pack of cinchona seeds"
@@ -199,9 +200,10 @@
 
 /obj/item/stack/sheet/meduracha 
 	name = "meduracha tentacles"
-	desc = "a stinger of a giant exotic mosquito, quite sharp"
+	desc = "sharp and wiry limbs of a meduracha"
 	singular_name = "meduracha tentacle"
 	icon_state = "sheet-meduracha"
+	grind_results = list(/datum/reagent/toxin/meduracha = 5)
 
 /obj/item/stinger 
 	name = "giant mosquito stinger"

@@ -71,10 +71,6 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
-"u" = (
-/obj/effect/mob_spawn/human/corpse/damaged,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
 "v" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -587,7 +583,7 @@ c
 c
 c
 j
-u
+x
 z
 K
 c
@@ -614,7 +610,7 @@ c
 E
 j
 c
-u
+x
 c
 j
 c
@@ -739,14 +735,14 @@ z
 c
 c
 c
-u
+x
 j
 c
 c
 E
 j
 c
-u
+x
 j
 z
 K

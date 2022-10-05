@@ -289,17 +289,17 @@
 	name = "Ivymen"
 	id = "ivymen"
 	limbs_id = "pod"
-	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE)
+	inherent_traits = list(TRAIT_NOGUNS,TRAIT_RESISTHIGHPRESSURE)
 	speedmod = 0
 	mutantlungs = /obj/item/organ/lungs/ashwalker/ivymen
 	breathid = "n2"
 	disliked_food = DAIRY
 
-/datum/species/lizard/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+/datum/species/pod/ivymen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	C.weather_immunities |= "acid"
 
-/datum/species/lizard/ivymen/on_species_loss(mob/living/carbon/C)
+/datum/species/pod/ivymen/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	C.weather_immunities -= "acid"
 
