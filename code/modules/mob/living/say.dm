@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_HEAR, args)
 
-	show_message(message, 2, deaf_message, deaf_type)
+	show_message(message, 2, deaf_message, deaf_type, avoid_highlighting = speaker == src)
 	return message
 
 /mob/living/send_speech(message, message_range = 6, obj/source = src, bubble_type = bubble_icon, list/spans, datum/language/message_language=null, list/message_mods = list())
