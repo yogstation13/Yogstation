@@ -624,6 +624,7 @@
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
 	desc = "Creates and dispenses mutagen."
+	icon_state = "minidispenserb"
 	dispensable_reagents = list(/datum/reagent/toxin/mutagen)
 	t2_upgrade_reagents = null
 	t3_upgrade_reagents = null
@@ -635,7 +636,7 @@
 	name = "botanical chemical dispenser"
 	desc = "Creates and dispenses chemicals useful for botany."
 	flags_1 = NODECONSTRUCT_1
-
+	icon_state = "minidispenserb"
 	dispensable_reagents = list(
 		/datum/reagent/toxin/mutagen,
 		/datum/reagent/saltpetre,
