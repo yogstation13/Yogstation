@@ -15,11 +15,11 @@
 
 /datum/design/bag_holding
 	name = "Bag of Holding"
-	desc = "A backpack that opens into a localized pocket of bluespace."
+	desc = "A backpack that, when activated, opens into a localized pocket of bluespace."
 	id = "bag_holding"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/gold = 3000, /datum/material/diamond = 1500, /datum/material/uranium = 250, /datum/material/bluespace = 2000)
-	build_path = /obj/item/storage/backpack/holding
+	build_path = /obj/item/disabled_boh
 	category = list("Bluespace Designs")
 	dangerous_construction = TRUE
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

@@ -1,7 +1,7 @@
 /datum/bounty/item/science/boh
 	name = "Bag of Holding"
 	description = "Nanotrasen would make good use of high-capacity backpacks. If you have any, please ship them."
-	reward = 10000
+	reward = 20000
 	wanted_types = list(/obj/item/storage/backpack/holding)
 
 /datum/bounty/item/science/tboh

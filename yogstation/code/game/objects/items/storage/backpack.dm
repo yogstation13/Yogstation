@@ -165,13 +165,26 @@
 
 /obj/item/disabled_boh
 	name = "bag of holding"
-	desc = "A backpack that opens into a localized pocket of bluespace. The bluespace interface on this one is collapsed, rendering it useless"
+	desc = "A backpack that opens into a localized pocket of bluespace. The bluespace interface on this one is inactive and will need to be activated."
 	icon = 'yogstation/icons/obj/storage.dmi'
 	icon_state = "brokenpack"
 	item_state = "holdingpack"
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
 	item_flags = NO_MAT_REDEMPTION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 60, ACID = 50)
+
+/obj/item/disabled_boh/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(!istype(I, /obj/item/containment_net))
+		return
+	var/obj/item/containment_net/net = I
+	if(net.mode && net.amount >= net.required_amount)
+		net.reset_net()
+		new /obj/item/storage/backpack/holding(get_turf(src))
+		to_chat(user, span_notice("\The [src] begins to glow with a soft blue."))
+		qdel(src)
 
 /obj/item/disabled_boh/build_worn_icon(var/state = "", var/default_layer = 0, var/default_icon_file = null, var/isinhands = FALSE, var/femaleuniform = NO_FEMALE_UNIFORM)
 	state = "brokenpack"
