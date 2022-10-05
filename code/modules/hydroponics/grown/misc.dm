@@ -324,7 +324,7 @@
 			return
 
 	//ADDING A FUSE, NADE LOGIC
-	if (istype(W,/obj/item/stack/sheet/cloth) || istype(W,/obj/item/stack/sheet/durathread))
+	if (istype(W,/obj/item/stack/sheet/cloth) || istype(W,/obj/item/stack/sheet/cloth/durathread))
 		if (carved && !straw && !fused)
 			user.show_message("<span class='notice'>You add a fuse to the coconut!</span>", 1)
 			W.use(1)
