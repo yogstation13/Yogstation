@@ -511,7 +511,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			In addition, the user can charge the hammer to enable a thunderous blow that will decimate construction in a single hit, \
 			do sizeable damage to mechs, or shatter people off of their feet. The battery is charged by the user's concentration."
 	item = /obj/item/twohanded/vxtvulhammer
-	cost = 13
+	cost = 8
 	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
 
 /datum/uplink_item/dangerous/sniper
@@ -2020,7 +2020,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This hammer can be retracted and wielded in two hands as an effective armor-piercing weapon. \
 			It can be charged by the user's concentration, which permits a single blow that will decimate construction, \
 			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
-	cost = 16
+	cost = 10
 	item = /obj/item/autosurgeon/arm/syndicate/syndie_hammer
 	restricted_species = list("preternis")
 
