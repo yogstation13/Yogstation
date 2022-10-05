@@ -8,3 +8,7 @@
 	. = ..()
 	AddComponent(/datum/component/fishable)
 	
+/turf/open/lava/smooth/lava_land_surface/Initialize(mapload)
+	. = ..()
+	if(prob(1))
+		AddComponent(/datum/component/fishable, "lavaland")

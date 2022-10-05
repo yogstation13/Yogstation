@@ -141,7 +141,8 @@ GLOBAL_LIST_INIT(fishing_table,init_fishing_table())
 		/obj/item/reagent_containers/food/snacks/fish/rat,
 		/obj/item/reagent_containers/food/snacks/fish/squid,
 		/obj/item/stack/sheet/bluespace_crystal,
-		/obj/item/clothing/head/soft/fishfear/legendary
+		/obj/item/clothing/head/soft/fishfear/legendary,
+		/mob/living/simple_animal/hostile/retaliate/gator
 	)
 
 /datum/fishing_loot/syndicate
