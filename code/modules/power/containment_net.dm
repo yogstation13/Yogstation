@@ -133,7 +133,7 @@
 	if(incomplete_mode)
 		user.visible_message(span_notice("[user] drops \the [src], letting loose the captured energy."), span_userdanger("You drop \the [src]. Idiot."))
 		log_bomber(user, "detonated", src, "by dropping it")
-		explosion(get_turf(src), 0, 2, 0, 5)
+		explosion(get_turf(src), 0, 1, 2, 5)
 		qdel(src)
 
 /obj/item/containment_net/singularity_act()
