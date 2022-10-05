@@ -20,7 +20,7 @@
 /// - You will need 2 fragments
 /// - Side effect: Semi-regular EMPs
 /// Tesla:
-/// - Stand near the singularity and hold the net open
+/// - Stand near the tesla and hold the net open
 /// - Energy balls will collect into the net automatically
 /// - You will need 4 energy balls
 /// - Side effect: Frequent harmful (but not explosive) energy arcs
