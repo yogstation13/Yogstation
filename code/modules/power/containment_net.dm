@@ -131,6 +131,11 @@
 		explosion(get_turf(src), 0, 2, 0, 5)
 		qdel(src)
 
+/obj/item/containment_net/singularity_act()
+	if(incomplete_mode)
+		explosion(get_turf(src), 0, 2, 0, 5)
+	return ..()
+
 /obj/item/containment_net/Destroy()
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
@@ -161,6 +166,7 @@
 		incomplete_mode = CNMODE_SINGULARITY
 		required_amount = 2
 		amount++
+		S.energy -= 50
 		visible_message(span_notice("\The [src] catches a singularity fragment."))
 		icon_state = "net_[amount-1]"
 		if(amount == 1)
@@ -174,6 +180,7 @@
 		incomplete_mode = CNMODE_TESLA
 		required_amount = 4
 		amount++
+		S.energy -= 50
 		visible_message(span_notice("\The [src] catches an energy ball."))
 		icon_state = "net_[amount-1]"
 		if(amount == 1)
