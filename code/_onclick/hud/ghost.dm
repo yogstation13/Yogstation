@@ -68,6 +68,22 @@
 	using.screen_loc = ui_ghost_spawners
 	static_inventory += using
 
+	using = new /obj/screen/ghost/med_scan()
+	using.screen_loc = ui_ghost_med
+	static_inventory += using
+
+	using = new /obj/screen/ghost/chem_scan()
+	using.screen_loc = ui_ghost_chem
+	static_inventory += using
+
+	using = new /obj/screen/ghost/nanite_scan()
+	using.screen_loc = ui_ghost_nanite
+	static_inventory += using
+
+	using = new /obj/screen/ghost/wound_scan()
+	using.screen_loc = ui_ghost_wound
+	static_inventory += using
+
 	using = new /obj/screen/ghost/pai()
 	using.screen_loc = ui_ghost_pai
 	static_inventory += using

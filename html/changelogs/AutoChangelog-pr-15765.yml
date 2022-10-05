@@ -1,7 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - bugfix: "BOX Fixes Disposal system for Medbay/Xenobio/Toxins/Dorms/Perma/RD Office/Library"
-  - tweak: "Toxins and Xenobio now feature a Disposals Unit/Outlet (Respectively)"
-  - bugfix: "BOX Fixes missing segment of pipe by the CMO office"
-  - bugfix: "BOX Fixes Brig Medical Camera being a cloned Interrogation camera"

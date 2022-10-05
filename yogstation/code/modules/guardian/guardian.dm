@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	attacktext = "punches"
 	maxHealth = INFINITY //The spirit itself is invincible
 	health = INFINITY
-	healable = FALSE //don't brusepack the guardian
+	healable = FALSE //don't bruisepack the guardian
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.5, TOX = 0.5, CLONE = 0.5, STAMINA = 0, OXY = 0.5) //how much damage from each damage type we transfer to the owner
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 40
@@ -45,6 +45,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	melee_damage_upper = 15
 	AIStatus = AI_OFF
 	hud_type = /datum/hud/guardian
+	see_in_dark = 8
 	var/list/barrier_images = list()
 	var/custom_name = FALSE
 	var/atk_cooldown = 10

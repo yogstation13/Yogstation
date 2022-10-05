@@ -1301,3 +1301,8 @@
 	id= "fakewalls"
 	suffix = "10x10_fakewalls.dmm"
 	name = "Maint fakewalls"
+
+/datum/map_template/ruin/station/maint/tenxten/wizard
+	id = "wizard"
+	suffix = "10x10_wizard.dmm"
+	name = "Maint wizard"
