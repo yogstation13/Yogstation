@@ -207,7 +207,7 @@
 /obj/item/containment_net/proc/discharge()
 	switch(mode)
 		if(CNMODE_SUPERMATTER)
-			radiation_pulse(src, 1000)
+			radiation_pulse(src, 800)
 		if(CNMODE_SINGULARITY)
 			var/r_range = rand(2,3)
 			empulse(src, r_range, r_range * 2, TRUE)
