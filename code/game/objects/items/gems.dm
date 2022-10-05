@@ -8,7 +8,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 	///owning ID, used to give points when sold
-	var/obj/item/card/id/claimed_by = FALSE
+	var/obj/item/card/id/claimed_by = null
 	///How many points we grant to whoever discovers us
 	var/point_value = 100
 	///what's our real name that will show upon discovery? null to do nothing
