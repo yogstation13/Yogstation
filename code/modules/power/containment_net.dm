@@ -166,7 +166,7 @@
 		incomplete_mode = CNMODE_SINGULARITY
 		required_amount = 2
 		amount++
-		S.energy -= 50
+		S.energy -= 75
 		visible_message(span_notice("\The [src] catches a singularity fragment."))
 		icon_state = "net_[amount-1]"
 		if(amount == 1)
