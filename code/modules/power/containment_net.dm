@@ -200,6 +200,6 @@
 			var/r_range = rand(2,3)
 			empulse(src, r_range, r_range * 2, TRUE)
 		if(CNMODE_TESLA)
-			tesla_zap(get_turf(src), rand(4,6), 15000, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE)
+			tesla_zap(get_turf(src), rand(4,6), 6000, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE)
 
 	charge = MODULUS(charge, 10)
