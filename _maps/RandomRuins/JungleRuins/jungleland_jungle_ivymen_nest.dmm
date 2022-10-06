@@ -209,6 +209,10 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
+"yt" = (
+/obj/item/book/manual/ivymen,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
 "Ez" = (
 /obj/item/seeds/cotton,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -603,7 +607,7 @@ UP
 UP
 aG
 aQ
-aX
+yt
 au
 aL
 aG

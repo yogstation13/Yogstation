@@ -176,6 +176,23 @@
 	ore_quantity_lower = 1
 	ore_color = "#506bc7"
 
+/datum/reagent/space_cleaner/sterilizine/primal
+	name = "Primal Sterilizine"
+	description = "While crude and odorous, it still seems to kill enough bacteria to be usable."
+
+/datum/reagent/toxin/meduracha //try putting this in a blowgun!
+	name = "Meduracha Toxin"
+	description = "Harvested from Meduracha tentacles, the toxin has quickly decayed into a less deadly form, but still is quite fatal."
+	color = "#00ffb3"
+	taste_description = "acid"
+	toxpwr = 3.5 //slightly more damaging than ground up plasma, and also causes other minor effects
+
+/datum/reagent/toxin/meduracha/on_mob_life(mob/living/carbon/M)
+	M.damageoverlaytemp = 60
+	M.update_damage_hud()
+	M.blur_eyes(3)
+	return ..()
+
 /datum/reagent/quinine 
 	name = "Quinine"
 	description = "Dark brown liquid used to treat exotic diseases."
@@ -455,3 +472,10 @@
 	new /obj/effect/tar_king/orb_in(get_turf(owner),owner,NORTH)
 	do_teleport(owner,location)
 	animate(owner,0.5 SECONDS,owner.color = initial(owner.color))
+
+/// jungle recipes---
+/datum/chemical_reaction/poultice/alt2
+	name = "tribal poultice 2"
+	id = "poultice_alt2"
+	required_temp = 420
+	required_reagents = list(/datum/reagent/cellulose = 40, /datum/reagent/ash = 15, /datum/reagent/space_cleaner/sterilizine/primal = 4)
