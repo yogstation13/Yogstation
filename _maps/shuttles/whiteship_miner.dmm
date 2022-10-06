@@ -37,6 +37,13 @@
 "bk" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
+"bn" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -49,11 +56,14 @@
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"bG" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
+"cl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
 	},
-/obj/machinery/seed_extractor,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "cq" = (
@@ -92,12 +102,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"dd" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
 "dk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -115,20 +119,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"dy" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"dB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/disposalpipe/trunk,
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "dN" = (
 /obj/structure/grille,
 /obj/structure/window/shuttle,
@@ -137,12 +127,13 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"dW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
+"eS" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/mob/living/simple_animal/moonrat{
-	name = "Frank"
+/obj/structure/sign/departments/minsky/supply/cargo{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -251,15 +242,35 @@
 /obj/structure/ore_box,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
+"jK" = (
+/obj/structure/sign/warning/deathsposal{
+	pixel_x = -32
+	},
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "jV" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /turf/open/floor/carpet/blue,
 /area/shuttle/abandoned)
+"jW" = (
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "kt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"lj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -284,6 +295,27 @@
 "nZ" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plating,
+/area/shuttle/abandoned)
+"oi" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/airlock/shuttle{
+	name = "hydroponics"
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"ok" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "oE" = (
 /obj/structure/bed,
@@ -383,13 +415,6 @@
 /obj/item/storage/bag/ore,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"qH" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "qU" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -403,21 +428,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"rP" = (
+"rL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/door/airlock/shuttle{
-	name = "living quarters"
-	},
-/obj/machinery/door/firedoor/border_only{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"sb" = (
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -430,16 +452,6 @@
 	icon_state = "heater"
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"si" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"sl" = (
-/obj/machinery/vending/cola/random,
-/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "sw" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
@@ -461,15 +473,6 @@
 "tr" = (
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
-"tt" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 1;
-	name = "Connector Port (Air Supply)"
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/machinery/light,
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
 "uk" = (
 /obj/structure/table,
 /obj/item/megaphone,
@@ -482,6 +485,15 @@
 /obj/item/pickaxe,
 /obj/item/mining_scanner,
 /turf/open/floor/carpet/cyan,
+/area/shuttle/abandoned)
+"uA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/mob/living/simple_animal/moonrat{
+	name = "Frank"
+	},
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "uM" = (
 /obj/machinery/door/airlock/shuttle{
@@ -514,6 +526,12 @@
 	},
 /obj/item/pen/fountain,
 /turf/open/floor/carpet/cyan,
+/area/shuttle/abandoned)
+"vr" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/abandoned)
 "vO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -590,16 +608,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"xa" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/structure/sign/departments/minsky/supply/cargo{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "xz" = (
 /obj/docking_port/mobile{
 	callTime = 250;
@@ -623,13 +631,6 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
-/area/shuttle/abandoned)
-"ye" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "yx" = (
 /obj/item/storage/toolbox/mechanical{
@@ -740,12 +741,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"BG" = (
-/obj/structure/sign/departments/minsky/supply/hydroponics{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "BO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/window/shuttle,
@@ -754,15 +749,6 @@
 	id = "freeship_windows"
 	},
 /turf/open/floor/plating,
-/area/shuttle/abandoned)
-"BQ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "BV" = (
 /obj/machinery/door/airlock/shuttle{
@@ -807,23 +793,6 @@
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"CT" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -30
-	},
-/obj/machinery/vending/hydroseeds/weak,
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"CW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "Db" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
@@ -841,6 +810,24 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
+/area/shuttle/abandoned)
+"Dd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/airlock/shuttle{
+	name = "living quarters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Ds" = (
 /turf/open/floor/plasteel/showroomfloor,
@@ -878,12 +865,6 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"EY" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -959,6 +940,13 @@
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
+"GA" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -30
+	},
+/obj/machinery/vending/hydroseeds/weak,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "GE" = (
 /obj/machinery/light{
 	dir = 1
@@ -981,6 +969,10 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/freezer,
+/area/shuttle/abandoned)
+"Ha" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Hb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1010,6 +1002,16 @@
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel/showroomfloor,
+/area/shuttle/abandoned)
+"HH" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank,
+/obj/item/soap,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Iu" = (
 /obj/structure/bed,
@@ -1186,11 +1188,13 @@
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Pv" = (
-/obj/structure/sign/warning/deathsposal{
-	pixel_x = -32
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1;
+	name = "Connector Port (Air Supply)"
 	},
-/obj/machinery/vending/hydronutrients,
-/turf/open/floor/plasteel/shuttle,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/light,
+/turf/open/floor/plating,
 /area/shuttle/abandoned)
 "PM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1248,6 +1252,12 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
+"QO" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "QQ" = (
 /obj/machinery/mecha_part_fabricator/maint{
 	req_access = list(71)
@@ -1279,6 +1289,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"Sl" = (
+/obj/structure/sign/departments/minsky/supply/hydroponics{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -1370,8 +1386,11 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"UY" = (
-/obj/machinery/hydroponics/constructable,
+"Uz" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/seed_extractor,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Vc" = (
@@ -1462,16 +1481,6 @@
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
-"Wk" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/reagent_dispensers/watertank,
-/obj/item/soap,
-/obj/item/mop,
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "WB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -1541,29 +1550,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
-"YC" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/door/airlock/shuttle{
-	name = "hydroponics"
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"YL" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "YM" = (
 /obj/machinery/computer/crew{
 	dir = 8
@@ -1595,6 +1581,12 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"ZE" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "ZV" = (
@@ -1667,7 +1659,7 @@ EI
 EV
 Al
 JW
-sl
+Ha
 SC
 EI
 Vy
@@ -1688,8 +1680,8 @@ kt
 qe
 EI
 nZ
-dd
-tt
+vr
+Pv
 bk
 "}
 (6,1,1) = {"
@@ -1751,7 +1743,7 @@ Iu
 bk
 JZ
 ih
-EY
+QO
 Vm
 VZ
 cx
@@ -1766,11 +1758,11 @@ EI
 EI
 EI
 EI
-YL
+lj
 qq
-BQ
-si
-CW
+rL
+ZE
+cl
 Uk
 SD
 KJ
@@ -1779,15 +1771,15 @@ EI
 "}
 (11,1,1) = {"
 EI
-UY
-ye
-UY
+jW
+ok
+jW
 EI
 EI
 EI
-rP
+Dd
 EI
-qH
+bn
 EI
 Mw
 hU
@@ -1800,8 +1792,8 @@ ih
 yN
 ih
 EI
-CT
-Pv
+GA
+jK
 JW
 EI
 EI
@@ -1813,12 +1805,12 @@ dN
 "}
 (13,1,1) = {"
 dN
-dW
+uA
 dk
 PM
-YC
+oi
 PM
-dB
+PM
 EO
 ih
 Fd
@@ -1830,11 +1822,11 @@ EI
 "}
 (14,1,1) = {"
 EI
-bG
-Wk
-UY
+Uz
+HH
+jW
 EI
-BG
+Sl
 ih
 Sg
 ih
@@ -1851,7 +1843,7 @@ EI
 zc
 EI
 EI
-dy
+sb
 ih
 Sg
 ih
@@ -1885,7 +1877,7 @@ EI
 EI
 EI
 EI
-dy
+sb
 lv
 Jl
 qq
@@ -1901,7 +1893,7 @@ EI
 jk
 Qf
 jk
-xa
+eS
 ih
 ih
 vO
