@@ -846,7 +846,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			return TRUE
 
 /obj/effect/decal/nuclear_waste
-	name = "Plutonium sludge"
+	name = "plutonium sludge"
 	desc = "A writhing pool of heavily irradiated, spent reactor fuel. You probably shouldn't step through this..."
 	icon = 'icons/obj/machines/reactor_parts.dmi'
 	icon_state = "nuclearwaste"
