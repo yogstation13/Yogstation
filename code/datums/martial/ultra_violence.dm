@@ -68,10 +68,6 @@
 		var/obj/effect/gibspawner/moreblood = new /obj/effect/gibspawner/generic(D.loc)
 		moreblood.throw_at(get_edge_target_turf(moreblood, pick(GLOB.alldirs)), rand(1,2), 5)
 
-/datum/martial_art/ultra_violence/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
-	if(!can_use(user))
-		return
-
 /*---------------------------------------------------------------
 
 	start of shotgun punch section
@@ -191,7 +187,7 @@
 		REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, "martial") //can't immobilize if has stun immune, technically means they can be stunned mid-dash
 		H.Immobilize(30 SECONDS) //to prevent cancelling the dash
 		dashing = TRUE
-		H.throw_at(A, MAX_DASH_DIST, 2, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
+		H.throw_at(A, MAX_DASH_DIST, 1.5, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
 		dashes -= 1
 		H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
 

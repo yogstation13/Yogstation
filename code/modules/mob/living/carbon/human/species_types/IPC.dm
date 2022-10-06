@@ -234,11 +234,15 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 
 /datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
-		var/datum/component/empprotection/emp_component = AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && H.in_throw_mode)
+		H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+		// H.playsound_local(H.loc, null, 30, 1, get_rand_frequency(), S = 'sound/magic/lightningbolt.ogg', distance_multiplier = 0)
+		// var/obj/item/projectile/energy/tesla/zap = new /obj/item/projectile/energy/tesla(H.loc)
+		// zap.throw_at(H, 10, 5)
+
 	. = ..()
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
-		emp_component.RemoveComponent()
-	
+
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && H.in_throw_mode)
+		H.GetComponent(/datum/component/empprotection).RemoveComponent()
 
 #undef CONCIOUSAY
