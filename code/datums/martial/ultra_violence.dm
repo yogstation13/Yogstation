@@ -172,8 +172,8 @@
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
 	if(H.a_intent == INTENT_DISARM && AB_CHECK_CONSCIOUS)
 		dash(H, A)
-	else
-		. = ..()
+		
+	. = ..()
 
 /datum/martial_art/ultra_violence/proc/dash(mob/living/carbon/human/H, atom/A)
 	if(dashing)
