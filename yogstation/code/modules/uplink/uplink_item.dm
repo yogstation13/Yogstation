@@ -171,7 +171,7 @@
 	cost = 20
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
-	include_objectives = list(/datum/objective/hijack)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
 	cant_discount = TRUE
 
 /datum/uplink_item/stealthy_weapons/camera_flash

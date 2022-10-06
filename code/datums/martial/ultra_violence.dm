@@ -139,6 +139,7 @@
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, "martial")///mainly so emps don't end you instantly, they still do damage though
 	H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
 	usr.click_intercept = src //probably breaks something, don't know what though
+	H.dna.species.GiveSpeciesFlight(C)//because... c'mon
 
 /datum/martial_art/ultra_violence/on_remove(mob/living/carbon/human/H)
 	..()
@@ -153,6 +154,7 @@
 	deltimer(dash_timer)
 	H.clear_alert("dash_charge")
 	usr.click_intercept = null //un-breaks the thing that i don't know is broken
+	//not likely they'll lose the martial art i guess, so i guess they can keep the wings
 
 /*---------------------------------------------------------------
 	start of dash section
@@ -171,7 +173,7 @@
 	if(H.a_intent == INTENT_DISARM && AB_CHECK_CONSCIOUS)
 		dash(H, A)
 	else
-		..()
+		. = ..()
 
 /datum/martial_art/ultra_violence/proc/dash(mob/living/carbon/human/H, atom/A)
 	if(dashing)
