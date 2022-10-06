@@ -250,6 +250,58 @@
 	picked_amt = 3
 	picked_result = /obj/item/reagent_containers/food/snacks/grown/jungle/cinchona_bark
 
+/obj/structure/flytrap //feed it a specific mob loot to get rare materials. Can rarely drop VERY rare minerals like bananium!
+	name = "Mineral Rich Flytrap"
+	desc = "The mouth doesn't look big enough to hurt you, but it does look very hungry."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "flytrap"
+	anchored = TRUE 
+	density = FALSE
+
+	var/full = FALSE
+	var/craving = /obj/item/stack/sheet/meduracha
+
+/obj/structure/flytrap/Initialize()
+	. = ..()
+	var/outcome = rand(1,3)
+	switch(outcome)
+		if(1)
+			craving = /obj/item/stack/sheet/meduracha
+			desc = "The mouth doesn't look big enough to hurt you, but it does look very hungry. It seems peckish for some meduracha tentacles."
+		if(2)
+			craving = /obj/item/stack/sheet/skin_twister
+			desc = "The mouth doesn't look big enough to hurt you, but it does look very hungry. It seems to have a specific appetite for skintwister hide."
+		if(3)
+			craving = /obj/item/stack/sheet/slime
+			desc = "The mouth doesn't look big enough to hurt you, but it does look very hungry. Seems starving for some slime."
+
+/obj/structure/flytrap/attackby(obj/item/W, mob/user, params)
+	if(istype(W, craving) && full == FALSE )
+		user.visible_message(span_notice("[user] feeds the [src], and watches as it spews out materials!"),span_notice("You place the [W] inside the mouth of the [src], watching as it devours it and shoots out minerals!"))
+		full = TRUE
+		var/lootoutcome = rand(1,25)
+		switch(lootoutcome)
+			if(1 to 12)
+				for(var/i in 1 to 5)
+					new /obj/item/stack/ore/dilithium_crystal(get_turf(src))
+			if(13 to 19)
+				for(var/i in 1 to 5)
+					new /obj/item/stack/sheet/mineral/diamond(get_turf(src))
+			if(20 to 22)
+				for(var/i in 1 to 5)
+					new /obj/item/stack/ore/bluespace_crystal(get_turf(src))
+			if(23)
+				new /obj/item/stack/sheet/mineral/bananium(get_turf(src))
+			if(24)
+				new /obj/item/stack/sheet/mineral/mythril(get_turf(src))
+			if(25)
+				new /obj/item/stack/sheet/mineral/adamantine(get_turf(src))		
+		icon_state = "flytrap_closed"
+		desc = "A relatively large venus fly trap. The mouthes seemed to be closed, doesn't look like they'll open any time soon."
+		W.use(1)
+	else
+		return ..()
+
 /obj/structure/tar_shrine
 	name = "Tar shrine"
 	desc = "Strangely translucent pool of tar"
