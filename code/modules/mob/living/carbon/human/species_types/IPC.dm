@@ -232,4 +232,13 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
+
+/datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		var/datum/component/empprotection/emp_component = AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+	. = ..()
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		emp_component.RemoveComponent()
+	
+
 #undef CONCIOUSAY

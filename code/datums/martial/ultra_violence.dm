@@ -68,6 +68,10 @@
 		var/obj/effect/gibspawner/moreblood = new /obj/effect/gibspawner/generic(D.loc)
 		moreblood.throw_at(get_edge_target_turf(moreblood, pick(GLOB.alldirs)), rand(1,2), 5)
 
+/datum/martial_art/ultra_violence/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
+	if(!can_use(user))
+		return
+
 /*---------------------------------------------------------------
 
 	start of shotgun punch section
@@ -139,7 +143,7 @@
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, "martial")///mainly so emps don't end you instantly, they still do damage though
 	H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
 	usr.click_intercept = src //probably breaks something, don't know what though
-	H.dna.species.GiveSpeciesFlight(C)//because... c'mon
+	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
 
 /datum/martial_art/ultra_violence/on_remove(mob/living/carbon/human/H)
 	..()
@@ -169,8 +173,9 @@
 		deltimer(dash_timer)//stop regen when full
 	H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
 
-/datum/martial_art/ultra_violence/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
-	if(H.a_intent == INTENT_DISARM && AB_CHECK_CONSCIOUS)
+/datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
+	. = ..()
+	if(H.a_intent == INTENT_DISARM && !H.IsUnconscious())
 		dash(H, A)
 
 /datum/martial_art/ultra_violence/proc/dash(mob/living/carbon/human/H, atom/A)
