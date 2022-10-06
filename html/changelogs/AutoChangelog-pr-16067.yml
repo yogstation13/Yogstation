@@ -1,5 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - tweak: "Botanical and Mutagen dispensers use a different sprite now"
-  - imageadd: "cloned the minidispenser sprite and painted the top green"
