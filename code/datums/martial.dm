@@ -3,7 +3,7 @@
   * Martial Arts
   *
   * Martial arts change how human unarmed attacks effect other humans, and allow for strings of attacks on the same target to have special effects
-  *   arts also can block melee or ranged attacks using block_chance and deflect_chance variables
+  * Martial arts also can block melee or ranged attacks using block_chance and deflect_chance variables
   */
 
 /datum/martial_art
