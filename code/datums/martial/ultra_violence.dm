@@ -169,7 +169,7 @@
 		deltimer(dash_timer)//stop regen when full
 	H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
 
-/datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
+/datum/martial_art/ultra_violence/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
 	if(H.a_intent == INTENT_DISARM && AB_CHECK_CONSCIOUS)
 		dash(H, A)
 
