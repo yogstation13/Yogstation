@@ -5,8 +5,8 @@
 	filedesc = "Themeify"
 	extended_desc = "This program allows configuration of your device's theme."
 	program_icon_state = "generic"
-	unsendable = TRUE
-	undeletable = FALSE
+	unsendable = FALSE
+	undeletable = TRUE
 	size = 2
 	available_on_ntnet = TRUE
 	requires_ntnet = FALSE
