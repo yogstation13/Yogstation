@@ -154,9 +154,11 @@
 
 /turf/open/water/toxic_pit/Entered(atom/movable/AM)
 	. = ..()
+	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity())
+		return
 	if(!ishuman(AM))
 		return
-	var/mob/living/carbon/human/humie = AM 
+	var/mob/living/carbon/human/humie = AM
 	var/chance = ((humie.wear_suit ? 100 - humie.wear_suit.armor.bio : 100)  +  (humie.head ? 100 - humie.head.armor.bio : 100) )/2
 	if(prob(chance * 0.33))
 		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
