@@ -7,6 +7,7 @@
 #define ORE_GOLD "gold"
 #define ORE_SILVER "silver"
 #define ORE_DIAMOND "diamond"
+#define ORE_DILITHIUM "dilithium"
 #define ORE_EMPTY "empty"
 
 GLOBAL_LIST_INIT(jungle_ores, list( \
@@ -17,7 +18,8 @@ GLOBAL_LIST_INIT(jungle_ores, list( \
 		ORE_DIAMOND = new /datum/ore_patch/diamond(), 
 		ORE_TITANIUM = new /datum/ore_patch/titanium(), 
 		ORE_URANIUM = new /datum/ore_patch/uranium(),
-		ORE_BLUESAPCE = new /datum/ore_patch/bluespace()
+		ORE_BLUESAPCE = new /datum/ore_patch/bluespace(),
+		ORE_DILITHIUM = new /datum/ore_patch/dilithium()
 ))
 
 GLOBAL_LIST_INIT(quarry_ores, list( \

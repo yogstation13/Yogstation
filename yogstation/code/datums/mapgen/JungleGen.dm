@@ -34,7 +34,7 @@
 
 	var/list/cellular_preferences = list(
 		LOW_DENSITY = list(
-			WORLEY_REG_SIZE = 5,
+			WORLEY_REG_SIZE = 1,
 			WORLEY_THRESHOLD = 2.5,
 			WORLEY_NODE_PER_REG = 75),
 
@@ -52,43 +52,48 @@
 
 	var/list/ore_preferences = list(
 		ORE_IRON = list(
-			WORLEY_REG_SIZE = 5,
-			WORLEY_THRESHOLD = 1.5,
+			WORLEY_REG_SIZE = 10,
+			WORLEY_THRESHOLD = 3,
 			WORLEY_NODE_PER_REG = 50),
 
 		ORE_URANIUM = list(
-			WORLEY_REG_SIZE = 5,
+			WORLEY_REG_SIZE = 10,
 			WORLEY_THRESHOLD = 1,
 			WORLEY_NODE_PER_REG = 50),
 
 		ORE_TITANIUM = list(
-			WORLEY_REG_SIZE = 5,
-			WORLEY_THRESHOLD = 1.5,
+			WORLEY_REG_SIZE = 10,
+			WORLEY_THRESHOLD = 2,
 			WORLEY_NODE_PER_REG = 50),
 
 		ORE_BLUESPACE = list(
 			WORLEY_REG_SIZE = 15,
-			WORLEY_THRESHOLD = 10,
+			WORLEY_THRESHOLD = 8,
 			WORLEY_NODE_PER_REG = 50),
 
 		ORE_PLASMA = list(
 			WORLEY_REG_SIZE = 15,
-			WORLEY_THRESHOLD = 8,
+			WORLEY_THRESHOLD = 6,
 			WORLEY_NODE_PER_REG = 50),
 
 		ORE_GOLD = list(
-			WORLEY_REG_SIZE = 5,
+			WORLEY_REG_SIZE = 10,
 			WORLEY_THRESHOLD = 1,
 			WORLEY_NODE_PER_REG = 50),
 
 		ORE_SILVER = list(
-			WORLEY_REG_SIZE = 5,
-			WORLEY_THRESHOLD = 1.5,
+			WORLEY_REG_SIZE = 10,
+			WORLEY_THRESHOLD = 1,
+			WORLEY_NODE_PER_REG = 50),
+
+		ORE_DILITHIUM = list(
+			WORLEY_REG_SIZE = 15,
+			WORLEY_THRESHOLD = 8,
 			WORLEY_NODE_PER_REG = 50),
 
 		ORE_DIAMOND = list(
 			WORLEY_REG_SIZE = 15,
-			WORLEY_THRESHOLD = 9,
+			WORLEY_THRESHOLD = 8,
 			WORLEY_NODE_PER_REG = 50)
 		)
 //creates a 2d map of every single ore vein on the map
@@ -97,6 +102,12 @@
 		ORE_BLUESPACE  = rustg_worley_generate("[ore_preferences[ORE_BLUESPACE][WORLEY_REG_SIZE]]",
 										"[ore_preferences[ORE_BLUESPACE][WORLEY_THRESHOLD]]",
 										"[ore_preferences[ORE_BLUESPACE][WORLEY_NODE_PER_REG]]",
+										"[world.maxx]",
+										"1",
+										"2"),
+		ORE_DILITHIUM  = rustg_worley_generate("[ore_preferences[ORE_DILITHIUM][WORLEY_REG_SIZE]]",
+										"[ore_preferences[ORE_DILITHIUM][WORLEY_THRESHOLD]]",
+										"[ore_preferences[ORE_DILITHIUM][WORLEY_NODE_PER_REG]]",
 										"[world.maxx]",
 										"1",
 										"2"),
@@ -152,6 +163,7 @@
 		ORE_GOLD,
 		ORE_PLASMA,
 		ORE_DIAMOND,
+		ORE_DILITHIUM,
 		ORE_BLUESPACE
 	)
 	var/return_list[world.maxx * world.maxy] 

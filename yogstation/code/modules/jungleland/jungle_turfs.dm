@@ -58,7 +58,7 @@
 	icon_plating = "jungle"
 	var/can_spawn_ore = TRUE
 	var/ore_present = ORE_EMPTY
-	var/spawn_overlay = TRUE
+	var/spawn_overlay = TRUE 
 
 /turf/open/floor/plating/dirt/jungleland/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	if(drill.do_after_mecha(src, 10 / drill.drill_level))
