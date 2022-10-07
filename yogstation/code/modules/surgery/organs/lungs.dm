@@ -22,7 +22,7 @@
 	safe_co2_max = 0 //make them not choke on CO2 so they can actually breathe it
 	oxygen_substitutes = list(/datum/gas/pluoxium = 8, /datum/gas/carbon_dioxide = 1) //able of using CO2 AND oxygen to breathe
 	
-	/obj/item/organ/lungs/xeno/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //Directly taken from the xenos lungs
+	/obj/item/organ/lungs/plant/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //Directly taken from the xenos lungs
 	. = ..()
 	if(breath)
 		var/breath_amt = breath.get_moles(/datum/gas/carbon_dioxide)
