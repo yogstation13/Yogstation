@@ -367,7 +367,11 @@
 		jitteriness = max(jitteriness - 990, 10) //Still jittery, but vastly less
 		if((!tesla_shock || (tesla_shock && siemens_coeff > 0.5)) && stun)
 			Paralyze(60)
-	if(stat == DEAD && can_defib()) //yogs: ZZAPP
+			if(!illusion && (shock_damage > 50) && prob(33)) //yogs: ZZAPP
+				set_heartattack(TRUE)
+				if(prob(66))
+					adjustOrganLoss(ORGAN_SLOT_HEART, 25, 75)			
+	if(stat == DEAD && can_defib())
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
 			adjustOxyLoss(-50)
