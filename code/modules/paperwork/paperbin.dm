@@ -13,7 +13,7 @@
 	pressure_resistance = 8
 	var/papertype = /obj/item/paper
 	var/total_paper = 30
-	var/list/paper_stack = list()
+	var/list/papers = list()
 	var/obj/item/pen/bin_pen
 
 /obj/item/paper_bin/Initialize(mapload)
