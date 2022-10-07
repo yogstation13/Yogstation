@@ -148,9 +148,9 @@
 	var/ckey = player_client.ckey
 	var/list/ban_cache = list()
 	var/is_admin = FALSE
-	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
+	if(GLOB.permissions.admin_datums[ckey] || GLOB.permissions.deadmins[ckey])
 		is_admin = TRUE
-	var/datum/db_query/query_build_ban_cache = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_build_ban_cache = SSdbcore.NewQuery(
 		"SELECT role, applies_to_admins FROM [format_table_name("ban")] WHERE ckey = :ckey AND unbanned_datetime IS NULL AND (expiration_time IS NULL OR expiration_time > NOW())",
 		list("ckey" = ckey)
 	)
