@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(atoms)
 		for(var/I in 1 to atoms.len)
 			var/atom/A = atoms[I]
 			if(!(A.flags_1 & INITIALIZED_1))
-				InitAtom(I, mapload_arg)
+				InitAtom(A, mapload_arg)
 				CHECK_TICK
 	else
 		#ifdef TESTING
