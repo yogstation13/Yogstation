@@ -481,6 +481,8 @@
 
 	var/mob/living/silicon/robot/R = loc
 	if(istype(R))
+		if(!R.module)
+			return
 		for(var/ch_name in R.module.radio_channels)
 			channels[ch_name] = 1
 
