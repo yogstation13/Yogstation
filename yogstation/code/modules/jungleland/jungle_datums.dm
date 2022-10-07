@@ -203,13 +203,14 @@
 /datum/disease/malaria 
 	name = "Malaria Exotica"
 	agent = "Plasmodium Exotica"
+	cure_text = "Quinine, Synaptazine or Tonic water"
 	max_stages = 8 // yes 8 fucking stages 
 	severity = DISEASE_SEVERITY_HARMFUL
 	disease_flags = CURABLE
 	visibility_flags = HIDDEN_SCANNER 
 	spread_flags = DISEASE_SPREAD_BLOOD
 	needs_all_cures = FALSE	
-	cures = list(/datum/reagent/quinine, /datum/reagent/medicine/synaptizine)
+	cures = list(/datum/reagent/quinine, /datum/reagent/medicine/synaptizine,/datum/reagent/consumable/tonic)
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	
 	var/next_stage_time = 0
