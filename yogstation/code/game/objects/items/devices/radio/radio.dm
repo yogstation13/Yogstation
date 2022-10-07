@@ -9,6 +9,6 @@
 	keyslot = /obj/item/encryptionkey/headset_sec
 
 /obj/item/radio/security/Initialize(mapload)
-	set_frequency(1359)
 	. = ..()
+	set_frequency(1359)
 	
