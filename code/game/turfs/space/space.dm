@@ -29,11 +29,9 @@
 
 /turf/open/space/Initialize()
 	SHOULD_CALL_PARENT(FALSE)
-	icon_state = SPACE_ICON_STATE
+	icon_state = SPACE_ICON_STATE(x, y, z)
 	air = space_gas
 	update_air_ref()
-	vis_contents.Cut() //removes inherited overlays
-	visibilityChanged()
 
 	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
@@ -41,18 +39,19 @@
 
 	var/area/A = loc
 	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
-		add_overlay(/obj/effect/fullbright)
+		overlays += GLOB.fullbright_overlay
 
-	if(requires_activation)
-		SSair.add_to_active(src)
+	if (!mapload)
+		if(requires_activation)
+			SSair.add_to_active(src, TRUE)
 
-	if (light_power && light_range)
-		update_light()
+		var/turf/T = SSmapping.get_turf_above(src)
+		if(T)
+			T.multiz_turf_new(src, DOWN)
+		T = SSmapping.get_turf_below(src)
+		if(T)
+			T.multiz_turf_new(src, UP)
 
-	if (opacity)
-		has_opaque_atom = TRUE
-
-	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -199,7 +198,7 @@
 
 /turf/open/space/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	underlay_appearance.icon = 'icons/turf/space.dmi'
-	underlay_appearance.icon_state = SPACE_ICON_STATE
+	underlay_appearance.icon_state = SPACE_ICON_STATE(x, y, z)
 	underlay_appearance.plane = PLANE_SPACE
 	return TRUE
 

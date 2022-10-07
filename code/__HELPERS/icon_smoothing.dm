@@ -161,7 +161,7 @@
 		if(fixed_underlay)
 			if(fixed_underlay["space"])
 				underlay_appearance.icon = 'icons/turf/space.dmi'
-				underlay_appearance.icon_state = SPACE_ICON_STATE
+				underlay_appearance.icon_state = SPACE_ICON_STATE(x, y, z)
 				underlay_appearance.plane = PLANE_SPACE
 			else
 				underlay_appearance.icon = fixed_underlay["icon"]
