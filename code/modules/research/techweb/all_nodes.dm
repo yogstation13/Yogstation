@@ -685,7 +685,7 @@
 	display_name = "Medical Weaponry"
 	description = "Weapons using medical technology."
 	prereq_ids = list("adv_biotech", "adv_weaponry")
-	design_ids = list("rapidsyringe", "shotgundartcryostatis" "dartsyringe")
+	design_ids = list("rapidsyringe", "shotgundartcryostatis", "dartsyringe")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/beam_weapons
