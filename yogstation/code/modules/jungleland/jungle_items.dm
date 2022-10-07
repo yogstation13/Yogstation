@@ -276,6 +276,7 @@
 	desc = "And old and withered crown made out of bone of unknown origin, there is a vibrant pinkish crystal embedded in it, it is warm to the touch..."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "tar_king_crown"
+	armor = list(MELEE = 80, BULLET = 40, LASER = 60, ENERGY = 50, BOMB = 80, BIO = 70, RAD = 60, FIRE = 100, ACID = 100)
 	actions_types = list(/datum/action/cooldown/tar_crown_spawn_altar,/datum/action/cooldown/tar_crown_teleport)
 	var/max_tar_shrines = 3
 	var/list/current_tar_shrines = list()
