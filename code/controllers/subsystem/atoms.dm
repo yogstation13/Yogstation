@@ -53,8 +53,10 @@ SUBSYSTEM_DEF(atoms)
 				#endif
 				CHECK_TICK
 
+	#ifdef TESTING
 	testing("Initialized [count] atoms")
 	pass(count)
+	#endif
 
 	initialized = INITIALIZATION_INNEW_REGULAR
 

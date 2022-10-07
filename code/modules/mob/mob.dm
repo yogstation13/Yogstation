@@ -569,9 +569,15 @@
 	set name = "Point To"
 	set category = "Object"
 
-	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
-		return FALSE
 	if(istype(A, /obj/effect/temp_visual/point))
+		return FALSE
+
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/_pointed, A))
+
+/// possibly delayed verb that finishes the pointing process starting in [/mob/verb/pointed()].
+/// either called immediately or in the tick after pointed() was called, as per the [DEFAULT_QUEUE_OR_CALL_VERB()] macro
+/mob/proc/_pointed(atom/A)
+	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
 		return FALSE
 
 	var/turf/tile = get_turf(A)

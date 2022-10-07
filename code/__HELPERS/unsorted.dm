@@ -711,8 +711,8 @@ Turf and target are separate in case you want to teleport some distance from a t
 		return
 
 	//Find coordinates
-	var/turf/atom_turf = get_turf(checked_atom) //use checked_atom's turfs, as it's coords are the same as checked_atom's AND checked_atom's coords are lost if it is inside another atom
-	if(!atom_turf)
+	var/turf/T = get_turf(AM) //use AM's turfs, as it's coords are the same as AM's AND AM's coords are lost if it is inside another atom
+	if(!T)
 		return null
 
 	//Find AM's matrix so we can use it's X/Y pixel shifts
