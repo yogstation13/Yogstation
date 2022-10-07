@@ -4,8 +4,7 @@
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
 	icon_state = "walkietalkie"
-	inhand_icon_state = "walkietalkie"
-	worn_icon_state = "radio"
+	item_state = "walkietalkie"
 	desc = "A basic handheld radio that communicates with local telecommunication networks."
 	dog_fashion = /datum/dog_fashion/back
 
@@ -89,7 +88,9 @@
 	set_frequency(sanitize_frequency(frequency, freerange))
 	set_on(on)
 
-	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
+/obj/item/radio/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
@@ -211,17 +212,6 @@
 		set_listening(FALSE, actual_setting = FALSE)
 
 /obj/item/radio/talk_into(atom/movable/talking_movable, message, channel, list/spans, datum/language/language, list/message_mods)
-	if(HAS_TRAIT(talking_movable, TRAIT_SIGN_LANG)) //Forces Sign Language users to wear the translation gloves to speak over radios
-		var/mob/living/carbon/mute = talking_movable
-		if(istype(mute))
-			var/obj/item/clothing/gloves/radio/G = mute.get_item_by_slot(ITEM_SLOT_GLOVES)
-			if(!istype(G))
-				return FALSE
-			switch(mute.check_signables_state())
-				if(SIGN_ONE_HAND) // One hand full
-					message = stars(message)
-				if(SIGN_HANDS_FULL to SIGN_CUFFED)
-					return FALSE
 	if(!spans)
 		spans = list(talking_movable.speech_span)
 	if(!language)
@@ -278,7 +268,7 @@
 	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans, message_mods)
 
 	// Independent radios, on the CentCom frequency, reach all independent radios
-	if (independent && (freq == FREQ_CENTCOM || freq == FREQ_CTF_RED || freq == FREQ_CTF_BLUE || freq == FREQ_CTF_GREEN || freq == FREQ_CTF_YELLOW))
+	if (independent && (freq == FREQ_CENTCOM || freq == FREQ_CTF_RED || freq == FREQ_CTF_BLUE))
 		signal.data["compression"] = 0
 		signal.transmission_method = TRANSMISSION_SUPERSPACE
 		signal.levels = list(0)
@@ -311,10 +301,6 @@
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
 		return
-	var/filtered_mods = list()
-	if (message_mods[MODE_CUSTOM_SAY_EMOTE])
-		filtered_mods[MODE_CUSTOM_SAY_EMOTE] = message_mods[MODE_CUSTOM_SAY_EMOTE]
-		filtered_mods[MODE_CUSTOM_SAY_ERASE_INPUT] = message_mods[MODE_CUSTOM_SAY_ERASE_INPUT]
 	if(message_mods[RADIO_EXTENSION] == MODE_L_HAND || message_mods[RADIO_EXTENSION] == MODE_R_HAND)
 		// try to avoid being heard double
 		if (loc == speaker && ismob(speaker))
@@ -324,7 +310,7 @@
 			if (idx && (idx % 2) == (message_mods[RADIO_EXTENSION] == MODE_L_HAND))
 				return
 
-	talk_into(speaker, raw_message, , spans, language=message_language, message_mods=filtered_mods)
+	talk_into(speaker, raw_message, , spans, language=message_language)
 
 /// Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(input_frequency, list/levels)
@@ -492,8 +478,8 @@
 
 	var/mob/living/silicon/robot/R = loc
 	if(istype(R))
-		for(var/ch_name in R.model.radio_channels)
-			channels[ch_name] = TRUE
+		for(var/ch_name in R.module.radio_channels)
+			channels[ch_name] = 1
 
 /obj/item/radio/borg/syndicate
 	syndie = TRUE
@@ -543,3 +529,9 @@
 /obj/item/radio/off/Initialize()
 	. = ..()
 	set_listening(FALSE)
+
+/obj/item/radio/off/makeshift	// Makeshift SBR, limited use cases but could be useful.
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "radio_makeshift"
+	subspace_switchable = TRUE  // Made with a headset, so it can transmit over subspace I guess
+	freqlock = TRUE

@@ -25,6 +25,11 @@
 #define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
 #define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 #define LAZYADDASSOCLIST(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+/// Performs an insertion on the given lazy list with the given key and value. If the value already exists, a new one will not be made.
+#define LAZYORASSOCLIST(lazy_list, key, value) \
+	LAZYINITLIST(lazy_list); \
+	LAZYINITLIST(lazy_list[key]); \
+	lazy_list[key] |= value;
 
 /// Passed into BINARY_INSERT to compare keys
 #define COMPARE_KEY __BIN_LIST[__BIN_MID]
@@ -603,3 +608,13 @@
 			return FALSE
 
 	return TRUE
+
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+**/
+/proc/list_clear_nulls(list/list_to_clear)
+	var/start_len = list_to_clear.len
+	var/list/new_list = new(start_len)
+	list_to_clear -= new_list
+	return list_to_clear.len < start_len

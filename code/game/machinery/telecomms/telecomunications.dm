@@ -73,17 +73,17 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 			continue
 		if(amount && send_count >= amount)
 			break
-		if(z != filtered_machine.loc.z && !long_range_link && !filtered_machine.long_range_link)
+		if(z != machine.loc.z && !long_range_link && !machine.long_range_link)
 			continue
 
 		send_count++
-		if(filtered_machine.is_freq_listening(signal))
-			filtered_machine.traffic++
+		if(machine.is_freq_listening(signal))
+			machine.traffic++
 
 		if(copysig)
-			filtered_machine.receive_information(signal.copy(), src)
+			machine.receive_information(signal.copy(), src)
 		else
-			filtered_machine.receive_information(signal, src)
+			machine.receive_information(signal, src)
 
 	if(send_count > 0 && is_freq_listening(signal))
 		traffic++

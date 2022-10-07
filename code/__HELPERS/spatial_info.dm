@@ -1,3 +1,5 @@
+
+
 /turf
 	///what /mob/oranges_ear instance is already assigned to us as there should only ever be one.
 	///used for guaranteeing there is only one oranges_ear per turf when assigned, speeds up view() iteration
@@ -56,10 +58,6 @@
 	stack_trace("SOMEHOW A /mob/oranges_ear MOVED")
 	return FALSE
 
-/mob/oranges_ear/abstract_move(atom/destination)
-	SHOULD_CALL_PARENT(FALSE)
-	stack_trace("SOMEHOW A /mob/oranges_ear MOVED")
-	return FALSE
 
 /mob/oranges_ear/Bump()
 	SHOULD_CALL_PARENT(FALSE)
@@ -169,7 +167,7 @@
 			if(inbetween_turf == target_turf)//we've gotten to target's turf without returning due to turf opacity, so we must be able to see target
 				break
 
-			if(IS_OPAQUE_TURF(inbetween_turf))//this turf or something on it is opaque so we cant see through it
+			if(inbetween_turf.opacity)//this turf or something on it is opaque so we cant see through it
 				. -= target
 				break
 
@@ -190,7 +188,7 @@
 			Y1+=s
 			while(Y1!=Y2)
 				T=locate(X1,Y1,Z)
-				if(IS_OPAQUE_TURF(T))
+				if(T.opacity)
 					return FALSE
 				Y1+=s
 	else
@@ -206,7 +204,7 @@
 			else
 				X1+=signX //Line exits tile horizontally
 			T=locate(X1,Y1,Z)
-			if(IS_OPAQUE_TURF(T))
+			if(T.opacity)
 				return FALSE
 	return TRUE
 

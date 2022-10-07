@@ -172,6 +172,7 @@
 
 /datum/hud/proc/update_parallax()
 	var/client/C = mymob.client
+	var/mob/screenmob = mymob
 	if(!C)
 		return
 	var/turf/posobj = get_turf_global(C.eye) // yogs - replace get_turf with get_turf_global
@@ -202,7 +203,7 @@
 	C.previous_turf = posobj
 	C.last_parallax_shift = world.time
 
-	for(var/atom/movable/screen/parallax_layer/parallax_layer as anything in C.parallax_layers)
+	for(var/obj/screen/parallax_layer/parallax_layer as anything in C.parallax_layers)
 		parallax_layer.update_status(screenmob)
 		if (parallax_layer.view_sized != C.view)
 			parallax_layer.update_o(C.view)

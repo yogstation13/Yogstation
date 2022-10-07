@@ -166,12 +166,10 @@ SUBSYSTEM_DEF(spatial_grid)
 
 ///if a movable is inside our pre init queue before we're initialized and it gets deleted we need to remove that reference with this proc
 /datum/controller/subsystem/spatial_grid/proc/queued_item_deleted(atom/movable/movable_being_deleted)
-	SIGNAL_HANDLER
 	remove_from_pre_init_queue(movable_being_deleted, null)
 
 ///creates the spatial grid for a new z level
 /datum/controller/subsystem/spatial_grid/proc/propogate_spatial_grid_to_new_z(datum/controller/subsystem/processing/dcs/fucking_dcs, datum/space_level/z_level)
-	SIGNAL_HANDLER
 
 	var/list/new_cell_grid = list()
 
@@ -233,7 +231,6 @@ SUBSYSTEM_DEF(spatial_grid)
 ///adds cells to the grid for every z level when world.maxx or world.maxy is expanded after this subsystem is initialized. hopefully this is never needed.
 ///because i never tested this.
 /datum/controller/subsystem/spatial_grid/proc/after_world_bounds_expanded(datum/controller/subsystem/processing/dcs/fucking_dcs, has_expanded_world_maxx, has_expanded_world_maxy)
-	SIGNAL_HANDLER
 	var/old_x_axis = cells_on_x_axis
 	var/old_y_axis = cells_on_y_axis
 
