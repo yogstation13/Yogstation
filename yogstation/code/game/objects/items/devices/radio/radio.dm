@@ -5,6 +5,10 @@
 	icon_state = "walkietalkiesec"
 	item_state = "walkietalkiesec"
 	freerange = TRUE
-	frequency = 1359
 	freqlock = TRUE
 	keyslot = /obj/item/encryptionkey/headset_sec
+
+/obj/item/radio/security/Initialize(mapload)
+	set_frequency(1359)
+	. = ..()
+	

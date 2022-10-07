@@ -169,7 +169,7 @@ SUBSYSTEM_DEF(spatial_grid)
 	remove_from_pre_init_queue(movable_being_deleted, null)
 
 ///creates the spatial grid for a new z level
-/datum/controller/subsystem/spatial_grid/proc/propogate_spatial_grid_to_new_z(datum/controller/subsystem/processing/dcs/fucking_dcs, datum/space_level/z_level)
+/datum/controller/subsystem/spatial_grid/proc/propogate_spatial_grid_to_new_z(datum/controller/subsystem/processing/fucking_dcs, datum/space_level/z_level)
 
 	var/list/new_cell_grid = list()
 
@@ -230,7 +230,7 @@ SUBSYSTEM_DEF(spatial_grid)
 
 ///adds cells to the grid for every z level when world.maxx or world.maxy is expanded after this subsystem is initialized. hopefully this is never needed.
 ///because i never tested this.
-/datum/controller/subsystem/spatial_grid/proc/after_world_bounds_expanded(datum/controller/subsystem/processing/dcs/fucking_dcs, has_expanded_world_maxx, has_expanded_world_maxy)
+/datum/controller/subsystem/spatial_grid/proc/after_world_bounds_expanded(datum/controller/subsystem/processing/fucking_dcs, has_expanded_world_maxx, has_expanded_world_maxy)
 	var/old_x_axis = cells_on_x_axis
 	var/old_y_axis = cells_on_y_axis
 
