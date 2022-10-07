@@ -72,6 +72,7 @@
 	var/list/channels
 	/// associative list of the encrypted radio channels this radio can listen/broadcast to, of the form: list(channel name = channel frequency)
 	var/list/secure_radio_connections
+	var/list/radio_sounds = list('yogstation/sound/effects/radio1.ogg','yogstation/sound/effects/radio2.ogg','yogstation/sound/effects/radio3.ogg')
 
 /obj/item/radio/Initialize(mapload)
 	wires = new /datum/wires/radio(src)
@@ -231,6 +232,10 @@
 		return
 	if(!talking_movable.IsVocal())
 		return
+
+	if(radio_sounds.len) //Sephora - Radios make small static sounds now.
+		var/sound/radio_sound = pick(radio_sounds)
+		playsound(M.loc, radio_sound, 50, 1)
 
 	if(use_command)
 		spans |= SPAN_COMMAND
