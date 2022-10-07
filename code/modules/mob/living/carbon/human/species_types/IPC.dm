@@ -42,7 +42,9 @@
 	var/saved_screen //for saving the screen when they die
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 	// Hats need to be 1 up
-	offset_features = list(OFFSET_HEAD = list(0,1))
+	offset_features = list(OFFSET_HEAD = list(0,1))	
+
+	var/datum/component/empprotection/ipcmartial
 
 	var/datum/action/innate/change_screen/change_screen
 
@@ -234,15 +236,13 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 
 /datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
+	if(ipcmartial)
+		to_chat(world, "remove proof")
+		ipcmartial.RemoveComponent()
 	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && H.in_throw_mode)
-		H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
-		// H.playsound_local(H.loc, null, 30, 1, get_rand_frequency(), S = 'sound/magic/lightningbolt.ogg', distance_multiplier = 0)
-		// var/obj/item/projectile/energy/tesla/zap = new /obj/item/projectile/energy/tesla(H.loc)
-		// zap.throw_at(H, 10, 5)
-
+		to_chat(world, "add proof")
+		ipcmartial = GetComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+		H.AddComponent(ipcmartial)
 	. = ..()
-
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && H.in_throw_mode)
-		H.GetComponent(/datum/component/empprotection).RemoveComponent()
 
 #undef CONCIOUSAY
