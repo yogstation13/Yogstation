@@ -9,7 +9,6 @@
 	item_state = "sechailer"
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	flags_inv = HIDEFACIALHAIR|HIDEFACE
-	flags_1 = HEAR_1
 	w_class = WEIGHT_CLASS_SMALL
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACIALHAIR|HIDEFACE
@@ -21,6 +20,10 @@
 	var/broken_hailer = 0
 	var/safety = TRUE
 	var/voicetoggled = TRUE
+
+/obj/item/clothing/mask/gas/sechailer/Initialize()
+	become_hearing_sensitive(trait_source = ROUNDSTART_TRAIT)
+	. = ..()	
 
 /obj/item/clothing/mask/gas/sechailer/swat
 	name = "\improper SWAT mask"

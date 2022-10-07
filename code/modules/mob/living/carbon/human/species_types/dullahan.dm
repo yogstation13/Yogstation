@@ -28,7 +28,6 @@
 	var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
 		head.drop_limb()
-		head.flags_1 = HEAR_1
 		head.throwforce = 25
 		myhead = new /obj/item/dullahan_relay (head, H)
 		H.put_in_hands(head)
@@ -124,7 +123,6 @@
 
 ///Adds the owner to the list of hearers in hearers_in_view(), for visible/hearable on top of say messages
 /obj/item/dullahan_relay/proc/include_owner(datum/source, list/hearers)
-	SIGNAL_HANDLER
 	if(!QDELETED(owner))
 		hearers += owner
 

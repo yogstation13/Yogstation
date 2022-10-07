@@ -251,14 +251,14 @@
 
 /proc/get_hearers_in_view(R, atom/source)
 	// Returns a list of hearers in view(R) from source (ignoring luminosity). Used in saycode.
-	var/turf/T = get_turf(source)
+	var/turf/center_turf = get_turf(source)
 
 	. = list()
-	if(!T)
+	if(!center_turf)
 		return
 	var/lum = center_turf.luminosity
 	center_turf.luminosity = 6 // This is the maximum luminosity
-	for(var/atom/movable/movable in view(view_radius, center_turf))
+	for(var/atom/movable/movable in view(R, center_turf))
 		var/list/recursive_contents = LAZYACCESS(movable.important_recursive_contents, RECURSIVE_CONTENTS_HEARING_SENSITIVE)
 		if(recursive_contents)
 			. += recursive_contents
