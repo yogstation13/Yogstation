@@ -295,7 +295,7 @@
 	addtimer(CALLBACK(src, .proc/backup_transmission, signal), 20)
 
 /obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
-	var/turf/T = get_turf(src)
+	var/turf/T = get_turf_global(src)
 	if (signal.data["done"] && (T.z in signal.levels))
 		return
 
@@ -324,7 +324,7 @@
 /obj/item/radio/proc/can_receive(input_frequency, list/levels)
 	// deny checks
 	if (levels != RADIO_NO_Z_LEVEL_RESTRICTION)
-		var/turf/position = get_turf(src)
+		var/turf/position = get_turf_global(src)
 		if(!position || !(position.z in levels))
 			return FALSE
 
