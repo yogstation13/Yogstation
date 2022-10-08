@@ -234,7 +234,6 @@
 	H.throw_alert("dash_charge", /obj/screen/alert/ipcmartial, dashes+1)
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
-	. = ..()
 	if(H.a_intent == INTENT_DISARM && !H.IsUnconscious())
 		dash(H, A)
 
