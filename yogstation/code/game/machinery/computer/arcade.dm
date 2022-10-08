@@ -13,6 +13,7 @@
 	board.host = src
 
 /obj/machiner/computer/arcade/minesweeper/Destroy(force)
+	board.host = null
 	QDEL_NULL(board)
 	. = ..()
 

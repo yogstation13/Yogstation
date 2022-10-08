@@ -28,6 +28,7 @@
 	board.host = comp
 
 /datum/computer_file/program/minesweeper/Destroy()
+	board.host = null
 	QDEL_NULL(board)
 	. = ..()
 
