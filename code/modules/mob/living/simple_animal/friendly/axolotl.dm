@@ -60,7 +60,7 @@
 
 /mob/living/simple_animal/pet/axolotl/bop
 	name = "Bop"
-	desc = "The SysOp's axolotl pet"
+	desc = "The SysOp's axolotl pet."
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
