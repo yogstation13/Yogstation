@@ -362,7 +362,7 @@
 	do_jitter_animation(jitteriness)
 	stuttering += 2
 	if(!illusion) //yogs start
-		if(prob(shock_damage/3)
+		if(prob(shock_damage/3))
 			var/datum/disease/D = new /datum/disease/heart_failure
 			src.ForceContractDisease(D)
 			to_chat(src, span_boldwarning("You feel your pulse fluttering!"))
