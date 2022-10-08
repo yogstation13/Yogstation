@@ -355,7 +355,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 				log_say(log_message)
 				return
 
-			var/newname = reject_bad_text(unsanitized, max_length = 35)
+			var/newname = reject_bad_text(unsanitized, max_length = 55)
 			if(!newname)
 				computer.visible_message(span_danger("Your username is too long/has bad text!"), null, null, 1)
 				return
