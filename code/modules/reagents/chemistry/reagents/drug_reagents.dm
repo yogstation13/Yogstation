@@ -215,6 +215,7 @@
 	M.adjustStaminaLoss(-2, 0)
 	M.Jitter(2)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,4))
+	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL) //meth makes you warm
 	if(prob(5))
 		M.emote(pick("twitch", "shiver"))
 	..()
@@ -232,6 +233,7 @@
 	..()
 	M.adjustToxLoss(1, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.5, 0.6, 0.7, 0.8, 0.9, 1))
+	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL, INFINITY) //meth OD makes you VERY warm
 	. = 1
 
 /datum/reagent/drug/methamphetamine/addiction_act_stage1(mob/living/M)
