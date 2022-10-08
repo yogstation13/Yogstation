@@ -1,0 +1,6 @@
+author: " VaelophisNyx, @ToasterBiome, @Chubbygummibear, @redmoogle, MasterDrake"
+delete-after: true 
+changes: 
+  - rscadd: "Added Sulfur Trioxide + Reaction to make it"
+  - rscadd: "Added new chemical reactions to produce water, welding fuel, stable plasma, ice, sugar, and Sulfuric Acid"
+  - tweak: "Chem dispenser chems now unlocked at different tiers, and features gold and charcoal at t4, and uranium when emagged."
