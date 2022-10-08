@@ -42,9 +42,7 @@
 	var/saved_screen //for saving the screen when they die
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 	// Hats need to be 1 up
-	offset_features = list(OFFSET_HEAD = list(0,1))	
-
-	var/datum/component/empprotection/ipcmartial
+	offset_features = list(OFFSET_HEAD = list(0,1))
 
 	var/datum/action/innate/change_screen/change_screen
 
@@ -234,15 +232,26 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
+/*
+
+ipc martial arts stuff
+
+*/
 
 /datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
+	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+		if(H.in_throw_mode)//if countering the emp
+			add_empproof(H)
+		else//if just getting hit
+			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)
+
+/datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
+	H.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+
+/datum/species/ipc/proc/remove_empproof(mob/living/carbon/human/H)
+	var/datum/component/empprotection/ipcmartial = H.GetExactComponent(/datum/component/empprotection)
 	if(ipcmartial)
-		to_chat(world, "remove proof")
-		ipcmartial.RemoveComponent()
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && H.in_throw_mode)
-		to_chat(world, "add proof")
-		ipcmartial = GetComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
-		H.AddComponent(ipcmartial)
-	. = ..()
+		ipcmartial.Destroy()
 
 #undef CONCIOUSAY
