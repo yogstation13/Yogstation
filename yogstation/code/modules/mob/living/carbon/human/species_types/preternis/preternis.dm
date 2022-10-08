@@ -82,7 +82,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
 		
-	C.GetComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS).RemoveComponent()//remove emp proof if they stop being a preternis
+	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
+	empproof.RemoveComponent()//remove emp proof if they stop being a preternis
 
 	var/matrix/new_transform = matrix()//returns them to normal shape if they swap to a different species
 	new_transform.Scale(1/0.95, 0.95)
