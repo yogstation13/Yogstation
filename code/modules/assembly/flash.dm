@@ -152,7 +152,7 @@
 		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
 			update_icon(1)
-			R.Paralyze(rand(80,120))
+			R.Immobilize(rand(80,120))
 			var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
 			R.confused += min(5, diff)
 			R.flash_act(affect_silicon = 1)

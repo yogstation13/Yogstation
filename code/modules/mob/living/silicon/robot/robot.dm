@@ -945,7 +945,10 @@
 			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Remote telemetry lost with [name].")]<br>")
 
 /mob/living/silicon/robot/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
-	if(stat || lockcharge || low_power_mode)
+	if(lockcharge && !in_range(M, src))
+		to_chat(src, span_warning("Remote interfaces are currently disabled!"))
+		return FALSE
+	if(stat || low_power_mode)
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
 	if(be_close && !in_range(M, src))
