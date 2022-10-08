@@ -193,6 +193,11 @@
 	name = "\improper Firefighter wreckage"
 	icon_state = "firefighter-broken"
 	orig_mecha = /obj/mecha/working/ripley/firefighter
+	
+/obj/structure/mecha_wreckage/clarke
+	name = "\improper Clarke wreckage"
+	icon_state = "clarke-broken"
+	orig_mecha = /obj/mecha/working/clarke
 
 /obj/structure/mecha_wreckage/ripley/deathripley
 	name = "\improper Death-Ripley wreckage"

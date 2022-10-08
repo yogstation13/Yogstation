@@ -299,6 +299,30 @@
 	to_chat(user,span_warning("[src] suddenly vanishes!"))
 	qdel(src)
 
+/obj/item/book/granter/spell/teslablast
+	spell = /obj/effect/proc_holder/spell/targeted/tesla
+	spellname = "tesla blast"
+	desc = "A book that crackles with power."
+	remarks = list("ZAP!", "I feel some tingling in my fingers...", "Swirl your hands to charge...?", "Let loose a bolt of pure electricity? Shocking...", "FEEL THE THUNDER!")
+
+/obj/item/book/granter/spell/teslablast/recoil(mob/user)
+	..()
+	to_chat(user, span_warning("The book twists into lightning and leaps at you!"))
+	tesla_zap(user, 8, 20000, TESLA_MOB_DAMAGE) //Will chain at a range of 8, but shouldn't straight up crit
+	qdel(src)
+
+/obj/item/book/granter/spell/repulse
+	spell = /obj/effect/proc_holder/spell/aoe_turf/repulse
+	spellname = "repulse"
+	desc = "A book that pushes against your touch."
+	remarks = list("The words seem to push away from me...", "Flick a hand and flick everything around me? Awesome", "My mind feels a little percussive.", "Just a little shove...", "Book almost flew out of my hands...")
+
+/obj/item/book/granter/spell/repulse/recoil(mob/user)
+	..()
+	to_chat(user, span_warning("The book bursts into a gale of force!"))
+	user.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)), 8, 10) //Random 8 tile throw with 10 force; will break bones
+	qdel(src)
+
 /obj/item/book/granter/spell/random
 	icon_state = "random_book"
 
@@ -419,6 +443,72 @@
 		name = "empty scroll"
 		icon_state = "blankscroll"
 
+/obj/item/book/granter/martial/preternis_stealth
+	martial = /datum/martial_art/stealth
+	name = "strange electronic board"
+	martialname = "Stealth"
+	desc = "A strange electronic board, containing some sort of software."
+	greet = "<span class='sciradio'>You have uploaded some combat modules into yourself. Your combos will now have special effects on your enemies, and mostly are not obvious to other people. \
+	You can check what combos can you do, and their effect by using Refresh Data verb in Combat Modules tab.</span>"
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade"
+	remarks = list("Processing data...")
+
+/obj/item/book/granter/martial/preternis_stealth/already_known(mob/user)
+	if(!ispreternis(user))
+		to_chat(user, span_warning("You don't understand what to do with this strange electronic device."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/preternis_stealth/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It looks like it doesn't contain any data no more."
+
+/obj/item/book/granter/martial/garden_warfare
+	martial = /datum/martial_art/gardern_warfare
+	name = "mysterious scroll"
+	martialname = "Garden Warfare"
+	desc = "A scroll, filled with a tone of text. Looks like it says something about combat and... plants?"
+	greet = "<span class='sciradio'>You know the martial art of Garden Warfare! Now you control your body better, then other phytosians do, allowing you to extend vines from your body and impale people with splinters. \
+	You can check what combos can you do, and their effect by using Remember the basics verb in Garden Warfare tab.</span>"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
+	remarks = list("I didn't know that my body grows sprinklers...", "I am able to snatch people with vines? Interesting.", "Wow, strangling people is brutal.")   ///Kill me please for this cringe
+
+/obj/item/book/granter/martial/garden_warfare/already_known(mob/user)
+	if(!ispodperson(user))
+		to_chat(user, span_warning("You see that this scroll says something about natural abilitites of podpeople, but, unfortunately, you are not one of them."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/garden_warfare/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's completely blank."
+
+/obj/item/book/granter/martial/explosive_fist
+	martial = /datum/martial_art/explosive_fist
+	name = "burnt scroll"
+	martialname = "Explosive Fist"
+	desc = "A burnt scroll, that glorifies plasmamen, and also says a lot things of explosions."
+	greet = "<span class='sciradio'>You know the martial art of Explosive Fist. Now your attacks deal brute and burn damage, while your combos are able to set people on fire, explode them, or all at once. \
+	You can check what combos can you do, and their effect by using Remember the basics verb in Explosive Fist tab.</span>"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "scroll2"
+	remarks = list("Set them on fire...", "Show the punny humans who is here the supreme race...", "Make them burn...", "Explosion are cool!")
+
+/obj/item/book/granter/martial/explosive_fist/already_known(mob/user)
+	if(!isplasmaman(user))
+		to_chat(user, span_warning("It says about very dangerous things, that you would prefer not to know."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/explosive_fist/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		desc = "It's completely blank."
+
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
 
 
@@ -439,7 +529,7 @@
 /obj/item/book/granter/crafting_recipe/weapons
 	name = "makeshift weapons 101"
 	desc = "A book filled with directions on how to make various weaponry."
-	crafting_recipe_types = list(/datum/crafting_recipe/baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio, /datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/flaming_arrow, /datum/crafting_recipe/makeshiftemag)
+	crafting_recipe_types = list(/datum/crafting_recipe/metal_baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/flamethrower, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio, /datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/flaming_arrow, /datum/crafting_recipe/makeshiftemag)
 	icon_state = "bookCrafting"
 	oneuse = TRUE
 

@@ -35,7 +35,8 @@ tweak: tweaked a few things
 soundadd: added a new sound thingy  
 sounddel: removed an old sound thingy  
 imageadd: added some icons and images  
-imagedel: deleted some icons and images  
+imagedel: deleted some icons and images
+mapping: This is a mapping change
 spellcheck: fixed a few typos  
-experimental: This is experimental  
+experimental: This is experimental
 /:cl:

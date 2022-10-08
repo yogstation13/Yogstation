@@ -432,7 +432,7 @@
 			if(!W.use_tool(src, user, 50))
 				return
 			if(health > 0)
-				return //safety check to prevent spam clciking and queing
+				return //safety check to prevent spam clicking and queing
 
 		adjustBruteLoss(-30)
 		updatehealth()
@@ -544,7 +544,7 @@
 		else
 			to_chat(user, span_warning("Unable to locate a radio!"))
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
+	else if(W.GetID())			// trying to unlock the interface with an ID card
 		if(opened)
 			to_chat(user, span_warning("You must close the cover to swipe an ID card!"))
 		else
@@ -753,6 +753,14 @@
 	if(usr.stat == DEAD)
 		return //won't work if dead
 	checklaws()
+
+/mob/living/silicon/robot/verb/changeaccent()
+	set category = "Robot Commands"
+	set name = "Change Accent"
+
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	accentchange()
 
 /mob/living/silicon/robot/verb/set_automatic_say_channel() //Borg version of setting the radio for autosay messages.
 	set name = "Set Auto Announce Mode"
