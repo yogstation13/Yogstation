@@ -2144,7 +2144,7 @@
 	name = "Microplastics"
 	description = "Finely ground plastics, reduced to microscopic scale. Nearly unable to metabolize in a body, and potentially harmful in the long term."
 	color = "#ffffff"
-	metabolization_rate = 0.05
+	metabolization_rate = 0.05 * REAGENTS_METABOLISM
 	taste_description = "nothing"
 
 /datum/reagent/microplastics/on_mob_life(mob/living/carbon/M)
