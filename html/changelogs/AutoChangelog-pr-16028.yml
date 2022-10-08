@@ -1,0 +1,10 @@
+author: " ynot01, MechanoidVoid"
+delete-after: true 
+changes: 
+  - rscadd: "Added simple sights to security protolathe, locked under sec tech"
+  - rscadd: "Added holographic sights to security protolathe, locked under adv. weapon tech"
+  - rscadd: "Added vertical grips to security protolathe, locked under weapon tech"
+  - rscadd: "Added laser sights to security protolathe, locked under weapon tech"
+  - tweak: "All non-magical guns now have innate 5 spread (Does not stack with weapons that already had spread)"
+  - tweak: "Ballistic weapons now have innate 0.3 recoil (Does not stack with weapons that already had recoil)"
+  - tweak: "Energy weapons now have innate 0.1 recoil (Does not stack with weapons that already had recoil)"
