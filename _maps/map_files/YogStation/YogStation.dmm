@@ -16767,25 +16767,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"cvh" = (
-/obj/machinery/camera{
-	c_tag = "Aft Starboard Primary Hallway";
-	dir = 8;
-	pixel_y = -22
-	},
-/obj/structure/sign/departments/minsky/research/research{
-	pixel_x = 32
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/aft_starboard)
 "cvr" = (
 /obj/machinery/holopad,
 /obj/structure/disposalpipe/segment{
@@ -30704,6 +30685,20 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"imf" = (
+/obj/structure/sign/departments/minsky/research/research{
+	pixel_x = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft_starboard)
 "ims" = (
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /obj/effect/turf_decal/tile/blue/opposingcorners{
@@ -38901,6 +38896,22 @@
 	},
 /turf/open/floor/wood,
 /area/medical/psych)
+"lUd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Aft Starboard Primary Hallway";
+	dir = 8;
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft_starboard)
 "lUy" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Engineering Maintenance";
@@ -111674,9 +111685,9 @@ rki
 qgr
 bcR
 eHD
-bcR
+lUd
 pTq
-cvh
+imf
 dTu
 rlV
 lNn
@@ -115258,7 +115269,7 @@ aYW
 aYW
 bBL
 aFu
-aYV
+bcx
 aYV
 vLR
 vhG
@@ -115772,7 +115783,7 @@ aRS
 aRS
 vFw
 aCR
-bcx
+aYV
 aYV
 vLR
 hVY
