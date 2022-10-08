@@ -198,8 +198,8 @@
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/gem))
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
-	STR.max_combined_w_class = 16
-	STR.max_items = 16 
+	STR.max_combined_w_class = 48
+	STR.max_items = 48 
 
 /obj/item/storage/bag/gem/equipped(mob/user)
 	. = ..()

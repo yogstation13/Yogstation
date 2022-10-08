@@ -159,6 +159,16 @@
 		T.name = "deep-fried [initial(T.name)]"
 		T.add_atom_colour(color, TEMPORARY_COLOUR_PRIORITY)
 
+/datum/reagent/consumable/cooking_oil/fish
+	name = "Fish Oil"
+	description = "A pungent oil derived from fish."
+	color = "#eab36b"
+	taste_mult = 3.0 //VERY strong flavor
+	taste_description = "fishy oil"
+	nutriment_factor = 2 * REAGENTS_METABOLISM //just barely healthier than oil on its own
+	metabolization_rate = 10 * REAGENTS_METABOLISM
+	fry_temperature = 380 //Around ~350 F (117 C) which deep fryers operate around in the real world
+
 /datum/reagent/consumable/sugar
 	name = "Sugar"
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
@@ -513,6 +523,12 @@
 		reagentdecal = locate() in T //Might have merged with flour already there.
 		if(reagentdecal)
 			reagentdecal.reagents.add_reagent(/datum/reagent/consumable/flour, reac_volume)
+
+/datum/reagent/consumable/batter
+	name = "Batter"
+	description = "This is what you dip things in to get them extra crunchy when fried."
+	color = "#fdffdb"
+	taste_description = "damp flour and beer"
 
 /datum/reagent/consumable/cherryjelly
 	name = "Cherry Jelly"

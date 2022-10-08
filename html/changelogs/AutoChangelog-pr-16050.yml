@@ -1,0 +1,4 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - bugfix: "Mutate spell no longer steadily buries you in random icons with every cast"

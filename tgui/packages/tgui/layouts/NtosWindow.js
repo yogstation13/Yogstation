@@ -20,6 +20,7 @@ export const NtosWindow = (props, context) => {
   } = props;
   const { act, data } = useBackend(context);
   const {
+    theme_collection = [],
     PC_device_theme,
     PC_batteryicon,
     PC_showbatteryicon,
@@ -44,7 +45,7 @@ export const NtosWindow = (props, context) => {
               {PC_stationtime}
             </Box>
             <Box inline italic mr={2} opacity={0.33}>
-              {PC_device_theme === 'ntos' && 'NtOS'}
+              {theme_collection.some(theme => theme.theme_file === PC_device_theme) && "NtOS"}
               {PC_device_theme === 'syndicate' && 'Syndix'}
             </Box>
           </div>

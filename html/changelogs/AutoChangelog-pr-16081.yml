@@ -1,0 +1,4 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - rscadd: "IPCs are now selectable by magic mirrors and charged black extracts"
