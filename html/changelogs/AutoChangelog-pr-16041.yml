@@ -1,0 +1,4 @@
+author: " scriptis, ported by Jumps0"
+delete-after: true 
+changes: 
+  - tweak: "AIs now have BIG TEXT in binary chat"
