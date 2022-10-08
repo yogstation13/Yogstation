@@ -1,7 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Added pretty filter to NTOS usernames and ringtone"
-  - tweak: "NTOS PDA Messenger will now update username based on the slotted ID"
-  - tweak: "NTOS PDA Messenger max username length is now 55 characters"
-  - tweak: "NTOS PDA Messenger is now wider to compensate for role names"

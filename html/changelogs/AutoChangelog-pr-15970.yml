@@ -1,4 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "Adrenaline now only reduces damage slowdown instead of removing it entirely. It now procs when you take 25 or more damage in one second, rather than 15."

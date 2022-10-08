@@ -1,6 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a color value to lemonade"
-  - bugfix: "Fixes some missing food item color fillings"
-  - tweak: "Tweaks some juice colors"

@@ -1,4 +1,0 @@
-author: "githubuser4141"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes mechas not caring what direction they received damage from."
