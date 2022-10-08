@@ -27,6 +27,10 @@
 	board.emaggable = FALSE
 	board.host = comp
 
+/datum/computer_file/program/minesweeper/Destroy()
+	QDEL_NULL(board)
+	. = ..()
+
 /datum/computer_file/program/minesweeper/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/simple/minesweeper),

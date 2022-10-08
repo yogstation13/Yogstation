@@ -12,6 +12,10 @@
 	board.emaggable = TRUE
 	board.host = src
 
+/obj/machiner/computer/arcade/minesweeper/Destroy(force)
+	QDEL_NULL(board)
+	. = ..()
+
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user, special_state)
 	. = ..()
 	if(!is_operational())
