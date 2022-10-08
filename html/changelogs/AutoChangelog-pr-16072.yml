@@ -1,0 +1,4 @@
+author: "GraveHat"
+delete-after: true 
+changes: 
+  - bugfix: "Wearing gloves should no longer stop the energy katana from attempting to kill you"
