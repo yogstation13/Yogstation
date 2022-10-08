@@ -1,0 +1,6 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Emagged PDAs can select the syndicate theme because you're cool like that"
+  - bugfix: "themes no longer let you access the syndienet because they were bootleg code"
+  - tweak: "i added a header variable for tracking emagged status in modular computers. so when you're implementing ui_data or static_data, starting with var/list/data = get_header_data() will track PC_emagged internally. using this is slightly quicker than making a data[\"emagged\"] every time"
