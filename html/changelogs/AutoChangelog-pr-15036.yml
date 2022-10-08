@@ -1,0 +1,16 @@
+author: "AlvCyktor"
+delete-after: true 
+changes: 
+  - rscadd: "a new crafting category for fishing bait, and one for seafoods"
+  - rscadd: "adds tuna pizza, Shrimp Cocktails, squid ink spaghetti, fish dumplings, Surf n Turf, Ceviche, Seafood Alfredo"
+  - rscadd: "adds fried rice (plain/veggie/meat/shrimp/supreme)"
+  - rscadd: "adds taiyaki (fish shaped icecream cones)"
+  - rscadd: "adds fish oil (juice fish), and batter (beer + flour)"
+  - rscadd: "you can now batter carp meat/fish meat"
+  - rscadd: "adds Wild Bait"
+  - rscadd: "adds crafting recipes for all fishing bait"
+  - tweak: "you now have to batter carp meat/fish meat for use in some foods"
+  - tweak: "you can now cook carp meat/fish meat"
+  - tweak: "leeches can be used to remove toxins"
+  - bugfix: "fixes fishing vendors not having a circuit board"
+  - wip: "This is work in progress"
