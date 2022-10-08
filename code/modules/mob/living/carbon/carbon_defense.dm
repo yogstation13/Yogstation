@@ -361,11 +361,10 @@
 	jitteriness += 1000 //High numbers for violent convulsions
 	do_jitter_animation(jitteriness)
 	stuttering += 2
-	if(!illusion && (shock_damage >= 40/siemens_coeff)) //yogs: ZZAPP
-		src.confused += rand(shock_damage/5, shock_damage)
-		if(prob(shock_damage/3))
-			adjustOrganLoss(ORGAN_SLOT_HEART, 50, 99)
-			to_chat(src, span_bolddanger("You feel your pulse fluttering randomly!"))
+	if(!illusion && prob(shock_damage/3)) //yogs start
+			var/datum/disease/D = new /datum/disease/heart_failure
+			src.ForceContractDisease(D)
+			to_chat(src, span_boldwarning("You feel your pulse fluttering!"))
 	if((!tesla_shock || (tesla_shock && siemens_coeff > 0.5)) && stun)
 		Paralyze(40)
 	spawn(20)
