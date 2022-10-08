@@ -51,7 +51,7 @@
 			emote("me", 1, pick("rests for a bit."), TRUE)
 			set_resting(TRUE)
 
-		else if(prob(1))
+		else if(prob(1) && !resting)
 			emote("me", 1, pick("dances around.","spins around."), TRUE)
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
