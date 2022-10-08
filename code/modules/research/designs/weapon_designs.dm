@@ -402,3 +402,43 @@
 	build_path = /obj/item/gun/ballistic/bow/energy
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/simple_sight
+	name = "Simple Sight"
+	desc = "A simple yet elegant scope. Better than ironsights."
+	id = "simple_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 2500)
+	build_path = /obj/item/attachment/scope/simple
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/holo_sight
+	name = "Holographic Sight"
+	desc = "A highly advanced sight that projects a holographic design onto its lens, providing unobscured and precise view of your target."
+	id = "holo_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2500, /datum/material/gold = 1000, /datum/material/plastic = 1000)
+	build_path = /obj/item/attachment/scope/holo
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/vert_grip
+	name = "Vertical Grip"
+	desc = "A tactile grip that increases the control and steadiness of your weapon."
+	id = "vert_grip"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/titanium = 2500)
+	build_path = /obj/item/attachment/grip/vertical
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/laser_sight
+	name = "Laser Sight"
+	desc = "A glorified laser pointer. Good for knowing what you're aiming at."
+	id = "laser_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/gold = 1000, /datum/material/uranium = 1000, /datum/material/glass = 500)
+	build_path = /obj/item/attachment/laser_sight
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

@@ -1798,6 +1798,24 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/bodybag/environmental/prisoner/syndicate
 	cost = 7
 
+/datum/uplink_item/device_tools/holo_sight
+	name = "Holographic Sight"
+	desc = "A high-tech holographic sight that improves the aim of the weapon it's attached to."
+	item = /obj/item/attachment/scope/holo
+	cost = 2
+
+/datum/uplink_item/device_tools/vert_grip
+	name = "Vertical Grip"
+	desc = "A vertical foregrip that reduces the shock of firing a weapon. Extra handy for higher recoil guns like the sniper rifle."
+	item = /obj/item/attachment/scope/holo
+	cost = 2
+
+/datum/uplink_item/device_tools/laser_sight
+	name = "Laser Sight"
+	desc = "An aesthetic laser sight that improves your accuracy and shows you where you're aiming."
+	item = /obj/item/attachment/laser_sight
+	cost = 2
+
 // Implants
 /datum/uplink_item/implants
 	category = "Implants"
