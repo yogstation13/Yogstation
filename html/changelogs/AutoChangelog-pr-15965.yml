@@ -1,4 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes holodeck gym railing corners being the wrong dir"

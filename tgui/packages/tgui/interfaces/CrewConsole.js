@@ -52,7 +52,7 @@ const speciesmap = {
     "icon": "seedling",
     "color": "#05fa46",
   },
-  "Plasaman": {
+  "Plasmaman": {
     "icon": "skull",
     "color": "#d60b66",
   },

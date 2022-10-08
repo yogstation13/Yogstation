@@ -62,6 +62,8 @@
 	if(isgolem(target) || isipc(target) || ispreternis(target))
 		to_chat(user, span_warning("You can only augment organics!"))
 		return FALSE
+	else
+		return TRUE
 
 /*
 /datum/surgery/augmentation/mechanic
