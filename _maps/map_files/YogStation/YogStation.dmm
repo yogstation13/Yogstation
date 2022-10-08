@@ -406,26 +406,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"acf" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "permacell1";
-	name = "cell blast door"
-	},
-/obj/machinery/door/airlock/public/glass{
-	id_tag = "permabolt1";
-	name = "Cell 1"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison)
 "acg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -6687,6 +6667,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"aMH" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "permacell1";
+	name = "cell blast door"
+	},
+/obj/machinery/door/airlock/public/glass{
+	id_tag = "permabolt1";
+	name = "Cell 1"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "aML" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 8
@@ -95929,7 +95930,7 @@ aat
 aat
 aeL
 baB
-acf
+aMH
 baB
 acv
 hQy
