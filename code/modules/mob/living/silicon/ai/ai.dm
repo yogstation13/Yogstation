@@ -796,10 +796,11 @@
 			"poly" = 'icons/mob/animal.dmi',
 			"pug" = 'icons/mob/pets.dmi',
 			"spider" = 'icons/mob/animal.dmi',
-			"mothroach" = 'icons/mob/animal.dmi',
+			"mothroach" = 'icons/mob/pets.dmi',
 			"snake" = 'icons/mob/animal.dmi',
 			"goose" = 'icons/mob/animal.dmi',
-			"poppypossum" = 'icons/mob/animal.dmi'
+			"poppypossum" = 'icons/mob/animal.dmi',
+			"axolotl" = 'icons/mob/pets.dmi'
 			)
 
 			input = input("Please select a hologram:") as null|anything in icon_list
