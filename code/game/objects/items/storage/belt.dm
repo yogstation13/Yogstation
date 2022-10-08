@@ -379,7 +379,8 @@
 		/obj/item/jawsoflife,
 		/obj/item/restraints/legcuffs/bola/watcher,
 		/obj/item/stack/sheet/mineral,
-		/obj/item/grenade/plastic/miningcharge
+		/obj/item/grenade/plastic/miningcharge,
+		/obj/item/gem
 		))
 
 
