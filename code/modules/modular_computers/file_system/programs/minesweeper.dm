@@ -169,6 +169,7 @@
 
 	var/obj/host
 	var/emaggable = FALSE
+	COOLDOWN_DECLARE(new_game_cd)
 
 /datum/minesweeper/proc/play_snd(sound)
 	if(istype(host, /obj/item/modular_computer))
@@ -198,6 +199,10 @@
 	return TRUE
 
 /datum/minesweeper/proc/new_game()
+	if(!COOLDOWN_FINISHED(src, new_game_cd))
+		host.say("Please wait [COOLDOWN_TIMELEFT(src, new_game_cd)/10] more seconds before starting a new game.")
+		return
+	COOLDOWN_START(src, new_game_cd, 1.5 SECONDS)
 	generate_new_board(difficulty)
 	current_difficulty = diff_text(difficulty)
 	current_mines = mines
