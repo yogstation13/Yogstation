@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the syndicate shoulder holster, which can hold one additional thing (four guns, FOUR GUNS)"
+  - rscdel: "Removes leftovers of the Lord Singulo bundle"
+  - tweak: "Passes over and modernizes most of the Tactical Syndikits"
