@@ -79,11 +79,16 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
+	uneq_all()
+	stop_pulling()
+	break_all_cyborg_slots(TRUE)
+	var/breaktime
 	switch(severity)
 		if(1)
-			Stun(160)
+			breaktime = 16 SECONDS
 		if(2)
-			Stun(60)
+			breaktime = 6 SECONDS
+	addtimer(CALLBACK(src, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), breaktime)
 
 
 /mob/living/silicon/robot/emag_act(mob/user)

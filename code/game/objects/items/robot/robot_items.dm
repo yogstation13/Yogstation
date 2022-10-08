@@ -10,7 +10,8 @@
 	icon_state = "elecarm"
 	var/charge_cost = 750
 	var/stunforce = 100
-	var/stamina_damage = 90
+	var/stamina_damage = 60
+	var/cooldown = 0
 
 /obj/item/borg/stun/attack(mob/living/M, mob/living/user)
 	if(ishuman(M))
@@ -24,7 +25,9 @@
 			return
 
 	user.do_attack_animation(M)
-
+	if(cooldown + 1.2 SECONDS > world.time)
+		return
+	cooldown = world.time
 	var/trait_check = HAS_TRAIT(M, TRAIT_STUNRESISTANCE)
 
 	var/obj/item/bodypart/affecting = M.get_bodypart(user.zone_selected)
@@ -137,7 +140,7 @@
 			if(scooldown < world.time)
 				if(M.health >= 0)
 					if(ishuman(M)||ismonkey(M))
-						M.electrocute_act(5, "[user]", safety = 1)
+						electrocute_mob(M, user.cell, src, 1)
 						user.visible_message(span_userdanger("[user] electrocutes [M] with [user.p_their()] touch!"), \
 							span_danger("You electrocute [M] with your touch!"))
 						M.update_mobility()
@@ -150,7 +153,6 @@
 							user.visible_message(span_userdanger("[user] shocks [M]. It does not seem to have an effect"), \
 								span_danger("You shock [M] to no effect."))
 					playsound(loc, 'sound/effects/sparks2.ogg', 50, 1, -1)
-					user.cell.charge -= 500
 					scooldown = world.time + 20
 		if(3)
 			if(ccooldown < world.time)
@@ -354,7 +356,7 @@
 					C.stuttering += 10
 					C.Jitter(10)
 				if(2)
-					C.Paralyze(40)
+					C.Knockdown(40)
 					C.confused += 10
 					C.stuttering += 15
 					C.Jitter(25)

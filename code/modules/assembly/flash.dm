@@ -152,7 +152,14 @@
 		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
 			update_icon(1)
-			R.Immobilize(rand(80,120))
+			if(R.lockcharge)
+				R.Paralyze(rand(8 SECONDS, 12 SECONDS))
+			else
+				R.mobility_flags &= ~MOBILITY_MOVE
+				var/stuntime = rand(8 SECONDS, 12 SECONDS)
+				addtimer(CALLBACK(R, /mob/living/silicon/robot/update_mobility), stuntime)
+				R.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+				addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "flash"), stuntime)
 			var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
 			R.confused += min(5, diff)
 			R.flash_act(affect_silicon = 1)

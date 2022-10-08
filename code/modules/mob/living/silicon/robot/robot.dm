@@ -122,7 +122,6 @@
 	spark_system.attach(src)
 
 	wires = new /datum/wires/robot(src)
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
 
@@ -732,10 +731,14 @@
 		state = TRUE
 	if(state)
 		throw_alert("locked", /obj/screen/alert/locked)
+		break_cyborg_slot(3)
+		break_cyborg_slot(2)
 	else
 		clear_alert("locked")
+		updatehealth()
 	lockcharge = state
 	update_mobility()
+	updatehealth()
 
 /mob/living/silicon/robot/proc/SetEmagged(new_state)
 	emagged = new_state
@@ -961,25 +964,30 @@
 
 	/// the current percent health of the robot (-1 to 1)
 	var/percent_hp = health/maxHealth
-	if(health <= previous_health) //if change in health is negative (we're losing hp)
-		if(percent_hp <= 0.5)
-			break_cyborg_slot(3)
+	if(percent_hp <= 0.5 && !lockcharge)
+		break_cyborg_slot(3)
+	else if(percent_hp <= 0.5 && lockcharge)
+		break_cyborg_slot(1)
 
-		if(percent_hp <= 0)
-			break_cyborg_slot(2)
+	if(percent_hp <= 0)
+		break_cyborg_slot(2)
 
-		if(percent_hp <= -0.5)
-			break_cyborg_slot(1)
+	if(percent_hp <= -0.5)
+		break_cyborg_slot(1)
 
-	else //if change in health is positive (we're gaining hp)
-		if(percent_hp >= 0.5)
-			repair_cyborg_slot(3)
+	if(percent_hp >= 0.5 && !lockcharge)
+		repair_cyborg_slot(3)
 
-		if(percent_hp >= 0)
-			repair_cyborg_slot(2)
+	else if(percent_hp >= 0.5 && lockcharge)
+		repair_cyborg_slot(1)
 
-		if(percent_hp >= -0.5)
-			repair_cyborg_slot(1)
+	if(percent_hp >= 0 && !lockcharge)
+		repair_cyborg_slot(2)
+
+	if(percent_hp >= -0.5 && !lockcharge)
+		repair_cyborg_slot(1)
+	else if(percent_hp >= 0.5 && lockcharge)
+		repair_cyborg_slot(1)
 
 	previous_health = health
 

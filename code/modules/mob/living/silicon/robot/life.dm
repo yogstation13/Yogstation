@@ -94,10 +94,12 @@
 /mob/living/silicon/robot/update_mobility()
 	if(stat || buckled)
 		mobility_flags &= ~MOBILITY_MOVE
-	else if(lockcharge)
-		add_movespeed_modifier("SAFEMODE", update=TRUE, priority=100, multiplicative_slowdown=4, blacklisted_movetypes=(FLYING|FLOATING))
 	else
 		mobility_flags = MOBILITY_FLAGS_DEFAULT
+	
+	if(lockcharge)
+		add_movespeed_modifier("SAFEMODE", update=TRUE, priority=100, multiplicative_slowdown=4, blacklisted_movetypes=(FLYING|FLOATING))
+	else
 		remove_movespeed_modifier("SAFEMODE")
 	update_transform()
 	update_action_buttons_icon()
