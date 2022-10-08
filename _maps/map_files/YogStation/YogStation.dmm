@@ -3868,6 +3868,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"axV" = (
+/mob/living/simple_animal/pet/axolotl/bop,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "ayd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -37760,6 +37764,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
+"lpn" = (
+/mob/living/simple_animal/pet/axolotl/bap,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "lpv" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
@@ -96740,7 +96748,7 @@ ehM
 fYt
 bVJ
 pTL
-lhk
+axV
 rdR
 xyb
 aJw
@@ -109050,7 +109058,7 @@ bjD
 cfo
 aIp
 clG
-cIZ
+lpn
 iiE
 aIp
 nia

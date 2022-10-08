@@ -50,3 +50,15 @@
 		else if (prob(1))
 			emote("me", 1, pick("rests for a bit."), TRUE)
 			set_resting(TRUE)
+
+/mob/living/simple_animal/pet/axolotl/bop
+	name = "Bop"
+	desc = "The SysOp's axolotl pet"
+	gender = MALE
+	gold_core_spawnable = NO_SPAWN
+
+/mob/living/simple_animal/pet/axolotl/bap
+	name = "Bap"
+	desc = "She is a cute amphibian!"
+	gender = FEMALE
+	gold_core_spawnable = NO_SPAWN
