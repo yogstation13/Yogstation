@@ -1,5 +1,0 @@
-author: "redmoogle"
-delete-after: true 
-changes: 
-  - bugfix: "Chat highlight wont skip every other word now"
-  - tweak: "Chat highlight no longer highlights your own messages"
