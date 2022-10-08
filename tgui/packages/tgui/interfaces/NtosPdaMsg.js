@@ -26,7 +26,7 @@ export const NtosPdaMsg = (props, context) => {
   } = data;
   return (
     <NtosWindow
-      width={400}
+      width={600}
       height={480}>
       <NtosWindow.Content scrollable>
         {showing_messages ?
