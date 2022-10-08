@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - rscdel: "Gets rid of remaining references to the cryo syringe and dart in tech nodes"
