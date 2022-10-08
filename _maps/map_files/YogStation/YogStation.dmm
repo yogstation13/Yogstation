@@ -22363,6 +22363,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"eKY" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Psychiatrist APC";
+	pixel_x = -25
+	},
+/obj/item/radio/intercom{
+	dir = 4;
+	name = "Station Intercom (General)";
+	pixel_x = -27;
+	pixel_y = 27
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "eMt" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -40191,24 +40208,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/disposal/incinerator)
-"mtr" = (
-/obj/machinery/power/apc{
-	areastring = "/area/ai_monitored/nuke_storage";
-	dir = 8;
-	name = "Psychiatrist APC";
-	pixel_x = -25
-	},
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom (General)";
-	pixel_x = -27;
-	pixel_y = 27
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "mtD" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -91852,7 +91851,7 @@ bld
 iSd
 aDR
 lHz
-mtr
+eKY
 nab
 dJr
 jcS
