@@ -157,7 +157,7 @@
 			else
 				R.mobility_flags &= ~MOBILITY_MOVE
 				var/stuntime = rand(8 SECONDS, 12 SECONDS)
-				addtimer(CALLBACK(R, /mob/living/silicon/robot/update_mobility), stuntime)
+				addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/update_mobility), stuntime)
 				R.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
 				addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "flash"), stuntime)
 			var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
