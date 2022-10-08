@@ -51,6 +51,13 @@
 			emote("me", 1, pick("rests for a bit."), TRUE)
 			set_resting(TRUE)
 
+		else if(prob(1))
+			emote("me", 1, pick("dances around.","spins around."), TRUE)
+			spawn(0)
+				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+					setDir(i)
+					sleep(0.1 SECONDS)
+
 /mob/living/simple_animal/pet/axolotl/bop
 	name = "Bop"
 	desc = "The SysOp's axolotl pet"
