@@ -159,14 +159,14 @@
 	name = "salicylic acid pill"
 	desc = "Used to stimulate bruise healing."
 	icon_state = "pill9"
-	list_reagents = list(/datum/reagent/medicine/sal_acid = 24)
+	list_reagents = list(/datum/reagent/medicine/sal_acid = 5)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/pill/oxandrolone
 	name = "oxandrolone pill"
 	desc = "Used to stimulate burn healing."
 	icon_state = "pill11"
-	list_reagents = list(/datum/reagent/medicine/oxandrolone = 24)
+	list_reagents = list(/datum/reagent/medicine/oxandrolone = 5)
 	rename_with_volume = TRUE
 
 /obj/item/reagent_containers/pill/insulin
