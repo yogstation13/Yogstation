@@ -173,10 +173,6 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 
-/turf/open/floor/carpet/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>There's a <b>small crack</b> on the edge of it.</span>"
-
 /turf/open/floor/bamboo/broken
 	icon_state = "damaged"
 	broken = TRUE
