@@ -497,18 +497,23 @@
 	desc = "A large duffel bag, packed to the brim with Bulldog shotgun magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in 1 to 3)
 		new /obj/item/ammo_box/magazine/m12g(src)
-	new /obj/item/ammo_box/magazine/m12g/slug(src)
-	new /obj/item/ammo_box/magazine/m12g/slug(src)
-	new /obj/item/ammo_box/magazine/m12g/dragon(src)
+	for(var/i in 4 to 6)
+		new /obj/item/ammo_box/magazine/m12g/slug(src)
+	for(var/i in 7 to 8)
+		new /obj/item/ammo_box/magazine/m12g/flechette(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	desc = "A large duffel bag, packed to the brim with C-20r magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/PopulateContents()
-	for(var/i in 1 to 9)
+	for(var/i in 1 to 5)
 		new /obj/item/ammo_box/magazine/smgm45(src)
+	for(var/i in 6 to 7)
+		new /obj/item/ammo_box/magazine/smgm45/ap(src)
+	for(var/i in 8 to 9)
+		new /obj/item/ammo_box/magazine/smgm45/hp(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
