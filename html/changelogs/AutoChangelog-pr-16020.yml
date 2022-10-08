@@ -1,8 +1,0 @@
-author: "GraveHat"
-delete-after: true 
-changes: 
-  - rscadd: "Gem Satchels can be bought from the mining vendors for 150 points"
-  - tweak: "Gem Satchels can be crafted with 1 leather"
-  - tweak: "Gem satchels start inside the voucher conscript kit"
-  - tweak: "Tripled the gem satchel storage capacity"
-  - tweak: "Explorer webbing accepts gems"

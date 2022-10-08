@@ -1,4 +1,4 @@
-/mob/living/simple_animal/friendly/mothroach
+/mob/living/simple_animal/pet/mothroach
 	name = "mothroach"
 	desc = "This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches."
 	icon_state = "mothroach"
@@ -24,21 +24,21 @@
 
 	faction = list("neutral")
 
-/mob/living/simple_animal/friendly/mothroach/attack_hand(mob/living/carbon/human/user, list/modifiers)
+/mob/living/simple_animal/pet/mothroach/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	. = ..()
 	if(src.stat == DEAD)
 		return
 	else
 		playsound(loc, 'sound/voice/moth/scream_moth.ogg', 50, TRUE)
 
-/mob/living/simple_animal/friendly/mothroach/attackby(obj/item/attacking_item, mob/living/user, params)
+/mob/living/simple_animal/pet/mothroach/attackby(obj/item/attacking_item, mob/living/user, params)
 	. = ..()
 	if(src.stat == DEAD)
 		return
 	else
 		playsound(loc, 'sound/voice/moth/scream_moth.ogg', 50, TRUE)
 
-/mob/living/simple_animal/friendly/mothroach/Life()
+/mob/living/simple_animal/pet/mothroach/Life()
 	. = ..()
 	if(!stat && !buckled && !client)
 		if(prob(1))
