@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "Tweaked armor values & properties of T-45b so its less bad, but still not as good as X-02 armor."
+  - spellcheck: "renamed X-01 armor to X-02 to prevent confusion with the HoS' special Egun."
