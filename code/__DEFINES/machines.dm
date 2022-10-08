@@ -58,7 +58,7 @@
 //NTNet transfer speeds, used when downloading/uploading a file/program.
 #define NTNETSPEED_LOWSIGNAL 0.5	// GQ/s transfer speed when the device is wirelessly connected and on Low signal
 #define NTNETSPEED_HIGHSIGNAL 1	// GQ/s transfer speed when the device is wirelessly connected and on High signal
-#define NTNETSPEED_ETHERNET 2		// GQ/s transfer speed when the device is using wired connection
+#define NTNETSPEED_ETHERNET 3		// GQ/s transfer speed when the device is using wired connection
 
 //Caps for NTNet logging. Less than 10 would make logging useless anyway, more than 500 may make the log browser too laggy. Defaults to 100 unless user changes it.
 #define MAX_NTNET_LOGS 300
@@ -73,6 +73,10 @@
 #define PROGRAM_PDA			(1<<4)
 #define PROGRAM_TELESCREEN	(1<<5)
 #define PROGRAM_INTEGRATED	(1<<6)
+
+#define PROGRAM_PORTABLE PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA
+#define PROGRAM_STATIONARY PROGRAM_CONSOLE | PROGRAM_TELESCREEN
+
 //Program states
 #define PROGRAM_STATE_KILLED 0
 #define PROGRAM_STATE_BACKGROUND 1

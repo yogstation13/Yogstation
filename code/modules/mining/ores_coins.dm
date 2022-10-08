@@ -466,23 +466,68 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	to_chat(user, span_notice("You detach the string from the coin."))
 	return TRUE
 
-/obj/item/coin/attack_self(mob/user)
+/obj/item/coin/proc/flip(mob/user, flash = FALSE)
 	if(cooldown < world.time)
 		if(string_attached) //does the coin have a wire attached
-			to_chat(user, span_warning("The coin won't flip very well with something attached!") )
+			if(user)
+				to_chat(user, span_warning("The coin won't flip very well with something attached!"))
 			return FALSE//do not flip the coin
 		coinflip = pick(sideslist)
 		cooldown = world.time + 15
+
 		flick("coin_[cmineral]_flip", src)
 		icon_state = "coin_[cmineral]_[coinflip]"
-		playsound(user.loc, 'sound/items/coinflip.ogg', 50, 1)
+		if(flash)
+			SSvis_overlays.add_vis_overlay(src, icon, "flash", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, unique = TRUE)
+		playsound(loc, 'sound/items/coinflip.ogg', 50, TRUE)
 		var/oldloc = loc
 		sleep(1.5 SECONDS)
+		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 		if(loc == oldloc && user && !user.incapacitated())
 			user.visible_message("[user] has flipped [src]. It lands on [coinflip].", \
  							 span_notice("You flip [src]. It lands on [coinflip]."), \
 							 span_italics("You hear the clattering of loose change."))
 	return TRUE//did the coin flip? useful for suicide_act
 
+/obj/item/coin/attack_self(mob/user)
+	flip(user)
+
+/obj/item/coin/after_throw(datum/callback/callback) //get rid of the throw rotation
+	. = ..()
+	transform = initial(transform)
+
+/obj/item/coin/bullet_act(obj/item/projectile/P)
+	if(P.flag != LASER && P.flag != ENERGY && !istype(P, /obj/item/projectile/bullet/c38)) //only energy projectiles get deflected (also det revolver because damn thats cool)
+		return ..()
+		
+	if(cooldown >= world.time)//we ricochet the projectile
+		var/list/targets = list()
+		var/turf/center = get_turf(src)
+		for(var/mob/living/T in viewers(5, src))
+			if(T != P.firer && T.stat != DEAD)
+				targets |= T
+		P.damage *= 1.5
+		if(!targets.len)
+			var/spr = rand(0, 360) //randomize the direction
+			P.preparePixelProjectile(src, src, spread = spr)
+		else
+			var/mob/living/target = pick(targets)
+			P.preparePixelProjectile(target, src)
+			targets -= target
+			if(targets.len)
+				P = DuplicateObject(P, sameloc=1) //split into another projectile
+				P.datum_flags = initial(P.datum_flags)	//we want to reset the projectile process that was duplicated
+				P.last_process = initial(P.last_process)
+				P.last_projectile_move = initial(P.last_projectile_move)
+				target = pick(targets)
+				P.preparePixelProjectile(target, center)
+				P.fire()
+		visible_message(span_danger("[P] ricochets off of [src]!"))
+		playsound(loc, 'sound/weapons/ricochet.ogg', 50, 1)
+		return BULLET_ACT_FORCE_PIERCE
+			
+	//we instead flip the coin
+	INVOKE_ASYNC(src, .proc/flip, null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
+	return BULLET_ACT_TURF
 
 #undef ORESTACK_OVERLAYS_MAX

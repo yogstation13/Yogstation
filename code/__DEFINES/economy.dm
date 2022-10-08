@@ -1,3 +1,4 @@
+#define STARTING_PAYCHECKS 3 // Amount of paychecks
 #define STARTING_PAYCHECKS_MIN 50 // Minimum roundstart money
 #define STARTING_PAYCHECKS_MAX 250 // Maximum roundstart money
 
@@ -31,6 +32,6 @@
 #define ACCOUNT_SEC "SEC"
 #define ACCOUNT_SEC_NAME "Defense Budget"
 
-#define MEGAFAUNA_CASH_SCALE 5
+#define MEGAFAUNA_CASH_SCALE 2
 
 #define NO_FREEBIES "commies go home"

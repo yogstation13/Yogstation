@@ -158,6 +158,7 @@
 /obj/item/storage/box/syndie/PopulateContents()
 	new /obj/item/clothing/mask/gas/syndicate(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
+	new /obj/item/extinguisher/mini(src)
 
 // Security survival box
 /obj/item/storage/box/security/PopulateContents()
@@ -215,7 +216,6 @@
 /obj/item/storage/box/syringes/variety/PopulateContents()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/syringe/lethal(src)
-	new /obj/item/reagent_containers/syringe/noreact(src)
 	new /obj/item/reagent_containers/syringe/piercing(src)
 	new /obj/item/reagent_containers/syringe/bluespace(src)
 

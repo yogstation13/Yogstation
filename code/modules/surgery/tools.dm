@@ -13,7 +13,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/retractor/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/retractor/augment
@@ -49,7 +49,7 @@
 	attack_verb = list("attacked", "pinched")
 
 /obj/item/hemostat/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/hemostat/augment
@@ -86,7 +86,7 @@
 	attack_verb = list("burnt")
 
 /obj/item/cautery/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/cautery/augment
@@ -135,7 +135,7 @@
 	return (MANUAL_SUICIDE)
 
 /obj/item/surgicaldrill/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/surgicaldrill/augment
@@ -180,7 +180,7 @@
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
 
 /obj/item/scalpel/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/scalpel/augment
@@ -239,7 +239,7 @@
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
 /obj/item/circular_saw/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/circular_saw/augment
@@ -279,7 +279,7 @@
 	attack_verb = list("corrected", "properly set")
 
 /obj/item/bonesetter/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/bonesetter/bone
@@ -301,7 +301,7 @@
 	attack_verb = list("slapped")
 
 /obj/item/surgical_drapes/attack(mob/living/M, mob/user)
-	if(user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
+	if(!attempt_initiate_surgery(src, M, user))
 		..()
 
 /obj/item/surgical_drapes/goliath

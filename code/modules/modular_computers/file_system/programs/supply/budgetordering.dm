@@ -5,8 +5,8 @@
 	program_icon_state = "bountyboard"
 	extended_desc = "Nanotrasen Internal Requisition Network interface for supply purchasing using a department budget account."
 	requires_ntnet = TRUE
-	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN
-	size = 20
+	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_TELESCREEN | PROGRAM_PDA
+	size = 12
 	tgui_id = "NtosCargo"
 	program_icon = "store"
 	///Are you actually placing orders with it?
@@ -25,6 +25,8 @@
 		homing beacons or machinery housing any form of artificial intelligence."
 	///If you're being raided by pirates, what do you tell the crew?
 	var/blockade_warning = "Bluespace instability detected. Shuttle movement impossible."
+	/// Can send the shuttle **AWAY** from the station
+	var/can_send = FALSE
 
 /datum/computer_file/program/budgetorders/proc/get_export_categories()
 	. = EXPORT_CARGO
@@ -69,14 +71,16 @@
 	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
 	var/obj/item/card/id/id_card = card_slot?.GetID()
 	if(id_card?.registered_account)
-		if((ACCESS_HEADS in id_card.access) || (ACCESS_QM in id_card.access))
+		if((ACCESS_HEADS in id_card.access) || (ACCESS_QM in id_card.access) || (ACCESS_CARGO in id_card.access))
 			requestonly = FALSE
 			if(id_card?.registered_account?.account_job?.paycheck_department)
 				buyer = SSeconomy.get_dep_account(id_card.registered_account.account_job.paycheck_department)
 			can_approve_requests = TRUE
+			can_send = TRUE
 		else
 			requestonly = TRUE
 			can_approve_requests = FALSE
+			can_send = FALSE
 	else
 		requestonly = TRUE
 	if(buyer)
@@ -111,8 +115,8 @@
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
-	data["can_send"] = FALSE	//There is no situation where I want the app to be able to send the shuttle AWAY from the station, but conversely is fine.
 	data["can_approve_requests"] = can_approve_requests
+	data["can_send"] = can_send
 	data["app_cost"] = TRUE
 	var/message = "Remember to stamp and send back the supply manifests."
 	if(SSshuttle.centcom_message)

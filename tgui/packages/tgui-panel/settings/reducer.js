@@ -12,7 +12,7 @@ const initialState = {
   fontSize: 13,
   lineHeight: 1.2,
   theme: 'light',
-  adminMusicVolume: 0.5,
+  adminMusicVolume: 0.15,
   highlightText: '',
   highlightColor: '#ffdd44',
   view: {

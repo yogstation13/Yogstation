@@ -110,6 +110,7 @@
 #define CAT_SPAGHETTI	"Spaghettis"
 #define CAT_ICE	"Frozen"
 #define CAT_DRINK   "Drinks"
+#define CAT_MEDICAL   "Medical"
 
 #define RCD_FLOORWALL (1<<0)
 #define RCD_AIRLOCK (1<<1)

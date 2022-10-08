@@ -10,6 +10,17 @@
 "l" = (
 /turf/open/floor/plating,
 /area/template_noop)
+"n" = (
+/obj/structure/sign/poster/contraband/free_drone{
+	pixel_y = 32
+	},
+/obj/structure/bed/dogbed{
+	desc = "A comfy-looking drone bed.";
+	name = "drone bed"
+	},
+/obj/item/drone_shell,
+/turf/open/floor/plating,
+/area/template_noop)
 "r" = (
 /obj/item/drone_shell,
 /obj/structure/bed/dogbed{
@@ -23,23 +34,13 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/template_noop)
-"E" = (
-/obj/structure/sign/poster/contraband/free_drone{
-	pixel_y = 32
-	},
-/obj/structure/bed/dogbed{
-	desc = "A comfy-looking drone bed.";
-	name = "drone bed"
-	},
-/turf/open/floor/plating,
-/area/template_noop)
 "U" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating,
 /area/template_noop)
 
 (1,1,1) = {"
-E
+n
 D
 l
 "}
