@@ -6,8 +6,8 @@
 	icon_state = "fox"
 	icon_living = "fox"
 	icon_dead = "fox_dead"
-	speak = list("AAAAAAAAAAAAAAAAAAAA","Yip","Hehehehehe")
-	speak_emote = list("screamss")
+	speak = list("AAAAAAAAAAAAAAAAAAAA","Hehehehehe")
+	speak_emote = list("screams","screeches")
 	emote_hear = list("yips.","screeches.")
 	emote_see = list("shakes its head.", "shivers.")
 	speak_chance = 1
@@ -22,7 +22,7 @@
 	can_be_held = TRUE
 	do_footstep = TRUE
 	wuv_happy = "screams happily!"
-	wuv_angy = "screams angerly!"
+	wuv_angy = "screams angrily!"
 
 //Captain fox
 /mob/living/simple_animal/pet/fox/Renault
