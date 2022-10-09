@@ -24796,12 +24796,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"hwS" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
-/turf/closed/mineral/random/low_chance_air,
-/area/space/nearstation)
 "hwW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -31229,6 +31223,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"jGR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/disposal/incinerator)
 "jHg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -123888,7 +123888,7 @@ nzk
 gDT
 pTA
 icA
-hwS
+jGR
 msb
 msb
 msb
@@ -124401,7 +124401,7 @@ afF
 mbK
 pEq
 afF
-afF
+aNg
 aNg
 msb
 msb
@@ -124658,8 +124658,8 @@ afF
 afF
 anp
 afF
-afF
 aNg
+acb
 msb
 msb
 msb
@@ -124915,8 +124915,8 @@ afF
 afF
 aLf
 afF
-afF
 aNg
+acb
 msb
 msb
 msb
@@ -125173,7 +125173,7 @@ kdg
 aCs
 asp
 aNg
-aNg
+acb
 msb
 msb
 msb
