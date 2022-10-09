@@ -95,41 +95,57 @@
 	if(can_spawn_ore && prob( (severity/3)*100  ))	
 		spawn_rock()
 /turf/open/floor/plating/dirt/jungleland/barren_rocks
+	name = "rocky surface"
+	desc = "Surface covered by rocks, pebbles and stones."
 	icon_state = "barren_rocks"
 	icon_plating = "barren_rocks"
 	icon_state_regular_floor = "barren_rocks" 
 
 /turf/open/floor/plating/dirt/jungleland/toxic_rocks
+	name = "mud"
+	desc = "Liquid mixed with dirt"
 	icon_state = "toxic_rocks"
 	icon_plating = "toxic_rocks"
 	icon_state_regular_floor = "toxic_rocks" 
 
 /turf/open/floor/plating/dirt/jungleland/dry_swamp
+	name = "sand"
+	desc = "mounds upon mounds of sand"
 	icon_state = "dry_swamp"
 	icon_plating = "dry_swamp"
 	icon_state_regular_floor = "dry_swamp" 
 
 /turf/open/floor/plating/dirt/jungleland/toxic_pit
+	name = "shallow mud"
+	desc = "pit of shallow mud"
 	icon_state = "toxic_pit"
 	icon_plating = "toxic_pit"
 	icon_state_regular_floor = "toxic_pit" 
 
 /turf/open/floor/plating/dirt/jungleland/dry_swamp1
+	name = "dried surface"
+	desc = "it used to be a riverbed"
 	icon_state = "dry_swamp1"
 	icon_plating = "dry_swamp1"
 	icon_state_regular_floor = "dry_swamp1" 
 
 /turf/open/floor/plating/dirt/jungleland/dying_forest
+	name = "deep sand"
+	desc = "this sand runs deep into the earth"
 	icon_state = "dying_forest"
 	icon_plating = "dying_forest"
 	icon_state_regular_floor = "dying_forest" 
 
 /turf/open/floor/plating/dirt/jungleland/jungle
+	name = "forest litter"
+	desc = "rich in minerals, this feeds the flora and fauna of the jungle"
 	icon_state = "jungle"
 	icon_plating = "jungle"
 	icon_state_regular_floor = "jungle" 
 
 /turf/open/floor/plating/dirt/jungleland/quarry
+	name = "loose quarry stones"
+	desc = "there are some mineral underneath"
 	icon_state = "quarry"
 	icon_plating = "quarry"
 	icon_state_regular_floor = "quarry"
@@ -146,6 +162,7 @@
 
 /turf/open/water/toxic_pit
 	name = "sulphuric pit"
+	desc = "Very toxic"
 	color = "#00c167"
 	slowdown = 2
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
