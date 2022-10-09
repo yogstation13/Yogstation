@@ -33,15 +33,18 @@
 			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.finish_color = "glass"
+				PDA.update_icon()
 		if(3)//pip-boy
 			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.finish_color = "pipboy"
 				PDA.slot_flags |= ITEM_SLOT_GLOVES
+				PDA.update_icon()
 		if(4)//rainbow
 			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
 				PDA.finish_color = "rainbow"
+				PDA.update_icon()
 
 /datum/job/proc/give_cape(mob/living/H, mob/M)
 	var/client/C = M.client
