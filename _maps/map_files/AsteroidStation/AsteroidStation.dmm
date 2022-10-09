@@ -31374,15 +31374,6 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"jLr" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/turf/closed/wall/r_wall,
-/area/tcommsat/server)
 "jLz" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/carpet/royalblack,
@@ -57267,11 +57258,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/grass,
 /area/hallway/primary/port)
-"sJx" = (
-/obj/effect/turf_decal/tile/white,
-/obj/effect/turf_decal/tile/white,
-/turf/closed/wall/r_wall,
-/area/tcommsat/server)
 "sJB" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -96505,7 +96491,7 @@ jPY
 mpv
 lym
 wJp
-jLr
+aNJ
 aNJ
 asm
 kqd
@@ -97533,7 +97519,7 @@ lwL
 lNd
 jSY
 bQU
-sJx
+aNJ
 aNJ
 asm
 llb
