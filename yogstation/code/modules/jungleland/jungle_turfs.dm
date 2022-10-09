@@ -173,6 +173,8 @@
 	. = ..()
 	if(AM.movement_type & (FLYING|FLOATING) || !AM.has_gravity())
 		return
+	if(HAS_TRAIT(humie,TRAIT_TOXIMMUNE) || HAS_TRAIT(humie,TRAIT_TOXINLOVER))
+		return
 	if(!ishuman(AM))
 		return
 	var/mob/living/carbon/human/humie = AM
