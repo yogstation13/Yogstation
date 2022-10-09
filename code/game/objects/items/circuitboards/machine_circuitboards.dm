@@ -155,10 +155,14 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/decontamination_unit
-	name = "Advanced Suit Storage Unit (Machine Board)"
+	name = "Advanced Decontamination Suit Storage Unit (Machine Board)"
 	icon_state = "engineering"
 	build_path = /obj/machinery/decontamination_unit
-	req_components = list(/obj/item/stock_parts/micro_laser = 4)
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 5,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/manipulator = 5)
+
 
 #define PATH_POWERCOIL /obj/machinery/power/tesla_coil/power
 #define PATH_RPCOIL /obj/machinery/power/tesla_coil/research

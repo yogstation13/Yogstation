@@ -255,7 +255,6 @@
 				visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
 			else
 				visible_message(span_warning("[src]'s door slides open, barraging you with the nauseating smell of charred flesh."))
-				mob_occupant.radiation = 0
 			playsound(src, 'sound/machines/airlockclose.ogg', 25, 1)
 			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
 			if(suit)
@@ -468,6 +467,12 @@
 
 /obj/machinery/suit_storage_unit/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	if(panel_open)
+		to_chat(user, span_notice("Close the panel first!"))
+		return
+	if(uv || uv_super)
+		to_chat(user, span_warning("You cannot open the door while the cycle is running!"))
 		return
 	if(state_open)
 		close_machine()

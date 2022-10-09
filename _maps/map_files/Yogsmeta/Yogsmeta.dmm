@@ -16771,6 +16771,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aNa" = (
@@ -80826,6 +80827,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
+/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "vDq" = (

@@ -1,7 +1,7 @@
 // SUIT STORAGE UNIT /////////////////
 /obj/machinery/decontamination_unit
-	name = "advanced suit storage unit"
-	desc = "This is a more advanced version of the industrial suit storage unit developed by the new NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment."
+	name = "advanced decontamination suit storage unit"
+	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment."
 	icon = 'icons/obj/machines/decontamination_unit.dmi'
 	icon_state = "industrial"
 	density = TRUE
@@ -22,16 +22,16 @@
 	state_open = FALSE
 	var/locked = FALSE
 	panel_open = FALSE
-	var/safeties = FALSE
 
 	var/uv = FALSE
-	var/uv_super = FALSE
+	var/uv_emagged = FALSE
 	var/uv_cycles = 3
 	var/message_cooldown
 	var/breakout_time = 300
 
+	var/datum/looping_sound/oven/decon   //im borrowing oven sound because it suits this
+
 /obj/machinery/decontamination_unit/radsuit
-	name = "advanced radiation suit storage unit mkII"
 	suit_type = /obj/item/clothing/suit/radiation
 	helmet_type = /obj/item/clothing/head/radiation
 	storage_type = /obj/item/geiger_counter
@@ -42,6 +42,7 @@
 
 /obj/machinery/decontamination_unit/Initialize()
 	. = ..()
+	decon = new(list(src), FALSE)
 	if(suit_type)
 		suit = new suit_type(src)
 	if(helmet_type)
@@ -53,6 +54,7 @@
 	update_icon()
 
 /obj/machinery/decontamination_unit/Destroy()
+	QDEL_NULL(decon)
 	QDEL_NULL(suit)
 	QDEL_NULL(helmet)
 	QDEL_NULL(mask)
@@ -61,26 +63,32 @@
 
 /obj/machinery/decontamination_unit/update_icon()
 	cut_overlays()
-	
+
+	if(panel_open)
+		add_overlay("[icon_state]_panel")
 	if(state_open)
 		add_overlay("[icon_state]_open")
-	if(suit)
-		add_overlay("[icon_state]_suit")
-	if(helmet)
-		add_overlay("[icon_state]_helm")
-	if(storage)
-		add_overlay("[icon_state]_storage")
-	if(!(stat & BROKEN))
+		if(suit)
+			add_overlay("[icon_state]_suit")
+		if(helmet)
+			add_overlay("[icon_state]_helm")
+		if(storage)
+			add_overlay("[icon_state]_storage")
+	if(!(stat & BROKEN || stat & NOPOWER))
 		if(state_open)
 			add_overlay("[icon_state]_lights_open")
 		else
 			if(uv)
-				add_overlay("[icon_state]_super")
+				if(uv_emagged)
+					add_overlay("[icon_state]_super")
 				add_overlay("[icon_state]_lights_red") 
 			else
 				add_overlay("[icon_state]_lights_closed") 
 		if(uv)
-			add_overlay("[icon_state]_uvstrong") 
+			if(uv_emagged)
+				add_overlay("[icon_state]_uvstrong")
+			else
+				add_overlay("[icon_state]_uv")
 		else if(locked)
 			add_overlay("[icon_state]_locked") 
 		else
@@ -142,36 +150,61 @@
 		locked = TRUE
 		update_icon()
 		addtimer(CALLBACK(src, .proc/cook), 50)
+		if(uv_emagged)
+			radiation_pulse(src, 300, 3)
+			if(mob_occupant)
+				mob_occupant.adjustFireLoss(rand(20, 36))
+				mob_occupant.radiation += 500
+				mob_occupant.adjust_fire_stacks(2)
+				mob_occupant.IgniteMob()
+			if(iscarbon(mob_occupant) && mob_occupant.stat < UNCONSCIOUS)
+				//Awake, organic and screaming
+				mob_occupant.emote("scream")
+		decon.start()
 	else
 		uv_cycles = initial(uv_cycles)
 		uv = FALSE
 		locked = FALSE
-		if(!occupant)
-			visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
+		if(uv_emagged)
+			say("ERROR: PLEASE CONTACT SUPPORT!!")
+			visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
+			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
+			var/datum/effect_system/smoke_spread/bad/smoke = new
+			smoke.set_up(1, src)
+			smoke.start()
+			QDEL_NULL(helmet)
+			QDEL_NULL(suit)
+			QDEL_NULL(mask)
+			QDEL_NULL(storage)
 		else
-			visible_message(span_warning("[src]'s door slides open, ejecting you out."))
-			mob_occupant.radiation = 0
-		playsound(src, 'sound/machines/airlockclose.ogg', 25, 1)
-		var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
-		if(suit)
-			things_to_clear += suit
-			things_to_clear += suit.GetAllContents()
-		if(helmet)
-			things_to_clear += helmet
-			things_to_clear += helmet.GetAllContents()
-		if(mask)
-			things_to_clear += mask
-			things_to_clear += mask.GetAllContents()
-		if(storage)
-			things_to_clear += storage
-			things_to_clear += storage.GetAllContents()
-		if(occupant)
-			things_to_clear += occupant
-			things_to_clear += occupant.GetAllContents()
-		for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
-			var/atom/movable/dirty_movable = am
-			dirty_movable.wash(CLEAN_ALL)
+			say("The decontamination process is completed, thank you for your patient.")
+			playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
+			if(!occupant)
+				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
+			else
+				visible_message(span_warning("[src]'s gate slides open, ejecting you out."))
+				mob_occupant.radiation = 0
+			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+			if(suit)
+				things_to_clear += suit
+				things_to_clear += suit.GetAllContents()
+			if(helmet)
+				things_to_clear += helmet
+				things_to_clear += helmet.GetAllContents()
+			if(mask)
+				things_to_clear += mask
+				things_to_clear += mask.GetAllContents()
+			if(storage)
+				things_to_clear += storage
+				things_to_clear += storage.GetAllContents()
+			if(occupant)
+				things_to_clear += occupant
+				things_to_clear += occupant.GetAllContents()
+			for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
+				var/atom/movable/dirty_movable = am
+				dirty_movable.wash(CLEAN_ALL)
 		open_machine(FALSE)
+		decon.stop()
 		if(occupant)
 			dump_contents()
 
@@ -182,6 +215,14 @@
 		s.start()
 		if(electrocute_mob(user, src, src, 1, TRUE))
 			return 1
+
+/obj/machinery/decontamination_unit/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("[src] has no functional safeties to emag."))
+		return
+	to_chat(user, span_notice("You short out [src]'s safeties."))
+	uv_emagged = TRUE
+	obj_flags |= EMAGGED
 
 /obj/machinery/decontamination_unit/relaymove(mob/user)
 	if(locked)
@@ -195,7 +236,24 @@
 /obj/machinery/decontamination_unit/attackby(obj/item/W, mob/user)
 	if(default_unfasten_wrench(user, W))
 		return
-	return 
+	if(W.tool_behaviour == TOOL_MULTITOOL)
+		reset_emag(user)
+		return
+	return ..()
+
+/obj/machinery/decontamination_unit/proc/reset_emag(mob/user)
+	if(panel_open)
+		if(obj_flags & EMAGGED)
+			to_chat(user, span_notice("Resetting circuitry..."))
+			if(do_after(user, 6 SECONDS, src))
+				to_chat(user, span_caution("You reset the [src]'s safeties."))
+				uv_emagged = FALSE
+				obj_flags -= EMAGGED
+		else
+			to_chat(user, span_notice("The [src] is in normal state."))
+			return
+	else
+		to_chat(user, span_notice("Open the panel first."))
 
 /obj/machinery/decontamination_unit/container_resist(mob/living/user)
 	if(!locked)
@@ -269,7 +327,11 @@
 		wires.interact(user)
 		return
 	if(!state_open)
-		if(default_deconstruction_screwdriver(user, "[icon_state]_panel", "[icon_state]", I))
+		if(I.tool_behaviour == TOOL_SCREWDRIVER)
+			panel_open = !panel_open
+			user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
+			update_icon()
+			I.play_tool_sound(src, 50)
 			return
 		if(default_deconstruction_crowbar(I))
 			return
@@ -296,9 +358,7 @@
 	var/list/data = list()
 	data["locked"] = locked
 	data["open"] = state_open
-	data["safeties"] = safeties
 	data["uv_active"] = uv
-	data["uv_super"] = uv_super
 	if(helmet)
 		data["helmet"] = helmet.name
 	else
@@ -328,8 +388,10 @@
 		if("door")
 			if(state_open)
 				close_machine()
+				playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
 			else
 				open_machine(0)
+				playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 				if(occupant)
 					dump_contents() // Dump out contents if someone is in there.
 			. = TRUE
@@ -339,14 +401,18 @@
 			locked = !locked
 			. = TRUE
 		if("uv")
-			if(occupant && safeties)
+			if(!helmet && !mask && !suit && !storage && !occupant)
 				return
-			else if(!helmet && !mask && !suit && !storage && !occupant)
-				return
-			else
-				if(occupant)
-					var/mob/living/mob_occupant = occupant
+			else if(occupant)
+				var/mob/living/mob_occupant = occupant
+				if(uv_emagged)
+					say("ERROR: Decontamination process is going over safety limit!!")
+					uv_cycles = 7
 					to_chat(mob_occupant, span_userdanger("[src]'s confines grow warm, then hot, then scorching. You're being burned [!mob_occupant.stat ? "alive" : "away"]!"))
+				else
+					say("Please wait untill the decontamination process is completed.")
+					uv_cycles = initial(uv_cycles)
+					to_chat(mob_occupant, span_warning("[src]'s confines grow warm. You're being decontaminated."))
 				cook()
 				. = TRUE
 		if("dispense")
@@ -366,10 +432,18 @@
 /obj/machinery/decontamination_unit/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
+	if(panel_open)
+		to_chat(user, span_notice("Close the panel first!"))
+		return
+	if(uv)
+		to_chat(user, span_warning("You cannot open the gate while the cycle is running!"))
+		return
 	if(state_open)
 		close_machine()
+		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
 	else
 		open_machine(0)
+		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 		if(occupant)
 			dump_contents() // Dump out contents if someone is in there.
 
