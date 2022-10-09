@@ -13789,14 +13789,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"dFj" = (
-/obj/structure/table,
-/obj/machinery/recharger,
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "dFk" = (
 /obj/machinery/status_display/evac{
 	pixel_x = -32
@@ -20315,6 +20307,19 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"fUE" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "fVl" = (
 /obj/machinery/door/window/southleft{
 	base_state = "right";
@@ -25159,18 +25164,6 @@
 	name = "Ice Sheet"
 	},
 /area/space/nearstation)
-"hDL" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot_red,
-/obj/structure/rack,
-/obj/item/storage/box/breacherslug,
-/obj/item/storage/box/breacherslug,
-/obj/item/gun/ballistic/shotgun/automatic/breaching,
-/obj/item/gun/ballistic/shotgun/automatic/breaching,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "hEa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -36790,21 +36783,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"lSi" = (
-/obj/structure/rack,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/storage/box/beanbag{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/storage/box/lethalshot{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "lSj" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -37525,6 +37503,13 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/qm)
+"mcX" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/security/sec,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "mdd" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -54700,6 +54685,19 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"rOS" = (
+/obj/structure/table,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "rPf" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -57254,6 +57252,21 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/grass,
 /area/hallway/primary/port)
+"sJx" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot_red,
+/obj/structure/rack,
+/obj/item/storage/box/breacherslug,
+/obj/item/storage/box/breacherslug{
+	pixel_x = 4;
+	pixel_y = -5
+	},
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/obj/item/gun/ballistic/shotgun/automatic/breaching,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "sJB" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -59997,6 +60010,19 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
+"tGs" = (
+/obj/structure/closet/secure_closet/lethalshots,
+/obj/effect/turf_decal/bot_red,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/item/storage/box/lethalshot{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "tGK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -70918,15 +70944,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"xAC" = (
-/obj/structure/closet/secure_closet/lethalshots,
-/obj/effect/turf_decal/bot_red,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "xAM" = (
 /obj/machinery/power/apc/highcap/fifteen_k{
 	areastring = "/area/hallway/secondary/entry";
@@ -103090,7 +103107,7 @@ msb
 msb
 aHC
 byL
-xAC
+tGs
 aJG
 gdH
 aJG
@@ -103608,7 +103625,7 @@ dSW
 aJG
 oIh
 aJG
-lSi
+fUE
 hTD
 mPP
 ogN
@@ -103863,7 +103880,7 @@ aHC
 bFJ
 aJG
 aJG
-hDL
+sJx
 aJG
 kMO
 wrB
@@ -104631,9 +104648,9 @@ nLZ
 hDa
 jxV
 wQU
-dFj
-dFj
-wQU
+rOS
+mcX
+amZ
 amZ
 pPz
 hXF
