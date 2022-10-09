@@ -39,7 +39,7 @@
 
 /obj/item/boh_shell
 	name = "bag of holding shell"
-	desc = "An inert shell, it looks like you could activate it with a bluespace anomaly core."
+	desc = "An inert shell, it looks like you could activate it with an anomaly core."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "brokenpack"
 	item_state = "brokenpack"
@@ -50,8 +50,6 @@
 	..()
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
 		var/obj/item/assembly/signaler/anomaly/A = I
-		if(A.anomaly_type != /obj/effect/anomaly/bluespace)
-			return
 		to_chat(user, "[src] roars to life as you insert the anomaly core!")
 		new /obj/item/storage/backpack/holding(get_turf(src))
 		qdel(src)
