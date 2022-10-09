@@ -151,9 +151,9 @@
 		update_icon()
 		addtimer(CALLBACK(src, .proc/cook), 50)
 		if(uv_emagged)
-			radiation_pulse(src, 300, 3)
+			radiation_pulse(src, 500, 5)
 			if(mob_occupant)
-				mob_occupant.adjustFireLoss(rand(20, 36))
+				mob_occupant.adjustFireLoss(rand(15, 26))
 				mob_occupant.radiation += 500
 				mob_occupant.adjust_fire_stacks(2)
 				mob_occupant.IgniteMob()
@@ -323,9 +323,6 @@
 		update_icon()
 		return
 
-	if(panel_open && is_wire_tool(I))
-		wires.interact(user)
-		return
 	if(!state_open)
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			panel_open = !panel_open
