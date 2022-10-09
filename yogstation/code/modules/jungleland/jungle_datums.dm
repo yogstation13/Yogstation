@@ -179,14 +179,14 @@
 	overlay_state = "rock_Diamond"
 
 /datum/ore_patch/bluespace
-	ore_type = /obj/item/stack/sheet/bluespace_crystal
+	ore_type = /obj/item/stack/ore/bluespace_crystal
 	ore_quantity_upper = 2
 	ore_quantity_lower = 1
 	ore_color = "#506bc7"
 	overlay_state = "rock_BScrystal"
 
 /datum/ore_patch/dilithium
-	ore_type = /obj/item/stack/sheet/dilithium_crystal
+	ore_type = /obj/item/stack/ore/dilithium_crystal
 	ore_quantity_upper = 2
 	ore_quantity_lower = 1
 	ore_color = "#bd50c7"

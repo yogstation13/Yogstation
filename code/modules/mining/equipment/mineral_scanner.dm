@@ -73,7 +73,7 @@
 			minerals += M
 	//yogs edit
 	for(var/turf/open/floor/plating/dirt/jungleland/JG in range(range, T))
-		if(JG.ore_present == ORE_EMPTY)
+		if(JG.ore_present == ORE_EMPTY || !JG.can_spawn_ore)
 			continue
 		var/datum/ore_patch/ore = GLOB.jungle_ores[JG.ore_present]
 		var/state = initial(ore.overlay_state)
