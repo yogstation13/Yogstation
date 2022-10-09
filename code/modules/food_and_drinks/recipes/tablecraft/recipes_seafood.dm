@@ -13,7 +13,7 @@
 		/datum/reagent/consumable/batter = 2,
 		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/fish/shrimp/battered
+	result = /obj/item/reagent_containers/food/snacks/carpmeat/fish/shrimp/battered
 	subcategory = CAT_SEAFOOD
 
 
