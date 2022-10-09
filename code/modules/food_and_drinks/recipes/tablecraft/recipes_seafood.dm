@@ -150,17 +150,6 @@
 	result = /obj/item/reagent_containers/food/snacks/shrimpcocktail
 	subcategory = CAT_SEAFOOD
 
-/datum/crafting_recipe/food/surfnturf
-	name = "Surf 'n Turf"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1,
-		/obj/item/reagent_containers/food/snacks/grown/potato = 1,
-		/obj/item/reagent_containers/food/snacks/grown/corn = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/surfnturf
-	subcategory = CAT_SEAFOOD
-
 /datum/crafting_recipe/food/vegetariansushiroll
 	name ="Vegetarian sushi roll"
 	reqs = list(
