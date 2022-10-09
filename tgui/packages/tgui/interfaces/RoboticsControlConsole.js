@@ -36,9 +36,9 @@ export const RoboticsControlConsole = (props, context) => {
         </Tabs>
         {tab === 1 && (
           <Cyborgs 
-             cyborgs={cyborgs}
-             can_detonate={can_detonate}
-             can_hack={can_hack} />
+            cyborgs={cyborgs}
+            can_detonate={can_detonate}
+            can_hack={can_hack} />
         )}
         {tab === 2 && (
           <Drones drones={drones} />
@@ -87,7 +87,7 @@ const Cyborgs = (props, context) => {
                 content="Detonate"
                 color="bad"
                 onClick={() => act('killbot', {
-                   ref: cyborg.ref,
+                  ref: cyborg.ref,
                 })} />
             )}
           </Fragment>
