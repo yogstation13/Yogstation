@@ -37,11 +37,10 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		var/headername
-		switch(device_theme)
-			if("ntos")
-				headername = "NtOS Main Menu"
-			if("syndicate")
-				headername = "Syndix Main Menu"
+		if(device_theme == "syndicate")
+			headername = "Syndix Main Menu"
+		else
+			headername = "NtOS Main Menu"
 		ui = new(user, src, "NtosMain", headername, 400, 500)
 		if(ui.open())
 			ui.send_asset(get_asset_datum(/datum/asset/simple/headers))

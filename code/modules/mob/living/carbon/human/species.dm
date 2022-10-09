@@ -2281,7 +2281,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	. = TRUE
 	if(C == user)
 		if(fullness <= 50)
-			user.visible_message(span_notice("[user] hungrily [eatverb]s \the [O], gobbling it down!"), span_notice("You hungrily [eatverb] \the [O], gobbling it down!"))
+			user.visible_message(span_notice("[user] frantically [eatverb]s \the [O], scarfing it down!"), span_notice("You frantically [eatverb] \the [O], scarfing it down!"))
 		else if(fullness > 50 && fullness < 150)
 			user.visible_message(span_notice("[user] hungrily [eatverb]s \the [O]."), span_notice("You hungrily [eatverb] \the [O]."))
 		else if(fullness > 150 && fullness < 500)
