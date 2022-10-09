@@ -28,8 +28,13 @@
 	var/mob/living/carbon/human/human_owner = owner	
 
 	if(prob(10))
-		to_chat(human_owner,span_alert("The toxins run a course through your veins, you feel sick."))	
-		human_owner.adjust_disgust(5)
+		if(!isipc(human_owner))
+			to_chat(human_owner,span_alert("The toxins run a course through your veins, you feel sick."))	
+			human_owner.adjust_disgust(5)
+		else 
+			to_chat(human_owner,span_alert("You are covered in a corrosive substance, it digs deep into your plating!"))
+			human_owner.adjustToxLoss(5)
+
 
 	switch(stack)
 		if(1)
