@@ -1,4 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/closet/crate/secure/loot,
+/turf/open/floor/plating/jungle_baseturf/dying,
+/area/ruin/unpowered)
 "b" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -188,6 +192,7 @@ D
 "}
 (2,1,1) = {"
 D
+D
 h
 h
 h
@@ -199,12 +204,11 @@ h
 h
 h
 h
-h
-h
-h
-h
-h
-h
+D
+D
+D
+D
+D
 D
 D
 "}
@@ -223,10 +227,10 @@ h
 h
 h
 h
-h
-h
-h
-h
+D
+D
+D
+D
 D
 D
 "}
@@ -246,9 +250,9 @@ h
 h
 h
 h
-h
-h
-h
+D
+D
+D
 D
 D
 "}
@@ -270,7 +274,7 @@ h
 h
 h
 h
-h
+D
 D
 D
 "}
@@ -292,7 +296,7 @@ h
 h
 S
 h
-h
+D
 D
 D
 "}
@@ -314,7 +318,7 @@ h
 h
 h
 h
-h
+D
 D
 D
 "}
@@ -370,7 +374,7 @@ W
 p
 G
 r
-V
+a
 V
 V
 V
@@ -518,7 +522,7 @@ D
 "}
 (17,1,1) = {"
 D
-h
+D
 h
 W
 p
@@ -534,13 +538,13 @@ p
 W
 h
 h
-h
+D
 D
 D
 "}
 (18,1,1) = {"
 D
-h
+D
 h
 W
 F
@@ -556,13 +560,13 @@ p
 G
 h
 h
-h
+D
 D
 D
 "}
 (19,1,1) = {"
 D
-h
+D
 h
 W
 p
@@ -578,13 +582,13 @@ p
 W
 h
 h
-h
+D
 D
 D
 "}
 (20,1,1) = {"
 D
-h
+D
 h
 W
 G
@@ -600,13 +604,13 @@ G
 W
 h
 h
-h
+D
 D
 D
 "}
 (21,1,1) = {"
 D
-h
+D
 h
 W
 p
@@ -622,13 +626,13 @@ G
 W
 h
 h
-h
+D
 D
 D
 "}
 (22,1,1) = {"
 D
-h
+D
 h
 W
 p
@@ -644,13 +648,13 @@ G
 W
 h
 h
-h
+D
 D
 D
 "}
 (23,1,1) = {"
 D
-h
+D
 h
 W
 p
@@ -666,13 +670,13 @@ G
 W
 h
 h
-h
+D
 D
 D
 "}
 (24,1,1) = {"
 D
-h
+D
 h
 h
 h
@@ -688,13 +692,13 @@ h
 h
 h
 h
-h
+D
 D
 D
 "}
 (25,1,1) = {"
 D
-h
+D
 h
 h
 h
@@ -710,15 +714,15 @@ h
 h
 w
 h
-h
+D
 D
 D
 "}
 (26,1,1) = {"
 D
-h
-h
-h
+D
+D
+D
 h
 h
 W
@@ -731,13 +735,16 @@ h
 h
 h
 h
-h
-h
+D
+D
 D
 D
 "}
 (27,1,1) = {"
 D
+D
+D
+D
 h
 h
 h
@@ -748,13 +755,10 @@ h
 h
 h
 h
-h
-h
-h
-h
-h
-h
-h
+D
+D
+D
+D
 D
 D
 "}
