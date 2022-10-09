@@ -8,6 +8,7 @@ export const RoboticsControlConsole = (props, context) => {
   const [tab, setTab] = useSharedState(context, 'tab', 1);
   const {
     can_hack,
+    can_detonate,
     cyborgs = [],
     drones = [],
   } = data;
@@ -34,7 +35,10 @@ export const RoboticsControlConsole = (props, context) => {
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && (
-          <Cyborgs cyborgs={cyborgs} can_hack={can_hack} />
+          <Cyborgs 
+           cyborgs={cyborgs}
+           can_detonate={can_detonate}
+           can_hack={can_hack} />
         )}
         {tab === 2 && (
           <Drones drones={drones} />
@@ -45,7 +49,7 @@ export const RoboticsControlConsole = (props, context) => {
 };
 
 const Cyborgs = (props, context) => {
-  const { cyborgs, can_hack } = props;
+  const { cyborgs, can_hack, can_detonate } = props;
   const { act, data } = useBackend(context);
   if (!cyborgs.length) {
     return (
@@ -77,13 +81,15 @@ const Cyborgs = (props, context) => {
               onClick={() => act('stopbot', {
                 ref: cyborg.ref,
               })} />
-            <Button.Confirm
-              icon="bomb"
-              content="Detonate"
-              color="bad"
-              onClick={() => act('killbot', {
-                ref: cyborg.ref,
-              })} />
+             {!!can_detonate && (
+               <Button.Confirm
+               icon="bomb"
+               content="Detonate"
+               color="bad"
+               onClick={() => act('killbot', {
+                 ref: cyborg.ref,
+               })} />
+            )}
           </Fragment>
         )}>
         <LabeledList>

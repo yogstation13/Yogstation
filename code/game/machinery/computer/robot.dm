@@ -38,7 +38,9 @@
 			data["can_hack"] = TRUE
 	else if(IsAdminGhost(user))
 		data["can_hack"] = TRUE
-
+	data["can_detonate"] = FALSE
+	if(isAI(user))
+		data["can_detonate"] = TRUE
 	data["cyborgs"] = list()
 	for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
 		if(!can_control(user, R))
@@ -78,8 +80,12 @@
 
 	switch(action)
 		if("killbot")
+			if(!isAI(usr))
+				return
 			if(allowed(usr))
 				var/mob/living/silicon/robot/R = locate(params["ref"]) in GLOB.silicon_mobs
+				if(R.connected_ai != usr)
+					return
 				if(can_control(usr, R) && !..())
 					var/turf/T = get_turf(R)
 					message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(R, R.client)] at [ADMIN_VERBOSEJMP(T)]!"))
