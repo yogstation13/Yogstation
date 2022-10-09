@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(461 modules,
-    719/7418 macros, 9.7%)</aside></h3>
+<aside>(464 modules,
+    719/7428 macros, 9.7%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -550,10 +550,17 @@ transformations and other events that cause new languages to become available.</
     <li><span class="no-substance">singularity&#x2F;</span><a href="code/modules/power/singularity/generator.html" title="code&#x2F;modules&#x2F;power&#x2F;singularity&#x2F;generator">generator</a></li>
     <li><span class="no-substance">supermatter&#x2F;</span><a href="code/modules/power/supermatter/supermatter.html" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter">supermatter</a></li>
     </ul></li>
-    <li class="has-children"><span class="no-substance">projectiles&#x2F;</span><span title="code&#x2F;modules&#x2F;projectiles&#x2F;guns">guns</span><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;projectiles">projectiles</span><ul class="index-tree">
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;projectiles&#x2F;attachments">attachments</span><ul class="index-tree">
+    <li><a href="code/modules/projectiles/attachments/_attachment.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;attachments&#x2F;_attachment">_attachment</a></li>
+    <li><a href="code/modules/projectiles/attachments/grips.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;attachments&#x2F;grips">grips</a></li>
+    <li><a href="code/modules/projectiles/attachments/scopes.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;attachments&#x2F;scopes">scopes</a></li>
+    </ul></li>
+    <li class="has-children"><span title="code&#x2F;modules&#x2F;projectiles&#x2F;guns">guns</span><ul class="index-tree">
     <li><a href="code/modules/projectiles/guns/ballistic.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;ballistic">ballistic</a></li>
     <li><span class="no-substance">energy&#x2F;</span><a href="code/modules/projectiles/guns/energy/laser.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;energy&#x2F;laser">laser</a></li>
     <li><span class="no-substance">misc&#x2F;</span><a href="code/modules/projectiles/guns/misc/medbeam.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;misc&#x2F;medbeam">medbeam</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;reagents">reagents</span><ul class="index-tree">
     <li class="has-children"><a href="code/modules/reagents/chemistry.html" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry">chemistry</a> - <strong>NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.</strong><ul class="index-tree">
@@ -714,7 +721,7 @@ transformations and other events that cause new languages to become available.</
 
 
 <h3 id="types">Types
-<aside>(526 detailed/1177 documented/26460 total, 4.4%)</aside></h3>
+<aside>(527 detailed/1178 documented/26538 total, 4.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -990,7 +997,6 @@ DONKPOCCKETS</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;flaverless_sc">Flaverless snowcone</span> - SNOW CONES</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;grilledcheesesandwich">Cheese Sandwich</span> - SANDWICHES</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;nugget">Chicken Nugget</span> - OTHER</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;food&#x2F;sashimi">Carp Sashimi</span> - FISH</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;kong">Kong</span> - Booze &amp; Bottles</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;crafting_recipe&#x2F;metal_baseball_bat">Titanium Baseball Bat</span> - Antag recipes</li>
@@ -1713,6 +1719,12 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;antag_spawner&#x2F;slaughter_demon">vial of blood</span> - SLAUGHTER DEMON</li>
     </ul></li>
     <li><span class="no-substance">assembly&#x2F;radio&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;radio&#x2F;bell">desk bell announcer</span> - Desk Bells</li>
+    <li class="has-children"><a href="obj/item/attachment.html" title="&#x2F;obj&#x2F;item&#x2F;attachment">attachment</a> - Base attachment.
+&quot;_a&quot; icons should be 5x5 pixels.
+See icons/obj/guns/attachment.dmi.<ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;attachment&#x2F;grip">grip</span> - Base grip</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;attachment&#x2F;scope">sight</span> - Base sight</li>
+    </ul></li>
     <li class="has-children"><a href="obj/item/bodypart.html" title="&#x2F;obj&#x2F;item&#x2F;bodypart">limb</a> - BODYPARTS<ul class="index-tree">
     <li><a href="obj/item/bodypart/l_arm.html" title="&#x2F;obj&#x2F;item&#x2F;bodypart&#x2F;l_arm">left arm</a></li>
     <li><a href="obj/item/bodypart/l_leg.html" title="&#x2F;obj&#x2F;item&#x2F;bodypart&#x2F;l_leg">left leg</a></li>
@@ -1998,7 +2010,6 @@ Given to Nuke Ops members.</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie">cookie</span> - DONKPOCKETS<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cookie&#x2F;sleepy">sleepy</span> - OTHER</li>
     </ul></li>
-    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;cubancarp">Cuban carp</span> - FISH</li>
     <li><span class="no-substance">customizable&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;customizable&#x2F;burger">burger</span> - Customizable Food Types</li>
     <li><span class="no-substance">donkpocket&#x2F;</span><a href="obj/item/reagent_containers/food/snacks/donkpocket/warm.html" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;donkpocket&#x2F;warm">warm donkpocket</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;reagent_containers&#x2F;food&#x2F;snacks&#x2F;donut">donut</span> - DONUTS</li>
@@ -2329,7 +2340,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/ef16457f643988acd75e37085b496fd3f2f6c24c">ef16457</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/48f71dcf7ced3a2833349715adeef23812f11e62">48f71dc</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.0</a></footer>
 </body>
 </html>
