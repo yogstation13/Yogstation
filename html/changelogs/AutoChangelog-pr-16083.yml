@@ -1,0 +1,4 @@
+author: "Sniblet"
+delete-after: true 
+changes: 
+  - rscadd: "Wizard magic mirrors can now select darkspawn or androids"
