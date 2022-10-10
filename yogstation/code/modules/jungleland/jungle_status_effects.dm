@@ -133,10 +133,10 @@
 
 /datum/status_effect/corrupted_dryad
 	id = "corrupted_dryad"
-	duration = 180 SECONDS
+	duration = 60 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /obj/screen/alert/status_effect/corrupted_dryad
-	var/health_multiplier = 2
+	var/health_multiplier = 1.5
 	var/initial_health = 100
 
 /datum/status_effect/corrupted_dryad/on_apply()
@@ -160,7 +160,7 @@
 
 /obj/screen/alert/status_effect/corrupted_dryad
 	name = "Corruption of the forest"
-	desc = "Your heart beats unnaturally strongs, you feel empowered, but nothing is bound to last..."
+	desc = "Your heart beats unnaturally strong, you feel empowered, but nothing is bound to last..."
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "rage"
 
