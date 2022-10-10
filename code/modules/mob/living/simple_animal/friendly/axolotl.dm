@@ -30,13 +30,6 @@
 	else
 		playsound(loc, 'sound/effects/huuu.ogg', 50, TRUE)
 
-/mob/living/simple_animal/pet/axolotl/attackby(obj/item/attacking_item, mob/living/user, params)
-	. = ..()
-	if(src.stat == DEAD)
-		return
-	else
-		playsound(loc, 'sound/effects/huuu.ogg', 50, TRUE)
-
 /mob/living/simple_animal/pet/axolotl/Life()
 	. = ..()
 	if(!stat && !buckled && !client)
