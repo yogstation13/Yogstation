@@ -495,11 +495,15 @@
 	begin_month = OCTOBER
 	begin_weekday = MONDAY
 
-/datum/holiday/indiginous
-	name = "Indiginous Peoples Day"
-	begin_week = 2
+/datum/holiday/indigenous
+	name = "Indigenous Peoples Day in the United States"
+	begin_day = 10
 	begin_month = OCTOBER
-	begin_weekday = MONDAY
+
+/datum/holiday/indigenous
+	name = "Indigenous Peoples Day in Canada"
+	begin_day = 21
+	begin_month = JUNE
 
 /datum/holiday/mother
 	name = "Mother's Day"
