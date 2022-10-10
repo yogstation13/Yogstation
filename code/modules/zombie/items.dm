@@ -38,32 +38,64 @@
 	else
 		icon_state = icon_right
 
+/obj/item/zombie_hand/attack(mob/living/M, mob/living/user)//overrides attack command to allow blocking of zombie claw to prevent infection
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
+	if(item_flags & NOBLUDGEON)
+		return
+
+	//"uh yes, i only eat vegan brain alternatives" Get out of here with that pacifism bullshit!
+
+	//only the finest brain surgery tool, doesn't even need to check for surgical
+
+	if(!force)
+		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), 1, -1)
+	else if(hitsound)
+		playsound(loc, hitsound, get_clamped_volume(), 1, -1)
+
+	M.lastattacker = user.real_name
+	M.lastattackerckey = user.ckey
+
+	if(force)
+		M.last_damage = name
+
+	user.do_attack_animation(M)
+	var/notBlocked = M.attacked_by(src, user)
+
+	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	add_fingerprint(user)
+
+	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)
+
+	if(!notBlocked)
+		return
+	else if(isliving(M))
+		if(ishuman(M))				
+			var/mob/living/carbon/human/H = M
+			if(H.get_bodypart(check_zone(user.zone_selected)).status != BODYPART_ROBOTIC || H.health <= HEALTH_THRESHOLD_FULLCRIT)//no more infecting via metal limbs unless they're in hard crit and probably going to die
+				var/flesh_wound = ran_zone(user.zone_selected)
+				if(scaled_infect_chance)
+					var/mob/living/mob_target = M
+					var/total_damage = mob_target.get_damage_amount(BRUTE)
+
+					var/infect_modifier = (total_damage ** 2) / 100
+
+					infect_modifier = clamp(infect_modifier, 0, 100)
+
+					if(prob(infect_modifier))
+						if(prob(infect_chance - H.getarmor(flesh_wound, MELEE)))
+							if(!H.stat)
+								try_to_zombie_infect(M, inserted_organ)
+
+				else
+					if(prob(infect_chance - H.getarmor(flesh_wound, MELEE)))
+						try_to_zombie_infect(M, inserted_organ)
+			else
+				check_feast(M, user)
+
 /obj/item/zombie_hand/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
-	if(!proximity_flag)
-		return
-	else if(isliving(target))
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			var/flesh_wound = ran_zone(user.zone_selected)
-			if(scaled_infect_chance)
-				var/mob/living/mob_target = target
-				var/total_damage = mob_target.get_damage_amount(BRUTE)
-
-				var/infect_modifier = (total_damage ** 2) / 100
-
-				infect_modifier = clamp(infect_modifier, 0, 100)
-
-				if(prob(infect_modifier))
-					if(prob(infect_chance - H.getarmor(flesh_wound, MELEE)))
-						if(!H.stat)
-							try_to_zombie_infect(target, inserted_organ)
-
-			else
-				if(prob(infect_chance - H.getarmor(flesh_wound, MELEE)))
-					try_to_zombie_infect(target, inserted_organ)
-		else
-			check_feast(target, user)
+	
 
 /proc/try_to_zombie_infect(mob/living/carbon/human/target, organ)
 	CHECK_DNA_AND_SPECIES(target)
