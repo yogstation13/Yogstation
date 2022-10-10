@@ -31,6 +31,13 @@
 	else
 		playsound(loc, 'sound/effects/axolotl.ogg', 50, TRUE)
 
+/mob/living/simple_animal/pet/axolotl/attackby(obj/item/attacking_item, mob/living/user, params)
+	. = ..()
+	if(src.stat == DEAD)
+		return
+	else
+		playsound(loc, 'sound/effects/axolotl.ogg', 50, TRUE)
+
 /mob/living/simple_animal/pet/axolotl/Crossed(AM as mob|obj)
 	. = ..()
 	if(!stat && isliving(AM))
