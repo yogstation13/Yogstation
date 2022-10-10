@@ -495,8 +495,8 @@
 	begin_month = OCTOBER
 	begin_weekday = MONDAY
 
-/datum/holiday/columbus
-	name = "Columbus Day"
+/datum/holiday/indiginous
+	name = "Indiginous Peoples Day"
 	begin_week = 2
 	begin_month = OCTOBER
 	begin_weekday = MONDAY
