@@ -30,6 +30,15 @@
 		breath.adjust_moles(/datum/gas/oxygen, breath_amt)
 
 /obj/item/organ/lungs/plant/prepare_eat()
-	var/obj/S = ..()
-	S.foodtype = VEGETABLES | FRUIT
+	var/obj/item/reagent_containers/food/snacks/organ/plant_lung/S = new
+	S.name = name
+	S.desc = desc
+	S.icon = icon
+	S.icon_state = icon_state
+	S.w_class = w_class
+
 	return S
+
+/obj/item/reagent_containers/food/snacks/organ/plant_lung
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/salbutamol = 5)
+	foodtype = VEGETABLES | FRUIT
