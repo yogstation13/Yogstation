@@ -564,9 +564,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-		message_admins(span_boldnotice("[usr] has decided to offer ([L.ckey])[L] a rename."))
-		log_game("[usr] has decided to offer ([L.ckey])[L] a rename.")
-
 	var/forced_rename = alert("Would you like the targeted mob to be allowed to decline?", "Allow decline?", "Yes", "No", "Cancel")
 	if(forced_rename == "Cancel")
 		message_admins(span_boldnotice("[usr] has decided not to offer ([L.ckey])[L] a rename."))
