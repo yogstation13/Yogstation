@@ -28,3 +28,8 @@
 		var/breath_amt = breath.get_moles(/datum/gas/carbon_dioxide)
 		breath.adjust_moles(/datum/gas/carbon_dioxide, -breath_amt)
 		breath.adjust_moles(/datum/gas/oxygen, breath_amt)
+
+/obj/item/organ/lungs/plant/prepare_eat()
+	var/obj/S = ..()
+	S.foodtype = VEGETABLES | FRUIT
+	return S
