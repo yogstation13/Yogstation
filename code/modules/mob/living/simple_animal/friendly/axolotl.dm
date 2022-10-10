@@ -22,6 +22,7 @@
 	worn_slot_flags = ITEM_SLOT_HEAD
 	wuv_happy = "looks happy"
 	wuv_angy = "makes a noise"
+	var/stepped_sound = 'sound/effects/axolotl.ogg'
 
 /mob/living/simple_animal/pet/axolotl/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	. = ..()
@@ -29,6 +30,13 @@
 		return
 	else
 		playsound(loc, 'sound/effects/axolotl.ogg', 50, TRUE)
+
+/mob/living/simple_animal/pet/axolotl/Crossed(AM as mob|obj)
+	. = ..()
+	if(!stat && isliving(AM))
+		var/mob/living/L = AM
+		if(L.mob_size > MOB_SIZE_TINY)
+			playsound(src, stepped_sound, 50, 1)
 
 /mob/living/simple_animal/pet/axolotl/Life()
 	. = ..()
