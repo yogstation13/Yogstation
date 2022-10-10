@@ -29100,15 +29100,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
-"hDZ" = (
-/obj/machinery/camera{
-	c_tag = "Atmospherics Corridor North"
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "hEj" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -36521,15 +36512,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
-"kNY" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "kOd" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/electricshock,
@@ -43203,6 +43185,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"nFr" = (
+/obj/machinery/camera{
+	c_tag = "Atmospherics Corridor North"
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/machinery/pipedispenser/disposal,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "nFx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -48628,6 +48620,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"pVB" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/obj/machinery/pipedispenser,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "pVC" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -99122,7 +99124,7 @@ bCv
 eEO
 vYi
 bLK
-kNY
+pVB
 iCQ
 sEr
 acF
@@ -99379,7 +99381,7 @@ bCv
 eEO
 bAw
 bLK
-hDZ
+nFr
 bOd
 wRZ
 ras
