@@ -72,7 +72,8 @@
 	else if(isliving(M))
 		if(ishuman(M))				
 			var/mob/living/carbon/human/H = M
-			if(H.get_bodypart(check_zone(user.zone_selected)).status != BODYPART_ROBOTIC || H.health <= HEALTH_THRESHOLD_FULLCRIT)//no more infecting via metal limbs unless they're in hard crit and probably going to die
+			var/obj/item/bodypart/L = H.get_bodypart(check_zone(user.zone_selected))
+			if(H.health <= HEALTH_THRESHOLD_FULLCRIT || (L && L.status != BODYPART_ROBOTIC))//no more infecting via metal limbs unless they're in hard crit and probably going to die
 				var/flesh_wound = ran_zone(user.zone_selected)
 				if(scaled_infect_chance)
 					var/mob/living/mob_target = M
