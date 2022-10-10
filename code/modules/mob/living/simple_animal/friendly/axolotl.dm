@@ -29,21 +29,21 @@
 	if(src.stat == DEAD)
 		return
 	else
-		playsound(loc, 'sound/effects/axolotl.ogg', 50, TRUE)
+		playsound(loc, 'sound/effects/axolotl.ogg', 100, TRUE)
 
 /mob/living/simple_animal/pet/axolotl/attackby(obj/item/attacking_item, mob/living/user, params)
 	. = ..()
 	if(src.stat == DEAD)
 		return
 	else
-		playsound(loc, 'sound/effects/axolotl.ogg', 50, TRUE)
+		playsound(loc, 'sound/effects/axolotl.ogg', 100, TRUE)
 
 /mob/living/simple_animal/pet/axolotl/Crossed(AM as mob|obj)
 	. = ..()
 	if(!stat && isliving(AM))
 		var/mob/living/L = AM
 		if(L.mob_size > MOB_SIZE_TINY)
-			playsound(src, stepped_sound, 50, 1)
+			playsound(src, stepped_sound, 100, 1)
 
 /mob/living/simple_animal/pet/axolotl/Life()
 	. = ..()
