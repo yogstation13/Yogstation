@@ -500,7 +500,7 @@
 	begin_day = 10
 	begin_month = OCTOBER
 
-/datum/holiday/indigenous
+/datum/holiday/indigenous/canada
 	name = "Indigenous Peoples Day in Canada"
 	begin_day = 21
 	begin_month = JUNE
