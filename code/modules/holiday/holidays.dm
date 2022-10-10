@@ -403,7 +403,7 @@
 	begin_day = 1
 	begin_month = OCTOBER
 	end_day = 31
-	end_month = NOVEMBER
+	end_month = OCTOBER
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=AfjqL0vaBYU", // Haunted Fortress 2
 		"https://www.youtube.com/watch?v=9QpmfOLaUcw", // Misfortune Teller
