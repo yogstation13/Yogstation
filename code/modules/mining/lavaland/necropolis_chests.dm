@@ -333,7 +333,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 
 /obj/item/clothing/glasses/telepathy
 	name = "blindfold of telepathy"
-	desc = "Covers the eyes, preventing natural sight, but provides thought-sense to those who focus and stay dedicated"
+	desc = "Covers the eyes, preventing natural sight. In return for committing oneself forever to the senses of the mind, the senses of the body are allowed to rest."
 	icon_state = "blindfoldwhite"
 	item_state = "blindfoldwhite"
 	flash_protect = 10 //they're blind, yo
