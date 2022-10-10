@@ -400,9 +400,9 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 26
+	begin_day = 1
 	begin_month = OCTOBER
-	end_day = 2
+	end_day = 31
 	end_month = NOVEMBER
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=AfjqL0vaBYU", // Haunted Fortress 2
@@ -568,9 +568,9 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/xmas
 	name = CHRISTMAS
-	begin_day = 19
+	begin_day = 1
 	begin_month = DECEMBER
-	end_day = 27
+	end_day = 29
 	drone_hat = /obj/item/clothing/head/santa
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=v7s2VjwQSMw", // Jingle Bells
