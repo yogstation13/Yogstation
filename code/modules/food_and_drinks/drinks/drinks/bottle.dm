@@ -572,3 +572,10 @@
 	desc = "A fresh bottle of stout, popularized by inhabitants of Space Ireland."
 	icon_state = "stout_bottle" 
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/stout = 40)
+
+/obj/item/reagent_containers/food/drinks/colocup/lean
+	name = "lean"
+	desc = "A cup of that purple drank, the stuff that makes you go WHEEZY BABY."
+	icon_state = "lean"
+	list_reagents = list(/datum/reagent/consumable/lean = 50)
+	random_sprite = FALSE
