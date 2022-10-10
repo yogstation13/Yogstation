@@ -28,7 +28,7 @@
 	if(src.stat == DEAD)
 		return
 	else
-		playsound(loc, 'sound/effects/huuu.ogg', 50, TRUE)
+		playsound(loc, 'sound/effects/axolotl.ogg', 50, TRUE)
 
 /mob/living/simple_animal/pet/axolotl/Life()
 	. = ..()
