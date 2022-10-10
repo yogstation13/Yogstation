@@ -464,8 +464,8 @@
 	maxHealth = 160
 	health = 160
 	environment_smash = ENVIRONMENT_SMASH_NONE //held off by walls and windows, stupid oversized bee
-	melee_damage_lower = 12  //not that lethal, but it'll catch up to you easily
-	melee_damage_upper = 12
+	melee_damage_lower = 10  //not that lethal, but it'll catch up to you easily
+	melee_damage_upper = 10
 	attacktext = "stings"
 	attack_sound = 'sound/voice/moth/scream_moth.ogg'
 	deathmessage = "rolls over, falling to the ground."
