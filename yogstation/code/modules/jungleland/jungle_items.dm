@@ -206,14 +206,14 @@
 	grind_results = list(/datum/reagent/toxin/meduracha = 5)
 
 /obj/item/stinger 
-	name = "giant mosquito stinger"
-	desc = "a stinger of a giant exotic mosquito, quite sharp"
+	name = "giant insect stinger"
+	desc = "a stinger of a giant exotic insect, quite sharp"
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "stinger"
 
 /obj/item/melee/stinger_sword
 	name = "stinger sword"
-	desc = "a sword made out of giant mosquito stinger crudely glued to a metal rod"
+	desc = "a sword made out of giant insect stinger crudely glued to a metal rod"
 	force = 15
 	armour_penetration = 75
 	icon = 'yogstation/icons/obj/jungle.dmi'

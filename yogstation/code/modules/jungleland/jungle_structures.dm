@@ -353,10 +353,10 @@ GLOBAL_LIST_INIT(nests, list())
 	monster.color = "#c30505"
 
 /obj/structure/spawner/nest/jungle
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/blobby,/mob/living/simple_animal/hostile/yog_jungle/dryad)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/dryad, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket)
 
 /obj/structure/spawner/nest/swamp
-	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/mosquito,/mob/living/simple_animal/hostile/yog_jungle/meduracha)
+	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/mosquito,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/blobby)
 
 /obj/structure/spawner/nest/dying
 	possible_mob_types = list(/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,/mob/living/simple_animal/hostile/yog_jungle/skin_twister)
