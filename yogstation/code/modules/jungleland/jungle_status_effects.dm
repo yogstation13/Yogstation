@@ -143,7 +143,10 @@
 	. = ..()
 	initial_health = owner.maxHealth
 	owner.setMaxHealth(initial_health * health_multiplier)
-	owner.fully_heal()
+	owner.adjustBruteLoss(-50)
+	owner.adjustFireLoss(-50)
+	owner.remove_CC()
+	owner.bodytemperature = BODYTEMP_NORMAL
 	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "corruption", /datum/mood_event/corrupted_dryad)
 
