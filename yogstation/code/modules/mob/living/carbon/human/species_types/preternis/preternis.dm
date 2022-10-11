@@ -21,9 +21,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
 	disliked_food = GROSS | VEGETABLES
 	brutemod = 0.9 //Have you ever punched a metal plate?
-	burnmod = 1.2 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
-	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
-	heatmod = 3 //The once the heat gets through it's gonna BURN
+	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
+	coldmod = 2 //The plasteel around them saps their body heat quickly if it gets cold
+	heatmod = 2 //The once the heat gets through it's gonna BURN
 	tempmod = 0.2 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	speedmod = 0 //Sleek efficient metal legs, despite the weight
@@ -206,24 +206,27 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	. = ..()
 
 	if(lockdown && !HAS_TRAIT(H, TRAIT_IGNORESLOWDOWN) && H.has_gravity())
-		H.add_movespeed_modifier("magboot_trait", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
-	else if(H.has_movespeed_modifier("magboot_trait"))
-		H.remove_movespeed_modifier("magboot_trait")
+		H.add_movespeed_modifier("preternis_magboot", update=TRUE, priority=100, multiplicative_slowdown=2, blacklisted_movetypes=(FLYING|FLOATING))
+	else if(H.has_movespeed_modifier("preternis_magboot"))
+		H.remove_movespeed_modifier("preternis_magboot")
 	
-
 /datum/species/preternis/spec_life(mob/living/carbon/human/H)
 	. = ..()
 
 	if(H.stat == DEAD)
 		return
 
+	handle_wetness(H)	
+	handle_charge(H)
+
+/datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
-		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 5, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(2 * -H.fire_stacks)
-		H.adjustFireLoss(0.5 * -H.fire_stacks)
+		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
+		H.adjustStaminaLoss(10)
+		H.adjustFireLoss(4)
 		H.Jitter(100)
 		H.stuttering = 1
-		if(!soggy)
+		if(!soggy)//play once when it starts
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
 		soggy = TRUE
@@ -234,8 +237,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		soggy = FALSE
 		H.clear_alert("preternis_wet")
 		H.jitteriness -= 100
-
-	handle_charge(H)
 
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
 	charge = clamp(charge - power_drain,PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
