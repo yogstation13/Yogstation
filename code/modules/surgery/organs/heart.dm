@@ -1,4 +1,4 @@
-#define ADRENALINE_THRESHOLD 15
+#define ADRENALINE_THRESHOLD 25
 
 /obj/item/organ/heart
 	name = "heart"

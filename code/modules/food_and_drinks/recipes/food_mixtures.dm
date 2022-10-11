@@ -354,6 +354,13 @@
 	required_reagents = list(/datum/reagent/consumable/drippings = 1, /datum/reagent/consumable/flour = 1)
 	mix_message = "The solution begins to thicken."
 
+/datum/chemical_reaction/batter
+	name = "Batter"
+	id = /datum/reagent/consumable/batter
+	results = list(/datum/reagent/consumable/batter = 2)
+	required_reagents = list(/datum/reagent/consumable/ethanol/beer = 2, /datum/reagent/consumable/flour = 2)
+	mix_message = "The solution begins to thicken and foam!"
+
 datum/chemical_reaction/bugmix
 	name = "Bug Cheese Mix"
 	id = "bugmix"
