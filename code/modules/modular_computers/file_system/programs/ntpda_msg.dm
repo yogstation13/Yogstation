@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		source = holder
 
 	if(source)
-		explosion(source, -1, 1, 3, 4)
+		explosion(source, -1, 0, 3, 4)
 	else
 		throw EXCEPTION("No computer or hard drive to detonate!")
 	
