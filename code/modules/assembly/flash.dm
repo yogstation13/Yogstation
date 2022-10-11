@@ -93,13 +93,14 @@
 	else
 		return typecache_filter_list(target_loc.GetAllContents(), GLOB.typecache_living)
 
-/obj/item/assembly/flash/proc/try_use_flash(mob/user = null, nocooldown)
+/obj/item/assembly/flash/proc/try_use_flash(mob/user = null, nocooldown = FALSE)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE
 	if(burnt_out || ((world.time < last_trigger + cooldown) && !nocooldown))
 		return FALSE
-	last_trigger = world.time
+	if(!nocooldown)
+		last_trigger = world.time
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 	flash_lighting_fx(FLASH_LIGHT_RANGE, light_power, light_color)
 	times_used++
