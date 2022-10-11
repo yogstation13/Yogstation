@@ -133,17 +133,20 @@
 
 /datum/status_effect/corrupted_dryad
 	id = "corrupted_dryad"
-	duration = 180 SECONDS
+	duration = 80 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /obj/screen/alert/status_effect/corrupted_dryad
-	var/health_multiplier = 2
+	var/health_multiplier = 1.5
 	var/initial_health = 100
 
 /datum/status_effect/corrupted_dryad/on_apply()
 	. = ..()
 	initial_health = owner.maxHealth
 	owner.setMaxHealth(initial_health * health_multiplier)
-	owner.fully_heal()
+	owner.adjustBruteLoss(-50)
+	owner.adjustFireLoss(-50)
+	owner.remove_CC()
+	owner.bodytemperature = BODYTEMP_NORMAL
 	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "corruption", /datum/mood_event/corrupted_dryad)
 
@@ -160,7 +163,7 @@
 
 /obj/screen/alert/status_effect/corrupted_dryad
 	name = "Corruption of the forest"
-	desc = "Your heart beats unnaturally strongs, you feel empowered, but nothing is bound to last..."
+	desc = "Your heart beats unnaturally strong, you feel empowered, but nothing is bound to last..."
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "rage"
 
