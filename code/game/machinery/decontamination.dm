@@ -182,7 +182,7 @@
 			say("The decontamination process is completed, thank you for your patient.")
 			playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 			if(occupant)
-				visible_message(span_warning("[src]'s gate slides open, ejecting you out."))
+				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
 				mob_occupant.radiation = 0
 			else
 				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle blue."))
@@ -226,7 +226,7 @@
 			return
 	else
 		return
-	to_chat(user, span_notice("You short out [src]'s safeties."))
+	to_chat(user, span_warning("You short out [src]'s safeties."))
 	uv_emagged = TRUE
 	obj_flags |= EMAGGED
 
@@ -250,7 +250,7 @@
 /obj/machinery/decontamination_unit/proc/reset_emag(mob/user)
 	if(panel_open)
 		if(obj_flags & EMAGGED)
-			to_chat(user, span_notice("Resetting circuitry..."))
+			to_chat(user, span_warning("Resetting circuitry..."))
 			if(do_after(user, 6 SECONDS, src))
 				to_chat(user, span_caution("You reset the [src]'s safeties."))
 				uv_emagged = FALSE
@@ -259,7 +259,7 @@
 			to_chat(user, span_notice("The [src] is in normal state."))
 			return
 	else
-		to_chat(user, span_notice("Open the panel first."))
+		to_chat(user, span_warning("Open the panel first."))
 		return
 
 /obj/machinery/decontamination_unit/container_resist(mob/living/user)
@@ -444,7 +444,7 @@
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(panel_open)
-		to_chat(user, span_notice("Close the panel first!"))
+		to_chat(user, span_warning("Close the panel first!"))
 		return
 	if(uv)
 		to_chat(user, span_warning("You cannot open the gate while the cycle is running!"))
