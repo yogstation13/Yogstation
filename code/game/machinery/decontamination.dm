@@ -185,7 +185,7 @@
 				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
 				mob_occupant.radiation = 0
 			else
-				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle blue."))
+				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
 			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
 			if(suit)
 				things_to_clear += suit
