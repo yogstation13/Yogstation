@@ -1,4 +1,4 @@
-#define CONFUSION_STACK_MAX_MULTIPLIER 2
+#define CONFUSION_STACK_MAX_MULTIPLIER 4
 /obj/item/assembly/flash
 	name = "flash"
 	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production."
@@ -16,8 +16,9 @@
 	var/burnt_out = FALSE     //Is the flash burnt out?
 	var/burnout_resistance = 0
 	var/last_used = 0 //last world.time it was used.
-	var/cooldown = 0
+	var/cooldown = 9 SECONDS
 	var/last_trigger = 0 //Last time it was successfully triggered.
+	var/stamina_damage = 80
 
 /obj/item/assembly/flash/suicide_act(mob/living/user)
 	if(burnt_out)
@@ -118,7 +119,7 @@
 	if(generic_message && M != user)
 		to_chat(M, span_disarm("[src] emits a blinding light!"))
 	if(targeted)
-		if(M.flash_act(1, 1))
+		if(M.flash_act(1, 1) && !HAS_TRAIT_FROM(M, TRAIT_FLASHED, user))
 			if(M.confused < power)
 				var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
 				M.confused += min(power, diff)
@@ -129,7 +130,11 @@
 				to_chat(M, span_userdanger("[user] blinds you with the flash!"))
 			else
 				to_chat(M, span_userdanger("You are blinded by [src]!"))
-			M.Paralyze(rand(80,120))
+			var/stuntime = rand(8 SECONDS, 12 SECONDS)
+			M.Knockdown(stuntime)
+			M.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST)
+			ADD_TRAIT(M, TRAIT_FLASHED, user)
+			addtimer(CALLBACK(src, .proc/remove_trait, M, user), stuntime)
 		else if(user)
 			visible_message(span_disarm("[user] fails to blind [M] with the flash!"))
 			to_chat(user, span_warning("You fail to blind [M] with the flash!"))
@@ -140,6 +145,9 @@
 		if(M.flash_act())
 			var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
 			M.confused += min(power, diff)
+
+/obj/item/assembly/flash/proc/remove_trait(mob/victim, mob/user)
+	REMOVE_TRAIT(victim, TRAIT_FLASHED, user)
 
 /obj/item/assembly/flash/attack(mob/living/M, mob/user)
 	if(!try_use_flash(user))
