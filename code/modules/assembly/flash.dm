@@ -1,4 +1,4 @@
-#define CONFUSION_STACK_MAX_MULTIPLIER 4 
+#define CONFUSION_STACK_MAX_MULTIPLIER 4
 /obj/item/assembly/flash
 	name = "flash"
 	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production."
@@ -74,8 +74,9 @@
 
 //BYPASS CHECKS ALSO PREVENTS BURNOUT!
 /obj/item/assembly/flash/proc/AOE_flash(bypass_checks = FALSE, range = 3, power = 5, targeted = FALSE, mob/user)
-	if(!bypass_checks && !try_use_flash(nocooldown = TRUE))
-		return FALSE
+	if(burnt_out && !bypass_checks)
+		return
+	flashy()
 	var/list/mob/targets = get_flash_targets(get_turf(src), range, FALSE)
 	if(user)
 		targets -= user
@@ -93,22 +94,24 @@
 	else
 		return typecache_filter_list(target_loc.GetAllContents(), GLOB.typecache_living)
 
-/obj/item/assembly/flash/proc/try_use_flash(mob/user = null, nocooldown = FALSE)
+/obj/item/assembly/flash/proc/try_use_flash(mob/user = null)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE
-	if(burnt_out || ((world.time < last_trigger + cooldown) && !nocooldown))
+	if(burnt_out || (world.time < last_trigger + cooldown))
 		return FALSE
-	if(!nocooldown)
-		last_trigger = world.time
+	last_trigger = world.time
+	flashy()
+	if(user && !clown_check(user))
+		return FALSE
+	return TRUE
+
+/obj/item/assembly/flash/proc/flashy()
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 	flash_lighting_fx(FLASH_LIGHT_RANGE, light_power, light_color)
 	times_used++
 	flash_recharge()
 	update_icon(TRUE)
-	if(user && !clown_check(user))
-		return FALSE
-	return TRUE
 
 /obj/item/assembly/flash/proc/flash_carbon(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = FALSE)
 	if(!istype(M))
@@ -120,7 +123,7 @@
 	if(generic_message && M != user)
 		to_chat(M, span_disarm("[src] emits a blinding light!"))
 	if(targeted)
-		if(M.flash_act(1, 1) && !HAS_TRAIT_FROM(M, TRAIT_FLASHED, user))
+		if(!HAS_TRAIT_FROM(M, TRAIT_FLASHED, user) && M.flash_act(1, 1))
 			if(M.confused < power)
 				var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
 				M.confused += min(power, diff)
