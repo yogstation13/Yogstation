@@ -55,7 +55,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/gator/steppy/iguana
 	name = "Izzy"
-	desc = "A master of looking at pipes, she's a favorite among the GEC for her GECK-like nature."
+	desc = "A master of looking at pipes. She seems a litle on edge."
 	gender = FEMALE
 	icon_state = "iguana"
 	icon_living = "iguana"
