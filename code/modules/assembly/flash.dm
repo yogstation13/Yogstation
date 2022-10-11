@@ -280,8 +280,8 @@
 	overheat = FALSE
 
 /obj/item/assembly/flash/armimplant/rev
-	name = "syndicate brainwashing flash"
-	desc = "Viva!"
+	name = "syndicate flash"
+	desc = "A flash which, used with certain hypnotic and subliminal messaging techniques, can turn loyal crewmembers into vicious revolutionaries."
 	can_convert = TRUE
 
 /obj/item/assembly/flash/hypnotic
