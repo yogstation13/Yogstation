@@ -6822,6 +6822,11 @@
 	dir = 8
 	},
 /area/ruin/powered)
+"bgI" = (
+/obj/effect/turf_decal/trimline/yellow/filled,
+/obj/machinery/decontamination_unit/radsuit,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "bgP" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -12005,6 +12010,12 @@
 /obj/structure/closet/lasertag,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"cVf" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "cVp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -14640,7 +14651,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
-/obj/machinery/decontamination_unit/radsuit,
+/obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "dUy" = (
@@ -19244,7 +19255,7 @@
 /area/crew_quarters/bar)
 "fCJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 1
+	dir = 9
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -20013,7 +20024,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 8
 	},
-/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "fRn" = (
@@ -21971,9 +21981,14 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "gAc" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -25145,7 +25160,6 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "hDh" = (
-/obj/structure/closet/radiation,
 /obj/structure/sign/warning/electricshock{
 	pixel_x = 32
 	},
@@ -25154,9 +25168,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/obj/machinery/light{
-	dir = 1
 	},
 /obj/machinery/camera{
 	c_tag = "SMES Access";
@@ -25168,6 +25179,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "hDn" = (
@@ -31054,6 +31066,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"jEj" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line,
+/obj/structure/rack,
+/obj/item/weldingtool,
+/obj/item/wrench,
+/obj/item/storage/belt/utility,
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "jEp" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -31811,6 +31836,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"jUt" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 9
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "jUu" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -35210,7 +35242,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "lml" = (
@@ -38948,6 +38979,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"mCM" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 6
+	},
+/obj/structure/rack,
+/obj/item/book/manual/wiki/engineering_hacking{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/book/manual/wiki/engineering_construction,
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/plasteel,
+/area/engine/foyer)
 "mDb" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
@@ -54769,16 +54813,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "rQj" = (
-/obj/structure/rack,
-/obj/item/book/manual/wiki/engineering_hacking{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/book/manual/wiki/engineering_construction,
-/obj/item/clothing/glasses/meson,
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "rQk" = (
@@ -56444,24 +56482,20 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "sud" = (
-/obj/structure/rack,
-/obj/item/storage/belt/utility,
-/obj/item/storage/belt/utility,
-/obj/item/storage/belt/utility,
-/obj/item/wrench,
-/obj/item/wrench,
-/obj/item/weldingtool,
-/obj/item/weldingtool,
-/obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/item/clothing/glasses/meson,
 /obj/machinery/light,
 /obj/machinery/camera{
 	c_tag = "Engineering Access";
 	dir = 1
 	},
+/obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Engineering Access";
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/corner{
+	dir = 1
+	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "suh" = (
@@ -65476,6 +65510,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "vGq" = (
@@ -115507,7 +115542,7 @@ drR
 eMP
 fFj
 ayk
-mhV
+jEj
 eFa
 vId
 uxM
@@ -115764,7 +115799,7 @@ drR
 hQP
 tit
 nzP
-lml
+mCM
 aPn
 aGk
 fOJ
@@ -120644,9 +120679,9 @@ fNo
 sRp
 ahN
 dUw
-qAG
-pRH
 pKD
+pRH
+qAG
 dAU
 hEK
 afF
@@ -120912,7 +120947,7 @@ lZY
 saT
 pWB
 afF
-afF
+bgI
 aJj
 aJj
 aJj
@@ -121170,7 +121205,7 @@ nMs
 ksu
 afF
 gAc
-ihY
+jUt
 fEm
 ihY
 pTx
@@ -121427,7 +121462,7 @@ nMs
 nBf
 kxr
 fCJ
-aNM
+cVf
 mNo
 aNM
 aNM

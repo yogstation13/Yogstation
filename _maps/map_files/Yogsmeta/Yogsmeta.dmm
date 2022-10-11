@@ -3192,6 +3192,16 @@
 /obj/item/radio/intercom{
 	pixel_y = 28
 	},
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/obj/machinery/shower{
+	dir = 4;
+	pixel_x = -2
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "aic" = (
@@ -8887,9 +8897,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "axa" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
@@ -8901,6 +8908,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -8917,6 +8927,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -10483,6 +10496,9 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/clothing/suit/hooded/wintercoat/engineering,
 /obj/effect/turf_decal/delivery,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aAq" = (
@@ -10505,7 +10521,10 @@
 /obj/machinery/camera{
 	c_tag = "Engineering - Fore"
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -16771,7 +16790,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aNa" = (
@@ -19100,6 +19118,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -54390,6 +54411,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"dEp" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "dEq" = (
 /obj/machinery/camera{
 	c_tag = "Medbay Cryo";
@@ -54679,6 +54706,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"dNn" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "dNs" = (
 /obj/machinery/door/window/westleft{
 	base_state = "right";
@@ -57650,6 +57681,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"fJs" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "fJV" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -59420,6 +59457,16 @@
 "gVA" = (
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/obj/machinery/shower{
+	dir = 8;
+	pixel_x = 2
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -61375,6 +61422,15 @@
 "iti" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
+"itj" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "itl" = (
@@ -75335,6 +75391,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "rIu" = (
@@ -81061,12 +81120,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "vKx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "vKX" = (
@@ -81343,6 +81397,9 @@
 "vTV" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
@@ -82303,6 +82360,12 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plating,
+/area/engine/atmos_distro)
+"wCY" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "wDu" = (
 /obj/structure/cable/white{
@@ -126383,9 +126446,9 @@ uUY
 sql
 iqG
 uUY
-uUY
+dNn
 aRJ
-uUY
+fJs
 uUY
 jaZ
 gHq
@@ -126643,7 +126706,7 @@ oXw
 rwX
 vVH
 gVA
-uUY
+fJs
 wxL
 knN
 nIY
@@ -126900,7 +126963,7 @@ jou
 vVH
 vVH
 vCE
-uUY
+dEp
 tYl
 nch
 ity
@@ -127157,7 +127220,7 @@ kYM
 gYP
 vVH
 ahZ
-uUY
+wCY
 iiP
 uUY
 uVk
@@ -127411,7 +127474,7 @@ uUY
 wTl
 gGM
 gGM
-gGM
+itj
 rIb
 vTV
 rOx
