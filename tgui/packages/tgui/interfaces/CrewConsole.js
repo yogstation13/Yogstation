@@ -25,16 +25,12 @@ const HEALTH_ICON_BY_LEVEL = [
 
 const speciesmap = {
   "IPC": {
-    "icon": "tv",
+    "icon": "robot",
     "color": "#2e46cc",
   },
   "Robot": {
-    "icon": "robot",
-    "color": "#edee1b",
-  },
-  "Android": {
     "icon": "cog",
-    "color": "#06b4cf",
+    "color": "#edee1b",
   },
   "Felinid": {
     "icon": "paw",
@@ -54,7 +50,7 @@ const speciesmap = {
   },
   "Podperson": {
     "icon": "seedling",
-    "color": "#07f58a",
+    "color": "#05fa46",
   },
   "Plasmaman": {
     "icon": "skull",
@@ -201,15 +197,9 @@ export const CrewConsoleContent = (props, context) => {
               <Table.Cell bold>
                 Name
               </Table.Cell>
-              <Table.Cell bold collapsing textAlign="center">
-                Warnings
-              </Table.Cell>
-              <Table.Cell bold collapsing textAlign="center">
-                Species
-              </Table.Cell>
-              <Table.Cell bold collapsing textAlign="center">
-                Status
-              </Table.Cell>
+              <Table.Cell bold collapsing />
+              <Table.Cell bold collapsing />
+              <Table.Cell bold collapsing />
               <Table.Cell bold collapsing textAlign="center">
                 Vitals
               </Table.Cell>
@@ -236,7 +226,6 @@ export const CrewConsoleContent = (props, context) => {
                   {sensor.is_onfire ? <Icon name="fire" color="#f24f0f" size={1} /> : ""}
                   {sensor.is_wounded ? <Icon name="star-of-life" color="#d412ff" size={1} /> : ""}
                   {sensor.is_bonecrack ? <Icon name="bone" color="#f50505" size={1} /> : ""}
-                  {sensor.is_disabled ? <Icon name="crutch" color="#fafcfb" size={1} /> : ""}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {speciesmap[sensor.species] ? <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="question" color="#f70505" size={1} />}

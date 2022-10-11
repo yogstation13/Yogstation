@@ -10,7 +10,6 @@
 /proc/to_chat_immediate(target, html,
 		type = null,
 		text = null,
-		avoid_highlighting = FALSE,
 		// FIXME: These flags are now pointless and have no effect
 		handle_whitespace = TRUE,
 		trailing_newline = TRUE,
@@ -24,7 +23,6 @@
 	if(type) message["type"] = type
 	if(text) message["text"] = text
 	if(html) message["html"] = html
-	if(avoid_highlighting) message["avoidHighlighting"] = avoid_highlighting
 	var/message_blob = TGUI_CREATE_MESSAGE("chat/message", message)
 	var/message_html = message_to_html(message)
 
@@ -58,7 +56,6 @@
 /proc/to_chat(target, html,
 		type = null,
 		text = null,
-		avoid_highlighting = FALSE,
 		// FIXME: These flags are now pointless and have no effect
 		handle_whitespace = TRUE,
 		trailing_newline = TRUE,
@@ -75,5 +72,4 @@
 	if(type) message["type"] = type
 	if(text) message["text"] = text
 	if(html) message["html"] = html
-	if(avoid_highlighting) message["avoidHighlighting"] = avoid_highlighting
 	SSchat.queue(target, message, confidential)

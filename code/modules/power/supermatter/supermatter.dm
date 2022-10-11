@@ -752,22 +752,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/attack_tk(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		var/datum/brain_trauma/mild/reality_dissociation/T = new()
-		var/obj/item/organ/brain/B = locate(/obj/item/organ/brain) in C.internal_organs
-		B.name = "supermatter-fried [B.name]"
-		C.emote("scream")
-		C.visible_message(span_danger("[C.name] screams in horror as [C.p_their()] mind is consumed by [src]!"))
-		C.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
 		to_chat(C, span_userdanger("That was a really dense idea."))
-		switch(rand(1,8))
-			if(1 to 3)
-				C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
-				C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
-			if(4 to 6)
-				C.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
-			if(7 to 8)
-				C.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_LOBOTOMY)
-		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH)
+		C.ghostize()
+		var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in C.internal_organs
+		rip_u.Remove(C)
+		qdel(rip_u)
 
 /obj/machinery/power/supermatter_crystal/attack_paw(mob/user)
 	dust_mob(user, cause = "monkey attack")

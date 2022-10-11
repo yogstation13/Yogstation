@@ -1306,8 +1306,3 @@
 	id = "wizard"
 	suffix = "10x10_wizard.dmm"
 	name = "Maint wizard"
-
-/datum/map_template/ruin/station/maint/tenxten/halloween
-	id = "halloween"
-	suffix = "10x10_halloween.dmm"
-	name = "Maint halloween"

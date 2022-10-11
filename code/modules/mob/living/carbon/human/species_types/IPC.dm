@@ -40,7 +40,7 @@
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	wings_icon = "Robotic"
 	var/saved_screen //for saving the screen when they die
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	changesource_flags = MIRROR_BADMIN | WABBAJACK
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
 

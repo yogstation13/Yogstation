@@ -373,7 +373,7 @@
 	required_candidates = 5
 	weight = 4
 	cost = 18
-	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 15, "offset" = 1)
 	var/datum/team/infiltrator/sit_team

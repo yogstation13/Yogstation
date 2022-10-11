@@ -133,7 +133,7 @@
 /**
   * Show a message to this mob (visual)
   */
-/mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlighting = FALSE)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/proc/show_message(msg, type, alt_msg, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 
 	if(!client)
 		return
@@ -161,7 +161,7 @@
 		if(type & 2) //audio
 			to_chat(src, "<I>... You can almost hear something ...</I>")
 	else
-		to_chat(src, msg, avoid_highlighting = avoid_highlighting)
+		to_chat(src, msg)
 
 /**
   * Generate a visible message from this atom

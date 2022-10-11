@@ -2042,8 +2042,7 @@
 					/obj/item/pizzabox/mushroom,
 					/obj/item/pizzabox/meat,
 					/obj/item/pizzabox/vegetable,
-					/obj/item/pizzabox/pineapple,
-					/obj/item/pizzabox/seafood)
+					/obj/item/pizzabox/pineapple)
 	crate_name = "pizza crate"
 	var/static/anomalous_box_provided = FALSE
 
@@ -2322,23 +2321,6 @@
 					/mob/living/simple_animal/hostile/retaliate/gator,
 					/mob/living/simple_animal/hostile/retaliate/gator)
 	crate_name = "gator crate"
-
-/datum/supply_pack/critter/mothroach
-	name = "Mothroach Crate"
-	desc = "Put the mothroach on your head and find out what true cuteness looks like."
-	cost = 7500
-	contains = list(/mob/living/simple_animal/pet/mothroach)
-	crate_name = "mothroach crate"
-
-/datum/supply_pack/critter/axolotl
-	name = "Axolotl Crate"
-	desc = "Contains 4 axolotls to pet."
-	cost = 4000
-	contains = list(/mob/living/simple_animal/pet/axolotl,
-					/mob/living/simple_animal/pet/axolotl,
-					/mob/living/simple_animal/pet/axolotl,
-					/mob/living/simple_animal/pet/axolotl)
-	crate_name = "axolotl crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Costumes & Toys /////////////////////////////////
@@ -2861,3 +2843,10 @@
 	small_item = TRUE
 	contains = list(/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
+
+/datum/supply_pack/critter/mothroach
+	name = "Mothroach Crate"
+	desc = "Put the mothroach on your head and find out what true cuteness looks like."
+	cost = 7500
+	contains = list(/mob/living/simple_animal/friendly/mothroach)
+	crate_name = "mothroach crate"

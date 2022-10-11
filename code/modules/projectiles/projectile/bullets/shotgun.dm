@@ -79,7 +79,7 @@
 	
 /obj/item/projectile/bullet/pellet/shotgun_buckshot/syndie
 	name = "syndicate buckshot pellet"
-	damage = 15.5 //7 damage more and crit instantly assuming PBS
+	damage = 18
 	wound_bonus = 2
 	bare_wound_bonus = 2
 	wound_falloff_tile = -2.5
@@ -87,7 +87,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_flechette
 	name = "flechette pellet"
 	speed = 0.4 //You're special
-	damage = 13
+	damage = 15
 	wound_bonus = 4
 	bare_wound_bonus = 4
 	armour_penetration = 40

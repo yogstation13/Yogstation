@@ -170,20 +170,21 @@ class ChatRenderer {
     }
   }
 
-  setHighlight(text, color, matchWord, matchCase) {
+  setHighlight(text, color) {
     if (!text || !color) {
       this.highlightRegex = null;
       this.highlightColor = null;
       return;
     }
-    // const allowedRegex = /^[a-z0-9_-\s]+$/ig;
+    const allowedRegex = /^[a-z0-9_-\s]+$/ig;
     const lines = String(text)
       .split(',')
-      // eslint-disable-next-line no-useless-escape
-      .map(str => str.trim().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
+      .map(str => str.trim())
       .filter(str => (
         // Must be longer than one character
         str && str.length > 1
+        // Must be alphanumeric (with some punctuation)
+        && allowedRegex.test(str)
       ));
     // Nothing to match, reset highlighting
     if (lines.length === 0) {
@@ -191,9 +192,7 @@ class ChatRenderer {
       this.highlightColor = null;
       return;
     }
-    const pattern = `${(matchWord ? '\\b' : '')}(${lines.join('|')})${(matchWord ? '\\b' : '')}`;
-    const flags = 'g' + (matchCase ? '' : 'i');
-    this.highlightRegex = new RegExp(pattern, flags);
+    this.highlightRegex = new RegExp('(' + lines.join('|') + ')', 'gi');
     this.highlightColor = color;
   }
 
@@ -303,7 +302,7 @@ class ChatRenderer {
           logger.error('Error: message is missing text payload', message);
         }
         // Highlight text
-        if (!message.avoidHighlighting && this.highlightRegex) {
+        if (this.highlightRegex) {
           const highlighted = highlightNode(node,
             this.highlightRegex,
             text => (

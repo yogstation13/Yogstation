@@ -42,6 +42,7 @@
 	var/lastangle = 0
 	var/aiming_lastangle = 0
 	var/mob/current_user = null
+	var/list/obj/effect/projectile/tracer/current_tracers
 
 	var/structure_piercing = 2				//Amount * 2. For some reason structures aren't respecting this unless you have it doubled. Probably with the objects in question's Bump() code instead of this but I'll deal with this later.
 	var/structure_bleed_coeff = 0.7
@@ -169,6 +170,7 @@
 /obj/item/gun/energy/beam_rifle/Initialize()
 	. = ..()
 	fire_delay = delay
+	current_tracers = list()
 	START_PROCESSING(SSfastprocess, src)
 	zoom_lock_action = new(src)
 
@@ -423,7 +425,7 @@
 	flag = ENERGY
 	range = 150
 	jitter = 10
-	var/obj/item/gun/gun
+	var/obj/item/gun/energy/beam_rifle/gun
 	var/structure_pierce_amount = 0				//All set to 0 so the gun can manually set them during firing.
 	var/structure_bleed_coeff = 0
 	var/structure_pierce = 0
