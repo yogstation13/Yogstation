@@ -238,7 +238,7 @@
 		uv = FALSE
 		locked = FALSE
 		if(uv_super)
-			visible_message(span_warning("[src]'s door creaks open with a loud whining noise. A cloud of foul black smoke escapes from its chamber."))
+			visible_message(span_warning("[src]'s door creaks open with a loud whining noise."))
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, 1)
 			helmet = null
 			qdel(helmet)
@@ -471,7 +471,7 @@
 	if(panel_open)
 		to_chat(user, span_notice("Close the panel first!"))
 		return
-	if(uv || uv_super)
+	if(uv)
 		to_chat(user, span_warning("You cannot open the door while the cycle is running!"))
 		return
 	if(state_open)

@@ -14637,10 +14637,10 @@
 /turf/open/floor/plating/asteroid,
 /area/space/nearstation)
 "dUw" = (
-/obj/structure/reagent_dispensers/watertank/high,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
+/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "dUy" = (
@@ -17803,13 +17803,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
-"fcQ" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "fcU" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -20020,6 +20013,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 8
 	},
+/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "fRn" = (
@@ -35216,6 +35210,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
+/obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "lml" = (
@@ -48245,6 +48240,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"pKD" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "pKP" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -62406,7 +62408,7 @@
 	},
 /area/maintenance/port)
 "uzM" = (
-/obj/machinery/portable_atmospherics/scrubber,
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "uzU" = (
@@ -65295,10 +65297,10 @@
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "vDu" = (
-/obj/machinery/portable_atmospherics/pump,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
+/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "vDy" = (
@@ -65636,10 +65638,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "vJj" = (
-/obj/machinery/portable_atmospherics/scrubber,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
 	},
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "vJv" = (
@@ -120642,9 +120644,9 @@ fNo
 sRp
 ahN
 dUw
-fcQ
-pRH
 qAG
+pRH
+pKD
 dAU
 hEK
 afF

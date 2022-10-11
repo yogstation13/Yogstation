@@ -167,23 +167,25 @@
 		locked = FALSE
 		if(uv_emagged)
 			say("ERROR: PLEASE CONTACT SUPPORT!!")
-			visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
+			if(occupant)
+				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
+				mob_occupant.electrocute_act(30, src)
+			else
+				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise."))
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
-			var/datum/effect_system/smoke_spread/bad/smoke = new
-			smoke.set_up(1, src)
-			smoke.start()
 			QDEL_NULL(helmet)
 			QDEL_NULL(suit)
 			QDEL_NULL(mask)
 			QDEL_NULL(storage)
+			shock()
 		else
 			say("The decontamination process is completed, thank you for your patient.")
 			playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
-			if(!occupant)
-				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
-			else
+			if(occupant)
 				visible_message(span_warning("[src]'s gate slides open, ejecting you out."))
 				mob_occupant.radiation = 0
+			else
+				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle blue."))
 			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
 			if(suit)
 				things_to_clear += suit
@@ -208,17 +210,21 @@
 		if(occupant)
 			dump_contents()
 
-/obj/machinery/decontamination_unit/proc/shock(mob/user, prb)
-	if(!prob(prb))
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
-		if(electrocute_mob(user, src, src, 1, TRUE))
-			return 1
+/obj/machinery/decontamination_unit/proc/shock(mob/user)
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	electrocute_mob(user, src, src, 1, TRUE)
 
 /obj/machinery/decontamination_unit/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
+		return
+	if(!state_open)
+		if(!panel_open)
+			to_chat(user, span_warning("Open the panel first."))
+			return
+	else
 		return
 	to_chat(user, span_notice("You short out [src]'s safeties."))
 	uv_emagged = TRUE
@@ -254,6 +260,7 @@
 			return
 	else
 		to_chat(user, span_notice("Open the panel first."))
+		return
 
 /obj/machinery/decontamination_unit/container_resist(mob/living/user)
 	if(!locked)
@@ -398,17 +405,19 @@
 			locked = !locked
 			. = TRUE
 		if("uv")
+			var/mob/living/mob_occupant = occupant
 			if(!helmet && !mask && !suit && !storage && !occupant)
 				return
-			else if(occupant)
-				var/mob/living/mob_occupant = occupant
+			else 
 				if(uv_emagged)
 					say("ERROR: Decontamination process is going over safety limit!!")
 					uv_cycles = 7
-					to_chat(mob_occupant, span_userdanger("[src]'s confines grow warm, then hot, then scorching. You're being burned [!mob_occupant.stat ? "alive" : "away"]!"))
 				else
 					say("Please wait untill the decontamination process is completed.")
 					uv_cycles = initial(uv_cycles)
+				if(occupant && uv_emagged)
+					to_chat(mob_occupant, span_userdanger("[src]'s confines grow warm, then hot, then scorching. You're being burned [!mob_occupant.stat ? "alive" : "away"]!"))
+				else
 					to_chat(mob_occupant, span_warning("[src]'s confines grow warm. You're being decontaminated."))
 				cook()
 				. = TRUE
