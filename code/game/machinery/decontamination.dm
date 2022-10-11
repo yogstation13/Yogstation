@@ -169,7 +169,7 @@
 			say("ERROR: PLEASE CONTACT SUPPORT!!")
 			if(occupant)
 				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
-				mob_occupant.electrocute_act(30, src)
+				mob_occupant.electrocute_act(50, src)
 			else
 				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise."))
 			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
@@ -288,6 +288,11 @@
 	else
 		open_machine()
 		dump_contents()
+
+/obj/machinery/decontamination_unit/examine(mob/user)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		. += span_warning("Its maintenance panel is smoking slightly.")
 
 /obj/machinery/decontamination_unit/proc/resist_open(mob/user)
 	if(!state_open && occupant && (user in src) && user.stat == 0) // Check they're still here.
