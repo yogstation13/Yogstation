@@ -19,7 +19,7 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 		if(!ID)
 			to_chat(user, span_notice("You need to wear your ID to properly spoof the manifest! Try again."))
 			return
-		if(alert(user, "Are you sure you want your crew manifest entry to be [H.real_name], [ID.assignment]?", "", "Yes", "No") == "Yes")
+		if(alert(user, "Are you sure you want your crew manifest entry to be [H.name], [ID.assignment]?", "", "Yes", "No") == "Yes")
 			var/list/all_jobs = (GLOB.command_positions + GLOB.engineering_positions + GLOB.medical_positions + GLOB.science_positions + GLOB.supply_positions + GLOB.civilian_positions + GLOB.security_positions)
 			if((ID.assignment in all_jobs) || (alert(user, "Are you sure you want your job to be '[ID.assignment]'? This is not a default job, and may look strange on the manifest!", "", "Yes", "No") == "Yes"))
 				H.mind.role_alt_title = ID.assignment

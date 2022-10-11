@@ -602,7 +602,7 @@
 	id = "sec_basic"
 	display_name = "Basic Security Equipment"
 	description = "Standard equipment used by security."
-	design_ids = list("seclite", "pepperspray", "bola_energy", "zipties", "evidencebag", "sflash", "handcuffs", "receiver")
+	design_ids = list("seclite", "pepperspray", "bola_energy", "zipties", "evidencebag", "sflash", "handcuffs", "receiver", "simple_sight")
 	prereq_ids = list("base")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
@@ -637,7 +637,7 @@
 	display_name = "Weapon Development Technology"
 	description = "Our researchers have found new ways to weaponize just about everything now."
 	prereq_ids = list("engineering", "sec_basic")
-	design_ids = list("pin_testing", "tele_shield", "platingmki", "platingmkiii")
+	design_ids = list("pin_testing", "tele_shield", "platingmki", "platingmkiii", "vert_grip", "laser_sight")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 /datum/techweb_node/smartmine
@@ -653,7 +653,7 @@
 	display_name = "Advanced Weapon Development Technology"
 	description = "Our weapons are breaking the rules of reality by now."
 	prereq_ids = list("adv_engi", "weaponry")
-	design_ids = list("pin_loyalty", "borg_transform_security", "platingmkii", "platingmkiv")
+	design_ids = list("pin_loyalty", "borg_transform_security", "platingmkii", "platingmkiv", "holo_sight")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 /datum/techweb_node/advmine
