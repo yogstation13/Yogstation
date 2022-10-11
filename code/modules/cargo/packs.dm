@@ -1472,6 +1472,30 @@
 	access = ACCESS_MEDICAL
 	contains = list(/obj/machinery/iv_drip/saline)
 
+/datum/supply_pack/medical/ironcanister
+	name = "Iron Canister"
+	desc = "Contains a bulk supply of iron."
+	cost = 5000
+	contains = list(/obj/reagentcan/iron)
+
+/datum/supply_pack/medical/plasmacanister
+	name = "Plasma Canister"
+	desc = "Contains a bulk supply of plasma."
+	cost = 8500
+	contains = list(/obj/reagentcan/plasma)
+
+/datum/supply_pack/medical/goldcanister
+	name = "Gold Canister"
+	desc = "Contains a bulk supply of gold."
+	cost = 7500
+	contains = list(/obj/reagentcan/gold)
+
+/datum/supply_pack/medical/uraniumcanister
+	name = "Uranium Canister"
+	desc = "Contains a bulk supply of uranium."
+	cost = 8000
+	contains = list(/obj/reagentcan/uranium)
+
 /datum/supply_pack/medical/virus
 	name = "Virus Crate"
 	desc = "Contains twelve different bottles, containing several viral samples for virology research. Also includes seven beakers and syringes. Balled-up jeans not included. Requires CMO access to open."

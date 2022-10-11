@@ -56,7 +56,6 @@
 		/datum/reagent/silicon,
 		/datum/reagent/silver,
 		/datum/reagent/sodium,
-		/datum/reagent/iron,
 		/datum/reagent/water,
 		/datum/reagent/oil,
 		/datum/reagent/uranium/radium,
@@ -74,7 +73,6 @@
 		/datum/reagent/ash,
 	)
 	var/list/t4_upgrade_reagents = list(
-		/datum/reagent/gold,
 		/datum/reagent/diethylamine,
 		/datum/reagent/saltpetre,
 		/datum/reagent/medicine/charcoal
