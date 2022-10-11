@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - bugfix: "fixed Asteroid having a triple-stacked solars array"
+  - mapping: "Asteroid Cargo Shuttle doors don't cannon you out the airlock anymore, as they properly depressurize first"

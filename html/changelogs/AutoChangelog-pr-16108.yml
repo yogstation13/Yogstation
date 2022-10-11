@@ -1,0 +1,5 @@
+author: "MenacingManatee"
+delete-after: true 
+changes: 
+  - mapping: "Adds netmin access to secondary AI core"
+  - bugfix: "Fixes stacked tcomms intercoms"

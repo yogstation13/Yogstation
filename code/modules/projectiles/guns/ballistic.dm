@@ -110,6 +110,15 @@
 	var/feedback_recoil_reverse = FALSE // TRUE for clockwise , FALSE for anti-clockwise
 	var/feedback_slide_close_move = TRUE // does the slide closing cause the gun to twist clockwise?
 
+	available_attachments = list(
+		/obj/item/attachment/scope/simple,
+		/obj/item/attachment/scope/holo,
+		/obj/item/attachment/laser_sight,
+		/obj/item/attachment/grip/vertical,
+	)
+	max_attachments = 4
+	recoil = 0.3
+
 /obj/item/gun/ballistic/proc/feedback(type) // checks to see if gun has that feedback type enabled then commences the animation
 	if(feedback_types[type])
 		feedback_commence(type, feedback_types[type])
