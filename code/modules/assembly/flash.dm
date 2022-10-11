@@ -74,7 +74,7 @@
 
 //BYPASS CHECKS ALSO PREVENTS BURNOUT!
 /obj/item/assembly/flash/proc/AOE_flash(bypass_checks = FALSE, range = 3, power = 5, targeted = FALSE, mob/user)
-	if(!bypass_checks && !try_use_flash())
+	if(!bypass_checks && !try_use_flash(nocooldown = TRUE))
 		return FALSE
 	var/list/mob/targets = get_flash_targets(get_turf(src), range, FALSE)
 	if(user)
@@ -93,11 +93,11 @@
 	else
 		return typecache_filter_list(target_loc.GetAllContents(), GLOB.typecache_living)
 
-/obj/item/assembly/flash/proc/try_use_flash(mob/user = null)
+/obj/item/assembly/flash/proc/try_use_flash(mob/user = null, nocooldown)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
 		to_chat(user, span_warning("You can't seem to remember how this works!"))
 		return FALSE
-	if(burnt_out || (world.time < last_trigger + cooldown))
+	if(burnt_out || ((world.time < last_trigger + cooldown) && !nocooldown))
 		return FALSE
 	last_trigger = world.time
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
