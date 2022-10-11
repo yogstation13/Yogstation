@@ -206,20 +206,21 @@
 		return
 	if(H?.stat == DEAD)
 		return
-	if(user.mind)
-		var/datum/antagonist/rev/head/converter = user.mind.has_antag_datum(/datum/antagonist/rev/head)
-		if(!converter)
-			return
-		if(!H.client)
-			to_chat(user, span_warning("This mind is so vacant that it is not susceptible to influence!"))
-			return
-		if(H.stat != CONSCIOUS)
-			to_chat(user, span_warning("They must be conscious before you can convert [H.p_them()]!"))
-			return
-		if(converter.add_revolutionary(H.mind))
-			times_used -- //Flashes less likely to burn out for headrevs when used for conversion
-		else
-			to_chat(user, span_warning("This mind seems resistant to the flash!"))
+	if(!user.mind)
+		return
+	var/datum/antagonist/rev/head/converter = user.mind.has_antag_datum(/datum/antagonist/rev/head)
+	if(!converter)
+		return
+	if(!H.client)
+		to_chat(user, span_warning("This mind is so vacant that it is not susceptible to influence!"))
+		return
+	if(H.stat != CONSCIOUS)
+		to_chat(user, span_warning("They must be conscious before you can convert [H.p_them()]!"))
+		return
+	if(converter.add_revolutionary(H.mind))
+		times_used -- //Flashes less likely to burn out for headrevs when used for conversion
+	else
+		to_chat(user, span_warning("This mind seems resistant to the flash!"))
 
 
 /obj/item/assembly/flash/cyborg
