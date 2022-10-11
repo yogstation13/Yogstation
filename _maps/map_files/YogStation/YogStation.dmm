@@ -56741,11 +56741,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"tpE" = (
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "tpJ" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only,
@@ -104556,7 +104551,7 @@ bKZ
 fUR
 ozF
 rBd
-tpE
+lPp
 lPp
 msb
 cTB
