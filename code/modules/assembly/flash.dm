@@ -1,4 +1,4 @@
-#define CONFUSION_STACK_MAX_MULTIPLIER 4
+#define CONFUSION_STACK_MAX_MULTIPLIER 4 
 /obj/item/assembly/flash
 	name = "flash"
 	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production."
