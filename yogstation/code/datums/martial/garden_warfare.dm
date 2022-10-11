@@ -236,7 +236,7 @@
 	var/obj/item/bodypart/affecting = attacker.get_bodypart(ran_zone(selected_zone))
 	var/armor_block = attacker.run_armor_check(affecting, MELEE, 0)
 
-	attacker.apply_damage(.get_punchdamagehigh() + 2, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//10 damage
+	attacker.apply_damage(user.get_punchdamagehigh() + 2, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//10 damage
 
 	var/obj/item/splinter = new /obj/item/splinter(attacker)
 	attacker.embed_object(splinter, affecting, FALSE, FALSE, TRUE)

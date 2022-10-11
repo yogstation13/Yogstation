@@ -136,7 +136,7 @@
 	var/obj/item/bodypart/affecting = A.get_bodypart(BODY_ZONE_CHEST)
 	var/armor_block = A.run_armor_check(affecting, BOMB)
 	A.apply_damage(A.get_punchdamagehigh() * 1.5 + 4.5, BRUTE, BODY_ZONE_CHEST, armor_block) 	//15 brute (vs bomb)
-		streak = ""
+	streak = ""
 
 /datum/martial_art/explosive_fist/proc/almost_detonate(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
