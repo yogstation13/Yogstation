@@ -55,7 +55,7 @@
 	loose_flora = list(/obj/structure/flora/ausbushes/stalkybush = 2,/obj/structure/flora/rock = 2,/obj/structure/flora/rock/jungle = 2,/obj/structure/flora/rock/pile = 2,/obj/structure/flora/stump=2,/obj/structure/flora/tree/jungle = 1,/obj/structure/herb/cinchona = 0.1, /obj/structure/flytrap = 0.1)
 	dense_flora_density = 10
 	loose_flora_density = 10
-	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast = 39,/mob/living/simple_animal/hostile/asteroid/goldgrub = 34,/mob/living/simple_animal/hostile/yog_jungle/meduracha = 10,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 16)
+	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast = 39,/mob/living/simple_animal/hostile/asteroid/goldgrub = 31,/mob/living/simple_animal/hostile/yog_jungle/meduracha = 10,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 16, /mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 3)
 	fauna_density = 0.4
 	spawn_fauna_on_closed = TRUE
 	this_area = /area/jungleland/dry_swamp
@@ -88,6 +88,6 @@
 	dense_flora = list(/obj/structure/flora/tree/jungle/small = 2,/obj/structure/flora/tree/jungle = 2, /obj/structure/flora/rock/jungle = 1, /obj/structure/flora/junglebush = 1, /obj/structure/flora/junglebush/b = 1, /obj/structure/flora/junglebush/c = 1, /obj/structure/flora/junglebush/large = 1, /obj/structure/flora/rock/pile/largejungle = 1)
 	loose_flora = list(/obj/structure/flora/grass/jungle = 3,/obj/structure/flora/grass/jungle/b = 2,/obj/structure/flora/ausbushes = 2,/obj/structure/flora/ausbushes/leafybush = 1,/obj/structure/flora/ausbushes/sparsegrass = 1,/obj/structure/flora/ausbushes/fullgrass = 1,/obj/structure/herb/explosive_shrooms = 0.1,/obj/structure/herb/cinchona = 0.1,/obj/structure/herb/liberal_hats = 0.1,/obj/structure/flytrap = 0.1)
 	loose_flora_density = 60
-	fauna_types = list(/mob/living/simple_animal/hostile/yog_jungle/dryad = 69 ,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 20, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket = 10)
+	fauna_types = list(/mob/living/simple_animal/hostile/yog_jungle/dryad = 69 ,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1,/mob/living/simple_animal/hostile/yog_jungle/mosquito = 15, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket = 10, /mob/living/simple_animal/hostile/yog_jungle/emeraldspider = 5)
 	fauna_density = 0.7
 	this_area = /area/jungleland/proper
