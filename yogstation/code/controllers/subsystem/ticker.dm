@@ -49,10 +49,12 @@
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
 		"https://www.youtube.com/watch?v=VJ817kvh_DM",						// Ben Prunty - FTL - Theme Song
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
-		"https://www.youtube.com/watch?v=hZb_6_WfquU",            // Steam Powered Giraffe - Fire Fire
-		"https://www.youtube.com/watch?v=52Gg9CqhbP8",  					//Stuck in the Sound - Let's G
-		"https://www.youtube.com/watch?v=8GW6sLrK40k",						//HOME - Resonance
-		"https://www.youtube.com/watch?v=8DNoXUnaQ9k")						//Chris Christodoulou - Dies Irae
+		"https://www.youtube.com/watch?v=hZb_6_WfquU",						// Steam Powered Giraffe - Fire Fire
+		"https://www.youtube.com/watch?v=52Gg9CqhbP8",  					// Stuck in the Sound - Let's G
+		"https://www.youtube.com/watch?v=8GW6sLrK40k",						// HOME - Resonance
+		"https://www.youtube.com/watch?v=8DNoXUnaQ9k",						// Chris Christodoulou - Dies Irae
+		"https://www.youtube.com/watch?v=wy9r2qeouiQ",						// Carpenter Brut - Turbo Killer
+		)
 	selected_lobby_music = pick(songs)
 
 	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
