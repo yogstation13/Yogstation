@@ -527,6 +527,97 @@
 		DestroySurroundings() //"Fred, were you feeding steroids to the wasp again?"
 	..()
 
+/mob/living/simple_animal/hostile/yog_jungle/emeraldspider
+	name = "emerald spider"
+	desc = "A big, angry, venomous spider. Flings webs at prey to slow them down, before closing in on it's prey."
+	icon_state = "emeraldspider"
+	icon_living = "emeraldspider"
+	icon_dead = "emeraldspider_dead"
+	butcher_results = list(/obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
+	loot = list()
+	attacktext = "bites"
+	gold_core_spawnable = HOSTILE_SPAWN
+	health = 240
+	maxHealth = 240
+	vision_range = 8
+	move_to_delay = 12
+	speed = 3
+	ranged = 1
+	melee_damage_lower = 13
+	melee_damage_upper = 16
+	stat_attack = 1
+	robust_searching = 1
+	see_in_dark = 7
+	ventcrawler = 2
+	ranged_cooldown_time = 80
+	projectiletype = /obj/item/projectile/websling
+	projectilesound = 'sound/weapons/pierce.ogg'
+	pass_flags = PASSTABLE
+	attack_sound = 'sound/weapons/bite.ogg'
+	deathmessage = "rolls over, frothing at the mouth before stilling."
+	var/poison_type = /datum/reagent/toxin
+	var/poison_per_bite = 4
+
+/obj/item/projectile/websling
+	name = "web"
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	nodamage = TRUE
+	damage = 0
+	speed = 3 //you can dodge it from far away
+	icon_state = "websling"
+
+/obj/item/projectile/websling/on_hit(atom/target, blocked = FALSE)
+	if(iscarbon(target) && blocked < 100)
+		var/obj/item/restraints/legcuffs/beartrap/emeraldspider/B = new /obj/item/restraints/legcuffs/beartrap/emeraldspider(get_turf(target))
+		B.Crossed(target)
+	..()
+
+/obj/item/restraints/legcuffs/beartrap/emeraldspider
+	name = "silk restraints"
+	desc = "A silky bundle of web that can entangle legs."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	armed = TRUE
+	breakouttime = 30 //3 seconds. Long enough you'd rather not get hit, but not debilitating.
+	item_flags = DROPDEL
+	flags_1 = NONE
+	trap_damage = 0
+	icon_state = "websling"
+	icon = 'yogstation/icons/mob/jungle.dmi'
+
+/mob/living/simple_animal/hostile/yog_jungle/emeraldspider/AttackingTarget()
+	..()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(target.reagents)
+			L.reagents.add_reagent(poison_type, poison_per_bite)
+		if((L.stat == DEAD) && (health < maxHealth) && ishuman(L))
+			var/mob/living/carbon/human/H = L
+			var/foundorgans = 0
+			for(var/obj/item/organ/O in H.internal_organs)
+				if(O.zone == "chest")
+					foundorgans++
+					qdel(O)
+			if(foundorgans)
+				src.visible_message(
+					span_danger("[src] drools some toxic goo into [L]'s innards..."),
+					span_danger("Before sucking out the slurry of bone marrow and flesh, healing itself!"),
+					"<span class-'userdanger>You liquefy [L]'s innards with your venom and suck out the resulting slurry, revitalizing yourself.</span>")
+				adjustBruteLoss(round(-H.maxHealth/2))
+				for(var/obj/item/bodypart/B in H.bodyparts)
+					if(B.body_zone == "chest")
+						B.dismember()
+			else
+				to_chat(src, span_warning("There are no organs left in this corpse."))
+
+/mob/living/simple_animal/hostile/yog_jungle/emeraldspider/CanAttack(atom/A)
+	if(..())
+		return TRUE
+	if((health < maxHealth) && ishuman(A) && !faction_check_mob(A))
+		var/mob/living/carbon/human/H = A
+		for(var/obj/item/organ/O in H.internal_organs)
+			if(O.zone == "chest")
+				return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/tar 
 	icon = 'yogstation/icons/mob/jungle.dmi'
