@@ -33567,13 +33567,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"kyF" = (
-/obj/structure/plasticflaps,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "kyU" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L4"
@@ -66858,6 +66851,13 @@
 	},
 /turf/open/floor/plating,
 /area/security/brig)
+"vXX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "vXZ" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
@@ -87655,7 +87655,7 @@ aJI
 aDE
 aDE
 aDE
-kyF
+vXX
 aDE
 aDE
 aDE
