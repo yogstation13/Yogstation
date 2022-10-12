@@ -1,0 +1,11 @@
+author: "MenacingManatee"
+delete-after: true 
+changes: 
+  - bugfix: "fixed overlapped camms in tcomms"
+  - bugfix: "fixed sec having a loophole to bypass cargo access"
+  - bugfix: "fixed toxins air alarm access"
+  - bugfix: "fixed toxins freezer"
+  - bugfix: "fixed toxins space injector not being powered"
+  - mapping: "swapped position of scrubber and injector in toxins mixing"
+  - mapping: "removed firelocks from toxins mixing"
+  - mapping: "Added missing roundstart fluff items to cargo sec office"
