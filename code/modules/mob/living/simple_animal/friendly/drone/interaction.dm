@@ -91,7 +91,7 @@
 		else
 			to_chat(user, span_warning("[src]'s screws can't get any tighter!"))
 		return //This used to not exist and drones who repaired themselves also stabbed the shit out of themselves.
-	else if(I.tool_behaviour == TOOL_WRENCH && user != src) //They aren't required to be hacked, because laws can change in other ways (i.e. admins)
+	else if(I.tool_behaviour == TOOL_MULTITOOL && user != src) //They aren't required to be hacked, because laws can change in other ways (i.e. admins)
 		user.visible_message(span_notice("[user] starts resetting [src]..."), \
 							 span_notice("You press down on [src]'s factory reset control..."))
 		if(I.use_tool(src, user, 50, volume=50))
@@ -135,8 +135,6 @@
 		to_chat(src, "<i>Your onboard antivirus has initiated lockdown. Motor servos are impaired, ventilation access is denied, and your display reports that you are hacked to all nearby.</i>")
 		hacked = TRUE
 		mind.special_role = "hacked drone"
-		ventcrawler = VENTCRAWLER_NONE //Again, balance
-		speed = 1 //gotta go slow
 		message_admins("[ADMIN_LOOKUPFLW(src)] became a hacked drone hellbent on [clockwork ? "serving Ratvar" : "destroying the station"]!")
 	else
 		if(!hacked)
