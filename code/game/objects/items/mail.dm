@@ -296,9 +296,10 @@
 	if(nuke)
 		if(nuke.r_code == "ADMIN")
 			nuke.r_code = code
+			message_admins("Through junkmail, the self-destruct code was set to \"[code]\".")
+			log_game("Through junkmail, the self-destruct code was set to \"[code]\".")
 		else
 			code = nuke.r_code
-	message_admins("Through junkmail, the self-destruct code was set to \"[code]\".")
 	info = "<i>You need to escape the simulation. Don't forget the numbers, they help you remember:</i> '[code[rand(1,5)]][code[rand(1,5)]]...'"
 
 /obj/item/paper/fluff/junkmail_redpill/true //admin letter enabling players to brute force their way through the nuke code if they're so inclined.
@@ -311,3 +312,53 @@
 /obj/item/paper/fluff/junkmail_generic/Initialize(mapload)
 	. = ..()
 	info = pick(GLOB.junkmail_messages)
+
+/client/proc/debug_mail_loot()
+	set name = "Debug Mail Loot"
+	set category = "Misc.Server Debug"
+
+	var/obj/item/mail/mail = new
+	var/list/generic_goodies = mail.generic_goodies
+	qdel(mail)
+
+	var/generic_goodie_weight = 0
+	var/goodietype
+	to_chat(src, generic_goodies.len)
+	for(goodietype in generic_goodies)
+		generic_goodie_weight += generic_goodies[goodietype]
+		to_chat(src, generic_goodie_weight)
+	
+	var/debug_info = "Generic Goodies (Weight: [generic_goodie_weight]):\n"
+	if(generic_goodie_weight)
+		for(goodietype in generic_goodies)
+			var/atom/goodie = goodietype
+			var/goodie_weight = generic_goodies[goodietype]
+			debug_info += " - [initial(goodie.name)]: [goodie_weight] ([(goodie_weight / generic_goodie_weight) * 100]%)\n"
+	
+	for(var/datum/job/job in SSjob.occupations)
+		if(job.faction != "Station")
+			debug_info += "\n[job.title] is not a station job, skipping"
+			continue
+		var/list/job_goodies = job.mail_goodies
+		if(job_goodies.len == 0)
+			debug_info += "\n[span_red("No specific goodies for [job.title]")]\n"
+			continue
+		
+		var/exclusive = job.exclusive_mail_goodies
+
+		var/effective_generic_goodie_weight = exclusive ? 0 : generic_goodie_weight
+		var/job_goodies_weight = effective_generic_goodie_weight
+
+		for(goodietype in job_goodies)
+			job_goodies_weight += job_goodies[goodietype]
+
+		debug_info += "\n[job.title] Goodies (Weight: [job_goodies_weight]): \n"
+		if(job_goodies_weight)
+			debug_info += "Generic Goodies: [effective_generic_goodie_weight] ([(effective_generic_goodie_weight / job_goodies_weight) * 100]%)\n"
+			for(goodietype in job_goodies)
+				var/goodie_weight = job_goodies[goodietype]
+				var/atom/goodie = goodietype
+				debug_info += " - [initial(goodie.name)]: [goodie_weight] ([(goodie_weight / job_goodies_weight) * 100]%)\n"
+	
+	to_chat(src, examine_block(debug_info))
+
