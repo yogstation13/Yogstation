@@ -86,7 +86,8 @@
 	var/isonshuttle = istype(get_area(src), /area/shuttle)
 	for(var/turf/T in range(1, src))
 		var/area/A = get_area(T)
-		if(isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
+		var/datum/gas_mixture/turf_air = T.return_air()
+		if(!turf_air.total_moles() || isspaceturf(T) || (!isonshuttle && (istype(A, /area/shuttle) || istype(A, /area/space))) || (isonshuttle && !istype(A, /area/shuttle)))
 			to_chat(S, span_warning("Destroying this object has the potential to cause a hull breach. Aborting."))
 			S.target = null
 			return FALSE
@@ -133,6 +134,10 @@
 
 /obj/effect/rune/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
 	to_chat(S, span_warning("Searching... sensor malfunction! Target lost. Aborting."))
+	return FALSE
+
+/obj/structure/destructible/cult/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)
+	to_chat(S, span_warning("Err: unresolved object. Aborting."))
 	return FALSE
 
 /obj/structure/reagent_dispensers/fueltank/swarmer_act(mob/living/simple_animal/hostile/swarmer/S)

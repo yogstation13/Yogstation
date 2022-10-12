@@ -26,7 +26,7 @@
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	category = "Conspicuous Weapons"
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
 
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
@@ -143,3 +143,32 @@
 	item = /obj/item/melee/fryingpan/bananium
 	cost = 40
 	cant_discount = TRUE
+
+/datum/uplink_item/race_restricted/garden_warfare
+	name = "Martial art scroll"
+	desc = "A special scroll with a martial art, that teaches phytosians of capabilities of their body."
+	cost = 13
+	item = /obj/item/book/granter/martial/garden_warfare
+	restricted_species = list("pod")
+
+/datum/uplink_item/race_restricted/combat_modules
+	name = "Combat Modules Board"
+	desc = "An upgrade board, containing upgrades and programs for your melee attacks."
+	cost = 11
+	item = /obj/item/book/granter/martial/preternis_stealth
+	restricted_species = list("preternis")
+
+/datum/uplink_item/race_restricted/explosive_fist_art
+	name = "Burned scroll"
+	desc = "An ancient scroll, containing a guide to an ancient plasmamen martial art."
+	cost = 14
+	item = /obj/item/book/granter/martial/explosive_fist
+	restricted_species = list("plasmaman")
+
+/datum/uplink_item/stealthy_weapons/camera_flash
+	name = "Camera Flash"
+	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down; avoid burning out altogether."
+	item = /obj/item/camera/tator
+	cost = 4
+	surplus = 15
+

@@ -8,7 +8,8 @@
 	cycle_action.Grant(user, src)
 	lights_action.Grant(user, src)
 	stats_action.Grant(user, src)
-	strafing_action.Grant(user, src)
+	if(canstrafe)
+		strafing_action.Grant(user, src)
 
 
 /obj/mecha/proc/RemoveActions(mob/living/user, human_occupant = 0)
@@ -18,8 +19,8 @@
 	cycle_action.Remove(user)
 	lights_action.Remove(user)
 	stats_action.Remove(user)
-	strafing_action.Remove(user)
-
+	if(canstrafe)
+		strafing_action.Remove(user)
 
 /datum/action/innate/mecha
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
@@ -258,14 +259,14 @@
 		return
 	var/new_damtype
 	switch(chassis.damtype)
-		if("tox")
-			new_damtype = "brute"
+		if(TOX)
+			new_damtype = BRUTE
 			chassis.occupant_message("Your exosuit's hands form into fists.")
-		if("brute")
-			new_damtype = "fire"
+		if(BRUTE)
+			new_damtype = BURN
 			chassis.occupant_message("A torch tip extends from your exosuit's hand, glowing red.")
-		if("fire")
-			new_damtype = "tox"
+		if(BURN)
+			new_damtype = TOX
 			chassis.occupant_message("A bone-chillingly thick plasteel needle protracts from the exosuit's palm.")
 	chassis.damtype = new_damtype
 	button_icon_state = "mech_damtype_[new_damtype]"

@@ -10,6 +10,7 @@
     var/mob/living/L = parent
     if(L.incapacitated() || !(L.mobility_flags & MOBILITY_STAND))
         return
-    animate(L, pixel_z = 4, time = 0)
-    animate(pixel_z = 0, transform = turn(matrix(), pick(-12, 0, 12)), time=2)
-    animate(pixel_z = 0, transform = matrix(), time = 0)
+    var/cached_transform = L.transform
+    animate(L, pixel_z = 4, time = 0 SECONDS)
+    animate(pixel_z = 0, transform = turn(cached_transform, pick(-12, 0, 12)), time=0.2 SECONDS)
+    animate(pixel_z = 0, transform = cached_transform, time = 0 SECONDS)

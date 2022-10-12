@@ -29,6 +29,11 @@
 	if(list_reagents)
 		reagents.add_reagent_list(list_reagents)
 
+/obj/item/reagent_containers/examine(mob/user)
+	. = ..()
+	if(islist(possible_transfer_amounts) && possible_transfer_amounts.len)
+		. += "It is transferring [amount_per_transfer_from_this] units at a time."
+
 /obj/item/reagent_containers/attack_self(mob/user)
 	if(possible_transfer_amounts.len)
 		var/i=0
@@ -39,7 +44,8 @@
 					amount_per_transfer_from_this = possible_transfer_amounts[i+1]
 				else
 					amount_per_transfer_from_this = possible_transfer_amounts[1]
-				to_chat(user, span_notice("[src]'s transfer amount is now [amount_per_transfer_from_this] units."))
+				balloon_or_message(user, "Transferring [amount_per_transfer_from_this]u", \
+					span_notice("[src]'s transfer amount is now [amount_per_transfer_from_this] units."))
 				return
 
 /obj/item/reagent_containers/attack(mob/M, mob/user, def_zone)
@@ -58,8 +64,14 @@
 	if(covered)
 		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
 		to_chat(user, span_warning("You have to remove [who] [covered] first!"))
-		return 0
-	return 1
+		return FALSE
+	if(!eater.has_mouth())
+		if(eater == user)
+			to_chat(eater, "<span class='warning'>You have no mouth, and cannot eat.</span>")
+		else
+			to_chat(user, "<span class='warning'>You can't feed [eater], because they have no mouth!</span>")
+		return FALSE
+	return TRUE
 
 /obj/item/reagent_containers/ex_act()
 	if(reagents)

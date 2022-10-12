@@ -13,11 +13,12 @@
 
 	alt_titles = list("Ecologist", "Agriculturist", "Botany Greenhorn", "Hydroponicist")
 
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_BAR, ACCESS_KITCHEN)
+	base_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BOTANIST
+	minimal_character_age = 22 //Biological understanding of plants and how to manipulate their DNAs and produces relatively "safely". Not just something that comes to you without education
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/glass/bottle/mutagen = 20,
@@ -31,8 +32,8 @@
 	changed_maps = list("OmegaStation", "EclipseStation")
 
 /datum/job/hydro/proc/OmegaStationChanges()
-	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
-	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
+	added_access = list()
+	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
 
 /datum/job/hydro/proc/EclipseStationChanges()
 	total_positions = 4
@@ -42,7 +43,8 @@
 	name = "Botanist"
 	jobtype = /datum/job/hydro
 
-	belt = /obj/item/pda/botanist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	uniform_skirt = /obj/item/clothing/under/rank/hydroponics/skirt

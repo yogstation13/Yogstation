@@ -113,7 +113,7 @@
 	var/tgs4_secret_sleep_offline_sauce = 24051994
 	var/old_sleep_offline = world.sleep_offline
 	world.sleep_offline = tgs4_secret_sleep_offline_sauce
-	sleep(1)
+	sleep(0.1 SECONDS)
 	if(world.sleep_offline == tgs4_secret_sleep_offline_sauce)	//if not someone changed it
 		world.sleep_offline = old_sleep_offline
 
@@ -184,7 +184,7 @@
 	var/json = json_encode(data)
 
 	while(requesting_new_port && !override_requesting_new_port)
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 	//we need some port open at this point to facilitate return communication
 	if(!world.port)
@@ -212,7 +212,7 @@
 		requesting_new_port = FALSE
 
 	while(export_lock)
-		sleep(1)
+		sleep(0.1 SECONDS)
 	export_lock = TRUE
 
 	last_interop_response = null
@@ -220,7 +220,7 @@
 	text2file(json, server_commands_json_path)
 
 	for(var/I = 0; I < EXPORT_TIMEOUT_DS && !last_interop_response; ++I)
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 	if(!last_interop_response)
 		TGS_ERROR_LOG("Failed to get export result for: [json]")

@@ -75,7 +75,7 @@
   *
   * Gives addtional effects to sickly blade weapon
   */
-/datum/eldritch_knowledge/proc/on_eldritch_blade(target,user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/proc/on_eldritch_blade(atom/target,mob/user,proximity_flag,click_parameters)
 	return
 
 ///////////////
@@ -88,5 +88,5 @@
 	gain_text = "Gates of mansus open up to your mind."
 	cost = 0
 	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp)
-	unlocked_transmutations = list(/datum/eldritch_transmutation/basic, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix, /datum/eldritch_transmutation/recall)
+	unlocked_transmutations = list(/datum/eldritch_transmutation/basic, /datum/eldritch_transmutation/living_heart, /datum/eldritch_transmutation/codex_cicatrix)
 	route = "Start"

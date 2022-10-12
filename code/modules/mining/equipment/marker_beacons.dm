@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "marker"
 	layer = BELOW_OPEN_DOOR_LAYER
-	armor = list("melee" = 50, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 0)
+	armor = list(MELEE = 50, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 25, BIO = 100, RAD = 100, FIRE = 25, ACID = 0)
 	max_integrity = 50
 	anchored = TRUE
 	light_range = 2
@@ -107,7 +107,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 	if(.)
 		return
 	to_chat(user, span_notice("You start picking [src] up..."))
-	if(do_after(user, remove_speed, target = src))
+	if(do_after(user, remove_speed, src))
 		var/obj/item/stack/marker_beacon/M = new(loc)
 		M.picked_color = picked_color
 		M.update_icon()
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, list(
 	if(istype(I, /obj/item/stack/marker_beacon))
 		var/obj/item/stack/marker_beacon/M = I
 		to_chat(user, span_notice("You start picking [src] up..."))
-		if(do_after(user, remove_speed, target = src) && M.amount + 1 <= M.max_amount)
+		if(do_after(user, remove_speed, src) && M.amount + 1 <= M.max_amount)
 			M.add(1)
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			qdel(src)

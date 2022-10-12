@@ -62,7 +62,7 @@
 	if(client && hud_used)
 		hud_used.reorganize_alerts()
 	thealert.transform = matrix(32, 6, MATRIX_TRANSLATE)
-	animate(thealert, transform = matrix(), time = 2.5, easing = CUBIC_EASING)
+	animate(thealert, transform = matrix(), time = 0.25 SECONDS, easing = CUBIC_EASING)
 
 	if(thealert.timeout)
 		addtimer(CALLBACK(src, .proc/alert_timeout, thealert, category), thealert.timeout)
@@ -114,6 +114,11 @@
 	name = "Choking (No O2)"
 	desc = "You're not getting enough oxygen. Find some good air before you pass out! The box in your backpack has an oxygen tank and breath mask in it."
 	icon_state = "not_enough_oxy"
+
+/obj/screen/alert/not_enough_oxy/ipc
+	name = "Overheating"
+	desc = "You're not able to disperse heat. Find some gas to cool back down!"
+	icon_state = "overheating"
 
 /obj/screen/alert/too_much_oxy
 	name = "Choking (O2)"
@@ -241,9 +246,9 @@ If you're feeling frisky, examine yourself and click the underlined item to pull
 	icon_state = "embeddedobject"
 
 /obj/screen/alert/embeddedobject/Click()
-	if(isliving(usr))
-		var/mob/living/carbon/human/M = usr
-		return M.help_shake_act(M)
+	if(iscarbon(usr))
+		var/mob/living/carbon/C = usr
+		return C.try_remove_embedded_object(C)
 
 /obj/screen/alert/weightless
 	name = "Weightless"
@@ -378,7 +383,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		if(sac_objective && !sac_objective.check_completion())
 			if(icon_state == "runed_sense0")
 				return
-			animate(src, transform = null, time = 1, loop = 0)
+			animate(src, transform = null, time = 0.1 SECONDS, loop = 0)
 			angle = 0
 			cut_overlays()
 			icon_state = "runed_sense0"
@@ -391,7 +396,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 			desc = "The sacrifice is complete, summon Nar-Sie! The summoning can only take place in [english_list(summon_objective.summon_spots)]!"
 			if(icon_state == "runed_sense1")
 				return
-			animate(src, transform = null, time = 1, loop = 0)
+			animate(src, transform = null, time = 0.1 SECONDS, loop = 0)
 			angle = 0
 			cut_overlays()
 			icon_state = "runed_sense1"
@@ -440,7 +445,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		return
 	var/matrix/final = matrix(transform)
 	final.Turn(difference)
-	animate(src, transform = final, time = 5, loop = 0)
+	animate(src, transform = final, time = 0.5 SECONDS, loop = 0)
 
 
 
@@ -529,6 +534,11 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 	name = "Low Blood Charge"
 	desc = "Your blood's electric charge is running low, find a source of charge for your blood. Use a recharging station found in robotics or the dormitory bathrooms, or eat some Ethereal-friendly food."
 	icon_state = "etherealcharge"
+
+/obj/screen/alert/ethereal_overcharge
+	name = "Blood Overcharge"
+	desc = "Your blood's electric charge is becoming dangerously high, find an outlet for your energy. Use Grab Intent on an APC to channel your energy into it."
+	icon_state = "ethereal_overcharge"
 
 //Need to cover all use cases - emag, illegal upgrade module, malf AI hack, traitor cyborg
 /obj/screen/alert/hacked

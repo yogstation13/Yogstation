@@ -44,7 +44,7 @@
 /obj/vehicle/sealed/car/mob_try_exit(mob/M, mob/user, silent = FALSE)
 	if(M == user && (occupants[M] & VEHICLE_CONTROL_KIDNAPPED))
 		to_chat(user, span_notice("You push against the back of [src] trunk to try and get out."))
-		if(!do_after(user, escape_time, target = src))
+		if(!do_after(user, escape_time, src))
 			return FALSE
 		to_chat(user,span_danger("[user] gets out of [src]"))
 		mob_exit(M, silent)
@@ -67,7 +67,7 @@
 	if(occupants[user])
 		return
 	to_chat(user, span_notice("You start opening [src]'s trunk."))
-	if(do_after(user, 3 SECONDS))
+	if(do_after(user, 3 SECONDS, src))
 		if(return_amount_of_controllers_with_flag(VEHICLE_CONTROL_KIDNAPPED))
 			to_chat(user, span_notice("The people stuck in [src]'s trunk all come tumbling out."))
 			DumpSpecificMobs(VEHICLE_CONTROL_KIDNAPPED)

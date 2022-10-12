@@ -50,16 +50,16 @@
 		return SHAME
 
 /obj/item/proc/can_be_package_wrapped() //can the item be wrapped with package wrapper into a delivery package
-	return 1
+	return TRUE
 
 /obj/item/storage/can_be_package_wrapped()
-	return 0
+	return FALSE
 
 /obj/item/storage/box/can_be_package_wrapped()
-	return 1
+	return TRUE
 
 /obj/item/smallDelivery/can_be_package_wrapped()
-	return 0
+	return FALSE
 
 /obj/item/stack/packageWrap/afterattack(obj/target, mob/user, proximity)
 	. = ..()
@@ -72,7 +72,7 @@
 
 	if(isitem(target))
 		var/obj/item/I = target
-		if(!I.can_be_package_wrapped())
+		if(!I.can_be_package_wrapped() || I.interaction_flags_item == NONE)
 			return
 		if(user.is_holding(I))
 			if(!user.dropItemToGround(I))

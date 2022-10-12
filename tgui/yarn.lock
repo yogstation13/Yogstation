@@ -1881,12 +1881,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.19.2":
-  version: 0.19.2
-  resolution: "axios@npm:0.19.2"
+"axios@npm:^0.21.2":
+  version: 0.21.4
+  resolution: "axios@npm:0.21.4"
   dependencies:
-    follow-redirects: 1.5.10
-  checksum: bad346deea24050f9953ce09bb8015f85a99a7b8f016806adccfab0b8981827d1fbee9c77c0ef7c70cc48392c1af6bbc65e07c3e88221d17282d2d5fd0a191f6
+    follow-redirects: ^1.14.0
+  checksum: e6d42b269b599d36eb13be0671c237781f32e6ae72be824297c55a3e1ce63b22ba4f46bad5ab28da7d3bae50a72637d55c792cf803be1cf9de6a8bcd6d0dcc1a
   languageName: node
   linkType: hard
 
@@ -3074,6 +3074,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csstype@npm:^3.1.0":
+  version: 3.1.1
+  resolution: "csstype@npm:3.1.1"
+  checksum: b47b351bb6686b405b22075b64577abbc50e6700d3b1e4b0ea1f8fa8fc4ebd649e6b3764a17cf080e6da448b8c04c57fc4003799a4e83282be785ae6f7a8b2ed
+  languageName: node
+  linkType: hard
+
 "cyclist@npm:^1.0.1":
   version: 1.0.1
   resolution: "cyclist@npm:1.0.1"
@@ -3096,15 +3103,6 @@ __metadata:
   dependencies:
     ms: 2.0.0
   checksum: 559f44f98cf25e2ee489022aec173afbff746564cb108c4493becb95bc3c017a67bdaa25a0ff64801fd32c35051d00af0e56cc7f762ae2c3bc089496e5a1c31b
-  languageName: node
-  linkType: hard
-
-"debug@npm:=3.1.0":
-  version: 3.1.0
-  resolution: "debug@npm:3.1.0"
-  dependencies:
-    ms: 2.0.0
-  checksum: 1295acd5e0531761255661d325cd0a80ac8c5f6de8942a53bb23c2197ccb97526972de662ed0e5d9393be83f3428a298a6e7185ecb02f0da6282019cd2ffb4a8
   languageName: node
   linkType: hard
 
@@ -4037,12 +4035,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:1.5.10":
-  version: 1.5.10
-  resolution: "follow-redirects@npm:1.5.10"
-  dependencies:
-    debug: =3.1.0
-  checksum: 6e58e02c31337b6b41ffc3d5f3d49920b7db428eddcf374537da00ef121fe473983e12d8557f4304287604168d3efcc288d1f009abaf4c9d61e5db0c0cee3c4a
+"follow-redirects@npm:^1.14.0":
+  version: 1.14.9
+  resolution: "follow-redirects@npm:1.14.9"
+  peerDependencies:
+    debug: "*"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 1b602c548b4194c66d8d530d2c8f76b4116b6c498434acfa561f583f45b571fd9fc042fba778748cd863044051656cf4788ba11c8ff35407223ed0d38ffff0d4
   languageName: node
   linkType: hard
 
@@ -4691,6 +4692,13 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"inferno-vnode-flags@npm:8.0.3":
+  version: 8.0.3
+  resolution: "inferno-vnode-flags@npm:8.0.3"
+  checksum: c23153facfe51388934804cf6cc5fbc098b39b282c940f93a69f50fac8a5acacb428de4c1db8704f466e2efcb5009f48731f10187bbe547b16bb447f6821fd11
+  languageName: node
+  linkType: hard
+
 "inferno@npm:^7.4.2":
   version: 7.4.2
   resolution: "inferno@npm:7.4.2"
@@ -4699,6 +4707,17 @@ fsevents@~2.1.2:
     inferno-vnode-flags: 7.4.2
     opencollective-postinstall: ^2.0.2
   checksum: 0559c21de1dbfd49ab7e1f9dfb9de5d40f6c65b804f9299d2cb6ecc68d9da65d27e65fe99d810a441d6eebac562d78f634a3c31ec240c34191c21335168edcb5
+  languageName: node
+  linkType: hard
+
+"inferno@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "inferno@npm:8.0.3"
+  dependencies:
+    csstype: ^3.1.0
+    inferno-vnode-flags: 8.0.3
+    opencollective-postinstall: ^2.0.3
+  checksum: 049135156d729f711dca35e1043fb252b5c1ad154e4ca03b0b6dabed89866d9bba474fca23a4d4476588a3bed5f9284dfcd9064c264cbbd12f0be0ec9991f6bb
   languageName: node
   linkType: hard
 
@@ -5506,12 +5525,12 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"marked@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "marked@npm:2.0.0"
+"marked@npm:^4.0.10":
+  version: 4.0.12
+  resolution: "marked@npm:4.0.12"
   bin:
-    marked: bin/marked
-  checksum: 5b3b13b9b68beb126284d04fedeacee37c847618c091cf575eaa32746cf0af2d65b1ed25b2cc9269b0cdffa2e8dc5aa2daacff81ead68c59a7a6a1656f1d28ed
+    marked: bin/marked.js
+  checksum: b026d6dc5ab8beb6fbb3bac6d20061aa1d845b8668a077797a1fd985c973da7be819c6fd29f7054d0d644a1ba32bd4fa4789b8cb254b299e7bf4ad3629f63560
   languageName: node
   linkType: hard
 
@@ -6174,7 +6193,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"opencollective-postinstall@npm:^2.0.2":
+"opencollective-postinstall@npm:^2.0.2, opencollective-postinstall@npm:^2.0.3":
   version: 2.0.3
   resolution: "opencollective-postinstall@npm:2.0.3"
   bin:
@@ -8318,7 +8337,7 @@ fsevents@~2.1.2:
   version: 0.0.0-use.local
   resolution: "tgui-dev-server@workspace:packages/tgui-dev-server"
   dependencies:
-    axios: ^0.19.2
+    axios: ^0.21.2
     common: "workspace:*"
     esm: ^3.2.25
     glob: ^7.1.4
@@ -8368,7 +8387,7 @@ fsevents@~2.1.2:
     eslint-plugin-react: ^7.17.0
     extract-css-chunks-webpack-plugin: ^4.6.0
     file-loader: ^6.0.0
-    inferno: ^7.4.2
+    inferno: ^8.0.3
     optimize-css-assets-webpack-plugin: ^5.0.3
     pnp-webpack-plugin: ^1.6.4
     sass: ^1.22.12
@@ -8391,7 +8410,7 @@ fsevents@~2.1.2:
     dompurify: ^2.0.17
     inferno: ^7.4.2
     inferno-vnode-flags: ^7.4.2
-    marked: ^2.0.0
+    marked: ^4.0.10
     tgui-dev-server: "workspace:*"
     tgui-polyfill: "workspace:*"
   languageName: unknown

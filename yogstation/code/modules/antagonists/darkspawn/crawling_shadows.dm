@@ -2,8 +2,8 @@
 	name = "crawling shadows"
 	desc = "A formless mass of blackness with two huge, clawed hands and piercing white eyes."
 	icon = 'icons/effects/effects.dmi' //Placeholder sprite
-	icon_state = "blank"
-	icon_living = "blank"
+	icon_state = "blank_dspawn"
+	icon_living = "blank_dspawn"
 	response_help = "backs away from"
 	response_disarm = "shoves away"
 	response_harm = "flails at"
@@ -99,7 +99,7 @@
 		to_chat(H, span_userdanger("[src] grab you and dangle you in the air!"))
 		H.Stun(30)
 		H.pixel_y += 4
-		if(!do_after(src, 1 SECONDS, target = target))
+		if(!do_after(src, 1 SECONDS, target))
 			H.pixel_y -= 4
 			knocking_out = FALSE
 			return

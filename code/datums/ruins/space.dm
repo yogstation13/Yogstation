@@ -252,12 +252,6 @@
 	description = "The crew of a space station awaken one hundred years after a crisis. Awaking to a derelict space station on the verge of collapse, and a hostile force of invading \
 	hivebots. Can the surviving crew overcome the odds and survive and rebuild, or will the cold embrace of the stars become their new home?"
 
-/datum/map_template/ruin/space/miracle
-	id = "miracle"
-	suffix = "miracle.dmm"
-	name = "Ordinary Space Tile"
-	description = "Absolutely nothing strange going on here, please move along, plenty more space to see right this way!"
-
 /datum/map_template/ruin/space/gondoland
 	id = "gondolaasteroid"
 	suffix = "gondolaasteroid.dmm"
@@ -347,8 +341,8 @@
 	name = "Game Room"
 	description = "A room in space in which you can play card games and munch on some snacks."
 
-/datum/map_template/ruin/space/gaming
-	id = "puby"
+/datum/map_template/ruin/space/pubby
+	id = "pubby"
 	suffix = "pubby_monastery.dmm"
 	name = "Pubby Monastery"
 	description = "A beautiful monastery that used to have a station attached to it"

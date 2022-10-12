@@ -30,7 +30,6 @@
 	var/greenshift_message = "Thanks to the tireless efforts of our security and intelligence divisions, there are currently no credible threats to [station_name()]. All station construction projects have been authorized. Have a secure shift!\n\n[generate_station_trait_announcement()]"
 	. += "<b><i>Central Command Status Summary</i></b><hr>"
 	. += greenshift_message
-	. += generate_station_trait_report()
 
 	print_command_report(., "Central Command Status Summary", announce = FALSE)
-	priority_announce(greenshift_message, "Security Report", SSstation.announcer.get_rand_report_sound())
+	priority_announce(greenshift_message, "Security Report", RANDOM_REPORT_SOUND)

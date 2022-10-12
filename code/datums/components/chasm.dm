@@ -79,8 +79,7 @@
 			return FALSE
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
-			if(istype(H.belt, /obj/item/wormhole_jaunter))
-				var/obj/item/wormhole_jaunter/J = H.belt
+			for(var/obj/item/wormhole_jaunter/J in H.GetAllContents())
 				//To freak out any bystanders
 				H.visible_message(span_boldwarning("[H] falls into [parent]!"))
 				J.chasm_react(H)
@@ -117,13 +116,13 @@
 		var/oldtransform = AM.transform
 		var/oldcolor = AM.color
 		var/oldalpha = AM.alpha
-		animate(AM, transform = matrix() - matrix(), alpha = 0, color = rgb(0, 0, 0), time = 10)
+		animate(AM, transform = matrix() - matrix(), alpha = 0, color = rgb(0, 0, 0), time = 1 SECONDS)
 		for(var/i in 1 to 5)
 			//Make sure the item is still there after our sleep
 			if(!AM || QDELETED(AM))
 				return
 			AM.pixel_y--
-			sleep(2)
+			sleep(0.2 SECONDS)
 
 		//Make sure the item is still there after our sleep
 		if(!AM || QDELETED(AM))

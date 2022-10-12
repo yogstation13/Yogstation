@@ -51,7 +51,7 @@
 			to_chat(user, span_warning("There is already a false wall present!"))
 			return
 		to_chat(user, span_notice("You start adding [W] to [src]..."))
-		if(do_after(user, 2 SECONDS, target = src))
+		if(do_after(user, 2 SECONDS, src))
 			var/brass_floor = FALSE
 			if(istype(T, /turf/open/floor/clockwork)) //if the floor is already brass, costs less to make(conservation of masssssss)
 				brass_floor = TRUE

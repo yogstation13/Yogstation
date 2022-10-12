@@ -10,17 +10,17 @@
 /datum/antagonist/guardian/roundend_report()
 	var/list/parts = list()
 	parts += ..()
-	if(summoner)
+	if (summoner)
 		parts += "<B>SUMMONER</B>: [summoner.name]"
-	if(stats)
+	if (stats)
 		parts += "<b>DAMAGE:</b> [level_to_grade(stats.damage)]"
 		parts += "<b>DEFENSE:</b> [level_to_grade(stats.defense)]"
 		parts += "<b>SPEED:</b> [level_to_grade(stats.speed)]"
 		parts += "<b>POTENTIAL:</b> [level_to_grade(stats.potential)]"
 		parts += "<b>RANGE:</b> [level_to_grade(stats.range)]"
-		if(stats.ability)
+		if (stats.ability)
 			parts += "<b>SPECIAL ABILITY:</b> [stats.ability.name]"
-		for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
+		for (var/datum/guardian_ability/minor/M in stats.minor_abilities)
 			parts += "<b>MINOR ABILITY:</b> [M.name]"
 	return parts.Join("<br>")
 

@@ -39,6 +39,7 @@
 		if(INTENT_HARM)
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			if (prob(75))
+				last_damage = "fist"
 				visible_message(span_danger("[M] has punched [name]!"), \
 						span_userdanger("[M] has punched [name]!"), null, COMBAT_MESSAGE_RANGE)
 
@@ -175,14 +176,14 @@
 
 		if (EXPLODE_HEAVY)
 			take_overall_damage(60, 60)
-			damage_clothes(200, BRUTE, "bomb")
+			damage_clothes(200, BRUTE, BOMB)
 			adjustEarDamage(30, 120)
 			if(prob(70))
 				Unconscious(200)
 
 		if (EXPLODE_LIGHT)
 			take_overall_damage(30, 0)
-			damage_clothes(50, BRUTE, "bomb")
+			damage_clothes(50, BRUTE, BOMB)
 			adjustEarDamage(15,60)
 			if (prob(50))
 				Unconscious(160)

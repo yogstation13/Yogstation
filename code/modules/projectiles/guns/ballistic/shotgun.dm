@@ -132,9 +132,8 @@
 	pin = /obj/item/firing_pin/implant/pindicate
 	actions_types = list()
 	mag_display = TRUE
+	mag_display_ammo = TRUE
 	empty_indicator = TRUE
-	empty_alarm = TRUE
-	special_mags = TRUE
 	semi_auto = TRUE
 	internal_magazine = FALSE
 	tac_reloads = TRUE
@@ -191,6 +190,13 @@
 	unique_reskin = null
 	var/slung = FALSE
 	can_bayonet = TRUE //STOP WATCHING THIS FILTH MY FELLOW CARGONIAN,WE MUST DEFEND OURSELVES
+
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/afterattack()
+	if(prob(40))
+		playsound(src, dry_fire_sound, 30, TRUE)
+		return
+	else
+		. = ..()
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/attackby(obj/item/A, mob/user, params)
 	..()

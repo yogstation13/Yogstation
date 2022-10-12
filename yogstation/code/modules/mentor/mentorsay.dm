@@ -23,8 +23,8 @@
 	else
 		msg = "<b><font color ='#E236D8'><span class='prefix mentor'>MENTOR:</span> <EM>[key_name(src, 0, 0)]</EM>: <span class='message mentor'>[msg]</span></font></b>"
 
-	to_chat((GLOB.admins - GLOB.deadmins) | GLOB.mentors, msg, confidential=TRUE)
+	to_chat((GLOB.permissions.admins - GLOB.permissions.deadmins) | GLOB.mentors, msg, confidential=TRUE)
 
 /client/proc/get_mentor_say()
-	var/msg = input(src, null, "msay \"text\"") as text
+	var/msg = input(src, null, "msay \"text\"") as text|null
 	cmd_mentor_say(msg)

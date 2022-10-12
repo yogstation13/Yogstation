@@ -89,3 +89,24 @@
 	action_icon_state = "horror"
 	action_background_icon_state = "bg_ecult"
 	sound = 'sound/magic/fleshtostone.ogg'
+
+/obj/effect/proc_holder/spell/targeted/touch/raise
+	name = "Raise bloodman"
+	desc = "Turn a corpse into a bloodman at the cost of 9% blood (5 brain damage for those without blood)."
+	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	action_icon_state = "raise"
+	hand_path = /obj/item/melee/touch_attack/raisehand
+	clothes_req = FALSE
+
+/obj/effect/proc_holder/spell/targeted/touch/pacify
+	name = "Pacify"
+	desc = "This spell charges your hand with pure pacifism, alows to pacify your targets and turn them into gondolas. Also temporary mutes them."
+	hand_path = /obj/item/melee/touch_attack/pacifism
+
+	school = "evocation"
+	charge_max = 1 MINUTES
+	clothes_req = FALSE
+	cooldown_min = 20 SECONDS
+	action_icon ='icons/mob/gondolas.dmi'
+
+	action_icon_state = "gondola"

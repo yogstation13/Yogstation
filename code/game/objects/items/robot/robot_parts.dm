@@ -288,9 +288,9 @@
 			if(user.mind.assigned_role == "Roboticist") // RD gets nothing
 				SSachievements.unlock_achievement(/datum/achievement/roboborg, user.client)
 
-			if(M.laws && M.laws.id != DEFAULT_AI_LAWID)
-				aisync = 0
-				lawsync = 0
+			if(M.laws && M.laws.id != DEFAULT_AI_LAWID && M.override_cyborg_laws)
+				aisync = FALSE
+				lawsync = FALSE
 				O.laws = M.laws
 				M.laws.associate(O)
 
@@ -309,6 +309,7 @@
 				O.lawupdate = 0
 				if(M.laws.id == DEFAULT_AI_LAWID)
 					O.make_laws()
+					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transfered!"))
 
 			SSticker.mode.remove_antag_for_borging(BM.mind)
 			if(!istype(M.laws, /datum/ai_laws/ratvar))
@@ -334,13 +335,13 @@
 				to_chat(O, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
 
 			SSblackbox.record_feedback("amount", "cyborg_birth", 1)
-			forceMove(O)
-			O.robot_suit = src
 
 			if(!locomotion)
 				O.lockcharge = TRUE
 				O.update_mobility()
 				to_chat(O, span_warning("Error: Servo motors unresponsive."))
+			
+			qdel(src)
 
 		else
 			to_chat(user, span_warning("The MMI must go in after everything else!"))
@@ -374,11 +375,11 @@
 			chest.cell = null
 			O.locked = panel_locked
 			O.job = "Cyborg"
-			forceMove(O)
-			O.robot_suit = src
 			if(!locomotion)
 				O.lockcharge = TRUE
 				O.update_mobility()
+			
+			qdel(src)
 
 	else if(istype(W, /obj/item/pen))
 		to_chat(user, span_warning("You need to use a multitool to name [src]!"))

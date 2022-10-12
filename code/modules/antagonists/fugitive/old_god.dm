@@ -10,6 +10,7 @@
 	var/datum/action/innate/yalp_transmit/transmit
 	var/datum/action/innate/yalp_transport/transport
 	var/datum/action/cooldown/yalp_heal/heal
+	var/hunters_release_time // Yogs -- making Login() dialogue make more sense
 
 /mob/camera/yalp_elor/Initialize()
 	. = ..()
@@ -20,15 +21,13 @@
 	transport.Grant(src)
 	heal.Grant(src)
 	START_PROCESSING(SSobj, src)
+	hunters_release_time = world.time + 10 MINUTES // Yogs -- making Login() dialogue make more sense
 
-/mob/camera/yalp_elor/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
-/mob/camera/yalp_elor/Destroy()
+/mob/camera/yalp_elor/Destroy() // Yogs -- fixes duplicated Destroy() proc
 	QDEL_NULL(transmit)
 	QDEL_NULL(transport)
-	. = ..()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /mob/camera/yalp_elor/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(FALSE)
@@ -37,11 +36,15 @@
 /mob/camera/yalp_elor/Process_Spacemove(movement_dir = 0)
 	return TRUE
 
-/mob/camera/yalp_elor/Login()
+/mob/camera/yalp_elor/Login() // Yogs -- better Login() dialogue
 	..()
-	to_chat(src, "<B>You must protect your followers from Nanotrasen!</B>")
-	to_chat(src, "<B>Only your followers can hear you, and you can speak to send messages to all of them, wherever they are. You can also locally whisper to anyone.</B>")
-	to_chat(src, "<B>Nanotrasen will reach you and your followers in about 10 minutes. Make sure they are ready when the time is up.</B>")
+	to_chat(src,span_boldnotice("You are [name], the old god!"))
+	to_chat(src,span_notice("You must protect your followers from Nanotrasen!"))
+	to_chat(src,span_notice("Only your followers can hear you, and you can speak to send messages to all of them, wherever they are. <i>You can also locally whisper to anyone.</i>"))
+	var/passed_time = hunters_release_time - world.time
+	if(passed_time > 0)
+		to_chat(src, span_warning("Nanotrasen will reach you and your followers in about [DisplayTimeText(passed_time)]. Make sure they are ready when the time is up."))
+//yogs end
 
 /mob/camera/yalp_elor/Move(NewLoc, direct)
 	if(!NewLoc)
@@ -79,20 +82,24 @@
 		else if(isobserver(V))
 			to_chat(V, "[FOLLOW_LINK(V, src)] [message]")
 
-/mob/camera/yalp_elor/process()
-	var/safe = FALSE
-	for(var/mob/V in GLOB.player_list)
-		if(!V.mind)
+/mob/camera/yalp_elor/process() // Yogs -- fixing oldgod race conditions
+	for(var/V in GLOB.mob_living_list)
+		var/mob/living/L = V
+		if (!L.ckey) // never had a client (logic stolen from how game_mode.dm does these kinda checks)
+			continue  
+		if(L.stat == DEAD) // Seems like a paranoid check to do against GLOB.mob_living_list but, whatever.
 			continue
-		var/datum/antagonist/fugitive/fug = isfugitive(V)
-		if(!fug || V == src)
+		//Note that the above counts "living fugitives which are unfortunately AFK" as valid for this loss-condition check.
+		var/datum/antagonist/fugitive/fug = isfugitive(L)
+		if(!fug)
 			continue
-		if(fug.is_captured)
-			safe = TRUE
-			break
-	if(!safe)
-		to_chat(src, span_userdanger("All of your followers are gone. That means you cease to exist."))
-		qdel(src)
+		if(!fug.is_captured) // Found a living fugitive!!
+			return
+	//otherwise, eat shit and commit qdel()
+	to_chat(src, span_userdanger("All of your followers are gone. That means you cease to exist."))
+	playsound_local(get_turf(src), 'sound/machines/clockcult/ark_deathrattle.ogg', 100, FALSE, pressure_affected = FALSE)
+	qdel(src)
+//yogs end
 
 /datum/action/innate/yalp_transmit
 	name = "Divine Oration"
@@ -119,6 +126,12 @@
 	var/input = stripped_input(owner, "What do you wish to tell [target]?", null, "")
 	if(QDELETED(src) || !input || !IsAvailable())
 		return FALSE
+	if(isnotpretty(input)) // Yogs -- Pretty filter
+		to_chat(owner,span_warning("That's not a very nice thing to tell [target.p_them()]."))
+		var/log_message = "[key_name(owner)] just tripped a pretty filter: '[input]'."
+		message_admins(log_message)
+		log_say(log_message)
+		return FALSE // yogs end
 
 	transmit(owner, target, input)
 	return TRUE

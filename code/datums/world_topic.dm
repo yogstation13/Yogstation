@@ -125,6 +125,7 @@
 
 /datum/world_topic/server_hop
 	keyword = "server_hop"
+	require_comms_key = TRUE
 
 /datum/world_topic/server_hop/Run(list/input)
 	var/expected_key = input[keyword]
@@ -182,7 +183,7 @@
 /datum/world_topic/voice_announce/Run(list/input)
 	var/datum/voice_announce/A = GLOB.voice_announce_list[input["voice_announce"]]
 	if(istype(A))
-		A.handle_announce(input["ogg_file"], input["uploaded_file"], input["ip"], text2num(input["duration"]))
+		A.handle_announce(input["ogg_file"], input["uploaded_file"], input["ip"], text2num(input["duration"]) SECONDS)
 
 // Cancels a voice announcement, given the ID of voice announcement datum, used if the user closes their browser window instead of uploading
 /datum/world_topic/voice_announce_cancel
@@ -223,8 +224,8 @@
 	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
-	.["revision"] = GLOB.revdata.commit
-	.["revision_date"] = GLOB.revdata.date
+	.["revision"] = GLOB.revdata?.commit
+	.["revision_date"] = GLOB.revdata?.date
 
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
@@ -261,4 +262,11 @@
 		// Shuttle status, see /__DEFINES/stat.dm
 		.["shuttle_timer"] = SSshuttle.emergency.timeLeft()
 		// Shuttle timer, in seconds
-	
+
+/datum/world_topic/systemmsg
+	keyword = "systemmsg"
+	require_comms_key = TRUE
+
+/datum/world_topic/systemmsg/Run(list/input)
+	to_chat(world, span_boldannounce(input["message"]))
+

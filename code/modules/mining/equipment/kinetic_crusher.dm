@@ -102,13 +102,13 @@
 		var/target_health = L.health
 		for(var/t in trophies)
 			var/obj/item/crusher_trophy/T = t
-			T.on_mark_detonation(target, user)
+			T.on_mark_detonation(target, user, src) //we pass in the kinetic crusher so that on_mark_detonation can use the properties of the crusher to reapply marks: see malformed_bone
 		if(!QDELETED(L))
 			if(!QDELETED(C))
 				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 			var/backstab_dir = get_dir(user, L)
-			var/def_check = L.getarmor(type = "bomb")
+			var/def_check = L.getarmor(type = BOMB)
 			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
 				if(!QDELETED(C))
 					C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
@@ -132,7 +132,7 @@
 	nodamage = TRUE
 	damage = 0 //We're just here to mark people. This is still a melee weapon.
 	damage_type = BRUTE
-	flag = "bomb"
+	flag = BOMB
 	range = 6
 	log_override = TRUE
 	var/obj/item/twohanded/required/kinetic_crusher/hammer_synced
@@ -154,7 +154,7 @@
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
 		new /obj/effect/temp_visual/kinetic_blast(M)
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 	..()
 
 //trophies
@@ -247,7 +247,7 @@
 	desc = "A still-searing wing from a magmawing watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "magma_wing"
 	gender = NEUTER
-	bonus_value = 5
+	bonus_value = 8
 
 /obj/item/crusher_trophy/blaster_tubes/magma_wing/effect_desc()
 	return "mark detonation to make the next destabilizer shot deal <b>[bonus_value]</b> damage"
@@ -265,7 +265,44 @@
 	name = "icewing watcher wing"
 	desc = "A carefully preserved frozen wing from an icewing watcher. Suitable as a trophy for a kinetic crusher."
 	icon_state = "ice_wing"
-	bonus_value = 8
+	bonus_value = 0
+
+/obj/item/crusher_trophy/watcher_wing/ice_wing/effect_desc()
+	return "mark detonation to freeze a creature in a block of ice for a period, preventing them from moving"
+
+/obj/item/crusher_trophy/watcher_wing/ice_wing/on_mark_detonation(mob/living/target, mob/living/user)
+	target.apply_status_effect(/datum/status_effect/ice_block_talisman)
+
+/datum/status_effect/ice_wing_talisman
+	id = "ice_wing_talisman"
+	duration = 25
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /obj/screen/alert/status_effect/ice_block_talisman
+	var/icon/cube
+
+/obj/screen/alert/status_effect/ice_wing_talisman
+	name = "Frozen Solid"
+	desc = "You're frozen inside an ice cube, and cannot move!"
+	icon_state = "frozen"
+
+/datum/status_effect/ice_wing_talisman/on_apply()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/owner_moved)
+	if(!owner.stat)
+		to_chat(owner, span_userdanger("You become frozen in a cube!"))
+	cube = icon('icons/effects/freeze.dmi', "ice_cube")
+	var/icon/size_check = icon(owner.icon, owner.icon_state)
+	cube.Scale(size_check.Width(), size_check.Height())
+	owner.add_overlay(cube)
+	return ..()
+
+/datum/status_effect/ice_wing_talisman/proc/owner_moved()
+	return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+
+/datum/status_effect/ice_wing_talisman/on_remove()
+	if(!owner.stat)
+		to_chat(owner, span_notice("The cube melts!"))
+	owner.cut_overlay(cube)
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 
 //legion
 /obj/item/crusher_trophy/legion_skull
@@ -412,3 +449,20 @@
 
 /obj/effect/temp_visual/hierophant/wall/crusher
 	duration = 75
+
+//Legion (Megafauna)
+/obj/item/crusher_trophy/malformed_bone
+	name = "malformed bone"
+	desc = "A piece of bone caught in the act of division. Suitable as a trophy for a kinetic crusher."
+	icon_state = "malf_bone"
+	denied_type = /obj/item/crusher_trophy/malformed_bone
+	bonus_value = 40
+
+/obj/item/crusher_trophy/malformed_bone/effect_desc()
+	return "mark detonation to have a <b>[bonus_value]</b>% chance to mark nearby targets"
+
+/obj/item/crusher_trophy/malformed_bone/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/required/kinetic_crusher/hammer_synced)
+    if(hammer_synced)
+        for(var/mob/living/L in oview(2,user))//fuck you and everything around you with a mark
+            if(prob(bonus_value) && !L.has_status_effect(STATUS_EFFECT_CRUSHERMARK))
+                L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK,hammer_synced)

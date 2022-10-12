@@ -17,6 +17,8 @@
 #define EGG			(1<<16) // for eggpeople, to nerf egg-cannibalism
 #define CHOCOLATE	(1<<17) //cat
 #define SEAFOOD		(1<<18)
+#define MICE		(1<<19) //disliked/liked by anything that dislikes/likes any of RAW, MEAT, or GROSS, except felinids
+#define NUTS 		(1<<20)
 
 #define DRINK_NICE	1
 #define DRINK_GOOD	2

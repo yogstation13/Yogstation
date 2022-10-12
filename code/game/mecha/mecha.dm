@@ -4,8 +4,8 @@
 #define MECHA_INT_TANK_BREACH	(1<<3)
 #define MECHA_INT_CONTROL_LOST	(1<<4)
 
-#define MELEE 1
-#define RANGED 2
+#define MECHA_MELEE 1
+#define MECHA_RANGED 2
 
 #define FRONT_ARMOUR 1
 #define SIDE_ARMOUR 2
@@ -35,7 +35,7 @@
 	var/overload_step_energy_drain_min = 100
 	max_integrity = 300 //max_integrity is base health
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	var/list/facing_modifiers = list(FRONT_ARMOUR = 1.5, SIDE_ARMOUR = 1, BACK_ARMOUR = 0.5)
 	var/equipment_disabled = 0 //disabled due to EMP
 	var/obj/item/stock_parts/cell/cell ///Keeps track of the mech's cell
@@ -52,6 +52,7 @@
 	var/lights_power = 6
 	var/last_user_hud = 1 // used to show/hide the mecha hud while preserving previous preference
 	var/completely_disabled = FALSE //stops the mech from doing anything
+	var/omnidirectional_attacks = FALSE //lets mech shoot anywhere, not just in front of it
 
 	var/bumpsmash = 0 //Whether or not the mech destroys walls by running into it.
 	//inner atmos
@@ -123,7 +124,7 @@
 	var/phasing_energy_drain = 200
 	var/phase_state = "" //icon_state when phasing
 	var/strafe = FALSE //If we are strafing
-
+	var/canstrafe = TRUE
 	var/nextsmash = 0
 	var/smashcooldown = 3	//deciseconds
 
@@ -235,10 +236,6 @@
 	else
 		normal_step_energy_drain = 500
 		step_energy_drain = normal_step_energy_drain
-	if(capacitor)
-		armor = armor.modifyRating(energy = (capacitor.rating * 5)) //Each level of capacitor protects the mech against emp by 5%
-	else //because we can still be hit without a cap, even if we can't move
-		armor = armor.setRating(energy = 0)
 
 
 ////////////////////////
@@ -502,7 +499,7 @@
 	if(src == target)
 		return
 	var/dir_to_target = get_dir(src,target)
-	if(dir_to_target && !(dir_to_target & dir))//wrong direction
+	if(!omnidirectional_attacks && dir_to_target && !(dir_to_target & dir))//wrong direction
 		return
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = safepick(view(3,target))
@@ -657,7 +654,12 @@
 
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
+	var/area/newarea = newloc.loc
 	if(newloc.flags_1 & NOJAUNT_1)
+		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
+		return
+
+	if(newarea.noteleport || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
 		return
 	if(phasing && get_charge() >= phasing_energy_drain && !throwing)
@@ -928,7 +930,7 @@
 
 	visible_message("[user] starts to climb into [name].")
 
-	if(do_after(user, enter_delay, target = src))
+	if(do_after(user, enter_delay, src))
 		if(obj_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
@@ -977,7 +979,7 @@
 
 	visible_message(span_notice("[user] starts to insert an MMI into [name]."))
 
-	if(do_after(user, 4 SECONDS, target = src))
+	if(do_after(user, 4 SECONDS, src))
 		if(!occupant)
 			return mmi_moved_inside(mmi_as_oc, user)
 		else
@@ -1015,7 +1017,7 @@
 		to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers and the AI.\n\
 		Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
 	else
-		to_chat(brainmob, "<b>Remember, you are still member of the crew act like it</b>")//yogs end
+		to_chat(brainmob, "<b>If you were a member of the crew, you still are! Do not use this new form as an excuse to break rules. Similarly, if you were an antagonist, you still are!</b>")//yogs end
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
 	GrantActions(brainmob)
@@ -1024,7 +1026,7 @@
 /obj/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
-	if(do_after(occupant,exit_delay, target = src))
+	if(do_after(occupant, exit_delay, src))
 		to_chat(occupant, "<span class='notice'>You exit the mech.<span>")
 		go_out()
 	else
@@ -1033,7 +1035,7 @@
 
 /obj/mecha/Exited(atom/movable/M, atom/newloc)
 	if(occupant && occupant == M) // The occupant exited the mech without calling go_out()
-		go_out(TRUE, newloc)
+		go_out(FALSE, newloc) // Voice of god breaks things (such as gibbing AI)
 
 	if(cell && cell == M)
 		cell = null
@@ -1076,18 +1078,22 @@
 			AI.remote_control = null
 			RemoveActions(occupant, 1)
 			mob_container = AI
-			newloc = GLOB.primary_data_core ? GLOB.primary_data_core : GLOB.data_cores[1]
-			if(!newloc)
-				to_chat(AI, span_userdanger("No cores available. Core code corrupted. Goodbye."))
-				qdel(AI)
-				return
+			newloc = null
+			if(GLOB.primary_data_core)
+				newloc = GLOB.primary_data_core
+			else if(LAZYLEN(GLOB.data_cores))
+				newloc = GLOB.data_cores[1]
+				
+			if(!istype(newloc, /obj/machinery/ai/data_core))
+				to_chat(AI, span_userdanger("No cores available. Core code corrupted."))
+				
 			is_ai_user = TRUE
 	else
 		return
 	var/mob/living/L = occupant
 	occupant = null //we need it null when forceMove calls Exited().
 	silicon_pilot = FALSE
-	if(mob_container.forceMove(newloc) && !is_ai_user)//ejecting mob container
+	if(mob_container.forceMove(newloc))//ejecting mob container
 		log_message("[mob_container] moved out.", LOG_MECHA)
 		L << browse(null, "window=exosuit")
 

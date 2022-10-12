@@ -51,7 +51,7 @@
 /obj/machinery/shower/AltClick(mob/living/user)
 	..()
 	to_chat(user, span_notice("You begin to adjust the temperature..."))
-	if(do_after(user, 50, target = src))
+	if(do_after(user, 5 SECONDS, src))
 		switch(current_temperature)
 			if(SHOWER_NORMAL)
 				current_temperature = SHOWER_FREEZING
@@ -64,6 +64,10 @@
 		add_fingerprint(user)
 	handle_mist()
 	return TRUE
+
+/obj/machinery/shower/examine(mob/user)
+	. = ..()
+	. += span_notice("You can <b>alt-click</b> to change the temperature.")
 
 /obj/machinery/shower/update_icon()
 	. = ..()

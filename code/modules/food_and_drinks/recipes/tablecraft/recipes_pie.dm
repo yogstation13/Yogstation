@@ -170,3 +170,13 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/pie/xemeatpie
 	subcategory = CAT_PIE
+
+/datum/crafting_recipe/food/frenchsilkpie
+	name = "French Silk Pie"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/pie/plain = 1,
+		/datum/reagent/consumable/sugar = 5,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/pie/frenchsilkpie
+	subcategory = CAT_PIE

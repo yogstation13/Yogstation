@@ -3,12 +3,10 @@
 	name = "Mutation"
 	desc = "A poorly understood genome that causes the holder's muscles to expand, inhibit speech and gives the person a bad skin condition."
 	quality = POSITIVE
-	locked = TRUE
 	difficulty = 16
 	text_gain_indication = span_notice("Your muscles hurt!")
-	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 25
-	instability = 65
+	instability = 50
 	class = MUT_OTHER
 	locked = TRUE
 
@@ -49,31 +47,39 @@
 	return COMPONENT_UPPERCASE_SPEECH
 
 /datum/mutation/human/genetics_hulk
-
 	name = "Hulk"
+	desc = "A seemingly dormant genome, but reacts violently to aggitation."
+	difficulty = 16
+	instability = 50
+	class = MUT_OTHER
+	locked = TRUE
 	quality = POSITIVE
 	get_chance = 10
 	lowest_value = 256 * 14
-	text_gain_indication = span_notice("You suddenly feel very angry.")
-	species_allowed = list("human") //no skeleton/lizard hulk
+	text_gain_indication = span_notice("You feel an anger welling inside you.")
 	health_req = 25
+
+/datum/mutation/human/genetics_hulk/on_losing(mob/living/carbon/human/owner)
+	. = ..()
+	dna.remove_mutation(ACTIVE_HULK)
+	return
 
 /datum/mutation/human/active_hulk
 	name = "Hulk State"
+	desc = "The single most angry genome ever seen. Mutating this will incite a one-time immediate Hulkformation in the mutatee."
 	quality = POSITIVE
+	instability = 30
 	class = MUT_OTHER
 	locked = TRUE
 	text_gain_indication = span_notice("Your muscles hurt!")
-	species_allowed = list("human") //no skeleton/lizard hulk
 	health_req = 1
 	var/health_based = 0
 	power = /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
 
-
 /datum/mutation/human/active_hulk/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.SetParalyzed(0)
+	owner.remove_CC() //RAGE RAGE RAGE, RISE RISE RISE
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
@@ -93,14 +99,18 @@
 	owner.physiology.stamina_mod = 0.3
 	owner.update_body()
 
-/datum/mutation/human/active_hulk/on_attack_hand(mob/living/carbon/human/owner, atom/target)
-	if(prob(3))
-		owner.Jitter(10)
-	owner.adjustStaminaLoss(-0.5)
-	return target.attack_hulk(owner)
+/datum/mutation/human/active_hulk/on_attack_hand(atom/target, proximity)
+	if(proximity) //no telekinetic hulk attack
+		if(prob(3))
+			owner.Jitter(10)
+		owner.adjustStaminaLoss(-0.5)
+		return target.attack_hulk(owner)
 
 /datum/mutation/human/active_hulk/on_life()
 	owner.adjustStaminaLoss(0.9)
+	if(owner.health < 0)
+		on_losing(owner)
+		to_chat(owner, span_danger("You suddenly feel very weak. Your rage dies out."))
 
 /datum/mutation/human/active_hulk/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -112,6 +122,7 @@
 	owner.dna.species.no_equip.Remove(SLOT_WEAR_SUIT, SLOT_W_UNIFORM)
 	owner.physiology.stamina_mod = initial(owner.physiology.stamina_mod)
 	owner.update_body_parts()
+	owner.dna.species.handle_mutant_bodyparts(owner)
 
 /datum/mutation/human/active_hulk/proc/handle_speech(original_message, wrapped_message)
 	var/message = wrapped_message[1]

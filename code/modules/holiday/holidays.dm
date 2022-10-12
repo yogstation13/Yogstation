@@ -98,7 +98,7 @@
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
-	end_day = 17
+	end_day = 15
 	begin_month = FEBRUARY
 	lobby_music = list(
 		"https://www.youtube.com/watch?v=cEwZpejd4rM", // Charlie Wilson - Forever Valentine
@@ -331,7 +331,6 @@
 		"https://www.youtube.com/watch?v=c5OdCqUWRyo", // Le Chant du Depart
 		"https://www.youtube.com/watch?v=wS10laW0rFo", // Chant du 9 Thermidor
 		"https://www.youtube.com/watch?v=o3wivTC1gOw", // Bonjour mon vieux Paris
-		"https://www.youtube.com/watch?v=8KdTChn-pEA" // Maréchal, nous voilà
 		)
 	mail_holiday = TRUE
 
@@ -422,7 +421,8 @@
 		"https://www.youtube.com/watch?v=bebUeWgNkAM", // Halloween Theme Michael Myers
 		"https://www.youtube.com/watch?v=qaQ6oJL1qQA", // Lucifer My Love - Twin Temple
 		"https://www.youtube.com/watch?v=vCYLUZyWeDs&t", // "Unforgiving Cold"- Godzilla NES Creepypasta OST
-		"https://www.youtube.com/watch?v=OPDDFdyKOgU" // Red Signal - The Bifrost Incident - The Mechanisms
+		"https://www.youtube.com/watch?v=OPDDFdyKOgU", // Red Signal - The Bifrost Incident - The Mechanisms
+		"https://www.youtube.com/watch?v=d1itZiNY5pY" // Todd Rollins - The Boogie Man
 		)
 
 /datum/holiday/halloween/greet()
@@ -593,7 +593,8 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://www.youtube.com/watch?v=kfZtNVEqsBs",  // Christopher Lee - Jingle Hell
 		"https://soundcloud.com/garym03062/beacons-in-the-darkness",	// Gary McGath - Beacons in the Darkness
 		"https://www.youtube.com/watch?v=KGEfBop0nkI",	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
-		"https://www.youtube.com/watch?v=1twga61Kd14"	// Julia Ecklar - #1 - Christmas Time
+		"https://www.youtube.com/watch?v=1twga61Kd14",	// Julia Ecklar - #1 - Christmas Time
+		"https://www.youtube.com/watch?v=imjMjnczqkU"	// Pete Gold - Ive Been a Bad Boy
 		)
 	mail_holiday = TRUE
 

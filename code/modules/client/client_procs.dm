@@ -160,59 +160,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	..()	//redirect to hsrc.Topic()
 
-/client/proc/do_discord_link(hash)
-	if(!CONFIG_GET(flag/sql_enabled))
-		alert(src, "Discord account linking requires the SQL backend to be running.")
-		winset(src, null, "command=.reconnect")
-		return
-
-	if(!SSdiscord)
-		alert(src, "The server is still starting, please try again later.")
-		winset(src, null, "command=.reconnect")
-		return
-
-	var/stored_id = SSdiscord.lookup_id(ckey)
-	if(stored_id)
-		alert(src, "You already have the Discord Account [stored_id] linked to [ckey]. If you need to have this reset, please contact an admin!","Already Linked")
-		winset(src, null, "command=.reconnect")
-		return
-
-	//The hash is directly appended to the request URL, this is to prevent exploits in URL parsing with funny urls
-	// such as http://localhost/stuff:user@google.com/ so we restrict the valid characters to all numbers and the letters from a to f
-	if(regex(@"[^\da-fA-F]").Find(hash))
-		alert(src, "Invalid hash \"[hash]\"")
-		winset(src, null, "command=.reconnect")
-		return
-
-	//Since this action is passive as in its executed as you login, we need to make sure the user didnt just click on some random link and he actually wants to link
-	var/res = input(src, "You are about to link your BYOND and Discord account. Do not proceed if you did not initiate the linking process. Input 'proceed' and press ok to proceed") as text|null
-	if(lowertext(res) != "proceed")
-		alert(src, "Linking process aborted")
-		//Reconnecting clears out the connection parameters, this is so the user doesn't get the prompt to link their account if they later click replay
-		winset(src, null, "command=.reconnect")
-		return
-
-	var/datum/http_request/request = new()
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/webhook_address)]?key=[CONFIG_GET(string/webhook_key)]&method=verify&data=[json_encode(list("ckey" = ckey, "hash" = hash))]")
-	request.begin_async()
-	UNTIL(request.is_complete() || !src)
-	if(!src)
-		return
-	var/datum/http_response/response = request.into_response()
-	var/data = json_decode(response.body)
-	if(istext(data["response"]))
-		alert(src,"Internal Server Error")
-		winset(src, null, "command=.reconnect")
-		return
-
-	if(data["response"]["status"] == "err")
-		alert(src, "Could not link account: [data["response"]["message"]]")
-	else
-		SSdiscord.link_account(ckey, data["response"]["message"])
-		alert(src, "Linked to account [data["response"]["message"]]")
-	winset(src, null, "command=.reconnect")
-
-
 /client/proc/is_content_unlocked()
 	if(!is_donator(src)) // yogs - changed this to is_donator so admins get donor perks
 		to_chat(src, "Become a BYOND member to access member-perks and features, as well as support the engine that makes this game possible. Only 10 bucks for 3 months! <a href=\"https://secure.byond.com/membership\">Click Here to find out more</a>.")
@@ -294,32 +241,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	tgui_panel.send_connected()
 
 	GLOB.ahelp_tickets.ClientLogin(src)
-	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
-	//Admin Authorisation
-	holder = GLOB.admin_datums[ckey]
-	if(holder)
-		if(!holder.associate(src, FALSE)) // Prevent asking for MFA at this point, it likely won't work
-			holder = null
-		connecting_admin = TRUE
-	else if(GLOB.deadmins[ckey])
-		add_verb(src, /client/proc/readmin)
-		connecting_admin = TRUE
-	if(CONFIG_GET(flag/autoadmin))
-		if(!GLOB.admin_datums[ckey])
-			var/datum/admin_rank/autorank
-			for(var/datum/admin_rank/R in GLOB.admin_ranks)
-				if(R.name == CONFIG_GET(string/autoadmin_rank))
-					autorank = R
-					break
-			if(!autorank)
-				to_chat(world, "Autoadmin rank not found")
-			else
-				new /datum/admins(autorank, ckey)
-	if(CONFIG_GET(flag/enable_localhost_rank) && !connecting_admin)
-		var/localhost_addresses = list("127.0.0.1", "::1")
-		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admin_rank/localhost_rank = new("!localhost!", R_EVERYTHING, R_DBRANKS, R_EVERYTHING) //+EVERYTHING -DBRANKS *EVERYTHING
-			new /datum/admins(localhost_rank, ckey, 1, 1)
+	var/connecting_admin = GLOB.permissions.load_permissions_for(src) //because de-admined admins connecting should be treated like admins.
+	if(connecting_admin && !holder)
+		stack_trace("[ckey] is an admin but has no holder")
 
 	// yogs start - mentor stuff
 	if(ckey in GLOB.mentor_datums)
@@ -327,7 +251,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		src.mentor_datum = mentor
 		src.add_mentor_verbs()
 		if(!check_rights_for(src, R_ADMIN,0)) // don't add admins to mentor list.
-			GLOB.mentors += src
+			GLOB.mentors |= src
+
 	// yogs end
 
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
@@ -381,12 +306,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// yogs start - Donor stuff
 	if(ckey in GLOB.donators)
 		prefs.unlock_content |= 2
-		//add_donor_verbs()
 	else
-		prefs.unlock_content &= ~2
+		prefs.unlock_content &= ~2 // is_donator relies on prefs.unlock_content
+
+	if(is_donator(src))
+		src.add_donator_verbs()
+	else
 		if(prefs.yogtoggles & QUIET_ROUND)
 			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
+
 	// yogs end
 	. = ..()	//calls mob.Login()
 
@@ -554,11 +483,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//Client needs to exists for what follows
 	. = ..()
 
-	//Linking process
-	var/list/params = params2list(tdata)
-	if(params["discordlink"])
-		do_discord_link(params["discordlink"])
-
 	var/datum/connection_log/CL = GLOB.connection_logs[ckey]
 	if(CL)
 		CL.login()
@@ -576,8 +500,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		adminGreet(1)
 		holder.owner = null
-		GLOB.admins -= src
-		if (!GLOB.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
+		GLOB.permissions.admins -= src
+		if (!GLOB.permissions.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
 			var/cheesy_message = pick(
 				"I have no admins online!",\
 				"I'm all alone :(",\
@@ -594,6 +518,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			)
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
+		qdel(holder)
+	if(ckey in GLOB.permissions.deadmins)
+		qdel(GLOB.permissions.deadmins[ckey])
 
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
@@ -641,10 +568,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		related_accounts_cid += "[query_get_related_cid.item[1]], "
 	qdel(query_get_related_cid)
 	var/admin_rank = "Player"
-	if (src.holder && src.holder.rank)
-		admin_rank = src.holder.rank.name
+	if (src.holder)
+		admin_rank = src.holder.rank_name()
 	else
-		if (!GLOB.deadmins[ckey] && check_randomizer(connectiontopic))
+		if (!GLOB.permissions.deadmins[ckey] && check_randomizer(connectiontopic))
 			return
 	var/new_player
 	var/datum/DBQuery/query_client_in_db = SSdbcore.NewQuery(
@@ -655,7 +582,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		qdel(query_client_in_db)
 		return
 	if(!query_client_in_db.NextRow())
-		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey])
+		if (CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.permissions.deadmins[ckey])
 			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins(span_adminnotice("Failed Login: [key] - New account attempting to connect during panic bunker"))
 			to_chat(src, CONFIG_GET(string/panic_bunker_message))

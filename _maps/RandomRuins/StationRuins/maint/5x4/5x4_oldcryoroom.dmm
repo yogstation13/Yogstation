@@ -11,6 +11,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
+"f" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/showroomfloor,
+/area/template_noop)
 "g" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -44,20 +51,20 @@
 	icon_state = "platingdmg1"
 	},
 /area/template_noop)
-"u" = (
-/obj/structure/table/glass,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/template_noop)
-"z" = (
+"p" = (
 /obj/effect/turf_decal/stripes/end{
 	dir = 4;
 	icon_state = "warn_end"
 	},
-/obj/structure/frame,
+/obj/structure/frame/machine,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
+/area/template_noop)
+"u" = (
+/obj/structure/table/glass,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "C" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
@@ -97,13 +104,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
-"S" = (
-/obj/effect/turf_decal/bot_red,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/frame,
-/turf/open/floor/plasteel/showroomfloor,
-/area/template_noop)
 "T" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -120,7 +120,7 @@
 (1,1,1) = {"
 u
 W
-z
+p
 n
 "}
 (2,1,1) = {"
@@ -142,7 +142,7 @@ o
 b
 "}
 (5,1,1) = {"
-S
+f
 g
 E
 O

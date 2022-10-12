@@ -17,7 +17,7 @@
 /area/shuttle/escape)
 "ae" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/computer/communications,
+/obj/machinery/computer/communications/unlocked,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "af" = (
@@ -1706,11 +1706,11 @@
 "cX" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/reagent_containers/hypospray/medipen,
-/obj/item/reagent_containers/hypospray/medipen{
+/obj/item/reagent_containers/autoinjector/medipen,
+/obj/item/reagent_containers/autoinjector/medipen{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen{
+/obj/item/reagent_containers/autoinjector/medipen{
 	pixel_y = -6
 	},
 /obj/item/reagent_containers/glass/bottle/charcoal,

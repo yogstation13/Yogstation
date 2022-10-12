@@ -302,7 +302,18 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, span_notice("<B>Welcome to [station_name()], enjoy your stay!</B>"))
-	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
+	
+	var/random_sound = SSstation.announcer.get_rand_welcome_sound()
+	var/default_sound = SSstation.default_announcer.get_rand_welcome_sound()
+	if(istype(SSstation.announcer, /datum/centcom_announcer/default))
+		default_sound = random_sound
+
+	for(var/mob/P in GLOB.player_list)
+		if(P.client && P.client.prefs)
+			if(P.client.prefs.disable_alternative_announcers)
+				SEND_SOUND(P, sound(default_sound))
+				continue
+		SEND_SOUND(P, sound(random_sound))
 
 	current_state = GAME_STATE_PLAYING
 	webhook_send_roundstatus("ingame") //yogs - webhook support
@@ -315,9 +326,6 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
 
 	PostSetup()
-
-	to_chat(world, "<h2>The way the AI works has changed. These changes are relevant if you have an objective to steal/destroy the AI, are a borg, is the RD, or is the network admin. \
-	Please read the following: https://github.com/yogstation13/Yogstation/pull/12815 </h2>")
 
 	return TRUE
 
@@ -421,7 +429,7 @@ SUBSYSTEM_DEF(ticker)
 			if(N.new_character)
 				to_chat(N, "Captainship not forced on anyone.")
 			CHECK_TICK
-	
+
 	if(no_bartender && !(SSevents.holidays && SSevents.holidays["St. Patrick's Day"]))
 		SSjob.random_bar_init()
 
@@ -459,7 +467,7 @@ SUBSYSTEM_DEF(ticker)
 			m = pick(memetips)
 
 	if(m)
-		to_chat(world, span_purple("<b>Tip of the round: </b>[html_encode(m)]"))
+		to_chat(world, span_purple(examine_block("<b>Tip of the round: </b>[html_encode(m)]")))
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	if(!queued_players.len)
@@ -662,7 +670,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
 
-	var/skip_delay = check_rights()
+	var/skip_delay = check_rights(show_msg=FALSE)
 	if(delay_end && !skip_delay)
 		to_chat(world, span_boldannounce("An admin has delayed the round end."))
 		return
@@ -730,5 +738,3 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
-	save_admin_data()
-	update_everything_flag_in_db()

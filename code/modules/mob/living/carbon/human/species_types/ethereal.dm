@@ -10,19 +10,30 @@
 	mutantstomach = /obj/item/organ/stomach/ethereal
 	exotic_blood = /datum/reagent/consumable/liquidelectricity //Liquid Electricity. fuck you think of something better gamer
 	siemens_coeff = 0.5 //They thrive on energy
-	brutemod = 1.25 //They're weak to punches
+	brutemod = 1.5 //Don't rupture their membranes
+	burnmod = 0.8 //Bodies are resilient to heat and energy
+	heatmod = 0.5 //Bodies are resilient to heat and energy
+	coldmod = 2.0 //Don't extinguish the stars
+	speedmod = -0.1 //Light and energy move quickly
+	punchdamagehigh  = 11 //Fire hand more painful
+	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
 	payday_modifier = 0.7 //Neutrally useful to NT
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
-	species_traits = list(DYNCOLORS, AGENDER, NO_UNDERWEAR, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE) // i mean i guess they have blood so they can have wounds too
+	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE) // i mean i guess they have blood so they can have wounds too
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER)
+	mutant_bodyparts = list("ethereal_mark")
+	default_features = list("ethereal_mark" = "Eyes")
 	species_language_holder = /datum/language_holder/ethereal
+	deathsound = 'yogstation/sound/voice/ethereal/deathsound.ogg'
+	screamsound = list('sound/voice/ethereal/ethereal_scream_1.ogg', 'sound/voice/ethereal/ethereal_scream_2.ogg', 'sound/voice/ethereal/ethereal_scream_3.ogg')
 	sexes = FALSE //no fetish content allowed
 	toxic_food = NONE
 	inert_mutation = SHOCKTOUCH
 	hair_color = "fixedmutcolor"
 	hair_alpha = 140
+	swimming_component = /datum/component/swimming/ethereal
 	var/current_color
 	var/EMPeffect = FALSE
 	var/emageffect = FALSE
@@ -129,8 +140,41 @@
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
 			H.throw_alert("ethereal_charge", /obj/screen/alert/etherealcharge, 1)
 			brutemod = 1.5
+		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
+			H.throw_alert("ethereal_overcharge", /obj/screen/alert/ethereal_overcharge, 1)
+			brutemod = 1.5
+		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
+			H.throw_alert("ethereal_overcharge", /obj/screen/alert/ethereal_overcharge, 2)
+			brutemod = 1.75
+			if(prob(10)) //10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
+				discharge_process(H)
 		else
 			H.clear_alert("ethereal_charge")
+			H.clear_alert("ethereal_overcharge")
+
+/datum/species/ethereal/proc/discharge_process(mob/living/carbon/human/H)
+	to_chat(H, "<span class='warning'>You begin to lose control over your charge!</span>")
+	H.visible_message("<span class='danger'>[H] begins to spark violently!</span>")
+	var/static/mutable_appearance/overcharge //shameless copycode from lightning spell copied from another codebase copied from another codebase
+	overcharge = overcharge || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
+	H.add_overlay(overcharge)
+	if(do_mob(H, H, 50, 1))
+		H.flash_lighting_fx(5, 7, current_color)
+		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+		playsound(H, 'sound/magic/lightningshock.ogg', 100, TRUE, extrarange = 5)
+		H.cut_overlay(overcharge)
+		tesla_zap(H, 2, (stomach.crystal_charge / ETHEREAL_CHARGE_SCALING_MULTIPLIER) * 20, TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_ALLOW_DUPLICATES)
+		if(istype(stomach))
+			stomach.adjust_charge(ETHEREAL_CHARGE_FULL - stomach.crystal_charge)
+		to_chat(H, "<span class='warning'>You violently discharge energy!</span>")
+		H.visible_message("<span class='danger'>[H] violently discharges energy!</span>")
+		if(prob(10)) //chance of developing heart disease to dissuade overcharging oneself
+			var/datum/disease/D = new /datum/disease/heart_failure
+			H.ForceContractDisease(D)
+			to_chat(H, "<span class='userdanger'>You're pretty sure you just felt your heart stop for a second there..</span>")
+			H.playsound_local(H, 'sound/effects/singlebeat.ogg', 100, 0)
+		H.Paralyze(100)
+		return
 
 /datum/species/ethereal/proc/get_charge(mob/living/carbon/H) //this feels like it should be somewhere else. Eh?
 	var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)

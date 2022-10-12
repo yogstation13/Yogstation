@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	var/desc = "Ancient Ratvarian lore. This piece seems particularly mundane."
 	var/list/invocations = list() //Spoken over time in the ancient language of Ratvar. See clock_unsorted.dm for more details on the language and how to make it.
 	var/chanting = FALSE //If the invocation's words are being spoken
-	var/channel_time = 10 //In deciseconds, how long a ritual takes to chant
+	var/channel_time = 1 SECONDS //In seconds, how long a ritual takes to chant
 	var/power_cost = 5 //In watts, how much a scripture takes to invoke
 	var/special_power_text //If the scripture can use additional power to have a unique function, use this; put POWERCOST here to display the special power cost.
 	var/special_power_cost //This should be a define in __DEFINES/clockcult.dm, such as ABSCOND_ABDUCTION_COST
@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	if(chant_slowdown)
 		invoker.add_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT, update=TRUE, priority=100, multiplicative_slowdown=chant_slowdown)
 	chant()
-	if(!do_after(invoker, channel_time, target = invoker, extra_checks = CALLBACK(src, .proc/check_special_requirements), stayStill = no_mobility))
+	if(!do_after(invoker, channel_time, invoker, extra_checks = CALLBACK(src, .proc/check_special_requirements), stayStill = no_mobility))
 		slab.busy = null
 		invoker.remove_movespeed_modifier(MOVESPEED_ID_CLOCKCHANT)
 		chanting = FALSE
@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 
 /datum/clockwork_scripture/channeled/scripture_effects()
 	for(var/i in 1 to chant_amount)
-		if(!do_after(invoker, chant_interval, target = invoker, extra_checks = CALLBACK(src, .proc/can_recite)))
+		if(!do_after(invoker, chant_interval, invoker, extra_checks = CALLBACK(src, .proc/can_recite)))
 			break
 		clockwork_say(invoker, text2ratvar(pick(chant_invocations)), whispered)
 		if(!chant_effects(i))

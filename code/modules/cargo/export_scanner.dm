@@ -21,6 +21,7 @@
 	if(!istype(O) || !proximity)
 		return
 
+	playsound(src, 'sound/effects/checkout.ogg', 30)
 	if(istype(O, /obj/machinery/computer/cargo))
 		var/obj/machinery/computer/cargo/C = O
 		if(!C.requestonly)

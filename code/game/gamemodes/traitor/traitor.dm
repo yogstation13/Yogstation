@@ -132,7 +132,7 @@
 		if(!age_check(applicant.client))
 			continue
 		potential_candidates += applicant
-	if(!potential_candidates)
+	if(!potential_candidates.len)
 		message_admins("Failed to find new antag after original one left! Check the antag balance please.")
 		return
 	var/mob/living/carbon/human/picked = pick(potential_candidates)

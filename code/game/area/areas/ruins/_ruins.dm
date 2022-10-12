@@ -10,7 +10,7 @@
 
 
 /area/ruin/unpowered
-	always_unpowered = FALSE
+	always_unpowered = TRUE
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE

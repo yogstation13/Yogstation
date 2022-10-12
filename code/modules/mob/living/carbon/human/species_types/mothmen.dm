@@ -12,12 +12,18 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
-	liked_food = VEGETABLES | DAIRY | CLOTH
-	disliked_food = FRUIT | GROSS
-	toxic_food = MEAT | RAW | SEAFOOD
+	liked_food = VEGETABLES | SUGAR
+	disliked_food = DAIRY | GROSS
+	toxic_food = MEAT | RAW | SEAFOOD | MICE
+	burnmod = 1.25 //Fluffy and flammable
+	brutemod = 0.9 //Evasive buggers
+	punchdamagehigh = 9 //Weird fluffy bug fist
+	punchstunthreshold = 10 //No stun punches
 	mutanteyes = /obj/item/organ/eyes/moth
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/mothmen
+
+	screamsound = 'sound/voice/moth/scream_moth.ogg'
 
 /datum/species/moth/regenerate_organs(mob/living/carbon/C,datum/species/old_species,replace_current=TRUE)
 	. = ..()
@@ -46,10 +52,11 @@
 		handle_mutant_bodyparts(H)
 
 /datum/species/moth/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	. = ..()
 	if(chem.type == /datum/reagent/toxin/pestkiller)
 		H.adjustToxLoss(3)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM)
+		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
+		return FALSE
+	return ..()
 
 /datum/species/moth/check_species_weakness(obj/item/weapon, mob/living/attacker)
 	if(istype(weapon, /obj/item/melee/flyswatter))

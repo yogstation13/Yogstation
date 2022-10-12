@@ -131,7 +131,12 @@
 		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
 			best_item = I
 			best_quality = I.toolspeed
-
+//yogs start -- fucking stupid but modular holotool patch
+	if(quality == TOOL_MULTITOOL)
+		if(istype(best_item,/obj/item/holotool))
+			var/obj/item/holotool/H = best_item
+			return H.internal_multitool
+//yogs end
 	return best_item
 
 
@@ -292,22 +297,25 @@
 
 //for when you want the item to end up on the ground
 //will force move the item to the ground and call the turf's Entered
-/mob/proc/dropItemToGround(obj/item/I, force = FALSE)
-	return doUnEquip(I, force, drop_location(), FALSE)
+/mob/proc/dropItemToGround(obj/item/I, force = FALSE, silent = FALSE)
+	SEND_SIGNAL(I, COMSIG_ITEM_PREDROPPED, src)
+	. = doUnEquip(I, force, drop_location(), FALSE, silent = silent)
+	I.do_drop_animation(src)
 
 //for when the item will be immediately placed in a loc other than the ground
-/mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE)
-	return doUnEquip(I, force, newloc, FALSE)
+/mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE)
+	. = doUnEquip(I, force, newloc, FALSE, silent = silent)
+	I.do_drop_animation(src)
 
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D
 /mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE)
-	return doUnEquip(I, force, null, TRUE, idrop)
+	return doUnEquip(I, force, null, TRUE, idrop, silent = TRUE)
 
 //DO NOT CALL THIS PROC
 //use one of the above 3 helper procs
 //you may override it, but do not modify the args
-/mob/proc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
+/mob/proc/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE, silent = FALSE) //Force overrides TRAIT_NODROP for things like wizarditis and admin undress.
 													//Use no_move if the item is just gonna be immediately moved afterward
 													//Invdrop is used to prevent stuff in pockets dropping. only set to false if it's going to immediately be replaced
 	PROTECTED_PROC(TRUE)
@@ -332,7 +340,7 @@
 				I.moveToNullspace()
 			else
 				I.forceMove(newloc)
-		I.dropped(src)
+		I.dropped(src, silent)
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.

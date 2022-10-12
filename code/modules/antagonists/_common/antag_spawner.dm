@@ -274,7 +274,7 @@
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	var/obj/effect/dummy/crawling/holder = new /obj/effect/dummy/crawling(T) //yogs start
-	//var/obj/effect/dummy/phased_mob/slaughter/holder = new /obj/effect/dummy/phased_mob/slaughter(T)
+	//var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob(T)
 	var/mob/living/simple_animal/slaughter/S = new demon_type(holder)
 	//S.holder = holder //yogs end
 	S.key = C.key

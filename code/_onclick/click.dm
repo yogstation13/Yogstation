@@ -194,7 +194,7 @@
 				continue
 			closed[target] = TRUE
 			if(isturf(target) || isturf(target.loc) || (target in direct_access)) //Directly accessible atoms
-				if(Adjacent(target) || (tool && CheckToolReach(src, target, tool.reach))) //Adjacent or reaching attacks
+				if(Adjacent(target) || (tool && CheckToolReach(src, target, tool.weapon_stats[REACH]))) //Adjacent or reaching attacks
 					return TRUE
 
 			if (!target.loc)

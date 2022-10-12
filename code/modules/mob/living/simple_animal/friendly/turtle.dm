@@ -25,7 +25,6 @@
 	speed = 8
 	glide_size = 2
 	can_be_held = TRUE
-
 	do_footstep = TRUE
 
 	var/turtle_hide_max = 25 //The time spent hiding in its shell

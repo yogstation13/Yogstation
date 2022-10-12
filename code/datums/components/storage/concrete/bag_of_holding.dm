@@ -21,12 +21,19 @@
 		return
 	if(istype(loccheck.loc, /area/fabric_of_reality))
 		to_chat(user, span_danger("You can't do that here!"))
+	if(user.has_status_effect(STATUS_EFFECT_VOIDED))
+		user.remove_status_effect(STATUS_EFFECT_VOIDED)
 	to_chat(user, span_danger("The Bluespace interfaces of the two devices catastrophically malfunction!"))
 	qdel(W)
 	playsound(loccheck,'sound/effects/supermatter.ogg', 200, 1)
 
+	to_chat(user, span_danger("You are pulled into the bluespace disruption!")) // No escaping
+	user.forceMove(loccheck)
+	user.Paralyze(10)
+
 	message_admins("[ADMIN_LOOKUPFLW(user)] detonated a bag of holding at [ADMIN_VERBOSEJMP(loccheck)].")
 	log_game("[key_name(user)] detonated a bag of holding at [loc_name(loccheck)].")
+	log_bomber(key_name(user), "detonated a bag of holding at", src, null, FALSE)
 
 	for(var/turf/T in range(2,loccheck))
 		if(istype(T, /turf/open/space/transit))

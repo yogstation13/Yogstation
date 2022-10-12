@@ -62,7 +62,7 @@
 	special_screen_obj = "honked_nose"
 	special_screen_replace = FALSE
 
-/datum/mood_event/perform_cpr
+/datum/mood_event/saved_life
 	description = "<span class='nicegreen'>It feels good to save a life.</span>\n"
 	mood_change = 6
 	timeout = 5 MINUTES
@@ -169,6 +169,19 @@
 /datum/mood_event/hope_lavaland
 	description = "<span class='nicegreen'>What a peculiar emblem.  It makes me feel hopeful for my future.</span>\n"
 	mood_change = 5
+
+/datum/mood_event/drippy
+	description = "<span class='nicegreen'>My self confidence, unstopping. My style, unbreakable.</span>\n"
+	mood_change = 5
+
+/datum/mood_event/dripjordan
+	description = "<span class='nicegreen'>These shoes make me feel like I could really push myself to victory!</span>\n"
+	mood_change = 5
+
+/datum/mood_event/motivation
+	description = "<span class='nicegreen'>Sitting in that chair for so long really got me motivated.</span>\n"
+	mood_change = 10
+	timeout = 4 MINUTES
 
 /datum/mood_event/area
 	description = "" //Fill this out in the area

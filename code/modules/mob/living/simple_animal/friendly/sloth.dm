@@ -18,11 +18,12 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	melee_damage_lower = 18
 	melee_damage_upper = 18
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	health = 50
 	maxHealth = 50
 	speed = 10
 	glide_size = 2
-
+	can_be_held = TRUE
 	do_footstep = TRUE
 
 

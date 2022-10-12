@@ -43,7 +43,7 @@
 
 /obj/item/seeds/kudzu/attack_self(mob/user)
 	user.visible_message(span_danger("[user] begins throwing seeds on the ground..."))
-	if(do_after(user, 5 SECONDS, needhand = TRUE, target = user.drop_location(), progress = TRUE))
+	if(do_after(user, 5 SECONDS, user.drop_location()))
 		plant(user)
 		to_chat(user, span_notice("You plant the kudzu. You monster."))
 
@@ -52,7 +52,7 @@
 	var/text_string = ""
 	for(var/datum/spacevine_mutation/SM in mutations)
 		text_string += "[(text_string == "") ? "" : ", "][SM.name]"
-	text += "\n- Plant Mutations: [(text_string == "") ? "None" : text_string]"
+	text += "\n Plant Mutations: [(text_string == "") ? "None" : text_string]"
 	return text
 
 /obj/item/seeds/kudzu/on_chem_reaction(datum/reagents/S)

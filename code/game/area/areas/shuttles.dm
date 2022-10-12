@@ -11,6 +11,8 @@
 	icon_state = "shuttle"
 	// Loading the same shuttle map at a different time will produce distinct area instances.
 	unique = FALSE
+	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
+	var/list/gem_payout = list()
 
 /area/shuttle/Initialize()
 	if(!canSmoothWithAreas)
@@ -136,6 +138,10 @@
 
 /area/shuttle/supply
 	name = "Supply Shuttle"
+	blob_allowed = FALSE
+
+/area/shuttle/ai
+	name = "AI Ship Shuttle"
 	blob_allowed = FALSE
 
 /area/shuttle/escape

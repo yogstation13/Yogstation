@@ -29,7 +29,6 @@
 /obj/item/organ/tail/cat/Remove(mob/living/carbon/human/H,  special = 0)
 	..()
 	if(istype(H))
-		H.dna.features["tail_human"] = "None"
 		H.dna.species.mutant_bodyparts -= "tail_human"
 		color = H.hair_color
 		H.update_body()
@@ -64,6 +63,10 @@
 		tail_type = H.dna.features["tail_lizard"]
 		spines = H.dna.features["spines"]
 		H.update_body()
+
+/obj/item/organ/tail/lizard/fake
+	name = "fabricated lizard tail"
+	desc = "A fabricated severed lizard tail. This one's made of synthflesh. Probably not usable for lizard wine."
 
 /obj/item/organ/tail/polysmorph
 	name = "polysmorph tail"

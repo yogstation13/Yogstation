@@ -13,7 +13,14 @@
 		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
 
-	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+	. = list("<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+
+	var/vampDesc = ReturnVampExamine(user) // Fulpstation Bloodsuckers edit STARTS
+	var/vassDesc = ReturnVassalExamine(user)
+	if(vampDesc != "")
+		. += vampDesc
+	if(vassDesc != "")
+		. += vassDesc // Fulpstation Bloodsucker edit ENDS
 
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
@@ -83,7 +90,7 @@
 	if(!(SLOT_GLASSES in obscured))
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
-		else if(eye_color == BLOODCULT_EYE && iscultist(src) && HAS_TRAIT(src, CULT_EYES))
+		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
 			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears
@@ -144,7 +151,7 @@
 		var/damage_text
 		if(HAS_TRAIT(body_part, TRAIT_DISABLED_BY_WOUND))
 			continue // skip if it's disabled by a wound (cuz we'll be able to see the bone sticking out!)
-		if(!(body_part.get_damage(include_stamina = FALSE) >= body_part.max_damage)) //we don't care if it's stamcritted
+		if(!(body_part.get_damage(stamina = FALSE) >= body_part.max_damage)) //we don't care if it's stamcritted
 			damage_text = "limp and lifeless"
 		else
 			damage_text = (body_part.brute_dam >= body_part.burn_dam) ? body_part.heavy_brute_msg : body_part.heavy_burn_msg
@@ -199,13 +206,28 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
+				
+	if(surgeries.len)
+		var/surgery_text
+		for(var/datum/surgery/S in surgeries)
+			if(!surgery_text)
+				surgery_text = "[t_He] [t_is] being operated on in \the [S.operated_bodypart]"
+			else
+				surgery_text += ", [S.operated_bodypart]"
+		msg += "[surgery_text].\n"
 
+	switch(fire_stacks)
+		if(1 to INFINITY)
+			msg += "[t_He] [t_is] covered in something flammable.\n"
+		if(-1)
+			msg += "[t_He] look[p_s()] a little damp.\n"
+		if(-2 to -4)
+			msg += "[t_He] look[p_s()] a little soaked.\n"
+		if(-5 to -INFINITY)
+			msg += "[t_He] look[p_s()] drenched.\n"
 
-	if(fire_stacks > 0)
-		msg += "[t_He] [t_is] covered in something flammable.\n"
-	if(fire_stacks < 0)
-		msg += "[t_He] look[p_s()] a little soaked.\n"
-
+	if(visible_tumors)
+		msg += "[t_He] [t_has] has growths all over [t_his] body...\n"
 
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
@@ -225,7 +247,15 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
-	switch(get_blood_state())
+
+	var/apparent_blood_volume = blood_volume
+	if(skin_tone == "albino")
+		apparent_blood_volume -= 150 // enough to knock you down one tier
+	// Fulp edit START - Bloodsuckers
+	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
+	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
+		msg += bloodDesc
+	else switch(get_blood_state())
 		if(BLOOD_OKAY)
 			msg += "[t_He] [t_has] pale skin.\n"
 		if(BLOOD_BAD)
@@ -234,7 +264,7 @@
 			msg += "<span class='deadsay'><b>[t_He] resemble[p_s()] a crushed, empty juice pouch.</b></span>\n"
 
 	if(bleedsuppress)
-		msg += "[t_He] [t_is] embued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
+		msg += "[t_He] [t_is] imbued with a power that defies bleeding.\n" // only statues and highlander sword can cause this so whatever
 	else if(is_bleeding())
 		var/list/obj/item/bodypart/bleeding_limbs = list()
 		var/list/obj/item/bodypart/grasped_limbs = list()
@@ -282,7 +312,10 @@
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
 	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+		if(getorganslot(ORGAN_SLOT_EYES))
+			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
+		else
+			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
 
 	if(!appears_dead)
 		if(drunkenness && !skipface) //Drunkenness
@@ -314,8 +347,11 @@
 					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "empath", /datum/mood_event/sad_empath, src)
 				if (HAS_TRAIT(src, TRAIT_BLIND))
 					msg += "[t_He] appear[p_s()] to be staring off into space.\n"
-				if (HAS_TRAIT(src, TRAIT_DEAF))
+				//Yogs -- Fixing being unable to detect some varieties of deafness
+				var/obj/item/organ/ears/ears = src.getorganslot(ORGAN_SLOT_EARS)
+				if (HAS_TRAIT(src, TRAIT_DEAF) || !istype(ears) || ears.deaf)
 					msg += "[t_He] appear[p_s()] to not be responding to noises.\n"
+				//Yogs end
 
 			msg += "</span>"
 
@@ -407,7 +443,7 @@
 							"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user) && traitstring)
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span><br>"
-	. += "*---------*</span>"
+	. += "</span>"
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
@@ -432,7 +468,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	
-	. = list("<span class='info'>*---------*\nThis is <EM>[name]</EM>!")
+	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
 
@@ -492,7 +528,7 @@
 	if(!(SLOT_GLASSES in obscured))
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
-		else if(eye_color == BLOODCULT_EYE && iscultist(src) && HAS_TRAIT(src, CULT_EYES))
+		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
 			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears
@@ -536,4 +572,4 @@
 	if (length(msg))
 		. += span_warning("[msg.Join("")]")
 
-	. += "*---------*</span>"
+	. += "</span>"

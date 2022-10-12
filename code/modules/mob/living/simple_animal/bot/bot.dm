@@ -296,7 +296,7 @@
 			to_chat(user, span_notice("The maintenance panel is now [open ? "opened" : "closed"]."))
 		else
 			to_chat(user, span_warning("The maintenance panel is locked."))
-	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
+	else if(W.GetID())
 		if(bot_core.allowed(user) && !open && !emagged)
 			locked = !locked
 			to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
@@ -314,7 +314,7 @@
 			to_chat(user, span_warning("Close the access panel before manipulating the personality slot!"))
 		else
 			to_chat(user, span_notice("You attempt to pull [paicard] free..."))
-			if(do_after(user, 3 SECONDS, target = src))
+			if(do_after(user, 3 SECONDS, src))
 				if (paicard)
 					user.visible_message(span_notice("[user] uses [W] to pull [paicard] out of [bot_name]!"),span_notice("You pull [paicard] out of [bot_name] with [W]."))
 					ejectpai(user)

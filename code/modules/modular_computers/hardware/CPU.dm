@@ -10,6 +10,7 @@
 	critical = 1
 	malfunction_probability = 1
 	var/max_idle_programs = 2 // 2 idle, + 1 active = 3 as said in description.
+	var/single_purpose = FALSE // If you can switch to other programs or only use the initial program
 	device_type = MC_CPU
 
 /obj/item/computer_hardware/processor_unit/on_remove(obj/item/modular_computer/MC, mob/user)
@@ -38,3 +39,18 @@
 	w_class = WEIGHT_CLASS_TINY
 	power_usage = 75
 	max_idle_programs = 2
+
+/obj/item/computer_hardware/processor_unit/pda
+	name = "cheep microprocessor"
+	desc = "A BRISC V based CPU that uses very little power while providing good processing power"
+	icon_state = "cpu"
+	w_class = WEIGHT_CLASS_TINY
+	power_usage = 25
+	max_idle_programs = 2
+
+/obj/item/computer_hardware/processor_unit/pda/can_install(obj/item/modular_computer/M, mob/living/user)
+	if(!istype(M, /obj/item/modular_computer/tablet))
+		to_chat(user, span_warning("\The [M] does not support BRISC V architectures!"))
+		return FALSE
+	return ..()
+	

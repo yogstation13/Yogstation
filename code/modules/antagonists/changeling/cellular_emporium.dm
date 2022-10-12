@@ -71,6 +71,8 @@
 		if("readapt")
 			if(changeling.canrespec)
 				changeling.readapt()
+			else
+				to_chat(changeling.owner.current,span_danger("You lack the power to readapt your evolutions!"))
 		if("evolve")
 			var/sting_name = params["name"]
 			changeling.purchase_power(sting_name)

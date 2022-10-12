@@ -13,12 +13,13 @@
 
 	alt_titles = list("Mute Entertainer", "Silent Jokester", "Pantomimist")
 
-	access = list(ACCESS_THEATRE)
-	minimal_access = list(ACCESS_THEATRE)
+	added_access = list()
+	base_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_MIME
+	minimal_character_age = 18 //Mime?? Might increase this a LOT depending on how mime lore turns out
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/baguette = 15,
@@ -34,7 +35,8 @@
 	name = "Mime"
 	jobtype = /datum/job/mime
 
-	belt = /obj/item/pda/mime
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/mime
+
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/mime
 	uniform_skirt = /obj/item/clothing/under/rank/mime/skirt

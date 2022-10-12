@@ -1,15 +1,15 @@
 
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span>")
-	to_chat(GLOB.admins,
+	msg = span_admin("<span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span>")
+	to_chat(GLOB.permissions.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
 /proc/relay_msg_admins(msg)
-	msg = span_admin("<span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span>")
-	to_chat(GLOB.admins,
+	msg = span_admin("<span class=\"prefix\">RELAY:</span> <span class=\"message\">[msg]</span>")
+	to_chat(GLOB.permissions.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
@@ -42,7 +42,7 @@
 	body += "<body>Options panel for <b>[M]</b>"
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += "\[<A href='?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
+		body += "\[<A href='?_src_=holder;[HrefToken()];editrights=[(GLOB.permissions.admin_datums[M.client.ckey] || GLOB.permissions.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank_name() : "Player"]</A>\]"
 		if(CONFIG_GET(flag/use_exp_tracking))
 			body += "\[<A href='?_src_=holder;[HrefToken()];getplaytimewindow=[REF(M)]'>" + M.client.get_exp_living() + "</a> | "
 			body += " <A href='?_src_=holder;[HrefToken()];toggleexempt=[REF(M)]'>Toggle Exempt</a>\]"
@@ -159,7 +159,8 @@
 
 			//AI / Cyborg
 			if(isAI(M))
-				body += "<B>Is an AI</B> "
+				body += "<B>Is an AI | </B> "
+				body += "<A href='?_src_=holder;[HrefToken()];checkAIDash=[REF(M)]'>Access AI Dashboard | </A>"
 			else if(ishuman(M))
 				body += "<A href='?_src_=holder;[HrefToken()];makeai=[REF(M)]'>Make AI</A> | "
 				body += "<A href='?_src_=holder;[HrefToken()];makerobot=[REF(M)]'>Make Robot</A> | "
@@ -804,7 +805,7 @@
 	message_admins(span_adminnotice("[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed."))
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Guests", "[!new_guest_ban ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/output_ai_laws()
+/datum/admins/proc/output_ai_laws() // Yogs -- Overridden in yogstation/code/modules/admin/admin.dm
 	var/ai_number = 0
 	for(var/i in GLOB.silicon_mobs)
 		var/mob/living/silicon/S = i

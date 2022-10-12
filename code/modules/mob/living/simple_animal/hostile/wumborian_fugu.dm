@@ -8,6 +8,7 @@
 	icon_aggro = "Fugu0"
 	icon_dead = "Fugu_dead"
 	icon_gib = "syndicate_gib"
+	health_doll_icon = "Fugu0"
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	mouse_opacity = MOUSE_OPACITY_ICON
 	move_to_delay = 5
@@ -22,6 +23,7 @@
 	obj_damage = 0
 	melee_damage_lower = 0
 	melee_damage_upper = 0
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	attacktext = "chomps"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	throw_message = "is avoided by the"

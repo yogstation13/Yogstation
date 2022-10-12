@@ -17,3 +17,9 @@
 /obj/item/clothing/gloves/boxing/yellow
 	icon_state = "boxingyellow"
 	item_state = "boxingyellow"
+
+/obj/item/clothing/gloves/boxing/crustacean
+	name = "lobster claws"
+	desc = "Thematic gloves for the sole purpose of being as big a nuisance as their namesake."
+	icon_state = "lobster"
+	item_state = "lobster"

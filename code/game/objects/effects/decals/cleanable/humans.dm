@@ -84,7 +84,7 @@
 	var/direction = pick(directions)
 	for(var/i in 0 to pick(0, 200; 1, 150; 2, 50))
 		if (!mapload)
-			sleep(2)
+			sleep(0.2 SECONDS)
 		if(i > 0)
 			new /obj/effect/decal/cleanable/blood/splatter(loc, diseases)
 		if(!step_to(src, get_step(src, direction), 0))
@@ -211,3 +211,10 @@
 	if((blood_state != BLOOD_STATE_OIL) && (blood_state != BLOOD_STATE_NOT_BLOODY))
 		return 1
 	return 0
+
+/obj/effect/decal/cleanable/blood/kilo
+	name = "remember kilo"
+	desc = "Someone really wasted their time writing this before dying."
+	icon = 'yogstation/icons/effects/station_blood.dmi'
+	icon_state = "kilo"
+	random_icon_states = null

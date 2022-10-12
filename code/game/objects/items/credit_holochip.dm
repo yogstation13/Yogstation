@@ -10,7 +10,8 @@
 
 /obj/item/holochip/Initialize(mapload, amount)
 	. = ..()
-	credits = amount
+	if(amount)
+		credits = amount
 	update_icon()
 
 /obj/item/holochip/examine(mob/user)

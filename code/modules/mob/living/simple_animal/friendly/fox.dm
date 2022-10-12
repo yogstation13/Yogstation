@@ -17,9 +17,12 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "kicks"
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	gold_core_spawnable = FRIENDLY_SPAWN
-
+	can_be_held = TRUE
 	do_footstep = TRUE
+	wuv_happy = "yaps happily!"
+	wuv_angy = "growls!"
 
 //Captain fox
 /mob/living/simple_animal/pet/fox/Renault
@@ -28,22 +31,3 @@
 	gender = FEMALE
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
-
-/mob/living/simple_animal/pet/fox/attack_hand(mob/living/carbon/human/M)
-	. = ..()
-	switch(M.a_intent)
-		if(INTENT_HELP)
-			wuv(1,M)
-		if(INTENT_HARM)
-			wuv(-1,M)
-
-/mob/living/simple_animal/pet/fox/proc/wuv(change, mob/M)
-	if(change)
-		if(change > 0)
-			if(M && stat != DEAD) // dead :,(((((
-				new /obj/effect/temp_visual/heart(loc)
-				emote("me", 1, "yaps happily!", TRUE)
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
-		else
-			if(M && stat != DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
-				emote("me", 1, "growls!", TRUE)

@@ -12,10 +12,13 @@
 	volume = 50	//Sets the default container amount for all food items.
 	reagent_flags = INJECTABLE
 	resistance_flags = FLAMMABLE
+	fryable = TRUE
 	var/foodtype = NONE
 	var/last_check_time
 	///Will this food turn into badrecipe on a grill? Don't use this for everything; preferably mostly for food that is made on a grill to begin with so it burns after some time
 	var/burns_on_grill = FALSE
+	///Will this food turn into badrecipe in an oven? Don't use this for everything; preferably mostly for food that is made in an oven to begin with so it burns after some time
+	var/burns_in_oven = FALSE
 
 /obj/item/reagent_containers/food/Initialize(mapload)
 	. = ..()
@@ -23,11 +26,18 @@
 		pixel_x = rand(-5, 5)
 		pixel_y = rand(-5, 5)
 	MakeGrillable()
+	MakeBakeable()
 
 ///This proc handles grillable components, overwrite if you want different grill results etc.
 /obj/item/reagent_containers/food/proc/MakeGrillable()
 	if(burns_on_grill)
 		AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(20 SECONDS, 30 SECONDS), FALSE)
+	return
+
+///This proc handles bakeable components, overwrite if you want different bake results etc.
+/obj/item/reagent_containers/food/proc/MakeBakeable()
+	if(burns_in_oven)
+		AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(25 SECONDS, 40 SECONDS), FALSE)
 	return
 
 /obj/item/reagent_containers/food/proc/checkLiked(var/fraction, mob/M)

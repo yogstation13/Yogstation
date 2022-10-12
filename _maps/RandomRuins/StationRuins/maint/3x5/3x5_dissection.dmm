@@ -79,7 +79,7 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/organ/eyes,
 /obj/item/organ/eyes/moth,
-/obj/item/organ/eyes/preternis,
+/obj/item/organ/eyes/robotic/preternis,
 /obj/item/organ/eyes/snail,
 /turf/open/floor/plasteel/white,
 /area/template_noop)

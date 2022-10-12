@@ -13,14 +13,17 @@
 	healing_factor = 0
 	var/list/spans = null
 
-/obj/item/organ/vocal_cords/proc/can_speak_with() //if there is any limitation to speaking with these cords
-	return TRUE
+/obj/item/organ/vocal_cords/proc/does_modify_message() // whether it should be allowed to modify what the player said
+	return FALSE
 
-/obj/item/organ/vocal_cords/proc/speak_with(message) //do what the organ does
+/obj/item/organ/vocal_cords/proc/does_say_message() // whether the vocal cords wish to ASSUME DIRECT CONTROL and speak for themselves
+	return FALSE
+
+/obj/item/organ/vocal_cords/proc/modify_message(message) //Returns to /mob/living/say() the new message it ought to say, perhaps with some funky spans or something.
 	return
 
-/obj/item/organ/vocal_cords/proc/handle_speech(message) //actually say the message
-	owner.say(message, spans = spans, sanitize = FALSE)
+/obj/item/organ/vocal_cords/proc/say_message(message,message_range) //Handles saying the message itself. Returns nothing.
+	return
 
 /obj/item/organ/adamantine_resonator
 	name = "adamantine resonator"
@@ -43,16 +46,20 @@
 		return
 	owner.say(".x[message]")
 
-/obj/item/organ/vocal_cords/adamantine/handle_speech(message)
-	var/msg = span_resonate("[span_name("[owner.real_name]")] [span_message("resonates, \"[message]\"")]")
+/obj/item/organ/vocal_cords/adamantine/does_modify_message()
+	return TRUE
+
+/obj/item/organ/vocal_cords/adamantine/modify_message(message)
+	var/msg = span_resonate("[span_name(owner.real_name)] [span_message("resonates, \"[message]\"")]")
 	for(var/m in GLOB.player_list)
 		if(iscarbon(m))
 			var/mob/living/carbon/C = m
 			if(C.getorganslot(ORGAN_SLOT_ADAMANTINE_RESONATOR))
 				to_chat(C, msg)
-		if(isobserver(m))
+		else if(isobserver(m))
 			var/link = FOLLOW_LINK(m, owner)
 			to_chat(m, "[link] [msg]")
+	return message // Kinda weird to do this, but uhhhh... yeah.
 
 //Colossus drop, forces the listeners to obey certain commands
 /obj/item/organ/vocal_cords/colossus
@@ -100,33 +107,27 @@
 		return
 	owner.say(".x[command]")
 
-/obj/item/organ/vocal_cords/colossus/can_speak_with()
+/obj/item/organ/vocal_cords/colossus/does_say_message()
 	if(world.time < next_command)
 		to_chat(owner, span_notice("You must wait [DisplayTimeText(next_command - world.time)] before Speaking again."))
 		return FALSE
 	if(!owner)
 		return FALSE
-	if(!owner.can_speak_vocal())
-		to_chat(owner, span_warning("You are unable to speak!"))
-		return FALSE
 	return TRUE
 
-/obj/item/organ/vocal_cords/colossus/handle_speech(message)
+/obj/item/organ/vocal_cords/colossus/say_message(message,message_range)
 	playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 300, 1, 5)
-	return //voice of god speaks for us
-
-/obj/item/organ/vocal_cords/colossus/speak_with(message)
-	var/cooldown = voice_of_god(uppertext(message), owner, spans, base_multiplier)
+	var/cooldown = voice_of_god(uppertext(message), owner, spans, base_multiplier,FALSE,TRUE,TRUE,message_range)
 	next_command = world.time + (cooldown * cooldown_mod)
 
 //////////////////////////////////////
 ///////////VOICE OF GOD///////////////
 //////////////////////////////////////
 
-/proc/voice_of_god(message, mob/living/user, list/span_list, base_multiplier = 1, include_speaker = FALSE, message_admins = TRUE, forced_span = FALSE)
+/proc/voice_of_god(message, mob/living/user, list/span_list, base_multiplier = 1, include_speaker = FALSE, message_admins = TRUE, forced_span = FALSE, max_range = 8)
 	var/cooldown = 0
 
-	if(!user || !user.can_speak() || user.stat)
+	if(!user || !user.can_speak(message) || user.stat)
 		return 0 //no cooldown
 
 	var/log_message = uppertext(message)
@@ -138,11 +139,11 @@
 	if(!span_list || !span_list.len)
 		span_list = list()
 
-	user.say(message, spans = span_list, sanitize = FALSE)
+	if(!user.say(message, spans = span_list, sanitize = FALSE)) // If we failed to speak
+		return 0
 
-	message = lowertext(message)
 	var/list/mob/living/listeners = list()
-	for(var/mob/living/L in get_hearers_in_view(8, user))
+	for(var/mob/living/L in get_hearers_in_view(max_range, user))
 		if(L.can_hear() && !L.anti_magic_check(FALSE, TRUE) && L.stat != DEAD)
 			if(L == user && !include_speaker)
 				continue
@@ -180,6 +181,7 @@
 	var/found_string = null
 
 	//Get the proper job titles
+	message = lowertext(message)
 	message = get_full_job_name(message)
 
 	for(var/V in listeners)

@@ -21,7 +21,7 @@
 	layer = BELOW_OPEN_DOOR_LAYER
 	closingLayer = CLOSED_FIREDOOR_LAYER
 	assemblytype = /obj/structure/firelock_frame
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 95, "acid" = 70)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, RAD = 100, FIRE = 95, ACID = 70)
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
 	air_tight = TRUE
 	var/emergency_close_timer = 0
@@ -162,7 +162,7 @@
 		if(is_holding_pressure())
 			// tell the user that this is a bad idea, and have a do_after as well
 			to_chat(user, span_warning("As you begin crowbarring \the [src] a gush of air blows in your face... maybe you should reconsider?"))
-			if(!do_after(user, 1.5 SECONDS, TRUE, src)) // give them a few seconds to reconsider their decision.
+			if(!do_after(user, 1.5 SECONDS, src)) // give them a few seconds to reconsider their decision.
 				return
 			log_game("[key_name_admin(user)] has opened a firelock with a pressure difference at [AREACOORD(loc)]") // there bibby I made it logged just for you. Enjoy.
 			// since we have high-pressure-ness, close all other firedoors on the tile
@@ -549,7 +549,7 @@
 				user.visible_message(span_notice("[user] begins reinforcing [src]..."), \
 									 span_notice("You begin reinforcing [src]..."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-				if(do_after(user, 6 SECONDS, target = src))
+				if(do_after(user, 6 SECONDS, src))
 					if(constructionStep != CONSTRUCTION_PANEL_OPEN || reinforced || P.get_amount() < 2 || !P)
 						return
 					user.visible_message(span_notice("[user] reinforces [src]."), \
@@ -610,7 +610,7 @@
 				user.visible_message(span_notice("[user] begins wiring [src]..."), \
 									 span_notice("You begin adding wires to [src]..."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-				if(do_after(user, 6 SECONDS, target = src))
+				if(do_after(user, 6 SECONDS, src))
 					if(constructionStep != CONSTRUCTION_GUTTED || B.get_amount() < 5 || !B)
 						return
 					user.visible_message(span_notice("[user] adds wires to [src]."), \
@@ -642,7 +642,7 @@
 				user.visible_message(span_notice("[user] starts adding [C] to [src]..."), \
 									 span_notice("You begin adding a circuit board to [src]..."))
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-				if(!do_after(user, 4 SECONDS, target = src))
+				if(!do_after(user, 4 SECONDS, src))
 					return
 				if(constructionStep != CONSTRUCTION_NOCIRCUIT)
 					return

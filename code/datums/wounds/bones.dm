@@ -238,37 +238,40 @@
 /datum/wound/blunt/moderate/proc/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	playsound(victim, 'sound/surgery/bone1.ogg', 25)
+	if(!do_after(user, time, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(prob(65))
 		user.visible_message(span_danger("[user] snaps [victim]'s dislocated [limb.name] back into place!"), span_notice("You snap [victim]'s dislocated [limb.name] back into place!"), ignored_mobs=victim)
 		to_chat(victim, span_userdanger("[user] snaps your dislocated [limb.name] back into place!"))
 		victim.emote("scream")
-		limb.receive_damage(brute=20, wound_bonus=CANT_WOUND)
+		playsound(victim, 'sound/surgery/bone3.ogg', 25)
+		limb.receive_damage(brute = 20, wound_bonus = CANT_WOUND)
 		qdel(src)
 	else
 		user.visible_message(span_danger("[user] wrenches [victim]'s dislocated [limb.name] around painfully!"), span_danger("You wrench [victim]'s dislocated [limb.name] around painfully!"), ignored_mobs=victim)
 		to_chat(victim, span_userdanger("[user] wrenches your dislocated [limb.name] around painfully!"))
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute = 10, wound_bonus = CANT_WOUND)
 		chiropractice(user)
 
 /// If someone is snapping our dislocated joint into a fracture by hand with an aggro grab and harm or disarm intent
 /datum/wound/blunt/moderate/proc/malpractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	playsound(victim, 'sound/surgery/bone1.ogg', 25)
+	if(!do_after(user, time, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(prob(65))
 		user.visible_message(span_danger("[user] snaps [victim]'s dislocated [limb.name] with a sickening crack!"), span_danger("You snap [victim]'s dislocated [limb.name] with a sickening crack!"), ignored_mobs=victim)
 		to_chat(victim, span_userdanger("[user] snaps your dislocated [limb.name] with a sickening crack!"))
 		victim.emote("scream")
-		limb.receive_damage(brute=25, wound_bonus=30)
+		limb.receive_damage(brute = 25, wound_bonus = 30)
 	else
 		user.visible_message(span_danger("[user] wrenches [victim]'s dislocated [limb.name] around painfully!"), span_danger("You wrench [victim]'s dislocated [limb.name] around painfully!"), ignored_mobs=victim)
 		to_chat(victim, span_userdanger("[user] wrenches your dislocated [limb.name] around painfully!"))
-		limb.receive_damage(brute=10, wound_bonus=CANT_WOUND)
+		limb.receive_damage(brute = 10, wound_bonus = CANT_WOUND)
 		malpractice(user)
 
 
@@ -278,9 +281,12 @@
 	else
 		user.visible_message(span_danger("[user] begins resetting [victim]'s [limb.name] with [I]."), span_notice("You begin resetting [victim]'s [limb.name] with [I]..."))
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
-		return
+	playsound(victim, 'sound/surgery/bone1.ogg', 25)
 
+	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+		return
+	
+	playsound(victim, 'sound/surgery/bone3.ogg', 25)
 	if(victim == user)
 		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
 		victim.visible_message(span_danger("[user] finishes resetting [victim.p_their()] [limb.name]!"), span_userdanger("You reset your [limb.name]!"))
@@ -356,7 +362,7 @@
 
 	user.visible_message(span_danger("[user] begins hastily applying [I] to [victim]'s' [limb.name]..."), span_warning("You begin hastily applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name], disregarding the warning label..."))
 
-	if(!do_after(user, base_treat_time * 1.5 * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * 1.5 * (user == victim ? 1.5 : 1), victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	I.use(1)
@@ -397,7 +403,7 @@
 
 	user.visible_message(span_danger("[user] begins applying [I] to [victim]'s' [limb.name]..."), span_warning("You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name]..."))
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
 
 	if(victim == user)

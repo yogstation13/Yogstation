@@ -1,5 +1,8 @@
 /datum/surgery/brain_surgery
 	name = "Brain surgery"
+	desc = "This procedure cures all severe and basic traumas and reduces brain damage by a large amount. Failing to fix the brain causes hefty brain damage."
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "brain"
 	steps = list(
 	/datum/surgery_step/incise,
 	/datum/surgery_step/retract_skin,
@@ -10,12 +13,24 @@
 
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_HEAD)
-	requires_bodypart_type = 0
+
+/datum/surgery/brain_surgery/mechanic
+	steps = list(/datum/surgery_step/mechanic_open,
+				/datum/surgery_step/open_hatch,
+				/datum/surgery_step/mechanic_unwrench,
+				/datum/surgery_step/prepare_electronics,
+				/datum/surgery_step/fix_brain,
+				/datum/surgery_step/mechanic_wrench,
+				/datum/surgery_step/mechanic_close)
+	requires_bodypart_type = BODYPART_ROBOTIC
 
 /datum/surgery_step/fix_brain
 	name = "fix brain"
 	implements = list(TOOL_HEMOSTAT = 85, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15) //don't worry, pouring some alcohol on their open brain will get that chance to 100
-	time = 120 //long and complicated
+	time = 12 SECONDS //long and complicated
+	preop_sound = 'sound/surgery/hemostat1.ogg'
+	success_sound = 'sound/surgery/hemostat1.ogg'
+	failure_sound = 'sound/surgery/organ2.ogg'
 	fuckup_damage = 20
 
 /datum/surgery/brain_surgery/can_start(mob/user, mob/living/carbon/target)

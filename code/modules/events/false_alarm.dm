@@ -4,6 +4,7 @@
 	weight			= 20
 	max_occurrences = 5
 	var/forced_type //Admin abuse
+	max_alert = SEC_LEVEL_DELTA
 
 
 /datum/round_event_control/falsealarm/admin_setup()

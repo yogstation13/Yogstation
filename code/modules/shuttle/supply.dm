@@ -178,10 +178,24 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/atom/movable/AM in shuttle_area)
 			if(iscameramob(AM))
 				continue
+			if(istype(AM, /obj/structure/closet/crate))
+				var/obj/structure/closet/crate/C = AM
+				if(C.manifest)
+					var/obj/item/paper/manifest = C.manifest
+					if(!manifest.stamped) // Unstamped papers on crates // Futureproofing
+						continue
 			if(bounty_ship_item_and_contents(AM, dry_run = FALSE))
 				matched_bounty = TRUE
 			if(!AM.anchored || istype(AM, /obj/mecha))
 				export_item_and_contents(AM, export_categories , dry_run = FALSE, external_report = ex)
+
+		for(var/obj/item/card/id/miner in shuttle_area.gem_payout)
+			miner.mining_points += shuttle_area.gem_payout[miner]
+			shuttle_area.gem_payout &= miner
+			playsound(miner, 'sound/machines/ping.ogg', 15, TRUE)
+			var/mob/card_holder = recursive_loc_check(miner, /mob)
+			if(ismob(card_holder))
+				to_chat(card_holder, "You have been credited with [shuttle_area.gem_payout[miner]] mining points from sold gems!")
 
 	if(ex.exported_atoms)
 		ex.exported_atoms += "." //ugh

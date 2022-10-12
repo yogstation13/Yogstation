@@ -143,7 +143,7 @@
 			LateChoices()
 			return
 
-		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.admin_datums)))
+		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.permissions.admin_datums)))
 			//yogs start -- donors bypassing the queue
 			if(ckey(key) in get_donators())
 				to_chat(usr, span_notice("Because you are a donator, you have bypassed the queue! Thank you for donating!"))
@@ -176,7 +176,7 @@
 			to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
 			return
 
-		if(SSticker.queued_players.len && !(ckey(key) in GLOB.admin_datums))
+		if(SSticker.queued_players.len && !(ckey(key) in GLOB.permissions.admin_datums))
 			if((living_player_count() >= relevant_cap) || (src != SSticker.queued_players[1]))
 				to_chat(usr, span_warning("Server is full."))
 				return
@@ -312,11 +312,6 @@
 		observer.real_name = observer.client.prefs.real_name
 		observer.name = observer.real_name
 		observer.client.init_verbs()
-	if(observer?.client?.holder?.fakekey)
-		observer.invisibility = INVISIBILITY_MAXIMUM //JUST IN CASE
-		observer.alpha = 0 //JUUUUST IN CASE
-		observer.name = " "
-		observer.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	observer.update_icon()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)
@@ -522,6 +517,7 @@
 			return
 	if(frn)
 		client.prefs.random_character()
+		client.prefs.accent = null
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
 	client.prefs.copy_to(H)
 

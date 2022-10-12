@@ -4,7 +4,7 @@
 	id = "polysmorph"
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
-	liked_food = GROSS | MEAT
+	liked_food = GROSS | MEAT | MICE
 	disliked_food = GRAIN | DAIRY | VEGETABLES | FRUIT
 	say_mod = "hisses"
 	species_language_holder = /datum/language_holder/polysmorph
@@ -39,3 +39,14 @@
 	var/randname = polysmorph_name()
 
 	return randname
+
+/datum/species/polysmorph/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	.=..()
+	var/mob/living/carbon/human/H = C
+	if(H.physiology)
+		H.physiology.armor.wound += 10	//Pseudo-exoskeleton makes them harder to wound
+
+/datum/species/polysmorph/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	.=..()
+	if(C.physiology)
+		C.physiology.armor.wound -= 10

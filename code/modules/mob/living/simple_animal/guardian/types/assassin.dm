@@ -9,6 +9,7 @@
 	magic_fluff_string = span_holoparasite("..And draw the Space Ninja, a lethal, invisible assassin.")
 	tech_fluff_string = span_holoparasite("Boot sequence complete. Assassin modules loaded. Holoparasite swarm online.")
 	carp_fluff_string = span_holoparasite("CARP CARP CARP! Caught one! It's an assassin carp! Just when you thought it was safe to go back to the water... which is unhelpful, because we're in space.")
+	attack_vis_effect = ATTACK_EFFECT_SLASH
 
 	toggle_button_type = /obj/screen/guardian/ToggleMode/Assassin
 	var/toggle = FALSE

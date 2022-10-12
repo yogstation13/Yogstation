@@ -92,7 +92,7 @@
 	D.visible_message(span_warning("[A] leg sweeps [D]!"), \
 					  	span_userdanger("[A] leg sweeps you!"))
 	playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
-	D.apply_damage(5, BRUTE)
+	D.apply_damage(A.get_punchdamagehigh() / 2, BRUTE)	//5 damage
 	D.Paralyze(40)
 	log_combat(A, D, "leg sweeped")
 	return 1
@@ -102,7 +102,7 @@
 				  	span_userdanger("[A] slams your chest! You can't breathe!"))
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
 	if(D.losebreath <= 10)
-		D.losebreath = clamp(D.losebreath + 5, 0, 10)
+		D.losebreath = clamp(D.losebreath + 3, 0, 6)
 	D.adjustOxyLoss(10)
 	log_combat(A, D, "quickchoked")
 	return 1
@@ -111,7 +111,7 @@
 	D.visible_message(span_warning("[A] karate chops [D]'s neck!"), \
 				  	span_userdanger("[A] karate chops your neck, rendering you unable to speak!"))
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
-	D.apply_damage(5, A.dna.species.attack_type)
+	D.apply_damage(A.get_punchdamagehigh() / 2, A.dna.species.attack_type)	//5 damage
 	if(D.silent <= 10)
 		D.silent = clamp(D.silent + 10, 0, 10)
 	log_combat(A, D, "neck chopped")
@@ -122,7 +122,7 @@
 		return 1
 	log_combat(A, D, "punched")
 	var/picked_hit_type = pick("punches", "kicks")
-	var/bonus_damage = 10
+	var/bonus_damage = A.get_punchdamagehigh()	//10 damage
 	if(!(D.mobility_flags & MOBILITY_STAND))
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
@@ -161,6 +161,7 @@
 
 /obj/item/clothing/gloves/krav_maga
 	var/datum/martial_art/krav_maga/style = new
+	cryo_preserve = TRUE
 
 /obj/item/clothing/gloves/krav_maga/equipped(mob/user, slot)
 	. = ..()
@@ -178,9 +179,9 @@
 	if(H.get_item_by_slot(SLOT_GLOVES) == src)
 		style.remove(H)
 
-/obj/item/clothing/gloves/krav_maga/sec//more obviously named, given to sec
+/obj/item/clothing/gloves/sec_maga //more obviously named, given to sec
 	name = "krav maga gloves"
-	desc = "These gloves can teach you to perform Krav Maga using nanochips."
+	desc = "These gloves can teach you to perform Krav Maga using nanochips, but due to budget cuts, they only work in security areas."
 	icon_state = "fightgloves"
 	item_state = "fightgloves"
 	cold_protection = HANDS
@@ -188,6 +189,45 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
+	var/datum/martial_art/krav_maga/style = new
+	cryo_preserve = TRUE
+	var/equipper = null //who's wearing the gloves?
+	var/equipped = FALSE //does the user currently have the martial art? 
+	var/list/enabled_areas = list(/area/security, 
+					/area/ai_monitored/security,
+					/area/mine/laborcamp,
+					/area/shuttle/labor,
+					/area/crew_quarters/heads/hos,
+					/area/holodeck/perma) //where can we use krav maga?
+
+/obj/item/clothing/gloves/sec_maga/equipped(mob/user, slot)
+	. = ..()
+	if(slot == SLOT_GLOVES)
+		equipper = user
+		START_PROCESSING(SSobj, src)
+
+/obj/item/clothing/gloves/sec_maga/dropped(mob/user, slot)
+	. = ..()
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_GLOVES) == src)
+		STOP_PROCESSING(SSobj, src)
+		style.remove(H)
+		equipper = null
+		equipped = FALSE
+
+/obj/item/clothing/gloves/sec_maga/proc/check_location()
+	for(var/location in enabled_areas)
+		if(istype(get_area(equipper), location))
+			return TRUE
+	return FALSE
+
+/obj/item/clothing/gloves/sec_maga/process()
+	if(!isnull(equipper) && !equipped && check_location())
+		style.teach(equipper,1)
+		equipped = TRUE
+	else if(equipped && !check_location())
+		style.remove(equipper)
+		equipped = FALSE
 
 /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	name = "combat gloves plus"
@@ -202,4 +242,4 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)

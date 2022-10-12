@@ -177,18 +177,16 @@
 		spawner = new_spawner
 	if(ismineralturf(loc))
 		var/turf/closed/mineral/M = loc
-		M.gets_drilled()
+		M.attempt_drill()
 	deltimer(timerid)
 	timerid = addtimer(CALLBACK(src, .proc/tripanim), 7, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/goliath_tentacle/original/Initialize(mapload, new_spawner)
 	. = ..()
-	var/list/directions = GLOB.cardinals.Copy()
-	for(var/i in 1 to 3)
-		var/spawndir = pick_n_take(directions)
-		var/turf/T = get_step(src, spawndir)
-		if(T)
-			new /obj/effect/temp_visual/goliath_tentacle(T, spawner)
+	var/list/turf/turfs = circlerangeturfs(get_turf(src), 2)
+	for(var/i in 1 to rand(4, 10))
+		var/turf/T = pick_n_take(turfs)
+		new /obj/effect/temp_visual/goliath_tentacle(T, spawner)
 
 /obj/effect/temp_visual/goliath_tentacle/proc/tripanim()
 	icon_state = "Goliath_tentacle_wiggle"

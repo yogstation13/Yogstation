@@ -4,7 +4,7 @@
 	max_occurrences = 1
 	weight = 1
 	earliest_start = 5 MINUTES
-	max_alert = SEC_LEVEL_DELTA
+	max_alert = SEC_LEVEL_RED
 
 /datum/round_event_control/aurora_caelus/canSpawnEvent(players, gamemode)
 	if(!CONFIG_GET(flag/starlight))
@@ -59,5 +59,5 @@
 	var/new_light = initial(S.light_range)
 	while(S.light_range > new_light)
 		S.set_light(S.light_range - 0.2)
-		sleep(30)
+		sleep(3 SECONDS)
 	S.set_light(new_light, initial(S.light_power), initial(S.light_color))

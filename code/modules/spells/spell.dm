@@ -152,6 +152,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/centcom_cancast = TRUE //Whether or not the spell should be allowed on z2
 
+	var/obj/screen/cooldown_overlay/cooldown_overlay
+
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "spell_default"
 	action_background_icon_state = "bg_spell"
@@ -299,15 +301,20 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	return TRUE
 
 /obj/effect/proc_holder/spell/proc/start_recharge()
+	if(cooldown_overlay)
+		QDEL_NULL(cooldown_overlay)
+	cooldown_overlay = start_cooldown(action.button, world.time + charge_max)
 	recharging = TRUE
 
 /obj/effect/proc_holder/spell/process()
 	if(recharging && charge_type == "recharge" && (charge_counter < charge_max))
 		charge_counter += 2	//processes 5 times per second instead of 10.
+		cooldown_overlay?.tick()
 		if(charge_counter >= charge_max)
 			action.UpdateButtonIcon()
 			charge_counter = charge_max
 			recharging = FALSE
+			QDEL_NULL(cooldown_overlay)
 
 /obj/effect/proc_holder/spell/proc/perform(list/targets, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
 	before_cast(targets)
@@ -315,7 +322,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(user && user.ckey)
 		user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
 	if(recharge)
-		recharging = TRUE
+		start_recharge()
 	if(sound)
 		playMagSound()
 	cast(targets,user=user)
@@ -375,6 +382,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			charge_counter++
 		if("holdervar")
 			adjust_var(user, holder_var_type, -holder_var_amount)
+	QDEL_NULL(cooldown_overlay)
 	if(action)
 		action.UpdateButtonIcon()
 

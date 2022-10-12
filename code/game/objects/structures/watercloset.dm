@@ -38,7 +38,7 @@
 				if(open)
 					GM.visible_message(span_danger("[user] starts to give [GM] a swirlie!"), span_userdanger("[user] starts to give you a swirlie..."))
 					swirlie = GM
-					if(do_after(user, 3 SECONDS, 0, target = src))
+					if(do_after(user, 3 SECONDS, src, FALSE))
 						GM.visible_message(span_danger("[user] gives [GM] a swirlie!"), span_userdanger("[user] gives you a swirlie!"), span_italics("You hear a toilet flushing."))
 						if(iscarbon(GM))
 							var/mob/living/carbon/C = GM
@@ -196,14 +196,16 @@
 /obj/item/reagent_containers/food/snacks/urinalcake
 	name = "urinal cake"
 	desc = "The noble urinal cake, protecting the station's pipes from the station's pee. Do not eat."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "urinalcake"
+	item_state = "urinalcake"
 	w_class = WEIGHT_CLASS_TINY
 	list_reagents = list(/datum/reagent/chlorine = 3, /datum/reagent/ammonia = 1)
 	foodtype = TOXIC | GROSS
 
 /obj/item/reagent_containers/food/snacks/urinalcake/attack_self(mob/living/user)
 	user.visible_message(span_notice("[user] squishes [src]!"), span_notice("You squish [src]."), "<i>You hear a squish.</i>")
+	icon = 'icons/obj/misc.dmi'
 	icon_state = "urinalcake_squish"
 	addtimer(VARSET_CALLBACK(src, icon_state, "urinalcake"), 8)
 
@@ -246,7 +248,7 @@
 						span_notice("You start washing your [washing_face ? "face" : "hands"]..."))
 	busy = TRUE
 
-	if(!do_after(user, 4 SECONDS, target = src))
+	if(!do_after(user, 4 SECONDS, src))
 		busy = FALSE
 		return
 
@@ -324,7 +326,7 @@
 	if(user.a_intent != INTENT_HARM)
 		to_chat(user, span_notice("You start washing [O]..."))
 		busy = TRUE
-		if(!do_after(user, 4 SECONDS, target = src))
+		if(!do_after(user, 4 SECONDS, src))
 			busy = FALSE
 			return 1
 		busy = FALSE

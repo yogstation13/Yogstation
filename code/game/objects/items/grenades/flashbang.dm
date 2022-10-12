@@ -24,16 +24,27 @@
 	M.show_message(span_userdanger("BANG"), MSG_AUDIBLE)
 	var/distance = max(0,get_dist(get_turf(src),T))
 	if(!distance || loc == M || loc == M.loc)	//Stop allahu akbarring rooms with this.
-		M.Paralyze(200)
+		M.Knockdown(20 SECONDS)
 		M.soundbang_act(1, 20, 10, 15)
 		return
+	if(iscyborg(M))
+		var/mob/living/silicon/robot/C = M
+		if(C.sensor_protection)					//Do other annoying stuff that isnt a hard stun if they're protected
+			C.overlay_fullscreen("reducedbang", /obj/screen/fullscreen/flash/static)
+			C.uneq_all()
+			C.stop_pulling()
+			C.break_all_cyborg_slots(TRUE)
+			addtimer(CALLBACK(C, /mob/living/silicon/robot/.proc/clear_fullscreen, "reducedbang"), 3 SECONDS)
+			addtimer(CALLBACK(C, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 3 SECONDS)
+			return
 
 	var/flashed = M.flash_act(affect_silicon = 1)
 	var/banged = M.soundbang_act(1, 20/max(1,distance), rand(0, 5))
 
-	// If missing two resists
+	// If flashed and banged
 	if(flashed && banged)
-		M.Paralyze(max(150/max(1,distance), 60))
-	// If missing one resist
-	else if (flashed || banged)
-		M.Paralyze(max(50/max(1, distance), 30))
+		M.Knockdown(max(15 / max(1, distance), 6) SECONDS)
+	// If banged only
+	else if (banged)
+		M.Knockdown(max(5 / max(1, distance), 3) SECONDS)
+	//flashed only is handled by flash_act

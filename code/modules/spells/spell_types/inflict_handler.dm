@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/inflict_handler
 	name = "Inflict Handler"
-	desc = "This spell blinds and/or destroys/damages/heals and/or knockdowns/stuns the target."
+	desc = "This spell blinds and/or destroys/damages/heals/ignites and/or knockdowns/stuns the target."
 
 	var/amt_paralyze = 0
 	var/amt_unconscious = 0
@@ -17,6 +17,9 @@
 
 	var/amt_eye_blind = 0
 	var/amt_eye_blurry = 0
+
+	var/amt_firestacks = 0
+	var/ignites = FALSE
 
 	var/destroys = "none" //can be "none", "gib" or "disintegrate"
 
@@ -50,6 +53,7 @@
 
 		target.blind_eyes(amt_eye_blind)
 		target.blur_eyes(amt_eye_blurry)
+		target.adjust_fire_stacks(amt_firestacks)
 		//summoning
 		if(summon_type)
 			new summon_type(target.loc, target)
@@ -58,3 +62,6 @@
 			var/list/stat_args = status_params.Copy()
 			stat_args.Insert(1,inflict_status)
 			target.apply_status_effect(arglist(stat_args))
+
+		if(ignites)
+			target.IgniteMob()    

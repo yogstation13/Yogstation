@@ -5,6 +5,7 @@
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
 		#include "map_files\mining\Lavaland.dmm"
+		#include "map_files\AsteroidStation\AsteroidStation.dmm"
 		#include "map_files\mining\Icemoon.dmm"
 		#include "map_files\mining\IcemoonUnderground.dmm"
 		#include "map_files\debug\runtimestation.dmm"
@@ -14,6 +15,7 @@
 		#include "map_files\EclipseStation\EclipseStation.dmm"
 		#include "map_files\IceBox\IceBox.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
+		#include "map_files\GaxStation\GaxStation.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif

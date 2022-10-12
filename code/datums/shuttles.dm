@@ -172,20 +172,20 @@
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
 	name = "Build Your Own Shuttle"
-	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
+	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials. Note: Shuttle can not be purchased after 30 minutes."
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 5000
 
 /datum/map_template/shuttle/emergency/construction/small
 	suffix = "construction_small"
 	name = "Build Your Own Shuttle, Jr."
-	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling."
+	description = "The full-size BYOS too big for your taste? Aside from the reduced size and cost, this has the all same (lack of) amenities as its full-sized sibling. Note: Shuttle can not be purchased after 30 minutes."
 	admin_notes = "No brig and no medical facilities. Build YOUR own."
 	credit_cost = 2000
 
 /datum/map_template/shuttle/emergency/construction/prerequisites_met()
 	// first 10 minutes only
-	return world.time - SSticker.round_start_time < 12000
+	return world.time - SSticker.round_start_time < 30 MINUTES
 
 /datum/map_template/shuttle/emergency/construction/post_load()
 	. = ..()
@@ -220,6 +220,13 @@
 	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
 	admin_notes = "For player punishment."
 
+/datum/map_template/shuttle/emergency/pool
+	suffix = "pool"
+	name = "Pool Party!"
+	description = "A modified version of the Box escape shuttle that comes with a preinstalled pool. Fun for the whole family!"
+	admin_notes = "Pool filter can be very easily filled with acid or other harmful chemicals."
+	credit_cost = 15000
+	
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
@@ -243,7 +250,7 @@
 	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
 	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
-	credit_cost = 50000
+	credit_cost = 125000
 
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"
@@ -439,23 +446,23 @@
 	description = "Standard issue CentCom Ferry for Kilo pattern stations. Includes additional equipment and rechargers."
 
 /datum/map_template/shuttle/whiteship/box
-	suffix = "box"
+	suffix = "1"
 	name = "Hospital Ship"
 
 /datum/map_template/shuttle/whiteship/meta
-	suffix = "meta"
+	suffix = "2"
 	name = "Salvage Ship"
 
 /datum/map_template/shuttle/whiteship/pubby
-	suffix = "pubby"
+	suffix = "3"
 	name = "NT White UFO"
 
 /datum/map_template/shuttle/whiteship/cere
-	suffix = "cere"
+	suffix = "4"
 	name = "NT Construction Vessel"
 
 /datum/map_template/shuttle/whiteship/delta
-	suffix = "delta"
+	suffix = "5"
 	name = "NT Frigate"
 
 /datum/map_template/shuttle/whiteship/pod
@@ -473,6 +480,10 @@
 /datum/map_template/shuttle/cargo/kilo
 	suffix = "kilo"
 	name = "supply shuttle (Kilo)"
+
+/datum/map_template/shuttle/cargo/gax
+	suffix = "gax"
+	name = "supply shuttle (Gax)"
 
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
@@ -513,6 +524,10 @@
 /datum/map_template/shuttle/labour/kilo
 	suffix = "kilo"
 	name = "labour shuttle (Kilo)"
+
+/datum/map_template/shuttle/labour/gax
+	suffix = "gax"
+	name = "labour shuttle (Gax)"
 
 /datum/map_template/shuttle/infiltrator/basic
 	suffix = "basic"
@@ -597,3 +612,13 @@
 /datum/map_template/shuttle/snowdin/excavation
 	suffix = "excavation"
 	name = "Snowdin Excavation Elevator"
+
+/datum/map_template/shuttle/arrival/gax
+	suffix = "gax"
+	name = "arrival shuttle (Gax)"
+
+/datum/map_template/shuttle/ai/gax
+	port_id = "ai"
+	suffix = "gax"
+	name = "ai ship shuttle (Gax)"
+

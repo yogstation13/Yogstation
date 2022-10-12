@@ -4,7 +4,7 @@
 	name = "Red Reverse"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "sc_Red Reverse_uno"
-	desc = "a card."
+	desc = "A card."
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE //has this been used before? If not, give no hints about it's nature
 
@@ -18,7 +18,7 @@
 	..()
 	if (used)
 		cut_overlays()
-		add_overlay(image('icons/obj/items_and_weapons.dmi', icon_state = "reverse_overlay"))
+		add_overlay(image('icons/obj/toy.dmi', icon_state = "reverse_overlay"))
 
 /obj/item/syndicateReverseCard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!(attack_type == PROJECTILE_ATTACK))

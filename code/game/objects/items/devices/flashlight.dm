@@ -46,8 +46,11 @@
 	if (user.eye_blind)
 		user.visible_message(span_suicide("[user] is putting [src] close to [user.p_their()] eyes and turning it on... but [user.p_theyre()] blind!"))
 		return SHAME
-	user.visible_message(span_suicide("[user] is putting [src] close to [user.p_their()] eyes and turning it on! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return (FIRELOSS)
+	if(!on)
+		user.visible_message(span_suicide("[user] is putting [src] close to [user.p_their()] eyes but it's not on!"))
+		return SHAME
+	user.visible_message(span_suicide("[user] is putting [src] close to [user.p_their()] eyes! It looks like [user.p_theyre()] trying to commit suicide!"))
+	return FIRELOSS
 
 /obj/item/flashlight/attack(mob/living/carbon/M, mob/living/carbon/human/user)
 	add_fingerprint(user)
@@ -339,7 +342,7 @@
 		force = on_damage
 		name = "lit [initial(src.name)]"
 		desc = "[initial(src.desc)] This one is lit."
-		damtype = "fire"
+		damtype = BURN
 		attack_verb = list("burnt","scorched","scalded")
 		hitsound = 'sound/items/welder.ogg'
 		START_PROCESSING(SSobj, src)

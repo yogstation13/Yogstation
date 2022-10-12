@@ -113,9 +113,9 @@
 		if(V.get_ability(/datum/vampire_passive/regen))
 			U.adjustBruteLoss(-1)
 			U.adjustOxyLoss(-2.5)
-			U.adjustToxLoss(-1)
+			U.adjustToxLoss(-1, TRUE, TRUE)
 			U.adjustFireLoss(-1)
-		sleep(7.5)
+		sleep(0.75 SECONDS)
 
 
 /obj/effect/proc_holder/spell/pointed/gaze
@@ -176,7 +176,7 @@
 
 
 /obj/effect/proc_holder/spell/pointed/hypno
-	name = "Hypnotize"
+	name = "Hypnotize (20)"
 	desc = "Knock out your target."
 	charge_max = 300
 	blood_used = 20
@@ -466,9 +466,9 @@
 		if(!QDELETED(user) && !QDELETED(target))
 			to_chat(user, span_notice(". . ."))
 			to_chat(target, span_italics("Come to me, child."))
-			sleep(10)
+			sleep(1 SECONDS)
 			to_chat(target, span_italics("The world hasn't treated you well, has it?"))
-			sleep(15)
+			sleep(1.5 SECONDS)
 			to_chat(target, span_italics("Strike fear into their hearts..."))
 			to_chat(user, "<span class='notice italics bold'>They have signed the pact!</span>")
 			to_chat(target, span_userdanger("You sign Lilith's Pact."))

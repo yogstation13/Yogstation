@@ -9,11 +9,14 @@ export const ParticleAccelerator = (props, context) => {
     assembled,
     power,
     strength,
+    locked,
+    area_restricted,
   } = data;
+
   return (
     <Window
       width={350}
-      height={185}>
+      height={220}>
       <Window.Content>
         <Section>
           <LabeledList>
@@ -30,6 +33,26 @@ export const ParticleAccelerator = (props, context) => {
                   ? "Ready - All parts in place"
                   : "Unable to detect all parts"}
               </Box>
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+        <Section>
+          <LabeledList>
+            <LabeledList.Item
+              label="Area Restriction"
+              buttons={(
+                <Button
+                  icon={"sync"}
+                  tooltip="Requires CE level access."
+                  content={locked ? "Disable Restriction" : "Enable Restriction"}
+                  selected={locked}
+                  onClick={() => act('toggle_lock')} />
+              )}>
+              <Button
+                icon={area_restricted ? 'power-off' : 'times'}
+                content={area_restricted ? 'On' : 'Off'}
+                selected={area_restricted}
+                onClick={() => act('toggle_arearestriction')} />
             </LabeledList.Item>
           </LabeledList>
         </Section>

@@ -5,11 +5,11 @@
 	program_icon_state = "command"
 	extended_desc = "This program allows communication over NTNRC network"
 	size = 8
-	requires_ntnet = 1
+	requires_ntnet = TRUE
 	requires_ntnet_feature = NTNET_COMMUNICATION
 	network_destination = "NTNRC server"
 	ui_header = "ntnrc_idle.gif"
-	available_on_ntnet = 1
+	available_on_ntnet = TRUE
 	tgui_id = "NtosNetChat"
 	program_icon = "comment-alt"
 
@@ -29,6 +29,7 @@
 
 	var/datum/ntnet_conversation/channel = SSnetworks.station_network.get_chat_channel_by_id(active_channel)
 	var/authed = FALSE
+	computer.play_interact_sound()
 	if(channel && ((channel.operator == src) || netadmin_mode))
 		authed = TRUE
 	switch(action)
@@ -40,6 +41,9 @@
 				return
 			//yogs start
 			if(isnotpretty(message))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[message]'."
 				message_admins(log_message)
@@ -80,6 +84,9 @@
 				return
 			//yogs start
 			if(isnotpretty(channel_title))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[channel_title]'."
 				message_admins(log_message)
@@ -111,6 +118,9 @@
 				return
 			//yogs start
 			if(isnotpretty(newname))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[newname]'."
 				message_admins(log_message)
@@ -155,6 +165,9 @@
 				return
 			//yogs start
 			if(isnotpretty(newname))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[newname]'."
 				message_admins(log_message)
@@ -179,6 +192,9 @@
 
 			//yogs start
 			if(isnotpretty(new_password))
+				if(usr.client.prefs.muted & MUTE_IC)
+					return
+				usr.client.handle_spam_prevention("PRETTY FILTER", MUTE_ALL) // Constant message mutes someone faster for not pretty messages
 				to_chat(usr, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
 				var/log_message = "[key_name(usr)] just tripped a pretty filter: '[new_password]'."
 				message_admins(log_message)

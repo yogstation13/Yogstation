@@ -98,3 +98,33 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item/proc/make_item()
 	item = new item_type
 	return item
+
+/obj/effect/proc_holder/spell/aoe_turf/horde
+	name = "Horde"
+	desc = "Bring all your existing bloodmen to you at the cost of 3% blood per bloodman or 5 brain damage per bloodman if you're a bloodless race."
+	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	action_icon_state = "horde"
+	var/list/summon_type = list("/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman")
+	clothes_req = FALSE
+	var/summon_lifespan = 0 
+	var/summon_ignore_density = FALSE 
+	var/summon_ignore_prev_spawn_points = TRUE 
+	var/list/newVars = list()
+
+/obj/effect/proc_holder/spell/aoe_turf/horde/cast(list/targets,mob/living/carbon/user = usr)
+	var/list/directions = GLOB.alldirs.Copy()
+	if(GLOB.bloodmen_list.len < 1)
+		to_chat(user, span_notice("You don't have any minions to summon!"))
+		return
+	for(var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman in GLOB.bloodmen_list)
+		var/spawndir = pick_n_take(directions)
+		var/turf/T = get_step(usr, spawndir)
+		if(NOBLOOD in user.dna.species.species_traits)
+			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
+			to_chat(usr, span_notice("<span class ='userdanger'>You can almost feel your brain writhing as you call your bloodmen to you.</span>"))
+		else
+			user.blood_volume -= 15
+			to_chat(usr, span_notice("<span class ='userdanger'>You feel yourself becoming paler with every minion called.</span>"))
+		if(T)
+			bloodman.forceMove(T)
+			playsound(usr, 'sound/magic/exit_blood.ogg', 100, 1)

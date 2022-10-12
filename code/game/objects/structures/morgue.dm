@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	user.visible_message(null, \
 		span_notice("You lean on the back of [src] and start pushing the tray open... (this will take about [DisplayTimeText(breakout_time)].)"), \
 		span_italics("You hear a metallic creaking from [src]."))
-	if(do_after(user,(breakout_time), target = src))
+	if(do_after(user, (breakout_time), src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
 		user.visible_message(span_warning("[user] successfully broke out of [src]!"), \
@@ -285,7 +285,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		if(!locate(/obj/effect/decal/cleanable/ash) in get_step(src, dir))//prevent pile-up
 			new/obj/effect/decal/cleanable/ash/crematorium(src)
 
-		sleep(30)
+		sleep(3 SECONDS)
 
 		if(!QDELETED(src))
 			locked = FALSE

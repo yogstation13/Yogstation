@@ -39,7 +39,7 @@
 	else if(!(organ_flags & ORGAN_FAILING)) // if this organ is failing, do not clear deaf stacks.
 		deaf = max(deaf - 1, 0)
 		if(prob(damage / 20) && (damage > low_threshold))
-			adjustEarDamage(0, 4)
+			adjustEarDamage(0, 2)
 			SEND_SOUND(C, sound('sound/weapons/flash_ring.ogg'))
 			to_chat(C, span_warning("The ringing in your ears grows louder, blocking out any external noises for a moment."))
 	else if((organ_flags & ORGAN_FAILING) && (deaf == 0))
@@ -110,6 +110,14 @@
 		H.dna.species.mutant_bodyparts -= "ears"
 		H.update_body()
 
+/obj/item/organ/ears/cybernetic
+	name = "cybernetic hearing apparatus"
+	desc = "A set of complex electronics that can mimic the functions of an ear. Slightly more resistant to damage."
+	icon_state = "ears-c"
+	damage_multiplier = 0.8
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
+
 /obj/item/organ/ears/penguin
 	name = "penguin ears"
 	desc = "The source of a penguin's happy feet."
@@ -132,3 +140,27 @@
 	desc = "The robust ears of a bronze golem. "
 	damage_multiplier = 0.1 //STRONK
 	bang_protect = 1 //Fear me weaklings.
+
+/obj/item/organ/ears/robot
+	name = "auditory sensors"
+	icon_state = "robotic_ears"
+	desc = "A pair of microphones intended to be installed in an IPC head, that grant the ability to hear."
+	zone = "head"
+	slot = "ears"
+	gender = PLURAL
+	status = ORGAN_ROBOTIC
+	organ_flags = ORGAN_SYNTHETIC
+
+/obj/item/organ/ears/robot/emp_act(severity)
+	switch(severity)
+		if(1)
+			owner.Jitter(30)
+			owner.Dizzy(30)
+			owner.Knockdown(200)
+			deaf = 30
+			to_chat(owner, "<span class='warning'>Your robotic ears are ringing, uselessly.</span>")
+		if(2)
+			owner.Jitter(15)
+			owner.Dizzy(15)
+			owner.Knockdown(100)
+			to_chat(owner, "<span class='warning'>Your robotic ears buzz.</span>") 

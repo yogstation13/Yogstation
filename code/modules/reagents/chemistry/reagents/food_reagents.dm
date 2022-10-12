@@ -117,10 +117,11 @@
 	var/fry_temperature = 450 //Around ~350 F (117 C) which deep fryers operate around in the real world
 
 /datum/reagent/consumable/cooking_oil/reaction_obj(obj/O, reac_volume)
-	if(holder && holder.chem_temp >= fry_temperature)
-		if(isitem(O) && !istype(O, /obj/item/reagent_containers/food/snacks/deepfryholder))
-			O.loc.visible_message(span_warning("[O] rapidly fries as it's splashed with hot oil! Somehow."))
-			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(O.drop_location(), O)
+	if(holder && holder.chem_temp >= fry_temperature && isitem(O))
+		var/obj/item/I = O
+		if(I.fryable)
+			I.loc.visible_message(span_warning("[I] rapidly fries as it's splashed with hot oil! Somehow."))
+			var/obj/item/reagent_containers/food/snacks/deepfryholder/F = new(I.drop_location(), O)
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
 
@@ -157,6 +158,16 @@
 		T.MakeSlippery(TURF_WET_LUBE, min_wet_time = 10 SECONDS, wet_time_to_add = reac_volume * 1.5 SECONDS)
 		T.name = "deep-fried [initial(T.name)]"
 		T.add_atom_colour(color, TEMPORARY_COLOUR_PRIORITY)
+
+/datum/reagent/consumable/cooking_oil/fish
+	name = "Fish Oil"
+	description = "A pungent oil derived from fish."
+	color = "#eab36b"
+	taste_mult = 3.0 //VERY strong flavor
+	taste_description = "fishy oil"
+	nutriment_factor = 2 * REAGENTS_METABOLISM //just barely healthier than oil on its own
+	metabolization_rate = 10 * REAGENTS_METABOLISM
+	fry_temperature = 380 //Around ~350 F (117 C) which deep fryers operate around in the real world
 
 /datum/reagent/consumable/sugar
 	name = "Sugar"
@@ -514,6 +525,12 @@
 		if(reagentdecal)
 			reagentdecal.reagents.add_reagent(/datum/reagent/consumable/flour, reac_volume)
 
+/datum/reagent/consumable/batter
+	name = "Batter"
+	description = "This is what you dip things in to get them extra crunchy when fried."
+	color = "#fdffdb"
+	taste_description = "damp flour and beer"
+
 /datum/reagent/consumable/cherryjelly
 	name = "Cherry Jelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
@@ -719,7 +736,7 @@
 	description = "The blood of Ethereals, and the stuff that keeps them going. Great for them, horrid for anyone else."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#97ee63"
-	taste_description = "pure electrictiy"
+	taste_description = "pure electricity"
 
 /datum/reagent/consumable/liquidelectricity/reaction_mob(mob/living/M, method=TOUCH, reac_volume) //can't be on life because of the way blood works.
 	if((method == INGEST || method == INJECT || method == PATCH) && iscarbon(M))
@@ -856,3 +873,24 @@
 	color = "#803280"
 	taste_mult = 2
 	taste_description = "fizzy sweetness"
+
+/datum/reagent/consumable/korta_flour
+	name = "Korta Flour"
+	description = "A coarsely ground, peppery flour made from korta nut shells."
+	taste_description = "earthy heat"
+	color = "#EEC39A"
+
+/datum/reagent/consumable/korta_milk
+	name = "Korta Milk"
+	description = "A milky liquid made by crushing the centre of a korta nut."
+	taste_description = "sugary milk"
+	color = "#FFFFFF"
+
+/datum/reagent/consumable/korta_nectar
+	name = "Korta Nectar"
+	description = "A sweet, sugary syrup made from crushed sweet korta nuts."
+	color = "#d3a308"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	taste_description = "peppery sweetness"
+

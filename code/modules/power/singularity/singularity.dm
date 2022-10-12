@@ -100,7 +100,7 @@
 		for(var/i in 1 to 3)
 			C.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
 			new /obj/effect/gibspawner/generic(T, C)
-			sleep(1)
+			sleep(0.1 SECONDS)
 		C.ghostize()
 		var/obj/item/bodypart/head/rip_u = C.get_bodypart(BODY_ZONE_HEAD)
 		rip_u.dismember(BURN) //nice try jedi
@@ -385,6 +385,10 @@
 				for (var/A in T.contents)
 					if (istype(A, /atom/movable))
 						objs += 1
+						if(ishuman(A))
+							var/mob/living/carbon/human/H = A
+							if(H.nutrition >= NUTRITION_LEVEL_FAT)
+								objs += 5
 				interest += CEILING(objs / SINGULARITY_INTEREST_OBJECT, 0.5)
 			sections[section_loc] = interest
 	var/turf/section = pickweight(sections)
@@ -419,10 +423,10 @@
 	var/dir2 = 0
 	var/dir3 = 0
 	switch(direction)
-		if(NORTH||SOUTH)
+		if(NORTH, SOUTH)
 			dir2 = 4
 			dir3 = 8
-		if(EAST||WEST)
+		if(EAST, WEST)
 			dir2 = 1
 			dir3 = 2
 	var/turf/T2 = T
@@ -493,11 +497,9 @@
 		if(M.stat == CONSCIOUS)
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(istype(H.glasses, /obj/item/clothing/glasses/meson))
-					var/obj/item/clothing/glasses/meson/MS = H.glasses
-					if(MS.vision_flags == SEE_TURFS)
-						to_chat(H, span_notice("You look directly into the [src.name], good thing you had your protective eyewear on!"))
-						return
+				if(HAS_TRAIT(H, TRAIT_MESONS))
+					to_chat(H, span_notice("You look directly into the [src.name], good thing you were protected!"))
+					return
 
 		M.apply_effect(60, EFFECT_STUN)
 		M.visible_message(span_danger("[M] stares blankly at the [src.name]!"), \

@@ -2,7 +2,7 @@
 	if(I.slot_flags & ITEM_SLOT_HEAD && hat_offset != INFINITY && user.a_intent == INTENT_HELP && !is_type_in_typecache(I, blacklisted_hats))
 		to_chat(user, span_notice("You begin to place [I] on [src]'s head..."))
 		to_chat(src, span_notice("[user] is placing [I] on your head..."))
-		if(do_after(user, 3 SECONDS, target = src))
+		if(do_after(user, 3 SECONDS, src))
 			if (user.temporarilyRemoveItemFromInventory(I, TRUE))
 				place_on_head(I)
 		return
@@ -67,7 +67,7 @@
 			spark_system.start()
 			spawn(0)
 				step_away(src,user,15)
-				sleep(3)
+				sleep(0.3 SECONDS)
 				step_away(src,user,15)
 
 /mob/living/silicon/robot/fire_act()
@@ -115,6 +115,7 @@
 
 	if(connected_ai && connected_ai.mind && connected_ai.mind.has_antag_datum(/datum/antagonist/traitor))
 		to_chat(src, span_danger("ALERT: Foreign software execution prevented."))
+		logevent("ALERT: Foreign software execution prevented.")
 		to_chat(connected_ai, span_danger("ALERT: Cyborg unit \[[src]] successfully defended against subversion."))
 		log_game("[key_name(user)] attempted to emag cyborg [key_name(src)], but they were slaved to traitor AI [connected_ai].")
 		return
@@ -135,17 +136,21 @@
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 	to_chat(src, span_danger("ALERT: Foreign software detected."))
-	sleep(5)
+	logevent("ALERT: Foreign software detected.")
+	sleep(0.5 SECONDS)
 	to_chat(src, span_danger("Initiating diagnostics..."))
-	sleep(20)
+	sleep(2 SECONDS)
 	to_chat(src, span_danger("SynBorg v1.7 loaded."))
-	sleep(5)
+	logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
+	sleep(0.5 SECONDS)
 	to_chat(src, span_danger("LAW SYNCHRONISATION ERROR"))
-	sleep(5)
+	sleep(0.5 SECONDS)
+	if(user)
+		logevent("LOG: New user \[[replacetext(user.real_name," ","")]\], groups \[root\]")
 	to_chat(src, span_danger("Would you like to send a report to NanoTraSoft? Y/N"))
-	sleep(10)
+	sleep(1 SECONDS)
 	to_chat(src, span_danger("> N"))
-	sleep(20)
+	sleep(2 SECONDS)
 	to_chat(src, span_danger("ERRORERRORERROR"))
 	to_chat(src, span_danger("ALERT: [user.real_name] is your new master. Obey your new laws and [user.p_their()] commands."))
 	
@@ -154,6 +159,11 @@
 		H.grant_language(/datum/language/japanese)
 		laws = new /datum/ai_laws/ninja_override
 		set_zeroth_law("Only [user.real_name] and people [user.p_they()] designate[user.p_s()] as being such are Spider Clan members.")
+		laws.associate(src)
+	if(user.mind?.has_antag_datum(/datum/antagonist/rev) || user.mind?.has_antag_datum(/datum/antagonist/rev/head))
+		if(src.mind)
+			src.mind.add_antag_datum(/datum/antagonist/rev)
+		laws = new /datum/ai_laws/revolutionary
 		laws.associate(src)
 	else
 		laws = new /datum/ai_laws/syndicate_override

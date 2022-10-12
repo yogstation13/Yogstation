@@ -12,7 +12,7 @@
 	if(dna && dna.species)
 		. += dna.species.movement_delay(src)
 
-/mob/living/carbon/human/slip(knockdown_amount, obj/O, lube, paralyze, forcedrop)
+/mob/living/carbon/human/slip(knockdown_amount, obj/O, lube, stun, forcedrop)
 	if(HAS_TRAIT(src, TRAIT_NOSLIPALL))
 		return 0
 	if (!(lube & GALOSHES_DONT_HELP))
@@ -48,6 +48,9 @@
 
 /mob/living/carbon/human/mob_negates_gravity()
 	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)))
+
+/mob/living/carbon/human/mob_has_heavy_gravity()
+	return (shoes && shoes.negates_gravity())
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()

@@ -178,7 +178,7 @@
 	name = "Healing Chest"
 	desc = "Contains an assortment of healing items."
 	respawn_loot = list(
-		/obj/item/reagent_containers/hypospray/medipen/survival=1,
+		/obj/item/reagent_containers/autoinjector/medipen/survival=1,
 		/obj/item/storage/firstaid/brute=1,
 		/obj/item/hivelordstabilizer=3,
 		/obj/item/organ/regenerative_core/legion=3)
@@ -201,7 +201,7 @@
 		/obj/item/extinguisher=1)
 
 /datum/component/spawner/megafauna
-	var/spawn_wait_time = 150 // time to next spawn when the megafauna dies, 15 seconds
+	var/spawn_wait_time = 15 SECONDS // time to next spawn when the megafauna dies, 15 seconds
 	var/initial_spawned = FALSE // so we don't clear the arena and open the door on the initial spawn
 	var/nest_range = 10
 

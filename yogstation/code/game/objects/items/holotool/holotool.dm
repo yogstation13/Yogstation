@@ -12,13 +12,22 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 	var/datum/holotool_mode/current_tool
+	var/obj/item/multitool/internal_multitool // A kludge caused by the statefulness of multitools,
+	// to be retained until we have the hubris to abstract all multitool functionality into some /datum/component, and break modularity in a hundred ways
 	var/list/available_modes
 	var/list/mode_names
 	var/list/radial_modes
 	var/current_color = "#48D1CC" //mediumturquoise
+/obj/item/holotool/Initialize()
+	. = ..()
+	internal_multitool = new /obj/item/multitool(src)
+
+/obj/item/holotool/Destroy()
+	. = ..()
+	qdel(internal_multitool)
 
 /obj/item/holotool/examine(mob/user)
-	..()
+	. = ..()
 	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
 	. += span_notice("Ctrl+Click it to open the radial menu!")
 

@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("computer frame", /obj/structure/frame/computer, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("machine frame", /obj/structure/frame/machine, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/buildable/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new /datum/stack_recipe_list("airlock assemblies", list( \
 		new /datum/stack_recipe("airtight hatch assembly", /obj/structure/door_assembly/door_assembly_hatch, 4, time = 50, one_per_turf = 1, on_floor = 1), \
@@ -88,6 +88,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("reflector frame", /obj/structure/reflector, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("turret frame", /obj/machinery/porta_turret_construct, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
+	new/datum/stack_recipe("bell", /obj/item/deskbell), \
 	new/datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade), \
 	new/datum/stack_recipe("light fixture frame", /obj/item/wallframe/light_fixture, 2), \
 	new/datum/stack_recipe("small light fixture frame", /obj/item/wallframe/light_fixture/small, 1), \
@@ -98,6 +99,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("button frame", /obj/item/wallframe/button, 1), \
 	new/datum/stack_recipe("extinguisher cabinet frame", /obj/item/wallframe/extinguisher_cabinet, 2), \
 	new/datum/stack_recipe("fire alarm frame", /obj/item/wallframe/firealarm, 2), \
+	new/datum/stack_recipe("telescreen frame", /obj/item/wallframe/telescreen, 3), \
 	null, \
 	new/datum/stack_recipe("floodlight frame", /obj/structure/floodlight_frame, 5, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, one_per_turf = TRUE, on_floor = TRUE), \
@@ -173,7 +175,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	materials = list(/datum/material/iron=2000, /datum/material/plasma=2000)
 	throwforce = 10
 	flags_1 = CONDUCT_1
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 80)
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/plasteel
 	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
@@ -196,6 +198,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
  */
 GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("apiary", /obj/structure/beebox, 40, time = 50),\
+	new/datum/stack_recipe("baseball bat", /obj/item/twohanded/required/baseball_bat, 10, time = 15),\
 	new/datum/stack_recipe("book case", /obj/structure/bookcase, 4, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/crate/coffin, 5, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("display case chassis", /obj/structure/displaycase_chassis, 5, one_per_turf = TRUE, on_floor = TRUE), \
@@ -233,7 +236,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 		new /datum/stack_recipe("pew (right)", /obj/structure/chair/pew/right, 3, one_per_turf = TRUE, on_floor = TRUE)
 		)),
 	null, \
-	)) //YOGS - remove baseball bats, this comment needs to be outside the proc though, so here's the removed line: new/datum/stack_recipe("baseball bat", /obj/item/melee/baseball_bat, 5, time = 15),
+	))
 
 /obj/item/stack/sheet/mineral/wood
 	name = "wooden plank"
@@ -243,7 +246,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	item_state = "sheet-wood"
 	icon = 'icons/obj/stack_objects.dmi'
 	sheettype = "wood"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/mineral/wood
 	novariants = TRUE
@@ -251,6 +254,37 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 
 /obj/item/stack/sheet/mineral/wood/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.wood_recipes
+	return ..()
+
+/obj/item/stack/sheet/mineral/wood/attackby(obj/item/item, mob/user, params)
+	if(item.get_sharpness())
+		user.visible_message(
+			span_notice("[user] begins whittling [src] into a pointy object."),
+			span_notice("You begin whittling [src] into a sharp point at one end."),
+			span_hear("You hear wood carving."),
+		)
+		// 5 Second Timer
+		if(!do_after(user, 5 SECONDS, src))
+			return
+		// Make Stake
+		var/obj/item/stake/new_item = new(user.loc)
+		user.visible_message(
+			span_notice("[user] finishes carving a stake out of [src]."),
+			span_notice("You finish carving a stake out of [src]."),
+		)
+		// Prepare to Put in Hands (if holding wood)
+		var/obj/item/stack/sheet/mineral/wood/wood_stack = src
+		var/replace = (user.get_inactive_held_item() == wood_stack)
+		// Use Wood
+		wood_stack.use(1)
+		// If stack depleted, put item in that hand (if it had one)
+		if(!wood_stack && replace)
+			user.put_in_hands(new_item)
+	if(istype(item, merge_type))
+		var/obj/item/stack/merged_stack = item
+		if(merge(merged_stack))
+			to_chat(user, span_notice("Your [merged_stack.name] stack now contains [merged_stack.get_amount()] [merged_stack.singular_name]\s."))
+		return
 	return ..()
 
 /obj/item/stack/sheet/mineral/wood/fifty
@@ -268,6 +302,15 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	new/datum/stack_recipe("blow gun", /obj/item/gun/syringe/blowgun, 10, time = 70), \
 	new/datum/stack_recipe("crude syringe", /obj/item/reagent_containers/syringe/crude, 5, time = 10), \
 	new/datum/stack_recipe("punji sticks trap", /obj/structure/punji_sticks, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \
+	null, \
+	new/datum/stack_recipe("bamboo mat piece", /obj/item/stack/tile/bamboo, 1, 4, 20), \
+	new/datum/stack_recipe("bamboo stool", /obj/structure/chair/stool/bamboo, 2, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
+	null, \
+	new/datum/stack_recipe_list("bamboo benches", list(
+		new /datum/stack_recipe("bamboo bench (middle)", /obj/structure/chair/sofa/bamboo, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE),
+		new /datum/stack_recipe("bamboo bench (left)", /obj/structure/chair/sofa/bamboo/left, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE),
+		new /datum/stack_recipe("bamboo bench (right)", /obj/structure/chair/sofa/bamboo/right, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE)
+		)),	\
 	))
 
 /obj/item/stack/sheet/mineral/bamboo
@@ -279,7 +322,7 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	icon = 'icons/obj/stack_objects.dmi'
 	sheettype = "bamboo"
 	throwforce = 15
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/mineral/bamboo
 	grind_results = list(/datum/reagent/cellulose = 10)
@@ -306,6 +349,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("construction bag", /obj/item/storage/bag/construction, 4), \
 	new/datum/stack_recipe("mining satchel", /obj/item/storage/bag/ore, 4), \
 	new/datum/stack_recipe("plant bag", /obj/item/storage/bag/plants, 4), \
+	new/datum/stack_recipe("sheet snatcher", /obj/item/storage/bag/sheetsnatcher, 4), \
 	null, \
 	new/datum/stack_recipe("bedsheet", /obj/item/bedsheet, 3), \
 	new/datum/stack_recipe("empty sandbag", /obj/item/emptysandbag, 4), \
@@ -318,6 +362,13 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("white softcap", /obj/item/clothing/head/soft/mime, 2), \
 	null, \
 	new/datum/stack_recipe("blindfold", /obj/item/clothing/glasses/blindfold, 2), \
+	null, \
+	new/datum/stack_recipe("black beanbag", /obj/structure/chair/stool/beanbag/black, 5), \
+	new/datum/stack_recipe("blue beanbag", /obj/structure/chair/stool/beanbag/blue, 5), \
+	new/datum/stack_recipe("red beanbag", /obj/structure/chair/stool/beanbag/red, 5), \
+	new/datum/stack_recipe("green beanbag", /obj/structure/chair/stool/beanbag/green, 5), \
+	new/datum/stack_recipe("grey beanbag", /obj/structure/chair/stool/beanbag, 5), \
+	new/datum/stack_recipe("yellow beanbag", /obj/structure/chair/stool/beanbag/yellow, 5), \
 	))
 
 /obj/item/stack/sheet/cloth
@@ -330,6 +381,36 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cloth
+	strict = TRUE
+	is_fabric = TRUE
+	pull_effort = 2 SECONDS
+	loom_result = /obj/item/stack/sheet/silk
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
+
+/*
+ * Silk
+ */
+
+GLOBAL_LIST_INIT(silk_recipes, list ( \
+	new/datum/stack_recipe("silk string", /obj/item/weaponcrafting/silkstring, 2, time = 40)
+	))
+
+/obj/item/stack/sheet/silk
+	name = "silk"
+	desc = "A long soft material. This one is made from cotton rather than spidersilk."
+	singular_name = "Silk Sheet"
+	icon_state = "sheet-silk"
+	item_state = "sheet-silk"
+	icon = 'icons/obj/stack_objects.dmi'
+	novariants = TRUE
+	merge_type = /obj/item/stack/sheet/silk
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
+
+/obj/item/stack/sheet/silk/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.silk_recipes
+	return ..()
 
 /obj/item/stack/sheet/cloth/durathread
 	name = "durathread"
@@ -337,6 +418,8 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	singular_name = "durathread roll"
 	icon_state = "sheet-durathread"
 	merge_type = /obj/item/stack/sheet/cloth/durathread
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 
 /obj/item/stack/sheet/cloth/durathread/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
@@ -378,6 +461,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	force = 0
 	throwforce = 0
 	merge_type = /obj/item/stack/sheet/cotton
+	strict = TRUE
 	pull_effort = 30
 	loom_result = /obj/item/stack/sheet/cloth
 	grind_results = list(/datum/reagent/cellulose = 20)
@@ -409,7 +493,12 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 	null,																						\
 	//TO-DO: Find a proper way to just change the illustration on the box. Code isn't the issue, input is.
 	new/datum/stack_recipe_list("fancy boxes", list(
+		new /datum/stack_recipe("donk-pockets berry box", /obj/item/storage/box/donkpockets/donkpocketberry),			\
 		new /datum/stack_recipe("donk-pockets box", /obj/item/storage/box/donkpockets),			\
+		new /datum/stack_recipe("donk-pockets honk box", /obj/item/storage/box/donkpockets/donkpockethonk),				\
+		new /datum/stack_recipe("donk-pockets pizza box", /obj/item/storage/box/donkpockets/donkpocketpizza),			\
+		new /datum/stack_recipe("donk-pockets teriyaki box", /obj/item/storage/box/donkpockets/donkpocketteriyaki),		\
+		new /datum/stack_recipe("donk-pockets spicy box", /obj/item/storage/box/donkpockets/donkpocketspicy),			\
 		new /datum/stack_recipe("donut box", /obj/item/storage/box/fancy/donut_box),				\
 		new /datum/stack_recipe("egg box", /obj/item/storage/box/fancy/egg_box),					\
 		new /datum/stack_recipe("monkey cube box", /obj/item/storage/box/monkeycubes),			\
@@ -439,7 +528,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		new /datum/stack_recipe("light bulbs box", /obj/item/storage/box/lights/bulbs),			\
 		new /datum/stack_recipe("light tubes box", /obj/item/storage/box/lights/tubes),			\
 		new /datum/stack_recipe("mixed lights box", /obj/item/storage/box/lights/mixed),		\
-		new /datum/stack_recipe("mouse traps box", /obj/item/storage/box/mousetraps),			
+		new /datum/stack_recipe("mouse traps box", /obj/item/storage/box/mousetraps),
 		)),
 
 	null,																						\
@@ -480,7 +569,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 			to_chat(user, span_notice("You stamp the cardboard in a sinister way"))
 			if (amount >= 0)
 				new/obj/item/storage/box/syndie_kit(droploc)
-	
+
 	if(istype(I, /obj/item/stamp/syndiround) && !istype(loc, /obj/item/storage))
 		var/atom/droploc = drop_location()
 		if(use(1))
@@ -624,7 +713,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 
 /obj/item/stack/tile/bronze
 	name = "brass"
-	desc = "On closer inspection, what appears to be wholly-unsuitable-for-building brass is actually more structurally stable bronze."
+	desc = "On closer inspection, what appears to be wholly unsuitable-for-building brass is actually more structurally stable bronze."
 	singular_name = "bronze sheet"
 	icon_state = "sheet-brass"
 	item_state = "sheet-brass"
@@ -694,9 +783,13 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/bone
 
 GLOBAL_LIST_INIT(plastic_recipes, list(
-	new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
-	new /datum/stack_recipe("water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/empty), \
+	new /datum/stack_recipe("red button", /obj/item/deskbell/button, 1), \
+	new /datum/stack_recipe("blue button", /obj/item/deskbell/button/blue, 1), \
+	new /datum/stack_recipe("colo cups", /obj/item/reagent_containers/food/drinks/colocup, 1), \
 	new /datum/stack_recipe("large water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty,3), \
+	new /datum/stack_recipe("plastic flaps", /obj/structure/plasticflaps, 5, one_per_turf = TRUE, on_floor = TRUE, time = 40), \
+	new /datum/stack_recipe("comfy plastic chair", /obj/structure/chair/comfy/plastic, 5, one_per_turf = TRUE, on_floor = TRUE), \
+	new /datum/stack_recipe("water bottle", /obj/item/reagent_containers/glass/beaker/waterbottle/empty), \
 	new /datum/stack_recipe("wet floor sign", /obj/item/clothing/suit/caution, 2)))
 
 /obj/item/stack/sheet/plastic
@@ -720,8 +813,8 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	. = ..()
 
 GLOBAL_LIST_INIT(paperframe_recipes, list(
-new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperframe, 2, one_per_turf = TRUE, on_floor = TRUE, time = 10), \
-new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperframe, 3, one_per_turf = TRUE, on_floor = TRUE, time = 10 )))
+new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperframe, 3, one_per_turf = TRUE, on_floor = TRUE, time = 10), \
+new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperframe, 2, one_per_turf = TRUE, on_floor = TRUE, time = 10 )))
 
 /obj/item/stack/sheet/paperframes
 	name = "paper frames"
@@ -790,8 +883,8 @@ GLOBAL_LIST_INIT(cheese_recipes, list (
 	merge_type = /obj/item/stack/sheet/ruinous_metal
 
 GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
-	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1, time = 40), \
-	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40 )))
+	new/datum/stack_recipe("altar of the gods", /obj/structure/altar_of_gods, 6, one_per_turf = 1, on_floor = 1, time = 40), \
+	new/datum/stack_recipe("holy fountain", /obj/structure/holyfountain, 3, one_per_turf = 1, on_floor = 1, time = 40 )))
 
 /obj/item/stack/sheet/ruinous_metal/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.ruinous_metal_recipes
@@ -809,10 +902,10 @@ GLOBAL_LIST_INIT(ruinous_metal_recipes, list (
 	novariants = TRUE
 	grind_results = list(/datum/reagent/consumable/ashresin = 5)
 	merge_type = /obj/item/stack/sheet/ashresin
-	
+
 GLOBAL_LIST_INIT(ashresin_recipes, list (
-	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40)
-	))
+	new/datum/stack_recipe("resin candle", /obj/item/candle/resin), \
+	new/datum/stack_recipe("resin statue", /obj/structure/statue/resin/ashwalker, 5, one_per_turf = 1, on_floor = 1, time = 40 )))
 
 /obj/item/stack/sheet/ashresin/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.ashresin_recipes

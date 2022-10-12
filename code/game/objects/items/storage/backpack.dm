@@ -44,7 +44,7 @@
 	item_state = "holdingpack"
 	resistance_flags = FIRE_PROOF
 	item_flags = NO_MAT_REDEMPTION
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 60, ACID = 50)
 	component_type = /datum/component/storage/concrete/bluespace/bag_of_holding
 
 /obj/item/storage/backpack/holding/clown
@@ -64,8 +64,8 @@
 /obj/item/storage/backpack/holding/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is jumping into [src]! It looks like [user.p_theyre()] trying to commit suicide."))
 	user.dropItemToGround(src, TRUE)
-	user.Stun(100, ignore_canstun = TRUE)
-	sleep(20)
+	user.Stun(10 SECONDS, ignore_canstun = TRUE)
+	sleep(2 SECONDS)
 	playsound(src, "rustle", 50, 1, -5)
 	qdel(user)
 
@@ -371,7 +371,6 @@
 	new /obj/item/cautery(src)
 	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/bonesetter(src)
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/razor(src)
 
@@ -393,7 +392,6 @@
 	new /obj/item/bonesetter(src)
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
-	new /obj/item/surgical_drapes(src)
 	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/clothing/mask/surgical(src)
 
@@ -480,11 +478,14 @@
 	new /obj/item/bonesetter(src)
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/cautery(src)
-	new /obj/item/surgical_drapes(src)
+	new /obj/item/stack/medical/bone_gel(src)
+	new /obj/item/surgical_mat/syndicate(src)
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
 	new /obj/item/mmi/syndie(src)
-	new /obj/item/stack/medical/bone_gel(src)
+	new /obj/item/implantcase(src)
+	for(var/obj/item/I in contents)
+		I.toolspeed = 0.5
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo
 	name = "ammunition duffel bag"
@@ -496,18 +497,23 @@
 	desc = "A large duffel bag, packed to the brim with Bulldog shotgun magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/PopulateContents()
-	for(var/i in 1 to 6)
+	for(var/i in 1 to 3)
 		new /obj/item/ammo_box/magazine/m12g(src)
-	new /obj/item/ammo_box/magazine/m12g/slug(src)
-	new /obj/item/ammo_box/magazine/m12g/slug(src)
-	new /obj/item/ammo_box/magazine/m12g/dragon(src)
+	for(var/i in 4 to 6)
+		new /obj/item/ammo_box/magazine/m12g/slug(src)
+	for(var/i in 7 to 8)
+		new /obj/item/ammo_box/magazine/m12g/flechette(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	desc = "A large duffel bag, packed to the brim with C-20r magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/PopulateContents()
-	for(var/i in 1 to 9)
+	for(var/i in 1 to 5)
 		new /obj/item/ammo_box/magazine/smgm45(src)
+	for(var/i in 6 to 7)
+		new /obj/item/ammo_box/magazine/smgm45/ap(src)
+	for(var/i in 8 to 9)
+		new /obj/item/ammo_box/magazine/smgm45/hp(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
@@ -648,6 +654,7 @@
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/hop(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/rd
 	name = "Research Directors clothing duffelbag"
@@ -663,6 +670,7 @@
 	new /obj/item/clothing/under/rank/research_director/alt/skirt(src)
 	new /obj/item/clothing/under/rank/research_director/turtleneck(src)
 	new /obj/item/clothing/under/rank/research_director/turtleneck/skirt(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/science/rd(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/under/yogs/rdema(src)
 
@@ -685,6 +693,7 @@
 	new /obj/item/clothing/under/yogs/cecasual(src)
 	new /obj/item/clothing/head/beret/ce(src)
 	new /obj/item/clothing/suit/hazardvest(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/engineering/ce(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/meson/engine(src)
 
@@ -706,6 +715,7 @@
 	new /obj/item/clothing/accessory/waistcoat(src)
 	new /obj/item/clothing/suit/det_suit/grey(src)
 	new /obj/item/clothing/suit/det_suit/noir(src)
+	new /obj/item/clothing/suit/det_suit/tan(src)
 	new /obj/item/clothing/head/fedora(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/under/yogs/forensictech(src)
@@ -756,6 +766,7 @@
 	new /obj/item/clothing/under/yogs/hoslatenight(src)
 	new /obj/item/clothing/under/yogs/hoscasual(src)
 	new /obj/item/clothing/suit/armor/vest/hosjacket(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/security/hos(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/med/chief
 	name = "Chief Medical Officer's clothing duffelbag"
@@ -771,3 +782,4 @@
 	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/head/beret/cmo(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/medical/cmo(src)

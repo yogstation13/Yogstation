@@ -38,7 +38,7 @@
 	if(usr)
 		if (usr.client)
 			if(usr.client.holder)
-				to_chat(M, "<i>You hear a voice in your head... <b>[msg]</i></b>")
+				to_chat(M, span_big("<i>You hear a voice in your head... <b>[msg]</i></b>"))
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
 	msg = "SubtleMessage: [key_name(usr)] -> [key_name(M)] : [msg]" // yogs - Yog Tickets
@@ -196,7 +196,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Local Narrate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Godmode"
 	if(!check_rights(R_ADMIN))
 		return
@@ -512,7 +512,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return new_character
 
 /client/proc/cmd_admin_add_freeform_ai_law()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Add Custom AI law"
 
 	if(!check_rights(R_ADMIN))
@@ -554,6 +554,62 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Rejuvinate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_offer_rename(mob/living/L in GLOB.player_list)
+	set category = "Admin.Player Interaction"
+	set name = "Offer Rename"
+	var/newname
+	var/forced_answer = " "
+	var/unforced_answer = " "
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/forced_rename = alert("Would you like the targeted mob to be allowed to decline?", "Allow decline?", "Yes", "No")
+	if(forced_rename == "Yes")
+		unforced_answer = alert(L, "An admin is offering you a chance to rename yourself", "Admin rename?", "Accept", "Decline", "Random Name")
+		log_game("[usr] forced a rename on [L.ckey].")
+	else
+		forced_answer = alert(L, "An admin is \"offering\" you a chance to rename yourself", "Admin rename?", "Accept", "Random Name")
+		log_game("[usr] chose to offer an optional rename to [L.ckey].")
+
+	if(QDELETED(L))
+		message_admins(span_boldnotice("([L.ckey])[L] has been deleted before they could rename themselves!"))
+		log_game("([L.ckey])[L] was Qdeleted before they could complete a rename.")
+		return
+	if(unforced_answer == "Decline")
+		message_admins(span_boldnotice("([L.ckey])[L] has declined the rename."))
+		log_game("([L.ckey])[L] chose to decline an offered rename.")
+		return
+	if(forced_answer == "Random Name" || unforced_answer == "Random Name")
+		newname = random_unique_name(L.gender)
+		log_game("([L.ckey])[L] chose to use a random name when offered a rename.")
+	if(forced_answer == "Accept" || unforced_answer == "Accept")
+		newname = sanitize_name(reject_bad_text(stripped_input(L, "Who are we again?", "Name change", L.real_name, MAX_NAME_LEN)))
+		log_game("([L.ckey])[L] accepted an offered name change.")
+	if(isnotpretty(newname))
+		to_chat(L, span_warning("your chosen name was not accepted! Please ahelp if you would like a second chance."))
+		message_admins(span_notice("([L.ckey])[L]'s new name [newname] was filtered, and was rejected!"))
+		log_game("([L.ckey])[L]'s new name [newname] was filtered, and was rejected.")
+		if(forced_rename == "No")
+			return
+		else
+			newname = random_unique_name(L.gender)
+	if(!newname || newname == "" || newname == L.real_name)
+		message_admins(span_boldnotice("[L.ckey]'s new name was blank or unchanged! Defaulting to random!"))
+		log_game("([L.ckey])[L]'s entered an identical, blank, or null new name, and was defaulted to random.")
+		newname = random_unique_name(L.gender)
+	message_admins(span_boldnotice("([L.ckey])[L.real_name] has been admin renamed to [newname]."))
+	log_game("([L.ckey])[L.real_name] has been renamed to [newname].")
+	L.real_name = newname
+	L.name = newname
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C?.dna)
+			C?.dna?.real_name = newname
+	if(L?.mind)
+		L?.mind?.name = newname
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Offer Mob Rename") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
+
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Admin.Round Interaction"
 	set name = "Create Command Report"
@@ -570,7 +626,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/senderOverride = input(src, "Please input the sender of the report", "Sender", "[command_name()] Update")
 	switch(confirm)
 		if("Yes")
-			priority_announce(input, null, SSstation.announcer.get_rand_report_sound(), sender_override = senderOverride, sanitize = FALSE)
+			priority_announce(input, null, RANDOM_REPORT_SOUND, sender_override = senderOverride, sanitize = FALSE)
 			announce_command_report = FALSE
 		if("Cancel")
 			return
@@ -582,7 +638,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_change_command_name()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Change Command Name"
 
 	if(!check_rights(R_ADMIN))
@@ -639,7 +695,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Manage Job Slots") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Explosion"
 
 	if(!check_rights(R_ADMIN))
@@ -675,7 +731,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /client/proc/cmd_admin_emp(atom/O as obj|mob|turf in world)
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "EM Pulse"
 
 	if(!check_rights(R_ADMIN))
@@ -700,7 +756,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /client/proc/cmd_admin_gib(mob/M in GLOB.mob_list)
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	set name = "Gib"
 
 	if(!check_rights(R_ADMIN))
@@ -727,7 +783,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_gib_self()
 	set name = "Gibself"
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm == "Yes")
@@ -809,7 +865,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/everyone_random()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Make Everyone Random"
 	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
 
@@ -874,10 +930,19 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/toggle_nuke(obj/machinery/nuclearbomb/N in GLOB.nuke_list)
 	set name = "Toggle Nuke"
-	set category = "Misc"
+	set category = "Admin.Round End"
 	set popup_menu = FALSE
 	if(!check_rights(R_DEBUG))
 		return
+
+	var/areyousure = alert(src, "Are you sure you want to trigger a nuke?", "Options", "Yes", "No", "Cancel")
+	if(areyousure == "Cancel" || areyousure == "No")
+		return
+
+	if(N.type != /obj/machinery/nuclearbomb/beer)
+		var/areyousure2 = alert(src, "THIS WILL BLOW UP THE STATION?", "Options", "Yes", "No", "Cancel")
+		if(areyousure2 == "Cancel" || areyousure2 == "No")
+			return
 
 	if(!N.timing)
 		var/newtime = input(usr, "Set activation timer.", "Activate Nuke", "[N.timer_set]") as num|null
@@ -927,7 +992,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/run_weather()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Run Weather"
 	set desc = "Triggers a weather on the z-level you choose."
 
@@ -950,7 +1015,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Run Weather")
 
 /client/proc/mass_zombie_infection()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Mass Zombie Infection"
 	set desc = "Infects all humans with a latent organ that will zombify \
 		them on death."
@@ -970,7 +1035,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Mass Zombie Infection")
 
 /client/proc/mass_zombie_cure()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Mass Zombie Cure"
 	set desc = "Removes the zombie infection from all humans, returning them to normal."
 	if(!check_rights(R_ADMIN))
@@ -988,7 +1053,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Mass Zombie Cure")
 
 /client/proc/polymorph_all()
-	set category = "Misc"
+	set category = "Admin.Round End"
 	set name = "Polymorph All"
 	set desc = "Applies the effects of the bolt of change to every single mob."
 
@@ -1080,7 +1145,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/smite(mob/living/target as mob)
 	set name = "Smite"
-	set category = "Misc"
+	set category = "Admin.Player Interaction"
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
@@ -1100,7 +1165,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 									ADMIN_PUNISHMENT_CRACK,
 									ADMIN_PUNISHMENT_BLEED,
 									ADMIN_PUNISHMENT_PERFORATE,
-									ADMIN_PUNISHMENT_SCARIFY
+									ADMIN_PUNISHMENT_SCARIFY,
+									ADMIN_PUNISHMENT_SMSPIDER,
+									ADMIN_PUNISHMENT_FLASHBANG
 									)
 
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in punishment_list
@@ -1190,6 +1257,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				to_chat(target, span_reallybigphobia("HENK!! HENK!! HENK!! YOU DID SOMETHING EXTREMELY DUMB, AND MADE GOD MAD. CRY ABOUT IT."))
 			var/mob/living/carbon/human/H = target
 			H?.cluwneify()
+		if(ADMIN_PUNISHMENT_SMSPIDER)
+			var/confirm = alert(usr, "Dust target with a spider? There is no chance of revival!", "Supermatter Spider", "Yes", "No")
+			if(confirm == "No")
+				return
+			//What's an open turf within the target's sight? Lets make a list of them.
+			var/FOVlist = circleviewturfs(target,5)
+			//Okay, now we spawn a spider on the turf...
+			var/mob/living/simple_animal/hostile/smspider/spider = new /mob/living/simple_animal/hostile/smspider(pick(FOVlist))
+			//And have it target the victim.
+			spider.GiveTarget(target)
+			to_chat(usr, span_alert("Dusting target with a spider..."))
 		if(ADMIN_PUNISHMENT_CRACK)
 			if(!iscarbon(target))
 				to_chat(usr,span_warning("This must be used on a carbon mob."), confidential = TRUE)
@@ -1262,6 +1340,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/mob/living/carbon/C = target
 			C.generate_fake_scars(rand(1, 4))
 			to_chat(C, span_warning("You feel your body grow jaded and torn..."))
+
+		if(ADMIN_PUNISHMENT_FLASHBANG)
+			var/mob/living/carbon/chucklenuts = target
+			playsound(chucklenuts,'sound/misc/thinkfast.ogg',300 , FALSE)
+			to_chat(chucklenuts, span_warning("Think Fast!"))
+			sleep(1.5 SECONDS)
+			var/obj/item/grenade/flashbang/CB = new/obj/item/grenade/flashbang(target.loc)
+			CB.prime()
+			chucklenuts.flash_act()
+
 	punish_log(target, punishment)
 
 /**
@@ -1276,6 +1364,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
   * * wound_bonus- the wounding power we're assigning to the bullet, since we don't care about the base one
   * * damage- the damage we're assigning to the bullet, since we don't care about the base one
   */
+
 /proc/firing_squad(mob/living/carbon/target, turf/source_turf, body_zone, wound_bonus, damage)
 	if(!target.get_bodypart(body_zone))
 		return
@@ -1364,7 +1453,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/obj/item/reagent_containers/food/snacks/pie/cream/admin/p = new (get_turf(pick(oview(3,user))))
 	p.item_flags = UNCATCHABLE
 	p.throw_at(user, 10, 0.5, usr)
-	sleep(5)
+	sleep(0.5 SECONDS)
 	var/mob/living/carbon/human/T = user
 	if(!T.IsParalyzed())
 		var/obj/item/reagent_containers/food/snacks/pie/cream/admin/pie = new (get_turf(pick(oview(1,user))))
@@ -1394,11 +1483,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /datum/admins/proc/cmd_create_centcom()
-	set category = "Misc"
+	set category = "Admin.Round Interaction"
 	set name = "Spawn on Centcom"
 	if(!check_rights(R_ADMIN))
 		return
-	var/turf/T = locate(196,82,1) // Magic number alert!
+	var/turf/T
+	for(var/obj/effect/landmark/centcom/centcomturf in GLOB.landmarks_list)
+		T = centcomturf.loc
 	if(ismob(usr))
 		var/mob/M = usr
 		if(isobserver(M))
@@ -1439,10 +1530,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	playsound(T,'sound/magic/warpwhistle.ogg', 200, 1)
 	user.mobility_flags &= ~MOBILITY_MOVE
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(20)
+	sleep(2 SECONDS)
 	user.invisibility = INVISIBILITY_MAXIMUM
 	user.status_flags |= GODMODE
-	sleep(20)
+	sleep(2 SECONDS)
 	var/breakout = 0
 	while(breakout < 50)
 		var/turf/potential_T = find_safe_turf()
@@ -1453,8 +1544,36 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			break
 		breakout += 1
 	new /obj/effect/temp_visual/tornado(T)
-	sleep(20)
+	sleep(2 SECONDS)
 	user.invisibility = initial(user.invisibility)
 	user.status_flags &= ~GODMODE
 	user.update_mobility()
-	sleep(40)
+	sleep(4 SECONDS)
+
+/datum/admins/proc/cmd_create_wiki()
+	set category = "OOC"
+	set name = "Go to Wiki Room"
+	if(!check_rights(R_ADMIN))
+		return
+	var/turf/T
+	for(var/obj/effect/landmark/wiki/wikiturf in GLOB.landmarks_list)
+		T = wikiturf.loc
+	if(ismob(usr))
+		var/mob/M = usr
+		if(isobserver(M))
+			var/mob/living/carbon/human/H = new(T)
+			var/datum/preferences/A = new
+			A.copy_to(H)
+			H.dna.update_dna_identity()
+
+			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.
+			// For that reason, we're making a new one. This mimics the behavior of, say, lone operatives, and I believe other ghostroles.
+			Mind.active = 1
+			Mind.transfer_to(H)
+
+			var/msg = "[key_name_admin(H)] has spawned in the wiki room [ADMIN_VERBOSEJMP(H)]."
+			message_admins(msg)
+			log_admin(msg)
+			return
+		else
+			usr.forceMove(T)

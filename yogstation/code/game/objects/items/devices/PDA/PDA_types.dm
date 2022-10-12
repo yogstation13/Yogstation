@@ -1,4 +1,4 @@
-/obj/item/pda/signaltech
+/obj/item/pda/network_admin
 	name = "telecomms PDA"
 	default_cartridge = /obj/item/cartridge/signal
 	icon_state = "pda_tcomms"

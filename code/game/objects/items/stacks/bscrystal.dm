@@ -4,8 +4,8 @@
 	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "bluespace_crystal"
-	item_color = "cosmos"
 	singular_name = "bluespace crystal"
+	dye_color = DYE_COSMIC
 	w_class = WEIGHT_CLASS_TINY
 	materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT)
 	points = 75
@@ -17,6 +17,45 @@
 	name = "refined bluespace crystal"
 	points = 0
 	refined_type = null
+
+/obj/item/stack/ore/bluespace_crystal/refined/nt // NT's telecrystal
+	name = "warpcrystal"
+	desc = "The culmination of Nanotrasen's sacrifices in pursuing technological advancement. Highly top-secret."
+	materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT*2.5) // more potent
+
+/obj/item/stack/ore/bluespace_crystal/refined/nt/five
+	amount = 5
+
+/obj/item/stack/ore/bluespace_crystal/refined/nt/twenty
+	amount = 20
+
+/obj/item/stack/ore/bluespace_crystal/refined/nt/attack_self(mob/user)
+	if(!isliving(user))
+		return
+	
+	var/mob/living/L = user
+
+	var/turf/destination = get_teleport_loc(loc, L, rand(3,6)) // Gets 3-6 tiles in the user's direction
+
+	if(!istype(destination))
+		return
+
+	L.visible_message(span_warning("[L] crushes [src]!"), span_danger("You crush [src]!"))
+	new /obj/effect/particle_effect/sparks(loc)
+	playsound(loc, "sparks", 50, 1)
+
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+		L.visible_message(span_warning("[src] refuses to be crushed by [L]! There must be something interfering!"), span_danger("[src] suddenly hardens in your hand! There must be something interfering!"))
+		return
+
+	// Throws you one additional tile, giving it that cool "exit portal" effect and also throwing people very far if they are in space
+	L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		// Half as debilitating than a bluespace crystal, as this is a precious resource you're using
+		C.adjust_disgust(15)
+	
+	use(1)
 
 /obj/item/stack/ore/bluespace_crystal/Initialize()
 	. = ..()
@@ -31,6 +70,10 @@
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 	blink_mob(user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		C.adjust_disgust(30)	//Won't immediately make you vomit, just dont use more than one or two at a time
+		C.confused += 7
 	use(1)
 
 /obj/item/stack/ore/bluespace_crystal/proc/blink_mob(mob/living/L)

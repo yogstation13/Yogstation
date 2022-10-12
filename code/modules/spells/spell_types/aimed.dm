@@ -90,9 +90,9 @@
 
 /obj/effect/proc_holder/spell/aimed/lightningbolt
 	name = "Lightning Bolt"
-	desc = "Fire a lightning bolt at your foes! It will jump between targets, but can't knock them down."
+	desc = "Fire a lightning bolt at your foes! It will jump between targets, but can't knock them down. Insulated gloves can protect people from the blast."
 	school = "evocation"
-	charge_max = 120
+	charge_max = 100
 	clothes_req = FALSE
 	invocation = "UN'LTD P'WAH"
 	invocation_type = "shout"

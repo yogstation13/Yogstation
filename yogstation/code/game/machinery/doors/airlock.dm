@@ -10,7 +10,7 @@
 		return
 	to_chat(user, span_notice("You start installing [B] on [src]..."))
 	playsound(src, 'sound/items/jaws_pry.ogg', 100)
-	if(!do_after(user, 5 SECONDS, target = src))
+	if(!do_after(user, 5 SECONDS, src))
 		return
 	var/brace_dir = dir_to_cardinal(get_dir(src, user))
 	var/turf/T = get_step(src, brace_dir)

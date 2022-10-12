@@ -222,7 +222,7 @@
 				L.adjustBruteLoss(damage * 3) //60 damage plus the normal damage against fauna, total of 80 should make it mega competitive vs other weapons
 			L.adjustFireLoss(damage)
 			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
-		sleep(1)
+		sleep(0.1 SECONDS)
 
 ///drakeling wing flap attack: deals relatively minor damage to lavaland fauna and pushes anything it hits away, also breaks rocks on contact like a plasmacutter
 /obj/effect/proc_holder/drakeling/wing_flap
@@ -277,7 +277,7 @@
 			L.adjustBruteLoss(40)
 	if(ismineralturf(target))
 		var/turf/closed/mineral/M = target
-		M.gets_drilled(firer)
+		M.attempt_drill(firer)
 		if(mine_range)
 			mine_range--
 			range++
@@ -301,9 +301,9 @@
 			return
 		var/mob/living/L = owner
 		var/turf/landing_turf = get_step(dragon.loc, dragon.dir)
-		L.spin(4, 1)
-		animate(L, pixel_y = -6, time = 4)
-		animate(dragon, pixel_y = -6, time = 3)
+		L.spin(0.4 SECONDS, 0.1 SECONDS)
+		animate(L, pixel_y = -6, time = 0.4 SECONDS)
+		animate(dragon, pixel_y = -6, time = 0.3 SECONDS)
 		playsound(dragon, 'sound/vehicles/skateboard_ollie.ogg', 50, TRUE)
 		passtable_on(L, VEHICLE_TRAIT)
 		passtable_on(dragon, VEHICLE_TRAIT)

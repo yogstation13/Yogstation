@@ -155,6 +155,7 @@
 #define COMSIG_MOVABLE_IMPACT_ZONE "item_impact_zone"			//from base of mob/living/hitby(): (mob/living/target, hit_zone)
 #define COMSIG_MOVABLE_BUCKLE "buckle"							//from base of atom/movable/buckle_mob(): (mob, force)
 #define COMSIG_MOVABLE_UNBUCKLE "unbuckle"						//from base of atom/movable/unbuckle_mob(): (mob, force)
+#define COMSIG_MOVABLE_PRE_DROPTHROW "movable_pre_dropthrow"	//from base of atom/movable/throw_at(): Triggers when throwing, before the item is dropped and before COMSIG_MOVABLE_PRE_THROW 
 #define COMSIG_MOVABLE_PRE_THROW "movable_pre_throw"			//from base of atom/movable/throw_at(): (list/args)
 #define COMPONENT_CANCEL_THROW 1
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//from base of atom/movable/throw_at(): (datum/thrownthing, spin)
@@ -191,6 +192,7 @@
 #define COMPONENT_BLOCK_MAGIC 1
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ATTACK_HAND "mob_attack_hand"				//from base of
+#define COMSIG_MOB_ATTACK_HAND_TURF "mob_attack_hand_turf"		//from the base of turf/attack_hand
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/M, mob/user)
 #define COMSIG_MOB_APPLY_DAMAGE	"mob_apply_damage"				//from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
@@ -198,6 +200,8 @@
 #define COMSIG_MOB_THROW "mob_throw"							//from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_TABLING "mob_tabling"						//form base of /obj/structure/table_place() and table_push(): (mob/living/user, mob/living/pushed_mob)
 #define COMSIG_MOB_EXAMINATE "mob_examinate"					//from base of /mob/verb/examinate(): (atom/target)
+#define COMSIG_MOB_EYECONTACT "mob_eyecontact"					///from /mob/living/handle_eye_contact(): (mob/living/other_mob)
+#define COMSIG_BLOCK_EYECONTACT (1<<0)							/// return this if you want to block printing this message to this person, if you want to print your own (does not affect the other person's message)
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_SAY "mob_say" // from /mob/living/say(): ()
 #define COMPONENT_UPPERCASE_SPEECH 1
@@ -240,7 +244,7 @@
 #define COMSIG_CARBON_STATUS_STAMCRIT "living_stamcrit"				//from base of mob/living/carbon/enter_stamcrit()
 #define COMSIG_BODYPART_GAUZED	"bodypart_gauzed" // from /obj/item/bodypart/proc/apply_gauze(/obj/item/stack/gauze)
 #define COMSIG_BODYPART_GAUZE_DESTROYED	"bodypart_degauzed" // from [/obj/item/bodypart/proc/seep_gauze] when it runs out of absorption
-
+#define COMSIG_CARBON_SPECIESCHANGE "mob_carbon_specieschange" //from  base of mob/living/carbon/set_species(): (new_race)
 // /mob/living/simple_animal/hostile signals
 #define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
 #define COMPONENT_HOSTILE_NO_ATTACK 1
@@ -274,6 +278,7 @@
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"				//from base of obj/item/afterattack(): (atom/target, mob/user, params)
 #define COMSIG_ITEM_EQUIPPED "item_equip"						//from base of obj/item/equipped(): (/mob/equipper, slot)
 #define COMSIG_ITEM_DROPPED "item_drop"							//from base of obj/item/dropped(): (mob/user)
+#define COMSIG_ITEM_PREDROPPED "item_predrop"					//from base of mob/dropItemToGround(): (mob/user)
 #define COMSIG_ITEM_PICKUP "item_pickup"						//from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"				//from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
 #define COMSIG_ITEM_IMBUE_SOUL "item_imbue_soul" 				//return a truthy value to prevent ensouling, checked in /obj/effect/proc_holder/spell/targeted/lichdom/cast(): (mob/user)
@@ -302,6 +307,10 @@
 #define COMPONENT_STOP_RINGTONE_CHANGE 1
 #define COMSIG_PDA_CHECK_DETONATE "pda_check_detonate"
 #define COMPONENT_PDA_NO_DETONATE 1
+
+// /obj/item/modular_computer signals
+#define COMSIG_NTOS_CHANGE_RINGTONE "ntos_change_ringtone"
+#define COMPONENT_NTOS_STOP_RINGTONE_CHANGE 1
 
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
@@ -425,3 +434,10 @@
 #define COMPONENT_HANDLED_GRILLING (1<<0)
 ///Called when an object is turned into another item through grilling ontop of a griddle
 #define COMSIG_GRILL_COMPLETED "item_grill_completed"
+//Called when an object is in an oven
+#define COMSIG_ITEM_BAKED "item_baked"
+#define COMPONENT_HANDLED_BAKING (1<<0)
+#define COMPONENT_BAKING_GOOD_RESULT (1<<1)
+#define COMPONENT_BAKING_BAD_RESULT (1<<2)
+///Called when an object is turned into another item through baking in an oven
+#define COMSIG_BAKE_COMPLETED "item_bake_completed"

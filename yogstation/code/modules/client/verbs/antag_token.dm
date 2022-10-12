@@ -31,8 +31,8 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 			return
 		to_chat(src, span_userdanger("You will be notified if your antag token is used"))
 		C.antag_token_timer = addtimer(CALLBACK(src, .proc/deny_antag_token_request), 45 SECONDS, TIMER_STOPPABLE)
-		to_chat(GLOB.admins, span_adminnotice("<b><font color=orange>ANTAG TOKEN REQUEST:</font></b>[ADMIN_LOOKUPFLW(usr)] wants to use their antag token! (will auto-DENY in [DisplayTimeText(45 SECONDS)]). (<A HREF='?_src_=holder;[HrefToken(TRUE)];approve_antag_token=[REF(C)]'>APPROVE</A>)"))
-		for(var/client/A in GLOB.admins)
+		to_chat(GLOB.permissions.admins, span_adminnotice("<b><font color=orange>ANTAG TOKEN REQUEST:</font></b>[ADMIN_LOOKUPFLW(usr)] wants to use their antag token! (will auto-DENY in [DisplayTimeText(45 SECONDS)]). (<A HREF='?_src_=holder;[HrefToken(TRUE)];approve_antag_token=[REF(C)]'>APPROVE</A>)"))
+		for(var/client/A in GLOB.permissions.admins)
 			if(check_rights_for(A, R_ADMIN) && (A.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr
 				SEND_SOUND(A, sound('sound/effects/adminhelp.ogg'))
 	else
@@ -57,6 +57,8 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 
 	
 	if(C in GLOB.antag_token_users) // If they're in the list take them out
+		if(alert("Someone already approved this antag token. Are you sure you want to reject it?", "Confirm", "Yes", "No") != "Yes")
+			return
 		GLOB.antag_token_users -= C
 		token = FALSE // Redundency if you clowns figure out how to break it
 	else

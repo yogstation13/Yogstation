@@ -57,7 +57,7 @@
 	cost = 800
 	contains = list(/obj/item/storage/box/cheese)
 	crate_name = "cheese culture crate"
-	
+
 /datum/supply_pack/organic/randomized/cheesewheel
 	name = "Cheese Wheel Crate"
 	desc = "Contains 6 various cheese wheels, for stations that don't have a chef or work ethic."
@@ -105,9 +105,23 @@
 					/obj/item/toy/plush/flowerbunch,
 					/obj/item/toy/plush/inorixplushie,
 					/obj/item/toy/plush/beeplushie,
-					/obj/item/toy/plush/slimeplushie)
+					/obj/item/toy/plush/slimeplushie,
+					/obj/item/toy/plush/cdragon)
 	crate_name = "plush crate"
 	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/balloons
+	name = "Balloon Crate"
+	desc = "A crate filled with 6 fun filled balloon boxes!"
+	cost = 2000
+	contains = list(
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox,
+		/obj/item/balloonbox
+	)
 
 /datum/supply_pack/security/prisonclothes
 	name = "Prison Jumpsuit Crate"
@@ -135,37 +149,6 @@
 					/obj/item/skub,
 					/obj/item/skub)
 	crate_name = "skub crate"
-
-/datum/supply_pack/engine/am_jar
-	name = "Antimatter Containment Jar Crate"
-	desc = "Two Antimatter containment jars stuffed into a single crate."
-	cost = 2000
-	contains = list(/obj/item/am_containment,
-					/obj/item/am_containment)
-	crate_name = "antimatter jar crate"
-
-/datum/supply_pack/engine/am_core
-	name = "Antimatter Control Crate"
-	desc = "The brains of the Antimatter engine, this device is sure to teach the station's powergrid the true meaning of real power."
-	cost = 5000
-	contains = list(/obj/machinery/power/am_control_unit)
-	crate_name = "antimatter control crate"
-
-/datum/supply_pack/engine/am_shielding
-	name = "Antimatter Shielding Crate"
-	desc = "Contains ten Antimatter shields, somehow crammed into a crate."
-	cost = 2000
-	contains = list(/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container,
-					/obj/item/am_shielding_container) //10 shields: 3x3 containment and a core
-	crate_name = "antimatter shielding crate"
 
 /datum/supply_pack/emergency/syndicate
 	name = "NULL_ENTRY"
@@ -198,3 +181,16 @@
 	contains = list(/obj/item/clothing/head/milliondollarhat)
 	crate_name = "million dollar hat crate"
 	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/critter/carp
+	name = "Exotic Fish Crate"
+	desc = "°@$#|TIRED OF THOSE BORING SEAFARING FISHES? WANT TO SEE REAL FAUNA FROM SPACE? WELL WE GOT 3 OF ITS FINEST SPECIMENS IN A BOX JUST FOR YOU! WE COULDN'T FIND DECENT FOOD FOR THEM SO THEY MIGHT BE VERY HUNGRY, GET SOME FOOD READY FOR THEM!(@/!&"
+	hidden = TRUE
+	cost = 2000
+	contains = list(/mob/living/simple_animal/hostile/carp)
+	crate_name = "fish crate"
+
+/datum/supply_pack/critter/carp/generate()
+	. = ..()
+	for(var/i in 1 to 2)
+		new /mob/living/simple_animal/hostile/carp(.)

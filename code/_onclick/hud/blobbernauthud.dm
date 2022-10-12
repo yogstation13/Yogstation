@@ -1,9 +1,6 @@
+/datum/hud/living/blobbernaut/New(mob/living/owner)
+	. = ..()
 
-/datum/hud/blobbernaut/New(mob/owner)
-	..()
-
-	blobpwrdisplay = new /obj/screen/healths/blob/naut/core()
+	blobpwrdisplay = new /obj/screen/healths/blob/overmind()
+	blobpwrdisplay.hud = src
 	infodisplay += blobpwrdisplay
-
-	healths = new /obj/screen/healths/blob/naut()
-	infodisplay += healths

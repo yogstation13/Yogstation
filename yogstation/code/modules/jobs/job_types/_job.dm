@@ -9,7 +9,7 @@
 		return
 
 	if(C.prefs.purrbation)
-		purrbation_toggle(H)
+		purrbation_toggle_onlyhumans(H)
 
 	if(C.prefs.donor_hat)
 		var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
@@ -25,25 +25,26 @@
 			var/type = C.prefs.donor_item
 			if(type)
 				var/obj/item = new type()
-				H.put_in_hands(item)
+				if(!H.put_in_hands(item))
+					item.forceMove(BP)
 
 	switch(C.prefs.donor_pda)
 		if(2)//transparent
-			var/obj/item/pda/PDA = locate(/obj/item/pda) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
-				PDA.icon = 'yogstation/icons/obj/pda.dmi'
-				PDA.icon_state = "pda-clear"
+				PDA.finish_color = "glass"
+				PDA.update_icon()
 		if(3)//pip-boy
-			var/obj/item/pda/PDA = locate(/obj/item/pda) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
-				PDA.icon = 'yogstation/icons/obj/pda.dmi'
-				PDA.icon_state = "pda-pipboy"
+				PDA.finish_color = "pipboy"
 				PDA.slot_flags |= ITEM_SLOT_GLOVES
+				PDA.update_icon()
 		if(4)//rainbow
-			var/obj/item/pda/PDA = locate(/obj/item/pda) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
 			if(PDA)
-				PDA.icon = 'yogstation/icons/obj/pda.dmi'
-				PDA.icon_state = "pda-rainbow"
+				PDA.finish_color = "rainbow"
+				PDA.update_icon()
 
 /datum/job/proc/give_cape(mob/living/H, mob/M)
 	var/client/C = M.client
@@ -87,38 +88,42 @@
 				flare.forceMove(BP)
 
 /datum/job/proc/give_bar_choice(mob/living/H, mob/M)
+	try
+		var/choice
 
-	var/choice
-
-	var/client/C = M.client
-	if(!C)
-		C = H.client
+		var/client/C = M.client
 		if(!C)
-			choice = "Random"
+			C = H.client
+			if(!C)
+				choice = "Random"
 
-	if(C)
-		choice = C.prefs.bar_choice
+		if(C)
+			choice = C.prefs.bar_choice
 
-	if(choice != "Random")
-		var/bar_sanitize = FALSE
-		for(var/A in GLOB.potential_box_bars)
-			if(choice == A)
-				bar_sanitize = TRUE
-				break
+		if(choice != "Random")
+			var/bar_sanitize = FALSE
+			for(var/A in GLOB.potential_box_bars)
+				if(choice == A)
+					bar_sanitize = TRUE
+					break
 
-		if(!bar_sanitize)
-			choice = "Random"
-	
-	if(choice == "Random")
-		choice = pick(GLOB.potential_box_bars)
-	
-	var/datum/map_template/template = SSmapping.station_room_templates[choice]
+			if(!bar_sanitize)
+				choice = "Random"
+		
+		if(choice == "Random")
+			choice = pick(GLOB.potential_box_bars)
+		
+		var/datum/map_template/template = SSmapping.station_room_templates[choice]
 
-	if(!template)
-		log_game("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
-		message_admins("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
-		template = SSmapping.station_room_templates["Bar Arcade"]
+		if(!template)
+			log_game("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
+			message_admins("BAR FAILED TO LOAD!!! [C.ckey]/([M.name]) attempted to load [choice]. Loading Bar Arcade as backup.")
+			template = SSmapping.station_room_templates["Bar Arcade"]
 
-	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
-		template.load(B.loc, centered = FALSE)
-		qdel(B)
+		for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
+			template.load(B.loc, centered = FALSE)
+			qdel(B)
+	catch(var/exception/e)
+		message_admins("RUNTIME IN GIVE_BAR_CHANCE")
+		spawn_bar()
+		throw e

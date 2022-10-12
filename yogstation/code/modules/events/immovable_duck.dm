@@ -2,7 +2,7 @@
 	name = "Immovable Duck"
 	typepath = /datum/round_event/immovable_rod/duck
 	weight = 2
-	max_occurrences = 1
+	max_occurrences = 3
 
 /datum/round_event_control/immovable_rod/duck/admin_setup()
 	if(!check_rights(R_FUN))

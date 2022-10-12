@@ -642,7 +642,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "eI" = (
-/obj/machinery/chem_dispenser,
+/obj/machinery/chem_dispenser/fullupgrade,
 /obj/item/storage/box/beakers,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)

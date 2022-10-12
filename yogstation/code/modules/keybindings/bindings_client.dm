@@ -41,6 +41,10 @@
 			if(is_mentor(src))
 				get_mentor_say()
 			return
+		if(ACTION_DONATORSAY)
+			if(is_donator(usr))
+				get_donator_say()
+			return
 		if(ACTION_LOOC)
 			get_looc()
 			return
@@ -49,7 +53,7 @@
 
 	if(holder)
 		holder.key_down(I, src)
-	if(mob.focus)
+	if(mob?.focus)
 		mob.focus.key_down(I, src)
 
 /client/verb/keyUp(_key as text)
@@ -77,12 +81,12 @@
 
 	if(holder)
 		holder.key_up(I, src)
-	if(mob.focus)
+	if(mob?.focus)
 		mob.focus.key_up(I, src)
 
 // Called every game tick
 /client/keyLoop()
 	if(holder)
 		holder.keyLoop(src)
-	if(mob.focus)
+	if(mob?.focus)
 		mob.focus.keyLoop(src)

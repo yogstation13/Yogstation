@@ -42,6 +42,9 @@
 /obj/item/ammo_casing/magic/spellblade
 	projectile_type = /obj/item/projectile/magic/spellblade
 
+/obj/item/ammo_casing/magic/spellblade/weak
+	projectile_type = /obj/item/projectile/magic/spellblade/weak
+
 /obj/item/ammo_casing/magic/arcane_barrage
 	projectile_type = /obj/item/projectile/magic/arcane_barrage
 
@@ -99,7 +102,7 @@
 	projectile_type = /obj/item/projectile/magic/runic_death
 
 /obj/item/ammo_casing/magic/runic_bullet
-	projectile_type = /obj/item/projectile/magic/shotgun_slug //is bullet but actually no
+	projectile_type = /obj/item/projectile/magic/shotgun/slug //is bullet but actually no
 	pellets = 3
 	variance = 35
 

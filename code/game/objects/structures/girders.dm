@@ -55,7 +55,7 @@
 					to_chat(user, span_warning("You need at least two rods to create a false wall!"))
 					return
 				to_chat(user, span_notice("You start building a reinforced false wall..."))
-				if(do_after(user, 2 SECONDS, target = src))
+				if(do_after(user, 2 SECONDS, src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -68,7 +68,7 @@
 					to_chat(user, span_warning("You need at least five rods to add plating!"))
 					return
 				to_chat(user, span_notice("You start adding plating..."))
-				if(do_after(user, 4 SECONDS, target = src))
+				if(do_after(user, 4 SECONDS, src))
 					if(S.get_amount() < 5)
 						return
 					S.use(5)
@@ -89,7 +89,7 @@
 					to_chat(user, span_warning("You need two sheets of metal to create a false wall!"))
 					return
 				to_chat(user, span_notice("You start building a false wall..."))
-				if(do_after(user, 2 SECONDS, target = src))
+				if(do_after(user, 2 SECONDS, src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -102,7 +102,7 @@
 					to_chat(user, span_warning("You need two sheets of metal to finish a wall!"))
 					return
 				to_chat(user, span_notice("You start adding plating..."))
-				if (do_after(user, 4 SECONDS, target = src))
+				if (do_after(user, 4 SECONDS, src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -119,7 +119,7 @@
 					to_chat(user, span_warning("You need at least two sheets to create a false wall!"))
 					return
 				to_chat(user, span_notice("You start building a reinforced false wall..."))
-				if(do_after(user, 2 SECONDS, target = src))
+				if(do_after(user, 2 SECONDS, src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -132,7 +132,7 @@
 					if(S.get_amount() < 1)
 						return
 					to_chat(user, span_notice("You start finalizing the reinforced wall..."))
-					if(do_after(user, 5 SECONDS, target = src))
+					if(do_after(user, 5 SECONDS, src))
 						if(S.get_amount() < 1)
 							return
 						S.use(1)
@@ -146,7 +146,7 @@
 					if(S.get_amount() < 1)
 						return
 					to_chat(user, span_notice("You start reinforcing the girder..."))
-					if(do_after(user, 6 SECONDS, target = src))
+					if(do_after(user, 6 SECONDS, src))
 						if(S.get_amount() < 1)
 							return
 						S.use(1)
@@ -162,7 +162,7 @@
 				if(S.get_amount() < 2)
 					to_chat(user, span_warning("You need at least two sheets to create a false wall!"))
 					return
-				if(do_after(user, 2 SECONDS, target = src))
+				if(do_after(user, 2 SECONDS, src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -176,7 +176,7 @@
 					to_chat(user, span_warning("You need at least two sheets to add plating!"))
 					return
 				to_chat(user, span_notice("You start adding plating..."))
-				if (do_after(user, 4 SECONDS, target = src))
+				if (do_after(user, 4 SECONDS, src))
 					if(S.get_amount() < 2)
 						return
 					S.use(2)
@@ -349,7 +349,7 @@
 			to_chat(user, span_warning("You need at least one sheet of runed metal to construct a runed wall!"))
 			return 0
 		user.visible_message(span_notice("[user] begins laying runed metal on [src]..."), span_notice("You begin constructing a runed wall..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			if(R.get_amount() < 1)
 				return
 			user.visible_message(span_notice("[user] plates [src] with runed metal."), span_notice("You construct a runed wall."))
@@ -416,7 +416,7 @@
 			to_chat(user, span_warning("You need at least two bronze sheets to build a bronze wall!"))
 			return 0
 		user.visible_message(span_notice("[user] begins plating [src] with bronze..."), span_notice("You begin constructing a bronze wall..."))
-		if(do_after(user, 5 SECONDS, target = src))
+		if(do_after(user, 5 SECONDS, src))
 			if(B.get_amount() < 2)
 				return
 			user.visible_message(span_notice("[user] plates [src] with bronze!"), span_notice("You construct a bronze wall."))

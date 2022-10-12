@@ -28,7 +28,7 @@
 	send_to_playing_players(span_clown("HONK!"))
 	//mine now bitch
 	sound_to_playing_players('sound/effects/ratvar_reveal.ogg')
-	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/items_and_weapons.dmi', "bike_horn")
+	var/mutable_appearance/alert_overlay = mutable_appearance('icons/obj/toy.dmi', "bike_horn")
 	notify_ghosts("Pranks must be spread to the people! Touch The Honkmother at [get_area_name(src)] and become one of her glorious creations!", null, source = src, alert_overlay = alert_overlay)
 
 /obj/structure/destructible/honkmother/Destroy()

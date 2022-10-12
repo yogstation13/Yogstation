@@ -7,12 +7,12 @@
 /obj/item/clothing/suit/draculacoat
 	name = "Vampire Coat"
 	desc = "What is a man? A miserable little pile of secrets."
-	alternate_worn_icon = 'yogstation/icons/mob/suit.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "draculacoat"
 	item_state = "draculacoat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0)
+	armor = list(MELEE = 30, BULLET = 20, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0)
 	allowed = null
 	var/blood_restoration_delay = 200
 	var/next_blood_restoration_tick = 0

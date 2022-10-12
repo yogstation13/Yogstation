@@ -127,6 +127,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "eng_headset"
 	keyslot = new /obj/item/encryptionkey/headset_eng
 
+/obj/item/radio/headset/headset_network
+	name = "network admins radio headset"
+	desc = "When the half-engineer half-scientist wishes to chat to people."
+	icon_state = "eng_headset"
+	keyslot = new /obj/item/encryptionkey/headset_net
+
 /obj/item/radio/headset/headset_rob
 	name = "robotics radio headset"
 	desc = "Made specifically for the roboticists, who cannot decide between departments."
@@ -253,6 +259,16 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/headset_cent/alt
 	keyslot = new /obj/item/encryptionkey/heads/captain
+
+/obj/item/radio/headset/headset_cent/bowman // No captain key
+	name = "\improper CentCom bowman headset"
+	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs."
+	icon_state = "cent_headset_alt"
+	item_state = "cent_headset_alt"
+
+/obj/item/radio/headset/headset_cent/bowman/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
 /obj/item/radio/headset/headset_cent/commander
 	name = "\improper CentCom bowman headset"

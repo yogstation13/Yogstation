@@ -1,13 +1,12 @@
 /datum/computer_file/program/radar //generic parent that handles most of the process
 	filename = "genericfinder"
 	filedesc = "debug_finder"
-	category = PROGRAM_CATEGORY_CREW
 	ui_header = "borg_mon.gif" //DEBUG -- new icon before PR
 	program_icon_state = "radarntos"
 	requires_ntnet = TRUE
 	transfer_access = null
 	available_on_ntnet = FALSE
-	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE
+	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA | PROGRAM_INTEGRATED
 	network_destination = "tracking program"
 	size = 5
 	tgui_id = "NtosRadar"
@@ -72,6 +71,7 @@
 /datum/computer_file/program/radar/ui_act(action, params)
 	if(..())
 		return
+	computer.play_interact_sound()
 
 	switch(action)
 		if("selecttarget")
@@ -216,9 +216,10 @@
 	filename = "Lifeline"
 	filedesc = "Lifeline"
 	extended_desc = "This program allows for tracking of crew members via their suit sensors."
-	requires_ntnet = TRUE
+	requires_ntnet = FALSE //Tracking should not require NTNET, as sensors are not on the network at all, and the program is downloaded locally.
 	transfer_access = ACCESS_MEDICAL
 	available_on_ntnet = TRUE
+	category = PROGRAM_CATEGORY_MED
 	program_icon = "street-view"
 
 /datum/computer_file/program/radar/lifeline/find_atom()
@@ -229,6 +230,8 @@
 		return
 	next_scan = world.time + (2 SECONDS)
 	objects = list()
+	var/list/names = list()
+	var/list/humanoids = list()
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/carbon/human/humanoid = i
 		if(!istype(humanoid))
@@ -240,9 +243,12 @@
 			var/obj/item/card/id/ID = humanoid.wear_id.GetID()
 			if(ID && ID.registered_name)
 				crewmember_name = ID.registered_name
+		names += crewmember_name
+		humanoids[crewmember_name] = i
+	for(var/N in sortList(names))
 		var/list/crewinfo = list(
-			ref = REF(humanoid),
-			name = crewmember_name,
+			ref = REF(humanoids[N]),
+			name = N
 			)
 		objects += list(crewinfo)
 
@@ -311,9 +317,10 @@
 /datum/computer_file/program/radar/implant
 	filename = "implanttracker"
 	filedesc = "Implant Tracker"
+	category = PROGRAM_CATEGORY_SEC
 	extended_desc = "This program allows for tracking those implanted with tracking implants."
-	requires_ntnet = TRUE
-	transfer_access = ACCESS_SECURITY
+	requires_ntnet = FALSE //Same as Lifeline.
+	transfer_access = ACCESS_BRIG
 	available_on_ntnet = TRUE
 	program_icon = "microchip"
 

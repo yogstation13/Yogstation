@@ -2,7 +2,7 @@
 	gender = PLURAL
 	name = "red lipstick"
 	desc = "A generic brand of lipstick."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/cosmetics.dmi'
 	icon_state = "lipstick"
 	w_class = WEIGHT_CLASS_TINY
 	var/colour = "red"
@@ -70,7 +70,7 @@
 		else
 			user.visible_message(span_warning("[user] begins to do [H]'s lips with \the [src]."), \
 								 span_notice("You begin to apply \the [src] on [H]'s lips..."))
-			if(do_after(user, 2 SECONDS, target = H))
+			if(do_after(user, 2 SECONDS, H))
 				user.visible_message("[user] does [H]'s lips with \the [src].", \
 									 span_notice("You apply \the [src] on [H]'s lips."))
 				H.lip_style = "lipstick"
@@ -94,7 +94,7 @@
 			else
 				user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
 								 	 span_notice("You begin to wipe off [H]'s lipstick..."))
-				if(do_after(user, 1 SECONDS, target = H))
+				if(do_after(user, 1 SECONDS, H))
 					user.visible_message("[user] wipes [H]'s lipstick off with \the [src].", \
 										 span_notice("You wipe off [H]'s lipstick."))
 					H.lip_style = null
@@ -105,7 +105,7 @@
 /obj/item/razor
 	name = "electric razor"
 	desc = "The latest and greatest power razor born from the science of shaving."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/cosmetics.dmi'
 	icon_state = "razor"
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
@@ -146,7 +146,7 @@
 						to_chat(user, span_warning("The mask is in the way!"))
 						return
 					user.visible_message(span_notice("[user] tries to change [H]'s facial hair style using [src]."), span_notice("You try to change [H]'s facial hair style using [src]."))
-					if(new_style && do_after(user, 6 SECONDS, target = H))
+					if(new_style && do_after(user, 6 SECONDS, H))
 						user.visible_message(span_notice("[user] successfully changes [H]'s facial hair style using [src]."), span_notice("You successfully change [H]'s facial hair style using [src]."))
 						H.facial_hair_style = new_style
 						H.update_hair()
@@ -168,7 +168,7 @@
 				if(H == user) //shaving yourself
 					user.visible_message("[user] starts to shave [user.p_their()] facial hair with [src].", \
 										 span_notice("You take a moment to shave your facial hair with [src]..."))
-					if(do_after(user, 5 SECONDS, target = H))
+					if(do_after(user, 5 SECONDS, H))
 						user.visible_message("[user] shaves [user.p_their()] facial hair clean with [src].", \
 											 span_notice("You finish shaving with [src]. Fast and clean!"))
 						shave(H, location)
@@ -192,7 +192,7 @@
 					to_chat(user, span_warning("The headgear is in the way!"))
 					return
 				user.visible_message(span_notice("[user] tries to change [H]'s hairstyle using [src]."), span_notice("You try to change [H]'s hairstyle using [src]."))
-				if(new_style && do_after(user, 6 SECONDS, target = H))
+				if(new_style && do_after(user, 6 SECONDS, H))
 					user.visible_message(span_notice("[user] successfully changes [H]'s hairstyle using [src]."), span_notice("You successfully change [H]'s hairstyle using [src]."))
 					H.hair_style = new_style
 					H.update_hair()
@@ -212,7 +212,7 @@
 				if(H == user) //shaving yourself
 					user.visible_message("[user] starts to shave [user.p_their()] head with [src].", \
 										 span_notice("You start to shave your head with [src]..."))
-					if(do_after(user, 0.5 SECONDS, target = H))
+					if(do_after(user, 0.5 SECONDS, H))
 						user.visible_message("[user] shaves [user.p_their()] head with [src].", \
 											 span_notice("You finish shaving with [src]."))
 						shave(H, location)
@@ -220,7 +220,7 @@
 					var/turf/H_loc = H.loc
 					user.visible_message(span_warning("[user] tries to shave [H]'s head with [src]!"), \
 										 span_notice("You start shaving [H]'s head..."))
-					if(do_after(user, 5 SECONDS, target = H))
+					if(do_after(user, 5 SECONDS, H))
 						if(H_loc == H.loc)
 							user.visible_message(span_warning("[user] shaves [H]'s head bald with [src]!"), \
 												 span_notice("You shave [H]'s head bald."))
@@ -229,3 +229,44 @@
 			..()
 	else
 		..()
+
+/obj/item/dyespray
+	name = "hair dye spray"
+	desc = "A spray to dye your hair any gradients you'd like."
+	icon = 'icons/obj/cosmetics.dmi'
+	icon_state = "dyespray"
+
+/obj/item/dyespray/attack_self(mob/user)
+	dye(user)
+
+/obj/item/dyespray/pre_attack(atom/target, mob/living/user, params)
+	dye(target)
+	return ..()
+
+/**
+ * Applies a gradient and a gradient color to a mob.
+ *
+ * Arguments:
+ * * target - The mob who we will apply the gradient and gradient color to.
+ */
+
+/obj/item/dyespray/proc/dye(mob/target)
+	if(!ishuman(target) || isethereal(target))
+		return
+	var/mob/living/carbon/human/human_target = target
+
+	var/new_grad_style = input(usr, "Choose a color pattern:", "Character Preference")  as null|anything in GLOB.hair_gradients_list
+	if(!new_grad_style)
+		return
+
+	var/new_grad_color = input(usr, "Choose a secondary hair color:", "Character Preference","#"+human_target.grad_color) as color|null
+	if(!new_grad_color)
+		return
+
+	human_target.grad_style = new_grad_style
+	human_target.grad_color = sanitize_hexcolor(new_grad_color)
+	to_chat(human_target, "<span class='notice'>You start applying the hair dye...</span>")
+	if(!do_after(usr, 3 SECONDS, target))
+		return
+	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
+	human_target.update_hair()

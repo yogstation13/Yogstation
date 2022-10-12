@@ -1,7 +1,7 @@
 /obj/item/chromosome
 	name = "blank chromosome"
-	icon = 'icons/obj/chromosomes.dmi'
-	icon_state = ""
+	icon = 'icons/obj/genetics.dmi'
+	icon_state = "chromosome"
 	desc = "A tube holding chromosomic data."
 	force = 0
 	w_class = WEIGHT_CLASS_SMALL
@@ -54,32 +54,32 @@
 /obj/item/chromosome/stabilizer
 	name = "stabilizer chromosome"
 	desc = "A chromosome that reduces mutation instability by 20%."
-	icon_state = "stabilizer"
+	icon_state = "chromosome-stabilizer"
 	stabilizer_coeff = 0.8
 	weight = 1
 
 /obj/item/chromosome/synchronizer
 	name = "synchronizer chromosome"
 	desc = "A chromosome that reduces mutation knockback and downsides by 50%."
-	icon_state = "synchronizer"
+	icon_state = "chromosome-synchronizer"
 	synchronizer_coeff = 0.5
 
 /obj/item/chromosome/power
 	name = "power chromosome"
 	desc = "A chromosome that increases mutation power by 50%."
-	icon_state = "power"
+	icon_state = "chromosome-power"
 	power_coeff = 1.5
 
 /obj/item/chromosome/energy
 	name = "energetic chromosome"
 	desc = "A chromosome that reduces action based mutation cooldowns by by 50%."
-	icon_state = "energy"
+	icon_state = "chromosome-energy"
 	energy_coeff = 0.5
 
 /obj/item/chromosome/reinforcer
 	name = "reinforcement chromosome"
 	desc = "A chromosome that renders mutations immune to mutadone."
-	icon_state = "reinforcer"
+	icon_state = "chromosome-reinforcer"
 	weight = 3
 
 /obj/item/chromosome/reinforcer/can_apply(datum/mutation/human/HM)

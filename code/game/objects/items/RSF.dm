@@ -17,7 +17,7 @@ RSF
 	density = FALSE
 	anchored = FALSE
 	item_flags = NOBLUDGEON
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	var/matter = 0 	///The current matter count
 	var/max_matter = 50 	///The max amount of matter in the device
 	var/to_dispense 	///The type of the object we are going to dispense
@@ -29,6 +29,7 @@ RSF
 								/obj/item/storage/pill_bottle/dice = 200,
 								/obj/item/pen = 50,
 								/obj/item/clothing/mask/cigarette = 10,
+								/obj/item/plate = 25,
 								)
 	var/list/allowed_surfaces = list(/obj/structure/table) 	///A list of surfaces that we are allowed to place things on.
 	var/action_type = "Dispensing" 	///The verb that describes what we're doing, for use in text

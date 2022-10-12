@@ -15,6 +15,7 @@
 	usesound = 'sound/effects/spray2.ogg'
 
 	var/obj/item/toner/ink = null
+	var/painter_mode = 1
 	/// Associate list of all paint jobs the airlock painter can apply. The key is the name of the airlock the user will see. The value is the type path of the airlock
 	var/list/available_paint_jobs = list(
 		"Public" = /obj/machinery/door/airlock/public,
@@ -31,12 +32,16 @@
 		"External" = /obj/machinery/door/airlock/external,
 		"External Maintenance"= /obj/machinery/door/airlock/maintenance/external,
 		"Virology" = /obj/machinery/door/airlock/virology,
-		"Standard" = /obj/machinery/door/airlock
+		"Standard" = /obj/machinery/door/airlock,
+	    "Centcom"  = /obj/machinery/door/airlock/centcom
 	)
 
 /obj/item/airlock_painter/Initialize()
 	. = ..()
 	ink = new /obj/item/toner(src)
+
+/obj/item/airlock_painter/proc/get_mode()
+	return painter_mode
 
 //This proc doesn't just check if the painter can be used, but also uses it.
 //Only call this if you are certain that the painter will be used right after this check!
@@ -136,10 +141,196 @@
 	else
 		return ..()
 
-/obj/item/airlock_painter/attack_self(mob/user)
+/obj/item/airlock_painter/AltClick(mob/user, obj/item/W)
+	. = ..()
 	if(ink)
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		ink.forceMove(user.drop_location())
 		user.put_in_hands(ink)
 		to_chat(user, span_notice("You remove [ink] from [src]."))
 		ink = null
+
+/obj/item/airlock_painter/decal
+	name = "decal painter"
+	desc = "An airlock painter, reprogramed to use a different style of paint in order to apply decals for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed. Alt-Click to take out toner."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "decal_sprayer"
+	item_state = "decal_sprayer"
+	painter_mode = 2
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	var/stored_dir = 2
+	var/stored_color = ""
+	var/stored_decal = "warningline"
+	var/stored_decal_total = "warningline"
+	var/color_list = list("","red","white")
+	var/dir_list = list(1,2,4,8)
+	var/decal_list = list(list("Warning Line","warningline"),
+			list("Warning Line Corner","warninglinecorner"),
+			list("Warning Line U Corner","warn_end"),
+			list("Warning Line Box","warn_box"),
+			list("Caution Label","caution"),
+			list("Directional Arrows","arrows"),
+			list("Stand Clear Label","stand_clear"),
+			list("Box","box"),
+			list("Box Corner","box_corners"),
+			list("Delivery Marker","delivery"),
+			list("Warning Box","warn_full"),
+			list("Loading Arrow","loadingarea"),
+			list("Bot","bot"),
+			list("Bot Corners","bot_right"),
+			list("NO","no"),
+			list("Radiation Hazard","radiation"),
+			list("Circle Radiation Hazard","radiation_huge"),
+			list("Bio Warning","bio"),
+			list("Shock Warning","shock"),
+			list("Danger Warning","danger"),
+			list("Explosive Warning","explosives"),
+			list("High Explosive Warning","explosives2"),
+			list("Fire Warning","fire"),
+			list("No Smoking","nosmoking2"),
+			list("No Smoking Circle","nosmoking"),
+			list("Safety First","safety"),
+			list("Nanotrasen","nanotrasen"),
+			list("RAVEN1","RAVEN1"),
+			list("RAVEN2","RAVEN2"),
+			list("RAVEN3","RAVEN3"),
+			list("RAVEN4","RAVEN4"),
+			list("RAVEN5","RAVEN5"),
+			list("RAVEN6","RAVEN6"),
+			list("RAVEN7","RAVEN7"),
+			list("RAVEN8","RAVEN8"),
+			list("RAVEN9","RAVEN9"),
+			list("Animated Red Circuit","rcircuitanim"),
+	        list("Animated Green Circuit","gcircuitanim"),
+			list("Blue Circuit","bcircuit"),
+			list("Green Circuit","gcircuit"),
+			list("Red Circuit","rcircuit"),
+			list("Disco Floor","disco"),
+			list("Grimy Floor","grimy"),
+			list("Chapel Floor","chapel"),
+			list("Sepia Floor","sepia"),
+			list("Pink Floor","pinkblack"),
+			list("Blank & White Floor","blackwhite"),
+			list("Yellow Floor","noslip"),
+			list("Pod Floor","podfloor_light"),
+			list("Freezer Floor","freezerfloor"),
+			list("Dark Floor","elevatorshaft"),
+			list("Recharge Station","recharge_floor"),
+			list("Solar Panel","solarpanel"),
+		    list("Gaming Floor","eighties"),
+			list("Planet Floor","planet"),
+			list("Bamboo Floor","bamboo"),
+			list("Grass Floor","grass2"),
+			list("Sand","sand"),
+			list("Asteroid Sand","asteroid"),
+			list("Iron Sand","ironsand1"),
+			list("Snow Floor","snow"),
+			list("Ice Floor","ice"),
+			list("Sandstone Vault","sandstonevault"),
+			list("Rock Vault","rockvault"),
+			list("Alien Vault","alienvault"),
+	        list("Alien Floor","alienpod5"),
+            list("Wood Floor","wood"),
+			list("Diamond Floor","diamond"),
+			list("Gold Floor","gold"),
+			list("Plasma Floor","plasma"),
+			list("Silver Floor","silver"),
+			list("Uranium Floor","uranium"),
+			list("Titanium Floor","titanium_white"),
+			list("Plastitanium Floor","plastitanium"),
+			list("Bluespace Floor","bluespace"),
+			list("Reinforced Floor","engine"),
+			list("Bananium Floor","bananium"),
+			list("Brick Floor","terracotta"),
+			list("Copper Floor","copper"),
+			list("Clockwork Floor","clockwork_floor"),
+			list("Cult Floor","cult"),
+			list("Paper Floor","paperfloor"),
+			list("Titanium Floor","titanium_white"),
+			list("Plastitanium Floor","plastitanium"),
+			list("Lavaland Floor","basalt1"),
+			list("Hierophant Floor","hiero"),
+			list("Wobby Hierophant Floor","hierophant1"),
+			list("Necro Floor","necro1"),
+			list("Lava","lava"),
+			list("River Water","riverwater_motion"),
+			list("Liquid Plasma","liquidplasma"),
+			list("Error","error"),
+			list("01010101","binary"),
+			list("Space","space"))
+
+/obj/item/airlock_painter/decal/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	var/turf/open/floor/F = target
+	if(!proximity)
+		to_chat(user, span_notice("You need to get closer!"))
+		return
+	if(!istype(F, /turf/open/floor))
+		to_chat(user, span_notice("[target] is not a tile!"))
+		return
+	if(use_paint(user))
+		F.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, color, null, null, alpha)
+
+/obj/item/airlock_painter/decal/attack_self(mob/user)
+	. = ..()
+	ui_interact(user)
+
+/obj/item/airlock_painter/decal/Initialize(mapload)
+	. = ..()
+	ink = new /obj/item/toner/large(src)
+
+/obj/item/airlock_painter/decal/proc/update_decal_path()
+	var/yellow_fix = "" //This will have to do until someone refactor's markings.dm
+	if (stored_color)
+		yellow_fix = "_"
+	stored_decal_total = "[stored_decal][yellow_fix][stored_color]"
+	return
+
+/obj/item/airlock_painter/decal/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DecalPainter", name)
+		ui.open()
+
+/obj/item/airlock_painter/decal/ui_data(mob/user)
+	var/list/data = list()
+	data["decal_direction"] = stored_dir
+	data["decal_color"] = stored_color
+	data["decal_style"] = stored_decal
+	data["decal_list"] = list()
+	data["color_list"] = list()
+	data["dir_list"] = list()
+
+	for(var/i in decal_list)
+		data["decal_list"] += list(list(
+			"name" = i[1],
+			"decal" = i[2]
+		))
+	for(var/j in color_list)
+		data["color_list"] += list(list(
+			"colors" = j
+		))
+	for(var/k in dir_list)
+		data["dir_list"] += list(list(
+			"dirs" = k
+		))
+	return data
+
+/obj/item/airlock_painter/decal/ui_act(action,list/params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		//Lists of decals and designs
+		if("select decal")
+			var/selected_decal = params["decals"]
+			stored_decal = selected_decal
+		if("select color")
+			var/selected_color = params["colors"]
+			stored_color = selected_color
+		if("selected direction")
+			var/selected_direction = text2num(params["dirs"])
+			stored_dir = selected_direction
+	update_decal_path()
+	. = TRUE

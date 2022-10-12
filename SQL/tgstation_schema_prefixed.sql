@@ -116,6 +116,18 @@ CREATE TABLE IF NOT EXISTS `SS13_ban` (
   KEY `idx_ban_count` (`bantime`,`a_ckey`,`applies_to_admins`,`unbanned_datetime`,`expiration_time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39587 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `SS13_bound_credentials`;
+CREATE TABLE `SS13_bound_credentials` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ckey` varchar(32) NOT NULL,
+  `computerid` varchar(32) DEFAULT NULL,
+  `ip` int(10) unsigned DEFAULT NULL,
+  `flags` set('bypass_bans') DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_ckey_lookup` (`ckey`),
+  KEY `idx_cid_lookup` (`computerid`),
+  KEY `idx_ip_lookup` (`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `SS13_connection_log`;
 CREATE TABLE IF NOT EXISTS `SS13_connection_log` (

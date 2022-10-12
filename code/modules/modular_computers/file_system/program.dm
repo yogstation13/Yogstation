@@ -25,7 +25,7 @@
 	var/requires_ntnet_feature = 0
 	/// NTNet status, updated every tick by computer running this program. Don't use this for checks if NTNet works, computers do that. Use this for calculations, etc.
 	var/ntnet_status = 1
-	/// Bitflags (PROGRAM_CONSOLE, PROGRAM_LAPTOP, PROGRAM_TABLET, PROGRAM_PHONE combination) or PROGRAM_ALL
+	/// Bitflags (PROGRAM_CONSOLE, PROGRAM_LAPTOP, PROGRAM_TABLET, PROGRAM_PHONE, PROGRAM_PDA, PROGRAM_TELESCREEN combination) or PROGRAM_ALL
 	var/usage_flags = PROGRAM_ALL
 	/// Optional string that describes what NTNet server/system this program connects to. Used in default logging.
 	var/network_destination = null
@@ -89,6 +89,9 @@
  *params is anything the pre_attack() proc had in the same-named variable.
 */
 /datum/computer_file/program/proc/tap(atom/A, mob/living/user, params)
+	return FALSE
+
+/datum/computer_file/program/proc/clickon(atom/A, mob/living/user, params)
 	return FALSE
 
 /datum/computer_file/program/proc/is_supported_by_hardware(hardware_flag = 0, loud = 0, mob/user = null)
@@ -197,7 +200,9 @@
 
 /datum/computer_file/program/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
-	if (!computer.can_show_ui(user, ui))
+	if (!computer.can_show_ui(user))
+		if(ui)
+			ui.close()
 		return
 	if(!ui && tgui_id)
 		ui = new(user, src, tgui_id, filedesc)
@@ -214,10 +219,12 @@
 	if(computer)
 		switch(action)
 			if("PC_exit")
+				computer.play_interact_sound()
 				computer.kill_program()
 				ui.close()
 				return TRUE
 			if("PC_shutdown")
+				computer.play_interact_sound()
 				computer.shutdown_computer()
 				ui.close()
 				return TRUE
@@ -225,7 +232,7 @@
 				var/mob/user = usr
 				if(!computer.active_program || !computer.all_components[MC_CPU])
 					return
-
+				computer.play_interact_sound()
 				computer.idle_threads.Add(computer.active_program)
 				program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
 
@@ -245,5 +252,7 @@
 
 /datum/computer_file/program/ui_status(mob/user)
 	if(program_state != PROGRAM_STATE_ACTIVE) // Our program was closed. Close the ui if it exists.
+		return UI_CLOSE
+	if(!computer.can_show_ui(user))
 		return UI_CLOSE
 	return ..()

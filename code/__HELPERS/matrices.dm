@@ -2,7 +2,7 @@
 	. = new_angle - old_angle
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
-/atom/proc/SpinAnimation(speed = 10, loops = -1, clockwise = 1, segments = 3, parallel = TRUE)
+/atom/proc/SpinAnimation(speed = 1 SECONDS, loops = -1, clockwise = 1, segments = 3, parallel = TRUE)
 	if(!segments)
 		return
 	var/segment = 360/segments
@@ -52,7 +52,9 @@
 	if(hold_seconds > 0)
 		sleep(hold_seconds) // time to hold the dab before going back
 	if(!stay) // if stay param is true dab doesn't return
-		animate(src, transform = DAB_RETURN, time = speed * 1.5, loops ) // reverse dab to starting position , slower
+		animate(transform = DAB_RETURN, time = speed * 1.5, loops ) // reverse dab to starting position , slower
+		//doesn't have an object argument because this is "Stacking" with the animate call above
+		//3 billion% intentional
 
 //Dumps the matrix data in format a-f
 /matrix/proc/tolist()

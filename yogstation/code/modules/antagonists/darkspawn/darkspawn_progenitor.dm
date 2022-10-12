@@ -35,7 +35,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_HOLY, "ohgodohfuck") //sorry no magic
 	alpha = 0
-	animate(src, alpha = 255, time = 10)
+	animate(src, alpha = 255, time = 1 SECONDS)
 	var/obj/item/radio/headset/silicon/ai/radio = new(src) //so the progenitor can hear people's screams over radio
 	radio.wires.cut(WIRE_TX) //but not talk over it
 

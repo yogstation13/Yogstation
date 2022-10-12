@@ -51,12 +51,18 @@
 /datum/chemical_reaction/reagent_explosion/potassium_explosion
 	name = "Explosion"
 	id = "potassium_explosion"
+	var/size_cap = 50
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/potassium = 1)
 	strengthdiv = 10
+
+/datum/chemical_reaction/reagent_explosion/potassium_explosion/on_reaction(datum/reagents/holder, created_volume)
+	created_volume = min(created_volume, size_cap)
+	..()
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom
 	name = "Holy Explosion"
 	id = "holyboom"
+	size_cap = 100
 	required_reagents = list(/datum/reagent/water/holywater = 1, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom/on_reaction(datum/reagents/holder, created_volume)
@@ -436,34 +442,27 @@
 	var/T2 = created_volume * 50
 	var/T3 = created_volume * 120
 	var/added_delay = 0.5 SECONDS
+	var/turf/T = get_turf(holder.my_atom)
 	if(created_volume >= 75)
-		addtimer(CALLBACK(src, .proc/zappy_zappy, holder, T1), added_delay)
+		addtimer(CALLBACK(src, .proc/zappy_zappy, T, T1), added_delay)
 		added_delay += 1.5 SECONDS
 	if(created_volume >= 40)
-		addtimer(CALLBACK(src, .proc/zappy_zappy, holder, T2), added_delay)
+		addtimer(CALLBACK(src, .proc/zappy_zappy, T, T2), added_delay)
 		added_delay += 1.5 SECONDS
 	if(created_volume >= 10)			//10 units minimum for lightning, 40 units for secondary blast, 75 units for tertiary blast.
-		addtimer(CALLBACK(src, .proc/zappy_zappy, holder, T3), added_delay)
+		addtimer(CALLBACK(src, .proc/zappy_zappy, T, T3), added_delay)
 	addtimer(CALLBACK(src, .proc/explode, holder, created_volume), added_delay)
 
-/datum/chemical_reaction/reagent_explosion/teslium_lightning/proc/zappy_zappy(datum/reagents/holder, power)
-	if(QDELETED(holder.my_atom))
+/datum/chemical_reaction/reagent_explosion/teslium_lightning/proc/zappy_zappy(turf/T, power)
+	if(QDELETED(T))
 		return
-	tesla_zap(holder.my_atom, 7, power, tesla_flags)
-	playsound(holder.my_atom, 'sound/machines/defib_zap.ogg', 50, TRUE)
+	tesla_zap(T, 7, power, tesla_flags)
+	playsound(T, 'sound/machines/defib_zap.ogg', 50, TRUE)
 
 /datum/chemical_reaction/reagent_explosion/teslium_lightning/heat
 	id = "teslium_lightning2"
 	required_temp = 474
 	required_reagents = list(/datum/reagent/teslium = 1)
-
-/datum/chemical_reaction/reagent_explosion/nitrous_oxide
-	name = "N2O explosion"
-	id = "n2o_explosion"
-	required_reagents = list(/datum/reagent/nitrous_oxide = 1)
-	strengthdiv = 7
-	required_temp = 575
-	modifier = 1
 
 /datum/chemical_reaction/firefighting_foam
 	name = "Firefighting Foam"
@@ -471,4 +470,4 @@
 	results = list(/datum/reagent/firefighting_foam = 3)
 	required_reagents = list(/datum/reagent/stabilizing_agent = 1,/datum/reagent/fluorosurfactant = 1,/datum/reagent/carbon = 1)
 	required_temp = 200
-	is_cold_recipe = 1
+	is_cold_recipe = TRUE

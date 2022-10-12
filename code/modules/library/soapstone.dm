@@ -1,7 +1,7 @@
 /obj/item/soapstone
 	name = "soapstone"
 	desc = "Leave informative messages for the crew, including the crew of future shifts!\nEven if out of uses, it can still be used to remove messages.\n(Not suitable for engraving on shuttles, off station or on cats. Side effects may include prompt beatings, psychotic clown incursions, and/or orbital bombardment.)"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/library.dmi'
 	icon_state = "soapstone"
 	throw_speed = 3
 	throw_range = 5
@@ -37,7 +37,7 @@
 	if(existing_message)
 		user.visible_message(span_notice("[user] starts erasing [existing_message]."), span_notice("You start erasing [existing_message]."), span_italics("You hear a chipping sound."))
 		playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)
-		if(do_after(user, tool_speed, target = existing_message))
+		if(do_after(user, tool_speed, existing_message))
 			user.visible_message(span_notice("[user] erases [existing_message]."), span_notice("You erase [existing_message][existing_message.creator_key == user.ckey ? ", refunding a use" : ""]."))
 			existing_message.persists = FALSE
 			qdel(existing_message)
@@ -56,7 +56,7 @@
 		return
 	playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)
 	user.visible_message(span_notice("[user] starts engraving a message into [T]..."), span_notice("You start engraving a message into [T]..."), span_italics("You hear a chipping sound."))
-	if(can_use() && do_after(user, tool_speed, target = T) && can_use()) //This looks messy but it's actually really clever!
+	if(can_use() && do_after(user, tool_speed, T) && can_use()) //This looks messy but it's actually really clever!
 		if(!locate(/obj/structure/chisel_message) in T)
 			user.visible_message(span_notice("[user] leaves a message for future spacemen!"), span_notice("You engrave a message into [T]!"), span_italics("You hear a chipping sound."))
 			playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)

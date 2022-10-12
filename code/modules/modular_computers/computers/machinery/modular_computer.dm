@@ -25,6 +25,16 @@
 	var/light_strength = 0								// Light luminosity when turned on
 	var/base_active_power_usage = 100					// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 10						// Power usage when the computer is idle and screen is off (currently only applies to laptops)
+	
+	// Stuff for presets
+	var/list/starting_components = list()
+	var/list/starting_files = list()
+	var/datum/computer_file/program/initial_program
+
+	// Interaction Sounds
+	var/sound/startup_sound = 'sound/machines/computers/computer_start.ogg'
+	var/sound/shutdown_sound = 'sound/machines/computers/computer_end.ogg'
+	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
 
 	var/obj/item/modular_computer/processor/cpu = null				// CPU that handles most logic while this type only handles power and other specific things.
 
@@ -93,6 +103,10 @@
 		update_icon()
 		return
 	. = ..()
+
+/obj/machinery/modular_computer/screwdriver_act(mob/user, obj/item/tool)
+	if(cpu)
+		return cpu.screwdriver_act(user, tool)
 
 /obj/machinery/modular_computer/attackby(var/obj/item/W as obj, mob/user)
 	if(user.a_intent == INTENT_HELP && cpu && !(flags_1 & NODECONSTRUCT_1))

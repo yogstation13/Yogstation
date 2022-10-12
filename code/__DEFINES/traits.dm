@@ -163,6 +163,7 @@
 #define TRAIT_EASILY_WOUNDED		"easy_limb_wound"
 #define TRAIT_HARDLY_WOUNDED		"hard_limb_wound"
 #define TRAIT_TOXINLOVER		"toxinlover"
+#define TRAIT_TOXIMMUNE         "toxin_immune"
 #define TRAIT_NOBREATH			"no_breath"
 #define TRAIT_ANTIMAGIC			"anti_magic"
 #define TRAIT_HOLY				"holy"
@@ -216,6 +217,15 @@
 #define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
 #define TRAIT_BLOODY_MESS		"bloody_mess" //from heparin, makes open bleeding wounds rapidly spill more blood
 #define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
+#define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
+#define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
+#define TRAIT_NOCLONE			"noclone" // No cloning
+#define TRAIT_NODEFIB			"nodefib" // No defibbing
+#define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp
+#define TRAIT_EAT_MORE			"eat_more" //You get hungry three times as fast
+#define TRAIT_MESONS			"mesons"
+/// This person is crying
+#define TRAIT_CRYING "crying"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -253,6 +263,10 @@
 #define TRAIT_EAT_LESS			"eat_less"
 #define TRAIT_CRAFTY			"crafty"
 #define TRAIT_ANOREXIC			"anorexic"
+#define TRAIT_SHIFTY_EYES		"shifty_eyes"
+#define TRAIT_ANXIOUS			"anxious"
+#define TRAIT_SEE_REAGENTS		"see_reagents"
+#define TRAIT_STARGAZED			"stargazed"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
@@ -317,8 +331,15 @@
 #define HIVEMIND_ONE_MIND_TRAIT "one_mind"
 #define VR_ZONE_TRAIT "vr_zone_trait"
 #define GUARDIAN_TRAIT "guardian_trait"
+#define STARGAZER_TRAIT "stargazer"
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
+#define BLOODSUCKER_TRAIT "bloodsucker_trait"
+#define FRENZY_TRAIT "frenzy_trait"
+#define HORROR_TRAIT "horror"
+#define HOLDER_TRAIT "holder_trait"
+#define SINFULDEMON_TRAIT "sinfuldemon"
+#define CHANGESTING_TRAIT "changesting"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

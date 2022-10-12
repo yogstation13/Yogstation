@@ -18,7 +18,7 @@ Contents:
 			to_chat(U, span_warning("You don't have enough power to enable Stealth!"))
 			return
 		stealth = !stealth
-		animate(U, alpha = 20,time = 15)
+		animate(U, alpha = 20,time = 1.5 SECONDS)
 		U.visible_message(span_warning("[U.name] vanishes into thin air!"), \
 						span_notice("You are now mostly invisible to normal detection."))
 
@@ -29,7 +29,7 @@ Contents:
 		return 0
 	if(stealth)
 		stealth = !stealth
-		animate(U, alpha = 255, time = 15)
+		animate(U, alpha = 255, time = 1.5 SECONDS)
 		U.visible_message(span_warning("[U.name] appears from thin air!"), \
 						span_notice("You are now visible."))
 		return 1

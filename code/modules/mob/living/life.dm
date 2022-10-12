@@ -35,7 +35,7 @@
 	if(!loc)
 		return
 
-	if(!IS_IN_STASIS(src))
+	if(LIFETICK_SKIP(src, times_fired))
 
 		if(stat != DEAD)
 			//Mutations and radiation
@@ -160,9 +160,9 @@
 	INVOKE_ASYNC(src, .proc/gravity_pulse_animation)
 
 /mob/living/proc/gravity_pulse_animation()
-	animate(get_filter("gravity"), y = 1, time = 10)
-	sleep(10)
-	animate(get_filter("gravity"), y = 0, time = 10)
+	animate(get_filter("gravity"), y = 1, time = 1 SECONDS)
+	sleep(1 SECONDS)
+	animate(get_filter("gravity"), y = 0, time = 1 SECONDS)
 
 /mob/living/proc/handle_high_gravity(gravity)
 	if(gravity >= GRAVITY_DAMAGE_TRESHOLD) //Aka gravity values of 3 or more

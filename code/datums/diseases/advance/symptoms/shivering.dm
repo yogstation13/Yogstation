@@ -20,8 +20,8 @@ Bonus
 	desc = "The virus inhibits the body's thermoregulation, cooling the body down."
 	stealth = 0
 	resistance = 2
-	stage_speed = 2
-	transmittable = 2
+	stage_speed = 3
+	transmittable = 3
 	level = 2
 	severity = 2
 	symptom_delay_min = 10

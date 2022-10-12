@@ -3,6 +3,12 @@
 		if(ACTION_TOGGLETHROW)
 			toggle_throw_mode()
 			return
+		if(ACTION_REST)
+			lay_down()
+			return
+		if(ACTION_TOGGLEWALKRUN)
+			toggle_move_intent()
+			return
 		if(ACTION_INTENTHELP)
 			a_intent_change(INTENT_HELP)
 			return

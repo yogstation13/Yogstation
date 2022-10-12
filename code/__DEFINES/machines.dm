@@ -30,6 +30,7 @@
 #define LIMBGROWER		(1<<6) 	//Uses synthetic flesh
 #define SMELTER			(1<<7) 	//uses various minerals
 #define NANITE_COMPILER  (1<<8) //Prints nanite disks
+#define RACK_CREATOR 	(1<<9) //For AI non-physical AI hardware. (RAM expansions)
 //Note: More than one of these can be added to a design but imprinter and lathe designs are incompatable.
 
 //Modular computer/NTNet defines
@@ -57,26 +58,35 @@
 //NTNet transfer speeds, used when downloading/uploading a file/program.
 #define NTNETSPEED_LOWSIGNAL 0.5	// GQ/s transfer speed when the device is wirelessly connected and on Low signal
 #define NTNETSPEED_HIGHSIGNAL 1	// GQ/s transfer speed when the device is wirelessly connected and on High signal
-#define NTNETSPEED_ETHERNET 2		// GQ/s transfer speed when the device is using wired connection
+#define NTNETSPEED_ETHERNET 3		// GQ/s transfer speed when the device is using wired connection
 
 //Caps for NTNet logging. Less than 10 would make logging useless anyway, more than 500 may make the log browser too laggy. Defaults to 100 unless user changes it.
 #define MAX_NTNET_LOGS 300
 #define MIN_NTNET_LOGS 10
 
 //Program bitflags
-#define PROGRAM_ALL		(~0)
-#define PROGRAM_CONSOLE	(1<<0)
-#define PROGRAM_LAPTOP	(1<<1)
-#define PROGRAM_TABLET	(1<<2)
-#define PROGRAM_PHONE	(1<<3)
+#define PROGRAM_ALL			(~0)
+#define PROGRAM_CONSOLE		(1<<0)
+#define PROGRAM_LAPTOP		(1<<1)
+#define PROGRAM_TABLET		(1<<2)
+#define PROGRAM_PHONE		(1<<3)
+#define PROGRAM_PDA			(1<<4)
+#define PROGRAM_TELESCREEN	(1<<5)
+#define PROGRAM_INTEGRATED	(1<<6)
+
+#define PROGRAM_PORTABLE PROGRAM_LAPTOP | PROGRAM_TABLET | PROGRAM_PHONE | PROGRAM_PDA
+#define PROGRAM_STATIONARY PROGRAM_CONSOLE | PROGRAM_TELESCREEN
+
 //Program states
 #define PROGRAM_STATE_KILLED 0
 #define PROGRAM_STATE_BACKGROUND 1
 #define PROGRAM_STATE_ACTIVE 2
 //Program categories
-#define PROGRAM_CATEGORY_CREW "Crew"
+#define PROGRAM_CATEGORY_CMD "Command"
+#define PROGRAM_CATEGORY_SEC "Security"
 #define PROGRAM_CATEGORY_ENGI "Engineering"
-#define PROGRAM_CATEGORY_ROBO "Robotics"
+#define PROGRAM_CATEGORY_SCI "Science"
+#define PROGRAM_CATEGORY_MED "Medical"
 #define PROGRAM_CATEGORY_SUPL "Supply"
 #define PROGRAM_CATEGORY_MISC "Other"
 

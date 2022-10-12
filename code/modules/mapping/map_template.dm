@@ -55,11 +55,11 @@
 	SSmachines.setup_template_powernets(cables)
 	SSair.setup_template_machinery(atmos_machines)
 
-/datum/map_template/proc/load_new_z()
+/datum/map_template/proc/load_new_z(secret = FALSE)
 	var/x = round((world.maxx - width)/2)
 	var/y = round((world.maxy - height)/2)
 
-	var/datum/space_level/level = SSmapping.add_new_zlevel(name, list(ZTRAIT_AWAY = TRUE))
+	var/datum/space_level/level = SSmapping.add_new_zlevel(name, secret ? ZTRAITS_AWAY_SECRET : ZTRAITS_AWAY)
 	var/datum/parsed_map/parsed = load_map(file(mappath), x, y, level.z_value, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE)
 	var/list/bounds = parsed.bounds
 	if(!bounds)
@@ -114,6 +114,10 @@
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(var/file, var/name)
-	var/datum/map_template/template = new(file, name)
-	template.load_new_z()
+
+/proc/load_new_z_level(file, name, secret)
+	var/datum/map_template/template = new(file, name, TRUE)
+	if(!template.cached_map || template.cached_map.check_for_errors())
+		return FALSE
+	template.load_new_z(secret)
+	return TRUE

@@ -1,7 +1,7 @@
 /datum/round_event_control/slaughter
 	name = "Spawn Slaughter Demon"
 	typepath = /datum/round_event/ghost_role/slaughter
-	weight = 1 //Very rare
+	weight = 2 //Very rare
 	max_occurrences = 1
 	earliest_start = 1 HOURS
 	min_players = 20
@@ -32,7 +32,7 @@
 		message_admins("No valid spawn locations found, aborting...")
 		return MAP_ERROR
 
-	/*var/obj/effect/dummy/phased_mob/slaughter/holder = new /obj/effect/dummy/phased_mob/slaughter((pick(spawn_locs))) //yogs start - Bloodcrawl refactor
+	/*var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob((pick(spawn_locs))) //yogs start - Bloodcrawl refactor
 	var/mob/living/simple_animal/slaughter/S = new (holder)
 	S.holder = holder*/
 	var/obj/effect/dummy/crawling/holder = new(pick(spawn_locs))

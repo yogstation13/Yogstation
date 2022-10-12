@@ -60,7 +60,7 @@
 /obj/structure/flora/ash/attackby(obj/item/W, mob/user, params)
 	if(!harvested && needs_sharp_harvest && W.is_sharp())
 		user.visible_message(span_notice("[user] starts to harvest from [src] with [W]."),span_notice("You begin to harvest from [src] with [W]."))
-		if(do_after(user, harvest_time, target = src))
+		if(do_after(user, harvest_time, src))
 			harvest(user)
 	else
 		return ..()
@@ -71,7 +71,7 @@
 		return
 	if(!harvested && !needs_sharp_harvest)
 		user.visible_message(span_notice("[user] starts to harvest from [src]."),span_notice("You begin to harvest from [src]."))
-		if(do_after(user, harvest_time, target = src))
+		if(do_after(user, harvest_time, src))
 			harvest(user)
 
 /obj/structure/flora/ash/tall_shroom //exists only so that the spawning check doesn't allow these spawning near other things
@@ -153,6 +153,7 @@
 	desc = "Some shavings from a tall mushroom. With enough, might serve as a bowl."
 	icon = 'icons/obj/lavaland/ash_flora.dmi'
 	icon_state = "mushroom_shavings"
+	grind_results = list(/datum/reagent/toxin/mushroom_powder = 5)
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
@@ -324,3 +325,36 @@
 				A.initialize_custom_food(src, S, user)
 	else
 		. = ..()
+
+/obj/structure/flora/ash/seraka
+	icon_state = "seraka_mushroom"
+	name = "seraka mushrooms"
+	desc = "A small cluster of seraka mushrooms, normally found on Sangris. Strange that they're here..."
+	needs_sharp_harvest = FALSE
+	harvested_name = "harvested seraka mushrooms"
+	harvested_desc = "What remains of a harvested patch of seraka mushrooms. They are capable of regrowing quickly."
+	harvest = /obj/item/reagent_containers/food/snacks/grown/ash_flora/seraka
+	harvest_amount_high = 6
+	harvest_time = 25
+	harvest_message_low = "You pluck a few choice tasty mushrooms."
+	harvest_message_med = "You grab a good haul of mushrooms."
+	harvest_message_high = "You hit the mushroom motherlode, your harvest containing several sizeable mushrooms."
+	regrowth_time_low = 3000
+	regrowth_time_high = 5400
+
+/obj/item/reagent_containers/food/snacks/grown/ash_flora/seraka
+	name = "seraka cap"
+	desc = "Small, deeply flavourful mushrooms originally native to Sangris. These ones are flaked in ash and soot."
+	icon_state = "seraka_cap"
+	seed = /obj/item/seeds/lavaland/seraka
+
+/obj/item/seeds/lavaland/seraka
+	name = "pack of seraka mycelium"
+	desc = "This mycelium grows into seraka mushrooms, a species of savoury mushrooms originally native to Sangris. They are most commonly used in food and traditional medicine."
+	icon_state = "mycelium-seraka"
+	species = "seraka"
+	plantname = "Seraka Mushrooms"
+	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/seraka
+	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
+	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
+	reagents_add = list(/datum/reagent/toxin/mushroom_powder = 0.1, /datum/reagent/medicine/coagulant/seraka_extract = 0.02)

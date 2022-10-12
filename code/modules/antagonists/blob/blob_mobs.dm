@@ -15,14 +15,24 @@
 	maxbodytemp = 360
 	unique_name = 1
 	a_intent = INTENT_HARM
+	see_in_dark = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	var/mob/camera/blob/overmind = null
 	var/obj/structure/blob/factory/factory = null
+	var/independent = FALSE
 
 /mob/living/simple_animal/hostile/blob/update_icons()
 	if(overmind)
 		add_atom_colour(overmind.blobstrain.color, FIXED_COLOUR_PRIORITY)
 	else
 		remove_atom_colour(FIXED_COLOUR_PRIORITY)
+
+/mob/living/simple_animal/hostile/blob/Initialize()
+	. = ..()
+	if(!independent) //no pulling people deep into the blob
+		verbs -= /mob/living/verb/pulled
+	else
+		pass_flags &= ~PASSBLOB
 
 
 /mob/living/simple_animal/hostile/blob/Destroy()
@@ -90,18 +100,20 @@
 	attacktext = "hits"
 	attack_sound = 'sound/weapons/genhit1.ogg'
 	movement_type = FLYING
-	del_on_death = 1
+	del_on_death = TRUE
 	deathmessage = "explodes into a cloud of gas!"
+	gold_core_spawnable = HOSTILE_SPAWN
 	var/death_cloud_size = 1 //size of cloud produced from a dying spore
 	var/mob/living/carbon/human/oldguy
-	var/is_zombie = 0
-	gold_core_spawnable = HOSTILE_SPAWN
+	var/is_zombie = FALSE
 
 /mob/living/simple_animal/hostile/blob/blobspore/Initialize(mapload, var/obj/structure/blob/factory/linked_node)
 	if(istype(linked_node))
 		factory = linked_node
 		factory.spores += src
 	. = ..()
+	if(linked_node.overmind && istype(linked_node.overmind.blobstrain, /datum/blobstrain/reagent/distributed_neurons) && !istype(src, /mob/living/simple_animal/hostile/blob/blobspore/weak))
+		notify_ghosts("A controllable spore has been created in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Spore Created")
 
 /mob/living/simple_animal/hostile/blob/blobspore/Life()
 	if(!is_zombie && isturf(src.loc))
@@ -112,6 +124,26 @@
 	if(factory && z != factory.z)
 		death()
 	..()
+
+/mob/living/simple_animal/hostile/blob/blobspore/attack_ghost(mob/user)
+	. = ..()
+	if(.)
+		return
+	humanize_pod(user)
+
+/mob/living/simple_animal/hostile/blob/blobspore/proc/humanize_pod(mob/user)
+	if((!overmind || istype(src, /mob/living/simple_animal/hostile/blob/blobspore/weak) || !istype(overmind.blobstrain, /datum/blobstrain/reagent/distributed_neurons)) && !is_zombie)
+		return
+	if(key || stat)
+		return
+	var/pod_ask = alert("Become a blob spore?", "Are you bulbous enough?", "Yes", "No")
+	if(pod_ask == "No" || !src || QDELETED(src))
+		return
+	if(key)
+		to_chat(user, "<span class='warning'>Someone else already took this spore!</span>")
+		return
+	key = user.key
+	log_game("[key_name(src)] took control of [name].")
 
 /mob/living/simple_animal/hostile/blob/blobspore/proc/Zombify(mob/living/carbon/human/H)
 	is_zombie = 1
@@ -135,6 +167,8 @@
 	oldguy = H
 	update_icons()
 	visible_message(span_warning("The corpse of [H.name] suddenly rises!"))
+	if(!key)
+		notify_ghosts("\A [src] has been created in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Blob Zombie Created")
 
 /mob/living/simple_animal/hostile/blob/blobspore/death(gibbed)
 	// On death, create a small smoke of harmful gas (s-Acid)
@@ -215,17 +249,7 @@
 	force_threshold = 10
 	pressure_resistance = 50
 	mob_size = MOB_SIZE_LARGE
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	hud_type = /datum/hud/blobbernaut
-	var/independent = FALSE
-
-/mob/living/simple_animal/hostile/blob/blobbernaut/Initialize()
-	. = ..()
-	if(!independent) //no pulling people deep into the blob
-		remove_verb(src, /mob/living/verb/pulled)
-	else
-		pass_flags &= ~PASSBLOB
+	hud_type = /datum/hud/living/blobbernaut
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/Life()
 	if(..())
@@ -261,15 +285,6 @@
 				I.color = overmind.blobstrain.complementary_color
 			flick_overlay_view(I, src, 8)
 
-/mob/living/simple_animal/hostile/blob/blobbernaut/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	. = ..()
-	if(updating_health)
-		update_health_hud()
-
-/mob/living/simple_animal/hostile/blob/blobbernaut/update_health_hud()
-	if(hud_used)
-		hud_used.healths.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#e36600'>[round((health / maxHealth) * 100, 0.5)]%</font></div>"
-
 /mob/living/simple_animal/hostile/blob/blobbernaut/AttackingTarget()
 	. = ..()
 	if(. && isliving(target) && overmind)
@@ -291,6 +306,8 @@
 	if(factory)
 		factory.naut = null //remove this naut from its factory
 		factory.max_integrity = initial(factory.max_integrity)
+	if(overmind)
+		to_chat(overmind, "<font color=\"#EE4000\">[src] has died in [get_area(src)]!</font>")
 	flick("blobbernaut_death", src)
 
 /mob/living/simple_animal/hostile/blob/blobbernaut/independent

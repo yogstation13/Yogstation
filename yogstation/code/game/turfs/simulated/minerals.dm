@@ -11,3 +11,13 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
+
+/turf/closed/mineral/dilithium/volcanic/hard
+	smooth_icon = 'icons/turf/smoothrocks_hard.dmi'
+	hardness = 2
+
+/turf/closed/mineral/dilithium/volcanic/hard/harder
+	smooth_icon = 'icons/turf/smoothrocks.dmi'
+	mineralAmt = 5
+	color = "#eb9877"
+	hardness = 3

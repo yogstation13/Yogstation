@@ -35,21 +35,21 @@
 	//Yogs begin - Added health gate and telegraph
 	else if(prob(20) && health < maxHealth/2)
 		telegraph()
-		COLOSSUS_SLEEP(3)
+		COLOSSUS_SLEEP(0.3 SECONDS)
 		visible_message(span_colossus("\"<b>Bow.</b>\""))
 	//Yogs end
-		ranged_cooldown = world.time + 30
+		ranged_cooldown = world.time + 3 SECONDS
 		random_shots()
 	else
 		if(prob(70))
 			//Yogs begin - Colossus changes color immediately before shotgunning.
 			var/oldcolor = color
-			animate(src, color = "#C80000", time = 5)
-			COLOSSUS_SLEEP(5)
+			animate(src, color = "#C80000", time = 0.5 SECONDS)
+			COLOSSUS_SLEEP(0.5 SECONDS)
 			ranged_cooldown = world.time + 20
 			blast()
-			animate(src, color = oldcolor, time = 2)
-			COLOSSUS_SLEEP(2)
+			animate(src, color = oldcolor, time = 0.2 SECONDS)
+			COLOSSUS_SLEEP(0.2 SECONDS)
 			//Yogs end
 		else
 			ranged_cooldown = world.time + 40

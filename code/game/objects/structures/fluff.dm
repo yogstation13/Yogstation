@@ -56,6 +56,18 @@
 	icon = 'icons/obj/brokentiling.dmi'
 	icon_state = "corner"
 
+/obj/structure/fluff/broken_flooring/side
+	icon_state = "side"
+
+/obj/structure/fluff/broken_flooring/single
+	icon_state = "singular"
+
+/obj/structure/fluff/broken_flooring/pile
+	icon_state = "pile"
+
+/obj/structure/fluff/broken_flooring/plating
+	name = "broken plating"
+	icon_state = "plating"
 /obj/structure/fluff/drake_statue //Ash drake status spawn on either side of the necropolis gate in lavaland.
 	name = "drake statue"
 	desc = "A towering basalt sculpture of a proud and regal drake. Its eyes are six glowing gemstones."
@@ -69,6 +81,18 @@
 /obj/structure/fluff/drake_statue/falling //A variety of statue in disrepair; parts are broken off and a gemstone is missing
 	desc = "A towering basalt sculpture of a drake. Cracks run down its surface and parts of it have fallen off."
 	icon_state = "drake_statue_falling"
+
+/obj/structure/fluff/grave
+	name = "grave"
+	desc = "A desolate and shallow grave for those who have fallen."
+	icon = 'icons/obj/lavaland/misc.dmi'
+	icon_state = "grave"
+	deconstructible = FALSE
+
+/obj/structure/fluff/grave/empty
+	name = "empty grave"
+	desc = "A former grave."
+	icon_state = "grave_empty"
 
 
 /obj/structure/fluff/bus

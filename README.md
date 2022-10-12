@@ -35,7 +35,7 @@ code tab of https://github.com/yogstation13/Yogstation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
-## The Yogstation codebase recommends compiling using version [514.1566](https://www.byond.com/download/build/514/514.1566_byond.exe) and may potentially NOT work on newer or older versions.
+## The Yogstation codebase recommends compiling using version [514.1583](https://www.byond.com/download/build/514/514.1583_byond.exe) and may potentially NOT work on newer or older versions.
 
 ## :exclamation: How to compile :exclamation:
 

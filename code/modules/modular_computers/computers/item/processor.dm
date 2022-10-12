@@ -19,9 +19,6 @@
 	machinery_computer = null
 
 /obj/item/modular_computer/processor/New(comp)
-	..()
-	STOP_PROCESSING(SSobj, src) // Processed by its machine
-
 	if(!comp || !istype(comp, /obj/machinery/modular_computer))
 		CRASH("Inapropriate type passed to obj/item/modular_computer/processor/New()! Aborting.")
 	// Obtain reference to machinery computer
@@ -40,6 +37,16 @@
 	integrity_failure = machinery_computer.integrity_failure
 	base_active_power_usage = machinery_computer.base_active_power_usage
 	base_idle_power_usage = machinery_computer.base_idle_power_usage
+	starting_components = machinery_computer.starting_components
+	starting_files = machinery_computer.starting_files
+	initial_program = machinery_computer.initial_program
+	startup_sound = machinery_computer.startup_sound
+	shutdown_sound = machinery_computer.shutdown_sound
+	interact_sounds = machinery_computer.interact_sounds
+
+	..()
+
+	STOP_PROCESSING(SSobj, src) // Processed by its machine
 
 /obj/item/modular_computer/processor/relay_qdel()
 	qdel(machinery_computer)

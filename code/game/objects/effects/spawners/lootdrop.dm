@@ -131,7 +131,8 @@
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
-			/obj/item/trash/syndi_cakes = 1)
+			/obj/item/trash/syndi_cakes = 1,
+			/obj/item/broken_bottle = 1)
 
 /obj/effect/spawner/lootdrop/trashbin
 	name = "trash spawner"
@@ -146,7 +147,185 @@
 			/obj/item/trash/raisins = 1,
 			/obj/item/trash/sosjerky = 1,
 			/obj/item/reagent_containers/food/snacks/grown/poppy = 1,
-			/obj/item/trash/syndi_cakes = 1)
+			/obj/item/trash/syndi_cakes = 1,
+			/obj/item/broken_bottle = 1)
+
+/obj/effect/spawner/lootdrop/donkpockets
+	name = "donk pocket box spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/item/storage/box/donkpockets/donkpocketspicy = 1,
+			/obj/item/storage/box/donkpockets/donkpocketteriyaki = 1,
+			/obj/item/storage/box/donkpockets/donkpocketpizza = 1,
+			/obj/item/storage/box/donkpockets/donkpocketberry = 1,
+			/obj/item/storage/box/donkpockets/donkpockethonk = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks
+	name = "reagent tank spawner"
+	icon_state = "random_tanks"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/lowchance
+	name = "rare reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 50,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/midchance
+	name = "common reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 15,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/highchance
+	name = "frequent reagent tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 5,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+			/obj/structure/reagent_dispensers/watertank = 5,
+			/obj/structure/reagent_dispensers/watertank/high = 3,
+			/obj/structure/reagent_dispensers/foamtank = 1,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/highquality
+	name = "highcap water/foam tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/watertank/high = 5,
+			/obj/structure/reagent_dispensers/foamtank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly
+	name = "guaranteed fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/lowchance
+	name = "rare fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 50,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/midchance
+	name = "common fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 15,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/tanks/fuelonly/highchance
+	name = "frequent fuel tank spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 5,
+			/obj/structure/reagent_dispensers/fueltank = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/
+	name = "generic effect spawner"
+	icon_state = "x4"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 100,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines
+	name = "stun or explosive landmine spawner"
+	icon_state = "landmine_spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 84,
+			/obj/effect/mine/explosive = 1,
+			/obj/effect/mine/stun = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/safe
+	name = "stun landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 80,
+			/obj/effect/mine/stun = 10,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/smart
+	name = "smart landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 80,
+			/obj/effect/mine/stun/smart = 10,
+			/obj/effect/mine/stun/smart/adv = 5,
+			/obj/effect/mine/stun/smart/heavy = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/unsafe
+	name = "dangerous landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 85,
+			/obj/effect/mine/explosive = 10,
+			/obj/effect/mine/gas/plasma = 5,
+			/obj/effect/mine/gas/n2o = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/funny
+	name = "harmless landmine spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 85,
+			/obj/effect/mine/sound = 10,
+			/obj/effect/mine/sound/bwoink = 5,
+			/obj/effect/mine/gas = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/ancient
+	name = "stun or ancient explosive landmine spawner"
+	icon_state = "landmine_spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 84,
+			/obj/effect/mine/explosive/ancient = 1,
+			/obj/effect/mine/stun = 5,
+		)
 
 /obj/effect/spawner/lootdrop/three_course_meal
 	name = "three course meal spawner"
@@ -285,7 +464,7 @@
 	name = "pirate hat or bandana spawner"
 	loot = list(
 		/obj/item/clothing/head/pirate = 1,
-		/obj/item/clothing/head/bandana = 1)
+		/obj/item/clothing/head/pirate/bandana = 1)
 
 /obj/effect/spawner/lootdrop/minor/twentyfive_percent_cyborg_mask
 	name = "25% cyborg mask spawner"
@@ -301,7 +480,11 @@
 				/obj/item/aiModule/core/full/crewsimov,
 				/obj/item/aiModule/core/full/hippocratic,
 				/obj/item/aiModule/core/full/paladin_devotion,
-				/obj/item/aiModule/core/full/paladin
+				/obj/item/aiModule/core/full/paladin,
+				/obj/item/aiModule/core/full/chapai,
+				/obj/item/aiModule/core/full/silicop,
+				/obj/item/aiModule/core/full/mother,
+				/obj/item/aiModule/core/full/druid
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_neutral // These shouldn't allow the AI to start butchering people without reason
@@ -315,7 +498,13 @@
 				/obj/item/aiModule/core/full/robocop,
 				/obj/item/aiModule/core/full/liveandletlive,
 				/obj/item/aiModule/core/full/hulkamania,
-				/obj/item/aiModule/core/full/cowboy
+				/obj/item/aiModule/core/full/cowboy,
+				/obj/item/aiModule/core/full/metaexperiment,
+				/obj/item/aiModule/core/full/spotless,
+				/obj/item/aiModule/core/full/construction,
+				/obj/item/aiModule/core/full/researcher,
+				/obj/item/aiModule/core/full/clown,
+				/obj/item/aiModule/core/full/detective
 				)
 
 /obj/effect/spawner/lootdrop/aimodule_harmful // These will get the shuttle called
@@ -325,6 +514,7 @@
 				/obj/item/aiModule/core/full/balance,
 				/obj/item/aiModule/core/full/tyrant,
 				/obj/item/aiModule/core/full/thermurderdynamic,
+				/obj/item/aiModule/core/full/siliconcollective,
 				/obj/item/aiModule/core/full/damaged
 				)
 
@@ -416,6 +606,7 @@
 	name = "secure AI circuit board spawner"
 	loot = list(
 				/obj/item/circuitboard/computer/aiupload,
+				/obj/item/circuitboard/computer/ai_upload_download,
 				/obj/item/circuitboard/computer/borgupload
 				)
 
@@ -434,3 +625,45 @@
 				/obj/item/circuitboard/computer/apc_control,
 				/obj/item/circuitboard/computer/robotics
 				)
+
+/obj/effect/spawner/lootdrop/twenty_percent_drip_suit
+	name = "20% incredibly fashionable outfit spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+		/obj/item/clothing/under/drip = 20,
+		"" = 80)
+
+/obj/effect/spawner/lootdrop/twenty_percent_drip_shoes
+	name = "20% fashionable shoes spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+		/obj/item/clothing/shoes/drip = 20,
+		"" = 80)
+
+//Mob spawners
+/obj/effect/spawner/lootdrop/mob
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
+
+/obj/effect/spawner/lootdrop/mob/kitchen_animal
+	name = "kitchen animal"
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,
+			/mob/living/simple_animal/cow/betsy = 1,
+			/mob/living/simple_animal/sheep = 1,
+			/mob/living/simple_animal/sheep/shawn = 1)
+
+/obj/effect/spawner/lootdrop/mob/marrow_weaver
+	name = "40% marrow weaver spawner"
+	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "weaver"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/asteroid/marrowweaver = 35,
+			/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 5,
+			"" = 60)

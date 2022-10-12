@@ -324,13 +324,13 @@ datum/status_effect/rebreathing/tick()
 
 /datum/status_effect/timecookie/on_apply()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H
+		var/mob/living/carbon/human/H = owner
 		H.physiology.do_after_speed *= 0.95
 	return ..()
 
 /datum/status_effect/timecookie/on_remove()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H
+		var/mob/living/carbon/human/H = owner
 		H.physiology.do_after_speed /= 0.95
 
 /datum/status_effect/lovecookie

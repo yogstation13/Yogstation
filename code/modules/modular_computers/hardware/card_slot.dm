@@ -11,6 +11,7 @@
 /obj/item/computer_hardware/card_slot/handle_atom_del(atom/A)
 	if(A == stored_card)
 		try_eject(null, TRUE)
+	holder.update_label()
 	. = ..()
 
 /obj/item/computer_hardware/card_slot/Destroy()
@@ -35,7 +36,9 @@
 	if(stored_card)
 		. = stored_card
 		if(!try_eject())
+			holder.update_label()
 			return null
+		holder.update_label()
 		return
 
 /obj/item/computer_hardware/card_slot/try_insert(obj/item/I, mob/living/user = null)
@@ -54,6 +57,7 @@
 		I.forceMove(src)
 
 	stored_card = I
+	holder.update_label()
 	to_chat(user, "<span class='notice'>You insert \the [I] into \the [expansion_hw ? "secondary":"primary"] [src].</span>")
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 	if(ishuman(user))
@@ -68,11 +72,12 @@
 		to_chat(user, span_warning("There are no cards in \the [src]."))
 		return FALSE
 
-	if(user)
+	if(user && user.CanReach(src))
 		user.put_in_hands(stored_card)
 	else
 		stored_card.forceMove(drop_location())
 	stored_card = null
+	holder.update_label()
 
 	if(holder)
 		if(holder.active_program)

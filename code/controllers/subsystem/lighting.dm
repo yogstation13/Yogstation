@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(lighting)
 	init_order = INIT_ORDER_LIGHTING
 	flags = SS_TICKER
 
+	loading_points = 6 SECONDS // Yogs -- loading times
+
 /datum/controller/subsystem/lighting/stat_entry(msg)
 	msg = "L:[GLOB.lighting_update_lights.len]|C:[GLOB.lighting_update_corners.len]|O:[GLOB.lighting_update_objects.len]"
 	return ..()
@@ -69,7 +71,7 @@ SUBSYSTEM_DEF(lighting)
 		MC_SPLIT_TICK
 
 	for (i in 1 to GLOB.lighting_update_objects.len)
-		var/atom/movable/lighting_object/O = GLOB.lighting_update_objects[i]
+		var/datum/lighting_object/O = GLOB.lighting_update_objects[i]
 
 		if (QDELETED(O))
 			continue

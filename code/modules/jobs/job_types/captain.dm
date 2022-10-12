@@ -12,15 +12,15 @@
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
-	exp_requirements = 180
+	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
 	alt_titles = list("Station Commander", "Facility Director")
 
 	outfit = /datum/outfit/job/captain
 
-	access = list() 			//See get_access()
-	minimal_access = list() 	//See get_access()
+	added_access = list() 			//See get_access()
+	base_access = list() 	//See get_access()
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 
@@ -33,6 +33,7 @@
 	)
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
+	minimal_character_age = 35 //Feasibly expected to know everything and potentially do anything. Leagues of experience, briefing, training, and trust required for this role
 
 /datum/job/captain/get_access()
 	return get_all_accesses()
@@ -45,8 +46,9 @@
 	name = "Captain"
 	jobtype = /datum/job/captain
 
-	id = /obj/item/card/id/gold
-	belt = /obj/item/pda/captain
+	id_type = /obj/item/card/id/gold
+	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
+	
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
@@ -54,6 +56,7 @@
 	uniform_skirt = /obj/item/clothing/under/rank/captain/skirt
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace
 	shoes = /obj/item/clothing/shoes/sneakers/brown
+	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/caphat
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/station_charter=1, /obj/item/gun/energy/e_gun=1) //yogs - adds egun/removes civ budget
 

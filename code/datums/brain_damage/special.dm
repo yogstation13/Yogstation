@@ -115,7 +115,7 @@
 	var/slip_out_message = pick("silently fades in", "leaps out of thin air","appears", "walks out of an invisible doorway",\
 		"slides out of a fold in spacetime")
 	to_chat(user, span_notice("You try to align with the bluespace stream..."))
-	if(do_after(user, 2 SECONDS, target = src))
+	if(do_after(user, 2 SECONDS, src))
 		new /obj/effect/temp_visual/bluespace_fissure(get_turf(src))
 		new /obj/effect/temp_visual/bluespace_fissure(get_turf(linked_to))
 		user.forceMove(get_turf(linked_to))

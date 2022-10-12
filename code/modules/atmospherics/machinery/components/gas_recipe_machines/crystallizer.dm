@@ -11,7 +11,7 @@
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	max_integrity = 300
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 80, ACID = 30)
 	circuit = /obj/item/circuitboard/machine/crystallizer
 	pipe_flags = PIPING_ONE_PER_TURF| PIPING_DEFAULT_LAYER_ONLY
 
@@ -154,11 +154,11 @@
 
 	if(	(internal.return_temperature() >= (selected_recipe.min_temp * MIN_DEVIATION_RATE) && internal.return_temperature() <= selected_recipe.min_temp) || \
 		(internal.return_temperature() >= selected_recipe.max_temp && internal.return_temperature() <= (selected_recipe.max_temp * MAX_DEVIATION_RATE)))
-		quality_loss = min(quality_loss + 1.5, -100)
+		quality_loss = min(quality_loss + 1.5, 100)
 
-	var/median_temperature = (selected_recipe.max_temp - selected_recipe.min_temp) * 0.5
+	var/median_temperature = (selected_recipe.max_temp + selected_recipe.min_temp) * 0.5
 	if(internal.return_temperature() >= (median_temperature * MIN_DEVIATION_RATE) && internal.return_temperature() <= (median_temperature * MAX_DEVIATION_RATE))
-		quality_loss = max(quality_loss - 5.5, 100)
+		quality_loss = max(quality_loss - 5.5, -100)
 
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/apply_cooling()
 	var/datum/gas_mixture/cooling_port = airs[1]

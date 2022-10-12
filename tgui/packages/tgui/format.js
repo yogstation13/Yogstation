@@ -68,6 +68,10 @@ export const formatPower = (value, minBase1000 = 0) => {
   return formatSiUnit(value, minBase1000, 'W');
 };
 
+export const formatJoule = (value, minBase1000 = 0) => {
+  return formatSiUnit(value, minBase1000, 'J');
+};
+
 export const formatMoney = (value, precision = 0) => {
   if (!Number.isFinite(value)) {
     return value;

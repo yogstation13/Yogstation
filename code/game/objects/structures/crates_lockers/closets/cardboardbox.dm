@@ -55,7 +55,7 @@
 	var/image/I = image('icons/obj/closet.dmi', A, "cardboard_special", A.layer+1)
 	flick_overlay_view(I, A, 8)
 	I.alpha = 0
-	animate(I, pixel_z = 32, alpha = 255, time = 5, easing = ELASTIC_EASING)
+	animate(I, pixel_z = 32, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
 
 
 /obj/structure/closet/cardboard/metal

@@ -108,7 +108,7 @@
 /datum/nanite_program/fake_death
 	name = "Death Simulation"
 	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
-	use_rate = 3.5
+	use_rate = 4.5
 	rogue_types = list(/datum/nanite_program/nerve_decay, /datum/nanite_program/necrotic, /datum/nanite_program/brain_decay)
 	harmful = TRUE
 
@@ -297,7 +297,7 @@
 					hal_details = hal_chat
 			if("Battle")
 				hal_type = "Battle"
-				var/sound_list = list("random","laser","disabler","esword","gun","stunprod","harmbaton","bomb")
+				var/sound_list = list("random","laser","disabler","esword","gun","stunprod","harmbaton",BOMB)
 				var/hal_choice = input("Choose the hallucination battle type", name) as null|anything in sound_list
 				if(!hal_choice || hal_choice == "random")
 					hal_details = null

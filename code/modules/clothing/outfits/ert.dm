@@ -1,12 +1,27 @@
 /datum/outfit/ert
 	name = "ERT Common"
 
+	id = /obj/item/card/id/ert
+	back = /obj/item/storage/backpack
 	uniform = /obj/item/clothing/under/rank/centcom_officer
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
 	implants = list(/obj/item/implant/mindshield)
+	backpack_contents = list(
+		/obj/item/clothing/mask/gas/sechailer/swat=1,
+		/obj/item/tank/internals/oxygen/tactical=1,
+		/obj/item/tank/internals/emergency_oxygen/double=1,
+		)
 
+/datum/outfit/ert/commonleader
+	head = /obj/item/clothing/head/beret/sec
+	backpack_contents = list(
+		/obj/item/clothing/mask/gas/sechailer/swat=1,
+		/obj/item/tank/internals/oxygen/tactical=1,
+		/obj/item/tank/internals/emergency_oxygen/double=1,
+		/obj/item/stack/ore/bluespace_crystal/refined/nt/five=1
+		)
 
 /datum/outfit/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -106,7 +121,7 @@
 	back = /obj/item/storage/backpack/ert/medical
 	belt = /obj/item/melee/classic_baton/telescopic
 	mask = /obj/item/clothing/mask/gas/sechailer
-	l_pocket = /obj/item/reagent_containers/hypospray/combat
+	l_pocket = /obj/item/reagent_containers/autoinjector/combat
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	backpack_contents = list(
 		/obj/item/storage/firstaid/toxin=1,
@@ -129,7 +144,7 @@
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	suit_store = /obj/item/gun/medbeam
 	belt = /obj/item/defibrillator/compact/combat/loaded
-	l_pocket = /obj/item/reagent_containers/hypospray/combat/nanites
+	l_pocket = /obj/item/reagent_containers/autoinjector/combat/nanites
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 
 	backpack_contents = list(
@@ -155,7 +170,7 @@
 	l_pocket = /obj/item/rcd_ammo
 	r_pocket= /obj/item/rcd_ammo
 	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen=1,
+		/obj/item/reagent_containers/autoinjector/medipen=1,
 		/obj/item/melee/classic_baton/telescopic=1,
 		/obj/item/construction/rcd/loaded=1
 		)
@@ -176,7 +191,7 @@
 	belt = /obj/item/storage/belt/utility/full/engi
 
 	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen=1,
+		/obj/item/reagent_containers/autoinjector/medipen=1,
 		/obj/item/storage/box/smart_metal_foam=1,
 		/obj/item/construction/rcd/combat=1
 		)
@@ -213,8 +228,8 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
 	belt = /obj/item/gun/energy/e_gun
 	mask = /obj/item/clothing/mask/gas/sechailer
-	l_pocket = /obj/item/reagent_containers/hypospray/combat
-	r_pocket = /obj/item/reagent_containers/hypospray/combat/heresypurge
+	l_pocket = /obj/item/reagent_containers/autoinjector/combat
+	r_pocket = /obj/item/reagent_containers/autoinjector/combat/heresypurge
 	suit_store = /obj/item/gun/medbeam
 
 	backpack_contents = list(

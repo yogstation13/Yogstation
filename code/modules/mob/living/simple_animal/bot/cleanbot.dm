@@ -64,7 +64,7 @@
 	text_dehack_fail = "[name] does not seem to respond to your repair code!"
 
 /mob/living/simple_animal/bot/cleanbot/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
+	if(W.GetID())
 		if(bot_core.allowed(user) && !open && !emagged)
 			locked = !locked
 			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] \the [src] behaviour controls."))
@@ -187,7 +187,6 @@
 		/obj/effect/decal/cleanable/greenglow,
 		/obj/effect/decal/cleanable/dirt,
 		/obj/effect/decal/cleanable/insectguts,
-		/obj/effect/decal/remains
 		)
 
 	if(blood)
@@ -214,7 +213,7 @@
 		mode = BOT_CLEANING
 
 		var/turf/T = get_turf(A)
-		if(do_after(src, 0.1 SECONDS, target = T))
+		if(do_after(src, 0.1 SECONDS, T))
 			T.wash(CLEAN_WASH)
 			visible_message(span_notice("[src] cleans \the [T]."))
 			target = null

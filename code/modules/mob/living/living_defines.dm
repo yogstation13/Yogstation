@@ -5,6 +5,8 @@
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
 
+	hud_type = /datum/hud/living
+
 	var/resize = 1 //Badminnery resize
 	var/lastattacker = null
 	var/lastattackerckey = null
@@ -53,6 +55,9 @@
 
 	var/tod = null // Time of death
 
+	/// How often biological functions tick. For example, 3 would be a 1/3 of every tick
+	var/life_tickrate = 1 
+
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is usually 20
 
@@ -70,6 +75,8 @@
 	var/last_played_vent
 
 	var/smoke_delay = 0 //used to prevent spam with smoke reagent reaction on mob.
+
+	var/health_doll_icon //if this exists AND the normal sprite is bigger than 32x32, this is the replacement icon state (because health doll size limitations). the icon will always be screen_gen.dmi
 
 	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
 
@@ -97,11 +104,19 @@
 	/// List of changes to body temperature, used by desease symtoms like fever
 	var/list/body_temp_changes = list()
 
+	//this stuff is here to make it simple for admins to mess with custom held sprites
+	var/icon/held_lh = 'icons/mob/pets_held_lh.dmi' //icons for holding mobs
+	var/icon/held_rh = 'icons/mob/pets_held_rh.dmi'
+	var/icon/held_icon = 'icons/mob/pets_held.dmi' //backup for what it looks like when held and equipped in a slot
+	var/held_state = null //normally use the default icon but if need be use another one
+	var/worn_layer //use to set if you want your inhand mob sprite to be hidden or not
+
 	//Speech
 	var/stuttering = 0
 	var/slurring = 0
 	var/cultslurring = 0
 	var/derpspeech = 0
+	var/lizardspeech = 0
 
 	var/list/implants = null
 
@@ -112,6 +127,7 @@
 	var/list/obj/effect/proc_holder/abilities = list()
 
 	var/can_be_held = FALSE	//whether this can be picked up and held.
+	var/worn_slot_flags = NONE //if it can be held, can it be equipped to any slots?
 
 	var/radiation = 0 //If the mob is irradiated.
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
@@ -126,3 +142,6 @@
 
 	//Allergies
 	var/allergies
+
+	//Last item/projectile that damaged this mob, not including surgery
+	var/last_damage = ""
