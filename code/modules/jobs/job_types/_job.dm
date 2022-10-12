@@ -54,8 +54,6 @@
 	var/list/mind_traits
 	/// Display order of the job
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
-	/// Map Specific changes
-	var/list/changed_maps = list()
 
 	/// Goodies that can be received via the mail system.
 	// this is a weighted list.

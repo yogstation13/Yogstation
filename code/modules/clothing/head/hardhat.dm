@@ -74,7 +74,7 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	custom_materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/plastic = 3000, /datum/material/silver = 500)
-	item_color = "purple"
+	hat_type = "purple"
 
 /obj/item/clothing/head/hardhat/white
 	icon_state = "hardhat0_white"
