@@ -7,7 +7,10 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 5000
+	
 	req_access = list(ACCESS_ROBOTICS)
+	var/hacked = FALSE
+	
 	circuit = /obj/item/circuitboard/machine/mechfab
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 	/// Controls whether or not the more dangerous designs have been unlocked by a head's id manually, rather than alert level unlocks
@@ -80,8 +83,13 @@
 	stored_research = SSresearch.science_tech
 	rmat = AddComponent(/datum/component/remote_materials, "mechfab", mapload && link_on_init)
 	RefreshParts() //Recalculating local material sizes if the fab isn't linked
+	wires = new /datum/wires/mecha_part_fabricator(src)
 	return ..()
 
+/obj/machinery/mecha_part_fabricator/Destroy()
+	QDEL_NULL(wires)
+	return ..()
+	
 /obj/machinery/mecha_part_fabricator/RefreshParts()
 	var/T = 0
 
@@ -118,6 +126,9 @@
 		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
 
 /obj/machinery/mecha_part_fabricator/attackby(obj/item/I, mob/living/user, params)
+	if(panel_open && is_wire_tool(O))
+		wires.interact(user)
+		return TRUE
 	if(I.GetID())
 		var/obj/item/card/id/C = I.GetID()
 		if(obj_flags & EMAGGED)
@@ -136,6 +147,21 @@
 		return
 	return ..()
 
+/obj/machinery/mecha_part_fabricator/proc/wire_zap(mob/user)
+	if(stat & (BROKEN|NOPOWER))
+		return FALSE
+	if(!prob(prb))
+		return FALSE
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+
+
+/obj/machinery/mecha_part_fabricator/proc/reset(wire)
+	switch(wire)
+		if(WIRE_HACK)
+			if(!wires.is_cut(wire))
+				hacked = FALSE
 /**
   * Generates an info list for a given part.
   *
@@ -482,7 +508,7 @@
 	return ..()
 
 /obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
-	if(!allowed(user) && !combat_parts_allowed && !isobserver(user))
+	if(!allowed(user) && !combat_parts_allowed && !isobserver(user) && !hacked)
 		to_chat(user, span_warning("You do not have the proper credentials to operate this device!"))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -704,7 +730,7 @@
 
 /obj/machinery/mecha_part_fabricator/proc/is_insertion_ready(mob/user)
 	if(panel_open)
-		to_chat(user, span_warning("You can't load [src] while it's opened!"))
+		to_chat(user, span_warning("You can't load [src] while it's panel is opened!"))
 		return FALSE
 	if(being_built)
 		to_chat(user, span_warning("\The [src] is currently processing! Please wait until completion."))
