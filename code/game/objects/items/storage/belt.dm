@@ -46,7 +46,6 @@
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 24
 	STR.set_holdable(list(
-		/obj/item/multitool/tricorder,			//yogs tricorder: 'cause making it into the yogs belt dm makes it the only thing a belt can hold
 		/obj/item/crowbar,
 		/obj/item/screwdriver,
 		/obj/item/weldingtool,
@@ -61,22 +60,19 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/radio,
 		/obj/item/clothing/gloves,
-		/obj/item/holosign_creator/atmos,
-		/obj/item/holosign_creator/engineering,
+		/obj/item/holosign_creator,
 		/obj/item/forcefield_projector,
 		/obj/item/assembly/signaler,
 		/obj/item/lightreplacer,
 		/obj/item/construction/rcd,
 		/obj/item/pipe_dispenser,
 		/obj/item/inducer,
-		/obj/item/holosign_creator/multi/CE,
 		/obj/item/airlock_painter,
-		/obj/item/grenade/chem_grenade/smart_metal_foam,
-		/obj/item/grenade/chem_grenade/metalfoam,
-		/obj/item/storage/bag/construction,
+		/obj/item/grenade/chem_grenade,
+		/obj/item/storage/bag,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
-		/obj/item/shuttle_creator, //Yogs: Added this here cause I felt it fits
+		/obj/item/shuttle_creator,
 		/obj/item/barrier_taperoll/engineering
 		))
 
@@ -190,12 +186,9 @@
 		/obj/item/hypospray,
 		/obj/item/sensor_device,
 		/obj/item/radio,
-		/obj/item/clothing/gloves/,
+		/obj/item/clothing/gloves,
 		/obj/item/lazarus_injector,
-		/obj/item/bikehorn/rubberducky,
-		/obj/item/clothing/mask/surgical,
-		/obj/item/clothing/mask/breath,
-		/obj/item/clothing/mask/breath/medical,
+		/obj/item/clothing/mask/,
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
@@ -208,17 +201,11 @@
 		/obj/item/stamp,
 		/obj/item/clothing/glasses,
 		/obj/item/wrench/medical,
-		/obj/item/clothing/mask/muzzle,
 		/obj/item/reagent_containers/blood,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/gun/syringe/syndicate,
-		/obj/item/implantcase,
-		/obj/item/implant,
-		/obj/item/implanter,
 		/obj/item/pinpointer/crew,
-		/obj/item/stack/medical/bone_gel,
-		/obj/item/holosign_creator/medical,
-		/obj/item/holosign_creator/firstaid
+		/obj/item/holosign_creator/
 		))
 
 /obj/item/storage/belt/medical/chief
@@ -257,22 +244,21 @@
 		/obj/item/restraints/handcuffs,
 		/obj/item/assembly/flash/handheld,
 		/obj/item/clothing/glasses,
-		/obj/item/ammo_casing/shotgun,
+		/obj/item/ammo_casing,
 		/obj/item/ammo_box,
 		/obj/item/storage/box/rubbershot,
 		/obj/item/storage/box/lethalshot,
 		/obj/item/storage/box/breacherslug,
 		/obj/item/storage/box/beanbag,
 		/obj/item/reagent_containers/food/snacks/donut,
-		/obj/item/kitchen/knife/combat,
+		/obj/item/kitchen/knife,
 		/obj/item/flashlight/seclite,
-		/obj/item/melee/classic_baton/telescopic,
 		/obj/item/radio,
 		/obj/item/pinpointer/tracker,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/gun/ballistic/revolver/tracking,
-		/obj/item/holosign_creator/security,
+		/obj/item/holosign_creator,
 		/obj/item/shield/riot/tele,
 		/obj/item/barrier_taperoll/police
 		))
@@ -356,28 +342,25 @@
 		/obj/item/stack/sheet/bone,
 		/obj/item/lighter,
 		/obj/item/storage/box/fancy/cigarettes,
-		/obj/item/reagent_containers/food/drinks/bottle,
 		/obj/item/stack/medical,
 		/obj/item/kitchen/knife,
 		/obj/item/reagent_containers/autoinjector,
 		/obj/item/lazarus_injector,
 		/obj/item/gps,
-		/obj/item/storage/bag/ore,
+		/obj/item/storage/bag,
 		/obj/item/survivalcapsule,
-		/obj/item/t_scanner/adv_mining_scanner,
+		/obj/item/t_scanner,
 		/obj/item/reagent_containers/pill,
 		/obj/item/storage/pill_bottle,
-		/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 		/obj/item/stack/ore,
 		/obj/item/reagent_containers/food/drinks,
 		/obj/item/hivelordstabilizer,
-		/obj/item/organ/regenerative_core,
+		/obj/item/organ,
 		/obj/item/wormhole_jaunter,
-		/obj/item/storage/bag/plants,
 		/obj/item/stack/marker_beacon,
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
-		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/restraints/legcuffs/bola,
 		/obj/item/stack/sheet/mineral,
 		/obj/item/grenade/plastic/miningcharge,
 		/obj/item/gem
@@ -476,28 +459,8 @@
 	var/rig_snacks
 	while(contents.len <= amount)
 		rig_snacks = pick(list(
-		/obj/item/reagent_containers/food/snacks/candy,
-		/obj/item/reagent_containers/food/drinks/dry_ramen,
-		/obj/item/reagent_containers/food/snacks/chips,
-		/obj/item/reagent_containers/food/snacks/sosjerky,
-		/obj/item/reagent_containers/food/snacks/syndicake,
-		/obj/item/reagent_containers/food/snacks/spacetwinkie,
-		/obj/item/reagent_containers/food/snacks/cheesiehonkers,
-		/obj/item/reagent_containers/food/snacks/nachos,
-		/obj/item/reagent_containers/food/snacks/cheesynachos,
-		/obj/item/reagent_containers/food/snacks/cubannachos,
-		/obj/item/reagent_containers/food/snacks/nugget,
-		/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato,
-		/obj/item/reagent_containers/food/snacks/rofflewaffles,
-		/obj/item/reagent_containers/food/snacks/donkpocket,
-		/obj/item/reagent_containers/food/drinks/soda_cans/cola,
-		/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
-		/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
-		/obj/item/reagent_containers/food/drinks/soda_cans/starkist,
-		/obj/item/reagent_containers/food/drinks/soda_cans/space_up,
-		/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game,
-		/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime,
-		/obj/item/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola
+		/obj/item/reagent_containers/food/snacks,
+		/obj/item/reagent_containers/food/drinks
 		))
 		new rig_snacks(src)
 
@@ -660,7 +623,7 @@
 		/obj/item/flashlight,
 		/obj/item/reagent_containers/spray,
 		/obj/item/soap,
-		/obj/item/holosign_creator/janibarrier,
+		/obj/item/holosign_creator,
 		/obj/item/forcefield_projector,
 		/obj/item/key/janitor,
 		/obj/item/clothing/gloves,
@@ -678,7 +641,7 @@
 
 /obj/item/storage/belt/bandolier
 	name = "bandolier"
-	desc = "A bandolier for holding shotgun ammunition."
+	desc = "A bandolier for holding ammunition."
 	icon_state = "bandolier"
 	item_state = "bandolier"
 
@@ -689,7 +652,7 @@
 	STR.max_combined_w_class = 24
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
-		/obj/item/ammo_casing/shotgun
+		/obj/item/ammo_casing
 		))
 
 /obj/item/storage/belt/holster
