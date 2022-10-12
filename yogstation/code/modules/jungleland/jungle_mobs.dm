@@ -577,7 +577,7 @@
 	desc = "A silky bundle of web that can entangle legs."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	armed = TRUE
-	breakouttime = 50 //5 seconds. Long enough you'd rather not get hit, but not debilitating.
+	breakouttime = 30 //3 seconds. Long enough you'd rather not get hit, but not debilitating.
 	item_flags = DROPDEL
 	flags_1 = NONE
 	trap_damage = 0
