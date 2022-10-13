@@ -22,7 +22,7 @@
 /datum/wires/mecha_part_fabricator/get_status()
 	var/obj/machinery/mecha_part_fabricator/F = holder
 	var/list/status = list()
-	status += "The purple light is [F.hacked ? "on" : "off"]."
+	status += "The purple light is [F.hacked ? "off" : "on"]."
 	return status
 
 /datum/wires/mecha_part_fabricator/on_pulse(wire)
@@ -33,9 +33,10 @@
 			F.hacked = TRUE
 			addtimer(CALLBACK(F, /obj/machinery/mecha_part_fabricator.proc/reset, wire), 5)
 		if(WIRE_ZAP)
-			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The fabricator's hands grapple aggresively into the air!"))
+			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The fabricator's hands shake and twist aggresively, grapping at limbs!"))
 			F.wire_zap(usr)
 		if(WIRE_SHOCK)
+			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The cable sparks faintly."))
 			F.seconds_electrified = MACHINE_DEFAULT_ELECTRIFY_TIME
 
 /datum/wires/mecha_part_fabricator/on_cut(wire, mend)
