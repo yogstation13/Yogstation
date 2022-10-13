@@ -18427,6 +18427,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"cZw" = (
+/obj/machinery/pipedispenser,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "cZJ" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Chief Engineer";
@@ -20397,13 +20401,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"dWT" = (
-/obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
-	name = "2maintenance loot spawner"
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "dXw" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/electricshock,
@@ -30231,10 +30228,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
-"ibt" = (
-/obj/structure/closet/crate,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "ibw" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright{
@@ -34866,6 +34859,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
+"jZf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "jZi" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/incinerator_input{
 	dir = 8
@@ -37488,6 +37490,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"llz" = (
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/obj/structure/closet/crate,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "llD" = (
 /obj/structure/sign/departments/minsky/command/charge{
 	pixel_y = -32
@@ -43185,16 +43199,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"nFr" = (
-/obj/machinery/camera{
-	c_tag = "Atmospherics Corridor North"
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
-	},
-/obj/machinery/pipedispenser/disposal,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "nFx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -48620,16 +48624,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"pVB" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/obj/machinery/pipedispenser,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "pVC" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -56568,6 +56562,15 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"tmy" = (
+/obj/machinery/camera{
+	c_tag = "Atmospherics Corridor North"
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "tmz" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/wood,
@@ -59744,6 +59747,10 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"uGf" = (
+/obj/machinery/pipedispenser/disposal,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "uGm" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Detective Maintenance";
@@ -99124,7 +99131,7 @@ bCv
 eEO
 vYi
 bLK
-pVB
+jZf
 iCQ
 sEr
 acF
@@ -99381,7 +99388,7 @@ bCv
 eEO
 bAw
 bLK
-nFr
+tmy
 bOd
 wRZ
 ras
@@ -107109,9 +107116,9 @@ bAw
 bAw
 aSI
 aSI
-dWT
-ibt
-dWT
+bAw
+uGf
+cZw
 bzs
 gac
 cgm
@@ -107623,7 +107630,7 @@ bzs
 uxA
 cIh
 tvq
-bAw
+llz
 bHd
 oOo
 rFe
