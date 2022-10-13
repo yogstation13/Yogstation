@@ -9,8 +9,12 @@
 	active_power_usage = 5000
 	
 	req_access = list(ACCESS_ROBOTICS)
+	///Whether the access is hacked or not
 	var/hacked = FALSE
-	
+	///World ticks the machine is electified for
+	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED
+
+
 	circuit = /obj/item/circuitboard/machine/mechfab
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 	/// Controls whether or not the more dangerous designs have been unlocked by a head's id manually, rather than alert level unlocks
@@ -126,7 +130,7 @@
 		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
 
 /obj/machinery/mecha_part_fabricator/attackby(obj/item/I, mob/living/user, params)
-	if(panel_open && is_wire_tool(O))
+	if(panel_open && is_wire_tool(I))
 		wires.interact(user)
 		return TRUE
 	if(I.GetID())
@@ -146,16 +150,31 @@
 			update_static_data(user)
 		return
 	return ..()
-
+/**
+ * All the negative wire effect
+ * Zap doesnt actually zap, it breaks one limb (Because pain is to be had)
+*/
 /obj/machinery/mecha_part_fabricator/proc/wire_zap(mob/user)
 	if(stat & (BROKEN|NOPOWER))
-		return FALSE
-	if(!prob(prb))
 		return FALSE
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
-
+	var/mob/living/carbon/C = user
+	var/chosen_limb = rand(1,4)
+	var/datum/wound/blunt/severe/break_it = new
+	var/obj/item/bodypart/bone = new
+	C.emote("scream")
+	switch(chosen_limb)
+		if(1)
+			bone = C.get_bodypart(BODY_ZONE_L_LEG)
+		if(2)
+			bone = C.get_bodypart(BODY_ZONE_R_LEG)
+		if(3)
+			bone = C.get_bodypart(BODY_ZONE_R_ARM)
+		if(4)
+			bone = C.get_bodypart(BODY_ZONE_L_ARM)
+	break_it.apply_wound(bone)
 
 /obj/machinery/mecha_part_fabricator/proc/reset(wire)
 	switch(wire)

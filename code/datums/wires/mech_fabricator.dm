@@ -7,9 +7,11 @@
 		///Allows anyone to use the fabricator, still makes it unable to make combat mechs
 		WIRE_HACK,
 		///Instead of shocking, makes fabricator hands lash out and break a random limb
-		WIRE_ZAP
+		WIRE_ZAP,
+		///This one shocks the machine, but only temporarily.
+		WIRE_SHOCK
 	)
-	add_duds(6)
+	add_duds(2)
 	..()
 
 /datum/wires/mecha_part_fabricator/interactable(mob/user)
@@ -25,12 +27,16 @@
 
 /datum/wires/mecha_part_fabricator/on_pulse(wire)
 	var/obj/machinery/mecha_part_fabricator/F = holder
-		switch(wire)
-			if(WIRE_HACK)
-				holder.visible_message(span_notice("[icon2html(F, viewers(holder))] The fabricator's control panel blinks temporarily."))
-			if(WIRE_ZAP)
-				holder.visible_message(span_notice("[icon2html(F, viewers(holder))] The fabricator's hands grapple aggresively into the air!"))
-				F.wire_zap(usr)
+	switch(wire)
+		if(WIRE_HACK)
+			holder.visible_message(span_notice("[icon2html(F, viewers(holder))] The fabricator's control panel blinks temporarily."))
+			F.hacked = TRUE
+			addtimer(CALLBACK(F, /obj/machinery/mecha_part_fabricator.proc/reset, wire), 5)
+		if(WIRE_ZAP)
+			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The fabricator's hands grapple aggresively into the air!"))
+			F.wire_zap(usr)
+		if(WIRE_SHOCK)
+			F.seconds_electrified = MACHINE_DEFAULT_ELECTRIFY_TIME
 
 /datum/wires/mecha_part_fabricator/on_cut(wire, mend)
 	var/obj/machinery/mecha_part_fabricator/F = holder
