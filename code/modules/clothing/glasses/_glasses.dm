@@ -298,7 +298,7 @@
 	tint = 0
 
 /obj/item/clothing/glasses/welding/jensen/agent
-	desc = "A modified set of technical shades that can retract and extend at will. The lens provide night vision and thermal sight but are highly vulnerable to bright lights."
+	desc = "A modified set of technical shades that can retract and extend at will. The lenses provide night vision and thermal sight but are highly vulnerable to bright lights."
 	darkness_view = 8
 	flash_protect = -2
 	vision_flags = SEE_MOBS
