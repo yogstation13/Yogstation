@@ -289,6 +289,27 @@
 /obj/item/clothing/glasses/welding/attack_self(mob/user)
 	weldingvisortoggle(user)
 
+/obj/item/clothing/glasses/welding/jensen
+	name = "tychus glasses"
+	desc = "A set of technical shades that link with the user when worn, allowing them to retract and extend the lens at will."
+	icon_state = "jensenshades"
+	item_state = "jensenshades"
+	flash_protect = 0
+	tint = 0
+
+/obj/item/clothing/glasses/welding/jensen/agent
+	desc = "A modified set of technical shades that can retract and extend at will. Provides flash protection and thermal eyesight when extended, but it also becomes vulnerable to EMPs."
+	flash_protect = 1
+	tint = 1
+	vision_flags = SEE_MOBS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT | VISOR_VISIONFLAGS
+
+/obj/item/clothing/glasses/welding/jensen/agent/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF || up) //Won't hit you with EMP if the shades are retracted
+		return
+	thermal_overload()
 
 /obj/item/clothing/glasses/blindfold
 	name = "blindfold"

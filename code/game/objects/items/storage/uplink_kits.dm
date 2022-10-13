@@ -147,7 +147,7 @@
 			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+	switch (pickweight(list( "bond" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1, "jensen" = 2)))
 		if("bond")
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/suppressor(src)
@@ -255,7 +255,6 @@
 			new /obj/item/slime_extract/sepia(src)
 			new /obj/item/slime_extract/sepia(src) // sepia to stop time because we dont really have a time slow event
 
-
 		if("gang_boss")
 			new /obj/item/clothing/under/jabroni(src) //fishnet suit
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
@@ -264,6 +263,16 @@
 			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
+
+		if("jensen") //31ish TC. Very high-velocity lethal melee; should watch carefully.
+			new /obj/item/clothing/glasses/welding/jensen/agent(src) //I never asked for this. Direct upgrade to thermals, as they have flash protection and can retract to ignore EMP effect. 6ish TC
+			new /obj/item/clothing/under/syndicate/combat(src) //Tactical turtleneck reskin. Free.
+			new /obj/item/clothing/shoes/bhop(src) //Jump boots aka "Icarus Dash". Airshoes are 4 TC, these would maybe be 1, if even that.
+			new /obj/item/encryptionkey/syndicate(src) //2 TC; communicate with "base"
+			new /obj/item/storage/toolbox/syndicate(src) //1 TC kit; they ARE a hacker
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //7 TC for the first
+			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //7 TC for the second
+			new /obj/item/implanter/adrenalin(src) //8 TC
 
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
