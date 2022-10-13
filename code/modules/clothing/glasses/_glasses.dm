@@ -298,12 +298,12 @@
 	tint = 0
 
 /obj/item/clothing/glasses/welding/jensen/agent
-	desc = "A modified set of technical shades that can retract and extend at will. Provides flash protection and thermal eyesight when extended, but it also becomes vulnerable to EMPs."
-	flash_protect = 1
-	tint = 1
+	desc = "A modified set of technical shades that can retract and extend at will. The lens provide night vision and thermal sight but are highly vulnerable to bright lights."
+	darkness_view = 8
+	flash_protect = -2
 	vision_flags = SEE_MOBS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT | VISOR_VISIONFLAGS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	visor_vars_to_toggle = VISOR_DARKNESSVIEW | VISOR_FLASHPROTECT | VISOR_TINT | VISOR_VISIONFLAGS
 
 /obj/item/clothing/glasses/welding/jensen/agent/emp_act(severity)
 	. = ..()

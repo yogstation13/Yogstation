@@ -264,15 +264,22 @@
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
-		if("jensen") //31ish TC. Very high-velocity lethal melee; should watch carefully.
-			new /obj/item/clothing/glasses/welding/jensen/agent(src) //I never asked for this. Direct upgrade to thermals, as they have flash protection and can retract to ignore EMP effect. 6ish TC
-			new /obj/item/clothing/under/syndicate/combat(src) //Tactical turtleneck reskin. Free.
+		if("jensen") //Hope you don't get EMP'd. Total cost of maybe 36 TC, however you fall over to a simple EMP
+			new /obj/item/clothing/glasses/welding/jensen/agent(src) //I never asked for this. Thermals and night vision that can be toggled, but gives -2 flash protection. 4 TC?
+			new /obj/item/clothing/under/syndicate(src) //Tactical turtleneck. Free.
 			new /obj/item/clothing/shoes/bhop(src) //Jump boots aka "Icarus Dash". Airshoes are 4 TC, these would maybe be 1, if even that.
 			new /obj/item/encryptionkey/syndicate(src) //2 TC; communicate with "base"
 			new /obj/item/storage/toolbox/syndicate(src) //1 TC kit; they ARE a hacker
+			new /obj/item/paper/guides/antag/augmentation_kit(src) //Guide on how to use the autosurgeons given; they're also presented in the order in which they should be used, so...
+			new /obj/item/autosurgeon/limb/chest/robot(src) //Join the glorious evolution. Total of 4, 5 TC?
+			new /obj/item/autosurgeon/limb/l_arm/robot(src)
+			new /obj/item/autosurgeon/limb/r_arm/robot(src)
+			new /obj/item/autosurgeon/limb/l_leg/robot(src)
+			new /obj/item/autosurgeon/limb/r_leg/robot(src)
+			new /obj/item/autosurgeon/welding_eyes(src) //Innate welding eyes. 2-3 TC?
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //7 TC for the first
 			new /obj/item/autosurgeon/arm/syndicate/syndie_mantis(src) //7 TC for the second
-			new /obj/item/implanter/adrenalin(src) //8 TC
+			new /obj/item/implanter/adrenalin(src) //8 TC, so you can actually stand up after EMP maybe
 
 /obj/item/stand_arrow/boss
 	desc = "An arrow that can unleash <span class='holoparasite'>massive potential</span> from those stabbed by it. It has been laced with syndicate mindslave nanites that will be linked to whoever first uses it in their hand."
