@@ -6,8 +6,10 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
 "c" = (
-/mob/living/simple_animal/hostile/carp/eyeball,
-/turf/open/floor/plating/rust,
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 1
+	},
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
 "d" = (
 /obj/machinery/door/airlock/public/glass{
@@ -26,14 +28,22 @@
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned)
 "g" = (
-/obj/structure/shuttle/engine/heater{
+/obj/structure/shuttle/engine/propulsion/burst{
 	dir = 8
 	},
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/abandoned)
+"h" = (
 /obj/structure/window/reinforced{
-	dir = 4;
+	dir = 1;
 	layer = 2.9
 	},
-/turf/open/floor/plating/airless,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/obj/item/gun/medbeam,
+/turf/open/floor/plating/abductor,
 /area/shuttle/abandoned)
 "i" = (
 /obj/structure/chair/comfy/shuttle,
@@ -45,15 +55,18 @@
 	layer = 2.9
 	},
 /obj/structure/window/reinforced{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/table/glass,
-/obj/item/gun/syringe/rapidsyringe,
-/turf/open/floor/plating/abductor2,
+/obj/machinery/recharger,
+/obj/item/gun/energy/laser/retro,
+/turf/open/floor/plating/abductor,
 /area/shuttle/abandoned)
 "k" = (
-/mob/living/simple_animal/hostile/carp/eyeball,
-/turf/open/floor/plasteel/broken/three,
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 4
+	},
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
 "l" = (
 /obj/structure/chair/comfy/shuttle{
@@ -62,10 +75,8 @@
 /turf/open/floor/plating/abductor,
 /area/shuttle/abandoned)
 "m" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/computer/shuttle/white_ship,
+/turf/open/floor/plating/abductor,
 /area/shuttle/abandoned)
 "n" = (
 /obj/structure/chair/comfy/shuttle{
@@ -98,9 +109,15 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned)
 "p" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plasteel,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/table/glass,
+/obj/item/tank/internals/oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/suit/space/hardsuit/engine/elite,
+/turf/open/floor/plating/abductor,
 /area/shuttle/abandoned)
 "q" = (
 /obj/structure/chair/comfy/shuttle{
@@ -108,23 +125,18 @@
 	},
 /turf/open/floor/plating/abductor,
 /area/shuttle/abandoned)
-"t" = (
+"r" = (
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/structure/window/reinforced,
 /obj/structure/table/glass,
 /obj/item/clothing/shoes/magboots,
-/obj/item/gps{
-	gpstag = "NTREC1";
-	pixel_x = -9;
-	pixel_y = 4
-	},
-/turf/open/floor/plating/abductor2,
+/turf/open/floor/plating/abductor,
 /area/shuttle/abandoned)
-"u" = (
+"s" = (
 /obj/structure/shuttle/engine/propulsion/burst,
-/turf/open/floor/plating/airless,
+/turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
 "v" = (
 /obj/machinery/door/airlock/public/glass{
@@ -138,272 +150,103 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/abandoned)
-"y" = (
-/obj/effect/decal/cleanable/blood/gibs/old,
-/mob/living/simple_animal/hostile/carp/eyeball,
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned)
-"z" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"A" = (
-/mob/living/simple_animal/hostile/carp/eyeball,
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned)
-"B" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	layer = 2.9
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"C" = (
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/table/glass,
-/obj/machinery/recharger,
-/obj/item/gun/energy/laser/retro,
-/turf/open/floor/plating/abductor2,
-/area/shuttle/abandoned)
-"E" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/abandoned)
-"G" = (
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned)
-"H" = (
-/obj/effect/decal/cleanable/blood/old,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/abandoned)
-"J" = (
-/obj/effect/decal/cleanable/blood/kilo,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/abandoned)
-"K" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/broken/two,
-/area/shuttle/abandoned)
-"L" = (
-/obj/machinery/computer/shuttle/white_ship,
-/turf/open/floor/plating/abductor2,
-/area/shuttle/abandoned)
-"M" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"N" = (
-/mob/living/simple_animal/hostile/carp/eyeball,
-/turf/open/floor/plating/broken/three,
-/area/shuttle/abandoned)
-"O" = (
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/broken/two,
-/area/shuttle/abandoned)
-"Q" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"R" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"S" = (
-/mob/living/simple_animal/hostile/carp/eyeball,
-/turf/open/floor/plating/broken/two,
-/area/shuttle/abandoned)
-"U" = (
-/turf/open/floor/plasteel/broken/three,
-/area/shuttle/abandoned)
-"W" = (
-/turf/open/floor/plating/broken,
-/area/shuttle/abandoned)
-"Y" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 2.9
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"Z" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/structure/table/glass,
-/obj/item/clothing/mask/breath,
-/obj/item/tank/internals/oxygen/tactical,
-/obj/item/clothing/suit/space/hardsuit/engine/atmos,
-/turf/open/floor/plating/abductor2,
-/area/shuttle/abandoned)
 
 (1,1,1) = {"
 a
 a
-a
-a
 b
+g
 v
+g
 b
-a
-a
 a
 a
 "}
 (2,1,1) = {"
 a
-a
-a
-M
 b
-G
 b
-M
-a
-a
+e
+f
+e
+b
+b
 a
 "}
 (3,1,1) = {"
-a
-a
 b
-g
 b
-O
+e
+e
+f
+e
+e
 b
-g
 b
-a
-a
 "}
 (4,1,1) = {"
-a
-z
-B
-N
-E
-A
+c
 e
-W
-Q
-u
-a
+e
+h
+l
+p
+e
+e
+s
 "}
 (5,1,1) = {"
-b
-b
-b
-J
-j
-l
-Z
-e
-b
-b
-b
-"}
-(6,1,1) = {"
 d
-k
-H
-A
+f
+f
 i
-L
+m
 q
-y
-K
+f
 f
 d
+"}
+(6,1,1) = {"
+c
+e
+e
+j
+n
+r
+e
+e
+s
 "}
 (7,1,1) = {"
 b
 b
-b
 e
-C
-n
-t
 e
-b
+f
+e
+e
 b
 b
 "}
 (8,1,1) = {"
 a
-z
-B
+b
+b
 e
-S
-p
-U
-c
-Q
-u
+f
+e
+b
+b
 a
 "}
 (9,1,1) = {"
 a
 a
 b
-Y
-b
-m
-b
-Y
-b
-a
-a
-"}
-(10,1,1) = {"
-a
-a
-a
-R
-b
-f
-b
-R
-a
-a
-a
-"}
-(11,1,1) = {"
-a
-a
-a
-a
-b
+k
 o
+k
 b
-a
-a
 a
 a
 "}

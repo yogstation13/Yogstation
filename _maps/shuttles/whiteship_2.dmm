@@ -5,11 +5,24 @@
 "ab" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
+"ad" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/abandoned)
 "ae" = (
 /obj/machinery/mech_bay_recharge_port{
 	dir = 2
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
+"af" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
 "ag" = (
@@ -34,6 +47,16 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
+"ak" = (
+/obj/structure/mecha_wreckage/ripley,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/shuttle/abandoned)
+"al" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
 "am" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -56,6 +79,20 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
+"aq" = (
+/obj/machinery/door/airlock/titanium{
+	name = "mech bay"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
+"ar" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
 /area/shuttle/abandoned)
 "as" = (
 /obj/effect/turf_decal/delivery{
@@ -101,6 +138,16 @@
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
+"aw" = (
+/obj/effect/turf_decal/delivery{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
 "ax" = (
 /obj/effect/turf_decal/delivery{
 	dir = 1
@@ -118,11 +165,36 @@
 "ay" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/abandoned)
+"az" = (
+/obj/effect/turf_decal/delivery{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "cerewhiteleft";
+	name = "Cargo Blast Door Toggle";
+	pixel_x = -24
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
 "aA" = (
 /obj/effect/turf_decal/delivery{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
+"aB" = (
+/obj/effect/turf_decal/delivery{
+	dir = 1
+	},
+/obj/structure/closet/crate{
+	icon_state = "crateopen";
+	name = "spare equipment crate"
+	},
+/obj/item/storage/bag/ore,
+/obj/item/pickaxe,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
@@ -145,6 +217,18 @@
 /obj/item/stack/sheet/glass/fifty,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
+"aE" = (
+/obj/effect/turf_decal/delivery{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "cerewhiteright";
+	name = "Cargo Blast Door Toggle";
+	pixel_x = 24
+	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
@@ -203,6 +287,27 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
+"aK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/abandoned)
+"aL" = (
+/obj/effect/turf_decal/delivery{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
+"aM" = (
+/obj/structure/ore_box,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/abandoned)
 "aN" = (
 /obj/machinery/door/airlock/titanium{
 	name = "cockpit"
@@ -214,59 +319,16 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned)
-"bq" = (
+"aO" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"bR" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/mineral/equipment_vendor/free_miner,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"cX" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
+/obj/structure/tank_dispenser/oxygen{
+	layer = 2.7;
+	pixel_x = -1;
+	pixel_y = 2
 	},
-/obj/effect/decal/cleanable/oil/slippery,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
-"dJ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"eo" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/vomit/old,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"fk" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"fD" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/effect/decal/cleanable/blood/gibs/down,
-/obj/effect/decal/cleanable/blood/innards,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"gP" = (
+"aP" = (
 /obj/structure/table,
 /obj/item/gps{
 	gpstag = "NTCONST1";
@@ -274,244 +336,88 @@
 	pixel_y = 2
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned)
-"kc" = (
+"aQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/button/door{
-	id = "cerewhiteright";
-	name = "Cargo Blast Door Toggle";
-	pixel_x = 24
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"kI" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor{
-	id = "whiteship_bridge"
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
-"na" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_windows"
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
-"ps" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship{
-	dir = 1;
-	x_offset = -7;
-	y_offset = -8
-	},
-/obj/structure/alien/weeds,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned)
-"pD" = (
+"aR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"aS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"aT" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/storage/firstaid/regular,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"aU" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"aV" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"aW" = (
+/obj/structure/chair/comfy/black,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"aX" = (
+/obj/structure/closet/emcloset,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"aZ" = (
+/obj/structure/table,
+/obj/item/phone{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/abandoned)
+"ba" = (
 /obj/machinery/computer/shuttle/white_ship{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned)
-"qs" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"rt" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/comfy/shuttle,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"rw" = (
-/obj/structure/closet/emcloset,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/storage/backpack/magspear_quiver,
-/obj/item/throwing_star/magspear,
-/obj/item/throwing_star/magspear,
-/obj/item/throwing_star/magspear,
-/obj/item/pneumatic_cannon/speargun,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"rY" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/alien/sentinel{
-	environment_smash = 0
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"sa" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/frame/computer{
-	anchored = 1;
-	dir = 1
-	},
-/obj/item/shard,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"su" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/egg/burst,
-/obj/effect/decal/cleanable/xenoblood,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"tG" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"uT" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "whiteship_windows";
-	name = "Windows Blast Door Control";
-	pixel_x = -5;
-	pixel_y = 25
-	},
-/obj/machinery/button/door{
-	id = "whiteship_bridge";
-	name = "Bridge Blast Door Control";
-	pixel_x = 6;
-	pixel_y = 25
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"vc" = (
+"bb" = (
 /obj/structure/table,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"vO" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"wb" = (
-/obj/effect/turf_decal/delivery{
-	dir = 1
+/obj/item/paper_bin{
+	pixel_x = -1;
+	pixel_y = 6
 	},
-/obj/machinery/suit_storage_unit/mining,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"wj" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"wA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/egg/burst,
-/obj/effect/decal/cleanable/xenoblood,
-/obj/structure/alien/weeds,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned)
-"wM" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/suit_storage_unit/mining/eva,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"xG" = (
-/turf/template_noop,
-/area/shuttle/abandoned)
-"AN" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"DD" = (
+"cF" = (
 /obj/machinery/door/airlock/titanium{
-	name = "cockpit"
+	name = "mech bay external airlock"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"DO" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/button/door{
-	id = "cerewhiteleft";
-	name = "Cargo Blast Door Toggle";
-	pixel_x = -24
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"Ex" = (
-/obj/machinery/advanced_airlock_controller{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
-"EZ" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/poddoor{
-	id = "whiteship_bridge"
-	},
-/turf/open/floor/plating,
-/area/shuttle/abandoned)
-"Gf" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"Gq" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"Hc" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood/xgibs/larva/body,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"HE" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"HP" = (
 /obj/docking_port/mobile{
 	dheight = 0;
 	dir = 2;
@@ -524,199 +430,16 @@
 	preferred_direction = 2;
 	width = 16
 	},
-/obj/machinery/door/airlock/external,
-/obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"JG" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds/node,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"Kk" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"KT" = (
-/obj/effect/turf_decal/delivery{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/closet/crate{
-	icon_state = "crateopen";
-	name = "spare equipment crate"
-	},
-/obj/item/mining_scanner,
-/obj/item/storage/bag/ore,
-/obj/item/wormhole_jaunter,
-/obj/item/pickaxe,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"Lh" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/chair/comfy/shuttle,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"Mw" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/vomit/old,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"MN" = (
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"MZ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/alien/drone{
-	environment_smash = 0
-	},
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"Ny" = (
-/obj/structure/shuttle/engine/large{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"NG" = (
-/obj/structure/window/reinforced,
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"OB" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"OE" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/blood/gibs/up,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"OH" = (
-/obj/effect/turf_decal/delivery{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/tank_dispenser/oxygen{
-	layer = 2.7;
-	pixel_x = -1;
-	pixel_y = 2
-	},
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"Pb" = (
-/obj/structure/table,
-/obj/item/clothing/glasses/meson/sunglasses,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"PB" = (
-/obj/effect/turf_decal/delivery{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/ore_box,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"PN" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/alien/egg/burst,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/abandoned)
-"PT" = (
-/obj/effect/turf_decal/delivery{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light,
-/obj/machinery/mineral/mint,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"Qz" = (
-/obj/machinery/door/airlock/titanium{
-	name = "mech bay"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
+"HL" = (
+/obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"QA" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/xenoblood/xgibs/larva,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"QW" = (
-/obj/machinery/door/airlock/titanium{
-	name = "mech bay"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/decal/cleanable/vomit/old,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/abandoned)
-"Sq" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/mecha/working/clarke,
-/turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/abandoned)
-"Wa" = (
-/obj/effect/turf_decal/delivery{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/crate{
-	icon_state = "crateopen";
-	name = "spare equipment crate"
-	},
-/obj/item/wrench/caravan,
-/obj/item/wirecutters/caravan,
-/obj/item/screwdriver/caravan,
-/obj/item/crowbar/red/caravan,
-/obj/item/extinguisher/advanced,
-/obj/item/weldingtool/hugetank,
-/obj/item/multitool,
-/turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/abandoned)
-"XU" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/abandoned)
-"XZ" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/vomit/old,
-/obj/structure/alien/weeds,
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/plating,
 /area/shuttle/abandoned)
 
 (1,1,1) = {"
@@ -724,10 +447,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-ab
+ad
+aj
 ay
 aF
 aF
@@ -741,220 +462,198 @@ aa
 "}
 (2,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
+ad
+aj
 ab
-XU
-DO
+ab
+ab
+ay
 ah
 ah
 ay
 ab
-aa
-aa
+ab
+ab
 aa
 aa
 aa
 "}
 (3,1,1) = {"
-aa
-aa
 ab
 ab
 ab
 ab
 ab
-wb
-au
-dJ
+ab
+az
+aG
 aG
 aI
-XU
-EZ
-EZ
-EZ
+aM
+ab
+ab
+ab
 ab
 aa
 "}
 (4,1,1) = {"
-xG
-Ny
-NG
+ab
 ae
-Sq
+ak
 ao
-na
+ab
 as
 aA
-MZ
-wj
-PB
+am
+ah
+aA
 ab
-gP
-vc
-wM
+ab
+ab
+aV
 ab
 aa
 "}
 (5,1,1) = {"
-xG
-MN
-aj
+ab
+af
 ag
-Gf
-QA
+ag
 ab
 at
-KT
-OE
-fD
+aA
+am
+aG
 aJ
 ab
-uT
-su
-vO
+aP
+aU
+aS
 ab
 ab
 "}
 (6,1,1) = {"
 ab
-ab
-ab
-HE
-aG
-aG
-QW
-ah
-ah
+ag
+al
+al
+aq
+au
+aB
 am
-OB
-AN
-DD
-qs
-JG
-rt
-ps
-kI
+aG
+aK
+aN
+aQ
+aR
+aQ
+aZ
+HL
 "}
 (7,1,1) = {"
-HP
-Ex
-cX
+cF
 ah
-Mw
 am
-na
+am
+ar
 ah
 ah
-bR
-XZ
-OB
-EZ
-PN
-rY
-rt
-pD
-kI
+am
+aG
+aG
+ar
+aR
+aQ
+aW
+ba
+HL
 "}
 (8,1,1) = {"
 ab
-ab
-ab
-HE
-ah
-ah
-Qz
-bq
-Hc
+ag
+ag
+ag
+aq
+av
+au
 aG
-dJ
+aG
 aG
 aN
-vO
-vO
-Lh
-sa
-kI
+aS
+aS
+aR
+bb
+HL
 "}
 (9,1,1) = {"
-xG
-Ny
-aj
-ag
-ag
-tG
 ab
-Wa
+af
+ag
+ag
+ab
+aw
 aC
 am
 am
-PT
+aL
 ab
-eo
-Kk
-wA
+aT
+aU
+aR
 ab
 ab
 "}
 (10,1,1) = {"
-xG
-MN
-NG
+ab
 ai
 an
 ap
-na
+ab
 ax
 aD
-Mw
+am
 am
 av
 ab
-Gq
-Pb
-rw
+ab
+ab
+aX
 ab
 aa
 "}
 (11,1,1) = {"
-aa
-aa
 ab
 ab
 ab
 ab
 ab
-wb
-au
-fk
+ab
+aE
+am
 aG
-OH
-XU
-EZ
-EZ
-EZ
+au
+aO
+ab
+ab
+ab
 ab
 aa
 "}
 (12,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
+ad
+aj
 ab
-XU
-kc
+ab
+ab
+ay
 aG
 ah
 ay
 ab
-aa
-aa
+ab
+ab
 aa
 aa
 aa
@@ -964,10 +663,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-ab
+ad
+aj
 ay
 aH
 aH
