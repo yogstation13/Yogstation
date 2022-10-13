@@ -475,7 +475,7 @@
 	var/charging = FALSE
 	var/revving_charge = FALSE
 	var/poison_type = /datum/reagent/toxin/venom
-	var/poison_per_attack = 5
+	var/poison_per_attack = 4
 
 /mob/living/simple_animal/hostile/yog_jungle/yellowjacket/AttackingTarget()
 	..()
