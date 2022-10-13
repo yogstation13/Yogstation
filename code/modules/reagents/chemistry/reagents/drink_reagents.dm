@@ -1048,7 +1048,7 @@
 	description = "The drank that makes you go wheezy."
 	color = "#ac24bb"
 	quality = DRINK_NICE
-	taste_description = "purple and a hint of opiod."
+	taste_description = "grape and a hint of opioid."
 	glass_icon_state = "lean"
 	glass_name = "Lean"
 	glass_desc = "A drink that makes your life less miserable."
