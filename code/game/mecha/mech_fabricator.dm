@@ -174,6 +174,7 @@
 			bone = C.get_bodypart(BODY_ZONE_R_ARM)
 		if(4)
 			bone = C.get_bodypart(BODY_ZONE_L_ARM)
+	to_chat(C,span_userdanger("The manipulator arms grapple after your [bone.name], attempting to break its bone!"))
 	break_it.apply_wound(bone)
 	bone.receive_damage(brute=50, updating_health=TRUE)
 
