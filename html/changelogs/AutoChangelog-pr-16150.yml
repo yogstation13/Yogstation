@@ -1,6 +1,0 @@
-author: "MenacingManatee"
-delete-after: true 
-changes: 
-  - mapping: "Expands the size of Asteroid cargo bay"
-  - mapping: "Moves the mulebots from Asteroid cargo warehouse to cargo bay"
-  - mapping: "Adds bells to all required locations (Asteroid)"
