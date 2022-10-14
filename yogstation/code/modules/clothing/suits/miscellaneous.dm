@@ -352,3 +352,9 @@
 	desc = "This dress is oddly caked with soft clay and makes you want to create!"
 	icon_state = "keiki_dress"
 	item_state = "keiki_dress"
+
+/obj/item/clothing/suit/yogs/cyberpunk
+	name = "punk jacket"
+	desc = "My Moon My Man."
+	icon_state = "punk"
+	item_state = "punk"

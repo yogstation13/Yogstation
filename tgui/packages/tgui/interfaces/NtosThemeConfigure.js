@@ -6,6 +6,7 @@ export const NtosThemeConfigure = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     PC_device_theme,
+    PC_emagged,
     theme_collection = [],
   } = data;
   return (
@@ -36,6 +37,18 @@ export const NtosThemeConfigure = (props, context) => {
                 })} />
             </Flex.Item>
           ))}
+          {!!PC_emagged && (
+            <Flex.Item
+              width="100%"
+              grow={1}>
+              <Button.Checkbox
+                checked={PC_device_theme === "syndicate"}
+                width="75%"
+                lineHeight="50px"
+                content={"Syndicate"}
+                onClick={() => act('PRG_change_theme_syndicate')} />
+            </Flex.Item>
+          )}
         </Flex>
       </NtosWindow.Content>
     </NtosWindow>
