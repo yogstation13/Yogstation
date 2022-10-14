@@ -335,7 +335,7 @@
 		update_icon()
 		return
 
-	if(!state_open)
+	if(!state_open && !uv)
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			panel_open = !panel_open
 			user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))

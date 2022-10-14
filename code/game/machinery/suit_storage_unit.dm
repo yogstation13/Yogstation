@@ -372,7 +372,7 @@
 	if(panel_open && is_wire_tool(I))
 		wires.interact(user)
 		return
-	if(!state_open)
+	if(!state_open && !uv)
 		if(default_deconstruction_screwdriver(user, "panel", "close", I))
 			return
 	if(default_pry_open(I))
