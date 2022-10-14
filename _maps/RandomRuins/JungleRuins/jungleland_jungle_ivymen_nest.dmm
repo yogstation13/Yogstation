@@ -36,10 +36,6 @@
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
-"ah" = (
-/obj/structure/barricade/wooden,
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
 "ai" = (
 /obj/item/flashlight/lantern{
 	on = 1
@@ -179,6 +175,10 @@
 /obj/structure/flora/junglebush/large,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
+"bQ" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
 "hG" = (
 /obj/item/pickaxe,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -202,6 +202,9 @@
 "mF" = (
 /obj/item/plant_analyzer,
 /turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
+"qA" = (
+/turf/closed/wall/mineral/wood,
 /area/template_noop)
 "uo" = (
 /obj/item/flashlight/lantern{
@@ -280,14 +283,14 @@ aG
 aG
 aG
 aG
-ah
-ah
-ah
-ah
-ah
-aK
-ay
-ay
+qA
+qA
+qA
+qA
+qA
+qA
+bQ
+UP
 UP
 UP
 UP
@@ -358,7 +361,7 @@ ay
 aO
 ay
 ay
-ay
+UP
 "}
 (5,1,1) = {"
 UP
@@ -380,7 +383,7 @@ ay
 ay
 aO
 ay
-ay
+UP
 "}
 (6,1,1) = {"
 UP
@@ -533,7 +536,7 @@ ay
 ay
 mF
 kJ
-ay
+UP
 UP
 "}
 (13,1,1) = {"
@@ -622,7 +625,7 @@ ay
 ax
 aO
 ay
-ay
+UP
 "}
 (17,1,1) = {"
 UP
@@ -665,7 +668,7 @@ ay
 ay
 ag
 ay
-ay
+ap
 UP
 "}
 (19,1,1) = {"
@@ -684,10 +687,10 @@ ay
 ay
 aI
 ay
+UP
 ay
-ay
-ay
-ap
+UP
+UP
 UP
 "}
 (20,1,1) = {"
@@ -699,16 +702,16 @@ aG
 aG
 aG
 aG
-ah
-ah
-ah
-ah
-ay
-ay
-ay
-ah
-ah
-ah
+qA
+qA
+qA
+qA
+qA
+bQ
+UP
+UP
+UP
+UP
 UP
 UP
 "}
