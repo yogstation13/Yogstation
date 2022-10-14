@@ -331,7 +331,7 @@
 
 /mob/living/carbon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
+	if(. & EMP_PROTECT_SELF)
 		return
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X
