@@ -67,7 +67,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		maglock.Grant(C)
 		lockdown = FALSE
 		
-	C.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_CONTENTS)
+	C.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
 	var/matrix/new_transform = matrix()//tall and skinny, bug like, just like skrem envisioned
 	new_transform.Scale(0.95, 1/0.95)
