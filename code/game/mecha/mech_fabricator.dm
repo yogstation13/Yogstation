@@ -164,7 +164,7 @@
 	var/chosen_limb = rand(1,4)
 	var/datum/wound/blunt/severe/break_it = new
 	var/obj/item/bodypart/bone = new
-	C.emote("scream")
+	///Picks limb to break. People with less limbs have a chance of it grapping at air
 	switch(chosen_limb)
 		if(1)
 			bone = C.get_bodypart(BODY_ZONE_L_LEG)
@@ -175,6 +175,7 @@
 		if(4)
 			bone = C.get_bodypart(BODY_ZONE_L_ARM)
 	break_it.apply_wound(bone)
+	bone.receive_damage(brute=50, updating_health=TRUE)
 
 /obj/machinery/mecha_part_fabricator/proc/reset(wire)
 	switch(wire)
