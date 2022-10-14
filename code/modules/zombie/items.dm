@@ -94,10 +94,6 @@
 			else
 				check_feast(M, user)
 
-/obj/item/zombie_hand/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	
-
 /proc/try_to_zombie_infect(mob/living/carbon/human/target, organ)
 	CHECK_DNA_AND_SPECIES(target)
 
