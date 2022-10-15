@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Added TGUI Minesweeper to NTOS and Minesweeper arcade machines"
+  - rscdel: "Removed HTML Minesweeper"
