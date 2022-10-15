@@ -820,13 +820,6 @@
 	required_temp = 100
 	is_cold_recipe = TRUE
 
-/datum/chemical_reaction/waterformation
-	name = /datum/reagent/water
-	id = /datum/reagent/water
-	results = list(/datum/reagent/water = 3)
-	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 2)
-	required_temp = 380
-
 /datum/chemical_reaction/ice
 	name = /datum/reagent/consumable/ice
 	id = /datum/reagent/consumable/ice
