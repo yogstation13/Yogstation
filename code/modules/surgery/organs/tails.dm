@@ -33,6 +33,11 @@
 		color = H.hair_color
 		H.update_body()
 
+/obj/item/organ/tail/cat/fox
+	name = "fox tail"
+	desc = "A severed fox tail. Witty one-liner goes here."
+	tail_type = "Fox"
+
 /obj/item/organ/tail/lizard
 	name = "lizard tail"
 	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
