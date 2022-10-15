@@ -89,7 +89,7 @@
 			amount = 1
 			required_amount = 1
 			name = "[initial(name)] with a supermatter shard inside"
-			icon_state = "net_[amount-1]"
+			icon_state = "net_[amount]"
 			to_chat(user, span_notice("You calmly collect \the [tongs.sliver] into \the [src]."))
 			warn_user(user)
 			QDEL_NULL(tongs.sliver)
@@ -178,7 +178,7 @@
 		amount++
 		S.energy -= 75
 		visible_message(span_notice("\The [src] catches a singularity fragment."))
-		icon_state = "net_[amount-1]"
+		icon_state = "net_[amount]"
 		if(amount == 1)
 			warn_user()
 			name = "[initial(name)] of singularity fragments"
@@ -197,7 +197,7 @@
 		amount++
 		E.energy -= 50
 		visible_message(span_notice("\The [src] catches an energy ball."))
-		icon_state = "net_[amount-1]"
+		icon_state = "net_[amount]"
 		if(amount == 1)
 			warn_user()
 			name = "[initial(name)] of energy balls"
