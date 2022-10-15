@@ -135,7 +135,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		data["username"] = borg.name
 		data["has_access"] = TRUE
 
-	if(IsAdminGhost(user))
+	if(isAdminGhostAI(user))
 		data["username"] = user.client.holder.admin_signature
 		data["has_access"] = TRUE
 
@@ -279,7 +279,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				authenticated = TRUE
 				return
 
-			if(IsAdminGhost(usr))
+			if(isAdminGhostAI(usr))
 				authenticated = TRUE
 
 			if(obj_flags & EMAGGED)

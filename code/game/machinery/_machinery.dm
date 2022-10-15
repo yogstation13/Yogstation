@@ -330,12 +330,12 @@ Class Procs:
 		take_damage(4, BRUTE, MELEE, 1)
 
 /obj/machinery/attack_robot(mob/user)
-	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
+	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !isAdminGhostAI(user))
 		return FALSE
 	return _try_interact(user)
 
 /obj/machinery/attack_ai(mob/user)
-	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
+	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !isAdminGhostAI(user))
 		return FALSE
 	if(iscyborg(user))// For some reason attack_robot doesn't work
 		return attack_robot(user)
@@ -551,12 +551,12 @@ Class Procs:
 
 /obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
 	..()
-	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
+	if((tesla_flags & ZAP_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		if(prob(60))
 			ex_act(EXPLODE_DEVASTATE)
 		else if (prob(50))
 			explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
-	if(tesla_flags & TESLA_OBJ_DAMAGE)
+	if(tesla_flags & ZAP_OBJ_DAMAGE)
 		take_damage(power/2000, BURN, ENERGY)
 		if(prob(40))
 			emp_act(EMP_LIGHT)

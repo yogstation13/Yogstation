@@ -131,7 +131,7 @@
 			if ((M.client && M.machine == src))
 				is_in_use = TRUE
 				ui_interact(M)
-		if(issilicon(usr) || IsAdminGhost(usr))
+		if(issilicon(usr) || isAdminGhostAI(usr))
 			if (!(usr in nearby))
 				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = TRUE
@@ -303,7 +303,7 @@
 
 /obj/AltClick(mob/user)
 	. = ..()
-	if(unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+	if(unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
 		reskin_obj(user)
 
 /obj/proc/reskin_obj(mob/M)

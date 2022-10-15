@@ -103,7 +103,7 @@
 
 /obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
 	..()
-	tesla_zap(target, 4, 17500, TESLA_MOB_DAMAGE)
+	tesla_zap(target, 4, 17500, ZAP_MOB_DAMAGE)
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a357/heartpiercer

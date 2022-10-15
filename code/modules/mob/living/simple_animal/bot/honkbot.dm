@@ -12,7 +12,7 @@
 
 	radio_key = /obj/item/encryptionkey/headset_service //doesn't have security key
 	radio_channel = RADIO_CHANNEL_SERVICE //Doesn't even use the radio anyway.
-	bot_type = HONK_BOT
+	bot_type = HONK_BOT_BIT
 	model = "Honkbot"
 	bot_core_type = /obj/machinery/bot_core/honkbot
 	window_id = "autohonk"
@@ -90,7 +90,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 "<A href='?src=[REF(src)];power=[TRUE]'>[on ? "On" : "Off"]</A>" )
 
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += text({"<BR> Auto Patrol: []"},
 
 "<A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )

@@ -23,7 +23,7 @@
 
 	radio_key = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
-	bot_type = FLOOR_BOT
+	bot_type = FLOOR_BOT_BIT
 	model = "Floorbot"
 	bot_core = /obj/machinery/bot_core/floorbot
 	window_id = "autofloor"
@@ -179,7 +179,7 @@
 	dat += "<tt><b>Atmospheric Stabalizer Controls v1.1</b></tt><br><br>"
 	dat += "Status: <a href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</a><br>"
 	dat += "Maintenance panel panel is [open ? "opened" : "closed"]<br>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += "Breach Pressure: <a href='?src=[REF(src)];set_breach_pressure=1'>[breached_pressure]</a><br>"
 		dat += "Patrol Station: <A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "Yes" : "No"]</A><BR>"
 	return dat

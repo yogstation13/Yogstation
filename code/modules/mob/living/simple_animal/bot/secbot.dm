@@ -12,7 +12,7 @@
 
 	radio_key = /obj/item/encryptionkey/secbot //AI Priv + Security
 	radio_channel = RADIO_CHANNEL_SECURITY //Security channel
-	bot_type = SEC_BOT
+	bot_type = SEC_BOT_BIT
 	model = "Securitron"
 	bot_core_type = /obj/machinery/bot_core/secbot
 	window_id = "autosec"
@@ -119,7 +119,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 "<A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A>" )
 
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += text({"<BR>
 Arrest Unidentifiable Persons: []<BR>
 Arrest for Unauthorized Weapons: []<BR>
@@ -141,7 +141,7 @@ Auto Patrol: []"},
 	if(..())
 		return TRUE
 
-	if(!issilicon(usr) && !IsAdminGhost(usr) && !(bot_core.allowed(usr) || !locked))
+	if(!issilicon(usr) && !isAdminGhostAI(usr) && !(bot_core.allowed(usr) || !locked))
 		return TRUE
 
 	switch(href_list["operation"])

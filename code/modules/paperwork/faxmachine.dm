@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 			destination = params["dept"]
 			return
 		if("auth")
-			if (IsAdminGhost(usr))
+			if (isAdminGhostAI(usr))
 				authenticated = TRUE
 				auth_name = usr.client.holder.admin_signature
 				return
@@ -213,9 +213,9 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 		P.add_overlay(stampoverlay)
 
 /obj/machinery/photocopier/faxmachine/AltClick(mob/user)
-	if(IsAdminGhost(user))
+	if(isAdminGhostAI(user))
 		send_admin_fax(src)		
 
 /obj/machinery/photocopier/faxmachine/examine(mob/user)
-	if(IsAdminGhost(user))
+	if(isAdminGhostAI(user))
 		.+= span_notice("You can send admin faxes via Alt-Click to this specific fax machine.")

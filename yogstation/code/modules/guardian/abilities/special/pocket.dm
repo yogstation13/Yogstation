@@ -436,7 +436,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	icon_state = "0"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	planetary_atmos = TRUE
-	flags_1 = NOJAUNT_1
+	flags_1 = NOJAUNT
 	var/next_animate = 0
 
 /turf/open/indestructible/pocketspace/Initialize()

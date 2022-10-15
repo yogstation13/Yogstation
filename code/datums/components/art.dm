@@ -1,7 +1,3 @@
-#define BAD_ART 12.5
-#define GOOD_ART 25
-#define GREAT_ART 50
-
 /datum/component/art
 	var/impressiveness = 0
 
@@ -41,7 +37,3 @@
 	if(!do_after(M, 2 SECONDS, parent))
 		return
 	on_obj_examine(source, M)
-
-#undef BAD_ART
-#undef GOOD_ART
-#undef GREAT_ART

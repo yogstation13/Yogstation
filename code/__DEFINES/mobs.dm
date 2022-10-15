@@ -77,6 +77,22 @@
 #define MOB_REPTILE		"reptile"
 #define MOB_SPIRIT		"spirit"
 
+/* REFACTOR mob_biotypes TO BITFLAGS SO WE CAN USE THESE INSTEAD OF STRINGS
+//Mob bio-types flags
+#define MOB_ORGANIC 	(1 << 0)
+#define MOB_MINERAL 	(1 << 1)
+#define MOB_ROBOTIC 	(1 << 2)
+#define MOB_UNDEAD 		(1 << 3)
+#define MOB_HUMANOID 	(1 << 4)
+#define MOB_BUG 		(1 << 5)
+#define MOB_BEAST 		(1 << 6)
+#define MOB_EPIC 		(1 << 7) //megafauna
+#define MOB_REPTILE 	(1 << 8)
+#define MOB_SPIRIT 		(1 << 9)
+#define MOB_PLANT 		(1 << 10)
+#define MOB_INORGANIC 	(1 << 11) //yog
+*/
+
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC   1
 #define ORGAN_ROBOTIC   2
@@ -99,6 +115,63 @@
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
+//Bodypart change blocking flags
+///Bodypart does not get replaced during set_species()
+#define BP_BLOCK_CHANGE_SPECIES (1<<0)
+
+//Bodytype defines for how things can be worn, surgery, and other misc things.
+///The limb is organic.
+#define BODYTYPE_ORGANIC (1<<0)
+///The limb is robotic.
+#define BODYTYPE_ROBOTIC (1<<1)
+///The limb fits the human mold. This is not meant to be literal, if the sprite "fits" on a human, it is "humanoid", regardless of origin.
+#define BODYTYPE_HUMANOID (1<<2)
+///The limb is digitigrade.
+#define BODYTYPE_DIGITIGRADE (1<<3)
+///The limb fits the monkey mold.
+#define BODYTYPE_MONKEY (1<<4)
+///The limb is snouted.
+#define BODYTYPE_SNOUTED (1<<5)
+///A placeholder bodytype for xeno larva, so their limbs cannot be attached to anything.
+#define BODYTYPE_LARVA_PLACEHOLDER (1<<6)
+///The limb is from a xenomorph.
+#define BODYTYPE_ALIEN (1<<7)
+
+// Defines for Species IDs. Used to refer to the name of a species, for things like bodypart names or species preferences.
+#define SPECIES_ABDUCTOR "abductor"
+#define SPECIES_ANDROID "android"
+#define SPECIES_DULLAHAN "dullahan"
+#define SPECIES_ETHEREAL "ethereal"
+#define SPECIES_FELINE "felinid"
+#define SPECIES_FLYPERSON "fly"
+#define SPECIES_HUMAN "human"
+#define SPECIES_JELLYPERSON "jelly"
+#define SPECIES_SLIMEPERSON "slime"
+#define SPECIES_LUMINESCENT "luminescent"
+#define SPECIES_STARGAZER "stargazer"
+#define SPECIES_LIZARD "lizard"
+#define SPECIES_LIZARD_ASH "ashwalker"
+#define SPECIES_LIZARD_SILVER "silverscale"
+#define SPECIES_NIGHTMARE "nightmare"
+#define SPECIES_MONKEY "monkey"
+#define SPECIES_MOTH "moth"
+#define SPECIES_MUSHROOM "mush"
+#define SPECIES_PLASMAMAN "plasmaman"
+#define SPECIES_PODPERSON "pod"
+#define SPECIES_SHADOW "shadow"
+#define SPECIES_SKELETON "skeleton"
+#define SPECIES_SNAIL "snail"
+#define SPECIES_VAMPIRE "vampire"
+#define SPECIES_ZOMBIE "zombie"
+#define SPECIES_ZOMBIE_INFECTIOUS "memezombie"
+#define SPECIES_ZOMBIE_KROKODIL "krokodil_zombie"
+
+// Like species IDs, but not specifically attached a species.
+#define BODYPART_ID_ALIEN "alien"
+#define BODYPART_ID_ROBOTIC "robotic"
+#define BODYPART_ID_DIGITIGRADE "digitigrade"
+#define BODYPART_ID_LARVA "larva"
+
 //Reagent Metabolization flags, defines the type of reagents that affect this mob
 #define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
 #define PROCESS_SYNTHETIC 2		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC"
@@ -106,6 +179,28 @@
 // Reagent type flags, defines the types of mobs this reagent will affect
 #define ORGANIC 1
 #define SYNTHETIC 2
+
+//See: datum/species/var/digitigrade_customization
+///The species does not have digitigrade legs in generation.
+#define DIGITIGRADE_NEVER 0
+///The species can have digitigrade legs in generation
+#define DIGITIGRADE_OPTIONAL 1
+///The species is forced to have digitigrade legs in generation.
+#define DIGITIGRADE_FORCED 2
+
+///Digitigrade's prefs, used in features for legs if you're meant to be a Digitigrade.
+#define DIGITIGRADE_LEGS "Digitigrade Legs"
+
+// Health/damage defines
+#define MAX_LIVING_HEALTH 100
+
+//for determining which type of heartbeat sound is playing
+///Heartbeat is beating fast for hard crit
+#define BEAT_FAST 1
+///Heartbeat is beating slow for soft crit
+#define BEAT_SLOW 2
+///Heartbeat is gone... He's dead Jim :(
+#define BEAT_NONE 0
 
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
@@ -355,7 +450,49 @@
 //Wabbacjack staff projectiles
 #define WABBAJACK     (1<<6)
 
+// Randomization keys for calling wabbajack with.
+// Note the contents of these keys are important, as they're displayed to the player
+// Ex: (You turn into a "monkey", You turn into a "xenomorph")
+#define WABBAJACK_MONKEY "monkey"
+#define WABBAJACK_ROBOT "robot"
+#define WABBAJACK_SLIME "slime"
+#define WABBAJACK_XENO "xenomorph"
+#define WABBAJACK_HUMAN "humanoid"
+#define WABBAJACK_ANIMAL "animal"
+
+// Reasons a defibrilation might fail
+#define DEFIB_POSSIBLE (1<<0)
+#define DEFIB_FAIL_SUICIDE (1<<1)
+#define DEFIB_FAIL_HUSK (1<<2)
+#define DEFIB_FAIL_TISSUE_DAMAGE (1<<3)
+#define DEFIB_FAIL_FAILING_HEART (1<<4)
+#define DEFIB_FAIL_NO_HEART (1<<5)
+#define DEFIB_FAIL_FAILING_BRAIN (1<<6)
+#define DEFIB_FAIL_NO_BRAIN (1<<7)
+#define DEFIB_FAIL_NO_INTELLIGENCE (1<<8)
+#define DEFIB_FAIL_BLACKLISTED (1<<9)
+#define DEFIB_NOGRAB_AGHOST (1<<10)
+
+// Bit mask of possible return values by can_defib that would result in a revivable patient
+#define DEFIB_REVIVABLE_STATES (DEFIB_FAIL_NO_HEART | DEFIB_FAIL_FAILING_HEART | DEFIB_FAIL_HUSK | DEFIB_FAIL_TISSUE_DAMAGE | DEFIB_FAIL_FAILING_BRAIN | DEFIB_POSSIBLE)
+
+
 #define SLEEP_CHECK_DEATH(X) sleep(X); if(QDELETED(src) || stat == DEAD) return;
+
+#define SLEEP_CHECK_DEATH_TARGET(X, A) \
+	sleep(X); \
+	if(QDELETED(A)) return; \
+	if(ismob(A)) { \
+		var/mob/sleep_check_death_mob = A; \
+		if(sleep_check_death_mob.stat == DEAD) return; \
+	}
+
+//#define DOING_INTERACTION_WITH_TARGET(X, Y) (Y in X.do_afters) this was replaced with DOING_INTERACTION_WITH_TARGET and god i hope that's right
+
+#define DOING_INTERACTION(user, interaction_key) (LAZYACCESS(user.do_afters, interaction_key))
+#define DOING_INTERACTION_LIMIT(user, interaction_key, max_interaction_count) ((LAZYACCESS(user.do_afters, interaction_key) || 0) >= max_interaction_count)
+#define DOING_INTERACTION_WITH_TARGET(user, target) (LAZYACCESS(user.do_afters, target))
+#define DOING_INTERACTION_WITH_TARGET_LIMIT(user, target, max_interaction_count) ((LAZYACCESS(user.do_afters, target) || 0) >= max_interaction_count)
 
 // recent examine defines
 /// How long it takes for an examined atom to be removed from recent_examines. Should be the max of the below time windows
@@ -370,13 +507,14 @@
 /// How far away you can be to make eye contact with someone while examining
 #define EYE_CONTACT_RANGE 5
 
-//this should be in the ai defines, but out ai defines are actual ai, not simplemob ai
-#define IS_DEAD_OR_INCAP(source) (source.incapacitated() || source.stat)
+// Body position defines.
+/// Mob is standing up, usually associated with lying_angle value of 0.
+#define STANDING_UP 0
+/// Mob is lying down, usually associated with lying_angle values of 90 or 270.
+#define LYING_DOWN 1
 
-#define INTERACTING_WITH(X, Y) (Y in X.do_afters)
-
-
-#define DOING_INTERACTION(user, interaction_key) (LAZYACCESS(user.do_afters, interaction_key))
+///How much a mob's sprite should be moved when they're lying down
+#define PIXEL_Y_OFFSET_LYING -6
 
 ///Define for spawning megafauna instead of a mob for cave gen
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"

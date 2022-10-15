@@ -243,7 +243,7 @@
 /obj/effect/reality_smash/attack_hand(mob/user, list/modifiers) // this is important
 	if(!IS_BLOODSUCKER(user)) //only bloodsucker will attack this with their hand
 		return
-	if(INTERACTING_WITH(user, src))
+	if(DOING_INTERACTION_WITH_TARGET(user, src))
 		return
 	if(user.mind in src.siphoners)
 		to_chat(user, span_danger("You have already harvested this shard!"))

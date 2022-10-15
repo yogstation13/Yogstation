@@ -197,11 +197,11 @@
 	seperator += prefix
 	if(rights & R_ADMIN)
 		. += "[seperator]ADMIN"
-	if(rights & R_AUTOLOGIN)
+	if(rights & R_AUTOADMIN)
 		. += "[seperator]AUTOLOGIN"
 	if(rights & R_BAN)
 		. += "[seperator]BAN"
-	if(rights & R_BUILDMODE)
+	if(rights & R_BUILD)
 		. += "[seperator]BUILDMODE"
 	if(rights & R_DEBUG)
 		. += "[seperator]DEBUG"
@@ -219,7 +219,7 @@
 		. += "[seperator]POSSESS"
 	if(rights & R_SERVER)
 		. += "[seperator]SERVER"
-	if(rights & R_SOUNDS)
+	if(rights & R_SOUND)
 		. += "[seperator]SOUND"
 	if(rights & R_SPAWN)
 		. += "[seperator]SPAWN"

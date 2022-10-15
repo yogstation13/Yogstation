@@ -12,7 +12,7 @@
 
 	radio_key = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
-	bot_type = FLOOR_BOT
+	bot_type = FLOOR_BOT_BIT
 	model = "Floorbot"
 	bot_core = /obj/machinery/bot_core/floorbot
 	window_id = "autofloor"
@@ -88,7 +88,7 @@
 		dat += "None Loaded<BR>"
 
 	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += "Add tiles to new hull plating: <A href='?src=[REF(src)];operation=autotile'>[autotile ? "Yes" : "No"]</A><BR>"
 		dat += "Place floor tiles: <A href='?src=[REF(src)];operation=place'>[placetiles ? "Yes" : "No"]</A><BR>"
 		dat += "Replace existing floor tiles with custom tiles: <A href='?src=[REF(src)];operation=replace'>[replacetiles ? "Yes" : "No"]</A><BR>"

@@ -190,7 +190,7 @@
 	if(!(active2 in GLOB.data_core.medical))
 		src.active2 = null
 
-	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)) || issilicon(usr) || IsAdminGhost(usr))
+	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)) || issilicon(usr) || isAdminGhostAI(usr))
 		usr.set_machine(src)
 		if(href_list["temp"])
 			src.temp = null
@@ -229,7 +229,7 @@
 				src.authenticated = 1
 				src.rank = "AI"
 				src.screen = 1
-			else if(IsAdminGhost(usr))
+			else if(isAdminGhostAI(usr))
 				src.active1 = null
 				src.active2 = null
 				src.authenticated = 1

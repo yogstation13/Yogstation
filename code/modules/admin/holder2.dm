@@ -45,7 +45,7 @@ GLOBAL_PROTECT(href_token)
 	href_token = GenerateToken()
 	if(rights & R_DEBUG) //grant profile access
 		world.SetConfig("APP/admin", ckey, "role=admin")
-	if (force_active || (rights & R_AUTOLOGIN))
+	if (force_active || (rights & R_AUTOADMIN))
 		activate()
 	else
 		deactivate()

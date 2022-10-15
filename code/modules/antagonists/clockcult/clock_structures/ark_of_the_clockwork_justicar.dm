@@ -364,7 +364,7 @@
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/structure/destructible/clockwork/massive/celestial_gateway/attack_ghost(mob/user)
-	if(!IsAdminGhost(user))
+	if(!isAdminGhostAI(user))
 		return ..()
 	if(GLOB.servants_active)
 		to_chat(user, span_danger("The Ark is already counting down."))

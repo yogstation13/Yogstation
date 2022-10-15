@@ -267,7 +267,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		var/rights = GLOB.permissions.get_rights_for(src)
 		add_verb(src, GLOB.admin_verbs_default)
 		add_verb(src, GLOB.mentor_verbs) // yogs - give admins mentor verbs
-		if(rights & R_BUILDMODE)
+		if(rights & R_BUILD)
 			add_verb(src, /client/proc/togglebuildmodeself)
 		if(rights & R_ADMIN)
 			add_verb(src, GLOB.admin_verbs_admin)
@@ -287,7 +287,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			add_verb(src, /client/proc/stealth)
 		if(rights & R_ADMIN)
 			add_verb(src, GLOB.admin_verbs_poll)
-		if(rights & R_SOUNDS)
+		if(rights & R_SOUND)
 			add_verb(src, GLOB.admin_verbs_sounds)
 			if(CONFIG_GET(string/invoke_youtubedl))
 				add_verb(src, /client/proc/play_web_sound)
@@ -652,7 +652,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
 	set category = "Admin.Round Interaction"
-	if (!(check_rights(R_BUILDMODE)))
+	if (!(check_rights(R_BUILD)))
 		return
 	if(src.mob)
 		togglebuildmode(src.mob)
@@ -765,7 +765,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set desc = "Allows you to interact with most machines as an AI would as a ghost"
 
 	AI_Interact = !AI_Interact
-	if(mob && IsAdminGhost(mob))
+	if(mob && isAdminGhostAI(mob))
 		mob.has_unlimited_silicon_privilege = AI_Interact
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")

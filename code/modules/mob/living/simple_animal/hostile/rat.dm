@@ -191,7 +191,7 @@
 			if(target.reagents.has_reagent(/datum/reagent/plaguebacteria))
 				to_chat(src, span_warning("[target] is already infected!"))
 				return
-			if(INTERACTING_WITH(src, target))
+			if(DOING_INTERACTION_WITH_TARGET(src, target))
 				return
 			src.visible_message(span_warning("[src] starts licking [target]!"),span_notice("You start licking [target]..."))
 			if(!do_after(src, 2 SECONDS, FALSE, target))

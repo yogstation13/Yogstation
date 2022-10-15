@@ -978,7 +978,7 @@
 	area.power_change()
 
 /obj/machinery/power/apc/proc/can_use(mob/user, loud = 0) //used by attack_hand() and Topic()
-	if(IsAdminGhost(user))
+	if(isAdminGhostAI(user))
 		return TRUE
 	if(user.has_unlimited_silicon_privilege)
 		var/mob/living/silicon/ai/AI = user
@@ -1082,7 +1082,7 @@
 	return 1
 
 /obj/machinery/power/apc/attack_eminence(mob/camera/eminence/user, params)
-	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))  ///Cutting AI wire should prevent from eminence interactions
+	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !isAdminGhostAI(user))  ///Cutting AI wire should prevent from eminence interactions
 		return FALSE
 	if(!integration_cog)
 		return FALSE

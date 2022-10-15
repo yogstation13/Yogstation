@@ -756,7 +756,7 @@
 			show_inv(machine)
 
 
-	if(href_list["item"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+	if(href_list["item"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
 		var/slot = text2num(href_list["item"])
 		var/hand_index = text2num(href_list["hand_index"])
 		var/obj/item/what
@@ -1055,10 +1055,10 @@
 
 ///Can the mob interact() with an atom?
 /mob/proc/can_interact_with(atom/A)
-	return IsAdminGhost(src) || Adjacent(A)
+	return isAdminGhostAI(src) || Adjacent(A)
 
 ///Can the mob use Topic to interact with machines
-/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+/mob/proc/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	return
 
 ///Can this mob use storage
@@ -1261,7 +1261,7 @@
 		usr.client.give_disease(src)
 	if(href_list[VV_HK_GIB] && check_rights(R_FUN))
 		usr.client.cmd_admin_gib(src)
-	if(href_list[VV_HK_BUILDMODE] && check_rights(R_BUILDMODE))
+	if(href_list[VV_HK_BUILDMODE] && check_rights(R_BUILD))
 		togglebuildmode(src)
 	if(href_list[VV_HK_DROP_ALL] && check_rights(R_ADMIN))
 		usr.client.cmd_admin_drop_everything(src)

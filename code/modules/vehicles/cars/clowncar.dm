@@ -26,7 +26,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.mind && H.mind.assigned_role == "Clown") //Ensures only clowns can drive the car. (Including more at once)
-			add_control_flags(H, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_PERMISSION)
+			add_control_flags(H, VEHICLE_CONTROL_DRIVE)
 			RegisterSignal(H, COMSIG_MOB_CLICKON, .proc/FireCannon)
 			return
 	add_control_flags(M, VEHICLE_CONTROL_KIDNAPPED)

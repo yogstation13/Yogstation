@@ -56,7 +56,7 @@
 		if (!isturf(T))
 			return
 
-		if(INTERACTING_WITH(user, src))//prevents message spam
+		if(DOING_INTERACTION_WITH_TARGET(user, src))//prevents message spam
 			return
 		to_chat(user, span_notice("You start picking..."))
 

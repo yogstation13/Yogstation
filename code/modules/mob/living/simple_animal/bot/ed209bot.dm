@@ -14,7 +14,7 @@
 
 	radio_key = /obj/item/encryptionkey/headset_sec
 	radio_channel = RADIO_CHANNEL_SECURITY
-	bot_type = SEC_BOT
+	bot_type = SEC_BOT_BIT
 	model = "ED-209"
 	bot_core = /obj/machinery/bot_core/secbot
 	window_id = "autoed209"
@@ -110,7 +110,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]<BR>"},
 
 "<A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A>" )
 
-	if(!locked || issilicon(user)|| IsAdminGhost(user))
+	if(!locked || issilicon(user)|| isAdminGhostAI(user))
 		if(!lasercolor)
 			dat += text({"<BR>
 Arrest Unidentifiable Persons: []<BR>

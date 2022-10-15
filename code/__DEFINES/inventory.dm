@@ -117,6 +117,12 @@
 #define HIDEHAIR		(1<<8)
 #define HIDEFACIALHAIR	(1<<9)
 #define HIDENECK		(1<<10)
+/// for wigs, only obscures the headgear
+#define HIDEHEADGEAR (1<<11)
+///for lizard snouts, because some HIDEFACE clothes don't actually conceal that portion of the head.
+#define HIDESNOUT (1<<12)
+///hides mutant/moth wings, does not apply to functional wings
+#define HIDEMUTWINGS (1<<13)
 
 //bitflags for clothing coverage - also used for limbs
 #define HEAD		(1<<0)
@@ -165,15 +171,38 @@
 #define FULL_DIGITIGRADE			1
 #define SQUISHED_DIGITIGRADE		2
 
+//Flags (actual flags, fucker ^) for /obj/item/var/supports_variations_flags
+///No alternative sprites based on bodytype
+#define CLOTHING_NO_VARIATION (1<<0)
+///Has a sprite for digitigrade legs specifically.
+#define CLOTHING_DIGITIGRADE_VARIATION (1<<1)
+///The sprite works fine for digitigrade legs as-is.
+#define CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<2)
+///has a sprite for monkeys
+#define CLOTHING_MONKEY_VARIATION (1<<3)
+
 //flags for covering body parts
 #define GLASSESCOVERSEYES	(1<<0)
 #define MASKCOVERSEYES		(1<<1)		// get rid of some of the other retardation in these flags
 #define HEADCOVERSEYES		(1<<2)		// feel free to realloc these numbers for other purposes
 #define MASKCOVERSMOUTH		(1<<3)		// on other items, these are just for mask/head
 #define HEADCOVERSMOUTH		(1<<4)
+#define PEPPERPROOF (1<<5) //protects against pepperspray
 
 #define TINT_DARKENED 2			//Threshold of tint level to apply weld mask overlay
 #define TINT_BLIND 3			//Threshold of tint level to obscure vision fully
+
+// defines for AFK theft
+/// How many messages you can remember while logged out before you stop remembering new ones
+#define AFK_THEFT_MAX_MESSAGES 10
+/// If someone logs back in and there are entries older than this, just tell them they can't remember who it was or when
+#define AFK_THEFT_FORGET_DETAILS_TIME 5 MINUTES
+/// The index of the entry in 'afk_thefts' with the person's visible name at the time
+#define AFK_THEFT_NAME 1
+/// The index of the entry in 'afk_thefts' with the text
+#define AFK_THEFT_MESSAGE 2
+/// The index of the entry in 'afk_thefts' with the time it happened
+#define AFK_THEFT_TIME 3
 
 //Allowed equipment lists for security vests and hardsuits.
 

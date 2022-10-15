@@ -100,7 +100,7 @@
 
 	. = TRUE
 
-	if(authenticated(usr) && !unlocked && !is_station_level(z) && !IsAdminGhost(usr))
+	if(authenticated(usr) && !unlocked && !is_station_level(z) && !isAdminGhostAI(usr))
 		if(issilicon(usr))
 			visible_message("An error appears on the screen: Unable to contact authentication servers. Please move closer to the station.")
 			return
@@ -320,7 +320,7 @@
 				authorize_name = null
 				playsound(src, 'sound/machines/terminal_off.ogg', 50, FALSE)
 				return
-			if(!unlocked && !is_station_level(z) && !IsAdminGhost(usr))
+			if(!unlocked && !is_station_level(z) && !isAdminGhostAI(usr))
 				visible_message("An error appears on the screen: Unable to contact authentication servers. Please move closer to the station.")
 				return
 			if (obj_flags & EMAGGED)
@@ -329,7 +329,7 @@
 				authorize_name = "Unknown"
 				to_chat(usr, span_warning("[src] lets out a quiet alarm as its login is overridden."))
 				playsound(src, 'sound/machines/terminal_alert.ogg', 25, FALSE)
-			else if (IsAdminGhost(usr))
+			else if (isAdminGhostAI(usr))
 				authenticated = TRUE
 				authorize_access = get_all_accesses()
 				authorize_name = usr.client.holder.admin_signature

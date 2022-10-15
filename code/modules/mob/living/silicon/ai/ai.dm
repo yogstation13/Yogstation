@@ -939,7 +939,7 @@
 		return TRUE
 	return ..()
 
-/mob/living/silicon/ai/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
+/mob/living/silicon/ai/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
 	if(control_disabled || incapacitated())
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE

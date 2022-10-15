@@ -27,7 +27,7 @@
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	explosion_block = 50
-	flags_1 = NOJAUNT_1 | CAN_BE_DIRTY_1
+	flags_1 = NOJAUNT | CAN_BE_DIRTY_1
 
 /turf/closed/indestructible/rust_heretic_act()
 	return

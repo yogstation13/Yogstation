@@ -1,15 +1,3 @@
-#define MECHA_INT_FIRE			(1<<0)
-#define MECHA_INT_TEMP_CONTROL	(1<<1)
-#define MECHA_INT_SHORT_CIRCUIT	(1<<2)
-#define MECHA_INT_TANK_BREACH	(1<<3)
-#define MECHA_INT_CONTROL_LOST	(1<<4)
-
-#define MECHA_MELEE 1
-#define MECHA_RANGED 2
-
-#define FRONT_ARMOUR 1
-#define SIDE_ARMOUR 2
-#define BACK_ARMOUR 3
 
 
 /obj/mecha
@@ -36,7 +24,7 @@
 	max_integrity = 300 //max_integrity is base health
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
-	var/list/facing_modifiers = list(FRONT_ARMOUR = 1.5, SIDE_ARMOUR = 1, BACK_ARMOUR = 0.5)
+	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 1.5, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_ARMOUR = 0.5)
 	var/equipment_disabled = 0 //disabled due to EMP
 	var/obj/item/stock_parts/cell/cell ///Keeps track of the mech's cell
 	var/obj/item/stock_parts/scanning_module/scanmod ///Keeps track of the mech's scanning module
@@ -655,7 +643,7 @@
 /obj/mecha/Bump(var/atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
-	if(newloc.flags_1 & NOJAUNT_1)
+	if(newloc.flags_1 & NOJAUNT)
 		to_chat(occupant, span_warning("Some strange aura is blocking the way."))
 		return
 

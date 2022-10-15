@@ -54,7 +54,7 @@
 	if(..())
 		return
 
-	var/authed = IsAdminGhost(usr)
+	var/authed = isAdminGhostAI(usr)
 	var/mob/user = usr
 	var/obj/item/card/id/user_id = user.get_idcard()
 	computer.play_interact_sound()
@@ -109,7 +109,7 @@
 /datum/computer_file/program/job_management/ui_data(mob/user)
 	var/list/data = get_header_data()
 
-	var/authed = IsAdminGhost(user)
+	var/authed = isAdminGhostAI(user)
 	var/obj/item/card/id/user_id = user.get_idcard(FALSE)
 	if(user_id && !authed)
 		if(ACCESS_CHANGE_IDS in user_id.access)

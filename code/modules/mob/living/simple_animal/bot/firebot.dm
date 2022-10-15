@@ -17,7 +17,7 @@
 
 	radio_key = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
-	bot_type = FIRE_BOT
+	bot_type = FIRE_BOT_BIT
 	model = "Firebot"
 	bot_core = /obj/machinery/bot_core/firebot
 	window_id = "autoextinguisher"
@@ -111,7 +111,7 @@
 	dat += "Maintenance panel panel is [open ? "opened" : "closed"]<BR>"
 
 	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += "Extinguish Fires: <A href='?src=[REF(src)];operation=extinguish_fires'>[extinguish_fires ? "Yes" : "No"]</A><BR>"
 		dat += "Extinguish People: <A href='?src=[REF(src)];operation=extinguish_people'>[extinguish_people ? "Yes" : "No"]</A><BR>"
 		dat += "Patrol Station: <A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "Yes" : "No"]</A><BR>"

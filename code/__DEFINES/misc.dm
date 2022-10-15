@@ -69,10 +69,8 @@
 #define MANIFEST_ERROR_CONTENTS		2
 #define MANIFEST_ERROR_ITEM			4
 
-#define TRANSITIONEDGE			7 //Distance from edge to move to another z-level
-
 #define BE_CLOSE TRUE		//in the case of a silicon, to select if they need to be next to the atom
-#define NO_DEXTERY TRUE	//if other mobs (monkeys, aliens, etc) can use this
+#define NO_DEXTERITY TRUE	//if other mobs (monkeys, aliens, etc) can use this
 #define NO_TK TRUE
 //used by canUseTopic()
 
@@ -108,11 +106,6 @@
 
 
 #define RESIZE_DEFAULT_SIZE 1
-
-//transfer_ai() defines. Main proc in ai_core.dm
-#define AI_TRANS_TO_CARD	1 //Downloading AI to InteliCard.
-#define AI_TRANS_FROM_CARD	2 //Uploading AI from InteliCard
-#define AI_MECH_HACK		3 //Malfunctioning AI hijacking mecha
 
 //check_target_facings() return defines
 #define FACING_SAME_DIR											1
@@ -260,32 +253,13 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 //Just space
 #define SPACE_ICON_STATE	"[((x + y) ^ ~(x * y) + z) % 25]"
 
-// Maploader bounds indices
-#define MAP_MINX 1
-#define MAP_MINY 2
-#define MAP_MINZ 3
-#define MAP_MAXX 4
-#define MAP_MAXY 5
-#define MAP_MAXZ 6
-
 // Defib stats
 #define DEFIB_TIME_LIMIT 15 MINUTES
-
-// Diagonal movement
-#define FIRST_DIAG_STEP 1
-#define SECOND_DIAG_STEP 2
 
 #define DEADCHAT_ARRIVALRATTLE "arrivalrattle"
 #define DEADCHAT_DEATHRATTLE "deathrattle"
 #define DEADCHAT_REGULAR "regular-deadchat"
 #define DEADCHAT_ANNOUNCEMENT "announcement"
-
-// Bluespace shelter deploy checks
-#define SHELTER_DEPLOY_ALLOWED "allowed"
-#define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
-#define SHELTER_DEPLOY_BAD_AREA "bad area"
-#define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
-#define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"
 
 //debug printing macros
 #define debug_world(msg) if (GLOB.Debug2) to_chat(world, \
@@ -352,16 +326,6 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 //for obj explosion block calculation
 #define EXPLOSION_BLOCK_PROC -1
 
-//for determining which type of heartbeat sound is playing
-#define BEAT_FAST 1
-#define BEAT_SLOW 2
-#define BEAT_NONE 0
-
-//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
-#define MOUSE_OPACITY_TRANSPARENT 0
-#define MOUSE_OPACITY_ICON 1
-#define MOUSE_OPACITY_OPAQUE 2
-
 //world/proc/shelleo
 #define SHELLEO_ERRORLEVEL 1
 #define SHELLEO_STDOUT 2
@@ -396,8 +360,6 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 #define LUMINESCENT_DEFAULT_GLOW 2
 
-#define RIDING_OFFSET_ALL "ALL"
-
 //stack recipe placement check types
 #define STACK_CHECK_CARDINALS "cardinals" //checks if there is an object of the result type in any of the cardinal directions
 #define STACK_CHECK_ADJACENT "adjacent" //checks if there is an object of the result type within one tile
@@ -418,13 +380,6 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 #define SUMMON_GUNS "guns"
 #define SUMMON_MAGIC "magic"
-
-#define TELEPORT_CHANNEL_BLUESPACE "bluespace"	//Classic bluespace teleportation, requires a sender but no receiver
-#define TELEPORT_CHANNEL_QUANTUM "quantum"		//Quantum-based teleportation, requires both sender and receiver, but is free from normal disruption
-#define TELEPORT_CHANNEL_WORMHOLE "wormhole"	//Wormhole teleportation, is not disrupted by bluespace fluctuations but tends to be very random or unsafe
-#define TELEPORT_CHANNEL_MAGIC "magic"			//Magic teleportation, does whatever it wants (unless there's antimagic)
-#define TELEPORT_CHANNEL_CULT "cult"			//Cult teleportation, does whatever it wants (unless there's holiness)
-#define TELEPORT_CHANNEL_FREE "free"			//Anything else
 
 //Run the world with this parameter to enable a single run though of the game setup and tear down process with unit tests in between
 #define TEST_RUN_PARAMETER "test-run"
@@ -467,11 +422,6 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 #define VOMIT_TOXIC 1
 #define VOMIT_PURPLE 2
-
-//chem grenades defines
-#define GRENADE_EMPTY 1
-#define GRENADE_WIRED 2
-#define GRENADE_READY 3
 
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"

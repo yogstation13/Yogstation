@@ -444,9 +444,9 @@
 		else
 			return FALSE
 
-///Is the passed in mob an admin ghost
-/proc/IsAdminGhost(var/mob/user)
-	if(!user)		//Are they a mob? Auto interface updates call this with a null src
+///Is the passed in mob a ghost with admin powers, doesn't check for AI interact like isAdminGhostAI() used to
+/proc/isAdminObserver(mob/user)
+	if(!user) //Are they a mob? Auto interface updates call this with a null src
 		return
 	if(!user.client) // Do they have a client?
 		return
@@ -454,10 +454,15 @@
 		return
 	if(!check_rights_for(user.client, R_ADMIN)) // Are they allowed?
 		return
+	return TRUE
+
+///Is the passed in mob an admin ghost WITH AI INTERACT enabled
+/proc/isAdminGhostAI(mob/user)
+	if(!isAdminObserver(user))
+		return
 	if(!user.client.AI_Interact) // Do they have it enabled?
 		return
 	return TRUE
-
 /** 
   * Offer control of the passed in mob to dead player
   *

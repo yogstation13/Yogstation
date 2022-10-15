@@ -624,7 +624,7 @@
 
 	var/tesla_power = 20000
 	var/tesla_range = 15
-	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE
+	var/tesla_flags = ZAP_MOB_DAMAGE | ZAP_MOB_STUN | ZAP_OBJ_DAMAGE
 	var/chain
 	var/mob/living/caster
 

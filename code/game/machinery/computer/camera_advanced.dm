@@ -350,7 +350,7 @@
 	else if(isspaceturf(T))
 		to_chat(user, "[span_sevtug_small("[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]")]")
 		return
-	else if(T.flags_1 & NOJAUNT_1)
+	else if(T.flags_1 & NOJAUNT)
 		to_chat(user, "[span_sevtug_small("This tile is blessed by strange energies and deflects the warp.")]")
 		return
 	else if(locate(/obj/effect/blessing, T))

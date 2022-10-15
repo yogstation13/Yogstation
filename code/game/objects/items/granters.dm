@@ -308,7 +308,7 @@
 /obj/item/book/granter/spell/teslablast/recoil(mob/user)
 	..()
 	to_chat(user, span_warning("The book twists into lightning and leaps at you!"))
-	tesla_zap(user, 8, 20000, TESLA_MOB_DAMAGE) //Will chain at a range of 8, but shouldn't straight up crit
+	tesla_zap(user, 8, 20000, ZAP_MOB_DAMAGE) //Will chain at a range of 8, but shouldn't straight up crit
 	qdel(src)
 
 /obj/item/book/granter/spell/repulse

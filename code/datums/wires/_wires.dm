@@ -246,7 +246,7 @@
 	var/reveal_wires = FALSE
 
 	// Admin ghost can see a purpose of each wire.
-	if(IsAdminGhost(user))
+	if(isAdminGhostAI(user))
 		reveal_wires = TRUE
 
 	// Same for anyone with an abductor multitool.
@@ -278,7 +278,7 @@
 	switch(action)
 		if("cut")
 			I = L.is_holding_tool_quality(TOOL_WIRECUTTER)
-			if(I || IsAdminGhost(usr))
+			if(I || isAdminGhostAI(usr))
 				if(I && holder)
 					I.play_tool_sound(holder, 20)
 				cut_color(target_wire)
@@ -287,7 +287,7 @@
 				to_chat(L, span_warning("You need wirecutters!"))
 		if("pulse")
 			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
-			if(I || IsAdminGhost(usr))
+			if(I || isAdminGhostAI(usr))
 				if(I && holder)
 					I.play_tool_sound(holder, 20)
 				pulse_color(target_wire, L)

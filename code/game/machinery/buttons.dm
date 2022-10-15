@@ -208,7 +208,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/button/door/indestructible/allowed(mob/M)
-	if(IsAdminGhost(M))
+	if(isAdminGhostAI(M))
 		//Access can't stop the abuse
 		return TRUE
 	return FALSE

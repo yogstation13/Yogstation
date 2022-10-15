@@ -3,7 +3,7 @@
 
 /datum/component/squish
 
-/datum/component/squish/AddComponent(datum/target, duration)
+/datum/component/squish/_AddComponent(datum/target, duration)
 	. = ..()
 	if(!iscarbon(target))
 		return ELEMENT_INCOMPATIBLE

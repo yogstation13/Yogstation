@@ -57,7 +57,7 @@
 		data["username"] = borg.name
 		data["has_access"] = TRUE
 
-	if(IsAdminGhost(user))
+	if(isAdminGhostAI(user))
 		data["username"] = user.client.holder.admin_signature
 		data["has_access"] = TRUE
 
@@ -283,7 +283,7 @@
 				rank = "Silicon"
 				return
 
-			if(IsAdminGhost(usr))
+			if(isAdminGhostAI(usr))
 				logged_in = usr.client.holder.admin_signature
 				rank = "Central Command Officer"
 

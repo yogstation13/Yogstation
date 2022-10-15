@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 /obj/machinery/gravity_generator/tesla_act(power, tesla_flags)
 	..()
-	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
+	if(tesla_flags & ZAP_MACHINE_EXPLOSIVE)
 		qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over
 
 /obj/machinery/gravity_generator/update_icon()

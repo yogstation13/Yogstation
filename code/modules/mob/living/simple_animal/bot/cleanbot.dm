@@ -10,7 +10,7 @@
 	maxHealth = 25
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE //Service
-	bot_type = CLEAN_BOT
+	bot_type = CLEAN_BOT_BIT
 	model = "Cleanbot"
 	bot_core_type = /obj/machinery/bot_core/cleanbot
 	window_id = "autoclean"
@@ -284,7 +284,7 @@
 Status: <A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>
 Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
 Maintenance panel panel is [open ? "opened" : "closed"]"})
-	if(!locked || issilicon(user)|| IsAdminGhost(user))
+	if(!locked || issilicon(user)|| isAdminGhostAI(user))
 		dat += "<BR>Clean Blood: <A href='?src=[REF(src)];operation=blood'>[blood ? "Yes" : "No"]</A>"
 		dat += "<BR>Clean Trash: <A href='?src=[REF(src)];operation=trash'>[trash ? "Yes" : "No"]</A>"
 		dat += "<BR>Clean Graffiti: <A href='?src=[REF(src)];operation=drawn'>[drawn ? "Yes" : "No"]</A>"

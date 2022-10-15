@@ -63,7 +63,7 @@
 	return ..()
 
 /obj/item/bodybag/bluespace/proc/CanReachReact(atom/movable/source, list/next)
-	return COMPONENT_BLOCK_REACH
+	return COMPONENT_ALLOW_REACH
 
 /obj/item/bodybag/bluespace/deploy_bodybag(mob/user, atom/location)
 	var/obj/structure/closet/body_bag/R = new unfoldedbag_path(location)

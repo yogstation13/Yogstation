@@ -29,6 +29,10 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	// List of subsystems to process().
 	var/list/subsystems
 
+	///Most recent init stage to complete init.
+	//var/static/init_stage_completed
+	/**this will be implemented somday */
+
 	// Vars for keeping track of tick drift.
 	var/init_timeofday
 	var/init_time
@@ -98,7 +102,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/Shutdown()
 	processing = FALSE
 	sortTim(subsystems, /proc/cmp_subsystem_init)
-	reverseRange(subsystems)
+	reverse_range(subsystems)
 	for(var/datum/controller/subsystem/ss in subsystems)
 		log_world("Shutting down [ss.name] subsystem...")
 		ss.Shutdown()

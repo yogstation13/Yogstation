@@ -13,7 +13,7 @@
 
 	circuit = /obj/item/circuitboard/machine/tesla_coil
 
-	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
+	var/tesla_flags = ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE
 	var/percentage_power_loss = 0 // 0-1. Regular coils don't have power loss.
 	var/input_power_multiplier = 0
 	var/zap_cooldown = 100

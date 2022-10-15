@@ -41,7 +41,7 @@
 		if(Bot.z != zlevel || Bot.remote_disabled || !Bot.bot_core.check_access(computer))
 			continue //Only non-emagged bots on the same Z-level are detected! Also, the PDA must have access to the bot type.
 		var/list/newbot = list("name" = Bot.name, "mode" = Bot.get_mode_ui(), "model" = Bot.model, "locat" = get_area(Bot), "bot_ref" = REF(Bot), "mule_check" = FALSE, "enabled" = Bot.on)
-		if(Bot.bot_type == MULE_BOT)
+		if(Bot.bot_type == MULE_BOT_BIT)
 			var/mob/living/simple_animal/bot/mulebot/MULE = Bot
 			mulelist += list(list("name" = MULE.name, "dest" = MULE.destination, "power" = MULE.cell ? MULE.cell.percent() : 0, "home" = MULE.home_destination, "autoReturn" = MULE.auto_return, "autoPickup" = MULE.auto_pickup, "reportDelivery" = MULE.report_delivery, "mule_ref" = REF(MULE)))
 			if(MULE.load)

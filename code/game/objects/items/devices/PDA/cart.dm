@@ -31,7 +31,7 @@
 
 	var/remote_door_id = ""
 
-	var/bot_access_flags = 0 //Bit flags. Selection: SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
+	var/bot_access_flags = 0 //Bit flags. Selection: SEC_BOT_BIT | MULE_BOT_BIT | FLOOR_BOT_BIT | CLEAN_BOT_BIT | MED_BOT_BIT | FIRE_BOT_BIT
 	var/spam_enabled = 0 //Enables "Send to All" Option
 
 	var/obj/item/pda/host_pda = null
@@ -59,44 +59,44 @@
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"
 	access = CART_ENGINE | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT
+	bot_access_flags = FLOOR_BOT_BIT
 
 /obj/item/cartridge/atmos
 	name = "\improper BreatheDeep cartridge"
 	icon_state = "cart-a"
 	access = CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT | FIRE_BOT
+	bot_access_flags = FLOOR_BOT_BIT | FIRE_BOT_BIT
 
 /obj/item/cartridge/medical
 	name = "\improper Med-U cartridge"
 	icon_state = "cart-m"
 	access = CART_MEDICAL
-	bot_access_flags = MED_BOT
+	bot_access_flags = MED_BOT_BIT
 
 /obj/item/cartridge/chemistry
 	name = "\improper ChemWhiz cartridge"
 	icon_state = "cart-chem"
 	access = CART_REAGENT_SCANNER
-	bot_access_flags = MED_BOT
+	bot_access_flags = MED_BOT_BIT
 
 /obj/item/cartridge/security
 	name = "\improper R.O.B.U.S.T. cartridge"
 	icon_state = "cart-s"
 	access = CART_SECURITY
-	bot_access_flags = SEC_BOT
+	bot_access_flags = SEC_BOT_BIT
 
 /obj/item/cartridge/detective
 	name = "\improper D.E.T.E.C.T. cartridge"
 	icon_state = "cart-s"
 	access = CART_SECURITY | CART_MEDICAL | CART_MANIFEST
-	bot_access_flags = SEC_BOT
+	bot_access_flags = SEC_BOT_BIT
 
 /obj/item/cartridge/janitor
 	name = "\improper CustodiPRO cartridge"
 	desc = "The ultimate in clean-room design."
 	icon_state = "cart-j"
 	access = CART_JANITOR | CART_DRONEPHONE
-	bot_access_flags = CLEAN_BOT
+	bot_access_flags = CLEAN_BOT_BIT
 
 /obj/item/cartridge/lawyer
 	name = "\improper P.R.O.V.E. cartridge"
@@ -112,7 +112,7 @@
 /obj/item/cartridge/roboticist
 	name = "\improper B.O.O.P. Remote Control cartridge"
 	desc = "Packed with heavy duty quad-bot interlink!"
-	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
+	bot_access_flags = FLOOR_BOT_BIT | CLEAN_BOT_BIT | MED_BOT_BIT | FIRE_BOT_BIT
 	access = CART_DRONEPHONE
 
 /obj/item/cartridge/signal
@@ -136,7 +136,7 @@
 	desc = "Perfect for the Quartermaster on the go!"
 	icon_state = "cart-q"
 	access = CART_QUARTERMASTER
-	bot_access_flags = MULE_BOT
+	bot_access_flags = MULE_BOT_BIT
 
 /obj/item/cartridge/head
 	name = "\improper Easy-Record DELUXE cartridge"
@@ -147,32 +147,32 @@
 	name = "\improper HumanResources9001 cartridge"
 	icon_state = "cart-h"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_JANITOR | CART_SECURITY | CART_NEWSCASTER | CART_QUARTERMASTER | CART_DRONEPHONE
-	bot_access_flags = MULE_BOT | CLEAN_BOT
+	bot_access_flags = MULE_BOT_BIT | CLEAN_BOT_BIT
 
 /obj/item/cartridge/hos
 	name = "\improper R.O.B.U.S.T. DELUXE cartridge"
 	icon_state = "cart-hos"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_SECURITY
-	bot_access_flags = SEC_BOT
+	bot_access_flags = SEC_BOT_BIT
 
 
 /obj/item/cartridge/ce
 	name = "\improper Power-On DELUXE cartridge"
 	icon_state = "cart-ce"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_ENGINE | CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT | FIRE_BOT
+	bot_access_flags = FLOOR_BOT_BIT | FIRE_BOT_BIT
 
 /obj/item/cartridge/cmo
 	name = "\improper Med-U DELUXE cartridge"
 	icon_state = "cart-cmo"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_REAGENT_SCANNER | CART_MEDICAL
-	bot_access_flags = MED_BOT
+	bot_access_flags = MED_BOT_BIT
 
 /obj/item/cartridge/rd
 	name = "\improper Signal Ace DELUXE cartridge"
 	icon_state = "cart-rd"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_REAGENT_SCANNER | CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
+	bot_access_flags = FLOOR_BOT_BIT | CLEAN_BOT_BIT | MED_BOT_BIT | FIRE_BOT_BIT
 
 /obj/item/cartridge/rd/Initialize()
 	. = ..()
@@ -183,7 +183,7 @@
 	desc = "Now with 350% more value!" //Give the Captain...EVERYTHING! (Except Mime, Clown, and Syndie)
 	icon_state = "cart-c"
 	access = ~(CART_CLOWN | CART_MIME | CART_REMOTE_DOOR)
-	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
+	bot_access_flags = SEC_BOT_BIT | MULE_BOT_BIT | FLOOR_BOT_BIT | CLEAN_BOT_BIT | MED_BOT_BIT | FIRE_BOT_BIT
 	spam_enabled = 1
 
 /obj/item/cartridge/captain/Initialize()
@@ -686,7 +686,7 @@ Code:
 				menu += "<i>none</i>"
 
 		//MULEs!
-		if(active_bot.bot_type == MULE_BOT)
+		if(active_bot.bot_type == MULE_BOT_BIT)
 			var/mob/living/simple_animal/bot/mulebot/MULE = active_bot
 			var/atom/Load = MULE.load
 			menu += "<BR>Current Load: [ !Load ? "<i>none</i>" : "[Load.name] (<A href='byond://?src=[REF(src)];mule=unload'><i>unload</i></A>)" ]<BR>"

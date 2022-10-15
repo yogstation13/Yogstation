@@ -26,7 +26,7 @@
 	radio_key = /obj/item/encryptionkey/headset_med
 	radio_channel = RADIO_CHANNEL_MEDICAL
 
-	bot_type = MED_BOT
+	bot_type = MED_BOT_BIT
 	model = "Medibot"
 	bot_core_type = /obj/machinery/bot_core/medbot
 	window_id = "automed"
@@ -160,7 +160,7 @@
 	else
 		dat += "None Loaded"
 	dat += "<br>Behaviour controls are [locked ? "locked" : "unlocked"]<hr>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
+	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += "<TT>Healing Threshold: "
 		dat += "<a href='?src=[REF(src)];adj_threshold=-10'>--</a> "
 		dat += "<a href='?src=[REF(src)];adj_threshold=-5'>-</a> "

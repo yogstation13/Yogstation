@@ -158,7 +158,7 @@
 		opened = TRUE
 	else
 		if(!searched)
-			if(INTERACTING_WITH(user, src))
+			if(DOING_INTERACTION_WITH_TARGET(user, src))
 				return
 			to_chat(user, span_warning("You start searching for the toy..."))
 			if(!do_after(user, 1.5 SECONDS, target = src))

@@ -21,12 +21,55 @@ require only minor tweaks.
 */
 
 // helpers for modifying jobs, used in various job_changes.dm files
+#define MAP_CURRENT_VERSION 1
+
+/// Distance from edge to move to another z-level
+#define TRANSITIONEDGE 7
+
+// Maploader bounds indices
+/// The maploader index for the maps minimum x
+#define MAP_MINX 1
+/// The maploader index for the maps minimum y
+#define MAP_MINY 2
+/// The maploader index for the maps minimum z
+#define MAP_MINZ 3
+/// The maploader index for the maps maximum x
+#define MAP_MAXX 4
+/// The maploader index for the maps maximum y
+#define MAP_MAXY 5
+/// The maploader index for the maps maximum z
+#define MAP_MAXZ 6
+
+/// Path for the next_map.json file, if someone, for some messed up reason, wants to change it.
+#define PATH_TO_NEXT_MAP_JSON "data/next_map.json"
+
+/// List of directories we can load map .json files from
+#define MAP_DIRECTORY_MAPS "_maps"
+#define MAP_DIRECTORY_DATA "data"
+#define MAP_DIRECTORY_WHITELIST list(MAP_DIRECTORY_MAPS,MAP_DIRECTORY_DATA)
+
+/// Special map path value for custom adminloaded stations.
+#define CUSTOM_MAP_PATH "custom"
+
 #define MAP_JOB_CHECK if(SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) { return; }
 #define MAP_JOB_CHECK_BASE if(SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) { return ..(); }
 #define MAP_REMOVE_JOB(jobpath) /datum/job/##jobpath/map_check() { return (SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) && ..() }
 
 #define SPACERUIN_MAP_EDGE_PAD 15
 
+// traits
+// boolean - marks a level as having that property if present
+
+
+
+// boolean - weather types that occur on the level
+#define ZTRAIT_VOIDSTORM "Weather_Voidstorm"
+
+///boolean - does this z disable parallax?
+#define ZTRAIT_NOPARALLAX "No Parallax"
+
+//Ruin Generation
+#define PLACE_ISOLATED "isolated" //On isolated ruin z level
 // traits
 // boolean - marks a level as having that property if present
 #define ZTRAIT_CENTCOM "CentCom"
@@ -39,6 +82,7 @@ require only minor tweaks.
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
 #define ZTRAIT_ICE_RUINS "Ice Ruins"
 #define ZTRAIT_ICE_RUINS_UNDERGROUND "Ice Ruins Underground"
+#define ZTRAIT_ISOLATED_RUINS "Isolated Ruins" //Placing ruins on z levels with this trait will use turf reservation instead of usual placement.
 
 // boolean - weather types that occur on the level
 #define ZTRAIT_SNOWSTORM "Weather_Snowstorm"
@@ -139,3 +183,30 @@ require only minor tweaks.
 #define PLACE_LAVA_RUIN "lavaland"
 #define PLACE_ICE_RUIN "icesurface"
 #define PLACE_ICE_UNDERGROUND_RUIN "iceunderground"
+
+///Map generation defines
+#define PERLIN_LAYER_HEIGHT "perlin_height"
+#define PERLIN_LAYER_HUMIDITY "perlin_humidity"
+#define PERLIN_LAYER_HEAT "perlin_heat"
+
+#define BIOME_LOW_HEAT "low_heat"
+#define BIOME_LOWMEDIUM_HEAT "lowmedium_heat"
+#define BIOME_HIGHMEDIUM_HEAT "highmedium_heat"
+#define BIOME_HIGH_HEAT "high_heat"
+
+#define BIOME_LOW_HUMIDITY "low_humidity"
+#define BIOME_LOWMEDIUM_HUMIDITY "lowmedium_humidity"
+#define BIOME_HIGHMEDIUM_HUMIDITY "highmedium_humidity"
+#define BIOME_HIGH_HUMIDITY "high_humidity"
+
+// Bluespace shelter deploy checks for survival capsules
+/// Shelter spot is allowed
+#define SHELTER_DEPLOY_ALLOWED "allowed"
+/// Shelter spot has turfs that restrict deployment
+#define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
+/// Shelter spot has areas that restrict deployment
+#define SHELTER_DEPLOY_BAD_AREA "bad area"
+/// Shelter spot has anchored objects that restrict deployment
+#define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
+/// Shelter spot is out of bounds from the maps x/y coordinates
+#define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"

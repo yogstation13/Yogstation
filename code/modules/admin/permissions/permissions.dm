@@ -416,7 +416,7 @@ use check_rights_for
 	var/flag = 0
 	switch(ckey(word))
 		if("buildmode","build")
-			flag = R_BUILDMODE
+			flag = R_BUILD
 		if("admin")
 			flag = R_ADMIN
 		if("ban")
@@ -440,11 +440,11 @@ use check_rights_for
 		if("everything","host","all")
 			flag = R_EVERYTHING
 		if("sound","sounds")
-			flag = R_SOUNDS
+			flag = R_SOUND
 		if("spawn","create")
 			flag = R_SPAWN
 		if("autologin", "autoadmin")
-			flag = R_AUTOLOGIN
+			flag = R_AUTOADMIN
 		if("dev")
 			flag = R_DEV
 		if("dbranks", "persistperms")

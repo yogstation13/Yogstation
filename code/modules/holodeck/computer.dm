@@ -92,7 +92,7 @@
 		data["emagged"] = TRUE
 		data["emag_programs"] = emag_programs
 	data["program"] = program
-	data["can_toggle_safety"] = issilicon(user) || IsAdminGhost(user)
+	data["can_toggle_safety"] = issilicon(user) || isAdminGhostAI(user)
 
 	return data
 
@@ -124,7 +124,7 @@
 					log_admin("[key_name(usr)] has used the [A.name].")
 				load_program(A)
 		if("safety")
-			if(!issilicon(usr) && !IsAdminGhost(usr))
+			if(!issilicon(usr) && !isAdminGhostAI(usr))
 				return
 			obj_flags ^= EMAGGED
 			if((obj_flags & EMAGGED) && program && emag_programs[program.name])

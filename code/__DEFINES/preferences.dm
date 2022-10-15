@@ -106,3 +106,56 @@
 #define JP_LOW 1
 #define JP_MEDIUM 2
 #define JP_HIGH 3
+
+//randomised elements
+#define RANDOM_ANTAG_ONLY 1
+#define RANDOM_DISABLED 2
+#define RANDOM_ENABLED 3
+
+//recommened client FPS
+#define RECOMMENDED_FPS 100 //i don't know if this holds true for yog
+
+// randomise_appearance_prefs() and randomize_human_appearance() proc flags
+#define RANDOMIZE_SPECIES (1<<0)
+#define RANDOMIZE_NAME (1<<1)
+
+// Values for /datum/preference/savefile_identifier
+/// This preference is character specific.
+#define PREFERENCE_CHARACTER "character"
+/// This preference is account specific.
+#define PREFERENCE_PLAYER "player"
+
+// Values for /datum/preferences/current_tab
+/// Open the character preference window
+#define PREFERENCE_TAB_CHARACTER_PREFERENCES 0
+
+/// Open the game preferences window
+#define PREFERENCE_TAB_GAME_PREFERENCES 1
+
+/// Open the keybindings window
+#define PREFERENCE_TAB_KEYBINDINGS 2
+
+/// These will be shown in the character sidebar, but at the bottom.
+#define PREFERENCE_CATEGORY_FEATURES "features"
+
+/// Any preferences that will show to the sides of the character in the setup menu.
+#define PREFERENCE_CATEGORY_CLOTHING "clothing"
+
+/// Preferences that will be put into the 3rd list, and are not contextual.
+#define PREFERENCE_CATEGORY_NON_CONTEXTUAL "non_contextual"
+
+/// Will be put under the game preferences window.
+#define PREFERENCE_CATEGORY_GAME_PREFERENCES "game_preferences"
+
+/// These will show in the list to the right of the character preview.
+#define PREFERENCE_CATEGORY_SECONDARY_FEATURES "secondary_features"
+
+/// These are preferences that are supplementary for main features,
+/// such as hair color being affixed to hair.
+#define PREFERENCE_CATEGORY_SUPPLEMENTAL_FEATURES "supplemental_features"
+
+// Playtime is tracked in minutes
+/// The time needed to unlock hardcore random mode in preferences
+#define PLAYTIME_HARDCORE_RANDOM 120 // 2 hours
+/// The time needed to unlock the gamer cloak in preferences
+#define PLAYTIME_VETERAN 300000 // 5,000 hours

@@ -31,7 +31,7 @@
 	if(istype(target,/obj/effect/eldritch))
 		remove_rune(target,user)
 	if(istype(target,/obj/effect/reality_smash))
-		if(!INTERACTING_WITH(user, target))
+		if(!DOING_INTERACTION_WITH_TARGET(user, target))
 			get_power_from_influence(target,user)
 	if(istype(target,/turf/open))
 		draw_rune(target,user)
@@ -52,7 +52,7 @@
 ///Gives you a charge and destroys a corresponding influence
 /obj/item/forbidden_book/proc/get_power_from_influence(atom/target, mob/user)
 	var/obj/effect/reality_smash/RS = target
-	if(INTERACTING_WITH(user, RS))
+	if(DOING_INTERACTION_WITH_TARGET(user, RS))
 		return
 	if(user.mind in RS.siphoners)
 		to_chat(user, span_danger("You have already studied this influence!"))

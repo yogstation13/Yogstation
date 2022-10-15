@@ -281,7 +281,7 @@
 		return FALSE
 
 	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient
-	if(INTERACTING_WITH(user, victim))
+	if(DOING_INTERACTION_WITH_TARGET(user, victim))
 		to_chat(user, span_warning("You're already interacting with [victim]!"))
 		return TRUE
 

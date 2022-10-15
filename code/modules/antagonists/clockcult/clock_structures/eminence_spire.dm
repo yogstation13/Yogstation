@@ -47,7 +47,7 @@
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/structure/destructible/clockwork/eminence_spire/attack_ghost(mob/user)
-	if(!IsAdminGhost(user))
+	if(!isAdminGhostAI(user))
 		return
 
 	var/datum/mind/rando = locate() in get_antag_minds(/datum/antagonist/clockcult) //if theres no cultists new team without eminence will be created anyway.

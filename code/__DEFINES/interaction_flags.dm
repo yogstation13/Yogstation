@@ -16,9 +16,11 @@
 #define INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND	(1<<7)
 /// adds hiddenprints instead of fingerprints on interact
 #define INTERACT_ATOM_NO_FINGERPRINT_INTERACT 		(1<<8)
+/// allows this atom to skip the adjacency check
+#define INTERACT_ATOM_ALLOW_USER_LOCATION			(1<<9)
 
 /// attempt pickup on attack_hand for items
-#define INTERACT_ITEM_ATTACK_HAND_PICKUP (1<<0)
+#define INTERACT_ITEM_ATTACK_HAND_PICKUP 	(1<<0)
 
 /// can_interact() while open
 #define INTERACT_MACHINE_OPEN 				(1<<0)
@@ -36,3 +38,7 @@
 /// This flag determines if a machine set_machine's the user when the user uses it, making updateUsrDialog make the user re-call interact() on it.
 /// THIS FLAG IS ON ALL MACHINES BY DEFAULT, NEEDS TO BE RE-EVALUATED LATER!!
 #define INTERACT_MACHINE_SET_MACHINE 		(1<<6)
+/// the user must have vision to interact (blind people need not apply)
+#define INTERACT_MACHINE_REQUIRES_SIGHT 	(1<<7)
+/// the user must be able to read to interact
+#define INTERACT_MACHINE_REQUIRES_LITERACY 	(1<<8)

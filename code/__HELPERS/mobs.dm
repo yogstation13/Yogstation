@@ -585,6 +585,24 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(set_original_dir)
 		AM.setDir(originaldir)
 
+/**
+ * Used to get the amount of change between two body temperatures
+ *
+ * When passed the difference between two temperatures returns the amount of change to temperature to apply.
+ * The change rate should be kept at a low value tween 0.16 and 0.02 for optimal results.
+ * vars:
+ * * temp_diff (required) The differance between two temperatures
+ * * change_rate (optional)(Default: 0.06) The rate of range multiplyer
+ */
+/proc/get_temp_change_amount(temp_diff, change_rate = 0.06)
+	if(temp_diff < 0)
+		return -(BODYTEMP_AUTORECOVERY_DIVISOR / 2) * log(1 - (temp_diff * change_rate))
+	return (BODYTEMP_AUTORECOVERY_DIVISOR / 2) * log(1 + (temp_diff * change_rate))
+
+#define ISADVANCEDTOOLUSER(mob) (HAS_TRAIT(mob, TRAIT_ADVANCEDTOOLUSER) && !HAS_TRAIT(mob, TRAIT_DISCOORDINATED_TOOL_USER))
+
+//#define IS_IN_STASIS(mob) (mob.has_status_effect(/datum/status_effect/grouped/stasis))
+
 /// Gets the client of the mob, allowing for mocking of the client.
 /// You only need to use this if you know you're going to be mocking clients somewhere else.
 #define GET_CLIENT(mob) (##mob.client || ##mob.mock_client)

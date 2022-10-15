@@ -6,6 +6,8 @@
 #define FOOTSTEP_GRASS "grass"
 #define FOOTSTEP_WATER "water"
 #define FOOTSTEP_LAVA "lava"
+#define FOOTSTEP_MEAT "meat"
+#define FOOTSTEP_CATWALK "catwalk"
 //barefoot sounds
 #define FOOTSTEP_WOOD_BAREFOOT "woodbarefoot"
 #define FOOTSTEP_WOOD_CLAW "woodclaw"
@@ -14,6 +16,16 @@
 #define FOOTSTEP_CARPET_BAREFOOT "carpetbarefoot"
 //misc footstep sounds
 #define FOOTSTEP_GENERIC_HEAVY "heavy"
+
+//footstep mob defines
+#define FOOTSTEP_MOB_CLAW 1
+#define FOOTSTEP_MOB_BAREFOOT 2
+#define FOOTSTEP_MOB_HEAVY 3
+#define FOOTSTEP_MOB_SHOE 4
+#define FOOTSTEP_MOB_HUMAN 5 //Warning: Only works on /mob/living/carbon/human
+#define FOOTSTEP_MOB_SLIME 6
+#define FOOTSTEP_OBJ_MACHINE 7
+#define FOOTSTEP_OBJ_ROBOT 8
 
 /*
 

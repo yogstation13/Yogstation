@@ -12,6 +12,10 @@ GLOBAL_VAR(world_href_log)
 GLOBAL_PROTECT(world_href_log)
 GLOBAL_VAR(round_id)
 GLOBAL_PROTECT(round_id)
+
+GLOBAL_VAR(signals_log)
+GLOBAL_PROTECT(signals_log)
+
 GLOBAL_VAR(config_error_log)
 GLOBAL_PROTECT(config_error_log)
 GLOBAL_VAR(sql_error_log)

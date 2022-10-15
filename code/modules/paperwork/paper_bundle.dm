@@ -127,7 +127,7 @@
 
 /obj/item/paper_bundle/Topic(href, href_list)
 	..()
-	if(admin_faxed || (src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)) || IsAdminGhost(usr))
+	if(admin_faxed || (src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)) || isAdminGhostAI(usr))
 		usr.set_machine(src)
 		if(href_list["next_page"])
 			if(page+1 == amount)

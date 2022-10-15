@@ -180,7 +180,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/mapping_helpers/no_lava/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	T.flags_1 |= NO_LAVA_GEN_1
+	T.flags_1 |= NO_LAVA_GEN
 
 //This helper applies components to things on the map directly.
 /obj/effect/mapping_helpers/component_injector
@@ -189,6 +189,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/target_type
 	var/target_name
 	var/component_type
+	var/list/component_args = list()
 
 //Late init so everything is likely ready and loaded (no warranty)
 /obj/effect/mapping_helpers/component_injector/LateInitialize()
@@ -202,13 +203,13 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 			continue
 		if(target_type && !istype(A,target_type))
 			continue
-		var/cargs = build_args()
-		A.AddComponent(arglist(cargs))
+		var/arguments = build_args()
+		A._AddComponent(arguments)
 		qdel(src)
 		return
 
 /obj/effect/mapping_helpers/component_injector/proc/build_args()
-	return list(component_type)
+	return list(component_type, component_args)
 
 /obj/effect/mapping_helpers/component_injector/infective
 	name = "Infective Injector"
