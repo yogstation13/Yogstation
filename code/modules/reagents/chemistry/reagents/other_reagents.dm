@@ -2145,7 +2145,8 @@
 	description = "Finely ground plastics, reduced to microscopic scale. Nearly unable to metabolize in a body, and potentially harmful in the long term."
 	color = "#ffffff"
 	metabolization_rate = 0.05 * REAGENTS_METABOLISM
-	taste_description = "nothing"
+	taste_mult = 0
+	taste_description = "plastic"
 
 /datum/reagent/microplastics/on_mob_life(mob/living/carbon/M)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.55*REM)
