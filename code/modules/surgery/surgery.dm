@@ -99,8 +99,9 @@
 	if(istype(SB))
 		adv_surgeries |= SB.get_surgeries()
 
-	//Get the advanced health analyzer in the off had if available and adds available surgeries to the list
-	var/obj/item/healthanalyzer/advanced/adv = user.get_inactive_held_item()
+	//Get the advanced health analyzer in the off hand or pockets if available and adds available surgeries to the list
+	var/analyzerlocations = list(user.get_inactive_held_item(), user.get_item_by_slot(SLOT_L_STORE), user.get_item_by_slot(SLOT_R_STORE))
+	var/obj/item/healthanalyzer/advanced/adv = locate() in analyzerlocations
 	if(iscyborg(user) && !istype(adv))
 		var/mob/living/silicon/robot/R = user
 		adv = locate() in R.module.modules
