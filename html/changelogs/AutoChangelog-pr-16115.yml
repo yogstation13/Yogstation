@@ -1,0 +1,5 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscdel: "Surf & Turf is Not Real. Just use a tray and your choice of meats, fish, and veg."
+  - bugfix: "Fixed the missing fish related food sprites"
