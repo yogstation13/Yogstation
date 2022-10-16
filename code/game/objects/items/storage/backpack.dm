@@ -49,7 +49,6 @@
 /obj/item/boh_shell/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
-		var/obj/item/assembly/signaler/anomaly/A = I
 		to_chat(user, "[src] roars to life as you insert the anomaly core!")
 		new /obj/item/storage/backpack/holding(get_turf(src))
 		qdel(src)
