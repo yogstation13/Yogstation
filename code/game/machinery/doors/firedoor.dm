@@ -71,7 +71,8 @@
 	affecting_areas.Cut()
 	var/turf/T = get_turf(src)
 	spawn(0)
-		T.ImmediateCalculateAdjacentTurfs()
+		if(T)
+			T.ImmediateCalculateAdjacentTurfs()
 	return ..()
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
