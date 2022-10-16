@@ -14,6 +14,10 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
+"e" = (
+/mob/living/simple_animal/hostile/tar/dryad,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
 "f" = (
 /obj/structure/stone_tile/slab/burnt,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
@@ -53,16 +57,6 @@
 "q" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/water/toxic_pit,
-/area/ruin/unpowered/tar_temple)
-"r" = (
-/obj/structure/stone_tile/slab,
-/mob/living/simple_animal/hostile/tar/dryad,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
-/area/ruin/unpowered/tar_temple)
-"t" = (
-/obj/structure/stone_tile/slab,
-/mob/living/simple_animal/hostile/tar/shade,
-/turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "v" = (
 /obj/structure/bonfire/prelit,
@@ -105,6 +99,10 @@
 	dir = 5
 	},
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"H" = (
+/mob/living/simple_animal/hostile/tar/shade,
+/turf/open/water/tar_basin,
 /area/ruin/unpowered/tar_temple)
 "I" = (
 /obj/effect/decal/remains/human,
@@ -573,8 +571,8 @@ N
 W
 N
 N
-a
-a
+y
+y
 g
 g
 i
@@ -608,8 +606,8 @@ x
 N
 n
 N
-a
-a
+y
+y
 g
 i
 Q
@@ -640,10 +638,10 @@ x
 x
 N
 N
-K
-t
-N
-a
+y
+H
+y
+y
 g
 i
 i
@@ -674,10 +672,10 @@ x
 x
 x
 x
-x
+y
 L
 R
-a
+y
 g
 i
 z
@@ -708,10 +706,10 @@ y
 y
 y
 y
-x
+y
 x
 N
-a
+y
 g
 i
 i
@@ -742,10 +740,10 @@ y
 y
 y
 y
-r
+e
 G
 N
-a
+y
 g
 i
 i
@@ -776,10 +774,10 @@ x
 x
 x
 x
-x
+y
 k
 N
-a
+y
 g
 i
 i
@@ -810,10 +808,10 @@ x
 x
 N
 P
-A
-x
-N
-a
+y
+y
+y
+y
 g
 i
 i
@@ -846,8 +844,8 @@ x
 N
 N
 N
-a
-a
+y
+y
 g
 i
 i
@@ -879,8 +877,8 @@ N
 m
 N
 N
-a
-a
+y
+y
 g
 g
 i

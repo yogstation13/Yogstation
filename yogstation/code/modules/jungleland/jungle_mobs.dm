@@ -531,7 +531,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/emeraldspider
 	name = "emerald spider"
-	desc = "A big, angry, venomous spider. Flings webs at prey to slow them down, before closing in on it's prey."
+	desc = "A big, angry, venomous spider. Flings webs at prey to slow them down, before closing in on them."
 	icon_state = "emeraldspider"
 	icon_living = "emeraldspider"
 	icon_dead = "emeraldspider_dead"
@@ -640,7 +640,7 @@
 	icon_state = "tar_faithless"
 	health = 200
 	maxHealth = 200
-	melee_damage_lower = 15
+	melee_damage_lower = 25
 	melee_damage_upper = 30
 
 /mob/living/simple_animal/hostile/tar/amalgamation/AttackingTarget()
