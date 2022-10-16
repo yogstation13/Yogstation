@@ -6,7 +6,7 @@
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/stinger_sword
-	name = "Ominous Crystal"
+	name = "Stinger Sword"
 	result = /obj/item/melee/stinger_sword
 	reqs = list(/obj/item/stinger = 1, /obj/item/stack/rods =  2, /obj/item/stack/sheet/slime = 4)
 	time = 20 SECONDS
