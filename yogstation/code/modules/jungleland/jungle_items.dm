@@ -26,6 +26,8 @@
 	name = "Broken Crystal"
 	desc = "A broken crystal, it has an ominous dark glow around it. It looks like it was once part of something larger, and could be repaired..."
 	icon = 'yogstation/icons/obj/jungle.dmi'
+	max_integrity = 400
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/tar_crystal/Initialize()
 	. = ..()
@@ -36,6 +38,8 @@
 	desc = "a crystal that has been repaired from 3 parts, it emantes dark energy."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "tar_crystal"
+	max_integrity = 400
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/explosive_shroom
 	name = "Explosive Shroom"

@@ -638,7 +638,7 @@
 	icon_state = "tar_faithless"
 	health = 200
 	maxHealth = 200
-	melee_damage_lower = 15
+	melee_damage_lower = 25
 	melee_damage_upper = 30
 
 /mob/living/simple_animal/hostile/tar/amalgamation/AttackingTarget()
