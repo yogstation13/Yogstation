@@ -344,8 +344,9 @@ GLOBAL_LIST_INIT(nests, list())
 	monster.setMaxHealth(monster.maxHealth * 1.5)
 	monster.health = monster.maxHealth * 1.5
 	monster.move_to_delay = max(monster.move_to_delay / 2, 1)
-	monster.melee_damage_lower *= 1.5 
-	monster.melee_damage_upper *= 1.5
+	if(monster.alpha_damage_boost == 1) //mobs with really high damage amounts may be exempt from giant damage boosts
+		monster.melee_damage_lower *= 1.5 
+		monster.melee_damage_upper *= 1.5
 	monster.faction = list("mining")
 	var/matrix/M = matrix()
 	M.Scale(1.5,1.5)

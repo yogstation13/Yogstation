@@ -11,6 +11,7 @@
 	maxbodytemp = INFINITY
 	pressure_resistance = 100
 	mob_size = MOB_SIZE_LARGE
+	var/alpha_damage_boost = 1 //if a mob has really high damage it may be unfair to boost it further when making an alpha version.
 
 /mob/living/simple_animal/hostile/yog_jungle/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
@@ -174,6 +175,7 @@
 	melee_damage_upper = 55 // ouch
 	rapid_melee = 2
 	butcher_results = list(/obj/item/stack/sheet/skin_twister = 2)
+	alpha_damage_boost = 0 // 30-55 damage is too much to be boosts by 50%
 	var/human_lure = FALSE
 	var/obj/item/encryptionkey/lure_encryption_key
 	var/victim_ref
