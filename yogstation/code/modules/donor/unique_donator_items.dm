@@ -170,6 +170,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "Nightmare1243"
 	unlock_path = /obj/item/storage/box/isotope
 
+/datum/donator_gear/cuackles
+	name = "punk jacket"
+	ckey = "cuackles"
+	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
+
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"

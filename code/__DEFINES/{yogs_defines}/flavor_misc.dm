@@ -7,6 +7,7 @@
 #define PDA_THEME_SYNTH "ntos_synth"
 #define PDA_THEME_SPOOKY "ntos_spooky"
 #define PDA_THEME_TERMINAL "ntos_terminal"
+#define PDA_THEME_SYNDICATE "syndicate"
 
 #define PDA_THEME_TITLE_NTOS "ntOS"
 #define PDA_THEME_TITLE_DARK_MODE "Dark Mode"
@@ -16,6 +17,7 @@
 #define PDA_THEME_TITLE_SYNTH "Synthwave"
 #define PDA_THEME_TITLE_SPOOKY "Eldritch"
 #define PDA_THEME_TITLE_TERMINAL "Terminal"
+#define PDA_THEME_TITLE_SYNDICATE "Syndicate"
 
 GLOBAL_LIST_INIT(pda_themes, list(
 	PDA_THEME_TITLE_NTOS = PDA_THEME_NTOS, 
