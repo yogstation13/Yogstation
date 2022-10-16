@@ -28,7 +28,7 @@ export const NtosPdaMsg = (props, context) => {
   return (
     <NtosWindow
       theme={PC_device_theme}
-      width={400}
+      width={600}
       height={480}>
       <NtosWindow.Content scrollable>
         {showing_messages ?
@@ -131,7 +131,7 @@ export const NtosPdaMsg = (props, context) => {
                     <Grid.Column size={4}>
                       <Button.Input
                         fluid
-                        content={pdadata[0].substring(0, 35)}
+                        content={pdadata[0].substring(0, 55)}
                         disabled={!can_message || !receiving}
                         color={can_message && receiving ? 'blue' : 'primary'}
                         onCommit={(e, value) => act('PRG_sendmsg', {

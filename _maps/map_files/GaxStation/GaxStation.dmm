@@ -17273,6 +17273,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"iEB" = (
+/mob/living/simple_animal/pet/axolotl/bap,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "iEC" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 5
@@ -85692,7 +85696,7 @@ ycV
 vqe
 wrC
 wrC
-vqe
+iEB
 rza
 wrC
 vqe

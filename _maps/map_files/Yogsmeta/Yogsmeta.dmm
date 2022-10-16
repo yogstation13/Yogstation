@@ -61168,6 +61168,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/toilet/auxiliary)
+"ilD" = (
+/mob/living/simple_animal/pet/axolotl/bop,
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "ilS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -76076,6 +76080,10 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"soX" = (
+/mob/living/simple_animal/pet/axolotl/bap,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "spl" = (
 /obj/machinery/disposal/bin{
 	pixel_x = 2;
@@ -119699,7 +119707,7 @@ bSW
 bUh
 bVu
 bWT
-bYj
+soX
 bWT
 ckV
 twN
@@ -139213,7 +139221,7 @@ qpc
 qpG
 btL
 nPX
-bxq
+ilD
 fmK
 lvh
 bCD
