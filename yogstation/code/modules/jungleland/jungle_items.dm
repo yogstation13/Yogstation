@@ -24,7 +24,7 @@
 
 /obj/item/tar_crystal
 	name = "Broken Crystal"
-	desc = "A broken crystal, it has an ominous dark glow around it."
+	desc = "A broken crystal, it has an ominous dark glow around it. It looks like it was once part of something larger, and could be repaired..."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 
 /obj/item/tar_crystal/Initialize()
@@ -108,7 +108,7 @@
 	reagents_add = list(/datum/reagent/quinine = 0.1, /datum/reagent/medicine/atropine = 0.05, /datum/reagent/medicine/omnizine = 0.1)
 
 /obj/item/organ/regenerative_core/dryad
-	desc = "Heart of a dryad. It can be used to heal completely, but it will rapidly decay into uselessness."
+	desc = "Heart of a dryad. It can be used to heal completely and cleanse the body of certain jungle toxins, but it will rapidly decay into uselessness."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "dryad_heart"
 	status_effect = /datum/status_effect/regenerative_core/dryad

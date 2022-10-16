@@ -97,7 +97,7 @@
 
 /obj/screen/alert/status_effect/toxic_buildup
 	name = "Toxic buildup"
-	desc = "Toxins have built up in your system, they cause sustained toxin damage, and once they leave your system cause additional harm as your bodies adjustments to the toxicity backfire."
+	desc = "Toxins have built up in your system, they cause sustained toxin damage, and once they leave your system cause additional harm as your bodies adjustments to the toxicity backfire. Maybe something the dryads have could help?"
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "toxic_buildup"
 
