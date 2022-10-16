@@ -161,22 +161,18 @@
 	s.set_up(5, 1, src)
 	s.start()
 	var/mob/living/carbon/C = user
-	var/chosen_limb = rand(1,4)
 	var/datum/wound/blunt/severe/break_it = new
-	var/obj/item/bodypart/bone = new
 	///Picks limb to break. People with less limbs have a chance of it grapping at air
-	switch(chosen_limb)
-		if(1)
-			bone = C.get_bodypart(BODY_ZONE_L_LEG)
-		if(2)
-			bone = C.get_bodypart(BODY_ZONE_R_LEG)
-		if(3)
-			bone = C.get_bodypart(BODY_ZONE_R_ARM)
-		if(4)
-			bone = C.get_bodypart(BODY_ZONE_L_ARM)
-	to_chat(C,span_userdanger("The manipulator arms grapple after your [bone.name], attempting to break its bone!"))
-	break_it.apply_wound(bone)
-	bone.receive_damage(brute=50, updating_health=TRUE)
+	var/picked_bodypart = pick(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+	var/obj/item/bodypart/bone = C.get_bodypart(picked_bodypart)
+	if(bone){
+		to_chat(C,span_userdanger("The manipulator arms grapple after your [bone.name], attempting to break its bone!"))
+		break_it.apply_wound(bone)
+		bone.receive_damage(brute=50, updating_health=TRUE)
+	}
+	else{
+		to_chat(C,span_userdanger("The manipulator arms attempt to grab one of your limbs, but grapple air instead!"))
+	}
 
 /obj/machinery/mecha_part_fabricator/proc/reset(wire)
 	switch(wire)
