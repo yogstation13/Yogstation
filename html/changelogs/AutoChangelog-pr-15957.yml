@@ -1,5 +1,0 @@
-author: "TheRyeGuyWhoWillNowDie"
-delete-after: true 
-changes: 
-  - rscadd: "the research director's locker now contains a bag of holding, and the bag of holding is a grand theft item"
-  - tweak: "bags of holding now require an anomaly core to become functional"

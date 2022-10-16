@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "Cargo shuttle transit time default 30 seconds from 1 minute"
