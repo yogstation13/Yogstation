@@ -317,7 +317,7 @@
 
 /datum/status_effect/brazil_penance
 	id = "brazil_penance"
-	alert_type = /obj/screen/alert/status_effect/brazil_penance
+	alert_type = /atom/movable/screen/alert/status_effect/brazil_penance
 	///counts how close to escaping brazil the owner is
 	var/penance_left = 15
 	///sacrifices made to reduce penance_left, each is applied when leaving
@@ -325,12 +325,12 @@
 	///list of limbs to do stuff to
 	var/list/unspooked_limbs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 
-/obj/screen/alert/status_effect/brazil_penance
+/atom/movable/screen/alert/status_effect/brazil_penance
 	name = "Otherworldly Tarrif"
 	desc = "The things of this place want something from you. You won't be able to leave until enough has been taken."
 	icon_state = "shadow_mend"
 
-/obj/screen/alert/status_effect/brazil_penance/MouseEntered(location,control,params)
+/atom/movable/screen/alert/status_effect/brazil_penance/MouseEntered(location,control,params)
 	desc = initial(desc)
 	var/datum/status_effect/brazil_penance/P = attached_effect
 	desc += "<br><font size=3><b>You currently need to sacrifice [P.penance_left] marbles to escape.</b></font>"

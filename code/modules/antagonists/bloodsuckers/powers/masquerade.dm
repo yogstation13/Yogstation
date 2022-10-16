@@ -142,14 +142,14 @@
 	id = "masquerade"
 	duration = -1
 	tick_interval = -1
-	alert_type = /obj/screen/alert/status_effect/masquerade
+	alert_type = /atom/movable/screen/alert/status_effect/masquerade
 
-/obj/screen/alert/status_effect/masquerade
+/atom/movable/screen/alert/status_effect/masquerade
 	name = "Masquerade"
 	desc = "You are currently hiding your identity using the Masquerade power. This halts Vampiric healing."
 	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	icon_state = "power_human"
 
-/obj/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
+/atom/movable/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
 	desc = initial(desc)
 	return ..()

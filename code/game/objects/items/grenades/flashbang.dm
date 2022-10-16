@@ -30,7 +30,7 @@
 	if(iscyborg(M))
 		var/mob/living/silicon/robot/C = M
 		if(C.sensor_protection)					//Do other annoying stuff that isnt a hard stun if they're protected
-			C.overlay_fullscreen("reducedbang", /obj/screen/fullscreen/flash/static)
+			C.overlay_fullscreen("reducedbang", /atom/movable/screen/fullscreen/flash/static)
 			C.uneq_all()
 			C.stop_pulling()
 			C.break_all_cyborg_slots(TRUE)
