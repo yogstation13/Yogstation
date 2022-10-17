@@ -233,6 +233,30 @@
 	var/mob/living/carbon/C = target 
 	C.blood_volume -= force
 
+/obj/item/twohanded/stinger_trident	//an awesome trident made of fauna parts and metal. Is slightly superior to bonespear, though doesn't have slowdown/reach, since thats pretty bad vs jungle fauna.
+	name = "stinger trident"
+	desc = "a well-crafted trident made of metal and insect stingers tied together with still prickly meduracha tentacles."
+	force = 11
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "sting_trident0"
+	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	max_integrity = 100
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	force_wielded = 9					
+	throwforce = 24
+	throw_speed = 4
+	embedding = list("embedded_impact_pain_multiplier" = 3)
+	armour_penetration = 25				//Enhanced armor piercing
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "stung")
+	sharpness = SHARP_EDGED
+
+/obj/item/twohanded/stinger_trident/update_icon()  //Currently only here to fuck with the on-mob icons.
+	icon_state = "sting_trident[wielded]"
+	return
+
 /obj/item/slime_sling 
 	name = "slime sling"
 	desc = "a sling made out of organic slime... why are you aiming at me?"
