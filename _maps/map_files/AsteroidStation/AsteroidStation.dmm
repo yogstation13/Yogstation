@@ -40626,6 +40626,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
 	},
+/mob/living/simple_animal/pet/axolotl/bop,
 /turf/open/floor/plasteel/grimy,
 /area/maintenance/department/tcoms)
 "nbD" = (
@@ -42481,6 +42482,7 @@
 /area/vacant_room)
 "nHv" = (
 /obj/structure/table/wood,
+/mob/living/simple_animal/pet/catslug,
 /turf/open/floor/carpet/black,
 /area/maintenance/department/tcoms)
 "nIi" = (
@@ -56236,6 +56238,10 @@
 "sjG" = (
 /turf/closed/mineral/random/low_chance,
 /area/space/nearstation)
+"sjI" = (
+/mob/living/simple_animal/pet/axolotl/bap,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "sjS" = (
 /obj/structure/grille,
 /obj/structure/cable{
@@ -98230,7 +98236,7 @@ ape
 aBd
 aYP
 asE
-aYf
+sjI
 gbd
 aOm
 aSZ
