@@ -67,6 +67,12 @@
 				to_chat(user, span_warning("[src] attempts to shock you."))
 				user.electrocute_act(15,src)
 				return
+			to_chat(user, span_userdanger("[src] shocks you!")) //duplicate code because wearing gloves did nothing beforehand
+			user.emote("scream")
+			user.electrocute_act(15,src)
+			user.dropItemToGround(src, TRUE)
+			user.Paralyze(50)
+			return
 		else
 			to_chat(user, span_userdanger("[src] shocks you!"))
 			user.emote("scream")

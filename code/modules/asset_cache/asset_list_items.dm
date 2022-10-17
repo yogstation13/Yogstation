@@ -227,6 +227,23 @@
 		"boss6.gif" = 'icons/UI_Icons/Arcade/boss6.gif',
 	)
 
+/datum/asset/simple/minesweeper
+	assets = list(
+		"minesweeper_1.png" = 'icons/UI_Icons/Minesweeper/minesweeper_1.png',
+		"minesweeper_2.png" = 'icons/UI_Icons/Minesweeper/minesweeper_2.png',
+		"minesweeper_3.png" = 'icons/UI_Icons/Minesweeper/minesweeper_3.png',
+		"minesweeper_4.png" = 'icons/UI_Icons/Minesweeper/minesweeper_4.png',
+		"minesweeper_5.png" = 'icons/UI_Icons/Minesweeper/minesweeper_5.png',
+		"minesweeper_6.png" = 'icons/UI_Icons/Minesweeper/minesweeper_6.png',
+		"minesweeper_7.png" = 'icons/UI_Icons/Minesweeper/minesweeper_7.png',
+		"minesweeper_8.png" = 'icons/UI_Icons/Minesweeper/minesweeper_8.png',
+		"minesweeper_empty.png" = 'icons/UI_Icons/Minesweeper/minesweeper_empty.png',
+		"minesweeper_flag.png" = 'icons/UI_Icons/Minesweeper/minesweeper_flag.png',
+		"minesweeper_hidden.png" = 'icons/UI_Icons/Minesweeper/minesweeper_hidden.png',
+		"minesweeper_mine.png" = 'icons/UI_Icons/Minesweeper/minesweeper_mine.png',
+		"minesweeper_minehit.png" = 'icons/UI_Icons/Minesweeper/minesweeper_minehit.png',
+	)
+
 /datum/asset/spritesheet/simple/pills
 	name ="pills"
 	assets = list(

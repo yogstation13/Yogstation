@@ -15,7 +15,7 @@
 		return
 	. = ..()
 
-	current_underlay = mutable_appearance(LIGHTING_ICON, "transparent", source.z, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+	current_underlay = mutable_appearance(LIGHTING_ICON, "atransparent", source.z, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
 
 	affected_turf = source
 	if (affected_turf.lighting_object)
@@ -94,12 +94,12 @@
 	if((rr & gr & br & ar) && (rg + gg + bg + ag + rb + gb + bb + ab == 8))
 		//anything that passes the first case is very likely to pass the second, and addition is a little faster in this case
 		affected_turf.underlays -= current_underlay
-		current_underlay.icon_state = "transparent"
+		current_underlay.icon_state = "atransparent"
 		current_underlay.color = null
 		affected_turf.underlays += current_underlay
 	else if(!set_luminosity)
 		affected_turf.underlays -= current_underlay
-		current_underlay.icon_state = "dark"
+		current_underlay.icon_state = "adark"
 		current_underlay.color = null
 		affected_turf.underlays += current_underlay
 	else
