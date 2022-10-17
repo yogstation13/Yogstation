@@ -25,3 +25,13 @@
 	reqs = list(/obj/item/tar_crystal = 3)
 	time = 20 SECONDS
 	category = CAT_PRIMAL
+
+/datum/crafting_recipe/stinger_trident
+	name = "Stinger Trident"
+	result = /obj/item/twohanded/stinger_trident
+	reqs = list(/obj/item/stack/sheet/meduracha = 2,
+				/obj/item/stinger  = 3,
+				/obj/item/stack/rods = 4)
+	parts = list(/obj/item/shard = 1)
+	time = 6 SECONDS
+	category = CAT_PRIMAL
