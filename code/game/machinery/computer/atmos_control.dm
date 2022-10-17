@@ -132,6 +132,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 	var/data = list()
 
 	data["sensors"] = list()
+	data["max_rate"] = MAX_TRANSFER_RATE
 	for(var/id_tag in sensors)
 		var/long_name = sensors[id_tag]
 		var/list/info = sensor_information[id_tag]

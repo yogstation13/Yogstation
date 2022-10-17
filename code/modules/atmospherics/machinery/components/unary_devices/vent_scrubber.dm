@@ -34,7 +34,8 @@
 	..()
 	if(!id_tag)
 		id_tag = assign_uid_vents()
-
+	var/datum/gas_mixture/N = airs[1]
+	N.set_volume(200) // Increase the volume of the scrubber's node.
 	for(var/f in filter_types)
 		if(istext(f))
 			filter_types -= f

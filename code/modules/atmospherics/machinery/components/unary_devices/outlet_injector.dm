@@ -12,7 +12,7 @@
 
 	var/injecting = 0
 
-	var/volume_rate = 50
+	var/volume_rate = MAX_TRANSFER_RATE
 
 	var/frequency = 0
 	var/id = null
@@ -23,6 +23,10 @@
 
 	pipe_state = "injector"
 
+/obj/machinery/atmospherics/components/unary/vent_scrubber/New()
+	..()
+	var/datum/gas_mixture/N = airs[1]
+	N.set_volume(200) // Increase the volume of the scrubber's node.
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/CtrlClick(mob/user)
 	if(can_interact(user))
@@ -155,7 +159,7 @@
 	var/data = list()
 	data["on"] = on
 	data["rate"] = round(volume_rate)
-	data["max_rate"] = round(MAX_TRANSFER_RATE)
+	data["max_rate"] = round(200)
 	return data
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/ui_act(action, params)

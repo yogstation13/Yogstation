@@ -749,6 +749,7 @@ GENE SCANNER
 			combined_msg += span_notice("Temperature: [round(temperature - T0C,0.01)] &deg;C ([round(temperature, 0.01)] K)")
 
 		else
+			combined_msg += span_notice("Volume: [volume] L")
 			if(airs.len > 1)
 				combined_msg += span_notice("This node is empty!")
 			else

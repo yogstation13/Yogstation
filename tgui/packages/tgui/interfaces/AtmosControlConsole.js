@@ -64,7 +64,7 @@ export const AtmosControlConsole = (props, context) => {
                   unit="L/s"
                   width="63px"
                   minValue={0}
-                  maxValue={200}
+                  maxValue={data.max_rate}
                   // This takes an exceptionally long time to update
                   // due to being an async signal
                   suppressFlicker={2000}

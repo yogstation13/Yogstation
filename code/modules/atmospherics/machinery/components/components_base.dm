@@ -16,7 +16,7 @@
 	..()
 
 	for(var/i in 1 to device_type)
-		var/datum/gas_mixture/A = new(200)
+		var/datum/gas_mixture/A = new(MAX_TRANSFER_RATE)
 		airs[i] = A
 
 // Iconnery
