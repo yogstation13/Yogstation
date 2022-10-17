@@ -366,6 +366,7 @@
 	explosion_block = 2
 	normal_integrity = 400 // reverse engieneerd: 400 * 1.5 (sec lvl 6) = 600 = original
 	security_level = 6
+	rad_insulation = RAD_FULL_INSULATION
 
 //////////////////////////////////
 /*
@@ -409,6 +410,7 @@
 	normal_integrity = 500
 	security_level = 1
 	damage_deflection = 30
+	rad_insulation = RAD_FULL_INSULATION
 
 //////////////////////////////////
 /*
