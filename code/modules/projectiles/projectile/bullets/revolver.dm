@@ -71,6 +71,7 @@
 		if(!imp)
 			imp = new /obj/item/implant/tracking/tra32(M)
 			imp.implant(M)
+	return ..()
 
 // .357 (Syndie Revolver)
 
