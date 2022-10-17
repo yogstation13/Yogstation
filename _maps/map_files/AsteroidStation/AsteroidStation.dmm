@@ -27308,10 +27308,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"isI" = (
-/obj/structure/closet/gimmick/tacticool,
-/turf/open/floor/plating/asteroid,
-/area/space/nearstation)
 "isK" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plasteel,
@@ -59743,6 +59739,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
+"tuz" = (
+/obj/structure/closet{
+	icon_state = "syndicate"
+	},
+/obj/item/clothing/under/syndicate/tacticool,
+/obj/item/clothing/under/syndicate/tacticool,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/gloves/color/black,
+/turf/open/floor/plating/asteroid,
+/area/space/nearstation)
 "tuG" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden,
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
@@ -102767,7 +102775,7 @@ acb
 acb
 msb
 msb
-isI
+tuz
 lrc
 msb
 msb
