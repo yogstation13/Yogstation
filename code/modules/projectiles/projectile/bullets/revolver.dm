@@ -39,10 +39,10 @@
 	var/temperature = 100
 
 /obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
+	..()
 	if(isliving(target))
 		var/mob/living/M = target
 		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
-	return ..()
 
 /obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
 	name = ".38 Gutterpunch bullet"
