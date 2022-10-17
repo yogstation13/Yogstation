@@ -58,8 +58,9 @@
 		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
-	if(istype(P, /obj/item/projectile/bullet/shotgun/slug/uranium) || istype(P, /obj/item/projectile/bullet/a357/heartpiercer) || istype(P, /obj/item/projectile/bullet/m308/pen)) //snowflake code
-		return P.on_hit(src, armor)
+	if(P.penetrating && (P.penetration_type == 0 || P.penetration_type == 2) && P.penetrations > 0)
+		P.penetrations -= 1
+		return P.on_hit(src, armor) && BULLET_ACT_FORCE_PIERCE
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
