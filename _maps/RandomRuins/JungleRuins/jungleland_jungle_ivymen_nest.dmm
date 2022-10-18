@@ -206,6 +206,12 @@
 "qA" = (
 /turf/closed/wall/mineral/wood,
 /area/template_noop)
+"se" = (
+/mob/living/simple_animal/hostile/asteroid/gutlunch/guthen{
+	desc = "Some strange bug that doesn't look like it comes from here. Eats dead things and produces a thick and nutritious milk."
+	},
+/turf/open/indestructible/grass,
+/area/ruin/unpowered/ivymen)
 "uo" = (
 /obj/item/flashlight/lantern{
 	on = 1
@@ -524,7 +530,7 @@ al
 ai
 aY
 aY
-aY
+se
 al
 al
 ag
