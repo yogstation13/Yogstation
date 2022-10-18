@@ -427,7 +427,7 @@
 
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
-		if(!sprites[sprite_name])
+		if(!sprites[imgid])
 			Insert(imgid, I)
 	return ..()
 
