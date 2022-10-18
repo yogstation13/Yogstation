@@ -427,7 +427,8 @@
 
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
-		Insert(imgid, I)
+		if(!sprites[sprite_name])
+			Insert(imgid, I)
 	return ..()
 
 /datum/asset/simple/genetics
