@@ -152,14 +152,14 @@
 	return ..()
 /**
  * All the negative wire effects
- * Zap doesnt actually zap, it breaks one limb (Because pain is to be had)
+ * Break wire breaks one limb (Because pain is to be had)
 */
 /obj/machinery/mecha_part_fabricator/_try_interact(mob/user)
 	if(seconds_electrified && !(stat & NOPOWER))
 		if(shock(user, 100))
 			return
 
-/obj/machinery/mecha_part_fabricator/proc/wire_zap(mob/user)
+/obj/machinery/mecha_part_fabricator/proc/wire_break(mob/user)
 	if(stat & (BROKEN|NOPOWER))
 		return FALSE
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

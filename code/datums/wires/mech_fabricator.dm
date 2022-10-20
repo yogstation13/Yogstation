@@ -7,7 +7,7 @@
 		///Allows anyone to use the fabricator, still makes it unable to make combat mechs
 		WIRE_HACK,
 		///Instead of shocking, makes fabricator hands lash out and break a random limb
-		WIRE_ZAP,
+		WIRE_BREAK,
 		///This one shocks the machine, but only temporarily.
 		WIRE_SHOCK
 	)
@@ -34,9 +34,9 @@
 			holder.visible_message(span_notice("[icon2html(F, viewers(holder))] The fabricator's control panel blinks temporarily."))
 			F.hacked = TRUE
 			addtimer(CALLBACK(F, /obj/machinery/mecha_part_fabricator.proc/reset, wire), 5)
-		if(WIRE_ZAP)
+		if(WIRE_BREAK)
 			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The fabricator's hands shake and twist aggresively, grapping at limbs!"))
-			F.wire_zap(usr)
+			F.wire_break(usr)
 		if(WIRE_SHOCK)
 			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The cable sparks faintly."))
 			F.seconds_electrified = MACHINE_DEFAULT_ELECTRIFY_TIME
