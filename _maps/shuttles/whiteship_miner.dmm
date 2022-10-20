@@ -511,16 +511,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned)
-"sM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/sign/warning/deathsposal{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "tr" = (
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
@@ -1048,10 +1038,13 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
-"LF" = (
+"Ld" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
+	},
+/obj/structure/sign/warning/deathsposal{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -1780,7 +1773,7 @@ ih
 ih
 Sg
 ih
-LF
+Ld
 EI
 Mw
 hU
@@ -1811,7 +1804,7 @@ Oh
 vW
 bI
 AP
-sM
+PM
 EO
 ih
 Fd
