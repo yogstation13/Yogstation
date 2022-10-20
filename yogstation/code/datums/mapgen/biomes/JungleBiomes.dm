@@ -45,7 +45,7 @@
 	loose_flora_density = 10
 	cellular_noise_map_id = LOW_DENSITY
 	fauna_density = 0.5 
-	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 33,/mob/living/simple_animal/hostile/asteroid/goliath/beast = 33,/mob/living/simple_animal/hostile/asteroid/goldgrub = 32,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1)
+	fauna_types = list(/mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random = 33,/mob/living/simple_animal/hostile/asteroid/goliath/beast = 33,/mob/living/simple_animal/hostile/asteroid/goldgrub = 25,/mob/living/simple_animal/hostile/yog_jungle/skin_twister = 1, /mob/living/simple_animal/hostile/asteroid/marrowweaver = 7)
 	this_area = /area/jungleland/barren_rocks
 
 /datum/biome/jungleland/dry_swamp
