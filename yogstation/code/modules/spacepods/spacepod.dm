@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		for(var/frame_type in frame_piece_types)
 			var/obj/item/pod_parts/pod_frame/F = new frame_type
 			F.dir = target_dir
-			F.anchored = TRUE
+			F.set_anchored(TRUE)
 			if(1 == turn(F.dir, -F.link_angle))
 				current_piece = F
 			frame_pieces += F

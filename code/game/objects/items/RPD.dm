@@ -473,8 +473,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			if(DISPOSALS_CATEGORY) //Making disposals pipes
 				if(!can_make_pipe)
 					return ..()
-				A = get_turf(A)
-				if(is_blocked_turf(A))
+				var/turf/T = get_turf(A)
+				if(T.is_blocked_turf())
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a disposals pipe..."))
@@ -498,8 +498,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			if(TRANSIT_CATEGORY) //Making transit tubes
 				if(!can_make_pipe)
 					return ..()
-				A = get_turf(A)
-				if(is_blocked_turf(A))
+				var/turf/T = get_turf(A)
+				if(T.is_blocked_turf())
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a transit tube..."))
@@ -527,8 +527,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			if(PLUMBING_CATEGORY) //Making pancakes
 				if(!can_make_pipe)
 					return ..()
-				A = get_turf(A)
-				if(is_blocked_turf(A))
+				var/turf/T = get_turf(A)
+				if(T.is_blocked_turf())
 					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
 				to_chat(user, span_notice("You start building a fluid duct..."))

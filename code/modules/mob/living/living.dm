@@ -1460,6 +1460,45 @@
             return TRUE
     return FALSE
 
+/**
+ * Apply a martial art move from src to target.
+ *
+ * This is used to process martial art attacks against nonhumans.
+ * It is also used to process martial art attacks by nonhumans, even against humans
+ * Human vs human attacks are handled in species code right now.
+ */
+/mob/living/proc/apply_martial_art(mob/living/target, modifiers, is_grab = FALSE)
+	if(HAS_TRAIT(target, TRAIT_MARTIAL_ARTS_IMMUNE))
+		return MARTIAL_ATTACK_INVALID
+	var/datum/martial_art/style = mind?.martial_art
+	if (!style)
+		return MARTIAL_ATTACK_INVALID
+	// will return boolean below since it's not invalid
+	if (is_grab)
+		return style.grab_act(src, target)
+	if (a_intent == INTENT_DISARM)
+		return style.disarm_act(src, target)
+	if(a_intent == INTENT_HARM)
+		if (HAS_TRAIT(src, TRAIT_PACIFISM))
+			return FALSE
+		return style.harm_act(src, target)
+	return style.help_act(src, target)
+
+/// Updates the grab state of the mob and updates movespeed
+/* When we actually use movespeed datums reimplement this */
+/mob/living/setGrabState(newstate)
+	. = ..()
+	// switch(grab_state)
+	// 	if(GRAB_PASSIVE)
+	// 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
+	// 	if(GRAB_AGGRESSIVE)
+	// 		add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
+	// 	if(GRAB_NECK)
+	// 		add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/neck)
+	// 	if(GRAB_KILL)
+	// 		add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/kill)
+	return
+
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
 	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects

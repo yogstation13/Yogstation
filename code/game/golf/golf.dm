@@ -17,7 +17,7 @@
 				user.visible_message("[user.name] secures [src] to the floor.", \
 				span_notice("You secure [src] to the floor."), \
 			"	[span_italics("You hear a ratchet")]")
-				src.anchored = 1
+				src.set_anchored(1)
 			if(1)
 				anchored = 0
 				icon_state = initial(icon_state)
@@ -25,7 +25,7 @@
 				user.visible_message("[user.name] unsecures [src]  from the floor.", \
 				span_notice("You unwrench [src] from the floor."), \
 				span_italics("You hear a ratchet."))
-				src.anchored = 0
+				src.set_anchored(0)
 
 /obj/machinery/golfhole/Cross(atom/movable/mover, turf/target)
 	. = ..()

@@ -230,7 +230,7 @@
 	flick("[cyborg_base_icon]_transform", R)
 	R.notransform = TRUE
 	R.SetLockdown(1)
-	R.anchored = TRUE
+	R.set_anchored(TRUE)
 	R.logevent("Chassis configuration has been set to [name].")
 	sleep(0.1 SECONDS)
 	for(var/i in 1 to 4)
@@ -239,7 +239,7 @@
 	if(!prev_lockcharge)
 		R.SetLockdown(0)
 	R.setDir(SOUTH)
-	R.anchored = FALSE
+	R.set_anchored(FALSE)
 	R.notransform = FALSE
 	R.updatehealth()
 	R.update_icons()

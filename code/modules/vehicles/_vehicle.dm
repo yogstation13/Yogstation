@@ -31,6 +31,7 @@
 	autogrant_actions_controller = list()
 	occupant_actions = list()
 	generate_actions()
+	RegisterSignal(src, COMSIG_RIDDEN_DRIVER_MOVE, .proc/driver_move)
 
 /obj/vehicle/examine(mob/user)
 	. = ..()
@@ -107,15 +108,24 @@
 
 /obj/vehicle/proc/after_remove_occupant(mob/M)
 
-/obj/vehicle/relaymove(mob/user, direction)
+// /obj/vehicle/relaymove(mob/user, direction)
+// 	if(is_driver(user))
+// 		return driver_move(user, direction)
+// 	return FALSE
+
+/obj/vehicle/relaymove(mob/living/user, direction)
+	if(!canmove)
+		return FALSE
 	if(is_driver(user))
-		return driver_move(user, direction)
+		return relaydrive(user, direction)
 	return FALSE
 
 /obj/vehicle/proc/driver_move(mob/user, direction)
+	if(lastmove + (movedelay * CONFIG_GET(number/movedelay/run_delay)) > world.time)
+		return COMPONENT_DRIVER_BLOCK_MOVE
 	if(key_type && !is_key(inserted_key))
 		to_chat(user, span_warning("[src] has no key inserted!"))
-		return FALSE
+		return COMPONENT_DRIVER_BLOCK_MOVE
 	if(!default_driver_move)
 		return
 	if(!canmove)
@@ -124,8 +134,6 @@
 	return TRUE
 
 /obj/vehicle/proc/vehicle_move(direction)
-	if(lastmove + (movedelay * CONFIG_GET(number/movedelay/run_delay)) > world.time)
-		return FALSE
 	lastmove = world.time
 	if(trailer)
 		var/dir_to_move = get_dir(trailer.loc, loc)

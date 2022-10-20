@@ -69,9 +69,15 @@
 	return I.attack(src, user)
 
 
-/obj/item/proc/attack(mob/living/M, mob/living/user)
-	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
+/obj/item/proc/attack(mob/living/target_mob, mob/living/user)
+	var/signal_return = SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, target_mob, user)
+	if(signal_return & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return TRUE
+	if(signal_return & COMPONENT_SKIP_ATTACK)
+		return
+	
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, target_mob, user)
+	
 	if(item_flags & NOBLUDGEON)
 		return
 
@@ -80,8 +86,8 @@
 		return TRUE
 
 	if((item_flags & SURGICAL_TOOL) && (user.a_intent != INTENT_HARM)) // checks for if harm intent with surgery tool
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
+		if(iscarbon(target_mob))
+			var/mob/living/carbon/C = target_mob
 			for(var/i in C.all_wounds)
 				var/datum/wound/W = i
 				if(W.try_treating(src, user))
@@ -94,16 +100,16 @@
 	else if(hitsound)
 		playsound(loc, hitsound, get_clamped_volume(), 1, -1)
 
-	M.lastattacker = user.real_name
-	M.lastattackerckey = user.ckey
+	target_mob.lastattacker = user.real_name
+	target_mob.lastattackerckey = user.ckey
 
 	if(force)
-		M.last_damage = name
+		target_mob.last_damage = name
 
-	user.do_attack_animation(M)
-	M.attacked_by(src, user)
+	user.do_attack_animation(target_mob)
+	target_mob.attacked_by(src, user)
 
-	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	log_combat(user, target_mob, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
 
 	take_damage(rand(weapon_stats[DAMAGE_LOW], weapon_stats[DAMAGE_HIGH]), sound_effect = FALSE)

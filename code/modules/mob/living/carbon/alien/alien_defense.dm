@@ -50,23 +50,26 @@ In all, this is a lot like the monkey code. /N
 	return attack_alien(L)
 
 
-/mob/living/carbon/alien/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/alien/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	if(..())	//to allow surgery to return properly.
-		return 0
+		return FALSE
+	
+	var/martial_result = user.apply_martial_art(src, modifiers)
+	if (martial_result != MARTIAL_ATTACK_INVALID)
+		return martial_result
 
-	switch(M.a_intent)
+	switch(user.a_intent)
 		if(INTENT_HELP)
-			help_shake_act(M)
+			help_shake_act(user)
 		if(INTENT_GRAB)
-			grabbedby(M)
+			grabbedby(user)
 		if (INTENT_HARM)
-			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-			return 1
+			user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+			return TRUE
 		if(INTENT_DISARM)
-			M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
-			return 1
-	return 0
-
+			user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
+			return TRUE
+	return FALSE
 
 /mob/living/carbon/alien/attack_paw(mob/living/carbon/monkey/M)
 	if(..())

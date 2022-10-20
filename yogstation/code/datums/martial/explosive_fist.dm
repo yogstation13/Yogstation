@@ -162,7 +162,7 @@
 			streak = ""
 		else
 			if(A.grab_state < GRAB_NECK)
-				A.grab_state = GRAB_NECK
+				A.setGrabState(GRAB_NECK)
 			if(!(A.pulling == D))
 				D.grabbedby(A, 1)
 			D.visible_message(span_danger("[A] violently grabs [D]'s neck!"), \

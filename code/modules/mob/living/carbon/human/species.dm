@@ -1513,7 +1513,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	if(M)
 		M.handle_counter(target, user)
 		return FALSE
-	if(attacker_style && attacker_style.grab_act(user,target))
+	if(attacker_style?.grab_act(user,target) == MARTIAL_ATTACK_SUCCESS)
 		return TRUE
 	else
 		target.grabbedby(user)
@@ -2271,6 +2271,10 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		. |= BIO_JUST_FLESH
 	if(HAS_BONE in species_traits)
 		. |= BIO_JUST_BONE
+
+///Species override for unarmed attacks because the attack_hand proc was made by a mouth-breathing troglodyte on a tricycle. Also to whoever thought it would be a good idea to make it so the original spec_unarmedattack was not actually linked to unarmed attack needs to be checked by a doctor because they clearly have a vast empty space in their head.
+/datum/species/proc/spec_unarmedattack(mob/living/carbon/human/user, atom/target, modifiers)
+	return FALSE
 
 /datum/species/proc/get_scream_sound(mob/living/carbon/human/H)
 	if(islist(screamsound))

@@ -773,7 +773,7 @@
 		R.notransform = TRUE
 		var/prev_lockcharge = R.lockcharge
 		R.SetLockdown(1)
-		R.anchored = TRUE
+		R.set_anchored(TRUE)
 		R.expansion_count++
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(1, R.loc)
@@ -784,7 +784,7 @@
 			sleep(1.2 SECONDS)
 		if(!prev_lockcharge)
 			R.SetLockdown(0)
-		R.anchored = FALSE
+		R.set_anchored(FALSE)
 		R.notransform = FALSE
 		R.resize = 2
 		R.update_transform()

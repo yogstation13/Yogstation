@@ -1,11 +1,3 @@
-//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
-#define RANGE_TURFS(RADIUS, CENTER) \
-  block( \
-    locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-  )
-
-#define Z_TURFS(ZLEVEL) block(locate(1,1,ZLEVEL), locate(world.maxx, world.maxy, ZLEVEL))
 #define CULT_POLL_WAIT 2400
 
 /proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
@@ -718,13 +710,14 @@
 
 		// We check if both the turf is a floor, and that it's actually in the area.
 		// We also want a location that's clear of any obstructions.
+		if (specific_area && !istype(get_area(found_turf), specific_area))
+			continue
 		if (specific_area)
 			if (!istype(turf_area, specific_area))
 				continue
-
-		if (!isspaceturf(found_turf))
-			if (!is_blocked_turf(found_turf))
-				possible_loc.Add(found_turf)
+		
+		if (!isgroundlessturf(found_turf) && !found_turf.is_blocked_turf())
+			possible_loc.Add(found_turf)
 
 	// Need at least one free location.
 	if (possible_loc.len < 1)

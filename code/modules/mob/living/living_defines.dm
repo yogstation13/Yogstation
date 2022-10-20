@@ -145,3 +145,6 @@
 
 	//Last item/projectile that damaged this mob, not including surgery
 	var/last_damage = ""
+
+	/// Is this mob allowed to be buckled/unbuckled to/from things?
+	var/can_buckle_to = TRUE

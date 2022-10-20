@@ -68,11 +68,11 @@
 	var/list/achors = thearea.teleport_anchors
 	if(achors.len)		//check the areas prefered teleportation list if it is empty just use a random enpty tile like before
 		for(var/turf/T in achors)
-			if(!is_blocked_turf(T))
+			if(!T.is_blocked_turf())
 				L += T
 	if(!L.len)
 		for(var/turf/T in get_area_turfs(thearea.type))
-			if(!is_blocked_turf(T))
+			if(!T.is_blocked_turf())
 				L += T
 
 	if(!L.len)

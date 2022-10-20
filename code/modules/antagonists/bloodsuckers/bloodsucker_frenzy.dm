@@ -11,7 +11,7 @@
 /datum/martial_art/frenzygrab/grab_act(mob/living/user, mob/living/target)
 	if(user != target)
 		target.grabbedby(user)
-		user.grab_state = GRAB_AGGRESSIVE
+		user.setGrabState(GRAB_AGGRESSIVE)
 		restraining = TRUE
 		return TRUE
 	..()

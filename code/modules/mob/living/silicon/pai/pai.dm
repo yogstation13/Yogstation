@@ -18,6 +18,7 @@
 	held_rh = 'icons/mob/pai_item_rh.dmi'
 	held_icon = 'icons/mob/pai_item_head.dmi'
 	var/network = "ss13"
+	can_buckle_to = FALSE
 	var/obj/machinery/camera/current = null
 
 	var/ram = 100	// Used as currency to purchase different abilities

@@ -77,6 +77,41 @@
 	text_gain_indication = span_notice("You feel pressure building up behind your eyes.")
 	limb_req = BODY_ZONE_HEAD
 
-/datum/mutation/human/laser_eyes/on_ranged_attack(atom/target, mouseparams)
-	if(owner.a_intent == INTENT_HARM)
-		owner.LaserEyes(target, mouseparams)
+/datum/mutation/human/laser_eyes/New(class_ = MUT_OTHER, timer, datum/mutation/human/copymut)
+	..()
+	if(!(type in visual_indicators))
+		visual_indicators[type] = list(mutable_appearance('icons/effects/genetics.dmi', "lasereyes", -FRONT_MUTATIONS_LAYER))
+
+/datum/mutation/human/laser_eyes/on_acquiring(mob/living/carbon/human/H)
+	. = ..()
+	if(.)
+		return
+	RegisterSignal(H, COMSIG_MOB_ATTACK_RANGED, .proc/on_ranged_attack)
+
+/datum/mutation/human/laser_eyes/on_losing(mob/living/carbon/human/H)
+	. = ..()
+	if(.)
+		return
+	UnregisterSignal(H, COMSIG_MOB_ATTACK_RANGED)
+
+/datum/mutation/human/laser_eyes/get_visual_indicator()
+	return visual_indicators[type][1]
+
+/datum/mutation/human/laser_eyes/proc/on_ranged_attack(mob/living/carbon/human/source, atom/target, modifiers)
+	if(!owner.a_intent == INTENT_HARM)
+		return
+	to_chat(source, span_warning("You shoot with your laser eyes!"))
+	source.changeNext_move(CLICK_CD_RANGE)
+	source.newtonian_move(get_dir(target, source))
+	var/obj/item/projectile/beam/laser_eyes/LE = new(source.loc)
+	LE.firer = source
+	LE.def_zone = ran_zone(source.zone_selected)
+	LE.preparePixelProjectile(target, source, modifiers)
+	INVOKE_ASYNC(LE, /obj/item/projectile.proc/fire)
+	playsound(source, 'sound/weapons/taser2.ogg', 75, TRUE)
+
+///Projectile type used by laser eyes
+/obj/item/projectile/beam/laser_eyes
+	name = "beam"
+	icon = 'icons/effects/genetics.dmi'
+	icon_state = "eyelasers"

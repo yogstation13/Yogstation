@@ -79,7 +79,7 @@
 			T.reconsider_lights()
 
 
-/atom/movable/Moved(atom/OldLoc, Dir)
+/atom/movable/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	var/datum/light_source/L
 	var/thing

@@ -476,7 +476,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_MOVE_FLYING "move_flying"
 #define TRAIT_MOVE_VENTCRAWLING "move_ventcrawling"
 #define TRAIT_MOVE_FLOATING "move_floating"
-#define TRAIT_MOVE_UNSTOPPABLE "move_phasing"
+#define TRAIT_MOVE_PHASING "move_phasing"
+#define TRAIT_MOVE_UNSTOPPABLE "move_unstoppable"
 /// Disables the floating animation. See above.
 #define TRAIT_NO_FLOATING_ANIM "no-floating-animation"
 

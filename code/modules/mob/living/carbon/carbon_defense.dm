@@ -253,7 +253,7 @@
 	return FALSE
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/monkey/M)
+/mob/living/carbon/attack_paw(mob/living/carbon/monkey/M, list/modifiers)
 
 	if(can_inject(M, TRUE))
 		for(var/thing in diseases)

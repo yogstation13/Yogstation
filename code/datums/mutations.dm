@@ -88,12 +88,6 @@
 /datum/mutation/human/proc/get_visual_indicator()
 	return
 
-/datum/mutation/human/proc/on_attack_hand( atom/target, proximity)
-	return
-
-/datum/mutation/human/proc/on_ranged_attack(atom/target)
-	return
-
 /datum/mutation/human/proc/on_life()
 	return
 

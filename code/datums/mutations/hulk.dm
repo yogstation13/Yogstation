@@ -7,6 +7,8 @@
 	text_gain_indication = span_notice("Your muscles hurt!")
 	health_req = 25
 	instability = 50
+	var/scream_delay = 50
+	var/last_scream = 0
 	class = MUT_OTHER
 	locked = TRUE
 
@@ -19,10 +21,23 @@
 	owner.dna.species.handle_mutant_bodyparts(owner)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "hulk", /datum/mood_event/hulk)
 	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/on_attack_hand)
 
-/datum/mutation/human/hulk/on_attack_hand(atom/target, proximity)
-	if(proximity) //no telekinetic hulk attack
-		return target.attack_hulk(owner)
+/datum/mutation/human/hulk/proc/on_attack_hand(mob/living/carbon/human/source, atom/target, proximity, modifiers)
+	if(!proximity)
+		return
+	if(target.attack_hulk(owner))
+		if(world.time > (last_scream + scream_delay))
+			last_scream = world.time
+			INVOKE_ASYNC(src, .proc/scream_attack, source)
+		log_combat(source, target, "punched", "hulk powers")
+		source.do_attack_animation(target, ATTACK_EFFECT_SMASH)
+		source.changeNext_move(CLICK_CD_MELEE)
+
+		return COMPONENT_CANCEL_ATTACK_CHAIN
+
+/datum/mutation/human/hulk/proc/scream_attack(mob/living/carbon/human/source)
+	source.say("WAAAAAAAAAAAAAAGH!", forced="hulk")
 
 /datum/mutation/human/hulk/on_life()
 	if(owner.health < 0)
@@ -38,6 +53,7 @@
 	owner.dna.species.handle_mutant_bodyparts(owner)
 	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "hulk")
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
+	UnregisterSignal(owner, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
 
 /datum/mutation/human/hulk/proc/handle_speech(original_message, wrapped_message)
 	var/message = wrapped_message[1]
@@ -74,6 +90,8 @@
 	text_gain_indication = span_notice("Your muscles hurt!")
 	health_req = 1
 	var/health_based = 0
+	var/scream_delay = 50
+	var/last_scream = 0
 	power = /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
 
 /datum/mutation/human/active_hulk/on_acquiring(mob/living/carbon/human/owner)
@@ -84,6 +102,7 @@
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
 	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/on_attack_hand)
 	if(istype(owner.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = owner.w_uniform
 		if(owner.canUnEquip(U))
@@ -99,12 +118,24 @@
 	owner.physiology.stamina_mod = 0.3
 	owner.update_body()
 
-/datum/mutation/human/active_hulk/on_attack_hand(atom/target, proximity)
-	if(proximity) //no telekinetic hulk attack
-		if(prob(3))
-			owner.Jitter(10)
-		owner.adjustStaminaLoss(-0.5)
-		return target.attack_hulk(owner)
+/datum/mutation/human/active_hulk/proc/on_attack_hand(mob/living/carbon/human/source, atom/target, proximity, modifiers)
+	if(!proximity) //no telekinetic hulk attack
+		return
+	if(prob(3))
+		owner.Jitter(10)
+	owner.adjustStaminaLoss(-0.5)
+	if(target.attack_hulk(owner))
+		if(world.time > (last_scream + scream_delay))
+			last_scream = world.time
+			INVOKE_ASYNC(src, .proc/scream_attack, source)
+		log_combat(source, target, "punched", "hulk powers")
+		source.do_attack_animation(target, ATTACK_EFFECT_SMASH)
+		source.changeNext_move(CLICK_CD_MELEE)
+
+		return COMPONENT_CANCEL_ATTACK_CHAIN
+
+/datum/mutation/human/active_hulk/proc/scream_attack(mob/living/carbon/human/source)
+	source.say("WAAAAAAAAAAAAAAGH!", forced="hulk")
 
 /datum/mutation/human/active_hulk/on_life()
 	owner.adjustStaminaLoss(0.9)
@@ -119,6 +150,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	REMOVE_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
+	UnregisterSignal(owner, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
 	owner.dna.species.no_equip.Remove(SLOT_WEAR_SUIT, SLOT_W_UNIFORM)
 	owner.physiology.stamina_mod = initial(owner.physiology.stamina_mod)
 	owner.update_body_parts()

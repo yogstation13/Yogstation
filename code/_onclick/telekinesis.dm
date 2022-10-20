@@ -19,28 +19,36 @@
 	if(user.stat || !tkMaxRangeCheck(user, src))
 		return
 	new /obj/effect/temp_visual/telekinesis(get_turf(src))
-	user.UnarmedAttack(src,0) // attack_hand, attack_paw, etc
+	user.UnarmedAttack(src, FALSE) // attack_hand, attack_paw, etc
 	add_hiddenprint(user)
-	return
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /obj/attack_tk(mob/user)
 	if(user.stat)
 		return
 	if(anchored)
 		return ..()
-	attack_tk_grab(user)
+	return attack_tk_grab(user)
 
 /obj/item/attack_tk(mob/user)
 	if(user.stat)
 		return
-	attack_tk_grab(user)
+	return attack_tk_grab(user)
 
+/**
+ * Telekinesis object grab act.
+ *
+ * * Called by `/obj/attack_tk()`.
+ * * Returns `COMPONENT_CANCEL_ATTACK_CHAIN` when it performs any action, to further acts on the attack chain.
+ */
 /obj/proc/attack_tk_grab(mob/user)
 	var/obj/item/tk_grab/O = new(src)
 	O.tk_user = user
-	if(O.focus_object(src))
-		user.put_in_active_hand(O)
-		add_hiddenprint(user)
+	if(!O.focus_object(src))
+		return
+	user.put_in_active_hand(O)
+	add_hiddenprint(user)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /mob/attack_tk(mob/user)
 	return

@@ -384,7 +384,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			H.layer = GAME_PLANE
 			H.invisibility = INVISIBILITY_OBSERVER
 			H.density = FALSE
-			H.anchored = TRUE
+			H.set_anchored(TRUE)
 			addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Kill, H), 100, TIMER_OVERRIDE|TIMER_UNIQUE)
 			visible_message(span_danger("[src] pulls [H] under!"))
 			to_chat(H, span_userdanger("[src] drags you underneath the floor!"))
@@ -420,7 +420,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			H.layer = initial(H.layer)
 			H.invisibility = initial(H.invisibility)
 			H.density = initial(H.density)
-			H.anchored = initial(H.anchored)
+			H.set_anchored(initial(H.anchored))
 			H.blur_eyes(10)
 			animate(H.client,color = old_color, time = 2 SECONDS)
 

@@ -73,13 +73,20 @@
 	if(!destturf || !curturf || destturf.is_transition_turf())
 		return FALSE
 
-	var/area/A = get_area(curturf)
-	var/area/B = get_area(destturf)
-	if(!forced && (HAS_TRAIT(teleatom, TRAIT_NO_TELEPORT) || A.noteleport || B.noteleport))
-		return FALSE
+	var/area/from_area = get_area(curturf)
+	var/area/to_area = get_area(destturf)
+	if(!forced)
+		if(HAS_TRAIT(teleatom, TRAIT_NO_TELEPORT))
+			return FALSE
 
-	if(SEND_SIGNAL(destturf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, curturf, destturf))
-		return FALSE
+		if((from_area.area_flags & NOTELEPORT) || (to_area.area_flags & NOTELEPORT))
+			return FALSE
+	
+		if(SEND_SIGNAL(teleatom, COMSIG_MOVABLE_TELEPORTED, destination, channel) & COMPONENT_BLOCK_TELEPORT)
+			return FALSE
+
+		if(SEND_SIGNAL(destturf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, curturf, destturf) & COMPONENT_BLOCK_TELEPORT)
+			return FALSE
 
 	tele_play_specials(teleatom, curturf, effectin, asoundin)
 	var/success = forceMove ? teleatom.forceMove(destturf) : teleatom.Move(destturf)

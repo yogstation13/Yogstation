@@ -52,3 +52,10 @@
 		usr.client.mark_datum(target)
 	if(href_list[VV_HK_CALLPROC])
 		usr.client.callproc_datum(target)
+	if(href_list[VV_HK_MODIFY_TRAITS])
+		if(!check_rights(NONE))
+			return
+		var/datum/A = locate(href_list["traitmod"])
+		if(!A)
+			return
+		holder.modify_traits(A)

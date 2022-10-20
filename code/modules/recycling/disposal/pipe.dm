@@ -113,27 +113,28 @@
 		target = get_offset_target_turf(T, rand(5)-rand(5), rand(5)-rand(5))
 
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
-	for(var/A in H)
-		var/atom/movable/AM = A
-		var/turf/Tloc = get_turf(src)
-		var/decon = FALSE
-		if(AM.density)
-			for(var/atom/atm in Tloc.contents)
-				if(ismob(atm))
-					continue
-				if(!atm.CanPass(AM))
-					atm.Bumped(AM) // Used incase getting whacked does something (Mainly for SM)
-					decon = TRUE
-					break
-		AM.forceMove(Tloc)
-		AM.pipe_eject(direction)
-		if(decon && isobj(AM))
-			AM.visible_message("[AM] rams into another object instantly breaking itself!")
-			var/obj/O = AM
-			O.deconstruct(FALSE, TRUE)
+	// for(var/A in H)
+	// 	var/atom/movable/AM = A
+	// 	var/turf/Tloc = get_turf(src)
+	// 	var/decon = FALSE
+	// 	if(AM.density)
+	// 		for(var/atom/atm in Tloc.contents)
+	// 			if(ismob(atm))
+	// 				continue
+	// 			if(!atm.CanPass(AM))
+	// 				atm.Bumped(AM) // Used incase getting whacked does something (Mainly for SM)
+	// 				decon = TRUE
+	// 				break
+	// 	AM.forceMove(Tloc)
+	// 	AM.pipe_eject(direction)
+	// 	if(decon && isobj(AM))
+	// 		AM.visible_message("[AM] rams into another object instantly breaking itself!")
+	// 		var/obj/O = AM
+	// 		O.deconstruct(FALSE, TRUE)
 
-		if(AM && target)
-			AM.throw_at(target, eject_range, 1)
+	// 	if(AM && target)
+	// 		AM.throw_at(target, eject_range, 1)
+	pipe_eject(H, direction, TRUE, target, eject_range)
 	H.vent_gas(T)
 	qdel(H)
 

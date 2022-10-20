@@ -35,13 +35,15 @@
 	///if the martial art can be overridden by temporary arts
 	var/allow_temp_override = TRUE
 
+/datum/martial_art/proc/help_act(mob/living/A, mob/living/D)
+	return MARTIAL_ATTACK_INVALID
 /**
   * martial art specific disarm attacks
   *
   * used to give a martial art a unique attack on disarm, returns FALSE if a basic hit should be done afterwards, TRUE if it should only do the unique stuff
   */
 /datum/martial_art/proc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	return FALSE
+	return MARTIAL_ATTACK_INVALID
 
 /**
   * martial art specific harm attacks
@@ -49,7 +51,7 @@
   * used to give a martial art a unique attack on harm, returns FALSE if a basic hit should be done afterwards, TRUE if it should only do the unique stuff
   */
 /datum/martial_art/proc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	return FALSE
+	return MARTIAL_ATTACK_INVALID
 
 /**
   * martial art specific grab attacks
@@ -57,7 +59,7 @@
   * used to give a martial art a unique attack on grab, returns FALSE if a basic hit should be done afterwards, TRUE if it should only do the unique stuff
   */
 /datum/martial_art/proc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	return FALSE
+	return MARTIAL_ATTACK_INVALID
 
 /**
   * martial art handle counter proc

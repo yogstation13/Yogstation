@@ -169,10 +169,11 @@
 
 // eject the contents of the disposal unit
 /obj/machinery/disposal/proc/eject()
-	var/turf/T = get_turf(src)
-	for(var/atom/movable/AM in src)
-		AM.forceMove(T)
-		AM.pipe_eject(0)
+	pipe_eject(src, FALSE, FALSE)
+	// var/turf/T = get_turf(src)
+	// for(var/atom/movable/AM in src)
+	// 	AM.forceMove(T)
+	// 	AM.pipe_eject(0)
 	update_icon()
 
 // update the icon & overlays to reflect mode & status
@@ -209,19 +210,10 @@
 /obj/machinery/disposal/proc/expel(obj/structure/disposalholder/H)
 	H.active = FALSE
 
-	var/turf/T = get_turf(src)
-	var/turf/target
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 
-	for(var/A in H)
-		var/atom/movable/AM = A
-
-		target = get_offset_target_turf(loc, rand(5)-rand(5), rand(5)-rand(5))
-
-		AM.forceMove(T)
-		AM.pipe_eject(0)
-		AM.throw_at(target, 5, 1)
-
+	pipe_eject(H)
+	
 	H.vent_gas(loc)
 	qdel(H)
 
@@ -231,7 +223,7 @@
 		if(stored)
 			stored.forceMove(T)
 			src.transfer_fingerprints_to(stored)
-			stored.anchored = FALSE
+			stored.set_anchored(FALSE)
 			stored.density = TRUE
 			stored.update_icon()
 	for(var/atom/movable/AM in src) //out, out, darned crowbar!

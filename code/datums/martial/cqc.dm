@@ -169,7 +169,7 @@
 		if(!(A.pulling == D))
 			D.grabbedby(A, 1)
 		if(A.grab_state < GRAB_AGGRESSIVE)
-			A.grab_state = GRAB_AGGRESSIVE
+			A.setGrabState(GRAB_AGGRESSIVE)
 		restraining = TRUE
 	return TRUE
 
@@ -268,12 +268,12 @@
 		if(handle_chokehold(A, D))
 			D.Unconscious(400)
 			if(A.grab_state < GRAB_NECK)
-				A.grab_state = GRAB_NECK
+				A.setGrabState(GRAB_NECK)
 			A.visible_message(span_danger("[A] relaxes their grip on [D]."), \
 								span_danger("You relax your grip on [D].")) //visible message comes from attacker since defender is unconscious and therefore can't see
 		else
 			if(A.grab_state) //honestly with the way current grabs work this doesn't really do all that much
-				A.grab_state = min(1, A.grab_state - 1) //immediately lose grab power...
+				A.setGrabState(min(1, A.grab_state - 1)) //immediately lose grab power...
 				if(!A.grab_state || prob(BASE_GRAB_RESIST_CHANCE/A.grab_state)) //...and have a chance to lose the entire grab
 					A.visible_message(span_danger("[A] is put off balance, losing their grip on [D]!"), \
 										span_danger("You are put off balance, and you lose your grip on [D]!"))

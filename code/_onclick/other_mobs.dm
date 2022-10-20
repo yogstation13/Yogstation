@@ -4,7 +4,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
+/mob/living/carbon/human/UnarmedAttack(atom/A, proximity, list/modifiers)
 	if(HAS_TRAIT(A, TRAIT_NOINTERACT))
 		to_chat(A, span_notice("You can't touch things!"))
 		return
@@ -24,22 +24,26 @@
 	if(proximity && istype(G) && G.Touch(A,1))
 		return
 
-	var/override = 0
-	override = SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A) & COMPONENT_NO_ATTACK_HAND
-	for(var/datum/mutation/human/HM in dna.mutations)
-		override += HM.on_attack_hand(A, proximity)
-	if(override)
+	//This signal is needed to prevent gloves of the north star + hulk.
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A, proximity, modifiers) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return
+	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A, proximity, modifiers)
+	// var/override = 0
+	// override = SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A) & COMPONENT_CANCEL_ATTACK_CHAIN
+	// for(var/datum/mutation/human/HM in dna.mutations)
+	// 	override += HM.on_attack_hand(A, proximity)
+	// if(override)
+		//return
 
-	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
-	A.attack_hand(src)
+	if(!dna?.species?.spec_unarmedattack(src, A, modifiers)) //Because species like monkeys dont use attack hand
+		A.attack_hand(src, modifiers)
 
 //Return TRUE to cancel other attack hand effects that respect it.
 /atom/proc/attack_hand(mob/user)
 	. = FALSE
 	if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
 		add_fingerprint(user)
-	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		. = TRUE
 	if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
 		. = _try_interact(user)
@@ -94,18 +98,15 @@
 /mob/living/carbon/RestrainedClickOn(atom/A)
 	return 0
 
-/mob/living/carbon/human/RangedAttack(atom/A, mouseparams)
+/mob/living/carbon/human/RangedAttack(atom/A, modifiers)
 	. = ..()
 	if(gloves)
 		var/obj/item/clothing/gloves/G = gloves
 		if(istype(G) && G.Touch(A,0)) // for magic gloves
 			return
 
-	for(var/datum/mutation/human/HM in dna.mutations)
-		HM.on_ranged_attack(A, mouseparams)
-
 	if(isturf(A) && get_dist(src,A) <= 1)
-		src.Move_Pulled(A)
+		Move_Pulled(A)
 		return
 
 /*
@@ -115,6 +116,7 @@
 	A.attack_animal(src)
 
 /atom/proc/attack_animal(mob/user)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, user)
 	return
 
 /mob/living/RestrainedClickOn(atom/A)
@@ -126,8 +128,12 @@
 /mob/living/carbon/monkey/UnarmedAttack(atom/A)
 	A.attack_paw(src)
 
+///Apparently this is only used by AI datums for basic mobs. A player controlling a basic mob will call attack_animal() when clicking another atom.
+/atom/proc/attack_basic_mob(mob/user, list/modifiers)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_BASIC_MOB, user)
+
 /atom/proc/attack_paw(mob/user)
-	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_PAW, user) & COMPONENT_NO_ATTACK_HAND)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_PAW, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE
 	return FALSE
 
