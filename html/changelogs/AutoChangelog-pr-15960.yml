@@ -1,7 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the V Syndikit Special bundle, which contains items themed around Big Boss and his basic skillset"
-  - rscadd: "Adds the faded eyepatch, an eyepatch that grants basic flash protection and night vision"
-  - rscadd: "Adds the tactical fingerless gloves. They lightly reduce action speed, help with carrying bodies, and slightly reduce CD on all unarmed attacks, regardless of intent"
-  - rscdel: "Removes the Bond Syndikit Special bundle"

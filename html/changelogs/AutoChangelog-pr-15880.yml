@@ -1,6 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - rscadd: "Added Microplastics"
-  - tweak: "Plastic Polymers are now a used chem"
-  - tweak: "adjusts the production method of plastic to need plastic polymers to be cooled; polymer recipe is the same as the old plastic recipe"

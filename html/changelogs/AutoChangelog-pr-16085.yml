@@ -1,6 +1,0 @@
-author: "00ze-cyclone"
-delete-after: true 
-changes: 
-  - rscadd: "Added new phytosian lungs, the mesophyll"
-  - tweak: "Phytosians can now breathe CO2"
-  - imageadd: "added mesophyll sprites"

@@ -1,6 +1,0 @@
-author: "VaelophisNyx"
-delete-after: true 
-changes: 
-  - tweak: "Xenos, Blob, and Spiders should happen less frequently and cant happen below 30 pop (25 for spiders)"
-  - tweak: "Dynamic Blob and Xenos no longer can repeat in a round"
-  - tweak: "Removed unused Blob Infection dynamic ruleset"
