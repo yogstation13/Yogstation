@@ -1,0 +1,7 @@
+author: "redmoogle"
+delete-after: true 
+changes: 
+  - tweak: "Halfed stuntimes for getting hit with ions and robotic limbs"
+  - tweak: "IPC organs have slight emp resistance now"
+  - tweak: "robotic tounge will now stutter for 5 seconds to 2 minutes"
+  - bugfix: "IPC cell wont set nutrition when emped now"
