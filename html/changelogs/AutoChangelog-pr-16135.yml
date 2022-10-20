@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Malf AI with hijack don't need to kill IPCs anymore"
