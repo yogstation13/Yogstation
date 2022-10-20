@@ -71,6 +71,7 @@
 
 /obj/item/clothing/head/hooded
 	var/obj/item/clothing/suit/hooded/suit
+	hattable = FALSE
 
 /obj/item/clothing/head/hooded/Destroy()
 	suit = null

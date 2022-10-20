@@ -139,6 +139,11 @@
 		desc = initial(desc)
 		icon_state = "[initial(icon_state)]_locked"
 
+/obj/item/grenade/chem_grenade/emp_act(severity)
+	..()
+	if(prob(40/severity))
+		prime()
+
 /obj/item/grenade/chem_grenade/on_found(mob/finder)
 	var/obj/item/assembly/A = wires.get_attached(wires.get_wire(1))
 	if(A)

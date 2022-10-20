@@ -12,7 +12,6 @@
 # Teams
 # Placed first so specific files can be owned by others
 *.dmi @yogstation13/art
-*.dm @yogstation13/code
 *.dmm @yogstation13/map
 
 #HeadDev
@@ -27,6 +26,7 @@
 /sound/ @yogstation13/head-coders
 /yogstation/sound/ @yogstation13/head-coders
 /yogstation/code/game/world.dm @yogstation13/head-coders
+/code/controllers/subsystem/ticker.dm @yogstation13/head-coders
 
 #monster860
 

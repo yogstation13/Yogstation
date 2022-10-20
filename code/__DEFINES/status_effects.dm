@@ -166,4 +166,5 @@
 
 // Stasis helpers
 
-#define IS_IN_STASIS(mob) (mob.has_status_effect(STATUS_EFFECT_STASIS))
+#define IS_IN_STASIS(mob) (mob.life_tickrate == 0)
+#define LIFETICK_SKIP(living, tick) (living.life_tickrate && (tick % living.life_tickrate) == 0)

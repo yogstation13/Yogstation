@@ -10,6 +10,11 @@
 	lose_text = span_notice("You can taste again!")
 	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
 
+/datum/quirk/no_taste/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant drink
+		return "You don't have the ability to eat!"
+	return FALSE
+
 /datum/quirk/alcohol_tolerance
 	name = "Alcohol Tolerance"
 	desc = "You become drunk more slowly and suffer fewer drawbacks from alcohol."
@@ -18,6 +23,11 @@
 	gain_text = span_notice("You feel like you could drink a whole keg!")
 	lose_text = span_danger("You don't feel as resistant to alcohol anymore. Somehow.")
 	medical_record_text = "Patient demonstrates a high tolerance for alcohol."
+
+/datum/quirk/alcohol_tolerance/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant drink
+		return "You don't have the ability to drink!"
+	return FALSE
 
 /datum/quirk/apathetic
 	name = "Apathetic"
@@ -45,6 +55,11 @@
 	gain_text = span_notice("You feel like a drink would do you good.")
 	lose_text = span_danger("You no longer feel like drinking would ease your pain.")
 	medical_record_text = "Patient has unusually efficient liver metabolism and can slowly regenerate wounds by drinking alcoholic beverages."
+
+/datum/quirk/drunkhealing/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant drink
+		return "You don't have the ability to drink!"
+	return FALSE
 
 /datum/quirk/empath
 	name = "Empath"
@@ -191,6 +206,11 @@
 		species.toxic_food = initial(species.toxic_food)
 		species.liked_food = initial(species.liked_food)
 
+/datum/quirk/toxic_tastes/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+		return "You don't have the ability to eat!"
+	return FALSE
+
 /datum/quirk/tagger
 	name = "Tagger"
 	desc = "You're an experienced artist. While drawing graffiti, you can get twice as many uses out of drawing supplies."
@@ -215,6 +235,11 @@
 	gain_text = span_notice("You feel HONGRY.")
 	lose_text = span_danger("You no longer feel HONGRY.")
 	medical_record_text = "Patient demonstrates a disturbing capacity for eating."
+
+/datum/quirk/voracious/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && (NOMOUTH in prefs.pref_species.species_traits)) // Cant eat
+		return "You don't have the ability to eat!"
+	return FALSE
 
 /datum/quirk/efficient_metabolism //about 25% slower hunger
 	name = "Efficient Metabolism"
@@ -262,3 +287,8 @@
 
 /datum/quirk/cyberorgan/post_add()
 	to_chat(quirk_holder, "<span class='boldannounce'>Your [slot_string] has been replaced with an upgraded cybernetic variant.</span>")
+
+/datum/quirk/cyberorgan/check_quirk(datum/preferences/prefs)
+	if(prefs.pref_species && istype(prefs.pref_species, /datum/species/ipc)) // IPCs are already cybernetic
+		return "You already have cybebrnetic organs!"
+	return FALSE

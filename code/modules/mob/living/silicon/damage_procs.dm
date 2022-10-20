@@ -49,3 +49,11 @@
 		return ..()
 
 	return FALSE
+
+//Special snowflake AI damage nos
+/mob/living/silicon/ai/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+	return FALSE
+
+/mob/living/silicon/ai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+	return FALSE
+

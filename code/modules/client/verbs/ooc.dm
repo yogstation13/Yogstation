@@ -128,7 +128,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	//SENDING THE MESSAGES OUT
 	for(var/c in GLOB.clients)
 		var/client/C = c // God bless typeless for-loops
-		if( (C.prefs.chat_toggles & CHAT_OOC) && (holder || !(key in C.prefs.ignoring)) )
+		if( (!C.prefs || (C.prefs.chat_toggles & CHAT_OOC)) && (holder || !(key in C.prefs?.ignoring)) )
 			var/sentmsg // The message we're sending to this specific person
 			if(C.holder) // If they're an admin-ish
 				sentmsg = oocmsg_toadmins // Get the admin one

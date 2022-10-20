@@ -39,7 +39,7 @@
 	var/static/gps_number = 1
 	jobtype = /datum/job/mining
 
-	pda_type = /obj/item/pda/shaftminer
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_cargo/mining
 	shoes = /obj/item/clothing/shoes/workboots/mining

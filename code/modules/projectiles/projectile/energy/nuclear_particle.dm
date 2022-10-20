@@ -2,16 +2,17 @@
 /obj/item/projectile/energy/nuclear_particle
 	name = "nuclear particle"
 	icon_state = "nuclear_particle"
-	pass_flags = PASSTABLE | PASSGRILLE
-	damage = 3
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	damage = 1
 	damage_type = BURN
+	irradiate = 20
 	speed = 0.4
 	hitsound = 'sound/weapons/emitter2.ogg'
 	impact_type = /obj/effect/projectile/impact/xray
 	var/static/list/particle_colors = list(
 		"red" = "#FF0000",
-		"blue" = "#00FF00",
-		"green" = "#0000FF",
+		"green" = "#00FF00",
+		"blue" = "#0000FF",
 		"yellow" = "#FFFF00",
 		"cyan" = "#00FFFF",
 		"purple" = "#FF00FF"
@@ -26,4 +27,12 @@
 
 /atom/proc/fire_nuclear_particle(angle = rand(0,360)) //used by fusion to fire random nuclear particles. Fires one particle in a random direction.
 	var/obj/item/projectile/energy/nuclear_particle/P = new /obj/item/projectile/energy/nuclear_particle(src)
+	P.fire(angle)
+
+/obj/item/projectile/energy/nuclear_particle/wimpy
+	irradiate = 100
+	damage = 3
+
+/atom/proc/fire_nuclear_particle_wimpy(angle = rand(0,360))
+	var/obj/item/projectile/energy/nuclear_particle/wimpy/P = new /obj/item/projectile/energy/nuclear_particle/wimpy(src)
 	P.fire(angle)

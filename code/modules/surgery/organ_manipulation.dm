@@ -94,6 +94,25 @@
 			to_chat(user, span_notice("You cannot put [I] into [target]'s [parse_zone(target_zone)]!"))
 			return -1
 		tool = I
+
+	if(isipc(target))
+		if(istype(tool, /obj/item/organ/brain/positron))
+			var/obj/item/bodypart/affected = target.get_bodypart(check_zone(target_zone))
+			if(!affected)
+				return -1
+			if(affected.status != ORGAN_ROBOTIC)
+				to_chat(user, "<span class='notice'>You can't put [tool] into a meat enclosure!</span>")
+				return -1
+			if(target_zone != BODY_ZONE_CHEST)
+				to_chat(user, "<span class='notice'>You have to install [tool] in [target]'s chest!</span>")
+				return -1
+			if(target.getorganslot(ORGAN_SLOT_BRAIN))
+				to_chat(user, "<span class='notice'>[target] already has a brain! You'd rather not find out what would happen with two in there.</span>")
+				return -1
+		else if(istype(tool, /obj/item/organ/brain))
+			to_chat(user, "<span class='notice'>[target] does not have the proper connectors to interface with [tool].</span>")
+			return -1
+
 	if(isorgan(tool))
 		current_type = "insert"
 		preop_sound = initial(preop_sound)
@@ -115,22 +134,18 @@
 		var/mob/living/simple_animal/horror/H = target.has_horror_inside()
 		if(H)
 			user.visible_message("[user] begins to extract [H] from [target]'s [parse_zone(target_zone)].",
-					"<span class='notice'>You begin to extract [H] from [target]'s [parse_zone(target_zone)]...</span>")
+					span_notice("You begin to extract [H] from [target]'s [parse_zone(target_zone)]..."))
 			return TRUE
 		if(!organs.len)
 			to_chat(user, span_notice("There are no removable organs in [target]'s [parse_zone(target_zone)]!"))
 			return -1
 		else
+			var/list/radial_menu = list()
 			for(var/obj/item/organ/O in organs)
 				O.on_find(user)
-				organs -= O
-				organs[O.name] = O
-
-			I = input("Remove which organ?", "Surgery", null, null) as null|anything in organs
+				radial_menu[O] = image(O)
+			I = show_radial_menu(user, target, radial_menu, tooltips = TRUE)
 			if(I && user && target && user.Adjacent(target) && user.get_active_held_item() == tool)
-				I = organs[I]
-				if(!I)
-					return -1
 				display_results(user, target, span_notice("You begin to extract [I] from [target]'s [parse_zone(target_zone)]..."),
 					"[user] begins to extract [I] from [target]'s [parse_zone(target_zone)].",
 					"[user] begins to extract something from [target]'s [parse_zone(target_zone)].")

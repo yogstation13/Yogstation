@@ -55,6 +55,9 @@
 
 	var/tod = null // Time of death
 
+	/// How often biological functions tick. For example, 3 would be a 1/3 of every tick
+	var/life_tickrate = 1 
+
 	var/on_fire = 0 //The "Are we on fire?" var
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is usually 20
 

@@ -731,6 +731,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	overlay_state = "slime"
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/medicine/pyroxadone = 5)
 
+/obj/item/lighter/badass //black lighter for donator item, Nightmare1234
+	name = "badass lighter"
+	desc = "A custom blacked out slime zippo lighter with a red flame. You can see clear lettering on the side that says it burns at exactly 1499K."
+	heat = 1499 //lol
+	icon_state = "blighter"
+	light_color = LIGHT_COLOR_RED
+	overlay_state = "badass"
 
 ///////////
 //ROLLING//

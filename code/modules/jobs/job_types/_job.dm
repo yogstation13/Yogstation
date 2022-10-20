@@ -124,6 +124,7 @@
 
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
+		bank_account.adjust_money(rand(STARTING_PAYCHECKS_MIN, STARTING_PAYCHECKS_MAX), TRUE)
 		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
 
@@ -195,7 +196,7 @@
 	box = /obj/item/storage/box/survival
 
 	var/obj/item/id_type = /obj/item/card/id
-	var/obj/item/pda_type = /obj/item/pda
+	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/backpack = /obj/item/storage/backpack
 	var/satchel  = /obj/item/storage/backpack/satchel
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
@@ -255,22 +256,15 @@
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
-		for(var/A in SSeconomy.bank_accounts)
-			var/datum/bank_account/B = A
-			if(B.account_id == H.account_id)
-				C.registered_account = B
-				B.bank_cards += C
-				break
+		var/acc_id = "[H.account_id]"
+		if(acc_id in SSeconomy.bank_accounts)
+			var/datum/bank_account/B = SSeconomy.bank_accounts[acc_id]
+			C.registered_account = B
+			B.bank_cards += C
 		H.sec_hud_set_ID()
 
-	var/obj/item/pda/PDA = new pda_type()
+	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		PDA.owner = H.real_name
-		if(H.mind?.role_alt_title)
-			PDA.ownjob = H.mind.role_alt_title
-		else
-			PDA.ownjob = J.title
-
 		if (H.id_in_pda)
 			PDA.InsertID(C)
 			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)

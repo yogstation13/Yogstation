@@ -549,6 +549,42 @@
 	id = /datum/reagent/monkey_powder
 	results = list(/datum/reagent/monkey_powder = 3)
 	required_reagents = list(/datum/reagent/consumable/banana = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/chicken_powder
+	name = /datum/reagent/chicken_powder
+	id = /datum/reagent/chicken_powder
+	results = list(/datum/reagent/chicken_powder = 3)
+	required_reagents = list(/datum/reagent/consumable/eggyolk = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/sheep_powder
+	name = /datum/reagent/sheep_powder
+	id = /datum/reagent/sheep_powder
+	results = list(/datum/reagent/sheep_powder = 3)
+	required_reagents = list(/datum/reagent/carpet = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/cow_powder
+	name = /datum/reagent/cow_powder
+	id = /datum/reagent/cow_powder
+	results = list(/datum/reagent/cow_powder = 3)
+	required_reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/goat_powder
+	name = /datum/reagent/goat_powder
+	id = /datum/reagent/goat_powder
+	results = list(/datum/reagent/goat_powder = 3)
+	required_reagents = list(/datum/reagent/toxin/plantbgone = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
+
+/datum/chemical_reaction/mouse_powder
+	name = /datum/reagent/mouse_powder
+	id = /datum/reagent/mouse_powder
+	results = list(/datum/reagent/mouse_powder = 3)
+	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/consumable/nutriment = 2, /datum/reagent/liquidgibs = 1)
+	required_temp = 500
 
 /datum/chemical_reaction/monkey
 	name = "monkey"
@@ -568,6 +604,88 @@
 	var/location = get_turf(holder.my_atom)
 	if (location) new /mob/living/simple_animal/hostile/gorilla(location)
 
+/datum/chemical_reaction/chicken
+	name = "chicken"
+	id = "chicken"
+	required_reagents = list(/datum/reagent/chicken_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/chicken/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/chicken(location)
+
+/datum/chemical_reaction/cow
+	name = "cow"
+	id = "cow"
+	required_reagents = list(/datum/reagent/cow_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/cow/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/cow(location)
+
+/datum/chemical_reaction/sheep
+	name = "sheep"
+	id = "sheep"
+	required_reagents = list(/datum/reagent/sheep_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/sheep/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/sheep(location)
+
+/datum/chemical_reaction/mouse
+	name = "mouse"
+	id = "mouse"
+	required_reagents = list(/datum/reagent/mouse_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/mouse/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/mouse(location)
+
+/datum/chemical_reaction/goat
+	name = "goat"
+	id = "goat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/goat/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/retaliate/goat(location)
+
+/datum/chemical_reaction/goat/clown
+	name = "clowngoat"
+	id = "clowngoat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/consumable/laughter = 5)
+
+/datum/chemical_reaction/goat/clown/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/retaliate/goat/clown(location)
+
+/datum/chemical_reaction/goat/chaos //FOR CHAOS!
+	name = "randomgoat"
+	id = "randomgoat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/medicine/strange_reagent = 1, /datum/reagent/toxin/plasma = 5)
+
+/datum/chemical_reaction/goat/chaos/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	var/goat = get_random_goat()
+	new goat(location)
+
+/datum/chemical_reaction/goat/huge //very hard to make but definitely not harmless
+	name = "hugegoat"
+	id = "hugegoat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/gorilla_powder = 30, /datum/reagent/uranium/radium = 2)
+
+/datum/chemical_reaction/goat/huge/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	if (location) new /mob/living/simple_animal/hostile/retaliate/goat/huge(location)
+
+/datum/chemical_reaction/goat/colorful //harmless
+	name = "colorgoat"
+	id = "colorgoat"
+	required_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/colorful_reagent = 5)
+
+/datum/chemical_reaction/goat/colorful/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	var/goat = get_random_goat_colorful()
+	new goat(location)
 
 /datum/chemical_reaction/hair_dye
 	name = /datum/reagent/hair_dye
@@ -665,3 +783,54 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/ashresin(location)
+
+/datum/chemical_reaction/sulfur_trioxide
+	name = /datum/reagent/sulfur_trioxide
+	id = /datum/reagent/sulfur_trioxide
+	results = list(/datum/reagent/sulfur_trioxide = 4)
+	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/oxygen = 3)
+	required_catalysts = list(/datum/reagent/hydrogen = 1)
+
+/datum/chemical_reaction/sulfuric_acid
+	name = /datum/reagent/toxin/acid
+	id = /datum/reagent/toxin/acid
+	results = list(/datum/reagent/toxin/acid = 2)
+	required_reagents = list(/datum/reagent/sulfur_trioxide = 1, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/sugar
+	name = /datum/reagent/consumable/sugar
+	id = /datum/reagent/consumable/sugar
+	results = list(/datum/reagent/consumable/sugar = 3)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/fuel = 1)
+
+/datum/chemical_reaction/welding_fuel
+	name = /datum/reagent/fuel
+	id = /datum/reagent/fuel
+	results = list(/datum/reagent/fuel = 4)
+	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/toxin/acid = 3)
+	required_temp = 180
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/stableplasma
+	name = /datum/reagent/stable_plasma
+	id = /datum/reagent/stable_plasma
+	results = list(/datum/reagent/stable_plasma = 6)
+	required_reagents = list(/datum/reagent/toxin/plasma = 3, /datum/reagent/hydrogen = 3)
+	required_catalysts =  list(/datum/reagent/consumable/ethanol = 5)
+	required_temp = 100
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/ice
+	name = /datum/reagent/consumable/ice
+	id = /datum/reagent/consumable/ice
+	results = list(/datum/reagent/consumable/ice = 3)
+	required_reagents = list(/datum/reagent/water = 2, /datum/reagent/lye = 1)
+	required_temp = 200
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/water2
+	name = "melting_ice"
+	id = "melting_ice"
+	results = list(/datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/consumable/ice = 1)
+	required_temp = 400

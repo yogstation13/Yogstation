@@ -299,6 +299,11 @@
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/pineapple(src)
 	boxtag = "Honolulu Chew"
 
+/obj/item/pizzabox/seafood/Initialize()
+	. = ..()
+	pizza = new /obj/item/reagent_containers/food/snacks/pizza/seafood(src)
+	boxtag = "Ahi King"
+
 //An anomalous pizza box that, when opened, produces the opener's favorite kind of pizza.
 /obj/item/pizzabox/infinite
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF //hard to destroy
@@ -308,6 +313,7 @@
 		/obj/item/reagent_containers/food/snacks/pizza/mushroom = 1,
 		/obj/item/reagent_containers/food/snacks/pizza/margherita = 1,
 		/obj/item/reagent_containers/food/snacks/pizza/sassysage = 0.8,
+		/obj/item/reagent_containers/food/snacks/pizza/seafood = 0.8,
 		/obj/item/reagent_containers/food/snacks/pizza/vegetable = 0.8,
    		/obj/item/reagent_containers/food/snacks/pizza/pineapple = 0.5,
 		/obj/item/reagent_containers/food/snacks/pizza/donkpocket = 0.3,

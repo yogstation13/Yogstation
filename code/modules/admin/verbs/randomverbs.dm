@@ -38,7 +38,7 @@
 	if(usr)
 		if (usr.client)
 			if(usr.client.holder)
-				to_chat(M, "<i>You hear a voice in your head... <b>[msg]</i></b>")
+				to_chat(M, span_big("<i>You hear a voice in your head... <b>[msg]</i></b>"))
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
 	msg = "SubtleMessage: [key_name(usr)] -> [key_name(M)] : [msg]" // yogs - Yog Tickets
@@ -554,6 +554,62 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Rejuvinate") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_offer_rename(mob/living/L in GLOB.player_list)
+	set category = "Admin.Player Interaction"
+	set name = "Offer Rename"
+	var/newname
+	var/forced_answer = " "
+	var/unforced_answer = " "
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/forced_rename = alert("Would you like the targeted mob to be allowed to decline?", "Allow decline?", "Yes", "No")
+	if(forced_rename == "Yes")
+		unforced_answer = alert(L, "An admin is offering you a chance to rename yourself", "Admin rename?", "Accept", "Decline", "Random Name")
+		log_game("[usr] forced a rename on [L.ckey].")
+	else
+		forced_answer = alert(L, "An admin is \"offering\" you a chance to rename yourself", "Admin rename?", "Accept", "Random Name")
+		log_game("[usr] chose to offer an optional rename to [L.ckey].")
+
+	if(QDELETED(L))
+		message_admins(span_boldnotice("([L.ckey])[L] has been deleted before they could rename themselves!"))
+		log_game("([L.ckey])[L] was Qdeleted before they could complete a rename.")
+		return
+	if(unforced_answer == "Decline")
+		message_admins(span_boldnotice("([L.ckey])[L] has declined the rename."))
+		log_game("([L.ckey])[L] chose to decline an offered rename.")
+		return
+	if(forced_answer == "Random Name" || unforced_answer == "Random Name")
+		newname = random_unique_name(L.gender)
+		log_game("([L.ckey])[L] chose to use a random name when offered a rename.")
+	if(forced_answer == "Accept" || unforced_answer == "Accept")
+		newname = sanitize_name(reject_bad_text(stripped_input(L, "Who are we again?", "Name change", L.real_name, MAX_NAME_LEN)))
+		log_game("([L.ckey])[L] accepted an offered name change.")
+	if(isnotpretty(newname))
+		to_chat(L, span_warning("your chosen name was not accepted! Please ahelp if you would like a second chance."))
+		message_admins(span_notice("([L.ckey])[L]'s new name [newname] was filtered, and was rejected!"))
+		log_game("([L.ckey])[L]'s new name [newname] was filtered, and was rejected.")
+		if(forced_rename == "No")
+			return
+		else
+			newname = random_unique_name(L.gender)
+	if(!newname || newname == "" || newname == L.real_name)
+		message_admins(span_boldnotice("[L.ckey]'s new name was blank or unchanged! Defaulting to random!"))
+		log_game("([L.ckey])[L]'s entered an identical, blank, or null new name, and was defaulted to random.")
+		newname = random_unique_name(L.gender)
+	message_admins(span_boldnotice("([L.ckey])[L.real_name] has been admin renamed to [newname]."))
+	log_game("([L.ckey])[L.real_name] has been renamed to [newname].")
+	L.real_name = newname
+	L.name = newname
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C?.dna)
+			C?.dna?.real_name = newname
+	if(L?.mind)
+		L?.mind?.name = newname
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Offer Mob Rename") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
+
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Admin.Round Interaction"
 	set name = "Create Command Report"
@@ -570,7 +626,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/senderOverride = input(src, "Please input the sender of the report", "Sender", "[command_name()] Update")
 	switch(confirm)
 		if("Yes")
-			priority_announce(input, null, SSstation.announcer.get_rand_report_sound(), sender_override = senderOverride, sanitize = FALSE)
+			priority_announce(input, null, RANDOM_REPORT_SOUND, sender_override = senderOverride, sanitize = FALSE)
 			announce_command_report = FALSE
 		if("Cancel")
 			return

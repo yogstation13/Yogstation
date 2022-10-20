@@ -41,6 +41,12 @@
 	/// The last lines used for changing the status display
 	var/static/last_status_display
 
+	/// Allows use off station z-level
+	var/unlocked = FALSE
+
+/obj/machinery/computer/communications/unlocked
+	unlocked = TRUE
+
 /obj/machinery/computer/communications/Initialize()
 	. = ..()
 	GLOB.shuttle_caller_list += src
@@ -94,6 +100,13 @@
 
 	. = TRUE
 
+	if(authenticated(usr) && !unlocked && !is_station_level(z) && !IsAdminGhost(usr))
+		if(issilicon(usr))
+			visible_message("An error appears on the screen: Unable to contact authentication servers. Please move closer to the station.")
+			return
+		action = "toggleAuthentication" // We actually want to log out
+		visible_message("An error appears on the screen: Unable to communicate with the station. Logging out.")
+
 	switch (action)
 		if ("answerMessage")
 			if (!authenticated(usr))
@@ -126,6 +139,9 @@
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
 
+			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+				return
+
 			// Check if they have
 			if (!issilicon(usr))
 				var/obj/item/held_item = usr.get_active_held_item()
@@ -156,6 +172,7 @@
 			deadchat_broadcast(" has changed the security level to [params["newSecurityLevel"]] with [src] at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
 
 			alert_level_tick += 1
+			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("deleteMessage")
 			if (!authenticated(usr))
 				return
@@ -235,7 +252,7 @@
 			nuke_request(reason, usr)
 			to_chat(usr, span_notice("Request sent."))
 			usr.log_message("has requested the nuclear codes from CentCom with reason \"[reason]\"", LOG_SAY)
-			priority_announce("The codes for the on-station nuclear self-destruct have been requested by [usr]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self-Destruct Codes Requested", SSstation.announcer.get_rand_report_sound())
+			priority_announce("The codes for the on-station nuclear self-destruct have been requested by [authorize_name]. Confirmation or denial of this request will be sent shortly.", "Nuclear Self-Destruct Codes Requested", RANDOM_REPORT_SOUND)
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("restoreBackupRoutingData")
@@ -303,7 +320,9 @@
 				authorize_name = null
 				playsound(src, 'sound/machines/terminal_off.ogg', 50, FALSE)
 				return
-
+			if(!unlocked && !is_station_level(z) && !IsAdminGhost(usr))
+				visible_message("An error appears on the screen: Unable to contact authentication servers. Please move closer to the station.")
+				return
 			if (obj_flags & EMAGGED)
 				authenticated = TRUE
 				authorize_access = get_all_accesses()
@@ -343,7 +362,7 @@
 				playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
 				new /obj/item/card/id/captains_spare/temporary(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
-				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", SSstation.announcer.get_rand_report_sound())
+				priority_announce("The emergency spare ID has been printed by [authorize_name].", "Emergency Spare ID Warning System", RANDOM_REPORT_SOUND)
 		if("printAIControlCode")
 			if(authenticated_as_non_silicon_head(usr))
 				if(!COOLDOWN_FINISHED(src, important_action_cooldown))
@@ -352,7 +371,7 @@
 				GLOB.ai_control_code = random_nukecode(6)
 				new /obj/item/paper/ai_control_code(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
-				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", SSstation.announcer.get_rand_report_sound())
+				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", RANDOM_REPORT_SOUND)
 				
 
 /obj/machinery/computer/communications/ui_data(mob/user)

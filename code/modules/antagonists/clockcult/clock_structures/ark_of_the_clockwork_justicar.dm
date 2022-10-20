@@ -141,7 +141,7 @@
 			continue
 		if(isliving(M.current) && M.current.stat != DEAD)
 			if(isAI(M.current))
-				M.current.forceMove(get_step(get_step(src, NORTH),NORTH)) // AI too fat, must make sure it always ends up a 2 tiles north instead of on the ark.
+				continue //prevents any cogged AIs from getting teleported to reebe and dying from nocoreitus
 			else
 				M.current.forceMove(get_turf(src))
 		M.current.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)
@@ -378,7 +378,16 @@
 				minutes. You will need to create servant players yourself.</span>")
 				final_countdown(35)
 
-
+/obj/structure/destructible/clockwork/massive/celestial_gateway/attack_eminence(mob/camera/eminence/user, params)
+	if(GLOB.ark_of_the_clockwork_justiciar == src)
+		if(recalling)
+			return
+		if(!recalls_remaining)
+			to_chat(user, span_warning("The Ark can no longer recall!"))
+			return
+		if(alert(user, "Initiate mass recall?", "Mass Recall", "Yes", "No") != "Yes" || QDELETED(src) || QDELETED(user) || !obj_integrity)
+			return
+		initiate_mass_recall() //wHOOPS LOOKS LIKE A HULK GOT THROUGH
 
 //the actual appearance of the Ark of the Clockwork Justicar; an object so the edges of the gate can be clicked through.
 /obj/effect/clockwork/overlay/gateway_glow
