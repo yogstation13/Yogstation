@@ -10,10 +10,6 @@
 /obj/item/seeds/cherry/bomb,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
-"c" = (
-/obj/structure/table,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
 "d" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/water/toxic_pit,
@@ -23,33 +19,28 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
-"h" = (
-/obj/structure/table/wood,
-/obj/structure/bedsheetbin/empty,
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
+"g" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/cultivator/rake,
+/obj/item/hatchet/wooden,
+/turf/open/floor/bamboo,
 /area/ruin/unpowered)
 "j" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/cultivator/rake,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
-"k" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
 "l" = (
 /turf/open/floor/wood,
 /area/ruin/unpowered)
-"n" = (
-/obj/structure/dresser,
-/turf/open/floor/wood,
+"m" = (
+/obj/structure/curtain,
+/turf/open/floor/bamboo,
 /area/ruin/unpowered)
-"o" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/wood,
+"n" = (
+/obj/structure/table/wood,
+/obj/structure/bedsheetbin/empty,
+/turf/open/floor/bamboo,
 /area/ruin/unpowered)
 "p" = (
 /obj/structure/curtain,
@@ -64,30 +55,24 @@
 /turf/open/water/toxic_pit,
 /area/template_noop)
 "t" = (
+/obj/structure/chair/sofa/bamboo/right,
+/turf/open/floor/wood,
+/area/ruin/unpowered)
+"u" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/bamboo,
+/area/ruin/unpowered)
+"v" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/stack/sheet/leather,
 /obj/item/stack/sheet/leather,
 /obj/item/stack/sheet/leather,
-/turf/open/floor/wood,
-/area/ruin/unpowered)
-"u" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
-/area/ruin/unpowered)
-"v" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/obj/item/clothing/accessory/resinband{
-	desc = "A weird armband, doesn't look like it'd be from around here."
-	},
-/obj/item/clothing/suit/yogs/monkrobes,
-/obj/item/kitchen/knife/combat,
-/turf/open/floor/wood,
+/turf/open/floor/bamboo,
 /area/ruin/unpowered)
 "w" = (
 /obj/structure/table/wood,
-/turf/open/floor/wood,
+/obj/item/clothing/head/rice_hat,
+/turf/open/floor/bamboo,
 /area/ruin/unpowered)
 "x" = (
 /obj/machinery/hydroponics/soil,
@@ -99,13 +84,34 @@
 /obj/item/seeds/wheat/rice,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
+"z" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/item/clothing/accessory/resinband{
+	desc = "A weird armband, doesn't look like it'd be from around here."
+	},
+/obj/item/clothing/suit/yogs/monkrobes,
+/obj/item/kitchen/knife/combat,
+/turf/open/floor/bamboo,
+/area/ruin/unpowered)
+"A" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/bamboo,
+/area/ruin/unpowered)
+"C" = (
+/turf/open/floor/bamboo,
+/area/ruin/unpowered)
 "D" = (
 /turf/open/floor/wood/jungle,
 /area/template_noop)
+"E" = (
+/obj/structure/dresser,
+/turf/open/floor/bamboo,
+/area/ruin/unpowered)
 "F" = (
 /obj/structure/table/wood,
-/obj/item/clothing/head/rice_hat,
-/turf/open/floor/wood,
+/obj/item/flashlight/lantern,
+/turf/open/floor/bamboo,
 /area/ruin/unpowered)
 "G" = (
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -114,17 +120,12 @@
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
-"J" = (
+"K" = (
+/obj/structure/chair/sofa/bamboo/left,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6";
 	tag = ""
 	},
-/area/ruin/unpowered)
-"K" = (
-/obj/structure/closet/crate/wooden,
-/obj/item/cultivator/rake,
-/obj/item/hatchet/wooden,
-/turf/open/floor/wood,
 /area/ruin/unpowered)
 "L" = (
 /turf/open/water/toxic_pit,
@@ -143,9 +144,9 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "Q" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/wood,
-/obj/item/flashlight/lantern,
-/turf/open/floor/wood,
+/turf/open/floor/bamboo,
 /area/ruin/unpowered)
 "R" = (
 /obj/effect/decal/cleanable/blood/old,
@@ -159,14 +160,27 @@
 /obj/item/seeds/wheat/rice,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
+"T" = (
+/obj/structure/table/wood,
+/turf/open/floor/bamboo,
+/area/ruin/unpowered)
 "U" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken4";
 	tag = ""
 	},
 /area/ruin/unpowered)
+"W" = (
+/obj/structure/chair/stool/bamboo,
+/turf/open/floor/bamboo,
+/area/ruin/unpowered)
 "X" = (
 /turf/closed/wall/mineral/wood,
+/area/ruin/unpowered)
+"Y" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie,
+/turf/open/floor/wood,
 /area/ruin/unpowered)
 "Z" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -597,9 +611,9 @@ D
 D
 D
 X
-h
-w
-k
+n
+T
+Q
 X
 G
 G
@@ -624,9 +638,9 @@ D
 D
 D
 e
-P
-l
-F
+u
+W
+w
 X
 G
 G
@@ -651,9 +665,9 @@ X
 X
 X
 X
-l
-l
-Q
+C
+C
+F
 X
 G
 G
@@ -672,15 +686,15 @@ L
 G
 G
 X
-w
-u
+T
+C
 X
 l
 l
-l
-l
-U
-K
+m
+C
+C
+g
 X
 G
 G
@@ -699,15 +713,15 @@ I
 G
 G
 X
+z
+C
+A
+P
+l
+m
+u
+C
 v
-l
-o
-P
-l
-l
-P
-l
-t
 X
 G
 G
@@ -726,10 +740,10 @@ L
 G
 G
 X
-n
-P
+E
+u
 X
-l
+t
 l
 X
 X
@@ -756,7 +770,7 @@ X
 X
 X
 X
-J
+K
 l
 p
 l
@@ -788,7 +802,7 @@ l
 p
 U
 R
-c
+Y
 X
 G
 G

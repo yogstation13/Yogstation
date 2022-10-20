@@ -25,10 +25,6 @@
 /obj/item/pickaxe/mini,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
-"o" = (
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/dirt/jungleland/toxic_pit,
-/area/ruin/unpowered)
 "q" = (
 /turf/closed/mineral/ash_rock/jungle,
 /area/ruin/unpowered)
@@ -47,6 +43,10 @@
 "z" = (
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
+"D" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
 "E" = (
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/water/toxic_pit,
@@ -56,6 +56,9 @@
 	lit = 1
 	},
 /turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"K" = (
+/turf/closed/wall/mineral/iron,
 /area/ruin/unpowered)
 "M" = (
 /obj/structure/closet/crate/coffin{
@@ -67,11 +70,19 @@
 /mob/living/simple_animal/hostile/skeleton/templar,
 /turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
+"R" = (
+/obj/structure/fluff/grave/empty,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
+/area/ruin/unpowered)
 "T" = (
 /obj/structure/closet/crate/coffin/blackcoffin,
 /obj/item/wisp_lantern,
 /obj/item/gem/fdiamond,
 /turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
+"U" = (
+/obj/structure/fluff/grave,
+/turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
 "Z" = (
 /turf/open/floor/plating/ashplanet/rocky/jungle,
@@ -157,10 +168,10 @@ a
 a
 a
 a
-o
+U
 Z
 Z
-o
+U
 q
 q
 h
@@ -203,10 +214,10 @@ g
 g
 g
 a
-M
+R
 w
 Z
-o
+U
 g
 q
 h
@@ -249,10 +260,10 @@ g
 g
 E
 g
-o
+U
 Z
 Z
-o
+U
 g
 g
 g
@@ -266,7 +277,7 @@ h
 q
 g
 a
-a
+K
 g
 g
 g
@@ -289,18 +300,18 @@ h
 q
 g
 a
-o
+K
 I
 Z
 I
 g
 g
-o
+U
 Z
 Z
-o
+R
 a
-o
+U
 a
 g
 q
@@ -311,16 +322,16 @@ k
 h
 q
 g
-Z
-Z
+a
+K
 Z
 T
 P
+D
 Z
 Z
 Z
-Z
-Z
+w
 Z
 Z
 Z
@@ -335,20 +346,20 @@ h
 q
 a
 a
-M
+K
 I
 Z
 I
-o
+K
 a
-o
+U
 Z
 Z
-o
+U
 a
-o
+U
 a
-o
+U
 q
 z
 z
@@ -358,11 +369,11 @@ h
 q
 a
 a
-v
-a
-a
-a
-a
+K
+K
+K
+K
+K
 a
 a
 Z
@@ -381,13 +392,13 @@ h
 q
 a
 a
+v
 a
 a
 a
 a
 a
-a
-o
+U
 Z
 Z
 M
@@ -405,9 +416,9 @@ q
 a
 a
 a
-o
+R
 a
-o
+U
 a
 a
 a
@@ -436,7 +447,7 @@ a
 M
 Z
 Z
-o
+U
 a
 q
 h
@@ -479,10 +490,10 @@ g
 g
 g
 a
-o
+U
 Z
 Z
-o
+U
 q
 q
 h
