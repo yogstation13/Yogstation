@@ -16,6 +16,8 @@
 
 /datum/wires/mecha_part_fabricator/interactable(mob/user)
 	var/obj/machinery/mecha_part_fabricator/F = holder
+	if(!issilicon(user) && F.seconds_electrified && F.shock(user, 100))
+		return FALSE
 	if(F.panel_open)
 		return TRUE
 

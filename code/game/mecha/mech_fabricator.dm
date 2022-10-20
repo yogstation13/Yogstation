@@ -151,9 +151,14 @@
 		return
 	return ..()
 /**
- * All the negative wire effect
+ * All the negative wire effects
  * Zap doesnt actually zap, it breaks one limb (Because pain is to be had)
 */
+/obj/machinery/mecha_part_fabricator/_try_interact(mob/user)
+	if(seconds_electrified && !(stat & NOPOWER))
+		if(shock(user, 100))
+			return
+
 /obj/machinery/mecha_part_fabricator/proc/wire_zap(mob/user)
 	if(stat & (BROKEN|NOPOWER))
 		return FALSE
@@ -179,6 +184,27 @@
 		if(WIRE_HACK)
 			if(!wires.is_cut(wire))
 				hacked = FALSE
+/**
+  * Shock the passed in user
+  *
+  * This checks we have power and that the passed in prob is passed, then generates some sparks
+  * and calls electrocute_mob on the user
+  *
+  * Arguments:
+  * * user - the user to shock
+  * * prb - probability the shock happens
+  */
+/obj/machinery/mecha_part_fabricator/proc/shock(mob/user, prb)
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
+		return FALSE
+	if(!prob(prb))
+		return FALSE
+	do_sparks(5, TRUE, src)
+	var/check_range = TRUE
+	if(electrocute_mob(user, get_area(src), src, 0.7, check_range))
+		return TRUE
+	else
+		return FALSE
 /**
   * Generates an info list for a given part.
   *
@@ -415,7 +441,10 @@
 		if(process_queue)
 			build_next_in_queue(FALSE)
 		return TRUE
-
+	
+	// Deelectrifies the machine
+	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
+		seconds_electrified--
 /**
   * Dispenses a part to the tile infront of the Exosuit Fab.
   *
