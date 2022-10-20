@@ -59,3 +59,19 @@
 /datum/station_trait/announcement_medbot/New()
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/medbot
+
+/datum/station_trait/darkmode
+	name = "Dark Mode"
+	trait_type = STATION_TRAIT_NEUTRAL
+	weight = 2
+	show_in_report = TRUE
+	report_message = "This station has a dark finish."
+
+/datum/station_trait/darkmode/New()
+	. = ..()
+	for(var/turf/open/floor/plasteel/F in world)
+		if((F.z == 2 || F.z == 1) && (!broken && !burnt))
+			F.icon_regular_floor = 'icons/turf/floors.dmi'
+			F.icon_state_regular_floor = "darkfull"
+			F.icon = 'icons/turf/floors.dmi'
+			F.icon_state = "darkfull"
