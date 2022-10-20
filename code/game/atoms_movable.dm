@@ -427,7 +427,6 @@
 	if (length(client_mobs_in_contents))
 		update_parallax_contents()
 
-	SSdemo.mark_dirty(src)
 	return TRUE
 
 /atom/movable/Destroy(force)
