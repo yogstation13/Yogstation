@@ -120,7 +120,7 @@
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 1500)
 	build_path = /obj/item/storage/lockbox/vialbox/printed
 	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/bluespacebodybag
 	name = "Bluespace Body Bag"
