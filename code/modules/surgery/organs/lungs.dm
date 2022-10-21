@@ -507,14 +507,14 @@
 	var/temperature = breath.return_temperature()
 	for(var/id in breath.get_gases())
 		var/moles = breath.get_moles(id)
-		total_heat_capacity += GLOB.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles
+		total_heat_capacity += GLOB.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles * 3.5
 	// Normal atmos is 0.416
 	// 20C -> 293K
 	// At about 50C overheating will begin
 	// At 70C burn damage will start happening
 	breath.remove(breath.total_moles()) // Remove as exhaust or whatever
 	if(total_heat_capacity > 0)
-		var/heat_generation = (temperature + 100)/total_heat_capacity
+		var/heat_generation = (temperature + 35)/total_heat_capacity
 		if(heat_generation > 1000) // not dispelling enough heat
 			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy/ipc)
 			if(COOLDOWN_FINISHED(src, last_message))

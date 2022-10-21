@@ -26,6 +26,7 @@
 
 /obj/screen/plane_master/openspace/backdrop(mob/mymob)
 	filters = list()
+	filters += filter(type="alpha", render_source = LIGHTING_RENDER_TARGET, flags = MASK_INVERSE)
 	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -10)
 	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -15)
 	filters += filter(type = "drop_shadow", color = "#04080FAA", size = -20)

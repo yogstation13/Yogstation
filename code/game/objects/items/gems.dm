@@ -7,8 +7,8 @@
 	icon_state = "rupee"
 	w_class = WEIGHT_CLASS_SMALL
 
-	///Have we been analysed with a mining scanner?
-	var/analysed = FALSE
+	///owning ID, used to give points when sold
+	var/obj/item/card/id/claimed_by = null
 	///How many points we grant to whoever discovers us
 	var/point_value = 100
 	///what's our real name that will show upon discovery? null to do nothing
@@ -18,7 +18,7 @@
 	///the thing that spawns in the item.
 	var/sheet_type = null
 
-	var/image/shine_overlay //shows this overlay when not scanned
+	var/image/shine_overlay //shows this overlay when not claimed
 
 /obj/item/gem/Initialize()
 	. = ..()
@@ -27,34 +27,30 @@
 	pixel_x = rand(-8,8)
 	pixel_y = rand(-8,8)
 
+/obj/item/gem/examine(mob/user)
+	. = ..()
+	. += span_notice("Its value of [point_value] mining points can be registered by hitting it with an ID, to be claimed when sold.")
+
 /obj/item/gem/attackby(obj/item/item, mob/living/user, params) //Stolen directly from geysers, removed the internal gps
-	if(!istype(item, /obj/item/mining_scanner) && !istype(item, /obj/item/t_scanner/adv_mining_scanner))
+	if(!istype(item, /obj/item/card/id))
 		return ..()
 
-	if(analysed)
-		to_chat(user, span_warning("This gem has already been analysed!"))
+	if(claimed_by)
+		to_chat(user, span_warning("This gem has already been claimed!"))
 		return
 
-	to_chat(user, span_notice("You analyse the precious gemstone!"))
+	to_chat(user, span_notice("You register the precious gemstone to your ID card, and will gain [point_value] mining points when it is sold!"))
+	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 	if(analysed_message)
 		to_chat(user, analysed_message)
 
-	analysed = TRUE
+	claimed_by = item
 	if(true_name)
 		name = true_name
 
 	if(shine_overlay)
 		cut_overlay(shine_overlay)
 		qdel(shine_overlay)
-
-	if(isliving(user))
-		var/mob/living/living = user
-
-		var/obj/item/card/id/card = living.get_idcard()
-		if(card)
-			to_chat(user, span_notice("[point_value] mining points have been paid out!"))
-			card.mining_points += point_value
-			playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 
 /obj/item/gem/welder_act(mob/living/user, obj/item/I) //Jank code that detects if the gem in question has a sheet_type and spawns the items specifed in it
 	if(I.use_tool(src, user, 0, volume=50))
@@ -189,7 +185,7 @@
 	name = "\improper Sapphire"
 	icon_state = "sapphire"
 	point_value = 200
-	
+
 /obj/item/gem/emerald
 	name = "\improper Emerald"
 	icon_state = "emerald"
@@ -198,7 +194,7 @@
 /obj/item/gem/topaz
 	name = "\improper Topaz"
 	icon_state = "topaz"
-	point_value = 150
+	point_value = 200
 
 /obj/item/ai_cpu/stalwart //very jank code-theft because it's not directly a gem
 	name = "\improper Bluespace Data Crystal"

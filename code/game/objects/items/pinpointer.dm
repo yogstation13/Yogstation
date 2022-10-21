@@ -136,7 +136,7 @@
 		user.visible_message(span_notice("[user]'s pinpointer fails to detect a signal."), span_notice("Your pinpointer fails to detect a signal."))
 		return
 
-	var/A = input(user, "Person to track", "Pinpoint") in names
+	var/A = input(user, "Person to track", "Pinpoint") in sortList(names)
 	if(!A || QDELETED(src) || !user || !user.is_holding(src) || user.incapacitated())
 		return
 

@@ -352,6 +352,14 @@
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
+	
+/datum/quirk/poor_aim/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.dna.species.aiminginaccuracy += 25
+
+/datum/quirk/poor_aim/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.dna.species.aiminginaccuracy -= 25
 
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
