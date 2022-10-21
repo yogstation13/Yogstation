@@ -22,10 +22,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	disliked_food = GROSS | VEGETABLES
 	brutemod = 0.9 //Have you ever punched a metal plate?
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
-	coldmod = 2 //The plasteel around them saps their body heat quickly if it gets cold
+	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //The once the heat gets through it's gonna BURN
 	tempmod = 0.2 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
-	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
+	staminamod = 1.5 //Big metal body has difficulty holding it's weight if it gets tired
 	speedmod = 0 //Sleek efficient metal legs, despite the weight
 	action_speed_coefficient = 0.9 //worker drone do the fast
 	punchdamagelow = 2 //if it hits you, it's always gonna hurt
@@ -58,9 +58,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.change_bodypart_status(ORGAN_ROBOTIC,FALSE,TRUE)
 		BP.burn_reduction = 0
 		BP.brute_reduction = 0
-		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
-			continue
-		BP.max_damage = 35
 
 	if(ishuman(C))
 		maglock = new
@@ -222,7 +219,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(10)
+		H.adjustStaminaLoss(8)
 		H.adjustFireLoss(4)
 		H.Jitter(100)
 		H.stuttering = 1
