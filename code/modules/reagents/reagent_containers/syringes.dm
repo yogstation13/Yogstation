@@ -225,7 +225,9 @@
 /obj/item/reagent_containers/syringe/bioterror
 	name = "bioterror syringe"
 	desc = "Contains several paralyzing reagents."
-	list_reagents = list(/datum/reagent/consumable/ethanol/neurotoxin = 5, /datum/reagent/toxin/mutetoxin = 5, /datum/reagent/toxin/sodium_thiopental = 5)
+	amount_per_transfer_from_this = 30
+	volume = 30
+	list_reagents = list(/datum/reagent/consumable/ethanol/neurotoxin = 10, /datum/reagent/toxin/mutetoxin = 10, /datum/reagent/toxin/sodium_thiopental = 10)
 
 /obj/item/reagent_containers/syringe/stimulants
 	name = "Stimpack"
