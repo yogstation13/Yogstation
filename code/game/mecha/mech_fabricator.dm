@@ -175,8 +175,7 @@
 		bone.receive_damage(brute=50, updating_health=TRUE)
 	else
 		to_chat(C,span_userdanger("The manipulator arms attempt to grab one of your limbs, but grapple air instead!"))
-	qdel(break_it)
-	qdel(bone)
+		qdel(break_it)
 
 /obj/machinery/mecha_part_fabricator/proc/reset(wire)
 	switch(wire)
