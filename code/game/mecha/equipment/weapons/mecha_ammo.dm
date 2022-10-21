@@ -53,12 +53,22 @@
 	rounds = 40
 	ammo_type = "scattershot"
 
+/obj/item/mecha_ammo/scattershot/syndicate
+	name = "mutilator ammo"
+	desc = "A box of military grade shotgun ammunition, scaled up for use in Syndicate exosuits."
+	ammo_type = "mutilator"
+
 /obj/item/mecha_ammo/lmg
 	name = "machine gun ammo"
 	desc = "A box of linked ammunition, designed for the Ultra AC 2 exosuit weapon."
 	icon_state = "lmg"
 	rounds = 300
 	ammo_type = "lmg"
+
+/obj/item/mecha_ammo/lmg/syndicate
+	name = "heavy machine gun ammo"
+	desc = "A box containing a long chain of ammunition for use in Syndicate combat exosuits. Cannot be removed by hand."
+	ammo_type = "devastator"
 
 /obj/item/mecha_ammo/missiles_br
 	name = "breaching missiles"

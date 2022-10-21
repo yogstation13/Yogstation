@@ -540,9 +540,9 @@
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax/PopulateContents()
-	new /obj/item/mecha_ammo/incendiary(src)
-	new /obj/item/mecha_ammo/incendiary(src)
-	new /obj/item/mecha_ammo/incendiary(src)
+	new /obj/item/mecha_ammo/scattershot/syndicate(src)
+	new /obj/item/mecha_ammo/scattershot/syndicate(src)
+	new /obj/item/mecha_ammo/scattershot/syndicate(src)
 	new /obj/item/mecha_ammo/flashbang(src)
 	new /obj/item/mecha_ammo/flashbang(src)
 	new /obj/item/mecha_ammo/flashbang(src)
@@ -551,12 +551,12 @@
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/mauler/PopulateContents()
-	new /obj/item/mecha_ammo/lmg(src)
-	new /obj/item/mecha_ammo/lmg(src)
-	new /obj/item/mecha_ammo/lmg(src)
-	new /obj/item/mecha_ammo/scattershot(src)
-	new /obj/item/mecha_ammo/scattershot(src)
-	new /obj/item/mecha_ammo/scattershot(src)
+	new /obj/item/mecha_ammo/lmg/syndicate(src)
+	new /obj/item/mecha_ammo/lmg/syndicate(src)
+	new /obj/item/mecha_ammo/lmg/syndicate(src)
+	new /obj/item/mecha_ammo/scattershot/syndicate(src)
+	new /obj/item/mecha_ammo/scattershot/syndicate(src)
+	new /obj/item/mecha_ammo/scattershot/syndicate(src)
 	new /obj/item/mecha_ammo/missiles_he(src)
 	new /obj/item/mecha_ammo/missiles_he(src)
 	new /obj/item/mecha_ammo/missiles_he(src)

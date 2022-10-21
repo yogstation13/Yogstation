@@ -116,6 +116,7 @@
 	var/defence_mode_deflect_chance = 35
 	var/leg_overload_mode = FALSE
 	var/leg_overload_coeff = 100
+	var/leg_overload_damage = TRUE
 	var/zoom_mode = FALSE
 	var/smoke = 5
 	var/smoke_ready = 1
@@ -625,7 +626,7 @@
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
-		if(leg_overload_mode)
+		if(leg_overload_mode && leg_overload_damage)
 			take_damage(2, BRUTE)
 		can_move = world.time + step_in
 		return TRUE
