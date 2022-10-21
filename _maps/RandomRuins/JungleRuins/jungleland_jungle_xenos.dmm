@@ -96,6 +96,12 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
+"aB" = (
+/mob/living/simple_animal/hostile/alien{
+	maxbodytemp = 550
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
 "aC" = (
 /mob/living/simple_animal/hostile/alien/sentinel{
 	maxbodytemp = 550
@@ -219,13 +225,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
-"AI" = (
-/obj/structure/alien/weeds,
-/obj/structure/closet/crate/secure/weapon,
-/obj/item/storage/box/lethalshot,
-/obj/item/storage/box/lethalshot,
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/ruin/unpowered)
 "Gy" = (
 /turf/open/floor/wood/jungle,
 /area/ruin/unpowered)
@@ -245,6 +244,12 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/clothing/suit/hooded/explorer,
 /obj/item/disk/design_disk/modkit_disc/rapid_repeater,
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered)
+"SF" = (
+/obj/structure/alien/weeds,
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/storage/box/lethalshot,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered)
 "UW" = (
@@ -410,7 +415,7 @@ am
 aw
 gc
 JR
-AI
+SF
 aV
 aP
 aH
@@ -422,9 +427,9 @@ aP
 aP
 aG
 aP
+aP
+aP
 aC
-aP
-aP
 aW
 aP
 aV
@@ -472,7 +477,7 @@ aP
 aP
 aP
 aP
-aP
+aI
 aP
 aP
 aP
@@ -513,7 +518,7 @@ aP
 aP
 aP
 aP
-aI
+aP
 aW
 ai
 aP
@@ -539,12 +544,12 @@ aP
 aP
 aP
 aP
-aI
+aP
 aP
 aK
 aK
 aK
-aK
+aB
 aV
 "}
 (14,1,1) = {"
