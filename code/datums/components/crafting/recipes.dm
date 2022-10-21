@@ -625,7 +625,7 @@
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/refill_maint_pumpup
-	name = "Refill Maintenance Pump_Up"
+	name = "Refill Maintenance Pump-Up"
 	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
 	time = 4 SECONDS
 	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup,
