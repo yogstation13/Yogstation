@@ -17,6 +17,7 @@
 		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
 		return
 	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] arm outstretched!"))
+	new /obj/effect/temp_visual/decoy/fading(loc, user)
 	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
 	for(var/i = 0 to jumpdistance)
 		if(T.density)
