@@ -243,7 +243,7 @@
 
 	if(current_stamina_damage >= 90)
 		if(!L.IsParalyzed())
-			to_chat(L, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
+			to_chat(L, span_warning("You muscles seize, making you collapse"))
 		else
 			L.Paralyze(stunforce)
 		L.Jitter(20)
