@@ -13,7 +13,7 @@
 		/datum/reagent/consumable/batter = 2,
 		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/fish/shrimp/battered
+	result = /obj/item/reagent_containers/food/snacks/carpmeat/fish/shrimp/battered
 	subcategory = CAT_SEAFOOD
 
 
@@ -148,17 +148,6 @@
 		/obj/item/reagent_containers/food/snacks/grown/citrus/lemon = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/shrimpcocktail
-	subcategory = CAT_SEAFOOD
-
-/datum/crafting_recipe/food/surfnturf
-	name = "Surf 'n Turf"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/steak = 1,
-		/obj/item/reagent_containers/food/snacks/carpmeat/fish/cooked = 1,
-		/obj/item/reagent_containers/food/snacks/grown/potato = 1,
-		/obj/item/reagent_containers/food/snacks/grown/corn = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/surfnturf
 	subcategory = CAT_SEAFOOD
 
 /datum/crafting_recipe/food/vegetariansushiroll

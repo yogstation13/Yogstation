@@ -55,7 +55,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cooking_oil = 1) //spontaniously fries because battering code doesn't actually exist yet.
 	foodtype = SEAFOOD | GRAIN
 
-/obj/item/reagent_containers/food/snacks/fish/shrimp/battered //change whenever batter-frying code exists pls
+/obj/item/reagent_containers/food/snacks/carpmeat/fish/shrimp/battered //change whenever batter-frying code exists pls
 	name = "tempura shrimp"
 	desc = "A shrimp coated in crunchy fried beer batter."
 	icon_state = "shrimp_tempura"
@@ -219,15 +219,6 @@
 	filling_color = "#DC143C"
 	tastes = list("fettuccine" = 1, "alfredo" = 1, "italy" = 1, "creamy goodness" = 1, "shrimp" = 2)
 	foodtype = GRAIN | DAIRY | VEGETABLES | SEAFOOD
-
-/obj/item/reagent_containers/food/snacks/surfnturf
-	name = "surf 'n turf"
-	desc = "A meaty steak sharing the plate with a slice of cooked fish and some veggies."
-	icon_state = "surfnturf"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 12)
-	filling_color = "#a13333"
-	tastes = list("fish" = 2, "steak" = 2, "vegetables" = 2)
-	foodtype = VEGETABLES | SEAFOOD | MEAT
 
 /obj/item/reagent_containers/food/snacks/ceviche
 	name = "ceviche"
