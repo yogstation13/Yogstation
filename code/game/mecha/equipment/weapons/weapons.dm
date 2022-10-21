@@ -355,7 +355,10 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot/syndicate
 	name = "\improper SND-E \"Mutilator\" Shotgun"
 	desc = "A heavy-duty shotgun that fires a scaled-up version of the Syndicate's proprietary shotgun ammunition. Great for taking down toolbox-wielding assistants."
-	projectiles_per_shot = 10
+	projectiles_per_shot = 12
+	projectiles_cache = 144
+	projectiles = 144
+	projectiles_cache_max = 576
 	projectile = /obj/item/projectile/bullet/pellet/shotgun_buckshot/syndie
 	ammo_type = "mutilator"
 

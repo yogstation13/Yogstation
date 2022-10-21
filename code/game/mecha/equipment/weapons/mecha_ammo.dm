@@ -57,6 +57,7 @@
 	name = "mutilator ammo"
 	desc = "A box of military grade shotgun ammunition, scaled up for use in Syndicate exosuits."
 	ammo_type = "mutilator"
+	rounds = 186
 
 /obj/item/mecha_ammo/lmg
 	name = "machine gun ammo"
