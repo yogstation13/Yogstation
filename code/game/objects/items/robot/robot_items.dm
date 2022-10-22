@@ -1,3 +1,5 @@
+#define BORG_STUNARM_COOLDOWN 1.2 SECONDS
+
 /**********************************************************************
 						Cyborg Spec Items
 ***********************************************************************/
@@ -25,7 +27,7 @@
 			return
 
 	user.do_attack_animation(M)
-	if(cooldown + 1.2 SECONDS > world.time)
+	if(cooldown + BORG_STUNARM_COOLDOWN > world.time)
 		return
 	cooldown = world.time
 	var/trait_check = HAS_TRAIT(M, TRAIT_STUNRESISTANCE)
@@ -771,3 +773,5 @@
 /obj/item/borg/sight/hud/sec/Initialize()
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/security(src)
+
+#undef BORG_STUNARM_COOLDOWN

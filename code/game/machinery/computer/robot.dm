@@ -84,8 +84,6 @@
 				return
 			if(allowed(usr))
 				var/mob/living/silicon/robot/R = locate(params["ref"]) in GLOB.silicon_mobs
-				if(R.connected_ai != usr)
-					return
 				if(can_control(usr, R) && !..())
 					var/turf/T = get_turf(R)
 					message_admins(span_notice("[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(R, R.client)] at [ADMIN_VERBOSEJMP(T)]!"))
