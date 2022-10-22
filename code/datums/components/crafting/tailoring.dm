@@ -396,6 +396,17 @@
 	subcategory = CAT_EQUIPMENT
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 
+/datum/crafting_recipe/sunprescription
+	name = "Prescription Sunglasses"
+	result = /obj/item/clothing/glasses/sunglasses/prescription
+	time = 2 SECONDS
+	tools = list(TOOL_SCREWDRIVER)
+	reqs = list(/obj/item/clothing/glasses/regular = 1, 
+				  /obj/item/clothing/glasses/sunglasses = 1)
+	blacklist = list(/obj/item/clothing/glasses/sunglasses/cheap)
+	category = CAT_APPAREL
+	subcategory = CAT_EQUIPMENT
+
 /datum/crafting_recipe/hudsunmeson
 	name = "Meson Sunglasses"
 	result = /obj/item/clothing/glasses/meson/sunglasses
