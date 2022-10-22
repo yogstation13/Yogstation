@@ -2140,6 +2140,12 @@
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
+/datum/reagent/liquidsoap
+	name = "Liquid soap"
+	color = "#ddb772"
+	description = "Not much use in this form..."
+	taste_description = "soap"
+
 /datum/reagent/microplastics
 	name = "Microplastics"
 	description = "Finely ground plastics, reduced to microscopic scale. Nearly unable to metabolize in a body, and potentially harmful in the long term."
@@ -2157,5 +2163,3 @@
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25*REM)
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
 	..()
-
-
