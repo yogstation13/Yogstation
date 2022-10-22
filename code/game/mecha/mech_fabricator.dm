@@ -414,6 +414,10 @@
 	return TRUE
 
 /obj/machinery/mecha_part_fabricator/process()
+	// Deelectrifies the machine
+	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
+		seconds_electrified--
+
 	// If there's a stored part to dispense due to an obstruction, try to dispense it.
 	if(stored_part)
 		var/turf/exit = get_step(src,(dir))
@@ -441,9 +445,7 @@
 			build_next_in_queue(FALSE)
 		return TRUE
 	
-	// Deelectrifies the machine
-	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
-		seconds_electrified--
+
 /**
   * Dispenses a part to the tile infront of the Exosuit Fab.
   *
