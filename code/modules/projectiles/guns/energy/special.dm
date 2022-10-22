@@ -76,10 +76,12 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/gun/energy/mindflayer
-	name = "\improper Mind Flayer"
-	desc = "A prototype weapon recovered from the ruins of Research-Station Epsilon."
+	name = "mind flayer"
+	desc = "A vicious weapon scrambling the thought and breaking the brain, more effective on weary targets."
 	icon_state = "xray"
 	item_state = null
+	w_class = WEIGHT_CLASS_SMALL
+	cell_type = /obj/item/stock_parts/cell/mini_egun
 	ammo_type = list(/obj/item/ammo_casing/energy/mindflayer)
 	ammo_x_offset = 2
 
