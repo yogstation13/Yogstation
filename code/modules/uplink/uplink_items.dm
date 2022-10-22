@@ -2418,6 +2418,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
 
+/datum/uplink_item/badass/syndiebears
+	name = "Omnizine Gummy Bears"
+	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	item = /obj/item/storage/pill_bottle/gummies/omnizine
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 0 //not because its too strong, but rather because it shouldn't be polluting the pool for other items
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/syndiebears/sleepy
+	name = "Sleepy Gummy Bears"
+	desc = "Sodium Thiopental infused gummy bears. Berry flavor."
+	item = /obj/item/storage/pill_bottle/gummies/sleepy
+	cost = 2
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 1 //rare. I feel sorry for the poor bastard that gets scammed by these
+	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndietape
 	name = "Guerrilla Tape"
@@ -2955,4 +2972,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Box of Posters"
 	desc = "A box of Nanotrasen-approved posters to boost crew morale."
 	item = /obj/item/storage/box/official_posters
+	cost = 1
+
+/datum/uplink_item/nt/gear/syndiebears
+	name = "Omnizine Gummy Bears"
+	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1

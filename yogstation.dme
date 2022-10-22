@@ -3820,6 +3820,7 @@
 #include "yogstation\code\modules\reagents\chemistry\recipes\slime_extracts.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\blood_pack.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\bottle.dm"
+#include "yogstation\code\modules\reagents\reagent_containers\gummies.dm"
 #include "yogstation\code\modules\reagents\reagent_containers\hypospray.dm"
 #include "yogstation\code\modules\reagents\reagents\other_reagents.dm"
 #include "yogstation\code\modules\reagents\recipes\pyrotechnics.dm"
