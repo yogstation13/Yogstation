@@ -70,6 +70,7 @@
 /mob/living/simple_animal/revenant/Initialize(mapload)
 	. = ..()
 	flags_1 |= RAD_NO_CONTAMINATE_1
+	ADD_TRAIT(src, TRAIT_SIXTHSENSE, INNATE_TRAIT)
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/revenant(null))
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/telepathy/revenant(null))
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/defile(null))
@@ -298,9 +299,6 @@
 	var/turf/T = get_turf(src)
 	if(isclosedturf(T))
 		to_chat(src, span_revenwarning("You cannot use abilities from inside of a wall."))
-		return FALSE
-	if(isspaceturf(T))
-		to_chat(src, span_revenwarning("You cannot use abilities in space!"))
 		return FALSE
 	for(var/obj/O in T)
 		if(O.density && !O.CanPass(src, T))
