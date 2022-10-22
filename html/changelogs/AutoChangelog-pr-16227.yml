@@ -1,5 +1,0 @@
-author: "N3D6"
-delete-after: true 
-changes: 
-  - bugfix: "every engine is no longer broken"
-  - tweak: "rename meta map files so they don't ruin and kill yog"
