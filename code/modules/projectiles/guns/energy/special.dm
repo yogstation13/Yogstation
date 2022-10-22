@@ -77,7 +77,7 @@
 
 /obj/item/gun/energy/mindflayer
 	name = "mind flayer"
-	desc = "A vicious weapon scrambling the thought and breaking the brain, more effective on weary targets."
+	desc = "A vicious weapon scrambling the thoughts and breaking the brain, more effective on weary targets."
 	icon_state = "xray"
 	item_state = null
 	w_class = WEIGHT_CLASS_SMALL
