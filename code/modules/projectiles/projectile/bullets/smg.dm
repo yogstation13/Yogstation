@@ -23,10 +23,10 @@
 	damage = 20
 
 /obj/item/projectile/bullet/c45/venom/on_hit(atom/target, blocked)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/victim = target
 		victim.reagents.add_reagent(/datum/reagent/toxin/venom, 4)
+	return ..()
 
 // 4.6x30mm (WT-550 Autocarbine)
 
