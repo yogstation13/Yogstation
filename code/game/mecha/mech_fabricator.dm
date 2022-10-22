@@ -158,6 +158,7 @@
 	if(seconds_electrified && !(stat & NOPOWER))
 		if(shock(user, 100))
 			return
+	return ..()
 
 /obj/machinery/mecha_part_fabricator/proc/wire_break(mob/user)
 	if(stat & (BROKEN|NOPOWER))
