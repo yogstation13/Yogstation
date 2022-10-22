@@ -738,10 +738,18 @@
 /datum/chemical_reaction/plastic_polymers
 	name = "plastic polymers"
 	id = /datum/reagent/plastic_polymers
+	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/oil = 5, /datum/reagent/toxin/acid = 2, /datum/reagent/ash = 3)
-	required_temp = 374 //lazily consistent with soap & other crafted objects generically created with heat.
+	required_temp = 374
 
-/datum/chemical_reaction/plastic_polymers/on_reaction(datum/reagents/holder, created_volume)
+/datum/chemical_reaction/plastic_solidification
+	name = "plastic solidification"
+	id = "plastic_solidification"
+	required_reagents = list(/datum/reagent/plastic_polymers = 10)
+	required_temp = 200
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/plastic_solidification/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/plastic(location)
@@ -794,3 +802,62 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/stack/medical/aloe(location)
+
+/datum/chemical_reaction/sulfur_trioxide
+	name = /datum/reagent/sulfur_trioxide
+	id = /datum/reagent/sulfur_trioxide
+	results = list(/datum/reagent/sulfur_trioxide = 4)
+	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/oxygen = 3)
+	required_catalysts = list(/datum/reagent/hydrogen = 1)
+
+/datum/chemical_reaction/sulfuric_acid
+	name = /datum/reagent/toxin/acid
+	id = /datum/reagent/toxin/acid
+	results = list(/datum/reagent/toxin/acid = 2)
+	required_reagents = list(/datum/reagent/sulfur_trioxide = 1, /datum/reagent/water = 1)
+
+/datum/chemical_reaction/sugar
+	name = /datum/reagent/consumable/sugar
+	id = /datum/reagent/consumable/sugar
+	results = list(/datum/reagent/consumable/sugar = 3)
+	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/fuel = 1)
+
+/datum/chemical_reaction/welding_fuel
+	name = /datum/reagent/fuel
+	id = /datum/reagent/fuel
+	results = list(/datum/reagent/fuel = 4)
+	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/toxin/acid = 3)
+	required_temp = 180
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/stableplasma
+	name = /datum/reagent/stable_plasma
+	id = /datum/reagent/stable_plasma
+	results = list(/datum/reagent/stable_plasma = 6)
+	required_reagents = list(/datum/reagent/toxin/plasma = 3, /datum/reagent/hydrogen = 3)
+	required_catalysts =  list(/datum/reagent/consumable/ethanol = 5)
+	required_temp = 100
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/ice
+	name = /datum/reagent/consumable/ice
+	id = /datum/reagent/consumable/ice
+	results = list(/datum/reagent/consumable/ice = 3)
+	required_reagents = list(/datum/reagent/water = 2, /datum/reagent/lye = 1)
+	required_temp = 200
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/water2
+	name = "melting_ice"
+	id = "melting_ice"
+	results = list(/datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/consumable/ice = 1)
+	required_temp = 400
+
+/datum/chemical_reaction/meltedplastic
+	name = "microplastic liquification"
+	id = "melted_plastic"
+	mix_message = "The microplastics turn back into liquid, with a strong unpleasent odor..."
+	results = list(/datum/reagent/plastic_polymers = 10)
+	required_reagents = list(/datum/reagent/microplastics = 10)
+	required_temp = 600
