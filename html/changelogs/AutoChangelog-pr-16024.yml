@@ -1,0 +1,8 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "Added Gummy Bears to the game!"
+  - rscadd: "RDS quirk users now get a bottle of Mindbreaker Gummy Bears on spawn"
+  - rscadd: "Nanomeds contain 2 bottles of Vitamin Gummy Bears as premium stock"
+  - rscadd: "Cargo can order Gummy Bears"
+  - imageadd: "added sprites for gummy bears and large pill bottles"
