@@ -1,0 +1,10 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Swapped damage values over to be based on punch damage"
+  - tweak: "Garden Warfare splinters are far less lethal"
+  - tweak: "Garden Warfare vine snatch more user-friendly"
+  - bugfix: "Garden Warfare remember the basics works now"
+  - tweak: "Explosive Fist self-damage mostly removed"
+  - tweak: "Lots of Explosive Fist tweaks and adjustments to make it a little less janky"
+  - spellcheck: "Various wording tweaks"
