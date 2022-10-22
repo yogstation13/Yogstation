@@ -1,0 +1,6 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - rscadd: "Added Blindfold of Telepathy to the Necropolis Chest loot pool"
+  - rscdel: "Removed Bowl of Blood from the Necropolis Chest loot pool"
+  - mapping: "Necropolis now features a bowl of blood in a chest as loot"
