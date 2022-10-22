@@ -70,7 +70,7 @@
 /datum/station_trait/darkmode/New()
 	. = ..()
 	for(var/turf/open/floor/plasteel/F in world)
-		if(F.z == 2 && (!F.broken && !F.burnt))
+		if(is_station_level(F.z) && (!F.broken && !F.burnt))
 			F.icon_regular_floor = 'icons/turf/floors.dmi'
 			F.icon_state_regular_floor = "darkfull"
 			F.icon = 'icons/turf/floors.dmi'
