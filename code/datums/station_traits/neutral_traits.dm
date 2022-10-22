@@ -75,3 +75,4 @@
 			F.icon_state_regular_floor = "darkfull"
 			F.icon = 'icons/turf/floors.dmi'
 			F.icon_state = "darkfull"
+			CHECK_TICK
