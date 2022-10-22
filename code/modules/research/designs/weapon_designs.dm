@@ -406,7 +406,7 @@
 /datum/design/mindflayer
 	name = "Mind Flayer"
 	desc = "A compact weapon made to destroy the mind rather than the body."
-	id = "hardlightbow"
+	id = "mind_flayer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 3000, /datum/material/plasma = 1000, /datum/material/dilithium = 100)
 	build_path = /obj/item/gun/energy/mindflayer
