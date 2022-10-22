@@ -1,0 +1,4 @@
+author: "VaelophisNyx"
+delete-after: true 
+changes: 
+  - tweak: "Offer Rename admin verb now properly renames someone's ID and employee record, and can be cancelled early"
