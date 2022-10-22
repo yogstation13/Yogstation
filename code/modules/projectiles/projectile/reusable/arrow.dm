@@ -136,12 +136,12 @@
 	desc = "A burning arrow"
 
 /obj/item/projectile/bullet/reusable/arrow/flaming/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.apply_damage(8, BURN)
 		M.adjust_fire_stacks(1)
 		M.IgniteMob()
+	return ..()
 
 /obj/item/projectile/energy/arrow //Hardlight projectile. Significantly more robust than a standard laser. Capable of hardening in target's flesh
 	name = "energy bolt"
@@ -152,12 +152,12 @@
 	var/obj/item/embed_type = /obj/item/ammo_casing/caseless/arrow/energy
 	
 /obj/item/projectile/energy/arrow/on_hit(atom/target, blocked = FALSE)
-	..()
-	if(!blocked && iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
 		if(prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)))
 			embede.embed_object(new embed_type(), part, FALSE)
+	return ..()
 
 /obj/item/projectile/energy/arrow/disabler //Hardlight projectile. Much more draining than a standard disabler. Needs to be competitive in DPS
 	name = "disabler bolt"
