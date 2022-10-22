@@ -142,14 +142,18 @@
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
+/obj/item/clothing/glasses/eyepatch/bigboss
+	name = "faded eyepatch"
+	desc = "Offers night vision and protection from flashes. Another mission, right boss?"
+	darkness_view = 8
+	flash_protect = 1
+
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
 	vision_correction = 1
-
-
 
 /obj/item/clothing/glasses/material
 	name = "optical material scanner"

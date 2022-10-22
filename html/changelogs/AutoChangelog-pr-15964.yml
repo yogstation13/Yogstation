@@ -1,4 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "Gems are now claimed by hitting them with an id, and only provide points to that id when they are sold on the cargo shuttle"
