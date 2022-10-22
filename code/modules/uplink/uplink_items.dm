@@ -273,8 +273,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/bundles_TC/random
 	name = "Random Item"
 	desc = "Picking this will purchase a random item. Useful if you have some TC to spare or if you haven't decided on a strategy yet."
-	item = /obj/effect/gibspawner/generic // non-tangible item because techwebs use this path to determine illegal tech
+	item = /obj/item/stack/sheet/cardboard
 	cost = 0
+	illegal_tech = FALSE
 
 /datum/uplink_item/bundles_TC/random/purchase(mob/user, datum/component/uplink/U)
 	var/list/uplink_items = U.uplink_items
@@ -511,7 +512,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			In addition, the user can charge the hammer to enable a thunderous blow that will decimate construction in a single hit, \
 			do sizeable damage to mechs, or shatter people off of their feet. The battery is charged by the user's concentration."
 	item = /obj/item/twohanded/vxtvulhammer
-	cost = 13
+	cost = 8
 	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
 
 /datum/uplink_item/dangerous/sniper
@@ -1583,12 +1584,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/failsafe
 	name = "Failsafe Uplink Code"
 	desc = "When entered the uplink will self-destruct immediately."
-	item = /obj/effect/gibspawner/generic
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate // Doesn't spawn
 	cost = 1
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
 	restricted = TRUE
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // Yogs: infiltration
+	illegal_tech = FALSE
 
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
@@ -1798,6 +1800,24 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/bodybag/environmental/prisoner/syndicate
 	cost = 7
 
+/datum/uplink_item/device_tools/holo_sight
+	name = "Holographic Sight"
+	desc = "A high-tech holographic sight that improves the aim of the weapon it's attached to."
+	item = /obj/item/attachment/scope/holo
+	cost = 2
+
+/datum/uplink_item/device_tools/vert_grip
+	name = "Vertical Grip"
+	desc = "A vertical foregrip that reduces the shock of firing a weapon. Extra handy for higher recoil guns like the sniper rifle."
+	item = /obj/item/attachment/scope/holo
+	cost = 2
+
+/datum/uplink_item/device_tools/laser_sight
+	name = "Laser Sight"
+	desc = "An aesthetic laser sight that improves your accuracy and shows you where you're aiming."
+	item = /obj/item/attachment/laser_sight
+	cost = 2
+
 // Implants
 /datum/uplink_item/implants
 	category = "Implants"
@@ -1889,7 +1909,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An implant injected into the body, and later activated at the user's will. Has no telecrystals and must be charged by the use of physical telecrystals. \
 			Undetectable (except via surgery), and excellent for escaping confinement."
 	item = /obj/item/storage/box/syndie_kit/imp_uplink
-	cost = UPLINK_IMPLANT_TELECRYSTAL_COST
+	cost = UPLINK_IMPLANT_TELECRYSTAL_COST //4 TC
 	// An empty uplink is kinda useless.
 	surplus = 0
 	restricted = TRUE
@@ -2020,7 +2040,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This hammer can be retracted and wielded in two hands as an effective armor-piercing weapon. \
 			It can be charged by the user's concentration, which permits a single blow that will decimate construction, \
 			fling bodies, and heavily damage mechs. Vir'ln krx'tai, lost one."
-	cost = 16
+	cost = 10
 	item = /obj/item/autosurgeon/arm/syndicate/syndie_hammer
 	restricted_species = list("preternis")
 
@@ -2400,6 +2420,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
 
+/datum/uplink_item/badass/syndiebears
+	name = "Omnizine Gummy Bears"
+	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	item = /obj/item/storage/pill_bottle/gummies/omnizine
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 0 //not because its too strong, but rather because it shouldn't be polluting the pool for other items
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/syndiebears/sleepy
+	name = "Sleepy Gummy Bears"
+	desc = "Sodium Thiopental infused gummy bears. Berry flavor."
+	item = /obj/item/storage/pill_bottle/gummies/sleepy
+	cost = 2
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 1 //rare. I feel sorry for the poor bastard that gets scammed by these
+	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndietape
 	name = "Guerrilla Tape"
@@ -2604,7 +2641,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/nt/ammo/lwt/penetrator
 	name = ".308 Penetrator Magazine"
-	desc = "An alterantive 15-round .308 penetrator magazine; suitable for use with the LWT-650. \
+	desc = "An alternative 15-round .308 penetrator magazine; suitable for use with the LWT-650. \
 			These rounds do less damage but puncture bodies and body armor alike."
 	item = /obj/item/ammo_box/magazine/m308/pen
 	cost = 4
@@ -2937,4 +2974,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Box of Posters"
 	desc = "A box of Nanotrasen-approved posters to boost crew morale."
 	item = /obj/item/storage/box/official_posters
+	cost = 1
+
+/datum/uplink_item/nt/gear/syndiebears
+	name = "Omnizine Gummy Bears"
+	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1

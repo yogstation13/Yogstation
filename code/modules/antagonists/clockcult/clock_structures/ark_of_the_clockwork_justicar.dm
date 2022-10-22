@@ -141,7 +141,7 @@
 			continue
 		if(isliving(M.current) && M.current.stat != DEAD)
 			if(isAI(M.current))
-				M.current.forceMove(get_step(get_step(src, NORTH),NORTH)) // AI too fat, must make sure it always ends up a 2 tiles north instead of on the ark.
+				continue //prevents any cogged AIs from getting teleported to reebe and dying from nocoreitus
 			else
 				M.current.forceMove(get_turf(src))
 		M.current.overlay_fullscreen("flash", /obj/screen/fullscreen/flash)

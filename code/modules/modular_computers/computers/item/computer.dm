@@ -300,6 +300,10 @@
 	var/obj/item/card/id/stored_id = GetID()
 	if(id_rename && stored_id)
 		name = "[stored_id.registered_name]'s [initial(name)] ([stored_id.assignment])"
+		var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
+		var/datum/computer_file/program/pdamessager/msgr = hard_drive.find_file_by_name("pda_client")
+		if(istype(msgr))
+			msgr.username = "[stored_id.registered_name] ([stored_id.assignment])"
 	else
 		name = initial(name)
 
@@ -401,8 +405,14 @@
 // Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
 /obj/item/modular_computer/proc/get_header_data()
 	var/list/data = list()
+	data["PC_emagged"] = obj_flags & EMAGGED ? 1 : 0
 
 	data["PC_device_theme"] = device_theme
+	//storing the entire theme collection in the header data so it can be referenced for ntos approved themes. as in not syndicate
+	var/list/theme_collection = list()
+	for(var/theme_key in GLOB.pda_themes)
+		theme_collection += list(list("theme_name" = theme_key, "theme_file" = GLOB.pda_themes[theme_key]))
+	data["theme_collection"] = theme_collection
 
 	var/obj/item/computer_hardware/battery/battery_module = all_components[MC_CELL]
 	var/obj/item/computer_hardware/recharger/recharger = all_components[MC_CHARGE]

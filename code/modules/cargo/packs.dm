@@ -1456,6 +1456,40 @@
 		var/item = pick(contains)
 		new item(C)
 
+/datum/supply_pack/medical/gummies
+	name = "Gummy Bear Bottle Crate"
+	desc = "Contains several assorted bottles of gummy bears."
+	cost = 4000
+	contains = list(/obj/item/storage/pill_bottle/gummies/vitamin,
+					/obj/item/storage/pill_bottle/gummies/melatonin,
+					/obj/item/storage/pill_bottle/gummies/nitro,
+					/obj/item/storage/pill_bottle/gummies/mime)
+	crate_name = "gummy bear crate"
+	small_item = TRUE
+
+/datum/supply_pack/medical/gummies/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
+		var/item = pick(contains)
+		new item(C)
+
+/datum/supply_pack/medical/gummies/illegal
+	name = "Illegal Gummy Bear Bottle Crate"
+	desc = "Contains several assorted bottles of less-than-legal gummy bears."
+	cost = 5000
+	contains = list(/obj/item/storage/pill_bottle/gummies/meth,
+					/obj/item/storage/pill_bottle/gummies/drugs,
+					/obj/item/storage/pill_bottle/gummies/floorbear,
+					/obj/item/storage/pill_bottle/gummies/mindbreaker,
+					/obj/item/storage/pill_bottle/gummies/omnizine)
+	crate_name = "illegal gummy bear crate"
+	contraband = TRUE
+	small_item = TRUE
+
+/datum/supply_pack/medical/gummies/illegal/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
+		var/item = pick(contains)
+		new item(C)
+
 /datum/supply_pack/medical/surgery
 	name = "Surgical Supplies Crate"
 	desc = "Do you want to perform surgery, but don't have one of those fancy shmancy degrees? Just get started with this crate containing a medical duffelbag, Sterilizine spray and collapsible roller bed."
@@ -2042,7 +2076,8 @@
 					/obj/item/pizzabox/mushroom,
 					/obj/item/pizzabox/meat,
 					/obj/item/pizzabox/vegetable,
-					/obj/item/pizzabox/pineapple)
+					/obj/item/pizzabox/pineapple,
+					/obj/item/pizzabox/seafood)
 	crate_name = "pizza crate"
 	var/static/anomalous_box_provided = FALSE
 
@@ -2322,6 +2357,23 @@
 					/mob/living/simple_animal/hostile/retaliate/gator)
 	crate_name = "gator crate"
 
+/datum/supply_pack/critter/mothroach
+	name = "Mothroach Crate"
+	desc = "Put the mothroach on your head and find out what true cuteness looks like."
+	cost = 7500
+	contains = list(/mob/living/simple_animal/pet/mothroach)
+	crate_name = "mothroach crate"
+
+/datum/supply_pack/critter/axolotl
+	name = "Axolotl Crate"
+	desc = "Contains 4 axolotls to pet."
+	cost = 4000
+	contains = list(/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl)
+	crate_name = "axolotl crate"
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Costumes & Toys /////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -2373,6 +2425,7 @@
 					/obj/item/storage/pill_bottle/lsd,
 					/obj/item/storage/pill_bottle/aranesp,
 					/obj/item/storage/pill_bottle/stimulant,
+					/obj/item/storage/pill_bottle/gummies/omnizine,
 					/obj/item/toy/cards/deck/syndicate,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,
@@ -2843,10 +2896,3 @@
 	small_item = TRUE
 	contains = list(/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
-
-/datum/supply_pack/critter/mothroach
-	name = "Mothroach Crate"
-	desc = "Put the mothroach on your head and find out what true cuteness looks like."
-	cost = 7500
-	contains = list(/mob/living/simple_animal/friendly/mothroach)
-	crate_name = "mothroach crate"
