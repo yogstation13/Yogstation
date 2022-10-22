@@ -1,7 +1,7 @@
 /datum/round_event_control/vent_clog
 	name = "Clogged Vents: Normal"
 	typepath = /datum/round_event/vent_clog
-	weight = 10
+	weight = 0
 	max_occurrences = 3
 	min_players = 10
 
@@ -50,7 +50,7 @@
 /datum/round_event_control/vent_clog/threatening
 	name = "Clogged Vents: Threatening"
 	typepath = /datum/round_event/vent_clog/threatening
-	weight = 4
+	weight = 0
 	min_players = 25
 	max_occurrences = 1
 	earliest_start = 35 MINUTES
@@ -62,7 +62,7 @@
 /datum/round_event_control/vent_clog/catastrophic
 	name = "Clogged Vents: Catastrophic"
 	typepath = /datum/round_event/vent_clog/catastrophic
-	weight = 2
+	weight = 0
 	min_players = 35
 	max_occurrences = 1
 	earliest_start = 45 MINUTES
@@ -80,7 +80,7 @@
 	name = "Cleaner stationwide"
 	typepath = /datum/round_event/vent_clog/cleaner
 	max_occurrences = 0
-	weight = 10
+	weight = 0
 	min_players = 5
 	max_occurrences = 1
 
