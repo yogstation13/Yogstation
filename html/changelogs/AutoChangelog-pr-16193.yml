@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Technically not a bugfix but some on_hit effects from some projectiles should be properly blockable now"
