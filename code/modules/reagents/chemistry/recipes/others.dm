@@ -808,18 +808,11 @@
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/ashresin(location)
 
-/datum/chemical_reaction/sulfur_trioxide
-	name = /datum/reagent/sulfur_trioxide
-	id = /datum/reagent/sulfur_trioxide
-	results = list(/datum/reagent/sulfur_trioxide = 4)
-	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/oxygen = 3)
-	required_catalysts = list(/datum/reagent/hydrogen = 1)
-
 /datum/chemical_reaction/sulfuric_acid
 	name = /datum/reagent/toxin/acid
 	id = /datum/reagent/toxin/acid
 	results = list(/datum/reagent/toxin/acid = 2)
-	required_reagents = list(/datum/reagent/sulfur_trioxide = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/sugar
 	name = /datum/reagent/consumable/sugar

@@ -2119,13 +2119,6 @@
 	if(method == INGEST || method == TOUCH || method == INJECT)
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
 
-/datum/reagent/sulfur_trioxide
-	name = "Sulfur Trioxide"
-	description = "A super-oxygenated sulfur compound."
-	color = "#ebf0ff"
-	taste_description = "metallic rotten eggs"
-	reagent_state = SOLID
-
 /datum/reagent/adrenaline
 	name = "Adrenaline"
 	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
