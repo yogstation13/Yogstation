@@ -1,9 +1,0 @@
-author: " N3D6, ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "new landmark, meta engine spawner"
-  - rscadd: "new map file for the meta tesla"
-  - rscadd: "adds an engine smes to meta engineering"
-  - rscadd: "code for meta random engines, 50/30/20 SM, tesla, teg"
-  - rscadd: "map file for meta teg"
-  - tweak: "redoes some of the meta smes to fall in line with the new engine smes"
