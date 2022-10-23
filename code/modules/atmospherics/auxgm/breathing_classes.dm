@@ -41,6 +41,16 @@
 		GAS_CO2 = 1,
 	)
 
+/datum/breathing_class/oxygen_co2
+	gases = list(
+		GAS_O2 = 1,
+		GAS_PLUOXIUM = 8,
+		GAS_CO2 = 1, 
+	)
+	products = list(
+		GAS_CO2 = 1,
+	)
+
 /datum/breathing_class/plasma
 	gases = list(
 		GAS_PLASMA = 1

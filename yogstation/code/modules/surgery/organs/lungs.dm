@@ -27,15 +27,19 @@
 	icon = 'yogstation/icons/obj/surgery.dmi'
 	icon_state = "lungs-plant"
 
-	safe_co2_max = 0 //make them not choke on CO2 so they can actually breathe it
-	oxygen_substitutes = list(/datum/gas/pluoxium = 8, /datum/gas/carbon_dioxide = 1) //able of using CO2 AND oxygen to breathe
+	gas_max = list(
+		GAS_CO2 = 0, //make them not choke on CO2 so they can actually breathe it
+		GAS_PLASMA = 0.05
+	)
+
+	breathing_class = /datum/breathing_class/oxygen_co2
 
 /obj/item/organ/lungs/plant/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H) //Directly taken from the xenos lungs
 	. = ..()
 	if(breath)
-		var/breath_amt = breath.get_moles(/datum/gas/carbon_dioxide)
-		breath.adjust_moles(/datum/gas/carbon_dioxide, -breath_amt)
-		breath.adjust_moles(/datum/gas/oxygen, breath_amt)
+		var/breath_amt = breath.get_moles(GAS_CO2)
+		breath.adjust_moles(GAS_CO2, -breath_amt)
+		breath.adjust_moles(GAS_O2, breath_amt)
 
 /obj/item/organ/lungs/plant/prepare_eat()
 	var/obj/item/reagent_containers/food/snacks/organ/plant_lung/S = new
