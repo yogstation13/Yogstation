@@ -245,3 +245,9 @@
 	if(gun)
 		gun.pin = null
 	return ..()
+
+/obj/item/mindshield_upgrade
+	name = "mindshield detector"
+	desc = "A small circuit compatible with electronic firing pins to make them check for mindshiel implant in their user."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade3"
