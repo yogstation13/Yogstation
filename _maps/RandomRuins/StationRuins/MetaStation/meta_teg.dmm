@@ -159,6 +159,16 @@
 	},
 /turf/open/floor/engine/airless,
 /area/engine/engineering)
+"gj" = (
+/obj/machinery/button/door{
+	id = "teghot";
+	name = "Hot Chamber Vent";
+	pixel_y = 22;
+	req_access_txt = "10"
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/engine/engineering)
 "gK" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -573,16 +583,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"uY" = (
-/obj/machinery/button/door{
-	id = "teghot";
-	name = "Hot Chamber Vent";
-	pixel_y = 22;
-	req_access_txt = "10"
-	},
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
-/area/space/nearstation)
 "vi" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4;
@@ -803,16 +803,6 @@
 /obj/structure/lattice/catwalk,
 /turf/template_noop,
 /area/space/nearstation)
-"DO" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/closet/crate/engineering,
-/obj/item/circuitboard/machine/circulator,
-/obj/item/circuitboard/machine/circulator,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "Eb" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -966,6 +956,17 @@
 /area/engine/engineering)
 "Jy" = (
 /obj/effect/mapping_helpers/teleport_anchor,
+/turf/open/floor/engine,
+/area/engine/engineering)
+"JV" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/structure/closet/crate/engineering,
+/obj/item/circuitboard/machine/circulator,
+/obj/item/circuitboard/machine/circulator,
+/obj/item/circuitboard/machine/generator,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Kf" = (
@@ -1679,7 +1680,7 @@ ed
 Is
 TJ
 eO
-DO
+JV
 yq
 Os
 qj
@@ -1943,7 +1944,7 @@ Xo
 BO
 Xo
 Tl
-uY
+gj
 Tl
 fh
 Tl
