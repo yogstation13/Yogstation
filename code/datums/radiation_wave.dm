@@ -113,7 +113,7 @@
 			continue
 		if(thing.flags_1 & RAD_NO_CONTAMINATE_1 || SEND_SIGNAL(thing, COMSIG_ATOM_RAD_CONTAMINATING, strength) & COMPONENT_BLOCK_CONTAMINATION)
 			continue
-		if(prob(contamination_chance) && strength > 0 && thing.rad_insulation == RAD_FULL_INSULATION) // Only stronk rads get to have little baby rads
+		if(prob(contamination_chance) && strength > 0 && !(RAD_FULL_INSULATION <= thing.rad_insulation <= RAD_EXTREME_INSULATION)) // Only stronk rads get to have little baby rads
 			if(SEND_SIGNAL(thing, COMSIG_ATOM_RAD_CONTAMINATING, strength) & COMPONENT_BLOCK_CONTAMINATION)
 				continue
 			var/rad_strength =  log(strength/RAD_MINIMUM_CONTAMINATION) * RAD_MINIMUM_CONTAMINATION * RAD_CONTAMINATION_STR_COEFFICIENT
