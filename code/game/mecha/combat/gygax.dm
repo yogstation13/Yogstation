@@ -22,7 +22,6 @@
 	deflect_chance = 25
 	armor = list(MELEE = 40, BULLET = 40, LASER = 50, ENERGY = 35, BOMB = 20, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 35000
-	leg_overload_coeff = 100
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
