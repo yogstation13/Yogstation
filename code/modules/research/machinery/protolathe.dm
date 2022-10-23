@@ -14,7 +14,6 @@
 								"Electronics",
 								"Weapons",
 								"Ammo",
-								"Firing Pins",
 								"Computer Parts",
 								"Spacepod Designs", // yoggers
 								"Service",
