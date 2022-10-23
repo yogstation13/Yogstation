@@ -30,23 +30,11 @@
 	for(var/dir in GLOB.cardinals)
 		new /datum/radiation_wave(source, dir, intensity, range_modifier, can_contaminate)
 
-	var/width = 0
-	var/cmove_dir
-	if(cmove_dir == NORTH || cmove_dir == SOUTH)
-		width--
-	width = 1+(2*width)
-
 	var/list/things = get_rad_contents(source) //copypasta because I don't want to put special code in waves to handle their origin
 	for(var/k in 1 to things.len)
 		var/atom/thing = things[k]
 		if(!thing)
 			continue
-		if (SEND_SIGNAL(thing, COMSIG_ATOM_RAD_WAVE_PASSING, width) & COMPONENT_RAD_WAVE_HANDLED)
-			continue
-		if (thing.rad_insulation != RAD_NO_INSULATION)
-			intensity *= (1-((1-thing.rad_insulation)/width))
-		if (thing.rad_insulation == RAD_FULL_INSULATION)
-			intensity = (log(intensity+1)+RAD_MINIMUM_CONTAMINATION)/RAD_CONTAMINATION_STR_COEFFICIENT + 350
 		thing.rad_act(intensity)
 
 	var/static/last_huge_pulse = 0
