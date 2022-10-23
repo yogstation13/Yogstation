@@ -54,7 +54,7 @@
 		"https://www.youtube.com/watch?v=8GW6sLrK40k",						//HOME - Resonance
 		"https://www.youtube.com/watch?v=8DNoXUnaQ9k",						//Chris Christodoulou - Dies Irae
 		"https://www.youtube.com/watch?v=Nn9trJXUrp0",						//Chris Christodoulou - ...con lentitud poderosa
-		"https://www.youtube.com/watch?v=rkas-NHQnsI")						// Clint Eastwood - Magnum Force Theme
+		"https://www.youtube.com/watch?v=rkas-NHQnsI")						// Clint Eastwood - Magnum Force Theme 
 	selected_lobby_music = pick(songs)
 
 	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
