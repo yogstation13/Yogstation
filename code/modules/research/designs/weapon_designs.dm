@@ -92,17 +92,17 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 300)
 	build_path = /obj/item/firing_pin/test_range
-	category = list("Firing Pins")
+	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/pin_mindshield
-	name = "Mindshield Firing Pin"
-	desc = "This is a security firing pin which only authorizes users who are mindshield-implanted."
+	name = "Mindshield detector"
+	desc = "A security upgrade for firing pins to only authorizes users who are mindshield-implanted."
 	id = "pin_loyalty"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 200)
-	build_path = /obj/item/firing_pin/implant/mindshield
-	category = list("Firing Pins")
+	build_path = /obj/item/mindshield_upgrade
+	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/stunmine/sec //mines ported from BeeStation
