@@ -66,13 +66,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"ed" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 1
-	},
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "ef" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -146,6 +139,17 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"fz" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/structure/closet/crate/engineering,
+/obj/item/circuitboard/machine/circulator,
+/obj/item/circuitboard/machine/circulator,
+/obj/item/circuitboard/machine/generator,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "fI" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 5
@@ -158,16 +162,6 @@
 	luminosity = 2
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
-"gj" = (
-/obj/machinery/button/door{
-	id = "teghot";
-	name = "Hot Chamber Vent";
-	pixel_y = 22;
-	req_access_txt = "10"
-	},
-/obj/structure/lattice/catwalk,
-/turf/template_noop,
 /area/engine/engineering)
 "gK" = (
 /obj/structure/cable/yellow{
@@ -927,6 +921,16 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"HE" = (
+/obj/machinery/button/door{
+	id = "teghot";
+	name = "Hot Chamber Vent";
+	pixel_y = 22;
+	req_access_txt = "10"
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/engine/engineering)
 "Io" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
@@ -956,17 +960,6 @@
 /area/engine/engineering)
 "Jy" = (
 /obj/effect/mapping_helpers/teleport_anchor,
-/turf/open/floor/engine,
-/area/engine/engineering)
-"JV" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/structure/closet/crate/engineering,
-/obj/item/circuitboard/machine/circulator,
-/obj/item/circuitboard/machine/circulator,
-/obj/item/circuitboard/machine/generator,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "Kf" = (
@@ -1407,6 +1400,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"WQ" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/atmospherics/components/unary/portables_connector,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "Xg" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -1676,11 +1674,11 @@ Mb
 Tl
 Lt
 ap
-ed
+WQ
 Is
 TJ
 eO
-JV
+fz
 yq
 Os
 qj
@@ -1702,7 +1700,7 @@ ma
 Tl
 hi
 ap
-ed
+WQ
 Is
 OT
 tC
@@ -1728,7 +1726,7 @@ oN
 bA
 fr
 Fb
-ed
+WQ
 Is
 Jy
 ap
@@ -1754,7 +1752,7 @@ Mb
 Tl
 Lt
 FP
-ed
+WQ
 yB
 GA
 kf
@@ -1944,7 +1942,7 @@ Xo
 BO
 Xo
 Tl
-gj
+HE
 Tl
 fh
 Tl
