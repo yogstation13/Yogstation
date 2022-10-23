@@ -2119,13 +2119,6 @@
 	if(method == INGEST || method == TOUCH || method == INJECT)
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
 
-/datum/reagent/sulfur_trioxide
-	name = "Sulfur Trioxide"
-	description = "A super-oxygenated sulfur compound."
-	color = "#ebf0ff"
-	taste_description = "metallic rotten eggs"
-	reagent_state = SOLID
-
 /datum/reagent/adrenaline
 	name = "Adrenaline"
 	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
@@ -2139,6 +2132,12 @@
 /datum/reagent/adrenaline/on_mob_delete(mob/living/L)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+
+/datum/reagent/liquidsoap
+	name = "Liquid soap"
+	color = "#ddb772"
+	description = "Not much use in this form..."
+	taste_description = "soap"
 
 /datum/reagent/microplastics
 	name = "Microplastics"
@@ -2157,5 +2156,3 @@
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25*REM)
 	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
 	..()
-
-
