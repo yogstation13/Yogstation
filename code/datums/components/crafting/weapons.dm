@@ -10,6 +10,16 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/mindshield_pin
+	name = "Mindshield Firing Pins"
+	result = /obj/item/firing_pin/implant/mindshield
+	reqs = list(/obj/item/firing_pin = 1,
+				/obj/item/mindshield_upgrade =1)
+	blacklist = list(/obj/item/firing_pin/clockie, /obj/item/firing_pin/implant, /obj/item/firing_pin/clown, /obj/item/firing_pin/fucked, /obj/item/firing_pin/dna, /obj/item/firing_pin/tag)
+	time = 2 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/IED
 	name = "IED"
 	result = /obj/item/grenade/iedcasing
