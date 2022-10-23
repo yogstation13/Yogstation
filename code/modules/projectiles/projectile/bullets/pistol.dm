@@ -40,11 +40,11 @@
 	eyeblur = 20
 
 /obj/item/projectile/bullet/c10mm/sp/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(isliving(target))
+	if((blocked != 100) && isliving(target))
 		var/mob/living/L = target
 		if(L.getStaminaLoss() >= 100)
 			L.Sleeping(400)
+	return ..()
 
 /obj/item/projectile/bullet/incendiary/c10mm
 	name = "10mm incendiary bullet"
