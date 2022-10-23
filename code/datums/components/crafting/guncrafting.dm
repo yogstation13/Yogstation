@@ -44,7 +44,6 @@
 					QDEL_NULL(N.pin)
 				pin.forceMove(N)
 				N.pin = pin
-			newthing.update_icon()
 			qdel(W)
 			qdel(src)
 	..()
