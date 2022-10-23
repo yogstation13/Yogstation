@@ -384,7 +384,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/largecrossbow
-	name = "Energy Crossbow"
+	name = "Energy Crossbow kit"
 	desc = "A reverse-engineered energy crossbow favored by syndicate infiltration teams and carp hunters."
 	id = "largecrossbow"
 	build_type = PROTOLATHE
@@ -394,7 +394,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/hardlightbow
-	name = "Hardlight Bow"
+	name = "Hardlight Bow kit"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
 	id = "hardlightbow"
 	build_type = PROTOLATHE
