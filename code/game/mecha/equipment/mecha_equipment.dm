@@ -43,6 +43,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/Destroy()
 	if(chassis)
+		if(chassis.selected == src)	//If it's the active equipment, we lose any passive effects
+			on_deselect()
 		chassis.equipment -= src
 		if(chassis.selected == src)
 			chassis.selected = null
@@ -178,6 +180,12 @@
 /obj/item/mecha_parts/mecha_equipment/proc/rearm()
 	return 0
 
-
 /obj/item/mecha_parts/mecha_equipment/proc/needs_rearm()
+	return 0
+
+//used for equipment, such as melee weapons, that have passive effects
+/obj/item/mecha_parts/mecha_equipment/proc/on_select()
+	return 0
+
+/obj/item/mecha_parts/mecha_equipment/proc/on_deselect()
 	return 0

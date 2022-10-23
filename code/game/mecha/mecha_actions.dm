@@ -86,13 +86,17 @@
 	var/number = 0
 	for(var/A in available_equipment)
 		number++
-		if(A == chassis.selected)
+		if(A == chassis.selected)	//Swapping to no equipment from something
 			if(available_equipment.len == number)
+				chasses.selected.on_deselect()
 				chassis.selected = null
 				chassis.occupant_message("You switch to no equipment")
 				button_icon_state = "mech_cycle_equip_off"
 			else
+				if(chassis.selected)	//If we're swapping off of an equipment, remove effects
+					chassis.selected.on_deselect()
 				chassis.selected = available_equipment[number+1]
+				chassis.selected.on_select()
 				chassis.occupant_message("You switch to [chassis.selected]")
 				button_icon_state = "mech_cycle_equip_on"
 			send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())

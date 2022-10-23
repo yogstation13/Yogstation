@@ -1,0 +1,40 @@
+/obj/item/mecha_parts/mecha_equipment/melee_weapon
+	name = "mecha melee weapon"
+	range = MECHA_MELEE
+	destroy_sound = 'sound/mecha/weapdestr.ogg'
+
+    mech_flags = EXOSUIT_MODULE_COMBAT
+	var/restricted = TRUE //for our special hugbox exofabs
+    //Determine whether the weapon has an  AOE attack or is single-target
+    var/cleave = FALSE
+    var/attack_effect = /obj/effect/temp_visual/dir_setting/mecha_attack
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
+	if(!..())
+		return FALSE
+	if(istype(M, /obj/mecha/combat))
+		return TRUE
+	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !((locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) || (locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) ))
+		return TRUE
+	return FALSE
+
+//THIS ISNT EVEN CLOSE TO DONE YET 
+
+/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, params)
+	if(!action_checks(target))
+		return 0
+
+	var/turf/curloc = get_turf(chassis)
+	var/turf/targloc = get_turf(target)
+	if (!targloc || !istype(targloc) || !curloc)
+		return 0
+	if (targloc == curloc)
+		return 0
+
+	set_ready_state(0)
+	if(cleave)
+		new attack_effect(get_turf(src), chassis.dir)
+		playsound(chassis, fire_sound, 50, 1)
+
+	chassis.log_message("Attacked from [src.name], targeting [target].", LOG_MECHA)
+	return 1
