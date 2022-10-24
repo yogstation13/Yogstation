@@ -139,7 +139,7 @@
 	include_user = TRUE
 	action_icon_state = "suplex"
 	range = -1
-	charge_max = 30
+	charge_max = 10
 	cooldown_min = 50
 
 /obj/effect/proc_holder/spell/targeted/suplex/cast(atom/target,mob/living/user)
