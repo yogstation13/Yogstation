@@ -1945,7 +1945,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 		if(ismovable(human_loc))
 			var/atom/movable/occupied_space = human_loc
 			thermal_protection *= (1 - occupied_space.contents_thermal_insulation)
-		if(!HAS_TRAIT(H, TRAIT_NO_PASSIVE_HEATING) || loc_temp > BODYTEMP_NORMAL+200) //if the room is very hot, it will allow heat adapt people to warm up
+		if(!HAS_TRAIT(H, TRAIT_NO_PASSIVE_HEATING) || loc_temp > BODYTEMP_NORMAL+1000) //if the room is very hot, it will allow heat adapt people to warm up
 			if(H.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
 				H.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - H.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
 		else //we're sweating, insulation hinders out ability to reduce heat - but will reduce the amount of heat we get from the environment
