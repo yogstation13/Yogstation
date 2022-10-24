@@ -27510,6 +27510,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"itt" = (
+/obj/machinery/door/window/northleft,
+/obj/machinery/light/small,
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/science/mixing)
 "iua" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
@@ -73069,15 +73077,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
-"xRN" = (
-/obj/machinery/door/window/northleft,
-/obj/machinery/light/small,
-/obj/effect/turf_decal/loading_area{
-	dir = 1;
-	icon_state = "loadingate"
-	},
-/turf/open/floor/engine,
-/area/science/mixing)
 "xRP" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -119784,7 +119783,7 @@ acb
 acb
 aOl
 aIm
-xRN
+itt
 ahN
 mVg
 jEg
