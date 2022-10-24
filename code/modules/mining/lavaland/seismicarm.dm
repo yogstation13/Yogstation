@@ -120,12 +120,15 @@
 					if(isanimal(L))
 						U.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
 						L.adjustBruteLoss(20)
+						if(L.stat == DEAD)
+							L.visible_message(span_warning("[L] is ground into paste!"))
+							L.gib()
 					if(iscarbon(L))
 						L.adjustBruteLoss(4)
 					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
 			T = get_step(user,user.dir)
 	for(var/mob/living/C in mopped)
-		if(isliving(C) && C.stat == CONSCIOUS && C.resting == FALSE)
+		if(C.stat == CONSCIOUS && C.resting == FALSE)
 			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
 
 /obj/effect/proc_holder/spell/targeted/suplex
@@ -181,6 +184,9 @@
 		user.setDir(turn(user.dir,180))
 		if(isanimal(L))
 			L.adjustBruteLoss(20)
+			if(L.stat == DEAD)
+				L.visible_message(span_warning("[L]'s body explodes into gore on impact!"))
+				L.gib()
 		if(iscarbon(L))
 			L.adjustBruteLoss(6)
 		
@@ -276,7 +282,7 @@
 //Seismic Arm
 /obj/item/bodypart/r_arm/robot/seismic
 	name = "seismic right arm"
-	desc = "A robotic arm adorned with subwoofers capable of emitting shockwaves to create a facsimile of strength."
+	desc = "A robotic arm adorned with subwoofers capable of emitting shockwaves to imitate strength."
 	icon = 'icons/mob/augmentation/augments_seismic.dmi'
 	icon_state = "seismic_r_arm"
 	max_damage = 60
