@@ -23,9 +23,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	brutemod = 0.9 //Have you ever punched a metal plate?
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
-	heatmod = 2 //The once the heat gets through it's gonna BURN
+	heatmod = 2 //Once the heat gets through it's gonna BURN
 	tempmod = 0.2 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
-	staminamod = 1.5 //Big metal body has difficulty holding it's weight if it gets tired
+	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	speedmod = 0 //Sleek efficient metal legs, despite the weight
 	action_speed_coefficient = 0.9 //worker drone do the fast
 	punchdamagelow = 2 //if it hits you, it's always gonna hurt
@@ -56,8 +56,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	for (var/V in C.bodyparts)
 		var/obj/item/bodypart/BP = V
 		BP.change_bodypart_status(ORGAN_ROBOTIC,FALSE,TRUE)
-		BP.burn_reduction = 0
-		BP.brute_reduction = 0
+		BP.burn_reduction = 1
+		BP.brute_reduction = 1
+		if(istype(BP,/obj/item/bodypart/chest) || istype(BP,/obj/item/bodypart/head))
+			continue
+		BP.max_damage = 35
 
 	if(ishuman(C))
 		maglock = new
