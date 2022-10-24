@@ -132,7 +132,7 @@
 			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
 
 /obj/effect/proc_holder/spell/targeted/suplex
-	name = "Slam"
+	name = "Suplex"
 	desc = "Grab the target in front of you and slam them back onto the ground."
 	action_icon = 'icons/mob/actions/actions_arm.dmi'	
 	clothes_req = FALSE
@@ -163,10 +163,6 @@
 		for(var/obj/D in T.contents)
 			if(D.density == TRUE)
 				return
-		for (var/turf/open/chasm/C in Q.contents)
-			return
-		for (var/turf/open/lava/V in Q.contents)
-			return
 		for(var/obj/machinery/door/window/E in Z.contents)
 			if(E.density == TRUE)
 				return 
