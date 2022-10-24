@@ -302,6 +302,10 @@ GLOBAL_LIST_EMPTY(pool_filters)
 					if(!HAS_TRAIT(C, TRAIT_RESISTHEAT))
 						C.adjustFireLoss(5)
 					to_chat(M, "<span class='danger'>The water is searing hot!</span>")
+				else
+					if(iscarbon(M))	//if temperature is comfy, can be used to warm up or cool down
+						var/body_temperature_difference = current_temperature - C.bodytemperature
+						C.adjust_bodytemperature(min(100, body_temperature_difference))
 
 /obj/structure/pool_ladder/attack_hand(mob/user)
 	var/datum/component/swimming/S = user.GetComponent(/datum/component/swimming)
