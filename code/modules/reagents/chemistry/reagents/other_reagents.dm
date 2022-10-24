@@ -186,8 +186,8 @@
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
 	. = ..()	
-	var/body_temperature_difference = BODYTEMP_NORMAL - owner.bodytemperature
-	owner.adjust_bodytemperature(min(3,body_temperature_difference))
+	var/body_temperature_difference = BODYTEMP_NORMAL - M.bodytemperature
+	M.adjust_bodytemperature(min(3,body_temperature_difference))
 	if(M.blood_volume)
 		M.blood_volume += 0.1 // water is good for you!
 
