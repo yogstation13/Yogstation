@@ -1001,21 +1001,21 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		attack_image.plane = attacked_atom.plane
 
 		// Scale the icon.
-		attack_image.transform *= 0.4
+		attack_image.transform *= pick(0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55)
 		// The icon should not rotate.
 		attack_image.appearance_flags = APPEARANCE_UI
 
 		// Set the direction of the icon animation.
 		var/direction = get_dir(src, attacked_atom)
 		if(direction & NORTH)
-			attack_image.pixel_y = -12
+			attack_image.pixel_y = rand(-15,-11)
 		else if(direction & SOUTH)
-			attack_image.pixel_y = 12
+			attack_image.pixel_y = rand(11,15)
 
 		if(direction & EAST)
-			attack_image.pixel_x = -14
+			attack_image.pixel_x = rand(-15,-11)
 		else if(direction & WEST)
-			attack_image.pixel_x = 14
+			attack_image.pixel_x = rand(11,15)
 
 		if(!direction) // Attacked self?!
 			attack_image.pixel_y = 12
@@ -1024,7 +1024,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if(!attack_image)
 		return
 
-	flick_overlay(attack_image, GLOB.clients, 10)
+	flick_overlay(attack_image, GLOB.clients, 10) // 10 ticks/a whole second
 	// And animate the attack!
 	var/t_color = "#ffffff" //yogs start
 	if(ismob(src) &&  ismob(attacked_atom) && (!used_item))
