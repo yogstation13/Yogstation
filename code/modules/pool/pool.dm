@@ -224,6 +224,7 @@ GLOBAL_LIST_EMPTY(pool_filters)
 	var/current_temperature = 300 //current temp
 	var/preset_reagent_type = null //Set this if you want your pump to start filled with a given reagent. SKEWIUM POOL SKEWIUM POOL!
 	var/temp_rate = 0.5
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/pool_filter/examine(mob/user)
 	. = ..()
