@@ -1,7 +1,8 @@
 /obj/effect/proc_holder/spell/targeted/lariat
 	name = "Lariat"
-	desc = "Dash forward, catching whatever animal you hit with the crux of your elbow and knocking them over."
-	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	desc = "Dash forward, catching whatever animal you hit with your arm and knocking them over."
+	action_icon = 'icons/mob/actions/actions_arm.dmi'
+	action_icon_state = "lariat"
 	clothes_req = FALSE
 	include_user = TRUE
 	range = -1
@@ -13,11 +14,13 @@
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
+	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
 	if(R?.bodypart_disabled)
 		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
 		return
+	if(user.IsParalyzed() || user.IsStun() || user.restrained())
+		return
 	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] arm outstretched!"))
-	new /obj/effect/temp_visual/decoy/fading(loc, user)
 	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
 	for(var/i = 0 to jumpdistance)
 		if(T.density)
@@ -37,6 +40,8 @@
 		if(T)
 			sleep(0.1 SECONDS)
 			user.forceMove(T)
+			walk_towards(F,user,0, 1.5)
+			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
 			for(var/mob/living/L in T.contents)
 				if(L != user)
 					user.forceMove(get_turf(L))
@@ -52,21 +57,26 @@
 
 /obj/effect/proc_holder/spell/targeted/mop
 	name = "Mop the Floor"
-	desc = "Dash forward, catching whatever animal you hit with your hellish hand, grinding them against the ground. The power of this move increases with closeness to the target upon using it."
-	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	desc = "Launch forward and drag whoever's in front of you on the ground. The power of this move increases with closeness to the target upon using it."
+	action_icon = 'icons/mob/actions/actions_arm.dmi'
 	clothes_req = FALSE
 	include_user = TRUE
+	action_icon_state = "mop"
 	range = -1
 	charge_max = 70
-	cooldown_min = 50
+	cooldown_min = 50	
 	var/jumpdistance = 4
 
 /obj/effect/proc_holder/spell/targeted/mop/cast(atom/target,mob/living/user)
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
+	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
+	var/list/mopped = list()
 	if(R?.bodypart_disabled)
 		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
+		return
+	if(user.IsParalyzed() || user.IsStun() || user.restrained())
 		return
 	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] hand outstretched!"))
 	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
@@ -86,8 +96,11 @@
 		if(T)
 			sleep(0.1 SECONDS)
 			user.forceMove(T)
+			walk_towards(F,user,0, 1.5)
+			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
 			for(var/mob/living/L in T.contents)
 				if(L != user)
+					mopped |= L
 					var/turf/Q = get_step(get_turf(user), user.dir)
 					var/mob/living/U = user
 					animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
@@ -108,31 +121,34 @@
 						U.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
 						L.adjustBruteLoss(20)
 					if(iscarbon(L))
-						L.adjustBruteLoss(5)
+						L.adjustBruteLoss(4)
 					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-					animate(L, transform = null, time = 0.2 SECONDS, loop = 0)
 			T = get_step(user,user.dir)
+	for(var/mob/living/C in mopped)
+		if(isliving(C) && C.stat == CONSCIOUS && C.resting == FALSE)
+			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
 
-/obj/effect/proc_holder/spell/targeted/slam
+/obj/effect/proc_holder/spell/targeted/suplex
 	name = "Slam"
-	desc = "Grab the target in front of you and toss them back onto the ground."
-	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	desc = "Grab the target in front of you and slam them back onto the ground."
+	action_icon = 'icons/mob/actions/actions_arm.dmi'	
 	clothes_req = FALSE
 	include_user = TRUE
+	action_icon_state = "suplex"
 	range = -1
 	charge_max = 10
 	cooldown_min = 50
 
-
-/obj/effect/proc_holder/spell/targeted/slam/cast(atom/target,mob/living/user)
+/obj/effect/proc_holder/spell/targeted/suplex/cast(atom/target,mob/living/user)
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
 	if(R?.bodypart_disabled)
 		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
 		return
+	if(user.IsParalyzed() || user.IsStun() || user.restrained())
+		return
 	user.visible_message(span_warning("[user] outstretches [user.p_their()] arm and goes for a grab!"))
-	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
 	for(var/mob/living/L in T.contents)
 		var/turf/Q = get_step(get_turf(user), turn(user.dir,180))
 		if(ismineralturf(Q))
@@ -159,20 +175,22 @@
 			user.visible_message(span_warning("[L] slams into [M]!"))
 		L.forceMove(Q)
 		playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+		playsound(user,'sound/effects/gravhit.ogg', 20, 1)
 		to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and crushes you on the ground!"))
 		user.visible_message(span_warning("[user] turns around and slams [L] against the ground!"))
 		user.setDir(turn(user.dir,180))
 		if(isanimal(L))
 			L.adjustBruteLoss(20)
 		if(iscarbon(L))
-			L.adjustBruteLoss(10)
+			L.adjustBruteLoss(6)
 		
 /obj/effect/proc_holder/spell/targeted/righthook
 	name = "Right Hook"
-	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied for a few seconds and connecting with it will temporarily overwhelm the entire arm."
-	action_icon = 'icons/mob/actions/actions_cult.dmi'
+	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied for five seconds and connecting with it will temporarily overwhelm the entire arm for fifteen."
+	action_icon = 'icons/mob/actions/actions_arm.dmi'
 	clothes_req = FALSE
 	include_user = TRUE
+	action_icon_state = "ponch"
 	range = -1
 	charge_max = 30
 	cooldown_min = 50
@@ -184,28 +202,29 @@
 	if(R?.bodypart_disabled)
 		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
 		return
+	if(user.IsParalyzed() || user.IsStun() || user.restrained())
+		return
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE)
 	user.put_in_r_hand(new /obj/item/overcharged_emitter)
 	user.visible_message(span_warning("[user]'s arm begins crackling loudly!"))
 
 /obj/item/overcharged_emitter
-	name = "dark bead"
+	name = "supercharged emitter"
 	desc = "The result of all the prosthetic's power building up in its palm. It's fading fast."
-	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
-	icon_state = "dark_bead"
-	item_state = "disintegrate"
-	resistance_flags = FIRE_PROOF | LAVA_PROOF | UNACIDABLE 
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "flagellation"
+	item_state = "hivehand"
+	color = "#04b8ff"
 	item_flags = DROPDEL
 	w_class = 5
-	light_color = "#21007F"
-	light_power = 0.3
-	light_range = 2
 
 /obj/item/overcharged_emitter/afterattack(mob/living/L, mob/living/user, proximity)
+	. = ..()
 	var/flightdist = 8
 	var/direction = user.dir
 	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
+	var/list/knockedback = list()
 	if(!proximity)
 		return
 	if(!isliving(L))
@@ -218,6 +237,12 @@
 		playsound(L,'sound/effects/gravhit.ogg', 60, 1)
 		(R?.set_disabled(TRUE))
 		to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
+		shake_camera(L, 4, 3)
+		shake_camera(user, 2, 3)
+		addtimer(CALLBACK(R, /obj/item/bodypart/r_arm/.proc/set_disabled), 10 SECONDS, TRUE)
+		to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))
+		user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
+		knockedback |= L
 	if(iscarbon(L))
 		L.adjustBruteLoss(15)
 	if(isanimal(L))
@@ -234,11 +259,13 @@
 			if(D.density == TRUE)
 				return
 		if(T)
-			L.forceMove(T)
-			sleep(0.1 SECONDS)
-	sleep(15 SECONDS)
-	(R?.set_disabled(FALSE))
-	to_chat(user, span_warning("The arm has finished recalibrating itself!"))
+			for(var/mob/living/M in T.contents)
+				knockedback |= M	
+				M.adjustBruteLoss(10)
+			for(var/mob/living/S in knockedback)
+				S.forceMove(T)
+				S.SpinAnimation(0.2 SECONDS, 1)
+				sleep(0.001 SECONDS)
 
 /obj/item/overcharged_emitter/Initialize()
 	. = ..()
@@ -246,19 +273,25 @@
 	animate(src, alpha = 50, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 
-//Demon Arm
-/obj/item/bodypart/r_arm/robot/devil
-	name = "pulsar right arm"
+//Seismic Arm
+/obj/item/bodypart/r_arm/robot/seismic
+	name = "seismic right arm"
 	desc = "A robotic arm adorned with subwoofers capable of emitting shockwaves to create a facsimile of strength."
+	icon = 'icons/mob/augmentation/augments_seismic.dmi'
+	icon_state = "seismic_r_arm"
 	max_damage = 60
 
-/obj/item/bodypart/r_arm/robot/devil/attach_limb(mob/living/carbon/C, special)
+/obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
 	. = ..()
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/lariat)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/mop)
-	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/slam)
+	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/suplex)
 	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/righthook)
 
-/obj/item/bodypart/r_arm/robot/devil/drop_limb(special)
+/obj/item/bodypart/r_arm/robot/seismic/drop_limb(special)
 	var/mob/living/carbon/C = owner
+	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/lariat)
+	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/mop)
+	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/suplex)
+	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/righthook)
 	..()
