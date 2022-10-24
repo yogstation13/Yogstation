@@ -257,6 +257,8 @@
 	name = "cup ramen"
 	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years. Now new with salty flavour!"
 	icon_state = "ramen"
+	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/books_righthand.dmi'
 	list_reagents = list(/datum/reagent/consumable/dry_ramen = 15, /datum/reagent/consumable/sodiumchloride = 3)
 	foodtype = GRAIN
 	isGlass = FALSE
