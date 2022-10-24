@@ -803,9 +803,16 @@ GLOBAL_LIST_EMPTY(allCasters)
 					scanned_user = "[P.id.registered_name] ([P.id.assignment])"
 				else
 					scanned_user = "Unknown"
-			else if(istype(human_user.wear_id, /obj/item/card/id) )
+			else if(istype(human_user.wear_id, /obj/item/card/id))
 				var/obj/item/card/id/ID = human_user.wear_id
 				scanned_user ="[ID.registered_name] ([ID.assignment])"
+			else if(istype(human_user.wear_id, /obj/item/modular_computer/tablet))
+				var/obj/item/modular_computer/tablet/T = human_user.wear_id
+				var/obj/item/computer_hardware/card_slot/C = T
+				if(C.stored_card)
+					scanned_user = "[C.stored_card.registered_name] ([C.stored_card.assignment])"
+				else
+					scanned_user = "Unknown"
 			else
 				scanned_user ="Unknown"
 		else
