@@ -61,9 +61,9 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	qdel(src)
 
 /datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient, mob/user)
-	if(user.shared_ui_interaction(src) < UI_INTERACTIVE) //no replying if you're incapacitated
+	if(user.shared_ui_interaction(computer) < UI_INTERACTIVE) //no replying if you're incapacitated
 		return
-	if(user.physical_can_use_topic(src) < UI_INTERACTIVE) //no replying if you're too far away
+	if(user.physical_can_use_topic(computer) < UI_INTERACTIVE) //no replying if you're too far away
 		return
 	// FOR SOME REASON [computer] ISN'T SET ON INIT AND IS SET WHEN YOU START IT UP THE FIRST TIME
 	var/obj/item/modular_computer/comp
@@ -222,9 +222,9 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 
 /datum/computer_file/program/pdamessager/Topic(href, list/href_list)
 	. = ..()
-	if(usr.shared_ui_interaction(src) < UI_INTERACTIVE) //no replying if you're incapacitated
+	if(usr.shared_ui_interaction(computer) < UI_INTERACTIVE) //no replying if you're incapacitated
 		return
-	if(usr.physical_can_use_topic(src) < UI_INTERACTIVE) //no replying if you're too far away
+	if(usr.physical_can_use_topic(computer) < UI_INTERACTIVE) //no replying if you're too far away
 		return
 	var/msg = input("Send a message?") as null|text
 	msg = sanitizeinput(msg, computer)
