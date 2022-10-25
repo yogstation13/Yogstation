@@ -230,8 +230,8 @@
 	syndicate_implant = TRUE
 	var/on = FALSE
 	var/time_on = 0
-	var/warningcooldown = 0
 	var/hasexerted = FALSE
+	COOLDOWN_DECLARE(alertcooldown)
 
 /obj/item/organ/cyberimp/chest/spinalspeed/Insert(mob/living/carbon/M, special = 0)
 	. = ..()
@@ -268,76 +268,74 @@
 		A.UpdateButtonIcon()
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
-	var/turf/Z = get_turf(owner)
-	var/obj/effect/temp_visual/decoy/fading/F = new(Z, owner)
+	var/turf/currentloc = get_turf(owner)
+	var/obj/effect/temp_visual/decoy/fading/F = new(currentloc, owner)
 	var/rvalue = 0
 	var/gvalue = 0
 	var/bvalue = 0
 	var/numcolors = (world.time * 32) % 1280
 	var/segment = numcolors / 256
-	var/which = numcolors % 256
-	switch(segment)
+	var/specific_color = numcolors % 256 //works like any non-sine wave rainbow generator thing, google it
+	switch(segment)//transition isn't as precise as if i used sin() but this is far more efficient for runtime
 		if(0 to 1)
 			rvalue = 255
-			gvalue = which
+			gvalue = specific_color
 		if(1 to 2)
-			rvalue = 255 - which
+			rvalue = 255 - specific_color
 			gvalue = 255
 		if(2 to 3)
 			gvalue = 255
-			bvalue = which
+			bvalue = specific_color
 		if(3 to 4)
-			gvalue = 255 - which
+			gvalue = 255 - specific_color
 			bvalue = 255
 		if(4 to 5)
-			rvalue = which
-			bvalue = 255 - which
+			rvalue = specific_color
+			bvalue = 255 - specific_color
 	var/usedcolor = rgb(rvalue, gvalue, bvalue)
 	F.color = usedcolor	//gotta add the flair
 
 /obj/item/organ/cyberimp/chest/spinalspeed/on_life()
 	if(on)
 		if(owner.stat == UNCONSCIOUS || owner.stat == DEAD)
-			on = !on
+			toggle(silent = TRUE)
 		time_on += 1
-		owner.hallucination += 2
 		switch(time_on)
-			if(30 to 50)
-				if(warningcooldown <= 0)
+			if(20 to 50)
+				if(COOLDOWN_FINISHED(src, alertcooldown))
 					to_chat(owner, span_alert("You feel your spine tingle."))
-					warningcooldown = 6
-				owner.hallucination += 3
+					COOLDOWN_START(src, alertcooldown, 10 SECONDS)
+				owner.hallucination += 5
 				owner.adjustFireLoss(1)
 			if(50 to 100)
-				if(warningcooldown <= 0 || !hasexerted)
+				if(COOLDOWN_FINISHED(src, alertcooldown) || !hasexerted)
 					to_chat(owner, span_userdanger("Your spine and brain feel like they're burning!"))
-					warningcooldown = 6
+					COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 				hasexerted = TRUE
 				owner.set_drugginess(10)
-				owner.hallucination += 10
-				owner.adjustFireLoss(8)
+				owner.hallucination += 100
+				owner.adjustFireLoss(5)
 			if(100 to INFINITY)//no infinite abuse
 				to_chat(owner, span_userdanger("You feel a slight sense of shame as your brain and spine rip themselves apart from overexertion."))
-				new /obj/effect/gibspawner/human(get_turf(owner), owner)
-				qdel(owner)
+				owner.gib()
 	else
 		time_on -= 2
-	warningcooldown -= 1
 
 	time_on = max(time_on, 0)
 	if(hasexerted && time_on == 0)
-		to_chat(owner, "Your spine feels normal again")
+		to_chat(owner, "Your brains feels normal again.")
 		hasexerted = FALSE
 
 /obj/item/organ/cyberimp/chest/spinalspeed/emp_act(severity)
 	. = ..()
 	owner.set_drugginess(40)
-	owner.hallucination += 100
+	owner.hallucination += 1000
 	owner.blur_eyes(20)
-	time_on += 10
-	switch(severity)
+	owner.dizziness += 10
+	time_on += 5
+	switch(severity)//the other affects are more so the downside
 		if(EMP_HEAVY)
-			owner.adjustFireLoss(30)
+			owner.adjustFireLoss(20)
 			to_chat(owner, span_warning("Your spinal implant malfunctions and fries you!"))
 		if(EMP_LIGHT)
 			owner.adjustFireLoss(10)
