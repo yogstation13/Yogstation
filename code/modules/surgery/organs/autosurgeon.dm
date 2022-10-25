@@ -157,3 +157,7 @@
 /obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	uses = 3
 	starting_organ = /obj/item/organ/alien/plasmavessel //Yogs End
+
+/obj/item/autosurgeon/syndicate/spinalspeed
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/chest/spinalspeed
