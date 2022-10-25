@@ -260,6 +260,24 @@
 	suffix = "transfer10.dmm"
 	name = "Transfer 10"
 
+/datum/map_template/ruin/station/meta
+	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
+
+/datum/map_template/ruin/station/meta/supermatter
+	id = "engine_sm"
+	suffix = "engine_sm.dmm"
+	name = "Engine SM"
+
+/datum/map_template/ruin/station/meta/tesla_singulo
+	id = "engine_singulo_tesla"
+	suffix = "engine_singulo_tesla.dmm"
+	name = "Engine Singulo And Tesla"
+
+/datum/map_template/ruin/station/meta/teg
+	id = "engine_teg"
+	suffix = "engine_teg.dmm"
+	name = "Engine TEG"
+	
 /datum/map_template/ruin/station/eclipse
     prefix = "_maps/RandomRuins/StationRuins/EclipseStation/"
 

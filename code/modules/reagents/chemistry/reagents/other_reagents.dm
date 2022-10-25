@@ -1879,9 +1879,9 @@
 	M.update_transform()
 	..()
 
-/datum/reagent/plastic_polymers
+/datum/reagent/plastic_polymers //not harmful because it's too big as a polymer chain, where microplastics are small enough to get into your veins
 	name = "plastic polymers"
-	description = "the petroleum based components of plastic."
+	description = "the liquid components of plastic."
 	color = "#f7eded"
 	taste_description = "plastic"
 
@@ -2119,13 +2119,6 @@
 	if(method == INGEST || method == TOUCH || method == INJECT)
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
 
-/datum/reagent/sulfur_trioxide
-	name = "Sulfur Trioxide"
-	description = "A super-oxygenated sulfur compound."
-	color = "#ebf0ff"
-	taste_description = "metallic rotten eggs"
-	reagent_state = SOLID
-
 /datum/reagent/adrenaline
 	name = "Adrenaline"
 	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
@@ -2140,3 +2133,26 @@
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
+/datum/reagent/liquidsoap
+	name = "Liquid soap"
+	color = "#ddb772"
+	description = "Not much use in this form..."
+	taste_description = "soap"
+
+/datum/reagent/microplastics
+	name = "Microplastics"
+	description = "Finely ground plastics, reduced to microscopic scale. Nearly unable to metabolize in a body, and potentially harmful in the long term."
+	color = "#ffffff"
+	metabolization_rate = 0.05 * REAGENTS_METABOLISM
+	taste_mult = 0
+	taste_description = "plastic"
+
+/datum/reagent/microplastics/on_mob_life(mob/living/carbon/M)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.55*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_APPENDIX, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_EARS, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_EYES, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_LUNGS, 0.25*REM)
+	..()
