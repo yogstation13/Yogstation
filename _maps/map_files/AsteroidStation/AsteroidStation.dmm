@@ -1989,7 +1989,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/disposal/incinerator)
+/area/construction)
 "aqF" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hos)
