@@ -17,7 +17,6 @@ GLOBAL_LIST_EMPTY(zombies)
 	required_players = 40
 	required_enemies = 3
 	recommended_enemies = 3
-	enemy_minimum_age = 14
 
 	announce_span = "zombie"
 	announce_text = "Some crew members have been infected with a zombie virus!\n\
