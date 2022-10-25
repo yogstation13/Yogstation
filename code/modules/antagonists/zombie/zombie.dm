@@ -1,4 +1,4 @@
-#define TIER_2_TIME 4500
+
 
 /datum/antagonist/zombie
 	name = "Zombie"
@@ -429,4 +429,4 @@
 	cooldown_ends = world.time + cooldown_time
 	ready = FALSE
 
-#undef TIER_2_TIME
+
