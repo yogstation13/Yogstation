@@ -178,7 +178,7 @@ export const SecurityConsole = (props, context) => {
                   </LabeledList.Item>
                 </LabeledList>
                 <Box>
-                  <img src={data.active_record.front_image}
+                  <img src={data.front_image}
                     width="180px" height="200px"
                     style={`-ms-interpolation-mode: nearest-neighbor`} />
                   <Button icon="print" mr="2px" fluid onClick={() => act("edit_field", {
@@ -186,15 +186,25 @@ export const SecurityConsole = (props, context) => {
                   })}>
                     Print
                   </Button>
+                  <Button icon="camera" mr="2px" fluid onClick={() => act("edit_field", {
+                    field: "upd_photo_front",
+                  })}>
+                    Update
+                  </Button>
                 </Box>
                 <Box>
-                  <img src={data.active_record.side_image}
+                  <img src={data.side_image}
                     width="180px" height="200px"
                     style={`-ms-interpolation-mode: nearest-neighbor`} />
                   <Button icon="print" ml="2px" fluid onClick={() => act("edit_field", {
                     field: "print_photo_side",
                   })}>
                     Print
+                  </Button>
+                  <Button icon="camera" ml="2px" fluid onClick={() => act("edit_field", {
+                    field: "upd_photo_side",
+                  })}>
+                    Update
                   </Button>
                 </Box>
 
