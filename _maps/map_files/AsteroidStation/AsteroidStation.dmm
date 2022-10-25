@@ -27429,9 +27429,6 @@
 /area/hallway/primary/starboard)
 "itt" = (
 /obj/machinery/light/small,
-/obj/effect/turf_decal/loading_area{
-	dir = 1
-	},
 /turf/open/floor/engine,
 /area/science/mixing)
 "iua" = (
@@ -30181,8 +30178,7 @@
 "jmo" = (
 /obj/machinery/door/window/northleft,
 /obj/effect/turf_decal/loading_area{
-	dir = 1;
-	icon_state = "loadingate"
+	dir = 1
 	},
 /turf/open/floor/engine,
 /area/science/mixing)
