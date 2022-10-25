@@ -280,6 +280,7 @@
 	energy_drain = 0
 	range = 0
 	var/coeff = 100
+	var/chargeper = 20
 	var/list/use_channels = list(EQUIP,ENVIRON,LIGHT)
 	selectable = 0
 
@@ -348,10 +349,15 @@
 					pow_chan = c
 					break
 			if(pow_chan)
-				var/delta = min(20, chassis.cell.maxcharge-cur_charge)
+				var/delta = min(chargeper, chassis.cell.maxcharge-cur_charge)
 				chassis.give_power(delta)
 				A.use_power(delta*coeff, pow_chan)
 
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/advanced
+	name = "advanced tesla energy relay"
+	desc = "A high-quality, finely tuned telsa energy relay that draws power substantially more efficiently than its mass produced counterpart."
+	coeff = 50
+	chargeper = 100
 
 
 

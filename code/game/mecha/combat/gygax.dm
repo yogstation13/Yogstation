@@ -27,7 +27,7 @@
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
 	max_equip = 4
 	destruction_sleep_duration = 20
-	leg_overload_coeff = 50
+	leg_overload_coeff = 75
 	leg_overload_damage = FALSE
 
 /obj/mecha/combat/gygax/dark/loaded/Initialize()
@@ -38,7 +38,7 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/teleporter
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
+	ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/advanced
 	ME.attach(src)
 	max_ammo()
 
