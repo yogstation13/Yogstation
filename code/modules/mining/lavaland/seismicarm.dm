@@ -52,9 +52,10 @@
 						L.adjustBruteLoss(50)
 					if(iscarbon(L))
 						L.adjustBruteLoss(10)
+					if(issilicon(L))
+						L.adjustBruteLoss(12)
 					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
 			T = get_step(user,user.dir)
-
 /obj/effect/proc_holder/spell/targeted/mop
 	name = "Mop the Floor"
 	desc = "Launch forward and drag whoever's in front of you on the ground. The power of this move increases with closeness to the target upon using it."
@@ -125,6 +126,8 @@
 							L.gib()
 					if(iscarbon(L))
 						L.adjustBruteLoss(4)
+					if(issilicon(L))
+						L.adjustBruteLoss(5)
 					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
 			T = get_step(user,user.dir)
 	for(var/mob/living/C in mopped)
@@ -166,7 +169,7 @@
 		for(var/obj/machinery/door/window/E in Z.contents)
 			if(E.density == TRUE)
 				return 
-		for(var/mob/living/simple_animal/M in Q.contents)
+		for(var/mob/living/M in Q.contents)
 			if(isanimal(L))
 				M.adjustBruteLoss(20)
 			if(iscarbon(L))
@@ -178,13 +181,19 @@
 		to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and crushes you on the ground!"))
 		user.visible_message(span_warning("[user] turns around and slams [L] against the ground!"))
 		user.setDir(turn(user.dir,180))
+		animate(L, transform = matrix(179, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 		if(isanimal(L))
 			L.adjustBruteLoss(20)
 			if(L.stat == DEAD)
-				L.visible_message(span_warning("[L]'s body explodes into gore on impact!"))
+				L.visible_message(span_warning("[L] explodes into gore on impact!"))
 				L.gib()
 		if(iscarbon(L))
 			L.adjustBruteLoss(6)
+		if(issilicon(L))
+			L.adjustBruteLoss(8)
+		sleep(0.5 SECONDS)
+		if(L.stat == CONSCIOUS && L.resting == FALSE)
+			animate(L, transform = null, time = 0.1 SECONDS, loop = 0)
 		
 /obj/effect/proc_holder/spell/targeted/righthook
 	name = "Right Hook"
@@ -249,6 +258,8 @@
 		L.adjustBruteLoss(15)
 	if(isanimal(L))
 		L.adjustBruteLoss(100)
+	if(issilicon(L))
+		L.adjustBruteLoss(18)
 	for(var/i = 2 to flightdist)
 		var/turf/T = get_ranged_target_turf(user, direction, i)
 		if(ismineralturf(T))
@@ -256,14 +267,26 @@
 			M.attempt_drill()
 			L.adjustBruteLoss(5)
 		if(T.density)
+			for(var/mob/living/simple_animal/S in knockedback)
+				if(S.stat == DEAD)
+					S.gib()
 			return
 		for(var/obj/D in T.contents)
 			if(D.density == TRUE)
+				for(var/mob/living/simple_animal/S in knockedback)
+					if(S.stat == DEAD)
+						S.visible_message(span_warning("[S] crashes and explodes!"))
+						S.gib()
 				return
 		if(T)
 			for(var/mob/living/M in T.contents)
 				knockedback |= M	
-				M.adjustBruteLoss(10)
+				if(iscarbon(M))
+					M.adjustBruteLoss(10)
+				if(isanimal(M))
+					M.adjustBruteLoss(30)
+				if(issilicon(M))
+					M.adjustBruteLoss(11)
 			for(var/mob/living/S in knockedback)
 				S.forceMove(T)
 				S.SpinAnimation(0.2 SECONDS, 1)
