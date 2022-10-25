@@ -27428,7 +27428,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "itt" = (
-/obj/machinery/door/window/northleft,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/loading_area{
 	dir = 1
@@ -73120,10 +73119,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
-"xRN" = (
-/obj/machinery/light,
-/turf/open/floor/engine,
-/area/science/mixing)
 "xRP" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
