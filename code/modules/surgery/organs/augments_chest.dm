@@ -247,10 +247,10 @@
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/toggle(silent = FALSE)
 	if(!on)
 		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
-		owner.next_move_modifier *= 0.8
+		owner.next_move_modifier *= 0.7
 		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
 	else
-		owner.next_move_modifier /= 0.8
+		owner.next_move_modifier /= 0.7
 		owner.remove_movespeed_modifier("spinalimplant")
 		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	on = !on
