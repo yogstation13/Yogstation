@@ -784,12 +784,11 @@
 	P.pixel_x = rand(-10, 10)
 	P.pixel_y = rand(-10, 10)
 	printing = FALSE
-	
-/obj/machinery/computer/secure_data/proc/triggerAlarm()
-	for (var/mob/living/silicon/aiPlayer in GLOB.player_list)
-		aiPlayer.triggerAlarm("Security Record Breach", get_area(src), list(src), src)
-		visible_message(span_notice("The [src]'s screen lock is unlocked."))
-	return TRUE
+
+/obj/machinery/computer/secure_data/proc/trigger_alarm()
+	var/area/alarmed = get_area(src)
+	alarmed.burglaralert(src)
+	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 /obj/machinery/computer/secure_data/emag_act(mob/user)
 	var/name
@@ -807,7 +806,6 @@
 	if(!logged_in)
 		logged_in = TRUE
 		to_chat(user, span_warning("You override [src]'s ID lock."))
-		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 		triggerAlarm()
 		var/area/A = get_area(loc)
 		radio.talk_into(src, "Alert: security record breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
