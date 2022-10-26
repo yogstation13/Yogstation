@@ -785,10 +785,22 @@
 	P.pixel_y = rand(-10, 10)
 	printing = FALSE
 
-/obj/machinery/computer/secure_data/proc/trigger_alarm()
+/obj/machinery/computer/secure_data/proc/trigger_alarm() //Copy pasted from /area/proc/burglaralert(obj/trigger) because why not
 	var/area/alarmed = get_area(src)
-	alarmed.burglaralert(src)
-	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
+	if(alarmed.always_unpowered) //no burglar alarms in space/asteroid
+		return
+
+	//Trigger alarm effect
+	alarmed.set_fire_alarm_effect()
+	//Lockdown airlocks
+	for(var/obj/machinery/door/DOOR in alarmed)
+		alarmed.close_and_lock_door(DOOR)
+
+	for (var/i in GLOB.silicon_mobs)
+		var/mob/living/silicon/SILICON = i
+		if(SILICON.triggerAlarm("Burglar", alarmed, alarmed.cameras, src))
+			//Cancel silicon alert after 1 minute
+			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,alarmed), 600)
 
 /obj/machinery/computer/secure_data/emag_act(mob/user)
 	var/name
@@ -806,7 +818,8 @@
 	if(!logged_in)
 		logged_in = TRUE
 		to_chat(user, span_warning("You override [src]'s ID lock."))
-		triggerAlarm()
+		trigger_alarm()
+		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 		var/area/A = get_area(loc)
 		radio.talk_into(src, "Alert: security record breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
 		radio.talk_into(src, "Alert: security record breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
