@@ -20,6 +20,7 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
+	minimal_character_age = 24 //Genetics would likely require more education than your average position due to the sheer number of alien physiologies and experimental nature of the field
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
@@ -34,7 +35,7 @@
 	name = "Geneticist"
 	jobtype = /datum/job/geneticist
 
-	pda_type = /obj/item/pda/geneticist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_medsci
 	uniform = /obj/item/clothing/under/rank/geneticist

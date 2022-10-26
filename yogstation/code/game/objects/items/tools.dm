@@ -101,6 +101,20 @@
 	tool_behaviour = TOOL_SCREWDRIVER
 	sharpness = SHARP_POINTY
 
+/obj/item/handdrill/attack(mob/living/carbon/M, mob/living/carbon/user)
+	if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+		return
+	if(!istype(M))
+		return ..()
+	if(user.zone_selected != BODY_ZONE_PRECISE_EYES && user.zone_selected != BODY_ZONE_HEAD)
+		return ..()
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, span_warning("You don't want to harm [M]!"))
+		return
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
+		M = user
+	return eyestab(M,user)
+
 /obj/item/handdrill/attack_self(mob/user)
 	if (tool_behaviour == TOOL_SCREWDRIVER)
 		transform_wrench(user)

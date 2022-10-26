@@ -19,6 +19,7 @@
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
+	minimal_character_age = 18 //My guy you are literally just a priest
 
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)
@@ -158,7 +159,7 @@
 	name = "Chaplain"
 	jobtype = /datum/job/chaplain
 
-	pda_type = /obj/item/pda/chaplain
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chaplain

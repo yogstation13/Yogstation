@@ -834,20 +834,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
-"bV" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/kitchen)
 "bW" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /obj/effect/turf_decal/tile/purple{
@@ -1215,14 +1201,18 @@
 /obj/item/clothing/head/hardhat/cakehat,
 /turf/open/floor/mineral/titanium/purple,
 /area/crew_quarters/bar)
-"ij" = (
+"dQ" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
 	},
-/turf/open/floor/mineral/titanium/purple,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "kM" = (
 /obj/effect/turf_decal/tile/purple{
@@ -1585,6 +1575,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"Yf" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/turf/open/floor/mineral/titanium/purple,
+/area/crew_quarters/kitchen)
 "YX" = (
 /obj/item/storage/secure/safe{
 	pixel_x = 1;
@@ -1890,7 +1893,7 @@ br
 ak
 bR
 cm
-ij
+Yf
 ND
 db
 do
@@ -1952,7 +1955,7 @@ ak
 aG
 bu
 ak
-bV
+dQ
 bg
 cR
 cR

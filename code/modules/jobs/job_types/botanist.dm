@@ -18,6 +18,7 @@
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BOTANIST
+	minimal_character_age = 22 //Biological understanding of plants and how to manipulate their DNAs and produces relatively "safely". Not just something that comes to you without education
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
@@ -33,7 +34,7 @@
 	name = "Botanist"
 	jobtype = /datum/job/hydro
 
-	pda_type = /obj/item/pda/botanist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/hydroponics

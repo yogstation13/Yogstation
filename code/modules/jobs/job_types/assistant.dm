@@ -17,6 +17,7 @@ Assistant
 	paycheck = PAYCHECK_ASSISTANT // Get a job. Job reassignment changes your paycheck now. Get over it.
 	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
+	minimal_character_age = 18 //Would make it even younger if I could because this role turns men into little brat boys and likewise for the other genders
 
 	alt_titles = list("Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate")
 

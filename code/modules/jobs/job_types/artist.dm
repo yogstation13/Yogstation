@@ -17,12 +17,13 @@
 	paycheck_department = ACCOUNT_CIV
 
 	display_order = JOB_DISPLAY_ORDER_ARTIST
+	minimal_character_age = 18 //Young folks can be crazy crazy artists, something talented that can be self-taught feasibly
 
 /datum/outfit/job/artist
 	name = "Artist"
 	jobtype = /datum/job/artist
 
-	pda_type = /obj/item/pda/artist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	
 	head = /obj/item/clothing/head/frenchberet
 	ears = /obj/item/radio/headset/headset_srv

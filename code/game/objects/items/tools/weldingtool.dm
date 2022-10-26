@@ -86,8 +86,13 @@
 
 
 /obj/item/weldingtool/suicide_act(mob/user)
-	user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return (FIRELOSS)
+	if(isOn())
+		user.visible_message(span_suicide("[user] welds [user.p_their()] every orifice closed! It looks like [user.p_theyre()] trying to commit suicide!"))
+		if(!use_tool(user, 5 SECONDS, user))
+			return MANUAL_SUICIDE_NONLETHAL
+		return FIRELOSS
+	user.visible_message(span_suicide("[user] tries welds [user.p_their()] every orifice closed! But forgot to turn the [src] on."))
+	return SHAME
 
 /obj/item/weldingtool/proc/explode()
 	var/turf/T = get_turf(loc)
@@ -96,9 +101,28 @@
 	qdel(src)
 
 /obj/item/weldingtool/attack(mob/living/M, mob/user)
+	if(isOn() && user.a_intent == INTENT_HELP && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+		if(affecting?.status == BODYPART_ROBOTIC)
+			if(affecting.brute_dam <= 0)
+				to_chat(user, span_warning("[affecting] is already in good condition!"))
+				return FALSE
+			user.changeNext_move(CLICK_CD_MELEE)
+			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
+			heal_robo_limb(src, H, user, 15, 0)
+			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
+			return TRUE
+
 	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
 		..()
 
+/obj/item/weldingtool/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal, burn_heal)
+	if(I.use_tool(H, user, 2 SECONDS, volume=50, amount=1))
+		if(item_heal_robotic(H, user, brute_heal, burn_heal))
+			return heal_robo_limb(I, H, user, brute_heal, burn_heal)
+		return TRUE
+	
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
 	if(!proximity)
@@ -131,6 +155,10 @@
 
 	update_icon()
 
+/obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
+	target.add_overlay(GLOB.welding_sparks)
+	. = ..()
+	target.cut_overlay(GLOB.welding_sparks)
 
 // Returns the amount of fuel in the welder
 /obj/item/weldingtool/proc/get_fuel()

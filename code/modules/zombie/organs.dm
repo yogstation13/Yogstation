@@ -48,7 +48,10 @@
 	if(!(src in owner.internal_organs))
 		Remove(owner)
 	if (causes_damage && !iszombie(owner) && owner.stat != DEAD)
-		owner.adjustToxLoss(damage_caused)
+		if(owner.dna.species.id == "pod")
+			owner.adjustToxLoss(damage_caused + 0.5)	//So they cant passively out-heal it
+		else
+			owner.adjustToxLoss(damage_caused)
 		if (prob(10))
 			to_chat(owner, span_danger("You feel sick..."))
 	if(timer_id)

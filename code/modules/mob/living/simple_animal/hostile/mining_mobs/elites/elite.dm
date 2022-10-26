@@ -206,7 +206,7 @@ obj/structure/elite_tumor/proc/return_elite()
 /obj/structure/elite_tumor/proc/fighters_check()
 	if(activator != null && activator.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(activator))
 		onEliteWon()
-	if(mychild != null && mychild.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(mychild))
+	if(mychild != null && mychild.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(mychild) || mychild.faction == activator.faction)
 		onEliteLoss()
 
 /obj/structure/elite_tumor/proc/arena_trap()

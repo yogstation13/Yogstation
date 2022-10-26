@@ -394,11 +394,11 @@
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
 	icon_state = "arcane_barrage"
-	damage = 20
+	damage = 40
 	damage_type = BURN
 	nodamage = FALSE
-	armour_penetration = 0
-	flag = MAGIC
+	armour_penetration = 20
+	flag = MAGIC 
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/item/projectile/magic/locker
@@ -841,13 +841,13 @@
 		target.adjustBruteLoss(40)
 
 
-/obj/item/projectile/magic/shotgun_slug
+/obj/item/projectile/magic/shotgun/slug
 	name = "Shotgun slug"
 	icon_state = "bullet"
 	damage = 10
 	flag = MAGIC
 
-/obj/item/projectile/magic/shotgun_slug/on_hit(target)
+/obj/item/projectile/magic/shotgun/slug/on_hit(target)
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target

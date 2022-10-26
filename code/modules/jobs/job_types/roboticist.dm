@@ -15,12 +15,12 @@
 	outfit = /datum/outfit/job/roboticist
 
 	added_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_XENOBIOLOGY, ACCESS_GENETICS)
-	base_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MECH_SCIENCE, ACCESS_MECH_ENGINE, ACCESS_MECH_MEDICAL, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
-	minimal_character_age = 18
+	minimal_character_age = 22 //Engineering, AI theory, robotic knowledge and the like
 
 	changed_maps = list("OmegaStation")
 
@@ -31,7 +31,7 @@
 	name = "Roboticist"
 	jobtype = /datum/job/roboticist
 
-	pda_type = /obj/item/pda/roboticist
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/robo
 
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/headset_sci

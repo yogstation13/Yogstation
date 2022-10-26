@@ -19,6 +19,7 @@
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECHNICIAN
+	minimal_character_age = 18 //We love manual labor and exploiting the young for our corporate purposes
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
@@ -37,7 +38,7 @@
 	name = "Cargo Technician"
 	jobtype = /datum/job/cargo_tech
 
-	pda_type = /obj/item/pda/cargo
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo
 
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargotech

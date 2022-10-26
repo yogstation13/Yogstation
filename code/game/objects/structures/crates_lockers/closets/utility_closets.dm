@@ -126,7 +126,7 @@
  */
 /obj/structure/closet/radiation
 	name = "radiation suit closet"
-	desc = "It's a storage unit for rad-protective suits."
+	desc = "It's a storage unit for rad-protective suits and anti radiation first-aids."
 	icon_state = "eng"
 	icon_door = "eng_rad"
 
@@ -135,6 +135,10 @@
 	new /obj/item/geiger_counter(src)
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
+	new /obj/item/storage/firstaid/toxin(src)
+	new /obj/item/storage/pill_bottle/penacid(src)
+	new /obj/item/storage/pill_bottle/mutadone(src)
+	new /obj/item/reagent_containers/spray/radbgone(src)
 
 /*
  * Bombsuit closet
@@ -172,4 +176,4 @@
 /obj/structure/closet/ammunitionlocker/PopulateContents()
 	..()
 	for(var/i in 1 to 3)
-		new /obj/item/storage/box/beanbag(src)
+		new /obj/item/storage/box/rubbershot(src)

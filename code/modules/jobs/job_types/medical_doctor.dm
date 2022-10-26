@@ -20,7 +20,7 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
-	minimal_character_age = 24
+	minimal_character_age = 26 //Barely acceptable considering the theoretically absurd knowledge they have, but fine
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
@@ -40,7 +40,7 @@
 	name = "Medical Doctor"
 	jobtype = /datum/job/doctor
 
-	pda_type= /obj/item/pda/medical
+	pda_type= /obj/item/modular_computer/tablet/pda/preset/medical
 
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/rank/medical

@@ -14,7 +14,7 @@
 	item_flags = NOBLUDGEON
 	var/list/signs = list()
 	var/max_signs = 10
-	var/creation_time = 0 //time to create a holosign in deciseconds.
+	var/creation_time = 0 SECONDS //time to create a holosign in deciseconds.
 	var/holosign_type = /obj/structure/holosign/wetsign
 	var/holocreator_busy = FALSE //to prevent placing multiple holo barriers at once
 
@@ -63,7 +63,7 @@
 	name = "custodial holobarrier projector"
 	desc = "A holographic projector that creates hard light wet floor barriers."
 	holosign_type = /obj/structure/holosign/barrier/wetsign
-	creation_time = 20
+	creation_time = 2 SECONDS
 	max_signs = 12
 
 /obj/item/holosign_creator/security
@@ -71,7 +71,7 @@
 	desc = "A holographic projector that creates hard light security barriers."
 	icon_state = "signmaker_sec"
 	holosign_type = /obj/structure/holosign/barrier
-	creation_time = 30
+	creation_time = 3 SECONDS
 	max_signs = 6
 
 /obj/item/holosign_creator/engineering
@@ -79,7 +79,7 @@
 	desc = "A holographic projector that creates hard light engineering barriers."
 	icon_state = "signmaker_engi"
 	holosign_type = /obj/structure/holosign/barrier/engineering
-	creation_time = 30
+	creation_time = 3 SECONDS
 	max_signs = 6
 
 /obj/item/holosign_creator/atmos
@@ -87,7 +87,7 @@
 	desc = "A holographic projector that creates hard light barriers that prevent changes in atmosphere conditions."
 	icon_state = "signmaker_atmos"
 	holosign_type = /obj/structure/holosign/barrier/atmos
-	creation_time = 0
+	creation_time = 0 SECONDS
 	max_signs = 3
 
 /obj/item/holosign_creator/medical
@@ -95,16 +95,24 @@
 	desc = "A holographic projector that creates PENLITE hard light barriers. Useful during quarantines since they halt those with malicious diseases."
 	icon_state = "signmaker_med"
 	holosign_type = /obj/structure/holosign/barrier/medical
-	creation_time = 30
+	creation_time = 3 SECONDS
+	max_signs = 3
+
+/obj/item/holosign_creator/firstaid
+	name = "medical holobed projector"
+	desc = "A holographic projector that creates first aid holobeds that slows the metabolism of those laying on it and provides a sterile enviroment for surgery."
+	icon_state = "signmaker_firstaid"
+	holosign_type = /obj/structure/holobed
+	creation_time = 1 SECONDS
 	max_signs = 3
 
 /obj/item/holosign_creator/cyborg
 	name = "Energy Barrier Projector"
 	desc = "A holographic projector that creates fragile energy fields."
-	creation_time = 15
+	creation_time = 1.5 SECONDS
 	max_signs = 9
 	holosign_type = /obj/structure/holosign/barrier/cyborg
-	var/shock = 0
+	var/shock = FALSE
 
 /obj/item/holosign_creator/cyborg/attack_self(mob/user)
 	if(iscyborg(user))
@@ -113,20 +121,20 @@
 		if(shock)
 			to_chat(user, span_notice("You clear all active hard light barriers, and reset your projector to normal."))
 			holosign_type = /obj/structure/holosign/barrier/cyborg
-			creation_time = 5
+			creation_time = 0.5 SECONDS
 			if(signs.len)
 				for(var/H in signs)
 					qdel(H)
-			shock = 0
+			shock = FALSE
 			return
-		else if(R.emagged&&!shock)
+		else if(R.emagged && !shock)
 			to_chat(user, span_warning("You clear all active hard light barriers, and overload your energy projector!"))
 			holosign_type = /obj/structure/holosign/barrier/cyborg/hacked
-			creation_time = 30
+			creation_time = 3 SECONDS
 			if(signs.len)
 				for(var/H in signs)
 					qdel(H)
-			shock = 1
+			shock = TRUE
 			return
 		else
 			if(signs.len)

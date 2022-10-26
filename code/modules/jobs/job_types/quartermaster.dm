@@ -19,6 +19,7 @@
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_QUARTERMASTER
+	minimal_character_age = 20 //Probably just needs some baseline experience with bureaucracy, enough trust to land the position
 
 	changed_maps = list("OmegaStation")
 
@@ -29,7 +30,7 @@
 	name = "Quartermaster"
 	jobtype = /datum/job/qm
 
-	pda_type = /obj/item/pda/quartermaster
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/cargo
 
 	ears = /obj/item/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargo

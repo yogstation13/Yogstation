@@ -589,3 +589,10 @@
 	item_state = "blahaj"
 	attack_verb = list("chomped", "gnawed", "bit")
 	squeak_override = list('sound/weapons/bite.ogg'= 1)
+
+/obj/item/toy/plush/cdragon
+	name = "crystal dragon plushie"
+	desc = "The hero we needed but never deserved. Now in plush form!"
+	gender = FEMALE
+	icon_state = "plush_cdragon"
+	item_state = "plush_cdragon"

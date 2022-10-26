@@ -20,7 +20,7 @@
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
-	minimal_character_age = 18
+	minimal_character_age = 24 //Consider the level of knowledge that spans xenobio, nanites, and toxins
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
@@ -39,7 +39,7 @@
 	name = "Scientist"
 	jobtype = /datum/job/scientist
 
-	pda_type = /obj/item/pda/toxins
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_sci
 	uniform = /obj/item/clothing/under/rank/scientist

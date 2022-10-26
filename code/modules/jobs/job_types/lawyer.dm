@@ -20,7 +20,7 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_LAWYER
-	minimal_character_age = 24
+	minimal_character_age = 24 //Law is already absurd, never mind the wacky-ass shit that is space law
 
 	changed_maps = list("OmegaStation")
 
@@ -31,7 +31,7 @@
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer
 
-	pda_type = /obj/item/pda/lawyer
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	ears = /obj/item/radio/headset/headset_srvsec
 	uniform = /obj/item/clothing/under/lawyer/bluesuit

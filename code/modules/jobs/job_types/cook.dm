@@ -20,6 +20,7 @@
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_COOK
+	minimal_character_age = 18 //My guy they just a cook
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
@@ -35,7 +36,7 @@
 	name = "Cook"
 	jobtype = /datum/job/cook
 
-	pda_type = /obj/item/pda/cook
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/chef

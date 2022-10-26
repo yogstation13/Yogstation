@@ -30,6 +30,7 @@
 					CAT_BURGER,
 					CAT_CAKE,
 					CAT_EGG,
+					CAT_BAIT, //this is alphabetical in game
 					CAT_MEAT,
 					CAT_MISCFOOD,
 					CAT_PASTRY,
@@ -39,6 +40,7 @@
 					CAT_SANDWICH,
 					CAT_SOUP,
 					CAT_SPAGHETTI,
+					CAT_SEAFOOD,
 				),
 				CAT_DRINK = CAT_NONE,
 				CAT_APPAREL = list(
@@ -153,6 +155,13 @@
 	var/list/present_qualities = list()
 	present_qualities |= contents["tool_behaviour"]
 	for(var/obj/item/I in user.contents)
+		if(istype(I, /obj/item/organ/cyberimp/arm/toolset))
+			var/obj/item/organ/cyberimp/arm/toolset/T = I
+			if(T.owner == user)
+				for(var/obj/item/implant_item in I.contents)
+					possible_tools += implant_item.type
+					if(implant_item.tool_behaviour)
+						present_qualities.Add(implant_item.tool_behaviour)
 		if(istype(I, /obj/item/storage))
 			for(var/obj/item/SI in I.contents)
 				possible_tools += SI.type
@@ -356,7 +365,7 @@
 	for(var/rec in GLOB.crafting_recipes)
 		var/datum/crafting_recipe/R = rec
 
-		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
 
 		if((R.category != cur_category) || (R.subcategory != cur_subcategory))
@@ -376,7 +385,7 @@
 		if(R.name == "") //This is one of the invalid parents that sneaks in
 			continue
 
-		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
+		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
 
 		if(isnull(crafting_recipes[R.category]))

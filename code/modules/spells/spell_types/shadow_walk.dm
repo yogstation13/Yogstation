@@ -16,6 +16,9 @@
 
 /obj/effect/proc_holder/spell/targeted/shadowwalk/cast(list/targets,mob/living/user = usr)
 	var/L = user.loc
+	if(istype(user.loc, /obj/effect/dummy/phased_mob/shadowling))
+		to_chat(user, span_boldwarning("You can't shadow walk while void jaunting!"))
+		return
 	if(istype(user.loc, /obj/effect/dummy/phased_mob/shadow))
 		var/obj/effect/dummy/phased_mob/shadow/S = L
 		S.end_jaunt(FALSE)

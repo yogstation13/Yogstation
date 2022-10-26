@@ -189,6 +189,8 @@
 	icon_state = "hop"
 	item_state = "b_suit"
 	can_adjust = FALSE
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/rank/head_of_personnel/skirt

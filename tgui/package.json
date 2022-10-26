@@ -43,7 +43,7 @@
     "eslint-plugin-unused-imports": "^1.1.4",
     "extract-css-chunks-webpack-plugin": "^4.6.0",
     "file-loader": "^6.2.0",
-    "inferno": "^7.4.8",
+    "inferno": "^^8.0.3",
     "jest": "^27.0.6",
     "jest-circus": "^27.0.6",
     "jsdom": "^16.7.0",

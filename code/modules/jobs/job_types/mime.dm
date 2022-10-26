@@ -19,6 +19,7 @@
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_MIME
+	minimal_character_age = 18 //Mime?? Might increase this a LOT depending on how mime lore turns out
 
 /datum/job/mime/after_spawn(mob/living/carbon/human/H, mob/M)
 	H.apply_pref_name("mime", M.client)
@@ -27,7 +28,7 @@
 	name = "Mime"
 	jobtype = /datum/job/mime
 
-	pda_type = /obj/item/pda/mime
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/mime
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/mime

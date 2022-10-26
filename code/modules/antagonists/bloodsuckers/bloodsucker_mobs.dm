@@ -28,7 +28,7 @@
 	harm_intent_damage = 25
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attacktext = "violently mawls"
+	attacktext = "violently mauls"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 5)
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_WALLS
@@ -87,7 +87,7 @@
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce
 
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest
-	name = "gigantous monstrosity"
+	name = "gigantic monstrosity"
 	desc = "You wouldn't think a being so messed up like this would be able to even breathe."
 	icon_state = "triplechest"
 	icon_living = "triplechest"
@@ -228,8 +228,9 @@
 				slot = SLOT_EARS
 			if(3)
 				additionalmessage = "You have mutated werewolf claws!"
-				user_species.punchdamagelow += 2.5
-				user_species.punchdamagehigh += 2.5
+				user.physiology.punchdamagehigh_bonus += 2.5
+				user.physiology.punchdamagelow_bonus += 2.5
+				user.physiology.punchstunthreshold_bonus += 2.5
 				mutation = /obj/item/clothing/gloves/wolfclaws
 				slot = SLOT_GLOVES
 			if(4)

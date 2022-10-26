@@ -4,6 +4,12 @@
 		if("R", "Southwest") // Southwest is End
 			toggle_throw_mode()
 			return
+		if("V")
+			lay_down()
+			return	
+		if("J")	
+			toggle_move_intent()
+			return	
 		if("1")
 			a_intent_change(INTENT_HELP)
 			return

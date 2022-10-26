@@ -4267,6 +4267,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csstype@npm:^3.1.0":
+  version: 3.1.1
+  resolution: "csstype@npm:3.1.1"
+  checksum: b47b351bb6686b405b22075b64577abbc50e6700d3b1e4b0ea1f8fa8fc4ebd649e6b3764a17cf080e6da448b8c04c57fc4003799a4e83282be785ae6f7a8b2ed
+  languageName: node
+  linkType: hard
+
 "cyclist@npm:^1.0.1":
   version: 1.0.1
   resolution: "cyclist@npm:1.0.1"
@@ -6218,6 +6225,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"inferno-vnode-flags@npm:8.0.3":
+  version: 8.0.3
+  resolution: "inferno-vnode-flags@npm:8.0.3"
+  checksum: c23153facfe51388934804cf6cc5fbc098b39b282c940f93a69f50fac8a5acacb428de4c1db8704f466e2efcb5009f48731f10187bbe547b16bb447f6821fd11
+  languageName: node
+  linkType: hard
+
 "inferno@npm:^7.4.2":
   version: 7.4.11
   resolution: "inferno@npm:7.4.11"
@@ -6237,6 +6251,17 @@ __metadata:
     inferno-vnode-flags: 7.4.8
     opencollective-postinstall: ^2.0.3
   checksum: fa814fcb5f7e865ec29ceee00e6e6d7688cd0dcc9db57ab9619d62de08076ee823ee81c4e47ff3fa6632e896817bda1b45ac8a30b60357197ffcc9a1ef9e0ac0
+  languageName: node
+  linkType: hard
+
+"inferno@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "inferno@npm:8.0.3"
+  dependencies:
+    csstype: ^3.1.0
+    inferno-vnode-flags: 8.0.3
+    opencollective-postinstall: ^2.0.3
+  checksum: 049135156d729f711dca35e1043fb252b5c1ad154e4ca03b0b6dabed89866d9bba474fca23a4d4476588a3bed5f9284dfcd9064c264cbbd12f0be0ec9991f6bb
   languageName: node
   linkType: hard
 
@@ -11144,7 +11169,7 @@ resolve@^2.0.0-next.3:
     eslint-plugin-unused-imports: ^1.1.4
     extract-css-chunks-webpack-plugin: ^4.6.0
     file-loader: ^6.2.0
-    inferno: ^7.4.8
+    inferno: ^8.0.3
     jest: ^27.0.6
     jest-circus: ^27.0.6
     jsdom: ^16.7.0

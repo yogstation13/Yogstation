@@ -248,6 +248,11 @@
 	desc = "A detective jacket, in gold!"
 	icon_state = "gold_detective"
 	item_state = "gold_item"
+	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
+
+/obj/item/clothing/suit/yogs/golddetective/Initialize()
+	. = ..()
+	allowed = GLOB.detective_vest_allowed
 
 /obj/item/clothing/suit/yogs/leathercoat
 	name = "black leather coat"
@@ -272,7 +277,11 @@
 	desc = "For those detectives that value fashion over function."
 	icon_state = "detective_coat"
 	item_state = "detective_item"
+	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
+/obj/item/clothing/suit/yogs/detectivecoat/Initialize()
+	. = ..()
+	allowed = GLOB.detective_vest_allowed
 
 /obj/item/clothing/suit/yogs/blacktrenchcoat
 	name = "black trenchcoat"
@@ -303,7 +312,6 @@
 /obj/item/clothing/suit/yogs/bluedetective/Initialize()
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
-
 
 /obj/item/clothing/suit/hooded/spesshoodie
     mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
@@ -344,3 +352,9 @@
 	desc = "This dress is oddly caked with soft clay and makes you want to create!"
 	icon_state = "keiki_dress"
 	item_state = "keiki_dress"
+
+/obj/item/clothing/suit/yogs/cyberpunk
+	name = "punk jacket"
+	desc = "My Moon My Man."
+	icon_state = "punk"
+	item_state = "punk"

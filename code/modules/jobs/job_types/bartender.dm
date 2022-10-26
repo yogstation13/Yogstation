@@ -19,6 +19,7 @@
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
+	minimal_character_age = 21 //I shouldn't have to explain this one
 
 	changed_maps = list("OmegaStation")
 
@@ -30,7 +31,7 @@
 	name = "Bartender"
 	jobtype = /datum/job/bartender
 
-	pda_type = /obj/item/pda/bar
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/fountainpen
 
 	glasses = /obj/item/clothing/glasses/sunglasses/reagent
 	ears = /obj/item/radio/headset/headset_srv

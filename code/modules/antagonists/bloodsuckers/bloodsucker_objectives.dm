@@ -42,7 +42,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/lair/update_explanation_text()
-	explanation_text = "Claim a coffin by entering it to create your lair, and protect it until the end of the shift."//  Make sure to keep it safe!"
+	explanation_text = "Claim a coffin by entering it to create your lair, and protect it until the end of the shift."//  Make sure to keep it safe!
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/lair/check_completion()
@@ -406,3 +406,24 @@
 		return TRUE
 	return FALSE
 */
+
+/// Convert a certain amount of vassals
+
+/datum/objective/bloodsucker/leader
+	name = "leader"
+
+/datum/objective/bloodsucker/leader/New()
+	target_amount = rand(2,3)
+	..()
+
+// EXPLANATION 
+/datum/objective/bloodsucker/leader/update_explanation_text()
+	. = ..()
+	explanation_text = "Convert [target_amount] of Vassals into your vassals."
+
+// WIN CONDITIONS?
+/datum/objective/bloodsucker/leader/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum && bloodsuckerdatum.vassals >= target_amount)
+		return TRUE
+	return FALSE

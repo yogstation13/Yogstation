@@ -192,15 +192,6 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/bronze,
 /area/crew_quarters/bar)
-"dv" = (
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/structure/table/bronze,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/bronze,
-/area/crew_quarters/kitchen)
 "dw" = (
 /obj/structure/chair/bronze,
 /turf/open/floor/bronze,
@@ -326,6 +317,19 @@
 /obj/item/clockwork/alloy_shards/clockgolem_remains,
 /turf/open/floor/bronze/reebe,
 /area/crew_quarters/theatre)
+"il" = (
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/structure/table/bronze,
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_x = -7;
+	pixel_y = -6
+	},
+/turf/open/floor/bronze,
+/area/crew_quarters/kitchen)
 "iO" = (
 /obj/machinery/processor,
 /obj/machinery/firealarm{
@@ -1505,7 +1509,7 @@ bq
 al
 wO
 Uv
-dv
+il
 Ip
 eu
 CT

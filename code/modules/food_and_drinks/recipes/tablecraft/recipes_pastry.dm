@@ -199,7 +199,7 @@ datum/crafting_recipe/food/donut/meat
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
 		/obj/item/reagent_containers/food/snacks/grown/cannabis = 1
 	)
-	result = /obj/item/reagent_containers/food/snacks/dankpocket
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/dank
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/donkpocket/spicy
@@ -243,6 +243,16 @@ datum/crafting_recipe/food/donut/meat
 		/obj/item/reagent_containers/food/snacks/grown/banana = 2,
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket/honk
+	subcategory = CAT_PASTRY
+
+/datum/crafting_recipe/food/donkpocket/meaty
+	time = 15
+	name = "Meatpocket"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/meat/slab = 1,
+		/obj/item/reagent_containers/food/snacks/meat/raw_cutlet = 2,
+	)
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/meaty
 	subcategory = CAT_PASTRY
 
 /datum/crafting_recipe/food/donkpocket/berry

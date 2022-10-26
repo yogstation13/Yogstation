@@ -151,6 +151,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 				I = H.wear_id ? H.wear_id.GetID() : null
 
+				var/species
+				var/is_irradiated = FALSE
+				var/is_wounded = FALSE
+				var/is_husked = FALSE
+				var/is_onfire = FALSE
+				var/is_bonecrack = FALSE
+				var/is_disabled = FALSE
+
 				if (I)
 					name = I.registered_name
 					assignment_title = I.assignment
@@ -161,7 +169,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					assignment_title = ""
 					assignment = ""
 					ijob = 80
-
+					
 				if (nanite_sensors || U.sensor_mode >= SENSOR_LIVING)
 					life_status = H.stat < DEAD
 				else
@@ -172,11 +180,79 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					toxdam = round(H.getToxLoss(),1)
 					burndam = round(H.getFireLoss(),1)
 					brutedam = round(H.getBruteLoss(),1)
+
+					//species check
+					if (ishumanbasic(H))
+						species = "Human"
+					if (ispreternis(H))
+						species = "Robot"
+					if (isipc(H))
+						species = "IPC"
+					if (ispodperson(H))
+						species = "Podperson"
+					if (islizard(H))
+						species = "Lizard"
+					if (isplasmaman(H))
+						species = "Plasmaman"
+					if (ispolysmorph(H))
+						species = "Polysmorph"
+					if (ismoth(H))
+						species = "Moth"
+					if (isflyperson(H))
+						species = "Fly"
+					if (iscatperson(H))
+						species = "Felinid"
+					if (isskeleton(H))
+						species = "Skeleton"
+					if (isjellyperson(H))
+						species = "Slime"
+					if (isethereal(H))
+						species = "Ethereal"
+					if (iszombie(H))
+						species = "Zombie"
+					if (issnail(H))
+						species = "Snail"
+					if (isabductor(H))
+						species = "Alien"
+					if (isandroid(H))
+						species = "Android"
+
+					//check if has disabled limbs
+					for(var/obj/item/bodypart/part in H.bodyparts)
+						if(part.bodypart_disabled == TRUE)
+							is_disabled = TRUE
+					if(length(H.get_missing_limbs()))
+						is_disabled = TRUE
+					
+					//check if has generic wounds except for bone one
+					if(locate(/datum/wound/slash) in H.all_wounds)
+						is_wounded = TRUE
+					if(locate(/datum/wound/pierce) in H.all_wounds)
+						is_wounded = TRUE
+					if(locate(/datum/wound/slash) in H.all_wounds)
+						is_wounded = TRUE
+					if(locate(/datum/wound/burn) in H.all_wounds)
+						is_wounded = TRUE
+
+					if(locate(/datum/wound/blunt) in H.all_wounds) //check if has bone wounds
+						is_bonecrack = TRUE
+								
+					if(H.radiation > RAD_MOB_SAFE) //safe level before sending alert
+						is_irradiated = TRUE					
+
+					if(HAS_TRAIT(H, TRAIT_HUSK)) //check if husked
+						is_husked = TRUE
+						species = null //suit sensors won't recognize anymore
+
+					if(H.on_fire == TRUE) //check if on fire
+						is_onfire = TRUE
+
 				else
 					oxydam = null
 					toxdam = null
 					burndam = null
 					brutedam = null
+					species = null
 
 				if (nanite_sensors || U.sensor_mode >= SENSOR_COORDS)
 					if (!pos)
@@ -192,7 +268,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if(life_status == FALSE)
 					new_death_list.Add(H)
 
-				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_bonecrack" = is_bonecrack, "is_disabled" = is_disabled, "is_irradiated" = is_irradiated, "species" = species, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time

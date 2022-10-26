@@ -119,6 +119,12 @@ Nothing else in the console has ID requirements.
 	return ..()
 
 /obj/machinery/computer/rdconsole/attackby(obj/item/D, mob/user, params)
+	if(istype(D, /obj/item/research_notes))
+		var/obj/item/research_notes/R = D
+		SSresearch.science_tech.add_point_list(R.points)
+		playsound(src, 'sound/items/pshred.ogg', 25, 1)
+		qdel(R)
+		return TRUE
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
 		if(istype(D, /obj/item/disk/tech_disk))
@@ -700,7 +706,7 @@ Nothing else in the console has ID requirements.
 	return icon2html(initial(item.icon), usr, initial(item.icon_state), SOUTH)
 
 /obj/machinery/computer/rdconsole/proc/can_research(mob/user)
-	if(!locked || allowed(user))
+	if(!locked && (allowed(user) || (obj_flags & EMAGGED)))
 		return TRUE
 	return FALSE
 
@@ -1162,3 +1168,10 @@ Nothing else in the console has ID requirements.
 
 /obj/machinery/computer/rdconsole/experiment
 	name = "E.X.P.E.R.I-MENTOR R&D Console"
+
+/obj/machinery/computer/rdconsole/nolock
+	name = "R&D Console"
+	desc = "A console used to interface with R&D tools. This one seems to not have an access requirement."
+
+	req_access = list()	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
+

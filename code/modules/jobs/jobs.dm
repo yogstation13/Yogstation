@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(alt_civilian_positions, list(
 	"Mute Entertainer", "Silent Jokester", "Pantomimist",
 	"Intern", "Apprentice", "Subordinate", "Temporary Worker", "Associate",
 	"Salesman", "Gift Shop Attendent", "Retail Worker",
-	"Visitor", "Traveler", "Siteseer",
+	"Visitor", "Traveler", "Siteseer", "Fisher",
 	"Composer", "Artisan"
 	))
 

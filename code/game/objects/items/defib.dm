@@ -307,7 +307,7 @@
 	var/req_defib = TRUE
 	var/combat = FALSE //If it penetrates armor and gives additional functionality
 	var/grab_ghost = TRUE
-	var/tlimit = DEFIB_TIME_LIMIT * 10
+	var/tlimit = DEFIB_TIME_LIMIT
 
 	var/mob/listeningTo
 
@@ -372,11 +372,12 @@
 		C.update_inv_hands()
 
 /obj/item/twohanded/shockpaddles/suicide_act(mob/user)
+	if(req_defib && !defib.deductcharge(revivecost))
+		user.visible_message(span_danger("[user] is putting the paddles on [user.p_their()] chest but it has no charge!"))
+		return SHAME
 	user.visible_message(span_danger("[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
-	if(req_defib)
-		defib.deductcharge(revivecost)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, 1, -1)
-	return (OXYLOSS)
+	return OXYLOSS
 
 /obj/item/twohanded/shockpaddles/dropped(mob/user)
 	if(!req_defib)
@@ -578,18 +579,20 @@
 					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Recovery of patient impossible. Further attempts futile.")
 				else if (H.hellbound)
 					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's soul unrecoverable.  Further attempts futile.")
-				else if (tplus > tlimit)
-					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Body has decayed for too long. Further attempts futile.")
-				else if (!heart)
-					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's heart is missing. A replacement may allow for successful resuscitation.")
-				else if (heart.organ_flags & ORGAN_FAILING)
-					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's heart too damaged. A coronary bypass or replacement may allow for successful resuscitation.")
 				else if(total_burn >= MAX_REVIVE_FIRE_DAMAGE || total_brute >= MAX_REVIVE_BRUTE_DAMAGE)
 					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Surgical repair may allow for successful resuscitation.")
 				else if(HAS_TRAIT(H, TRAIT_HUSK))
 					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Restucitation failed - Lack of important fluids has rendered the patient body unsurvivable. Application of experimental DNA recovery surgery or an upgraded cloner recommended.") 
 				else if(H.get_ghost())
 					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - No activity in patient's brain. Further attempts may be successful.")
+				else if (HAS_TRAIT(H, TRAIT_NODEFIB))
+					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Biology incompatiable.")
+				else if (tplus > tlimit)
+					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Body has decayed for too long. Further attempts futile.")
+				else if (!heart)
+					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's heart is missing. A replacement may allow for successful resuscitation.")
+				else if (heart.organ_flags & ORGAN_FAILING)
+					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's heart too damaged. A coronary bypass or replacement may allow for successful resuscitation.")
 				else
 					var/obj/item/organ/brain/BR = H.getorgan(/obj/item/organ/brain)
 					if(BR)

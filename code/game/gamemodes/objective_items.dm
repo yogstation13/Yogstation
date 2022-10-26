@@ -64,7 +64,7 @@
 
 /datum/objective_item/steal/hypo
 	name = "the hypospray."
-	targetitem = /obj/item/reagent_containers/hypospray/CMO
+	targetitem = /obj/item/hypospray/deluxe/cmo
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer")
 
@@ -87,6 +87,12 @@
 	name = "the reactive teleport armor."
 	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
 	difficulty = 5
+	excludefromjob = list("Research Director")
+
+/datum/objective_item/steal/holding
+	name = "the bag of holding."
+	targetitem = /obj/item/storage/backpack/holding
+	difficulty = 7
 	excludefromjob = list("Research Director")
 
 /datum/objective_item/steal/documents

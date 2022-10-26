@@ -90,6 +90,8 @@
 	tick_interval = 10
 	alert_type = /obj/screen/alert/status_effect/stasis
 	var/last_dead_time
+	/// What is added to the *life_tickrate*, -1 to freeze the ticks
+	var/stasis_mod = -1
 
 /datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
 	if(last_dead_time)
@@ -101,20 +103,25 @@
 	if(owner.stat == DEAD)
 		last_dead_time = world.time
 
-/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+/datum/status_effect/incapacitating/stasis/on_creation(mob/living/new_owner, set_duration, updating_canmove, new_stasis_mod)
 	. = ..()
+	stasis_mod = new_stasis_mod
+	new_owner.life_tickrate += stasis_mod
 	update_time_of_death()
-	owner.reagents?.end_metabolization(owner, FALSE)
+	if(stasis_mod == -1)
+		owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/incapacitating/stasis/tick()
 	update_time_of_death()
 
 /datum/status_effect/incapacitating/stasis/on_remove()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
 	update_time_of_death()
+	owner.life_tickrate -= stasis_mod
 	return ..()
 
 /obj/screen/alert/status_effect/stasis
@@ -837,6 +844,52 @@
 	desc = "I must go, my people need me!"
 	icon_state = "high"
 
+/datum/status_effect/fake_virus
+	id = "fake_virus"
+	duration = 3 MINUTES
+	status_type = STATUS_EFFECT_REPLACE
+	tick_interval = 1
+	alert_type = null
+	var/msg_stage = 0//so you dont get the most intense messages immediately
+
+/datum/status_effect/fake_virus/tick()
+	var/fake_msg = ""
+	var/fake_emote = ""
+	switch(msg_stage)
+		if(0 to 300)
+			if(prob(1))
+				fake_msg = pick(
+					span_warning(pick("Your head hurts.", "Your head pounds.")),
+					span_warning(pick("You're having difficulty breathing.", "Your breathing becomes heavy.")),
+					span_warning(pick("You feel dizzy.", "Your head spins.")),
+					span_warning(pick("You swallow excess mucus.", "You lightly cough.")),
+					span_warning(pick("Your head hurts.", "Your mind blanks for a moment.")),
+					span_warning(pick("Your throat hurts.", "You clear your throat.")))
+		if(301 to 600)
+			if(prob(2))
+				fake_msg = pick(
+					span_warning(pick("Your head hurts a lot.", "Your head pounds incessantly.")),
+					span_warning(pick("Your windpipe feels like a straw.", "Your breathing becomes tremendously difficult.")),
+					span_warning("You feel very [pick("dizzy","woozy","faint")]."),
+					span_warning(pick("You hear a ringing in your ear.", "Your ears pop.")),
+					span_warning("You nod off for a moment."))
+		else
+			if(prob(3))
+				if(prob(50))// coin flip to throw a message or an emote
+					fake_msg = pick(
+					span_userdanger(pick("Your head hurts!", "You feel a burning knife inside your brain!", "A wave of pain fills your head!")),
+					span_userdanger(pick("Your lungs hurt!", "It hurts to breathe!")),
+					span_warning(pick("You feel nauseated.", "You feel like you're going to throw up!")))
+				else
+					fake_emote = pick("cough", "sniff", "sneeze")
+
+	if(fake_emote)
+		owner.emote(fake_emote)
+	else if(fake_msg)
+		to_chat(owner, fake_msg)
+
+	msg_stage++
+
 //Broken Will: Applied by Devour Will, and functions similarly to Kindle. Induces sleep for 30 seconds, going down by 1 second for every point of damage the target takes. //yogs start: darkspawn
 /datum/status_effect/broken_will
 	id = "broken_will"
@@ -1112,3 +1165,50 @@
 /datum/status_effect/knuckled/be_replaced()
     owner.underlays -= bruise 
     ..()
+
+/datum/status_effect/taming
+	id = "taming"
+	duration = -1
+	tick_interval = 6
+	alert_type = null
+	var/tame_amount = 1
+	var/tame_buildup = 1
+	var/tame_crit = 35
+	var/needs_to_tame = FALSE
+	var/mob/living/tamer
+
+/datum/status_effect/taming/on_creation(mob/living/owner, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	tamer = user
+
+/datum/status_effect/taming/on_apply()
+	if(owner.stat == DEAD)
+		return FALSE
+	return ..()
+
+/datum/status_effect/taming/tick()
+	if(owner.stat == DEAD)
+		qdel(src)
+
+/datum/status_effect/taming/proc/add_tame(amount)
+	tame_amount += amount
+	if(tame_amount)
+		if(tame_amount >= tame_crit)
+			needs_to_tame = TRUE
+			qdel(src)
+	else
+		qdel(src)
+
+/datum/status_effect/taming/on_remove()
+	var/mob/living/simple_animal/hostile/M = owner
+	if(needs_to_tame)
+		var/turf/T = get_turf(M)
+		new /obj/effect/temp_visual/love_heart(T)
+		M.drop_loot()
+		M.loot = null
+		M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
+		M.faction = tamer.faction
+		to_chat(tamer, span_notice("[M] is now friendly after exposure to the flowers!"))
+		. = ..()

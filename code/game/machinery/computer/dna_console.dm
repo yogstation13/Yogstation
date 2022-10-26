@@ -1354,7 +1354,7 @@
 
 			// If this would take us over the max instability, we inform the user.
 			if(instability_total > max_injector_instability)
-				to_chat(usr,span_warning("Extra mutation would make the advanced injector too instable."))
+				to_chat(usr,span_warning("Extra mutation would make the advanced injector too unstable."))
 				return
 
 			// If we've got here, all our checks are passed and we can successfully

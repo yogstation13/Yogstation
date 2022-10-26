@@ -1,3 +1,6 @@
+/obj/item/vending_refill/fishing
+	icon_state = "refill_fishing"
+
 /obj/machinery/vending/fishing
 	name = "\improper Tackle Box 2000"	
 	desc = "Fishing peaked in 2000!"
@@ -16,6 +19,7 @@
 					)
 	contraband = list(/obj/item/reagent_containers/food/snacks/bait/type = 3)
 	premium = list(/obj/item/reagent_containers/food/snacks/bait/master = 5)
+	refill_canister = /obj/item/vending_refill/fishing
 
 	default_price = 50
 	extra_price = 75

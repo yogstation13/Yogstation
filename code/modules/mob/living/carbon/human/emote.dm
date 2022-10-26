@@ -1,11 +1,35 @@
 /datum/emote/living/carbon/human
 	mob_type_allowed_typecache = list(/mob/living/carbon/human)
 
+
+/// The time it takes for the crying visual to be removed
+#define CRY_DURATION 12.8 SECONDS
+
 /datum/emote/living/carbon/human/cry
 	key = "cry"
 	key_third_person = "cries"
 	message = "cries."
 	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/human/cry/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && ishuman(user)) // Give them a visual crying effect if they're human
+		var/mob/living/carbon/human/human_user = user
+		ADD_TRAIT(human_user, TRAIT_CRYING, "[type]")
+		human_user.update_body()
+
+		// Use a timer to remove the effect after the defined duration has passed
+		var/list/key_emotes = GLOB.emote_list["cry"]
+		for(var/datum/emote/living/carbon/human/cry/human_emote in key_emotes)
+			// The existing timer restarts if it is already running
+			addtimer(CALLBACK(human_emote, .proc/end_visual, human_user), CRY_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/datum/emote/living/carbon/human/cry/proc/end_visual(mob/living/carbon/human/human_user)
+	if(!QDELETED(human_user))
+		REMOVE_TRAIT(human_user, TRAIT_CRYING, "[type]")
+		human_user.update_body()
+
+#undef CRY_DURATION
 
 /datum/emote/living/carbon/human/dap
 	key = "dap"
@@ -109,7 +133,7 @@
 
 /datum/emote/living/carbon/rattle/can_run_emote(mob/living/user, status_check = TRUE, intentional)
 	return isskeleton(user)
-	
+
 /datum/emote/living/carbon/human/pale
 	key = "pale"
 	message = "goes pale for a second."
@@ -191,7 +215,7 @@
 	var/mob/living/carbon/human/H = user
 	if(H.dna && H.dna.species && (H.dna.features["wings"] != "None"))
 		return TRUE
-		
+
 /mob/living/carbon/human/proc/OpenWings()
 	if(!dna || !dna.species)
 		return
@@ -217,3 +241,76 @@
 	if(isturf(loc))
 		var/turf/T = loc
 		T.Entered(src)
+
+/datum/emote/living/carbon/human/robot_tongue/can_run_emote(mob/user, status_check = TRUE , intentional)
+	if(!..())
+		return FALSE
+	var/obj/item/organ/tongue/T = user.getorganslot("tongue")
+	if(T.status == ORGAN_ROBOTIC)
+		return TRUE
+
+/datum/emote/living/carbon/human/robot_tongue/beep
+	key = "beep"
+	key_third_person = "beeps"
+	message = "beeps."
+	message_param = "beeps at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/beep/get_sound(mob/living/user)
+	return 'sound/machines/twobeep.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/buzz
+	key = "buzz"
+	key_third_person = "buzzes"
+	message = "buzzes."
+	message_param = "buzzes at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/buzz/get_sound(mob/living/user)
+	return 'sound/machines/buzz-sigh.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/buzz2
+	key = "buzz2"
+	message = "buzzes twice."
+
+/datum/emote/living/carbon/human/robot_tongue/buzz2/get_sound(mob/living/user)
+	return 'sound/machines/buzz-two.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/chime
+	key = "chime"
+	key_third_person = "chimes"
+	message = "chimes."
+
+/datum/emote/living/carbon/human/robot_tongue/chime/get_sound(mob/living/user)
+	return 'sound/machines/chime.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/ping
+	key = "ping"
+	key_third_person = "pings"
+	message = "pings."
+	message_param = "pings at %t."
+
+/datum/emote/living/carbon/human/robot_tongue/ping/get_sound(mob/living/user)
+	return 'sound/machines/ping.ogg'
+
+ // Clown Robotic Tongue ONLY. Henk.
+
+/datum/emote/living/carbon/human/robot_tongue/clown/can_run_emote(mob/user, status_check = TRUE , intentional)
+	if(!..())
+		return FALSE
+	if(user.mind.assigned_role == "Clown")
+		return TRUE
+
+/datum/emote/living/carbon/human/robot_tongue/clown/honk
+	key = "honk"
+	key_third_person = "honks"
+	message = "honks."
+
+/datum/emote/living/carbon/human/robot_tongue/clown/honk/get_sound(mob/living/user)
+	return 'sound/items/bikehorn.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/clown/sad
+	key = "sad"
+	key_third_person = "plays a sad trombone..."
+	message = "plays a sad trombone..."
+
+/datum/emote/living/carbon/human/robot_tongue/clown/sad/run_emote(mob/living/user)
+	return 'sound/misc/sadtrombone.ogg'

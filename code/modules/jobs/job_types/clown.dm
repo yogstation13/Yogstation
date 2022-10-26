@@ -19,6 +19,7 @@
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
+	minimal_character_age = 18 //Honk
 
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -29,7 +30,7 @@
 	name = "Clown"
 	jobtype = /datum/job/clown
 
-	pda_type = /obj/item/pda/clown
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic/clown
 
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/clown

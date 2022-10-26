@@ -58,6 +58,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_threshold = 0
 	/// increases as addiction gets worse
 	var/addiction_stage = 0
+	/// What can process this? ORGANIC, SYNTHETIC, or ORGANIC | SYNTHETIC?. We'll assume by default that it affects organics.
+	var/process_flags = ORGANIC
 	/// You fucked up and this is now triggering its overdose effects, purge that shit quick.
 	var/overdosed = 0
 	///if false stops metab in liverless mobs
