@@ -328,15 +328,20 @@
 
 /obj/item/organ/cyberimp/chest/spinalspeed/emp_act(severity)
 	. = ..()
-	owner.set_drugginess(40)
-	owner.hallucination += 1000
-	owner.blur_eyes(20)
-	owner.dizziness += 10
-	time_on += 5
-	switch(severity)//the other affects are more so the downside
+	switch(severity)//i don't want emps to just be damage again, that's boring
 		if(EMP_HEAVY)
-			owner.adjustFireLoss(20)
-			to_chat(owner, span_warning("Your spinal implant malfunctions and fries you!"))
-		if(EMP_LIGHT)
+			owner.set_drugginess(40)
+			owner.hallucination += 500
+			owner.blur_eyes(20)
+			owner.dizziness += 10
+			time_on += 10
 			owner.adjustFireLoss(10)
-			to_chat(owner, span_danger("Your spinal implant malfunctions and burns you!"))
+			to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
+		if(EMP_LIGHT)
+			owner.set_drugginess(20)
+			owner.hallucination += 200
+			owner.blur_eyes(10)
+			owner.dizziness += 5
+			time_on += 5
+			owner.adjustFireLoss(5)
+			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))
