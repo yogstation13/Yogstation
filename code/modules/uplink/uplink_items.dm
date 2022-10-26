@@ -1947,7 +1947,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/syndicate/spinalspeed
 	cost = 20
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear)
+	limited_stock = 1
+	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
 
 // Events
 /datum/uplink_item/services
