@@ -821,8 +821,8 @@
 		trigger_alarm()
 		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 		var/area/A = get_area(loc)
-		radio.talk_into(src, "Alert: security record breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
-		radio.talk_into(src, "Alert: security record breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
+		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
+		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
 	
 /obj/machinery/computer/secure_data/emp_act(severity)
 	. = ..()
