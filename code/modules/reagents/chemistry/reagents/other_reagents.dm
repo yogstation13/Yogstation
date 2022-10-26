@@ -1443,6 +1443,13 @@
 	color = "#DA0000" // red
 	random_color_list = list("#DA0000")
 
+// Pepperspray coloring, only affects mobs
+/datum/reagent/colorful_reagent/crayonpowder/red/pepperspray/reaction_obj(obj/O, reac_volume)
+	return
+
+/datum/reagent/colorful_reagent/crayonpowder/red/pepperspray/reaction_turf(turf/T, reac_volume)
+	return
+
 /datum/reagent/colorful_reagent/crayonpowder/orange
 	name = "Orange Crayon Powder"
 	colorname = "orange"
