@@ -198,7 +198,7 @@
 		changeNext_move(CLICK_CD_RANGE)
 
 /mob/living/carbon/restrained(ignore_grab)
-	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE))
+	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state > GRAB_AGGRESSIVE))
 
 /mob/living/carbon/proc/canBeHandcuffed()
 	return 0
