@@ -11,33 +11,41 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	default_color = "FFFFFF"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
-	species_traits = list(EYECOLOR, HAIR, LIPS, AGENDER)
-	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is an entirely different pr
+	species_traits = list(EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
+	sexes = FALSE //no gender
+	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
+	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	exotic_blood = /datum/reagent/stable_plasma //helps with heat regulation
 	toxic_food = NONE
-	liked_food = FRIED | SUGAR | JUNKFOOD | FRUIT
+	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
 	brutemod = 0.9 //Have you ever punched a metal plate?
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
 	tempmod = 0.2 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
+	stunmod = 1.1 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
-	speedmod = 0 //Sleek efficient metal legs, despite the weight
 	action_speed_coefficient = 0.9 //worker drone do the fast
 	punchdamagelow = 2 //if it hits you, it's always gonna hurt
 	punchdamagehigh = 8 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
 	payday_modifier = 0.8 //Highly efficient workers, more than worth their price, NT still racist though
-	yogs_draw_robot_hair = TRUE
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
+	//special_step_sounds = list()  //uncomment when i actually decide what sounds i want for footsteps
+	//deathsound = //change this when sprite gets reworked
+	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
+	yogs_draw_robot_hair = TRUE //change this when sprite gets reworked
+	wings_icon = "Robotic"
+	species_language_holder = /datum/language_holder/preternis	
+	//new variables
 	var/datum/action/innate/maglock/maglock
 	var/lockdown = FALSE
 	var/charge = PRETERNIS_LEVEL_FULL
@@ -47,9 +55,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/tesliumtrip = FALSE
 	var/draining = FALSE
 	var/soggy = FALSE
-	screamsound = 'goon/sound/robot_scream.ogg'
-	wings_icon = "Robotic"
-	species_language_holder = /datum/language_holder/preternis
 
 /datum/species/preternis/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
