@@ -116,7 +116,7 @@
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/stack/ore))
 	STR.max_w_class = WEIGHT_CLASS_HUGE
-	STR.max_combined_stack_amount = 50
+	STR.max_items = 50
 
 /obj/item/storage/bag/ore/equipped(mob/user)
 	. = ..()
@@ -179,7 +179,6 @@
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.max_items = INFINITY
 	STR.max_combined_w_class = INFINITY
-	STR.max_combined_stack_amount = INFINITY
 
 /obj/item/storage/bag/gem
 	name = "gem satchel"
@@ -293,7 +292,7 @@
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
 	STR.set_holdable(list(/obj/item/stack/sheet), list(/obj/item/stack/sheet/mineral/sandstone, /obj/item/stack/sheet/mineral/wood))
-	STR.max_combined_stack_amount = 500
+	STR.max_items = 500
 
 // -----------------------------
 //    Sheet Snatcher (Cyborg)
@@ -307,7 +306,7 @@
 /obj/item/storage/bag/sheetsnatcher/borg/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
-	STR.max_combined_stack_amount = 1000
+	STR.max_items = 1000
 
 // -----------------------------
 //           Book bag
