@@ -12,9 +12,10 @@
 
 /datum/component/fishingbonus/proc/OnEquip(datum/source, mob/living/carbon/equipper, slot)
 	var/obj/item/parent_item = parent
-	if(!parent_item)
+	var/obj/vehicle/ridden/lavaboat/parent_boat = parent
+	if(!parent_item || !parent_boat)
 		return
-	if(parent_item.slot_flags == slotdefine2slotbit(slot))
+	if(parent_item.slot_flags == slotdefine2slotbit(slot) || parent_boat.post_buckle_mob(equipper))
 		equipper.fishing_power += fishing_bonus
 		wearer = equipper
 
