@@ -58,6 +58,7 @@ Difficulty: Hard
 	aggro_vision_range = 21 //so it can see to one side of the arena to the other
 	loot = list(/obj/item/hierophant_club, /obj/item/gem/purple)
 	crusher_loot = list(/obj/item/hierophant_club, /obj/item/crusher_trophy/vortex_talisman, /obj/item/gem/purple)
+	butcher_results = list(/obj/item/hierophant_club, /obj/item/gem/purple)
 	wander = FALSE
 	internal_type = /obj/item/gps/internal/hierophant
 	del_on_death = TRUE
