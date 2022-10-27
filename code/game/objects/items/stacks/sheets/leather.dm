@@ -167,9 +167,10 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("leather satchel", /obj/item/storage/backpack/satchel/leather, 5), \
 	new/datum/stack_recipe("leather shoes", /obj/item/clothing/shoes/laceup, 2), \
 	new/datum/stack_recipe("muzzle", /obj/item/clothing/mask/muzzle, 2), \
-	new/datum/stack_recipe("toolbelt", /obj/item/storage/belt/utility, 4), \
 	new/datum/stack_recipe("medical webbing", /obj/item/storage/belt/medical/mining, 4), \
+	new/datum/stack_recipe("toolbelt", /obj/item/storage/belt/utility, 4), \
 	new/datum/stack_recipe("wallet", /obj/item/storage/wallet, 1), \
+	new/datum/stack_recipe("gem satchel", /obj/item/storage/bag/gem, 1) \
 ))
 
 /obj/item/stack/sheet/leather/Initialize(mapload, new_amount, merge = TRUE)

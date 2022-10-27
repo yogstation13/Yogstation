@@ -349,6 +349,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("construction bag", /obj/item/storage/bag/construction, 4), \
 	new/datum/stack_recipe("mining satchel", /obj/item/storage/bag/ore, 4), \
 	new/datum/stack_recipe("plant bag", /obj/item/storage/bag/plants, 4), \
+	new/datum/stack_recipe("sheet snatcher", /obj/item/storage/bag/sheetsnatcher, 4), \
 	null, \
 	new/datum/stack_recipe("bedsheet", /obj/item/bedsheet, 3), \
 	new/datum/stack_recipe("empty sandbag", /obj/item/emptysandbag, 4), \
@@ -799,6 +800,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	item_state = "sheet-plastic"
 	materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 7
+	grind_results = list(/datum/reagent/microplastics = 10)
 	merge_type = /obj/item/stack/sheet/plastic
 
 /obj/item/stack/sheet/plastic/fifty

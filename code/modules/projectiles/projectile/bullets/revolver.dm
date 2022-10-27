@@ -26,11 +26,11 @@
 	stamina = 0
 
 /obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
 		M.adjust_fire_stacks(2)
 		M.IgniteMob()
+	return ..()
 
 /obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code
 	name = ".38 Iceblox bullet"
@@ -39,7 +39,7 @@
 	var/temperature = 100
 
 /obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
-	. = ..()
+	..()
 	if(isliving(target))
 		var/mob/living/M = target
 		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
@@ -50,10 +50,10 @@
 	stamina = 0
 
 /obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target 
 		M.adjust_disgust(20)
+	return ..()
 
 // .32 TRAC (Caldwell Tracking Revolver)
 
@@ -62,15 +62,16 @@
 	damage = 5
 
 /obj/item/projectile/bullet/tra32/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	var/mob/living/carbon/M = target
-	var/obj/item/implant/tracking/tra32/imp
-	for(var/obj/item/implant/tracking/tra32/TI in M.implants) //checks if the target already contains a tracking implant
-		imp = TI
-		return
-	if(!imp)
-		imp = new /obj/item/implant/tracking/tra32(M)
-		imp.implant(M)
+	if(blocked != 100)
+		var/mob/living/carbon/M = target
+		var/obj/item/implant/tracking/tra32/imp
+		for(var/obj/item/implant/tracking/tra32/TI in M.implants) //checks if the target already contains a tracking implant
+			imp = TI
+			return
+		if(!imp)
+			imp = new /obj/item/implant/tracking/tra32(M)
+			imp.implant(M)
+	return ..()
 
 // .357 (Syndie Revolver)
 
@@ -99,18 +100,12 @@
 
 /obj/item/projectile/bullet/a357/metalshock
 	name = ".357 Metalshock bullet"
-	damage = 30
+	damage = 10
 
 /obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		if(C.electrocute_act(10, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE)) //10 extra burn damage, should NOT stun
-			C.confused += 5 //15% chance for minor, 5% for major randomness per movement
-		return ..()
-	if(isliving(target)) //So that it works on simple mobs, too
-		var/mob/living/L = target
-		L.electrocute_act(10, src, 1, FALSE, FALSE, FALSE, FALSE)
-	. = ..()
+	..()
+	tesla_zap(target, 4, 17500, TESLA_MOB_DAMAGE)
+	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a357/heartpiercer
 	name = ".357 Heartpiercer bullet"

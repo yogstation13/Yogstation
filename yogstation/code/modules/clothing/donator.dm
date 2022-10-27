@@ -131,3 +131,12 @@
 	new /obj/item/clothing/suit/yogs/megumu(src)
 	new /obj/item/clothing/neck/yogs/megumu(src)
 	new /obj/item/clothing/head/yogs/froghat(src)
+
+/obj/item/storage/box/isotope
+	name = "radioactive box"
+	desc = "WARNING: not actually radioactive."
+
+/obj/item/storage/box/isotope/PopulateContents() 
+	. = ..()
+	new /obj/item/clothing/under/rank/scientist/black(src)
+	new /obj/item/lighter/badass(src)

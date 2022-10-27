@@ -97,6 +97,8 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	var/punchdamagehigh = 10
 	///damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
 	var/punchstunthreshold = 10
+	///values of inaccuracy that adds to the spread of any ranged weapon
+	var/aiminginaccuracy = 0
 	///base electrocution coefficient
 	var/siemens_coeff = 1
 	///what kind of damage overlays (if any) appear on our species when wounded?
@@ -2279,7 +2281,7 @@ GLOBAL_LIST_EMPTY(mentor_races)
 	. = TRUE
 	if(C == user)
 		if(fullness <= 50)
-			user.visible_message(span_notice("[user] hungrily [eatverb]s \the [O], gobbling it down!"), span_notice("You hungrily [eatverb] \the [O], gobbling it down!"))
+			user.visible_message(span_notice("[user] frantically [eatverb]s \the [O], scarfing it down!"), span_notice("You frantically [eatverb] \the [O], scarfing it down!"))
 		else if(fullness > 50 && fullness < 150)
 			user.visible_message(span_notice("[user] hungrily [eatverb]s \the [O]."), span_notice("You hungrily [eatverb] \the [O]."))
 		else if(fullness > 150 && fullness < 500)

@@ -56,7 +56,6 @@
 
 /obj/item/implanter/gang/Initialize(loc, gang)
 	if(!gang)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	imp = new /obj/item/implant/gang(src,gang)
 	.=..()

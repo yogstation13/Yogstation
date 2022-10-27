@@ -1,0 +1,5 @@
+author: "Ethan4303"
+delete-after: true 
+changes: 
+  - rscadd: "Added wall"
+  - mapping: "This is a mapping change"

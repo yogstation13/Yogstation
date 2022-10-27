@@ -1,12 +1,10 @@
 /obj/mecha/proc/get_armour_facing(relative_dir)
-	switch(relative_dir)
-		if(0) // BACKSTAB!
+	switch(abs(relative_dir))
+		if(180) // BACKSTAB!
 			return facing_modifiers[BACK_ARMOUR]
-		if(45, 90, 270, 315)
-			return facing_modifiers[SIDE_ARMOUR]
-		if(225, 180, 135)
+		if(0, 45)
 			return facing_modifiers[FRONT_ARMOUR]
-	return 1 //always return non-0
+	return facing_modifiers[SIDE_ARMOUR] //always return non-0
 
 /obj/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -43,7 +41,7 @@
 				break
 
 	if(attack_dir)
-		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(src))
+		var/facing_modifier = get_armour_facing(dir2angle(attack_dir) - dir2angle(dir))
 		booster_damage_modifier /= facing_modifier
 		booster_deflection_modifier *= facing_modifier
 	if(prob(deflect_chance * booster_deflection_modifier))
@@ -116,7 +114,7 @@
 
 
 /obj/mecha/bullet_act(obj/item/projectile/Proj) //wrapper
-	if ((!enclosed || istype(Proj, /obj/item/projectile/bullet/shotgun_uraniumslug))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
+	if ((!enclosed || istype(Proj, /obj/item/projectile/bullet/shotgun/slug/uranium))&& occupant && !silicon_pilot && !Proj.force_hit && (Proj.def_zone == BODY_ZONE_HEAD || Proj.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
 		occupant.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
 	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")

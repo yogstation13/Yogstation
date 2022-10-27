@@ -196,7 +196,7 @@
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
 		/mob/living/silicon/ai/proc/botcall, /mob/living/silicon/ai/proc/control_integrated_radio, \
-		/mob/living/silicon/ai/proc/set_automatic_say_channel))
+		/mob/living/silicon/ai/proc/set_automatic_say_channel, /mob/living/silicon/ai/proc/changeaccent))
 
 	GLOB.ai_list += src
 	GLOB.shuttle_caller_list += src
@@ -796,10 +796,11 @@
 			"poly" = 'icons/mob/animal.dmi',
 			"pug" = 'icons/mob/pets.dmi',
 			"spider" = 'icons/mob/animal.dmi',
-			"mothroach" = 'icons/mob/animal.dmi',
+			"mothroach" = 'icons/mob/pets.dmi',
 			"snake" = 'icons/mob/animal.dmi',
 			"goose" = 'icons/mob/animal.dmi',
-			"poppypossum" = 'icons/mob/animal.dmi'
+			"poppypossum" = 'icons/mob/animal.dmi',
+			"axolotl" = 'icons/mob/pets.dmi'
 			)
 
 			input = input("Please select a hologram:") as null|anything in icon_list
