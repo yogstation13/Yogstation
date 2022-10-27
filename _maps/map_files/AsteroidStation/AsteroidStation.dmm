@@ -4927,10 +4927,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aNm" = (
-/obj/machinery/smartfridge/chemistry,
-/turf/open/floor/plasteel,
-/area/medical/chemistry)
 "aNo" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -103363,7 +103359,7 @@ aoP
 ags
 afg
 tUA
-aNm
+jPa
 aNt
 akC
 akC
