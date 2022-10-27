@@ -4,6 +4,7 @@ import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Flex, Input, Section, Table, Tabs, NoticeBox } from '../components';
 import { formatMoney } from '../format';
 import { Window } from '../layouts';
+import { classes } from 'common/react';
 
 const MAX_SEARCH_RESULTS = 25;
 
@@ -152,6 +153,19 @@ const ItemList = (props, context) => {
           <Table.Row
             key={item.name}
             className="candystripe">
+            <Table.Cell>
+              {" "}
+              {<span
+                className={classes([
+                  'uplink32x32',
+                  item.path,
+                ])}
+                style={{
+                  'vertical-align': 'middle',
+                  'horizontal-align': 'right',
+                }} />}
+              {" "}
+            </Table.Cell>
             <Table.Cell bold>
               {decodeHtmlEntities(item.name)}
             </Table.Cell>
@@ -176,7 +190,22 @@ const ItemList = (props, context) => {
   return items.map(item => (
     <Section
       key={item.name}
-      title={item.name}
+      title={
+        <Box inline>
+          {" "}
+          <span
+            className={classes([
+              'uplink32x32',
+              item.path,
+            ])}
+            style={{
+              'vertical-align': 'middle',
+              'horizontal-align': 'right',
+            }} />
+          {" "}
+          {item.name}
+        </Box>
+      }
       level={2}
       buttons={(
         <Button

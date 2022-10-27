@@ -410,11 +410,14 @@
 		"https://www.youtube.com/watch?v=m9We2XsVZfc", // Ghostbusters Theme
 		"https://www.youtube.com/watch?v=xIx_HbmRnQY", // Thriller
 		"https://www.youtube.com/watch?v=7-D83f33pAE", // Spooky Scary Skeletons
+		"https://www.youtube.com/watch?v=1mrGdGMNsv0", // Spooky Scary Skeletons, Living Tombstone Remix
 		"https://www.youtube.com/watch?v=bebUeWgNkAM", // Halloween Theme Michael Myers
 		"https://www.youtube.com/watch?v=qaQ6oJL1qQA", // Lucifer My Love - Twin Temple
 		"https://www.youtube.com/watch?v=vCYLUZyWeDs&t", // "Unforgiving Cold"- Godzilla NES Creepypasta OST
 		"https://www.youtube.com/watch?v=OPDDFdyKOgU", // Red Signal - The Bifrost Incident - The Mechanisms
-		"https://www.youtube.com/watch?v=d1itZiNY5pY" // Todd Rollins - The Boogie Man
+		"https://www.youtube.com/watch?v=d1itZiNY5pY", // Todd Rollins - The Boogie Man
+		"https://www.youtube.com/watch?v=fixc63xMXeY", // Plok Boss Theme - HD Remastered
+		"https://www.youtube.com/watch?v=bRLML36HnzU" // Monster Mash
 		)
 
 /datum/holiday/halloween/greet()

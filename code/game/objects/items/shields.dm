@@ -208,6 +208,7 @@
 	desc = "A shield that reflects almost all energy projectiles, but is useless against physical attacks. It can be retracted, expanded, and stored anywhere."
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	icon_state = "eshield1" // So it can display without initializing
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("shoved", "bashed")
 	throw_range = 5
