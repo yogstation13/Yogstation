@@ -50,12 +50,47 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"bb" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "bi" = (
 /obj/structure/reflector/box/anchored{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"bO" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
+"bW" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "bX" = (
 /obj/machinery/power/emitter/anchored{
 	dir = 1;
@@ -91,6 +126,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cF" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/turf/open/space,
+/area/space/nearstation)
 "cW" = (
 /obj/machinery/light{
 	dir = 4
@@ -105,6 +151,19 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"eo" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "eG" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -184,6 +243,27 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"ha" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
+"hc" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "hg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -280,6 +360,18 @@
 "jp" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"jr" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "jZ" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
@@ -289,6 +381,18 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"kE" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/space,
+/area/space/nearstation)
 "li" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -394,10 +498,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"mJ" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "mK" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -494,13 +594,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"oY" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "pe" = (
 /obj/machinery/atmospherics/pipe/manifold4w/general/visible,
 /obj/machinery/meter,
@@ -625,6 +718,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"rg" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "rl" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -723,6 +824,18 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"ug" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "uu" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -810,6 +923,16 @@
 	},
 /turf/open/floor/plating,
 /area/engine/supermatter)
+"vV" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "vY" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plasteel/dark,
@@ -837,6 +960,18 @@
 /obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"wK" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "wL" = (
 /obj/machinery/camera{
 	c_tag = "Supermatter Chamber";
@@ -848,31 +983,34 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"xu" = (
+"xs" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
+/obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space/basic,
-/area/space/nearstation)
-"xC" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
+	dir = 4
 	},
 /obj/structure/lattice,
-/turf/open/space/basic,
+/turf/open/space,
+/area/space/nearstation)
+"xv" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/space,
 /area/space/nearstation)
 "xN" = (
 /obj/structure/cable/orange,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"xO" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "ya" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Gas to Filter"
@@ -904,13 +1042,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"ze" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "zf" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -1035,14 +1166,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"Cc" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "Cr" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -1054,6 +1177,16 @@
 "CD" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
+/turf/open/space,
+/area/space/nearstation)
+"CP" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
 /turf/open/space,
 /area/space/nearstation)
 "CZ" = (
@@ -1199,6 +1332,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"GK" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "Hi" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
@@ -1277,6 +1417,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Je" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/space,
+/area/space/nearstation)
 "Jp" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Supermatter Engine";
@@ -1303,6 +1455,14 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"JB" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "JJ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/camera{
@@ -1318,6 +1478,18 @@
 "KF" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"KO" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
 "Lp" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/orange{
@@ -1357,19 +1529,24 @@
 "LU" = (
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
+"Mg" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "Mw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"MA" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "MT" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
@@ -1403,20 +1580,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"NS" = (
+"NI" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
-"NU" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
+	dir = 9
 	},
 /obj/structure/lattice/catwalk,
-/turf/open/space/basic,
+/turf/open/space,
 /area/space/nearstation)
 "NY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1535,6 +1704,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"QK" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space)
 "QQ" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/structure/cable/orange{
@@ -1542,12 +1718,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"QS" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "Rg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1571,6 +1741,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"RH" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/space/nearstation)
 "RP" = (
 /obj/machinery/power/emitter/anchored{
 	state = 2
@@ -1614,14 +1796,6 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"SY" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
 "Ta" = (
 /obj/structure/cable/orange{
 	icon_state = "2-8"
@@ -1739,6 +1913,29 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"XV" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/structure/lattice,
+/turf/open/space,
+/area/space/nearstation)
+"XY" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/space,
+/area/space/nearstation)
 "Ye" = (
 /obj/structure/lattice,
 /turf/open/space,
@@ -2072,11 +2269,11 @@ oX
 li
 aK
 mS
-NS
-QS
-xC
-mJ
-OD
+QK
+ha
+CP
+rg
+aj
 "}
 (13,1,1) = {"
 mn
@@ -2098,11 +2295,11 @@ UM
 Et
 fK
 Hi
-NU
-NU
-NU
-MA
-OD
+vV
+eo
+eo
+RH
+GK
 "}
 (14,1,1) = {"
 mn
@@ -2124,11 +2321,11 @@ SM
 vl
 SM
 jp
-SY
-xO
-SY
-ze
-OD
+cF
+wK
+Je
+KO
+NI
 "}
 (15,1,1) = {"
 mn
@@ -2150,11 +2347,11 @@ hL
 Zz
 KF
 jp
-SY
-xO
-SY
-MA
-OD
+xv
+wK
+Je
+ug
+GK
 "}
 (16,1,1) = {"
 mn
@@ -2176,11 +2373,11 @@ hr
 NY
 Rt
 jp
-NU
-NU
-NU
-ze
-OD
+bO
+eo
+eo
+Mg
+NI
 "}
 (17,1,1) = {"
 mn
@@ -2202,11 +2399,11 @@ bX
 jZ
 wb
 jp
-SY
-xO
-SY
-MA
-OD
+xv
+wK
+Je
+ug
+GK
 "}
 (18,1,1) = {"
 mn
@@ -2228,11 +2425,11 @@ Vz
 Zy
 KF
 jp
-SY
-SY
-SY
-ze
-OD
+jr
+xs
+xs
+KO
+NI
 "}
 (19,1,1) = {"
 Ye
@@ -2254,11 +2451,11 @@ jp
 jp
 jp
 jp
-Cc
-xu
-Cc
-MA
-OD
+XY
+XV
+kE
+bb
+GK
 "}
 (20,1,1) = {"
 Ye
@@ -2280,11 +2477,11 @@ mn
 Ye
 Ye
 aj
-oY
-ze
-oY
-ze
-OD
+JB
+hc
+bW
+hc
+NI
 "}
 (21,1,1) = {"
 Ye
