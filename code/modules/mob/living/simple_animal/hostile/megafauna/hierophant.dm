@@ -743,3 +743,7 @@ Difficulty: Hard
 	gpstag = "Zealous Signal"
 	desc = "Heed its words."
 	invisibility = 100
+
+/mob/living/simple_animal/hostile/megafauna/hierophant/gib()
+	death()
+	..()
