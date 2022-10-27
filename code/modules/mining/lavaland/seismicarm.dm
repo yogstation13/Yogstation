@@ -257,7 +257,10 @@
 	if(iscarbon(L))
 		L.adjustBruteLoss(15)
 	if(isanimal(L))
-		L.adjustBruteLoss(100)
+		if(istype(L, /mob/living/simple_animal/hostile/guardian))
+			L.adjustBruteLoss(40)
+		else
+			L.adjustBruteLoss(100)
 	if(issilicon(L))
 		L.adjustBruteLoss(18)
 	for(var/i = 2 to flightdist)
