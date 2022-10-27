@@ -29,7 +29,7 @@
 			throw_atom.throw_at(object, 10, 1, c.mob)
 			log_admin("Build Mode: [key_name(c)] threw [throw_atom] at [object] ([AREACOORD(object)])")
 	if(left_click && alt_click)
-		var/obj/item/reagent_containers/food/snacks/pie/cream/admin/p = new (get_turf(pick(oview(3,c.mob))))
+		var/obj/item/reagent_containers/food/snacks/pie/cream/stunning/admin/p = new (get_turf(pick(oview(3,c.mob))))
 		throw_atom = p
 		throw_atom.throw_at(object, 10, 0.5, c.mob)
 		log_admin("Build Mode: [key_name(c)] threw [throw_atom] at [object] ([AREACOORD(object)])")

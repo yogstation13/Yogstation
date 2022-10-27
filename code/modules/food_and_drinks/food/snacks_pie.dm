@@ -26,7 +26,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pie" = 1)
 	foodtype = GRAIN | DAIRY | SUGAR
-	var/stunning = TRUE
+	var/stunning = FALSE
 
 /obj/item/reagent_containers/food/snacks/pie/cream/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -58,10 +58,10 @@
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "creampie", /datum/mood_event/creampie)
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/pie/cream/nostun
-	stunning = FALSE
+/obj/item/reagent_containers/food/snacks/pie/cream/stunning
+	stunning = TRUE
 
-/obj/item/reagent_containers/food/snacks/pie/cream/admin
+/obj/item/reagent_containers/food/snacks/pie/cream/stunning/admin
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSDOOR | PASSMACHINES | PASSCOMPUTER
 
 /obj/item/reagent_containers/food/snacks/pie/berryclafoutis
