@@ -185,6 +185,7 @@
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //Not even 1 TC, the real value of the chameleon kit is the jumpsuit. However this is absolutely necessary for your Sithsona
 			new /obj/item/card/id/syndicate(src) //2 TC, so you can give yourself a proper name
 			new /obj/item/clothing/suit/wizrobe/black(src) //Dark robes for the dark lord. Free
+			new /obj/item/clothing/head/wizard/black(src) //Works as a fix for the robe check now until I think of something new
 			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
 			new /obj/item/book/granter/spell/teslablast(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that requires robes
 			new /obj/item/book/granter/spell/repulse(src) //"Force Push". 2 SP cost spell that requires robes
