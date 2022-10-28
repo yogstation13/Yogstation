@@ -4710,6 +4710,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
+"aCV" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "aCX" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -12744,10 +12750,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/recharge_station,
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "bBI" = (
@@ -17965,7 +17968,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/closet/radiation,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "cOY" = (
@@ -22640,6 +22645,13 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/table,
+/obj/item/book/manual/wiki/engineering_hacking{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/book/manual/wiki/engineering_construction,
+/obj/item/clothing/glasses/meson,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
@@ -24835,10 +24847,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/recharge_station,
 /obj/structure/sign/warning/radiation/rad_area{
 	pixel_x = -32
 	},
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "fKU" = (
@@ -28776,7 +28788,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "hyI" = (
@@ -38766,13 +38777,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"lPp" = (
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "lPH" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
@@ -40178,9 +40182,6 @@
 "msb" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
 /obj/machinery/meter,
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
 "msz" = (
@@ -52610,13 +52611,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
 	},
-/obj/structure/table,
-/obj/item/book/manual/wiki/engineering_hacking{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/book/manual/wiki/engineering_construction,
-/obj/item/clothing/glasses/meson,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "rFS" = (
@@ -55883,11 +55877,11 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "sZP" = (
+/obj/structure/closet/radiation,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = 26
 	},
-/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
 "sZR" = (
@@ -56749,6 +56743,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"tpE" = (
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/turf/open/floor/plasteel,
+/area/engine/atmos_distro)
 "tpJ" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/door/firedoor/border_only,
@@ -58263,13 +58261,16 @@
 /turf/open/space/basic,
 /area/space)
 "tZy" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/closet/radiation,
 /obj/structure/sign/warning/electricshock{
 	pixel_x = -32
 	},
-/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "tZA" = (
@@ -104559,8 +104560,8 @@ bKZ
 fUR
 ozF
 rBd
-lPp
-lPp
+tpE
+tpE
 msb
 cTB
 pnh
@@ -104818,7 +104819,7 @@ avy
 avy
 avy
 cOL
-mey
+aCV
 uOs
 gtZ
 pXS

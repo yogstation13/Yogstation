@@ -18322,7 +18322,6 @@
 /obj/machinery/camera{
 	c_tag = "Engineering Access"
 	},
-/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "jjH" = (
@@ -37477,7 +37476,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 5
 	},
-/obj/machinery/decontamination_unit/radsuit,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "teC" = (
