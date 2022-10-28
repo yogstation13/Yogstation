@@ -326,27 +326,4 @@
 		new /obj/item/reagent_containers/glass/bottle/vial(src)
 
 /obj/item/storage/lockbox/vialbox/printed
-	req_access = list(ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_MEDICAL)
 	var/registered_name = null
-
-/obj/item/storage/lockbox/vialbox/printed/AltClick(mob/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-		H.get_id_name()
-		if(H.get_id_name())
-			if(broken)
-				to_chat(user, span_danger("It appears to be broken."))
-				return
-			if(allowed(user) || !registered_name || (registered_name == H.get_id_name()))
-				//they can open all lockers, or nobody owns this, or they own this locker
-				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, !locked)
-				update_icon()
-
-				if(!registered_name)
-					registered_name = H.get_id_name()
-					desc = "Owned by [H.get_id_name()]."
-			else
-				to_chat(user, span_danger("Access Denied."))
-		else
-			return ..()
