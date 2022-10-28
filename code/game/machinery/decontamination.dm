@@ -1,4 +1,4 @@
-// SUIT STORAGE UNIT /////////////////
+// SUIT STORAGE DECONTAMINATION UNIT!! /////////////////
 /obj/machinery/decontamination_unit
 	name = "advanced decontamination suit storage unit"
 	desc = "This is a more advanced version of the industrial suit storage unit developed by the NT science and engineering team. It is capable of removing organic radiation as well as contaminated equipment."
