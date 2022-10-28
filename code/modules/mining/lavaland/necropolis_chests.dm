@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(9)
 			new /obj/item/ship_in_a_bottle(src)
 		if(10)
-			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
+			new /obj/item/clothing/glasses/telepathy(src)
 		if(11)
 			new /obj/item/jacobs_ladder(src)
 		if(12)
@@ -330,6 +330,25 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	user.sight |= sight_flags
 	if(!isnull(lighting_alpha))
 		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
+
+/obj/item/clothing/glasses/telepathy
+	name = "blindfold of telepathy"
+	desc = "Covers the eyes, preventing natural sight. In return for committing oneself forever to the senses of the mind, the senses of the body are allowed to rest."
+	icon_state = "blindfoldwhite"
+	item_state = "blindfoldwhite"
+	flash_protect = 10 //they're blind, yo
+	tint = 2
+	darkness_view = 0
+	var/sight_flags = SEE_MOBS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/item/clothing/glasses/telepathy/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_GLASSES)
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+		user.sight |= sight_flags
+		item_flags = DROPDEL
 
 //Red/Blue Cubes
 /obj/item/warp_cube
@@ -1758,26 +1777,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It feels cold to the touch..."
 
 /obj/structure/closet/crate/sphere/stalwart/PopulateContents()
-	var/loot = rand(1,4)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
 			new /obj/item/gem/purple(src)
 		if(2)
 			new /obj/item/twohanded/bonespear/stalwartpike(src)
-			new /obj/item/ai_cpu/stalwart(src)
-		if(3)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/gem/purple(src)
-		if(4)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 			new /obj/item/ai_cpu/stalwart(src)
 
 //Just some minor stuff

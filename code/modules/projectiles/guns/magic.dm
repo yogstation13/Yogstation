@@ -17,6 +17,8 @@
 	var/can_charge = TRUE
 	var/ammo_type
 	var/no_den_usage
+	recoil = 0
+	spread = 0
 	clumsy_check = 0
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses magic instead
 	pin = /obj/item/firing_pin/magic

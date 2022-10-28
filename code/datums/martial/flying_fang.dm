@@ -82,7 +82,7 @@
 	log_combat(A, D, "tail slapped (Flying Fang)")
 
 /datum/martial_art/flyingfang/proc/remove_bonk(mob/living/carbon/human/D)
-	REMOVE_TRAIT(D, TRAIT_POOR_AIM, "martial")
+	D.dna.species.aiminginaccuracy -= 25
 
 /datum/martial_art/flyingfang/proc/Chomp(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -124,7 +124,7 @@
 	D.apply_damage(disarm_damage, A.dna.species.attack_type, BODY_ZONE_HEAD, armor_block)
 	D.blur_eyes(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
-		ADD_TRAIT(D, TRAIT_POOR_AIM, "martial")
+		D.dna.species.aiminginaccuracy += 25
 		addtimer(CALLBACK(src, .proc/remove_bonk, D), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	D.visible_message(span_danger("[A] headbutts [D]!"), \
 					  span_userdanger("[A] headbutts you!"))

@@ -552,10 +552,10 @@
 			switch(severity)
 				if(1)
 					L.receive_damage(0,10)
-					Paralyze(200)
+					Paralyze(10 SECONDS)
 				if(2)
 					L.receive_damage(0,5)
-					Paralyze(100)
+					Paralyze(5 SECONDS)
 
 			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
 				if(prob(5))

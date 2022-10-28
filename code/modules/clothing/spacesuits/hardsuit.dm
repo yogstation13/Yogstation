@@ -1114,24 +1114,31 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
 	name = "Salvaged T-45b helmet"
-	desc = "It's some barely-functional power armor helmet from a by-gone age."
+	desc = "It's some dusty power armor helmet from a by-gone age."
 	icon_state = "hardsuit0-t45b"
 	item_state = "t45b_helm"
 	hardsuit_type = "t45b"
-	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48, BIO = 100, RAD = 50, FIRE = 50, ACID = 25)
+	strip_delay = 100
+	equip_delay_other = 100
+	armor = list(MELEE = 45, BULLET = 30, LASER = 25, ENERGY = 15, BOMB = 40, BIO = 100, RAD = 80, FIRE = 90, ACID = 100)
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_t45b
 	name = "Salvaged T-45b power armor"
-	desc = "It's some barely-functional power armor, probably hundreds of years old."
+	desc = "It's some dusty power armor, probably hundreds of years old."
 	icon_state = "hardsuit-t45b"
 	item_state = "t45b_hardsuit"
-	armor = list(MELEE = 50, BULLET = 48, LASER = 25, ENERGY = 25, BOMB = 48, BIO = 0, RAD = 0, FIRE = 0, ACID = 25)
+	armor = list(MELEE = 45, BULLET = 30, LASER = 25, ENERGY = 15, BOMB = 40, BIO = 100, RAD = 80, FIRE = 90, ACID = 100)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_t45b
 	hardsuit_type = "t45b"
+	strip_delay = 180
+	equip_delay_other = 180
+	slowdown = 0
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced
-	name = "X-01 power helmet"
-	desc = "It's an X-01 power armor helmet. It looks pretty impressive and threatening."
+	name = "X-02 power helmet"
+	desc = "It's an X-02 power armor helmet. It looks pretty impressive and threatening."
 	icon_state = "hardsuit0-advpa1"
 	item_state = "advpa1_helm"
 	hardsuit_type = "advpa1"
@@ -1142,8 +1149,8 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced
-	name = "X-01 power armor"
-	desc = "A suit of X-01 power armor. It looks pretty impressive and threatening. The suit storage hook looks reinforced, able to hold bulkier items."
+	name = "X-02 power armor"
+	desc = "A suit of X-02 power armor. It looks pretty impressive and threatening. The suit storage hook looks reinforced, able to hold bulkier items."
 	icon_state = "hardsuit-advancedpa1"
 	item_state = "advpa1_hardsuit"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced

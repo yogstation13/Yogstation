@@ -21,6 +21,7 @@
 	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
 	punchstunthreshold = 9 
 	payday_modifier = 0.7 //Neutrally viewed by NT
+	mutantlungs = /obj/item/organ/lungs/plant //let them breathe CO2
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH
 	toxic_food = ALCOHOL
@@ -159,19 +160,19 @@
 		return 1
 
 	if(chem.type == /datum/reagent/saltpetre)
-		H.adjustFireLoss(-2.5*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustFireLoss(-1.5*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustToxLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER)
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
 	if(chem.type == /datum/reagent/ammonia)
-		H.adjustBruteLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustFireLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustBruteLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustFireLoss(-0.5*REAGENTS_EFFECT_MULTIPLIER)
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		return 1
 
 	if(chem.type == /datum/reagent/plantnutriment/robustharvestnutriment)
-		H.adjustToxLoss(-2*REAGENTS_EFFECT_MULTIPLIER)
+		H.adjustToxLoss(-1*REAGENTS_EFFECT_MULTIPLIER)
 		for(var/V in H.reagents.reagent_list)//slow down the processing of harmful reagents.
 			var/datum/reagent/R = V
 			if(istype(R, /datum/reagent/toxin) || istype(R, /datum/reagent/drug))
