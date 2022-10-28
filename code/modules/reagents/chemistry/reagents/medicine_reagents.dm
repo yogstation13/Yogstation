@@ -133,6 +133,7 @@
 	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the patient's body temperature must be under 270K for it to metabolise correctly."
 	color = "#0000C8"
 	taste_description = "sludge"
+	overdose_threshold = 100 //no chugging
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/carbon/M)
 	var/power = -0.00006 * (M.bodytemperature ** 2) + 6
@@ -149,6 +150,12 @@
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
 	..()
+	
+/datum/reagent/medicine/cryoxadone/overdose_process(mob/living/M)
+	M.adjustBruteLoss(3)
+	M.adjustFireLoss(3)
+	..()
+	. = 1
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
