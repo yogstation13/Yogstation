@@ -1,4 +1,4 @@
-//Stack-only storage.
+// _process_numerical_display() for stack-only storage.
 /datum/component/storage/concrete/stack
 	display_numerical_stacking = TRUE
 	max_items = 300
