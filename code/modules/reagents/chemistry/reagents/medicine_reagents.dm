@@ -150,12 +150,6 @@
 		. = 1
 	metabolization_rate = REAGENTS_METABOLISM * (0.00001 * (M.bodytemperature ** 2) + 0.5)
 	..()
-	
-/datum/reagent/medicine/cryoxadone/overdose_process(mob/living/M)
-	M.adjustBruteLoss(3)
-	M.adjustFireLoss(3)
-	..()
-	. = 1
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
