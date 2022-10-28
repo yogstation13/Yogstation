@@ -189,6 +189,12 @@
 	results = list(/datum/reagent/medicine/antihol = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/copper = 1)
 
+/datum/chemical_reaction/naloxone
+	name = "Naloxone"
+	id = /datum/reagent/medicine/naloxone
+	results = list(/datum/reagent/medicine/naloxone = 3)
+	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/medicine/antihol = 1, /datum/reagent/medicine/insulin = 1)
+
 /datum/chemical_reaction/cryoxadone
 	name = "Cryoxadone"
 	id = /datum/reagent/medicine/cryoxadone

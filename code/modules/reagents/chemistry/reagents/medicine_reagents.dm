@@ -128,6 +128,21 @@
 	M.restoreEars()
 	..()
 
+/datum/reagent/medicine/naloxone
+	name = "Naloxone"
+	description = "A chemical mixture that helps to break people of their chemical addictions."
+	color = "#C14C00"
+	taste_description = "bitter"
+
+/datum/reagent/medicine/naloxone/on_mob_life(mob/living/carbon/M)	
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/list/cached_addictions = H.reagents.addiction_list
+		for(var/addiction in cached_addictions)
+			var/datum/reagent/R = addiction
+			if(istype(R))
+				R.addiction_stage += 4
+
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
 	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the patient's body temperature must be under 270K for it to metabolise correctly."
