@@ -1,0 +1,8 @@
+author: " VaelophisNyx, @cuackles"
+delete-after: true 
+changes: 
+  - rscadd: "Added Sinew Sutures to the Tribal crafting tab, consisting of Bone, Sinew, and some Tinea Luxor"
+  - rscadd: "Added a reaction to create Aloe Cream from 30u of Ash and Aloe Juice"
+  - tweak: "Aloe Cream now only heals burns in carbons, but does so a little more effectively"
+  - tweak: "Aloe Cream is now a repeating-use item"
+  - imageadd: "added a new sprite for sinew sutures"
