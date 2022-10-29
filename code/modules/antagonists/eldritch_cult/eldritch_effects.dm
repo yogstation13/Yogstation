@@ -413,6 +413,9 @@
 	desc = "it takes your soul, and other stuff"
 	icon = 'icons/mob/triangle.dmi'
 	icon_state = "triangle"
+	light_power = 2
+	light_range = 5
+	light_color = COLOR_RED
 	///list of penance this can give with the amount of points they are worth
 	var/list/penance_given = list(PENANCE_LIFE = 10, PENANCE_SOUL = 14, PENANCE_LIMB = 5, PENANCE_SKELETON = 1, PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
 
@@ -467,6 +470,7 @@
 	desc = "A small, gaseous blob that makes your head pound as you approach it. It will accept your marbles." //get it you LOSe your mARlbeSe hehehahaeheahaeh
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "curseblob"
+	light_color = COLOR_PURPLE
 	penance_given = list(PENANCE_TRAUMA_ADV = 5, PENANCE_TRAUMA_BASIC = 1)
 
 /obj/effect/penance_giver/eldritch
@@ -474,6 +478,7 @@
 	desc = "This denizen of hell will accept your soul, and flesh, for your marbles."
 	icon = 'icons/mob/evilpope.dmi' //fun fact the pope's mask is off center on his north sprite and now you have to see it too
 	icon_state = "EvilPope"
+	light_color = COLOR_SILVER
 	penance_given = list(PENANCE_SOUL = 14, PENANCE_SKELETON = 1)
 
 #undef PENANCE_LIFE
