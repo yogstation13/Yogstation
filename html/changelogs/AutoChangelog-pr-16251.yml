@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "minebots now function like an orebox"
+  - tweak: "sentient minebots now move faster and can properly receive upgrades"
