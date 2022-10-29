@@ -277,10 +277,10 @@
 	id = "ice_wing_talisman"
 	duration = 25
 	status_type = STATUS_EFFECT_REFRESH
-	alert_type = /obj/screen/alert/status_effect/ice_block_talisman
+	alert_type = /atom/movable/screen/alert/status_effect/ice_block_talisman
 	var/icon/cube
 
-/obj/screen/alert/status_effect/ice_wing_talisman
+/atom/movable/screen/alert/status_effect/ice_wing_talisman
 	name = "Frozen Solid"
 	desc = "You're frozen inside an ice cube, and cannot move!"
 	icon_state = "frozen"

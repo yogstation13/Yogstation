@@ -26,6 +26,13 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/glass/bottle/flash_powder = 15,
+		///obj/item/reagent_containers/glass/bottle/exotic_stabilizer = 5,
+		///obj/item/reagent_containers/glass/bottle/leadacetate = 5,
+		/obj/item/paper/secretrecipe = 1
+	)
+
 /datum/job/chemist/proc/OmegaStationChanges()
 	return TRUE
 
