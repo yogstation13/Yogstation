@@ -206,6 +206,14 @@
 	baseturfs = /turf/open/floor/plating/jungle_baseturf
 	initial_gas_mix = JUNGLELAND_DEFAULT_ATMOS
 
+/turf/closed/mineral/ash_rock/jungle/deepjungle
+	turf_type = /turf/open/floor/plating/dirt/jungleland/jungle
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/jungle
+
+/turf/closed/mineral/ash_rock/jungle/swamp
+	turf_type = /turf/open/floor/plating/dirt/jungleland/toxic_pit
+	baseturfs = /turf/open/floor/plating/dirt/jungleland/toxic_pit
+
 /turf/open/water/tar_basin
 	name = "tar basin"
 	color = "#680047"

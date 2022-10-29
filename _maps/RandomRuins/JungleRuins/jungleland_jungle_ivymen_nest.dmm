@@ -222,6 +222,9 @@
 /obj/item/book/manual/ivymen,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered/ivymen)
+"Ad" = (
+/turf/closed/mineral/ash_rock/jungle/deepjungle,
+/area/template_noop)
 "Ez" = (
 /obj/item/seeds/cotton,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -277,14 +280,11 @@
 	},
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/ruin/unpowered/ivymen)
-"UP" = (
-/turf/closed/mineral/ash_rock/jungle,
-/area/template_noop)
 
 (1,1,1) = {"
-UP
-UP
-UP
+Ad
+Ad
+Ad
 aG
 aG
 aG
@@ -296,16 +296,16 @@ qA
 qA
 qA
 bQ
-UP
-UP
-UP
-UP
-UP
-UP
+Ad
+Ad
+Ad
+Ad
+Ad
+Ad
 "}
 (2,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 aG
 Uu
@@ -322,12 +322,12 @@ aI
 ay
 ay
 hG
-UP
-UP
+Ad
+Ad
 "}
 (3,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 ab
 aX
@@ -345,11 +345,11 @@ aZ
 ay
 ay
 aR
-UP
+Ad
 "}
 (4,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 ak
 aX
@@ -367,11 +367,11 @@ ay
 aO
 ay
 ay
-UP
+Ad
 "}
 (5,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 aG
 aG
@@ -389,11 +389,11 @@ ay
 ay
 aO
 ay
-UP
+Ad
 "}
 (6,1,1) = {"
-UP
-UP
+Ad
+Ad
 al
 al
 al
@@ -411,10 +411,10 @@ aC
 aD
 aO
 uo
-UP
+Ad
 "}
 (7,1,1) = {"
-UP
+Ad
 al
 al
 al
@@ -433,10 +433,10 @@ aP
 ay
 aO
 ay
-UP
+Ad
 "}
 (8,1,1) = {"
-UP
+Ad
 al
 al
 ai
@@ -455,10 +455,10 @@ aH
 aO
 ay
 aH
-UP
+Ad
 "}
 (9,1,1) = {"
-UP
+Ad
 al
 al
 aX
@@ -477,10 +477,10 @@ ax
 ay
 ay
 ay
-UP
+Ad
 "}
 (10,1,1) = {"
-UP
+Ad
 al
 al
 aX
@@ -499,10 +499,10 @@ aF
 ay
 an
 ay
-UP
+Ad
 "}
 (11,1,1) = {"
-UP
+Ad
 al
 al
 aX
@@ -521,10 +521,10 @@ ay
 aH
 ay
 ay
-UP
+Ad
 "}
 (12,1,1) = {"
-UP
+Ad
 al
 al
 ai
@@ -542,11 +542,11 @@ ay
 ay
 mF
 kJ
-UP
-UP
+Ad
+Ad
 "}
 (13,1,1) = {"
-UP
+Ad
 al
 al
 al
@@ -565,11 +565,11 @@ ay
 aO
 ay
 hG
-UP
+Ad
 "}
 (14,1,1) = {"
-UP
-UP
+Ad
+Ad
 al
 al
 al
@@ -587,11 +587,11 @@ aP
 ay
 aO
 ay
-UP
+Ad
 "}
 (15,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 aG
 aG
@@ -609,11 +609,11 @@ aC
 aT
 aO
 uo
-UP
+Ad
 "}
 (16,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 aQ
 yt
@@ -631,11 +631,11 @@ ay
 ax
 aO
 ay
-UP
+Ad
 "}
 (17,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 ac
 aX
@@ -653,11 +653,11 @@ aI
 aO
 ay
 ay
-UP
+Ad
 "}
 (18,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 hW
 ae
@@ -675,11 +675,11 @@ ay
 ag
 ay
 ap
-UP
+Ad
 "}
 (19,1,1) = {"
-UP
-UP
+Ad
+Ad
 aG
 aG
 am
@@ -693,16 +693,16 @@ ay
 ay
 aI
 ay
-UP
+Ad
 ay
-UP
-UP
-UP
+Ad
+Ad
+Ad
 "}
 (20,1,1) = {"
-UP
-UP
-UP
+Ad
+Ad
+Ad
 aG
 aG
 aG
@@ -714,10 +714,10 @@ qA
 qA
 qA
 bQ
-UP
-UP
-UP
-UP
-UP
-UP
+Ad
+Ad
+Ad
+Ad
+Ad
+Ad
 "}

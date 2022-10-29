@@ -25,9 +25,6 @@
 /obj/item/pickaxe/mini,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/template_noop)
-"q" = (
-/turf/closed/mineral/ash_rock/jungle,
-/area/ruin/unpowered)
 "v" = (
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
@@ -84,6 +81,9 @@
 /obj/structure/fluff/grave,
 /turf/open/floor/plating/dirt/jungleland/toxic_pit,
 /area/ruin/unpowered)
+"V" = (
+/turf/closed/mineral/ash_rock/jungle/swamp,
+/area/ruin/unpowered)
 "Z" = (
 /turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
@@ -137,19 +137,19 @@ z
 (3,1,1) = {"
 h
 h
-q
-q
-q
-q
-q
-q
-q
-q
-q
-q
-q
-q
-q
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
 h
 h
 h
@@ -159,8 +159,8 @@ z
 "}
 (4,1,1) = {"
 h
-q
-q
+V
+V
 g
 a
 a
@@ -172,8 +172,8 @@ U
 Z
 Z
 U
-q
-q
+V
+V
 h
 h
 h
@@ -182,7 +182,7 @@ z
 "}
 (5,1,1) = {"
 h
-q
+V
 a
 g
 g
@@ -196,7 +196,7 @@ Z
 Z
 a
 g
-q
+V
 h
 h
 z
@@ -205,7 +205,7 @@ z
 "}
 (6,1,1) = {"
 h
-q
+V
 a
 g
 g
@@ -219,7 +219,7 @@ w
 Z
 U
 g
-q
+V
 h
 h
 h
@@ -228,7 +228,7 @@ z
 "}
 (7,1,1) = {"
 h
-q
+V
 g
 g
 a
@@ -242,16 +242,16 @@ Z
 Z
 a
 g
-q
-q
-q
+V
+V
+V
 h
 h
 z
 "}
 (8,1,1) = {"
 h
-q
+V
 g
 a
 a
@@ -268,13 +268,13 @@ g
 g
 g
 g
-q
+V
 h
 z
 "}
 (9,1,1) = {"
 h
-q
+V
 g
 a
 K
@@ -291,13 +291,13 @@ a
 a
 g
 g
-q
+V
 h
 z
 "}
 (10,1,1) = {"
 h
-q
+V
 g
 a
 K
@@ -314,13 +314,13 @@ a
 U
 a
 g
-q
+V
 z
 k
 "}
 (11,1,1) = {"
 h
-q
+V
 g
 a
 K
@@ -337,13 +337,13 @@ Z
 Z
 Z
 Z
-q
+V
 z
 z
 "}
 (12,1,1) = {"
 h
-q
+V
 a
 a
 K
@@ -360,13 +360,13 @@ a
 U
 a
 U
-q
+V
 z
 z
 "}
 (13,1,1) = {"
 h
-q
+V
 a
 a
 K
@@ -383,13 +383,13 @@ a
 a
 a
 a
-q
+V
 h
 z
 "}
 (14,1,1) = {"
 h
-q
+V
 a
 a
 v
@@ -406,13 +406,13 @@ v
 a
 a
 a
-q
+V
 h
 h
 "}
 (15,1,1) = {"
 h
-q
+V
 a
 a
 a
@@ -426,16 +426,16 @@ w
 Z
 a
 a
-q
-q
-q
+V
+V
+V
 h
 h
 h
 "}
 (16,1,1) = {"
 h
-q
+V
 a
 a
 a
@@ -449,7 +449,7 @@ Z
 Z
 U
 a
-q
+V
 h
 h
 h
@@ -458,7 +458,7 @@ z
 "}
 (17,1,1) = {"
 h
-q
+V
 a
 a
 j
@@ -472,7 +472,7 @@ Z
 Z
 a
 a
-q
+V
 h
 h
 h
@@ -481,8 +481,8 @@ z
 "}
 (18,1,1) = {"
 h
-q
-q
+V
+V
 a
 a
 a
@@ -494,8 +494,8 @@ U
 Z
 Z
 U
-q
-q
+V
+V
 h
 h
 h
@@ -505,19 +505,19 @@ z
 (19,1,1) = {"
 h
 h
-q
-q
-q
-q
-q
-q
-q
-q
-q
-q
-q
-q
-q
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
+V
 h
 h
 h
