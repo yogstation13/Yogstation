@@ -688,3 +688,11 @@
 	reqs = list(/obj/item/stack/sheet/cloth = 4,
 				/obj/item/stack/medical/suture = 1) //for reinforcement, so its not just...cloth.
 	category = CAT_MEDICAL
+
+/datum/crafting_recipe/makeshiftsuture/tribal
+	name = "Sinew Suture"
+	result = /obj/item/stack/medical/suture/emergency/makeshift/tribal
+	reqs = list(/obj/item/stack/sheet/bone = 1,
+				/obj/item/stack/sheet/sinew = 6,
+				/datum/reagent/consumable/tinlux = 1)
+	category = CAT_PRIMAL

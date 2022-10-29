@@ -808,6 +808,17 @@
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/ashresin(location)
 
+/datum/chemical_reaction/aloepastification
+	name = "Aloepastification"
+	id = "Aloepastification"
+	required_reagents = list(/datum/reagent/consumable/aloejuice = 30, /datum/reagent/ash  = 30)
+	mob_react = FALSE
+
+/datum/chemical_reaction/aloepastification/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/stack/medical/aloe(location)
+
 /datum/chemical_reaction/sulfuric_acid
 	name = /datum/reagent/toxin/acid
 	id = /datum/reagent/toxin/acid
