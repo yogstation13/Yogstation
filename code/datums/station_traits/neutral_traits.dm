@@ -71,7 +71,7 @@
 	. = ..()
 	var/list/st_turfs = list()
 	for(var/area/A in GLOB.the_station_areas)
-		st_turfs += get_area_turfs(A, SSmapping.level_trait(z, ZTRAIT_STATION))
+		st_turfs += get_area_turfs(A, SSmapping.levels_by_trait(ZTRAIT_STATION)[1])
 	for(var/turf/open/floor/plasteel/F in st_turfs)
 		if(!F.broken && !F.burnt)
 			F.icon_regular_floor = 'icons/turf/floors.dmi'
