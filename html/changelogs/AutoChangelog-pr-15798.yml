@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Added new Preternis"
-  - rscdel: "Removed old Preternis"
-  - imageadd: "added an alert icon"
