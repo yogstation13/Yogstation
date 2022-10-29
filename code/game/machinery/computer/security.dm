@@ -21,10 +21,26 @@
 
 	var/datum/data/record/active_general_record = null
 	var/datum/data/record/active_security_record = null
+	
+	//Radio internal
+	var/obj/item/radio/radio
+	var/radio_key = /obj/item/encryptionkey/heads/hos
+	var/sec_freq = RADIO_CHANNEL_SECURITY
+	var/command_freq = RADIO_CHANNEL_COMMAND
 
 	var/special_message
 
 	light_color = LIGHT_COLOR_RED
+
+/obj/machinery/computer/secure_data/Initialize(mapload)
+	. = ..()
+	radio = new(src)
+	radio.keyslot = new radio_key
+	radio.subspace_transmission = TRUE
+	radio.listening = FALSE
+	radio.use_command = TRUE
+	radio.independent = TRUE
+	radio.recalculateChannels()
 
 /obj/machinery/computer/secure_data/syndie
 	icon_keyboard = "syndie_key"
@@ -808,6 +824,45 @@
 	P.pixel_y = rand(-10, 10)
 	printing = FALSE
 
+/obj/machinery/computer/secure_data/proc/trigger_alarm() //Copy pasted from /area/proc/burglaralert(obj/trigger) because why not
+	var/area/alarmed = get_area(src)
+	if(alarmed.always_unpowered) //no burglar alarms in space/asteroid
+		return
+
+	//Trigger alarm effect
+	alarmed.set_fire_alarm_effect()
+	//Lockdown airlocks
+	for(var/obj/machinery/door/DOOR in alarmed)
+		alarmed.close_and_lock_door(DOOR)
+
+	for (var/i in GLOB.silicon_mobs)
+		var/mob/living/silicon/SILICON = i
+		if(SILICON.triggerAlarm("Burglar", alarmed, alarmed.cameras, src))
+			//Cancel silicon alert after 1 minute
+			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,alarmed), 600)
+
+/obj/machinery/computer/secure_data/emag_act(mob/user)
+	var/name
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(human_user.get_idcard(TRUE))
+			var/obj/item/card/id/ID = human_user.get_idcard(TRUE)
+			name = "[ID.registered_name]"
+		else
+			name = "Unknown"
+			
+	if(issilicon(user))
+		name = "[user.name]"
+
+	if(!logged_in)
+		logged_in = TRUE
+		to_chat(user, span_warning("You override [src]'s ID lock."))
+		trigger_alarm()
+		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
+		var/area/A = get_area(loc)
+		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", sec_freq)
+		radio.talk_into(src, "Alert: security breach alarm triggered in [A.map_name]!! Unauthorized access by [name] of [src]!!", command_freq)
+	
 /obj/machinery/computer/secure_data/emp_act(severity)
 	. = ..()
 
