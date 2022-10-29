@@ -1,0 +1,4 @@
+author: "ChesterTheCheesy"
+delete-after: true 
+changes: 
+  - tweak: "should improve performance by repathing screen objects into a more basic format"
