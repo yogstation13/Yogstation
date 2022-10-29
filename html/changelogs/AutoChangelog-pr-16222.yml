@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Adds night vision science goggles"
-  - tweak: "Lets medical print \"science\" goggles"
-  - imageadd: "the sprite is just a purple coloured night vision diagnostic hud"

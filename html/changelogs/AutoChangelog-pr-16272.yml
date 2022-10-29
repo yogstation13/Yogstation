@@ -1,4 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - bugfix: "fixed fire alarm icon not updating when burglar alarm is triggered"

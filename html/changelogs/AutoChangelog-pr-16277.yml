@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Players can now use items while under the effects of an aggressive grab instead of being hardstunned"
-  - tweak: "Crashing into walls and other players is now a knockdown instead of a hardstun"

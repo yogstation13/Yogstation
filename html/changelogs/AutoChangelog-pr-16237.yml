@@ -1,4 +1,0 @@
-author: " ynot01"
-delete-after: true 
-changes: 
-  - tweak: "newcaster now also scan for pda and phone in your id slot so it wont recognize you as unknown anymore"

@@ -1,6 +1,0 @@
-author: "00ze-cyclone"
-delete-after: true 
-changes: 
-  - rscadd: "Added craftable pump up autoinjectors and refill"
-  - tweak: "Pump up now reduce stamina damage by 15%"
-  - spellcheck: "maintenance pump-up"

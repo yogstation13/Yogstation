@@ -1,6 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "Changing rank in record console now requires access instead of the name of rank"
-  - bugfix: "Fixes unable to upload image to security record console, now you can by simply holding an image in your hand and press the update button (Silicons also can update images from their data)"
-  - bugfix: "Fixes image loading problem"
