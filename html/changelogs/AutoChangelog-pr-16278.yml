@@ -1,0 +1,5 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - tweak: "Sheet snatcher now can be held in utility belt"
+  - bugfix: "Fixed mats inserting fuckery for sheet snatcher"
