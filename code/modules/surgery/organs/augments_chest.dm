@@ -232,6 +232,8 @@
 	var/time_on = 0
 	var/hasexerted = FALSE
 	COOLDOWN_DECLARE(alertcooldown)
+	COOLDOWN_DECLARE(startsoundcooldown)
+	COOLDOWN_DECLARE(endsoundcooldown)
 
 /obj/item/organ/cyberimp/chest/spinalspeed/Insert(mob/living/carbon/M, special = 0)
 	. = ..()
@@ -246,12 +248,16 @@
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/toggle(silent = FALSE)
 	if(!on)
-		playsound(owner, 'sound/effects/spinal_implant_on.ogg', 60)
+		if(COOLDOWN_FINISHED(src, startsoundcooldown))
+			playsound(owner, 'sound/effects/spinal_implant_on.ogg', 60)
+			COOLDOWN_START(src, startsoundcooldown, 1 SECONDS)
 		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
 		owner.next_move_modifier *= 0.7
 		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
 	else
-		playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
+		if(COOLDOWN_FINISHED(src, endsoundcooldown))
+			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
+			COOLDOWN_START(src, endsoundcooldown, 1 SECONDS)
 		owner.next_move_modifier /= 0.7
 		owner.remove_movespeed_modifier("spinalimplant")
 		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
