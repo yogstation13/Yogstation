@@ -24,7 +24,7 @@
 	dangerous_construction = TRUE
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/bag_holding
+/datum/design/bag_storing
 	name = "Bag of Storing"
 	desc = "A small backpack that opens into a localized pocket of bluespace."
 	id = "bag_storing"
@@ -32,7 +32,6 @@
 	materials = list(/datum/material/iron = 1000, /datum/material/gold = 2000, /datum/material/diamond = 1000, /datum/material/uranium = 200, /datum/material/bluespace = 1500)
 	build_path = /obj/item/storage/backpack/storing
 	category = list("Bluespace Designs")
-	dangerous_construction = TRUE
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/bluespace_crystal
