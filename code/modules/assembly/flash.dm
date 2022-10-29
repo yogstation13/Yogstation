@@ -168,7 +168,7 @@
 			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
 			return TRUE
 		else
-			R.overlay_fullscreen("reducedflash", /obj/screen/fullscreen/flash/static)
+			R.overlay_fullscreen("reducedflash", /atom/movable/screen/fullscreen/flash/static)
 			R.uneq_all()
 			R.stop_pulling()
 			R.break_all_cyborg_slots(TRUE)
