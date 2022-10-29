@@ -1,0 +1,4 @@
+author: "Foxtrot (Funce)"
+delete-after: true 
+changes: 
+  - bugfix: "\"AI Tech Support\" and \"SysOp\" now appear under Engineering in the Crew Manifest"
