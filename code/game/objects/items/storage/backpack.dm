@@ -37,6 +37,20 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 12
 
+/obj/item/storage/backpack/storing
+	name = "bag of storing"
+	desc = "A small backpack that opens into a localized pocket of bluespace."
+	icon_state = "holdingpack"
+	item_state = "holdingpack"
+	resistance_flags = FIRE_PROOF
+	item_flags = NO_MAT_REDEMPTION
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 60, ACID = 50)
+	
+/obj/item/storage/backpack/storing/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 35
+
 /obj/item/boh_shell
 	name = "bag of holding shell"
 	desc = "An inert shell, it looks like you could activate it with an anomaly core."
