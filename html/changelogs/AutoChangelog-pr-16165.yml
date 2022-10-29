@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Organs, Implants, and Limbs now check for EMP_PROTECT_SELF"
