@@ -1,0 +1,6 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "(Meta) adds generator board to TEG engine, gives power to the button in the chamber outside"
+  - mapping: "(Meta) Flips the TEG loops so that it can work"
+  - mapping: "(Meta) fixes dir on cold loop connectors of  TEG"
