@@ -12,7 +12,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE) //Medical Ignore doesn't prevent basic treatment,only things that cannot help preternis,such as cryo and medbots
 	species_traits = list(EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
-	sexes = FALSE //no gender
 	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
