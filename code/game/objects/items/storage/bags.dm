@@ -136,18 +136,22 @@
 /obj/item/storage/bag/ore/proc/Pickup_ores(mob/living/user)
 	var/show_message = FALSE
 	var/obj/structure/ore_box/box
+	var/mob/living/simple_animal/hostile/mining_drone/drone
 	var/turf/tile = user.loc
 	if (!isturf(tile))
 		return
 	if (istype(user.pulling, /obj/structure/ore_box))
 		box = user.pulling
+	else if (istype(user.pulling, /mob/living/simple_animal/hostile/mining_drone))
+		drone = user.pulling
+
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
 		for(var/A in tile)
 			if (!is_type_in_typecache(A, STR.can_hold))
 				continue
-			if (box)
-				user.transferItemToLoc(A, box)
+			if (box || drone)
+				user.transferItemToLoc(A, box || drone)
 				show_message = TRUE
 			else if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
 				show_message = TRUE
@@ -161,6 +165,9 @@
 		if (box)
 			user.visible_message(span_notice("[user] offloads the ores beneath [user.p_them()] into [box]."), \
 			span_notice("You offload the ores beneath you into your [box]."))
+		if (drone)
+			user.visible_message(span_notice("[user] offloads the ores beneath [user.p_them()] into [drone]."), \
+			span_notice("You offload the ores beneath you into [drone]."))
 		else
 			user.visible_message(span_notice("[user] scoops up the ores beneath [user.p_them()]."), \
 				span_notice("You scoop up the ores beneath you with your [name]."))
