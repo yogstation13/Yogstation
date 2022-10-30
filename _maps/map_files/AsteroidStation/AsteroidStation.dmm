@@ -41229,6 +41229,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/operating,
+/obj/item/paper/guides/jobs/security/paystand_setup,
 /turf/open/floor/plasteel/white,
 /area/security/physician)
 "njw" = (
