@@ -25,8 +25,6 @@
 
 	user.do_attack_animation(M)
 
-	var/trait_check = HAS_TRAIT(M, TRAIT_STUNRESISTANCE)
-
 	var/obj/item/bodypart/affecting = M.get_bodypart(user.zone_selected)
 	var/armor_block = M.run_armor_check(affecting, ENERGY)
 	M.apply_damage(stamina_damage, STAMINA, user.zone_selected, armor_block)
@@ -35,9 +33,7 @@
 
 	if(current_stamina_damage >= 90)
 		if(!M.IsParalyzed())
-			to_chat(M, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
-		if(trait_check)
-			M.Paralyze(stunforce * 0.1)
+			to_chat(M, span_warning("You muscles seize, making you collapse!"))
 		else
 			M.Paralyze(stunforce)
 		M.Jitter(20)
