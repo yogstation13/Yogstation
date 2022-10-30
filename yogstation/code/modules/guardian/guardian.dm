@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	var/range = 10
 	var/cooldown = 0
 	var/datum/mind/summoner
-	var/toggle_button_type = /obj/screen/guardian/ToggleMode
+	var/toggle_button_type = /atom/movable/screen/guardian/ToggleMode
 	var/datum/guardianname/namedatum = new/datum/guardianname()
 	var/datum/guardian_stats/stats
 	var/summoner_visible = TRUE
