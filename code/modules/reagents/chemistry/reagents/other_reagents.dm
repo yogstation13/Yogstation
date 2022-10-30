@@ -185,7 +185,9 @@
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
-	. = ..()
+	. = ..()	
+	var/body_temperature_difference = BODYTEMP_NORMAL - M.bodytemperature
+	M.adjust_bodytemperature(min(3,body_temperature_difference))
 	if(M.blood_volume)
 		M.blood_volume += 0.1 // water is good for you!
 
@@ -1442,6 +1444,13 @@
 	colorname = "red"
 	color = "#DA0000" // red
 	random_color_list = list("#DA0000")
+
+// Pepperspray coloring, only affects mobs
+/datum/reagent/colorful_reagent/crayonpowder/red/pepperspray/reaction_obj(obj/O, reac_volume)
+	return
+
+/datum/reagent/colorful_reagent/crayonpowder/red/pepperspray/reaction_turf(turf/T, reac_volume)
+	return
 
 /datum/reagent/colorful_reagent/crayonpowder/orange
 	name = "Orange Crayon Powder"

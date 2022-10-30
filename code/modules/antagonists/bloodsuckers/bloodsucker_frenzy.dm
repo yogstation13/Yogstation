@@ -29,19 +29,19 @@
 	duration = -1
 	tick_interval = 10
 	examine_text = span_notice("They look feral and inhuman!")
-	alert_type = /obj/screen/alert/status_effect/frenzy
+	alert_type = /atom/movable/screen/alert/status_effect/frenzy
 	/// Store whether they were an advancedtooluser, to give the trait back upon exiting.
 	var/was_tooluser = FALSE
 	/// The stored Bloodsucker antag datum
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum
 
-/obj/screen/alert/status_effect/frenzy
+/atom/movable/screen/alert/status_effect/frenzy
 	name = "Frenzy"
 	desc = "You are in a Frenzy! You are entirely feral, and depending on your Clan - fighting for your life! <i>Feeding</i> while in this state is instant!"
 	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	icon_state = "power_recover"
 
-/obj/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
+/atom/movable/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
 	desc = initial(desc)
 	return ..()
 
