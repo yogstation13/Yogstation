@@ -455,6 +455,13 @@
 /obj/machinery/door/airlock/survival_pod/glass,
 /turf/open/floor/pod,
 /area/ruin/powered/golem_ship)
+"HB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/rdconsole/nolock{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/ruin/powered/golem_ship)
 "HQ" = (
 /obj/machinery/computer/shuttle{
 	dir = 4
@@ -1020,7 +1027,7 @@ YP
 xc
 Hp
 xc
-xc
+HB
 Hp
 YP
 MQ

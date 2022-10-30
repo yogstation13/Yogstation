@@ -218,6 +218,23 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
+"ir" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000;
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000;
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "iN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -273,8 +290,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/sign/warning/deathsposal{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -740,16 +761,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"AP" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -30
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "AS" = (
 /obj/machinery/suit_storage_unit/mining/eva,
 /turf/open/floor/plasteel/shuttle,
@@ -810,19 +821,10 @@
 /area/shuttle/abandoned)
 "CM" = (
 /obj/machinery/light,
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000;
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000;
-	pixel_x = 7;
-	pixel_y = 7
+/obj/machinery/rnd/production/circuit_imprinter/department/science{
+	categories = list("Exosuit Modules");
+	pixel_x = -2;
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -837,11 +839,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "Es" = (
-/obj/machinery/computer/rdconsole/robotics{
-	dir = 4;
-	name = "R&D Console";
-	req_access_txt = "71";
-	research_control = 0
+/obj/machinery/mecha_part_fabricator/maint{
+	req_access = list(71)
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -874,14 +873,8 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
 "Fd" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
+/obj/machinery/computer/rdconsole/nolock{
+	dir = 1
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -920,6 +913,11 @@
 "Hb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet,
+/area/shuttle/abandoned)
+"HA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light,
+/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "HB" = (
 /obj/structure/mirror{
@@ -978,13 +976,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/item/mecha_parts/mecha_equipment/mining_scanner,
-/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
-/obj/item/mecha_parts/mecha_equipment/drill,
-/obj/item/mecha_parts/chassis/clarke,
-/obj/item/circuitboard/mecha/clarke/peripherals,
-/obj/item/circuitboard/mecha/clarke/main,
-/obj/structure/closet/crate,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Jl" = (
@@ -1038,16 +1029,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
-"Ld" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/structure/sign/warning/deathsposal{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
 "LW" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 8
@@ -1066,24 +1047,6 @@
 	pixel_y = 4
 	},
 /turf/open/floor/carpet/black,
-/area/shuttle/abandoned)
-"Mr" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/door/airlock/shuttle{
-	name = "living quarters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Mw" = (
 /obj/machinery/light{
@@ -1161,6 +1124,12 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
+"Ox" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "OU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -1176,10 +1145,14 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
-/obj/machinery/rnd/production/circuit_imprinter/department/science{
-	categories = list("Exosuit Modules");
+/obj/structure/table,
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/storage/toolbox/mechanical{
 	pixel_x = -2;
-	pixel_y = 2
+	pixel_y = -1
 	},
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
@@ -1263,12 +1236,16 @@
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
 "QQ" = (
-/obj/machinery/mecha_part_fabricator/maint{
-	req_access = list(71)
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/structure/closet/crate,
+/obj/item/circuitboard/mecha/clarke/main,
+/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+/obj/item/circuitboard/mecha/clarke/peripherals,
+/obj/item/mecha_parts/chassis/clarke,
+/obj/item/mecha_parts/mecha_equipment/drill,
+/obj/item/mecha_parts/mecha_equipment/mining_scanner,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "Rj" = (
@@ -1585,6 +1562,24 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
+"Zl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/airlock/shuttle{
+	name = "living quarters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
 "ZD" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -32
@@ -1769,11 +1764,11 @@ TW
 OU
 cn
 EI
-ih
-ih
-Sg
-ih
-Ld
+EI
+EI
+Zl
+EI
+EI
 EI
 Mw
 hU
@@ -1786,11 +1781,11 @@ pZ
 fk
 iZ
 EI
-EI
-EI
-Mr
-EI
-EI
+Ox
+ih
+JW
+ih
+ir
 EI
 Eq
 hU
@@ -1803,7 +1798,7 @@ Qj
 Oh
 vW
 bI
-AP
+PM
 PM
 EO
 ih
@@ -1874,7 +1869,7 @@ EI
 JC
 lv
 Jl
-qq
+HA
 qq
 Xh
 cF
