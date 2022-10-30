@@ -43,11 +43,11 @@
 		return FALSE
 	if(istype(M, /obj/mecha/combat))
 		return TRUE
-	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !((locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) || (locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) ))
+	if((locate(/obj/item/mecha_parts/concealed_weapon_bay) in M.contents) && !((locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in M.equipment) || (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in M.equipment) ))
 		return TRUE
 	return FALSE
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/start_cooldown()
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
 	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifer)	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
@@ -82,6 +82,14 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/proc/cleave_attack()
 	return 0
 
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/on_select()
+	if(deflect_bonus)
+		chassis.deflect_chance += deflect_bonus
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/on_deselect()
+	if(deflect_bonus)
+		chassis.deflect_chance -= deflect_bonus
+
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword
 	name = "generic mech sword"
 	desc = "Generic mech sword! It's a bit too big to use yourself."
@@ -94,6 +102,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/shortsword	//Our bread-and-butter mech shortsword for both slicing and stabbing baddies
 	name = "\improper GD6 \"Jaeger\" shortsword"
 	desc = "An extendable arm-mounted blade with a nasty edge. It is small and fast enough to deflect some incoming attacks."
+	energy_drain = 20
 	weapon_damage = 10
 	precise_weapon_damage = 15
 	fauna_damage_bonus = 30		//because why not
@@ -163,3 +172,5 @@
 			return
 		chassis.do_attack_animation(A, ATTACK_EFFECT_SLASH)
 		playsound(chassis, attack_sound, 50, 1)
+
+
