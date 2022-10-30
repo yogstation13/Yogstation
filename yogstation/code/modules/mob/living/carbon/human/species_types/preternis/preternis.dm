@@ -110,7 +110,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/lockdown = FALSE
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "magboots1"
+	button_icon_state = "magboots0"
 	icon_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
@@ -125,8 +125,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/mob/living/carbon/human/H = usr
 	if(!lockdown)
 		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
+		button_icon_state = "magboots1"
 	else
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
+		button_icon_state = "magboots0"
+	update_icon()
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
