@@ -86,7 +86,7 @@
 	icon_state = "shieldsparkles"
 	duration = 0.3 SECONDS
 
-/obj/effect/temp_visual/dir_setting/firing_effect/mecha_attack
+/obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
 	icon_state = "big_slash"
 	duration = 0.3 SECONDS
 

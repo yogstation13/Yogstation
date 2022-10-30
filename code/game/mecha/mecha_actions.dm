@@ -88,7 +88,7 @@
 		number++
 		if(A == chassis.selected)	//Swapping to no equipment from something
 			if(available_equipment.len == number)
-				chasses.selected.on_deselect()
+				chassis.selected.on_deselect()
 				chassis.selected = null
 				chassis.occupant_message("You switch to no equipment")
 				button_icon_state = "mech_cycle_equip_off"
