@@ -221,7 +221,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					//warnings checks
 					if(!is_wounded && !is_onfire && !is_irradiated && !is_husked && !is_disabled && !is_bonecrack)
 						no_warnings = TRUE
-
+					else
+						no_warnings = FALSE
+										
 					//check if has disabled limbs
 					for(var/obj/item/bodypart/part in H.bodyparts)
 						if(part.bodypart_disabled == TRUE)
