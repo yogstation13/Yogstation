@@ -54775,8 +54775,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/paystand,
-/obj/item/paper/guides/jobs/security/paystand_setup,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "rDb" = (
