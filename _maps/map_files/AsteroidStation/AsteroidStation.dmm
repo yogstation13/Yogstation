@@ -3058,19 +3058,6 @@
 "aza" = (
 /turf/template_noop,
 /area/medical/morgue)
-"azc" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/item/paper/autopsy,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "azd" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/open/floor/plasteel,
@@ -41229,7 +41216,6 @@
 	dir = 1
 	},
 /obj/machinery/computer/operating,
-/obj/item/paper/guides/jobs/security/paystand_setup,
 /turf/open/floor/plasteel/white,
 /area/security/physician)
 "njw" = (
@@ -105175,7 +105161,7 @@ czo
 aZW
 ntR
 axP
-azc
+ina
 axP
 aXS
 aXS
