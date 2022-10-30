@@ -4,7 +4,7 @@
 	var/mob/living/carbon/wearer
 
 /datum/component/fishingbonus/Initialize(fishing_bonus = 0)
-	if(!ismovable(parent) || !isclothing(parent))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	src.fishing_bonus = fishing_bonus
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/OnEquip)
@@ -25,16 +25,15 @@
 		equipper.fishing_power -= fishing_bonus
 		wearer = null
 
-/datum/component/fishingbonus/proc/OnBuckle(datum/source, mob/living/carbon/buckle, force = FALSE)
-	var/obj/vehicle/ridden/parent_vehicle = parent
-	if(!parent_vehicle)
+/datum/component/fishingbonus/proc/OnBuckle(datum/source, mob/living/carbon/M, force = FALSE)
+	var/obj/vehicle/ride = parent
+	if(!ride)
 		return
-	if(parent_vehicle.post_buckle_mob(buckle))
-		buckle.fishing_power += fishing_bonus
-		wearer = buckle
+	if(M in ride.occupants)
+		M.fishing_power += fishing_bonus
+		wearer = M
 
-/datum/component/fishingbonus/proc/OnUnbuckle(datum/source, mob/living/carbon/buckle, force = FALSE)
-	var/obj/vehicle/ridden/parent_vehicle = parent
-	if(wearer || parent_vehicle.post_unbuckle_mob(buckle))
-		buckle.fishing_power -= fishing_bonus
+/datum/component/fishingbonus/proc/OnUnbuckle(datum/source, mob/living/carbon/M, force = FALSE)
+	if(wearer)
+		M.fishing_power -= fishing_bonus
 		wearer = null
