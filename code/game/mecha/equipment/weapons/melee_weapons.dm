@@ -131,8 +131,8 @@
 					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//If we're hitting fauna, because heck those guys
 						L.apply_damage(fauna_damage_bonus, dam_type)
 
-				L.visible_message(span_danger("[chassis] strikes [L] with a wide swing of its [src]!"), \
-				  span_userdanger("[chassis] strikes you with [src]!"))
+				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of its [src]!"), \
+				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
 
 			else if(isstructure(A) || ismachinery(A))	//if it's something we can otherwise still hit
@@ -160,8 +160,8 @@
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//Stab them harder
 				L.apply_damage(fauna_damage_bonus, dam_type)
 
-		L.visible_message(span_danger("[chassis] strikes [L] with its [src]!"), \
-				  span_userdanger("[chassis] strikes you with [src]!"))
+		L.visible_message(span_danger("[chassis.name] strikes [L] with its [src]!"), \
+				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
 
 		else if(isstructure(A) || ismachinery(A))	//If the initial target is a structure, hit it regardless of if it's dense or not.
