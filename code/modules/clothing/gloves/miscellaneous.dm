@@ -12,6 +12,34 @@
 	custom_price = 10
 	undyeable = TRUE
 
+/obj/item/clothing/gloves/fingerless/bigboss
+	name = "tactical fingerless gloves"
+	desc = "Simple fabric gloves without fingertips to permit better dexterity in combat and tasks. Especially helpful with carrying bodies."
+	var/carrytrait = TRAIT_QUICKER_CARRY
+	var/worn
+
+/obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
+	var/mob/living/M = loc
+	M.changeNext_move(CLICK_CD_CLICK_ABILITY) //0.6 seconds instead of 0.8, but affects any intent instead of just harm
+	. = FALSE
+
+/obj/item/clothing/gloves/fingerless/bigboss/equipped(mob/user, slot)
+	..()
+	var/mob/living/carbon/human/boss = user
+	if(slot == SLOT_GLOVES)
+		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
+		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
+			boss.physiology.do_after_speed *= 0.9 //Does stuff 10% faster
+			worn = TRUE
+
+/obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
+	..()
+	var/mob/living/carbon/human/boss = user
+	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
+	if(worn) //This way your speed isn't slowed if you never actually put on the gloves
+		boss.physiology.do_after_speed /= 0.9
+		worn = FALSE
+
 /obj/item/clothing/gloves/botanic_leather
 	name = "botanist's leather gloves"
 	desc = "These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin.  They're also quite warm."

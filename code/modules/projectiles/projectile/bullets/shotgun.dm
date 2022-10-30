@@ -56,7 +56,7 @@
 	SpinAnimation()
 
 /obj/item/projectile/bullet/shotgun/slug/frag12
-	name ="frag12 slug"
+	name = "frag12 slug"
 	damage = 25
 	wound_bonus = 0
 
@@ -79,7 +79,7 @@
 	
 /obj/item/projectile/bullet/pellet/shotgun_buckshot/syndie
 	name = "syndicate buckshot pellet"
-	damage = 18
+	damage = 15.5 //7 damage more and crit instantly assuming PBS
 	wound_bonus = 2
 	bare_wound_bonus = 2
 	wound_falloff_tile = -2.5
@@ -87,7 +87,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_flechette
 	name = "flechette pellet"
 	speed = 0.4 //You're special
-	damage = 15
+	damage = 13
 	wound_bonus = 4
 	bare_wound_bonus = 4
 	armour_penetration = 40
@@ -123,11 +123,7 @@
 	damage = 26
 	armour_penetration = 60 // he he funny round go through armor
 	wound_bonus = -40
-
-/obj/item/projectile/bullet/shotgun/slug/uranium/on_hit(atom/target)
-	. = ..()
-	if(ismob(target))
-		return BULLET_ACT_FORCE_PIERCE
+	penetrating = TRUE //Goes through an infinite number of mobs
 
 /obj/item/projectile/bullet/pellet/Range()
 	..()

@@ -77,7 +77,8 @@
 		/obj/item/handdrill,
 		/obj/item/jawsoflife,
 		/obj/item/shuttle_creator, //Yogs: Added this here cause I felt it fits
-		/obj/item/barrier_taperoll/engineering
+		/obj/item/barrier_taperoll/engineering,
+		/obj/item/storage/bag/sheetsnatcher
 		))
 
 /obj/item/storage/belt/utility/makeshift
@@ -379,7 +380,8 @@
 		/obj/item/jawsoflife,
 		/obj/item/restraints/legcuffs/bola/watcher,
 		/obj/item/stack/sheet/mineral,
-		/obj/item/grenade/plastic/miningcharge
+		/obj/item/grenade/plastic/miningcharge,
+		/obj/item/gem
 		))
 
 
@@ -716,6 +718,15 @@
 		/obj/item/gun/ballistic/revolver/detective = 1,
 		/obj/item/ammo_box/c38 = 2)
 	generate_items_inside(items_inside, src)
+
+/obj/item/storage/belt/holster/syndicate
+	name = "syndicate shoulder holster"
+	desc = "A modified holster that can carry more than enough firepower."
+
+/obj/item/storage/belt/holster/syndicate/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 4
 
 /obj/item/storage/belt/quiver
 	name = "leather quiver"

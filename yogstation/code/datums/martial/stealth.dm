@@ -58,7 +58,7 @@
 		var/selected_zone = A.zone_selected
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 40)
-		D.apply_damage(30, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 
+		D.apply_damage(A.get_punchdamagehigh() * 2 + 10, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//30 damage
 		to_chat(A, span_warning("You stab [D] with a hidden blade!"))
 		to_chat(D, span_userdanger("You are suddenly stabbed with a blade!"))
 		streak = ""
@@ -67,8 +67,8 @@
 		var/selected_zone = A.zone_selected
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 10)
-		D.apply_damage(20, STAMINA, affecting, armor_block)
-		D.apply_damage(5, BRUTE, affecting, armor_block)
+		D.apply_damage(A.get_punchdamagehigh() * 1.5 + 5, STAMINA, affecting, armor_block)	//20 stamina
+		D.apply_damage(A.get_punchdamagehigh() / 2, BRUTE, affecting, armor_block)			//5 brute
 		return FALSE //Because it is a stealthy martial art, we need it to work like... a normal shove, so people nearby couldn't understand so easy that you know a martial art.
 
 
@@ -88,7 +88,7 @@
 	gun.gun_owner = A
 	A.put_in_hands(gun)
 	to_chat(A, span_notice("You extract a hiden gun from your hand."))	
-	D.Paralyze(1 SECONDS)
+	D.Paralyze((A.get_punchdamagehigh() / 10) SECONDS)	//1 second
 	streak = ""
 
 /obj/item/gun/ballistic/automatic/pistol/martial

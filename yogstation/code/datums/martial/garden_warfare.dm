@@ -6,10 +6,12 @@
 #define SPLINTER_COMBO "HHH"
 #define PRE_SPLINTER_COMBO "HH"
 
+//Important note: podpeople have a max punch damage of 8, damage values take this into account
+
 /datum/martial_art/gardern_warfare
 	name = "Garden Warfare" //I feel like that I deserve a bullet into my head for this names
 	id = MARTIALART_GARDENWARFARE
-	block_chance = 50
+	block_chance = 75
 	help_verb =  /mob/living/carbon/human/proc/gardern_warfare_help
 	var/datum/action/vine_snatch/vine_snatch = new /datum/action/vine_snatch()
 	var/current_combo
@@ -85,7 +87,7 @@
 	if(findtext(streak, STRANGLE_COMBO))
 		streak = ""
 		ADD_TRAIT(D, TRAIT_MUTE, "martial")
-		block_chance = 25
+		block_chance = 35
 		final_strangle(A,D)
 		block_chance = initial(block_chance)
 		REMOVE_TRAIT(D, TRAIT_MUTE, "martial")
@@ -95,8 +97,8 @@
 					span_userdanger("[A] wraps a vine around your throat!"))
 		log_combat(A, D, "pre-strangles(Garden Warfare)")		
 
-		D.Stun(1 SECONDS)
-		D.adjustOxyLoss(10)
+		D.Stun((A.get_punchdamagehigh() / 8) SECONDS)	//1 Second
+		D.adjustOxyLoss(A.get_punchdamagehigh() + 2)	//10 oxyloss
 
 /datum/martial_art/gardern_warfare/proc/splinter_stab(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(findtext(streak, SPLINTER_COMBO))
@@ -110,8 +112,8 @@
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, 30)
 
-		D.apply_damage(20, BRUTE, selected_zone, armor_block, sharpness = SHARP_POINTY)
-		D.Stun(1 SECONDS)
+		D.apply_damage((A.get_punchdamagehigh() * 1.5 + 8), BRUTE, selected_zone, armor_block, sharpness = SHARP_POINTY)	//20 damage
+		D.Stun((A.get_punchdamagehigh() / 8) SECONDS)	//1 second
 
 		var/list/arms = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 		var/arm_zone = pick(arms)
@@ -137,7 +139,7 @@
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, 30)
 
-		D.apply_damage(15, BRUTE, selected_zone, armor_block, sharpness = SHARP_POINTY) 	
+		D.apply_damage(A.get_punchdamagehigh() + 7, BRUTE, selected_zone, armor_block, sharpness = SHARP_POINTY) 	//15 damage
 
 /datum/martial_art/gardern_warfare/proc/final_strangle(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_strangle(A, D))
@@ -170,7 +172,7 @@
 	button_icon_state = "tentacle"
 	var/mob/living/carbon/human/marked_dude = null
 	var/last_time_marked = 0
-	var/range = 2
+	var/range = 3
 
 /datum/action/vine_snatch/New()
 	. = ..()
@@ -183,7 +185,7 @@
 	if(!marked_dude)
 		to_chat(owner, span_warning("You can't use [name] while not having anyone marked."))
 		return
-	if(world.time > last_time_marked + 3 SECONDS)
+	if(world.time > last_time_marked + 5 SECONDS)
 		to_chat(owner, span_warning("Your mark has expired, you can't use [name]."))
 		return
 	if(get_dist(get_turf(owner),get_turf(marked_dude)) > range)
@@ -193,14 +195,14 @@
 	owner.Beam(marked_dude, "vine", time= 10, maxdistance = range)
 	var/obj/item/I = marked_dude.get_active_held_item()
 	if(I && !HAS_TRAIT(I, TRAIT_NODROP))
-		marked_dude.visible_message(span_warning("[owner] hits [marked_dude] with a vine, pulling [I] out of their hands!"), \
-							span_userdanger("[owner] hits you with a vine, pulling [I] out of your hands!"))     
+		marked_dude.visible_message(span_warning("[owner] grabs at [marked_dude] with a vine, pulling [I] out of their hands!"), \
+							span_userdanger("[owner] grabs at you with a vine, pulling [I] out of your hands!"))     
 		if(I && marked_dude.temporarilyRemoveItemFromInventory(I))
 			I.forceMove(get_turf(owner))
 	else
 		marked_dude.throw_at(get_step_towards(owner, marked_dude), 7, 2) 
-		marked_dude.visible_message(span_warning("[owner] hits [marked_dude] with a vine, knocking them down and pulling them to themselfes!"), \
-							span_userdanger("[owner] hits you with a vine, pulling you to themselfs!"))  
+		marked_dude.visible_message(span_warning("[owner] grabs [marked_dude] with a vine, knocking them down and pulling them closer!"), \
+							span_userdanger("[owner] grabs you with a vine, pulling you to themselfs!"))  
 		marked_dude.Knockdown(3 SECONDS)
 	marked_dude = null
 				
@@ -210,7 +212,7 @@
 	throwforce = 3
 	sharpness = SHARP_EDGED
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0)
-	var/passive_damage = 3
+	var/passive_damage = 0.5
 
 /obj/item/splinter/on_embed_removal(mob/living/carbon/human/embedde)
 	qdel(src)
@@ -234,7 +236,7 @@
 	var/obj/item/bodypart/affecting = attacker.get_bodypart(ran_zone(selected_zone))
 	var/armor_block = attacker.run_armor_check(affecting, MELEE, 0)
 
-	attacker.apply_damage(10, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	
+	attacker.apply_damage(user.get_punchdamagehigh() + 2, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//10 damage
 
 	var/obj/item/splinter = new /obj/item/splinter(attacker)
 	attacker.embed_object(splinter, affecting, FALSE, FALSE, TRUE)
@@ -246,8 +248,8 @@
 	set category = "Garden Warfare"
 	to_chat(usr, "<b><i>You try to remember some basic actions from the garden warfare art.</i></b>")
 
-	to_chat(usr, "[span_notice("Vine snatch")]: Disarm Disarm. Finishing this combo will mark the victim with a vine mark, allowing you to drag them or an item in their active hand by using ["Vine Snatch"] ability. The mark lasts only 3 seconds.")
+	to_chat(usr, "[span_notice("Vine snatch")]: Disarm Disarm. Finishing this combo will mark the victim with a vine mark, allowing you to drag them or an item in their active hand by using ["Vine Snatch"] ability. The mark lasts only 5 seconds.")
 	to_chat(usr, "[span_notice("Strangle")]: Grab Grab Grab. The second grab will deal 10 oxyloss damage to the target, and finishing the combo will upgrade your grab, making it mute the target and deal 10 oxyloss damage per second.")
 	to_chat(usr, "[span_notice("Splinter stab")]: Harm harm Harm. The second attack will deal increased damage with 30 armor penetration, and finishing the combo will deal 20 damage with 30 armor penetration, while also embedding a splinter into the targets limb.")
 
-	to_chat(usr, span_notice("Additionaly, you have a passive 50% block chance(25% if strangling someone), and having throw mode on will allow you to counterattack attackers, dealing them 10 damage and embedding a splinter into them."))
+	to_chat(usr, span_notice("Additionally, if you have throw mode on you have a 75% block chance (35% if strangling someone) and can counter-attack, dealing 10 damage and embedding a splinter into the attacker."))
