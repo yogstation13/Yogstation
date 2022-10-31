@@ -21,6 +21,14 @@
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
 	minimal_character_age = 18 //My guy you are literally just a priest
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/drinks/bottle/holywater = 30,
+		/obj/item/toy/plush/awakenedplushie = 10,
+		/obj/item/grenade/chem_grenade/holy = 5,
+		/obj/item/toy/plush/narplush = 2,
+		/obj/item/toy/plush/plushvar = 1
+	)
+
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)
 	. = ..()

@@ -266,7 +266,7 @@
 		else if (item_type == "bottle")
 			vol_each_max = min(30, vol_each_max)
 		else if (item_type == "gummy")
-			vol_each_max = min(15, vol_each_max)
+			vol_each_max = min(30, vol_each_max)
 		else if (item_type == "condimentPack")
 			vol_each_max = min(10, vol_each_max)
 		else if (item_type == "condimentBottle")
