@@ -181,6 +181,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 				"name" = I.name,
 				"cost" = I.manufacturer && user.mind.is_employee(I.manufacturer) ? CEILING(I.cost * 0.8, 1) : I.cost,
 				"desc" = I.desc,
+				"path" = replacetext(replacetext("[I.item]", "/obj/item/", ""), "/", "-"),
 				"manufacturer" = I.manufacturer ? initial(I.manufacturer.name) : null,
 			))
 		data["categories"] += list(cat)
@@ -214,6 +215,11 @@ GLOBAL_LIST_EMPTY(uplinks)
 		if("compact_toggle")
 			compact_mode = !compact_mode
 			return TRUE
+
+/datum/component/uplink/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/uplink),
+	)
 
 /datum/component/uplink/proc/MakePurchase(mob/user, datum/uplink_item/U)
 	if(!istype(U))

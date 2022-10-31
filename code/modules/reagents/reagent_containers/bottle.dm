@@ -558,7 +558,7 @@
 	custom_premium_price = 50
 
 /obj/item/reagent_containers/glass/bottle/vial/coagulant
-	name = "vial (Coagulant)"
+	name = "vial (Sanguirite)"
 	icon_state = "vial_red"
 	list_reagents = list(/datum/reagent/medicine/coagulant = 15)
 	custom_premium_price = 50

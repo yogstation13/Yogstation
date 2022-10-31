@@ -207,6 +207,10 @@
 	else if(is_wire_tool(I))
 		if(wires && bomb)
 			wires.interact(user)
+		else if(open && !bomb && !pizza)
+			var/obj/item/cardbd = new /obj/item/stack/sheet/cardboard
+			qdel(src)
+			user.put_in_hands(cardbd)
 	else if(istype(I, /obj/item/reagent_containers/food))
 		to_chat(user, span_warning("That's not a pizza!"))
 	..()
