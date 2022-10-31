@@ -129,7 +129,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		button_icon_state = "magboots0"
-	update_icon()
+	UpdateButtonIcon()
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
@@ -229,8 +229,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(8)
-		H.adjustFireLoss(4)
+		H.adjustStaminaLoss(10)
+		H.adjustFireLoss(5)
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts
