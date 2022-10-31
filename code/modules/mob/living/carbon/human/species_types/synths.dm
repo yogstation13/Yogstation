@@ -2,8 +2,8 @@
 	name = "Synth" //inherited from the real species, for health scanners and things
 	id = "synth"
 	say_mod = "beep boops" //inherited from a user's real species
-	sexes = 0
-	species_traits = list(NO_DNA_COPY, NOTRANSSTING) //all of these + whatever we inherit from the real species
+	sexes = FALSE
+	species_traits = list(NO_DNA_COPY, NOTRANSSTING, AGENDER) //all of these + whatever we inherit from the real species
 	inherent_traits = list(TRAIT_VIRUSIMMUNE,TRAIT_RADIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOLIMBDISABLE,TRAIT_NOHUNGER,TRAIT_NOBREATH)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	meat = null
@@ -92,7 +92,7 @@
 		meat = initial(meat)
 		limbs_id = "synth"
 		use_skintones = 0
-		sexes = 0
+		sexes = FALSE
 		fixed_mut_color = ""
 		hair_color = ""
 

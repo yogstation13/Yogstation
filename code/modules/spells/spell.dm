@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/centcom_cancast = TRUE //Whether or not the spell should be allowed on z2
 
-	var/obj/screen/cooldown_overlay/cooldown_overlay
+	var/atom/movable/screen/cooldown_overlay/cooldown_overlay
 
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "spell_default"
