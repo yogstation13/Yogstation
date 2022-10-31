@@ -1,7 +1,7 @@
 // SUIT STORAGE UNIT /////////////////
 /obj/machinery/suit_storage_unit
 	name = "suit storage unit"
-	desc = "An industrial unit made to hold and decontaminate irradiated equipment. It comes with a built-in UV cauterization mechanism. A small warning label advises that organic matter should not be placed into the unit."
+	desc = "An industrial unit made to hold and decontaminate irradiated equipment as well as organic. It comes with a built-in UV cauterization mechanism. A small warning label advises that UV bulb light must not be glowing."
 	icon = 'icons/obj/machines/suit_storage.dmi'
 	icon_state = "close"
 	density = TRUE
@@ -21,13 +21,15 @@
 	state_open = FALSE
 	var/locked = FALSE
 	panel_open = FALSE
-	var/safeties = TRUE
+	var/safeties = FALSE
 
 	var/uv = FALSE
 	var/uv_super = FALSE
 	var/uv_cycles = 3
 	var/message_cooldown
 	var/breakout_time = 300
+
+	var/datum/looping_sound/oven/decon   //im borrowing oven sound because it suits this
 
 /obj/machinery/suit_storage_unit/standard_unit
 	suit_type = /obj/item/clothing/suit/space
@@ -226,36 +228,43 @@
 		uv = TRUE
 		locked = TRUE
 		update_icon()
-		if(occupant)
-			if(uv_super)
-				mob_occupant.adjustFireLoss(rand(20, 36))
-			else
-				mob_occupant.adjustFireLoss(rand(2, 8))
-			mob_occupant.emote("scream")
 		addtimer(CALLBACK(src, .proc/cook), 50)
+		if(uv_super)
+			radiation_pulse(src, 500, 5)
+			if(mob_occupant)
+				mob_occupant.adjustFireLoss(rand(15, 26))
+				mob_occupant.radiation += 500
+				mob_occupant.adjust_fire_stacks(2)
+				mob_occupant.IgniteMob()
+			if(iscarbon(mob_occupant) && mob_occupant.stat < UNCONSCIOUS)
+				//Awake, organic and screaming
+				mob_occupant.emote("scream")
+		decon.start()
 	else
 		uv_cycles = initial(uv_cycles)
 		uv = FALSE
 		locked = FALSE
 		if(uv_super)
-			visible_message(span_warning("[src]'s door creaks open with a loud whining noise."))
-			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, 1)
-			helmet = null
-			qdel(helmet)
-			suit = null
-			qdel(suit) // Delete everything but the occupant.
-			mask = null
-			qdel(mask)
-			storage = null
-			qdel(storage)
-			// The wires get damaged too.
-			wires.cut_all()
-		else
-			if(!occupant)
-				visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
+			say("ERROR: PLEASE CONTACT SUPPORT!!")
+			if(occupant)
+				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise, barraging you with the nauseating smell of charred flesh. A cloud of foul smoke escapes from its chamber."))
+				mob_occupant.electrocute_act(50, src)
 			else
-				visible_message(span_warning("[src]'s door slides open, barraging you with the nauseating smell of charred flesh."))
-			playsound(src, 'sound/machines/airlockclose.ogg', 25, 1)
+				visible_message(span_warning("[src]'s gate creaks open with a loud whining noise."))
+			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50, TRUE)
+			QDEL_NULL(helmet)
+			QDEL_NULL(suit)
+			QDEL_NULL(mask)
+			QDEL_NULL(storage)
+			shock()
+		else
+			say("The decontamination process is completed, thank you for your patient.")
+			playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
+			if(occupant)
+				visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
+				mob_occupant.radiation = 0
+			else
+				visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
 			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
 			if(suit)
 				things_to_clear += suit
@@ -276,16 +285,15 @@
 				var/atom/movable/dirty_movable = am
 				dirty_movable.wash(CLEAN_ALL)
 		open_machine(FALSE)
+		decon.stop()
 		if(occupant)
 			dump_contents()
 
-/obj/machinery/suit_storage_unit/proc/shock(mob/user, prb)
-	if(!prob(prb))
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
-		if(electrocute_mob(user, src, src, 1, TRUE))
-			return 1
+/obj/machinery/suit_storage_unit/proc/shock(mob/user)
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	electrocute_mob(user, src, src, 1, TRUE)
 
 /obj/machinery/suit_storage_unit/relaymove(mob/user)
 	if(locked)
@@ -299,7 +307,7 @@
 /obj/machinery/suit_storage_unit/attackby(obj/item/W, mob/user)
 	if(default_unfasten_wrench(user, W))
 		return
-	return 
+	return ..()
 
 /obj/machinery/suit_storage_unit/container_resist(mob/living/user)
 	if(!locked)
@@ -327,6 +335,11 @@
 	else
 		open_machine()
 		dump_contents()
+
+/obj/machinery/suit_storage_unit/examine(mob/user)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		. += span_warning("Its maintenance panel is smoking slightly.")
 
 /obj/machinery/suit_storage_unit/proc/resist_open(mob/user)
 	if(!state_open && occupant && (user in src) && user.stat == 0) // Check they're still here.
@@ -369,11 +382,10 @@
 		update_icon()
 		return
 
-	if(panel_open && is_wire_tool(I))
-		wires.interact(user)
-		return
 	if(!state_open && !uv)
 		if(default_deconstruction_screwdriver(user, "panel", "close", I))
+			return
+		if(default_deconstruction_crowbar(I))
 			return
 	if(default_pry_open(I))
 		dump_contents()
@@ -382,7 +394,7 @@
 	return ..()
 
 /obj/machinery/suit_storage_unit/default_pry_open(obj/item/I)//needs to check if the storage is locked.
-	. = !(state_open || panel_open || is_operational() || locked || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
+	. = !(state_open || panel_open || is_operational() || locked) && I.tool_behaviour == TOOL_CROWBAR
 	if(.)
 		I.play_tool_sound(src, 50)
 		visible_message(span_notice("[usr] pries open \the [src]."), span_notice("You pry open \the [src]."))
@@ -430,8 +442,10 @@
 		if("door")
 			if(state_open)
 				close_machine()
+				playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
 			else
 				open_machine(0)
+				playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 				if(occupant)
 					dump_contents() // Dump out contents if someone is in there.
 			. = TRUE
@@ -441,14 +455,20 @@
 			locked = !locked
 			. = TRUE
 		if("uv")
-			if(occupant && safeties)
+			var/mob/living/mob_occupant = occupant
+			if(!helmet && !mask && !suit && !storage && !occupant)
 				return
-			else if(!helmet && !mask && !suit && !storage && !occupant)
-				return
-			else
-				if(occupant)
-					var/mob/living/mob_occupant = occupant
+			else 
+				if(uv_super)
+					say("ERROR: Decontamination process is going over safety limit!!")
+					uv_cycles = 7
+				else
+					say("Please wait untill the decontamination process is completed.")
+					uv_cycles = initial(uv_cycles)
+				if(occupant && uv_super)
 					to_chat(mob_occupant, span_userdanger("[src]'s confines grow warm, then hot, then scorching. You're being burned [!mob_occupant.stat ? "alive" : "away"]!"))
+				else
+					to_chat(mob_occupant, span_warning("[src]'s confines grow warm. You're being decontaminated."))
 				cook()
 				. = TRUE
 		if("dispense")
@@ -469,15 +489,17 @@
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if(panel_open)
-		to_chat(user, span_notice("Close the panel first!"))
+		to_chat(user, span_warning("Close the panel first!"))
 		return
 	if(uv)
-		to_chat(user, span_warning("You cannot open the door while the cycle is running!"))
+		to_chat(user, span_warning("You cannot open the gate while the cycle is running!"))
 		return
 	if(state_open)
 		close_machine()
+		playsound(src, 'sound/machines/oven/oven_close.ogg', 75, TRUE)
 	else
 		open_machine(0)
+		playsound(src, 'sound/machines/oven/oven_open.ogg', 75, TRUE)
 		if(occupant)
 			dump_contents() // Dump out contents if someone is in there.
 

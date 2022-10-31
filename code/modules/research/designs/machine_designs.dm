@@ -691,11 +691,11 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/board/decontamination_unit
-	name = "Machine Design (Advanced Decontamination SSU Board)"
-	desc = "The circuit board for an advanced decontamination suit storage unit."
-	id = "decontamination_unit"
-	build_path = /obj/item/circuitboard/machine/decontamination_unit
+/datum/design/board/suit_storage_unit
+	name = "Machine Design (Suit Storage Unit)"
+	desc = "The circuit board for a suit storage unit."
+	id = "suit_storage_unit"
+	build_path = /obj/item/circuitboard/machine/suit_storage_unit
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
