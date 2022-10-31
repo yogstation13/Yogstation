@@ -222,7 +222,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
-	desc = "An large metal fist fitted to the arm of an exosuit, it uses repurposed maneuvering thrusters from a Raven battlecruiser to give a little more oomph to every punche. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
+	desc = "A large metal fist fitted to the arm of an exosuit, it uses repurposed maneuvering thrusters from a Raven battlecruiser to give a little more oomph to every punche. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
 	melee_override = FALSE		//We'll just buff the regular punch
 	precise_attacks = FALSE		
 	cleave = FALSE		
