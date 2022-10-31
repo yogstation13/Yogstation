@@ -1,0 +1,5 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - rscadd: "adds a reminder to the Oldstation singulo generator document to add containment fields"
+  - bugfix: "removes a double APC from Oldstation"
