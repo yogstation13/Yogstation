@@ -2,7 +2,7 @@
 	name = "mecha melee weapon"
 	range = MECHA_MELEE|MECHA_RANGED	//so we can do stuff at range and in melee
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
-    mech_flags = EXOSUIT_MODULE_COMBAT
+	mech_flags = EXOSUIT_MODULE_COMBAT
 	melee_override = TRUE
 	var/restricted = TRUE //for our special hugbox exofabs
 	//If we have a longer range weapon, such as a spear or whatever capable of hitting people further away, this is how much extra range it has
@@ -14,7 +14,7 @@
 	//Attack types - Note that at least one of these must be true otherwise it's not actually a weapon and will have no effect
 	//By default we assume we're using a small weapon with only a special single-target attack
     //If the weapon has an AOE attack
-    var/cleave = FALSE
+	var/cleave = FALSE
 	//If the weapon has a single-target strike
 	var/precise_attacks = TRUE
 
@@ -35,7 +35,7 @@
 	//Structure damage multiplier, for stuff like big ol' smashy hammers. Base structure damage multiplier for mech melee attacks is 3.
 	var/structure_damage_mult = 3
 
-    var/cleave_effect = /obj/effect/temp_visual/dir_setting/mecha_swipe
+	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
 	var/attack_effect = /obj/effect/
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
@@ -50,7 +50,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifer)	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
+	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifier)	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
 
 //THIS ISNT EVEN CLOSE TO DONE YET 
 //Melee weapon attacks are a little different in that they'll override the standard melee attack
@@ -66,13 +66,12 @@
 		return 0
 	
 	
-	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP))	//If we are targetting a location, not an object or mob, and we're not in a passive stance
-		if(cleave)
-			cleave_attack()
+	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
+		cleave_attack()
 	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)))	//If we are targetting not a turf and they're within reach
 		precise_attack(target)		//We stab it if we can
-		else
-			cleave_attack()			//Or swing wildly if we can't
+	else if(cleave)
+		cleave_attack()			//Or swing wildly
 	chassis.log_message("Attacked with [src.name], targeting [target].", LOG_MECHA)
 	return 1
 
@@ -94,7 +93,7 @@
 	name = "generic mech sword"
 	desc = "Generic mech sword! It's a bit too big to use yourself."
 	cleave = TRUE
-	precise_attack = TRUE
+	precise_attacks = TRUE
 	attack_sharpness = SHARP_EDGED
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	var/minimum_damage = 0			//Baby mechs with a scret combat module get a little boost
@@ -113,9 +112,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()
 	var/turf/M = get_turf(src)
-	var/list/attack_turfs = list()
 	for(var/i = 0 to 2)
-		var/turf/T = get_step(M,turn(chassis.dir + (45(1-i))))	//+45, +0, and -45 will get the three front tiles
+		var/turf/T = get_step(M,turn(chassis.dir, (45(1-i))))	//+45, +0, and -45 will get the three front tiles
 		for(var/atom/A in T.contents)
 			if(isliving(A))						
 				var/mob/living/L = A
@@ -146,12 +144,12 @@
 	playsound(chassis, attack_sound, 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/precise_attack(atom/target)
-	if(isliving(A))						
-		var/mob/living/L = A
+	if(isliving(target))						
+		var/mob/living/L = target
 
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
-			var/obj/item/bodypart/body_part = chassis.occupant.selected_zone	//Precise attacks can be aimed
+			var/obj/item/bodypart/body_part = chassis.occupant.zone_selected
 			var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing * 2)	//and get more AP
 			C.apply_damage(max(chassis.force + precise_weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
 
@@ -162,15 +160,15 @@
 
 		L.visible_message(span_danger("[chassis.name] strikes [L] with its [src]!"), \
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
-				chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
+		chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
 
-		else if(isstructure(A) || ismachinery(A))	//If the initial target is a structure, hit it regardless of if it's dense or not.
-				var/obj/structure/S = A
-				var/structure_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
-				S.take_damage(structure_damage, dam_type, "melee", 0)
-		else
-			return
-		chassis.do_attack_animation(A, ATTACK_EFFECT_SLASH)
-		playsound(chassis, attack_sound, 50, 1)
+	else if(isstructure(target) || ismachinery(target))	//If the initial target is a structure, hit it regardless of if it's dense or not.
+		var/obj/structure/S = target
+		var/structure_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
+		S.take_damage(structure_damage, dam_type, "melee", 0)
+	else
+		return
+	chassis.do_attack_animation(target, ATTACK_EFFECT_SLASH)
+	playsound(chassis, attack_sound, 50, 1)
 
 
