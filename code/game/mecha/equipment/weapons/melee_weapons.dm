@@ -110,7 +110,7 @@
 	structure_damage_mult = 2	//Sword is not as smashy
 	minimum_damage = 20			
 
-/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()	//use this for basic cleaving attacks, tweak as needed
 	var/turf/M = get_turf(src)
 	for(var/i = 0 to 2)
 		var/turf/T = get_step(M,turn(chassis.dir, (45(1-i))))	//+45, +0, and -45 will get the three front tiles
@@ -133,12 +133,12 @@
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
 
-			else if(isstructure(A) || ismachinery(A))	//if it's something we can otherwise still hit
-				var/obj/structure/S = A
-				if(!A.density)							//Make sure it's not an open door or something
+			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
+				var/obj/O = A
+				if(!O.density)							//Make sure it's not an open door or something
 					continue
-				var/structure_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
-				S.take_damage(structure_damage, dam_type, "melee", 0)
+				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
+				O.take_damage(object_damage, dam_type, "melee", 0)
 
 	new attack_effect(get_turf(src), chassis.dir)
 	playsound(chassis, attack_sound, 50, 1)
@@ -162,10 +162,10 @@
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 		chassis.log_message("Hit [L] with [src.name] (precise attack).", LOG_MECHA)
 
-	else if(isstructure(target) || ismachinery(target))	//If the initial target is a structure, hit it regardless of if it's dense or not.
-		var/obj/structure/S = target
-		var/structure_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
-		S.take_damage(structure_damage, dam_type, "melee", 0)
+	else if(isstructure(target) || ismachinery(target) || istype(target, /obj/mecha))	//If the initial target is a big object, hit it even if it's not dense.
+		var/obj/O = target
+		var/object_damage = max(chassis.force + precise_weapon_damage, minimum_damage) * structure_damage_mult
+		O.take_damage(object_damage, dam_type, "melee", 0)
 	else
 		return
 	chassis.do_attack_animation(target, ATTACK_EFFECT_SLASH)
@@ -179,9 +179,10 @@
 	weapon_damage = 20
 	fauna_damage_bonus = 30		//If you're fighting fauna with this thing, why? I mean it works, I guess.
 	base_armor_piercing = 40
-	structure_damage_mult = 4	//Think like obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech and it's a terrifying axe
+	structure_damage_mult = 4	//Think obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech and it's a terrifying axe
 	minimum_damage = 30			
-	attack_speed_modifier = 1.5 //Kinda chunky	
+	attack_speed_modifier = 1.5 //Kinda chunky
+	light_color = LIGHT_COLOR_RED
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()
 	var/turf/M = get_turf(src)
@@ -206,12 +207,12 @@
 				  span_userdanger("[chassis.name] strikes you with [src]!"))
 				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
 
-			else if(isstructure(A) || ismachinery(A))	//if it's something we can otherwise still hit
-				var/obj/structure/S = A
-				if(!A.density)							//Make sure it's not an open door or something
+			else if(isstructure(A) || ismachinery(A) || istype(A, /obj/mecha))	//if it's something we can otherwise still hit
+				var/obj/O = A
+				if(!O.density)							//Make sure it's not an open door or something
 					continue
-				var/structure_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
-				S.take_damage(structure_damage, dam_type, "melee", 0)
+				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
+				O.take_damage(object_damage, dam_type, "melee", 0)
 
 			else if(istype(A, /turf/closed/wall))		//IT BREAKS WALLS TOO
 				var/turf/closed/wall/W = A
@@ -219,6 +220,14 @@
 
 	new attack_effect(get_turf(src), chassis.dir)
 	playsound(chassis, attack_sound, 50, 1)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_select()
+	START_PROCESSING(SSobj, src)
+	set_light(5)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_deselect()
+	STOP_PROCESSING(SSobj, src)
+	set_light(0)	
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
