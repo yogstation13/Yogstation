@@ -1,0 +1,6 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Redesigns part of AsteroidStation Starboard Bow Maintenance"
+  - mapping: "Moves AsteroidStation Electrical Maintenance a bit"
+  - mapping: "Expands AsteroidStation Primary Tool Storage"
