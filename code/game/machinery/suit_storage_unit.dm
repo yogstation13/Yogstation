@@ -124,6 +124,7 @@
 
 /obj/machinery/suit_storage_unit/Initialize()
 	. = ..()
+	decon = new(list(src), FALSE)
 	wires = new /datum/wires/suit_storage_unit(src)
 	if(suit_type)
 		suit = new suit_type(src)
