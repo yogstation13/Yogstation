@@ -38,7 +38,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	mutantlungs = /obj/item/organ/lungs/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
-	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg')
+	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
+	attack_sound = 'sound/items/trayhit2.ogg'
 	//deathsound = //change this when sprite gets reworked
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
 	yogs_draw_robot_hair = TRUE //change this when sprite gets reworked
@@ -89,11 +90,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	C.remove_movespeed_modifier("preternis_teslium")
 	C.remove_movespeed_modifier("preternis_water")
 
+	if(lockdown)
+		maglock.Trigger(TRUE)
 	if(maglock)
 		maglock.Remove(C)
-	if(lockdown)
-		REMOVE_TRAIT(C, TRAIT_NOSLIPWATER, "preternis_maglock")
-		C.remove_movespeed_modifier("preternis_maglock")
+
 
 /datum/action/innate/maglock
 	var/datum/species/preternis/owner_species
@@ -111,7 +112,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	owner_species = H.dna.species
 	. = ..()
 
-/datum/action/innate/maglock/Trigger()
+/datum/action/innate/maglock/Trigger(silent = FALSE)
 	var/mob/living/carbon/human/H = usr
 	if(!lockdown)
 		ADD_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
@@ -122,7 +123,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	UpdateButtonIcon()
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
-	to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
+	if(!silent)
+		to_chat(H, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
 	H.update_gravity(H.has_gravity())
 
 /datum/species/preternis/negates_gravity(mob/living/carbon/human/H)
@@ -218,10 +220,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
-		H.fire_stacks++ //makes them dry off faster so it's less of a 15 death sentence
+		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
-		H.adjustStaminaLoss(22)
-		H.adjustFireLoss(11)
+		H.adjustStaminaLoss(20)
+		H.adjustFireLoss(10)
 		H.Jitter(100)
 		H.stuttering = 1
 		if(!soggy)//play once when it starts
