@@ -72,6 +72,7 @@
 	data["total_cpu_used"] = owner.ai_network.resources.total_cpu_assigned()
 	data["max_cpu"] = owner.ai_network.resources.total_cpu()
 	data["max_ram"] = owner.ai_network.resources.total_ram()
+	data["human_lock"] = owner.ai_network.resources.human_lock
 
 	data["categories"] = GLOB.ai_project_categories
 	data["available_projects"] = list()
@@ -161,10 +162,14 @@
 				to_chat(owner, span_warning("Unable to add CPU to [params["project_name"]]. Either not enough free CPU or project is unavailable."))
 			. = TRUE
 		if("clear_ai_resources")
+			if(owner.ai_network.resources.human_lock)
+				return
 			owner.ai_network.resources.clear_ai_resources(src)
 			. = TRUE
 
 		if("set_cpu")
+			if(owner.ai_network.resources.human_lock)
+				return
 			var/amount = params["amount_cpu"]
 
 			if(amount > 1 || amount < 0)
@@ -177,17 +182,23 @@
 			owner.ai_network.resources.set_cpu(owner, amount)
 			. = TRUE
 		if("max_cpu_assign")
+			if(owner.ai_network.resources.human_lock)
+				return
 			var/amount = (1 - owner.ai_network.resources.total_cpu_assigned()) + owner.ai_network.resources.cpu_assigned[owner]
 
 			owner.ai_network.resources.set_cpu(owner, amount)
 			. = TRUE
 		if("add_ram")
+			if(owner.ai_network.resources.human_lock)
+				return
 			if(owner.ai_network.resources.total_ram_assigned() >= owner.ai_network.resources.total_ram())
 				return
 			owner.ai_network.resources.add_ram(owner, 1)
 			. = TRUE
 
 		if("remove_ram")
+			if(owner.ai_network.resources.human_lock)
+				return
 			var/current_ram = owner.ai_network.resources.ram_assigned[owner]
 
 			if(current_ram <= 0)
@@ -311,6 +322,8 @@
 
 	if(total_ram_used > current_ram)
 		for(var/I in ram_usage)
+			if(!ram_usage[I]) //We only stop the program if it actually has any RAM usage
+				continue
 			var/datum/ai_project/project = get_project_by_name(I)
 			total_ram_used -= stop_project(project)
 			reduction_of_resources = TRUE

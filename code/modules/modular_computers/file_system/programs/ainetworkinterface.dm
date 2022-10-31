@@ -59,7 +59,8 @@
 		if(!downloading.can_download)
 			stop_download()
 			return
-		if(downloading.ai_network.resources != get_ainet().resources) //If we don't share resources we aren't connected, more performant way of checking than get_all_ais()
+		var/datum/ai_network/local_network = get_ainet()
+		if(downloading.ai_network.resources != local_network.resources) //If we don't share resources we aren't connected, more performant way of checking than get_all_ais()
 			stop_download()
 			return
 		download_progress += AI_DOWNLOAD_PER_PROCESS * downloading.downloadSpeedModifier
@@ -83,6 +84,7 @@
 
 /datum/computer_file/program/ai_network_interface/ui_data(mob/user)
 	var/list/data = get_header_data()
+
 	var/datum/ai_network/net = get_ainet()
 	data["has_ai_net"] = net
 
@@ -110,6 +112,8 @@
 	data["current_ai_ref"] = null
 	if(isAI(user))
 		data["current_ai_ref"] = REF(user)
+
+	data["human_only"] = net.resources.human_lock
 
 	data["intellicard"] = get_ai(TRUE)
 	var/mob/living/silicon/ai/card_ai = get_ai()
@@ -171,6 +175,9 @@
 
 	switch(action)
 		//General actions
+		if("log_out")
+			logged_in = FALSE
+			return
 		if("change_network_name")
 			var/new_label = stripped_input(usr, "Enter new label", "Set label", max_length = 32)
 			if(new_label)
@@ -347,12 +354,16 @@
 		
 		//Resource allocation
 		if("clear_ai_resources")
+			if(isAI(user) && net.resources.human_lock)
+				return
 			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
 
 			net.resources.clear_ai_resources(target_ai)
 			. = TRUE
 
 		if("set_cpu")
+			if(isAI(user) && net.resources.human_lock)
+				return
 			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
 
 			var/amount = params["amount_cpu"]
@@ -361,6 +372,8 @@
 			net.resources.set_cpu(target_ai, amount)
 			. = TRUE
 		if("max_cpu")
+			if(isAI(user) && net.resources.human_lock)
+				return
 			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
 
 			var/amount = (1 - net.resources.total_cpu_assigned()) + net.resources.cpu_assigned[target_ai]
@@ -368,6 +381,8 @@
 			net.resources.set_cpu(target_ai, amount)
 			. = TRUE
 		if("add_ram")
+			if(isAI(user) && net.resources.human_lock)
+				return
 			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
 
 			if(net.resources.total_ram_assigned() >= net.resources.total_ram())
@@ -376,6 +391,8 @@
 			. = TRUE
 
 		if("remove_ram")
+			if(isAI(user) && net.resources.human_lock)
+				return
 			var/atom/target_ai = locate(params["target_ai"]) in net.get_all_ais() | net.resources.networks
 
 			var/current_ram = net.resources.ram_assigned[target_ai]
@@ -387,6 +404,8 @@
 
 		//Local computing
 		if("allocate_network_cpu")
+			if(isAI(user) && net.resources.human_lock)
+				return
 			var/project_type = params["project_name"]
 			if(!(project_type in GLOB.possible_ainet_activities))
 				return
@@ -408,6 +427,8 @@
 			. = TRUE
 
 		if("max_network_cpu")
+			if(isAI(user) && net.resources.human_lock)
+				return
 			var/project_type = params["project_name"]
 			if(!(project_type in GLOB.possible_ainet_activities))
 				return
@@ -422,12 +443,20 @@
 
 			net.local_cpu_usage[project_type] = amount_to_add
 			. = TRUE
+
+		if("toggle_human_only")
+			if(isAI(user))
+				return
+			net.resources.human_lock = !net.resources.human_lock
+			to_chat(user, span_notice("Network now allows changes [net.resources.human_lock ? "exclusively by organics." : "by all authorized users."]"))
+
 		if("bitcoin_payout")
 			var/payout_amount = round(net.bitcoin_payout, 1) //Sure you can have your extra 0.5 credits :)
 			var/obj/item/holochip/holochip = new (computer.physical.drop_location(), payout_amount)
 			user.put_in_hands(holochip)
 			to_chat(user, span_notice("Payout of [payout_amount]cr confirmed."))
 			net.bitcoin_payout = 0
+		
 
 
 

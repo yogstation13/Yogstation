@@ -108,3 +108,4 @@
 	height = 75
 	lifespan = 1.25 SECONDS
 	position = list(0, 0, 0)
+	velocity = list(0, 0.15, 0)

@@ -2,11 +2,18 @@ import { NtosWindow } from '../layouts';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Box, Section, Tabs, NoticeBox, Flex, ProgressBar, LabeledList, NumberInput, Divider } from '../components';
+import { LoginScreen } from './LoginScreen';
 
 export const NtosAIMonitor = (props, context) => {
   const { act, data } = useBackend(context);
   const [tab, setTab] = useLocalState(context, 'tab', 1);
   const [clusterTab, setClusterTab] = useLocalState(context, 'clustertab', 1);
+
+  if(!data.logged_in) {
+    return (
+      <LoginScreen />
+    )
+  }
 
   if (!data.has_ai_net) {
     return (
@@ -106,7 +113,7 @@ const LocalDashboard = (props, context) => {
   let network_remaining_cpu = data.remaining_network_cpu * 100;
 
   return (
-    <Section title="Local Dashboard">
+    <Section title="Local Dashboard" buttons={(<Button icon="sign-out-alt" color="bad" onClick={() => act("log_out")}>Log Out</Button>)}>
       <LabeledList>
         <LabeledList.Item label="Mined cryptocurrency" buttons={(<Button icon="money-bill-wave" color="good" disabled={!data.bitcoin_amount} onClick={() => act("bitcoin_payout")}>Withdraw</Button>)}>
           {data.bitcoin_amount} cr
@@ -119,6 +126,9 @@ const LocalDashboard = (props, context) => {
 const LocalCompute = (props, context) => {
   const { act, data } = useBackend(context);
   let network_remaining_cpu = data.remaining_network_cpu * 100;
+
+  const is_disabled = !((data.current_ai_ref && !data.human_only) || !data.current_ai_ref)
+  const ai_tooltip = (data.current_ai_ref && data.human_only) ? "Only useable by organics" : ""
 
   return (
     <Section title="Local Computing">
@@ -137,11 +147,12 @@ const LocalCompute = (props, context) => {
               <Section key={index} title={(<Box inline color="lightgreen">{project.name}</Box>)} buttons={(
                 <Fragment>
                   <Box inline bold>Assigned CPU:&nbsp;</Box>
-                  <NumberInput unit="%" value={project.assigned*100} minValue={0} maxValue={network_remaining_cpu + (project.assigned * 100)} onChange={(e, value) => act('allocate_network_cpu', {
+                  <NumberInput disabled={is_disabled} tooltip={ai_tooltip} unit="%" value={project.assigned*100} minValue={0}
+                    maxValue={network_remaining_cpu + (project.assigned * 100)} onChange={(e, value) => act('allocate_network_cpu', {
                     project_name: project.name,
                     amount: Math.round((value / 100) * 100) / 100,
                   })} />
-                  <Button icon="arrow-up" disabled={!network_remaining_cpu} onClick={(e, value) => act('max_network_cpu', {
+                  <Button disabled={!network_remaining_cpu || is_disabled} tooltip={ai_tooltip} icon="arrow-up" onClick={(e, value) => act('max_network_cpu', {
                     project_name: project.name,
                   })}>Max
                   </Button>
@@ -164,9 +175,17 @@ const ResourceAllocation = (props, context) => {
   const { act, data } = useBackend(context);
   let remaining_cpu = (1 - data.total_assigned_cpu) * 100;
 
+  const human_only_tooltip = data.current_ai_ref ? "Only useable by organics" : ""
+
+  const is_disabled = !((data.current_ai_ref && !data.human_only) || !data.current_ai_ref)
+  const ai_tooltip = (data.current_ai_ref && data.human_only) ? "Only useable by organics" : ""
+
   return (
     <Fragment>
-      <Section title="Networked CPU Resources">
+      <Section title="Networked CPU Resources" buttons={(
+      <Button color={data.human_only ? "bad" : "good"} tooltip={human_only_tooltip} disabled={data.current_ai_ref} onClick={() => act("toggle_human_only")}>
+        {data.human_only ? "Enable" : "Disable"} silicon access
+      </Button>)}>
         <ProgressBar
           value={data.total_assigned_cpu}
           ranges={{
@@ -197,11 +216,12 @@ const ResourceAllocation = (props, context) => {
               <ProgressBar minValue={0} value={data.total_cpu * data.network_assigned_cpu}
                 maxValue={data.total_cpu} >{data.total_cpu * data.network_assigned_cpu} THz
               </ProgressBar>
-              <NumberInput width="60px" unit="%" value={data.network_assigned_cpu * 100} minValue={0} maxValue={remaining_cpu + (data.network_assigned_cpu * 100)} onChange={(e, value) => act('set_cpu', {
+              <NumberInput disabled={is_disabled} tooltip={ai_tooltip} width="60px" unit="%" value={data.network_assigned_cpu * 100} minValue={0}
+                maxValue={remaining_cpu + (data.network_assigned_cpu * 100)} onChange={(e, value) => act('set_cpu', {
                 target_ai: data.network_ref,
                 amount_cpu: Math.round((value / 100) * 100) / 100,
               })} />
-              <Button height={1.75} icon="arrow-up" onClick={() => act("max_cpu", {
+              <Button disabled={is_disabled} tooltip={ai_tooltip} height={1.75} icon="arrow-up" onClick={() => act("max_cpu", {
                 target_ai: data.network_ref,
               })}>Max
               </Button>
@@ -213,10 +233,10 @@ const ResourceAllocation = (props, context) => {
               <ProgressBar minValue={0} value={data.network_assigned_ram}
                 maxValue={data.total_ram} >{data.network_assigned_ram} TB
               </ProgressBar>
-              <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram", {
+              <Button disabled={is_disabled} tooltip={ai_tooltip} mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram", {
                 target_ai: data.network_ref,
               })} />
-              <Button height={1.75} icon="minus" onClick={() => act("remove_ram", {
+              <Button disabled={is_disabled} tooltip={ai_tooltip} height={1.75} icon="minus" onClick={() => act("remove_ram", {
                 target_ai: data.network_ref,
               })} />
             </Flex>
@@ -229,7 +249,7 @@ const ResourceAllocation = (props, context) => {
             return (
               <Section key={index} title={ai.name}
                 buttons={(
-                  <Button icon="trash" onClick={() => act("clear_ai_resources", { target_ai: ai.ref })}>Clear AI Resources</Button>
+                  <Button disabled={is_disabled} tooltip={ai_tooltip} icon="trash" onClick={() => act("clear_ai_resources", { target_ai: ai.ref })}>Clear AI Resources</Button>
                 )}>
                 <LabeledList.Item>
                   CPU Capacity:

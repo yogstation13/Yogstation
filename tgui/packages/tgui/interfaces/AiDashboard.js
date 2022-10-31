@@ -119,110 +119,141 @@ export const AiDashboard = (props, context) => {
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && (
-          <Section title="Available Projects" buttons={(
-            <Input
-              value={search}
-              placeholder="Search.."
-              onInput={(e, value) => setSearch(value)} />
-          )}>
-            <Tabs>
-              {data.categories.map((category, index) => (
-                <Tabs.Tab key={index}
-                  selected={!search ? selectedCategory === category : null}
-                  onClick={(() => setCategory(category))}>
-                  {category}
-                </Tabs.Tab>
-              ))}
-            </Tabs>
-            {data.available_projects.filter(project => {
-              if (search) {
-                const searchableString = String(project.name).toLowerCase();
-                return searchableString.match(new RegExp(search, "i"));
-              }
-              return project.category === selectedCategory;
-            }).map((project, index) => (
-              <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
-                <Fragment>
-                  <Box inline bold>Assigned CPU:&nbsp;</Box>
-                  <NumberInput unit="%" value={project.assigned_cpu*100} minValue={0} maxValue={remaining_cpu + (project.assigned_cpu * 100)} onChange={(e, value) => act('allocate_cpu', {
-                    project_name: project.name,
-                    amount: Math.round((value / 100) * 100) / 100,
-                  })} />
-                  <Button icon="arrow-up" disabled={data.used_cpu === 1} onClick={(e, value) => act('max_cpu', {
-                    project_name: project.name,
-                  })}>Max
-                  </Button>
-                </Fragment>
-              )}>
-                <Box inline bold>Research Cost:&nbsp;</Box>
-                <Box inline>{project.research_cost} THz</Box>
-                <br />
-                <Box inline bold>RAM Requirement:&nbsp;</Box>
-                <Box inline>{project.ram_required} TB</Box>
-                <br />
-                <Box inline bold>Research Requirements:&nbsp;</Box>
-                <Box inline>{project.research_requirements}</Box>
-                <Box mb={1}>
-                  {project.description}
-                </Box>
-                <ProgressBar value={project.research_progress / project.research_cost}>
-                  {Math.round((project.research_progress / project.research_cost * 100)* 100)
-                    / 100}%
-                  ({Math.round(project.research_progress * 100) / 100}/{project.research_cost} THz)
-                </ProgressBar>
-              </Section>
-            ))}
-          </Section>
+          <AvailableProjects />
         )}
         {tab === 2 && (
-          <Section title="Completed Projects" buttons={(
-            <Fragment>
-              <Button.Checkbox checked={activeProjectsOnly}
-                onClick={() => setActiveProjectsOnly(!activeProjectsOnly)}>
-                See Runnable Projects Only
-              </Button.Checkbox>
-              <Input value={searchCompleted} placeholder="Search.." onInput={(e, value) => setSearchCompleted(value)} />
-            </Fragment>
-          )}>
-            <Tabs>
-              {data.categories.map((category, index) => (
-                <Tabs.Tab key={index}
-                  selected={!searchCompleted ? selectedCategory === category : null}
-                  onClick={(() => setCategory(category))}>
-                  {category}
-                </Tabs.Tab>
-              ))}
-            </Tabs>
-            {data.completed_projects.filter(project => {
-              if (searchCompleted) {
-                const searchableString = String(project.name).toLowerCase();
-                return searchableString.match(new RegExp(searchCompleted, "i"));
-              }
-              if (activeProjectsOnly && !project.can_be_run) {
-                return false;
-              }
-              return project.category === selectedCategory;
-            }).map((project, index) => (
-              <Section key={index} title={(<Box inline color={project.can_be_run ? project.running ? "lightgreen" : "bad" : "lightgreen"}> {project.name} | {project.can_be_run ? project.running ? "Running" : "Not Running" : "Passive"}</Box>)}
-                buttons={!!project.can_be_run && (
-                  <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
-                    project_name: project.name,
-                  })}>
-                    {project.running ? "Stop" : "Run"}
-                  </Button>
-                )}>
-                {!!project.can_be_run && (
-                  <Box bold>RAM Requirement: {project.ram_required} TB</Box>
-                )}
-                <Box mb={1}>
-                  {project.description}
-                </Box>
-              </Section>
-            ))}
-          </Section>
+          <CompletedProjects />
         )}
         {tab === 3 && (
-          <Section title="Ability Charging">
+          <AbilityCharging />
+        )}
+        {tab === 4 && (
+          <NetworkingResources />
+        )}
+      </Window.Content>
+    </Window>
+  );
+};
+
+
+const AvailableProjects = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  return (
+    <Section title="Available Projects" buttons={(
+      <Input
+        value={search}
+        placeholder="Search.."
+        onInput={(e, value) => setSearch(value)} />
+    )}>
+      <Tabs>
+        {data.categories.map((category, index) => (
+          <Tabs.Tab key={index}
+            selected={!search ? selectedCategory === category : null}
+            onClick={(() => setCategory(category))}>
+            {category}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+      {data.available_projects.filter(project => {
+        if (search) {
+          const searchableString = String(project.name).toLowerCase();
+          return searchableString.match(new RegExp(search, "i"));
+        }
+        return project.category === selectedCategory;
+      }).map((project, index) => (
+        <Section key={index} title={(<Box inline color={project.available ? "lightgreen" : "bad"}>{project.name} | {project.available ? "Available" : "Unavailable"}</Box>)} buttons={(
+          <Fragment>
+            <Box inline bold>Assigned CPU:&nbsp;</Box>
+            <NumberInput unit="%" value={project.assigned_cpu*100} minValue={0} maxValue={remaining_cpu + (project.assigned_cpu * 100)} onChange={(e, value) => act('allocate_cpu', {
+              project_name: project.name,
+              amount: Math.round((value / 100) * 100) / 100,
+            })} />
+            <Button icon="arrow-up" disabled={data.used_cpu === 1} onClick={(e, value) => act('max_cpu', {
+              project_name: project.name,
+            })}>Max
+            </Button>
+          </Fragment>
+        )}>
+          <Box inline bold>Research Cost:&nbsp;</Box>
+          <Box inline>{project.research_cost} THz</Box>
+          <br />
+          <Box inline bold>RAM Requirement:&nbsp;</Box>
+          <Box inline>{project.ram_required} TB</Box>
+          <br />
+          <Box inline bold>Research Requirements:&nbsp;</Box>
+          <Box inline>{project.research_requirements}</Box>
+          <Box mb={1}>
+            {project.description}
+          </Box>
+          <ProgressBar value={project.research_progress / project.research_cost}>
+            {Math.round((project.research_progress / project.research_cost * 100)* 100)
+              / 100}%
+            ({Math.round(project.research_progress * 100) / 100}/{project.research_cost} THz)
+          </ProgressBar>
+        </Section>
+      ))}
+    </Section>
+  );
+};
+
+const CompletedProjects = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  return (
+    <Section title="Completed Projects" buttons={(
+      <Fragment>
+        <Button.Checkbox checked={activeProjectsOnly}
+          onClick={() => setActiveProjectsOnly(!activeProjectsOnly)}>
+          See Runnable Projects Only
+        </Button.Checkbox>
+        <Input value={searchCompleted} placeholder="Search.." onInput={(e, value) => setSearchCompleted(value)} />
+      </Fragment>
+    )}>
+      <Tabs>
+        {data.categories.map((category, index) => (
+          <Tabs.Tab key={index}
+            selected={!searchCompleted ? selectedCategory === category : null}
+            onClick={(() => setCategory(category))}>
+            {category}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+      {data.completed_projects.filter(project => {
+        if (searchCompleted) {
+          const searchableString = String(project.name).toLowerCase();
+          return searchableString.match(new RegExp(searchCompleted, "i"));
+        }
+        if (activeProjectsOnly && !project.can_be_run) {
+          return false;
+        }
+        return project.category === selectedCategory;
+      }).map((project, index) => (
+        <Section key={index} title={(<Box inline color={project.can_be_run ? project.running ? "lightgreen" : "bad" : "lightgreen"}> {project.name} | {project.can_be_run ? project.running ? "Running" : "Not Running" : "Passive"}</Box>)}
+          buttons={!!project.can_be_run && (
+            <Button icon={project.running ? "stop" : "play"} color={project.running ? "bad" : "good"} onClick={(e, value) => act(project.running ? "stop_project" : "run_project", {
+              project_name: project.name,
+            })}>
+              {project.running ? "Stop" : "Run"}
+            </Button>
+          )}>
+          {!!project.can_be_run && (
+            <Box bold>RAM Requirement: {project.ram_required} TB</Box>
+          )}
+          <Box mb={1}>
+            {project.description}
+          </Box>
+        </Section>
+      ))}
+    </Section>
+  );
+};
+
+const AbilityCharging = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  return (
+    <Section title="Ability Charging">
             {data.chargeable_abilities.filter(ability => {
               return ability.uses < ability.max_uses;
             }).map((ability, index) => (
@@ -250,42 +281,45 @@ export const AiDashboard = (props, context) => {
               </Section>
             ))}
           </Section>
-        )}
-        {tab === 4 && (
-          <Section title="Computing Resources">
-            <Section title="Networked Resources"
-              buttons={(
-                <Button icon="trash" onClick={() => act("clear_ai_resources")}>Clear AI Resources</Button>
-              )}>
-              <LabeledList.Item>
-                CPU Capacity:
-                <Flex>
-                  <ProgressBar minValue={0} value={data.current_cpu}
-                    maxValue={1} >{amount_of_cpu} THz
-                  </ProgressBar>
-                  <NumberInput width="60px" unit="%" value={data.current_cpu * 100} minValue={0} maxValue={100} onChange={(e, value) => act('set_cpu', {
-                    amount_cpu: Math.round((value / 100) * 100) / 100,
-                  })} />
-                  <Button height={1.75} icon="arrow-up" onClick={() => act("max_cpu_assign")}>Max
-                  </Button>
-                </Flex>
+  );
+};
 
-              </LabeledList.Item>
-              <LabeledList.Item>
-                RAM Capacity:
-                <Flex>
-                  <ProgressBar minValue={0} value={data.current_ram}
-                    maxValue={data.max_ram} >{data.current_ram} TB
-                  </ProgressBar>
-                  <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram")} />
-                  <Button height={1.75} icon="minus" onClick={() => act('remove_ram')} />
-                </Flex>
+const NetworkingResources = (props, context) => {
+  const { act, data } = useBackend(context);
 
-              </LabeledList.Item>
-            </Section>
-          </Section>
-        )}
-      </Window.Content>
-    </Window>
+  const tooltipDisabled = data.human_only ? "Locked by organics. Please request their assistance." : ""
+
+  return (
+    <Section title="Computing Resources">
+      <Section title="Networked Resources"
+        buttons={(
+          <Button icon="trash" onClick={() => act("clear_ai_resources")} disabled={data.human_only} tooltip={tooltipDisabled}>Clear AI Resources</Button>
+        )}>
+        <LabeledList.Item>
+          CPU Capacity:
+          <Flex>
+            <ProgressBar minValue={0} value={data.current_cpu}
+              maxValue={1} >{amount_of_cpu} THz
+            </ProgressBar>
+            <NumberInput  width="60px" unit="%" value={data.current_cpu * 100} minValue={0} maxValue={100} onChange={(e, value) => act('set_cpu', {
+              amount_cpu: Math.round((value / 100) * 100) / 100,
+            })} disabled={data.human_only} tooltip={tooltipDisabled} />
+            <Button height={1.75} icon="arrow-up" onClick={() => act("max_cpu_assign")} disabled={data.human_only} tooltip={tooltipDisabled}>Max
+            </Button>
+          </Flex>
+
+        </LabeledList.Item>
+        <LabeledList.Item>
+          RAM Capacity:
+          <Flex>
+            <ProgressBar minValue={0} value={data.current_ram}
+              maxValue={data.max_ram} >{data.current_ram} TB
+            </ProgressBar>
+            <Button mr={1} ml={1} height={1.75} icon="plus" onClick={() => act("add_ram")} disabled={data.human_only} tooltip={tooltipDisabled} />
+            <Button height={1.75} icon="minus" onClick={() => act('remove_ram')} disabled={data.human_only} tooltip={tooltipDisabled} />
+          </Flex>
+        </LabeledList.Item>
+      </Section>
+    </Section>
   );
 };

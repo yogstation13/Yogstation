@@ -1,18 +1,26 @@
 /datum/ai_shared_resources
+	///Where our RAM is coming from. Associative array where the network is the key
 	var/ram_sources = list()
+	///Where our CPU is coming from. Associative array where the network is the key
 	var/cpu_sources = list()
 	
-
+	///Where our CPU is assigned to. Associative where either an AI or a network has values. Max total value = 1 (100%)
 	var/list/cpu_assigned = list()
+	///Where our CPU is assigned to. Associative where either an AI or a network has values
 	var/list/ram_assigned = list()
 
+	///List of all networks we are connected to
 	var/list/networks = list()
 
+	///How much RAM we had before updating resources
 	var/previous_ram = 0
+
+	///If resource allocation can only be changed physically at a console by a human
+	var/human_lock = FALSE 
 
 	
 
-/datum/ai_shared_resources/New(network_assigned_cpu, network_assigned_ram, datum/ai_network/split_network, datum/ai_network/starting_network)
+/datum/ai_shared_resources/New(network_assigned_cpu, network_assigned_ram, datum/ai_network/split_network, datum/ai_network/starting_network, _human_lock = FALSE)
 	if((network_assigned_ram || network_assigned_cpu) && split_network)
 		ram_assigned = network_assigned_ram
 		cpu_assigned = network_assigned_cpu
@@ -30,6 +38,8 @@
 		AN.rebuild_remote()
 
 	START_PROCESSING(SSobj, src)
+
+	human_lock = _human_lock
 
 /datum/ai_shared_resources/Destroy(network_assigned_cpu, network_assigned_ram, datum/ai_network/split_network, datum/ai_network/starting_network)
 	STOP_PROCESSING(SSobj, src)
@@ -136,7 +146,7 @@
 	networks -= split_network
 	update_resources()
 
-	new /datum/ai_shared_resources(network_cpu_assign, network_ram_assign, split_network)
+	new /datum/ai_shared_resources(network_cpu_assign, network_ram_assign, split_network, _human_lock = human_lock)
 
 	if(!length(networks))
 		qdel(src)
@@ -197,7 +207,7 @@
 
 
 /datum/ai_shared_resources/proc/set_cpu(target, amount)
-	if(!istype(target, /datum/ai_network) && !istype(target, /mob/living/silicon/ai))
+	if(!istype(target, /datum/ai_network) && !isAI(target))
 		stack_trace("Attempted to set_cpu with non-AI/network target! T: [target]")
 		return
 
@@ -211,24 +221,30 @@
 
 
 /datum/ai_shared_resources/proc/add_ram(target, amount)
-	if(!istype(target, /datum/ai_network) && !istype(target, /mob/living/silicon/ai))
-		stack_trace("Attempted to add_ram with non-AI/network target! T: [target]")
-		return
-
 	if(!target || !amount)
 		return
+	if(!istype(target, /datum/ai_network) && !isAI(target))
+		stack_trace("Attempted to add_ram with non-AI/network target! T: [target]")
+		return
+	if(isAI(target) && human_lock)
+		return
+
+	
 	ram_assigned[target] += amount
 
 	update_allocations()
 
 
 /datum/ai_shared_resources/proc/remove_ram(target, amount)
-	if(!istype(target, /datum/ai_network) && !istype(target, /mob/living/silicon/ai))
-		stack_trace("Attempted to remove_ram with non-AI/network target! T: [target]")
-		return
-
 	if(!target || !amount)
 		return
+
+	if(!istype(target, /datum/ai_network) && !isAI(target))
+		stack_trace("Attempted to remove_ram with non-AI/network target! T: [target]")
+		return
+	if(isAI(target) && human_lock)
+		return
+	
 	if(ram_assigned[target] - amount < 0)
 		ram_assigned[target] = 0
 	else
@@ -238,12 +254,15 @@
 
 
 /datum/ai_shared_resources/proc/clear_ai_resources(target)
-	if(!istype(target, /datum/ai_network) && !istype(target, /mob/living/silicon/ai))
-		stack_trace("Attempted to clear_ai_resources with non-AI/network target! T: [target]")
-		return
-
 	if(!target)
 		return
+	if(!istype(target, /datum/ai_network) && !isAI(target))
+		stack_trace("Attempted to clear_ai_resources with non-AI/network target! T: [target]")
+		return
+	if(isAI(target) && human_lock)
+		return
+
+	
 
 	remove_ram(target, ram_assigned[target])
 	cpu_assigned[target] = 0
