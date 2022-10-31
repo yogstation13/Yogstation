@@ -122,7 +122,7 @@
 	state_open = TRUE
 	density = FALSE
 
-/obj/machinery/suit_storage_unit/Initialize()
+/obj/machinery/suit_storage_unit/Initialize(mapload)
 	. = ..()
 	decon = new(list(src), FALSE)
 	wires = new /datum/wires/suit_storage_unit(src)
@@ -375,7 +375,9 @@
 		visible_message(span_notice("[user] inserts [I] into [src]."), span_notice("You load [I] into [src]."))
 		update_icon()
 		return
-
+	if(panel_open && is_wire_tool(I))
+		wires.interact(user)
+		return
 	if(!state_open && !uv)
 		if(default_deconstruction_screwdriver(user, "panel", "close", I))
 			return
