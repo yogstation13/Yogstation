@@ -6,6 +6,7 @@
 	icon_state = "close"
 	density = TRUE
 	max_integrity = 250
+	circuit = /obj/item/circuitboard/machine/suit_storage_unit
 
 	var/obj/item/clothing/suit/space/suit = null
 	var/obj/item/clothing/head/helmet/space/helmet = null
