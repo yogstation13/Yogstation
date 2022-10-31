@@ -95,7 +95,7 @@
 	cleave = TRUE
 	precise_attacks = TRUE
 	attack_sharpness = SHARP_EDGED
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/mechasword.ogg'
 	var/minimum_damage = 0			//Baby mechs with a scret combat module get a little boost
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/shortsword	//Our bread-and-butter mech shortsword for both slicing and stabbing baddies
