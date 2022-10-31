@@ -224,8 +224,8 @@
 	console_department = "Engineering"
 	name = "ai network console"
 	desc = "A stationary computer. This one comes preloaded with ai network administration software"
-	starting_files = list(	new /datum/computer_file/program/ai_network_interface, new /datum/computer_file/program/aidiag)
-	initial_program = /datum/computer_file/program/ai_network_interface
+	starting_files = list(	new /datum/computer_file/program/ai/ai_network_interface, new /datum/computer_file/program/aidiag)
+	initial_program = /datum/computer_file/program/ai/ai_network_interface
 	starting_components = list(	/obj/item/computer_hardware/network_card/wired,
 							/obj/item/computer_hardware/recharger/APC,
 							/obj/item/computer_hardware/hard_drive/super,

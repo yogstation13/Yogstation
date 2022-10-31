@@ -16,6 +16,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/obj/item/storage/photo_album/photo_albums = list()
 	var/list/obj/structure/sign/painting/painting_frames = list()
 	var/list/paintings = list()
+	var/list/ai_network_rankings = list("ram" = list(), "cpu" = list())
 
 /datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
@@ -27,6 +28,7 @@ SUBSYSTEM_DEF(persistence)
 		LoadAntagReputation()
 	LoadRandomizedRecipes()
 	LoadPaintings()
+	LoadAINetworkRanking()
 	return ..()
 
 /datum/controller/subsystem/persistence/proc/LoadPoly()
@@ -117,6 +119,16 @@ SUBSYSTEM_DEF(persistence)
 		return
 	antag_rep = json_decode(json)
 
+/datum/controller/subsystem/persistence/proc/LoadAINetworkRanking()
+	var/json = file2text("data/AINetworkRank.json")
+	if(!json)
+		var/json_file = file("data/AINetworkRank.json")
+		if(!fexists(json_file))
+			WARNING("Failed to load ai network ranks. File likely corrupt.")
+			return
+		return
+	ai_network_rankings = json_decode(json)
+
 /datum/controller/subsystem/persistence/proc/SetUpTrophies(list/trophy_items)
 	for(var/A in GLOB.trophy_cases)
 		var/obj/structure/displaycase/trophy/T = A
@@ -153,6 +165,7 @@ SUBSYSTEM_DEF(persistence)
 	SaveRandomizedRecipes()
 	SavePaintings()
 	SaveScars()
+	SaveAIRankings()
 
 /datum/controller/subsystem/persistence/proc/GetPhotoAlbums()
 	var/album_path = file("data/photo_albums.json")
@@ -288,6 +301,49 @@ SUBSYSTEM_DEF(persistence)
 
 	fdel(FILE_ANTAG_REP)
 	text2file(json_encode(antag_rep), FILE_ANTAG_REP)
+
+/datum/controller/subsystem/persistence/proc/SaveAIRankings()
+	var/min_ram = 0
+	var/min_cpu = 0
+
+	for(var/ram_record in ai_network_rankings["ram"])
+		if(ram_record < min_ram)
+			min_ram = ram_record
+	for(var/cpu_record in ai_network_rankings["cpu"])
+		if(cpu_record < min_ram)
+			min_cpu = cpu_record
+
+	var/list/resource_list = list()
+	for(var/datum/ai_network/AN in SSmachines.ainets)
+		resource_list |= AN.resources
+
+	var/list/contenders_ram = list()
+	var/list/contenders_cpu = list()
+
+	for(var/datum/ai_shared_resources/R in resource_list)
+		if(R.total_cpu() > min_cpu)
+			contenders_cpu += R.total_cpu()
+		if(R.total_ram() > min_ram)
+			contenders_ram += R.total_ram()
+
+	var/cpu_winner = max(contenders_cpu)
+	var/ram_winner = max(contenders_ram)
+	if(!isnull(cpu_winner))
+		ai_network_rankings["cpu"] += cpu_winner
+		ai_network_rankings["cpu"] = sortList(ai_network_rankings["cpu"])
+		if(length(ai_network_rankings["cpu"]) > 5)
+			ai_network_rankings["cpu"].len = 5
+
+	if(!isnull(ram_winner))
+		ai_network_rankings["ram"] += ram_winner
+		ai_network_rankings["ram"] = sortList(ai_network_rankings["ram"])
+		if(length(ai_network_rankings["ram"]) > 5)
+			ai_network_rankings["ram"].len = 5
+
+
+
+	fdel("data/AINetworkRank.json")
+	text2file(json_encode(ai_network_rankings), "data/AINetworkRank.json")
 
 
 /datum/controller/subsystem/persistence/proc/LoadRandomizedRecipes()

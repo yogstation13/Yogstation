@@ -15,7 +15,7 @@
 
 /obj/item/modular_computer/laptop/preset/network_admin
 	desc = "A multi-purpose laptop often used by network admins."
-	starting_files = list(new /datum/computer_file/program/ai_network_interface)
+	starting_files = list(new /datum/computer_file/program/ai/ai_network_interface)
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive,

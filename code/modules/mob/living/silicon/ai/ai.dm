@@ -558,7 +558,7 @@
 	if(href_list["instant_download"])
 		if(!href_list["console"])
 			return
-		var/datum/computer_file/program/ai_network_interface/C = locate(href_list["console"])
+		var/datum/computer_file/program/ai/ai_network_interface/C = locate(href_list["console"])
 		if(!C)
 			return
 		if(C.downloading != src)

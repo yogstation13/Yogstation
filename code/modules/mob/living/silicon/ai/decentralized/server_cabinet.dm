@@ -192,12 +192,12 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 
 /obj/machinery/ai/server_cabinet/prefilled/Initialize()
+	. = ..()
 	var/obj/item/server_rack/roundstart/rack = new(src)
 	total_cpu += rack.get_cpu()
 	total_ram += rack.get_ram()
 	cached_power_usage += rack.get_power_usage()
 	installed_racks += rack
-	return ..()
 
 /obj/machinery/ai/server_cabinet/connect_to_network()
 	. = ..()

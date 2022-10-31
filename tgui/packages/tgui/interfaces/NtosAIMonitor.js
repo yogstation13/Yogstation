@@ -113,7 +113,7 @@ const LocalDashboard = (props, context) => {
   let network_remaining_cpu = data.remaining_network_cpu * 100;
 
   return (
-    <Section title="Local Dashboard" buttons={(<Button icon="sign-out-alt" color="bad" onClick={() => act("log_out")}>Log Out</Button>)}>
+    <Section title="Local Dashboard">
       <LabeledList>
         <LabeledList.Item label="Mined cryptocurrency" buttons={(<Button icon="money-bill-wave" color="good" disabled={!data.bitcoin_amount} onClick={() => act("bitcoin_payout")}>Withdraw</Button>)}>
           {data.bitcoin_amount} cr
