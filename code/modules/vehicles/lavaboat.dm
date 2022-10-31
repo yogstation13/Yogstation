@@ -10,14 +10,14 @@
 	can_buckle = TRUE
 	legs_required = 0
 	arms_required = 0
+	var/fb = 70
 
 /obj/vehicle/ridden/lavaboat/Initialize()
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.keytype = /obj/item/oar
 	D.allowed_turf_typecache = typecacheof(/turf/open/lava) + typecacheof(/turf/open/water)
-	var/datum/component/fishingbonus/fb = LoadComponent(/datum/component/fishingbonus)
-	fb.fishing_bonus = 50
+	AddComponent(/datum/component/fishingbonus, fb)
 
 /obj/item/oar
 	name = "oar"
@@ -64,6 +64,7 @@
 	name = "mysterious boat"
 	desc = "This boat moves where you will it, without the need for an oar."
 	icon_state = "dragon_boat"
+	fb = 85
 
 /obj/vehicle/ridden/lavaboat/dragon/Initialize()
 	. = ..()
@@ -71,5 +72,4 @@
 	D.vehicle_move_delay = 1
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(1, 2), TEXT_SOUTH = list(1, 2), TEXT_EAST = list(1, 2), TEXT_WEST = list( 1, 2)))
 	D.keytype = null
-	var/datum/component/fishingbonus/fb = LoadComponent(/datum/component/fishingbonus)
-	fb.fishing_bonus = 80
+	AddComponent(/datum/component/fishingbonus, fb)
