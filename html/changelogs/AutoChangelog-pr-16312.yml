@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - mapping: "Asteroid Station medical foyer now has a medical kiosk"
-  - mapping: "Asteroid Station security equipment room now has a pepperspray tank"
-  - mapping: "Asteroid Station detective autopsy table now has a paper tutorial"

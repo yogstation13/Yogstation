@@ -1,6 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - mapping: "Move AsteroidStation Warehouse north and expands it"
-  - mapping: "Moves AsteroidStation Delivery Office to near the lobby"
-  - bugfix: "Fix AsteroidStation Cargo Office Atmospherics pipes"
