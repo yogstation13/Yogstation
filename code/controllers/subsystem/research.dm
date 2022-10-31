@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(research)
 	var/list/techweb_designs = list()			//associative id = node datum
 	var/list/datum/techweb/techwebs = list()
 	var/datum/techweb/science/science_tech
+	var/datum/techweb/ruin/ruin_tech
 	var/datum/techweb/admin/admin_tech
 	var/datum/techweb_node/error_node/error_node	//These two are what you get if a node/design is deleted and somehow still stored in a console.
 	var/datum/design/error_design/error_design
@@ -46,6 +47,7 @@ SUBSYSTEM_DEF(research)
 	initialize_all_techweb_designs()
 	initialize_all_techweb_nodes()
 	science_tech = new /datum/techweb/science
+	ruin_tech = new /datum/techweb/ruin
 	admin_tech = new /datum/techweb/admin
 	autosort_categories()
 	error_design = new

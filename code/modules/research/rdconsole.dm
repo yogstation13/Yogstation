@@ -1175,3 +1175,13 @@ Nothing else in the console has ID requirements.
 
 	req_access = list()	//lA AND SETTING MANIPULATION REQUIRES SCIENTIST ACCESS.
 
+/obj/machinery/computer/rdconsole/nolock/ruin
+	name = "R&D Console"
+	desc = "A console used to interface with R&D tools. This one seems to run on different research tech and does not have access requirement."
+
+/obj/machinery/computer/rdconsole/nolock/ruin/Initialize()
+    . = ..()
+    if(stored_research)
+        stored_research.consoles_accessing -= src
+    stored_research = SSresearch.ruin_tech
+    stored_research.consoles_accessing[src] = TRUE
