@@ -13,12 +13,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,26)
+	var/loot = rand(1,25)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
 		if(2)
-			new /obj/item/clothing/suit/space/hardsuit/cult(src)
+			new /obj/item/clothing/under/drip(src)
+			new /obj/item/clothing/shoes/drip(src)
 		if(3)
 			new /obj/item/soulstone/anybody(src)
 		if(4)
@@ -37,7 +38,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(9)
 			new /obj/item/ship_in_a_bottle(src)
 		if(10)
-			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
+			new /obj/item/clothing/glasses/telepathy(src)
 		if(11)
 			new /obj/item/jacobs_ladder(src)
 		if(12)
@@ -75,9 +76,6 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 		if(25)
 			new /obj/item/clothing/gloves/gauntlets(src)
-		if(26)
-			new /obj/item/clothing/under/drip(src)
-			new /obj/item/clothing/shoes/drip(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -152,6 +150,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon_state = "asclepius_dormant"
 	var/activated = FALSE
 	var/usedHand
+	var/list/advanced_surgeries = list()
 
 /obj/item/rod_of_asclepius/attack_self(mob/user)
 	if(activated)
@@ -194,9 +193,29 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 /obj/item/rod_of_asclepius/proc/activated()
 	item_flags = DROPDEL
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-	desc = "A short wooden rod with a mystical snake inseparably gripping itself and the rod to your forearm. It flows with a healing energy that disperses amongst yourself and those around you. "
+	desc = "A short wooden rod with a mystical snake inseparably gripping itself and the rod to your forearm. It flows with a healing energy that disperses amongst yourself and those around you. The snake can learn surgeries from disks or operating consoles by hitting them with it."
 	icon_state = "asclepius_active"
 	activated = TRUE
+
+/obj/item/rod_of_asclepius/afterattack(obj/item/O, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(!activated)
+		return
+	if(istype(O, /obj/item/disk/surgery))
+		to_chat(user, span_notice("Your snake bites into [O], and seems to have learned the surgery procedures stored in the disk."))
+		var/obj/item/disk/surgery/D = O
+		if(do_after(user, 1 SECONDS, O))
+			advanced_surgeries |= D.surgeries
+		return TRUE
+	if(istype(O, /obj/machinery/computer/operating))
+		to_chat(user, span_notice("You move your snake in view of [O], allowing it to memorize the surgery procedures from the console."))
+		var/obj/machinery/computer/operating/OC = O
+		if(do_after(user, 1 SECONDS, O))
+			advanced_surgeries |= OC.advanced_surgeries
+		return TRUE
+	return
 
 //Memento Mori
 /obj/item/clothing/neck/necklace/memento_mori
@@ -332,6 +351,25 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	user.sight |= sight_flags
 	if(!isnull(lighting_alpha))
 		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
+
+/obj/item/clothing/glasses/telepathy
+	name = "blindfold of telepathy"
+	desc = "Covers the eyes, preventing natural sight. In return for committing oneself forever to the senses of the mind, the senses of the body are allowed to rest."
+	icon_state = "blindfoldwhite"
+	item_state = "blindfoldwhite"
+	flash_protect = 10 //they're blind, yo
+	tint = 2
+	darkness_view = 0
+	var/sight_flags = SEE_MOBS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/item/clothing/glasses/telepathy/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_GLASSES)
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+		user.sight |= sight_flags
+		item_flags = DROPDEL
 
 //Red/Blue Cubes
 /obj/item/warp_cube
@@ -625,12 +663,12 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 20)//20% chance at 3 gold coins, the most basic rs drop
-			for(var/i in 1 to 3) 
+			for(var/i in 1 to 3)
 				new /obj/item/coin/gold(spot)
 		if(21 to 30)//10% chance for 5 gold coins
 			for(var/i in 1 to 5)
 				new /obj/item/coin/gold(spot)
-		if(31 to 40)//10% chance for 2 GOLD (banana) DOUBLOONS 
+		if(31 to 40)//10% chance for 2 GOLD (banana) DOUBLOONS
 			for(var/i in 1 to 2)
 				new /obj/item/coin/bananium(spot)
 		if(41 to 50) //10% chance to spawn 10 gold, diamond, or bluespace crystal ores, because runescape ore drops and gem drops
@@ -653,11 +691,11 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 				if(2)
 					new /obj/item/seeds/lavaland/ember(spot)
 				if(3)
-					new /obj/item/seeds/lavaland/inocybe(spot) 
+					new /obj/item/seeds/lavaland/inocybe(spot)
 				if(4)
-					new /obj/item/seeds/lavaland/polypore(spot) 
+					new /obj/item/seeds/lavaland/polypore(spot)
 				if(5)
-					new /obj/item/seeds/lavaland/porcini(spot) 
+					new /obj/item/seeds/lavaland/porcini(spot)
 			if(prob(25)) //25% chance to get strange seeds, should they feel like cooperating with botanists. this would also be interesting to see ash walkers get lmao
 				new /obj/item/seeds/random(spot)
 		if(71 to 80) //magmite is cool and somewhat rare i think?
@@ -696,13 +734,14 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "Flight Potion"
 	description = "Strange mutagenic compound of unknown origins."
 	reagent_state = LIQUID
+	process_flags = ORGANIC | SYNTHETIC
 	color = "#FFEBEB"
 
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C)) || (reac_volume < 5)) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
+		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || (reac_volume < 5))) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
 			if(method == INGEST && show_message)
 				to_chat(C, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 			return ..()
@@ -721,7 +760,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 		if(isskeleton(C))
 			to_chat(C, span_notice("Your ribcage feels... bigger?"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
-		if(ispreternis(C))
+		if(ispreternis(C) || isipc(C))
 			to_chat(C, span_notice("The servos in your back feel... different?"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		playsound(C.loc, 'sound/items/poster_ripped.ogg', 50, TRUE, -1)
@@ -811,7 +850,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	M.drop_loot()
 	M.faction = user.faction
 	summons |= M
-	
+
 ///Bosses
 
 //Miniboss Miner
@@ -1759,26 +1798,13 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	desc = "It feels cold to the touch..."
 
 /obj/structure/closet/crate/sphere/stalwart/PopulateContents()
-	var/loot = rand(1,4)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
 			new /obj/item/gem/purple(src)
 		if(2)
 			new /obj/item/twohanded/bonespear/stalwartpike(src)
-			new /obj/item/ai_cpu/stalwart(src)
-		if(3)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/stack/ore/dilithium_crystal(src)
-			new /obj/item/gem/purple(src)
-		if(4)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
-			new /obj/item/stack/ore/bluespace_crystal/artificial(src)
 			new /obj/item/ai_cpu/stalwart(src)
 
 //Just some minor stuff
@@ -1802,7 +1828,7 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "grandcore"
 	slot = "hivecore"
-	w_class = WEIGHT_CLASS_SMALL 
+	w_class = WEIGHT_CLASS_SMALL
 	decay_factor = 0
 	actions_types = list(/datum/action/item_action/organ_action/threebloodlings)
 
@@ -1832,16 +1858,16 @@ GLOBAL_LIST_EMPTY(bloodmen_list)
 	name = "Summon bloodlings"
 	desc = "Summon a conjure a few bloodlings at the cost of 6% blood or 8 brain damage for races without blood."
 	var/next_expulsion = 0
-	var/cooldown = 10 
-	
+	var/cooldown = 10
+
 /datum/action/item_action/organ_action/threebloodlings/Trigger()
 	var/mob/living/carbon/H = owner
-	. = ..() 
+	. = ..()
 	if(next_expulsion > world.time)
 		to_chat(owner, span_warning("Don't spill your blood so haphazardly!"))
 		return
 	if(NOBLOOD in H.dna.species.species_traits)
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage 
+		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 8) //brain damage wont stop you from running away so opting for that instead of poison or breath damage
 		to_chat(H, "<span class ='userdanger'>Your head pounds as you produce bloodlings!</span>")
 	else
 		to_chat(H, "<span class ='userdanger'>You spill your blood, and it comes to life as bloodlings!</span>")

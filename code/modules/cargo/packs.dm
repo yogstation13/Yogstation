@@ -260,7 +260,7 @@
 
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
-	desc = "Contains two 20-round magazines for the WT-550 Auto Rifle, three boxes of buckshot ammo, three boxes of rubber ammo, and special .38 speedloaders. Requires Security access to open."
+	desc = "Contains two 22-round magazines for the WT-550 Auto Carbine, three boxes of buckshot ammo, three boxes of rubber ammo, and special .38 speedloaders. Requires Security access to open."
 	cost = 2500
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
@@ -569,13 +569,19 @@
 
 /datum/supply_pack/security/armory/trackingimp
 	name = "Tracking Implants Crate"
-	desc = "Contains four tracking implants and three speedloaders for the Caldwell Tracking Revolver. Requires Armory access to open."
+	desc = "Contains a box with four tracking implants. Requires Armory access to open."
 	cost = 2000
-	contains = list(/obj/item/storage/box/trackimp,
-					/obj/item/ammo_box/tra32,
+	contains = list(/obj/item/storage/box/trackimp)
+	crate_name = "tracking implant crate"
+
+/datum/supply_pack/security/armory/tracrevolver
+	name = "TRAC Revolver Crate"
+	desc = "Contains one Caldwell Tracking Revolver and two speed loaders for it. Requires Armory access to open."
+	cost = 4000
+	contains = list(/obj/item/gun/ballistic/revolver/tracking,
 					/obj/item/ammo_box/tra32,
 					/obj/item/ammo_box/tra32)
-	crate_name = "tracking implant crate"
+	crate_name = "TRAC revolver crate"
 
 /datum/supply_pack/security/armory/laserarmor
 	name = "Reflective Jacket Crate"
@@ -678,23 +684,23 @@
 	crate_name = "swat crate"
 
 /datum/supply_pack/security/armory/wt550_single
-	name = "Surplus Security Autorifle Single-Pack"
-	desc = "Contains one high-powered, semiautomatic rifle chambered in 4.6x30mm rounds. Requires Armory access to open."
+	name = "Surplus Security Autocarbine Single-Pack"
+	desc = "Contains one high-powered, semiautomatic carbine chambered in 4.6x30mm rounds. Requires Armory access to open."
 	cost = 2000
 	contains = list(/obj/item/gun/ballistic/automatic/wt550)
 	small_item = TRUE
 
 /datum/supply_pack/security/armory/wt550
-	name = "Surplus Security Autorifle Crate"
-	desc = "Contains two high-powered, semiautomatic rifles chambered in 4.6x30mm rounds. Requires Armory access to open."
+	name = "Surplus Security Autocarbine Crate"
+	desc = "Contains two high-powered, semiautomatic carbines chambered in 4.6x30mm rounds. Requires Armory access to open."
 	cost = 3500
 	contains = list(/obj/item/gun/ballistic/automatic/wt550,
 					/obj/item/gun/ballistic/automatic/wt550)
 	crate_name = "auto rifle crate"
 
 /datum/supply_pack/security/armory/wt550ammo
-	name = "Surplus Security Autorifle Ammo Crate"
-	desc = "Contains four 22-round magazines for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autocarbine Ammo Crate"
+	desc = "Contains four 22-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
 					/obj/item/ammo_box/magazine/wt550m9,
@@ -702,8 +708,8 @@
 					/obj/item/ammo_box/magazine/wt550m9)
 
 /datum/supply_pack/security/armory/wt550ammo_rubber
-	name = "Surplus Security Autorifle Ammo Crate"
-	desc = "Contains four 22-round less-than-lethal magazines for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autocarbine Ammo Crate"
+	desc = "Contains four 22-round less-than-lethal magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 2500
 	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtr,
 					/obj/item/ammo_box/magazine/wt550m9/wtr,
@@ -711,8 +717,8 @@
 					/obj/item/ammo_box/magazine/wt550m9/wtr)
 
 /datum/supply_pack/security/armory/wt550ammo_single
-	name = "Surplus Security Autorifle Ammo Crate Single-Pack"
-	desc = "Contains a 22-round magazine for the surplus security autorifle. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
+	name = "Surplus Security Autocarbine Ammo Crate Single-Pack"
+	desc = "Contains a 22-round magazine for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
 	contains = list(/obj/item/ammo_box/magazine/wt550m9)
 	small_item = TRUE
@@ -1450,6 +1456,40 @@
 		var/item = pick(contains)
 		new item(C)
 
+/datum/supply_pack/medical/gummies
+	name = "Gummy Bear Bottle Crate"
+	desc = "Contains several assorted bottles of gummy bears."
+	cost = 4000
+	contains = list(/obj/item/storage/pill_bottle/gummies/vitamin,
+					/obj/item/storage/pill_bottle/gummies/melatonin,
+					/obj/item/storage/pill_bottle/gummies/nitro,
+					/obj/item/storage/pill_bottle/gummies/mime)
+	crate_name = "gummy bear crate"
+	small_item = TRUE
+
+/datum/supply_pack/medical/gummies/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
+		var/item = pick(contains)
+		new item(C)
+
+/datum/supply_pack/medical/gummies/illegal
+	name = "Illegal Gummy Bear Bottle Crate"
+	desc = "Contains several assorted bottles of less-than-legal gummy bears."
+	cost = 5000
+	contains = list(/obj/item/storage/pill_bottle/gummies/meth,
+					/obj/item/storage/pill_bottle/gummies/drugs,
+					/obj/item/storage/pill_bottle/gummies/floorbear,
+					/obj/item/storage/pill_bottle/gummies/mindbreaker,
+					/obj/item/storage/pill_bottle/gummies/omnizine)
+	crate_name = "illegal gummy bear crate"
+	contraband = TRUE
+	small_item = TRUE
+
+/datum/supply_pack/medical/gummies/illegal/fill(obj/structure/closet/crate/C)
+	for(var/i in 1 to 6)
+		var/item = pick(contains)
+		new item(C)
+
 /datum/supply_pack/medical/surgery
 	name = "Surgical Supplies Crate"
 	desc = "Do you want to perform surgery, but don't have one of those fancy shmancy degrees? Just get started with this crate containing a medical duffelbag, Sterilizine spray and collapsible roller bed."
@@ -2036,7 +2076,8 @@
 					/obj/item/pizzabox/mushroom,
 					/obj/item/pizzabox/meat,
 					/obj/item/pizzabox/vegetable,
-					/obj/item/pizzabox/pineapple)
+					/obj/item/pizzabox/pineapple,
+					/obj/item/pizzabox/seafood)
 	crate_name = "pizza crate"
 	var/static/anomalous_box_provided = FALSE
 
@@ -2289,12 +2330,49 @@
 
 /datum/supply_pack/critter/snake
 	name = "Snake Crate"
-	desc = "Tired of these MOTHER FUCKING snakes on this MOTHER FUCKING space station? Then this isn't the crate for you. Contains three poisonous snakes."
+	desc = "Tired of these MOTHER FUCKING snakes on this MOTHER FUCKING space station? Then this isn't the crate for you. Contains three non-venomous snakes."
 	cost = 3000
+	contains = list(/mob/living/simple_animal/hostile/retaliate/poison/snake/novenom,
+					/mob/living/simple_animal/hostile/retaliate/poison/snake/novenom,
+					/mob/living/simple_animal/hostile/retaliate/poison/snake/novenom)
+	crate_name = "snake crate"
+
+/datum/supply_pack/critter/snake/venomous
+	name = "Viper Crate"
+	desc = "A crate of three Vipers. Handle carefully."
+	cost = 5000
 	contains = list(/mob/living/simple_animal/hostile/retaliate/poison/snake,
 					/mob/living/simple_animal/hostile/retaliate/poison/snake,
 					/mob/living/simple_animal/hostile/retaliate/poison/snake)
-	crate_name = "snake crate"
+	crate_name = "viper crate"
+	contraband = TRUE
+
+/datum/supply_pack/critter/gator
+	name = "Gator Crate"
+	desc = "Sewage not included..."
+	hidden = TRUE
+	cost = 3000
+	contains = list(/mob/living/simple_animal/hostile/retaliate/gator,
+					/mob/living/simple_animal/hostile/retaliate/gator,
+					/mob/living/simple_animal/hostile/retaliate/gator)
+	crate_name = "gator crate"
+
+/datum/supply_pack/critter/mothroach
+	name = "Mothroach Crate"
+	desc = "Put the mothroach on your head and find out what true cuteness looks like."
+	cost = 7500
+	contains = list(/mob/living/simple_animal/pet/mothroach)
+	crate_name = "mothroach crate"
+
+/datum/supply_pack/critter/axolotl
+	name = "Axolotl Crate"
+	desc = "Contains 4 axolotls to pet."
+	cost = 4000
+	contains = list(/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl,
+					/mob/living/simple_animal/pet/axolotl)
+	crate_name = "axolotl crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Costumes & Toys /////////////////////////////////
@@ -2347,6 +2425,7 @@
 					/obj/item/storage/pill_bottle/lsd,
 					/obj/item/storage/pill_bottle/aranesp,
 					/obj/item/storage/pill_bottle/stimulant,
+					/obj/item/storage/pill_bottle/gummies/omnizine,
 					/obj/item/toy/cards/deck/syndicate,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,
@@ -2769,6 +2848,15 @@
 	crate_name = "radiant dance machine mark IV crate"
 	crate_type = /obj/structure/closet/crate/large
 
+/datum/supply_pack/misc/jukebox/disco/portable
+	name = "Portable Radiant Dance Machine Crate"
+	desc = "It's a jukebox with more lights. Tiny, even..and with no sound. Three of them."
+	cost = 4500
+	contains = list(/obj/item/discoballdeployer,
+					/obj/item/discoballdeployer,
+					/obj/item/discoballdeployer)
+	crate_name = "portable radiant dance machine crate"
+
 /datum/supply_pack/misc/pda
 	name = "Modular Personal Digital Assistant Crate"
 	desc = "A create containing a modular PDA."
@@ -2808,10 +2896,3 @@
 	small_item = TRUE
 	contains = list(/obj/item/wallframe/telescreen/preset)
 	crate_name = "telescreen crate"
-
-/datum/supply_pack/critter/mothroach
-	name = "Mothroach Crate"
-	desc = "Put the mothroach on your head and find out what true cuteness looks like."
-	cost = 7500
-	contains = list(/mob/living/simple_animal/friendly/mothroach)
-	crate_name = "mothroach crate"

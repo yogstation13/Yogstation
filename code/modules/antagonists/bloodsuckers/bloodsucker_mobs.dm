@@ -28,7 +28,7 @@
 	harm_intent_damage = 25
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attacktext = "violently mawls"
+	attacktext = "violently mauls"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 5)
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_WALLS

@@ -2162,7 +2162,7 @@
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
-/obj/item/melee/baseball_bat{
+/obj/item/twohanded/required/baseball_bat{
 	desc = "Don't tell anyone you put any points into dex, though.";
 	icon_state = "swordon";
 	item_state = "swordon";
@@ -3285,7 +3285,7 @@
 	pixel_x = 32
 	},
 /obj/item/stack/cable_coil,
-/obj/item/melee/baseball_bat{
+/obj/item/twohanded/required/baseball_bat{
 	desc = "A staple of security force interrogations.";
 	icon_state = "baseball_bat_metal";
 	name = "kneecapper"

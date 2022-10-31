@@ -26,14 +26,14 @@
 	var/previous_health
 
 	//Hud stuff
-	var/obj/screen/inv1 = null
-	var/obj/screen/inv2 = null
-	var/obj/screen/inv3 = null
-	var/obj/screen/thruster_button = null
-	var/obj/screen/hands = null
+	var/atom/movable/screen/inv1 = null
+	var/atom/movable/screen/inv2 = null
+	var/atom/movable/screen/inv3 = null
+	var/atom/movable/screen/thruster_button = null
+	var/atom/movable/screen/hands = null
 
 	var/shown_robot_modules = 0	///Used to determine whether they have the module menu shown or not
-	var/obj/screen/robot_modules_background
+	var/atom/movable/screen/robot_modules_background
 
 //3 Modules can be activated at any one time.
 	var/obj/item/robot_module/module = null
@@ -85,14 +85,14 @@
 	var/lamp_intensity = 3
 	///Lamp button reference
 	var/lamp_cooldown = 0 ///Flag for if the lamp is on cooldown after being forcibly disabled
-	var/obj/screen/robot/lamp/lampButton
+	var/atom/movable/screen/robot/lamp/lampButton
 
 	var/sight_mode = 0
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD)
 
 	///The reference to the built-in tablet that borgs carry.
 	var/obj/item/modular_computer/tablet/integrated/modularInterface
-	var/obj/screen/robot/modPC/interfaceButton
+	var/atom/movable/screen/robot/modPC/interfaceButton
 
 	///Flash resistance
 	var/sensor_protection = FALSE
@@ -314,7 +314,7 @@
 		length += L.len
 
 	return length
-	
+
 /mob/living/silicon/robot/verb/view_manifest()
 	set name = "View Crew Manifest"
 	set category = "Robot Commands"
@@ -432,7 +432,7 @@
 			if(!W.use_tool(src, user, 50))
 				return
 			if(health > 0)
-				return //safety check to prevent spam clciking and queing
+				return //safety check to prevent spam clicking and queing
 
 		adjustBruteLoss(-30)
 		updatehealth()
@@ -731,7 +731,7 @@
 	if(wires.is_cut(WIRE_LOCKDOWN))
 		state = TRUE
 	if(state)
-		throw_alert("locked", /obj/screen/alert/locked)
+		throw_alert("locked", /atom/movable/screen/alert/locked)
 	else
 		clear_alert("locked")
 	lockcharge = state
@@ -742,7 +742,7 @@
 	module.rebuild_modules()
 	update_icons()
 	if(emagged)
-		throw_alert("hacked", /obj/screen/alert/hacked)
+		throw_alert("hacked", /atom/movable/screen/alert/hacked)
 	else
 		clear_alert("hacked")
 
@@ -753,6 +753,14 @@
 	if(usr.stat == DEAD)
 		return //won't work if dead
 	checklaws()
+
+/mob/living/silicon/robot/verb/changeaccent()
+	set category = "Robot Commands"
+	set name = "Change Accent"
+
+	if(usr.stat == DEAD)
+		return //won't work if dead
+	accentchange()
 
 /mob/living/silicon/robot/verb/set_automatic_say_channel() //Borg version of setting the radio for autosay messages.
 	set name = "Set Auto Announce Mode"
@@ -1354,5 +1362,5 @@
 	if(program)
 		program.force_full_update()
 
-/mob/living/silicon/robot/get_eye_protection() 
+/mob/living/silicon/robot/get_eye_protection()
 	return sensor_protection

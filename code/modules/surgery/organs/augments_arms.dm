@@ -202,7 +202,7 @@
 /obj/item/organ/cyberimp/arm/toolset/Destroy()
 	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
 	. = ..()
-	
+
 /obj/item/organ/cyberimp/arm/toolset/emag_act()
 	if(!(locate(/obj/item/kitchen/knife/combat/cyborg) in items_list))
 		to_chat(usr, span_notice("You unlock [src]'s integrated knife!"))
@@ -389,13 +389,15 @@
 		F.I = src
 
 /obj/item/organ/cyberimp/arm/syndie_mantis
-	name = "G.O.R.L.E.X. mantis blade implants"
+	name = "G.O.R.L.E.X. mantis blade implant"
 	desc = "Modernized mantis blades designed and coined by Tiger operatives. Energy actuators makes the blade a much deadlier weapon."
 	contents = newlist(/obj/item/mantis/blade/syndicate)
 	syndicate_implant = TRUE
 
-/obj/item/organ/cyberimp/arm/syndie_mantis/l
-	zone = BODY_ZONE_L_ARM
+/obj/item/organ/cyberimp/arm/syndie_hammer
+	name = "Vxtvul Hammer implant"
+	desc = "A folded Vxtvul Hammer designed to be incorporated into preterni chassis. Surgery can permit it to fit in other organic bodies."
+	contents = newlist(/obj/item/twohanded/vxtvulhammer)
 	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/nt_mantis
@@ -403,11 +405,17 @@
 	desc = "Retractable arm-blade implants to get you out of a pinch. Wielding two will let you double-attack."
 	contents = newlist(/obj/item/mantis/blade/NT)
 
-/obj/item/organ/cyberimp/arm/nt_mantis/l
+/obj/item/organ/cyberimp/arm/nt_mantis/left
 	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/power_cord
 	name = "power cord implant"
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
 	contents = newlist(/obj/item/apc_powercord)
-	zone = "l_arm" 
+	zone = "l_arm"
+
+/obj/item/organ/cyberimp/arm/flash/rev
+	name = "revolutionary brainwashing implant"
+	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
+	contents = newlist(/obj/item/assembly/flash/armimplant/rev)
+	syndicate_implant = TRUE

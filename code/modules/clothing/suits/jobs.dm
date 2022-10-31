@@ -67,6 +67,11 @@
 	icon_state = "greydet"
 	item_state = "greydet"
 
+/obj/item/clothing/suit/det_suit/grey/evil
+	name = "padded trenchcoat"
+	desc = "A grey trenchcoat that offers significantly more protection than your average duster."
+	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
+
 /obj/item/clothing/suit/det_suit/tan
 	name = "tan trenchcoat"
 	desc = "For those warmer days in the city. Or nights, if you're a grizzled P.I."
@@ -87,7 +92,7 @@
 	icon_state = "hazard"
 	item_state = "hazard"
 	blood_overlay_type = "armor"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/t_scanner, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/t_scanner, /obj/item/radio, /obj/item/extinguisher/mini)
 	resistance_flags = NONE
 
 //Lawyer

@@ -1,5 +1,10 @@
+#define STARTING_PAYCHECKS 3 // Amount of paychecks
 #define STARTING_PAYCHECKS_MIN 50 // Minimum roundstart money
 #define STARTING_PAYCHECKS_MAX 250 // Maximum roundstart money
+/// How much mail the Economy SS will create per minute, regardless of firing time.
+#define MAX_MAIL_PER_MINUTE 3
+/// Probability of using letters of envelope sprites on all letters.
+#define FULL_CRATE_LETTER_ODDS 70
 
 #define PAYCHECK_ASSISTANT 5
 #define PAYCHECK_MINIMAL 5

@@ -395,4 +395,8 @@
 	results = list(/datum/reagent/medicine/radscrub = 3)
 	required_reagents = list(/datum/reagent/medicine/potass_iodide = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/medicine/c2/seiver = 1)
 	required_temp = 200
-	is_cold_recipe = 1
+	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/medicine/seraka_destroy //seraka extract is destroyed by sodium hydroxide
+	results = list(/datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/medicine/coagulant/seraka_extract = 1, /datum/reagent/lye = 1)

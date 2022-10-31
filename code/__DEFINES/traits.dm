@@ -135,7 +135,6 @@
 #define TRAIT_DISFIGURED		"disfigured"
 #define TRAIT_XENO_HOST			"xeno_host"	//Tracks whether we're gonna be a baby alien's mummy.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
-#define TRAIT_STUNRESISTANCE    "stun_resistance"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
@@ -339,6 +338,7 @@
 #define HORROR_TRAIT "horror"
 #define HOLDER_TRAIT "holder_trait"
 #define SINFULDEMON_TRAIT "sinfuldemon"
+#define CHANGESTING_TRAIT "changesting"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
