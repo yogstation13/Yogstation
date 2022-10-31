@@ -89,6 +89,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	C.clear_fullscreen("preternis_emag")
 	C.remove_movespeed_modifier("preternis_teslium")
 	C.remove_movespeed_modifier("preternis_water")
+	C.remove_movespeed_modifier("preternis_maglock")
 
 	if(lockdown)
 		maglock.Trigger(TRUE)
