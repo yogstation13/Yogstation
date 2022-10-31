@@ -381,7 +381,7 @@
 /mob/living/carbon/human/mech_melee_attack(obj/mecha/M)
 	if(M.selected?.melee_override)
 		M.selected.action(src)
-	if(M.occupant.a_intent == INTENT_HARM)
+	else if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
 		if(M.damtype == BRUTE)
 			step_away(src,M,15)
