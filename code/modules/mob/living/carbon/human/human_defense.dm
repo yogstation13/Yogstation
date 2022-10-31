@@ -379,7 +379,8 @@
 		apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
 
 /mob/living/carbon/human/mech_melee_attack(obj/mecha/M)
-
+	if(M.selected?.melee_override)
+		M.selected.action(src)
 	if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
 		if(M.damtype == BRUTE)
