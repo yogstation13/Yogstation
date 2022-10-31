@@ -280,6 +280,16 @@
 	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	
+/datum/design/hyposprayspeedupg
+	name = "Hypospray Speed Upgrade"
+	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
+	id = "hyposprayspeedupg"
+	build_path = /obj/item/hypospray_upgrade/speed
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/silver = 1000, /datum/material/titanium = 500)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////////////////////////
 //////////Cybernetic Implants////////////

@@ -273,8 +273,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/bundles_TC/random
 	name = "Random Item"
 	desc = "Picking this will purchase a random item. Useful if you have some TC to spare or if you haven't decided on a strategy yet."
-	item = /obj/effect/gibspawner/generic // non-tangible item because techwebs use this path to determine illegal tech
+	item = /obj/item/stack/sheet/cardboard
 	cost = 0
+	illegal_tech = FALSE
 
 /datum/uplink_item/bundles_TC/random/purchase(mob/user, datum/component/uplink/U)
 	var/list/uplink_items = U.uplink_items
@@ -513,6 +514,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/twohanded/vxtvulhammer
 	cost = 8
 	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
+
+/datum/uplink_item/dangerous/nukiedmr
+	name = "K-41s Designated Marksman Rifle"
+	desc = "A long-range rifle that fires powerful 7.62 rounds from an 11-round magazine. It possesses \
+			a short-range scope to better see over distances."
+	item = /obj/item/gun/ballistic/automatic/k41s
+	cost = 12
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"
@@ -902,14 +911,40 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/ammo_box/magazine/smgm45/venom
 	cost = 4
 
-/datum/uplink_item/ammo/sniper
-	cost = 4
+/datum/uplink_item/ammo/nukiedmr
+	name = "7.62 Rifle Magazine"
+	desc = "A standard 11-round magazine for the K-41s DMR. Filled with 7.62 rounds."
+	item = /obj/item/ammo_box/magazine/ks762
+	cost = 3
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/ammo/sniper/basic
+/datum/uplink_item/ammo/nukiedmr/raze
+	name = "7.62 Raze Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Raze 7.62 rounds. \
+			These rounds do notably less damage, but release radium dust in targets that severely damages their DNA structure."
+	item = /obj/item/ammo_box/magazine/ks762/raze
+	cost = 4
+
+/datum/uplink_item/ammo/nukiedmr/pen
+	name = "7.62 Anti-Material Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with anti-material 7.62 rounds. \
+			These rounds offer less stopping power, but pierce through a couple of objects before stopping."
+	item = /obj/item/ammo_box/magazine/ks762/pen
+	cost = 5
+
+/datum/uplink_item/ammo/nukiedmr/vulcan
+	name = "7.62 Vulcan Rifle Magazine"
+	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Vulcan 7.62 rounds. \
+			These rounds are loaded with an incendiary payload that causes fire to erupt out upon impact."
+	item = /obj/item/ammo_box/magazine/ks762/vulcan
+	cost = 4
+
+/datum/uplink_item/ammo/sniper
 	name = ".50 Magazine"
 	desc = "An additional standard 6-round magazine for use with .50 sniper rifles."
 	item = /obj/item/ammo_box/magazine/sniper_rounds
+	cost = 4
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/sniper/penetrator
 	name = ".50 Penetrator Magazine"
@@ -1583,12 +1618,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/failsafe
 	name = "Failsafe Uplink Code"
 	desc = "When entered the uplink will self-destruct immediately."
-	item = /obj/effect/gibspawner/generic
+	item = /obj/item/computer_hardware/hard_drive/portable/syndicate // Doesn't spawn
 	cost = 1
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
 	restricted = TRUE
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // Yogs: infiltration
+	illegal_tech = FALSE
 
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
@@ -1938,6 +1974,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+
+/datum/uplink_item/implants/spinal
+	name = "Neural Overclocker Implant"
+	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
+	item = /obj/item/autosurgeon/syndicate/spinalspeed
+	cost = 20
+	surplus = 0
+	limited_stock = 1
+	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
 
 // Events
 /datum/uplink_item/services
@@ -2418,6 +2463,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE
 
+/datum/uplink_item/badass/syndiebears
+	name = "Omnizine Gummy Bears"
+	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	item = /obj/item/storage/pill_bottle/gummies/omnizine
+	cost = 1
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 0 //not because its too strong, but rather because it shouldn't be polluting the pool for other items
+	illegal_tech = FALSE
+
+/datum/uplink_item/badass/syndiebears/sleepy
+	name = "Sleepy Gummy Bears"
+	desc = "Sodium Thiopental infused gummy bears. Berry flavor."
+	item = /obj/item/storage/pill_bottle/gummies/sleepy
+	cost = 2
+	manufacturer = /datum/corporation/traitor/donkco
+	surplus_nullcrates = 1 //rare. I feel sorry for the poor bastard that gets scammed by these
+	illegal_tech = FALSE
 
 /datum/uplink_item/badass/syndietape
 	name = "Guerrilla Tape"
@@ -2955,4 +3017,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Box of Posters"
 	desc = "A box of Nanotrasen-approved posters to boost crew morale."
 	item = /obj/item/storage/box/official_posters
+	cost = 1
+
+/datum/uplink_item/nt/gear/syndiebears
+	name = "Omnizine Gummy Bears"
+	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
+	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1
