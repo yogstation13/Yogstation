@@ -4214,7 +4214,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "pK" = (
-/obj/machinery/computer/rdconsole/core{
+/obj/machinery/computer/rdconsole/nolock/ruin{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{

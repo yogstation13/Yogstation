@@ -873,7 +873,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
 "Fd" = (
-/obj/machinery/computer/rdconsole/nolock{
+/obj/machinery/computer/rdconsole/nolock/ruin{
 	dir = 1
 	},
 /turf/open/floor/plasteel/shuttle,
