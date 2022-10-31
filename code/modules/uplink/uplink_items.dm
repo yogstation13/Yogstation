@@ -1975,6 +1975,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/implants/spinal
+	name = "Neural Overclocker Implant"
+	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
+	item = /obj/item/autosurgeon/syndicate/spinalspeed
+	cost = 20
+	surplus = 0
+	limited_stock = 1
+	include_objectives = list(/datum/objective/martyr, /datum/objective/nuclear) //martyr traitors "straight to the top" or nukies
+
 // Events
 /datum/uplink_item/services
 	category = "Services"
