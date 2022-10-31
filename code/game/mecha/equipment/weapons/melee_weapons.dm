@@ -11,7 +11,7 @@
 	var/attack_speed_modifier = 1
 	//Attack sound for the weapon
 	var/attack_sound
-	//Attack types - Note that at least one of these must be true otherwise it's not actually a weapon and will have no effect
+	//Attack types - Note that at least one of these must be true otherwise it'll only have passive effects (if any)
 	//By default we assume we're using a small weapon with only a special single-target attack
     //If the weapon has an AOE attack
 	var/cleave = FALSE
@@ -108,7 +108,7 @@
 	deflect_bonus = 15
 	base_armor_piercing = 15
 	structure_damage_mult = 2	//Sword is not as smashy
-	minimum_damage = 25			
+	minimum_damage = 20			
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()
 	var/turf/M = get_turf(src)
@@ -171,4 +171,67 @@
 	chassis.do_attack_animation(target, ATTACK_EFFECT_SLASH)
 	playsound(chassis, attack_sound, 50, 1)
 
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe
+	name = "\improper SH-NT \"Killerhurtz\" energy axe"
+	desc = "An oversized, destructive-looking axe with a powered edge. While far too big for use by an individual, an exosuit might be able to wield it."
+	precise_attacks = FALSE		//This is not a weapon of precision, it is a weapon of destruction
+	energy_drain = 40
+	weapon_damage = 20
+	fauna_damage_bonus = 30		//If you're fighting fauna with this thing, why? I mean it works, I guess.
+	base_armor_piercing = 40
+	structure_damage_mult = 4	//Think like obi-wan cutting through a bulkhead with his lightsaber but he's a giant mech and it's a terrifying axe
+	minimum_damage = 30			
+	attack_speed_modifier = 1.5 //Kinda chunky	
 
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()
+	var/turf/M = get_turf(src)
+	for(var/i = 0 to 2)
+		var/turf/T = get_step(M,turn(chassis.dir, (45(1-i))))	//+45, +0, and -45 will get the three front tiles
+		for(var/atom/A in T.contents)
+			if(isliving(A))						
+				var/mob/living/L = A
+				
+				if(iscarbon(L))					//If we're a carbon we can get armor and jazz
+					var/mob/living/carbon/C = L
+					var/obj/item/bodypart/body_part = pick(C.bodyparts)	//Cleave attack isn't very precise
+					var/armor_block = C.run_armor_check(body_part, MELEE, armour_penetration = base_armor_piercing)
+					C.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type, body_part, armor_block, sharpness = attack_sharpness)
+
+				else							//Regular mobs just take damage
+					L.apply_damage(max(chassis.force + weapon_damage, minimum_damage), dam_type)
+					if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))	//If we're hitting fauna, because heck those guys
+						L.apply_damage(fauna_damage_bonus, dam_type)
+
+				L.visible_message(span_danger("[chassis.name] strikes [L] with a wide swing of its [src]!"), \
+				  span_userdanger("[chassis.name] strikes you with [src]!"))
+				chassis.log_message("Hit [L] with [src.name] (cleave attack).", LOG_MECHA)
+
+			else if(isstructure(A) || ismachinery(A))	//if it's something we can otherwise still hit
+				var/obj/structure/S = A
+				if(!A.density)							//Make sure it's not an open door or something
+					continue
+				var/structure_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
+				S.take_damage(structure_damage, dam_type, "melee", 0)
+
+			else if(istype(A, /turf/closed/wall))		//IT BREAKS WALLS TOO
+				var/turf/closed/wall/W = A
+				W.dismantle_wall()
+
+	new attack_effect(get_turf(src), chassis.dir)
+	playsound(chassis, attack_sound, 50, 1)
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
+	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
+	desc = "An large metal fist fitted to the arm of an exosuit, it uses repurposed maneuvering thrusters from a Raven battlecruiser to give a little more oomph to every punche. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
+	melee_override = FALSE		//We'll just buff the regular punch
+	precise_attacks = FALSE		
+	cleave = FALSE		
+	weapon_damage = 15
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_select()
+	chassis.force += weapon_damage	//PUNCH HARDER
+	chassis.melee_cooldown *= 0.8	//PUNCH FASTER
+
+/obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist/on_deselect()
+	chassis.force -= weapon_damage	//Return to babby fist
+	chassis.melee_cooldown /= 0.8	
