@@ -10,7 +10,7 @@
 	can_buckle = TRUE
 	legs_required = 0
 	arms_required = 0
-	var/= 70
+	var/fb = 70
 
 /obj/vehicle/ridden/lavaboat/Initialize()
 	. = ..()
