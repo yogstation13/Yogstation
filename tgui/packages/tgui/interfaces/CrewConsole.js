@@ -232,7 +232,7 @@ export const CrewConsoleContent = (props, context) => {
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (
-                    sensor.has_warnings ? (
+                    sensor.no_warnings ? (
                       <Box>
                         {sensor.is_irradiated ? <Icon name="radiation" color="#f0e21d" size={1} /> : ""}
                         {sensor.is_husked ? <Icon name="ribbon" color="#ad1c09" size={1} /> : ""}
