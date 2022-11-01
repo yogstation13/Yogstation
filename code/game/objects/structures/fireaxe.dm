@@ -37,12 +37,12 @@
 		reset_lock(user) //yogs - adds reset option
 	else if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
 		//Repairing light damage with a welder
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=2))
 				return
 			to_chat(user, span_notice("You begin repairing [src]."))
 			if(I.use_tool(src, user, 40, volume=50, amount=2))
-				obj_integrity = max_integrity
+				atom_integrity = max_integrity
 				update_icon()
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -57,7 +57,7 @@
 		to_chat(user, span_notice("You start fixing [src]..."))
 		if(do_after(user, 2 SECONDS, src) && G.use(2))
 			broken = 0
-			obj_integrity = max_integrity
+			atom_integrity = max_integrity
 			update_icon()
 	//yogs start - warn user if they use the wrong type of glass to repair
 	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
@@ -121,7 +121,8 @@
 	if(.)
 		update_icon()
 
-/obj/structure/fireaxecabinet/obj_break(damage_flag)
+/obj/structure/fireaxecabinet/atom_break(damage_flag)
+	. = ..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		update_icon()
 		broken = TRUE
@@ -176,6 +177,7 @@
 	return
 
 /obj/structure/fireaxecabinet/attack_tk(mob/user)
+	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	toggle_open()//yogs - consolidates opening code
 	return
 
@@ -186,7 +188,7 @@
 	if(spareid)
 		add_overlay("card")
 	if(!open)
-		var/hp_percent = obj_integrity/max_integrity * 100
+		var/hp_percent = atom_integrity/max_integrity * 100
 		if(broken)
 			add_overlay("glass4")
 		else

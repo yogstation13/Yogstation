@@ -100,6 +100,7 @@
 		..()
 	else
 		setDir(turn(dir,-90))
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /obj/structure/chair/proc/handle_rotation(direction)
 	handle_layer()

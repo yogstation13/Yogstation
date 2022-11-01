@@ -65,7 +65,8 @@
 	return
 
 /obj/item/attack_self_tk(mob/user)
-	attack_self(user)
+	if(attack_self(user))
+		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 
 /*
@@ -132,30 +133,62 @@
 
 /obj/item/tk_grab/afterattack(atom/target, mob/living/carbon/user, proximity, params)//TODO: go over this
 	. = ..()
+	if(.)
+		return
+	
 	if(!target || !user)
 		return
 
 	if(!focus)
 		focus_object(target)
 		return
-	else if(!check_if_focusable(focus))
+
+	if(!check_if_focusable(focus))
 		return
 
 	if(target == focus)
-		target.attack_self_tk(user)
+		if(target.attack_self_tk(user) & COMPONENT_CANCEL_ATTACK_CHAIN)
+			. = TRUE
 		update_icon()
 		return
 
-
-	if(!isturf(target) && isitem(focus) && target.Adjacent(focus))
+	if(isitem(focus))
 		apply_focus_overlay()
 		var/obj/item/I = focus
-		I.melee_attack_chain(tk_user, target, params) //isn't copying the attack chain fun. we should do it more often.
-		if(check_if_focusable(focus))
-			focus.do_attack_animation(target, null, focus)
-	else
-		apply_focus_overlay()
-		focus.throw_at(target, 10, 1,user)
+		if(target.Adjacent(focus))
+			I.melee_attack_chain(tk_user, target, params) //isn't copying the attack chain fun. we should do it more often.
+			if(check_if_focusable(focus))
+				focus.do_attack_animation(target, null, focus)
+		else if(isgun(I)) //I've only tested this with guns, and it took some doing to make it work
+			. = I.afterattack(target, tk_user, 0, params)
+	// else
+	// 	apply_focus_overlay()
+	// 	focus.throw_at(target, 10, 1,user)
+	user.changeNext_move(CLICK_CD_MELEE)
+	update_icon()
+
+/obj/item/tk_grab/on_thrown(mob/living/carbon/user, atom/target)
+	if(!target || !user)
+		return
+
+	if(!focus)
+		return
+
+	if(!check_if_focusable(focus))
+		return
+
+	if(target == focus)
+		if(target.attack_self_tk(user) & COMPONENT_CANCEL_ATTACK_CHAIN)
+			return
+		update_icon()
+		return
+
+	apply_focus_overlay()
+	//Only items can be thrown 10 tiles everything else only 1 tile
+	focus.throw_at(target, focus.tk_throw_range, 1,user)
+	var/turf/start_turf = get_turf(focus)
+	var/turf/end_turf = get_turf(target)
+	user.log_message("has thrown [focus] from [AREACOORD(start_turf)] towards [AREACOORD(end_turf)] using Telekinesis.", LOG_ATTACK)
 	user.changeNext_move(CLICK_CD_MELEE)
 	update_icon()
 
@@ -163,6 +196,7 @@
 	var/d = get_dist(user, target)
 	if(d > TK_MAXRANGE)
 		to_chat(user, "<span class ='warning'>Your mind won't reach that far.</span>")
+		user.balloon_alert(user, "can't TK, too far!")
 		return
 	return TRUE
 

@@ -18,6 +18,7 @@
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
+	set_dir_on_move = FALSE
 
 	var/ini_dir
 	var/obj/item/electronics/airlock/electronics = null
@@ -121,7 +122,7 @@
 							to_chat(user, span_warning("There is already a windoor in that location!"))
 							return
 					to_chat(user, span_notice("You secure the windoor assembly."))
-					setAnchored(TRUE)
+					set_anchored(TRUE)
 					if(secure)
 						name = "secure anchored windoor assembly"
 					else
@@ -136,7 +137,7 @@
 					if(!anchored)
 						return
 					to_chat(user, span_notice("You unsecure the windoor assembly."))
-					setAnchored(FALSE)
+					set_anchored(FALSE)
 					if(secure)
 						name = "secure windoor assembly"
 					else

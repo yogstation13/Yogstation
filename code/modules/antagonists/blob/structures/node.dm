@@ -13,6 +13,8 @@
 /obj/structure/blob/node/Initialize()
 	GLOB.blob_nodes += src
 	START_PROCESSING(SSobj, src)
+	if(overmind)
+		overmind.node_blobs += src
 	. = ..()
 
 /obj/structure/blob/node/scannerreport()
@@ -30,6 +32,8 @@
 /obj/structure/blob/node/Destroy()
 	GLOB.blob_nodes -= src
 	STOP_PROCESSING(SSobj, src)
+	if(overmind)
+		overmind.node_blobs -= src
 	return ..()
 
 /obj/structure/blob/node/process()

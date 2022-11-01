@@ -7,6 +7,11 @@
 	complementary_color = "#CD7794"
 	message_living = ", and you feel <i>alive</i>"
 	reagent = /datum/reagent/blob/regenerative_materia
+	
+	/* Yog code, uncomment if we want to buff this strain to tg's
+	core_regen_bonus = 18
+	point_rate_bonus = 1
+	*/
 
 /datum/reagent/blob/regenerative_materia
 	name = "Regenerative Materia"

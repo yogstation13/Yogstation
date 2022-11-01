@@ -382,7 +382,7 @@
 		var/armor_block = run_armor_check(affecting, MELEE)
 		apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
 
-/mob/living/carbon/human/mech_melee_attack(obj/mecha/M)
+/mob/living/carbon/human/mech_melee_attack(obj/mecha/M, mob/living/user)
 
 	if(M.occupant.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)

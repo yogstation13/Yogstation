@@ -443,6 +443,7 @@ LINEN BINS
 
 
 	add_fingerprint(user)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /obj/item/bedsheet/adjusted
 	slot_flags = ITEM_SLOT_HEAD

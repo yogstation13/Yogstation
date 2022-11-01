@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 			icon_state = "newscaster_normal"
 			if(alert)
 				add_overlay("newscaster_alert")
-	var/hp_percent = obj_integrity * 100 /max_integrity
+	var/hp_percent = atom_integrity * 100 /max_integrity
 	switch(hp_percent)
 		if(75 to 100)
 			return
@@ -728,7 +728,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				if(!(stat & BROKEN))
 					return
 				to_chat(user, span_notice("You repair [src]."))
-				obj_integrity = max_integrity
+				atom_integrity = max_integrity
 				stat &= ~BROKEN
 				update_icon()
 		else
@@ -754,7 +754,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		new /obj/item/shard(loc)
 	qdel(src)
 
-/obj/machinery/newscaster/obj_break(damage_flag)
+/obj/machinery/newscaster/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)

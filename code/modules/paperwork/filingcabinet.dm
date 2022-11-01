@@ -139,6 +139,7 @@
 		..()
 
 /obj/structure/filingcabinet/attack_self_tk(mob/user)
+	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	if(contents.len)
 		if(prob(40 + contents.len * 5))
 			var/obj/item/I = pick(contents)
@@ -227,11 +228,11 @@
 
 /obj/structure/filingcabinet/security/attack_hand()
 	populate()
-	. = ..()
+	return ..()
 
 /obj/structure/filingcabinet/security/attack_tk()
 	populate()
-	..()
+	return ..()
 
 /*
  * Medical Record Cabinets

@@ -27,19 +27,23 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	var/last_attack = 0
 	var/datum/blobstrain/blobstrain
 	var/list/blob_mobs = list()
+	/// A list of all blob structures
+	var/list/all_blobs = list()
 	var/list/resource_blobs = list()
-	var/free_strain_rerolls = 1 //one free strain reroll
+	var/list/factory_blobs = list()
+	var/list/node_blobs = list()
+	var/free_strain_rerolls = OVERMIND_STARTING_REROLLS //one free strain reroll
 	var/last_reroll_time = 0 //time since we last rerolled, used to give free rerolls
-	var/nodes_required = 1 //if the blob needs nodes to place resource and factory blobs
-	var/placed = 0
-	var/manualplace_min_time = 600 //in deciseconds //a minute, to get bearings
-	var/autoplace_max_time = 3600 //six minutes, as long as should be needed
+	var/nodes_required = TRUE //if the blob needs nodes to place resource and factory blobs
+	var/placed = FALSE
+	var/manualplace_min_time = OVERMIND_STARTING_MIN_PLACE_TIME // Some time to get your bearings
+	var/autoplace_max_time = OVERMIND_STARTING_AUTO_PLACE_TIME //six minutes, as long as should be needed
 	var/list/blobs_legit = list()
 	var/max_count = 0 //The biggest it got before death
-	var/blobwincount = 400
+	var/blobwincount = OVERMIND_WIN_CONDITION_AMOUNT
 	var/victory_in_progress = FALSE
 	var/rerolling = FALSE
-	var/announcement_size = 75
+	var/announcement_size = OVERMIND_ANNOUNCEMENT_MIN_SIZE // Announce the biohazard when this size is reached
 	var/announcement_time
 	var/has_announced = FALSE
 	var/basemodifier = 1
@@ -107,7 +111,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 				to_chat(src, span_big("<font color=\"#EE4000\">You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)].</font>"))
 				manualplace_min_time = 0
 			if(autoplace_max_time && world.time >= autoplace_max_time)
-				place_blob_core(1)
+				place_blob_core(BLOB_RANDOM_PLACEMENT)
 		else
 			qdel(src)
 	else if(!victory_in_progress && (blobs_legit.len >= blobwincount))
@@ -116,9 +120,10 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		set_security_level("delta")
 		max_blob_points = INFINITY
 		blob_points = INFINITY	
-		blob_core.max_integrity = 999999
+		blob_core.update_integrity(999999)
+		blob_core.atom_integrity = blob_core.max_integrity
 		addtimer(CALLBACK(src, .proc/victory), 450)
-	else if(!free_strain_rerolls && (last_reroll_time + BLOB_REROLL_TIME<world.time))
+	else if(!free_strain_rerolls && (last_reroll_time + BLOB_POWER_REROLL_FREE_TIME<world.time))
 		to_chat(src, "<b><span class='big'><font color=\"#EE4000\">You have gained another free strain re-roll.</font></span></b>")
 		free_strain_rerolls = 1
 
@@ -126,7 +131,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		max_count = blobs_legit.len
 
 	if((world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
-		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/default/outbreak5.ogg')
+		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK5)
 		has_announced = TRUE
 
 /mob/camera/blob/proc/victory()
@@ -206,7 +211,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/update_health_hud()
 	if(blob_core)
-		var/current_health = round((blob_core.obj_integrity / blob_core.max_integrity) * 100)
+		var/current_health = round((blob_core.atom_integrity / blob_core.max_integrity) * 100)
 		hud_used.healths.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[current_health]%</font></div>"
 		for(var/mob/living/simple_animal/hostile/blob/blobbernaut/B in blob_mobs)
 			if(B.hud_used && B.hud_used.blobpwrdisplay)
@@ -257,7 +262,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /mob/camera/blob/get_status_tab_items()
 	. = ..()
 	if(blob_core)
-		. += "Core Health: [blob_core.obj_integrity]"
+		. += "Core Health: [blob_core.get_integrity()]"
 		. += "Power Stored: [blob_points]/[max_blob_points]"
 		. += "Blobs to Win: [blobs_legit.len]/[blobwincount]"
 	if(free_strain_rerolls)

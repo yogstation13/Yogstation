@@ -6,7 +6,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 
 /datum/material
+	/// What the material is referred to as IC.
 	var/name = "material"
+	/// A short description of the material. Not used anywhere, yet...
 	var/desc = "its..stuff."
 	///Var that's mostly used by science machines to identify specific materials, should most likely be phased out at some point
 	var/id = "mat"
@@ -39,9 +41,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 ///This proc is called when the material is added to an object specifically.
 /datum/material/proc/on_applied_obj(var/obj/o, amount, material_flags)
 	var/new_max_integrity = CEILING(o.max_integrity * integrity_modifier, 1)
-	// This is to keep the same damage relative to the max integrity of the object
-	o.obj_integrity = (o.obj_integrity / o.max_integrity) * new_max_integrity
-	o.max_integrity = new_max_integrity
+	o.modify_max_integrity(new_max_integrity)
 	o.force *= strength_modifier
 	o.throwforce *= strength_modifier
 
@@ -59,10 +59,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 ///This proc is called when the material is removed from an object specifically.
 /datum/material/proc/on_removed_obj(var/obj/o, amount, material_flags)
 	var/new_max_integrity = initial(o.max_integrity)
-	// This is to keep the same damage relative to the max integrity of the object
-	o.obj_integrity = (o.obj_integrity / o.max_integrity) * new_max_integrity
-
-	o.max_integrity = new_max_integrity
+	o.modify_max_integrity(new_max_integrity)
 	o.force = initial(o.force)
 	o.throwforce = initial(o.throwforce)
 

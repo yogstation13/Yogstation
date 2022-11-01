@@ -13,6 +13,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
 	CanAtmosPass = ATMOS_PASS_PROC
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
+	set_dir_on_move = FALSE
 	var/ini_dir = null
 	var/state = WINDOW_SCREWED_TO_FRAME
 	var/reinf = FALSE
@@ -145,6 +146,7 @@
 	user.visible_message(span_notice("Something knocks on [src]."))
 	add_fingerprint(user)
 	playsound(src, 'sound/effects/Glassknock.ogg', 50, 1)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /obj/structure/window/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(!can_be_reached(user))
@@ -189,13 +191,13 @@
 				return
 
 	if(I.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP)
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			if(!I.tool_start_check(user, amount=0))
 				return
 
 			to_chat(user, span_notice("You begin repairing [src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
-				obj_integrity = max_integrity
+				atom_integrity = max_integrity
 				update_nearby_icons()
 				to_chat(user, span_notice("You repair [src]."))
 		else
@@ -207,7 +209,7 @@
 			I.play_tool_sound(src, 75)
 			to_chat(user, span_notice("You begin to [anchored ? "unscrew the window from":"screw the window to"] the floor..."))
 			if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, .proc/check_anchored, anchored)))
-				setAnchored(!anchored)
+				set_anchored(!anchored)
 				to_chat(user, span_notice("You [anchored ? "fasten the window to":"unfasten the window from"] the floor."))
 			return
 
@@ -231,7 +233,7 @@
 			return
 	return ..()
 
-/obj/structure/window/setAnchored(anchorvalue)
+/obj/structure/window/set_anchored(anchorvalue)
 	..()
 	air_update_turf(TRUE)
 	update_nearby_icons()
@@ -247,7 +249,7 @@
 /obj/structure/window/proc/check_state_and_anchored(checked_state, checked_anchored)
 	return check_state(checked_state) && check_anchored(checked_anchored)
 
-/obj/structure/window/mech_melee_attack(obj/mecha/M)
+/obj/structure/window/mech_melee_attack(obj/mecha/M, mob/living/user)
 	if(!can_be_reached())
 		return
 	..()
@@ -343,7 +345,7 @@
 		if(!fulltile)
 			return
 
-		var/ratio = obj_integrity / max_integrity
+		var/ratio = atom_integrity / max_integrity
 		ratio = CEILING(ratio*4, 1) * 25
 
 		if(smooth)
@@ -453,7 +455,7 @@
 				if(I.use_tool(src, user, 50, volume = 50))
 					to_chat(user, span_notice("You unscrew the bolts from the frame and the window pops loose."))
 					state = WINDOW_OUT_OF_FRAME
-					setAnchored(FALSE)
+					set_anchored(FALSE)
 				return
 	return ..()
 
@@ -580,7 +582,7 @@
 				if(I.use_tool(src, user, 50, volume = 50))
 					to_chat(user, span_notice("You unfasten the bolts from the frame and the window pops loose."))
 					state = WINDOW_OUT_OF_FRAME
-					setAnchored(FALSE)
+					set_anchored(FALSE)
 				return
 	return ..()
 
@@ -619,7 +621,7 @@
 	name = "frosted window"
 	icon_state = "fwindow"
 
-/* Full Tile Windows (more obj_integrity) */
+/* Full Tile Windows (more atom_integrity) */
 
 /obj/structure/window/fulltile
 	icon = 'icons/obj/smooth_structures/window.dmi'
@@ -802,7 +804,7 @@
 
 /obj/structure/window/reinforced/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		obj_integrity = max_integrity
+		atom_integrity = max_integrity
 		update_icon()
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
@@ -873,7 +875,7 @@
 
 /obj/structure/window/paperframe/examine(mob/user)
 	. = ..()
-	if(obj_integrity < max_integrity)
+	if(atom_integrity < max_integrity)
 		. += span_info("It looks a bit damaged, you may be able to fix it with some <b>paper</b>.")
 
 /obj/structure/window/paperframe/spawnDebris(location)
@@ -898,7 +900,7 @@
 			update_icon()
 
 /obj/structure/window/paperframe/update_icon()
-	if(obj_integrity < max_integrity)
+	if(atom_integrity < max_integrity)
 		cut_overlay(paper)
 		add_overlay(torn)
 		set_opacity(FALSE)
@@ -915,13 +917,13 @@
 		return
 	if(user.a_intent == INTENT_HARM)
 		return ..()
-	if(istype(W, /obj/item/paper) && obj_integrity < max_integrity)
+	if(istype(W, /obj/item/paper) && atom_integrity < max_integrity)
 		user.visible_message("[user] starts to patch the holes in \the [src].")
 		if(do_after(user, 2 SECONDS, src))
-			obj_integrity = min(obj_integrity+4,max_integrity)
+			atom_integrity = min(atom_integrity+4,max_integrity)
 			qdel(W)
 			user.visible_message("[user] patches some of the holes in \the [src].")
-			if(obj_integrity == max_integrity)
+			if(atom_integrity == max_integrity)
 				update_icon()
 			return
 	..()

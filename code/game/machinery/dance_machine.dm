@@ -72,10 +72,10 @@
 		if(O.tool_behaviour == TOOL_WRENCH)
 			if(!anchored && !isinspace())
 				to_chat(user,span_notice("You secure [src] to the floor."))
-				setAnchored(TRUE)
+				set_anchored(TRUE)
 			else if(anchored)
 				to_chat(user,span_notice("You unsecure and disconnect [src]."))
-				setAnchored(FALSE)
+				set_anchored(FALSE)
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			return
 	return ..()

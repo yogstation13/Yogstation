@@ -39,19 +39,19 @@
 	if(iscultist(user) || isobserver(user))
 		var/t_It = p_they(TRUE)
 		var/t_is = p_are()
-		return span_cult("[t_It] [t_is] at <b>[round(obj_integrity * 100 / max_integrity)]%</b> stability.")
+		return span_cult("[t_It] [t_is] at <b>[round(atom_integrity * 100 / max_integrity)]%</b> stability.")
 	return ..()
 
 /obj/structure/destructible/cult/attack_animal(mob/living/simple_animal/M)
 	if(is_endgame && iscultist(M))
 		return FALSE //no smash or healing
 	if(istype(M, /mob/living/simple_animal/hostile/construct/builder))
-		if(obj_integrity < max_integrity)
+		if(atom_integrity < max_integrity)
 			M.changeNext_move(CLICK_CD_MELEE)
-			obj_integrity = min(max_integrity, obj_integrity + 5)
+			atom_integrity = min(max_integrity, atom_integrity + 5)
 			Beam(M, icon_state="sendbeam", time=4)
 			M.visible_message(span_danger("[M] repairs \the <b>[src]</b>."), \
-				span_cult("You repair <b>[src]</b>, leaving [p_they()] at <b>[round(obj_integrity * 100 / max_integrity)]%</b> stability."))
+				span_cult("You repair <b>[src]</b>, leaving [p_they()] at <b>[round(atom_integrity * 100 / max_integrity)]%</b> stability."))
 		else
 			to_chat(M, span_cult("You cannot repair [src], as [p_theyre()] undamaged!"))
 	else
@@ -278,7 +278,7 @@
 	icon_state = "pillar-enter"
 	icon = 'icons/obj/cult_64x64.dmi'
 	pixel_x = -16
-	obj_integrity = 200
+	atom_integrity = 200
 	max_integrity = 200
 	break_sound = 'sound/effects/meteorimpact.ogg'
 	break_message = span_warning("The pillar crumbles!")
@@ -314,9 +314,9 @@
 
 /obj/structure/destructible/cult/pillar/update_icon()
 	icon_state = "pillar[alt ? "alt": ""]2"
-	if (obj_integrity < max_integrity/3)
+	if (atom_integrity < max_integrity/3)
 		icon_state = "pillar[alt ? "alt": ""]0"
-	else if (obj_integrity < 2*max_integrity/3)
+	else if (atom_integrity < 2*max_integrity/3)
 		icon_state = "pillar[alt ? "alt": ""]1"
 
 /obj/structure/destructible/cult/pillar/conceal()
@@ -337,7 +337,6 @@
 	icon_state = "bloodstone-enter1"
 	icon = 'icons/obj/cult_64x64.dmi'
 	pixel_x = -16
-	obj_integrity = 600
 	max_integrity = 600
 	break_sound = 'sound/effects/glassbr2.ogg'
 	break_message = span_warning("The bloodstone resonates violently before crumbling to the floor!")
@@ -441,7 +440,7 @@
 			SSticker.mode.cult_loss_bloodstones()
 	..()
 
-/obj/structure/destructible/cult/bloodstone/mech_melee_attack(obj/mecha/M)
+/obj/structure/destructible/cult/bloodstone/mech_melee_attack(obj/mecha/M, mob/living/user)
 	M.force = round(M.force/6, 1) //damage is reduced since mechs deal triple damage to objects, this sets gygaxes to 15 (5*3) damage and durands to 21 (7*3) damage
 	. = ..()
 	M.force = initial(M.force)
@@ -476,9 +475,9 @@
 	var/image/I_base = image('icons/obj/cult_64x64.dmi',"bloodstone-base")
 	I_base.appearance_flags |= RESET_COLOR//we don't want the stone to pulse
 	overlays += I_base
-	if (obj_integrity <= max_integrity/3)
+	if (atom_integrity <= max_integrity/3)
 		add_overlay("bloodstone_damage2")
-	else if (obj_integrity <= 2*max_integrity/3)
+	else if (atom_integrity <= 2*max_integrity/3)
 		add_overlay("bloodstone_damage1")
 	set_light(3+current_fullness, 2+current_fullness)
 

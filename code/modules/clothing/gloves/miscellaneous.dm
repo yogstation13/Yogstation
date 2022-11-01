@@ -233,4 +233,4 @@ obj/effect/proc_holder/swipe
 	if(!istype(A, /turf/closed/mineral))
 		return
 	A.attackby(src, user)
-	return COMPONENT_NO_ATTACK_OBJ
+	return COMPONENT_CANCEL_ATTACK_CHAIN

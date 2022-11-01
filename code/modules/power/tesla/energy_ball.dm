@@ -152,13 +152,15 @@
 	dust_mobs(AM)
 
 /obj/singularity/energy_ball/attack_tk(mob/user)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		to_chat(C, span_userdanger("That was a shockingly dumb idea."))
-		var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in C.internal_organs
-		C.ghostize(0)
-		qdel(rip_u)
-		C.death()
+	if(!iscarbon(user))
+		return
+	var/mob/living/carbon/C = user
+	to_chat(C, span_userdanger("That was a shockingly dumb idea."))
+	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in C.internal_organs
+	C.ghostize(0)
+	qdel(rip_u)
+	C.death()
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 		
 /obj/singularity/energy_ball/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/golfclub))

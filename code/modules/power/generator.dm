@@ -293,7 +293,7 @@
 		cold_circ.update_icon()
 		cold_circ = null
 
-/obj/machinery/power/generator/obj_break(damage_flag)
+/obj/machinery/power/generator/atom_break(damage_flag)
 	kill_circs()
 	..()
 	

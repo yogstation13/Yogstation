@@ -1,34 +1,35 @@
 
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = MELEE, absorb_text = null, soften_text = null, armour_penetration, penetrated_text)
-	var/armor = getarmor(def_zone, attack_flag)
-
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = MELEE, absorb_text = null, soften_text = null, armour_penetration, penetrated_text, silent=FALSE, weak_against_armour = FALSE)
+	var/our_armor = getarmor(def_zone, attack_flag)
 	//the if "armor" check is because this is used for everything on /living, including humans
 	if(status_flags & GODMODE)
 		visible_message(span_danger("A strange force protects [src], [p_they()] can't be damaged!"), span_userdanger("A strange force protects you!"))
-		return armor
-	if(armor > 0 && armour_penetration)	//WE HAVE ARMOR
-		if(armour_penetration <= -100)	// < -100 AP, no penetration on anything
-			armor = 100
-		else if((-100 < armour_penetration) && (armour_penetration < 0))	// -100 to 0 AP, reduced penetration, nonlinear scaling
-			armor = clamp(0, armor/(1 + (armour_penetration/100)), 100)
+		return our_armor
+	if(our_armor <= 0)
+		return our_armor
+	if(weak_against_armour && our_armor >= 0)
+		our_armor *= ARMOR_WEAKENED_MULTIPLIER
+	if(silent)
+		return max(0, our_armor - armour_penetration)
+
+	//the if "armor" check is because this is used for everything on /living, including humans
+	if(armour_penetration)
+		our_armor = max(0, our_armor - armour_penetration)
+		if(penetrated_text)
+			to_chat(src, span_userdanger("[penetrated_text]"))
 		else
-			armor = max(0, armor - armour_penetration)						//Positive AP, actual armor penetration
-		if(armour_penetration > 0 && armor < 100)	//WE HAVE INEFFECTIVE ARMOR
-			if(penetrated_text)
-				to_chat(src, span_userdanger("[penetrated_text]"))
-			else
-				to_chat(src, span_userdanger("Your armor was penetrated!"))
-		else if(armor > 0)	//WE HAVE EFFECTIVE ARMOR
-			if(soften_text)
-				to_chat(src, span_userdanger("[soften_text]"))
-			else
-				to_chat(src, span_userdanger("Your armor softens the blow!"))
-	if(armor >= 100)	//WE HAVE ALL THE ARMOR
+			to_chat(src, span_userdanger("Your armor was penetrated!"))
+	else if(our_armor >= 100)
 		if(absorb_text)
-			to_chat(src, span_userdanger("[absorb_text]"))
+			to_chat(src, span_notice("[absorb_text]"))
 		else
-			to_chat(src, span_userdanger("Your armor absorbs the blow!"))
-	return armor
+			to_chat(src, span_notice("Your armor absorbs the blow!"))
+	else
+		if(soften_text)
+			to_chat(src, span_warning("[soften_text]"))
+		else
+			to_chat(src, span_warning("Your armor softens the blow!"))
+	return our_armor
 
 
 /mob/living/proc/getarmor(def_zone, type)
@@ -52,8 +53,13 @@
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)
-	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
-	if(!P.nodamage)
+	. = ..()
+	if(!P.nodamage && (. != BULLET_ACT_BLOCK))
+		var/attack_direction = get_dir(P.starting, src)
+		// we need a second, silent armor check to actually know how much to reduce damage taken, as opposed to
+		// on [/atom/proc/bullet_act] where it's just to pass it to the projectile's on_hit().
+		var/armor_check = check_projectile_armor(def_zone, P, is_silent = TRUE)
+		armor_check = min(ARMOR_MAX_BLOCK, armor_check) //cap damage reduction at 90%
 		last_damage = P.name
 		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
 		if(P.dismemberment)
@@ -61,6 +67,9 @@
 	if(istype(P, /obj/item/projectile/bullet/shotgun/slug/uranium) || istype(P, /obj/item/projectile/bullet/a357/heartpiercer) || istype(P, /obj/item/projectile/bullet/m308/pen)) //snowflake code
 		return P.on_hit(src, armor)
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
+
+/mob/living/check_projectile_armor(def_zone, obj/item/projectile/impacting_projectile, is_silent)
+	return run_armor_check(def_zone, impacting_projectile.armor_flag, "","",impacting_projectile.armour_penetration, "", is_silent, impacting_projectile.weak_against_armour)
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
 	return 0
@@ -74,31 +83,37 @@
 				return 0
 
 /mob/living/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
-	if(istype(AM, /obj/item))
-		var/obj/item/I = AM
-		var/zone = ran_zone(BODY_ZONE_CHEST, 65)//Hits a random part of the body, geared towards the chest
-		var/dtype = BRUTE
-		SEND_SIGNAL(I, COMSIG_MOVABLE_IMPACT_ZONE, src, zone)
-		dtype = I.damtype
-		if(!blocked)
-			visible_message(span_danger("[src] has been hit by [I]."), \
-							span_userdanger("[src] has been hit by [I]."))
-			var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].",I.armour_penetration)
-			if(isobj(AM))
-				var/obj/O = AM
-				if(O.damtype != STAMINA)
-					last_damage = I.name
-					apply_damage(I.throwforce, dtype, zone, armor, sharpness=I.get_sharpness())
-					if(I.thrownby)
-						log_combat(I.thrownby, src, "threw and hit", I)
-		else
-			return 1
-	else
-		playsound(loc, 'sound/weapons/genhit.ogg', 50, 1, -1)
-	..()
+	if(isitem(AM))
+		var/obj/item/thrown_item = AM
+		var/zone = get_random_valid_zone(BODY_ZONE_CHEST, 65)//Hits a random part of the body, geared towards the chest
+		var/nosell_hit = SEND_SIGNAL(thrown_item, COMSIG_MOVABLE_IMPACT_ZONE, src, zone, throwingdatum) // TODO: find a better way to handle hitpush and skipcatch for humans
+		if(nosell_hit)
+			skipcatch = TRUE
+			hitpush = FALSE
+		if(blocked)
+			return TRUE
 
+		var/mob/thrown_by = thrown_item.thrownby?.resolve()
+		if(thrown_by)
+			log_combat(thrown_by, src, "threw and hit", thrown_item)
+		if(nosell_hit)
+			return ..()
+		visible_message(span_danger("[src] is hit by [thrown_item]!"), \
+						span_userdanger("You're hit by [thrown_item]!"))
+		if(!thrown_item.throwforce)
+			return
+		var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration, "", FALSE, thrown_item.weak_against_armour)
+		apply_damage(thrown_item.throwforce, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
+		if(QDELETED(src)) //Damage can delete the mob.
+			return
+		if(resting) // physics says it's significantly harder to push someone by constantly chucking random furniture at them if they are down on the floor.
+			hitpush = FALSE
+		return ..()
 
-/mob/living/mech_melee_attack(obj/mecha/M)
+	playsound(loc, 'sound/weapons/genhit.ogg', 50, TRUE, -1) //Item sounds are handled in the item itself
+	return ..()
+
+/mob/living/mech_melee_attack(obj/mecha/M, mob/living/user)
 	if(M.occupant.a_intent == INTENT_HARM)
 		last_damage = "grand blunt trauma"
 		M.do_attack_animation(src)

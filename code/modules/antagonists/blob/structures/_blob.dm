@@ -9,14 +9,20 @@
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
 	CanAtmosPass = ATMOS_PASS_PROC
-	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
-	max_integrity = 30
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
-	var/health_regen = 2 //how much health this blob regens when pulsed
-	var/pulse_timestamp = 0 //we got pulsed when?
-	var/heal_timestamp = 0 //we got healed when?
-	var/brute_resist = 0.5 //multiplies brute damage by this
-	var/fire_resist = 1 //multiplies burn damage by this
+	/// How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
+	var/point_return = 0
+	max_integrity = BLOB_REGULAR_MAX_HP
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 80, ACID = 70)
+	/// how much health this blob regens when pulsed
+	var/health_regen = BLOB_REGULAR_HP_REGEN
+	/// We got pulsed when?
+	COOLDOWN_DECLARE(pulse_timestamp)
+	/// we got healed when?
+	COOLDOWN_DECLARE(heal_timestamp)
+	/// Multiplies brute damage by this
+	var/brute_resist = BLOB_BRUTE_RESIST
+	/// Multiplies burn damage by this
+	var/fire_resist = BLOB_FIRE_RESIST
 	var/atmosblock = TRUE //if the blob blocks atmos and heat spread
 	var/mob/camera/blob/overmind
 
@@ -93,7 +99,7 @@
 		pulsing_overmind = overmind
 	Be_Pulsed()
 	var/expanded = FALSE
-	if(prob(70) && expand())
+	if(prob(70(1/BLOB_EXPAND_CHANCE_MULTIPLIER)) && expand())
 		expanded = TRUE
 	var/list/blobs_to_affect = list()
 	for(var/obj/structure/blob/B in urange(claim_range, src, 1))
@@ -110,25 +116,24 @@
 			expand_probablity = 20
 		if(distance <= expand_range)
 			var/can_expand = TRUE
-			if(blobs_to_affect.len >= 120 && B.heal_timestamp > world.time)
+			if(blobs_to_affect.len >= 120 && !(COOLDOWN_FINISHED(B, heal_timestamp)))
 				can_expand = FALSE
-			if(can_expand && B.pulse_timestamp <= world.time && prob(expand_probablity))
-				var/obj/structure/blob/newB = B.expand(null, null, !expanded) //expansion falls off with range but is faster near the blob causing the expansion
-				if(newB)
-					if(expanded)
-						qdel(newB)
-					expanded = TRUE
+			if(can_expand && COOLDOWN_FINISHED(B, pulse_timestamp) && prob(expand_probablity*BLOB_EXPAND_CHANCE_MULTIPLIER))
+				if(!expanded)
+					var/obj/structure/blob/newB = B.expand(null, null, !expanded) //expansion falls off with range but is faster near the blob causing the expansion
+					if(newB)
+						expanded = TRUE
 		if(distance <= pulse_range)
 			B.Be_Pulsed()
 
 /obj/structure/blob/proc/Be_Pulsed()
-	if(pulse_timestamp <= world.time)
+	if(COOLDOWN_FINISHED(src, pulse_timestamp))
 		ConsumeTile()
-		if(heal_timestamp <= world.time)
-			obj_integrity = min(max_integrity, obj_integrity+health_regen)
-			heal_timestamp = world.time + 20
+		if(COOLDOWN_FINISHED(src, heal_timestamp))
+			atom_integrity = min(max_integrity, atom_integrity+health_regen)
+			COOLDOWN_START(src, heal_timestamp, 20)
 		update_icon()
-		pulse_timestamp = world.time + 10
+		COOLDOWN_START(src, pulse_timestamp, 10)
 		return 1 //we did it, we were pulsed!
 	return 0 //oh no we failed
 
@@ -251,7 +256,7 @@
 /obj/structure/blob/proc/typereport(mob/user)
 	RETURN_TYPE(/list)
 	return list("<b>Blob Type:</b> [span_notice("[uppertext(initial(name))]")]",
-							"<b>Health:</b> [span_notice("[obj_integrity]/[max_integrity]")]",
+							"<b>Health:</b> [span_notice("[atom_integrity]/[max_integrity]")]",
 							"<b>Effects:</b> [span_notice("[scannerreport()]")]")
 
 /obj/structure/blob/attack_animal(mob/living/simple_animal/M)
@@ -269,7 +274,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/structure/blob/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/structure/blob/run_atom_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	switch(damage_type)
 		if(BRUTE)
 			damage_amount *= brute_resist
@@ -288,10 +293,10 @@
 
 /obj/structure/blob/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
-	if(. && obj_integrity > 0)
+	if(. && atom_integrity > 0)
 		update_icon()
 
-/obj/structure/blob/obj_destruction(damage_flag)
+/obj/structure/blob/atom_destruction(damage_flag)
 	if(overmind)
 		overmind.blobstrain.death_reaction(src, damage_flag)
 	..()
@@ -334,30 +339,34 @@
 	name = "normal blob"
 	icon_state = "blob"
 	light_range = 0
-	obj_integrity = 21 //doesn't start at full health
-	max_integrity = 25
-	health_regen = 1
-	brute_resist = 0.25
+	max_integrity = BLOB_REGULAR_MAX_HP
+	var/initial_integrity = BLOB_REGULAR_HP_INIT
+	health_regen = BLOB_REGULAR_HP_REGEN
+	brute_resist = BLOB_BRUTE_RESIST * 0.5
+
+/obj/structure/blob/normal/Initialize(mapload, owner_overmind)
+	. = ..()
+	update_integrity(initial_integrity)
 
 /obj/structure/blob/normal/scannerreport()
-	if(obj_integrity <= 15)
+	if(atom_integrity <= 15)
 		return "Currently weak to brute damage."
 	return "N/A"
 
 /obj/structure/blob/normal/update_icon()
 	..()
-	if(obj_integrity <= 15)
+	if(atom_integrity <= 15)
 		icon_state = "blob_damaged"
 		name = "fragile blob"
 		desc = "A thin lattice of slightly twitching tendrils."
-		brute_resist = 0.5
+		brute_resist = BLOB_BRUTE_RESIST
 	else if (overmind)
 		icon_state = "blob"
 		name = "blob"
 		desc = "A thick wall of writhing tendrils."
-		brute_resist = 0.25
+		brute_resist = BLOB_BRUTE_RESIST * 0.5
 	else
 		icon_state = "blob"
 		name = "dead blob"
 		desc = "A thick wall of lifeless tendrils."
-		brute_resist = 0.25
+		brute_resist = BLOB_BRUTE_RESIST * 0.5

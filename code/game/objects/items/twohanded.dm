@@ -1185,7 +1185,7 @@
 		return
 	else if(!flimsy && !target.anchored)
 		var/whack_speed = (prob(50) ? 1 : 6)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user) // sorry friends, 7 speed batting caused wounds to absolutely delete whoever you knocked your target into (and said target)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user, gentle = TRUE) // sorry friends, 7 speed batting caused wounds to absolutely delete whoever you knocked your target into (and said target)
 
 /obj/item/twohanded/required/baseball_bat/metal_bat
 	name = "titanium baseball bat"

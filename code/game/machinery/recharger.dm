@@ -61,7 +61,7 @@
 		if(charging)
 			to_chat(user, span_notice("Remove the charging item first!"))
 			return
-		setAnchored(!anchored)
+		set_anchored(!anchored)
 		power_change()
 		to_chat(user, span_notice("You [anchored ? "attached" : "detached"] [src]."))
 		G.play_tool_sound(src)
@@ -117,10 +117,12 @@
 		setCharging(null)
 
 /obj/machinery/recharger/attack_tk(mob/user)
-	if(charging)
-		charging.update_icon()
-		charging.forceMove(drop_location())
-		setCharging(null)
+	if(!charging)
+		return
+	charging.update_icon()
+	charging.forceMove(drop_location())
+	setCharging(null)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/recharger/process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)

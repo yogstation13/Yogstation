@@ -9,7 +9,7 @@
 	color = "#CDC0B0"
 	complementary_color = "#FFF68F"
 	reagent = /datum/reagent/blob/networked_fibers
-	core_regen = 5
+	base_core_regen = 5
 	point_rate = 3
 
 

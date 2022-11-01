@@ -157,6 +157,8 @@
 				. += "[t_He] look[p_s()] ecstatic."
 	. += "</span>"
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
 /mob/living/carbon/examine_more(mob/user)
 	if(!all_scars)
 		return ..()

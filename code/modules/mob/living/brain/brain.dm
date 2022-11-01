@@ -70,7 +70,7 @@
 	if(container)
 		var/obj/mecha/M = container.mecha
 		if(istype(M))
-			return M.click_action(A,src,params)
+			return M.on_mouseclick(A,src,params)
 
 /mob/living/brain/forceMove(atom/destination)
 	if(container)

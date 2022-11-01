@@ -15,6 +15,7 @@
 	damage = 45
 	armour_penetration = -45
 	sharpness = SHARP_EDGED
+	weak_against_armour = TRUE
 	wound_bonus = -5 //Basically L6 HP treatment on these values because it's, well, nukies
 	bare_wound_bonus = 5
 

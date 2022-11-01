@@ -55,7 +55,7 @@
 			statue.desc = "An incredibly lifelike bananium carving."
 			statue.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
 			statue.max_integrity = 9999
-			statue.obj_integrity = 9999
+			statue.atom_integrity = 9999
 	return ..()
 
 /obj/item/melee/fryingpan/bananium/honk_act()

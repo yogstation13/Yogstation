@@ -739,8 +739,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/blob_act(obj/structure/blob/B)
 	if(B && !isspaceturf(loc)) //does nothing in space
-		damage += B.obj_integrity * 0.5 //take damage equal to 50% of remaining blob health before it tried to eat us
-		if(B.obj_integrity > 100)
+		damage += B.atom_integrity * 0.5 //take damage equal to 50% of remaining blob health before it tried to eat us
+		if(B.atom_integrity > 100)
 			B.visible_message(span_danger("\The [B] strikes at \the [src] and flinches away!"),\
 			span_italics("You hear a loud crack as you are washed with a wave of heat."))
 			B.take_damage(100, BURN)
@@ -750,24 +750,26 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			Consume(B)
 
 /obj/machinery/power/supermatter_crystal/attack_tk(mob/user)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		var/datum/brain_trauma/mild/reality_dissociation/T = new()
-		var/obj/item/organ/brain/B = locate(/obj/item/organ/brain) in C.internal_organs
-		B.name = "supermatter-fried [B.name]"
-		C.emote("scream")
-		C.visible_message(span_danger("[C.name] screams in horror as [C.p_their()] mind is consumed by [src]!"))
-		C.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
-		to_chat(C, span_userdanger("That was a really dense idea."))
-		switch(rand(1,8))
-			if(1 to 3)
-				C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
-				C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
-			if(4 to 6)
-				C.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
-			if(7 to 8)
-				C.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_LOBOTOMY)
-		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH)
+	if(!iscarbon(user))
+		return
+	var/mob/living/carbon/C = user
+	var/datum/brain_trauma/mild/reality_dissociation/T = new()
+	var/obj/item/organ/brain/B = locate(/obj/item/organ/brain) in C.internal_organs
+	B.name = "supermatter-fried [B.name]"
+	C.emote("scream")
+	C.visible_message(span_danger("[C.name] screams in horror as [C.p_their()] mind is consumed by [src]!"))
+	C.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
+	to_chat(C, span_userdanger("That was a really dense idea."))
+	switch(rand(1,8))
+		if(1 to 3)
+			C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
+			C.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
+		if(4 to 6)
+			C.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
+		if(7 to 8)
+			C.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_LOBOTOMY)
+	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /obj/machinery/power/supermatter_crystal/attack_paw(mob/user)
 	dust_mob(user, cause = "monkey attack")

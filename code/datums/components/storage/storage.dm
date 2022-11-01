@@ -96,7 +96,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_EXITED, .proc/_remove_and_refresh)
 	RegisterSignal(parent, COMSIG_ATOM_CANREACH, .proc/canreach_react)
 
-	RegisterSignal(parent, COMSIG_ITEM_PRE_ATTACK, .proc/preattack_intercept)
+	RegisterSignal(parent, COMSIG_ITEM_PRE_ATTACK, .proc/on_preattack)
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/attack_self)
 	RegisterSignal(parent, COMSIG_ITEM_PICKUP, .proc/signal_on_pickup)
 
@@ -192,10 +192,11 @@
 	if((M.get_active_held_item() == parent) && allow_quick_empty)
 		quick_empty(M)
 
-/datum/component/storage/proc/preattack_intercept(datum/source, obj/O, mob/M, params)
+/// Signal handler for preattack from an object.
+/datum/component/storage/proc/on_preattack(datum/source, obj/O, mob/M, params)
 	if(!isitem(O) || !click_gather || SEND_SIGNAL(O, COMSIG_CONTAINS_STORAGE))
 		return FALSE
-	. = COMPONENT_NO_ATTACK
+	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	if(locked)
 		to_chat(M, span_warning("[parent] seems to be locked!"))
 		return FALSE

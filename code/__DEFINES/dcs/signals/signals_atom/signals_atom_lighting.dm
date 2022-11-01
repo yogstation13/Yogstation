@@ -23,7 +23,3 @@
 #define COMSIG_ATOM_SET_LIGHT_ON "atom_set_light_on"
 ///Called right after the atom changes the value of light_on to a different one, from base of [/atom/proc/set_light_on]: (old_value)
 #define COMSIG_ATOM_UPDATE_LIGHT_ON "atom_update_light_on"
-///Called right before the atom changes the value of light_flags to a different one, from base [atom/proc/set_light_flags]: (new_flags)
-#define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
-///Called right after the atom changes the value of light_flags to a different one, from base of [/atom/proc/set_light_flags]: (old_flags)
-#define COMSIG_ATOM_UPDATE_LIGHT_FLAGS "atom_update_light_flags"

@@ -26,7 +26,7 @@
 
 /obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
-	var/ratio = obj_integrity / max_integrity
+	var/ratio = atom_integrity / max_integrity
 	ratio = CEILING(ratio*4, 1) * 25
 
 	if(ratio>75)
@@ -81,7 +81,7 @@
 				return FALSE
 			to_chat(user, span_notice("You construct the window."))
 			var/obj/structure/window/WD = new the_rcd.window_type(T, window_dir)
-			WD.setAnchored(TRUE)
+			WD.set_anchored(TRUE)
 			return TRUE
 	return FALSE
 
@@ -156,7 +156,7 @@
 	else if((W.tool_behaviour == TOOL_SCREWDRIVER) && (isturf(loc) || anchored))
 		if(!shock(user, 90))
 			W.play_tool_sound(src, 100)
-			setAnchored(!anchored)
+			set_anchored(!anchored)
 			user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] [src]."), \
 								 span_notice("You [anchored ? "fasten [src] to" : "unfasten [src] from"] the floor."))
 			queue_smooth(src)
@@ -207,7 +207,7 @@
 					WD = new/obj/structure/window/fulltile(drop_location()) //normal window
 				WD.setDir(dir_to_set)
 				WD.ini_dir = dir_to_set
-				WD.setAnchored(FALSE)
+				WD.set_anchored(FALSE)
 				WD.state = 0
 				ST.use(2)
 				to_chat(user, span_notice("You place [WD] on [src]."))
@@ -236,7 +236,7 @@
 		transfer_fingerprints_to(R)
 		..()
 
-/obj/structure/grille/obj_break()
+/obj/structure/grille/atom_break()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		density = FALSE
 		broken = TRUE
@@ -293,7 +293,6 @@
 /obj/structure/grille/broken // Pre-broken grilles for map placement
 	icon_state = "grille_broken"
 	density = FALSE
-	obj_integrity = 20
 	broken = TRUE
 	rods_amount = 1
 	rods_broken = FALSE
@@ -304,6 +303,7 @@
 	. = ..()
 	holes = (holes | 16)
 	update_icon()
+	take_damage(max_integrity * 0.6)
 
 /obj/structure/grille/ratvar
 	icon = 'icons/obj/structures.dmi'
@@ -335,9 +335,12 @@
 /obj/structure/grille/ratvar/broken
 	icon_state = "brokenratvargrille"
 	density = FALSE
-	obj_integrity = 20
 	broken = TRUE
 	rods_amount = 1
 	rods_broken = FALSE
 	grille_type = /obj/structure/grille/ratvar
 	broken_type = null
+
+/obj/structure/grille/ratvar/broken/Initialize(mapload)
+	. = ..()
+	take_damage(max_integrity * 0.6)

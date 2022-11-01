@@ -65,7 +65,7 @@
 			add_overlay(dominator_overlay)
 		else
 			icon_state = "dominator"
-		if(obj_integrity/max_integrity < 0.66)
+		if(atom_integrity/max_integrity < 0.66)
 			add_overlay("damage")
 	else
 		icon_state = "dominator-broken"
@@ -84,7 +84,7 @@
 		. += span_notice("System on standby.")
 	if(nukedisk)
 		. += span_notice("[nukedisk] seems to be stuck inside.")
-	. += span_danger("System Integrity: [round((obj_integrity/max_integrity)*100,1)]%")
+	. += span_danger("System Integrity: [round((atom_integrity/max_integrity)*100,1)]%")
 
 /obj/machinery/dominator/process()
 	..()
@@ -132,7 +132,7 @@
 /obj/machinery/dominator/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	. = ..()
 	if(.)
-		if(obj_integrity/max_integrity > 0.66)
+		if(atom_integrity/max_integrity > 0.66)
 			if(prob(damage_amount*2))
 				spark_system.start()
 		else if(!(stat & BROKEN))
@@ -140,7 +140,8 @@
 			update_icon()
 
 
-/obj/machinery/dominator/obj_break(damage_flag)
+/obj/machinery/dominator/atom_break(damage_flag)
+	. = ..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_broken()
 

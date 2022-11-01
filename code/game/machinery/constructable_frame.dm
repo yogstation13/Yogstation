@@ -108,7 +108,7 @@
 				if(P.use_tool(src, user, 40, volume=75))
 					if(state == 1)
 						to_chat(user, span_notice("You [anchored ? "un" : ""]secure [name]."))
-						setAnchored(!anchored)
+						set_anchored(!anchored)
 				return
 
 		if(2)
@@ -116,7 +116,7 @@
 				to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [name]..."))
 				if(P.use_tool(src, user, 40, volume=75))
 					to_chat(user, span_notice("You [anchored ? "un" : ""]secure [name]."))
-					setAnchored(!anchored)
+					set_anchored(!anchored)
 				return
 
 			if(istype(P, /obj/item/circuitboard/machine))
@@ -171,7 +171,7 @@
 				to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [name]..."))
 				if(P.use_tool(src, user, 40, volume=75))
 					to_chat(user, span_notice("You [anchored ? "un" : ""]secure [name]."))
-					setAnchored(!anchored)
+					set_anchored(!anchored)
 				return
 
 			if(P.tool_behaviour == TOOL_SCREWDRIVER)
@@ -186,7 +186,7 @@
 					if(new_machine.circuit)
 						QDEL_NULL(new_machine.circuit)
 					new_machine.circuit = circuit
-					new_machine.setAnchored(anchored)
+					new_machine.set_anchored(anchored)
 					new_machine.on_construction()
 					for(var/obj/O in new_machine.component_parts)
 						qdel(O)

@@ -120,10 +120,10 @@
 /mob/camera/blob/proc/create_shield(turf/T)
 	var/obj/structure/blob/shield/S = locate(/obj/structure/blob/shield) in T
 	if(S)
-		if(!can_buy(BLOB_REFLECTOR_COST))
+		if(!can_buy(BLOB_UPGRADE_REFLECTOR_COST))
 			return
-		if(S.obj_integrity < S.max_integrity * 0.5)
-			add_points(BLOB_REFLECTOR_COST)
+		if(S.get_integrity() < S.max_integrity * 0.5)
+			add_points(BLOB_UPGRADE_REFLECTOR_COST)
 			to_chat(src, span_warning("This shield blob is too damaged to be modified properly!"))
 			return
 		to_chat(src, span_warning("You secrete a reflective ooze over the shield blob, allowing it to reflect projectiles at the cost of reduced integrity."))
@@ -161,7 +161,7 @@
 	if(B.naut) //if it already made a blobbernaut, it can't do it again
 		to_chat(src, span_warning("This factory blob is already sustaining a blobbernaut."))
 		return
-	if(B.obj_integrity < B.max_integrity * 0.5)
+	if(B.get_integrity() < B.max_integrity * 0.5)
 		to_chat(src, span_warning("This factory blob is too damaged to sustain a blobbernaut."))
 		return
 	if(!can_buy(40))
@@ -171,8 +171,7 @@
 	to_chat(src, span_notice("You attempt to produce a blobbernaut."))
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as a [blobstrain.name] blobbernaut?", ROLE_BLOB, null, ROLE_BLOB, 50) //players must answer rapidly
 	if(LAZYLEN(candidates)) //if we got at least one candidate, they're a blobbernaut now.
-		B.max_integrity = initial(B.max_integrity) * 0.25 //factories that produced a blobbernaut have much lower health
-		B.obj_integrity = min(B.obj_integrity, B.max_integrity)
+		B.modify_max_integrity(initial(B.max_integrity) * 0.25) //factories that produced a blobbernaut have much lower health
 		B.update_icon()
 		B.visible_message(span_warning("<b>The blobbernaut [pick("rips", "tears", "shreds")] its way out of the factory blob!</b>"))
 		playsound(B.loc, 'sound/effects/splat.ogg', 50, 1)
@@ -248,7 +247,7 @@
 
 /mob/camera/blob/verb/expand_blob_power()
 	set category = "Blob"
-	set name = "Expand/Attack Blob ([BLOB_SPREAD_COST])"
+	set name = "Expand/Attack Blob ([BLOB_EXPAND_COST])"
 	set desc = "Attempts to create a new blob in this tile. If the tile isn't clear, instead attacks it, damaging mobs and objects and refunding [BLOB_ATTACK_REFUND] points."
 	var/turf/T = get_turf(src)
 	expand_blob(T)
@@ -262,7 +261,7 @@
 	if(!possibleblobs.len)
 		to_chat(src, span_warning("There is no blob adjacent to the target tile!"))
 		return
-	if(can_buy(BLOB_SPREAD_COST))
+	if(can_buy(BLOB_EXPAND_COST))
 		var/attacksuccess = FALSE
 		for(var/mob/living/L in T)
 			if(ROLE_BLOB in L.faction) //no friendly/dead fire
@@ -277,7 +276,7 @@
 				add_points(BLOB_ATTACK_REFUND)
 			else
 				to_chat(src, span_warning("There is a blob there!"))
-				add_points(BLOB_SPREAD_COST) //otherwise, refund all of the cost
+				add_points(BLOB_EXPAND_COST) //otherwise, refund all of the cost
 		else
 			var/list/cardinalblobs = list()
 			var/list/diagonalblobs = list()
@@ -299,7 +298,7 @@
 					playsound(OB, 'sound/effects/splat.ogg', 50, 1)
 					add_points(BLOB_ATTACK_REFUND)
 				else
-					add_points(BLOB_SPREAD_COST) //if we're attacking diagonally and didn't hit anything, refund
+					add_points(BLOB_EXPAND_COST) //if we're attacking diagonally and didn't hit anything, refund
 		if(attacksuccess)
 			last_attack = world.time + CLICK_CD_MELEE
 		else

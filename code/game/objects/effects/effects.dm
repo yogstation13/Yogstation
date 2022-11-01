@@ -7,7 +7,16 @@
 	move_resist = INFINITY
 	obj_flags = 0
 
-/obj/effect/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+	/obj/effect/attackby(obj/item/weapon, mob/user, params)
+	if(SEND_SIGNAL(weapon, COMSIG_ITEM_ATTACK_EFFECT, src, user, params) & COMPONENT_NO_AFTERATTACK)
+		return TRUE
+
+	// I'm not sure why these are snowflaked to early return but they are
+	if(istype(weapon, /obj/item/mop) || istype(weapon, /obj/item/soap))
+		return
+
+	return ..()
+/obj/effect/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
 	return
 
 /obj/effect/fire_act(exposed_temperature, exposed_volume)
@@ -16,8 +25,8 @@
 /obj/effect/acid_act()
 	return
 
-/obj/effect/mech_melee_attack(obj/mecha/M)
-	return 0
+// /obj/effect/mech_melee_attack(obj/mecha/M, mob/living/user)
+// 	return 0
 
 /obj/effect/blob_act(obj/structure/blob/B)
 	return

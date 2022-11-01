@@ -12,7 +12,7 @@
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone)
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (hit_percent <= 0))
-		return 0
+		return FALSE
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage * hit_percent)
@@ -26,7 +26,7 @@
 			adjustCloneLoss(damage * hit_percent)
 		if(STAMINA)
 			adjustStaminaLoss(damage * hit_percent)
-	return 1
+	return TRUE
 
 /mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE, required_status) //like apply damage except it always uses the damage procs
 	switch(damagetype)

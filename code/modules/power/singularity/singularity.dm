@@ -93,18 +93,26 @@
 	return
 
 /obj/singularity/attack_tk(mob/user)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		C.visible_message(span_danger("[C]'s head begins to collapse in on itself!"), span_userdanger("Your head feels like it's collapsing in on itself! This was really not a good idea!"), span_italics("You hear something crack and explode in gore."))
-		var/turf/T = get_turf(C)
-		for(var/i in 1 to 3)
-			C.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
-			new /obj/effect/gibspawner/generic(T, C)
-			sleep(0.1 SECONDS)
-		C.ghostize()
-		var/obj/item/bodypart/head/rip_u = C.get_bodypart(BODY_ZONE_HEAD)
-		rip_u.dismember(BURN) //nice try jedi
-		qdel(rip_u)
+	if(!iscarbon(user))
+		return
+	. = COMPONENT_CANCEL_ATTACK_CHAIN
+	var/mob/living/carbon/C = user
+	C.visible_message(
+		span_danger("[C]'s head begins to collapse in on itself!"), 
+		span_userdanger("Your head feels like it's collapsing in on itself! This was really not a good idea!"), 
+		span_italics("You hear something crack and explode in gore.")
+		)
+	var/turf/T = get_turf(C)
+	for(var/i in 1 to 3)
+		C.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
+		new /obj/effect/gibspawner/generic(T, C)
+		if(QDELETED(C))
+			return
+		sleep(0.1 SECONDS)
+	C.ghostize()
+	var/obj/item/bodypart/head/rip_u = C.get_bodypart(BODY_ZONE_HEAD)
+	rip_u.dismember(BURN) //nice try jedi
+	qdel(rip_u)
 
 /obj/singularity/ex_act(severity, target)
 	var/energy_loss_ratio = 0

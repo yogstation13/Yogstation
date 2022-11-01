@@ -143,7 +143,7 @@
 			return
 	return ..()
 
-/obj/machinery/smartfridge/obj_break(damage_flag)
+/obj/machinery/smartfridge/atom_break(damage_flag)
 	if(!(stat & BROKEN))
 		stat |= BROKEN
 		update_icon()

@@ -43,7 +43,7 @@ Difficulty: Extremely Hard
 
 /mob/living/simple_animal/hostile/megafauna/demonic_frost_miner/Initialize()
 	. = ..()
-	AddComponent(/datum/component/knockback, 7, FALSE)
+	AddComponent(/datum/component/knockback, 7, FALSE, TRUE)
 	AddComponent(/datum/component/lifesteal, 50)
 
 /datum/action/innate/megafauna_attack/frost_orbs

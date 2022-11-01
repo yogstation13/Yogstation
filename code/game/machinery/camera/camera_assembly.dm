@@ -126,7 +126,7 @@
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(weld(W, user))
 					to_chat(user, span_notice("You weld [src] securely into place."))
-					setAnchored(TRUE)
+					set_anchored(TRUE)
 					state = STATE_WELDED
 				return
 
@@ -146,7 +146,7 @@
 				if(weld(W, user))
 					to_chat(user, span_notice("You unweld [src] from its place."))
 					state = STATE_WRENCHED
-					setAnchored(TRUE)
+					set_anchored(TRUE)
 				return
 
 		if(STATE_WIRED)	// Upgrades!

@@ -42,6 +42,7 @@
 	damage = 55
 	armour_penetration = -35		//bulletproof armor almost totally stops these, but you're still getting hit in the chest by a supersonic nugget of lead
 	sharpness = SHARP_EDGED
+	weak_against_armour = TRUE
 	wound_bonus = -35				//odds are you'll be shooting at someone with armor so you don't have a great chance for wounds
 	bare_wound_bonus = 35			//but if they aren't protected...
 

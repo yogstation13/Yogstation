@@ -11,7 +11,7 @@
 		to_chat(user, span_notice("You begin to [anchored ? "unwrench" : "wrench"] [src]."))
 		if(I.use_tool(src, user, 20, volume=50))
 			to_chat(user, span_notice("You successfully [anchored ? "unwrench" : "wrench"] [src]."))
-			setAnchored(!anchored)
+			set_anchored(!anchored)
 	else
 		return ..()
 

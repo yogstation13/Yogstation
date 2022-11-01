@@ -153,36 +153,132 @@ SUBSYSTEM_DEF(explosions)
 		A.color = null
 		A.maptext = ""
 
-/proc/dyn_explosion(turf/epicenter, power, flash_range, adminlog = TRUE, ignorecap = TRUE, flame_range = 0, silent = FALSE, smoke = TRUE)
+/**
+ * Using default dyn_ex scale:
+ *
+ * 100 explosion power is a (5, 10, 20) explosion.
+ * 75 explosion power is a (4, 8, 17) explosion.
+ * 50 explosion power is a (3, 7, 14) explosion.
+ * 25 explosion power is a (2, 5, 10) explosion.
+ * 10 explosion power is a (1, 3, 6) explosion.
+ * 5 explosion power is a (0, 1, 3) explosion.
+ * 1 explosion power is a (0, 0, 1) explosion.
+ *
+ * Arguments:
+ * * epicenter: Turf the explosion is centered at.
+ * * power - Dyn explosion power. See reference above.
+ * * flame_range: Flame range. Equal to the equivalent of the light impact range multiplied by this value.
+ * * flash_range: The range at which the explosion flashes people. Equal to the equivalent of the light impact range multiplied by this value.
+ * * adminlog: Whether to log the explosion/report it to the administration.
+ * * ignorecap: Whether to ignore the relevant bombcap. Defaults to FALSE.
+ * * flame_range: The range at which the explosion should produce hotspots.
+ * * silent: Whether to generate/execute sound effects.
+ * * smoke: Whether to generate a smoke cloud provided the explosion is powerful enough to warrant it.
+ * * explosion_cause: [Optional] The atom that caused the explosion, when different to the origin. Used for logging.
+ */
+/proc/dyn_explosion(turf/epicenter, power, flame_range = 0, flash_range = null, adminlog = TRUE, ignorecap = TRUE, silent = FALSE, smoke = TRUE, atom/explosion_cause = null)
 	if(!power)
 		return
 	var/range = 0
 	range = round((2 * power)**GLOB.DYN_EX_SCALE)
-	explosion(epicenter, round(range * 0.25), round(range * 0.5), round(range), flash_range*range, adminlog, ignorecap, flame_range*range, silent, smoke)
+	explosion(epicenter, devastation_range = round(range * 0.25), heavy_impact_range = round(range * 0.5), light_impact_range = round(range), flame_range = flame_range*range, flash_range = flash_range*range, adminlog = adminlog, ignorecap = ignorecap, silent = silent, smoke = smoke, explosion_cause = explosion_cause)
 
-// Using default dyn_ex scale:
-// 100 explosion power is a (5, 10, 20) explosion.
-// 75 explosion power is a (4, 8, 17) explosion.
-// 50 explosion power is a (3, 7, 14) explosion.
-// 25 explosion power is a (2, 5, 10) explosion.
-// 10 explosion power is a (1, 3, 6) explosion.
-// 5 explosion power is a (0, 1, 3) explosion.
-// 1 explosion power is a (0, 0, 1) explosion.
-
+/**
+ * Makes a given atom explode. Now on the explosions subsystem!
+ *
+ * Arguments:
+ * - [origin][/atom]: The atom that's exploding.
+ * - devastation_range: The range at which the effects of the explosion are at their strongest.
+ * - heavy_impact_range: The range at which the effects of the explosion are relatively severe.
+ * - light_impact_range: The range at which the effects of the explosion are relatively weak.
+ * - flash_range: The range at which the explosion flashes people.
+ * - adminlog: Whether to log the explosion/report it to the administration.
+ * - ignorecap: Whether to ignore the relevant bombcap. Defaults to FALSE.
+ * - flame_range: The range at which the explosion should produce hotspots.
+ * - silent: Whether to generate/execute sound effects.
+ * - smoke: Whether to generate a smoke cloud provided the explosion is powerful enough to warrant it.
+ * - explosion_cause: [Optional] The atom that caused the explosion, when different to the origin. Used for logging.
+ */
 /proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, silent = FALSE, smoke = FALSE)
 	. = SSexplosions.explode(arglist(args))
 
-#define CREAK_DELAY 5 SECONDS //Time taken for the creak to play after explosion, if applicable.
-#define DEVASTATION_PROB 30 //The probability modifier for devistation, maths!
-#define HEAVY_IMPACT_PROB 5 //ditto
-#define FAR_UPPER 60 //Upper limit for the far_volume, distance, clamped.
-#define FAR_LOWER 40 //lower limit for the far_volume, distance, clamped.
-#define PROB_SOUND 75 //The probability modifier for a sound to be an echo, or a far sound. (0-100)
-#define SHAKE_CLAMP 2.5 //The limit for how much the camera can shake for out of view booms.
-#define FREQ_UPPER 40 //The upper limit for the randomly selected frequency.
-#define FREQ_LOWER 25 //The lower of the above.
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, silent, smoke)
+// Explosion SFX defines...
+/// The probability that a quaking explosion will make the station creak per unit. Maths!
+#define QUAKE_CREAK_PROB 30
+/// The probability that an echoing explosion will make the station creak per unit.
+#define ECHO_CREAK_PROB 5
+/// Time taken for the hull to begin to creak after an explosion, if applicable.
+#define CREAK_DELAY (5 SECONDS)
+/// Lower limit for far explosion SFX volume.
+#define FAR_LOWER 40
+/// Upper limit for far explosion SFX volume.
+#define FAR_UPPER 60
+/// The probability that a distant explosion SFX will be a far explosion sound rather than an echo. (0-100)
+#define FAR_SOUND_PROB 75
+/// The upper limit on screenshake amplitude for nearby explosions.
+#define NEAR_SHAKE_CAP 10 //yogs 10 instead of 5
+/// The upper limit on screenshake amplifude for distant explosions.
+#define FAR_SHAKE_CAP 1.5
+/// The duration of the screenshake for nearby explosions.
+#define NEAR_SHAKE_DURATION (2.5 SECONDS)  //yogs 1 second longer
+/// The duration of the screenshake for distant explosions.
+#define FAR_SHAKE_DURATION (1 SECONDS)
+/// The lower limit for the randomly selected hull creaking frequency.
+#define FREQ_LOWER 25
+/// The upper limit for the randomly selected hull creaking frequency.
+#define FREQ_UPPER 40
+
+/**
+ * Makes a given atom explode. Now on the explosions subsystem!
+ *
+ * Arguments:
+ * - [origin][/atom]: The atom that's exploding.
+ * - devastation_range: The range at which the effects of the explosion are at their strongest.
+ * - heavy_impact_range: The range at which the effects of the explosion are relatively severe.
+ * - light_impact_range: The range at which the effects of the explosion are relatively weak.
+ * - flash_range: The range at which the explosion flashes people.
+ * - adminlog: Whether to log the explosion/report it to the administration.
+ * - ignorecap: Whether to ignore the relevant bombcap. Defaults to FALSE.
+ * - flame_range: The range at which the explosion should produce hotspots.
+ * - silent: Whether to generate/execute sound effects.
+ * - smoke: Whether to generate a smoke cloud provided the explosion is powerful enough to warrant it.
+ * - explosion_cause: [Optional] The atom that caused the explosion, when different to the origin. Used for logging.
+ */
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 0, flash_range = 0, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, silent = FALSE, smoke= FALSE, atom/explosion_cause = null)
+	var/list/arguments = list(
+		EXARG_KEY_ORIGIN = epicenter,
+		EXARG_KEY_DEV_RANGE = devastation_range,
+		EXARG_KEY_HEAVY_RANGE = heavy_impact_range,
+		EXARG_KEY_LIGHT_RANGE = light_impact_range,
+		EXARG_KEY_FLAME_RANGE = flame_range,
+		EXARG_KEY_FLASH_RANGE = flash_range,
+		EXARG_KEY_ADMIN_LOG = adminlog,
+		EXARG_KEY_IGNORE_CAP = ignorecap,
+		EXARG_KEY_SILENT = silent,
+		EXARG_KEY_SMOKE = smoke,
+		EXARG_KEY_EXPLOSION_CAUSE = explosion_cause ? explosion_cause : epicenter,
+	)
+	var/atom/location = isturf(epicenter) ? epicenter : epicenter.loc
+	if(SEND_SIGNAL(epicenter, COMSIG_ATOM_EXPLODE, arguments) & COMSIG_CANCEL_EXPLOSION)
+		return // Signals are incompatible with `arglist(...)` so we can't actually use that for these. Additionally,
+	
+	while(location)
+		var/next_loc = location.loc
+		if(SEND_SIGNAL(location, COMSIG_ATOM_INTERNAL_EXPLOSION, arguments) & COMSIG_CANCEL_EXPLOSION)
+			return
+		if(isturf(location))
+			break
+		location = next_loc
+	
+	if(!location)
+		return
+
+	var/area/epicenter_area = get_area(location)
+	if(SEND_SIGNAL(epicenter_area, COMSIG_AREA_INTERNAL_EXPLOSION, arguments) & COMSIG_CANCEL_EXPLOSION)
+		return
+	
+	//where tg's propagate_blastwave starts
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
@@ -243,7 +339,7 @@ SUBSYSTEM_DEF(explosions)
 		var/on_station = SSmapping.level_trait(epicenter.z, ZTRAIT_STATION)
 		var/creaking_explosion = FALSE
 
-		if(prob(devastation_range*DEVASTATION_PROB+heavy_impact_range*HEAVY_IMPACT_PROB) && on_station) // Huge explosions are near guaranteed to make the station creak and whine, smaller ones might.
+		if(prob(devastation_range*QUAKE_CREAK_PROB+heavy_impact_range*ECHO_CREAK_PROB) && on_station) // Huge explosions are near guaranteed to make the station creak and whine, smaller ones might.
 			creaking_explosion = TRUE // prob over 100 always returns true
 
 		for(var/MN in GLOB.player_list)
@@ -259,13 +355,13 @@ SUBSYSTEM_DEF(explosions)
 				if(dist <= round(max_range + world.view - 2, 1))
 					M.playsound_local(epicenter, null, 100, 1, frequency, S = explosion_sound)
 					if(baseshakeamount > 0)
-						shake_camera(M, 25, clamp(baseshakeamount, 0, 10))
+						shake_camera(M, NEAR_SHAKE_DURATION 25, clamp(baseshakeamount, 0, NEAR_SHAKE_CAP 10))
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 				else if(dist <= far_dist)
 					var/far_volume = clamp(far_dist/2, FAR_LOWER, FAR_UPPER) // Volume is based on explosion size and dist
 					if(creaking_explosion)
 						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = creaking_explosion_sound, distance_multiplier = 0)
-					else if(prob(PROB_SOUND)) // Sound variety during meteor storm/tesloose/other bad event
+					else if(prob(FAR_SOUND_PROB)) // Sound variety during meteor storm/tesloose/other bad event
 						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = far_explosion_sound, distance_multiplier = 0) // Far sound
 					else
 						M.playsound_local(epicenter, null, far_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0) // Echo sound
@@ -273,12 +369,12 @@ SUBSYSTEM_DEF(explosions)
 					if(baseshakeamount > 0 || devastation_range)
 						if(!baseshakeamount) // Devastating explosions rock the station and ground
 							baseshakeamount = devastation_range*3
-						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, SHAKE_CLAMP))
+						shake_camera(M, FAR_SHAKE_DURATION, min(baseshakeamount, FAR_SHAKE_CAP))
 				else if(!isspaceturf(get_turf(M)) && heavy_impact_range) // Big enough explosions echo throughout the hull
 					var/echo_volume = 40
 					if(devastation_range)
 						baseshakeamount = devastation_range
-						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, SHAKE_CLAMP))
+						shake_camera(M, FAR_SHAKE_DURATION, clamp(baseshakeamount*0.25, 0, FAR_SHAKE_CAP))
 						echo_volume = 60
 					M.playsound_local(epicenter, null, echo_volume, 1, frequency, S = explosion_echo_sound, distance_multiplier = 0)
 
@@ -386,12 +482,15 @@ SUBSYSTEM_DEF(explosions)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
 
 #undef CREAK_DELAY
-#undef DEVASTATION_PROB
-#undef HEAVY_IMPACT_PROB
+#undef QUAKE_CREAK_PROB
+#undef ECHO_CREAK_PROB
 #undef FAR_UPPER
 #undef FAR_LOWER
-#undef PROB_SOUND
-#undef SHAKE_CLAMP
+#undef FAR_SOUND_PROB
+#undef NEAR_SHAKE_CAP
+#undef FAR_SHAKE_CAP
+#undef NEAR_SHAKE_DURATION
+#undef FAR_SHAKE_DURATION
 #undef FREQ_UPPER
 #undef FREQ_LOWER
 

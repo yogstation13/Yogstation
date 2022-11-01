@@ -11,7 +11,7 @@
 				to_chat(user, span_notice("You start wrenching the frame into place..."))
 				if(P.use_tool(src, user, 20, volume=50))
 					to_chat(user, span_notice("You wrench the frame into place."))
-					setAnchored(TRUE)
+					set_anchored(TRUE)
 					state = 1
 				return
 			if(P.tool_behaviour == TOOL_WELDER)
@@ -30,7 +30,7 @@
 				to_chat(user, span_notice("You start to unfasten the frame..."))
 				if(P.use_tool(src, user, 20, volume=50))
 					to_chat(user, span_notice("You unfasten the frame."))
-					setAnchored(FALSE)
+					set_anchored(FALSE)
 					state = 0
 				return
 			if(istype(P, /obj/item/circuitboard/computer) && !circuit)

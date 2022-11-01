@@ -35,9 +35,12 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	max_integrity = 200
 
 	obj_flags = NONE
+	///Item flags for the item
 	var/item_flags = NONE
-	
+
+	///Sound played when you hit something with the item
 	var/hitsound
+	///Played when the item is used, for example tools
 	var/usesound
 	///Used when yate into a mob
 	var/mob_throw_hit_sound
@@ -48,46 +51,75 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	///Sound uses when dropping the item, or when its thrown.
 	var/drop_sound
 	
+	///How large is the object, used for stuff like whether it can fit in backpacks or not
 	var/w_class = WEIGHT_CLASS_NORMAL
-	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
+	///This is used to determine on which slots an item can fit.
+	var/slot_flags = 0		
 	pass_flags = PASSTABLE
 	pressure_resistance = 4
+	/// This var exists as a weird proxy "owner" ref
+	/// It's used in a few places. Stop using it, and optimially replace all uses please
 	var/obj/item/master = null
 
-	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
-	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
+	///flags which determine which body parts are protected from heat. [See here][HEAD]
+	var/heat_protection = 0
+	///flags which determine which body parts are protected from cold. [See here][HEAD]
+	var/cold_protection = 0
+	///Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
+	var/max_heat_protection_temperature
+	///Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
+	var/min_cold_protection_temperature
 
-	var/list/actions //list of /datum/action's that this item has.
-	var/list/actions_types //list of paths of action datums to give to the item on New().
+	///list of /datum/action's that this item has.
+	var/list/actions
+	///list of paths of action datums to give to the item on New().
+	var/list/actions_types
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/flags_inv //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
-	var/flags_prot //This flag acts like flags_inv except it allows the items to still be rendered.
-	var/transparent_protection = NONE //you can see someone's mask through their transparent visor, but you can't reach it
+	///This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/flags_inv
+	///you can see someone's mask through their transparent visor, but you can't reach it
+	var/transparent_protection = NONE
+	///This flag acts like flags_inv except it allows the items to still be rendered.
+	var/flags_prot 
 
+	///flags for what should be done when you click on the item, default is picking it up
 	var/interaction_flags_item = INTERACT_ITEM_ATTACK_HAND_PICKUP
 
-	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
-	var/body_parts_partial_covered = 0 //same bit flags as above, only applies half armor to these body parts
+	///What body parts are covered by the clothing when you wear it
+	var/body_parts_covered = 0
+	///same bit flags as above, only applies half armor to these body parts
+	var/body_parts_partial_covered = 0
 
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
-	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
-	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/armour_penetration = 0 //percentage of armour effectiveness to remove
-	var/list/allowed = null //suit storage stuff.
-	var/equip_delay_self = 0 //In deciseconds, how long an item takes to equip; counts only for normal clothing slots, not pockets etc.
-	var/equip_delay_other = 20 //In deciseconds, how long an item takes to put on another person
-	var/strip_delay = 40 //In deciseconds, how long an item takes to remove from another person
+	/// for electrical admittance/conductance (electrocution checks and shit)
+	var/siemens_coefficient = 1
+	/// How much clothing is slowing you down. Negative values speeds you up
+	var/slowdown = 0
+	///percentage of armour effectiveness to remove
+	var/armour_penetration = 0
+	///Whether or not our object is easily hindered by the presence of armor
+	var/weak_against_armour = FALSE
+	///What objects the suit storage can store
+	var/list/allowed = null
+	///In deciseconds, how long an item takes to equip; counts only for normal clothing slots, not pockets etc.
+	var/equip_delay_self = 0
+	///In deciseconds, how long an item takes to put on another person
+	var/equip_delay_other = 20
+	///In deciseconds, how long an item takes to remove from another person
+	var/strip_delay = 40
+	///How long it takes to resist out of the item (cuffs and such)
 	var/breakouttime = 0
-	var/list/materials //materials in this object, and the amount
-
-	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
-	var/list/species_exception = null	// list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item
+	
+	///Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb 
+	///list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item
+	var/list/species_exception = null
 
 	var/mob/thrownby = null
+	///Items can by default thrown up to 10 tiles by TK users
+	tk_throw_range = 10
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER //the icon to indicate this object is being dragged
 
@@ -716,9 +748,6 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 		return ..()
 	return 0
 
-/obj/item/mech_melee_attack(obj/mecha/M)
-	return 0
-
 /obj/item/deconstruct(disassembled = TRUE)
 	var/turf/T = get_turf(src)
 	var/msg = replacetext(break_message, "%SRC", "[src]")
@@ -894,6 +923,15 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 /obj/item/proc/doStrip(mob/stripper, mob/owner)
 	return owner.dropItemToGround(src)
 
+///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
+/obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
+	if((item_flags & ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
+		return
+	user.dropItemToGround(src, silent = TRUE)
+	if(throwforce && HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, span_notice("You set [src] down gently on the ground."))
+		return
+	return src
 ///Returns the temperature of src. If you want to know if an item is hot use this proc.
 /obj/item/proc/get_temperature()
 	return heat

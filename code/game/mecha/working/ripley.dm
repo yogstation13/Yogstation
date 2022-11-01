@@ -132,10 +132,10 @@
 /obj/mecha/working/ripley/mining
 	desc = "An old, dusty mining Ripley."
 	name = "\improper APLU \"Miner\""
-	obj_integrity = 75 //Low starting health
 
 /obj/mecha/working/ripley/mining/Initialize()
 	. = ..()
+	take_damage(125) // Low starting health
 	if(cell)
 		cell.charge = FLOOR(cell.charge * 0.25, 1) //Starts at very low charge
 	if(prob(70)) //Maybe add a drill

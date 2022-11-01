@@ -83,8 +83,14 @@
 
 /obj/screen/blob/FactoryBlob
 	icon_state = "ui_factory"
-	name = "Produce Factory Blob (60)"
-	desc = "Produces a factory blob for 60 resources.<br>Factory blobs will produce spores every few seconds."
+	// Name and description get given their proper values on Initialize()
+	name = "Produce Factory Blob (ERROR)"
+	desc = "Produces a factory blob for ERROR resources.<br>Factory blobs will produce spores every few seconds."
+
+/obj/screen/blob/FactoryBlob/Initialize(mapload)
+	. = ..()
+	name = "Produce Factory Blob ([BLOB_STRUCTURE_FACTORY_COST])"
+	desc = "Produces a factory blob for [BLOB_STRUCTURE_FACTORY_COST] resources.<br>Factory blobs will produce spores every few seconds."
 
 /obj/screen/blob/FactoryBlob/Click()
 	if(isovermind(usr))
@@ -93,18 +99,18 @@
 
 /obj/screen/blob/ReadaptStrain
 	icon_state = "ui_chemswap"
-	name = "Readapt Strain (40)"
-	desc = "Allows you to choose a new strain from 4 random choices for 40 resources."
+	name = "Readapt Strain"
+	desc = "Allows you to choose a new strain from ERROR random choices for ERROR resources."
 
 /obj/screen/blob/ReadaptStrain/MouseEntered(location,control,params)
 	if(hud && hud.mymob && isovermind(hud.mymob))
 		var/mob/camera/blob/B = hud.mymob
 		if(B.free_strain_rerolls)
-			name = "Readapt Strain (FREE)"
+			name = "[initial(name)] (FREE)"
 			desc = "Randomly rerolls your strain for free."
 		else
-			name = initial(name)
-			desc = initial(desc)
+			name = "[initial(name)] ([BLOB_POWER_REROLL_COST])"
+			desc = "Allows you to choose a new strain from [BLOB_POWER_REROLL_CHOICES] random choices for [BLOB_POWER_REROLL_COST] resources."
 	..()
 
 /obj/screen/blob/ReadaptStrain/Click()
@@ -114,8 +120,14 @@
 
 /obj/screen/blob/RelocateCore
 	icon_state = "ui_swap"
-	name = "Relocate Core (80)"
-	desc = "Swaps a node and your core for 80 resources."
+	// Name and description get given their proper values on Initialize()
+	name = "Relocate Core (ERROR)"
+	desc = "Swaps a node and your core for ERROR resources."
+
+/obj/screen/blob/RelocateCore/Initialize(mapload)
+	. = ..()
+	name = "Relocate Core ([BLOB_POWER_RELOCATE_COST])"
+	desc = "Swaps a node and your core for [BLOB_POWER_RELOCATE_COST] resources."
 
 /obj/screen/blob/RelocateCore/Click()
 	if(isovermind(usr))
