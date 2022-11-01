@@ -176,6 +176,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe
 	name = "\improper SH-NT \"Killerhurtz\" energy axe"
 	desc = "An oversized, destructive-looking axe with a powered edge. While far too big for use by an individual, an exosuit might be able to wield it."
+	icon_state = "mecha_energy_axe"
 	precise_attacks = FALSE		//This is not a weapon of precision, it is a weapon of destruction
 	energy_drain = 40
 	weapon_damage = 20
@@ -236,6 +237,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/rocket_fist	//Passive upgrade weapon when selected, makes your mech punch harder AND faster
 	name = "\improper DD-2 \"Atom Smasher\" rocket fist"
 	desc = "A large metal fist fitted to the arm of an exosuit, it uses repurposed maneuvering thrusters from a Raven battlecruiser to give a little more oomph to every punche. Also helps increase the speed at which the mech is able to return to a ready stance after each swing."
+	icon_state = "mecha_rocket_fist"
 	melee_override = FALSE		//We'll just buff the regular punch
 	precise_attacks = FALSE		
 	cleave = FALSE		
