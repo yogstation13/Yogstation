@@ -414,6 +414,12 @@
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"hN" = (
+/obj/machinery/firealarm{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "hO" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -1224,13 +1230,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"yV" = (
-/obj/machinery/firealarm{
-	pixel_y = 28
-	},
-/obj/machinery/modular_computer/console/preset/tcomms,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "yZ" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
 	name = "Waste Ejector"
@@ -2012,13 +2011,6 @@
 	},
 /turf/open/floor/circuit/red/telecomms,
 /area/tcommsat/server)
-"Qn" = (
-/obj/machinery/computer/telecomms/traffic{
-	dir = 1;
-	network = "tcommsat"
-	},
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "QG" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -3585,9 +3577,9 @@ yu
 yu
 EH
 Zd
-yV
+hN
 xW
-Qn
+bY
 bs
 UG
 Lb

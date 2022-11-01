@@ -65424,15 +65424,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/interrogation)
-"mIU" = (
-/obj/machinery/modular_computer/console/preset/tcomms{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "mJQ" = (
 /obj/machinery/button/door{
 	id = "emt_shutters";
@@ -67767,6 +67758,12 @@
 /obj/machinery/ai/data_core/primary,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/ai_monitored/turret_protected/ai)
+"onx" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "onJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -72536,13 +72533,6 @@
 /obj/item/pen,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
-"rAW" = (
-/obj/machinery/computer/telecomms/traffic{
-	dir = 8;
-	network = "tcommsat"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "rBD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/light/small{
@@ -138472,8 +138462,8 @@ lpP
 yhJ
 bbQ
 btL
-mIU
-rAW
+onx
+bxq
 bzt
 eMg
 bCD
