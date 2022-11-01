@@ -10,7 +10,7 @@
 	//Attack speed modifier for a weapon. Big weapons will have a longer delay between attacks, while smaller ones will be faster
 	var/attack_speed_modifier = 1
 	//Attack sound for the weapon
-	var/attack_sound
+	var/attack_sound = sound/weapon/mechasword.ogg
 	//Attack types - Note that at least one of these must be true otherwise it'll only have passive effects (if any)
 	//By default we assume we're using a small weapon with only a special single-target attack
     //If the weapon has an AOE attack
@@ -36,7 +36,6 @@
 	var/structure_damage_mult = 3
 
 	var/cleave_effect = /obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
-	var/attack_effect = /obj/effect/
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/can_attach(obj/mecha/M)
 	if(!..())
@@ -141,7 +140,7 @@
 				var/object_damage = max(chassis.force + weapon_damage, minimum_damage) * structure_damage_mult
 				O.take_damage(object_damage, dam_type, "melee", 0)
 
-	new attack_effect(get_turf(src), chassis.dir)
+	new cleave_effect(get_turf(src), chassis.dir)
 	playsound(chassis, attack_sound, 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/precise_attack(atom/target)
@@ -220,7 +219,7 @@
 				var/turf/closed/wall/W = A
 				W.dismantle_wall()
 
-	new attack_effect(get_turf(src), chassis.dir)
+	new cleave_effect(get_turf(src), chassis.dir)
 	playsound(chassis, attack_sound, 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_select()
