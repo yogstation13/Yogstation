@@ -53,6 +53,7 @@
 		to_chat(user, span_warning("You are banned from using NTSL."))
 		return
 	if(Compiler)
+		user.log_message(rawcode, LOG_NTSL)
 		var/list/compileerrors = Compiler.Compile(rawcode)
 		if(!compileerrors.len && (compiledcode != rawcode))
 			user.log_message(rawcode, LOG_NTSL)
