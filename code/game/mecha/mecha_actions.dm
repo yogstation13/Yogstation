@@ -78,6 +78,7 @@
 		return
 	if(!chassis.selected)
 		chassis.selected = available_equipment[1]
+		chassis.selected.on_select()
 		chassis.occupant_message("You select [chassis.selected]")
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
 		button_icon_state = "mech_cycle_equip_on"

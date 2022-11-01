@@ -1,5 +1,6 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon
 	name = "mecha melee weapon"
+	icon_state = "mecha_generic_melee"
 	range = MECHA_MELEE|MECHA_RANGED	//so we can do stuff at range and in melee
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
 	mech_flags = EXOSUIT_MODULE_COMBAT
@@ -10,7 +11,7 @@
 	//Attack speed modifier for a weapon. Big weapons will have a longer delay between attacks, while smaller ones will be faster
 	var/attack_speed_modifier = 1
 	//Attack sound for the weapon
-	var/attack_sound = sound/weapon/mechasword.ogg
+	var/attack_sound = 'sound/weapon/mechasword.ogg'
 	//Attack types - Note that at least one of these must be true otherwise it'll only have passive effects (if any)
 	//By default we assume we're using a small weapon with only a special single-target attack
     //If the weapon has an AOE attack
