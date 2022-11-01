@@ -18,7 +18,7 @@
 	var/obj/item/card/id/auth = null
 	var/list/access_log = list()
 	var/process = 0
-	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
+	//circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic Temp Disable
 
 	req_access = list(ACCESS_TCOM_ADMIN)
 
@@ -91,6 +91,7 @@
 
 
 /obj/machinery/computer/telecomms/traffic/ui_interact(mob/user)
+	return //Temp Disable
 	if(..())
 		return
 	user.set_machine(src)
@@ -297,11 +298,13 @@
 		to_chat(user, span_notice("You you disable the security protocols."))
 
 /obj/machinery/computer/telecomms/traffic/proc/canAccess(mob/user)
+	return 0 // Temp Disable
 	if(issilicon(user) || in_range(user, src))
 		return 1
 	return 0
 
 /obj/machinery/computer/telecomms/traffic/AltClick(mob/user)
+	return //Temp disable
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	if(iscarbon(user))

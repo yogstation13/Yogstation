@@ -2,6 +2,7 @@
 	name = "Computer Design (Traffic Console)"
 	desc = "Allows for the construction of Traffic Control Console."
 	id = "s-traffic"
-	build_path = /obj/item/circuitboard/computer/telecomms/comm_traffic
+	//build_path = /obj/item/circuitboard/computer/telecomms/comm_traffic //temp Disable
+	build_path = /obj/item/circuitboard/computer/message_monitor
 	category = list("Subspace Telecomms")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
