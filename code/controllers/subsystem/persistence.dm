@@ -330,17 +330,15 @@ SUBSYSTEM_DEF(persistence)
 	var/ram_winner = max(contenders_ram)
 	if(!isnull(cpu_winner))
 		ai_network_rankings["cpu"] += cpu_winner
-		ai_network_rankings["cpu"] = sortList(ai_network_rankings["cpu"])
+		ai_network_rankings["cpu"] = sortList(ai_network_rankings["cpu"], /proc/cmp_numeric_dsc)
 		if(length(ai_network_rankings["cpu"]) > 5)
 			ai_network_rankings["cpu"].len = 5
 
 	if(!isnull(ram_winner))
 		ai_network_rankings["ram"] += ram_winner
-		ai_network_rankings["ram"] = sortList(ai_network_rankings["ram"])
+		ai_network_rankings["ram"] = sortList(ai_network_rankings["ram"], /proc/cmp_numeric_dsc)
 		if(length(ai_network_rankings["ram"]) > 5)
 			ai_network_rankings["ram"].len = 5
-
-
 
 	fdel("data/AINetworkRank.json")
 	text2file(json_encode(ai_network_rankings), "data/AINetworkRank.json")
