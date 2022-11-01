@@ -47705,19 +47705,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
-"bza" = (
-/obj/machinery/power/apc/highcap/ten_k{
-	areastring = "/area/tcommsat/computer";
-	dir = 1;
-	name = "Telecomms Monitoring APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/white{
-	icon_state = "0-2"
-	},
-/obj/machinery/modular_computer/console/preset/tcomms,
-/turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
 "bzb" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
@@ -58357,26 +58344,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/grimy,
-/area/tcommsat/computer)
-"bOO" = (
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/computer/telecomms/traffic{
-	dir = 8;
-	network = "tcommsat"
-	},
-/turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "bOP" = (
 /obj/machinery/vending/cigarette,
@@ -127316,6 +127283,18 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+"tlH" = (
+/obj/machinery/power/apc/highcap/ten_k{
+	areastring = "/area/tcommsat/computer";
+	dir = 1;
+	name = "Telecomms Monitoring APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/white{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
 "tng" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -128226,6 +128205,22 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/ai_monitored/secondarydatacore)
+"uZr" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "uZv" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -168959,7 +168954,7 @@ bBz
 bHb
 bIN
 bKH
-bza
+tlH
 bOH
 drU
 bSE
@@ -170759,7 +170754,7 @@ bHi
 bIU
 bKH
 bMF
-bOO
+uZr
 bQO
 bSK
 bUG

@@ -23715,10 +23715,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
-"hic" = (
-/obj/machinery/modular_computer/console/preset/tcomms,
-/turf/open/floor/plasteel/grimy,
-/area/maintenance/department/tcoms)
 "hif" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
@@ -49337,12 +49333,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction)
-"pTT" = (
-/obj/machinery/computer/telecomms/traffic{
-	network = "tcommsat"
-	},
-/turf/open/floor/plasteel/grimy,
-/area/maintenance/department/tcoms)
 "pTX" = (
 /obj/machinery/light/small,
 /obj/structure/closet/toolcloset,
@@ -95179,7 +95169,7 @@ eXk
 ibk
 xZB
 wCY
-hic
+dqF
 nkX
 tQf
 dqF
@@ -95436,7 +95426,7 @@ eXk
 tJy
 ibk
 wCY
-pTT
+dqF
 mqr
 tQf
 eQH
