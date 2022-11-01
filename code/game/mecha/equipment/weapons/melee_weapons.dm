@@ -11,7 +11,7 @@
 	//Attack speed modifier for a weapon. Big weapons will have a longer delay between attacks, while smaller ones will be faster
 	var/attack_speed_modifier = 1
 	//Attack sound for the weapon
-	var/attack_sound = 'sound/weapon/mechasword.ogg'
+	var/attack_sound = 'sound/weapons/mechasword.ogg'
 	//Attack types - Note that at least one of these must be true otherwise it'll only have passive effects (if any)
 	//By default we assume we're using a small weapon with only a special single-target attack
     //If the weapon has an AOE attack
@@ -111,6 +111,8 @@
 	minimum_damage = 20			
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()	//use this for basic cleaving attacks, tweak as needed
+	playsound(chassis, attack_sound, 50, 1)
+	sleep(2)								//Slight windup, lines up with sound file
 	var/turf/M = get_turf(chassis)
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
@@ -142,7 +144,6 @@
 				O.take_damage(object_damage, dam_type, "melee", 0)
 
 	new cleave_effect(get_turf(src), chassis.dir)
-	playsound(chassis, attack_sound, 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/precise_attack(atom/target)
 	if(isliving(target))						
@@ -186,6 +187,8 @@
 	light_color = LIGHT_COLOR_RED
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()
+	playsound(chassis, attack_sound, 50, 1)
+	sleep(2)
 	var/turf/M = get_turf(src)
 	for(var/i = 0 to 2)
 		var/it_turn = 45*(1-i)
@@ -221,7 +224,6 @@
 				W.dismantle_wall()
 
 	new cleave_effect(get_turf(src), chassis.dir)
-	playsound(chassis, attack_sound, 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/on_select()
 	START_PROCESSING(SSobj, src)
