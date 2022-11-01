@@ -158,7 +158,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				var/is_onfire = FALSE
 				var/is_bonecrack = FALSE
 				var/is_disabled = FALSE
-				var/no_warnings = FALSE
+				var/has_warnings = FALSE
 
 				if (I)
 					name = I.registered_name
@@ -217,12 +217,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 						species = "Alien"
 					if (isandroid(H))
 						species = "Android"
-
-					//warnings checks
-					if(!is_wounded && !is_onfire && !is_irradiated && !is_husked && !is_disabled && !is_bonecrack)
-						no_warnings = TRUE
-					else
-						no_warnings = FALSE
 										
 					//check if has disabled limbs
 					for(var/obj/item/bodypart/part in H.bodyparts)
@@ -254,6 +248,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					if(H.on_fire == TRUE) //check if on fire
 						is_onfire = TRUE
 
+					//warnings checks
+					if(is_wounded || is_onfire || is_irradiated || is_husked || is_disabled || is_bonecrack)
+						has_warnings = TRUE
+					else
+						has_warnings = FALSE
+
 				else
 					oxydam = null
 					toxdam = null
@@ -275,7 +275,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				if(life_status == FALSE)
 					new_death_list.Add(H)
 
-				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "no_warnings" = no_warnings, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_bonecrack" = is_bonecrack, "is_disabled" = is_disabled, "is_irradiated" = is_irradiated, "species" = species, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment_title" = assignment_title, "assignment" = assignment, "ijob" = ijob, "is_wounded" = is_wounded, "has_warnings" = has_warnings, "is_onfire" = is_onfire, "is_husked" = is_husked, "is_bonecrack" = is_bonecrack, "is_disabled" = is_disabled, "is_irradiated" = is_irradiated, "species" = species, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
