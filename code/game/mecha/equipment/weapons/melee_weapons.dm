@@ -113,7 +113,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/cleave_attack()	//use this for basic cleaving attacks, tweak as needed
 	var/turf/M = get_turf(src)
 	for(var/i = 0 to 2)
-		var/turf/T = get_step(M,turn(chassis.dir, (45(1-i))))	//+45, +0, and -45 will get the three front tiles
+		var/turf/T = get_step(M,turn(chassis.dir, 45*(1-i)))	//+45, +0, and -45 will get the three front tiles
 		for(var/atom/A in T.contents)
 			if(isliving(A))						
 				var/mob/living/L = A
@@ -187,7 +187,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/energy_axe/cleave_attack()
 	var/turf/M = get_turf(src)
 	for(var/i = 0 to 2)
-		var/turf/T = get_step(M,turn(chassis.dir, (45(1-i))))	//+45, +0, and -45 will get the three front tiles
+		var/turf/T = get_step(M,turn(chassis.dir, 45*(1-i)))	//+45, +0, and -45 will get the three front tiles
 		for(var/atom/A in T.contents)
 			if(isliving(A))						
 				var/mob/living/L = A
