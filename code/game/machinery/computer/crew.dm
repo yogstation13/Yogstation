@@ -218,11 +218,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					if (isandroid(H))
 						species = "Android"
 										
-					//check if has disabled limbs
 					for(var/obj/item/bodypart/part in H.bodyparts)
-						if(part.bodypart_disabled == TRUE)
+						if(part.bodypart_disabled == TRUE) //check if has disabled limbs
 							is_disabled = TRUE
-					if(length(H.get_missing_limbs()))
+						if(locate(/obj/item) in part.embedded_objects) //check if has embed objects
+							is_wounded = TRUE
+					if(length(H.get_missing_limbs())) //check if has missing limbs
 						is_disabled = TRUE
 					
 					//check if has generic wounds except for bone one
