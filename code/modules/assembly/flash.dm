@@ -138,7 +138,10 @@
 				to_chat(M, span_userdanger("[user] blinds you with the flash!"))
 			else
 				to_chat(M, span_userdanger("You are blinded by [src]!"))
-			M.drop_all_held_items()
+			if(issilicon(M)
+				M.paralyze(rand(8 SECONDS, 12 SECONDS))
+			else
+				M.drop_all_held_items()
 		else if(user)
 			visible_message(span_disarm("[user] fails to blind [M] with the flash!"))
 			to_chat(user, span_warning("You fail to blind [M] with the flash!"))
