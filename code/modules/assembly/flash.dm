@@ -118,7 +118,7 @@
 	if(generic_message && M != user)
 		to_chat(M, span_disarm("[src] emits a blinding light!"))
 	if(targeted)
-		if(M.flash_act(1, 1))
+		if(M.flash_act(3, 1))
 			if(M.confused < power)
 				var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
 				M.confused += min(power, diff)
@@ -129,7 +129,7 @@
 				to_chat(M, span_userdanger("[user] blinds you with the flash!"))
 			else
 				to_chat(M, span_userdanger("You are blinded by [src]!"))
-			M.Paralyze(rand(80,120))
+			M.drop_all_held_items()
 		else if(user)
 			visible_message(span_disarm("[user] fails to blind [M] with the flash!"))
 			to_chat(user, span_warning("You fail to blind [M] with the flash!"))
