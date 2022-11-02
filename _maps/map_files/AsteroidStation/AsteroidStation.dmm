@@ -7251,7 +7251,7 @@
 "bpg" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -15760,7 +15760,7 @@
 /area/space/nearstation)
 "erV" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -27407,7 +27407,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -29880,7 +29880,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -38204,6 +38204,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
+"mkY" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/computer/cargo{
+	dir = 8;
+	pixel_x = -4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "mlb" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/wall/r_wall,
@@ -41571,7 +41593,7 @@
 /area/maintenance/port)
 "noq" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -58708,7 +58730,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -60424,7 +60446,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -60990,7 +61012,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -66552,7 +66574,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -66959,25 +66981,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"vPk" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/computer/cargo{
-	dir = 8;
-	pixel_x = -4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "vPC" = (
 /obj/machinery/door/airlock/security{
 	name = "Labor Shuttle";
@@ -69455,7 +69458,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos_distro)
@@ -90408,7 +90411,7 @@ wBg
 voX
 hnC
 pSx
-vPk
+mkY
 lxR
 lxR
 ckT
