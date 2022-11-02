@@ -29,6 +29,12 @@
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
+"s" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/clothing/suit/space/hardsuit/cult,
+/turf/open/floor/plating/ashplanet/rocky/jungle,
+/area/ruin/unpowered)
 "u" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -76,14 +82,6 @@
 "L" = (
 /mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad,
 /turf/open/floor/plating/dirt/jungleland/jungle,
-/area/ruin/unpowered)
-"N" = (
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/blood/old,
-/obj/item/soulstone,
-/obj/item/clothing/suit/cultrobes,
-/obj/item/clothing/head/culthood,
-/turf/open/floor/plating/ashplanet/rocky/jungle,
 /area/ruin/unpowered)
 "O" = (
 /obj/structure/table/wood,
@@ -239,7 +237,7 @@ m
 (8,1,1) = {"
 m
 W
-N
+s
 F
 Q
 Q
