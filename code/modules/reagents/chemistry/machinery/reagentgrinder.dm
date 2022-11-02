@@ -1,4 +1,5 @@
 #define MILK_TO_BUTTER_COEFF 15
+#define LIQUID_TO_SOLID_COEFF 25
 
 /obj/machinery/reagentgrinder
 	name = "\improper All-In-One Grinder"
@@ -329,9 +330,17 @@
 			var/amount = container.reagents.get_reagent_amount(/datum/reagent/consumable/eggyolk)
 			container.reagents.remove_reagent(/datum/reagent/consumable/eggyolk, amount)
 			container.reagents.add_reagent(/datum/reagent/consumable/mayonnaise, amount)
+		//Recipe to make Soap
+		var/soap_amt = FLOOR(container.reagents.get_reagent_amount(/datum/reagent/liquidsoap) / LIQUID_TO_SOLID_COEFF, 1)
+		container.reagents.remove_reagent(/datum/reagent/liquidsoap, LIQUID_TO_SOLID_COEFF * soap_amt)
+		for(var/i in 1 to soap_amt)
+			new /obj/item/soap/homemade(drop_location())
 
 /obj/machinery/reagentgrinder/MouseDrop_T(atom/dropping, mob/user)
 	if(istype(dropping, /obj/item/reagent_containers/glass))
 		attackby(dropping, user)
 	else
 		..()
+
+#undef MILK_TO_BUTTER_COEFF
+#undef LIQUID_TO_SOLID_COEFF

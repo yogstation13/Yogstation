@@ -19936,7 +19936,7 @@
 "aOm" = (
 /obj/structure/table/wood,
 /obj/item/veilrender/honkrender/honkhulkrender,
-/obj/item/melee/baseball_bat/homerun,
+/obj/item/twohanded/required/baseball_bat/homerun,
 /obj/item/melee/singularity_sword,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
@@ -24046,7 +24046,7 @@
 "aWC" = (
 /obj/structure/table/wood,
 /obj/item/clothing/gloves/rapid,
-/obj/item/clothing/gloves/krav_maga/sec,
+/obj/item/clothing/gloves/sec_maga,
 /turf/open/floor/wood,
 /area/centcom/testchamber)
 "aWD" = (
@@ -25910,6 +25910,10 @@
 	icon_state = "title5"
 	},
 /area/centcom/testchamber)
+"gkW" = (
+/obj/item/twohanded/required/kirbyplants/photosynthetic,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "gCx" = (
 /obj/effect/light_emitter{
 	light_range = 30
@@ -26226,6 +26230,11 @@
 	icon_state = "info7"
 	},
 /area/centcom/testchamber)
+"rod" = (
+/obj/structure/ghostbeacon,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "rEF" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info21"
@@ -51111,9 +51120,9 @@ aZs
 aXk
 aNI
 aNd
-aaa
-aaa
-aaa
+aNd
+aNd
+aNd
 aaa
 aaa
 aaa
@@ -51368,9 +51377,9 @@ aUV
 aCV
 aUl
 aNd
-aaa
-aaa
-aaa
+aXk
+gkW
+aNd
 aaa
 aaa
 aaa
@@ -51624,10 +51633,10 @@ aNd
 aPM
 aXk
 aXk
+aRe
+aXk
+rod
 aNd
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -51882,9 +51891,9 @@ aYm
 aCV
 aUl
 aNd
-aaa
-aaa
-aaa
+aXk
+gkW
+aNd
 aaa
 aaa
 aaa
@@ -52139,9 +52148,9 @@ aMs
 aXk
 aNI
 aNd
-aaa
-aaa
-aaa
+aNd
+aNd
+aNd
 aaa
 aaa
 aaa
@@ -70699,13 +70708,13 @@ abj
 aQs
 ads
 atg
-aaN
+abU
 aLh
 aLh
 aLh
 aLh
 aex
-abU
+aaN
 abj
 aaa
 aaa

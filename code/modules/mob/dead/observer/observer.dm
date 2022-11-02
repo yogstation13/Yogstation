@@ -31,8 +31,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 	var/ghost_hud_enabled = TRUE //did this ghost disable the on-screen HUD?
 	var/data_huds_on = FALSE //Are data HUDs currently enabled?
-	var/health_scan = FALSE //Are health scans currently enabled?
-	var/chem_scan = FALSE // Are chemical scans currently enabled
+
+	var/scanmode = 0
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
@@ -56,7 +56,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/deadchat_name
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
-	var/datum/action/unobserve/UO 
+	var/datum/action/unobserve/UO
 
 	// Current Viewrange
 	var/view = 0
@@ -381,7 +381,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(message)
 		to_chat(src, span_ghostalert("[message]"))
 		if(source)
-			var/obj/screen/alert/A = throw_alert("[REF(source)]_notify_cloning", /obj/screen/alert/notify_cloning)
+			var/atom/movable/screen/alert/A = throw_alert("[REF(source)]_notify_cloning", /atom/movable/screen/alert/notify_cloning)
 			if(A)
 				if(client && client.prefs && client.prefs.UI_style)
 					A.icon = ui_style2icon(client.prefs.UI_style)
@@ -742,16 +742,32 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Toggles whether you health-scan living beings on click"
 	set category = "Ghost"
 
-	health_scan = !health_scan
-	to_chat(src, span_notice("Health scan [health_scan ? "enabled" : "disabled"]."))
+	scanmode ^= SCAN_HEALTH
+	to_chat(src, span_notice("Health scan [scanmode & SCAN_HEALTH ? "enabled" : "disabled"]."))
 
 /mob/dead/observer/verb/toggle_chemical_scan()
 	set name = "Toggle Chemical Scan"
 	set desc = "Toggles whether you chem-scan living beings on click"
 	set category = "Ghost"
 
-	chem_scan = !chem_scan
-	to_chat(src, span_notice("Chemical scan [chem_scan ? "enabled" : "disabled"]."))
+	scanmode ^= SCAN_CHEM
+	to_chat(src, span_notice("Chemical scan [scanmode & SCAN_CHEM ? "enabled" : "disabled"]."))
+
+/mob/dead/observer/verb/toggle_nanite_scan()
+	set name = "Toggle Nanite Scan"
+	set desc = "Toggles scanning of nanites"
+	set category = "Ghost"
+
+	scanmode ^= SCAN_NANITE
+	to_chat(src, span_notice("Nanite scan [scanmode & SCAN_NANITE ? "enabled" : "disabled"]."))
+
+/mob/dead/observer/verb/toggle_wound_scan()
+	set name = "Toggle Wound Scan"
+	set desc = "Toggles scanning of wounds"
+	set category = "Ghost"
+
+	scanmode ^= SCAN_WOUND
+	to_chat(src, span_notice("Wound scan [scanmode & SCAN_WOUND ? "enabled" : "disabled"]."))
 
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "Restore Ghost Character"

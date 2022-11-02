@@ -10,6 +10,7 @@
 	selection_color = "#d4ebf2"
 	exp_type = EXP_TYPE_CREW
 	exp_requirements = 120
+	minimal_player_age = 7
 	exp_type_department = EXP_TYPE_MEDICAL
 
 	outfit = /datum/outfit/job/virologist
@@ -25,6 +26,14 @@
 	minimal_character_age = 24 //Requires understanding of microbes, biology, infection, and all the like, as well as being able to understand how to interface the machines. Epidemiology is no joke of a field
 
 	changed_maps = list("OmegaStation")
+
+	mail_goodies = list(
+		/obj/item/reagent_containers/glass/bottle/random_virus = 15,
+		/obj/item/reagent_containers/glass/bottle/formaldehyde = 10,
+		/obj/item/reagent_containers/glass/bottle/synaptizine = 10,
+		/obj/item/stack/sheet/mineral/plasma = 10,
+		/obj/item/stack/sheet/mineral/uranium = 5,
+	)
 
 /datum/job/virologist/proc/OmegaStationChanges()
 	return TRUE

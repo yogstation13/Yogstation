@@ -24,134 +24,152 @@
 	name = initial(name)
 
 /obj/item/storage/box/syndicate/bundle_A/PopulateContents()
-	switch (pickweight(list("recon" = 2, "bloodyspai" = 3, "stealth" = 2, "screwed" = 2, "sabotage" = 3, "guns" = 2, "murder" = 2, "implant" = 1, "hacker" = 3, "sniper" = 1, "metaops" = 1)))
-		if("recon")
-			new /obj/item/clothing/glasses/thermal/xray(src) // ~8 tc?
-			new /obj/item/storage/briefcase/launchpad(src) //6 tc
-			new	/obj/item/twohanded/binoculars(src) // 2 tc?
-			new /obj/item/encryptionkey/syndicate(src) // 2 tc
-			new /obj/item/storage/box/syndie_kit/space(src) //4 tc
-			new /obj/item/grenade/syndieminibomb/concussion/frag(src) // ~2 tc each?
-			new /obj/item/grenade/syndieminibomb/concussion/frag(src)
-			new /obj/item/flashlight/emp(src)
+	switch (pickweight(list("recon" = 2, "bloodyspai" = 3, "stealth" = 2, "guns" = 2, "screwed" = 2, "murder" = 2, "implant" = 1, "hacker" = 3, "sabotage" = 3, "sniper" = 1, "metaops" = 1)))
+		if("recon") //28ish TC
+			new /obj/item/clothing/glasses/thermal/xray(src) //Would argue 6 TC. Thermals are 4 TC but work on organic targets in darkness
+			new /obj/item/storage/briefcase/launchpad(src) //6 TC
+			new	/obj/item/twohanded/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
+			new /obj/item/encryptionkey/syndicate(src) //2 TC
+			new /obj/item/storage/box/syndie_kit/space(src) //4 TC
+			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //Minibomb with one less range on each part except for fire. 3-4 TC.
+			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //See above
+			new /obj/item/flashlight/emp(src) //2 TC
 
-		if("bloodyspai")
-			new /obj/item/clothing/under/chameleon/syndicate(src) // 2 tc since it's not the full set
-			new /obj/item/clothing/mask/chameleon/syndicate(src) // Goes with above
-			new /obj/item/card/id/syndicate(src) // 2 tc
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) // 2 tc
-			new /obj/item/camera_bug(src) // 1 tc
-			new /obj/item/multitool/ai_detect(src) // 1 tc
-			new /obj/item/encryptionkey/syndicate(src) // 2 tc
-			new /obj/item/reagent_containers/syringe/mulligan(src) // 4 tc
-			new /obj/item/switchblade(src) //I'll count this as 2 tc
-			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) // 2 tc this shit heals
-			new /obj/item/flashlight/emp(src) // 2 tc
-			new /obj/item/chameleon(src) // 7 tc
+		if("bloodyspai") //31 TCish
+			new /obj/item/clothing/under/chameleon/syndicate(src) //1 TC, has only two parts of the massive kit
+			new /obj/item/clothing/mask/chameleon/syndicate(src) //See above
+			new /obj/item/card/id/syndicate(src) //2 TC
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //2 TC
+			new /obj/item/camera_bug(src) //1 TC
+			new /obj/item/multitool/ai_detect(src) //1 TC
+			new /obj/item/encryptionkey/syndicate(src) //2 TC
+			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
+			new /obj/item/switchblade(src) //1 TC, if even. 20 force melee is good but it's no edagger
+			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
+			new /obj/item/flashlight/emp(src) //2 TC
+			new /obj/item/chameleon(src) //7 TC
+			new /obj/item/card/emag(src) //6 TC
 
-		if("stealth")
-			new /obj/item/gun/energy/kinetic_accelerator/crossbow(src)
-			new /obj/item/pen/sleepy(src)
-			new /obj/item/healthanalyzer/rad_laser(src)
-			new /obj/item/chameleon(src)
-			new /obj/item/soap/syndie(src)
-			new /obj/item/clothing/glasses/thermal/syndi(src)
-			new /obj/item/flashlight/emp(src)
-			new /obj/item/jammer(src)
+		if("stealth") //32 TC
+			new /obj/item/gun/energy/kinetic_accelerator/crossbow(src) //10 TC
+			new /obj/item/pen/sleepy(src) //4 TC
+			new /obj/item/chameleon(src) //7 TC
+			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
+			new /obj/item/flashlight/emp(src) //2 TC
+			new /obj/item/jammer(src) //5 TC
 
-		if("guns")
-			new /obj/item/gun/ballistic/revolver(src)
-			new /obj/item/ammo_box/a357(src)
-			new /obj/item/ammo_box/a357(src)
-			new /obj/item/card/emag(src)
-			new /obj/item/grenade/plastic/c4(src)
-			new /obj/item/clothing/gloves/color/latex/nitrile(src)
-			new /obj/item/clothing/mask/gas/clown_hat(src)
-			new /obj/item/clothing/under/suit_jacket/really_black(src)
+		if("guns") //Total cost of 31 TC
+			new /obj/item/gun/ballistic/revolver(src) //6 TC
+			new /obj/item/gun/ballistic/revolver(src) //6 TC
+			new /obj/item/gun/ballistic/automatic/pistol(src) //6 TC
+			new /obj/item/gun/ballistic/automatic/pistol(src) //6 TC
+			new /obj/item/ammo_box/a357(src) //1 TC
+			new /obj/item/ammo_box/a357(src) //1 TC
+			new /obj/item/ammo_box/a357(src) //1 TC
+			new /obj/item/ammo_box/a357(src) //1 TC
+			new /obj/item/ammo_box/magazine/m10mm(src) //1 TC for two
+			new /obj/item/ammo_box/magazine/m10mm(src) //See above
+			new /obj/item/ammo_box/magazine/m10mm(src) //1 TC for two
+			new /obj/item/ammo_box/magazine/m10mm(src) //See above
+			new /obj/item/storage/belt/holster/syndicate(src) //A holster for your four guns. It could be 1 TC I guess, since the tactical webbing can't hold normal items?
+			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
+			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
+			new /obj/item/clothing/under/suit_jacket/really_black(src) //Free?
 
-		if("screwed")
-			new /obj/item/sbeacondrop/bomb(src)
-			new /obj/item/grenade/syndieminibomb(src)
-			new /obj/item/sbeacondrop/powersink(src)
-			new /obj/item/clothing/suit/space/syndicate/black/red(src)
-			new /obj/item/clothing/head/helmet/space/syndicate/black/red(src)
-			new /obj/item/encryptionkey/syndicate(src)
+		if("screwed") //Total of 31 TC
+			new /obj/item/sbeacondrop/bomb(src) //11 TC
+			new /obj/item/grenade/syndieminibomb(src) //6 TC
+			new /obj/item/sbeacondrop/powersink(src) //8 TC
+			new /obj/item/clothing/suit/space/syndicate/black/red(src) //Total of 4 TC
+			new /obj/item/clothing/head/helmet/space/syndicate/black/red(src) //See above
+			new /obj/item/encryptionkey/syndicate(src) //2 TC
 
-		if("murder")
-			new /obj/item/melee/transforming/energy/sword/saber(src)
-			new /obj/item/clothing/glasses/thermal/syndi(src)
-			new /obj/item/card/emag(src)
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src)
-			new /obj/item/encryptionkey/syndicate(src)
-			new /obj/item/grenade/syndieminibomb(src)
+		if("murder") //Total cost of 28 TC
+			new /obj/item/melee/transforming/energy/sword/saber(src) //8 TC
+			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
+			new /obj/item/card/emag(src) //6 TC
+			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //2 TC
+			new /obj/item/encryptionkey/syndicate(src) //2 TC
+			new /obj/item/grenade/syndieminibomb(src) //6 TC
 
-		if("implant")
-			new /obj/item/implanter/freedom(src)
-			new /obj/item/implanter/uplink/precharged(src)
-			new /obj/item/implanter/emp(src)
-			new /obj/item/implanter/adrenalin(src)
-			new /obj/item/implanter/explosive(src)
-			new /obj/item/implanter/storage(src)
+		if("implant") //28 TC cost, then you get a spare 10 for a total of 38 TC (fair and balanced™)
+			new /obj/item/implanter/freedom(src) //5 TC
+			new /obj/item/implanter/uplink/precharged(src) //4 TC + 10 to use
+			new /obj/item/implanter/emp(src) //1 TC, kit with 5 grenades costs 2
+			new /obj/item/implanter/adrenalin(src) //8 TC
+			new /obj/item/implanter/explosive(src) //2 TC, nukies only
+			new /obj/item/implanter/storage(src) //8 TC
 
-		if("hacker")
-			new /obj/item/aiModule/syndicate(src)
-			new /obj/item/card/emag(src)
-			new /obj/item/encryptionkey/binary(src)
-			new /obj/item/aiModule/toyAI(src)
-			new /obj/item/multitool/ai_detect(src)
-			new /obj/item/storage/toolbox/syndicate(src)
-			new /obj/item/camera_bug(src)
-			new /obj/item/clothing/glasses/thermal/syndi(src)
-			new /obj/item/card/id/syndicate(src)
+		if("hacker") //28 TC cost
+			new /obj/item/aiModule/syndicate(src) //4 TC
+			new /obj/item/card/emag(src) //6 TC
+			new /obj/item/encryptionkey/binary(src) //2 TC
+			new /obj/item/aiModule/toyAI(src) //Um, free...?
+			new /obj/item/multitool/ai_detect(src) //1 TC
+			new /obj/item/storage/toolbox/syndicate(src) //1 TC
+			new /obj/item/camera_bug(src) //1 TC
+			new /obj/item/card/id/syndicate(src) //2 TC
+			new /obj/item/flashlight/emp(src) //2 TC
+			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src) //6 TC
+			new /obj/item/clothing/glasses/hud/diagnostic/sunglasses(src) //RD glasses. 1 TC, if that
+			new /obj/item/pen/edagger(src) //2 TC
 
-		if("lordsingulo")
-			new /obj/item/sbeacondrop(src)
-			new /obj/item/clothing/suit/space/syndicate/black/red(src)
-			new /obj/item/clothing/head/helmet/space/syndicate/black/red(src)
-			new /obj/item/card/emag(src)
-			new /obj/item/storage/toolbox/syndicate(src)
+		if("sabotage") //Maybe 29 TC?
+			new /obj/item/grenade/plastic/c4 (src) //1 TC
+			new /obj/item/grenade/plastic/c4 (src) //1 TC
+			new /obj/item/doorCharge(src) //2 TC
+			new /obj/item/doorCharge(src) //2 TC
+			new /obj/item/camera_bug(src) //1 TC
+			new /obj/item/sbeacondrop/powersink(src) //8 TC
+			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src) //6 TC
+			new /obj/item/storage/toolbox/syndicate(src) //1 TC
+			new /obj/item/pizzabox/bomb(src) //6 TC
+			new /obj/item/storage/box/syndie_kit/emp(src) //2 TC
 
-		if("sabotage")
-			new /obj/item/grenade/plastic/c4 (src)
-			new /obj/item/grenade/plastic/c4 (src)
-			new /obj/item/doorCharge(src)
-			new /obj/item/doorCharge(src)
-			new /obj/item/camera_bug(src)
-			new /obj/item/sbeacondrop/powersink(src)
-			new /obj/item/computer_hardware/hard_drive/portable/syndicate/bomberman(src)
-			new /obj/item/storage/toolbox/syndicate(src) //To actually get to those places
-			new /obj/item/pizzabox/bomb(src)
-			new /obj/item/storage/box/syndie_kit/emp(src)
+		if("sniper") //30 TC, you only get 11 shots total with the sniper and 14 with the revolver. A mini-ebow would probably be better than the sniper in a normal traitor game
+			new /obj/item/gun/ballistic/automatic/sniper_rifle(src) //12 TC, nukies only
+			new /obj/item/ammo_box/magazine/sniper_rounds/penetrator(src) //5 TC, nukies only
+			new /obj/item/gun/ballistic/revolver(src) //6 TC
+			new /obj/item/ammo_box/a357/heartpiercer(src) //3 TC
+			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
+			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
+			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
+			new /obj/item/clothing/under/suit_jacket/really_black(src) //Free?
 
-		if("sniper") //This shit is unique so can't really balance it around tc, also no silencer because getting killed without ANY indicator on what killed you sucks
-			new /obj/item/gun/ballistic/automatic/sniper_rifle(src) // 12 tc
-			new /obj/item/ammo_box/magazine/sniper_rounds/penetrator(src)
-			new /obj/item/clothing/glasses/thermal/syndi(src)
-			new /obj/item/clothing/gloves/color/latex/nitrile(src)
-			new /obj/item/clothing/mask/gas/clown_hat(src)
-			new /obj/item/clothing/under/suit_jacket/really_black(src)
-
-		if("metaops")
-			new /obj/item/clothing/suit/space/hardsuit/syndi(src) // 8 tc
-			new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src) // 8 tc
-			new /obj/item/implanter/explosive(src) // 2 tc
-			new /obj/item/ammo_box/magazine/m12g(src) // 2 tc
-			new /obj/item/ammo_box/magazine/m12g(src) // 2 tc
-			new /obj/item/grenade/plastic/c4 (src) // 1 tc
-			new /obj/item/grenade/plastic/c4 (src) // 1 tc
-			new /obj/item/card/emag(src) // 6 tc
+		if("metaops") //30 TC
+			new /obj/item/clothing/suit/space/hardsuit/syndi(src) //8 TC
+			new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src) //8 TC, nukies only
+			new /obj/item/implanter/explosive(src) //2 TC, nukies only
+			new /obj/item/ammo_box/magazine/m12g(src) //2 TC, nukies only
+			new /obj/item/ammo_box/magazine/m12g(src) //2 TC, nukies only
+			new /obj/item/grenade/plastic/c4 (src) //1 TC
+			new /obj/item/grenade/plastic/c4 (src) //1 TC
+			new /obj/item/card/emag(src) //6 TC
 
 /obj/item/storage/box/syndicate/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "neo"=1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
-		if("bond")
-			new /obj/item/gun/ballistic/automatic/pistol(src)
-			new /obj/item/suppressor(src)
-			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/clothing/under/chameleon/syndicate(src)
-			new /obj/item/card/id/syndicate(src)
-			new /obj/item/reagent_containers/syringe/stimulants(src)
-			new /obj/item/reagent_containers/glass/rag(src)
+	switch (pickweight(list("v" = 2, "oddjob" = 2, "neo" = 1, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "gang_boss" = 1)))
+		if("v") //Big Boss. Total of ~28 TC.
+			new /obj/item/clothing/under/syndicate/camo(src) //Reskinned tactical turtleneck, free
+			new /obj/item/clothing/glasses/eyepatch/bigboss(src) //Gives flash protection and night vision, probably around 2-3 TC
+			new /obj/item/clothing/shoes/combat(src) //Drip is essential. Free
+			new /obj/item/clothing/gloves/fingerless/bigboss(src) //Like a much lighter version of the Gloves of the North Star, but also helps with carrying bodies. Worth maybe 4 TC
+			new /obj/item/storage/belt/military(src) //Can't be concealed, basically just 7-slot belt, no normal items allowed. Free
+			new /obj/item/book/granter/martial/cqc(src) //13 TC, ABSOLUTELY mandatory
+			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
+			new /obj/item/kitchen/knife/combat/survival(src) //Simple miner knife, in flavor. Maybe-maybe 1 TC, but basically free
+			new /obj/item/implanter/stealth(src) //Just a box. 8 TC
+			new /obj/item/storage/box/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
+			new /obj/item/lighter(src) //Need to light the cigar
+
+		if("oddjob") //Total TC value of 27ish TC
+			new /obj/item/clothing/head/det_hat/evil(src) //6 TC. Absolutely necessary
+			new /obj/item/clothing/under/syndicate/sniper(src) //Variant of tactical turtleneck that looks like a suit, provides 10 melee armor, has no sensors. Would say it's free
+			new /obj/item/clothing/suit/det_suit/grey/evil(src) //Grey det trenchcoat with hos coat values, 2ish TC
+			new /obj/item/clothing/shoes/laceup(src) //Fancy shoes. Free
+			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun); you only get 7 shots. Realistically only like 7 TC just because you can't reload it; still highballing it
+			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
+			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
+			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
 
 		if("ninja")
 			new /obj/item/katana(src) // Unique , hard to tell how much tc this is worth. 8 tc?
@@ -162,13 +180,16 @@
 			new /obj/item/card/id/syndicate(src) // 2 tc
 			new /obj/item/chameleon(src) // 7 tc
 
-		if("darklord")
-			new /obj/item/twohanded/dualsaber(src)
-			new /obj/item/dnainjector/telemut/darkbundle(src)
-			new /obj/item/clothing/suit/hooded/chaplain_hoodie(src)
-			new /obj/item/card/id/syndicate(src)
-			new /obj/item/clothing/shoes/chameleon/noslip/syndicate(src) //because slipping while being a dark lord sucks
-			new /obj/item/book/granter/spell/summonitem(src)
+		if("darklord") //This is now basically just a wizard instead of just desword: the kit. Hard to quantify the TC cost of spells, but taking SP * 4 would yield a theoretical TC of 31-ish
+			new /obj/item/melee/transforming/energy/sword/saber/red(src) //8 TC. A red lightsaber. Enough said
+			new /obj/item/clothing/mask/chameleon/syndicate(src) //Not even 1 TC, the real value of the chameleon kit is the jumpsuit. However this is absolutely necessary for your Sithsona
+			new /obj/item/card/id/syndicate(src) //2 TC, so you can give yourself a proper name
+			new /obj/item/clothing/suit/wizrobe/black(src) //Dark robes for the dark lord. Free
+			new /obj/item/clothing/head/wizard/black(src) //Works as a fix for the robe check now until I think of something new
+			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
+			new /obj/item/book/granter/spell/teslablast(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that requires robes
+			new /obj/item/book/granter/spell/repulse(src) //"Force Push". 2 SP cost spell that requires robes
+			new /obj/item/book/granter/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else
 			new /obj/item/pneumatic_cannon/speargun(src)

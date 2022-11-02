@@ -24,6 +24,12 @@
 
 	changed_maps = list("OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/storage/box/flashes = 20,
+		/obj/item/stack/sheet/metal/twenty = 15,
+		/obj/item/modular_computer/tablet/preset/advanced = 5
+	)
+
 /datum/job/roboticist/proc/OmegaStationChanges()
 	supervisors = "the captain and the head of personnel"
 
@@ -31,7 +37,7 @@
 	name = "Roboticist"
 	jobtype = /datum/job/roboticist
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/robo
 
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/headset_sci

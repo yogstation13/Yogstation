@@ -108,6 +108,7 @@
 	cost = 16
 	scaling_cost = 10
 	requirements = list(75,70,60,50,40,20,20,10,10,10)
+	minimum_players = 25
 	antag_cap = list("denominator" = 29)
 
 /datum/dynamic_ruleset/roundstart/changeling/pre_execute(population)
@@ -356,6 +357,62 @@
 		else
 			SSticker.mode_result = "halfwin - interrupted"
 			SSticker.news_report = OPERATIVE_SKIRMISH
+
+//////////////////////////////////////////////
+//                                          //
+//             INFILTRATORS                 //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/roundstart/infiltration
+	name = "Infiltration"
+	antag_flag = ROLE_INFILTRATOR
+	antag_datum = ANTAG_DATUM_INFILTRATOR
+	minimum_required_age = 14
+	restricted_roles = list("Head of Security", "Captain")
+	required_candidates = 5
+	weight = 4
+	cost = 18
+	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	flags = HIGH_IMPACT_RULESET
+	antag_cap = list("denominator" = 15, "offset" = 1)
+	var/datum/team/infiltrator/sit_team
+	minimum_players = 30
+
+/datum/dynamic_ruleset/roundstart/infiltration/ready(population, forced = FALSE)
+	required_candidates = get_antag_cap(population)
+	. = ..()
+
+/datum/dynamic_ruleset/roundstart/infiltration/pre_execute(population)
+	. = ..()
+	var/inflitrators_amount = get_antag_cap(population)
+	for(var/i = 1 to inflitrators_amount)
+		if(candidates.len <= 0)
+			break
+		var/mob/M = pick_n_take(candidates)
+		assigned += M.mind
+		M.mind.assigned_role = "Syndicate Infiltrator"
+		M.mind.special_role = "Syndicate Infiltrator"
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/infiltration/execute()
+	sit_team = new /datum/team/infiltrator
+	for(var/datum/mind/sit_mind in assigned)
+		sit_mind.add_antag_datum(ANTAG_DATUM_INFILTRATOR, sit_team)
+	sit_team.update_objectives()
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/infiltration/round_result()
+	var/result = sit_team.get_result()
+	switch(result)
+		if(INFILTRATION_ALLCOMPLETE)
+			SSticker.mode_result = "major win - objectives complete"
+		if(INFILTRATION_MOSTCOMPLETE)
+			SSticker.mode_result = "minor win - most objectives complete"
+		if(INFILTRATION_SOMECOMPLETE)
+			SSticker.mode_result = "neutral - some objectives complete"
+		else
+			SSticker.mode_result = "loss - no objectives complete"
 
 //////////////////////////////////////////////
 //                                          //
@@ -984,6 +1041,12 @@
 	antag_cap = list("denominator" = 24)
 	minimum_players = 25
 
+/datum/dynamic_ruleset/roundstart/bloodsucker/trim_candidates()
+	. = ..()
+	for(var/mob/player in candidates)
+		if(player?.client?.prefs.pref_species && (NOBLOOD in player.client.prefs.pref_species.species_traits))
+			candidates.Remove(player)
+
 /datum/dynamic_ruleset/roundstart/bloodsucker/pre_execute(population)
 	. = ..()
 	var/num_bloodsuckers = get_antag_cap(population) * (scaled_times + 1)
@@ -1002,38 +1065,4 @@
 		var/datum/mind/bloodsuckermind = assigned_bloodsuckers
 		if(!bloodsuckermind.make_bloodsucker(assigned_bloodsuckers))
 			assigned -= assigned_bloodsuckers
-	return TRUE
-
-//////////////////////////////////////////////
-//                                          //
-//         Internal Affairs Agents          //
-//                                          //
-//////////////////////////////////////////////
-
-/datum/dynamic_ruleset/roundstart/iaa
-	name = "Internal Affairs Agents"
-	persistent = TRUE
-	antag_flag = ROLE_INTERNAL_AFFAIRS
-	antag_datum = /datum/antagonist/traitor/internal_affairs
-	minimum_required_age = 0
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI")
-	required_candidates = 1
-	weight = 5
-	cost = 10
-	scaling_cost = 9
-	requirements = list(25,25,25,25,25,25,25,25,25,25)
-	antag_cap = list("denominator" = 24)
-
-/datum/dynamic_ruleset/roundstart/iaa/pre_execute(population)
-	. = ..()
-	var/num_traitors = get_antag_cap(population) * (scaled_times + 1)
-	for (var/i = 1 to num_traitors)
-		if(candidates.len <= 0)
-			break
-		var/mob/M = pick_n_take(candidates)
-		assigned += M.mind
-		M.mind.special_role = ROLE_INTERNAL_AFFAIRS
-		M.mind.restricted_roles = restricted_roles
-		log_game("[key_name(M)] has been selected as a Internal Affairs Agent")
 	return TRUE

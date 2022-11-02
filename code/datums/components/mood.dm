@@ -10,8 +10,8 @@
 	var/mood_modifier = 1 //Modifier to allow certain mobs to be less affected by moodlets
 	var/list/datum/mood_event/mood_events = list()
 	var/insanity_effect = 0 //is the owner being punished for low mood? If so, how much?
-	var/obj/screen/mood/screen_obj
-	var/obj/screen/sanity/screen_obj_sanity
+	var/atom/movable/screen/mood/screen_obj
+	var/atom/movable/screen/sanity/screen_obj_sanity
 
 /datum/component/mood/Initialize()
 	if(!isliving(parent))
@@ -314,6 +314,8 @@
 	if(!screen_obj)
 		return
 	var/mob/living/owner = parent
+	if(!owner)
+		return
 	var/datum/hud/hud = owner.hud_used
 	if(hud && hud.infodisplay)
 		hud.infodisplay -= screen_obj

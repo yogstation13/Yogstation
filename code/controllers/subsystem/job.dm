@@ -507,7 +507,7 @@ SUBSYSTEM_DEF(job)
 				newplayer.new_character = living_mob
 			else
 				M = living_mob
-		
+			
 		SSpersistence.antag_rep_change[M.client.ckey] += job.GetAntagRep()
 
 		if(M.client.holder)
@@ -537,12 +537,13 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
-	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet/pda) in living_mob.GetAllContents()
+	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.GetAllContents()
 	if(istype(RPDA))
+		RPDA.device_theme = GLOB.pda_themes[M.client.prefs.pda_theme]
 		var/obj/item/computer_hardware/hard_drive/hard_drive = RPDA.all_components[MC_HDD]
 		var/datum/computer_file/program/pdamessager/msgr = locate(/datum/computer_file/program/pdamessager) in hard_drive.stored_files
 		if(msgr)
-			msgr.username = living_mob.real_name
+			msgr.username = "[living_mob.real_name] ([alt_title ? alt_title : rank])"
 			msgr.receiving = TRUE
 	if(SSevents.holidays && SSevents.holidays["St. Patrick's Day"])
 		irish_override() // Assuming direct control.

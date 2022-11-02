@@ -25,6 +25,13 @@
 
 	changed_maps = list("EclipseStation", "OmegaStation")
 
+	mail_goodies = list(
+		/obj/item/storage/box/lights/mixed = 20,
+		/obj/item/lightreplacer = 10,
+		/obj/item/holosign_creator/engineering = 8,
+		/obj/item/clothing/head/hardhat/red/upgraded = 1
+	)
+
 /datum/job/engineer/proc/EclipseStationChanges()
 	total_positions = 6
 	spawn_positions = 5
@@ -91,7 +98,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	name = "Station Engineer"
 	jobtype = /datum/job/engineer
 
-	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
+	pda_type = /obj/item/modular_computer/tablet/pda/preset/engineering
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_eng

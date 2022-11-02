@@ -94,7 +94,7 @@
 	else
 		return ..()
 //Yogs end
-	
+
 /mob/living/simple_animal/horror/AltClickOn(atom/A)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
@@ -138,7 +138,7 @@
 	if(!src || !hud_used)
 		return
 	var/datum/hud/chemical_counter/H = hud_used
-	var/obj/screen/counter = H.chemical_counter
+	var/atom/movable/screen/counter = H.chemical_counter
 	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[chemicals]</font></div>"
 
 /mob/living/simple_animal/horror/proc/can_use_ability()
@@ -592,7 +592,7 @@
 		to_chat(src, span_warning("You need 250 chemicals to use this!"))
 		return
 
-	if(HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN))
+	if(HAS_TRAIT_FROM(victim, TRAIT_BADDNA, CHANGELING_DRAIN))
 		to_chat(src, span_warning("Their DNA is completely destroyed! You can't revive them"))
 		return
 

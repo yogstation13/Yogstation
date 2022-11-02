@@ -26,11 +26,11 @@
 	see_in_dark = 8
 	hud_type = /datum/hud/ai
 	med_hud = DATA_HUD_MEDICAL_BASIC
-	sec_hud = DATA_HUD_SECURITY_BASIC				
+	sec_hud = DATA_HUD_SECURITY_BASIC
 	d_hud = DATA_HUD_DIAGNOSTIC_BASIC
 	mob_size = MOB_SIZE_LARGE
 
-	invisibility = INVISIBILITY_MAXIMUM  
+	invisibility = INVISIBILITY_MAXIMUM
 
 	var/battery = 200 //emergency power if the AI's APC is off
 	var/list/network = list("ss13")
@@ -47,7 +47,7 @@
 	radiomod = ";" //AIs will, by default, state their laws on the internal radio.
 	var/obj/item/multitool/aiMulti
 	var/mob/living/simple_animal/bot/Bot
-	var/obj/machinery/holopad/pad 
+	var/obj/machinery/holopad/pad
 	var/tracking = FALSE //this is 1 if the AI is currently tracking somebody, but the track has not yet been completed.
 	var/datum/effect_system/spark_spread/spark_system //So they can initialize sparks whenever/N
 
@@ -93,7 +93,7 @@
 	var/chnotify = 0
 
 	var/multicam_on = FALSE
-	var/obj/screen/movable/pic_in_pic/ai/master_multicam
+	var/atom/movable/screen/movable/pic_in_pic/ai/master_multicam
 	var/list/multicam_screens = list()
 	var/list/all_eyes = list()
 	var/max_multicams = 6
@@ -122,7 +122,7 @@
 	var/cameraMemoryTickCount = 0
 
 	//Did we get the death prompt?
-	var/is_dying = FALSE 
+	var/is_dying = FALSE
 	///Multiplier for amount of points gained when passively using CPU for science
 	var/research_point_booster = 1
 
@@ -162,7 +162,7 @@
 	to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
 	job = "AI"
-	
+
 
 	create_eye()
 	if(client)
@@ -196,7 +196,7 @@
 		add_verb(src, list(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
 		/mob/living/silicon/ai/proc/botcall, /mob/living/silicon/ai/proc/control_integrated_radio, \
-		/mob/living/silicon/ai/proc/set_automatic_say_channel))
+		/mob/living/silicon/ai/proc/set_automatic_say_channel, /mob/living/silicon/ai/proc/changeaccent))
 
 	GLOB.ai_list += src
 	GLOB.shuttle_caller_list += src
@@ -455,7 +455,7 @@
 	..()
 	if(usr != src)
 		return
-	
+
 	if(href_list["emergencyAPC"]) //This check comes before incapacitated() because the only time it would be useful is when we have no power.
 		if(!apc_override)
 			to_chat(src, "<span class='notice'>APC backdoor is no longer available.</span>")
@@ -464,8 +464,8 @@
 		return
 
 	if(incapacitated())
-		return	
-	
+		return
+
 	if (href_list["mach_close"])
 		if (href_list["mach_close"] == "aialerts")
 			viewalerts = 0
@@ -550,10 +550,10 @@
 			to_chat(src, span_warning("Old target discarded. Exclusively tracking new target."))
 		else
 			to_chat(src, span_notice("Now tracking new target, [track_name]."))
-		
+
 		cameraMemoryTarget = track_name
 		cameraMemoryTickCount = 0
-	
+
 	if(href_list["instant_download"])
 		if(!href_list["console"])
 			return
@@ -796,10 +796,11 @@
 			"poly" = 'icons/mob/animal.dmi',
 			"pug" = 'icons/mob/pets.dmi',
 			"spider" = 'icons/mob/animal.dmi',
-			"mothroach" = 'icons/mob/animal.dmi',
+			"mothroach" = 'icons/mob/pets.dmi',
 			"snake" = 'icons/mob/animal.dmi',
 			"goose" = 'icons/mob/animal.dmi',
-			"poppypossum" = 'icons/mob/animal.dmi'
+			"poppypossum" = 'icons/mob/animal.dmi',
+			"axolotl" = 'icons/mob/pets.dmi'
 			)
 
 			input = input("Please select a hologram:") as null|anything in icon_list
@@ -999,7 +1000,7 @@
 	to_chat(src, "In the top right corner of the screen you will find the Malfunctions tab, where you can purchase various abilities, from upgraded surveillance to station ending doomsday devices.")
 	to_chat(src, "You are also capable of hacking APCs, which grants you more points to spend on your Malfunction powers. The drawback is that a hacked APC will give you away if spotted by the crew. Hacking an APC takes 30 seconds.")
 	to_chat(src, span_userdanger("In addition you are able to disallow downloading of your memory banks by using the 'Toggle Download' verb in the malfunction tab. This has a visual tell so do not do it without reason."))
-	
+
 	view_core() //A BYOND bug requires you to be viewing your core before your verbs update
 	add_verb_ai(list(/mob/living/silicon/ai/proc/choose_modules, /mob/living/silicon/ai/proc/toggle_download))
 	malf_picker = new /datum/module_picker

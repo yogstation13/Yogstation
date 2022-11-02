@@ -10,7 +10,6 @@
 /obj/effect/spawner/lootdrop/Initialize(mapload)
 	..()
 	if(loot && loot.len)
-		var/turf/T = get_turf(src)
 		var/loot_spawned = 0
 		while((lootcount-loot_spawned) && loot.len)
 			var/lootspawn = pickweight(loot)
@@ -18,7 +17,7 @@
 				loot.Remove(lootspawn)
 
 			if(lootspawn)
-				var/atom/movable/spawned_loot = new lootspawn(T)
+				var/atom/movable/spawned_loot = new lootspawn(loc)
 				if (!fan_out_items)
 					if (pixel_x != 0)
 						spawned_loot.pixel_x = pixel_x
@@ -29,6 +28,48 @@
 						spawned_loot.pixel_x = spawned_loot.pixel_y = ((!(loot_spawned%2)*loot_spawned/2)*-1)+((loot_spawned%2)*(loot_spawned+1)/2*1)
 			loot_spawned++
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/spawner/lootdrop/surgery_tool_advanced
+	name = "Advanced surgery tool spawner"
+	loot = list( // Mail loot spawner. Drop pool of advanced medical tools typically from research. Not endgame content.
+		/obj/item/scalpel/advanced,
+		/obj/item/retractor/advanced,
+		/obj/item/cautery/advanced,
+	)
+
+/obj/effect/spawner/lootdrop/surgery_tool_alien
+	name = "Rare surgery tool spawner"
+	loot = list( // Mail loot spawner. Some sort of random and rare surgical tool. Alien tech found here.
+		/obj/item/scalpel/alien,
+		/obj/item/hemostat/alien,
+		/obj/item/retractor/alien,
+		/obj/item/circular_saw/alien,
+		/obj/item/surgicaldrill/alien,
+		/obj/item/cautery/alien,
+	)
+
+/obj/effect/spawner/lootdrop/memeorgans
+	name = "meme organ spawner"
+	lootcount = 5
+	loot = list(
+		/obj/item/organ/ears/penguin,
+		/obj/item/organ/ears/cat,
+		/obj/item/organ/eyes/moth,
+		/obj/item/organ/eyes/snail,
+		/obj/item/organ/tongue/bone,
+		/obj/item/organ/tongue/fly,
+		/obj/item/organ/tongue/snail,
+		/obj/item/organ/tongue/lizard,
+		/obj/item/organ/tongue/alien,
+		///obj/item/organ/tongue/ethereal,
+		/obj/item/organ/tongue/robot,
+		/obj/item/organ/tongue/zombie,
+		/obj/item/organ/appendix,
+		/obj/item/organ/liver/fly,
+		/obj/item/organ/lungs/plasmaman,
+		/obj/item/organ/tail/cat,
+		/obj/item/organ/tail/lizard,
+	)
 
 /obj/effect/spawner/lootdrop/armory_contraband
 	name = "armory contraband gun spawner"
@@ -55,6 +96,26 @@
 				/obj/item/storage/box/syndie_kit/throwing_weapons = 1,
 				/obj/item/toy/cards/deck/syndicate = 2
 				)
+
+/obj/effect/spawner/lootdrop/seed_rare
+	name = "rare seed"
+	lootcount = 5
+	loot = list( // /obj/item/seeds/random is not a random seed, but an exotic seed.
+		/obj/item/seeds/random = 30,
+		/obj/item/seeds/liberty = 5,
+		/obj/item/seeds/replicapod = 5,
+		/obj/item/seeds/reishi = 5,
+		/obj/item/seeds/nettle/death = 1,
+		/obj/item/seeds/plump/walkingmushroom = 1,
+		/obj/item/seeds/cannabis/rainbow = 1,
+		/obj/item/seeds/cannabis/death = 1,
+		/obj/item/seeds/cannabis/white = 1,
+		/obj/item/seeds/cannabis/ultimate = 1,
+		/obj/item/seeds/kudzu = 1,
+		/obj/item/seeds/angel = 1,
+		/obj/item/seeds/glowshroom/glowcap = 1,
+		/obj/item/seeds/glowshroom/shadowshroom = 1,
+	)
 
 /obj/effect/spawner/lootdrop/grille_or_trash
 	name = "maint grille or trash spawner"
@@ -253,6 +314,17 @@
 			/obj/effect/mine/sound = 10,
 			/obj/effect/mine/sound/bwoink = 5,
 			/obj/effect/mine/gas = 5,
+		)
+
+/obj/effect/spawner/lootdrop/effects/landmines/ancient
+	name = "stun or ancient explosive landmine spawner"
+	icon_state = "landmine_spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			"" = 84,
+			/obj/effect/mine/explosive/ancient = 1,
+			/obj/effect/mine/stun = 5,
 		)
 
 /obj/effect/spawner/lootdrop/three_course_meal
@@ -569,3 +641,29 @@
 	loot = list(
 		/obj/item/clothing/shoes/drip = 20,
 		"" = 80)
+
+//Mob spawners
+/obj/effect/spawner/lootdrop/mob
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
+
+/obj/effect/spawner/lootdrop/mob/kitchen_animal
+	name = "kitchen animal"
+	icon = 'icons/mob/animal.dmi'
+	icon_state = "random_kitchen"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/retaliate/goat/pete = 1,
+			/mob/living/simple_animal/cow/betsy = 1,
+			/mob/living/simple_animal/sheep = 1,
+			/mob/living/simple_animal/sheep/shawn = 1)
+
+/obj/effect/spawner/lootdrop/mob/marrow_weaver
+	name = "40% marrow weaver spawner"
+	icon = 'yogstation/icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "weaver"
+	lootdoubles = 0
+	lootcount = 1
+	loot = list(/mob/living/simple_animal/hostile/asteroid/marrowweaver = 35,
+			/mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 5,
+			"" = 60)

@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_map = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
+	var/pda_theme = PDA_THEME_TITLE_NTOS
 	var/id_in_pda = FALSE
 	var/show_credits = TRUE
 	var/uses_glasses_colour = 0
@@ -715,14 +716,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
-			dat += "<b>Hear alternative station announcers:</b> <a href='?_src_=prefs;preference=alternative_announcers'>[disable_alternative_announcers ? "Disabled" : "Enabled"]</a><br>"
-			dat += "<b>Disable balloon alerts:</b> <a href='?_src_=prefs;preference=balloon_alerts'>[disable_balloon_alerts ? "Disabled" : "Enabled"]</a><br>"
+			dat += "<b>Hear alternative station announcers:</b> <a href='?_src_=prefs;task=input;preference=alternative_announcers'>[disable_alternative_announcers ? "Disabled" : "Enabled"]</a><br>"
+			dat += "<b>Balloon Alerts:</b> <a href='?_src_=prefs;task=input;preference=balloon_alerts'>[disable_balloon_alerts ? "Disabled" : "Enabled"]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			//dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>" // yogs - Custom keybindings
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
+			dat += "<b>PDA Theme:</b> <a href='?_src_=prefs;task=input;preference=pda_theme'>[pda_theme]</a><br>"
 			dat += "<b>PDA Starts in ID Slot:</b> <a href='?_src_=prefs;task=input;preference=id_in_pda'>[id_in_pda ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Skillcape:</b> <a href='?_src_=prefs;task=input;preference=skillcape'>[(skillcape_id != "None") ? "[GLOB.skillcapes[skillcape_id]]" : "None"] </a><br>"
 			dat += "<b>Flare:</b> <a href='?_src_=prefs;task=input;preference=flare'>[flare ? "Enabled" : "Disabled"]</a><br>"
@@ -1684,7 +1686,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						pref_species = new newtype()
 						//Now that we changed our species, we must verify that the mutant colour is still allowed.
 						var/temp_hsv = RGBtoHSV(features["mcolor"])
-						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#7F7F7F")[3]))
+						if(features["mcolor"] == "#000" || (!(MUTCOLORS_PARTSONLY in pref_species.species_traits) && ReadHSV(temp_hsv)[3] < ReadHSV("#3a3a3a")[3]))
 							features["mcolor"] = pref_species.default_color
 						var/CQ
 						for(var/Q in all_quirks)
@@ -1703,7 +1705,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/temp_hsv = RGBtoHSV(new_mutantcolor)
 						if(new_mutantcolor == "#000000")
 							features["mcolor"] = pref_species.default_color
-						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright, but only if they affect the skin
 							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						else
 							to_chat(user, span_danger("Invalid color. Your color is not bright enough."))
@@ -1822,7 +1824,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(new_hair == "#000000")
 							hair_color = pref_species.default_color
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright, but only if they affect the skin
 							hair_color = sanitize_hexcolor(new_hair)
 						else
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
@@ -1833,7 +1835,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(new_facial == "#000000")
 							facial_hair_color = pref_species.default_color
 							to_chat(user, span_danger("Invalid \"hair\" color. Your color is not bright enough."))
-						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
+						else if(ReadHSV(temp_hsv)[3] >= ReadHSV("#3a3a3a")[3]) // mutantcolors must be bright, but only if they affect the skin
 							facial_hair_color = sanitize_hexcolor(new_facial)
 						else
 							to_chat(user, span_danger("Invalid head flower color. Your color is not bright enough."))
@@ -1947,6 +1949,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
+				if("pda_theme")
+					var/pickedPDATheme = input(user, "Choose your PDA Interface theme.", "Character Preference", pda_theme) as null|anything in GLOB.pda_themes
+					if(pickedPDATheme)
+						pda_theme = pickedPDATheme
 				if("id_in_pda")
 					id_in_pda = !id_in_pda
 				if("skillcape")
@@ -2130,7 +2136,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("ambientocclusion")
 					ambientocclusion = !ambientocclusion
 					if(parent && parent.screen && parent.screen.len)
-						var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
+						var/atom/movable/screen/plane_master/game_world/PM = locate(/atom/movable/screen/plane_master/game_world) in parent.screen
 						PM.backdrop(parent.mob)
 
 				if("auto_fit_viewport")
