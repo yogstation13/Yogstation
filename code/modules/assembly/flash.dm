@@ -139,7 +139,7 @@
 			else
 				to_chat(M, span_userdanger("You are blinded by [src]!"))
 			if(issilicon(M))
-				M.paralyze(rand(8 SECONDS, 12 SECONDS))
+				M.Paralyze(rand(8 SECONDS, 12 SECONDS))
 			else
 				M.drop_all_held_items()
 		else if(user)
