@@ -129,7 +129,7 @@
 		to_chat(src, span_warning("You secrete a reflective ooze over the shield blob, allowing it to reflect projectiles at the cost of reduced integrity."))
 		S.change_to(/obj/structure/blob/shield/reflective, src)
 	else
-		createSpecial(15, /obj/structure/blob/shield, 0, 0, T)
+		createSpecial(BLOB_UPGRADE_STRONG_COST, /obj/structure/blob/shield, 0, FALSE, T)
 
 /mob/camera/blob/verb/create_resource()
 	set category = "Blob"

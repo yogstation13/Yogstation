@@ -272,11 +272,16 @@
 		result = first ^ second
 	return result
 
-//Picks a random element from a list based on a weighting system:
-//1. Adds up the total of weights for each element
-//2. Gets a number between 1 and that total
-//3. For each element in the list, subtracts its weighting from that number
-//4. If that makes the number 0 or less, return that element.
+/**
+ * Picks a random element from a list based on a weighting system.
+ * For example, given the following list:
+ * A = 6, B = 3, C = 1, D = 0
+ * A would have a 60% chance of being picked,
+ * B would have a 30% chance of being picked,
+ * C would have a 10% chance of being picked,
+ * and D would have a 0% chance of being picked.
+ * You should only pass integers in.
+ */
 /proc/pickweight(list/L)
 	var/total = 0
 	var/item

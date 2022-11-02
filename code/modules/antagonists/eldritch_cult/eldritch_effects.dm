@@ -228,7 +228,7 @@
 		for(var/i in 1 to 20)
 			human_user.SetStun(INFINITY) //:^^^^^^^^^^)
 			throwtarget = get_edge_target_turf(src, pick(GLOB.alldirs))
-			human_user.safe_throw_at(throwtarget, rand(1,20), 1, src, force = MOVE_FORCE_OVERPOWERING , quickstart = TRUE)
+			human_user.safe_throw_at(throwtarget, rand(1,20), 1, src, force = MOVE_FORCE_OVERPOWERING)
 			human_user.Shake(rand(-100,100), rand(-100,100), 110) //oh we are TOTALLY stacking these //turns out we are not in fact stacking these
 			to_chat(user, span_userdanger("[pick("I- I- I-", "NO-", "IT HURTS-", "GETOUTOFMYHEADGETOUTOFMY-", "<i>POD-</i>","<i>COVE-</i>", "AAAAAAAAA-")]"))
 			sleep(0.11 SECONDS) //Spooky flavor message spam

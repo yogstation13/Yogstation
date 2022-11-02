@@ -640,7 +640,7 @@
 		playsound(src,stepsound,40,1)
 	return result
 
-/obj/mecha/Bump(var/atom/obstacle)
+/obj/mecha/Bump(atom/obstacle)
 	var/turf/newloc = get_step(src,dir)
 	var/area/newarea = newloc.loc
 	if(newloc.flags_1 & NOJAUNT)
@@ -666,8 +666,7 @@
 		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
 			if(!equipment_disabled)
 				if(nextsmash < world.time)
-					var/list/mob/mobster = return_drivers()
-					obstacle.mech_melee_attack(src, mobster[1])
+					obstacle.mech_melee_attack(src, occupant)
 					nextsmash = world.time + smashcooldown
 					if(!obstacle || obstacle.CanPass(src,newloc))
 						step(src,dir)

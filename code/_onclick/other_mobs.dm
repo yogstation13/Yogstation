@@ -129,10 +129,6 @@
 /mob/living/carbon/monkey/UnarmedAttack(atom/A)
 	A.attack_paw(src)
 
-///Apparently this is only used by AI datums for basic mobs. A player controlling a basic mob will call attack_animal() when clicking another atom.
-/atom/proc/attack_basic_mob(mob/user, list/modifiers)
-	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_BASIC_MOB, user)
-
 /atom/proc/attack_paw(mob/user)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_PAW, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE

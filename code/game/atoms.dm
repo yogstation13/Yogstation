@@ -91,7 +91,7 @@
 
 	/// The icon state intended to be used for the acid component. Used to override the default acid overlay icon state.
 	var/custom_acid_overlay = null
-
+	
 	///The custom materials this atom is made of, used by a lot of things like furniture, walls, and floors (if I finish the functionality, that is.)
 	var/list/custom_materials
 	///Bitfield for how the atom handles materials.

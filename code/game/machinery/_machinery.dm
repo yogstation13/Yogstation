@@ -398,6 +398,7 @@ Class Procs:
 	transfer_fingerprints_to(new_frame)
 
 /obj/machinery/atom_break(damage_flag)
+	. = ..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)

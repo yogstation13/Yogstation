@@ -23,6 +23,8 @@
 	var/brute_resist = BLOB_BRUTE_RESIST
 	/// Multiplies burn damage by this
 	var/fire_resist = BLOB_FIRE_RESIST
+	/// Only used by the synchronous mesh strain. If set to true, these blobs won't share or receive damage taken with others.
+	var/ignore_syncmesh_share = FALSE
 	var/atmosblock = TRUE //if the blob blocks atmos and heat spread
 	var/mob/camera/blob/overmind
 
@@ -99,7 +101,7 @@
 		pulsing_overmind = overmind
 	Be_Pulsed()
 	var/expanded = FALSE
-	if(prob(70(1/BLOB_EXPAND_CHANCE_MULTIPLIER)) && expand())
+	if(prob(70*(1/BLOB_EXPAND_CHANCE_MULTIPLIER)) && expand())
 		expanded = TRUE
 	var/list/blobs_to_affect = list()
 	for(var/obj/structure/blob/B in urange(claim_range, src, 1))

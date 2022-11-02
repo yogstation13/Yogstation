@@ -10,11 +10,11 @@
 // The proc you should always use to set the light of this atom.
 // Nonesensical value for l_color default, so we can detect if it gets set to null.
 #define NONSENSICAL_VALUE -99999
-/atom/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE, l_on)
+/atom/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE)
 	if(l_range > 0 && l_range < MINIMUM_USEFUL_LIGHT_RANGE)
 		l_range = MINIMUM_USEFUL_LIGHT_RANGE	//Brings the range up to 1.4, which is just barely brighter than the soft lighting that surrounds players.
 	
-	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT, l_range, l_power, l_color, l_on) & COMPONENT_BLOCK_LIGHT_UPDATE)
+	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT, l_range, l_power, l_color) & COMPONENT_BLOCK_LIGHT_UPDATE)
 		return
 
 	if(!isnull(l_power))
@@ -25,9 +25,6 @@
 
 	if(l_color != NONSENSICAL_VALUE)
 		set_light_color(l_color)
-
-	if(!isnull(l_on))
-		set_light_on(l_on)
 
 	update_light()
 
@@ -173,12 +170,3 @@
 	light_color = new_color
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_COLOR, .)
 
-/// Setter for whether or not this atom's light is on.
-/atom/proc/set_light_on(new_value)
-	if(new_value == light_on)
-		return
-	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_ON, new_value) & COMPONENT_BLOCK_LIGHT_UPDATE)
-		return
-	. = light_on
-	light_on = new_value
-	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_LIGHT_ON, .)

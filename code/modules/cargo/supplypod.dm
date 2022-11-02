@@ -57,7 +57,7 @@
 	var/list/reverseOptionList = list("Mobs"=FALSE,"Objects"=FALSE,"Anchored"=FALSE,"Underfloor"=FALSE,"Wallmounted"=FALSE,"Floors"=FALSE,"Walls"=FALSE)
 	var/list/turfs_in_cargo = list()
 
-	var/list/managed_overlays
+	managed_overlays
 
 /obj/structure/closet/supplypod/bluespacepod
 	style = STYLE_BLUESPACE

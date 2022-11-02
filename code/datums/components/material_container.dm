@@ -346,7 +346,7 @@
 	return material_amount
 
 /// Returns the amount of a specific material in this container.
-/datum/component/material_container/proc/get_material_amount(var/datum/material/mat)
+/datum/component/material_container/proc/get_material_amount(datum/material/mat)
 	if(!istype(mat))
 		mat = getmaterialref(mat)
 	return(materials[mat])

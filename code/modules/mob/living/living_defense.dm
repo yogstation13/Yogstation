@@ -69,7 +69,7 @@
 	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
 
 /mob/living/check_projectile_armor(def_zone, obj/item/projectile/impacting_projectile, is_silent)
-	return run_armor_check(def_zone, impacting_projectile.armor_flag, "","",impacting_projectile.armour_penetration, "", is_silent, impacting_projectile.weak_against_armour)
+	return run_armor_check(def_zone, impacting_projectile.flag, "","",impacting_projectile.armour_penetration, "", is_silent, impacting_projectile.weak_against_armour)
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
 	return 0
@@ -93,7 +93,7 @@
 		if(blocked)
 			return TRUE
 
-		var/mob/thrown_by = thrown_item.thrownby?.resolve()
+		var/mob/thrown_by = thrown_item.thrownby
 		if(thrown_by)
 			log_combat(thrown_by, src, "threw and hit", thrown_item)
 		if(nosell_hit)
@@ -113,33 +113,35 @@
 	playsound(loc, 'sound/weapons/genhit.ogg', 50, TRUE, -1) //Item sounds are handled in the item itself
 	return ..()
 
-/mob/living/mech_melee_attack(obj/mecha/M, mob/living/user)
-	if(M.occupant.a_intent == INTENT_HARM)
-		last_damage = "grand blunt trauma"
-		M.do_attack_animation(src)
-		if(M.damtype == "brute")
-			var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
-			src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
-		switch(M.damtype)
-			if(BRUTE)
-				Unconscious(20)
-				take_overall_damage(rand(M.force/2, M.force))
-				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
-			if(BURN)
-				take_overall_damage(0, rand(M.force/2, M.force))
-				playsound(src, 'sound/items/welder.ogg', 50, 1)
-			if(TOX)
-				M.mech_toxin_damage(src)
-			else
-				return
-		updatehealth()
-		visible_message(span_danger("[M.name] has hit [src]!"), \
-						span_userdanger("[M.name] has hit [src]!"), null, COMBAT_MESSAGE_RANGE)
-		log_combat(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
-	else
-		step_away(src,M)
-		log_combat(M.occupant, src, "pushed", M)
-		visible_message(span_warning("[M] pushes [src] out of the way."), null, null, 5)
+/mob/living/mech_melee_attack(obj/mecha/mecha_attacker, mob/living/user)	
+	if(mecha_attacker.occupant.a_intent != INTENT_HARM)
+		step_away(src,mecha_attacker)
+		log_combat(mecha_attacker.occupant, src, "pushed", mecha_attacker)
+		visible_message(span_warning("[mecha_attacker] pushes [src] out of the way."), null, null, 5)
+		return 0
+	
+	last_damage = "grand blunt trauma"
+	mecha_attacker.do_attack_animation(src)
+	if(mecha_attacker.damtype == "brute")
+		var/throwtarget = get_edge_target_turf(mecha_attacker, get_dir(mecha_attacker, get_step_away(src, mecha_attacker)))
+		src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
+	switch(mecha_attacker.damtype)
+		if(BRUTE)
+			Unconscious(20)
+			take_overall_damage(rand(mecha_attacker.force/2, mecha_attacker.force))
+			playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+		if(BURN)
+			take_overall_damage(0, rand(mecha_attacker.force/2, mecha_attacker.force))
+			playsound(src, 'sound/items/welder.ogg', 50, 1)
+		if(TOX)
+			mecha_attacker.mech_toxin_damage(src)
+		else
+			return
+	updatehealth()
+	visible_message(span_danger("[mecha_attacker.name] has hit [src]!"), \
+					span_userdanger("[mecha_attacker.name] has hit [src]!"), null, COMBAT_MESSAGE_RANGE)
+	//log_combat(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
+	..()
 
 /mob/living/fire_act()
 	last_damage = "fire"

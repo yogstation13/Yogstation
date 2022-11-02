@@ -112,6 +112,9 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	///How long it takes to resist out of the item (cuffs and such)
 	var/breakouttime = 0
 	
+	///materials in this object, and the amount. Yog code. This should be replaced with custom_materials at atom level
+	var/list/materials 
+	
 	///Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/list/attack_verb 
 	///list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item

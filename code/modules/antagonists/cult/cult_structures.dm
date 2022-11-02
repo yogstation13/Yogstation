@@ -278,7 +278,6 @@
 	icon_state = "pillar-enter"
 	icon = 'icons/obj/cult_64x64.dmi'
 	pixel_x = -16
-	atom_integrity = 200
 	max_integrity = 200
 	break_sound = 'sound/effects/meteorimpact.ogg'
 	break_message = span_warning("The pillar crumbles!")

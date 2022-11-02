@@ -199,7 +199,7 @@ SUBSYSTEM_DEF(explosions)
  * - smoke: Whether to generate a smoke cloud provided the explosion is powerful enough to warrant it.
  * - explosion_cause: [Optional] The atom that caused the explosion, when different to the origin. Used for logging.
  */
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, silent = FALSE, smoke = FALSE)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = FALSE, flame_range = 0, silent = FALSE, smoke = FALSE, atom/explosion_cause = null)
 	. = SSexplosions.explode(arglist(args))
 
 
@@ -355,7 +355,7 @@ SUBSYSTEM_DEF(explosions)
 				if(dist <= round(max_range + world.view - 2, 1))
 					M.playsound_local(epicenter, null, 100, 1, frequency, S = explosion_sound)
 					if(baseshakeamount > 0)
-						shake_camera(M, NEAR_SHAKE_DURATION 25, clamp(baseshakeamount, 0, NEAR_SHAKE_CAP 10))
+						shake_camera(M, NEAR_SHAKE_DURATION, clamp(baseshakeamount, 0, NEAR_SHAKE_CAP))
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 				else if(dist <= far_dist)
 					var/far_volume = clamp(far_dist/2, FAR_LOWER, FAR_UPPER) // Volume is based on explosion size and dist

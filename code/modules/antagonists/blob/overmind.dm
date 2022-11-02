@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		max_blob_points = INFINITY
 		blob_points = INFINITY	
 		blob_core.update_integrity(999999)
-		blob_core.atom_integrity = blob_core.max_integrity
+		blob_core.repair_damage(blob_core.get_integrity())
 		addtimer(CALLBACK(src, .proc/victory), 450)
 	else if(!free_strain_rerolls && (last_reroll_time + BLOB_POWER_REROLL_FREE_TIME<world.time))
 		to_chat(src, "<b><span class='big'><font color=\"#EE4000\">You have gained another free strain re-roll.</font></span></b>")
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 
 /mob/camera/blob/update_health_hud()
 	if(blob_core)
-		var/current_health = round((blob_core.atom_integrity / blob_core.max_integrity) * 100)
+		var/current_health = round((blob_core.get_integrity() / blob_core.max_integrity) * 100)
 		hud_used.healths.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#82ed00'>[current_health]%</font></div>"
 		for(var/mob/living/simple_animal/hostile/blob/blobbernaut/B in blob_mobs)
 			if(B.hud_used && B.hud_used.blobpwrdisplay)

@@ -305,6 +305,7 @@
 	return .
 
 /obj/item/clothing/atom_break(damage_flag)
+	. = ..()
 	damaged_clothes = CLOTHING_DAMAGED
 	update_clothes_damaged_state()
 	if(ismob(loc)) //It's not important enough to warrant a message if nobody's wearing it
