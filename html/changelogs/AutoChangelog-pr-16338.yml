@@ -1,0 +1,4 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - mapping: "Connects the power grid to Arrivals, Janitor closet, locker room, bathroom/laundry room, and port maint, as they are not powered at round start."
