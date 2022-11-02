@@ -1,4 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed fishing bonus not properly given to mob when riding lavaboat"
