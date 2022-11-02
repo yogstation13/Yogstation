@@ -127,7 +127,7 @@
 	if(generic_message && M != user)
 		to_chat(M, span_disarm("[src] emits a blinding light!"))
 	if(targeted)
-		if(M.flash_act(3, 1))
+		if(M.flash_act(2, 1))
 			if(M.confused < power)
 				var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
 				M.confused += min(power, diff)
