@@ -43,7 +43,7 @@ jobs:
           tools/travis/check_filedirs.sh yogstation.dme
           tools/travis/check_changelogs.sh
           find . -name "*.json" -not -path "./tgui/node_modules/*" -print0 | xargs -0 python3 ./tools/json_verifier.py
-          tgui/bin/tgui --ci
+          tgui/bin/tgui --lint
           tools/travis/check_grep.sh
 
       - name: Run Linter
