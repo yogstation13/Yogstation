@@ -53,6 +53,10 @@
 		to_chat(user, span_warning("You are banned from using NTSL."))
 		return
 	if(Compiler)
+		if(!reject_bad_text(rawcode, 20000, require_pretty = FALSE))
+			rawcode = null
+			to_chat(user, span_warning("Server is out of memory. Please shorten your script."))
+			return
 		var/list/compileerrors = Compiler.Compile(rawcode)
 		if(!compileerrors.len && (compiledcode != rawcode))
 			user.log_message(rawcode, LOG_NTSL)
