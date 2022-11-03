@@ -21,6 +21,14 @@
 
 	changed_maps = list("OmegaStation", "EclipseStation")
 
+	mail_goodies = list(
+		/obj/item/reagent_containers/autoinjector/medipen = 15,
+		/obj/item/reagent_containers/autoinjector/medipen/atropine = 10,
+		/obj/item/reagent_containers/autoinjector/medipen/ekit = 10,
+		/obj/item/reagent_containers/autoinjector/medipen/blood_loss = 5,
+		/obj/item/reagent_containers/autoinjector/medipen/survival = 2
+	)
+
 /datum/job/paramedic/proc/OmegaStationChanges()
 	total_positions = 1
 	spawn_positions = 1

@@ -71,6 +71,20 @@
 		/obj/item/organ/tail/lizard,
 	)
 
+/obj/effect/spawner/lootdrop/techshell
+	name = "random techshell spawner"
+	lootcount = 1
+	loot = list(
+		/obj/item/ammo_casing/shotgun/pulseslug,
+		/obj/item/ammo_casing/shotgun/dragonsbreath,
+		/obj/item/ammo_casing/shotgun/ion,
+		/obj/item/ammo_casing/shotgun/frag12,
+		/obj/item/ammo_casing/shotgun/laserbuckshot,
+		/obj/item/ammo_casing/shotgun/thundershot,
+		/obj/item/ammo_casing/shotgun/uraniumpenetrator,
+		/obj/item/ammo_casing/shotgun/cryoshot
+	)
+
 /obj/effect/spawner/lootdrop/armory_contraband
 	name = "armory contraband gun spawner"
 	lootdoubles = FALSE

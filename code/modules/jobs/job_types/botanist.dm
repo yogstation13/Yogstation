@@ -26,6 +26,7 @@
 		/obj/item/reagent_containers/glass/bottle/diethylamine = 20,
 		/obj/item/gun/energy/floragun = 10,
 		/obj/effect/spawner/lootdrop/seed_rare = 5,// These are strong, rare seeds, so use sparingly.
+		/obj/item/seeds/random = 5,
 		/obj/item/reagent_containers/food/snacks/monkeycube/bee = 2
 	)
 
