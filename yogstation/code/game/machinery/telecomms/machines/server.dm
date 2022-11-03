@@ -14,6 +14,7 @@
 	var/last_signal = 0 // Marks the last time an NTSL script called signal() from this server, to stop spam.
 	var/list/compile_warnings = list()
 	//End-NTSL
+	COOLDOWN_DECLARE(compile_cooldown)
 
 //NTSL-related procs
 /obj/machinery/telecomms/server/Initialize()
@@ -57,7 +58,11 @@
 			rawcode = null
 			to_chat(user, span_warning("Server is out of memory. Please shorten your script."))
 			return
+		if(!COOLDOWN_FINISHED(src, compile_cooldown))
+			to_chat(user, span_warning("Recharging. Please wait"))
+			return
 		var/list/compileerrors = Compiler.Compile(rawcode)
+		COOLDOWN_START(src, compile_cooldown, 2 SECONDS)
 		if(!compileerrors.len && (compiledcode != rawcode))
 			user.log_message(rawcode, LOG_NTSL)
 			compiledcode = rawcode
