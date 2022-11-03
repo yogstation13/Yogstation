@@ -6,7 +6,7 @@
 
 import { toFixed } from 'common/math';
 import { useDispatch, useSelector } from 'common/redux';
-import { Box, Button, ColorBox, Divider, Dropdown, Flex, Input, LabeledList, NumberInput, Section, Stack, Tabs, TextArea, Grid } from 'tgui/components';
+import { Box, Button, ColorBox, Divider, Dropdown, Stack, Input, LabeledList, NumberInput, Section, Tabs, TextArea } from 'tgui/components';
 import { ChatPageSettings } from '../chat';
 import { rebuildChat, saveChatToDisk } from '../chat/actions';
 import { THEMES } from '../themes';
@@ -42,12 +42,6 @@ export const SettingsPanel = (props, context) => {
         {activeTab === 'chatPage' && (
           <ChatPageSettings />
         )}
-        {activeTab === 'highlightPage' && (
-          <SettingsHighlight />
-        )}
-        {activeTab === 'statPanelpage' && (
-          <SettingsStat />
-        )}
       </Stack.Item>
     </Stack>
   );
@@ -60,16 +54,10 @@ export const SettingsGeneral = (props, context) => {
     lineHeight,
     highlightText,
     highlightColor,
-    matchWord,
-    matchCase,
   } = useSelector(context, selectSettings);
   const dispatch = useDispatch(context);
   return (
-    <Section>
-      <Flex bold>
-        General Settings
-      </Flex>
-      <Divider />
+    <Section fill>
       <LabeledList>
         <LabeledList.Item label="Theme">
           <Dropdown
@@ -109,11 +97,11 @@ export const SettingsGeneral = (props, context) => {
       </LabeledList>
       <Divider />
       <Box>
-        <Flex mb={1} color="label" align="baseline">
-          <Flex.Item grow={1}>
+        <Stack mb={1} color="label" align="baseline">
+          <Stack.Item grow={1}>
             Highlight words (comma separated):
-          </Flex.Item>
-          <Flex.Item shrink={0}>
+          </Stack.Item>
+          <Stack.Item shrink={0}>
             <ColorBox mr={1} color={highlightColor} />
             <Input
               width="5em"
@@ -123,30 +111,14 @@ export const SettingsGeneral = (props, context) => {
               onInput={(e, value) => dispatch(updateSettings({
                 highlightColor: value,
               }))} />
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
         <TextArea
           height="3em"
           value={highlightText}
           onChange={(e, value) => dispatch(updateSettings({
             highlightText: value,
           }))} />
-        <Button.Checkbox
-          checked={matchWord}
-          tooltipPosition="bottom-start"
-          tooltip="Not compatible with punctuation."
-          onClick={() => dispatch(updateSettings({
-            matchWord: !matchWord,
-          }))}>
-          Match word
-        </Button.Checkbox>
-        <Button.Checkbox
-          checked={matchCase}
-          onClick={() => dispatch(updateSettings({
-            matchCase: !matchCase,
-          }))}>
-          Match case
-        </Button.Checkbox>
       </Box>
       <Divider />
       <Box>

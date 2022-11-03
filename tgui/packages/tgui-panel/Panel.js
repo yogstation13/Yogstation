@@ -4,19 +4,14 @@
  * @license MIT
  */
 
-import { Button, Stack, Section } from 'tgui/components';
+import { Button, Flex, Section } from 'tgui/components';
 import { Pane } from 'tgui/layouts';
-import { useDispatch } from 'common/redux';
 import { NowPlayingWidget, useAudio } from './audio';
-import { StatTabs, HoboStatTabs } from './stat';
 import { ChatPanel, ChatTabs } from './chat';
-import { useGame } from './game';
+import { gameReducer, useGame } from './game';
 import { Notifications } from './Notifications';
 import { PingIndicator } from './ping';
 import { SettingsPanel, useSettings } from './settings';
-import { useLocalState } from '../tgui/backend';
-import { Box, Divider, DraggableControl } from '../tgui/components';
-import { updateSettings } from './settings/actions';
 
 export const Panel = (props, context) => {
   // IE8-10: Needs special treatment due to missing Flex support
@@ -37,66 +32,21 @@ export const Panel = (props, context) => {
       );
     }
   }
-
-  const [
-    number,
-    setNumber,
-  ] = useLocalState(context, 'number', settings.statSize);
-  const dispatch = useDispatch(context);
-  const resizeFunction = value => {
-    dispatch(updateSettings({
-      statSize: Math.max(Math.min(value, 90), 10),
-    }));
-  };
   return (
     <Pane theme={settings.theme}>
-      <Stack
-        height={(98-number) + '%'}
-        vertical
-        grow={0}
-        shrink={0}>
-        <StatTabs
-          direction="column" />
-      </Stack>
-      <DraggableControl
-        value={number}
-        height="1%"
-        minValue={0}
-        maxValue={100}
-        dragMatrix={[0, -1]}
-        step={1}
-        stepPixelSize={9}
-        onDrag={(e, value) => resizeFunction(value)}
-        updateRate={5}>
-        {control => (
-          <Box
-            onMouseDown={control.handleDragStart}
-            height="10px">
-            <Box
-              position="relative"
-              height="4px"
-              backgroundColor="grey"
-              top="3px">
-              <Divider />
-              {control.inputElement}
-            </Box>
-          </Box>
-        )}
-      </DraggableControl>
-      <Stack
-        fill
-        vertical
-        height={(number-1) + '%'}>
-        <Stack.Item>
+      <Flex
+        direction="column"
+        height="100%">
+        <Flex.Item>
           <Section fitted>
-            <Stack mx={1} align="center">
-              <Stack.Item grow overflowX="auto">
+            <Flex mx={0.5} align="center">
+              <Flex.Item mx={0.5} grow={1} overflowX="auto">
                 <ChatTabs />
-              </Stack.Item>
-              <Stack.Item>
+              </Flex.Item>
+              <Flex.Item mx={0.5}>
                 <PingIndicator />
-              </Stack.Item>
-              <Stack.Item>
+              </Flex.Item>
+              <Flex.Item mx={0.5}>
                 <Button
                   color="grey"
                   selected={audio.visible}
@@ -104,8 +54,8 @@ export const Panel = (props, context) => {
                   tooltip="Music player"
                   tooltipPosition="bottom-left"
                   onClick={() => audio.toggle()} />
-              </Stack.Item>
-              <Stack.Item>
+              </Flex.Item>
+              <Flex.Item mx={0.5}>
                 <Button
                   icon={settings.visible ? 'times' : 'cog'}
                   selected={settings.visible}
@@ -114,23 +64,23 @@ export const Panel = (props, context) => {
                     : 'Open settings'}
                   tooltipPosition="bottom-left"
                   onClick={() => settings.toggle()} />
-              </Stack.Item>
-            </Stack>
+              </Flex.Item>
+            </Flex>
           </Section>
-        </Stack.Item>
+        </Flex.Item>
         {audio.visible && (
-          <Stack.Item>
+          <Flex.Item mt={1}>
             <Section>
               <NowPlayingWidget />
             </Section>
-          </Stack.Item>
+          </Flex.Item>
         )}
         {settings.visible && (
-          <Stack.Item>
+          <Flex.Item mt={1}>
             <SettingsPanel />
-          </Stack.Item>
+          </Flex.Item>
         )}
-        <Stack.Item grow>
+        <Flex.Item mt={1} grow={1}>
           <Section fill fitted position="relative">
             <Pane.Content scrollable>
               <ChatPanel lineHeight={settings.lineHeight} />
@@ -146,104 +96,49 @@ export const Panel = (props, context) => {
                     </Button>
                   )}>
                   You are either AFK, experiencing lag or the connection
-                  has closed.
+                  has closed. If the server has been nuked, you
+                  are just lagging, you should be fine in a moment.
                 </Notifications.Item>
               )}
-              {game.roundRestartedAt && (
+              {game.reconnectTimer > 0 && (
                 <Notifications.Item>
                   The connection has been closed because the server is
-                  restarting. Please wait while you automatically reconnect.
+                  restarting. Please wait while you are automatically reconnected
+                  in {game.reconnectTimer} Seconds.
                 </Notifications.Item>
               )}
             </Notifications>
           </Section>
-        </Stack.Item>
-      </Stack>
+        </Flex.Item>
+      </Flex>
     </Pane>
   );
 };
 
 const HoboPanel = (props, context) => {
   const settings = useSettings(context);
-  const audio = useAudio(context);
-  const game = useGame(context);
-  if (process.env.NODE_ENV !== 'production') {
-    const { useDebug, KitchenSink } = require('tgui/debug');
-    const debug = useDebug(context);
-    if (debug.kitchenSink) {
-      return (
-        <KitchenSink panel />
-      );
-    }
-  }
-
-  const [
-    number,
-    setNumber,
-  ] = useLocalState(context, 'number', settings.statSize);
-  const dispatch = useDispatch(context);
-  const resizeFunction = value => {
-    dispatch(updateSettings({
-      statSize: Math.max(Math.min(value, 90), 10),
-    }));
-  };
-
   return (
     <Pane theme={settings.theme}>
-      <Section
-        direction="column"
-        height={(98-number) + '%'}
-        overflowY="scroll">
-        <HoboStatTabs
-          height="100%" />
-      </Section>
-      <DraggableControl
-        value={number}
-        height="1%"
-        minValue={0}
-        maxValue={100}
-        dragMatrix={[0, -1]}
-        step={1}
-        stepPixelSize={9}
-        onDrag={(e, value) => resizeFunction(value)}
-        updateRate={5}>
-        {control => (
-          <Box
-            onMouseDown={control.handleDragStart}
-            height="10px">
-            <Box
-              position="relative"
-              height="4px"
-              backgroundColor="grey"
-              top="3px">
-              <Divider />
-              {control.inputElement}
-            </Box>
-          </Box>
+      <Pane.Content scrollable>
+        <Button
+          style={{
+            position: 'fixed',
+            top: '1em',
+            right: '2em',
+            'z-index': 1000,
+          }}
+          selected={settings.visible}
+          onClick={() => settings.toggle()}>
+          Settings
+        </Button>
+        {settings.visible && (
+          <Flex.Item mt={1}>
+            <SettingsPanel />
+          </Flex.Item>
+        ) || (
+          <ChatPanel lineHeight={settings.lineHeight} />
         )}
-      </DraggableControl>
-      <Section height={(number-1) + '%'}>
-        <Pane.Content scrollable>
-          <Button
-            style={{
-              position: 'fixed',
-              bottom: '3em',
-              right: '2em',
-              'z-index': 1000,
-            }}
-            selected={settings.visible}
-            onClick={() => settings.toggle()}>
-            Settings
-          </Button>
-          {settings.visible && (
-            <Stack.Item>
-              <SettingsPanel />
-            </Stack.Item>
-          ) || (
-            <ChatPanel lineHeight={settings.lineHeight} />
-          )}
-        </Pane.Content>
-      </Section>
+      </Pane.Content>
     </Pane>
   );
 };
