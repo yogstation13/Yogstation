@@ -800,6 +800,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	item_state = "sheet-plastic"
 	materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 7
+	grind_results = list(/datum/reagent/microplastics = 10)
 	merge_type = /obj/item/stack/sheet/plastic
 
 /obj/item/stack/sheet/plastic/fifty

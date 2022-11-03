@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(title)
 
 	if(length(title_screens))
 		file_path = "[global.config.directory]/title_screens/images/[pick(title_screens)]"
-	
+
 	if(!file_path)
 		file_path = "icons/default_title.dmi"
 
@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(title)
 	for(var/thing in GLOB.clients)
 		if(!thing)
 			continue
-		var/obj/screen/splash/S = new(thing, FALSE)
+		var/atom/movable/screen/splash/S = new(thing, FALSE)
 		S.Fade(FALSE,FALSE)
 
 /datum/controller/subsystem/title/Shutdown()

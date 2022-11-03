@@ -34,6 +34,8 @@
 		playsound_local(null, 'sound/effects/space_wind_big.ogg', clamp(pressure_difference / 50, 10, 100), 1)
 	else
 		playsound_local(null, 'sound/effects/space_wind.ogg', clamp(pressure_difference, 10, 100), 1)
+	if(dna.species.has_heavy_gravity(src))
+		return FALSE
 	if(shoes && istype(shoes, /obj/item/clothing))
 		var/obj/item/clothing/S = shoes
 		if((S.clothing_flags & NOSLIP))
@@ -50,7 +52,7 @@
 	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)))
 
 /mob/living/carbon/human/mob_has_heavy_gravity()
-	return (shoes && shoes.negates_gravity())
+	return (shoes && shoes.negates_gravity() || (dna.species.has_heavy_gravity(src)))
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()

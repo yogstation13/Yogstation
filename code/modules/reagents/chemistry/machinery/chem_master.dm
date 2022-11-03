@@ -265,6 +265,8 @@
 			vol_each_max = min(40, vol_each_max)
 		else if (item_type == "bottle")
 			vol_each_max = min(30, vol_each_max)
+		else if (item_type == "gummy")
+			vol_each_max = min(30, vol_each_max)
 		else if (item_type == "condimentPack")
 			vol_each_max = min(10, vol_each_max)
 		else if (item_type == "condimentBottle")
@@ -333,6 +335,14 @@
 			for(var/i = 0; i < amount; i++)
 				P = new/obj/item/reagent_containers/glass/bottle(drop_location())
 				P.name = trim("[name] bottle")
+				adjust_item_drop_location(P)
+				reagents.trans_to(P, vol_each, transfered_by = usr)
+			return TRUE
+		if(item_type == "gummy")
+			var/obj/item/reagent_containers/gummy/P
+			for(var/i = 0; i < amount; i++)
+				P = new/obj/item/reagent_containers/gummy(drop_location())
+				P.name = trim("[name] gummy bear")
 				adjust_item_drop_location(P)
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
